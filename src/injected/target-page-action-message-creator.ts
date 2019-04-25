@@ -3,45 +3,43 @@
 import { autobind } from '@uifabric/utilities';
 import { BaseActionPayload } from '../background/actions/action-payloads';
 import { Message } from '../common/message';
+import { ActionMessageDispatcher } from '../common/message-creators/action-message-dispatcher';
 import { BaseActionMessageCreator } from '../common/message-creators/base-action-message-creator';
 import { Messages } from '../common/messages';
 import { TelemetryDataFactory } from '../common/telemetry-data-factory';
 import * as TelemetryEvents from '../common/telemetry-events';
-import { TelemetryEventSource } from '../common/telemetry-events';
+import { TelemetryData, TelemetryEventSource } from '../common/telemetry-events';
 
-export class TargetPageActionMessageCreator extends BaseActionMessageCreator {
-    protected telemetryFactory: TelemetryDataFactory;
-
-    constructor(postMessage: (message: Message) => void, tabId: number, telemetryFactory: TelemetryDataFactory) {
-        super(postMessage, tabId);
-        this.telemetryFactory = telemetryFactory;
-    }
+export class TargetPageActionMessageCreator {
+    constructor(private readonly telemetryFactory: TelemetryDataFactory, private readonly dispatcher: ActionMessageDispatcher) {}
 
     public scrollRequested(): void {
-        this.dispatchMessage({
+        const message: Message = {
             messageType: Messages.Visualizations.Common.ScrollRequested,
-        });
+        };
+        this.dispatcher.dispatchMessage(message);
     }
     public openIssuesDialog(): void {
-        this.sendTelemetry(TelemetryEvents.ISSUES_DIALOG_OPENED, {
+        const eventData: TelemetryData = {
             source: TelemetryEventSource.TargetPage,
             triggeredBy: 'N/A',
-        });
+        };
+        this.dispatcher.sendTelemetry(TelemetryEvents.ISSUES_DIALOG_OPENED, eventData);
     }
 
     @autobind
     public setHoveredOverSelector(selector: string[]): void {
-        this.dispatchMessage({
+        const message: Message = {
             messageType: Messages.Inspect.SetHoveredOverSelector,
-            tabId: this._tabId,
             payload: selector,
-        });
+        };
+        this.dispatcher.dispatchMessage(message);
     }
 
     @autobind
     public copyIssueDetailsClicked(event: React.MouseEvent<any>): void {
         const telemetryData = this.telemetryFactory.withTriggeredByAndSource(event, TelemetryEvents.TelemetryEventSource.TargetPage);
-        this.sendTelemetry(TelemetryEvents.COPY_ISSUE_DETAILS, telemetryData);
+        this.dispatcher.sendTelemetry(TelemetryEvents.COPY_ISSUE_DETAILS, telemetryData);
     }
 
     @autobind
@@ -52,10 +50,10 @@ export class TargetPageActionMessageCreator extends BaseActionMessageCreator {
         const payload: BaseActionPayload = {
             telemetry,
         };
-        this.dispatchMessage({
+        const message: Message = {
             messageType: messageType,
-            tabId: this._tabId,
             payload,
-        });
+        };
+        this.dispatcher.dispatchMessage(message);
     }
 }
