@@ -11,8 +11,8 @@ import {
     PayloadWithEventName,
     SaveIssueFilingSettingsPayload,
     SetHighContrastModePayload,
-    SetIssueServicePayload,
-    SetIssueServicePropertyPayload,
+    SetIssueFilingServicePayload,
+    SetIssueFilingServicePropertyPayload,
     SetIssueTrackerPathPayload,
     SetLaunchPanelState,
     SetTelemetryStatePayload,
@@ -149,12 +149,12 @@ export class GlobalActionCreator {
     }
 
     @autobind
-    private onSetIssueService(payload: SetIssueServicePayload): void {
+    private onSetIssueService(payload: SetIssueFilingServicePayload): void {
         this.userConfigActions.setIssueService.invoke(payload);
     }
 
     @autobind
-    private onSetIssueServiceProperty(payload: SetIssueServicePropertyPayload): void {
+    private onSetIssueServiceProperty(payload: SetIssueFilingServicePropertyPayload): void {
         this.userConfigActions.setIssueServiceProperty.invoke(payload);
     }
 

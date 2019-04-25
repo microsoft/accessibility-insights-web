@@ -7,7 +7,7 @@ exports[`IssueFilingSettings renders 1`] = `
   </h3>
   <FlaggedComponent
     disableJSXElement={
-      <GitHubBugSettingsUx
+      <GitHubIssueSettingsUx
         deps={
           Object {
             "issueFilingServiceProvider": proxy {
@@ -27,8 +27,8 @@ exports[`IssueFilingSettings renders 1`] = `
               "saveIssueFilingSettings": [Function],
               "sendTelemetry": [Function],
               "setHighContrastMode": [Function],
+              "setIssueFilingServiceProperty": [Function],
               "setIssueService": [Function],
-              "setIssueServiceProperty": [Function],
               "setIssueTrackerPath": [Function],
               "setTelemetryState": [Function],
             },
@@ -71,8 +71,8 @@ exports[`IssueFilingSettings renders 1`] = `
               "saveIssueFilingSettings": [Function],
               "sendTelemetry": [Function],
               "setHighContrastMode": [Function],
+              "setIssueFilingServiceProperty": [Function],
               "setIssueService": [Function],
-              "setIssueServiceProperty": [Function],
               "setIssueTrackerPath": [Function],
               "setTelemetryState": [Function],
             },

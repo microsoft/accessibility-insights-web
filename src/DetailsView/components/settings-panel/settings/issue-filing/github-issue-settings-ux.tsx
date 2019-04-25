@@ -6,12 +6,12 @@ import * as React from 'react';
 import { NamedSFC } from '../../../../../common/react/named-sfc';
 import { SettingsProps } from '../settings-props';
 
-export const GitHubBugSettingsUx = NamedSFC<SettingsProps>('GitHubBugSettingsUx', props => {
+export const GitHubIssueSettingsUx = NamedSFC<SettingsProps>('GitHubIssueSettingsUx', props => {
     const onGitHubRepositoryChange = (event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>, newValue?: string) => {
-        props.deps.userConfigMessageCreator.setIssueServiceProperty('gitHub', 'repository', newValue);
+        props.deps.userConfigMessageCreator.setIssueFilingServiceProperty('gitHub', 'repository', newValue);
     };
 
-    const getIssueServiceProperty = (bugService: string, propertyName: string) => {
+    const getIssueFilingServiceProperty = (bugService: string, propertyName: string) => {
         const bugServicePropertiesMap = props.userConfigurationStoreState.bugServicePropertiesMap;
         if (!bugServicePropertiesMap || !bugServicePropertiesMap[bugService]) {
             return undefined;
@@ -23,7 +23,7 @@ export const GitHubBugSettingsUx = NamedSFC<SettingsProps>('GitHubBugSettingsUx'
             className="issue-setting"
             label="Enter desired GitHub repo link:"
             onChange={onGitHubRepositoryChange}
-            value={getIssueServiceProperty('gitHub', 'repository')}
+            value={getIssueFilingServiceProperty('gitHub', 'repository')}
             placeholder="https://github.com/owner/repo/issues"
         />
     );

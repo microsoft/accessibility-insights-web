@@ -3,13 +3,13 @@
 import {
     SaveIssueFilingSettingsPayload,
     SetHighContrastModePayload,
-    SetIssueServicePayload,
-    SetIssueServicePropertyPayload,
+    SetIssueFilingServicePayload,
+    SetIssueFilingServicePropertyPayload,
     SetIssueTrackerPathPayload,
     SetTelemetryStatePayload,
 } from '../../background/actions/action-payloads';
 import { Messages } from '../messages';
-import { IssueServiceProperties } from '../types/store-data/user-configuration-store';
+import { IssueFilingServiceProperties } from '../types/store-data/user-configuration-store';
 import { BaseActionMessageCreator } from './base-action-message-creator';
 
 export class UserConfigMessageCreator extends BaseActionMessageCreator {
@@ -37,9 +37,9 @@ export class UserConfigMessageCreator extends BaseActionMessageCreator {
         });
     }
 
-    public setIssueService = (issueServiceName: string) => {
-        const payload: SetIssueServicePayload = {
-            issueServiceName,
+    public setIssueService = (issueFilingServiceName: string) => {
+        const payload: SetIssueFilingServicePayload = {
+            issueFilingServiceName,
         };
 
         this.dispatchMessage({
@@ -49,9 +49,9 @@ export class UserConfigMessageCreator extends BaseActionMessageCreator {
         });
     };
 
-    public setIssueServiceProperty = (issueServiceName: string, propertyName: string, propertyValue: string) => {
-        const payload: SetIssueServicePropertyPayload = {
-            issueServiceName,
+    public setIssueFilingServiceProperty = (issueFilingServiceName: string, propertyName: string, propertyValue: string) => {
+        const payload: SetIssueFilingServicePropertyPayload = {
+            issueFilingServiceName,
             propertyName,
             propertyValue,
         };
@@ -75,9 +75,9 @@ export class UserConfigMessageCreator extends BaseActionMessageCreator {
         });
     };
 
-    public saveIssueFilingSettings = (issueServiceName: string, issueFilingSettings: IssueServiceProperties) => {
+    public saveIssueFilingSettings = (issueFilingServiceName: string, issueFilingSettings: IssueFilingServiceProperties) => {
         const payload: SaveIssueFilingSettingsPayload = {
-            issueServiceName,
+            issueFilingServiceName,
             issueFilingSettings,
         };
 

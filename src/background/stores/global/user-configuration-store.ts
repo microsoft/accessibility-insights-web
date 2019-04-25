@@ -9,8 +9,8 @@ import { UserConfigurationStoreData } from '../../../common/types/store-data/use
 import {
     SaveIssueFilingSettingsPayload,
     SetHighContrastModePayload,
-    SetIssueServicePayload,
-    SetIssueServicePropertyPayload,
+    SetIssueFilingServicePayload,
+    SetIssueFilingServicePropertyPayload,
     SetIssueTrackerPathPayload,
     SetTelemetryStatePayload,
 } from '../../actions/action-payloads';
@@ -69,21 +69,21 @@ export class UserConfigurationStore extends BaseStoreImpl<UserConfigurationStore
     }
 
     @autobind
-    private onSetIssueService(payload: SetIssueServicePayload): void {
-        this.state.bugService = payload.issueServiceName;
+    private onSetIssueService(payload: SetIssueFilingServicePayload): void {
+        this.state.bugService = payload.issueFilingServiceName;
         this.saveAndEmitChanged();
     }
 
     @autobind
-    private onSetIssueServiceProperty(payload: SetIssueServicePropertyPayload): void {
+    private onSetIssueServiceProperty(payload: SetIssueFilingServicePropertyPayload): void {
         if (!isPlainObject(this.state.bugServicePropertiesMap)) {
             this.state.bugServicePropertiesMap = {};
         }
-        if (!isPlainObject(this.state.bugServicePropertiesMap[payload.issueServiceName])) {
-            this.state.bugServicePropertiesMap[payload.issueServiceName] = {};
+        if (!isPlainObject(this.state.bugServicePropertiesMap[payload.issueFilingServiceName])) {
+            this.state.bugServicePropertiesMap[payload.issueFilingServiceName] = {};
         }
 
-        this.state.bugServicePropertiesMap[payload.issueServiceName][payload.propertyName] = payload.propertyValue;
+        this.state.bugServicePropertiesMap[payload.issueFilingServiceName][payload.propertyName] = payload.propertyValue;
 
         this.saveAndEmitChanged();
     }
@@ -96,7 +96,7 @@ export class UserConfigurationStore extends BaseStoreImpl<UserConfigurationStore
 
     @autobind
     private onSaveIssueSettings(payload: SaveIssueFilingSettingsPayload): void {
-        const bugService = payload.issueServiceName;
+        const bugService = payload.issueFilingServiceName;
         this.state.bugService = bugService;
         this.state.bugServicePropertiesMap[bugService] = payload.issueFilingSettings;
         this.saveAndEmitChanged();

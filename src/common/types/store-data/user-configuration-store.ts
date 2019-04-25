@@ -10,7 +10,7 @@ export interface UserConfigurationStoreData {
 }
 
 export interface IssueServicePropertiesMap {
-    [service: string]: IssueServiceProperties;
+    [service: string]: IssueFilingServiceProperties;
 }
 
-export type IssueServiceProperties = Object;
+export type IssueFilingServiceProperties = Object;

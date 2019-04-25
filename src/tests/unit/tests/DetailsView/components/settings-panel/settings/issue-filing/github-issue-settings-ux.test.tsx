@@ -10,14 +10,14 @@ import {
     IssueServicePropertiesMap,
     UserConfigurationStoreData,
 } from '../../../../../../../../common/types/store-data/user-configuration-store';
-import { GitHubBugSettingsUx } from '../../../../../../../../DetailsView/components/settings-panel/settings/issue-filing/github-bug-settings-ux';
+import { GitHubIssueSettingsUx } from '../../../../../../../../DetailsView/components/settings-panel/settings/issue-filing/github-issue-settings-ux';
 import { SettingsDeps, SettingsProps } from '../../../../../../../../DetailsView/components/settings-panel/settings/settings-props';
 
 type RenderTestCase = {
     bugService: string;
     bugServicePropertiesMap: IssueServicePropertiesMap;
 };
-describe('GitHubBugSettingsUx', () => {
+describe('GitHubIssueSettingsUx', () => {
     let userData: UserConfigurationStoreData;
 
     beforeEach(() => {
@@ -65,7 +65,7 @@ describe('GitHubBugSettingsUx', () => {
                 },
             };
 
-            const wrapped = shallow(<GitHubBugSettingsUx {...props} />);
+            const wrapped = shallow(<GitHubIssueSettingsUx {...props} />);
 
             expect(wrapped.getElement()).toMatchSnapshot();
         });
@@ -78,7 +78,7 @@ describe('GitHubBugSettingsUx', () => {
             const newValue = 'new-value';
 
             userConfigMessageCreatorMock
-                .setup(creator => creator.setIssueServiceProperty('gitHub', 'repository', newValue))
+                .setup(creator => creator.setIssueFilingServiceProperty('gitHub', 'repository', newValue))
                 .verifiable(Times.once());
 
             const props: SettingsProps = {
@@ -89,7 +89,7 @@ describe('GitHubBugSettingsUx', () => {
                 userConfigurationStoreState: userData,
             };
 
-            const wrapped = shallow(<GitHubBugSettingsUx {...props} />);
+            const wrapped = shallow(<GitHubIssueSettingsUx {...props} />);
 
             const textField = wrapped.find(TextField);
 

@@ -13,7 +13,7 @@ import { BugActionMessageCreator } from '../message-creators/bug-action-message-
 import { FileIssueClickService } from '../telemetry-events';
 import { CreateIssueDetailsTextData } from '../types/create-issue-details-text-data';
 import { IssueFilingNeedsSettingsContentProps, IssueFilingNeedsSettingsContentRenderer } from '../types/issue-filing-needs-setting-content';
-import { IssueServiceProperties, UserConfigurationStoreData } from '../types/store-data/user-configuration-store';
+import { IssueFilingServiceProperties, UserConfigurationStoreData } from '../types/store-data/user-configuration-store';
 
 export type IssueFilingButtonDeps = {
     bugActionMessageCreator: BugActionMessageCreator;
@@ -45,7 +45,7 @@ export class IssueFilingButton extends React.Component<IssueFilingButtonProps, I
         const { environmentInfoProvider, issueFilingServiceProvider } = deps;
         const envInfo: EnvironmentInfo = environmentInfoProvider.getEnvironmentInfo();
         const selectedIssueFilingService: IssueFilingService = issueFilingServiceProvider.forKey(userConfigurationStoreData.bugService);
-        const selectedIssueFilingServiceData: IssueServiceProperties = selectedIssueFilingService.getSettingsFromStoreData(
+        const selectedIssueFilingServiceData: IssueFilingServiceProperties = selectedIssueFilingService.getSettingsFromStoreData(
             userConfigurationStoreData.bugServicePropertiesMap,
         );
         const isSettingValid = selectedIssueFilingService.isSettingsValid(selectedIssueFilingServiceData);

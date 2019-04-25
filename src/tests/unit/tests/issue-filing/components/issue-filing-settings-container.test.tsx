@@ -5,7 +5,7 @@ import * as React from 'react';
 import { Mock } from 'typemoq';
 
 import { UserConfigMessageCreator } from '../../../../../common/message-creators/user-config-message-creator';
-import { IssueServiceProperties, UserConfigurationStoreData } from '../../../../../common/types/store-data/user-configuration-store';
+import { IssueFilingServiceProperties, UserConfigurationStoreData } from '../../../../../common/types/store-data/user-configuration-store';
 import {
     IssueFilingSettingsContainer,
     IssueFilingSettingsContainerDeps,
@@ -27,7 +27,7 @@ describe('IssueFilingSettingsContainerTest', () => {
     const userConfigurationStoreData: UserConfigurationStoreData = {
         bugService: 'test',
     } as UserConfigurationStoreData;
-    const selectedIssueFilingServiceData: IssueServiceProperties = {
+    const selectedIssueFilingServiceData: IssueFilingServiceProperties = {
         repository: 'none',
     };
     const userConfigMessageCreatorStub: UserConfigMessageCreator = {} as UserConfigMessageCreator;

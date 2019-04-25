@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`GitHubBugSettingsUx renders { bugService: 'gitHub',
+exports[`GitHubIssueSettingsUx renders { bugService: 'gitHub',
   bugServicePropertiesMap: { gitHub: { repository: 'test-repository' } } } 1`] = `
 <StyledTextFieldBase
   className="issue-setting"
@@ -11,7 +11,7 @@ exports[`GitHubBugSettingsUx renders { bugService: 'gitHub',
 />
 `;
 
-exports[`GitHubBugSettingsUx renders { bugService: 'gitHub',
+exports[`GitHubIssueSettingsUx renders { bugService: 'gitHub',
   bugServicePropertiesMap: { gitHub: {} } } 1`] = `
 <StyledTextFieldBase
   className="issue-setting"
@@ -21,7 +21,7 @@ exports[`GitHubBugSettingsUx renders { bugService: 'gitHub',
 />
 `;
 
-exports[`GitHubBugSettingsUx renders { bugService: 'gitHub', bugServicePropertiesMap: {} } 1`] = `
+exports[`GitHubIssueSettingsUx renders { bugService: 'gitHub', bugServicePropertiesMap: {} } 1`] = `
 <StyledTextFieldBase
   className="issue-setting"
   label="Enter desired GitHub repo link:"
@@ -30,7 +30,7 @@ exports[`GitHubBugSettingsUx renders { bugService: 'gitHub', bugServicePropertie
 />
 `;
 
-exports[`GitHubBugSettingsUx renders { bugService: 'gitHub', bugServicePropertiesMap: null } 1`] = `
+exports[`GitHubIssueSettingsUx renders { bugService: 'gitHub', bugServicePropertiesMap: null } 1`] = `
 <StyledTextFieldBase
   className="issue-setting"
   label="Enter desired GitHub repo link:"
@@ -39,7 +39,7 @@ exports[`GitHubBugSettingsUx renders { bugService: 'gitHub', bugServicePropertie
 />
 `;
 
-exports[`GitHubBugSettingsUx renders { bugService: 'none', bugServicePropertiesMap: null } 1`] = `
+exports[`GitHubIssueSettingsUx renders { bugService: 'none', bugServicePropertiesMap: null } 1`] = `
 <StyledTextFieldBase
   className="issue-setting"
   label="Enter desired GitHub repo link:"

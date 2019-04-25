@@ -7,7 +7,7 @@ import { FeatureFlags } from '../../../../../common/feature-flags';
 import { NamedSFC } from '../../../../../common/react/named-sfc';
 import { IssueFilingSettingsContainer } from '../../../../../issue-filing/components/issue-filing-settings-container';
 import { SettingsProps } from '../settings-props';
-import { GitHubBugSettingsUx } from './github-bug-settings-ux';
+import { GitHubIssueSettingsUx } from './github-issue-settings-ux';
 
 export const IssueFilingSettings = NamedSFC<SettingsProps>('IssueFilingSettings', props => {
     const getNewIssueFilingSettingsUx = () => {
@@ -22,14 +22,14 @@ export const IssueFilingSettings = NamedSFC<SettingsProps>('IssueFilingSettings'
                 deps={deps}
                 selectedIssueFilingService={selectedIssueFilingService}
                 selectedIssueFilingServiceData={selectedIssueFilingServiceData}
-                onPropertyUpdateCallback={userConfigMessageCreator.setIssueServiceProperty}
+                onPropertyUpdateCallback={userConfigMessageCreator.setIssueFilingServiceProperty}
                 onSelectedServiceChange={userConfigMessageCreator.setIssueService}
             />
         );
     };
 
-    const getGitHubBugSettingsUx = () => {
-        return <GitHubBugSettingsUx {...props} />;
+    const getGitHubIssueSettingsUx = () => {
+        return <GitHubIssueSettingsUx {...props} />;
     };
 
     return (
@@ -37,7 +37,7 @@ export const IssueFilingSettings = NamedSFC<SettingsProps>('IssueFilingSettings'
             <h3>Issue filing</h3>
             <FlaggedComponent
                 enableJSXElement={getNewIssueFilingSettingsUx()}
-                disableJSXElement={getGitHubBugSettingsUx()}
+                disableJSXElement={getGitHubIssueSettingsUx()}
                 featureFlag={FeatureFlags[FeatureFlags.newIssueFilingExperience]}
                 featureFlagStoreData={props.featureFlagData}
             />

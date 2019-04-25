@@ -5,15 +5,15 @@ import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import {
     SaveIssueFilingSettingsPayload,
     SetHighContrastModePayload,
-    SetIssueServicePayload,
-    SetIssueServicePropertyPayload,
+    SetIssueFilingServicePayload,
+    SetIssueFilingServicePropertyPayload,
     SetIssueTrackerPathPayload,
     SetTelemetryStatePayload,
 } from '../../../../../background/actions/action-payloads';
 import { Message } from '../../../../../common/message';
 import { UserConfigMessageCreator } from '../../../../../common/message-creators/user-config-message-creator';
 import { Messages } from '../../../../../common/messages';
-import { IssueServiceProperties } from '../../../../../common/types/store-data/user-configuration-store';
+import { IssueFilingServiceProperties } from '../../../../../common/types/store-data/user-configuration-store';
 
 describe('UserConfigMessageCreator', () => {
     let postMessageMock: IMock<(message: Message) => void>;
@@ -86,9 +86,9 @@ describe('UserConfigMessageCreator', () => {
     });
 
     test('setIssueService', () => {
-        const issueServiceName = 'UserConfigMessageCreatorTest bug service name';
-        const payload: SetIssueServicePayload = {
-            issueServiceName,
+        const issueFilingServiceName = 'UserConfigMessageCreatorTest bug service name';
+        const payload: SetIssueFilingServicePayload = {
+            issueFilingServiceName,
         };
         const expectedMessage = {
             tabId: 1,
@@ -98,14 +98,14 @@ describe('UserConfigMessageCreator', () => {
 
         postMessageMock.setup(pm => pm(It.isValue(expectedMessage))).verifiable(Times.once());
 
-        testSubject.setIssueService(issueServiceName);
+        testSubject.setIssueService(issueFilingServiceName);
 
         postMessageMock.verifyAll();
     });
 
     test('setIssueServiceProperty', () => {
-        const payload: SetIssueServicePropertyPayload = {
-            issueServiceName: 'bug-service-name',
+        const payload: SetIssueFilingServicePropertyPayload = {
+            issueFilingServiceName: 'bug-service-name',
             propertyName: 'property-name',
             propertyValue: 'property-value',
         };
@@ -117,16 +117,16 @@ describe('UserConfigMessageCreator', () => {
 
         postMessageMock.setup(pm => pm(It.isValue(expectedMessage))).verifiable(Times.once());
 
-        testSubject.setIssueServiceProperty(payload.issueServiceName, payload.propertyName, payload.propertyValue);
+        testSubject.setIssueFilingServiceProperty(payload.issueFilingServiceName, payload.propertyName, payload.propertyValue);
 
         postMessageMock.verifyAll();
     });
 
     test('saveIssueFilingSettings', () => {
-        const issueServiceName = 'UserConfigMessageCreatorTest bug service name';
-        const issueFilingSettings: IssueServiceProperties = { name: 'issueFilingSettings' };
+        const issueFilingServiceName = 'UserConfigMessageCreatorTest bug service name';
+        const issueFilingSettings: IssueFilingServiceProperties = { name: 'issueFilingSettings' };
         const payload: SaveIssueFilingSettingsPayload = {
-            issueServiceName,
+            issueFilingServiceName,
             issueFilingSettings: issueFilingSettings,
         };
         const expectedMessage = {
@@ -137,7 +137,7 @@ describe('UserConfigMessageCreator', () => {
 
         postMessageMock.setup(pm => pm(It.isValue(expectedMessage))).verifiable(Times.once());
 
-        testSubject.saveIssueFilingSettings(issueServiceName, issueFilingSettings);
+        testSubject.saveIssueFilingSettings(issueFilingServiceName, issueFilingSettings);
 
         postMessageMock.verifyAll();
     });

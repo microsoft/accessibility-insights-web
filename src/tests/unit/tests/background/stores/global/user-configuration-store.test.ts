@@ -6,8 +6,8 @@ import { IMock, It, Mock, Times } from 'typemoq';
 import {
     SaveIssueFilingSettingsPayload,
     SetHighContrastModePayload,
-    SetIssueServicePayload,
-    SetIssueServicePropertyPayload,
+    SetIssueFilingServicePayload,
+    SetIssueFilingServicePropertyPayload,
     SetIssueTrackerPathPayload,
     SetTelemetryStatePayload,
 } from '../../../../../../background/actions/action-payloads';
@@ -17,7 +17,7 @@ import { UserConfigurationStore } from '../../../../../../background/stores/glob
 import { IndexedDBAPI } from '../../../../../../common/indexedDB/indexedDB';
 import { StoreNames } from '../../../../../../common/stores/store-names';
 import {
-    IssueServiceProperties,
+    IssueFilingServiceProperties,
     IssueServicePropertiesMap,
     UserConfigurationStoreData,
 } from '../../../../../../common/types/store-data/user-configuration-store';
@@ -216,8 +216,8 @@ describe('UserConfigurationStoreTest', () => {
             bugServicePropertiesMap: {},
         };
 
-        const setIssueServiceData: SetIssueServicePayload = {
-            issueServiceName: testIssueService,
+        const setIssueServiceData: SetIssueFilingServicePayload = {
+            issueFilingServiceName: testIssueService,
         };
 
         const expectedState: UserConfigurationStoreData = {
@@ -280,8 +280,8 @@ describe('UserConfigurationStoreTest', () => {
                 bugServicePropertiesMap: initialMapState,
             };
 
-            const setIssueServicePropertyData: SetIssueServicePropertyPayload = {
-                issueServiceName: 'test-service',
+            const setIssueServicePropertyData: SetIssueFilingServicePropertyPayload = {
+                issueFilingServiceName: 'test-service',
                 propertyName: 'test-name',
                 propertyValue: 'test-value',
             };
@@ -305,11 +305,11 @@ describe('UserConfigurationStoreTest', () => {
     test('saveIssueFilingSettings', () => {
         const storeTester = createStoreToTestAction('saveIssueFilingSettings');
         const serviceName = 'test service';
-        const bugServiceProperties: IssueServiceProperties = {
+        const bugServiceProperties: IssueFilingServiceProperties = {
             name: 'bug settings',
         };
         const payload: SaveIssueFilingSettingsPayload = {
-            issueServiceName: serviceName,
+            issueFilingServiceName: serviceName,
             issueFilingSettings: bugServiceProperties,
         };
         const expectedState: UserConfigurationStoreData = {

@@ -4,8 +4,8 @@ import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import {
     SaveIssueFilingSettingsPayload,
     SetHighContrastModePayload,
-    SetIssueServicePayload,
-    SetIssueServicePropertyPayload,
+    SetIssueFilingServicePayload,
+    SetIssueFilingServicePropertyPayload,
     SetLaunchPanelState,
     SetTelemetryStatePayload,
 } from '../../../../../background/actions/action-payloads';
@@ -246,8 +246,8 @@ describe('GlobalActionCreatorTest', () => {
     });
 
     test('registerCallback for on UserConfig.SetIssueService', () => {
-        const payload: SetIssueServicePayload = {
-            issueServiceName: 'none',
+        const payload: SetIssueFilingServicePayload = {
+            issueFilingServiceName: 'none',
         };
         const args = [payload];
         const validator = new GlobalActionCreatorValidator()
@@ -262,8 +262,8 @@ describe('GlobalActionCreatorTest', () => {
     });
 
     test('registerCallback for on UserConfig.SetIssueServiceProperty', () => {
-        const payload: SetIssueServicePropertyPayload = {
-            issueServiceName: 'bug-service-name',
+        const payload: SetIssueFilingServicePropertyPayload = {
+            issueFilingServiceName: 'bug-service-name',
             propertyName: 'property-name',
             propertyValue: 'property-value',
         };
@@ -302,7 +302,7 @@ describe('GlobalActionCreatorTest', () => {
 
     test('registerCallback for on UserConfig.SaveIssueFilingSettings', () => {
         const payload: SaveIssueFilingSettingsPayload = {
-            issueServiceName: 'test bug service',
+            issueFilingServiceName: 'test bug service',
             issueFilingSettings: { name: 'issueFilingSettings' },
         };
         const args = [payload];
