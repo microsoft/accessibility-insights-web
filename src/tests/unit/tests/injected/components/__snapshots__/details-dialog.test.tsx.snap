@@ -45,6 +45,22 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: false 
           ruleId
         </NewTabLink>
       </div>
+      <div
+        className="insights-dialog-rule-success-criteria"
+      >
+        Success criterion
+        : 
+        <GuidanceLinks
+          links={
+            Array [
+              Object {
+                "href": "http://example.com",
+                "text": "Guidance Link",
+              },
+            ]
+          }
+        />
+      </div>
     </div>
     <div
       className="insights-dialog-target-container"
@@ -98,7 +114,12 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: false 
                   "any": Array [],
                   "failureSummary": "failureSummary",
                   "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
-                  "guidanceLinks": Array [],
+                  "guidanceLinks": Array [
+                    Object {
+                      "href": "http://example.com",
+                      "text": "Guidance Link",
+                    },
+                  ],
                   "help": "help",
                   "helpUrl": "http://extension/help1",
                   "html": "html",
@@ -138,7 +159,12 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: false 
                       "any": Array [],
                       "failureSummary": "failureSummary",
                       "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
-                      "guidanceLinks": Array [],
+                      "guidanceLinks": Array [
+                        Object {
+                          "href": "http://example.com",
+                          "text": "Guidance Link",
+                        },
+                      ],
                       "help": "help",
                       "helpUrl": "http://extension/help1",
                       "html": "html",
@@ -179,7 +205,12 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: false 
                       "any": Array [],
                       "failureSummary": "failureSummary",
                       "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
-                      "guidanceLinks": Array [],
+                      "guidanceLinks": Array [
+                        Object {
+                          "href": "http://example.com",
+                          "text": "Guidance Link",
+                        },
+                      ],
                       "help": "help",
                       "helpUrl": "http://extension/help1",
                       "html": "html",
@@ -288,7 +319,12 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: false 
             "any": Array [],
             "failureSummary": "failureSummary",
             "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
-            "guidanceLinks": Array [],
+            "guidanceLinks": Array [
+              Object {
+                "href": "http://example.com",
+                "text": "Guidance Link",
+              },
+            ],
             "help": "help",
             "helpUrl": "http://extension/help1",
             "html": "html",
@@ -329,7 +365,12 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: false 
             "any": Array [],
             "failureSummary": "failureSummary",
             "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
-            "guidanceLinks": Array [],
+            "guidanceLinks": Array [
+              Object {
+                "href": "http://example.com",
+                "text": "Guidance Link",
+              },
+            ],
             "help": "help",
             "helpUrl": "http://extension/help1",
             "html": "html",
@@ -424,6 +465,22 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: true }
             ruleId
           </NewTabLink>
         </div>
+        <div
+          className="insights-dialog-rule-success-criteria"
+        >
+          Success criterion
+          : 
+          <GuidanceLinks
+            links={
+              Array [
+                Object {
+                  "href": "http://example.com",
+                  "text": "Guidance Link",
+                },
+              ]
+            }
+          />
+        </div>
       </div>
       <div
         className="insights-dialog-target-container"
@@ -477,7 +534,12 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: true }
                     "any": Array [],
                     "failureSummary": "failureSummary",
                     "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
-                    "guidanceLinks": Array [],
+                    "guidanceLinks": Array [
+                      Object {
+                        "href": "http://example.com",
+                        "text": "Guidance Link",
+                      },
+                    ],
                     "help": "help",
                     "helpUrl": "http://extension/help1",
                     "html": "html",
@@ -517,7 +579,12 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: true }
                         "any": Array [],
                         "failureSummary": "failureSummary",
                         "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
-                        "guidanceLinks": Array [],
+                        "guidanceLinks": Array [
+                          Object {
+                            "href": "http://example.com",
+                            "text": "Guidance Link",
+                          },
+                        ],
                         "help": "help",
                         "helpUrl": "http://extension/help1",
                         "html": "html",
@@ -558,7 +625,12 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: true }
                         "any": Array [],
                         "failureSummary": "failureSummary",
                         "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
-                        "guidanceLinks": Array [],
+                        "guidanceLinks": Array [
+                          Object {
+                            "href": "http://example.com",
+                            "text": "Guidance Link",
+                          },
+                        ],
                         "help": "help",
                         "helpUrl": "http://extension/help1",
                         "html": "html",
@@ -668,7 +740,12 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: true }
             "any": Array [],
             "failureSummary": "failureSummary",
             "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
-            "guidanceLinks": Array [],
+            "guidanceLinks": Array [
+              Object {
+                "href": "http://example.com",
+                "text": "Guidance Link",
+              },
+            ],
             "help": "help",
             "helpUrl": "http://extension/help1",
             "html": "html",
@@ -709,7 +786,12 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: true }
             "any": Array [],
             "failureSummary": "failureSummary",
             "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
-            "guidanceLinks": Array [],
+            "guidanceLinks": Array [
+              Object {
+                "href": "http://example.com",
+                "text": "Guidance Link",
+              },
+            ],
             "help": "help",
             "helpUrl": "http://extension/help1",
             "html": "html",
@@ -795,6 +877,22 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: false }
           ruleId
         </NewTabLink>
       </div>
+      <div
+        className="insights-dialog-rule-success-criteria"
+      >
+        Success criterion
+        : 
+        <GuidanceLinks
+          links={
+            Array [
+              Object {
+                "href": "http://example.com",
+                "text": "Guidance Link",
+              },
+            ]
+          }
+        />
+      </div>
     </div>
     <div
       className="insights-dialog-target-container"
@@ -848,7 +946,12 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: false }
                   "any": Array [],
                   "failureSummary": "failureSummary",
                   "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
-                  "guidanceLinks": Array [],
+                  "guidanceLinks": Array [
+                    Object {
+                      "href": "http://example.com",
+                      "text": "Guidance Link",
+                    },
+                  ],
                   "help": "help",
                   "helpUrl": "http://extension/help1",
                   "html": "html",
@@ -888,7 +991,12 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: false }
                       "any": Array [],
                       "failureSummary": "failureSummary",
                       "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
-                      "guidanceLinks": Array [],
+                      "guidanceLinks": Array [
+                        Object {
+                          "href": "http://example.com",
+                          "text": "Guidance Link",
+                        },
+                      ],
                       "help": "help",
                       "helpUrl": "http://extension/help1",
                       "html": "html",
@@ -929,7 +1037,12 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: false }
                       "any": Array [],
                       "failureSummary": "failureSummary",
                       "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
-                      "guidanceLinks": Array [],
+                      "guidanceLinks": Array [
+                        Object {
+                          "href": "http://example.com",
+                          "text": "Guidance Link",
+                        },
+                      ],
                       "help": "help",
                       "helpUrl": "http://extension/help1",
                       "html": "html",
@@ -1033,7 +1146,12 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: false }
             "any": Array [],
             "failureSummary": "failureSummary",
             "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
-            "guidanceLinks": Array [],
+            "guidanceLinks": Array [
+              Object {
+                "href": "http://example.com",
+                "text": "Guidance Link",
+              },
+            ],
             "help": "help",
             "helpUrl": "http://extension/help1",
             "html": "html",
@@ -1074,7 +1192,12 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: false }
             "any": Array [],
             "failureSummary": "failureSummary",
             "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
-            "guidanceLinks": Array [],
+            "guidanceLinks": Array [
+              Object {
+                "href": "http://example.com",
+                "text": "Guidance Link",
+              },
+            ],
             "help": "help",
             "helpUrl": "http://extension/help1",
             "html": "html",
@@ -1169,6 +1292,22 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: true } 
             ruleId
           </NewTabLink>
         </div>
+        <div
+          className="insights-dialog-rule-success-criteria"
+        >
+          Success criterion
+          : 
+          <GuidanceLinks
+            links={
+              Array [
+                Object {
+                  "href": "http://example.com",
+                  "text": "Guidance Link",
+                },
+              ]
+            }
+          />
+        </div>
       </div>
       <div
         className="insights-dialog-target-container"
@@ -1222,7 +1361,12 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: true } 
                     "any": Array [],
                     "failureSummary": "failureSummary",
                     "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
-                    "guidanceLinks": Array [],
+                    "guidanceLinks": Array [
+                      Object {
+                        "href": "http://example.com",
+                        "text": "Guidance Link",
+                      },
+                    ],
                     "help": "help",
                     "helpUrl": "http://extension/help1",
                     "html": "html",
@@ -1262,7 +1406,12 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: true } 
                         "any": Array [],
                         "failureSummary": "failureSummary",
                         "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
-                        "guidanceLinks": Array [],
+                        "guidanceLinks": Array [
+                          Object {
+                            "href": "http://example.com",
+                            "text": "Guidance Link",
+                          },
+                        ],
                         "help": "help",
                         "helpUrl": "http://extension/help1",
                         "html": "html",
@@ -1303,7 +1452,12 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: true } 
                         "any": Array [],
                         "failureSummary": "failureSummary",
                         "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
-                        "guidanceLinks": Array [],
+                        "guidanceLinks": Array [
+                          Object {
+                            "href": "http://example.com",
+                            "text": "Guidance Link",
+                          },
+                        ],
                         "help": "help",
                         "helpUrl": "http://extension/help1",
                         "html": "html",
@@ -1408,7 +1562,12 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: true }:
             "any": Array [],
             "failureSummary": "failureSummary",
             "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
-            "guidanceLinks": Array [],
+            "guidanceLinks": Array [
+              Object {
+                "href": "http://example.com",
+                "text": "Guidance Link",
+              },
+            ],
             "help": "help",
             "helpUrl": "http://extension/help1",
             "html": "html",
@@ -1449,7 +1608,12 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: true }:
             "any": Array [],
             "failureSummary": "failureSummary",
             "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
-            "guidanceLinks": Array [],
+            "guidanceLinks": Array [
+              Object {
+                "href": "http://example.com",
+                "text": "Guidance Link",
+              },
+            ],
             "help": "help",
             "helpUrl": "http://extension/help1",
             "html": "html",
@@ -1535,6 +1699,22 @@ exports[`DetailsDialogTest render: with relative help url 1`] = `
           ruleId
         </NewTabLink>
       </div>
+      <div
+        className="insights-dialog-rule-success-criteria"
+      >
+        Success criterion
+        : 
+        <GuidanceLinks
+          links={
+            Array [
+              Object {
+                "href": "http://example.com",
+                "text": "Guidance Link",
+              },
+            ]
+          }
+        />
+      </div>
     </div>
     <div
       className="insights-dialog-target-container"
@@ -1588,7 +1768,12 @@ exports[`DetailsDialogTest render: with relative help url 1`] = `
                   "any": Array [],
                   "failureSummary": "failureSummary",
                   "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
-                  "guidanceLinks": Array [],
+                  "guidanceLinks": Array [
+                    Object {
+                      "href": "http://example.com",
+                      "text": "Guidance Link",
+                    },
+                  ],
                   "help": "help",
                   "helpUrl": "help-relative",
                   "html": "html",
@@ -1628,7 +1813,12 @@ exports[`DetailsDialogTest render: with relative help url 1`] = `
                       "any": Array [],
                       "failureSummary": "failureSummary",
                       "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
-                      "guidanceLinks": Array [],
+                      "guidanceLinks": Array [
+                        Object {
+                          "href": "http://example.com",
+                          "text": "Guidance Link",
+                        },
+                      ],
                       "help": "help",
                       "helpUrl": "help-relative",
                       "html": "html",
@@ -1669,7 +1859,12 @@ exports[`DetailsDialogTest render: with relative help url 1`] = `
                       "any": Array [],
                       "failureSummary": "failureSummary",
                       "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
-                      "guidanceLinks": Array [],
+                      "guidanceLinks": Array [
+                        Object {
+                          "href": "http://example.com",
+                          "text": "Guidance Link",
+                        },
+                      ],
                       "help": "help",
                       "helpUrl": "help-relative",
                       "html": "html",
@@ -1778,7 +1973,12 @@ exports[`DetailsDialogTest render: with relative help url: new issue filing bug 
             "any": Array [],
             "failureSummary": "failureSummary",
             "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
-            "guidanceLinks": Array [],
+            "guidanceLinks": Array [
+              Object {
+                "href": "http://example.com",
+                "text": "Guidance Link",
+              },
+            ],
             "help": "help",
             "helpUrl": "help-relative",
             "html": "html",
@@ -1819,7 +2019,12 @@ exports[`DetailsDialogTest render: with relative help url: new issue filing bug 
             "any": Array [],
             "failureSummary": "failureSummary",
             "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
-            "guidanceLinks": Array [],
+            "guidanceLinks": Array [
+              Object {
+                "href": "http://example.com",
+                "text": "Guidance Link",
+              },
+            ],
             "help": "help",
             "helpUrl": "help-relative",
             "html": "html",

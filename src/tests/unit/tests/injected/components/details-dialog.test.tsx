@@ -64,7 +64,7 @@ describe('DetailsDialogTest', () => {
             failureSummary: 'failureSummary',
             fingerprint: fingerprint,
             id: 'id1',
-            guidanceLinks: [],
+            guidanceLinks: [{ text: 'Guidance Link', href: 'http://example.com' }],
             helpUrl,
             snippet: 'html',
         };
