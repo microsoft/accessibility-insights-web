@@ -23,7 +23,7 @@ export interface IssueFilingDialogProps {
     isOpen: boolean;
     selectedIssueFilingService: IssueFilingService;
     selectedIssueData: CreateIssueDetailsTextData;
-    issueFileTelemetryCallback: (ev: React.SyntheticEvent) => void;
+    fileIssueTelemetryCallback: (ev: React.SyntheticEvent) => void;
     issueServicePropertiesMap: IssueServicePropertiesMap;
     onClose: (ev: React.SyntheticEvent) => void;
 }
@@ -107,7 +107,7 @@ export class IssueFilingDialog extends React.Component<IssueFilingDialogProps, I
         const newData = this.state.selectedIssueFilingService.getSettingsFromStoreData(this.state.issueServicePropertiesMap);
         const service = this.state.selectedIssueFilingService.key;
         this.props.deps.userConfigMessageCreator.saveIssueFilingSettings(service, newData);
-        this.props.issueFileTelemetryCallback(ev);
+        this.props.fileIssueTelemetryCallback(ev);
         this.props.onClose(ev);
     };
 

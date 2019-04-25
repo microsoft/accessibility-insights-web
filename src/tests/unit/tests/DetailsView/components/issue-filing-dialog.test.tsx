@@ -83,7 +83,7 @@ describe('IssueFilingDialog', () => {
             onClose: onCloseMock.object,
             selectedIssueFilingService: issueFilingServiceStub,
             selectedIssueData: selectedIssueDataStub,
-            issueFileTelemetryCallback: telemetryCallbackMock.object,
+            fileIssueTelemetryCallback: telemetryCallbackMock.object,
             issueServicePropertiesMap: issueServicePropertiesMapStub,
         };
 
