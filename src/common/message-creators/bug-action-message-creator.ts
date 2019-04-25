@@ -8,6 +8,8 @@ import { FILE_ISSUE_CLICK, FileIssueClickService, TelemetryEventSource } from '.
 import { CreateIssueDetailsTextData } from '../types/create-issue-details-text-data';
 import { ActionMessageDispatcher } from './action-message-dispatcher';
 
+type SupportedMouseEvent = React.MouseEvent<HTMLElement> | React.SyntheticEvent<Element, Event>;
+
 export class BugActionMessageCreator {
     constructor(
         private readonly dispatcher: ActionMessageDispatcher,
@@ -32,7 +34,7 @@ export class BugActionMessageCreator {
         this.dispatcher.sendTelemetry(FILE_ISSUE_CLICK, telemetry);
     }
 
-    public fileIssue(event: React.MouseEvent<HTMLElement>, service: FileIssueClickService, issueData: CreateIssueDetailsTextData): void {
+    public fileIssue(event: SupportedMouseEvent, service: FileIssueClickService, issueData: CreateIssueDetailsTextData): void {
         const messageType = Messages.IssueFiling.FileIssue;
         const telemetry = this.telemetryFactory.forFileIssueClick(event, this.source, service);
         const payload: FileIssuePayload = {

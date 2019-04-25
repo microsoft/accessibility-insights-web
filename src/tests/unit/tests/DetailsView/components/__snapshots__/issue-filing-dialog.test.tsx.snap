@@ -23,6 +23,15 @@ exports[`IssueFilingDialog componentDidUpdate dialog is not open & props have ch
   <BugFilingSettingsContainer
     deps={
       Object {
+        "bugActionMessageCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "dispatcher": undefined,
+          "fileIssue": [Function],
+          "openSettingsPanel": [Function],
+          "source": undefined,
+          "telemetryFactory": undefined,
+          "trackFileIssueClick": [Function],
+        },
         "bugFilingServiceProvider": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "all": [Function],
@@ -105,6 +114,15 @@ exports[`IssueFilingDialog componentDidUpdate dialog is not open & props have no
   <BugFilingSettingsContainer
     deps={
       Object {
+        "bugActionMessageCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "dispatcher": undefined,
+          "fileIssue": [Function],
+          "openSettingsPanel": [Function],
+          "source": undefined,
+          "telemetryFactory": undefined,
+          "trackFileIssueClick": [Function],
+        },
         "bugFilingServiceProvider": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "all": [Function],
@@ -187,6 +205,15 @@ exports[`IssueFilingDialog componentDidUpdate dialog is open & props have change
   <BugFilingSettingsContainer
     deps={
       Object {
+        "bugActionMessageCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "dispatcher": undefined,
+          "fileIssue": [Function],
+          "openSettingsPanel": [Function],
+          "source": undefined,
+          "telemetryFactory": undefined,
+          "trackFileIssueClick": [Function],
+        },
         "bugFilingServiceProvider": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "all": [Function],
@@ -269,6 +296,15 @@ exports[`IssueFilingDialog componentDidUpdate dialog is open & props have not ch
   <BugFilingSettingsContainer
     deps={
       Object {
+        "bugActionMessageCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "dispatcher": undefined,
+          "fileIssue": [Function],
+          "openSettingsPanel": [Function],
+          "source": undefined,
+          "telemetryFactory": undefined,
+          "trackFileIssueClick": [Function],
+        },
         "bugFilingServiceProvider": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "all": [Function],
@@ -351,6 +387,15 @@ exports[`IssueFilingDialog render with isSettingsValid: false 1`] = `
   <BugFilingSettingsContainer
     deps={
       Object {
+        "bugActionMessageCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "dispatcher": undefined,
+          "fileIssue": [Function],
+          "openSettingsPanel": [Function],
+          "source": undefined,
+          "telemetryFactory": undefined,
+          "trackFileIssueClick": [Function],
+        },
         "bugFilingServiceProvider": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "all": [Function],
@@ -403,7 +448,6 @@ exports[`IssueFilingDialog render with isSettingsValid: false 1`] = `
       cancelButtonOnClick={[Function]}
       isHidden={false}
       primaryButtonDisabled={true}
-      primaryButtonHref={null}
       primaryButtonOnClick={[Function]}
       primaryButtonText="File issue"
     />
@@ -434,6 +478,15 @@ exports[`IssueFilingDialog render with isSettingsValid: true 1`] = `
   <BugFilingSettingsContainer
     deps={
       Object {
+        "bugActionMessageCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "dispatcher": undefined,
+          "fileIssue": [Function],
+          "openSettingsPanel": [Function],
+          "source": undefined,
+          "telemetryFactory": undefined,
+          "trackFileIssueClick": [Function],
+        },
         "bugFilingServiceProvider": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "all": [Function],
@@ -516,6 +569,15 @@ exports[`IssueFilingDialog render: validate callback (onPropertyUpdateCallback) 
   <BugFilingSettingsContainer
     deps={
       Object {
+        "bugActionMessageCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "dispatcher": undefined,
+          "fileIssue": [Function],
+          "openSettingsPanel": [Function],
+          "source": undefined,
+          "telemetryFactory": undefined,
+          "trackFileIssueClick": [Function],
+        },
         "bugFilingServiceProvider": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "all": [Function],
@@ -599,6 +661,15 @@ exports[`IssueFilingDialog render: validate callback (onPropertyUpdateCallback) 
   <BugFilingSettingsContainer
     deps={
       Object {
+        "bugActionMessageCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "dispatcher": undefined,
+          "fileIssue": [Function],
+          "openSettingsPanel": [Function],
+          "source": undefined,
+          "telemetryFactory": undefined,
+          "trackFileIssueClick": [Function],
+        },
         "bugFilingServiceProvider": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "all": [Function],
@@ -681,6 +752,15 @@ exports[`IssueFilingDialog render: validate callback (onSelectedServiceChange) s
   <BugFilingSettingsContainer
     deps={
       Object {
+        "bugActionMessageCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "dispatcher": undefined,
+          "fileIssue": [Function],
+          "openSettingsPanel": [Function],
+          "source": undefined,
+          "telemetryFactory": undefined,
+          "trackFileIssueClick": [Function],
+        },
         "bugFilingServiceProvider": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "all": [Function],

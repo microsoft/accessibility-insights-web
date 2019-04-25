@@ -13,7 +13,9 @@ import {
 } from '../../bug-filing/components/bug-filing-settings-container';
 import { BugFilingService } from '../../bug-filing/types/bug-filing-service';
 import { EnvironmentInfoProvider } from '../../common/environment-info-provider';
+import { BugActionMessageCreator } from '../../common/message-creators/bug-action-message-creator';
 import { UserConfigMessageCreator } from '../../common/message-creators/user-config-message-creator';
+import { FileIssueClickService } from '../../common/telemetry-events';
 import { CreateIssueDetailsTextData } from '../../common/types/create-issue-details-text-data';
 import { BugServicePropertiesMap } from '../../common/types/store-data/user-configuration-store';
 import { ActionAndCancelButtonsComponent } from './action-and-cancel-buttons-component';
@@ -23,7 +25,6 @@ export interface IssueFilingDialogProps {
     isOpen: boolean;
     selectedBugFilingService: BugFilingService;
     selectedBugData: CreateIssueDetailsTextData;
-    bugFileTelemetryCallback: (ev: React.SyntheticEvent) => void;
     bugServicePropertiesMap: BugServicePropertiesMap;
     onClose: (ev: React.SyntheticEvent) => void;
 }
@@ -32,6 +33,7 @@ export type IssueFilingDialogDeps = {
     environmentInfoProvider: EnvironmentInfoProvider;
     userConfigMessageCreator: UserConfigMessageCreator;
     bugFilingServiceProvider: BugFilingServiceProvider;
+    bugActionMessageCreator: BugActionMessageCreator;
 } & BugFilingSettingsContainerDeps;
 
 const titleLabel = 'Specify issue filing location';
@@ -55,16 +57,12 @@ export class IssueFilingDialog extends React.Component<IssueFilingDialogProps, I
     }
 
     public render(): JSX.Element {
-        const { selectedBugData, onClose, isOpen, deps } = this.props;
+        const { onClose, isOpen, deps } = this.props;
         const { selectedBugFilingService } = this.state;
         const selectedBugFilingServiceData = this.state.selectedBugFilingService.getSettingsFromStoreData(
             this.state.bugServicePropertiesMap,
         );
-        const environmentInfo = deps.environmentInfoProvider.getEnvironmentInfo();
         const isSettingsValid = selectedBugFilingService.isSettingsValid(selectedBugFilingServiceData);
-        const href = isSettingsValid
-            ? selectedBugFilingService.issueFilingUrlProvider(selectedBugFilingServiceData, selectedBugData, environmentInfo)
-            : null;
 
         return (
             <Dialog
@@ -95,7 +93,6 @@ export class IssueFilingDialog extends React.Component<IssueFilingDialogProps, I
                         primaryButtonDisabled={isSettingsValid === false}
                         primaryButtonOnClick={this.onPrimaryButtonClick}
                         cancelButtonOnClick={onClose}
-                        primaryButtonHref={href}
                         primaryButtonText={'File issue'}
                     />
                 </DialogFooter>
@@ -107,7 +104,7 @@ export class IssueFilingDialog extends React.Component<IssueFilingDialogProps, I
         const newData = this.state.selectedBugFilingService.getSettingsFromStoreData(this.state.bugServicePropertiesMap);
         const service = this.state.selectedBugFilingService.key;
         this.props.deps.userConfigMessageCreator.saveIssueFilingSettings(service, newData);
-        this.props.bugFileTelemetryCallback(ev);
+        this.props.deps.bugActionMessageCreator.fileIssue(ev, service as FileIssueClickService, this.props.selectedBugData);
         this.props.onClose(ev);
     };
 
