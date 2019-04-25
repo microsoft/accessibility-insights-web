@@ -2,10 +2,10 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import { IssueFilingSettingsContainer } from '../../../../../issue-filing/components/issue-filing-settings-container';
 import { FlaggedComponent } from '../../../../../common/components/flagged-component';
 import { FeatureFlags } from '../../../../../common/feature-flags';
 import { NamedSFC } from '../../../../../common/react/named-sfc';
+import { IssueFilingSettingsContainer } from '../../../../../issue-filing/components/issue-filing-settings-container';
 import { SettingsProps } from '../settings-props';
 import { GitHubBugSettingsUx } from './github-bug-settings-ux';
 

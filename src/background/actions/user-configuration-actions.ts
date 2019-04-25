@@ -3,9 +3,9 @@
 import { Action } from '../../common/flux/action';
 import {
     SaveIssueFilingSettingsPayload,
+    SetHighContrastModePayload,
     SetIssueServicePayload,
     SetIssueServicePropertyPayload,
-    SetHighContrastModePayload,
     SetIssueTrackerPathPayload,
     SetTelemetryStatePayload,
 } from './action-payloads';

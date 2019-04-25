@@ -5,7 +5,6 @@ import { Spinner, SpinnerSize } from 'office-ui-fabric-react/lib/Spinner';
 import * as React from 'react';
 
 import { AssessmentsProvider } from '../assessments/types/assessments-provider';
-import { GitHubIssueFilingSettings } from '../issue-filing/github/github-issue-filing-service';
 import { ThemeDeps } from '../common/components/theme';
 import { withStoreSubscription, WithStoreSubscriptionDeps } from '../common/components/with-store-subscription';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
@@ -21,6 +20,7 @@ import { UserConfigurationStoreData } from '../common/types/store-data/user-conf
 import { VisualizationScanResultData } from '../common/types/store-data/visualization-scan-result-data';
 import { VisualizationStoreData } from '../common/types/store-data/visualization-store-data';
 import { VisualizationType } from '../common/types/visualization-type';
+import { GitHubIssueFilingSettings } from '../issue-filing/github/github-issue-filing-service';
 import { DetailsViewCommandBarDeps } from './components/details-view-command-bar';
 import { DetailsViewOverlay, DetailsViewOverlayDeps } from './components/details-view-overlay';
 import { DetailsRightPanelConfiguration, GetDetailsRightPanelConfiguration } from './components/details-view-right-panel';

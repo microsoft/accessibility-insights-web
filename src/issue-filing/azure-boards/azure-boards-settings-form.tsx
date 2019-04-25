@@ -6,10 +6,10 @@ import * as React from 'react';
 import { NamedSFC } from '../../common/react/named-sfc';
 import { SettingsFormProps } from '../types/settings-form-props';
 import {
-    AzureBoardsIssueFilingService,
-    AzureBoardsIssueFilingSettings,
     AzureBoardsIssueDetailField,
     AzureBoardsIssueDetailLocationDropdownOption,
+    AzureBoardsIssueFilingService,
+    AzureBoardsIssueFilingSettings,
 } from './azure-boards-issue-filing-service';
 
 export const AzureBoardsSettingsForm = NamedSFC<SettingsFormProps<AzureBoardsIssueFilingSettings>>('AzureBoardsSettingsForm', props => {

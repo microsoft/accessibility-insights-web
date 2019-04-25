@@ -2,9 +2,9 @@
 // Licensed under the MIT License.
 import { autobind } from '@uifabric/utilities';
 
-import { GitHubIssueFilingSettings } from '../issue-filing/github/github-issue-filing-service';
 import { FeatureFlags } from '../common/feature-flags';
 import { HTMLElementUtils } from '../common/html-element-utils';
+import { GitHubIssueFilingSettings } from '../issue-filing/github/github-issue-filing-service';
 import { UserConfigurationStoreData } from './../common/types/store-data/user-configuration-store';
 import { DetailsDialog } from './components/details-dialog';
 

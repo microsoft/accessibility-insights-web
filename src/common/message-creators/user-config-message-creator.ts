@@ -2,9 +2,9 @@
 // Licensed under the MIT License.
 import {
     SaveIssueFilingSettingsPayload,
+    SetHighContrastModePayload,
     SetIssueServicePayload,
     SetIssueServicePropertyPayload,
-    SetHighContrastModePayload,
     SetIssueTrackerPathPayload,
     SetTelemetryStatePayload,
 } from '../../background/actions/action-payloads';

@@ -5,9 +5,9 @@ import { BugActionMessageCreator } from '../common/message-creators/bug-action-m
 import { DevToolActionMessageCreator } from '../common/message-creators/dev-tool-action-message-creator';
 import { DevToolState } from '../common/types/store-data/idev-tool-state';
 import { UserConfigurationStoreData } from '../common/types/store-data/user-configuration-store';
-import { IssueFilingServiceProvider } from './../issue-filing/issue-filing-service-provider';
 import { EnvironmentInfoProvider } from './../common/environment-info-provider';
 import { UserConfigMessageCreator } from './../common/message-creators/user-config-message-creator';
+import { IssueFilingServiceProvider } from './../issue-filing/issue-filing-service-provider';
 import { TargetPageActionMessageCreator } from './target-page-action-message-creator';
 
 export class MainWindowContext {

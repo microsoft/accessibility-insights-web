@@ -4,18 +4,18 @@ import { cloneDeep, isEqual } from 'lodash';
 import { Dialog, DialogFooter, DialogType } from 'office-ui-fabric-react/lib/Dialog';
 import * as React from 'react';
 
-import { IssueFilingServiceProvider } from '../../issue-filing/issue-filing-service-provider';
+import { EnvironmentInfoProvider } from '../../common/environment-info-provider';
+import { UserConfigMessageCreator } from '../../common/message-creators/user-config-message-creator';
+import { CreateIssueDetailsTextData } from '../../common/types/create-issue-details-text-data';
+import { IssueServicePropertiesMap } from '../../common/types/store-data/user-configuration-store';
 import {
     IssueFilingSettingsContainer,
     IssueFilingSettingsContainerDeps,
     OnPropertyUpdateCallback,
     OnSelectedServiceChange,
 } from '../../issue-filing/components/issue-filing-settings-container';
+import { IssueFilingServiceProvider } from '../../issue-filing/issue-filing-service-provider';
 import { IssueFilingService } from '../../issue-filing/types/issue-filing-service';
-import { EnvironmentInfoProvider } from '../../common/environment-info-provider';
-import { UserConfigMessageCreator } from '../../common/message-creators/user-config-message-creator';
-import { CreateIssueDetailsTextData } from '../../common/types/create-issue-details-text-data';
-import { IssueServicePropertiesMap } from '../../common/types/store-data/user-configuration-store';
 import { ActionAndCancelButtonsComponent } from './action-and-cancel-buttons-component';
 
 export interface IssueFilingDialogProps {
