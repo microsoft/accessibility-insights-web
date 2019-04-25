@@ -4,7 +4,6 @@ import { autobind } from '@uifabric/utilities';
 import { BaseActionPayload } from '../background/actions/action-payloads';
 import { Message } from '../common/message';
 import { ActionMessageDispatcher } from '../common/message-creators/action-message-dispatcher';
-import { BaseActionMessageCreator } from '../common/message-creators/base-action-message-creator';
 import { Messages } from '../common/messages';
 import { TelemetryDataFactory } from '../common/telemetry-data-factory';
 import * as TelemetryEvents from '../common/telemetry-events';
