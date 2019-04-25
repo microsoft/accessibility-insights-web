@@ -10,7 +10,7 @@ import {
     BugServicePropertiesMap,
     UserConfigurationStoreData,
 } from '../../../../../../../../common/types/store-data/user-configuration-store';
-import { GitHubBugSettingsUx } from '../../../../../../../../DetailsView/components/settings-panel/settings/bug-filing/github-bug-settings-ux';
+import { GitHubBugSettingsUx } from '../../../../../../../../DetailsView/components/settings-panel/settings/issue-filing/github-bug-settings-ux';
 import { SettingsDeps, SettingsProps } from '../../../../../../../../DetailsView/components/settings-panel/settings/settings-props';
 
 type RenderTestCase = {

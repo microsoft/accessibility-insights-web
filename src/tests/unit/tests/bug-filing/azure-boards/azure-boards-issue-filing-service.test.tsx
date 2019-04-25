@@ -4,9 +4,9 @@ import {
     AzureBoardsBugFilingService,
     AzureBoardsBugFilingSettings,
     AzureBoardsIssueDetailField,
-} from '../../../../../bug-filing/azure-boards/azure-boards-bug-filing-service';
-import { AzureBoardsSettingsForm } from '../../../../../bug-filing/azure-boards/azure-boards-settings-form';
-import { azureBoardsIssueFilingUrlProvider } from '../../../../../bug-filing/azure-boards/create-azure-boards-issue-filing-url';
+} from '../../../../../issue-filing/azure-boards/azure-boards-issue-filing-service';
+import { AzureBoardsSettingsForm } from '../../../../../issue-filing/azure-boards/azure-boards-settings-form';
+import { azureBoardsIssueFilingUrlProvider } from '../../../../../issue-filing/azure-boards/create-azure-boards-issue-filing-url';
 import { BugServicePropertiesMap } from '../../../../../common/types/store-data/user-configuration-store';
 
 describe('AzureBoardsBugFilingServiceTest', () => {

@@ -5,9 +5,9 @@ import * as React from 'react';
 import { NamedSFC } from '../../common/react/named-sfc';
 import { BugServiceProperties } from '../../common/types/store-data/user-configuration-store';
 import { SettingsDeps } from '../../DetailsView/components/settings-panel/settings/settings-props';
-import { BugFilingServiceProvider } from '../bug-filing-service-provider';
-import { BugFilingService } from '../types/bug-filing-service';
-import { BugFilingChoiceGroup } from './bug-filing-choice-group';
+import { BugFilingServiceProvider } from '../issue-filing-service-provider';
+import { BugFilingService } from '../types/issue-filing-service';
+import { BugFilingChoiceGroup } from './issue-filing-choice-group';
 
 export type OnPropertyUpdateCallback = (bugService: string, propertyName: string, propertyValue: string) => void;
 export type OnSelectedServiceChange = (service: string) => void;

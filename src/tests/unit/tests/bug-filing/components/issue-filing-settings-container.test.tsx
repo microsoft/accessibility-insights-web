@@ -4,13 +4,13 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 import { Mock } from 'typemoq';
 
-import { BugFilingServiceProvider } from '../../../../../bug-filing/bug-filing-service-provider';
+import { BugFilingServiceProvider } from '../../../../../issue-filing/issue-filing-service-provider';
 import {
     BugFilingSettingsContainer,
     BugFilingSettingsContainerDeps,
     BugFilingSettingsContainerProps,
-} from '../../../../../bug-filing/components/bug-filing-settings-container';
-import { BugFilingService } from '../../../../../bug-filing/types/bug-filing-service';
+} from '../../../../../issue-filing/components/issue-filing-settings-container';
+import { BugFilingService } from '../../../../../issue-filing/types/issue-filing-service';
 import { UserConfigMessageCreator } from '../../../../../common/message-creators/user-config-message-creator';
 import { BugServiceProperties, UserConfigurationStoreData } from '../../../../../common/types/store-data/user-configuration-store';
 

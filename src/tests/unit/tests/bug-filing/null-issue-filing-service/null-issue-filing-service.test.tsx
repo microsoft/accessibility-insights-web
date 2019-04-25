@@ -6,8 +6,8 @@ import * as React from 'react';
 import {
     NullIssueFilingService,
     NullIssueFilingServiceSettings,
-} from '../../../../../bug-filing/null-issue-filing-service/null-issue-filing-service';
-import { SettingsFormProps } from '../../../../../bug-filing/types/settings-form-props';
+} from '../../../../../issue-filing/null-issue-filing-service/null-issue-filing-service';
+import { SettingsFormProps } from '../../../../../issue-filing/types/settings-form-props';
 import { CreateIssueDetailsTextData } from '../../../../../common/types/create-issue-details-text-data';
 import { DecoratedAxeNodeResult } from '../../../../../injected/scanner-utils';
 

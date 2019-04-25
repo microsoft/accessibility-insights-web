@@ -5,9 +5,9 @@ import { TextField } from 'office-ui-fabric-react/lib/TextField';
 import * as React from 'react';
 import { NamedSFC } from '../../common/react/named-sfc';
 import { createSettingsGetter } from '../common/create-settings-getter';
-import { BugFilingService } from '../types/bug-filing-service';
+import { BugFilingService } from '../types/issue-filing-service';
 import { SettingsFormProps } from '../types/settings-form-props';
-import { gitHubIssueFilingUrlProvider } from './create-github-bug-filing-url';
+import { gitHubIssueFilingUrlProvider } from './create-github-issue-filing-url';
 
 const GitHubBugFilingServiceKey = 'gitHub';
 

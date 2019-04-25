@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { CreateIssueDetailsTextData } from '../../../../../common/types/create-issue-details-text-data';
 import { DecoratedAxeNodeResult } from '../../../../../injected/scanner-utils';
-import { IssueFilingUrlStringUtils } from './../../../../../bug-filing/common/issue-filing-url-string-utils';
+import { IssueFilingUrlStringUtils } from './../../../../../issue-filing/common/issue-filing-url-string-utils';
 
 describe('BugFilingUrlStringUtilsTest', () => {
     let sampleIssueDetailsData: CreateIssueDetailsTextData;

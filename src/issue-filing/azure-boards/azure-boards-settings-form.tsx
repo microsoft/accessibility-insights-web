@@ -10,7 +10,7 @@ import {
     AzureBoardsBugFilingSettings,
     AzureBoardsIssueDetailField,
     AzureBoardsIssueDetailLocationDropdownOption,
-} from './azure-boards-bug-filing-service';
+} from './azure-boards-issue-filing-service';
 
 export const AzureBoardsSettingsForm = NamedSFC<SettingsFormProps<AzureBoardsBugFilingSettings>>('AzureBoardsSettingsForm', props => {
     const defaultKey = 'reproSteps';

@@ -3,7 +3,7 @@
 import { UserConfigMessageCreator } from '../../../../common/message-creators/user-config-message-creator';
 import { FeatureFlagStoreData } from '../../../../common/types/store-data/feature-flag-store-data';
 import { UserConfigurationStoreData } from '../../../../common/types/store-data/user-configuration-store';
-import { BugFilingServiceProvider } from './../../../../bug-filing/bug-filing-service-provider';
+import { BugFilingServiceProvider } from './../../../../issue-filing/issue-filing-service-provider';
 
 export type SettingsDeps = {
     userConfigMessageCreator: UserConfigMessageCreator;

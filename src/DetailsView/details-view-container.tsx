@@ -5,7 +5,7 @@ import { Spinner, SpinnerSize } from 'office-ui-fabric-react/lib/Spinner';
 import * as React from 'react';
 
 import { AssessmentsProvider } from '../assessments/types/assessments-provider';
-import { GitHubBugFilingSettings } from '../bug-filing/github/github-bug-filing-service';
+import { GitHubBugFilingSettings } from '../issue-filing/github/github-issue-filing-service';
 import { ThemeDeps } from '../common/components/theme';
 import { withStoreSubscription, WithStoreSubscriptionDeps } from '../common/components/with-store-subscription';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';

@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { repeat } from 'lodash';
-import { HTTPQueryBuilder, QueryParam } from '../../../../../bug-filing/common/http-query-builder';
+import { HTTPQueryBuilder, QueryParam } from '../../../../../issue-filing/common/http-query-builder';
 
 describe('HTTPQueryBuilder', () => {
     const testUrl = 'https://some-test-url';

@@ -3,7 +3,7 @@
 import { autobind } from '@uifabric/utilities';
 
 import { Assessments } from '../assessments/assessments';
-import { BugFilingServiceProviderImpl } from '../bug-filing/bug-filing-service-provider-impl';
+import { BugFilingServiceProviderImpl } from '../issue-filing/issue-filing-service-provider-impl';
 import { AxeInfo } from '../common/axe-info';
 import { InspectConfigurationFactory } from '../common/configs/inspect-configuration-factory';
 import { DateProvider } from '../common/date-provider';

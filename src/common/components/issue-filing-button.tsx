@@ -4,8 +4,8 @@ import { autobind } from '@uifabric/utilities';
 import { DefaultButton } from 'office-ui-fabric-react/lib/Button';
 import * as React from 'react';
 
-import { BugFilingServiceProvider } from '../../bug-filing/bug-filing-service-provider';
-import { BugFilingService } from '../../bug-filing/types/bug-filing-service';
+import { BugFilingServiceProvider } from '../../issue-filing/issue-filing-service-provider';
+import { BugFilingService } from '../../issue-filing/types/issue-filing-service';
 import { IssueFilingDialogDeps } from '../../DetailsView/components/issue-filing-dialog';
 import { EnvironmentInfo, EnvironmentInfoProvider } from '../environment-info-provider';
 import { LadyBugSolidIcon } from '../icons/lady-bug-solid-icon';

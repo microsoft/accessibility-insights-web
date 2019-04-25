@@ -9,10 +9,10 @@ import { IMock, Mock, Times } from 'typemoq';
 import {
     AzureBoardsBugFilingService,
     AzureBoardsBugFilingSettings,
-} from '../../../../../bug-filing/azure-boards/azure-boards-bug-filing-service';
-import { AzureBoardsSettingsForm } from '../../../../../bug-filing/azure-boards/azure-boards-settings-form';
-import { OnPropertyUpdateCallback } from '../../../../../bug-filing/components/bug-filing-settings-container';
-import { SettingsFormProps } from '../../../../../bug-filing/types/settings-form-props';
+} from '../../../../../issue-filing/azure-boards/azure-boards-issue-filing-service';
+import { AzureBoardsSettingsForm } from '../../../../../issue-filing/azure-boards/azure-boards-settings-form';
+import { OnPropertyUpdateCallback } from '../../../../../issue-filing/components/issue-filing-settings-container';
+import { SettingsFormProps } from '../../../../../issue-filing/types/settings-form-props';
 import { SettingsDeps } from '../../../../../DetailsView/components/settings-panel/settings/settings-props';
 import { EventStubFactory } from '../../../common/event-stub-factory';
 

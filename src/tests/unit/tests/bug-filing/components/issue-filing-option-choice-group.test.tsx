@@ -5,9 +5,9 @@ import { ChoiceGroup, IChoiceGroupOption } from 'office-ui-fabric-react/lib/Choi
 import * as React from 'react';
 import { IMock, Mock, Times } from 'typemoq';
 
-import { BugFilingChoiceGroup, BugFilingChoiceGroupProps } from '../../../../../bug-filing/components/bug-filing-choice-group';
-import { OnSelectedServiceChange } from '../../../../../bug-filing/components/bug-filing-settings-container';
-import { BugFilingService } from '../../../../../bug-filing/types/bug-filing-service';
+import { BugFilingChoiceGroup, BugFilingChoiceGroupProps } from '../../../../../issue-filing/components/issue-filing-choice-group';
+import { OnSelectedServiceChange } from '../../../../../issue-filing/components/issue-filing-settings-container';
+import { BugFilingService } from '../../../../../issue-filing/types/issue-filing-service';
 
 describe('BugFilingChoiceGroupTest', () => {
     let onServiceChangeMock: IMock<OnSelectedServiceChange>;

@@ -5,8 +5,8 @@ import { DefaultButton } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { IMock, Mock, Times } from 'typemoq';
 
-import { BugFilingServiceProvider } from '../../../../../bug-filing/bug-filing-service-provider';
-import { BugFilingService } from '../../../../../bug-filing/types/bug-filing-service';
+import { BugFilingServiceProvider } from '../../../../../issue-filing/issue-filing-service-provider';
+import { BugFilingService } from '../../../../../issue-filing/types/issue-filing-service';
 import { IssueFilingButton, IssueFilingButtonDeps, IssueFilingButtonProps } from '../../../../../common/components/issue-filing-button';
 import { EnvironmentInfoProvider } from '../../../../../common/environment-info-provider';
 import { BugActionMessageCreator } from '../../../../../common/message-creators/bug-action-message-creator';

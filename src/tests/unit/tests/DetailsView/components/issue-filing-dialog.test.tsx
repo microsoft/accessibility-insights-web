@@ -4,9 +4,9 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
-import { BugFilingServiceProvider } from '../../../../../bug-filing/bug-filing-service-provider';
-import { BugFilingSettingsContainer } from '../../../../../bug-filing/components/bug-filing-settings-container';
-import { BugFilingService } from '../../../../../bug-filing/types/bug-filing-service';
+import { BugFilingServiceProvider } from '../../../../../issue-filing/issue-filing-service-provider';
+import { BugFilingSettingsContainer } from '../../../../../issue-filing/components/issue-filing-settings-container';
+import { BugFilingService } from '../../../../../issue-filing/types/issue-filing-service';
 import { EnvironmentInfo, EnvironmentInfoProvider } from '../../../../../common/environment-info-provider';
 import { UserConfigMessageCreator } from '../../../../../common/message-creators/user-config-message-creator';
 import { CreateIssueDetailsTextData } from '../../../../../common/types/create-issue-details-text-data';

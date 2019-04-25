@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { BugFilingServiceProvider } from './../../../../bug-filing/bug-filing-service-provider';
-import { BugFilingService } from './../../../../bug-filing/types/bug-filing-service';
+import { BugFilingServiceProvider } from './../../../../issue-filing/issue-filing-service-provider';
+import { BugFilingService } from './../../../../issue-filing/types/issue-filing-service';
 
 describe('BugFilingServiceProviderTest', () => {
     test('constructor', () => {

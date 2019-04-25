@@ -4,14 +4,14 @@ import { cloneDeep, isEqual } from 'lodash';
 import { Dialog, DialogFooter, DialogType } from 'office-ui-fabric-react/lib/Dialog';
 import * as React from 'react';
 
-import { BugFilingServiceProvider } from '../../bug-filing/bug-filing-service-provider';
+import { BugFilingServiceProvider } from '../../issue-filing/issue-filing-service-provider';
 import {
     BugFilingSettingsContainer,
     BugFilingSettingsContainerDeps,
     OnPropertyUpdateCallback,
     OnSelectedServiceChange,
-} from '../../bug-filing/components/bug-filing-settings-container';
-import { BugFilingService } from '../../bug-filing/types/bug-filing-service';
+} from '../../issue-filing/components/issue-filing-settings-container';
+import { BugFilingService } from '../../issue-filing/types/issue-filing-service';
 import { EnvironmentInfoProvider } from '../../common/environment-info-provider';
 import { UserConfigMessageCreator } from '../../common/message-creators/user-config-message-creator';
 import { CreateIssueDetailsTextData } from '../../common/types/create-issue-details-text-data';

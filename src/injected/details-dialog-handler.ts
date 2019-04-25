@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { autobind } from '@uifabric/utilities';
 
-import { GitHubBugFilingSettings } from '../bug-filing/github/github-bug-filing-service';
+import { GitHubBugFilingSettings } from '../issue-filing/github/github-issue-filing-service';
 import { FeatureFlags } from '../common/feature-flags';
 import { HTMLElementUtils } from '../common/html-element-utils';
 import { UserConfigurationStoreData } from './../common/types/store-data/user-configuration-store';

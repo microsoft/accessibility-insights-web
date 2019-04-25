@@ -4,12 +4,12 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 import { IMock, Mock } from 'typemoq';
 
-import { BugFilingServiceProvider } from '../../../../../../../../bug-filing/bug-filing-service-provider';
-import { BugFilingService } from '../../../../../../../../bug-filing/types/bug-filing-service';
+import { BugFilingServiceProvider } from '../../../../../../../../issue-filing/issue-filing-service-provider';
+import { BugFilingService } from '../../../../../../../../issue-filing/types/issue-filing-service';
 import { UserConfigMessageCreator } from '../../../../../../../../common/message-creators/user-config-message-creator';
 import { NamedSFC } from '../../../../../../../../common/react/named-sfc';
 import { UserConfigurationStoreData } from '../../../../../../../../common/types/store-data/user-configuration-store';
-import { BugFilingSettings } from '../../../../../../../../DetailsView/components/settings-panel/settings/bug-filing/bug-filing-settings';
+import { BugFilingSettings } from '../../../../../../../../DetailsView/components/settings-panel/settings/issue-filing/issue-filing-settings';
 import { SettingsDeps, SettingsProps } from '../../../../../../../../DetailsView/components/settings-panel/settings/settings-props';
 
 describe('BugFilingSettings', () => {

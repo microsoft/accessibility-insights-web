@@ -6,7 +6,7 @@ import { GlobalMock, GlobalScope, IGlobalMock, IMock, It, Mock, MockBehavior, Ti
 
 import { DevToolStore } from '../../../../background/stores/dev-tools-store';
 import { UserConfigurationStore } from '../../../../background/stores/global/user-configuration-store';
-import { BugFilingServiceProvider } from '../../../../bug-filing/bug-filing-service-provider';
+import { BugFilingServiceProvider } from '../../../../issue-filing/issue-filing-service-provider';
 import { ClientBrowserAdapter } from '../../../../common/client-browser-adapter';
 import { EnvironmentInfoProvider } from '../../../../common/environment-info-provider';
 import { FeatureFlags, getDefaultFeatureFlagValues } from '../../../../common/feature-flags';

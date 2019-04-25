@@ -2,12 +2,12 @@
 // Licensed under the MIT License.
 import { IMock, Mock } from 'typemoq';
 
-import { HTTPQueryBuilder } from '../../../../../bug-filing/common/http-query-builder';
-import { IssueDetailsBuilder } from '../../../../../bug-filing/common/issue-details-builder';
-import { createGitHubIssueFilingUrlProvider } from '../../../../../bug-filing/github/create-github-bug-filing-url';
-import { IssueFilingUrlProvider } from '../../../../../bug-filing/types/bug-filing-service';
-import { IssueUrlCreationUtils } from './../../../../../bug-filing/common/issue-filing-url-string-utils';
-import { GitHubBugFilingSettings } from './../../../../../bug-filing/github/github-bug-filing-service';
+import { HTTPQueryBuilder } from '../../../../../issue-filing/common/http-query-builder';
+import { IssueDetailsBuilder } from '../../../../../issue-filing/common/issue-details-builder';
+import { createGitHubIssueFilingUrlProvider } from '../../../../../issue-filing/github/create-github-issue-filing-url';
+import { IssueFilingUrlProvider } from '../../../../../issue-filing/types/issue-filing-service';
+import { IssueUrlCreationUtils } from './../../../../../issue-filing/common/issue-filing-url-string-utils';
+import { GitHubBugFilingSettings } from './../../../../../issue-filing/github/github-issue-filing-service';
 import { EnvironmentInfo } from './../../../../../common/environment-info-provider';
 
 const buildedUrl = 'https://builded-url';

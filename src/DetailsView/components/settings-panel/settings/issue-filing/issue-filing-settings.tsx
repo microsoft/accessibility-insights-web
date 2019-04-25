@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import { BugFilingSettingsContainer } from '../../../../../bug-filing/components/bug-filing-settings-container';
+import { BugFilingSettingsContainer } from '../../../../../issue-filing/components/issue-filing-settings-container';
 import { FlaggedComponent } from '../../../../../common/components/flagged-component';
 import { FeatureFlags } from '../../../../../common/feature-flags';
 import { NamedSFC } from '../../../../../common/react/named-sfc';

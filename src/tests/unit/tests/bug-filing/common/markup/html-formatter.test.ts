@@ -2,8 +2,8 @@
 // Licensed under the MIT License.
 import { IMock, It, Mock, MockBehavior } from 'typemoq';
 
-import { createFormatter } from '../../../../../../bug-filing/common/markup/html-formatter';
-import { MarkupFormatter } from '../../../../../../bug-filing/common/markup/markup-formatter';
+import { createFormatter } from '../../../../../../issue-filing/common/markup/html-formatter';
+import { MarkupFormatter } from '../../../../../../issue-filing/common/markup/markup-formatter';
 
 describe('HTMLFormatter', () => {
     let truncateMock: IMock<(text: string) => string>;
