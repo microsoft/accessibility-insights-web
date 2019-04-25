@@ -14,7 +14,7 @@ const emphasisDescription: JSX.Element = (
 
 const emphasisHowToTest: JSX.Element = (
     <div>
-        <p>This procedure uses the Chrome Developer Tools (F12) to inspect the page's HTML.</p>
+        <p>This procedure uses the browser Developer Tools (F12) to inspect the page's HTML.</p>
         <ol>
             <li>Examine the target page to identify any visually emphasized words or phrases.</li>
             <li>

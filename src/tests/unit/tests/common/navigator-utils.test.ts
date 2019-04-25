@@ -5,8 +5,15 @@ import { NavigatorUtils } from '../../../../common/navigator-utils';
 describe('NavigatorUtilsTest', () => {
     test('getEnvironmentInfo: chrome', () => {
         validateBrowserSpecReturnedWithUserAgent(
-            `Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Safari/537.36`,
+            'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/65.0.3325.181 Safari/537.36',
             'Chrome version 65.0.3325.181',
+        );
+    });
+
+    test('getEnvironmentInfo: edge', () => {
+        validateBrowserSpecReturnedWithUserAgent(
+            'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3763.0 Safari/537.36 Edg/75.0.131.0',
+            'Edge version 75.0.131.0',
         );
     });
 
