@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`GithubBugFilingServiceTest renderSettingsForm 1`] = `
+exports[`GithubIssueFilingServiceTest renderSettingsForm 1`] = `
 <StyledTextFieldBase
   className="issue-setting"
   label="Enter desired GitHub issues link:"

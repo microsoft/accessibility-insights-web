@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`BugFilingChoiceGroupTest render 1`] = `
+exports[`IssueFilingChoiceGroupTest render 1`] = `
 <StyledChoiceGroupBase
-  className="bug-filing-choice-group"
+  className="issue-filing-choice-group"
   onChange={[Function]}
   options={
     Array [

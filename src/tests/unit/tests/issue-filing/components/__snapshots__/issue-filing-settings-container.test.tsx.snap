@@ -1,9 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`BugFilingSettingsContainerTest render 1`] = `
+exports[`IssueFilingSettingsContainerTest render 1`] = `
 <React.Fragment>
-  <BugFilingChoiceGroup
-    bugFilingServices={
+  <IssueFilingChoiceGroup
+    issueFilingServices={
       Array [
         Object {
           "displayName": "TEST",
@@ -13,7 +13,7 @@ exports[`BugFilingSettingsContainerTest render 1`] = `
       ]
     }
     onSelectedServiceChange={[Function]}
-    selectedBugFilingService={
+    selectedIssueFilingService={
       Object {
         "displayName": "TEST",
         "key": "test",
@@ -24,7 +24,7 @@ exports[`BugFilingSettingsContainerTest render 1`] = `
   <settingsForm
     deps={
       Object {
-        "bugFilingServiceProvider": proxy {
+        "issueFilingServiceProvider": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "all": [Function],
           "allVisible": [Function],

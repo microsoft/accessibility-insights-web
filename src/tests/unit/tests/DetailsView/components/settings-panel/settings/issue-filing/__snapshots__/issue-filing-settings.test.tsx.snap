@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`BugFilingSettings renders 1`] = `
+exports[`IssueFilingSettings renders 1`] = `
 <React.Fragment>
   <h3>
     Issue filing
@@ -10,7 +10,7 @@ exports[`BugFilingSettings renders 1`] = `
       <GitHubBugSettingsUx
         deps={
           Object {
-            "bugFilingServiceProvider": proxy {
+            "issueFilingServiceProvider": proxy {
               "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
               "all": [Function],
               "allVisible": [Function],
@@ -26,9 +26,9 @@ exports[`BugFilingSettings renders 1`] = `
               "postMessageDelegate": undefined,
               "saveIssueFilingSettings": [Function],
               "sendTelemetry": [Function],
-              "setBugService": [Function],
-              "setBugServiceProperty": [Function],
               "setHighContrastMode": [Function],
+              "setIssueService": [Function],
+              "setIssueServiceProperty": [Function],
               "setIssueTrackerPath": [Function],
               "setTelemetryState": [Function],
             },
@@ -51,10 +51,10 @@ exports[`BugFilingSettings renders 1`] = `
       />
     }
     enableJSXElement={
-      <BugFilingSettingsContainer
+      <IssueFilingSettingsContainer
         deps={
           Object {
-            "bugFilingServiceProvider": proxy {
+            "issueFilingServiceProvider": proxy {
               "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
               "all": [Function],
               "allVisible": [Function],
@@ -70,9 +70,9 @@ exports[`BugFilingSettings renders 1`] = `
               "postMessageDelegate": undefined,
               "saveIssueFilingSettings": [Function],
               "sendTelemetry": [Function],
-              "setBugService": [Function],
-              "setBugServiceProperty": [Function],
               "setHighContrastMode": [Function],
+              "setIssueService": [Function],
+              "setIssueServiceProperty": [Function],
               "setIssueTrackerPath": [Function],
               "setTelemetryState": [Function],
             },
@@ -80,7 +80,7 @@ exports[`BugFilingSettings renders 1`] = `
         }
         onPropertyUpdateCallback={[Function]}
         onSelectedServiceChange={[Function]}
-        selectedBugFilingService={
+        selectedIssueFilingService={
           Object {
             "buildStoreData": [Function],
             "displayName": "TEST",
