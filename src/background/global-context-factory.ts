@@ -50,7 +50,12 @@ export class GlobalContextFactory {
 
         globalStoreHub.initialize();
 
-        const issueFilingController = new IssueFilingControllerImpl(issueFilingServiceProvider, browserAdapter, environmentInfo);
+        const issueFilingController = new IssueFilingControllerImpl(
+            issueFilingServiceProvider,
+            browserAdapter,
+            environmentInfo,
+            globalStoreHub.userConfigurationStore,
+        );
 
         const issueFilingActionCreator = new IssueFilingActionCreator(interpreter, telemetryEventHandler, issueFilingController);
         const actionCreator = new GlobalActionCreator(globalActionsHub, interpreter, browserAdapter, telemetryEventHandler);

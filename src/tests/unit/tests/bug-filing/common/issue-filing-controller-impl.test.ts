@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { Mock, Times } from 'typemoq';
+import { Mock, Times, It } from 'typemoq';
 
 import { BrowserAdapter } from '../../../../../background/browser-adapter';
 import { BugFilingServiceProvider } from '../../../../../bug-filing/bug-filing-service-provider';
@@ -10,6 +10,8 @@ import { IssueFilingControllerImpl } from '../../../../../bug-filing/common/issu
 import { FileIssueClickService } from '../../../../../common/telemetry-events';
 import { CreateIssueDetailsTextData } from '../../../../../common/types/create-issue-details-text-data';
 import { DecoratedAxeNodeResult } from '../../../../../injected/scanner-utils';
+import { UserConfigurationStoreData, BugServicePropertiesMap } from '../../../../../common/types/store-data/user-configuration-store';
+import { BaseStore } from '../../../../../common/base-store';
 
 describe('IssueFilingControllerImpl', () => {
     it('fileUssue', () => {
@@ -34,9 +36,19 @@ describe('IssueFilingControllerImpl', () => {
             extensionVersion: 'test extension version',
         };
         const testUrl = 'test-url';
+        const map: BugServicePropertiesMap = {
+            [serviceKey]: {
+                repository: testUrl,
+            },
+        };
+        const serviceConfig = { bugServicePropertiesMap: map } as UserConfigurationStoreData;
+
         const issueFilingServiceMock = Mock.ofType<BugFilingService>();
         issueFilingServiceMock
-            .setup(service => service.issueFilingUrlProvider(issueFilingServiceMock.object, issueData, environmentInfoStub))
+            .setup(service => service.getSettingsFromStoreData(serviceConfig.bugServicePropertiesMap))
+            .returns(() => serviceConfig);
+        issueFilingServiceMock
+            .setup(service => service.issueFilingUrlProvider(It.isValue(serviceConfig), issueData, environmentInfoStub))
             .returns(() => testUrl);
 
         const providerMock = Mock.ofType<BugFilingServiceProvider>();
@@ -45,7 +57,15 @@ describe('IssueFilingControllerImpl', () => {
         const browserAdapterMock = Mock.ofType<BrowserAdapter>();
         browserAdapterMock.setup(adapter => adapter.createTab(testUrl)).verifiable(Times.once());
 
-        const testSubject = new IssueFilingControllerImpl(providerMock.object, browserAdapterMock.object, environmentInfoStub);
+        const storeMock = Mock.ofType<BaseStore<UserConfigurationStoreData>>();
+        storeMock.setup(store => store.getState()).returns(() => serviceConfig);
+
+        const testSubject = new IssueFilingControllerImpl(
+            providerMock.object,
+            browserAdapterMock.object,
+            environmentInfoStub,
+            storeMock.object,
+        );
 
         testSubject.fileIssue(serviceKey as FileIssueClickService, issueData);
 
