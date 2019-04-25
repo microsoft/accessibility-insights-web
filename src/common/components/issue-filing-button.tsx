@@ -4,8 +4,8 @@ import { autobind } from '@uifabric/utilities';
 import { DefaultButton } from 'office-ui-fabric-react/lib/Button';
 import * as React from 'react';
 
-import { BugFilingServiceProvider } from '../../issue-filing/issue-filing-service-provider';
-import { BugFilingService } from '../../issue-filing/types/issue-filing-service';
+import { IssueFilingServiceProvider } from '../../issue-filing/issue-filing-service-provider';
+import { IssueFilingService } from '../../issue-filing/types/issue-filing-service';
 import { IssueFilingDialogDeps } from '../../DetailsView/components/issue-filing-dialog';
 import { EnvironmentInfo, EnvironmentInfoProvider } from '../environment-info-provider';
 import { LadyBugSolidIcon } from '../icons/lady-bug-solid-icon';
@@ -18,7 +18,7 @@ import { BugServiceProperties, UserConfigurationStoreData } from '../types/store
 export type IssueFilingButtonDeps = {
     bugActionMessageCreator: BugActionMessageCreator;
     environmentInfoProvider: EnvironmentInfoProvider;
-    bugFilingServiceProvider: BugFilingServiceProvider;
+    issueFilingServiceProvider: IssueFilingServiceProvider;
 } & IssueFilingDialogDeps;
 
 export type IssueFilingButtonProps = {
@@ -42,24 +42,24 @@ export class IssueFilingButton extends React.Component<IssueFilingButtonProps, I
 
     public render(): JSX.Element {
         const { issueDetailsData, userConfigurationStoreData, deps } = this.props;
-        const { environmentInfoProvider, bugFilingServiceProvider } = deps;
+        const { environmentInfoProvider, issueFilingServiceProvider } = deps;
         const envInfo: EnvironmentInfo = environmentInfoProvider.getEnvironmentInfo();
-        const selectedBugFilingService: BugFilingService = bugFilingServiceProvider.forKey(userConfigurationStoreData.bugService);
-        const selectedBugFilingServiceData: BugServiceProperties = selectedBugFilingService.getSettingsFromStoreData(
+        const selectedIssueFilingService: IssueFilingService = issueFilingServiceProvider.forKey(userConfigurationStoreData.bugService);
+        const selectedIssueFilingServiceData: BugServiceProperties = selectedIssueFilingService.getSettingsFromStoreData(
             userConfigurationStoreData.bugServicePropertiesMap,
         );
-        const isSettingValid = selectedBugFilingService.isSettingsValid(selectedBugFilingServiceData);
+        const isSettingValid = selectedIssueFilingService.isSettingsValid(selectedIssueFilingServiceData);
         const href = isSettingValid
-            ? selectedBugFilingService.issueFilingUrlProvider(selectedBugFilingServiceData, issueDetailsData, envInfo)
+            ? selectedIssueFilingService.issueFilingUrlProvider(selectedIssueFilingServiceData, issueDetailsData, envInfo)
             : null;
         const target: string = isSettingValid ? '_blank' : '_self';
 
         const needsSettingsContentProps: IssueFilingNeedsSettingsContentProps = {
             deps,
             isOpen: this.state.showNeedsSettingsContent,
-            selectedBugFilingService,
+            selectedIssueFilingService,
             selectedBugData: issueDetailsData,
-            selectedBugFilingServiceData,
+            selectedIssueFilingServiceData,
             onClose: this.closeNeedsSettingsContent,
             bugFileTelemetryCallback: this.trackFileIssueClick,
             bugServicePropertiesMap: userConfigurationStoreData.bugServicePropertiesMap,

@@ -303,7 +303,7 @@ describe('GlobalActionCreatorTest', () => {
     test('registerCallback for on UserConfig.SaveIssueFilingSettings', () => {
         const payload: SaveIssueFilingSettingsPayload = {
             bugServiceName: 'test bug service',
-            bugFilingSettings: { name: 'issueFilingSettings' },
+            issueFilingSettings: { name: 'issueFilingSettings' },
         };
         const args = [payload];
         const validator = new GlobalActionCreatorValidator()

@@ -5,7 +5,7 @@ import { ISelection, Selection } from 'office-ui-fabric-react/lib/DetailsList';
 import * as React from 'react';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
-import { GitHubBugFilingSettings } from '../../../../issue-filing/github/github-issue-filing-service';
+import { GitHubIssueFilingSettings } from '../../../../issue-filing/github/github-issue-filing-service';
 import { DropdownClickHandler } from '../../../../common/dropdown-click-handler';
 import { StoreActionMessageCreator } from '../../../../common/message-creators/store-action-message-creator';
 import { StoreActionMessageCreatorImpl } from '../../../../common/message-creators/store-action-message-creator-impl';
@@ -248,7 +248,7 @@ describe('DetailsViewContainer', () => {
         rightPanelConfiguration: DetailsRightPanelConfiguration,
         switcherNavConfiguration: DetailsViewSwitcherNavConfiguration,
     ): JSX.Element {
-        const issueTrackerPath = (storeMocks.userConfigurationStoreData.bugServicePropertiesMap.gitHub as GitHubBugFilingSettings)
+        const issueTrackerPath = (storeMocks.userConfigurationStoreData.bugServicePropertiesMap.gitHub as GitHubIssueFilingSettings)
             .repository;
         return (
             <DetailsViewMainContent

@@ -5,8 +5,8 @@ import { DefaultButton } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { IMock, Mock, Times } from 'typemoq';
 
-import { BugFilingServiceProvider } from '../../../../../issue-filing/issue-filing-service-provider';
-import { BugFilingService } from '../../../../../issue-filing/types/issue-filing-service';
+import { IssueFilingServiceProvider } from '../../../../../issue-filing/issue-filing-service-provider';
+import { IssueFilingService } from '../../../../../issue-filing/types/issue-filing-service';
 import { IssueFilingButton, IssueFilingButtonDeps, IssueFilingButtonProps } from '../../../../../common/components/issue-filing-button';
 import { EnvironmentInfoProvider } from '../../../../../common/environment-info-provider';
 import { BugActionMessageCreator } from '../../../../../common/message-creators/bug-action-message-creator';
@@ -19,10 +19,10 @@ describe('IssueFilingButtonTest', () => {
     const testKey: string = 'test';
     const eventStub = new EventStubFactory().createNativeMouseClickEvent();
     let environmentInfoProviderMock: IMock<EnvironmentInfoProvider>;
-    let bugFilingServiceProviderMock: IMock<BugFilingServiceProvider>;
+    let issueFilingServiceProviderMock: IMock<IssueFilingServiceProvider>;
     let bugActionMessageCreatorMock: IMock<BugActionMessageCreator>;
     let userConfigurationStoreData: UserConfigurationStoreData;
-    let testBugService: BugFilingService;
+    let testBugService: IssueFilingService;
     let needsSettingsContentRenderer: IssueFilingNeedsSettingsContentRenderer;
 
     beforeEach(() => {
@@ -44,7 +44,7 @@ describe('IssueFilingButtonTest', () => {
             },
         } as UserConfigurationStoreData;
         environmentInfoProviderMock = Mock.ofType(EnvironmentInfoProvider);
-        bugFilingServiceProviderMock = Mock.ofType(BugFilingServiceProvider);
+        issueFilingServiceProviderMock = Mock.ofType(IssueFilingServiceProvider);
         bugActionMessageCreatorMock = Mock.ofType(BugActionMessageCreator);
         environmentInfoProviderMock
             .setup(envp => envp.getEnvironmentInfo())
@@ -56,7 +56,7 @@ describe('IssueFilingButtonTest', () => {
                 };
             })
             .verifiable();
-        bugFilingServiceProviderMock
+        issueFilingServiceProviderMock
             .setup(bp => bp.forKey(testKey))
             .returns(() => testBugService)
             .verifiable();
@@ -69,7 +69,7 @@ describe('IssueFilingButtonTest', () => {
             deps: {
                 bugActionMessageCreator: bugActionMessageCreatorMock.object,
                 environmentInfoProvider: environmentInfoProviderMock.object,
-                bugFilingServiceProvider: bugFilingServiceProviderMock.object,
+                issueFilingServiceProvider: issueFilingServiceProviderMock.object,
             } as IssueFilingButtonDeps,
             issueDetailsData: {
                 pageTitle: 'pageTitle',
@@ -83,7 +83,7 @@ describe('IssueFilingButtonTest', () => {
         expect(wrapper.debug()).toMatchSnapshot();
 
         environmentInfoProviderMock.verifyAll();
-        bugFilingServiceProviderMock.verifyAll();
+        issueFilingServiceProviderMock.verifyAll();
     });
 
     test('onclick: valid settings, file bug and set %s to false', () => {
@@ -94,7 +94,7 @@ describe('IssueFilingButtonTest', () => {
             deps: {
                 bugActionMessageCreator: bugActionMessageCreatorMock.object,
                 environmentInfoProvider: environmentInfoProviderMock.object,
-                bugFilingServiceProvider: bugFilingServiceProviderMock.object,
+                issueFilingServiceProvider: issueFilingServiceProviderMock.object,
             } as IssueFilingButtonDeps,
             issueDetailsData: {
                 pageTitle: 'pageTitle',
@@ -122,7 +122,7 @@ describe('IssueFilingButtonTest', () => {
             deps: {
                 bugActionMessageCreator: bugActionMessageCreatorMock.object,
                 environmentInfoProvider: environmentInfoProviderMock.object,
-                bugFilingServiceProvider: bugFilingServiceProviderMock.object,
+                issueFilingServiceProvider: issueFilingServiceProviderMock.object,
             } as IssueFilingButtonDeps,
             issueDetailsData: {
                 pageTitle: 'pageTitle',

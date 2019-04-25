@@ -3,7 +3,7 @@
 import { autobind } from '@uifabric/utilities';
 
 import { Assessments } from '../assessments/assessments';
-import { BugFilingServiceProviderImpl } from '../issue-filing/issue-filing-service-provider-impl';
+import { IssueFilingServiceProviderImpl } from '../issue-filing/issue-filing-service-provider-impl';
 import { AxeInfo } from '../common/axe-info';
 import { InspectConfigurationFactory } from '../common/configs/inspect-configuration-factory';
 import { DateProvider } from '../common/date-provider';
@@ -134,7 +134,7 @@ export class MainWindowInitializer extends WindowInitializer {
             bugActionMessageCreator,
             userConfigMessageCreator,
             environmentInfoProvider,
-            BugFilingServiceProviderImpl,
+            IssueFilingServiceProviderImpl,
         );
 
         const drawingInitiator = new DrawingInitiator(this.drawingController);

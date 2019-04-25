@@ -5,11 +5,11 @@ import { ChoiceGroup, IChoiceGroupOption } from 'office-ui-fabric-react/lib/Choi
 import * as React from 'react';
 import { IMock, Mock, Times } from 'typemoq';
 
-import { BugFilingChoiceGroup, BugFilingChoiceGroupProps } from '../../../../../issue-filing/components/issue-filing-choice-group';
+import { IssueFilingChoiceGroup, IssueFilingChoiceGroupProps } from '../../../../../issue-filing/components/issue-filing-choice-group';
 import { OnSelectedServiceChange } from '../../../../../issue-filing/components/issue-filing-settings-container';
-import { BugFilingService } from '../../../../../issue-filing/types/issue-filing-service';
+import { IssueFilingService } from '../../../../../issue-filing/types/issue-filing-service';
 
-describe('BugFilingChoiceGroupTest', () => {
+describe('IssueFilingChoiceGroupTest', () => {
     let onServiceChangeMock: IMock<OnSelectedServiceChange>;
     const testKey = 'test bug service key';
     const testName = 'test bug service name';
@@ -17,37 +17,37 @@ describe('BugFilingChoiceGroupTest', () => {
         key: testKey,
         text: testName,
     };
-    const selectedBugFilingService = {
+    const selectedIssueFilingService = {
         key: testKey,
         displayName: testName,
-    } as BugFilingService;
-    const services = [selectedBugFilingService];
+    } as IssueFilingService;
+    const services = [selectedIssueFilingService];
 
     beforeEach(() => {
         onServiceChangeMock = Mock.ofInstance(_ => null);
     });
 
     test('render', () => {
-        const props: BugFilingChoiceGroupProps = {
-            selectedBugFilingService,
-            bugFilingServices: services,
+        const props: IssueFilingChoiceGroupProps = {
+            selectedIssueFilingService,
+            issueFilingServices: services,
             onSelectedServiceChange: onServiceChangeMock.object,
         };
 
-        const wrapper = shallow(<BugFilingChoiceGroup {...props} />);
+        const wrapper = shallow(<IssueFilingChoiceGroup {...props} />);
         expect(wrapper.getElement()).toMatchSnapshot();
     });
 
     test('onChange', () => {
-        const props: BugFilingChoiceGroupProps = {
-            selectedBugFilingService,
-            bugFilingServices: services,
+        const props: IssueFilingChoiceGroupProps = {
+            selectedIssueFilingService,
+            issueFilingServices: services,
             onSelectedServiceChange: onServiceChangeMock.object,
         };
 
         onServiceChangeMock.setup(u => u(testOption.key)).verifiable(Times.once());
 
-        const wrapper = shallow(<BugFilingChoiceGroup {...props} />);
+        const wrapper = shallow(<IssueFilingChoiceGroup {...props} />);
         wrapper
             .find(ChoiceGroup)
             .props()

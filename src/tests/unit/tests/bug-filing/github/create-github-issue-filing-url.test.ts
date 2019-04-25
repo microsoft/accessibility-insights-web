@@ -7,17 +7,17 @@ import { IssueDetailsBuilder } from '../../../../../issue-filing/common/issue-de
 import { createGitHubIssueFilingUrlProvider } from '../../../../../issue-filing/github/create-github-issue-filing-url';
 import { IssueFilingUrlProvider } from '../../../../../issue-filing/types/issue-filing-service';
 import { IssueUrlCreationUtils } from './../../../../../issue-filing/common/issue-filing-url-string-utils';
-import { GitHubBugFilingSettings } from './../../../../../issue-filing/github/github-issue-filing-service';
+import { GitHubIssueFilingSettings } from './../../../../../issue-filing/github/github-issue-filing-service';
 import { EnvironmentInfo } from './../../../../../common/environment-info-provider';
 
 const buildedUrl = 'https://builded-url';
-describe('createGitHubBugFilingUrlTest', () => {
+describe('createGitHubIssueFilingUrlTest', () => {
     let environmentInfo: EnvironmentInfo;
     let sampleIssueDetailsData;
-    let settingsData: GitHubBugFilingSettings;
+    let settingsData: GitHubIssueFilingSettings;
     let stringUtilsMock: IMock<IssueUrlCreationUtils>;
     let issueDetailsGetter: IMock<IssueDetailsBuilder>;
-    let testObject: IssueFilingUrlProvider<GitHubBugFilingSettings>;
+    let testObject: IssueFilingUrlProvider<GitHubIssueFilingSettings>;
     let queryBuilderMock: IMock<HTTPQueryBuilder>;
 
     beforeEach(() => {

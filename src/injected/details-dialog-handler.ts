@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { autobind } from '@uifabric/utilities';
 
-import { GitHubBugFilingSettings } from '../issue-filing/github/github-issue-filing-service';
+import { GitHubIssueFilingSettings } from '../issue-filing/github/github-issue-filing-service';
 import { FeatureFlags } from '../common/feature-flags';
 import { HTMLElementUtils } from '../common/html-element-utils';
 import { UserConfigurationStoreData } from './../common/types/store-data/user-configuration-store';
@@ -87,7 +87,7 @@ export class DetailsDialogHandler {
             userConfigState &&
             userConfigState.bugServicePropertiesMap &&
             userConfigState.bugServicePropertiesMap.gitHub &&
-            (userConfigState.bugServicePropertiesMap.gitHub as GitHubBugFilingSettings).repository
+            (userConfigState.bugServicePropertiesMap.gitHub as GitHubIssueFilingSettings).repository
         );
     }
 

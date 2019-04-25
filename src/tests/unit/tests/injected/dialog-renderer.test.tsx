@@ -6,7 +6,7 @@ import { GlobalMock, GlobalScope, IGlobalMock, IMock, It, Mock, MockBehavior, Ti
 
 import { DevToolStore } from '../../../../background/stores/dev-tools-store';
 import { UserConfigurationStore } from '../../../../background/stores/global/user-configuration-store';
-import { BugFilingServiceProvider } from '../../../../issue-filing/issue-filing-service-provider';
+import { IssueFilingServiceProvider } from '../../../../issue-filing/issue-filing-service-provider';
 import { ClientBrowserAdapter } from '../../../../common/client-browser-adapter';
 import { EnvironmentInfoProvider } from '../../../../common/environment-info-provider';
 import { FeatureFlags, getDefaultFeatureFlagValues } from '../../../../common/feature-flags';
@@ -83,7 +83,7 @@ describe('DialogRendererTests', () => {
         const targetActionPageMessageCreatorMock = Mock.ofType(TargetPageActionMessageCreator);
         const bugActionMessageCreatorMock = Mock.ofType(BugActionMessageCreator);
         const environmentInfoProviderMock = Mock.ofType(EnvironmentInfoProvider);
-        const bugFilingServiceProviderMock = Mock.ofType(BugFilingServiceProvider);
+        const issueFilingServiceProviderMock = Mock.ofType(IssueFilingServiceProvider);
         const userConfigMessageCreatorMock = Mock.ofType(UserConfigMessageCreator);
 
         mainWindowContext = new MainWindowContext(
@@ -94,7 +94,7 @@ describe('DialogRendererTests', () => {
             bugActionMessageCreatorMock.object,
             userConfigMessageCreatorMock.object,
             environmentInfoProviderMock.object,
-            bugFilingServiceProviderMock.object,
+            issueFilingServiceProviderMock.object,
         );
     });
 

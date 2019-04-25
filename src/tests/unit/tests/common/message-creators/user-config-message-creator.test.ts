@@ -124,10 +124,10 @@ describe('UserConfigMessageCreator', () => {
 
     test('saveIssueFilingSettings', () => {
         const bugServiceName = 'UserConfigMessageCreatorTest bug service name';
-        const bugFilingSettings: BugServiceProperties = { name: 'bugFilingSettings' };
+        const issueFilingSettings: BugServiceProperties = { name: 'issueFilingSettings' };
         const payload: SaveIssueFilingSettingsPayload = {
             bugServiceName,
-            bugFilingSettings: bugFilingSettings,
+            issueFilingSettings: issueFilingSettings,
         };
         const expectedMessage = {
             tabId: 1,
@@ -137,7 +137,7 @@ describe('UserConfigMessageCreator', () => {
 
         postMessageMock.setup(pm => pm(It.isValue(expectedMessage))).verifiable(Times.once());
 
-        testSubject.saveIssueFilingSettings(bugServiceName, bugFilingSettings);
+        testSubject.saveIssueFilingSettings(bugServiceName, issueFilingSettings);
 
         postMessageMock.verifyAll();
     });

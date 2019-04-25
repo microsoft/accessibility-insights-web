@@ -3,11 +3,11 @@
 import { UserConfigMessageCreator } from '../../../../common/message-creators/user-config-message-creator';
 import { FeatureFlagStoreData } from '../../../../common/types/store-data/feature-flag-store-data';
 import { UserConfigurationStoreData } from '../../../../common/types/store-data/user-configuration-store';
-import { BugFilingServiceProvider } from './../../../../issue-filing/issue-filing-service-provider';
+import { IssueFilingServiceProvider } from './../../../../issue-filing/issue-filing-service-provider';
 
 export type SettingsDeps = {
     userConfigMessageCreator: UserConfigMessageCreator;
-    bugFilingServiceProvider: BugFilingServiceProvider;
+    issueFilingServiceProvider: IssueFilingServiceProvider;
 };
 
 export type SettingsProps = {

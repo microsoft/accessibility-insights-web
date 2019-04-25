@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 import { IMock, Mock } from 'typemoq';
-import { AzureBoardsBugFilingSettings } from '../../../../../issue-filing/azure-boards/azure-boards-issue-filing-service';
+import { AzureBoardsIssueFilingSettings } from '../../../../../issue-filing/azure-boards/azure-boards-issue-filing-service';
 import { createAzureBoardsIssueFilingUrlProvider } from '../../../../../issue-filing/azure-boards/create-azure-boards-issue-filing-url';
 import { HTTPQueryBuilder } from '../../../../../issue-filing/common/http-query-builder';
 import { IssueDetailsBuilder } from '../../../../../issue-filing/common/issue-details-builder';
@@ -17,12 +17,12 @@ describe('createAzureBoardsIssueFilingUrl', () => {
 
     let environmentInfo: EnvironmentInfo;
     let sampleIssueDetailsData;
-    let settingsData: AzureBoardsBugFilingSettings;
+    let settingsData: AzureBoardsIssueFilingSettings;
     let stringUtilsMock: IMock<IssueUrlCreationUtils>;
     let issueDetailsGetterMock: IMock<IssueDetailsBuilder>;
     let queryBuilderMock: IMock<HTTPQueryBuilder>;
 
-    let testSubject: IssueFilingUrlProvider<AzureBoardsBugFilingSettings>;
+    let testSubject: IssueFilingUrlProvider<AzureBoardsIssueFilingSettings>;
 
     beforeEach(() => {
         environmentInfo = {

@@ -12,7 +12,7 @@ export type IssueFilingUrlProvider<Settings> = (
     environmentInfo: EnvironmentInfo,
 ) => string;
 
-export interface BugFilingService<Settings = {}> {
+export interface IssueFilingService<Settings = {}> {
     key: string;
     isHidden?: boolean;
     displayName: string;

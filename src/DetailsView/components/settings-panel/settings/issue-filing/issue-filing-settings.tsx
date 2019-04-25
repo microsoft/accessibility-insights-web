@@ -2,26 +2,26 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import { BugFilingSettingsContainer } from '../../../../../issue-filing/components/issue-filing-settings-container';
+import { IssueFilingSettingsContainer } from '../../../../../issue-filing/components/issue-filing-settings-container';
 import { FlaggedComponent } from '../../../../../common/components/flagged-component';
 import { FeatureFlags } from '../../../../../common/feature-flags';
 import { NamedSFC } from '../../../../../common/react/named-sfc';
 import { SettingsProps } from '../settings-props';
 import { GitHubBugSettingsUx } from './github-bug-settings-ux';
 
-export const BugFilingSettings = NamedSFC<SettingsProps>('BugFilingSettings', props => {
+export const IssueFilingSettings = NamedSFC<SettingsProps>('IssueFilingSettings', props => {
     const getNewIssueFilingSettingsUx = () => {
         const { deps, userConfigurationStoreState } = props;
-        const { bugFilingServiceProvider, userConfigMessageCreator } = deps;
-        const selectedBugFilingService = bugFilingServiceProvider.forKey(userConfigurationStoreState.bugService);
-        const selectedBugFilingServiceData = selectedBugFilingService.getSettingsFromStoreData(
+        const { issueFilingServiceProvider, userConfigMessageCreator } = deps;
+        const selectedIssueFilingService = issueFilingServiceProvider.forKey(userConfigurationStoreState.bugService);
+        const selectedIssueFilingServiceData = selectedIssueFilingService.getSettingsFromStoreData(
             userConfigurationStoreState.bugServicePropertiesMap,
         );
         return (
-            <BugFilingSettingsContainer
+            <IssueFilingSettingsContainer
                 deps={deps}
-                selectedBugFilingService={selectedBugFilingService}
-                selectedBugFilingServiceData={selectedBugFilingServiceData}
+                selectedIssueFilingService={selectedIssueFilingService}
+                selectedIssueFilingServiceData={selectedIssueFilingServiceData}
                 onPropertyUpdateCallback={userConfigMessageCreator.setBugServiceProperty}
                 onSelectedServiceChange={userConfigMessageCreator.setBugService}
             />

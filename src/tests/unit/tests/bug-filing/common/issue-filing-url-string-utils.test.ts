@@ -4,7 +4,7 @@ import { CreateIssueDetailsTextData } from '../../../../../common/types/create-i
 import { DecoratedAxeNodeResult } from '../../../../../injected/scanner-utils';
 import { IssueFilingUrlStringUtils } from './../../../../../issue-filing/common/issue-filing-url-string-utils';
 
-describe('BugFilingUrlStringUtilsTest', () => {
+describe('IssueFilingUrlStringUtilsTest', () => {
     let sampleIssueDetailsData: CreateIssueDetailsTextData;
 
     beforeEach(() => {

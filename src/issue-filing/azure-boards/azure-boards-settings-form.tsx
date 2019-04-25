@@ -6,13 +6,13 @@ import * as React from 'react';
 import { NamedSFC } from '../../common/react/named-sfc';
 import { SettingsFormProps } from '../types/settings-form-props';
 import {
-    AzureBoardsBugFilingService,
-    AzureBoardsBugFilingSettings,
+    AzureBoardsIssueFilingService,
+    AzureBoardsIssueFilingSettings,
     AzureBoardsIssueDetailField,
     AzureBoardsIssueDetailLocationDropdownOption,
 } from './azure-boards-issue-filing-service';
 
-export const AzureBoardsSettingsForm = NamedSFC<SettingsFormProps<AzureBoardsBugFilingSettings>>('AzureBoardsSettingsForm', props => {
+export const AzureBoardsSettingsForm = NamedSFC<SettingsFormProps<AzureBoardsIssueFilingSettings>>('AzureBoardsSettingsForm', props => {
     const defaultKey = 'reproSteps';
     const options: AzureBoardsIssueDetailLocationDropdownOption[] = [
         {
@@ -26,13 +26,13 @@ export const AzureBoardsSettingsForm = NamedSFC<SettingsFormProps<AzureBoardsBug
     ];
 
     const onProjectURLChange = (event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>, newValue?: string) => {
-        const propertyName: keyof AzureBoardsBugFilingSettings = 'projectURL';
-        props.onPropertyUpdateCallback(AzureBoardsBugFilingService.key, propertyName, newValue);
+        const propertyName: keyof AzureBoardsIssueFilingSettings = 'projectURL';
+        props.onPropertyUpdateCallback(AzureBoardsIssueFilingService.key, propertyName, newValue);
     };
 
     const onIssueDetailLocationChange = (event: React.FormEvent<HTMLElement>, newValue: IDropdownOption) => {
-        const propertyName: keyof AzureBoardsBugFilingSettings = 'issueDetailsField';
-        props.onPropertyUpdateCallback(AzureBoardsBugFilingService.key, propertyName, newValue.key as AzureBoardsIssueDetailField);
+        const propertyName: keyof AzureBoardsIssueFilingSettings = 'issueDetailsField';
+        props.onPropertyUpdateCallback(AzureBoardsIssueFilingService.key, propertyName, newValue.key as AzureBoardsIssueDetailField);
     };
 
     return (

@@ -7,8 +7,8 @@ import * as React from 'react';
 import { IMock, Mock, Times } from 'typemoq';
 
 import {
-    AzureBoardsBugFilingService,
-    AzureBoardsBugFilingSettings,
+    AzureBoardsIssueFilingService,
+    AzureBoardsIssueFilingSettings,
 } from '../../../../../issue-filing/azure-boards/azure-boards-issue-filing-service';
 import { AzureBoardsSettingsForm } from '../../../../../issue-filing/azure-boards/azure-boards-settings-form';
 import { OnPropertyUpdateCallback } from '../../../../../issue-filing/components/issue-filing-settings-container';
@@ -17,9 +17,9 @@ import { SettingsDeps } from '../../../../../DetailsView/components/settings-pan
 import { EventStubFactory } from '../../../common/event-stub-factory';
 
 describe('AzureBoardsSettingsForm', () => {
-    let props: SettingsFormProps<AzureBoardsBugFilingSettings>;
+    let props: SettingsFormProps<AzureBoardsIssueFilingSettings>;
     let deps: SettingsDeps;
-    let settingsStub: AzureBoardsBugFilingSettings;
+    let settingsStub: AzureBoardsIssueFilingSettings;
     let onPropertyUpdateCallbackMock: IMock<OnPropertyUpdateCallback>;
 
     beforeEach(() => {
@@ -55,9 +55,9 @@ describe('AzureBoardsSettingsForm', () => {
         it('handles project url change', () => {
             const newProjectUrl = 'a different project URL';
 
-            const projectUrlProperty: keyof AzureBoardsBugFilingSettings = 'projectURL';
+            const projectUrlProperty: keyof AzureBoardsIssueFilingSettings = 'projectURL';
             onPropertyUpdateCallbackMock
-                .setup(mock => mock(AzureBoardsBugFilingService.key, projectUrlProperty, newProjectUrl))
+                .setup(mock => mock(AzureBoardsIssueFilingService.key, projectUrlProperty, newProjectUrl))
                 .verifiable(Times.once());
 
             const testSubject = shallow(<AzureBoardsSettingsForm {...props} />);
@@ -70,9 +70,9 @@ describe('AzureBoardsSettingsForm', () => {
         it('handles issues details field change', () => {
             const newIssueDetailsFieldKey = 'a-different-field-key';
 
-            const issueDetailsFieldProperty: keyof AzureBoardsBugFilingSettings = 'issueDetailsField';
+            const issueDetailsFieldProperty: keyof AzureBoardsIssueFilingSettings = 'issueDetailsField';
             onPropertyUpdateCallbackMock
-                .setup(mock => mock(AzureBoardsBugFilingService.key, issueDetailsFieldProperty, newIssueDetailsFieldKey))
+                .setup(mock => mock(AzureBoardsIssueFilingService.key, issueDetailsFieldProperty, newIssueDetailsFieldKey))
                 .verifiable(Times.once());
 
             const testSubject = shallow(<AzureBoardsSettingsForm {...props} />);

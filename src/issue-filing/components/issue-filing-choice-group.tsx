@@ -4,18 +4,18 @@ import { ChoiceGroup, IChoiceGroupOption } from 'office-ui-fabric-react/lib/Choi
 import * as React from 'react';
 
 import { NamedSFC } from '../../common/react/named-sfc';
-import { BugFilingService } from '../types/issue-filing-service';
+import { IssueFilingService } from '../types/issue-filing-service';
 import { OnSelectedServiceChange } from './issue-filing-settings-container';
 
-export type BugFilingChoiceGroupProps = {
-    selectedBugFilingService: BugFilingService;
-    bugFilingServices: BugFilingService[];
+export type IssueFilingChoiceGroupProps = {
+    selectedIssueFilingService: IssueFilingService;
+    issueFilingServices: IssueFilingService[];
     onSelectedServiceChange: OnSelectedServiceChange;
 };
 
-export const BugFilingChoiceGroup = NamedSFC<BugFilingChoiceGroupProps>('BugFilingChoiceGroup', props => {
+export const IssueFilingChoiceGroup = NamedSFC<IssueFilingChoiceGroupProps>('IssueFilingChoiceGroup', props => {
     const getOptions: () => IChoiceGroupOption[] = () => {
-        return props.bugFilingServices.map(service => {
+        return props.issueFilingServices.map(service => {
             return {
                 key: service.key,
                 text: service.displayName,
@@ -32,7 +32,7 @@ export const BugFilingChoiceGroup = NamedSFC<BugFilingChoiceGroupProps>('BugFili
             className={'issue-filing-choice-group'}
             onChange={onChange}
             options={getOptions()}
-            selectedKey={props.selectedBugFilingService.key}
+            selectedKey={props.selectedIssueFilingService.key}
         />
     );
 });

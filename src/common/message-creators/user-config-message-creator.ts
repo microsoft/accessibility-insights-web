@@ -75,10 +75,10 @@ export class UserConfigMessageCreator extends BaseActionMessageCreator {
         });
     };
 
-    public saveIssueFilingSettings = (bugServiceName: string, bugFilingSettings: BugServiceProperties) => {
+    public saveIssueFilingSettings = (bugServiceName: string, issueFilingSettings: BugServiceProperties) => {
         const payload: SaveIssueFilingSettingsPayload = {
             bugServiceName,
-            bugFilingSettings,
+            issueFilingSettings,
         };
 
         this.dispatchMessage({

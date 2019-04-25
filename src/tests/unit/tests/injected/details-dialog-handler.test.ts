@@ -443,7 +443,7 @@ describe('DetailsDialogHandlerTest', () => {
                 return {
                     devToolStore: devToolStoreMock.object,
                     userConfigStore: userConfigStoreMock.object,
-                    enableBugFiling: true,
+                    enableIssueFiling: true,
                     featureFlagStoreData: featureFlagStoreData,
                 } as any;
             })

@@ -5,38 +5,38 @@ import * as React from 'react';
 import { NamedSFC } from '../../common/react/named-sfc';
 import { BugServiceProperties } from '../../common/types/store-data/user-configuration-store';
 import { SettingsDeps } from '../../DetailsView/components/settings-panel/settings/settings-props';
-import { BugFilingServiceProvider } from '../issue-filing-service-provider';
-import { BugFilingService } from '../types/issue-filing-service';
-import { BugFilingChoiceGroup } from './issue-filing-choice-group';
+import { IssueFilingServiceProvider } from '../issue-filing-service-provider';
+import { IssueFilingService } from '../types/issue-filing-service';
+import { IssueFilingChoiceGroup } from './issue-filing-choice-group';
 
 export type OnPropertyUpdateCallback = (bugService: string, propertyName: string, propertyValue: string) => void;
 export type OnSelectedServiceChange = (service: string) => void;
 
-export interface BugFilingSettingsContainerProps {
-    deps: BugFilingSettingsContainerDeps;
-    selectedBugFilingService: BugFilingService;
-    selectedBugFilingServiceData: BugServiceProperties;
+export interface IssueFilingSettingsContainerProps {
+    deps: IssueFilingSettingsContainerDeps;
+    selectedIssueFilingService: IssueFilingService;
+    selectedIssueFilingServiceData: BugServiceProperties;
     onPropertyUpdateCallback: OnPropertyUpdateCallback;
     onSelectedServiceChange: OnSelectedServiceChange;
 }
 
-export type BugFilingSettingsContainerDeps = {
-    bugFilingServiceProvider: BugFilingServiceProvider;
+export type IssueFilingSettingsContainerDeps = {
+    issueFilingServiceProvider: IssueFilingServiceProvider;
 } & SettingsDeps;
 
-export const BugFilingSettingsContainer = NamedSFC<BugFilingSettingsContainerProps>('BugFilingSettingsContainer', props => {
-    const { deps, selectedBugFilingService, selectedBugFilingServiceData } = props;
-    const SettingsForm = selectedBugFilingService.settingsForm;
-    const bugFilingServices = deps.bugFilingServiceProvider.allVisible();
+export const IssueFilingSettingsContainer = NamedSFC<IssueFilingSettingsContainerProps>('IssueFilingSettingsContainer', props => {
+    const { deps, selectedIssueFilingService, selectedIssueFilingServiceData } = props;
+    const SettingsForm = selectedIssueFilingService.settingsForm;
+    const issueFilingServices = deps.issueFilingServiceProvider.allVisible();
 
     return (
         <>
-            <BugFilingChoiceGroup
+            <IssueFilingChoiceGroup
                 onSelectedServiceChange={props.onSelectedServiceChange}
-                selectedBugFilingService={selectedBugFilingService}
-                bugFilingServices={bugFilingServices}
+                selectedIssueFilingService={selectedIssueFilingService}
+                issueFilingServices={issueFilingServices}
             />
-            <SettingsForm deps={deps} settings={selectedBugFilingServiceData} onPropertyUpdateCallback={props.onPropertyUpdateCallback} />
+            <SettingsForm deps={deps} settings={selectedIssueFilingServiceData} onPropertyUpdateCallback={props.onPropertyUpdateCallback} />
         </>
     );
 });

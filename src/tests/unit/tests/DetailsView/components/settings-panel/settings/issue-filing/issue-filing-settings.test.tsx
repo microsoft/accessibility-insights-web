@@ -4,24 +4,24 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 import { IMock, Mock } from 'typemoq';
 
-import { BugFilingServiceProvider } from '../../../../../../../../issue-filing/issue-filing-service-provider';
-import { BugFilingService } from '../../../../../../../../issue-filing/types/issue-filing-service';
+import { IssueFilingServiceProvider } from '../../../../../../../../issue-filing/issue-filing-service-provider';
+import { IssueFilingService } from '../../../../../../../../issue-filing/types/issue-filing-service';
 import { UserConfigMessageCreator } from '../../../../../../../../common/message-creators/user-config-message-creator';
 import { NamedSFC } from '../../../../../../../../common/react/named-sfc';
 import { UserConfigurationStoreData } from '../../../../../../../../common/types/store-data/user-configuration-store';
-import { BugFilingSettings } from '../../../../../../../../DetailsView/components/settings-panel/settings/issue-filing/issue-filing-settings';
+import { IssueFilingSettings } from '../../../../../../../../DetailsView/components/settings-panel/settings/issue-filing/issue-filing-settings';
 import { SettingsDeps, SettingsProps } from '../../../../../../../../DetailsView/components/settings-panel/settings/settings-props';
 
-describe('BugFilingSettings', () => {
+describe('IssueFilingSettings', () => {
     let userData: UserConfigurationStoreData;
-    let bugFilingServiceProviderMock: IMock<BugFilingServiceProvider>;
-    let testIssueFilingService: BugFilingService;
+    let issueFilingServiceProviderMock: IMock<IssueFilingServiceProvider>;
+    let testIssueFilingService: IssueFilingService;
     const testKey: string = 'test';
     let userConfigMessageCreatorMock: IMock<UserConfigMessageCreator>;
 
     beforeEach(() => {
         userConfigMessageCreatorMock = Mock.ofType(UserConfigMessageCreator);
-        bugFilingServiceProviderMock = Mock.ofType(BugFilingServiceProvider);
+        issueFilingServiceProviderMock = Mock.ofType(IssueFilingServiceProvider);
         userData = {
             isFirstTime: true,
             enableTelemetry: true,
@@ -41,13 +41,13 @@ describe('BugFilingSettings', () => {
             issueFilingUrlProvider: () => 'test url',
         };
 
-        bugFilingServiceProviderMock.setup(provider => provider.forKey(userData.bugService)).returns(() => testIssueFilingService);
+        issueFilingServiceProviderMock.setup(provider => provider.forKey(userData.bugService)).returns(() => testIssueFilingService);
     });
 
     it('renders', () => {
         const props: SettingsProps = {
             deps: {
-                bugFilingServiceProvider: bugFilingServiceProviderMock.object,
+                issueFilingServiceProvider: issueFilingServiceProviderMock.object,
                 userConfigMessageCreator: userConfigMessageCreatorMock.object,
             } as SettingsDeps,
             featureFlagData: {},
@@ -56,7 +56,7 @@ describe('BugFilingSettings', () => {
             },
         };
 
-        const wrapped = shallow(<BugFilingSettings {...props} />);
+        const wrapped = shallow(<IssueFilingSettings {...props} />);
 
         expect(wrapped.getElement()).toMatchSnapshot();
     });

@@ -310,7 +310,7 @@ describe('UserConfigurationStoreTest', () => {
         };
         const payload: SaveIssueFilingSettingsPayload = {
             bugServiceName: serviceName,
-            bugFilingSettings: bugServiceProperties,
+            issueFilingSettings: bugServiceProperties,
         };
         const expectedState: UserConfigurationStoreData = {
             ...initialStoreData,

@@ -4,48 +4,48 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 import { Mock } from 'typemoq';
 
-import { BugFilingServiceProvider } from '../../../../../issue-filing/issue-filing-service-provider';
+import { IssueFilingServiceProvider } from '../../../../../issue-filing/issue-filing-service-provider';
 import {
-    BugFilingSettingsContainer,
-    BugFilingSettingsContainerDeps,
-    BugFilingSettingsContainerProps,
+    IssueFilingSettingsContainer,
+    IssueFilingSettingsContainerDeps,
+    IssueFilingSettingsContainerProps,
 } from '../../../../../issue-filing/components/issue-filing-settings-container';
-import { BugFilingService } from '../../../../../issue-filing/types/issue-filing-service';
+import { IssueFilingService } from '../../../../../issue-filing/types/issue-filing-service';
 import { UserConfigMessageCreator } from '../../../../../common/message-creators/user-config-message-creator';
 import { BugServiceProperties, UserConfigurationStoreData } from '../../../../../common/types/store-data/user-configuration-store';
 
-describe('BugFilingSettingsContainerTest', () => {
-    const bugFilingServicesProviderMock = Mock.ofType(BugFilingServiceProvider);
-    const selectedBugFilingService: BugFilingService = {
+describe('IssueFilingSettingsContainerTest', () => {
+    const issueFilingServicesProviderMock = Mock.ofType(IssueFilingServiceProvider);
+    const selectedIssueFilingService: IssueFilingService = {
         key: 'test',
         displayName: 'TEST',
         settingsForm: formProps => {
             return <>{formProps}</>;
         },
-    } as BugFilingService;
-    const bugFilingServices = [selectedBugFilingService];
+    } as IssueFilingService;
+    const issueFilingServices = [selectedIssueFilingService];
     const userConfigurationStoreData: UserConfigurationStoreData = {
         bugService: 'test',
     } as UserConfigurationStoreData;
-    const selectedBugFilingServiceData: BugServiceProperties = {
+    const selectedIssueFilingServiceData: BugServiceProperties = {
         repository: 'none',
     };
     const userConfigMessageCreatorStub: UserConfigMessageCreator = {} as UserConfigMessageCreator;
-    const props: BugFilingSettingsContainerProps = {
+    const props: IssueFilingSettingsContainerProps = {
         deps: {
             userConfigMessageCreator: userConfigMessageCreatorStub,
-            bugFilingServiceProvider: bugFilingServicesProviderMock.object,
-        } as BugFilingSettingsContainerDeps,
-        selectedBugFilingService,
+            issueFilingServiceProvider: issueFilingServicesProviderMock.object,
+        } as IssueFilingSettingsContainerDeps,
+        selectedIssueFilingService,
         userConfigurationStoreData,
-        selectedBugFilingServiceData,
+        selectedIssueFilingServiceData,
         onPropertyUpdateCallback: () => null,
         onSelectedServiceChange: () => null,
     };
 
     test('render', () => {
-        bugFilingServicesProviderMock.setup(mock => mock.allVisible()).returns(() => bugFilingServices);
-        const wrapper = shallow(<BugFilingSettingsContainer {...props} />);
+        issueFilingServicesProviderMock.setup(mock => mock.allVisible()).returns(() => issueFilingServices);
+        const wrapper = shallow(<IssueFilingSettingsContainer {...props} />);
         expect(wrapper.getElement()).toMatchSnapshot();
     });
 });

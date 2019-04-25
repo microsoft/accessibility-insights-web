@@ -50,7 +50,7 @@ import { contentPages } from '../content';
 import { ScannerUtils } from '../injected/scanner-utils';
 import { getVersion, scan } from '../scanner/exposed-apis';
 import { DictionaryStringTo } from '../types/common-types';
-import { BugFilingServiceProviderImpl } from './../issue-filing/issue-filing-service-provider-impl';
+import { IssueFilingServiceProviderImpl } from './../issue-filing/issue-filing-service-provider-impl';
 import { DetailsViewActionMessageCreator } from './actions/details-view-action-message-creator';
 import { IssuesSelectionFactory } from './actions/issues-selection-factory';
 import { AssessmentTableColumnConfigHandler } from './components/assessment-table-column-config-handler';
@@ -268,7 +268,7 @@ if (isNaN(tabId) === false) {
                 dateProvider: DateProvider.getDate,
                 settingsProvider: SettingsProviderImpl,
                 environmentInfoProvider,
-                bugFilingServiceProvider: BugFilingServiceProviderImpl,
+                issueFilingServiceProvider: IssueFilingServiceProviderImpl,
             };
 
             const renderer = new DetailsViewRenderer(

@@ -5,30 +5,30 @@ import { TextField } from 'office-ui-fabric-react/lib/TextField';
 import * as React from 'react';
 import { NamedSFC } from '../../common/react/named-sfc';
 import { createSettingsGetter } from '../common/create-settings-getter';
-import { BugFilingService } from '../types/issue-filing-service';
+import { IssueFilingService } from '../types/issue-filing-service';
 import { SettingsFormProps } from '../types/settings-form-props';
 import { gitHubIssueFilingUrlProvider } from './create-github-issue-filing-url';
 
-const GitHubBugFilingServiceKey = 'gitHub';
+const GitHubIssueFilingServiceKey = 'gitHub';
 
-export type GitHubBugFilingSettings = {
+export type GitHubIssueFilingSettings = {
     repository: string;
 };
 
-function buildStoreData(repository: string): GitHubBugFilingSettings {
+function buildStoreData(repository: string): GitHubIssueFilingSettings {
     return {
         repository,
     };
 }
 
-function isSettingsValid(data: GitHubBugFilingSettings): boolean {
+function isSettingsValid(data: GitHubIssueFilingSettings): boolean {
     return !isEmpty(data) && !isEmpty(data.repository) && isString(data.repository) && !isEmpty(data.repository.trim());
 }
 
-const settingsForm = NamedSFC<SettingsFormProps<GitHubBugFilingSettings>>('BugFilingSettings', props => {
+const settingsForm = NamedSFC<SettingsFormProps<GitHubIssueFilingSettings>>('IssueFilingSettings', props => {
     const onGitHubRepositoryChange = (event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>, newValue?: string) => {
-        const propertyName: keyof GitHubBugFilingSettings = 'repository';
-        props.onPropertyUpdateCallback(GitHubBugFilingServiceKey, propertyName, newValue);
+        const propertyName: keyof GitHubIssueFilingSettings = 'repository';
+        props.onPropertyUpdateCallback(GitHubIssueFilingServiceKey, propertyName, newValue);
     };
 
     return (
@@ -42,12 +42,12 @@ const settingsForm = NamedSFC<SettingsFormProps<GitHubBugFilingSettings>>('BugFi
     );
 });
 
-export const GitHubBugFilingService: BugFilingService<GitHubBugFilingSettings> = {
-    key: GitHubBugFilingServiceKey,
+export const GitHubIssueFilingService: IssueFilingService<GitHubIssueFilingSettings> = {
+    key: GitHubIssueFilingServiceKey,
     displayName: 'GitHub',
     settingsForm,
     buildStoreData,
-    getSettingsFromStoreData: createSettingsGetter(GitHubBugFilingServiceKey),
+    getSettingsFromStoreData: createSettingsGetter(GitHubIssueFilingServiceKey),
     isSettingsValid,
     issueFilingUrlProvider: gitHubIssueFilingUrlProvider,
 };
