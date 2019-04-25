@@ -301,6 +301,12 @@ module.exports = function(grunt) {
                 '48': config.options.icon48,
                 '128': config.options.icon128,
             },
+            browser_action: {
+                default_icon: {
+                    '20': config.options.icon16,
+                    '40': config.options.icon48,
+                },
+            },
         });
         grunt.file.write(manifestDest, JSON.stringify(manifestJSON, undefined, 2));
     });

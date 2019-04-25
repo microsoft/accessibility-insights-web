@@ -5,7 +5,6 @@
 body {
     margin: 0;
     overflow-y: auto;
-    height: 0px;
     background: $neutral-0;
     font-family: $fontFamily;
 }
@@ -46,10 +45,6 @@ div.insights-dialog-main-override.telemetry-permission-dialog {
     .telemetry-agree-checkbox {
         padding-bottom: 4px;
     }
-}
-
-html {
-    height: 0px; //required for properly resize the popup when zoom in/out
 }
 
 #popup-container,

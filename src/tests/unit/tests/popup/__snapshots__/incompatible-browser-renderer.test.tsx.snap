@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`IncompatibleBrowserRenderer render 1`] = `
+<React.Fragment>
+  <div
+    className="ms-Fabric unsupported-url-info-panel"
+  >
+    <Header
+      title="Accessibility Insights for Web"
+    />
+    <div
+      className="ms-Grid main-section"
+    >
+      <div
+        className="launch-panel-general-container"
+      >
+        This application is not supported in the current browser.
+      </div>
+    </div>
+  </div>
+</React.Fragment>
+`;
