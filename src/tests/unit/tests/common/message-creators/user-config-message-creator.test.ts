@@ -4,9 +4,9 @@ import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 import {
     SaveIssueFilingSettingsPayload,
+    SetHighContrastModePayload,
     SetIssueServicePayload,
     SetIssueServicePropertyPayload,
-    SetHighContrastModePayload,
     SetIssueTrackerPathPayload,
     SetTelemetryStatePayload,
 } from '../../../../../background/actions/action-payloads';

@@ -6,9 +6,9 @@ import { HTTPQueryBuilder } from '../../../../../issue-filing/common/http-query-
 import { IssueDetailsBuilder } from '../../../../../issue-filing/common/issue-details-builder';
 import { createGitHubIssueFilingUrlProvider } from '../../../../../issue-filing/github/create-github-issue-filing-url';
 import { IssueFilingUrlProvider } from '../../../../../issue-filing/types/issue-filing-service';
+import { EnvironmentInfo } from './../../../../../common/environment-info-provider';
 import { IssueUrlCreationUtils } from './../../../../../issue-filing/common/issue-filing-url-string-utils';
 import { GitHubIssueFilingSettings } from './../../../../../issue-filing/github/github-issue-filing-service';
-import { EnvironmentInfo } from './../../../../../common/environment-info-provider';
 
 const buildedUrl = 'https://builded-url';
 describe('createGitHubIssueFilingUrlTest', () => {

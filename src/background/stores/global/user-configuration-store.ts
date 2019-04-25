@@ -8,9 +8,9 @@ import { StoreNames } from '../../../common/stores/store-names';
 import { UserConfigurationStoreData } from '../../../common/types/store-data/user-configuration-store';
 import {
     SaveIssueFilingSettingsPayload,
+    SetHighContrastModePayload,
     SetIssueServicePayload,
     SetIssueServicePropertyPayload,
-    SetHighContrastModePayload,
     SetIssueTrackerPathPayload,
     SetTelemetryStatePayload,
 } from '../../actions/action-payloads';

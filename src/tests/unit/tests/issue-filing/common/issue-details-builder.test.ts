@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { IMock, It, Mock, MockBehavior } from 'typemoq';
+import { EnvironmentInfo } from '../../../../../common/environment-info-provider';
 import { createIssueDetailsBuilder } from '../../../../../issue-filing/common/create-issue-details-builder';
 import { MarkupFormatter } from '../../../../../issue-filing/common/markup/markup-formatter';
-import { EnvironmentInfo } from '../../../../../common/environment-info-provider';
 
 describe('Name of the group', () => {
     const sampleIssueDetailsData = {

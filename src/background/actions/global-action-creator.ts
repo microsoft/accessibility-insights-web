@@ -10,9 +10,9 @@ import { TelemetryEventHandler } from '../telemetry/telemetry-event-handler';
 import {
     PayloadWithEventName,
     SaveIssueFilingSettingsPayload,
+    SetHighContrastModePayload,
     SetIssueServicePayload,
     SetIssueServicePropertyPayload,
-    SetHighContrastModePayload,
     SetIssueTrackerPathPayload,
     SetLaunchPanelState,
     SetTelemetryStatePayload,
