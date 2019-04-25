@@ -23,8 +23,8 @@ export interface IssueFilingDialogProps {
     isOpen: boolean;
     selectedIssueFilingService: IssueFilingService;
     selectedIssueData: CreateIssueDetailsTextData;
-    bugFileTelemetryCallback: (ev: React.SyntheticEvent) => void;
-    bugServicePropertiesMap: IssueServicePropertiesMap;
+    issueFileTelemetryCallback: (ev: React.SyntheticEvent) => void;
+    issueServicePropertiesMap: IssueServicePropertiesMap;
     onClose: (ev: React.SyntheticEvent) => void;
 }
 
@@ -38,7 +38,7 @@ const titleLabel = 'Specify issue filing location';
 
 export interface IssueFilingDialogState {
     selectedIssueFilingService: IssueFilingService;
-    bugServicePropertiesMap: IssueServicePropertiesMap;
+    issueServicePropertiesMap: IssueServicePropertiesMap;
 }
 
 export class IssueFilingDialog extends React.Component<IssueFilingDialogProps, IssueFilingDialogState> {
@@ -49,7 +49,7 @@ export class IssueFilingDialog extends React.Component<IssueFilingDialogProps, I
 
     private getState(props: IssueFilingDialogProps): IssueFilingDialogState {
         return {
-            bugServicePropertiesMap: cloneDeep(props.bugServicePropertiesMap),
+            issueServicePropertiesMap: cloneDeep(props.issueServicePropertiesMap),
             selectedIssueFilingService: props.selectedIssueFilingService,
         };
     }
@@ -58,7 +58,7 @@ export class IssueFilingDialog extends React.Component<IssueFilingDialogProps, I
         const { selectedIssueData, onClose, isOpen, deps } = this.props;
         const { selectedIssueFilingService } = this.state;
         const selectedIssueFilingServiceData = this.state.selectedIssueFilingService.getSettingsFromStoreData(
-            this.state.bugServicePropertiesMap,
+            this.state.issueServicePropertiesMap,
         );
         const environmentInfo = deps.environmentInfoProvider.getEnvironmentInfo();
         const isSettingsValid = selectedIssueFilingService.isSettingsValid(selectedIssueFilingServiceData);
@@ -104,10 +104,10 @@ export class IssueFilingDialog extends React.Component<IssueFilingDialogProps, I
     }
 
     private onPrimaryButtonClick = (ev: React.SyntheticEvent<Element, Event>) => {
-        const newData = this.state.selectedIssueFilingService.getSettingsFromStoreData(this.state.bugServicePropertiesMap);
+        const newData = this.state.selectedIssueFilingService.getSettingsFromStoreData(this.state.issueServicePropertiesMap);
         const service = this.state.selectedIssueFilingService.key;
         this.props.deps.userConfigMessageCreator.saveIssueFilingSettings(service, newData);
-        this.props.bugFileTelemetryCallback(ev);
+        this.props.issueFileTelemetryCallback(ev);
         this.props.onClose(ev);
     };
 
@@ -119,14 +119,14 @@ export class IssueFilingDialog extends React.Component<IssueFilingDialogProps, I
 
     private onPropertyUpdateCallback: OnPropertyUpdateCallback = (service, propertyName, propertyValue) => {
         const selectedServiceData =
-            this.state.selectedIssueFilingService.getSettingsFromStoreData(this.state.bugServicePropertiesMap) || {};
+            this.state.selectedIssueFilingService.getSettingsFromStoreData(this.state.issueServicePropertiesMap) || {};
         selectedServiceData[propertyName] = propertyValue;
         const newIssueServicePropertiesMap = {
-            ...this.state.bugServicePropertiesMap,
+            ...this.state.issueServicePropertiesMap,
             [service]: selectedServiceData,
         };
         this.setState(() => ({
-            bugServicePropertiesMap: newIssueServicePropertiesMap,
+            issueServicePropertiesMap: newIssueServicePropertiesMap,
         }));
     };
 
