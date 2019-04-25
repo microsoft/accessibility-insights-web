@@ -1,14 +1,14 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as TelemetryEvents from '../../common/telemetry-events';
-import { BaseTelemetryData, TelemetryData, ToggleTelemetryData, FileIssueClickService } from '../../common/telemetry-events';
+import { BaseTelemetryData, FileIssueClickService, TelemetryData, ToggleTelemetryData } from '../../common/telemetry-events';
+import { CreateIssueDetailsTextData } from '../../common/types/create-issue-details-text-data';
 import { DetailsViewPivotType } from '../../common/types/details-view-pivot-type';
 import { ManualTestStatus } from '../../common/types/manual-test-status';
 import { BugServiceProperties } from '../../common/types/store-data/user-configuration-store';
 import { VisualizationType } from '../../common/types/visualization-type';
 import { TabStopEvent } from '../../injected/tab-stops-listener';
 import { LaunchPanelType } from '../../popup/components/popup-view';
-import { CreateIssueDetailsTextData } from '../../common/types/create-issue-details-text-data';
 
 export interface BaseActionPayload {
     telemetry?: TelemetryData;

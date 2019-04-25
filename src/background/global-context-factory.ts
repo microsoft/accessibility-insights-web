@@ -1,5 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { BugFilingServiceProvider } from '../bug-filing/bug-filing-service-provider';
+import { IssueFilingControllerImpl } from '../bug-filing/common/issue-filing-controller-impl';
+import { EnvironmentInfo } from '../common/environment-info-provider';
 import { IndexedDBAPI } from '../common/indexedDB/indexedDB';
 import { StateDispatcher } from '../common/state-dispatcher';
 import { TelemetryDataFactory } from '../common/telemetry-data-factory';
@@ -11,15 +14,12 @@ import { BrowserAdapter } from './browser-adapter';
 import { CompletedTestStepTelemetryCreator } from './completed-test-step-telemetry-creator';
 import { FeatureFlagsController } from './feature-flags-controller';
 import { PersistedData } from './get-persisted-data';
+import { IssueFilingActionCreator } from './global-action-creators/issue-filing-action-creator';
 import { GlobalContext } from './global-context';
 import { Interpreter } from './interpreter';
 import { LocalStorageData } from './storage-data';
 import { GlobalStoreHub } from './stores/global/global-store-hub';
 import { TelemetryEventHandler } from './telemetry/telemetry-event-handler';
-import { IssueFilingControllerImpl } from '../bug-filing/common/issue-filing-controller-impl';
-import { IssueFilingActionCreator } from './global-action-creators/issue-filing-action-creator';
-import { BugFilingServiceProvider } from '../bug-filing/bug-filing-service-provider';
-import { EnvironmentInfo } from '../common/environment-info-provider';
 
 export class GlobalContextFactory {
     public static createContext(

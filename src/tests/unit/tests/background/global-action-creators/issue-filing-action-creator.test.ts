@@ -6,9 +6,9 @@ import { FileIssuePayload } from '../../../../../background/actions/action-paylo
 import { IssueFilingActionCreator } from '../../../../../background/global-action-creators/issue-filing-action-creator';
 import { Interpreter } from '../../../../../background/interpreter';
 import { TelemetryEventHandler } from '../../../../../background/telemetry/telemetry-event-handler';
+import { IssueFilingController } from '../../../../../bug-filing/common/issue-filing-controller-impl';
 import { FILE_ISSUE_CLICK, FileIssueClickService, TelemetryEventSource, TriggeredBy } from '../../../../../common/telemetry-events';
 import { CreateIssueDetailsTextData } from '../../../../../common/types/create-issue-details-text-data';
-import { IssueFilingController } from '../../../../../bug-filing/common/issue-filing-controller-impl';
 
 export { isFunction } from 'lodash';
 

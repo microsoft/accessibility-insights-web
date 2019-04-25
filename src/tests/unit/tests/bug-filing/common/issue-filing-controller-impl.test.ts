@@ -1,17 +1,17 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { Mock, Times, It } from 'typemoq';
+import { It, Mock, Times } from 'typemoq';
 
 import { BrowserAdapter } from '../../../../../background/browser-adapter';
 import { BugFilingServiceProvider } from '../../../../../bug-filing/bug-filing-service-provider';
-import { BugFilingService } from '../../../../../bug-filing/types/bug-filing-service';
-import { EnvironmentInfo } from '../../../../../common/environment-info-provider';
 import { IssueFilingControllerImpl } from '../../../../../bug-filing/common/issue-filing-controller-impl';
+import { BugFilingService } from '../../../../../bug-filing/types/bug-filing-service';
+import { BaseStore } from '../../../../../common/base-store';
+import { EnvironmentInfo } from '../../../../../common/environment-info-provider';
 import { FileIssueClickService } from '../../../../../common/telemetry-events';
 import { CreateIssueDetailsTextData } from '../../../../../common/types/create-issue-details-text-data';
+import { BugServicePropertiesMap, UserConfigurationStoreData } from '../../../../../common/types/store-data/user-configuration-store';
 import { DecoratedAxeNodeResult } from '../../../../../injected/scanner-utils';
-import { UserConfigurationStoreData, BugServicePropertiesMap } from '../../../../../common/types/store-data/user-configuration-store';
-import { BaseStore } from '../../../../../common/base-store';
 
 describe('IssueFilingControllerImpl', () => {
     it('fileUssue', () => {
