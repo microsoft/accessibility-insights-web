@@ -8,12 +8,26 @@ export class NavigatorUtils {
 
     public getBrowserSpec(): string {
         const userAgent = this.navigatorInfo.userAgent;
-        const versionOffset = userAgent.indexOf('Chrome');
-        if (versionOffset === -1) {
-            return userAgent;
-        }
-        const fullVersion = userAgent.substring(versionOffset + 7).split(' ')[0];
 
-        return `Chrome version ${fullVersion}`;
+        const edgeVersion = this.getVersion(userAgent, 'Edg');
+        if (edgeVersion !== null) {
+            return `Edge version ${edgeVersion}`;
+        }
+
+        const chromeVersion = this.getVersion(userAgent, 'Chrome');
+        if (chromeVersion !== null) {
+            return `Chrome version ${chromeVersion}`;
+        }
+
+        return userAgent;
+    }
+
+    private getVersion(userAgent: string, versionPrefix: string): string {
+        const versionOffset = userAgent.indexOf(versionPrefix);
+        if (versionOffset === -1) {
+            return null;
+        }
+
+        return userAgent.substring(versionOffset + versionPrefix.length + 1).split(' ')[0];
     }
 }
