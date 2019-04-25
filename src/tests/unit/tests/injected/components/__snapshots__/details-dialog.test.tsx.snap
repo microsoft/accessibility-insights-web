@@ -35,7 +35,7 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: false 
       className="insights-dialog-rule-container"
     >
       <StatusErrorFullIcon />
-      <span
+      <div
         className="ms-fontSize-mPlus insights-dialog-rule-link"
       >
         Rule name: 
@@ -44,7 +44,7 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: false 
         >
           ruleId
         </NewTabLink>
-      </span>
+      </div>
     </div>
     <div
       className="insights-dialog-target-container"
@@ -414,7 +414,7 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: true }
         className="insights-dialog-rule-container"
       >
         <StatusErrorFullIcon />
-        <span
+        <div
           className="ms-fontSize-mPlus insights-dialog-rule-link"
         >
           Rule name: 
@@ -423,7 +423,7 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: true }
           >
             ruleId
           </NewTabLink>
-        </span>
+        </div>
       </div>
       <div
         className="insights-dialog-target-container"
@@ -785,7 +785,7 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: false }
       className="insights-dialog-rule-container"
     >
       <StatusErrorFullIcon />
-      <span
+      <div
         className="ms-fontSize-mPlus insights-dialog-rule-link"
       >
         Rule name: 
@@ -794,7 +794,7 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: false }
         >
           ruleId
         </NewTabLink>
-      </span>
+      </div>
     </div>
     <div
       className="insights-dialog-target-container"
@@ -1159,7 +1159,7 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: true } 
         className="insights-dialog-rule-container"
       >
         <StatusErrorFullIcon />
-        <span
+        <div
           className="ms-fontSize-mPlus insights-dialog-rule-link"
         >
           Rule name: 
@@ -1168,7 +1168,7 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: true } 
           >
             ruleId
           </NewTabLink>
-        </span>
+        </div>
       </div>
       <div
         className="insights-dialog-target-container"
@@ -1525,7 +1525,7 @@ exports[`DetailsDialogTest render: with relative help url 1`] = `
       className="insights-dialog-rule-container"
     >
       <StatusErrorFullIcon />
-      <span
+      <div
         className="ms-fontSize-mPlus insights-dialog-rule-link"
       >
         Rule name: 
@@ -1534,7 +1534,7 @@ exports[`DetailsDialogTest render: with relative help url 1`] = `
         >
           ruleId
         </NewTabLink>
-      </span>
+      </div>
     </div>
     <div
       className="insights-dialog-target-container"
