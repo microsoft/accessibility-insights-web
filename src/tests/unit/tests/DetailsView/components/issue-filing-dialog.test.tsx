@@ -220,9 +220,9 @@ describe('IssueFilingDialog', () => {
     });
 
     const scenarios = [
-        ['dialog is open & props have changed', true, { bugServicePropertiesMap: {} }],
+        ['dialog is open & props have changed', true, { issueServicePropertiesMap: {} }],
         ['dialog is open & props have not changed', true, {}],
-        ['dialog is not open & props have changed', false, { bugServicePropertiesMap: {} }],
+        ['dialog is not open & props have changed', false, { issueServicePropertiesMap: {} }],
         ['dialog is not open & props have not changed', false, {}],
     ];
 
