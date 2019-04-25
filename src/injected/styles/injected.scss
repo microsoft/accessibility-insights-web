@@ -389,6 +389,10 @@
         font-weight: $fontWeightSemiBold;
     }
 
+    .insights-dialog-main-override .insights-dialog-rule-success-criteria-container {
+        font-size: 14px !important;
+    }
+
     .insights-dialog-main-override .insights-dialog-fix-instruction-container {
         margin-bottom: 20px !important;
         font-size: 14px;

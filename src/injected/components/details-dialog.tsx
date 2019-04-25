@@ -9,6 +9,7 @@ import { ClientBrowserAdapter } from '../../common/client-browser-adapter';
 import { CopyIssueDetailsButton, CopyIssueDetailsButtonDeps } from '../../common/components/copy-issue-details-button';
 import { FileIssueDetailsButton, FileIssueDetailsButtonDeps } from '../../common/components/file-issue-details-button';
 import { FlaggedComponent } from '../../common/components/flagged-component';
+import { GuidanceLinks } from '../../common/components/guidance-links';
 import { IssueFilingButton, IssueFilingButtonDeps } from '../../common/components/issue-filing-button';
 import { IssueFilingNeedsSettingsHelpText } from '../../common/components/issue-filing-needs-settings-help-text';
 import { NewTabLink } from '../../common/components/new-tab-link';
@@ -21,6 +22,7 @@ import { CreateIssueDetailsTextData } from '../../common/types/create-issue-deta
 import { DevToolState } from '../../common/types/store-data/idev-tool-state';
 import { UserConfigurationStoreData } from '../../common/types/store-data/user-configuration-store';
 import { DictionaryStringTo } from '../../types/common-types';
+import { HyperlinkDefinition } from '../../views/content/content-page';
 import { DetailsDialogHandler } from '../details-dialog-handler';
 import { DecoratedAxeNodeResult } from '../scanner-utils';
 import { TargetPageActionMessageCreator } from '../target-page-action-message-creator';
@@ -266,9 +268,23 @@ export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDi
         return (
             <div className="insights-dialog-rule-container">
                 <StatusErrorFullIcon />
-                <span className="ms-fontSize-mPlus insights-dialog-rule-link">
+                <div className="ms-fontSize-mPlus insights-dialog-rule-link">
                     Rule name: <NewTabLink href={fixUrl(rule.helpUrl)}>{rule.ruleId}</NewTabLink>
-                </span>
+                </div>
+                {this.renderRuleSuccessCriteria(rule.guidanceLinks)}
+            </div>
+        );
+    }
+
+    private renderRuleSuccessCriteria(ruleGuidanceLinks: HyperlinkDefinition[]): JSX.Element {
+        if (!ruleGuidanceLinks || ruleGuidanceLinks.length === 0) {
+            return null;
+        }
+        const labelText: string = ruleGuidanceLinks.length === 1 ? 'Success criterion' : 'Success criteria';
+
+        return (
+            <div className="insights-dialog-rule-success-criteria">
+                {labelText}: <GuidanceLinks links={ruleGuidanceLinks} />
             </div>
         );
     }
