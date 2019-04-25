@@ -1,13 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { IssueServicePropertiesMap } from '../../../../../common/types/store-data/user-configuration-store';
 import {
+    AzureBoardsIssueDetailField,
     AzureBoardsIssueFilingService,
     AzureBoardsIssueFilingSettings,
-    AzureBoardsIssueDetailField,
 } from '../../../../../issue-filing/azure-boards/azure-boards-issue-filing-service';
 import { AzureBoardsSettingsForm } from '../../../../../issue-filing/azure-boards/azure-boards-settings-form';
 import { azureBoardsIssueFilingUrlProvider } from '../../../../../issue-filing/azure-boards/create-azure-boards-issue-filing-url';
-import { IssueServicePropertiesMap } from '../../../../../common/types/store-data/user-configuration-store';
 
 describe('AzureBoardsIssueFilingServiceTest', () => {
     const projectUrlStub: string = 'some/project/url';

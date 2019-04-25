@@ -5,14 +5,14 @@ import { DefaultButton } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { IMock, Mock, Times } from 'typemoq';
 
-import { IssueFilingServiceProvider } from '../../../../../issue-filing/issue-filing-service-provider';
-import { IssueFilingService } from '../../../../../issue-filing/types/issue-filing-service';
 import { IssueFilingButton, IssueFilingButtonDeps, IssueFilingButtonProps } from '../../../../../common/components/issue-filing-button';
 import { EnvironmentInfoProvider } from '../../../../../common/environment-info-provider';
 import { BugActionMessageCreator } from '../../../../../common/message-creators/bug-action-message-creator';
 import { NamedSFC } from '../../../../../common/react/named-sfc';
 import { IssueFilingNeedsSettingsContentRenderer } from '../../../../../common/types/issue-filing-needs-setting-content';
 import { UserConfigurationStoreData } from '../../../../../common/types/store-data/user-configuration-store';
+import { IssueFilingServiceProvider } from '../../../../../issue-filing/issue-filing-service-provider';
+import { IssueFilingService } from '../../../../../issue-filing/types/issue-filing-service';
 import { EventStubFactory } from '../../../common/event-stub-factory';
 
 describe('IssueFilingButtonTest', () => {

@@ -6,6 +6,7 @@ import { TextField } from 'office-ui-fabric-react/lib/TextField';
 import * as React from 'react';
 import { IMock, Mock, Times } from 'typemoq';
 
+import { SettingsDeps } from '../../../../../DetailsView/components/settings-panel/settings/settings-props';
 import {
     AzureBoardsIssueFilingService,
     AzureBoardsIssueFilingSettings,
@@ -13,7 +14,6 @@ import {
 import { AzureBoardsSettingsForm } from '../../../../../issue-filing/azure-boards/azure-boards-settings-form';
 import { OnPropertyUpdateCallback } from '../../../../../issue-filing/components/issue-filing-settings-container';
 import { SettingsFormProps } from '../../../../../issue-filing/types/settings-form-props';
-import { SettingsDeps } from '../../../../../DetailsView/components/settings-panel/settings/settings-props';
 import { EventStubFactory } from '../../../common/event-stub-factory';
 
 describe('AzureBoardsSettingsForm', () => {

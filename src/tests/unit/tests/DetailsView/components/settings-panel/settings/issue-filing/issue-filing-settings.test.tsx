@@ -4,13 +4,13 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 import { IMock, Mock } from 'typemoq';
 
-import { IssueFilingServiceProvider } from '../../../../../../../../issue-filing/issue-filing-service-provider';
-import { IssueFilingService } from '../../../../../../../../issue-filing/types/issue-filing-service';
 import { UserConfigMessageCreator } from '../../../../../../../../common/message-creators/user-config-message-creator';
 import { NamedSFC } from '../../../../../../../../common/react/named-sfc';
 import { UserConfigurationStoreData } from '../../../../../../../../common/types/store-data/user-configuration-store';
 import { IssueFilingSettings } from '../../../../../../../../DetailsView/components/settings-panel/settings/issue-filing/issue-filing-settings';
 import { SettingsDeps, SettingsProps } from '../../../../../../../../DetailsView/components/settings-panel/settings/settings-props';
+import { IssueFilingServiceProvider } from '../../../../../../../../issue-filing/issue-filing-service-provider';
+import { IssueFilingService } from '../../../../../../../../issue-filing/types/issue-filing-service';
 
 describe('IssueFilingSettings', () => {
     let userData: UserConfigurationStoreData;

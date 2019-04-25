@@ -4,15 +4,15 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 import { Mock } from 'typemoq';
 
-import { IssueFilingServiceProvider } from '../../../../../issue-filing/issue-filing-service-provider';
+import { UserConfigMessageCreator } from '../../../../../common/message-creators/user-config-message-creator';
+import { IssueServiceProperties, UserConfigurationStoreData } from '../../../../../common/types/store-data/user-configuration-store';
 import {
     IssueFilingSettingsContainer,
     IssueFilingSettingsContainerDeps,
     IssueFilingSettingsContainerProps,
 } from '../../../../../issue-filing/components/issue-filing-settings-container';
+import { IssueFilingServiceProvider } from '../../../../../issue-filing/issue-filing-service-provider';
 import { IssueFilingService } from '../../../../../issue-filing/types/issue-filing-service';
-import { UserConfigMessageCreator } from '../../../../../common/message-creators/user-config-message-creator';
-import { IssueServiceProperties, UserConfigurationStoreData } from '../../../../../common/types/store-data/user-configuration-store';
 
 describe('IssueFilingSettingsContainerTest', () => {
     const issueFilingServicesProviderMock = Mock.ofType(IssueFilingServiceProvider);
