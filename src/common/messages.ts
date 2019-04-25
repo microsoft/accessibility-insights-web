@@ -191,4 +191,8 @@ export class Messages {
         GetCurrentState: 'insights/inspect/get',
         SetHoveredOverSelector: 'insights/inspect/setHoveredOverSelector',
     };
+
+    public static readonly IssueFiling = {
+        FileIssue: 'insights/issueFiling/file',
+    };
 }
