@@ -29,9 +29,9 @@ describe('AutomatedChecksVisualizationToggle', () => {
         const textDiv = toggleDiv.find(`.${visualHelperClass}-text`);
         const noMatchesWarningClass = 'no-matching-elements';
 
-        expect(toggleDiv.exists()).toBeTruthy();
-        expect(textDiv.exists()).toBeTruthy();
-        expect(wrapper.find(`.${noMatchesWarningClass}`).exists()).toBeTruthy();
+        expect(toggleDiv.exists()).toBe(true);
+        expect(textDiv.exists()).toBe(true);
+        expect(wrapper.find(`.${noMatchesWarningClass}`).exists()).toBe(true);
 
         const toggle = wrapper.find(VisualizationToggle);
 
@@ -41,7 +41,6 @@ describe('AutomatedChecksVisualizationToggle', () => {
             .build();
 
         assertVisualizationToggle(expectedToggleProps, toggle);
-
         assertSnapshotMatch(wrapper);
     });
 
@@ -58,11 +57,11 @@ describe('AutomatedChecksVisualizationToggle', () => {
         const visualHelperClass = 'visual-helper';
         const toggleDiv = wrapper.find(`.${visualHelperClass}`);
 
-        expect(toggleDiv.exists()).toBeTruthy();
+        expect(toggleDiv.exists()).toBe(true);
 
         const textDiv = toggleDiv.find(`.${visualHelperClass}-text`);
 
-        expect(textDiv.exists()).toBeTruthy();
+        expect(textDiv.exists()).toBe(true);
 
         expect(wrapper.find('strong').exists()).toBeFalsy();
         const toggle = wrapper.find(VisualizationToggle);
@@ -88,16 +87,17 @@ describe('AutomatedChecksVisualizationToggle', () => {
         const visualHelperClass = 'visual-helper';
         const toggleDiv = wrapper.find(`.${visualHelperClass}`);
 
-        expect(toggleDiv.exists()).toBeTruthy();
+        expect(toggleDiv.exists()).toBe(true);
 
         const textDiv = toggleDiv.find(`.${visualHelperClass}-text`);
 
-        expect(textDiv.exists()).toBeTruthy();
+        expect(textDiv.exists()).toBe(true);
 
         const noMatchesWarningClass = 'no-matching-elements';
-        expect(wrapper.find(`.${noMatchesWarningClass}`).exists()).toBeTruthy();
 
         const toggle = wrapper.find(VisualizationToggle);
+
+        expect(wrapper.find(`.${noMatchesWarningClass}`).exists()).toBe(true);
 
         const expectedToggleProps = getDefaultVisualizationTogglePropsBuilder()
             .with('checked', false)
@@ -112,7 +112,7 @@ describe('AutomatedChecksVisualizationToggle', () => {
         expectedProps: VisualizationToggleProps,
         visualizationToggle: ShallowWrapper<VisualizationToggleProps>,
     ): void {
-        expect(visualizationToggle.exists()).toBeTruthy();
+        expect(visualizationToggle.exists()).toBe(true);
 
         const actualProps = visualizationToggle.props();
 
