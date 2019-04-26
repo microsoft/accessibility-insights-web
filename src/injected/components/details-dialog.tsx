@@ -227,9 +227,9 @@ export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDi
         }
     }
 
-    private renderNextAndBackButton(): JSX.Element {
+    private renderNextAndBackButtons(): JSX.Element {
         return (
-            <div className="ms-Grid">
+            <div className="ms-Grid insights-dialog-next-and-back-container">
                 <div className="ms-Grid-row">
                     <div className="ms-Grid-col ms-sm3 ms-md3 ms-lg3 insights-dialog-button-left">
                         <PrimaryButton
@@ -255,7 +255,11 @@ export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDi
         );
     }
 
-    private renderRuleContainer(rule: DecoratedAxeNodeResult): JSX.Element {
+    private renderSectionTitle(sectionTitle: string, className?: string): JSX.Element {
+        return <h3 className={`insights-dialog-section-title ${className}`}>{sectionTitle}</h3>;
+    }
+
+    private renderRuleName(rule: DecoratedAxeNodeResult): JSX.Element {
         const fixUrl = (url: string) => {
             if (url.indexOf('://') >= 0) {
                 return url;
@@ -266,25 +270,32 @@ export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDi
         };
 
         return (
-            <div className="insights-dialog-rule-container">
-                <StatusErrorFullIcon />
-                <div className="ms-fontSize-mPlus insights-dialog-rule-link">
-                    Rule name: <NewTabLink href={fixUrl(rule.helpUrl)}>{rule.ruleId}</NewTabLink>
-                </div>
-                {this.renderRuleSuccessCriteria(rule.guidanceLinks)}
+            <div className="insights-dialog-rule-name">
+                {this.renderSectionTitle('Rule name')}
+                <NewTabLink href={fixUrl(rule.helpUrl)}>{rule.ruleId}</NewTabLink>
             </div>
         );
     }
 
-    private renderRuleSuccessCriteria(ruleGuidanceLinks: HyperlinkDefinition[]): JSX.Element {
+    private renderSuccessCriteria(ruleGuidanceLinks: HyperlinkDefinition[]): JSX.Element {
         if (!ruleGuidanceLinks || ruleGuidanceLinks.length === 0) {
             return null;
         }
-        const labelText: string = ruleGuidanceLinks.length === 1 ? 'Success criterion' : 'Success criteria';
+        const sectionTitle: string = ruleGuidanceLinks.length === 1 ? 'Success criterion' : 'Success criteria';
 
         return (
-            <div className="insights-dialog-rule-success-criteria">
-                {labelText}: <GuidanceLinks links={ruleGuidanceLinks} />
+            <div className="insights-dialog-success-criteria">
+                {this.renderSectionTitle(sectionTitle)}
+                <GuidanceLinks links={ruleGuidanceLinks} />
+            </div>
+        );
+    }
+
+    private renderPathSelector(): JSX.Element {
+        return (
+            <div className="insights-dialog-path-selector-container">
+                {this.renderSectionTitle('Path')}
+                {this.props.elementSelector}
             </div>
         );
     }
@@ -292,30 +303,25 @@ export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDi
     private renderFixInstructions(ruleResult: DecoratedAxeNodeResult): JSX.Element {
         return (
             <div className="insights-dialog-fix-instruction-container">
-                <FixInstructionPanel checkType={CheckType.All} checks={ruleResult.all.concat(ruleResult.none)} />
-
-                <FixInstructionPanel checkType={CheckType.Any} checks={ruleResult.any} />
-            </div>
-        );
-    }
-
-    private renderTargetContainer(): JSX.Element {
-        return (
-            <div className="insights-dialog-target-container">
-                <div className="ms-fontWeight-semibold">Path:</div>
-                <div className="insights-dialog-instance-selector">{this.props.elementSelector}</div>
-                {this.renderButtonContainer()}
+                <FixInstructionPanel
+                    checkType={CheckType.All}
+                    checks={ruleResult.all.concat(ruleResult.none)}
+                    renderTitleElement={this.renderSectionTitle}
+                />
+                <FixInstructionPanel checkType={CheckType.Any} checks={ruleResult.any} renderTitleElement={this.renderSectionTitle} />
             </div>
         );
     }
 
     private renderDialogContent(rule: DecoratedAxeNodeResult): JSX.Element {
         return (
-            <div>
-                {this.renderRuleContainer(rule)}
-                {this.renderTargetContainer()}
+            <div className="insights-dialog-content">
+                {this.renderRuleName(rule)}
+                {this.renderSuccessCriteria(rule.guidanceLinks)}
+                {this.renderPathSelector()}
+                {this.renderButtonContainer()}
                 {this.renderFixInstructions(rule)}
-                {this.renderNextAndBackButton()}
+                {this.renderNextAndBackButtons()}
             </div>
         );
     }
@@ -325,7 +331,7 @@ export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDi
             <div style={{ visibility: this.state.showDialog ? 'visible' : 'hidden' }} className="insights-dialog-main-override-shadow">
                 <div className="insights-dialog-container">
                     <div className="insights-dialog-header">
-                        <p className="ms-Dialog-title">{rule.help}</p>
+                        <p className="ms-Dialog-title insights-dialog-title">{rule.help}</p>
                         <div className="ms-Dialog-topButton">
                             <button
                                 type="button"
@@ -361,6 +367,7 @@ export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDi
                             onClick: this.onHideDialog,
                         },
                     ],
+                    styles: { title: 'insights-dialog-title' },
                 }}
                 modalProps={{
                     isBlocking: false,

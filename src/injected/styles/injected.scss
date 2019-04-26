@@ -20,6 +20,7 @@
 
 #accessibility-insights-root-container,
 #insights-shadow-container {
+    @import '../../common/styles/colors.scss';
     @import '../../common/styles/common.scss';
     @import '../../common/components/toast.scss';
 
@@ -62,7 +63,7 @@
         width: 25%;
         max-width: 25%;
         user-select: text;
-        min-width: 550px;
+        min-width: 520px;
     }
 
     div.insights-file-issue-details-dialog-container {
@@ -284,45 +285,7 @@
         }
     }
 
-    .insights-dialog-main-override .insights-dialog-rule-container svg {
-        path {
-            fill: $negative-outcome !important;
-        }
-
-        float: left !important;
-        margin-right: 1% !important;
-        margin-top: 4px !important;
-    }
-
-    .insights-dialog-main-override-shadow .insights-dialog-rule-container svg {
-        path {
-            fill: $negative-outcome !important;
-        }
-
-        float: left !important;
-        margin-right: 1% !important;
-        margin-top: 4px !important;
-    }
-
-    .insights-dialog-main-override .insights-dialog-target-container {
-        margin-bottom: 16px !important;
-        font-size: 14px;
-    }
-
     .insights-dialog-main-override .insights-dialog-target-button-container {
-        margin-top: 4px !important;
-
-        .ms-Button-label {
-            margin-left: 4px;
-            margin-right: 4px;
-            line-height: 100%;
-            font-weight: 600;
-        }
-
-        svg {
-            margin-left: 4px;
-            margin-right: 4px;
-        }
     }
 
     .insights-dialog-main-override-shadow .insights-dialog-target-button-container {
@@ -389,31 +352,59 @@
         font-weight: $fontWeightSemiBold;
     }
 
-    .insights-dialog-main-override .insights-dialog-rule-success-criteria-container {
-        font-size: 14px !important;
-    }
+    .insights-dialog-main-override,
+    .insights-dialog-main-override-shadow {
+        .insights-dialog-title {
+            margin-bottom: 16px !important;
+            padding-bottom: 0px !important;
+            color: $primary-text !important;
+            font-size: 21px !important;
+            font-weight: $fontWeightSemiBold !important;
+            letter-spacing: -0.02em !important;
+        }
 
-    .insights-dialog-main-override .insights-dialog-fix-instruction-container {
-        margin-bottom: 20px !important;
-        font-size: 14px;
-    }
+        .insights-dialog-section-title {
+            margin-top: 16px !important;
+            margin-bottom: 4px !important;
+            color: $primary-text !important;
+            font-size: 15px !important;
+            font-weight: $fontWeightSemiBold !important;
+        }
 
-    .insights-dialog-main-override .insights-fix-instruction-list {
-        padding-left: 5% !important;
-        margin: 0 !important;
-    }
+        .insights-dialog-content {
+            color: $secondary-text !important;
+            font-size: 14px !important;
 
-    .insights-dialog-main-override .insights-fix-instruction-title {
-        font-weight: 600 !important;
-    }
+            ul {
+                margin: 8px !important;
+                padding-left: 8px !important;
+            }
+        }
 
-    .insights-dialog-main-override-shadow .insights-fix-instruction-title {
-        font-weight: 600 !important;
-        margin-top: 15px;
-    }
+        .insights-dialog-target-button-container {
+            margin-top: 16px !important;
 
-    .insights-dialog-main-override .insights-dialog-instance-selector {
-        padding-left: 2% !important;
+            button {
+                padding-left: 8px !important;
+                padding-right: 8px !important;
+            }
+
+            .ms-Button-label {
+                margin-left: 4px;
+                margin-right: 4px;
+                line-height: 100%;
+                font-weight: $fontWeightSemiBold;
+            }
+
+            svg {
+                margin-left: 4px;
+                margin-right: 4px;
+            }
+        }
+
+        .insights-dialog-next-and-back-container {
+            margin-top: 16px !important;
+        }
     }
 
     .insights-highlight-container,

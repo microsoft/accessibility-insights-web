@@ -99,6 +99,10 @@ export class IssuesDetailsPane extends React.Component<IssuesDetailsPaneProps, I
         );
     }
 
+    private renderFixInstructionsTitleElement(titleText: string, className: string): JSX.Element {
+        return <div className={className}>{titleText}</div>;
+    }
+
     private renderSingleIssue(result: DecoratedAxeNodeResult): JSX.Element {
         const issueData: CreateIssueDetailsTextData = {
             pageTitle: this.props.pageTitle,
@@ -129,8 +133,16 @@ export class IssuesDetailsPane extends React.Component<IssuesDetailsPaneProps, I
                         <tr>
                             <td>How to fix</td>
                             <td className="fix-content">
-                                <FixInstructionPanel checkType={CheckType.All} checks={result.all.concat(result.none)} />
-                                <FixInstructionPanel checkType={CheckType.Any} checks={result.any} />
+                                <FixInstructionPanel
+                                    checkType={CheckType.All}
+                                    checks={result.all.concat(result.none)}
+                                    renderTitleElement={this.renderFixInstructionsTitleElement}
+                                />
+                                <FixInstructionPanel
+                                    checkType={CheckType.Any}
+                                    checks={result.any}
+                                    renderTitleElement={this.renderFixInstructionsTitleElement}
+                                />
                             </td>
                         </tr>
                         <tr>
