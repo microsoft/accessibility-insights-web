@@ -70,7 +70,10 @@ export class GlobalActionCreator {
         this.interpreter.registerTypeToPayloadCallback(Messages.UserConfig.SetTelemetryConfig, this.onSetTelemetryConfiguration);
         this.interpreter.registerTypeToPayloadCallback(Messages.UserConfig.SetHighContrastConfig, this.onSetHighContrastMode);
         this.interpreter.registerTypeToPayloadCallback(Messages.UserConfig.SetIssueFilingService, this.onSetIssueFilingService);
-        this.interpreter.registerTypeToPayloadCallback(Messages.UserConfig.SetIssueFilingServiceProperty, this.onSetIssueFilingServiceProperty);
+        this.interpreter.registerTypeToPayloadCallback(
+            Messages.UserConfig.SetIssueFilingServiceProperty,
+            this.onSetIssueFilingServiceProperty,
+        );
         this.interpreter.registerTypeToPayloadCallback(Messages.UserConfig.SetIssueTrackerPath, this.onSetIssueTrackerPath);
         this.interpreter.registerTypeToPayloadCallback(Messages.UserConfig.SaveIssueFilingSettings, this.onSaveIssueFilingSettings);
     }
