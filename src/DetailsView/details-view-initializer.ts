@@ -136,10 +136,9 @@ if (isNaN(tabId) === false) {
                 TelemetryEventSource.DetailsView,
             );
             const inspectActionMessageCreator = new InspectActionMessageCreator(
-                chromeAdapter.sendMessageToFrames,
-                tab.id,
                 telemetryFactory,
                 TelemetryEventSource.DetailsView,
+                actionMessageDispatcher,
             );
             const dropdownActionMessageCreator = new DropdownActionMessageCreator(telemetryFactory, actionMessageDispatcher);
 

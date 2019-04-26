@@ -185,10 +185,9 @@ export class MainWindowInitializer extends WindowInitializer {
         const shadowUtils = new ShadowUtils(htmlElementUtils);
         const scopingListener = new ScopingListener(this.elementFinderByPosition, this.windowUtils, shadowUtils, document);
         const inspectActionMessageCreator = new InspectActionMessageCreator(
-            this.clientChromeAdapter.sendMessageToFrames,
-            null,
             telemetryDataFactory,
             TelemetryEventSource.TargetPage,
+            actionMessageDispatcher,
         );
 
         const scopingActionMessageCreator = new ScopingActionMessageCreator(
