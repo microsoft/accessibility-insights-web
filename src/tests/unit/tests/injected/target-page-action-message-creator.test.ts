@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IMock, It, Mock, Times } from 'typemoq';
+import { Mock, Times } from 'typemoq';
 import { BaseActionPayload } from '../../../../background/actions/action-payloads';
 import { Message } from '../../../../common/message';
 import { ActionMessageDispatcher } from '../../../../common/message-creators/action-message-dispatcher';
