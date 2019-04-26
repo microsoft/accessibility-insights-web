@@ -5,12 +5,13 @@ import { StateDispatcher } from '../common/state-dispatcher';
 import { TelemetryDataFactory } from '../common/telemetry-data-factory';
 import { AssessmentsProvider } from './../assessments/types/assessments-provider';
 import { AssessmentActionCreator } from './actions/assessment-action-creator';
-import { GlobalActionCreator } from './actions/global-action-creator';
 import { GlobalActionHub } from './actions/global-action-hub';
 import { BrowserAdapter } from './browser-adapter';
 import { CompletedTestStepTelemetryCreator } from './completed-test-step-telemetry-creator';
 import { FeatureFlagsController } from './feature-flags-controller';
 import { PersistedData } from './get-persisted-data';
+import { GlobalActionCreator } from './global-action-creators/global-action-creator';
+import { UserConfigurationActionCreator } from './global-action-creators/user-configuration-action-creator';
 import { GlobalContext } from './global-context';
 import { Interpreter } from './interpreter';
 import { LocalStorageData } from './storage-data';
@@ -50,9 +51,11 @@ export class GlobalContextFactory {
             telemetryEventHandler,
             interpreter.registerTypeToPayloadCallback,
         );
+        const userConfigurationActionCreator = new UserConfigurationActionCreator(interpreter, globalActionsHub.userConfigurationActions);
 
         actionCreator.registerCallbacks();
         assessmentActionCreator.registerCallbacks();
+        userConfigurationActionCreator.registerCallback();
 
         const dispatcher = new StateDispatcher(browserAdapter.sendMessageToAllFramesAndTabs, globalStoreHub);
         dispatcher.initialize();

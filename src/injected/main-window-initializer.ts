@@ -191,10 +191,9 @@ export class MainWindowInitializer extends WindowInitializer {
         );
 
         const scopingActionMessageCreator = new ScopingActionMessageCreator(
-            this.clientChromeAdapter.sendMessageToFrames,
-            null,
             telemetryDataFactory,
             TelemetryEventSource.TargetPage,
+            actionMessageDispatcher,
         );
 
         this.inspectController = new InspectController(
