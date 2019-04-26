@@ -13,7 +13,7 @@ describe('NavigatorUtilsTest', () => {
     test('getEnvironmentInfo: edge', () => {
         validateBrowserSpecReturnedWithUserAgent(
             'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/75.0.3763.0 Safari/537.36 Edg/75.0.131.0',
-            'Edge version 75.0.131.0',
+            'Microsoft Edge version 75.0.131.0',
         );
     });
 

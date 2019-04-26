@@ -9,9 +9,9 @@ export class NavigatorUtils {
     public getBrowserSpec(): string {
         const userAgent = this.navigatorInfo.userAgent;
 
-        const edgeVersion = this.getVersion(userAgent, 'Edg');
-        if (edgeVersion !== null) {
-            return `Edge version ${edgeVersion}`;
+        const edgVersion = this.getVersion(userAgent, 'Edg');
+        if (edgVersion !== null) {
+            return `Microsoft Edge version ${edgVersion}`;
         }
 
         const chromeVersion = this.getVersion(userAgent, 'Chrome');
