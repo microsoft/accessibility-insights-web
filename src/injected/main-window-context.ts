@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { BaseStore } from '../common/base-store';
-import { BugActionMessageCreator } from '../common/message-creators/bug-action-message-creator';
 import { DevToolActionMessageCreator } from '../common/message-creators/dev-tool-action-message-creator';
+import { IssueFilingActionMessageCreator } from '../common/message-creators/issue-filing-action-message-creator';
 import { DevToolState } from '../common/types/store-data/idev-tool-state';
 import { UserConfigurationStoreData } from '../common/types/store-data/user-configuration-store';
 import { EnvironmentInfoProvider } from './../common/environment-info-provider';
@@ -16,7 +16,7 @@ export class MainWindowContext {
         private userConfigStore: BaseStore<UserConfigurationStoreData>,
         private devToolActionMessageCreator: DevToolActionMessageCreator,
         private targetPageActionMessageCreator: TargetPageActionMessageCreator,
-        private bugActionMessageCreator: BugActionMessageCreator,
+        private bugActionMessageCreator: IssueFilingActionMessageCreator,
         private userConfigMessageCreator: UserConfigMessageCreator,
         private environmentInfoProvider: EnvironmentInfoProvider,
         private issueFilingServiceProvider: IssueFilingServiceProvider,
@@ -38,7 +38,7 @@ export class MainWindowContext {
         return this.targetPageActionMessageCreator;
     }
 
-    public getBugActionMessageCreator(): BugActionMessageCreator {
+    public getIssueFilingActionMessageCreator(): IssueFilingActionMessageCreator {
         return this.bugActionMessageCreator;
     }
 
@@ -59,7 +59,7 @@ export class MainWindowContext {
         userConfigStore: BaseStore<UserConfigurationStoreData>,
         devToolActionMessageCreator: DevToolActionMessageCreator,
         targetPageActionMessageCreator: TargetPageActionMessageCreator,
-        bugActionMessageCreator: BugActionMessageCreator,
+        bugActionMessageCreator: IssueFilingActionMessageCreator,
         userConfigMessageCreator: UserConfigMessageCreator,
         environmentInfoProvider: EnvironmentInfoProvider,
         issueFilingServiceProvider: IssueFilingServiceProvider,

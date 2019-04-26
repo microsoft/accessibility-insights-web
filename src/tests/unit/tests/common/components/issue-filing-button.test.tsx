@@ -7,7 +7,7 @@ import { IMock, Mock, Times } from 'typemoq';
 
 import { IssueFilingButton, IssueFilingButtonDeps, IssueFilingButtonProps } from '../../../../../common/components/issue-filing-button';
 import { EnvironmentInfoProvider } from '../../../../../common/environment-info-provider';
-import { BugActionMessageCreator } from '../../../../../common/message-creators/bug-action-message-creator';
+import { IssueFilingActionMessageCreator } from '../../../../../common/message-creators/issue-filing-action-message-creator';
 import { NamedSFC } from '../../../../../common/react/named-sfc';
 import { IssueFilingNeedsSettingsContentRenderer } from '../../../../../common/types/issue-filing-needs-setting-content';
 import { UserConfigurationStoreData } from '../../../../../common/types/store-data/user-configuration-store';
@@ -20,7 +20,7 @@ describe('IssueFilingButtonTest', () => {
     const eventStub = new EventStubFactory().createNativeMouseClickEvent();
     let environmentInfoProviderMock: IMock<EnvironmentInfoProvider>;
     let issueFilingServiceProviderMock: IMock<IssueFilingServiceProvider>;
-    let bugActionMessageCreatorMock: IMock<BugActionMessageCreator>;
+    let bugActionMessageCreatorMock: IMock<IssueFilingActionMessageCreator>;
     let userConfigurationStoreData: UserConfigurationStoreData;
     let testIssueFilingService: IssueFilingService;
     let needsSettingsContentRenderer: IssueFilingNeedsSettingsContentRenderer;
@@ -45,7 +45,7 @@ describe('IssueFilingButtonTest', () => {
         } as UserConfigurationStoreData;
         environmentInfoProviderMock = Mock.ofType(EnvironmentInfoProvider);
         issueFilingServiceProviderMock = Mock.ofType(IssueFilingServiceProvider);
-        bugActionMessageCreatorMock = Mock.ofType(BugActionMessageCreator);
+        bugActionMessageCreatorMock = Mock.ofType(IssueFilingActionMessageCreator);
         environmentInfoProviderMock
             .setup(envp => envp.getEnvironmentInfo())
             .returns(() => {

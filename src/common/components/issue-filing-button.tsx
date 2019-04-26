@@ -9,14 +9,14 @@ import { IssueFilingServiceProvider } from '../../issue-filing/issue-filing-serv
 import { IssueFilingService } from '../../issue-filing/types/issue-filing-service';
 import { EnvironmentInfo, EnvironmentInfoProvider } from '../environment-info-provider';
 import { LadyBugSolidIcon } from '../icons/lady-bug-solid-icon';
-import { BugActionMessageCreator } from '../message-creators/bug-action-message-creator';
+import { IssueFilingActionMessageCreator } from '../message-creators/issue-filing-action-message-creator';
 import { FileIssueClickService } from '../telemetry-events';
 import { CreateIssueDetailsTextData } from '../types/create-issue-details-text-data';
 import { IssueFilingNeedsSettingsContentProps, IssueFilingNeedsSettingsContentRenderer } from '../types/issue-filing-needs-setting-content';
 import { IssueFilingServiceProperties, UserConfigurationStoreData } from '../types/store-data/user-configuration-store';
 
 export type IssueFilingButtonDeps = {
-    bugActionMessageCreator: BugActionMessageCreator;
+    bugActionMessageCreator: IssueFilingActionMessageCreator;
     environmentInfoProvider: EnvironmentInfoProvider;
     issueFilingServiceProvider: IssueFilingServiceProvider;
 } & IssueFilingDialogDeps;

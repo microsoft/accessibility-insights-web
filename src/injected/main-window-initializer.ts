@@ -1,5 +1,3 @@
-// Copyright (c) Microsoft Corporation. All rights reserved.
-// Licensed under the MIT License.
 import { autobind } from '@uifabric/utilities';
 
 import { Assessments } from '../assessments/assessments';
@@ -9,7 +7,6 @@ import { DateProvider } from '../common/date-provider';
 import { EnvironmentInfoProvider } from '../common/environment-info-provider';
 import { HTMLElementUtils } from '../common/html-element-utils';
 import { ActionMessageDispatcher } from '../common/message-creators/action-message-dispatcher';
-import { BugActionMessageCreator } from '../common/message-creators/bug-action-message-creator';
 import { DevToolActionMessageCreator } from '../common/message-creators/dev-tool-action-message-creator';
 import { InspectActionMessageCreator } from '../common/message-creators/inspect-action-message-creator';
 import { ScopingActionMessageCreator } from '../common/message-creators/scoping-action-message-creator';
@@ -32,6 +29,7 @@ import { VisualizationStoreData } from '../common/types/store-data/visualization
 import { generateUID } from '../common/uid-generator';
 import { IssueFilingServiceProviderImpl } from '../issue-filing/issue-filing-service-provider-impl';
 import { scan } from '../scanner/exposed-apis';
+import { IssueFilingActionMessageCreator } from './../common/message-creators/issue-filing-action-message-creator';
 import { AnalyzerController } from './analyzer-controller';
 import { AnalyzerStateUpdateHandler } from './analyzer-state-update-handler';
 import { AnalyzerProvider } from './analyzers/analyzer-provider';
@@ -50,6 +48,8 @@ import { ShadowUtils } from './shadow-utils';
 import { TargetPageActionMessageCreator } from './target-page-action-message-creator';
 import { WindowInitializer } from './window-initializer';
 
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
 export class MainWindowInitializer extends WindowInitializer {
     protected frameCommunicator: FrameCommunicator;
     private clientViewController: ClientViewController;
@@ -106,7 +106,7 @@ export class MainWindowInitializer extends WindowInitializer {
         const actionMessageDispatcher = new ActionMessageDispatcher(this.clientChromeAdapter.sendMessageToFrames, null);
 
         const targetPageActionMessageCreator = new TargetPageActionMessageCreator(telemetryDataFactory, actionMessageDispatcher);
-        const bugActionMessageCreator = new BugActionMessageCreator(
+        const bugActionMessageCreator = new IssueFilingActionMessageCreator(
             actionMessageDispatcher,
             telemetryDataFactory,
             TelemetryEventSource.TargetPage,

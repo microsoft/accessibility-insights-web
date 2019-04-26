@@ -7,7 +7,7 @@ import { It, Mock, Times } from 'typemoq';
 
 import { IssueDetailsTextGenerator } from '../../../../../background/issue-details-text-generator';
 import { FileIssueDetailsButton, FileIssueDetailsButtonProps } from '../../../../../common/components/file-issue-details-button';
-import { BugActionMessageCreator } from '../../../../../common/message-creators/bug-action-message-creator';
+import { IssueFilingActionMessageCreator } from '../../../../../common/message-creators/issue-filing-action-message-creator';
 
 describe('FileIssueDetailsButtonTest', () => {
     test('render and click with an issue tracker path', () => {
@@ -23,7 +23,7 @@ describe('FileIssueDetailsButtonTest', () => {
             .returns(() => 'buildText')
             .verifiable();
 
-        const bugActionMessageCreatorMock = Mock.ofType(BugActionMessageCreator);
+        const bugActionMessageCreatorMock = Mock.ofType(IssueFilingActionMessageCreator);
         bugActionMessageCreatorMock
             .setup(messageCreator => messageCreator.trackFileIssueClick(It.isAny(), 'gitHub'))
             .verifiable(Times.once());
@@ -63,7 +63,7 @@ describe('FileIssueDetailsButtonTest', () => {
             .returns(() => 'buildText')
             .verifiable(Times.never());
 
-        const bugActionMessageCreatorMock = Mock.ofType(BugActionMessageCreator);
+        const bugActionMessageCreatorMock = Mock.ofType(IssueFilingActionMessageCreator);
         bugActionMessageCreatorMock
             .setup(messageCreator => messageCreator.trackFileIssueClick(It.isAny(), 'none'))
             .verifiable(Times.once());

@@ -70,7 +70,7 @@ export class DialogRenderer {
                 issueDetailsTextGenerator,
                 windowUtils: this.windowUtils,
                 targetPageActionMessageCreator: mainWindowContext.getTargetPageActionMessageCreator(),
-                bugActionMessageCreator: mainWindowContext.getBugActionMessageCreator(),
+                bugActionMessageCreator: mainWindowContext.getIssueFilingActionMessageCreator(),
                 clientBrowserAdapter: this.clientBrowserAdapter,
                 getRTL: this.getRTLFunc,
                 environmentInfoProvider: mainWindowContext.getEnvironmentInfoProvider(),

@@ -10,12 +10,12 @@ import { LadyBugSolidIcon } from '../../common/icons/lady-bug-solid-icon';
 import { DecoratedAxeNodeResult } from '../../injected/scanner-utils';
 import { FileIssueDetailsHandler } from '../file-issue-details-handler';
 import { HTMLElementUtils } from '../html-element-utils';
-import { BugActionMessageCreator } from '../message-creators/bug-action-message-creator';
+import { IssueFilingActionMessageCreator } from '../message-creators/issue-filing-action-message-creator';
 import { CreateIssueDetailsTextData } from '../types/create-issue-details-text-data';
 import { FileIssueDetailsDialog } from './file-issue-details-dialog';
 
 export type FileIssueDetailsButtonDeps = {
-    bugActionMessageCreator: BugActionMessageCreator;
+    bugActionMessageCreator: IssueFilingActionMessageCreator;
     issueDetailsTextGenerator: IssueDetailsTextGenerator;
 };
 

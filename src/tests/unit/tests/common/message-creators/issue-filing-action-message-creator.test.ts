@@ -1,8 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { IMock, Mock, Times } from 'typemoq';
+
 import { ActionMessageDispatcher } from '../../../../../common/message-creators/action-message-dispatcher';
-import { BugActionMessageCreator } from '../../../../../common/message-creators/bug-action-message-creator';
+import { IssueFilingActionMessageCreator } from '../../../../../common/message-creators/issue-filing-action-message-creator';
 import { Messages } from '../../../../../common/messages';
 import { TelemetryDataFactory } from '../../../../../common/telemetry-data-factory';
 import {
@@ -15,7 +16,7 @@ import {
 } from '../../../../../common/telemetry-events';
 import { EventStubFactory } from '../../../common/event-stub-factory';
 
-describe('BugActionMessageCreator', () => {
+describe('IssueFilingActionMessageCreator', () => {
     const source: TelemetryEventSource = TelemetryEventSource.TargetPage;
     const eventStub = new EventStubFactory().createKeypressEvent() as any;
     const telemetryStub: BaseTelemetryData = {
@@ -26,13 +27,13 @@ describe('BugActionMessageCreator', () => {
     let telemetryFactoryMock: IMock<TelemetryDataFactory>;
     let dispatcherMock: IMock<ActionMessageDispatcher>;
 
-    let testSubject: BugActionMessageCreator;
+    let testSubject: IssueFilingActionMessageCreator;
 
     beforeEach(() => {
         telemetryFactoryMock = Mock.ofType<TelemetryDataFactory>();
         dispatcherMock = Mock.ofType<ActionMessageDispatcher>();
 
-        testSubject = new BugActionMessageCreator(dispatcherMock.object, telemetryFactoryMock.object, source);
+        testSubject = new IssueFilingActionMessageCreator(dispatcherMock.object, telemetryFactoryMock.object, source);
     });
 
     it('dispatch message for openSettingsPanel', () => {
