@@ -90,16 +90,7 @@ describe('IssuesDetailsListTest', () => {
         };
     }
 
-    function getSampleItems(showIssueFiling = false): DetailsRowData[] {
-        const bugButtonProps = {
-            deps: {
-                issueDetailsTextGenerator: null,
-            },
-            issueTrackerPath: 'example/example',
-            pageTitle: 'pageTitle',
-            pageUrl: 'http://pageUrl',
-            nodeResult: null,
-        };
+    function getSampleItems(): DetailsRowData[] {
         const rowData = {
             selector: 'testSelector',
         };
