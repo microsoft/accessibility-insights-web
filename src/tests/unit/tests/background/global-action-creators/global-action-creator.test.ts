@@ -1,14 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
-import {
-    SaveIssueFilingSettingsPayload,
-    SetHighContrastModePayload,
-    SetIssueFilingServicePayload,
-    SetIssueFilingServicePropertyPayload,
-    SetLaunchPanelState,
-    SetTelemetryStatePayload,
-} from '../../../../../background/actions/action-payloads';
+
+import { SetLaunchPanelState } from '../../../../../background/actions/action-payloads';
 import { AssessmentActions } from '../../../../../background/actions/assessment-actions';
 import { CommandActions } from '../../../../../background/actions/command-actions';
 import { FeatureFlagActions, FeatureFlagPayload } from '../../../../../background/actions/feature-flag-actions';
@@ -17,15 +11,14 @@ import { LaunchPanelStateActions } from '../../../../../background/actions/launc
 import { ScopingActions, ScopingPayload } from '../../../../../background/actions/scoping-actions';
 import { UserConfigurationActions } from '../../../../../background/actions/user-configuration-actions';
 import { ChromeAdapter } from '../../../../../background/browser-adapter';
+import { GlobalActionCreator } from '../../../../../background/global-action-creators/global-action-creator';
 import { Interpreter } from '../../../../../background/interpreter';
 import { TelemetryEventHandler } from '../../../../../background/telemetry/telemetry-event-handler';
 import { Action } from '../../../../../common/flux/action';
 import { Messages } from '../../../../../common/messages';
 import * as TelemetryEvents from '../../../../../common/telemetry-events';
-import { UserConfigurationStoreData } from '../../../../../common/types/store-data/user-configuration-store';
 import { LaunchPanelType } from '../../../../../popup/components/popup-view';
 import { DictionaryStringTo } from '../../../../../types/common-types';
-import { GlobalActionCreator } from '../../../../../background/global-action-creators/global-action-creator';
 
 describe('GlobalActionCreatorTest', () => {
     test('onGetCommands', () => {
@@ -200,122 +193,6 @@ describe('GlobalActionCreatorTest', () => {
 
         validator.verifyAll();
     });
-
-    test('registerCallback for on UserConfig.GetCurrentState', () => {
-        const validator = new GlobalActionCreatorValidator()
-            .setupRegistrationCallback(Messages.UserConfig.GetCurrentState)
-            .setupActionsOnUserConfig('getCurrentState')
-            .setupUserConfigActionWithInvokeParameter('getCurrentState', null);
-
-        const actionCreator = validator.buildActionCreator();
-        actionCreator.registerCallbacks();
-
-        validator.verifyAll();
-    });
-
-    test('registerCallback for on UserConfig.SetTelemetryConfig', () => {
-        const payload: SetTelemetryStatePayload = {
-            enableTelemetry: true,
-        };
-        const args = [payload];
-        const validator = new GlobalActionCreatorValidator()
-            .setupRegistrationCallback(Messages.UserConfig.SetTelemetryConfig, args)
-            .setupActionsOnUserConfig('setTelemetryState')
-            .setupUserConfigActionWithInvokeParameter('setTelemetryState', payload);
-
-        const actionCreator = validator.buildActionCreator();
-        actionCreator.registerCallbacks();
-
-        validator.verifyAll();
-    });
-
-    test('registerCallback for on UserConfig.SetHighContrastConfig', () => {
-        const payload: SetHighContrastModePayload = {
-            enableHighContrast: true,
-        };
-        const args = [payload];
-        const validator = new GlobalActionCreatorValidator()
-            .setupRegistrationCallback(Messages.UserConfig.SetHighContrastConfig, args)
-            .setupActionsOnUserConfig('setHighContrastMode')
-            .setupUserConfigActionWithInvokeParameter('setHighContrastMode', payload);
-
-        const actionCreator = validator.buildActionCreator();
-        actionCreator.registerCallbacks();
-
-        validator.verifyAll();
-    });
-
-    test('registerCallback for on UserConfig.SetIssueFilingService', () => {
-        const payload: SetIssueFilingServicePayload = {
-            issueFilingServiceName: 'none',
-        };
-        const args = [payload];
-        const validator = new GlobalActionCreatorValidator()
-            .setupRegistrationCallback(Messages.UserConfig.SetIssueFilingService, args)
-            .setupActionsOnUserConfig('setIssueFilingService')
-            .setupUserConfigActionWithInvokeParameter('setIssueFilingService', payload);
-
-        const actionCreator = validator.buildActionCreator();
-        actionCreator.registerCallbacks();
-
-        validator.verifyAll();
-    });
-
-    test('registerCallback for on UserConfig.SetIssueFilingServiceProperty', () => {
-        const payload: SetIssueFilingServicePropertyPayload = {
-            issueFilingServiceName: 'bug-service-name',
-            propertyName: 'property-name',
-            propertyValue: 'property-value',
-        };
-        const args = [payload];
-        const validator = new GlobalActionCreatorValidator()
-            .setupRegistrationCallback(Messages.UserConfig.SetIssueFilingServiceProperty, args)
-            .setupActionsOnUserConfig('setIssueFilingServiceProperty')
-            .setupUserConfigActionWithInvokeParameter('setIssueFilingServiceProperty', payload);
-
-        const actionCreator = validator.buildActionCreator();
-        actionCreator.registerCallbacks();
-
-        validator.verifyAll();
-    });
-
-    test('registerCallback for on UserConfig.SetIssueTrackerPath', () => {
-        const payload: UserConfigurationStoreData = {
-            enableTelemetry: true,
-            isFirstTime: false,
-            enableHighContrast: true,
-            issueTrackerPath: 'example/example',
-            bugService: 'none',
-            bugServicePropertiesMap: {},
-        };
-        const args = [payload];
-        const validator = new GlobalActionCreatorValidator()
-            .setupRegistrationCallback(Messages.UserConfig.SetIssueTrackerPath, args)
-            .setupActionsOnUserConfig('setIssueTrackerPath')
-            .setupUserConfigActionWithInvokeParameter('setIssueTrackerPath', payload);
-
-        const actionCreator = validator.buildActionCreator();
-        actionCreator.registerCallbacks();
-
-        validator.verifyAll();
-    });
-
-    test('registerCallback for on UserConfig.SaveIssueFilingSettings', () => {
-        const payload: SaveIssueFilingSettingsPayload = {
-            issueFilingServiceName: 'test bug service',
-            issueFilingSettings: { name: 'issueFilingSettings' },
-        };
-        const args = [payload];
-        const validator = new GlobalActionCreatorValidator()
-            .setupRegistrationCallback(Messages.UserConfig.SaveIssueFilingSettings, args)
-            .setupActionsOnUserConfig('saveIssueFilingSettings')
-            .setupUserConfigActionWithInvokeParameter('saveIssueFilingSettings', payload);
-
-        const actionCreator = validator.buildActionCreator();
-        actionCreator.registerCallbacks();
-
-        validator.verifyAll();
-    });
 });
 
 class GlobalActionCreatorValidator {
@@ -324,7 +201,6 @@ class GlobalActionCreatorValidator {
     private featureFlagActionsMockMap: DictionaryStringTo<IMock<Action<any>>> = {};
     private launchPanelActionsMockMap: DictionaryStringTo<IMock<Action<any>>> = {};
     private scopingActionsMockMap: DictionaryStringTo<IMock<Action<any>>> = {};
-    private userConfigMockMap: DictionaryStringTo<IMock<Action<any>>> = {};
 
     private commandActionsContainerMock = Mock.ofType(CommandActions);
     private featureFlagActionsContainerMock = Mock.ofType(FeatureFlagActions);
@@ -363,10 +239,6 @@ class GlobalActionCreatorValidator {
         return this.setupAction(actionName, this.scopingActionsContainerMock, this.scopingActionsMockMap);
     }
 
-    public setupActionsOnUserConfig(actionName: keyof UserConfigurationActions): GlobalActionCreatorValidator {
-        return this.setupAction(actionName, this.userConfigActionsContainerMock, this.userConfigMockMap);
-    }
-
     public setupGetCommandsFromBrowser(commands: chrome.commands.Command[]): GlobalActionCreatorValidator {
         this.browserAdapterMock
             .setup(x => x.getCommands(It.isAny()))
@@ -397,13 +269,6 @@ class GlobalActionCreatorValidator {
 
     public setupScopingActionWithInvokeParameter(actionName: keyof ScopingActions, expectedInvokeParam: any): GlobalActionCreatorValidator {
         return this.setupActionWithInvokeParameter(actionName, expectedInvokeParam, this.scopingActionsMockMap);
-    }
-
-    public setupUserConfigActionWithInvokeParameter(
-        actionName: keyof UserConfigurationActions,
-        expectedInvokeParam: any,
-    ): GlobalActionCreatorValidator {
-        return this.setupActionWithInvokeParameter(actionName, expectedInvokeParam, this.userConfigMockMap);
     }
 
     private setupActionWithInvokeParameter(
@@ -490,7 +355,6 @@ class GlobalActionCreatorValidator {
         this.verifyAllActions(this.featureFlagActionsMockMap);
         this.verifyAllActions(this.launchPanelActionsMockMap);
         this.verifyAllActions(this.scopingActionsMockMap);
-        this.verifyAllActions(this.userConfigMockMap);
     }
 
     private verifyAllActions(actionsMap: DictionaryStringTo<IMock<Action<any>>>): void {

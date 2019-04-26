@@ -4,22 +4,12 @@ import { autobind } from '@uifabric/utilities';
 
 import { Messages } from '../../common/messages';
 import * as TelemetryEvents from '../../common/telemetry-events';
-import {
-    PayloadWithEventName,
-    SaveIssueFilingSettingsPayload,
-    SetHighContrastModePayload,
-    SetIssueFilingServicePayload,
-    SetIssueFilingServicePropertyPayload,
-    SetIssueTrackerPathPayload,
-    SetLaunchPanelState,
-    SetTelemetryStatePayload,
-} from '../actions/action-payloads';
+import { PayloadWithEventName, SetLaunchPanelState } from '../actions/action-payloads';
 import { CommandActions, GetCommandsPayload } from '../actions/command-actions';
 import { FeatureFlagActions } from '../actions/feature-flag-actions';
 import { GlobalActionHub } from '../actions/global-action-hub';
 import { LaunchPanelStateActions } from '../actions/launch-panel-state-action';
 import { ScopingActions } from '../actions/scoping-actions';
-import { UserConfigurationActions } from '../actions/user-configuration-actions';
 import { BrowserAdapter } from '../browser-adapter';
 import { Interpreter } from '../interpreter';
 import { TelemetryEventHandler } from '../telemetry/telemetry-event-handler';
@@ -33,7 +23,6 @@ export class GlobalActionCreator {
     private featureFlagActions: FeatureFlagActions;
     private launchPanelStateActions: LaunchPanelStateActions;
     private scopingActions: ScopingActions;
-    private userConfigActions: UserConfigurationActions;
 
     constructor(
         globalActionHub: GlobalActionHub,
@@ -48,7 +37,6 @@ export class GlobalActionCreator {
         this.featureFlagActions = globalActionHub.featureFlagActions;
         this.launchPanelStateActions = globalActionHub.launchPanelStateActions;
         this.scopingActions = globalActionHub.scopingActions;
-        this.userConfigActions = globalActionHub.userConfigurationActions;
     }
 
     public registerCallbacks(): void {
@@ -65,17 +53,6 @@ export class GlobalActionCreator {
         this.interpreter.registerTypeToPayloadCallback(Messages.Scoping.DeleteSelector, this.onDeleteSelector);
 
         this.interpreter.registerTypeToPayloadCallback(Messages.Telemetry.Send, this.onSendTelemetry);
-
-        this.interpreter.registerTypeToPayloadCallback(Messages.UserConfig.GetCurrentState, this.onGetUserConfigState);
-        this.interpreter.registerTypeToPayloadCallback(Messages.UserConfig.SetTelemetryConfig, this.onSetTelemetryConfiguration);
-        this.interpreter.registerTypeToPayloadCallback(Messages.UserConfig.SetHighContrastConfig, this.onSetHighContrastMode);
-        this.interpreter.registerTypeToPayloadCallback(Messages.UserConfig.SetIssueFilingService, this.onSetIssueFilingService);
-        this.interpreter.registerTypeToPayloadCallback(
-            Messages.UserConfig.SetIssueFilingServiceProperty,
-            this.onSetIssueFilingServiceProperty,
-        );
-        this.interpreter.registerTypeToPayloadCallback(Messages.UserConfig.SetIssueTrackerPath, this.onSetIssueTrackerPath);
-        this.interpreter.registerTypeToPayloadCallback(Messages.UserConfig.SaveIssueFilingSettings, this.onSaveIssueFilingSettings);
     }
 
     @autobind
@@ -134,40 +111,5 @@ export class GlobalActionCreator {
     private onSendTelemetry(payload: PayloadWithEventName): void {
         const eventName = payload.eventName;
         this.telemetryEventHandler.publishTelemetry(eventName, payload);
-    }
-
-    @autobind
-    private onGetUserConfigState(): void {
-        this.userConfigActions.getCurrentState.invoke(null);
-    }
-
-    @autobind
-    private onSetTelemetryConfiguration(payload: SetTelemetryStatePayload): void {
-        this.userConfigActions.setTelemetryState.invoke(payload);
-    }
-
-    @autobind
-    private onSetHighContrastMode(payload: SetHighContrastModePayload): void {
-        this.userConfigActions.setHighContrastMode.invoke(payload);
-    }
-
-    @autobind
-    private onSetIssueFilingService(payload: SetIssueFilingServicePayload): void {
-        this.userConfigActions.setIssueFilingService.invoke(payload);
-    }
-
-    @autobind
-    private onSetIssueFilingServiceProperty(payload: SetIssueFilingServicePropertyPayload): void {
-        this.userConfigActions.setIssueFilingServiceProperty.invoke(payload);
-    }
-
-    @autobind
-    private onSetIssueTrackerPath(payload: SetIssueTrackerPathPayload): void {
-        this.userConfigActions.setIssueTrackerPath.invoke(payload);
-    }
-
-    @autobind
-    private onSaveIssueFilingSettings(payload: SaveIssueFilingSettingsPayload): void {
-        this.userConfigActions.saveIssueFilingSettings.invoke(payload);
     }
 }
