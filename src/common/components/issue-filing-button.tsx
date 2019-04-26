@@ -11,10 +11,7 @@ import { EnvironmentInfo, EnvironmentInfoProvider } from '../environment-info-pr
 import { LadyBugSolidIcon } from '../icons/lady-bug-solid-icon';
 import { IssueFilingActionMessageCreator } from '../message-creators/issue-filing-action-message-creator';
 import { CreateIssueDetailsTextData } from '../types/create-issue-details-text-data';
-import {
-    IssueFilingNeedsSettingsContentProps,
-    IssueFilingNeedsSettingsContentRenderer,
-} from '../types/issue-filing-needs-setting-content';
+import { IssueFilingNeedsSettingsContentProps, IssueFilingNeedsSettingsContentRenderer } from '../types/issue-filing-needs-setting-content';
 import { IssueFilingServiceProperties, UserConfigurationStoreData } from '../types/store-data/user-configuration-store';
 
 export type IssueFilingButtonDeps = {
