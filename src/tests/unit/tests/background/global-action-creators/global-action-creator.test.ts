@@ -12,7 +12,6 @@ import {
 import { AssessmentActions } from '../../../../../background/actions/assessment-actions';
 import { CommandActions } from '../../../../../background/actions/command-actions';
 import { FeatureFlagActions, FeatureFlagPayload } from '../../../../../background/actions/feature-flag-actions';
-import { GlobalActionCreator } from '../../../../../background/actions/global-action-creator';
 import { GlobalActionHub } from '../../../../../background/actions/global-action-hub';
 import { LaunchPanelStateActions } from '../../../../../background/actions/launch-panel-state-action';
 import { ScopingActions, ScopingPayload } from '../../../../../background/actions/scoping-actions';
@@ -26,6 +25,7 @@ import * as TelemetryEvents from '../../../../../common/telemetry-events';
 import { UserConfigurationStoreData } from '../../../../../common/types/store-data/user-configuration-store';
 import { LaunchPanelType } from '../../../../../popup/components/popup-view';
 import { DictionaryStringTo } from '../../../../../types/common-types';
+import { GlobalActionCreator } from '../../../../../background/global-action-creators/global-action-creator';
 
 describe('GlobalActionCreatorTest', () => {
     test('onGetCommands', () => {

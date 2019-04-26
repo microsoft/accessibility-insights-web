@@ -4,9 +4,6 @@ import { autobind } from '@uifabric/utilities';
 
 import { Messages } from '../../common/messages';
 import * as TelemetryEvents from '../../common/telemetry-events';
-import { BrowserAdapter } from '../browser-adapter';
-import { Interpreter } from '../interpreter';
-import { TelemetryEventHandler } from '../telemetry/telemetry-event-handler';
 import {
     PayloadWithEventName,
     SaveIssueFilingSettingsPayload,
@@ -16,13 +13,16 @@ import {
     SetIssueTrackerPathPayload,
     SetLaunchPanelState,
     SetTelemetryStatePayload,
-} from './action-payloads';
-import { CommandActions, GetCommandsPayload } from './command-actions';
-import { FeatureFlagActions } from './feature-flag-actions';
-import { GlobalActionHub } from './global-action-hub';
-import { LaunchPanelStateActions } from './launch-panel-state-action';
-import { ScopingActions } from './scoping-actions';
-import { UserConfigurationActions } from './user-configuration-actions';
+} from '../actions/action-payloads';
+import { CommandActions, GetCommandsPayload } from '../actions/command-actions';
+import { FeatureFlagActions } from '../actions/feature-flag-actions';
+import { GlobalActionHub } from '../actions/global-action-hub';
+import { LaunchPanelStateActions } from '../actions/launch-panel-state-action';
+import { ScopingActions } from '../actions/scoping-actions';
+import { UserConfigurationActions } from '../actions/user-configuration-actions';
+import { BrowserAdapter } from '../browser-adapter';
+import { Interpreter } from '../interpreter';
+import { TelemetryEventHandler } from '../telemetry/telemetry-event-handler';
 
 export class GlobalActionCreator {
     private interpreter: Interpreter;

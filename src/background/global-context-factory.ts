@@ -5,7 +5,7 @@ import { StateDispatcher } from '../common/state-dispatcher';
 import { TelemetryDataFactory } from '../common/telemetry-data-factory';
 import { AssessmentsProvider } from './../assessments/types/assessments-provider';
 import { AssessmentActionCreator } from './actions/assessment-action-creator';
-import { GlobalActionCreator } from './actions/global-action-creator';
+import { GlobalActionCreator } from './global-action-creators/global-action-creator';
 import { GlobalActionHub } from './actions/global-action-hub';
 import { BrowserAdapter } from './browser-adapter';
 import { CompletedTestStepTelemetryCreator } from './completed-test-step-telemetry-creator';
