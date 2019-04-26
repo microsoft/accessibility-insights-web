@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { BugFilingServiceProviderImpl } from '../../../../bug-filing/bug-filing-service-provider-impl';
 import { uniq } from 'lodash';
+import { BugFilingServiceProviderImpl } from '../../../../bug-filing/bug-filing-service-provider-impl';
 
 describe('Name of the group', () => {
     it('holds unique key services', () => {
