@@ -256,7 +256,8 @@ export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDi
     }
 
     private renderSectionTitle(sectionTitle: string, className?: string): JSX.Element {
-        return <h3 className={`insights-dialog-section-title ${className}`}>{sectionTitle}</h3>;
+        const allClassNames = ['insights-dialog-section-title', className].filter(t => t != null);
+        return <h3 className={allClassNames.join(' ')}>{sectionTitle}</h3>;
     }
 
     private renderRuleName(rule: DecoratedAxeNodeResult): JSX.Element {
