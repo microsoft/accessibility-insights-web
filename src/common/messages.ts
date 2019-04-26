@@ -100,8 +100,8 @@ export class Messages {
         GetCurrentState: 'insights/userConfig/getCurrentState',
         SetTelemetryConfig: 'insights/userConfig/setTelemetryConfig',
         SetHighContrastConfig: 'insights/userConfig/setHighContrastConfig',
-        SetIssueService: 'insights/userConfig/setIssueService',
-        SetIssueServiceProperty: 'insights/userConfig/setIssueServiceProperty',
+        SetIssueFilingService: 'insights/userConfig/setIssueFilingService',
+        SetIssueFilingServiceProperty: 'insights/userConfig/setIssueFilingServiceProperty',
         SetIssueTrackerPath: 'insights/userConfig/issueTrackerPath',
         SaveIssueFilingSettings: 'insights/userConfig/saveIssueFilingSettings',
     };

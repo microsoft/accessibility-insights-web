@@ -18,7 +18,7 @@ import { IndexedDBAPI } from '../../../../../../common/indexedDB/indexedDB';
 import { StoreNames } from '../../../../../../common/stores/store-names';
 import {
     IssueFilingServiceProperties,
-    IssueServicePropertiesMap,
+    IssueFilingServicePropertiesMap,
     UserConfigurationStoreData,
 } from '../../../../../../common/types/store-data/user-configuration-store';
 import { StoreTester } from '../../../../common/store-tester';
@@ -206,32 +206,37 @@ describe('UserConfigurationStoreTest', () => {
             .testListenerToBeCalledOnce(cloneDeep(initialStoreData), expectedState);
     });
 
-    test.each(['none', 'userConfigurationStoreTestIssueService'])('setIssueService action: %s', (testIssueService: string) => {
-        const storeTester = createStoreToTestAction('setIssueFilingService');
-        initialStoreData = {
-            isFirstTime: false,
-            enableTelemetry: false,
-            enableHighContrast: false,
-            bugService: 'none',
-            bugServicePropertiesMap: {},
-        };
+    test.each(['none', 'userConfigurationStoreTestIssueFilingService'])(
+        'setIssueFilingService action: %s',
+        (testIssueFilingService: string) => {
+            const storeTester = createStoreToTestAction('setIssueFilingService');
+            initialStoreData = {
+                isFirstTime: false,
+                enableTelemetry: false,
+                enableHighContrast: false,
+                bugService: 'none',
+                bugServicePropertiesMap: {},
+            };
 
-        const setIssueServiceData: SetIssueFilingServicePayload = {
-            issueFilingServiceName: testIssueService,
-        };
+            const setIssueFilingServiceData: SetIssueFilingServicePayload = {
+                issueFilingServiceName: testIssueFilingService,
+            };
 
-        const expectedState: UserConfigurationStoreData = {
-            ...initialStoreData,
-            bugService: testIssueService,
-        };
+            const expectedState: UserConfigurationStoreData = {
+                ...initialStoreData,
+                bugService: testIssueFilingService,
+            };
 
-        indexDbStrictMock.setup(i => i.setItem(IndexedDBDataKeys.userConfiguration, It.isValue(expectedState))).verifiable(Times.once());
+            indexDbStrictMock
+                .setup(i => i.setItem(IndexedDBDataKeys.userConfiguration, It.isValue(expectedState)))
+                .verifiable(Times.once());
 
-        storeTester
-            .withActionParam(setIssueServiceData)
-            .withPostListenerMock(indexDbStrictMock)
-            .testListenerToBeCalledOnce(cloneDeep(initialStoreData), expectedState);
-    });
+            storeTester
+                .withActionParam(setIssueFilingServiceData)
+                .withPostListenerMock(indexDbStrictMock)
+                .testListenerToBeCalledOnce(cloneDeep(initialStoreData), expectedState);
+        },
+    );
 
     test.each([
         { enableTelemetry: false, isFirstTime: false, enableHighContrastMode: false } as SetUserConfigTestCase,
@@ -270,7 +275,7 @@ describe('UserConfigurationStoreTest', () => {
 
     test.each([undefined, null, {}, { 'test-service': {} }, { 'test-service': { 'test-name': 'test-value' } }])(
         'setIssueFilingServiceProperty with initial map state %o',
-        (initialMapState: IssueServicePropertiesMap) => {
+        (initialMapState: IssueFilingServicePropertiesMap) => {
             const storeTester = createStoreToTestAction('setIssueFilingServiceProperty');
             initialStoreData = {
                 isFirstTime: false,
@@ -280,7 +285,7 @@ describe('UserConfigurationStoreTest', () => {
                 bugServicePropertiesMap: initialMapState,
             };
 
-            const setIssueServicePropertyData: SetIssueFilingServicePropertyPayload = {
+            const setIssueFilingServicePropertyData: SetIssueFilingServicePropertyPayload = {
                 issueFilingServiceName: 'test-service',
                 propertyName: 'test-name',
                 propertyValue: 'test-value',
@@ -296,7 +301,7 @@ describe('UserConfigurationStoreTest', () => {
                 .verifiable(Times.once());
 
             storeTester
-                .withActionParam(setIssueServicePropertyData)
+                .withActionParam(setIssueFilingServicePropertyData)
                 .withPostListenerMock(indexDbStrictMock)
                 .testListenerToBeCalledOnce(cloneDeep(initialStoreData), expectedState);
         },

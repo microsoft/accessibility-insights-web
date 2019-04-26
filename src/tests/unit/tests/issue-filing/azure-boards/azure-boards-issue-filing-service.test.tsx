@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IssueServicePropertiesMap } from '../../../../../common/types/store-data/user-configuration-store';
+import { IssueFilingServicePropertiesMap } from '../../../../../common/types/store-data/user-configuration-store';
 import {
     AzureBoardsIssueDetailField,
     AzureBoardsIssueFilingService,
@@ -42,7 +42,7 @@ describe('AzureBoardsIssueFilingServiceTest', () => {
             projectURL: projectUrlStub,
             issueDetailsField: issueDetailsLocationStub,
         };
-        const givenData: IssueServicePropertiesMap = {
+        const givenData: IssueFilingServicePropertiesMap = {
             'some other service': {},
             [AzureBoardsIssueFilingService.key]: expectedStoreData,
         };

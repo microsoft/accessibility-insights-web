@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IssueServicePropertiesMap } from '../../common/types/store-data/user-configuration-store';
+import { IssueFilingServicePropertiesMap } from '../../common/types/store-data/user-configuration-store';
 import { EnvironmentInfo } from './../../common/environment-info-provider';
 import { ReactSFCWithDisplayName } from './../../common/react/named-sfc';
 import { CreateIssueDetailsTextData } from './../../common/types/create-issue-details-text-data';
@@ -19,6 +19,6 @@ export interface IssueFilingService<Settings = {}> {
     settingsForm: ReactSFCWithDisplayName<SettingsFormProps<Settings>>;
     buildStoreData: (...params: any[]) => Settings;
     isSettingsValid: (data: Settings) => boolean;
-    getSettingsFromStoreData: (data: IssueServicePropertiesMap) => Settings;
+    getSettingsFromStoreData: (data: IssueFilingServicePropertiesMap) => Settings;
     issueFilingUrlProvider: IssueFilingUrlProvider<Settings>;
 }

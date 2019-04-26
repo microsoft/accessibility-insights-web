@@ -22,11 +22,11 @@ describe('IssueFilingButtonTest', () => {
     let issueFilingServiceProviderMock: IMock<IssueFilingServiceProvider>;
     let bugActionMessageCreatorMock: IMock<BugActionMessageCreator>;
     let userConfigurationStoreData: UserConfigurationStoreData;
-    let testIssueService: IssueFilingService;
+    let testIssueFilingService: IssueFilingService;
     let needsSettingsContentRenderer: IssueFilingNeedsSettingsContentRenderer;
 
     beforeEach(() => {
-        testIssueService = {
+        testIssueFilingService = {
             key: testKey,
             displayName: 'TEST',
             settingsForm: NamedSFC('testForm', props => <>Hello World</>),
@@ -58,13 +58,13 @@ describe('IssueFilingButtonTest', () => {
             .verifiable();
         issueFilingServiceProviderMock
             .setup(bp => bp.forKey(testKey))
-            .returns(() => testIssueService)
+            .returns(() => testIssueFilingService)
             .verifiable();
         needsSettingsContentRenderer = NamedSFC('testRenderer', () => <>needs settings</>);
     });
 
     test.each([true, false])('render: isSettingsValid: %s', isSettingsValid => {
-        testIssueService.isSettingsValid = () => isSettingsValid;
+        testIssueFilingService.isSettingsValid = () => isSettingsValid;
         const props: IssueFilingButtonProps = {
             deps: {
                 bugActionMessageCreator: bugActionMessageCreatorMock.object,
@@ -114,7 +114,7 @@ describe('IssueFilingButtonTest', () => {
     });
 
     test('onclick: invalid settings, %s', () => {
-        testIssueService.isSettingsValid = () => false;
+        testIssueFilingService.isSettingsValid = () => false;
         bugActionMessageCreatorMock
             .setup(messageCreator => messageCreator.trackFileIssueClick(eventStub as any, testKey as any))
             .verifiable(Times.never());

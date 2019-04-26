@@ -7,7 +7,7 @@ import { Mock, Times } from 'typemoq';
 
 import { UserConfigMessageCreator } from '../../../../../../../../common/message-creators/user-config-message-creator';
 import {
-    IssueServicePropertiesMap,
+    IssueFilingServicePropertiesMap,
     UserConfigurationStoreData,
 } from '../../../../../../../../common/types/store-data/user-configuration-store';
 import { GitHubIssueSettingsUx } from '../../../../../../../../DetailsView/components/settings-panel/settings/issue-filing/github-issue-settings-ux';
@@ -15,7 +15,7 @@ import { SettingsDeps, SettingsProps } from '../../../../../../../../DetailsView
 
 type RenderTestCase = {
     bugService: string;
-    bugServicePropertiesMap: IssueServicePropertiesMap;
+    bugServicePropertiesMap: IssueFilingServicePropertiesMap;
 };
 describe('GitHubIssueSettingsUx', () => {
     let userData: UserConfigurationStoreData;

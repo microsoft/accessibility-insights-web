@@ -23,7 +23,7 @@ export const IssueFilingSettings = NamedSFC<SettingsProps>('IssueFilingSettings'
                 selectedIssueFilingService={selectedIssueFilingService}
                 selectedIssueFilingServiceData={selectedIssueFilingServiceData}
                 onPropertyUpdateCallback={userConfigMessageCreator.setIssueFilingServiceProperty}
-                onSelectedServiceChange={userConfigMessageCreator.setIssueService}
+                onSelectedServiceChange={userConfigMessageCreator.setIssueFilingService}
             />
         );
     };

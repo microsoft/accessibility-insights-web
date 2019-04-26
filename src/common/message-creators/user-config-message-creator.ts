@@ -37,13 +37,13 @@ export class UserConfigMessageCreator extends BaseActionMessageCreator {
         });
     }
 
-    public setIssueService = (issueFilingServiceName: string) => {
+    public setIssueFilingService = (issueFilingServiceName: string) => {
         const payload: SetIssueFilingServicePayload = {
             issueFilingServiceName,
         };
 
         this.dispatchMessage({
-            messageType: Messages.UserConfig.SetIssueService,
+            messageType: Messages.UserConfig.SetIssueFilingService,
             tabId: this._tabId,
             payload,
         });
@@ -57,7 +57,7 @@ export class UserConfigMessageCreator extends BaseActionMessageCreator {
         };
 
         this.dispatchMessage({
-            messageType: Messages.UserConfig.SetIssueServiceProperty,
+            messageType: Messages.UserConfig.SetIssueFilingServiceProperty,
             tabId: this._tabId,
             payload,
         });

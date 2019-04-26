@@ -7,7 +7,7 @@ import * as React from 'react';
 import { EnvironmentInfoProvider } from '../../common/environment-info-provider';
 import { UserConfigMessageCreator } from '../../common/message-creators/user-config-message-creator';
 import { CreateIssueDetailsTextData } from '../../common/types/create-issue-details-text-data';
-import { IssueServicePropertiesMap } from '../../common/types/store-data/user-configuration-store';
+import { IssueFilingServicePropertiesMap } from '../../common/types/store-data/user-configuration-store';
 import {
     IssueFilingSettingsContainer,
     IssueFilingSettingsContainerDeps,
@@ -24,7 +24,7 @@ export interface IssueFilingDialogProps {
     selectedIssueFilingService: IssueFilingService;
     selectedIssueData: CreateIssueDetailsTextData;
     fileIssueTelemetryCallback: (ev: React.SyntheticEvent) => void;
-    issueServicePropertiesMap: IssueServicePropertiesMap;
+    issueFilingServicePropertiesMap: IssueFilingServicePropertiesMap;
     onClose: (ev: React.SyntheticEvent) => void;
 }
 
@@ -38,7 +38,7 @@ const titleLabel = 'Specify issue filing location';
 
 export interface IssueFilingDialogState {
     selectedIssueFilingService: IssueFilingService;
-    issueServicePropertiesMap: IssueServicePropertiesMap;
+    issueFilingServicePropertiesMap: IssueFilingServicePropertiesMap;
 }
 
 export class IssueFilingDialog extends React.Component<IssueFilingDialogProps, IssueFilingDialogState> {
@@ -49,7 +49,7 @@ export class IssueFilingDialog extends React.Component<IssueFilingDialogProps, I
 
     private getState(props: IssueFilingDialogProps): IssueFilingDialogState {
         return {
-            issueServicePropertiesMap: cloneDeep(props.issueServicePropertiesMap),
+            issueFilingServicePropertiesMap: cloneDeep(props.issueFilingServicePropertiesMap),
             selectedIssueFilingService: props.selectedIssueFilingService,
         };
     }
@@ -58,7 +58,7 @@ export class IssueFilingDialog extends React.Component<IssueFilingDialogProps, I
         const { selectedIssueData, onClose, isOpen, deps } = this.props;
         const { selectedIssueFilingService } = this.state;
         const selectedIssueFilingServiceData = this.state.selectedIssueFilingService.getSettingsFromStoreData(
-            this.state.issueServicePropertiesMap,
+            this.state.issueFilingServicePropertiesMap,
         );
         const environmentInfo = deps.environmentInfoProvider.getEnvironmentInfo();
         const isSettingsValid = selectedIssueFilingService.isSettingsValid(selectedIssueFilingServiceData);
@@ -104,7 +104,7 @@ export class IssueFilingDialog extends React.Component<IssueFilingDialogProps, I
     }
 
     private onPrimaryButtonClick = (ev: React.SyntheticEvent<Element, Event>) => {
-        const newData = this.state.selectedIssueFilingService.getSettingsFromStoreData(this.state.issueServicePropertiesMap);
+        const newData = this.state.selectedIssueFilingService.getSettingsFromStoreData(this.state.issueFilingServicePropertiesMap);
         const service = this.state.selectedIssueFilingService.key;
         this.props.deps.userConfigMessageCreator.saveIssueFilingSettings(service, newData);
         this.props.fileIssueTelemetryCallback(ev);
@@ -119,14 +119,14 @@ export class IssueFilingDialog extends React.Component<IssueFilingDialogProps, I
 
     private onPropertyUpdateCallback: OnPropertyUpdateCallback = (service, propertyName, propertyValue) => {
         const selectedServiceData =
-            this.state.selectedIssueFilingService.getSettingsFromStoreData(this.state.issueServicePropertiesMap) || {};
+            this.state.selectedIssueFilingService.getSettingsFromStoreData(this.state.issueFilingServicePropertiesMap) || {};
         selectedServiceData[propertyName] = propertyValue;
-        const newIssueServicePropertiesMap = {
-            ...this.state.issueServicePropertiesMap,
+        const newIssueFilingServicePropertiesMap = {
+            ...this.state.issueFilingServicePropertiesMap,
             [service]: selectedServiceData,
         };
         this.setState(() => ({
-            issueServicePropertiesMap: newIssueServicePropertiesMap,
+            issueFilingServicePropertiesMap: newIssueFilingServicePropertiesMap,
         }));
     };
 

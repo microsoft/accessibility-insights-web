@@ -85,25 +85,25 @@ describe('UserConfigMessageCreator', () => {
         postMessageMock.verifyAll();
     });
 
-    test('setIssueService', () => {
+    test('setIssueFilingService', () => {
         const issueFilingServiceName = 'UserConfigMessageCreatorTest bug service name';
         const payload: SetIssueFilingServicePayload = {
             issueFilingServiceName,
         };
         const expectedMessage = {
             tabId: 1,
-            messageType: Messages.UserConfig.SetIssueService,
+            messageType: Messages.UserConfig.SetIssueFilingService,
             payload,
         };
 
         postMessageMock.setup(pm => pm(It.isValue(expectedMessage))).verifiable(Times.once());
 
-        testSubject.setIssueService(issueFilingServiceName);
+        testSubject.setIssueFilingService(issueFilingServiceName);
 
         postMessageMock.verifyAll();
     });
 
-    test('setIssueServiceProperty', () => {
+    test('setIssueFilingServiceProperty', () => {
         const payload: SetIssueFilingServicePropertyPayload = {
             issueFilingServiceName: 'bug-service-name',
             propertyName: 'property-name',
@@ -111,7 +111,7 @@ describe('UserConfigMessageCreator', () => {
         };
         const expectedMessage = {
             tabId: 1,
-            messageType: Messages.UserConfig.SetIssueServiceProperty,
+            messageType: Messages.UserConfig.SetIssueFilingServiceProperty,
             payload,
         };
 

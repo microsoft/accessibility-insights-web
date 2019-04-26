@@ -62,7 +62,7 @@ export class IssueFilingButton extends React.Component<IssueFilingButtonProps, I
             selectedIssueFilingServiceData,
             onClose: this.closeNeedsSettingsContent,
             fileIssueTelemetryCallback: this.trackFileIssueClick,
-            issueServicePropertiesMap: userConfigurationStoreData.bugServicePropertiesMap,
+            issueFilingServicePropertiesMap: userConfigurationStoreData.bugServicePropertiesMap,
         };
         const NeedsSettingsContent = this.props.needsSettingsContentRenderer;
 

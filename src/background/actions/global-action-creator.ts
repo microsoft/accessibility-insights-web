@@ -69,8 +69,8 @@ export class GlobalActionCreator {
         this.interpreter.registerTypeToPayloadCallback(Messages.UserConfig.GetCurrentState, this.onGetUserConfigState);
         this.interpreter.registerTypeToPayloadCallback(Messages.UserConfig.SetTelemetryConfig, this.onSetTelemetryConfiguration);
         this.interpreter.registerTypeToPayloadCallback(Messages.UserConfig.SetHighContrastConfig, this.onSetHighContrastMode);
-        this.interpreter.registerTypeToPayloadCallback(Messages.UserConfig.SetIssueService, this.onSetIssueService);
-        this.interpreter.registerTypeToPayloadCallback(Messages.UserConfig.SetIssueServiceProperty, this.onSetIssueServiceProperty);
+        this.interpreter.registerTypeToPayloadCallback(Messages.UserConfig.SetIssueFilingService, this.onSetIssueFilingService);
+        this.interpreter.registerTypeToPayloadCallback(Messages.UserConfig.SetIssueFilingServiceProperty, this.onSetIssueFilingServiceProperty);
         this.interpreter.registerTypeToPayloadCallback(Messages.UserConfig.SetIssueTrackerPath, this.onSetIssueTrackerPath);
         this.interpreter.registerTypeToPayloadCallback(Messages.UserConfig.SaveIssueFilingSettings, this.onSaveIssueFilingSettings);
     }
@@ -149,12 +149,12 @@ export class GlobalActionCreator {
     }
 
     @autobind
-    private onSetIssueService(payload: SetIssueFilingServicePayload): void {
+    private onSetIssueFilingService(payload: SetIssueFilingServicePayload): void {
         this.userConfigActions.setIssueFilingService.invoke(payload);
     }
 
     @autobind
-    private onSetIssueServiceProperty(payload: SetIssueFilingServicePropertyPayload): void {
+    private onSetIssueFilingServiceProperty(payload: SetIssueFilingServicePropertyPayload): void {
         this.userConfigActions.setIssueFilingServiceProperty.invoke(payload);
     }
 

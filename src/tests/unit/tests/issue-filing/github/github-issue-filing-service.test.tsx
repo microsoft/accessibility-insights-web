@@ -5,7 +5,7 @@ import { TextField } from 'office-ui-fabric-react/lib/TextField';
 import * as React from 'react';
 import { IMock, Mock, Times } from 'typemoq';
 
-import { IssueServicePropertiesMap } from '../../../../../common/types/store-data/user-configuration-store';
+import { IssueFilingServicePropertiesMap } from '../../../../../common/types/store-data/user-configuration-store';
 import { SettingsDeps } from '../../../../../DetailsView/components/settings-panel/settings/settings-props';
 import { OnPropertyUpdateCallback } from '../../../../../issue-filing/components/issue-filing-settings-container';
 import { gitHubIssueFilingUrlProvider } from '../../../../../issue-filing/github/create-github-issue-filing-url';
@@ -49,7 +49,7 @@ describe('GithubIssueFilingServiceTest', () => {
         const expectedStoreData: GitHubIssueFilingSettings = {
             repository: 'some url',
         };
-        const givenData: IssueServicePropertiesMap = {
+        const givenData: IssueFilingServicePropertiesMap = {
             'some other service': {},
             [GitHubIssueFilingService.key]: expectedStoreData,
         };

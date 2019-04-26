@@ -245,13 +245,13 @@ describe('GlobalActionCreatorTest', () => {
         validator.verifyAll();
     });
 
-    test('registerCallback for on UserConfig.SetIssueService', () => {
+    test('registerCallback for on UserConfig.SetIssueFilingService', () => {
         const payload: SetIssueFilingServicePayload = {
             issueFilingServiceName: 'none',
         };
         const args = [payload];
         const validator = new GlobalActionCreatorValidator()
-            .setupRegistrationCallback(Messages.UserConfig.SetIssueService, args)
+            .setupRegistrationCallback(Messages.UserConfig.SetIssueFilingService, args)
             .setupActionsOnUserConfig('setIssueFilingService')
             .setupUserConfigActionWithInvokeParameter('setIssueFilingService', payload);
 
@@ -261,7 +261,7 @@ describe('GlobalActionCreatorTest', () => {
         validator.verifyAll();
     });
 
-    test('registerCallback for on UserConfig.SetIssueServiceProperty', () => {
+    test('registerCallback for on UserConfig.SetIssueFilingServiceProperty', () => {
         const payload: SetIssueFilingServicePropertyPayload = {
             issueFilingServiceName: 'bug-service-name',
             propertyName: 'property-name',
@@ -269,7 +269,7 @@ describe('GlobalActionCreatorTest', () => {
         };
         const args = [payload];
         const validator = new GlobalActionCreatorValidator()
-            .setupRegistrationCallback(Messages.UserConfig.SetIssueServiceProperty, args)
+            .setupRegistrationCallback(Messages.UserConfig.SetIssueFilingServiceProperty, args)
             .setupActionsOnUserConfig('setIssueFilingServiceProperty')
             .setupUserConfigActionWithInvokeParameter('setIssueFilingServiceProperty', payload);
 

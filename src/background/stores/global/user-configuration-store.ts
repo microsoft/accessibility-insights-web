@@ -49,8 +49,8 @@ export class UserConfigurationStore extends BaseStoreImpl<UserConfigurationStore
         this.userConfigActions.getCurrentState.addListener(this.onGetCurrentState);
         this.userConfigActions.setTelemetryState.addListener(this.onSetTelemetryState);
         this.userConfigActions.setHighContrastMode.addListener(this.onSetHighContrastMode);
-        this.userConfigActions.setIssueFilingService.addListener(this.onSetIssueService);
-        this.userConfigActions.setIssueFilingServiceProperty.addListener(this.onSetIssueServiceProperty);
+        this.userConfigActions.setIssueFilingService.addListener(this.onSetIssueFilingService);
+        this.userConfigActions.setIssueFilingServiceProperty.addListener(this.onSetIssueFilingServiceProperty);
         this.userConfigActions.setIssueTrackerPath.addListener(this.onSetIssueTrackerPath);
         this.userConfigActions.saveIssueFilingSettings.addListener(this.onSaveIssueSettings);
     }
@@ -69,13 +69,13 @@ export class UserConfigurationStore extends BaseStoreImpl<UserConfigurationStore
     }
 
     @autobind
-    private onSetIssueService(payload: SetIssueFilingServicePayload): void {
+    private onSetIssueFilingService(payload: SetIssueFilingServicePayload): void {
         this.state.bugService = payload.issueFilingServiceName;
         this.saveAndEmitChanged();
     }
 
     @autobind
-    private onSetIssueServiceProperty(payload: SetIssueFilingServicePropertyPayload): void {
+    private onSetIssueFilingServiceProperty(payload: SetIssueFilingServicePropertyPayload): void {
         if (!isPlainObject(this.state.bugServicePropertiesMap)) {
             this.state.bugServicePropertiesMap = {};
         }

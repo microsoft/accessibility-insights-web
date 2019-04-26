@@ -7,7 +7,7 @@ import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { EnvironmentInfo, EnvironmentInfoProvider } from '../../../../../common/environment-info-provider';
 import { UserConfigMessageCreator } from '../../../../../common/message-creators/user-config-message-creator';
 import { CreateIssueDetailsTextData } from '../../../../../common/types/create-issue-details-text-data';
-import { IssueServicePropertiesMap } from '../../../../../common/types/store-data/user-configuration-store';
+import { IssueFilingServicePropertiesMap } from '../../../../../common/types/store-data/user-configuration-store';
 import { ActionAndCancelButtonsComponent } from '../../../../../DetailsView/components/action-and-cancel-buttons-component';
 import {
     IssueFilingDialog,
@@ -34,7 +34,7 @@ describe('IssueFilingDialog', () => {
     let envInfoProviderMock: IMock<EnvironmentInfoProvider>;
     let envInfo: EnvironmentInfo;
     let serviceKey: string;
-    let issueServicePropertiesMapStub: IssueServicePropertiesMap;
+    let issueFilingServicePropertiesMapStub: IssueFilingServicePropertiesMap;
     let userConfigMessageCreatorMock: IMock<UserConfigMessageCreator>;
     let issueFilingServiceProviderMock: IMock<IssueFilingServiceProvider>;
 
@@ -63,7 +63,7 @@ describe('IssueFilingDialog', () => {
         selectedServiceData = {
             someServiceData: null,
         };
-        issueServicePropertiesMapStub = {
+        issueFilingServicePropertiesMapStub = {
             [serviceKey]: selectedServiceData,
         };
         deps = {
@@ -84,11 +84,11 @@ describe('IssueFilingDialog', () => {
             selectedIssueFilingService: issueFilingServiceStub,
             selectedIssueData: selectedIssueDataStub,
             fileIssueTelemetryCallback: telemetryCallbackMock.object,
-            issueServicePropertiesMap: issueServicePropertiesMapStub,
+            issueFilingServicePropertiesMap: issueFilingServicePropertiesMapStub,
         };
 
         getSettingsFromStoreDataMock
-            .setup(mock => mock(It.isValue(issueServicePropertiesMapStub)))
+            .setup(mock => mock(It.isValue(issueFilingServicePropertiesMapStub)))
             .returns(() => selectedServiceData)
             .verifiable(Times.once());
         isSettingsValidMock
@@ -151,16 +151,16 @@ describe('IssueFilingDialog', () => {
         const testSubject = shallow(<IssueFilingDialog {...props} />);
         const issueFilingSettingsContainer = testSubject.find(IssueFilingSettingsContainer);
 
-        getSettingsFromStoreDataMock.setup(mock => mock(It.isValue(issueServicePropertiesMapStub))).returns(() => null);
-        issueServicePropertiesMapStub[differentServiceKey] = { [propertyStub]: propertValueStub };
+        getSettingsFromStoreDataMock.setup(mock => mock(It.isValue(issueFilingServicePropertiesMapStub))).returns(() => null);
+        issueFilingServicePropertiesMapStub[differentServiceKey] = { [propertyStub]: propertValueStub };
         getSettingsFromStoreDataMock
-            .setup(mock => mock(It.isValue(issueServicePropertiesMapStub)))
-            .returns(() => issueServicePropertiesMapStub[differentServiceKey]);
+            .setup(mock => mock(It.isValue(issueFilingServicePropertiesMapStub)))
+            .returns(() => issueFilingServicePropertiesMapStub[differentServiceKey]);
         isSettingsValidMock
-            .setup(isSettingsValid => isSettingsValid(issueServicePropertiesMapStub[differentServiceKey]))
+            .setup(isSettingsValid => isSettingsValid(issueFilingServicePropertiesMapStub[differentServiceKey]))
             .returns(() => true);
         createIssueFilingUrlMock.setup(createIssueFilingUrl =>
-            createIssueFilingUrl(issueServicePropertiesMapStub[differentServiceKey], selectedIssueDataStub, envInfo),
+            createIssueFilingUrl(issueFilingServicePropertiesMapStub[differentServiceKey], selectedIssueDataStub, envInfo),
         );
 
         issueFilingSettingsContainer.props().onPropertyUpdateCallback(differentServiceKey, propertyStub, propertValueStub);
@@ -174,13 +174,13 @@ describe('IssueFilingDialog', () => {
         const testSubject = shallow(<IssueFilingDialog {...props} />);
         const issueFilingSettingsContainer = testSubject.find(IssueFilingSettingsContainer);
 
-        issueServicePropertiesMapStub[serviceKey][propertyStub] = propertValueStub;
+        issueFilingServicePropertiesMapStub[serviceKey][propertyStub] = propertValueStub;
         getSettingsFromStoreDataMock
-            .setup(mock => mock(It.isValue(issueServicePropertiesMapStub)))
-            .returns(() => issueServicePropertiesMapStub[serviceKey]);
-        isSettingsValidMock.setup(isSettingsValid => isSettingsValid(issueServicePropertiesMapStub[serviceKey])).returns(() => true);
+            .setup(mock => mock(It.isValue(issueFilingServicePropertiesMapStub)))
+            .returns(() => issueFilingServicePropertiesMapStub[serviceKey]);
+        isSettingsValidMock.setup(isSettingsValid => isSettingsValid(issueFilingServicePropertiesMapStub[serviceKey])).returns(() => true);
         createIssueFilingUrlMock.setup(createIssueFilingUrl =>
-            createIssueFilingUrl(issueServicePropertiesMapStub[serviceKey], selectedIssueDataStub, envInfo),
+            createIssueFilingUrl(issueFilingServicePropertiesMapStub[serviceKey], selectedIssueDataStub, envInfo),
         );
 
         issueFilingSettingsContainer.props().onPropertyUpdateCallback(serviceKey, propertyStub, propertValueStub);
@@ -205,7 +205,7 @@ describe('IssueFilingDialog', () => {
 
         issueFilingServiceProviderMock.setup(mock => mock.forKey(differentServiceKey)).returns(() => differentServiceStub);
         differentGetSettingsFromStoreDataMock
-            .setup(mock => mock(It.isValue(issueServicePropertiesMapStub)))
+            .setup(mock => mock(It.isValue(issueFilingServicePropertiesMapStub)))
             .returns(() => differentServiceData);
         differentIsSettingsValidMock.setup(isSettingsValid => isSettingsValid(differentServiceData)).returns(() => true);
         differentCreateIssueFilingUrlMock.setup(createIssueFilingUrl =>
@@ -220,9 +220,9 @@ describe('IssueFilingDialog', () => {
     });
 
     const scenarios = [
-        ['dialog is open & props have changed', true, { issueServicePropertiesMap: {} }],
+        ['dialog is open & props have changed', true, { issueFilingServicePropertiesMap: {} }],
         ['dialog is open & props have not changed', true, {}],
-        ['dialog is not open & props have changed', false, { issueServicePropertiesMap: {} }],
+        ['dialog is not open & props have changed', false, { issueFilingServicePropertiesMap: {} }],
         ['dialog is not open & props have not changed', false, {}],
     ];
 
@@ -240,7 +240,7 @@ describe('IssueFilingDialog', () => {
         isSettingsValidMock.setup(isSettingsValid => isSettingsValid(differentServiceData)).returns(() => true);
         createIssueFilingUrlMock.setup(createIssueFilingUrl => createIssueFilingUrl(differentServiceData, selectedIssueDataStub, envInfo));
         getSettingsFromStoreDataMock
-            .setup(mock => mock(It.isValue(newProps.issueServicePropertiesMap)))
+            .setup(mock => mock(It.isValue(newProps.issueFilingServicePropertiesMap)))
             .returns(() => differentServiceData);
 
         testSubject.setProps(newProps);
