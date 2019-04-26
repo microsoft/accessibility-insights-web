@@ -100,8 +100,8 @@ export class IssueDetailsTextGenerator {
         return `${prefix}${data.ruleResult.help} (${selectorLastPart})`;
     }
 
-    public buildTags(createBugData: CreateIssueDetailsTextData, standardTags: string[]): string {
-        const tags = ['Accessibility', ...standardTags, createBugData.ruleResult.ruleId];
+    public buildTags(createIssueData: CreateIssueDetailsTextData, standardTags: string[]): string {
+        const tags = ['Accessibility', ...standardTags, createIssueData.ruleResult.ruleId];
         return tags.join(', ');
     }
 

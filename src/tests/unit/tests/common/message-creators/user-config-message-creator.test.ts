@@ -4,16 +4,16 @@ import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 import {
     SaveIssueFilingSettingsPayload,
-    SetBugServicePayload,
-    SetBugServicePropertyPayload,
     SetHighContrastModePayload,
+    SetIssueFilingServicePayload,
+    SetIssueFilingServicePropertyPayload,
     SetIssueTrackerPathPayload,
     SetTelemetryStatePayload,
 } from '../../../../../background/actions/action-payloads';
 import { Message } from '../../../../../common/message';
 import { UserConfigMessageCreator } from '../../../../../common/message-creators/user-config-message-creator';
 import { Messages } from '../../../../../common/messages';
-import { BugServiceProperties } from '../../../../../common/types/store-data/user-configuration-store';
+import { IssueFilingServiceProperties } from '../../../../../common/types/store-data/user-configuration-store';
 
 describe('UserConfigMessageCreator', () => {
     let postMessageMock: IMock<(message: Message) => void>;
@@ -85,49 +85,49 @@ describe('UserConfigMessageCreator', () => {
         postMessageMock.verifyAll();
     });
 
-    test('setBugService', () => {
-        const bugServiceName = 'UserConfigMessageCreatorTest bug service name';
-        const payload: SetBugServicePayload = {
-            bugServiceName,
+    test('setIssueFilingService', () => {
+        const issueFilingServiceName = 'UserConfigMessageCreatorTest bug service name';
+        const payload: SetIssueFilingServicePayload = {
+            issueFilingServiceName,
         };
         const expectedMessage = {
             tabId: 1,
-            messageType: Messages.UserConfig.SetBugService,
+            messageType: Messages.UserConfig.SetIssueFilingService,
             payload,
         };
 
         postMessageMock.setup(pm => pm(It.isValue(expectedMessage))).verifiable(Times.once());
 
-        testSubject.setBugService(bugServiceName);
+        testSubject.setIssueFilingService(issueFilingServiceName);
 
         postMessageMock.verifyAll();
     });
 
-    test('setBugServiceProperty', () => {
-        const payload: SetBugServicePropertyPayload = {
-            bugServiceName: 'bug-service-name',
+    test('setIssueFilingServiceProperty', () => {
+        const payload: SetIssueFilingServicePropertyPayload = {
+            issueFilingServiceName: 'bug-service-name',
             propertyName: 'property-name',
             propertyValue: 'property-value',
         };
         const expectedMessage = {
             tabId: 1,
-            messageType: Messages.UserConfig.SetBugServiceProperty,
+            messageType: Messages.UserConfig.SetIssueFilingServiceProperty,
             payload,
         };
 
         postMessageMock.setup(pm => pm(It.isValue(expectedMessage))).verifiable(Times.once());
 
-        testSubject.setBugServiceProperty(payload.bugServiceName, payload.propertyName, payload.propertyValue);
+        testSubject.setIssueFilingServiceProperty(payload.issueFilingServiceName, payload.propertyName, payload.propertyValue);
 
         postMessageMock.verifyAll();
     });
 
     test('saveIssueFilingSettings', () => {
-        const bugServiceName = 'UserConfigMessageCreatorTest bug service name';
-        const bugFilingSettings: BugServiceProperties = { name: 'bugFilingSettings' };
+        const issueFilingServiceName = 'UserConfigMessageCreatorTest bug service name';
+        const issueFilingSettings: IssueFilingServiceProperties = { name: 'issueFilingSettings' };
         const payload: SaveIssueFilingSettingsPayload = {
-            bugServiceName,
-            bugFilingSettings: bugFilingSettings,
+            issueFilingServiceName,
+            issueFilingSettings: issueFilingSettings,
         };
         const expectedMessage = {
             tabId: 1,
@@ -137,7 +137,7 @@ describe('UserConfigMessageCreator', () => {
 
         postMessageMock.setup(pm => pm(It.isValue(expectedMessage))).verifiable(Times.once());
 
-        testSubject.saveIssueFilingSettings(bugServiceName, bugFilingSettings);
+        testSubject.saveIssueFilingSettings(issueFilingServiceName, issueFilingSettings);
 
         postMessageMock.verifyAll();
     });

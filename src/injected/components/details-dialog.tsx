@@ -221,7 +221,7 @@ export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDi
         if (this.props.dialogHandler.isInspectButtonDisabled(this)) {
             return (
                 <div className="insights-dialog-inspect-disabled">
-                    {`To enable the Inspect HTML button, open the Chrome dev tools (${this.props.devToolsShortcut}).`}
+                    {`To enable the Inspect HTML button, open the developer tools (${this.props.devToolsShortcut}).`}
                 </div>
             );
         }

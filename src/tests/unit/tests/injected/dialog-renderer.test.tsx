@@ -6,7 +6,6 @@ import { GlobalMock, GlobalScope, IGlobalMock, IMock, It, Mock, MockBehavior, Ti
 
 import { DevToolStore } from '../../../../background/stores/dev-tools-store';
 import { UserConfigurationStore } from '../../../../background/stores/global/user-configuration-store';
-import { BugFilingServiceProvider } from '../../../../bug-filing/bug-filing-service-provider';
 import { ClientBrowserAdapter } from '../../../../common/client-browser-adapter';
 import { EnvironmentInfoProvider } from '../../../../common/environment-info-provider';
 import { FeatureFlags, getDefaultFeatureFlagValues } from '../../../../common/feature-flags';
@@ -26,6 +25,7 @@ import { MainWindowContext } from '../../../../injected/main-window-context';
 import { DecoratedAxeNodeResult, HtmlElementAxeResults } from '../../../../injected/scanner-utils';
 import { ShadowUtils } from '../../../../injected/shadow-utils';
 import { TargetPageActionMessageCreator } from '../../../../injected/target-page-action-message-creator';
+import { IssueFilingServiceProvider } from '../../../../issue-filing/issue-filing-service-provider';
 import { DictionaryStringTo } from '../../../../types/common-types';
 
 describe('DialogRendererTests', () => {
@@ -83,7 +83,7 @@ describe('DialogRendererTests', () => {
         const targetActionPageMessageCreatorMock = Mock.ofType(TargetPageActionMessageCreator);
         const bugActionMessageCreatorMock = Mock.ofType(BugActionMessageCreator);
         const environmentInfoProviderMock = Mock.ofType(EnvironmentInfoProvider);
-        const bugFilingServiceProviderMock = Mock.ofType(BugFilingServiceProvider);
+        const issueFilingServiceProviderMock = Mock.ofType(IssueFilingServiceProvider);
         const userConfigMessageCreatorMock = Mock.ofType(UserConfigMessageCreator);
 
         mainWindowContext = new MainWindowContext(
@@ -94,7 +94,7 @@ describe('DialogRendererTests', () => {
             bugActionMessageCreatorMock.object,
             userConfigMessageCreatorMock.object,
             environmentInfoProviderMock.object,
-            bugFilingServiceProviderMock.object,
+            issueFilingServiceProviderMock.object,
         );
     });
 

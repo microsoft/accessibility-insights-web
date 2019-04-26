@@ -3,7 +3,6 @@
 import { autobind } from '@uifabric/utilities';
 
 import { Assessments } from '../assessments/assessments';
-import { BugFilingServiceProviderImpl } from '../bug-filing/bug-filing-service-provider-impl';
 import { AxeInfo } from '../common/axe-info';
 import { InspectConfigurationFactory } from '../common/configs/inspect-configuration-factory';
 import { DateProvider } from '../common/date-provider';
@@ -31,6 +30,7 @@ import { UserConfigurationStoreData } from '../common/types/store-data/user-conf
 import { VisualizationScanResultData } from '../common/types/store-data/visualization-scan-result-data';
 import { VisualizationStoreData } from '../common/types/store-data/visualization-store-data';
 import { generateUID } from '../common/uid-generator';
+import { IssueFilingServiceProviderImpl } from '../issue-filing/issue-filing-service-provider-impl';
 import { scan } from '../scanner/exposed-apis';
 import { AnalyzerController } from './analyzer-controller';
 import { AnalyzerStateUpdateHandler } from './analyzer-state-update-handler';
@@ -105,11 +105,7 @@ export class MainWindowInitializer extends WindowInitializer {
         );
         const actionMessageDispatcher = new ActionMessageDispatcher(this.clientChromeAdapter.sendMessageToFrames, null);
 
-        const targetPageActionMessageCreator = new TargetPageActionMessageCreator(
-            this.clientChromeAdapter.sendMessageToFrames,
-            null,
-            telemetryDataFactory,
-        );
+        const targetPageActionMessageCreator = new TargetPageActionMessageCreator(telemetryDataFactory, actionMessageDispatcher);
         const bugActionMessageCreator = new BugActionMessageCreator(
             actionMessageDispatcher,
             telemetryDataFactory,
@@ -134,7 +130,7 @@ export class MainWindowInitializer extends WindowInitializer {
             bugActionMessageCreator,
             userConfigMessageCreator,
             environmentInfoProvider,
-            BugFilingServiceProviderImpl,
+            IssueFilingServiceProviderImpl,
         );
 
         const drawingInitiator = new DrawingInitiator(this.drawingController);

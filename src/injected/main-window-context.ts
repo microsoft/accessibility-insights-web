@@ -5,9 +5,9 @@ import { BugActionMessageCreator } from '../common/message-creators/bug-action-m
 import { DevToolActionMessageCreator } from '../common/message-creators/dev-tool-action-message-creator';
 import { DevToolState } from '../common/types/store-data/idev-tool-state';
 import { UserConfigurationStoreData } from '../common/types/store-data/user-configuration-store';
-import { BugFilingServiceProvider } from './../bug-filing/bug-filing-service-provider';
 import { EnvironmentInfoProvider } from './../common/environment-info-provider';
 import { UserConfigMessageCreator } from './../common/message-creators/user-config-message-creator';
+import { IssueFilingServiceProvider } from './../issue-filing/issue-filing-service-provider';
 import { TargetPageActionMessageCreator } from './target-page-action-message-creator';
 
 export class MainWindowContext {
@@ -19,7 +19,7 @@ export class MainWindowContext {
         private bugActionMessageCreator: BugActionMessageCreator,
         private userConfigMessageCreator: UserConfigMessageCreator,
         private environmentInfoProvider: EnvironmentInfoProvider,
-        private bugFilingServiceProvider: BugFilingServiceProvider,
+        private issueFilingServiceProvider: IssueFilingServiceProvider,
     ) {}
 
     public getDevToolStore(): BaseStore<DevToolState> {
@@ -50,8 +50,8 @@ export class MainWindowContext {
         return this.environmentInfoProvider;
     }
 
-    public getBugFilingServiceProvider(): BugFilingServiceProvider {
-        return this.bugFilingServiceProvider;
+    public getIssueFilingServiceProvider(): IssueFilingServiceProvider {
+        return this.issueFilingServiceProvider;
     }
 
     public static initialize(
@@ -62,7 +62,7 @@ export class MainWindowContext {
         bugActionMessageCreator: BugActionMessageCreator,
         userConfigMessageCreator: UserConfigMessageCreator,
         environmentInfoProvider: EnvironmentInfoProvider,
-        bugFilingServiceProvider: BugFilingServiceProvider,
+        issueFilingServiceProvider: IssueFilingServiceProvider,
     ): void {
         window.mainWindowContext = new MainWindowContext(
             devToolStore,
@@ -72,7 +72,7 @@ export class MainWindowContext {
             bugActionMessageCreator,
             userConfigMessageCreator,
             environmentInfoProvider,
-            bugFilingServiceProvider,
+            issueFilingServiceProvider,
         );
     }
 

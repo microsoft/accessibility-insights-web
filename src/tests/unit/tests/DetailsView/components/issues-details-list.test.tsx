@@ -91,7 +91,7 @@ describe('IssuesDetailsListTest', () => {
         };
     }
 
-    function getSampleItems(showBugFiling = false): DetailsRowData[] {
+    function getSampleItems(showIssueFiling = false): DetailsRowData[] {
         const bugButtonProps = {
             deps: {
                 issueDetailsTextGenerator: null,
@@ -103,7 +103,7 @@ describe('IssuesDetailsListTest', () => {
         };
         const rowData = {
             selector: 'testSelector',
-            bugButton: showBugFiling ? <BugButton {...bugButtonProps} /> : null,
+            bugButton: showIssueFiling ? <BugButton {...bugButtonProps} /> : null,
         };
         return [rowData as DetailsRowData, rowData as DetailsRowData];
     }

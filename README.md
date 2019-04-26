@@ -11,7 +11,7 @@ Licensed under the MIT License.
 [![Chrome Web Store](https://img.shields.io/chrome-web-store/users/pbjjkligggfmakdaogkfomddhfmpjeni.svg)](https://chrome.google.com/webstore/detail/accessibility-insights-fo/pbjjkligggfmakdaogkfomddhfmpjeni)
 [![Chrome Web Store](https://img.shields.io/chrome-web-store/stars/pbjjkligggfmakdaogkfomddhfmpjeni.svg)](https://chrome.google.com/webstore/detail/accessibility-insights-fo/pbjjkligggfmakdaogkfomddhfmpjeni/reviews)
 
-Accessibility Insights for Web is a Google Chrome extension for assessing the accessibility of web sites and web applications.
+Accessibility Insights for Web is a Google Chrome and Microsoft Edge Insider browser extension for assessing the accessibility of web sites and web applications.
 
 ### Running the extension
 
@@ -71,7 +71,7 @@ Please ensure that you have at least the **minimum** recommended versions
     ```bash
     npm run build
     ```
--   Add the extension to your Chrome browser
+-   Add the extension to your browser
 
     -   Click on the 3-dotted-menu in the upper right corner and then select "More Tools" and then "Extensions"
     -   Verify that **developer mode** is enabled in the upper right
