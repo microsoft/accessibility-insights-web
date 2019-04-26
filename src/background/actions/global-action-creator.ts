@@ -150,12 +150,12 @@ export class GlobalActionCreator {
 
     @autobind
     private onSetIssueService(payload: SetIssueFilingServicePayload): void {
-        this.userConfigActions.setIssueService.invoke(payload);
+        this.userConfigActions.setIssueFilingService.invoke(payload);
     }
 
     @autobind
     private onSetIssueServiceProperty(payload: SetIssueFilingServicePropertyPayload): void {
-        this.userConfigActions.setIssueServiceProperty.invoke(payload);
+        this.userConfigActions.setIssueFilingServiceProperty.invoke(payload);
     }
 
     @autobind

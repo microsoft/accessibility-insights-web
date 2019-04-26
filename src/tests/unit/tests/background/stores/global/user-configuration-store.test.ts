@@ -207,7 +207,7 @@ describe('UserConfigurationStoreTest', () => {
     });
 
     test.each(['none', 'userConfigurationStoreTestIssueService'])('setIssueService action: %s', (testIssueService: string) => {
-        const storeTester = createStoreToTestAction('setIssueService');
+        const storeTester = createStoreToTestAction('setIssueFilingService');
         initialStoreData = {
             isFirstTime: false,
             enableTelemetry: false,
@@ -269,9 +269,9 @@ describe('UserConfigurationStoreTest', () => {
     });
 
     test.each([undefined, null, {}, { 'test-service': {} }, { 'test-service': { 'test-name': 'test-value' } }])(
-        'setIssueServiceProperty with initial map state %o',
+        'setIssueFilingServiceProperty with initial map state %o',
         (initialMapState: IssueServicePropertiesMap) => {
-            const storeTester = createStoreToTestAction('setIssueServiceProperty');
+            const storeTester = createStoreToTestAction('setIssueFilingServiceProperty');
             initialStoreData = {
                 isFirstTime: false,
                 enableTelemetry: false,

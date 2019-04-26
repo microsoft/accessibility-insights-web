@@ -252,8 +252,8 @@ describe('GlobalActionCreatorTest', () => {
         const args = [payload];
         const validator = new GlobalActionCreatorValidator()
             .setupRegistrationCallback(Messages.UserConfig.SetIssueService, args)
-            .setupActionsOnUserConfig('setIssueService')
-            .setupUserConfigActionWithInvokeParameter('setIssueService', payload);
+            .setupActionsOnUserConfig('setIssueFilingService')
+            .setupUserConfigActionWithInvokeParameter('setIssueFilingService', payload);
 
         const actionCreator = validator.buildActionCreator();
         actionCreator.registerCallbacks();
@@ -270,8 +270,8 @@ describe('GlobalActionCreatorTest', () => {
         const args = [payload];
         const validator = new GlobalActionCreatorValidator()
             .setupRegistrationCallback(Messages.UserConfig.SetIssueServiceProperty, args)
-            .setupActionsOnUserConfig('setIssueServiceProperty')
-            .setupUserConfigActionWithInvokeParameter('setIssueServiceProperty', payload);
+            .setupActionsOnUserConfig('setIssueFilingServiceProperty')
+            .setupUserConfigActionWithInvokeParameter('setIssueFilingServiceProperty', payload);
 
         const actionCreator = validator.buildActionCreator();
         actionCreator.registerCallbacks();

@@ -49,8 +49,8 @@ export class UserConfigurationStore extends BaseStoreImpl<UserConfigurationStore
         this.userConfigActions.getCurrentState.addListener(this.onGetCurrentState);
         this.userConfigActions.setTelemetryState.addListener(this.onSetTelemetryState);
         this.userConfigActions.setHighContrastMode.addListener(this.onSetHighContrastMode);
-        this.userConfigActions.setIssueService.addListener(this.onSetIssueService);
-        this.userConfigActions.setIssueServiceProperty.addListener(this.onSetIssueServiceProperty);
+        this.userConfigActions.setIssueFilingService.addListener(this.onSetIssueService);
+        this.userConfigActions.setIssueFilingServiceProperty.addListener(this.onSetIssueServiceProperty);
         this.userConfigActions.setIssueTrackerPath.addListener(this.onSetIssueTrackerPath);
         this.userConfigActions.saveIssueFilingSettings.addListener(this.onSaveIssueSettings);
     }
