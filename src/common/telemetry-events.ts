@@ -110,9 +110,8 @@ export type SettingsOpenTelemetryData = {
 export type SettingsOpenSourceItem = 'fileIssueSettingsPrompt' | 'menu';
 
 export type FileIssueClickTelemetryData = {
-    service: FileIssueClickService;
+    service: string;
 } & BaseTelemetryData;
-export type FileIssueClickService = 'none' | 'gitHub';
 
 export type RequirementSelectTelemetryData = {
     selectedTest: string;

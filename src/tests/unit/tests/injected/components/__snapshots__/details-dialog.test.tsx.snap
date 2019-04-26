@@ -113,95 +113,44 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: false 
             }
             onClick={[Function]}
           />
-          <FlaggedComponent
-            disableJSXElement={
-              <FileIssueDetailsButton
-                deps={
-                  Object {
-                    "clientBrowserAdapter": Object {
-                      "getUrl": [Function],
-                    },
-                    "issueDetailsTextGenerator": null,
-                    "issueFilingActionMessageCreator": null,
-                    "targetPageActionMessageCreator": Object {
-                      "copyIssueDetailsClicked": [Function],
-                    },
-                    "windowUtils": null,
-                  }
-                }
-                issueDetailsData={
-                  Object {
-                    "pageTitle": "",
-                    "pageUrl": "http://localhost/",
-                    "ruleResult": Object {
-                      "all": Array [],
-                      "any": Array [],
-                      "failureSummary": "failureSummary",
-                      "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
-                      "guidanceLinks": Array [],
-                      "help": "help",
-                      "helpUrl": "http://extension/help1",
-                      "html": "html",
-                      "id": "id1",
-                      "none": Array [],
-                      "ruleId": "ruleId",
-                      "selector": "selector",
-                      "snippet": "html",
-                      "status": false,
-                    },
-                  }
-                }
-                issueTrackerPath=""
-                restoreFocus={false}
-              />
-            }
-            enableJSXElement={
-              <IssueFilingButton
-                deps={
-                  Object {
-                    "clientBrowserAdapter": Object {
-                      "getUrl": [Function],
-                    },
-                    "issueDetailsTextGenerator": null,
-                    "issueFilingActionMessageCreator": null,
-                    "targetPageActionMessageCreator": Object {
-                      "copyIssueDetailsClicked": [Function],
-                    },
-                    "windowUtils": null,
-                  }
-                }
-                issueDetailsData={
-                  Object {
-                    "pageTitle": "",
-                    "pageUrl": "http://localhost/",
-                    "ruleResult": Object {
-                      "all": Array [],
-                      "any": Array [],
-                      "failureSummary": "failureSummary",
-                      "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
-                      "guidanceLinks": Array [],
-                      "help": "help",
-                      "helpUrl": "http://extension/help1",
-                      "html": "html",
-                      "id": "id1",
-                      "none": Array [],
-                      "ruleId": "ruleId",
-                      "selector": "selector",
-                      "snippet": "html",
-                      "status": false,
-                    },
-                  }
-                }
-                needsSettingsContentRenderer={[Function]}
-                userConfigurationStoreData={null}
-              />
-            }
-            featureFlag="newIssueFilingExperience"
-            featureFlagStoreData={
+          <IssueFilingButton
+            deps={
               Object {
-                "shadowDialog": false,
+                "clientBrowserAdapter": Object {
+                  "getUrl": [Function],
+                },
+                "issueDetailsTextGenerator": null,
+                "issueFilingActionMessageCreator": null,
+                "targetPageActionMessageCreator": Object {
+                  "copyIssueDetailsClicked": [Function],
+                },
+                "windowUtils": null,
               }
             }
+            issueDetailsData={
+              Object {
+                "pageTitle": "",
+                "pageUrl": "http://localhost/",
+                "ruleResult": Object {
+                  "all": Array [],
+                  "any": Array [],
+                  "failureSummary": "failureSummary",
+                  "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
+                  "guidanceLinks": Array [],
+                  "help": "help",
+                  "helpUrl": "http://extension/help1",
+                  "html": "html",
+                  "id": "id1",
+                  "none": Array [],
+                  "ruleId": "ruleId",
+                  "selector": "selector",
+                  "snippet": "html",
+                  "status": false,
+                },
+              }
+            }
+            needsSettingsContentRenderer={[Function]}
+            userConfigurationStoreData={null}
           />
         </React.Fragment>
         <div
@@ -262,99 +211,48 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: false 
 </StyledWithResponsiveMode>
 `;
 
-exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: false }: new issue filing bug UI 1`] = `
-<FlaggedComponent
-  disableJSXElement={
-    <FileIssueDetailsButton
-      deps={
-        Object {
-          "clientBrowserAdapter": Object {
-            "getUrl": [Function],
-          },
-          "issueDetailsTextGenerator": null,
-          "issueFilingActionMessageCreator": null,
-          "targetPageActionMessageCreator": Object {
-            "copyIssueDetailsClicked": [Function],
-          },
-          "windowUtils": null,
-        }
-      }
-      issueDetailsData={
-        Object {
-          "pageTitle": "",
-          "pageUrl": "http://localhost/",
-          "ruleResult": Object {
-            "all": Array [],
-            "any": Array [],
-            "failureSummary": "failureSummary",
-            "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
-            "guidanceLinks": Array [],
-            "help": "help",
-            "helpUrl": "http://extension/help1",
-            "html": "html",
-            "id": "id1",
-            "none": Array [],
-            "ruleId": "ruleId",
-            "selector": "selector",
-            "snippet": "html",
-            "status": false,
-          },
-        }
-      }
-      issueTrackerPath=""
-      restoreFocus={false}
-    />
-  }
-  enableJSXElement={
-    <IssueFilingButton
-      deps={
-        Object {
-          "clientBrowserAdapter": Object {
-            "getUrl": [Function],
-          },
-          "issueDetailsTextGenerator": null,
-          "issueFilingActionMessageCreator": null,
-          "targetPageActionMessageCreator": Object {
-            "copyIssueDetailsClicked": [Function],
-          },
-          "windowUtils": null,
-        }
-      }
-      issueDetailsData={
-        Object {
-          "pageTitle": "",
-          "pageUrl": "http://localhost/",
-          "ruleResult": Object {
-            "all": Array [],
-            "any": Array [],
-            "failureSummary": "failureSummary",
-            "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
-            "guidanceLinks": Array [],
-            "help": "help",
-            "helpUrl": "http://extension/help1",
-            "html": "html",
-            "id": "id1",
-            "none": Array [],
-            "ruleId": "ruleId",
-            "selector": "selector",
-            "snippet": "html",
-            "status": false,
-          },
-        }
-      }
-      needsSettingsContentRenderer={[Function]}
-      userConfigurationStoreData={
-        Object {
-          "bugService": "service",
-          "bugServicePropertiesMap": Object {},
-        }
-      }
-    />
-  }
-  featureFlag="newIssueFilingExperience"
-  featureFlagStoreData={
+exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: false }: issue filing button UI 1`] = `
+<IssueFilingButton
+  deps={
     Object {
-      "shadowDialog": false,
+      "clientBrowserAdapter": Object {
+        "getUrl": [Function],
+      },
+      "issueDetailsTextGenerator": null,
+      "issueFilingActionMessageCreator": null,
+      "targetPageActionMessageCreator": Object {
+        "copyIssueDetailsClicked": [Function],
+      },
+      "windowUtils": null,
+    }
+  }
+  issueDetailsData={
+    Object {
+      "pageTitle": "",
+      "pageUrl": "http://localhost/",
+      "ruleResult": Object {
+        "all": Array [],
+        "any": Array [],
+        "failureSummary": "failureSummary",
+        "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
+        "guidanceLinks": Array [],
+        "help": "help",
+        "helpUrl": "http://extension/help1",
+        "html": "html",
+        "id": "id1",
+        "none": Array [],
+        "ruleId": "ruleId",
+        "selector": "selector",
+        "snippet": "html",
+        "status": false,
+      },
+    }
+  }
+  needsSettingsContentRenderer={[Function]}
+  userConfigurationStoreData={
+    Object {
+      "bugService": "service",
+      "bugServicePropertiesMap": Object {},
     }
   }
 />
@@ -492,95 +390,44 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: true }
               }
               onClick={[Function]}
             />
-            <FlaggedComponent
-              disableJSXElement={
-                <FileIssueDetailsButton
-                  deps={
-                    Object {
-                      "clientBrowserAdapter": Object {
-                        "getUrl": [Function],
-                      },
-                      "issueDetailsTextGenerator": null,
-                      "issueFilingActionMessageCreator": null,
-                      "targetPageActionMessageCreator": Object {
-                        "copyIssueDetailsClicked": [Function],
-                      },
-                      "windowUtils": null,
-                    }
-                  }
-                  issueDetailsData={
-                    Object {
-                      "pageTitle": "",
-                      "pageUrl": "http://localhost/",
-                      "ruleResult": Object {
-                        "all": Array [],
-                        "any": Array [],
-                        "failureSummary": "failureSummary",
-                        "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
-                        "guidanceLinks": Array [],
-                        "help": "help",
-                        "helpUrl": "http://extension/help1",
-                        "html": "html",
-                        "id": "id1",
-                        "none": Array [],
-                        "ruleId": "ruleId",
-                        "selector": "selector",
-                        "snippet": "html",
-                        "status": false,
-                      },
-                    }
-                  }
-                  issueTrackerPath=""
-                  restoreFocus={false}
-                />
-              }
-              enableJSXElement={
-                <IssueFilingButton
-                  deps={
-                    Object {
-                      "clientBrowserAdapter": Object {
-                        "getUrl": [Function],
-                      },
-                      "issueDetailsTextGenerator": null,
-                      "issueFilingActionMessageCreator": null,
-                      "targetPageActionMessageCreator": Object {
-                        "copyIssueDetailsClicked": [Function],
-                      },
-                      "windowUtils": null,
-                    }
-                  }
-                  issueDetailsData={
-                    Object {
-                      "pageTitle": "",
-                      "pageUrl": "http://localhost/",
-                      "ruleResult": Object {
-                        "all": Array [],
-                        "any": Array [],
-                        "failureSummary": "failureSummary",
-                        "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
-                        "guidanceLinks": Array [],
-                        "help": "help",
-                        "helpUrl": "http://extension/help1",
-                        "html": "html",
-                        "id": "id1",
-                        "none": Array [],
-                        "ruleId": "ruleId",
-                        "selector": "selector",
-                        "snippet": "html",
-                        "status": false,
-                      },
-                    }
-                  }
-                  needsSettingsContentRenderer={[Function]}
-                  userConfigurationStoreData={null}
-                />
-              }
-              featureFlag="newIssueFilingExperience"
-              featureFlagStoreData={
+            <IssueFilingButton
+              deps={
                 Object {
-                  "shadowDialog": true,
+                  "clientBrowserAdapter": Object {
+                    "getUrl": [Function],
+                  },
+                  "issueDetailsTextGenerator": null,
+                  "issueFilingActionMessageCreator": null,
+                  "targetPageActionMessageCreator": Object {
+                    "copyIssueDetailsClicked": [Function],
+                  },
+                  "windowUtils": null,
                 }
               }
+              issueDetailsData={
+                Object {
+                  "pageTitle": "",
+                  "pageUrl": "http://localhost/",
+                  "ruleResult": Object {
+                    "all": Array [],
+                    "any": Array [],
+                    "failureSummary": "failureSummary",
+                    "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
+                    "guidanceLinks": Array [],
+                    "help": "help",
+                    "helpUrl": "http://extension/help1",
+                    "html": "html",
+                    "id": "id1",
+                    "none": Array [],
+                    "ruleId": "ruleId",
+                    "selector": "selector",
+                    "snippet": "html",
+                    "status": false,
+                  },
+                }
+              }
+              needsSettingsContentRenderer={[Function]}
+              userConfigurationStoreData={null}
             />
           </React.Fragment>
           <div
@@ -642,99 +489,48 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: true }
 </div>
 `;
 
-exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: true }: new issue filing bug UI 1`] = `
-<FlaggedComponent
-  disableJSXElement={
-    <FileIssueDetailsButton
-      deps={
-        Object {
-          "clientBrowserAdapter": Object {
-            "getUrl": [Function],
-          },
-          "issueDetailsTextGenerator": null,
-          "issueFilingActionMessageCreator": null,
-          "targetPageActionMessageCreator": Object {
-            "copyIssueDetailsClicked": [Function],
-          },
-          "windowUtils": null,
-        }
-      }
-      issueDetailsData={
-        Object {
-          "pageTitle": "",
-          "pageUrl": "http://localhost/",
-          "ruleResult": Object {
-            "all": Array [],
-            "any": Array [],
-            "failureSummary": "failureSummary",
-            "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
-            "guidanceLinks": Array [],
-            "help": "help",
-            "helpUrl": "http://extension/help1",
-            "html": "html",
-            "id": "id1",
-            "none": Array [],
-            "ruleId": "ruleId",
-            "selector": "selector",
-            "snippet": "html",
-            "status": false,
-          },
-        }
-      }
-      issueTrackerPath=""
-      restoreFocus={false}
-    />
-  }
-  enableJSXElement={
-    <IssueFilingButton
-      deps={
-        Object {
-          "clientBrowserAdapter": Object {
-            "getUrl": [Function],
-          },
-          "issueDetailsTextGenerator": null,
-          "issueFilingActionMessageCreator": null,
-          "targetPageActionMessageCreator": Object {
-            "copyIssueDetailsClicked": [Function],
-          },
-          "windowUtils": null,
-        }
-      }
-      issueDetailsData={
-        Object {
-          "pageTitle": "",
-          "pageUrl": "http://localhost/",
-          "ruleResult": Object {
-            "all": Array [],
-            "any": Array [],
-            "failureSummary": "failureSummary",
-            "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
-            "guidanceLinks": Array [],
-            "help": "help",
-            "helpUrl": "http://extension/help1",
-            "html": "html",
-            "id": "id1",
-            "none": Array [],
-            "ruleId": "ruleId",
-            "selector": "selector",
-            "snippet": "html",
-            "status": false,
-          },
-        }
-      }
-      needsSettingsContentRenderer={[Function]}
-      userConfigurationStoreData={
-        Object {
-          "bugService": "service",
-          "bugServicePropertiesMap": Object {},
-        }
-      }
-    />
-  }
-  featureFlag="newIssueFilingExperience"
-  featureFlagStoreData={
+exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: true }: issue filing button UI 1`] = `
+<IssueFilingButton
+  deps={
     Object {
-      "shadowDialog": true,
+      "clientBrowserAdapter": Object {
+        "getUrl": [Function],
+      },
+      "issueDetailsTextGenerator": null,
+      "issueFilingActionMessageCreator": null,
+      "targetPageActionMessageCreator": Object {
+        "copyIssueDetailsClicked": [Function],
+      },
+      "windowUtils": null,
+    }
+  }
+  issueDetailsData={
+    Object {
+      "pageTitle": "",
+      "pageUrl": "http://localhost/",
+      "ruleResult": Object {
+        "all": Array [],
+        "any": Array [],
+        "failureSummary": "failureSummary",
+        "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
+        "guidanceLinks": Array [],
+        "help": "help",
+        "helpUrl": "http://extension/help1",
+        "html": "html",
+        "id": "id1",
+        "none": Array [],
+        "ruleId": "ruleId",
+        "selector": "selector",
+        "snippet": "html",
+        "status": false,
+      },
+    }
+  }
+  needsSettingsContentRenderer={[Function]}
+  userConfigurationStoreData={
+    Object {
+      "bugService": "service",
+      "bugServicePropertiesMap": Object {},
     }
   }
 />
@@ -863,95 +659,44 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: false }
             }
             onClick={[Function]}
           />
-          <FlaggedComponent
-            disableJSXElement={
-              <FileIssueDetailsButton
-                deps={
-                  Object {
-                    "clientBrowserAdapter": Object {
-                      "getUrl": [Function],
-                    },
-                    "issueDetailsTextGenerator": null,
-                    "issueFilingActionMessageCreator": null,
-                    "targetPageActionMessageCreator": Object {
-                      "copyIssueDetailsClicked": [Function],
-                    },
-                    "windowUtils": null,
-                  }
-                }
-                issueDetailsData={
-                  Object {
-                    "pageTitle": "",
-                    "pageUrl": "http://localhost/",
-                    "ruleResult": Object {
-                      "all": Array [],
-                      "any": Array [],
-                      "failureSummary": "failureSummary",
-                      "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
-                      "guidanceLinks": Array [],
-                      "help": "help",
-                      "helpUrl": "http://extension/help1",
-                      "html": "html",
-                      "id": "id1",
-                      "none": Array [],
-                      "ruleId": "ruleId",
-                      "selector": "selector",
-                      "snippet": "html",
-                      "status": false,
-                    },
-                  }
-                }
-                issueTrackerPath=""
-                restoreFocus={false}
-              />
-            }
-            enableJSXElement={
-              <IssueFilingButton
-                deps={
-                  Object {
-                    "clientBrowserAdapter": Object {
-                      "getUrl": [Function],
-                    },
-                    "issueDetailsTextGenerator": null,
-                    "issueFilingActionMessageCreator": null,
-                    "targetPageActionMessageCreator": Object {
-                      "copyIssueDetailsClicked": [Function],
-                    },
-                    "windowUtils": null,
-                  }
-                }
-                issueDetailsData={
-                  Object {
-                    "pageTitle": "",
-                    "pageUrl": "http://localhost/",
-                    "ruleResult": Object {
-                      "all": Array [],
-                      "any": Array [],
-                      "failureSummary": "failureSummary",
-                      "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
-                      "guidanceLinks": Array [],
-                      "help": "help",
-                      "helpUrl": "http://extension/help1",
-                      "html": "html",
-                      "id": "id1",
-                      "none": Array [],
-                      "ruleId": "ruleId",
-                      "selector": "selector",
-                      "snippet": "html",
-                      "status": false,
-                    },
-                  }
-                }
-                needsSettingsContentRenderer={[Function]}
-                userConfigurationStoreData={null}
-              />
-            }
-            featureFlag="newIssueFilingExperience"
-            featureFlagStoreData={
+          <IssueFilingButton
+            deps={
               Object {
-                "shadowDialog": false,
+                "clientBrowserAdapter": Object {
+                  "getUrl": [Function],
+                },
+                "issueDetailsTextGenerator": null,
+                "issueFilingActionMessageCreator": null,
+                "targetPageActionMessageCreator": Object {
+                  "copyIssueDetailsClicked": [Function],
+                },
+                "windowUtils": null,
               }
             }
+            issueDetailsData={
+              Object {
+                "pageTitle": "",
+                "pageUrl": "http://localhost/",
+                "ruleResult": Object {
+                  "all": Array [],
+                  "any": Array [],
+                  "failureSummary": "failureSummary",
+                  "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
+                  "guidanceLinks": Array [],
+                  "help": "help",
+                  "helpUrl": "http://extension/help1",
+                  "html": "html",
+                  "id": "id1",
+                  "none": Array [],
+                  "ruleId": "ruleId",
+                  "selector": "selector",
+                  "snippet": "html",
+                  "status": false,
+                },
+              }
+            }
+            needsSettingsContentRenderer={[Function]}
+            userConfigurationStoreData={null}
           />
         </React.Fragment>
       </div>
@@ -1007,99 +752,48 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: false }
 </StyledWithResponsiveMode>
 `;
 
-exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: false }: new issue filing bug UI 1`] = `
-<FlaggedComponent
-  disableJSXElement={
-    <FileIssueDetailsButton
-      deps={
-        Object {
-          "clientBrowserAdapter": Object {
-            "getUrl": [Function],
-          },
-          "issueDetailsTextGenerator": null,
-          "issueFilingActionMessageCreator": null,
-          "targetPageActionMessageCreator": Object {
-            "copyIssueDetailsClicked": [Function],
-          },
-          "windowUtils": null,
-        }
-      }
-      issueDetailsData={
-        Object {
-          "pageTitle": "",
-          "pageUrl": "http://localhost/",
-          "ruleResult": Object {
-            "all": Array [],
-            "any": Array [],
-            "failureSummary": "failureSummary",
-            "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
-            "guidanceLinks": Array [],
-            "help": "help",
-            "helpUrl": "http://extension/help1",
-            "html": "html",
-            "id": "id1",
-            "none": Array [],
-            "ruleId": "ruleId",
-            "selector": "selector",
-            "snippet": "html",
-            "status": false,
-          },
-        }
-      }
-      issueTrackerPath=""
-      restoreFocus={false}
-    />
-  }
-  enableJSXElement={
-    <IssueFilingButton
-      deps={
-        Object {
-          "clientBrowserAdapter": Object {
-            "getUrl": [Function],
-          },
-          "issueDetailsTextGenerator": null,
-          "issueFilingActionMessageCreator": null,
-          "targetPageActionMessageCreator": Object {
-            "copyIssueDetailsClicked": [Function],
-          },
-          "windowUtils": null,
-        }
-      }
-      issueDetailsData={
-        Object {
-          "pageTitle": "",
-          "pageUrl": "http://localhost/",
-          "ruleResult": Object {
-            "all": Array [],
-            "any": Array [],
-            "failureSummary": "failureSummary",
-            "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
-            "guidanceLinks": Array [],
-            "help": "help",
-            "helpUrl": "http://extension/help1",
-            "html": "html",
-            "id": "id1",
-            "none": Array [],
-            "ruleId": "ruleId",
-            "selector": "selector",
-            "snippet": "html",
-            "status": false,
-          },
-        }
-      }
-      needsSettingsContentRenderer={[Function]}
-      userConfigurationStoreData={
-        Object {
-          "bugService": "service",
-          "bugServicePropertiesMap": Object {},
-        }
-      }
-    />
-  }
-  featureFlag="newIssueFilingExperience"
-  featureFlagStoreData={
+exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: false }: issue filing button UI 1`] = `
+<IssueFilingButton
+  deps={
     Object {
-      "shadowDialog": false,
+      "clientBrowserAdapter": Object {
+        "getUrl": [Function],
+      },
+      "issueDetailsTextGenerator": null,
+      "issueFilingActionMessageCreator": null,
+      "targetPageActionMessageCreator": Object {
+        "copyIssueDetailsClicked": [Function],
+      },
+      "windowUtils": null,
+    }
+  }
+  issueDetailsData={
+    Object {
+      "pageTitle": "",
+      "pageUrl": "http://localhost/",
+      "ruleResult": Object {
+        "all": Array [],
+        "any": Array [],
+        "failureSummary": "failureSummary",
+        "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
+        "guidanceLinks": Array [],
+        "help": "help",
+        "helpUrl": "http://extension/help1",
+        "html": "html",
+        "id": "id1",
+        "none": Array [],
+        "ruleId": "ruleId",
+        "selector": "selector",
+        "snippet": "html",
+        "status": false,
+      },
+    }
+  }
+  needsSettingsContentRenderer={[Function]}
+  userConfigurationStoreData={
+    Object {
+      "bugService": "service",
+      "bugServicePropertiesMap": Object {},
     }
   }
 />
@@ -1237,95 +931,44 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: true } 
               }
               onClick={[Function]}
             />
-            <FlaggedComponent
-              disableJSXElement={
-                <FileIssueDetailsButton
-                  deps={
-                    Object {
-                      "clientBrowserAdapter": Object {
-                        "getUrl": [Function],
-                      },
-                      "issueDetailsTextGenerator": null,
-                      "issueFilingActionMessageCreator": null,
-                      "targetPageActionMessageCreator": Object {
-                        "copyIssueDetailsClicked": [Function],
-                      },
-                      "windowUtils": null,
-                    }
-                  }
-                  issueDetailsData={
-                    Object {
-                      "pageTitle": "",
-                      "pageUrl": "http://localhost/",
-                      "ruleResult": Object {
-                        "all": Array [],
-                        "any": Array [],
-                        "failureSummary": "failureSummary",
-                        "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
-                        "guidanceLinks": Array [],
-                        "help": "help",
-                        "helpUrl": "http://extension/help1",
-                        "html": "html",
-                        "id": "id1",
-                        "none": Array [],
-                        "ruleId": "ruleId",
-                        "selector": "selector",
-                        "snippet": "html",
-                        "status": false,
-                      },
-                    }
-                  }
-                  issueTrackerPath=""
-                  restoreFocus={false}
-                />
-              }
-              enableJSXElement={
-                <IssueFilingButton
-                  deps={
-                    Object {
-                      "clientBrowserAdapter": Object {
-                        "getUrl": [Function],
-                      },
-                      "issueDetailsTextGenerator": null,
-                      "issueFilingActionMessageCreator": null,
-                      "targetPageActionMessageCreator": Object {
-                        "copyIssueDetailsClicked": [Function],
-                      },
-                      "windowUtils": null,
-                    }
-                  }
-                  issueDetailsData={
-                    Object {
-                      "pageTitle": "",
-                      "pageUrl": "http://localhost/",
-                      "ruleResult": Object {
-                        "all": Array [],
-                        "any": Array [],
-                        "failureSummary": "failureSummary",
-                        "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
-                        "guidanceLinks": Array [],
-                        "help": "help",
-                        "helpUrl": "http://extension/help1",
-                        "html": "html",
-                        "id": "id1",
-                        "none": Array [],
-                        "ruleId": "ruleId",
-                        "selector": "selector",
-                        "snippet": "html",
-                        "status": false,
-                      },
-                    }
-                  }
-                  needsSettingsContentRenderer={[Function]}
-                  userConfigurationStoreData={null}
-                />
-              }
-              featureFlag="newIssueFilingExperience"
-              featureFlagStoreData={
+            <IssueFilingButton
+              deps={
                 Object {
-                  "shadowDialog": true,
+                  "clientBrowserAdapter": Object {
+                    "getUrl": [Function],
+                  },
+                  "issueDetailsTextGenerator": null,
+                  "issueFilingActionMessageCreator": null,
+                  "targetPageActionMessageCreator": Object {
+                    "copyIssueDetailsClicked": [Function],
+                  },
+                  "windowUtils": null,
                 }
               }
+              issueDetailsData={
+                Object {
+                  "pageTitle": "",
+                  "pageUrl": "http://localhost/",
+                  "ruleResult": Object {
+                    "all": Array [],
+                    "any": Array [],
+                    "failureSummary": "failureSummary",
+                    "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
+                    "guidanceLinks": Array [],
+                    "help": "help",
+                    "helpUrl": "http://extension/help1",
+                    "html": "html",
+                    "id": "id1",
+                    "none": Array [],
+                    "ruleId": "ruleId",
+                    "selector": "selector",
+                    "snippet": "html",
+                    "status": false,
+                  },
+                }
+              }
+              needsSettingsContentRenderer={[Function]}
+              userConfigurationStoreData={null}
             />
           </React.Fragment>
         </div>
@@ -1382,99 +1025,48 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: true } 
 </div>
 `;
 
-exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: true }: new issue filing bug UI 1`] = `
-<FlaggedComponent
-  disableJSXElement={
-    <FileIssueDetailsButton
-      deps={
-        Object {
-          "clientBrowserAdapter": Object {
-            "getUrl": [Function],
-          },
-          "issueDetailsTextGenerator": null,
-          "issueFilingActionMessageCreator": null,
-          "targetPageActionMessageCreator": Object {
-            "copyIssueDetailsClicked": [Function],
-          },
-          "windowUtils": null,
-        }
-      }
-      issueDetailsData={
-        Object {
-          "pageTitle": "",
-          "pageUrl": "http://localhost/",
-          "ruleResult": Object {
-            "all": Array [],
-            "any": Array [],
-            "failureSummary": "failureSummary",
-            "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
-            "guidanceLinks": Array [],
-            "help": "help",
-            "helpUrl": "http://extension/help1",
-            "html": "html",
-            "id": "id1",
-            "none": Array [],
-            "ruleId": "ruleId",
-            "selector": "selector",
-            "snippet": "html",
-            "status": false,
-          },
-        }
-      }
-      issueTrackerPath=""
-      restoreFocus={false}
-    />
-  }
-  enableJSXElement={
-    <IssueFilingButton
-      deps={
-        Object {
-          "clientBrowserAdapter": Object {
-            "getUrl": [Function],
-          },
-          "issueDetailsTextGenerator": null,
-          "issueFilingActionMessageCreator": null,
-          "targetPageActionMessageCreator": Object {
-            "copyIssueDetailsClicked": [Function],
-          },
-          "windowUtils": null,
-        }
-      }
-      issueDetailsData={
-        Object {
-          "pageTitle": "",
-          "pageUrl": "http://localhost/",
-          "ruleResult": Object {
-            "all": Array [],
-            "any": Array [],
-            "failureSummary": "failureSummary",
-            "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
-            "guidanceLinks": Array [],
-            "help": "help",
-            "helpUrl": "http://extension/help1",
-            "html": "html",
-            "id": "id1",
-            "none": Array [],
-            "ruleId": "ruleId",
-            "selector": "selector",
-            "snippet": "html",
-            "status": false,
-          },
-        }
-      }
-      needsSettingsContentRenderer={[Function]}
-      userConfigurationStoreData={
-        Object {
-          "bugService": "service",
-          "bugServicePropertiesMap": Object {},
-        }
-      }
-    />
-  }
-  featureFlag="newIssueFilingExperience"
-  featureFlagStoreData={
+exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: true }: issue filing button UI 1`] = `
+<IssueFilingButton
+  deps={
     Object {
-      "shadowDialog": true,
+      "clientBrowserAdapter": Object {
+        "getUrl": [Function],
+      },
+      "issueDetailsTextGenerator": null,
+      "issueFilingActionMessageCreator": null,
+      "targetPageActionMessageCreator": Object {
+        "copyIssueDetailsClicked": [Function],
+      },
+      "windowUtils": null,
+    }
+  }
+  issueDetailsData={
+    Object {
+      "pageTitle": "",
+      "pageUrl": "http://localhost/",
+      "ruleResult": Object {
+        "all": Array [],
+        "any": Array [],
+        "failureSummary": "failureSummary",
+        "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
+        "guidanceLinks": Array [],
+        "help": "help",
+        "helpUrl": "http://extension/help1",
+        "html": "html",
+        "id": "id1",
+        "none": Array [],
+        "ruleId": "ruleId",
+        "selector": "selector",
+        "snippet": "html",
+        "status": false,
+      },
+    }
+  }
+  needsSettingsContentRenderer={[Function]}
+  userConfigurationStoreData={
+    Object {
+      "bugService": "service",
+      "bugServicePropertiesMap": Object {},
     }
   }
 />
@@ -1603,95 +1195,44 @@ exports[`DetailsDialogTest render: with relative help url 1`] = `
             }
             onClick={[Function]}
           />
-          <FlaggedComponent
-            disableJSXElement={
-              <FileIssueDetailsButton
-                deps={
-                  Object {
-                    "clientBrowserAdapter": Object {
-                      "getUrl": [Function],
-                    },
-                    "issueDetailsTextGenerator": null,
-                    "issueFilingActionMessageCreator": null,
-                    "targetPageActionMessageCreator": Object {
-                      "copyIssueDetailsClicked": [Function],
-                    },
-                    "windowUtils": null,
-                  }
-                }
-                issueDetailsData={
-                  Object {
-                    "pageTitle": "",
-                    "pageUrl": "http://localhost/",
-                    "ruleResult": Object {
-                      "all": Array [],
-                      "any": Array [],
-                      "failureSummary": "failureSummary",
-                      "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
-                      "guidanceLinks": Array [],
-                      "help": "help",
-                      "helpUrl": "help-relative",
-                      "html": "html",
-                      "id": "id1",
-                      "none": Array [],
-                      "ruleId": "ruleId",
-                      "selector": "selector",
-                      "snippet": "html",
-                      "status": false,
-                    },
-                  }
-                }
-                issueTrackerPath=""
-                restoreFocus={false}
-              />
-            }
-            enableJSXElement={
-              <IssueFilingButton
-                deps={
-                  Object {
-                    "clientBrowserAdapter": Object {
-                      "getUrl": [Function],
-                    },
-                    "issueDetailsTextGenerator": null,
-                    "issueFilingActionMessageCreator": null,
-                    "targetPageActionMessageCreator": Object {
-                      "copyIssueDetailsClicked": [Function],
-                    },
-                    "windowUtils": null,
-                  }
-                }
-                issueDetailsData={
-                  Object {
-                    "pageTitle": "",
-                    "pageUrl": "http://localhost/",
-                    "ruleResult": Object {
-                      "all": Array [],
-                      "any": Array [],
-                      "failureSummary": "failureSummary",
-                      "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
-                      "guidanceLinks": Array [],
-                      "help": "help",
-                      "helpUrl": "help-relative",
-                      "html": "html",
-                      "id": "id1",
-                      "none": Array [],
-                      "ruleId": "ruleId",
-                      "selector": "selector",
-                      "snippet": "html",
-                      "status": false,
-                    },
-                  }
-                }
-                needsSettingsContentRenderer={[Function]}
-                userConfigurationStoreData={null}
-              />
-            }
-            featureFlag="newIssueFilingExperience"
-            featureFlagStoreData={
+          <IssueFilingButton
+            deps={
               Object {
-                "shadowDialog": false,
+                "clientBrowserAdapter": Object {
+                  "getUrl": [Function],
+                },
+                "issueDetailsTextGenerator": null,
+                "issueFilingActionMessageCreator": null,
+                "targetPageActionMessageCreator": Object {
+                  "copyIssueDetailsClicked": [Function],
+                },
+                "windowUtils": null,
               }
             }
+            issueDetailsData={
+              Object {
+                "pageTitle": "",
+                "pageUrl": "http://localhost/",
+                "ruleResult": Object {
+                  "all": Array [],
+                  "any": Array [],
+                  "failureSummary": "failureSummary",
+                  "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
+                  "guidanceLinks": Array [],
+                  "help": "help",
+                  "helpUrl": "help-relative",
+                  "html": "html",
+                  "id": "id1",
+                  "none": Array [],
+                  "ruleId": "ruleId",
+                  "selector": "selector",
+                  "snippet": "html",
+                  "status": false,
+                },
+              }
+            }
+            needsSettingsContentRenderer={[Function]}
+            userConfigurationStoreData={null}
           />
         </React.Fragment>
         <div
@@ -1752,99 +1293,48 @@ exports[`DetailsDialogTest render: with relative help url 1`] = `
 </StyledWithResponsiveMode>
 `;
 
-exports[`DetailsDialogTest render: with relative help url: new issue filing bug UI 1`] = `
-<FlaggedComponent
-  disableJSXElement={
-    <FileIssueDetailsButton
-      deps={
-        Object {
-          "clientBrowserAdapter": Object {
-            "getUrl": [Function],
-          },
-          "issueDetailsTextGenerator": null,
-          "issueFilingActionMessageCreator": null,
-          "targetPageActionMessageCreator": Object {
-            "copyIssueDetailsClicked": [Function],
-          },
-          "windowUtils": null,
-        }
-      }
-      issueDetailsData={
-        Object {
-          "pageTitle": "",
-          "pageUrl": "http://localhost/",
-          "ruleResult": Object {
-            "all": Array [],
-            "any": Array [],
-            "failureSummary": "failureSummary",
-            "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
-            "guidanceLinks": Array [],
-            "help": "help",
-            "helpUrl": "help-relative",
-            "html": "html",
-            "id": "id1",
-            "none": Array [],
-            "ruleId": "ruleId",
-            "selector": "selector",
-            "snippet": "html",
-            "status": false,
-          },
-        }
-      }
-      issueTrackerPath=""
-      restoreFocus={false}
-    />
-  }
-  enableJSXElement={
-    <IssueFilingButton
-      deps={
-        Object {
-          "clientBrowserAdapter": Object {
-            "getUrl": [Function],
-          },
-          "issueDetailsTextGenerator": null,
-          "issueFilingActionMessageCreator": null,
-          "targetPageActionMessageCreator": Object {
-            "copyIssueDetailsClicked": [Function],
-          },
-          "windowUtils": null,
-        }
-      }
-      issueDetailsData={
-        Object {
-          "pageTitle": "",
-          "pageUrl": "http://localhost/",
-          "ruleResult": Object {
-            "all": Array [],
-            "any": Array [],
-            "failureSummary": "failureSummary",
-            "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
-            "guidanceLinks": Array [],
-            "help": "help",
-            "helpUrl": "help-relative",
-            "html": "html",
-            "id": "id1",
-            "none": Array [],
-            "ruleId": "ruleId",
-            "selector": "selector",
-            "snippet": "html",
-            "status": false,
-          },
-        }
-      }
-      needsSettingsContentRenderer={[Function]}
-      userConfigurationStoreData={
-        Object {
-          "bugService": "service",
-          "bugServicePropertiesMap": Object {},
-        }
-      }
-    />
-  }
-  featureFlag="newIssueFilingExperience"
-  featureFlagStoreData={
+exports[`DetailsDialogTest render: with relative help url: issue filing button UI 1`] = `
+<IssueFilingButton
+  deps={
     Object {
-      "shadowDialog": false,
+      "clientBrowserAdapter": Object {
+        "getUrl": [Function],
+      },
+      "issueDetailsTextGenerator": null,
+      "issueFilingActionMessageCreator": null,
+      "targetPageActionMessageCreator": Object {
+        "copyIssueDetailsClicked": [Function],
+      },
+      "windowUtils": null,
+    }
+  }
+  issueDetailsData={
+    Object {
+      "pageTitle": "",
+      "pageUrl": "http://localhost/",
+      "ruleResult": Object {
+        "all": Array [],
+        "any": Array [],
+        "failureSummary": "failureSummary",
+        "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
+        "guidanceLinks": Array [],
+        "help": "help",
+        "helpUrl": "help-relative",
+        "html": "html",
+        "id": "id1",
+        "none": Array [],
+        "ruleId": "ruleId",
+        "selector": "selector",
+        "snippet": "html",
+        "status": false,
+      },
+    }
+  }
+  needsSettingsContentRenderer={[Function]}
+  userConfigurationStoreData={
+    Object {
+      "bugService": "service",
+      "bugServicePropertiesMap": Object {},
     }
   }
 />
