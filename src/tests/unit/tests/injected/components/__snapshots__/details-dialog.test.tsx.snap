@@ -78,11 +78,11 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: false 
           <CopyIssueDetailsButton
             deps={
               Object {
-                "bugActionMessageCreator": null,
                 "clientBrowserAdapter": Object {
                   "getUrl": [Function],
                 },
                 "issueDetailsTextGenerator": null,
+                "issueFilingActionMessageCreator": null,
                 "targetPageActionMessageCreator": Object {
                   "copyIssueDetailsClicked": [Function],
                 },
@@ -118,11 +118,11 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: false 
               <FileIssueDetailsButton
                 deps={
                   Object {
-                    "bugActionMessageCreator": null,
                     "clientBrowserAdapter": Object {
                       "getUrl": [Function],
                     },
                     "issueDetailsTextGenerator": null,
+                    "issueFilingActionMessageCreator": null,
                     "targetPageActionMessageCreator": Object {
                       "copyIssueDetailsClicked": [Function],
                     },
@@ -159,11 +159,11 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: false 
               <IssueFilingButton
                 deps={
                   Object {
-                    "bugActionMessageCreator": null,
                     "clientBrowserAdapter": Object {
                       "getUrl": [Function],
                     },
                     "issueDetailsTextGenerator": null,
+                    "issueFilingActionMessageCreator": null,
                     "targetPageActionMessageCreator": Object {
                       "copyIssueDetailsClicked": [Function],
                     },
@@ -268,11 +268,11 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: false 
     <FileIssueDetailsButton
       deps={
         Object {
-          "bugActionMessageCreator": null,
           "clientBrowserAdapter": Object {
             "getUrl": [Function],
           },
           "issueDetailsTextGenerator": null,
+          "issueFilingActionMessageCreator": null,
           "targetPageActionMessageCreator": Object {
             "copyIssueDetailsClicked": [Function],
           },
@@ -309,11 +309,11 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: false 
     <IssueFilingButton
       deps={
         Object {
-          "bugActionMessageCreator": null,
           "clientBrowserAdapter": Object {
             "getUrl": [Function],
           },
           "issueDetailsTextGenerator": null,
+          "issueFilingActionMessageCreator": null,
           "targetPageActionMessageCreator": Object {
             "copyIssueDetailsClicked": [Function],
           },
@@ -457,11 +457,11 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: true }
             <CopyIssueDetailsButton
               deps={
                 Object {
-                  "bugActionMessageCreator": null,
                   "clientBrowserAdapter": Object {
                     "getUrl": [Function],
                   },
                   "issueDetailsTextGenerator": null,
+                  "issueFilingActionMessageCreator": null,
                   "targetPageActionMessageCreator": Object {
                     "copyIssueDetailsClicked": [Function],
                   },
@@ -497,11 +497,11 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: true }
                 <FileIssueDetailsButton
                   deps={
                     Object {
-                      "bugActionMessageCreator": null,
                       "clientBrowserAdapter": Object {
                         "getUrl": [Function],
                       },
                       "issueDetailsTextGenerator": null,
+                      "issueFilingActionMessageCreator": null,
                       "targetPageActionMessageCreator": Object {
                         "copyIssueDetailsClicked": [Function],
                       },
@@ -538,11 +538,11 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: true }
                 <IssueFilingButton
                   deps={
                     Object {
-                      "bugActionMessageCreator": null,
                       "clientBrowserAdapter": Object {
                         "getUrl": [Function],
                       },
                       "issueDetailsTextGenerator": null,
+                      "issueFilingActionMessageCreator": null,
                       "targetPageActionMessageCreator": Object {
                         "copyIssueDetailsClicked": [Function],
                       },
@@ -648,11 +648,11 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: true }
     <FileIssueDetailsButton
       deps={
         Object {
-          "bugActionMessageCreator": null,
           "clientBrowserAdapter": Object {
             "getUrl": [Function],
           },
           "issueDetailsTextGenerator": null,
+          "issueFilingActionMessageCreator": null,
           "targetPageActionMessageCreator": Object {
             "copyIssueDetailsClicked": [Function],
           },
@@ -689,11 +689,11 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: true }
     <IssueFilingButton
       deps={
         Object {
-          "bugActionMessageCreator": null,
           "clientBrowserAdapter": Object {
             "getUrl": [Function],
           },
           "issueDetailsTextGenerator": null,
+          "issueFilingActionMessageCreator": null,
           "targetPageActionMessageCreator": Object {
             "copyIssueDetailsClicked": [Function],
           },
@@ -828,11 +828,11 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: false }
           <CopyIssueDetailsButton
             deps={
               Object {
-                "bugActionMessageCreator": null,
                 "clientBrowserAdapter": Object {
                   "getUrl": [Function],
                 },
                 "issueDetailsTextGenerator": null,
+                "issueFilingActionMessageCreator": null,
                 "targetPageActionMessageCreator": Object {
                   "copyIssueDetailsClicked": [Function],
                 },
@@ -868,11 +868,11 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: false }
               <FileIssueDetailsButton
                 deps={
                   Object {
-                    "bugActionMessageCreator": null,
                     "clientBrowserAdapter": Object {
                       "getUrl": [Function],
                     },
                     "issueDetailsTextGenerator": null,
+                    "issueFilingActionMessageCreator": null,
                     "targetPageActionMessageCreator": Object {
                       "copyIssueDetailsClicked": [Function],
                     },
@@ -909,11 +909,11 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: false }
               <IssueFilingButton
                 deps={
                   Object {
-                    "bugActionMessageCreator": null,
                     "clientBrowserAdapter": Object {
                       "getUrl": [Function],
                     },
                     "issueDetailsTextGenerator": null,
+                    "issueFilingActionMessageCreator": null,
                     "targetPageActionMessageCreator": Object {
                       "copyIssueDetailsClicked": [Function],
                     },
@@ -1013,11 +1013,11 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: false }
     <FileIssueDetailsButton
       deps={
         Object {
-          "bugActionMessageCreator": null,
           "clientBrowserAdapter": Object {
             "getUrl": [Function],
           },
           "issueDetailsTextGenerator": null,
+          "issueFilingActionMessageCreator": null,
           "targetPageActionMessageCreator": Object {
             "copyIssueDetailsClicked": [Function],
           },
@@ -1054,11 +1054,11 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: false }
     <IssueFilingButton
       deps={
         Object {
-          "bugActionMessageCreator": null,
           "clientBrowserAdapter": Object {
             "getUrl": [Function],
           },
           "issueDetailsTextGenerator": null,
+          "issueFilingActionMessageCreator": null,
           "targetPageActionMessageCreator": Object {
             "copyIssueDetailsClicked": [Function],
           },
@@ -1202,11 +1202,11 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: true } 
             <CopyIssueDetailsButton
               deps={
                 Object {
-                  "bugActionMessageCreator": null,
                   "clientBrowserAdapter": Object {
                     "getUrl": [Function],
                   },
                   "issueDetailsTextGenerator": null,
+                  "issueFilingActionMessageCreator": null,
                   "targetPageActionMessageCreator": Object {
                     "copyIssueDetailsClicked": [Function],
                   },
@@ -1242,11 +1242,11 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: true } 
                 <FileIssueDetailsButton
                   deps={
                     Object {
-                      "bugActionMessageCreator": null,
                       "clientBrowserAdapter": Object {
                         "getUrl": [Function],
                       },
                       "issueDetailsTextGenerator": null,
+                      "issueFilingActionMessageCreator": null,
                       "targetPageActionMessageCreator": Object {
                         "copyIssueDetailsClicked": [Function],
                       },
@@ -1283,11 +1283,11 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: true } 
                 <IssueFilingButton
                   deps={
                     Object {
-                      "bugActionMessageCreator": null,
                       "clientBrowserAdapter": Object {
                         "getUrl": [Function],
                       },
                       "issueDetailsTextGenerator": null,
+                      "issueFilingActionMessageCreator": null,
                       "targetPageActionMessageCreator": Object {
                         "copyIssueDetailsClicked": [Function],
                       },
@@ -1388,11 +1388,11 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: true }:
     <FileIssueDetailsButton
       deps={
         Object {
-          "bugActionMessageCreator": null,
           "clientBrowserAdapter": Object {
             "getUrl": [Function],
           },
           "issueDetailsTextGenerator": null,
+          "issueFilingActionMessageCreator": null,
           "targetPageActionMessageCreator": Object {
             "copyIssueDetailsClicked": [Function],
           },
@@ -1429,11 +1429,11 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: true }:
     <IssueFilingButton
       deps={
         Object {
-          "bugActionMessageCreator": null,
           "clientBrowserAdapter": Object {
             "getUrl": [Function],
           },
           "issueDetailsTextGenerator": null,
+          "issueFilingActionMessageCreator": null,
           "targetPageActionMessageCreator": Object {
             "copyIssueDetailsClicked": [Function],
           },
@@ -1568,11 +1568,11 @@ exports[`DetailsDialogTest render: with relative help url 1`] = `
           <CopyIssueDetailsButton
             deps={
               Object {
-                "bugActionMessageCreator": null,
                 "clientBrowserAdapter": Object {
                   "getUrl": [Function],
                 },
                 "issueDetailsTextGenerator": null,
+                "issueFilingActionMessageCreator": null,
                 "targetPageActionMessageCreator": Object {
                   "copyIssueDetailsClicked": [Function],
                 },
@@ -1608,11 +1608,11 @@ exports[`DetailsDialogTest render: with relative help url 1`] = `
               <FileIssueDetailsButton
                 deps={
                   Object {
-                    "bugActionMessageCreator": null,
                     "clientBrowserAdapter": Object {
                       "getUrl": [Function],
                     },
                     "issueDetailsTextGenerator": null,
+                    "issueFilingActionMessageCreator": null,
                     "targetPageActionMessageCreator": Object {
                       "copyIssueDetailsClicked": [Function],
                     },
@@ -1649,11 +1649,11 @@ exports[`DetailsDialogTest render: with relative help url 1`] = `
               <IssueFilingButton
                 deps={
                   Object {
-                    "bugActionMessageCreator": null,
                     "clientBrowserAdapter": Object {
                       "getUrl": [Function],
                     },
                     "issueDetailsTextGenerator": null,
+                    "issueFilingActionMessageCreator": null,
                     "targetPageActionMessageCreator": Object {
                       "copyIssueDetailsClicked": [Function],
                     },
@@ -1758,11 +1758,11 @@ exports[`DetailsDialogTest render: with relative help url: new issue filing bug 
     <FileIssueDetailsButton
       deps={
         Object {
-          "bugActionMessageCreator": null,
           "clientBrowserAdapter": Object {
             "getUrl": [Function],
           },
           "issueDetailsTextGenerator": null,
+          "issueFilingActionMessageCreator": null,
           "targetPageActionMessageCreator": Object {
             "copyIssueDetailsClicked": [Function],
           },
@@ -1799,11 +1799,11 @@ exports[`DetailsDialogTest render: with relative help url: new issue filing bug 
     <IssueFilingButton
       deps={
         Object {
-          "bugActionMessageCreator": null,
           "clientBrowserAdapter": Object {
             "getUrl": [Function],
           },
           "issueDetailsTextGenerator": null,
+          "issueFilingActionMessageCreator": null,
           "targetPageActionMessageCreator": Object {
             "copyIssueDetailsClicked": [Function],
           },
