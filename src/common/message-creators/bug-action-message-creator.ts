@@ -4,7 +4,7 @@ import { BaseActionPayload, FileIssuePayload } from '../../background/actions/ac
 import { Message } from '../message';
 import { Messages } from '../messages';
 import { TelemetryDataFactory } from '../telemetry-data-factory';
-import { FILE_ISSUE_CLICK, FileIssueClickService, TelemetryEventSource } from '../telemetry-events';
+import { FILE_ISSUE_CLICK, TelemetryEventSource } from '../telemetry-events';
 import { CreateIssueDetailsTextData } from '../types/create-issue-details-text-data';
 import { ActionMessageDispatcher } from './action-message-dispatcher';
 
@@ -29,18 +29,18 @@ export class BugActionMessageCreator {
         });
     }
 
-    public trackFileIssueClick(event: React.MouseEvent<HTMLElement>, service: FileIssueClickService): void {
-        const telemetry = this.telemetryFactory.forFileIssueClick(event, this.source, service);
+    public trackFileIssueClick(event: React.MouseEvent<HTMLElement>, serviceKey: string): void {
+        const telemetry = this.telemetryFactory.forFileIssueClick(event, this.source, serviceKey);
         this.dispatcher.sendTelemetry(FILE_ISSUE_CLICK, telemetry);
     }
 
-    public fileIssue(event: SupportedMouseEvent, service: FileIssueClickService, issueData: CreateIssueDetailsTextData): void {
+    public fileIssue(event: SupportedMouseEvent, serviceKey: string, issueData: CreateIssueDetailsTextData): void {
         const messageType = Messages.IssueFiling.FileIssue;
-        const telemetry = this.telemetryFactory.forFileIssueClick(event, this.source, service);
+        const telemetry = this.telemetryFactory.forFileIssueClick(event, this.source, serviceKey);
         const payload: FileIssuePayload = {
             telemetry,
             issueData,
-            service,
+            service: serviceKey,
         };
         const message: Message = {
             messageType,

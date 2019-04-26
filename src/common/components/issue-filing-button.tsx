@@ -10,7 +10,6 @@ import { IssueFilingDialogDeps } from '../../DetailsView/components/issue-filing
 import { EnvironmentInfoProvider } from '../environment-info-provider';
 import { LadyBugSolidIcon } from '../icons/lady-bug-solid-icon';
 import { BugActionMessageCreator } from '../message-creators/bug-action-message-creator';
-import { FileIssueClickService } from '../telemetry-events';
 import { CreateIssueDetailsTextData } from '../types/create-issue-details-text-data';
 import { IssueFilingNeedsSettingsContentProps, IssueFilingNeedsSettingsContentRenderer } from '../types/issue-filing-needs-setting-content';
 import { BugServiceProperties, UserConfigurationStoreData } from '../types/store-data/user-configuration-store';
@@ -91,7 +90,7 @@ export class IssueFilingButton extends React.Component<IssueFilingButtonProps, I
         const isSettingValid = selectedBugFilingService.isSettingsValid(selectedBugFilingServiceData);
 
         if (isSettingValid) {
-            bugActionMessageCreator.fileIssue(event, userConfigurationStoreData.bugService as FileIssueClickService, issueDetailsData);
+            bugActionMessageCreator.fileIssue(event, userConfigurationStoreData.bugService, issueDetailsData);
             this.closeNeedsSettingsContent();
         } else {
             this.openNeedsSettingsContent();

@@ -7,7 +7,7 @@ import { IssueFilingActionCreator } from '../../../../../background/global-actio
 import { Interpreter } from '../../../../../background/interpreter';
 import { TelemetryEventHandler } from '../../../../../background/telemetry/telemetry-event-handler';
 import { IssueFilingController } from '../../../../../bug-filing/common/issue-filing-controller-impl';
-import { FILE_ISSUE_CLICK, FileIssueClickService, TelemetryEventSource, TriggeredBy } from '../../../../../common/telemetry-events';
+import { FILE_ISSUE_CLICK, TelemetryEventSource, TriggeredBy } from '../../../../../common/telemetry-events';
 import { CreateIssueDetailsTextData } from '../../../../../common/types/create-issue-details-text-data';
 
 export { isFunction } from 'lodash';
@@ -16,7 +16,7 @@ describe('IssueFilingActionCreator', () => {
     it('handles FileIssue message', () => {
         const payload: FileIssuePayload = {
             issueData: {} as CreateIssueDetailsTextData,
-            service: 'test-service' as FileIssueClickService,
+            service: 'test-service',
             telemetry: {
                 triggeredBy: 'test' as TriggeredBy,
                 source: -1 as TelemetryEventSource,

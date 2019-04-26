@@ -3,7 +3,6 @@
 import { cloneDeep, isEqual } from 'lodash';
 import { Dialog, DialogFooter, DialogType } from 'office-ui-fabric-react/lib/Dialog';
 import * as React from 'react';
-
 import { BugFilingServiceProvider } from '../../bug-filing/bug-filing-service-provider';
 import {
     BugFilingSettingsContainer,
@@ -15,7 +14,6 @@ import { BugFilingService } from '../../bug-filing/types/bug-filing-service';
 import { EnvironmentInfoProvider } from '../../common/environment-info-provider';
 import { BugActionMessageCreator } from '../../common/message-creators/bug-action-message-creator';
 import { UserConfigMessageCreator } from '../../common/message-creators/user-config-message-creator';
-import { FileIssueClickService } from '../../common/telemetry-events';
 import { CreateIssueDetailsTextData } from '../../common/types/create-issue-details-text-data';
 import { BugServicePropertiesMap } from '../../common/types/store-data/user-configuration-store';
 import { ActionAndCancelButtonsComponent } from './action-and-cancel-buttons-component';
@@ -104,7 +102,7 @@ export class IssueFilingDialog extends React.Component<IssueFilingDialogProps, I
         const newData = this.state.selectedBugFilingService.getSettingsFromStoreData(this.state.bugServicePropertiesMap);
         const service = this.state.selectedBugFilingService.key;
         this.props.deps.userConfigMessageCreator.saveIssueFilingSettings(service, newData);
-        this.props.deps.bugActionMessageCreator.fileIssue(ev, service as FileIssueClickService, this.props.selectedBugData);
+        this.props.deps.bugActionMessageCreator.fileIssue(ev, service, this.props.selectedBugData);
         this.props.onClose(ev);
     };
 

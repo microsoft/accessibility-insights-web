@@ -9,7 +9,6 @@ import { TelemetryDataFactory } from '../../../../../common/telemetry-data-facto
 import {
     BaseTelemetryData,
     FILE_ISSUE_CLICK,
-    FileIssueClickService,
     SettingsOpenSourceItem,
     TelemetryEventSource,
     TriggeredBy,
@@ -61,7 +60,7 @@ describe('BugActionMessageCreator', () => {
     });
 
     it('dispatches message for trackFileIssueClick', () => {
-        const testService: FileIssueClickService = 'test file issue service' as FileIssueClickService;
+        const testService: string = 'test file issue service';
         const telemetry = { ...telemetryStub, service: testService };
 
         telemetryFactoryMock.setup(factory => factory.forFileIssueClick(eventStub, source, testService)).returns(() => telemetry);
@@ -74,7 +73,7 @@ describe('BugActionMessageCreator', () => {
     });
 
     it('dispatches message for fileIssue', () => {
-        const testService: FileIssueClickService = 'test file issue service' as FileIssueClickService;
+        const testService: string = 'test file issue service';
         const telemetry = { ...telemetryStub, service: testService };
 
         telemetryFactoryMock.setup(factory => factory.forFileIssueClick(eventStub, source, testService)).returns(() => telemetry);

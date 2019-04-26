@@ -11,7 +11,6 @@ import { IssueFilingButton, IssueFilingButtonDeps, IssueFilingButtonProps } from
 import { EnvironmentInfoProvider } from '../../../../../common/environment-info-provider';
 import { BugActionMessageCreator } from '../../../../../common/message-creators/bug-action-message-creator';
 import { NamedSFC } from '../../../../../common/react/named-sfc';
-import { FileIssueClickService } from '../../../../../common/telemetry-events';
 import { IssueFilingNeedsSettingsContentRenderer } from '../../../../../common/types/issue-filing-needs-setting-content';
 import { UserConfigurationStoreData } from '../../../../../common/types/store-data/user-configuration-store';
 import { EventStubFactory } from '../../../common/event-stub-factory';
@@ -102,7 +101,7 @@ describe('IssueFilingButtonTest', () => {
             needsSettingsContentRenderer,
         };
         bugActionMessageCreatorMock
-            .setup(creator => creator.fileIssue(eventStub, testKey as FileIssueClickService, props.issueDetailsData))
+            .setup(creator => creator.fileIssue(eventStub, testKey, props.issueDetailsData))
             .verifiable(Times.once());
         const wrapper = shallow(<IssueFilingButton {...props} />);
 

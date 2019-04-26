@@ -3,13 +3,12 @@
 import { BrowserAdapter } from '../../background/browser-adapter';
 import { BaseStore } from '../../common/base-store';
 import { EnvironmentInfo } from '../../common/environment-info-provider';
-import { FileIssueClickService } from '../../common/telemetry-events';
 import { CreateIssueDetailsTextData } from '../../common/types/create-issue-details-text-data';
 import { BugServiceProperties, UserConfigurationStoreData } from '../../common/types/store-data/user-configuration-store';
 import { BugFilingServiceProvider } from '../bug-filing-service-provider';
 
 export type IssueFilingController = {
-    fileIssue: (serviceKey: FileIssueClickService, issueData: CreateIssueDetailsTextData) => void;
+    fileIssue: (serviceKey: string, issueData: CreateIssueDetailsTextData) => void;
 };
 
 export class IssueFilingControllerImpl implements IssueFilingController {
@@ -20,7 +19,7 @@ export class IssueFilingControllerImpl implements IssueFilingController {
         private readonly userConfigurationStore: BaseStore<UserConfigurationStoreData>,
     ) {}
 
-    public fileIssue = (serviceKey: FileIssueClickService, issueData: CreateIssueDetailsTextData): void => {
+    public fileIssue = (serviceKey: string, issueData: CreateIssueDetailsTextData): void => {
         const service = this.provider.forKey(serviceKey);
         const userConfigurationStoreData = this.userConfigurationStore.getState();
 

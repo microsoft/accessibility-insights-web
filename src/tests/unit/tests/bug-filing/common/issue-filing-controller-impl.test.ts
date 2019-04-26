@@ -8,7 +8,6 @@ import { IssueFilingControllerImpl } from '../../../../../bug-filing/common/issu
 import { BugFilingService } from '../../../../../bug-filing/types/bug-filing-service';
 import { BaseStore } from '../../../../../common/base-store';
 import { EnvironmentInfo } from '../../../../../common/environment-info-provider';
-import { FileIssueClickService } from '../../../../../common/telemetry-events';
 import { CreateIssueDetailsTextData } from '../../../../../common/types/create-issue-details-text-data';
 import { BugServicePropertiesMap, UserConfigurationStoreData } from '../../../../../common/types/store-data/user-configuration-store';
 import { DecoratedAxeNodeResult } from '../../../../../injected/scanner-utils';
@@ -67,7 +66,7 @@ describe('IssueFilingControllerImpl', () => {
             storeMock.object,
         );
 
-        testSubject.fileIssue(serviceKey as FileIssueClickService, issueData);
+        testSubject.fileIssue(serviceKey, issueData);
 
         browserAdapterMock.verifyAll();
     });
