@@ -9,7 +9,7 @@ describe('MainWindowContextTest', () => {
     const targetPageActionMessageCreator: any = { name: 'targetPageActionMessageCreator' };
     const bugActionMessageCreator: any = { name: 'targetPageActionMessageCreator' };
     const environmentInfoProvider: any = { name: 'environmentInfoProvider' };
-    const bugFilingServiceProvider: any = { name: 'bugFilingServiceProvider' };
+    const issueFilingServiceProvider: any = { name: 'issueFilingServiceProvider' };
     const userConfigMessageCreator: any = { name: 'userConfigMessageCreator' };
 
     test('save and retrieve from instance', () => {
@@ -21,7 +21,7 @@ describe('MainWindowContextTest', () => {
             bugActionMessageCreator,
             userConfigMessageCreator,
             environmentInfoProvider,
-            bugFilingServiceProvider,
+            issueFilingServiceProvider,
         );
 
         expect(testSubject.getDevToolStore()).toEqual(devToolStore);
@@ -39,7 +39,7 @@ describe('MainWindowContextTest', () => {
             bugActionMessageCreator,
             userConfigMessageCreator,
             environmentInfoProvider,
-            bugFilingServiceProvider,
+            issueFilingServiceProvider,
         );
 
         expect(MainWindowContext.getMainWindowContext().getDevToolStore()).toEqual(devToolStore);
@@ -48,7 +48,7 @@ describe('MainWindowContextTest', () => {
         expect(MainWindowContext.getMainWindowContext().getTargetPageActionMessageCreator()).toEqual(targetPageActionMessageCreator);
         expect(MainWindowContext.getMainWindowContext().getUserConfigMessageCreator()).toEqual(userConfigMessageCreator);
         expect(MainWindowContext.getMainWindowContext().getEnvironmentInfoProvider()).toEqual(environmentInfoProvider);
-        expect(MainWindowContext.getMainWindowContext().getBugFilingServiceProvider()).toEqual(bugFilingServiceProvider);
+        expect(MainWindowContext.getMainWindowContext().getIssueFilingServiceProvider()).toEqual(issueFilingServiceProvider);
     });
 
     test('getIfNotGiven', () => {
@@ -60,14 +60,14 @@ describe('MainWindowContextTest', () => {
             bugActionMessageCreator,
             userConfigMessageCreator,
             environmentInfoProvider,
-            bugFilingServiceProvider,
+            issueFilingServiceProvider,
         );
 
         const devToolStoreLocal: any = { name: 'devToolStoreLocal' };
         const userConfigStoreLocal: any = { name: 'userConfigStoreLocal' };
         const devToolActionMessageCreatorLocal: any = { name: 'devToolActionMessageCreatorLocal' };
         const environmentInfoProviderLocal: any = { name: 'environmentInfoProviderLocal' };
-        const bugFilingServiceProviderLocal: any = { name: 'bugFilingServiceProviderLocal' };
+        const issueFilingServiceProviderLocal: any = { name: 'issueFilingServiceProviderLocal' };
         const userConfigMessageCreatorLocal: any = { name: 'userConfigMessageCreatorLocal' };
 
         const mainWindowContextLocal = new MainWindowContext(
@@ -78,7 +78,7 @@ describe('MainWindowContextTest', () => {
             bugActionMessageCreator,
             userConfigMessageCreatorLocal,
             environmentInfoProviderLocal,
-            bugFilingServiceProviderLocal,
+            issueFilingServiceProviderLocal,
         );
 
         const mainWindowContextGiven = MainWindowContext.getIfNotGiven(mainWindowContextLocal);
@@ -88,7 +88,7 @@ describe('MainWindowContextTest', () => {
         expect(mainWindowContextGiven.getTargetPageActionMessageCreator()).toEqual(targetPageActionMessageCreator);
         expect(mainWindowContextGiven.getUserConfigMessageCreator()).toEqual(userConfigMessageCreatorLocal);
         expect(mainWindowContextGiven.getEnvironmentInfoProvider()).toEqual(environmentInfoProviderLocal);
-        expect(mainWindowContextGiven.getBugFilingServiceProvider()).toEqual(bugFilingServiceProviderLocal);
+        expect(mainWindowContextGiven.getIssueFilingServiceProvider()).toEqual(issueFilingServiceProviderLocal);
 
         const mainWindowContextNotGiven = MainWindowContext.getIfNotGiven(null);
         expect(mainWindowContextNotGiven.getDevToolStore()).toEqual(devToolStore);
@@ -97,6 +97,6 @@ describe('MainWindowContextTest', () => {
         expect(mainWindowContextNotGiven.getTargetPageActionMessageCreator()).toEqual(targetPageActionMessageCreator);
         expect(mainWindowContextNotGiven.getUserConfigMessageCreator()).toEqual(userConfigMessageCreator);
         expect(mainWindowContextNotGiven.getEnvironmentInfoProvider()).toEqual(environmentInfoProvider);
-        expect(mainWindowContextNotGiven.getBugFilingServiceProvider()).toEqual(bugFilingServiceProvider);
+        expect(mainWindowContextNotGiven.getIssueFilingServiceProvider()).toEqual(issueFilingServiceProvider);
     });
 });

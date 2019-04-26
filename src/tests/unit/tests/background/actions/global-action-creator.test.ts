@@ -3,9 +3,9 @@
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import {
     SaveIssueFilingSettingsPayload,
-    SetBugServicePayload,
-    SetBugServicePropertyPayload,
     SetHighContrastModePayload,
+    SetIssueFilingServicePayload,
+    SetIssueFilingServicePropertyPayload,
     SetLaunchPanelState,
     SetTelemetryStatePayload,
 } from '../../../../../background/actions/action-payloads';
@@ -245,15 +245,15 @@ describe('GlobalActionCreatorTest', () => {
         validator.verifyAll();
     });
 
-    test('registerCallback for on UserConfig.SetBugService', () => {
-        const payload: SetBugServicePayload = {
-            bugServiceName: 'none',
+    test('registerCallback for on UserConfig.SetIssueFilingService', () => {
+        const payload: SetIssueFilingServicePayload = {
+            issueFilingServiceName: 'none',
         };
         const args = [payload];
         const validator = new GlobalActionCreatorValidator()
-            .setupRegistrationCallback(Messages.UserConfig.SetBugService, args)
-            .setupActionsOnUserConfig('setBugService')
-            .setupUserConfigActionWithInvokeParameter('setBugService', payload);
+            .setupRegistrationCallback(Messages.UserConfig.SetIssueFilingService, args)
+            .setupActionsOnUserConfig('setIssueFilingService')
+            .setupUserConfigActionWithInvokeParameter('setIssueFilingService', payload);
 
         const actionCreator = validator.buildActionCreator();
         actionCreator.registerCallbacks();
@@ -261,17 +261,17 @@ describe('GlobalActionCreatorTest', () => {
         validator.verifyAll();
     });
 
-    test('registerCallback for on UserConfig.SetBugServiceProperty', () => {
-        const payload: SetBugServicePropertyPayload = {
-            bugServiceName: 'bug-service-name',
+    test('registerCallback for on UserConfig.SetIssueFilingServiceProperty', () => {
+        const payload: SetIssueFilingServicePropertyPayload = {
+            issueFilingServiceName: 'bug-service-name',
             propertyName: 'property-name',
             propertyValue: 'property-value',
         };
         const args = [payload];
         const validator = new GlobalActionCreatorValidator()
-            .setupRegistrationCallback(Messages.UserConfig.SetBugServiceProperty, args)
-            .setupActionsOnUserConfig('setBugServiceProperty')
-            .setupUserConfigActionWithInvokeParameter('setBugServiceProperty', payload);
+            .setupRegistrationCallback(Messages.UserConfig.SetIssueFilingServiceProperty, args)
+            .setupActionsOnUserConfig('setIssueFilingServiceProperty')
+            .setupUserConfigActionWithInvokeParameter('setIssueFilingServiceProperty', payload);
 
         const actionCreator = validator.buildActionCreator();
         actionCreator.registerCallbacks();
@@ -302,8 +302,8 @@ describe('GlobalActionCreatorTest', () => {
 
     test('registerCallback for on UserConfig.SaveIssueFilingSettings', () => {
         const payload: SaveIssueFilingSettingsPayload = {
-            bugServiceName: 'test bug service',
-            bugFilingSettings: { name: 'issueFilingSettings' },
+            issueFilingServiceName: 'test bug service',
+            issueFilingSettings: { name: 'issueFilingSettings' },
         };
         const args = [payload];
         const validator = new GlobalActionCreatorValidator()

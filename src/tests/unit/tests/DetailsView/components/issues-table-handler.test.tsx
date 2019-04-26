@@ -12,7 +12,7 @@ describe('IssuesTableHandlerTests', () => {
         testGetListProps(false);
     });
 
-    function testGetListProps(showBugFiling: boolean): void {
+    function testGetListProps(showIssueFiling: boolean): void {
         const node1: AxeNodeResult = {
             any: [],
             none: [],

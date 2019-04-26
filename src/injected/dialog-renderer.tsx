@@ -74,7 +74,7 @@ export class DialogRenderer {
                 clientBrowserAdapter: this.clientBrowserAdapter,
                 getRTL: this.getRTLFunc,
                 environmentInfoProvider: mainWindowContext.getEnvironmentInfoProvider(),
-                bugFilingServiceProvider: mainWindowContext.getBugFilingServiceProvider(),
+                issueFilingServiceProvider: mainWindowContext.getIssueFilingServiceProvider(),
                 userConfigMessageCreator: mainWindowContext.getUserConfigMessageCreator(),
             };
 

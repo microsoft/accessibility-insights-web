@@ -6,11 +6,11 @@ export interface UserConfigurationStoreData {
     enableHighContrast: boolean;
     issueTrackerPath?: string;
     bugService: string;
-    bugServicePropertiesMap: BugServicePropertiesMap;
+    bugServicePropertiesMap: IssueFilingServicePropertiesMap;
 }
 
-export interface BugServicePropertiesMap {
-    [service: string]: BugServiceProperties;
+export interface IssueFilingServicePropertiesMap {
+    [service: string]: IssueFilingServiceProperties;
 }
 
-export type BugServiceProperties = Object;
+export type IssueFilingServiceProperties = Object;

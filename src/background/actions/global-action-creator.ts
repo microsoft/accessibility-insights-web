@@ -10,9 +10,9 @@ import { TelemetryEventHandler } from '../telemetry/telemetry-event-handler';
 import {
     PayloadWithEventName,
     SaveIssueFilingSettingsPayload,
-    SetBugServicePayload,
-    SetBugServicePropertyPayload,
     SetHighContrastModePayload,
+    SetIssueFilingServicePayload,
+    SetIssueFilingServicePropertyPayload,
     SetIssueTrackerPathPayload,
     SetLaunchPanelState,
     SetTelemetryStatePayload,
@@ -69,8 +69,11 @@ export class GlobalActionCreator {
         this.interpreter.registerTypeToPayloadCallback(Messages.UserConfig.GetCurrentState, this.onGetUserConfigState);
         this.interpreter.registerTypeToPayloadCallback(Messages.UserConfig.SetTelemetryConfig, this.onSetTelemetryConfiguration);
         this.interpreter.registerTypeToPayloadCallback(Messages.UserConfig.SetHighContrastConfig, this.onSetHighContrastMode);
-        this.interpreter.registerTypeToPayloadCallback(Messages.UserConfig.SetBugService, this.onSetBugService);
-        this.interpreter.registerTypeToPayloadCallback(Messages.UserConfig.SetBugServiceProperty, this.onSetBugServiceProperty);
+        this.interpreter.registerTypeToPayloadCallback(Messages.UserConfig.SetIssueFilingService, this.onSetIssueFilingService);
+        this.interpreter.registerTypeToPayloadCallback(
+            Messages.UserConfig.SetIssueFilingServiceProperty,
+            this.onSetIssueFilingServiceProperty,
+        );
         this.interpreter.registerTypeToPayloadCallback(Messages.UserConfig.SetIssueTrackerPath, this.onSetIssueTrackerPath);
         this.interpreter.registerTypeToPayloadCallback(Messages.UserConfig.SaveIssueFilingSettings, this.onSaveIssueFilingSettings);
     }
@@ -149,13 +152,13 @@ export class GlobalActionCreator {
     }
 
     @autobind
-    private onSetBugService(payload: SetBugServicePayload): void {
-        this.userConfigActions.setBugService.invoke(payload);
+    private onSetIssueFilingService(payload: SetIssueFilingServicePayload): void {
+        this.userConfigActions.setIssueFilingService.invoke(payload);
     }
 
     @autobind
-    private onSetBugServiceProperty(payload: SetBugServicePropertyPayload): void {
-        this.userConfigActions.setBugServiceProperty.invoke(payload);
+    private onSetIssueFilingServiceProperty(payload: SetIssueFilingServicePropertyPayload): void {
+        this.userConfigActions.setIssueFilingServiceProperty.invoke(payload);
     }
 
     @autobind

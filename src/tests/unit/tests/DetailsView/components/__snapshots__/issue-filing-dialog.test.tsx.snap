@@ -20,22 +20,22 @@ exports[`IssueFilingDialog componentDidUpdate dialog is not open & props have ch
   }
   onDismiss={[Function]}
 >
-  <BugFilingSettingsContainer
+  <IssueFilingSettingsContainer
     deps={
       Object {
-        "bugFilingServiceProvider": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "all": [Function],
-          "allVisible": [Function],
-          "forKey": [Function],
-          "services": undefined,
-        },
         "environmentInfoProvider": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "axeVersion": undefined,
           "browserSpec": undefined,
           "extensionVersion": undefined,
           "getEnvironmentInfo": [Function],
+        },
+        "issueFilingServiceProvider": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "all": [Function],
+          "allVisible": [Function],
+          "forKey": [Function],
+          "services": undefined,
         },
         "userConfigMessageCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
@@ -46,9 +46,9 @@ exports[`IssueFilingDialog componentDidUpdate dialog is not open & props have ch
           "postMessageDelegate": undefined,
           "saveIssueFilingSettings": [Function],
           "sendTelemetry": [Function],
-          "setBugService": [Function],
-          "setBugServiceProperty": [Function],
           "setHighContrastMode": [Function],
+          "setIssueFilingService": [Function],
+          "setIssueFilingServiceProperty": [Function],
           "setIssueTrackerPath": [Function],
           "setTelemetryState": [Function],
         },
@@ -56,7 +56,7 @@ exports[`IssueFilingDialog componentDidUpdate dialog is not open & props have ch
     }
     onPropertyUpdateCallback={[Function]}
     onSelectedServiceChange={[Function]}
-    selectedBugFilingService={
+    selectedIssueFilingService={
       Object {
         "getSettingsFromStoreData": [Function],
         "isSettingsValid": [Function],
@@ -64,7 +64,7 @@ exports[`IssueFilingDialog componentDidUpdate dialog is not open & props have ch
         "key": "gitHub",
       }
     }
-    selectedBugFilingServiceData={
+    selectedIssueFilingServiceData={
       Object {
         "someServiceData": null,
       }
@@ -102,22 +102,22 @@ exports[`IssueFilingDialog componentDidUpdate dialog is not open & props have no
   }
   onDismiss={[Function]}
 >
-  <BugFilingSettingsContainer
+  <IssueFilingSettingsContainer
     deps={
       Object {
-        "bugFilingServiceProvider": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "all": [Function],
-          "allVisible": [Function],
-          "forKey": [Function],
-          "services": undefined,
-        },
         "environmentInfoProvider": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "axeVersion": undefined,
           "browserSpec": undefined,
           "extensionVersion": undefined,
           "getEnvironmentInfo": [Function],
+        },
+        "issueFilingServiceProvider": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "all": [Function],
+          "allVisible": [Function],
+          "forKey": [Function],
+          "services": undefined,
         },
         "userConfigMessageCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
@@ -128,9 +128,9 @@ exports[`IssueFilingDialog componentDidUpdate dialog is not open & props have no
           "postMessageDelegate": undefined,
           "saveIssueFilingSettings": [Function],
           "sendTelemetry": [Function],
-          "setBugService": [Function],
-          "setBugServiceProperty": [Function],
           "setHighContrastMode": [Function],
+          "setIssueFilingService": [Function],
+          "setIssueFilingServiceProperty": [Function],
           "setIssueTrackerPath": [Function],
           "setTelemetryState": [Function],
         },
@@ -138,7 +138,7 @@ exports[`IssueFilingDialog componentDidUpdate dialog is not open & props have no
     }
     onPropertyUpdateCallback={[Function]}
     onSelectedServiceChange={[Function]}
-    selectedBugFilingService={
+    selectedIssueFilingService={
       Object {
         "getSettingsFromStoreData": [Function],
         "isSettingsValid": [Function],
@@ -146,7 +146,7 @@ exports[`IssueFilingDialog componentDidUpdate dialog is not open & props have no
         "key": "gitHub",
       }
     }
-    selectedBugFilingServiceData={
+    selectedIssueFilingServiceData={
       Object {
         "differentProperty": "different_property",
       }
@@ -184,22 +184,22 @@ exports[`IssueFilingDialog componentDidUpdate dialog is open & props have change
   }
   onDismiss={[Function]}
 >
-  <BugFilingSettingsContainer
+  <IssueFilingSettingsContainer
     deps={
       Object {
-        "bugFilingServiceProvider": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "all": [Function],
-          "allVisible": [Function],
-          "forKey": [Function],
-          "services": undefined,
-        },
         "environmentInfoProvider": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "axeVersion": undefined,
           "browserSpec": undefined,
           "extensionVersion": undefined,
           "getEnvironmentInfo": [Function],
+        },
+        "issueFilingServiceProvider": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "all": [Function],
+          "allVisible": [Function],
+          "forKey": [Function],
+          "services": undefined,
         },
         "userConfigMessageCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
@@ -210,9 +210,9 @@ exports[`IssueFilingDialog componentDidUpdate dialog is open & props have change
           "postMessageDelegate": undefined,
           "saveIssueFilingSettings": [Function],
           "sendTelemetry": [Function],
-          "setBugService": [Function],
-          "setBugServiceProperty": [Function],
           "setHighContrastMode": [Function],
+          "setIssueFilingService": [Function],
+          "setIssueFilingServiceProperty": [Function],
           "setIssueTrackerPath": [Function],
           "setTelemetryState": [Function],
         },
@@ -220,7 +220,7 @@ exports[`IssueFilingDialog componentDidUpdate dialog is open & props have change
     }
     onPropertyUpdateCallback={[Function]}
     onSelectedServiceChange={[Function]}
-    selectedBugFilingService={
+    selectedIssueFilingService={
       Object {
         "getSettingsFromStoreData": [Function],
         "isSettingsValid": [Function],
@@ -228,7 +228,7 @@ exports[`IssueFilingDialog componentDidUpdate dialog is open & props have change
         "key": "gitHub",
       }
     }
-    selectedBugFilingServiceData={
+    selectedIssueFilingServiceData={
       Object {
         "differentProperty": "different_property",
       }
@@ -266,22 +266,22 @@ exports[`IssueFilingDialog componentDidUpdate dialog is open & props have not ch
   }
   onDismiss={[Function]}
 >
-  <BugFilingSettingsContainer
+  <IssueFilingSettingsContainer
     deps={
       Object {
-        "bugFilingServiceProvider": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "all": [Function],
-          "allVisible": [Function],
-          "forKey": [Function],
-          "services": undefined,
-        },
         "environmentInfoProvider": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "axeVersion": undefined,
           "browserSpec": undefined,
           "extensionVersion": undefined,
           "getEnvironmentInfo": [Function],
+        },
+        "issueFilingServiceProvider": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "all": [Function],
+          "allVisible": [Function],
+          "forKey": [Function],
+          "services": undefined,
         },
         "userConfigMessageCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
@@ -292,9 +292,9 @@ exports[`IssueFilingDialog componentDidUpdate dialog is open & props have not ch
           "postMessageDelegate": undefined,
           "saveIssueFilingSettings": [Function],
           "sendTelemetry": [Function],
-          "setBugService": [Function],
-          "setBugServiceProperty": [Function],
           "setHighContrastMode": [Function],
+          "setIssueFilingService": [Function],
+          "setIssueFilingServiceProperty": [Function],
           "setIssueTrackerPath": [Function],
           "setTelemetryState": [Function],
         },
@@ -302,7 +302,7 @@ exports[`IssueFilingDialog componentDidUpdate dialog is open & props have not ch
     }
     onPropertyUpdateCallback={[Function]}
     onSelectedServiceChange={[Function]}
-    selectedBugFilingService={
+    selectedIssueFilingService={
       Object {
         "getSettingsFromStoreData": [Function],
         "isSettingsValid": [Function],
@@ -310,7 +310,7 @@ exports[`IssueFilingDialog componentDidUpdate dialog is open & props have not ch
         "key": "gitHub",
       }
     }
-    selectedBugFilingServiceData={
+    selectedIssueFilingServiceData={
       Object {
         "differentProperty": "different_property",
       }
@@ -348,22 +348,22 @@ exports[`IssueFilingDialog render with isSettingsValid: false 1`] = `
   }
   onDismiss={[Function]}
 >
-  <BugFilingSettingsContainer
+  <IssueFilingSettingsContainer
     deps={
       Object {
-        "bugFilingServiceProvider": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "all": [Function],
-          "allVisible": [Function],
-          "forKey": [Function],
-          "services": undefined,
-        },
         "environmentInfoProvider": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "axeVersion": undefined,
           "browserSpec": undefined,
           "extensionVersion": undefined,
           "getEnvironmentInfo": [Function],
+        },
+        "issueFilingServiceProvider": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "all": [Function],
+          "allVisible": [Function],
+          "forKey": [Function],
+          "services": undefined,
         },
         "userConfigMessageCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
@@ -374,9 +374,9 @@ exports[`IssueFilingDialog render with isSettingsValid: false 1`] = `
           "postMessageDelegate": undefined,
           "saveIssueFilingSettings": [Function],
           "sendTelemetry": [Function],
-          "setBugService": [Function],
-          "setBugServiceProperty": [Function],
           "setHighContrastMode": [Function],
+          "setIssueFilingService": [Function],
+          "setIssueFilingServiceProperty": [Function],
           "setIssueTrackerPath": [Function],
           "setTelemetryState": [Function],
         },
@@ -384,7 +384,7 @@ exports[`IssueFilingDialog render with isSettingsValid: false 1`] = `
     }
     onPropertyUpdateCallback={[Function]}
     onSelectedServiceChange={[Function]}
-    selectedBugFilingService={
+    selectedIssueFilingService={
       Object {
         "getSettingsFromStoreData": [Function],
         "isSettingsValid": [Function],
@@ -392,7 +392,7 @@ exports[`IssueFilingDialog render with isSettingsValid: false 1`] = `
         "key": "gitHub",
       }
     }
-    selectedBugFilingServiceData={
+    selectedIssueFilingServiceData={
       Object {
         "someServiceData": null,
       }
@@ -431,22 +431,22 @@ exports[`IssueFilingDialog render with isSettingsValid: true 1`] = `
   }
   onDismiss={[Function]}
 >
-  <BugFilingSettingsContainer
+  <IssueFilingSettingsContainer
     deps={
       Object {
-        "bugFilingServiceProvider": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "all": [Function],
-          "allVisible": [Function],
-          "forKey": [Function],
-          "services": undefined,
-        },
         "environmentInfoProvider": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "axeVersion": undefined,
           "browserSpec": undefined,
           "extensionVersion": undefined,
           "getEnvironmentInfo": [Function],
+        },
+        "issueFilingServiceProvider": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "all": [Function],
+          "allVisible": [Function],
+          "forKey": [Function],
+          "services": undefined,
         },
         "userConfigMessageCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
@@ -457,9 +457,9 @@ exports[`IssueFilingDialog render with isSettingsValid: true 1`] = `
           "postMessageDelegate": undefined,
           "saveIssueFilingSettings": [Function],
           "sendTelemetry": [Function],
-          "setBugService": [Function],
-          "setBugServiceProperty": [Function],
           "setHighContrastMode": [Function],
+          "setIssueFilingService": [Function],
+          "setIssueFilingServiceProperty": [Function],
           "setIssueTrackerPath": [Function],
           "setTelemetryState": [Function],
         },
@@ -467,7 +467,7 @@ exports[`IssueFilingDialog render with isSettingsValid: true 1`] = `
     }
     onPropertyUpdateCallback={[Function]}
     onSelectedServiceChange={[Function]}
-    selectedBugFilingService={
+    selectedIssueFilingService={
       Object {
         "getSettingsFromStoreData": [Function],
         "isSettingsValid": [Function],
@@ -475,7 +475,7 @@ exports[`IssueFilingDialog render with isSettingsValid: true 1`] = `
         "key": "gitHub",
       }
     }
-    selectedBugFilingServiceData={
+    selectedIssueFilingServiceData={
       Object {
         "someServiceData": null,
       }
@@ -513,22 +513,22 @@ exports[`IssueFilingDialog render: validate callback (onPropertyUpdateCallback) 
   }
   onDismiss={[Function]}
 >
-  <BugFilingSettingsContainer
+  <IssueFilingSettingsContainer
     deps={
       Object {
-        "bugFilingServiceProvider": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "all": [Function],
-          "allVisible": [Function],
-          "forKey": [Function],
-          "services": undefined,
-        },
         "environmentInfoProvider": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "axeVersion": undefined,
           "browserSpec": undefined,
           "extensionVersion": undefined,
           "getEnvironmentInfo": [Function],
+        },
+        "issueFilingServiceProvider": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "all": [Function],
+          "allVisible": [Function],
+          "forKey": [Function],
+          "services": undefined,
         },
         "userConfigMessageCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
@@ -539,9 +539,9 @@ exports[`IssueFilingDialog render: validate callback (onPropertyUpdateCallback) 
           "postMessageDelegate": undefined,
           "saveIssueFilingSettings": [Function],
           "sendTelemetry": [Function],
-          "setBugService": [Function],
-          "setBugServiceProperty": [Function],
           "setHighContrastMode": [Function],
+          "setIssueFilingService": [Function],
+          "setIssueFilingServiceProperty": [Function],
           "setIssueTrackerPath": [Function],
           "setTelemetryState": [Function],
         },
@@ -549,7 +549,7 @@ exports[`IssueFilingDialog render: validate callback (onPropertyUpdateCallback) 
     }
     onPropertyUpdateCallback={[Function]}
     onSelectedServiceChange={[Function]}
-    selectedBugFilingService={
+    selectedIssueFilingService={
       Object {
         "getSettingsFromStoreData": [Function],
         "isSettingsValid": [Function],
@@ -557,7 +557,7 @@ exports[`IssueFilingDialog render: validate callback (onPropertyUpdateCallback) 
         "key": "gitHub",
       }
     }
-    selectedBugFilingServiceData={
+    selectedIssueFilingServiceData={
       Object {
         "someServiceData": null,
         "some_property": "some_value",
@@ -596,22 +596,22 @@ exports[`IssueFilingDialog render: validate callback (onPropertyUpdateCallback) 
   }
   onDismiss={[Function]}
 >
-  <BugFilingSettingsContainer
+  <IssueFilingSettingsContainer
     deps={
       Object {
-        "bugFilingServiceProvider": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "all": [Function],
-          "allVisible": [Function],
-          "forKey": [Function],
-          "services": undefined,
-        },
         "environmentInfoProvider": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "axeVersion": undefined,
           "browserSpec": undefined,
           "extensionVersion": undefined,
           "getEnvironmentInfo": [Function],
+        },
+        "issueFilingServiceProvider": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "all": [Function],
+          "allVisible": [Function],
+          "forKey": [Function],
+          "services": undefined,
         },
         "userConfigMessageCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
@@ -622,9 +622,9 @@ exports[`IssueFilingDialog render: validate callback (onPropertyUpdateCallback) 
           "postMessageDelegate": undefined,
           "saveIssueFilingSettings": [Function],
           "sendTelemetry": [Function],
-          "setBugService": [Function],
-          "setBugServiceProperty": [Function],
           "setHighContrastMode": [Function],
+          "setIssueFilingService": [Function],
+          "setIssueFilingServiceProperty": [Function],
           "setIssueTrackerPath": [Function],
           "setTelemetryState": [Function],
         },
@@ -632,7 +632,7 @@ exports[`IssueFilingDialog render: validate callback (onPropertyUpdateCallback) 
     }
     onPropertyUpdateCallback={[Function]}
     onSelectedServiceChange={[Function]}
-    selectedBugFilingService={
+    selectedIssueFilingService={
       Object {
         "getSettingsFromStoreData": [Function],
         "isSettingsValid": [Function],
@@ -640,7 +640,7 @@ exports[`IssueFilingDialog render: validate callback (onPropertyUpdateCallback) 
         "key": "gitHub",
       }
     }
-    selectedBugFilingServiceData={
+    selectedIssueFilingServiceData={
       Object {
         "some_property": "some_value",
       }
@@ -678,22 +678,22 @@ exports[`IssueFilingDialog render: validate callback (onSelectedServiceChange) s
   }
   onDismiss={[Function]}
 >
-  <BugFilingSettingsContainer
+  <IssueFilingSettingsContainer
     deps={
       Object {
-        "bugFilingServiceProvider": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "all": [Function],
-          "allVisible": [Function],
-          "forKey": [Function],
-          "services": undefined,
-        },
         "environmentInfoProvider": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "axeVersion": undefined,
           "browserSpec": undefined,
           "extensionVersion": undefined,
           "getEnvironmentInfo": [Function],
+        },
+        "issueFilingServiceProvider": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "all": [Function],
+          "allVisible": [Function],
+          "forKey": [Function],
+          "services": undefined,
         },
         "userConfigMessageCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
@@ -704,9 +704,9 @@ exports[`IssueFilingDialog render: validate callback (onSelectedServiceChange) s
           "postMessageDelegate": undefined,
           "saveIssueFilingSettings": [Function],
           "sendTelemetry": [Function],
-          "setBugService": [Function],
-          "setBugServiceProperty": [Function],
           "setHighContrastMode": [Function],
+          "setIssueFilingService": [Function],
+          "setIssueFilingServiceProperty": [Function],
           "setIssueTrackerPath": [Function],
           "setTelemetryState": [Function],
         },
@@ -714,7 +714,7 @@ exports[`IssueFilingDialog render: validate callback (onSelectedServiceChange) s
     }
     onPropertyUpdateCallback={[Function]}
     onSelectedServiceChange={[Function]}
-    selectedBugFilingService={
+    selectedIssueFilingService={
       Object {
         "getSettingsFromStoreData": [Function],
         "isSettingsValid": [Function],
@@ -722,7 +722,7 @@ exports[`IssueFilingDialog render: validate callback (onSelectedServiceChange) s
         "key": "different_service",
       }
     }
-    selectedBugFilingServiceData={
+    selectedIssueFilingServiceData={
       Object {
         "differentProperty": "different_property",
       }
