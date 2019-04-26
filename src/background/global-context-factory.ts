@@ -16,6 +16,7 @@ import { Interpreter } from './interpreter';
 import { LocalStorageData } from './storage-data';
 import { GlobalStoreHub } from './stores/global/global-store-hub';
 import { TelemetryEventHandler } from './telemetry/telemetry-event-handler';
+import { UserConfigurationActionCreator } from './global-action-creators/user-configuration-action-creator';
 
 export class GlobalContextFactory {
     public static createContext(
@@ -50,9 +51,11 @@ export class GlobalContextFactory {
             telemetryEventHandler,
             interpreter.registerTypeToPayloadCallback,
         );
+        const userConfigurationActionCreator = new UserConfigurationActionCreator(interpreter, globalActionsHub.userConfigurationActions);
 
         actionCreator.registerCallbacks();
         assessmentActionCreator.registerCallbacks();
+        userConfigurationActionCreator.registerCallback();
 
         const dispatcher = new StateDispatcher(browserAdapter.sendMessageToAllFramesAndTabs, globalStoreHub);
         dispatcher.initialize();
