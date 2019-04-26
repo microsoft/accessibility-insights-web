@@ -4,12 +4,9 @@ import * as React from 'react';
 
 import { IssueDetailsTextGenerator } from '../../background/issue-details-text-generator';
 import { CopyIssueDetailsButton } from '../../common/components/copy-issue-details-button';
-import { FileIssueDetailsButton, FileIssueDetailsButtonDeps } from '../../common/components/file-issue-details-button';
-import { FlaggedComponent } from '../../common/components/flagged-component';
 import { IssueFilingButton, IssueFilingButtonDeps } from '../../common/components/issue-filing-button';
 import { NewTabLink } from '../../common/components/new-tab-link';
 import { ToastDeps } from '../../common/components/toast';
-import { FeatureFlags } from '../../common/feature-flags';
 import { CreateIssueDetailsTextData } from '../../common/types/create-issue-details-text-data';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { UserConfigurationStoreData } from '../../common/types/store-data/user-configuration-store';
@@ -22,7 +19,6 @@ import { GuidanceLinks } from './guidance-links';
 import { IssueFilingDialog } from './issue-filing-dialog';
 
 export type IssuesDetailsPaneDeps = ToastDeps &
-    FileIssueDetailsButtonDeps &
     IssueFilingButtonDeps & {
         issueDetailsTextGenerator: IssueDetailsTextGenerator;
         detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
@@ -73,28 +69,12 @@ export class IssuesDetailsPane extends React.Component<IssuesDetailsPaneProps, I
     }
 
     private getFileIssueDetailsButton(issueData: CreateIssueDetailsTextData): JSX.Element {
-        const oldExperienceButton: JSX.Element = (
-            <FileIssueDetailsButton
-                deps={this.props.deps}
-                issueDetailsData={issueData}
-                issueTrackerPath={this.props.issueTrackerPath}
-                restoreFocus={true}
-            />
-        );
-        const newExperienceButton: JSX.Element = (
+        return (
             <IssueFilingButton
                 deps={this.props.deps}
                 issueDetailsData={issueData}
                 userConfigurationStoreData={this.props.userConfigurationStoreData}
                 needsSettingsContentRenderer={IssueFilingDialog}
-            />
-        );
-        return (
-            <FlaggedComponent
-                enableJSXElement={newExperienceButton}
-                featureFlag={FeatureFlags[FeatureFlags.newIssueFilingExperience]}
-                disableJSXElement={oldExperienceButton}
-                featureFlagStoreData={this.props.featureFlagData}
             />
         );
     }

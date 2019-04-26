@@ -1,139 +1,68 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`IssuesDetailsPaneTest render with single selection, issue filing button 1`] = `
-<FlaggedComponent
-  disableJSXElement={
-    <FileIssueDetailsButton
-      deps={
-        Object {
-          "bugActionMessageCreator": null,
-          "detailsViewActionMessageCreator": Object {
-            "copyIssueDetailsClicked": [Function],
-          },
-          "issueDetailsTextGenerator": null,
-          "windowUtils": null,
-        }
-      }
-      issueDetailsData={
-        Object {
-          "pageTitle": "pageTitle",
-          "pageUrl": "pageUrl",
-          "ruleResult": Object {
-            "all": Array [
-              Object {
-                "data": "check-result-data",
-                "id": "check-result-id",
-                "message": "check-result-message",
-              },
-            ],
-            "any": Array [
-              Object {
-                "data": "check-result-data",
-                "id": "check-result-id",
-                "message": "check-result-message",
-              },
-            ],
-            "failureSummary": null,
-            "fingerprint": "id1",
-            "guidanceLinks": Array [
-              Object {
-                "href": "aka.ms/guidance-url-X.1.1",
-                "text": "guidance X.1.1",
-              },
-              Object {
-                "href": "aka.ms/guidance-url-X.2.2",
-                "text": "guidance X.2.2",
-              },
-            ],
-            "help": "rule-help",
-            "helpUrl": "http://help-url/",
-            "html": null,
-            "id": "id1",
-            "none": Array [
-              Object {
-                "data": "check-result-data",
-                "id": "check-result-id",
-                "message": "check-result-message",
-              },
-            ],
-            "ruleId": "rule-id",
-            "selector": null,
-            "snippet": null,
-            "status": false,
-          },
-        }
-      }
-      issueTrackerPath="https://example.com/example"
-      restoreFocus={true}
-    />
+<IssueFilingButton
+  deps={
+    Object {
+      "bugActionMessageCreator": null,
+      "detailsViewActionMessageCreator": Object {
+        "copyIssueDetailsClicked": [Function],
+      },
+      "issueDetailsTextGenerator": null,
+      "windowUtils": null,
+    }
   }
-  enableJSXElement={
-    <IssueFilingButton
-      deps={
-        Object {
-          "bugActionMessageCreator": null,
-          "detailsViewActionMessageCreator": Object {
-            "copyIssueDetailsClicked": [Function],
+  issueDetailsData={
+    Object {
+      "pageTitle": "pageTitle",
+      "pageUrl": "pageUrl",
+      "ruleResult": Object {
+        "all": Array [
+          Object {
+            "data": "check-result-data",
+            "id": "check-result-id",
+            "message": "check-result-message",
           },
-          "issueDetailsTextGenerator": null,
-          "windowUtils": null,
-        }
-      }
-      issueDetailsData={
-        Object {
-          "pageTitle": "pageTitle",
-          "pageUrl": "pageUrl",
-          "ruleResult": Object {
-            "all": Array [
-              Object {
-                "data": "check-result-data",
-                "id": "check-result-id",
-                "message": "check-result-message",
-              },
-            ],
-            "any": Array [
-              Object {
-                "data": "check-result-data",
-                "id": "check-result-id",
-                "message": "check-result-message",
-              },
-            ],
-            "failureSummary": null,
-            "fingerprint": "id1",
-            "guidanceLinks": Array [
-              Object {
-                "href": "aka.ms/guidance-url-X.1.1",
-                "text": "guidance X.1.1",
-              },
-              Object {
-                "href": "aka.ms/guidance-url-X.2.2",
-                "text": "guidance X.2.2",
-              },
-            ],
-            "help": "rule-help",
-            "helpUrl": "http://help-url/",
-            "html": null,
-            "id": "id1",
-            "none": Array [
-              Object {
-                "data": "check-result-data",
-                "id": "check-result-id",
-                "message": "check-result-message",
-              },
-            ],
-            "ruleId": "rule-id",
-            "selector": null,
-            "snippet": null,
-            "status": false,
+        ],
+        "any": Array [
+          Object {
+            "data": "check-result-data",
+            "id": "check-result-id",
+            "message": "check-result-message",
           },
-        }
-      }
-      needsSettingsContentRenderer={[Function]}
-      userConfigurationStoreData={Object {}}
-    />
+        ],
+        "failureSummary": null,
+        "fingerprint": "id1",
+        "guidanceLinks": Array [
+          Object {
+            "href": "aka.ms/guidance-url-X.1.1",
+            "text": "guidance X.1.1",
+          },
+          Object {
+            "href": "aka.ms/guidance-url-X.2.2",
+            "text": "guidance X.2.2",
+          },
+        ],
+        "help": "rule-help",
+        "helpUrl": "http://help-url/",
+        "html": null,
+        "id": "id1",
+        "none": Array [
+          Object {
+            "data": "check-result-data",
+            "id": "check-result-id",
+            "message": "check-result-message",
+          },
+        ],
+        "ruleId": "rule-id",
+        "selector": null,
+        "snippet": null,
+        "status": false,
+      },
+    }
   }
-  featureFlag="newIssueFilingExperience"
-  featureFlagStoreData={Object {}}
+  needsSettingsContentRenderer={[Function]}
+  userConfigurationStoreData={Object {}}
 />
 `;
 
@@ -144,7 +73,7 @@ exports[`IssuesDetailsPaneTest render with single selection, test copy to clipbo
       Failure details
     </h2>
     <CopyIssueDetailsButton deps={{...}} issueDetailsData={{...}} onClick={[Function: copyIssueDetailsClicked]} />
-    <FlaggedComponent enableJSXElement={{...}} featureFlag=\\"newIssueFilingExperience\\" disableJSXElement={{...}} featureFlagStoreData={{...}} />
+    <IssueFilingButton deps={{...}} issueDetailsData={{...}} userConfigurationStoreData={{...}} needsSettingsContentRenderer={[Function: IssueFilingDialog]} />
     <table className=\\"issue-detail-table\\">
       <tbody>
         <tr>
