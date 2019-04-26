@@ -1,13 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { isFunction } from 'lodash';
-import { It, Mock, Times } from 'typemoq';
+import { IMock, It, Mock, Times } from 'typemoq';
 
 import {
     SaveIssueFilingSettingsPayload,
-    SetBugServicePayload,
-    SetBugServicePropertyPayload,
     SetHighContrastModePayload,
+    SetIssueFilingServicePayload,
+    SetIssueFilingServicePropertyPayload,
     SetIssueTrackerPathPayload,
     SetTelemetryStatePayload,
 } from '../../../../../background/actions/action-payloads';
@@ -76,15 +76,15 @@ describe('UserConfigurationActionCreator', () => {
     });
 
     it('should SetBugService message', () => {
-        const payload: SetBugServicePayload = {
-            bugServiceName: 'none',
+        const payload: SetIssueFilingServicePayload = {
+            issueFilingServiceName: 'none',
         };
 
         const setBugServiceMock = createActionMock(payload);
 
-        const actionsMock = createActionsMock('setBugService', setBugServiceMock.object);
+        const actionsMock = createActionsMock('setIssueFilingService', setBugServiceMock.object);
 
-        const interpreterMock = createInterpreterMock(Messages.UserConfig.SetBugService, payload);
+        const interpreterMock = createInterpreterMock(Messages.UserConfig.SetIssueFilingService, payload);
 
         const testSubject = new UserConfigurationActionCreator(interpreterMock.object, actionsMock.object);
 
@@ -94,23 +94,23 @@ describe('UserConfigurationActionCreator', () => {
     });
 
     it('should SetBugServiceProperty message', () => {
-        const payload: SetBugServicePropertyPayload = {
-            bugServiceName: 'bug-service-name',
+        const payload: SetIssueFilingServicePropertyPayload = {
+            issueFilingServiceName: 'bug-service-name',
             propertyName: 'property-name',
             propertyValue: 'property-value',
         };
 
-        const setBugServicePropertyMock = createActionMock(payload);
+        const setIssuFilingServicePropertyMock = createActionMock(payload);
 
-        const actionsMock = createActionsMock('setBugServiceProperty', setBugServicePropertyMock.object);
+        const actionsMock = createActionsMock('setIssueFilingServiceProperty', setIssuFilingServicePropertyMock.object);
 
-        const interpreterMock = createInterpreterMock(Messages.UserConfig.SetBugServiceProperty, payload);
+        const interpreterMock = createInterpreterMock(Messages.UserConfig.SetIssueFilingServiceProperty, payload);
 
         const testSubject = new UserConfigurationActionCreator(interpreterMock.object, actionsMock.object);
 
         testSubject.registerCallback();
 
-        setBugServicePropertyMock.verifyAll();
+        setIssuFilingServicePropertyMock.verifyAll();
     });
 
     it('should SetIssueTrackerPath message', () => {
@@ -138,8 +138,8 @@ describe('UserConfigurationActionCreator', () => {
 
     it('should SaveIssueFilingSettings message', () => {
         const payload: SaveIssueFilingSettingsPayload = {
-            bugServiceName: 'test bug service',
-            bugFilingSettings: { name: 'issueFilingSettings' },
+            issueFilingServiceName: 'test bug service',
+            issueFilingSettings: { name: 'issueFilingSettings' },
         };
 
         const setIssueFilingSettings = createActionMock(payload);
@@ -155,7 +155,7 @@ describe('UserConfigurationActionCreator', () => {
         setIssueFilingSettings.verifyAll();
     });
 
-    function createActionMock<Payload>(payload: Payload) {
+    function createActionMock<Payload>(payload: Payload): IMock<Action<Payload>> {
         const actionMock = Mock.ofType<Action<Payload>>();
         actionMock.setup(action => action.invoke(payload)).verifiable(Times.once());
         return actionMock;
@@ -164,17 +164,17 @@ describe('UserConfigurationActionCreator', () => {
     function createActionsMock<ActionName extends keyof UserConfigurationActions>(
         actionName: ActionName,
         action: UserConfigurationActions[ActionName],
-    ) {
+    ): IMock<UserConfigurationActions> {
         const actionsMock = Mock.ofType<UserConfigurationActions>();
         actionsMock.setup(actions => actions[actionName]).returns(() => action);
         return actionsMock;
     }
 
-    function createInterpreterMock<Payload>(message: string, payload: Payload) {
+    function createInterpreterMock<Payload>(message: string, payload: Payload): IMock<Interpreter> {
         const interpreterMock = Mock.ofType<Interpreter>();
         interpreterMock
             .setup(interpreter => interpreter.registerTypeToPayloadCallback(message, It.is(isFunction)))
-            .callback((message, handler) => handler(payload));
+            .callback((_, handler) => handler(payload));
         return interpreterMock;
     }
 });

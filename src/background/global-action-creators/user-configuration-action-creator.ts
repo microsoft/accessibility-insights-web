@@ -3,9 +3,9 @@
 import { Messages } from '../../common/messages';
 import {
     SaveIssueFilingSettingsPayload,
-    SetBugServicePayload,
-    SetBugServicePropertyPayload,
     SetHighContrastModePayload,
+    SetIssueFilingServicePayload,
+    SetIssueFilingServicePropertyPayload,
     SetIssueTrackerPathPayload,
     SetTelemetryStatePayload,
 } from '../actions/action-payloads';
@@ -19,8 +19,8 @@ export class UserConfigurationActionCreator {
         this.interpreter.registerTypeToPayloadCallback(Messages.UserConfig.GetCurrentState, this.onGetUserConfigState);
         this.interpreter.registerTypeToPayloadCallback(Messages.UserConfig.SetTelemetryConfig, this.onSetTelemetryConfiguration);
         this.interpreter.registerTypeToPayloadCallback(Messages.UserConfig.SetHighContrastConfig, this.onSetHighContrastMode);
-        this.interpreter.registerTypeToPayloadCallback(Messages.UserConfig.SetBugService, this.onSetBugService);
-        this.interpreter.registerTypeToPayloadCallback(Messages.UserConfig.SetBugServiceProperty, this.onSetBugServiceProperty);
+        this.interpreter.registerTypeToPayloadCallback(Messages.UserConfig.SetIssueFilingService, this.onSetBugService);
+        this.interpreter.registerTypeToPayloadCallback(Messages.UserConfig.SetIssueFilingServiceProperty, this.onSetBugServiceProperty);
         this.interpreter.registerTypeToPayloadCallback(Messages.UserConfig.SetIssueTrackerPath, this.onSetIssueTrackerPath);
         this.interpreter.registerTypeToPayloadCallback(Messages.UserConfig.SaveIssueFilingSettings, this.onSaveIssueFilingSettings);
     }
@@ -37,12 +37,12 @@ export class UserConfigurationActionCreator {
         this.userConfigActions.setHighContrastMode.invoke(payload);
     };
 
-    private onSetBugService = (payload: SetBugServicePayload): void => {
-        this.userConfigActions.setBugService.invoke(payload);
+    private onSetBugService = (payload: SetIssueFilingServicePayload): void => {
+        this.userConfigActions.setIssueFilingService.invoke(payload);
     };
 
-    private onSetBugServiceProperty = (payload: SetBugServicePropertyPayload): void => {
-        this.userConfigActions.setBugServiceProperty.invoke(payload);
+    private onSetBugServiceProperty = (payload: SetIssueFilingServicePropertyPayload): void => {
+        this.userConfigActions.setIssueFilingServiceProperty.invoke(payload);
     };
 
     private onSetIssueTrackerPath = (payload: SetIssueTrackerPathPayload): void => {

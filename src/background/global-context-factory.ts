@@ -5,18 +5,18 @@ import { StateDispatcher } from '../common/state-dispatcher';
 import { TelemetryDataFactory } from '../common/telemetry-data-factory';
 import { AssessmentsProvider } from './../assessments/types/assessments-provider';
 import { AssessmentActionCreator } from './actions/assessment-action-creator';
-import { GlobalActionCreator } from './global-action-creators/global-action-creator';
 import { GlobalActionHub } from './actions/global-action-hub';
 import { BrowserAdapter } from './browser-adapter';
 import { CompletedTestStepTelemetryCreator } from './completed-test-step-telemetry-creator';
 import { FeatureFlagsController } from './feature-flags-controller';
 import { PersistedData } from './get-persisted-data';
+import { GlobalActionCreator } from './global-action-creators/global-action-creator';
+import { UserConfigurationActionCreator } from './global-action-creators/user-configuration-action-creator';
 import { GlobalContext } from './global-context';
 import { Interpreter } from './interpreter';
 import { LocalStorageData } from './storage-data';
 import { GlobalStoreHub } from './stores/global/global-store-hub';
 import { TelemetryEventHandler } from './telemetry/telemetry-event-handler';
-import { UserConfigurationActionCreator } from './global-action-creators/user-configuration-action-creator';
 
 export class GlobalContextFactory {
     public static createContext(
