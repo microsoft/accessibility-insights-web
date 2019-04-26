@@ -13,7 +13,6 @@ import * as React from 'react';
 import { Mock } from 'typemoq';
 
 import { VisualizationType } from '../../../../../common/types/visualization-type';
-import { BugButton } from '../../../../../DetailsView/components/bug-button';
 import { FailureDetails } from '../../../../../DetailsView/components/failure-details';
 import { IssuesDetailsList, IssuesDetailsListProps } from '../../../../../DetailsView/components/issues-details-list';
 import { DetailsGroup, DetailsRowData, IssuesTableHandler } from '../../../../../DetailsView/components/issues-table-handler';
@@ -103,7 +102,6 @@ describe('IssuesDetailsListTest', () => {
         };
         const rowData = {
             selector: 'testSelector',
-            bugButton: showIssueFiling ? <BugButton {...bugButtonProps} /> : null,
         };
         return [rowData as DetailsRowData, rowData as DetailsRowData];
     }
