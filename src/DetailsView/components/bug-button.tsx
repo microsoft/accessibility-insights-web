@@ -35,7 +35,7 @@ export class BugButton extends React.Component<BugButtonProps> {
 
         return (
             <NewTabLink className="bugs-details-view" href={this.issueUrl(title, body)}>
-                <Icon className="create-bug-button" iconName="Add" />
+                <Icon className="file-issue-button" iconName="Add" />
                 {'New bug'}
             </NewTabLink>
         );

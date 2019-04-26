@@ -69,7 +69,7 @@ export class IssueFilingButton extends React.Component<IssueFilingButtonProps, I
         return (
             <>
                 <DefaultButton
-                    className={'create-bug-button'}
+                    className={'file-issue-button'}
                     target={target}
                     onClick={event => this.onClickFileIssueButton(event, isSettingValid)}
                     href={href}

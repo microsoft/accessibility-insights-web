@@ -89,7 +89,7 @@ export class FileIssueDetailsButton extends React.Component<FileIssueDetailsButt
             <>
                 <DefaultButton
                     componentRef={this.button}
-                    className={'create-bug-button'}
+                    className={'file-issue-button'}
                     onClick={this.onClickFileIssueButtonNeedsSettings}
                 >
                     <LadyBugSolidIcon />
@@ -103,7 +103,7 @@ export class FileIssueDetailsButton extends React.Component<FileIssueDetailsButt
     private renderHelpText(): JSX.Element {
         if (this.state.showingHelpText) {
             return (
-                <div role="alert" aria-live="polite" className="create-bug-button-help">
+                <div role="alert" aria-live="polite" className="file-issue-button-help">
                     Go to Settings to configure issue filing.
                 </div>
             );
@@ -114,7 +114,7 @@ export class FileIssueDetailsButton extends React.Component<FileIssueDetailsButt
         return (
             <DefaultButton
                 componentRef={this.button}
-                className={'create-bug-button'}
+                className={'file-issue-button'}
                 target="_blank"
                 onClick={this.onClickFileIssueButton}
                 href={this.getIssueDetailsUrl(this.props.issueDetailsData.ruleResult)}
