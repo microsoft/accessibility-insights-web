@@ -143,7 +143,7 @@ if (isNaN(tabId) === false) {
             );
             const dropdownActionMessageCreator = new DropdownActionMessageCreator(telemetryFactory, actionMessageDispatcher);
 
-            const bugActionMessageCreator = new IssueFilingActionMessageCreator(
+            const issueFilingActionMessageCreator = new IssueFilingActionMessageCreator(
                 actionMessageDispatcher,
                 telemetryFactory,
                 TelemetryEventSource.DetailsView,

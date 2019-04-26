@@ -106,7 +106,7 @@ export class MainWindowInitializer extends WindowInitializer {
         const actionMessageDispatcher = new ActionMessageDispatcher(this.clientChromeAdapter.sendMessageToFrames, null);
 
         const targetPageActionMessageCreator = new TargetPageActionMessageCreator(telemetryDataFactory, actionMessageDispatcher);
-        const bugActionMessageCreator = new IssueFilingActionMessageCreator(
+        const issueFilingActionMessageCreator = new IssueFilingActionMessageCreator(
             actionMessageDispatcher,
             telemetryDataFactory,
             TelemetryEventSource.TargetPage,
