@@ -86,7 +86,7 @@ describe('DetailsDialogTest', () => {
             targetPageActionMessageCreator: {
                 copyIssueDetailsClicked: () => {},
             } as any,
-            bugActionMessageCreator: null,
+            issueFilingActionMessageCreator: null,
             clientBrowserAdapter: {
                 getUrl: url => expectedHelpUrl,
             } as any,

@@ -15,7 +15,7 @@ import { CreateIssueDetailsTextData } from '../types/create-issue-details-text-d
 import { FileIssueDetailsDialog } from './file-issue-details-dialog';
 
 export type FileIssueDetailsButtonDeps = {
-    bugActionMessageCreator: IssueFilingActionMessageCreator;
+    issueFilingActionMessageCreator: IssueFilingActionMessageCreator;
     issueDetailsTextGenerator: IssueDetailsTextGenerator;
 };
 
@@ -65,18 +65,18 @@ export class FileIssueDetailsButton extends React.Component<FileIssueDetailsButt
 
     @autobind
     private openSettings(event: React.MouseEvent<HTMLDivElement | HTMLAnchorElement | HTMLButtonElement>): void {
-        this.props.deps.bugActionMessageCreator.openSettingsPanel(event);
+        this.props.deps.issueFilingActionMessageCreator.openSettingsPanel(event);
         this.closeDialog();
     }
 
     @autobind
     private onClickFileIssueButton(event: React.MouseEvent<HTMLDivElement | HTMLAnchorElement | HTMLButtonElement>): void {
-        this.props.deps.bugActionMessageCreator.trackFileIssueClick(event, 'gitHub');
+        this.props.deps.issueFilingActionMessageCreator.trackFileIssueClick(event, 'gitHub');
     }
 
     @autobind
     private onClickFileIssueButtonNeedsSettings(event: React.MouseEvent<HTMLDivElement | HTMLAnchorElement | HTMLButtonElement>): void {
-        this.props.deps.bugActionMessageCreator.trackFileIssueClick(event, 'none');
+        this.props.deps.issueFilingActionMessageCreator.trackFileIssueClick(event, 'none');
         this.setState({ showingHelpText: !this.state.showingHelpText });
     }
 

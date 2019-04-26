@@ -81,7 +81,7 @@ describe('DialogRendererTests', () => {
         const userConfigStoreStrictMock = Mock.ofType<UserConfigurationStore>(null, MockBehavior.Strict);
         const devToolActionMessageCreatorMock = Mock.ofType(DevToolActionMessageCreator);
         const targetActionPageMessageCreatorMock = Mock.ofType(TargetPageActionMessageCreator);
-        const bugActionMessageCreatorMock = Mock.ofType(IssueFilingActionMessageCreator);
+        const issueFilingActionMessageCreatorMock = Mock.ofType(IssueFilingActionMessageCreator);
         const environmentInfoProviderMock = Mock.ofType(EnvironmentInfoProvider);
         const issueFilingServiceProviderMock = Mock.ofType(IssueFilingServiceProvider);
         const userConfigMessageCreatorMock = Mock.ofType(UserConfigMessageCreator);
@@ -91,7 +91,7 @@ describe('DialogRendererTests', () => {
             userConfigStoreStrictMock.object,
             devToolActionMessageCreatorMock.object,
             targetActionPageMessageCreatorMock.object,
-            bugActionMessageCreatorMock.object,
+            issueFilingActionMessageCreatorMock.object,
             userConfigMessageCreatorMock.object,
             environmentInfoProviderMock.object,
             issueFilingServiceProviderMock.object,

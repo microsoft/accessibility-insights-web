@@ -16,7 +16,7 @@ import { IssueFilingNeedsSettingsContentProps, IssueFilingNeedsSettingsContentRe
 import { IssueFilingServiceProperties, UserConfigurationStoreData } from '../types/store-data/user-configuration-store';
 
 export type IssueFilingButtonDeps = {
-    bugActionMessageCreator: IssueFilingActionMessageCreator;
+    issueFilingActionMessageCreator: IssueFilingActionMessageCreator;
     environmentInfoProvider: EnvironmentInfoProvider;
     issueFilingServiceProvider: IssueFilingServiceProvider;
 } & IssueFilingDialogDeps;
@@ -85,7 +85,7 @@ export class IssueFilingButton extends React.Component<IssueFilingButtonProps, I
     @autobind
     private trackFileIssueClick(event: React.MouseEvent<any>): void {
         const bugServiceKey = this.props.userConfigurationStoreData.bugService;
-        this.props.deps.bugActionMessageCreator.trackFileIssueClick(event, bugServiceKey as FileIssueClickService);
+        this.props.deps.issueFilingActionMessageCreator.trackFileIssueClick(event, bugServiceKey as FileIssueClickService);
     }
 
     @autobind

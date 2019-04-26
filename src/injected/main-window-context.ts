@@ -16,7 +16,7 @@ export class MainWindowContext {
         private userConfigStore: BaseStore<UserConfigurationStoreData>,
         private devToolActionMessageCreator: DevToolActionMessageCreator,
         private targetPageActionMessageCreator: TargetPageActionMessageCreator,
-        private bugActionMessageCreator: IssueFilingActionMessageCreator,
+        private issueFilingActionMessageCreator: IssueFilingActionMessageCreator,
         private userConfigMessageCreator: UserConfigMessageCreator,
         private environmentInfoProvider: EnvironmentInfoProvider,
         private issueFilingServiceProvider: IssueFilingServiceProvider,
@@ -39,7 +39,7 @@ export class MainWindowContext {
     }
 
     public getIssueFilingActionMessageCreator(): IssueFilingActionMessageCreator {
-        return this.bugActionMessageCreator;
+        return this.issueFilingActionMessageCreator;
     }
 
     public getUserConfigMessageCreator(): UserConfigMessageCreator {
@@ -59,7 +59,7 @@ export class MainWindowContext {
         userConfigStore: BaseStore<UserConfigurationStoreData>,
         devToolActionMessageCreator: DevToolActionMessageCreator,
         targetPageActionMessageCreator: TargetPageActionMessageCreator,
-        bugActionMessageCreator: IssueFilingActionMessageCreator,
+        issueFilingActionMessageCreator: IssueFilingActionMessageCreator,
         userConfigMessageCreator: UserConfigMessageCreator,
         environmentInfoProvider: EnvironmentInfoProvider,
         issueFilingServiceProvider: IssueFilingServiceProvider,
@@ -69,7 +69,7 @@ export class MainWindowContext {
             userConfigStore,
             devToolActionMessageCreator,
             targetPageActionMessageCreator,
-            bugActionMessageCreator,
+            issueFilingActionMessageCreator,
             userConfigMessageCreator,
             environmentInfoProvider,
             issueFilingServiceProvider,

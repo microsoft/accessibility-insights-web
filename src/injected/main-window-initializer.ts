@@ -127,7 +127,7 @@ export class MainWindowInitializer extends WindowInitializer {
             this.userConfigStoreProxy,
             devToolActionMessageCreator,
             targetPageActionMessageCreator,
-            bugActionMessageCreator,
+            issueFilingActionMessageCreator,
             userConfigMessageCreator,
             environmentInfoProvider,
             IssueFilingServiceProviderImpl,

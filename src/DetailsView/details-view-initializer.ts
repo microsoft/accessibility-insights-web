@@ -238,7 +238,7 @@ if (isNaN(tabId) === false) {
 
             const deps: DetailsViewContainerDeps = {
                 dropdownClickHandler,
-                bugActionMessageCreator,
+                issueFilingActionMessageCreator,
                 contentProvider: contentPages,
                 contentActionMessageCreator,
                 detailsViewActionMessageCreator: actionMessageCreator,
