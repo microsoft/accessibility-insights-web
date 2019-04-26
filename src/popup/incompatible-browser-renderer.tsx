@@ -14,10 +14,17 @@ export class IncompatibleBrowserRenderer {
 
         this.renderer(
             <>
-                <div className="ms-Fabric unsupported-url-info-panel">
+                <div className="ms-Fabric unsupported-browser-info-panel">
                     <Header title={title} />
                     <div className="ms-Grid main-section">
-                        <div className="launch-panel-general-container">This application is not supported in the current browser.</div>
+                        <div className="launch-panel-general-container">
+                            Thanks for your interest in Accessibility Insights!
+                            <div className="some-class">
+                                We work on Microsoft Edge versions 75 and above.
+                                <br />
+                                Please upgrade your browser and come back for us!
+                            </div>
+                        </div>
                     </div>
                 </div>
             </>,

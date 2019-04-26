@@ -61,6 +61,21 @@ html {
     html {
         height: unset;
     }
+
+    #popup-container .unsupported-browser-info-panel {
+        text-align: center;
+        width: 28em;
+        margin: 20px 14px 20px 14px;
+
+        .some-class {
+            margin-top: 15px;
+        }
+
+        [role='heading'] {
+            width: unset;
+            float: unset;
+        }
+    }
 }
 
 #popup-container,

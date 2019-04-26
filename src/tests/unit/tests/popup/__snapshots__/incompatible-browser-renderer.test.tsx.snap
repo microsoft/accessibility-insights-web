@@ -3,7 +3,7 @@
 exports[`IncompatibleBrowserRenderer render 1`] = `
 <React.Fragment>
   <div
-    className="ms-Fabric unsupported-url-info-panel"
+    className="ms-Fabric unsupported-browser-info-panel"
   >
     <Header
       title="Accessibility Insights for Web"
@@ -14,7 +14,14 @@ exports[`IncompatibleBrowserRenderer render 1`] = `
       <div
         className="launch-panel-general-container"
       >
-        This application is not supported in the current browser.
+        Thanks for your interest in Accessibility Insights!
+        <div
+          className="some-class"
+        >
+          We work on Microsoft Edge versions 75 and above.
+          <br />
+          Please upgrade your browser and come back for us!
+        </div>
       </div>
     </div>
   </div>
