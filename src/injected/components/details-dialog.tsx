@@ -16,7 +16,6 @@ import { NewTabLink } from '../../common/components/new-tab-link';
 import { FeatureFlags } from '../../common/feature-flags';
 import { CancelIcon } from '../../common/icons/cancel-icon';
 import { FileHTMLIcon } from '../../common/icons/file-html-icon';
-import { StatusErrorFullIcon } from '../../common/icons/status-error-full-icon';
 import { DevToolActionMessageCreator } from '../../common/message-creators/dev-tool-action-message-creator';
 import { CreateIssueDetailsTextData } from '../../common/types/create-issue-details-text-data';
 import { DevToolState } from '../../common/types/store-data/idev-tool-state';
