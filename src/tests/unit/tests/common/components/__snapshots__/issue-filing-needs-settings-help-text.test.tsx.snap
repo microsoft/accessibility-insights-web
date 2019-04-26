@@ -5,7 +5,7 @@ exports[`IssueFilingNeedsSettingsHelpTextTest render with isOpen = false 1`] = `
 exports[`IssueFilingNeedsSettingsHelpTextTest render with isOpen = true 1`] = `
 <div
   aria-live="polite"
-  className="create-bug-button-help"
+  className="file-issue-button-help"
   role="alert"
 >
   Go to Settings to configure issue filing.
