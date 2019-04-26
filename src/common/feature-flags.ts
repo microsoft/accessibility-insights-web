@@ -10,7 +10,6 @@ export class FeatureFlags {
     public static readonly shadowDialog = 'shadowDialog';
     public static readonly showAllFeatureFlags = 'showAllFeatureFlags';
     public static readonly scoping = 'scoping';
-    public static readonly newIssueFilingExperience = 'newIssueFilingExperience';
     public static readonly showInstanceVisibility = 'showInstanceVisibility';
 }
 
@@ -66,14 +65,6 @@ export function getAllFeatureFlagDetails(): FeatureFlagDetail[] {
             displayableDescription: 'Enable scoping to limit scanning to selected portions of the webpage.',
             isPreviewFeature: false,
             forceDefault: false,
-        },
-        {
-            id: FeatureFlags.newIssueFilingExperience,
-            defaultValue: true,
-            displayableName: 'New issue filing experience',
-            displayableDescription: 'Enable the new issue filing experience.',
-            isPreviewFeature: false,
-            forceDefault: true,
         },
         {
             id: FeatureFlags.showInstanceVisibility,
