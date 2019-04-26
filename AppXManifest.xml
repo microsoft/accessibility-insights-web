@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Package
+  xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
+  xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10"
+  xmlns:uap3="http://schemas.microsoft.com/appx/manifest/uap/windows10/3"
+  IgnorableNamespaces="uap3">
+
+  <Identity
+    Name="Microsoft.AccessibilityInsightsforWeb"
+    Publisher="CN=Microsoft Corporation, O=Microsoft Corporation, L=Redmond, S=Washington, C=US"
+    Version="2.2.1.0"/>
+
+  <Properties>
+    <DisplayName>Accessibility Insights for Web</DisplayName>
+    <PublisherDisplayName>Microsoft Corporation</PublisherDisplayName>
+    <Logo>Assets\brand-blue-48px.png</Logo>
+  </Properties>
+
+  <Dependencies>
+    <TargetDeviceFamily Name="Windows.Desktop"
+      MinVersion="10.0.14393.0"
+      MaxVersionTested="10.0.14800.0" />
+  </Dependencies>
+
+  <Resources>
+    <Resource Language="en-us"/>
+  </Resources>
+
+  <Applications>
+    <Application Id="App">
+      <uap:VisualElements
+        AppListEntry="none"
+        DisplayName="Accessibility Insights for Web"
+        Square150x150Logo="Assets\brand-blue-128px.png"
+        Square44x44Logo="Assets\brand-blue-48px.png"
+        Description="Accessibility Insights for Web helps developers quickly find and fix accessibility issues."
+        BackgroundColor="white">
+      </uap:VisualElements>
+      <Extensions>
+        <uap3:Extension Category="windows.appExtension">
+          <uap3:AppExtension Name="com.microsoft.edge.extension"
+            Id="EdgeExtension"
+            PublicFolder="Extension"
+            DisplayName="Accessibility Insights for Web">
+          </uap3:AppExtension>
+        </uap3:Extension>
+      </Extensions>
+    </Application>
+  </Applications>
+</Package>
