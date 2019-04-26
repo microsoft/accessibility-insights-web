@@ -56,6 +56,19 @@ describe('TargetPageActionMessageCreator', () => {
         dispatcherMock.verify(dispatcher => dispatcher.dispatchMessage(expectedMessage), Times.once());
     });
 
+    it('sends telemetry for copyIssueDetailsClicked', () => {
+        const event = eventStubFactory.createMouseClickEvent() as any;
+        const eventName = TelemetryEvents.COPY_ISSUE_DETAILS;
+        const eventData: TelemetryEvents.TelemetryData = {
+            source: TelemetryEventSource.TargetPage,
+            triggeredBy: 'mouseclick',
+        };
+
+        testSubject.copyIssueDetailsClicked(event);
+
+        dispatcherMock.verify(dispatcher => dispatcher.sendTelemetry(eventName, eventData), Times.once());
+    });
+
     it('dispatches message for openSettingsPanel', () => {
         const event = eventStubFactory.createMouseClickEvent() as any;
 
