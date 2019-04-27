@@ -1,6 +1,7 @@
 {
     "manifest_version": 2,
     "name": "Accessibility Insights for Web",
+    "author": "Accessibility Insights",
     "description": "Accessibility Insights for Web helps developers quickly find and fix accessibility issues.",
     "version": "1.0.4",
     "browser_action": {
