@@ -8,6 +8,7 @@ import { IssueFilingServiceProperties } from '../../common/types/store-data/user
 import { VisualizationType } from '../../common/types/visualization-type';
 import { TabStopEvent } from '../../injected/tab-stops-listener';
 import { LaunchPanelType } from '../../popup/components/popup-view';
+import { CreateIssueDetailsTextData } from '../../common/types/create-issue-details-text-data';
 
 export interface BaseActionPayload {
     telemetry?: TelemetryData;
@@ -141,4 +142,9 @@ export interface SetIssueFilingServicePropertyPayload extends BaseActionPayload 
 
 export interface SetIssueTrackerPathPayload extends BaseActionPayload {
     issueTrackerPath: string;
+}
+
+export interface FileIssuePayload extends BaseActionPayload {
+    issueData: CreateIssueDetailsTextData;
+    service: string;
 }
