@@ -9,13 +9,13 @@ import { IssueFilingServiceProvider } from '../../issue-filing/issue-filing-serv
 import { IssueFilingService } from '../../issue-filing/types/issue-filing-service';
 import { EnvironmentInfo, EnvironmentInfoProvider } from '../environment-info-provider';
 import { LadyBugSolidIcon } from '../icons/lady-bug-solid-icon';
-import { BugActionMessageCreator } from '../message-creators/bug-action-message-creator';
+import { IssueFilingActionMessageCreator } from '../message-creators/issue-filing-action-message-creator';
 import { CreateIssueDetailsTextData } from '../types/create-issue-details-text-data';
 import { IssueFilingNeedsSettingsContentProps, IssueFilingNeedsSettingsContentRenderer } from '../types/issue-filing-needs-setting-content';
 import { IssueFilingServiceProperties, UserConfigurationStoreData } from '../types/store-data/user-configuration-store';
 
 export type IssueFilingButtonDeps = {
-    bugActionMessageCreator: BugActionMessageCreator;
+    issueFilingActionMessageCreator: IssueFilingActionMessageCreator;
     environmentInfoProvider: EnvironmentInfoProvider;
     issueFilingServiceProvider: IssueFilingServiceProvider;
 } & IssueFilingDialogDeps;
@@ -84,7 +84,7 @@ export class IssueFilingButton extends React.Component<IssueFilingButtonProps, I
     @autobind
     private trackFileIssueClick(event: React.MouseEvent<any>): void {
         const bugServiceKey = this.props.userConfigurationStoreData.bugService;
-        this.props.deps.bugActionMessageCreator.trackFileIssueClick(event, bugServiceKey);
+        this.props.deps.issueFilingActionMessageCreator.trackFileIssueClick(event, bugServiceKey);
     }
 
     @autobind

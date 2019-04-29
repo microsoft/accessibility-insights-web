@@ -6,7 +6,7 @@ import { TelemetryDataFactory } from '../telemetry-data-factory';
 import { FILE_ISSUE_CLICK, TelemetryEventSource } from '../telemetry-events';
 import { ActionMessageDispatcher } from './action-message-dispatcher';
 
-export class BugActionMessageCreator {
+export class IssueFilingActionMessageCreator {
     constructor(
         private readonly dispatcher: ActionMessageDispatcher,
         private readonly telemetryFactory: TelemetryDataFactory,
