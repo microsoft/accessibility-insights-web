@@ -17,7 +17,7 @@ import { EventStubFactory } from '../../../common/event-stub-factory';
 
 describe('IssueFilingButtonTest', () => {
     const testKey: string = 'test';
-    const eventStub = new EventStubFactory().createNativeMouseClickEvent();
+    const eventStub = new EventStubFactory().createNativeMouseClickEvent() as any;
     let environmentInfoProviderMock: IMock<EnvironmentInfoProvider>;
     let issueFilingServiceProviderMock: IMock<IssueFilingServiceProvider>;
     let issueFilingActionMessageCreatorMock: IMock<IssueFilingActionMessageCreator>;
@@ -82,14 +82,10 @@ describe('IssueFilingButtonTest', () => {
         const wrapper = shallow(<IssueFilingButton {...props} />);
         expect(wrapper.debug()).toMatchSnapshot();
 
-        environmentInfoProviderMock.verifyAll();
         issueFilingServiceProviderMock.verifyAll();
     });
 
     test('onclick: valid settings, file bug and set %s to false', () => {
-        issueFilingActionMessageCreatorMock
-            .setup(messageCreator => messageCreator.trackFileIssueClick(eventStub as any, testKey as any))
-            .verifiable(Times.once());
         const props: IssueFilingButtonProps = {
             deps: {
                 issueFilingActionMessageCreator: issueFilingActionMessageCreatorMock.object,
@@ -104,6 +100,9 @@ describe('IssueFilingButtonTest', () => {
             userConfigurationStoreData: userConfigurationStoreData,
             needsSettingsContentRenderer,
         };
+        issueFilingActionMessageCreatorMock
+            .setup(creator => creator.fileIssue(eventStub, testKey, props.issueDetailsData))
+            .verifiable(Times.once());
         const wrapper = shallow(<IssueFilingButton {...props} />);
 
         wrapper.find(DefaultButton).simulate('click', eventStub);
