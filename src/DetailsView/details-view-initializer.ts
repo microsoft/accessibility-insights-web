@@ -21,10 +21,10 @@ import { getInnerTextFromJsxElement } from '../common/get-inner-text-from-jsx-el
 import { HTMLElementUtils } from '../common/html-element-utils';
 import { Tab } from '../common/itab';
 import { ActionMessageDispatcher } from '../common/message-creators/action-message-dispatcher';
-import { BugActionMessageCreator } from '../common/message-creators/bug-action-message-creator';
 import { ContentActionMessageCreator } from '../common/message-creators/content-action-message-creator';
 import { DropdownActionMessageCreator } from '../common/message-creators/dropdown-action-message-creator';
 import { InspectActionMessageCreator } from '../common/message-creators/inspect-action-message-creator';
+import { IssueFilingActionMessageCreator } from '../common/message-creators/issue-filing-action-message-creator';
 import { ScopingActionMessageCreator } from '../common/message-creators/scoping-action-message-creator';
 import { StoreActionMessageCreatorFactory } from '../common/message-creators/store-action-message-creator-factory';
 import { UserConfigMessageCreator } from '../common/message-creators/user-config-message-creator';
@@ -130,10 +130,9 @@ if (isNaN(tabId) === false) {
 
             const actionMessageCreator = new DetailsViewActionMessageCreator(chromeAdapter.sendMessageToFrames, tab.id, telemetryFactory);
             const scopingActionMessageCreator = new ScopingActionMessageCreator(
-                chromeAdapter.sendMessageToFrames,
-                tab.id,
                 telemetryFactory,
                 TelemetryEventSource.DetailsView,
+                actionMessageDispatcher,
             );
             const inspectActionMessageCreator = new InspectActionMessageCreator(
                 chromeAdapter.sendMessageToFrames,
@@ -143,7 +142,7 @@ if (isNaN(tabId) === false) {
             );
             const dropdownActionMessageCreator = new DropdownActionMessageCreator(telemetryFactory, actionMessageDispatcher);
 
-            const bugActionMessageCreator = new BugActionMessageCreator(
+            const issueFilingActionMessageCreator = new IssueFilingActionMessageCreator(
                 actionMessageDispatcher,
                 telemetryFactory,
                 TelemetryEventSource.DetailsView,
@@ -238,7 +237,7 @@ if (isNaN(tabId) === false) {
 
             const deps: DetailsViewContainerDeps = {
                 dropdownClickHandler,
-                bugActionMessageCreator,
+                issueFilingActionMessageCreator,
                 contentProvider: contentPages,
                 contentActionMessageCreator,
                 detailsViewActionMessageCreator: actionMessageCreator,

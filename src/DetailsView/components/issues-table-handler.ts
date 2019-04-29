@@ -7,7 +7,6 @@ import { HyperlinkDefinition } from '../../views/content/content-page';
 
 export interface DetailsRowData extends IObjectWithKey, AxeNodeResult {
     selector: string;
-    bugButton: JSX.Element;
 }
 
 export interface ListProps {

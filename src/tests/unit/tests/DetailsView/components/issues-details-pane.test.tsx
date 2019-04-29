@@ -3,7 +3,7 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-import { FlaggedComponent } from '../../../../../common/components/flagged-component';
+import { IssueFilingButton } from '../../../../../common/components/issue-filing-button';
 import { UserConfigurationStoreData } from '../../../../../common/types/store-data/user-configuration-store';
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
 import {
@@ -37,8 +37,8 @@ describe('IssuesDetailsPaneTest', () => {
     test('render with single selection, issue filing button', () => {
         const props = generateProps(1, 2);
         const wrapper = shallow(<IssuesDetailsPane {...props} />);
-        const flaggedButton = wrapper.find(FlaggedComponent);
-        expect(flaggedButton.getElement()).toMatchSnapshot();
+        const issueFilingButton = wrapper.find(IssueFilingButton);
+        expect(issueFilingButton.getElement()).toMatchSnapshot();
     });
 
     function testRenderNotSingle(count: number): void {
@@ -104,7 +104,7 @@ describe('IssuesDetailsPaneTest', () => {
                 copyIssueDetailsClicked: _ => {},
             } as DetailsViewActionMessageCreator,
             windowUtils: null,
-            bugActionMessageCreator: null,
+            issueFilingActionMessageCreator: null,
         } as IssuesDetailsPaneDeps;
 
         const props: IssuesDetailsPaneProps = {

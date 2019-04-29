@@ -3,10 +3,10 @@
 import { BaseActionPayload } from '../../background/actions/action-payloads';
 import { Messages } from '../messages';
 import { TelemetryDataFactory } from '../telemetry-data-factory';
-import { FILE_ISSUE_CLICK, FileIssueClickService, TelemetryEventSource } from '../telemetry-events';
+import { FILE_ISSUE_CLICK, TelemetryEventSource } from '../telemetry-events';
 import { ActionMessageDispatcher } from './action-message-dispatcher';
 
-export class BugActionMessageCreator {
+export class IssueFilingActionMessageCreator {
     constructor(
         private readonly dispatcher: ActionMessageDispatcher,
         private readonly telemetryFactory: TelemetryDataFactory,
@@ -25,7 +25,7 @@ export class BugActionMessageCreator {
         });
     }
 
-    public trackFileIssueClick(event: React.MouseEvent<HTMLElement>, service: FileIssueClickService): void {
+    public trackFileIssueClick(event: React.MouseEvent<HTMLElement>, service: string): void {
         const telemetry = this.telemetryFactory.forFileIssueClick(event, this.source, service);
         this.dispatcher.sendTelemetry(FILE_ISSUE_CLICK, telemetry);
     }

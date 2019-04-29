@@ -7,8 +7,6 @@ import * as React from 'react';
 import { BaseStore } from '../../common/base-store';
 import { ClientBrowserAdapter } from '../../common/client-browser-adapter';
 import { CopyIssueDetailsButton, CopyIssueDetailsButtonDeps } from '../../common/components/copy-issue-details-button';
-import { FileIssueDetailsButton, FileIssueDetailsButtonDeps } from '../../common/components/file-issue-details-button';
-import { FlaggedComponent } from '../../common/components/flagged-component';
 import { GuidanceLinks } from '../../common/components/guidance-links';
 import { IssueFilingButton, IssueFilingButtonDeps } from '../../common/components/issue-filing-button';
 import { IssueFilingNeedsSettingsHelpText } from '../../common/components/issue-filing-needs-settings-help-text';
@@ -39,7 +37,6 @@ export type DetailsDialogDeps = {
     targetPageActionMessageCreator: TargetPageActionMessageCreator;
     clientBrowserAdapter: ClientBrowserAdapter;
 } & CopyIssueDetailsButtonDeps &
-    FileIssueDetailsButtonDeps &
     IssueFilingButtonDeps;
 
 export interface DetailsDialogProps {
@@ -170,28 +167,12 @@ export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDi
     }
 
     private renderFileIssueButton(issueData: CreateIssueDetailsTextData): JSX.Element {
-        const oldExperienceButton: JSX.Element = (
-            <FileIssueDetailsButton
-                deps={this.props.deps}
-                issueDetailsData={issueData}
-                issueTrackerPath={this.state.issueTrackerPath}
-                restoreFocus={false}
-            />
-        );
-        const newExperienceButton: JSX.Element = (
+        return (
             <IssueFilingButton
                 deps={this.props.deps}
                 issueDetailsData={issueData}
                 userConfigurationStoreData={this.state.userConfigurationStoreData}
                 needsSettingsContentRenderer={IssueFilingNeedsSettingsHelpText}
-            />
-        );
-        return (
-            <FlaggedComponent
-                enableJSXElement={newExperienceButton}
-                featureFlag={FeatureFlags[FeatureFlags.newIssueFilingExperience]}
-                disableJSXElement={oldExperienceButton}
-                featureFlagStoreData={this.props.featureFlagStoreData}
             />
         );
     }
