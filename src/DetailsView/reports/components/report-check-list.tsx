@@ -2,9 +2,9 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
+import { GuidanceLinks } from '../../../common/components/guidance-links';
 import { NewTabLink } from '../../../common/components/new-tab-link';
 import { RuleResult } from '../../../scanner/iruleresults';
-import { GuidanceLinks } from '../../components/guidance-links';
 import { InlineImage, InlineImageType } from './inline-image';
 import { ReportInstanceList } from './report-instance-list';
 

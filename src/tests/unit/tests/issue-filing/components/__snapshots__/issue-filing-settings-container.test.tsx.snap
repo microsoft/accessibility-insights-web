@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`IssueFilingSettingsContainerTest render 1`] = `
+<React.Fragment>
+  <IssueFilingChoiceGroup
+    issueFilingServices={
+      Array [
+        Object {
+          "displayName": "TEST",
+          "key": "test",
+          "settingsForm": [Function],
+        },
+      ]
+    }
+    onSelectedServiceChange={[Function]}
+    selectedIssueFilingService={
+      Object {
+        "displayName": "TEST",
+        "key": "test",
+        "settingsForm": [Function],
+      }
+    }
+  />
+  <settingsForm
+    deps={
+      Object {
+        "issueFilingServiceProvider": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "all": [Function],
+          "allVisible": [Function],
+          "forKey": [Function],
+          "services": undefined,
+        },
+        "userConfigMessageCreator": Object {},
+      }
+    }
+    onPropertyUpdateCallback={[Function]}
+    settings={
+      Object {
+        "repository": "none",
+      }
+    }
+  />
+</React.Fragment>
+`;

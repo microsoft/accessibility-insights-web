@@ -13,15 +13,15 @@ const dataTablesDescription: JSX.Element = <span>Semantic elements in a data tab
 const dataTablesHowToTest: JSX.Element = (
     <div>
         <p>
-            This procedure uses the Chrome{' '}
+            This procedure uses the{' '}
             <NewTabLink href="https://chrome.google.com/webstore/detail/web-developer/bfbameneiokkgbdmiekhjnmfkcnldhhm">
                 Web Developer
             </NewTabLink>{' '}
-            extension.
+            browser extension.
         </p>
         <ol>
             <li>
-                Use the Chrome Web Developer extension (<Markup.Term>Information > Outline tables</Markup.Term>) to highlight tables on the
+                Use the Web Developer browser extension (<Markup.Term>Outline > Outline tables</Markup.Term>) to highlight tables on the
                 page.
             </li>
             <li>
@@ -37,7 +37,7 @@ const dataTablesHowToTest: JSX.Element = (
                 </ol>
             </li>
             <li>
-                Use the Chrome Web Developer extension (<Markup.Term>Information > Display ARIA Roles</Markup.Term>) to verify that none of
+                Use the Web Developer browser extension (<Markup.Term>Information > Display ARIA Roles</Markup.Term>) to verify that none of
                 its elements is coded with <Markup.Term>role="presentation"</Markup.Term>.
             </li>
             <ManualTestRecordYourResults isMultipleFailurePossible={true} />

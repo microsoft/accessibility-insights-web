@@ -5,15 +5,10 @@ import { Message } from '../message';
 import { Messages } from '../messages';
 import { TelemetryDataFactory } from '../telemetry-data-factory';
 import { TelemetryEventSource } from '../telemetry-events';
-import { BaseActionMessageCreator } from './base-action-message-creator';
+import { ActionMessageDispatcher } from './action-message-dispatcher';
 
-export class DropdownActionMessageCreator extends BaseActionMessageCreator {
-    private telemetryFactory: TelemetryDataFactory;
-
-    constructor(postMessage: (message: Message) => void, tabId: number, telemetryFactory: TelemetryDataFactory) {
-        super(postMessage, tabId);
-        this.telemetryFactory = telemetryFactory;
-    }
+export class DropdownActionMessageCreator {
+    constructor(private readonly telemetryFactory: TelemetryDataFactory, private readonly dispatcher: ActionMessageDispatcher) {}
 
     public openPreviewFeaturesPanel(event: React.MouseEvent<HTMLElement>, source: TelemetryEventSource): void {
         const messageType = Messages.PreviewFeatures.OpenPanel;
@@ -21,11 +16,11 @@ export class DropdownActionMessageCreator extends BaseActionMessageCreator {
         const payload: BaseActionPayload = {
             telemetry,
         };
-        this.dispatchMessage({
+        const message: Message = {
             messageType: messageType,
-            tabId: this._tabId,
             payload,
-        });
+        };
+        this.dispatcher.dispatchMessage(message);
     }
 
     public openScopingPanel(event: React.MouseEvent<HTMLElement>, source: TelemetryEventSource): void {
@@ -34,11 +29,11 @@ export class DropdownActionMessageCreator extends BaseActionMessageCreator {
         const payload: BaseActionPayload = {
             telemetry,
         };
-        this.dispatchMessage({
+        const message = {
             messageType: messageType,
-            tabId: this._tabId,
             payload,
-        });
+        };
+        this.dispatcher.dispatchMessage(message);
     }
 
     public openSettingsPanel(event: React.MouseEvent<HTMLElement>, source: TelemetryEventSource): void {
@@ -47,10 +42,10 @@ export class DropdownActionMessageCreator extends BaseActionMessageCreator {
         const payload: BaseActionPayload = {
             telemetry,
         };
-        this.dispatchMessage({
+        const message = {
             messageType: messageType,
-            tabId: this._tabId,
             payload,
-        });
+        };
+        this.dispatcher.dispatchMessage(message);
     }
 }

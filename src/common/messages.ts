@@ -100,8 +100,8 @@ export class Messages {
         GetCurrentState: 'insights/userConfig/getCurrentState',
         SetTelemetryConfig: 'insights/userConfig/setTelemetryConfig',
         SetHighContrastConfig: 'insights/userConfig/setHighContrastConfig',
-        SetBugService: 'insights/userConfig/setBugService',
-        SetBugServiceProperty: 'insights/userConfig/setBugServiceProperty',
+        SetIssueFilingService: 'insights/userConfig/setIssueFilingService',
+        SetIssueFilingServiceProperty: 'insights/userConfig/setIssueFilingServiceProperty',
         SetIssueTrackerPath: 'insights/userConfig/issueTrackerPath',
         SaveIssueFilingSettings: 'insights/userConfig/saveIssueFilingSettings',
     };
@@ -190,5 +190,9 @@ export class Messages {
         ChangeInspectMode: 'insights/inspect/changeInspectMode',
         GetCurrentState: 'insights/inspect/get',
         SetHoveredOverSelector: 'insights/inspect/setHoveredOverSelector',
+    };
+
+    public static readonly IssueFiling = {
+        FileIssue: 'insights/issueFiling/file',
     };
 }

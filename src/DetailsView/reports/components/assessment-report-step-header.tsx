@@ -3,9 +3,9 @@
 import * as React from 'react';
 
 import { DefaultMessageInterface } from '../../../assessments/assessment-default-message-generator';
+import { GuidanceLinks } from '../../../common/components/guidance-links';
 import { NamedSFC } from '../../../common/react/named-sfc';
 import { ManualTestStatus } from '../../../common/types/manual-test-status';
-import { GuidanceLinks } from '../../components/guidance-links';
 import { RequirementHeaderReportModel } from '../assessment-report-model';
 import { OutcomeChip } from './outcome-chip';
 import { allOutcomeTypes, OutcomeTypeSemantic } from './outcome-type';

@@ -38,7 +38,7 @@ const roleStatePropertyHowToTest: JSX.Element = (
             <li>
                 Inspect the widget's HTML using the{' '}
                 <NewTabLink href="https://developers.google.com/web/updates/2018/01/devtools">
-                    Accessibility pane in the Chrome Developer Tools
+                    Accessibility pane in the browser Developer Tools
                 </NewTabLink>{' '}
                 to verify that it supports all of the roles, states, and properties specified by its design pattern:
                 <ul>

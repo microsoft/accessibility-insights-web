@@ -4,7 +4,7 @@ import { shallow } from 'enzyme';
 import { Dialog } from 'office-ui-fabric-react';
 import * as React from 'react';
 
-import { FlaggedComponent } from '../../../../../common/components/flagged-component';
+import { IssueFilingButton } from '../../../../../common/components/issue-filing-button';
 import { FeatureFlags } from '../../../../../common/feature-flags';
 import { DetailsDialog, DetailsDialogDeps, DetailsDialogProps } from '../../../../../injected/components/details-dialog';
 import { DecoratedAxeNodeResult } from '../../../../../injected/scanner-utils';
@@ -64,7 +64,7 @@ describe('DetailsDialogTest', () => {
             failureSummary: 'failureSummary',
             fingerprint: fingerprint,
             id: 'id1',
-            guidanceLinks: [],
+            guidanceLinks: [{ text: 'Guidance Link', href: 'http://example.com' }],
             helpUrl,
             snippet: 'html',
         };
@@ -86,7 +86,7 @@ describe('DetailsDialogTest', () => {
             targetPageActionMessageCreator: {
                 copyIssueDetailsClicked: () => {},
             } as any,
-            bugActionMessageCreator: null,
+            issueFilingActionMessageCreator: null,
             clientBrowserAdapter: {
                 getUrl: url => expectedHelpUrl,
             } as any,
@@ -139,6 +139,6 @@ describe('DetailsDialogTest', () => {
 
         wrapper.setState({ userConfigurationStoreData: userConfigStoreDataStub });
 
-        expect(wrapper.find(FlaggedComponent).getElement()).toMatchSnapshot('new issue filing bug UI');
+        expect(wrapper.find(IssueFilingButton).getElement()).toMatchSnapshot('issue filing button UI');
     }
 });

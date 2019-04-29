@@ -1,13 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { BaseStore } from '../common/base-store';
-import { BugActionMessageCreator } from '../common/message-creators/bug-action-message-creator';
 import { DevToolActionMessageCreator } from '../common/message-creators/dev-tool-action-message-creator';
+import { IssueFilingActionMessageCreator } from '../common/message-creators/issue-filing-action-message-creator';
 import { DevToolState } from '../common/types/store-data/idev-tool-state';
 import { UserConfigurationStoreData } from '../common/types/store-data/user-configuration-store';
-import { BugFilingServiceProvider } from './../bug-filing/bug-filing-service-provider';
 import { EnvironmentInfoProvider } from './../common/environment-info-provider';
 import { UserConfigMessageCreator } from './../common/message-creators/user-config-message-creator';
+import { IssueFilingServiceProvider } from './../issue-filing/issue-filing-service-provider';
 import { TargetPageActionMessageCreator } from './target-page-action-message-creator';
 
 export class MainWindowContext {
@@ -16,10 +16,10 @@ export class MainWindowContext {
         private userConfigStore: BaseStore<UserConfigurationStoreData>,
         private devToolActionMessageCreator: DevToolActionMessageCreator,
         private targetPageActionMessageCreator: TargetPageActionMessageCreator,
-        private bugActionMessageCreator: BugActionMessageCreator,
+        private issueFilingActionMessageCreator: IssueFilingActionMessageCreator,
         private userConfigMessageCreator: UserConfigMessageCreator,
         private environmentInfoProvider: EnvironmentInfoProvider,
-        private bugFilingServiceProvider: BugFilingServiceProvider,
+        private issueFilingServiceProvider: IssueFilingServiceProvider,
     ) {}
 
     public getDevToolStore(): BaseStore<DevToolState> {
@@ -38,8 +38,8 @@ export class MainWindowContext {
         return this.targetPageActionMessageCreator;
     }
 
-    public getBugActionMessageCreator(): BugActionMessageCreator {
-        return this.bugActionMessageCreator;
+    public getIssueFilingActionMessageCreator(): IssueFilingActionMessageCreator {
+        return this.issueFilingActionMessageCreator;
     }
 
     public getUserConfigMessageCreator(): UserConfigMessageCreator {
@@ -50,8 +50,8 @@ export class MainWindowContext {
         return this.environmentInfoProvider;
     }
 
-    public getBugFilingServiceProvider(): BugFilingServiceProvider {
-        return this.bugFilingServiceProvider;
+    public getIssueFilingServiceProvider(): IssueFilingServiceProvider {
+        return this.issueFilingServiceProvider;
     }
 
     public static initialize(
@@ -59,20 +59,20 @@ export class MainWindowContext {
         userConfigStore: BaseStore<UserConfigurationStoreData>,
         devToolActionMessageCreator: DevToolActionMessageCreator,
         targetPageActionMessageCreator: TargetPageActionMessageCreator,
-        bugActionMessageCreator: BugActionMessageCreator,
+        issueFilingActionMessageCreator: IssueFilingActionMessageCreator,
         userConfigMessageCreator: UserConfigMessageCreator,
         environmentInfoProvider: EnvironmentInfoProvider,
-        bugFilingServiceProvider: BugFilingServiceProvider,
+        issueFilingServiceProvider: IssueFilingServiceProvider,
     ): void {
         window.mainWindowContext = new MainWindowContext(
             devToolStore,
             userConfigStore,
             devToolActionMessageCreator,
             targetPageActionMessageCreator,
-            bugActionMessageCreator,
+            issueFilingActionMessageCreator,
             userConfigMessageCreator,
             environmentInfoProvider,
-            bugFilingServiceProvider,
+            issueFilingServiceProvider,
         );
     }
 

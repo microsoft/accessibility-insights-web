@@ -8,9 +8,9 @@ import { StoreNames } from '../../../common/stores/store-names';
 import { UserConfigurationStoreData } from '../../../common/types/store-data/user-configuration-store';
 import {
     SaveIssueFilingSettingsPayload,
-    SetBugServicePayload,
-    SetBugServicePropertyPayload,
     SetHighContrastModePayload,
+    SetIssueFilingServicePayload,
+    SetIssueFilingServicePropertyPayload,
     SetIssueTrackerPathPayload,
     SetTelemetryStatePayload,
 } from '../../actions/action-payloads';
@@ -49,8 +49,8 @@ export class UserConfigurationStore extends BaseStoreImpl<UserConfigurationStore
         this.userConfigActions.getCurrentState.addListener(this.onGetCurrentState);
         this.userConfigActions.setTelemetryState.addListener(this.onSetTelemetryState);
         this.userConfigActions.setHighContrastMode.addListener(this.onSetHighContrastMode);
-        this.userConfigActions.setBugService.addListener(this.onSetBugService);
-        this.userConfigActions.setBugServiceProperty.addListener(this.onSetBugServiceProperty);
+        this.userConfigActions.setIssueFilingService.addListener(this.onSetIssueFilingService);
+        this.userConfigActions.setIssueFilingServiceProperty.addListener(this.onSetIssueFilingServiceProperty);
         this.userConfigActions.setIssueTrackerPath.addListener(this.onSetIssueTrackerPath);
         this.userConfigActions.saveIssueFilingSettings.addListener(this.onSaveIssueSettings);
     }
@@ -69,21 +69,21 @@ export class UserConfigurationStore extends BaseStoreImpl<UserConfigurationStore
     }
 
     @autobind
-    private onSetBugService(payload: SetBugServicePayload): void {
-        this.state.bugService = payload.bugServiceName;
+    private onSetIssueFilingService(payload: SetIssueFilingServicePayload): void {
+        this.state.bugService = payload.issueFilingServiceName;
         this.saveAndEmitChanged();
     }
 
     @autobind
-    private onSetBugServiceProperty(payload: SetBugServicePropertyPayload): void {
+    private onSetIssueFilingServiceProperty(payload: SetIssueFilingServicePropertyPayload): void {
         if (!isPlainObject(this.state.bugServicePropertiesMap)) {
             this.state.bugServicePropertiesMap = {};
         }
-        if (!isPlainObject(this.state.bugServicePropertiesMap[payload.bugServiceName])) {
-            this.state.bugServicePropertiesMap[payload.bugServiceName] = {};
+        if (!isPlainObject(this.state.bugServicePropertiesMap[payload.issueFilingServiceName])) {
+            this.state.bugServicePropertiesMap[payload.issueFilingServiceName] = {};
         }
 
-        this.state.bugServicePropertiesMap[payload.bugServiceName][payload.propertyName] = payload.propertyValue;
+        this.state.bugServicePropertiesMap[payload.issueFilingServiceName][payload.propertyName] = payload.propertyValue;
 
         this.saveAndEmitChanged();
     }
@@ -96,9 +96,9 @@ export class UserConfigurationStore extends BaseStoreImpl<UserConfigurationStore
 
     @autobind
     private onSaveIssueSettings(payload: SaveIssueFilingSettingsPayload): void {
-        const bugService = payload.bugServiceName;
+        const bugService = payload.issueFilingServiceName;
         this.state.bugService = bugService;
-        this.state.bugServicePropertiesMap[bugService] = payload.bugFilingSettings;
+        this.state.bugServicePropertiesMap[bugService] = payload.issueFilingSettings;
         this.saveAndEmitChanged();
     }
 

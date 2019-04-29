@@ -5,7 +5,6 @@ import { ISelection, Selection } from 'office-ui-fabric-react/lib/DetailsList';
 import * as React from 'react';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
-import { GitHubBugFilingSettings } from '../../../../bug-filing/github/github-bug-filing-service';
 import { DropdownClickHandler } from '../../../../common/dropdown-click-handler';
 import { StoreActionMessageCreator } from '../../../../common/message-creators/store-action-message-creator';
 import { StoreActionMessageCreatorImpl } from '../../../../common/message-creators/store-action-message-creator-impl';
@@ -38,6 +37,7 @@ import {
 import { DetailsViewMainContent } from '../../../../DetailsView/details-view-main-content';
 import { DetailsViewToggleClickHandlerFactory } from '../../../../DetailsView/handlers/details-view-toggle-click-handler-factory';
 import { PreviewFeatureFlagsHandler } from '../../../../DetailsView/handlers/preview-feature-flags-handler';
+import { GitHubIssueFilingSettings } from '../../../../issue-filing/github/github-issue-filing-service';
 import { DetailsViewStoreDataBuilder } from '../../common/details-view-store-data-builder';
 import { TabStoreDataBuilder } from '../../common/tab-store-data-builder';
 import { CreateTestAssessmentProviderWithFeatureFlag } from '../../common/test-assessment-provider';
@@ -248,7 +248,7 @@ describe('DetailsViewContainer', () => {
         rightPanelConfiguration: DetailsRightPanelConfiguration,
         switcherNavConfiguration: DetailsViewSwitcherNavConfiguration,
     ): JSX.Element {
-        const issueTrackerPath = (storeMocks.userConfigurationStoreData.bugServicePropertiesMap.gitHub as GitHubBugFilingSettings)
+        const issueTrackerPath = (storeMocks.userConfigurationStoreData.bugServicePropertiesMap.gitHub as GitHubIssueFilingSettings)
             .repository;
         return (
             <DetailsViewMainContent

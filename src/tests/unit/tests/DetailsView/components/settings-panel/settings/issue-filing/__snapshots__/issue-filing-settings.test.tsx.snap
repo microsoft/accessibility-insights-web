@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`IssueFilingSettings renders 1`] = `
+<React.Fragment>
+  <h3>
+    Issue filing
+  </h3>
+  <IssueFilingSettingsContainer
+    deps={
+      Object {
+        "issueFilingServiceProvider": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "all": [Function],
+          "allVisible": [Function],
+          "forKey": [Function],
+          "services": undefined,
+        },
+        "userConfigMessageCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "dispatcher": undefined,
+          "saveIssueFilingSettings": [Function],
+          "setHighContrastMode": [Function],
+          "setIssueFilingService": [Function],
+          "setIssueFilingServiceProperty": [Function],
+          "setIssueTrackerPath": [Function],
+          "setTelemetryState": [Function],
+        },
+      }
+    }
+    onPropertyUpdateCallback={[Function]}
+    onSelectedServiceChange={[Function]}
+    selectedIssueFilingService={
+      Object {
+        "buildStoreData": [Function],
+        "displayName": "TEST",
+        "getSettingsFromStoreData": [Function],
+        "isSettingsValid": [Function],
+        "issueFilingUrlProvider": [Function],
+        "key": "test",
+        "settingsForm": [Function],
+      }
+    }
+  />
+</React.Fragment>
+`;

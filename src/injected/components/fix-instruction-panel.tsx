@@ -6,6 +6,7 @@ import { CheckType } from './details-dialog';
 export interface FixInstructionPanelProps {
     checkType: CheckType;
     checks: FormattedCheckResult[];
+    renderTitleElement: (titleText: string, className: string) => JSX.Element;
 }
 
 export class FixInstructionPanel extends React.Component<FixInstructionPanelProps, any> {
@@ -17,7 +18,7 @@ export class FixInstructionPanel extends React.Component<FixInstructionPanelProp
 
         return (
             <div>
-                <div className="insights-fix-instruction-title">{title}</div>
+                {this.props.renderTitleElement(title, 'insights-fix-instruction-title')}
                 <ul className="insights-fix-instruction-list">{this.renderInstructions(this.props.checkType)}</ul>
             </div>
         );

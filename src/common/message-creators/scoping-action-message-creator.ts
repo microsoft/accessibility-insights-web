@@ -1,27 +1,18 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { autobind } from '@uifabric/utilities';
-import { Message } from '../message';
 import { Messages } from '../messages';
 import { TelemetryDataFactory } from '../telemetry-data-factory';
 import { ScopingPayload } from './../../background/actions/scoping-actions';
 import { TelemetryEventSource } from './../telemetry-events';
-import { BaseActionMessageCreator } from './base-action-message-creator';
+import { ActionMessageDispatcher } from './action-message-dispatcher';
 
-export class ScopingActionMessageCreator extends BaseActionMessageCreator {
-    private telemetryFactory: TelemetryDataFactory;
-    private source: TelemetryEventSource;
-
+export class ScopingActionMessageCreator {
     constructor(
-        postMessage: (message: Message) => void,
-        tabId: number,
-        telemetryFactory: TelemetryDataFactory,
-        source: TelemetryEventSource,
-    ) {
-        super(postMessage, tabId);
-        this.telemetryFactory = telemetryFactory;
-        this.source = source;
-    }
+        private readonly telemetryFactory: TelemetryDataFactory,
+        private readonly source: TelemetryEventSource,
+        private readonly dispatcher: ActionMessageDispatcher,
+    ) {}
 
     @autobind
     public addSelector(event: React.MouseEvent<HTMLElement> | MouseEvent, inputType: string, selector: string[]): void {
@@ -33,9 +24,8 @@ export class ScopingActionMessageCreator extends BaseActionMessageCreator {
             telemetry,
         };
 
-        this.dispatchMessage({
+        this.dispatcher.dispatchMessage({
             messageType: messageType,
-            tabId: this._tabId,
             payload: payload,
         });
     }
@@ -50,9 +40,8 @@ export class ScopingActionMessageCreator extends BaseActionMessageCreator {
             telemetry,
         };
 
-        this.dispatchMessage({
+        this.dispatcher.dispatchMessage({
             messageType: messageType,
-            tabId: this._tabId,
             payload: payload,
         });
     }

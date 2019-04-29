@@ -2,25 +2,25 @@
 // Licensed under the MIT License.
 import {
     SaveIssueFilingSettingsPayload,
-    SetBugServicePayload,
-    SetBugServicePropertyPayload,
     SetHighContrastModePayload,
+    SetIssueFilingServicePayload,
+    SetIssueFilingServicePropertyPayload,
     SetIssueTrackerPathPayload,
     SetTelemetryStatePayload,
 } from '../../background/actions/action-payloads';
 import { Messages } from '../messages';
-import { BugServiceProperties } from '../types/store-data/user-configuration-store';
-import { BaseActionMessageCreator } from './base-action-message-creator';
+import { IssueFilingServiceProperties } from '../types/store-data/user-configuration-store';
+import { ActionMessageDispatcher } from './action-message-dispatcher';
 
-export class UserConfigMessageCreator extends BaseActionMessageCreator {
+export class UserConfigMessageCreator {
+    constructor(private readonly dispatcher: ActionMessageDispatcher) {}
     public setTelemetryState(enableTelemetry: boolean): void {
         const payload: SetTelemetryStatePayload = {
             enableTelemetry,
         };
 
-        this.dispatchMessage({
+        this.dispatcher.dispatchMessage({
             messageType: Messages.UserConfig.SetTelemetryConfig,
-            tabId: this._tabId,
             payload,
         });
     }
@@ -30,35 +30,32 @@ export class UserConfigMessageCreator extends BaseActionMessageCreator {
             enableHighContrast,
         };
 
-        this.dispatchMessage({
+        this.dispatcher.dispatchMessage({
             messageType: Messages.UserConfig.SetHighContrastConfig,
-            tabId: this._tabId,
             payload,
         });
     }
 
-    public setBugService = (bugServiceName: string) => {
-        const payload: SetBugServicePayload = {
-            bugServiceName,
+    public setIssueFilingService = (issueFilingServiceName: string) => {
+        const payload: SetIssueFilingServicePayload = {
+            issueFilingServiceName,
         };
 
-        this.dispatchMessage({
-            messageType: Messages.UserConfig.SetBugService,
-            tabId: this._tabId,
+        this.dispatcher.dispatchMessage({
+            messageType: Messages.UserConfig.SetIssueFilingService,
             payload,
         });
     };
 
-    public setBugServiceProperty = (bugServiceName: string, propertyName: string, propertyValue: string) => {
-        const payload: SetBugServicePropertyPayload = {
-            bugServiceName,
+    public setIssueFilingServiceProperty = (issueFilingServiceName: string, propertyName: string, propertyValue: string) => {
+        const payload: SetIssueFilingServicePropertyPayload = {
+            issueFilingServiceName,
             propertyName,
             propertyValue,
         };
 
-        this.dispatchMessage({
-            messageType: Messages.UserConfig.SetBugServiceProperty,
-            tabId: this._tabId,
+        this.dispatcher.dispatchMessage({
+            messageType: Messages.UserConfig.SetIssueFilingServiceProperty,
             payload,
         });
     };
@@ -68,22 +65,20 @@ export class UserConfigMessageCreator extends BaseActionMessageCreator {
             issueTrackerPath,
         };
 
-        this.dispatchMessage({
+        this.dispatcher.dispatchMessage({
             messageType: Messages.UserConfig.SetIssueTrackerPath,
-            tabId: this._tabId,
             payload,
         });
     };
 
-    public saveIssueFilingSettings = (bugServiceName: string, bugFilingSettings: BugServiceProperties) => {
+    public saveIssueFilingSettings = (issueFilingServiceName: string, issueFilingSettings: IssueFilingServiceProperties) => {
         const payload: SaveIssueFilingSettingsPayload = {
-            bugServiceName,
-            bugFilingSettings,
+            issueFilingServiceName,
+            issueFilingSettings,
         };
 
-        this.dispatchMessage({
+        this.dispatcher.dispatchMessage({
             messageType: Messages.UserConfig.SaveIssueFilingSettings,
-            tabId: this._tabId,
             payload,
         });
     };

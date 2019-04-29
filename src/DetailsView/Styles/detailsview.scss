@@ -1105,7 +1105,7 @@ div.insights-file-issue-details-dialog-container {
                     margin-bottom: 5px;
                     font-size: $fontSizeM;
                 }
-                .bugs-details-view .create-bug-button {
+                .bugs-details-view .file-issue-button {
                     margin-right: 7px;
                     font-size: 16px;
                     float: left;
@@ -1284,7 +1284,7 @@ div.insights-file-issue-details-dialog-container {
                             }
                         }
                     }
-                    .create-bug-button {
+                    .file-issue-button {
                         vertical-align: baseline;
                         margin-left: 8px;
                         .ms-Button-label {
@@ -1302,7 +1302,7 @@ div.insights-file-issue-details-dialog-container {
                             }
                         }
                     }
-                    .create-bug-button-help {
+                    .file-issue-button-help {
                         display: inline-block;
                         margin-left: 8px;
                         vertical-align: 2px;
@@ -1420,7 +1420,6 @@ div.insights-file-issue-details-dialog-container {
                         .help-heading {
                             font-size: 17px;
                             padding: 0px;
-                            margin-block-start: 1em;
                             margin-block-end: 1em;
                             margin-inline-start: 0px;
                             margin-inline-end: 0px;

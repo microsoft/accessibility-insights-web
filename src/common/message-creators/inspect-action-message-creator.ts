@@ -2,27 +2,18 @@
 // Licensed under the MIT License.
 import { autobind } from '@uifabric/utilities';
 import { InspectMode } from '../../background/inspect-modes';
-import { Message } from '../message';
 import { Messages } from '../messages';
 import { TelemetryDataFactory } from '../telemetry-data-factory';
 import { InspectPayload } from './../../background/actions/inspect-actions';
 import { TelemetryEventSource } from './../telemetry-events';
-import { BaseActionMessageCreator } from './base-action-message-creator';
+import { ActionMessageDispatcher } from './action-message-dispatcher';
 
-export class InspectActionMessageCreator extends BaseActionMessageCreator {
-    private telemetryFactory: TelemetryDataFactory;
-    private source: TelemetryEventSource;
-
+export class InspectActionMessageCreator {
     constructor(
-        postMessage: (message: Message) => void,
-        tabId: number,
-        telemetryFactory: TelemetryDataFactory,
-        source: TelemetryEventSource,
-    ) {
-        super(postMessage, tabId);
-        this.telemetryFactory = telemetryFactory;
-        this.source = source;
-    }
+        private readonly telemetryFactory: TelemetryDataFactory,
+        private readonly source: TelemetryEventSource,
+        private readonly dispatcher: ActionMessageDispatcher,
+    ) {}
 
     @autobind
     public changeInspectMode(event: React.MouseEvent<HTMLElement> | MouseEvent, inspectMode: InspectMode): void {
@@ -32,9 +23,8 @@ export class InspectActionMessageCreator extends BaseActionMessageCreator {
             inspectMode,
             telemetry,
         };
-        this.dispatchMessage({
+        this.dispatcher.dispatchMessage({
             messageType: messageType,
-            tabId: this._tabId,
             payload: payload,
         });
     }

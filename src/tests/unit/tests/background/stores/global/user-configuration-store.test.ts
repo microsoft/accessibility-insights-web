@@ -5,9 +5,9 @@ import { IMock, It, Mock, Times } from 'typemoq';
 
 import {
     SaveIssueFilingSettingsPayload,
-    SetBugServicePayload,
-    SetBugServicePropertyPayload,
     SetHighContrastModePayload,
+    SetIssueFilingServicePayload,
+    SetIssueFilingServicePropertyPayload,
     SetIssueTrackerPathPayload,
     SetTelemetryStatePayload,
 } from '../../../../../../background/actions/action-payloads';
@@ -17,8 +17,8 @@ import { UserConfigurationStore } from '../../../../../../background/stores/glob
 import { IndexedDBAPI } from '../../../../../../common/indexedDB/indexedDB';
 import { StoreNames } from '../../../../../../common/stores/store-names';
 import {
-    BugServiceProperties,
-    BugServicePropertiesMap,
+    IssueFilingServiceProperties,
+    IssueFilingServicePropertiesMap,
     UserConfigurationStoreData,
 } from '../../../../../../common/types/store-data/user-configuration-store';
 import { StoreTester } from '../../../../common/store-tester';
@@ -206,32 +206,37 @@ describe('UserConfigurationStoreTest', () => {
             .testListenerToBeCalledOnce(cloneDeep(initialStoreData), expectedState);
     });
 
-    test.each(['none', 'userConfigurationStoreTestBugService'])('setBugService action: %s', (testBugService: string) => {
-        const storeTester = createStoreToTestAction('setBugService');
-        initialStoreData = {
-            isFirstTime: false,
-            enableTelemetry: false,
-            enableHighContrast: false,
-            bugService: 'none',
-            bugServicePropertiesMap: {},
-        };
+    test.each(['none', 'userConfigurationStoreTestIssueFilingService'])(
+        'setIssueFilingService action: %s',
+        (testIssueFilingService: string) => {
+            const storeTester = createStoreToTestAction('setIssueFilingService');
+            initialStoreData = {
+                isFirstTime: false,
+                enableTelemetry: false,
+                enableHighContrast: false,
+                bugService: 'none',
+                bugServicePropertiesMap: {},
+            };
 
-        const setBugServiceData: SetBugServicePayload = {
-            bugServiceName: testBugService,
-        };
+            const setIssueFilingServiceData: SetIssueFilingServicePayload = {
+                issueFilingServiceName: testIssueFilingService,
+            };
 
-        const expectedState: UserConfigurationStoreData = {
-            ...initialStoreData,
-            bugService: testBugService,
-        };
+            const expectedState: UserConfigurationStoreData = {
+                ...initialStoreData,
+                bugService: testIssueFilingService,
+            };
 
-        indexDbStrictMock.setup(i => i.setItem(IndexedDBDataKeys.userConfiguration, It.isValue(expectedState))).verifiable(Times.once());
+            indexDbStrictMock
+                .setup(i => i.setItem(IndexedDBDataKeys.userConfiguration, It.isValue(expectedState)))
+                .verifiable(Times.once());
 
-        storeTester
-            .withActionParam(setBugServiceData)
-            .withPostListenerMock(indexDbStrictMock)
-            .testListenerToBeCalledOnce(cloneDeep(initialStoreData), expectedState);
-    });
+            storeTester
+                .withActionParam(setIssueFilingServiceData)
+                .withPostListenerMock(indexDbStrictMock)
+                .testListenerToBeCalledOnce(cloneDeep(initialStoreData), expectedState);
+        },
+    );
 
     test.each([
         { enableTelemetry: false, isFirstTime: false, enableHighContrastMode: false } as SetUserConfigTestCase,
@@ -269,9 +274,9 @@ describe('UserConfigurationStoreTest', () => {
     });
 
     test.each([undefined, null, {}, { 'test-service': {} }, { 'test-service': { 'test-name': 'test-value' } }])(
-        'setBugServiceProperty with initial map state %o',
-        (initialMapState: BugServicePropertiesMap) => {
-            const storeTester = createStoreToTestAction('setBugServiceProperty');
+        'setIssueFilingServiceProperty with initial map state %o',
+        (initialMapState: IssueFilingServicePropertiesMap) => {
+            const storeTester = createStoreToTestAction('setIssueFilingServiceProperty');
             initialStoreData = {
                 isFirstTime: false,
                 enableTelemetry: false,
@@ -280,8 +285,8 @@ describe('UserConfigurationStoreTest', () => {
                 bugServicePropertiesMap: initialMapState,
             };
 
-            const setBugServicePropertyData: SetBugServicePropertyPayload = {
-                bugServiceName: 'test-service',
+            const setIssueFilingServicePropertyData: SetIssueFilingServicePropertyPayload = {
+                issueFilingServiceName: 'test-service',
                 propertyName: 'test-name',
                 propertyValue: 'test-value',
             };
@@ -296,7 +301,7 @@ describe('UserConfigurationStoreTest', () => {
                 .verifiable(Times.once());
 
             storeTester
-                .withActionParam(setBugServicePropertyData)
+                .withActionParam(setIssueFilingServicePropertyData)
                 .withPostListenerMock(indexDbStrictMock)
                 .testListenerToBeCalledOnce(cloneDeep(initialStoreData), expectedState);
         },
@@ -305,12 +310,12 @@ describe('UserConfigurationStoreTest', () => {
     test('saveIssueFilingSettings', () => {
         const storeTester = createStoreToTestAction('saveIssueFilingSettings');
         const serviceName = 'test service';
-        const bugServiceProperties: BugServiceProperties = {
+        const bugServiceProperties: IssueFilingServiceProperties = {
             name: 'bug settings',
         };
         const payload: SaveIssueFilingSettingsPayload = {
-            bugServiceName: serviceName,
-            bugFilingSettings: bugServiceProperties,
+            issueFilingServiceName: serviceName,
+            issueFilingSettings: bugServiceProperties,
         };
         const expectedState: UserConfigurationStoreData = {
             ...initialStoreData,
