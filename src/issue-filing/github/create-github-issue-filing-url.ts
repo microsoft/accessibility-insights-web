@@ -14,13 +14,13 @@ export const createGitHubIssueFilingUrlProvider = (
     stringUtils: IssueUrlCreationUtils,
     issueDetailsBuilder: IssueDetailsBuilder,
     queryBuilderProvider: () => HTTPQueryBuilder,
-    rectify: UrlRectifier,
+    rectifier: UrlRectifier,
 ) => {
     return (settingsData: GitHubIssueFilingSettings, issueData: CreateIssueDetailsTextData, environmentInfo: EnvironmentInfo): string => {
         const title = stringUtils.getTitle(issueData);
         const body = issueDetailsBuilder(environmentInfo, issueData);
 
-        const baseUrl = rectify(settingsData.repository);
+        const baseUrl = rectifier(settingsData.repository);
 
         return queryBuilderProvider()
             .withBaseUrl(`${baseUrl}/new`)
