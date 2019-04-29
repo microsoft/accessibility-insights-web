@@ -12,11 +12,11 @@ import { CommandStore } from '../../../../background/stores/global/command-store
 import { FeatureFlagStore } from '../../../../background/stores/global/feature-flag-store';
 import { LaunchPanelStore } from '../../../../background/stores/global/launch-panel-store';
 import { TelemetryEventHandler } from '../../../../background/telemetry/telemetry-event-handler';
+import { EnvironmentInfo } from '../../../../common/environment-info-provider';
 import { IndexedDBAPI } from '../../../../common/indexedDB/indexedDB';
 import { TelemetryDataFactory } from '../../../../common/telemetry-data-factory';
 import { IssueFilingServiceProvider } from '../../../../issue-filing/issue-filing-service-provider';
 import { CreateTestAssessmentProvider } from '../../common/test-assessment-provider';
-import { EnvironmentInfo } from '../../../../common/environment-info-provider';
 
 describe('GlobalContextFactoryTest', () => {
     let _mockChromeAdapter: IMock<BrowserAdapter>;

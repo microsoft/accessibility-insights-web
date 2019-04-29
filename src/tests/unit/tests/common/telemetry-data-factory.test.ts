@@ -9,6 +9,7 @@ import {
     DetailsViewPivotSelectedTelemetryData,
     ExportResultsTelemetryData,
     FeatureFlagToggleTelemetryData,
+    FileIssueClickTelemetryData,
     InspectTelemetryData,
     RequirementActionTelemetryData,
     RequirementSelectTelemetryData,
@@ -18,7 +19,6 @@ import {
     TelemetryEventSource,
     ToggleTelemetryData,
     TriggeredByNotApplicable,
-    FileIssueClickTelemetryData,
 } from '../../../../common/telemetry-events';
 import { DetailsViewPivotType } from '../../../../common/types/details-view-pivot-type';
 import { VisualizationType } from '../../../../common/types/visualization-type';

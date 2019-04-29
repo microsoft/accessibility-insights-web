@@ -5,6 +5,7 @@ import * as React from 'react';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 import { EnvironmentInfo, EnvironmentInfoProvider } from '../../../../../common/environment-info-provider';
+import { IssueFilingActionMessageCreator } from '../../../../../common/message-creators/issue-filing-action-message-creator';
 import { UserConfigMessageCreator } from '../../../../../common/message-creators/user-config-message-creator';
 import { CreateIssueDetailsTextData } from '../../../../../common/types/create-issue-details-text-data';
 import { IssueFilingServicePropertiesMap } from '../../../../../common/types/store-data/user-configuration-store';
@@ -18,7 +19,6 @@ import { IssueFilingSettingsContainer } from '../../../../../issue-filing/compon
 import { IssueFilingServiceProvider } from '../../../../../issue-filing/issue-filing-service-provider';
 import { IssueFilingService } from '../../../../../issue-filing/types/issue-filing-service';
 import { EventStub, EventStubFactory } from '../../../common/event-stub-factory';
-import { IssueFilingActionMessageCreator } from '../../../../../common/message-creators/issue-filing-action-message-creator';
 
 describe('IssueFilingDialog', () => {
     let eventStub: EventStub;

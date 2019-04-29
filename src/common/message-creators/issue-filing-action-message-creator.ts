@@ -5,8 +5,8 @@ import { Message } from '../message';
 import { Messages } from '../messages';
 import { TelemetryDataFactory } from '../telemetry-data-factory';
 import { FILE_ISSUE_CLICK, TelemetryEventSource } from '../telemetry-events';
-import { ActionMessageDispatcher } from './action-message-dispatcher';
 import { CreateIssueDetailsTextData } from '../types/create-issue-details-text-data';
+import { ActionMessageDispatcher } from './action-message-dispatcher';
 
 type SupportedMouseEvent = React.MouseEvent<HTMLElement> | React.SyntheticEvent<Element, Event>;
 
