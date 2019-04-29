@@ -8,7 +8,7 @@ import { DecoratedAxeNodeResult } from '../../../../../../injected/scanner-utils
 import {
     NullIssueFilingService,
     NullIssueFilingServiceSettings,
-} from '../../../../../../issue-filing/null-issue-filing-service/null-issue-filing-service';
+} from '../../../../../../issue-filing/services/null-issue-filing-service/null-issue-filing-service';
 import { SettingsFormProps } from '../../../../../../issue-filing/types/settings-form-props';
 
 describe('NullIssueFilingService', () => {
