@@ -18,6 +18,7 @@ import {
     TelemetryEventSource,
     ToggleTelemetryData,
     TriggeredByNotApplicable,
+    FileIssueClickTelemetryData,
 } from '../../../../common/telemetry-events';
 import { DetailsViewPivotType } from '../../../../common/types/details-view-pivot-type';
 import { VisualizationType } from '../../../../common/types/visualization-type';
@@ -515,6 +516,20 @@ describe('TelemetryDataFactoryTest', () => {
             exportResultsData: exportedHtml.length,
             triggeredBy: 'mouseclick',
             source: testSource,
+        };
+
+        expect(result).toEqual(expected);
+    });
+
+    test('forFileIssueClick', () => {
+        const service = 'test-service';
+
+        const result = testObject.forFileIssueClick(mouseClickEvent, testSource, service);
+
+        const expected: FileIssueClickTelemetryData = {
+            service,
+            source: testSource,
+            triggeredBy: 'mouseclick',
         };
 
         expect(result).toEqual(expected);
