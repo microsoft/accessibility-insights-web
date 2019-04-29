@@ -26,6 +26,8 @@ import { DetailsDialogHandler } from '../details-dialog-handler';
 import { DecoratedAxeNodeResult } from '../scanner-utils';
 import { TargetPageActionMessageCreator } from '../target-page-action-message-creator';
 import { FixInstructionPanel } from './fix-instruction-panel';
+import { isEmpty } from 'lodash';
+import { css } from 'office-ui-fabric-react';
 
 export enum CheckType {
     All,
@@ -255,8 +257,7 @@ export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDi
     }
 
     private renderSectionTitle(sectionTitle: string, className?: string): JSX.Element {
-        const allClassNames = ['insights-dialog-section-title', className].filter(t => t != null);
-        return <h3 className={allClassNames.join(' ')}>{sectionTitle}</h3>;
+        return <h3 className={css('insights-dialog-section-title', className)}>{sectionTitle}</h3>;
     }
 
     private renderRuleName(rule: DecoratedAxeNodeResult): JSX.Element {
@@ -278,7 +279,7 @@ export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDi
     }
 
     private renderSuccessCriteria(ruleGuidanceLinks: HyperlinkDefinition[]): JSX.Element {
-        if (!ruleGuidanceLinks || ruleGuidanceLinks.length === 0) {
+        if (isEmpty(ruleGuidanceLinks)) {
             return null;
         }
         const sectionTitle: string = ruleGuidanceLinks.length === 1 ? 'Success criterion' : 'Success criteria';
