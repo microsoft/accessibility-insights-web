@@ -14,21 +14,30 @@ import { LaunchPanelStore } from '../../../../background/stores/global/launch-pa
 import { TelemetryEventHandler } from '../../../../background/telemetry/telemetry-event-handler';
 import { IndexedDBAPI } from '../../../../common/indexedDB/indexedDB';
 import { TelemetryDataFactory } from '../../../../common/telemetry-data-factory';
+import { IssueFilingServiceProvider } from '../../../../issue-filing/issue-filing-service-provider';
 import { CreateTestAssessmentProvider } from '../../common/test-assessment-provider';
+import { EnvironmentInfo } from '../../../../common/environment-info-provider';
 
 describe('GlobalContextFactoryTest', () => {
     let _mockChromeAdapter: IMock<BrowserAdapter>;
     let _mocktelemetryEventHandler: IMock<TelemetryEventHandler>;
     let _mockTelemetryDataFactory: IMock<TelemetryDataFactory>;
+    let _mockIssueFilingServiceProvider: IMock<IssueFilingServiceProvider>;
+    let environmentInfoStub: EnvironmentInfo;
     let userDataStub: LocalStorageData;
     let idbInstance: IndexedDBAPI;
+    let persistedDataStub: PersistedData;
 
     beforeAll(() => {
         _mockChromeAdapter = Mock.ofType(ChromeAdapter, MockBehavior.Loose);
         _mockChromeAdapter.setup(adapter => adapter.sendMessageToAllFramesAndTabs(It.isAny()));
         _mocktelemetryEventHandler = Mock.ofType(TelemetryEventHandler);
         _mockTelemetryDataFactory = Mock.ofType(TelemetryDataFactory);
+        _mockIssueFilingServiceProvider = Mock.ofType(IssueFilingServiceProvider);
+
         userDataStub = {};
+        environmentInfoStub = {} as EnvironmentInfo;
+        persistedDataStub = {} as PersistedData;
         idbInstance = {} as IndexedDBAPI;
     });
 
@@ -40,7 +49,9 @@ describe('GlobalContextFactoryTest', () => {
             CreateTestAssessmentProvider(),
             _mockTelemetryDataFactory.object,
             idbInstance,
-            {} as PersistedData,
+            persistedDataStub,
+            _mockIssueFilingServiceProvider.object,
+            environmentInfoStub,
         );
 
         expect(globalContext).toBeInstanceOf(GlobalContext);
