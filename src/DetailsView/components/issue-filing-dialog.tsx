@@ -5,6 +5,7 @@ import { Dialog, DialogFooter, DialogType } from 'office-ui-fabric-react/lib/Dia
 import * as React from 'react';
 
 import { EnvironmentInfoProvider } from '../../common/environment-info-provider';
+import { IssueFilingActionMessageCreator } from '../../common/message-creators/issue-filing-action-message-creator';
 import { UserConfigMessageCreator } from '../../common/message-creators/user-config-message-creator';
 import { CreateIssueDetailsTextData } from '../../common/types/create-issue-details-text-data';
 import { IssueFilingServicePropertiesMap } from '../../common/types/store-data/user-configuration-store';
@@ -23,7 +24,6 @@ export interface IssueFilingDialogProps {
     isOpen: boolean;
     selectedIssueFilingService: IssueFilingService;
     selectedIssueData: CreateIssueDetailsTextData;
-    fileIssueTelemetryCallback: (ev: React.SyntheticEvent) => void;
     issueFilingServicePropertiesMap: IssueFilingServicePropertiesMap;
     onClose: (ev: React.SyntheticEvent) => void;
 }
@@ -32,6 +32,7 @@ export type IssueFilingDialogDeps = {
     environmentInfoProvider: EnvironmentInfoProvider;
     userConfigMessageCreator: UserConfigMessageCreator;
     issueFilingServiceProvider: IssueFilingServiceProvider;
+    issueFilingActionMessageCreator: IssueFilingActionMessageCreator;
 } & IssueFilingSettingsContainerDeps;
 
 const titleLabel = 'Specify issue filing location';
@@ -55,16 +56,12 @@ export class IssueFilingDialog extends React.Component<IssueFilingDialogProps, I
     }
 
     public render(): JSX.Element {
-        const { selectedIssueData, onClose, isOpen, deps } = this.props;
+        const { onClose, isOpen, deps } = this.props;
         const { selectedIssueFilingService } = this.state;
         const selectedIssueFilingServiceData = this.state.selectedIssueFilingService.getSettingsFromStoreData(
             this.state.issueFilingServicePropertiesMap,
         );
-        const environmentInfo = deps.environmentInfoProvider.getEnvironmentInfo();
         const isSettingsValid = selectedIssueFilingService.isSettingsValid(selectedIssueFilingServiceData);
-        const href = isSettingsValid
-            ? selectedIssueFilingService.issueFilingUrlProvider(selectedIssueFilingServiceData, selectedIssueData, environmentInfo)
-            : null;
 
         return (
             <Dialog
@@ -95,7 +92,6 @@ export class IssueFilingDialog extends React.Component<IssueFilingDialogProps, I
                         primaryButtonDisabled={isSettingsValid === false}
                         primaryButtonOnClick={this.onPrimaryButtonClick}
                         cancelButtonOnClick={onClose}
-                        primaryButtonHref={href}
                         primaryButtonText={'File issue'}
                     />
                 </DialogFooter>
@@ -107,7 +103,7 @@ export class IssueFilingDialog extends React.Component<IssueFilingDialogProps, I
         const newData = this.state.selectedIssueFilingService.getSettingsFromStoreData(this.state.issueFilingServicePropertiesMap);
         const service = this.state.selectedIssueFilingService.key;
         this.props.deps.userConfigMessageCreator.saveIssueFilingSettings(service, newData);
-        this.props.fileIssueTelemetryCallback(ev);
+        this.props.deps.issueFilingActionMessageCreator.fileIssue(ev, service, this.props.selectedIssueData);
         this.props.onClose(ev);
     };
 

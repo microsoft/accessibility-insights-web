@@ -5,6 +5,7 @@ import * as React from 'react';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 import { EnvironmentInfo, EnvironmentInfoProvider } from '../../../../../common/environment-info-provider';
+import { IssueFilingActionMessageCreator } from '../../../../../common/message-creators/issue-filing-action-message-creator';
 import { UserConfigMessageCreator } from '../../../../../common/message-creators/user-config-message-creator';
 import { CreateIssueDetailsTextData } from '../../../../../common/types/create-issue-details-text-data';
 import { IssueFilingServicePropertiesMap } from '../../../../../common/types/store-data/user-configuration-store';
@@ -25,7 +26,6 @@ describe('IssueFilingDialog', () => {
     let createIssueFilingUrlMock: IMock<Function>;
     let getSettingsFromStoreDataMock: IMock<Function>;
     let onCloseMock: IMock<(ev) => void>;
-    let telemetryCallbackMock: IMock<(ev) => void>;
     let selectedIssueDataStub: CreateIssueDetailsTextData;
     let selectedServiceData;
     let deps: IssueFilingDialogDeps;
@@ -37,6 +37,7 @@ describe('IssueFilingDialog', () => {
     let issueFilingServicePropertiesMapStub: IssueFilingServicePropertiesMap;
     let userConfigMessageCreatorMock: IMock<UserConfigMessageCreator>;
     let issueFilingServiceProviderMock: IMock<IssueFilingServiceProvider>;
+    let issueFilingActionMessageCreatorMock: IMock<IssueFilingActionMessageCreator>;
 
     beforeEach(() => {
         serviceKey = 'gitHub';
@@ -50,10 +51,10 @@ describe('IssueFilingDialog', () => {
         onCloseMock = Mock.ofInstance(() => null, MockBehavior.Strict);
         createIssueFilingUrlMock = Mock.ofInstance((serviceData, issueData, info) => null, MockBehavior.Strict);
         getSettingsFromStoreDataMock = Mock.ofInstance(data => null, MockBehavior.Strict);
-        telemetryCallbackMock = Mock.ofInstance(data => null, MockBehavior.Strict);
         envInfoProviderMock = Mock.ofType(EnvironmentInfoProvider);
         userConfigMessageCreatorMock = Mock.ofType(UserConfigMessageCreator);
         issueFilingServiceProviderMock = Mock.ofType(IssueFilingServiceProvider);
+        issueFilingActionMessageCreatorMock = Mock.ofType(IssueFilingActionMessageCreator);
 
         envInfoProviderMock.setup(p => p.getEnvironmentInfo()).returns(() => envInfo);
 
@@ -70,6 +71,7 @@ describe('IssueFilingDialog', () => {
             issueFilingServiceProvider: issueFilingServiceProviderMock.object,
             userConfigMessageCreator: userConfigMessageCreatorMock.object,
             environmentInfoProvider: envInfoProviderMock.object,
+            issueFilingActionMessageCreator: issueFilingActionMessageCreatorMock.object,
         } as IssueFilingDialogDeps;
         issueFilingServiceStub = {
             isSettingsValid: isSettingsValidMock.object,
@@ -83,7 +85,6 @@ describe('IssueFilingDialog', () => {
             onClose: onCloseMock.object,
             selectedIssueFilingService: issueFilingServiceStub,
             selectedIssueData: selectedIssueDataStub,
-            fileIssueTelemetryCallback: telemetryCallbackMock.object,
             issueFilingServicePropertiesMap: issueFilingServicePropertiesMapStub,
         };
 
@@ -114,7 +115,6 @@ describe('IssueFilingDialog', () => {
     });
 
     it('render: validate correct callbacks to ActionAndCancelButtonsComponent (file issue on click and cancel)', () => {
-        telemetryCallbackMock.setup(telemetryCallback => telemetryCallback(eventStub)).verifiable(Times.never());
         onCloseMock.setup(onClose => onClose(null)).verifiable(Times.once());
 
         const testSubject = shallow(<IssueFilingDialog {...props} />);
@@ -122,14 +122,14 @@ describe('IssueFilingDialog', () => {
         actionCancelButtons.props().cancelButtonOnClick(null);
 
         isSettingsValidMock.verifyAll();
-        createIssueFilingUrlMock.verifyAll();
-        telemetryCallbackMock.verifyAll();
         onCloseMock.verifyAll();
     });
 
     it('render: validate correct callbacks to ActionAndCancelButtonsComponent (file issue on click and cancel)', () => {
         userConfigMessageCreatorMock.setup(ucmcm => ucmcm.saveIssueFilingSettings(serviceKey, selectedServiceData)).verifiable();
-        telemetryCallbackMock.setup(telemetryCallback => telemetryCallback(eventStub)).verifiable(Times.once());
+        issueFilingActionMessageCreatorMock
+            .setup(creator => creator.fileIssue(eventStub as any, serviceKey, It.isValue(props.selectedIssueData)))
+            .verifiable(Times.once());
         onCloseMock.setup(onClose => onClose(eventStub)).verifiable(Times.once());
 
         const testSubject = shallow(<IssueFilingDialog {...props} />);
@@ -137,9 +137,8 @@ describe('IssueFilingDialog', () => {
         actionCancelButtons.props().primaryButtonOnClick(eventStub);
 
         isSettingsValidMock.verifyAll();
-        createIssueFilingUrlMock.verifyAll();
-        telemetryCallbackMock.verifyAll();
         userConfigMessageCreatorMock.verifyAll();
+        issueFilingActionMessageCreatorMock.verifyAll();
         onCloseMock.verifyAll();
     });
 

@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import * as TelemetryEvents from '../../common/telemetry-events';
 import { BaseTelemetryData, TelemetryData, ToggleTelemetryData } from '../../common/telemetry-events';
+import { CreateIssueDetailsTextData } from '../../common/types/create-issue-details-text-data';
 import { DetailsViewPivotType } from '../../common/types/details-view-pivot-type';
 import { ManualTestStatus } from '../../common/types/manual-test-status';
 import { IssueFilingServiceProperties } from '../../common/types/store-data/user-configuration-store';
@@ -141,4 +142,9 @@ export interface SetIssueFilingServicePropertyPayload extends BaseActionPayload 
 
 export interface SetIssueTrackerPathPayload extends BaseActionPayload {
     issueTrackerPath: string;
+}
+
+export interface FileIssuePayload extends BaseActionPayload {
+    issueData: CreateIssueDetailsTextData;
+    service: string;
 }

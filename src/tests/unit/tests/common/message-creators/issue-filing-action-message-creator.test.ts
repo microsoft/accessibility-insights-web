@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IMock, Mock, Times } from 'typemoq';
+import { IMock, It, Mock, Times } from 'typemoq';
 
 import { ActionMessageDispatcher } from '../../../../../common/message-creators/action-message-dispatcher';
 import { IssueFilingActionMessageCreator } from '../../../../../common/message-creators/issue-filing-action-message-creator';
@@ -13,6 +13,8 @@ import {
     TelemetryEventSource,
     TriggeredBy,
 } from '../../../../../common/telemetry-events';
+import { CreateIssueDetailsTextData } from '../../../../../common/types/create-issue-details-text-data';
+import { DecoratedAxeNodeResult } from '../../../../../injected/scanner-utils';
 import { EventStubFactory } from '../../../common/event-stub-factory';
 
 describe('IssueFilingActionMessageCreator', () => {
@@ -35,7 +37,7 @@ describe('IssueFilingActionMessageCreator', () => {
         testSubject = new IssueFilingActionMessageCreator(dispatcherMock.object, telemetryFactoryMock.object, source);
     });
 
-    it('dispatch message for openSettingsPanel', () => {
+    it('dispatches message for openSettingsPanel', () => {
         const telemetry = { ...telemetryStub, sourceItem: 'sourceItem' as SettingsOpenSourceItem };
         telemetryFactoryMock
             .setup(factory => factory.forSettingsPanelOpen(eventStub, source, 'fileIssueSettingsPrompt'))
@@ -57,7 +59,7 @@ describe('IssueFilingActionMessageCreator', () => {
         dispatcherMock.verifyAll();
     });
 
-    it('dispatch message for trackFileIssueClick', () => {
+    it('dispatches message for trackFileIssueClick', () => {
         const testService: string = 'test file issue service';
         const telemetry = { ...telemetryStub, service: testService };
 
@@ -66,6 +68,44 @@ describe('IssueFilingActionMessageCreator', () => {
         dispatcherMock.setup(dispatcher => dispatcher.sendTelemetry(FILE_ISSUE_CLICK, telemetry)).verifiable(Times.once());
 
         testSubject.trackFileIssueClick(eventStub, testService);
+
+        dispatcherMock.verifyAll();
+    });
+
+    it('dispatches message for fileIssue', () => {
+        const testService: string = 'test file issue service';
+        const telemetry = { ...telemetryStub, service: testService };
+
+        telemetryFactoryMock.setup(factory => factory.forFileIssueClick(eventStub, source, testService)).returns(() => telemetry);
+        const issueDetailsData: CreateIssueDetailsTextData = {
+            pageTitle: 'pageTitle<x>',
+            pageUrl: 'pageUrl',
+            ruleResult: {
+                failureSummary: 'RR-failureSummary',
+                guidanceLinks: [{ text: 'WCAG-1.4.1' }, { text: 'wcag-2.8.2' }],
+                help: 'RR-help',
+                html: 'RR-html',
+                ruleId: 'RR-rule-id',
+                helpUrl: 'RR-help-url',
+                selector: 'RR-selector<x>',
+                snippet: 'RR-snippet   space',
+            } as DecoratedAxeNodeResult,
+        };
+
+        dispatcherMock.setup(dispatcher =>
+            dispatcher.dispatchMessage(
+                It.isValue({
+                    messageType: Messages.IssueFiling.FileIssue,
+                    payload: {
+                        service: testService,
+                        issueData: issueDetailsData,
+                        telemetry,
+                    },
+                }),
+            ),
+        );
+
+        testSubject.fileIssue(eventStub, testService, issueDetailsData);
 
         dispatcherMock.verifyAll();
     });
