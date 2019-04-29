@@ -390,15 +390,15 @@
             }
 
             .ms-Button-label {
-                margin-left: 4px;
-                margin-right: 4px;
-                line-height: 100%;
-                font-weight: $fontWeightSemiBold;
+                margin-left: 4px !important;
+                margin-right: 4px !important;
+                line-height: 100% !important;
+                font-weight: $fontWeightSemiBold !important;
             }
 
             svg {
-                margin-left: 4px;
-                margin-right: 4px;
+                margin-left: 4px !important;
+                margin-right: 4px !important;
             }
         }
 
