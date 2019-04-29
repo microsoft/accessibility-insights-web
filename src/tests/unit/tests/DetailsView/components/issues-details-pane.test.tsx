@@ -11,6 +11,7 @@ import {
     IssuesDetailsPaneDeps,
     IssuesDetailsPaneProps,
 } from '../../../../../DetailsView/components/Issues-details-pane';
+import { FixInstructionPanel } from '../../../../../injected/components/fix-instruction-panel';
 import { DecoratedAxeNodeResult } from '../../../../../injected/scanner-utils';
 import { DictionaryStringTo } from '../../../../../types/common-types';
 import { HyperlinkDefinition } from '../../../../../views/content/content-page';
@@ -39,6 +40,18 @@ describe('IssuesDetailsPaneTest', () => {
         const wrapper = shallow(<IssuesDetailsPane {...props} />);
         const issueFilingButton = wrapper.find(IssueFilingButton);
         expect(issueFilingButton.getElement()).toMatchSnapshot();
+    });
+
+    test('renderTitleElement passed to embedded FixInstructionPanels should match snapshot', () => {
+        const issuesDetailsPaneProps = generateProps(1, 2);
+        const issuesDetailsPane = shallow(<IssuesDetailsPane {...issuesDetailsPaneProps} />);
+        const renderTitleElement = issuesDetailsPane
+            .find(FixInstructionPanel)
+            .first()
+            .prop('renderTitleElement');
+
+        const titleElement = renderTitleElement('test title', 'test-class-name');
+        expect(titleElement).toMatchSnapshot();
     });
 
     function testRenderNotSingle(count: number): void {
