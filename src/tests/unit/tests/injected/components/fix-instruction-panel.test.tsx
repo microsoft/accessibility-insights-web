@@ -6,6 +6,10 @@ import { CheckType } from '../../../../../injected/components/details-dialog';
 import { FixInstructionPanel, FixInstructionPanelProps } from '../../../../../injected/components/fix-instruction-panel';
 
 describe('FixInstructionPanelTests', () => {
+    function renderTitleAsDiv(titleText: string, className: string): JSX.Element {
+        return <div className={className}>{titleText}</div>;
+    }
+
     test('render all checks', () => {
         const allchecks: FormattedCheckResult[] = [
             {
@@ -23,6 +27,7 @@ describe('FixInstructionPanelTests', () => {
         const props: FixInstructionPanelProps = {
             checkType: CheckType.All,
             checks: allchecks,
+            renderTitleElement: renderTitleAsDiv,
         };
 
         const wrapped = shallow(<FixInstructionPanel {...props} />);
@@ -42,6 +47,7 @@ describe('FixInstructionPanelTests', () => {
         const props: FixInstructionPanelProps = {
             checkType: CheckType.All,
             checks: allchecks,
+            renderTitleElement: renderTitleAsDiv,
         };
 
         const wrapped = shallow(<FixInstructionPanel {...props} />);
@@ -66,6 +72,7 @@ describe('FixInstructionPanelTests', () => {
         const props: FixInstructionPanelProps = {
             checkType: CheckType.None,
             checks: noneChecks,
+            renderTitleElement: renderTitleAsDiv,
         };
 
         const wrapped = shallow(<FixInstructionPanel {...props} />);
@@ -79,6 +86,7 @@ describe('FixInstructionPanelTests', () => {
         const props: FixInstructionPanelProps = {
             checkType: CheckType.None,
             checks: checks,
+            renderTitleElement: renderTitleAsDiv,
         };
 
         const wrapped = shallow(<FixInstructionPanel {...props} />);

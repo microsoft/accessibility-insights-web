@@ -2,9 +2,9 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import { NewTabLink } from '../../common/components/new-tab-link';
-import { NamedSFC } from '../../common/react/named-sfc';
 import { HyperlinkDefinition } from '../../views/content/content-page';
+import { NamedSFC } from '../react/named-sfc';
+import { NewTabLink } from './new-tab-link';
 
 export interface GuidanceLinksProps {
     links: HyperlinkDefinition[];

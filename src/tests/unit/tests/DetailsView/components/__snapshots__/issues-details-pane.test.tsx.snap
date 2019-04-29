@@ -94,8 +94,8 @@ exports[`IssuesDetailsPaneTest render with single selection, test copy to clipbo
             How to fix
           </td>
           <td className=\\"fix-content\\">
-            <FixInstructionPanel checkType={0} checks={{...}} />
-            <FixInstructionPanel checkType={1} checks={{...}} />
+            <FixInstructionPanel checkType={0} checks={{...}} renderTitleElement={[Function]} />
+            <FixInstructionPanel checkType={1} checks={{...}} renderTitleElement={[Function]} />
           </td>
         </tr>
         <tr>
@@ -114,4 +114,12 @@ exports[`IssuesDetailsPaneTest render with single selection, test copy to clipbo
     </table>
   </div>
 </div>"
+`;
+
+exports[`IssuesDetailsPaneTest renderTitleElement passed to embedded FixInstructionPanels should match snapshot 1`] = `
+<div
+  className="test-class-name"
+>
+  test title
+</div>
 `;

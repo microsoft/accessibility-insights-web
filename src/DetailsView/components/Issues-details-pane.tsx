@@ -4,6 +4,7 @@ import * as React from 'react';
 
 import { IssueDetailsTextGenerator } from '../../background/issue-details-text-generator';
 import { CopyIssueDetailsButton } from '../../common/components/copy-issue-details-button';
+import { GuidanceLinks } from '../../common/components/guidance-links';
 import { IssueFilingButton, IssueFilingButtonDeps } from '../../common/components/issue-filing-button';
 import { NewTabLink } from '../../common/components/new-tab-link';
 import { ToastDeps } from '../../common/components/toast';
@@ -15,7 +16,6 @@ import { FixInstructionPanel } from '../../injected/components/fix-instruction-p
 import { DecoratedAxeNodeResult } from '../../injected/scanner-utils';
 import { DictionaryStringTo } from '../../types/common-types';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
-import { GuidanceLinks } from './guidance-links';
 import { IssueFilingDialog } from './issue-filing-dialog';
 
 export type IssuesDetailsPaneDeps = ToastDeps &
@@ -79,6 +79,10 @@ export class IssuesDetailsPane extends React.Component<IssuesDetailsPaneProps, I
         );
     }
 
+    private renderFixInstructionsTitleElement(titleText: string, className: string): JSX.Element {
+        return <div className={className}>{titleText}</div>;
+    }
+
     private renderSingleIssue(result: DecoratedAxeNodeResult): JSX.Element {
         const issueData: CreateIssueDetailsTextData = {
             pageTitle: this.props.pageTitle,
@@ -109,8 +113,16 @@ export class IssuesDetailsPane extends React.Component<IssuesDetailsPaneProps, I
                         <tr>
                             <td>How to fix</td>
                             <td className="fix-content">
-                                <FixInstructionPanel checkType={CheckType.All} checks={result.all.concat(result.none)} />
-                                <FixInstructionPanel checkType={CheckType.Any} checks={result.any} />
+                                <FixInstructionPanel
+                                    checkType={CheckType.All}
+                                    checks={result.all.concat(result.none)}
+                                    renderTitleElement={this.renderFixInstructionsTitleElement}
+                                />
+                                <FixInstructionPanel
+                                    checkType={CheckType.Any}
+                                    checks={result.any}
+                                    renderTitleElement={this.renderFixInstructionsTitleElement}
+                                />
                             </td>
                         </tr>
                         <tr>

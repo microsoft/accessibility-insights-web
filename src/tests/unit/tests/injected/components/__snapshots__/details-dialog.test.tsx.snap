@@ -5,6 +5,9 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: false 
   dialogContentProps={
     Object {
       "showCloseButton": false,
+      "styles": Object {
+        "title": "insights-dialog-title",
+      },
       "topButtonsProps": Array [
         Object {
           "ariaLabel": "Close",
@@ -30,134 +33,160 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: false 
   onDismiss={Object {}}
   title="help"
 >
-  <div>
+  <div
+    className="insights-dialog-content"
+  >
     <div
-      className="insights-dialog-rule-container"
+      className="insights-dialog-rule-name"
     >
-      <StatusErrorFullIcon />
-      <span
-        className="ms-fontSize-mPlus insights-dialog-rule-link"
+      <h3
+        className="insights-dialog-section-title"
       >
-        Rule name: 
-        <NewTabLink
-          href="http://extension/help1"
-        >
-          ruleId
-        </NewTabLink>
-      </span>
-    </div>
-    <div
-      className="insights-dialog-target-container"
-    >
-      <div
-        className="ms-fontWeight-semibold"
-      >
-        Path:
-      </div>
-      <div
-        className="insights-dialog-instance-selector"
+        Rule name
+      </h3>
+      <NewTabLink
+        href="http://extension/help1"
       >
         ruleId
-      </div>
-      <div
-        className="insights-dialog-target-button-container"
+      </NewTabLink>
+    </div>
+    <div
+      className="insights-dialog-success-criteria"
+    >
+      <h3
+        className="insights-dialog-section-title"
       >
-        <CustomizedDefaultButton
-          className="insights-dialog-button-inspect"
-          disabled={true}
-          onClick={[Function]}
-        >
-          <FileHTMLIcon />
-          <div
-            className="ms-Button-label"
-          >
-            Inspect HTML
-          </div>
-        </CustomizedDefaultButton>
-        <React.Fragment>
-          <CopyIssueDetailsButton
-            deps={
-              Object {
-                "clientBrowserAdapter": Object {
-                  "getUrl": [Function],
-                },
-                "issueDetailsTextGenerator": null,
-                "issueFilingActionMessageCreator": null,
-                "targetPageActionMessageCreator": Object {
-                  "copyIssueDetailsClicked": [Function],
-                },
-                "windowUtils": null,
-              }
-            }
-            issueDetailsData={
-              Object {
-                "pageTitle": "",
-                "pageUrl": "http://localhost/",
-                "ruleResult": Object {
-                  "all": Array [],
-                  "any": Array [],
-                  "failureSummary": "failureSummary",
-                  "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
-                  "guidanceLinks": Array [],
-                  "help": "help",
-                  "helpUrl": "http://extension/help1",
-                  "html": "html",
-                  "id": "id1",
-                  "none": Array [],
-                  "ruleId": "ruleId",
-                  "selector": "selector",
-                  "snippet": "html",
-                  "status": false,
-                },
-              }
-            }
-            onClick={[Function]}
-          />
-          <IssueFilingButton
-            deps={
-              Object {
-                "clientBrowserAdapter": Object {
-                  "getUrl": [Function],
-                },
-                "issueDetailsTextGenerator": null,
-                "issueFilingActionMessageCreator": null,
-                "targetPageActionMessageCreator": Object {
-                  "copyIssueDetailsClicked": [Function],
-                },
-                "windowUtils": null,
-              }
-            }
-            issueDetailsData={
-              Object {
-                "pageTitle": "",
-                "pageUrl": "http://localhost/",
-                "ruleResult": Object {
-                  "all": Array [],
-                  "any": Array [],
-                  "failureSummary": "failureSummary",
-                  "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
-                  "guidanceLinks": Array [],
-                  "help": "help",
-                  "helpUrl": "http://extension/help1",
-                  "html": "html",
-                  "id": "id1",
-                  "none": Array [],
-                  "ruleId": "ruleId",
-                  "selector": "selector",
-                  "snippet": "html",
-                  "status": false,
-                },
-              }
-            }
-            needsSettingsContentRenderer={[Function]}
-            userConfigurationStoreData={null}
-          />
-        </React.Fragment>
+        Success criterion
+      </h3>
+      <GuidanceLinks
+        links={
+          Array [
+            Object {
+              "href": "http://example.com",
+              "text": "Guidance Link",
+            },
+          ]
+        }
+      />
+    </div>
+    <div
+      className="insights-dialog-path-selector-container"
+    >
+      <h3
+        className="insights-dialog-section-title"
+      >
+        Path
+      </h3>
+      ruleId
+    </div>
+    <div
+      className="insights-dialog-target-button-container"
+    >
+      <CustomizedDefaultButton
+        className="insights-dialog-button-inspect"
+        disabled={true}
+        onClick={[Function]}
+      >
+        <FileHTMLIcon />
         <div
-          className="insights-dialog-inspect-disabled"
+          className="ms-Button-label"
         >
-          To enable the Inspect HTML button, open the developer tools (shortcut).
+          Inspect HTML
         </div>
+      </CustomizedDefaultButton>
+      <React.Fragment>
+        <CopyIssueDetailsButton
+          deps={
+            Object {
+              "clientBrowserAdapter": Object {
+                "getUrl": [Function],
+              },
+              "issueDetailsTextGenerator": null,
+              "issueFilingActionMessageCreator": null,
+              "targetPageActionMessageCreator": Object {
+                "copyIssueDetailsClicked": [Function],
+              },
+              "windowUtils": null,
+            }
+          }
+          issueDetailsData={
+            Object {
+              "pageTitle": "",
+              "pageUrl": "http://localhost/",
+              "ruleResult": Object {
+                "all": Array [],
+                "any": Array [],
+                "failureSummary": "failureSummary",
+                "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
+                "guidanceLinks": Array [
+                  Object {
+                    "href": "http://example.com",
+                    "text": "Guidance Link",
+                  },
+                ],
+                "help": "help",
+                "helpUrl": "http://extension/help1",
+                "html": "html",
+                "id": "id1",
+                "none": Array [],
+                "ruleId": "ruleId",
+                "selector": "selector",
+                "snippet": "html",
+                "status": false,
+              },
+            }
+          }
+          onClick={[Function]}
+        />
+        <IssueFilingButton
+          deps={
+            Object {
+              "clientBrowserAdapter": Object {
+                "getUrl": [Function],
+              },
+              "issueDetailsTextGenerator": null,
+              "issueFilingActionMessageCreator": null,
+              "targetPageActionMessageCreator": Object {
+                "copyIssueDetailsClicked": [Function],
+              },
+              "windowUtils": null,
+            }
+          }
+          issueDetailsData={
+            Object {
+              "pageTitle": "",
+              "pageUrl": "http://localhost/",
+              "ruleResult": Object {
+                "all": Array [],
+                "any": Array [],
+                "failureSummary": "failureSummary",
+                "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
+                "guidanceLinks": Array [
+                  Object {
+                    "href": "http://example.com",
+                    "text": "Guidance Link",
+                  },
+                ],
+                "help": "help",
+                "helpUrl": "http://extension/help1",
+                "html": "html",
+                "id": "id1",
+                "none": Array [],
+                "ruleId": "ruleId",
+                "selector": "selector",
+                "snippet": "html",
+                "status": false,
+              },
+            }
+          }
+          needsSettingsContentRenderer={[Function]}
+          userConfigurationStoreData={null}
+        />
+      </React.Fragment>
+      <div
+        className="insights-dialog-inspect-disabled"
+      >
+        To enable the Inspect HTML button, open the developer tools (shortcut).
       </div>
     </div>
     <div
@@ -166,14 +195,16 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: false 
       <FixInstructionPanel
         checkType={0}
         checks={Array []}
+        renderTitleElement={[Function]}
       />
       <FixInstructionPanel
         checkType={1}
         checks={Array []}
+        renderTitleElement={[Function]}
       />
     </div>
     <div
-      className="ms-Grid"
+      className="ms-Grid insights-dialog-next-and-back-container"
     >
       <div
         className="ms-Grid-row"
@@ -235,7 +266,12 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: false 
         "any": Array [],
         "failureSummary": "failureSummary",
         "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
-        "guidanceLinks": Array [],
+        "guidanceLinks": Array [
+          Object {
+            "href": "http://example.com",
+            "text": "Guidance Link",
+          },
+        ],
         "help": "help",
         "helpUrl": "http://extension/help1",
         "html": "html",
@@ -286,7 +322,7 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: true }
       className="insights-dialog-header"
     >
       <p
-        className="ms-Dialog-title"
+        className="ms-Dialog-title insights-dialog-title"
       >
         help
       </p>
@@ -307,134 +343,160 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: true }
         </button>
       </div>
     </div>
-    <div>
+    <div
+      className="insights-dialog-content"
+    >
       <div
-        className="insights-dialog-rule-container"
+        className="insights-dialog-rule-name"
       >
-        <StatusErrorFullIcon />
-        <span
-          className="ms-fontSize-mPlus insights-dialog-rule-link"
+        <h3
+          className="insights-dialog-section-title"
         >
-          Rule name: 
-          <NewTabLink
-            href="http://extension/help1"
-          >
-            ruleId
-          </NewTabLink>
-        </span>
-      </div>
-      <div
-        className="insights-dialog-target-container"
-      >
-        <div
-          className="ms-fontWeight-semibold"
-        >
-          Path:
-        </div>
-        <div
-          className="insights-dialog-instance-selector"
+          Rule name
+        </h3>
+        <NewTabLink
+          href="http://extension/help1"
         >
           ruleId
-        </div>
-        <div
-          className="insights-dialog-target-button-container"
+        </NewTabLink>
+      </div>
+      <div
+        className="insights-dialog-success-criteria"
+      >
+        <h3
+          className="insights-dialog-section-title"
         >
-          <CustomizedDefaultButton
-            className="insights-dialog-button-inspect"
-            disabled={true}
-            onClick={null}
-          >
-            <FileHTMLIcon />
-            <div
-              className="ms-Button-label"
-            >
-              Inspect HTML
-            </div>
-          </CustomizedDefaultButton>
-          <React.Fragment>
-            <CopyIssueDetailsButton
-              deps={
-                Object {
-                  "clientBrowserAdapter": Object {
-                    "getUrl": [Function],
-                  },
-                  "issueDetailsTextGenerator": null,
-                  "issueFilingActionMessageCreator": null,
-                  "targetPageActionMessageCreator": Object {
-                    "copyIssueDetailsClicked": [Function],
-                  },
-                  "windowUtils": null,
-                }
-              }
-              issueDetailsData={
-                Object {
-                  "pageTitle": "",
-                  "pageUrl": "http://localhost/",
-                  "ruleResult": Object {
-                    "all": Array [],
-                    "any": Array [],
-                    "failureSummary": "failureSummary",
-                    "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
-                    "guidanceLinks": Array [],
-                    "help": "help",
-                    "helpUrl": "http://extension/help1",
-                    "html": "html",
-                    "id": "id1",
-                    "none": Array [],
-                    "ruleId": "ruleId",
-                    "selector": "selector",
-                    "snippet": "html",
-                    "status": false,
-                  },
-                }
-              }
-              onClick={[Function]}
-            />
-            <IssueFilingButton
-              deps={
-                Object {
-                  "clientBrowserAdapter": Object {
-                    "getUrl": [Function],
-                  },
-                  "issueDetailsTextGenerator": null,
-                  "issueFilingActionMessageCreator": null,
-                  "targetPageActionMessageCreator": Object {
-                    "copyIssueDetailsClicked": [Function],
-                  },
-                  "windowUtils": null,
-                }
-              }
-              issueDetailsData={
-                Object {
-                  "pageTitle": "",
-                  "pageUrl": "http://localhost/",
-                  "ruleResult": Object {
-                    "all": Array [],
-                    "any": Array [],
-                    "failureSummary": "failureSummary",
-                    "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
-                    "guidanceLinks": Array [],
-                    "help": "help",
-                    "helpUrl": "http://extension/help1",
-                    "html": "html",
-                    "id": "id1",
-                    "none": Array [],
-                    "ruleId": "ruleId",
-                    "selector": "selector",
-                    "snippet": "html",
-                    "status": false,
-                  },
-                }
-              }
-              needsSettingsContentRenderer={[Function]}
-              userConfigurationStoreData={null}
-            />
-          </React.Fragment>
+          Success criterion
+        </h3>
+        <GuidanceLinks
+          links={
+            Array [
+              Object {
+                "href": "http://example.com",
+                "text": "Guidance Link",
+              },
+            ]
+          }
+        />
+      </div>
+      <div
+        className="insights-dialog-path-selector-container"
+      >
+        <h3
+          className="insights-dialog-section-title"
+        >
+          Path
+        </h3>
+        ruleId
+      </div>
+      <div
+        className="insights-dialog-target-button-container"
+      >
+        <CustomizedDefaultButton
+          className="insights-dialog-button-inspect"
+          disabled={true}
+          onClick={null}
+        >
+          <FileHTMLIcon />
           <div
-            className="insights-dialog-inspect-disabled"
+            className="ms-Button-label"
           >
-            To enable the Inspect HTML button, open the developer tools (shortcut).
+            Inspect HTML
           </div>
+        </CustomizedDefaultButton>
+        <React.Fragment>
+          <CopyIssueDetailsButton
+            deps={
+              Object {
+                "clientBrowserAdapter": Object {
+                  "getUrl": [Function],
+                },
+                "issueDetailsTextGenerator": null,
+                "issueFilingActionMessageCreator": null,
+                "targetPageActionMessageCreator": Object {
+                  "copyIssueDetailsClicked": [Function],
+                },
+                "windowUtils": null,
+              }
+            }
+            issueDetailsData={
+              Object {
+                "pageTitle": "",
+                "pageUrl": "http://localhost/",
+                "ruleResult": Object {
+                  "all": Array [],
+                  "any": Array [],
+                  "failureSummary": "failureSummary",
+                  "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
+                  "guidanceLinks": Array [
+                    Object {
+                      "href": "http://example.com",
+                      "text": "Guidance Link",
+                    },
+                  ],
+                  "help": "help",
+                  "helpUrl": "http://extension/help1",
+                  "html": "html",
+                  "id": "id1",
+                  "none": Array [],
+                  "ruleId": "ruleId",
+                  "selector": "selector",
+                  "snippet": "html",
+                  "status": false,
+                },
+              }
+            }
+            onClick={[Function]}
+          />
+          <IssueFilingButton
+            deps={
+              Object {
+                "clientBrowserAdapter": Object {
+                  "getUrl": [Function],
+                },
+                "issueDetailsTextGenerator": null,
+                "issueFilingActionMessageCreator": null,
+                "targetPageActionMessageCreator": Object {
+                  "copyIssueDetailsClicked": [Function],
+                },
+                "windowUtils": null,
+              }
+            }
+            issueDetailsData={
+              Object {
+                "pageTitle": "",
+                "pageUrl": "http://localhost/",
+                "ruleResult": Object {
+                  "all": Array [],
+                  "any": Array [],
+                  "failureSummary": "failureSummary",
+                  "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
+                  "guidanceLinks": Array [
+                    Object {
+                      "href": "http://example.com",
+                      "text": "Guidance Link",
+                    },
+                  ],
+                  "help": "help",
+                  "helpUrl": "http://extension/help1",
+                  "html": "html",
+                  "id": "id1",
+                  "none": Array [],
+                  "ruleId": "ruleId",
+                  "selector": "selector",
+                  "snippet": "html",
+                  "status": false,
+                },
+              }
+            }
+            needsSettingsContentRenderer={[Function]}
+            userConfigurationStoreData={null}
+          />
+        </React.Fragment>
+        <div
+          className="insights-dialog-inspect-disabled"
+        >
+          To enable the Inspect HTML button, open the developer tools (shortcut).
         </div>
       </div>
       <div
@@ -443,14 +505,16 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: true }
         <FixInstructionPanel
           checkType={0}
           checks={Array []}
+          renderTitleElement={[Function]}
         />
         <FixInstructionPanel
           checkType={1}
           checks={Array []}
+          renderTitleElement={[Function]}
         />
       </div>
       <div
-        className="ms-Grid"
+        className="ms-Grid insights-dialog-next-and-back-container"
       >
         <div
           className="ms-Grid-row"
@@ -513,7 +577,12 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: true }
         "any": Array [],
         "failureSummary": "failureSummary",
         "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
-        "guidanceLinks": Array [],
+        "guidanceLinks": Array [
+          Object {
+            "href": "http://example.com",
+            "text": "Guidance Link",
+          },
+        ],
         "help": "help",
         "helpUrl": "http://extension/help1",
         "html": "html",
@@ -551,6 +620,9 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: false }
   dialogContentProps={
     Object {
       "showCloseButton": false,
+      "styles": Object {
+        "title": "insights-dialog-title",
+      },
       "topButtonsProps": Array [
         Object {
           "ariaLabel": "Close",
@@ -576,130 +648,156 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: false }
   onDismiss={Object {}}
   title="help"
 >
-  <div>
+  <div
+    className="insights-dialog-content"
+  >
     <div
-      className="insights-dialog-rule-container"
+      className="insights-dialog-rule-name"
     >
-      <StatusErrorFullIcon />
-      <span
-        className="ms-fontSize-mPlus insights-dialog-rule-link"
+      <h3
+        className="insights-dialog-section-title"
       >
-        Rule name: 
-        <NewTabLink
-          href="http://extension/help1"
-        >
-          ruleId
-        </NewTabLink>
-      </span>
-    </div>
-    <div
-      className="insights-dialog-target-container"
-    >
-      <div
-        className="ms-fontWeight-semibold"
-      >
-        Path:
-      </div>
-      <div
-        className="insights-dialog-instance-selector"
+        Rule name
+      </h3>
+      <NewTabLink
+        href="http://extension/help1"
       >
         ruleId
-      </div>
-      <div
-        className="insights-dialog-target-button-container"
+      </NewTabLink>
+    </div>
+    <div
+      className="insights-dialog-success-criteria"
+    >
+      <h3
+        className="insights-dialog-section-title"
       >
-        <CustomizedDefaultButton
-          className="insights-dialog-button-inspect"
-          disabled={false}
-          onClick={[Function]}
+        Success criterion
+      </h3>
+      <GuidanceLinks
+        links={
+          Array [
+            Object {
+              "href": "http://example.com",
+              "text": "Guidance Link",
+            },
+          ]
+        }
+      />
+    </div>
+    <div
+      className="insights-dialog-path-selector-container"
+    >
+      <h3
+        className="insights-dialog-section-title"
+      >
+        Path
+      </h3>
+      ruleId
+    </div>
+    <div
+      className="insights-dialog-target-button-container"
+    >
+      <CustomizedDefaultButton
+        className="insights-dialog-button-inspect"
+        disabled={false}
+        onClick={[Function]}
+      >
+        <FileHTMLIcon />
+        <div
+          className="ms-Button-label"
         >
-          <FileHTMLIcon />
-          <div
-            className="ms-Button-label"
-          >
-            Inspect HTML
-          </div>
-        </CustomizedDefaultButton>
-        <React.Fragment>
-          <CopyIssueDetailsButton
-            deps={
-              Object {
-                "clientBrowserAdapter": Object {
-                  "getUrl": [Function],
-                },
-                "issueDetailsTextGenerator": null,
-                "issueFilingActionMessageCreator": null,
-                "targetPageActionMessageCreator": Object {
-                  "copyIssueDetailsClicked": [Function],
-                },
-                "windowUtils": null,
-              }
+          Inspect HTML
+        </div>
+      </CustomizedDefaultButton>
+      <React.Fragment>
+        <CopyIssueDetailsButton
+          deps={
+            Object {
+              "clientBrowserAdapter": Object {
+                "getUrl": [Function],
+              },
+              "issueDetailsTextGenerator": null,
+              "issueFilingActionMessageCreator": null,
+              "targetPageActionMessageCreator": Object {
+                "copyIssueDetailsClicked": [Function],
+              },
+              "windowUtils": null,
             }
-            issueDetailsData={
-              Object {
-                "pageTitle": "",
-                "pageUrl": "http://localhost/",
-                "ruleResult": Object {
-                  "all": Array [],
-                  "any": Array [],
-                  "failureSummary": "failureSummary",
-                  "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
-                  "guidanceLinks": Array [],
-                  "help": "help",
-                  "helpUrl": "http://extension/help1",
-                  "html": "html",
-                  "id": "id1",
-                  "none": Array [],
-                  "ruleId": "ruleId",
-                  "selector": "selector",
-                  "snippet": "html",
-                  "status": false,
-                },
-              }
+          }
+          issueDetailsData={
+            Object {
+              "pageTitle": "",
+              "pageUrl": "http://localhost/",
+              "ruleResult": Object {
+                "all": Array [],
+                "any": Array [],
+                "failureSummary": "failureSummary",
+                "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
+                "guidanceLinks": Array [
+                  Object {
+                    "href": "http://example.com",
+                    "text": "Guidance Link",
+                  },
+                ],
+                "help": "help",
+                "helpUrl": "http://extension/help1",
+                "html": "html",
+                "id": "id1",
+                "none": Array [],
+                "ruleId": "ruleId",
+                "selector": "selector",
+                "snippet": "html",
+                "status": false,
+              },
             }
-            onClick={[Function]}
-          />
-          <IssueFilingButton
-            deps={
-              Object {
-                "clientBrowserAdapter": Object {
-                  "getUrl": [Function],
-                },
-                "issueDetailsTextGenerator": null,
-                "issueFilingActionMessageCreator": null,
-                "targetPageActionMessageCreator": Object {
-                  "copyIssueDetailsClicked": [Function],
-                },
-                "windowUtils": null,
-              }
+          }
+          onClick={[Function]}
+        />
+        <IssueFilingButton
+          deps={
+            Object {
+              "clientBrowserAdapter": Object {
+                "getUrl": [Function],
+              },
+              "issueDetailsTextGenerator": null,
+              "issueFilingActionMessageCreator": null,
+              "targetPageActionMessageCreator": Object {
+                "copyIssueDetailsClicked": [Function],
+              },
+              "windowUtils": null,
             }
-            issueDetailsData={
-              Object {
-                "pageTitle": "",
-                "pageUrl": "http://localhost/",
-                "ruleResult": Object {
-                  "all": Array [],
-                  "any": Array [],
-                  "failureSummary": "failureSummary",
-                  "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
-                  "guidanceLinks": Array [],
-                  "help": "help",
-                  "helpUrl": "http://extension/help1",
-                  "html": "html",
-                  "id": "id1",
-                  "none": Array [],
-                  "ruleId": "ruleId",
-                  "selector": "selector",
-                  "snippet": "html",
-                  "status": false,
-                },
-              }
+          }
+          issueDetailsData={
+            Object {
+              "pageTitle": "",
+              "pageUrl": "http://localhost/",
+              "ruleResult": Object {
+                "all": Array [],
+                "any": Array [],
+                "failureSummary": "failureSummary",
+                "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
+                "guidanceLinks": Array [
+                  Object {
+                    "href": "http://example.com",
+                    "text": "Guidance Link",
+                  },
+                ],
+                "help": "help",
+                "helpUrl": "http://extension/help1",
+                "html": "html",
+                "id": "id1",
+                "none": Array [],
+                "ruleId": "ruleId",
+                "selector": "selector",
+                "snippet": "html",
+                "status": false,
+              },
             }
-            needsSettingsContentRenderer={[Function]}
-            userConfigurationStoreData={null}
-          />
-        </React.Fragment>
-      </div>
+          }
+          needsSettingsContentRenderer={[Function]}
+          userConfigurationStoreData={null}
+        />
+      </React.Fragment>
     </div>
     <div
       className="insights-dialog-fix-instruction-container"
@@ -707,14 +805,16 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: false }
       <FixInstructionPanel
         checkType={0}
         checks={Array []}
+        renderTitleElement={[Function]}
       />
       <FixInstructionPanel
         checkType={1}
         checks={Array []}
+        renderTitleElement={[Function]}
       />
     </div>
     <div
-      className="ms-Grid"
+      className="ms-Grid insights-dialog-next-and-back-container"
     >
       <div
         className="ms-Grid-row"
@@ -776,7 +876,12 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: false }
         "any": Array [],
         "failureSummary": "failureSummary",
         "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
-        "guidanceLinks": Array [],
+        "guidanceLinks": Array [
+          Object {
+            "href": "http://example.com",
+            "text": "Guidance Link",
+          },
+        ],
         "help": "help",
         "helpUrl": "http://extension/help1",
         "html": "html",
@@ -827,7 +932,7 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: true } 
       className="insights-dialog-header"
     >
       <p
-        className="ms-Dialog-title"
+        className="ms-Dialog-title insights-dialog-title"
       >
         help
       </p>
@@ -848,130 +953,156 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: true } 
         </button>
       </div>
     </div>
-    <div>
+    <div
+      className="insights-dialog-content"
+    >
       <div
-        className="insights-dialog-rule-container"
+        className="insights-dialog-rule-name"
       >
-        <StatusErrorFullIcon />
-        <span
-          className="ms-fontSize-mPlus insights-dialog-rule-link"
+        <h3
+          className="insights-dialog-section-title"
         >
-          Rule name: 
-          <NewTabLink
-            href="http://extension/help1"
-          >
-            ruleId
-          </NewTabLink>
-        </span>
-      </div>
-      <div
-        className="insights-dialog-target-container"
-      >
-        <div
-          className="ms-fontWeight-semibold"
-        >
-          Path:
-        </div>
-        <div
-          className="insights-dialog-instance-selector"
+          Rule name
+        </h3>
+        <NewTabLink
+          href="http://extension/help1"
         >
           ruleId
-        </div>
-        <div
-          className="insights-dialog-target-button-container"
+        </NewTabLink>
+      </div>
+      <div
+        className="insights-dialog-success-criteria"
+      >
+        <h3
+          className="insights-dialog-section-title"
         >
-          <CustomizedDefaultButton
-            className="insights-dialog-button-inspect"
-            disabled={false}
-            onClick={null}
+          Success criterion
+        </h3>
+        <GuidanceLinks
+          links={
+            Array [
+              Object {
+                "href": "http://example.com",
+                "text": "Guidance Link",
+              },
+            ]
+          }
+        />
+      </div>
+      <div
+        className="insights-dialog-path-selector-container"
+      >
+        <h3
+          className="insights-dialog-section-title"
+        >
+          Path
+        </h3>
+        ruleId
+      </div>
+      <div
+        className="insights-dialog-target-button-container"
+      >
+        <CustomizedDefaultButton
+          className="insights-dialog-button-inspect"
+          disabled={false}
+          onClick={null}
+        >
+          <FileHTMLIcon />
+          <div
+            className="ms-Button-label"
           >
-            <FileHTMLIcon />
-            <div
-              className="ms-Button-label"
-            >
-              Inspect HTML
-            </div>
-          </CustomizedDefaultButton>
-          <React.Fragment>
-            <CopyIssueDetailsButton
-              deps={
-                Object {
-                  "clientBrowserAdapter": Object {
-                    "getUrl": [Function],
-                  },
-                  "issueDetailsTextGenerator": null,
-                  "issueFilingActionMessageCreator": null,
-                  "targetPageActionMessageCreator": Object {
-                    "copyIssueDetailsClicked": [Function],
-                  },
-                  "windowUtils": null,
-                }
+            Inspect HTML
+          </div>
+        </CustomizedDefaultButton>
+        <React.Fragment>
+          <CopyIssueDetailsButton
+            deps={
+              Object {
+                "clientBrowserAdapter": Object {
+                  "getUrl": [Function],
+                },
+                "issueDetailsTextGenerator": null,
+                "issueFilingActionMessageCreator": null,
+                "targetPageActionMessageCreator": Object {
+                  "copyIssueDetailsClicked": [Function],
+                },
+                "windowUtils": null,
               }
-              issueDetailsData={
-                Object {
-                  "pageTitle": "",
-                  "pageUrl": "http://localhost/",
-                  "ruleResult": Object {
-                    "all": Array [],
-                    "any": Array [],
-                    "failureSummary": "failureSummary",
-                    "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
-                    "guidanceLinks": Array [],
-                    "help": "help",
-                    "helpUrl": "http://extension/help1",
-                    "html": "html",
-                    "id": "id1",
-                    "none": Array [],
-                    "ruleId": "ruleId",
-                    "selector": "selector",
-                    "snippet": "html",
-                    "status": false,
-                  },
-                }
+            }
+            issueDetailsData={
+              Object {
+                "pageTitle": "",
+                "pageUrl": "http://localhost/",
+                "ruleResult": Object {
+                  "all": Array [],
+                  "any": Array [],
+                  "failureSummary": "failureSummary",
+                  "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
+                  "guidanceLinks": Array [
+                    Object {
+                      "href": "http://example.com",
+                      "text": "Guidance Link",
+                    },
+                  ],
+                  "help": "help",
+                  "helpUrl": "http://extension/help1",
+                  "html": "html",
+                  "id": "id1",
+                  "none": Array [],
+                  "ruleId": "ruleId",
+                  "selector": "selector",
+                  "snippet": "html",
+                  "status": false,
+                },
               }
-              onClick={[Function]}
-            />
-            <IssueFilingButton
-              deps={
-                Object {
-                  "clientBrowserAdapter": Object {
-                    "getUrl": [Function],
-                  },
-                  "issueDetailsTextGenerator": null,
-                  "issueFilingActionMessageCreator": null,
-                  "targetPageActionMessageCreator": Object {
-                    "copyIssueDetailsClicked": [Function],
-                  },
-                  "windowUtils": null,
-                }
+            }
+            onClick={[Function]}
+          />
+          <IssueFilingButton
+            deps={
+              Object {
+                "clientBrowserAdapter": Object {
+                  "getUrl": [Function],
+                },
+                "issueDetailsTextGenerator": null,
+                "issueFilingActionMessageCreator": null,
+                "targetPageActionMessageCreator": Object {
+                  "copyIssueDetailsClicked": [Function],
+                },
+                "windowUtils": null,
               }
-              issueDetailsData={
-                Object {
-                  "pageTitle": "",
-                  "pageUrl": "http://localhost/",
-                  "ruleResult": Object {
-                    "all": Array [],
-                    "any": Array [],
-                    "failureSummary": "failureSummary",
-                    "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
-                    "guidanceLinks": Array [],
-                    "help": "help",
-                    "helpUrl": "http://extension/help1",
-                    "html": "html",
-                    "id": "id1",
-                    "none": Array [],
-                    "ruleId": "ruleId",
-                    "selector": "selector",
-                    "snippet": "html",
-                    "status": false,
-                  },
-                }
+            }
+            issueDetailsData={
+              Object {
+                "pageTitle": "",
+                "pageUrl": "http://localhost/",
+                "ruleResult": Object {
+                  "all": Array [],
+                  "any": Array [],
+                  "failureSummary": "failureSummary",
+                  "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
+                  "guidanceLinks": Array [
+                    Object {
+                      "href": "http://example.com",
+                      "text": "Guidance Link",
+                    },
+                  ],
+                  "help": "help",
+                  "helpUrl": "http://extension/help1",
+                  "html": "html",
+                  "id": "id1",
+                  "none": Array [],
+                  "ruleId": "ruleId",
+                  "selector": "selector",
+                  "snippet": "html",
+                  "status": false,
+                },
               }
-              needsSettingsContentRenderer={[Function]}
-              userConfigurationStoreData={null}
-            />
-          </React.Fragment>
-        </div>
+            }
+            needsSettingsContentRenderer={[Function]}
+            userConfigurationStoreData={null}
+          />
+        </React.Fragment>
       </div>
       <div
         className="insights-dialog-fix-instruction-container"
@@ -979,14 +1110,16 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: true } 
         <FixInstructionPanel
           checkType={0}
           checks={Array []}
+          renderTitleElement={[Function]}
         />
         <FixInstructionPanel
           checkType={1}
           checks={Array []}
+          renderTitleElement={[Function]}
         />
       </div>
       <div
-        className="ms-Grid"
+        className="ms-Grid insights-dialog-next-and-back-container"
       >
         <div
           className="ms-Grid-row"
@@ -1049,7 +1182,12 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: true }:
         "any": Array [],
         "failureSummary": "failureSummary",
         "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
-        "guidanceLinks": Array [],
+        "guidanceLinks": Array [
+          Object {
+            "href": "http://example.com",
+            "text": "Guidance Link",
+          },
+        ],
         "help": "help",
         "helpUrl": "http://extension/help1",
         "html": "html",
@@ -1087,6 +1225,9 @@ exports[`DetailsDialogTest render: with relative help url 1`] = `
   dialogContentProps={
     Object {
       "showCloseButton": false,
+      "styles": Object {
+        "title": "insights-dialog-title",
+      },
       "topButtonsProps": Array [
         Object {
           "ariaLabel": "Close",
@@ -1112,134 +1253,160 @@ exports[`DetailsDialogTest render: with relative help url 1`] = `
   onDismiss={Object {}}
   title="help"
 >
-  <div>
+  <div
+    className="insights-dialog-content"
+  >
     <div
-      className="insights-dialog-rule-container"
+      className="insights-dialog-rule-name"
     >
-      <StatusErrorFullIcon />
-      <span
-        className="ms-fontSize-mPlus insights-dialog-rule-link"
+      <h3
+        className="insights-dialog-section-title"
       >
-        Rule name: 
-        <NewTabLink
-          href="http://extension/help-relative"
-        >
-          ruleId
-        </NewTabLink>
-      </span>
-    </div>
-    <div
-      className="insights-dialog-target-container"
-    >
-      <div
-        className="ms-fontWeight-semibold"
-      >
-        Path:
-      </div>
-      <div
-        className="insights-dialog-instance-selector"
+        Rule name
+      </h3>
+      <NewTabLink
+        href="http://extension/help-relative"
       >
         ruleId
-      </div>
-      <div
-        className="insights-dialog-target-button-container"
+      </NewTabLink>
+    </div>
+    <div
+      className="insights-dialog-success-criteria"
+    >
+      <h3
+        className="insights-dialog-section-title"
       >
-        <CustomizedDefaultButton
-          className="insights-dialog-button-inspect"
-          disabled={true}
-          onClick={[Function]}
-        >
-          <FileHTMLIcon />
-          <div
-            className="ms-Button-label"
-          >
-            Inspect HTML
-          </div>
-        </CustomizedDefaultButton>
-        <React.Fragment>
-          <CopyIssueDetailsButton
-            deps={
-              Object {
-                "clientBrowserAdapter": Object {
-                  "getUrl": [Function],
-                },
-                "issueDetailsTextGenerator": null,
-                "issueFilingActionMessageCreator": null,
-                "targetPageActionMessageCreator": Object {
-                  "copyIssueDetailsClicked": [Function],
-                },
-                "windowUtils": null,
-              }
-            }
-            issueDetailsData={
-              Object {
-                "pageTitle": "",
-                "pageUrl": "http://localhost/",
-                "ruleResult": Object {
-                  "all": Array [],
-                  "any": Array [],
-                  "failureSummary": "failureSummary",
-                  "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
-                  "guidanceLinks": Array [],
-                  "help": "help",
-                  "helpUrl": "help-relative",
-                  "html": "html",
-                  "id": "id1",
-                  "none": Array [],
-                  "ruleId": "ruleId",
-                  "selector": "selector",
-                  "snippet": "html",
-                  "status": false,
-                },
-              }
-            }
-            onClick={[Function]}
-          />
-          <IssueFilingButton
-            deps={
-              Object {
-                "clientBrowserAdapter": Object {
-                  "getUrl": [Function],
-                },
-                "issueDetailsTextGenerator": null,
-                "issueFilingActionMessageCreator": null,
-                "targetPageActionMessageCreator": Object {
-                  "copyIssueDetailsClicked": [Function],
-                },
-                "windowUtils": null,
-              }
-            }
-            issueDetailsData={
-              Object {
-                "pageTitle": "",
-                "pageUrl": "http://localhost/",
-                "ruleResult": Object {
-                  "all": Array [],
-                  "any": Array [],
-                  "failureSummary": "failureSummary",
-                  "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
-                  "guidanceLinks": Array [],
-                  "help": "help",
-                  "helpUrl": "help-relative",
-                  "html": "html",
-                  "id": "id1",
-                  "none": Array [],
-                  "ruleId": "ruleId",
-                  "selector": "selector",
-                  "snippet": "html",
-                  "status": false,
-                },
-              }
-            }
-            needsSettingsContentRenderer={[Function]}
-            userConfigurationStoreData={null}
-          />
-        </React.Fragment>
+        Success criterion
+      </h3>
+      <GuidanceLinks
+        links={
+          Array [
+            Object {
+              "href": "http://example.com",
+              "text": "Guidance Link",
+            },
+          ]
+        }
+      />
+    </div>
+    <div
+      className="insights-dialog-path-selector-container"
+    >
+      <h3
+        className="insights-dialog-section-title"
+      >
+        Path
+      </h3>
+      ruleId
+    </div>
+    <div
+      className="insights-dialog-target-button-container"
+    >
+      <CustomizedDefaultButton
+        className="insights-dialog-button-inspect"
+        disabled={true}
+        onClick={[Function]}
+      >
+        <FileHTMLIcon />
         <div
-          className="insights-dialog-inspect-disabled"
+          className="ms-Button-label"
         >
-          To enable the Inspect HTML button, open the developer tools (shortcut).
+          Inspect HTML
         </div>
+      </CustomizedDefaultButton>
+      <React.Fragment>
+        <CopyIssueDetailsButton
+          deps={
+            Object {
+              "clientBrowserAdapter": Object {
+                "getUrl": [Function],
+              },
+              "issueDetailsTextGenerator": null,
+              "issueFilingActionMessageCreator": null,
+              "targetPageActionMessageCreator": Object {
+                "copyIssueDetailsClicked": [Function],
+              },
+              "windowUtils": null,
+            }
+          }
+          issueDetailsData={
+            Object {
+              "pageTitle": "",
+              "pageUrl": "http://localhost/",
+              "ruleResult": Object {
+                "all": Array [],
+                "any": Array [],
+                "failureSummary": "failureSummary",
+                "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
+                "guidanceLinks": Array [
+                  Object {
+                    "href": "http://example.com",
+                    "text": "Guidance Link",
+                  },
+                ],
+                "help": "help",
+                "helpUrl": "help-relative",
+                "html": "html",
+                "id": "id1",
+                "none": Array [],
+                "ruleId": "ruleId",
+                "selector": "selector",
+                "snippet": "html",
+                "status": false,
+              },
+            }
+          }
+          onClick={[Function]}
+        />
+        <IssueFilingButton
+          deps={
+            Object {
+              "clientBrowserAdapter": Object {
+                "getUrl": [Function],
+              },
+              "issueDetailsTextGenerator": null,
+              "issueFilingActionMessageCreator": null,
+              "targetPageActionMessageCreator": Object {
+                "copyIssueDetailsClicked": [Function],
+              },
+              "windowUtils": null,
+            }
+          }
+          issueDetailsData={
+            Object {
+              "pageTitle": "",
+              "pageUrl": "http://localhost/",
+              "ruleResult": Object {
+                "all": Array [],
+                "any": Array [],
+                "failureSummary": "failureSummary",
+                "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
+                "guidanceLinks": Array [
+                  Object {
+                    "href": "http://example.com",
+                    "text": "Guidance Link",
+                  },
+                ],
+                "help": "help",
+                "helpUrl": "help-relative",
+                "html": "html",
+                "id": "id1",
+                "none": Array [],
+                "ruleId": "ruleId",
+                "selector": "selector",
+                "snippet": "html",
+                "status": false,
+              },
+            }
+          }
+          needsSettingsContentRenderer={[Function]}
+          userConfigurationStoreData={null}
+        />
+      </React.Fragment>
+      <div
+        className="insights-dialog-inspect-disabled"
+      >
+        To enable the Inspect HTML button, open the developer tools (shortcut).
       </div>
     </div>
     <div
@@ -1248,14 +1415,16 @@ exports[`DetailsDialogTest render: with relative help url 1`] = `
       <FixInstructionPanel
         checkType={0}
         checks={Array []}
+        renderTitleElement={[Function]}
       />
       <FixInstructionPanel
         checkType={1}
         checks={Array []}
+        renderTitleElement={[Function]}
       />
     </div>
     <div
-      className="ms-Grid"
+      className="ms-Grid insights-dialog-next-and-back-container"
     >
       <div
         className="ms-Grid-row"
@@ -1317,7 +1486,12 @@ exports[`DetailsDialogTest render: with relative help url: issue filing button U
         "any": Array [],
         "failureSummary": "failureSummary",
         "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
-        "guidanceLinks": Array [],
+        "guidanceLinks": Array [
+          Object {
+            "href": "http://example.com",
+            "text": "Guidance Link",
+          },
+        ],
         "help": "help",
         "helpUrl": "help-relative",
         "html": "html",

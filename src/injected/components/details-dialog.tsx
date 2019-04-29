@@ -1,5 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { isEmpty } from 'lodash';
+import { css } from 'office-ui-fabric-react';
 import { DefaultButton, PrimaryButton } from 'office-ui-fabric-react/lib/Button';
 import { Dialog, DialogType } from 'office-ui-fabric-react/lib/Dialog';
 import * as React from 'react';
@@ -7,18 +9,19 @@ import * as React from 'react';
 import { BaseStore } from '../../common/base-store';
 import { ClientBrowserAdapter } from '../../common/client-browser-adapter';
 import { CopyIssueDetailsButton, CopyIssueDetailsButtonDeps } from '../../common/components/copy-issue-details-button';
+import { GuidanceLinks } from '../../common/components/guidance-links';
 import { IssueFilingButton, IssueFilingButtonDeps } from '../../common/components/issue-filing-button';
 import { IssueFilingNeedsSettingsHelpText } from '../../common/components/issue-filing-needs-settings-help-text';
 import { NewTabLink } from '../../common/components/new-tab-link';
 import { FeatureFlags } from '../../common/feature-flags';
 import { CancelIcon } from '../../common/icons/cancel-icon';
 import { FileHTMLIcon } from '../../common/icons/file-html-icon';
-import { StatusErrorFullIcon } from '../../common/icons/status-error-full-icon';
 import { DevToolActionMessageCreator } from '../../common/message-creators/dev-tool-action-message-creator';
 import { CreateIssueDetailsTextData } from '../../common/types/create-issue-details-text-data';
 import { DevToolState } from '../../common/types/store-data/idev-tool-state';
 import { UserConfigurationStoreData } from '../../common/types/store-data/user-configuration-store';
 import { DictionaryStringTo } from '../../types/common-types';
+import { HyperlinkDefinition } from '../../views/content/content-page';
 import { DetailsDialogHandler } from '../details-dialog-handler';
 import { DecoratedAxeNodeResult } from '../scanner-utils';
 import { TargetPageActionMessageCreator } from '../target-page-action-message-creator';
@@ -206,9 +209,9 @@ export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDi
         }
     }
 
-    private renderNextAndBackButton(): JSX.Element {
+    private renderNextAndBackButtons(): JSX.Element {
         return (
-            <div className="ms-Grid">
+            <div className="ms-Grid insights-dialog-next-and-back-container">
                 <div className="ms-Grid-row">
                     <div className="ms-Grid-col ms-sm3 ms-md3 ms-lg3 insights-dialog-button-left">
                         <PrimaryButton
@@ -234,7 +237,11 @@ export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDi
         );
     }
 
-    private renderRuleContainer(rule: DecoratedAxeNodeResult): JSX.Element {
+    private renderSectionTitle(sectionTitle: string, className?: string): JSX.Element {
+        return <h3 className={css('insights-dialog-section-title', className)}>{sectionTitle}</h3>;
+    }
+
+    private renderRuleName(rule: DecoratedAxeNodeResult): JSX.Element {
         const fixUrl = (url: string) => {
             if (url.indexOf('://') >= 0) {
                 return url;
@@ -245,11 +252,32 @@ export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDi
         };
 
         return (
-            <div className="insights-dialog-rule-container">
-                <StatusErrorFullIcon />
-                <span className="ms-fontSize-mPlus insights-dialog-rule-link">
-                    Rule name: <NewTabLink href={fixUrl(rule.helpUrl)}>{rule.ruleId}</NewTabLink>
-                </span>
+            <div className="insights-dialog-rule-name">
+                {this.renderSectionTitle('Rule name')}
+                <NewTabLink href={fixUrl(rule.helpUrl)}>{rule.ruleId}</NewTabLink>
+            </div>
+        );
+    }
+
+    private renderSuccessCriteria(ruleGuidanceLinks: HyperlinkDefinition[]): JSX.Element {
+        if (isEmpty(ruleGuidanceLinks)) {
+            return null;
+        }
+        const sectionTitle: string = ruleGuidanceLinks.length === 1 ? 'Success criterion' : 'Success criteria';
+
+        return (
+            <div className="insights-dialog-success-criteria">
+                {this.renderSectionTitle(sectionTitle)}
+                <GuidanceLinks links={ruleGuidanceLinks} />
+            </div>
+        );
+    }
+
+    private renderPathSelector(): JSX.Element {
+        return (
+            <div className="insights-dialog-path-selector-container">
+                {this.renderSectionTitle('Path')}
+                {this.props.elementSelector}
             </div>
         );
     }
@@ -257,30 +285,25 @@ export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDi
     private renderFixInstructions(ruleResult: DecoratedAxeNodeResult): JSX.Element {
         return (
             <div className="insights-dialog-fix-instruction-container">
-                <FixInstructionPanel checkType={CheckType.All} checks={ruleResult.all.concat(ruleResult.none)} />
-
-                <FixInstructionPanel checkType={CheckType.Any} checks={ruleResult.any} />
-            </div>
-        );
-    }
-
-    private renderTargetContainer(): JSX.Element {
-        return (
-            <div className="insights-dialog-target-container">
-                <div className="ms-fontWeight-semibold">Path:</div>
-                <div className="insights-dialog-instance-selector">{this.props.elementSelector}</div>
-                {this.renderButtonContainer()}
+                <FixInstructionPanel
+                    checkType={CheckType.All}
+                    checks={ruleResult.all.concat(ruleResult.none)}
+                    renderTitleElement={this.renderSectionTitle}
+                />
+                <FixInstructionPanel checkType={CheckType.Any} checks={ruleResult.any} renderTitleElement={this.renderSectionTitle} />
             </div>
         );
     }
 
     private renderDialogContent(rule: DecoratedAxeNodeResult): JSX.Element {
         return (
-            <div>
-                {this.renderRuleContainer(rule)}
-                {this.renderTargetContainer()}
+            <div className="insights-dialog-content">
+                {this.renderRuleName(rule)}
+                {this.renderSuccessCriteria(rule.guidanceLinks)}
+                {this.renderPathSelector()}
+                {this.renderButtonContainer()}
                 {this.renderFixInstructions(rule)}
-                {this.renderNextAndBackButton()}
+                {this.renderNextAndBackButtons()}
             </div>
         );
     }
@@ -290,7 +313,7 @@ export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDi
             <div style={{ visibility: this.state.showDialog ? 'visible' : 'hidden' }} className="insights-dialog-main-override-shadow">
                 <div className="insights-dialog-container">
                     <div className="insights-dialog-header">
-                        <p className="ms-Dialog-title">{rule.help}</p>
+                        <p className="ms-Dialog-title insights-dialog-title">{rule.help}</p>
                         <div className="ms-Dialog-topButton">
                             <button
                                 type="button"
@@ -326,6 +349,7 @@ export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDi
                             onClick: this.onHideDialog,
                         },
                     ],
+                    styles: { title: 'insights-dialog-title' },
                 }}
                 modalProps={{
                     isBlocking: false,
