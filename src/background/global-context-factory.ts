@@ -17,6 +17,10 @@ import { Interpreter } from './interpreter';
 import { LocalStorageData } from './storage-data';
 import { GlobalStoreHub } from './stores/global/global-store-hub';
 import { TelemetryEventHandler } from './telemetry/telemetry-event-handler';
+import { IssueFilingServiceProvider } from '../issue-filing/issue-filing-service-provider';
+import { EnvironmentInfo } from '../common/environment-info-provider';
+import { IssueFilingControllerImpl } from '../issue-filing/common/issue-filing-controller-impl';
+import { IssueFilingActionCreator } from './global-action-creators/issue-filing-action-creator';
 
 export class GlobalContextFactory {
     public static createContext(
@@ -27,6 +31,8 @@ export class GlobalContextFactory {
         telemetryDataFactory: TelemetryDataFactory,
         indexedDBInstance: IndexedDBAPI,
         persistedData: PersistedData,
+        issueFilingServiceProvider: IssueFilingServiceProvider,
+        environmentInfo: EnvironmentInfo,
     ): GlobalContext {
         const interpreter = new Interpreter();
 
@@ -45,6 +51,14 @@ export class GlobalContextFactory {
 
         globalStoreHub.initialize();
 
+        const issueFilingController = new IssueFilingControllerImpl(
+            issueFilingServiceProvider,
+            browserAdapter,
+            environmentInfo,
+            globalStoreHub.userConfigurationStore,
+        );
+
+        const issueFilingActionCreator = new IssueFilingActionCreator(interpreter, telemetryEventHandler, issueFilingController);
         const actionCreator = new GlobalActionCreator(globalActionsHub, interpreter, browserAdapter, telemetryEventHandler);
         const assessmentActionCreator = new AssessmentActionCreator(
             globalActionsHub.assessmentActions,
@@ -53,6 +67,7 @@ export class GlobalContextFactory {
         );
         const userConfigurationActionCreator = new UserConfigurationActionCreator(interpreter, globalActionsHub.userConfigurationActions);
 
+        issueFilingActionCreator.registerCallbacks();
         actionCreator.registerCallbacks();
         assessmentActionCreator.registerCallbacks();
         userConfigurationActionCreator.registerCallback();

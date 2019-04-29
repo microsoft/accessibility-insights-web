@@ -3,10 +3,13 @@
 import { AppInsights } from 'applicationinsights-js';
 
 import { Assessments } from '../assessments/assessments';
+import { AxeInfo } from '../common/axe-info';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
+import { EnvironmentInfoProvider } from '../common/environment-info-provider';
 import { IndexedDBAPI, IndexedDBUtil } from '../common/indexedDB/indexedDB';
 import { InsightsFeatureFlags } from '../common/insights-feature-flags';
 import { createDefaultLogger } from '../common/logging/default-logger';
+import { NavigatorUtils } from '../common/navigator-utils';
 import { NotificationCreator } from '../common/notification-creator';
 import { TelemetryDataFactory } from '../common/telemetry-data-factory';
 import { UrlValidator } from '../common/url-validator';
@@ -30,8 +33,9 @@ import { TelemetryEventHandler } from './telemetry/telemetry-event-handler';
 import { TelemetryLogger } from './telemetry/telemetry-logger';
 import { TelemetryStateListener } from './telemetry/telemetry-state-listener';
 import { UserStoredDataCleaner } from './user-stored-data-cleaner';
+import { IssueFilingServiceProviderImpl } from '../issue-filing/issue-filing-service-provider-impl';
 
-declare var window: InsightsFeatureFlags;
+declare var window: Window & InsightsFeatureFlags;
 const browserAdapter = new ChromeAdapter();
 const urlValidator = new UrlValidator();
 const backgroundInitCleaner = new UserStoredDataCleaner(browserAdapter);
@@ -51,6 +55,10 @@ getPersistedData(indexedDBInstance).then((persistedData: PersistedData) => {
         const telemetryClient = getTelemetryClient(userData, browserAdapter, telemetryLogger, AppInsights);
 
         const telemetryEventHandler = new TelemetryEventHandler(telemetryClient);
+
+        const browserSpec = new NavigatorUtils(window.navigator).getBrowserSpec();
+        const environmentInfoProvider = new EnvironmentInfoProvider(browserAdapter.extensionVersion, browserSpec, AxeInfo.Default.version);
+
         const globalContext = GlobalContextFactory.createContext(
             browserAdapter,
             telemetryEventHandler,
@@ -59,6 +67,8 @@ getPersistedData(indexedDBInstance).then((persistedData: PersistedData) => {
             telemetryDataFactory,
             indexedDBInstance,
             persistedData,
+            IssueFilingServiceProviderImpl,
+            environmentInfoProvider.getEnvironmentInfo(),
         );
         telemetryLogger.initialize(globalContext.featureFlagsController);
 
