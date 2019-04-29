@@ -78,7 +78,7 @@ export class PopupInitializer {
         const windowUtils = new WindowUtils();
         const popupActionMessageCreator = new PopupActionMessageCreator(telemetryFactory, actionMessageDispatcher, windowUtils);
 
-        const userConfigMessageCreator = new UserConfigMessageCreator(this.chromeAdapter.sendMessageToFrames, this.targetTabInfo.tab.id);
+        const userConfigMessageCreator = new UserConfigMessageCreator(actionMessageDispatcher);
 
         const storeActionMessageCreatorFactory = new StoreActionMessageCreatorFactory(
             this.chromeAdapter.sendMessageToFrames,

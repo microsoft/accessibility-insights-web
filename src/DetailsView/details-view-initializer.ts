@@ -155,7 +155,7 @@ if (isNaN(tabId) === false) {
                 actionMessageDispatcher,
             );
 
-            const userConfigMessageCreator = new UserConfigMessageCreator(chromeAdapter.sendMessageToFrames, tab.id);
+            const userConfigMessageCreator = new UserConfigMessageCreator(actionMessageDispatcher);
             const storeActionMessageCreator = storeActionMessageCreatorFactory.forDetailsView();
 
             const visualizationActionCreator = new VisualizationActionMessageCreator(actionMessageDispatcher);

@@ -10,17 +10,17 @@ import {
 } from '../../background/actions/action-payloads';
 import { Messages } from '../messages';
 import { IssueFilingServiceProperties } from '../types/store-data/user-configuration-store';
-import { BaseActionMessageCreator } from './base-action-message-creator';
+import { ActionMessageDispatcher } from './action-message-dispatcher';
 
-export class UserConfigMessageCreator extends BaseActionMessageCreator {
+export class UserConfigMessageCreator {
+    constructor(private readonly dispatcher: ActionMessageDispatcher) {}
     public setTelemetryState(enableTelemetry: boolean): void {
         const payload: SetTelemetryStatePayload = {
             enableTelemetry,
         };
 
-        this.dispatchMessage({
+        this.dispatcher.dispatchMessage({
             messageType: Messages.UserConfig.SetTelemetryConfig,
-            tabId: this._tabId,
             payload,
         });
     }
@@ -30,9 +30,8 @@ export class UserConfigMessageCreator extends BaseActionMessageCreator {
             enableHighContrast,
         };
 
-        this.dispatchMessage({
+        this.dispatcher.dispatchMessage({
             messageType: Messages.UserConfig.SetHighContrastConfig,
-            tabId: this._tabId,
             payload,
         });
     }
@@ -42,9 +41,8 @@ export class UserConfigMessageCreator extends BaseActionMessageCreator {
             issueFilingServiceName,
         };
 
-        this.dispatchMessage({
+        this.dispatcher.dispatchMessage({
             messageType: Messages.UserConfig.SetIssueFilingService,
-            tabId: this._tabId,
             payload,
         });
     };
@@ -56,9 +54,8 @@ export class UserConfigMessageCreator extends BaseActionMessageCreator {
             propertyValue,
         };
 
-        this.dispatchMessage({
+        this.dispatcher.dispatchMessage({
             messageType: Messages.UserConfig.SetIssueFilingServiceProperty,
-            tabId: this._tabId,
             payload,
         });
     };
@@ -68,9 +65,8 @@ export class UserConfigMessageCreator extends BaseActionMessageCreator {
             issueTrackerPath,
         };
 
-        this.dispatchMessage({
+        this.dispatcher.dispatchMessage({
             messageType: Messages.UserConfig.SetIssueTrackerPath,
-            tabId: this._tabId,
             payload,
         });
     };
@@ -81,9 +77,8 @@ export class UserConfigMessageCreator extends BaseActionMessageCreator {
             issueFilingSettings,
         };
 
-        this.dispatchMessage({
+        this.dispatcher.dispatchMessage({
             messageType: Messages.UserConfig.SaveIssueFilingSettings,
-            tabId: this._tabId,
             payload,
         });
     };
