@@ -30,6 +30,15 @@ exports[`IssueFilingDialog componentDidUpdate dialog is not open & props have ch
           "extensionVersion": undefined,
           "getEnvironmentInfo": [Function],
         },
+        "issueFilingActionMessageCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "dispatcher": undefined,
+          "fileIssue": [Function],
+          "openSettingsPanel": [Function],
+          "source": undefined,
+          "telemetryFactory": undefined,
+          "trackFileIssueClick": [Function],
+        },
         "issueFilingServiceProvider": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "all": [Function],
@@ -106,6 +115,15 @@ exports[`IssueFilingDialog componentDidUpdate dialog is not open & props have no
           "browserSpec": undefined,
           "extensionVersion": undefined,
           "getEnvironmentInfo": [Function],
+        },
+        "issueFilingActionMessageCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "dispatcher": undefined,
+          "fileIssue": [Function],
+          "openSettingsPanel": [Function],
+          "source": undefined,
+          "telemetryFactory": undefined,
+          "trackFileIssueClick": [Function],
         },
         "issueFilingServiceProvider": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
@@ -184,6 +202,15 @@ exports[`IssueFilingDialog componentDidUpdate dialog is open & props have change
           "extensionVersion": undefined,
           "getEnvironmentInfo": [Function],
         },
+        "issueFilingActionMessageCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "dispatcher": undefined,
+          "fileIssue": [Function],
+          "openSettingsPanel": [Function],
+          "source": undefined,
+          "telemetryFactory": undefined,
+          "trackFileIssueClick": [Function],
+        },
         "issueFilingServiceProvider": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "all": [Function],
@@ -260,6 +287,15 @@ exports[`IssueFilingDialog componentDidUpdate dialog is open & props have not ch
           "browserSpec": undefined,
           "extensionVersion": undefined,
           "getEnvironmentInfo": [Function],
+        },
+        "issueFilingActionMessageCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "dispatcher": undefined,
+          "fileIssue": [Function],
+          "openSettingsPanel": [Function],
+          "source": undefined,
+          "telemetryFactory": undefined,
+          "trackFileIssueClick": [Function],
         },
         "issueFilingServiceProvider": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
@@ -338,6 +374,15 @@ exports[`IssueFilingDialog render with isSettingsValid: false 1`] = `
           "extensionVersion": undefined,
           "getEnvironmentInfo": [Function],
         },
+        "issueFilingActionMessageCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "dispatcher": undefined,
+          "fileIssue": [Function],
+          "openSettingsPanel": [Function],
+          "source": undefined,
+          "telemetryFactory": undefined,
+          "trackFileIssueClick": [Function],
+        },
         "issueFilingServiceProvider": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "all": [Function],
@@ -378,7 +423,6 @@ exports[`IssueFilingDialog render with isSettingsValid: false 1`] = `
       cancelButtonOnClick={[Function]}
       isHidden={false}
       primaryButtonDisabled={true}
-      primaryButtonHref={null}
       primaryButtonOnClick={[Function]}
       primaryButtonText="File issue"
     />
@@ -415,6 +459,15 @@ exports[`IssueFilingDialog render with isSettingsValid: true 1`] = `
           "browserSpec": undefined,
           "extensionVersion": undefined,
           "getEnvironmentInfo": [Function],
+        },
+        "issueFilingActionMessageCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "dispatcher": undefined,
+          "fileIssue": [Function],
+          "openSettingsPanel": [Function],
+          "source": undefined,
+          "telemetryFactory": undefined,
+          "trackFileIssueClick": [Function],
         },
         "issueFilingServiceProvider": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
@@ -492,6 +545,15 @@ exports[`IssueFilingDialog render: validate callback (onPropertyUpdateCallback) 
           "browserSpec": undefined,
           "extensionVersion": undefined,
           "getEnvironmentInfo": [Function],
+        },
+        "issueFilingActionMessageCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "dispatcher": undefined,
+          "fileIssue": [Function],
+          "openSettingsPanel": [Function],
+          "source": undefined,
+          "telemetryFactory": undefined,
+          "trackFileIssueClick": [Function],
         },
         "issueFilingServiceProvider": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
@@ -571,6 +633,15 @@ exports[`IssueFilingDialog render: validate callback (onPropertyUpdateCallback) 
           "extensionVersion": undefined,
           "getEnvironmentInfo": [Function],
         },
+        "issueFilingActionMessageCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "dispatcher": undefined,
+          "fileIssue": [Function],
+          "openSettingsPanel": [Function],
+          "source": undefined,
+          "telemetryFactory": undefined,
+          "trackFileIssueClick": [Function],
+        },
         "issueFilingServiceProvider": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "all": [Function],
@@ -647,6 +718,15 @@ exports[`IssueFilingDialog render: validate callback (onSelectedServiceChange) s
           "browserSpec": undefined,
           "extensionVersion": undefined,
           "getEnvironmentInfo": [Function],
+        },
+        "issueFilingActionMessageCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "dispatcher": undefined,
+          "fileIssue": [Function],
+          "openSettingsPanel": [Function],
+          "source": undefined,
+          "telemetryFactory": undefined,
+          "trackFileIssueClick": [Function],
         },
         "issueFilingServiceProvider": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",

@@ -7,7 +7,7 @@ describe('MainWindowContextTest', () => {
     const userConfigStore: any = { name: 'userConfigStore' };
     const devToolActionMessageCreator: any = { name: 'devToolActionMessageCreator' };
     const targetPageActionMessageCreator: any = { name: 'targetPageActionMessageCreator' };
-    const bugActionMessageCreator: any = { name: 'targetPageActionMessageCreator' };
+    const issueFilingActionMessageCreator: any = { name: 'targetPageActionMessageCreator' };
     const environmentInfoProvider: any = { name: 'environmentInfoProvider' };
     const issueFilingServiceProvider: any = { name: 'issueFilingServiceProvider' };
     const userConfigMessageCreator: any = { name: 'userConfigMessageCreator' };
@@ -18,7 +18,7 @@ describe('MainWindowContextTest', () => {
             userConfigStore,
             devToolActionMessageCreator,
             targetPageActionMessageCreator,
-            bugActionMessageCreator,
+            issueFilingActionMessageCreator,
             userConfigMessageCreator,
             environmentInfoProvider,
             issueFilingServiceProvider,
@@ -36,7 +36,7 @@ describe('MainWindowContextTest', () => {
             userConfigStore,
             devToolActionMessageCreator,
             targetPageActionMessageCreator,
-            bugActionMessageCreator,
+            issueFilingActionMessageCreator,
             userConfigMessageCreator,
             environmentInfoProvider,
             issueFilingServiceProvider,
@@ -57,7 +57,7 @@ describe('MainWindowContextTest', () => {
             userConfigStore,
             devToolActionMessageCreator,
             targetPageActionMessageCreator,
-            bugActionMessageCreator,
+            issueFilingActionMessageCreator,
             userConfigMessageCreator,
             environmentInfoProvider,
             issueFilingServiceProvider,
@@ -75,7 +75,7 @@ describe('MainWindowContextTest', () => {
             userConfigStoreLocal,
             devToolActionMessageCreatorLocal,
             targetPageActionMessageCreator,
-            bugActionMessageCreator,
+            issueFilingActionMessageCreator,
             userConfigMessageCreatorLocal,
             environmentInfoProviderLocal,
             issueFilingServiceProviderLocal,
