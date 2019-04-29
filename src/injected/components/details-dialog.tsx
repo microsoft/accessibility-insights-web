@@ -1,5 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { isEmpty } from 'lodash';
+import { css } from 'office-ui-fabric-react';
 import { DefaultButton, PrimaryButton } from 'office-ui-fabric-react/lib/Button';
 import { Dialog, DialogType } from 'office-ui-fabric-react/lib/Dialog';
 import * as React from 'react';
@@ -24,8 +26,6 @@ import { DetailsDialogHandler } from '../details-dialog-handler';
 import { DecoratedAxeNodeResult } from '../scanner-utils';
 import { TargetPageActionMessageCreator } from '../target-page-action-message-creator';
 import { FixInstructionPanel } from './fix-instruction-panel';
-import { isEmpty } from 'lodash';
-import { css } from 'office-ui-fabric-react';
 
 export enum CheckType {
     All,
