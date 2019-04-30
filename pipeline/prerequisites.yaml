@@ -7,3 +7,4 @@ steps:
       displayName: use node 10.15.0
 
     - script: yarn install
+      displayName: install packages and dependencies
