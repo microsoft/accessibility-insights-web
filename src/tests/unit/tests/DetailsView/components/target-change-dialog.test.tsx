@@ -5,7 +5,6 @@ import Dialog from 'office-ui-fabric-react/lib/Dialog';
 import { TooltipHost } from 'office-ui-fabric-react/lib/Tooltip';
 import * as React from 'react';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
-
 import { BlockingDialog } from '../../../../../common/components/blocking-dialog';
 import { Tab } from '../../../../../common/itab';
 import { PersistedTabInfo } from '../../../../../common/types/store-data/assessment-result-data';
@@ -26,7 +25,7 @@ describe('TargetChangeDialog test set for prev tab null', () => {
         };
 
         urlParserMock
-            .setup(urlParserObject => urlParserObject.areURLHostNamesEqual(prevTab, newTab.url))
+            .setup(urlParserObject => urlParserObject.areURLHostNamesEqual(It.isAny(), newTab.url))
             .returns(() => true)
             .verifiable(Times.never());
 
