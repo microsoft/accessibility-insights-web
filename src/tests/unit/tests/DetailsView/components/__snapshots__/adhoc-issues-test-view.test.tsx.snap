@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`AdhocIssuesTestView should return issues table with scanning to false 1`] = `"<IssuesTable deps={{...}} title=\\"test title\\" subtitle={[undefined]} issuesTableHandler={{...}} issuesEnabled={true} issueTrackerPath={[undefined]} violations={{...}} issuesSelection={{...}} selectedIdToRuleResultMap={{...}} pageTitle={[undefined]} pageUrl={[undefined]} scanning={false} toggleClickHandler={[Function: clickHandlerStub]} visualizationConfigurationFactory={[undefined]} featureFlags={[undefined]} scanResult={{...}} reportGenerator={{...}} userConfigurationStoreData={[undefined]} />"`;
+exports[`AdhocIssuesTestView should return issues table with scanning to false 1`] = `"<IssuesTable deps={{...}} title=\\"test title\\" subtitle={{...}} issuesTableHandler={{...}} issuesEnabled={true} issueTrackerPath={[undefined]} violations={{...}} issuesSelection={{...}} selectedIdToRuleResultMap={{...}} pageTitle={[undefined]} pageUrl={[undefined]} scanning={false} toggleClickHandler={[Function: clickHandlerStub]} visualizationConfigurationFactory={[undefined]} featureFlags={[undefined]} scanResult={{...}} reportGenerator={{...}} userConfigurationStoreData={[undefined]} />"`;
 
 exports[`AdhocIssuesTestView should return issues table with violations to null 1`] = `
 <IssuesTable
@@ -16,6 +16,11 @@ exports[`AdhocIssuesTestView should return issues table with violations to null 
   scanResult={null}
   scanning={true}
   selectedIdToRuleResultMap={null}
+  subtitle={
+    <React.Fragment>
+      test subtitle
+    </React.Fragment>
+  }
   title="test title"
   toggleClickHandler={[Function]}
   violations={null}
