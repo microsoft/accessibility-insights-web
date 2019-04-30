@@ -7,7 +7,6 @@ import { WindowUtils } from '../../../../../common/window-utils';
 import { ClientUtils } from '../../../../../injected/client-utils';
 import { FrameCommunicator } from '../../../../../injected/frameCommunicators/frame-communicator';
 import { ShadowUtils } from '../../../../../injected/shadow-utils';
-import { Drawer } from '../../../../../injected/visualization/drawer';
 import { DrawerProvider } from '../../../../../injected/visualization/drawer-provider';
 import { DrawerUtils } from '../../../../../injected/visualization/drawer-utils';
 import { HighlightBoxDrawer } from '../../../../../injected/visualization/highlight-box-drawer';
@@ -58,7 +57,7 @@ describe('DrawerProviderTests', () => {
     ];
 
     test.each(drawerYieldingFunctionNames)('%s', funcName => {
-        const drawer: Drawer = testObject[funcName]();
+        const drawer = testObject[funcName]();
         expect(drawer).toBeInstanceOf(HighlightBoxDrawer);
     });
 
