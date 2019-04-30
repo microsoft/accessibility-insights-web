@@ -10,11 +10,16 @@ jobs:
           - template: pipeline/prerequisites.yaml
 
           - script: yarn tslint
+            displayName: check lint errors
 
           - script: yarn format-check
+            displayName: check formatting errors
 
           - script: yarn copyrightheaders
-          - script: yarn test
+            displayName: check copyrightheaders
+
+          - script: yarn test -- --ci
+            displayName: run unit tests
 
           - task: PublishTestResults@2
             inputs:
