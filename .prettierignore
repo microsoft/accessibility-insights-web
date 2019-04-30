@@ -7,6 +7,7 @@ test-results/
 copyright-header.txt
 LICENSE
 package-lock.json
+yarn.lock
 .prettierignore
 docs/NOTICE.html
 docs/LICENSE.txt
