@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { isEmpty } from 'lodash';
 import * as React from 'react';
+import { NewTabLink } from '../../common/components/new-tab-link';
 import { AdHocTestkeys } from '../../common/configs/adhoc-test-keys';
 import { TestMode } from '../../common/configs/test-mode';
 import { VisualizationConfiguration } from '../../common/configs/visualization-configuration-factory';
@@ -12,7 +13,6 @@ import { generateUID } from '../../common/uid-generator';
 import { AdhocIssuesTestView } from '../../DetailsView/components/adhoc-issues-test-view';
 import { ScannerUtils } from '../../injected/scanner-utils';
 import { VisualizationInstanceProcessor } from '../../injected/visualization-instance-processor';
-import { NewTabLink } from '../../common/components/new-tab-link';
 
 export const IssuesAdHocVisualization: VisualizationConfiguration = {
     key: AdHocTestkeys.Issues,
