@@ -13,11 +13,10 @@ import {
 } from './azure-boards-issue-filing-service';
 
 export const AzureBoardsSettingsForm = NamedSFC<SettingsFormProps<AzureBoardsIssueFilingSettings>>('AzureBoardsSettingsForm', props => {
-    const defaultKey = 'reproSteps';
     const options: AzureBoardsIssueDetailLocationDropdownOption[] = [
         {
-            key: defaultKey,
-            text: 'Repro steps (default)',
+            key: 'reproSteps',
+            text: 'Repro steps',
         },
         {
             key: 'description',
