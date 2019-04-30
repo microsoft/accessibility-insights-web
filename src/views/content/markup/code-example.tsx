@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { flatten } from 'lodash';
 import * as React from 'react';
+
 import { CodeBlock } from '../../../assessments/markup';
 
 export type CodeExampleProps = {
@@ -11,6 +12,7 @@ export type CodeExampleProps = {
 
 export function CodeExample(props: CodeExampleProps): JSX.Element {
     const { children } = props;
+    let lineCount = 0;
 
     function getRegions(code: string): string[] {
         if (code.length === 0) {
@@ -35,7 +37,7 @@ export function CodeExample(props: CodeExampleProps): JSX.Element {
     }
 
     function renderLineBreaks(str: string): React.ReactNode[] {
-        return flatten(str.split('\n').map(s => [<br />, s])).slice(1);
+        return flatten(str.split('\n').map(s => [<br key={`line-breaker-${++lineCount}`} />, s])).slice(1);
     }
 
     function renderRegion(str: string, index: number): React.ReactNode[] {
