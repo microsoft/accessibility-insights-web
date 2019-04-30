@@ -9,29 +9,12 @@ jobs:
       steps:
           - template: pipeline/prerequisites.yaml
 
-          - task: Npm@1
-            inputs:
-                command: custom
-                customCommand: run tslint
-            displayName: npm run tslint
+          - script: yarn tslint
 
-          - task: Npm@1
-            inputs:
-                command: custom
-                customCommand: run format-check
-            displayName: check code formatting
+          - script: yarn format-check
 
-          - task: Npm@1
-            displayName: check copyright headers
-            inputs:
-                command: custom
-                customCommand: run copyrightheaders
-
-          - task: Npm@1
-            inputs:
-                command: custom
-                customCommand: run test -- --ci
-            displayName: run unit tests
+          - script: yarn copyrightheaders
+          - script: yarn test
 
           - task: PublishTestResults@2
             inputs:
