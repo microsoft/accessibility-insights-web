@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { autobind } from '@uifabric/utilities';
 import { Dropdown, IDropdownOption } from 'office-ui-fabric-react/lib/Dropdown';
 import { Icon } from 'office-ui-fabric-react/lib/Icon';
 import { ResponsiveMode } from 'office-ui-fabric-react/lib/utilities/decorators/withResponsiveMode';
@@ -28,16 +27,16 @@ export class Switcher extends React.Component<SwitcherProps, SwitcherState> {
         this.state = { selectedKey: props.pivotKey };
     }
 
-    private onRenderOption(option: IDropdownOption): JSX.Element {
+    private onRenderOption = (option: IDropdownOption): JSX.Element => {
         return (
             <div className="switcher-dropdown-option" aria-hidden="true">
                 {option.data && option.data.icon && <Icon iconName={option.data.icon} />}
                 <span>{option.text}</span>
             </div>
         );
-    }
+    };
 
-    private onRenderTitle(options: IDropdownOption[]): JSX.Element {
+    private onRenderTitle = (options: IDropdownOption[]): JSX.Element => {
         const option = options[0];
 
         return (
@@ -46,15 +45,14 @@ export class Switcher extends React.Component<SwitcherProps, SwitcherState> {
                 <span>{option.text}</span>
             </div>
         );
-    }
+    };
 
-    @autobind
-    private onOptionChange(event, option?: IDropdownOption): void {
+    private onOptionChange = (event, option?: IDropdownOption): void => {
         this.setState({ selectedKey: option.key as any });
         this.props.deps.detailsViewActionMessageCreator.sendPivotItemClicked(DetailsViewPivotType[option.key]);
-    }
+    };
 
-    private getOptions(): IDropdownOption[] {
+    private getOptions = (): IDropdownOption[] => {
         return [
             {
                 key: DetailsViewPivotType.fastPass,
@@ -71,7 +69,7 @@ export class Switcher extends React.Component<SwitcherProps, SwitcherState> {
                 },
             },
         ];
-    }
+    };
 
     public render(): JSX.Element {
         return (
