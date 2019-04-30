@@ -880,11 +880,17 @@ div.insights-file-issue-details-dialog-container {
                     flex-direction: column;
                     margin-top: 24px;
                     > h1,
+                    .issues-table-subtitle,
                     .details-view-toggle,
                     .details-disabled-message {
                         margin-left: 24px;
                     }
-                    > div {
+                    .issues-table-subtitle {
+                        color: $secondary-text;
+                        max-width: 750px;
+                        font-size: 15px;
+                    }
+                    .issues-table-content {
                         height: 100%;
                         display: flex;
                         flex-direction: column;

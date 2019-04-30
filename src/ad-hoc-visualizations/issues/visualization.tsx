@@ -12,6 +12,7 @@ import { generateUID } from '../../common/uid-generator';
 import { AdhocIssuesTestView } from '../../DetailsView/components/adhoc-issues-test-view';
 import { ScannerUtils } from '../../injected/scanner-utils';
 import { VisualizationInstanceProcessor } from '../../injected/visualization-instance-processor';
+import { NewTabLink } from '../../common/components/new-tab-link';
 
 export const IssuesAdHocVisualization: VisualizationConfiguration = {
     key: AdHocTestkeys.Issues,
@@ -23,6 +24,14 @@ export const IssuesAdHocVisualization: VisualizationConfiguration = {
     getTestStatus: data => data.enabled,
     displayableData: {
         title: 'Automated checks',
+        subtitle: (
+            <>
+                Did you know? Automated checks can detect some common accessibility problems, such as missing or invalid properties.
+                However, most accessibility problems can be identified only through manual testing. The most reliable way to evaluate the
+                accessibility compliance of a website or web app is to complete an{' '}
+                <NewTabLink href="https://accessibilityinsights.io/docs/en/web/getstarted/assessment">assessment</NewTabLink>.
+            </>
+        ),
         enableMessage: 'Running automated checks...',
         toggleLabel: 'Show failures',
         linkToDetailsViewText: 'List view and filtering',

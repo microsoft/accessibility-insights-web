@@ -44,6 +44,7 @@ export const AdhocIssuesTestView = NamedSFC<AdhocIssuesTestViewProps>('AdhocIssu
     const displayableData = props.configuration.displayableData;
     const selectedIdToRuleResultMap = props.visualizationScanResultData.issues.selectedIdToRuleResultMap;
     const title = props.configuration.displayableData.title;
+    const subtitle = props.configuration.displayableData.subtitle;
 
     if (props.tabStoreData.isChanged) {
         return (
@@ -55,6 +56,7 @@ export const AdhocIssuesTestView = NamedSFC<AdhocIssuesTestViewProps>('AdhocIssu
         <IssuesTable
             deps={props.deps}
             title={title}
+            subtitle={subtitle}
             issuesTableHandler={props.issuesTableHandler}
             issuesEnabled={scanData.enabled}
             issueTrackerPath={props.issueTrackerPath}
