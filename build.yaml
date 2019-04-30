@@ -18,7 +18,7 @@ jobs:
           - script: yarn copyrightheaders
             displayName: check copyrightheaders
 
-          - script: yarn test -- --ci
+          - script: yarn test --ci
             displayName: run unit tests
 
           - task: PublishTestResults@2
