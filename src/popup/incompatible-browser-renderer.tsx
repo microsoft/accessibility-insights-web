@@ -3,9 +3,9 @@
 import * as React from 'react';
 import ReactDOM from 'react-dom';
 
+import { NewTabLink } from '../common/components/new-tab-link';
 import { title } from '../content/strings/application';
 import { Header } from './components/header';
-import { NewTabLink } from '../common/components/new-tab-link';
 
 export class IncompatibleBrowserRenderer {
     constructor(private readonly renderer: typeof ReactDOM.render, private readonly dom: NodeSelector & Node) {}

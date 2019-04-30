@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-
 import ReactDOM from 'react-dom';
 import { It, Mock } from 'typemoq';
 
