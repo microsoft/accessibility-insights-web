@@ -48,8 +48,7 @@ describe('DrawerProviderTests', () => {
         );
     });
 
-    type drawerProviderFuncs = keyof DrawerProvider;
-    const drawerYieldingFunctionNames: drawerProviderFuncs[] = [
+    const drawerYieldingFunctionNames = [
         'createHeadingsDrawer',
         'createLandmarksDrawer',
         'createIssuesDrawer',

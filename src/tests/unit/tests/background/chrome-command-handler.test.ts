@@ -126,7 +126,7 @@ describe('ChromeCommandHandlerTest', () => {
 
     const visualizationTypesThatShouldNotNotifyOnEnable = [['TabStops', VisualizationType.TabStops]];
 
-    it.each(supportedVisualizationTypes)(`enables previously-disabled '%s' visualizer`, async (_, visualizationType) => {
+    it.each(supportedVisualizationTypes)(`enables previously-disabled '%s' visualizer`, async (_, visualizationType: VisualizationType) => {
         storeState = new VisualizationStoreDataBuilder().withDisable(visualizationType).build();
         const configuration = visualizationConfigurationFactory.getConfiguration(visualizationType);
 
@@ -158,7 +158,7 @@ describe('ChromeCommandHandlerTest', () => {
         interpreterMock.verifyAll();
     });
 
-    it.each(supportedVisualizationTypes)(`disables previously-enabled '%s' visualizer`, async (_, visualizationType) => {
+    it.each(supportedVisualizationTypes)(`disables previously-enabled '%s' visualizer`, async (_, visualizationType: VisualizationType) => {
         storeState = new VisualizationStoreDataBuilder().withEnable(visualizationType).build();
         const configuration = visualizationConfigurationFactory.getConfiguration(visualizationType);
 
@@ -192,7 +192,7 @@ describe('ChromeCommandHandlerTest', () => {
 
     it.each(visualizationTypesThatShouldNotifyOnEnable)(
         `emits the expected 'enabled' notification when enabling '%s' visualizer`,
-        async (_, visualizationType) => {
+        async (_, visualizationType: VisualizationType) => {
             storeState = new VisualizationStoreDataBuilder().withDisable(visualizationType).build();
             const configuration = visualizationConfigurationFactory.getConfiguration(visualizationType);
 
@@ -207,7 +207,7 @@ describe('ChromeCommandHandlerTest', () => {
 
     it.each(visualizationTypesThatShouldNotNotifyOnEnable)(
         `does not emit unexpected 'enabled' notification when enabling '%s' visualizer`,
-        async (_, visualizationType) => {
+        async (_, visualizationType: VisualizationType) => {
             storeState = new VisualizationStoreDataBuilder().withDisable(visualizationType).build();
             const configuration = visualizationConfigurationFactory.getConfiguration(visualizationType);
 
