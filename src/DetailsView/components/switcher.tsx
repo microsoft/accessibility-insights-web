@@ -1,12 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { autobind } from '@uifabric/utilities';
 import { Dropdown, IDropdownOption } from 'office-ui-fabric-react/lib/Dropdown';
 import { Icon } from 'office-ui-fabric-react/lib/Icon';
 import { ResponsiveMode } from 'office-ui-fabric-react/lib/utilities/decorators/withResponsiveMode';
 import * as React from 'react';
 
 import { DetailsViewPivotType } from '../../../src/common/types/details-view-pivot-type';
-import { NamedSFC } from '../../common/react/named-sfc';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 
 export type SwitcherDeps = {
@@ -18,17 +18,26 @@ export interface SwitcherProps {
     pivotKey: DetailsViewPivotType;
 }
 
-export const Switcher = NamedSFC<SwitcherProps>('Switcher', props => {
-    const onRenderOption = (option: IDropdownOption): JSX.Element => {
+export interface SwitcherState {
+    selectedKey: DetailsViewPivotType;
+}
+
+export class Switcher extends React.Component<SwitcherProps, SwitcherState> {
+    constructor(props: SwitcherProps) {
+        super(props);
+        this.state = { selectedKey: props.pivotKey };
+    }
+
+    private onRenderOption(option: IDropdownOption): JSX.Element {
         return (
             <div className="switcher-dropdown-option" aria-hidden="true">
                 {option.data && option.data.icon && <Icon iconName={option.data.icon} />}
                 <span>{option.text}</span>
             </div>
         );
-    };
+    }
 
-    const onRenderTitle = (options: IDropdownOption[]): JSX.Element => {
+    private onRenderTitle(options: IDropdownOption[]): JSX.Element {
         const option = options[0];
 
         return (
@@ -37,41 +46,46 @@ export const Switcher = NamedSFC<SwitcherProps>('Switcher', props => {
                 <span>{option.text}</span>
             </div>
         );
-    };
+    }
 
-    const { deps, pivotKey } = props;
-    const { detailsViewActionMessageCreator } = deps;
+    @autobind
+    private onOptionChange(event, option?: IDropdownOption): void {
+        this.setState({ selectedKey: option.key as any });
+        this.props.deps.detailsViewActionMessageCreator.sendPivotItemClicked(DetailsViewPivotType[option.data.key]);
+    }
 
-    const onOptionClick = (event, option?: IDropdownOption): void => {
-        detailsViewActionMessageCreator.sendPivotItemClicked(DetailsViewPivotType[option.data.key]);
-    };
-
-    return (
-        <Dropdown
-            ariaLabel="select workflow"
-            responsiveMode={ResponsiveMode.large}
-            selectedKey={pivotKey}
-            onRenderOption={onRenderOption}
-            onRenderTitle={onRenderTitle}
-            onChange={onOptionClick}
-            options={[
-                {
+    private getOptions(): IDropdownOption[] {
+        return [
+            {
+                key: DetailsViewPivotType.fastPass,
+                text: 'FastPass',
+                data: {
+                    icon: 'Rocket',
                     key: DetailsViewPivotType.fastPass,
-                    text: 'FastPass',
-                    data: {
-                        icon: 'Rocket',
-                        key: DetailsViewPivotType.fastPass,
-                    },
                 },
-                {
+            },
+            {
+                key: DetailsViewPivotType.assessment,
+                text: 'Assessment',
+                data: {
+                    icon: 'testBeaker',
                     key: DetailsViewPivotType.assessment,
-                    text: 'Assessment',
-                    data: {
-                        icon: 'testBeaker',
-                        key: DetailsViewPivotType.assessment,
-                    },
                 },
-            ]}
-        />
-    );
-});
+            },
+        ];
+    }
+
+    public render() {
+        return (
+            <Dropdown
+                ariaLabel="select workflow"
+                responsiveMode={ResponsiveMode.large}
+                selectedKey={this.state.selectedKey}
+                onRenderOption={this.onRenderOption}
+                onRenderTitle={this.onRenderTitle}
+                onChange={this.onOptionChange}
+                options={this.getOptions()}
+            />
+        );
+    }
+}

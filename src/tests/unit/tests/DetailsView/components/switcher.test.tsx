@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import { Dropdown } from 'office-ui-fabric-react/lib/Dropdown';
 import * as React from 'react';
 import { IMock, Mock, Times } from 'typemoq';
@@ -36,21 +36,21 @@ describe('Switcher', () => {
         expect(renderer.debug()).toMatchSnapshot();
     });
 
-    test('onOptionClick', () => {
+    test('onOptionChange', () => {
         actionCreatorMock
-            .setup(creator => creator.sendPivotItemClicked(DetailsViewPivotType[DetailsViewPivotType.fastPass]))
+            .setup(creator => creator.sendPivotItemClicked(DetailsViewPivotType[DetailsViewPivotType.assessment]))
             .verifiable(Times.once());
-        const renderer = shallow(<Switcher {...defaultProps} />);
+        const wrapper = mount(<Switcher {...defaultProps} />);
 
-        renderer
-            .find(Dropdown)
-            .props()
-            .onChange(null, {
-                data: {
-                    key: DetailsViewPivotType.fastPass,
-                },
-            } as any);
-
+        const dropdown = wrapper.find(Dropdown);
+        expect(wrapper.state().selectedKey).toBe(DetailsViewPivotType.fastPass);
+        dropdown.props().onChange(null, {
+            key: DetailsViewPivotType.assessment,
+            data: {
+                key: DetailsViewPivotType.assessment,
+            },
+        } as any);
+        expect(wrapper.state().selectedKey).toBe(DetailsViewPivotType.assessment);
         actionCreatorMock.verifyAll();
     });
 });
