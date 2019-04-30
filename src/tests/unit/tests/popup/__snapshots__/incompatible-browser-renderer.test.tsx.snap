@@ -18,9 +18,15 @@ exports[`IncompatibleBrowserRenderer render 1`] = `
         <div
           className="some-class"
         >
-          We work on Microsoft Edge versions 75 and above.
+          We don’t currently support your browser.
           <br />
-          Please upgrade your browser and come back for us!
+          Please check 
+          <NewTabLink
+            href="https://accessibilityinsights.io/"
+          >
+            accessibilityinsights.io
+          </NewTabLink>
+           for download options.
         </div>
       </div>
     </div>

@@ -5,6 +5,7 @@ import ReactDOM from 'react-dom';
 
 import { title } from '../content/strings/application';
 import { Header } from './components/header';
+import { NewTabLink } from '../common/components/new-tab-link';
 
 export class IncompatibleBrowserRenderer {
     constructor(private readonly renderer: typeof ReactDOM.render, private readonly dom: NodeSelector & Node) {}
@@ -20,9 +21,10 @@ export class IncompatibleBrowserRenderer {
                         <div className="launch-panel-general-container">
                             Thanks for your interest in Accessibility Insights!
                             <div className="some-class">
-                                We work on Microsoft Edge versions 75 and above.
+                                We don’t currently support your browser.
                                 <br />
-                                Please upgrade your browser and come back for us!
+                                Please check <NewTabLink href="https://accessibilityinsights.io/">accessibilityinsights.io</NewTabLink> for
+                                download options.
                             </div>
                         </div>
                     </div>

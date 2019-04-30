@@ -13,6 +13,7 @@ describe('IncompatibleBrowserRenderer', () => {
         const documentMock = Mock.ofType<NodeSelector & Node>();
 
         documentMock.setup(mock => mock.querySelector('#popup-container')).returns(() => containerStub.object);
+
         renderMock
             .setup(mock => mock(It.isAny(), containerStub.object))
             .callback(element => {
