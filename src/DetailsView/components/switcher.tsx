@@ -51,7 +51,7 @@ export class Switcher extends React.Component<SwitcherProps, SwitcherState> {
     @autobind
     private onOptionChange(event, option?: IDropdownOption): void {
         this.setState({ selectedKey: option.key as any });
-        this.props.deps.detailsViewActionMessageCreator.sendPivotItemClicked(DetailsViewPivotType[option.data.key]);
+        this.props.deps.detailsViewActionMessageCreator.sendPivotItemClicked(DetailsViewPivotType[option.key]);
     }
 
     private getOptions(): IDropdownOption[] {
@@ -61,7 +61,6 @@ export class Switcher extends React.Component<SwitcherProps, SwitcherState> {
                 text: 'FastPass',
                 data: {
                     icon: 'Rocket',
-                    key: DetailsViewPivotType.fastPass,
                 },
             },
             {
@@ -69,13 +68,12 @@ export class Switcher extends React.Component<SwitcherProps, SwitcherState> {
                 text: 'Assessment',
                 data: {
                     icon: 'testBeaker',
-                    key: DetailsViewPivotType.assessment,
                 },
             },
         ];
     }
 
-    public render() {
+    public render(): JSX.Element {
         return (
             <Dropdown
                 ariaLabel="select workflow"
