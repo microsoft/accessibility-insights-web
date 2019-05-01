@@ -47,7 +47,7 @@ backgroundInitCleaner.cleanUserData(deprecatedStorageDataKeys);
 
 // tslint:disable-next-line:no-floating-promises - top-level entry points are intentionally floating promises
 getPersistedData(indexedDBInstance).then((persistedData: PersistedData) => {
-    browserAdapter.getUserData(storageDataKeys, (userData: LocalStorageData) => {
+    storageAdapter.getUserData(storageDataKeys, (userData: LocalStorageData) => {
         const assessmentsProvider = Assessments;
         const windowUtils = new WindowUtils();
         const telemetryDataFactory = new TelemetryDataFactory();
