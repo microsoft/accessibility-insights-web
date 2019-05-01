@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`IncompatibleBrowserRenderer renders 1`] = `
+<React.Fragment>
+  <div
+    className="ms-Fabric unsupported-browser-info-panel"
+  >
+    <Header
+      title="Accessibility Insights for Web"
+    />
+    <div
+      className="ms-Grid main-section"
+    >
+      <div
+        className="launch-panel-general-container"
+      >
+        Thanks for your interest in Accessibility Insights!
+        <div
+          className="incompatible-browser-message"
+        >
+          We don’t currently support your browser.
+          <br />
+          Please check 
+          <NewTabLink
+            href="https://accessibilityinsights.io/"
+          >
+            accessibilityinsights.io
+          </NewTabLink>
+           for download options.
+        </div>
+      </div>
+    </div>
+  </div>
+</React.Fragment>
+`;
