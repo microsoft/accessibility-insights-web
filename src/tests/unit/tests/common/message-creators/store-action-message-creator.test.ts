@@ -1,35 +1,25 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IMock, It, Mock, MockBehavior } from 'typemoq';
-import { Message } from '../../../../../common/message';
+import { Mock } from 'typemoq';
+import { ActionMessageDispatcher } from '../../../../../common/message-creators/action-message-dispatcher';
 import { StoreActionMessageCreatorImpl } from '../../../../../common/message-creators/store-action-message-creator-impl';
 
-describe('StateActionMessageCreator', () => {
-    const tabId: number = -1;
-    let postMessageMock: IMock<(message: Message) => void>;
+describe('StoreActionMessageCreatorImpl', () => {
+    const dispatcherMock = Mock.ofType<ActionMessageDispatcher>();
 
     test('getAllStates', () => {
         const messages = ['a', 'b', 'c', 'd'];
 
-        postMessageMock = Mock.ofInstance((_message: Message) => {}, MockBehavior.Strict);
+        messages.forEach(message => setupDispatcherMock(message));
 
-        messages.forEach(message => setupPostMessageMock(message));
-
-        const testObject = new StoreActionMessageCreatorImpl(messages, postMessageMock.object, tabId);
+        const testObject = new StoreActionMessageCreatorImpl(messages, dispatcherMock.object);
 
         testObject.getAllStates();
 
-        postMessageMock.verifyAll();
+        dispatcherMock.verifyAll();
     });
 
-    function setupPostMessageMock(message: string): void {
-        postMessageMock.setup(pm =>
-            pm(
-                It.isValue({
-                    messageType: message,
-                    tabId: tabId,
-                }),
-            ),
-        );
+    function setupDispatcherMock(message: string): void {
+        dispatcherMock.setup(dispatcher => dispatcher.dispatchType(message));
     }
 });
