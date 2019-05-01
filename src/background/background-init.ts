@@ -16,6 +16,7 @@ import { UrlValidator } from '../common/url-validator';
 import { WindowUtils } from '../common/window-utils';
 import { IssueFilingServiceProviderImpl } from '../issue-filing/issue-filing-service-provider-impl';
 import { ChromeAdapter } from './browser-adapter';
+import { StorageAdapter } from './browser-adapters/storage-adapter';
 import { ChromeCommandHandler } from './chrome-command-handler';
 import { DetailsViewController } from './details-view-controller';
 import { DevToolsListener } from './dev-tools-listener';
@@ -37,8 +38,9 @@ import { UserStoredDataCleaner } from './user-stored-data-cleaner';
 
 declare var window: Window & InsightsFeatureFlags;
 const browserAdapter = new ChromeAdapter();
+const storageAdapter = new StorageAdapter();
 const urlValidator = new UrlValidator();
-const backgroundInitCleaner = new UserStoredDataCleaner(browserAdapter);
+const backgroundInitCleaner = new UserStoredDataCleaner(storageAdapter);
 
 const indexedDBInstance: IndexedDBAPI = new IndexedDBUtil();
 

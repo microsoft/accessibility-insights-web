@@ -3,33 +3,26 @@
 import { isFunction } from 'lodash';
 import { IMock, It, Mock, Times } from 'typemoq';
 
-import { ChromeAdapter } from '../../../../background/browser-adapter';
+import { StorageAPI } from '../../../../background/browser-adapters/storage-adapter';
 import { UserStoredDataCleaner } from '../../../../background/user-stored-data-cleaner';
 
 describe('UserStoredDataCleanerTest', () => {
-    let browserAdapterMock: IMock<ChromeAdapter>;
+    let storageAdapterMock: IMock<StorageAPI>;
     let testObject: UserStoredDataCleaner;
 
     beforeEach(() => {
-        browserAdapterMock = Mock.ofType(ChromeAdapter);
-        testObject = new UserStoredDataCleaner(browserAdapterMock.object);
+        storageAdapterMock = Mock.ofType<StorageAPI>();
+        testObject = new UserStoredDataCleaner(storageAdapterMock.object);
     });
 
     test('remove alias when it exists', async done => {
         const userData: string[] = ['alias'];
         const userDataRes = { alias: 'userAlias' };
 
-        browserAdapterMock
-            .setup(mB => mB.getUserData(It.isValue(userData), It.is(isFunction)))
-            .callback((data, cb) => {
-                cb(userDataRes);
-            })
-            .verifiable(Times.once());
-
-        browserAdapterMock.setup(adapter => adapter.removeUserData('alias')).verifiable(Times.once());
+        storageAdapterMock.setup(adapter => adapter.getUserData(userData, It.is(isFunction))).callback((data, cb) => cb(userDataRes));
 
         testObject.cleanUserData(userData, () => {
-            browserAdapterMock.verifyAll();
+            storageAdapterMock.verify(adapter => adapter.removeUserData('alias'), Times.once());
 
             done();
         });
