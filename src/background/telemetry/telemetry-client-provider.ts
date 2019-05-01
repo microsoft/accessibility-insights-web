@@ -5,6 +5,7 @@ import { DateProvider } from '../../common/date-provider';
 import { generateUID } from '../../common/uid-generator';
 import { ApplicationBuildGenerator } from '../application-build-generator';
 import { BrowserAdapter } from '../browser-adapter';
+import { StorageAPI } from '../browser-adapters/storage-adapter';
 import { InstallDataGenerator } from '../install-data-generator';
 import { LocalStorageData } from '../storage-data';
 import { AppInsightsTelemetryClient } from './app-insights-telemetry-client';
@@ -18,6 +19,7 @@ export const getTelemetryClient = (
     browserAdapter: BrowserAdapter,
     logger: TelemetryLogger,
     appInsights: Microsoft.ApplicationInsights.IAppInsights,
+    storageAdapter: StorageAPI,
 ): TelemetryClient => {
     const appInsightsInstrumentationKey = config.getOption('appInsightsInstrumentationKey');
 
@@ -25,7 +27,7 @@ export const getTelemetryClient = (
         return new NullTelemetryClient(logger);
     }
 
-    const installDataGenerator = new InstallDataGenerator(userData.installationData, generateUID, DateProvider.getDate, browserAdapter);
+    const installDataGenerator = new InstallDataGenerator(userData.installationData, generateUID, DateProvider.getDate, storageAdapter);
     const applicationBuildGenerator = new ApplicationBuildGenerator();
     const coreTelemetryDataFactory = new ApplicationTelemetryDataFactory(browserAdapter, applicationBuildGenerator, installDataGenerator);
 

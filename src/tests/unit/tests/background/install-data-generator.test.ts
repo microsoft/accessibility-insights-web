@@ -3,6 +3,7 @@
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 import { ChromeAdapter } from '../../../../background/browser-adapter';
+import { StorageAPI } from '../../../../background/browser-adapters/storage-adapter';
 import { InstallDataGenerator } from '../../../../background/install-data-generator';
 import { InstallationData } from '../../../../background/installation-data';
 import { LocalStorageDataKeys } from '../../../../background/local-storage-data-keys';
@@ -12,6 +13,7 @@ describe('InstallDataGeneratorTest', () => {
     let generateGuidMock: IMock<() => string>;
     let dateGetterMock: IMock<() => Date>;
     let browserAdapterMock: IMock<ChromeAdapter>;
+    let storageAdapterMock: IMock<StorageAPI>;
     let dateStubMock: IMock<Date>;
 
     beforeEach(() => {
@@ -29,6 +31,7 @@ describe('InstallDataGeneratorTest', () => {
             return null;
         }, MockBehavior.Strict);
         browserAdapterMock = Mock.ofType(ChromeAdapter, MockBehavior.Strict);
+        storageAdapterMock = Mock.ofType<StorageAPI>();
         dateStubMock = Mock.ofInstance(dateStub as Date);
     });
 
@@ -43,12 +46,7 @@ describe('InstallDataGeneratorTest', () => {
             year: yearStub,
         };
 
-        const testSubject = new InstallDataGenerator(
-            initialInstallationData,
-            generateGuidMock.object,
-            dateGetterMock.object,
-            browserAdapterMock.object,
-        );
+        const testSubject = createTestObject(initialInstallationData);
 
         dateStubMock
             .setup(ds => ds.getUTCMonth())
@@ -70,9 +68,9 @@ describe('InstallDataGeneratorTest', () => {
             .returns(() => guidStub)
             .verifiable();
 
-        browserAdapterMock
+        storageAdapterMock
             .setup(bam => bam.setUserData(It.isValue({ [LocalStorageDataKeys.installationData]: installationDataStub })))
-            .verifiable();
+            .verifiable(Times.once());
 
         expect(testSubject.getInstallationId()).toEqual(guidStub);
         verifyMocks();
@@ -94,12 +92,7 @@ describe('InstallDataGeneratorTest', () => {
             year: 1999,
         };
 
-        const testSubject = new InstallDataGenerator(
-            initialInstallationData,
-            generateGuidMock.object,
-            dateGetterMock.object,
-            browserAdapterMock.object,
-        );
+        const testSubject = createTestObject(initialInstallationData);
 
         dateStubMock
             .setup(ds => ds.getUTCMonth())
@@ -121,7 +114,7 @@ describe('InstallDataGeneratorTest', () => {
             .returns(() => guidStub)
             .verifiable();
 
-        browserAdapterMock
+        storageAdapterMock
             .setup(bam => bam.setUserData(It.isValue({ [LocalStorageDataKeys.installationData]: installationDataStub })))
             .verifiable();
 
@@ -145,12 +138,7 @@ describe('InstallDataGeneratorTest', () => {
             year: yearStub,
         };
 
-        const testSubject = new InstallDataGenerator(
-            initialInstallationData,
-            generateGuidMock.object,
-            dateGetterMock.object,
-            browserAdapterMock.object,
-        );
+        const testSubject = createTestObject(initialInstallationData);
 
         dateStubMock
             .setup(ds => ds.getUTCMonth())
@@ -172,7 +160,7 @@ describe('InstallDataGeneratorTest', () => {
             .returns(() => guidStub)
             .verifiable();
 
-        browserAdapterMock
+        storageAdapterMock
             .setup(bam => bam.setUserData(It.isValue({ [LocalStorageDataKeys.installationData]: installationDataStub })))
             .verifiable();
 
@@ -190,12 +178,7 @@ describe('InstallDataGeneratorTest', () => {
             year: yearStub,
         };
 
-        const testSubject = new InstallDataGenerator(
-            initialInstallationData,
-            generateGuidMock.object,
-            dateGetterMock.object,
-            browserAdapterMock.object,
-        );
+        const testSubject = createTestObject(initialInstallationData);
 
         dateStubMock
             .setup(ds => ds.getUTCMonth())
@@ -225,8 +208,13 @@ describe('InstallDataGeneratorTest', () => {
 
     function verifyMocks(): void {
         browserAdapterMock.verifyAll();
+        storageAdapterMock.verifyAll();
         dateGetterMock.verifyAll();
         generateGuidMock.verifyAll();
         dateStubMock.verifyAll();
+    }
+
+    function createTestObject(initialInstallationData: InstallationData) {
+        return new InstallDataGenerator(initialInstallationData, generateGuidMock.object, dateGetterMock.object, storageAdapterMock.object);
     }
 });
