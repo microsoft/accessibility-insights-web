@@ -17,7 +17,6 @@ export interface BrowserAdapter extends ClientBrowserAdapter {
     addListenerToTabsOnRemoved(callback: (tabId: number, removeInfo: chrome.tabs.TabRemoveInfo) => void): void;
     addListenerToWebNavigationUpdated(callback: (details: chrome.webNavigation.WebNavigationFramedCallbackDetails) => void): void;
     addListenerOnWindowsFocusChanged(callback: (windowId: number) => void): void;
-    tabsExecuteScript(tabId: number, details: chrome.tabs.InjectDetails, callback?: (result: any[]) => void): void; // TODO remove as is not being used
     tabsQuery(query: chrome.tabs.QueryInfo, callback: (result: chrome.tabs.Tab[]) => void): void;
     createTab(url: string, callback?: (tab: chrome.tabs.Tab) => void): void;
     createTabInNewWindow(url: string, callback?: (tab: chrome.tabs.Tab) => void): void;
@@ -83,11 +82,6 @@ export class ChromeAdapter extends ClientChromeAdapter implements BrowserAdapter
     public getRunTimeId(): string {
         return chrome.runtime.id;
     }
-
-    public tabsExecuteScript(tabId: number, details: chrome.tabs.InjectDetails, callback?: (result: any[]) => void): void {
-        chrome.tabs.executeScript(tabId, details, callback);
-    }
-
     public tabsQuery(query: chrome.tabs.QueryInfo, callback: (result: chrome.tabs.Tab[]) => void): void {
         chrome.tabs.query(query, callback);
     }
