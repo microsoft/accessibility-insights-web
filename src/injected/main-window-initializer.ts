@@ -92,7 +92,9 @@ export class MainWindowInitializer extends WindowInitializer {
         this.devToolStoreProxy = new StoreProxy<DevToolState>(StoreNames[StoreNames.DevToolsStore], this.clientChromeAdapter);
         this.inspectStoreProxy = new StoreProxy<InspectStoreData>(StoreNames[StoreNames.InspectStore], this.clientChromeAdapter);
 
-        const storeActionMessageCreatorFactory = new StoreActionMessageCreatorFactory(this.clientChromeAdapter.sendMessageToFrames, null);
+        const actionMessageDispatcher = new ActionMessageDispatcher(this.clientChromeAdapter.sendMessageToFrames, null);
+
+        const storeActionMessageCreatorFactory = new StoreActionMessageCreatorFactory(actionMessageDispatcher);
 
         const storeActionMessageCreator = storeActionMessageCreatorFactory.forInjected();
         storeActionMessageCreator.getAllStates();
@@ -103,7 +105,6 @@ export class MainWindowInitializer extends WindowInitializer {
             null,
             telemetryDataFactory,
         );
-        const actionMessageDispatcher = new ActionMessageDispatcher(this.clientChromeAdapter.sendMessageToFrames, null);
 
         const targetPageActionMessageCreator = new TargetPageActionMessageCreator(telemetryDataFactory, actionMessageDispatcher);
         const issueFilingActionMessageCreator = new IssueFilingActionMessageCreator(

@@ -32,7 +32,7 @@ export const rendererDependencies: () => RendererDeps = () => {
 
     const store = new StoreProxy<UserConfigurationStoreData>(StoreNames[StoreNames.UserConfigurationStore], chromeAdapter);
     const storesHub = new BaseClientStoresHub<any>([store]);
-    const storeActionMessageCreatorFactory = new StoreActionMessageCreatorFactory(chromeAdapter.sendMessageToFrames, tabId);
+    const storeActionMessageCreatorFactory = new StoreActionMessageCreatorFactory(actionMessageDispatcher);
     const storeActionMessageCreator = storeActionMessageCreatorFactory.forContent();
 
     return {
