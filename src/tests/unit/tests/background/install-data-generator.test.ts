@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
-import { ChromeAdapter } from '../../../../background/browser-adapter';
 import { StorageAPI } from '../../../../background/browser-adapters/storage-adapter';
 import { InstallDataGenerator } from '../../../../background/install-data-generator';
 import { InstallationData } from '../../../../background/installation-data';
@@ -12,7 +11,6 @@ import { generateUID } from '../../../../common/uid-generator';
 describe('InstallDataGeneratorTest', () => {
     let generateGuidMock: IMock<() => string>;
     let dateGetterMock: IMock<() => Date>;
-    let browserAdapterMock: IMock<ChromeAdapter>;
     let storageAdapterMock: IMock<StorageAPI>;
     let dateStubMock: IMock<Date>;
 
@@ -30,7 +28,6 @@ describe('InstallDataGeneratorTest', () => {
         dateGetterMock = Mock.ofInstance<() => Date>(() => {
             return null;
         }, MockBehavior.Strict);
-        browserAdapterMock = Mock.ofType(ChromeAdapter, MockBehavior.Strict);
         storageAdapterMock = Mock.ofType<StorageAPI>();
         dateStubMock = Mock.ofInstance(dateStub as Date);
     });
@@ -200,14 +197,13 @@ describe('InstallDataGeneratorTest', () => {
             .returns(() => guidStub)
             .verifiable(Times.never());
 
-        browserAdapterMock.setup(bam => bam.setUserData(It.isAny())).verifiable(Times.never());
+        storageAdapterMock.setup(bam => bam.setUserData(It.isAny())).verifiable(Times.never());
 
         expect(testSubject.getInstallationId()).toEqual(guidStub);
         verifyMocks();
     });
 
     function verifyMocks(): void {
-        browserAdapterMock.verifyAll();
         storageAdapterMock.verifyAll();
         dateGetterMock.verifyAll();
         generateGuidMock.verifyAll();
