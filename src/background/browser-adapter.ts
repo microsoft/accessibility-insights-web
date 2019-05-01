@@ -17,7 +17,6 @@ export interface BrowserAdapter extends ClientBrowserAdapter {
     addListenerToTabsOnRemoved(callback: (tabId: number, removeInfo: chrome.tabs.TabRemoveInfo) => void): void;
     addListenerToWebNavigationUpdated(callback: (details: chrome.webNavigation.WebNavigationFramedCallbackDetails) => void): void;
     addListenerOnWindowsFocusChanged(callback: (windowId: number) => void): void;
-    tabsExecuteScript(tabId: number, details: chrome.tabs.InjectDetails, callback?: (result: any[]) => void): void;
     tabsQuery(query: chrome.tabs.QueryInfo, callback: (result: chrome.tabs.Tab[]) => void): void;
     createTab(url: string, callback?: (tab: chrome.tabs.Tab) => void): void;
     createTabInNewWindow(url: string, callback?: (tab: chrome.tabs.Tab) => void): void;
@@ -28,19 +27,18 @@ export interface BrowserAdapter extends ClientBrowserAdapter {
     sendMessageToFramesAndTab(tabId: number, message: any): void;
     sendMessageToFrames(message: any): void;
     sendMessageToAllFramesAndTabs(message: any): void;
-    setUserData?(items: Object, callback?: () => void): void;
-    getUserData?(keys: string | string[] | Object, callback: (items: { [key: string]: any }) => void): void;
-    removeUserData?(key: string): void;
+    setUserData(items: Object, callback?: () => void): void;
+    getUserData(keys: string | string[] | Object, callback: (items: { [key: string]: any }) => void): void;
+    removeUserData(key: string): void;
     injectJs(tabId, file: string, callback: Function): void;
     injectCss(tabId, file: string, callback: Function): void;
     getRunTimeId(): string;
     createNotification(options: NotificationOptions): void;
     getRuntimeLastError(): chrome.runtime.LastError;
-    isAllowedFileSchemeAccess?(callback: Function): void;
-    addListenerToLocalStorage?(callback: (changes: object) => void): void;
+    isAllowedFileSchemeAccess(callback: Function): void;
+    addListenerToLocalStorage(callback: (changes: object) => void): void;
     addCommandListener(callback: (command: string) => void): void;
     getCommands(callback: (commands: chrome.commands.Command[]) => void): void;
-    createPopupWindow(url: string, callback: (window: chrome.windows.Window) => void): void;
     openManageExtensionPage(): void;
 }
 
@@ -84,11 +82,6 @@ export class ChromeAdapter extends ClientChromeAdapter implements BrowserAdapter
     public getRunTimeId(): string {
         return chrome.runtime.id;
     }
-
-    public tabsExecuteScript(tabId: number, details: chrome.tabs.InjectDetails, callback?: (result: any[]) => void): void {
-        chrome.tabs.executeScript(tabId, details, callback);
-    }
-
     public tabsQuery(query: chrome.tabs.QueryInfo, callback: (result: chrome.tabs.Tab[]) => void): void {
         chrome.tabs.query(query, callback);
     }
@@ -143,27 +136,6 @@ export class ChromeAdapter extends ClientChromeAdapter implements BrowserAdapter
             },
             window => {
                 callback(window.tabs[0]);
-            },
-        );
-    }
-
-    public createPopupWindow(url: string, callback: (window: chrome.windows.Window) => void): void {
-        const height = 700;
-        const width = 1000;
-        const left = Math.floor(screen.width ? (screen.width - width) / 2 : 0);
-        const top = Math.floor(screen.height ? (screen.height - height) / 2 : 0);
-
-        chrome.windows.create(
-            {
-                url: url,
-                left: left,
-                top: top,
-                width: width,
-                height: height,
-                type: 'popup',
-            },
-            window => {
-                callback(window);
             },
         );
     }
