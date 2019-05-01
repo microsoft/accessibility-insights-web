@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { AppInsights } from 'applicationinsights-js';
-
 import { Assessments } from '../assessments/assessments';
 import { AxeInfo } from '../common/axe-info';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
@@ -71,6 +70,7 @@ getPersistedData(indexedDBInstance).then((persistedData: PersistedData) => {
             persistedData,
             IssueFilingServiceProviderImpl,
             environmentInfoProvider.getEnvironmentInfo(),
+            storageAdapter,
         );
         telemetryLogger.initialize(globalContext.featureFlagsController);
 

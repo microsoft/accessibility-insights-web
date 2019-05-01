@@ -3,6 +3,7 @@
 import { IMock, It, Mock, MockBehavior } from 'typemoq';
 
 import { BrowserAdapter, ChromeAdapter } from '../../../../background/browser-adapter';
+import { StorageAPI } from '../../../../background/browser-adapters/storage-adapter';
 import { PersistedData } from '../../../../background/get-persisted-data';
 import { GlobalContext } from '../../../../background/global-context';
 import { GlobalContextFactory } from '../../../../background/global-context-factory';
@@ -20,6 +21,7 @@ import { CreateTestAssessmentProvider } from '../../common/test-assessment-provi
 
 describe('GlobalContextFactoryTest', () => {
     let _mockChromeAdapter: IMock<BrowserAdapter>;
+    let _mockStorageAdapter: IMock<StorageAPI>;
     let _mocktelemetryEventHandler: IMock<TelemetryEventHandler>;
     let _mockTelemetryDataFactory: IMock<TelemetryDataFactory>;
     let _mockIssueFilingServiceProvider: IMock<IssueFilingServiceProvider>;
@@ -29,6 +31,7 @@ describe('GlobalContextFactoryTest', () => {
     let persistedDataStub: PersistedData;
 
     beforeAll(() => {
+        _mockStorageAdapter = Mock.ofType<StorageAPI>();
         _mockChromeAdapter = Mock.ofType(ChromeAdapter, MockBehavior.Loose);
         _mockChromeAdapter.setup(adapter => adapter.sendMessageToAllFramesAndTabs(It.isAny()));
         _mocktelemetryEventHandler = Mock.ofType(TelemetryEventHandler);
@@ -52,6 +55,7 @@ describe('GlobalContextFactoryTest', () => {
             persistedDataStub,
             _mockIssueFilingServiceProvider.object,
             environmentInfoStub,
+            _mockStorageAdapter.object,
         );
 
         expect(globalContext).toBeInstanceOf(GlobalContext);
