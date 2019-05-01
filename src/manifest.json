@@ -19,7 +19,7 @@
     "content_security_policy": "script-src 'self' 'unsafe-eval' https://az416426.vo.msecnd.net; object-src 'self'",
     "background": {
         "page": "background/background.html",
-        "persistent": false
+        "persistent": true
     },
     "devtools_page": "devtools/devtools.html",
     "web_accessible_resources": ["insights.html", "assessments/*", "injected/*", "background/*", "common/*", "DetailsView/*"],

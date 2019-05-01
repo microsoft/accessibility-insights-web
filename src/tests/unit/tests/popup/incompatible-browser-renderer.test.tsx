@@ -6,15 +6,15 @@ import { It, Mock } from 'typemoq';
 import { IncompatibleBrowserRenderer } from '../../../../popup/incompatible-browser-renderer';
 
 describe('IncompatibleBrowserRenderer', () => {
-    it('render', () => {
+    it('renders', () => {
         const renderMock = Mock.ofType<typeof ReactDOM.render>();
-        const containerStub = Mock.ofType<HTMLElement>();
+        const containerMock = Mock.ofType<HTMLElement>();
         const documentMock = Mock.ofType<NodeSelector & Node>();
 
-        documentMock.setup(mock => mock.querySelector('#popup-container')).returns(() => containerStub.object);
+        documentMock.setup(mock => mock.querySelector('#popup-container')).returns(() => containerMock.object);
 
         renderMock
-            .setup(mock => mock(It.isAny(), containerStub.object))
+            .setup(mock => mock(It.isAny(), containerMock.object))
             .callback(element => {
                 expect(element).toMatchSnapshot();
             })

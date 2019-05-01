@@ -20,7 +20,7 @@ export class IncompatibleBrowserRenderer {
                     <div className="ms-Grid main-section">
                         <div className="launch-panel-general-container">
                             Thanks for your interest in Accessibility Insights!
-                            <div className="some-class">
+                            <div className="incompatible-browser-message">
                                 We don’t currently support your browser.
                                 <br />
                                 Please check <NewTabLink href="https://accessibilityinsights.io/">accessibilityinsights.io</NewTabLink> for

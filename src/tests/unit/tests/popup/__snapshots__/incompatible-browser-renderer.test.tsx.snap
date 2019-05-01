@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`IncompatibleBrowserRenderer render 1`] = `
+exports[`IncompatibleBrowserRenderer renders 1`] = `
 <React.Fragment>
   <div
     className="ms-Fabric unsupported-browser-info-panel"
@@ -16,7 +16,7 @@ exports[`IncompatibleBrowserRenderer render 1`] = `
       >
         Thanks for your interest in Accessibility Insights!
         <div
-          className="some-class"
+          className="incompatible-browser-message"
         >
           We don’t currently support your browser.
           <br />
