@@ -611,31 +611,6 @@ describe('DetailsViewActionMessageCreatorTest', () => {
         dispatcherMock.verify(dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage)), Times.once());
     });
 
-    // test('addFailureInstance', () => {
-    //     const telemetry = {
-    //         source: TelemetryEventSource.DetailsView,
-    //         triggeredBy: TriggeredByNotApplicable,
-    //         selectedRequirement: 'requirement',
-    //         selectedTest: 'test',
-    //     };
-
-    //     const expectedMessage = {
-    //         messageType: Messages.Assessment.AddFailureInstance,
-    //         payload: {
-    //             test: 1,
-    //             requirement: 'requirement',
-    //             description: 'description',
-    //             telemetry: telemetry,
-    //         },
-    //     };
-
-    //     telemetryFactoryMock.setup(tf => tf.forRequirementFromDetailsView(1, 'requirement')).returns(() => telemetry);
-
-    //     testSubject.addFailureInstance('description', 1, 'requirement');
-
-    //     dispatcherMock.verify(dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage)), Times.once());
-    // });
-
     test('removeFailureInstance', () => {
         const telemetry = {
             source: TelemetryEventSource.DetailsView,
