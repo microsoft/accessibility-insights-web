@@ -24,23 +24,18 @@ export class FeatureFlagsController {
         return this.featureFlagStore.getState();
     }
 
-    public disableFeature(feature: string): void {
-        const payload: FeatureFlagPayload = {
-            feature: feature,
-            enabled: false,
-        };
-        const message: Message = {
-            messageType: Messages.FeatureFlags.SetFeatureFlag,
-            payload: payload,
-            tabId: null,
-        };
-        this.interpreter.interpret(message);
+    public disableFeature(feature: string): FeatureFlagStoreData {
+        return this.toggleFeatureFlag(feature, false);
     }
 
-    public enableFeature(feature: string): void {
+    public enableFeature(feature: string): FeatureFlagStoreData {
+        return this.toggleFeatureFlag(feature, true);
+    }
+
+    private toggleFeatureFlag(feature: string, enabled: boolean): FeatureFlagStoreData {
         const payload: FeatureFlagPayload = {
-            feature: feature,
-            enabled: true,
+            feature,
+            enabled,
         };
         const message: Message = {
             messageType: Messages.FeatureFlags.SetFeatureFlag,
@@ -48,6 +43,8 @@ export class FeatureFlagsController {
             tabId: null,
         };
         this.interpreter.interpret(message);
+
+        return this.listFeatureFlags();
     }
 
     public resetFeatureFlags(): void {

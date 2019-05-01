@@ -38,7 +38,7 @@ If applicable, add screenshots to help explain your problem.
 
 - OS: [e.g. Windows/Mac]
 - Version [e.g. 1.140.1]
-- Chrome Version [e.g 71.0]
+- Browser Version [e.g Chrome 71.0]
 - Target Page [e.g www.bing.com]
 
 ## Are you willing to submit a PR?

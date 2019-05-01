@@ -1,0 +1,58 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RestartScanVisualHelperToggleTest onClick: step enabled = false 1`] = `
+<div
+  className="visual-helper"
+>
+  <div
+    className="visual-helper-text"
+  >
+    Visual helper
+  </div>
+  <VisualizationToggle
+    checked={false}
+    className="visual-helper-toggle"
+    disabled={false}
+    onClick={[Function]}
+    visualizationName="Visual helper"
+  />
+</div>
+`;
+
+exports[`RestartScanVisualHelperToggleTest onClick: step enabled = true 1`] = `
+<div
+  className="visual-helper"
+>
+  <div
+    className="visual-helper-text"
+  >
+    Visual helper
+  </div>
+  <VisualizationToggle
+    checked={true}
+    className="visual-helper-toggle"
+    disabled={false}
+    onClick={[Function]}
+    visualizationName="Visual helper"
+  />
+</div>
+`;
+
+exports[`RestartScanVisualHelperToggleTest render 1`] = `
+<div
+  className="visual-helper"
+>
+  <div
+    className="visual-helper-text"
+  >
+    Visual helper
+  </div>
+  <VisualizationToggle
+    checked={true}
+    className="visual-helper-toggle"
+    disabled={false}
+    onClick={[Function]}
+    visualizationName="Visual helper"
+  />
+</div>
+`;

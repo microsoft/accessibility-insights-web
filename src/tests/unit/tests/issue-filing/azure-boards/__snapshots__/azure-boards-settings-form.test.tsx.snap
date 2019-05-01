@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AzureBoardsSettingsForm renders settings is null 1`] = `
+<React.Fragment>
+  <StyledTextFieldBase
+    className="issue-setting"
+    label="Enter the desired Azure Boards project link:"
+    onChange={[Function]}
+    placeholder="https://dev.azure.com/org/project"
+    value=""
+  />
+  <StyledWithResponsiveMode
+    label="File issue details in:"
+    onChange={[Function]}
+    options={
+      Array [
+        Object {
+          "key": "reproSteps",
+          "text": "Repro steps",
+        },
+        Object {
+          "key": "description",
+          "text": "Description",
+        },
+      ]
+    }
+    placeholder="Select an option"
+    selectedKey={null}
+  />
+</React.Fragment>
+`;
+
+exports[`AzureBoardsSettingsForm renders with projectUrl and issueDetailsField 1`] = `
+<React.Fragment>
+  <StyledTextFieldBase
+    className="issue-setting"
+    label="Enter the desired Azure Boards project link:"
+    onChange={[Function]}
+    placeholder="https://dev.azure.com/org/project"
+    value="some project URL"
+  />
+  <StyledWithResponsiveMode
+    label="File issue details in:"
+    onChange={[Function]}
+    options={
+      Array [
+        Object {
+          "key": "reproSteps",
+          "text": "Repro steps",
+        },
+        Object {
+          "key": "description",
+          "text": "Description",
+        },
+      ]
+    }
+    placeholder="Select an option"
+    selectedKey="description"
+  />
+</React.Fragment>
+`;

@@ -5,8 +5,8 @@ import { GroupHeader } from 'office-ui-fabric-react/lib/components/GroupedList/G
 import { IGroupDividerProps } from 'office-ui-fabric-react/lib/DetailsList';
 import * as React from 'react';
 
+import { GuidanceLinks } from '../../common/components/guidance-links';
 import { NewTabLink } from '../../common/components/new-tab-link';
-import { GuidanceLinks } from './guidance-links';
 import { DetailsGroup } from './issues-table-handler';
 
 export interface DetailsGroupHeaderProps extends IGroupDividerProps {

@@ -21,10 +21,10 @@ import { getInnerTextFromJsxElement } from '../common/get-inner-text-from-jsx-el
 import { HTMLElementUtils } from '../common/html-element-utils';
 import { Tab } from '../common/itab';
 import { ActionMessageDispatcher } from '../common/message-creators/action-message-dispatcher';
-import { BugActionMessageCreator } from '../common/message-creators/bug-action-message-creator';
 import { ContentActionMessageCreator } from '../common/message-creators/content-action-message-creator';
 import { DropdownActionMessageCreator } from '../common/message-creators/dropdown-action-message-creator';
 import { InspectActionMessageCreator } from '../common/message-creators/inspect-action-message-creator';
+import { IssueFilingActionMessageCreator } from '../common/message-creators/issue-filing-action-message-creator';
 import { ScopingActionMessageCreator } from '../common/message-creators/scoping-action-message-creator';
 import { StoreActionMessageCreatorFactory } from '../common/message-creators/store-action-message-creator-factory';
 import { UserConfigMessageCreator } from '../common/message-creators/user-config-message-creator';
@@ -50,7 +50,7 @@ import { contentPages } from '../content';
 import { ScannerUtils } from '../injected/scanner-utils';
 import { getVersion, scan } from '../scanner/exposed-apis';
 import { DictionaryStringTo } from '../types/common-types';
-import { BugFilingServiceProviderImpl } from './../bug-filing/bug-filing-service-provider-impl';
+import { IssueFilingServiceProviderImpl } from './../issue-filing/issue-filing-service-provider-impl';
 import { DetailsViewActionMessageCreator } from './actions/details-view-action-message-creator';
 import { IssuesSelectionFactory } from './actions/issues-selection-factory';
 import { AssessmentTableColumnConfigHandler } from './components/assessment-table-column-config-handler';
@@ -130,20 +130,18 @@ if (isNaN(tabId) === false) {
 
             const actionMessageCreator = new DetailsViewActionMessageCreator(chromeAdapter.sendMessageToFrames, tab.id, telemetryFactory);
             const scopingActionMessageCreator = new ScopingActionMessageCreator(
-                chromeAdapter.sendMessageToFrames,
-                tab.id,
                 telemetryFactory,
                 TelemetryEventSource.DetailsView,
+                actionMessageDispatcher,
             );
             const inspectActionMessageCreator = new InspectActionMessageCreator(
-                chromeAdapter.sendMessageToFrames,
-                tab.id,
                 telemetryFactory,
                 TelemetryEventSource.DetailsView,
+                actionMessageDispatcher,
             );
             const dropdownActionMessageCreator = new DropdownActionMessageCreator(telemetryFactory, actionMessageDispatcher);
 
-            const bugActionMessageCreator = new BugActionMessageCreator(
+            const issueFilingActionMessageCreator = new IssueFilingActionMessageCreator(
                 actionMessageDispatcher,
                 telemetryFactory,
                 TelemetryEventSource.DetailsView,
@@ -157,7 +155,7 @@ if (isNaN(tabId) === false) {
                 actionMessageDispatcher,
             );
 
-            const userConfigMessageCreator = new UserConfigMessageCreator(chromeAdapter.sendMessageToFrames, tab.id);
+            const userConfigMessageCreator = new UserConfigMessageCreator(actionMessageDispatcher);
             const storeActionMessageCreator = storeActionMessageCreatorFactory.forDetailsView();
 
             const visualizationActionCreator = new VisualizationActionMessageCreator(actionMessageDispatcher);
@@ -238,7 +236,7 @@ if (isNaN(tabId) === false) {
 
             const deps: DetailsViewContainerDeps = {
                 dropdownClickHandler,
-                bugActionMessageCreator,
+                issueFilingActionMessageCreator,
                 contentProvider: contentPages,
                 contentActionMessageCreator,
                 detailsViewActionMessageCreator: actionMessageCreator,
@@ -268,7 +266,7 @@ if (isNaN(tabId) === false) {
                 dateProvider: DateProvider.getDate,
                 settingsProvider: SettingsProviderImpl,
                 environmentInfoProvider,
-                bugFilingServiceProvider: BugFilingServiceProviderImpl,
+                issueFilingServiceProvider: IssueFilingServiceProviderImpl,
             };
 
             const renderer = new DetailsViewRenderer(

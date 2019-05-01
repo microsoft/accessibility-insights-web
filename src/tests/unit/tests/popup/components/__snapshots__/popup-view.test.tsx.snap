@@ -82,7 +82,7 @@ exports[`PopupView renderFailureMsgPanelForFileUrl 1`] = `
     <div
       className="launch-panel-general-container"
     >
-      Your Chrome settings don't allow Accessibility Insights for Web to run on file URLs.
+      Your browser settings don't allow Accessibility Insights for Web to run on file URLs.
     </div>
     <div>
       <div>

@@ -8,4 +8,5 @@
 - [ ] Added relevant unit test for your changes. (`npm run test`)
 - [ ] Verified code coverage for the changes made. Check coverage report at: `<rootDir>/test-results/unit/coverage`
 - [ ] Ran precheckin (`npm run precheckin`)
-- [ ] Added screenshots/GIFs for UI changes.
+- [ ] (UI changes only) Added screenshots/GIFs to description above
+- [ ] (UI changes only) Verified usability with NVDA/JAWS

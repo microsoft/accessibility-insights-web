@@ -3,14 +3,12 @@
 import { autobind } from '@uifabric/utilities';
 
 import { Assessments } from '../assessments/assessments';
-import { BugFilingServiceProviderImpl } from '../bug-filing/bug-filing-service-provider-impl';
 import { AxeInfo } from '../common/axe-info';
 import { InspectConfigurationFactory } from '../common/configs/inspect-configuration-factory';
 import { DateProvider } from '../common/date-provider';
 import { EnvironmentInfoProvider } from '../common/environment-info-provider';
 import { HTMLElementUtils } from '../common/html-element-utils';
 import { ActionMessageDispatcher } from '../common/message-creators/action-message-dispatcher';
-import { BugActionMessageCreator } from '../common/message-creators/bug-action-message-creator';
 import { DevToolActionMessageCreator } from '../common/message-creators/dev-tool-action-message-creator';
 import { InspectActionMessageCreator } from '../common/message-creators/inspect-action-message-creator';
 import { ScopingActionMessageCreator } from '../common/message-creators/scoping-action-message-creator';
@@ -31,7 +29,9 @@ import { UserConfigurationStoreData } from '../common/types/store-data/user-conf
 import { VisualizationScanResultData } from '../common/types/store-data/visualization-scan-result-data';
 import { VisualizationStoreData } from '../common/types/store-data/visualization-store-data';
 import { generateUID } from '../common/uid-generator';
+import { IssueFilingServiceProviderImpl } from '../issue-filing/issue-filing-service-provider-impl';
 import { scan } from '../scanner/exposed-apis';
+import { IssueFilingActionMessageCreator } from './../common/message-creators/issue-filing-action-message-creator';
 import { AnalyzerController } from './analyzer-controller';
 import { AnalyzerStateUpdateHandler } from './analyzer-state-update-handler';
 import { AnalyzerProvider } from './analyzers/analyzer-provider';
@@ -105,18 +105,14 @@ export class MainWindowInitializer extends WindowInitializer {
         );
         const actionMessageDispatcher = new ActionMessageDispatcher(this.clientChromeAdapter.sendMessageToFrames, null);
 
-        const targetPageActionMessageCreator = new TargetPageActionMessageCreator(
-            this.clientChromeAdapter.sendMessageToFrames,
-            null,
-            telemetryDataFactory,
-        );
-        const bugActionMessageCreator = new BugActionMessageCreator(
+        const targetPageActionMessageCreator = new TargetPageActionMessageCreator(telemetryDataFactory, actionMessageDispatcher);
+        const issueFilingActionMessageCreator = new IssueFilingActionMessageCreator(
             actionMessageDispatcher,
             telemetryDataFactory,
             TelemetryEventSource.TargetPage,
         );
 
-        const userConfigMessageCreator = new UserConfigMessageCreator(this.clientChromeAdapter.sendMessageToFrames, null);
+        const userConfigMessageCreator = new UserConfigMessageCreator(actionMessageDispatcher);
 
         const browserSpec = new NavigatorUtils(window.navigator).getBrowserSpec();
 
@@ -131,10 +127,10 @@ export class MainWindowInitializer extends WindowInitializer {
             this.userConfigStoreProxy,
             devToolActionMessageCreator,
             targetPageActionMessageCreator,
-            bugActionMessageCreator,
+            issueFilingActionMessageCreator,
             userConfigMessageCreator,
             environmentInfoProvider,
-            BugFilingServiceProviderImpl,
+            IssueFilingServiceProviderImpl,
         );
 
         const drawingInitiator = new DrawingInitiator(this.drawingController);
@@ -189,17 +185,15 @@ export class MainWindowInitializer extends WindowInitializer {
         const shadowUtils = new ShadowUtils(htmlElementUtils);
         const scopingListener = new ScopingListener(this.elementFinderByPosition, this.windowUtils, shadowUtils, document);
         const inspectActionMessageCreator = new InspectActionMessageCreator(
-            this.clientChromeAdapter.sendMessageToFrames,
-            null,
             telemetryDataFactory,
             TelemetryEventSource.TargetPage,
+            actionMessageDispatcher,
         );
 
         const scopingActionMessageCreator = new ScopingActionMessageCreator(
-            this.clientChromeAdapter.sendMessageToFrames,
-            null,
             telemetryDataFactory,
             TelemetryEventSource.TargetPage,
+            actionMessageDispatcher,
         );
 
         this.inspectController = new InspectController(

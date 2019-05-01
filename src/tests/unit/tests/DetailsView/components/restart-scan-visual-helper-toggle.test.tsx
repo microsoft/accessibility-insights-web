@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as Enzyme from 'enzyme';
-import * as _ from 'lodash';
+import { shallow, ShallowWrapper } from 'enzyme';
+import { forEach } from 'lodash';
 import * as React from 'react';
 import { IMock, Mock, Times } from 'typemoq';
 import { VisualizationToggle, VisualizationToggleProps } from '../../../../../common/components/visualization-toggle';
@@ -26,7 +26,7 @@ describe('RestartScanVisualHelperToggleTest', () => {
             .withActionMessageCreator(actionMessageCreatorMock.object)
             .build();
 
-        const wrapper = Enzyme.shallow(<RestartScanVisualHelperToggle {...props} />);
+        const wrapper = shallow(<RestartScanVisualHelperToggle {...props} />);
 
         const visualHelperClass = 'visual-helper';
         const toggleDiv = wrapper.find(`.${visualHelperClass}`);
@@ -36,7 +36,6 @@ describe('RestartScanVisualHelperToggleTest', () => {
         const textDiv = toggleDiv.find(`.${visualHelperClass}-text`);
 
         expect(textDiv.exists()).toBe(true);
-        expect(textDiv.childAt(0).text()).toBe(visualHelperText);
 
         const toggle = wrapper.find(VisualizationToggle);
 
@@ -46,55 +45,46 @@ describe('RestartScanVisualHelperToggleTest', () => {
             .build();
 
         assertVisualizationToggle(expectedToggleProps, toggle);
+        assertSnapshotMatch(wrapper);
     });
 
-    test('onClick: step enabled', () => {
+    test.each([true, false])('onClick: step enabled = %s', stepIsEnabled => {
         const props = new VisualHelperToggleConfigBuilder()
-            .withToggleStepEnabled(true)
+            .withToggleStepEnabled(stepIsEnabled)
             .withToggleStepScanned(false)
             .withActionMessageCreator(actionMessageCreatorMock.object)
             .build();
-
-        const wrapper = Enzyme.shallow(<RestartScanVisualHelperToggle {...props} />);
+        const wrapper = shallow(<RestartScanVisualHelperToggle {...props} />);
         actionMessageCreatorMock.reset();
         actionMessageCreatorMock
-            .setup(acm => acm.disableVisualHelper(props.assessmentNavState.selectedTestType, props.assessmentNavState.selectedTestStep))
+            .setup(acm => {
+                return stepIsEnabled
+                    ? acm.disableVisualHelper(props.assessmentNavState.selectedTestType, props.assessmentNavState.selectedTestStep)
+                    : acm.enableVisualHelper(props.assessmentNavState.selectedTestType, stepKey);
+            })
             .verifiable(Times.once());
 
         wrapper.find(VisualizationToggle).simulate('click');
 
         actionMessageCreatorMock.verifyAll();
-    });
-
-    test('onClick: step disabled', () => {
-        const props = new VisualHelperToggleConfigBuilder()
-            .withToggleStepEnabled(false)
-            .withToggleStepScanned(false)
-            .withActionMessageCreator(actionMessageCreatorMock.object)
-            .build();
-
-        const wrapper = Enzyme.shallow(<RestartScanVisualHelperToggle {...props} />);
-        actionMessageCreatorMock.reset();
-        actionMessageCreatorMock
-            .setup(acm => acm.enableVisualHelper(props.assessmentNavState.selectedTestType, stepKey))
-            .verifiable(Times.once());
-
-        wrapper.find(VisualizationToggle).simulate('click');
-
-        actionMessageCreatorMock.verifyAll();
+        assertSnapshotMatch(wrapper);
     });
 
     function assertVisualizationToggle(
         expectedProps: VisualizationToggleProps,
-        visualizationToggle: Enzyme.ShallowWrapper<VisualizationToggleProps>,
+        visualizationToggle: ShallowWrapper<VisualizationToggleProps>,
     ): void {
         expect(visualizationToggle.exists()).toBe(true);
 
         const actualProps = visualizationToggle.props();
 
-        _.forEach(expectedProps, (value, key) => {
+        forEach(expectedProps, (value, key) => {
             expect(actualProps[key]).toBe(value);
         });
+    }
+
+    function assertSnapshotMatch(toggleWrapper: ShallowWrapper): void {
+        expect(toggleWrapper.getElement()).toMatchSnapshot();
     }
 
     function getDefaultVisualizationTogglePropsBuilder(): VisualizationTogglePropsBuilder {

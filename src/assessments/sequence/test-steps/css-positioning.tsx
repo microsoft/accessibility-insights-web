@@ -22,11 +22,11 @@ const howToTest: JSX.Element = (
             <Markup.Term>position:absolute</Markup.Term> or <Markup.Term>float:right</Markup.Term>.
         </p>
         <p>
-            This procedure also uses the Chrome{' '}
+            This procedure also uses the{' '}
             <NewTabLink href="https://chrome.google.com/webstore/detail/web-developer/bfbameneiokkgbdmiekhjnmfkcnldhhm">
                 Web Developer
             </NewTabLink>{' '}
-            extension.
+            browser extension.
         </p>
         <ol>
             <li>
@@ -43,7 +43,7 @@ const howToTest: JSX.Element = (
                 </ol>
             </li>
             <li>
-                If the page does have meaningful positioned content, use the Chrome Web Developer extension (
+                If the page does have meaningful positioned content, use the Web Developer browser extension (
                 <Markup.Term>Miscellaneous > Linearize page</Markup.Term>) to show the page in DOM order.
             </li>
             <li>Verify that the positioned content retains its meaning when the page is linearized.</li>

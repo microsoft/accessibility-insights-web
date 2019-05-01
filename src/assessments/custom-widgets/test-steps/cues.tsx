@@ -38,7 +38,7 @@ const cuesHowToTest: JSX.Element = (
                 </ol>
             </li>
             <li>
-                If a widget <Markup.Emphasis>does</Markup.Emphasis> adopt any of these states, inspect its HTML using the Chrome Developer
+                If a widget <Markup.Emphasis>does</Markup.Emphasis> adopt any of these states, inspect its HTML using the browser Developer
                 Tools to verify that the states are appropriately coded.
                 <ol>
                     <li>

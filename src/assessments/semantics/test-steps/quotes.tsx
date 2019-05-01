@@ -15,7 +15,7 @@ const quotesDescription: JSX.Element = (
 
 const quotesHowToTest: JSX.Element = (
     <div>
-        <p>This procedure uses the Chrome Developer Tools (F12) to inspect the page's HTML.</p>
+        <p>This procedure uses the browser Developer Tools (F12) to inspect the page's HTML.</p>
         <ol>
             <li>
                 Search the page's HTML to determine whether the page includes any <Markup.Tag tagName="blockquote" /> elements.

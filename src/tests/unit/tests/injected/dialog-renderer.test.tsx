@@ -6,13 +6,12 @@ import { GlobalMock, GlobalScope, IGlobalMock, IMock, It, Mock, MockBehavior, Ti
 
 import { DevToolStore } from '../../../../background/stores/dev-tools-store';
 import { UserConfigurationStore } from '../../../../background/stores/global/user-configuration-store';
-import { BugFilingServiceProvider } from '../../../../bug-filing/bug-filing-service-provider';
 import { ClientBrowserAdapter } from '../../../../common/client-browser-adapter';
 import { EnvironmentInfoProvider } from '../../../../common/environment-info-provider';
 import { FeatureFlags, getDefaultFeatureFlagValues } from '../../../../common/feature-flags';
 import { HTMLElementUtils } from '../../../../common/html-element-utils';
-import { BugActionMessageCreator } from '../../../../common/message-creators/bug-action-message-creator';
 import { DevToolActionMessageCreator } from '../../../../common/message-creators/dev-tool-action-message-creator';
+import { IssueFilingActionMessageCreator } from '../../../../common/message-creators/issue-filing-action-message-creator';
 import { UserConfigMessageCreator } from '../../../../common/message-creators/user-config-message-creator';
 import { FeatureFlagStoreData } from '../../../../common/types/store-data/feature-flag-store-data';
 import { WindowUtils } from '../../../../common/window-utils';
@@ -26,6 +25,7 @@ import { MainWindowContext } from '../../../../injected/main-window-context';
 import { DecoratedAxeNodeResult, HtmlElementAxeResults } from '../../../../injected/scanner-utils';
 import { ShadowUtils } from '../../../../injected/shadow-utils';
 import { TargetPageActionMessageCreator } from '../../../../injected/target-page-action-message-creator';
+import { IssueFilingServiceProvider } from '../../../../issue-filing/issue-filing-service-provider';
 import { DictionaryStringTo } from '../../../../types/common-types';
 
 describe('DialogRendererTests', () => {
@@ -81,9 +81,9 @@ describe('DialogRendererTests', () => {
         const userConfigStoreStrictMock = Mock.ofType<UserConfigurationStore>(null, MockBehavior.Strict);
         const devToolActionMessageCreatorMock = Mock.ofType(DevToolActionMessageCreator);
         const targetActionPageMessageCreatorMock = Mock.ofType(TargetPageActionMessageCreator);
-        const bugActionMessageCreatorMock = Mock.ofType(BugActionMessageCreator);
+        const issueFilingActionMessageCreatorMock = Mock.ofType(IssueFilingActionMessageCreator);
         const environmentInfoProviderMock = Mock.ofType(EnvironmentInfoProvider);
-        const bugFilingServiceProviderMock = Mock.ofType(BugFilingServiceProvider);
+        const issueFilingServiceProviderMock = Mock.ofType(IssueFilingServiceProvider);
         const userConfigMessageCreatorMock = Mock.ofType(UserConfigMessageCreator);
 
         mainWindowContext = new MainWindowContext(
@@ -91,10 +91,10 @@ describe('DialogRendererTests', () => {
             userConfigStoreStrictMock.object,
             devToolActionMessageCreatorMock.object,
             targetActionPageMessageCreatorMock.object,
-            bugActionMessageCreatorMock.object,
+            issueFilingActionMessageCreatorMock.object,
             userConfigMessageCreatorMock.object,
             environmentInfoProviderMock.object,
-            bugFilingServiceProviderMock.object,
+            issueFilingServiceProviderMock.object,
         );
     });
 

@@ -52,6 +52,33 @@ html {
     height: 0px; //required for properly resize the popup when zoom in/out
 }
 
+// The CSS selector here specifically targets Microsoft Edge.
+// Certain heights/width values do not sit well with Microsoft Edge and need to be modified.
+@supports (-ms-ime-align: auto) {
+    body {
+        height: unset;
+    }
+
+    html {
+        height: unset;
+    }
+
+    #popup-container .unsupported-browser-info-panel {
+        text-align: center;
+        width: 30em;
+        margin: 20px 14px 20px 14px;
+
+        .incompatible-browser-message {
+            margin-top: 15px;
+        }
+
+        [role='heading'] {
+            width: unset;
+            float: unset;
+        }
+    }
+}
+
 #popup-container,
 #popup-container * {
     box-sizing: border-box;

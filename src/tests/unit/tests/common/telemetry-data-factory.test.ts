@@ -9,6 +9,7 @@ import {
     DetailsViewPivotSelectedTelemetryData,
     ExportResultsTelemetryData,
     FeatureFlagToggleTelemetryData,
+    FileIssueClickTelemetryData,
     InspectTelemetryData,
     RequirementActionTelemetryData,
     RequirementSelectTelemetryData,
@@ -515,6 +516,20 @@ describe('TelemetryDataFactoryTest', () => {
             exportResultsData: exportedHtml.length,
             triggeredBy: 'mouseclick',
             source: testSource,
+        };
+
+        expect(result).toEqual(expected);
+    });
+
+    test('forFileIssueClick', () => {
+        const service = 'test-service';
+
+        const result = testObject.forFileIssueClick(mouseClickEvent, testSource, service);
+
+        const expected: FileIssueClickTelemetryData = {
+            service,
+            source: testSource,
+            triggeredBy: 'mouseclick',
         };
 
         expect(result).toEqual(expected);
