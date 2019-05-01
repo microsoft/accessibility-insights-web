@@ -27,16 +27,16 @@ export interface BrowserAdapter extends ClientBrowserAdapter {
     sendMessageToFramesAndTab(tabId: number, message: any): void;
     sendMessageToFrames(message: any): void;
     sendMessageToAllFramesAndTabs(message: any): void;
-    setUserData?(items: Object, callback?: () => void): void; // TODO try to remove optionality
-    getUserData?(keys: string | string[] | Object, callback: (items: { [key: string]: any }) => void): void; // TODO try to remove optionality
-    removeUserData?(key: string): void; // TODO try to remove optionality
+    setUserData(items: Object, callback?: () => void): void;
+    getUserData(keys: string | string[] | Object, callback: (items: { [key: string]: any }) => void): void;
+    removeUserData(key: string): void;
     injectJs(tabId, file: string, callback: Function): void;
     injectCss(tabId, file: string, callback: Function): void;
     getRunTimeId(): string;
     createNotification(options: NotificationOptions): void;
     getRuntimeLastError(): chrome.runtime.LastError;
-    isAllowedFileSchemeAccess?(callback: Function): void; // TODO try to remove optionality
-    addListenerToLocalStorage?(callback: (changes: object) => void): void; // TODO remove as is not being used
+    isAllowedFileSchemeAccess(callback: Function): void;
+    addListenerToLocalStorage(callback: (changes: object) => void): void;
     addCommandListener(callback: (command: string) => void): void;
     getCommands(callback: (commands: chrome.commands.Command[]) => void): void;
     openManageExtensionPage(): void;
