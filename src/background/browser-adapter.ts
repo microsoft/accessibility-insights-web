@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { ClientBrowserAdapter, ClientChromeAdapter } from '../common/client-browser-adapter';
+import { StorageAdapter } from './browser-adapters/storage-adapter';
 
 export interface NotificationOptions {
     message: string;
@@ -42,7 +43,7 @@ export interface BrowserAdapter extends ClientBrowserAdapter {
     openManageExtensionPage(): void;
 }
 
-export class ChromeAdapter extends ClientChromeAdapter implements BrowserAdapter {
+export class ChromeAdapter extends ClientChromeAdapter implements BrowserAdapter, StorageAdapter {
     public openManageExtensionPage(): void {
         chrome.tabs.create({
             url: `chrome://extensions/?id=${chrome.runtime.id}`,
