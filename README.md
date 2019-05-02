@@ -28,7 +28,6 @@ You can install the extension from one of the following links
 Please ensure that you have at least the **minimum** recommended versions
 
 -   Node - 10.15.0 (Check by running `node --version`) - This is the version being enforced on our builds
--   NPM - 6.4.1 (Check by running `npm --version`)
 
 #### 1. Clone the repository
 
@@ -48,20 +47,26 @@ Please ensure that you have at least the **minimum** recommended versions
 #### 2. Install packages
 
 -   Install the packages
+
     ```bash
-    npm install
+    yarn install
+    ```
+    or just
+
+    ```bash
+    yarn
     ```
 
 #### 3. Build and run unit tests
 
 -   Run the unit tests
     ```bash
-    npm test
+    yarn test
     ```
 -   Build and run the end-to-end tests (note: you must use a **non**-admin prompt to avoid [this issue](https://stackoverflow.com/questions/36835130))
     ```bash
-    npm run build
-    npm run test:e2e
+    yarn build
+    yarn test:e2e
     ```
     There are more details in the Testing section below.
 
@@ -69,7 +74,7 @@ Please ensure that you have at least the **minimum** recommended versions
 
 -   Build the (unpacked) extension
     ```bash
-    npm run build
+    yarn build
     ```
 -   Add the extension to your browser
 
@@ -88,11 +93,11 @@ Please ensure that you have at least the **minimum** recommended versions
 
 -   Run the below command to build, test, check if files have copyright header, check file format styling & tslint issues
     ```bash
-    npm run precheckin
+    yarn precheckin
     ```
 -   If the above command failed for formatting issues, run the below command to format all files
     ```bash
-    npm run format
+    yarn format
     ```
 
 ### More Information
@@ -107,9 +112,9 @@ We use [jest](https://github.com/facebook/jest) as our test framework and [puppe
 
 To run a task from the command palette, press **Ctrl + Shift + P**, select `Tasks: Run Task`, and select the task you want to run:
 
--   `npm: test` runs all unit tests
+-   `yarn test` runs all unit tests
 -   `Test current file in VSCode` runs just the tests in the currently-opened test file
--   `npm: test:e2e` runs all end-to-end tests
+-   `yarn test:e2e` runs all end-to-end tests
 
 To debug a test inside VS Code, set a breakpoint and click the debug button or press **F5**.
 
@@ -121,15 +126,15 @@ You can start an interactive watch session that automatically runs tests affecte
 
 #### Using the terminal
 
-`npm test` runs all unit tests.
-`npm test -- -u` runs all unit tests and updates snapshot files.
+`yarn test` runs all unit tests.
+`yarn test -- -u` runs all unit tests and updates snapshot files.
 
-`npm run test:e2e` runs all end-to-end tests - you'll need to run `npm run build` first if you've changed non-test code.
-`npm run test:e2e -- -u` runs all end-to-end tests and updates snapshot files.
+`yarn test:e2e` runs all end-to-end tests - you'll need to run `yarn build` first if you've changed non-test code.
+`yarn test:e2e -- -u` runs all end-to-end tests and updates snapshot files.
 
-To run a single or small number of test files, run `npm test -- {FILE_NAME_REGEX}`
+To run a single or small number of test files, run `yarn test -- {FILE_NAME_REGEX}`
 
-Options after the `--` are passed to Jest. For example, `npm test -- --watch` will start an interactive watch session. See more about Jest options [here](https://jestjs.io/docs/en/cli.html).
+Options after the `--` are passed to Jest. For example, `yarn test -- --watch` will start an interactive watch session. See more about Jest options [here](https://jestjs.io/docs/en/cli.html).
 
 To debug using an external tool, run `node --inspect-brk ./node_modules/jest/bin/jest.js --runInBand {RELATIVE_FILE_PATH}`. In Chrome, for example, navigate to `chrome://inspect` and click `Open dedicated DevTools for Node`.
 
