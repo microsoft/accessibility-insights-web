@@ -210,7 +210,7 @@ describe('InstallDataGeneratorTest', () => {
         dateStubMock.verifyAll();
     }
 
-    function createTestObject(initialInstallationData: InstallationData) {
+    function createTestObject(initialInstallationData: InstallationData): InstallDataGenerator {
         return new InstallDataGenerator(initialInstallationData, generateGuidMock.object, dateGetterMock.object, storageAdapterMock.object);
     }
 });
