@@ -1,3 +1,6 @@
+# Copyright (c) Microsoft Corporation. All rights reserved.
+# Licensed under the MIT License.
+
 if (Test-Path ./drop/productionEdge) { Remove-Item ./drop/productionEdge -Recurse }
 if (Test-Path ./drop/productionEdge.appx) { Remove-Item ./drop/productionEdge.appx }
 Copy-Item ./drop/production ./drop/productionEdge -Recurse
