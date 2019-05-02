@@ -1,20 +1,19 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IMock, It, Mock, MockBehavior } from 'typemoq';
-import { Message } from '../../../../../common/message';
+import { Mock } from 'typemoq';
+import { ActionMessageDispatcher } from '../../../../../common/message-creators/action-message-dispatcher';
 import { StoreActionMessageCreator } from '../../../../../common/message-creators/store-action-message-creator';
 import { StoreActionMessageCreatorFactory } from '../../../../../common/message-creators/store-action-message-creator-factory';
 import { Messages } from '../../../../../common/messages';
 
 describe('StoreActionMessageCreatorFactoryTest', () => {
-    let postMessageMock: IMock<(_message: Message) => void>;
-    const tabId: number = -1;
+    const dispatcherMock = Mock.ofType<ActionMessageDispatcher>();
 
     beforeEach(() => {
-        postMessageMock = Mock.ofInstance(_message => {}, MockBehavior.Strict);
+        dispatcherMock.reset();
     });
 
-    test('forPopup', () => {
+    it('dispatches message types for forPopup', () => {
         const messages: string[] = [
             Messages.Visualizations.State.GetCurrentVisualizationToggleState,
             Messages.Command.GetCommands,
@@ -26,8 +25,8 @@ describe('StoreActionMessageCreatorFactoryTest', () => {
         testWithExpectedMessages(messages, testObject => testObject.forPopup());
     });
 
-    test('forDetailsView', () => {
-        const message: string[] = [
+    it('dispatches message types for forDetailsView', () => {
+        const messages: string[] = [
             Messages.Visualizations.DetailsView.GetState,
             Messages.Visualizations.State.GetCurrentVisualizationResultState,
             Messages.Visualizations.State.GetCurrentVisualizationToggleState,
@@ -38,10 +37,10 @@ describe('StoreActionMessageCreatorFactoryTest', () => {
             Messages.UserConfig.GetCurrentState,
         ];
 
-        testWithExpectedMessages(message, testObject => testObject.forDetailsView());
+        testWithExpectedMessages(messages, testObject => testObject.forDetailsView());
     });
 
-    test('forInjected', () => {
+    it('dispatches message types for forInjected', () => {
         const messages: string[] = [
             Messages.Visualizations.State.GetCurrentVisualizationToggleState,
             Messages.Scoping.GetCurrentState,
@@ -57,7 +56,7 @@ describe('StoreActionMessageCreatorFactoryTest', () => {
         testWithExpectedMessages(messages, testObject => testObject.forInjected());
     });
 
-    test('forContent', () => {
+    it('dispatches message types for forContent', () => {
         const messages: string[] = [Messages.UserConfig.GetCurrentState];
 
         testWithExpectedMessages(messages, testObject => testObject.forContent());
@@ -67,25 +66,18 @@ describe('StoreActionMessageCreatorFactoryTest', () => {
         messages: string[],
         getter: (testObject: StoreActionMessageCreatorFactory) => StoreActionMessageCreator,
     ): void {
-        messages.forEach(message => setupPostMessageMock(message));
+        messages.forEach(message => setupDispatcherMock(message));
 
-        const testObject = new StoreActionMessageCreatorFactory(postMessageMock.object, tabId);
+        const testObject = new StoreActionMessageCreatorFactory(dispatcherMock.object);
 
         const creator = getter(testObject);
 
         creator.getAllStates();
 
-        postMessageMock.verifyAll();
+        dispatcherMock.verifyAll();
     }
 
-    function setupPostMessageMock(messageType: string): void {
-        postMessageMock.setup(pm =>
-            pm(
-                It.isValue({
-                    messageType,
-                    tabId: tabId,
-                }),
-            ),
-        );
+    function setupDispatcherMock(messageType: string): void {
+        dispatcherMock.setup(dispatcher => dispatcher.dispatchType(messageType));
     }
 });

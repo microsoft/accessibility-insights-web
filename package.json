@@ -87,6 +87,7 @@
         "webpack-cli": "^3.3.1"
     },
     "dependencies": {
+        "@types/ua-parser-js": "^0.7.33",
         "applicationinsights-js": "^1.0.20",
         "axe-core": "3.2.2",
         "classnames": "^2.2.6",
@@ -99,6 +100,7 @@
         "react-helmet": "^5.2.0",
         "react-router-dom": "^4.3.1",
         "requirejs": "2.3.5",
+        "ua-parser-js": "^0.7.19",
         "uuid": "^3.3.2"
     }
 }

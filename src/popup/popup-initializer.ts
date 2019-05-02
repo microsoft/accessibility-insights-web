@@ -3,6 +3,7 @@
 import { autobind } from '@uifabric/utilities';
 import { loadTheme } from 'office-ui-fabric-react';
 import * as ReactDOM from 'react-dom';
+
 import { BrowserAdapter } from '../background/browser-adapter';
 import { A11YSelfValidator } from '../common/a11y-self-validator';
 import { AxeInfo } from '../common/axe-info';
@@ -42,6 +43,7 @@ import { DiagnosticViewClickHandler } from './handlers/diagnostic-view-toggle-cl
 import { IPopupHandlers } from './handlers/ipopup-handlers';
 import { LaunchPanelHeaderClickHandler } from './handlers/launch-panel-header-click-handler';
 import { PopupViewControllerHandler } from './handlers/popup-view-controller-handler';
+import { IncompatibleBrowserRenderer } from './incompatible-browser-renderer';
 import { LaunchPadRowConfigurationFactory } from './launch-pad-row-configuration-factory';
 import { MainRenderer, MainRendererDeps } from './main-renderer';
 import { SupportLinkHandler } from './support-link-handler';
@@ -55,10 +57,16 @@ export class PopupInitializer {
     constructor(
         private readonly chromeAdapter: BrowserAdapter,
         private readonly targetTabFinder: TargetTabFinder,
+        private readonly userAgentBrowser: IUAParser.IBrowser,
         private logger: Logger = createDefaultLogger(),
     ) {}
 
     public initialize(): Promise<void> {
+        if (this.userAgentBrowser.name === 'Edge') {
+            this.useIncompatibleBrowserRenderer();
+            return;
+        }
+
         return this.targetTabFinder
             .getTargetTab()
             .then(tabInfo => {
@@ -68,6 +76,11 @@ export class PopupInitializer {
                 this.logger.log('Error occurred at popup initialization:', err);
             });
     }
+
+    private useIncompatibleBrowserRenderer = () => {
+        const incompatibleBrowserRenderer = new IncompatibleBrowserRenderer(ReactDOM.render, document);
+        incompatibleBrowserRenderer.render();
+    };
 
     @autobind
     private initializePopup(): void {
@@ -80,10 +93,7 @@ export class PopupInitializer {
 
         const userConfigMessageCreator = new UserConfigMessageCreator(actionMessageDispatcher);
 
-        const storeActionMessageCreatorFactory = new StoreActionMessageCreatorFactory(
-            this.chromeAdapter.sendMessageToFrames,
-            this.targetTabInfo.tab.id,
-        );
+        const storeActionMessageCreatorFactory = new StoreActionMessageCreatorFactory(actionMessageDispatcher);
 
         const storeActionMessageCreator = storeActionMessageCreatorFactory.forPopup();
 
