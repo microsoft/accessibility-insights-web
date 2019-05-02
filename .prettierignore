@@ -6,7 +6,6 @@ test-results/
 .DS_Store
 copyright-header.txt
 LICENSE
-package-lock.json
 yarn.lock
 .prettierignore
 docs/NOTICE.html
