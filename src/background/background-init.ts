@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { AppInsights } from 'applicationinsights-js';
+
 import { Assessments } from '../assessments/assessments';
 import { AxeInfo } from '../common/axe-info';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
@@ -15,7 +16,6 @@ import { UrlValidator } from '../common/url-validator';
 import { WindowUtils } from '../common/window-utils';
 import { IssueFilingServiceProviderImpl } from '../issue-filing/issue-filing-service-provider-impl';
 import { ChromeAdapter } from './browser-adapter';
-import { StorageAdapter } from './browser-adapters/storage-adapter';
 import { ChromeCommandHandler } from './chrome-command-handler';
 import { DetailsViewController } from './details-view-controller';
 import { DevToolsListener } from './dev-tools-listener';
@@ -37,9 +37,8 @@ import { UserStoredDataCleaner } from './user-stored-data-cleaner';
 
 declare var window: Window & InsightsFeatureFlags;
 const browserAdapter = new ChromeAdapter();
-const storageAdapter = new StorageAdapter();
 const urlValidator = new UrlValidator();
-const backgroundInitCleaner = new UserStoredDataCleaner(storageAdapter);
+const backgroundInitCleaner = new UserStoredDataCleaner(browserAdapter);
 
 const indexedDBInstance: IndexedDBAPI = new IndexedDBUtil();
 
@@ -47,13 +46,13 @@ backgroundInitCleaner.cleanUserData(deprecatedStorageDataKeys);
 
 // tslint:disable-next-line:no-floating-promises - top-level entry points are intentionally floating promises
 getPersistedData(indexedDBInstance).then((persistedData: PersistedData) => {
-    storageAdapter.getUserData(storageDataKeys, (userData: LocalStorageData) => {
+    browserAdapter.getUserData(storageDataKeys, (userData: LocalStorageData) => {
         const assessmentsProvider = Assessments;
         const windowUtils = new WindowUtils();
         const telemetryDataFactory = new TelemetryDataFactory();
         const telemetryLogger = new TelemetryLogger();
 
-        const telemetryClient = getTelemetryClient(userData, browserAdapter, telemetryLogger, AppInsights, storageAdapter);
+        const telemetryClient = getTelemetryClient(userData, browserAdapter, telemetryLogger, AppInsights, browserAdapter);
 
         const telemetryEventHandler = new TelemetryEventHandler(telemetryClient);
 
@@ -70,7 +69,7 @@ getPersistedData(indexedDBInstance).then((persistedData: PersistedData) => {
             persistedData,
             IssueFilingServiceProviderImpl,
             environmentInfoProvider.getEnvironmentInfo(),
-            storageAdapter,
+            browserAdapter,
         );
         telemetryLogger.initialize(globalContext.featureFlagsController);
 
