@@ -2,10 +2,10 @@
 // Licensed under the MIT License.
 import { each } from 'lodash';
 
-import { StorageAPI } from './browser-adapters/storage-adapter';
+import { StorageAdapter } from './browser-adapters/storage-adapter';
 
 export class UserStoredDataCleaner {
-    constructor(private readonly storageAdapter?: StorageAPI) {}
+    constructor(private readonly storageAdapter?: StorageAdapter) {}
 
     public cleanUserData(userDataKeys: string[], callback?: () => void): void {
         this.storageAdapter.getUserData(userDataKeys, userDataKeysMap => {

@@ -6,7 +6,7 @@ import { FeatureFlags, getDefaultFeatureFlagValues, getForceDefaultFlags } from 
 import { StoreNames } from '../../../common/stores/store-names';
 import { FeatureFlagStoreData } from '../../../common/types/store-data/feature-flag-store-data';
 import { FeatureFlagActions, FeatureFlagPayload } from '../../actions/feature-flag-actions';
-import { StorageAPI } from '../../browser-adapters/storage-adapter';
+import { StorageAdapter } from '../../browser-adapters/storage-adapter';
 import { LocalStorageDataKeys } from '../../local-storage-data-keys';
 import { LocalStorageData } from '../../storage-data';
 import { BaseStoreImpl } from '../base-store-impl';
@@ -14,7 +14,7 @@ import { BaseStoreImpl } from '../base-store-impl';
 export class FeatureFlagStore extends BaseStoreImpl<FeatureFlagStoreData> {
     constructor(
         private readonly featureFlagActions: FeatureFlagActions,
-        private readonly storageAdapter: StorageAPI,
+        private readonly storageAdapter: StorageAdapter,
         private readonly userData: LocalStorageData,
     ) {
         super(StoreNames.FeatureFlagStore);

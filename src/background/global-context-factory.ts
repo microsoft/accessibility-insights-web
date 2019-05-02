@@ -10,7 +10,7 @@ import { AssessmentsProvider } from './../assessments/types/assessments-provider
 import { AssessmentActionCreator } from './actions/assessment-action-creator';
 import { GlobalActionHub } from './actions/global-action-hub';
 import { BrowserAdapter } from './browser-adapter';
-import { StorageAPI } from './browser-adapters/storage-adapter';
+import { StorageAdapter } from './browser-adapters/storage-adapter';
 import { CompletedTestStepTelemetryCreator } from './completed-test-step-telemetry-creator';
 import { FeatureFlagsController } from './feature-flags-controller';
 import { PersistedData } from './get-persisted-data';
@@ -34,7 +34,7 @@ export class GlobalContextFactory {
         persistedData: PersistedData,
         issueFilingServiceProvider: IssueFilingServiceProvider,
         environmentInfo: EnvironmentInfo,
-        storageAdapter: StorageAPI,
+        storageAdapter: StorageAdapter,
     ): GlobalContext {
         const interpreter = new Interpreter();
 

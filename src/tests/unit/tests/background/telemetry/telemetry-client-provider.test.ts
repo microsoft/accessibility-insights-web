@@ -3,7 +3,7 @@
 import { Mock } from 'typemoq';
 
 import { BrowserAdapter } from '../../../../../background/browser-adapter';
-import { StorageAPI } from '../../../../../background/browser-adapters/storage-adapter';
+import { StorageAdapter } from '../../../../../background/browser-adapters/storage-adapter';
 import { LocalStorageData } from '../../../../../background/storage-data';
 import { AppInsightsTelemetryClient } from '../../../../../background/telemetry/app-insights-telemetry-client';
 import { NullTelemetryClient } from '../../../../../background/telemetry/null-telemetry-client';
@@ -31,7 +31,7 @@ describe('TelemetryClientProvider', () => {
             browserAdapterMock.object,
             Mock.ofType<TelemetryLogger>().object,
             Mock.ofType<Microsoft.ApplicationInsights.IAppInsights>().object,
-            Mock.ofType<StorageAPI>().object,
+            Mock.ofType<StorageAdapter>().object,
         );
 
         expect(result).toBeInstanceOf(AppInsightsTelemetryClient);
@@ -45,7 +45,7 @@ describe('TelemetryClientProvider', () => {
             Mock.ofType<BrowserAdapter>().object,
             Mock.ofType<TelemetryLogger>().object,
             Mock.ofType<Microsoft.ApplicationInsights.IAppInsights>().object,
-            Mock.ofType<StorageAPI>().object,
+            Mock.ofType<StorageAdapter>().object,
         );
 
         expect(result).toBeInstanceOf(NullTelemetryClient);

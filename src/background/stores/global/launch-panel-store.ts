@@ -4,7 +4,7 @@ import { autobind } from '@uifabric/utilities';
 import { StoreNames } from '../../../common/stores/store-names';
 import { LaunchPanelStoreData } from '../../../common/types/store-data/launch-panel-store-data';
 import { LaunchPanelType } from '../../../popup/components/popup-view';
-import { StorageAPI } from '../../browser-adapters/storage-adapter';
+import { StorageAdapter } from '../../browser-adapters/storage-adapter';
 import { LocalStorageDataKeys } from '../../local-storage-data-keys';
 import { LocalStorageData } from '../../storage-data';
 import { BaseStoreImpl } from '../base-store-impl';
@@ -13,7 +13,7 @@ import { LaunchPanelStateActions } from './../../actions/launch-panel-state-acti
 export class LaunchPanelStore extends BaseStoreImpl<LaunchPanelStoreData> {
     constructor(
         private readonly launchPanelStateActions: LaunchPanelStateActions,
-        private readonly storageAdapter: StorageAPI,
+        private readonly storageAdapter: StorageAdapter,
         private readonly userData: LocalStorageData,
     ) {
         super(StoreNames.LaunchPanelStateStore);

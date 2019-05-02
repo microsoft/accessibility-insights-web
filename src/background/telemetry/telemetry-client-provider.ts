@@ -5,7 +5,7 @@ import { DateProvider } from '../../common/date-provider';
 import { generateUID } from '../../common/uid-generator';
 import { ApplicationBuildGenerator } from '../application-build-generator';
 import { BrowserAdapter } from '../browser-adapter';
-import { StorageAPI } from '../browser-adapters/storage-adapter';
+import { StorageAdapter } from '../browser-adapters/storage-adapter';
 import { InstallDataGenerator } from '../install-data-generator';
 import { LocalStorageData } from '../storage-data';
 import { AppInsightsTelemetryClient } from './app-insights-telemetry-client';
@@ -19,7 +19,7 @@ export const getTelemetryClient = (
     browserAdapter: BrowserAdapter,
     logger: TelemetryLogger,
     appInsights: Microsoft.ApplicationInsights.IAppInsights,
-    storageAdapter: StorageAPI,
+    storageAdapter: StorageAdapter,
 ): TelemetryClient => {
     const appInsightsInstrumentationKey = config.getOption('appInsightsInstrumentationKey');
 

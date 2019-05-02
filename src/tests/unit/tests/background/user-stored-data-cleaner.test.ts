@@ -3,15 +3,15 @@
 import { isFunction } from 'lodash';
 import { IMock, It, Mock, Times } from 'typemoq';
 
-import { StorageAPI } from '../../../../background/browser-adapters/storage-adapter';
+import { StorageAdapter } from '../../../../background/browser-adapters/storage-adapter';
 import { UserStoredDataCleaner } from '../../../../background/user-stored-data-cleaner';
 
 describe('UserStoredDataCleanerTest', () => {
-    let storageAdapterMock: IMock<StorageAPI>;
+    let storageAdapterMock: IMock<StorageAdapter>;
     let testObject: UserStoredDataCleaner;
 
     beforeEach(() => {
-        storageAdapterMock = Mock.ofType<StorageAPI>();
+        storageAdapterMock = Mock.ofType<StorageAdapter>();
         testObject = new UserStoredDataCleaner(storageAdapterMock.object);
     });
 

@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { IMock, It, Mock, Times } from 'typemoq';
 import { FeatureFlagActions, FeatureFlagPayload } from '../../../../../../background/actions/feature-flag-actions';
-import { StorageAPI } from '../../../../../../background/browser-adapters/storage-adapter';
+import { StorageAdapter } from '../../../../../../background/browser-adapters/storage-adapter';
 import { LocalStorageDataKeys } from '../../../../../../background/local-storage-data-keys';
 import { LocalStorageData } from '../../../../../../background/storage-data';
 import { FeatureFlagStore } from '../../../../../../background/stores/global/feature-flag-store';
@@ -13,7 +13,7 @@ import { DictionaryStringTo } from '../../../../../../types/common-types';
 import { createStoreWithNullParams, StoreTester } from '../../../../common/store-tester';
 
 describe('FeatureFlagStoreTest', () => {
-    let storageAdapterMock: IMock<StorageAPI>;
+    let storageAdapterMock: IMock<StorageAdapter>;
     let fakeFeatureFlagDefaultValue: FeatureFlagStoreData;
     let fakeFeatureFlagTestValue: FeatureFlagStoreData;
     const fakeFeature = 'fakeFeature';
@@ -25,7 +25,7 @@ describe('FeatureFlagStoreTest', () => {
         fakeFeatureFlagTestValue = getDefaultFeatureFlagValues();
         fakeFeatureFlagTestValue[fakeFeature] = false;
 
-        storageAdapterMock = Mock.ofType<StorageAPI>();
+        storageAdapterMock = Mock.ofType<StorageAdapter>();
     });
 
     test('constructor, no side effects', () => {
