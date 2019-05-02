@@ -28,9 +28,6 @@ export interface BrowserAdapter extends ClientBrowserAdapter {
     sendMessageToFramesAndTab(tabId: number, message: any): void;
     sendMessageToFrames(message: any): void;
     sendMessageToAllFramesAndTabs(message: any): void;
-    setUserData(items: Object, callback?: () => void): void;
-    getUserData(keys: string | string[] | Object, callback: (items: { [key: string]: any }) => void): void;
-    removeUserData(key: string): void;
     injectJs(tabId, file: string, callback: Function): void;
     injectCss(tabId, file: string, callback: Function): void;
     getRunTimeId(): string;
