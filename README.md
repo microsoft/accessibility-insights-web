@@ -28,6 +28,9 @@ You can install the extension from one of the following links
 Please ensure that you have at least the **minimum** recommended versions
 
 -   Node - 10.15.0 (Check by running `node --version`) - This is the version being enforced on our builds
+-   Yarn - Version >= v1.12.1 (Check by running `yarn --version`)
+
+> In case you dont have yarn, please install from: [Yarn](https://www.npmjs.com/package/yarn)
 
 #### 1. Clone the repository
 
@@ -50,12 +53,6 @@ Please ensure that you have at least the **minimum** recommended versions
 
     ```bash
     yarn install
-    ```
-
-    or just
-
-    ```bash
-    yarn
     ```
 
 #### 3. Build and run unit tests
