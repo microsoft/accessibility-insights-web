@@ -5,7 +5,7 @@ import { each } from 'lodash';
 import { StorageAdapter } from './browser-adapters/storage-adapter';
 
 export class UserStoredDataCleaner {
-    constructor(private readonly storageAdapter?: StorageAdapter) {}
+    constructor(private readonly storageAdapter: StorageAdapter) {}
 
     public cleanUserData(userDataKeys: string[], callback?: () => void): void {
         this.storageAdapter.getUserData(userDataKeys, userDataKeysMap => {
