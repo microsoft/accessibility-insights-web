@@ -35,11 +35,10 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
         const payload: string[] = selectedTargets;
         const message: Message = {
             messageType: messages.Issues.UpdateSelectedTargets,
-            tabId: this._tabId,
             payload,
         };
 
-        this.dispatchMessage(message);
+        this.dispatcher.dispatchMessage(message);
     }
 
     @autobind
@@ -50,9 +49,8 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
             telemetry,
         };
 
-        this.dispatchMessage({
+        this.dispatcher.dispatchMessage({
             messageType: messageType,
-            tabId: this._tabId,
             payload,
         });
     }
@@ -65,9 +63,8 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
             telemetry,
         };
 
-        this.dispatchMessage({
+        this.dispatcher.dispatchMessage({
             messageType: messageType,
-            tabId: this._tabId,
             payload,
         });
     }
@@ -80,9 +77,8 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
             telemetry,
         };
 
-        this.dispatchMessage({
+        this.dispatcher.dispatchMessage({
             messageType: messageType,
-            tabId: this._tabId,
             payload,
         });
     }
@@ -102,9 +98,8 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
             telemetry: telemetry,
         };
 
-        this.dispatchMessage({
+        this.dispatcher.dispatchMessage({
             messageType: messageType,
-            tabId: this._tabId,
             payload: payload,
         });
     }
@@ -117,24 +112,23 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
             TelemetryEvents.TelemetryEventSource.DetailsView,
         );
 
-        this.sendTelemetry(TelemetryEvents.EXPORT_RESULTS, telemetryData);
+        this.dispatcher.sendTelemetry(TelemetryEvents.EXPORT_RESULTS, telemetryData);
     }
 
     @autobind
     public copyIssueDetailsClicked(event: React.MouseEvent<any>): void {
         const telemetryData = this.telemetryFactory.withTriggeredByAndSource(event, TelemetryEvents.TelemetryEventSource.DetailsView);
-        this.sendTelemetry(TelemetryEvents.COPY_ISSUE_DETAILS, telemetryData);
+        this.dispatcher.sendTelemetry(TelemetryEvents.COPY_ISSUE_DETAILS, telemetryData);
     }
 
     public updateFocusedInstanceTarget(instanceTarget: string[]): void {
         const payload: string[] = instanceTarget;
         const message: Message = {
             messageType: messages.Issues.UpdateFocusedInstance,
-            tabId: this._tabId,
             payload,
         };
 
-        this.dispatchMessage(message);
+        this.dispatcher.dispatchMessage(message);
     }
 
     public selectDetailsView(
@@ -148,9 +142,8 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
             pivotType: pivot,
         };
 
-        this.dispatchMessage({
+        this.dispatcher.dispatchMessage({
             messageType: messages.DetailsView.Select,
-            tabId: this._tabId,
             payload,
         });
     }
@@ -166,9 +159,8 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
             selectedTest: visualizationType,
         };
 
-        this.dispatchMessage({
+        this.dispatcher.dispatchMessage({
             messageType: Messages.Assessment.SelectTestRequirement,
-            tabId: this._tabId,
             payload: payload,
         });
     }
@@ -181,9 +173,8 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
             pivotKey: DetailsViewPivotType[pivotKey],
         };
 
-        this.dispatchMessage({
+        this.dispatcher.dispatchMessage({
             messageType: Messages.Visualizations.DetailsView.PivotSelect,
-            tabId: this._tabId,
             payload: payload,
         });
     }
@@ -194,9 +185,9 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
         const payload: SwitchToTargetTabPayload = {
             telemetry,
         };
-        this.dispatchMessage({
+
+        this.dispatcher.dispatchMessage({
             messageType: Messages.Tab.Switch,
-            tabId: this._tabId,
             payload,
         });
     }
@@ -209,9 +200,8 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
             telemetry,
         };
 
-        this.dispatchMessage({
+        this.dispatcher.dispatchMessage({
             messageType: Messages.Assessment.StartOver,
-            tabId: this._tabId,
             payload,
         });
     }
@@ -224,9 +214,8 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
             telemetry,
         };
 
-        this.dispatchMessage({
+        this.dispatcher.dispatchMessage({
             messageType: shouldScan ? Messages.Assessment.EnableVisualHelper : Messages.Assessment.EnableVisualHelperWithoutScan,
-            tabId: this._tabId,
             payload,
         });
     }
@@ -236,9 +225,8 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
             test,
         };
 
-        this.dispatchMessage({
+        this.dispatcher.dispatchMessage({
             messageType: Messages.Assessment.DisableVisualHelperForTest,
-            tabId: this._tabId,
             payload,
         });
     }
@@ -250,9 +238,8 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
             telemetry,
         };
 
-        this.dispatchMessage({
+        this.dispatcher.dispatchMessage({
             messageType: Messages.Assessment.DisableVisualHelper,
-            tabId: this._tabId,
             payload,
         });
     }
@@ -268,9 +255,8 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
             telemetry,
         };
 
-        this.dispatchMessage({
+        this.dispatcher.dispatchMessage({
             messageType: Messages.Assessment.ChangeStatus,
-            tabId: this._tabId,
             payload,
         });
     }
@@ -285,9 +271,8 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
             telemetry,
         };
 
-        this.dispatchMessage({
+        this.dispatcher.dispatchMessage({
             messageType: Messages.Assessment.ChangeRequirementStatus,
-            tabId: this._tabId,
             payload,
         });
     }
@@ -302,9 +287,8 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
             telemetry,
         };
 
-        this.dispatchMessage({
+        this.dispatcher.dispatchMessage({
             messageType: Messages.Assessment.Undo,
-            tabId: this._tabId,
             payload,
         });
     }
@@ -318,9 +302,8 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
             telemetry: telemetry,
         };
 
-        this.dispatchMessage({
+        this.dispatcher.dispatchMessage({
             messageType: Messages.Assessment.UndoChangeRequirementStatus,
-            tabId: this._tabId,
             payload,
         });
     }
@@ -341,9 +324,8 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
             telemetry,
         };
 
-        this.dispatchMessage({
+        this.dispatcher.dispatchMessage({
             messageType: Messages.Assessment.ChangeVisualizationState,
-            tabId: this._tabId,
             payload,
         });
     }
@@ -357,9 +339,8 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
             telemetry,
         };
 
-        this.dispatchMessage({
+        this.dispatcher.dispatchMessage({
             messageType: Messages.Assessment.AddFailureInstance,
-            tabId: this._tabId,
             payload,
         });
     }
@@ -374,16 +355,15 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
             telemetry,
         };
 
-        this.dispatchMessage({
+        this.dispatcher.dispatchMessage({
             messageType: Messages.Assessment.RemoveFailureInstance,
-            tabId: this._tabId,
             payload,
         });
     }
 
     public detailsViewOpened(selectedPivot: DetailsViewPivotType): void {
         const telemetryData = this.telemetryFactory.forDetailsViewOpened(selectedPivot);
-        this.sendTelemetry(TelemetryEvents.DETAILS_VIEW_OPEN, telemetryData);
+        this.dispatcher.sendTelemetry(TelemetryEvents.DETAILS_VIEW_OPEN, telemetryData);
     }
 
     @autobind
@@ -397,9 +377,8 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
             telemetry,
         };
 
-        this.dispatchMessage({
+        this.dispatcher.dispatchMessage({
             messageType: Messages.Assessment.EditFailureInstance,
-            tabId: this._tabId,
             payload,
         });
     }
@@ -412,9 +391,8 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
             telemetry,
         };
 
-        this.dispatchMessage({
+        this.dispatcher.dispatchMessage({
             messageType: Messages.Assessment.PassUnmarkedInstances,
-            tabId: this._tabId,
             payload,
         });
     }
@@ -429,9 +407,8 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
             telemetry: telemetry,
         };
 
-        this.dispatchMessage({
+        this.dispatcher.dispatchMessage({
             messageType: Messages.Assessment.ChangeVisualizationStateForAll,
-            tabId: this._tabId,
             payload,
         });
     }
@@ -442,9 +419,8 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
         const payload: BaseActionPayload = {
             telemetry: telemetry,
         };
-        this.dispatchMessage({
+        this.dispatcher.dispatchMessage({
             messageType: Messages.Assessment.ContinuePreviousAssessment,
-            tabId: this._tabId,
             payload,
         });
     }
@@ -455,9 +431,8 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
         const payload: BaseActionPayload = {
             telemetry: telemetry,
         };
-        this.dispatchMessage({
+        this.dispatcher.dispatchMessage({
             messageType: Messages.Assessment.StartOverAllAssessments,
-            tabId: this._tabId,
             payload,
         });
     }
@@ -468,9 +443,9 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
         const payload: BaseActionPayload = {
             telemetry: telemetry,
         };
-        this.dispatchMessage({
+
+        this.dispatcher.dispatchMessage({
             messageType: Messages.Assessment.CancelStartOver,
-            tabId: this._tabId,
             payload,
         });
     }
@@ -481,9 +456,9 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
         const payload: BaseActionPayload = {
             telemetry: telemetry,
         };
-        this.dispatchMessage({
+
+        this.dispatcher.dispatchMessage({
             messageType: Messages.Assessment.CancelStartOverAllAssessments,
-            tabId: this._tabId,
             payload,
         });
     }
@@ -491,11 +466,10 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
     public changeRightContentPanel(viewType: DetailsViewRightContentPanelType): void {
         const payload: DetailsViewRightContentPanelType = viewType;
         const message = {
-            tabId: this._tabId,
             messageType: Messages.Visualizations.DetailsView.SetDetailsViewRightContentPanel,
             payload: payload,
         };
 
-        this.dispatchMessage(message);
+        this.dispatcher.dispatchMessage(message);
     }
 }
