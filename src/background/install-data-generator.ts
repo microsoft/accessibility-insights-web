@@ -5,18 +5,14 @@ import { InstallationData } from './installation-data';
 import { LocalStorageDataKeys } from './local-storage-data-keys';
 
 export class InstallDataGenerator {
-    private generateGuid: () => string;
-    private dateGetter: () => Date;
     private installationData: InstallationData;
 
     constructor(
-        initialInstallationData: InstallationData,
-        generateGuid: () => string,
-        dateGetter: () => Date,
+        readonly initialInstallationData: InstallationData,
+        private readonly generateGuid: () => string,
+        private readonly dateGetter: () => Date,
         private readonly storageAdapter: StorageAdapter,
     ) {
-        this.generateGuid = generateGuid;
-        this.dateGetter = dateGetter;
         this.installationData = initialInstallationData;
     }
 
