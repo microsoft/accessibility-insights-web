@@ -28,9 +28,9 @@ You can install the extension from one of the following links
 Please ensure that you have at least the **minimum** recommended versions
 
 -   Node - 10.15.0 (Check by running `node --version`) - This is the version being enforced on our builds
--   Yarn - Version >= v1.12.1 (Check by running `yarn --version`)
+-   Yarn - Version >= v1.15.2 (Check by running `yarn --version`)
 
-> In case you dont have yarn, please install from: [Yarn](https://www.npmjs.com/package/yarn)
+> In case you dont have yarn, please install from: [Yarn](https://yarnpkg.com/en/)
 
 #### 1. Clone the repository
 
