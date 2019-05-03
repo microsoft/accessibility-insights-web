@@ -9,6 +9,7 @@ import { WindowUtils } from '../common/window-utils';
 import { ActionCreator } from './actions/action-creator';
 import { ActionHub } from './actions/action-hub';
 import { ContentActionCreator } from './actions/content-action-creator';
+import { DetailsViewActionCreator } from './actions/details-view-action-creator';
 import { DevToolsActionCreator } from './actions/dev-tools-action-creator';
 import { InspectActionCreator } from './actions/inspect-action-creator';
 import { ScopingActionCreator } from './actions/scoping-action-creator';
@@ -59,6 +60,13 @@ export class TabContextFactory {
             notificationCreator,
             this.visualizationConfigurationFactory,
             this.targetTabController,
+        );
+
+        const detailsViewActionCreator = new DetailsViewActionCreator(
+            interpreter.registerTypeToPayloadCallback,
+            actionsHub.detailsViewActions,
+            detailsViewController,
+            this.telemetryEventHandler,
         );
 
         const tabActionCreator = new TabActionCreator(
@@ -115,6 +123,7 @@ export class TabContextFactory {
         simpleSequentialScanner.beginListeningToStores();
 
         actionCreator.registerCallbacks();
+        detailsViewActionCreator.registerCallback();
         devToolsActionCreator.registerCallbacks();
         inspectActionsCreator.registerCallbacks();
         tabActionCreator.registerCallbacks();
