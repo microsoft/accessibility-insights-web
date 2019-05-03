@@ -63,9 +63,7 @@ export class HtmlElementAxeResultsHelper {
     private addMissingFrameResults(frameResults: HTMLIFrameResult[]): void {
         const missingFrames: HTMLIFrameElement[] = [];
 
-        const allFramesIncludingCurrentFrames = Array.prototype.slice.call(this.htmlElementUtils.getAllElementsByTagName(
-            'iframe',
-        ) as NodeListOf<HTMLIFrameElement>);
+        const allFramesIncludingCurrentFrames = Array.prototype.slice.call(this.htmlElementUtils.getAllElementsByTagName('iframe'));
         allFramesIncludingCurrentFrames.push(null); // current frame
 
         for (let framePos = 0; framePos < allFramesIncludingCurrentFrames.length; framePos++) {

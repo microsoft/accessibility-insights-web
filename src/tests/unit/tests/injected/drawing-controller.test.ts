@@ -24,7 +24,7 @@ import { HtmlElementAxeResults } from '../../../../injected/scanner-utils';
 import { Drawer, DrawerInitData } from '../../../../injected/visualization/drawer';
 import { DrawerProvider } from '../../../../injected/visualization/drawer-provider';
 import { HighlightBoxDrawer } from '../../../../injected/visualization/highlight-box-drawer';
-import { NodeListBuilder } from '../../common/node-list-builder';
+import { HTMLCollectionBuilder } from '../../common/html-collection-builder';
 
 class VisualizationWindowMessageStubBuilder {
     private visualizationType: VisualizationType;
@@ -333,7 +333,7 @@ describe('DrawingControllerTest', () => {
 
         hTMLElementUtils
             .setup(dm => dm.getAllElementsByTagName('iframe'))
-            .returns(() => NodeListBuilder.createNodeList([iframeElement as any]))
+            .returns(() => HTMLCollectionBuilder.create([iframeElement as any]))
             .verifiable(Times.once());
 
         drawerMock
@@ -460,7 +460,7 @@ describe('DrawingControllerTest', () => {
         const iframeElement = 'iframeElement';
         hTMLElementUtils
             .setup(dm => dm.getAllElementsByTagName(It.isAny()))
-            .returns(() => NodeListBuilder.createNodeList([iframeElement as any]))
+            .returns(() => HTMLCollectionBuilder.create([iframeElement as any]))
             .verifiable(Times.once());
 
         const testObject = new DrawingController(

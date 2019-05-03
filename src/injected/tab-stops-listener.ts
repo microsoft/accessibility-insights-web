@@ -122,7 +122,7 @@ export class TabStopsListener {
     @autobind
     private onStartListenToTabStops(): void {
         this.addListeners();
-        const iframes: NodeListOf<HTMLIFrameElement> = this.getAllFrames();
+        const iframes = this.getAllFrames();
         for (let pos = 0; pos < iframes.length; pos++) {
             this.startListenToTabStopsInFrame(iframes[pos]);
         }
@@ -131,7 +131,7 @@ export class TabStopsListener {
     @autobind
     private onStopListenToTabStops(): void {
         this.removeListeners();
-        const iframes: NodeListOf<HTMLIFrameElement> = this.getAllFrames();
+        const iframes = this.getAllFrames();
         for (let pos = 0; pos < iframes.length; pos++) {
             this.stopListenToTabStopsInFrame(iframes[pos]);
         }
@@ -177,7 +177,7 @@ export class TabStopsListener {
         this.sendTabbedElements(tabStopEvent);
     }
 
-    private getAllFrames(): NodeListOf<HTMLIFrameElement> {
-        return this.htmlElementUtils.getAllElementsByTagName('iframe') as NodeListOf<HTMLIFrameElement>;
+    private getAllFrames(): HTMLCollectionOf<HTMLIFrameElement> {
+        return this.htmlElementUtils.getAllElementsByTagName('iframe') as HTMLCollectionOf<HTMLIFrameElement>;
     }
 }
