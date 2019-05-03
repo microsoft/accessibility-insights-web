@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 export class WindowUtils {
-    public postMessage(win: Window, data: any, targetOrigin: string): void {
+    public postMessage(win: MessageEventSource, data: any, targetOrigin: string & Transferable[]): void {
         win.postMessage(JSON.stringify(data), targetOrigin);
     }
 

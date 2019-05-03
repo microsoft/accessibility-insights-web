@@ -9,6 +9,7 @@ import { FrameMessageResponseCallback, WindowMessageHandler } from '../../../../
 import { WindowMessageMarshaller } from '../../../../../injected/frameCommunicators/window-message-marshaller';
 
 describe('WindowMessageHandlerTests', () => {
+    const starOrigin = '*' as (string & Transferable[]);
     let testSubject: WindowMessageHandler;
     let mockWindowUtils: IMock<WindowUtils>;
     let mockMessageMarshaller: IMock<WindowMessageMarshaller>;
@@ -66,7 +67,7 @@ describe('WindowMessageHandlerTests', () => {
             .returns(() => sampleMessage)
             .verifiable();
 
-        mockWindowUtils.setup(x => x.postMessage(targetWindow, sampleMessage, '*')).verifiable(Times.once());
+        mockWindowUtils.setup(x => x.postMessage(targetWindow, sampleMessage, starOrigin)).verifiable(Times.once());
 
         mockCreateFrameResponderCallback
             .setup(x => x(targetWindow, sampleMessage.command, sampleMessage.messageId))
@@ -100,7 +101,7 @@ describe('WindowMessageHandlerTests', () => {
             .returns(() => sampleMessage)
             .verifiable();
 
-        mockWindowUtils.setup(x => x.postMessage(targetWindow, sampleMessage, '*')).verifiable(Times.once());
+        mockWindowUtils.setup(x => x.postMessage(targetWindow, sampleMessage, starOrigin)).verifiable(Times.once());
 
         // sending message to iframe
         testSubject.post(targetWindow, sampleMessage.command, sampleMessage.message, callback, sampleMessage.messageId);
@@ -144,7 +145,7 @@ describe('WindowMessageHandlerTests', () => {
             .setup(x => x.createMessage(sampleMessage.command, sampleMessage.message, sampleMessage.messageId))
             .returns(() => sampleMessage);
 
-        mockWindowUtils.setup(x => x.postMessage(targetWindow, sampleMessage, '*')).verifiable(Times.once());
+        mockWindowUtils.setup(x => x.postMessage(targetWindow, sampleMessage, starOrigin)).verifiable(Times.once());
 
         // sending message to iframe
         testSubject.post(targetWindow, sampleMessage.command, sampleMessage.message, callback, sampleMessage.messageId);
@@ -185,7 +186,7 @@ describe('WindowMessageHandlerTests', () => {
             .setup(x => x.createMessage(sampleMessage.command, sampleMessage.message, sampleMessage.messageId))
             .returns(() => sampleMessage);
 
-        mockWindowUtils.setup(x => x.postMessage(targetWindow, sampleMessage, '*')).verifiable(Times.once());
+        mockWindowUtils.setup(x => x.postMessage(targetWindow, sampleMessage, starOrigin)).verifiable(Times.once());
 
         // sending message to iframe (to register callback)
         testSubject.post(targetWindow, sampleMessage.command, sampleMessage.message, callback, sampleMessage.messageId);
@@ -269,7 +270,7 @@ describe('WindowMessageHandlerTests', () => {
             .setup(x => x.createMessage(responseMessage.command, sampleError, responseMessage.messageId))
             .returns(() => responseMessage)
             .verifiable();
-        mockWindowUtils.setup(x => x.postMessage(responseEvent.source, responseMessage, '*')).verifiable(Times.once());
+        mockWindowUtils.setup(x => x.postMessage(responseEvent.source, responseMessage, starOrigin)).verifiable(Times.once());
 
         messageCallback(responseEvent);
 
@@ -318,7 +319,7 @@ describe('WindowMessageHandlerTests', () => {
             .setup(x => x.createMessage(sampleMessage.command, sampleMessage.message, sampleMessage.messageId))
             .returns(() => sampleMessage)
             .verifiable(Times.once());
-        mockWindowUtils.setup(x => x.postMessage(targetWindow, sampleMessage, '*')).verifiable(Times.once());
+        mockWindowUtils.setup(x => x.postMessage(targetWindow, sampleMessage, starOrigin)).verifiable(Times.once());
 
         frameCallback(sampleMessage.message, sampleMessage.error, null);
 
