@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { autobind } from '@uifabric/utilities';
+
 import { TestMode } from '../../common/configs/test-mode';
 import { VisualizationConfigurationFactory } from '../../common/configs/visualization-configuration-factory';
 import { RegisterTypeToPayloadCallback } from '../../common/message';
@@ -8,7 +9,6 @@ import { Messages } from '../../common/messages';
 import { NotificationCreator } from '../../common/notification-creator';
 import * as TelemetryEvents from '../../common/telemetry-events';
 import { VisualizationType } from '../../common/types/visualization-type';
-import { DetailsViewRightContentPanelType } from '../../DetailsView/components/left-nav/details-view-right-content-panel-type';
 import { ScanCompletedPayload } from '../../injected/analyzers/analyzer';
 import { DictionaryNumberTo } from '../../types/common-types';
 import { VisualizationActions } from '../actions/visualization-actions';
@@ -26,7 +26,6 @@ import {
     ToggleActionPayload,
     VisualizationTogglePayload,
 } from './action-payloads';
-import { DetailsViewActions } from './details-view-actions';
 import { InspectActions } from './inspect-actions';
 import { PreviewFeaturesActions } from './preview-features-actions';
 
@@ -35,7 +34,6 @@ const visualizationMessages = Messages.Visualizations;
 export class ActionCreator {
     private visualizationActions: VisualizationActions;
     private visualizationScanResultActions: VisualizationScanResultActions;
-    private detailsViewActions: DetailsViewActions;
     private previewFeaturesActions: PreviewFeaturesActions;
     private registerTypeToPayloadCallback: RegisterTypeToPayloadCallback;
     private detailsViewController: DetailsViewController;
@@ -65,7 +63,6 @@ export class ActionCreator {
     ) {
         this.visualizationActions = actionHub.visualizationActions;
         this.previewFeaturesActions = actionHub.previewFeaturesActions;
-        this.detailsViewActions = actionHub.detailsViewActions;
         this.visualizationScanResultActions = actionHub.visualizationScanResultActions;
         this.inspectActions = actionHub.inspectActions;
         this.registerTypeToPayloadCallback = registerTypeToPayloadCallback;
@@ -101,19 +98,11 @@ export class ActionCreator {
         this.registerTypeToPayloadCallback(visualizationMessages.DetailsView.Select, this.onPivotChildSelected);
         this.registerTypeToPayloadCallback(visualizationMessages.DetailsView.PivotSelect, this.onDetailsViewPivotSelected);
         this.registerTypeToPayloadCallback(visualizationMessages.DetailsView.Close, this.onDetailsViewClosed);
-        this.registerTypeToPayloadCallback(visualizationMessages.DetailsView.GetState, this.onGetDetailsViewCurrentState);
-        this.registerTypeToPayloadCallback(
-            visualizationMessages.DetailsView.SetDetailsViewRightContentPanel,
-            this.onSetDetailsViewRightContentPanel,
-        );
 
         this.registerTypeToPayloadCallback(Messages.ChromeFeature.configureCommand, this.onOpenConfigureCommandTab);
 
         this.registerTypeToPayloadCallback(Messages.PreviewFeatures.OpenPanel, this.onOpenPreviewFeaturesPanel);
         this.registerTypeToPayloadCallback(Messages.PreviewFeatures.ClosePanel, this.onClosePreviewFeaturesPanel);
-
-        this.registerTypeToPayloadCallback(Messages.SettingsPanel.OpenPanel, this.onOpenSettingsPanel);
-        this.registerTypeToPayloadCallback(Messages.SettingsPanel.ClosePanel, this.onCloseSettingsPanel);
 
         this.registerTypeToPayloadCallback(Messages.Assessment.AssessmentScanCompleted, this.onAssessmentScanCompleted);
         this.registerTypeToPayloadCallback(Messages.Assessment.StartOver, this.onStartOver);
@@ -201,19 +190,6 @@ export class ActionCreator {
     private onClosePreviewFeaturesPanel(payload: BaseActionPayload): void {
         this.previewFeaturesActions.closePreviewFeatures.invoke(null);
         this.telemetryEventHandler.publishTelemetry(TelemetryEvents.PREVIEW_FEATURES_CLOSE, payload);
-    }
-
-    @autobind
-    private onOpenSettingsPanel(payload: BaseActionPayload, tabId: number): void {
-        this.detailsViewActions.openSettingsPanel.invoke(null);
-        this.showDetailsView(tabId);
-        this.telemetryEventHandler.publishTelemetry(TelemetryEvents.SETTINGS_PANEL_OPEN, payload);
-    }
-
-    @autobind
-    private onCloseSettingsPanel(payload: BaseActionPayload): void {
-        this.detailsViewActions.closeSettingsPanel.invoke(null);
-        this.telemetryEventHandler.publishTelemetry(TelemetryEvents.SETTINGS_PANEL_CLOSE, payload);
     }
 
     @autobind
@@ -346,15 +322,5 @@ export class ActionCreator {
     @autobind
     private onSetHoveredOverSelector(payload: string[]): void {
         this.inspectActions.setHoveredOverSelector.invoke(payload);
-    }
-
-    @autobind
-    private onSetDetailsViewRightContentPanel(payload: DetailsViewRightContentPanelType): void {
-        this.detailsViewActions.setSelectedDetailsViewRightContentPanel.invoke(payload);
-    }
-
-    @autobind
-    private onGetDetailsViewCurrentState(): void {
-        this.detailsViewActions.getCurrentState.invoke(null);
     }
 }
