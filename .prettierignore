@@ -4,8 +4,10 @@ extension/
 .github/
 test-results/
 .DS_Store
+AppXManifest.xml
 copyright-header.txt
 LICENSE
+new-appx.ps1
 yarn.lock
 .prettierignore
 docs/NOTICE.html
