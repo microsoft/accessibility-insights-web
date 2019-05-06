@@ -92,18 +92,15 @@ export class MainWindowInitializer extends WindowInitializer {
         this.devToolStoreProxy = new StoreProxy<DevToolState>(StoreNames[StoreNames.DevToolsStore], this.clientChromeAdapter);
         this.inspectStoreProxy = new StoreProxy<InspectStoreData>(StoreNames[StoreNames.InspectStore], this.clientChromeAdapter);
 
-        const storeActionMessageCreatorFactory = new StoreActionMessageCreatorFactory(this.clientChromeAdapter.sendMessageToFrames, null);
+        const actionMessageDispatcher = new ActionMessageDispatcher(this.clientChromeAdapter.sendMessageToFrames, null);
+
+        const storeActionMessageCreatorFactory = new StoreActionMessageCreatorFactory(actionMessageDispatcher);
 
         const storeActionMessageCreator = storeActionMessageCreatorFactory.forInjected();
         storeActionMessageCreator.getAllStates();
 
         const telemetryDataFactory = new TelemetryDataFactory();
-        const devToolActionMessageCreator = new DevToolActionMessageCreator(
-            this.clientChromeAdapter.sendMessageToFrames,
-            null,
-            telemetryDataFactory,
-        );
-        const actionMessageDispatcher = new ActionMessageDispatcher(this.clientChromeAdapter.sendMessageToFrames, null);
+        const devToolActionMessageCreator = new DevToolActionMessageCreator(telemetryDataFactory, actionMessageDispatcher);
 
         const targetPageActionMessageCreator = new TargetPageActionMessageCreator(telemetryDataFactory, actionMessageDispatcher);
         const issueFilingActionMessageCreator = new IssueFilingActionMessageCreator(

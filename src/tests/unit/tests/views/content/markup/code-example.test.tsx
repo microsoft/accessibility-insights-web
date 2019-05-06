@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { shallow } from 'enzyme';
 import * as React from 'react';
+
 import { CodeExample } from '../../../../../../views/content/markup/code-example';
 
 describe('<CodeExample>', () => {
@@ -64,5 +65,15 @@ describe('<CodeExample>', () => {
     it('renders with a highlight that breaks in the middle of multiple lines', () => {
         const wrapper = shallow(<CodeExample>{`Line 1\nLine 2 [HIGHLIGHT\nHERE]Line 3\nLine 4`}</CodeExample>);
         expect(wrapper.getElement()).toMatchSnapshot();
+    });
+
+    it('br has the correct key', () => {
+        const wrapper = shallow(<CodeExample>{`Line 1\nLine 2`}</CodeExample>);
+        expect(
+            wrapper
+                .find('br')
+                .at(0)
+                .key(),
+        ).toEqual(`line-breaker-1`);
     });
 });

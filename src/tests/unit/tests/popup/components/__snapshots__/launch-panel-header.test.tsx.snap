@@ -98,6 +98,20 @@ exports[`LaunchPanelHeaderTest render contextual menu renders with new assessmen
             "_callbacks": Array [],
             "_renderer": ReactShallowRenderer {
               "_context": Object {},
+              "_didScheduleRenderPhaseUpdate": false,
+              "_dispatcher": Object {
+                "readContext": [Function],
+                "useCallback": [Function],
+                "useContext": [Function],
+                "useDebugValue": [Function],
+                "useEffect": [Function],
+                "useImperativeHandle": [Function],
+                "useLayoutEffect": [Function],
+                "useMemo": [Function],
+                "useReducer": [Function],
+                "useRef": [Function],
+                "useState": [Function],
+              },
               "_element": <LaunchPanelHeader
                 deps={
                   Object {
@@ -120,12 +134,13 @@ exports[`LaunchPanelHeaderTest render contextual menu renders with new assessmen
                 supportLinkHandler={Object {}}
                 title="test title"
               />,
+              "_firstWorkInProgressHook": null,
               "_forcedUpdate": false,
               "_instance": [Circular],
-              "_newState": Object {
-                "isContextMenuVisible": true,
-                "target": "test-target",
-              },
+              "_isReRender": false,
+              "_newState": null,
+              "_numberOfReRenders": 0,
+              "_renderPhaseUpdates": null,
               "_rendered": <Header
                 rowExtraClassName="header-title"
                 subtitle="test subtitle"
@@ -173,6 +188,7 @@ exports[`LaunchPanelHeaderTest render contextual menu renders with new assessmen
               </Header>,
               "_rendering": false,
               "_updater": [Circular],
+              "_workInProgressHook": null,
             },
           },
         }
@@ -245,6 +261,20 @@ exports[`LaunchPanelHeaderTest render contextual menu renders without new assess
             "_callbacks": Array [],
             "_renderer": ReactShallowRenderer {
               "_context": Object {},
+              "_didScheduleRenderPhaseUpdate": false,
+              "_dispatcher": Object {
+                "readContext": [Function],
+                "useCallback": [Function],
+                "useContext": [Function],
+                "useDebugValue": [Function],
+                "useEffect": [Function],
+                "useImperativeHandle": [Function],
+                "useLayoutEffect": [Function],
+                "useMemo": [Function],
+                "useReducer": [Function],
+                "useRef": [Function],
+                "useState": [Function],
+              },
               "_element": <LaunchPanelHeader
                 deps={
                   Object {
@@ -263,12 +293,13 @@ exports[`LaunchPanelHeaderTest render contextual menu renders without new assess
                 supportLinkHandler={Object {}}
                 title="test title"
               />,
+              "_firstWorkInProgressHook": null,
               "_forcedUpdate": false,
               "_instance": [Circular],
-              "_newState": Object {
-                "isContextMenuVisible": true,
-                "target": "test-target",
-              },
+              "_isReRender": false,
+              "_newState": null,
+              "_numberOfReRenders": 0,
+              "_renderPhaseUpdates": null,
               "_rendered": <Header
                 rowExtraClassName="header-title"
                 subtitle="test subtitle"
@@ -308,6 +339,7 @@ exports[`LaunchPanelHeaderTest render contextual menu renders without new assess
               </Header>,
               "_rendering": false,
               "_updater": [Circular],
+              "_workInProgressHook": null,
             },
           },
         }

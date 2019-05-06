@@ -3,8 +3,8 @@
 import { Dropdown, IDropdownOption, TextField } from 'office-ui-fabric-react';
 import * as React from 'react';
 
-import { NamedSFC } from '../../common/react/named-sfc';
-import { SettingsFormProps } from '../types/settings-form-props';
+import { NamedSFC } from '../../../common/react/named-sfc';
+import { SettingsFormProps } from '../../types/settings-form-props';
 import {
     AzureBoardsIssueDetailField,
     AzureBoardsIssueDetailLocationDropdownOption,
@@ -13,11 +13,10 @@ import {
 } from './azure-boards-issue-filing-service';
 
 export const AzureBoardsSettingsForm = NamedSFC<SettingsFormProps<AzureBoardsIssueFilingSettings>>('AzureBoardsSettingsForm', props => {
-    const defaultKey = 'reproSteps';
     const options: AzureBoardsIssueDetailLocationDropdownOption[] = [
         {
-            key: defaultKey,
-            text: 'Repro steps (default)',
+            key: 'reproSteps',
+            text: 'Repro steps',
         },
         {
             key: 'description',

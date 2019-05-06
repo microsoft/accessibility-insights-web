@@ -171,7 +171,7 @@ module.exports = function(grunt) {
                 files: ['src/**/*.scss'],
                 tasks: ['sass', 'copy:styles', 'embed-styles:code', 'drop:dev'],
             },
-            // We assume webpack --watch is running separately (usually via 'npm run watch')
+            // We assume webpack --watch is running separately (usually via 'yarn watch')
             'webpack-output': {
                 files: ['extension/devBundle/**/*.*'],
                 tasks: ['embed-styles:code', 'drop:dev'],
@@ -300,6 +300,12 @@ module.exports = function(grunt) {
                 '16': config.options.icon16,
                 '48': config.options.icon48,
                 '128': config.options.icon128,
+            },
+            browser_action: {
+                default_icon: {
+                    '20': config.options.icon16,
+                    '40': config.options.icon48,
+                },
             },
         });
         grunt.file.write(manifestDest, JSON.stringify(manifestJSON, undefined, 2));

@@ -5,12 +5,15 @@ import { TextField } from 'office-ui-fabric-react/lib/TextField';
 import * as React from 'react';
 import { IMock, Mock, Times } from 'typemoq';
 
-import { IssueFilingServicePropertiesMap } from '../../../../../common/types/store-data/user-configuration-store';
-import { SettingsDeps } from '../../../../../DetailsView/components/settings-panel/settings/settings-props';
-import { OnPropertyUpdateCallback } from '../../../../../issue-filing/components/issue-filing-settings-container';
-import { gitHubIssueFilingUrlProvider } from '../../../../../issue-filing/github/create-github-issue-filing-url';
-import { GitHubIssueFilingService, GitHubIssueFilingSettings } from '../../../../../issue-filing/github/github-issue-filing-service';
-import { SettingsFormProps } from '../../../../../issue-filing/types/settings-form-props';
+import { IssueFilingServicePropertiesMap } from '../../../../../../common/types/store-data/user-configuration-store';
+import { SettingsDeps } from '../../../../../../DetailsView/components/settings-panel/settings/settings-props';
+import { OnPropertyUpdateCallback } from '../../../../../../issue-filing/components/issue-filing-settings-container';
+import { gitHubIssueFilingUrlProvider } from '../../../../../../issue-filing/services/github/create-github-issue-filing-url';
+import {
+    GitHubIssueFilingService,
+    GitHubIssueFilingSettings,
+} from '../../../../../../issue-filing/services/github/github-issue-filing-service';
+import { SettingsFormProps } from '../../../../../../issue-filing/types/settings-form-props';
 
 describe('GithubIssueFilingServiceTest', () => {
     let props: SettingsFormProps<GitHubIssueFilingSettings>;
@@ -57,7 +60,7 @@ describe('GithubIssueFilingServiceTest', () => {
     });
 
     describe('check for invalid settings', () => {
-        it.each(invalidTestSettings)('with %o', settings => {
+        it.each(invalidTestSettings)('with %o', (settings: GitHubIssueFilingSettings) => {
             expect(GitHubIssueFilingService.isSettingsValid(settings)).toBe(false);
         });
     });

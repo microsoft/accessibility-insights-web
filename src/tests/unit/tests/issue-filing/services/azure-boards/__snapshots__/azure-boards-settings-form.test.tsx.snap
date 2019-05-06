@@ -16,7 +16,7 @@ exports[`AzureBoardsSettingsForm renders settings is null 1`] = `
       Array [
         Object {
           "key": "reproSteps",
-          "text": "Repro steps (default)",
+          "text": "Repro steps",
         },
         Object {
           "key": "description",
@@ -46,7 +46,7 @@ exports[`AzureBoardsSettingsForm renders with projectUrl and issueDetailsField 1
       Array [
         Object {
           "key": "reproSteps",
-          "text": "Repro steps (default)",
+          "text": "Repro steps",
         },
         Object {
           "key": "description",

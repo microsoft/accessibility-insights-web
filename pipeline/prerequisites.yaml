@@ -6,8 +6,5 @@ steps:
           versionSpec: '10.15.0'
       displayName: use node 10.15.0
 
-    - task: Npm@1
-      inputs:
-          command: custom
-          customCommand: ci
-      displayName: npm ci
+    - script: yarn install --frozen-lockfile
+      displayName: install packages and dependencies

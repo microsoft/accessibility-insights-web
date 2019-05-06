@@ -1,18 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { Message } from '../message';
 import { Messages } from '../messages';
+import { ActionMessageDispatcher } from './action-message-dispatcher';
 import { StoreActionMessageCreator } from './store-action-message-creator';
 import { StoreActionMessageCreatorImpl } from './store-action-message-creator-impl';
 
 export class StoreActionMessageCreatorFactory {
-    private postMessage: (message: Message) => void;
-    private tabId: number;
-
-    constructor(postMessage: (message: Message) => void, tabId: number) {
-        this.postMessage = postMessage;
-        this.tabId = tabId;
-    }
+    constructor(private readonly dispatcher: ActionMessageDispatcher) {}
 
     public forPopup(): StoreActionMessageCreator {
         const getStateMessages: string[] = [
@@ -23,11 +17,11 @@ export class StoreActionMessageCreatorFactory {
             Messages.UserConfig.GetCurrentState,
         ];
 
-        return new StoreActionMessageCreatorImpl(getStateMessages, this.postMessage, this.tabId);
+        return new StoreActionMessageCreatorImpl(getStateMessages, this.dispatcher);
     }
 
     public forDetailsView(): StoreActionMessageCreator {
-        const getStateMessage: string[] = [
+        const getStateMessages: string[] = [
             Messages.Visualizations.DetailsView.GetState,
             Messages.Visualizations.State.GetCurrentVisualizationResultState,
             Messages.Visualizations.State.GetCurrentVisualizationToggleState,
@@ -38,17 +32,17 @@ export class StoreActionMessageCreatorFactory {
             Messages.UserConfig.GetCurrentState,
         ];
 
-        return new StoreActionMessageCreatorImpl(getStateMessage, this.postMessage, this.tabId);
+        return new StoreActionMessageCreatorImpl(getStateMessages, this.dispatcher);
     }
 
     public forContent(): StoreActionMessageCreator {
-        const getStateMessage: string[] = [Messages.UserConfig.GetCurrentState];
+        const getStateMessages: string[] = [Messages.UserConfig.GetCurrentState];
 
-        return new StoreActionMessageCreatorImpl(getStateMessage, this.postMessage, this.tabId);
+        return new StoreActionMessageCreatorImpl(getStateMessages, this.dispatcher);
     }
 
     public forInjected(): StoreActionMessageCreator {
-        const messages: string[] = [
+        const getStateMessages: string[] = [
             Messages.Visualizations.State.GetCurrentVisualizationToggleState,
             Messages.Scoping.GetCurrentState,
             Messages.Inspect.GetCurrentState,
@@ -60,6 +54,6 @@ export class StoreActionMessageCreatorFactory {
             Messages.UserConfig.GetCurrentState,
         ];
 
-        return new StoreActionMessageCreatorImpl(messages, this.postMessage, this.tabId);
+        return new StoreActionMessageCreatorImpl(getStateMessages, this.dispatcher);
     }
 }

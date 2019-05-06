@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 import { isFunction } from 'lodash';
 import { It, Mock } from 'typemoq';
-
 import { ChromeAdapter } from '../../../../background/browser-adapter';
 import { UrlValidator } from '../../../../common/url-validator';
 
@@ -22,7 +21,7 @@ describe('UrlValidatorTest', () => {
         ['oops_http://example.com', false],
     ];
 
-    test.each(supportedUrlCases)('isSupportedUrl: %s should be %s', async (url, expected) => {
+    test.each(supportedUrlCases)('isSupportedUrl: %s should be %s', async (url: string, expected: boolean) => {
         testSubject = new UrlValidator();
         const isSupported = await testSubject.isSupportedUrl(url, It.isAny());
         expect(isSupported).toBe(expected);
