@@ -2,10 +2,9 @@
 // Licensed under the MIT License.
 import { isEmpty } from 'lodash';
 import { css } from 'office-ui-fabric-react';
-import { DefaultButton, PrimaryButton } from 'office-ui-fabric-react/lib/Button';
+import { DefaultButton } from 'office-ui-fabric-react/lib/Button';
 import { Dialog, DialogType } from 'office-ui-fabric-react/lib/Dialog';
 import * as React from 'react';
-
 import { BaseStore } from '../../common/base-store';
 import { ClientBrowserAdapter } from '../../common/client-browser-adapter';
 import { CopyIssueDetailsButton, CopyIssueDetailsButtonDeps } from '../../common/components/copy-issue-details-button';
@@ -26,6 +25,7 @@ import { DetailsDialogHandler } from '../details-dialog-handler';
 import { DecoratedAxeNodeResult } from '../scanner-utils';
 import { TargetPageActionMessageCreator } from '../target-page-action-message-creator';
 import { FixInstructionPanel } from './fix-instruction-panel';
+import { IssueDetailsNavigationControls, IssueDetailsNavigationControlsProps } from './issue-details-navigation-controls';
 
 export enum CheckType {
     All,
@@ -210,31 +210,13 @@ export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDi
     }
 
     private renderNextAndBackButtons(): JSX.Element {
-        return (
-            <div className="ms-Grid insights-dialog-next-and-back-container">
-                <div className="ms-Grid-row">
-                    <div className="ms-Grid-col ms-sm3 ms-md3 ms-lg3 insights-dialog-button-left">
-                        <PrimaryButton
-                            data-automation-id="back"
-                            disabled={this.props.dialogHandler.isBackButtonDisabled(this)}
-                            text="< Back"
-                            onClick={this.getOnClickWhenNotInShadowDom(this.onClickBackButton)}
-                        />
-                    </div>
-                    <div className="ms-Grid-col ms-sm6 ms-md6 ms-lg6 insights-dialog-footer">
-                        <div>{this.props.dialogHandler.getFailureInfo(this)}</div>
-                    </div>
-                    <div className="ms-Grid-col ms-sm3 ms-md3 ms-lg3 insights-dialog-button-right">
-                        <PrimaryButton
-                            data-automation-id="next"
-                            disabled={this.props.dialogHandler.isNextButtonDisabled(this)}
-                            text="Next >"
-                            onClick={this.getOnClickWhenNotInShadowDom(this.onClickNextButton)}
-                        />
-                    </div>
-                </div>
-            </div>
-        );
+        const navigationControlsProps: IssueDetailsNavigationControlsProps = {
+            container: this,
+            dialogHandler: this.props.dialogHandler,
+            featureFlagStoreData: this.props.featureFlagStoreData,
+        };
+
+        return <IssueDetailsNavigationControls {...navigationControlsProps} />;
     }
 
     private renderSectionTitle(sectionTitle: string, className?: string): JSX.Element {
