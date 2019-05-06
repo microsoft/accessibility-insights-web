@@ -25,6 +25,14 @@ describe('IssuesTableTest', () => {
             expect(wrapped.debug()).toMatchSnapshot();
         });
 
+        it('includes subtitle if specified', () => {
+            const props = new TestPropsBuilder().setSubtitle(<>test subtitle text</>).build();
+
+            const wrapped = shallow(<IssuesTable {...props} />);
+
+            expect(wrapped.debug()).toMatchSnapshot();
+        });
+
         it('automated checks disabled', () => {
             const issuesEnabled = false;
             const selectionMock = Mock.ofType<ISelection>(Selection);
@@ -219,6 +227,7 @@ describe('IssuesTableTest', () => {
 
 class TestPropsBuilder {
     private title: string = 'test title';
+    private subtitle?: JSX.Element;
     private issuesTableHandler: IssuesTableHandler;
     private issuesEnabled: boolean;
     private violations: RuleResult[];
@@ -274,10 +283,16 @@ class TestPropsBuilder {
         return this;
     }
 
+    public setSubtitle(subtitle?: JSX.Element): TestPropsBuilder {
+        this.subtitle = subtitle;
+        return this;
+    }
+
     public build(): IssuesTableProps {
         return {
             deps: this.deps,
             title: this.title,
+            subtitle: this.subtitle,
             issuesTableHandler: this.issuesTableHandler,
             issuesEnabled: this.issuesEnabled,
             issuesSelection: this.issuesSelection,
