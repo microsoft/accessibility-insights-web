@@ -143,3 +143,41 @@ exports[`IssueDetailsNavigationControls render handles button states: { backButt
   </div>
 </div>
 `;
+
+exports[`IssueDetailsNavigationControls render handles failures count 0 failures 1`] = `null`;
+
+exports[`IssueDetailsNavigationControls render handles failures count 1 failure 1`] = `null`;
+
+exports[`IssueDetailsNavigationControls render handles failures count multiple failures 1`] = `
+<div
+  className="ms-Grid insights-dialog-next-and-back-container"
+>
+  <div
+    className="ms-Grid-row"
+  >
+    <div
+      className="ms-Grid-col ms-sm3 ms-md3 ms-lg3 insights-dialog-button-left"
+    >
+      <CustomizedPrimaryButton
+        data-automation-id="back"
+        onClick={[Function]}
+        text="< Back"
+      />
+    </div>
+    <div
+      className="ms-Grid-col ms-sm6 ms-md6 ms-lg6 insights-dialog-footer"
+    >
+      <div />
+    </div>
+    <div
+      className="ms-Grid-col ms-sm3 ms-md3 ms-lg3 insights-dialog-button-right"
+    >
+      <CustomizedPrimaryButton
+        data-automation-id="next"
+        onClick={[Function]}
+        text="Next >"
+      />
+    </div>
+  </div>
+</div>
+`;

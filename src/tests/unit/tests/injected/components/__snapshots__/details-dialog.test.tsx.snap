@@ -296,6 +296,7 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: false 
           "isNextButtonDisabled": [Function],
         }
       }
+      failuresCount={1}
       featureFlagStoreData={
         Object {
           "shadowDialog": false,
@@ -670,6 +671,7 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: true }
             "isNextButtonDisabled": [Function],
           }
         }
+        failuresCount={1}
         featureFlagStoreData={
           Object {
             "shadowDialog": true,
@@ -1034,6 +1036,7 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: false }
           "isNextButtonDisabled": [Function],
         }
       }
+      failuresCount={1}
       featureFlagStoreData={
         Object {
           "shadowDialog": false,
@@ -1403,6 +1406,7 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: true } 
             "isNextButtonDisabled": [Function],
           }
         }
+        failuresCount={1}
         featureFlagStoreData={
           Object {
             "shadowDialog": true,
@@ -1772,6 +1776,7 @@ exports[`DetailsDialogTest render: with relative help url 1`] = `
           "isNextButtonDisabled": [Function],
         }
       }
+      failuresCount={1}
       featureFlagStoreData={
         Object {
           "shadowDialog": false,

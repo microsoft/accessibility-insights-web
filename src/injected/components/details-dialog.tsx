@@ -1,10 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { isEmpty } from 'lodash';
+import { isEmpty, size } from 'lodash';
 import { css } from 'office-ui-fabric-react';
 import { DefaultButton } from 'office-ui-fabric-react/lib/Button';
 import { Dialog, DialogType } from 'office-ui-fabric-react/lib/Dialog';
 import * as React from 'react';
+
 import { BaseStore } from '../../common/base-store';
 import { ClientBrowserAdapter } from '../../common/client-browser-adapter';
 import { CopyIssueDetailsButton, CopyIssueDetailsButtonDeps } from '../../common/components/copy-issue-details-button';
@@ -214,6 +215,7 @@ export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDi
             container: this,
             dialogHandler: this.props.dialogHandler,
             featureFlagStoreData: this.props.featureFlagStoreData,
+            failuresCount: size(this.props.failedRules),
         };
 
         return <IssueDetailsNavigationControls {...navigationControlsProps} />;

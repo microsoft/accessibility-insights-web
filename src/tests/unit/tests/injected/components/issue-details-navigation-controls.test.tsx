@@ -21,16 +21,17 @@ describe('IssueDetailsNavigationControls', () => {
             container: Mock.ofType<DetailsDialog>().object,
             dialogHandler: navigationHandlerMock.object,
             featureFlagStoreData: {},
+            failuresCount: 5,
         };
     });
 
     describe('render', () => {
-        type RenderTestCase = {
+        type ButtonStateTestCase = {
             backButtonDisabled: boolean;
             nextButtonDisabled: boolean;
         };
 
-        const testCases: RenderTestCase[] = [
+        const testCases: ButtonStateTestCase[] = [
             {
                 backButtonDisabled: true,
                 nextButtonDisabled: true,
@@ -61,6 +62,32 @@ describe('IssueDetailsNavigationControls', () => {
             const wrapper = shallow(<IssueDetailsNavigationControls {...controlProps} />);
 
             expect(wrapper.getElement()).toMatchSnapshot();
+        });
+
+        describe('handles failures count', () => {
+            it('0 failures', () => {
+                controlProps.failuresCount = 0;
+
+                const wrapper = shallow(<IssueDetailsNavigationControls {...controlProps} />);
+
+                expect(wrapper.getElement()).toMatchSnapshot();
+            });
+
+            it('1 failure', () => {
+                controlProps.failuresCount = 1;
+
+                const wrapper = shallow(<IssueDetailsNavigationControls {...controlProps} />);
+
+                expect(wrapper.getElement()).toMatchSnapshot();
+            });
+
+            it('multiple failures', () => {
+                controlProps.failuresCount = 5;
+
+                const wrapper = shallow(<IssueDetailsNavigationControls {...controlProps} />);
+
+                expect(wrapper.getElement()).toMatchSnapshot();
+            });
         });
     });
 

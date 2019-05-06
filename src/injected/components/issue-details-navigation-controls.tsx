@@ -19,6 +19,7 @@ export type IssueDetailsNavigationControlsProps = {
     container: DetailsDialog;
     dialogHandler: IssueDetailsNavigationClickHandler;
     featureFlagStoreData: FeatureFlagStoreData;
+    failuresCount: number;
 };
 
 export const IssueDetailsNavigationControls = NamedSFC<IssueDetailsNavigationControlsProps>('IssueDetailsNavigationControls', props => {
@@ -32,6 +33,10 @@ export const IssueDetailsNavigationControls = NamedSFC<IssueDetailsNavigationCon
             return func;
         }
     };
+
+    if (props.failuresCount <= 1) {
+        return null;
+    }
 
     return (
         <div className="ms-Grid insights-dialog-next-and-back-container">
