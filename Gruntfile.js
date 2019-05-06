@@ -171,7 +171,7 @@ module.exports = function(grunt) {
                 files: ['src/**/*.scss'],
                 tasks: ['sass', 'copy:styles', 'embed-styles:code', 'drop:dev'],
             },
-            // We assume webpack --watch is running separately (usually via 'npm run watch')
+            // We assume webpack --watch is running separately (usually via 'yarn watch')
             'webpack-output': {
                 files: ['extension/devBundle/**/*.*'],
                 tasks: ['embed-styles:code', 'drop:dev'],

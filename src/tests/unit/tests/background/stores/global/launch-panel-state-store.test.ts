@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { IMock, It, Mock, Times } from 'typemoq';
 import { LaunchPanelStateActions } from '../../../../../../background/actions/launch-panel-state-action';
-import { ChromeAdapter } from '../../../../../../background/browser-adapter';
+import { StorageAdapter } from '../../../../../../background/browser-adapters/storage-adapter';
 import { LocalStorageDataKeys } from '../../../../../../background/local-storage-data-keys';
 import { LocalStorageData } from '../../../../../../background/storage-data';
 import { LaunchPanelStore } from '../../../../../../background/stores/global/launch-panel-store';
@@ -13,11 +13,11 @@ import { createStoreWithNullParams, StoreTester } from '../../../../common/store
 
 describe('LaunchPanelStateStoreTest', () => {
     let userDataStub: LocalStorageData;
-    let browserAdapterMock: IMock<ChromeAdapter>;
+    let storageAdapterMock: IMock<StorageAdapter>;
 
     beforeAll(() => {
         userDataStub = { launchPanelSetting: LaunchPanelType.AdhocToolsPanel };
-        browserAdapterMock = Mock.ofType(ChromeAdapter);
+        storageAdapterMock = Mock.ofType<StorageAdapter>();
     });
 
     test('constructor, no side effects', () => {
@@ -60,19 +60,19 @@ describe('LaunchPanelStateStoreTest', () => {
             [LocalStorageDataKeys.launchPanelSetting]: payload,
         };
 
-        browserAdapterMock.setup(bA => bA.setUserData(It.isValue(expecetedSetUserData))).verifiable(Times.once());
+        storageAdapterMock.setup(adapter => adapter.setUserData(It.isValue(expecetedSetUserData))).verifiable(Times.once());
 
         createStoreForLaunchPanelStateActions('setLaunchPanelType')
             .withActionParam(payload)
             .testListenerToBeCalledOnce(initialState, expectedState);
 
-        browserAdapterMock.verifyAll();
+        storageAdapterMock.verifyAll();
     });
 
     function createStoreForLaunchPanelStateActions(
         actionName: keyof LaunchPanelStateActions,
     ): StoreTester<LaunchPanelStoreData, LaunchPanelStateActions> {
-        const factory = (actions: LaunchPanelStateActions) => new LaunchPanelStore(actions, browserAdapterMock.object, userDataStub);
+        const factory = (actions: LaunchPanelStateActions) => new LaunchPanelStore(actions, storageAdapterMock.object, userDataStub);
 
         return new StoreTester(LaunchPanelStateActions, actionName, factory);
     }
