@@ -27,6 +27,7 @@ export type IssuesTableDeps = IssuesDetailsPaneDeps & ExportDialogDeps;
 export interface IssuesTableProps {
     deps: IssuesTableDeps;
     title: string;
+    subtitle?: JSX.Element;
     issuesTableHandler: IssuesTableHandler;
     violations: RuleResult[];
     selectedIdToRuleResultMap: DictionaryStringTo<DecoratedAxeNodeResult>;
@@ -73,9 +74,17 @@ export class IssuesTable extends React.Component<IssuesTableProps, IssuesTableSt
         return (
             <div className="issues-table">
                 <h1>{this.props.title}</h1>
+                {this.renderSubtitle()}
                 {this.renderContent()}
             </div>
         );
+    }
+
+    private renderSubtitle(): JSX.Element {
+        if (!this.props.subtitle) {
+            return null;
+        }
+        return <div className="issues-table-subtitle">{this.props.subtitle}</div>;
     }
 
     private renderContent(): JSX.Element {
@@ -84,7 +93,7 @@ export class IssuesTable extends React.Component<IssuesTableProps, IssuesTableSt
         }
 
         return (
-            <div>
+            <div className="issues-table-content">
                 {this.renderCommandBar()}
                 {this.renderExportDialog()}
                 {this.renderComponent()}
