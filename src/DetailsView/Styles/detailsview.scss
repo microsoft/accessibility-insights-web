@@ -887,8 +887,10 @@ div.insights-file-issue-details-dialog-container {
                     }
                     .issues-table-subtitle {
                         color: $secondary-text;
-                        max-width: 750px;
-                        font-size: 15px;
+                        max-width: 561px;
+                        font-size: 14px;
+                        margin-top: 4px;
+                        margin-bottom: 16px;
                     }
                     .issues-table-content {
                         height: 100%;
