@@ -20,6 +20,13 @@ describe('DetailsViewActionCreatorTest', () => {
     let detailsViewControllerMock: IMock<DetailsViewController>;
     let telemetryEventHandlerMock: IMock<TelemetryEventHandler>;
 
+    const defaultBasePayload: BaseActionPayload = {
+        telemetry: {
+            triggeredBy: 'test' as TriggeredBy,
+            source: -1 as TelemetryEventSource,
+        },
+    };
+
     let testSubject: DetailsViewActionCreator;
 
     beforeEach(() => {
@@ -42,24 +49,17 @@ describe('DetailsViewActionCreatorTest', () => {
 
         detailsViewActionsMock.setup(actions => actions['openSettingsPanel']).returns(() => openSettingsPanelMock.object);
 
-        const payload: BaseActionPayload = {
-            telemetry: {
-                triggeredBy: 'test' as TriggeredBy,
-                source: -1 as TelemetryEventSource,
-            },
-        };
-
         const tabId = -1;
 
         registerCallbackMock
             .setup(register => register(Messages.SettingsPanel.OpenPanel, It.is(isFunction)))
-            .callback((message, listener) => listener(payload, tabId));
+            .callback((message, listener) => listener(defaultBasePayload, tabId));
 
         testSubject.registerCallback();
 
         openSettingsPanelMock.verify(action => action.invoke(null), Times.once());
         detailsViewControllerMock.verify(controller => controller.showDetailsView(tabId), Times.once());
-        telemetryEventHandlerMock.verify(handler => handler.publishTelemetry(SETTINGS_PANEL_OPEN, payload), Times.once());
+        telemetryEventHandlerMock.verify(handler => handler.publishTelemetry(SETTINGS_PANEL_OPEN, defaultBasePayload), Times.once());
     });
 
     test('on SettingsPanel.ClosePanel', () => {
@@ -67,23 +67,16 @@ describe('DetailsViewActionCreatorTest', () => {
 
         detailsViewActionsMock.setup(actions => actions['closeSettingsPanel']).returns(() => closeSeetingsPanelMock.object);
 
-        const payload: BaseActionPayload = {
-            telemetry: {
-                triggeredBy: 'test' as TriggeredBy,
-                source: -1 as TelemetryEventSource,
-            },
-        };
-
         const tabId = -1;
 
         registerCallbackMock
             .setup(register => register(Messages.SettingsPanel.ClosePanel, It.is(isFunction)))
-            .callback((message, listener) => listener(payload, tabId));
+            .callback((message, listener) => listener(defaultBasePayload, tabId));
 
         testSubject.registerCallback();
 
         closeSeetingsPanelMock.verify(action => action.invoke(null), Times.once());
-        telemetryEventHandlerMock.verify(handler => handler.publishTelemetry(SETTINGS_PANEL_CLOSE, payload), Times.once());
+        telemetryEventHandlerMock.verify(handler => handler.publishTelemetry(SETTINGS_PANEL_CLOSE, defaultBasePayload), Times.once());
     });
 
     test('on Visualization.DetailsView.SetDetailsViewRightContentPanel', () => {
