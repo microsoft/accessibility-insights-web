@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 import { cloneDeep } from 'lodash';
 import { IMock, Mock, Times } from 'typemoq';
-
 import { GlobalActionHub } from '../../../../../../background/actions/global-action-hub';
 import { PersistedData } from '../../../../../../background/get-persisted-data';
 import { LocalStorageData } from '../../../../../../background/storage-data';
@@ -58,6 +57,7 @@ describe('GlobalStoreHubTest', () => {
             assessmentProvider,
             idbInstance,
             cloneDeep(persistedDataStub),
+            null,
         );
         const allStores = testSubject.getAllStores();
 
@@ -80,6 +80,7 @@ describe('GlobalStoreHubTest', () => {
             assessmentProvider,
             idbInstance,
             cloneDeep(persistedDataStub),
+            null,
         );
         const allStores = testSubject.getAllStores() as BaseStoreImpl<any>[];
         const initializeMocks: Array<IMock<Function>> = [];

@@ -1,13 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IssueFilingServicePropertiesMap } from '../../../../../common/types/store-data/user-configuration-store';
+import { IssueFilingServicePropertiesMap } from '../../../../../../common/types/store-data/user-configuration-store';
 import {
     AzureBoardsIssueDetailField,
     AzureBoardsIssueFilingService,
     AzureBoardsIssueFilingSettings,
-} from '../../../../../issue-filing/azure-boards/azure-boards-issue-filing-service';
-import { AzureBoardsSettingsForm } from '../../../../../issue-filing/azure-boards/azure-boards-settings-form';
-import { azureBoardsIssueFilingUrlProvider } from '../../../../../issue-filing/azure-boards/create-azure-boards-issue-filing-url';
+} from '../../../../../../issue-filing/services/azure-boards/azure-boards-issue-filing-service';
+import { AzureBoardsSettingsForm } from '../../../../../../issue-filing/services/azure-boards/azure-boards-settings-form';
+import { azureBoardsIssueFilingUrlProvider } from '../../../../../../issue-filing/services/azure-boards/create-azure-boards-issue-filing-url';
 
 describe('AzureBoardsIssueFilingServiceTest', () => {
     const projectUrlStub: string = 'some/project/url';

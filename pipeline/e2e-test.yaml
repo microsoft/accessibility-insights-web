@@ -2,14 +2,8 @@
 # Licensed under the MIT License.
 steps:
     # e2e tests depend drop folder. run build:all will create said folder
-    - task: Npm@1
-      inputs:
-          command: custom
-          customCommand: run build:all
-      displayName: npm run build:all
+    - script: yarn build:all
+      displayName: build:all
 
-    - task: Npm@1
-      inputs:
-          command: custom
-          customCommand: run test:e2e -- --ci
+    - script: yarn test:e2e -- --ci
       displayName: run e2e tests

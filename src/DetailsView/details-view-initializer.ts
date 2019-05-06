@@ -128,7 +128,7 @@ if (isNaN(tabId) === false) {
 
             const actionMessageDispatcher = new ActionMessageDispatcher(chromeAdapter.sendMessageToFrames, tab.id);
 
-            const actionMessageCreator = new DetailsViewActionMessageCreator(chromeAdapter.sendMessageToFrames, tab.id, telemetryFactory);
+            const actionMessageCreator = new DetailsViewActionMessageCreator(telemetryFactory, actionMessageDispatcher);
             const scopingActionMessageCreator = new ScopingActionMessageCreator(
                 telemetryFactory,
                 TelemetryEventSource.DetailsView,

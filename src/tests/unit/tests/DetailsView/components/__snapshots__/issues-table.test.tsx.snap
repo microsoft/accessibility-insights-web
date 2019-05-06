@@ -7,7 +7,9 @@ exports[`IssuesTableTest render automated checks disabled 1`] = `
   <h1>
     test title
   </h1>
-  <div>
+  <div
+    className="issues-table-content"
+  >
     <div
       className="details-view-command-bar"
     >
@@ -43,12 +45,24 @@ exports[`IssuesTableTest render automated checks disabled 1`] = `
 </div>
 `;
 
+exports[`IssuesTableTest render includes subtitle if specified 1`] = `
+"<div className=\\"issues-table\\">
+  <h1>
+    test title
+  </h1>
+  <div className=\\"issues-table-subtitle\\">
+    test subtitle text
+  </div>
+  <StyledSpinnerBase className=\\"details-view-spinner\\" size={3} label=\\"Loading...\\" />
+</div>"
+`;
+
 exports[`IssuesTableTest render spinner for scanning state 1`] = `
 "<div className=\\"issues-table\\">
   <h1>
     test title
   </h1>
-  <div>
+  <div className=\\"issues-table-content\\">
     <div className=\\"details-view-command-bar\\">
       <VisualizationToggle label=\\"Show failures\\" checked={true} disabled={true} onClick={[Function: proxy]} className=\\"automated-checks-details-view-toggle\\" visualizationName=\\"Automated checks\\" />
     </div>
@@ -74,7 +88,9 @@ exports[`IssuesTableTest render spinner, issuesEnabled is an empty object 1`] = 
   <h1>
     test title
   </h1>
-  <div>
+  <div
+    className="issues-table-content"
+  >
     <div
       className="details-view-command-bar"
     >
@@ -119,7 +135,7 @@ exports[`IssuesTableTest render table with 0 issues 1`] = `
   <h1>
     test title
   </h1>
-  <div>
+  <div className=\\"issues-table-content\\">
     <div className=\\"details-view-command-bar\\">
       <VisualizationToggle label=\\"Show failures\\" checked={true} disabled={false} onClick={[Function: proxy]} className=\\"automated-checks-details-view-toggle\\" visualizationName=\\"Automated checks\\" />
       <CustomizedActionButton iconProps={{...}} onClick={[Function: bound ]}>
@@ -142,7 +158,7 @@ exports[`IssuesTableTest render table with 1 issues 1`] = `
   <h1>
     test title
   </h1>
-  <div>
+  <div className=\\"issues-table-content\\">
     <div className=\\"details-view-command-bar\\">
       <VisualizationToggle label=\\"Show failures\\" checked={true} disabled={false} onClick={[Function: proxy]} className=\\"automated-checks-details-view-toggle\\" visualizationName=\\"Automated checks\\" />
       <CustomizedActionButton iconProps={{...}} onClick={[Function: bound ]}>
@@ -165,7 +181,7 @@ exports[`IssuesTableTest render table with 2 issues 1`] = `
   <h1>
     test title
   </h1>
-  <div>
+  <div className=\\"issues-table-content\\">
     <div className=\\"details-view-command-bar\\">
       <VisualizationToggle label=\\"Show failures\\" checked={true} disabled={false} onClick={[Function: proxy]} className=\\"automated-checks-details-view-toggle\\" visualizationName=\\"Automated checks\\" />
       <CustomizedActionButton iconProps={{...}} onClick={[Function: bound ]}>

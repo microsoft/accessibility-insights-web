@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { rectify } from '../../../../../issue-filing/github/github-url-rectifier';
+
+import { rectify } from '../../../../../../issue-filing/services/github/github-url-rectifier';
 
 describe('Github Url Rectifier', () => {
     const testSubject = rectify;

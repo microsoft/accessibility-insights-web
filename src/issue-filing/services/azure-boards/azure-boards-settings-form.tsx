@@ -3,8 +3,8 @@
 import { Dropdown, IDropdownOption, TextField } from 'office-ui-fabric-react';
 import * as React from 'react';
 
-import { NamedSFC } from '../../common/react/named-sfc';
-import { SettingsFormProps } from '../types/settings-form-props';
+import { NamedSFC } from '../../../common/react/named-sfc';
+import { SettingsFormProps } from '../../types/settings-form-props';
 import {
     AzureBoardsIssueDetailField,
     AzureBoardsIssueDetailLocationDropdownOption,

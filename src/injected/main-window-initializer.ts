@@ -100,11 +100,7 @@ export class MainWindowInitializer extends WindowInitializer {
         storeActionMessageCreator.getAllStates();
 
         const telemetryDataFactory = new TelemetryDataFactory();
-        const devToolActionMessageCreator = new DevToolActionMessageCreator(
-            this.clientChromeAdapter.sendMessageToFrames,
-            null,
-            telemetryDataFactory,
-        );
+        const devToolActionMessageCreator = new DevToolActionMessageCreator(telemetryDataFactory, actionMessageDispatcher);
 
         const targetPageActionMessageCreator = new TargetPageActionMessageCreator(telemetryDataFactory, actionMessageDispatcher);
         const issueFilingActionMessageCreator = new IssueFilingActionMessageCreator(

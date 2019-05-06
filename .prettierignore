@@ -8,7 +8,7 @@ AppXManifest.xml
 copyright-header.txt
 LICENSE
 new-appx.ps1
-package-lock.json
+yarn.lock
 .prettierignore
 docs/NOTICE.html
 docs/LICENSE.txt

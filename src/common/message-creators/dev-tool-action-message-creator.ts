@@ -4,26 +4,20 @@ import { InspectElementPayload, InspectFrameUrlPayload, OnDevToolOpenPayload } f
 import { Message } from '../message';
 import { Messages } from '../messages';
 import { TelemetryDataFactory } from '../telemetry-data-factory';
-import { BaseActionMessageCreator } from './base-action-message-creator';
+import { ActionMessageDispatcher } from './action-message-dispatcher';
 
-export class DevToolActionMessageCreator extends BaseActionMessageCreator {
-    protected telemetryFactory: TelemetryDataFactory;
-
-    constructor(postMessage: (message: Message) => void, tabId: number, telemetryFactory: TelemetryDataFactory) {
-        super(postMessage, tabId);
-        this.telemetryFactory = telemetryFactory;
-    }
+export class DevToolActionMessageCreator {
+    constructor(protected readonly telemetryFactory: TelemetryDataFactory, protected readonly dispatcher: ActionMessageDispatcher) {}
 
     public setDevToolStatus(status: boolean): void {
         const message: Message = {
-            tabId: this._tabId,
             messageType: Messages.DevTools.DevtoolStatus,
             payload: {
                 status: status,
             } as OnDevToolOpenPayload,
         };
 
-        this.dispatchMessage(message);
+        this.dispatcher.dispatchMessage(message);
     }
 
     public setInspectElement(event: React.SyntheticEvent<MouseEvent>, target: string[]): void {
@@ -32,12 +26,11 @@ export class DevToolActionMessageCreator extends BaseActionMessageCreator {
             telemetry: this.telemetryFactory.forInspectElement(event, target),
         };
         const message: Message = {
-            tabId: this._tabId,
             messageType: Messages.DevTools.InspectElement,
             payload,
         };
 
-        this.dispatchMessage(message);
+        this.dispatcher.dispatchMessage(message);
     }
 
     public setInspectFrameUrl(frameUrl: string): void {
@@ -45,11 +38,10 @@ export class DevToolActionMessageCreator extends BaseActionMessageCreator {
             frameUrl: frameUrl,
         };
         const message: Message = {
-            tabId: this._tabId,
             messageType: Messages.DevTools.InspectFrameUrl,
             payload,
         };
 
-        this.dispatchMessage(message);
+        this.dispatcher.dispatchMessage(message);
     }
 }
