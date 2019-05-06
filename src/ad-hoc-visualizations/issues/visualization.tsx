@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { isEmpty } from 'lodash';
 import * as React from 'react';
+import { NewTabLink } from '../../common/components/new-tab-link';
 import { AdHocTestkeys } from '../../common/configs/adhoc-test-keys';
 import { TestMode } from '../../common/configs/test-mode';
 import { VisualizationConfiguration } from '../../common/configs/visualization-configuration-factory';
@@ -23,6 +24,13 @@ export const IssuesAdHocVisualization: VisualizationConfiguration = {
     getTestStatus: data => data.enabled,
     displayableData: {
         title: 'Automated checks',
+        subtitle: (
+            <>
+                Automated checks can detect some common accessibility problems such as missing or invalid properties. But most accessibility
+                problems can only be discovered through manual testing. The best way to evaluate web accessibility is to complete an{' '}
+                <NewTabLink href="https://accessibilityinsights.io/docs/en/web/getstarted/assessment">assessment</NewTabLink>.
+            </>
+        ),
         enableMessage: 'Running automated checks...',
         toggleLabel: 'Show failures',
         linkToDetailsViewText: 'List view and filtering',

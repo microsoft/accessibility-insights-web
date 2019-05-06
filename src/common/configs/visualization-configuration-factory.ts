@@ -30,6 +30,7 @@ import { TestMode } from './test-mode';
 
 export interface DisplayableVisualizationTypeData {
     title: string;
+    subtitle?: JSX.Element;
     enableMessage: string;
     toggleLabel: string;
     linkToDetailsViewText: string;

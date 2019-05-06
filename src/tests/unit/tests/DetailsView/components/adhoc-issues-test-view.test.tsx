@@ -39,6 +39,7 @@ describe('AdhocIssuesTestView', () => {
         contentStub = {} as JSX.Element;
         displayableDataStub = {
             title: 'test title',
+            subtitle: <>test subtitle</>,
             toggleLabel: 'test toggle label',
         } as DisplayableVisualizationTypeData;
         contentStub = {} as JSX.Element;
