@@ -1,7 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { PrimaryButton } from 'office-ui-fabric-react/lib/Button';
+import { DefaultButton } from 'office-ui-fabric-react/lib/Button';
 import * as React from 'react';
+
 import { FeatureFlags } from '../../common/feature-flags';
 import { NamedSFC } from '../../common/react/named-sfc';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
@@ -38,28 +39,24 @@ export const IssueDetailsNavigationControls = NamedSFC<IssueDetailsNavigationCon
         return null;
     }
 
+    const renderBackButton = () =>
+        !props.dialogHandler.isBackButtonDisabled(props.container) && (
+            <DefaultButton data-automation-id="back" text="< Back" onClick={getOnClickWhenNotInShadowDom(onClickBackButton)} />
+        );
+
+    const renderNextButton = () =>
+        !props.dialogHandler.isNextButtonDisabled(props.container) && (
+            <DefaultButton data-automation-id="next" text="Next >" onClick={getOnClickWhenNotInShadowDom(onClickNextButton)} />
+        );
+
     return (
         <div className="ms-Grid insights-dialog-next-and-back-container">
             <div className="ms-Grid-row">
-                <div className="ms-Grid-col ms-sm3 ms-md3 ms-lg3 insights-dialog-button-left">
-                    <PrimaryButton
-                        data-automation-id="back"
-                        disabled={props.dialogHandler.isBackButtonDisabled(props.container)}
-                        text="< Back"
-                        onClick={getOnClickWhenNotInShadowDom(onClickBackButton)}
-                    />
-                </div>
+                <div className="ms-Grid-col ms-sm3 ms-md3 ms-lg3 insights-dialog-button-left">{renderBackButton()}</div>
                 <div className="ms-Grid-col ms-sm6 ms-md6 ms-lg6 insights-dialog-footer">
                     <div>{props.dialogHandler.getFailureInfo(props.container)}</div>
                 </div>
-                <div className="ms-Grid-col ms-sm3 ms-md3 ms-lg3 insights-dialog-button-right">
-                    <PrimaryButton
-                        data-automation-id="next"
-                        disabled={props.dialogHandler.isNextButtonDisabled(props.container)}
-                        text="Next >"
-                        onClick={getOnClickWhenNotInShadowDom(onClickNextButton)}
-                    />
-                </div>
+                <div className="ms-Grid-col ms-sm3 ms-md3 ms-lg3 insights-dialog-button-right">{renderNextButton()}</div>
             </div>
         </div>
     );

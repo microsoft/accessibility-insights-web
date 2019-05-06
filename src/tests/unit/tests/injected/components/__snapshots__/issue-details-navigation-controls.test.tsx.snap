@@ -10,9 +10,8 @@ exports[`IssueDetailsNavigationControls render handles button states: { backButt
     <div
       className="ms-Grid-col ms-sm3 ms-md3 ms-lg3 insights-dialog-button-left"
     >
-      <CustomizedPrimaryButton
+      <CustomizedDefaultButton
         data-automation-id="back"
-        disabled={false}
         onClick={[Function]}
         text="< Back"
       />
@@ -25,9 +24,8 @@ exports[`IssueDetailsNavigationControls render handles button states: { backButt
     <div
       className="ms-Grid-col ms-sm3 ms-md3 ms-lg3 insights-dialog-button-right"
     >
-      <CustomizedPrimaryButton
+      <CustomizedDefaultButton
         data-automation-id="next"
-        disabled={false}
         onClick={[Function]}
         text="Next >"
       />
@@ -46,9 +44,8 @@ exports[`IssueDetailsNavigationControls render handles button states: { backButt
     <div
       className="ms-Grid-col ms-sm3 ms-md3 ms-lg3 insights-dialog-button-left"
     >
-      <CustomizedPrimaryButton
+      <CustomizedDefaultButton
         data-automation-id="back"
-        disabled={false}
         onClick={[Function]}
         text="< Back"
       />
@@ -60,14 +57,7 @@ exports[`IssueDetailsNavigationControls render handles button states: { backButt
     </div>
     <div
       className="ms-Grid-col ms-sm3 ms-md3 ms-lg3 insights-dialog-button-right"
-    >
-      <CustomizedPrimaryButton
-        data-automation-id="next"
-        disabled={true}
-        onClick={[Function]}
-        text="Next >"
-      />
-    </div>
+    />
   </div>
 </div>
 `;
@@ -81,14 +71,7 @@ exports[`IssueDetailsNavigationControls render handles button states: { backButt
   >
     <div
       className="ms-Grid-col ms-sm3 ms-md3 ms-lg3 insights-dialog-button-left"
-    >
-      <CustomizedPrimaryButton
-        data-automation-id="back"
-        disabled={true}
-        onClick={[Function]}
-        text="< Back"
-      />
-    </div>
+    />
     <div
       className="ms-Grid-col ms-sm6 ms-md6 ms-lg6 insights-dialog-footer"
     >
@@ -97,9 +80,8 @@ exports[`IssueDetailsNavigationControls render handles button states: { backButt
     <div
       className="ms-Grid-col ms-sm3 ms-md3 ms-lg3 insights-dialog-button-right"
     >
-      <CustomizedPrimaryButton
+      <CustomizedDefaultButton
         data-automation-id="next"
-        disabled={false}
         onClick={[Function]}
         text="Next >"
       />
@@ -117,14 +99,7 @@ exports[`IssueDetailsNavigationControls render handles button states: { backButt
   >
     <div
       className="ms-Grid-col ms-sm3 ms-md3 ms-lg3 insights-dialog-button-left"
-    >
-      <CustomizedPrimaryButton
-        data-automation-id="back"
-        disabled={true}
-        onClick={[Function]}
-        text="< Back"
-      />
-    </div>
+    />
     <div
       className="ms-Grid-col ms-sm6 ms-md6 ms-lg6 insights-dialog-footer"
     >
@@ -132,14 +107,7 @@ exports[`IssueDetailsNavigationControls render handles button states: { backButt
     </div>
     <div
       className="ms-Grid-col ms-sm3 ms-md3 ms-lg3 insights-dialog-button-right"
-    >
-      <CustomizedPrimaryButton
-        data-automation-id="next"
-        disabled={true}
-        onClick={[Function]}
-        text="Next >"
-      />
-    </div>
+    />
   </div>
 </div>
 `;
@@ -158,7 +126,7 @@ exports[`IssueDetailsNavigationControls render handles failures count multiple f
     <div
       className="ms-Grid-col ms-sm3 ms-md3 ms-lg3 insights-dialog-button-left"
     >
-      <CustomizedPrimaryButton
+      <CustomizedDefaultButton
         data-automation-id="back"
         onClick={[Function]}
         text="< Back"
@@ -172,7 +140,7 @@ exports[`IssueDetailsNavigationControls render handles failures count multiple f
     <div
       className="ms-Grid-col ms-sm3 ms-md3 ms-lg3 insights-dialog-button-right"
     >
-      <CustomizedPrimaryButton
+      <CustomizedDefaultButton
         data-automation-id="next"
         onClick={[Function]}
         text="Next >"
