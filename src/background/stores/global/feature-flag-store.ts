@@ -1,27 +1,23 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { autobind } from '@uifabric/utilities';
-import { LocalStorageDataKeys } from '../../local-storage-data-keys';
-import { LocalStorageData } from '../../storage-data';
 
 import { FeatureFlags, getDefaultFeatureFlagValues, getForceDefaultFlags } from '../../../common/feature-flags';
 import { StoreNames } from '../../../common/stores/store-names';
 import { FeatureFlagStoreData } from '../../../common/types/store-data/feature-flag-store-data';
 import { FeatureFlagActions, FeatureFlagPayload } from '../../actions/feature-flag-actions';
+import { StorageAdapter } from '../../browser-adapters/storage-adapter';
+import { LocalStorageDataKeys } from '../../local-storage-data-keys';
+import { LocalStorageData } from '../../storage-data';
 import { BaseStoreImpl } from '../base-store-impl';
-import { BrowserAdapter } from './../../browser-adapter';
 
 export class FeatureFlagStore extends BaseStoreImpl<FeatureFlagStoreData> {
-    private featureFlagActions: FeatureFlagActions;
-    private browserAdapter: BrowserAdapter;
-    private userData: LocalStorageData;
-
-    constructor(featureFlagActions: FeatureFlagActions, browserAdapter: BrowserAdapter, userData: LocalStorageData) {
+    constructor(
+        private readonly featureFlagActions: FeatureFlagActions,
+        private readonly storageAdapter: StorageAdapter,
+        private readonly userData: LocalStorageData,
+    ) {
         super(StoreNames.FeatureFlagStore);
-
-        this.featureFlagActions = featureFlagActions;
-        this.browserAdapter = browserAdapter;
-        this.userData = userData;
     }
 
     public initialize(): void {
@@ -64,7 +60,7 @@ export class FeatureFlagStore extends BaseStoreImpl<FeatureFlagStoreData> {
     @autobind
     private onSetFeatureFlags(payload: FeatureFlagPayload): void {
         this.state[payload.feature] = payload.enabled;
-        this.browserAdapter.setUserData({ [LocalStorageDataKeys.featureFlags]: this.state });
+        this.storageAdapter.setUserData({ [LocalStorageDataKeys.featureFlags]: this.state });
         this.emitChanged();
     }
 

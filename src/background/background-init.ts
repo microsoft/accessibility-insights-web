@@ -52,7 +52,7 @@ getPersistedData(indexedDBInstance).then((persistedData: PersistedData) => {
         const telemetryDataFactory = new TelemetryDataFactory();
         const telemetryLogger = new TelemetryLogger();
 
-        const telemetryClient = getTelemetryClient(userData, browserAdapter, telemetryLogger, AppInsights);
+        const telemetryClient = getTelemetryClient(userData, browserAdapter, telemetryLogger, AppInsights, browserAdapter);
 
         const telemetryEventHandler = new TelemetryEventHandler(telemetryClient);
 
@@ -69,6 +69,7 @@ getPersistedData(indexedDBInstance).then((persistedData: PersistedData) => {
             persistedData,
             IssueFilingServiceProviderImpl,
             environmentInfoProvider.getEnvironmentInfo(),
+            browserAdapter,
         );
         telemetryLogger.initialize(globalContext.featureFlagsController);
 
