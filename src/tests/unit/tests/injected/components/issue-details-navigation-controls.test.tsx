@@ -1,0 +1,128 @@
+// Licensed under the MIT License.
+import { shallow } from 'enzyme';
+import * as React from 'react';
+import { IMock, Mock, Times } from 'typemoq';
+
+import { FeatureFlags } from '../../../../../common/feature-flags';
+import { DetailsDialog } from '../../../../../injected/components/details-dialog';
+import {
+    IssueDetailsNavigationClickHandler,
+    IssueDetailsNavigationControls,
+    IssueDetailsNavigationControlsProps,
+} from '../../../../../injected/components/issue-details-navigation-controls';
+
+describe('IssueDetailsNavigationControls', () => {
+    let controlProps: IssueDetailsNavigationControlsProps;
+    let navigationHandlerMock: IMock<IssueDetailsNavigationClickHandler>;
+
+    beforeEach(() => {
+        navigationHandlerMock = Mock.ofType<IssueDetailsNavigationClickHandler>();
+        controlProps = {
+            container: Mock.ofType<DetailsDialog>().object,
+            dialogHandler: navigationHandlerMock.object,
+            featureFlagStoreData: {},
+        };
+    });
+
+    describe('render', () => {
+        type RenderTestCase = {
+            backButtonDisabled: boolean;
+            nextButtonDisabled: boolean;
+        };
+
+        const testCases: RenderTestCase[] = [
+            {
+                backButtonDisabled: true,
+                nextButtonDisabled: true,
+            },
+            {
+                backButtonDisabled: true,
+                nextButtonDisabled: false,
+            },
+            {
+                backButtonDisabled: false,
+                nextButtonDisabled: true,
+            },
+            {
+                backButtonDisabled: false,
+                nextButtonDisabled: false,
+            },
+        ];
+
+        it.each(testCases)('handles button states: %o', testCase => {
+            navigationHandlerMock
+                .setup(handler => handler.isBackButtonDisabled(controlProps.container))
+                .returns(() => testCase.backButtonDisabled);
+
+            navigationHandlerMock
+                .setup(handler => handler.isNextButtonDisabled(controlProps.container))
+                .returns(() => testCase.nextButtonDisabled);
+
+            const wrapper = shallow(<IssueDetailsNavigationControls {...controlProps} />);
+
+            expect(wrapper.getElement()).toMatchSnapshot();
+        });
+    });
+
+    describe('user interaction', () => {
+        it('handles next button activation', () => {
+            const wrapper = shallow(<IssueDetailsNavigationControls {...controlProps} />);
+
+            const nextButton = wrapper.find({ 'data-automation-id': 'next' });
+
+            expect(nextButton).not.toBeNull();
+            expect(nextButton).toHaveLength(1);
+
+            nextButton.simulate('click');
+
+            navigationHandlerMock.verify(handler => handler.nextButtonClickHandler(controlProps.container), Times.once());
+        });
+
+        it('handles next button activation, shadow dom on', () => {
+            controlProps.featureFlagStoreData = {
+                [FeatureFlags.shadowDialog]: true,
+            };
+
+            const wrapper = shallow(<IssueDetailsNavigationControls {...controlProps} />);
+
+            const nextButton = wrapper.find({ 'data-automation-id': 'next' });
+
+            expect(nextButton).not.toBeNull();
+            expect(nextButton).toHaveLength(1);
+
+            nextButton.simulate('click');
+
+            navigationHandlerMock.verify(handler => handler.nextButtonClickHandler(controlProps.container), Times.never());
+        });
+
+        it('handles back button activation', () => {
+            const wrapper = shallow(<IssueDetailsNavigationControls {...controlProps} />);
+
+            const backButton = wrapper.find({ 'data-automation-id': 'back' });
+
+            expect(backButton).not.toBeNull();
+            expect(backButton).toHaveLength(1);
+
+            backButton.simulate('click');
+
+            navigationHandlerMock.verify(handler => handler.backButtonClickHandler(controlProps.container), Times.once());
+        });
+
+        it('handles back button activation, shadow dom on', () => {
+            controlProps.featureFlagStoreData = {
+                [FeatureFlags.shadowDialog]: true,
+            };
+
+            const wrapper = shallow(<IssueDetailsNavigationControls {...controlProps} />);
+
+            const backButton = wrapper.find({ 'data-automation-id': 'back' });
+
+            expect(backButton).not.toBeNull();
+            expect(backButton).toHaveLength(1);
+
+            backButton.simulate('click');
+
+            navigationHandlerMock.verify(handler => handler.backButtonClickHandler(controlProps.container), Times.never());
+        });
+    });
+});
