@@ -6,6 +6,7 @@ import { StoreType } from '../../../common/types/store-type';
 import { generateUID } from '../../../common/uid-generator';
 import { GlobalActionHub } from '../../actions/global-action-hub';
 import { BrowserAdapter } from '../../browser-adapter';
+import { StorageAdapter } from '../../browser-adapters/storage-adapter';
 import { PersistedData } from '../../get-persisted-data';
 import { LocalStorageData } from '../../storage-data';
 import { TelemetryEventHandler } from '../../telemetry/telemetry-event-handler';
@@ -37,10 +38,11 @@ export class GlobalStoreHub implements StoreHub {
         assessmentsProvider: AssessmentsProvider,
         indexedDbInstance: IndexedDBAPI,
         persistedData: PersistedData,
+        storageAdapter: StorageAdapter,
     ) {
         this.commandStore = new CommandStore(globalActionHub.commandActions, telemetryEventHandler);
-        this.featureFlagStore = new FeatureFlagStore(globalActionHub.featureFlagActions, browserAdapter, userData);
-        this.launchPanelStore = new LaunchPanelStore(globalActionHub.launchPanelStateActions, browserAdapter, userData);
+        this.featureFlagStore = new FeatureFlagStore(globalActionHub.featureFlagActions, storageAdapter, userData);
+        this.launchPanelStore = new LaunchPanelStore(globalActionHub.launchPanelStateActions, storageAdapter, userData);
         this.scopingStore = new ScopingStore(globalActionHub.scopingActions);
         this.assessmentStore = new AssessmentStore(
             browserAdapter,
