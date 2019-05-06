@@ -203,41 +203,106 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: false 
         renderTitleElement={[Function]}
       />
     </div>
-    <div
-      className="ms-Grid insights-dialog-next-and-back-container"
-    >
-      <div
-        className="ms-Grid-row"
-      >
-        <div
-          className="ms-Grid-col ms-sm3 ms-md3 ms-lg3 insights-dialog-button-left"
-        >
-          <CustomizedPrimaryButton
-            data-automation-id="back"
-            disabled={true}
-            onClick={Object {}}
-            text="< Back"
-          />
-        </div>
-        <div
-          className="ms-Grid-col ms-sm6 ms-md6 ms-lg6 insights-dialog-footer"
-        >
-          <div>
-            Failure 1 of 1 for this target
-          </div>
-        </div>
-        <div
-          className="ms-Grid-col ms-sm3 ms-md3 ms-lg3 insights-dialog-button-right"
-        >
-          <CustomizedPrimaryButton
-            data-automation-id="next"
-            disabled={true}
-            onClick={Object {}}
-            text="Next >"
-          />
-        </div>
-      </div>
-    </div>
+    <IssueDetailsNavigationControls
+      container={
+        DetailsDialog {
+          "componentDidMount": [Function],
+          "componentWillUnmount": [Function],
+          "context": undefined,
+          "isBackButtonDisabled": [Function],
+          "isInspectButtonDisabled": [Function],
+          "isNextButtonDisabled": [Function],
+          "onClickBackButton": Object {},
+          "onClickInspectButton": [Function],
+          "onClickNextButton": Object {},
+          "onHideDialog": Object {},
+          "onLayoutDidMount": Object {},
+          "props": Object {
+            "deps": Object {
+              "clientBrowserAdapter": Object {
+                "getUrl": [Function],
+              },
+              "issueDetailsTextGenerator": null,
+              "issueFilingActionMessageCreator": null,
+              "targetPageActionMessageCreator": Object {
+                "copyIssueDetailsClicked": [Function],
+              },
+              "windowUtils": null,
+            },
+            "devToolActionMessageCreator": Object {},
+            "devToolStore": Object {},
+            "devToolsShortcut": "shortcut",
+            "dialogHandler": Object {
+              "componentDidMount": [Function],
+              "getFailureInfo": [Function],
+              "getRuleUrl": [Function],
+              "isBackButtonDisabled": [Function],
+              "isInspectButtonDisabled": [Function],
+              "isNextButtonDisabled": [Function],
+            },
+            "elementSelector": "ruleId",
+            "failedRules": Object {
+              "ruleId": Object {
+                "all": Array [],
+                "any": Array [],
+                "failureSummary": "failureSummary",
+                "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
+                "guidanceLinks": Array [
+                  Object {
+                    "href": "http://example.com",
+                    "text": "Guidance Link",
+                  },
+                ],
+                "help": "help",
+                "helpUrl": "http://extension/help1",
+                "html": "html",
+                "id": "id1",
+                "none": Array [],
+                "ruleId": "ruleId",
+                "selector": "selector",
+                "snippet": "html",
+                "status": false,
+              },
+            },
+            "featureFlagStoreData": Object {
+              "shadowDialog": false,
+            },
+            "target": Array [],
+            "userConfigStore": Object {},
+          },
+          "refs": Object {},
+          "state": Object {
+            "canInspect": true,
+            "currentRuleIndex": 0,
+            "issueTrackerPath": "",
+            "showDialog": true,
+            "userConfigurationStoreData": null,
+          },
+          "updater": Object {
+            "enqueueForceUpdate": [Function],
+            "enqueueReplaceState": [Function],
+            "enqueueSetState": [Function],
+            "isMounted": [Function],
+          },
+        }
+      }
+      dialogHandler={
+        Object {
+          "componentDidMount": [Function],
+          "getFailureInfo": [Function],
+          "getRuleUrl": [Function],
+          "isBackButtonDisabled": [Function],
+          "isInspectButtonDisabled": [Function],
+          "isNextButtonDisabled": [Function],
+        }
+      }
+      failuresCount={1}
+      featureFlagStoreData={
+        Object {
+          "shadowDialog": false,
+        }
+      }
+    />
   </div>
 </StyledWithResponsiveMode>
 `;
@@ -513,41 +578,106 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: true }
           renderTitleElement={[Function]}
         />
       </div>
-      <div
-        className="ms-Grid insights-dialog-next-and-back-container"
-      >
-        <div
-          className="ms-Grid-row"
-        >
-          <div
-            className="ms-Grid-col ms-sm3 ms-md3 ms-lg3 insights-dialog-button-left"
-          >
-            <CustomizedPrimaryButton
-              data-automation-id="back"
-              disabled={true}
-              onClick={null}
-              text="< Back"
-            />
-          </div>
-          <div
-            className="ms-Grid-col ms-sm6 ms-md6 ms-lg6 insights-dialog-footer"
-          >
-            <div>
-              Failure 1 of 1 for this target
-            </div>
-          </div>
-          <div
-            className="ms-Grid-col ms-sm3 ms-md3 ms-lg3 insights-dialog-button-right"
-          >
-            <CustomizedPrimaryButton
-              data-automation-id="next"
-              disabled={true}
-              onClick={null}
-              text="Next >"
-            />
-          </div>
-        </div>
-      </div>
+      <IssueDetailsNavigationControls
+        container={
+          DetailsDialog {
+            "componentDidMount": [Function],
+            "componentWillUnmount": [Function],
+            "context": undefined,
+            "isBackButtonDisabled": [Function],
+            "isInspectButtonDisabled": [Function],
+            "isNextButtonDisabled": [Function],
+            "onClickBackButton": Object {},
+            "onClickInspectButton": [Function],
+            "onClickNextButton": Object {},
+            "onHideDialog": Object {},
+            "onLayoutDidMount": Object {},
+            "props": Object {
+              "deps": Object {
+                "clientBrowserAdapter": Object {
+                  "getUrl": [Function],
+                },
+                "issueDetailsTextGenerator": null,
+                "issueFilingActionMessageCreator": null,
+                "targetPageActionMessageCreator": Object {
+                  "copyIssueDetailsClicked": [Function],
+                },
+                "windowUtils": null,
+              },
+              "devToolActionMessageCreator": Object {},
+              "devToolStore": Object {},
+              "devToolsShortcut": "shortcut",
+              "dialogHandler": Object {
+                "componentDidMount": [Function],
+                "getFailureInfo": [Function],
+                "getRuleUrl": [Function],
+                "isBackButtonDisabled": [Function],
+                "isInspectButtonDisabled": [Function],
+                "isNextButtonDisabled": [Function],
+              },
+              "elementSelector": "ruleId",
+              "failedRules": Object {
+                "ruleId": Object {
+                  "all": Array [],
+                  "any": Array [],
+                  "failureSummary": "failureSummary",
+                  "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
+                  "guidanceLinks": Array [
+                    Object {
+                      "href": "http://example.com",
+                      "text": "Guidance Link",
+                    },
+                  ],
+                  "help": "help",
+                  "helpUrl": "http://extension/help1",
+                  "html": "html",
+                  "id": "id1",
+                  "none": Array [],
+                  "ruleId": "ruleId",
+                  "selector": "selector",
+                  "snippet": "html",
+                  "status": false,
+                },
+              },
+              "featureFlagStoreData": Object {
+                "shadowDialog": true,
+              },
+              "target": Array [],
+              "userConfigStore": Object {},
+            },
+            "refs": Object {},
+            "state": Object {
+              "canInspect": true,
+              "currentRuleIndex": 0,
+              "issueTrackerPath": "",
+              "showDialog": true,
+              "userConfigurationStoreData": null,
+            },
+            "updater": Object {
+              "enqueueForceUpdate": [Function],
+              "enqueueReplaceState": [Function],
+              "enqueueSetState": [Function],
+              "isMounted": [Function],
+            },
+          }
+        }
+        dialogHandler={
+          Object {
+            "componentDidMount": [Function],
+            "getFailureInfo": [Function],
+            "getRuleUrl": [Function],
+            "isBackButtonDisabled": [Function],
+            "isInspectButtonDisabled": [Function],
+            "isNextButtonDisabled": [Function],
+          }
+        }
+        failuresCount={1}
+        featureFlagStoreData={
+          Object {
+            "shadowDialog": true,
+          }
+        }
+      />
     </div>
   </div>
 </div>
@@ -813,41 +943,106 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: false }
         renderTitleElement={[Function]}
       />
     </div>
-    <div
-      className="ms-Grid insights-dialog-next-and-back-container"
-    >
-      <div
-        className="ms-Grid-row"
-      >
-        <div
-          className="ms-Grid-col ms-sm3 ms-md3 ms-lg3 insights-dialog-button-left"
-        >
-          <CustomizedPrimaryButton
-            data-automation-id="back"
-            disabled={true}
-            onClick={Object {}}
-            text="< Back"
-          />
-        </div>
-        <div
-          className="ms-Grid-col ms-sm6 ms-md6 ms-lg6 insights-dialog-footer"
-        >
-          <div>
-            Failure 1 of 1 for this target
-          </div>
-        </div>
-        <div
-          className="ms-Grid-col ms-sm3 ms-md3 ms-lg3 insights-dialog-button-right"
-        >
-          <CustomizedPrimaryButton
-            data-automation-id="next"
-            disabled={true}
-            onClick={Object {}}
-            text="Next >"
-          />
-        </div>
-      </div>
-    </div>
+    <IssueDetailsNavigationControls
+      container={
+        DetailsDialog {
+          "componentDidMount": [Function],
+          "componentWillUnmount": [Function],
+          "context": undefined,
+          "isBackButtonDisabled": [Function],
+          "isInspectButtonDisabled": [Function],
+          "isNextButtonDisabled": [Function],
+          "onClickBackButton": Object {},
+          "onClickInspectButton": [Function],
+          "onClickNextButton": Object {},
+          "onHideDialog": Object {},
+          "onLayoutDidMount": Object {},
+          "props": Object {
+            "deps": Object {
+              "clientBrowserAdapter": Object {
+                "getUrl": [Function],
+              },
+              "issueDetailsTextGenerator": null,
+              "issueFilingActionMessageCreator": null,
+              "targetPageActionMessageCreator": Object {
+                "copyIssueDetailsClicked": [Function],
+              },
+              "windowUtils": null,
+            },
+            "devToolActionMessageCreator": Object {},
+            "devToolStore": Object {},
+            "devToolsShortcut": "shortcut",
+            "dialogHandler": Object {
+              "componentDidMount": [Function],
+              "getFailureInfo": [Function],
+              "getRuleUrl": [Function],
+              "isBackButtonDisabled": [Function],
+              "isInspectButtonDisabled": [Function],
+              "isNextButtonDisabled": [Function],
+            },
+            "elementSelector": "ruleId",
+            "failedRules": Object {
+              "ruleId": Object {
+                "all": Array [],
+                "any": Array [],
+                "failureSummary": "failureSummary",
+                "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
+                "guidanceLinks": Array [
+                  Object {
+                    "href": "http://example.com",
+                    "text": "Guidance Link",
+                  },
+                ],
+                "help": "help",
+                "helpUrl": "http://extension/help1",
+                "html": "html",
+                "id": "id1",
+                "none": Array [],
+                "ruleId": "ruleId",
+                "selector": "selector",
+                "snippet": "html",
+                "status": false,
+              },
+            },
+            "featureFlagStoreData": Object {
+              "shadowDialog": false,
+            },
+            "target": Array [],
+            "userConfigStore": Object {},
+          },
+          "refs": Object {},
+          "state": Object {
+            "canInspect": true,
+            "currentRuleIndex": 0,
+            "issueTrackerPath": "",
+            "showDialog": true,
+            "userConfigurationStoreData": null,
+          },
+          "updater": Object {
+            "enqueueForceUpdate": [Function],
+            "enqueueReplaceState": [Function],
+            "enqueueSetState": [Function],
+            "isMounted": [Function],
+          },
+        }
+      }
+      dialogHandler={
+        Object {
+          "componentDidMount": [Function],
+          "getFailureInfo": [Function],
+          "getRuleUrl": [Function],
+          "isBackButtonDisabled": [Function],
+          "isInspectButtonDisabled": [Function],
+          "isNextButtonDisabled": [Function],
+        }
+      }
+      failuresCount={1}
+      featureFlagStoreData={
+        Object {
+          "shadowDialog": false,
+        }
+      }
+    />
   </div>
 </StyledWithResponsiveMode>
 `;
@@ -1118,41 +1313,106 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: true } 
           renderTitleElement={[Function]}
         />
       </div>
-      <div
-        className="ms-Grid insights-dialog-next-and-back-container"
-      >
-        <div
-          className="ms-Grid-row"
-        >
-          <div
-            className="ms-Grid-col ms-sm3 ms-md3 ms-lg3 insights-dialog-button-left"
-          >
-            <CustomizedPrimaryButton
-              data-automation-id="back"
-              disabled={true}
-              onClick={null}
-              text="< Back"
-            />
-          </div>
-          <div
-            className="ms-Grid-col ms-sm6 ms-md6 ms-lg6 insights-dialog-footer"
-          >
-            <div>
-              Failure 1 of 1 for this target
-            </div>
-          </div>
-          <div
-            className="ms-Grid-col ms-sm3 ms-md3 ms-lg3 insights-dialog-button-right"
-          >
-            <CustomizedPrimaryButton
-              data-automation-id="next"
-              disabled={true}
-              onClick={null}
-              text="Next >"
-            />
-          </div>
-        </div>
-      </div>
+      <IssueDetailsNavigationControls
+        container={
+          DetailsDialog {
+            "componentDidMount": [Function],
+            "componentWillUnmount": [Function],
+            "context": undefined,
+            "isBackButtonDisabled": [Function],
+            "isInspectButtonDisabled": [Function],
+            "isNextButtonDisabled": [Function],
+            "onClickBackButton": Object {},
+            "onClickInspectButton": [Function],
+            "onClickNextButton": Object {},
+            "onHideDialog": Object {},
+            "onLayoutDidMount": Object {},
+            "props": Object {
+              "deps": Object {
+                "clientBrowserAdapter": Object {
+                  "getUrl": [Function],
+                },
+                "issueDetailsTextGenerator": null,
+                "issueFilingActionMessageCreator": null,
+                "targetPageActionMessageCreator": Object {
+                  "copyIssueDetailsClicked": [Function],
+                },
+                "windowUtils": null,
+              },
+              "devToolActionMessageCreator": Object {},
+              "devToolStore": Object {},
+              "devToolsShortcut": "shortcut",
+              "dialogHandler": Object {
+                "componentDidMount": [Function],
+                "getFailureInfo": [Function],
+                "getRuleUrl": [Function],
+                "isBackButtonDisabled": [Function],
+                "isInspectButtonDisabled": [Function],
+                "isNextButtonDisabled": [Function],
+              },
+              "elementSelector": "ruleId",
+              "failedRules": Object {
+                "ruleId": Object {
+                  "all": Array [],
+                  "any": Array [],
+                  "failureSummary": "failureSummary",
+                  "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
+                  "guidanceLinks": Array [
+                    Object {
+                      "href": "http://example.com",
+                      "text": "Guidance Link",
+                    },
+                  ],
+                  "help": "help",
+                  "helpUrl": "http://extension/help1",
+                  "html": "html",
+                  "id": "id1",
+                  "none": Array [],
+                  "ruleId": "ruleId",
+                  "selector": "selector",
+                  "snippet": "html",
+                  "status": false,
+                },
+              },
+              "featureFlagStoreData": Object {
+                "shadowDialog": true,
+              },
+              "target": Array [],
+              "userConfigStore": Object {},
+            },
+            "refs": Object {},
+            "state": Object {
+              "canInspect": true,
+              "currentRuleIndex": 0,
+              "issueTrackerPath": "",
+              "showDialog": true,
+              "userConfigurationStoreData": null,
+            },
+            "updater": Object {
+              "enqueueForceUpdate": [Function],
+              "enqueueReplaceState": [Function],
+              "enqueueSetState": [Function],
+              "isMounted": [Function],
+            },
+          }
+        }
+        dialogHandler={
+          Object {
+            "componentDidMount": [Function],
+            "getFailureInfo": [Function],
+            "getRuleUrl": [Function],
+            "isBackButtonDisabled": [Function],
+            "isInspectButtonDisabled": [Function],
+            "isNextButtonDisabled": [Function],
+          }
+        }
+        failuresCount={1}
+        featureFlagStoreData={
+          Object {
+            "shadowDialog": true,
+          }
+        }
+      />
     </div>
   </div>
 </div>
@@ -1423,41 +1683,106 @@ exports[`DetailsDialogTest render: with relative help url 1`] = `
         renderTitleElement={[Function]}
       />
     </div>
-    <div
-      className="ms-Grid insights-dialog-next-and-back-container"
-    >
-      <div
-        className="ms-Grid-row"
-      >
-        <div
-          className="ms-Grid-col ms-sm3 ms-md3 ms-lg3 insights-dialog-button-left"
-        >
-          <CustomizedPrimaryButton
-            data-automation-id="back"
-            disabled={true}
-            onClick={Object {}}
-            text="< Back"
-          />
-        </div>
-        <div
-          className="ms-Grid-col ms-sm6 ms-md6 ms-lg6 insights-dialog-footer"
-        >
-          <div>
-            Failure 1 of 1 for this target
-          </div>
-        </div>
-        <div
-          className="ms-Grid-col ms-sm3 ms-md3 ms-lg3 insights-dialog-button-right"
-        >
-          <CustomizedPrimaryButton
-            data-automation-id="next"
-            disabled={true}
-            onClick={Object {}}
-            text="Next >"
-          />
-        </div>
-      </div>
-    </div>
+    <IssueDetailsNavigationControls
+      container={
+        DetailsDialog {
+          "componentDidMount": [Function],
+          "componentWillUnmount": [Function],
+          "context": undefined,
+          "isBackButtonDisabled": [Function],
+          "isInspectButtonDisabled": [Function],
+          "isNextButtonDisabled": [Function],
+          "onClickBackButton": Object {},
+          "onClickInspectButton": [Function],
+          "onClickNextButton": Object {},
+          "onHideDialog": Object {},
+          "onLayoutDidMount": Object {},
+          "props": Object {
+            "deps": Object {
+              "clientBrowserAdapter": Object {
+                "getUrl": [Function],
+              },
+              "issueDetailsTextGenerator": null,
+              "issueFilingActionMessageCreator": null,
+              "targetPageActionMessageCreator": Object {
+                "copyIssueDetailsClicked": [Function],
+              },
+              "windowUtils": null,
+            },
+            "devToolActionMessageCreator": Object {},
+            "devToolStore": Object {},
+            "devToolsShortcut": "shortcut",
+            "dialogHandler": Object {
+              "componentDidMount": [Function],
+              "getFailureInfo": [Function],
+              "getRuleUrl": [Function],
+              "isBackButtonDisabled": [Function],
+              "isInspectButtonDisabled": [Function],
+              "isNextButtonDisabled": [Function],
+            },
+            "elementSelector": "ruleId",
+            "failedRules": Object {
+              "ruleId": Object {
+                "all": Array [],
+                "any": Array [],
+                "failureSummary": "failureSummary",
+                "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
+                "guidanceLinks": Array [
+                  Object {
+                    "href": "http://example.com",
+                    "text": "Guidance Link",
+                  },
+                ],
+                "help": "help",
+                "helpUrl": "help-relative",
+                "html": "html",
+                "id": "id1",
+                "none": Array [],
+                "ruleId": "ruleId",
+                "selector": "selector",
+                "snippet": "html",
+                "status": false,
+              },
+            },
+            "featureFlagStoreData": Object {
+              "shadowDialog": false,
+            },
+            "target": Array [],
+            "userConfigStore": Object {},
+          },
+          "refs": Object {},
+          "state": Object {
+            "canInspect": true,
+            "currentRuleIndex": 0,
+            "issueTrackerPath": "",
+            "showDialog": true,
+            "userConfigurationStoreData": null,
+          },
+          "updater": Object {
+            "enqueueForceUpdate": [Function],
+            "enqueueReplaceState": [Function],
+            "enqueueSetState": [Function],
+            "isMounted": [Function],
+          },
+        }
+      }
+      dialogHandler={
+        Object {
+          "componentDidMount": [Function],
+          "getFailureInfo": [Function],
+          "getRuleUrl": [Function],
+          "isBackButtonDisabled": [Function],
+          "isInspectButtonDisabled": [Function],
+          "isNextButtonDisabled": [Function],
+        }
+      }
+      failuresCount={1}
+      featureFlagStoreData={
+        Object {
+          "shadowDialog": false,
+        }
+      }
+    />
   </div>
 </StyledWithResponsiveMode>
 `;
