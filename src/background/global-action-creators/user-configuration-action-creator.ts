@@ -6,7 +6,6 @@ import {
     SetHighContrastModePayload,
     SetIssueFilingServicePayload,
     SetIssueFilingServicePropertyPayload,
-    SetIssueTrackerPathPayload,
     SetTelemetryStatePayload,
 } from '../actions/action-payloads';
 import { UserConfigurationActions } from '../actions/user-configuration-actions';
@@ -21,7 +20,6 @@ export class UserConfigurationActionCreator {
         this.interpreter.registerTypeToPayloadCallback(Messages.UserConfig.SetHighContrastConfig, this.onSetHighContrastMode);
         this.interpreter.registerTypeToPayloadCallback(Messages.UserConfig.SetIssueFilingService, this.onSetBugService);
         this.interpreter.registerTypeToPayloadCallback(Messages.UserConfig.SetIssueFilingServiceProperty, this.onSetBugServiceProperty);
-        this.interpreter.registerTypeToPayloadCallback(Messages.UserConfig.SetIssueTrackerPath, this.onSetIssueTrackerPath);
         this.interpreter.registerTypeToPayloadCallback(Messages.UserConfig.SaveIssueFilingSettings, this.onSaveIssueFilingSettings);
     }
 
@@ -43,10 +41,6 @@ export class UserConfigurationActionCreator {
 
     private onSetBugServiceProperty = (payload: SetIssueFilingServicePropertyPayload): void => {
         this.userConfigActions.setIssueFilingServiceProperty.invoke(payload);
-    };
-
-    private onSetIssueTrackerPath = (payload: SetIssueTrackerPathPayload): void => {
-        this.userConfigActions.setIssueTrackerPath.invoke(payload);
     };
 
     private onSaveIssueFilingSettings = (payload: SaveIssueFilingSettingsPayload): void => {

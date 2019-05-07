@@ -102,7 +102,6 @@ export class Messages {
         SetHighContrastConfig: 'insights/userConfig/setHighContrastConfig',
         SetIssueFilingService: 'insights/userConfig/setIssueFilingService',
         SetIssueFilingServiceProperty: 'insights/userConfig/setIssueFilingServiceProperty',
-        SetIssueTrackerPath: 'insights/userConfig/issueTrackerPath',
         SaveIssueFilingSettings: 'insights/userConfig/saveIssueFilingSettings',
     };
 
