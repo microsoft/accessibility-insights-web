@@ -552,6 +552,11 @@ div.insights-file-issue-details-dialog-container {
                 .no-matching-elements {
                     font-weight: bold;
                 }
+                .is-disabled.visual-helper-toggle {
+                    .ms-Toggle-stateText {
+                        color: $secondary-text;
+                    }
+                }
                 .no-failure-view {
                     font-size: 15px;
                     font-weight: normal;
