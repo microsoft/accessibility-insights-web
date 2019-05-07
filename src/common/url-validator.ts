@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { BrowserAdapter } from '../background/browser-adapter';
+import { BrowserAdapter } from '../background/browser-adapters/browser-adapter';
 
 export class UrlValidator {
     public async isSupportedUrl(url: string, chromeAdapter: BrowserAdapter): Promise<boolean> {

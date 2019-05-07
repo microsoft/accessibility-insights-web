@@ -15,7 +15,7 @@ import { VisualizationType } from '../common/types/visualization-type';
 import { UrlValidator } from '../common/url-validator';
 import { DictionaryStringTo } from '../types/common-types';
 import { VisualizationTogglePayload } from './actions/action-payloads';
-import { BrowserAdapter } from './browser-adapter';
+import { BrowserAdapter } from './browser-adapters/browser-adapter';
 import { CommandsAdapter } from './browser-adapters/commands-adapter';
 import { UserConfigurationStore } from './stores/global/user-configuration-store';
 import { TabToContextMap } from './tab-context';

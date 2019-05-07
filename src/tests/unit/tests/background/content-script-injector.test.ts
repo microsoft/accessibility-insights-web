@@ -3,7 +3,7 @@
 import * as Q from 'q';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
-import { ChromeAdapter } from '../../../../background/browser-adapter';
+import { ChromeAdapter } from '../../../../background/browser-adapters/browser-adapter';
 import { ContentScriptInjector } from '../../../../background/injector/content-script-injector';
 import { QStub } from '../../stubs/q-stub';
 

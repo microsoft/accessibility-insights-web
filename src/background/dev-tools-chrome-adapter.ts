@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { BrowserAdapter, ChromeAdapter } from './browser-adapter';
+import { BrowserAdapter, ChromeAdapter } from './browser-adapters/browser-adapter';
 
 export interface DevToolsChromeAdapter extends BrowserAdapter {
     getInspectedWindowTabId(): number;

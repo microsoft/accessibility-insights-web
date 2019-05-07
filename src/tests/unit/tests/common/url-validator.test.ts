@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { isFunction } from 'lodash';
 import { It, Mock } from 'typemoq';
-import { ChromeAdapter } from '../../../../background/browser-adapter';
+import { ChromeAdapter } from '../../../../background/browser-adapters/browser-adapter';
 import { UrlValidator } from '../../../../common/url-validator';
 
 describe('UrlValidatorTest', () => {

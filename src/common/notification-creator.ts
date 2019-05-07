@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import * as _ from 'lodash';
 
-import { BrowserAdapter } from '../background/browser-adapter';
+import { BrowserAdapter } from '../background/browser-adapters/browser-adapter';
 import { VisualizationType } from '../common/types/visualization-type';
 import { DictionaryStringTo } from '../types/common-types';
 import { VisualizationConfigurationFactory } from './configs/visualization-configuration-factory';

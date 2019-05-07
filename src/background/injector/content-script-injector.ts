@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import * as Q from 'q';
 
-import { BrowserAdapter } from '../browser-adapter';
+import { BrowserAdapter } from '../browser-adapters/browser-adapter';
 
 export class ContentScriptInjector {
     public static readonly jsFiles: string[] = ['bundle/injected.bundle.js'];

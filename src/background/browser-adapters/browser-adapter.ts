@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { ClientBrowserAdapter, ClientChromeAdapter } from '../common/client-browser-adapter';
-import { CommandsAdapter } from './browser-adapters/commands-adapter';
-import { StorageAdapter } from './browser-adapters/storage-adapter';
+import { ClientBrowserAdapter, ClientChromeAdapter } from '../../common/client-browser-adapter';
+import { CommandsAdapter } from './commands-adapter';
+import { StorageAdapter } from './storage-adapter';
 
 export interface NotificationOptions {
     message: string;

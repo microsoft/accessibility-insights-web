@@ -9,7 +9,7 @@ import { IssueFilingServiceProvider } from '../issue-filing/issue-filing-service
 import { AssessmentsProvider } from './../assessments/types/assessments-provider';
 import { AssessmentActionCreator } from './actions/assessment-action-creator';
 import { GlobalActionHub } from './actions/global-action-hub';
-import { BrowserAdapter } from './browser-adapter';
+import { BrowserAdapter } from './browser-adapters/browser-adapter';
 import { CommandsAdapter } from './browser-adapters/commands-adapter';
 import { StorageAdapter } from './browser-adapters/storage-adapter';
 import { CompletedTestStepTelemetryCreator } from './completed-test-step-telemetry-creator';

@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { BrowserAdapter } from '../../background/browser-adapter';
+import { BrowserAdapter } from '../../background/browser-adapters/browser-adapter';
 import { BaseStore } from '../../common/base-store';
 import { EnvironmentInfo } from '../../common/environment-info-provider';
 import { CreateIssueDetailsTextData } from '../../common/types/create-issue-details-text-data';
