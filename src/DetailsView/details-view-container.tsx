@@ -171,11 +171,7 @@ export class DetailsViewContainer extends React.Component<DetailsViewContainerPr
             selectedDetailsViewPivot: storeState.visualizationStoreData.selectedDetailsViewPivot,
         });
         const selectedTest = selectedDetailsViewSwitcherNavConfiguration.getSelectedDetailsView(storeState);
-        const issueTrackerPath =
-            (storeState.userConfigurationStoreData.bugServicePropertiesMap &&
-                storeState.userConfigurationStoreData.bugServicePropertiesMap.gitHub &&
-                (storeState.userConfigurationStoreData.bugServicePropertiesMap.gitHub as GitHubIssueFilingSettings).repository) ||
-            undefined;
+
         return (
             <DetailsViewMainContent
                 deps={deps}
