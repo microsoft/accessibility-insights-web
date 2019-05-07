@@ -37,7 +37,6 @@ export interface TestViewContainerProps {
     issuesSelection: ISelection;
     reportGenerator: ReportGenerator;
     issuesTableHandler: IssuesTableHandler;
-    issueTrackerPath: string;
     userConfigurationStoreData: UserConfigurationStoreData;
 }
 
