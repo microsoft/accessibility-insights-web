@@ -134,7 +134,6 @@ describe('UserConfigurationStoreTest', () => {
         isFirstTime: boolean;
         enableTelemetry: boolean;
         enableHighContrastMode: boolean;
-        issueTrackerPath?: string;
     };
     test.each([
         { enableTelemetry: true, isFirstTime: true, enableHighContrastMode: false } as SetUserConfigTestCase,
