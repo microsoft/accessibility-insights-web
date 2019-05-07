@@ -29,7 +29,6 @@ export interface IssuesDetailsPaneProps {
     selectedIdToRuleResultMap: DictionaryStringTo<DecoratedAxeNodeResult>;
     pageTitle: string;
     pageUrl: string;
-    issueTrackerPath: string;
     featureFlagData: FeatureFlagStoreData;
     userConfigurationStoreData: UserConfigurationStoreData;
 }

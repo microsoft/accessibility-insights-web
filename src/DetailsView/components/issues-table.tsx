@@ -199,7 +199,6 @@ export class IssuesTable extends React.Component<IssuesTableProps, IssuesTableSt
                 selectedIdToRuleResultMap={this.props.selectedIdToRuleResultMap}
                 pageTitle={this.props.pageTitle}
                 pageUrl={this.props.pageUrl}
-                issueTrackerPath={this.props.issueTrackerPath}
                 featureFlagData={this.props.featureFlags}
                 userConfigurationStoreData={this.props.userConfigurationStoreData}
             />
