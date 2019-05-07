@@ -2,12 +2,12 @@
 // Licensed under the MIT License.
 import { Mock } from 'typemoq';
 
-import { ChromeAdapter } from '../../../../background/browser-adapters/browser-adapter';
 import { ChromeFeatureController } from '../../../../background/chrome-feature-controller';
+import { BrowserAdapter } from '../../../../background/browser-adapters/browser-adapter';
 
 describe('ChromeFeatureControllerTest', () => {
     test('openCommandConfigureTab', () => {
-        const browserAdapterMock = Mock.ofType(ChromeAdapter);
+        const browserAdapterMock = Mock.ofType<BrowserAdapter>();
         browserAdapterMock.setup(ba => ba.createTab('chrome://extensions/configureCommands')).verifiable();
 
         const testSubject = new ChromeFeatureController(browserAdapterMock.object);

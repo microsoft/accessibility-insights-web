@@ -1,7 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
-import { BrowserAdapter, ChromeAdapter } from '../../../../background/browser-adapters/browser-adapter';
+
+import { BrowserAdapter } from '../../../../background/browser-adapters/browser-adapter';
 import { DetailsViewController } from '../../../../background/details-view-controller';
 import { Interpreter } from '../../../../background/interpreter';
 import { FeatureFlagStore } from '../../../../background/stores/global/feature-flag-store';
@@ -55,7 +56,7 @@ describe('TabControllerTest', () => {
         logMock = Mock.ofInstance((msg: string) => {});
         LoggerStub.log = logMock.object;
         mockBroadcasterStrictMock = Mock.ofType<TabContextBroadcaster>(null, MockBehavior.Strict);
-        mockChromeAdapter = Mock.ofType(ChromeAdapter);
+        mockChromeAdapter = Mock.ofType<BrowserAdapter>();
         mockDetailsViewController = Mock.ofType<DetailsViewController>();
         featureFlagStoreMock = Mock.ofType(FeatureFlagStore);
         telemetryEventHandlerMock = Mock.ofType(TelemetryEventHandler);

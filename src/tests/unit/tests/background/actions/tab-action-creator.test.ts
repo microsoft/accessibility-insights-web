@@ -2,10 +2,11 @@
 // Licensed under the MIT License.
 import * as _ from 'lodash';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
+
 import { PageVisibilityChangeTabPayload, SwitchToTargetTabPayload } from '../../../../../background/actions/action-payloads';
 import { TabActionCreator } from '../../../../../background/actions/tab-action-creator';
 import { TabActions } from '../../../../../background/actions/tab-actions';
-import { BrowserAdapter, ChromeAdapter } from '../../../../../background/browser-adapters/browser-adapter';
+import { BrowserAdapter } from '../../../../../background/browser-adapters/browser-adapter';
 import { TelemetryEventHandler } from '../../../../../background/telemetry/telemetry-event-handler';
 import { Action } from '../../../../../common/flux/action';
 import { Tab } from '../../../../../common/itab';
@@ -28,7 +29,7 @@ describe('TestActionCreatorTest', () => {
 
     beforeEach(() => {
         tabActionsMock = Mock.ofType(TabActions, MockBehavior.Strict);
-        browserAdapterMock = Mock.ofType(ChromeAdapter, MockBehavior.Strict);
+        browserAdapterMock = Mock.ofType<BrowserAdapter>(null, MockBehavior.Strict);
         telemetryEventHandlerMock = Mock.ofType(TelemetryEventHandler, MockBehavior.Strict);
         registerTypeToPayloadCallbackMock = Mock.ofInstance((theType, callback) => {});
 

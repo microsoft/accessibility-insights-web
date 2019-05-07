@@ -2,9 +2,10 @@
 // Licensed under the MIT License.
 import * as _ from 'lodash';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
+
 import { InspectActionCreator } from '../../../../../background/actions/inspect-action-creator';
 import { InspectActions, InspectPayload } from '../../../../../background/actions/inspect-actions';
-import { BrowserAdapter, ChromeAdapter } from '../../../../../background/browser-adapters/browser-adapter';
+import { BrowserAdapter } from '../../../../../background/browser-adapters/browser-adapter';
 import { InspectMode } from '../../../../../background/inspect-modes';
 import { TelemetryEventHandler } from '../../../../../background/telemetry/telemetry-event-handler';
 import { Action } from '../../../../../common/flux/action';
@@ -24,7 +25,7 @@ describe('InspectActionCreatorTest', () => {
     beforeAll(() => {
         inspectActionsMock = Mock.ofType(InspectActions, MockBehavior.Strict);
         telemetryEventHandlerMock = Mock.ofType(TelemetryEventHandler, MockBehavior.Strict);
-        browserAdapterMock = Mock.ofType(ChromeAdapter, MockBehavior.Strict);
+        browserAdapterMock = Mock.ofType<BrowserAdapter>(null, MockBehavior.Strict);
         registerTypeToPayloadCallbackMock = Mock.ofInstance((_type, _callback) => {});
 
         testObject = new InspectActionCreator(

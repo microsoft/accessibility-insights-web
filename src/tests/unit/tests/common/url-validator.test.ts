@@ -2,7 +2,8 @@
 // Licensed under the MIT License.
 import { isFunction } from 'lodash';
 import { It, Mock } from 'typemoq';
-import { ChromeAdapter } from '../../../../background/browser-adapters/browser-adapter';
+
+import { BrowserAdapter } from '../../../../background/browser-adapters/browser-adapter';
 import { UrlValidator } from '../../../../common/url-validator';
 
 describe('UrlValidatorTest', () => {
@@ -30,7 +31,7 @@ describe('UrlValidatorTest', () => {
     test('isSupportedUrl: file', async () => {
         const url: string = 'file://test';
         testSubject = new UrlValidator();
-        const browserAdapterMock = Mock.ofType(ChromeAdapter);
+        const browserAdapterMock = Mock.ofType<BrowserAdapter>();
         browserAdapterMock
             .setup(b => b.isAllowedFileSchemeAccess(It.is(isFunction)))
             .callback(callback => {
@@ -47,7 +48,7 @@ describe('UrlValidatorTest', () => {
     test('isFileUrl, but have no access, so isNotSupportedUrl', async () => {
         const url: string = 'file://yes/I/am!';
         testSubject = new UrlValidator();
-        const browserAdapterMock = Mock.ofType(ChromeAdapter);
+        const browserAdapterMock = Mock.ofType<BrowserAdapter>();
         browserAdapterMock
             .setup(b => b.isAllowedFileSchemeAccess(It.is(isFunction)))
             .callback(callback => {

@@ -3,17 +3,17 @@
 import * as Q from 'q';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
-import { ChromeAdapter } from '../../../../background/browser-adapters/browser-adapter';
+import { BrowserAdapter } from '../../../../background/browser-adapters/browser-adapter';
 import { ContentScriptInjector } from '../../../../background/injector/content-script-injector';
 import { QStub } from '../../stubs/q-stub';
 
-let mockBrowserAdpater: IMock<ChromeAdapter>;
+let mockBrowserAdpater: IMock<BrowserAdapter>;
 let mockQ: IMock<typeof Q>;
 let testSubject: ContentScriptInjector;
 
 describe('ContentScriptInjectorTest', () => {
     beforeEach(() => {
-        mockBrowserAdpater = Mock.ofType(ChromeAdapter);
+        mockBrowserAdpater = Mock.ofType<BrowserAdapter>();
         mockQ = Mock.ofType(QStub, MockBehavior.Strict) as any;
 
         mockQ.setup(x => x.defer()).returns(() => Q.defer());

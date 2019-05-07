@@ -6,7 +6,7 @@ import * as ReactDOM from 'react-dom';
 import { AssessmentDefaultMessageGenerator } from '../assessments/assessment-default-message-generator';
 import { Assessments } from '../assessments/assessments';
 import { assessmentsProviderWithFeaturesEnabled } from '../assessments/assessments-feature-flag-filter';
-import { ChromeAdapter } from '../background/browser-adapters/browser-adapter';
+import { ChromeAdapter } from '../background/browser-adapters/chrome-adapter';
 import { IssueDetailsTextGenerator } from '../background/issue-details-text-generator';
 import { A11YSelfValidator } from '../common/a11y-self-validator';
 import { AxeInfo } from '../common/axe-info';

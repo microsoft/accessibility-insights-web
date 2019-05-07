@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IMock, It, Mock, MockBehavior } from 'typemoq';
+import { IMock, It, Mock } from 'typemoq';
 
-import { BrowserAdapter, ChromeAdapter } from '../../../../background/browser-adapters/browser-adapter';
+import { BrowserAdapter } from '../../../../background/browser-adapters/browser-adapter';
 import { CommandsAdapter } from '../../../../background/browser-adapters/commands-adapter';
 import { StorageAdapter } from '../../../../background/browser-adapters/storage-adapter';
 import { PersistedData } from '../../../../background/get-persisted-data';
@@ -34,7 +34,7 @@ describe('GlobalContextFactoryTest', () => {
 
     beforeAll(() => {
         _mockStorageAdapter = Mock.ofType<StorageAdapter>();
-        _mockChromeAdapter = Mock.ofType(ChromeAdapter, MockBehavior.Loose);
+        _mockChromeAdapter = Mock.ofType<BrowserAdapter>();
         _mockCommandsAdapter = Mock.ofType<CommandsAdapter>();
         _mockChromeAdapter.setup(adapter => adapter.sendMessageToAllFramesAndTabs(It.isAny()));
         _mocktelemetryEventHandler = Mock.ofType(TelemetryEventHandler);

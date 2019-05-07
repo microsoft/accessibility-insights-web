@@ -3,7 +3,7 @@
 import { IMock, Mock, Times } from 'typemoq';
 
 import { ApplicationBuildGenerator } from '../../../../../background/application-build-generator';
-import { ChromeAdapter } from '../../../../../background/browser-adapters/browser-adapter';
+import { BrowserAdapter } from '../../../../../background/browser-adapters/browser-adapter';
 import { InstallDataGenerator } from '../../../../../background/install-data-generator';
 import {
     ApplicationTelemetryData,
@@ -16,13 +16,13 @@ describe('ApplicationTelemetryDataFactoryTest', () => {
     const installationId: string = 'some id';
     let applicationBuildGeneratorMock: IMock<ApplicationBuildGenerator>;
     let installDataGeneratorMock: IMock<InstallDataGenerator>;
-    let browserAdapterMock: IMock<ChromeAdapter>;
+    let browserAdapterMock: IMock<BrowserAdapter>;
     let testSubject: ApplicationTelemetryDataFactory;
 
     beforeEach(() => {
         const manifestStub: chrome.runtime.Manifest = getManifestStub();
 
-        browserAdapterMock = Mock.ofType<ChromeAdapter>();
+        browserAdapterMock = Mock.ofType<BrowserAdapter>();
         browserAdapterMock
             .setup(it => it.getManifest())
             .returns(() => {

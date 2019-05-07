@@ -1,8 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
+
 import { AssessmentsProviderImpl } from '../../../../assessments/assessments-provider';
-import { ChromeAdapter } from '../../../../background/browser-adapters/browser-adapter';
+import { BrowserAdapter } from '../../../../background/browser-adapters/browser-adapter';
 import { DetailsViewController } from '../../../../background/details-view-controller';
 import { Interpreter } from '../../../../background/interpreter';
 import { AssessmentStore } from '../../../../background/stores/assessment-store';
@@ -32,10 +33,10 @@ function getConfigs(visualizationType: VisualizationType): VisualizationConfigur
 
 describe('TabContextFactoryTest', () => {
     let mockDetailsViewController: IMock<DetailsViewController>;
-    let mockBrowserAdapter: IMock<ChromeAdapter>;
+    let mockBrowserAdapter: IMock<BrowserAdapter>;
 
     beforeAll(() => {
-        mockBrowserAdapter = Mock.ofType(ChromeAdapter);
+        mockBrowserAdapter = Mock.ofType<BrowserAdapter>();
 
         mockDetailsViewController = Mock.ofType<DetailsViewController>();
         mockBrowserAdapter.reset();

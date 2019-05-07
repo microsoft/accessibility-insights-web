@@ -4,7 +4,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { IMock, It, Mock } from 'typemoq';
 
-import { BrowserAdapter, ChromeAdapter } from '../../../../background/browser-adapters/browser-adapter';
+import { BrowserAdapter } from '../../../../background/browser-adapters/browser-adapter';
 import { Theme } from '../../../../common/components/theme';
 import { DropdownClickHandler } from '../../../../common/dropdown-click-handler';
 import { title } from '../../../../content/strings/application';
@@ -37,7 +37,7 @@ describe('MainRenderer', () => {
         const renderMock: IMock<typeof ReactDOM.render> = Mock.ofInstance(() => null);
 
         const popupWindowMock = Mock.ofInstance(window);
-        const browserAdapterMock = Mock.ofType<BrowserAdapter>(ChromeAdapter);
+        const browserAdapterMock = Mock.ofType<BrowserAdapter>();
         const hasAccess = true;
         const targetTabUrl = 'url';
 
