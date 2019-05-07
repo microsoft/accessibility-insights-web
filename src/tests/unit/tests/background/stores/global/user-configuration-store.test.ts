@@ -2,13 +2,11 @@
 // Licensed under the MIT License.
 import { cloneDeep } from 'lodash';
 import { IMock, It, Mock, Times } from 'typemoq';
-
 import {
     SaveIssueFilingSettingsPayload,
     SetHighContrastModePayload,
     SetIssueFilingServicePayload,
     SetIssueFilingServicePropertyPayload,
-    SetIssueTrackerPathPayload,
     SetTelemetryStatePayload,
 } from '../../../../../../background/actions/action-payloads';
 import { UserConfigurationActions } from '../../../../../../background/actions/user-configuration-actions';
@@ -237,41 +235,6 @@ describe('UserConfigurationStoreTest', () => {
                 .testListenerToBeCalledOnce(cloneDeep(initialStoreData), expectedState);
         },
     );
-
-    test.each([
-        { enableTelemetry: false, isFirstTime: false, enableHighContrastMode: false } as SetUserConfigTestCase,
-        { enableTelemetry: false, isFirstTime: false, enableHighContrastMode: false, issueTrackerPath: 'example' } as SetUserConfigTestCase,
-    ])('setIssueTrackerPath action: %o', (testCase: SetUserConfigTestCase) => {
-        const storeTester = createStoreToTestAction('setIssueTrackerPath');
-        initialStoreData = {
-            enableTelemetry: false,
-            isFirstTime: false,
-            enableHighContrast: false,
-            issueTrackerPath: testCase.issueTrackerPath,
-            bugService: 'none',
-            bugServicePropertiesMap: {},
-        };
-
-        const setIssueTrackerPathData: SetIssueTrackerPathPayload = {
-            issueTrackerPath: testCase.issueTrackerPath,
-        };
-
-        const expectedState: UserConfigurationStoreData = {
-            enableTelemetry: false,
-            isFirstTime: false,
-            enableHighContrast: false,
-            issueTrackerPath: testCase.issueTrackerPath,
-            bugService: 'none',
-            bugServicePropertiesMap: {},
-        };
-
-        indexDbStrictMock.setup(i => i.setItem(IndexedDBDataKeys.userConfiguration, It.isValue(expectedState))).verifiable(Times.once());
-
-        storeTester
-            .withActionParam(setIssueTrackerPathData)
-            .withPostListenerMock(indexDbStrictMock)
-            .testListenerToBeCalledOnce(cloneDeep(initialStoreData), expectedState);
-    });
 
     test.each([undefined, null, {}, { 'test-service': {} }, { 'test-service': { 'test-name': 'test-value' } }])(
         'setIssueFilingServiceProperty with initial map state %o',

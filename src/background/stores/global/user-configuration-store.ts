@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 import { autobind } from '@uifabric/utilities';
 import { cloneDeep, isPlainObject } from 'lodash';
-
 import { IndexedDBAPI } from '../../../common/indexedDB/indexedDB';
 import { StoreNames } from '../../../common/stores/store-names';
 import { UserConfigurationStoreData } from '../../../common/types/store-data/user-configuration-store';
@@ -11,7 +10,6 @@ import {
     SetHighContrastModePayload,
     SetIssueFilingServicePayload,
     SetIssueFilingServicePropertyPayload,
-    SetIssueTrackerPathPayload,
     SetTelemetryStatePayload,
 } from '../../actions/action-payloads';
 import { UserConfigurationActions } from '../../actions/user-configuration-actions';
@@ -51,7 +49,6 @@ export class UserConfigurationStore extends BaseStoreImpl<UserConfigurationStore
         this.userConfigActions.setHighContrastMode.addListener(this.onSetHighContrastMode);
         this.userConfigActions.setIssueFilingService.addListener(this.onSetIssueFilingService);
         this.userConfigActions.setIssueFilingServiceProperty.addListener(this.onSetIssueFilingServiceProperty);
-        this.userConfigActions.setIssueTrackerPath.addListener(this.onSetIssueTrackerPath);
         this.userConfigActions.saveIssueFilingSettings.addListener(this.onSaveIssueSettings);
     }
 
@@ -85,12 +82,6 @@ export class UserConfigurationStore extends BaseStoreImpl<UserConfigurationStore
 
         this.state.bugServicePropertiesMap[payload.issueFilingServiceName][payload.propertyName] = payload.propertyValue;
 
-        this.saveAndEmitChanged();
-    }
-
-    @autobind
-    private onSetIssueTrackerPath(payload: SetIssueTrackerPathPayload): void {
-        this.state.issueTrackerPath = payload.issueTrackerPath;
         this.saveAndEmitChanged();
     }
 
