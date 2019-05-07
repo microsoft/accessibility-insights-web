@@ -70,6 +70,7 @@ getPersistedData(indexedDBInstance).then((persistedData: PersistedData) => {
             IssueFilingServiceProviderImpl,
             environmentInfoProvider.getEnvironmentInfo(),
             browserAdapter,
+            browserAdapter,
         );
         telemetryLogger.initialize(globalContext.featureFlagsController);
 
@@ -92,6 +93,7 @@ getPersistedData(indexedDBInstance).then((persistedData: PersistedData) => {
             visualizationConfigurationFactory,
             telemetryDataFactory,
             globalContext.stores.userConfigurationStore,
+            browserAdapter,
         );
         chromeCommandHandler.initialize();
 

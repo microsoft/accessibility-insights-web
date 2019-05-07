@@ -3,6 +3,7 @@
 import { IMock, It, Mock, MockBehavior } from 'typemoq';
 
 import { BrowserAdapter, ChromeAdapter } from '../../../../background/browser-adapter';
+import { CommandsAdapter } from '../../../../background/browser-adapters/commands-adapter';
 import { StorageAdapter } from '../../../../background/browser-adapters/storage-adapter';
 import { PersistedData } from '../../../../background/get-persisted-data';
 import { GlobalContext } from '../../../../background/global-context';
@@ -21,6 +22,7 @@ import { CreateTestAssessmentProvider } from '../../common/test-assessment-provi
 
 describe('GlobalContextFactoryTest', () => {
     let _mockChromeAdapter: IMock<BrowserAdapter>;
+    let _mockCommandsAdapter: IMock<CommandsAdapter>;
     let _mockStorageAdapter: IMock<StorageAdapter>;
     let _mocktelemetryEventHandler: IMock<TelemetryEventHandler>;
     let _mockTelemetryDataFactory: IMock<TelemetryDataFactory>;
@@ -33,6 +35,7 @@ describe('GlobalContextFactoryTest', () => {
     beforeAll(() => {
         _mockStorageAdapter = Mock.ofType<StorageAdapter>();
         _mockChromeAdapter = Mock.ofType(ChromeAdapter, MockBehavior.Loose);
+        _mockCommandsAdapter = Mock.ofType<CommandsAdapter>();
         _mockChromeAdapter.setup(adapter => adapter.sendMessageToAllFramesAndTabs(It.isAny()));
         _mocktelemetryEventHandler = Mock.ofType(TelemetryEventHandler);
         _mockTelemetryDataFactory = Mock.ofType(TelemetryDataFactory);
@@ -56,6 +59,7 @@ describe('GlobalContextFactoryTest', () => {
             _mockIssueFilingServiceProvider.object,
             environmentInfoStub,
             _mockStorageAdapter.object,
+            _mockCommandsAdapter.object,
         );
 
         expect(globalContext).toBeInstanceOf(GlobalContext);

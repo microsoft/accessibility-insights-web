@@ -16,6 +16,7 @@ import { UrlValidator } from '../common/url-validator';
 import { DictionaryStringTo } from '../types/common-types';
 import { VisualizationTogglePayload } from './actions/action-payloads';
 import { BrowserAdapter } from './browser-adapter';
+import { CommandsAdapter } from './browser-adapters/commands-adapter';
 import { UserConfigurationStore } from './stores/global/user-configuration-store';
 import { TabToContextMap } from './tab-context';
 
@@ -27,18 +28,19 @@ export class ChromeCommandHandler {
 
     constructor(
         private tabToContextMap: TabToContextMap,
-        private chromeAdapter: BrowserAdapter,
+        private browserAdapter: BrowserAdapter,
         private urlValidator: UrlValidator,
         private notificationCreator: NotificationCreator,
         private visualizationConfigurationFactory: VisualizationConfigurationFactory,
         private telemetryDataFactory: TelemetryDataFactory,
         private userConfigurationStore: UserConfigurationStore,
+        private commandsAdapter: CommandsAdapter,
         private logger: Logger = createDefaultLogger(),
     ) {}
 
     public initialize(): void {
         this.commandToVisualizationType = this.visualizationConfigurationFactory.getChromeCommandToVisualizationTypeMap();
-        this.chromeAdapter.addCommandListener(this.onCommand);
+        this.commandsAdapter.addCommandListener(this.onCommand);
     }
 
     @autobind
@@ -93,11 +95,11 @@ export class ChromeCommandHandler {
     }
 
     private async checkAccessUrl(): Promise<boolean> {
-        return await this.urlValidator.isSupportedUrl(this.targetTabUrl, this.chromeAdapter);
+        return await this.urlValidator.isSupportedUrl(this.targetTabUrl, this.browserAdapter);
     }
 
     private queryTabs(tabQueryParams: chrome.tabs.QueryInfo): Promise<chrome.tabs.Tab[]> {
-        return new Promise(resolve => this.chromeAdapter.tabsQuery(tabQueryParams, resolve));
+        return new Promise(resolve => this.browserAdapter.tabsQuery(tabQueryParams, resolve));
     }
 
     private async queryCurrentActiveTab(): Promise<chrome.tabs.Tab> {
