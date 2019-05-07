@@ -451,9 +451,7 @@ describe('DetailsDialogHandlerTest', () => {
 
         detailsDialogMock.setup(dialog => dialog.setState(It.isValue({ canInspect: false }))).verifiable(Times.once());
         detailsDialogMock
-            .setup(dialog =>
-                dialog.setState(It.isValue({ issueTrackerPath: 'issTrackPath', userConfigurationStoreData: userConfigStoreData })),
-            )
+            .setup(dialog => dialog.setState(It.isValue({ userConfigurationStoreData: userConfigStoreData })))
             .verifiable(Times.once());
 
         setupDetailsDialogMockForShadowComponents(detailsDialogMock);
@@ -663,9 +661,7 @@ describe('DetailsDialogHandlerTest', () => {
             })
             .verifiable(Times.once());
 
-        detailsDialogMock
-            .setup(dialog => dialog.setState(It.isValue({ issueTrackerPath: itp, userConfigurationStoreData: storeData })))
-            .verifiable(Times.once());
+        detailsDialogMock.setup(dialog => dialog.setState(It.isValue({ userConfigurationStoreData: storeData }))).verifiable(Times.once());
 
         testSubject.onUserConfigChanged(detailsDialogMock.object);
 

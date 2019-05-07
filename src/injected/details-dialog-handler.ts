@@ -76,19 +76,8 @@ export class DetailsDialogHandler {
     public onUserConfigChanged(dialog: DetailsDialog): void {
         const storeState = dialog.props.userConfigStore.getState();
         dialog.setState({
-            issueTrackerPath: this.issueTrackerPath(dialog, storeState),
             userConfigurationStoreData: storeState,
         });
-    }
-
-    @autobind
-    public issueTrackerPath(dialog: DetailsDialog, userConfigState: UserConfigurationStoreData): string {
-        return (
-            userConfigState &&
-            userConfigState.bugServicePropertiesMap &&
-            userConfigState.bugServicePropertiesMap.gitHub &&
-            (userConfigState.bugServicePropertiesMap.gitHub as GitHubIssueFilingSettings).repository
-        );
     }
 
     @autobind
