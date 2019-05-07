@@ -44,7 +44,6 @@ export interface DetailsViewMainContentProps {
     issuesTableHandler: IssuesTableHandler;
     rightPanelConfiguration: DetailsRightPanelConfiguration;
     switcherNavConfiguration: DetailsViewSwitcherNavConfiguration;
-    issueTrackerPath: string;
     userConfigurationStoreData: UserConfigurationStoreData;
 }
 

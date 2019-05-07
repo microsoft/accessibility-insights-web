@@ -248,8 +248,6 @@ describe('DetailsViewContainer', () => {
         rightPanelConfiguration: DetailsRightPanelConfiguration,
         switcherNavConfiguration: DetailsViewSwitcherNavConfiguration,
     ): JSX.Element {
-        const issueTrackerPath = (storeMocks.userConfigurationStoreData.bugServicePropertiesMap.gitHub as GitHubIssueFilingSettings)
-            .repository;
         return (
             <DetailsViewMainContent
                 deps={deps}
@@ -268,7 +266,6 @@ describe('DetailsViewContainer', () => {
                 issuesSelection={props.issuesSelection}
                 reportGenerator={props.reportGenerator}
                 issuesTableHandler={props.issuesTableHandler}
-                issueTrackerPath={issueTrackerPath}
                 rightPanelConfiguration={rightPanelConfiguration}
                 switcherNavConfiguration={switcherNavConfiguration}
                 userConfigurationStoreData={storeMocks.userConfigurationStoreData}
