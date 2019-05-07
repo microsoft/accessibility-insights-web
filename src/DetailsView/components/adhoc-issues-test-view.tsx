@@ -22,7 +22,6 @@ export interface AdhocIssuesTestViewProps {
     deps: AdhocIssuesTestViewDeps;
     tabStoreData: TabStoreData;
     featureFlagStoreData: FeatureFlagStoreData;
-    issueTrackerPath: string;
     selectedTest: VisualizationType;
     visualizationStoreData: VisualizationStoreData;
     visualizationScanResultData: VisualizationScanResultData;
