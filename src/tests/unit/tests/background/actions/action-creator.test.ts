@@ -34,7 +34,6 @@ import {
     BaseTelemetryData,
     DetailsViewOpenTelemetryData,
     DetailsViewPivotSelectedTelemetryData,
-    SettingsOpenTelemetryData,
     TelemetryEventSource,
     ToggleTelemetryData,
     TriggeredBy,
@@ -487,21 +486,6 @@ describe('ActionCreatorTest', () => {
         builder.verifyAll();
     });
 
-    test('registerCallbacks for onSetDetailsViewRightContentPanel', () => {
-        const args = 'Overview';
-        const actionName = 'setSelectedDetailsViewRightContentPanel';
-        const builder = new ActionCreatorValidator()
-            .setupRegistrationCallback(Messages.Visualizations.DetailsView.SetDetailsViewRightContentPanel, [args])
-            .setupActionOnDetailsViewActions(actionName)
-            .setupDetailsViewActionWithInvokeParameter(actionName, args);
-
-        const actionCreator = builder.buildActionCreator();
-
-        actionCreator.registerCallbacks();
-
-        builder.verifyAll();
-    });
-
     test('registerCallback for onScanCompleted', () => {
         const key = 'Key should not matter';
         const actionName = 'scanCompleted';
@@ -687,57 +671,6 @@ describe('ActionCreatorTest', () => {
             .setupActionOnPreviewFeaturesActions(actionName)
             .setupTelemetrySend(TelemetryEvents.PREVIEW_FEATURES_CLOSE, telemetryInfo, tabId)
             .setupPreviewFeaturesActionWithInvokeParameter(actionName, null);
-
-        const actionCreator = validator.buildActionCreator();
-
-        actionCreator.registerCallbacks();
-
-        validator.verifyAll();
-    });
-
-    test('registerCallback for onOpenSettingsPanel', () => {
-        const tabId: number = 1;
-        const telemetryData: SettingsOpenTelemetryData = {
-            triggeredBy: 'mouseclick',
-            source: testSource,
-            sourceItem: 'menu',
-        };
-
-        const payload = {
-            telemetryData,
-        };
-        const actionName = 'openSettingsPanel';
-
-        const validator = new ActionCreatorValidator()
-            .setupRegistrationCallback(Messages.SettingsPanel.OpenPanel, [payload, tabId])
-            .setupActionOnDetailsViewActions(actionName)
-            .setupDetailsViewActionWithInvokeParameter(actionName, null)
-            .setupTelemetrySend(TelemetryEvents.SETTINGS_PANEL_OPEN, payload, tabId)
-            .setupShowDetailsView(tabId);
-
-        const actionCreator = validator.buildActionCreator();
-
-        actionCreator.registerCallbacks();
-
-        validator.verifyAll();
-    });
-
-    test('registerCallback for onCloseSettingPanel', () => {
-        const tabId = 1;
-        const telemetryData: BaseTelemetryData = {
-            triggeredBy: 'stub triggered by' as TriggeredBy,
-            source: testSource,
-        };
-        const actionName = 'closeSettingsPanel';
-        const telemetryInfo = {
-            telemetryData,
-        };
-
-        const validator = new ActionCreatorValidator()
-            .setupRegistrationCallback(Messages.SettingsPanel.ClosePanel, [telemetryInfo, tabId])
-            .setupActionOnDetailsViewActions(actionName)
-            .setupDetailsViewActionWithInvokeParameter(actionName, null)
-            .setupTelemetrySend(TelemetryEvents.SETTINGS_PANEL_CLOSE, telemetryInfo, tabId);
 
         const actionCreator = validator.buildActionCreator();
 
