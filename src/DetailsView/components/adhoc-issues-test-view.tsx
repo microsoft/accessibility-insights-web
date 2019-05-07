@@ -59,7 +59,6 @@ export const AdhocIssuesTestView = NamedSFC<AdhocIssuesTestViewProps>('AdhocIssu
             subtitle={subtitle}
             issuesTableHandler={props.issuesTableHandler}
             issuesEnabled={scanData.enabled}
-            issueTrackerPath={props.issueTrackerPath}
             violations={scanResult != null ? scanResult.violations : null}
             issuesSelection={props.issuesSelection}
             selectedIdToRuleResultMap={selectedIdToRuleResultMap}

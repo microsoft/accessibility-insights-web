@@ -33,7 +33,6 @@ export interface IssuesTableProps {
     selectedIdToRuleResultMap: DictionaryStringTo<DecoratedAxeNodeResult>;
     issuesEnabled: boolean;
     issuesSelection: ISelection;
-    issueTrackerPath: string;
     pageTitle: string;
     pageUrl: string;
     scanning: boolean;
