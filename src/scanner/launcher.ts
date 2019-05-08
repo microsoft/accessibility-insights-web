@@ -3,7 +3,7 @@
 import * as Axe from 'axe-core';
 
 import { AxeResponseHandler } from './axe-response-handler';
-import { ScanOptions } from './exposed-apis';
+import { ScanOptions } from './scan-options';
 import { ScanParameterGenerator } from './scan-parameter-generator';
 
 export interface AxeOptions {

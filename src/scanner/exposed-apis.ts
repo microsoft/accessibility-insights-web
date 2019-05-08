@@ -16,16 +16,9 @@ import { MessageDecorator } from './message-decorator';
 import { ResultDecorator } from './result-decorator';
 import { RuleSifter } from './rule-sifter';
 import { ruleToLinkConfiguration } from './rule-to-links-mappings';
+import { ScanOptions } from './scan-options';
 import { ScanParameterGenerator } from './scan-parameter-generator';
 import { ScannerRuleInfo } from './scanner-rule-info';
-
-export interface ScanOptions {
-    testsToRun?: string[];
-    dom?: NodeSelector & Node | NodeList;
-    selector?: string;
-    include?: string[][];
-    exclude?: string[][];
-}
 
 export let scan = (options: ScanOptions, successCallback: (results: ScanResults) => void, errorCallback: (results: Error) => void) => {
     options = options || {};

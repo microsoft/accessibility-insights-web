@@ -4,8 +4,9 @@ import { autobind } from '@uifabric/utilities';
 
 import { createDefaultLogger } from '../common/logging/default-logger';
 import { Logger } from '../common/logging/logger';
-import { scan as scanRunner, ScanOptions } from '../scanner/exposed-apis';
+import { scan as scanRunner } from '../scanner/exposed-apis';
 import { RuleResult, ScanResults } from '../scanner/iruleresults';
+import { ScanOptions } from '../scanner/scan-options';
 import { DictionaryStringTo } from '../types/common-types';
 import { HyperlinkDefinition } from '../views/content/content-page';
 
