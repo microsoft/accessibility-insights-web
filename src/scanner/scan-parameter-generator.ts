@@ -1,4 +1,4 @@
-import { AxeOptions, AxeScanContext } from './launcher';
+import { AxeOptions, AxeScanContext } from './axe-options';
 import { RuleSifter } from './rule-sifter';
 import { ScanOptions } from './scan-options';
 
