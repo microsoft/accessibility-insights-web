@@ -1,3 +1,5 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
 import { AxeOptions, AxeScanContext } from './axe-options';
 import { RuleSifter } from './rule-sifter';
 import { ScanOptions } from './scan-options';
