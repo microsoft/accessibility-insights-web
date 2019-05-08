@@ -11,7 +11,7 @@ import { TargetTabFinder } from './target-tab-finder';
 
 initializeFabricIcons();
 const browserAdapter = new ChromeAdapter();
-const urlValidator = new UrlValidator();
+const urlValidator = new UrlValidator(browserAdapter);
 const targetTabFinder = new TargetTabFinder(window, browserAdapter, urlValidator, new UrlParser());
 const userAgentParser = new UAParser(window.navigator.userAgent);
 const popupInitializer: PopupInitializer = new PopupInitializer(browserAdapter, targetTabFinder, userAgentParser.getBrowser());
