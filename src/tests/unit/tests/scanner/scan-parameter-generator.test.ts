@@ -2,9 +2,9 @@
 // Licensed under the MIT License.
 import { IMock, Mock, MockBehavior } from 'typemoq';
 
-import { ScanOptions } from '../../../../scanner/exposed-apis';
-import { AxeOptions } from '../../../../scanner/launcher';
+import { AxeOptions } from '../../../../scanner/axe-options';
 import { RuleSifter, RuleWithA11YCriteria } from '../../../../scanner/rule-sifter';
+import { ScanOptions } from '../../../../scanner/scan-options';
 import { ScanParameterGenerator } from '../../../../scanner/scan-parameter-generator';
 
 describe('ScanParameterGenerator', () => {
