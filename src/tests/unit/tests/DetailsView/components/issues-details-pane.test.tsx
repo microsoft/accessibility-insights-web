@@ -19,7 +19,6 @@ import { HyperlinkDefinition } from '../../../../../views/content/content-page';
 describe('IssuesDetailsPaneTest', () => {
     const samplePageTitle = 'pageTitle';
     const samplePageUrl = 'pageUrl';
-    const sampleIssueTrackerPath = 'https://example.com/example';
 
     test('render with empty selection', () => {
         testRenderNotSingle(0);
@@ -125,7 +124,6 @@ describe('IssuesDetailsPaneTest', () => {
             selectedIdToRuleResultMap: ruleMap,
             pageTitle: samplePageTitle,
             pageUrl: samplePageUrl,
-            issueTrackerPath: sampleIssueTrackerPath,
             featureFlagData: {},
             userConfigurationStoreData: {} as UserConfigurationStoreData,
         };

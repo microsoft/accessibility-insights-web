@@ -4,7 +4,6 @@ import { autobind } from '@uifabric/utilities';
 
 import { FeatureFlags } from '../common/feature-flags';
 import { HTMLElementUtils } from '../common/html-element-utils';
-import { GitHubIssueFilingSettings } from '../issue-filing/services/github/github-issue-filing-service';
 import { UserConfigurationStoreData } from './../common/types/store-data/user-configuration-store';
 import { DetailsDialog } from './components/details-dialog';
 
@@ -76,19 +75,8 @@ export class DetailsDialogHandler {
     public onUserConfigChanged(dialog: DetailsDialog): void {
         const storeState = dialog.props.userConfigStore.getState();
         dialog.setState({
-            issueTrackerPath: this.issueTrackerPath(dialog, storeState),
             userConfigurationStoreData: storeState,
         });
-    }
-
-    @autobind
-    public issueTrackerPath(dialog: DetailsDialog, userConfigState: UserConfigurationStoreData): string {
-        return (
-            userConfigState &&
-            userConfigState.bugServicePropertiesMap &&
-            userConfigState.bugServicePropertiesMap.gitHub &&
-            (userConfigState.bugServicePropertiesMap.gitHub as GitHubIssueFilingSettings).repository
-        );
     }
 
     @autobind

@@ -140,10 +140,6 @@ export interface SetIssueFilingServicePropertyPayload extends BaseActionPayload 
     propertyValue: string;
 }
 
-export interface SetIssueTrackerPathPayload extends BaseActionPayload {
-    issueTrackerPath: string;
-}
-
 export interface FileIssuePayload extends BaseActionPayload {
     issueData: CreateIssueDetailsTextData;
     service: string;

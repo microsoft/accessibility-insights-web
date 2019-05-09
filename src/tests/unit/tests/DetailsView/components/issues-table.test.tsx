@@ -296,7 +296,6 @@ class TestPropsBuilder {
             issuesTableHandler: this.issuesTableHandler,
             issuesEnabled: this.issuesEnabled,
             issuesSelection: this.issuesSelection,
-            issueTrackerPath: 'example/example',
             pageTitle: 'pageTitle',
             pageUrl: 'http://pageUrl',
             scanning: this.scanning,

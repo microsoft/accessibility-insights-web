@@ -53,7 +53,6 @@ exports[`IssueFilingDialog componentDidUpdate dialog is not open & props have ch
           "setHighContrastMode": [Function],
           "setIssueFilingService": [Function],
           "setIssueFilingServiceProperty": [Function],
-          "setIssueTrackerPath": [Function],
           "setTelemetryState": [Function],
         },
       }
@@ -139,7 +138,6 @@ exports[`IssueFilingDialog componentDidUpdate dialog is not open & props have no
           "setHighContrastMode": [Function],
           "setIssueFilingService": [Function],
           "setIssueFilingServiceProperty": [Function],
-          "setIssueTrackerPath": [Function],
           "setTelemetryState": [Function],
         },
       }
@@ -225,7 +223,6 @@ exports[`IssueFilingDialog componentDidUpdate dialog is open & props have change
           "setHighContrastMode": [Function],
           "setIssueFilingService": [Function],
           "setIssueFilingServiceProperty": [Function],
-          "setIssueTrackerPath": [Function],
           "setTelemetryState": [Function],
         },
       }
@@ -311,7 +308,6 @@ exports[`IssueFilingDialog componentDidUpdate dialog is open & props have not ch
           "setHighContrastMode": [Function],
           "setIssueFilingService": [Function],
           "setIssueFilingServiceProperty": [Function],
-          "setIssueTrackerPath": [Function],
           "setTelemetryState": [Function],
         },
       }
@@ -397,7 +393,6 @@ exports[`IssueFilingDialog render with isSettingsValid: false 1`] = `
           "setHighContrastMode": [Function],
           "setIssueFilingService": [Function],
           "setIssueFilingServiceProperty": [Function],
-          "setIssueTrackerPath": [Function],
           "setTelemetryState": [Function],
         },
       }
@@ -483,7 +478,6 @@ exports[`IssueFilingDialog render with isSettingsValid: true 1`] = `
           "setHighContrastMode": [Function],
           "setIssueFilingService": [Function],
           "setIssueFilingServiceProperty": [Function],
-          "setIssueTrackerPath": [Function],
           "setTelemetryState": [Function],
         },
       }
@@ -569,7 +563,6 @@ exports[`IssueFilingDialog render: validate callback (onPropertyUpdateCallback) 
           "setHighContrastMode": [Function],
           "setIssueFilingService": [Function],
           "setIssueFilingServiceProperty": [Function],
-          "setIssueTrackerPath": [Function],
           "setTelemetryState": [Function],
         },
       }
@@ -656,7 +649,6 @@ exports[`IssueFilingDialog render: validate callback (onPropertyUpdateCallback) 
           "setHighContrastMode": [Function],
           "setIssueFilingService": [Function],
           "setIssueFilingServiceProperty": [Function],
-          "setIssueTrackerPath": [Function],
           "setTelemetryState": [Function],
         },
       }
@@ -742,7 +734,6 @@ exports[`IssueFilingDialog render: validate callback (onSelectedServiceChange) s
           "setHighContrastMode": [Function],
           "setIssueFilingService": [Function],
           "setIssueFilingServiceProperty": [Function],
-          "setIssueTrackerPath": [Function],
           "setTelemetryState": [Function],
         },
       }

@@ -22,7 +22,6 @@ exports[`IssueFilingSettings renders 1`] = `
           "setHighContrastMode": [Function],
           "setIssueFilingService": [Function],
           "setIssueFilingServiceProperty": [Function],
-          "setIssueTrackerPath": [Function],
           "setTelemetryState": [Function],
         },
       }

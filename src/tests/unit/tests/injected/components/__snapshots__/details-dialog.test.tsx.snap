@@ -274,7 +274,6 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: false 
           "state": Object {
             "canInspect": true,
             "currentRuleIndex": 0,
-            "issueTrackerPath": "",
             "showDialog": true,
             "userConfigurationStoreData": null,
           },
@@ -365,7 +364,6 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: false 
 Object {
   "canInspect": true,
   "currentRuleIndex": 0,
-  "issueTrackerPath": "",
   "showDialog": true,
   "userConfigurationStoreData": null,
 }
@@ -649,7 +647,6 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: true }
             "state": Object {
               "canInspect": true,
               "currentRuleIndex": 0,
-              "issueTrackerPath": "",
               "showDialog": true,
               "userConfigurationStoreData": null,
             },
@@ -739,7 +736,6 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: true }
 Object {
   "canInspect": true,
   "currentRuleIndex": 0,
-  "issueTrackerPath": "",
   "showDialog": true,
   "userConfigurationStoreData": null,
 }
@@ -1014,7 +1010,6 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: false }
           "state": Object {
             "canInspect": true,
             "currentRuleIndex": 0,
-            "issueTrackerPath": "",
             "showDialog": true,
             "userConfigurationStoreData": null,
           },
@@ -1105,7 +1100,6 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: false }
 Object {
   "canInspect": true,
   "currentRuleIndex": 0,
-  "issueTrackerPath": "",
   "showDialog": true,
   "userConfigurationStoreData": null,
 }
@@ -1384,7 +1378,6 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: true } 
             "state": Object {
               "canInspect": true,
               "currentRuleIndex": 0,
-              "issueTrackerPath": "",
               "showDialog": true,
               "userConfigurationStoreData": null,
             },
@@ -1474,7 +1467,6 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: true }:
 Object {
   "canInspect": true,
   "currentRuleIndex": 0,
-  "issueTrackerPath": "",
   "showDialog": true,
   "userConfigurationStoreData": null,
 }
@@ -1754,7 +1746,6 @@ exports[`DetailsDialogTest render: with relative help url 1`] = `
           "state": Object {
             "canInspect": true,
             "currentRuleIndex": 0,
-            "issueTrackerPath": "",
             "showDialog": true,
             "userConfigurationStoreData": null,
           },
@@ -1845,7 +1836,6 @@ exports[`DetailsDialogTest render: with relative help url: verify initial state 
 Object {
   "canInspect": true,
   "currentRuleIndex": 0,
-  "issueTrackerPath": "",
   "showDialog": true,
   "userConfigurationStoreData": null,
 }

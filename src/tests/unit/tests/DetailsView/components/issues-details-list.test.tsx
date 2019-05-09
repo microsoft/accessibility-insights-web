@@ -247,7 +247,6 @@ class TestPropsBuilder {
             issuesSelection: this.issuesSelection,
             pageTitle: 'pageTitle',
             pageUrl: 'http://pageUrl/',
-            issueTrackerPath: 'example/example',
             selectedIdToRuleResultMap: null,
         };
     }

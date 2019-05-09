@@ -37,7 +37,6 @@ import {
 import { DetailsViewMainContent } from '../../../../DetailsView/details-view-main-content';
 import { DetailsViewToggleClickHandlerFactory } from '../../../../DetailsView/handlers/details-view-toggle-click-handler-factory';
 import { PreviewFeatureFlagsHandler } from '../../../../DetailsView/handlers/preview-feature-flags-handler';
-import { GitHubIssueFilingSettings } from '../../../../issue-filing/services/github/github-issue-filing-service';
 import { DetailsViewStoreDataBuilder } from '../../common/details-view-store-data-builder';
 import { TabStoreDataBuilder } from '../../common/tab-store-data-builder';
 import { CreateTestAssessmentProviderWithFeatureFlag } from '../../common/test-assessment-provider';
@@ -248,8 +247,6 @@ describe('DetailsViewContainer', () => {
         rightPanelConfiguration: DetailsRightPanelConfiguration,
         switcherNavConfiguration: DetailsViewSwitcherNavConfiguration,
     ): JSX.Element {
-        const issueTrackerPath = (storeMocks.userConfigurationStoreData.bugServicePropertiesMap.gitHub as GitHubIssueFilingSettings)
-            .repository;
         return (
             <DetailsViewMainContent
                 deps={deps}
@@ -268,7 +265,6 @@ describe('DetailsViewContainer', () => {
                 issuesSelection={props.issuesSelection}
                 reportGenerator={props.reportGenerator}
                 issuesTableHandler={props.issuesTableHandler}
-                issueTrackerPath={issueTrackerPath}
                 rightPanelConfiguration={rightPanelConfiguration}
                 switcherNavConfiguration={switcherNavConfiguration}
                 userConfigurationStoreData={storeMocks.userConfigurationStoreData}

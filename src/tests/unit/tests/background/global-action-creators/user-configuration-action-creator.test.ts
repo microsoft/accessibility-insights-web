@@ -2,13 +2,11 @@
 // Licensed under the MIT License.
 import { isFunction } from 'lodash';
 import { IMock, It, Mock, Times } from 'typemoq';
-
 import {
     SaveIssueFilingSettingsPayload,
     SetHighContrastModePayload,
     SetIssueFilingServicePayload,
     SetIssueFilingServicePropertyPayload,
-    SetIssueTrackerPathPayload,
     SetTelemetryStatePayload,
 } from '../../../../../background/actions/action-payloads';
 import { UserConfigurationActions } from '../../../../../background/actions/user-configuration-actions';
@@ -91,25 +89,6 @@ describe('UserConfigurationActionCreator', () => {
         testSubject.registerCallback();
 
         setIssuFilingServicePropertyMock.verifyAll();
-    });
-
-    it('should SetIssueTrackerPath message', () => {
-        const payload: SetIssueTrackerPathPayload = {
-            enableTelemetry: true,
-            isFirstTime: false,
-            enableHighContrast: true,
-            issueTrackerPath: 'example/example',
-            bugService: 'none',
-            bugServicePropertiesMap: {},
-        };
-        const setIssueTrackerPath = createActionMock(payload);
-        const actionsMock = createActionsMock('setIssueTrackerPath', setIssueTrackerPath.object);
-        const interpreterMock = createInterpreterMock(Messages.UserConfig.SetIssueTrackerPath, payload);
-        const testSubject = new UserConfigurationActionCreator(interpreterMock.object, actionsMock.object);
-
-        testSubject.registerCallback();
-
-        setIssueTrackerPath.verifyAll();
     });
 
     it('should SaveIssueFilingSettings message', () => {
