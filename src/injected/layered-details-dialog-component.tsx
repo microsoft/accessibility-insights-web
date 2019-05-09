@@ -7,6 +7,7 @@ import * as React from 'react';
 import { BaseStore } from '../common/base-store';
 import { FeatureFlags } from '../common/feature-flags';
 import { DevToolActionMessageCreator } from '../common/message-creators/dev-tool-action-message-creator';
+import { NamedSFC } from '../common/react/named-sfc';
 import { DevToolState } from '../common/types/store-data/idev-tool-state';
 import { UserConfigurationStoreData } from '../common/types/store-data/user-configuration-store';
 import { DictionaryStringTo } from '../types/common-types';
@@ -31,21 +32,20 @@ export interface LayeredDetailsDialogProps {
     devToolsShortcut: string;
 }
 
-export class LayeredDetailsDialogComponent extends React.Component<LayeredDetailsDialogProps> {
-    public render(): JSX.Element {
-        const detailsDialog = <DetailsDialog {...this.props} />;
+export const LayeredDetailsDialogComponent = NamedSFC<LayeredDetailsDialogProps>('LayeredDetailsDialogComponent', props => {
+    const isShadowDOMDialogEnabled = (): boolean => {
+        return props.featureFlagStoreData[FeatureFlags.shadowDialog];
+    };
 
-        if (this.isShadowDOMDialogEnabled()) {
-            return detailsDialog;
-        }
-        return (
-            <LayerHost id="insights-dialog-layer-host" dir={this.props.deps.getRTL() ? 'rtl' : 'ltr'}>
-                {detailsDialog}
-            </LayerHost>
-        );
+    const detailsDialog = <DetailsDialog {...props} />;
+
+    if (isShadowDOMDialogEnabled()) {
+        return detailsDialog;
     }
 
-    private isShadowDOMDialogEnabled(): boolean {
-        return this.props.featureFlagStoreData[FeatureFlags.shadowDialog];
-    }
-}
+    return (
+        <LayerHost id="insights-dialog-layer-host" dir={props.deps.getRTL() ? 'rtl' : 'ltr'}>
+            {detailsDialog}
+        </LayerHost>
+    );
+});

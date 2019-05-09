@@ -22,6 +22,8 @@ describe(LayeredDetailsDialogComponent, () => {
     });
 
     it('render component when shadow dom is disabled', () => {
+        featureFlagStoreData[FeatureFlags.shadowDialog] = false;
+
         const wrapper = shallow(<LayeredDetailsDialogComponent {...props} />);
 
         expect(wrapper.getElement()).toMatchSnapshot();
