@@ -10,13 +10,13 @@ import { FeatureFlagActions } from '../actions/feature-flag-actions';
 import { GlobalActionHub } from '../actions/global-action-hub';
 import { LaunchPanelStateActions } from '../actions/launch-panel-state-action';
 import { ScopingActions } from '../actions/scoping-actions';
-import { BrowserAdapter } from '../browser-adapter';
+import { CommandsAdapter } from '../browser-adapters/commands-adapter';
 import { Interpreter } from '../interpreter';
 import { TelemetryEventHandler } from '../telemetry/telemetry-event-handler';
 
 export class GlobalActionCreator {
     private interpreter: Interpreter;
-    private browserAdapter: BrowserAdapter;
+    private commandsAdapter: CommandsAdapter;
     private telemetryEventHandler: TelemetryEventHandler;
 
     private commandActions: CommandActions;
@@ -27,11 +27,11 @@ export class GlobalActionCreator {
     constructor(
         globalActionHub: GlobalActionHub,
         interpreter: Interpreter,
-        browserAdapter: BrowserAdapter,
+        commandsAdapter: CommandsAdapter,
         telemetryEventHandler: TelemetryEventHandler,
     ) {
         this.interpreter = interpreter;
-        this.browserAdapter = browserAdapter;
+        this.commandsAdapter = commandsAdapter;
         this.telemetryEventHandler = telemetryEventHandler;
         this.commandActions = globalActionHub.commandActions;
         this.featureFlagActions = globalActionHub.featureFlagActions;
@@ -57,7 +57,7 @@ export class GlobalActionCreator {
 
     @autobind
     private onGetCommands(payload, tabId: number): void {
-        this.browserAdapter.getCommands((commands: chrome.commands.Command[]) => {
+        this.commandsAdapter.getCommands((commands: chrome.commands.Command[]) => {
             const getCommandsPayload: GetCommandsPayload = {
                 commands: commands,
                 tabId: tabId,

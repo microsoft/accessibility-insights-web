@@ -8,8 +8,8 @@ import { VisualizationConfigurationFactory } from '../../common/configs/visualiz
 import { TelemetryDataFactory } from '../../common/telemetry-data-factory';
 import { ForRuleAnalyzerScanCallback } from '../../common/types/analyzer-telemetry-callbacks';
 import { ScopingStoreData } from '../../common/types/store-data/scoping-store-data';
-import { ScanOptions } from '../../scanner/exposed-apis';
 import { ScanResults } from '../../scanner/iruleresults';
+import { ScanOptions } from '../../scanner/scan-options';
 import { ScannerUtils } from '../scanner-utils';
 import { AxeAnalyzerResult, RuleAnalyzerConfiguration } from './analyzer';
 import { BaseAnalyzer } from './base-analyzer';

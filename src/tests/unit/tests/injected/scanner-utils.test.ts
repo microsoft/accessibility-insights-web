@@ -7,8 +7,9 @@ import { ScopingStore } from '../../../../background/stores/global/scoping-store
 import { Logger } from '../../../../common/logging/logger';
 import { ScopingStoreData } from '../../../../common/types/store-data/scoping-store-data';
 import { DecoratedAxeNodeResult, HtmlElementAxeResults, ScannerUtils } from '../../../../injected/scanner-utils';
-import { scan, ScanOptions } from '../../../../scanner/exposed-apis';
+import { scan } from '../../../../scanner/exposed-apis';
 import { RuleResult, ScanResults } from '../../../../scanner/iruleresults';
+import { ScanOptions } from '../../../../scanner/scan-options';
 import { DictionaryStringTo } from '../../../../types/common-types';
 
 describe('ScannerUtilsTest', () => {

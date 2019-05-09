@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { ClientBrowserAdapter, ClientChromeAdapter } from '../common/client-browser-adapter';
+import { CommandsAdapter } from './browser-adapters/commands-adapter';
 import { StorageAdapter } from './browser-adapters/storage-adapter';
 
 export interface NotificationOptions {
@@ -35,12 +36,10 @@ export interface BrowserAdapter extends ClientBrowserAdapter {
     getRuntimeLastError(): chrome.runtime.LastError;
     isAllowedFileSchemeAccess(callback: Function): void;
     addListenerToLocalStorage(callback: (changes: object) => void): void;
-    addCommandListener(callback: (command: string) => void): void;
-    getCommands(callback: (commands: chrome.commands.Command[]) => void): void;
     openManageExtensionPage(): void;
 }
 
-export class ChromeAdapter extends ClientChromeAdapter implements BrowserAdapter, StorageAdapter {
+export class ChromeAdapter extends ClientChromeAdapter implements BrowserAdapter, StorageAdapter, CommandsAdapter {
     public openManageExtensionPage(): void {
         chrome.tabs.create({
             url: `chrome://extensions/?id=${chrome.runtime.id}`,

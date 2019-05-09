@@ -37,7 +37,7 @@ import { UserStoredDataCleaner } from './user-stored-data-cleaner';
 
 declare var window: Window & InsightsFeatureFlags;
 const browserAdapter = new ChromeAdapter();
-const urlValidator = new UrlValidator();
+const urlValidator = new UrlValidator(browserAdapter);
 const backgroundInitCleaner = new UserStoredDataCleaner(browserAdapter);
 
 const indexedDBInstance: IndexedDBAPI = new IndexedDBUtil();
@@ -70,6 +70,7 @@ getPersistedData(indexedDBInstance).then((persistedData: PersistedData) => {
             IssueFilingServiceProviderImpl,
             environmentInfoProvider.getEnvironmentInfo(),
             browserAdapter,
+            browserAdapter,
         );
         telemetryLogger.initialize(globalContext.featureFlagsController);
 
@@ -92,6 +93,7 @@ getPersistedData(indexedDBInstance).then((persistedData: PersistedData) => {
             visualizationConfigurationFactory,
             telemetryDataFactory,
             globalContext.stores.userConfigurationStore,
+            browserAdapter,
         );
         chromeCommandHandler.initialize();
 

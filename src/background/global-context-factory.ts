@@ -10,6 +10,7 @@ import { AssessmentsProvider } from './../assessments/types/assessments-provider
 import { AssessmentActionCreator } from './actions/assessment-action-creator';
 import { GlobalActionHub } from './actions/global-action-hub';
 import { BrowserAdapter } from './browser-adapter';
+import { CommandsAdapter } from './browser-adapters/commands-adapter';
 import { StorageAdapter } from './browser-adapters/storage-adapter';
 import { CompletedTestStepTelemetryCreator } from './completed-test-step-telemetry-creator';
 import { FeatureFlagsController } from './feature-flags-controller';
@@ -35,6 +36,7 @@ export class GlobalContextFactory {
         issueFilingServiceProvider: IssueFilingServiceProvider,
         environmentInfo: EnvironmentInfo,
         storageAdapter: StorageAdapter,
+        commandsAdapter: CommandsAdapter,
     ): GlobalContext {
         const interpreter = new Interpreter();
 
@@ -62,7 +64,7 @@ export class GlobalContextFactory {
         );
 
         const issueFilingActionCreator = new IssueFilingActionCreator(interpreter, telemetryEventHandler, issueFilingController);
-        const actionCreator = new GlobalActionCreator(globalActionsHub, interpreter, browserAdapter, telemetryEventHandler);
+        const actionCreator = new GlobalActionCreator(globalActionsHub, interpreter, commandsAdapter, telemetryEventHandler);
         const assessmentActionCreator = new AssessmentActionCreator(
             globalActionsHub.assessmentActions,
             telemetryEventHandler,

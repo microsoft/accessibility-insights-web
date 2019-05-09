@@ -10,7 +10,7 @@ import { GlobalActionHub } from '../../../../../background/actions/global-action
 import { LaunchPanelStateActions } from '../../../../../background/actions/launch-panel-state-action';
 import { ScopingActions, ScopingPayload } from '../../../../../background/actions/scoping-actions';
 import { UserConfigurationActions } from '../../../../../background/actions/user-configuration-actions';
-import { ChromeAdapter } from '../../../../../background/browser-adapter';
+import { CommandsAdapter } from '../../../../../background/browser-adapters/commands-adapter';
 import { GlobalActionCreator } from '../../../../../background/global-action-creators/global-action-creator';
 import { Interpreter } from '../../../../../background/interpreter';
 import { TelemetryEventHandler } from '../../../../../background/telemetry/telemetry-event-handler';
@@ -40,7 +40,7 @@ describe('GlobalActionCreatorTest', () => {
         const actionName = 'getCommands';
         const args = [payload, tabId];
         const builder = new GlobalActionCreatorValidator()
-            .setupGetCommandsFromBrowser(commands)
+            .setupGetCommandsFromAdapter(commands)
             .setupRegistrationCallback(Messages.Command.GetCommands, args)
             .setupCommandActionWithInvokeParameter(actionName, invokeParameter)
             .setupActionOnCommandActions(actionName);
@@ -209,7 +209,8 @@ class GlobalActionCreatorValidator {
     private assessmentActionsContainerMock = Mock.ofType(AssessmentActions);
     private userConfigActionsContainerMock = Mock.ofType(UserConfigurationActions);
     private interpreterMock = Mock.ofType<Interpreter>();
-    private browserAdapterMock = Mock.ofType(ChromeAdapter, MockBehavior.Strict);
+    private commandsAdapterMock = Mock.ofType<CommandsAdapter>();
+
     private telemetryEventHandlerMock = Mock.ofType(TelemetryEventHandler, MockBehavior.Strict);
 
     private globalActionHubMock: GlobalActionHub = {
@@ -239,12 +240,8 @@ class GlobalActionCreatorValidator {
         return this.setupAction(actionName, this.scopingActionsContainerMock, this.scopingActionsMockMap);
     }
 
-    public setupGetCommandsFromBrowser(commands: chrome.commands.Command[]): GlobalActionCreatorValidator {
-        this.browserAdapterMock
-            .setup(x => x.getCommands(It.isAny()))
-            .callback(cb => {
-                cb(commands);
-            });
+    public setupGetCommandsFromAdapter(commands: chrome.commands.Command[]): GlobalActionCreatorValidator {
+        this.commandsAdapterMock.setup(x => x.getCommands(It.isAny())).callback(cb => cb(commands));
 
         return this;
     }
@@ -333,7 +330,7 @@ class GlobalActionCreatorValidator {
         const testSubject = new GlobalActionCreator(
             this.globalActionHubMock,
             this.interpreterMock.object,
-            this.browserAdapterMock.object,
+            this.commandsAdapterMock.object,
             this.telemetryEventHandlerMock.object,
         );
         this.testSubject = testSubject;
@@ -346,7 +343,6 @@ class GlobalActionCreatorValidator {
         }
 
         this.interpreterMock.verifyAll();
-        this.browserAdapterMock.verifyAll();
         this.telemetryEventHandlerMock.verifyAll();
     }
 

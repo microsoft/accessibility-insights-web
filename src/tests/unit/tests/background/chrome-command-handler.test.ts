@@ -1,7 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
+
 import { BrowserAdapter, ChromeAdapter } from '../../../../background/browser-adapter';
+import { CommandsAdapter } from '../../../../background/browser-adapters/commands-adapter';
 import { ChromeCommandHandler } from '../../../../background/chrome-command-handler';
 import { Interpreter } from '../../../../background/interpreter';
 import { UserConfigurationStore } from '../../../../background/stores/global/user-configuration-store';
@@ -22,7 +24,8 @@ import { UrlValidator } from '../../../../common/url-validator';
 import { VisualizationStoreDataBuilder } from '../../common/visualization-store-data-builder';
 
 let testSubject: ChromeCommandHandler;
-let chromeAdapterMock: IMock<BrowserAdapter>;
+let browserAdapterMock: IMock<BrowserAdapter>;
+let commandsAdapterMock: IMock<CommandsAdapter>;
 let urlValidatorMock: IMock<UrlValidator>;
 let tabToContextMap: TabToContextMap;
 let visualizationStoreMock: IMock<BaseStore<VisualizationStoreData>>;
@@ -53,23 +56,25 @@ describe('ChromeCommandHandlerTest', () => {
             visualizationStore: visualizationStoreMock.object,
         } as TabContextStoreHub);
 
-        chromeAdapterMock = Mock.ofType(ChromeAdapter);
-        chromeAdapterMock
-            .setup(ca => ca.addCommandListener(It.isAny()))
-            .callback(callback => {
-                commandCallback = callback;
-            })
-            .verifiable();
-        chromeAdapterMock
+        browserAdapterMock = Mock.ofType(ChromeAdapter);
+        browserAdapterMock
             .setup(ca => ca.tabsQuery(It.isValue({ active: true, currentWindow: true }), It.isAny()))
             .returns((_, callback) => {
                 callback([{ id: simulatedActiveTabId, url: simulatedActiveTabUrl } as chrome.tabs.Tab]);
             })
             .verifiable();
 
+        commandsAdapterMock = Mock.ofType<CommandsAdapter>();
+        commandsAdapterMock
+            .setup(adapter => adapter.addCommandListener(It.isAny()))
+            .callback(callback => {
+                commandCallback = callback;
+            })
+            .verifiable();
+
         urlValidatorMock = Mock.ofType(UrlValidator);
         urlValidatorMock
-            .setup(uV => uV.isSupportedUrl(It.isAny(), chromeAdapterMock.object))
+            .setup(uV => uV.isSupportedUrl(It.isAny()))
             .returns(async () => simulatedIsSupportedUrlResponse)
             .verifiable();
 
@@ -90,12 +95,13 @@ describe('ChromeCommandHandlerTest', () => {
 
         testSubject = new ChromeCommandHandler(
             tabToContextMap,
-            chromeAdapterMock.object,
+            browserAdapterMock.object,
             urlValidatorMock.object,
             notificationCreatorMock.object,
             new VisualizationConfigurationFactory(),
             new TelemetryDataFactory(),
             userConfigurationStoreMock.object,
+            commandsAdapterMock.object,
         );
 
         testSubject.initialize();
