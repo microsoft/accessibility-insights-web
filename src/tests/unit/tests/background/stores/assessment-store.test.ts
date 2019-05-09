@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import * as _ from 'lodash';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
+
 import { AssessmentsProviderImpl } from '../../../../../assessments/assessments-provider';
 import { AssessmentsProvider } from '../../../../../assessments/types/assessments-provider';
 import { Assessment } from '../../../../../assessments/types/iassessment';
@@ -20,7 +21,7 @@ import {
 import { AssessmentActions } from '../../../../../background/actions/assessment-actions';
 import { AssessmentDataConverter } from '../../../../../background/assessment-data-converter';
 import { AssessmentDataRemover } from '../../../../../background/assessment-data-remover';
-import { ChromeAdapter } from '../../../../../background/browser-adapter';
+import { BrowserAdapter } from '../../../../../background/browser-adapters/browser-adapter';
 import { InitialAssessmentStoreDataGenerator } from '../../../../../background/initial-assessment-store-data-generator';
 import { AssessmentStore } from '../../../../../background/stores/assessment-store';
 import { AssesssmentVisualizationConfiguration } from '../../../../../common/configs/visualization-configuration-factory';
@@ -53,7 +54,7 @@ const requirementKey: string = 'assessment-1-step-1';
 const assessmentType = -1 as VisualizationType;
 
 describe('AssessmentStoreTest', () => {
-    let browserMock: IMock<ChromeAdapter>;
+    let browserMock: IMock<BrowserAdapter>;
     let assessmentDataConverterMock: IMock<AssessmentDataConverter>;
     let assessmentDataRemoverMock: IMock<AssessmentDataRemover>;
     let assessmentsProvider: AssessmentsProvider;
@@ -67,7 +68,7 @@ describe('AssessmentStoreTest', () => {
 
     beforeEach(() => {
         instanceIdentifierGeneratorStub = () => null;
-        browserMock = Mock.ofType(ChromeAdapter);
+        browserMock = Mock.ofType<BrowserAdapter>();
         assessmentDataConverterMock = Mock.ofType(AssessmentDataConverter);
         assessmentDataRemoverMock = Mock.ofType(AssessmentDataRemover);
         getInstanceIdentiferGeneratorMock = Mock.ofInstance(step => null);

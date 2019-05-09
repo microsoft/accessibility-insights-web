@@ -5,7 +5,7 @@ import { Message } from '../common/message';
 import { Messages } from '../common/messages';
 import { Logger } from './../common/logging/logger';
 import { PageVisibilityChangeTabPayload } from './actions/action-payloads';
-import { BrowserAdapter } from './browser-adapter';
+import { BrowserAdapter } from './browser-adapters/browser-adapter';
 import { DetailsViewController } from './details-view-controller';
 import { TabToContextMap } from './tab-context';
 import { TabContextBroadcaster } from './tab-context-broadcaster';

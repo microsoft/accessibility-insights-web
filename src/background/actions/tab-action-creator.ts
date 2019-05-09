@@ -3,7 +3,7 @@
 import { RegisterTypeToPayloadCallback } from '../../common/message';
 import { Messages } from '../../common/messages';
 import { SWITCH_BACK_TO_TARGET } from '../../common/telemetry-events';
-import { BrowserAdapter } from '../browser-adapter';
+import { BrowserAdapter } from '../browser-adapters/browser-adapter';
 import { TelemetryEventHandler } from '../telemetry/telemetry-event-handler';
 import { SwitchToTargetTabPayload } from './action-payloads';
 import { TabActions } from './tab-actions';

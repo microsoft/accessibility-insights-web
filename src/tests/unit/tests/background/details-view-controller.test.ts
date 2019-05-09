@@ -2,17 +2,17 @@
 // Licensed under the MIT License.
 import { IMock, It, Mock, Times } from 'typemoq';
 
-import { ChromeAdapter } from '../../../../background/browser-adapter';
+import { BrowserAdapter } from '../../../../background/browser-adapters/browser-adapter';
 import { DetailsViewController } from '../../../../background/details-view-controller';
 
 describe('DetailsViewControllerTest', () => {
-    let mockBrowserAdpater: IMock<ChromeAdapter>;
+    let mockBrowserAdpater: IMock<BrowserAdapter>;
     let testSubject: DetailsViewController;
     let onTabRemoveCallback: (tabId: number, removeInfo: chrome.tabs.TabRemoveInfo) => void;
     let onUpdateTabCallback: (tabId: number, changeInfo: chrome.tabs.TabChangeInfo, tab: chrome.tabs.Tab) => void;
 
     beforeEach(() => {
-        mockBrowserAdpater = Mock.ofType(ChromeAdapter);
+        mockBrowserAdpater = Mock.ofType<BrowserAdapter>();
 
         mockBrowserAdpater
             .setup(it => it.addListenerToTabsOnRemoved(It.isAny()))

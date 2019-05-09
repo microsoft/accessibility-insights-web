@@ -15,7 +15,7 @@ import { InspectActionCreator } from './actions/inspect-action-creator';
 import { ScopingActionCreator } from './actions/scoping-action-creator';
 import { TabActionCreator } from './actions/tab-action-creator';
 import { AssessmentScanPolicyRunner } from './assessment-scan-policy-runner';
-import { BrowserAdapter } from './browser-adapter';
+import { BrowserAdapter } from './browser-adapters/browser-adapter';
 import { ChromeFeatureController } from './chrome-feature-controller';
 import { DetailsViewController } from './details-view-controller';
 import { InjectorController } from './injector-controller';

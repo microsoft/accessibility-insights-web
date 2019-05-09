@@ -1,7 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { autobind } from '@uifabric/utilities';
-import { BrowserAdapter } from '../background/browser-adapter';
+
+import { BrowserAdapter } from '../background/browser-adapters/browser-adapter';
 import { Tab } from '../common/itab';
 import { UrlParser } from '../common/url-parser';
 import { UrlValidator } from '../common/url-validator';

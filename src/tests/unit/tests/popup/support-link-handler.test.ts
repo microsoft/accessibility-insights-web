@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { It, Mock } from 'typemoq';
 
-import { ChromeAdapter } from '../../../../background/browser-adapter';
+import { BrowserAdapter } from '../../../../background/browser-adapters/browser-adapter';
 import { configMutator } from '../../../../common/configuration';
 import { WindowUtils } from '../../../../common/window-utils';
 import { SupportLinkHandler } from '../../../../popup/support-link-handler';
@@ -22,7 +22,7 @@ describe('SupportLinkHandlerTest', () => {
             id: 101,
         };
 
-        const chromeAdapterMock = Mock.ofType(ChromeAdapter);
+        const chromeAdapterMock = Mock.ofType<BrowserAdapter>();
         chromeAdapterMock
             .setup(ca => ca.createInactiveTab(expectedEmail, It.isAny()))
             .callback((mail, cb) => {

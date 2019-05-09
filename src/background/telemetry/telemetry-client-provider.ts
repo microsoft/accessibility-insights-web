@@ -4,7 +4,7 @@ import { config } from '../../common/configuration';
 import { DateProvider } from '../../common/date-provider';
 import { generateUID } from '../../common/uid-generator';
 import { ApplicationBuildGenerator } from '../application-build-generator';
-import { BrowserAdapter } from '../browser-adapter';
+import { BrowserAdapter } from '../browser-adapters/browser-adapter';
 import { StorageAdapter } from '../browser-adapters/storage-adapter';
 import { InstallDataGenerator } from '../install-data-generator';
 import { LocalStorageData } from '../storage-data';

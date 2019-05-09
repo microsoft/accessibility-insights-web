@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { ApplicationBuildGenerator } from '../application-build-generator';
-import { BrowserAdapter } from '../browser-adapter';
+import { BrowserAdapter } from '../browser-adapters/browser-adapter';
 import { InstallDataGenerator } from '../install-data-generator';
 import { title } from './../../content/strings/application';
 
