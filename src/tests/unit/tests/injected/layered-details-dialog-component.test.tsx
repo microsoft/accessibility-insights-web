@@ -9,7 +9,7 @@ import { FeatureFlags } from '../../../../common/feature-flags';
 import { LayeredDetailsDialogComponent, LayeredDetailsDialogProps } from '../../../../injected/layered-details-dialog-component';
 import { DictionaryStringTo } from '../../../../types/common-types';
 
-describe(LayeredDetailsDialogComponent, () => {
+describe('LayeredDetailsDialogComponent', () => {
     let featureFlagStoreData: DictionaryStringTo<boolean>;
     let props: LayeredDetailsDialogProps;
     let getRTLMock: IMock<typeof getRTL>;
