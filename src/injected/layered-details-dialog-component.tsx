@@ -15,9 +15,9 @@ import { DetailsDialog, DetailsDialogDeps } from './components/details-dialog';
 import { DetailsDialogHandler } from './details-dialog-handler';
 import { DecoratedAxeNodeResult } from './scanner-utils';
 
-export interface LayeredDetailsDialogDeps extends DetailsDialogDeps {
+export type LayeredDetailsDialogDeps = DetailsDialogDeps & {
     getRTL: typeof getRTL;
-}
+};
 
 export interface LayeredDetailsDialogProps {
     deps: LayeredDetailsDialogDeps;
