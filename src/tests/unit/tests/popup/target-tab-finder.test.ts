@@ -119,6 +119,6 @@ describe('TargetTabFinderTest', () => {
     }
 
     function setupIsSupportedCall(isSupported: boolean): void {
-        urlValidatorMock.setup(v => v.isSupportedUrl(tabStub.url, browserAdapterMock.object)).returns(() => Promise.resolve(isSupported));
+        urlValidatorMock.setup(v => v.isSupportedUrl(tabStub.url)).returns(() => Promise.resolve(isSupported));
     }
 });

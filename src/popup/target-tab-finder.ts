@@ -55,7 +55,7 @@ export class TargetTabFinder {
 
     @autobind
     private async createTargetTabInfo(tab: Tab): Promise<TargetTabInfo> {
-        const hasAccess = await this.urlValidator.isSupportedUrl(tab.url, this.browserAdapter);
+        const hasAccess = await this.urlValidator.isSupportedUrl(tab.url);
         const targetTab: TargetTabInfo = {
             tab: tab,
             hasAccess,

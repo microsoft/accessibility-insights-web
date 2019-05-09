@@ -95,7 +95,7 @@ export class ChromeCommandHandler {
     }
 
     private async checkAccessUrl(): Promise<boolean> {
-        return await this.urlValidator.isSupportedUrl(this.targetTabUrl, this.browserAdapter);
+        return await this.urlValidator.isSupportedUrl(this.targetTabUrl);
     }
 
     private queryTabs(tabQueryParams: chrome.tabs.QueryInfo): Promise<chrome.tabs.Tab[]> {
