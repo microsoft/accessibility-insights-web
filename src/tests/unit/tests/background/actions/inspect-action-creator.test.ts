@@ -25,7 +25,7 @@ describe('InspectActionCreatorTest', () => {
     beforeAll(() => {
         inspectActionsMock = Mock.ofType(InspectActions, MockBehavior.Strict);
         telemetryEventHandlerMock = Mock.ofType(TelemetryEventHandler, MockBehavior.Strict);
-        browserAdapterMock = Mock.ofType<BrowserAdapter>(null, MockBehavior.Strict);
+        browserAdapterMock = Mock.ofType<BrowserAdapter>(undefined, MockBehavior.Strict);
         registerTypeToPayloadCallbackMock = Mock.ofInstance((_type, _callback) => {});
 
         testObject = new InspectActionCreator(

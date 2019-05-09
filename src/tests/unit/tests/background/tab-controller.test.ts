@@ -55,7 +55,7 @@ describe('TabControllerTest', () => {
     beforeEach(() => {
         logMock = Mock.ofInstance((msg: string) => {});
         LoggerStub.log = logMock.object;
-        mockBroadcasterStrictMock = Mock.ofType<TabContextBroadcaster>(null, MockBehavior.Strict);
+        mockBroadcasterStrictMock = Mock.ofType<TabContextBroadcaster>(undefined, MockBehavior.Strict);
         mockChromeAdapter = Mock.ofType<BrowserAdapter>();
         mockDetailsViewController = Mock.ofType<DetailsViewController>();
         featureFlagStoreMock = Mock.ofType(FeatureFlagStore);

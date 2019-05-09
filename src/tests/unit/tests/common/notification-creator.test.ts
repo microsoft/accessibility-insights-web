@@ -19,7 +19,7 @@ describe('NotificationCreator', () => {
     const visualizationType: VisualizationType = -1;
 
     beforeEach(() => {
-        browserAdapterMock = Mock.ofType<BrowserAdapter>(null, MockBehavior.Strict);
+        browserAdapterMock = Mock.ofType<BrowserAdapter>(undefined, MockBehavior.Strict);
         configFactoryMock = Mock.ofType(VisualizationConfigurationFactory, MockBehavior.Strict);
         getNotificationMessageMock = Mock.ofInstance(selector => null);
         testObject = new NotificationCreator(browserAdapterMock.object, configFactoryMock.object);
