@@ -74,7 +74,7 @@ describe('ChromeCommandHandlerTest', () => {
 
         urlValidatorMock = Mock.ofType(UrlValidator);
         urlValidatorMock
-            .setup(uV => uV.isSupportedUrl(It.isAny(), browserAdapterMock.object))
+            .setup(uV => uV.isSupportedUrl(It.isAny()))
             .returns(async () => simulatedIsSupportedUrlResponse)
             .verifiable();
 

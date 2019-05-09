@@ -16,8 +16,8 @@ import { VisualizationType } from '../../../../../common/types/visualization-typ
 import { RuleAnalyzerConfiguration } from '../../../../../injected/analyzers/analyzer';
 import { BatchedRuleAnalyzer, IResultRuleFilter } from '../../../../../injected/analyzers/batched-rule-analyzer';
 import { HtmlElementAxeResults, ScannerUtils } from '../../../../../injected/scanner-utils';
-import { ScanOptions } from '../../../../../scanner/exposed-apis';
 import { RuleResult, ScanResults } from '../../../../../scanner/iruleresults';
+import { ScanOptions } from '../../../../../scanner/scan-options';
 import { DictionaryStringTo } from '../../../../../types/common-types';
 
 describe('BatchedRuleAnalyzer', () => {

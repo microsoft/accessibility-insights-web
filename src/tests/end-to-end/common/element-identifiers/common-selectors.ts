@@ -12,3 +12,7 @@ export const DetailsViewCommonSelectors = {
     settingsButton: 'button[name="Settings"]',
     highContrastToggle: 'button#enable-high-contrast-mode',
 };
+
+export const GuidaceContentSelectors = {
+    mainContentContainer: '.content-container',
+};

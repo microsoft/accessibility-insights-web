@@ -37,7 +37,7 @@ import { UserStoredDataCleaner } from './user-stored-data-cleaner';
 
 declare var window: Window & InsightsFeatureFlags;
 const browserAdapter = new ChromeAdapter();
-const urlValidator = new UrlValidator();
+const urlValidator = new UrlValidator(browserAdapter);
 const backgroundInitCleaner = new UserStoredDataCleaner(browserAdapter);
 
 const indexedDBInstance: IndexedDBAPI = new IndexedDBUtil();

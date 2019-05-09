@@ -2,6 +2,6 @@
 
 exports[`router renders content page 1`] = `
 "<Switch>
-  <Route path=\\"/content/:path+\\" render={[Function: render]} />
+  <Route path=\\"/content/*\\" render={[Function: render]} />
 </Switch>"
 `;
