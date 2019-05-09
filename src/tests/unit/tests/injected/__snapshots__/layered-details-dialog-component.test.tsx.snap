@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`render component when shadow dom is disabled 1`] = `
+exports[` render component when shadow dom is disabled 1`] = `
 <LayerHost
   dir="ltr"
   id="insights-dialog-layer-host"
@@ -21,7 +21,7 @@ exports[`render component when shadow dom is disabled 1`] = `
 </LayerHost>
 `;
 
-exports[`render component when shadow dom is enabled - isRTL - false 1`] = `
+exports[` render component when shadow dom is enabled - isRTL - false 1`] = `
 <DetailsDialog
   deps={
     Object {
@@ -37,7 +37,7 @@ exports[`render component when shadow dom is enabled - isRTL - false 1`] = `
 />
 `;
 
-exports[`render component when shadow dom is enabled - isRTL - true 1`] = `
+exports[` render component when shadow dom is enabled - isRTL - true 1`] = `
 <DetailsDialog
   deps={
     Object {
