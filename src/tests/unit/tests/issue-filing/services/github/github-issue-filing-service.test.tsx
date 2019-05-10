@@ -98,8 +98,4 @@ describe('GithubIssueFilingServiceTest', () => {
             .onChange(null, 'new value');
         onPropertyUpdateCallbackMock.verifyAll();
     });
-
-    describe('create bug filing url', () => {
-        expect(GitHubIssueFilingService.issueFilingUrlProvider).toEqual(gitHubIssueFilingUrlProvider);
-    });
 });

@@ -3,6 +3,7 @@
 import { isEmpty } from 'lodash';
 import { IDropdownOption } from 'office-ui-fabric-react/lib/Dropdown';
 
+import { createFileIssueHandler } from '../../common/create-file-issue-handler';
 import { createSettingsGetter } from '../../common/create-settings-getter';
 import { IssueFilingService } from '../../types/issue-filing-service';
 import { AzureBoardsSettingsForm } from './azure-boards-settings-form';
@@ -36,12 +37,14 @@ function isStringValid(stringToCheck: string): boolean {
     return !isEmpty(stringToCheck) && !isEmpty(stringToCheck.trim());
 }
 
+const settingsGetter = createSettingsGetter<AzureBoardsIssueFilingSettings>(AzureBoardsIssueFilingServiceKey);
+
 export const AzureBoardsIssueFilingService: IssueFilingService<AzureBoardsIssueFilingSettings> = {
     key: AzureBoardsIssueFilingServiceKey,
     displayName: 'Azure Boards',
     settingsForm: AzureBoardsSettingsForm,
     buildStoreData,
-    getSettingsFromStoreData: createSettingsGetter(AzureBoardsIssueFilingServiceKey),
+    getSettingsFromStoreData: settingsGetter,
     isSettingsValid,
-    issueFilingUrlProvider: azureBoardsIssueFilingUrlProvider,
+    fileIssue: createFileIssueHandler(azureBoardsIssueFilingUrlProvider, settingsGetter),
 };

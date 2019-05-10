@@ -67,8 +67,4 @@ describe('AzureBoardsIssueFilingServiceTest', () => {
     it('has correct settingsForm', () => {
         expect(AzureBoardsIssueFilingService.settingsForm).toBe(AzureBoardsSettingsForm);
     });
-
-    it('has correct issue filing url property', () => {
-        expect(AzureBoardsIssueFilingService.issueFilingUrlProvider).toBe(azureBoardsIssueFilingUrlProvider);
-    });
 });

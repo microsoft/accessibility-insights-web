@@ -34,17 +34,6 @@ describe('NullIssueFilingService', () => {
         });
     });
 
-    describe('creates bug filing url', () => {
-        it.each(testSettings)('with %o', settings => {
-            const issuesData: CreateIssueDetailsTextData = {
-                pageTitle: 'test page title',
-                pageUrl: '//test-page-url',
-                ruleResult: {} as DecoratedAxeNodeResult,
-            };
-            expect(NullIssueFilingService.issueFilingUrlProvider(settings, issuesData, null)).toBeNull();
-        });
-    });
-
     it('renders settings form', () => {
         const Component = NullIssueFilingService.settingsForm;
 
