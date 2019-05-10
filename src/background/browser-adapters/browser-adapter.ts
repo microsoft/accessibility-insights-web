@@ -1,13 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { ClientBrowserAdapter } from '../../common/client-browser-adapter';
-
-export interface NotificationOptions {
-    message: string;
-    title: string;
-    iconUrl: string;
-    notificationType?: string;
-}
+import { NotificationOptions } from './notification-options';
 
 export interface BrowserAdapter extends ClientBrowserAdapter {
     getAllWindows(getInfo: chrome.windows.GetInfo, callback: (chromeWindows: chrome.windows.Window[]) => void): void;
