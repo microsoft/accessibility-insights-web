@@ -213,7 +213,7 @@ module.exports = function(grunt) {
                     files: [
                         {
                             cwd: debug ? path.resolve(extensionPath, 'devBundle') : path.resolve(extensionPath, 'prodBundle'),
-                            src: ['*.js', '*.js.map'],
+                            src: ['*.js', '*.js.map', '*.css'],
                             dest: path.resolve(dropExtensionPath, 'bundle'),
                             expand: true,
                         },

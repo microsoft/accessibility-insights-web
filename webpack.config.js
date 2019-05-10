@@ -5,6 +5,7 @@ const webpack = require('webpack');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const commonPlugins = [
     new webpack.optimize.LimitChunkCountPlugin({
@@ -17,6 +18,12 @@ const commonPlugins = [
     // tslint separate from webpack.
     new ForkTsCheckerWebpackPlugin(),
     new CaseSensitivePathsPlugin(),
+    new MiniCssExtractPlugin({
+        // Options similar to the same options in webpackOptions.output
+        // both options are optional
+        filename: '[name].css',
+        chunkFilename: '[id].css',
+    }),
 ];
 
 const commonEntryFiles = {
@@ -32,6 +39,22 @@ const commonConfig = {
     entry: commonEntryFiles,
     module: {
         rules: [
+            {
+                test: /\.scss$/,
+                use: [
+                    MiniCssExtractPlugin.loader,
+                    'css-modules-typescript-loader',
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            modules: true,
+                            camelCase: 'only',
+                            localIdentName: '[local]__[hash:base64:5]',
+                        },
+                    },
+                    'sass-loader',
+                ],
+            },
             {
                 test: /\.tsx?$/,
                 use: [
