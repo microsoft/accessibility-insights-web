@@ -2,9 +2,10 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 import { DisplayableStrings } from '../../common/constants/displayable-strings';
+import * as styles from './no-displayable-preview-features-message.scss';
 
 export const NoDisplayableFeatureFlagMessage = () => (
     <>
-        <div className="no-preview-feature-message">{DisplayableStrings.noPreviewFeatureDisplayMessage}</div>
+        <div className={styles.noPreviewFeatureMessage}>{DisplayableStrings.noPreviewFeatureDisplayMessage}</div>
     </>
 );
