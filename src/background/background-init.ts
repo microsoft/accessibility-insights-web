@@ -36,9 +36,9 @@ import { TelemetryStateListener } from './telemetry/telemetry-state-listener';
 import { UserStoredDataCleaner } from './user-stored-data-cleaner';
 
 declare var window: Window & InsightsFeatureFlags;
-const browserAdapter = new ChromeAdapter();
-const urlValidator = new UrlValidator(browserAdapter);
-const backgroundInitCleaner = new UserStoredDataCleaner(browserAdapter);
+const chromeAdapter = new ChromeAdapter();
+const urlValidator = new UrlValidator(chromeAdapter);
+const backgroundInitCleaner = new UserStoredDataCleaner(chromeAdapter);
 
 const indexedDBInstance: IndexedDBAPI = new IndexedDBUtil();
 
@@ -46,21 +46,21 @@ backgroundInitCleaner.cleanUserData(deprecatedStorageDataKeys);
 
 // tslint:disable-next-line:no-floating-promises - top-level entry points are intentionally floating promises
 getPersistedData(indexedDBInstance).then((persistedData: PersistedData) => {
-    browserAdapter.getUserData(storageDataKeys, (userData: LocalStorageData) => {
+    chromeAdapter.getUserData(storageDataKeys, (userData: LocalStorageData) => {
         const assessmentsProvider = Assessments;
         const windowUtils = new WindowUtils();
         const telemetryDataFactory = new TelemetryDataFactory();
         const telemetryLogger = new TelemetryLogger();
 
-        const telemetryClient = getTelemetryClient(userData, browserAdapter, telemetryLogger, AppInsights, browserAdapter);
+        const telemetryClient = getTelemetryClient(userData, chromeAdapter, telemetryLogger, AppInsights, chromeAdapter);
 
         const telemetryEventHandler = new TelemetryEventHandler(telemetryClient);
 
         const browserSpec = new NavigatorUtils(window.navigator).getBrowserSpec();
-        const environmentInfoProvider = new EnvironmentInfoProvider(browserAdapter.extensionVersion, browserSpec, AxeInfo.Default.version);
+        const environmentInfoProvider = new EnvironmentInfoProvider(chromeAdapter.extensionVersion, browserSpec, AxeInfo.Default.version);
 
         const globalContext = GlobalContextFactory.createContext(
-            browserAdapter,
+            chromeAdapter,
             telemetryEventHandler,
             userData,
             assessmentsProvider,
@@ -69,38 +69,38 @@ getPersistedData(indexedDBInstance).then((persistedData: PersistedData) => {
             persistedData,
             IssueFilingServiceProviderImpl,
             environmentInfoProvider.getEnvironmentInfo(),
-            browserAdapter,
-            browserAdapter,
+            chromeAdapter,
+            chromeAdapter,
         );
         telemetryLogger.initialize(globalContext.featureFlagsController);
 
         const telemetryStateListener = new TelemetryStateListener(globalContext.stores.userConfigurationStore, telemetryEventHandler);
         telemetryStateListener.initialize();
 
-        const broadcaster = new TabContextBroadcaster(browserAdapter.sendMessageToFramesAndTab);
-        const detailsViewController = new DetailsViewController(browserAdapter);
+        const broadcaster = new TabContextBroadcaster(chromeAdapter.sendMessageToFramesAndTab);
+        const detailsViewController = new DetailsViewController(chromeAdapter);
 
         const tabToContextMap: TabToContextMap = {};
 
         const visualizationConfigurationFactory = new VisualizationConfigurationFactory();
-        const notificationCreator = new NotificationCreator(browserAdapter, visualizationConfigurationFactory);
+        const notificationCreator = new NotificationCreator(chromeAdapter, visualizationConfigurationFactory);
 
         const chromeCommandHandler = new ChromeCommandHandler(
             tabToContextMap,
-            browserAdapter,
+            chromeAdapter,
             urlValidator,
             notificationCreator,
             visualizationConfigurationFactory,
             telemetryDataFactory,
             globalContext.stores.userConfigurationStore,
-            browserAdapter,
+            chromeAdapter,
         );
         chromeCommandHandler.initialize();
 
-        const messageDistributor = new MessageDistributor(globalContext, tabToContextMap, browserAdapter);
+        const messageDistributor = new MessageDistributor(globalContext, tabToContextMap, chromeAdapter);
         messageDistributor.initialize();
 
-        const targetTabController = new TargetTabController(browserAdapter, visualizationConfigurationFactory);
+        const targetTabController = new TargetTabController(chromeAdapter, visualizationConfigurationFactory);
 
         const tabContextFactory = new TabContextFactory(
             visualizationConfigurationFactory,
@@ -114,7 +114,8 @@ getPersistedData(indexedDBInstance).then((persistedData: PersistedData) => {
         const clientHandler = new TabController(
             tabToContextMap,
             broadcaster,
-            browserAdapter,
+            chromeAdapter,
+            chromeAdapter,
             detailsViewController,
             tabContextFactory,
             createDefaultLogger(),
@@ -122,7 +123,7 @@ getPersistedData(indexedDBInstance).then((persistedData: PersistedData) => {
 
         clientHandler.initialize();
 
-        const devToolsBackgroundListener = new DevToolsListener(tabToContextMap, browserAdapter);
+        const devToolsBackgroundListener = new DevToolsListener(tabToContextMap, chromeAdapter);
         devToolsBackgroundListener.initialize();
 
         window.insightsFeatureFlags = globalContext.featureFlagsController;

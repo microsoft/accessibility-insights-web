@@ -3,6 +3,7 @@
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 import { BrowserAdapter } from '../../../../background/browser-adapters/browser-adapter';
+import { InjectorAdapter } from '../../../../background/browser-adapters/injector-adapter';
 import { DetailsViewController } from '../../../../background/details-view-controller';
 import { Interpreter } from '../../../../background/interpreter';
 import { FeatureFlagStore } from '../../../../background/stores/global/feature-flag-store';
@@ -18,9 +19,11 @@ import { Logger } from './../../../../common/logging/logger';
 
 describe('TabControllerTest', () => {
     let testSubject: TabController;
-    let mockBroadcasterStrictMock: IMock<TabContextBroadcaster>;
-    let mockChromeAdapter: IMock<BrowserAdapter>;
-    let mockDetailsViewController: IMock<DetailsViewController>;
+
+    let broadcasterStrictMock: IMock<TabContextBroadcaster>;
+    let browserAdapterMock: IMock<BrowserAdapter>;
+    let injectorAdapterMock: IMock<InjectorAdapter>;
+    let detailsViewControllerMock: IMock<DetailsViewController>;
     let tabInterpreterMap: TabToContextMap;
     let featureFlagStoreMock: IMock<FeatureFlagStore>;
     let telemetryEventHandlerMock: IMock<TelemetryEventHandler>;
@@ -35,7 +38,13 @@ describe('TabControllerTest', () => {
     function setupCreateTabContextMock(broadCastDelegate: () => void, tabContext, tabId: number): void {
         tabContextFactoryMock
             .setup(factory =>
-                factory.createTabContext(broadCastDelegate, mockChromeAdapter.object, mockDetailsViewController.object, tabId),
+                factory.createTabContext(
+                    broadCastDelegate,
+                    browserAdapterMock.object,
+                    injectorAdapterMock.object,
+                    detailsViewControllerMock.object,
+                    tabId,
+                ),
             )
             .returns(() => tabContext)
             .verifiable(Times.once());
@@ -44,9 +53,10 @@ describe('TabControllerTest', () => {
     function createTabControllerWithoutFeatureFlag(tabcContextMap: TabToContextMap): TabController {
         return new TabController(
             tabcContextMap,
-            mockBroadcasterStrictMock.object,
-            mockChromeAdapter.object,
-            mockDetailsViewController.object,
+            broadcasterStrictMock.object,
+            browserAdapterMock.object,
+            injectorAdapterMock.object,
+            detailsViewControllerMock.object,
             tabContextFactoryMock.object,
             LoggerStub,
         );
@@ -55,15 +65,16 @@ describe('TabControllerTest', () => {
     beforeEach(() => {
         logMock = Mock.ofInstance((msg: string) => {});
         LoggerStub.log = logMock.object;
-        mockBroadcasterStrictMock = Mock.ofType<TabContextBroadcaster>(undefined, MockBehavior.Strict);
-        mockChromeAdapter = Mock.ofType<BrowserAdapter>();
-        mockDetailsViewController = Mock.ofType<DetailsViewController>();
+        broadcasterStrictMock = Mock.ofType<TabContextBroadcaster>(undefined, MockBehavior.Strict);
+        browserAdapterMock = Mock.ofType<BrowserAdapter>();
+        injectorAdapterMock = Mock.ofType<InjectorAdapter>();
+        detailsViewControllerMock = Mock.ofType<DetailsViewController>();
         featureFlagStoreMock = Mock.ofType(FeatureFlagStore);
         telemetryEventHandlerMock = Mock.ofType(TelemetryEventHandler);
 
         tabInterpreterMap = {};
         tabContextFactoryMock = Mock.ofType(TabContextFactory);
-        mockDetailsViewController
+        detailsViewControllerMock
             .setup(dvc => dvc.setupDetailsViewTabRemovedHandler(It.isAny()))
             .callback(cb => {
                 onDetailsViewTabRemoved = cb;
@@ -72,44 +83,45 @@ describe('TabControllerTest', () => {
 
         testSubject = new TabController(
             tabInterpreterMap,
-            mockBroadcasterStrictMock.object,
-            mockChromeAdapter.object,
-            mockDetailsViewController.object,
+            broadcasterStrictMock.object,
+            browserAdapterMock.object,
+            injectorAdapterMock.object,
+            detailsViewControllerMock.object,
             tabContextFactoryMock.object,
             LoggerStub,
         );
 
-        mockChromeAdapter.reset();
+        browserAdapterMock.reset();
     });
 
     afterEach(() => {
-        mockDetailsViewController.verifyAll();
-        mockChromeAdapter.reset();
-        mockDetailsViewController.reset();
+        detailsViewControllerMock.verifyAll();
+        browserAdapterMock.reset();
+        detailsViewControllerMock.reset();
         featureFlagStoreMock.reset();
         telemetryEventHandlerMock.reset();
     });
 
     test('initialize', () => {
-        mockChromeAdapter.setup(mca => mca.tabsQuery(It.isValue({}), It.isAny())).verifiable(Times.once());
-        mockChromeAdapter.setup(mca => mca.addListenerOnConnect(It.isAny())).verifiable(Times.once());
-        mockChromeAdapter.setup(mca => mca.addListenerToWebNavigationUpdated(It.isAny())).verifiable(Times.once());
-        mockChromeAdapter.setup(mca => mca.addListenerToTabsOnRemoved(It.isAny())).verifiable(Times.once());
-        mockChromeAdapter.setup(mca => mca.addListenerToTabsOnUpdated(It.isAny())).verifiable(Times.once());
+        browserAdapterMock.setup(mca => mca.tabsQuery(It.isValue({}), It.isAny())).verifiable(Times.once());
+        browserAdapterMock.setup(mca => mca.addListenerOnConnect(It.isAny())).verifiable(Times.once());
+        browserAdapterMock.setup(mca => mca.addListenerToWebNavigationUpdated(It.isAny())).verifiable(Times.once());
+        browserAdapterMock.setup(mca => mca.addListenerToTabsOnRemoved(It.isAny())).verifiable(Times.once());
+        browserAdapterMock.setup(mca => mca.addListenerToTabsOnUpdated(It.isAny())).verifiable(Times.once());
 
         testSubject.initialize();
 
-        mockChromeAdapter.verifyAll();
+        browserAdapterMock.verifyAll();
     });
 
     test('register onConnect listener', () => {
-        mockChromeAdapter
+        browserAdapterMock
             .setup(mca => mca.addListenerOnConnect(It.isAny()))
             .callback(cb => {})
             .verifiable(Times.once());
 
         testSubject.initialize();
-        mockChromeAdapter.verifyAll();
+        browserAdapterMock.verifyAll();
     });
 
     test('onTabLoad: for main frame', () => {
@@ -133,21 +145,21 @@ describe('TabControllerTest', () => {
             interpreter: interpreterMock.object,
         };
 
-        mockBroadcasterStrictMock
+        broadcasterStrictMock
             .setup(md => md.getBroadcastMessageDelegate(tabId))
             .returns(() => broadcastDelegate)
             .verifiable(Times.once());
 
         let tabUpdatedCallback: (details: chrome.webNavigation.WebNavigationFramedCallbackDetails) => void = null;
 
-        mockChromeAdapter
+        browserAdapterMock
             .setup(ca => ca.addListenerToWebNavigationUpdated(It.isAny()))
             .callback(cb => {
                 tabUpdatedCallback = cb;
             })
             .verifiable(Times.once());
 
-        mockChromeAdapter
+        browserAdapterMock
             .setup(mca => mca.getTab(It.isValue(tabId), It.isAny(), It.isAny()))
             .returns((id, resolve, reject) => {
                 getTabCallback = resolve;
@@ -166,8 +178,8 @@ describe('TabControllerTest', () => {
         rejectCallback();
 
         interpreterMock.verifyAll();
-        mockBroadcasterStrictMock.verifyAll();
-        mockChromeAdapter.verifyAll();
+        broadcasterStrictMock.verifyAll();
+        browserAdapterMock.verifyAll();
         tabContextFactoryMock.verifyAll();
         logMock.verifyAll();
         expect(tabInterpreterMap[tabId]).toBe(tabContextMock);
@@ -176,24 +188,24 @@ describe('TabControllerTest', () => {
     test('onTabLoad: for child frame', () => {
         let tabUpdatedCallback: (details: chrome.webNavigation.WebNavigationFramedCallbackDetails) => void = null;
 
-        mockBroadcasterStrictMock.setup(mca => mca.getBroadcastMessageDelegate(It.isAny())).verifiable(Times.never());
+        broadcasterStrictMock.setup(mca => mca.getBroadcastMessageDelegate(It.isAny())).verifiable(Times.never());
 
-        mockChromeAdapter
+        browserAdapterMock
             .setup(mca => mca.addListenerOnWindowsFocusChanged(It.isAny()))
             .callback(cb => {
                 tabUpdatedCallback = cb;
             });
 
         tabContextFactoryMock
-            .setup(factory => factory.createTabContext(It.isAny(), It.isAny(), It.isAny(), It.isAny()))
+            .setup(factory => factory.createTabContext(It.isAny(), It.isAny(), It.isAny(), It.isAny(), It.isAny()))
             .verifiable(Times.never());
 
         testSubject.initialize();
 
         tabUpdatedCallback({ tabId: 1, frameId: 2 } as chrome.webNavigation.WebNavigationFramedCallbackDetails);
 
-        mockBroadcasterStrictMock.verifyAll();
-        mockChromeAdapter.verifyAll();
+        broadcasterStrictMock.verifyAll();
+        browserAdapterMock.verifyAll();
     });
 
     test('onTabRemoved', () => {
@@ -207,7 +219,7 @@ describe('TabControllerTest', () => {
         };
         const boradcastMessageDelegateMock = Mock.ofInstance(() => {});
 
-        mockBroadcasterStrictMock
+        broadcasterStrictMock
             .setup(mca => mca.getBroadcastMessageDelegate(tabId))
             .returns(() => boradcastMessageDelegateMock.object)
             .verifiable(Times.once());
@@ -219,13 +231,13 @@ describe('TabControllerTest', () => {
             interpreter: interpreterMock.object,
         };
 
-        mockChromeAdapter
+        browserAdapterMock
             .setup(ca => ca.addListenerToWebNavigationUpdated(It.isAny()))
             .callback(cb => {
                 tabUpdatedCallback = cb;
             })
             .verifiable(Times.once());
-        mockChromeAdapter
+        browserAdapterMock
             .setup(ca => ca.addListenerToTabsOnRemoved(It.isAny()))
             .callback(cb => {
                 tabRemovedCallback = cb;
@@ -238,8 +250,8 @@ describe('TabControllerTest', () => {
         tabRemovedCallback(tabId);
 
         interpreterMock.verifyAll();
-        mockBroadcasterStrictMock.verifyAll();
-        mockChromeAdapter.verifyAll();
+        broadcasterStrictMock.verifyAll();
+        browserAdapterMock.verifyAll();
         expect(tabInterpreterMap[tabId]).toBeUndefined();
     });
 
@@ -252,7 +264,7 @@ describe('TabControllerTest', () => {
             tabId: tabId,
         };
         const boradcastMessageDelegateMock = Mock.ofInstance(() => {});
-        mockBroadcasterStrictMock
+        broadcasterStrictMock
             .setup(mb => mb.getBroadcastMessageDelegate(tabId))
             .returns(() => boradcastMessageDelegateMock.object)
             .verifiable(Times.once());
@@ -264,7 +276,7 @@ describe('TabControllerTest', () => {
             interpreter: interpreterMock.object,
         };
 
-        mockChromeAdapter
+        browserAdapterMock
             .setup(ca => ca.addListenerToWebNavigationUpdated(It.isAny()))
             .callback(cb => {
                 tabUpdatedCallback = cb;
@@ -278,7 +290,7 @@ describe('TabControllerTest', () => {
         onDetailsViewTabRemoved(tabId);
 
         interpreterMock.verifyAll();
-        mockBroadcasterStrictMock.verifyAll();
+        broadcasterStrictMock.verifyAll();
         expect(tabInterpreterMap[tabId]).toBeDefined();
     });
 
@@ -305,7 +317,7 @@ describe('TabControllerTest', () => {
             interpreterMock.setup(im => im.interpret(It.isValue(interpretInput))).verifiable(Times.once());
 
             const broadCastDelegate = () => {};
-            mockBroadcasterStrictMock
+            broadcasterStrictMock
                 .setup(mb => mb.getBroadcastMessageDelegate(tabId))
                 .returns(() => broadCastDelegate)
                 .verifiable(Times.once());
@@ -317,7 +329,7 @@ describe('TabControllerTest', () => {
             setupCreateTabContextMock(broadCastDelegate, tabIdToTabContextStub[tabId], tabId);
 
             mockInterpreters.push(interpreterMock);
-            mockChromeAdapter
+            browserAdapterMock
                 .setup(mca => mca.getTab(It.isValue(tabId), It.isAny(), It.isAny()))
                 .returns((id, cb) => {
                     getTabCallbackMap[tabId] = cb;
@@ -325,7 +337,7 @@ describe('TabControllerTest', () => {
                 .verifiable(Times.once());
         });
 
-        mockChromeAdapter
+        browserAdapterMock
             .setup(mca => mca.tabsQuery(It.isValue({}), It.isAny()))
             .callback((query, callback) => {
                 tabsQueryCallback = callback;
@@ -338,8 +350,8 @@ describe('TabControllerTest', () => {
         openTabIds.forEach(tabId => {
             getTabCallbackMap[tabId](tabs[tabId]);
         });
-        mockBroadcasterStrictMock.verifyAll();
-        mockChromeAdapter.verifyAll();
+        broadcasterStrictMock.verifyAll();
+        browserAdapterMock.verifyAll();
         expect(Object.keys(tabInterpreterMap).length).toBe(openTabIds.length);
         openTabIds.forEach(tabId => {
             expect(tabInterpreterMap[tabId]).toEqual(tabIdToTabContextStub[tabId]);
@@ -374,14 +386,14 @@ describe('TabControllerTest', () => {
             },
         };
 
-        mockChromeAdapter
+        browserAdapterMock
             .setup(ca => ca.addListenerToWebNavigationUpdated(It.isAny()))
             .callback(cb => {
                 tabUpdatedCallback = cb;
             })
             .verifiable(Times.once());
 
-        mockChromeAdapter
+        browserAdapterMock
             .setup(mca => mca.getTab(It.isValue(tabId), It.isAny(), It.isAny()))
             .returns((id, cb, reject) => {
                 getTabCallback = cb;
@@ -398,7 +410,7 @@ describe('TabControllerTest', () => {
 
         logMock.verifyAll();
         interpreterMock.verifyAll();
-        mockChromeAdapter.verifyAll();
+        browserAdapterMock.verifyAll();
     });
 
     test('Windows Focus Change test', () => {
@@ -436,35 +448,35 @@ describe('TabControllerTest', () => {
             tabId: 2,
         };
 
-        mockChromeAdapter
+        browserAdapterMock
             .setup(ca => ca.addListenerOnWindowsFocusChanged(It.isAny()))
             .callback(windowFocusChangedCallback => {
                 windowFocusChangedCallback(-1);
             })
             .verifiable(Times.once());
 
-        mockChromeAdapter
+        browserAdapterMock
             .setup(ca => ca.getAllWindows(It.isValue(getInfo), It.isAny()))
             .callback((id, getAllWindowsCallback) => {
                 getAllWindowsCallback(windowsStub as chrome.windows.Window[]);
             })
             .verifiable(Times.once());
 
-        mockChromeAdapter
+        browserAdapterMock
             .setup(ca => ca.getSelectedTabInWindow(windowStub1.id, It.isAny()))
             .callback((id, getSelectedTabInWindowCallback) => {
                 getSelectedTabInWindowCallback(tabStub1 as chrome.tabs.Tab);
             })
             .verifiable(Times.once());
 
-        mockChromeAdapter
+        browserAdapterMock
             .setup(ca => ca.getSelectedTabInWindow(windowStub2.id, It.isAny()))
             .callback((id, getSelectedTabInWindowCallback) => {
                 getSelectedTabInWindowCallback(tabStub2 as chrome.tabs.Tab);
             })
             .verifiable(Times.once());
 
-        mockChromeAdapter
+        browserAdapterMock
             .setup(ca => ca.getRuntimeLastError())
             .returns(() => null)
             .verifiable(Times.exactly(2));
@@ -489,7 +501,7 @@ describe('TabControllerTest', () => {
         testSubject.initialize();
 
         interpreterMock.verifyAll();
-        mockChromeAdapter.verifyAll();
+        browserAdapterMock.verifyAll();
     });
 
     test('Windows Focus Change - do nothing for window closed', () => {
@@ -527,37 +539,37 @@ describe('TabControllerTest', () => {
             tabId: 2,
         };
 
-        mockChromeAdapter
+        browserAdapterMock
             .setup(ca => ca.addListenerOnWindowsFocusChanged(It.isAny()))
             .callback(windowFocusChangedCallback => {
                 windowFocusChangedCallback(-1);
             })
             .verifiable(Times.once());
 
-        mockChromeAdapter
+        browserAdapterMock
             .setup(ca => ca.getAllWindows(It.isValue(getInfo), It.isAny()))
             .callback((id, getAllWindowsCallback) => {
                 getAllWindowsCallback(windowsStub as chrome.windows.Window[]);
             })
             .verifiable(Times.once());
 
-        mockChromeAdapter
+        browserAdapterMock
             .setup(ca => ca.getSelectedTabInWindow(windowStub1.id, It.isAny()))
             .callback((id, getSelectedTabInWindowCallback) => {
                 getSelectedTabInWindowCallback(tabStub1 as chrome.tabs.Tab);
             })
             .verifiable(Times.once());
 
-        mockChromeAdapter
+        browserAdapterMock
             .setup(ca => ca.getSelectedTabInWindow(windowStub2.id, It.isAny()))
             .callback((id, getSelectedTabInWindowCallback) => {
                 getSelectedTabInWindowCallback(tabStub2 as chrome.tabs.Tab);
             })
             .verifiable(Times.once());
 
-        mockChromeAdapter.setup(ca => ca.getRuntimeLastError()).returns(() => new Error('window closed'));
+        browserAdapterMock.setup(ca => ca.getRuntimeLastError()).returns(() => new Error('window closed'));
 
-        mockChromeAdapter.setup(ca => ca.getRuntimeLastError()).returns(() => null);
+        browserAdapterMock.setup(ca => ca.getRuntimeLastError()).returns(() => null);
 
         const interpreterMock = Mock.ofType(Interpreter);
 
@@ -581,7 +593,7 @@ describe('TabControllerTest', () => {
         testSubject.initialize();
 
         interpreterMock.verifyAll();
-        mockChromeAdapter.verifyAll();
+        browserAdapterMock.verifyAll();
     });
 
     test('Tab Focus Change test', () => {
@@ -616,14 +628,14 @@ describe('TabControllerTest', () => {
             tabId: 2,
         };
 
-        mockChromeAdapter
+        browserAdapterMock
             .setup(ca => ca.addListenerToTabsOnActivated(It.isAny()))
             .callback(onTabActivatedCallback => {
                 onTabActivatedCallback(activeInfo);
             })
             .verifiable(Times.once());
 
-        mockChromeAdapter
+        browserAdapterMock
             .setup(ca => ca.tabsQuery(It.isValue(query), It.isAny()))
             .callback((id, getAllTabsCallback) => {
                 getAllTabsCallback(tabs as chrome.tabs.Tab[]);
@@ -650,14 +662,14 @@ describe('TabControllerTest', () => {
         testSubject.initialize();
 
         interpreterMock.verifyAll();
-        mockChromeAdapter.verifyAll();
+        browserAdapterMock.verifyAll();
     });
 
     test('onUpdateTab', () => {
-        mockChromeAdapter.setup(ca => ca.addListenerToTabsOnUpdated(It.isAny())).verifiable(Times.once());
+        browserAdapterMock.setup(ca => ca.addListenerToTabsOnUpdated(It.isAny())).verifiable(Times.once());
 
         testSubject.initialize();
 
-        mockChromeAdapter.verifyAll();
+        browserAdapterMock.verifyAll();
     });
 });

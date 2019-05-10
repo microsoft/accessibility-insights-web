@@ -27,8 +27,6 @@ export interface BrowserAdapter extends ClientBrowserAdapter {
     sendMessageToFramesAndTab(tabId: number, message: any): void;
     sendMessageToFrames(message: any): void;
     sendMessageToAllFramesAndTabs(message: any): void;
-    injectJs(tabId, file: string, callback: Function): void;
-    injectCss(tabId, file: string, callback: Function): void;
     getRunTimeId(): string;
     createNotification(options: NotificationOptions): void;
     getRuntimeLastError(): chrome.runtime.LastError;

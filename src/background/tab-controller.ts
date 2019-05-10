@@ -1,36 +1,31 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { autobind } from '@uifabric/utilities';
+
 import { Message } from '../common/message';
 import { Messages } from '../common/messages';
 import { Logger } from './../common/logging/logger';
 import { PageVisibilityChangeTabPayload } from './actions/action-payloads';
 import { BrowserAdapter } from './browser-adapters/browser-adapter';
+import { InjectorAdapter } from './browser-adapters/injector-adapter';
 import { DetailsViewController } from './details-view-controller';
 import { TabToContextMap } from './tab-context';
 import { TabContextBroadcaster } from './tab-context-broadcaster';
 import { TabContextFactory } from './tab-context-factory';
 
 export class TabController {
-    private chromeAdapter: BrowserAdapter;
     private readonly tabIdToContextMap: TabToContextMap;
-    private readonly broadcaster: TabContextBroadcaster;
-    private readonly detailsViewController: DetailsViewController;
-    private tabContextFactory: TabContextFactory;
 
     constructor(
         tabToInterpreterMap: TabToContextMap,
-        broadcaster: TabContextBroadcaster,
-        chromeAdapter: BrowserAdapter,
-        detailsViewController: DetailsViewController,
-        tabContextFactory: TabContextFactory,
+        private readonly broadcaster: TabContextBroadcaster,
+        private readonly chromeAdapter: BrowserAdapter,
+        private readonly injectorAdapter: InjectorAdapter,
+        private readonly detailsViewController: DetailsViewController,
+        private readonly tabContextFactory: TabContextFactory,
         private readonly logger: Logger,
     ) {
         this.tabIdToContextMap = tabToInterpreterMap;
-        this.broadcaster = broadcaster;
-        this.chromeAdapter = chromeAdapter;
-        this.detailsViewController = detailsViewController;
-        this.tabContextFactory = tabContextFactory;
     }
 
     public initialize(): void {
@@ -174,6 +169,7 @@ export class TabController {
         this.tabIdToContextMap[tabId] = this.tabContextFactory.createTabContext(
             this.broadcaster.getBroadcastMessageDelegate(tabId),
             this.chromeAdapter,
+            this.injectorAdapter,
             this.detailsViewController,
             tabId,
         );

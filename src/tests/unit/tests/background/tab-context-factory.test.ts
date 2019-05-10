@@ -4,6 +4,7 @@ import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 import { AssessmentsProviderImpl } from '../../../../assessments/assessments-provider';
 import { BrowserAdapter } from '../../../../background/browser-adapters/browser-adapter';
+import { InjectorAdapter } from '../../../../background/browser-adapters/injector-adapter';
 import { DetailsViewController } from '../../../../background/details-view-controller';
 import { Interpreter } from '../../../../background/interpreter';
 import { AssessmentStore } from '../../../../background/stores/assessment-store';
@@ -32,14 +33,16 @@ function getConfigs(visualizationType: VisualizationType): VisualizationConfigur
 }
 
 describe('TabContextFactoryTest', () => {
-    let mockDetailsViewController: IMock<DetailsViewController>;
-    let mockBrowserAdapter: IMock<BrowserAdapter>;
+    let detailsViewControllerMock: IMock<DetailsViewController>;
+    let browserAdapterMock: IMock<BrowserAdapter>;
+    let injectorAdapterMock: IMock<InjectorAdapter>;
 
     beforeAll(() => {
-        mockBrowserAdapter = Mock.ofType<BrowserAdapter>();
+        browserAdapterMock = Mock.ofType<BrowserAdapter>();
+        injectorAdapterMock = Mock.ofType<InjectorAdapter>();
 
-        mockDetailsViewController = Mock.ofType<DetailsViewController>();
-        mockBrowserAdapter.reset();
+        detailsViewControllerMock = Mock.ofType<DetailsViewController>();
+        browserAdapterMock.reset();
     });
 
     it('createInterpreter', () => {
@@ -66,8 +69,8 @@ describe('TabContextFactoryTest', () => {
                 .verifiable(Times.once());
         });
 
-        mockBrowserAdapter.setup(ba => ba.addListenerToTabsOnRemoved(It.isAny())).verifiable();
-        mockBrowserAdapter.setup(ba => ba.addListenerToTabsOnUpdated(It.isAny())).verifiable();
+        browserAdapterMock.setup(ba => ba.addListenerToTabsOnRemoved(It.isAny())).verifiable();
+        browserAdapterMock.setup(ba => ba.addListenerToTabsOnUpdated(It.isAny())).verifiable();
 
         const visualizationConfigurationFactoryMock = Mock.ofType(VisualizationConfigurationFactory);
         visualizationConfigurationFactoryMock.setup(vcfm => vcfm.getConfiguration(It.isAny())).returns(theType => getConfigs(theType));
@@ -83,8 +86,9 @@ describe('TabContextFactoryTest', () => {
 
         const tabContext = testObject.createTabContext(
             broadcastMock.object,
-            mockBrowserAdapter.object,
-            mockDetailsViewController.object,
+            browserAdapterMock.object,
+            injectorAdapterMock.object,
+            detailsViewControllerMock.object,
             tabId,
         );
 

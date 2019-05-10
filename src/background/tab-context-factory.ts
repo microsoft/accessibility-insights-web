@@ -16,6 +16,7 @@ import { ScopingActionCreator } from './actions/scoping-action-creator';
 import { TabActionCreator } from './actions/tab-action-creator';
 import { AssessmentScanPolicyRunner } from './assessment-scan-policy-runner';
 import { BrowserAdapter } from './browser-adapters/browser-adapter';
+import { InjectorAdapter } from './browser-adapters/injector-adapter';
 import { ChromeFeatureController } from './chrome-feature-controller';
 import { DetailsViewController } from './details-view-controller';
 import { InjectorController } from './injector-controller';
@@ -42,6 +43,7 @@ export class TabContextFactory {
     public createTabContext(
         broadcastMessage: (message) => void,
         browserAdapter: BrowserAdapter,
+        injectorAdapter: InjectorAdapter,
         detailsViewController: DetailsViewController,
         tabId: number,
     ): TabContext {
@@ -104,7 +106,7 @@ export class TabContextFactory {
         );
 
         const injectorController = new InjectorController(
-            new ContentScriptInjector(browserAdapter, Q),
+            new ContentScriptInjector(injectorAdapter, Q),
             storeHub.visualizationStore,
             interpreter,
             storeHub.tabStore,
