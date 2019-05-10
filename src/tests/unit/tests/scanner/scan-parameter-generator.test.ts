@@ -87,8 +87,8 @@ describe('ScanParameterGenerator', () => {
 
     describe('getContext', () => {
         it('should return the dom when options are null', () => {
-            const mockSifter = Mock.ofType(RuleSifter, MockBehavior.Strict);
-            const generator = new ScanParameterGenerator(mockSifter.object);
+            const sifterMoc = Mock.ofType(RuleSifter, MockBehavior.Strict);
+            const generator = new ScanParameterGenerator(sifterMoc.object);
             const options: ScanOptions = {
                 testsToRun: ['throwaway-property'],
             };
@@ -96,14 +96,14 @@ describe('ScanParameterGenerator', () => {
             expect(generator.getContext(domStub, options)).toEqual(domStub);
         });
         it('should return the dom when options are not context related', () => {
-            const mockSifter = Mock.ofType(RuleSifter, MockBehavior.Strict);
-            const generator = new ScanParameterGenerator(mockSifter.object);
+            const sifterMock = Mock.ofType(RuleSifter, MockBehavior.Strict);
+            const generator = new ScanParameterGenerator(sifterMock.object);
             const domStub = Mock.ofInstance(document).object;
             expect(generator.getContext(domStub, null)).toEqual(domStub);
         });
         it('should return selector when set in options', () => {
-            const mockSifter = Mock.ofType(RuleSifter, MockBehavior.Strict);
-            const generator = new ScanParameterGenerator(mockSifter.object);
+            const sifterMock = Mock.ofType(RuleSifter, MockBehavior.Strict);
+            const generator = new ScanParameterGenerator(sifterMock.object);
             const options: ScanOptions = {
                 selector: 'test-selector',
                 testsToRun: ['throwaway-property'],
@@ -112,8 +112,8 @@ describe('ScanParameterGenerator', () => {
             expect(generator.getContext(null, options)).toEqual(returnedContext);
         });
         it('should return dom when set in options', () => {
-            const mockSifter = Mock.ofType(RuleSifter, MockBehavior.Strict);
-            const generator = new ScanParameterGenerator(mockSifter.object);
+            const sifterMock = Mock.ofType(RuleSifter, MockBehavior.Strict);
+            const generator = new ScanParameterGenerator(sifterMock.object);
             const documentStub = Mock.ofInstance(document);
             const options: ScanOptions = {
                 dom: documentStub.object,
@@ -123,8 +123,8 @@ describe('ScanParameterGenerator', () => {
             expect(generator.getContext(null, options)).toEqual(returnedContext);
         });
         it('should return the include/exclude set in options', () => {
-            const mockSifter = Mock.ofType(RuleSifter, MockBehavior.Strict);
-            const generator = new ScanParameterGenerator(mockSifter.object);
+            const sifterMock = Mock.ofType(RuleSifter, MockBehavior.Strict);
+            const generator = new ScanParameterGenerator(sifterMock.object);
             const options: ScanOptions = {
                 include: [['include']],
                 exclude: [['exclude']],
@@ -137,8 +137,8 @@ describe('ScanParameterGenerator', () => {
             expect(generator.getContext(null, options)).toEqual(returnedContext);
         });
         it('should check in order for contexts: dom > selector > include/exclude', () => {
-            const mockSifter = Mock.ofType(RuleSifter, MockBehavior.Strict);
-            const generator = new ScanParameterGenerator(mockSifter.object);
+            const sifterMock = Mock.ofType(RuleSifter, MockBehavior.Strict);
+            const generator = new ScanParameterGenerator(sifterMock.object);
             const documentNodeListStub = Mock.ofInstance(document.childNodes);
 
             const domFirstOptions: ScanOptions = {
