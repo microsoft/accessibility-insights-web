@@ -277,9 +277,8 @@ describe('DetailsDialogHandlerTest', () => {
         expect(testSubject.isBackButtonDisabled(detailsDialogMock.object)).toBe(false);
     });
 
-    test('isInspectButtonDisabled', () => {
-        testIsInspectButtonDisabledShouldReflectCanInspect(true);
-        testIsInspectButtonDisabledShouldReflectCanInspect(false);
+    describe('isInspectButtonDisabled', () => {
+        it.each([true, false])('canInspect %s', testIsInspectButtonDisabledShouldReflectCanInspect);
     });
 
     describe('onDevToolChanged', () => {
