@@ -444,7 +444,7 @@ describe('DetailsDialogHandlerTest', () => {
             .setup(dialog => dialog.setState(It.isValue({ userConfigurationStoreData: userConfigStoreData })))
             .verifiable(Times.once());
 
-        setupDetailsDialogMockForShadowComponents(detailsDialogMock);
+        setupDetailsDialogMockForShadowComponents();
 
         setupDialogContainerQuerySelector(shadowRootMock, clickableMock);
         setupCloseButtonQuerySelector(shadowRootMock, clickableMock);
@@ -577,8 +577,6 @@ describe('DetailsDialogHandlerTest', () => {
     }
 
     function testIsInspectButtonDisabledShouldReflectCanInspect(canInspect: boolean): void {
-        const detailsDialogMock = Mock.ofType(DetailsDialog, MockBehavior.Strict);
-
         detailsDialogMock
             .setup(dialog => dialog.state)
             .returns(() => {
@@ -702,13 +700,13 @@ describe('DetailsDialogHandlerTest', () => {
         return parentLayer;
     }
 
-    function setupDetailsDialogMockForShadowComponents(detailsDialogMock: IMock<DetailsDialog>): void {
-        setupVerificationForBackButton(detailsDialogMock);
-        setupVerificationForNextButton(detailsDialogMock);
-        setupVerificationForInspectButton(detailsDialogMock);
+    function setupDetailsDialogMockForShadowComponents(): void {
+        setupVerificationForBackButton();
+        setupVerificationForNextButton();
+        setupVerificationForInspectButton();
     }
 
-    function setupVerificationForBackButton(detailsDialogMock: IMock<DetailsDialog>): void {
+    function setupVerificationForBackButton(): void {
         detailsDialogMock
             .setup(dialog => dialog.isBackButtonDisabled())
             .returns(() => false)
@@ -717,7 +715,7 @@ describe('DetailsDialogHandlerTest', () => {
         detailsDialogMock.setup(dialog => dialog.onClickBackButton()).verifiable(Times.once());
     }
 
-    function setupVerificationForNextButton(detailsDialogMock: IMock<DetailsDialog>): void {
+    function setupVerificationForNextButton(): void {
         detailsDialogMock
             .setup(dialog => dialog.isNextButtonDisabled())
             .returns(() => false)
@@ -726,7 +724,7 @@ describe('DetailsDialogHandlerTest', () => {
         detailsDialogMock.setup(dialog => dialog.onClickNextButton()).verifiable(Times.once());
     }
 
-    function setupVerificationForInspectButton(detailsDialogMock: IMock<DetailsDialog>): void {
+    function setupVerificationForInspectButton(): void {
         detailsDialogMock
             .setup(dialog => dialog.isInspectButtonDisabled())
             .returns(() => false)
