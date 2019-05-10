@@ -4,10 +4,12 @@ import { ClientChromeAdapter } from '../../common/client-browser-adapter';
 import { BrowserAdapter } from './browser-adapter';
 import { CommandsAdapter } from './commands-adapter';
 import { InjectorAdapter } from './injector-adapter';
+import { NotificationAdapter } from './notification-adapter';
 import { NotificationOptions } from './notification-options';
 import { StorageAdapter } from './storage-adapter';
 
-export class ChromeAdapter extends ClientChromeAdapter implements BrowserAdapter, StorageAdapter, CommandsAdapter, InjectorAdapter {
+export class ChromeAdapter extends ClientChromeAdapter
+    implements BrowserAdapter, StorageAdapter, CommandsAdapter, InjectorAdapter, NotificationAdapter {
     public openManageExtensionPage(): void {
         chrome.tabs.create({
             url: `chrome://extensions/?id=${chrome.runtime.id}`,

@@ -4,6 +4,7 @@ import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 import { BrowserAdapter } from '../../../../background/browser-adapters/browser-adapter';
 import { InjectorAdapter } from '../../../../background/browser-adapters/injector-adapter';
+import { NotificationAdapter } from '../../../../background/browser-adapters/notification-adapter';
 import { DetailsViewController } from '../../../../background/details-view-controller';
 import { Interpreter } from '../../../../background/interpreter';
 import { FeatureFlagStore } from '../../../../background/stores/global/feature-flag-store';
@@ -23,6 +24,7 @@ describe('TabControllerTest', () => {
     let broadcasterStrictMock: IMock<TabContextBroadcaster>;
     let browserAdapterMock: IMock<BrowserAdapter>;
     let injectorAdapterMock: IMock<InjectorAdapter>;
+    let notificationAdapterMock: IMock<NotificationAdapter>;
     let detailsViewControllerMock: IMock<DetailsViewController>;
     let tabInterpreterMap: TabToContextMap;
     let featureFlagStoreMock: IMock<FeatureFlagStore>;
@@ -42,6 +44,7 @@ describe('TabControllerTest', () => {
                     broadCastDelegate,
                     browserAdapterMock.object,
                     injectorAdapterMock.object,
+                    notificationAdapterMock.object,
                     detailsViewControllerMock.object,
                     tabId,
                 ),
@@ -56,6 +59,7 @@ describe('TabControllerTest', () => {
             broadcasterStrictMock.object,
             browserAdapterMock.object,
             injectorAdapterMock.object,
+            notificationAdapterMock.object,
             detailsViewControllerMock.object,
             tabContextFactoryMock.object,
             LoggerStub,
@@ -68,6 +72,7 @@ describe('TabControllerTest', () => {
         broadcasterStrictMock = Mock.ofType<TabContextBroadcaster>(undefined, MockBehavior.Strict);
         browserAdapterMock = Mock.ofType<BrowserAdapter>();
         injectorAdapterMock = Mock.ofType<InjectorAdapter>();
+        notificationAdapterMock = Mock.ofType<NotificationAdapter>();
         detailsViewControllerMock = Mock.ofType<DetailsViewController>();
         featureFlagStoreMock = Mock.ofType(FeatureFlagStore);
         telemetryEventHandlerMock = Mock.ofType(TelemetryEventHandler);
@@ -86,6 +91,7 @@ describe('TabControllerTest', () => {
             broadcasterStrictMock.object,
             browserAdapterMock.object,
             injectorAdapterMock.object,
+            notificationAdapterMock.object,
             detailsViewControllerMock.object,
             tabContextFactoryMock.object,
             LoggerStub,
@@ -197,7 +203,7 @@ describe('TabControllerTest', () => {
             });
 
         tabContextFactoryMock
-            .setup(factory => factory.createTabContext(It.isAny(), It.isAny(), It.isAny(), It.isAny(), It.isAny()))
+            .setup(factory => factory.createTabContext(It.isAny(), It.isAny(), It.isAny(), It.isAny(), It.isAny(), It.isAny()))
             .verifiable(Times.never());
 
         testSubject.initialize();

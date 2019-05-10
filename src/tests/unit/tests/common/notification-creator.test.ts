@@ -3,6 +3,7 @@
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 import { BrowserAdapter } from '../../../../background/browser-adapters/browser-adapter';
+import { NotificationAdapter } from '../../../../background/browser-adapters/notification-adapter';
 import {
     VisualizationConfiguration,
     VisualizationConfigurationFactory,
@@ -12,6 +13,7 @@ import { VisualizationType } from '../../../../common/types/visualization-type';
 
 describe('NotificationCreator', () => {
     let browserAdapterMock: IMock<BrowserAdapter>;
+    let notificationAdapterMock: IMock<NotificationAdapter>;
     let configFactoryMock: IMock<VisualizationConfigurationFactory>;
     let getNotificationMessageMock: IMock<(selectorMap, key) => string>;
     let testObject: NotificationCreator;
@@ -20,9 +22,10 @@ describe('NotificationCreator', () => {
 
     beforeEach(() => {
         browserAdapterMock = Mock.ofType<BrowserAdapter>(undefined, MockBehavior.Strict);
+        notificationAdapterMock = Mock.ofType<NotificationAdapter>(undefined, MockBehavior.Strict);
         configFactoryMock = Mock.ofType(VisualizationConfigurationFactory, MockBehavior.Strict);
         getNotificationMessageMock = Mock.ofInstance(selector => null);
-        testObject = new NotificationCreator(browserAdapterMock.object, configFactoryMock.object);
+        testObject = new NotificationCreator(browserAdapterMock.object, notificationAdapterMock.object, configFactoryMock.object);
     });
 
     test('createNotification, no message', () => {
@@ -34,14 +37,14 @@ describe('NotificationCreator', () => {
         const notificationMessage = 'the-message';
 
         browserAdapterMock
-            .setup(x => x.getManifest())
+            .setup(adapter => adapter.getManifest())
             .returns(() => {
                 return { name: 'testname', icons: { 128: 'iconUrl' } } as any;
             })
             .verifiable(Times.once());
 
-        browserAdapterMock
-            .setup(x => x.createNotification(It.isAny()))
+        notificationAdapterMock
+            .setup(adapter => adapter.createNotification(It.isAny()))
             .returns(message => {
                 const expectedMessage = {
                     message: notificationMessage,
@@ -60,14 +63,14 @@ describe('NotificationCreator', () => {
         const notificationMessage = 'the-message';
 
         browserAdapterMock
-            .setup(x => x.getManifest())
+            .setup(adapter => adapter.getManifest())
             .returns(() => {
                 return { name: 'testname', icons: { 128: 'iconUrl' } } as any;
             })
             .verifiable(Times.once());
 
-        browserAdapterMock
-            .setup(x => x.createNotification(It.isAny()))
+        notificationAdapterMock
+            .setup(adapter => adapter.createNotification(It.isAny()))
             .returns(message => {
                 const expectedMessage = {
                     message: notificationMessage,
@@ -100,6 +103,7 @@ describe('NotificationCreator', () => {
 
     function verifyAll(): void {
         browserAdapterMock.verifyAll();
+        notificationAdapterMock.verifyAll();
         configFactoryMock.verifyAll();
     }
 });

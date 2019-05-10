@@ -8,6 +8,7 @@ import { Logger } from './../common/logging/logger';
 import { PageVisibilityChangeTabPayload } from './actions/action-payloads';
 import { BrowserAdapter } from './browser-adapters/browser-adapter';
 import { InjectorAdapter } from './browser-adapters/injector-adapter';
+import { NotificationAdapter } from './browser-adapters/notification-adapter';
 import { DetailsViewController } from './details-view-controller';
 import { TabToContextMap } from './tab-context';
 import { TabContextBroadcaster } from './tab-context-broadcaster';
@@ -21,6 +22,7 @@ export class TabController {
         private readonly broadcaster: TabContextBroadcaster,
         private readonly chromeAdapter: BrowserAdapter,
         private readonly injectorAdapter: InjectorAdapter,
+        private readonly notificationAdapter: NotificationAdapter,
         private readonly detailsViewController: DetailsViewController,
         private readonly tabContextFactory: TabContextFactory,
         private readonly logger: Logger,
@@ -170,6 +172,7 @@ export class TabController {
             this.broadcaster.getBroadcastMessageDelegate(tabId),
             this.chromeAdapter,
             this.injectorAdapter,
+            this.notificationAdapter,
             this.detailsViewController,
             tabId,
         );

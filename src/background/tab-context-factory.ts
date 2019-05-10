@@ -17,6 +17,7 @@ import { TabActionCreator } from './actions/tab-action-creator';
 import { AssessmentScanPolicyRunner } from './assessment-scan-policy-runner';
 import { BrowserAdapter } from './browser-adapters/browser-adapter';
 import { InjectorAdapter } from './browser-adapters/injector-adapter';
+import { NotificationAdapter } from './browser-adapters/notification-adapter';
 import { ChromeFeatureController } from './chrome-feature-controller';
 import { DetailsViewController } from './details-view-controller';
 import { InjectorController } from './injector-controller';
@@ -44,13 +45,14 @@ export class TabContextFactory {
         broadcastMessage: (message) => void,
         browserAdapter: BrowserAdapter,
         injectorAdapter: InjectorAdapter,
+        notificationAdapter: NotificationAdapter,
         detailsViewController: DetailsViewController,
         tabId: number,
     ): TabContext {
         const interpreter = new Interpreter();
         const actionsHub = new ActionHub();
         const storeHub = new TabContextStoreHub(actionsHub, this.visualizationConfigurationFactory);
-        const notificationCreator = new NotificationCreator(browserAdapter, this.visualizationConfigurationFactory);
+        const notificationCreator = new NotificationCreator(browserAdapter, notificationAdapter, this.visualizationConfigurationFactory);
         const chromeFeatureController = new ChromeFeatureController(browserAdapter);
 
         const actionCreator = new ActionCreator(

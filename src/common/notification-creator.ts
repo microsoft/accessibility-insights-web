@@ -3,23 +3,22 @@
 import * as _ from 'lodash';
 
 import { BrowserAdapter } from '../background/browser-adapters/browser-adapter';
+import { NotificationAdapter } from '../background/browser-adapters/notification-adapter';
 import { VisualizationType } from '../common/types/visualization-type';
 import { DictionaryStringTo } from '../types/common-types';
 import { VisualizationConfigurationFactory } from './configs/visualization-configuration-factory';
 
 export class NotificationCreator {
-    private chromeAdapter: BrowserAdapter;
-    private visualizationConfigurationFactory: VisualizationConfigurationFactory;
-
-    constructor(chromeAdapter: BrowserAdapter, visualizationConfigurationFactory: VisualizationConfigurationFactory) {
-        this.chromeAdapter = chromeAdapter;
-        this.visualizationConfigurationFactory = visualizationConfigurationFactory;
-    }
+    constructor(
+        private readonly chromeAdapter: BrowserAdapter,
+        private readonly notificationAdapter: NotificationAdapter,
+        private readonly visualizationConfigurationFactory: VisualizationConfigurationFactory,
+    ) {}
 
     public createNotification(message: string): void {
         if (message) {
             const manifest = this.chromeAdapter.getManifest();
-            this.chromeAdapter.createNotification({
+            this.notificationAdapter.createNotification({
                 message: message,
                 title: manifest.name,
                 iconUrl: '../' + manifest.icons[128],

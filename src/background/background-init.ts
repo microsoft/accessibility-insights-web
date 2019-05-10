@@ -83,7 +83,7 @@ getPersistedData(indexedDBInstance).then((persistedData: PersistedData) => {
         const tabToContextMap: TabToContextMap = {};
 
         const visualizationConfigurationFactory = new VisualizationConfigurationFactory();
-        const notificationCreator = new NotificationCreator(chromeAdapter, visualizationConfigurationFactory);
+        const notificationCreator = new NotificationCreator(chromeAdapter, chromeAdapter, visualizationConfigurationFactory);
 
         const chromeCommandHandler = new ChromeCommandHandler(
             tabToContextMap,

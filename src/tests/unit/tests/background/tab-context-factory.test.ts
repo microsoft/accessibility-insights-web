@@ -5,6 +5,7 @@ import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { AssessmentsProviderImpl } from '../../../../assessments/assessments-provider';
 import { BrowserAdapter } from '../../../../background/browser-adapters/browser-adapter';
 import { InjectorAdapter } from '../../../../background/browser-adapters/injector-adapter';
+import { NotificationAdapter } from '../../../../background/browser-adapters/notification-adapter';
 import { DetailsViewController } from '../../../../background/details-view-controller';
 import { Interpreter } from '../../../../background/interpreter';
 import { AssessmentStore } from '../../../../background/stores/assessment-store';
@@ -36,10 +37,12 @@ describe('TabContextFactoryTest', () => {
     let detailsViewControllerMock: IMock<DetailsViewController>;
     let browserAdapterMock: IMock<BrowserAdapter>;
     let injectorAdapterMock: IMock<InjectorAdapter>;
+    let notificationAdapterMock: IMock<NotificationAdapter>;
 
     beforeAll(() => {
         browserAdapterMock = Mock.ofType<BrowserAdapter>();
         injectorAdapterMock = Mock.ofType<InjectorAdapter>();
+        notificationAdapterMock = Mock.ofType<NotificationAdapter>();
 
         detailsViewControllerMock = Mock.ofType<DetailsViewController>();
         browserAdapterMock.reset();
@@ -88,6 +91,7 @@ describe('TabContextFactoryTest', () => {
             broadcastMock.object,
             browserAdapterMock.object,
             injectorAdapterMock.object,
+            notificationAdapterMock.object,
             detailsViewControllerMock.object,
             tabId,
         );
