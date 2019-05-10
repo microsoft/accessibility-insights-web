@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { ClientBrowserAdapter } from '../../common/client-browser-adapter';
-import { NotificationOptions } from './notification-options';
 
 export interface BrowserAdapter extends ClientBrowserAdapter {
     getAllWindows(getInfo: chrome.windows.GetInfo, callback: (chromeWindows: chrome.windows.Window[]) => void): void;
@@ -21,9 +20,6 @@ export interface BrowserAdapter extends ClientBrowserAdapter {
     sendMessageToFramesAndTab(tabId: number, message: any): void;
     sendMessageToFrames(message: any): void;
     sendMessageToAllFramesAndTabs(message: any): void;
-    getRunTimeId(): string;
-    createNotification(options: NotificationOptions): void;
-    getRuntimeLastError(): chrome.runtime.LastError;
     isAllowedFileSchemeAccess(callback: Function): void;
     addListenerToLocalStorage(callback: (changes: object) => void): void;
     openManageExtensionPage(): void;

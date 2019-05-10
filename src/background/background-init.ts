@@ -78,7 +78,7 @@ getPersistedData(indexedDBInstance).then((persistedData: PersistedData) => {
         telemetryStateListener.initialize();
 
         const broadcaster = new TabContextBroadcaster(chromeAdapter.sendMessageToFramesAndTab);
-        const detailsViewController = new DetailsViewController(chromeAdapter);
+        const detailsViewController = new DetailsViewController(chromeAdapter, chromeAdapter);
 
         const tabToContextMap: TabToContextMap = {};
 
@@ -114,6 +114,8 @@ getPersistedData(indexedDBInstance).then((persistedData: PersistedData) => {
         const clientHandler = new TabController(
             tabToContextMap,
             broadcaster,
+            chromeAdapter,
+            chromeAdapter,
             chromeAdapter,
             chromeAdapter,
             detailsViewController,

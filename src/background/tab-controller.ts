@@ -9,6 +9,7 @@ import { PageVisibilityChangeTabPayload } from './actions/action-payloads';
 import { BrowserAdapter } from './browser-adapters/browser-adapter';
 import { InjectorAdapter } from './browser-adapters/injector-adapter';
 import { NotificationAdapter } from './browser-adapters/notification-adapter';
+import { RuntimeAdapter } from './browser-adapters/runtime-adapter';
 import { DetailsViewController } from './details-view-controller';
 import { TabToContextMap } from './tab-context';
 import { TabContextBroadcaster } from './tab-context-broadcaster';
@@ -23,6 +24,7 @@ export class TabController {
         private readonly chromeAdapter: BrowserAdapter,
         private readonly injectorAdapter: InjectorAdapter,
         private readonly notificationAdapter: NotificationAdapter,
+        private readonly runtimeAdapter: RuntimeAdapter,
         private readonly detailsViewController: DetailsViewController,
         private readonly tabContextFactory: TabContextFactory,
         private readonly logger: Logger,
@@ -82,7 +84,7 @@ export class TabController {
             (chromeWindows: chrome.windows.Window[]) => {
                 chromeWindows.forEach((chromeWindow: chrome.windows.Window) => {
                     this.chromeAdapter.getSelectedTabInWindow(chromeWindow.id, (activeTab: chrome.tabs.Tab) => {
-                        if (!this.chromeAdapter.getRuntimeLastError()) {
+                        if (!this.runtimeAdapter.getRuntimeLastError()) {
                             if (activeTab) {
                                 this.sendTabVisibilityChangeAction(activeTab.id, chromeWindow.state === 'minimized');
                             }

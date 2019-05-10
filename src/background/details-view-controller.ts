@@ -4,16 +4,15 @@ import { autobind } from '@uifabric/utilities';
 
 import { DictionaryStringTo } from '../types/common-types';
 import { BrowserAdapter } from './browser-adapters/browser-adapter';
+import { RuntimeAdapter } from './browser-adapters/runtime-adapter';
 
 export class DetailsViewController {
     private _tabIdToDetailsViewMap: DictionaryStringTo<number> = {};
-    private _browserAdapter: BrowserAdapter;
     private _detailsViewRemovedHandler: (tabId: number) => void;
 
-    constructor(adapter: BrowserAdapter) {
-        this._browserAdapter = adapter;
-        this._browserAdapter.addListenerToTabsOnRemoved(this.onRemoveTab);
-        this._browserAdapter.addListenerToTabsOnUpdated(this.onUpdateTab);
+    constructor(private readonly browserAdapter: BrowserAdapter, private readonly runtimeAdapter: RuntimeAdapter) {
+        this.browserAdapter.addListenerToTabsOnRemoved(this.onRemoveTab);
+        this.browserAdapter.addListenerToTabsOnUpdated(this.onUpdateTab);
     }
 
     public setupDetailsViewTabRemovedHandler(handler: (tabId: number) => void): void {
@@ -24,11 +23,11 @@ export class DetailsViewController {
         const detailsViewTabId = this._tabIdToDetailsViewMap[targetTabId];
 
         if (detailsViewTabId != null) {
-            this._browserAdapter.switchToTab(detailsViewTabId);
+            this.browserAdapter.switchToTab(detailsViewTabId);
             return;
         }
 
-        this._browserAdapter.createTabInNewWindow(this.getDetailsUrl(targetTabId), (tab: chrome.tabs.Tab) => {
+        this.browserAdapter.createTabInNewWindow(this.getDetailsUrl(targetTabId), (tab: chrome.tabs.Tab) => {
             this._tabIdToDetailsViewMap[targetTabId] = tab.id;
         });
     }
@@ -65,7 +64,7 @@ export class DetailsViewController {
     }
 
     private getDetailsUrlWithExtensionId(tabId: number): string {
-        return `${this._browserAdapter.getRunTimeId()}/${this.getDetailsUrl(tabId)}`;
+        return `${this.runtimeAdapter.getRunTimeId()}/${this.getDetailsUrl(tabId)}`;
     }
 
     private getTargetTabIdForDetailsTabId(detailsTabId: number): number {

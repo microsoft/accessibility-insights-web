@@ -5,6 +5,7 @@ import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { BrowserAdapter } from '../../../../background/browser-adapters/browser-adapter';
 import { InjectorAdapter } from '../../../../background/browser-adapters/injector-adapter';
 import { NotificationAdapter } from '../../../../background/browser-adapters/notification-adapter';
+import { RuntimeAdapter } from '../../../../background/browser-adapters/runtime-adapter';
 import { DetailsViewController } from '../../../../background/details-view-controller';
 import { Interpreter } from '../../../../background/interpreter';
 import { FeatureFlagStore } from '../../../../background/stores/global/feature-flag-store';
@@ -25,6 +26,7 @@ describe('TabControllerTest', () => {
     let browserAdapterMock: IMock<BrowserAdapter>;
     let injectorAdapterMock: IMock<InjectorAdapter>;
     let notificationAdapterMock: IMock<NotificationAdapter>;
+    let runtimeAdapterMock: IMock<RuntimeAdapter>;
     let detailsViewControllerMock: IMock<DetailsViewController>;
     let tabInterpreterMap: TabToContextMap;
     let featureFlagStoreMock: IMock<FeatureFlagStore>;
@@ -60,6 +62,7 @@ describe('TabControllerTest', () => {
             browserAdapterMock.object,
             injectorAdapterMock.object,
             notificationAdapterMock.object,
+            runtimeAdapterMock.object,
             detailsViewControllerMock.object,
             tabContextFactoryMock.object,
             LoggerStub,
@@ -73,6 +76,7 @@ describe('TabControllerTest', () => {
         browserAdapterMock = Mock.ofType<BrowserAdapter>();
         injectorAdapterMock = Mock.ofType<InjectorAdapter>();
         notificationAdapterMock = Mock.ofType<NotificationAdapter>();
+        runtimeAdapterMock = Mock.ofType<RuntimeAdapter>();
         detailsViewControllerMock = Mock.ofType<DetailsViewController>();
         featureFlagStoreMock = Mock.ofType(FeatureFlagStore);
         telemetryEventHandlerMock = Mock.ofType(TelemetryEventHandler);
@@ -92,6 +96,7 @@ describe('TabControllerTest', () => {
             browserAdapterMock.object,
             injectorAdapterMock.object,
             notificationAdapterMock.object,
+            runtimeAdapterMock.object,
             detailsViewControllerMock.object,
             tabContextFactoryMock.object,
             LoggerStub,
@@ -482,7 +487,7 @@ describe('TabControllerTest', () => {
             })
             .verifiable(Times.once());
 
-        browserAdapterMock
+        runtimeAdapterMock
             .setup(ca => ca.getRuntimeLastError())
             .returns(() => null)
             .verifiable(Times.exactly(2));
@@ -573,9 +578,9 @@ describe('TabControllerTest', () => {
             })
             .verifiable(Times.once());
 
-        browserAdapterMock.setup(ca => ca.getRuntimeLastError()).returns(() => new Error('window closed'));
+        runtimeAdapterMock.setup(ca => ca.getRuntimeLastError()).returns(() => new Error('window closed'));
 
-        browserAdapterMock.setup(ca => ca.getRuntimeLastError()).returns(() => null);
+        runtimeAdapterMock.setup(ca => ca.getRuntimeLastError()).returns(() => null);
 
         const interpreterMock = Mock.ofType(Interpreter);
 
