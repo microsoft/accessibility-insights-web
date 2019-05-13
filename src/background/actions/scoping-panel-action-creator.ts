@@ -8,7 +8,7 @@ import { TelemetryEventHandler } from '../telemetry/telemetry-event-handler';
 import { BaseActionPayload } from './action-payloads';
 import { ScopingActions } from './scoping-actions';
 
-export class ScopingActionCreator {
+export class ScopingPanelActionCreator {
     private scopingActions: ScopingActions;
     private registerTypeToPayloadCallback: RegisterTypeToPayloadCallback;
     private telemetryEventHandler: TelemetryEventHandler;
