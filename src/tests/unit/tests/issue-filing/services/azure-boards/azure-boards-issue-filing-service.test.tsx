@@ -12,16 +12,6 @@ describe('AzureBoardsIssueFilingServiceTest', () => {
     const projectUrlStub: string = 'some/project/url';
     const issueDetailsLocationStub: AzureBoardsIssueDetailField = 'some location' as AzureBoardsIssueDetailField;
 
-    const invalidTestSettings: AzureBoardsIssueFilingSettings[] = [
-        null,
-        {} as AzureBoardsIssueFilingSettings,
-        undefined,
-        { projectURL: '' } as AzureBoardsIssueFilingSettings,
-        { projectURL: '', issueDetailsField: '' as AzureBoardsIssueDetailField },
-        { projectURL: 'some project', issueDetailsField: '' as AzureBoardsIssueDetailField },
-        { projectURL: '', issueDetailsField: 'some issue details location' as AzureBoardsIssueDetailField },
-    ];
-
     it('static properties', () => {
         expect(AzureBoardsIssueFilingService.key).toBe('azureBoards');
         expect(AzureBoardsIssueFilingService.displayName).toBe('Azure Boards');
@@ -49,6 +39,16 @@ describe('AzureBoardsIssueFilingServiceTest', () => {
     });
 
     describe('isSettingsValid', () => {
+        const invalidTestSettings: AzureBoardsIssueFilingSettings[] = [
+            null,
+            {} as AzureBoardsIssueFilingSettings,
+            undefined,
+            { projectURL: '' } as AzureBoardsIssueFilingSettings,
+            { projectURL: '', issueDetailsField: '' as AzureBoardsIssueDetailField },
+            { projectURL: 'some project', issueDetailsField: '' as AzureBoardsIssueDetailField },
+            { projectURL: '', issueDetailsField: 'some issue details location' as AzureBoardsIssueDetailField },
+        ];
+
         it.each(invalidTestSettings)('handles invalid settings: %o', settings => {
             expect(AzureBoardsIssueFilingService.isSettingsValid(settings)).toBe(false);
         });

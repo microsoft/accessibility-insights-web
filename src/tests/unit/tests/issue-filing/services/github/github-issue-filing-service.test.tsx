@@ -58,43 +58,45 @@ describe('GithubIssueFilingServiceTest', () => {
         expect(GitHubIssueFilingService.getSettingsFromStoreData(givenData)).toEqual(expectedStoreData);
     });
 
-    describe('check for invalid settings', () => {
-        it.each(invalidTestSettings)('with %o', (settings: GitHubIssueFilingSettings) => {
+    describe('isSettingsValid', () => {
+        it.each(invalidTestSettings)('invalid settings with %o', (settings: GitHubIssueFilingSettings) => {
             expect(GitHubIssueFilingService.isSettingsValid(settings)).toBe(false);
+        });
+
+        it('valid settings', () => {
+            const validSettings: GitHubIssueFilingSettings = {
+                repository: 'repository',
+            };
+
+            expect(GitHubIssueFilingService.isSettingsValid(validSettings)).toBe(true);
         });
     });
 
-    it('isSettingsValid - valid case', () => {
-        const validSettings: GitHubIssueFilingSettings = {
-            repository: 'repository',
-        };
+    describe('settingsForm', () => {
+        it('renders', () => {
+            const Component = GitHubIssueFilingService.settingsForm;
+            const wrapper = shallow(<Component {...props} />);
+            expect(wrapper.getElement()).toMatchSnapshot();
+        });
 
-        expect(GitHubIssueFilingService.isSettingsValid(validSettings)).toBe(true);
-    });
+        it('renders with no valid settings object', () => {
+            const Component = GitHubIssueFilingService.settingsForm;
+            props.settings = null;
+            const wrapper = shallow(<Component {...props} />);
+            const textField = wrapper.find(TextField);
+            expect(textField.exists()).toBe(true);
+            expect(textField.props().value).toEqual('');
+        });
 
-    it('renderSettingsForm', () => {
-        const Component = GitHubIssueFilingService.settingsForm;
-        const wrapper = shallow(<Component {...props} />);
-        expect(wrapper.getElement()).toMatchSnapshot();
-    });
-
-    it('renderSettingsForm: no valid settings object', () => {
-        const Component = GitHubIssueFilingService.settingsForm;
-        props.settings = null;
-        const wrapper = shallow(<Component {...props} />);
-        const textField = wrapper.find(TextField);
-        expect(textField.exists()).toBe(true);
-        expect(textField.props().value).toEqual('');
-    });
-
-    it('renderSettingsForm: onChange', () => {
-        const Component = GitHubIssueFilingService.settingsForm;
-        const wrapper = shallow(<Component {...props} />);
-        onPropertyUpdateCallbackMock.setup(mock => mock('gitHub', 'repository', 'new value')).verifiable(Times.once());
-        wrapper
-            .find(TextField)
-            .props()
-            .onChange(null, 'new value');
-        onPropertyUpdateCallbackMock.verifyAll();
+        it('onChange', () => {
+            const Component = GitHubIssueFilingService.settingsForm;
+            const wrapper = shallow(<Component {...props} />);
+            onPropertyUpdateCallbackMock.setup(mock => mock('gitHub', 'repository', 'new value')).verifiable(Times.once());
+            wrapper
+                .find(TextField)
+                .props()
+                .onChange(null, 'new value');
+            onPropertyUpdateCallbackMock.verifyAll();
+        });
     });
 });
