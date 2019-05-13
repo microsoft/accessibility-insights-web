@@ -17,6 +17,7 @@ import { FeatureFlagsController } from './feature-flags-controller';
 import { PersistedData } from './get-persisted-data';
 import { GlobalActionCreator } from './global-action-creators/global-action-creator';
 import { IssueFilingActionCreator } from './global-action-creators/issue-filing-action-creator';
+import { ScopingActionCreator } from './global-action-creators/scoping-action-creator';
 import { UserConfigurationActionCreator } from './global-action-creators/user-configuration-action-creator';
 import { GlobalContext } from './global-context';
 import { Interpreter } from './interpreter';
@@ -63,6 +64,7 @@ export class GlobalContextFactory {
             globalStoreHub.userConfigurationStore,
         );
 
+        const scopingActionCreator = new ScopingActionCreator(interpreter, globalActionsHub.scopingActions);
         const issueFilingActionCreator = new IssueFilingActionCreator(interpreter, telemetryEventHandler, issueFilingController);
         const actionCreator = new GlobalActionCreator(globalActionsHub, interpreter, commandsAdapter, telemetryEventHandler);
         const assessmentActionCreator = new AssessmentActionCreator(
@@ -76,6 +78,7 @@ export class GlobalContextFactory {
         actionCreator.registerCallbacks();
         assessmentActionCreator.registerCallbacks();
         userConfigurationActionCreator.registerCallback();
+        scopingActionCreator.registerCallback();
 
         const dispatcher = new StateDispatcher(browserAdapter.sendMessageToAllFramesAndTabs, globalStoreHub);
         dispatcher.initialize();
