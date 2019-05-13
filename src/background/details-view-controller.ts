@@ -64,7 +64,7 @@ export class DetailsViewController {
     }
 
     private getDetailsUrlWithExtensionId(tabId: number): string {
-        return `${this.runtimeAdapter.getRunTimeId()}/${this.getDetailsUrl(tabId)}`;
+        return `${this.runtimeAdapter.getRuntimeId()}/${this.getDetailsUrl(tabId)}`;
     }
 
     private getTargetTabIdForDetailsTabId(detailsTabId: number): number {

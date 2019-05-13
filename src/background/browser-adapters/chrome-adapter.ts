@@ -47,7 +47,7 @@ export class ChromeAdapter extends ClientChromeAdapter
         chrome.windows.onFocusChanged.addListener(callback);
     }
 
-    public getRunTimeId(): string {
+    public getRuntimeId(): string {
         return chrome.runtime.id;
     }
     public tabsQuery(query: chrome.tabs.QueryInfo, callback: (result: chrome.tabs.Tab[]) => void): void {

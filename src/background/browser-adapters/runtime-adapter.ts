@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 export type RuntimeAdapter = {
-    getRunTimeId(): string;
+    getRuntimeId(): string;
     getRuntimeLastError(): chrome.runtime.LastError;
 };

@@ -146,7 +146,7 @@ describe('DetailsViewControllerTest', () => {
 
         // update details tab
         runtimeAdapterMock
-            .setup(it => it.getRunTimeId())
+            .setup(it => it.getRuntimeId())
             .returns(() => {
                 return 'ext_id';
             });
@@ -185,7 +185,7 @@ describe('DetailsViewControllerTest', () => {
 
         // update details tab
         const extensionId = 'ext_id';
-        runtimeAdapterMock.setup(adapter => adapter.getRunTimeId()).returns(() => extensionId);
+        runtimeAdapterMock.setup(adapter => adapter.getRuntimeId()).returns(() => extensionId);
         onUpdateTabCallback(detailsViewTabId, { url: 'chromeExt://ext_id/DetailsView/detailsView.html?tabId=90' }, null);
 
         browserAdpaterMock.setup(adapter => adapter.createTabInNewWindow(It.isAny(), It.isAny())).verifiable(Times.once());
@@ -221,7 +221,7 @@ describe('DetailsViewControllerTest', () => {
         // update details tab
         const extensionId = 'ext_id';
         runtimeAdapterMock
-            .setup(adapter => adapter.getRunTimeId())
+            .setup(adapter => adapter.getRuntimeId())
             .returns(() => {
                 return extensionId;
             });
@@ -259,7 +259,7 @@ describe('DetailsViewControllerTest', () => {
 
         // update details tab
         const extensionId = 'ext_id';
-        runtimeAdapterMock.setup(adapter => adapter.getRunTimeId()).returns(() => extensionId);
+        runtimeAdapterMock.setup(adapter => adapter.getRuntimeId()).returns(() => extensionId);
         onUpdateTabCallback(detailsViewTabId, { title: 'issues' }, null);
 
         browserAdpaterMock.setup(adapter => adapter.createTabInNewWindow(It.isAny(), It.isAny())).verifiable(Times.never());
@@ -294,7 +294,7 @@ describe('DetailsViewControllerTest', () => {
 
         // remove details tab
         const extensionId = 'ext_id';
-        runtimeAdapterMock.setup(adapter => adapter.getRunTimeId()).returns(() => extensionId);
+        runtimeAdapterMock.setup(adapter => adapter.getRuntimeId()).returns(() => extensionId);
         onUpdateTabCallback(123, { title: 'issues' }, null);
 
         browserAdpaterMock.setup(adapter => adapter.createTabInNewWindow(It.isAny(), It.isAny())).verifiable(Times.never());
