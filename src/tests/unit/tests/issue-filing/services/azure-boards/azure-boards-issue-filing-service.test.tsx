@@ -7,7 +7,6 @@ import {
     AzureBoardsIssueFilingSettings,
 } from '../../../../../../issue-filing/services/azure-boards/azure-boards-issue-filing-service';
 import { AzureBoardsSettingsForm } from '../../../../../../issue-filing/services/azure-boards/azure-boards-settings-form';
-import { azureBoardsIssueFilingUrlProvider } from '../../../../../../issue-filing/services/azure-boards/create-azure-boards-issue-filing-url';
 
 describe('AzureBoardsIssueFilingServiceTest', () => {
     const projectUrlStub: string = 'some/project/url';

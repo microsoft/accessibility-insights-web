@@ -8,7 +8,6 @@ import { IMock, Mock, Times } from 'typemoq';
 import { IssueFilingServicePropertiesMap } from '../../../../../../common/types/store-data/user-configuration-store';
 import { SettingsDeps } from '../../../../../../DetailsView/components/settings-panel/settings/settings-props';
 import { OnPropertyUpdateCallback } from '../../../../../../issue-filing/components/issue-filing-settings-container';
-import { gitHubIssueFilingUrlProvider } from '../../../../../../issue-filing/services/github/create-github-issue-filing-url';
 import {
     GitHubIssueFilingService,
     GitHubIssueFilingSettings,
