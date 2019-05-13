@@ -23,10 +23,10 @@ describe('ScopingActionCreator', () => {
     });
 
     it('handles GetcurrentState', () => {
-        const message = Messages.Scoping.GetCurrentState;
+        const expectedMessage = Messages.Scoping.GetCurrentState;
 
         interpreterMock
-            .setup(interpreter => interpreter.registerTypeToPayloadCallback(message, It.is(isFunction)))
+            .setup(interpreter => interpreter.registerTypeToPayloadCallback(expectedMessage, It.is(isFunction)))
             .callback((message, handler) => handler());
 
         const getCurrentStateMock = Mock.ofType<Action<void>>();
@@ -40,7 +40,7 @@ describe('ScopingActionCreator', () => {
     });
 
     it('handles AddSelector', () => {
-        const message = Messages.Scoping.AddSelector;
+        const expectedMessage = Messages.Scoping.AddSelector;
 
         const payload: ScopingPayload = {
             inputType: 'include',
@@ -48,7 +48,7 @@ describe('ScopingActionCreator', () => {
         };
 
         interpreterMock
-            .setup(interpreter => interpreter.registerTypeToPayloadCallback(message, It.is(isFunction)))
+            .setup(interpreter => interpreter.registerTypeToPayloadCallback(expectedMessage, It.is(isFunction)))
             .callback((message, handler) => handler(payload));
 
         const addSelectorMock = Mock.ofType<Action<ScopingPayload>>();
@@ -62,7 +62,7 @@ describe('ScopingActionCreator', () => {
     });
 
     it('handles DeleteSelector', () => {
-        const message = Messages.Scoping.DeleteSelector;
+        const expectedMessage = Messages.Scoping.DeleteSelector;
 
         const payload: ScopingPayload = {
             inputType: 'include',
@@ -70,7 +70,7 @@ describe('ScopingActionCreator', () => {
         };
 
         interpreterMock
-            .setup(interpreter => interpreter.registerTypeToPayloadCallback(message, It.is(isFunction)))
+            .setup(interpreter => interpreter.registerTypeToPayloadCallback(expectedMessage, It.is(isFunction)))
             .callback((message, handler) => handler(payload));
 
         const deleteSelectorMock = Mock.ofType<Action<ScopingPayload>>();
