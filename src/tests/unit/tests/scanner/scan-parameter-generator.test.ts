@@ -17,7 +17,7 @@ describe('ScanParameterGenerator', () => {
 
     describe('getAxeEngineOptions', () => {
         let siftedRulesStub: RuleWithA11YCriteria[];
-        let mockSifter: IMock<RuleSifter>;
+        let sifterMock: IMock<RuleSifter>;
         let testObject: ScanParameterGenerator;
 
         beforeEach(() => {
@@ -32,10 +32,10 @@ describe('ScanParameterGenerator', () => {
                 },
             ];
 
-            mockSifter = Mock.ofType(RuleSifter, MockBehavior.Strict);
-            mockSifter.setup(ms => ms.getSiftedRules()).returns(() => siftedRulesStub);
+            sifterMock = Mock.ofType(RuleSifter, MockBehavior.Strict);
+            sifterMock.setup(ms => ms.getSiftedRules()).returns(() => siftedRulesStub);
 
-            testObject = new ScanParameterGenerator(mockSifter.object);
+            testObject = new ScanParameterGenerator(sifterMock.object);
         });
 
         it('should handle options being null', () => {
@@ -87,8 +87,8 @@ describe('ScanParameterGenerator', () => {
 
     describe('getContext', () => {
         it('should return the dom when options are null', () => {
-            const sifterMoc = Mock.ofType(RuleSifter, MockBehavior.Strict);
-            const generator = new ScanParameterGenerator(sifterMoc.object);
+            const sifterMock = Mock.ofType(RuleSifter, MockBehavior.Strict);
+            const generator = new ScanParameterGenerator(sifterMock.object);
             const options: ScanOptions = {
                 testsToRun: ['throwaway-property'],
             };
