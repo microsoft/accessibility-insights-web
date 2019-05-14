@@ -36,35 +36,6 @@ export class IssueDetailsTextGenerator {
         return text;
     }
 
-    public buildGithubText(data: CreateIssueDetailsTextData): string {
-        const result = data.ruleResult;
-
-        const text = [
-            `**Issue**: \`${result.help}\` ([\`${result.ruleId}\`](${result.helpUrl}))`,
-            ``,
-            `**Target application**: [${data.pageTitle}](${data.pageUrl})`,
-            ``,
-            `**Element path**: ${data.ruleResult.selector}`,
-            ``,
-            `**Snippet**:`,
-            ``,
-            `    ${this.collapseConsecutiveSpaces(result.snippet)}`,
-            ``,
-            `**How to fix**:`,
-            ``,
-            `${this.markdownEscapeBlock(result.failureSummary)}`,
-            ``,
-            `**Environment**:`,
-            `${this.browserSpec}`,
-            ``,
-            `====`,
-            ``,
-            this.footer,
-        ].join('\n');
-
-        return text;
-    }
-
     private get footer(): string {
         return (
             'This accessibility issue was found using Accessibility Insights for Web ' +
@@ -76,13 +47,6 @@ export class IssueDetailsTextGenerator {
 
     private collapseConsecutiveSpaces(input: string): string {
         return input.replace(/\s+/g, ' ');
-    }
-
-    private markdownEscapeBlock(input: string): string {
-        return input
-            .split('\n')
-            .map(line => `    ${line}`)
-            .join('\n');
     }
 
     public buildTitle(data: CreateIssueDetailsTextData, standardTags?: string[]): string {
