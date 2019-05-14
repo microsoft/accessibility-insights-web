@@ -1,3 +1,5 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
 import { ToggleActionPayload } from '../../background/actions/action-payloads';
 import { UniquelyIdentifiableInstances } from '../../background/instance-identifier-generator';
 import { TestViewProps } from '../../DetailsView/components/test-view';
