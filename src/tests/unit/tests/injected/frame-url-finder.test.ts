@@ -13,20 +13,18 @@ describe('frameUrlFinderTest', () => {
     });
 
     test('initialize', () => {
-        const frameCommunicatorMocks = Mock.ofType(FrameCommunicator, MockBehavior.Strict);
-        const testSubject = new FrameUrlFinder(frameCommunicatorMocks.object, null, null);
+        const frameCommunicatorMock = Mock.ofType(FrameCommunicator, MockBehavior.Strict);
+        const testSubject = new FrameUrlFinder(frameCommunicatorMock.object, null, null);
 
-        frameCommunicatorMocks
-            .setup(mfc => mfc.subscribe(FrameUrlFinder.GetTargetFrameUrlCommand, testSubject.processRequest))
-            .verifiable();
+        frameCommunicatorMock.setup(mfc => mfc.subscribe(FrameUrlFinder.GetTargetFrameUrlCommand, testSubject.processRequest)).verifiable();
 
         testSubject.initialize();
 
-        frameCommunicatorMocks.verifyAll();
+        frameCommunicatorMock.verifyAll();
     });
 
     test('processRequest: at target level', () => {
-        const frameCommunicatorMocks = Mock.ofType(FrameCommunicator, MockBehavior.Strict);
+        const frameCommunicatorMock = Mock.ofType(FrameCommunicator, MockBehavior.Strict);
         const windowUtilsMock = Mock.ofType(WindowUtils, MockBehavior.Strict);
         const topWindowStub: any = {};
         const currentWindowStub: any = {
@@ -44,7 +42,7 @@ describe('frameUrlFinderTest', () => {
             },
         };
 
-        frameCommunicatorMocks.setup(mfc => mfc.sendMessage(It.isValue(sentMessageStub))).verifiable();
+        frameCommunicatorMock.setup(mfc => mfc.sendMessage(It.isValue(sentMessageStub))).verifiable();
 
         windowUtilsMock
             .setup(mwu => mwu.getTopWindow())
@@ -60,11 +58,11 @@ describe('frameUrlFinderTest', () => {
             })
             .verifiable();
 
-        const testSubject = new FrameUrlFinder(frameCommunicatorMocks.object, windowUtilsMock.object, null);
+        const testSubject = new FrameUrlFinder(frameCommunicatorMock.object, windowUtilsMock.object, null);
         testSubject.processRequest(processRequestMessageStub);
 
         windowUtilsMock.verifyAll();
-        frameCommunicatorMocks.verifyAll();
+        frameCommunicatorMock.verifyAll();
     });
 
     test('processRequest: not at target level', () => {
