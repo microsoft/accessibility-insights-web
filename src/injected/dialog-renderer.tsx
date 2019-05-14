@@ -41,6 +41,7 @@ export class DialogRenderer {
         private readonly shadowUtils: ShadowUtils,
         private readonly clientBrowserAdapter: ClientBrowserAdapter,
         private readonly getRTLFunc: typeof getRTL,
+        private readonly detailsDialogHandler: DetailsDialogHandler,
     ) {
         if (this.isInMainWindow()) {
             this.frameCommunicator.subscribe(DialogRenderer.renderDetailsDialogCommand, this.processRequest);
@@ -84,7 +85,7 @@ export class DialogRenderer {
                     failedRules={failedRules}
                     elementSelector={elementSelector}
                     target={target}
-                    dialogHandler={new DetailsDialogHandler(this.htmlElementUtils)}
+                    dialogHandler={this.detailsDialogHandler}
                     devToolStore={mainWindowContext.getDevToolStore()}
                     userConfigStore={mainWindowContext.getUserConfigStore()}
                     devToolsShortcut={getPlatform(this.windowUtils).devToolsShortcut}

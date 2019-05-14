@@ -1,10 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { autobind } from '@uifabric/utilities';
-
 import { FeatureFlags } from '../common/feature-flags';
 import { HTMLElementUtils } from '../common/html-element-utils';
-import { UserConfigurationStoreData } from './../common/types/store-data/user-configuration-store';
 import { DetailsDialog } from './components/details-dialog';
 
 export class DetailsDialogHandler {
