@@ -5,12 +5,8 @@ import * as React from 'react';
 
 import { NamedSFC } from '../../../common/react/named-sfc';
 import { SettingsFormProps } from '../../types/settings-form-props';
-import {
-    AzureBoardsIssueDetailField,
-    AzureBoardsIssueDetailLocationDropdownOption,
-    AzureBoardsIssueFilingService,
-    AzureBoardsIssueFilingSettings,
-} from './azure-boards-issue-filing-service';
+import { AzureBoardsIssueDetailLocationDropdownOption, AzureBoardsIssueFilingService } from './azure-boards-issue-filing-service';
+import { AzureBoardsIssueDetailField, AzureBoardsIssueFilingSettings } from './azure-boards-issue-filing-settings';
 
 export const AzureBoardsSettingsForm = NamedSFC<SettingsFormProps<AzureBoardsIssueFilingSettings>>('AzureBoardsSettingsForm', props => {
     const options: AzureBoardsIssueDetailLocationDropdownOption[] = [
