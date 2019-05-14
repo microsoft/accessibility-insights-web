@@ -22,17 +22,14 @@ describe('ScopingActionCreator', () => {
         testSubject = new ScopingActionCreator(interpreterMock.object, scopingActionsMock.object);
     });
 
-    it('handles GetcurrentState', () => {
+    it('handles GetCurrentState', () => {
         const expectedMessage = Messages.Scoping.GetCurrentState;
 
-        interpreterMock
-            .setup(interpreter => interpreter.registerTypeToPayloadCallback(expectedMessage, It.is(isFunction)))
-            .callback((message, handler) => handler());
+        setupInterpreterMock(expectedMessage);
 
-        const getCurrentStateMock = Mock.ofType<Action<void>>();
-        getCurrentStateMock.setup(action => action.invoke(null)).verifiable(Times.once());
+        const getCurrentStateMock = createActionMock();
 
-        scopingActionsMock.setup(actions => actions['getCurrentState']).returns(() => getCurrentStateMock.object);
+        setupActionsMock('getCurrentState', getCurrentStateMock.object);
 
         testSubject.registerCallback();
 
@@ -47,14 +44,11 @@ describe('ScopingActionCreator', () => {
             selector: ['html'],
         };
 
-        interpreterMock
-            .setup(interpreter => interpreter.registerTypeToPayloadCallback(expectedMessage, It.is(isFunction)))
-            .callback((message, handler) => handler(payload));
+        setupInterpreterMock(expectedMessage, payload);
 
-        const addSelectorMock = Mock.ofType<Action<ScopingPayload>>();
-        addSelectorMock.setup(action => action.invoke(payload)).verifiable(Times.once());
+        const addSelectorMock = createActionMock(payload);
 
-        scopingActionsMock.setup(actions => actions['addSelector']).returns(() => addSelectorMock.object);
+        setupActionsMock('addSelector', addSelectorMock.object);
 
         testSubject.registerCallback();
 
@@ -69,17 +63,38 @@ describe('ScopingActionCreator', () => {
             selector: ['html'],
         };
 
-        interpreterMock
-            .setup(interpreter => interpreter.registerTypeToPayloadCallback(expectedMessage, It.is(isFunction)))
-            .callback((message, handler) => handler(payload));
+        setupInterpreterMock(expectedMessage, payload);
 
-        const deleteSelectorMock = Mock.ofType<Action<ScopingPayload>>();
-        deleteSelectorMock.setup(action => action.invoke(payload)).verifiable(Times.once());
+        const deleteSelectorMock = createActionMock(payload);
 
-        scopingActionsMock.setup(actions => actions['deleteSelector']).returns(() => deleteSelectorMock.object);
+        setupActionsMock('deleteSelector', deleteSelectorMock.object);
 
         testSubject.registerCallback();
 
         deleteSelectorMock.verifyAll();
     });
+
+    const setupInterpreterMock = <Payload>(expectedMessage: string, payload?: Payload): void => {
+        interpreterMock
+            .setup(interpreter => interpreter.registerTypeToPayloadCallback(expectedMessage, It.is(isFunction)))
+            .callback((message, handler) => {
+                if (payload) {
+                    handler(payload);
+                } else {
+                    handler();
+                }
+            });
+    };
+
+    const createActionMock = <Payload = void>(payload: Payload = null): IMock<Action<Payload>> => {
+        const actionMock = Mock.ofType<Action<Payload>>();
+
+        actionMock.setup(action => action.invoke(payload)).verifiable(Times.once());
+
+        return actionMock;
+    };
+
+    const setupActionsMock = <ActionName extends keyof ScopingActions>(actionName: ActionName, action: ScopingActions[ActionName]) => {
+        scopingActionsMock.setup(actions => actions[actionName]).returns(() => action);
+    };
 });
