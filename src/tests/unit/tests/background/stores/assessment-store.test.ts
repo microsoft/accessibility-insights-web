@@ -24,7 +24,7 @@ import { AssessmentDataRemover } from '../../../../../background/assessment-data
 import { BrowserAdapter } from '../../../../../background/browser-adapters/browser-adapter';
 import { InitialAssessmentStoreDataGenerator } from '../../../../../background/initial-assessment-store-data-generator';
 import { AssessmentStore } from '../../../../../background/stores/assessment-store';
-import { AssesssmentVisualizationConfiguration } from '../../../../../common/configs/visualization-configuration-factory';
+import { AssesssmentVisualizationConfiguration } from '../../../../../common/configs/assesssment-visualization-configuration';
 import { IndexedDBAPI } from '../../../../../common/indexedDB/indexedDB';
 import { Tab } from '../../../../../common/itab';
 import { StoreNames } from '../../../../../common/stores/store-names';

@@ -4,10 +4,8 @@ import { IMock, Mock, Times } from 'typemoq';
 
 import { BrowserAdapter } from '../../../../background/browser-adapters/browser-adapter';
 import { TargetTabController } from '../../../../background/target-tab-controller';
-import {
-    VisualizationConfiguration,
-    VisualizationConfigurationFactory,
-} from '../../../../common/configs/visualization-configuration-factory';
+import { VisualizationConfiguration } from '../../../../common/configs/visualization-configuration';
+import { VisualizationConfigurationFactory } from '../../../../common/configs/visualization-configuration-factory';
 import { VisualizationType } from '../../../../common/types/visualization-type';
 
 describe('TargetTabControllerTest', () => {

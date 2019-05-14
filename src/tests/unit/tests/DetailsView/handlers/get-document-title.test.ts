@@ -2,9 +2,9 @@
 // Licensed under the MIT License.
 import { Mock, MockBehavior } from 'typemoq';
 
+import { VisualizationConfiguration } from '../../../../../common/configs/visualization-configuration';
 import {
     DisplayableVisualizationTypeData,
-    VisualizationConfiguration,
     VisualizationConfigurationFactory,
 } from '../../../../../common/configs/visualization-configuration-factory';
 import { getOverviewTitle, getTestViewTitle, GetTestViewTitleProps } from '../../../../../DetailsView/handlers/get-document-title';

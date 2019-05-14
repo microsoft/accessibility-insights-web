@@ -3,10 +3,8 @@
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 import { BrowserAdapter } from '../../../../background/browser-adapters/browser-adapter';
-import {
-    VisualizationConfiguration,
-    VisualizationConfigurationFactory,
-} from '../../../../common/configs/visualization-configuration-factory';
+import { VisualizationConfiguration } from '../../../../common/configs/visualization-configuration';
+import { VisualizationConfigurationFactory } from '../../../../common/configs/visualization-configuration-factory';
 import { NotificationCreator } from '../../../../common/notification-creator';
 import { VisualizationType } from '../../../../common/types/visualization-type';
 
