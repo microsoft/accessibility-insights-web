@@ -7,8 +7,8 @@ import { IssueFilingServicePropertiesMap } from '../../common/types/store-data/u
 import { IssueFilingUrlProvider } from '../types/issue-filing-service';
 
 export const createFileIssueHandler = <Settings>(
-    urlProvider: IssueFilingUrlProvider<Settings>,
-    settingsGetter: (data: IssueFilingServicePropertiesMap) => Settings,
+    getUrl: IssueFilingUrlProvider<Settings>,
+    getSettings: (data: IssueFilingServicePropertiesMap) => Settings,
 ) => {
     return (
         browserAdapter: BrowserAdapter,
@@ -16,9 +16,9 @@ export const createFileIssueHandler = <Settings>(
         issueData: CreateIssueDetailsTextData,
         environmentInfo: EnvironmentInfo,
     ): void => {
-        const serviceConfig = settingsGetter(servicePropertiesMap);
+        const serviceConfig = getSettings(servicePropertiesMap);
 
-        const url = urlProvider(serviceConfig, issueData, environmentInfo);
+        const url = getUrl(serviceConfig, issueData, environmentInfo);
         browserAdapter.createTab(url);
     };
 };
