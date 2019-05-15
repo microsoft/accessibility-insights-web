@@ -107,19 +107,9 @@ describe('DetailsDialogTest', () => {
             devToolsShortcut: 'shortcut',
         };
 
-        const onHideDialogMock = {};
-        const onClickNextButtonMock = {};
-        const onClickBackButtonMock = {};
-        const onLayoutDidMountMock = {};
-
-        const testObject = new DetailsDialog(props);
-        (testObject as any).onHideDialog = onHideDialogMock;
-        (testObject as any).onClickNextButton = onClickNextButtonMock;
-        (testObject as any).onClickBackButton = onClickBackButtonMock;
-        (testObject as any).onLayoutDidMount = onLayoutDidMountMock;
-
-        expect(testObject.render()).toMatchSnapshot();
         const wrapper = shallow(<DetailsDialog {...props} />);
+
+        expect(wrapper.getElement()).toMatchSnapshot();
 
         expect(wrapper.state()).toMatchSnapshot('verify initial state');
 
