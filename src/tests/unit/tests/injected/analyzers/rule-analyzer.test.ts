@@ -28,7 +28,7 @@ describe('RuleAnalyzer', () => {
     let scopingStoreMock: IMock<ScopingStore>;
     let scopingState: ScopingStoreData;
     let visualizationConfigurationFactoryMock: IMock<VisualizationConfigurationFactory>;
-    const allInstancesMocks: DictionaryStringTo<any> = {
+    const allInstancesMock: DictionaryStringTo<any> = {
         test: 'test-result-value',
     };
     let sendMessageMock: IMock<(message) => void>;
@@ -125,14 +125,14 @@ describe('RuleAnalyzer', () => {
             messageType: configStub.analyzerMessageType,
             payload: {
                 key: configStub.key,
-                selectorMap: allInstancesMocks,
+                selectorMap: allInstancesMock,
                 scanResult: scanResults,
                 testType: typeStub,
                 telemetry: expectedTelemetryStub,
             },
         };
 
-        resultProcessorMock.setup(processor => processor(scanResults)).returns(() => allInstancesMocks);
+        resultProcessorMock.setup(processor => processor(scanResults)).returns(() => allInstancesMock);
 
         sendMessageMock
             .setup(sm => sm(It.isValue(expectedMessage)))
