@@ -180,7 +180,6 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: false 
             }
           }
           needsSettingsContentRenderer={[Function]}
-          userConfigurationStoreData={null}
         />
       </React.Fragment>
       <div
@@ -268,7 +267,9 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: false 
               "shadowDialog": false,
             },
             "target": Array [],
-            "userConfigStore": Object {},
+            "userConfigStore": Object {
+              "getState": [Function],
+            },
           },
           "refs": Object {},
           "setState": [Function],
@@ -276,7 +277,7 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: false 
             "canInspect": true,
             "currentRuleIndex": 0,
             "showDialog": true,
-            "userConfigurationStoreData": null,
+            "userConfigurationStoreData": undefined,
           },
           "updater": Updater {
             "_callbacks": Array [],
@@ -355,7 +356,11 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: false 
                   }
                 }
                 target={Array []}
-                userConfigStore={Object {}}
+                userConfigStore={
+                  Object {
+                    "getState": [Function],
+                  }
+                }
               />,
               "_firstWorkInProgressHook": null,
               "_forcedUpdate": false,
@@ -543,7 +548,6 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: false 
                           }
                         }
                         needsSettingsContentRenderer={[Function]}
-                        userConfigurationStoreData={null}
                       />
                     </React.Fragment>
                     <div
@@ -674,7 +678,7 @@ Object {
   "canInspect": true,
   "currentRuleIndex": 0,
   "showDialog": true,
-  "userConfigurationStoreData": null,
+  "userConfigurationStoreData": undefined,
 }
 `;
 
@@ -862,7 +866,6 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: true }
               }
             }
             needsSettingsContentRenderer={[Function]}
-            userConfigurationStoreData={null}
           />
         </React.Fragment>
         <div
@@ -950,7 +953,9 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: true }
                 "shadowDialog": true,
               },
               "target": Array [],
-              "userConfigStore": Object {},
+              "userConfigStore": Object {
+                "getState": [Function],
+              },
             },
             "refs": Object {},
             "setState": [Function],
@@ -958,7 +963,7 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: true }
               "canInspect": true,
               "currentRuleIndex": 0,
               "showDialog": true,
-              "userConfigurationStoreData": null,
+              "userConfigurationStoreData": undefined,
             },
             "updater": Updater {
               "_callbacks": Array [],
@@ -1037,7 +1042,11 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: true }
                     }
                   }
                   target={Array []}
-                  userConfigStore={Object {}}
+                  userConfigStore={
+                    Object {
+                      "getState": [Function],
+                    }
+                  }
                 />,
                 "_firstWorkInProgressHook": null,
                 "_forcedUpdate": false,
@@ -1229,7 +1238,6 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: true }
                               }
                             }
                             needsSettingsContentRenderer={[Function]}
-                            userConfigurationStoreData={null}
                           />
                         </React.Fragment>
                         <div
@@ -1360,7 +1368,7 @@ Object {
   "canInspect": true,
   "currentRuleIndex": 0,
   "showDialog": true,
-  "userConfigurationStoreData": null,
+  "userConfigurationStoreData": undefined,
 }
 `;
 
@@ -1544,7 +1552,6 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: false }
             }
           }
           needsSettingsContentRenderer={[Function]}
-          userConfigurationStoreData={null}
         />
       </React.Fragment>
     </div>
@@ -1627,7 +1634,9 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: false }
               "shadowDialog": false,
             },
             "target": Array [],
-            "userConfigStore": Object {},
+            "userConfigStore": Object {
+              "getState": [Function],
+            },
           },
           "refs": Object {},
           "setState": [Function],
@@ -1635,7 +1644,7 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: false }
             "canInspect": true,
             "currentRuleIndex": 0,
             "showDialog": true,
-            "userConfigurationStoreData": null,
+            "userConfigurationStoreData": undefined,
           },
           "updater": Updater {
             "_callbacks": Array [],
@@ -1714,7 +1723,11 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: false }
                   }
                 }
                 target={Array []}
-                userConfigStore={Object {}}
+                userConfigStore={
+                  Object {
+                    "getState": [Function],
+                  }
+                }
               />,
               "_firstWorkInProgressHook": null,
               "_forcedUpdate": false,
@@ -1902,7 +1915,6 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: false }
                           }
                         }
                         needsSettingsContentRenderer={[Function]}
-                        userConfigurationStoreData={null}
                       />
                     </React.Fragment>
                   </div>
@@ -2028,7 +2040,7 @@ Object {
   "canInspect": true,
   "currentRuleIndex": 0,
   "showDialog": true,
-  "userConfigurationStoreData": null,
+  "userConfigurationStoreData": undefined,
 }
 `;
 
@@ -2216,7 +2228,6 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: true } 
               }
             }
             needsSettingsContentRenderer={[Function]}
-            userConfigurationStoreData={null}
           />
         </React.Fragment>
       </div>
@@ -2299,7 +2310,9 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: true } 
                 "shadowDialog": true,
               },
               "target": Array [],
-              "userConfigStore": Object {},
+              "userConfigStore": Object {
+                "getState": [Function],
+              },
             },
             "refs": Object {},
             "setState": [Function],
@@ -2307,7 +2320,7 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: true } 
               "canInspect": true,
               "currentRuleIndex": 0,
               "showDialog": true,
-              "userConfigurationStoreData": null,
+              "userConfigurationStoreData": undefined,
             },
             "updater": Updater {
               "_callbacks": Array [],
@@ -2386,7 +2399,11 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: true } 
                     }
                   }
                   target={Array []}
-                  userConfigStore={Object {}}
+                  userConfigStore={
+                    Object {
+                      "getState": [Function],
+                    }
+                  }
                 />,
                 "_firstWorkInProgressHook": null,
                 "_forcedUpdate": false,
@@ -2578,7 +2595,6 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: true } 
                               }
                             }
                             needsSettingsContentRenderer={[Function]}
-                            userConfigurationStoreData={null}
                           />
                         </React.Fragment>
                       </div>
@@ -2704,7 +2720,7 @@ Object {
   "canInspect": true,
   "currentRuleIndex": 0,
   "showDialog": true,
-  "userConfigurationStoreData": null,
+  "userConfigurationStoreData": undefined,
 }
 `;
 
@@ -2888,7 +2904,6 @@ exports[`DetailsDialogTest render: with relative help url 1`] = `
             }
           }
           needsSettingsContentRenderer={[Function]}
-          userConfigurationStoreData={null}
         />
       </React.Fragment>
       <div
@@ -2976,7 +2991,9 @@ exports[`DetailsDialogTest render: with relative help url 1`] = `
               "shadowDialog": false,
             },
             "target": Array [],
-            "userConfigStore": Object {},
+            "userConfigStore": Object {
+              "getState": [Function],
+            },
           },
           "refs": Object {},
           "setState": [Function],
@@ -2984,7 +3001,7 @@ exports[`DetailsDialogTest render: with relative help url 1`] = `
             "canInspect": true,
             "currentRuleIndex": 0,
             "showDialog": true,
-            "userConfigurationStoreData": null,
+            "userConfigurationStoreData": undefined,
           },
           "updater": Updater {
             "_callbacks": Array [],
@@ -3063,7 +3080,11 @@ exports[`DetailsDialogTest render: with relative help url 1`] = `
                   }
                 }
                 target={Array []}
-                userConfigStore={Object {}}
+                userConfigStore={
+                  Object {
+                    "getState": [Function],
+                  }
+                }
               />,
               "_firstWorkInProgressHook": null,
               "_forcedUpdate": false,
@@ -3251,7 +3272,6 @@ exports[`DetailsDialogTest render: with relative help url 1`] = `
                           }
                         }
                         needsSettingsContentRenderer={[Function]}
-                        userConfigurationStoreData={null}
                       />
                     </React.Fragment>
                     <div
@@ -3382,6 +3402,6 @@ Object {
   "canInspect": true,
   "currentRuleIndex": 0,
   "showDialog": true,
-  "userConfigurationStoreData": null,
+  "userConfigurationStoreData": undefined,
 }
 `;

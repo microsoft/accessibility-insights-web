@@ -102,7 +102,9 @@ describe('DetailsDialogTest', () => {
                 [FeatureFlags.shadowDialog]: shadowDialog,
             },
             devToolStore: {} as any,
-            userConfigStore: {} as any,
+            userConfigStore: {
+                getState: () => {},
+            } as any,
             devToolActionMessageCreator: {} as any,
             devToolsShortcut: 'shortcut',
         };
