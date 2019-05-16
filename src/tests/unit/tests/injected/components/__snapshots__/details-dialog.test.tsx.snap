@@ -11,7 +11,7 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: false 
       "topButtonsProps": Array [
         Object {
           "ariaLabel": "Close",
-          "onClick": Object {},
+          "onClick": [Function],
           "onRenderIcon": [Function],
         },
       ],
@@ -26,11 +26,11 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: false 
       "layerProps": Object {
         "className": "insights-dialog-main-override",
         "hostId": "insights-dialog-layer-host",
-        "onLayerDidMount": Object {},
+        "onLayerDidMount": [Function],
       },
     }
   }
-  onDismiss={Object {}}
+  onDismiss={[Function]}
   title="help"
 >
   <div
@@ -180,7 +180,6 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: false 
             }
           }
           needsSettingsContentRenderer={[Function]}
-          userConfigurationStoreData={null}
         />
       </React.Fragment>
       <div
@@ -208,15 +207,15 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: false 
         DetailsDialog {
           "componentDidMount": [Function],
           "componentWillUnmount": [Function],
-          "context": undefined,
+          "context": Object {},
           "isBackButtonDisabled": [Function],
           "isInspectButtonDisabled": [Function],
           "isNextButtonDisabled": [Function],
-          "onClickBackButton": Object {},
+          "onClickBackButton": [Function],
           "onClickInspectButton": [Function],
-          "onClickNextButton": Object {},
-          "onHideDialog": Object {},
-          "onLayoutDidMount": Object {},
+          "onClickNextButton": [Function],
+          "onHideDialog": [Function],
+          "onLayoutDidMount": [Function],
           "props": Object {
             "deps": Object {
               "clientBrowserAdapter": Object {
@@ -268,20 +267,334 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: false 
               "shadowDialog": false,
             },
             "target": Array [],
-            "userConfigStore": Object {},
+            "userConfigStore": Object {
+              "getState": [Function],
+            },
           },
           "refs": Object {},
+          "setState": [Function],
           "state": Object {
             "canInspect": true,
             "currentRuleIndex": 0,
             "showDialog": true,
-            "userConfigurationStoreData": null,
+            "userConfigurationStoreData": undefined,
           },
-          "updater": Object {
-            "enqueueForceUpdate": [Function],
-            "enqueueReplaceState": [Function],
-            "enqueueSetState": [Function],
-            "isMounted": [Function],
+          "updater": Updater {
+            "_callbacks": Array [],
+            "_renderer": ReactShallowRenderer {
+              "_context": Object {},
+              "_didScheduleRenderPhaseUpdate": false,
+              "_dispatcher": Object {
+                "readContext": [Function],
+                "useCallback": [Function],
+                "useContext": [Function],
+                "useDebugValue": [Function],
+                "useEffect": [Function],
+                "useImperativeHandle": [Function],
+                "useLayoutEffect": [Function],
+                "useMemo": [Function],
+                "useReducer": [Function],
+                "useRef": [Function],
+                "useState": [Function],
+              },
+              "_element": <DetailsDialog
+                deps={
+                  Object {
+                    "clientBrowserAdapter": Object {
+                      "getUrl": [Function],
+                    },
+                    "issueDetailsTextGenerator": null,
+                    "issueFilingActionMessageCreator": null,
+                    "targetPageActionMessageCreator": Object {
+                      "copyIssueDetailsClicked": [Function],
+                    },
+                    "windowUtils": null,
+                  }
+                }
+                devToolActionMessageCreator={Object {}}
+                devToolStore={Object {}}
+                devToolsShortcut="shortcut"
+                dialogHandler={
+                  Object {
+                    "componentDidMount": [Function],
+                    "getFailureInfo": [Function],
+                    "getRuleUrl": [Function],
+                    "isBackButtonDisabled": [Function],
+                    "isInspectButtonDisabled": [Function],
+                    "isNextButtonDisabled": [Function],
+                  }
+                }
+                elementSelector="ruleId"
+                failedRules={
+                  Object {
+                    "ruleId": Object {
+                      "all": Array [],
+                      "any": Array [],
+                      "failureSummary": "failureSummary",
+                      "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
+                      "guidanceLinks": Array [
+                        Object {
+                          "href": "http://example.com",
+                          "text": "Guidance Link",
+                        },
+                      ],
+                      "help": "help",
+                      "helpUrl": "http://extension/help1",
+                      "html": "html",
+                      "id": "id1",
+                      "none": Array [],
+                      "ruleId": "ruleId",
+                      "selector": "selector",
+                      "snippet": "html",
+                      "status": false,
+                    },
+                  }
+                }
+                featureFlagStoreData={
+                  Object {
+                    "shadowDialog": false,
+                  }
+                }
+                target={Array []}
+                userConfigStore={
+                  Object {
+                    "getState": [Function],
+                  }
+                }
+              />,
+              "_firstWorkInProgressHook": null,
+              "_forcedUpdate": false,
+              "_instance": [Circular],
+              "_isReRender": false,
+              "_newState": null,
+              "_numberOfReRenders": 0,
+              "_renderPhaseUpdates": null,
+              "_rendered": <StyledWithResponsiveMode
+                dialogContentProps={
+                  Object {
+                    "showCloseButton": false,
+                    "styles": Object {
+                      "title": "insights-dialog-title",
+                    },
+                    "topButtonsProps": Array [
+                      Object {
+                        "ariaLabel": "Close",
+                        "onClick": [Function],
+                        "onRenderIcon": [Function],
+                      },
+                    ],
+                    "type": 0,
+                  }
+                }
+                hidden={false}
+                modalProps={
+                  Object {
+                    "containerClassName": "insights-dialog-main-container",
+                    "isBlocking": false,
+                    "layerProps": Object {
+                      "className": "insights-dialog-main-override",
+                      "hostId": "insights-dialog-layer-host",
+                      "onLayerDidMount": [Function],
+                    },
+                  }
+                }
+                onDismiss={[Function]}
+                title="help"
+              >
+                <div
+                  className="insights-dialog-content"
+                >
+                  <div
+                    className="insights-dialog-rule-name"
+                  >
+                    <h3
+                      className="insights-dialog-section-title"
+                    >
+                      Rule name
+                    </h3>
+                    <NewTabLink
+                      href="http://extension/help1"
+                    >
+                      ruleId
+                    </NewTabLink>
+                  </div>
+                  <div
+                    className="insights-dialog-success-criteria"
+                  >
+                    <h3
+                      className="insights-dialog-section-title"
+                    >
+                      Success criterion
+                    </h3>
+                    <GuidanceLinks
+                      links={
+                        Array [
+                          Object {
+                            "href": "http://example.com",
+                            "text": "Guidance Link",
+                          },
+                        ]
+                      }
+                    />
+                  </div>
+                  <div
+                    className="insights-dialog-path-selector-container"
+                  >
+                    <h3
+                      className="insights-dialog-section-title"
+                    >
+                      Path
+                    </h3>
+                    ruleId
+                  </div>
+                  <div
+                    className="insights-dialog-target-button-container"
+                  >
+                    <CustomizedDefaultButton
+                      className="insights-dialog-button-inspect"
+                      disabled={true}
+                      onClick={[Function]}
+                    >
+                      <FileHTMLIcon />
+                      <div
+                        className="ms-Button-label"
+                      >
+                        Inspect HTML
+                      </div>
+                    </CustomizedDefaultButton>
+                    <React.Fragment>
+                      <CopyIssueDetailsButton
+                        deps={
+                          Object {
+                            "clientBrowserAdapter": Object {
+                              "getUrl": [Function],
+                            },
+                            "issueDetailsTextGenerator": null,
+                            "issueFilingActionMessageCreator": null,
+                            "targetPageActionMessageCreator": Object {
+                              "copyIssueDetailsClicked": [Function],
+                            },
+                            "windowUtils": null,
+                          }
+                        }
+                        issueDetailsData={
+                          Object {
+                            "pageTitle": "",
+                            "pageUrl": "http://localhost/",
+                            "ruleResult": Object {
+                              "all": Array [],
+                              "any": Array [],
+                              "failureSummary": "failureSummary",
+                              "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
+                              "guidanceLinks": Array [
+                                Object {
+                                  "href": "http://example.com",
+                                  "text": "Guidance Link",
+                                },
+                              ],
+                              "help": "help",
+                              "helpUrl": "http://extension/help1",
+                              "html": "html",
+                              "id": "id1",
+                              "none": Array [],
+                              "ruleId": "ruleId",
+                              "selector": "selector",
+                              "snippet": "html",
+                              "status": false,
+                            },
+                          }
+                        }
+                        onClick={[Function]}
+                      />
+                      <IssueFilingButton
+                        deps={
+                          Object {
+                            "clientBrowserAdapter": Object {
+                              "getUrl": [Function],
+                            },
+                            "issueDetailsTextGenerator": null,
+                            "issueFilingActionMessageCreator": null,
+                            "targetPageActionMessageCreator": Object {
+                              "copyIssueDetailsClicked": [Function],
+                            },
+                            "windowUtils": null,
+                          }
+                        }
+                        issueDetailsData={
+                          Object {
+                            "pageTitle": "",
+                            "pageUrl": "http://localhost/",
+                            "ruleResult": Object {
+                              "all": Array [],
+                              "any": Array [],
+                              "failureSummary": "failureSummary",
+                              "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
+                              "guidanceLinks": Array [
+                                Object {
+                                  "href": "http://example.com",
+                                  "text": "Guidance Link",
+                                },
+                              ],
+                              "help": "help",
+                              "helpUrl": "http://extension/help1",
+                              "html": "html",
+                              "id": "id1",
+                              "none": Array [],
+                              "ruleId": "ruleId",
+                              "selector": "selector",
+                              "snippet": "html",
+                              "status": false,
+                            },
+                          }
+                        }
+                        needsSettingsContentRenderer={[Function]}
+                      />
+                    </React.Fragment>
+                    <div
+                      className="insights-dialog-inspect-disabled"
+                    >
+                      To enable the Inspect HTML button, open the developer tools (shortcut).
+                    </div>
+                  </div>
+                  <div
+                    className="insights-dialog-fix-instruction-container"
+                  >
+                    <FixInstructionPanel
+                      checkType={0}
+                      checks={Array []}
+                      renderTitleElement={[Function]}
+                    />
+                    <FixInstructionPanel
+                      checkType={1}
+                      checks={Array []}
+                      renderTitleElement={[Function]}
+                    />
+                  </div>
+                  <IssueDetailsNavigationControls
+                    container={[Circular]}
+                    dialogHandler={
+                      Object {
+                        "componentDidMount": [Function],
+                        "getFailureInfo": [Function],
+                        "getRuleUrl": [Function],
+                        "isBackButtonDisabled": [Function],
+                        "isInspectButtonDisabled": [Function],
+                        "isNextButtonDisabled": [Function],
+                      }
+                    }
+                    failuresCount={1}
+                    featureFlagStoreData={
+                      Object {
+                        "shadowDialog": false,
+                      }
+                    }
+                  />
+                </div>
+              </StyledWithResponsiveMode>,
+              "_rendering": false,
+              "_updater": [Circular],
+              "_workInProgressHook": null,
+            },
           },
         }
       }
@@ -365,7 +678,7 @@ Object {
   "canInspect": true,
   "currentRuleIndex": 0,
   "showDialog": true,
-  "userConfigurationStoreData": null,
+  "userConfigurationStoreData": undefined,
 }
 `;
 
@@ -553,7 +866,6 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: true }
               }
             }
             needsSettingsContentRenderer={[Function]}
-            userConfigurationStoreData={null}
           />
         </React.Fragment>
         <div
@@ -581,15 +893,15 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: true }
           DetailsDialog {
             "componentDidMount": [Function],
             "componentWillUnmount": [Function],
-            "context": undefined,
+            "context": Object {},
             "isBackButtonDisabled": [Function],
             "isInspectButtonDisabled": [Function],
             "isNextButtonDisabled": [Function],
-            "onClickBackButton": Object {},
+            "onClickBackButton": [Function],
             "onClickInspectButton": [Function],
-            "onClickNextButton": Object {},
-            "onHideDialog": Object {},
-            "onLayoutDidMount": Object {},
+            "onClickNextButton": [Function],
+            "onHideDialog": [Function],
+            "onLayoutDidMount": [Function],
             "props": Object {
               "deps": Object {
                 "clientBrowserAdapter": Object {
@@ -641,20 +953,339 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: true }
                 "shadowDialog": true,
               },
               "target": Array [],
-              "userConfigStore": Object {},
+              "userConfigStore": Object {
+                "getState": [Function],
+              },
             },
             "refs": Object {},
+            "setState": [Function],
             "state": Object {
               "canInspect": true,
               "currentRuleIndex": 0,
               "showDialog": true,
-              "userConfigurationStoreData": null,
+              "userConfigurationStoreData": undefined,
             },
-            "updater": Object {
-              "enqueueForceUpdate": [Function],
-              "enqueueReplaceState": [Function],
-              "enqueueSetState": [Function],
-              "isMounted": [Function],
+            "updater": Updater {
+              "_callbacks": Array [],
+              "_renderer": ReactShallowRenderer {
+                "_context": Object {},
+                "_didScheduleRenderPhaseUpdate": false,
+                "_dispatcher": Object {
+                  "readContext": [Function],
+                  "useCallback": [Function],
+                  "useContext": [Function],
+                  "useDebugValue": [Function],
+                  "useEffect": [Function],
+                  "useImperativeHandle": [Function],
+                  "useLayoutEffect": [Function],
+                  "useMemo": [Function],
+                  "useReducer": [Function],
+                  "useRef": [Function],
+                  "useState": [Function],
+                },
+                "_element": <DetailsDialog
+                  deps={
+                    Object {
+                      "clientBrowserAdapter": Object {
+                        "getUrl": [Function],
+                      },
+                      "issueDetailsTextGenerator": null,
+                      "issueFilingActionMessageCreator": null,
+                      "targetPageActionMessageCreator": Object {
+                        "copyIssueDetailsClicked": [Function],
+                      },
+                      "windowUtils": null,
+                    }
+                  }
+                  devToolActionMessageCreator={Object {}}
+                  devToolStore={Object {}}
+                  devToolsShortcut="shortcut"
+                  dialogHandler={
+                    Object {
+                      "componentDidMount": [Function],
+                      "getFailureInfo": [Function],
+                      "getRuleUrl": [Function],
+                      "isBackButtonDisabled": [Function],
+                      "isInspectButtonDisabled": [Function],
+                      "isNextButtonDisabled": [Function],
+                    }
+                  }
+                  elementSelector="ruleId"
+                  failedRules={
+                    Object {
+                      "ruleId": Object {
+                        "all": Array [],
+                        "any": Array [],
+                        "failureSummary": "failureSummary",
+                        "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
+                        "guidanceLinks": Array [
+                          Object {
+                            "href": "http://example.com",
+                            "text": "Guidance Link",
+                          },
+                        ],
+                        "help": "help",
+                        "helpUrl": "http://extension/help1",
+                        "html": "html",
+                        "id": "id1",
+                        "none": Array [],
+                        "ruleId": "ruleId",
+                        "selector": "selector",
+                        "snippet": "html",
+                        "status": false,
+                      },
+                    }
+                  }
+                  featureFlagStoreData={
+                    Object {
+                      "shadowDialog": true,
+                    }
+                  }
+                  target={Array []}
+                  userConfigStore={
+                    Object {
+                      "getState": [Function],
+                    }
+                  }
+                />,
+                "_firstWorkInProgressHook": null,
+                "_forcedUpdate": false,
+                "_instance": [Circular],
+                "_isReRender": false,
+                "_newState": null,
+                "_numberOfReRenders": 0,
+                "_renderPhaseUpdates": null,
+                "_rendered": <div
+                  className="insights-dialog-main-override-shadow"
+                  style={
+                    Object {
+                      "visibility": "visible",
+                    }
+                  }
+                >
+                  <div
+                    className="insights-dialog-container"
+                  >
+                    <div
+                      className="insights-dialog-header"
+                    >
+                      <p
+                        className="ms-Dialog-title insights-dialog-title"
+                      >
+                        help
+                      </p>
+                      <div
+                        className="ms-Dialog-topButton"
+                      >
+                        <button
+                          aria-label="Close"
+                          className="ms-Dialog-button ms-Dialog-button--close ms-Button ms-Button--icon insights-dialog-close"
+                          data-is-focusable="true"
+                          type="button"
+                        >
+                          <div
+                            className="ms-button-flex-container"
+                          >
+                            <CancelIcon />
+                          </div>
+                        </button>
+                      </div>
+                    </div>
+                    <div
+                      className="insights-dialog-content"
+                    >
+                      <div
+                        className="insights-dialog-rule-name"
+                      >
+                        <h3
+                          className="insights-dialog-section-title"
+                        >
+                          Rule name
+                        </h3>
+                        <NewTabLink
+                          href="http://extension/help1"
+                        >
+                          ruleId
+                        </NewTabLink>
+                      </div>
+                      <div
+                        className="insights-dialog-success-criteria"
+                      >
+                        <h3
+                          className="insights-dialog-section-title"
+                        >
+                          Success criterion
+                        </h3>
+                        <GuidanceLinks
+                          links={
+                            Array [
+                              Object {
+                                "href": "http://example.com",
+                                "text": "Guidance Link",
+                              },
+                            ]
+                          }
+                        />
+                      </div>
+                      <div
+                        className="insights-dialog-path-selector-container"
+                      >
+                        <h3
+                          className="insights-dialog-section-title"
+                        >
+                          Path
+                        </h3>
+                        ruleId
+                      </div>
+                      <div
+                        className="insights-dialog-target-button-container"
+                      >
+                        <CustomizedDefaultButton
+                          className="insights-dialog-button-inspect"
+                          disabled={true}
+                          onClick={null}
+                        >
+                          <FileHTMLIcon />
+                          <div
+                            className="ms-Button-label"
+                          >
+                            Inspect HTML
+                          </div>
+                        </CustomizedDefaultButton>
+                        <React.Fragment>
+                          <CopyIssueDetailsButton
+                            deps={
+                              Object {
+                                "clientBrowserAdapter": Object {
+                                  "getUrl": [Function],
+                                },
+                                "issueDetailsTextGenerator": null,
+                                "issueFilingActionMessageCreator": null,
+                                "targetPageActionMessageCreator": Object {
+                                  "copyIssueDetailsClicked": [Function],
+                                },
+                                "windowUtils": null,
+                              }
+                            }
+                            issueDetailsData={
+                              Object {
+                                "pageTitle": "",
+                                "pageUrl": "http://localhost/",
+                                "ruleResult": Object {
+                                  "all": Array [],
+                                  "any": Array [],
+                                  "failureSummary": "failureSummary",
+                                  "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
+                                  "guidanceLinks": Array [
+                                    Object {
+                                      "href": "http://example.com",
+                                      "text": "Guidance Link",
+                                    },
+                                  ],
+                                  "help": "help",
+                                  "helpUrl": "http://extension/help1",
+                                  "html": "html",
+                                  "id": "id1",
+                                  "none": Array [],
+                                  "ruleId": "ruleId",
+                                  "selector": "selector",
+                                  "snippet": "html",
+                                  "status": false,
+                                },
+                              }
+                            }
+                            onClick={[Function]}
+                          />
+                          <IssueFilingButton
+                            deps={
+                              Object {
+                                "clientBrowserAdapter": Object {
+                                  "getUrl": [Function],
+                                },
+                                "issueDetailsTextGenerator": null,
+                                "issueFilingActionMessageCreator": null,
+                                "targetPageActionMessageCreator": Object {
+                                  "copyIssueDetailsClicked": [Function],
+                                },
+                                "windowUtils": null,
+                              }
+                            }
+                            issueDetailsData={
+                              Object {
+                                "pageTitle": "",
+                                "pageUrl": "http://localhost/",
+                                "ruleResult": Object {
+                                  "all": Array [],
+                                  "any": Array [],
+                                  "failureSummary": "failureSummary",
+                                  "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
+                                  "guidanceLinks": Array [
+                                    Object {
+                                      "href": "http://example.com",
+                                      "text": "Guidance Link",
+                                    },
+                                  ],
+                                  "help": "help",
+                                  "helpUrl": "http://extension/help1",
+                                  "html": "html",
+                                  "id": "id1",
+                                  "none": Array [],
+                                  "ruleId": "ruleId",
+                                  "selector": "selector",
+                                  "snippet": "html",
+                                  "status": false,
+                                },
+                              }
+                            }
+                            needsSettingsContentRenderer={[Function]}
+                          />
+                        </React.Fragment>
+                        <div
+                          className="insights-dialog-inspect-disabled"
+                        >
+                          To enable the Inspect HTML button, open the developer tools (shortcut).
+                        </div>
+                      </div>
+                      <div
+                        className="insights-dialog-fix-instruction-container"
+                      >
+                        <FixInstructionPanel
+                          checkType={0}
+                          checks={Array []}
+                          renderTitleElement={[Function]}
+                        />
+                        <FixInstructionPanel
+                          checkType={1}
+                          checks={Array []}
+                          renderTitleElement={[Function]}
+                        />
+                      </div>
+                      <IssueDetailsNavigationControls
+                        container={[Circular]}
+                        dialogHandler={
+                          Object {
+                            "componentDidMount": [Function],
+                            "getFailureInfo": [Function],
+                            "getRuleUrl": [Function],
+                            "isBackButtonDisabled": [Function],
+                            "isInspectButtonDisabled": [Function],
+                            "isNextButtonDisabled": [Function],
+                          }
+                        }
+                        failuresCount={1}
+                        featureFlagStoreData={
+                          Object {
+                            "shadowDialog": true,
+                          }
+                        }
+                      />
+                    </div>
+                  </div>
+                </div>,
+                "_rendering": false,
+                "_updater": [Circular],
+                "_workInProgressHook": null,
+              },
             },
           }
         }
@@ -737,7 +1368,7 @@ Object {
   "canInspect": true,
   "currentRuleIndex": 0,
   "showDialog": true,
-  "userConfigurationStoreData": null,
+  "userConfigurationStoreData": undefined,
 }
 `;
 
@@ -752,7 +1383,7 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: false }
       "topButtonsProps": Array [
         Object {
           "ariaLabel": "Close",
-          "onClick": Object {},
+          "onClick": [Function],
           "onRenderIcon": [Function],
         },
       ],
@@ -767,11 +1398,11 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: false }
       "layerProps": Object {
         "className": "insights-dialog-main-override",
         "hostId": "insights-dialog-layer-host",
-        "onLayerDidMount": Object {},
+        "onLayerDidMount": [Function],
       },
     }
   }
-  onDismiss={Object {}}
+  onDismiss={[Function]}
   title="help"
 >
   <div
@@ -921,7 +1552,6 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: false }
             }
           }
           needsSettingsContentRenderer={[Function]}
-          userConfigurationStoreData={null}
         />
       </React.Fragment>
     </div>
@@ -944,15 +1574,15 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: false }
         DetailsDialog {
           "componentDidMount": [Function],
           "componentWillUnmount": [Function],
-          "context": undefined,
+          "context": Object {},
           "isBackButtonDisabled": [Function],
           "isInspectButtonDisabled": [Function],
           "isNextButtonDisabled": [Function],
-          "onClickBackButton": Object {},
+          "onClickBackButton": [Function],
           "onClickInspectButton": [Function],
-          "onClickNextButton": Object {},
-          "onHideDialog": Object {},
-          "onLayoutDidMount": Object {},
+          "onClickNextButton": [Function],
+          "onHideDialog": [Function],
+          "onLayoutDidMount": [Function],
           "props": Object {
             "deps": Object {
               "clientBrowserAdapter": Object {
@@ -1004,20 +1634,329 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: false }
               "shadowDialog": false,
             },
             "target": Array [],
-            "userConfigStore": Object {},
+            "userConfigStore": Object {
+              "getState": [Function],
+            },
           },
           "refs": Object {},
+          "setState": [Function],
           "state": Object {
             "canInspect": true,
             "currentRuleIndex": 0,
             "showDialog": true,
-            "userConfigurationStoreData": null,
+            "userConfigurationStoreData": undefined,
           },
-          "updater": Object {
-            "enqueueForceUpdate": [Function],
-            "enqueueReplaceState": [Function],
-            "enqueueSetState": [Function],
-            "isMounted": [Function],
+          "updater": Updater {
+            "_callbacks": Array [],
+            "_renderer": ReactShallowRenderer {
+              "_context": Object {},
+              "_didScheduleRenderPhaseUpdate": false,
+              "_dispatcher": Object {
+                "readContext": [Function],
+                "useCallback": [Function],
+                "useContext": [Function],
+                "useDebugValue": [Function],
+                "useEffect": [Function],
+                "useImperativeHandle": [Function],
+                "useLayoutEffect": [Function],
+                "useMemo": [Function],
+                "useReducer": [Function],
+                "useRef": [Function],
+                "useState": [Function],
+              },
+              "_element": <DetailsDialog
+                deps={
+                  Object {
+                    "clientBrowserAdapter": Object {
+                      "getUrl": [Function],
+                    },
+                    "issueDetailsTextGenerator": null,
+                    "issueFilingActionMessageCreator": null,
+                    "targetPageActionMessageCreator": Object {
+                      "copyIssueDetailsClicked": [Function],
+                    },
+                    "windowUtils": null,
+                  }
+                }
+                devToolActionMessageCreator={Object {}}
+                devToolStore={Object {}}
+                devToolsShortcut="shortcut"
+                dialogHandler={
+                  Object {
+                    "componentDidMount": [Function],
+                    "getFailureInfo": [Function],
+                    "getRuleUrl": [Function],
+                    "isBackButtonDisabled": [Function],
+                    "isInspectButtonDisabled": [Function],
+                    "isNextButtonDisabled": [Function],
+                  }
+                }
+                elementSelector="ruleId"
+                failedRules={
+                  Object {
+                    "ruleId": Object {
+                      "all": Array [],
+                      "any": Array [],
+                      "failureSummary": "failureSummary",
+                      "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
+                      "guidanceLinks": Array [
+                        Object {
+                          "href": "http://example.com",
+                          "text": "Guidance Link",
+                        },
+                      ],
+                      "help": "help",
+                      "helpUrl": "http://extension/help1",
+                      "html": "html",
+                      "id": "id1",
+                      "none": Array [],
+                      "ruleId": "ruleId",
+                      "selector": "selector",
+                      "snippet": "html",
+                      "status": false,
+                    },
+                  }
+                }
+                featureFlagStoreData={
+                  Object {
+                    "shadowDialog": false,
+                  }
+                }
+                target={Array []}
+                userConfigStore={
+                  Object {
+                    "getState": [Function],
+                  }
+                }
+              />,
+              "_firstWorkInProgressHook": null,
+              "_forcedUpdate": false,
+              "_instance": [Circular],
+              "_isReRender": false,
+              "_newState": null,
+              "_numberOfReRenders": 0,
+              "_renderPhaseUpdates": null,
+              "_rendered": <StyledWithResponsiveMode
+                dialogContentProps={
+                  Object {
+                    "showCloseButton": false,
+                    "styles": Object {
+                      "title": "insights-dialog-title",
+                    },
+                    "topButtonsProps": Array [
+                      Object {
+                        "ariaLabel": "Close",
+                        "onClick": [Function],
+                        "onRenderIcon": [Function],
+                      },
+                    ],
+                    "type": 0,
+                  }
+                }
+                hidden={false}
+                modalProps={
+                  Object {
+                    "containerClassName": "insights-dialog-main-container",
+                    "isBlocking": false,
+                    "layerProps": Object {
+                      "className": "insights-dialog-main-override",
+                      "hostId": "insights-dialog-layer-host",
+                      "onLayerDidMount": [Function],
+                    },
+                  }
+                }
+                onDismiss={[Function]}
+                title="help"
+              >
+                <div
+                  className="insights-dialog-content"
+                >
+                  <div
+                    className="insights-dialog-rule-name"
+                  >
+                    <h3
+                      className="insights-dialog-section-title"
+                    >
+                      Rule name
+                    </h3>
+                    <NewTabLink
+                      href="http://extension/help1"
+                    >
+                      ruleId
+                    </NewTabLink>
+                  </div>
+                  <div
+                    className="insights-dialog-success-criteria"
+                  >
+                    <h3
+                      className="insights-dialog-section-title"
+                    >
+                      Success criterion
+                    </h3>
+                    <GuidanceLinks
+                      links={
+                        Array [
+                          Object {
+                            "href": "http://example.com",
+                            "text": "Guidance Link",
+                          },
+                        ]
+                      }
+                    />
+                  </div>
+                  <div
+                    className="insights-dialog-path-selector-container"
+                  >
+                    <h3
+                      className="insights-dialog-section-title"
+                    >
+                      Path
+                    </h3>
+                    ruleId
+                  </div>
+                  <div
+                    className="insights-dialog-target-button-container"
+                  >
+                    <CustomizedDefaultButton
+                      className="insights-dialog-button-inspect"
+                      disabled={false}
+                      onClick={[Function]}
+                    >
+                      <FileHTMLIcon />
+                      <div
+                        className="ms-Button-label"
+                      >
+                        Inspect HTML
+                      </div>
+                    </CustomizedDefaultButton>
+                    <React.Fragment>
+                      <CopyIssueDetailsButton
+                        deps={
+                          Object {
+                            "clientBrowserAdapter": Object {
+                              "getUrl": [Function],
+                            },
+                            "issueDetailsTextGenerator": null,
+                            "issueFilingActionMessageCreator": null,
+                            "targetPageActionMessageCreator": Object {
+                              "copyIssueDetailsClicked": [Function],
+                            },
+                            "windowUtils": null,
+                          }
+                        }
+                        issueDetailsData={
+                          Object {
+                            "pageTitle": "",
+                            "pageUrl": "http://localhost/",
+                            "ruleResult": Object {
+                              "all": Array [],
+                              "any": Array [],
+                              "failureSummary": "failureSummary",
+                              "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
+                              "guidanceLinks": Array [
+                                Object {
+                                  "href": "http://example.com",
+                                  "text": "Guidance Link",
+                                },
+                              ],
+                              "help": "help",
+                              "helpUrl": "http://extension/help1",
+                              "html": "html",
+                              "id": "id1",
+                              "none": Array [],
+                              "ruleId": "ruleId",
+                              "selector": "selector",
+                              "snippet": "html",
+                              "status": false,
+                            },
+                          }
+                        }
+                        onClick={[Function]}
+                      />
+                      <IssueFilingButton
+                        deps={
+                          Object {
+                            "clientBrowserAdapter": Object {
+                              "getUrl": [Function],
+                            },
+                            "issueDetailsTextGenerator": null,
+                            "issueFilingActionMessageCreator": null,
+                            "targetPageActionMessageCreator": Object {
+                              "copyIssueDetailsClicked": [Function],
+                            },
+                            "windowUtils": null,
+                          }
+                        }
+                        issueDetailsData={
+                          Object {
+                            "pageTitle": "",
+                            "pageUrl": "http://localhost/",
+                            "ruleResult": Object {
+                              "all": Array [],
+                              "any": Array [],
+                              "failureSummary": "failureSummary",
+                              "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
+                              "guidanceLinks": Array [
+                                Object {
+                                  "href": "http://example.com",
+                                  "text": "Guidance Link",
+                                },
+                              ],
+                              "help": "help",
+                              "helpUrl": "http://extension/help1",
+                              "html": "html",
+                              "id": "id1",
+                              "none": Array [],
+                              "ruleId": "ruleId",
+                              "selector": "selector",
+                              "snippet": "html",
+                              "status": false,
+                            },
+                          }
+                        }
+                        needsSettingsContentRenderer={[Function]}
+                      />
+                    </React.Fragment>
+                  </div>
+                  <div
+                    className="insights-dialog-fix-instruction-container"
+                  >
+                    <FixInstructionPanel
+                      checkType={0}
+                      checks={Array []}
+                      renderTitleElement={[Function]}
+                    />
+                    <FixInstructionPanel
+                      checkType={1}
+                      checks={Array []}
+                      renderTitleElement={[Function]}
+                    />
+                  </div>
+                  <IssueDetailsNavigationControls
+                    container={[Circular]}
+                    dialogHandler={
+                      Object {
+                        "componentDidMount": [Function],
+                        "getFailureInfo": [Function],
+                        "getRuleUrl": [Function],
+                        "isBackButtonDisabled": [Function],
+                        "isInspectButtonDisabled": [Function],
+                        "isNextButtonDisabled": [Function],
+                      }
+                    }
+                    failuresCount={1}
+                    featureFlagStoreData={
+                      Object {
+                        "shadowDialog": false,
+                      }
+                    }
+                  />
+                </div>
+              </StyledWithResponsiveMode>,
+              "_rendering": false,
+              "_updater": [Circular],
+              "_workInProgressHook": null,
+            },
           },
         }
       }
@@ -1101,7 +2040,7 @@ Object {
   "canInspect": true,
   "currentRuleIndex": 0,
   "showDialog": true,
-  "userConfigurationStoreData": null,
+  "userConfigurationStoreData": undefined,
 }
 `;
 
@@ -1289,7 +2228,6 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: true } 
               }
             }
             needsSettingsContentRenderer={[Function]}
-            userConfigurationStoreData={null}
           />
         </React.Fragment>
       </div>
@@ -1312,15 +2250,15 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: true } 
           DetailsDialog {
             "componentDidMount": [Function],
             "componentWillUnmount": [Function],
-            "context": undefined,
+            "context": Object {},
             "isBackButtonDisabled": [Function],
             "isInspectButtonDisabled": [Function],
             "isNextButtonDisabled": [Function],
-            "onClickBackButton": Object {},
+            "onClickBackButton": [Function],
             "onClickInspectButton": [Function],
-            "onClickNextButton": Object {},
-            "onHideDialog": Object {},
-            "onLayoutDidMount": Object {},
+            "onClickNextButton": [Function],
+            "onHideDialog": [Function],
+            "onLayoutDidMount": [Function],
             "props": Object {
               "deps": Object {
                 "clientBrowserAdapter": Object {
@@ -1372,20 +2310,334 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: true } 
                 "shadowDialog": true,
               },
               "target": Array [],
-              "userConfigStore": Object {},
+              "userConfigStore": Object {
+                "getState": [Function],
+              },
             },
             "refs": Object {},
+            "setState": [Function],
             "state": Object {
               "canInspect": true,
               "currentRuleIndex": 0,
               "showDialog": true,
-              "userConfigurationStoreData": null,
+              "userConfigurationStoreData": undefined,
             },
-            "updater": Object {
-              "enqueueForceUpdate": [Function],
-              "enqueueReplaceState": [Function],
-              "enqueueSetState": [Function],
-              "isMounted": [Function],
+            "updater": Updater {
+              "_callbacks": Array [],
+              "_renderer": ReactShallowRenderer {
+                "_context": Object {},
+                "_didScheduleRenderPhaseUpdate": false,
+                "_dispatcher": Object {
+                  "readContext": [Function],
+                  "useCallback": [Function],
+                  "useContext": [Function],
+                  "useDebugValue": [Function],
+                  "useEffect": [Function],
+                  "useImperativeHandle": [Function],
+                  "useLayoutEffect": [Function],
+                  "useMemo": [Function],
+                  "useReducer": [Function],
+                  "useRef": [Function],
+                  "useState": [Function],
+                },
+                "_element": <DetailsDialog
+                  deps={
+                    Object {
+                      "clientBrowserAdapter": Object {
+                        "getUrl": [Function],
+                      },
+                      "issueDetailsTextGenerator": null,
+                      "issueFilingActionMessageCreator": null,
+                      "targetPageActionMessageCreator": Object {
+                        "copyIssueDetailsClicked": [Function],
+                      },
+                      "windowUtils": null,
+                    }
+                  }
+                  devToolActionMessageCreator={Object {}}
+                  devToolStore={Object {}}
+                  devToolsShortcut="shortcut"
+                  dialogHandler={
+                    Object {
+                      "componentDidMount": [Function],
+                      "getFailureInfo": [Function],
+                      "getRuleUrl": [Function],
+                      "isBackButtonDisabled": [Function],
+                      "isInspectButtonDisabled": [Function],
+                      "isNextButtonDisabled": [Function],
+                    }
+                  }
+                  elementSelector="ruleId"
+                  failedRules={
+                    Object {
+                      "ruleId": Object {
+                        "all": Array [],
+                        "any": Array [],
+                        "failureSummary": "failureSummary",
+                        "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
+                        "guidanceLinks": Array [
+                          Object {
+                            "href": "http://example.com",
+                            "text": "Guidance Link",
+                          },
+                        ],
+                        "help": "help",
+                        "helpUrl": "http://extension/help1",
+                        "html": "html",
+                        "id": "id1",
+                        "none": Array [],
+                        "ruleId": "ruleId",
+                        "selector": "selector",
+                        "snippet": "html",
+                        "status": false,
+                      },
+                    }
+                  }
+                  featureFlagStoreData={
+                    Object {
+                      "shadowDialog": true,
+                    }
+                  }
+                  target={Array []}
+                  userConfigStore={
+                    Object {
+                      "getState": [Function],
+                    }
+                  }
+                />,
+                "_firstWorkInProgressHook": null,
+                "_forcedUpdate": false,
+                "_instance": [Circular],
+                "_isReRender": false,
+                "_newState": null,
+                "_numberOfReRenders": 0,
+                "_renderPhaseUpdates": null,
+                "_rendered": <div
+                  className="insights-dialog-main-override-shadow"
+                  style={
+                    Object {
+                      "visibility": "visible",
+                    }
+                  }
+                >
+                  <div
+                    className="insights-dialog-container"
+                  >
+                    <div
+                      className="insights-dialog-header"
+                    >
+                      <p
+                        className="ms-Dialog-title insights-dialog-title"
+                      >
+                        help
+                      </p>
+                      <div
+                        className="ms-Dialog-topButton"
+                      >
+                        <button
+                          aria-label="Close"
+                          className="ms-Dialog-button ms-Dialog-button--close ms-Button ms-Button--icon insights-dialog-close"
+                          data-is-focusable="true"
+                          type="button"
+                        >
+                          <div
+                            className="ms-button-flex-container"
+                          >
+                            <CancelIcon />
+                          </div>
+                        </button>
+                      </div>
+                    </div>
+                    <div
+                      className="insights-dialog-content"
+                    >
+                      <div
+                        className="insights-dialog-rule-name"
+                      >
+                        <h3
+                          className="insights-dialog-section-title"
+                        >
+                          Rule name
+                        </h3>
+                        <NewTabLink
+                          href="http://extension/help1"
+                        >
+                          ruleId
+                        </NewTabLink>
+                      </div>
+                      <div
+                        className="insights-dialog-success-criteria"
+                      >
+                        <h3
+                          className="insights-dialog-section-title"
+                        >
+                          Success criterion
+                        </h3>
+                        <GuidanceLinks
+                          links={
+                            Array [
+                              Object {
+                                "href": "http://example.com",
+                                "text": "Guidance Link",
+                              },
+                            ]
+                          }
+                        />
+                      </div>
+                      <div
+                        className="insights-dialog-path-selector-container"
+                      >
+                        <h3
+                          className="insights-dialog-section-title"
+                        >
+                          Path
+                        </h3>
+                        ruleId
+                      </div>
+                      <div
+                        className="insights-dialog-target-button-container"
+                      >
+                        <CustomizedDefaultButton
+                          className="insights-dialog-button-inspect"
+                          disabled={false}
+                          onClick={null}
+                        >
+                          <FileHTMLIcon />
+                          <div
+                            className="ms-Button-label"
+                          >
+                            Inspect HTML
+                          </div>
+                        </CustomizedDefaultButton>
+                        <React.Fragment>
+                          <CopyIssueDetailsButton
+                            deps={
+                              Object {
+                                "clientBrowserAdapter": Object {
+                                  "getUrl": [Function],
+                                },
+                                "issueDetailsTextGenerator": null,
+                                "issueFilingActionMessageCreator": null,
+                                "targetPageActionMessageCreator": Object {
+                                  "copyIssueDetailsClicked": [Function],
+                                },
+                                "windowUtils": null,
+                              }
+                            }
+                            issueDetailsData={
+                              Object {
+                                "pageTitle": "",
+                                "pageUrl": "http://localhost/",
+                                "ruleResult": Object {
+                                  "all": Array [],
+                                  "any": Array [],
+                                  "failureSummary": "failureSummary",
+                                  "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
+                                  "guidanceLinks": Array [
+                                    Object {
+                                      "href": "http://example.com",
+                                      "text": "Guidance Link",
+                                    },
+                                  ],
+                                  "help": "help",
+                                  "helpUrl": "http://extension/help1",
+                                  "html": "html",
+                                  "id": "id1",
+                                  "none": Array [],
+                                  "ruleId": "ruleId",
+                                  "selector": "selector",
+                                  "snippet": "html",
+                                  "status": false,
+                                },
+                              }
+                            }
+                            onClick={[Function]}
+                          />
+                          <IssueFilingButton
+                            deps={
+                              Object {
+                                "clientBrowserAdapter": Object {
+                                  "getUrl": [Function],
+                                },
+                                "issueDetailsTextGenerator": null,
+                                "issueFilingActionMessageCreator": null,
+                                "targetPageActionMessageCreator": Object {
+                                  "copyIssueDetailsClicked": [Function],
+                                },
+                                "windowUtils": null,
+                              }
+                            }
+                            issueDetailsData={
+                              Object {
+                                "pageTitle": "",
+                                "pageUrl": "http://localhost/",
+                                "ruleResult": Object {
+                                  "all": Array [],
+                                  "any": Array [],
+                                  "failureSummary": "failureSummary",
+                                  "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
+                                  "guidanceLinks": Array [
+                                    Object {
+                                      "href": "http://example.com",
+                                      "text": "Guidance Link",
+                                    },
+                                  ],
+                                  "help": "help",
+                                  "helpUrl": "http://extension/help1",
+                                  "html": "html",
+                                  "id": "id1",
+                                  "none": Array [],
+                                  "ruleId": "ruleId",
+                                  "selector": "selector",
+                                  "snippet": "html",
+                                  "status": false,
+                                },
+                              }
+                            }
+                            needsSettingsContentRenderer={[Function]}
+                          />
+                        </React.Fragment>
+                      </div>
+                      <div
+                        className="insights-dialog-fix-instruction-container"
+                      >
+                        <FixInstructionPanel
+                          checkType={0}
+                          checks={Array []}
+                          renderTitleElement={[Function]}
+                        />
+                        <FixInstructionPanel
+                          checkType={1}
+                          checks={Array []}
+                          renderTitleElement={[Function]}
+                        />
+                      </div>
+                      <IssueDetailsNavigationControls
+                        container={[Circular]}
+                        dialogHandler={
+                          Object {
+                            "componentDidMount": [Function],
+                            "getFailureInfo": [Function],
+                            "getRuleUrl": [Function],
+                            "isBackButtonDisabled": [Function],
+                            "isInspectButtonDisabled": [Function],
+                            "isNextButtonDisabled": [Function],
+                          }
+                        }
+                        failuresCount={1}
+                        featureFlagStoreData={
+                          Object {
+                            "shadowDialog": true,
+                          }
+                        }
+                      />
+                    </div>
+                  </div>
+                </div>,
+                "_rendering": false,
+                "_updater": [Circular],
+                "_workInProgressHook": null,
+              },
             },
           }
         }
@@ -1468,7 +2720,7 @@ Object {
   "canInspect": true,
   "currentRuleIndex": 0,
   "showDialog": true,
-  "userConfigurationStoreData": null,
+  "userConfigurationStoreData": undefined,
 }
 `;
 
@@ -1483,7 +2735,7 @@ exports[`DetailsDialogTest render: with relative help url 1`] = `
       "topButtonsProps": Array [
         Object {
           "ariaLabel": "Close",
-          "onClick": Object {},
+          "onClick": [Function],
           "onRenderIcon": [Function],
         },
       ],
@@ -1498,11 +2750,11 @@ exports[`DetailsDialogTest render: with relative help url 1`] = `
       "layerProps": Object {
         "className": "insights-dialog-main-override",
         "hostId": "insights-dialog-layer-host",
-        "onLayerDidMount": Object {},
+        "onLayerDidMount": [Function],
       },
     }
   }
-  onDismiss={Object {}}
+  onDismiss={[Function]}
   title="help"
 >
   <div
@@ -1652,7 +2904,6 @@ exports[`DetailsDialogTest render: with relative help url 1`] = `
             }
           }
           needsSettingsContentRenderer={[Function]}
-          userConfigurationStoreData={null}
         />
       </React.Fragment>
       <div
@@ -1680,15 +2931,15 @@ exports[`DetailsDialogTest render: with relative help url 1`] = `
         DetailsDialog {
           "componentDidMount": [Function],
           "componentWillUnmount": [Function],
-          "context": undefined,
+          "context": Object {},
           "isBackButtonDisabled": [Function],
           "isInspectButtonDisabled": [Function],
           "isNextButtonDisabled": [Function],
-          "onClickBackButton": Object {},
+          "onClickBackButton": [Function],
           "onClickInspectButton": [Function],
-          "onClickNextButton": Object {},
-          "onHideDialog": Object {},
-          "onLayoutDidMount": Object {},
+          "onClickNextButton": [Function],
+          "onHideDialog": [Function],
+          "onLayoutDidMount": [Function],
           "props": Object {
             "deps": Object {
               "clientBrowserAdapter": Object {
@@ -1740,20 +2991,334 @@ exports[`DetailsDialogTest render: with relative help url 1`] = `
               "shadowDialog": false,
             },
             "target": Array [],
-            "userConfigStore": Object {},
+            "userConfigStore": Object {
+              "getState": [Function],
+            },
           },
           "refs": Object {},
+          "setState": [Function],
           "state": Object {
             "canInspect": true,
             "currentRuleIndex": 0,
             "showDialog": true,
-            "userConfigurationStoreData": null,
+            "userConfigurationStoreData": undefined,
           },
-          "updater": Object {
-            "enqueueForceUpdate": [Function],
-            "enqueueReplaceState": [Function],
-            "enqueueSetState": [Function],
-            "isMounted": [Function],
+          "updater": Updater {
+            "_callbacks": Array [],
+            "_renderer": ReactShallowRenderer {
+              "_context": Object {},
+              "_didScheduleRenderPhaseUpdate": false,
+              "_dispatcher": Object {
+                "readContext": [Function],
+                "useCallback": [Function],
+                "useContext": [Function],
+                "useDebugValue": [Function],
+                "useEffect": [Function],
+                "useImperativeHandle": [Function],
+                "useLayoutEffect": [Function],
+                "useMemo": [Function],
+                "useReducer": [Function],
+                "useRef": [Function],
+                "useState": [Function],
+              },
+              "_element": <DetailsDialog
+                deps={
+                  Object {
+                    "clientBrowserAdapter": Object {
+                      "getUrl": [Function],
+                    },
+                    "issueDetailsTextGenerator": null,
+                    "issueFilingActionMessageCreator": null,
+                    "targetPageActionMessageCreator": Object {
+                      "copyIssueDetailsClicked": [Function],
+                    },
+                    "windowUtils": null,
+                  }
+                }
+                devToolActionMessageCreator={Object {}}
+                devToolStore={Object {}}
+                devToolsShortcut="shortcut"
+                dialogHandler={
+                  Object {
+                    "componentDidMount": [Function],
+                    "getFailureInfo": [Function],
+                    "getRuleUrl": [Function],
+                    "isBackButtonDisabled": [Function],
+                    "isInspectButtonDisabled": [Function],
+                    "isNextButtonDisabled": [Function],
+                  }
+                }
+                elementSelector="ruleId"
+                failedRules={
+                  Object {
+                    "ruleId": Object {
+                      "all": Array [],
+                      "any": Array [],
+                      "failureSummary": "failureSummary",
+                      "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
+                      "guidanceLinks": Array [
+                        Object {
+                          "href": "http://example.com",
+                          "text": "Guidance Link",
+                        },
+                      ],
+                      "help": "help",
+                      "helpUrl": "help-relative",
+                      "html": "html",
+                      "id": "id1",
+                      "none": Array [],
+                      "ruleId": "ruleId",
+                      "selector": "selector",
+                      "snippet": "html",
+                      "status": false,
+                    },
+                  }
+                }
+                featureFlagStoreData={
+                  Object {
+                    "shadowDialog": false,
+                  }
+                }
+                target={Array []}
+                userConfigStore={
+                  Object {
+                    "getState": [Function],
+                  }
+                }
+              />,
+              "_firstWorkInProgressHook": null,
+              "_forcedUpdate": false,
+              "_instance": [Circular],
+              "_isReRender": false,
+              "_newState": null,
+              "_numberOfReRenders": 0,
+              "_renderPhaseUpdates": null,
+              "_rendered": <StyledWithResponsiveMode
+                dialogContentProps={
+                  Object {
+                    "showCloseButton": false,
+                    "styles": Object {
+                      "title": "insights-dialog-title",
+                    },
+                    "topButtonsProps": Array [
+                      Object {
+                        "ariaLabel": "Close",
+                        "onClick": [Function],
+                        "onRenderIcon": [Function],
+                      },
+                    ],
+                    "type": 0,
+                  }
+                }
+                hidden={false}
+                modalProps={
+                  Object {
+                    "containerClassName": "insights-dialog-main-container",
+                    "isBlocking": false,
+                    "layerProps": Object {
+                      "className": "insights-dialog-main-override",
+                      "hostId": "insights-dialog-layer-host",
+                      "onLayerDidMount": [Function],
+                    },
+                  }
+                }
+                onDismiss={[Function]}
+                title="help"
+              >
+                <div
+                  className="insights-dialog-content"
+                >
+                  <div
+                    className="insights-dialog-rule-name"
+                  >
+                    <h3
+                      className="insights-dialog-section-title"
+                    >
+                      Rule name
+                    </h3>
+                    <NewTabLink
+                      href="http://extension/help-relative"
+                    >
+                      ruleId
+                    </NewTabLink>
+                  </div>
+                  <div
+                    className="insights-dialog-success-criteria"
+                  >
+                    <h3
+                      className="insights-dialog-section-title"
+                    >
+                      Success criterion
+                    </h3>
+                    <GuidanceLinks
+                      links={
+                        Array [
+                          Object {
+                            "href": "http://example.com",
+                            "text": "Guidance Link",
+                          },
+                        ]
+                      }
+                    />
+                  </div>
+                  <div
+                    className="insights-dialog-path-selector-container"
+                  >
+                    <h3
+                      className="insights-dialog-section-title"
+                    >
+                      Path
+                    </h3>
+                    ruleId
+                  </div>
+                  <div
+                    className="insights-dialog-target-button-container"
+                  >
+                    <CustomizedDefaultButton
+                      className="insights-dialog-button-inspect"
+                      disabled={true}
+                      onClick={[Function]}
+                    >
+                      <FileHTMLIcon />
+                      <div
+                        className="ms-Button-label"
+                      >
+                        Inspect HTML
+                      </div>
+                    </CustomizedDefaultButton>
+                    <React.Fragment>
+                      <CopyIssueDetailsButton
+                        deps={
+                          Object {
+                            "clientBrowserAdapter": Object {
+                              "getUrl": [Function],
+                            },
+                            "issueDetailsTextGenerator": null,
+                            "issueFilingActionMessageCreator": null,
+                            "targetPageActionMessageCreator": Object {
+                              "copyIssueDetailsClicked": [Function],
+                            },
+                            "windowUtils": null,
+                          }
+                        }
+                        issueDetailsData={
+                          Object {
+                            "pageTitle": "",
+                            "pageUrl": "http://localhost/",
+                            "ruleResult": Object {
+                              "all": Array [],
+                              "any": Array [],
+                              "failureSummary": "failureSummary",
+                              "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
+                              "guidanceLinks": Array [
+                                Object {
+                                  "href": "http://example.com",
+                                  "text": "Guidance Link",
+                                },
+                              ],
+                              "help": "help",
+                              "helpUrl": "help-relative",
+                              "html": "html",
+                              "id": "id1",
+                              "none": Array [],
+                              "ruleId": "ruleId",
+                              "selector": "selector",
+                              "snippet": "html",
+                              "status": false,
+                            },
+                          }
+                        }
+                        onClick={[Function]}
+                      />
+                      <IssueFilingButton
+                        deps={
+                          Object {
+                            "clientBrowserAdapter": Object {
+                              "getUrl": [Function],
+                            },
+                            "issueDetailsTextGenerator": null,
+                            "issueFilingActionMessageCreator": null,
+                            "targetPageActionMessageCreator": Object {
+                              "copyIssueDetailsClicked": [Function],
+                            },
+                            "windowUtils": null,
+                          }
+                        }
+                        issueDetailsData={
+                          Object {
+                            "pageTitle": "",
+                            "pageUrl": "http://localhost/",
+                            "ruleResult": Object {
+                              "all": Array [],
+                              "any": Array [],
+                              "failureSummary": "failureSummary",
+                              "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
+                              "guidanceLinks": Array [
+                                Object {
+                                  "href": "http://example.com",
+                                  "text": "Guidance Link",
+                                },
+                              ],
+                              "help": "help",
+                              "helpUrl": "help-relative",
+                              "html": "html",
+                              "id": "id1",
+                              "none": Array [],
+                              "ruleId": "ruleId",
+                              "selector": "selector",
+                              "snippet": "html",
+                              "status": false,
+                            },
+                          }
+                        }
+                        needsSettingsContentRenderer={[Function]}
+                      />
+                    </React.Fragment>
+                    <div
+                      className="insights-dialog-inspect-disabled"
+                    >
+                      To enable the Inspect HTML button, open the developer tools (shortcut).
+                    </div>
+                  </div>
+                  <div
+                    className="insights-dialog-fix-instruction-container"
+                  >
+                    <FixInstructionPanel
+                      checkType={0}
+                      checks={Array []}
+                      renderTitleElement={[Function]}
+                    />
+                    <FixInstructionPanel
+                      checkType={1}
+                      checks={Array []}
+                      renderTitleElement={[Function]}
+                    />
+                  </div>
+                  <IssueDetailsNavigationControls
+                    container={[Circular]}
+                    dialogHandler={
+                      Object {
+                        "componentDidMount": [Function],
+                        "getFailureInfo": [Function],
+                        "getRuleUrl": [Function],
+                        "isBackButtonDisabled": [Function],
+                        "isInspectButtonDisabled": [Function],
+                        "isNextButtonDisabled": [Function],
+                      }
+                    }
+                    failuresCount={1}
+                    featureFlagStoreData={
+                      Object {
+                        "shadowDialog": false,
+                      }
+                    }
+                  />
+                </div>
+              </StyledWithResponsiveMode>,
+              "_rendering": false,
+              "_updater": [Circular],
+              "_workInProgressHook": null,
+            },
           },
         }
       }
@@ -1837,6 +3402,6 @@ Object {
   "canInspect": true,
   "currentRuleIndex": 0,
   "showDialog": true,
-  "userConfigurationStoreData": null,
+  "userConfigurationStoreData": undefined,
 }
 `;

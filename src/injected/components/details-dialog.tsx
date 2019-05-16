@@ -114,7 +114,7 @@ export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDi
             showDialog: true,
             currentRuleIndex: 0,
             canInspect: true,
-            userConfigurationStoreData: null,
+            userConfigurationStoreData: props.userConfigStore.getState(),
         };
     }
 
