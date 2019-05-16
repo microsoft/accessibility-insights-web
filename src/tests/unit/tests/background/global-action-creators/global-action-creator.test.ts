@@ -1,14 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
-
 import { SetLaunchPanelState } from '../../../../../background/actions/action-payloads';
 import { AssessmentActions } from '../../../../../background/actions/assessment-actions';
 import { CommandActions } from '../../../../../background/actions/command-actions';
 import { FeatureFlagActions, FeatureFlagPayload } from '../../../../../background/actions/feature-flag-actions';
 import { GlobalActionHub } from '../../../../../background/actions/global-action-hub';
 import { LaunchPanelStateActions } from '../../../../../background/actions/launch-panel-state-action';
-import { ScopingActions, ScopingPayload } from '../../../../../background/actions/scoping-actions';
 import { UserConfigurationActions } from '../../../../../background/actions/user-configuration-actions';
 import { CommandsAdapter } from '../../../../../background/browser-adapters/commands-adapter';
 import { GlobalActionCreator } from '../../../../../background/global-action-creators/global-action-creator';
@@ -128,59 +126,6 @@ describe('GlobalActionCreatorTest', () => {
         validator.verifyAll();
     });
 
-    test('registerCallback for on onGetScopingState', () => {
-        const actionName = 'getCurrentState';
-        const validator = new GlobalActionCreatorValidator()
-            .setupRegistrationCallback(Messages.Scoping.GetCurrentState)
-            .setupActionsOnScoping(actionName)
-            .setupScopingActionWithInvokeParameter(actionName, null);
-
-        const actionCreator = validator.buildActionCreator();
-        actionCreator.registerCallbacks();
-
-        validator.verifyAll();
-    });
-
-    test('registerCallback for onAddSelector', () => {
-        const actionName = 'addSelector';
-        const payload: ScopingPayload = {
-            inputType: 'generic',
-            selector: ['iframe', 'selector'],
-        };
-
-        const args = [payload];
-
-        const validator = new GlobalActionCreatorValidator()
-            .setupRegistrationCallback(Messages.Scoping.AddSelector, args)
-            .setupActionsOnScoping(actionName)
-            .setupScopingActionWithInvokeParameter(actionName, payload);
-
-        const actionCreator = validator.buildActionCreator();
-        actionCreator.registerCallbacks();
-
-        validator.verifyAll();
-    });
-
-    test('registerCallback for onDeleteSelector', () => {
-        const actionName = 'deleteSelector';
-        const payload: ScopingPayload = {
-            inputType: 'generic',
-            selector: ['iframe', 'selector'],
-        };
-
-        const args = [payload];
-
-        const validator = new GlobalActionCreatorValidator()
-            .setupRegistrationCallback(Messages.Scoping.DeleteSelector, args)
-            .setupActionsOnScoping(actionName)
-            .setupScopingActionWithInvokeParameter(actionName, payload);
-
-        const actionCreator = validator.buildActionCreator();
-        actionCreator.registerCallbacks();
-
-        validator.verifyAll();
-    });
-
     test('registerCallback for on onSendTelemetry', () => {
         const payload = { eventName: 'launch-panel/open', telemetry: {} };
         const args = [payload, 1];
@@ -200,12 +145,10 @@ class GlobalActionCreatorValidator {
     private commandActionMocksMap: DictionaryStringTo<IMock<Action<any>>> = {};
     private featureFlagActionsMockMap: DictionaryStringTo<IMock<Action<any>>> = {};
     private launchPanelActionsMockMap: DictionaryStringTo<IMock<Action<any>>> = {};
-    private scopingActionsMockMap: DictionaryStringTo<IMock<Action<any>>> = {};
 
     private commandActionsContainerMock = Mock.ofType(CommandActions);
     private featureFlagActionsContainerMock = Mock.ofType(FeatureFlagActions);
     private launchPanelStateActionsContainerMock = Mock.ofType(LaunchPanelStateActions);
-    private scopingActionsContainerMock = Mock.ofType(ScopingActions);
     private assessmentActionsContainerMock = Mock.ofType(AssessmentActions);
     private userConfigActionsContainerMock = Mock.ofType(UserConfigurationActions);
     private interpreterMock = Mock.ofType<Interpreter>();
@@ -217,7 +160,7 @@ class GlobalActionCreatorValidator {
         commandActions: this.commandActionsContainerMock.object,
         featureFlagActions: this.featureFlagActionsContainerMock.object,
         launchPanelStateActions: this.launchPanelStateActionsContainerMock.object,
-        scopingActions: this.scopingActionsContainerMock.object,
+        scopingActions: null,
         assessmentActions: this.assessmentActionsContainerMock.object,
         userConfigurationActions: this.userConfigActionsContainerMock.object,
     };
@@ -234,10 +177,6 @@ class GlobalActionCreatorValidator {
 
     public setupActionOnLaunchPanelActions(actionName: string): GlobalActionCreatorValidator {
         return this.setupAction(actionName, this.launchPanelStateActionsContainerMock, this.launchPanelActionsMockMap);
-    }
-
-    public setupActionsOnScoping(actionName: keyof ScopingActions): GlobalActionCreatorValidator {
-        return this.setupAction(actionName, this.scopingActionsContainerMock, this.scopingActionsMockMap);
     }
 
     public setupGetCommandsFromAdapter(commands: chrome.commands.Command[]): GlobalActionCreatorValidator {
@@ -262,10 +201,6 @@ class GlobalActionCreatorValidator {
         expectedInvokeParam: any,
     ): GlobalActionCreatorValidator {
         return this.setupActionWithInvokeParameter(actionName, expectedInvokeParam, this.launchPanelActionsMockMap);
-    }
-
-    public setupScopingActionWithInvokeParameter(actionName: keyof ScopingActions, expectedInvokeParam: any): GlobalActionCreatorValidator {
-        return this.setupActionWithInvokeParameter(actionName, expectedInvokeParam, this.scopingActionsMockMap);
     }
 
     private setupActionWithInvokeParameter(
@@ -350,7 +285,6 @@ class GlobalActionCreatorValidator {
         this.verifyAllActions(this.commandActionMocksMap);
         this.verifyAllActions(this.featureFlagActionsMockMap);
         this.verifyAllActions(this.launchPanelActionsMockMap);
-        this.verifyAllActions(this.scopingActionsMockMap);
     }
 
     private verifyAllActions(actionsMap: DictionaryStringTo<IMock<Action<any>>>): void {
