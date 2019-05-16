@@ -63,7 +63,7 @@ const roleToDesignPatternsMapping: DictionaryStringTo<DesignPattern[]> = {
     ],
     checkbox: [{ designPattern: 'Checkbox', URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#checkbox' }],
     combobox: [{ designPattern: 'Combo Box', URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#combobox' }],
-    dialog: [{ designPattern: 'Dialog (Model)', URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#dialog_modal' }],
+    dialog: [{ designPattern: 'Dialog (Modal)', URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#dialog_modal' }],
     feed: [{ designPattern: 'Feed', URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#feed' }],
     grid: [{ designPattern: 'Grid', URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#grid' }],
     link: [{ designPattern: 'Link', URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#link' }],
