@@ -29,7 +29,8 @@
         "watch:build": "npm-run-all --parallel --race --print-label watch:grunt watch:webpack",
         "watch:grunt": "grunt watch",
         "watch:test": "jest --watch --coverage false --colors",
-        "watch:webpack": "webpack --watch --config-name dev --colors --progress"
+        "watch:webpack": "webpack --watch --config-name dev --colors --progress",
+        "electron:dev": "electron-webpack dev"
     },
     "devDependencies": {
         "@types/applicationinsights-js": "^1.0.7",
@@ -50,6 +51,9 @@
         "@types/serve-static": "^1.13.2",
         "@types/uuid": "^3.4.4",
         "case-sensitive-paths-webpack-plugin": "^2.2.0",
+        "electron": "^5.0.1",
+        "electron-webpack": "^2.6.2",
+        "electron-webpack-ts": "^3.2.0",
         "enzyme": "^3.9.0",
         "enzyme-adapter-react-16": "^1.12.1",
         "express": "^4.16.4",

@@ -1,0 +1,6 @@
+{
+    "main": {
+        "sourceDirectory": "src/electron/main"
+    },
+    "renderer": null
+}
