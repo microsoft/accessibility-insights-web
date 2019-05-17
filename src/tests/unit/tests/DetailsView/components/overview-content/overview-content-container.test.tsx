@@ -13,7 +13,7 @@ import {
     OverviewContainer,
     OverviewContainerDeps,
 } from '../../../../../../DetailsView/components/overview-content/overview-content-container';
-import { HelpLinkDeps } from '../../../../../../DetailsView/components/overview-content/overview-help-section';
+import { OverviewHelpSectionDeps } from '../../../../../../DetailsView/components/overview-content/overview-help-section';
 
 describe('OverviewContainer', () => {
     const urlParserMock = {} as UrlParser;
@@ -30,7 +30,7 @@ describe('OverviewContainer', () => {
         actionInitiators: {
             openExternalLink,
         },
-    } as HelpLinkDeps;
+    } as OverviewHelpSectionDeps;
 
     const assessmentsProvider: AssessmentsProvider = {
         all: () => [],

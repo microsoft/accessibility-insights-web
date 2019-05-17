@@ -4,14 +4,17 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 import { Mock } from 'typemoq';
 
-import { HelpLinks } from '../../../../../../DetailsView/components/overview-content/overview-help-links';
-import { HelpLinkDeps, OverviewHelpProps } from '../../../../../../DetailsView/components/overview-content/overview-help-section';
+import { HelpLinks } from '../../../../../../DetailsView/components/overview-content/help-links';
+import {
+    OverviewHelpSectionDeps,
+    OverviewHelpSectionProps,
+} from '../../../../../../DetailsView/components/overview-content/overview-help-section';
 
-describe('OverviewHelpLinks', () => {
-    const deps = Mock.ofType<HelpLinkDeps>().object;
+describe('HelpLinks', () => {
+    const deps = Mock.ofType<OverviewHelpSectionDeps>().object;
 
     test('linkInformation is shown properly', () => {
-        const props: OverviewHelpProps = {
+        const props: OverviewHelpSectionProps = {
             linkDataSource: [
                 {
                     href: 'https://www.test1.com',
