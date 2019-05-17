@@ -285,7 +285,7 @@ describe('TabControllerTest', () => {
     test('createTabContextAndTriggerTabUpdateForExistingTabs', () => {
         const openTabIds = [1, 5];
         const tabIdToTabContextStub = {};
-        const mockInterpreters = [];
+        const interpreterMocks = [];
         const getTabCallbackMap: DictionaryStringTo<(tab: chrome.tabs.Tab) => void> = {};
 
         let tabsQueryCallback: (tabs: chrome.tabs.Tab[]) => void = null;
@@ -316,7 +316,7 @@ describe('TabControllerTest', () => {
 
             setupCreateTabContextMock(broadCastDelegate, tabIdToTabContextStub[tabId], tabId);
 
-            mockInterpreters.push(interpreterMock);
+            interpreterMocks.push(interpreterMock);
             mockChromeAdapter
                 .setup(mca => mca.getTab(It.isValue(tabId), It.isAny(), It.isAny()))
                 .returns((id, cb) => {
@@ -344,7 +344,7 @@ describe('TabControllerTest', () => {
         openTabIds.forEach(tabId => {
             expect(tabInterpreterMap[tabId]).toEqual(tabIdToTabContextStub[tabId]);
         });
-        mockInterpreters.forEach(interpreterMock => {
+        interpreterMocks.forEach(interpreterMock => {
             interpreterMock.verifyAll();
         });
     });

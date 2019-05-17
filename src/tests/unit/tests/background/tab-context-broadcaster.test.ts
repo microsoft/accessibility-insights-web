@@ -11,13 +11,13 @@ describe('TabContextBroadcasterTest', () => {
         const testMessage = { someData: 1 } as any;
         const expectedMessage = { tabId: testTabId, ...testMessage } as StoreUpdateMessage<any>;
 
-        const mockSendMessageToFramesAndTab = Mock.ofInstance((tabId, message) => {});
+        const sendMessageToFramesAndTabMock = Mock.ofInstance((tabId, message) => {});
 
-        mockSendMessageToFramesAndTab.setup(send => send(testTabId, expectedMessage)).verifiable();
+        sendMessageToFramesAndTabMock.setup(send => send(testTabId, expectedMessage)).verifiable();
 
-        const testSubject = new TabContextBroadcaster(mockSendMessageToFramesAndTab.object);
+        const testSubject = new TabContextBroadcaster(sendMessageToFramesAndTabMock.object);
         testSubject.getBroadcastMessageDelegate(1)(testMessage);
 
-        mockSendMessageToFramesAndTab.verifyAll();
+        sendMessageToFramesAndTabMock.verifyAll();
     });
 });
