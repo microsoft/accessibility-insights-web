@@ -7,7 +7,10 @@ let mainWindow: BrowserWindow;
 const createWindow = () => {
     mainWindow = new BrowserWindow({ show: false });
 
-    mainWindow.loadURL('https://ada-cat.github.io/AU/before.html');
+    mainWindow
+        .loadURL('https://ada-cat.github.io/AU/before.html')
+        .then(() => console.log('url loaded'))
+        .catch(console.log);
 
     mainWindow.on('ready-to-show', () => {
         mainWindow.maximize();
