@@ -14,11 +14,12 @@ export interface TargetPageChangedViewProps {
 }
 
 export const TargetPageChangedView = NamedSFC<TargetPageChangedViewProps>('TargetPageChangedView', props => {
-    const { title = '', toggleLabel = '' } = props.displayableData;
+    const { title = '', toggleLabel = '', subtitle } = props.displayableData;
 
     return (
         <div className="target-page-changed">
             <h1>{title}</h1>
+            <div className="target-page-changed-subtitle">{subtitle}</div>
             <Toggle
                 onText="On"
                 offText="Off"

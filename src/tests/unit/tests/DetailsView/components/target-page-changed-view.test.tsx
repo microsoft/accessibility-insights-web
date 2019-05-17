@@ -9,6 +9,7 @@ import { TargetPageChangedView, TargetPageChangedViewProps } from '../../../../.
 type RenderTestCases = {
     title?: string;
     toggleLabel?: string;
+    subtitle?: JSX.Element;
 };
 
 describe('TargetPageChangedView', () => {
@@ -18,7 +19,8 @@ describe('TargetPageChangedView', () => {
             {},
             { title: 'title' },
             { toggleLabel: 'toggle-label' },
-            { title: 'title', toggleLabel: 'toggle-label' },
+            { subtitle: <span>subtitle</span> },
+            { title: 'title', toggleLabel: 'toggle-label', subtitle: <span>subtitle</span> },
         ];
 
         it.each(testCases)('case %o', testCase => {
