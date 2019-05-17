@@ -15,7 +15,7 @@ import { IssueFilingService } from '../../../../../../../../issue-filing/types/i
 describe('IssueFilingSettings', () => {
     let userData: UserConfigurationStoreData;
     let issueFilingServiceProviderMock: IMock<IssueFilingServiceProvider>;
-    let testIssueFilingService: IssueFilingService;
+    let testIssueFilingServiceStub: IssueFilingService;
     const testKey: string = 'test';
     let userConfigMessageCreatorMock: IMock<UserConfigMessageCreator>;
 
@@ -29,7 +29,7 @@ describe('IssueFilingSettings', () => {
             bugService: 'gitHub',
             bugServicePropertiesMap: { gitHub: { repository: 'test-repository' } },
         };
-        testIssueFilingService = {
+        testIssueFilingServiceStub = {
             key: testKey,
             displayName: 'TEST',
             settingsForm: NamedSFC('testForm', () => <>Hello World</>),
@@ -38,10 +38,10 @@ describe('IssueFilingSettings', () => {
                 return { testField };
             },
             getSettingsFromStoreData: data => data[testKey],
-            issueFilingUrlProvider: () => 'test url',
+            fileIssue: () => {},
         };
 
-        issueFilingServiceProviderMock.setup(provider => provider.forKey(userData.bugService)).returns(() => testIssueFilingService);
+        issueFilingServiceProviderMock.setup(provider => provider.forKey(userData.bugService)).returns(() => testIssueFilingServiceStub);
     });
 
     it('renders', () => {

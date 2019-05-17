@@ -910,12 +910,12 @@ describe('Drawer', () => {
         scrollCallback();
 
         // invoke timeout callback (should invoke draw)
-        const mockDraw = Mock.ofInstance(() => {});
-        mockDraw.setup(it => it()).verifiable();
-        (testSubject as any).draw = mockDraw.object;
+        const drawMock = Mock.ofInstance(() => {});
+        drawMock.setup(draw => draw()).verifiable();
+        (testSubject as any).draw = drawMock.object;
         timeOutCallback();
 
-        mockDraw.verifyAll();
+        drawMock.verifyAll();
         windowUtilsMock.verifyAll();
     });
 

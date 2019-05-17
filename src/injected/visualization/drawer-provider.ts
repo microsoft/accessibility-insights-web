@@ -1,12 +1,14 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { getRTL } from '@uifabric/utilities';
+
 import { ClientBrowserAdapter } from '../../common/client-browser-adapter';
 import { HTMLElementUtils } from '../../common/html-element-utils';
 import { TabbableElementsHelper } from '../../common/tabbable-elements-helper';
 import { DeepPartial } from '../../common/types/deep-partial';
 import { WindowUtils } from '../../common/window-utils';
 import { ClientUtils } from '../client-utils';
+import { DetailsDialogHandler } from '../details-dialog-handler';
 import { FrameCommunicator } from '../frameCommunicators/frame-communicator';
 import { ShadowUtils } from '../shadow-utils';
 import { CenterPositionCalculator } from './center-position-calculator';
@@ -41,6 +43,7 @@ export class DrawerProvider {
         private readonly frameCommunicator: FrameCommunicator,
         private readonly clientBrowserAdapter: ClientBrowserAdapter,
         private readonly getRTLFunc: typeof getRTL,
+        private readonly detailsDialogHandler: DetailsDialogHandler,
     ) {}
 
     public createNullDrawer(): Drawer {
@@ -96,6 +99,7 @@ export class DrawerProvider {
             this.shadowUtils,
             this.clientBrowserAdapter,
             this.getRTLFunc,
+            this.detailsDialogHandler,
         );
         return this.createDrawer('insights-issues', formatter);
     }

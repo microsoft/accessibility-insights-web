@@ -56,35 +56,6 @@ describe('Issue details text builder', () => {
         expect(actual).toEqual(expected);
     });
 
-    test('buildGithubText', () => {
-        const actual = testSubject.buildGithubText(sampleIssueDetailsData);
-        const expected = [
-            `**Issue**: \`RR-help\` ([\`RR-rule-id\`](RR-help-url))`,
-            ``,
-            `**Target application**: [pageTitle<x>](pageUrl)`,
-            ``,
-            `**Element path**: RR-selector<x>`,
-            ``,
-            `**Snippet**:`,
-            ``,
-            `    RR-snippet space`,
-            ``,
-            `**How to fix**:`,
-            ``,
-            `    RR-failureSummary`,
-            ``,
-            `**Environment**:`,
-            `browser spec`,
-            ``,
-            `====`,
-            ``,
-            'This accessibility issue was found using Accessibility Insights for Web MY.EXT.VER (axe-core AXE.CORE.VER), ' +
-                'a tool that helps find and fix accessibility issues. Get more information & download ' +
-                'this tool at http://aka.ms/AccessibilityInsights.',
-        ].join('\n');
-        expect(actual).toEqual(expected);
-    });
-
     const noStandardTags = [];
     const oneStandardTag = ['WCAG-1.4.1'];
     const manyStandardTags = ['WCAG-1.4.1', 'WCAG-2.8.2', 'WCAG-4.1.4'];

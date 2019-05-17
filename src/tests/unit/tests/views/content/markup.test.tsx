@@ -9,11 +9,11 @@ import { ContentActionMessageCreator } from '../../../../../common/message-creat
 import { createMarkup } from '../../../../../views/content/markup';
 
 describe('ContentPage', () => {
-    const mock = Mock.ofType<ContentActionMessageCreator>();
-    const deps = { contentActionMessageCreator: mock.object };
+    const contentActionMessageCreatorMock = Mock.ofType<ContentActionMessageCreator>();
+    const deps = { contentActionMessageCreator: contentActionMessageCreatorMock.object };
 
     beforeEach(() => {
-        mock.reset();
+        contentActionMessageCreatorMock.reset();
     });
 
     const {
@@ -164,7 +164,7 @@ describe('ContentPage', () => {
             it('registers click with event', () => {
                 wrapper.simulate('click');
 
-                mock.verify(m => m.openContentHyperLink(It.isAny(), href), Times.once());
+                contentActionMessageCreatorMock.verify(m => m.openContentHyperLink(It.isAny(), href), Times.once());
             });
         });
 

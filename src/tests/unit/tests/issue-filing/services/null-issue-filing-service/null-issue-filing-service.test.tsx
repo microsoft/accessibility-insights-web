@@ -3,8 +3,6 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-import { CreateIssueDetailsTextData } from '../../../../../../common/types/create-issue-details-text-data';
-import { DecoratedAxeNodeResult } from '../../../../../../injected/scanner-utils';
 import {
     NullIssueFilingService,
     NullIssueFilingServiceSettings,
@@ -31,17 +29,6 @@ describe('NullIssueFilingService', () => {
     describe('check settings', () => {
         it.each(testSettings)('with %o', settings => {
             expect(NullIssueFilingService.isSettingsValid(settings)).toBe(false);
-        });
-    });
-
-    describe('creates bug filing url', () => {
-        it.each(testSettings)('with %o', settings => {
-            const issuesData: CreateIssueDetailsTextData = {
-                pageTitle: 'test page title',
-                pageUrl: '//test-page-url',
-                ruleResult: {} as DecoratedAxeNodeResult,
-            };
-            expect(NullIssueFilingService.issueFilingUrlProvider(settings, issuesData, null)).toBeNull();
         });
     });
 
