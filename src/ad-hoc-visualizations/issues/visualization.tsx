@@ -27,8 +27,8 @@ export const IssuesAdHocVisualization: VisualizationConfiguration = {
         subtitle: (
             <>
                 Automated checks can detect some common accessibility problems such as missing or invalid properties. But most accessibility
-                problems can only be discovered through manual testing. The best way to evaluate web accessibility is to complete an{' '}
-                <NewTabLink href="https://accessibilityinsights.io/docs/en/web/getstarted/assessment">assessment</NewTabLink>.
+                problems can only be discovered through manual testing. The best way to evaluate web accessibility compliance is to complete
+                an <NewTabLink href="https://accessibilityinsights.io/docs/en/web/getstarted/assessment">assessment</NewTabLink>.
             </>
         ),
         enableMessage: 'Running automated checks...',

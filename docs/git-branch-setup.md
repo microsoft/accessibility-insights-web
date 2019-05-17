@@ -63,7 +63,7 @@ Create a branch from your fork and start making the code changes. Once you are h
 
 ## Merging upstream master into your fork master
 
-From time to time, your fork will get out of sync with the upstream remote. Use the following commands to get the master branch of your fork up up to date.
+From time to time, your fork will get out of sync with the upstream remote. Use the following commands to get the master branch of your fork up to date.
 
 ```
 > git fetch upstream

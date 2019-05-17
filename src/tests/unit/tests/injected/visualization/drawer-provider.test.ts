@@ -5,6 +5,7 @@ import { ClientBrowserAdapter } from '../../../../../common/client-browser-adapt
 import { HTMLElementUtils } from '../../../../../common/html-element-utils';
 import { WindowUtils } from '../../../../../common/window-utils';
 import { ClientUtils } from '../../../../../injected/client-utils';
+import { DetailsDialogHandler } from '../../../../../injected/details-dialog-handler';
 import { FrameCommunicator } from '../../../../../injected/frameCommunicators/frame-communicator';
 import { ShadowUtils } from '../../../../../injected/shadow-utils';
 import { DrawerProvider } from '../../../../../injected/visualization/drawer-provider';
@@ -24,6 +25,7 @@ describe('DrawerProviderTests', () => {
     let domStub: Document;
     let frameCommunicator: IMock<FrameCommunicator>;
     const clientBrowserAdapter = Mock.ofType<ClientBrowserAdapter>();
+    let detailsDialogHandlerMock: IMock<DetailsDialogHandler>;
 
     beforeEach(() => {
         htmlElementUtils = Mock.ofType(HTMLElementUtils);
@@ -31,6 +33,7 @@ describe('DrawerProviderTests', () => {
         shadowUtils = Mock.ofType(ShadowUtils);
         drawerUtils = Mock.ofType(DrawerUtils);
         clientUtils = Mock.ofType(ClientUtils);
+        detailsDialogHandlerMock = Mock.ofType<DetailsDialogHandler>();
         domStub = {} as Document;
         frameCommunicator = Mock.ofType(FrameCommunicator);
         const getRTLMock = Mock.ofInstance(() => null);
@@ -45,6 +48,7 @@ describe('DrawerProviderTests', () => {
             frameCommunicator.object,
             clientBrowserAdapter.object,
             getRTLMock.object,
+            detailsDialogHandlerMock.object,
         );
     });
 
