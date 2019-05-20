@@ -6,7 +6,7 @@ const targets = require('./targets.config');
 const merge = require('lodash/merge');
 const { run: copyrightCheckAndAdd } = require('license-check-and-add');
 
-module.exports = function(grunt) {
+module.exports = function (grunt) {
     const extensionPath = 'extension';
     const copyrightCheckAndAddConfig = {
         folder: './',
@@ -140,6 +140,7 @@ module.exports = function(grunt) {
         exec: {
             'webpack-dev': `${path.resolve('./node_modules/.bin/webpack')} --config-name dev`,
             'webpack-prod': `${path.resolve('./node_modules/.bin/webpack')} --config-name prod`,
+            'webpack-electron': `${path.resolve('./node_modules/.bin/webpack')} --config-name electron`,
             'webpack-all': `${path.resolve('./node_modules/.bin/webpack')}`,
         },
         sass: {
@@ -251,16 +252,16 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-exec');
     grunt.loadNpmTasks('grunt-sass');
 
-    grunt.registerTask('copyright-check', 'grunt task to check copyright header', function() {
+    grunt.registerTask('copyright-check', 'grunt task to check copyright header', function () {
         copyrightCheckAndAdd(copyrightCheckAndAddConfig);
     });
 
-    grunt.registerTask('copyright-add', 'grunt task to add copyright header', function() {
+    grunt.registerTask('copyright-add', 'grunt task to add copyright header', function () {
         copyrightCheckAndAddConfig.insert_license = true;
         copyrightCheckAndAdd(copyrightCheckAndAddConfig);
     });
 
-    grunt.registerMultiTask('embed-styles', function() {
+    grunt.registerMultiTask('embed-styles', function () {
         this.files.forEach(file => {
             const {
                 src: [src],
@@ -281,7 +282,7 @@ module.exports = function(grunt) {
         });
     });
 
-    grunt.registerMultiTask('configure', function() {
+    grunt.registerMultiTask('configure', function () {
         const { config, configJSONPath, configJSPath } = this.data;
         const configJSON = JSON.stringify(config, undefined, 4);
         grunt.file.write(configJSONPath, configJSON);
@@ -290,7 +291,7 @@ module.exports = function(grunt) {
         grunt.file.write(configJSPath, configJS);
     });
 
-    grunt.registerMultiTask('manifest', function() {
+    grunt.registerMultiTask('manifest', function () {
         const { config, manifestSrc, manifestDest } = this.data;
         const manifestJSON = grunt.file.readJSON(manifestSrc);
         merge(manifestJSON, {
@@ -311,7 +312,7 @@ module.exports = function(grunt) {
         grunt.file.write(manifestDest, JSON.stringify(manifestJSON, undefined, 2));
     });
 
-    grunt.registerMultiTask('drop', function() {
+    grunt.registerMultiTask('drop', function () {
         const debug = this.data.debug;
         if (debug) {
             mustExist('extension/devBundle/background.bundle.js', 'Have you run webpack?');
@@ -326,7 +327,7 @@ module.exports = function(grunt) {
         console.log(`${targetName} extension is in ${path.join('drop', targetName, 'extension')}`);
     });
 
-    grunt.registerTask('release-drops', function() {
+    grunt.registerTask('release-drops', function () {
         releaseTargets.forEach(targetName => {
             grunt.task.run('drop:' + targetName);
         });
@@ -337,6 +338,7 @@ module.exports = function(grunt) {
     // Main entry points for npm scripts:
     grunt.registerTask('build-dev', ['clean:intermediates', 'exec:webpack-dev', 'build-assets', 'drop:dev']);
     grunt.registerTask('build-prod', ['clean:intermediates', 'exec:webpack-prod', 'build-assets', 'release-drops']);
+    grunt.registerTask('build-electron', ['clean:intermediates', 'exec:webpack-electron', 'build-assets']);
     grunt.registerTask('build-all', ['clean:intermediates', 'exec:webpack-all', 'build-assets', 'drop:dev', 'release-drops']);
 
     grunt.registerTask('default', ['build-dev']);

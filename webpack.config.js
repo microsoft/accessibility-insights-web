@@ -28,42 +28,70 @@ const commonEntryFiles = {
     background: [path.resolve(__dirname, 'src/background/background-init.ts')],
 };
 
-const commonConfig = {
-    entry: commonEntryFiles,
-    module: {
-        rules: [
-            {
-                test: /\.tsx?$/,
-                use: [
-                    {
-                        loader: 'ts-loader',
-                        options: {
-                            transpileOnly: true,
-                            experimentalWatchApi: true,
+const electronEntryFiles = {
+    main: [path.resolve(__dirname, 'src/electron/main/main.ts')],
+    injected: [path.resolve(__dirname, 'src/injected/stylesheet-init.ts'), path.resolve(__dirname, 'src/injected/client-init.ts')],
+};
+
+const createCommonConfig = (entry, isElectron) => {
+    const baseConfig = {
+        entry,
+        module: {
+            rules: [
+                {
+                    test: /\.tsx?$/,
+                    use: [
+                        {
+                            loader: 'ts-loader',
+                            options: {
+                                transpileOnly: true,
+                                experimentalWatchApi: true,
+                            },
                         },
-                    },
-                ],
-                exclude: ['/node_modules/'],
-            },
-        ],
+                    ],
+                    exclude: ['/node_modules/'],
+                },
+            ],
+        },
+        resolve: {
+            modules: [path.resolve(__dirname, 'node_modules')],
+            extensions: ['.tsx', '.ts', '.js'],
+        },
+        plugins: commonPlugins,
+        node: {
+            setImmediate: false,
+        },
+        performance: {
+            // We allow higher-than-normal sizes because our users only have to do local fetches of our bundles
+            maxEntrypointSize: 10 * 1024 * 1024,
+            maxAssetSize: 10 * 1024 * 1024,
+        },
+    }
+
+    if (isElectron) {
+        baseConfig.node.__dirname = false;
+        baseConfig.node.__filename = false;
+        baseConfig.target = "electron-main";
+    }
+
+    return baseConfig;
+}
+
+const electronConfig = {
+    ...createCommonConfig(electronEntryFiles, true),
+    name: 'electron',
+    mode: 'development',
+    output: {
+        path: path.join(__dirname, "extension/electronBundle"),
+        filename: '[name].bundle.js',
     },
-    resolve: {
-        modules: [path.resolve(__dirname, 'node_modules')],
-        extensions: ['.tsx', '.ts', '.js'],
-    },
-    plugins: commonPlugins,
-    node: {
-        setImmediate: false,
-    },
-    performance: {
-        // We allow higher-than-normal sizes because our users only have to do local fetches of our bundles
-        maxEntrypointSize: 10 * 1024 * 1024,
-        maxAssetSize: 10 * 1024 * 1024,
+    optimization: {
+        splitChunks: false,
     },
 };
 
 const devConfig = {
-    ...commonConfig,
+    ...createCommonConfig(commonEntryFiles),
     name: 'dev',
     mode: 'development',
     devtool: 'eval-source-map',
@@ -77,7 +105,7 @@ const devConfig = {
 };
 
 const prodConfig = {
-    ...commonConfig,
+    ...createCommonConfig(commonEntryFiles),
     name: 'prod',
     mode: 'production',
     devtool: false,
@@ -105,5 +133,5 @@ const prodConfig = {
     },
 };
 
-// Use "webpack --config-name dev" or "webpack --config-name prod" to use just one or the other
-module.exports = [devConfig, prodConfig];
+// Use "webpack --config-name dev", "webpack --config-name prod" or "webpack --config-name electron" to use just one or the other
+module.exports = [devConfig, prodConfig, electronConfig];
