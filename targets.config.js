@@ -102,4 +102,16 @@ module.exports = {
             },
         },
     },
+    electron: {
+        config: {
+            options: {
+                ...internalOptions,
+                ...icons.dev,
+                debug: true,
+                extensionFullName: 'Accessibility Insights for Web - Dev',
+                telemetryBuildName: 'Dev',
+            },
+        },
+
+    },
 };

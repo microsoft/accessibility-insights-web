@@ -187,7 +187,7 @@ module.exports = function(grunt) {
         const dropExtensionPath = path.join(dropPath, 'extension');
 
         const { config } = targets[targetName];
-        const debug = config.options.debug;
+        const debug = config.options.debug || false;
 
         grunt.config.merge({
             drop: {
@@ -209,40 +209,78 @@ module.exports = function(grunt) {
                     config,
                 },
             },
-            copy: {
-                [targetName]: {
-                    files: [
-                        {
-                            cwd: debug ? path.resolve(extensionPath, 'devBundle') : path.resolve(extensionPath, 'prodBundle'),
-                            src: ['*.js', '*.js.map'],
-                            dest: path.resolve(dropExtensionPath, 'bundle'),
-                            expand: true,
-                        },
-                        {
-                            cwd: extensionPath,
-                            src: ['**/*.png', '**/*.css', '**/*.woff'],
-                            dest: dropExtensionPath,
-                            expand: true,
-                        },
-                        {
-                            cwd: 'deploy',
-                            src: ['Gruntfile.js', 'package.json'],
-                            dest: dropPath,
-                            expand: true,
-                        },
-                        {
-                            cwd: extensionPath,
-                            src: ['**/*.html'],
-                            dest: dropExtensionPath,
-                            expand: true,
-                        },
-                    ],
-                },
-            },
             clean: {
                 [targetName]: dropPath,
             },
         });
+
+        if (targetName === 'electron') {
+            grunt.config.merge({
+                copy: {
+                    [targetName]: {
+                        files: [
+                            {
+                                cwd: path.resolve(extensionPath, 'electronBundle'),
+                                src: ['*.js', '*.js.map'],
+                                dest: path.resolve(dropExtensionPath, 'bundle'),
+                                expand: true,
+                            },
+                            {
+                                cwd: extensionPath,
+                                src: ['**/*.png', '**/*.css', '**/*.woff'],
+                                dest: dropExtensionPath,
+                                expand: true,
+                            },
+                            {
+                                cwd: 'deploy',
+                                src: ['Gruntfile.js', 'package.json'],
+                                dest: dropPath,
+                                expand: true,
+                            },
+                            {
+                                cwd: extensionPath,
+                                src: ['**/*.html'],
+                                dest: dropExtensionPath,
+                                expand: true,
+                            },
+                        ],
+                    },
+                },
+            });
+        } else {
+            grunt.config.merge({
+                copy: {
+                    [targetName]: {
+                        files: [
+                            {
+                                cwd: debug ? path.resolve(extensionPath, 'devBundle') : path.resolve(extensionPath, 'prodBundle'),
+                                src: ['*.js', '*.js.map'],
+                                dest: path.resolve(dropExtensionPath, 'bundle'),
+                                expand: true,
+                            },
+                            {
+                                cwd: extensionPath,
+                                src: ['**/*.png', '**/*.css', '**/*.woff'],
+                                dest: dropExtensionPath,
+                                expand: true,
+                            },
+                            {
+                                cwd: 'deploy',
+                                src: ['Gruntfile.js', 'package.json'],
+                                dest: dropPath,
+                                expand: true,
+                            },
+                            {
+                                cwd: extensionPath,
+                                src: ['**/*.html'],
+                                dest: dropExtensionPath,
+                                expand: true,
+                            },
+                        ],
+                    },
+                },
+            });
+        }
     });
 
     grunt.loadNpmTasks('grunt-bom-removal');
@@ -314,11 +352,17 @@ module.exports = function(grunt) {
 
     grunt.registerMultiTask('drop', function() {
         const debug = this.data.debug;
-        if (debug) {
-            mustExist('extension/devBundle/background.bundle.js', 'Have you run webpack?');
+
+        if (this.target === 'electron') {
+            mustExist('extension/electronBundle/main.bundle.js', 'Have you run webpack?');
         } else {
-            mustExist('extension/prodBundle/background.bundle.js', 'Have you run webpack?');
+            if (debug) {
+                mustExist('extension/devBundle/background.bundle.js', 'Have you run webpack?');
+            } else {
+                mustExist('extension/prodBundle/background.bundle.js', 'Have you run webpack?');
+            }
         }
+
         const targetName = this.target;
         grunt.task.run('clean:' + targetName);
         grunt.task.run('copy:' + targetName);
@@ -337,9 +381,16 @@ module.exports = function(grunt) {
 
     // Main entry points for npm scripts:
     grunt.registerTask('build-dev', ['clean:intermediates', 'exec:webpack-dev', 'build-assets', 'drop:dev']);
-    grunt.registerTask('build-prod', ['clean:intermediates', 'exec:webpack-prod', 'build-assets', 'release-drops']);
-    grunt.registerTask('build-electron', ['clean:intermediates', 'exec:webpack-electron', 'build-assets']);
-    grunt.registerTask('build-all', ['clean:intermediates', 'exec:webpack-all', 'build-assets', 'drop:dev', 'release-drops']);
+    grunt.registerTask('build-prod', ['clean:intermediates', 'exec:webpack-prod', 'build-assets', 'drop:production']);
+    grunt.registerTask('build-electron', ['clean:intermediates', 'exec:webpack-electron', 'build-assets', 'drop:electron']);
+    grunt.registerTask('build-all', [
+        'clean:intermediates',
+        'exec:webpack-all',
+        'build-assets',
+        'drop:dev',
+        'drop:electron',
+        'release-drops',
+    ]);
 
     grunt.registerTask('default', ['build-dev']);
 };
