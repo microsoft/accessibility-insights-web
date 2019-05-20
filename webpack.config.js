@@ -33,7 +33,7 @@ const electronEntryFiles = {
     injected: [path.resolve(__dirname, 'src/injected/stylesheet-init.ts'), path.resolve(__dirname, 'src/injected/client-init.ts')],
 };
 
-const createCommonConfig = (entry, isElectron) => {
+const createCommonConfig = entry => {
     const baseConfig = {
         entry,
         module: {
@@ -68,12 +68,6 @@ const createCommonConfig = (entry, isElectron) => {
         },
     };
 
-    if (isElectron) {
-        baseConfig.node.__dirname = false;
-        baseConfig.node.__filename = false;
-        baseConfig.target = 'electron-main';
-    }
-
     return baseConfig;
 };
 
@@ -85,9 +79,14 @@ const electronConfig = {
         path: path.join(__dirname, 'extension/electronBundle'),
         filename: '[name].bundle.js',
     },
+    node: {
+        __dirname: false,
+        __filename: false,
+    },
     optimization: {
         splitChunks: false,
     },
+    target: 'electron-main',
 };
 
 const devConfig = {
