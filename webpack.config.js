@@ -85,7 +85,7 @@ const electronConfig = {
     optimization: {
         splitChunks: false,
     },
-    target: 'electron-main',
+    target: 'electron-renderer',
 };
 
 const devConfig = {
