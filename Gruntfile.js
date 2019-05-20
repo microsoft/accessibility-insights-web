@@ -141,6 +141,7 @@ module.exports = function(grunt) {
             'webpack-dev': `${path.resolve('./node_modules/.bin/webpack')} --config-name dev`,
             'webpack-prod': `${path.resolve('./node_modules/.bin/webpack')} --config-name prod`,
             'webpack-all': `${path.resolve('./node_modules/.bin/webpack')}`,
+            'generate-scss-typings': `${path.resolve('./node_modules/.bin/tsm')} src`,
         },
         sass: {
             options: {
@@ -169,7 +170,7 @@ module.exports = function(grunt) {
             },
             scss: {
                 files: ['src/**/*.scss'],
-                tasks: ['sass', 'copy:styles', 'embed-styles:code', 'drop:dev'],
+                tasks: ['exec:generate-scss-typings', 'sass', 'copy:styles', 'embed-styles:code', 'drop:dev'],
             },
             // We assume webpack --watch is running separately (usually via 'yarn watch')
             'webpack-output': {
@@ -335,9 +336,22 @@ module.exports = function(grunt) {
     grunt.registerTask('build-assets', ['sass', 'copy:code', 'copy:styles', 'embed-styles:code', 'copy:images']);
 
     // Main entry points for npm scripts:
-    grunt.registerTask('build-dev', ['clean:intermediates', 'exec:webpack-dev', 'build-assets', 'drop:dev']);
-    grunt.registerTask('build-prod', ['clean:intermediates', 'exec:webpack-prod', 'build-assets', 'release-drops']);
-    grunt.registerTask('build-all', ['clean:intermediates', 'exec:webpack-all', 'build-assets', 'drop:dev', 'release-drops']);
+    grunt.registerTask('build-dev', ['clean:intermediates', 'exec:generate-scss-typings', 'exec:webpack-dev', 'build-assets', 'drop:dev']);
+    grunt.registerTask('build-prod', [
+        'clean:intermediates',
+        'exec:generate-scss-typings',
+        'exec:webpack-prod',
+        'build-assets',
+        'release-drops',
+    ]);
+    grunt.registerTask('build-all', [
+        'clean:intermediates',
+        'exec:generate-scss-typings',
+        'exec:webpack-all',
+        'build-assets',
+        'drop:dev',
+        'release-drops',
+    ]);
 
     grunt.registerTask('default', ['build-dev']);
 };
