@@ -10,7 +10,7 @@ export class ElectronAdapter implements BrowserAdapter, StorageAdapter, Commands
     }
 
     public addCommandListener(callback: (command: string) => void): void {
-        throw new Error('Method not implemented.');
+        // TODO implement
     }
     public getCommands(callback: (commands: chrome.commands.Command[]) => void): void {
         throw new Error('Method not implemented.');
@@ -19,7 +19,10 @@ export class ElectronAdapter implements BrowserAdapter, StorageAdapter, Commands
         throw new Error('Method not implemented.');
     }
     public getUserData(keys: string | Object | string[], callback: (items: { [key: string]: any }) => void): void {
-        throw new Error('Method not implemented.');
+        // TODO implement
+        const data = {};
+
+        callback(data);
     }
     public removeUserData(key: string): void {
         throw new Error('Method not implemented.');
@@ -31,24 +34,24 @@ export class ElectronAdapter implements BrowserAdapter, StorageAdapter, Commands
         throw new Error('Method not implemented.');
     }
     public addListenerToTabsOnActivated(callback: (activeInfo: chrome.tabs.TabActiveInfo) => void): void {
-        throw new Error('Method not implemented.');
+        // TODO implement
     }
     public addListenerToTabsOnUpdated(
         callback: (tabId: number, changeInfo: chrome.tabs.TabChangeInfo, tab: chrome.tabs.Tab) => void,
     ): void {
-        throw new Error('Method not implemented.');
+        // TODO implement
     }
     public addListenerToTabsOnRemoved(callback: (tabId: number, removeInfo: chrome.tabs.TabRemoveInfo) => void): void {
-        throw new Error('Method not implemented.');
+        // TODO implement
     }
     public addListenerToWebNavigationUpdated(callback: (details: chrome.webNavigation.WebNavigationFramedCallbackDetails) => void): void {
-        throw new Error('Method not implemented.');
+        // TODO implement
     }
     public addListenerOnWindowsFocusChanged(callback: (windowId: number) => void): void {
-        throw new Error('Method not implemented.');
+        // TODO implement
     }
     public tabsQuery(query: chrome.tabs.QueryInfo, callback: (result: chrome.tabs.Tab[]) => void): void {
-        throw new Error('Method not implemented.');
+        // TODO implement
     }
     public createTab(url: string, callback?: (tab: chrome.tabs.Tab) => void): void {
         throw new Error('Method not implemented.');
@@ -75,7 +78,7 @@ export class ElectronAdapter implements BrowserAdapter, StorageAdapter, Commands
         // TODO implement
     }
     public sendMessageToAllFramesAndTabs(message: any): void {
-        throw new Error('Method not implemented.');
+        // TODO implement
     }
     public injectJs(tabId: any, file: string, callback: Function): void {
         throw new Error('Method not implemented.');
@@ -99,7 +102,7 @@ export class ElectronAdapter implements BrowserAdapter, StorageAdapter, Commands
         throw new Error('Method not implemented.');
     }
     public addListenerOnConnect(callback: (port: chrome.runtime.Port) => void): void {
-        throw new Error('Method not implemented.');
+        // Implement
     }
     public addListenerOnMessage(
         callback: (message: any, sender: chrome.runtime.MessageSender, sendResponse: (response: any) => void) => void,

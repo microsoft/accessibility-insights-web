@@ -3,10 +3,8 @@
 import { app, BrowserWindow } from 'electron';
 import { join } from 'path';
 
-let mainWindow: BrowserWindow;
-
-const createWindow = () => {
-    mainWindow = new BrowserWindow({ show: false });
+const createDetailsViewWindow = () => {
+    const mainWindow = new BrowserWindow({ show: false });
 
     const mainPath = join(__dirname, '../electron/main/main.html');
 
@@ -20,4 +18,22 @@ const createWindow = () => {
     });
 };
 
-app.on('ready', createWindow);
+const createBackgroundWindow = () => {
+    const backgroundWindow = new BrowserWindow({ show: false });
+
+    const backgroundPath = join(__dirname, '../background/background.html');
+
+    backgroundWindow.loadFile(backgroundPath).catch(console.log);
+
+    backgroundWindow.on('ready-to-show', () => {
+        backgroundWindow.maximize();
+        backgroundWindow.show();
+
+        backgroundWindow.webContents.openDevTools({ mode: 'bottom' });
+    });
+};
+
+app.on('ready', () => {
+    createBackgroundWindow();
+    createDetailsViewWindow();
+});
