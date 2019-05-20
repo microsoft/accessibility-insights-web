@@ -20,6 +20,7 @@
         "copyrightheaders:fix": "grunt copyright-add",
         "format": "prettier --config prettier.config.js --write \"**/*\"",
         "format-check": "prettier --config prettier.config.js --check \"**/*\"",
+        "generate-scss-typings": "tsm src/**/*.scss",
         "precheckin": "npm-run-all --serial format-check tslint copyrightheaders build:all test test:e2e",
         "test": "jest --projects src/tests/unit",
         "test:e2e": "jest --projects src/tests/end-to-end --runInBand",
