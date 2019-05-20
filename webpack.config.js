@@ -66,23 +66,23 @@ const createCommonConfig = (entry, isElectron) => {
             maxEntrypointSize: 10 * 1024 * 1024,
             maxAssetSize: 10 * 1024 * 1024,
         },
-    }
+    };
 
     if (isElectron) {
         baseConfig.node.__dirname = false;
         baseConfig.node.__filename = false;
-        baseConfig.target = "electron-main";
+        baseConfig.target = 'electron-main';
     }
 
     return baseConfig;
-}
+};
 
 const electronConfig = {
     ...createCommonConfig(electronEntryFiles, true),
     name: 'electron',
     mode: 'development',
     output: {
-        path: path.join(__dirname, "extension/electronBundle"),
+        path: path.join(__dirname, 'extension/electronBundle'),
         filename: '[name].bundle.js',
     },
     optimization: {
