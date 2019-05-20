@@ -45,6 +45,7 @@ module.exports = {
                 telemetryBuildName: 'Dev',
             },
         },
+        bundleFolder: 'devBundle',
     },
     playground: {
         release: true,
@@ -57,6 +58,7 @@ module.exports = {
                 telemetryBuildName: 'Playground',
             },
         },
+        bundleFolder: 'devBundle',
     },
     canary: {
         release: true,
@@ -69,6 +71,7 @@ module.exports = {
                 telemetryBuildName: 'Canary',
             },
         },
+        bundleFolder: 'devBundle',
     },
     insider: {
         release: true,
@@ -80,6 +83,7 @@ module.exports = {
                 telemetryBuildName: 'Insider',
             },
         },
+        bundleFolder: 'prodBundle',
     },
     production: {
         release: true,
@@ -90,6 +94,7 @@ module.exports = {
                 telemetryBuildName: 'Production',
             },
         },
+        bundleFolder: 'prodBundle',
     },
     preview: {
         release: true,
@@ -101,6 +106,7 @@ module.exports = {
                 telemetryBuildName: 'Preview',
             },
         },
+        bundleFolder: 'prodBundle',
     },
     electron: {
         config: {
@@ -112,5 +118,6 @@ module.exports = {
                 telemetryBuildName: 'Electron',
             },
         },
+        bundleFolder: 'electronBundle',
     },
 };
