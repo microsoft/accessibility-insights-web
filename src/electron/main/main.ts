@@ -10,10 +10,7 @@ const createWindow = () => {
 
     const mainPath = join(__dirname, '../electron/main/main.html');
 
-    mainWindow
-        .loadFile(mainPath)
-        .then(() => console.log('url loaded'))
-        .catch(console.log);
+    mainWindow.loadFile(mainPath).catch(console.log);
 
     mainWindow.on('ready-to-show', () => {
         mainWindow.maximize();
