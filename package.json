@@ -50,6 +50,7 @@
         "@types/serve-static": "^1.13.2",
         "@types/uuid": "^3.4.4",
         "case-sensitive-paths-webpack-plugin": "^2.2.0",
+        "electron": "^5.0.1",
         "enzyme": "^3.9.0",
         "enzyme-adapter-react-16": "^1.12.1",
         "express": "^4.16.4",
