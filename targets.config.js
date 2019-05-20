@@ -46,6 +46,7 @@ module.exports = {
             },
         },
         bundleFolder: 'devBundle',
+        mustExistFile: 'background.bundle.js',
     },
     playground: {
         release: true,
@@ -59,6 +60,7 @@ module.exports = {
             },
         },
         bundleFolder: 'devBundle',
+        mustExistFile: 'background.bundle.js',
     },
     canary: {
         release: true,
@@ -72,6 +74,7 @@ module.exports = {
             },
         },
         bundleFolder: 'devBundle',
+        mustExistFile: 'background.bundle.js',
     },
     insider: {
         release: true,
@@ -84,6 +87,7 @@ module.exports = {
             },
         },
         bundleFolder: 'prodBundle',
+        mustExistFile: 'background.bundle.js',
     },
     production: {
         release: true,
@@ -95,6 +99,7 @@ module.exports = {
             },
         },
         bundleFolder: 'prodBundle',
+        mustExistFile: 'background.bundle.js',
     },
     preview: {
         release: true,
@@ -107,6 +112,7 @@ module.exports = {
             },
         },
         bundleFolder: 'prodBundle',
+        mustExistFile: 'background.bundle.js',
     },
     electron: {
         config: {
@@ -119,5 +125,6 @@ module.exports = {
             },
         },
         bundleFolder: 'electronBundle',
+        mustExistFile: 'main.bundle.js',
     },
 };

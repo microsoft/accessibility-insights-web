@@ -313,19 +313,13 @@ module.exports = function(grunt) {
     });
 
     grunt.registerMultiTask('drop', function() {
-        const debug = this.data.debug;
-
-        if (this.target === 'electron') {
-            mustExist('extension/electronBundle/main.bundle.js', 'Have you run webpack?');
-        } else {
-            if (debug) {
-                mustExist('extension/devBundle/background.bundle.js', 'Have you run webpack?');
-            } else {
-                mustExist('extension/prodBundle/background.bundle.js', 'Have you run webpack?');
-            }
-        }
-
         const targetName = this.target;
+        const { bundleFolder, mustExistFile } = targets[targetName];
+
+        const mustExistPath = path.join(extensionPath, bundleFolder, mustExistFile);
+
+        mustExist(mustExistPath, 'Have you run webpack?');
+
         grunt.task.run('clean:' + targetName);
         grunt.task.run('copy:' + targetName);
         grunt.task.run('configure:' + targetName);
