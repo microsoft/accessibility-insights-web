@@ -26,7 +26,7 @@ describe('OverviewContainer', () => {
         id: -1,
     } as TabStoreData;
 
-    const helpLinkDeps = {
+    const overviewHelpSectionDeps = {
         actionInitiators: {
             openExternalLink,
         },
@@ -43,7 +43,7 @@ describe('OverviewContainer', () => {
 
     const deps: OverviewContainerDeps = {
         assessmentsProvider: assessmentsProvider,
-        actionInitiators: helpLinkDeps.actionInitiators,
+        actionInitiators: overviewHelpSectionDeps.actionInitiators,
         getAssessmentSummaryModelFromProviderAndStoreData: getAssessmentSummaryModelFromProviderAndStoreData,
         detailsViewActionMessageCreator: detailsViewActionMessageCreatorStub,
         urlParser: urlParserMock,
