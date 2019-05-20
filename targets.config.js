@@ -40,7 +40,6 @@ module.exports = {
             options: {
                 ...internalOptions,
                 ...icons.dev,
-                debug: true,
                 extensionFullName: 'Accessibility Insights for Web - Dev',
                 telemetryBuildName: 'Dev',
             },
@@ -54,7 +53,6 @@ module.exports = {
             options: {
                 ...publicOptions,
                 ...icons.playground,
-                debug: true,
                 extensionFullName: 'Accessibility Insights for Web - Playground',
                 telemetryBuildName: 'Playground',
             },
@@ -68,7 +66,6 @@ module.exports = {
             options: {
                 ...internalOptions,
                 ...icons.canary,
-                debug: true,
                 extensionFullName: 'Accessibility Insights for Web - Canary',
                 telemetryBuildName: 'Canary',
             },
@@ -119,7 +116,6 @@ module.exports = {
             options: {
                 ...internalOptions,
                 ...icons.dev,
-                debug: true,
                 extensionFullName: 'Accessibility Insights for Web - Dev',
                 telemetryBuildName: 'Electron',
             },

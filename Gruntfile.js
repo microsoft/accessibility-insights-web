@@ -187,12 +187,11 @@ module.exports = function(grunt) {
         const dropExtensionPath = path.join(dropPath, 'extension');
 
         const { config, bundleFolder } = targets[targetName];
-        const debug = config.options.debug || false;
 
         grunt.config.merge({
             drop: {
                 [targetName]: {
-                    debug,
+                    // empty on purpose
                 },
             },
             configure: {
