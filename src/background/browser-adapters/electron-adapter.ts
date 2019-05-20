@@ -122,7 +122,9 @@ export class ElectronAdapter implements BrowserAdapter, StorageAdapter, Commands
             icons: {},
         } as chrome.runtime.Manifest;
     }
-    public extensionVersion: string;
+    public get extensionVersion(): string {
+        return this.getManifest().version;
+    }
     public getUrl(urlPart: string): string {
         throw new Error('Method not implemented.');
     }
