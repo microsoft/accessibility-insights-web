@@ -140,7 +140,8 @@ module.exports = function(grunt) {
         exec: {
             'webpack-dev': `${path.resolve('./node_modules/.bin/webpack')} --config-name dev`,
             'webpack-prod': `${path.resolve('./node_modules/.bin/webpack')} --config-name prod`,
-            'webpack-electron': `${path.resolve('./node_modules/.bin/webpack')} --config-name electron`,
+            'webpack-electron-main': `${path.resolve('./node_modules/.bin/webpack')} --config-name electron-main`,
+            'webpack-electron-renderer': `${path.resolve('./node_modules/.bin/webpack')} --config-name electron-renderer`,
             'webpack-all': `${path.resolve('./node_modules/.bin/webpack')}`,
         },
         sass: {
@@ -337,7 +338,13 @@ module.exports = function(grunt) {
     // Main entry points for npm scripts:
     grunt.registerTask('build-dev', ['clean:intermediates', 'exec:webpack-dev', 'build-assets', 'drop:dev']);
     grunt.registerTask('build-prod', ['clean:intermediates', 'exec:webpack-prod', 'build-assets', 'drop:production']);
-    grunt.registerTask('build-electron', ['clean:intermediates', 'exec:webpack-electron', 'build-assets', 'drop:electron']);
+    grunt.registerTask('build-electron', [
+        'clean:intermediates',
+        'exec:webpack-electron-main',
+        'exec:webpack-electron-renderer',
+        'build-assets',
+        'drop:electron',
+    ]);
     grunt.registerTask('build-all', [
         'clean:intermediates',
         'exec:webpack-all',

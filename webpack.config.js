@@ -28,8 +28,11 @@ const commonEntryFiles = {
     background: [path.resolve(__dirname, 'src/background/background-init.ts')],
 };
 
-const electronEntryFiles = {
+const electronMainEntryFiles = {
     main: [path.resolve(__dirname, 'src/electron/main/main.ts')],
+};
+
+const electronRendererEntryFiles = {
     injected: [path.resolve(__dirname, 'src/injected/stylesheet-init.ts'), path.resolve(__dirname, 'src/injected/client-init.ts')],
     detailsView: [path.resolve(__dirname, 'src/DetailsView/in-electron-initializer.ts')],
     background: [path.resolve(__dirname, 'src/background/in-electron-background-init.ts')],
@@ -69,25 +72,29 @@ const commonConfig = {
     },
 };
 
-const electronConfig = {
-    ...commonConfig,
-    entry: electronEntryFiles,
-    name: 'electron',
-    mode: 'development',
-    output: {
-        path: path.join(__dirname, 'extension/electronBundle'),
-        filename: '[name].bundle.js',
-    },
-    node: {
-        ...commonConfig.node,
-        __dirname: false,
-        __filename: false,
-    },
-    optimization: {
-        splitChunks: false,
-    },
-    target: 'electron-renderer',
+const createElectronConfig = (entry, nameAndTarget) => {
+    return {
+        ...commonConfig,
+        entry,
+        name: nameAndTarget,
+        mode: 'development',
+        output: {
+            path: path.join(__dirname, 'extension/electronBundle'),
+            filename: '[name].bundle.js',
+        },
+        node: {
+            __dirname: false,
+            __filename: false,
+        },
+        optimization: {
+            splitChunks: false,
+        },
+        target: nameAndTarget,
+    };
 };
+const electronMainConfig = createElectronConfig(electronMainEntryFiles, 'electron-main');
+
+const electronRendererConfig = createElectronConfig(electronRendererEntryFiles, 'electron-renderer');
 
 const devConfig = {
     ...commonConfig,
@@ -132,5 +139,5 @@ const prodConfig = {
     },
 };
 
-// Use "webpack --config-name dev", "webpack --config-name prod" or "webpack --config-name electron" to use just one or the other
-module.exports = [devConfig, prodConfig, electronConfig];
+// Use "webpack --config-name <cofig-name>" to use just one or the other
+module.exports = [devConfig, prodConfig, electronMainConfig, electronRendererConfig];
