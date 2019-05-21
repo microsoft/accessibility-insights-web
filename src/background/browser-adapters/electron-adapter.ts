@@ -1,10 +1,14 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { ipcRenderer } from 'electron';
+
 import { BrowserAdapter, NotificationOptions } from './browser-adapter';
 import { CommandsAdapter } from './commands-adapter';
 import { StorageAdapter } from './storage-adapter';
 
 export class ElectronAdapter implements BrowserAdapter, StorageAdapter, CommandsAdapter {
+    constructor(private readonly channel: string) {}
+
     public createNotification(options: NotificationOptions): void {
         throw new Error('Method not implemented.');
     }
@@ -74,9 +78,11 @@ export class ElectronAdapter implements BrowserAdapter, StorageAdapter, Commands
     public sendMessageToFramesAndTab(tabId: number, message: any): void {
         // TODO implement
     }
-    public sendMessageToFrames(message: any): void {
+    public sendMessageToFrames = (message: any): void => {
         // TODO implement
-    }
+        console.log(this.channel, 'on to frames');
+        ipcRenderer.send(this.channel, message);
+    };
     public sendMessageToAllFramesAndTabs(message: any): void {
         // TODO implement
     }

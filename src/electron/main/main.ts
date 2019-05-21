@@ -1,25 +1,37 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { app, BrowserWindow } from 'electron';
+import { app, BrowserWindow, ipcMain } from 'electron';
 import { join } from 'path';
 
+const fromBackgroundChannel = 'from-background';
+const fromDetailsViewChannel = 'from-details-view';
+
+let detailsViewWindow: BrowserWindow;
+
 const createDetailsViewWindow = () => {
-    const mainWindow = new BrowserWindow({ show: false });
+    detailsViewWindow = new BrowserWindow({ show: false, webPreferences: { nodeIntegration: true } });
 
-    const mainPath = join(__dirname, '../DetailsView/detailsView.html');
+    const detailsViewPath = join(__dirname, '../DetailsView/detailsView.html');
 
-    mainWindow.loadFile(mainPath).catch(console.log);
+    detailsViewWindow.loadFile(detailsViewPath).catch(console.log);
 
-    mainWindow.on('ready-to-show', () => {
-        mainWindow.maximize();
-        mainWindow.show();
+    detailsViewWindow.on('ready-to-show', () => {
+        detailsViewWindow.maximize();
+        detailsViewWindow.show();
 
-        mainWindow.webContents.openDevTools({ mode: 'bottom' });
+        detailsViewWindow.webContents.openDevTools({ mode: 'bottom' });
+    });
+
+    ipcMain.on(fromDetailsViewChannel, (event, ...args) => {
+        console.log('on main', { channel: fromDetailsViewChannel, event, ...args });
+        detailsViewWindow.webContents.send(fromDetailsViewChannel, args);
     });
 };
 
+let backgroundWindow: BrowserWindow;
+
 const createBackgroundWindow = () => {
-    const backgroundWindow = new BrowserWindow({ show: false });
+    backgroundWindow = new BrowserWindow({ show: false, webPreferences: { nodeIntegration: true } });
 
     const backgroundPath = join(__dirname, '../background/background.html');
 
@@ -30,6 +42,11 @@ const createBackgroundWindow = () => {
         backgroundWindow.show();
 
         backgroundWindow.webContents.openDevTools({ mode: 'bottom' });
+    });
+
+    ipcMain.on(fromBackgroundChannel, (event, ...args) => {
+        console.log('on main', { channel: fromBackgroundChannel, event, ...args });
+        backgroundWindow.webContents.send(fromBackgroundChannel, args);
     });
 };
 
