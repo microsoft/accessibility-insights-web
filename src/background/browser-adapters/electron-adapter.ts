@@ -1,13 +1,15 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { ipcRenderer } from 'electron';
+import { ipcRenderer, WebContents } from 'electron';
+import { readFileSync } from 'fs';
+import { join } from 'path';
 
 import { BrowserAdapter, NotificationOptions } from './browser-adapter';
 import { CommandsAdapter } from './commands-adapter';
 import { StorageAdapter } from './storage-adapter';
 
 export class ElectronAdapter implements BrowserAdapter, StorageAdapter, CommandsAdapter {
-    constructor(private readonly sendChannel: string, private readonly listeningChannel) {}
+    constructor(private readonly sendChannel: string, private readonly listeningChannel, private readonly webContent: WebContents) {}
 
     public createNotification(options: NotificationOptions): void {
         throw new Error('Method not implemented.');
@@ -96,10 +98,15 @@ export class ElectronAdapter implements BrowserAdapter, StorageAdapter, Commands
         ipcRenderer.send(this.sendChannel, message);
     };
     public injectJs(tabId: any, file: string, callback: Function): void {
-        throw new Error('Method not implemented.');
+        const jsBuffer = readFileSync(join(__dirname, '..', file));
+
+        const jsContent = jsBuffer.toString();
+
+        this.webContent.executeJavaScript(jsContent, false, callback as any);
     }
     public injectCss(tabId: any, file: string, callback: Function): void {
-        throw new Error('Method not implemented.');
+        const cssBuffer = readFileSync(join(__dirname, '..', file));
+        this.webContent.insertCSS(cssBuffer.toString());
     }
     public getRunTimeId(): string {
         throw new Error('Method not implemented.');

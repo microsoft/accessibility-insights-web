@@ -3,6 +3,7 @@
 import { loadTheme } from 'office-ui-fabric-react';
 import * as ReactDOM from 'react-dom';
 
+import { remote } from 'electron';
 import { AssessmentDefaultMessageGenerator } from '../assessments/assessment-default-message-generator';
 import { Assessments } from '../assessments/assessments';
 import { assessmentsProviderWithFeaturesEnabled } from '../assessments/assessments-feature-flag-filter';
@@ -87,7 +88,7 @@ import { ReportNameGenerator } from './reports/report-name-generator';
 
 declare const window: AutoChecker & Window;
 
-const adapter = new ElectronAdapter(fromDetailsViewChannel, fromBackgroundChannel);
+const adapter = new ElectronAdapter(fromDetailsViewChannel, fromBackgroundChannel, remote.getCurrentWebContents());
 const urlParser = new UrlParser();
 const dom = document;
 const documentElementSetter = new DocumentManipulator(dom);
