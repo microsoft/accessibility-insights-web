@@ -86,7 +86,7 @@ import { ReportNameGenerator } from './reports/report-name-generator';
 
 declare const window: AutoChecker & Window;
 
-const adapter = new ElectronAdapter();
+const adapter = new ElectronAdapter('from-details-view');
 const urlParser = new UrlParser();
 const dom = document;
 const documentElementSetter = new DocumentManipulator(dom);
