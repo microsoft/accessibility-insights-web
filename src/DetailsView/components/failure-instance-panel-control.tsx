@@ -93,6 +93,7 @@ export class FailureInstancePanelControl extends React.Component<FailureInstance
             <GenericPanel {...panelProps}>
                 {testStepConfig.addFailureInstruction}
                 <TextField
+                    className="observed-failure-textfield"
                     label="Observed failure"
                     multiline={true}
                     rows={8}

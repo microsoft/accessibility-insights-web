@@ -2,11 +2,11 @@
 
 exports[`ActionAndCancelButtonsComponent render with primary button href == null 1`] = `
 <div
-  className="action-and-cancel-buttons-component"
+  className="actionAndCancelButtonsComponent"
   hidden={false}
 >
   <div
-    className="button action-cancel-button-col"
+    className="actionCancelButtonCol"
   >
     <CustomizedDefaultButton
       onClick={[Function]}
@@ -14,7 +14,7 @@ exports[`ActionAndCancelButtonsComponent render with primary button href == null
     />
   </div>
   <div
-    className="button action-cancel-button-col"
+    className="actionCancelButtonCol"
   >
     <CustomizedDefaultButton
       disabled={false}
@@ -30,11 +30,11 @@ exports[`ActionAndCancelButtonsComponent render with primary button href == null
 
 exports[`ActionAndCancelButtonsComponent render with primary button href == sample href 1`] = `
 <div
-  className="action-and-cancel-buttons-component"
+  className="actionAndCancelButtonsComponent"
   hidden={false}
 >
   <div
-    className="button action-cancel-button-col"
+    className="actionCancelButtonCol"
   >
     <CustomizedDefaultButton
       onClick={[Function]}
@@ -42,7 +42,7 @@ exports[`ActionAndCancelButtonsComponent render with primary button href == samp
     />
   </div>
   <div
-    className="button action-cancel-button-col"
+    className="actionCancelButtonCol"
   >
     <CustomizedDefaultButton
       disabled={false}

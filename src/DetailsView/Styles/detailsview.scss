@@ -215,8 +215,8 @@ div.insights-file-issue-details-dialog-container {
 }
 
 .failure-instance-panel {
-    .action-and-cancel-buttons-component {
-        padding-top: 12px;
+    .observed-failure-textfield {
+        padding-bottom: 12px;
     }
     .add-failure-instruction {
         font-weight: 500;
@@ -226,14 +226,6 @@ div.insights-file-issue-details-dialog-container {
     .header-text {
         margin-top: 30px;
         font-size: 21px;
-    }
-}
-
-.action-and-cancel-buttons-component {
-    display: flex;
-    justify-content: flex-end;
-    .action-cancel-button-col + .action-cancel-button-col {
-        margin-left: 8px;
     }
 }
 
