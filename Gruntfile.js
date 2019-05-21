@@ -140,7 +140,8 @@ module.exports = function(grunt) {
         exec: {
             'webpack-dev': `${path.resolve('./node_modules/.bin/webpack')} --config-name dev`,
             'webpack-prod': `${path.resolve('./node_modules/.bin/webpack')} --config-name prod`,
-            'webpack-electron': `${path.resolve('./node_modules/.bin/webpack')} --config-name electron`,
+            'webpack-electron-main': `${path.resolve('./node_modules/.bin/webpack')} --config-name electron-main`,
+            'webpack-electron-renderer': `${path.resolve('./node_modules/.bin/webpack')} --config-name electron-renderer`,
             'webpack-all': `${path.resolve('./node_modules/.bin/webpack')}`,
             'generate-scss-typings': `${path.resolve('./node_modules/.bin/tsm')} src`,
         },
@@ -348,7 +349,8 @@ module.exports = function(grunt) {
     grunt.registerTask('build-electron', [
         'clean:intermediates',
         'exec:generate-scss-typings',
-        'exec:webpack-electron',
+        'exec:webpack-electron-main',
+        'exec:webpack-electron-renderer',
         'build-assets',
         'drop:electron',
     ]);
