@@ -1,8 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { app, BrowserWindow, ipcMain, screen } from 'electron';
+import { readFileSync } from 'fs';
 import { join } from 'path';
-import { fromBackgroundChannel, fromDetailsViewChannel } from './communication-channel';
+import { fromBackgroundChannel, fromDetailsViewChannel, injectCssChannel, injectJsChannel } from './communication-channel';
 
 type WindowBounds = {
     x: number;
@@ -53,11 +54,11 @@ const createBackgroundWindow = (windowBounds: WindowBounds = defaultBounds) => {
 let targetPageWindow: BrowserWindow;
 
 const createTargetPageWindow = (windowBounds: WindowBounds = defaultBounds) => {
-    targetPageWindow = new BrowserWindow({ show: false, ...windowBounds });
+    targetPageWindow = new BrowserWindow({ show: false, ...windowBounds, webPreferences: { nodeIntegration: true } });
 
     const targetPageUrl = 'https://ada-cat.github.io/AU/before.html';
 
-    targetPageWindow.loadURL(targetPageUrl);
+    targetPageWindow.loadURL(targetPageUrl).catch(console.log);
 
     targetPageWindow.on('ready-to-show', () => {
         targetPageWindow.show();
@@ -68,13 +69,31 @@ const createTargetPageWindow = (windowBounds: WindowBounds = defaultBounds) => {
 
 const setupCommunication = () => {
     ipcMain.on(fromDetailsViewChannel, (event, ...args) => {
-        console.log('on main', { channel: fromDetailsViewChannel, argsZero: args[0] });
         backgroundWindow.webContents.send(fromDetailsViewChannel, args);
     });
 
     ipcMain.on(fromBackgroundChannel, (event, ...args) => {
-        console.log('on main', { channel: fromBackgroundChannel, argsZero: args[0] });
+        // TODO send args[0] instead of args ??
         detailsViewWindow.webContents.send(fromBackgroundChannel, args);
+        targetPageWindow.webContents.send(fromBackgroundChannel, args);
+    });
+
+    ipcMain.on(injectJsChannel, (event, filepath) => {
+        const relativePath = join(__dirname, '..', filepath);
+        console.log('js relativePath', relativePath);
+        const jsBuffer = readFileSync(relativePath);
+        const jsContent = jsBuffer.toString();
+
+        targetPageWindow.webContents.executeJavaScript(jsContent);
+    });
+
+    ipcMain.on(injectCssChannel, (event, filepath) => {
+        const relativePath = join(__dirname, '..', filepath);
+        console.log('css relativePath', relativePath);
+        const csssBuffer = readFileSync(relativePath);
+        const cssContent = csssBuffer.toString();
+
+        targetPageWindow.webContents.insertCSS(cssContent);
     });
 };
 
