@@ -7,7 +7,7 @@ import { CommandsAdapter } from './commands-adapter';
 import { StorageAdapter } from './storage-adapter';
 
 export class ElectronAdapter implements BrowserAdapter, StorageAdapter, CommandsAdapter {
-    constructor(private readonly channel: string) {}
+    constructor(private readonly sendChannel: string, private readonly listeningChannel) {}
 
     public createNotification(options: NotificationOptions): void {
         throw new Error('Method not implemented.');
@@ -56,6 +56,8 @@ export class ElectronAdapter implements BrowserAdapter, StorageAdapter, Commands
     }
     public tabsQuery(query: chrome.tabs.QueryInfo, callback: (result: chrome.tabs.Tab[]) => void): void {
         // TODO implement
+        // used on background - tab-controller to set up tab context message interpreter
+        callback([{ id: 1 } as chrome.tabs.Tab]);
     }
     public createTab(url: string, callback?: (tab: chrome.tabs.Tab) => void): void {
         throw new Error('Method not implemented.');
@@ -75,17 +77,24 @@ export class ElectronAdapter implements BrowserAdapter, StorageAdapter, Commands
     public getTab(tabId: number, onResolve: (tab: chrome.tabs.Tab) => void, onReject?: () => void): void {
         onResolve({ id: 1 } as chrome.tabs.Tab);
     }
-    public sendMessageToFramesAndTab(tabId: number, message: any): void {
+    public sendMessageToFramesAndTab = (tabId: number, message: any): void => {
         // TODO implement
-    }
+        // used on backgound
+        console.log(this.sendChannel, 'on to frames and tab');
+        ipcRenderer.send(this.sendChannel, message);
+    };
     public sendMessageToFrames = (message: any): void => {
         // TODO implement
-        console.log(this.channel, 'on to frames');
-        ipcRenderer.send(this.channel, message);
+        // used on details view
+        console.log(this.sendChannel, 'on to frames');
+        ipcRenderer.send(this.sendChannel, message);
     };
-    public sendMessageToAllFramesAndTabs(message: any): void {
+    public sendMessageToAllFramesAndTabs = (message: any): void => {
         // TODO implement
-    }
+        // used on background
+        console.log(this.sendChannel, 'on to frames all frames and tabs');
+        ipcRenderer.send(this.sendChannel, message);
+    };
     public injectJs(tabId: any, file: string, callback: Function): void {
         throw new Error('Method not implemented.');
     }
@@ -110,11 +119,27 @@ export class ElectronAdapter implements BrowserAdapter, StorageAdapter, Commands
     public addListenerOnConnect(callback: (port: chrome.runtime.Port) => void): void {
         // Implement
     }
-    public addListenerOnMessage(
+    public addListenerOnMessage = (
         callback: (message: any, sender: chrome.runtime.MessageSender, sendResponse: (response: any) => void) => void,
-    ): void {
+    ): void => {
         // TODO implement this
-    }
+        // background use this on message-distributor
+        // also used on StoreProxy
+
+        const _callback = (message: any, sender: chrome.runtime.MessageSender, sendResponse: (response: any) => void) => {
+            console.log('on addListenerOnMessage callback');
+            console.log('message', sender);
+            console.log('sender', message);
+            // ipcRenderer.on listener param (a Function) have the params in a different order
+            // than chrome.runtim.onMessage.addListener
+            // so basically, we have the message being the sender and viceversa
+            // ipcRenderer use a rest param for the message args (...args: any[])
+            // but we use a payload object
+            // thus, picking sender[0] is the right approach here
+            callback(sender[0], message, sendResponse);
+        };
+        ipcRenderer.on(this.listeningChannel, _callback);
+    };
     public removeListenerOnMessage(
         callback: (message: any, sender: chrome.runtime.MessageSender, sendResponse: (response: any) => void) => void,
     ): void {
