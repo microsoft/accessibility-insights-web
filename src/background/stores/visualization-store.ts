@@ -3,7 +3,8 @@
 import { autobind } from '@uifabric/utilities';
 
 import { TestMode } from '../../common/configs/test-mode';
-import { VisualizationConfiguration, VisualizationConfigurationFactory } from '../../common/configs/visualization-configuration-factory';
+import { VisualizationConfiguration } from '../../common/configs/visualization-configuration';
+import { VisualizationConfigurationFactory } from '../../common/configs/visualization-configuration-factory';
 import { EnumHelper } from '../../common/enum-helper';
 import { Tab } from '../../common/itab';
 import { StoreNames } from '../../common/stores/store-names';

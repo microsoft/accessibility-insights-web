@@ -8,10 +8,8 @@ import { IMock, Mock, Times } from 'typemoq';
 import { IssueFilingServicePropertiesMap } from '../../../../../../common/types/store-data/user-configuration-store';
 import { SettingsDeps } from '../../../../../../DetailsView/components/settings-panel/settings/settings-props';
 import { OnPropertyUpdateCallback } from '../../../../../../issue-filing/components/issue-filing-settings-container';
-import {
-    GitHubIssueFilingService,
-    GitHubIssueFilingSettings,
-} from '../../../../../../issue-filing/services/github/github-issue-filing-service';
+import { GitHubIssueFilingService } from '../../../../../../issue-filing/services/github/github-issue-filing-service';
+import { GitHubIssueFilingSettings } from '../../../../../../issue-filing/services/github/github-issue-filing-settings';
 import { SettingsFormProps } from '../../../../../../issue-filing/types/settings-form-props';
 
 describe('GithubIssueFilingServiceTest', () => {

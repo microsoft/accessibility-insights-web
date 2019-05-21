@@ -1,11 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { IssueFilingServicePropertiesMap } from '../../../../../../common/types/store-data/user-configuration-store';
+import { AzureBoardsIssueFilingService } from '../../../../../../issue-filing/services/azure-boards/azure-boards-issue-filing-service';
 import {
     AzureBoardsIssueDetailField,
-    AzureBoardsIssueFilingService,
     AzureBoardsIssueFilingSettings,
-} from '../../../../../../issue-filing/services/azure-boards/azure-boards-issue-filing-service';
+} from '../../../../../../issue-filing/services/azure-boards/azure-boards-issue-filing-settings';
 import { AzureBoardsSettingsForm } from '../../../../../../issue-filing/services/azure-boards/azure-boards-settings-form';
 
 describe('AzureBoardsIssueFilingServiceTest', () => {

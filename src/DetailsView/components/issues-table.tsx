@@ -9,7 +9,8 @@ import * as React from 'react';
 
 import * as Markup from '../../assessments/markup';
 import { VisualizationToggle } from '../../common/components/visualization-toggle';
-import { VisualizationConfiguration, VisualizationConfigurationFactory } from '../../common/configs/visualization-configuration-factory';
+import { VisualizationConfiguration } from '../../common/configs/visualization-configuration';
+import { VisualizationConfigurationFactory } from '../../common/configs/visualization-configuration-factory';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { UserConfigurationStoreData } from '../../common/types/store-data/user-configuration-store';
 import { VisualizationType } from '../../common/types/visualization-type';

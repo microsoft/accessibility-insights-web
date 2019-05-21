@@ -8,7 +8,7 @@ import { HTTPQueryBuilder } from '../../common/http-query-builder';
 import { IssueDetailsBuilder } from '../../common/issue-details-builder';
 import { IssueFilingUrlStringUtils, IssueUrlCreationUtils } from '../../common/issue-filing-url-string-utils';
 import { HTMLFormatter } from '../../common/markup/html-formatter';
-import { AzureBoardsIssueFilingSettings } from './azure-boards-issue-filing-service';
+import { AzureBoardsIssueFilingSettings } from './azure-boards-issue-filing-settings';
 
 const buildTags = (createIssueData: CreateIssueDetailsTextData, standardTags: string[]): string => {
     const tags = ['Accessibility', title, `rule: ${createIssueData.ruleResult.ruleId}`, ...standardTags];

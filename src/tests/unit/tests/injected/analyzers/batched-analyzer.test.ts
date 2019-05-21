@@ -4,10 +4,8 @@ import { clone, isFunction } from 'lodash';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { ScopingInputTypes } from '../../../../../background/scoping-input-types';
 import { ScopingStore } from '../../../../../background/stores/global/scoping-store';
-import {
-    VisualizationConfiguration,
-    VisualizationConfigurationFactory,
-} from '../../../../../common/configs/visualization-configuration-factory';
+import { VisualizationConfiguration } from '../../../../../common/configs/visualization-configuration';
+import { VisualizationConfigurationFactory } from '../../../../../common/configs/visualization-configuration-factory';
 import { Message } from '../../../../../common/message';
 import { TelemetryDataFactory } from '../../../../../common/telemetry-data-factory';
 import { RuleAnalyzerScanTelemetryData } from '../../../../../common/telemetry-events';

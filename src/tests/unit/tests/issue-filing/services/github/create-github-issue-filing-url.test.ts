@@ -7,7 +7,7 @@ import { HTTPQueryBuilder } from '../../../../../../issue-filing/common/http-que
 import { IssueDetailsBuilder } from '../../../../../../issue-filing/common/issue-details-builder';
 import { IssueUrlCreationUtils } from '../../../../../../issue-filing/common/issue-filing-url-string-utils';
 import { createGitHubIssueFilingUrlProvider } from '../../../../../../issue-filing/services/github/create-github-issue-filing-url';
-import { GitHubIssueFilingSettings } from '../../../../../../issue-filing/services/github/github-issue-filing-service';
+import { GitHubIssueFilingSettings } from '../../../../../../issue-filing/services/github/github-issue-filing-settings';
 import { UrlRectifier } from '../../../../../../issue-filing/services/github/github-url-rectifier';
 import { IssueFilingUrlProvider } from '../../../../../../issue-filing/types/issue-filing-service';
 

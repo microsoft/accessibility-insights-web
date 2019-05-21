@@ -7,10 +7,8 @@ import * as TestUtils from 'react-dom/test-utils';
 import { IMock, It, Mock, Times } from 'typemoq';
 
 import { VisualizationToggle } from '../../../../../common/components/visualization-toggle';
-import {
-    VisualizationConfiguration,
-    VisualizationConfigurationFactory,
-} from '../../../../../common/configs/visualization-configuration-factory';
+import { VisualizationConfiguration } from '../../../../../common/configs/visualization-configuration';
+import { VisualizationConfigurationFactory } from '../../../../../common/configs/visualization-configuration-factory';
 import { TelemetryEventSource } from '../../../../../common/telemetry-events';
 import { DetailsViewPivotType } from '../../../../../common/types/details-view-pivot-type';
 import { VisualizationStoreData } from '../../../../../common/types/store-data/visualization-store-data';

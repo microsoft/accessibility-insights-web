@@ -4,10 +4,8 @@ import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 import { AssessmentsProviderImpl } from '../../../../assessments/assessments-provider';
 import { AssessmentsProvider } from '../../../../assessments/types/assessments-provider';
-import {
-    VisualizationConfiguration,
-    VisualizationConfigurationFactory,
-} from '../../../../common/configs/visualization-configuration-factory';
+import { VisualizationConfiguration } from '../../../../common/configs/visualization-configuration';
+import { VisualizationConfigurationFactory } from '../../../../common/configs/visualization-configuration-factory';
 import { EnumHelper } from '../../../../common/enum-helper';
 import { FeatureFlags, getDefaultFeatureFlagValues } from '../../../../common/feature-flags';
 import { HTMLElementUtils } from '../../../../common/html-element-utils';

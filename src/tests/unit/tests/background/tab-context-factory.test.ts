@@ -17,10 +17,8 @@ import { TabContext } from '../../../../background/tab-context';
 import { TabContextFactory } from '../../../../background/tab-context-factory';
 import { TargetTabController } from '../../../../background/target-tab-controller';
 import { TelemetryEventHandler } from '../../../../background/telemetry/telemetry-event-handler';
-import {
-    VisualizationConfiguration,
-    VisualizationConfigurationFactory,
-} from '../../../../common/configs/visualization-configuration-factory';
+import { VisualizationConfiguration } from '../../../../common/configs/visualization-configuration';
+import { VisualizationConfigurationFactory } from '../../../../common/configs/visualization-configuration-factory';
 import { Messages } from '../../../../common/messages';
 import { StoreNames } from '../../../../common/stores/store-names';
 import { StoreUpdateMessage } from '../../../../common/types/store-update-message';
