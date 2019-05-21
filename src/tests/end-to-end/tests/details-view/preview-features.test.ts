@@ -76,7 +76,7 @@ describe('Preview Features Panel', () => {
 
         const detailsViewPage = await waitForDetailsViewWithPreviewFeaturesPanel(browser, popupPage, targetTabId);
 
-        await detailsViewPage.waitForSelector(detailsViewSelectors.noPreviewFeaturesMessage);
+        await detailsViewPage.waitForSelector(detailsViewSelectors.previewFeaturesPanel);
 
         return detailsViewPage;
     }

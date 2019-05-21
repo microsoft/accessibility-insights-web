@@ -40,21 +40,6 @@ const commonConfig = {
     module: {
         rules: [
             {
-                test: /\.scss$/,
-                use: [
-                    MiniCssExtractPlugin.loader,
-                    {
-                        loader: 'css-loader',
-                        options: {
-                            modules: true,
-                            camelCase: 'only',
-                            localIdentName: '[local]__[hash:base64:5]',
-                        },
-                    },
-                    'sass-loader',
-                ],
-            },
-            {
                 test: /\.tsx?$/,
                 use: [
                     {
@@ -86,6 +71,26 @@ const commonConfig = {
 
 const devConfig = {
     ...commonConfig,
+    module: {
+        rules: [
+            ...commonConfig.module.rules,
+            {
+                test: /\.scss$/,
+                use: [
+                    MiniCssExtractPlugin.loader,
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            modules: true,
+                            camelCase: 'only',
+                            localIdentName: '[local]',
+                        },
+                    },
+                    'sass-loader',
+                ],
+            },
+        ],
+    },
     name: 'dev',
     mode: 'development',
     devtool: 'eval-source-map',
@@ -100,6 +105,26 @@ const devConfig = {
 
 const prodConfig = {
     ...commonConfig,
+    module: {
+        rules: [
+            ...commonConfig.module.rules,
+            {
+                test: /\.scss$/,
+                use: [
+                    MiniCssExtractPlugin.loader,
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            modules: true,
+                            camelCase: 'only',
+                            localIdentName: '[local][hash:base64:5]',
+                        },
+                    },
+                    'sass-loader',
+                ],
+            },
+        ],
+    },
     name: 'prod',
     mode: 'production',
     devtool: false,
