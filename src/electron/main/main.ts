@@ -2,9 +2,7 @@
 // Licensed under the MIT License.
 import { app, BrowserWindow, ipcMain } from 'electron';
 import { join } from 'path';
-
-const fromBackgroundChannel = 'from-background';
-const fromDetailsViewChannel = 'from-details-view';
+import { fromBackgroundChannel, fromDetailsViewChannel } from './communication-channel';
 
 let detailsViewWindow: BrowserWindow;
 
@@ -20,11 +18,6 @@ const createDetailsViewWindow = () => {
         detailsViewWindow.show();
 
         detailsViewWindow.webContents.openDevTools({ mode: 'bottom' });
-    });
-
-    ipcMain.on(fromDetailsViewChannel, (event, ...args) => {
-        console.log('on main', { channel: fromDetailsViewChannel, event, ...args });
-        detailsViewWindow.webContents.send(fromDetailsViewChannel, args);
     });
 };
 
@@ -43,14 +36,21 @@ const createBackgroundWindow = () => {
 
         backgroundWindow.webContents.openDevTools({ mode: 'bottom' });
     });
+};
 
+const setupCommunication = () => {
+    ipcMain.on(fromDetailsViewChannel, (event, ...args) => {
+        console.log('on main', { channel: fromDetailsViewChannel, argsZero: args[0] });
+        backgroundWindow.webContents.send(fromDetailsViewChannel, args);
+    });
     ipcMain.on(fromBackgroundChannel, (event, ...args) => {
-        console.log('on main', { channel: fromBackgroundChannel, event, ...args });
-        backgroundWindow.webContents.send(fromBackgroundChannel, args);
+        console.log('on main', { channel: fromBackgroundChannel, argsZero: args[0] });
+        detailsViewWindow.webContents.send(fromBackgroundChannel, args);
     });
 };
 
 app.on('ready', () => {
     createBackgroundWindow();
     createDetailsViewWindow();
+    setupCommunication();
 });
