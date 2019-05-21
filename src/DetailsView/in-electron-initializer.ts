@@ -47,6 +47,7 @@ import { VisualizationStoreData } from '../common/types/store-data/visualization
 import { UrlParser } from '../common/url-parser';
 import { WindowUtils } from '../common/window-utils';
 import { contentPages } from '../content';
+import { fromBackgroundChannel, fromDetailsViewChannel } from '../electron/main/communication-channel';
 import { ScannerUtils } from '../injected/scanner-utils';
 import { getVersion, scan } from '../scanner/exposed-apis';
 import { DictionaryStringTo } from '../types/common-types';
@@ -86,7 +87,7 @@ import { ReportNameGenerator } from './reports/report-name-generator';
 
 declare const window: AutoChecker & Window;
 
-const adapter = new ElectronAdapter('from-details-view');
+const adapter = new ElectronAdapter(fromDetailsViewChannel, fromBackgroundChannel);
 const urlParser = new UrlParser();
 const dom = document;
 const documentElementSetter = new DocumentManipulator(dom);
