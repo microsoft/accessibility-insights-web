@@ -153,7 +153,10 @@ export class ElectronAdapter implements BrowserAdapter, StorageAdapter, Commands
         throw new Error('Method not implemented.');
     }
     public connect(connectionInfo?: chrome.runtime.ConnectInfo): chrome.runtime.Port {
-        throw new Error('Method not implemented.');
+        // TODO implement this
+        return {
+            onDisconnect: { addListener: () => {} },
+        } as any;
     }
     public getManifest(): chrome.runtime.Manifest {
         // TODO implement this
@@ -167,6 +170,6 @@ export class ElectronAdapter implements BrowserAdapter, StorageAdapter, Commands
         return this.getManifest().version;
     }
     public getUrl(urlPart: string): string {
-        throw new Error('Method not implemented.');
+        return join(__dirname, '..', urlPart);
     }
 }
