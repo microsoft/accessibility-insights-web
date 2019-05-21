@@ -6,7 +6,7 @@ import { join } from 'path';
 const createDetailsViewWindow = () => {
     const mainWindow = new BrowserWindow({ show: false });
 
-    const mainPath = join(__dirname, '../electron/main/main.html');
+    const mainPath = join(__dirname, '../DetailsView/detailsView.html');
 
     mainWindow.loadFile(mainPath).catch(console.log);
 
