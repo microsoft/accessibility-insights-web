@@ -61,6 +61,8 @@ const createTargetPageWindow = (windowBounds: WindowBounds = defaultBounds) => {
 
     targetPageWindow.on('ready-to-show', () => {
         targetPageWindow.show();
+
+        targetPageWindow.webContents.openDevTools({ mode: 'bottom' });
     });
 };
 
