@@ -19,7 +19,7 @@ const commonPlugins = [
     new CaseSensitivePathsPlugin(),
 ];
 
-const commonEntryFiles = {
+const extensionEntryFiles = {
     injected: [path.resolve(__dirname, 'src/injected/stylesheet-init.ts'), path.resolve(__dirname, 'src/injected/client-init.ts')],
     popup: path.resolve(__dirname, 'src/popup/popup-init.ts'),
     insights: [path.resolve(__dirname, 'src/views/insights/initializer.ts')],
@@ -33,46 +33,42 @@ const electronEntryFiles = {
     injected: [path.resolve(__dirname, 'src/injected/stylesheet-init.ts'), path.resolve(__dirname, 'src/injected/client-init.ts')],
 };
 
-const createCommonConfig = entry => {
-    const baseConfig = {
-        entry,
-        module: {
-            rules: [
-                {
-                    test: /\.tsx?$/,
-                    use: [
-                        {
-                            loader: 'ts-loader',
-                            options: {
-                                transpileOnly: true,
-                                experimentalWatchApi: true,
-                            },
+const commonConfig = {
+    module: {
+        rules: [
+            {
+                test: /\.tsx?$/,
+                use: [
+                    {
+                        loader: 'ts-loader',
+                        options: {
+                            transpileOnly: true,
+                            experimentalWatchApi: true,
                         },
-                    ],
-                    exclude: ['/node_modules/'],
-                },
-            ],
-        },
-        resolve: {
-            modules: [path.resolve(__dirname, 'node_modules')],
-            extensions: ['.tsx', '.ts', '.js'],
-        },
-        plugins: commonPlugins,
-        node: {
-            setImmediate: false,
-        },
-        performance: {
-            // We allow higher-than-normal sizes because our users only have to do local fetches of our bundles
-            maxEntrypointSize: 10 * 1024 * 1024,
-            maxAssetSize: 10 * 1024 * 1024,
-        },
-    };
-
-    return baseConfig;
+                    },
+                ],
+                exclude: ['/node_modules/'],
+            },
+        ],
+    },
+    resolve: {
+        modules: [path.resolve(__dirname, 'node_modules')],
+        extensions: ['.tsx', '.ts', '.js'],
+    },
+    plugins: commonPlugins,
+    node: {
+        setImmediate: false,
+    },
+    performance: {
+        // We allow higher-than-normal sizes because our users only have to do local fetches of our bundles
+        maxEntrypointSize: 10 * 1024 * 1024,
+        maxAssetSize: 10 * 1024 * 1024,
+    },
 };
 
 const electronConfig = {
-    ...createCommonConfig(electronEntryFiles),
+    ...commonConfig,
+    entry: electronEntryFiles,
     name: 'electron',
     mode: 'development',
     output: {
@@ -80,6 +76,7 @@ const electronConfig = {
         filename: '[name].bundle.js',
     },
     node: {
+        setImmediate: false,
         __dirname: false,
         __filename: false,
     },
@@ -90,7 +87,8 @@ const electronConfig = {
 };
 
 const devConfig = {
-    ...createCommonConfig(commonEntryFiles),
+    ...commonConfig,
+    entry: extensionEntryFiles,
     name: 'dev',
     mode: 'development',
     devtool: 'eval-source-map',
@@ -104,7 +102,8 @@ const devConfig = {
 };
 
 const prodConfig = {
-    ...createCommonConfig(commonEntryFiles),
+    ...commonConfig,
+    entry: extensionEntryFiles,
     name: 'prod',
     mode: 'production',
     devtool: false,
