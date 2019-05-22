@@ -5,7 +5,6 @@ import { Icon } from 'office-ui-fabric-react/lib/Icon';
 import { ResponsiveMode } from 'office-ui-fabric-react/lib/utilities/decorators/withResponsiveMode';
 import * as React from 'react';
 
-import { isEqual } from 'lodash';
 import { DetailsViewPivotType } from '../../../src/common/types/details-view-pivot-type';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 
