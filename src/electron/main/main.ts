@@ -27,42 +27,29 @@ const defaultBounds: WindowBounds = {
 };
 
 let detailsViewWindow: BrowserWindow;
-
-const createDetailsViewWindow = (windowBounds: WindowBounds = defaultBounds) => {
-    detailsViewWindow = new BrowserWindow({ show: false, webPreferences: { nodeIntegration: true }, ...windowBounds });
-
-    const detailsViewPath = join(__dirname, '../DetailsView/detailsView.html');
-
-    detailsViewWindow.loadFile(detailsViewPath).catch(console.log);
-
-    detailsViewWindow.on('ready-to-show', detailsViewWindow.show);
-};
-
 let backgroundWindow: BrowserWindow;
-
-const createBackgroundWindow = (windowBounds: WindowBounds = defaultBounds) => {
-    backgroundWindow = new BrowserWindow({ show: false, webPreferences: { nodeIntegration: true }, ...windowBounds });
-
-    const backgroundPath = join(__dirname, '../background/background.html');
-
-    backgroundWindow.loadFile(backgroundPath).catch(console.log);
-
-    backgroundWindow.on('ready-to-show', () => {
-        backgroundWindow.show();
-        backgroundWindow.webContents.openDevTools({ mode: 'bottom' });
-    });
-};
-
 let targetPageWindow: BrowserWindow;
 
-const createTargetPageWindow = (windowBounds: WindowBounds = defaultBounds) => {
-    targetPageWindow = new BrowserWindow({ show: false, ...windowBounds, webPreferences: { nodeIntegration: true, webSecurity: false } });
+const createWindowAndLoadFile = (filepath: string, windowBounds: WindowBounds = defaultBounds): BrowserWindow => {
+    const window = new BrowserWindow({ show: false, webPreferences: { nodeIntegration: true }, ...windowBounds });
 
-    const targetPageUrl = 'https://ada-cat.github.io/AU/before.html';
+    const path = join(__dirname, filepath);
 
-    targetPageWindow.loadURL(targetPageUrl).catch(console.log);
+    window.loadFile(path).catch(console.log);
 
-    targetPageWindow.on('ready-to-show', targetPageWindow.show);
+    window.on('ready-to-show', window.show);
+
+    return window;
+};
+
+const createWindowAndLoadUrl = (url: string, windowBounds: WindowBounds = defaultBounds): BrowserWindow => {
+    const window = new BrowserWindow({ show: false, ...windowBounds, webPreferences: { nodeIntegration: true, webSecurity: false } });
+
+    window.loadURL(url).catch(console.log);
+
+    window.on('ready-to-show', window.show);
+
+    return window;
 };
 
 const setupCommunication = () => {
@@ -120,9 +107,13 @@ app.on('ready', () => {
         width: Math.ceil(fullWidth - fractionWidth),
     };
 
-    createBackgroundWindow();
-    createDetailsViewWindow(detailsViewBounds);
-    createTargetPageWindow(targetPageBounds);
+    backgroundWindow = createWindowAndLoadFile('../background/background.html');
+    backgroundWindow.setTitle('background');
+    backgroundWindow.webContents.openDevTools({ mode: 'bottom' });
+
+    detailsViewWindow = createWindowAndLoadFile('../DetailsView/detailsView.html', detailsViewBounds);
+
+    targetPageWindow = createWindowAndLoadUrl('https://ada-cat.github.io/AU/before.html', targetPageBounds);
 
     setupCommunication();
 });
