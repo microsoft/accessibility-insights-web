@@ -72,7 +72,7 @@ const createCommonConfig = entry => {
 };
 
 const electronConfig = {
-    ...createCommonConfig(electronEntryFiles, true),
+    ...createCommonConfig(electronEntryFiles),
     name: 'electron',
     mode: 'development',
     output: {
