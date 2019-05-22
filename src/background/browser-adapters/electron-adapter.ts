@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { ipcRenderer, WebContents } from 'electron';
+import { ipcRenderer } from 'electron';
 import { resolve } from 'path';
 
 import { injectCssChannel, injectJsChannel, jsInjectionCompleted } from '../../electron/main/communication-channel';
@@ -9,7 +9,7 @@ import { CommandsAdapter } from './commands-adapter';
 import { StorageAdapter } from './storage-adapter';
 
 export class ElectronAdapter implements BrowserAdapter, StorageAdapter, CommandsAdapter {
-    constructor(private readonly sendChannel: string, private readonly listeningChannel, private readonly webContent: WebContents) {}
+    constructor(private readonly sendChannel: string, private readonly listeningChannel) {}
 
     public createNotification(options: NotificationOptions): void {
         throw new Error('Method not implemented.');
