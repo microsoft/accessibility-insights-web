@@ -77,7 +77,7 @@ const electronConfig = {
         filename: '[name].bundle.js',
     },
     node: {
-        setImmediate: false,
+        ...commonConfig.node,
         __dirname: false,
         __filename: false,
     },
