@@ -82,19 +82,16 @@ export class ElectronAdapter implements BrowserAdapter, StorageAdapter, Commands
     public sendMessageToFramesAndTab = (tabId: number, message: any): void => {
         // TODO implement
         // used on backgound
-        console.log(this.sendChannel, 'on to frames and tab');
         ipcRenderer.send(this.sendChannel, message);
     };
     public sendMessageToFrames = (message: any): void => {
         // TODO implement
         // used on details view
-        console.log(this.sendChannel, 'on to frames');
         ipcRenderer.send(this.sendChannel, message);
     };
     public sendMessageToAllFramesAndTabs = (message: any): void => {
         // TODO implement
         // used on background
-        console.log(this.sendChannel, 'on to frames all frames and tabs');
         ipcRenderer.send(this.sendChannel, message);
     };
     public injectJs(tabId: any, file: string, callback: Function): void {
@@ -131,9 +128,6 @@ export class ElectronAdapter implements BrowserAdapter, StorageAdapter, Commands
         // also used on StoreProxy
 
         const _callback = (message: any, sender: chrome.runtime.MessageSender, sendResponse: (response: any) => void) => {
-            console.log('on addListenerOnMessage callback');
-            console.log('message', sender);
-            console.log('sender', message);
             // ipcRenderer.on listener param (a Function) have the params in a different order
             // than chrome.runtim.onMessage.addListener
             // so basically, we have the message being the sender and viceversa
