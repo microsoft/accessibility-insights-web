@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { ipcRenderer, WebContents } from 'electron';
-import { join } from 'path';
+import { resolve } from 'path';
 
 import { injectCssChannel, injectJsChannel, jsInjectionCompleted } from '../../electron/main/communication-channel';
 import { BrowserAdapter, NotificationOptions } from './browser-adapter';
@@ -172,6 +172,7 @@ export class ElectronAdapter implements BrowserAdapter, StorageAdapter, Commands
         return this.getManifest().version;
     }
     public getUrl(urlPart: string): string {
-        return join(__dirname, '..', urlPart);
+        // TODO find a way to get the correct PWD
+        return resolve('drop/electron/extension', urlPart);
     }
 }
