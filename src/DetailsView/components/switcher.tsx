@@ -74,7 +74,7 @@ export class Switcher extends React.Component<SwitcherProps, SwitcherState> {
     public render(): JSX.Element {
         return (
             <Dropdown
-                ariaLabel="select workflow"
+                ariaLabel="select activity"
                 responsiveMode={ResponsiveMode.large}
                 selectedKey={this.state.selectedKey}
                 onRenderOption={this.onRenderOption}
