@@ -36,6 +36,7 @@ const electronRendererEntryFiles = {
     injected: [path.resolve(__dirname, 'src/injected/stylesheet-init.ts'), path.resolve(__dirname, 'src/injected/electron-client-init.ts')],
     detailsView: [path.resolve(__dirname, 'src/DetailsView/in-electron-initializer.ts')],
     background: [path.resolve(__dirname, 'src/background/in-electron-background-init.ts')],
+    insights: [path.resolve(__dirname, 'src/views/insights/electron-initializer.ts')],
 };
 
 const commonConfig = {
