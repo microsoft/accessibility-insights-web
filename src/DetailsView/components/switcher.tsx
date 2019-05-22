@@ -27,6 +27,12 @@ export class Switcher extends React.Component<SwitcherProps, SwitcherState> {
         this.state = { selectedKey: props.pivotKey };
     }
 
+    public componentDidUpdate(prevProps: Readonly<SwitcherProps>): void {
+        if (prevProps.pivotKey !== this.props.pivotKey) {
+            this.setState(() => ({ selectedKey: this.props.pivotKey }));
+        }
+    }
+
     private onRenderOption = (option: IDropdownOption): JSX.Element => {
         return (
             <div className="switcher-dropdown-option" aria-hidden="true">
