@@ -35,11 +35,7 @@ const createDetailsViewWindow = (windowBounds: WindowBounds = defaultBounds) => 
 
     detailsViewWindow.loadFile(detailsViewPath).catch(console.log);
 
-    detailsViewWindow.on('ready-to-show', () => {
-        detailsViewWindow.show();
-
-        detailsViewWindow.webContents.openDevTools({ mode: 'bottom' });
-    });
+    detailsViewWindow.on('ready-to-show', detailsViewWindow.show);
 };
 
 let backgroundWindow: BrowserWindow;
@@ -53,7 +49,6 @@ const createBackgroundWindow = (windowBounds: WindowBounds = defaultBounds) => {
 
     backgroundWindow.on('ready-to-show', () => {
         backgroundWindow.show();
-
         backgroundWindow.webContents.openDevTools({ mode: 'bottom' });
     });
 };
@@ -67,11 +62,7 @@ const createTargetPageWindow = (windowBounds: WindowBounds = defaultBounds) => {
 
     targetPageWindow.loadURL(targetPageUrl).catch(console.log);
 
-    targetPageWindow.on('ready-to-show', () => {
-        targetPageWindow.show();
-
-        targetPageWindow.webContents.openDevTools({ mode: 'bottom' });
-    });
+    targetPageWindow.on('ready-to-show', targetPageWindow.show);
 };
 
 const setupCommunication = () => {
