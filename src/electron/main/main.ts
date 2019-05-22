@@ -3,7 +3,13 @@
 import { app, BrowserWindow, ipcMain, screen } from 'electron';
 import { readFileSync } from 'fs';
 import { join } from 'path';
-import { fromBackgroundChannel, fromDetailsViewChannel, injectCssChannel, injectJsChannel } from './communication-channel';
+import {
+    fromBackgroundChannel,
+    fromDetailsViewChannel,
+    injectCssChannel,
+    injectJsChannel,
+    jsInjectionCompleted,
+} from './communication-channel';
 
 type WindowBounds = {
     x: number;
@@ -84,6 +90,7 @@ const setupCommunication = () => {
         const jsContent = jsBuffer.toString();
 
         targetPageWindow.webContents.executeJavaScript(jsContent);
+        event.reply(jsInjectionCompleted);
     });
 
     ipcMain.on(injectCssChannel, (event, filepath) => {

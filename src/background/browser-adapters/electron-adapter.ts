@@ -3,7 +3,7 @@
 import { ipcRenderer, WebContents } from 'electron';
 import { join } from 'path';
 
-import { injectCssChannel, injectJsChannel } from '../../electron/main/communication-channel';
+import { injectCssChannel, injectJsChannel, jsInjectionCompleted } from '../../electron/main/communication-channel';
 import { BrowserAdapter, NotificationOptions } from './browser-adapter';
 import { CommandsAdapter } from './commands-adapter';
 import { StorageAdapter } from './storage-adapter';
@@ -96,7 +96,12 @@ export class ElectronAdapter implements BrowserAdapter, StorageAdapter, Commands
     };
     public injectJs(tabId: any, file: string, callback: Function): void {
         ipcRenderer.send(injectJsChannel, file);
-        callback();
+
+        const _callback = () => {
+            ipcRenderer.removeListener(jsInjectionCompleted, _callback);
+            callback();
+        };
+        ipcRenderer.on(jsInjectionCompleted, _callback);
     }
     public injectCss(tabId: any, file: string, callback: Function): void {
         ipcRenderer.send(injectCssChannel, file);
