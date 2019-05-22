@@ -80,7 +80,6 @@ const setupCommunication = () => {
 
     ipcMain.on(injectJsChannel, (event, filepath) => {
         const relativePath = join(__dirname, '..', filepath);
-        console.log('js relativePath', relativePath);
         const jsBuffer = readFileSync(relativePath);
         const jsContent = jsBuffer.toString();
 
@@ -89,7 +88,6 @@ const setupCommunication = () => {
 
     ipcMain.on(injectCssChannel, (event, filepath) => {
         const relativePath = join(__dirname, '..', filepath);
-        console.log('css relativePath', relativePath);
         const csssBuffer = readFileSync(relativePath);
         const cssContent = csssBuffer.toString();
 
