@@ -3,6 +3,7 @@
 import { app, BrowserWindow, ipcMain, screen } from 'electron';
 import { readFileSync } from 'fs';
 import { join } from 'path';
+
 import {
     fromBackgroundChannel,
     fromDetailsViewChannel,
@@ -60,7 +61,7 @@ const createBackgroundWindow = (windowBounds: WindowBounds = defaultBounds) => {
 let targetPageWindow: BrowserWindow;
 
 const createTargetPageWindow = (windowBounds: WindowBounds = defaultBounds) => {
-    targetPageWindow = new BrowserWindow({ show: false, ...windowBounds, webPreferences: { nodeIntegration: true } });
+    targetPageWindow = new BrowserWindow({ show: false, ...windowBounds, webPreferences: { nodeIntegration: true, webSecurity: false } });
 
     const targetPageUrl = 'https://ada-cat.github.io/AU/before.html';
 
