@@ -52,7 +52,7 @@ export class ElectronWindowInitializer {
     public async initialize(): Promise<void> {
         const asyncInitializationSteps: Promise<void>[] = [];
 
-        this.clientChromeAdapter = new ElectronAdapter(fromDetailsViewChannel, fromBackgroundChannel, null);
+        this.clientChromeAdapter = new ElectronAdapter(fromDetailsViewChannel, fromBackgroundChannel);
         this.windowUtils = new WindowUtils();
         const htmlElementUtils = new HTMLElementUtils();
         const xmlHttpRequestFactory = new XMLHttpRequestFactory();
