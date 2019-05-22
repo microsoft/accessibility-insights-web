@@ -5,6 +5,7 @@ import { Icon } from 'office-ui-fabric-react/lib/Icon';
 import { ResponsiveMode } from 'office-ui-fabric-react/lib/utilities/decorators/withResponsiveMode';
 import * as React from 'react';
 
+import { isEqual } from 'lodash';
 import { DetailsViewPivotType } from '../../../src/common/types/details-view-pivot-type';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 
@@ -25,6 +26,12 @@ export class Switcher extends React.Component<SwitcherProps, SwitcherState> {
     constructor(props: SwitcherProps) {
         super(props);
         this.state = { selectedKey: props.pivotKey };
+    }
+
+    public componentDidUpdate(prevProps: Readonly<SwitcherProps>): void {
+        if (isEqual(prevProps, this.props) === false) {
+            this.setState(() => ({ selectedKey: this.props.pivotKey }));
+        }
     }
 
     private onRenderOption = (option: IDropdownOption): JSX.Element => {
