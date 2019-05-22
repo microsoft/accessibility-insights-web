@@ -87,6 +87,12 @@ export class ElectronAdapter implements BrowserAdapter, StorageAdapter, Commands
     public sendMessageToFrames = (message: any): void => {
         // TODO implement
         // used on details view
+
+        // TODO remove hardcoded tabId here
+        if (message.tabId == null) {
+            message.tabId = 1;
+        }
+
         ipcRenderer.send(this.sendChannel, message);
     };
     public sendMessageToAllFramesAndTabs = (message: any): void => {
