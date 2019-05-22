@@ -19,7 +19,7 @@ const commonPlugins = [
     new CaseSensitivePathsPlugin(),
 ];
 
-const extensionEntryFiles = {
+const commonEntryFiles = {
     injected: [path.resolve(__dirname, 'src/injected/stylesheet-init.ts'), path.resolve(__dirname, 'src/injected/client-init.ts')],
     popup: path.resolve(__dirname, 'src/popup/popup-init.ts'),
     insights: [path.resolve(__dirname, 'src/views/insights/initializer.ts')],
@@ -34,6 +34,7 @@ const electronEntryFiles = {
 };
 
 const commonConfig = {
+    entry: commonEntryFiles,
     module: {
         rules: [
             {
@@ -88,7 +89,6 @@ const electronConfig = {
 
 const devConfig = {
     ...commonConfig,
-    entry: extensionEntryFiles,
     name: 'dev',
     mode: 'development',
     devtool: 'eval-source-map',
@@ -103,7 +103,6 @@ const devConfig = {
 
 const prodConfig = {
     ...commonConfig,
-    entry: extensionEntryFiles,
     name: 'prod',
     mode: 'production',
     devtool: false,
