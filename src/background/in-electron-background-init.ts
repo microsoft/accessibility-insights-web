@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { AppInsights } from 'applicationinsights-js';
-import { remote } from 'electron';
 
 import { Assessments } from '../assessments/assessments';
 import { AxeInfo } from '../common/axe-info';
@@ -38,7 +37,7 @@ import { TelemetryStateListener } from './telemetry/telemetry-state-listener';
 import { UserStoredDataCleaner } from './user-stored-data-cleaner';
 
 declare var window: Window & InsightsFeatureFlags;
-const browserAdapter = new ElectronAdapter(fromBackgroundChannel, fromDetailsViewChannel, remote.getCurrentWebContents());
+const browserAdapter = new ElectronAdapter(fromBackgroundChannel, fromDetailsViewChannel);
 const urlValidator = new UrlValidator(browserAdapter);
 const backgroundInitCleaner = new UserStoredDataCleaner(browserAdapter);
 
