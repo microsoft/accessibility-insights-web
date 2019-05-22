@@ -22,7 +22,7 @@
         "format": "prettier --config prettier.config.js --write \"**/*\"",
         "format-check": "prettier --config prettier.config.js --check \"**/*\"",
         "precheckin": "npm-run-all --serial format-check tslint copyrightheaders build:all test test:e2e",
-        "start": "electron drop/electron/extension/bundle/main.bundle.js",
+        "start:electron": "electron drop/electron/extension/bundle/main.bundle.js",
         "test": "jest --projects src/tests/unit",
         "test:e2e": "jest --projects src/tests/end-to-end --runInBand",
         "tslint": "tslint -c ./tslint.json -p ./tsconfig.json",
