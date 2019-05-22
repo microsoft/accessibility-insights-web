@@ -29,7 +29,7 @@ export class Switcher extends React.Component<SwitcherProps, SwitcherState> {
     }
 
     public componentDidUpdate(prevProps: Readonly<SwitcherProps>): void {
-        if (isEqual(prevProps, this.props) === false) {
+        if (prevProps.pivotKey !== this.props.pivotKey) {
             this.setState(() => ({ selectedKey: this.props.pivotKey }));
         }
     }
