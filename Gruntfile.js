@@ -336,14 +336,20 @@ module.exports = function(grunt) {
     grunt.registerTask('build-assets', ['sass', 'copy:code', 'copy:styles', 'embed-styles:code', 'copy:images']);
 
     // Main entry points for npm scripts:
-<<<<<<< HEAD
     grunt.registerTask('build-dev', ['clean:intermediates', 'exec:generate-scss-typings', 'exec:webpack-dev', 'build-assets', 'drop:dev']);
     grunt.registerTask('build-prod', [
         'clean:intermediates',
         'exec:generate-scss-typings',
         'exec:webpack-prod',
         'build-assets',
-        'release-drops',
+        'drop:production',
+    ]);
+    grunt.registerTask('build-electron', [
+        'clean:intermediates',
+        'exec:generate-scss-typings',
+        'exec:webpack-electron',
+        'build-assets',
+        'drop:electron',
     ]);
     grunt.registerTask('build-all', [
         'clean:intermediates',
@@ -351,17 +357,7 @@ module.exports = function(grunt) {
         'exec:webpack-all',
         'build-assets',
         'drop:dev',
-=======
-    grunt.registerTask('build-dev', ['clean:intermediates', 'exec:webpack-dev', 'build-assets', 'drop:dev']);
-    grunt.registerTask('build-prod', ['clean:intermediates', 'exec:webpack-prod', 'build-assets', 'drop:production']);
-    grunt.registerTask('build-electron', ['clean:intermediates', 'exec:webpack-electron', 'build-assets', 'drop:electron']);
-    grunt.registerTask('build-all', [
-        'clean:intermediates',
-        'exec:webpack-all',
-        'build-assets',
-        'drop:dev',
         'drop:electron',
->>>>>>> master
         'release-drops',
     ]);
 
