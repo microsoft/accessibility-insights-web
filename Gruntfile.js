@@ -170,7 +170,7 @@ module.exports = function(grunt) {
             },
             scss: {
                 files: ['src/**/*.scss'],
-                tasks: ['exec:generate-scss-typings', 'sass', 'copy:styles', 'embed-styles:code', 'drop:dev'],
+                tasks: ['sass', 'copy:styles', 'embed-styles:code', 'drop:dev'],
             },
             // We assume webpack --watch is running separately (usually via 'yarn watch')
             'webpack-output': {

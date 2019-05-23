@@ -18,9 +18,6 @@ jobs:
           - script: yarn copyrightheaders
             displayName: check copyrightheaders
 
-          - script: yarn generate-scss-typings
-            displayName: generate typings for scss files
-
           - script: yarn test --ci
             displayName: run unit tests
 

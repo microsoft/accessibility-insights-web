@@ -64,6 +64,10 @@ export class Page {
         );
     }
 
+    public async waitForId(id: string): Promise<Puppeteer.ElementHandle<Element>> {
+        return this.waitForSelector(`#${id}`);
+    }
+
     public async waitForSelectorToDisappear(selector: string): Promise<void> {
         await this.screenshotOnError(
             async () =>

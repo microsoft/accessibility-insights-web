@@ -3,5 +3,4 @@
 export const detailsViewSelectors = {
     previewFeaturesPanel: '.preview-features-panel',
     previewFeaturesPanelToggleList: '.preview-feature-toggle-list',
-    noPreviewFeaturesMessage: '.no-preview-feature-message',
 };
