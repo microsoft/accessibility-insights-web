@@ -5,8 +5,9 @@ import * as React from 'react';
 
 import { NewTabLink } from '../../../../../common/components/new-tab-link';
 import { ContentActionMessageCreator } from '../../../../../common/message-creators/content-action-message-creator';
-import { ContentLink } from '../../../../../views/content/content-link';
+import { ContentLink, ContentLinkDeps } from '../../../../../views/content/content-link';
 import { ContentPage } from '../../../../../views/content/content-page';
+import { NullUrlDecorator } from '../../../../../views/content/url-decorator/null-url-decorator';
 
 describe('ContentLink', () => {
     const contentPath = 'for/testing';
@@ -24,9 +25,10 @@ describe('ContentLink', () => {
         openContentPage,
     } as Partial<ContentActionMessageCreator>) as ContentActionMessageCreator;
 
-    const deps = {
+    const deps: ContentLinkDeps = {
         contentProvider,
         contentActionMessageCreator,
+        contentUrlDecorator: NullUrlDecorator,
     };
 
     it('render null when reference is not defined', () => {

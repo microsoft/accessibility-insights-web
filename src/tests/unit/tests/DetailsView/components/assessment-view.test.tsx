@@ -3,7 +3,6 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import { IMock, It, Mock, Times } from 'typemoq';
-
 import { AssessmentDefaultMessageGenerator } from '../../../../../assessments/assessment-default-message-generator';
 import { AssessmentsProvider } from '../../../../../assessments/types/assessments-provider';
 import { AssessmentTestResult } from '../../../../../common/assessment/assessment-test-result';
@@ -22,6 +21,7 @@ import {
     outcomeTypeFromTestStatus,
     outcomeTypeSemanticsFromTestStatus,
 } from '../../../../../DetailsView/reports/components/requirement-outcome-type';
+import { ContentUrlDecorator } from '../../../../../views/content/url-decorator/content-url-decorator';
 import { contentProvider, CreateTestAssessmentProvider } from '../../../common/test-assessment-provider';
 
 describe('AssessmentViewTest', () => {
@@ -224,6 +224,7 @@ class AssessmentViewPropsBuilder {
             outcomeTypeSemanticsFromTestStatus: Mock.ofInstance(outcomeTypeSemanticsFromTestStatus).object,
             urlParser: Mock.ofType(UrlParser).object,
             getGuidanceTagsFromGuidanceLinks: Mock.ofType<GetGuidanceTagsFromGuidanceLinks>().object,
+            contentUrlDecorator: Mock.ofType<ContentUrlDecorator>().object,
         };
         const assessment = this.provider.all()[0];
         const firstStep = assessment.requirements[0];

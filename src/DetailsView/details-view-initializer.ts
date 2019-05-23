@@ -53,6 +53,7 @@ import { FixInstructionProcessor } from '../injected/fix-instruction-processor';
 import { ScannerUtils } from '../injected/scanner-utils';
 import { getVersion, scan } from '../scanner/exposed-apis';
 import { DictionaryStringTo } from '../types/common-types';
+import { NullUrlDecorator } from '../views/content/url-decorator/null-url-decorator';
 import { IssueFilingServiceProviderImpl } from './../issue-filing/issue-filing-service-provider-impl';
 import { DetailsViewActionMessageCreator } from './actions/details-view-action-message-creator';
 import { IssuesSelectionFactory } from './actions/issues-selection-factory';
@@ -293,6 +294,7 @@ if (isNaN(tabId) === false) {
                 issueFilingServiceProvider: IssueFilingServiceProviderImpl,
                 getGuidanceTagsFromGuidanceLinks: GetGuidanceTagsFromGuidanceLinks,
                 reportGenerator,
+                contentUrlDecorator: NullUrlDecorator,
             };
 
             const renderer = new DetailsViewRenderer(
