@@ -143,7 +143,6 @@ export class AssessmentBuilder {
             disableTest: AssessmentBuilder.disableTest,
             getTestStatus: AssessmentBuilder.getTestStatus,
             getAssessmentData: data => data.assessments[key],
-            analyzerMessageType: Messages.Assessment.AssessmentScanCompleted,
             key: `${key}Assessment`,
             getAnalyzer: getAnalyzer,
             getIdentifier: getIdentifier,

@@ -21,7 +21,6 @@ export interface VisualizationConfiguration extends AssesssmentVisualizationConf
     chromeCommand: string;
     launchPanelDisplayOrder: number;
     adhocToolsPanelDisplayOrder: number;
-    analyzerMessageType: string;
     analyzerProgressMessageType?: string;
     analyzerTerminatedMessageType?: string;
     guidance?: ContentPageComponent;

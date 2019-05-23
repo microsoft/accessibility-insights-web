@@ -33,7 +33,6 @@ export const ColorAdHocVisualization: VisualizationConfiguration = {
     chromeCommand: '05_toggle-color',
     launchPanelDisplayOrder: 5,
     adhocToolsPanelDisplayOrder: 2,
-    analyzerMessageType: Messages.Visualizations.Common.ScanCompleted,
     resultProcessor: (scanner: ScannerUtils) => scanner.getAllCompletedInstances,
     getAnalyzer: provider =>
         provider.createRuleAnalyzer({

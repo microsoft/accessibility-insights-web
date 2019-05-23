@@ -104,7 +104,6 @@ describe('AssessmentBuilderTest', () => {
         const vizStoreData = { assessments: { manualAssessmentKeyAssessment: scanData } } as any;
         expect(config.getStoreData(vizStoreData)).toEqual(scanData);
 
-        expect(config.analyzerMessageType).toEqual(Messages.Assessment.AssessmentScanCompleted);
         expect(config.getIdentifier(selectedRequirementKey)).toBe(requirement.key);
         expect(config.visualizationInstanceProcessor()).toBe(VisualizationInstanceProcessor.nullProcessor);
         expect(config.getInstanceIdentiferGenerator(selectedRequirementKey)).toBe(getInstanceIdentifierMock.object);
@@ -216,9 +215,7 @@ describe('AssessmentBuilderTest', () => {
             gettingStarted: <span>getting started</span>,
             requirements: [requirement1, requirement2, requirement3, requirement4, requirement5, requirement6],
             storeDataKey: 'headingsAssessment',
-            visualizationConfiguration: {
-                analyzerMessageType: Messages.Assessment.AssessmentScanCompleted,
-            },
+            visualizationConfiguration: {},
             requirementOrder: RequirementComparer.byOutcomeAndName,
         };
 
@@ -268,7 +265,6 @@ describe('AssessmentBuilderTest', () => {
         config.getDrawer(drawerProviderMock.object, requirement5.key);
 
         expect(config.getStoreData(vizStoreData)).toEqual(scanData);
-        expect(config.analyzerMessageType).toEqual(Messages.Assessment.AssessmentScanCompleted);
         expect(config.resultProcessor(scannerStub as ScannerUtils)).toEqual(scannerStub.getAllCompletedInstances);
         expect(config.telemetryProcessor(telemetryFactoryStub as TelemetryDataFactory)).toEqual(
             telemetryFactoryStub.forAssessmentRequirementScan,

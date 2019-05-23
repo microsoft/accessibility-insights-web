@@ -42,7 +42,6 @@ export const KeyboardInteraction: Assessment = AssessmentBuilder.Assisted({
     storeDataKey: 'keyboardInteractionAssessment',
     visualizationConfiguration: {
         key: key,
-        analyzerMessageType: Messages.Assessment.AssessmentScanCompleted,
         analyzerProgressMessageType: Messages.Assessment.TabbedElementAdded,
     },
 });

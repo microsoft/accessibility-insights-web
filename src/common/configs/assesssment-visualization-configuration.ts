@@ -25,7 +25,6 @@ export interface AssesssmentVisualizationConfiguration {
     getTestStatus: (data: ScanData, step?: string) => boolean;
     getAssessmentData?: (data: AssessmentStoreData) => AssessmentData;
     setAssessmentData?: (data: AssessmentStoreData, selectorMap: DictionaryStringTo<any>, instanceMap?: DictionaryStringTo<any>) => void;
-    analyzerMessageType: string;
     analyzerProgressMessageType?: string;
     resultProcessor?: (scanner: ScannerUtils) => (results: ScanResults) => DictionaryStringTo<HtmlElementAxeResults>;
     telemetryProcessor?: TelemetryProcessor<IAnalyzerTelemetryCallback>;
