@@ -17,6 +17,7 @@ import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/acti
 import { AssessmentView, AssessmentViewDeps, AssessmentViewProps } from '../../../../../DetailsView/components/assessment-view';
 import { AssessmentInstanceTableHandler } from '../../../../../DetailsView/handlers/assessment-instance-table-handler';
 import { outcomeTypeFromTestStatus, outcomeTypeSemanticsFromTestStatus } from '../../../../../DetailsView/reports/components/outcome-type';
+import { ContentUrlDecorator } from '../../../../../views/content/url-decorator/content-url-decorator';
 import { contentProvider, CreateTestAssessmentProvider } from '../../../common/test-assessment-provider';
 
 describe('AssessmentViewTest', () => {
@@ -218,6 +219,7 @@ class AssessmentViewPropsBuilder {
             getInnerTextFromJsxElement: Mock.ofInstance(getInnerTextFromJsxElement).object,
             outcomeTypeSemanticsFromTestStatus: Mock.ofInstance(outcomeTypeSemanticsFromTestStatus).object,
             urlParser: Mock.ofType(UrlParser).object,
+            contentUrlDecorator: Mock.ofType<ContentUrlDecorator>().object,
         };
         const assessment = this.provider.all()[0];
         const firstStep = assessment.requirements[0];

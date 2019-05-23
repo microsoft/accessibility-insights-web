@@ -51,6 +51,7 @@ import { fromBackgroundChannel, fromDetailsViewChannel } from '../electron/main/
 import { ScannerUtils } from '../injected/scanner-utils';
 import { getVersion, scan } from '../scanner/exposed-apis';
 import { DictionaryStringTo } from '../types/common-types';
+import { ElectronUrlDecorator } from '../views/content/url-decorator/electron-url-decorator';
 import { IssueFilingServiceProviderImpl } from './../issue-filing/issue-filing-service-provider-impl';
 import { DetailsViewActionMessageCreator } from './actions/details-view-action-message-creator';
 import { IssuesSelectionFactory } from './actions/issues-selection-factory';
@@ -255,6 +256,7 @@ adapter.getTab(
             settingsProvider: SettingsProviderImpl,
             environmentInfoProvider,
             issueFilingServiceProvider: IssueFilingServiceProviderImpl,
+            contentUrlDecorator: ElectronUrlDecorator,
         };
 
         const renderer = new DetailsViewRenderer(

@@ -7,10 +7,12 @@ import { NewTabLink } from '../../common/components/new-tab-link';
 import { ContentActionMessageCreator } from '../../common/message-creators/content-action-message-creator';
 import { NamedSFC } from '../../common/react/named-sfc';
 import { ContentProvider, ContentReference } from './content-page';
+import { ContentUrlDecorator } from './url-decorator/content-url-decorator';
 
 export type ContentLinkDeps = {
     contentProvider: ContentProvider;
     contentActionMessageCreator: ContentActionMessageCreator;
+    contentUrlDecorator: ContentUrlDecorator;
 };
 
 export type ContentLinkProps = {
@@ -21,7 +23,7 @@ export type ContentLinkProps = {
 };
 
 export const ContentLink = NamedSFC<ContentLinkProps>('ContentLink', ({ deps, reference, iconName, linkText }) => {
-    const { contentProvider, contentActionMessageCreator } = deps;
+    const { contentProvider, contentActionMessageCreator, contentUrlDecorator } = deps;
     const { openContentPage } = contentActionMessageCreator;
 
     if (!reference) {
@@ -31,8 +33,10 @@ export const ContentLink = NamedSFC<ContentLinkProps>('ContentLink', ({ deps, re
     const contentPath = contentProvider.pathFromReference(reference);
     const icon = iconName && <Icon iconName={iconName} />;
 
+    const href = contentUrlDecorator(`/insights.html#/content/${contentPath}`);
+
     return (
-        <NewTabLink href={`/insights.html#/content/${contentPath}`} title="Guidance" onClick={ev => openContentPage(ev, contentPath)}>
+        <NewTabLink href={href} title="Guidance" onClick={ev => openContentPage(ev, contentPath)}>
             {icon}
             {linkText}
         </NewTabLink>

@@ -35,6 +35,7 @@ import { WindowUtils } from '../common/window-utils';
 import { contentPages } from '../content';
 import { ScannerUtils } from '../injected/scanner-utils';
 import { scan } from '../scanner/exposed-apis';
+import { NullUrlDecorator } from '../views/content/url-decorator/null-url-decorator';
 import { PopupActionMessageCreator } from './actions/popup-action-message-creator';
 import { DiagnosticViewToggleDeps } from './components/diagnostic-view-toggle';
 import { DiagnosticViewToggleFactory } from './components/diagnostic-view-toggle-factory';
@@ -171,6 +172,7 @@ export class PopupInitializer {
             loadTheme,
             axeInfo,
             launchPanelHeaderClickHandler,
+            contentUrlDecorator: NullUrlDecorator,
         };
 
         const diagnosticViewToggleFactory = new DiagnosticViewToggleFactory(
