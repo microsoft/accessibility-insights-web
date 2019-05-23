@@ -11,7 +11,7 @@ import { FileRequestHelper } from '../common/file-request-helper';
 import { HTMLElementUtils } from '../common/html-element-utils';
 import { generateUID } from '../common/uid-generator';
 import { WindowUtils } from '../common/window-utils';
-import { fromBackgroundChannel, fromDetailsViewChannel } from '../electron/main/communication-channel';
+import { fromBackgroundChannel, toBackgroundChannel } from '../electron/main/communication-channel';
 import { scan } from '../scanner/exposed-apis';
 import { Assessments } from './../assessments/assessments';
 import { ClientUtils } from './client-utils';
@@ -52,7 +52,7 @@ export class ElectronWindowInitializer {
     public async initialize(): Promise<void> {
         const asyncInitializationSteps: Promise<void>[] = [];
 
-        this.clientChromeAdapter = new ElectronRendererAdapter(fromDetailsViewChannel, fromBackgroundChannel);
+        this.clientChromeAdapter = new ElectronRendererAdapter(toBackgroundChannel, fromBackgroundChannel);
         this.windowUtils = new WindowUtils();
         const htmlElementUtils = new HTMLElementUtils();
         const xmlHttpRequestFactory = new XMLHttpRequestFactory();

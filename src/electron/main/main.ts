@@ -6,10 +6,10 @@ import { join } from 'path';
 
 import {
     fromBackgroundChannel,
-    fromDetailsViewChannel,
     injectCssChannel,
     injectJsChannel,
     jsInjectionCompleted,
+    toBackgroundChannel,
 } from './communication-channel';
 
 type WindowBounds = {
@@ -53,8 +53,8 @@ const createWindowAndLoadUrl = (url: string, windowBounds: WindowBounds = defaul
 };
 
 const setupCommunication = () => {
-    ipcMain.on(fromDetailsViewChannel, (event, ...args) => {
-        backgroundWindow.webContents.send(fromDetailsViewChannel, args);
+    ipcMain.on(toBackgroundChannel, (event, ...args) => {
+        backgroundWindow.webContents.send(toBackgroundChannel, args);
     });
 
     ipcMain.on(fromBackgroundChannel, (event, ...args) => {

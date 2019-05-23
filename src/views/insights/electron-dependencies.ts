@@ -15,11 +15,11 @@ import { TelemetryDataFactory } from '../../common/telemetry-data-factory';
 import { TelemetryEventSource } from '../../common/telemetry-events';
 import { UserConfigurationStoreData } from '../../common/types/store-data/user-configuration-store';
 import { contentPages } from '../../content';
-import { fromBackgroundChannel, fromDetailsViewChannel } from '../../electron/main/communication-channel';
+import { fromBackgroundChannel, toBackgroundChannel } from '../../electron/main/communication-channel';
 import { RendererDeps } from './renderer';
 
 export const rendererDependencies: () => RendererDeps = () => {
-    const chromeAdapter = new ElectronRendererAdapter(fromDetailsViewChannel, fromBackgroundChannel);
+    const chromeAdapter = new ElectronRendererAdapter(toBackgroundChannel, fromBackgroundChannel);
     const url = new URL(window.location.href);
     const tabId = parseInt(url.searchParams.get('tabId'), 10);
     const actionMessageDispatcher = new ActionMessageDispatcher(chromeAdapter.sendMessageToFrames, tabId);
