@@ -111,7 +111,9 @@ export class ElectronRendererAdapter implements BrowserAdapter, StorageAdapter, 
     }
     public injectCss(tabId: any, file: string, callback: Function): void {
         ipcRenderer.send(injectCssChannel, file);
-        callback && callback();
+        if (callback) {
+            callback();
+        }
     }
     public getRunTimeId(): string {
         throw new Error('Method not implemented.');
