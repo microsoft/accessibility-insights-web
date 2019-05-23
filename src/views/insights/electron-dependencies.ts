@@ -3,7 +3,7 @@
 import { loadTheme } from 'office-ui-fabric-react';
 import * as ReactDOM from 'react-dom';
 
-import { ElectronAdapter } from '../../background/browser-adapters/electron-adapter';
+import { ElectronRendererAdapter } from '../../background/browser-adapters/electron-renderer-adapter';
 import { initializeFabricIcons } from '../../common/fabric-icons';
 import { ActionMessageDispatcher } from '../../common/message-creators/action-message-dispatcher';
 import { ContentActionMessageCreator } from '../../common/message-creators/content-action-message-creator';
@@ -19,7 +19,7 @@ import { fromBackgroundChannel, fromDetailsViewChannel } from '../../electron/ma
 import { RendererDeps } from './renderer';
 
 export const rendererDependencies: () => RendererDeps = () => {
-    const chromeAdapter = new ElectronAdapter(fromDetailsViewChannel, fromBackgroundChannel);
+    const chromeAdapter = new ElectronRendererAdapter(fromDetailsViewChannel, fromBackgroundChannel);
     const url = new URL(window.location.href);
     const tabId = parseInt(url.searchParams.get('tabId'), 10);
     const actionMessageDispatcher = new ActionMessageDispatcher(chromeAdapter.sendMessageToFrames, tabId);

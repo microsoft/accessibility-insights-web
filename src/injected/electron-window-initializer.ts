@@ -3,9 +3,9 @@
 import { autobind, getRTL } from '@uifabric/utilities';
 import * as Q from 'q';
 
-import { ElectronAdapter } from '../background/browser-adapters/electron-adapter';
+import { ElectronRendererAdapter } from '../background/browser-adapters/electron-renderer-adapter';
 import { XMLHttpRequestFactory } from '../background/xml-http-request-factory';
-import { ClientBrowserAdapter, ClientChromeAdapter } from '../common/client-browser-adapter';
+import { ClientBrowserAdapter } from '../common/client-browser-adapter';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
 import { FileRequestHelper } from '../common/file-request-helper';
 import { HTMLElementUtils } from '../common/html-element-utils';
@@ -52,7 +52,7 @@ export class ElectronWindowInitializer {
     public async initialize(): Promise<void> {
         const asyncInitializationSteps: Promise<void>[] = [];
 
-        this.clientChromeAdapter = new ElectronAdapter(fromDetailsViewChannel, fromBackgroundChannel);
+        this.clientChromeAdapter = new ElectronRendererAdapter(fromDetailsViewChannel, fromBackgroundChannel);
         this.windowUtils = new WindowUtils();
         const htmlElementUtils = new HTMLElementUtils();
         const xmlHttpRequestFactory = new XMLHttpRequestFactory();

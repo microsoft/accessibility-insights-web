@@ -16,7 +16,7 @@ import { UrlValidator } from '../common/url-validator';
 import { WindowUtils } from '../common/window-utils';
 import { fromBackgroundChannel, fromDetailsViewChannel } from '../electron/main/communication-channel';
 import { IssueFilingServiceProviderImpl } from '../issue-filing/issue-filing-service-provider-impl';
-import { ElectronAdapter } from './browser-adapters/electron-adapter';
+import { ElectronRendererAdapter } from './browser-adapters/electron-renderer-adapter';
 import { ChromeCommandHandler } from './chrome-command-handler';
 import { DetailsViewController } from './details-view-controller';
 import { DevToolsListener } from './dev-tools-listener';
@@ -37,7 +37,7 @@ import { TelemetryStateListener } from './telemetry/telemetry-state-listener';
 import { UserStoredDataCleaner } from './user-stored-data-cleaner';
 
 declare var window: Window & InsightsFeatureFlags;
-const browserAdapter = new ElectronAdapter(fromBackgroundChannel, fromDetailsViewChannel);
+const browserAdapter = new ElectronRendererAdapter(fromBackgroundChannel, fromDetailsViewChannel);
 const urlValidator = new UrlValidator(browserAdapter);
 const backgroundInitCleaner = new UserStoredDataCleaner(browserAdapter);
 
