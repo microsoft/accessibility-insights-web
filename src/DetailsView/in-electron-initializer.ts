@@ -6,7 +6,7 @@ import * as ReactDOM from 'react-dom';
 import { AssessmentDefaultMessageGenerator } from '../assessments/assessment-default-message-generator';
 import { Assessments } from '../assessments/assessments';
 import { assessmentsProviderWithFeaturesEnabled } from '../assessments/assessments-feature-flag-filter';
-import { ElectronAdapter } from '../background/browser-adapters/electron-adapter';
+import { ElectronRendererAdapter } from '../background/browser-adapters/electron-renderer-adapter';
 import { IssueDetailsTextGenerator } from '../background/issue-details-text-generator';
 import { A11YSelfValidator } from '../common/a11y-self-validator';
 import { AxeInfo } from '../common/axe-info';
@@ -88,7 +88,7 @@ import { ReportNameGenerator } from './reports/report-name-generator';
 
 declare const window: AutoChecker & Window;
 
-const adapter = new ElectronAdapter(fromDetailsViewChannel, fromBackgroundChannel);
+const adapter = new ElectronRendererAdapter(fromDetailsViewChannel, fromBackgroundChannel);
 const urlParser = new UrlParser();
 const dom = document;
 const documentElementSetter = new DocumentManipulator(dom);

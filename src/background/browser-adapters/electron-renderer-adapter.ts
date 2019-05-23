@@ -8,7 +8,7 @@ import { BrowserAdapter, NotificationOptions } from './browser-adapter';
 import { CommandsAdapter } from './commands-adapter';
 import { StorageAdapter } from './storage-adapter';
 
-export class ElectronAdapter implements BrowserAdapter, StorageAdapter, CommandsAdapter {
+export class ElectronRendererAdapter implements BrowserAdapter, StorageAdapter, CommandsAdapter {
     constructor(private readonly sendChannel: string, private readonly listeningChannel) {}
 
     public createNotification(options: NotificationOptions): void {
