@@ -68,8 +68,10 @@ const setupCommunication = () => {
         const jsBuffer = readFileSync(relativePath);
         const jsContent = jsBuffer.toString();
 
-        targetPageWindow.webContents.executeJavaScript(jsContent);
-        event.reply(jsInjectionCompleted);
+        targetPageWindow.webContents
+            .executeJavaScript(jsContent)
+            .then(() => event.reply(jsInjectionCompleted))
+            .catch(console.log);
     });
 
     ipcMain.on(injectCssChannel, (event, filepath) => {
