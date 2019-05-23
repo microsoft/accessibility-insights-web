@@ -18,12 +18,12 @@ import { FailureDetails } from './failure-details';
 import { DetailsGroup, DetailsRowData, IssuesTableHandler } from './issues-table-handler';
 
 export interface IssuesDetailsListProps {
-    violations: (RuleResult)[];
+    violations: RuleResult[];
     issuesTableHandler: IssuesTableHandler;
     issuesSelection: ISelection;
 }
 
-export class IssuesDetailsList extends React.Component<IssuesDetailsListProps, {}> {
+export class IssuesDetailsList extends React.Component<IssuesDetailsListProps> {
     private items: DetailsRowData[];
     private groups: DetailsGroup[];
 

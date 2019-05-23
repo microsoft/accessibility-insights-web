@@ -57,7 +57,6 @@ export interface DetailsDialogState {
     showDialog: boolean;
     currentRuleIndex: number;
     canInspect: boolean;
-    issueTrackerPath: string;
     userConfigurationStoreData: UserConfigurationStoreData;
 }
 
@@ -115,8 +114,7 @@ export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDi
             showDialog: true,
             currentRuleIndex: 0,
             canInspect: true,
-            issueTrackerPath: '',
-            userConfigurationStoreData: null,
+            userConfigurationStoreData: props.userConfigStore.getState(),
         };
     }
 

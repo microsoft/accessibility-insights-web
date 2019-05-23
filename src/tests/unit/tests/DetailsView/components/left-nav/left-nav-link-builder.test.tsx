@@ -6,7 +6,7 @@ import { IMock, Mock, MockBehavior } from 'typemoq';
 import { AssessmentsProviderImpl } from '../../../../../../assessments/assessments-provider';
 import { AssessmentsProvider } from '../../../../../../assessments/types/assessments-provider';
 import { Assessment } from '../../../../../../assessments/types/iassessment';
-import { VisualizationConfiguration } from '../../../../../../common/configs/visualization-configuration-factory';
+import { VisualizationConfiguration } from '../../../../../../common/configs/visualization-configuration';
 import { ManualTestStatus, ManualTestStatusData } from '../../../../../../common/types/manual-test-status';
 import { VisualizationType } from '../../../../../../common/types/visualization-type';
 import { BaseLeftNavLink, onBaseLeftNavItemClick } from '../../../../../../DetailsView/components/base-left-nav';

@@ -4,10 +4,8 @@ import { clone, isFunction } from 'lodash';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { ScopingInputTypes } from '../../../../../background/scoping-input-types';
 import { ScopingStore } from '../../../../../background/stores/global/scoping-store';
-import {
-    VisualizationConfiguration,
-    VisualizationConfigurationFactory,
-} from '../../../../../common/configs/visualization-configuration-factory';
+import { VisualizationConfiguration } from '../../../../../common/configs/visualization-configuration';
+import { VisualizationConfigurationFactory } from '../../../../../common/configs/visualization-configuration-factory';
 import { Message } from '../../../../../common/message';
 import { TelemetryDataFactory } from '../../../../../common/telemetry-data-factory';
 import { RuleAnalyzerScanTelemetryData } from '../../../../../common/telemetry-events';
@@ -27,7 +25,7 @@ describe('BatchedRuleAnalyzer', () => {
     let scopingStoreMock: IMock<ScopingStore>;
     let scopingState: ScopingStoreData;
     let visualizationConfigurationFactoryMock: IMock<VisualizationConfigurationFactory>;
-    const mockAllInstances: DictionaryStringTo<any> = {
+    const allInstancesMocks: DictionaryStringTo<any> = {
         test: 'test-result-value',
     };
     let sendMessageMock: IMock<(message) => void>;
@@ -171,7 +169,7 @@ describe('BatchedRuleAnalyzer', () => {
     ): void {
         resultProcessorMock.setup(processor => processor(It.isValue(completeResults))).returns(() => null);
 
-        resultProcessorMock.setup(processor => processor(It.isValue(filteredResults))).returns(() => mockAllInstances);
+        resultProcessorMock.setup(processor => processor(It.isValue(filteredResults))).returns(() => allInstancesMocks);
 
         resultConfigFilterMock.setup(rcfm => rcfm(It.isValue(completeResults), config.rules)).returns(() => filteredResults);
     }
@@ -212,7 +210,7 @@ describe('BatchedRuleAnalyzer', () => {
             messageType: config.analyzerMessageType,
             payload: {
                 key: config.key,
-                selectorMap: mockAllInstances,
+                selectorMap: allInstancesMocks,
                 scanResult: results,
                 testType: config.testType,
                 telemetry: expectedTelemetryStub,

@@ -99,7 +99,6 @@ export class Messages {
         SetHighContrastConfig: `${messagePrefix}/userConfig/setHighContrastConfig`,
         SetIssueFilingService: `${messagePrefix}/userConfig/setIssueFilingService`,
         SetIssueFilingServiceProperty: `${messagePrefix}/userConfig/setIssueFilingServiceProperty`,
-        SetIssueTrackerPath: `${messagePrefix}/userConfig/issueTrackerPath`,
         SaveIssueFilingSettings: `${messagePrefix}/userConfig/saveIssueFilingSettings`,
     };
 

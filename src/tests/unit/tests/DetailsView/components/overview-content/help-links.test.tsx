@@ -4,15 +4,14 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 import { Mock } from 'typemoq';
 
-import { HelpLinks } from '../../../../../../DetailsView/components/overview-content/overview-help-links';
-import { HelpLinkDeps, OverviewHelpProps } from '../../../../../../DetailsView/components/overview-content/overview-help-section';
+import { HelpLinks, HelpLinksDeps, HelpLinksProps } from '../../../../../../DetailsView/components/overview-content/help-links';
 
-describe('OverviewHelpLinks', () => {
-    const deps = Mock.ofType<HelpLinkDeps>().object;
+describe('HelpLinks', () => {
+    const deps = Mock.ofType<HelpLinksDeps>().object;
 
     test('linkInformation is shown properly', () => {
-        const props: OverviewHelpProps = {
-            linkDataSource: [
+        const props: HelpLinksProps = {
+            linkInformation: [
                 {
                     href: 'https://www.test1.com',
                     text: 'test1',
@@ -29,12 +28,12 @@ describe('OverviewHelpLinks', () => {
             deps,
         };
 
-        const helpLinkSection = shallow(<HelpLinks linkInformation={props.linkDataSource} deps={props.deps} />);
+        const helpLinkSection = shallow(<HelpLinks {...props} />);
 
         expect(helpLinkSection.exists()).toBe(true);
 
         const helpLinkDivs = helpLinkSection.find('.help-link');
         expect(helpLinkDivs.exists()).toBe(true);
-        expect(helpLinkDivs.length).toBe(props.linkDataSource.length);
+        expect(helpLinkDivs.length).toBe(props.linkInformation.length);
     });
 });

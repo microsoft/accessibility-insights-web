@@ -19,5 +19,5 @@ export const NullIssueFilingService: IssueFilingService = {
     buildStoreData: () => null,
     isSettingsValid: () => false,
     getSettingsFromStoreData: () => null,
-    issueFilingUrlProvider: () => null,
+    fileIssue: () => {},
 };

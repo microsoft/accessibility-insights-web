@@ -12,10 +12,10 @@ import { ContentActionCreator } from './actions/content-action-creator';
 import { DetailsViewActionCreator } from './actions/details-view-action-creator';
 import { DevToolsActionCreator } from './actions/dev-tools-action-creator';
 import { InspectActionCreator } from './actions/inspect-action-creator';
-import { ScopingActionCreator } from './actions/scoping-action-creator';
+import { ScopingPanelActionCreator } from './actions/scoping-panel-action-creator';
 import { TabActionCreator } from './actions/tab-action-creator';
 import { AssessmentScanPolicyRunner } from './assessment-scan-policy-runner';
-import { BrowserAdapter } from './browser-adapter';
+import { BrowserAdapter } from './browser-adapters/browser-adapter';
 import { ChromeFeatureController } from './chrome-feature-controller';
 import { DetailsViewController } from './details-view-controller';
 import { InjectorController } from './injector-controller';
@@ -89,7 +89,7 @@ export class TabContextFactory {
             interpreter.registerTypeToPayloadCallback,
         );
 
-        const scopingActionCreator = new ScopingActionCreator(
+        const scopingPanelActionCreator = new ScopingPanelActionCreator(
             actionsHub.scopingActions,
             this.telemetryEventHandler,
             interpreter.registerTypeToPayloadCallback,
@@ -127,7 +127,7 @@ export class TabContextFactory {
         devToolsActionCreator.registerCallbacks();
         inspectActionsCreator.registerCallbacks();
         tabActionCreator.registerCallbacks();
-        scopingActionCreator.registerCallbacks();
+        scopingPanelActionCreator.registerCallbacks();
         contentActionCreator.registerCallbacks();
 
         injectorController.initialize();

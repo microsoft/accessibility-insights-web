@@ -4,10 +4,8 @@ import { isFunction } from 'lodash';
 import { IMock, It, Mock, Times } from 'typemoq';
 import { ScopingInputTypes } from '../../../../../background/scoping-input-types';
 import { ScopingStore } from '../../../../../background/stores/global/scoping-store';
-import {
-    VisualizationConfiguration,
-    VisualizationConfigurationFactory,
-} from '../../../../../common/configs/visualization-configuration-factory';
+import { VisualizationConfiguration } from '../../../../../common/configs/visualization-configuration';
+import { VisualizationConfigurationFactory } from '../../../../../common/configs/visualization-configuration-factory';
 import { Message } from '../../../../../common/message';
 import { TelemetryDataFactory } from '../../../../../common/telemetry-data-factory';
 import { RuleAnalyzerScanTelemetryData } from '../../../../../common/telemetry-events';
@@ -28,7 +26,7 @@ describe('RuleAnalyzer', () => {
     let scopingStoreMock: IMock<ScopingStore>;
     let scopingState: ScopingStoreData;
     let visualizationConfigurationFactoryMock: IMock<VisualizationConfigurationFactory>;
-    const mockAllInstances: DictionaryStringTo<any> = {
+    const allInstancesMock: DictionaryStringTo<any> = {
         test: 'test-result-value',
     };
     let sendMessageMock: IMock<(message) => void>;
@@ -125,14 +123,14 @@ describe('RuleAnalyzer', () => {
             messageType: configStub.analyzerMessageType,
             payload: {
                 key: configStub.key,
-                selectorMap: mockAllInstances,
+                selectorMap: allInstancesMock,
                 scanResult: scanResults,
                 testType: typeStub,
                 telemetry: expectedTelemetryStub,
             },
         };
 
-        resultProcessorMock.setup(processor => processor(scanResults)).returns(() => mockAllInstances);
+        resultProcessorMock.setup(processor => processor(scanResults)).returns(() => allInstancesMock);
 
         sendMessageMock
             .setup(sm => sm(It.isValue(expectedMessage)))

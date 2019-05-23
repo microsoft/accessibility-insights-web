@@ -7,10 +7,8 @@ import { FeatureFlagStore } from '../../../../background/stores/global/feature-f
 import { ScopingStore } from '../../../../background/stores/global/scoping-store';
 import { VisualizationStore } from '../../../../background/stores/visualization-store';
 import { BaseStore } from '../../../../common/base-store';
-import {
-    VisualizationConfiguration,
-    VisualizationConfigurationFactory,
-} from '../../../../common/configs/visualization-configuration-factory';
+import { VisualizationConfiguration } from '../../../../common/configs/visualization-configuration';
+import { VisualizationConfigurationFactory } from '../../../../common/configs/visualization-configuration-factory';
 import { EnumHelper } from '../../../../common/enum-helper';
 import { FeatureFlagStoreData } from '../../../../common/types/store-data/feature-flag-store-data';
 import { ScopingStoreData } from '../../../../common/types/store-data/scoping-store-data';

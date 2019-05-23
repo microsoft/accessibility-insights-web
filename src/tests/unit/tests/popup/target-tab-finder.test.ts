@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { IMock, It, Mock } from 'typemoq';
 
-import { BrowserAdapter } from '../../../../background/browser-adapter';
+import { BrowserAdapter } from '../../../../background/browser-adapters/browser-adapter';
 import { Tab } from '../../../../common/itab';
 import { UrlParser } from '../../../../common/url-parser';
 import { UrlValidator } from '../../../../common/url-validator';

@@ -140,6 +140,7 @@ module.exports = function(grunt) {
         exec: {
             'webpack-dev': `${path.resolve('./node_modules/.bin/webpack')} --config-name dev`,
             'webpack-prod': `${path.resolve('./node_modules/.bin/webpack')} --config-name prod`,
+            'webpack-electron': `${path.resolve('./node_modules/.bin/webpack')} --config-name electron`,
             'webpack-all': `${path.resolve('./node_modules/.bin/webpack')}`,
             'generate-scss-typings': `${path.resolve('./node_modules/.bin/tsm')} src`,
         },
@@ -186,13 +187,12 @@ module.exports = function(grunt) {
         const dropPath = path.join('drop', targetName);
         const dropExtensionPath = path.join(dropPath, 'extension');
 
-        const { config } = targets[targetName];
-        const debug = config.options.debug;
+        const { config, bundleFolder } = targets[targetName];
 
         grunt.config.merge({
             drop: {
                 [targetName]: {
-                    debug,
+                    // empty on purpose
                 },
             },
             configure: {
@@ -209,11 +209,14 @@ module.exports = function(grunt) {
                     config,
                 },
             },
+            clean: {
+                [targetName]: dropPath,
+            },
             copy: {
                 [targetName]: {
                     files: [
                         {
-                            cwd: debug ? path.resolve(extensionPath, 'devBundle') : path.resolve(extensionPath, 'prodBundle'),
+                            cwd: path.resolve(extensionPath, bundleFolder),
                             src: ['*.js', '*.js.map', '*.css'],
                             dest: path.resolve(dropExtensionPath, 'bundle'),
                             expand: true,
@@ -238,9 +241,6 @@ module.exports = function(grunt) {
                         },
                     ],
                 },
-            },
-            clean: {
-                [targetName]: dropPath,
             },
         });
     });
@@ -313,13 +313,13 @@ module.exports = function(grunt) {
     });
 
     grunt.registerMultiTask('drop', function() {
-        const debug = this.data.debug;
-        if (debug) {
-            mustExist('extension/devBundle/background.bundle.js', 'Have you run webpack?');
-        } else {
-            mustExist('extension/prodBundle/background.bundle.js', 'Have you run webpack?');
-        }
         const targetName = this.target;
+        const { bundleFolder, mustExistFile } = targets[targetName];
+
+        const mustExistPath = path.join(extensionPath, bundleFolder, mustExistFile);
+
+        mustExist(mustExistPath, 'Have you run webpack?');
+
         grunt.task.run('clean:' + targetName);
         grunt.task.run('copy:' + targetName);
         grunt.task.run('configure:' + targetName);
@@ -336,6 +336,7 @@ module.exports = function(grunt) {
     grunt.registerTask('build-assets', ['sass', 'copy:code', 'copy:styles', 'embed-styles:code', 'copy:images']);
 
     // Main entry points for npm scripts:
+<<<<<<< HEAD
     grunt.registerTask('build-dev', ['clean:intermediates', 'exec:generate-scss-typings', 'exec:webpack-dev', 'build-assets', 'drop:dev']);
     grunt.registerTask('build-prod', [
         'clean:intermediates',
@@ -350,6 +351,17 @@ module.exports = function(grunt) {
         'exec:webpack-all',
         'build-assets',
         'drop:dev',
+=======
+    grunt.registerTask('build-dev', ['clean:intermediates', 'exec:webpack-dev', 'build-assets', 'drop:dev']);
+    grunt.registerTask('build-prod', ['clean:intermediates', 'exec:webpack-prod', 'build-assets', 'drop:production']);
+    grunt.registerTask('build-electron', ['clean:intermediates', 'exec:webpack-electron', 'build-assets', 'drop:electron']);
+    grunt.registerTask('build-all', [
+        'clean:intermediates',
+        'exec:webpack-all',
+        'build-assets',
+        'drop:dev',
+        'drop:electron',
+>>>>>>> master
         'release-drops',
     ]);
 

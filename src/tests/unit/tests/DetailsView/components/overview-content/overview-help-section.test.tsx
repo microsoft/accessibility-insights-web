@@ -5,23 +5,23 @@ import * as React from 'react';
 import { Mock } from 'typemoq';
 
 import {
-    HelpLinkDeps,
-    OverviewHelpProps,
     OverviewHelpSection,
+    OverviewHelpSectionDeps,
+    OverviewHelpSectionProps,
 } from '../../../../../../DetailsView/components/overview-content/overview-help-section';
 import { HyperlinkDefinition } from '../../../../../../views/content/content-page';
 
 describe('OverviewHelpSection', () => {
-    const deps = Mock.ofType<HelpLinkDeps>().object;
+    const deps = Mock.ofType<OverviewHelpSectionDeps>().object;
 
     test('the component is defined', () => {
         expect(<OverviewHelpSection linkDataSource={[]} deps={deps} />).toBeDefined();
     });
 
     test('help text is shown properly', () => {
-        const props: OverviewHelpProps = {
+        const props: OverviewHelpSectionProps = {
             linkDataSource: [] as HyperlinkDefinition[],
-            deps: {} as HelpLinkDeps,
+            deps: {} as OverviewHelpSectionDeps,
         };
         const wrapper = shallow(<OverviewHelpSection {...props} />);
 

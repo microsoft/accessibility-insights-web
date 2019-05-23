@@ -22,11 +22,11 @@ describe('IssueFilingButtonTest', () => {
     let issueFilingServiceProviderMock: IMock<IssueFilingServiceProvider>;
     let issueFilingActionMessageCreatorMock: IMock<IssueFilingActionMessageCreator>;
     let userConfigurationStoreData: UserConfigurationStoreData;
-    let testIssueFilingService: IssueFilingService;
+    let testIssueFilingServiceStub: IssueFilingService;
     let needsSettingsContentRenderer: IssueFilingNeedsSettingsContentRenderer;
 
     beforeEach(() => {
-        testIssueFilingService = {
+        testIssueFilingServiceStub = {
             key: testKey,
             displayName: 'TEST',
             settingsForm: NamedSFC('testForm', props => <>Hello World</>),
@@ -35,7 +35,7 @@ describe('IssueFilingButtonTest', () => {
                 return { testField };
             },
             getSettingsFromStoreData: data => data[testKey],
-            issueFilingUrlProvider: () => 'test url',
+            fileIssue: () => {},
         };
         userConfigurationStoreData = {
             bugService: testKey,
@@ -58,13 +58,13 @@ describe('IssueFilingButtonTest', () => {
             .verifiable();
         issueFilingServiceProviderMock
             .setup(bp => bp.forKey(testKey))
-            .returns(() => testIssueFilingService)
+            .returns(() => testIssueFilingServiceStub)
             .verifiable();
         needsSettingsContentRenderer = NamedSFC('testRenderer', () => <>needs settings</>);
     });
 
     test.each([true, false])('render: isSettingsValid: %s', isSettingsValid => {
-        testIssueFilingService.isSettingsValid = () => isSettingsValid;
+        testIssueFilingServiceStub.isSettingsValid = () => isSettingsValid;
         const props: IssueFilingButtonProps = {
             deps: {
                 issueFilingActionMessageCreator: issueFilingActionMessageCreatorMock.object,
@@ -113,7 +113,7 @@ describe('IssueFilingButtonTest', () => {
     });
 
     test('onclick: invalid settings, %s', () => {
-        testIssueFilingService.isSettingsValid = () => false;
+        testIssueFilingServiceStub.isSettingsValid = () => false;
         issueFilingActionMessageCreatorMock
             .setup(messageCreator => messageCreator.trackFileIssueClick(eventStub as any, testKey as any))
             .verifiable(Times.never());

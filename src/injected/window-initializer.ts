@@ -14,6 +14,7 @@ import { scan } from '../scanner/exposed-apis';
 import { Assessments } from './../assessments/assessments';
 import { ClientUtils } from './client-utils';
 import { rootContainerId } from './constants';
+import { DetailsDialogHandler } from './details-dialog-handler';
 import { DrawingController } from './drawing-controller';
 import { ElementFinderByPosition } from './element-finder-by-position';
 import { FrameUrlFinder } from './frame-url-finder';
@@ -89,6 +90,7 @@ export class WindowInitializer {
             this.frameCommunicator,
             this.clientChromeAdapter,
             getRTL,
+            new DetailsDialogHandler(htmlElementUtils),
         );
         this.drawingController = new DrawingController(
             this.frameCommunicator,

@@ -870,6 +870,15 @@ div.insights-file-issue-details-dialog-container {
                         font-size: 16px;
                     }
                 }
+                .target-page-changed {
+                    .target-page-changed-subtitle {
+                        color: $secondary-text;
+                        max-width: 570px;
+                        font-size: 14px;
+                        margin-top: 4px;
+                        margin-bottom: 16px;
+                    }
+                }
                 .issues-table {
                     height: 100%;
                     width: 100%;
@@ -884,7 +893,7 @@ div.insights-file-issue-details-dialog-container {
                     }
                     .issues-table-subtitle {
                         color: $secondary-text;
-                        max-width: 561px;
+                        max-width: 570px;
                         font-size: 14px;
                         margin-top: 4px;
                         margin-bottom: 16px;

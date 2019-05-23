@@ -2,10 +2,8 @@
 // Licensed under the MIT License.
 import { IMock, It, Mock, Times } from 'typemoq';
 import { UniquelyIdentifiableInstances } from '../../../../background/instance-identifier-generator';
-import {
-    VisualizationConfiguration,
-    VisualizationConfigurationFactory,
-} from '../../../../common/configs/visualization-configuration-factory';
+import { VisualizationConfiguration } from '../../../../common/configs/visualization-configuration';
+import { VisualizationConfigurationFactory } from '../../../../common/configs/visualization-configuration-factory';
 import { HTMLElementUtils } from '../../../../common/html-element-utils';
 import { Message } from '../../../../common/message';
 import { Messages } from '../../../../common/messages';

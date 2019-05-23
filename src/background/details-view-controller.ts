@@ -3,7 +3,7 @@
 import { autobind } from '@uifabric/utilities';
 
 import { DictionaryStringTo } from '../types/common-types';
-import { BrowserAdapter } from './browser-adapter';
+import { BrowserAdapter } from './browser-adapters/browser-adapter';
 
 export class DetailsViewController {
     private _tabIdToDetailsViewMap: DictionaryStringTo<number> = {};

@@ -7,10 +7,8 @@ import { CommandStore } from '../../../../../background/stores/global/command-st
 import { FeatureFlagStore } from '../../../../../background/stores/global/feature-flag-store';
 import { VisualizationStore } from '../../../../../background/stores/visualization-store';
 import { TestMode } from '../../../../../common/configs/test-mode';
-import {
-    VisualizationConfiguration,
-    VisualizationConfigurationFactory,
-} from '../../../../../common/configs/visualization-configuration-factory';
+import { VisualizationConfiguration } from '../../../../../common/configs/visualization-configuration';
+import { VisualizationConfigurationFactory } from '../../../../../common/configs/visualization-configuration-factory';
 import { TelemetryEventSource } from '../../../../../common/telemetry-events';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
 import { PopupActionMessageCreator } from '../../../../../popup/actions/popup-action-message-creator';

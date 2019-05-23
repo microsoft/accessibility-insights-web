@@ -14,7 +14,7 @@ import { AssessmentReportSummary } from '../../reports/components/assessment-rep
 import { GetAssessmentSummaryModelFromProviderAndStoreData } from '../../reports/get-assessment-summary-model';
 import { TargetChangeDialog, TargetChangeDialogDeps } from '../target-change-dialog';
 import { OverviewHeading } from './overview-heading';
-import { HelpLinkDeps, OverviewHelpSection } from './overview-help-section';
+import { OverviewHelpSection, OverviewHelpSectionDeps } from './overview-help-section';
 
 const linkDataSource: HyperlinkDefinition[] = [
     {
@@ -36,7 +36,7 @@ export type OverviewContainerDeps = {
     getAssessmentSummaryModelFromProviderAndStoreData: GetAssessmentSummaryModelFromProviderAndStoreData;
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
     assessmentsProviderWithFeaturesEnabled: (assessmentProvider: AssessmentsProvider, flags: FeatureFlagStoreData) => AssessmentsProvider;
-} & HelpLinkDeps &
+} & OverviewHelpSectionDeps &
     TargetChangeDialogDeps;
 
 export interface OverviewContainerProps {

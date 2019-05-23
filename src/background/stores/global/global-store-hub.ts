@@ -5,7 +5,7 @@ import { IndexedDBAPI } from '../../../common/indexedDB/indexedDB';
 import { StoreType } from '../../../common/types/store-type';
 import { generateUID } from '../../../common/uid-generator';
 import { GlobalActionHub } from '../../actions/global-action-hub';
-import { BrowserAdapter } from '../../browser-adapter';
+import { BrowserAdapter } from '../../browser-adapters/browser-adapter';
 import { StorageAdapter } from '../../browser-adapters/storage-adapter';
 import { PersistedData } from '../../get-persisted-data';
 import { LocalStorageData } from '../../storage-data';

@@ -35,6 +35,11 @@ const commonEntryFiles = {
     background: [path.resolve(__dirname, 'src/background/background-init.ts')],
 };
 
+const electronEntryFiles = {
+    main: [path.resolve(__dirname, 'src/electron/main/main.ts')],
+    injected: [path.resolve(__dirname, 'src/injected/stylesheet-init.ts'), path.resolve(__dirname, 'src/injected/client-init.ts')],
+};
+
 const commonConfig = {
     entry: commonEntryFiles,
     module: {
@@ -67,6 +72,26 @@ const commonConfig = {
         maxEntrypointSize: 10 * 1024 * 1024,
         maxAssetSize: 10 * 1024 * 1024,
     },
+};
+
+const electronConfig = {
+    ...commonConfig,
+    entry: electronEntryFiles,
+    name: 'electron',
+    mode: 'development',
+    output: {
+        path: path.join(__dirname, 'extension/electronBundle'),
+        filename: '[name].bundle.js',
+    },
+    node: {
+        ...commonConfig.node,
+        __dirname: false,
+        __filename: false,
+    },
+    optimization: {
+        splitChunks: false,
+    },
+    target: 'electron-main',
 };
 
 const devConfig = {
@@ -152,5 +177,5 @@ const prodConfig = {
     },
 };
 
-// Use "webpack --config-name dev" or "webpack --config-name prod" to use just one or the other
-module.exports = [devConfig, prodConfig];
+// Use "webpack --config-name dev", "webpack --config-name prod" or "webpack --config-name electron" to use just one or the other
+module.exports = [devConfig, prodConfig, electronConfig];

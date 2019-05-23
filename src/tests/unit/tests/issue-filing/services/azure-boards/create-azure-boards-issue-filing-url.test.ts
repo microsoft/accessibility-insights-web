@@ -7,7 +7,7 @@ import { title } from '../../../../../../content/strings/application';
 import { HTTPQueryBuilder } from '../../../../../../issue-filing/common/http-query-builder';
 import { IssueDetailsBuilder } from '../../../../../../issue-filing/common/issue-details-builder';
 import { IssueUrlCreationUtils } from '../../../../../../issue-filing/common/issue-filing-url-string-utils';
-import { AzureBoardsIssueFilingSettings } from '../../../../../../issue-filing/services/azure-boards/azure-boards-issue-filing-service';
+import { AzureBoardsIssueFilingSettings } from '../../../../../../issue-filing/services/azure-boards/azure-boards-issue-filing-settings';
 import { createAzureBoardsIssueFilingUrlProvider } from '../../../../../../issue-filing/services/azure-boards/create-azure-boards-issue-filing-url';
 import { IssueFilingUrlProvider } from '../../../../../../issue-filing/types/issue-filing-service';
 

@@ -1,19 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import {
-    ConstrainMode,
-    DetailsList,
-    DetailsListLayoutMode,
-    IColumn,
-    ISelection,
-    Selection,
-    SelectionMode,
-} from 'office-ui-fabric-react/lib/DetailsList';
+import { shallow } from 'enzyme';
+import { ISelection, Selection } from 'office-ui-fabric-react/lib/DetailsList';
 import * as React from 'react';
 import { Mock } from 'typemoq';
 
 import { VisualizationType } from '../../../../../common/types/visualization-type';
-import { FailureDetails } from '../../../../../DetailsView/components/failure-details';
 import { IssuesDetailsList, IssuesDetailsListProps } from '../../../../../DetailsView/components/issues-details-list';
 import { DetailsGroup, DetailsRowData, IssuesTableHandler } from '../../../../../DetailsView/components/issues-table-handler';
 import { DecoratedAxeNodeResult } from '../../../../../injected/scanner-utils';
@@ -22,44 +14,43 @@ import { DictionaryStringTo } from '../../../../../types/common-types';
 import { VisualizationScanResultStoreDataBuilder } from '../../../common/visualization-scan-result-store-data-builder';
 
 describe('IssuesDetailsListTest', () => {
-    const instanceColumns = [
-        {
-            key: 'target',
-            name: 'Path',
-            ariaLabel: 'Path',
-            fieldName: 'selector',
-            minWidth: 100,
-            maxWidth: 200,
-            isResizable: true,
-            className: 'content-cell',
-            headerClassName: 'content-header',
-        },
-        {
-            key: 'html',
-            name: 'Snippet',
-            ariaLabel: 'Snippet',
-            fieldName: 'html',
-            minWidth: 200,
-            maxWidth: 400,
-            isResizable: true,
-            className: 'content-cell insights-code',
-        },
-        {
-            key: 'fix',
-            name: 'How to fix',
-            ariaLabel: 'How to fix',
-            fieldName: 'failureSummary',
-            minWidth: 200,
-            maxWidth: 400,
-            isResizable: true,
-            className: 'content-cell',
-        },
-    ];
-
     const iconClassName = 'details-icon-error';
 
     test('render columns', () => {
-        testRendering(null, instanceColumns);
+        const sampleViolations: AxeRule[] = getSampleViolations();
+        const sampleIdToRuleResultMap: DictionaryStringTo<DecoratedAxeNodeResult> = getSampleIdToRuleResultMap();
+        const items: DetailsRowData[] = getSampleItems();
+        const groups: DetailsGroup[] = getSampleGroups();
+        const issuesData = new VisualizationScanResultStoreDataBuilder()
+            .withScanResult(VisualizationType.Issues, {
+                passes: [],
+                violations: sampleViolations,
+            })
+            .withSelectedIdToRuleResultMapForIssues(sampleIdToRuleResultMap)
+            .build().issues;
+        const issuesTableHandlerMock = Mock.ofType<IssuesTableHandler>(IssuesTableHandler);
+        const listGroups = {
+            groups: groups,
+            items: items,
+        };
+
+        issuesTableHandlerMock.setup(handler => handler.getListProps(issuesData.scanResult.violations)).returns(failedRules => listGroups);
+
+        const selectionMock = Mock.ofType<ISelection>(Selection);
+        const props = new TestPropsBuilder()
+            .setViolations(issuesData.scanResult.violations)
+            .setIssuesTableHandler(issuesTableHandlerMock.object)
+            .setIssuesSelection(selectionMock.object)
+            .build();
+
+        const wrapped = shallow(<IssuesDetailsList {...props} />);
+        expect(wrapped.getElement()).toMatchSnapshot();
+    });
+
+    test('shouldComponentUpdate', () => {
+        const props = new TestPropsBuilder().build();
+        const testSubject = new IssuesDetailsList(props);
+        expect(testSubject.shouldComponentUpdate()).toBe(false);
     });
 
     test('onRenderGroupHeader', () => {
@@ -154,66 +145,6 @@ describe('IssuesDetailsListTest', () => {
             },
         ];
     }
-
-    function testRendering(sampleItems: DetailsRowData[], columns: IColumn[]): void {
-        const sampleViolations: AxeRule[] = getSampleViolations();
-        const sampleIdToRuleResultMap: DictionaryStringTo<DecoratedAxeNodeResult> = getSampleIdToRuleResultMap();
-        const items: DetailsRowData[] = sampleItems ? sampleItems : getSampleItems();
-        const groups: DetailsGroup[] = getSampleGroups();
-        const issuesData = new VisualizationScanResultStoreDataBuilder()
-            .withScanResult(VisualizationType.Issues, {
-                passes: [],
-                violations: sampleViolations,
-            })
-            .withSelectedIdToRuleResultMapForIssues(sampleIdToRuleResultMap)
-            .build().issues;
-        const issuesTableHandlerMock = Mock.ofType<IssuesTableHandler>(IssuesTableHandler);
-        const listGroups = {
-            groups: groups,
-            items: items,
-        };
-
-        issuesTableHandlerMock
-            .setup(handler => handler.getListProps(issuesData.scanResult.violations))
-            .returns(failedRules => listGroups)
-            .verifiable();
-
-        const selectionMock = Mock.ofType<ISelection>(Selection);
-        const props = new TestPropsBuilder()
-            .setViolations(issuesData.scanResult.violations)
-            .setIssuesTableHandler(issuesTableHandlerMock.object)
-            .setIssuesSelection(selectionMock.object)
-            .build();
-        const testObject = new IssuesDetailsList(props);
-        const expected: JSX.Element = (
-            <div className="issues-details-list">
-                <FailureDetails items={items} />
-                <DetailsList
-                    groupProps={{
-                        isAllGroupsCollapsed: true,
-                        onRenderHeader: (testObject as any).onRenderGroupHeader,
-                    }}
-                    items={items}
-                    groups={groups}
-                    onRenderDetailsHeader={(testObject as any).onRenderDetailsHeader}
-                    columns={columns}
-                    ariaLabelForSelectAllCheckbox="Toggle selection for all items"
-                    ariaLabelForSelectionColumn="Toggle selection"
-                    constrainMode={ConstrainMode.unconstrained}
-                    selectionMode={SelectionMode.multiple}
-                    selection={props.issuesSelection}
-                    selectionPreservedOnEmptyClick={true}
-                    setKey="key"
-                    className="details-list"
-                    layoutMode={DetailsListLayoutMode.fixedColumns}
-                />
-            </div>
-        );
-
-        expect(testObject.render()).toEqual(expected);
-        expect(testObject.shouldComponentUpdate()).toBe(false);
-        issuesTableHandlerMock.verifyAll();
-    }
 });
 
 class TestPropsBuilder {
@@ -247,7 +178,6 @@ class TestPropsBuilder {
             issuesSelection: this.issuesSelection,
             pageTitle: 'pageTitle',
             pageUrl: 'http://pageUrl/',
-            issueTrackerPath: 'example/example',
             selectedIdToRuleResultMap: null,
         };
     }

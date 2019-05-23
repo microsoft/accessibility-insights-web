@@ -2,7 +2,8 @@
 // Licensed under the MIT License.
 import { ISelection } from 'office-ui-fabric-react/lib/DetailsList';
 import * as React from 'react';
-import { VisualizationConfiguration, VisualizationConfigurationFactory } from '../../common/configs/visualization-configuration-factory';
+import { VisualizationConfiguration } from '../../common/configs/visualization-configuration';
+import { VisualizationConfigurationFactory } from '../../common/configs/visualization-configuration-factory';
 import { NamedSFC } from '../../common/react/named-sfc';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { TabStoreData } from '../../common/types/store-data/tab-store-data';
@@ -22,7 +23,6 @@ export interface AdhocIssuesTestViewProps {
     deps: AdhocIssuesTestViewDeps;
     tabStoreData: TabStoreData;
     featureFlagStoreData: FeatureFlagStoreData;
-    issueTrackerPath: string;
     selectedTest: VisualizationType;
     visualizationStoreData: VisualizationStoreData;
     visualizationScanResultData: VisualizationScanResultData;
@@ -59,7 +59,6 @@ export const AdhocIssuesTestView = NamedSFC<AdhocIssuesTestViewProps>('AdhocIssu
             subtitle={subtitle}
             issuesTableHandler={props.issuesTableHandler}
             issuesEnabled={scanData.enabled}
-            issueTrackerPath={props.issueTrackerPath}
             violations={scanResult != null ? scanResult.violations : null}
             issuesSelection={props.issuesSelection}
             selectedIdToRuleResultMap={selectedIdToRuleResultMap}

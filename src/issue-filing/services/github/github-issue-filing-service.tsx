@@ -5,16 +5,14 @@ import { TextField } from 'office-ui-fabric-react/lib/TextField';
 import * as React from 'react';
 
 import { NamedSFC } from '../../../common/react/named-sfc';
+import { createFileIssueHandler } from '../../common/create-file-issue-handler';
 import { createSettingsGetter } from '../../common/create-settings-getter';
 import { IssueFilingService } from '../../types/issue-filing-service';
 import { SettingsFormProps } from '../../types/settings-form-props';
 import { gitHubIssueFilingUrlProvider } from './create-github-issue-filing-url';
+import { GitHubIssueFilingSettings } from './github-issue-filing-settings';
 
 const GitHubIssueFilingServiceKey = 'gitHub';
-
-export type GitHubIssueFilingSettings = {
-    repository: string;
-};
 
 function buildStoreData(repository: string): GitHubIssueFilingSettings {
     return {
@@ -43,12 +41,14 @@ const settingsForm = NamedSFC<SettingsFormProps<GitHubIssueFilingSettings>>('Iss
     );
 });
 
+const settingsGetter = createSettingsGetter<GitHubIssueFilingSettings>(GitHubIssueFilingServiceKey);
+
 export const GitHubIssueFilingService: IssueFilingService<GitHubIssueFilingSettings> = {
     key: GitHubIssueFilingServiceKey,
     displayName: 'GitHub',
     settingsForm,
     buildStoreData,
-    getSettingsFromStoreData: createSettingsGetter(GitHubIssueFilingServiceKey),
+    getSettingsFromStoreData: settingsGetter,
     isSettingsValid,
-    issueFilingUrlProvider: gitHubIssueFilingUrlProvider,
+    fileIssue: createFileIssueHandler(gitHubIssueFilingUrlProvider, settingsGetter),
 };

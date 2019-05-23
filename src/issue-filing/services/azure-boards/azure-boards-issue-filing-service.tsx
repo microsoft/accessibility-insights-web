@@ -3,23 +3,18 @@
 import { isEmpty } from 'lodash';
 import { IDropdownOption } from 'office-ui-fabric-react/lib/Dropdown';
 
+import { createFileIssueHandler } from '../../common/create-file-issue-handler';
 import { createSettingsGetter } from '../../common/create-settings-getter';
 import { IssueFilingService } from '../../types/issue-filing-service';
+import { AzureBoardsIssueDetailField, AzureBoardsIssueFilingSettings } from './azure-boards-issue-filing-settings';
 import { AzureBoardsSettingsForm } from './azure-boards-settings-form';
 import { azureBoardsIssueFilingUrlProvider } from './create-azure-boards-issue-filing-url';
 
 const AzureBoardsIssueFilingServiceKey = 'azureBoards';
 
-export type AzureBoardsIssueDetailField = 'reproSteps' | 'description';
-
 export interface AzureBoardsIssueDetailLocationDropdownOption extends IDropdownOption {
     key: AzureBoardsIssueDetailField;
 }
-
-export type AzureBoardsIssueFilingSettings = {
-    projectURL: string;
-    issueDetailsField: AzureBoardsIssueDetailField;
-};
 
 function buildStoreData(projectURL: string, issueDetailsField: AzureBoardsIssueDetailField): AzureBoardsIssueFilingSettings {
     return {
@@ -36,12 +31,14 @@ function isStringValid(stringToCheck: string): boolean {
     return !isEmpty(stringToCheck) && !isEmpty(stringToCheck.trim());
 }
 
+const settingsGetter = createSettingsGetter<AzureBoardsIssueFilingSettings>(AzureBoardsIssueFilingServiceKey);
+
 export const AzureBoardsIssueFilingService: IssueFilingService<AzureBoardsIssueFilingSettings> = {
     key: AzureBoardsIssueFilingServiceKey,
     displayName: 'Azure Boards',
     settingsForm: AzureBoardsSettingsForm,
     buildStoreData,
-    getSettingsFromStoreData: createSettingsGetter(AzureBoardsIssueFilingServiceKey),
+    getSettingsFromStoreData: settingsGetter,
     isSettingsValid,
-    issueFilingUrlProvider: azureBoardsIssueFilingUrlProvider,
+    fileIssue: createFileIssueHandler(azureBoardsIssueFilingUrlProvider, settingsGetter),
 };

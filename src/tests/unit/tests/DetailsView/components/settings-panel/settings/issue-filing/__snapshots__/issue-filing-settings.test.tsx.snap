@@ -22,7 +22,6 @@ exports[`IssueFilingSettings renders 1`] = `
           "setHighContrastMode": [Function],
           "setIssueFilingService": [Function],
           "setIssueFilingServiceProperty": [Function],
-          "setIssueTrackerPath": [Function],
           "setTelemetryState": [Function],
         },
       }
@@ -33,9 +32,9 @@ exports[`IssueFilingSettings renders 1`] = `
       Object {
         "buildStoreData": [Function],
         "displayName": "TEST",
+        "fileIssue": [Function],
         "getSettingsFromStoreData": [Function],
         "isSettingsValid": [Function],
-        "issueFilingUrlProvider": [Function],
         "key": "test",
         "settingsForm": [Function],
       }

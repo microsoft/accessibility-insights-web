@@ -3,7 +3,7 @@
 import { isFunction } from 'lodash';
 import { IMock, It, Mock } from 'typemoq';
 
-import { BrowserAdapter } from '../../../../background/browser-adapter';
+import { BrowserAdapter } from '../../../../background/browser-adapters/browser-adapter';
 import { UrlValidator } from '../../../../common/url-validator';
 
 describe('UrlValidatorTest', () => {

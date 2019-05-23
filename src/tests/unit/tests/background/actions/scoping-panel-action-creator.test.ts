@@ -3,8 +3,8 @@
 import * as _ from 'lodash';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { BaseActionPayload } from '../../../../../background/actions/action-payloads';
-import { ScopingActionCreator } from '../../../../../background/actions/scoping-action-creator';
 import { ScopingActions } from '../../../../../background/actions/scoping-actions';
+import { ScopingPanelActionCreator } from '../../../../../background/actions/scoping-panel-action-creator';
 import { DetailsViewController } from '../../../../../background/details-view-controller';
 import { TelemetryEventHandler } from '../../../../../background/telemetry/telemetry-event-handler';
 import { Action } from '../../../../../common/flux/action';
@@ -12,13 +12,13 @@ import { RegisterTypeToPayloadCallback } from '../../../../../common/message';
 import { Messages } from '../../../../../common/messages';
 import { SCOPING_CLOSE, SCOPING_OPEN } from '../../../../../common/telemetry-events';
 
-describe('ScopingActionCreatorTest', () => {
+describe('ScopingPanelActionCreatorTest', () => {
     let registerTypeToPayloadCallbackMock: IMock<RegisterTypeToPayloadCallback>;
     let scopingActionsMock: IMock<ScopingActions>;
     let telemetryEventHandlerMock: IMock<TelemetryEventHandler>;
     let detailsViewControllerStrictMock: IMock<DetailsViewController>;
     const tabId = -1;
-    let testObject: ScopingActionCreator;
+    let testObject: ScopingPanelActionCreator;
 
     beforeEach(() => {
         scopingActionsMock = Mock.ofType(ScopingActions, MockBehavior.Strict);
@@ -26,7 +26,7 @@ describe('ScopingActionCreatorTest', () => {
         detailsViewControllerStrictMock = Mock.ofType<DetailsViewController>(null, MockBehavior.Strict);
         registerTypeToPayloadCallbackMock = Mock.ofInstance((theType, callback) => {});
 
-        testObject = new ScopingActionCreator(
+        testObject = new ScopingPanelActionCreator(
             scopingActionsMock.object,
             telemetryEventHandlerMock.object,
             registerTypeToPayloadCallbackMock.object,

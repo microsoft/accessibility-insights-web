@@ -2,14 +2,14 @@
 // Licensed under the MIT License.
 import { IMock, It, Mock, Times } from 'typemoq';
 
-import { ChromeAdapter } from '../../../../background/browser-adapter';
+import { BrowserAdapter } from '../../../../background/browser-adapters/browser-adapter';
 import { Logger } from '../../../../common/logging/logger';
 import { PopupInitializer } from '../../../../popup/popup-initializer';
 import { TargetTabFinder, TargetTabInfo } from '../../../../popup/target-tab-finder';
 
 describe('PopupInitializerTests', () => {
     let targetTabStub: TargetTabInfo;
-    let browserAdapterMock: IMock<ChromeAdapter>;
+    let browserAdapterMock: IMock<BrowserAdapter>;
     let targetTabFinderMock: IMock<TargetTabFinder>;
     let loggerMock: IMock<Logger>;
 
@@ -22,7 +22,7 @@ describe('PopupInitializerTests', () => {
             hasAccess: true,
         };
 
-        browserAdapterMock = Mock.ofType(ChromeAdapter);
+        browserAdapterMock = Mock.ofType<BrowserAdapter>();
         targetTabFinderMock = Mock.ofType(TargetTabFinder);
         loggerMock = Mock.ofType<Logger>();
     });
