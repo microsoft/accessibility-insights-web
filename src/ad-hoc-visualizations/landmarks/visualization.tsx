@@ -32,7 +32,6 @@ export const LandmarksAdHocVisualization: VisualizationConfiguration = {
     chromeCommand: '02_toggle-landmarks',
     launchPanelDisplayOrder: 2,
     adhocToolsPanelDisplayOrder: 4,
-    analyzerMessageType: Messages.Visualizations.Common.ScanCompleted,
     resultProcessor: (scanner: ScannerUtils) => scanner.getAllCompletedInstances,
     getAnalyzer: provider =>
         provider.createRuleAnalyzer({

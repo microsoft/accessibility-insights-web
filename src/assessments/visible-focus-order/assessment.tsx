@@ -39,7 +39,6 @@ export const VisibleFocusOrderAssessment: Assessment = AssessmentBuilder.Assiste
     storeDataKey: 'visibleFocusOrderAssessment',
     visualizationConfiguration: {
         key: key,
-        analyzerMessageType: Messages.Assessment.AssessmentScanCompleted,
         analyzerProgressMessageType: Messages.Assessment.TabbedElementAdded,
     },
 });

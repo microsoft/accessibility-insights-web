@@ -30,7 +30,6 @@ export const TabStopsAdHocVisualization: VisualizationConfiguration = {
     chromeCommand: '04_toggle-tabStops',
     launchPanelDisplayOrder: 4,
     adhocToolsPanelDisplayOrder: 5,
-    analyzerMessageType: Messages.Visualizations.Common.ScanCompleted,
     analyzerProgressMessageType: Messages.Visualizations.TabStops.TabbedElementAdded,
     analyzerTerminatedMessageType: Messages.Visualizations.TabStops.TerminateScan,
     getAnalyzer: provider =>
