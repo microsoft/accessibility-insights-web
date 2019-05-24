@@ -11,6 +11,7 @@ export class FeatureFlags {
     public static readonly showAllFeatureFlags = 'showAllFeatureFlags';
     public static readonly scoping = 'scoping';
     public static readonly showInstanceVisibility = 'showInstanceVisibility';
+    public static readonly newAutomatedChecksReport = 'newAutomatedChecksReport';
 }
 
 export interface FeatureFlagDetail {
@@ -73,6 +74,14 @@ export function getAllFeatureFlagDetails(): FeatureFlagDetail[] {
             displayableDescription:
                 'Shows visibility of instances in assessment requirement lists. May impact performance. ' +
                 "(You'll need to go to a different requirement and come back for it to take effect.)",
+            isPreviewFeature: false,
+            forceDefault: false,
+        },
+        {
+            id: FeatureFlags.newAutomatedChecksReport,
+            defaultValue: false,
+            displayableName: 'Enable new automated checks report',
+            displayableDescription: 'Enable the new FastPass Automated checks report, with new UX and accessibility improvements',
             isPreviewFeature: false,
             forceDefault: false,
         },
