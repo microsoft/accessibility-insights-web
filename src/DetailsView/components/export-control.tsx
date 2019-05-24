@@ -31,9 +31,9 @@ export const ExportControl = NamedSFC<ExportControlProps>('ExportControl', props
     };
 
     const onExportDescriptionChange = (value: string) => {
-        const exportData = exportDataWithPlaceholder.replace(descriptionPlaceholder, escape(value));
+        const _exportData = exportDataWithPlaceholder.replace(descriptionPlaceholder, escape(value));
         setExportDescription(value);
-        setExportData(exportData);
+        setExportData(_exportData);
     };
 
     const onExportButtonClick = () => {
