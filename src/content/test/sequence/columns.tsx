@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { React, create } from '../../common';
+import { CodeExample } from '../../../views/content/markup/code-example';
 
 export const infoAndExamples = create(({ Markup, Link }) => (
     <>
@@ -33,22 +34,26 @@ export const infoAndExamples = create(({ Markup, Link }) => (
                     States, in secure the Order…"{' '}
                 </p>
             }
-            failExample={`<pre>
-           [We the People           general
-            of the United           Welfare, and
-            States, in              secure the
-            Order to form a         Blessings of  
-            more perfect            Liberty to
-            Union,                  ourselves and
-            establish               our Posterity,
-            Justice, insure         do ordain and
-            domestic Tranquility,   establish this
-            provide for the         Constitution
-            common defense,         for the United
-            promote the             States of America.
-            ]
-           </pre>
-           `}
+            failExample={
+                <pre>
+                    <CodeExample>
+                        {`<pre>
+[We the People     promote the general
+of the United     Welfare, and
+States, in        secure the
+Order to form a   Blessings of  
+more perfect      Liberty to
+Union,            ourselves and
+establish         our Posterity,
+Justice, insure   do ordain and
+domestic          establish this
+Tranquility,      Constitution
+provide for the   for the United
+common defense,   States of America.]
+</pre>`}
+                    </CodeExample>
+                </pre>
+            }
             passText={<p>CSS is used to display the content in columns in a way that the DOM order matches the expected reading order.</p>}
             passExample={`<style>
             * {box-sizing: border-box;}
@@ -63,8 +68,9 @@ export const infoAndExamples = create(({ Markup, Link }) => (
             establish Justice, 
             insure domestic Tranquility, 
             provide for the common defense, 
-            promote the]</div>
-            <div class="column">[general Welfare, 
+            ]</div>
+            <div class="column">[promote the 
+            general Welfare, 
             and secure 
             the blessings of Liberty 
             to ourselves and our Posterity,
