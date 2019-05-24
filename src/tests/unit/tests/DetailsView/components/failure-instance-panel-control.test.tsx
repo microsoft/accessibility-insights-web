@@ -29,14 +29,14 @@ describe('FailureInstancePanelControlTest', () => {
         const props = createPropsWithType(CapturedInstanceActionType.CREATE);
 
         const rendered = shallow(<FailureInstancePanelControl {...props} />);
-        expect(rendered.debug()).toMatchSnapshot();
+        expect(rendered.getElement()).toMatchSnapshot();
     });
 
     test('render FailureInstancePanelControl: edit instance', () => {
         const props = createPropsWithType(CapturedInstanceActionType.EDIT);
 
         const rendered = shallow(<FailureInstancePanelControl {...props} />);
-        expect(rendered.debug()).toMatchSnapshot();
+        expect(rendered.getElement()).toMatchSnapshot();
     });
 
     test('onFailureDescriptionChange', () => {
@@ -120,7 +120,6 @@ describe('FailureInstancePanelControlTest', () => {
         const props = createPropsWithType(CapturedInstanceActionType.CREATE);
 
         addInstanceMock.setup(handler => handler(description, props.test, props.step)).verifiable(Times.once());
-
         const wrapper = Enzyme.shallow(<FailureInstancePanelControl {...props} />);
 
         wrapper

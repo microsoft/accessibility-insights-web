@@ -5,6 +5,25 @@ const webpack = require('webpack');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
+const getCSSModulesLoadersConfig = isDevMode => {
+    return {
+        test: /\.scss$/,
+        use: [
+            MiniCssExtractPlugin.loader,
+            {
+                loader: 'css-loader',
+                options: {
+                    modules: true,
+                    camelCase: 'only',
+                    localIdentName: isDevMode ? '[local]' : '[local][hash:base64:5]',
+                },
+            },
+            'sass-loader',
+        ],
+    };
+};
 
 const commonPlugins = [
     new webpack.optimize.LimitChunkCountPlugin({
@@ -17,6 +36,12 @@ const commonPlugins = [
     // tslint separate from webpack.
     new ForkTsCheckerWebpackPlugin(),
     new CaseSensitivePathsPlugin(),
+    new MiniCssExtractPlugin({
+        // Options similar to the same options in webpackOptions.output
+        // both options are optional
+        filename: '[name].css',
+        chunkFilename: '[id].css',
+    }),
 ];
 
 const commonEntryFiles = {
@@ -67,8 +92,17 @@ const commonConfig = {
     },
 };
 
+const devModules = {
+    rules: [...commonConfig.module.rules, getCSSModulesLoadersConfig(true)],
+};
+
+const prodModules = {
+    rules: [...commonConfig.module.rules, getCSSModulesLoadersConfig(false)],
+};
+
 const electronConfig = {
     ...commonConfig,
+    module: devModules,
     entry: electronEntryFiles,
     name: 'electron',
     mode: 'development',
@@ -89,6 +123,7 @@ const electronConfig = {
 
 const devConfig = {
     ...commonConfig,
+    module: devModules,
     name: 'dev',
     mode: 'development',
     devtool: 'eval-source-map',
@@ -103,6 +138,7 @@ const devConfig = {
 
 const prodConfig = {
     ...commonConfig,
+    module: prodModules,
     name: 'prod',
     mode: 'production',
     devtool: false,

@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { componentId } from '../../../../DetailsView/components/no-displayable-preview-features-message';
 import { Browser } from '../../common/browser';
 import { launchBrowser } from '../../common/browser-factory';
 import { CommonSelectors } from '../../common/element-identifiers/common-selectors';
@@ -76,7 +77,7 @@ describe('Preview Features Panel', () => {
 
         const detailsViewPage = await waitForDetailsViewWithPreviewFeaturesPanel(browser, popupPage, targetTabId);
 
-        await detailsViewPage.waitForSelector(detailsViewSelectors.noPreviewFeaturesMessage);
+        await detailsViewPage.waitForId(componentId);
 
         return detailsViewPage;
     }
