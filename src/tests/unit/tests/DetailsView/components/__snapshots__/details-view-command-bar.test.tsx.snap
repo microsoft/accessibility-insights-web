@@ -9,11 +9,8 @@ exports[`DetailsViewCommandBar renders with export button and dialog 1`] = `
     </StyledLinkBase>
   </div>
   <div className=\\"details-view-command-buttons\\">
-    <CustomizedActionButton iconProps={{...}} onClick={[Function: bound ]}>
-      Export result
-    </CustomizedActionButton>
+    <ExportControl deps={{...}} reportGenerator={{...}} pageTitle=\\"command-bar-test-tab-title\\" exportResultsType=\\"Assessment\\" scanDate={{...}} htmlGenerator={[Function: bound proxy]} />
     <StartOverDropdown testName=\\"test title\\" test={-1} requirementKey={[undefined]} actionMessageCreator={{...}} rightPanelConfiguration={{...}} />
-    <ExportDialog deps={{...}} isOpen={false} fileName=\\"\\" description=\\"\\" html=\\"\\" onClose={[Function: bound ]} onDescriptionChange={[Function: bound ]} exportResultsType=\\"Assessment\\" />
   </div>
 </div>"
 `;

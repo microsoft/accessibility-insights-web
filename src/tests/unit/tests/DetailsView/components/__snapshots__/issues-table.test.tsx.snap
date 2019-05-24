@@ -22,15 +22,6 @@ exports[`IssuesTableTest render automated checks disabled 1`] = `
         visualizationName="Automated checks"
       />
     </div>
-    <ExportDialog
-      description=""
-      exportResultsType="AutomatedChecks"
-      fileName=""
-      html=""
-      isOpen={false}
-      onClose={[Function]}
-      onDescriptionChange={[Function]}
-    />
     <div
       className="details-disabled-message"
       role="alert"
@@ -66,7 +57,6 @@ exports[`IssuesTableTest render spinner for scanning state 1`] = `
     <div className=\\"details-view-command-bar\\">
       <VisualizationToggle label=\\"Show failures\\" checked={true} disabled={true} onClick={[Function: proxy]} className=\\"automated-checks-details-view-toggle\\" visualizationName=\\"Automated checks\\" />
     </div>
-    <ExportDialog deps={[undefined]} isOpen={false} fileName=\\"\\" description=\\"\\" html=\\"\\" onClose={[Function: bound ]} onDescriptionChange={[Function: bound ]} exportResultsType=\\"AutomatedChecks\\" />
     <StyledSpinnerBase className=\\"details-view-spinner\\" size={3} label=\\"Scanning...\\" />
   </div>
 </div>"
@@ -101,26 +91,24 @@ exports[`IssuesTableTest render spinner, issuesEnabled is an empty object 1`] = 
         label="Show failures"
         visualizationName="Automated checks"
       />
-      <CustomizedActionButton
-        iconProps={
-          Object {
-            "iconName": "Export",
+      <ExportControl
+        exportResultsType="AutomatedChecks"
+        htmlGenerator={[Function]}
+        pageTitle="pageTitle"
+        reportGenerator={
+          proxy {
+            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+            "assessmentReportHtmlGenerator": undefined,
+            "generateAssessmentHtml": [Function],
+            "generateHtml": [Function],
+            "generateName": [Function],
+            "reportHtmlGenerator": undefined,
+            "reportNameGenerator": undefined,
           }
         }
-        onClick={[Function]}
-      >
-        Export result
-      </CustomizedActionButton>
+        scanDate={Date { NaN }}
+      />
     </div>
-    <ExportDialog
-      description=""
-      exportResultsType="AutomatedChecks"
-      fileName=""
-      html=""
-      isOpen={false}
-      onClose={[Function]}
-      onDescriptionChange={[Function]}
-    />
     <StyledSpinnerBase
       className="details-view-spinner"
       label="Loading data..."
@@ -138,11 +126,8 @@ exports[`IssuesTableTest render table with 0 issues 1`] = `
   <div className=\\"issues-table-content\\">
     <div className=\\"details-view-command-bar\\">
       <VisualizationToggle label=\\"Show failures\\" checked={true} disabled={false} onClick={[Function: proxy]} className=\\"automated-checks-details-view-toggle\\" visualizationName=\\"Automated checks\\" />
-      <CustomizedActionButton iconProps={{...}} onClick={[Function: bound ]}>
-        Export result
-      </CustomizedActionButton>
+      <ExportControl deps={[undefined]} scanDate={{...}} reportGenerator={{...}} pageTitle=\\"pageTitle\\" exportResultsType=\\"AutomatedChecks\\" htmlGenerator={[Function: bound proxy]} />
     </div>
-    <ExportDialog deps={[undefined]} isOpen={false} fileName=\\"\\" description=\\"\\" html=\\"\\" onClose={[Function: bound ]} onDescriptionChange={[Function: bound ]} exportResultsType=\\"AutomatedChecks\\" />
     <div className=\\"issues-table-details\\">
       <IssuesDetailsList violations={{...}} issuesTableHandler={{...}} issuesSelection={{...}} />
       <div className=\\"issue-detail-outer-container ms-Fabric\\">
@@ -161,11 +146,8 @@ exports[`IssuesTableTest render table with 1 issues 1`] = `
   <div className=\\"issues-table-content\\">
     <div className=\\"details-view-command-bar\\">
       <VisualizationToggle label=\\"Show failures\\" checked={true} disabled={false} onClick={[Function: proxy]} className=\\"automated-checks-details-view-toggle\\" visualizationName=\\"Automated checks\\" />
-      <CustomizedActionButton iconProps={{...}} onClick={[Function: bound ]}>
-        Export result
-      </CustomizedActionButton>
+      <ExportControl deps={[undefined]} scanDate={{...}} reportGenerator={{...}} pageTitle=\\"pageTitle\\" exportResultsType=\\"AutomatedChecks\\" htmlGenerator={[Function: bound proxy]} />
     </div>
-    <ExportDialog deps={[undefined]} isOpen={false} fileName=\\"\\" description=\\"\\" html=\\"\\" onClose={[Function: bound ]} onDescriptionChange={[Function: bound ]} exportResultsType=\\"AutomatedChecks\\" />
     <div className=\\"issues-table-details\\">
       <IssuesDetailsList violations={{...}} issuesTableHandler={{...}} issuesSelection={{...}} />
       <div className=\\"issue-detail-outer-container ms-Fabric\\">
@@ -184,11 +166,8 @@ exports[`IssuesTableTest render table with 2 issues 1`] = `
   <div className=\\"issues-table-content\\">
     <div className=\\"details-view-command-bar\\">
       <VisualizationToggle label=\\"Show failures\\" checked={true} disabled={false} onClick={[Function: proxy]} className=\\"automated-checks-details-view-toggle\\" visualizationName=\\"Automated checks\\" />
-      <CustomizedActionButton iconProps={{...}} onClick={[Function: bound ]}>
-        Export result
-      </CustomizedActionButton>
+      <ExportControl deps={[undefined]} scanDate={{...}} reportGenerator={{...}} pageTitle=\\"pageTitle\\" exportResultsType=\\"AutomatedChecks\\" htmlGenerator={[Function: bound proxy]} />
     </div>
-    <ExportDialog deps={[undefined]} isOpen={false} fileName=\\"\\" description=\\"\\" html=\\"\\" onClose={[Function: bound ]} onDescriptionChange={[Function: bound ]} exportResultsType=\\"AutomatedChecks\\" />
     <div className=\\"issues-table-details\\">
       <IssuesDetailsList violations={{...}} issuesTableHandler={{...}} issuesSelection={{...}} />
       <div className=\\"issue-detail-outer-container ms-Fabric\\">

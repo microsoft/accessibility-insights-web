@@ -32,26 +32,7 @@ export interface DetailsViewCommandBarProps {
     rightPanelConfiguration: DetailsRightPanelConfiguration;
 }
 
-export interface DetailsViewCommandBarState {
-    isExportDialogOpen: boolean;
-    exportDialogDescription: string;
-    exportHtmlWithPlaceholder: string;
-    exportHtmlWithDescription: string;
-    exportFileName: string;
-}
-
-export class DetailsViewCommandBar extends React.Component<DetailsViewCommandBarProps, DetailsViewCommandBarState> {
-    constructor(props) {
-        super(props);
-        this.state = {
-            isExportDialogOpen: false,
-            exportDialogDescription: '',
-            exportHtmlWithPlaceholder: '',
-            exportHtmlWithDescription: '',
-            exportFileName: '',
-        };
-    }
-
+export class DetailsViewCommandBar extends React.Component<DetailsViewCommandBarProps> {
     public render(): JSX.Element {
         if (this.props.tabStoreData.isClosed) {
             return null;

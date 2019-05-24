@@ -45,15 +45,7 @@ export interface IssuesTableProps {
     userConfigurationStoreData: UserConfigurationStoreData;
 }
 
-export interface IssuesTableState {
-    isExportDialogOpen: boolean;
-    exportDescription: string;
-    exportName: string;
-    exportDataWithPlaceholder: string;
-    exportData: string;
-}
-
-export class IssuesTable extends React.Component<IssuesTableProps, IssuesTableState> {
+export class IssuesTable extends React.Component<IssuesTableProps> {
     private configuration: VisualizationConfiguration;
     public static readonly exportTextareaLabel: string = 'Provide result description';
     public static readonly exportInstructions: string = 'Optional: please describe the result (it will be saved in the report).';
@@ -61,13 +53,6 @@ export class IssuesTable extends React.Component<IssuesTableProps, IssuesTableSt
     constructor(props: IssuesTableProps) {
         super(props);
         this.configuration = props.visualizationConfigurationFactory.getConfiguration(VisualizationType.Issues);
-        this.state = {
-            isExportDialogOpen: false,
-            exportDescription: '',
-            exportName: '',
-            exportDataWithPlaceholder: '',
-            exportData: '',
-        };
     }
 
     public render(): JSX.Element {
