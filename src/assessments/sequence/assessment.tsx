@@ -3,6 +3,7 @@
 import * as React from 'react';
 
 import { VisualizationType } from '../../common/types/visualization-type';
+import { test as content } from '../../content/test';
 import { AssessmentBuilder } from '../assessment-builder';
 import { Assessment } from '../types/iassessment';
 import { Columns } from './test-steps/columns';
@@ -11,6 +12,7 @@ import { LayoutTables } from './test-steps/layout-tables';
 
 const key = 'sequence';
 const title = 'Sequence';
+const { guidance } = content.sequence;
 const gettingStarted: JSX.Element = (
     <React.Fragment>
         <p>
@@ -26,6 +28,7 @@ export const SequenceAssessment: Assessment = AssessmentBuilder.Assisted({
     key,
     title,
     gettingStarted,
+    guidance,
     visualizationType: VisualizationType.SequenceAssessment,
     requirements: [CssPositioning, LayoutTables, Columns],
     storeDataKey: 'sequenceAssessment',

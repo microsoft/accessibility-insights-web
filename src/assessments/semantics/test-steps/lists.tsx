@@ -7,6 +7,7 @@ import { ManualTestRecordYourResults } from '../../common/manual-test-record-you
 import * as Markup from '../../markup';
 import { Requirement } from '../../types/requirement';
 import { SemanticsTestStep } from './test-steps';
+import * as content from '../../../content/test/semantics/lists';
 
 const listsDescription: JSX.Element = <span>Lists must be contained within semantically correct containers.</span>;
 
@@ -51,6 +52,7 @@ export const SemanticsLists: Requirement = {
     description: listsDescription,
     howToTest: listsHowToTest,
     isManual: true,
+    ...content,
     guidanceLinks: [link.WCAG_1_3_1],
     updateVisibility: false,
 };

@@ -5,6 +5,7 @@ import { link } from '../../../content/link';
 import { ManualTestRecordYourResults } from '../../common/manual-test-record-your-results';
 import { Requirement } from '../../types/requirement';
 import { SemanticsTestStep } from './test-steps';
+import * as content from '../../../content/test/semantics/letter-spacing';
 
 const letterSpacingDescription: JSX.Element = (
     <span>Spacing characters must not be used to increase the space between letters in a word.</span>
@@ -30,6 +31,7 @@ export const SemanticsLetterSpacing: Requirement = {
     description: letterSpacingDescription,
     howToTest: letterSpacingHowToTest,
     isManual: true,
+    ...content,
     guidanceLinks: [link.WCAG_1_3_1],
     updateVisibility: false,
 };

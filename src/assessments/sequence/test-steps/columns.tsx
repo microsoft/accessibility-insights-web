@@ -6,6 +6,7 @@ import { ManualTestRecordYourResults } from '../../common/manual-test-record-you
 import * as Markup from '../../markup';
 import { Requirement } from '../../types/requirement';
 import { SequenceTestStep } from './test-steps';
+import * as content from '../../../content/test/sequence/columns';
 
 const description: JSX.Element = <span>White space characters must not be used to create the appearance of columns.</span>;
 
@@ -31,5 +32,6 @@ export const Columns: Requirement = {
     description: description,
     howToTest: howToTest,
     isManual: true,
+    ...content,
     guidanceLinks: [link.WCAG_1_3_1, link.WCAG_1_3_2],
 };

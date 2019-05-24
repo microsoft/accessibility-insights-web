@@ -9,6 +9,7 @@ import { ManualTestRecordYourResults } from '../../common/manual-test-record-you
 import * as Markup from '../../markup';
 import { Requirement } from '../../types/requirement';
 import { SemanticsTestStep } from './test-steps';
+import * as content from '../../../content/test/semantics/css-content';
 
 const cssContentHowToTest: JSX.Element = (
     <div>
@@ -43,6 +44,7 @@ export const CssContent: Requirement = {
     howToTest: cssContentHowToTest,
     isManual: true,
     guidanceLinks: [link.WCAG_1_3_1],
+    ...content,
     updateVisibility: false,
     getAnalyzer: provider =>
         provider.createRuleAnalyzer(

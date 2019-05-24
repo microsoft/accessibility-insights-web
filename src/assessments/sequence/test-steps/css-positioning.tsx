@@ -10,6 +10,7 @@ import { ManualTestRecordYourResults } from '../../common/manual-test-record-you
 import * as Markup from '../../markup';
 import { Requirement } from '../../types/requirement';
 import { SequenceTestStep } from './test-steps';
+import * as content from '../../../content/test/sequence/css-positioning';
 
 const description: JSX.Element = (
     <span>Meaningful content positioned on the page using CSS must retain its meaning when CSS is disabled.</span>
@@ -60,6 +61,7 @@ export const CssPositioning: Requirement = {
     description: description,
     howToTest: howToTest,
     isManual: true,
+    ...content,
     guidanceLinks: [link.WCAG_1_3_2],
     getAnalyzer: provider =>
         provider.createRuleAnalyzer(

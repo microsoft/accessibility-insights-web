@@ -6,6 +6,7 @@ import { ManualTestRecordYourResults } from '../../common/manual-test-record-you
 import * as Markup from '../../markup';
 import { Requirement } from '../../types/requirement';
 import { SemanticsTestStep } from './test-steps';
+import * as content from '../../../content/test/semantics/quotes';
 
 const quotesDescription: JSX.Element = (
     <span>
@@ -34,6 +35,7 @@ export const SemanticsQuotes: Requirement = {
     description: quotesDescription,
     howToTest: quotesHowToTest,
     isManual: true,
+    ...content,
     guidanceLinks: [link.WCAG_1_3_1],
     updateVisibility: false,
 };

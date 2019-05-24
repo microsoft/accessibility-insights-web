@@ -7,6 +7,7 @@ import { ManualTestRecordYourResults } from '../../common/manual-test-record-you
 import * as Markup from '../../markup';
 import { Requirement } from '../../types/requirement';
 import { SequenceTestStep } from './test-steps';
+import * as content from '../../../content/test/sequence/layout-tables';
 
 const description: JSX.Element = <span>The content in an HTML layout table must make sense when the table is linearized.</span>;
 
@@ -51,6 +52,7 @@ export const LayoutTables: Requirement = {
     name: 'Layout tables',
     description: description,
     howToTest: howToTest,
+    ...content,
     isManual: true,
     guidanceLinks: [link.WCAG_1_3_2],
 };
