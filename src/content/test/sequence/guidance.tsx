@@ -57,7 +57,7 @@ export const guidance = create(({ Markup, Link }) => (
         <h4>Sufficient techniques</h4>
         <Markup.Links>
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/general/G57">
-                Ordering the content in a meaningful sequence 
+                Ordering the content in a meaningful sequence
             </Markup.HyperLink>
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/css/C6">
                 Positioning content based on structural markup

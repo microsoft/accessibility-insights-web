@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { React, create } from '../../common';
 import { CodeExample } from '../../../views/content/markup/code-example';
+import { create, React } from '../../common';
 
 export const infoAndExamples = create(({ Markup, Link }) => (
     <>
@@ -41,7 +41,7 @@ export const infoAndExamples = create(({ Markup, Link }) => (
 [We the People     promote the general
 of the United     Welfare, and
 States, in        secure the
-Order to form a   Blessings of  
+Order to form a   Blessings of
 more perfect      Liberty to
 Union,            ourselves and
 establish         our Posterity,
@@ -57,24 +57,24 @@ common defense,   States of America.]
             passText={<p>CSS is used to display the content in columns in a way that the DOM order matches the expected reading order.</p>}
             passExample={`<style>
             * {box-sizing: border-box;}
-            .column {float:left; width:50%; 
+            .column {float:left; width:50%;
             padding:10px;}
             </style>
             ...
-            <div class="column">[We the People 
-            of the United States, 
-            in Order to form a 
-            more perfect Union, 
-            establish Justice, 
-            insure domestic Tranquility, 
-            provide for the common defense, 
+            <div class="column">[We the People
+            of the United States,
+            in Order to form a
+            more perfect Union,
+            establish Justice,
+            insure domestic Tranquility,
+            provide for the common defense,
             ]</div>
-            <div class="column">[promote the 
-            general Welfare, 
-            and secure 
-            the blessings of Liberty 
+            <div class="column">[promote the
+            general Welfare,
+            and secure
+            the blessings of Liberty
             to ourselves and our Posterity,
-            do ordain and establish this Constitution 
+            do ordain and establish this Constitution
             for the United States of America.]</div>
             </body>
             </html>
@@ -96,7 +96,7 @@ common defense,   States of America.]
         <h3>Sufficient techniques</h3>
         <Markup.Links>
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/general/G57">
-                Ordering the content in a meaningful sequence 
+                Ordering the content in a meaningful sequence
             </Markup.HyperLink>
         </Markup.Links>
 

@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { React, create } from '../../common';
+import { create, React } from '../../common';
 
 export const infoAndExamples = create(({ Markup, Link }) => (
     <>
@@ -63,7 +63,7 @@ export const infoAndExamples = create(({ Markup, Link }) => (
         <h3>Sufficient techniques</h3>
         <Markup.Links>
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/general/G57">
-                Ordering the content in a meaningful sequence 
+                Ordering the content in a meaningful sequence
             </Markup.HyperLink>
         </Markup.Links>
 

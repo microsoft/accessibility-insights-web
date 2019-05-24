@@ -4,13 +4,13 @@ import * as React from 'react';
 import { NewTabLink } from '../../../common/components/new-tab-link';
 import { VisualizationType } from '../../../common/types/visualization-type';
 import { link } from '../../../content/link';
+import * as content from '../../../content/test/sequence/css-positioning';
 import { AssessmentVisualizationEnabledToggle } from '../../../DetailsView/components/assessment-visualization-enabled-toggle';
 import { AnalyzerConfigurationFactory } from '../../common/analyzer-configuration-factory';
 import { ManualTestRecordYourResults } from '../../common/manual-test-record-your-results';
 import * as Markup from '../../markup';
 import { Requirement } from '../../types/requirement';
 import { SequenceTestStep } from './test-steps';
-import * as content from '../../../content/test/sequence/css-positioning';
 
 const description: JSX.Element = (
     <span>Meaningful content positioned on the page using CSS must retain its meaning when CSS is disabled.</span>

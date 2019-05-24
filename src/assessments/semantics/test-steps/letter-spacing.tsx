@@ -2,10 +2,10 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 import { link } from '../../../content/link';
+import * as content from '../../../content/test/semantics/letter-spacing';
 import { ManualTestRecordYourResults } from '../../common/manual-test-record-your-results';
 import { Requirement } from '../../types/requirement';
 import { SemanticsTestStep } from './test-steps';
-import * as content from '../../../content/test/semantics/letter-spacing';
 
 const letterSpacingDescription: JSX.Element = (
     <span>Spacing characters must not be used to increase the space between letters in a word.</span>

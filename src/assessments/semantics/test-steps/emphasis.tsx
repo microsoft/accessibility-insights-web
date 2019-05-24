@@ -3,11 +3,11 @@
 import * as React from 'react';
 
 import { link } from '../../../content/link';
+import * as content from '../../../content/test/semantics/emphasis';
 import { ManualTestRecordYourResults } from '../../common/manual-test-record-your-results';
 import * as Markup from '../../markup';
 import { Requirement } from '../../types/requirement';
 import { SemanticsTestStep } from './test-steps';
-import * as content from '../../../content/test/semantics/emphasis';
 const emphasisDescription: JSX.Element = (
     <span>Words and phrases that are visually emphasized must be contained within semantically correct containers.</span>
 );

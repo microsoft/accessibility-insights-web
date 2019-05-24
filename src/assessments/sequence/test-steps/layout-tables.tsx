@@ -3,11 +3,11 @@
 import * as React from 'react';
 import { NewTabLink } from '../../../common/components/new-tab-link';
 import { link } from '../../../content/link';
+import * as content from '../../../content/test/sequence/layout-tables';
 import { ManualTestRecordYourResults } from '../../common/manual-test-record-your-results';
 import * as Markup from '../../markup';
 import { Requirement } from '../../types/requirement';
 import { SequenceTestStep } from './test-steps';
-import * as content from '../../../content/test/sequence/layout-tables';
 
 const description: JSX.Element = <span>The content in an HTML layout table must make sense when the table is linearized.</span>;
 

@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { React, create } from '../../common';
+import { create, React } from '../../common';
 
 export const infoAndExamples = create(({ Markup, Link }) => (
     <>
@@ -30,7 +30,7 @@ export const infoAndExamples = create(({ Markup, Link }) => (
                     thereby make it visually prominent.
                 </p>
             }
-            failExample={`<p>The Rentenmark was a currency introduced in 1923 in Weimar Germany after hyperinflation 
+            failExample={`<p>The Rentenmark was a currency introduced in 1923 in Weimar Germany after hyperinflation
            destroyed the value of the previous currency.</p>
            [<blockquote>]
            <a href="/wiki/German_Rentenmark" title="German Rentenmark">Learn more about the Rentenmark</a>
