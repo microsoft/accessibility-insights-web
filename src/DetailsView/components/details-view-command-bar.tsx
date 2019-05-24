@@ -1,8 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { autobind, css } from '@uifabric/utilities';
-import { escape } from 'lodash';
-import { ActionButton } from 'office-ui-fabric-react/lib/Button';
+import { css } from '@uifabric/utilities';
 import { Link } from 'office-ui-fabric-react/lib/Link';
 import * as React from 'react';
 
@@ -13,7 +11,8 @@ import { TabStoreData } from '../../common/types/store-data/tab-store-data';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 import { ReportGenerator, ReportGeneratorDeps } from '../reports/report-generator';
 import { DetailsRightPanelConfiguration } from './details-view-right-panel';
-import { ExportDialog, ExportDialogDeps } from './export-dialog';
+import { ExportControl } from './export-control';
+import { ExportDialogDeps } from './export-dialog';
 import { StartOverDropdown } from './start-over-dropdown';
 
 export type DetailsViewCommandBarDeps = ExportDialogDeps &
@@ -87,15 +86,26 @@ export class DetailsViewCommandBar extends React.Component<DetailsViewCommandBar
         if (!this.props.renderExportAndStartOver) {
             return null;
         }
-
+        const { deps, assessmentStoreData, assessmentsProvider, featureFlagStoreData, tabStoreData, reportGenerator } = this.props;
         const selectedTest = this.props.assessmentStoreData.assessmentNavState.selectedTestType;
         const test = this.props.assessmentsProvider.forType(selectedTest);
 
         return (
             <div className="details-view-command-buttons">
-                <ActionButton iconProps={{ iconName: 'Export' }} onClick={this.onExportButtonClick}>
-                    Export result
-                </ActionButton>
+                <ExportControl
+                    deps={deps}
+                    reportGenerator={reportGenerator}
+                    pageTitle={tabStoreData.title}
+                    exportResultsType={'Assessment'}
+                    scanDate={deps.dateProvider()}
+                    htmlGenerator={reportGenerator.generateAssessmentHtml.bind(
+                        reportGenerator,
+                        assessmentStoreData,
+                        assessmentsProvider,
+                        featureFlagStoreData,
+                        tabStoreData,
+                    )}
+                />
                 <StartOverDropdown
                     testName={test.title}
                     test={selectedTest}
@@ -103,64 +113,7 @@ export class DetailsViewCommandBar extends React.Component<DetailsViewCommandBar
                     actionMessageCreator={this.props.actionMessageCreator}
                     rightPanelConfiguration={this.props.rightPanelConfiguration}
                 />
-                <ExportDialog
-                    deps={this.props.deps}
-                    isOpen={this.state.isExportDialogOpen}
-                    fileName={this.state.exportFileName}
-                    description={this.state.exportDialogDescription}
-                    html={this.state.exportHtmlWithDescription}
-                    onClose={this.onExportDialogClose}
-                    onDescriptionChange={this.onExportDialogDescriptionChanged}
-                    exportResultsType="Assessment"
-                />
             </div>
         );
-    }
-
-    private descriptionPlaceholder: string = '7efdac3c-8c94-4e00-a765-6fc8c59a232b';
-
-    @autobind
-    private onExportButtonClick(): void {
-        const exportHtmlWithPlaceholder = this.props.reportGenerator.generateAssessmentHtml(
-            this.props.assessmentStoreData,
-            this.props.assessmentsProvider,
-            this.props.featureFlagStoreData,
-            this.props.tabStoreData,
-            this.descriptionPlaceholder,
-        );
-
-        const description = '';
-        const exportHtmlWithDescription = exportHtmlWithPlaceholder.replace(this.descriptionPlaceholder, description);
-        const exportFileName = this.props.reportGenerator.generateName(
-            'AssessmentReport',
-            this.props.deps.dateProvider(),
-            this.props.tabStoreData.title,
-        );
-
-        this.setState({
-            isExportDialogOpen: true,
-            exportFileName,
-            exportDialogDescription: description,
-            exportHtmlWithPlaceholder: exportHtmlWithPlaceholder,
-            exportHtmlWithDescription: exportHtmlWithDescription,
-        });
-    }
-
-    @autobind
-    private onExportDialogClose(): void {
-        this.setState({
-            isExportDialogOpen: false,
-        });
-    }
-
-    @autobind
-    private onExportDialogDescriptionChanged(description: string): void {
-        const escapedDescription = escape(description);
-        const exportHtmlWithDescription = this.state.exportHtmlWithPlaceholder.replace(this.descriptionPlaceholder, escapedDescription);
-
-        this.setState({
-            exportDialogDescription: description,
-            exportHtmlWithDescription: exportHtmlWithDescription,
-        });
     }
 }

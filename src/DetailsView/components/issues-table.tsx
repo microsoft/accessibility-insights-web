@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 import { autobind } from '@uifabric/utilities';
 import * as _ from 'lodash';
-import { ActionButton } from 'office-ui-fabric-react/lib/Button';
 import { ISelection } from 'office-ui-fabric-react/lib/DetailsList';
 import { Spinner, SpinnerSize } from 'office-ui-fabric-react/lib/Spinner';
 import * as React from 'react';
@@ -18,6 +17,7 @@ import { DecoratedAxeNodeResult } from '../../injected/scanner-utils';
 import { RuleResult, ScanResults } from '../../scanner/iruleresults';
 import { DictionaryStringTo } from '../../types/common-types';
 import { ReportGenerator } from '../reports/report-generator';
+import { ExportControl } from './export-control';
 import { ExportDialog, ExportDialogDeps } from './export-dialog';
 import { IssuesDetailsList } from './issues-details-list';
 import { IssuesDetailsPane, IssuesDetailsPaneDeps } from './Issues-details-pane';
@@ -95,7 +95,6 @@ export class IssuesTable extends React.Component<IssuesTableProps, IssuesTableSt
         return (
             <div className="issues-table-content">
                 {this.renderCommandBar()}
-                {this.renderExportDialog()}
                 {this.renderComponent()}
             </div>
         );
@@ -112,30 +111,22 @@ export class IssuesTable extends React.Component<IssuesTableProps, IssuesTableSt
 
     private renderExportButton(): JSX.Element {
         const shouldShowButton = this.props.issuesEnabled && !this.props.scanning;
+        const { deps, scanResult, reportGenerator, pageTitle, pageUrl } = this.props;
+        const scanDate = new Date(scanResult.timestamp);
         if (shouldShowButton) {
             return (
-                <ActionButton iconProps={{ iconName: 'Export' }} onClick={this.onExportButtonClick}>
-                    Export result
-                </ActionButton>
+                <ExportControl
+                    deps={deps}
+                    scanDate={scanDate}
+                    reportGenerator={reportGenerator}
+                    pageTitle={pageTitle}
+                    exportResultsType={'AutomatedChecks'}
+                    htmlGenerator={reportGenerator.generateHtml.bind(reportGenerator, scanResult, scanDate, pageTitle, pageUrl)}
+                />
             );
         } else {
             return null;
         }
-    }
-
-    private renderExportDialog(): JSX.Element {
-        return (
-            <ExportDialog
-                deps={this.props.deps}
-                isOpen={this.state.isExportDialogOpen}
-                fileName={this.state.exportName}
-                description={this.state.exportDescription}
-                html={this.state.exportData}
-                onClose={this.onDismissExportDialog}
-                onDescriptionChange={this.onExportDescriptionChange}
-                exportResultsType="AutomatedChecks"
-            />
-        );
     }
 
     private renderComponent(): JSX.Element {
@@ -203,39 +194,5 @@ export class IssuesTable extends React.Component<IssuesTableProps, IssuesTableSt
                 userConfigurationStoreData={this.props.userConfigurationStoreData}
             />
         );
-    }
-
-    private descriptionPlaceholder: string = 'd68d50a0-8249-464d-b2fd-709049c89ee4';
-
-    @autobind
-    private onExportButtonClick(): void {
-        const scanDate = new Date(this.props.scanResult.timestamp);
-        const exportName = this.props.reportGenerator.generateName('AutomatedChecksReport', scanDate, this.props.pageTitle);
-        const exportDataWithPlaceholder = this.props.reportGenerator.generateHtml(
-            this.props.scanResult,
-            scanDate,
-            this.props.pageTitle,
-            this.props.pageUrl,
-            this.descriptionPlaceholder,
-        );
-        const exportData = exportDataWithPlaceholder.replace(this.descriptionPlaceholder, '');
-        this.setState({
-            isExportDialogOpen: true,
-            exportDescription: '',
-            exportName: exportName,
-            exportDataWithPlaceholder: exportDataWithPlaceholder,
-            exportData: exportData,
-        });
-    }
-
-    @autobind
-    private onDismissExportDialog(): void {
-        this.setState({ isExportDialogOpen: false });
-    }
-
-    @autobind
-    private onExportDescriptionChange(value: string): void {
-        const exportData = this.state.exportDataWithPlaceholder.replace(this.descriptionPlaceholder, _.escape(value));
-        this.setState({ exportDescription: value, exportData: exportData });
     }
 }
