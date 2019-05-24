@@ -56,7 +56,7 @@ export const infoAndExamples = create(({ Markup, Link }) => (
                 Understanding Success Criterion 1.3.1: Info and Relationships
             </Markup.HyperLink>
         </Markup.Links>
-        <h4>Sufficient techniques</h4>
+        <h3>Sufficient techniques</h3>
         <Markup.Links>
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/general/G115">
                 Using semantic elements to mark up structure

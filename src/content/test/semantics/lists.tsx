@@ -95,7 +95,7 @@ export const infoAndExamples = create(({ Markup, Link }) => (
                 Understanding Success Criterion 1.3.1: Info and Relationships
             </Markup.HyperLink>
         </Markup.Links>
-        <h4>Sufficient techniques</h4>
+        <h3>Sufficient techniques</h3>
         <Markup.Links>
             <Markup.HyperLink href="http://www.w3.org/TR/2016/NOTE-WCAG20-TECHS-20161007/H48">
                 Using ol, ul and dl for lists or groups of links
