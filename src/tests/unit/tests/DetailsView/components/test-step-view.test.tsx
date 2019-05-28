@@ -42,7 +42,7 @@ describe('TestStepViewTest', () => {
         const title = mainDiv.find('h3.test-step-view-title');
 
         expect(title.exists()).toBeTruthy();
-        expect(props.testStep.name).toBe(title.text());
+        expect(title.text().startsWith(props.testStep.name)).toBe(true);
 
         const testInstructions = wrapper.find(CollapsibleComponent);
 
@@ -202,7 +202,13 @@ class TestStepViewPropsBuilder extends BaseDataBuilder<TestStepViewProps> {
                 name: 'Test Step Test Name',
                 howToTest: <p>Instructions</p>,
                 isManual: false,
-                guidanceLinks: [],
+                guidanceLinks: [
+                    {
+                        href: null,
+                        text: null,
+                        tags: [{ id: 'guidanceLinks-tags-id', displayText: 'guidanceLinks-tags-displayText' }],
+                    },
+                ],
             });
     }
 
