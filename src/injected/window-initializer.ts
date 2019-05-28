@@ -31,6 +31,9 @@ import { TabStopsListener } from './tab-stops-listener';
 import { DrawerProvider } from './visualization/drawer-provider';
 import { DrawerUtils } from './visualization/drawer-utils';
 import { RootContainerCreator } from './visualization/root-container-creator';
+import { VisualizationTypeDrawerRegistrator } from './visualization-type-drawer-registrator';
+import { EnumHelper } from '../common/enum-helper';
+import { VisualizationType } from '../common/types/visualization-type';
 
 export class WindowInitializer {
     public shadowInitializer: any;
@@ -94,12 +97,8 @@ export class WindowInitializer {
         );
         this.drawingController = new DrawingController(
             this.frameCommunicator,
-            this.instanceVisibilityChecker,
             new HtmlElementAxeResultsHelper(htmlElementUtils),
             htmlElementUtils,
-            this.visualizationConfigurationFactory,
-            drawerProvider,
-            Assessments,
         );
         this.scrollingController = new ScrollingController(this.frameCommunicator, htmlElementUtils);
         this.frameUrlFinder = new FrameUrlFinder(this.frameCommunicator, this.windowUtils, htmlElementUtils);
@@ -109,6 +108,14 @@ export class WindowInitializer {
         this.drawingController.initialize();
         this.scrollingController.initialize();
         this.frameUrlFinder.initialize();
+
+        const visualizationTypeDrawerRegistrator = new VisualizationTypeDrawerRegistrator(
+            this.drawingController.registerDrawer,
+            this.visualizationConfigurationFactory,
+            Assessments,
+            drawerProvider,
+        );
+        visualizationTypeDrawerRegistrator.registerAllDrawers(EnumHelper.getNumericValues(VisualizationType));
 
         const port = this.clientChromeAdapter.connect();
         port.onDisconnect.addListener(this.dispose);
