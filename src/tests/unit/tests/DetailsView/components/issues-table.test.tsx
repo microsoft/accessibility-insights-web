@@ -3,18 +3,18 @@
 import { shallow } from 'enzyme';
 import { ISelection, Selection } from 'office-ui-fabric-react/lib/DetailsList';
 import * as React from 'react';
-import { Mock, IMock } from 'typemoq';
+import { IMock, Mock } from 'typemoq';
 
 import { VisualizationConfigurationFactory } from '../../../../../common/configs/visualization-configuration-factory';
+import { DateProvider } from '../../../../../common/date-provider';
 import { UserConfigurationStoreData } from '../../../../../common/types/store-data/user-configuration-store';
 import { IssuesTable, IssuesTableDeps, IssuesTableProps } from '../../../../../DetailsView/components/issues-table';
 import { DetailsRowData, IssuesTableHandler } from '../../../../../DetailsView/components/issues-table-handler';
+import { ReportGenerator } from '../../../../../DetailsView/reports/report-generator';
+import { ReportGeneratorProvider } from '../../../../../DetailsView/reports/report-generator-provider';
 import { DecoratedAxeNodeResult } from '../../../../../injected/scanner-utils';
 import { RuleResult } from '../../../../../scanner/iruleresults';
 import { DictionaryStringTo } from '../../../../../types/common-types';
-import { DateProvider } from '../../../../../common/date-provider';
-import { ReportGenerator } from '../../../../../DetailsView/reports/report-generator';
-import { ReportGeneratorProvider } from '../../../../../DetailsView/reports/report-generator-provider';
 
 describe('IssuesTableTest', () => {
     let deps: IssuesTableDeps;

@@ -3,7 +3,7 @@
 import { shallow } from 'enzyme';
 import { ActionButton } from 'office-ui-fabric-react/lib/Button';
 import * as React from 'react';
-import { IMock, It, Mock, Times, MockBehavior } from 'typemoq';
+import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 import { ExportDialog, ExportDialogDeps } from '../../../../../DetailsView/components/export-dialog';
 import { ReportExportComponent, ReportExportComponentProps } from '../../../../../DetailsView/components/report-export-component';
