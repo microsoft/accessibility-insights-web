@@ -11,7 +11,7 @@ import { ReportHtmlGenerator } from '../../../../../DetailsView/reports/report-h
 import { ReportNameGenerator } from '../../../../../DetailsView/reports/report-name-generator';
 import { ScanResults } from '../../../../../scanner/iruleresults';
 
-describe('ReportGeneratorTest', () => {
+describe('ReportGeneratorV1', () => {
     const scanResult: ScanResults = {} as any;
     const date = new Date(2018, 2, 12, 15, 46);
     const title = 'title';
