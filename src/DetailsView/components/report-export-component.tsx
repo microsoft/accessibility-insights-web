@@ -4,7 +4,6 @@ import { escape } from 'lodash';
 import { ActionButton } from 'office-ui-fabric-react/lib/Button';
 import * as React from 'react';
 
-import { NamedSFC } from '../../common/react/named-sfc';
 import { ExportResultType } from '../../common/telemetry-events';
 import { ReportGenerator } from '../reports/report-generator';
 import { ExportDialog, ExportDialogDeps } from './export-dialog';
@@ -18,50 +17,64 @@ export interface ReportExportComponentProps {
     htmlGenerator: (descriptionPlaceholder: string) => string;
 }
 
-export const ReportExportComponent = NamedSFC<ReportExportComponentProps>('ReportExportComponent', props => {
-    const descriptionPlaceholder: string = 'd68d50a0-8249-464d-b2fd-709049c89ee4';
-    const [isOpen, setDialogVisibility] = React.useState<boolean>(false);
-    const [exportName, setExportName] = React.useState<string>('');
-    const [exportDescription, setExportDescription] = React.useState<string>('');
-    const [exportDataWithPlaceholder, setExportDataWithPlaceholder] = React.useState<string>('');
-    const [exportData, setExportData] = React.useState<string>('');
+export interface ReportExportComponentState {
+    isOpen: boolean;
+    exportName: string;
+    exportDescription: string;
+    exportDataWithPlaceholder: string;
+    exportData: string;
+}
 
-    const onDismissExportDialog = () => {
-        setDialogVisibility(false);
+export class ReportExportComponent extends React.Component<ReportExportComponentProps, ReportExportComponentState> {
+    constructor(props) {
+        super(props);
+        this.state = {
+            isOpen: false,
+            exportName: '',
+            exportDescription: '',
+            exportDataWithPlaceholder: '',
+            exportData: '',
+        };
+    }
+
+    private descriptionPlaceholder: string = 'd68d50a0-8249-464d-b2fd-709049c89ee4';
+
+    onDismissExportDialog = () => {
+        this.setState({ isOpen: false });
     };
 
-    const onExportDescriptionChange = (value: string) => {
-        const _exportData = exportDataWithPlaceholder.replace(descriptionPlaceholder, escape(value));
-        setExportDescription(value);
-        setExportData(_exportData);
+    onExportDescriptionChange = (value: string) => {
+        const exportData = this.state.exportDataWithPlaceholder.replace(this.descriptionPlaceholder, escape(value));
+        this.setState({ exportDescription: value, exportData });
     };
 
-    const onExportButtonClick = () => {
-        const _exportName = props.reportGenerator.generateName(props.exportResultsType, props.scanDate, props.pageTitle);
-        const _exportDataWithPlaceholder = props.htmlGenerator(descriptionPlaceholder);
-        const _exportData = _exportDataWithPlaceholder.replace(descriptionPlaceholder, '');
-        setExportDescription('');
-        setExportName(_exportName);
-        setExportDataWithPlaceholder(_exportDataWithPlaceholder);
-        setExportData(_exportData);
-        setDialogVisibility(true);
+    onExportButtonClick = () => {
+        const { reportGenerator, exportResultsType, scanDate, pageTitle, htmlGenerator } = this.props;
+        const exportName = reportGenerator.generateName(exportResultsType, scanDate, pageTitle);
+        const exportDataWithPlaceholder = htmlGenerator(this.descriptionPlaceholder);
+        const exportData = exportDataWithPlaceholder.replace(this.descriptionPlaceholder, '');
+        this.setState({ exportDescription: '', exportName, exportDataWithPlaceholder, exportData, isOpen: true });
     };
 
-    return (
-        <>
-            <ActionButton iconProps={{ iconName: 'Export' }} onClick={onExportButtonClick}>
-                Export result
-            </ActionButton>
-            <ExportDialog
-                deps={props.deps}
-                isOpen={isOpen}
-                fileName={exportName}
-                description={exportDescription}
-                html={exportData}
-                onClose={onDismissExportDialog}
-                onDescriptionChange={onExportDescriptionChange}
-                exportResultsType={props.exportResultsType}
-            />
-        </>
-    );
-});
+    public render(): JSX.Element {
+        const { deps, exportResultsType } = this.props;
+        const { isOpen, exportName, exportDescription, exportData } = this.state;
+        return (
+            <>
+                <ActionButton iconProps={{ iconName: 'Export' }} onClick={this.onExportButtonClick}>
+                    Export result
+                </ActionButton>
+                <ExportDialog
+                    deps={deps}
+                    isOpen={isOpen}
+                    fileName={exportName}
+                    description={exportDescription}
+                    html={exportData}
+                    onClose={this.onDismissExportDialog}
+                    onDescriptionChange={this.onExportDescriptionChange}
+                    exportResultsType={exportResultsType}
+                />
+            </>
+        );
+    }
+}
