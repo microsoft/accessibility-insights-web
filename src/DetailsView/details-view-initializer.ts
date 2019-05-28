@@ -80,6 +80,7 @@ import {
     getAssessmentSummaryModelFromProviderAndStoreData,
 } from './reports/get-assessment-summary-model';
 import { ReactStaticRenderer } from './reports/react-static-renderer';
+import { createReportGeneratorProvider } from './reports/report-generator-provider';
 import { ReportGeneratorV1 } from './reports/report-generator-v1';
 import { ReportHtmlGenerator } from './reports/report-html-generator';
 import { ReportNameGenerator } from './reports/report-name-generator';
@@ -195,7 +196,15 @@ if (isNaN(tabId) === false) {
                 new NavigatorUtils(window.navigator).getBrowserSpec(),
                 assessmentDefaultMessageGenerator,
             );
-            const reportGenerator = new ReportGeneratorV1(reportNameGenerator, reportHtmlGenerator, assessmentReportHtmlGenerator);
+
+            const reportGeneratorProvider = createReportGeneratorProvider(
+                reportNameGenerator,
+                reportHtmlGenerator,
+                assessmentReportHtmlGenerator,
+                featureFlagStore,
+            );
+
+            const reportGenerator = reportGeneratorProvider.getGenerator();
 
             visualizationStore.setTabId(tab.id);
             tabStore.setTabId(tab.id);
