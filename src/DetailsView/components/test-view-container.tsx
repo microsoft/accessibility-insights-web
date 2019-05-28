@@ -14,7 +14,6 @@ import { VisualizationType } from '../../common/types/visualization-type';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 import { AssessmentInstanceTableHandler } from '../handlers/assessment-instance-table-handler';
 import { DetailsViewToggleClickHandlerFactory } from '../handlers/details-view-toggle-click-handler-factory';
-import { ReportGenerator } from '../reports/report-generator';
 import { IssuesTableHandler } from './issues-table-handler';
 import { OverviewContainerDeps } from './overview-content/overview-content-container';
 import { TestViewDeps } from './test-view';
@@ -36,7 +35,6 @@ export interface TestViewContainerProps {
     clickHandlerFactory: DetailsViewToggleClickHandlerFactory;
     assessmentInstanceTableHandler: AssessmentInstanceTableHandler;
     issuesSelection: ISelection;
-    reportGenerator: ReportGenerator;
     issuesTableHandler: IssuesTableHandler;
     userConfigurationStoreData: UserConfigurationStoreData;
 }
