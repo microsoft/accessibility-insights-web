@@ -3,7 +3,7 @@
 import { shallow } from 'enzyme';
 import { ActionButton } from 'office-ui-fabric-react/lib/Button';
 import * as React from 'react';
-import { IMock, It, Mock, Times } from 'typemoq';
+import { IMock, It, Mock, Times, MockBehavior } from 'typemoq';
 
 import { ExportDialog, ExportDialogDeps } from '../../../../../DetailsView/components/export-dialog';
 import { ReportExportComponent, ReportExportComponentProps } from '../../../../../DetailsView/components/report-export-component';
@@ -17,7 +17,7 @@ describe('ReportExportComponentTest', () => {
 
     beforeEach(() => {
         deps = {} as ExportDialogDeps;
-        reportGeneratorMock = Mock.ofType(ReportGenerator);
+        reportGeneratorMock = Mock.ofType<ReportGenerator>(undefined, MockBehavior.Strict);
         htmlGeneratorMock = Mock.ofInstance(description => null);
         props = {
             deps,

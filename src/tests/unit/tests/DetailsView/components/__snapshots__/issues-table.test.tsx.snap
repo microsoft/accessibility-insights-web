@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`IssuesTableTest render automated checks disabled 1`] = `
+exports[`IssuesTableTest automated checks disabled 1`] = `
 <div
   className="issues-table"
 >
@@ -36,7 +36,7 @@ exports[`IssuesTableTest render automated checks disabled 1`] = `
 </div>
 `;
 
-exports[`IssuesTableTest render includes subtitle if specified 1`] = `
+exports[`IssuesTableTest includes subtitle if specified 1`] = `
 "<div className=\\"issues-table\\">
   <h1>
     test title
@@ -48,7 +48,7 @@ exports[`IssuesTableTest render includes subtitle if specified 1`] = `
 </div>"
 `;
 
-exports[`IssuesTableTest render spinner for scanning state 1`] = `
+exports[`IssuesTableTest spinner for scanning state 1`] = `
 "<div className=\\"issues-table\\">
   <h1>
     test title
@@ -62,7 +62,7 @@ exports[`IssuesTableTest render spinner for scanning state 1`] = `
 </div>"
 `;
 
-exports[`IssuesTableTest render spinner, issuesEnabled == null 1`] = `
+exports[`IssuesTableTest spinner, issuesEnabled == null 1`] = `
 "<div className=\\"issues-table\\">
   <h1>
     test title
@@ -71,59 +71,32 @@ exports[`IssuesTableTest render spinner, issuesEnabled == null 1`] = `
 </div>"
 `;
 
-exports[`IssuesTableTest render spinner, issuesEnabled is an empty object 1`] = `
-<div
-  className="issues-table"
->
+exports[`IssuesTableTest spinner, issuesEnabled is an empty object 1`] = `
+"<div className=\\"issues-table\\">
   <h1>
     test title
   </h1>
-  <div
-    className="issues-table-content"
-  >
-    <div
-      className="details-view-command-bar"
-    >
-      <VisualizationToggle
-        checked={Object {}}
-        className="automated-checks-details-view-toggle"
-        disabled={false}
-        label="Show failures"
-        visualizationName="Automated checks"
-      />
-      <ReportExportComponent
-        deps={
-          Object {
-            "dateProvider": [Function],
-          }
-        }
-        exportResultsType="AutomatedChecks"
-        htmlGenerator={[Function]}
-        pageTitle="pageTitle"
-        reportGenerator={
-          proxy {
-            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-            "assessmentReportHtmlGenerator": undefined,
-            "generateAssessmentHtml": [Function],
-            "generateHtml": [Function],
-            "generateName": [Function],
-            "reportHtmlGenerator": undefined,
-            "reportNameGenerator": undefined,
-          }
-        }
-        scanDate={Date { NaN }}
-      />
+  <div className=\\"issues-table-content\\">
+    <div className=\\"details-view-command-bar\\">
+      <VisualizationToggle label=\\"Show failures\\" checked={{...}} disabled={false} onClick={[undefined]} className=\\"automated-checks-details-view-toggle\\" visualizationName=\\"Automated checks\\" />
+      <ReportExportComponent deps={{...}} scanDate={{...}} reportGenerator={[Function: function () {
+                          var args = [];
+                          for (var _i = 0; _i < arguments.length; _i++) {
+                              args[_i] = arguments[_i];
+                          }
+                          _this._interceptor.removeInvocation(invocation_1);
+                          var method = new MethodInfo(target, p);
+                          var methodInvocation = new MethodInvocation(target, method, args, ProxyType.DYNAMIC);
+                          _this._interceptor.intercept(methodInvocation);
+                          return methodInvocation.returnValue;
+                      }]} pageTitle=\\"pageTitle\\" exportResultsType=\\"AutomatedChecks\\" htmlGenerator={[Function: bound ]} />
     </div>
-    <StyledSpinnerBase
-      className="details-view-spinner"
-      label="Loading data..."
-      size={3}
-    />
+    <StyledSpinnerBase className=\\"details-view-spinner\\" size={3} label=\\"Loading data...\\" />
   </div>
-</div>
+</div>"
 `;
 
-exports[`IssuesTableTest render table with 0 issues 1`] = `
+exports[`IssuesTableTest table with 0 issues 1`] = `
 "<div className=\\"issues-table\\">
   <h1>
     test title
@@ -131,7 +104,17 @@ exports[`IssuesTableTest render table with 0 issues 1`] = `
   <div className=\\"issues-table-content\\">
     <div className=\\"details-view-command-bar\\">
       <VisualizationToggle label=\\"Show failures\\" checked={true} disabled={false} onClick={[Function: proxy]} className=\\"automated-checks-details-view-toggle\\" visualizationName=\\"Automated checks\\" />
-      <ReportExportComponent deps={{...}} scanDate={{...}} reportGenerator={{...}} pageTitle=\\"pageTitle\\" exportResultsType=\\"AutomatedChecks\\" htmlGenerator={[Function: bound proxy]} />
+      <ReportExportComponent deps={{...}} scanDate={{...}} reportGenerator={[Function: function () {
+                          var args = [];
+                          for (var _i = 0; _i < arguments.length; _i++) {
+                              args[_i] = arguments[_i];
+                          }
+                          _this._interceptor.removeInvocation(invocation_1);
+                          var method = new MethodInfo(target, p);
+                          var methodInvocation = new MethodInvocation(target, method, args, ProxyType.DYNAMIC);
+                          _this._interceptor.intercept(methodInvocation);
+                          return methodInvocation.returnValue;
+                      }]} pageTitle=\\"pageTitle\\" exportResultsType=\\"AutomatedChecks\\" htmlGenerator={[Function: bound ]} />
     </div>
     <div className=\\"issues-table-details\\">
       <IssuesDetailsList violations={{...}} issuesTableHandler={{...}} issuesSelection={{...}} />
@@ -143,7 +126,7 @@ exports[`IssuesTableTest render table with 0 issues 1`] = `
 </div>"
 `;
 
-exports[`IssuesTableTest render table with 1 issues 1`] = `
+exports[`IssuesTableTest table with 1 issues 1`] = `
 "<div className=\\"issues-table\\">
   <h1>
     test title
@@ -151,7 +134,17 @@ exports[`IssuesTableTest render table with 1 issues 1`] = `
   <div className=\\"issues-table-content\\">
     <div className=\\"details-view-command-bar\\">
       <VisualizationToggle label=\\"Show failures\\" checked={true} disabled={false} onClick={[Function: proxy]} className=\\"automated-checks-details-view-toggle\\" visualizationName=\\"Automated checks\\" />
-      <ReportExportComponent deps={{...}} scanDate={{...}} reportGenerator={{...}} pageTitle=\\"pageTitle\\" exportResultsType=\\"AutomatedChecks\\" htmlGenerator={[Function: bound proxy]} />
+      <ReportExportComponent deps={{...}} scanDate={{...}} reportGenerator={[Function: function () {
+                          var args = [];
+                          for (var _i = 0; _i < arguments.length; _i++) {
+                              args[_i] = arguments[_i];
+                          }
+                          _this._interceptor.removeInvocation(invocation_1);
+                          var method = new MethodInfo(target, p);
+                          var methodInvocation = new MethodInvocation(target, method, args, ProxyType.DYNAMIC);
+                          _this._interceptor.intercept(methodInvocation);
+                          return methodInvocation.returnValue;
+                      }]} pageTitle=\\"pageTitle\\" exportResultsType=\\"AutomatedChecks\\" htmlGenerator={[Function: bound ]} />
     </div>
     <div className=\\"issues-table-details\\">
       <IssuesDetailsList violations={{...}} issuesTableHandler={{...}} issuesSelection={{...}} />
@@ -163,7 +156,7 @@ exports[`IssuesTableTest render table with 1 issues 1`] = `
 </div>"
 `;
 
-exports[`IssuesTableTest render table with 2 issues 1`] = `
+exports[`IssuesTableTest table with 2 issues 1`] = `
 "<div className=\\"issues-table\\">
   <h1>
     test title
@@ -171,7 +164,17 @@ exports[`IssuesTableTest render table with 2 issues 1`] = `
   <div className=\\"issues-table-content\\">
     <div className=\\"details-view-command-bar\\">
       <VisualizationToggle label=\\"Show failures\\" checked={true} disabled={false} onClick={[Function: proxy]} className=\\"automated-checks-details-view-toggle\\" visualizationName=\\"Automated checks\\" />
-      <ReportExportComponent deps={{...}} scanDate={{...}} reportGenerator={{...}} pageTitle=\\"pageTitle\\" exportResultsType=\\"AutomatedChecks\\" htmlGenerator={[Function: bound proxy]} />
+      <ReportExportComponent deps={{...}} scanDate={{...}} reportGenerator={[Function: function () {
+                          var args = [];
+                          for (var _i = 0; _i < arguments.length; _i++) {
+                              args[_i] = arguments[_i];
+                          }
+                          _this._interceptor.removeInvocation(invocation_1);
+                          var method = new MethodInfo(target, p);
+                          var methodInvocation = new MethodInvocation(target, method, args, ProxyType.DYNAMIC);
+                          _this._interceptor.intercept(methodInvocation);
+                          return methodInvocation.returnValue;
+                      }]} pageTitle=\\"pageTitle\\" exportResultsType=\\"AutomatedChecks\\" htmlGenerator={[Function: bound ]} />
     </div>
     <div className=\\"issues-table-details\\">
       <IssuesDetailsList violations={{...}} issuesTableHandler={{...}} issuesSelection={{...}} />

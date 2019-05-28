@@ -3,60 +3,106 @@
 import { shallow } from 'enzyme';
 import { ISelection, Selection } from 'office-ui-fabric-react/lib/DetailsList';
 import * as React from 'react';
-import { Mock } from 'typemoq';
+import { Mock, IMock } from 'typemoq';
 
 import { VisualizationConfigurationFactory } from '../../../../../common/configs/visualization-configuration-factory';
-import { DateProvider } from '../../../../../common/date-provider';
 import { UserConfigurationStoreData } from '../../../../../common/types/store-data/user-configuration-store';
 import { IssuesTable, IssuesTableDeps, IssuesTableProps } from '../../../../../DetailsView/components/issues-table';
 import { DetailsRowData, IssuesTableHandler } from '../../../../../DetailsView/components/issues-table-handler';
-import { ReportExportComponent } from '../../../../../DetailsView/components/report-export-component';
 import { DecoratedAxeNodeResult } from '../../../../../injected/scanner-utils';
 import { RuleResult } from '../../../../../scanner/iruleresults';
 import { DictionaryStringTo } from '../../../../../types/common-types';
+import { DateProvider } from '../../../../../common/date-provider';
+import { ReportGenerator } from '../../../../../DetailsView/reports/report-generator';
+import { ReportGeneratorProvider } from '../../../../../DetailsView/reports/report-generator-provider';
 
 describe('IssuesTableTest', () => {
-    describe('render', () => {
-        it('spinner, issuesEnabled == null', () => {
-            const props = new TestPropsBuilder().build();
+    let deps: IssuesTableDeps;
+    let reportGeneratorMock: IMock<ReportGenerator>;
+    let reportGeneratorProviderMock: IMock<ReportGeneratorProvider>;
+    beforeEach(() => {
+        reportGeneratorMock = Mock.ofType<ReportGenerator>();
+        reportGeneratorProviderMock = Mock.ofType<ReportGeneratorProvider>();
+        reportGeneratorProviderMock.setup(provider => provider.getGenerator()).returns(() => reportGeneratorMock.object);
+        deps = {
+            dateProvider: DateProvider.getDate,
+            reportGeneratorProvider: reportGeneratorProviderMock.object,
+        } as any;
+    });
 
-            const wrapped = shallow(<IssuesTable {...props} />);
+    it('spinner, issuesEnabled == null', () => {
+        const props = new TestPropsBuilder().build();
 
-            expect(wrapped.debug()).toMatchSnapshot();
-        });
+        const wrapped = shallow(<IssuesTable {...props} />);
 
-        it('includes subtitle if specified', () => {
-            const props = new TestPropsBuilder().setSubtitle(<>test subtitle text</>).build();
+        expect(wrapped.debug()).toMatchSnapshot();
+    });
 
-            const wrapped = shallow(<IssuesTable {...props} />);
+    it('includes subtitle if specified', () => {
+        const props = new TestPropsBuilder().setSubtitle(<>test subtitle text</>).build();
 
-            expect(wrapped.debug()).toMatchSnapshot();
-        });
+        const wrapped = shallow(<IssuesTable {...props} />);
 
-        it('automated checks disabled', () => {
-            const issuesEnabled = false;
-            const selectionMock = Mock.ofType<ISelection>(Selection);
+        expect(wrapped.debug()).toMatchSnapshot();
+    });
 
-            const toggleClickHandlerMock = Mock.ofInstance(event => {});
+    it('automated checks disabled', () => {
+        const issuesEnabled = false;
+        const selectionMock = Mock.ofType<ISelection>(Selection);
 
-            const props = new TestPropsBuilder()
-                .setIssuesEnabled(issuesEnabled)
-                .setIssuesSelection(selectionMock.object)
-                .setToggleClickHandler(toggleClickHandlerMock.object)
-                .build();
+        const toggleClickHandlerMock = Mock.ofInstance(event => {});
 
-            const wrapped = shallow(<IssuesTable {...props} />);
+        const props = new TestPropsBuilder()
+            .setDeps(deps)
+            .setIssuesEnabled(issuesEnabled)
+            .setIssuesSelection(selectionMock.object)
+            .setToggleClickHandler(toggleClickHandlerMock.object)
+            .build();
 
-            expect(wrapped.getElement()).toMatchSnapshot();
-        });
+        const wrapped = shallow(<IssuesTable {...props} />);
 
-        it('spinner for scanning state', () => {
+        expect(wrapped.getElement()).toMatchSnapshot();
+    });
+
+    it('spinner for scanning state', () => {
+        const issuesEnabled = true;
+        const toggleClickHandlerMock = Mock.ofInstance(event => {});
+
+        const props = new TestPropsBuilder()
+            .setDeps(deps)
+            .setIssuesEnabled(issuesEnabled)
+            .setScanning(true)
+            .setToggleClickHandler(toggleClickHandlerMock.object)
+            .build();
+
+        const wrapped = shallow(<IssuesTable {...props} />);
+
+        expect(wrapped.debug()).toMatchSnapshot();
+    });
+
+    describe('table', () => {
+        const issuesCount = [0, 1, 2];
+
+        it.each(issuesCount)('with %s issues', count => {
+            const sampleViolations: RuleResult[] = getSampleViolations(count);
+            const sampleIdToRuleResultMap: DictionaryStringTo<DecoratedAxeNodeResult> = {};
+            const items: DetailsRowData[] = [];
+            for (let i: number = 1; i <= count; i++) {
+                sampleIdToRuleResultMap['id' + i] = {} as DecoratedAxeNodeResult;
+                items.push({} as DetailsRowData);
+            }
+
             const issuesEnabled = true;
+            const issuesTableHandlerMock = Mock.ofType<IssuesTableHandler>(IssuesTableHandler);
+            const selectionMock = Mock.ofType<ISelection>(Selection);
             const toggleClickHandlerMock = Mock.ofInstance(event => {});
 
             const props = new TestPropsBuilder()
+                .setDeps(deps)
                 .setIssuesEnabled(issuesEnabled)
-                .setScanning(true)
+                .setViolations(sampleViolations)
+                .setIssuesSelection(selectionMock.object)
+                .setIssuesTableHandler(issuesTableHandlerMock.object)
                 .setToggleClickHandler(toggleClickHandlerMock.object)
                 .build();
 
@@ -64,50 +110,17 @@ describe('IssuesTableTest', () => {
 
             expect(wrapped.debug()).toMatchSnapshot();
         });
+    });
 
-        describe('table', () => {
-            const issuesCount = [0, 1, 2];
+    it('spinner, issuesEnabled is an empty object', () => {
+        const props = new TestPropsBuilder()
+            .setDeps(deps)
+            .setIssuesEnabled({} as any)
+            .build();
 
-            it.each(issuesCount)('with %s issues', count => {
-                const sampleViolations: RuleResult[] = getSampleViolations(count);
-                const sampleIdToRuleResultMap: DictionaryStringTo<DecoratedAxeNodeResult> = {};
-                const items: DetailsRowData[] = [];
-                const description = 'test description';
-                for (let i: number = 1; i <= count; i++) {
-                    sampleIdToRuleResultMap['id' + i] = {} as DecoratedAxeNodeResult;
-                    items.push({} as DetailsRowData);
-                }
+        const wrapper = shallow(<IssuesTable {...props} />);
 
-                const issuesEnabled = true;
-                const issuesTableHandlerMock = Mock.ofType<IssuesTableHandler>(IssuesTableHandler);
-                const selectionMock = Mock.ofType<ISelection>(Selection);
-                const toggleClickHandlerMock = Mock.ofInstance(event => {});
-
-                const props = new TestPropsBuilder()
-                    .setIssuesEnabled(issuesEnabled)
-                    .setViolations(sampleViolations)
-                    .setIssuesSelection(selectionMock.object)
-                    .setIssuesTableHandler(issuesTableHandlerMock.object)
-                    .setToggleClickHandler(toggleClickHandlerMock.object)
-                    .build();
-
-                const wrapped = shallow(<IssuesTable {...props} />);
-                wrapped
-                    .find(ReportExportComponent)
-                    .props()
-                    .htmlGenerator(description);
-
-                expect(wrapped.debug()).toMatchSnapshot();
-            });
-        });
-
-        it('spinner, issuesEnabled is an empty object', () => {
-            const props = new TestPropsBuilder().setIssuesEnabled({} as any).build();
-
-            const wrapper = shallow(<IssuesTable {...props} />);
-
-            expect(wrapper.getElement()).toMatchSnapshot();
-        });
+        expect(wrapper.debug()).toMatchSnapshot();
     });
 
     function getSampleViolations(count: number): RuleResult[] {
@@ -197,11 +210,7 @@ class TestPropsBuilder {
 
     public build(): IssuesTableProps {
         return {
-            deps:
-                this.deps ||
-                ({
-                    dateProvider: DateProvider.getDate,
-                } as any),
+            deps: this.deps,
             title: this.title,
             subtitle: this.subtitle,
             issuesTableHandler: this.issuesTableHandler,
