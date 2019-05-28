@@ -6,7 +6,7 @@ import { AssessmentStoreData } from '../../../../../common/types/store-data/asse
 import { FeatureFlagStoreData } from '../../../../../common/types/store-data/feature-flag-store-data';
 import { TabStoreData } from '../../../../../common/types/store-data/tab-store-data';
 import { AssessmentReportHtmlGenerator } from '../../../../../DetailsView/reports/assessment-report-html-generator';
-import { ReportGenerator } from '../../../../../DetailsView/reports/report-generator';
+import { ReportGeneratorV1 } from '../../../../../DetailsView/reports/report-generator';
 import { ReportHtmlGenerator } from '../../../../../DetailsView/reports/report-html-generator';
 import { ReportNameGenerator } from '../../../../../DetailsView/reports/report-name-generator';
 import { ScanResults } from '../../../../../scanner/iruleresults';
@@ -47,7 +47,7 @@ describe('ReportGeneratorTest', () => {
             .returns(() => 'returned-data')
             .verifiable(Times.once());
 
-        const testObject = new ReportGenerator(nameBuilderMock.object, dataBuilderMock.object, assessmentReportHtmlGeneratorMock.object);
+        const testObject = new ReportGeneratorV1(nameBuilderMock.object, dataBuilderMock.object, assessmentReportHtmlGeneratorMock.object);
         const actual = testObject.generateHtml(scanResult, date, title, url, description);
 
         const expected = 'returned-data';
@@ -68,7 +68,7 @@ describe('ReportGeneratorTest', () => {
             .returns(() => 'generated-assessment-html')
             .verifiable(Times.once());
 
-        const testObject = new ReportGenerator(nameBuilderMock.object, dataBuilderMock.object, assessmentReportHtmlGeneratorMock.object);
+        const testObject = new ReportGeneratorV1(nameBuilderMock.object, dataBuilderMock.object, assessmentReportHtmlGeneratorMock.object);
         const actual = testObject.generateAssessmentHtml(
             assessmentStoreData,
             assessmentsProvider,
@@ -87,7 +87,7 @@ describe('ReportGeneratorTest', () => {
             .returns(() => 'returned-name')
             .verifiable(Times.once());
 
-        const testObject = new ReportGenerator(nameBuilderMock.object, dataBuilderMock.object, assessmentReportHtmlGeneratorMock.object);
+        const testObject = new ReportGeneratorV1(nameBuilderMock.object, dataBuilderMock.object, assessmentReportHtmlGeneratorMock.object);
         const actual = testObject.generateName('InsightsScan', date, title);
 
         const expected = 'returned-name';

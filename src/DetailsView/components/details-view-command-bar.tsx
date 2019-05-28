@@ -11,7 +11,7 @@ import { AssessmentStoreData } from '../../common/types/store-data/assessment-re
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { TabStoreData } from '../../common/types/store-data/tab-store-data';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
-import { ReportGenerator, ReportGeneratorDeps } from '../reports/report-generator';
+import { ReportGeneratorV1, ReportGeneratorDeps } from '../reports/report-generator';
 import { DetailsRightPanelConfiguration } from './details-view-right-panel';
 import { ExportDialog, ExportDialogDeps } from './export-dialog';
 import { StartOverDropdown } from './start-over-dropdown';
@@ -28,7 +28,7 @@ export interface DetailsViewCommandBarProps {
     actionMessageCreator: DetailsViewActionMessageCreator;
     assessmentStoreData: AssessmentStoreData;
     assessmentsProvider: AssessmentsProvider;
-    reportGenerator: ReportGenerator;
+    reportGenerator: ReportGeneratorV1;
     renderExportAndStartOver: boolean;
     rightPanelConfiguration: DetailsRightPanelConfiguration;
 }

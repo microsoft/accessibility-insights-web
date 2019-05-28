@@ -10,7 +10,7 @@ import { UserConfigurationStoreData } from '../../../../../common/types/store-da
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
 import { IssuesTable, IssuesTableDeps, IssuesTableProps, IssuesTableState } from '../../../../../DetailsView/components/issues-table';
 import { DetailsRowData, IssuesTableHandler } from '../../../../../DetailsView/components/issues-table-handler';
-import { ReportGenerator } from '../../../../../DetailsView/reports/report-generator';
+import { ReportGeneratorV1 } from '../../../../../DetailsView/reports/report-generator';
 import { DecoratedAxeNodeResult } from '../../../../../injected/scanner-utils';
 import { RuleResult } from '../../../../../scanner/iruleresults';
 import { DictionaryStringTo } from '../../../../../types/common-types';
@@ -116,7 +116,7 @@ describe('IssuesTableTest', () => {
             };
             const eventStub = {};
 
-            const reportGeneratorMock = Mock.ofType(ReportGenerator);
+            const reportGeneratorMock = Mock.ofType(ReportGeneratorV1);
             reportGeneratorMock
                 .setup(builder => builder.generateName(It.isAnyString(), It.isAny(), It.isAnyString()))
                 .returns(() => 'generateName')
@@ -158,7 +158,7 @@ describe('IssuesTableTest', () => {
         param: any,
         stateDiff: any,
         times: Times = Times.once(),
-        reportGenerator: ReportGenerator = undefined,
+        reportGenerator: ReportGeneratorV1 = undefined,
         actionMessageCreator: DetailsViewActionMessageCreator = null,
         beforeState: IssuesTableState = getDefaultState(),
     ): void {
@@ -235,7 +235,7 @@ class TestPropsBuilder {
     private scanning: boolean = false;
     private clickHandler: (event) => void;
     private featureFlags = {};
-    private reportGenerator: ReportGenerator;
+    private reportGenerator: ReportGeneratorV1;
     private deps: IssuesTableDeps;
 
     public setDeps(deps: IssuesTableDeps): TestPropsBuilder {
@@ -278,7 +278,7 @@ class TestPropsBuilder {
         return this;
     }
 
-    public setReportGenerator(reportGenerator: ReportGenerator): TestPropsBuilder {
+    public setReportGenerator(reportGenerator: ReportGeneratorV1): TestPropsBuilder {
         this.reportGenerator = reportGenerator;
         return this;
     }

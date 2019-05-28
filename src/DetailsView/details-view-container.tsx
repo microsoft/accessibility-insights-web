@@ -32,7 +32,7 @@ import { DetailsViewMainContent, DetailsViewMainContentDeps } from './details-vi
 import { AssessmentInstanceTableHandler } from './handlers/assessment-instance-table-handler';
 import { DetailsViewToggleClickHandlerFactory } from './handlers/details-view-toggle-click-handler-factory';
 import { PreviewFeatureFlagsHandler } from './handlers/preview-feature-flags-handler';
-import { ReportGenerator } from './reports/report-generator';
+import { ReportGeneratorV1 } from './reports/report-generator';
 
 export type DetailsViewContainerDeps = {
     getDetailsRightPanelConfiguration: GetDetailsRightPanelConfiguration;
@@ -55,7 +55,7 @@ export interface DetailsViewContainerProps {
     visualizationConfigurationFactory: VisualizationConfigurationFactory;
     issuesTableHandler: IssuesTableHandler;
     assessmentInstanceTableHandler: AssessmentInstanceTableHandler;
-    reportGenerator: ReportGenerator;
+    reportGenerator: ReportGeneratorV1;
     previewFeatureFlagsHandler: PreviewFeatureFlagsHandler;
     scopingFlagsHandler: PreviewFeatureFlagsHandler;
     dropdownClickHandler: DropdownClickHandler;

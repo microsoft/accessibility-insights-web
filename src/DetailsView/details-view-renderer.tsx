@@ -17,7 +17,7 @@ import { DetailsView, DetailsViewContainerDeps } from './details-view-container'
 import { AssessmentInstanceTableHandler } from './handlers/assessment-instance-table-handler';
 import { DetailsViewToggleClickHandlerFactory } from './handlers/details-view-toggle-click-handler-factory';
 import { PreviewFeatureFlagsHandler } from './handlers/preview-feature-flags-handler';
-import { ReportGenerator } from './reports/report-generator';
+import { ReportGeneratorV1 } from './reports/report-generator';
 
 export class DetailsViewRenderer {
     private renderer: typeof ReactDOM.render;
@@ -29,7 +29,7 @@ export class DetailsViewRenderer {
     private visualizationConfigurationFactory: VisualizationConfigurationFactory;
     private issuesTableHandler: IssuesTableHandler;
     private assessmentInstanceTableHandler: AssessmentInstanceTableHandler;
-    private reportGenerator: ReportGenerator;
+    private reportGenerator: ReportGeneratorV1;
     private previewFeatureFlagsHandler: PreviewFeatureFlagsHandler;
     private scopingFlagsHandler: PreviewFeatureFlagsHandler;
     private dropdownClickHandler: DropdownClickHandler;
@@ -46,7 +46,7 @@ export class DetailsViewRenderer {
         visualizationConfigurationFactory: VisualizationConfigurationFactory,
         issuesTableHandler: IssuesTableHandler,
         assessmentInstanceTableHandler: AssessmentInstanceTableHandler,
-        reportGenerator: ReportGenerator,
+        reportGenerator: ReportGeneratorV1,
         previewFeatureFlagsHandler: PreviewFeatureFlagsHandler,
         scopingFlagsHandler: PreviewFeatureFlagsHandler,
         dropdownClickHandler: DropdownClickHandler,

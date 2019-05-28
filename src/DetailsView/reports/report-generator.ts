@@ -11,7 +11,7 @@ import { ReportNameGenerator } from './report-name-generator';
 
 export type ReportGeneratorDeps = AssessmentReportHtmlGeneratorDeps;
 
-export class ReportGenerator {
+export class ReportGeneratorV1 {
     constructor(
         private reportNameGenerator: ReportNameGenerator,
         private reportHtmlGenerator: ReportHtmlGenerator,
