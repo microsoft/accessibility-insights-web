@@ -17,7 +17,7 @@ import { VisualizationType } from '../../common/types/visualization-type';
 import { DecoratedAxeNodeResult } from '../../injected/scanner-utils';
 import { RuleResult, ScanResults } from '../../scanner/iruleresults';
 import { DictionaryStringTo } from '../../types/common-types';
-import { ReportGeneratorV1 } from '../reports/report-generator';
+import { ReportGeneratorV1 } from '../reports/report-generator-v1';
 import { ExportDialog, ExportDialogDeps } from './export-dialog';
 import { IssuesDetailsList } from './issues-details-list';
 import { IssuesDetailsPane, IssuesDetailsPaneDeps } from './Issues-details-pane';

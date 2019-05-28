@@ -17,7 +17,7 @@ import { DetailsView, DetailsViewContainerDeps } from './details-view-container'
 import { AssessmentInstanceTableHandler } from './handlers/assessment-instance-table-handler';
 import { DetailsViewToggleClickHandlerFactory } from './handlers/details-view-toggle-click-handler-factory';
 import { PreviewFeatureFlagsHandler } from './handlers/preview-feature-flags-handler';
-import { ReportGeneratorV1 } from './reports/report-generator';
+import { ReportGeneratorV1 } from './reports/report-generator-v1';
 
 export class DetailsViewRenderer {
     private renderer: typeof ReactDOM.render;

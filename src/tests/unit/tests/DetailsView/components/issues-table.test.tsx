@@ -10,7 +10,7 @@ import { UserConfigurationStoreData } from '../../../../../common/types/store-da
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
 import { IssuesTable, IssuesTableDeps, IssuesTableProps, IssuesTableState } from '../../../../../DetailsView/components/issues-table';
 import { DetailsRowData, IssuesTableHandler } from '../../../../../DetailsView/components/issues-table-handler';
-import { ReportGeneratorV1 } from '../../../../../DetailsView/reports/report-generator';
+import { ReportGeneratorV1 } from '../../../../../DetailsView/reports/report-generator-v1';
 import { DecoratedAxeNodeResult } from '../../../../../injected/scanner-utils';
 import { RuleResult } from '../../../../../scanner/iruleresults';
 import { DictionaryStringTo } from '../../../../../types/common-types';

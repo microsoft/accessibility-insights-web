@@ -18,7 +18,7 @@ import { DetailsViewRenderer } from '../../../../DetailsView/details-view-render
 import { AssessmentInstanceTableHandler } from '../../../../DetailsView/handlers/assessment-instance-table-handler';
 import { DetailsViewToggleClickHandlerFactory } from '../../../../DetailsView/handlers/details-view-toggle-click-handler-factory';
 import { PreviewFeatureFlagsHandler } from '../../../../DetailsView/handlers/preview-feature-flags-handler';
-import { ReportGeneratorV1 } from '../../../../DetailsView/reports/report-generator';
+import { ReportGeneratorV1 } from '../../../../DetailsView/reports/report-generator-v1';
 import { CreateTestAssessmentProvider } from '../../common/test-assessment-provider';
 
 describe('DetailsViewRendererTest', () => {

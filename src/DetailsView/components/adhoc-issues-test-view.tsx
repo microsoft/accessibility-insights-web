@@ -12,7 +12,7 @@ import { VisualizationScanResultData } from '../../common/types/store-data/visua
 import { VisualizationStoreData } from '../../common/types/store-data/visualization-store-data';
 import { VisualizationType } from '../../common/types/visualization-type';
 import { DetailsViewToggleClickHandlerFactory } from '../handlers/details-view-toggle-click-handler-factory';
-import { ReportGeneratorV1 } from '../reports/report-generator';
+import { ReportGeneratorV1 } from '../reports/report-generator-v1';
 import { IssuesTable, IssuesTableDeps } from './issues-table';
 import { IssuesTableHandler } from './issues-table-handler';
 import { TargetPageChangedView } from './target-page-changed-view';
