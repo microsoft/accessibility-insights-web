@@ -7,7 +7,7 @@ import { It, Mock, Times } from 'typemoq';
 
 import { VisualizationConfigurationFactory } from '../../../../../common/configs/visualization-configuration-factory';
 import { UserConfigurationStoreData } from '../../../../../common/types/store-data/user-configuration-store';
-import { ExportControl } from '../../../../../DetailsView/components/export-control';
+import { ReportExportComponent } from '../../../../../DetailsView/components/report-export-component';
 import { IssuesTable, IssuesTableDeps, IssuesTableProps } from '../../../../../DetailsView/components/issues-table';
 import { DetailsRowData, IssuesTableHandler } from '../../../../../DetailsView/components/issues-table-handler';
 import { ReportGenerator } from '../../../../../DetailsView/reports/report-generator';
@@ -99,7 +99,7 @@ describe('IssuesTableTest', () => {
 
                 const wrapped = shallow(<IssuesTable {...props} />);
                 wrapped
-                    .find(ExportControl)
+                    .find(ReportExportComponent)
                     .props()
                     .htmlGenerator(description);
 

@@ -9,7 +9,7 @@ import { ExportResultType } from '../../common/telemetry-events';
 import { ReportGenerator } from '../reports/report-generator';
 import { ExportDialog, ExportDialogDeps } from './export-dialog';
 
-export interface ExportControlProps {
+export interface ReportExportComponentProps {
     deps: ExportDialogDeps;
     exportResultsType: ExportResultType;
     reportGenerator: ReportGenerator;
@@ -18,7 +18,7 @@ export interface ExportControlProps {
     htmlGenerator: (descriptionPlaceholder: string) => string;
 }
 
-export const ExportControl = NamedSFC<ExportControlProps>('ExportControl', props => {
+export const ReportExportComponent = NamedSFC<ReportExportComponentProps>('ReportExportComponent', props => {
     const descriptionPlaceholder: string = 'd68d50a0-8249-464d-b2fd-709049c89ee4';
     const [isOpen, setDialogVisibility] = React.useState(false);
     const [exportName, setExportName] = React.useState('');

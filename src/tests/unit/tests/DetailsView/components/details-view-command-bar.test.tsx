@@ -17,7 +17,7 @@ import {
     DetailsViewCommandBarProps,
 } from '../../../../../DetailsView/components/details-view-command-bar';
 import { DetailsRightPanelConfiguration } from '../../../../../DetailsView/components/details-view-right-panel';
-import { ExportControl } from '../../../../../DetailsView/components/export-control';
+import { ReportExportComponent } from '../../../../../DetailsView/components/report-export-component';
 import { ReportGenerator } from '../../../../../DetailsView/reports/report-generator';
 
 describe('DetailsViewCommandBar', () => {
@@ -117,7 +117,7 @@ describe('DetailsViewCommandBar', () => {
                 .verifiable(Times.once());
 
             rendered
-                .find(ExportControl)
+                .find(ReportExportComponent)
                 .props()
                 .htmlGenerator(descriptionPlaceholder);
 

@@ -91,7 +91,7 @@ exports[`IssuesTableTest render spinner, issuesEnabled is an empty object 1`] = 
         label="Show failures"
         visualizationName="Automated checks"
       />
-      <ExportControl
+      <ReportExportComponent
         exportResultsType="AutomatedChecks"
         htmlGenerator={[Function]}
         pageTitle="pageTitle"
@@ -126,7 +126,7 @@ exports[`IssuesTableTest render table with 0 issues 1`] = `
   <div className=\\"issues-table-content\\">
     <div className=\\"details-view-command-bar\\">
       <VisualizationToggle label=\\"Show failures\\" checked={true} disabled={false} onClick={[Function: proxy]} className=\\"automated-checks-details-view-toggle\\" visualizationName=\\"Automated checks\\" />
-      <ExportControl deps={[undefined]} scanDate={{...}} reportGenerator={{...}} pageTitle=\\"pageTitle\\" exportResultsType=\\"AutomatedChecks\\" htmlGenerator={[Function: bound proxy]} />
+      <ReportExportComponent deps={[undefined]} scanDate={{...}} reportGenerator={{...}} pageTitle=\\"pageTitle\\" exportResultsType=\\"AutomatedChecks\\" htmlGenerator={[Function: bound proxy]} />
     </div>
     <div className=\\"issues-table-details\\">
       <IssuesDetailsList violations={{...}} issuesTableHandler={{...}} issuesSelection={{...}} />
@@ -146,7 +146,7 @@ exports[`IssuesTableTest render table with 1 issues 1`] = `
   <div className=\\"issues-table-content\\">
     <div className=\\"details-view-command-bar\\">
       <VisualizationToggle label=\\"Show failures\\" checked={true} disabled={false} onClick={[Function: proxy]} className=\\"automated-checks-details-view-toggle\\" visualizationName=\\"Automated checks\\" />
-      <ExportControl deps={[undefined]} scanDate={{...}} reportGenerator={{...}} pageTitle=\\"pageTitle\\" exportResultsType=\\"AutomatedChecks\\" htmlGenerator={[Function: bound proxy]} />
+      <ReportExportComponent deps={[undefined]} scanDate={{...}} reportGenerator={{...}} pageTitle=\\"pageTitle\\" exportResultsType=\\"AutomatedChecks\\" htmlGenerator={[Function: bound proxy]} />
     </div>
     <div className=\\"issues-table-details\\">
       <IssuesDetailsList violations={{...}} issuesTableHandler={{...}} issuesSelection={{...}} />
@@ -166,7 +166,7 @@ exports[`IssuesTableTest render table with 2 issues 1`] = `
   <div className=\\"issues-table-content\\">
     <div className=\\"details-view-command-bar\\">
       <VisualizationToggle label=\\"Show failures\\" checked={true} disabled={false} onClick={[Function: proxy]} className=\\"automated-checks-details-view-toggle\\" visualizationName=\\"Automated checks\\" />
-      <ExportControl deps={[undefined]} scanDate={{...}} reportGenerator={{...}} pageTitle=\\"pageTitle\\" exportResultsType=\\"AutomatedChecks\\" htmlGenerator={[Function: bound proxy]} />
+      <ReportExportComponent deps={[undefined]} scanDate={{...}} reportGenerator={{...}} pageTitle=\\"pageTitle\\" exportResultsType=\\"AutomatedChecks\\" htmlGenerator={[Function: bound proxy]} />
     </div>
     <div className=\\"issues-table-details\\">
       <IssuesDetailsList violations={{...}} issuesTableHandler={{...}} issuesSelection={{...}} />

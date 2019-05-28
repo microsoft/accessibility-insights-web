@@ -9,7 +9,7 @@ exports[`DetailsViewCommandBar renders with export button and dialog 1`] = `
     </StyledLinkBase>
   </div>
   <div className=\\"details-view-command-buttons\\">
-    <ExportControl deps={{...}} reportGenerator={{...}} pageTitle=\\"command-bar-test-tab-title\\" exportResultsType=\\"Assessment\\" scanDate={{...}} htmlGenerator={[Function: bound proxy]} />
+    <ReportExportComponent deps={{...}} reportGenerator={{...}} pageTitle=\\"command-bar-test-tab-title\\" exportResultsType=\\"Assessment\\" scanDate={{...}} htmlGenerator={[Function: bound proxy]} />
     <StartOverDropdown testName=\\"test title\\" test={-1} requirementKey={[undefined]} actionMessageCreator={{...}} rightPanelConfiguration={{...}} />
   </div>
 </div>"

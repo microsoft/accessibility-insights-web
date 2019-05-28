@@ -11,7 +11,7 @@ import { TabStoreData } from '../../common/types/store-data/tab-store-data';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 import { ReportGenerator, ReportGeneratorDeps } from '../reports/report-generator';
 import { DetailsRightPanelConfiguration } from './details-view-right-panel';
-import { ExportControl } from './export-control';
+import { ReportExportComponent } from './report-export-component';
 import { ExportDialogDeps } from './export-dialog';
 import { StartOverDropdown } from './start-over-dropdown';
 
@@ -80,7 +80,7 @@ export class DetailsViewCommandBar extends React.Component<DetailsViewCommandBar
 
         return (
             <div className="details-view-command-buttons">
-                <ExportControl
+                <ReportExportComponent
                     deps={deps}
                     reportGenerator={reportGenerator}
                     pageTitle={tabStoreData.title}
