@@ -69,7 +69,6 @@ describe('DetailsViewRendererTest', () => {
                                 assessmentInstanceTableHandler={assessmentInstanceTableHandlerMock.object}
                                 previewFeatureFlagsHandler={previewFeatureFlagsHandlerMock.object}
                                 scopingFlagsHandler={scopingFlagsHandlerMock.object}
-                                reportGenerator={reportGeneratorMock.object}
                                 dropdownClickHandler={dropdownClickHandlerMock.object}
                                 assessmentsProvider={assessmentsProviderMock.object}
                             />

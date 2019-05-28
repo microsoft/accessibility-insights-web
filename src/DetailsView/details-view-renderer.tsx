@@ -85,7 +85,6 @@ export class DetailsViewRenderer {
                     visualizationConfigurationFactory={this.visualizationConfigurationFactory}
                     issuesTableHandler={this.issuesTableHandler}
                     assessmentInstanceTableHandler={this.assessmentInstanceTableHandler}
-                    reportGenerator={this.reportGenerator}
                     previewFeatureFlagsHandler={this.previewFeatureFlagsHandler}
                     scopingFlagsHandler={this.scopingFlagsHandler}
                     dropdownClickHandler={this.dropdownClickHandler}

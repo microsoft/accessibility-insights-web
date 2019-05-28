@@ -22,7 +22,6 @@ import { DetailsViewLeftNav, DetailsViewLeftNavDeps } from './components/left-na
 import { TabInfo } from './components/tab-info';
 import { AssessmentInstanceTableHandler } from './handlers/assessment-instance-table-handler';
 import { DetailsViewToggleClickHandlerFactory } from './handlers/details-view-toggle-click-handler-factory';
-import { ReportGenerator } from './reports/report-generator';
 
 export type DetailsViewMainContentDeps = DetailsViewContentDeps & DetailsViewLeftNavDeps & DetailsViewCommandBarDeps;
 
@@ -41,7 +40,6 @@ export interface DetailsViewMainContentProps {
     clickHandlerFactory: DetailsViewToggleClickHandlerFactory;
     assessmentInstanceTableHandler: AssessmentInstanceTableHandler;
     issuesSelection: ISelection;
-    reportGenerator: ReportGenerator;
     issuesTableHandler: IssuesTableHandler;
     rightPanelConfiguration: DetailsRightPanelConfiguration;
     switcherNavConfiguration: DetailsViewSwitcherNavConfiguration;
