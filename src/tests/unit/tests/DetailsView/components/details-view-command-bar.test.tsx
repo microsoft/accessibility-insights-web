@@ -59,7 +59,7 @@ describe('DetailsViewCommandBar', () => {
                 } as Assessment;
             });
         reportGeneratorMock = Mock.ofType<ReportGenerator>(undefined, MockBehavior.Loose);
-        reportGeneratorProviderMock = Mock.ofType<ReportGeneratorProvider>(undefined, MockBehavior.Loose);
+        reportGeneratorProviderMock = Mock.ofType<ReportGeneratorProvider>(undefined, MockBehavior.Strict);
         reportGeneratorProviderMock.setup(provider => provider.getGenerator()).returns(() => reportGeneratorMock.object);
 
         descriptionPlaceholder = '7efdac3c-8c94-4e00-a765-6fc8c59a232b';
