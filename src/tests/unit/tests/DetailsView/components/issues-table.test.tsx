@@ -11,6 +11,7 @@ import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/acti
 import { IssuesTable, IssuesTableDeps, IssuesTableProps, IssuesTableState } from '../../../../../DetailsView/components/issues-table';
 import { DetailsRowData, IssuesTableHandler } from '../../../../../DetailsView/components/issues-table-handler';
 import { ReportGenerator } from '../../../../../DetailsView/reports/report-generator';
+import { ReportGeneratorProvider } from '../../../../../DetailsView/reports/report-generator-provider';
 import { DecoratedAxeNodeResult } from '../../../../../injected/scanner-utils';
 import { RuleResult } from '../../../../../scanner/iruleresults';
 import { DictionaryStringTo } from '../../../../../types/common-types';
@@ -126,7 +127,16 @@ describe('IssuesTableTest', () => {
                 .returns(() => 'generateHtml')
                 .verifiable();
 
-            testStateChangedByHandlerCalledWithParam('onExportButtonClick', eventStub, stateDiff, Times.once(), reportGeneratorMock.object);
+            const reportGeneratorProviderMock = Mock.ofType<ReportGeneratorProvider>();
+            reportGeneratorProviderMock.setup(provider => provider.getGenerator()).returns(() => reportGeneratorMock.object);
+
+            testStateChangedByHandlerCalledWithParam(
+                'onExportButtonClick',
+                eventStub,
+                stateDiff,
+                Times.once(),
+                reportGeneratorProviderMock.object,
+            );
             reportGeneratorMock.verifyAll();
         });
 
@@ -158,7 +168,7 @@ describe('IssuesTableTest', () => {
         param: any,
         stateDiff: any,
         times: Times = Times.once(),
-        reportGenerator: ReportGenerator = undefined,
+        reportGeneratorProvider: ReportGeneratorProvider = undefined,
         actionMessageCreator: DetailsViewActionMessageCreator = null,
         beforeState: IssuesTableState = getDefaultState(),
     ): void {
@@ -167,9 +177,9 @@ describe('IssuesTableTest', () => {
         const props = new TestPropsBuilder()
             .setIssuesEnabled(true)
             .setViolations(getSampleViolations(2))
-            .setReportGenerator(reportGenerator)
             .setDeps({
                 detailsViewActionMessageCreator: actionMessageCreator,
+                reportGeneratorProvider,
             } as IssuesTableDeps)
             .build();
         const setStateMock = Mock.ofInstance(state => {});
@@ -235,7 +245,6 @@ class TestPropsBuilder {
     private scanning: boolean = false;
     private clickHandler: (event) => void;
     private featureFlags = {};
-    private reportGenerator: ReportGenerator;
     private deps: IssuesTableDeps;
 
     public setDeps(deps: IssuesTableDeps): TestPropsBuilder {
@@ -278,11 +287,6 @@ class TestPropsBuilder {
         return this;
     }
 
-    public setReportGenerator(reportGenerator: ReportGenerator): TestPropsBuilder {
-        this.reportGenerator = reportGenerator;
-        return this;
-    }
-
     public setSubtitle(subtitle?: JSX.Element): TestPropsBuilder {
         this.subtitle = subtitle;
         return this;
@@ -313,7 +317,6 @@ class TestPropsBuilder {
                 targetPageUrl: '',
                 targetPageTitle: '',
             },
-            reportGenerator: this.reportGenerator,
             userConfigurationStoreData: {
                 bugService: 'gitHub',
             } as UserConfigurationStoreData,

@@ -276,6 +276,7 @@ if (isNaN(tabId) === false) {
                 settingsProvider: SettingsProviderImpl,
                 environmentInfoProvider,
                 issueFilingServiceProvider: IssueFilingServiceProviderImpl,
+                reportGeneratorProvider,
             };
 
             const renderer = new DetailsViewRenderer(
