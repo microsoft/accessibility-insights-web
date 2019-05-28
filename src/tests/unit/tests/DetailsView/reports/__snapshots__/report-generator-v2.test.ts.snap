@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ReportGeneratorV2 generateHtml 1`] = `"<html lang=\\"en\\"><body>This will be the new automated checks report</body></html>"`;

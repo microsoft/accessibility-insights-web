@@ -80,7 +80,7 @@ import {
     getAssessmentSummaryModelFromProviderAndStoreData,
 } from './reports/get-assessment-summary-model';
 import { ReactStaticRenderer } from './reports/react-static-renderer';
-import { ReportGenerator } from './reports/report-generator';
+import { createReportGeneratorProvider } from './reports/report-generator-provider';
 import { ReportHtmlGenerator } from './reports/report-html-generator';
 import { ReportNameGenerator } from './reports/report-name-generator';
 
@@ -195,7 +195,13 @@ if (isNaN(tabId) === false) {
                 new NavigatorUtils(window.navigator).getBrowserSpec(),
                 assessmentDefaultMessageGenerator,
             );
-            const reportGenerator = new ReportGenerator(reportNameGenerator, reportHtmlGenerator, assessmentReportHtmlGenerator);
+
+            const reportGeneratorProvider = createReportGeneratorProvider(
+                reportNameGenerator,
+                reportHtmlGenerator,
+                assessmentReportHtmlGenerator,
+                featureFlagStore,
+            );
 
             visualizationStore.setTabId(tab.id);
             tabStore.setTabId(tab.id);
@@ -267,6 +273,7 @@ if (isNaN(tabId) === false) {
                 settingsProvider: SettingsProviderImpl,
                 environmentInfoProvider,
                 issueFilingServiceProvider: IssueFilingServiceProviderImpl,
+                reportGeneratorProvider,
             };
 
             const renderer = new DetailsViewRenderer(
@@ -280,7 +287,6 @@ if (isNaN(tabId) === false) {
                 visualizationConfigurationFactory,
                 issuesTableHandler,
                 assessmentInstanceTableHandler,
-                reportGenerator,
                 previewFeatureFlagsHandler,
                 scopingFlagsHandler,
                 dropdownClickHandler,
@@ -304,7 +310,6 @@ function createNullifiedRenderer(doc, render): DetailsViewRenderer {
         null,
         doc,
         render,
-        null,
         null,
         null,
         null,

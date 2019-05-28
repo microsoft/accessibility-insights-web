@@ -17,13 +17,16 @@ import { VisualizationType } from '../../common/types/visualization-type';
 import { DecoratedAxeNodeResult } from '../../injected/scanner-utils';
 import { RuleResult, ScanResults } from '../../scanner/iruleresults';
 import { DictionaryStringTo } from '../../types/common-types';
-import { ReportGenerator } from '../reports/report-generator';
+import { ReportGeneratorProvider } from '../reports/report-generator-provider';
 import { ExportDialog, ExportDialogDeps } from './export-dialog';
 import { IssuesDetailsList } from './issues-details-list';
 import { IssuesDetailsPane, IssuesDetailsPaneDeps } from './Issues-details-pane';
 import { IssuesTableHandler } from './issues-table-handler';
 
-export type IssuesTableDeps = IssuesDetailsPaneDeps & ExportDialogDeps;
+export type IssuesTableDeps = IssuesDetailsPaneDeps &
+    ExportDialogDeps & {
+        reportGeneratorProvider: ReportGeneratorProvider;
+    };
 
 export interface IssuesTableProps {
     deps: IssuesTableDeps;
@@ -41,7 +44,6 @@ export interface IssuesTableProps {
     visualizationConfigurationFactory: VisualizationConfigurationFactory;
     featureFlags: FeatureFlagStoreData;
     scanResult: ScanResults;
-    reportGenerator: ReportGenerator;
     userConfigurationStoreData: UserConfigurationStoreData;
 }
 
@@ -210,8 +212,10 @@ export class IssuesTable extends React.Component<IssuesTableProps, IssuesTableSt
     @autobind
     private onExportButtonClick(): void {
         const scanDate = new Date(this.props.scanResult.timestamp);
-        const exportName = this.props.reportGenerator.generateName('AutomatedChecksReport', scanDate, this.props.pageTitle);
-        const exportDataWithPlaceholder = this.props.reportGenerator.generateHtml(
+        const { reportGeneratorProvider } = this.props.deps;
+        const reportGenerator = reportGeneratorProvider.getGenerator();
+        const exportName = reportGenerator.generateName('AutomatedChecksReport', scanDate, this.props.pageTitle);
+        const exportDataWithPlaceholder = reportGenerator.generateFastPassAutomateChecksReport(
             this.props.scanResult,
             scanDate,
             this.props.pageTitle,

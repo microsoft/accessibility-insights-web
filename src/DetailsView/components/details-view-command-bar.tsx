@@ -11,7 +11,8 @@ import { AssessmentStoreData } from '../../common/types/store-data/assessment-re
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { TabStoreData } from '../../common/types/store-data/tab-store-data';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
-import { ReportGenerator, ReportGeneratorDeps } from '../reports/report-generator';
+import { ReportGeneratorProvider } from '../reports/report-generator-provider';
+import { ReportGeneratorDeps } from '../reports/report-generator-v1';
 import { DetailsRightPanelConfiguration } from './details-view-right-panel';
 import { ExportDialog, ExportDialogDeps } from './export-dialog';
 import { StartOverDropdown } from './start-over-dropdown';
@@ -19,6 +20,7 @@ import { StartOverDropdown } from './start-over-dropdown';
 export type DetailsViewCommandBarDeps = ExportDialogDeps &
     ReportGeneratorDeps & {
         dateProvider: () => Date;
+        reportGeneratorProvider: ReportGeneratorProvider;
     };
 
 export interface DetailsViewCommandBarProps {
@@ -28,7 +30,6 @@ export interface DetailsViewCommandBarProps {
     actionMessageCreator: DetailsViewActionMessageCreator;
     assessmentStoreData: AssessmentStoreData;
     assessmentsProvider: AssessmentsProvider;
-    reportGenerator: ReportGenerator;
     renderExportAndStartOver: boolean;
     rightPanelConfiguration: DetailsRightPanelConfiguration;
 }
@@ -121,7 +122,10 @@ export class DetailsViewCommandBar extends React.Component<DetailsViewCommandBar
 
     @autobind
     private onExportButtonClick(): void {
-        const exportHtmlWithPlaceholder = this.props.reportGenerator.generateAssessmentHtml(
+        const { reportGeneratorProvider } = this.props.deps;
+        const reportGenerator = reportGeneratorProvider.getGenerator();
+
+        const exportHtmlWithPlaceholder = reportGenerator.generateAssessmentReport(
             this.props.assessmentStoreData,
             this.props.assessmentsProvider,
             this.props.featureFlagStoreData,
@@ -131,7 +135,7 @@ export class DetailsViewCommandBar extends React.Component<DetailsViewCommandBar
 
         const description = '';
         const exportHtmlWithDescription = exportHtmlWithPlaceholder.replace(this.descriptionPlaceholder, description);
-        const exportFileName = this.props.reportGenerator.generateName(
+        const exportFileName = reportGenerator.generateName(
             'AssessmentReport',
             this.props.deps.dateProvider(),
             this.props.tabStoreData.title,

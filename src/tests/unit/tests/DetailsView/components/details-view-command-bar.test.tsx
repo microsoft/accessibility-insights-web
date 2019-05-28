@@ -19,6 +19,7 @@ import {
 } from '../../../../../DetailsView/components/details-view-command-bar';
 import { DetailsRightPanelConfiguration } from '../../../../../DetailsView/components/details-view-right-panel';
 import { ReportGenerator } from '../../../../../DetailsView/reports/report-generator';
+import { ReportGeneratorProvider } from '../../../../../DetailsView/reports/report-generator-provider';
 
 describe('DetailsViewCommandBar', () => {
     const theDate = new Date(2019, 2, 12, 9, 0);
@@ -32,6 +33,7 @@ describe('DetailsViewCommandBar', () => {
     let assessmentStoreData: AssessmentStoreData;
     let rightPanelConfig: DetailsRightPanelConfiguration;
     let reportGeneratorMock: IMock<ReportGenerator>;
+    let reportGeneratorProviderMock: IMock<ReportGeneratorProvider>;
     let descriptionPlaceholder: string;
     let renderExportAndStartOver: boolean;
 
@@ -57,7 +59,10 @@ describe('DetailsViewCommandBar', () => {
                     title: 'test title',
                 } as Assessment;
             });
-        reportGeneratorMock = Mock.ofType(ReportGenerator, MockBehavior.Strict);
+        reportGeneratorMock = Mock.ofType<ReportGenerator>(undefined, MockBehavior.Strict);
+        reportGeneratorProviderMock = Mock.ofType<ReportGeneratorProvider>(undefined, MockBehavior.Strict);
+        reportGeneratorProviderMock.setup(provider => provider.getGenerator()).returns(() => reportGeneratorMock.object);
+
         descriptionPlaceholder = '7efdac3c-8c94-4e00-a765-6fc8c59a232b';
     });
 
@@ -66,6 +71,7 @@ describe('DetailsViewCommandBar', () => {
             detailsViewActionMessageCreator: actionMessageCreatorMock.object,
             outcomeTypeSemanticsFromTestStatus: { stub: 'outcomeTypeSemanticsFromTestStatus' } as any,
             dateProvider: () => theDate,
+            reportGeneratorProvider: reportGeneratorProviderMock.object,
         };
 
         return {
@@ -76,7 +82,6 @@ describe('DetailsViewCommandBar', () => {
             renderExportAndStartOver,
             assessmentsProvider: assessmentsProviderMock.object,
             assessmentStoreData,
-            reportGenerator: reportGeneratorMock.object,
             rightPanelConfiguration: rightPanelConfig,
         };
     }
@@ -119,7 +124,7 @@ describe('DetailsViewCommandBar', () => {
             .verifiable();
         reportGeneratorMock
             .setup(rb =>
-                rb.generateAssessmentHtml(
+                rb.generateAssessmentReport(
                     assessmentStoreData,
                     assessmentsProviderMock.object,
                     featureFlagStoreData,
