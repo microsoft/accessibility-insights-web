@@ -26,6 +26,8 @@ export interface ReportExportComponentState {
 }
 
 export class ReportExportComponent extends React.Component<ReportExportComponentProps, ReportExportComponentState> {
+    private descriptionPlaceholder: string = 'd68d50a0-8249-464d-b2fd-709049c89ee4';
+
     constructor(props) {
         super(props);
         this.state = {
@@ -37,18 +39,16 @@ export class ReportExportComponent extends React.Component<ReportExportComponent
         };
     }
 
-    private descriptionPlaceholder: string = 'd68d50a0-8249-464d-b2fd-709049c89ee4';
-
-    onDismissExportDialog = () => {
+    private onDismissExportDialog = () => {
         this.setState({ isOpen: false });
     };
 
-    onExportDescriptionChange = (value: string) => {
+    private onExportDescriptionChange = (value: string) => {
         const exportData = this.state.exportDataWithPlaceholder.replace(this.descriptionPlaceholder, escape(value));
         this.setState({ exportDescription: value, exportData });
     };
 
-    onExportButtonClick = () => {
+    private onExportButtonClick = () => {
         const { reportGenerator, exportResultsType, scanDate, pageTitle, htmlGenerator } = this.props;
         const exportName = reportGenerator.generateName(exportResultsType, scanDate, pageTitle);
         const exportDataWithPlaceholder = htmlGenerator(this.descriptionPlaceholder);
