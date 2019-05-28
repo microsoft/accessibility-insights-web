@@ -70,6 +70,13 @@ export class DetailsViewCommandBar extends React.Component<DetailsViewCommandBar
         const { deps, assessmentStoreData, assessmentsProvider, featureFlagStoreData, tabStoreData, reportGenerator } = this.props;
         const selectedTest = this.props.assessmentStoreData.assessmentNavState.selectedTestType;
         const test = this.props.assessmentsProvider.forType(selectedTest);
+        const htmlGenerator = reportGenerator.generateAssessmentHtml.bind(
+            reportGenerator,
+            assessmentStoreData,
+            assessmentsProvider,
+            featureFlagStoreData,
+            tabStoreData,
+        );
 
         return (
             <div className="details-view-command-buttons">
@@ -79,13 +86,7 @@ export class DetailsViewCommandBar extends React.Component<DetailsViewCommandBar
                     pageTitle={tabStoreData.title}
                     exportResultsType={'Assessment'}
                     scanDate={deps.dateProvider()}
-                    htmlGenerator={reportGenerator.generateAssessmentHtml.bind(
-                        reportGenerator,
-                        assessmentStoreData,
-                        assessmentsProvider,
-                        featureFlagStoreData,
-                        tabStoreData,
-                    )}
+                    htmlGenerator={htmlGenerator}
                 />
                 <StartOverDropdown
                     testName={test.title}
