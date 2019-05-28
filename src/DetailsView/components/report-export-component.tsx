@@ -50,7 +50,7 @@ export const ReportExportComponent = NamedSFC<ReportExportComponentProps>('Repor
     return (
         <>
             <ActionButton iconProps={{ iconName: 'Export' }} onClick={onExportButtonClick}>
-                Export result (new)
+                Export result
             </ActionButton>
             <ExportDialog
                 deps={props.deps}
