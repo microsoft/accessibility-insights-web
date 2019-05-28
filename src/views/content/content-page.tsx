@@ -4,13 +4,14 @@ import { flatten, toPairs } from 'lodash';
 import * as React from 'react';
 
 import { NamedSFC } from '../../common/react/named-sfc';
+import { GuidanceTag } from '../../content/guidance-tags';
 import { createMarkup, Markup, MarkupDeps } from './markup';
 
-export type HyperlinkDefinition = { href: string; text: string };
+export type HyperlinkDefinition = { href: string; text: string; tags?: GuidanceTag[] };
 type HyperlinkDefinitionMap = { [KEY in string]: { href: string; text: string } };
 type HyperlinkComponentMap<M extends HyperlinkDefinitionMap> = { [KEY in keyof M]: React.SFC };
-export function linkTo(text: string, href: string): HyperlinkDefinition {
-    return { text, href };
+export function linkTo(text: string, href: string, tags?: GuidanceTag[]): HyperlinkDefinition {
+    return { text, href, tags };
 }
 
 export type ContentPageDeps = MarkupDeps;
