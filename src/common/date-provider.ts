@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 export class DateProvider {
-    public static getDate(): Date {
-        return new Date();
+    public static getDate(timestamp?: string): Date {
+        return new Date(timestamp);
     }
 
     public static getUTCDate(): Date {
