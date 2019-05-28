@@ -92,6 +92,11 @@ exports[`IssuesTableTest render spinner, issuesEnabled is an empty object 1`] = 
         visualizationName="Automated checks"
       />
       <ReportExportComponent
+        deps={
+          Object {
+            "dateProvider": [Function],
+          }
+        }
         exportResultsType="AutomatedChecks"
         htmlGenerator={[Function]}
         pageTitle="pageTitle"
@@ -126,12 +131,12 @@ exports[`IssuesTableTest render table with 0 issues 1`] = `
   <div className=\\"issues-table-content\\">
     <div className=\\"details-view-command-bar\\">
       <VisualizationToggle label=\\"Show failures\\" checked={true} disabled={false} onClick={[Function: proxy]} className=\\"automated-checks-details-view-toggle\\" visualizationName=\\"Automated checks\\" />
-      <ReportExportComponent deps={[undefined]} scanDate={{...}} reportGenerator={{...}} pageTitle=\\"pageTitle\\" exportResultsType=\\"AutomatedChecks\\" htmlGenerator={[Function: bound proxy]} />
+      <ReportExportComponent deps={{...}} scanDate={{...}} reportGenerator={{...}} pageTitle=\\"pageTitle\\" exportResultsType=\\"AutomatedChecks\\" htmlGenerator={[Function: bound proxy]} />
     </div>
     <div className=\\"issues-table-details\\">
       <IssuesDetailsList violations={{...}} issuesTableHandler={{...}} issuesSelection={{...}} />
       <div className=\\"issue-detail-outer-container ms-Fabric\\">
-        <IssuesDetailsPane deps={[undefined]} selectedIdToRuleResultMap={{...}} pageTitle=\\"pageTitle\\" pageUrl=\\"http://pageUrl\\" featureFlagData={{...}} userConfigurationStoreData={{...}} />
+        <IssuesDetailsPane deps={{...}} selectedIdToRuleResultMap={{...}} pageTitle=\\"pageTitle\\" pageUrl=\\"http://pageUrl\\" featureFlagData={{...}} userConfigurationStoreData={{...}} />
       </div>
     </div>
   </div>
@@ -146,12 +151,12 @@ exports[`IssuesTableTest render table with 1 issues 1`] = `
   <div className=\\"issues-table-content\\">
     <div className=\\"details-view-command-bar\\">
       <VisualizationToggle label=\\"Show failures\\" checked={true} disabled={false} onClick={[Function: proxy]} className=\\"automated-checks-details-view-toggle\\" visualizationName=\\"Automated checks\\" />
-      <ReportExportComponent deps={[undefined]} scanDate={{...}} reportGenerator={{...}} pageTitle=\\"pageTitle\\" exportResultsType=\\"AutomatedChecks\\" htmlGenerator={[Function: bound proxy]} />
+      <ReportExportComponent deps={{...}} scanDate={{...}} reportGenerator={{...}} pageTitle=\\"pageTitle\\" exportResultsType=\\"AutomatedChecks\\" htmlGenerator={[Function: bound proxy]} />
     </div>
     <div className=\\"issues-table-details\\">
       <IssuesDetailsList violations={{...}} issuesTableHandler={{...}} issuesSelection={{...}} />
       <div className=\\"issue-detail-outer-container ms-Fabric\\">
-        <IssuesDetailsPane deps={[undefined]} selectedIdToRuleResultMap={{...}} pageTitle=\\"pageTitle\\" pageUrl=\\"http://pageUrl\\" featureFlagData={{...}} userConfigurationStoreData={{...}} />
+        <IssuesDetailsPane deps={{...}} selectedIdToRuleResultMap={{...}} pageTitle=\\"pageTitle\\" pageUrl=\\"http://pageUrl\\" featureFlagData={{...}} userConfigurationStoreData={{...}} />
       </div>
     </div>
   </div>
@@ -166,12 +171,12 @@ exports[`IssuesTableTest render table with 2 issues 1`] = `
   <div className=\\"issues-table-content\\">
     <div className=\\"details-view-command-bar\\">
       <VisualizationToggle label=\\"Show failures\\" checked={true} disabled={false} onClick={[Function: proxy]} className=\\"automated-checks-details-view-toggle\\" visualizationName=\\"Automated checks\\" />
-      <ReportExportComponent deps={[undefined]} scanDate={{...}} reportGenerator={{...}} pageTitle=\\"pageTitle\\" exportResultsType=\\"AutomatedChecks\\" htmlGenerator={[Function: bound proxy]} />
+      <ReportExportComponent deps={{...}} scanDate={{...}} reportGenerator={{...}} pageTitle=\\"pageTitle\\" exportResultsType=\\"AutomatedChecks\\" htmlGenerator={[Function: bound proxy]} />
     </div>
     <div className=\\"issues-table-details\\">
       <IssuesDetailsList violations={{...}} issuesTableHandler={{...}} issuesSelection={{...}} />
       <div className=\\"issue-detail-outer-container ms-Fabric\\">
-        <IssuesDetailsPane deps={[undefined]} selectedIdToRuleResultMap={{...}} pageTitle=\\"pageTitle\\" pageUrl=\\"http://pageUrl\\" featureFlagData={{...}} userConfigurationStoreData={{...}} />
+        <IssuesDetailsPane deps={{...}} selectedIdToRuleResultMap={{...}} pageTitle=\\"pageTitle\\" pageUrl=\\"http://pageUrl\\" featureFlagData={{...}} userConfigurationStoreData={{...}} />
       </div>
     </div>
   </div>

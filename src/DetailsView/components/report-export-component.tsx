@@ -20,11 +20,11 @@ export interface ReportExportComponentProps {
 
 export const ReportExportComponent = NamedSFC<ReportExportComponentProps>('ReportExportComponent', props => {
     const descriptionPlaceholder: string = 'd68d50a0-8249-464d-b2fd-709049c89ee4';
-    const [isOpen, setDialogVisibility] = React.useState(false);
-    const [exportName, setExportName] = React.useState('');
-    const [exportDescription, setExportDescription] = React.useState('');
-    const [exportDataWithPlaceholder, setExportDataWithPlaceholder] = React.useState('');
-    const [exportData, setExportData] = React.useState('');
+    const [isOpen, setDialogVisibility] = React.useState<boolean>(false);
+    const [exportName, setExportName] = React.useState<string>('');
+    const [exportDescription, setExportDescription] = React.useState<string>('');
+    const [exportDataWithPlaceholder, setExportDataWithPlaceholder] = React.useState<string>('');
+    const [exportData, setExportData] = React.useState<string>('');
 
     const onDismissExportDialog = () => {
         setDialogVisibility(false);

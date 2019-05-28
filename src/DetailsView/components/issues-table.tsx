@@ -21,7 +21,10 @@ import { IssuesDetailsPane, IssuesDetailsPaneDeps } from './Issues-details-pane'
 import { IssuesTableHandler } from './issues-table-handler';
 import { ReportExportComponent } from './report-export-component';
 
-export type IssuesTableDeps = IssuesDetailsPaneDeps & ExportDialogDeps;
+export type IssuesTableDeps = IssuesDetailsPaneDeps &
+    ExportDialogDeps & {
+        dateProvider: (timestamp?: string) => Date;
+    };
 
 export interface IssuesTableProps {
     deps: IssuesTableDeps;
@@ -95,7 +98,7 @@ export class IssuesTable extends React.Component<IssuesTableProps> {
     private renderExportButton(): JSX.Element {
         const shouldShowButton = this.props.issuesEnabled && !this.props.scanning;
         const { deps, scanResult, reportGenerator, pageTitle, pageUrl } = this.props;
-        const scanDate = new Date(scanResult.timestamp);
+        const scanDate = deps.dateProvider(scanResult.timestamp);
         if (shouldShowButton) {
             return (
                 <ReportExportComponent

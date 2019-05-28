@@ -6,6 +6,7 @@ import * as React from 'react';
 import { It, Mock, Times } from 'typemoq';
 
 import { VisualizationConfigurationFactory } from '../../../../../common/configs/visualization-configuration-factory';
+import { DateProvider } from '../../../../../common/date-provider';
 import { UserConfigurationStoreData } from '../../../../../common/types/store-data/user-configuration-store';
 import { IssuesTable, IssuesTableDeps, IssuesTableProps } from '../../../../../DetailsView/components/issues-table';
 import { DetailsRowData, IssuesTableHandler } from '../../../../../DetailsView/components/issues-table-handler';
@@ -214,7 +215,11 @@ class TestPropsBuilder {
 
     public build(): IssuesTableProps {
         return {
-            deps: this.deps,
+            deps:
+                this.deps ||
+                ({
+                    dateProvider: DateProvider.getDate,
+                } as any),
             title: this.title,
             subtitle: this.subtitle,
             issuesTableHandler: this.issuesTableHandler,
