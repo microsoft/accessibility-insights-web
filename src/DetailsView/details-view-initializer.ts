@@ -81,7 +81,6 @@ import {
 } from './reports/get-assessment-summary-model';
 import { ReactStaticRenderer } from './reports/react-static-renderer';
 import { createReportGeneratorProvider } from './reports/report-generator-provider';
-import { ReportGeneratorV1 } from './reports/report-generator-v1';
 import { ReportHtmlGenerator } from './reports/report-html-generator';
 import { ReportNameGenerator } from './reports/report-name-generator';
 
@@ -204,8 +203,6 @@ if (isNaN(tabId) === false) {
                 featureFlagStore,
             );
 
-            const reportGenerator = reportGeneratorProvider.getGenerator();
-
             visualizationStore.setTabId(tab.id);
             tabStore.setTabId(tab.id);
             visualizationScanResultStore.setTabId(tab.id);
@@ -290,7 +287,6 @@ if (isNaN(tabId) === false) {
                 visualizationConfigurationFactory,
                 issuesTableHandler,
                 assessmentInstanceTableHandler,
-                reportGenerator,
                 previewFeatureFlagsHandler,
                 scopingFlagsHandler,
                 dropdownClickHandler,
@@ -314,7 +310,6 @@ function createNullifiedRenderer(doc, render): DetailsViewRenderer {
         null,
         doc,
         render,
-        null,
         null,
         null,
         null,
