@@ -9,4 +9,13 @@ describe('BaseCardLayer', () => {
         const wrapper = shallow(<BaseCardLayer />);
         expect(wrapper.hasClass('base-card-layer-main')).toBe(true);
     });
+    test('component shows up a children if passed', () => {
+        const shallowWrap = shallow(
+            <BaseCardLayer>
+                <h1>Test</h1>
+            </BaseCardLayer>,
+        );
+        expect(shallowWrap.children).toHaveLength(1);
+        expect(shallowWrap.getElement()).toMatchSnapshot();
+    });
 });
