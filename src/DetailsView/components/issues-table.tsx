@@ -15,11 +15,11 @@ import { DecoratedAxeNodeResult } from '../../injected/scanner-utils';
 import { RuleResult, ScanResults } from '../../scanner/iruleresults';
 import { DictionaryStringTo } from '../../types/common-types';
 import { ReportGenerator } from '../reports/report-generator';
-import { ReportExportComponent } from './report-export-component';
 import { ExportDialogDeps } from './export-dialog';
 import { IssuesDetailsList } from './issues-details-list';
 import { IssuesDetailsPane, IssuesDetailsPaneDeps } from './Issues-details-pane';
 import { IssuesTableHandler } from './issues-table-handler';
+import { ReportExportComponent } from './report-export-component';
 
 export type IssuesTableDeps = IssuesDetailsPaneDeps & ExportDialogDeps;
 

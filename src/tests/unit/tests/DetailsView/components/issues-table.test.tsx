@@ -7,9 +7,9 @@ import { It, Mock, Times } from 'typemoq';
 
 import { VisualizationConfigurationFactory } from '../../../../../common/configs/visualization-configuration-factory';
 import { UserConfigurationStoreData } from '../../../../../common/types/store-data/user-configuration-store';
-import { ReportExportComponent } from '../../../../../DetailsView/components/report-export-component';
 import { IssuesTable, IssuesTableDeps, IssuesTableProps } from '../../../../../DetailsView/components/issues-table';
 import { DetailsRowData, IssuesTableHandler } from '../../../../../DetailsView/components/issues-table-handler';
+import { ReportExportComponent } from '../../../../../DetailsView/components/report-export-component';
 import { ReportGenerator } from '../../../../../DetailsView/reports/report-generator';
 import { DecoratedAxeNodeResult } from '../../../../../injected/scanner-utils';
 import { RuleResult } from '../../../../../scanner/iruleresults';
