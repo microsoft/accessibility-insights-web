@@ -7,6 +7,7 @@
 @import '../../DetailsView/reports/components/assessment-report-summary.scss';
 @import '../../DetailsView/reports/components/assessment-summary-details.scss';
 @import '../../common/components/toast.scss';
+@import '../reports/components/base-card-layer.scss';
 
 body {
     margin: 0;
@@ -1368,6 +1369,7 @@ div.insights-file-issue-details-dialog-container {
                     flex-wrap: wrap;
                     padding-left: 32px;
                     .overview-text-summary-section {
+                        background: #fafafa;
                         display: flex;
                         flex-direction: column;
                         flex: 1 1 50%;
