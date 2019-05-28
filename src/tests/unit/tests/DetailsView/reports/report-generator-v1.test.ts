@@ -48,7 +48,7 @@ describe('ReportGeneratorV1', () => {
             .verifiable(Times.once());
 
         const testObject = new ReportGeneratorV1(nameBuilderMock.object, dataBuilderMock.object, assessmentReportHtmlGeneratorMock.object);
-        const actual = testObject.generateHtml(scanResult, date, title, url, description);
+        const actual = testObject.generateFastPassAutomateChecksReport(scanResult, date, title, url, description);
 
         const expected = 'returned-data';
         expect(actual).toEqual(expected);
@@ -69,7 +69,7 @@ describe('ReportGeneratorV1', () => {
             .verifiable(Times.once());
 
         const testObject = new ReportGeneratorV1(nameBuilderMock.object, dataBuilderMock.object, assessmentReportHtmlGeneratorMock.object);
-        const actual = testObject.generateAssessmentHtml(
+        const actual = testObject.generateAssessmentReport(
             assessmentStoreData,
             assessmentsProvider,
             featureFlagStoreData,

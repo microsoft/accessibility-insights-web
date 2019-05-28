@@ -123,7 +123,15 @@ describe('IssuesTableTest', () => {
                 .returns(() => 'generateName')
                 .verifiable();
             reportGeneratorMock
-                .setup(builder => builder.generateHtml(It.isAny(), It.isAny(), It.isAnyString(), It.isAnyString(), It.isAnyString()))
+                .setup(builder =>
+                    builder.generateFastPassAutomateChecksReport(
+                        It.isAny(),
+                        It.isAny(),
+                        It.isAnyString(),
+                        It.isAnyString(),
+                        It.isAnyString(),
+                    ),
+                )
                 .returns(() => 'generateHtml')
                 .verifiable();
 

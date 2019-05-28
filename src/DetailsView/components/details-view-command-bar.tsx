@@ -125,7 +125,7 @@ export class DetailsViewCommandBar extends React.Component<DetailsViewCommandBar
         const { reportGeneratorProvider } = this.props.deps;
         const reportGenerator = reportGeneratorProvider.getGenerator();
 
-        const exportHtmlWithPlaceholder = reportGenerator.generateAssessmentHtml(
+        const exportHtmlWithPlaceholder = reportGenerator.generateAssessmentReport(
             this.props.assessmentStoreData,
             this.props.assessmentsProvider,
             this.props.featureFlagStoreData,

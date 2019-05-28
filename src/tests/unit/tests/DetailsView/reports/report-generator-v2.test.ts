@@ -31,7 +31,7 @@ describe('ReportGeneratorV2', () => {
 
     test('generateHtml', () => {
         const testObject = new ReportGeneratorV2(nameBuilderMock.object, dataBuilderMock.object, assessmentReportHtmlGeneratorMock.object);
-        const actual = testObject.generateHtml(scanResult, date, title, url, description);
+        const actual = testObject.generateFastPassAutomateChecksReport(scanResult, date, title, url, description);
 
         expect(actual).toMatchSnapshot();
     });
@@ -51,7 +51,7 @@ describe('ReportGeneratorV2', () => {
             .verifiable(Times.once());
 
         const testObject = new ReportGeneratorV2(nameBuilderMock.object, dataBuilderMock.object, assessmentReportHtmlGeneratorMock.object);
-        const actual = testObject.generateAssessmentHtml(
+        const actual = testObject.generateAssessmentReport(
             assessmentStoreData,
             assessmentsProvider,
             featureFlagStoreData,

@@ -124,7 +124,7 @@ describe('DetailsViewCommandBar', () => {
             .verifiable();
         reportGeneratorMock
             .setup(rb =>
-                rb.generateAssessmentHtml(
+                rb.generateAssessmentReport(
                     assessmentStoreData,
                     assessmentsProviderMock.object,
                     featureFlagStoreData,

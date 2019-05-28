@@ -215,7 +215,7 @@ export class IssuesTable extends React.Component<IssuesTableProps, IssuesTableSt
         const { reportGeneratorProvider } = this.props.deps;
         const reportGenerator = reportGeneratorProvider.getGenerator();
         const exportName = reportGenerator.generateName('AutomatedChecksReport', scanDate, this.props.pageTitle);
-        const exportDataWithPlaceholder = reportGenerator.generateHtml(
+        const exportDataWithPlaceholder = reportGenerator.generateFastPassAutomateChecksReport(
             this.props.scanResult,
             scanDate,
             this.props.pageTitle,

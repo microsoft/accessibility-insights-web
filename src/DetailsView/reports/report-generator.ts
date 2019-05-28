@@ -8,8 +8,14 @@ import { ScanResults } from '../../scanner/iruleresults';
 
 export interface ReportGenerator {
     generateName(baseName: string, scanDate: Date, pageTitle: string): string;
-    generateHtml(scanResult: ScanResults, scanData: Date, pageTitle: string, pageUrl: string, description: string): string;
-    generateAssessmentHtml(
+    generateFastPassAutomateChecksReport(
+        scanResult: ScanResults,
+        scanData: Date,
+        pageTitle: string,
+        pageUrl: string,
+        description: string,
+    ): string;
+    generateAssessmentReport(
         assessmentStoreData: AssessmentStoreData,
         assessmentsProvider: AssessmentsProvider,
         featureFlagStoreData: FeatureFlagStoreData,

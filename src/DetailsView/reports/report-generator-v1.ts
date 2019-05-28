@@ -23,11 +23,17 @@ export class ReportGeneratorV1 implements ReportGenerator {
         return this.reportNameGenerator.generateName(baseName, scanDate, pageTitle);
     }
 
-    public generateHtml(scanResult: ScanResults, scanDate: Date, pageTitle: string, pageUrl: string, description: string): string {
+    public generateFastPassAutomateChecksReport(
+        scanResult: ScanResults,
+        scanDate: Date,
+        pageTitle: string,
+        pageUrl: string,
+        description: string,
+    ): string {
         return this.reportHtmlGenerator.generateHtml(scanResult, scanDate, pageTitle, pageUrl, description);
     }
 
-    public generateAssessmentHtml(
+    public generateAssessmentReport(
         assessmentStoreData: AssessmentStoreData,
         assessmentsProvider: AssessmentsProvider,
         featureFlagStoreData: FeatureFlagStoreData,
