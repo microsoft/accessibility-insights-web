@@ -25,31 +25,7 @@ exports[`ReportExportComponentTest render 1`] = `
 </React.Fragment>
 `;
 
-exports[`ReportExportComponentTest user interactions click export button, then dismiss dialog: dialog should be dismissed 1`] = `
-<React.Fragment>
-  <CustomizedActionButton
-    iconProps={
-      Object {
-        "iconName": "Export",
-      }
-    }
-    onClick={[Function]}
-  >
-    Export result
-  </CustomizedActionButton>
-  <ExportDialog
-    deps={Object {}}
-    description=""
-    exportResultsType="Assessment"
-    html="test html"
-    isOpen={false}
-    onClose={[Function]}
-    onDescriptionChange={[Function]}
-  />
-</React.Fragment>
-`;
-
-exports[`ReportExportComponentTest user interactions click export button, then dismiss dialog: dialog should show 1`] = `
+exports[`ReportExportComponentTest user interactions click export button: dialog should show 1`] = `
 <React.Fragment>
   <CustomizedActionButton
     iconProps={
@@ -67,6 +43,30 @@ exports[`ReportExportComponentTest user interactions click export button, then d
     exportResultsType="Assessment"
     html="test html"
     isOpen={true}
+    onClose={[Function]}
+    onDescriptionChange={[Function]}
+  />
+</React.Fragment>
+`;
+
+exports[`ReportExportComponentTest user interactions dismiss dialog: dialog should be dismissed 1`] = `
+<React.Fragment>
+  <CustomizedActionButton
+    iconProps={
+      Object {
+        "iconName": "Export",
+      }
+    }
+    onClick={[Function]}
+  >
+    Export result
+  </CustomizedActionButton>
+  <ExportDialog
+    deps={Object {}}
+    description=""
+    exportResultsType="Assessment"
+    html="test html"
+    isOpen={false}
     onClose={[Function]}
     onDescriptionChange={[Function]}
   />

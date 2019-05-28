@@ -35,7 +35,7 @@ describe('ReportExportComponentTest', () => {
     });
 
     describe('user interactions', () => {
-        test('click export button, then dismiss dialog', () => {
+        test('click export button', () => {
             reportGeneratorMock
                 .setup(rgm => rgm.generateName(props.exportResultsType, props.scanDate, props.pageTitle))
                 .verifiable(Times.once());
@@ -53,9 +53,25 @@ describe('ReportExportComponentTest', () => {
             const dialog = wrapper.find(ExportDialog);
             dialog.props().onClose();
 
-            expect(wrapper.getElement()).toMatchSnapshot('dialog should be dismissed');
             reportGeneratorMock.verifyAll();
             htmlGeneratorMock.verifyAll();
+        });
+
+        test('dismiss dialog', () => {
+            reportGeneratorMock
+                .setup(rgm => rgm.generateName(props.exportResultsType, props.scanDate, props.pageTitle))
+                .verifiable(Times.once());
+            htmlGeneratorMock
+                .setup(hgm => hgm(It.isAnyString()))
+                .returns(() => 'test html')
+                .verifiable(Times.once());
+            const wrapper = shallow(<ReportExportComponent {...props} />);
+            const exportButton = wrapper.find(ActionButton);
+            exportButton.simulate('click');
+            const dialog = wrapper.find(ExportDialog);
+            dialog.props().onClose();
+
+            expect(wrapper.getElement()).toMatchSnapshot('dialog should be dismissed');
         });
 
         test('edit text field', () => {
