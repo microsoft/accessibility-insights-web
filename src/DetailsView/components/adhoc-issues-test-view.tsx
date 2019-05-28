@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { ISelection } from 'office-ui-fabric-react/lib/DetailsList';
 import * as React from 'react';
+
 import { VisualizationConfiguration } from '../../common/configs/visualization-configuration';
 import { VisualizationConfigurationFactory } from '../../common/configs/visualization-configuration-factory';
 import { NamedSFC } from '../../common/react/named-sfc';
@@ -12,7 +13,7 @@ import { VisualizationScanResultData } from '../../common/types/store-data/visua
 import { VisualizationStoreData } from '../../common/types/store-data/visualization-store-data';
 import { VisualizationType } from '../../common/types/visualization-type';
 import { DetailsViewToggleClickHandlerFactory } from '../handlers/details-view-toggle-click-handler-factory';
-import { ReportGeneratorV1 } from '../reports/report-generator-v1';
+import { ReportGenerator } from '../reports/report-generator';
 import { IssuesTable, IssuesTableDeps } from './issues-table';
 import { IssuesTableHandler } from './issues-table-handler';
 import { TargetPageChangedView } from './target-page-changed-view';
@@ -29,7 +30,7 @@ export interface AdhocIssuesTestViewProps {
     visualizationConfigurationFactory: VisualizationConfigurationFactory;
     clickHandlerFactory: DetailsViewToggleClickHandlerFactory;
     issuesSelection: ISelection;
-    reportGenerator: ReportGeneratorV1;
+    reportGenerator: ReportGenerator;
     issuesTableHandler: IssuesTableHandler;
     configuration: VisualizationConfiguration;
     userConfigurationStoreData: UserConfigurationStoreData;

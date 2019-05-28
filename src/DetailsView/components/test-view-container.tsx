@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { ISelection } from 'office-ui-fabric-react/lib/DetailsList';
+
 import { VisualizationConfigurationFactory } from '../../common/configs/visualization-configuration-factory';
 import { NamedSFC } from '../../common/react/named-sfc';
 import { AssessmentStoreData } from '../../common/types/store-data/assessment-result-data';
@@ -13,7 +14,7 @@ import { VisualizationType } from '../../common/types/visualization-type';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 import { AssessmentInstanceTableHandler } from '../handlers/assessment-instance-table-handler';
 import { DetailsViewToggleClickHandlerFactory } from '../handlers/details-view-toggle-click-handler-factory';
-import { ReportGeneratorV1 } from '../reports/report-generator-v1';
+import { ReportGenerator } from '../reports/report-generator';
 import { IssuesTableHandler } from './issues-table-handler';
 import { OverviewContainerDeps } from './overview-content/overview-content-container';
 import { TestViewDeps } from './test-view';
@@ -35,7 +36,7 @@ export interface TestViewContainerProps {
     clickHandlerFactory: DetailsViewToggleClickHandlerFactory;
     assessmentInstanceTableHandler: AssessmentInstanceTableHandler;
     issuesSelection: ISelection;
-    reportGenerator: ReportGeneratorV1;
+    reportGenerator: ReportGenerator;
     issuesTableHandler: IssuesTableHandler;
     userConfigurationStoreData: UserConfigurationStoreData;
 }

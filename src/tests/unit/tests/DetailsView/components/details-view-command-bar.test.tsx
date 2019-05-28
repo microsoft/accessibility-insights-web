@@ -18,7 +18,7 @@ import {
     DetailsViewCommandBarProps,
 } from '../../../../../DetailsView/components/details-view-command-bar';
 import { DetailsRightPanelConfiguration } from '../../../../../DetailsView/components/details-view-right-panel';
-import { ReportGeneratorV1 } from '../../../../../DetailsView/reports/report-generator-v1';
+import { ReportGenerator } from '../../../../../DetailsView/reports/report-generator';
 
 describe('DetailsViewCommandBar', () => {
     const theDate = new Date(2019, 2, 12, 9, 0);
@@ -31,7 +31,7 @@ describe('DetailsViewCommandBar', () => {
     let assessmentsProviderMock: IMock<AssessmentsProvider>;
     let assessmentStoreData: AssessmentStoreData;
     let rightPanelConfig: DetailsRightPanelConfiguration;
-    let reportGeneratorMock: IMock<ReportGeneratorV1>;
+    let reportGeneratorMock: IMock<ReportGenerator>;
     let descriptionPlaceholder: string;
     let renderExportAndStartOver: boolean;
 
@@ -57,7 +57,7 @@ describe('DetailsViewCommandBar', () => {
                     title: 'test title',
                 } as Assessment;
             });
-        reportGeneratorMock = Mock.ofType(ReportGeneratorV1, MockBehavior.Strict);
+        reportGeneratorMock = Mock.ofType<ReportGenerator>(undefined, MockBehavior.Strict);
         descriptionPlaceholder = '7efdac3c-8c94-4e00-a765-6fc8c59a232b';
     });
 

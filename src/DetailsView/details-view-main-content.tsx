@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { ISelection } from 'office-ui-fabric-react/lib/DetailsList';
 import * as React from 'react';
+
 import { AssessmentsProvider } from '../assessments/types/assessments-provider';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
 import { DropdownClickHandler } from '../common/dropdown-click-handler';
@@ -21,7 +22,7 @@ import { DetailsViewLeftNav, DetailsViewLeftNavDeps } from './components/left-na
 import { TabInfo } from './components/tab-info';
 import { AssessmentInstanceTableHandler } from './handlers/assessment-instance-table-handler';
 import { DetailsViewToggleClickHandlerFactory } from './handlers/details-view-toggle-click-handler-factory';
-import { ReportGeneratorV1 } from './reports/report-generator-v1';
+import { ReportGenerator } from './reports/report-generator';
 
 export type DetailsViewMainContentDeps = DetailsViewContentDeps & DetailsViewLeftNavDeps & DetailsViewCommandBarDeps;
 
@@ -40,7 +41,7 @@ export interface DetailsViewMainContentProps {
     clickHandlerFactory: DetailsViewToggleClickHandlerFactory;
     assessmentInstanceTableHandler: AssessmentInstanceTableHandler;
     issuesSelection: ISelection;
-    reportGenerator: ReportGeneratorV1;
+    reportGenerator: ReportGenerator;
     issuesTableHandler: IssuesTableHandler;
     rightPanelConfiguration: DetailsRightPanelConfiguration;
     switcherNavConfiguration: DetailsViewSwitcherNavConfiguration;
