@@ -9,6 +9,7 @@ import { rootContainerId } from './constants';
 
 export class ShadowInitializer {
     public static readonly injectedCssPath: string = 'injected/styles/default/injected.css';
+    public static readonly generatedBundleInjectedCssPath: string = 'bundle/injected.css';
 
     constructor(
         private chromeAdapter: ClientBrowserAdapter,
@@ -21,7 +22,9 @@ export class ShadowInitializer {
         try {
             const shadowContainer = this.createShadowContainer();
             const injectedCssContent = await this.getFileContentByPath(ShadowInitializer.injectedCssPath);
+            const generatedBundleInjectedCssContent = await this.getFileContentByPath(ShadowInitializer.generatedBundleInjectedCssPath);
             this.addStyleElement(injectedCssContent, shadowContainer);
+            this.addStyleElement(generatedBundleInjectedCssContent, shadowContainer);
         } catch (err) {
             this.logger.log('unable to insert styles under shadow', err);
         }

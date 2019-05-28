@@ -151,7 +151,6 @@ export class DetailsViewContainerPropsBuilder {
             clickHandlerFactory: this.clickHandlerFactory,
             visualizationConfigurationFactory: this.configFactory,
             issuesTableHandler: this.issuesTableHandler,
-            reportGenerator: null,
             previewFeatureFlagsHandler: this.previewFeatureFlagsHandler,
             scopingFlagsHandler: this.scopingFlagsHandler,
             dropdownClickHandler: this.dropdownClickHandler,

@@ -9,7 +9,8 @@ import { AssessmentStoreData } from '../../common/types/store-data/assessment-re
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { TabStoreData } from '../../common/types/store-data/tab-store-data';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
-import { ReportGenerator, ReportGeneratorDeps } from '../reports/report-generator';
+import { ReportGeneratorProvider } from '../reports/report-generator-provider';
+import { ReportGeneratorDeps } from '../reports/report-generator-v1';
 import { DetailsRightPanelConfiguration } from './details-view-right-panel';
 import { ExportDialogDeps } from './export-dialog';
 import { ReportExportComponent } from './report-export-component';
@@ -18,6 +19,7 @@ import { StartOverDropdown } from './start-over-dropdown';
 export type DetailsViewCommandBarDeps = ExportDialogDeps &
     ReportGeneratorDeps & {
         dateProvider: () => Date;
+        reportGeneratorProvider: ReportGeneratorProvider;
     };
 
 export interface DetailsViewCommandBarProps {
@@ -27,7 +29,6 @@ export interface DetailsViewCommandBarProps {
     actionMessageCreator: DetailsViewActionMessageCreator;
     assessmentStoreData: AssessmentStoreData;
     assessmentsProvider: AssessmentsProvider;
-    reportGenerator: ReportGenerator;
     renderExportAndStartOver: boolean;
     rightPanelConfiguration: DetailsRightPanelConfiguration;
 }
@@ -67,10 +68,11 @@ export class DetailsViewCommandBar extends React.Component<DetailsViewCommandBar
         if (!this.props.renderExportAndStartOver) {
             return null;
         }
-        const { deps, assessmentStoreData, assessmentsProvider, featureFlagStoreData, tabStoreData, reportGenerator } = this.props;
+        const { deps, assessmentStoreData, assessmentsProvider, featureFlagStoreData, tabStoreData } = this.props;
+        const reportGenerator = deps.reportGeneratorProvider.getGenerator();
         const selectedTest = this.props.assessmentStoreData.assessmentNavState.selectedTestType;
         const test = this.props.assessmentsProvider.forType(selectedTest);
-        const htmlGenerator = reportGenerator.generateAssessmentHtml.bind(
+        const htmlGenerator = reportGenerator.generateAssessmentReport.bind(
             reportGenerator,
             assessmentStoreData,
             assessmentsProvider,

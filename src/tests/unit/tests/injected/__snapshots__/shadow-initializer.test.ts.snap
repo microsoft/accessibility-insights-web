@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ShadowInitializerTests add style data to shadow container 1`] = `
+<div>
+  <div
+    id="insights-shadow-host"
+  />
+</div>
+`;
+
+exports[`ShadowInitializerTests add style data to shadow container 2`] = `
+<div>
+  <div
+    id="insights-shadow-container"
+  >
+    <style>
+      injectedCss style content
+    </style>
+    <style>
+      generatedBundleInjectedCss style content
+    </style>
+  </div>
+</div>
+`;
+
+exports[`ShadowInitializerTests remove existing & create new shadow container on initialize 1`] = `
+<div>
+  <div
+    id="insights-shadow-host"
+  />
+</div>
+`;
+
+exports[`ShadowInitializerTests remove existing & create new shadow container on initialize 2`] = `
+<div>
+  <div
+    id="insights-shadow-container"
+  >
+    <style>
+      injectedCss style content
+    </style>
+    <style>
+      generatedBundleInjectedCss style content
+    </style>
+  </div>
+</div>
+`;

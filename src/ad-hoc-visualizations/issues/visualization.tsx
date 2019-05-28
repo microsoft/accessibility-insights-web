@@ -38,7 +38,6 @@ export const IssuesAdHocVisualization: VisualizationConfiguration = {
     chromeCommand: '01_toggle-issues',
     launchPanelDisplayOrder: 1,
     adhocToolsPanelDisplayOrder: 1,
-    analyzerMessageType: Messages.Visualizations.Common.ScanCompleted,
     resultProcessor: (scanner: ScannerUtils) => scanner.getFailingInstances,
     getAnalyzer: provider =>
         provider.createRuleAnalyzer({

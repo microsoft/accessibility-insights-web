@@ -1,17 +1,18 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
+
 import { AssessmentsProvider } from '../../../../../assessments/types/assessments-provider';
 import { AssessmentStoreData } from '../../../../../common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from '../../../../../common/types/store-data/feature-flag-store-data';
 import { TabStoreData } from '../../../../../common/types/store-data/tab-store-data';
 import { AssessmentReportHtmlGenerator } from '../../../../../DetailsView/reports/assessment-report-html-generator';
-import { ReportGenerator } from '../../../../../DetailsView/reports/report-generator';
+import { ReportGeneratorV2 } from '../../../../../DetailsView/reports/report-generator-v2';
 import { ReportHtmlGenerator } from '../../../../../DetailsView/reports/report-html-generator';
 import { ReportNameGenerator } from '../../../../../DetailsView/reports/report-name-generator';
 import { ScanResults } from '../../../../../scanner/iruleresults';
 
-describe('ReportGeneratorTest', () => {
+describe('ReportGeneratorV2', () => {
     const scanResult: ScanResults = {} as any;
     const date = new Date(2018, 2, 12, 15, 46);
     const title = 'title';
@@ -28,30 +29,11 @@ describe('ReportGeneratorTest', () => {
         assessmentReportHtmlGeneratorMock = Mock.ofType(AssessmentReportHtmlGenerator, MockBehavior.Strict);
     });
 
-    afterEach(() => {
-        dataBuilderMock.verifyAll();
-        nameBuilderMock.verifyAll();
-    });
-
     test('generateHtml', () => {
-        dataBuilderMock
-            .setup(builder =>
-                builder.generateHtml(
-                    It.isObjectWith(scanResult),
-                    It.isValue(date),
-                    It.isValue(title),
-                    It.isValue(url),
-                    It.isValue(description),
-                ),
-            )
-            .returns(() => 'returned-data')
-            .verifiable(Times.once());
+        const testObject = new ReportGeneratorV2(nameBuilderMock.object, dataBuilderMock.object, assessmentReportHtmlGeneratorMock.object);
+        const actual = testObject.generateFastPassAutomateChecksReport(scanResult, date, title, url, description);
 
-        const testObject = new ReportGenerator(nameBuilderMock.object, dataBuilderMock.object, assessmentReportHtmlGeneratorMock.object);
-        const actual = testObject.generateHtml(scanResult, date, title, url, description);
-
-        const expected = 'returned-data';
-        expect(actual).toEqual(expected);
+        expect(actual).toMatchSnapshot();
     });
 
     test('generateAssessmentHtml', () => {
@@ -68,8 +50,8 @@ describe('ReportGeneratorTest', () => {
             .returns(() => 'generated-assessment-html')
             .verifiable(Times.once());
 
-        const testObject = new ReportGenerator(nameBuilderMock.object, dataBuilderMock.object, assessmentReportHtmlGeneratorMock.object);
-        const actual = testObject.generateAssessmentHtml(
+        const testObject = new ReportGeneratorV2(nameBuilderMock.object, dataBuilderMock.object, assessmentReportHtmlGeneratorMock.object);
+        const actual = testObject.generateAssessmentReport(
             assessmentStoreData,
             assessmentsProvider,
             featureFlagStoreData,
@@ -87,7 +69,7 @@ describe('ReportGeneratorTest', () => {
             .returns(() => 'returned-name')
             .verifiable(Times.once());
 
-        const testObject = new ReportGenerator(nameBuilderMock.object, dataBuilderMock.object, assessmentReportHtmlGeneratorMock.object);
+        const testObject = new ReportGeneratorV2(nameBuilderMock.object, dataBuilderMock.object, assessmentReportHtmlGeneratorMock.object);
         const actual = testObject.generateName('InsightsScan', date, title);
 
         const expected = 'returned-name';

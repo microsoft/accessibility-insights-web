@@ -14,7 +14,7 @@ import { VisualizationType } from '../../common/types/visualization-type';
 import { DecoratedAxeNodeResult } from '../../injected/scanner-utils';
 import { RuleResult, ScanResults } from '../../scanner/iruleresults';
 import { DictionaryStringTo } from '../../types/common-types';
-import { ReportGenerator } from '../reports/report-generator';
+import { ReportGeneratorProvider } from '../reports/report-generator-provider';
 import { ExportDialogDeps } from './export-dialog';
 import { IssuesDetailsList } from './issues-details-list';
 import { IssuesDetailsPane, IssuesDetailsPaneDeps } from './Issues-details-pane';
@@ -24,6 +24,7 @@ import { ReportExportComponent } from './report-export-component';
 export type IssuesTableDeps = IssuesDetailsPaneDeps &
     ExportDialogDeps & {
         dateProvider: (timestamp?: string) => Date;
+        reportGeneratorProvider: ReportGeneratorProvider;
     };
 
 export interface IssuesTableProps {
@@ -42,7 +43,6 @@ export interface IssuesTableProps {
     visualizationConfigurationFactory: VisualizationConfigurationFactory;
     featureFlags: FeatureFlagStoreData;
     scanResult: ScanResults;
-    reportGenerator: ReportGenerator;
     userConfigurationStoreData: UserConfigurationStoreData;
 }
 
@@ -97,8 +97,9 @@ export class IssuesTable extends React.Component<IssuesTableProps> {
 
     private renderExportButton(): JSX.Element {
         const shouldShowButton = this.props.issuesEnabled && !this.props.scanning;
-        const { deps, scanResult, reportGenerator, pageTitle, pageUrl } = this.props;
+        const { deps, scanResult, pageTitle, pageUrl } = this.props;
         const scanDate = deps.dateProvider(scanResult.timestamp);
+        const reportGenerator = deps.reportGeneratorProvider.getGenerator();
         if (shouldShowButton) {
             return (
                 <ReportExportComponent
@@ -107,7 +108,13 @@ export class IssuesTable extends React.Component<IssuesTableProps> {
                     reportGenerator={reportGenerator}
                     pageTitle={pageTitle}
                     exportResultsType={'AutomatedChecks'}
-                    htmlGenerator={reportGenerator.generateHtml.bind(reportGenerator, scanResult, scanDate, pageTitle, pageUrl)}
+                    htmlGenerator={reportGenerator.generateFastPassAutomateChecksReport.bind(
+                        reportGenerator,
+                        scanResult,
+                        scanDate,
+                        pageTitle,
+                        pageUrl,
+                    )}
                 />
             );
         } else {

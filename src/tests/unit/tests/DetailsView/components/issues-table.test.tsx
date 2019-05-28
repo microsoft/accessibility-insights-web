@@ -3,7 +3,7 @@
 import { shallow } from 'enzyme';
 import { ISelection, Selection } from 'office-ui-fabric-react/lib/DetailsList';
 import * as React from 'react';
-import { It, Mock, Times } from 'typemoq';
+import { Mock } from 'typemoq';
 
 import { VisualizationConfigurationFactory } from '../../../../../common/configs/visualization-configuration-factory';
 import { DateProvider } from '../../../../../common/date-provider';
@@ -11,7 +11,6 @@ import { UserConfigurationStoreData } from '../../../../../common/types/store-da
 import { IssuesTable, IssuesTableDeps, IssuesTableProps } from '../../../../../DetailsView/components/issues-table';
 import { DetailsRowData, IssuesTableHandler } from '../../../../../DetailsView/components/issues-table-handler';
 import { ReportExportComponent } from '../../../../../DetailsView/components/report-export-component';
-import { ReportGenerator } from '../../../../../DetailsView/reports/report-generator';
 import { DecoratedAxeNodeResult } from '../../../../../injected/scanner-utils';
 import { RuleResult } from '../../../../../scanner/iruleresults';
 import { DictionaryStringTo } from '../../../../../types/common-types';
@@ -83,7 +82,6 @@ describe('IssuesTableTest', () => {
                 const issuesTableHandlerMock = Mock.ofType<IssuesTableHandler>(IssuesTableHandler);
                 const selectionMock = Mock.ofType<ISelection>(Selection);
                 const toggleClickHandlerMock = Mock.ofInstance(event => {});
-                const reportGeneratorMock = Mock.ofType(ReportGenerator);
 
                 const props = new TestPropsBuilder()
                     .setIssuesEnabled(issuesEnabled)
@@ -91,12 +89,7 @@ describe('IssuesTableTest', () => {
                     .setIssuesSelection(selectionMock.object)
                     .setIssuesTableHandler(issuesTableHandlerMock.object)
                     .setToggleClickHandler(toggleClickHandlerMock.object)
-                    .setReportGenerator(reportGeneratorMock.object)
                     .build();
-
-                reportGeneratorMock
-                    .setup(rgm => rgm.generateHtml(props.scanResult, It.isAny(), props.pageTitle, props.pageUrl, description))
-                    .verifiable(Times.once());
 
                 const wrapped = shallow(<IssuesTable {...props} />);
                 wrapped
@@ -105,16 +98,11 @@ describe('IssuesTableTest', () => {
                     .htmlGenerator(description);
 
                 expect(wrapped.debug()).toMatchSnapshot();
-                reportGeneratorMock.verifyAll();
             });
         });
 
         it('spinner, issuesEnabled is an empty object', () => {
-            const reportGeneratorMock = Mock.ofType(ReportGenerator);
-            const props = new TestPropsBuilder()
-                .setReportGenerator(reportGeneratorMock.object)
-                .setIssuesEnabled({} as any)
-                .build();
+            const props = new TestPropsBuilder().setIssuesEnabled({} as any).build();
 
             const wrapper = shallow(<IssuesTable {...props} />);
 
@@ -160,7 +148,6 @@ class TestPropsBuilder {
     private scanning: boolean = false;
     private clickHandler: (event) => void;
     private featureFlags = {};
-    private reportGenerator: ReportGenerator;
     private deps: IssuesTableDeps;
 
     public setDeps(deps: IssuesTableDeps): TestPropsBuilder {
@@ -203,11 +190,6 @@ class TestPropsBuilder {
         return this;
     }
 
-    public setReportGenerator(reportGenerator: ReportGenerator): TestPropsBuilder {
-        this.reportGenerator = reportGenerator;
-        return this;
-    }
-
     public setSubtitle(subtitle?: JSX.Element): TestPropsBuilder {
         this.subtitle = subtitle;
         return this;
@@ -242,7 +224,6 @@ class TestPropsBuilder {
                 targetPageUrl: '',
                 targetPageTitle: '',
             },
-            reportGenerator: this.reportGenerator,
             userConfigurationStoreData: {
                 bugService: 'gitHub',
             } as UserConfigurationStoreData,

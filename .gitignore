@@ -4,5 +4,6 @@
 /extension/
 /test-results/
 /drop/
+*.scss.d.ts
 # Dependency directories
 node_modules/

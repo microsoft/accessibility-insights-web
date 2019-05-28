@@ -33,7 +33,6 @@ export const HeadingsAdHocVisualization: VisualizationConfiguration = {
     chromeCommand: '03_toggle-headings',
     launchPanelDisplayOrder: 3,
     adhocToolsPanelDisplayOrder: 3,
-    analyzerMessageType: Messages.Visualizations.Common.ScanCompleted,
     resultProcessor: (scanner: ScannerUtils) => scanner.getAllCompletedInstances,
     getAnalyzer: provider =>
         provider.createRuleAnalyzer({

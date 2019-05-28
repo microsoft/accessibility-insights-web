@@ -3,7 +3,8 @@
 exports[`no displayableFeatureFlags message test the no feature flag message component 1`] = `
 <React.Fragment>
   <div
-    className="no-preview-feature-message"
+    className="noPreviewFeatureMessage"
+    id="no-displayable-feature-flag-message"
   >
     No preview features are currently available to manage. Follow this page for future cool features.
   </div>

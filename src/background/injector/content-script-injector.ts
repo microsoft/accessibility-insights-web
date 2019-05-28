@@ -7,7 +7,7 @@ import { BrowserAdapter } from '../browser-adapters/browser-adapter';
 export class ContentScriptInjector {
     public static readonly jsFiles: string[] = ['bundle/injected.bundle.js'];
 
-    public static readonly cssFiles: string[] = ['injected/styles/default/injected.css'];
+    public static readonly cssFiles: string[] = ['injected/styles/default/injected.css', 'bundle/injected.css'];
 
     public static timeoutInMilliSec = 5e4;
     private readonly _chromeAdapter: BrowserAdapter;
