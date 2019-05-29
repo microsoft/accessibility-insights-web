@@ -18,7 +18,7 @@ describe('ReportBody', () => {
             pageTitle,
             pageUrl,
             description: 'test description',
-            scanDate: new Date(2019, 5, 29, 9, 47, 0, 0),
+            scanDate: new Date('2019-05-29T19:12:16.804Z'),
             environmentInfo: {
                 axeCoreVersion: 'axe-core-version',
                 browserSpec: 'browser-spec',

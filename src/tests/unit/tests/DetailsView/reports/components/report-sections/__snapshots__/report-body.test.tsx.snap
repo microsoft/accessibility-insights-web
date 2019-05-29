@@ -15,7 +15,7 @@ exports[`ReportBody renders 1`] = `
     }
     pageTitle="page-title"
     pageUrl="url:target-page"
-    scanDate={2019-06-29T16:47:00.000Z}
+    scanDate={2019-05-29T19:12:16.804Z}
     scanResult={
       Object {
         "inapplicable": Array [],
@@ -39,7 +39,7 @@ exports[`ReportBody renders 1`] = `
     }
     pageTitle="page-title"
     pageUrl="url:target-page"
-    scanDate={2019-06-29T16:47:00.000Z}
+    scanDate={2019-05-29T19:12:16.804Z}
     scanResult={
       Object {
         "inapplicable": Array [],
@@ -64,7 +64,7 @@ exports[`ReportBody renders 1`] = `
       }
       pageTitle="page-title"
       pageUrl="url:target-page"
-      scanDate={2019-06-29T16:47:00.000Z}
+      scanDate={2019-05-29T19:12:16.804Z}
       scanResult={
         Object {
           "inapplicable": Array [],
@@ -88,7 +88,7 @@ exports[`ReportBody renders 1`] = `
       }
       pageTitle="page-title"
       pageUrl="url:target-page"
-      scanDate={2019-06-29T16:47:00.000Z}
+      scanDate={2019-05-29T19:12:16.804Z}
       scanResult={
         Object {
           "inapplicable": Array [],
@@ -112,7 +112,7 @@ exports[`ReportBody renders 1`] = `
       }
       pageTitle="page-title"
       pageUrl="url:target-page"
-      scanDate={2019-06-29T16:47:00.000Z}
+      scanDate={2019-05-29T19:12:16.804Z}
       scanResult={
         Object {
           "inapplicable": Array [],
