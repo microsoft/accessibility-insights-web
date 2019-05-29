@@ -1,0 +1,156 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ReportBody renders 1`] = `
+<body-section>
+  <header-section />
+  <title-section />
+  <summary-section
+    congratulateIfEmpty={true}
+    description="test description"
+    environmentInfo={
+      Object {
+        "axeCoreVersion": "axe-core-version",
+        "browserSpec": "browser-spec",
+        "extensionVersion": "extension-version",
+      }
+    }
+    idPrefix="prefix"
+    pageTitle="page-title"
+    pageUrl="url:target-page"
+    results={Array []}
+    scanDate={2019-06-29T16:47:00.000Z}
+    scanResult={
+      Object {
+        "inapplicable": Array [],
+        "incomplete": Array [],
+        "passes": Array [],
+        "targetPageTitle": "page-title",
+        "targetPageUrl": "url:target-page",
+        "timestamp": "today",
+        "violations": Array [],
+      }
+    }
+    showInstanceCount={true}
+    showInstances={true}
+  />
+  <details-section
+    congratulateIfEmpty={true}
+    description="test description"
+    environmentInfo={
+      Object {
+        "axeCoreVersion": "axe-core-version",
+        "browserSpec": "browser-spec",
+        "extensionVersion": "extension-version",
+      }
+    }
+    idPrefix="prefix"
+    pageTitle="page-title"
+    pageUrl="url:target-page"
+    results={Array []}
+    scanDate={2019-06-29T16:47:00.000Z}
+    scanResult={
+      Object {
+        "inapplicable": Array [],
+        "incomplete": Array [],
+        "passes": Array [],
+        "targetPageTitle": "page-title",
+        "targetPageUrl": "url:target-page",
+        "timestamp": "today",
+        "violations": Array [],
+      }
+    }
+    showInstanceCount={true}
+    showInstances={true}
+  />
+  <result-section>
+    <failed-instances-section
+      congratulateIfEmpty={true}
+      description="test description"
+      environmentInfo={
+        Object {
+          "axeCoreVersion": "axe-core-version",
+          "browserSpec": "browser-spec",
+          "extensionVersion": "extension-version",
+        }
+      }
+      idPrefix="prefix"
+      pageTitle="page-title"
+      pageUrl="url:target-page"
+      results={Array []}
+      scanDate={2019-06-29T16:47:00.000Z}
+      scanResult={
+        Object {
+          "inapplicable": Array [],
+          "incomplete": Array [],
+          "passes": Array [],
+          "targetPageTitle": "page-title",
+          "targetPageUrl": "url:target-page",
+          "timestamp": "today",
+          "violations": Array [],
+        }
+      }
+      showInstanceCount={true}
+      showInstances={true}
+    />
+    <passed-checks-section
+      congratulateIfEmpty={true}
+      description="test description"
+      environmentInfo={
+        Object {
+          "axeCoreVersion": "axe-core-version",
+          "browserSpec": "browser-spec",
+          "extensionVersion": "extension-version",
+        }
+      }
+      idPrefix="prefix"
+      pageTitle="page-title"
+      pageUrl="url:target-page"
+      results={Array []}
+      scanDate={2019-06-29T16:47:00.000Z}
+      scanResult={
+        Object {
+          "inapplicable": Array [],
+          "incomplete": Array [],
+          "passes": Array [],
+          "targetPageTitle": "page-title",
+          "targetPageUrl": "url:target-page",
+          "timestamp": "today",
+          "violations": Array [],
+        }
+      }
+      showInstanceCount={true}
+      showInstances={true}
+    />
+    <not-applicable-checks-section
+      congratulateIfEmpty={true}
+      description="test description"
+      environmentInfo={
+        Object {
+          "axeCoreVersion": "axe-core-version",
+          "browserSpec": "browser-spec",
+          "extensionVersion": "extension-version",
+        }
+      }
+      idPrefix="prefix"
+      pageTitle="page-title"
+      pageUrl="url:target-page"
+      results={Array []}
+      scanDate={2019-06-29T16:47:00.000Z}
+      scanResult={
+        Object {
+          "inapplicable": Array [],
+          "incomplete": Array [],
+          "passes": Array [],
+          "targetPageTitle": "page-title",
+          "targetPageUrl": "url:target-page",
+          "timestamp": "today",
+          "violations": Array [],
+        }
+      }
+      showInstanceCount={true}
+      showInstances={true}
+    />
+  </result-section>
+  <footer-section />
+</body-section>
+`;
