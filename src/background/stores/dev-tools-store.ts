@@ -19,6 +19,7 @@ export class DevToolStore extends BaseStoreImpl<DevToolState> {
     public getDefaultState(): DevToolState {
         const defaultValues: DevToolState = {
             isOpen: false,
+            count: 0,
         };
 
         return defaultValues;
@@ -46,6 +47,7 @@ export class DevToolStore extends BaseStoreImpl<DevToolState> {
     private onInspectElement(target: string[]): void {
         this.state.inspectElement = target;
         this.state.frameUrl = null;
+        this.state.count = 0 || this.state.count + 1;
         this.emitChanged();
     }
 
