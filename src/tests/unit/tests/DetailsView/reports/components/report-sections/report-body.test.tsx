@@ -4,9 +4,9 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 import { NamedSFC } from '../../../../../../../common/react/named-sfc';
 import {
-    AutomatedChecksReportSectionFactory,
     CheckListProps,
     DetailsProps,
+    ReportSectionFactory,
     SummaryProps,
 } from '../../../../../../../DetailsView/reports/components/report-sections/automated-checks-report-section-factory';
 import { ReportBody, ReportBodyProps } from '../../../../../../../DetailsView/reports/components/report-sections/report-body';
@@ -77,7 +77,7 @@ describe('ReportBody', () => {
         const NotApplicableChecks = createBasicComponent('not-applicable-checks-section');
         const Footer = createBasicComponent('footer-section');
 
-        const sectionFactoryStub: AutomatedChecksReportSectionFactory = {
+        const sectionFactoryStub: ReportSectionFactory = {
             BodySection: BodySection,
             Header: Header,
             Title: Title,

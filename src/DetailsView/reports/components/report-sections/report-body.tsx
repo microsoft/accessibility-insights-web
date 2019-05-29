@@ -3,10 +3,10 @@
 import * as React from 'react';
 
 import { NamedSFC } from '../../../../common/react/named-sfc';
-import { AutomatedChecksReportSectionFactory, CheckListProps, DetailsProps, SummaryProps } from './automated-checks-report-section-factory';
+import { CheckListProps, DetailsProps, ReportSectionFactory, SummaryProps } from './automated-checks-report-section-factory';
 
 export type ReportBodyProps = {
-    sectionFactory: AutomatedChecksReportSectionFactory;
+    sectionFactory: ReportSectionFactory;
 } & SummaryProps &
     DetailsProps &
     CheckListProps;

@@ -24,7 +24,7 @@ export type CheckListProps = {
     congratulateIfEmpty: boolean;
 };
 
-export type AutomatedChecksReportSectionFactory = {
+export type ReportSectionFactory = {
     BodySection: ReactSFCWithDisplayName;
     Header: ReactSFCWithDisplayName;
     Title: ReactSFCWithDisplayName;
