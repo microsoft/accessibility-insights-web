@@ -81,7 +81,7 @@ import {
 } from './reports/get-assessment-summary-model';
 import { ReactStaticRenderer } from './reports/react-static-renderer';
 import { createReportGeneratorProvider } from './reports/report-generator-provider';
-import { ReportHtmlGeneratorV1 } from './reports/report-html-generator';
+import { ReportHtmlGeneratorV1 } from './reports/report-html-generator-v1';
 import { ReportNameGenerator } from './reports/report-name-generator';
 
 declare const window: AutoChecker & Window;

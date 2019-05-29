@@ -9,7 +9,7 @@ import { AssessmentReportHtmlGenerator } from '../../../../../DetailsView/report
 import { createReportGeneratorProvider, ReportGeneratorProvider } from '../../../../../DetailsView/reports/report-generator-provider';
 import { ReportGeneratorV1 } from '../../../../../DetailsView/reports/report-generator-v1';
 import { ReportGeneratorV2 } from '../../../../../DetailsView/reports/report-generator-v2';
-import { ReportHtmlGeneratorV1 } from '../../../../../DetailsView/reports/report-html-generator';
+import { ReportHtmlGeneratorV1 } from '../../../../../DetailsView/reports/report-html-generator-v1';
 import { ReportNameGenerator } from '../../../../../DetailsView/reports/report-name-generator';
 
 describe('ReportGeneratorProvider', () => {

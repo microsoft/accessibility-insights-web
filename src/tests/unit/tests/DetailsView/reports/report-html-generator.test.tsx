@@ -6,7 +6,7 @@ import { It, Mock, MockBehavior, Times } from 'typemoq';
 import { ReportBody } from '../../../../../DetailsView/reports/components/report-body';
 import { ReportHead } from '../../../../../DetailsView/reports/components/report-head';
 import { ReactStaticRenderer } from '../../../../../DetailsView/reports/react-static-renderer';
-import { ReportHtmlGeneratorV1 } from '../../../../../DetailsView/reports/report-html-generator';
+import { ReportHtmlGeneratorV1 } from '../../../../../DetailsView/reports/report-html-generator-v1';
 import { ScanResults } from '../../../../../scanner/iruleresults';
 
 describe('ReportHtmlGeneratorTest', () => {

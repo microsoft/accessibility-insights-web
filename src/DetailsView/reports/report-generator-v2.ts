@@ -7,7 +7,7 @@ import { TabStoreData } from '../../common/types/store-data/tab-store-data';
 import { ScanResults } from '../../scanner/iruleresults';
 import { AssessmentReportHtmlGenerator, AssessmentReportHtmlGeneratorDeps } from './assessment-report-html-generator';
 import { ReportGenerator } from './report-generator';
-import { ReportHtmlGeneratorV1 } from './report-html-generator';
+import { ReportHtmlGeneratorV1 } from './report-html-generator-v1';
 import { ReportNameGenerator } from './report-name-generator';
 
 export type ReportGeneratorDeps = AssessmentReportHtmlGeneratorDeps;

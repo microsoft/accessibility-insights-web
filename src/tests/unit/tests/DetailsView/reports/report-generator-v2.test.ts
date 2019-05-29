@@ -8,7 +8,7 @@ import { FeatureFlagStoreData } from '../../../../../common/types/store-data/fea
 import { TabStoreData } from '../../../../../common/types/store-data/tab-store-data';
 import { AssessmentReportHtmlGenerator } from '../../../../../DetailsView/reports/assessment-report-html-generator';
 import { ReportGeneratorV2 } from '../../../../../DetailsView/reports/report-generator-v2';
-import { ReportHtmlGeneratorV1 } from '../../../../../DetailsView/reports/report-html-generator';
+import { ReportHtmlGeneratorV1 } from '../../../../../DetailsView/reports/report-html-generator-v1';
 import { ReportNameGenerator } from '../../../../../DetailsView/reports/report-name-generator';
 import { ScanResults } from '../../../../../scanner/iruleresults';
 
