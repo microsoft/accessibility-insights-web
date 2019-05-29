@@ -6,8 +6,9 @@ import { ScanResults } from '../../scanner/iruleresults';
 import { ReportBody } from './components/report-body';
 import { ReportHead } from './components/report-head';
 import { ReactStaticRenderer } from './react-static-renderer';
+import { ReportHtmlGenerator } from './report-html-generator';
 
-export class ReportHtmlGeneratorV1 {
+export class ReportHtmlGeneratorV1 implements ReportHtmlGenerator {
     constructor(
         private reactStaticRenderer: ReactStaticRenderer,
         private browserSpec: string,
