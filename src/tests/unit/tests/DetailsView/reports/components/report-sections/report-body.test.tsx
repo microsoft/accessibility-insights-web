@@ -5,10 +5,8 @@ import * as React from 'react';
 import { NamedSFC } from '../../../../../../../common/react/named-sfc';
 import { ReportBody, ReportBodyProps } from '../../../../../../../DetailsView/reports/components/report-sections/report-body';
 import {
-    CheckListProps,
-    DetailsProps,
     ReportSectionFactory,
-    SummaryProps,
+    SectionProps,
 } from '../../../../../../../DetailsView/reports/components/report-sections/report-section-factory';
 
 describe('ReportBody', () => {
@@ -16,7 +14,16 @@ describe('ReportBody', () => {
         const pageTitle = 'page-title';
         const pageUrl = 'url:target-page';
 
-        const summaryProps: SummaryProps = {
+        const detailsProps: SectionProps = {
+            pageTitle,
+            pageUrl,
+            description: 'test description',
+            scanDate: new Date(2019, 5, 29, 9, 47, 0, 0),
+            environmentInfo: {
+                axeCoreVersion: 'axe-core-version',
+                browserSpec: 'browser-spec',
+                extensionVersion: 'extension-version',
+            },
             scanResult: {
                 passes: [],
                 violations: [],
@@ -27,31 +34,10 @@ describe('ReportBody', () => {
                 targetPageUrl: pageUrl,
             },
         };
-        const detailsProps: DetailsProps = {
-            pageTitle,
-            pageUrl,
-            description: 'test description',
-            scanDate: new Date(2019, 5, 29, 9, 47, 0, 0),
-            environmentInfo: {
-                axeCoreVersion: 'axe-core-version',
-                browserSpec: 'browser-spec',
-                extensionVersion: 'extension-version',
-            },
-        };
-
-        const checkListProps: CheckListProps = {
-            congratulateIfEmpty: true,
-            idPrefix: 'prefix',
-            results: [],
-            showInstanceCount: true,
-            showInstances: true,
-        };
 
         const props: ReportBodyProps = {
             sectionFactory: createSectionFactoryStub(),
-            ...summaryProps,
             ...detailsProps,
-            ...checkListProps,
         };
 
         const wrapper = shallow(<ReportBody {...props} />);

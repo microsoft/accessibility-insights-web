@@ -2,37 +2,26 @@
 // Licensed under the MIT License.
 import { EnvironmentInfo } from '../../../../common/environment-info-provider';
 import { ReactSFCWithDisplayName } from '../../../../common/react/named-sfc';
-import { RuleResult, ScanResults } from '../../../../scanner/iruleresults';
+import { ScanResults } from '../../../../scanner/iruleresults';
 
-export type SummaryProps = {
-    scanResult: ScanResults;
-};
-
-export type DetailsProps = {
+export type SectionProps = {
     pageTitle: string;
     pageUrl: string;
     description: string;
     scanDate: Date;
     environmentInfo: EnvironmentInfo;
-};
-
-export type CheckListProps = {
-    results: RuleResult[];
-    idPrefix: string;
-    showInstanceCount: boolean;
-    showInstances: boolean;
-    congratulateIfEmpty: boolean;
+    scanResult: ScanResults;
 };
 
 export type ReportSectionFactory = {
     BodySection: ReactSFCWithDisplayName;
     Header: ReactSFCWithDisplayName;
     Title: ReactSFCWithDisplayName;
-    Summary: ReactSFCWithDisplayName<SummaryProps>;
-    Details: ReactSFCWithDisplayName<DetailsProps>;
+    Summary: ReactSFCWithDisplayName<SectionProps>;
+    Details: ReactSFCWithDisplayName<SectionProps>;
     ResultSection: ReactSFCWithDisplayName;
-    FailedInstances: ReactSFCWithDisplayName<CheckListProps>;
-    PassedChecks: ReactSFCWithDisplayName<CheckListProps>;
-    NotApplicableChecks: ReactSFCWithDisplayName<CheckListProps>;
+    FailedInstances: ReactSFCWithDisplayName<SectionProps>;
+    PassedChecks: ReactSFCWithDisplayName<SectionProps>;
+    NotApplicableChecks: ReactSFCWithDisplayName<SectionProps>;
     Footer: ReactSFCWithDisplayName;
 };

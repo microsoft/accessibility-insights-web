@@ -5,7 +5,6 @@ exports[`ReportBody renders 1`] = `
   <header-section />
   <title-section />
   <summary-section
-    congratulateIfEmpty={true}
     description="test description"
     environmentInfo={
       Object {
@@ -14,10 +13,8 @@ exports[`ReportBody renders 1`] = `
         "extensionVersion": "extension-version",
       }
     }
-    idPrefix="prefix"
     pageTitle="page-title"
     pageUrl="url:target-page"
-    results={Array []}
     scanDate={2019-06-29T16:47:00.000Z}
     scanResult={
       Object {
@@ -30,11 +27,8 @@ exports[`ReportBody renders 1`] = `
         "violations": Array [],
       }
     }
-    showInstanceCount={true}
-    showInstances={true}
   />
   <details-section
-    congratulateIfEmpty={true}
     description="test description"
     environmentInfo={
       Object {
@@ -43,10 +37,8 @@ exports[`ReportBody renders 1`] = `
         "extensionVersion": "extension-version",
       }
     }
-    idPrefix="prefix"
     pageTitle="page-title"
     pageUrl="url:target-page"
-    results={Array []}
     scanDate={2019-06-29T16:47:00.000Z}
     scanResult={
       Object {
@@ -59,12 +51,9 @@ exports[`ReportBody renders 1`] = `
         "violations": Array [],
       }
     }
-    showInstanceCount={true}
-    showInstances={true}
   />
   <result-section>
     <failed-instances-section
-      congratulateIfEmpty={true}
       description="test description"
       environmentInfo={
         Object {
@@ -73,10 +62,8 @@ exports[`ReportBody renders 1`] = `
           "extensionVersion": "extension-version",
         }
       }
-      idPrefix="prefix"
       pageTitle="page-title"
       pageUrl="url:target-page"
-      results={Array []}
       scanDate={2019-06-29T16:47:00.000Z}
       scanResult={
         Object {
@@ -89,11 +76,8 @@ exports[`ReportBody renders 1`] = `
           "violations": Array [],
         }
       }
-      showInstanceCount={true}
-      showInstances={true}
     />
     <passed-checks-section
-      congratulateIfEmpty={true}
       description="test description"
       environmentInfo={
         Object {
@@ -102,10 +86,8 @@ exports[`ReportBody renders 1`] = `
           "extensionVersion": "extension-version",
         }
       }
-      idPrefix="prefix"
       pageTitle="page-title"
       pageUrl="url:target-page"
-      results={Array []}
       scanDate={2019-06-29T16:47:00.000Z}
       scanResult={
         Object {
@@ -118,11 +100,8 @@ exports[`ReportBody renders 1`] = `
           "violations": Array [],
         }
       }
-      showInstanceCount={true}
-      showInstances={true}
     />
     <not-applicable-checks-section
-      congratulateIfEmpty={true}
       description="test description"
       environmentInfo={
         Object {
@@ -131,10 +110,8 @@ exports[`ReportBody renders 1`] = `
           "extensionVersion": "extension-version",
         }
       }
-      idPrefix="prefix"
       pageTitle="page-title"
       pageUrl="url:target-page"
-      results={Array []}
       scanDate={2019-06-29T16:47:00.000Z}
       scanResult={
         Object {
@@ -147,8 +124,6 @@ exports[`ReportBody renders 1`] = `
           "violations": Array [],
         }
       }
-      showInstanceCount={true}
-      showInstances={true}
     />
   </result-section>
   <footer-section />

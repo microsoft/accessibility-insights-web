@@ -3,13 +3,11 @@
 import * as React from 'react';
 
 import { NamedSFC } from '../../../../common/react/named-sfc';
-import { CheckListProps, DetailsProps, ReportSectionFactory, SummaryProps } from './report-section-factory';
+import { ReportSectionFactory, SectionProps } from './report-section-factory';
 
 export type ReportBodyProps = {
     sectionFactory: ReportSectionFactory;
-} & SummaryProps &
-    DetailsProps &
-    CheckListProps;
+} & SectionProps;
 
 export const ReportBody = NamedSFC<ReportBodyProps>('ReportBody', props => {
     const { sectionFactory, ...sectionProps } = props;
