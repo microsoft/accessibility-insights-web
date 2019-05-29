@@ -2,8 +2,6 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import { NewTabLink } from '../../../common/components/new-tab-link';
-import { toolName } from '../../../content/strings/application';
 import { ScanResults } from '../../../scanner/iruleresults';
 import { ReportCheckList } from './report-check-list';
 import { ReportHeader } from './report-header';
