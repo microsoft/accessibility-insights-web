@@ -9,6 +9,6 @@ describe('Footer', () => {
     it('renders', () => {
         const wrapper = shallow(<Footer />);
 
-        expect(wrapper).toMatchSnapshot();
+        expect(wrapper.getElement()).toMatchSnapshot();
     });
 });
