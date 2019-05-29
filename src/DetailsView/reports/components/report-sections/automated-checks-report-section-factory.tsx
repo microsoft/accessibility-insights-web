@@ -6,16 +6,22 @@ import { ReportSectionFactory } from './report-section-factory';
 
 const createBasicComponent = (name: string) => {
     return NamedSFC(name, () => {
-        return <div />;
+        return <div id={name} />;
     });
 };
 
-const BodySection = createBasicComponent('body-section');
+const createWrappingComponent = (name: string) => {
+    return NamedSFC(name, ({ children }) => {
+        return <div id={name}>{children}</div>;
+    });
+};
+
+const BodySection = createWrappingComponent('body-section');
 const Header = createBasicComponent('header-section');
 const Title = createBasicComponent('title-section');
 const Summary = createBasicComponent('summary-section');
 const Details = createBasicComponent('details-section');
-const ResultSection = createBasicComponent('result-section');
+const ResultSection = createWrappingComponent('result-section');
 const FailedInstances = createBasicComponent('failed-instances-section');
 const PassedChecks = createBasicComponent('passed-checks-section');
 const NotApplicableChecks = createBasicComponent('not-applicable-checks-section');
