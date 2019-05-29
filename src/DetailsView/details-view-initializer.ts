@@ -81,7 +81,7 @@ import {
 } from './reports/get-assessment-summary-model';
 import { ReactStaticRenderer } from './reports/react-static-renderer';
 import { createReportGeneratorProvider } from './reports/report-generator-provider';
-import { ReportHtmlGenerator } from './reports/report-html-generator';
+import { ReportHtmlGeneratorV1 } from './reports/report-html-generator';
 import { ReportNameGenerator } from './reports/report-name-generator';
 
 declare const window: AutoChecker & Window;
@@ -178,7 +178,7 @@ if (isNaN(tabId) === false) {
             const axeVersion = getVersion();
             const reactStaticRenderer = new ReactStaticRenderer();
             const reportNameGenerator = new ReportNameGenerator();
-            const reportHtmlGenerator = new ReportHtmlGenerator(
+            const reportHtmlGenerator = new ReportHtmlGeneratorV1(
                 reactStaticRenderer,
                 new NavigatorUtils(window.navigator).getBrowserSpec(),
                 extensionVersion,

@@ -7,7 +7,7 @@ import { TabStoreData } from '../../common/types/store-data/tab-store-data';
 import { ScanResults } from '../../scanner/iruleresults';
 import { AssessmentReportHtmlGenerator, AssessmentReportHtmlGeneratorDeps } from './assessment-report-html-generator';
 import { ReportGenerator } from './report-generator';
-import { ReportHtmlGenerator } from './report-html-generator';
+import { ReportHtmlGeneratorV1 } from './report-html-generator';
 import { ReportNameGenerator } from './report-name-generator';
 
 export type ReportGeneratorDeps = AssessmentReportHtmlGeneratorDeps;
@@ -17,7 +17,7 @@ export class ReportGeneratorV2 implements ReportGenerator {
         private reportNameGenerator: ReportNameGenerator,
         // TODO we'll remove this tslint:disable comment after we implement the HTML report
         // tslint:disable-next-line:no-unused-variable
-        private reportHtmlGenerator: ReportHtmlGenerator,
+        private reportHtmlGenerator: ReportHtmlGeneratorV1,
         private assessmentReportHtmlGenerator: AssessmentReportHtmlGenerator,
     ) {}
 

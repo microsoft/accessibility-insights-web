@@ -7,7 +7,7 @@ import { AssessmentReportHtmlGenerator } from './assessment-report-html-generato
 import { ReportGenerator } from './report-generator';
 import { ReportGeneratorV1 } from './report-generator-v1';
 import { ReportGeneratorV2 } from './report-generator-v2';
-import { ReportHtmlGenerator } from './report-html-generator';
+import { ReportHtmlGeneratorV1 } from './report-html-generator';
 import { ReportNameGenerator } from './report-name-generator';
 
 export type ReportGeneratorProvider = {
@@ -16,7 +16,7 @@ export type ReportGeneratorProvider = {
 
 export const createReportGeneratorProvider = (
     reportNameGenerator: ReportNameGenerator,
-    reportHtmlGenerator: ReportHtmlGenerator,
+    reportHtmlGenerator: ReportHtmlGeneratorV1,
     assessmentReportHtmlGenerator: AssessmentReportHtmlGenerator,
     featureFlagStore: BaseStore<FeatureFlagStoreData>,
 ): ReportGeneratorProvider => {

@@ -7,7 +7,7 @@ import { ReportBody } from './components/report-body';
 import { ReportHead } from './components/report-head';
 import { ReactStaticRenderer } from './react-static-renderer';
 
-export class ReportHtmlGenerator {
+export class ReportHtmlGeneratorV1 {
     constructor(
         private reactStaticRenderer: ReactStaticRenderer,
         private browserSpec: string,
