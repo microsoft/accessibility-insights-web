@@ -8,7 +8,6 @@ import { ScanResults } from '../../scanner/iruleresults';
 import { AssessmentReportHtmlGenerator, AssessmentReportHtmlGeneratorDeps } from './assessment-report-html-generator';
 import { ReportGenerator } from './report-generator';
 import { ReportHtmlGenerator } from './report-html-generator';
-import { ReportHtmlGeneratorV1 } from './report-html-generator-v1';
 import { ReportNameGenerator } from './report-name-generator';
 
 export type ReportGeneratorDeps = AssessmentReportHtmlGeneratorDeps;
@@ -16,8 +15,6 @@ export type ReportGeneratorDeps = AssessmentReportHtmlGeneratorDeps;
 export class ReportGeneratorV2 implements ReportGenerator {
     constructor(
         private reportNameGenerator: ReportNameGenerator,
-        // TODO we'll remove this tslint:disable comment after we implement the HTML report
-        // tslint:disable-next-line:no-unused-variable
         private reportHtmlGenerator: ReportHtmlGenerator,
         private assessmentReportHtmlGenerator: AssessmentReportHtmlGenerator,
     ) {}
@@ -33,7 +30,7 @@ export class ReportGeneratorV2 implements ReportGenerator {
         pageUrl: string,
         description: string,
     ): string {
-        return '<html lang="en"><body>This will be the new automated checks report</body></html>';
+        return this.reportHtmlGenerator.generateHtml(scanResult, scanDate, pageTitle, pageUrl, description);
     }
 
     public generateAssessmentReport(
