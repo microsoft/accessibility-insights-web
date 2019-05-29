@@ -3,7 +3,7 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-import { FooterSection } from '../../../../../../../DetailsView/reports/components/report-sections/footer';
+import { FooterSection } from '../../../../../../../DetailsView/reports/components/report-sections/footer-section';
 
 describe('Footer', () => {
     it('renders', () => {

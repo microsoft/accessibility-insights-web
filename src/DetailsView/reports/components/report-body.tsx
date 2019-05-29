@@ -6,7 +6,7 @@ import { ScanResults } from '../../../scanner/iruleresults';
 import { ReportCheckList } from './report-check-list';
 import { ReportHeader } from './report-header';
 import { ReportScanDetails } from './report-scan-details';
-import { FooterSection } from './report-sections/footer';
+import { FooterSection } from './report-sections/footer-section';
 
 export interface ReportBodyProps {
     scanResult: ScanResults;
