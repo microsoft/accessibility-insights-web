@@ -3,13 +3,13 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import { NamedSFC } from '../../../../../../../common/react/named-sfc';
+import { ReportBody, ReportBodyProps } from '../../../../../../../DetailsView/reports/components/report-sections/report-body';
 import {
     CheckListProps,
     DetailsProps,
     ReportSectionFactory,
     SummaryProps,
-} from '../../../../../../../DetailsView/reports/components/report-sections/automated-checks-report-section-factory';
-import { ReportBody, ReportBodyProps } from '../../../../../../../DetailsView/reports/components/report-sections/report-body';
+} from '../../../../../../../DetailsView/reports/components/report-sections/report-section-factory';
 
 describe('ReportBody', () => {
     it('renders', () => {
