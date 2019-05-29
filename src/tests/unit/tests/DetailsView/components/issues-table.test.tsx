@@ -3,7 +3,7 @@
 import { shallow } from 'enzyme';
 import { ISelection, Selection } from 'office-ui-fabric-react/lib/DetailsList';
 import * as React from 'react';
-import { IMock, Mock } from 'typemoq';
+import { IMock, Mock, Times } from 'typemoq';
 
 import { VisualizationConfigurationFactory } from '../../../../../common/configs/visualization-configuration-factory';
 import { DateProvider } from '../../../../../common/date-provider';
@@ -31,11 +31,13 @@ describe('IssuesTableTest', () => {
     });
 
     it('spinner, issuesEnabled == null', () => {
-        const props = new TestPropsBuilder().build();
+        const props = new TestPropsBuilder().setDeps(deps).build();
+        reportGeneratorProviderMock.setup(rgm => rgm.getGenerator()).verifiable(Times.never());
 
         const wrapped = shallow(<IssuesTable {...props} />);
 
         expect(wrapped.debug()).toMatchSnapshot();
+        reportGeneratorProviderMock.verifyAll();
     });
 
     it('includes subtitle if specified', () => {

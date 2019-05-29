@@ -97,10 +97,11 @@ export class IssuesTable extends React.Component<IssuesTableProps> {
 
     private renderExportButton(): JSX.Element {
         const shouldShowButton = this.props.issuesEnabled && !this.props.scanning;
-        const { deps, scanResult, pageTitle, pageUrl } = this.props;
-        const scanDate = deps.dateProvider(scanResult.timestamp);
-        const reportGenerator = deps.reportGeneratorProvider.getGenerator();
+
         if (shouldShowButton) {
+            const { deps, scanResult, pageTitle, pageUrl } = this.props;
+            const scanDate = deps.dateProvider(scanResult.timestamp);
+            const reportGenerator = deps.reportGeneratorProvider.getGenerator();
             return (
                 <ReportExportComponent
                     deps={deps}
