@@ -9,23 +9,24 @@ import { AssessmentReportHtmlGenerator } from '../../../../../DetailsView/report
 import { createReportGeneratorProvider, ReportGeneratorProvider } from '../../../../../DetailsView/reports/report-generator-provider';
 import { ReportGeneratorV1 } from '../../../../../DetailsView/reports/report-generator-v1';
 import { ReportGeneratorV2 } from '../../../../../DetailsView/reports/report-generator-v2';
-import { ReportHtmlGeneratorV1 } from '../../../../../DetailsView/reports/report-html-generator-v1';
+import { ReportHtmlGenerator } from '../../../../../DetailsView/reports/report-html-generator';
 import { ReportNameGenerator } from '../../../../../DetailsView/reports/report-name-generator';
 
 describe('ReportGeneratorProvider', () => {
     let nameGeneratorMock: IMock<ReportNameGenerator>;
-    let htmlGeneratorMock: IMock<ReportHtmlGeneratorV1>;
+    let htmlGeneratorMock: IMock<ReportHtmlGenerator>;
     let assessmentHtmlGeneratorMock: IMock<AssessmentReportHtmlGenerator>;
     let featureFlagStoreMock: IMock<BaseStore<FeatureFlagStoreData>>;
     let provider: ReportGeneratorProvider;
 
     beforeEach(() => {
         nameGeneratorMock = Mock.ofType<ReportNameGenerator>();
-        htmlGeneratorMock = Mock.ofType<ReportHtmlGeneratorV1>();
+        htmlGeneratorMock = Mock.ofType<ReportHtmlGenerator>();
         assessmentHtmlGeneratorMock = Mock.ofType<AssessmentReportHtmlGenerator>();
         featureFlagStoreMock = Mock.ofType<BaseStore<FeatureFlagStoreData>>(undefined, MockBehavior.Strict);
         provider = createReportGeneratorProvider(
             nameGeneratorMock.object,
+            htmlGeneratorMock.object,
             htmlGeneratorMock.object,
             assessmentHtmlGeneratorMock.object,
             featureFlagStoreMock.object,
