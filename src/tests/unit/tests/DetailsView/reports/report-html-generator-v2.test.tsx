@@ -3,7 +3,6 @@
 import * as React from 'react';
 import { It, Mock, MockBehavior, Times } from 'typemoq';
 
-import { render } from '../../../../../../node_modules/@types/react-dom';
 import { EnvironmentInfo } from '../../../../../common/environment-info-provider';
 import { ReportHead } from '../../../../../DetailsView/reports/components/report-head';
 import { ReportBody, ReportBodyProps } from '../../../../../DetailsView/reports/components/report-sections/report-body';
