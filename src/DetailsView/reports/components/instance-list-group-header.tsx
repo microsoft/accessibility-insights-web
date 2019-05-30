@@ -11,18 +11,18 @@ import { OutcomeType } from './outcome-type';
 
 export interface InstaceListGroupHeaderProps {
     ruleResult: RuleResult;
-    outcome: OutcomeType;
+    outcomeType: OutcomeType;
 }
 
 export const InstanceListGroupHeader = NamedSFC<InstaceListGroupHeaderProps>('InstaceListGroupHeader', props => {
     const renderCountBadge = () => {
-        const { outcome, ruleResult } = props;
+        const { outcomeType, ruleResult } = props;
 
-        if (outcome !== 'fail') {
+        if (outcomeType !== 'fail') {
             return null;
         }
 
-        return <OutcomeChip count={ruleResult.nodes.length} outcomeType={outcome} />;
+        return <OutcomeChip count={ruleResult.nodes.length} outcomeType={outcomeType} />;
     };
 
     const renderRuleLink = () => {
@@ -36,13 +36,13 @@ export const InstanceListGroupHeader = NamedSFC<InstaceListGroupHeaderProps>('In
         );
     };
 
-    const renderGuidanceLiks = () => {
+    const renderGuidanceLinks = () => {
         return <GuidanceLinks links={props.ruleResult.guidanceLinks} />;
     };
 
     return (
         <div role="heading">
-            {renderCountBadge()} {renderRuleLink()}: {props.ruleResult.description} ({renderGuidanceLiks()})
+            {renderCountBadge()} {renderRuleLink()}: {props.ruleResult.description} ({renderGuidanceLinks()})
         </div>
     );
 });

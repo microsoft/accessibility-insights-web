@@ -18,8 +18,8 @@ describe('InstanceListGroupHeaderTest', () => {
         return ruleResult;
     };
 
-    test.each(['pass', 'fail'])('render for %s instances', (outcome: OutcomeType) => {
-        const wrapper = shallow(<InstanceListGroupHeader ruleResult={getSampleRuleResult()} outcome={outcome} />);
+    test.each(['pass', 'fail', 'incomplete'])('render for %s instances', (outcome: OutcomeType) => {
+        const wrapper = shallow(<InstanceListGroupHeader ruleResult={getSampleRuleResult()} outcomeType={outcome} />);
         expect(wrapper.getElement()).toMatchSnapshot();
     });
 });

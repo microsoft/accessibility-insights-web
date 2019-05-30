@@ -24,6 +24,26 @@ exports[`InstanceListGroupHeaderTest render for fail instances 1`] = `
 </div>
 `;
 
+exports[`InstanceListGroupHeaderTest render for incomplete instances 1`] = `
+<div
+  role="heading"
+>
+   
+  <NewTabLink
+    aria-describedby="ruleid-rule-description"
+    aria-label="rule ruleid"
+    href="help url"
+  >
+    ruleid
+  </NewTabLink>
+  : 
+  rule description
+   (
+  <GuidanceLinks />
+  )
+</div>
+`;
+
 exports[`InstanceListGroupHeaderTest render for pass instances 1`] = `
 <div
   role="heading"
