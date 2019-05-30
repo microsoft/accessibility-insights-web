@@ -376,6 +376,18 @@
                 margin: 8px 8px 0px 8px !important;
                 padding-left: 8px !important;
             }
+
+            .insights-fix-instruction-list {
+                li {
+                    span.fix-instruction-color-box {
+                        width: 14px;
+                        height: 14px;
+                        display: inline-block;
+                        vertical-align: -5%;
+                        margin: 0px 2px;
+                    }
+                }
+            }
         }
 
         .insights-dialog-target-button-container {

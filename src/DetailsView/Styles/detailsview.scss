@@ -1357,6 +1357,19 @@ div.insights-file-issue-details-dialog-container {
                             margin: 0px;
                             -webkit-padding-start: 20px;
                         }
+                        .fix-content {
+                            .insights-fix-instruction-list {
+                                li {
+                                    span.fix-instruction-color-box {
+                                        width: 14px;
+                                        height: 14px;
+                                        display: inline-block;
+                                        vertical-align: -5%;
+                                        margin: 0px 2px;
+                                    }
+                                }
+                            }
+                        }
                     }
                     .issue-detail-select-message {
                         padding-top: 10px;
