@@ -9,6 +9,7 @@ import { TabStoreData } from '../../../../../common/types/store-data/tab-store-d
 import { AssessmentReportHtmlGenerator } from '../../../../../DetailsView/reports/assessment-report-html-generator';
 import { ReportGeneratorV2 } from '../../../../../DetailsView/reports/report-generator-v2';
 import { ReportHtmlGenerator } from '../../../../../DetailsView/reports/report-html-generator';
+import { ReportHtmlGeneratorV2 } from '../../../../../DetailsView/reports/report-html-generator-v2';
 import { ReportNameGenerator } from '../../../../../DetailsView/reports/report-name-generator';
 import { ScanResults } from '../../../../../scanner/iruleresults';
 
@@ -25,11 +26,23 @@ describe('ReportGeneratorV2', () => {
 
     beforeEach(() => {
         nameBuilderMock = Mock.ofType(ReportNameGenerator, MockBehavior.Strict);
-        dataBuilderMock = Mock.ofType(ReportHtmlGenerator, MockBehavior.Strict);
+        dataBuilderMock = Mock.ofType(ReportHtmlGeneratorV2, MockBehavior.Strict);
         assessmentReportHtmlGeneratorMock = Mock.ofType(AssessmentReportHtmlGenerator, MockBehavior.Strict);
     });
 
     test('generateHtml', () => {
+        dataBuilderMock
+            .setup(builder =>
+                builder.generateHtml(
+                    It.isObjectWith(scanResult),
+                    It.isValue(date),
+                    It.isValue(title),
+                    It.isValue(url),
+                    It.isValue(description),
+                ),
+            )
+            .returns(() => 'returned-data');
+
         const testObject = new ReportGeneratorV2(nameBuilderMock.object, dataBuilderMock.object, assessmentReportHtmlGeneratorMock.object);
         const actual = testObject.generateFastPassAutomateChecksReport(scanResult, date, title, url, description);
 

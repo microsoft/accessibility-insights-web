@@ -76,13 +76,15 @@ import {
     outcomeTypeFromTestStatus,
     outcomeTypeSemanticsFromTestStatus,
 } from './reports/components/outcome-type';
+import { AutomatedChecksReportSectionFactory } from './reports/components/report-sections/automated-checks-report-section-factory';
 import {
     getAssessmentSummaryModelFromProviderAndStatusData,
     getAssessmentSummaryModelFromProviderAndStoreData,
 } from './reports/get-assessment-summary-model';
 import { ReactStaticRenderer } from './reports/react-static-renderer';
 import { createReportGeneratorProvider } from './reports/report-generator-provider';
-import { ReportHtmlGenerator } from './reports/report-html-generator';
+import { ReportHtmlGeneratorV1 } from './reports/report-html-generator-v1';
+import { ReportHtmlGeneratorV2 } from './reports/report-html-generator-v2';
 import { ReportNameGenerator } from './reports/report-name-generator';
 
 declare const window: AutoChecker & Window;
@@ -177,14 +179,29 @@ if (isNaN(tabId) === false) {
 
             const extensionVersion = chromeAdapter.getManifest().version;
             const axeVersion = getVersion();
+            const browserSpec = new NavigatorUtils(window.navigator).getBrowserSpec();
+
+            const environmentInfoProvider = new EnvironmentInfoProvider(
+                chromeAdapter.extensionVersion,
+                browserSpec,
+                AxeInfo.Default.version,
+            );
+
             const reactStaticRenderer = new ReactStaticRenderer();
             const reportNameGenerator = new ReportNameGenerator();
-            const reportHtmlGenerator = new ReportHtmlGenerator(
+
+            const reportHtmlGeneratorV1 = new ReportHtmlGeneratorV1(
                 reactStaticRenderer,
                 new NavigatorUtils(window.navigator).getBrowserSpec(),
                 extensionVersion,
                 axeVersion,
             );
+            const reportHtmlGeneratorV2 = new ReportHtmlGeneratorV2(
+                AutomatedChecksReportSectionFactory,
+                reactStaticRenderer,
+                environmentInfoProvider.getEnvironmentInfo(),
+            );
+
             const assessmentReportHtmlGeneratorDeps = { outcomeTypeSemanticsFromTestStatus };
             const assessmentReportHtmlGenerator = new AssessmentReportHtmlGenerator(
                 assessmentReportHtmlGeneratorDeps,
@@ -199,7 +216,8 @@ if (isNaN(tabId) === false) {
 
             const reportGeneratorProvider = createReportGeneratorProvider(
                 reportNameGenerator,
-                reportHtmlGenerator,
+                reportHtmlGeneratorV1,
+                reportHtmlGeneratorV2,
                 assessmentReportHtmlGenerator,
                 featureFlagStore,
             );
@@ -228,14 +246,7 @@ if (isNaN(tabId) === false) {
             );
             documentTitleUpdater.initialize();
 
-            const browserSpec = new NavigatorUtils(window.navigator).getBrowserSpec();
             const issueDetailsTextGenerator = new IssueDetailsTextGenerator(
-                chromeAdapter.extensionVersion,
-                browserSpec,
-                AxeInfo.Default.version,
-            );
-
-            const environmentInfoProvider = new EnvironmentInfoProvider(
                 chromeAdapter.extensionVersion,
                 browserSpec,
                 AxeInfo.Default.version,
