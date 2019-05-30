@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+@import '../../../node_modules/office-ui-fabric-react/dist/sass/Icon.Definitions';
 @import '../../common/styles/colors.scss';
 
 #accessibility-insights-root-container {
@@ -42,6 +43,8 @@
     height: 100% !important;
 
     .insights-dialog-container {
+        @import '../../../node_modules/office-ui-fabric-react/dist/sass/Fabric.scss';
+
         @include max-z-index();
     }
 
