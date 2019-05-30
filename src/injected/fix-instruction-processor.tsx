@@ -52,13 +52,14 @@ export class FixInstructionProcessor {
         const result: JSX.Element[] = [];
 
         properMatches.forEach(match => {
-            const substring = fixInstruction.substring(insertionIndex, match.splitIndex);
+            const endIndex = match.splitIndex - 7;
+            const substring = fixInstruction.substring(insertionIndex, endIndex);
 
             result.push(<span key={`instruction-split-${keyIndex++}`}>{substring}</span>);
 
             result.push(this.createColorBox(match.colorHexValue, keyIndex++));
 
-            insertionIndex = match.splitIndex;
+            insertionIndex = endIndex;
         });
 
         const coda = fixInstruction.substr(insertionIndex);
