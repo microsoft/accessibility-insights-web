@@ -11,10 +11,14 @@ exports[`FixInstructionPanelTests render all checks 1`] = `
     className="insights-fix-instruction-list"
   >
     <li>
-      message
+      <React.Fragment>
+        message
+      </React.Fragment>
     </li>
     <li>
-      message
+      <React.Fragment>
+        message
+      </React.Fragment>
     </li>
   </ul>
 </div>
@@ -31,7 +35,9 @@ exports[`FixInstructionPanelTests render instruction only one check 1`] = `
     className="insights-fix-instruction-list"
   >
     <li>
-      message
+      <React.Fragment>
+        message
+      </React.Fragment>
     </li>
   </ul>
 </div>
@@ -48,10 +54,14 @@ exports[`FixInstructionPanelTests render none checks 1`] = `
     className="insights-fix-instruction-list"
   >
     <li>
-      message
+      <React.Fragment>
+        message
+      </React.Fragment>
     </li>
     <li>
-      message
+      <React.Fragment>
+        message
+      </React.Fragment>
     </li>
   </ul>
 </div>

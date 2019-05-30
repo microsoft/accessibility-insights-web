@@ -3,15 +3,23 @@
 import * as React from 'react';
 
 import { NamedSFC } from '../../common/react/named-sfc';
+import { FixInstructionProcessor } from '../fix-instruction-processor';
 import { CheckType } from './details-dialog';
 
+export interface FixInstructionPanelDeps {
+    fixInstructionProcessor: FixInstructionProcessor;
+}
+
 export interface FixInstructionPanelProps {
+    deps: FixInstructionPanelDeps;
     checkType: CheckType;
     checks: FormattedCheckResult[];
     renderTitleElement: (titleText: string, className: string) => JSX.Element;
 }
 
 export const FixInstructionPanel = NamedSFC<FixInstructionPanelProps>('FixInstructionPanel', props => {
+    const { fixInstructionProcessor } = props.deps;
+
     const getPanelTitle = (checkType: CheckType, checkCount: number): string => {
         if (checkCount === 1) {
             return 'Fix the following:';
@@ -25,7 +33,7 @@ export const FixInstructionPanel = NamedSFC<FixInstructionPanelProps>('FixInstru
 
     const renderInstructions = (checkType: CheckType): JSX.Element[] => {
         const instructionList = props.checks.map((check, checkIndex) => {
-            return <li key={`instruction-${CheckType[checkType]}-${checkIndex + 1}`}>{check.message}</li>;
+            return <li key={`instruction-${CheckType[checkType]}-${checkIndex + 1}`}>{fixInstructionProcessor.process(check.message)}</li>;
         });
 
         return instructionList;
