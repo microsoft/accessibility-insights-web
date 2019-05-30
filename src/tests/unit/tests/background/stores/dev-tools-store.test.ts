@@ -57,7 +57,7 @@ describe('DevToolsStoreTest', () => {
         const expectedState = getDefaultState();
         expectedState.inspectElement = payload;
         expectedState.frameUrl = null;
-        expectedState.count = 1;
+        expectedState.inspectElementRequestId = 1;
 
         createStoreTesterForDevToolsActions('setInspectElement')
             .withActionParam(payload)
