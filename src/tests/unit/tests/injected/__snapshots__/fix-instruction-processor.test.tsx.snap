@@ -2,9 +2,9 @@
 
 exports[`FixInstructionProcessor background and foreground on the message (mind the order) 1`] = `
 <React.Fragment>
-  <React.Fragment>
+  <span>
     Element has insufficient color contrast of 2.52 (background color: #8a94a8
-  </React.Fragment>
+  </span>
   <span
     className="fix-instruction-color-box"
     style={
@@ -13,9 +13,9 @@ exports[`FixInstructionProcessor background and foreground on the message (mind 
       }
     }
   />
-  <React.Fragment>
+  <span>
     , foreground color: #e7ecd8
-  </React.Fragment>
+  </span>
   <span
     className="fix-instruction-color-box"
     style={
@@ -24,17 +24,17 @@ exports[`FixInstructionProcessor background and foreground on the message (mind 
       }
     }
   />
-  <React.Fragment>
+  <span>
     , font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1
-  </React.Fragment>
+  </span>
 </React.Fragment>
 `;
 
 exports[`FixInstructionProcessor background color on the message 1`] = `
 <React.Fragment>
-  <React.Fragment>
+  <span>
     color contrast of 2.52 (background color: #8a94a8
-  </React.Fragment>
+  </span>
   <span
     className="fix-instruction-color-box"
     style={
@@ -43,17 +43,17 @@ exports[`FixInstructionProcessor background color on the message 1`] = `
       }
     }
   />
-  <React.Fragment>
+  <span>
     ; nothing else to match here)
-  </React.Fragment>
+  </span>
 </React.Fragment>
 `;
 
 exports[`FixInstructionProcessor foreground and background color on the message (mind the order) 1`] = `
 <React.Fragment>
-  <React.Fragment>
+  <span>
     Element has insufficient color contrast of 2.52 (foreground color: #8a94a8
-  </React.Fragment>
+  </span>
   <span
     className="fix-instruction-color-box"
     style={
@@ -62,9 +62,9 @@ exports[`FixInstructionProcessor foreground and background color on the message 
       }
     }
   />
-  <React.Fragment>
+  <span>
     , background color: #e7ecd8
-  </React.Fragment>
+  </span>
   <span
     className="fix-instruction-color-box"
     style={
@@ -73,17 +73,17 @@ exports[`FixInstructionProcessor foreground and background color on the message 
       }
     }
   />
-  <React.Fragment>
+  <span>
     , font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1
-  </React.Fragment>
+  </span>
 </React.Fragment>
 `;
 
 exports[`FixInstructionProcessor foreground color on the message 1`] = `
 <React.Fragment>
-  <React.Fragment>
+  <span>
     color contrast of 2.52 (foreground color: #8a94a8
-  </React.Fragment>
+  </span>
   <span
     className="fix-instruction-color-box"
     style={
@@ -92,9 +92,9 @@ exports[`FixInstructionProcessor foreground color on the message 1`] = `
       }
     }
   />
-  <React.Fragment>
+  <span>
     ; nothing else to match here)
-  </React.Fragment>
+  </span>
 </React.Fragment>
 `;
 
@@ -106,9 +106,9 @@ exports[`FixInstructionProcessor no background nor foreground on the message 1`]
 
 exports[`FixInstructionProcessor we assume only one instance of fore/background color, second instance will be ignored 1`] = `
 <React.Fragment>
-  <React.Fragment>
+  <span>
     first foreground color: #ffffff
-  </React.Fragment>
+  </span>
   <span
     className="fix-instruction-color-box"
     style={
@@ -117,9 +117,9 @@ exports[`FixInstructionProcessor we assume only one instance of fore/background 
       }
     }
   />
-  <React.Fragment>
+  <span>
     , second foreground: #000000, first background color: #AAAAAA
-  </React.Fragment>
+  </span>
   <span
     className="fix-instruction-color-box"
     style={
@@ -128,8 +128,8 @@ exports[`FixInstructionProcessor we assume only one instance of fore/background 
       }
     }
   />
-  <React.Fragment>
+  <span>
     , second background color: #bbBBbb
-  </React.Fragment>
+  </span>
 </React.Fragment>
 `;

@@ -42,32 +42,35 @@ export class FixInstructionProcessor {
     private splitFixInstruction(fixInstruction: string, matches: ColorMatch[]): JSX.Element {
         const properMatches = matches.filter(current => current != null).sort((a, b) => a.splitIndex - b.splitIndex);
 
-        if (properMatches.length == 0) {
+        if (properMatches.length === 0) {
             return <>{fixInstruction}</>;
         }
 
         let insertionIndex = 0;
+        let keyIndex = 0;
 
         const result: JSX.Element[] = [];
 
         properMatches.forEach(match => {
             const substring = fixInstruction.substring(insertionIndex, match.splitIndex);
 
-            result.push(<>{substring}</>);
+            result.push(<span key={`instruction-split-${keyIndex++}`}>{substring}</span>);
 
-            result.push(this.createColorBox(match.colorHexValue));
+            result.push(this.createColorBox(match.colorHexValue, keyIndex++));
 
             insertionIndex = match.splitIndex;
         });
 
         const coda = fixInstruction.substr(insertionIndex);
 
-        result.push(<>{coda}</>);
+        result.push(<span key={`instruction-split-${keyIndex++}`}>{coda}</span>);
 
         return <>{result}</>;
     }
 
-    private createColorBox(colorHexValue: string): JSX.Element {
-        return <span className="fix-instruction-color-box" style={{ backgroundColor: colorHexValue }} />;
+    private createColorBox(colorHexValue: string, keyIndex: number): JSX.Element {
+        return (
+            <span key={`instruction-split-${keyIndex}`} className="fix-instruction-color-box" style={{ backgroundColor: colorHexValue }} />
+        );
     }
 }
