@@ -24,7 +24,7 @@ export const infoAndExamples = create(({ Markup, Link }) => (
             Do not use <Markup.Code>role="presentation"</Markup.Code> on any of the semantic elements in a data table:
             <ul>
                 <li>{'<table>'}</li>
-                <li> {'<tr>'}</li>
+                <li>{'<tr>'}</li>
                 <li> {'<th>'}</li>
                 <li> {'<td>'}</li>
                 <li> {'<caption>'}</li>
