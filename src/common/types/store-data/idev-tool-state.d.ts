@@ -4,5 +4,5 @@ export interface DevToolState {
     isOpen: boolean;
     inspectElement?: string[];
     frameUrl?: string;
-    count?: number;
+    count: number;
 }
