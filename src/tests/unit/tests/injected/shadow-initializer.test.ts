@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IMock, It, Mock, Times } from 'typemoq';
+import { IMock, It, Mock } from 'typemoq';
 import { ClientBrowserAdapter, ClientChromeAdapter } from '../../../../common/client-browser-adapter';
 import { HTMLElementUtils } from '../../../../common/html-element-utils';
 import { Logger } from '../../../../common/logging/logger';
