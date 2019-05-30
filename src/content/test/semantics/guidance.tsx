@@ -19,36 +19,42 @@ export const guidance = create(({ Markup, Link }) => (
                     Code lists with semantically correct elements. (<Link.WCAG_1_3_1 />)
                 </h3>
                 <ul>
-                    <li> Unordered lists</li>
-                    <ul>
-                        <li>
-                            Use the <Markup.Code>{'<ul>'}</Markup.Code> element for the container.{' '}
-                        </li>
-                        <li>
-                            Use the <Markup.Code>{'<li>'}</Markup.Code> element for list items.{' '}
-                        </li>
-                    </ul>
-                    <li>Ordered lists</li>
-                    <ul>
-                        <li>
-                            Use the <Markup.Code>{'<ol>'}</Markup.Code> element for the container.{' '}
-                        </li>
-                        <li>
-                            Use the <Markup.Code>{'<li>'}</Markup.Code> element for list items.
-                        </li>
-                    </ul>
-                    <li>Definition lists</li>
-                    <ul>
-                        <li>
-                            Use the <Markup.Code>{'<dl>'}</Markup.Code> element for the container.
-                        </li>
-                        <li>
-                            Use the <Markup.Code>{'<dt>'}</Markup.Code> element for terms.
-                        </li>
-                        <li>
-                            Use the <Markup.Code>{'<dd>'}</Markup.Code> element for definitions.
-                        </li>
-                    </ul>
+                    <li>
+                        Unordered lists
+                        <ul>
+                            <li>
+                                Use the <Markup.Code>{'<ul>'}</Markup.Code> element for the container.
+                            </li>
+                            <li>
+                                Use the <Markup.Code>{'<li>'}</Markup.Code> element for list items.
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        Ordered lists
+                        <ul>
+                            <li>
+                                Use the <Markup.Code>{'<ol>'}</Markup.Code> element for the container.
+                            </li>
+                            <li>
+                                Use the <Markup.Code>{'<li>'}</Markup.Code> element for list items.
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        Definition lists
+                        <ul>
+                            <li>
+                                Use the <Markup.Code>{'<dl>'}</Markup.Code> element for the container.
+                            </li>
+                            <li>
+                                Use the <Markup.Code>{'<dt>'}</Markup.Code> element for terms.
+                            </li>
+                            <li>
+                                Use the <Markup.Code>{'<dd>'}</Markup.Code> element for definitions.
+                            </li>
+                        </ul>
+                    </li>
                 </ul>
                 <h3>
                     Contain words and phrases that are visually emphasized in semantically correct containers. (<Link.WCAG_1_3_1 />)
@@ -56,11 +62,11 @@ export const guidance = create(({ Markup, Link }) => (
                 <ul>
                     <li>
                         Use the <Markup.Code>{'<em>'}</Markup.Code> element when you want to stress a word or phrase within the context of a
-                        sentence or paragraph.{' '}
+                        sentence or paragraph.
                     </li>
                     <li>
                         Use the <Markup.Code>{'<strong>'}</Markup.Code> element when the word or phrase is important within the context of
-                        the entire page.{' '}
+                        the entire page.
                     </li>
                 </ul>
             </Markup.Do>

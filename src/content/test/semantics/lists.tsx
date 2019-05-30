@@ -18,36 +18,42 @@ export const infoAndExamples = create(({ Markup, Link }) => (
         <p>
             Code the list using semantically correct elements:
             <ul>
-                <li> Unordered lists</li>
-                <ul>
-                    <li>
-                        Use the <Markup.Code>{'<ul>'}</Markup.Code> element for the container.{' '}
-                    </li>
-                    <li>
-                        Use the <Markup.Code>{'<li>'}</Markup.Code> element for list items.{' '}
-                    </li>
-                </ul>
-                <li>Ordered lists</li>
-                <ul>
-                    <li>
-                        Use the <Markup.Code>{'<ol>'}</Markup.Code> element for the container.{' '}
-                    </li>
-                    <li>
-                        Use the <Markup.Code>{'<li>'}</Markup.Code> element for list items.
-                    </li>
-                </ul>
-                <li>Definition lists</li>
-                <ul>
-                    <li>
-                        Use the <Markup.Code>{'<dl>'}</Markup.Code> element for the container.
-                    </li>
-                    <li>
-                        Use the <Markup.Code>{'<dt>'}</Markup.Code> element for terms.
-                    </li>
-                    <li>
-                        Use the <Markup.Code>{'<dd>'}</Markup.Code> element for definitions.
-                    </li>
-                </ul>
+                <li>
+                    Unordered lists
+                    <ul>
+                        <li>
+                            Use the <Markup.Code>{'<ul>'}</Markup.Code> element for the container.
+                        </li>
+                        <li>
+                            Use the <Markup.Code>{'<li>'}</Markup.Code> element for list items.
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    Ordered lists
+                    <ul>
+                        <li>
+                            Use the <Markup.Code>{'<ol>'}</Markup.Code> element for the container.
+                        </li>
+                        <li>
+                            Use the <Markup.Code>{'<li>'}</Markup.Code> element for list items.
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    Definition lists
+                    <ul>
+                        <li>
+                            Use the <Markup.Code>{'<dl>'}</Markup.Code> element for the container.
+                        </li>
+                        <li>
+                            Use the <Markup.Code>{'<dt>'}</Markup.Code> element for terms.
+                        </li>
+                        <li>
+                            Use the <Markup.Code>{'<dd>'}</Markup.Code> element for definitions.
+                        </li>
+                    </ul>
+                </li>
             </ul>
         </p>
 
