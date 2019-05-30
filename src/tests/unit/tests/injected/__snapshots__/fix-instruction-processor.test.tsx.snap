@@ -1,0 +1,135 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FixInstructionProcessor background and foreground on the message (mind the order) 1`] = `
+<React.Fragment>
+  <React.Fragment>
+    Element has insufficient color contrast of 2.52 (background color: #8a94a8
+  </React.Fragment>
+  <span
+    className="fix-instruction-color-box"
+    style={
+      Object {
+        "backgroundColor": "#8a94a8",
+      }
+    }
+  />
+  <React.Fragment>
+    , foreground color: #e7ecd8
+  </React.Fragment>
+  <span
+    className="fix-instruction-color-box"
+    style={
+      Object {
+        "backgroundColor": "#e7ecd8",
+      }
+    }
+  />
+  <React.Fragment>
+    , font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1
+  </React.Fragment>
+</React.Fragment>
+`;
+
+exports[`FixInstructionProcessor background color on the message 1`] = `
+<React.Fragment>
+  <React.Fragment>
+    color contrast of 2.52 (background color: #8a94a8
+  </React.Fragment>
+  <span
+    className="fix-instruction-color-box"
+    style={
+      Object {
+        "backgroundColor": "#8a94a8",
+      }
+    }
+  />
+  <React.Fragment>
+    ; nothing else to match here)
+  </React.Fragment>
+</React.Fragment>
+`;
+
+exports[`FixInstructionProcessor foreground and background color on the message (mind the order) 1`] = `
+<React.Fragment>
+  <React.Fragment>
+    Element has insufficient color contrast of 2.52 (foreground color: #8a94a8
+  </React.Fragment>
+  <span
+    className="fix-instruction-color-box"
+    style={
+      Object {
+        "backgroundColor": "#8a94a8",
+      }
+    }
+  />
+  <React.Fragment>
+    , background color: #e7ecd8
+  </React.Fragment>
+  <span
+    className="fix-instruction-color-box"
+    style={
+      Object {
+        "backgroundColor": "#e7ecd8",
+      }
+    }
+  />
+  <React.Fragment>
+    , font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1
+  </React.Fragment>
+</React.Fragment>
+`;
+
+exports[`FixInstructionProcessor foreground color on the message 1`] = `
+<React.Fragment>
+  <React.Fragment>
+    color contrast of 2.52 (foreground color: #8a94a8
+  </React.Fragment>
+  <span
+    className="fix-instruction-color-box"
+    style={
+      Object {
+        "backgroundColor": "#8a94a8",
+      }
+    }
+  />
+  <React.Fragment>
+    ; nothing else to match here)
+  </React.Fragment>
+</React.Fragment>
+`;
+
+exports[`FixInstructionProcessor no background nor foreground on the message 1`] = `
+<React.Fragment>
+  there is nothing that will trigger the processor to change the fix instruction here
+</React.Fragment>
+`;
+
+exports[`FixInstructionProcessor we assume only one instance of fore/background color, second instance will be ignored 1`] = `
+<React.Fragment>
+  <React.Fragment>
+    first foreground color: #ffffff
+  </React.Fragment>
+  <span
+    className="fix-instruction-color-box"
+    style={
+      Object {
+        "backgroundColor": "#ffffff",
+      }
+    }
+  />
+  <React.Fragment>
+    , second foreground: #000000, first background color: #AAAAAA
+  </React.Fragment>
+  <span
+    className="fix-instruction-color-box"
+    style={
+      Object {
+        "backgroundColor": "#AAAAAA",
+      }
+    }
+  />
+  <React.Fragment>
+    , second background color: #bbBBbb
+  </React.Fragment>
+</React.Fragment>
+`;
