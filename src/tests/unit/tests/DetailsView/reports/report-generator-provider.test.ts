@@ -27,6 +27,7 @@ describe('ReportGeneratorProvider', () => {
         provider = createReportGeneratorProvider(
             nameGeneratorMock.object,
             htmlGeneratorMock.object,
+            htmlGeneratorMock.object,
             assessmentHtmlGeneratorMock.object,
             featureFlagStoreMock.object,
         );
