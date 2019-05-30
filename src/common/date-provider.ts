@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 export class DateProvider {
     public static getDate(timestamp?: string): Date {
-        return new Date(timestamp);
+        return timestamp == null ? new Date() : new Date(timestamp);
     }
 
     public static getUTCDate(): Date {
