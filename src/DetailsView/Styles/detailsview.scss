@@ -1369,6 +1369,14 @@ div.insights-file-issue-details-dialog-container {
                                         border: 1px solid $always-black;
                                     }
                                 }
+                                .screen-reader-only {
+                                    position: absolute;
+                                    left: -10000px;
+                                    top: auto;
+                                    width: 1px;
+                                    height: 1px;
+                                    overflow: hidden;
+                                }
                             }
                         }
                     }
