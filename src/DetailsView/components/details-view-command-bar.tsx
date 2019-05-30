@@ -18,7 +18,7 @@ import { StartOverDropdown } from './start-over-dropdown';
 
 export type DetailsViewCommandBarDeps = ExportDialogDeps &
     ReportGeneratorDeps & {
-        dateProvider: () => Date;
+        getCurrentDate: () => Date;
         reportGeneratorProvider: ReportGeneratorProvider;
     };
 
@@ -87,7 +87,7 @@ export class DetailsViewCommandBar extends React.Component<DetailsViewCommandBar
                     reportGenerator={reportGenerator}
                     pageTitle={tabStoreData.title}
                     exportResultsType={'Assessment'}
-                    scanDate={deps.dateProvider()}
+                    scanDate={deps.getCurrentDate()}
                     htmlGenerator={htmlGenerator}
                 />
                 <StartOverDropdown

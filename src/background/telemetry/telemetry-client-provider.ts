@@ -27,7 +27,12 @@ export const getTelemetryClient = (
         return new NullTelemetryClient(logger);
     }
 
-    const installDataGenerator = new InstallDataGenerator(userData.installationData, generateUID, DateProvider.getDate, storageAdapter);
+    const installDataGenerator = new InstallDataGenerator(
+        userData.installationData,
+        generateUID,
+        DateProvider.getCurrentDate,
+        storageAdapter,
+    );
     const applicationBuildGenerator = new ApplicationBuildGenerator();
     const coreTelemetryDataFactory = new ApplicationTelemetryDataFactory(browserAdapter, applicationBuildGenerator, installDataGenerator);
 

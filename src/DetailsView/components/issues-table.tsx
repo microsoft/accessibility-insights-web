@@ -23,7 +23,7 @@ import { ReportExportComponent } from './report-export-component';
 
 export type IssuesTableDeps = IssuesDetailsPaneDeps &
     ExportDialogDeps & {
-        dateProvider: (timestamp?: string) => Date;
+        getDateFromTimestamp: (timestamp: string) => Date;
         reportGeneratorProvider: ReportGeneratorProvider;
     };
 
@@ -100,7 +100,7 @@ export class IssuesTable extends React.Component<IssuesTableProps> {
 
         if (shouldShowButton) {
             const { deps, scanResult, pageTitle, pageUrl } = this.props;
-            const scanDate = deps.dateProvider(scanResult.timestamp);
+            const scanDate = deps.getDateFromTimestamp(scanResult.timestamp);
             const reportGenerator = deps.reportGeneratorProvider.getGenerator();
             return (
                 <ReportExportComponent
