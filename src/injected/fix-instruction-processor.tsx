@@ -66,7 +66,12 @@ export class FixInstructionProcessor {
 
         result.push(<span key={`instruction-split-${keyIndex++}`}>{coda}</span>);
 
-        return <>{result}</>;
+        return (
+            <>
+                <span aria-hidden="true">{result}</span>
+                <span className="screen-reader-only">{fixInstruction}</span>
+            </>
+        );
     }
 
     private createColorBox(colorHexValue: string, keyIndex: number): JSX.Element {
