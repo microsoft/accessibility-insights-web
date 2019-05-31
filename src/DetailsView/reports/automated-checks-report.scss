@@ -27,14 +27,11 @@ body {
 }
 
 .title-section {
-    margin: 0px 0px 21px 0px;
-
     h1 {
-        font-size: 28px;
         margin: 0px 0px 24px 0px;
-        font-family: $semiBoldFontFamily;
-        line-height: 40px;
-        letter-spacing: -1;
+        font-size: 21px;
+        line-height: 32px;
+        letter-spacing: -0.02em;
     }
 }
 
