@@ -14,6 +14,8 @@ import { GetAssessmentSummaryModelFromProviderAndStoreData } from '../../reports
 import { TargetChangeDialog, TargetChangeDialogDeps } from '../target-change-dialog';
 import { OverviewHeading } from './overview-heading';
 import { OverviewHelpSectionDeps } from './overview-help-section';
+import { AutomatedChecksIssueDetailsList } from '../../reports/components/automated-check-issue-details-list';
+import { DecoratedAxeNodeResult } from '../../../injected/scanner-utils';
 
 const linkDataSource: HyperlinkDefinition[] = [
     {
@@ -29,6 +31,18 @@ const linkDataSource: HyperlinkDefinition[] = [
         text: 'Ask a question',
     },
 ];
+
+
+const sampleData = [{
+    failureSummary: 'RR-failureSummary',
+    guidanceLinks: [{ text: 'WCAG-1.4.1' }, { text: 'wcag-2.8.2' }],
+    help: 'RR-help',
+    html: 'RR-html',
+    ruleId: 'RR-rule-id',
+    helpUrl: 'RR-help-url',
+    selector: 'RR-selector<x>',
+    snippet: 'RR-snippet   space',
+}] as DecoratedAxeNodeResult[];
 
 export type OverviewContainerDeps = {
     assessmentsProvider: AssessmentsProvider;
@@ -70,9 +84,7 @@ export const OverviewContainer = NamedSFC<OverviewContainerProps>('OverviewConta
                 actionMessageCreator={props.deps.detailsViewActionMessageCreator}
             />
             <section className="overview-text-summary-section">
-                <BaseCardLayer>
-                    <OverviewHeading />
-                </BaseCardLayer>
+                <AutomatedChecksIssueDetailsList nodeResults={sampleData} />
                 {/* <AssessmentReportSummary summary={summaryData} /> */}
             </section>
             {/* <section className="overview-help-section">
