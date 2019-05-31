@@ -17,7 +17,7 @@ body {
         Ubuntu, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
 }
 
-.content-section {
+.content-container {
     @include contentSize();
     margin-top: 24px;
 }

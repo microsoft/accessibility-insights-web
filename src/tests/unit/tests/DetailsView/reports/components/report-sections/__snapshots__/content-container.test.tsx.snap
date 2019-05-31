@@ -2,7 +2,7 @@
 
 exports[`ContentContainer renders 1`] = `
 <div
-  className="content-section"
+  className="content-container"
 >
   <div>
     1

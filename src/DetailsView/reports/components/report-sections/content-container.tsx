@@ -4,5 +4,5 @@ import * as React from 'react';
 import { NamedSFC } from '../../../../common/react/named-sfc';
 
 export const ContentContainer = NamedSFC('ContentSection', ({ children }) => {
-    return <div className="content-section">{children}</div>;
+    return <div className="content-container">{children}</div>;
 });
