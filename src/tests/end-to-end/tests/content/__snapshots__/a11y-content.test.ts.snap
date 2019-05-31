@@ -20029,7 +20029,7 @@ exports[`A11Y for content pages High Contrast mode test/semantics/dataTables/inf
           &lt;table&gt;
         </li>
         <li>
-           &lt;tr&gt;
+          &lt;tr&gt;
         </li>
         <li>
            &lt;th&gt;
@@ -21322,9 +21322,9 @@ exports[`A11Y for content pages High Contrast mode test/semantics/letterSpacing/
           Understanding Success Criterion 1.3.2: Meaningful Sequence
         </a>
       </div>
-      <h4>
+      <h3>
         Sufficient techniques
-      </h4>
+      </h3>
       <div
         class="content-hyperlinks"
       >
@@ -46399,7 +46399,7 @@ exports[`A11Y for content pages Normal mode test/semantics/dataTables/infoAndExa
           &lt;table&gt;
         </li>
         <li>
-           &lt;tr&gt;
+          &lt;tr&gt;
         </li>
         <li>
            &lt;th&gt;
@@ -47692,9 +47692,9 @@ exports[`A11Y for content pages Normal mode test/semantics/letterSpacing/infoAnd
           Understanding Success Criterion 1.3.2: Meaningful Sequence
         </a>
       </div>
-      <h4>
+      <h3>
         Sufficient techniques
-      </h4>
+      </h3>
       <div
         class="content-hyperlinks"
       >
