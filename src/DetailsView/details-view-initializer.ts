@@ -47,6 +47,7 @@ import { VisualizationStoreData } from '../common/types/store-data/visualization
 import { UrlParser } from '../common/url-parser';
 import { WindowUtils } from '../common/window-utils';
 import { contentPages } from '../content';
+import { FixInstructionProcessor } from '../injected/fix-instruction-processor';
 import { ScannerUtils } from '../injected/scanner-utils';
 import { getVersion, scan } from '../scanner/exposed-apis';
 import { DictionaryStringTo } from '../types/common-types';
@@ -251,7 +252,10 @@ if (isNaN(tabId) === false) {
                 AxeInfo.Default.version,
             );
 
+            const fixInstructionProcessor = new FixInstructionProcessor();
+
             const deps: DetailsViewContainerDeps = {
+                fixInstructionProcessor,
                 dropdownClickHandler,
                 issueFilingActionMessageCreator,
                 contentProvider: contentPages,

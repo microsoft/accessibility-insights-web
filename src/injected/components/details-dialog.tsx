@@ -25,7 +25,7 @@ import { HyperlinkDefinition } from '../../views/content/content-page';
 import { DetailsDialogHandler } from '../details-dialog-handler';
 import { DecoratedAxeNodeResult } from '../scanner-utils';
 import { TargetPageActionMessageCreator } from '../target-page-action-message-creator';
-import { FixInstructionPanel } from './fix-instruction-panel';
+import { FixInstructionPanel, FixInstructionPanelDeps } from './fix-instruction-panel';
 import { IssueDetailsNavigationControls, IssueDetailsNavigationControlsProps } from './issue-details-navigation-controls';
 
 export enum CheckType {
@@ -38,7 +38,8 @@ export type DetailsDialogDeps = {
     targetPageActionMessageCreator: TargetPageActionMessageCreator;
     clientBrowserAdapter: ClientBrowserAdapter;
 } & CopyIssueDetailsButtonDeps &
-    IssueFilingButtonDeps;
+    IssueFilingButtonDeps &
+    FixInstructionPanelDeps;
 
 export interface DetailsDialogProps {
     deps: DetailsDialogDeps;
@@ -268,11 +269,17 @@ export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDi
         return (
             <div className="insights-dialog-fix-instruction-container">
                 <FixInstructionPanel
+                    deps={this.props.deps}
                     checkType={CheckType.All}
                     checks={ruleResult.all.concat(ruleResult.none)}
                     renderTitleElement={this.renderSectionTitle}
                 />
-                <FixInstructionPanel checkType={CheckType.Any} checks={ruleResult.any} renderTitleElement={this.renderSectionTitle} />
+                <FixInstructionPanel
+                    deps={this.props.deps}
+                    checkType={CheckType.Any}
+                    checks={ruleResult.any}
+                    renderTitleElement={this.renderSectionTitle}
+                />
             </div>
         );
     }
