@@ -10,6 +10,7 @@
 }
 
 body {
+    margin: auto;
     background-color: $neutral-2;
     color: black;
     font-family: 'Segoe UI Web (West European)', 'Segoe UI', '-apple-system', BlinkMacSystemFont, Roboto, 'Helvetica Neue', Helvetica,
@@ -18,6 +19,7 @@ body {
 
 .content-section {
     @include contentSize();
+    margin-top: 24px;
 }
 
 .report-footer {
