@@ -64,3 +64,22 @@ body {
     font-size: 14px;
     line-height: 20px;
 }
+
+.scan-details-section {
+    background-color: $neutral-0;
+    padding: 20px;
+
+    h3 {
+        margin: 0px;
+        font-size: 17px;
+        line-height: 24px;
+    }
+
+    td {
+        padding-top: 12px;
+    }
+
+    tbody :first-child td {
+        padding-top: 16px;
+    }
+}
