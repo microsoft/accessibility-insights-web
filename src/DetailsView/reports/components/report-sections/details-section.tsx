@@ -16,7 +16,7 @@ export const DetailsSection = NamedSFC<DetailsSectionProps>('DetailsSection', pr
     const { pageUrl, description, scanDate } = props;
 
     return (
-        <div className="assessment-scan-details">
+        <div className="scan-details-section">
             <h3>Scan details</h3>
             <table>
                 <tbody>
@@ -24,7 +24,7 @@ export const DetailsSection = NamedSFC<DetailsSectionProps>('DetailsSection', pr
                         <td className="icon" aria-hidden="true">
                             <UrlIcon />
                         </td>
-                        <td>
+                        <td className="text">
                             <NewTabLink href={pageUrl} title="Navigate to target page">
                                 {pageUrl}
                             </NewTabLink>
@@ -34,7 +34,7 @@ export const DetailsSection = NamedSFC<DetailsSectionProps>('DetailsSection', pr
                         <td className="icon" aria-hidden="true">
                             <DateIcon />
                         </td>
-                        <td>
+                        <td className="text">
                             <FormattedDate date={scanDate} />
                         </td>
                     </tr>
@@ -42,7 +42,7 @@ export const DetailsSection = NamedSFC<DetailsSectionProps>('DetailsSection', pr
                         <td className="icon" aria-hidden="true">
                             <CommentIcon />
                         </td>
-                        <td>{description}</td>
+                        <td className="text">{description}</td>
                     </tr>
                 </tbody>
             </table>
