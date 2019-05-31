@@ -202,13 +202,7 @@ class TestStepViewPropsBuilder extends BaseDataBuilder<TestStepViewProps> {
                 name: 'Test Step Test Name',
                 howToTest: <p>Instructions</p>,
                 isManual: false,
-                guidanceLinks: [
-                    {
-                        href: null,
-                        text: null,
-                        tags: [{ id: 'guidanceLinks-tags-id', displayText: 'guidanceLinks-tags-displayText' }],
-                    },
-                ],
+                guidanceLinks: [],
             });
     }
 

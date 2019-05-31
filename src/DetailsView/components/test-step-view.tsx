@@ -7,7 +7,7 @@ import { AssessmentDefaultMessageGenerator } from '../../assessments/assessment-
 import { AssessmentsProvider } from '../../assessments/types/assessments-provider';
 import { Requirement, VisualHelperToggleConfig } from '../../assessments/types/requirement';
 import { CollapsibleComponent } from '../../common/components/collapsible-component';
-import { GuidanceTags, GuidanceTagsDeps, guidanceTagsFromGuidanceLinks } from '../../common/components/guidance-tags';
+import { GuidanceTags, GuidanceTagsDeps } from '../../common/components/guidance-tags';
 import {
     AssessmentNavState,
     GeneratedAssessmentInstance,
@@ -40,14 +40,12 @@ export interface TestStepViewProps {
 
 export class TestStepView extends React.Component<TestStepViewProps> {
     public render(): JSX.Element {
-        const guidanceTags = guidanceTagsFromGuidanceLinks(this.props.testStep.guidanceLinks);
-
         return (
             <div className="test-step-view">
                 <div className="test-step-title-container">
                     <h3 className="test-step-view-title">
                         {this.props.testStep.name}
-                        <GuidanceTags deps={this.props.deps} tags={guidanceTags} />
+                        <GuidanceTags deps={this.props.deps} links={this.props.testStep.guidanceLinks} />
                     </h3>
                     <ContentPanelButton deps={this.props.deps} reference={this.props.testStep.infoAndExamples} iconName="info">
                         Info &amp; examples
