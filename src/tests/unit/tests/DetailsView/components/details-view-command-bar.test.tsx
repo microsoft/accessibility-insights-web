@@ -69,7 +69,7 @@ describe('DetailsViewCommandBar', () => {
         const deps: DetailsViewCommandBarDeps = {
             detailsViewActionMessageCreator: actionMessageCreatorMock.object,
             outcomeTypeSemanticsFromTestStatus: { stub: 'outcomeTypeSemanticsFromTestStatus' } as any,
-            dateProvider: () => theDate,
+            getCurrentDate: () => theDate,
             reportGeneratorProvider: reportGeneratorProviderMock.object,
         };
 
