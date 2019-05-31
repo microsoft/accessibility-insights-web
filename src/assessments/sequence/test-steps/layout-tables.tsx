@@ -3,6 +3,7 @@
 import * as React from 'react';
 import { NewTabLink } from '../../../common/components/new-tab-link';
 import { link } from '../../../content/link';
+import * as content from '../../../content/test/sequence/layout-tables';
 import { ManualTestRecordYourResults } from '../../common/manual-test-record-your-results';
 import * as Markup from '../../markup';
 import { Requirement } from '../../types/requirement';
@@ -51,6 +52,7 @@ export const LayoutTables: Requirement = {
     name: 'Layout tables',
     description: description,
     howToTest: howToTest,
+    ...content,
     isManual: true,
     guidanceLinks: [link.WCAG_1_3_2],
 };
