@@ -4,11 +4,24 @@
 @import '../../common/styles/fonts.scss';
 @import '../../common/styles/common.scss';
 
+@mixin contentSize {
+    max-width: 960px;
+    margin: 0 auto;
+}
+
 body {
     background-color: $neutral-2;
     color: black;
     font-family: 'Segoe UI Web (West European)', 'Segoe UI', '-apple-system', BlinkMacSystemFont, Roboto, 'Helvetica Neue', Helvetica,
         Ubuntu, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+}
+
+.content-section {
+    @include contentSize();
+}
+
+.report-footer {
+    @include contentSize();
 }
 
 .title-section {
