@@ -4,7 +4,7 @@ import * as React from 'react';
 import { It, Mock, MockBehavior, Times } from 'typemoq';
 
 import { EnvironmentInfo } from '../../../../../common/environment-info-provider';
-import { ReportHead } from '../../../../../DetailsView/reports/components/report-head';
+import { ReportHeadV2 } from '../../../../../DetailsView/reports/components/report-head-v2';
 import { ReportBody, ReportBodyProps } from '../../../../../DetailsView/reports/components/report-sections/report-body';
 import { ReportSectionFactory } from '../../../../../DetailsView/reports/components/report-sections/report-section-factory';
 import { ReactStaticRenderer } from '../../../../../DetailsView/reports/react-static-renderer';
@@ -38,7 +38,7 @@ describe('ReportHtmlGeneratorV2', () => {
             environmentInfo,
         };
 
-        const headElement: JSX.Element = <ReportHead />;
+        const headElement: JSX.Element = <ReportHeadV2 />;
         const bodyElement: JSX.Element = <ReportBody {...sectionProps} />;
 
         const rendererMock = Mock.ofType(ReactStaticRenderer, MockBehavior.Strict);

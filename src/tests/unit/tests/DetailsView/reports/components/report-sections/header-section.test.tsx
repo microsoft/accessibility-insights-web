@@ -2,13 +2,11 @@
 // Licensed under the MIT License.
 import { shallow } from 'enzyme';
 import * as React from 'react';
+import { HeaderSection } from '../../../../../../../DetailsView/reports/components/report-sections/header-section';
 
-import { FooterSection } from '../../../../../../../DetailsView/reports/components/report-sections/footer-section';
-
-describe('Footer', () => {
+describe('HeaderSection', () => {
     it('renders', () => {
-        const wrapper = shallow(<FooterSection />);
-
+        const wrapper = shallow(<HeaderSection pageUrl="url://page" pageTitle="page-title" />);
         expect(wrapper.getElement()).toMatchSnapshot();
     });
 });

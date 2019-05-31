@@ -2,7 +2,30 @@
 
 exports[`ReportBody renders 1`] = `
 <body-section>
-  <header-section />
+  <header-section
+    description="test description"
+    environmentInfo={
+      Object {
+        "axeCoreVersion": "axe-core-version",
+        "browserSpec": "browser-spec",
+        "extensionVersion": "extension-version",
+      }
+    }
+    pageTitle="page-title"
+    pageUrl="url:target-page"
+    scanDate={2019-05-29T19:12:16.804Z}
+    scanResult={
+      Object {
+        "inapplicable": Array [],
+        "incomplete": Array [],
+        "passes": Array [],
+        "targetPageTitle": "page-title",
+        "targetPageUrl": "url:target-page",
+        "timestamp": "today",
+        "violations": Array [],
+      }
+    }
+  />
   <title-section />
   <summary-section
     description="test description"
