@@ -16,7 +16,8 @@ export type ReportGeneratorProvider = {
 
 export const createReportGeneratorProvider = (
     reportNameGenerator: ReportNameGenerator,
-    reportHtmlGenerator: ReportHtmlGenerator,
+    oldReportHtmlGenerator: ReportHtmlGenerator,
+    newReportHtmlGenerator: ReportHtmlGenerator,
     assessmentReportHtmlGenerator: AssessmentReportHtmlGenerator,
     featureFlagStore: BaseStore<FeatureFlagStoreData>,
 ): ReportGeneratorProvider => {
@@ -24,10 +25,10 @@ export const createReportGeneratorProvider = (
         const featureFlag = featureFlagStore.getState();
 
         if (featureFlag[FeatureFlags.newAutomatedChecksReport]) {
-            return new ReportGeneratorV2(reportNameGenerator, reportHtmlGenerator, assessmentReportHtmlGenerator);
+            return new ReportGeneratorV2(reportNameGenerator, newReportHtmlGenerator, assessmentReportHtmlGenerator);
         }
 
-        return new ReportGeneratorV1(reportNameGenerator, reportHtmlGenerator, assessmentReportHtmlGenerator);
+        return new ReportGeneratorV1(reportNameGenerator, oldReportHtmlGenerator, assessmentReportHtmlGenerator);
     };
 
     return {

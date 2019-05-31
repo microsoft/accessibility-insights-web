@@ -3,11 +3,12 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-import { Page, PageDeps } from '../../../../../views/page/page';
+import { Footer } from '../../../../../../../DetailsView/reports/components/report-sections/footer';
 
-describe('page view', () => {
+describe('Footer', () => {
     it('renders', () => {
-        const wrapper = shallow(<Page deps={{} as PageDeps}>INSIDE</Page>);
+        const wrapper = shallow(<Footer />);
+
         expect(wrapper.getElement()).toMatchSnapshot();
     });
 });
