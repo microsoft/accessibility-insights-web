@@ -1,6 +1,17 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+@import '../styles/colors.scss';
 
 .guidance-tags {
-    display: flex;
+    display: inline;
+
+    div {
+        display: inline;
+        font-size: 12px;
+        font-weight: normal;
+        margin-left: 8px;
+        padding: 4px 12px;
+        background: $neutral-alpha-6;
+        border-radius: 120px;
+    }
 }
