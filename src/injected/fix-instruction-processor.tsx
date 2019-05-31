@@ -32,10 +32,11 @@ export class FixInstructionProcessor {
         const match = colorRegex.exec(fixInstruction);
 
         const groups = match['groups'];
+        const colorHexValue = groups[this.colorGroupName];
 
         return {
-            splitIndex: match.index + this.foregroundColorText.length + 7,
-            colorHexValue: groups[this.colorGroupName],
+            splitIndex: match.index + this.foregroundColorText.length + colorHexValue.length,
+            colorHexValue,
         };
     }
 
@@ -52,7 +53,7 @@ export class FixInstructionProcessor {
         const result: JSX.Element[] = [];
 
         properMatches.forEach(match => {
-            const endIndex = match.splitIndex - 7;
+            const endIndex = match.splitIndex - match.colorHexValue.length;
             const substring = fixInstruction.substring(insertionIndex, endIndex);
 
             result.push(<span key={`instruction-split-${keyIndex++}`}>{substring}</span>);
