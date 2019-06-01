@@ -88,7 +88,7 @@
         "ts-jest": "^24.0.2",
         "ts-loader": "^4.4.2",
         "tslint": "^5.16.0",
-        "tslint-microsoft-contrib": "6.1.0",
+        "tslint-microsoft-contrib": "6.2.0",
         "typed-scss-modules": "^0.0.10",
         "typemoq": "^2.1.0",
         "typescript": "^2.9.2",
