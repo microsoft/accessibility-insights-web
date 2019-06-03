@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-@import '../../common/styles/common.scss';
-@import '../../common/styles/common.scss';
+@import '../../../common/styles/colors.scss';
+@import '../../../common/styles/fonts.scss';
 
 .base-card-layer-main {
     position: relative;
@@ -14,29 +14,34 @@
     box-shadow: 0px 0.6px 1.8px rgba(0, 0, 0, 0.108), 0px 3.2px 7.2px rgba(0, 0, 0, 0.132);
 }
 
-.report-instances {
-    margin: 8px 0px 16px 4px;
+.report-instance-table {
+    font-family: Menlo, Consolas, Courier New, monospace;
+    word-break: break-all;
 }
-.report-instances p {
-    font-size: 14px;
+
+.report-instances .row {
+    top: calc(50% - 20px / 2);
+    height: 48px;
+    border-bottom: 2px solid $neutral-20;
 }
+
+.report-instances .row:last-child {
+    border-bottom: none;
+}
+
 .report-instance-table .label {
     font-family: Segoe UI;
     font-size: 14px;
     line-height: 20px;
     font-weight: bold;
     color: $primary-text;
+    margin-right: 12px;
 }
-// .report-instance-table .snippet-row {
-//     border-bottom: 2px solid #eaeaea;
-// }
-// .report-instance-table .path-row td {
-//     padding: 6px 0px;
-// }
-// .report-instance-table .snippet-row td {
-//     padding: 0px 0px 6px 0px;
-// }
-.report-instance-table .snippet-row .content {
-    font-family: Menlo, Consolas, Courier New, monospace;
-    word-break: break-all;
+.report-instance-table .content {
+    color: $secondary-text;
+    margin: 12px;
+    font-size: 14px;
+    line-height: 20px;
+    align-items: flex-end;
+    display: flex;
 }
