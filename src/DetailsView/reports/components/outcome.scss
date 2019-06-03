@@ -33,7 +33,7 @@ $outcome-fail-summary-color: $negative-outcome;
 
 @mixin outcome-icon-set-color($color) {
     .check-container {
-        border-color: black;
+        border-color: $color;
         background-color: $color;
     }
 }
