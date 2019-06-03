@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as React from 'react';
+
 import { AssessmentsProvider } from '../../../assessments/types/assessments-provider';
 import { NamedSFC } from '../../../common/react/named-sfc';
 import { AssessmentStoreData } from '../../../common/types/store-data/assessment-result-data';
@@ -12,6 +13,7 @@ import { OverviewSummaryReportModel } from '../../reports/assessment-report-mode
 import { AssessmentReportSummary } from '../../reports/components/assessment-report-summary';
 import { GetAssessmentSummaryModelFromProviderAndStoreData } from '../../reports/get-assessment-summary-model';
 import { TargetChangeDialog, TargetChangeDialogDeps } from '../target-change-dialog';
+import { OverviewHeading } from './overview-heading';
 import { OverviewHelpSection, OverviewHelpSectionDeps } from './overview-help-section';
 
 const linkDataSource: HyperlinkDefinition[] = [
@@ -69,6 +71,7 @@ export const OverviewContainer = NamedSFC<OverviewContainerProps>('OverviewConta
                 actionMessageCreator={props.deps.detailsViewActionMessageCreator}
             />
             <section className="overview-text-summary-section">
+                <OverviewHeading />
                 <AssessmentReportSummary summary={summaryData} />
             </section>
             <section className="overview-help-section">
