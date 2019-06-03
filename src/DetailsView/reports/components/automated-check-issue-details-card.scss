@@ -1,6 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+@import '../../common/styles/common.scss';
+@import '../../common/styles/common.scss';
+
 .base-card-layer-main {
     position: relative;
     opacity: 1;
@@ -17,18 +20,22 @@
 .report-instances p {
     font-size: 14px;
 }
-.report-instance-table td {
-    font-size: 11px;
+.report-instance-table .label {
+    font-family: Segoe UI;
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: bold;
+    color: $primary-text;
 }
-.report-instance-table .snippet-row {
-    border-bottom: 2px solid #EAEAEA
-}
-.report-instance-table .path-row td {
-    padding: 6px 0px;
-}
-.report-instance-table .snippet-row td {
-    padding: 0px 0px 6px 0px;
-}
+// .report-instance-table .snippet-row {
+//     border-bottom: 2px solid #eaeaea;
+// }
+// .report-instance-table .path-row td {
+//     padding: 6px 0px;
+// }
+// .report-instance-table .snippet-row td {
+//     padding: 0px 0px 6px 0px;
+// }
 .report-instance-table .snippet-row .content {
     font-family: Menlo, Consolas, Courier New, monospace;
     word-break: break-all;

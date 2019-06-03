@@ -3,10 +3,6 @@
 import * as React from 'react';
 import { NamedSFC } from '../../../common/react/named-sfc';
 
-interface BaseCardLayerProps {
-    children?: JSX.Element | React.ReactNode;
-}
-
-export const BaseCardLayer = NamedSFC<BaseCardLayerProps>('BaseCardLayer', props => {
-    return <div className="base-card-layer-main">{props.children}</div>;
+export const BaseCardLayer = NamedSFC('BaseCardLayer', ({ children }) => {
+    return <div className="base-card-layer-main">{children}</div>;
 });
