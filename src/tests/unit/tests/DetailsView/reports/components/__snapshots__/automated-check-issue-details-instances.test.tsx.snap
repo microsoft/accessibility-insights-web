@@ -1,0 +1,80 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ReportInstanceListTest render 0 instances 1`] = `<React.Fragment />`;
+
+exports[`ReportInstanceListTest render 2 instances 1`] = `
+<React.Fragment>
+  <tr
+    className="row"
+  >
+    <td
+      className="label"
+    >
+      Path
+    </td>
+    <td
+      className="content"
+    />
+  </tr>
+  <tr
+    className="row"
+  >
+    <td
+      className="label"
+    >
+      Snippet
+    </td>
+    <td
+      className="content"
+    />
+  </tr>
+  <tr
+    className="row"
+  >
+    <td
+      className="label"
+    >
+      How to fix
+    </td>
+    <td
+      className="content"
+    />
+  </tr>
+  <tr
+    className="row"
+  >
+    <td
+      className="label"
+    >
+      Path
+    </td>
+    <td
+      className="content"
+    />
+  </tr>
+  <tr
+    className="row"
+  >
+    <td
+      className="label"
+    >
+      Snippet
+    </td>
+    <td
+      className="content"
+    />
+  </tr>
+  <tr
+    className="row"
+  >
+    <td
+      className="label"
+    >
+      How to fix
+    </td>
+    <td
+      className="content"
+    />
+  </tr>
+</React.Fragment>
+`;

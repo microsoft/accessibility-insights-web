@@ -1,13 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as React from 'react';
-
 import { NamedSFC } from '../../../common/react/named-sfc';
 import { DecoratedAxeNodeResult } from '../../../injected/scanner-utils';
 import { AutomatedChecksIssueDetailsInstances } from './automated-check-issue-details-instances';
 import { BaseCardLayer } from './base-card-layer';
 
-interface AutomatedChecksIssueDetailsListProps {
+export interface AutomatedChecksIssueDetailsListProps {
     nodeResults: DecoratedAxeNodeResult[];
 }
 

@@ -4,7 +4,7 @@ import * as React from 'react';
 import { NamedSFC } from '../../../common/react/named-sfc';
 import { DecoratedAxeNodeResult } from '../../../injected/scanner-utils';
 
-interface AutomatedChecksIssueDetailsInstancesProps {
+export interface AutomatedChecksIssueDetailsInstancesProps {
     nodeResults: DecoratedAxeNodeResult[];
 }
 
