@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ReportInstanceListTest render 0 instances 1`] = `<React.Fragment />`;
+exports[`AutomatedChecksIssueDetailsInstances render 0 instances 1`] = `<React.Fragment />`;
 
-exports[`ReportInstanceListTest render 2 instances 1`] = `
+exports[`AutomatedChecksIssueDetailsInstances render 2 instances 1`] = `
 <React.Fragment>
   <tr
     className="row"
