@@ -4,6 +4,7 @@ import * as React from 'react';
 
 import { NamedSFC } from '../../../../common/react/named-sfc';
 import { BodySection } from './body-section';
+import { ContentContainer } from './content-container';
 import { DetailsSection } from './details-section';
 import { FooterSection } from './footer-section';
 import { HeaderSection } from './header-section';
@@ -31,6 +32,7 @@ const NotApplicableChecks = createBasicComponent('not-applicable-checks-section'
 // TODO most of this sections are dummy sections, the point is to replace them as we develop them
 export const AutomatedChecksReportSectionFactory: ReportSectionFactory = {
     BodySection,
+    ContentContainer,
     Header: HeaderSection,
     Title: TitleSection,
     Summary,

@@ -8,17 +8,19 @@ import { toolName } from '../../../../content/strings/application';
 
 export const FooterSection = NamedSFC('FooterSection', () => {
     return (
-        <div className="report-footer" role="contentinfo">
-            This automated checks result was generated using <b id="tool-name">{toolName}</b>, a tool that helps debug and find
-            accessibility issues earlier. Get more information & download this tool at{' '}
-            <NewTabLink
-                href="http://aka.ms/AccessibilityInsights"
-                aria-labelledby="tool-name"
-                title={`Get more information and download ${toolName}`}
-            >
-                http://aka.ms/AccessibilityInsights
-            </NewTabLink>
-            .
+        <div className="report-footer-container">
+            <div className="report-footer" role="contentinfo">
+                This automated checks result was generated using <b id="tool-name">{toolName}</b>, a tool that helps debug and find
+                accessibility issues earlier. Get more information & download this tool at{' '}
+                <NewTabLink
+                    href="http://aka.ms/AccessibilityInsights"
+                    aria-labelledby="tool-name"
+                    title={`Get more information and download ${toolName}`}
+                >
+                    http://aka.ms/AccessibilityInsights
+                </NewTabLink>
+                .
+            </div>
         </div>
     );
 });

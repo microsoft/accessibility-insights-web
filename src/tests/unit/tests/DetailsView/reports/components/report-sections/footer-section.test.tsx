@@ -5,7 +5,7 @@ import * as React from 'react';
 
 import { FooterSection } from '../../../../../../../DetailsView/reports/components/report-sections/footer-section';
 
-describe('Footer', () => {
+describe('FooterSection', () => {
     it('renders', () => {
         const wrapper = shallow(<FooterSection />);
 

@@ -13,6 +13,7 @@ export const ReportBody = NamedSFC<ReportBodyProps>('ReportBody', props => {
     const { sectionFactory, ...sectionProps } = props;
     const {
         BodySection,
+        ContentContainer,
         Header,
         Title,
         Summary,
@@ -27,14 +28,16 @@ export const ReportBody = NamedSFC<ReportBodyProps>('ReportBody', props => {
     return (
         <BodySection>
             <Header {...sectionProps} />
-            <Title />
-            <Summary {...sectionProps} />
-            <Details {...sectionProps} />
-            <ResultSection>
-                <FailedInstances {...sectionProps} />
-                <PassedChecks {...sectionProps} />
-                <NotApplicableChecks {...sectionProps} />
-            </ResultSection>
+            <ContentContainer>
+                <Title />
+                <Summary {...sectionProps} />
+                <Details {...sectionProps} />
+                <ResultSection>
+                    <FailedInstances {...sectionProps} />
+                    <PassedChecks {...sectionProps} />
+                    <NotApplicableChecks {...sectionProps} />
+                </ResultSection>
+            </ContentContainer>
             <Footer />
         </BodySection>
     );
