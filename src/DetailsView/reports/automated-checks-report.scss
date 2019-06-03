@@ -3,6 +3,7 @@
 @import '../../common/styles/colors.scss';
 @import '../../common/styles/fonts.scss';
 @import '../../common/styles/common.scss';
+@import './components/outcome.scss';
 
 @mixin contentSize {
     max-width: 960px;
