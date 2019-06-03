@@ -16,7 +16,9 @@ export const AutomatedChecksIssueDetailsList = NamedSFC<AutomatedChecksIssueDeta
         <BaseCardLayer>
             <div className="report-instances">
                 <table className="report-instance-table">
-                    <tbody><AutomatedChecksIssueDetailsInstances nodeResults={props.nodeResults} /></tbody>
+                    <tbody>
+                        <AutomatedChecksIssueDetailsInstances nodeResults={props.nodeResults} />
+                    </tbody>
                 </table>
             </div>
         </BaseCardLayer>
