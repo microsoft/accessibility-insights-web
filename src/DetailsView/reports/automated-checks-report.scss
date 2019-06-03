@@ -75,7 +75,7 @@ $outcome-not-applicable-summary-color: $negative-outcome;
     @include boxShadow();
 
     background-color: $neutral-0;
-    padding: 20px;
+    padding: 25px;
     margin-bottom: 24px;
 
     h3 {
@@ -86,11 +86,12 @@ $outcome-not-applicable-summary-color: $negative-outcome;
     }
 
     .outcome-summary-bar {
+        $outcome-summary-icon-size: 22px;
         flex: 0 0 100%;
         display: flex;
         align-items: center;
         height: 32px;
-        $outcome-summary-icon-size: 22px;
+        margin-bottom: 0px;
         line-height: 24px;
         font-size: 17px;
         font-weight: 600;
