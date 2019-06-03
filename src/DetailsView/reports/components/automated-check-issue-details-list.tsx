@@ -16,7 +16,7 @@ export const AutomatedChecksIssueDetailsList = NamedSFC<AutomatedChecksIssueDeta
             <div className="report-instances">
                 <table className="report-instance-table">
                     <tbody>
-                        <AutomatedChecksIssueDetailsInstances nodeResults={props.nodeResults} />
+                        <AutomatedChecksIssueDetailsInstances {...props} />
                     </tbody>
                 </table>
             </div>
