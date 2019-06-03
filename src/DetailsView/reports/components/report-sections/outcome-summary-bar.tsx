@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as React from 'react';
+
 import { CheckIcon } from '../../../../common/icons/check-icon';
 import { CircleIcon } from '../../../../common/icons/circle-icon';
 import { CrossIcon } from '../../../../common/icons/cross-icon';
@@ -22,9 +23,9 @@ const outcomeText = {
 type OutcomeType = 'pass' | 'fail' | 'not applicable';
 const allOutcomeTypes: OutcomeType[] = ['pass', 'fail', 'not applicable'];
 
-export type SummarySectionProps = Pick<SectionProps, 'scanResult'>;
+export type OutcomeSummaryBarProps = Pick<SectionProps, 'scanResult'>;
 
-export const SummarySection = NamedSFC<SummarySectionProps>('SummarySection', ({ scanResult }) => {
+export const OutcomeSummaryBar = NamedSFC<OutcomeSummaryBarProps>('OutcomeSummaryBar', ({ scanResult }) => {
     const countSummary: { [type in OutcomeType]: number } = {
         pass: scanResult.passes.length,
         fail: scanResult.violations.reduce((total, violation) => {

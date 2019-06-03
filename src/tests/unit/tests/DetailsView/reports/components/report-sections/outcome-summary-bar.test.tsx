@@ -3,10 +3,10 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-import { SummarySection } from '../../../../../../../DetailsView/reports/components/report-sections/summary-section';
+import { OutcomeSummaryBar } from '../../../../../../../DetailsView/reports/components/report-sections/outcome-summary-bar';
 import { ScanResults } from '../../../../../../../scanner/iruleresults';
 
-describe('SummarySection', () => {
+describe('OutcomeSummaryBar', () => {
     const noViolations = [];
     const noPasses = [];
     const noNonApplicable = [];
@@ -83,7 +83,7 @@ describe('SummarySection', () => {
 
     it.each(scenarios)('%s', (_, scanResult) => {
         const props = { scanResult };
-        const wrapper = shallow(<SummarySection {...props} />);
+        const wrapper = shallow(<OutcomeSummaryBar {...props} />);
 
         expect(wrapper.getElement()).toMatchSnapshot();
     });
