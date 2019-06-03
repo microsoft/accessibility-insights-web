@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
+import { kebabCase } from 'lodash';
 import { CheckIcon } from '../../../../common/icons/check-icon';
 import { CircleIcon } from '../../../../common/icons/circle-icon';
 import { CrossIcon } from '../../../../common/icons/cross-icon';
@@ -21,7 +22,7 @@ const outcomeText = {
 };
 
 type OutcomeType = 'pass' | 'fail' | 'not applicable';
-const allOutcomeTypes: OutcomeType[] = ['pass', 'fail', 'not applicable'];
+const allOutcomeTypes: OutcomeType[] = ['fail', 'pass', 'not applicable'];
 
 export type OutcomeSummaryBarProps = Pick<SectionProps, 'scanResult'>;
 
@@ -42,7 +43,7 @@ export const OutcomeSummaryBar = NamedSFC<OutcomeSummaryBarProps>('OutcomeSummar
                 const count = countSummary[outcomeType];
 
                 return (
-                    <span key={outcomeType} className={outcomeType} style={{ flexGrow: count }}>
+                    <span key={outcomeType} className={kebabCase(outcomeType)} style={{ flexGrow: count }}>
                         {outcomeIcon} {count} {text}
                     </span>
                 );
