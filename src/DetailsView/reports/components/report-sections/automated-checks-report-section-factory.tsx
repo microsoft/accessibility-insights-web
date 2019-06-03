@@ -9,6 +9,7 @@ import { DetailsSection } from './details-section';
 import { FooterSection } from './footer-section';
 import { HeaderSection } from './header-section';
 import { ReportSectionFactory } from './report-section-factory';
+import { SummarySection } from './summary-section';
 import { TitleSection } from './title-section';
 
 const createBasicComponent = (name: string) => {
@@ -23,7 +24,6 @@ const createWrappingComponent = (name: string) => {
     });
 };
 
-const Summary = createBasicComponent('summary-section');
 const ResultSection = createWrappingComponent('result-section');
 const FailedInstances = createBasicComponent('failed-instances-section');
 const PassedChecks = createBasicComponent('passed-checks-section');
@@ -35,7 +35,7 @@ export const AutomatedChecksReportSectionFactory: ReportSectionFactory = {
     ContentContainer,
     Header: HeaderSection,
     Title: TitleSection,
-    Summary,
+    Summary: SummarySection,
     Details: DetailsSection,
     ResultSection,
     FailedInstances,
