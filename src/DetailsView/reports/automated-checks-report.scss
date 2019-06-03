@@ -4,22 +4,30 @@
 @import '../../common/styles/fonts.scss';
 @import '../../common/styles/common.scss';
 
+@mixin contentSize {
+    max-width: 960px;
+    margin: 0 auto;
+}
+
 body {
+    margin: auto;
     background-color: $neutral-2;
     color: black;
     font-family: 'Segoe UI Web (West European)', 'Segoe UI', '-apple-system', BlinkMacSystemFont, Roboto, 'Helvetica Neue', Helvetica,
         Ubuntu, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
 }
 
-.title-section {
-    margin: 0px 0px 21px 0px;
+.content-container {
+    @include contentSize();
+    margin-top: 24px;
+}
 
+.title-section {
     h1 {
-        font-size: 28px;
         margin: 0px 0px 24px 0px;
-        font-family: $semiBoldFontFamily;
-        line-height: 40px;
-        letter-spacing: -1;
+        font-size: 21px;
+        line-height: 32px;
+        letter-spacing: -0.02em;
     }
 }
 
@@ -48,4 +56,43 @@ body {
     font-family: $fontFamily;
     font-size: 14px;
     line-height: 20px;
+}
+
+.scan-details-section {
+    background-color: $neutral-0;
+    padding: 20px;
+
+    h3 {
+        margin: 0px;
+        font-size: 17px;
+        line-height: 24px;
+    }
+
+    table {
+        font-size: 12px;
+        line-height: 16px;
+    }
+
+    td {
+        padding-top: 12px;
+    }
+
+    tbody :first-child td {
+        padding-top: 16px;
+    }
+}
+
+.report-footer-container {
+    @include contentSize();
+
+    margin-bottom: 96px;
+
+    .report-footer {
+        margin-top: 24px;
+
+        font-size: 15px;
+        line-height: 20px;
+
+        color: $secondary-text;
+    }
 }

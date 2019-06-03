@@ -26,57 +26,9 @@ exports[`ReportBody renders 1`] = `
       }
     }
   />
-  <title-section />
-  <summary-section
-    description="test description"
-    environmentInfo={
-      Object {
-        "axeCoreVersion": "axe-core-version",
-        "browserSpec": "browser-spec",
-        "extensionVersion": "extension-version",
-      }
-    }
-    pageTitle="page-title"
-    pageUrl="url:target-page"
-    scanDate={2019-05-29T19:12:16.804Z}
-    scanResult={
-      Object {
-        "inapplicable": Array [],
-        "incomplete": Array [],
-        "passes": Array [],
-        "targetPageTitle": "page-title",
-        "targetPageUrl": "url:target-page",
-        "timestamp": "today",
-        "violations": Array [],
-      }
-    }
-  />
-  <details-section
-    description="test description"
-    environmentInfo={
-      Object {
-        "axeCoreVersion": "axe-core-version",
-        "browserSpec": "browser-spec",
-        "extensionVersion": "extension-version",
-      }
-    }
-    pageTitle="page-title"
-    pageUrl="url:target-page"
-    scanDate={2019-05-29T19:12:16.804Z}
-    scanResult={
-      Object {
-        "inapplicable": Array [],
-        "incomplete": Array [],
-        "passes": Array [],
-        "targetPageTitle": "page-title",
-        "targetPageUrl": "url:target-page",
-        "timestamp": "today",
-        "violations": Array [],
-      }
-    }
-  />
-  <result-section>
-    <failed-instances-section
+  <content-container>
+    <title-section />
+    <summary-section
       description="test description"
       environmentInfo={
         Object {
@@ -100,7 +52,7 @@ exports[`ReportBody renders 1`] = `
         }
       }
     />
-    <passed-checks-section
+    <details-section
       description="test description"
       environmentInfo={
         Object {
@@ -124,31 +76,81 @@ exports[`ReportBody renders 1`] = `
         }
       }
     />
-    <not-applicable-checks-section
-      description="test description"
-      environmentInfo={
-        Object {
-          "axeCoreVersion": "axe-core-version",
-          "browserSpec": "browser-spec",
-          "extensionVersion": "extension-version",
+    <result-section>
+      <failed-instances-section
+        description="test description"
+        environmentInfo={
+          Object {
+            "axeCoreVersion": "axe-core-version",
+            "browserSpec": "browser-spec",
+            "extensionVersion": "extension-version",
+          }
         }
-      }
-      pageTitle="page-title"
-      pageUrl="url:target-page"
-      scanDate={2019-05-29T19:12:16.804Z}
-      scanResult={
-        Object {
-          "inapplicable": Array [],
-          "incomplete": Array [],
-          "passes": Array [],
-          "targetPageTitle": "page-title",
-          "targetPageUrl": "url:target-page",
-          "timestamp": "today",
-          "violations": Array [],
+        pageTitle="page-title"
+        pageUrl="url:target-page"
+        scanDate={2019-05-29T19:12:16.804Z}
+        scanResult={
+          Object {
+            "inapplicable": Array [],
+            "incomplete": Array [],
+            "passes": Array [],
+            "targetPageTitle": "page-title",
+            "targetPageUrl": "url:target-page",
+            "timestamp": "today",
+            "violations": Array [],
+          }
         }
-      }
-    />
-  </result-section>
+      />
+      <passed-checks-section
+        description="test description"
+        environmentInfo={
+          Object {
+            "axeCoreVersion": "axe-core-version",
+            "browserSpec": "browser-spec",
+            "extensionVersion": "extension-version",
+          }
+        }
+        pageTitle="page-title"
+        pageUrl="url:target-page"
+        scanDate={2019-05-29T19:12:16.804Z}
+        scanResult={
+          Object {
+            "inapplicable": Array [],
+            "incomplete": Array [],
+            "passes": Array [],
+            "targetPageTitle": "page-title",
+            "targetPageUrl": "url:target-page",
+            "timestamp": "today",
+            "violations": Array [],
+          }
+        }
+      />
+      <not-applicable-checks-section
+        description="test description"
+        environmentInfo={
+          Object {
+            "axeCoreVersion": "axe-core-version",
+            "browserSpec": "browser-spec",
+            "extensionVersion": "extension-version",
+          }
+        }
+        pageTitle="page-title"
+        pageUrl="url:target-page"
+        scanDate={2019-05-29T19:12:16.804Z}
+        scanResult={
+          Object {
+            "inapplicable": Array [],
+            "incomplete": Array [],
+            "passes": Array [],
+            "targetPageTitle": "page-title",
+            "targetPageUrl": "url:target-page",
+            "timestamp": "today",
+            "violations": Array [],
+          }
+        }
+      />
+    </result-section>
+  </content-container>
   <footer-section />
 </body-section>
 `;
