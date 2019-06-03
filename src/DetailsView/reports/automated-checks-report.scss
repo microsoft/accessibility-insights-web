@@ -3,10 +3,16 @@
 @import '../../common/styles/colors.scss';
 @import '../../common/styles/fonts.scss';
 @import '../../common/styles/common.scss';
+@import '../../common/icons/icon.scss';
 
 @mixin contentSize {
     max-width: 960px;
     margin: 0 auto;
+}
+
+@mixin boxShadow {
+    box-shadow: 0px 0.3px 0.9px rgba(0, 0, 0, 0.108), 0px 1.6px 3.6px rgba(0, 0, 0, 0.132);
+    border-radius: 4px;
 }
 
 body {
@@ -58,7 +64,93 @@ body {
     line-height: 20px;
 }
 
+$outcome-pass-summary-color: $positive-outcome;
+$outcome-incomplete-summary-consistent-foreground: $always-white;
+$outcome-incomplete-summary-background: $neutral-outcome;
+$outcome-incomplete-border-color: $incomplete-color;
+$outcome-not-applicable-summary-color: $negative-outcome;
+
+.summary-section {
+    @include boxShadow();
+
+    background-color: $neutral-0;
+    padding: 20px;
+    margin-bottom: 24px;
+
+    h3 {
+        margin: 0px;
+        font-size: 17px;
+        line-height: 24px;
+        margin-bottom: 16px;
+    }
+
+    .outcome-summary-bar {
+        flex: 0 0 100%;
+        display: flex;
+        align-items: center;
+        height: 32px;
+        $outcome-summary-icon-size: 22px;
+        line-height: 24px;
+        font-size: 17px;
+        font-weight: 600;
+        .block {
+            font-family: $fontFamily;
+            line-height: 20px;
+            font-size: 16px;
+            color: $neutral-0;
+            padding: 8px 8px 10px 10px;
+            height: 16px;
+            display: flex;
+            align-items: center;
+        }
+        .count {
+            font-weight: 600;
+        }
+        .fail {
+            @extend .block;
+            @include cross-icon-styles($outcome-summary-icon-size, 0px);
+            .check-container {
+                bottom: -1px;
+                margin-right: 2px;
+            }
+            background-color: $outcome-not-applicable-summary-color;
+            border-top-right-radius: 2px;
+            border-bottom-right-radius: 2px;
+        }
+        .pass {
+            @extend .block;
+            @include check-icon-styles($outcome-summary-icon-size, 0px);
+            .check-container {
+                bottom: -1px;
+                margin-right: 4px;
+                margin-left: 4px;
+            }
+            background-color: $outcome-pass-summary-color;
+            margin-left: 4px;
+            margin-right: 4px;
+            border-top-left-radius: 2px;
+            border-bottom-left-radius: 2px;
+        }
+        .not-applicable {
+            @extend .block;
+            @include incomplete-icon-styles(14px, 3px);
+            .check-container {
+                bottom: -1px;
+                margin-right: 6px;
+                margin-left: 5px;
+                border-color: $outcome-incomplete-summary-consistent-foreground;
+            }
+            background-color: $outcome-incomplete-summary-background;
+            color: $outcome-incomplete-summary-consistent-foreground;
+            border: 2px $outcome-incomplete-border-color solid;
+            height: 12px;
+        }
+    }
+}
+
 .scan-details-section {
+    @include boxShadow();
+
     background-color: $neutral-0;
     padding: 20px;
 
