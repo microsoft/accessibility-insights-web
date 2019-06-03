@@ -26,7 +26,7 @@ export const ReportBody = NamedSFC<ReportBodyProps>('ReportBody', props => {
 
     return (
         <BodySection>
-            <Header />
+            <Header {...sectionProps} />
             <Title />
             <Summary {...sectionProps} />
             <Details {...sectionProps} />

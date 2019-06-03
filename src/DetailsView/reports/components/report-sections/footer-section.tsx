@@ -6,7 +6,7 @@ import { NewTabLink } from '../../../../common/components/new-tab-link';
 import { NamedSFC } from '../../../../common/react/named-sfc';
 import { toolName } from '../../../../content/strings/application';
 
-export const Footer = NamedSFC('Footer', () => {
+export const FooterSection = NamedSFC('FooterSection', () => {
     return (
         <div className="report-footer" role="contentinfo">
             This automated checks result was generated using <b id="tool-name">{toolName}</b>, a tool that helps debug and find

@@ -15,7 +15,7 @@ export type SectionProps = {
 
 export type ReportSectionFactory = {
     BodySection: ReactSFCWithDisplayName;
-    Header: ReactSFCWithDisplayName;
+    Header: ReactSFCWithDisplayName<SectionProps>;
     Title: ReactSFCWithDisplayName;
     Summary: ReactSFCWithDisplayName<SectionProps>;
     Details: ReactSFCWithDisplayName<SectionProps>;

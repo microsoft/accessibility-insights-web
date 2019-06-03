@@ -3,11 +3,11 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-import { Footer } from '../../../../../../../DetailsView/reports/components/report-sections/footer';
+import { FooterSection } from '../../../../../../../DetailsView/reports/components/report-sections/footer-section';
 
 describe('Footer', () => {
     it('renders', () => {
-        const wrapper = shallow(<Footer />);
+        const wrapper = shallow(<FooterSection />);
 
         expect(wrapper.getElement()).toMatchSnapshot();
     });

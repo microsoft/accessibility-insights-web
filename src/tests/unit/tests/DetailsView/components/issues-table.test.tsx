@@ -25,7 +25,7 @@ describe('IssuesTableTest', () => {
         reportGeneratorProviderMock = Mock.ofType<ReportGeneratorProvider>();
         reportGeneratorProviderMock.setup(provider => provider.getGenerator()).returns(() => reportGeneratorMock.object);
         deps = {
-            dateProvider: DateProvider.getDate,
+            getDateFromTimestamp: DateProvider.getDateFromTimestamp,
             reportGeneratorProvider: reportGeneratorProviderMock.object,
         } as any;
     });

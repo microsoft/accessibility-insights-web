@@ -166,7 +166,7 @@ export class TabStopsListener {
     private onFocusIn(event: Event): void {
         const target: HTMLElement = event.target as HTMLElement;
 
-        const timestamp: Date = DateProvider.getDate();
+        const timestamp: Date = DateProvider.getCurrentDate();
 
         const tabStopEvent: TabStopEvent = {
             timestamp: timestamp.getTime(),

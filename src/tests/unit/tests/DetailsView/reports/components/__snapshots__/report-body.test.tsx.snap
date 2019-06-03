@@ -113,6 +113,6 @@ exports[`ReportBodyTest renders 1`] = `
       />
     </div>
   </div>
-  <Footer />
+  <FooterSection />
 </body>
 `;
