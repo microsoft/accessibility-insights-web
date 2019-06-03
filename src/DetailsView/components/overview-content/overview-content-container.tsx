@@ -9,13 +9,10 @@ import { TabStoreData } from '../../../common/types/store-data/tab-store-data';
 import { HyperlinkDefinition } from '../../../views/content/content-page';
 import { DetailsViewActionMessageCreator } from '../../actions/details-view-action-message-creator';
 import { OverviewSummaryReportModel } from '../../reports/assessment-report-model';
-import { BaseCardLayer } from '../../reports/components/base-card-layer';
+import { AssessmentReportSummary } from '../../reports/components/assessment-report-summary';
 import { GetAssessmentSummaryModelFromProviderAndStoreData } from '../../reports/get-assessment-summary-model';
 import { TargetChangeDialog, TargetChangeDialogDeps } from '../target-change-dialog';
-import { OverviewHeading } from './overview-heading';
-import { OverviewHelpSectionDeps } from './overview-help-section';
-import { AutomatedChecksIssueDetailsList } from '../../reports/components/automated-check-issue-details-list';
-import { DecoratedAxeNodeResult } from '../../../injected/scanner-utils';
+import { OverviewHelpSection, OverviewHelpSectionDeps } from './overview-help-section';
 
 const linkDataSource: HyperlinkDefinition[] = [
     {
@@ -31,18 +28,6 @@ const linkDataSource: HyperlinkDefinition[] = [
         text: 'Ask a question',
     },
 ];
-
-
-const sampleData = [{
-    failureSummary: 'RR-failureSummary',
-    guidanceLinks: [{ text: 'WCAG-1.4.1' }, { text: 'wcag-2.8.2' }],
-    help: 'RR-help',
-    html: 'RR-html',
-    ruleId: 'RR-rule-id',
-    helpUrl: 'RR-help-url',
-    selector: 'RR-selector<x>',
-    snippet: 'RR-snippet   space',
-}] as DecoratedAxeNodeResult[];
 
 export type OverviewContainerDeps = {
     assessmentsProvider: AssessmentsProvider;
@@ -84,12 +69,11 @@ export const OverviewContainer = NamedSFC<OverviewContainerProps>('OverviewConta
                 actionMessageCreator={props.deps.detailsViewActionMessageCreator}
             />
             <section className="overview-text-summary-section">
-                <AutomatedChecksIssueDetailsList nodeResults={sampleData} />
-                {/* <AssessmentReportSummary summary={summaryData} /> */}
+                <AssessmentReportSummary summary={summaryData} />
             </section>
-            {/* <section className="overview-help-section">
+            <section className="overview-help-section">
                 <OverviewHelpSection linkDataSource={linkDataSource} deps={deps} />
-            </section> */}
+            </section>
         </div>
     );
 });
