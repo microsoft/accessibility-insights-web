@@ -66,10 +66,11 @@ body {
 }
 
 $outcome-pass-summary-color: $positive-outcome;
+$outcome-fail-summary-color: $negative-outcome;
 $outcome-incomplete-summary-consistent-foreground: $always-white;
 $outcome-incomplete-summary-background: $neutral-outcome;
 $outcome-incomplete-border-color: $incomplete-color;
-$outcome-not-applicable-summary-color: $negative-outcome;
+$outcome-not-applicable-summary-color: $neutral-outcome;
 
 .summary-section {
     @include boxShadow();
@@ -86,7 +87,7 @@ $outcome-not-applicable-summary-color: $negative-outcome;
     }
 
     .outcome-summary-bar {
-        $outcome-summary-icon-size: 22px;
+        $outcome-summary-icon-size: 16px;
         flex: 0 0 100%;
         display: flex;
         align-items: center;
@@ -110,22 +111,24 @@ $outcome-not-applicable-summary-color: $negative-outcome;
         }
         .fail {
             @extend .block;
-            @include cross-icon-styles($outcome-summary-icon-size, 0px);
+            @include cross-icon-styles($outcome-summary-icon-size, 0px, $outcome-fail-summary-color);
             .check-container {
                 bottom: -1px;
-                margin-right: 2px;
+                margin-right: 8px;
+                background: $neutral-0;
             }
-            background-color: $outcome-not-applicable-summary-color;
+            background-color: $outcome-fail-summary-color;
             border-top-right-radius: 2px;
             border-bottom-right-radius: 2px;
         }
         .pass {
             @extend .block;
-            @include check-icon-styles($outcome-summary-icon-size, 0px);
+            @include check-icon-styles($outcome-summary-icon-size, 0px, $outcome-pass-summary-color);
             .check-container {
                 bottom: -1px;
-                margin-right: 4px;
+                margin-right: 8px;
                 margin-left: 4px;
+                background: $neutral-0;
             }
             background-color: $outcome-pass-summary-color;
             margin-left: 4px;
@@ -135,17 +138,18 @@ $outcome-not-applicable-summary-color: $negative-outcome;
         }
         .not-applicable {
             @extend .block;
-            @include incomplete-icon-styles(14px, 3px);
+            @include inapplicable-icon-styles($outcome-summary-icon-size, 0px, $outcome-not-applicable-summary-color);
             .check-container {
                 bottom: -1px;
-                margin-right: 6px;
-                margin-left: 5px;
-                border-color: $outcome-incomplete-summary-consistent-foreground;
+                margin-right: 8px;
+                margin-left: 4px;
+                background: $neutral-0;
             }
-            background-color: $outcome-incomplete-summary-background;
-            color: $outcome-incomplete-summary-consistent-foreground;
-            border: 2px $outcome-incomplete-border-color solid;
-            height: 12px;
+            background-color: $outcome-not-applicable-summary-color;
+            margin-left: 4px;
+            margin-right: 4px;
+            border-top-left-radius: 2px;
+            border-bottom-left-radius: 2px;
         }
     }
 }

@@ -1,17 +1,17 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { kebabCase } from 'lodash';
 import * as React from 'react';
 
-import { kebabCase } from 'lodash';
 import { CheckIcon } from '../../../../common/icons/check-icon';
-import { CircleIcon } from '../../../../common/icons/circle-icon';
 import { CrossIcon } from '../../../../common/icons/cross-icon';
+import { InapplicableIcon } from '../../../../common/icons/inapplicable-icon';
 import { NamedSFC } from '../../../../common/react/named-sfc';
 import { SectionProps } from './report-section-factory';
 
 const iconMap = {
     pass: <CheckIcon />,
-    'not applicable': <CircleIcon />,
+    'not applicable': <InapplicableIcon />,
     fail: <CrossIcon />,
 };
 
