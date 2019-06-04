@@ -5,6 +5,7 @@ import * as React from 'react';
 import { NamedSFC } from '../../../../common/react/named-sfc';
 import { SectionProps } from './report-section-factory';
 import { ResultSectionTitle } from './result-section-title';
+import { RuleDetailsGroup } from './rule-details-group';
 
 export type PassedChecksSectionProps = Pick<SectionProps, 'scanResult'>;
 
@@ -13,6 +14,7 @@ export const PassedChecksSection = NamedSFC<PassedChecksSectionProps>('PassedChe
     return (
         <div id="passed-checks-section">
             <ResultSectionTitle title="Passed checks" count={count} outcomeType="pass" />
+            <RuleDetailsGroup rules={props.scanResult.passes} />
         </div>
     );
 });

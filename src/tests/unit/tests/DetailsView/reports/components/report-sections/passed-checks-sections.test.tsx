@@ -2,11 +2,12 @@
 // Licensed under the MIT License.
 import { shallow } from 'enzyme';
 import * as React from 'react';
+
 import {
     PassedChecksSection,
     PassedChecksSectionProps,
 } from '../../../../../../../DetailsView/reports/components/report-sections/passed-checks-section';
-import { RuleResult, ScanResults } from '../../../../../../../scanner/iruleresults';
+import { RuleResult } from '../../../../../../../scanner/iruleresults';
 
 describe('PassedChecksSection', () => {
     it('renders', () => {

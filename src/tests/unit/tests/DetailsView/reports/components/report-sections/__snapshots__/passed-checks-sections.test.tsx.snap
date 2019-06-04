@@ -9,5 +9,14 @@ exports[`PassedChecksSection renders 1`] = `
     outcomeType="pass"
     title="Passed checks"
   />
+  <RuleDetailsGroup
+    rules={
+      Array [
+        Object {},
+        Object {},
+        Object {},
+      ]
+    }
+  />
 </div>
 `;
