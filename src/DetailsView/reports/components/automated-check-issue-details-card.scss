@@ -8,8 +8,7 @@
     position: relative;
     opacity: 1;
     background: #fff;
-    padding: 28px;
-    margin-bottom: 28px;
+    padding: 20px;
     border-radius: 4px;
     box-shadow: 0px 0.6px 1.8px rgba(0, 0, 0, 0.108), 0px 3.2px 7.2px rgba(0, 0, 0, 0.132);
 }
@@ -22,7 +21,7 @@
 .report-instances .row {
     top: calc(50% - 20px / 2);
     height: 48px;
-    border-bottom: 2px solid $neutral-20;
+    border-bottom: 0.5px solid $neutral-10;
 }
 
 .report-instances .row:last-child {
@@ -44,4 +43,8 @@
     line-height: 20px;
     align-items: flex-end;
     display: flex;
+}
+
+table.report-instance-table {
+    border-collapse: collapse;
 }
