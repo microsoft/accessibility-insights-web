@@ -11,28 +11,28 @@ import { SectionProps } from './report-section-factory';
 
 const iconMap = {
     pass: <CheckIcon />,
-    'not applicable': <InapplicableIcon />,
+    inapplicable: <InapplicableIcon />,
     fail: <CrossIcon />,
 };
 
-const outcomeText = {
+export const outcomeText = {
     pass: 'Passed',
-    'not applicable': 'Not applicable',
+    inapplicable: 'Not applicable',
     fail: 'Failed',
 };
 
-type OutcomeType = 'pass' | 'fail' | 'not applicable';
-const allOutcomeTypes: OutcomeType[] = ['fail', 'pass', 'not applicable'];
+export type InstanceOutcomeType = 'pass' | 'fail' | 'inapplicable';
+const allOutcomeTypes: InstanceOutcomeType[] = ['fail', 'pass', 'inapplicable'];
 
 export type OutcomeSummaryBarProps = Pick<SectionProps, 'scanResult'>;
 
 export const OutcomeSummaryBar = NamedSFC<OutcomeSummaryBarProps>('OutcomeSummaryBar', ({ scanResult }) => {
-    const countSummary: { [type in OutcomeType]: number } = {
+    const countSummary: { [type in InstanceOutcomeType]: number } = {
         pass: scanResult.passes.length,
         fail: scanResult.violations.reduce((total, violation) => {
             return total + violation.nodes.length;
         }, 0),
-        'not applicable': scanResult.inapplicable.length,
+        inapplicable: scanResult.inapplicable.length,
     };
 
     return (

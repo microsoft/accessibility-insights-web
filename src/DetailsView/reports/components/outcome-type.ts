@@ -4,16 +4,16 @@ import { countBy, values } from 'lodash';
 
 import { ManualTestStatus, ManualTestStatusData } from '../../../common/types/manual-test-status';
 
-export type OutcomeType = 'pass' | 'incomplete' | 'fail';
+export type RequirementOutcomeType = 'pass' | 'incomplete' | 'fail';
 
-export const allOutcomeTypes: OutcomeType[] = ['pass', 'incomplete', 'fail'];
+export const allOutcomeTypes: RequirementOutcomeType[] = ['pass', 'incomplete', 'fail'];
 
-export function outcomeTypeFromTestStatus(testStatus: ManualTestStatus): OutcomeType {
+export function outcomeTypeFromTestStatus(testStatus: ManualTestStatus): RequirementOutcomeType {
     const statusMap = {
         [ManualTestStatus.PASS]: 'pass',
         [ManualTestStatus.FAIL]: 'fail',
         [ManualTestStatus.UNKNOWN]: 'incomplete',
-    } as { [P in ManualTestStatus]: OutcomeType };
+    } as { [P in ManualTestStatus]: RequirementOutcomeType };
 
     return statusMap[testStatus];
 }
@@ -26,13 +26,13 @@ export interface OutcomeTypeSemantic {
     pastTense: string;
 }
 
-export const outcomeTypeSemantics: { [OT in OutcomeType]: OutcomeTypeSemantic } = {
+export const outcomeTypeSemantics: { [OT in RequirementOutcomeType]: OutcomeTypeSemantic } = {
     pass: { pastTense: 'passed' },
     incomplete: { pastTense: 'incomplete' },
     fail: { pastTense: 'failed' },
 };
 
-export type OutcomeStats = { [OT in OutcomeType]: number };
+export type OutcomeStats = { [OT in RequirementOutcomeType]: number };
 
 export function outcomeStatsFromManualTestStatus(testStepStatus: ManualTestStatusData): OutcomeStats {
     const outcomeTypeSet = values(testStepStatus).map(s => outcomeTypeFromTestStatus(s.stepFinalResult));

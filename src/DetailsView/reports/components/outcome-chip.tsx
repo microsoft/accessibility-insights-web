@@ -4,7 +4,10 @@ import * as React from 'react';
 
 import { NamedSFC } from '../../../common/react/named-sfc';
 import { OutcomeIcon } from './outcome-icon';
-import { OutcomeType, outcomeTypeSemantics } from './outcome-type';
+import { outcomeTypeSemantics, RequirementOutcomeType } from './outcome-type';
+import { InstanceOutcomeType, outcomeText } from './report-sections/outcome-summary-bar';
+
+export type OutcomeType = RequirementOutcomeType | InstanceOutcomeType;
 
 interface OutcomeChipProps {
     outcomeType: OutcomeType;
@@ -13,7 +16,7 @@ interface OutcomeChipProps {
 
 export const OutcomeChip = NamedSFC<OutcomeChipProps>('OutcomeChip', props => {
     const { outcomeType, count } = props;
-    const { pastTense } = outcomeTypeSemantics[outcomeType];
+    const { pastTense } = outcomeTypeSemantics[outcomeType] || outcomeText[outcomeType];
 
     const text = `${count} ${pastTense}`;
 
