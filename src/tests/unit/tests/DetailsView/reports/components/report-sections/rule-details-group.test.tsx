@@ -8,7 +8,7 @@ import { RuleResult } from '../../../../../../../scanner/iruleresults';
 
 describe('RuleDetailsGroup', () => {
     it('renders', () => {
-        const rules = [{} as RuleResult, {} as RuleResult, {} as RuleResult];
+        const rules = [{ id: '1' } as RuleResult, { id: '2' } as RuleResult, { id: '3' } as RuleResult];
 
         const wrapped = shallow(<RuleDetailsGroup rules={rules} />);
 
