@@ -1,0 +1,80 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AutomatedChecksIssueDetailsInstances render 0 instances 1`] = `<React.Fragment />`;
+
+exports[`AutomatedChecksIssueDetailsInstances render 2 instances 1`] = `
+<React.Fragment>
+  <tr
+    className="row"
+  >
+    <th
+      className="label"
+    >
+      Path
+    </th>
+    <td
+      className="instance-list-row-content"
+    />
+  </tr>
+  <tr
+    className="row"
+  >
+    <th
+      className="label"
+    >
+      Snippet
+    </th>
+    <td
+      className="instance-list-row-content content-snipppet"
+    />
+  </tr>
+  <tr
+    className="row"
+  >
+    <th
+      className="label"
+    >
+      How to fix
+    </th>
+    <td
+      className="instance-list-row-content"
+    />
+  </tr>
+  <tr
+    className="row"
+  >
+    <th
+      className="label"
+    >
+      Path
+    </th>
+    <td
+      className="instance-list-row-content"
+    />
+  </tr>
+  <tr
+    className="row"
+  >
+    <th
+      className="label"
+    >
+      Snippet
+    </th>
+    <td
+      className="instance-list-row-content content-snipppet"
+    />
+  </tr>
+  <tr
+    className="row"
+  >
+    <th
+      className="label"
+    >
+      How to fix
+    </th>
+    <td
+      className="instance-list-row-content"
+    />
+  </tr>
+</React.Fragment>
+`;
