@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PassedChecksSection renders 1`] = `
+<div
+  id="passed-checks-section"
+>
+  <ResultSectionTitle
+    count={3}
+    outcomeType="pass"
+    title="Passed checks"
+  />
+</div>
+`;
