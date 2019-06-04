@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PassedChecksSection renders 1`] = `
+<div
+  id="result-section-class-name"
+>
+  <ResultSectionTitle
+    count={2}
+    outcomeType="pass"
+    title="result section title"
+  />
+  <RuleDetailsGroup
+    rules={
+      Array [
+        Object {},
+        Object {},
+      ]
+    }
+  />
+</div>
+`;

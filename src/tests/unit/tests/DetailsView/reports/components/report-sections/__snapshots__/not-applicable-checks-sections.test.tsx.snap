@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PassedChecksSection renders 1`] = `
+<ResultSection
+  containerClassName="not-applicable-checks-section"
+  outcomeType="incomplete"
+  rules={
+    Array [
+      Object {},
+      Object {},
+      Object {},
+    ]
+  }
+  title="Not applicable"
+/>
+`;

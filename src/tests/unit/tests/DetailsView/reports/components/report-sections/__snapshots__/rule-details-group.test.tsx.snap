@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RuleDetailsGroup renders 1`] = `
+<div
+  className="rule-details-group"
+>
+  <RuleDetails
+    rule={
+      Object {
+        "id": "1",
+      }
+    }
+  />
+  <RuleDetails
+    rule={
+      Object {
+        "id": "2",
+      }
+    }
+  />
+  <RuleDetails
+    rule={
+      Object {
+        "id": "3",
+      }
+    }
+  />
+</div>
+`;
