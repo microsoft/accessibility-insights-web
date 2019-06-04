@@ -8,6 +8,8 @@ import { ContentContainer } from './content-container';
 import { DetailsSection } from './details-section';
 import { FooterSection } from './footer-section';
 import { HeaderSection } from './header-section';
+import { NotApplicableChecksSection } from './not-applicable-section';
+import { PassedChecksSection } from './passed-checks-section';
 import { ReportSectionFactory } from './report-section-factory';
 import { SummarySection } from './summary-section';
 import { TitleSection } from './title-section';
@@ -26,8 +28,6 @@ const createWrappingComponent = (name: string) => {
 
 const ResultSection = createWrappingComponent('result-section');
 const FailedInstances = createBasicComponent('failed-instances-section');
-const PassedChecks = createBasicComponent('passed-checks-section');
-const NotApplicableChecks = createBasicComponent('not-applicable-checks-section');
 
 // TODO most of this sections are dummy sections, the point is to replace them as we develop them
 export const AutomatedChecksReportSectionFactory: ReportSectionFactory = {
@@ -39,7 +39,7 @@ export const AutomatedChecksReportSectionFactory: ReportSectionFactory = {
     Details: DetailsSection,
     ResultSection,
     FailedInstances,
-    PassedChecks,
-    NotApplicableChecks,
+    PassedChecks: PassedChecksSection,
+    NotApplicableChecks: NotApplicableChecksSection,
     Footer: FooterSection,
 };
