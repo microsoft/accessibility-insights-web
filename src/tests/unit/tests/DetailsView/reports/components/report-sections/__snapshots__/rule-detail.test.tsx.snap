@@ -19,7 +19,7 @@ exports[`RuleDetailsGroup renders 1`] = `
   >
     rule description
   </span>
-   
+   (
   <GuidanceLinks
     links={
       Array [
@@ -34,5 +34,6 @@ exports[`RuleDetailsGroup renders 1`] = `
       ]
     }
   />
+  )
 </div>
 `;

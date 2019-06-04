@@ -28,7 +28,7 @@ export const RuleDetail = NamedSFC<RuleDetailProps>('RuleDetails', ({ rule }) =>
 
     return (
         <div className="rule-detail">
-            {renderRuleName()}: {renderDescription()} {renderGuidanceLinks()}
+            {renderRuleName()}: {renderDescription()} ({renderGuidanceLinks()})
         </div>
     );
 });
