@@ -114,7 +114,7 @@ $outcome-not-applicable-summary-color: $neutral-outcome;
             @include cross-icon-styles($outcome-summary-icon-size, 0px, $outcome-fail-summary-color);
             .check-container {
                 bottom: -1px;
-                margin-right: 2px;
+                margin-right: 8px;
                 background: $neutral-0;
             }
             background-color: $outcome-fail-summary-color;
@@ -126,7 +126,7 @@ $outcome-not-applicable-summary-color: $neutral-outcome;
             @include check-icon-styles($outcome-summary-icon-size, 0px, $outcome-pass-summary-color);
             .check-container {
                 bottom: -1px;
-                margin-right: 4px;
+                margin-right: 8px;
                 margin-left: 4px;
                 background: $neutral-0;
             }
@@ -141,7 +141,7 @@ $outcome-not-applicable-summary-color: $neutral-outcome;
             @include inapplicable-icon-styles($outcome-summary-icon-size, 0px, $outcome-not-applicable-summary-color);
             .check-container {
                 bottom: -1px;
-                margin-right: 4px;
+                margin-right: 8px;
                 margin-left: 4px;
                 background: $neutral-0;
             }
