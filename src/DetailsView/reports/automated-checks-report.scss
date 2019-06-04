@@ -197,3 +197,29 @@ $outcome-not-applicable-summary-color: $negative-outcome;
     justify-content: flex-start;
     align-items: center;
 }
+
+.rule-detail {
+    font-size: 14px;
+
+    height: 56px;
+    padding: 0 8px;
+
+    box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.08);
+
+    .rule-details-id {
+        a {
+            font-family: $semiBoldFontFamily;
+            color: $primary-text !important;
+        }
+    }
+
+    .rule-detail-description {
+        color: $secondary-text !important;
+    }
+
+    .guidance-links {
+        a {
+            color: $secondary-text !important;
+        }
+    }
+}
