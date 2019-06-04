@@ -5,14 +5,17 @@ import * as React from 'react';
 import { NamedSFC } from '../../../../common/react/named-sfc';
 import { SectionProps } from './report-section-factory';
 import { ResultSectionTitle } from './result-section-title';
+import { RuleDetailsGroup } from './rule-details-group';
 
 export type NotApplicableChecksSectionProps = Pick<SectionProps, 'scanResult'>;
 
 export const NotApplicableChecksSection = NamedSFC<NotApplicableChecksSectionProps>('NotApplicableChecksSection', props => {
-    const count = props.scanResult.inapplicable.length;
+    const rules = props.scanResult.inapplicable;
+
     return (
         <div id="not-applicable-checks-section">
-            <ResultSectionTitle title="Not applicable" count={count} outcomeType="incomplete" />
+            <ResultSectionTitle title="Not applicable" count={rules.length} outcomeType="incomplete" />
+            <RuleDetailsGroup rules={rules} />
         </div>
     );
 });
