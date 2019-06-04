@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PassedChecksSection renders 1`] = `
+<div
+  id="not-applicable-checks-section"
+>
+  <ResultSectionTitle
+    count={3}
+    outcomeType="incomplete"
+    title="Not applicable"
+  />
+</div>
+`;
