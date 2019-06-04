@@ -8,29 +8,21 @@ export interface AutomatedChecksIssueDetailsInstancesProps {
     nodeResults: DecoratedAxeNodeResult[];
 }
 
+const createTableRow = (label, content, rowKey) => (
+    <tr className="row" key={rowKey}>
+        <td className="label">{label}</td>
+        <td className="content">{content}</td>
+    </tr>
+);
+
 export const AutomatedChecksIssueDetailsInstances = NamedSFC<AutomatedChecksIssueDetailsInstancesProps>(
     'AutomatedChecksIssueDetailsInstances',
     ({ nodeResults }) => {
         const rows: JSX.Element[] = [];
         nodeResults.forEach((nodeResult, index) => {
-            rows.push(
-                <tr className="row" key={`path-row-${index}`}>
-                    <td className="label">Path</td>
-                    <td className="content">{nodeResult.selector}</td>
-                </tr>,
-            );
-            rows.push(
-                <tr className="row" key={`snippet-row-${index}`}>
-                    <td className="label">Snippet</td>
-                    <td className="content">{nodeResult.snippet}</td>
-                </tr>,
-            );
-            rows.push(
-                <tr className="row" key={`how-to-fix-row-${index}`}>
-                    <td className="label">How to fix</td>
-                    <td className="content">{nodeResult.failureSummary}</td>
-                </tr>,
-            );
+            rows.push(createTableRow('Path', nodeResult.selector, `path-row-${index}`));
+            rows.push(createTableRow('Snippet', nodeResult.snippet, `snippet-row-${index}`));
+            rows.push(createTableRow('How to fix', nodeResult.failureSummary, `how-to-fix-row-${index}`));
         });
         return <>{rows}</>;
     },
