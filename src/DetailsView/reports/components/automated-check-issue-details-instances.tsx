@@ -10,7 +10,7 @@ export interface AutomatedChecksIssueDetailsInstancesProps {
 
 const createTableRow = (label, content, rowKey) => (
     <tr className="row" key={rowKey}>
-        <td className="label">{label}</td>
+        <th className="label">{label}</th>
         <td className="content">{content}</td>
     </tr>
 );

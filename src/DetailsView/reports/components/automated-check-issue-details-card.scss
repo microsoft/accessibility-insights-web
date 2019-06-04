@@ -20,7 +20,6 @@
 
 .report-instances .row {
     top: calc(50% - 20px / 2);
-    height: 48px;
     border-bottom: 0.5px solid $neutral-10;
 }
 
@@ -34,11 +33,12 @@
     line-height: 20px;
     font-weight: bold;
     color: $primary-text;
-    margin-right: 12px;
+    text-align: left;
+    width: 120px;
 }
 .report-instance-table .content {
     color: $secondary-text;
-    margin: 12px;
+    margin: 12px 12px 12px 0px;
     font-size: 14px;
     line-height: 20px;
     align-items: flex-end;
@@ -47,4 +47,29 @@
 
 table.report-instance-table {
     border-collapse: collapse;
+    overflow-x: auto;
+}
+
+@media screen and (max-width: 600px) {
+    .report-instance-table tr {
+        display: block;
+    }
+
+    .report-instance-table td {
+        display: block;
+        .label {
+            text-align: left;
+        }
+        .content {
+            text-align: right;
+        }
+    }
+
+    .report-instance-table td::before {
+        float: left;
+    }
+
+    .report-instance-table .label {
+        padding-top: 12px;
+    }
 }
