@@ -40,7 +40,7 @@ exports[`OutcomeSummaryBar failure only 1`] = `
       }
     }
   >
-    <CircleIcon />
+    <InapplicableIcon />
      
     0
      
@@ -89,7 +89,7 @@ exports[`OutcomeSummaryBar failures + not applicable + passes 1`] = `
       }
     }
   >
-    <CircleIcon />
+    <InapplicableIcon />
      
     3
      
@@ -138,7 +138,7 @@ exports[`OutcomeSummaryBar failures + not applicable only 1`] = `
       }
     }
   >
-    <CircleIcon />
+    <InapplicableIcon />
      
     3
      
@@ -187,7 +187,7 @@ exports[`OutcomeSummaryBar failures + passes only 1`] = `
       }
     }
   >
-    <CircleIcon />
+    <InapplicableIcon />
      
     0
      
@@ -236,7 +236,7 @@ exports[`OutcomeSummaryBar not applicable + passes only 1`] = `
       }
     }
   >
-    <CircleIcon />
+    <InapplicableIcon />
      
     3
      
@@ -285,7 +285,7 @@ exports[`OutcomeSummaryBar not applicable only 1`] = `
       }
     }
   >
-    <CircleIcon />
+    <InapplicableIcon />
      
     0
      
@@ -334,7 +334,7 @@ exports[`OutcomeSummaryBar passes only 1`] = `
       }
     }
   >
-    <CircleIcon />
+    <InapplicableIcon />
      
     0
      
