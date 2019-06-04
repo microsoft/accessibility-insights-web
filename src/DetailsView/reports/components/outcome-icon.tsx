@@ -5,9 +5,9 @@ import * as React from 'react';
 import { CheckIcon } from '../../../common/icons/check-icon';
 import { CircleIcon } from '../../../common/icons/circle-icon';
 import { CrossIcon } from '../../../common/icons/cross-icon';
+import { InapplicableIcon } from '../../../common/icons/inapplicable-icon';
 import { NamedSFC } from '../../../common/react/named-sfc';
 import { OutcomeType } from './outcome-chip';
-import { InapplicableIcon } from '../../../common/icons/inapplicable-icon';
 
 interface OutcomeIconProps {
     outcomeType: OutcomeType;

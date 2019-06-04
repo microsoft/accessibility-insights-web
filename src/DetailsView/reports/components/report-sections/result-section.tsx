@@ -4,9 +4,9 @@ import * as React from 'react';
 
 import { NamedSFC } from '../../../../common/react/named-sfc';
 import { RuleResult } from '../../../../scanner/iruleresults';
+import { InstanceOutcomeType } from './outcome-summary-bar';
 import { ResultSectionTitle } from './result-section-title';
 import { RuleDetailsGroup } from './rule-details-group';
-import { InstanceOutcomeType } from './outcome-summary-bar';
 
 export type ResultSectionProps = {
     rules: RuleResult[];

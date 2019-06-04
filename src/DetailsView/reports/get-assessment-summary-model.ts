@@ -8,7 +8,7 @@ import { ManualTestStatusData } from '../../common/types/manual-test-status';
 import { AssessmentData, AssessmentStoreData } from '../../common/types/store-data/assessment-result-data';
 import * as Model from './assessment-report-model';
 import { OutcomeMath } from './components/outcome-math';
-import { allOutcomeTypes, OutcomeStats, RequirementOutcomeType, outcomeTypeFromTestStatus } from './components/outcome-type';
+import { allOutcomeTypes, OutcomeStats, outcomeTypeFromTestStatus, RequirementOutcomeType } from './components/outcome-type';
 
 export type AssessmentSummaryResult = Pick<Assessment, 'title'> & { storeData: Pick<AssessmentData, 'testStepStatus'> };
 export type AssessmentStatusData = { [key: string]: ManualTestStatusData };
