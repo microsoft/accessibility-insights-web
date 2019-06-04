@@ -27,6 +27,33 @@ exports[`OutcomeChip render fail 1`] = `
 </span>
 `;
 
+exports[`OutcomeChip render inapplicable 1`] = `
+<span
+  className="outcome-chip outcome-chip-inapplicable"
+  title="4 undefined"
+>
+  <span
+    className="icon"
+  >
+    <OutcomeIcon
+      outcomeType="inapplicable"
+    />
+  </span>
+  <span
+    aria-hidden="true"
+    className="count"
+  >
+     
+    4
+  </span>
+  <span
+    className="screen-reader-only"
+  >
+    4 undefined
+  </span>
+</span>
+`;
+
 exports[`OutcomeChip render incomplete 1`] = `
 <span
   className="outcome-chip outcome-chip-incomplete"
