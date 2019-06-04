@@ -7,14 +7,14 @@
 .base-card-layer-main {
     position: relative;
     opacity: 1;
-    background: #fff;
+    background: $neutral-0;
     padding: 20px;
     border-radius: 4px;
     box-shadow: 0px 0.6px 1.8px rgba(0, 0, 0, 0.108), 0px 3.2px 7.2px rgba(0, 0, 0, 0.132);
 }
 
 .report-instance-table {
-    font-family: Menlo, Consolas, Courier New, monospace;
+    font-family: Segoe UI Menlo, Consolas, Courier New, monospace;
     word-break: break-all;
 }
 
@@ -28,7 +28,6 @@
 }
 
 .report-instance-table .label {
-    font-family: Segoe UI;
     font-size: 14px;
     line-height: 20px;
     font-weight: bold;

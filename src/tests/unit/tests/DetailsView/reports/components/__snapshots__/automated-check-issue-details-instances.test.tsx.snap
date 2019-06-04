@@ -7,11 +7,11 @@ exports[`AutomatedChecksIssueDetailsInstances render 2 instances 1`] = `
   <tr
     className="row"
   >
-    <td
+    <th
       className="label"
     >
       Path
-    </td>
+    </th>
     <td
       className="content"
     />
@@ -19,11 +19,11 @@ exports[`AutomatedChecksIssueDetailsInstances render 2 instances 1`] = `
   <tr
     className="row"
   >
-    <td
+    <th
       className="label"
     >
       Snippet
-    </td>
+    </th>
     <td
       className="content"
     />
@@ -31,11 +31,11 @@ exports[`AutomatedChecksIssueDetailsInstances render 2 instances 1`] = `
   <tr
     className="row"
   >
-    <td
+    <th
       className="label"
     >
       How to fix
-    </td>
+    </th>
     <td
       className="content"
     />
@@ -43,11 +43,11 @@ exports[`AutomatedChecksIssueDetailsInstances render 2 instances 1`] = `
   <tr
     className="row"
   >
-    <td
+    <th
       className="label"
     >
       Path
-    </td>
+    </th>
     <td
       className="content"
     />
@@ -55,11 +55,11 @@ exports[`AutomatedChecksIssueDetailsInstances render 2 instances 1`] = `
   <tr
     className="row"
   >
-    <td
+    <th
       className="label"
     >
       Snippet
-    </td>
+    </th>
     <td
       className="content"
     />
@@ -67,11 +67,11 @@ exports[`AutomatedChecksIssueDetailsInstances render 2 instances 1`] = `
   <tr
     className="row"
   >
-    <td
+    <th
       className="label"
     >
       How to fix
-    </td>
+    </th>
     <td
       className="content"
     />
