@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import * as classNames from 'classnames';
 import * as React from 'react';
 import { NamedSFC } from '../../../common/react/named-sfc';
 import { DecoratedAxeNodeResult } from '../../../injected/scanner-utils';
@@ -8,12 +9,19 @@ export interface AutomatedChecksIssueDetailsInstancesProps {
     nodeResults: DecoratedAxeNodeResult[];
 }
 
-const createTableRow = (label, content, rowKey) => (
-    <tr className="row" key={rowKey}>
-        <th className="label">{label}</th>
-        <td className="content">{content}</td>
-    </tr>
-);
+const createTableRow = (label, content, rowKey) => {
+    const contentIsSnippet: boolean = label === 'Snippet';
+    const contentStyling = classNames({
+        'instance-list-row-content': true,
+        'content-snipppet': contentIsSnippet,
+    });
+    return (
+        <tr className="row" key={rowKey}>
+            <th className="label">{label}</th>
+            <td className={contentStyling}>{content}</td>
+        </tr>
+    );
+};
 
 export const AutomatedChecksIssueDetailsInstances = NamedSFC<AutomatedChecksIssueDetailsInstancesProps>(
     'AutomatedChecksIssueDetailsInstances',

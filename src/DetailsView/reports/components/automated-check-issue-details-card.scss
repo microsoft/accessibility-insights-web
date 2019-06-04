@@ -14,7 +14,7 @@
 }
 
 .report-instance-table {
-    font-family: Segoe UI Menlo, Consolas, Courier New, monospace;
+    font-family: Segoe UI, Menlo, Consolas, Courier New, monospace;
     word-break: break-all;
 }
 
@@ -35,13 +35,18 @@
     text-align: left;
     width: 120px;
 }
-.report-instance-table .content {
+
+.report-instance-table .instance-list-row-content {
     color: $secondary-text;
     margin: 12px 12px 12px 0px;
     font-size: 14px;
     line-height: 20px;
     align-items: flex-end;
     display: flex;
+}
+
+.report-instance-table .instance-list-row-content.content-snipppet {
+    font-family: Consolas, Segoe UI, Courier New, monospace;
 }
 
 table.report-instance-table {
@@ -59,7 +64,7 @@ table.report-instance-table {
         .label {
             text-align: left;
         }
-        .content {
+        .instance-list-row-content {
             text-align: right;
         }
     }

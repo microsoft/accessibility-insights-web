@@ -13,7 +13,7 @@ exports[`AutomatedChecksIssueDetailsInstances render 2 instances 1`] = `
       Path
     </th>
     <td
-      className="content"
+      className="instance-list-row-content"
     />
   </tr>
   <tr
@@ -25,7 +25,7 @@ exports[`AutomatedChecksIssueDetailsInstances render 2 instances 1`] = `
       Snippet
     </th>
     <td
-      className="content"
+      className="instance-list-row-content content-snipppet"
     />
   </tr>
   <tr
@@ -37,7 +37,7 @@ exports[`AutomatedChecksIssueDetailsInstances render 2 instances 1`] = `
       How to fix
     </th>
     <td
-      className="content"
+      className="instance-list-row-content"
     />
   </tr>
   <tr
@@ -49,7 +49,7 @@ exports[`AutomatedChecksIssueDetailsInstances render 2 instances 1`] = `
       Path
     </th>
     <td
-      className="content"
+      className="instance-list-row-content"
     />
   </tr>
   <tr
@@ -61,7 +61,7 @@ exports[`AutomatedChecksIssueDetailsInstances render 2 instances 1`] = `
       Snippet
     </th>
     <td
-      className="content"
+      className="instance-list-row-content content-snipppet"
     />
   </tr>
   <tr
@@ -73,7 +73,7 @@ exports[`AutomatedChecksIssueDetailsInstances render 2 instances 1`] = `
       How to fix
     </th>
     <td
-      className="content"
+      className="instance-list-row-content"
     />
   </tr>
 </React.Fragment>
