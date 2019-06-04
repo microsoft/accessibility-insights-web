@@ -10,11 +10,12 @@ import { RuleDetailsGroup } from './rule-details-group';
 export type PassedChecksSectionProps = Pick<SectionProps, 'scanResult'>;
 
 export const PassedChecksSection = NamedSFC<PassedChecksSectionProps>('PassedChecksSection', props => {
-    const count = props.scanResult.passes.length;
+    const rules = props.scanResult.passes;
+
     return (
         <div id="passed-checks-section">
-            <ResultSectionTitle title="Passed checks" count={count} outcomeType="pass" />
-            <RuleDetailsGroup rules={props.scanResult.passes} />
+            <ResultSectionTitle title="Passed checks" count={rules.length} outcomeType="pass" />
+            <RuleDetailsGroup rules={rules} />
         </div>
     );
 });
