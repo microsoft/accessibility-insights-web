@@ -9,11 +9,10 @@ export interface AutomatedChecksIssueDetailsInstancesProps {
     nodeResults: DecoratedAxeNodeResult[];
 }
 
-const createTableRow = (label, content, rowKey) => {
-    const contentIsSnippet: boolean = label === 'Snippet';
+const createTableRow = (label: string, content: string, rowKey: string, needsExtraClassname?: boolean) => {
     const contentStyling = classNames({
         'instance-list-row-content': true,
-        'content-snipppet': contentIsSnippet,
+        'content-snipppet': !!needsExtraClassname,
     });
     return (
         <tr className="row" key={rowKey}>
@@ -29,7 +28,7 @@ export const AutomatedChecksIssueDetailsInstances = NamedSFC<AutomatedChecksIssu
         const rows: JSX.Element[] = [];
         nodeResults.forEach((nodeResult, index) => {
             rows.push(createTableRow('Path', nodeResult.selector, `path-row-${index}`));
-            rows.push(createTableRow('Snippet', nodeResult.snippet, `snippet-row-${index}`));
+            rows.push(createTableRow('Snippet', nodeResult.snippet, `snippet-row-${index}`, true));
             rows.push(createTableRow('How to fix', nodeResult.failureSummary, `how-to-fix-row-${index}`));
         });
         return <>{rows}</>;
