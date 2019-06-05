@@ -7,10 +7,29 @@ import { RuleDetailsGroup } from '../../../../../../../DetailsView/reports/compo
 import { RuleResult } from '../../../../../../../scanner/iruleresults';
 
 describe('RuleDetailsGroup', () => {
-    it('renders', () => {
+    it('renders, no details', () => {
         const rules = [{ id: '1' } as RuleResult, { id: '2' } as RuleResult, { id: '3' } as RuleResult];
 
         const wrapped = shallow(<RuleDetailsGroup rules={rules} />);
+
+        expect(wrapped.getElement()).toMatchSnapshot();
+    });
+
+    it('renders, with details', () => {
+        const rules = [
+            {
+                id: '1',
+                nodes: [
+                    {
+                        html: '<html>',
+                        snippet: '<html>',
+                        failureSummary: 'fix the error on html tag',
+                    } as AxeNodeResult,
+                ],
+            } as RuleResult,
+        ];
+
+        const wrapped = shallow(<RuleDetailsGroup rules={rules} showDetails={true} />);
 
         expect(wrapped.getElement()).toMatchSnapshot();
     });

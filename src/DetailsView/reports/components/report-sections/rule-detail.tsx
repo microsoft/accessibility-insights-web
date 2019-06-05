@@ -11,7 +11,7 @@ export type RuleDetailProps = {
     rule: RuleResult;
 };
 
-export const RuleDetail = NamedSFC<RuleDetailProps>('RuleDetails', ({ rule }) => {
+export const RuleDetail = NamedSFC<RuleDetailProps>('RuleDetails', ({ rule, children }) => {
     const renderRuleName = () => (
         <span className="rule-details-id">
             <NewTabLink href={rule.helpUrl}>{rule.id}</NewTabLink>
@@ -27,8 +27,11 @@ export const RuleDetail = NamedSFC<RuleDetailProps>('RuleDetails', ({ rule }) =>
     };
 
     return (
-        <div className="rule-detail">
-            {renderRuleName()}: {renderDescription()} ({renderGuidanceLinks()})
-        </div>
+        <>
+            <div className="rule-detail">
+                {renderRuleName()}: {renderDescription()} ({renderGuidanceLinks()})
+            </div>
+            {children}
+        </>
     );
 });

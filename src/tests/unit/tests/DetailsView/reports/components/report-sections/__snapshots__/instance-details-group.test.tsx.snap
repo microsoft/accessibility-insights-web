@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`InstanceDetailsGroup renders 1`] = `
+<React.Fragment>
+  <InstanceDetail
+    failureSummary="fix the error on html"
+    index={0}
+    selector="<html>"
+    snippet="<html>"
+  />
+  <InstanceDetail
+    failureSummary="fix the error on body"
+    index={1}
+    selector="<body>"
+    snippet="<body >"
+  />
+</React.Fragment>
+`;

@@ -7,12 +7,26 @@ import { ResultSection, ResultSectionProps } from '../../../../../../../DetailsV
 import { RuleResult } from '../../../../../../../scanner/iruleresults';
 
 describe('PassedChecksSection', () => {
-    it('renders', () => {
+    it('renders, not showDetails', () => {
         const props: ResultSectionProps = {
             title: 'result section title',
             containerClassName: 'result-section-class-name',
             rules: [{} as RuleResult, {} as RuleResult],
             outcomeType: 'pass',
+        };
+
+        const wrapper = shallow(<ResultSection {...props} />);
+
+        expect(wrapper.getElement()).toMatchSnapshot();
+    });
+
+    it('renders, with showDetails', () => {
+        const props: ResultSectionProps = {
+            title: 'result section title',
+            containerClassName: 'result-section-class-name',
+            rules: [{} as RuleResult, {} as RuleResult],
+            outcomeType: 'pass',
+            showDetails: true,
         };
 
         const wrapper = shallow(<ResultSection {...props} />);
