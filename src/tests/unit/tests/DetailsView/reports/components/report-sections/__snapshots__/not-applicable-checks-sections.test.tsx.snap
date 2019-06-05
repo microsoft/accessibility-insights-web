@@ -3,7 +3,7 @@
 exports[`PassedChecksSection renders 1`] = `
 <ResultSection
   containerClassName="not-applicable-checks-section"
-  outcomeType="incomplete"
+  outcomeType="inapplicable"
   rules={
     Array [
       Object {},

@@ -4,7 +4,7 @@ import * as React from 'react';
 
 import { NamedSFC } from '../../../../common/react/named-sfc';
 import { RuleResult } from '../../../../scanner/iruleresults';
-import { OutcomeType } from '../outcome-type';
+import { InstanceOutcomeType } from './outcome-summary-bar';
 import { ResultSectionTitle } from './result-section-title';
 import { RuleDetailsGroup } from './rule-details-group';
 
@@ -12,7 +12,7 @@ export type ResultSectionProps = {
     rules: RuleResult[];
     containerClassName: string;
     title: string;
-    outcomeType: OutcomeType;
+    outcomeType: InstanceOutcomeType;
     showDetails?: boolean;
 };
 
