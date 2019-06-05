@@ -24,7 +24,7 @@ export const OutcomeSummaryBar = NamedSFC<OutcomeSummaryBarProps>('OutcomeSummar
     return (
         <div className="outcome-summary-bar">
             {allInstanceOutcomeTypes.map(outcomeType => {
-                const text = outcomeTypeSemantics[outcomeType];
+                const text = outcomeTypeSemantics[outcomeType].pastTense;
                 const outcomeIcon = outcomeIconMap[outcomeType];
                 const count = countSummary[outcomeType];
 
