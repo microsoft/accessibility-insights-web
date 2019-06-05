@@ -13,6 +13,6 @@ export const NotApplicableChecksSection = NamedSFC<NotApplicableChecksSectionPro
         title="Not applicable"
         rules={scanResult.inapplicable}
         containerClassName="not-applicable-checks-section"
-        outcomeType="incomplete"
+        outcomeType="inapplicable"
     />
 ));

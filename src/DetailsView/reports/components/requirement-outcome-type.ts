@@ -3,17 +3,18 @@
 import { countBy, values } from 'lodash';
 
 import { ManualTestStatus, ManualTestStatusData } from '../../../common/types/manual-test-status';
+import { OutcomeTypeSemantic, outcomeTypeSemantics } from './outcome-type';
 
-export type OutcomeType = 'pass' | 'incomplete' | 'fail';
+export type RequirementOutcomeType = 'pass' | 'incomplete' | 'fail';
 
-export const allOutcomeTypes: OutcomeType[] = ['pass', 'incomplete', 'fail'];
+export const allRequirementOutcomeTypes: RequirementOutcomeType[] = ['pass', 'incomplete', 'fail'];
 
-export function outcomeTypeFromTestStatus(testStatus: ManualTestStatus): OutcomeType {
+export function outcomeTypeFromTestStatus(testStatus: ManualTestStatus): RequirementOutcomeType {
     const statusMap = {
         [ManualTestStatus.PASS]: 'pass',
         [ManualTestStatus.FAIL]: 'fail',
         [ManualTestStatus.UNKNOWN]: 'incomplete',
-    } as { [P in ManualTestStatus]: OutcomeType };
+    } as { [P in ManualTestStatus]: RequirementOutcomeType };
 
     return statusMap[testStatus];
 }
@@ -22,21 +23,11 @@ export function outcomeTypeSemanticsFromTestStatus(testStatus: ManualTestStatus)
     return outcomeTypeSemantics[outcomeTypeFromTestStatus(testStatus)];
 }
 
-export interface OutcomeTypeSemantic {
-    pastTense: string;
-}
+export type RequirementOutcomeStats = { [OT in RequirementOutcomeType]: number };
 
-export const outcomeTypeSemantics: { [OT in OutcomeType]: OutcomeTypeSemantic } = {
-    pass: { pastTense: 'passed' },
-    incomplete: { pastTense: 'incomplete' },
-    fail: { pastTense: 'failed' },
-};
-
-export type OutcomeStats = { [OT in OutcomeType]: number };
-
-export function outcomeStatsFromManualTestStatus(testStepStatus: ManualTestStatusData): OutcomeStats {
+export function outcomeStatsFromManualTestStatus(testStepStatus: ManualTestStatusData): RequirementOutcomeStats {
     const outcomeTypeSet = values(testStepStatus).map(s => outcomeTypeFromTestStatus(s.stepFinalResult));
-    const stats = countBy(outcomeTypeSet) as OutcomeStats;
+    const stats = countBy(outcomeTypeSet) as RequirementOutcomeStats;
     stats.pass = stats.pass || 0;
     stats.incomplete = stats.incomplete || 0;
     stats.fail = stats.fail || 0;

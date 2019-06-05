@@ -19,6 +19,7 @@ $outcome-incomplete-border-color: $incomplete-color;
 $outcome-incomplete-summary-background: $neutral-outcome;
 $outcome-incomplete-summary-consistent-foreground: $always-white;
 $outcome-fail-color: $negative-outcome;
+$outcome-inapplicable-color: $neutral-outcome;
 $outcome-fail-summary-color: $negative-outcome;
 @mixin outcome-chip-color($outcome-color) {
     .check-container {
@@ -71,6 +72,10 @@ $outcome-fail-summary-color: $negative-outcome;
     &.outcome-chip-fail {
         @include cross-icon-styles($outcome-chip-icon-size, 1px);
         @include outcome-chip-color($outcome-fail-color);
+    }
+    &.outcome-chip-inapplicable {
+        @include inapplicable-icon-styles($outcome-chip-icon-size, 1px);
+        @include outcome-chip-color($outcome-inapplicable-color);
     }
 }
 

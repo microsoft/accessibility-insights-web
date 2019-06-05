@@ -4,12 +4,12 @@ import * as React from 'react';
 
 import { NamedSFC } from '../../../../common/react/named-sfc';
 import { OutcomeChip } from '../outcome-chip';
-import { OutcomeType } from '../outcome-type';
+import { InstanceOutcomeType } from './outcome-summary-bar';
 
 export type ResultSectionTitlePros = {
     title: string;
     count: number;
-    outcomeType: OutcomeType;
+    outcomeType: InstanceOutcomeType;
 };
 
 export const ResultSectionTitle = NamedSFC<ResultSectionTitlePros>('ResultSectionTitle', props => {

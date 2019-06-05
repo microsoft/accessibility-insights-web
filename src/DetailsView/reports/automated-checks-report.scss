@@ -137,7 +137,7 @@ $outcome-not-applicable-summary-color: $neutral-outcome;
             border-top-left-radius: 2px;
             border-bottom-left-radius: 2px;
         }
-        .not-applicable {
+        .inapplicable {
             @extend .block;
             @include inapplicable-icon-styles($outcome-summary-icon-size, 0px, $outcome-not-applicable-summary-color);
             .check-container {
