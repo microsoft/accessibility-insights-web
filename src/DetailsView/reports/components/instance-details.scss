@@ -4,25 +4,37 @@
 @import '../../../common/styles/colors.scss';
 @import '../../../common/styles/fonts.scss';
 
-.base-card-layer-main {
-    position: relative;
-    opacity: 1;
+.report-instance-table {
     background: $neutral-0;
-    padding: 20px;
     border-radius: 4px;
     box-shadow: 0px 0.6px 1.8px rgba(0, 0, 0, 0.108), 0px 3.2px 7.2px rgba(0, 0, 0, 0.132);
+    display: block;
+    margin-bottom: 16px;
+
+    th {
+        padding-left: 20px;
+        padding-top: 14px;
+        padding-bottom: 14px;
+
+        vertical-align: top;
+    }
+
+    .row {
+        border-bottom: 0.5px solid $neutral-10;
+    }
+
+    .row:last-child {
+        border-bottom: none;
+    }
 }
 
-.report-instance-table {
-    font-family: Segoe UI, Menlo, Consolas, Courier New, monospace;
-    word-break: break-all;
-}
-
+// TODO check for removal
 .report-instances .row {
     top: calc(50% - 20px / 2);
     border-bottom: 0.5px solid $neutral-10;
 }
 
+// TODO check for removal
 .report-instances .row:last-child {
     border-bottom: none;
 }
@@ -30,10 +42,10 @@
 .report-instance-table .label {
     font-size: 14px;
     line-height: 20px;
-    font-weight: bold;
+    font-family: $semiBoldFontFamily;
     color: $primary-text;
     text-align: left;
-    width: 120px;
+    width: 70px;
 }
 
 .report-instance-table .instance-list-row-content {

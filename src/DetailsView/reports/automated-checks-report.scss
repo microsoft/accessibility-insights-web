@@ -5,6 +5,7 @@
 @import '../../common/styles/common.scss';
 @import '../../common/icons/icon.scss';
 @import './components/outcome.scss';
+@import './components/instance-details.scss';
 
 @mixin contentSize {
     max-width: 960px;
