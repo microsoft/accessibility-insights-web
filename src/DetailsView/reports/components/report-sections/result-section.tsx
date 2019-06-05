@@ -22,7 +22,7 @@ export const ResultSection = NamedSFC<ResultSectionProps>('ResultSection', props
     return (
         <div id={containerClassName}>
             <ResultSectionTitle title={title} count={rules.length} outcomeType={outcomeType} />
-            <RuleDetailsGroup rules={rules} showDetails={props.showDetails} />
+            <RuleDetailsGroup rules={rules} showDetails={props.showDetails} outcomeType={outcomeType} />
         </div>
     );
 });
