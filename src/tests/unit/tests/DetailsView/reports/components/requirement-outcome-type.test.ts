@@ -18,9 +18,9 @@ describe('OutcomeType', () => {
     });
 
     it('translates test status to outcomeTypeSemantics', () => {
-        expect(outcomeTypeSemanticsFromTestStatus(ManualTestStatus.PASS)).toEqual({ pastTense: 'passed' } as OutcomeTypeSemantic);
-        expect(outcomeTypeSemanticsFromTestStatus(ManualTestStatus.FAIL)).toEqual({ pastTense: 'failed' } as OutcomeTypeSemantic);
-        expect(outcomeTypeSemanticsFromTestStatus(ManualTestStatus.UNKNOWN)).toEqual({ pastTense: 'incomplete' } as OutcomeTypeSemantic);
+        expect(outcomeTypeSemanticsFromTestStatus(ManualTestStatus.PASS)).toEqual({ pastTense: 'Passed' } as OutcomeTypeSemantic);
+        expect(outcomeTypeSemanticsFromTestStatus(ManualTestStatus.FAIL)).toEqual({ pastTense: 'Failed' } as OutcomeTypeSemantic);
+        expect(outcomeTypeSemanticsFromTestStatus(ManualTestStatus.UNKNOWN)).toEqual({ pastTense: 'Incomplete' } as OutcomeTypeSemantic);
     });
 
     describe('outcomeStatsFromManualTestStatus', () => {
