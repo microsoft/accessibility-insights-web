@@ -28,6 +28,12 @@ body {
 .content-container {
     @include contentSize();
     margin-top: 24px;
+
+    h2 {
+        margin: 0px;
+        font-size: 17px;
+        line-height: 24px;
+    }
 }
 
 .title-section {
@@ -80,19 +86,13 @@ $outcome-not-applicable-summary-color: $neutral-outcome;
     padding: 25px;
     margin-bottom: 24px;
 
-    h3 {
-        margin: 0px;
-        font-size: 17px;
-        line-height: 24px;
-        margin-bottom: 16px;
-    }
-
     .outcome-summary-bar {
         $outcome-summary-icon-size: 16px;
         flex: 0 0 100%;
         display: flex;
         align-items: center;
         height: 32px;
+        margin-top: 16px;
         margin-bottom: 0px;
         line-height: 24px;
         font-size: 17px;
@@ -201,6 +201,7 @@ $outcome-not-applicable-summary-color: $neutral-outcome;
     flex-wrap: nowrap;
     justify-content: flex-start;
     align-items: center;
+    margin-bottom: 16px;
 }
 
 .rule-detail {
@@ -227,4 +228,16 @@ $outcome-not-applicable-summary-color: $neutral-outcome;
             color: $secondary-text !important;
         }
     }
+}
+
+#failed-instances-section {
+    margin-top: 56px;
+}
+
+#passed-checks-section {
+    margin-top: 76px;
+}
+
+#not-applicable-checks-section {
+    margin-top: 56px;
 }
