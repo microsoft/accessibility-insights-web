@@ -6,7 +6,7 @@ exports[`RuleDetailsGroup renders, it is header 1`] = `
     className="rule-detail"
   >
     <InstaceListGroupHeader
-      aria-level={3}
+      ariaLevel={3}
       outcomeType="fail"
       ruleResult={
         Object {
