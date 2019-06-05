@@ -4,7 +4,7 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 
 import { InstanceListGroupHeader } from '../../../../../DetailsView/reports/components/instance-list-group-header';
-import { RequirementOutcomeType } from '../../../../../DetailsView/reports/components/requirement-outcome-type';
+import { InstanceOutcomeType } from '../../../../../DetailsView/reports/components/report-sections/outcome-summary-bar';
 import { RuleResult } from '../../../../../scanner/iruleresults';
 
 describe('InstanceListGroupHeaderTest', () => {
@@ -18,7 +18,7 @@ describe('InstanceListGroupHeaderTest', () => {
         return ruleResult;
     };
 
-    test.each(['pass', 'fail', 'incomplete'])('render for %s instances', (outcome: RequirementOutcomeType) => {
+    test.each(['pass', 'fail', 'incomplete'])('render for %s instances', (outcome: InstanceOutcomeType) => {
         const wrapper = shallow(<InstanceListGroupHeader ruleResult={getSampleRuleResult()} outcomeType={outcome} />);
         expect(wrapper.getElement()).toMatchSnapshot();
     });

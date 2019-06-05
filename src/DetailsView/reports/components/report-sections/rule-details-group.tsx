@@ -4,13 +4,13 @@ import * as React from 'react';
 
 import { NamedSFC } from '../../../../common/react/named-sfc';
 import { RuleResult } from '../../../../scanner/iruleresults';
-import { OutcomeType } from '../outcome-type';
 import { InstanceDetailsGroup } from './instance-details-group';
+import { InstanceOutcomeType } from './outcome-summary-bar';
 import { RuleDetail } from './rule-detail';
 
 export type RuleDetailsGroupProps = {
     rules: RuleResult[];
-    outcomeType: OutcomeType;
+    outcomeType: InstanceOutcomeType;
     showDetails?: boolean;
 };
 

@@ -7,11 +7,11 @@ import { NewTabLink } from '../../../common/components/new-tab-link';
 import { NamedSFC } from '../../../common/react/named-sfc';
 import { RuleResult } from '../../../scanner/iruleresults';
 import { OutcomeChip } from './outcome-chip';
-import { RequirementOutcomeType } from './requirement-outcome-type';
+import { InstanceOutcomeType } from './report-sections/outcome-summary-bar';
 
 export interface InstanceListGroupHeaderProps {
     ruleResult: RuleResult;
-    outcomeType: RequirementOutcomeType;
+    outcomeType: InstanceOutcomeType;
 }
 
 export const InstanceListGroupHeader = NamedSFC<InstanceListGroupHeaderProps>('InstaceListGroupHeader', props => {

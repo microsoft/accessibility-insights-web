@@ -5,11 +5,11 @@ import * as React from 'react';
 import { NamedSFC } from '../../../../common/react/named-sfc';
 import { RuleResult } from '../../../../scanner/iruleresults';
 import { InstanceListGroupHeader } from '../instance-list-group-header';
-import { OutcomeType } from '../outcome-type';
+import { InstanceOutcomeType } from './outcome-summary-bar';
 
 export type RuleDetailProps = {
     rule: RuleResult;
-    outcomeType: OutcomeType;
+    outcomeType: InstanceOutcomeType;
 };
 
 export const RuleDetail = NamedSFC<RuleDetailProps>('RuleDetails', ({ rule, children, outcomeType }) => {
