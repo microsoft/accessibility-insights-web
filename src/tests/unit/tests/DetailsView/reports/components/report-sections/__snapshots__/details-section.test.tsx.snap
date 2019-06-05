@@ -4,9 +4,9 @@ exports[`DetailsSection renders 1`] = `
 <div
   className="scan-details-section"
 >
-  <h3>
+  <h2>
     Scan details
-  </h3>
+  </h2>
   <table>
     <tbody>
       <tr>
