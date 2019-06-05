@@ -13,6 +13,7 @@ export type ResultSectionProps = {
     containerClassName: string;
     title: string;
     outcomeType: OutcomeType;
+    showDetails?: boolean;
 };
 
 export const ResultSection = NamedSFC<ResultSectionProps>('ResultSection', props => {
@@ -21,7 +22,7 @@ export const ResultSection = NamedSFC<ResultSectionProps>('ResultSection', props
     return (
         <div id={containerClassName}>
             <ResultSectionTitle title={title} count={rules.length} outcomeType={outcomeType} />
-            <RuleDetailsGroup rules={rules} />
+            <RuleDetailsGroup rules={rules} showDetails={props.showDetails} />
         </div>
     );
 });
