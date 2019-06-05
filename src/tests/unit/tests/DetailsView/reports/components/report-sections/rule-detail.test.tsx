@@ -26,7 +26,11 @@ describe('RuleDetailsGroup', () => {
 
         const children = <span>children</span>;
 
-        const wrapped = shallow(<RuleDetail rule={rule}>{children}</RuleDetail>);
+        const wrapped = shallow(
+            <RuleDetail outcomeType={'fail'} rule={rule}>
+                {children}
+            </RuleDetail>,
+        );
 
         expect(wrapped.getElement()).toMatchSnapshot();
     });

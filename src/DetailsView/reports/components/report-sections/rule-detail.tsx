@@ -2,34 +2,21 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import { GuidanceLinks } from '../../../../common/components/guidance-links';
-import { NewTabLink } from '../../../../common/components/new-tab-link';
 import { NamedSFC } from '../../../../common/react/named-sfc';
 import { RuleResult } from '../../../../scanner/iruleresults';
+import { InstanceListGroupHeader } from '../instance-list-group-header';
+import { OutcomeType } from '../outcome-type';
 
 export type RuleDetailProps = {
     rule: RuleResult;
+    outcomeType: OutcomeType;
 };
 
-export const RuleDetail = NamedSFC<RuleDetailProps>('RuleDetails', ({ rule, children }) => {
-    const renderRuleName = () => (
-        <span className="rule-details-id">
-            <NewTabLink href={rule.helpUrl}>{rule.id}</NewTabLink>
-        </span>
-    );
-
-    const renderDescription = () => {
-        return <span className="rule-details-description">{rule.description}</span>;
-    };
-
-    const renderGuidanceLinks = () => {
-        return <GuidanceLinks links={rule.guidanceLinks} />;
-    };
-
+export const RuleDetail = NamedSFC<RuleDetailProps>('RuleDetails', ({ rule, children, outcomeType }) => {
     return (
         <>
             <div className="rule-detail">
-                {renderRuleName()}: {renderDescription()} ({renderGuidanceLinks()})
+                <InstanceListGroupHeader ruleResult={rule} outcomeType={outcomeType} />
             </div>
             {children}
         </>

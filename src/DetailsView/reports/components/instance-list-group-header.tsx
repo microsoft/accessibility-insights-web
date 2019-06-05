@@ -30,9 +30,11 @@ export const InstanceListGroupHeader = NamedSFC<InstaceListGroupHeaderProps>('In
         const ruleId = ruleResult.id;
         const ruleUrl = ruleResult.helpUrl;
         return (
-            <NewTabLink href={ruleUrl} aria-label={`rule ${ruleId}`} aria-describedby={`${ruleId}-rule-description`}>
-                {ruleId}
-            </NewTabLink>
+            <span className="rule-details-id">
+                <NewTabLink href={ruleUrl} aria-label={`rule ${ruleId}`} aria-describedby={`${ruleId}-rule-description`}>
+                    {ruleId}
+                </NewTabLink>
+            </span>
         );
     };
 
@@ -40,9 +42,13 @@ export const InstanceListGroupHeader = NamedSFC<InstaceListGroupHeaderProps>('In
         return <GuidanceLinks links={props.ruleResult.guidanceLinks} />;
     };
 
+    const renderDescription = () => {
+        return <span className="rule-details-description">{props.ruleResult.description}</span>;
+    };
+
     return (
         <div role="heading">
-            {renderCountBadge()} {renderRuleLink()}: {props.ruleResult.description} ({renderGuidanceLinks()})
+            {renderCountBadge()} {renderRuleLink()}: {renderDescription()} ({renderGuidanceLinks()})
         </div>
     );
 });
