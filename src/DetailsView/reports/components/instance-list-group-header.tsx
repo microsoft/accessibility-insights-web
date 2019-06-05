@@ -9,12 +9,12 @@ import { RuleResult } from '../../../scanner/iruleresults';
 import { OutcomeChip } from './outcome-chip';
 import { RequirementOutcomeType } from './outcome-type';
 
-export interface InstaceListGroupHeaderProps {
+export interface InstanceListGroupHeaderProps {
     ruleResult: RuleResult;
     outcomeType: RequirementOutcomeType;
 }
 
-export const InstanceListGroupHeader = NamedSFC<InstaceListGroupHeaderProps>('InstaceListGroupHeader', props => {
+export const InstanceListGroupHeader = NamedSFC<InstanceListGroupHeaderProps>('InstaceListGroupHeader', props => {
     const renderCountBadge = () => {
         const { outcomeType, ruleResult } = props;
 
