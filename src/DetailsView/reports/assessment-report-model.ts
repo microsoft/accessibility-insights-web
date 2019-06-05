@@ -3,7 +3,7 @@
 import { DefaultMessageInterface } from '../../assessments/assessment-default-message-generator';
 import { ColumnValue } from '../../common/types/property-bag/column-value-bag';
 import { HyperlinkDefinition } from '../../views/content/content-page';
-import { OutcomeStats } from './components/requirement-outcome-type';
+import { RequirementOutcomeStats } from './components/requirement-outcome-type';
 
 export interface ReportModel {
     summary: OverviewSummaryReportModel;
@@ -26,12 +26,12 @@ export interface AssessmentDetailsReportModel {
 }
 
 export interface OverviewSummaryReportModel {
-    byRequirement: OutcomeStats;
-    byPercentage: OutcomeStats;
+    byRequirement: RequirementOutcomeStats;
+    byPercentage: RequirementOutcomeStats;
     reportSummaryDetailsData: AssessmentSummaryReportModel[];
 }
 
-export interface AssessmentSummaryReportStats extends OutcomeStats {}
+export interface AssessmentSummaryReportStats extends RequirementOutcomeStats {}
 
 export interface AssessmentSummaryReportModel extends AssessmentSummaryReportStats {
     displayName: string;

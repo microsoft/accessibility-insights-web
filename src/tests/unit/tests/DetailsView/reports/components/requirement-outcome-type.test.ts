@@ -3,10 +3,10 @@
 import { times } from 'lodash';
 
 import { ManualTestStatus, ManualTestStatusData } from '../../../../../../common/types/manual-test-status';
+import { OutcomeTypeSemantic } from '../../../../../../DetailsView/reports/components/outcome-type';
 import {
     outcomeStatsFromManualTestStatus,
     outcomeTypeFromTestStatus,
-    OutcomeTypeSemantic,
     outcomeTypeSemanticsFromTestStatus,
 } from '../../../../../../DetailsView/reports/components/requirement-outcome-type';
 

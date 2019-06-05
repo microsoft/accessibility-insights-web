@@ -8,7 +8,8 @@ import { NamedSFC } from '../../../common/react/named-sfc';
 import { ManualTestStatus } from '../../../common/types/manual-test-status';
 import { RequirementHeaderReportModel } from '../assessment-report-model';
 import { OutcomeChip } from './outcome-chip';
-import { allRequirementOutcomeTypes, OutcomeTypeSemantic } from './requirement-outcome-type';
+import { OutcomeTypeSemantic } from './outcome-type';
+import { allRequirementOutcomeTypes } from './requirement-outcome-type';
 
 export type AssessmentReportStepHeaderDeps = {
     outcomeTypeSemanticsFromTestStatus: (testStatus: ManualTestStatus) => OutcomeTypeSemantic;

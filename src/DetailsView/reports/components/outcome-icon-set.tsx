@@ -5,9 +5,10 @@ import * as React from 'react';
 
 import { NamedSFC } from '../../../common/react/named-sfc';
 import { OutcomeIcon } from './outcome-icon';
-import { allRequirementOutcomeTypes, OutcomeStats, outcomeTypeSemantics } from './requirement-outcome-type';
+import { outcomeTypeSemantics } from './outcome-type';
+import { allRequirementOutcomeTypes, RequirementOutcomeStats } from './requirement-outcome-type';
 
-function getText(stats: OutcomeStats): string {
+function getText(stats: RequirementOutcomeStats): string {
     function textForOutcome(outcomeType): string {
         const count = stats[outcomeType];
         const { pastTense } = outcomeTypeSemantics[outcomeType];
@@ -16,7 +17,7 @@ function getText(stats: OutcomeStats): string {
     return join(allRequirementOutcomeTypes.map(textForOutcome), ', ');
 }
 
-export const OutcomeIconSet = NamedSFC<OutcomeStats>('OutcomeIconSet', props => {
+export const OutcomeIconSet = NamedSFC<RequirementOutcomeStats>('OutcomeIconSet', props => {
     const text = getText(props);
 
     return (

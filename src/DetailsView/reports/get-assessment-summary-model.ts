@@ -10,7 +10,7 @@ import * as Model from './assessment-report-model';
 import { OutcomeMath } from './components/outcome-math';
 import {
     allRequirementOutcomeTypes,
-    OutcomeStats,
+    RequirementOutcomeStats,
     outcomeTypeFromTestStatus,
     RequirementOutcomeType,
 } from './components/requirement-outcome-type';
@@ -73,8 +73,8 @@ export function getAssessmentSummaryModelFromResults(assessmentResults: Assessme
         reportSummaryDetailsData,
     };
 
-    function getCounts(assessment: AssessmentSummaryResult): OutcomeStats {
-        const zeros = zipObject(allRequirementOutcomeTypes, [0, 0, 0]) as OutcomeStats;
+    function getCounts(assessment: AssessmentSummaryResult): RequirementOutcomeStats {
+        const zeros = zipObject(allRequirementOutcomeTypes, [0, 0, 0]) as RequirementOutcomeStats;
 
         const counts = chain(assessment.storeData.testStepStatus)
             .values()

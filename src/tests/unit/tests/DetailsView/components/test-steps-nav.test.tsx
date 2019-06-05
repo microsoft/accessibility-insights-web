@@ -11,10 +11,8 @@ import { getInnerTextFromJsxElement } from '../../../../../common/get-inner-text
 import { ManualTestStatus } from '../../../../../common/types/manual-test-status';
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
 import { TestStepNavProps, TestStepsNav } from '../../../../../DetailsView/components/test-steps-nav';
-import {
-    OutcomeTypeSemantic,
-    outcomeTypeSemanticsFromTestStatus,
-} from '../../../../../DetailsView/reports/components/requirement-outcome-type';
+import { OutcomeTypeSemantic } from '../../../../../DetailsView/reports/components/outcome-type';
+import { outcomeTypeSemanticsFromTestStatus } from '../../../../../DetailsView/reports/components/requirement-outcome-type';
 import { EventStubFactory } from '../../../common/event-stub-factory';
 import { CreateTestAssessmentProvider, CreateTestAssessmentProviderAutomated } from '../../../common/test-assessment-provider';
 

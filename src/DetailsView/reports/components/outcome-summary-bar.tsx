@@ -4,7 +4,7 @@ import * as React from 'react';
 
 import { NamedSFC } from '../../../common/react/named-sfc';
 import { OutcomeIcon } from './outcome-icon';
-import { allRequirementOutcomeTypes, OutcomeStats } from './requirement-outcome-type';
+import { allRequirementOutcomeTypes, RequirementOutcomeStats } from './requirement-outcome-type';
 
 type OutcomeUnits = 'percentage' | 'requirements';
 
@@ -14,7 +14,7 @@ const outcomeText = {
     fail: 'Failed',
 };
 
-export type OutcomeSummaryBarProps = OutcomeStats & { units?: OutcomeUnits };
+export type OutcomeSummaryBarProps = RequirementOutcomeStats & { units?: OutcomeUnits };
 
 export const OutcomeSummaryBar = NamedSFC<OutcomeSummaryBarProps>('OutcomeSummaryBar', props => (
     <div className="outcome-summary-bar">
