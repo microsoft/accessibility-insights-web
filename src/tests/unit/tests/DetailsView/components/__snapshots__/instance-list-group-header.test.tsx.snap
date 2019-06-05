@@ -2,6 +2,7 @@
 
 exports[`InstanceListGroupHeaderTest render for fail instances 1`] = `
 <div
+  aria-level={4}
   role="heading"
 >
   <OutcomeChip
@@ -13,16 +14,17 @@ exports[`InstanceListGroupHeaderTest render for fail instances 1`] = `
     className="rule-details-id"
   >
     <NewTabLink
-      aria-describedby="ruleid-rule-description"
-      aria-label="rule ruleid"
+      aria-describedby="failed-rule-image-alt-description"
+      aria-label="rule image-alt"
       href="help url"
     >
-      ruleid
+      image-alt
     </NewTabLink>
   </span>
   : 
   <span
     className="rule-details-description"
+    id="failed-rule-image-alt-description"
   >
     rule description
   </span>
@@ -34,6 +36,7 @@ exports[`InstanceListGroupHeaderTest render for fail instances 1`] = `
 
 exports[`InstanceListGroupHeaderTest render for incomplete instances 1`] = `
 <div
+  aria-level={4}
   role="heading"
 >
    
@@ -41,16 +44,17 @@ exports[`InstanceListGroupHeaderTest render for incomplete instances 1`] = `
     className="rule-details-id"
   >
     <NewTabLink
-      aria-describedby="ruleid-rule-description"
-      aria-label="rule ruleid"
+      aria-describedby="incomplete-rule-image-alt-description"
+      aria-label="rule image-alt"
       href="help url"
     >
-      ruleid
+      image-alt
     </NewTabLink>
   </span>
   : 
   <span
     className="rule-details-description"
+    id="incomplete-rule-image-alt-description"
   >
     rule description
   </span>
@@ -62,6 +66,7 @@ exports[`InstanceListGroupHeaderTest render for incomplete instances 1`] = `
 
 exports[`InstanceListGroupHeaderTest render for pass instances 1`] = `
 <div
+  aria-level={4}
   role="heading"
 >
    
@@ -69,16 +74,17 @@ exports[`InstanceListGroupHeaderTest render for pass instances 1`] = `
     className="rule-details-id"
   >
     <NewTabLink
-      aria-describedby="ruleid-rule-description"
-      aria-label="rule ruleid"
+      aria-describedby="passed-rule-image-alt-description"
+      aria-label="rule image-alt"
       href="help url"
     >
-      ruleid
+      image-alt
     </NewTabLink>
   </span>
   : 
   <span
     className="rule-details-description"
+    id="passed-rule-image-alt-description"
   >
     rule description
   </span>
