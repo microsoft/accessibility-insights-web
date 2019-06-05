@@ -4,12 +4,11 @@ import * as classNames from 'classnames';
 import * as React from 'react';
 
 import { NamedSFC } from '../../../../common/react/named-sfc';
-import { DecoratedAxeNodeResult } from '../../../../injected/scanner-utils';
 
-export type InstanceDetailsProps = Pick<DecoratedAxeNodeResult, 'selector' | 'snippet' | 'failureSummary'> & { index: number };
+export type InstanceDetailsProps = Pick<AxeNodeResult, 'failureSummary' | 'html' | 'target'> & { index: number };
 
 export const InstanceDetails = NamedSFC<InstanceDetailsProps>('InstanceDetail', props => {
-    const { selector, snippet, failureSummary, index } = props;
+    const { failureSummary, html, target, index } = props;
 
     const createTableRow = (label: string, content: string, rowKey: string, needsExtraClassname?: boolean) => {
         const contentStyling = classNames({
@@ -26,8 +25,8 @@ export const InstanceDetails = NamedSFC<InstanceDetailsProps>('InstanceDetail', 
     return (
         <table className="report-instance-table">
             <tbody>
-                {createTableRow('Path', selector, `path-row-${index}`)}
-                {createTableRow('Snippet', snippet, `snippet-row-${index}`, true)}
+                {createTableRow('Path', target.join(', '), `path-row-${index}`)}
+                {createTableRow('Snippet', html, `snippet-row-${index}`, true)}
                 {createTableRow('How to fix', failureSummary, `how-to-fix-row-${index}`)}
             </tbody>
         </table>
