@@ -16,25 +16,3 @@ exports[`GuidanceTags renders tags 1`] = `
 exports[`GuidanceTags tags is: [ [length]: 0 ] 1`] = `null`;
 
 exports[`GuidanceTags tags is: null 1`] = `null`;
-
-exports[`guidanceTagsFromGuidanceLinks handles a valid list with 1 link 1`] = `
-Array [
-  Object {
-    "displayText": "guidanceLinks-tags-displayText-1",
-    "id": "guidanceLinks-tags-id-1",
-  },
-]
-`;
-
-exports[`guidanceTagsFromGuidanceLinks handles a valid list with 2 links 1`] = `
-Array [
-  Object {
-    "displayText": "guidanceLinks-tags-displayText-1",
-    "id": "guidanceLinks-tags-id-1",
-  },
-  Object {
-    "displayText": "guidanceLinks-tags-displayText-2",
-    "id": "guidanceLinks-tags-id-2",
-  },
-]
-`;
