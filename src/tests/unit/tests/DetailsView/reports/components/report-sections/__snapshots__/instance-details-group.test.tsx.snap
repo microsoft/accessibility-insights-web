@@ -1,0 +1,69 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`InstanceDetails renders 1`] = `
+<table
+  className="report-instance-table"
+>
+  <tbody>
+    <tr
+      className="row"
+    >
+      <th
+        className="label"
+      >
+        Path
+      </th>
+      <td
+        className="instance-list-row-content"
+      >
+        &lt;html&gt;
+      </td>
+    </tr>
+    <tr
+      className="row"
+    >
+      <th
+        className="label"
+      >
+        Snippet
+      </th>
+      <td
+        className="instance-list-row-content content-snipppet"
+      >
+        &lt;html&gt;
+      </td>
+    </tr>
+    <tr
+      className="row"
+    >
+      <th
+        className="label"
+      >
+        How to fix
+      </th>
+      <td
+        className="instance-list-row-content"
+      >
+        fix the error
+      </td>
+    </tr>
+  </tbody>
+</table>
+`;
+
+exports[`InstanceDetailsGroup renders 1`] = `
+<React.Fragment>
+  <InstanceDetail
+    failureSummary="fix the error on html"
+    index={0}
+    selector="<html>"
+    snippet="<html>"
+  />
+  <InstanceDetail
+    failureSummary="fix the error on body"
+    index={1}
+    selector="<body>"
+    snippet="<body >"
+  />
+</React.Fragment>
+`;
