@@ -7,7 +7,7 @@ import { NewTabLink } from '../../../common/components/new-tab-link';
 import { NamedSFC } from '../../../common/react/named-sfc';
 import { RuleResult } from '../../../scanner/iruleresults';
 import { OutcomeChip } from './outcome-chip';
-import { RequirementOutcomeType } from './outcome-type';
+import { RequirementOutcomeType } from './requirement-outcome-type';
 
 export interface InstanceListGroupHeaderProps {
     ruleResult: RuleResult;

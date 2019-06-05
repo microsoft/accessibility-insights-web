@@ -8,7 +8,7 @@ import { NamedSFC } from '../../../common/react/named-sfc';
 import { ManualTestStatus } from '../../../common/types/manual-test-status';
 import { RequirementHeaderReportModel } from '../assessment-report-model';
 import { OutcomeChip } from './outcome-chip';
-import { allOutcomeTypes, OutcomeTypeSemantic } from './outcome-type';
+import { allRequirementOutcomeTypes, OutcomeTypeSemantic } from './requirement-outcome-type';
 
 export type AssessmentReportStepHeaderDeps = {
     outcomeTypeSemanticsFromTestStatus: (testStatus: ManualTestStatus) => OutcomeTypeSemantic;
@@ -26,7 +26,7 @@ export const AssessmentReportStepHeader = NamedSFC<AssessmentReportStepHeaderPro
     const { deps, header, instanceCount, status, defaultMessageComponent } = props;
     const { outcomeTypeSemanticsFromTestStatus } = deps;
 
-    const outcomeType = allOutcomeTypes[status];
+    const outcomeType = allRequirementOutcomeTypes[status];
     const minCount = header.requirementType === 'manual' && outcomeType === 'pass' ? 1 : 0;
     let count = Math.max(minCount, instanceCount);
     let message: JSX.Element = null;

@@ -9,7 +9,7 @@ import {
     AssessmentReportStepHeaderDeps,
 } from '../../../../../../DetailsView/reports/components/assessment-report-step-header';
 import { OutcomeChip } from '../../../../../../DetailsView/reports/components/outcome-chip';
-import { RequirementOutcomeType } from '../../../../../../DetailsView/reports/components/outcome-type';
+import { RequirementOutcomeType } from '../../../../../../DetailsView/reports/components/requirement-outcome-type';
 
 describe('AssessmentReportStepHeader', () => {
     function genHeader(requirementType: RequirementType): RequirementHeaderReportModel {

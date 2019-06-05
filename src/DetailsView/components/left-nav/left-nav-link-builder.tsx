@@ -8,7 +8,7 @@ import { VisualizationConfiguration } from '../../../common/configs/visualizatio
 import { ManualTestStatus, ManualTestStatusData } from '../../../common/types/manual-test-status';
 import { VisualizationType } from '../../../common/types/visualization-type';
 import { DictionaryStringTo } from '../../../types/common-types';
-import { OutcomeStats, OutcomeTypeSemantic } from '../../reports/components/outcome-type';
+import { OutcomeStats, OutcomeTypeSemantic } from '../../reports/components/requirement-outcome-type';
 import { GetAssessmentSummaryModelFromProviderAndStatusData } from '../../reports/get-assessment-summary-model';
 import { BaseLeftNavLink, onBaseLeftNavItemClick, onBaseLeftNavItemRender } from '../base-left-nav';
 import { OverviewLeftNavLink } from './overview-left-nav-link';

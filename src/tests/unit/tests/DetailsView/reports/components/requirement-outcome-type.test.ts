@@ -8,7 +8,7 @@ import {
     outcomeTypeFromTestStatus,
     OutcomeTypeSemantic,
     outcomeTypeSemanticsFromTestStatus,
-} from '../../../../../../DetailsView/reports/components/outcome-type';
+} from '../../../../../../DetailsView/reports/components/requirement-outcome-type';
 
 describe('OutcomeType', () => {
     it('translates fromTestStatus', () => {

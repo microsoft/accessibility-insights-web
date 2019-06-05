@@ -5,7 +5,7 @@ import { Icon } from 'office-ui-fabric-react/lib/Icon';
 import * as React from 'react';
 
 import { ManualTestStatus } from '../../common/types/manual-test-status';
-import { outcomeTypeSemanticsFromTestStatus } from '../reports/components/outcome-type';
+import { outcomeTypeSemanticsFromTestStatus } from '../reports/components/requirement-outcome-type';
 
 export interface StatusIconProps {
     status: ManualTestStatus;

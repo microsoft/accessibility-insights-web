@@ -75,7 +75,7 @@ import {
     outcomeStatsFromManualTestStatus,
     outcomeTypeFromTestStatus,
     outcomeTypeSemanticsFromTestStatus,
-} from './reports/components/outcome-type';
+} from './reports/components/requirement-outcome-type';
 import { AutomatedChecksReportSectionFactory } from './reports/components/report-sections/automated-checks-report-section-factory';
 import {
     getAssessmentSummaryModelFromProviderAndStatusData,

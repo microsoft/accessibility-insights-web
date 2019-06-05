@@ -4,7 +4,7 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 
 import { InstanceListGroupHeader } from '../../../../../DetailsView/reports/components/instance-list-group-header';
-import { RequirementOutcomeType } from '../../../../../DetailsView/reports/components/outcome-type';
+import { RequirementOutcomeType } from '../../../../../DetailsView/reports/components/requirement-outcome-type';
 import { RuleResult } from '../../../../../scanner/iruleresults';
 
 describe('InstanceListGroupHeaderTest', () => {

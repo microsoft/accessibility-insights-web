@@ -8,7 +8,12 @@ import { ManualTestStatusData } from '../../common/types/manual-test-status';
 import { AssessmentData, AssessmentStoreData } from '../../common/types/store-data/assessment-result-data';
 import * as Model from './assessment-report-model';
 import { OutcomeMath } from './components/outcome-math';
-import { allOutcomeTypes, OutcomeStats, outcomeTypeFromTestStatus, RequirementOutcomeType } from './components/outcome-type';
+import {
+    allRequirementOutcomeTypes,
+    OutcomeStats,
+    outcomeTypeFromTestStatus,
+    RequirementOutcomeType,
+} from './components/requirement-outcome-type';
 
 export type AssessmentSummaryResult = Pick<Assessment, 'title'> & { storeData: Pick<AssessmentData, 'testStepStatus'> };
 export type AssessmentStatusData = { [key: string]: ManualTestStatusData };
@@ -69,7 +74,7 @@ export function getAssessmentSummaryModelFromResults(assessmentResults: Assessme
     };
 
     function getCounts(assessment: AssessmentSummaryResult): OutcomeStats {
-        const zeros = zipObject(allOutcomeTypes, [0, 0, 0]) as OutcomeStats;
+        const zeros = zipObject(allRequirementOutcomeTypes, [0, 0, 0]) as OutcomeStats;
 
         const counts = chain(assessment.storeData.testStepStatus)
             .values()

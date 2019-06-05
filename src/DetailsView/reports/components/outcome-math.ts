@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { sumBy } from 'lodash';
 
-import { OutcomeStats } from './outcome-type';
+import { OutcomeStats } from './requirement-outcome-type';
 
 function percentageComplete(stats: OutcomeStats): number {
     const complete = stats.pass + stats.fail;

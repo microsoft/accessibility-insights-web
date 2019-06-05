@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { ManualTestStatus } from '../../../../../../common/types/manual-test-status';
 import { getStatusForTest } from '../../../../../../DetailsView/components/left-nav/get-status-for-test';
-import { OutcomeStats } from '../../../../../../DetailsView/reports/components/outcome-type';
+import { OutcomeStats } from '../../../../../../DetailsView/reports/components/requirement-outcome-type';
 
 describe('getStatusForTest', () => {
     it('should return unknown', () => {

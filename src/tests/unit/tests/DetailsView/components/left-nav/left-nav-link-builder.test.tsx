@@ -12,7 +12,7 @@ import { VisualizationType } from '../../../../../../common/types/visualization-
 import { BaseLeftNavLink, onBaseLeftNavItemClick } from '../../../../../../DetailsView/components/base-left-nav';
 import { LeftNavLinkBuilder, LeftNavLinkBuilderDeps } from '../../../../../../DetailsView/components/left-nav/left-nav-link-builder';
 import { OverviewSummaryReportModel } from '../../../../../../DetailsView/reports/assessment-report-model';
-import { OutcomeStats, OutcomeTypeSemantic } from '../../../../../../DetailsView/reports/components/outcome-type';
+import { OutcomeStats, OutcomeTypeSemantic } from '../../../../../../DetailsView/reports/components/requirement-outcome-type';
 import { GetAssessmentSummaryModelFromProviderAndStatusData } from '../../../../../../DetailsView/reports/get-assessment-summary-model';
 import { DictionaryStringTo } from '../../../../../../types/common-types';
 

@@ -7,7 +7,7 @@ import { CircleIcon } from '../../../common/icons/circle-icon';
 import { CrossIcon } from '../../../common/icons/cross-icon';
 import { InapplicableIcon } from '../../../common/icons/inapplicable-icon';
 import { NamedSFC } from '../../../common/react/named-sfc';
-import { OutcomeType } from './outcome-chip';
+import { OutcomeType } from './outcome-type';
 
 interface OutcomeIconProps {
     outcomeType: OutcomeType;

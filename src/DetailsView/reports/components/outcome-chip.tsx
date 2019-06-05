@@ -4,10 +4,9 @@ import * as React from 'react';
 
 import { NamedSFC } from '../../../common/react/named-sfc';
 import { OutcomeIcon } from './outcome-icon';
-import { outcomeTypeSemantics, RequirementOutcomeType } from './outcome-type';
-import { InstanceOutcomeType, outcomeText } from './report-sections/outcome-summary-bar';
-
-export type OutcomeType = RequirementOutcomeType | InstanceOutcomeType;
+import { OutcomeType } from './outcome-type';
+import { outcomeText } from './report-sections/outcome-summary-bar';
+import { outcomeTypeSemantics } from './requirement-outcome-type';
 
 interface OutcomeChipProps {
     outcomeType: OutcomeType;

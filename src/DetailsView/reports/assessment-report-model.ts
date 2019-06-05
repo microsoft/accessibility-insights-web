@@ -3,7 +3,7 @@
 import { DefaultMessageInterface } from '../../assessments/assessment-default-message-generator';
 import { ColumnValue } from '../../common/types/property-bag/column-value-bag';
 import { HyperlinkDefinition } from '../../views/content/content-page';
-import { OutcomeStats } from './components/outcome-type';
+import { OutcomeStats } from './components/requirement-outcome-type';
 
 export interface ReportModel {
     summary: OverviewSummaryReportModel;
