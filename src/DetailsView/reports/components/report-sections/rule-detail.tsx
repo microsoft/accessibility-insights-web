@@ -9,9 +9,10 @@ import { RuleResult } from '../../../../scanner/iruleresults';
 
 export type RuleDetailProps = {
     rule: RuleResult;
+    isHeader: boolean;
 };
 
-export const RuleDetail = NamedSFC<RuleDetailProps>('RuleDetails', ({ rule, children }) => {
+export const RuleDetail = NamedSFC<RuleDetailProps>('RuleDetails', ({ rule, children, isHeader }) => {
     const renderRuleName = () => (
         <span className="rule-details-id">
             <NewTabLink href={rule.helpUrl}>{rule.id}</NewTabLink>
@@ -26,9 +27,19 @@ export const RuleDetail = NamedSFC<RuleDetailProps>('RuleDetails', ({ rule, chil
         return <GuidanceLinks links={rule.guidanceLinks} />;
     };
 
+    const extraProps = {
+        role: undefined,
+        ariaLevel: undefined,
+    };
+
+    if (isHeader) {
+        extraProps.role = 'heading';
+        extraProps.ariaLevel = '3';
+    }
+
     return (
         <>
-            <div className="rule-detail">
+            <div className="rule-detail" {...extraProps}>
                 {renderRuleName()}: {renderDescription()} ({renderGuidanceLinks()})
             </div>
             {children}

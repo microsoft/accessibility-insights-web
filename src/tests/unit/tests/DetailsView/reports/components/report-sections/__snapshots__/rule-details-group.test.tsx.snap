@@ -40,6 +40,7 @@ exports[`RuleDetailsGroup renders, with details 1`] = `
 >
   <React.Fragment>
     <RuleDetails
+      isHeader={true}
       rule={
         Object {
           "id": "1",

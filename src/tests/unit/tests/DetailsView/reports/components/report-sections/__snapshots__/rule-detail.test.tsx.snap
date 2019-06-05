@@ -1,6 +1,51 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`RuleDetailsGroup renders 1`] = `
+exports[`RuleDetailsGroup renders, it is header 1`] = `
+<React.Fragment>
+  <div
+    ariaLevel="3"
+    className="rule-detail"
+    role="heading"
+  >
+    <span
+      className="rule-details-id"
+    >
+      <NewTabLink
+        href="url://help.url"
+      >
+        rule id
+      </NewTabLink>
+    </span>
+    : 
+    <span
+      className="rule-details-description"
+    >
+      rule description
+    </span>
+     (
+    <GuidanceLinks
+      links={
+        Array [
+          Object {
+            "href": "url://guidance-01.link",
+            "text": "guidance-01",
+          },
+          Object {
+            "href": "url://guidance-02.link",
+            "text": "guidance-02",
+          },
+        ]
+      }
+    />
+    )
+  </div>
+  <span>
+    children
+  </span>
+</React.Fragment>
+`;
+
+exports[`RuleDetailsGroup renders, not a header 1`] = `
 <React.Fragment>
   <div
     className="rule-detail"
