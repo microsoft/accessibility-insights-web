@@ -45,7 +45,9 @@ exports[`AssessmentScanDetails render Correct composition 1`] = `
         >
           <CommentIcon />
         </td>
-        <td>
+        <td
+          className="assessment-scan-details-description"
+        >
           test-description
         </td>
       </tr>
