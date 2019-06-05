@@ -5,37 +5,26 @@ exports[`RuleDetailsGroup renders 1`] = `
   <div
     className="rule-detail"
   >
-    <span
-      className="rule-details-id"
-    >
-      <NewTabLink
-        href="url://help.url"
-      >
-        rule id
-      </NewTabLink>
-    </span>
-    : 
-    <span
-      className="rule-details-description"
-    >
-      rule description
-    </span>
-     (
-    <GuidanceLinks
-      links={
-        Array [
-          Object {
-            "href": "url://guidance-01.link",
-            "text": "guidance-01",
-          },
-          Object {
-            "href": "url://guidance-02.link",
-            "text": "guidance-02",
-          },
-        ]
+    <InstaceListGroupHeader
+      outcomeType="fail"
+      ruleResult={
+        Object {
+          "description": "rule description",
+          "guidanceLinks": Array [
+            Object {
+              "href": "url://guidance-01.link",
+              "text": "guidance-01",
+            },
+            Object {
+              "href": "url://guidance-02.link",
+              "text": "guidance-02",
+            },
+          ],
+          "helpUrl": "url://help.url",
+          "id": "rule id",
+        }
       }
     />
-    )
   </div>
   <span>
     children

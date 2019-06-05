@@ -6,6 +6,7 @@ exports[`RuleDetailsGroup renders, no details 1`] = `
 >
   <React.Fragment>
     <RuleDetails
+      outcomeType="pass"
       rule={
         Object {
           "id": "1",
@@ -15,6 +16,7 @@ exports[`RuleDetailsGroup renders, no details 1`] = `
   </React.Fragment>
   <React.Fragment>
     <RuleDetails
+      outcomeType="pass"
       rule={
         Object {
           "id": "2",
@@ -24,6 +26,7 @@ exports[`RuleDetailsGroup renders, no details 1`] = `
   </React.Fragment>
   <React.Fragment>
     <RuleDetails
+      outcomeType="pass"
       rule={
         Object {
           "id": "3",
@@ -40,6 +43,7 @@ exports[`RuleDetailsGroup renders, with details 1`] = `
 >
   <React.Fragment>
     <RuleDetails
+      outcomeType="pass"
       rule={
         Object {
           "id": "1",
