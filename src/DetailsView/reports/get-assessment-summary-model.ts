@@ -10,8 +10,8 @@ import * as Model from './assessment-report-model';
 import { OutcomeMath } from './components/outcome-math';
 import {
     allRequirementOutcomeTypes,
-    RequirementOutcomeStats,
     outcomeTypeFromTestStatus,
+    RequirementOutcomeStats,
     RequirementOutcomeType,
 } from './components/requirement-outcome-type';
 

@@ -1,12 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import * as React from 'react';
+import { InapplicableIcon } from '../../../common/icons/inapplicable-icon';
+import { CheckIcon } from './../../../common/icons/check-icon';
+import { CircleIcon } from './../../../common/icons/circle-icon';
+import { CrossIcon } from './../../../common/icons/cross-icon';
 import { InstanceOutcomeType } from './report-sections/outcome-summary-bar';
 import { RequirementOutcomeType } from './requirement-outcome-type';
-import * as React from 'react';
-import { CrossIcon } from './../../../common/icons/cross-icon';
-import { CircleIcon } from './../../../common/icons/circle-icon';
-import { CheckIcon } from './../../../common/icons/check-icon';
-import { InapplicableIcon } from '../../../common/icons/inapplicable-icon';
 
 export type OutcomeType = RequirementOutcomeType | InstanceOutcomeType;
 
