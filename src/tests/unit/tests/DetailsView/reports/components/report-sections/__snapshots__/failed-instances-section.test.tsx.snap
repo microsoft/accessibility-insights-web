@@ -11,6 +11,7 @@ exports[`FailedInstancesSection renders 1`] = `
       Object {},
     ]
   }
+  showDetails={true}
   title="Failed instances"
 />
 `;

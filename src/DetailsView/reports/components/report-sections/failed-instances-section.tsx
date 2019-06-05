@@ -14,5 +14,6 @@ export const FailedInstancesSection = NamedSFC<FailedInstancesSectionProps>('Fai
         rules={scanResult.violations}
         containerClassName="failed-instances-section"
         outcomeType="fail"
+        showDetails={true}
     />
 ));
