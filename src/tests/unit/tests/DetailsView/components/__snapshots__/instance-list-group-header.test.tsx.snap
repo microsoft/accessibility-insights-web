@@ -32,6 +32,39 @@ exports[`InstanceListGroupHeaderTest render for fail instances 1`] = `
 </div>
 `;
 
+exports[`InstanceListGroupHeaderTest render for fail instances and handles aria-level 1`] = `
+<div
+  aria-level={2}
+  role="heading"
+>
+  <OutcomeChip
+    count={1}
+    outcomeType="fail"
+  />
+   
+  <span
+    className="rule-details-id"
+  >
+    <NewTabLink
+      aria-describedby="ruleid-rule-description"
+      aria-label="rule ruleid"
+      href="help url"
+    >
+      ruleid
+    </NewTabLink>
+  </span>
+  : 
+  <span
+    className="rule-details-description"
+  >
+    rule description
+  </span>
+   (
+  <GuidanceLinks />
+  )
+</div>
+`;
+
 exports[`InstanceListGroupHeaderTest render for incomplete instances 1`] = `
 <div
   role="heading"
@@ -60,8 +93,66 @@ exports[`InstanceListGroupHeaderTest render for incomplete instances 1`] = `
 </div>
 `;
 
+exports[`InstanceListGroupHeaderTest render for incomplete instances and handles aria-level 1`] = `
+<div
+  aria-level={2}
+  role="heading"
+>
+   
+  <span
+    className="rule-details-id"
+  >
+    <NewTabLink
+      aria-describedby="ruleid-rule-description"
+      aria-label="rule ruleid"
+      href="help url"
+    >
+      ruleid
+    </NewTabLink>
+  </span>
+  : 
+  <span
+    className="rule-details-description"
+  >
+    rule description
+  </span>
+   (
+  <GuidanceLinks />
+  )
+</div>
+`;
+
 exports[`InstanceListGroupHeaderTest render for pass instances 1`] = `
 <div
+  role="heading"
+>
+   
+  <span
+    className="rule-details-id"
+  >
+    <NewTabLink
+      aria-describedby="ruleid-rule-description"
+      aria-label="rule ruleid"
+      href="help url"
+    >
+      ruleid
+    </NewTabLink>
+  </span>
+  : 
+  <span
+    className="rule-details-description"
+  >
+    rule description
+  </span>
+   (
+  <GuidanceLinks />
+  )
+</div>
+`;
+
+exports[`InstanceListGroupHeaderTest render for pass instances and handles aria-level 1`] = `
+<div
+  aria-level={2}
   role="heading"
 >
    

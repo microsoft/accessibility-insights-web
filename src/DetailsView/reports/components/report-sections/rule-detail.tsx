@@ -15,18 +15,16 @@ export type RuleDetailProps = {
 
 export const RuleDetail = NamedSFC<RuleDetailProps>('RuleDetails', ({ rule, children, outcomeType, isHeader }) => {
     const extraProps = {
-        role: undefined,
-        ariaLevel: undefined,
+        'aria-level': undefined, // can't name a variable 'aria-level' so we need the container object here
     };
 
     if (isHeader) {
-        extraProps.role = 'heading';
-        extraProps.ariaLevel = '3';
+        extraProps['aria-level'] = 3;
     }
     return (
         <>
-            <div className="rule-detail" {...extraProps}>
-                <InstanceListGroupHeader ruleResult={rule} outcomeType={outcomeType} />
+            <div className="rule-detail">
+                <InstanceListGroupHeader ruleResult={rule} outcomeType={outcomeType} {...extraProps} />
             </div>
             {children}
         </>

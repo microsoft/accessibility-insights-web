@@ -12,6 +12,7 @@ import { InstanceOutcomeType } from './report-sections/outcome-summary-bar';
 export interface InstanceListGroupHeaderProps {
     ruleResult: RuleResult;
     outcomeType: InstanceOutcomeType;
+    'aria-level'?: number;
 }
 
 export const InstanceListGroupHeader = NamedSFC<InstanceListGroupHeaderProps>('InstaceListGroupHeader', props => {
@@ -46,8 +47,10 @@ export const InstanceListGroupHeader = NamedSFC<InstanceListGroupHeaderProps>('I
         return <span className="rule-details-description">{props.ruleResult.description}</span>;
     };
 
+    const ariaLevel = props['aria-level'] || undefined;
+
     return (
-        <div role="heading">
+        <div role="heading" aria-level={ariaLevel}>
             {renderCountBadge()} {renderRuleLink()}: {renderDescription()} ({renderGuidanceLinks()})
         </div>
     );
