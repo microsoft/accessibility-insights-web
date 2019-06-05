@@ -6,6 +6,7 @@ import { NamedSFC } from '../../../../common/react/named-sfc';
 import { BodySection } from './body-section';
 import { ContentContainer } from './content-container';
 import { DetailsSection } from './details-section';
+import { FailedInstancesSection } from './failed-instances-section';
 import { FooterSection } from './footer-section';
 import { HeaderSection } from './header-section';
 import { NotApplicableChecksSection } from './not-applicable-section';
@@ -14,12 +15,6 @@ import { ReportSectionFactory } from './report-section-factory';
 import { SummarySection } from './summary-section';
 import { TitleSection } from './title-section';
 
-const createBasicComponent = (name: string) => {
-    return NamedSFC(name, () => {
-        return <div id={name} />;
-    });
-};
-
 const createWrappingComponent = (name: string) => {
     return NamedSFC(name, ({ children }) => {
         return <div id={name}>{children}</div>;
@@ -27,7 +22,6 @@ const createWrappingComponent = (name: string) => {
 };
 
 const ResultSection = createWrappingComponent('result-section');
-const FailedInstances = createBasicComponent('failed-instances-section');
 
 // TODO most of this sections are dummy sections, the point is to replace them as we develop them
 export const AutomatedChecksReportSectionFactory: ReportSectionFactory = {
@@ -38,7 +32,7 @@ export const AutomatedChecksReportSectionFactory: ReportSectionFactory = {
     Summary: SummarySection,
     Details: DetailsSection,
     ResultSection,
-    FailedInstances,
+    FailedInstances: FailedInstancesSection,
     PassedChecks: PassedChecksSection,
     NotApplicableChecks: NotApplicableChecksSection,
     Footer: FooterSection,
