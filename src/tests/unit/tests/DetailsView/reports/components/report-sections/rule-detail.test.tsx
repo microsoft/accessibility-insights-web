@@ -27,7 +27,7 @@ describe('RuleDetailsGroup', () => {
         const children = <span>children</span>;
 
         const wrapped = shallow(
-            <RuleDetail rule={rule} isHeader={false}>
+            <RuleDetail rule={rule} isHeader={false} outcomeType={'fail'}>
                 {children}
             </RuleDetail>,
         );
@@ -55,7 +55,7 @@ describe('RuleDetailsGroup', () => {
         const children = <span>children</span>;
 
         const wrapped = shallow(
-            <RuleDetail rule={rule} isHeader={true}>
+            <RuleDetail rule={rule} isHeader={true} outcomeType={'fail'}>
                 {children}
             </RuleDetail>,
         );

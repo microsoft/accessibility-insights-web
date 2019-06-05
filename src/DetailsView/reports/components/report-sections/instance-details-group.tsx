@@ -3,11 +3,10 @@
 import * as React from 'react';
 
 import { NamedSFC } from '../../../../common/react/named-sfc';
-import { DecoratedAxeNodeResult } from '../../../../injected/scanner-utils';
 import { InstanceDetails } from './instance-details';
 
 export type InstanceDetailsGroupProps = {
-    nodeResults: DecoratedAxeNodeResult[];
+    nodeResults: AxeNodeResult[];
 };
 
 export const InstanceDetailsGroup = NamedSFC<InstanceDetailsGroupProps>('InstanceDetailsGroup', props => {

@@ -7,14 +7,14 @@ import { NewTabLink } from '../../../common/components/new-tab-link';
 import { NamedSFC } from '../../../common/react/named-sfc';
 import { RuleResult } from '../../../scanner/iruleresults';
 import { OutcomeChip } from './outcome-chip';
-import { OutcomeType } from './outcome-type';
+import { InstanceOutcomeType } from './report-sections/outcome-summary-bar';
 
-export interface InstaceListGroupHeaderProps {
+export interface InstanceListGroupHeaderProps {
     ruleResult: RuleResult;
-    outcomeType: OutcomeType;
+    outcomeType: InstanceOutcomeType;
 }
 
-export const InstanceListGroupHeader = NamedSFC<InstaceListGroupHeaderProps>('InstaceListGroupHeader', props => {
+export const InstanceListGroupHeader = NamedSFC<InstanceListGroupHeaderProps>('InstaceListGroupHeader', props => {
     const renderCountBadge = () => {
         const { outcomeType, ruleResult } = props;
 
@@ -30,9 +30,11 @@ export const InstanceListGroupHeader = NamedSFC<InstaceListGroupHeaderProps>('In
         const ruleId = ruleResult.id;
         const ruleUrl = ruleResult.helpUrl;
         return (
-            <NewTabLink href={ruleUrl} aria-label={`rule ${ruleId}`} aria-describedby={`${ruleId}-rule-description`}>
-                {ruleId}
-            </NewTabLink>
+            <span className="rule-details-id">
+                <NewTabLink href={ruleUrl} aria-label={`rule ${ruleId}`} aria-describedby={`${ruleId}-rule-description`}>
+                    {ruleId}
+                </NewTabLink>
+            </span>
         );
     };
 
@@ -40,9 +42,13 @@ export const InstanceListGroupHeader = NamedSFC<InstaceListGroupHeaderProps>('In
         return <GuidanceLinks links={props.ruleResult.guidanceLinks} />;
     };
 
+    const renderDescription = () => {
+        return <span className="rule-details-description">{props.ruleResult.description}</span>;
+    };
+
     return (
         <div role="heading">
-            {renderCountBadge()} {renderRuleLink()}: {props.ruleResult.description} ({renderGuidanceLinks()})
+            {renderCountBadge()} {renderRuleLink()}: {renderDescription()} ({renderGuidanceLinks()})
         </div>
     );
 });

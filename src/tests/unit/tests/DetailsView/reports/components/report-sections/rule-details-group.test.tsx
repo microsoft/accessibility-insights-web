@@ -10,7 +10,7 @@ describe('RuleDetailsGroup', () => {
     it('renders, no details', () => {
         const rules = [{ id: '1' } as RuleResult, { id: '2' } as RuleResult, { id: '3' } as RuleResult];
 
-        const wrapped = shallow(<RuleDetailsGroup rules={rules} />);
+        const wrapped = shallow(<RuleDetailsGroup outcomeType={'pass'} rules={rules} />);
 
         expect(wrapped.getElement()).toMatchSnapshot();
     });
@@ -29,7 +29,7 @@ describe('RuleDetailsGroup', () => {
             } as RuleResult,
         ];
 
-        const wrapped = shallow(<RuleDetailsGroup rules={rules} showDetails={true} />);
+        const wrapped = shallow(<RuleDetailsGroup outcomeType={'pass'} rules={rules} showDetails={true} />);
 
         expect(wrapped.getElement()).toMatchSnapshot();
     });

@@ -137,7 +137,7 @@ $outcome-not-applicable-summary-color: $neutral-outcome;
             border-top-left-radius: 2px;
             border-bottom-left-radius: 2px;
         }
-        .not-applicable {
+        .inapplicable {
             @extend .block;
             @include inapplicable-icon-styles($outcome-summary-icon-size, 0px, $outcome-not-applicable-summary-color);
             .check-container {
@@ -211,6 +211,11 @@ $outcome-not-applicable-summary-color: $neutral-outcome;
     padding: 0 8px;
 
     box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.08);
+
+    .outcome-chip {
+        vertical-align: middle;
+        margin-bottom: 2px;
+    }
 
     .rule-details-id {
         a {
