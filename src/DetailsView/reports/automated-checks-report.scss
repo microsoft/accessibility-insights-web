@@ -230,14 +230,14 @@ $outcome-not-applicable-summary-color: $neutral-outcome;
     }
 }
 
-#failed-instances-section {
+.failed-instances-section {
     margin-top: 56px;
 }
 
-#passed-checks-section {
+.passed-checks-section {
     margin-top: 76px;
 }
 
-#not-applicable-checks-section {
+.not-applicable-checks-section {
     margin-top: 56px;
 }
