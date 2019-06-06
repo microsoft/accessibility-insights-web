@@ -213,6 +213,7 @@ $outcome-not-applicable-summary-color: $neutral-outcome;
 
     height: 56px;
     padding: 0 8px;
+    margin-left: 6px;
 
     box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.08);
 
@@ -268,6 +269,7 @@ $outcome-not-applicable-summary-color: $neutral-outcome;
         margin-right: 8px;
         content: '';
         position: absolute;
+        margin-top: 6px;
     }
 
     summary::-webkit-details-marker {
