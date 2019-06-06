@@ -6,7 +6,7 @@ import { ManualTestStatus } from '../../../common/types/manual-test-status';
 import { AssessmentDetailsReportModel } from '../assessment-report-model';
 import { AssessmentReportStepList, AssessmentReportStepListDeps } from './assessment-report-step-list';
 import { OutcomeChip } from './outcome-chip';
-import { allOutcomeTypes } from './outcome-type';
+import { allRequirementOutcomeTypes } from './requirement-outcome-type';
 
 export type AssessmentReportAssessmentListDeps = AssessmentReportStepListDeps;
 
@@ -41,7 +41,7 @@ export class AssessmentReportAssessmentList extends React.Component<AssessmentRe
         return (
             <h3 className="assessment-header">
                 {assessment.displayName}
-                <OutcomeChip count={assessment.steps.length} outcomeType={allOutcomeTypes[this.props.status]} />
+                <OutcomeChip count={assessment.steps.length} outcomeType={allRequirementOutcomeTypes[this.props.status]} />
             </h3>
         );
     }

@@ -1,0 +1,180 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`InstanceListGroupHeaderTest render for fail instances 1`] = `
+<div>
+  <OutcomeChip
+    count={1}
+    outcomeType="fail"
+  />
+   
+  <span
+    className="rule-details-id"
+  >
+    <NewTabLink
+      aria-describedby="failed-rule-image-alt-description"
+      aria-label="rule image-alt"
+      href="help url"
+    >
+      image-alt
+    </NewTabLink>
+  </span>
+  : 
+  <span
+    className="rule-details-description"
+    id="failed-rule-image-alt-description"
+  >
+    rule description
+  </span>
+   (
+  <GuidanceLinks />
+  )
+</div>
+`;
+
+exports[`InstanceListGroupHeaderTest render for fail instances and handles aria-level 1`] = `
+<div
+  aria-level={2}
+  role="heading"
+>
+  <OutcomeChip
+    count={1}
+    outcomeType="fail"
+  />
+   
+  <span
+    className="rule-details-id"
+  >
+    <NewTabLink
+      aria-describedby="failed-rule-image-alt-description"
+      aria-label="rule image-alt"
+      href="help url"
+    >
+      image-alt
+    </NewTabLink>
+  </span>
+  : 
+  <span
+    className="rule-details-description"
+    id="failed-rule-image-alt-description"
+  >
+    rule description
+  </span>
+   (
+  <GuidanceLinks />
+  )
+</div>
+`;
+
+exports[`InstanceListGroupHeaderTest render for incomplete instances 1`] = `
+<div>
+   
+  <span
+    className="rule-details-id"
+  >
+    <NewTabLink
+      aria-describedby="incomplete-rule-image-alt-description"
+      aria-label="rule image-alt"
+      href="help url"
+    >
+      image-alt
+    </NewTabLink>
+  </span>
+  : 
+  <span
+    className="rule-details-description"
+    id="incomplete-rule-image-alt-description"
+  >
+    rule description
+  </span>
+   (
+  <GuidanceLinks />
+  )
+</div>
+`;
+
+exports[`InstanceListGroupHeaderTest render for incomplete instances and handles aria-level 1`] = `
+<div
+  aria-level={2}
+  role="heading"
+>
+   
+  <span
+    className="rule-details-id"
+  >
+    <NewTabLink
+      aria-describedby="incomplete-rule-image-alt-description"
+      aria-label="rule image-alt"
+      href="help url"
+    >
+      image-alt
+    </NewTabLink>
+  </span>
+  : 
+  <span
+    className="rule-details-description"
+    id="incomplete-rule-image-alt-description"
+  >
+    rule description
+  </span>
+   (
+  <GuidanceLinks />
+  )
+</div>
+`;
+
+exports[`InstanceListGroupHeaderTest render for pass instances 1`] = `
+<div>
+   
+  <span
+    className="rule-details-id"
+  >
+    <NewTabLink
+      aria-describedby="passed-rule-image-alt-description"
+      aria-label="rule image-alt"
+      href="help url"
+    >
+      image-alt
+    </NewTabLink>
+  </span>
+  : 
+  <span
+    className="rule-details-description"
+    id="passed-rule-image-alt-description"
+  >
+    rule description
+  </span>
+   (
+  <GuidanceLinks />
+  )
+</div>
+`;
+
+exports[`InstanceListGroupHeaderTest render for pass instances and handles aria-level 1`] = `
+<div
+  aria-level={2}
+  role="heading"
+>
+   
+  <span
+    className="rule-details-id"
+  >
+    <NewTabLink
+      aria-describedby="passed-rule-image-alt-description"
+      aria-label="rule image-alt"
+      href="help url"
+    >
+      image-alt
+    </NewTabLink>
+  </span>
+  : 
+  <span
+    className="rule-details-description"
+    id="passed-rule-image-alt-description"
+  >
+    rule description
+  </span>
+   (
+  <GuidanceLinks />
+  )
+</div>
+`;

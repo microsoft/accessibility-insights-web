@@ -12,7 +12,8 @@ import { VisualizationType } from '../../../../../../common/types/visualization-
 import { BaseLeftNavLink, onBaseLeftNavItemClick } from '../../../../../../DetailsView/components/base-left-nav';
 import { LeftNavLinkBuilder, LeftNavLinkBuilderDeps } from '../../../../../../DetailsView/components/left-nav/left-nav-link-builder';
 import { OverviewSummaryReportModel } from '../../../../../../DetailsView/reports/assessment-report-model';
-import { OutcomeStats, OutcomeTypeSemantic } from '../../../../../../DetailsView/reports/components/outcome-type';
+import { OutcomeTypeSemantic } from '../../../../../../DetailsView/reports/components/outcome-type';
+import { RequirementOutcomeStats } from '../../../../../../DetailsView/reports/components/requirement-outcome-type';
 import { GetAssessmentSummaryModelFromProviderAndStatusData } from '../../../../../../DetailsView/reports/get-assessment-summary-model';
 import { DictionaryStringTo } from '../../../../../../types/common-types';
 
@@ -24,9 +25,9 @@ describe('LeftNavBuilder', () => {
     let testSubject: LeftNavLinkBuilder;
     let getAssessmentSummaryModelFromProviderAndStatusDataMock: IMock<GetAssessmentSummaryModelFromProviderAndStatusData>;
     let renderIconStub: (link: BaseLeftNavLink) => JSX.Element;
-    let getStatusForTestMock: IMock<(stats: OutcomeStats) => ManualTestStatus>;
+    let getStatusForTestMock: IMock<(stats: RequirementOutcomeStats) => ManualTestStatus>;
     let outcomeTypeFromTestStatusMock: IMock<(testStatus: ManualTestStatus) => OutcomeTypeSemantic>;
-    let outcomeStatsFromManualTestStatusMock: IMock<(testStepStatus: ManualTestStatusData) => OutcomeStats>;
+    let outcomeStatsFromManualTestStatusMock: IMock<(testStepStatus: ManualTestStatusData) => RequirementOutcomeStats>;
 
     beforeEach(() => {
         onLinkClickMock = Mock.ofInstance((e, item) => null, MockBehavior.Strict);
@@ -136,7 +137,7 @@ describe('LeftNavBuilder', () => {
             } as Assessment;
             const assessmentsStub = [assessmentStub, assessmentStub];
             const stepStatusStub: ManualTestStatusData = {};
-            const outcomeStatsStub = {} as OutcomeStats;
+            const outcomeStatsStub = {} as RequirementOutcomeStats;
             const testStatusStub = -2 as ManualTestStatus;
             const narratorStatusStub = { pastTense: 'passed' } as OutcomeTypeSemantic;
 

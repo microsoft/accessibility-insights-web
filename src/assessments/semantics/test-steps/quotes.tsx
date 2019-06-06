@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 import { link } from '../../../content/link';
+import * as content from '../../../content/test/semantics/quotes';
 import { ManualTestRecordYourResults } from '../../common/manual-test-record-your-results';
 import * as Markup from '../../markup';
 import { Requirement } from '../../types/requirement';
@@ -34,6 +35,7 @@ export const SemanticsQuotes: Requirement = {
     description: quotesDescription,
     howToTest: quotesHowToTest,
     isManual: true,
+    ...content,
     guidanceLinks: [link.WCAG_1_3_1],
     updateVisibility: false,
 };
