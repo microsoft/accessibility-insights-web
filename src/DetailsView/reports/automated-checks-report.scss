@@ -267,6 +267,7 @@ $outcome-not-applicable-summary-color: $neutral-outcome;
         cursor: hand;
         margin-right: 8px;
         content: '';
+        position: absolute;
     }
 
     summary::-webkit-details-marker {
