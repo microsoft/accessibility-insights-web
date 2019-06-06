@@ -4,9 +4,9 @@ exports[`SummarySection renders 1`] = `
 <div
   className="summary-section"
 >
-  <h3>
+  <h2>
     Summary
-  </h3>
+  </h2>
   <OutcomeSummaryBar
     description="test description"
     environmentInfo={

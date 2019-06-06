@@ -22,4 +22,9 @@ describe('InstanceListGroupHeaderTest', () => {
         const wrapper = shallow(<InstanceListGroupHeader ruleResult={getSampleRuleResult()} outcomeType={outcome} />);
         expect(wrapper.getElement()).toMatchSnapshot();
     });
+
+    test.each(['pass', 'fail', 'incomplete'])('render for %s instances and handles aria-level', (outcome: InstanceOutcomeType) => {
+        const wrapper = shallow(<InstanceListGroupHeader ruleResult={getSampleRuleResult()} outcomeType={outcome} ariaLevel={2} />);
+        expect(wrapper.getElement()).toMatchSnapshot();
+    });
 });

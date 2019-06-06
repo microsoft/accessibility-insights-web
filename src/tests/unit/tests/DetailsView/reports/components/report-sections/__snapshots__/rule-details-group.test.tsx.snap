@@ -36,6 +36,7 @@ exports[`RuleDetailsGroup renders, with details 1`] = `
   className="rule-details-group"
 >
   <RuleDetails
+    isHeader={true}
     outcomeType="pass"
     rule={
       Object {

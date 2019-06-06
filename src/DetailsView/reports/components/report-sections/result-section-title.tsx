@@ -15,7 +15,7 @@ export type ResultSectionTitlePros = {
 export const ResultSectionTitle = NamedSFC<ResultSectionTitlePros>('ResultSectionTitle', props => {
     return (
         <div className="result-section-title">
-            <h3>{props.title}</h3>
+            <h2>{props.title}</h2>
             <OutcomeChip outcomeType={props.outcomeType} count={props.count} />
         </div>
     );
