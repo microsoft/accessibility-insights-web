@@ -13,6 +13,7 @@ describe('PassedChecksSection', () => {
             containerClassName: 'result-section-class-name',
             rules: [{} as RuleResult, {} as RuleResult],
             outcomeType: 'pass',
+            badgeCount: 2,
         };
 
         const wrapper = shallow(<ResultSection {...props} />);
@@ -27,6 +28,7 @@ describe('PassedChecksSection', () => {
             rules: [{} as RuleResult, {} as RuleResult],
             outcomeType: 'pass',
             showDetails: true,
+            badgeCount: 2,
         };
 
         const wrapper = shallow(<ResultSection {...props} />);

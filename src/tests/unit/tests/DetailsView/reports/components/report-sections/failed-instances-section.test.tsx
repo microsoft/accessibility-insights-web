@@ -13,7 +13,7 @@ describe('FailedInstancesSection', () => {
     it('renders', () => {
         const props: FailedInstancesSectionProps = {
             scanResult: {
-                violations: [{} as RuleResult, {} as RuleResult, {} as RuleResult],
+                violations: [{ nodes: [{}, {}] } as RuleResult, { nodes: [{}] } as RuleResult, { nodes: [{}, {}, {}] } as RuleResult],
                 passes: [],
                 inapplicable: [],
                 incomplete: [],
