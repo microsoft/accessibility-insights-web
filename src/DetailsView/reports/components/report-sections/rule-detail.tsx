@@ -8,18 +8,9 @@ import { RuleResult } from '../../../../scanner/iruleresults';
 
 export type RuleDetailProps = {
     rule: RuleResult;
-    showDetails?: boolean;
 };
 
-export const RuleDetail = NamedSFC<RuleDetailProps>('RuleDetails', ({ rule, children, showDetails }) => {
-    // const chevronClickHandler = eve => {
-    //     console.log('here', eve);
-    //     eve.target.classList.contains('closed') ? console.log('whatever') : console.log('open');
-    // };
-    const handleClick = e => {
-        console.log('The link was clicked.', e);
-    };
-
+export const RuleDetail = NamedSFC<RuleDetailProps>('RuleDetails', ({ rule, children }) => {
     const renderRuleName = () => (
         <span className="rule-details-id">
             <NewTabLink href={rule.helpUrl}>{rule.id}</NewTabLink>
@@ -37,13 +28,6 @@ export const RuleDetail = NamedSFC<RuleDetailProps>('RuleDetails', ({ rule, chil
     return (
         <>
             <div className="rule-detail">
-                {showDetails ? (
-                    <>
-                        <label htmlFor="cb1">test</label>
-                        <input type="checkbox" id="cb1" className="test-input" />
-                        <span className="chevron" />
-                    </>
-                ) : null}
                 {renderRuleName()}: {renderDescription()} ({renderGuidanceLinks()})
             </div>
             {children}
