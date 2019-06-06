@@ -14,14 +14,15 @@ export type ResultSectionProps = {
     title: string;
     outcomeType: InstanceOutcomeType;
     showDetails?: boolean;
+    badgeCount: number;
 };
 
 export const ResultSection = NamedSFC<ResultSectionProps>('ResultSection', props => {
-    const { rules, containerClassName, title, outcomeType } = props;
+    const { rules, containerClassName, title, outcomeType, badgeCount } = props;
 
     return (
         <div className={containerClassName}>
-            <ResultSectionTitle title={title} count={rules.length} outcomeType={outcomeType} />
+            <ResultSectionTitle title={title} count={badgeCount} outcomeType={outcomeType} />
             <RuleDetailsGroup rules={rules} showDetails={props.showDetails} outcomeType={outcomeType} />
         </div>
     );
