@@ -17,7 +17,7 @@ export const DetailsSection = NamedSFC<DetailsSectionProps>('DetailsSection', pr
 
     return (
         <div className="scan-details-section">
-            <h3>Scan details</h3>
+            <h2>Scan details</h2>
             <table>
                 <tbody>
                     <tr>
@@ -42,7 +42,7 @@ export const DetailsSection = NamedSFC<DetailsSectionProps>('DetailsSection', pr
                         <td className="icon" aria-hidden="true">
                             <CommentIcon />
                         </td>
-                        <td className="text">{description}</td>
+                        <td className="text description-text">{description}</td>
                     </tr>
                 </tbody>
             </table>

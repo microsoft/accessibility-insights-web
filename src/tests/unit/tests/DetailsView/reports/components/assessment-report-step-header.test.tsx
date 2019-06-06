@@ -9,7 +9,7 @@ import {
     AssessmentReportStepHeaderDeps,
 } from '../../../../../../DetailsView/reports/components/assessment-report-step-header';
 import { OutcomeChip } from '../../../../../../DetailsView/reports/components/outcome-chip';
-import { OutcomeType } from '../../../../../../DetailsView/reports/components/outcome-type';
+import { RequirementOutcomeType } from '../../../../../../DetailsView/reports/components/requirement-outcome-type';
 
 describe('AssessmentReportStepHeader', () => {
     function genHeader(requirementType: RequirementType): RequirementHeaderReportModel {
@@ -38,7 +38,7 @@ describe('AssessmentReportStepHeader', () => {
         expect(actual.getElement()).toMatchSnapshot();
     });
 
-    const outcomePairs: [ManualTestStatus, OutcomeType][] = [[PASS, 'pass'], [UNKNOWN, 'incomplete'], [FAIL, 'fail']];
+    const outcomePairs: [ManualTestStatus, RequirementOutcomeType][] = [[PASS, 'pass'], [UNKNOWN, 'incomplete'], [FAIL, 'fail']];
 
     outcomePairs.forEach(([status, outcomeType]) =>
         describe(`in ${outcomeType} section`, () => {

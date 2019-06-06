@@ -4,33 +4,30 @@ exports[`RuleDetailsGroup renders, no details 1`] = `
 <div
   className="rule-details-group"
 >
-  <React.Fragment>
-    <RuleDetails
-      rule={
-        Object {
-          "id": "1",
-        }
+  <RuleDetails
+    outcomeType="pass"
+    rule={
+      Object {
+        "id": "1",
       }
-    />
-  </React.Fragment>
-  <React.Fragment>
-    <RuleDetails
-      rule={
-        Object {
-          "id": "2",
-        }
+    }
+  />
+  <RuleDetails
+    outcomeType="pass"
+    rule={
+      Object {
+        "id": "2",
       }
-    />
-  </React.Fragment>
-  <React.Fragment>
-    <RuleDetails
-      rule={
-        Object {
-          "id": "3",
-        }
+    }
+  />
+  <RuleDetails
+    outcomeType="pass"
+    rule={
+      Object {
+        "id": "3",
       }
-    />
-  </React.Fragment>
+    }
+  />
 </div>
 `;
 
@@ -38,33 +35,33 @@ exports[`RuleDetailsGroup renders, with details 1`] = `
 <div
   className="rule-details-group"
 >
-  <React.Fragment>
-    <RuleDetails
-      rule={
-        Object {
-          "id": "1",
-          "nodes": Array [
-            Object {
-              "failureSummary": "fix the error on html tag",
-              "html": "<html>",
-              "snippet": "<html>",
-            },
-          ],
-        }
+  <RuleDetails
+    isHeader={true}
+    outcomeType="pass"
+    rule={
+      Object {
+        "id": "1",
+        "nodes": Array [
+          Object {
+            "failureSummary": "fix the error on html tag",
+            "html": "<html>",
+            "snippet": "<html>",
+          },
+        ],
       }
-    >
-      <InstanceDetailsGroup
-        nodeResults={
-          Array [
-            Object {
-              "failureSummary": "fix the error on html tag",
-              "html": "<html>",
-              "snippet": "<html>",
-            },
-          ]
-        }
-      />
-    </RuleDetails>
-  </React.Fragment>
+    }
+  >
+    <InstanceDetailsGroup
+      nodeResults={
+        Array [
+          Object {
+            "failureSummary": "fix the error on html tag",
+            "html": "<html>",
+            "snippet": "<html>",
+          },
+        ]
+      }
+    />
+  </RuleDetails>
 </div>
 `;

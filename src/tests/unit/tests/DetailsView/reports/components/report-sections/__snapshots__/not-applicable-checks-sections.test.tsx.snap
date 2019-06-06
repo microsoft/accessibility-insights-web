@@ -2,8 +2,9 @@
 
 exports[`PassedChecksSection renders 1`] = `
 <ResultSection
+  badgeCount={3}
   containerClassName="not-applicable-checks-section"
-  outcomeType="incomplete"
+  outcomeType="inapplicable"
   rules={
     Array [
       Object {},

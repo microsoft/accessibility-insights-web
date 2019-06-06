@@ -4,13 +4,13 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 
 import { InstanceListGroupHeader } from '../../../../../DetailsView/reports/components/instance-list-group-header';
-import { OutcomeType } from '../../../../../DetailsView/reports/components/outcome-type';
+import { InstanceOutcomeType } from '../../../../../DetailsView/reports/components/report-sections/outcome-summary-bar';
 import { RuleResult } from '../../../../../scanner/iruleresults';
 
 describe('InstanceListGroupHeaderTest', () => {
     const getSampleRuleResult = () => {
         const ruleResult: RuleResult = {
-            id: 'ruleid',
+            id: 'image-alt',
             nodes: [{} as AxeNodeResult],
             description: 'rule description',
             helpUrl: 'help url',
@@ -18,8 +18,13 @@ describe('InstanceListGroupHeaderTest', () => {
         return ruleResult;
     };
 
-    test.each(['pass', 'fail', 'incomplete'])('render for %s instances', (outcome: OutcomeType) => {
+    test.each(['pass', 'fail', 'incomplete'])('render for %s instances', (outcome: InstanceOutcomeType) => {
         const wrapper = shallow(<InstanceListGroupHeader ruleResult={getSampleRuleResult()} outcomeType={outcome} />);
+        expect(wrapper.getElement()).toMatchSnapshot();
+    });
+
+    test.each(['pass', 'fail', 'incomplete'])('render for %s instances and handles aria-level', (outcome: InstanceOutcomeType) => {
+        const wrapper = shallow(<InstanceListGroupHeader ruleResult={getSampleRuleResult()} outcomeType={outcome} ariaLevel={2} />);
         expect(wrapper.getElement()).toMatchSnapshot();
     });
 });

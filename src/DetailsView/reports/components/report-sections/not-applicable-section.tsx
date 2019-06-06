@@ -8,11 +8,16 @@ import { ResultSection } from './result-section';
 
 export type NotApplicableChecksSectionProps = Pick<SectionProps, 'scanResult'>;
 
-export const NotApplicableChecksSection = NamedSFC<NotApplicableChecksSectionProps>('NotApplicableChecksSection', ({ scanResult }) => (
-    <ResultSection
-        title="Not applicable"
-        rules={scanResult.inapplicable}
-        containerClassName="not-applicable-checks-section"
-        outcomeType="incomplete"
-    />
-));
+export const NotApplicableChecksSection = NamedSFC<NotApplicableChecksSectionProps>('NotApplicableChecksSection', ({ scanResult }) => {
+    const rules = scanResult.inapplicable;
+
+    return (
+        <ResultSection
+            title="Not applicable"
+            rules={rules}
+            containerClassName="not-applicable-checks-section"
+            outcomeType="inapplicable"
+            badgeCount={rules.length}
+        />
+    );
+});

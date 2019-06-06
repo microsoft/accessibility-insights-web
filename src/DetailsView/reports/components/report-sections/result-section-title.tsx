@@ -3,20 +3,20 @@
 import * as React from 'react';
 import { NamedSFC } from '../../../../common/react/named-sfc';
 import { OutcomeChip } from '../outcome-chip';
-import { OutcomeType } from '../outcome-type';
+import { InstanceOutcomeType } from './outcome-summary-bar';
 
 export type ResultSectionTitlePros = {
     title: string;
     count: number;
-    outcomeType: OutcomeType;
+    outcomeType: InstanceOutcomeType;
 };
 
 export const ResultSectionTitle = NamedSFC<ResultSectionTitlePros>('ResultSectionTitle', props => {
     const { title, outcomeType, count } = props;
     return (
         <div className="result-section-title">
-            <h3>{title}</h3>
-            <OutcomeChip outcomeType={outcomeType} count={count} />
+            <h2>{props.title}</h2>
+            <OutcomeChip outcomeType={props.outcomeType} count={props.count} />
         </div>
     );
 });

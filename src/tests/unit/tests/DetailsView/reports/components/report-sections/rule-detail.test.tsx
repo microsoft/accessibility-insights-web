@@ -7,7 +7,7 @@ import { RuleDetail } from '../../../../../../../DetailsView/reports/components/
 import { RuleResult } from '../../../../../../../scanner/iruleresults';
 
 describe('RuleDetailsGroup', () => {
-    it('renders', () => {
+    it('renders, not a header', () => {
         const rule = {
             helpUrl: 'url://help.url',
             id: 'rule id',
@@ -26,7 +26,39 @@ describe('RuleDetailsGroup', () => {
 
         const children = <span>children</span>;
 
-        const wrapped = shallow(<RuleDetail rule={rule}>{children}</RuleDetail>);
+        const wrapped = shallow(
+            <RuleDetail rule={rule} isHeader={false} outcomeType={'fail'}>
+                {children}
+            </RuleDetail>,
+        );
+
+        expect(wrapped.getElement()).toMatchSnapshot();
+    });
+
+    it('renders, it is header', () => {
+        const rule = {
+            helpUrl: 'url://help.url',
+            id: 'rule id',
+            description: 'rule description',
+            guidanceLinks: [
+                {
+                    href: 'url://guidance-01.link',
+                    text: 'guidance-01',
+                },
+                {
+                    href: 'url://guidance-02.link',
+                    text: 'guidance-02',
+                },
+            ],
+        } as RuleResult;
+
+        const children = <span>children</span>;
+
+        const wrapped = shallow(
+            <RuleDetail rule={rule} isHeader={true} outcomeType={'fail'}>
+                {children}
+            </RuleDetail>,
+        );
 
         expect(wrapped.getElement()).toMatchSnapshot();
     });

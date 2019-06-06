@@ -4,15 +4,23 @@ exports[`InstanceDetailsGroup renders 1`] = `
 <React.Fragment>
   <InstanceDetail
     failureSummary="fix the error on html"
+    html="<html>"
     index={0}
-    selector="<html>"
-    snippet="<html>"
+    target={
+      Array [
+        "<html>",
+      ]
+    }
   />
   <InstanceDetail
     failureSummary="fix the error on body"
+    html="<body >"
     index={1}
-    selector="<body>"
-    snippet="<body >"
+    target={
+      Array [
+        "<body>",
+      ]
+    }
   />
 </React.Fragment>
 `;

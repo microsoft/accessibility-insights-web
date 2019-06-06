@@ -2,7 +2,7 @@
 
 exports[`PassedChecksSection renders, not showDetails 1`] = `
 <div
-  id="result-section-class-name"
+  className="result-section-class-name"
 >
   <ResultSectionTitle
     count={2}
@@ -10,6 +10,7 @@ exports[`PassedChecksSection renders, not showDetails 1`] = `
     title="result section title"
   />
   <RuleDetailsGroup
+    outcomeType="pass"
     rules={
       Array [
         Object {},
@@ -22,7 +23,7 @@ exports[`PassedChecksSection renders, not showDetails 1`] = `
 
 exports[`PassedChecksSection renders, with showDetails 1`] = `
 <div
-  id="result-section-class-name"
+  className="result-section-class-name"
 >
   <ResultSectionTitle
     count={2}
@@ -30,6 +31,7 @@ exports[`PassedChecksSection renders, with showDetails 1`] = `
     title="result section title"
   />
   <RuleDetailsGroup
+    outcomeType="pass"
     rules={
       Array [
         Object {},

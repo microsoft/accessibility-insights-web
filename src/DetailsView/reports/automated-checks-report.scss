@@ -28,6 +28,12 @@ body {
 .content-container {
     @include contentSize();
     margin-top: 24px;
+
+    h2 {
+        margin: 0px;
+        font-size: 17px;
+        line-height: 24px;
+    }
 }
 
 .title-section {
@@ -80,19 +86,13 @@ $outcome-not-applicable-summary-color: $neutral-outcome;
     padding: 25px;
     margin-bottom: 24px;
 
-    h3 {
-        margin: 0px;
-        font-size: 17px;
-        line-height: 24px;
-        margin-bottom: 16px;
-    }
-
     .outcome-summary-bar {
         $outcome-summary-icon-size: 16px;
         flex: 0 0 100%;
         display: flex;
         align-items: center;
         height: 32px;
+        margin-top: 16px;
         margin-bottom: 0px;
         line-height: 24px;
         font-size: 17px;
@@ -137,7 +137,7 @@ $outcome-not-applicable-summary-color: $neutral-outcome;
             border-top-left-radius: 2px;
             border-bottom-left-radius: 2px;
         }
-        .not-applicable {
+        .inapplicable {
             @extend .block;
             @include inapplicable-icon-styles($outcome-summary-icon-size, 0px, $outcome-not-applicable-summary-color);
             .check-container {
@@ -176,6 +176,10 @@ $outcome-not-applicable-summary-color: $neutral-outcome;
         padding-top: 12px;
     }
 
+    .description-text {
+        white-space: pre-wrap;
+    }
+
     tbody :first-child td {
         padding-top: 16px;
     }
@@ -201,6 +205,7 @@ $outcome-not-applicable-summary-color: $neutral-outcome;
     flex-wrap: nowrap;
     justify-content: flex-start;
     align-items: center;
+    margin-bottom: 16px;
 }
 
 .rule-detail {
@@ -210,6 +215,11 @@ $outcome-not-applicable-summary-color: $neutral-outcome;
     padding: 0 8px;
 
     box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.08);
+
+    .outcome-chip {
+        vertical-align: middle;
+        margin-bottom: 2px;
+    }
 
     .rule-details-id {
         a {
@@ -227,4 +237,16 @@ $outcome-not-applicable-summary-color: $neutral-outcome;
             color: $secondary-text !important;
         }
     }
+}
+
+.failed-instances-section {
+    margin-top: 56px;
+}
+
+.passed-checks-section {
+    margin-top: 76px;
+}
+
+.not-applicable-checks-section {
+    margin-top: 56px;
 }

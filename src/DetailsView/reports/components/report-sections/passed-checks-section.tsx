@@ -8,6 +8,15 @@ import { ResultSection } from './result-section';
 
 export type PassedChecksSectionProps = Pick<SectionProps, 'scanResult'>;
 
-export const PassedChecksSection = NamedSFC<PassedChecksSectionProps>('PassedChecksSection', ({ scanResult }) => (
-    <ResultSection title="Passed checks" rules={scanResult.passes} containerClassName="passed-checks-section" outcomeType="pass" />
-));
+export const PassedChecksSection = NamedSFC<PassedChecksSectionProps>('PassedChecksSection', ({ scanResult }) => {
+    const rules = scanResult.passes;
+    return (
+        <ResultSection
+            title="Passed checks"
+            rules={rules}
+            containerClassName="passed-checks-section"
+            outcomeType="pass"
+            badgeCount={rules.length}
+        />
+    );
+});

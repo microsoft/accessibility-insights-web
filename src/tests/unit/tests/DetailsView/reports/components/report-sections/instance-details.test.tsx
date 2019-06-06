@@ -11,8 +11,8 @@ import {
 describe('InstanceDetails', () => {
     it('renders', () => {
         const props: InstanceDetailsProps = {
-            selector: '<html>',
-            snippet: '<html>',
+            target: ['<html>'],
+            html: '<html>',
             failureSummary: 'fix the error',
             index: 0,
         };

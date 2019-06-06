@@ -33,7 +33,7 @@ exports[`OutcomeSummaryBar failure only 1`] = `
     Passed
   </span>
   <span
-    className="not-applicable"
+    className="inapplicable"
     style={
       Object {
         "flexGrow": 0,
@@ -82,7 +82,7 @@ exports[`OutcomeSummaryBar failures + not applicable + passes 1`] = `
     Passed
   </span>
   <span
-    className="not-applicable"
+    className="inapplicable"
     style={
       Object {
         "flexGrow": 3,
@@ -131,7 +131,7 @@ exports[`OutcomeSummaryBar failures + not applicable only 1`] = `
     Passed
   </span>
   <span
-    className="not-applicable"
+    className="inapplicable"
     style={
       Object {
         "flexGrow": 3,
@@ -180,7 +180,7 @@ exports[`OutcomeSummaryBar failures + passes only 1`] = `
     Passed
   </span>
   <span
-    className="not-applicable"
+    className="inapplicable"
     style={
       Object {
         "flexGrow": 0,
@@ -229,7 +229,7 @@ exports[`OutcomeSummaryBar not applicable + passes only 1`] = `
     Passed
   </span>
   <span
-    className="not-applicable"
+    className="inapplicable"
     style={
       Object {
         "flexGrow": 3,
@@ -278,7 +278,7 @@ exports[`OutcomeSummaryBar not applicable only 1`] = `
     Passed
   </span>
   <span
-    className="not-applicable"
+    className="inapplicable"
     style={
       Object {
         "flexGrow": 0,
@@ -327,7 +327,7 @@ exports[`OutcomeSummaryBar passes only 1`] = `
     Passed
   </span>
   <span
-    className="not-applicable"
+    className="inapplicable"
     style={
       Object {
         "flexGrow": 0,
