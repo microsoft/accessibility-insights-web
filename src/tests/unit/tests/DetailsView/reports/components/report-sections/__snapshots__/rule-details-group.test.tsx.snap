@@ -1,0 +1,67 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RuleDetailsGroup renders, no details 1`] = `
+<div
+  className="rule-details-group"
+>
+  <RuleDetails
+    outcomeType="pass"
+    rule={
+      Object {
+        "id": "1",
+      }
+    }
+  />
+  <RuleDetails
+    outcomeType="pass"
+    rule={
+      Object {
+        "id": "2",
+      }
+    }
+  />
+  <RuleDetails
+    outcomeType="pass"
+    rule={
+      Object {
+        "id": "3",
+      }
+    }
+  />
+</div>
+`;
+
+exports[`RuleDetailsGroup renders, with details 1`] = `
+<div
+  className="rule-details-group"
+>
+  <RuleDetails
+    isHeader={true}
+    outcomeType="pass"
+    rule={
+      Object {
+        "id": "1",
+        "nodes": Array [
+          Object {
+            "failureSummary": "fix the error on html tag",
+            "html": "<html>",
+            "snippet": "<html>",
+          },
+        ],
+      }
+    }
+  >
+    <InstanceDetailsGroup
+      nodeResults={
+        Array [
+          Object {
+            "failureSummary": "fix the error on html tag",
+            "html": "<html>",
+            "snippet": "<html>",
+          },
+        ]
+      }
+    />
+  </RuleDetails>
+</div>
+`;

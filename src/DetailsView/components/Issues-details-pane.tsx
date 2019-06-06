@@ -13,7 +13,7 @@ import { CreateIssueDetailsTextData } from '../../common/types/create-issue-deta
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { UserConfigurationStoreData } from '../../common/types/store-data/user-configuration-store';
 import { CheckType } from '../../injected/components/details-dialog';
-import { FixInstructionPanel } from '../../injected/components/fix-instruction-panel';
+import { FixInstructionPanel, FixInstructionPanelDeps } from '../../injected/components/fix-instruction-panel';
 import { DecoratedAxeNodeResult } from '../../injected/scanner-utils';
 import { DictionaryStringTo } from '../../types/common-types';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
@@ -21,7 +21,8 @@ import { IssueFilingDialog } from './issue-filing-dialog';
 
 export type IssuesDetailsPaneDeps = ToastDeps &
     IssueFilingButtonDeps &
-    GuidanceTagsDeps & {
+    GuidanceTagsDeps &
+    FixInstructionPanelDeps & {
         issueDetailsTextGenerator: IssueDetailsTextGenerator;
         detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
     };
@@ -116,11 +117,13 @@ export class IssuesDetailsPane extends React.Component<IssuesDetailsPaneProps, I
                             <td>How to fix</td>
                             <td className="fix-content">
                                 <FixInstructionPanel
+                                    deps={this.props.deps}
                                     checkType={CheckType.All}
                                     checks={result.all.concat(result.none)}
                                     renderTitleElement={this.renderFixInstructionsTitleElement}
                                 />
                                 <FixInstructionPanel
+                                    deps={this.props.deps}
                                     checkType={CheckType.Any}
                                     checks={result.any}
                                     renderTitleElement={this.renderFixInstructionsTitleElement}

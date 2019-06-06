@@ -3,7 +3,6 @@
 import { ISelection } from 'office-ui-fabric-react/lib/DetailsList';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-
 import { AssessmentsProvider } from '../assessments/types/assessments-provider';
 import { Theme } from '../common/components/theme';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
@@ -17,7 +16,6 @@ import { DetailsView, DetailsViewContainerDeps } from './details-view-container'
 import { AssessmentInstanceTableHandler } from './handlers/assessment-instance-table-handler';
 import { DetailsViewToggleClickHandlerFactory } from './handlers/details-view-toggle-click-handler-factory';
 import { PreviewFeatureFlagsHandler } from './handlers/preview-feature-flags-handler';
-import { ReportGenerator } from './reports/report-generator';
 
 export class DetailsViewRenderer {
     private renderer: typeof ReactDOM.render;
@@ -29,7 +27,6 @@ export class DetailsViewRenderer {
     private visualizationConfigurationFactory: VisualizationConfigurationFactory;
     private issuesTableHandler: IssuesTableHandler;
     private assessmentInstanceTableHandler: AssessmentInstanceTableHandler;
-    private reportGenerator: ReportGenerator;
     private previewFeatureFlagsHandler: PreviewFeatureFlagsHandler;
     private scopingFlagsHandler: PreviewFeatureFlagsHandler;
     private dropdownClickHandler: DropdownClickHandler;
@@ -46,7 +43,6 @@ export class DetailsViewRenderer {
         visualizationConfigurationFactory: VisualizationConfigurationFactory,
         issuesTableHandler: IssuesTableHandler,
         assessmentInstanceTableHandler: AssessmentInstanceTableHandler,
-        reportGenerator: ReportGenerator,
         previewFeatureFlagsHandler: PreviewFeatureFlagsHandler,
         scopingFlagsHandler: PreviewFeatureFlagsHandler,
         dropdownClickHandler: DropdownClickHandler,
@@ -64,7 +60,6 @@ export class DetailsViewRenderer {
 
         this.issuesTableHandler = issuesTableHandler;
         this.assessmentInstanceTableHandler = assessmentInstanceTableHandler;
-        this.reportGenerator = reportGenerator;
         this.previewFeatureFlagsHandler = previewFeatureFlagsHandler;
         this.scopingFlagsHandler = scopingFlagsHandler;
         this.dropdownClickHandler = dropdownClickHandler;
@@ -86,7 +81,6 @@ export class DetailsViewRenderer {
                     visualizationConfigurationFactory={this.visualizationConfigurationFactory}
                     issuesTableHandler={this.issuesTableHandler}
                     assessmentInstanceTableHandler={this.assessmentInstanceTableHandler}
-                    reportGenerator={this.reportGenerator}
                     previewFeatureFlagsHandler={this.previewFeatureFlagsHandler}
                     scopingFlagsHandler={this.scopingFlagsHandler}
                     dropdownClickHandler={this.dropdownClickHandler}

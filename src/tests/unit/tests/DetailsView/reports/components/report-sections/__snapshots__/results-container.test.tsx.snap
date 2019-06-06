@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ResultsContainer renders 1`] = `
+<div
+  className="results-container"
+>
+  <div>
+    1
+  </div>
+  <div
+    id="2"
+  >
+    2
+  </div>
+</div>
+`;

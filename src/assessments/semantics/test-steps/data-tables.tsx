@@ -3,11 +3,11 @@
 import * as React from 'react';
 import { NewTabLink } from '../../../common/components/new-tab-link';
 import { link } from '../../../content/link';
+import * as content from '../../../content/test/semantics/data-tables';
 import { ManualTestRecordYourResults } from '../../common/manual-test-record-your-results';
 import * as Markup from '../../markup';
 import { Requirement } from '../../types/requirement';
 import { SemanticsTestStep } from './test-steps';
-
 const dataTablesDescription: JSX.Element = <span>Semantic elements in a data table must not be coded as decorative.</span>;
 
 const dataTablesHowToTest: JSX.Element = (
@@ -51,6 +51,7 @@ export const DataTables: Requirement = {
     description: dataTablesDescription,
     howToTest: dataTablesHowToTest,
     isManual: true,
+    ...content,
     guidanceLinks: [link.WCAG_1_3_1],
     updateVisibility: false,
 };

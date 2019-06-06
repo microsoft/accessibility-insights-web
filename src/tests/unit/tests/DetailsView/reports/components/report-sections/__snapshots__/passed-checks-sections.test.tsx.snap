@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PassedChecksSection renders 1`] = `
+<ResultSection
+  badgeCount={3}
+  containerClassName="passed-checks-section"
+  outcomeType="pass"
+  rules={
+    Array [
+      Object {},
+      Object {},
+      Object {},
+    ]
+  }
+  title="Passed checks"
+/>
+`;

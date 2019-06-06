@@ -13,12 +13,16 @@ exports[`ShadowInitializerTests add style data to shadow container 2`] = `
   <div
     id="insights-shadow-container"
   >
-    <style>
-      injectedCss style content
-    </style>
-    <style>
-      generatedBundleInjectedCss style content
-    </style>
+    <link
+      href="injectedCssPathFileUrl"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="generatedBundleInjectedCssPathFileUrl"
+      rel="stylesheet"
+      type="text/css"
+    />
   </div>
 </div>
 `;
@@ -36,12 +40,16 @@ exports[`ShadowInitializerTests remove existing & create new shadow container on
   <div
     id="insights-shadow-container"
   >
-    <style>
-      injectedCss style content
-    </style>
-    <style>
-      generatedBundleInjectedCss style content
-    </style>
+    <link
+      href="injectedCssPathFileUrl"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="generatedBundleInjectedCssPathFileUrl"
+      rel="stylesheet"
+      type="text/css"
+    />
   </div>
 </div>
 `;

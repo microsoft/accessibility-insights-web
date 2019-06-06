@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FailedInstancesSection renders 1`] = `
+<ResultSection
+  badgeCount={6}
+  containerClassName="failed-instances-section"
+  outcomeType="fail"
+  rules={
+    Array [
+      Object {
+        "nodes": Array [
+          Object {},
+          Object {},
+        ],
+      },
+      Object {
+        "nodes": Array [
+          Object {},
+        ],
+      },
+      Object {
+        "nodes": Array [
+          Object {},
+          Object {},
+          Object {},
+        ],
+      },
+    ]
+  }
+  showDetails={true}
+  title="Failed instances"
+/>
+`;

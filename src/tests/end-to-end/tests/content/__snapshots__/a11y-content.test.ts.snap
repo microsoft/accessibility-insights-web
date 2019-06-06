@@ -19756,6 +19756,2198 @@ exports[`A11Y for content pages High Contrast mode test/repetitiveContent/guidan
 </DocumentFragment>
 `;
 
+exports[`A11Y for content pages High Contrast mode test/semantics/cssContent/infoAndExamples 1`] = `
+<DocumentFragment>
+  <div
+    class="content-container"
+  >
+    <div
+      class="content-left"
+    />
+    <div
+      class="content"
+    >
+      <h1>
+        CSS content
+      </h1>
+      <p>
+        Meaningful content must not be inserted using CSS 
+        <span
+          class="insights-code"
+        >
+          :before
+        </span>
+         or 
+        <span
+          class="insights-code"
+        >
+          :after
+        </span>
+        .
+      </p>
+      <h2>
+        Why it matters
+      </h2>
+      <p>
+        Some people with visual disabilities need to customize the styling of a web page to see its content. When they modify or disable CSS styling, content inserted using 
+        <span
+          class="insights-code"
+        >
+          :before
+        </span>
+         or 
+        <span
+          class="insights-code"
+        >
+          :after
+        </span>
+         might move or disappear entirely.
+      </p>
+      <h2>
+        How to fix
+      </h2>
+      <p>
+        Avoid inserting meaningful page content using CSS 
+        <span
+          class="insights-code"
+        >
+          :before
+        </span>
+         or 
+        <span
+          class="insights-code"
+        >
+          :after
+        </span>
+        .
+      </p>
+      <h2>
+        Example
+      </h2>
+      <div
+        class="pass-fail-grid"
+      >
+        <div
+          class="fail-section"
+        >
+          <div
+            class="fail-header"
+          >
+            <span
+              class="check-container"
+            >
+              <span
+                class="cross-icon"
+              />
+            </span>
+             
+            <h3>
+              Fail
+            </h3>
+          </div>
+          <p>
+            An online book review site uses 
+            <span
+              class="insights-code"
+            >
+              :before
+            </span>
+             (and its content property) to indicate the titles of newly reviewed books. 
+          </p>
+        </div>
+        <div
+          class="fail-example"
+        >
+          <div
+            class="code-example"
+          >
+            <div
+              class="code-example-code"
+            >
+              <div
+                class="insights-code"
+              >
+                &lt;style&gt;
+                <br />
+                                
+                <span
+                  class="highlight"
+                >
+                  .new-title::before {content: "New!" ;}
+                </span>
+                <br />
+                                &lt;/style&gt;
+                <br />
+                                ...
+                <br />
+                                &lt;h3 class="new-title"&gt;Potato Life&lt;/h3&gt;
+                <br />
+                                &lt;h3&gt;Angry Anteaters&lt;/h3&gt;
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="pass-section"
+        >
+          <div
+            class="pass-header"
+          >
+            <span
+              class="check-container"
+            >
+              <span
+                class="check-icon"
+              />
+            </span>
+             
+            <h3>
+              Pass
+            </h3>
+          </div>
+          <p>
+            "New!" is inserted directly into the titles of newly reviewed books.
+          </p>
+        </div>
+        <div
+          class="pass-example"
+        >
+          <div
+            class="code-example"
+          >
+            <div
+              class="code-example-code"
+            >
+              <div
+                class="insights-code"
+              >
+                &lt;h3&gt;
+                <span
+                  class="highlight"
+                >
+                  New!
+                </span>
+                 Potato Life&lt;/h3&gt;
+                <br />
+                                &lt;h3&gt;Angry Anteaters&lt;/h3&gt;
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h2>
+        More examples
+      </h2>
+      <h3>
+        WCAG success criteria
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships.html"
+          target="_blank"
+        >
+          Understanding Success Criterion 1.3.1: Info and Relationships
+        </a>
+      </div>
+      <h3>
+        Common failures
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/failures/F87"
+          target="_blank"
+        >
+          Failure of Success Criterion 1.3.1 due to inserting non-decorative content by using :before and :after pseudo-elements and the 'content' property in CSS
+        </a>
+      </div>
+    </div>
+    <div
+      class="content-right"
+    />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`A11Y for content pages High Contrast mode test/semantics/dataTables/infoAndExamples 1`] = `
+<DocumentFragment>
+  <div
+    class="content-container"
+  >
+    <div
+      class="content-left"
+    />
+    <div
+      class="content"
+    >
+      <h1>
+        Data tables
+      </h1>
+      <p>
+        Semantic elements in a data table must not be coded as presentational.
+      </p>
+      <h2>
+        Why it matters
+      </h2>
+      <p>
+        The semantic elements in a data table communicate relationships between cells and row or column headers. When 
+        <span
+          class="insights-code"
+        >
+          role="presentation"
+        </span>
+         is applied to a data table element, its semantics are suppressed, and critical relationships are consequently hidden from people who use assistive technologies. Moreover, they can't use the standard navigational shortcuts for data tables.
+      </p>
+      <p>
+        (Applying 
+        <span
+          class="insights-code"
+        >
+          role="presentation"
+        </span>
+         is appropriate for layout tables, because their table semantics do not communicate any meaningful relationships.)
+      </p>
+      <h2>
+        How to fix
+      </h2>
+      <p>
+        Do not use 
+        <span
+          class="insights-code"
+        >
+          role="presentation"
+        </span>
+         on any of the semantic elements in a data table:
+      </p>
+      <ul>
+        <li>
+          &lt;table&gt;
+        </li>
+        <li>
+          &lt;tr&gt;
+        </li>
+        <li>
+           &lt;th&gt;
+        </li>
+        <li>
+           &lt;td&gt;
+        </li>
+        <li>
+           &lt;caption&gt;
+        </li>
+        <li>
+           &lt;col&gt;
+        </li>
+        <li>
+           &lt;colgroup&gt;
+        </li>
+        <li>
+           &lt;thead&gt;
+        </li>
+        <li>
+           &lt;tfoot&gt;
+        </li>
+        <li>
+           &lt;tbody&gt;
+        </li>
+      </ul>
+      <p />
+      <div
+        class="pass-fail-grid"
+      >
+        <div
+          class="fail-section"
+        >
+          <div
+            class="fail-header"
+          >
+            <span
+              class="check-container"
+            >
+              <span
+                class="cross-icon"
+              />
+            </span>
+             
+            <h3>
+              Fail
+            </h3>
+          </div>
+          <p>
+            This data table is incorrectly coded as presentational. Assistive technologies are unaware of the table's semantic elements.
+          </p>
+        </div>
+        <div
+          class="fail-example"
+        >
+          <div
+            class="code-example"
+          >
+            <div
+              class="code-example-code"
+            >
+              <div
+                class="insights-code"
+              >
+                <span
+                  class="highlight"
+                >
+                  &lt;table role="presentation"&gt;
+                </span>
+                <br />
+                           &lt;tr&gt;
+                <br />
+                           &lt;th&gt;Park name&lt;/th&gt;
+                <br />
+                           &lt;th&gt;Location&lt;/th&gt;
+                <br />
+                           &lt;/tr&gt;
+                <br />
+                           &lt;tr&gt;
+                <br />
+                           &lt;td&gt;Bridle Trails State Park&lt;/td&gt;
+                <br />
+                           &lt;td&gt;Kirkland, WA&lt;/td&gt;
+                <br />
+                           &lt;/tr&gt;
+                <br />
+                           &lt;tr&gt;
+                <br />
+                           &lt;td&gt;Lake Sammamish State Park&lt;/td&gt;
+                <br />
+                           &lt;td&gt;Issaquah, WA&lt;/td&gt;
+                <br />
+                           &lt;/tr&gt;
+                <br />
+                           &lt;tr&gt;
+                <br />
+                           &lt;td&gt;Saltwater State Park&lt;/td&gt;
+                <br />
+                           &lt;td&gt;Des Moines, WA&lt;td&gt;
+                <br />
+                           &lt;/tr&gt;
+                <br />
+                           &lt;/table&gt;
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="pass-section"
+        >
+          <div
+            class="pass-header"
+          >
+            <span
+              class="check-container"
+            >
+              <span
+                class="check-icon"
+              />
+            </span>
+             
+            <h3>
+              Pass
+            </h3>
+          </div>
+          <p>
+            With 
+            <span
+              class="insights-code"
+            >
+              role="presentation"
+            </span>
+             removed, assistive technologies can help users understand the relationships between cells and column headers. 
+          </p>
+        </div>
+        <div
+          class="pass-example"
+        >
+          <div
+            class="code-example"
+          >
+            <div
+              class="code-example-code"
+            >
+              <div
+                class="insights-code"
+              >
+                <span
+                  class="highlight"
+                >
+                  &lt;table&gt;
+                </span>
+                <br />
+                            &lt;tr&gt;
+                <br />
+                            &lt;th&gt;Park name&lt;/th&gt;
+                <br />
+                            &lt;th&gt;Location&lt;/th&gt;
+                <br />
+                            &lt;/tr&gt;
+                <br />
+                            &lt;tr&gt;
+                <br />
+                            &lt;td&gt;Bridle Trails State Park&lt;/td&gt;
+                <br />
+                            &lt;td&gt;Kirkland, WA&lt;/td&gt;
+                <br />
+                            &lt;/tr&gt;
+                <br />
+                            &lt;tr&gt;
+                <br />
+                            &lt;td&gt;Lake Sammamish State Park&lt;/td&gt;
+                <br />
+                            &lt;td&gt;Issaquah, WA&lt;/td&gt;
+                <br />
+                            &lt;/tr&gt;
+                <br />
+                            &lt;tr&gt;
+                <br />
+                            &lt;td&gt;Saltwater State Park&lt;/td&gt;
+                <br />
+                            &lt;td&gt;Des Moines, WA&lt;td&gt;
+                <br />
+                            &lt;/tr&gt;
+                <br />
+                            &lt;/table&gt;
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h2>
+        More examples
+      </h2>
+      <h3>
+        WCAG success criteria
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships.html"
+          target="_blank"
+        >
+          Understanding Success Criterion 1.3.1: Info and Relationships
+        </a>
+      </div>
+      <h3>
+        Sufficient techniques
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/html/H51"
+          target="_blank"
+        >
+          Using table markup to present tabular information
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/html/H39"
+          target="_blank"
+        >
+          Using caption elements to associate data table captions with data tables
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/html/H73"
+          target="_blank"
+        >
+          Using the summary attribute of the table element to give an overview of data tables
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/html/H63"
+          target="_blank"
+        >
+          Using the scope attribute to associate header cells and data cells in data tables
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/html/H43"
+          target="_blank"
+        >
+          Using id and headers attributes to associate data cells with header cells in data tables
+        </a>
+      </div>
+      <h3>
+        Common failures
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/failures/F92"
+          target="_blank"
+        >
+          Failure of Success Criterion 1.3.1 due to the use of role presentation on content which conveys semantic information
+        </a>
+      </div>
+      <h3>
+        Additional guidance
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/TR/wai-aria-practices-1.1/"
+          target="_blank"
+        >
+          Intentionally Hiding Semantics with the Presentation Role
+        </a>
+      </div>
+    </div>
+    <div
+      class="content-right"
+    />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`A11Y for content pages High Contrast mode test/semantics/emphasis/infoAndExamples 1`] = `
+<DocumentFragment>
+  <div
+    class="content-container"
+  >
+    <div
+      class="content-left"
+    />
+    <div
+      class="content"
+    >
+      <h1>
+        Emphasis
+      </h1>
+      <p>
+        Words and phrases that are visually emphasized must be contained within semantically correct elements.
+      </p>
+      <h2>
+        Why it matters
+      </h2>
+      <p>
+        People with good vision can infer from visual styling that a word or phrase is especially important. For example, it might be displayed using bold or italic font. Unless the visually emphasized word or phrase is also contained in a semantically correct element, people who use screen readers won't know that it's emphasized.
+      </p>
+      <h2>
+        How to fix
+      </h2>
+      <p>
+        Contain the emphasized word or phrase in a semantically correct element:
+      </p>
+      <ul>
+        <li>
+          Use the 
+          <span
+            class="insights-code"
+          >
+            &lt;em&gt;
+          </span>
+           element when you want to stress a word or phrase within the context of a sentence or paragraph. By default, browsers will render the text using an italic font. A sighted person is likely to notice italic text when they read it, but it won't jump out at them when they skim the page. 
+        </li>
+        <li>
+          Use the 
+          <span
+            class="insights-code"
+          >
+            &lt;strong&gt;
+          </span>
+           element when the word or phrase is important within the context of the entire page. By default, browsers will render the text using a bold font. A sighted person will find it easy to spot bold text when they skim the page.
+        </li>
+      </ul>
+      <p />
+      <div
+        class="pass-fail-grid"
+      >
+        <div
+          class="fail-section"
+        >
+          <div
+            class="fail-header"
+          >
+            <span
+              class="check-container"
+            >
+              <span
+                class="cross-icon"
+              />
+            </span>
+             
+            <h3>
+              Fail
+            </h3>
+          </div>
+          <p>
+            Italic font is applied to visually emphasize certain words in a paragraph, but the emphasis is not conveyed to assistive technologies.
+          </p>
+        </div>
+        <div
+          class="fail-example"
+        >
+          <div
+            class="code-example"
+          >
+            <div
+              class="code-example-code"
+            >
+              <div
+                class="insights-code"
+              >
+                &lt;p&gt;These carrots are 
+                <span
+                  class="highlight"
+                >
+                  &lt;span style="font-style:italic;&gt;
+                </span>
+                not
+                <span
+                  class="highlight"
+                >
+                  &lt;/span&gt;
+                </span>
+                 crunchy!&lt;/p&gt;
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="pass-section"
+        >
+          <div
+            class="pass-header"
+          >
+            <span
+              class="check-container"
+            >
+              <span
+                class="check-icon"
+              />
+            </span>
+             
+            <h3>
+              Pass
+            </h3>
+          </div>
+          <p>
+            Containing the emphasized words in an 
+            <span
+              class="insights-code"
+            >
+              &lt;em&gt;
+            </span>
+             element conveys emphasis both visually and semantically.
+          </p>
+        </div>
+        <div
+          class="pass-example"
+        >
+          <div
+            class="code-example"
+          >
+            <div
+              class="code-example-code"
+            >
+              <div
+                class="insights-code"
+              >
+                &lt;p&gt;These carrots are 
+                <span
+                  class="highlight"
+                >
+                  &lt;em&gt;
+                </span>
+                not
+                <span
+                  class="highlight"
+                >
+                  &lt;/em&gt;
+                </span>
+                 crunchy!&lt;/p&gt;
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h2>
+        More examples
+      </h2>
+      <h3>
+        WCAG success criteria
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships.html"
+          target="_blank"
+        >
+          Understanding Success Criterion 1.3.1: Info and Relationships
+        </a>
+      </div>
+      <h3>
+        Sufficient techniques
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/general/G115"
+          target="_blank"
+        >
+          Using semantic elements to mark up structure
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/html/H49"
+          target="_blank"
+        >
+          Using semantic markup to mark emphasized or special text
+        </a>
+      </div>
+      <h3>
+        Common failures
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/failures/F2"
+          target="_blank"
+        >
+          Failure of Success Criterion 1.3.1 due to using changes in text presentation to convey information without using the appropriate markup or text
+        </a>
+      </div>
+    </div>
+    <div
+      class="content-right"
+    />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`A11Y for content pages High Contrast mode test/semantics/guidance 1`] = `
+<DocumentFragment>
+  <div
+    class="content-container"
+  >
+    <div
+      class="content-left"
+    />
+    <div
+      class="content"
+    >
+      <h1>
+        Semantics
+      </h1>
+      <h2>
+        Why it matters
+      </h2>
+      <p>
+        Assistive technologies use semantic markup to communicate meaning to users. When semantics are ignored or used incorrectly, users are likely to be confused. To ensure the best possible experience for all users, use the correct semantic elements and properties, and add CSS styling to achieve your desired visual presentation.
+      </p>
+      <div
+        class="columns"
+      >
+        <div
+          class="column"
+        >
+          <div
+            class="do-header"
+          >
+            <h2>
+              Do
+            </h2>
+            <span
+              class="check-container"
+            >
+              <span
+                class="check-icon"
+              />
+            </span>
+          </div>
+          <div
+            class="do-section"
+          >
+            <h3>
+              Code lists with semantically correct elements. (
+              <a
+                class="ms-Link insights-link root-000"
+                href="https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships"
+                target="_blank"
+              >
+                WCAG 1.3.1
+              </a>
+              )
+            </h3>
+            <ul>
+              <li>
+                Unordered lists
+                <ul>
+                  <li>
+                    Use the 
+                    <span
+                      class="insights-code"
+                    >
+                      &lt;ul&gt;
+                    </span>
+                     element for the container.
+                  </li>
+                  <li>
+                    Use the 
+                    <span
+                      class="insights-code"
+                    >
+                      &lt;li&gt;
+                    </span>
+                     element for list items.
+                  </li>
+                </ul>
+              </li>
+              <li>
+                Ordered lists
+                <ul>
+                  <li>
+                    Use the 
+                    <span
+                      class="insights-code"
+                    >
+                      &lt;ol&gt;
+                    </span>
+                     element for the container.
+                  </li>
+                  <li>
+                    Use the 
+                    <span
+                      class="insights-code"
+                    >
+                      &lt;li&gt;
+                    </span>
+                     element for list items.
+                  </li>
+                </ul>
+              </li>
+              <li>
+                Definition lists
+                <ul>
+                  <li>
+                    Use the 
+                    <span
+                      class="insights-code"
+                    >
+                      &lt;dl&gt;
+                    </span>
+                     element for the container.
+                  </li>
+                  <li>
+                    Use the 
+                    <span
+                      class="insights-code"
+                    >
+                      &lt;dt&gt;
+                    </span>
+                     element for terms.
+                  </li>
+                  <li>
+                    Use the 
+                    <span
+                      class="insights-code"
+                    >
+                      &lt;dd&gt;
+                    </span>
+                     element for definitions.
+                  </li>
+                </ul>
+              </li>
+            </ul>
+            <h3>
+              Contain words and phrases that are visually emphasized in semantically correct containers. (
+              <a
+                class="ms-Link insights-link root-000"
+                href="https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships"
+                target="_blank"
+              >
+                WCAG 1.3.1
+              </a>
+              )
+            </h3>
+            <ul>
+              <li>
+                Use the 
+                <span
+                  class="insights-code"
+                >
+                  &lt;em&gt;
+                </span>
+                 element when you want to stress a word or phrase within the context of a sentence or paragraph.
+              </li>
+              <li>
+                Use the 
+                <span
+                  class="insights-code"
+                >
+                  &lt;strong&gt;
+                </span>
+                 element when the word or phrase is important within the context of the entire page.
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div
+          class="column"
+        >
+          <div
+            class="dont-header"
+          >
+            <h2>
+              Don't
+            </h2>
+            <span
+              class="check-container"
+            >
+              <span
+                class="cross-icon"
+              />
+            </span>
+          </div>
+          <div
+            class="dont-section"
+          >
+            <h3>
+              Don't use CSS :before or :after to insert meaningful content in the page. (
+              <a
+                class="ms-Link insights-link root-000"
+                href="https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships"
+                target="_blank"
+              >
+                WCAG 1.3.1
+              </a>
+              )
+            </h3>
+            <ul>
+              <li>
+                Some people with visual disabilities need to modify or disable CSS styling, which might cause inserted content to move or disappear entirely.
+              </li>
+            </ul>
+            <h3>
+              Don’t code elements in a data table as presentational. (
+              <a
+                class="ms-Link insights-link root-000"
+                href="https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships"
+                target="_blank"
+              >
+                WCAG 1.3.1
+              </a>
+              )
+            </h3>
+            <ul>
+              <li>
+                When 
+                <span
+                  class="insights-code"
+                >
+                  role="presentation"
+                </span>
+                 is applied to a data table element, assistive technologies can't communicate to users the relationships between cells and row or column headers.
+              </li>
+            </ul>
+            <h3>
+              Don't use the 
+              <span
+                class="insights-code"
+              >
+                &lt;blockquote&gt;
+              </span>
+               element to indent non-quote text. (
+              <a
+                class="ms-Link insights-link root-000"
+                href="https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships"
+                target="_blank"
+              >
+                WCAG 1.3.1
+              </a>
+              )
+            </h3>
+            <ul>
+              <li>
+                Use CSS 
+                <span
+                  class="insights-code"
+                >
+                  margin
+                </span>
+                 properties to create space around blocks of text.
+              </li>
+            </ul>
+            <h3>
+              Don't use white space characters to increase the spacing between letters of a word. (
+              <a
+                class="ms-Link insights-link root-000"
+                href="https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships"
+                target="_blank"
+              >
+                WCAG 1.3.1
+              </a>
+              )
+            </h3>
+            <ul>
+              <li>
+                Use the CSS 
+                <span
+                  class="insights-code"
+                >
+                  letter-spacing
+                </span>
+                 attribute to adjust the spacing between letters.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <h2>
+        Learn more
+      </h2>
+      <h3>
+        Use CSS :before and :after correctly
+      </h3>
+      <h4>
+        WCAG success criteria
+      </h4>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships.html"
+          target="_blank"
+        >
+          Understanding Success Criterion 1.3.1: Info and Relationships
+        </a>
+      </div>
+      <h4>
+        Common failures
+      </h4>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/failures/F87"
+          target="_blank"
+        >
+          Failure of Success Criterion 1.3.1 due to inserting non-decorative content by using :before and :after pseudo-elements and the 'content' property in CSS
+        </a>
+      </div>
+      <h3>
+        Code data table elements correctly
+      </h3>
+      <h4>
+        WCAG success criteria
+      </h4>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships.html"
+          target="_blank"
+        >
+          Understanding Success Criterion 1.3.1: Info and Relationships
+        </a>
+      </div>
+      <h4>
+        Sufficient techniques
+      </h4>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/html/H51"
+          target="_blank"
+        >
+          Using table markup to present tabular information
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/html/H39"
+          target="_blank"
+        >
+          Using caption elements to associate data table captions with data tables
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/html/H73"
+          target="_blank"
+        >
+          Using the summary attribute of the table element to give an overview of data tables
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/html/H63"
+          target="_blank"
+        >
+          Using the scope attribute to associate header cells and data cells in data tables
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/html/H43"
+          target="_blank"
+        >
+          Using id and headers attributes to associate data cells with header cells in data tables
+        </a>
+      </div>
+      <h4>
+        Common failures
+      </h4>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/failures/F92"
+          target="_blank"
+        >
+          Failure of Success Criterion 1.3.1 due to the use of role presentation on content which conveys semantic information
+        </a>
+      </div>
+      <h4>
+        Additional guidance
+      </h4>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/TR/wai-aria-practices-1.1/"
+          target="_blank"
+        >
+          Intentionally Hiding Semantics with the Presentation Role
+        </a>
+      </div>
+      <h3>
+        Use semantically correct elements for lists
+      </h3>
+      <h4>
+        WCAG success criteria
+      </h4>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships.html"
+          target="_blank"
+        >
+          Understanding Success Criterion 1.3.1: Info and Relationships
+        </a>
+      </div>
+      <h4>
+        Sufficient techniques
+      </h4>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="http://www.w3.org/TR/2016/NOTE-WCAG20-TECHS-20161007/H48"
+          target="_blank"
+        >
+          Using ol, ul and dl for lists or groups of links
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/TR/2016/NOTE-WCAG20-TECHS-20161007/H40.html"
+          target="_blank"
+        >
+          Using description lists
+        </a>
+      </div>
+      <h3>
+        Use semantically correct elements to emphasize important text
+      </h3>
+      <h4>
+        WCAG success criteria
+      </h4>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships.html"
+          target="_blank"
+        >
+          Understanding Success Criterion 1.3.1: Info and Relationships
+        </a>
+      </div>
+      <h4>
+        Sufficient techniques
+      </h4>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/general/G115"
+          target="_blank"
+        >
+          Using semantic elements to mark up structure
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/html/H49"
+          target="_blank"
+        >
+          Using semantic markup to mark emphasized or special text
+        </a>
+      </div>
+      <h4>
+        Common failures
+      </h4>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/failures/F2"
+          target="_blank"
+        >
+          Failure of Success Criterion 1.3.1 due to using changes in text presentation to convey information without using the appropriate markup or text
+        </a>
+      </div>
+      <h3>
+        Use 
+        <span
+          class="insights-code"
+        >
+          &lt;blockquote&gt;
+        </span>
+         elements correctly
+      </h3>
+      <h4>
+        WCAG success criteria
+      </h4>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships.html"
+          target="_blank"
+        >
+          Understanding Success Criterion 1.3.1: Info and Relationships
+        </a>
+      </div>
+      <h4>
+        Sufficient techniques
+      </h4>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/general/G115"
+          target="_blank"
+        >
+          Using semantic elements to mark up structure
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/html/H49"
+          target="_blank"
+        >
+          Using semantic markup to mark emphasized or special text
+        </a>
+      </div>
+      <h4>
+        Common failures
+      </h4>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/failures/F43"
+          target="_blank"
+        >
+          Failure of Success Criterion 1.3.1 due to using structural markup in a way that does not represent relationships in the content
+        </a>
+      </div>
+      <h3>
+        Control CSS to control letter spacing
+      </h3>
+      <h4>
+        WCAG success criteria
+      </h4>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships.html"
+          target="_blank"
+        >
+          Understanding Success Criterion 1.3.1: Info and Relationships
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Understanding/meaningful-sequence.html"
+          target="_blank"
+        >
+          Understanding Success Criterion 1.3.2: Meaningful Sequence
+        </a>
+      </div>
+      <h4>
+        Sufficient techniques
+      </h4>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/css/C8"
+          target="_blank"
+        >
+          Using CSS letter-spacing to control spacing within a word
+        </a>
+      </div>
+      <h4>
+        Common failures
+      </h4>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/failures/F32"
+          target="_blank"
+        >
+          Failure of Success Criterion 1.3.2 due to using white space characters to control spacing within a word
+        </a>
+      </div>
+    </div>
+    <div
+      class="content-right"
+    />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`A11Y for content pages High Contrast mode test/semantics/letterSpacing/infoAndExamples 1`] = `
+<DocumentFragment>
+  <div
+    class="content-container"
+  >
+    <div
+      class="content-left"
+    />
+    <div
+      class="content"
+    >
+      <h1>
+        Letter spacing
+      </h1>
+      <p>
+        Spacing characters must not be used to increase the space between letters in a word.
+      </p>
+      <h2>
+        Why it matters
+      </h2>
+      <p>
+        When spacing characters —such as spaces, tabs, line breaks, or carriage returns— are inserted to increase letter spacing, assistive technologies might not recognize the word, with the result that they mispronounce it or spell it out. In some scripts, such as Kanji, adding a space between characters can completely change their meaning.
+      </p>
+      <h2>
+        How to fix
+      </h2>
+      <p>
+        Use the CSS 
+        <span
+          class="insights-code"
+        >
+          letter-spacing
+        </span>
+         property to adjust the space between the letters in a word. To maintain consistent spacing when users adjust the font size, use a relative unit, such as 
+        <span
+          class="insights-code"
+        >
+          em
+        </span>
+        .
+      </p>
+      <div
+        class="pass-fail-grid"
+      >
+        <div
+          class="fail-section"
+        >
+          <div
+            class="fail-header"
+          >
+            <span
+              class="check-container"
+            >
+              <span
+                class="cross-icon"
+              />
+            </span>
+             
+            <h3>
+              Fail
+            </h3>
+          </div>
+          <p>
+            Spaces are inserted between the letters of headings.
+          </p>
+        </div>
+        <div
+          class="fail-example"
+        >
+          <div
+            class="code-example"
+          >
+            <div
+              class="code-example-code"
+            >
+              <div
+                class="insights-code"
+              >
+                &lt;h2&gt;
+                <span
+                  class="highlight"
+                >
+                  C O N T E N T S
+                </span>
+                &lt;/h2&gt;
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="pass-section"
+        >
+          <div
+            class="pass-header"
+          >
+            <span
+              class="check-container"
+            >
+              <span
+                class="check-icon"
+              />
+            </span>
+             
+            <h3>
+              Pass
+            </h3>
+          </div>
+          <p>
+            Spacing around the link is achieved using the CSS 
+            <span
+              class="insights-code"
+            >
+              letter-spacing
+            </span>
+             property.
+          </p>
+        </div>
+        <div
+          class="pass-example"
+        >
+          <div
+            class="code-example"
+          >
+            <div
+              class="code-example-code"
+            >
+              <div
+                class="insights-code"
+              >
+                <span
+                  class="highlight"
+                >
+                  &lt;style&gt;
+                  <br />
+                              h2 {letter-spacing:.5em;}
+                  <br />
+                              &lt;/style&gt;
+                </span>
+                <br />
+                            ...
+                <br />
+                            &lt;h2&gt;
+                <span
+                  class="highlight"
+                >
+                  CONTENTS
+                </span>
+                &lt;/h2&gt;
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h2>
+        More examples
+      </h2>
+      <h3>
+        WCAG success criteria
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships.html"
+          target="_blank"
+        >
+          Understanding Success Criterion 1.3.1: Info and Relationships
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Understanding/meaningful-sequence.html"
+          target="_blank"
+        >
+          Understanding Success Criterion 1.3.2: Meaningful Sequence
+        </a>
+      </div>
+      <h3>
+        Sufficient techniques
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/css/C8"
+          target="_blank"
+        >
+          Using CSS letter-spacing to control spacing within a word
+        </a>
+      </div>
+      <h3>
+        Common failures
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/failures/F32"
+          target="_blank"
+        >
+          Failure of Success Criterion 1.3.2 due to using white space characters to control spacing within a word
+        </a>
+      </div>
+    </div>
+    <div
+      class="content-right"
+    />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`A11Y for content pages High Contrast mode test/semantics/lists/infoAndExamples 1`] = `
+<DocumentFragment>
+  <div
+    class="content-container"
+  >
+    <div
+      class="content-left"
+    />
+    <div
+      class="content"
+    >
+      <h1>
+        Lists
+      </h1>
+      <p>
+        Lists must be coded with semantically correct elements.
+      </p>
+      <h2>
+        Why it matters
+      </h2>
+      <p>
+        When lists are coded with semantically correct elements, navigating them is easier for people who use assistive technologies. For example, most assistive technologies allow users to navigate from the first list item to the last, or to jump to the next list.
+      </p>
+      <h2>
+        How to fix
+      </h2>
+      <p>
+        Code the list using semantically correct elements:
+      </p>
+      <ul>
+        <li>
+          Unordered lists
+          <ul>
+            <li>
+              Use the 
+              <span
+                class="insights-code"
+              >
+                &lt;ul&gt;
+              </span>
+               element for the container.
+            </li>
+            <li>
+              Use the 
+              <span
+                class="insights-code"
+              >
+                &lt;li&gt;
+              </span>
+               element for list items.
+            </li>
+          </ul>
+        </li>
+        <li>
+          Ordered lists
+          <ul>
+            <li>
+              Use the 
+              <span
+                class="insights-code"
+              >
+                &lt;ol&gt;
+              </span>
+               element for the container.
+            </li>
+            <li>
+              Use the 
+              <span
+                class="insights-code"
+              >
+                &lt;li&gt;
+              </span>
+               element for list items.
+            </li>
+          </ul>
+        </li>
+        <li>
+          Definition lists
+          <ul>
+            <li>
+              Use the 
+              <span
+                class="insights-code"
+              >
+                &lt;dl&gt;
+              </span>
+               element for the container.
+            </li>
+            <li>
+              Use the 
+              <span
+                class="insights-code"
+              >
+                &lt;dt&gt;
+              </span>
+               element for terms.
+            </li>
+            <li>
+              Use the 
+              <span
+                class="insights-code"
+              >
+                &lt;dd&gt;
+              </span>
+               element for definitions.
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <p />
+      <div
+        class="pass-fail-grid"
+      >
+        <div
+          class="fail-section"
+        >
+          <div
+            class="fail-header"
+          >
+            <span
+              class="check-container"
+            >
+              <span
+                class="cross-icon"
+              />
+            </span>
+             
+            <h3>
+              Fail
+            </h3>
+          </div>
+          <p>
+            These links are visually formatted as an unordered list, but they are not coded list semantics.
+          </p>
+        </div>
+        <div
+          class="fail-example"
+        >
+          <div
+            class="code-example"
+          >
+            <div
+              class="code-example-code"
+            >
+              <div
+                class="insights-code"
+              >
+                &lt;h4&gt;Top Tutorials&lt;/h4&gt;
+                <br />
+                           
+                <span
+                  class="highlight"
+                >
+                  &lt;div&gt;
+                </span>
+                <br />
+                           &lt;a href="/html/default.asp"&gt;HTML Tutorial&lt;/a&gt;
+                <span
+                  class="highlight"
+                >
+                  &lt;br&gt;
+                </span>
+                <br />
+                           &lt;a href="/css/default.asp"&gt;CSS Tutorial&lt;/a&gt;
+                <span
+                  class="highlight"
+                >
+                  &lt;br&gt;
+                </span>
+                <br />
+                           &lt;a href="/js/default.asp"&gt;JavaScript Tutorial&lt;/a&gt;
+                <span
+                  class="highlight"
+                >
+                  &lt;br&gt;
+                </span>
+                <br />
+                           &lt;a href="/aria/default.asp"&gt;ARIA Tutorial&lt;/a&gt;
+                <span
+                  class="highlight"
+                >
+                  &lt;br&gt;
+                </span>
+                <br />
+                           
+                <span
+                  class="highlight"
+                >
+                  &lt;/div&gt;
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="pass-section"
+        >
+          <div
+            class="pass-header"
+          >
+            <span
+              class="check-container"
+            >
+              <span
+                class="check-icon"
+              />
+            </span>
+             
+            <h3>
+              Pass
+            </h3>
+          </div>
+          <p>
+            The set of links is built using semantically correct 
+            <span
+              class="insights-code"
+            >
+              &lt;ul&gt;
+            </span>
+             and 
+            <span
+              class="insights-code"
+            >
+              &lt;li&gt;
+            </span>
+             elements.
+          </p>
+        </div>
+        <div
+          class="pass-example"
+        >
+          <div
+            class="code-example"
+          >
+            <div
+              class="code-example-code"
+            >
+              <div
+                class="insights-code"
+              >
+                &lt;h4&gt;Top Tutorials&lt;/h4&gt;
+                <br />
+                            
+                <span
+                  class="highlight"
+                >
+                  &lt;ul&gt;
+                  <br />
+                              &lt;li&gt;
+                </span>
+                <br />
+                            &lt;a href="/html/default.asp"&gt;
+                <br />
+                            HTML Tutorial&lt;/a&gt;
+                <br />
+                            
+                <span
+                  class="highlight"
+                >
+                  &lt;/li&gt;
+                  <br />
+                              &lt;li&gt;
+                </span>
+                <br />
+                            &lt;a href="/css/default.asp"&gt;
+                <br />
+                            CSS Tutorial&lt;/a&gt;
+                <br />
+                            
+                <span
+                  class="highlight"
+                >
+                  &lt;/li&gt;
+                  <br />
+                              &lt;li&gt;
+                </span>
+                <br />
+                            &lt;a href="/js/default.asp"&gt;
+                <br />
+                            JavaScript Tutorial&lt;/a&gt;
+                <br />
+                            
+                <span
+                  class="highlight"
+                >
+                  &lt;/li&gt;
+                  <br />
+                              &lt;li&gt;
+                </span>
+                <br />
+                            &lt;a href="/aria/default.asp"&gt;
+                <br />
+                            ARIA Tutorial&lt;/a&gt;
+                <br />
+                            
+                <span
+                  class="highlight"
+                >
+                  &lt;/li&gt;
+                  <br />
+                              &lt;/ul&gt;
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h2>
+        More examples
+      </h2>
+      <h3>
+        WCAG success criteria
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships.html"
+          target="_blank"
+        >
+          Understanding Success Criterion 1.3.1: Info and Relationships
+        </a>
+      </div>
+      <h3>
+        Sufficient techniques
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="http://www.w3.org/TR/2016/NOTE-WCAG20-TECHS-20161007/H48"
+          target="_blank"
+        >
+          Using ol, ul and dl for lists or groups of links
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/TR/2016/NOTE-WCAG20-TECHS-20161007/H40.html"
+          target="_blank"
+        >
+          Using description lists
+        </a>
+      </div>
+    </div>
+    <div
+      class="content-right"
+    />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`A11Y for content pages High Contrast mode test/semantics/quotes/infoAndExamples 1`] = `
+<DocumentFragment>
+  <div
+    class="content-container"
+  >
+    <div
+      class="content-left"
+    />
+    <div
+      class="content"
+    >
+      <h1>
+        Quotes
+      </h1>
+      <h1>
+        Quotes
+      </h1>
+      <p>
+        The 
+        <span
+          class="insights-code"
+        >
+          &lt;blockquote&gt;
+        </span>
+         element must not be used to indent non-quote text.
+      </p>
+      <h2>
+        Why it matters
+      </h2>
+      <p>
+        The 
+        <span
+          class="insights-code"
+        >
+          &lt;blockquote&gt;
+        </span>
+         is a semantic element that conveys to assistive technologies that it contains a quote. People who use assistive technologies might be confused if this semantic element is used instead as a quick way to style non-quote text.
+      </p>
+      <h2>
+        How to fix
+      </h2>
+      <p>
+        Do not use the 
+        <span
+          class="insights-code"
+        >
+          &lt;blockquote&gt;
+        </span>
+         element. Instead, use CSS 
+        <span
+          class="insights-code"
+        >
+          margin
+        </span>
+         properties to create space around blocks of text.
+      </p>
+      <div
+        class="pass-fail-grid"
+      >
+        <div
+          class="fail-section"
+        >
+          <div
+            class="fail-header"
+          >
+            <span
+              class="check-container"
+            >
+              <span
+                class="cross-icon"
+              />
+            </span>
+             
+            <h3>
+              Fail
+            </h3>
+          </div>
+          <p>
+            A link is enclosed in a 
+            <span
+              class="insights-code"
+            >
+              &lt;blockquote&gt;
+            </span>
+             element to increase the spacing around it and thereby make it visually prominent.
+          </p>
+        </div>
+        <div
+          class="fail-example"
+        >
+          <div
+            class="code-example"
+          >
+            <div
+              class="code-example-code"
+            >
+              <div
+                class="insights-code"
+              >
+                &lt;p&gt;The Rentenmark was a currency introduced in 1923 in Weimar Germany after hyperinflation
+                <br />
+                           destroyed the value of the previous currency.&lt;/p&gt;
+                <br />
+                           
+                <span
+                  class="highlight"
+                >
+                  &lt;blockquote&gt;
+                </span>
+                <br />
+                           &lt;a href="/wiki/German_Rentenmark" title="German Rentenmark"&gt;Learn more about the Rentenmark&lt;/a&gt;
+                <br />
+                           
+                <span
+                  class="highlight"
+                >
+                  &lt;/blockquote&gt;
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="pass-section"
+        >
+          <div
+            class="pass-header"
+          >
+            <span
+              class="check-container"
+            >
+              <span
+                class="check-icon"
+              />
+            </span>
+             
+            <h3>
+              Pass
+            </h3>
+          </div>
+          <p>
+            Spacing around the link is achieved using the CSS margin property.
+          </p>
+        </div>
+        <div
+          class="pass-example"
+        >
+          <div
+            class="code-example"
+          >
+            <div
+              class="code-example-code"
+            >
+              <div
+                class="insights-code"
+              >
+                &lt;style&gt;
+                <br />
+                            
+                <span
+                  class="highlight"
+                >
+                  a {margin: 70px;}
+                </span>
+                <br />
+                            &lt;/style&gt;
+                <br />
+                            ...
+                <br />
+                            &lt;p&gt;The Rentenmark was a currency introduced in 1923 in Weimar Germany after hyperinflation destroyed the value of the previous currency.&lt;/p&gt;
+                <br />
+                            &lt;a href="/wiki/German_Rentenmark" title="German Rentenmark"&gt;Learn more about the Rentenmark&lt;/a&gt;
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h2>
+        More examples
+      </h2>
+      <h3>
+        WCAG success criteria
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships.html"
+          target="_blank"
+        >
+          Understanding Success Criterion 1.3.1: Info and Relationships
+        </a>
+      </div>
+      <h3>
+        Sufficient techniques
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/general/G115"
+          target="_blank"
+        >
+          Using semantic elements to mark up structure
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/html/H49"
+          target="_blank"
+        >
+          Using semantic markup to mark emphasized or special text
+        </a>
+      </div>
+      <h3>
+        Common failures
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/failures/F43"
+          target="_blank"
+        >
+          Failure of Success Criterion 1.3.1 due to using structural markup in a way that does not represent relationships in the content
+        </a>
+      </div>
+    </div>
+    <div
+      class="content-right"
+    />
+  </div>
+</DocumentFragment>
+`;
+
 exports[`A11Y for content pages High Contrast mode test/sensory/auditoryCues/infoAndExamples 1`] = `
 <DocumentFragment>
   <div
@@ -20904,6 +23096,1023 @@ exports[`A11Y for content pages High Contrast mode test/sensory/useOfColor/infoA
           target="_blank"
         >
           Failure of 1.4.1 due to identifying required or error fields using color differences only
+        </a>
+      </div>
+    </div>
+    <div
+      class="content-right"
+    />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`A11Y for content pages High Contrast mode test/sequence/columns/infoAndExamples 1`] = `
+<DocumentFragment>
+  <div
+    class="content-container"
+  >
+    <div
+      class="content-left"
+    />
+    <div
+      class="content"
+    >
+      <h1>
+        Columns
+      </h1>
+      <p>
+        White space characters must not be used to create the appearance of columns.
+      </p>
+      <h2>
+        Why it matters
+      </h2>
+      <p>
+        When white space characters are used to arrange text visually to create the appearance of columns, sighted users perceive a structure that isn't represented in the code. Because assistive technologies present content in DOM order (the order that content appears in the HTML), people who use assistive technologies are likely to read the text in an order that doesn't make sense. (Also, a screen reader might announce each space character individually.)
+      </p>
+      <h2>
+        How to fix
+      </h2>
+      <p>
+        Use one of the following techniques to restructure the content so that the DOM order matches the expected reading order:
+      </p>
+      <ul>
+        <li>
+           Good: Modify the content so it has no visually apparent columns. 
+        </li>
+        <li>
+           Better: Use a layout table to display the content in columns.
+        </li>
+        <li>
+           Best: Use CSS to display the content in columns.
+        </li>
+      </ul>
+      <p />
+      <div
+        class="pass-fail-grid"
+      >
+        <div
+          class="fail-section"
+        >
+          <div
+            class="fail-header"
+          >
+            <span
+              class="check-container"
+            >
+              <span
+                class="cross-icon"
+              />
+            </span>
+             
+            <h3>
+              Fail
+            </h3>
+          </div>
+          <p>
+            White space characters in a 
+            <span
+              class="insights-code"
+            >
+              &lt;pre&gt;
+            </span>
+             element are used to create the appearance of two columns. When read in DOM order, the content doesn't make sense: "We the People general of the United Welfare, and States, in secure the Order…" 
+          </p>
+        </div>
+        <div
+          class="fail-example"
+        >
+          <pre>
+            <div
+              class="code-example"
+            >
+              <div
+                class="code-example-code"
+              >
+                <div
+                  class="insights-code"
+                >
+                  &lt;pre&gt;
+                  <br />
+                  <span
+                    class="highlight"
+                  >
+                    We the People     promote the general
+                    <br />
+                    of the United     Welfare, and
+                    <br />
+                    States, in        secure the
+                    <br />
+                    Order to form a   Blessings of
+                    <br />
+                    more perfect      Liberty to
+                    <br />
+                    Union,            ourselves and
+                    <br />
+                    establish         our Posterity,
+                    <br />
+                    Justice, insure   do ordain and
+                    <br />
+                    domestic          establish this
+                    <br />
+                    Tranquility,      Constitution
+                    <br />
+                    provide for the   for the United
+                    <br />
+                    common defense,   States of America.
+                  </span>
+                  <br />
+                  &lt;/pre&gt;
+                </div>
+              </div>
+            </div>
+          </pre>
+        </div>
+        <div
+          class="pass-section"
+        >
+          <div
+            class="pass-header"
+          >
+            <span
+              class="check-container"
+            >
+              <span
+                class="check-icon"
+              />
+            </span>
+             
+            <h3>
+              Pass
+            </h3>
+          </div>
+          <p>
+            CSS is used to display the content in columns in a way that the DOM order matches the expected reading order.
+          </p>
+        </div>
+        <div
+          class="pass-example"
+        >
+          <div
+            class="code-example"
+          >
+            <div
+              class="code-example-code"
+            >
+              <div
+                class="insights-code"
+              >
+                &lt;style&gt;
+                <br />
+                            * {box-sizing: border-box;}
+                <br />
+                            .column {float:left; width:50%;
+                <br />
+                            padding:10px;}
+                <br />
+                            &lt;/style&gt;
+                <br />
+                            ...
+                <br />
+                            &lt;div class="column"&gt;
+                <span
+                  class="highlight"
+                >
+                  We the People
+                  <br />
+                              of the United States,
+                  <br />
+                              in Order to form a
+                  <br />
+                              more perfect Union,
+                  <br />
+                              establish Justice,
+                  <br />
+                              insure domestic Tranquility,
+                  <br />
+                              provide for the common defense,
+                  <br />
+                              
+                </span>
+                &lt;/div&gt;
+                <br />
+                            &lt;div class="column"&gt;
+                <span
+                  class="highlight"
+                >
+                  promote the
+                  <br />
+                              general Welfare,
+                  <br />
+                              and secure
+                  <br />
+                              the blessings of Liberty
+                  <br />
+                              to ourselves and our Posterity,
+                  <br />
+                              do ordain and establish this Constitution
+                  <br />
+                              for the United States of America.
+                </span>
+                &lt;/div&gt;
+                <br />
+                            &lt;/body&gt;
+                <br />
+                            &lt;/html&gt;
+                <br />
+                            
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h2>
+        More examples
+      </h2>
+      <h3>
+        WCAG success criteria
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships.html"
+          target="_blank"
+        >
+          Understanding Success Criterion 1.3.1: Info and Relationships
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Understanding/meaningful-sequence.html"
+          target="_blank"
+        >
+          Understanding Success Criterion 1.3.2: Meaningful Sequence
+        </a>
+      </div>
+      <h3>
+        Sufficient techniques
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/general/G57"
+          target="_blank"
+        >
+          Ordering the content in a meaningful sequence
+        </a>
+      </div>
+      <h3>
+        Common failures
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/failures/F33"
+          target="_blank"
+        >
+          Failure of Success Criterion 1.3.1 and 1.3.2 due to using white space characters to create multiple columns in plain text content
+        </a>
+      </div>
+    </div>
+    <div
+      class="content-right"
+    />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`A11Y for content pages High Contrast mode test/sequence/cssPositioning/infoAndExamples 1`] = `
+<DocumentFragment>
+  <div
+    class="content-container"
+  >
+    <div
+      class="content-left"
+    />
+    <div
+      class="content"
+    >
+      <h1>
+        CSS positioning
+      </h1>
+      <p>
+        Meaningful content positioned on the page using CSS must retain its meaning when CSS is disabled.
+      </p>
+      <h2>
+        Why it matters
+      </h2>
+      <p>
+        Assistive technologies present content to users in DOM order (the order that content appears in the HTML). When CSS is used to modify only the 
+        <em>
+          visual
+        </em>
+         order of content, assistive technologies might not be able to programmatically determine the expected reading order. As a result, people who use assistive technologies might receive content in an order that makes no sense.
+      </p>
+      <p>
+        Also, some people with limited vision need to customize the styling of a web page in order to see its content. When they modify or disable CSS styling, positioned content might move to a location where its meaning is changed or lost.
+      </p>
+      <h2>
+        How to fix
+      </h2>
+      <ul>
+        <li>
+          If you use 
+          <span
+            class="insights-code"
+          >
+            position:absolute
+          </span>
+          , be sure the DOM order matches the expected reading order. 
+        </li>
+        <li>
+          Avoid using 
+          <span
+            class="insights-code"
+          >
+            float:right
+          </span>
+          , as it 
+          <em>
+            always
+          </em>
+           creates a mismatch: elements displayed on the right of the screen appear in the DOM before those on the left. 
+        </li>
+      </ul>
+      <div
+        class="pass-fail-grid"
+      >
+        <div
+          class="fail-section"
+        >
+          <div
+            class="fail-header"
+          >
+            <span
+              class="check-container"
+            >
+              <span
+                class="cross-icon"
+              />
+            </span>
+             
+            <h3>
+              Fail
+            </h3>
+          </div>
+          <p>
+            A web page about U.S. presidents uses 
+            <span
+              class="insights-code"
+            >
+              float:right
+            </span>
+             to display an image of the home state of each president. The presidents are listed in chronological order. In the 
+            <em>
+              visual
+            </em>
+             reading order, the content says, "George Washington was born on February 22, 1732, in Virginia. John Adams was born on October 30, 1735, in Massachusetts…" The DOM order is reversed, so people who use assistive technology will encounter the content in an incorrect order: "Virginia. George Washington was born on February 22, 1732 in Massachusetts. John Adams was born on October 30, 1735, in…"
+          </p>
+        </div>
+        <div
+          class="fail-example"
+        >
+          <div
+            class="code-example"
+          >
+            <div
+              class="code-example-code"
+            >
+              <div
+                class="insights-code"
+              >
+                &lt;style&gt;
+                <br />
+                           
+                <span
+                  class="highlight"
+                >
+                  .right {float:right;}
+                </span>
+                <br />
+                           &lt;/style&gt;
+                <br />
+                           ...
+                <br />
+                           &lt;p&gt;&lt;img class="right" source="virginia.jpg" alt="
+                <span
+                  class="highlight"
+                >
+                  Virginia.
+                </span>
+                "&gt;
+                <br />
+                           
+                <span
+                  class="highlight"
+                >
+                  George Washington was born on February 22, 1732, in
+                </span>
+                &lt;/p&gt;
+                <br />
+                           &lt;p&gt;&lt;img class="right" source="massachusetts.jpg" alt= "
+                <span
+                  class="highlight"
+                >
+                  Massachusetts.
+                </span>
+                "&gt;
+                <br />
+                           
+                <span
+                  class="highlight"
+                >
+                  John Adams was born on October 30, 1735, in
+                </span>
+                &lt; /p&gt;
+                <br />
+                           ...
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="pass-section"
+        >
+          <div
+            class="pass-header"
+          >
+            <span
+              class="check-container"
+            >
+              <span
+                class="check-icon"
+              />
+            </span>
+             
+            <h3>
+              Pass
+            </h3>
+          </div>
+          <p>
+            The content is displayed in a layout table. The visual reading order matches the DOM order, so the president's name and birthdate always come first.
+          </p>
+        </div>
+        <div
+          class="pass-example"
+        >
+          <div
+            class="code-example"
+          >
+            <div
+              class="code-example-code"
+            >
+              <div
+                class="insights-code"
+              >
+                &lt;table role="presentation"&gt;
+                <br />
+                            &lt;tr&gt;
+                <br />
+                            &lt;td&gt;
+                <span
+                  class="highlight"
+                >
+                  George Washington was born on February 22, 1732, in
+                </span>
+                &lt;/td&gt;
+                <br />
+                            &lt;td&gt;&lt;img src="virginia.jpg" alt="
+                <span
+                  class="highlight"
+                >
+                  Virginia.
+                </span>
+                "&lt;/td&gt;
+                <br />
+                            &lt;/tr&gt;
+                <br />
+                            &lt;tr&gt;
+                <br />
+                            &lt;td&gt;
+                <span
+                  class="highlight"
+                >
+                  John Adams was born on October 30, 1735 in
+                </span>
+                &lt;/td&gt;
+                <br />
+                            &lt;td&gt;&lt;img src="massachusetts.jpg" alt="
+                <span
+                  class="highlight"
+                >
+                  Massachusetts.
+                </span>
+                "&lt;/td&gt;
+                <br />
+                            &lt;/tr&gt;
+                <br />
+                            ...
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h2>
+        More examples
+      </h2>
+      <h3>
+        WCAG success criteria
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Understanding/meaningful-sequence.html"
+          target="_blank"
+        >
+          Understanding Success Criterion 1.3.2: Meaningful Sequence
+        </a>
+      </div>
+      <h3>
+        Sufficient techniques
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/general/G57"
+          target="_blank"
+        >
+          Ordering the content in a meaningful sequence
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/css/C6"
+          target="_blank"
+        >
+          Positioning content based on structural markup
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/css/C27"
+          target="_blank"
+        >
+          Making the DOM order match the visual order
+        </a>
+      </div>
+      <h3>
+        Common failures
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/failures/F1"
+          target="_blank"
+        >
+          Failure of Success Criterion 1.3.2 due to changing the meaning of content by positioning information with CSS
+        </a>
+      </div>
+    </div>
+    <div
+      class="content-right"
+    />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`A11Y for content pages High Contrast mode test/sequence/guidance 1`] = `
+<DocumentFragment>
+  <div
+    class="content-container"
+  >
+    <div
+      class="content-left"
+    />
+    <div
+      class="content"
+    >
+      <h1>
+        Sequence
+      </h1>
+      <h2>
+        Why it matters
+      </h2>
+      <p>
+        Assistive technologies present content in DOM order (the order that it appears in the HTML), so it's important that the DOM order match the expected reading order. If they don't match, the content won't make sense to people who use assistive technologies.
+      </p>
+      <div
+        class="columns"
+      >
+        <div
+          class="column"
+        >
+          <div
+            class="do-header"
+          >
+            <h2>
+              Do
+            </h2>
+            <span
+              class="check-container"
+            >
+              <span
+                class="check-icon"
+              />
+            </span>
+          </div>
+          <div
+            class="do-section"
+          >
+            <h3>
+              When using CSS to position meaningful content, ensure it still makes sense when CSS is disabled. (
+              <a
+                class="ms-Link insights-link root-000"
+                href="https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships"
+                target="_blank"
+              >
+                WCAG 1.3.1
+              </a>
+              )
+            </h3>
+            <ul>
+              <li>
+                If you use 
+                <span
+                  class="insights-code"
+                >
+                  position:absolute
+                </span>
+                , be sure the DOM order matches the expected reading order. 
+              </li>
+              <li>
+                Avoid using 
+                <span
+                  class="insights-code"
+                >
+                  float:right
+                </span>
+                , as it always creates a mismatch: elements displayed on the right of the screen appear in the DOM before those on the left. 
+              </li>
+            </ul>
+            <h3>
+              When using layout tables to position content, ensure it still makes sense when the table is linearized. (
+              <a
+                class="ms-Link insights-link root-000"
+                href="https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships"
+                target="_blank"
+              >
+                WCAG 1.3.1
+              </a>
+              )
+            </h3>
+            <ul>
+              <li>
+                Because assistive technologies read tables in DOM order, tables are presented row-by-row, not column-by-column.
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div
+          class="column"
+        >
+          <div
+            class="dont-header"
+          >
+            <h2>
+              Don't
+            </h2>
+            <span
+              class="check-container"
+            >
+              <span
+                class="cross-icon"
+              />
+            </span>
+          </div>
+          <div
+            class="dont-section"
+          >
+            <h3>
+              Don't use white space characters to create the appearance of columns.
+            </h3>
+            <ul>
+              <li>
+                Instead, use a layout table or CSS to display the content in columns.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <h2>
+        Learn more
+      </h2>
+      <h3>
+        Ensure the DOM order matches the expected reading order
+      </h3>
+      <h4>
+        WCAG success criteria
+      </h4>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships.html"
+          target="_blank"
+        >
+          Understanding Success Criterion 1.3.1: Info and Relationships
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Understanding/meaningful-sequence.html"
+          target="_blank"
+        >
+          Understanding Success Criterion 1.3.2: Meaningful Sequence
+        </a>
+      </div>
+      <h4>
+        Sufficient techniques
+      </h4>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/general/G57"
+          target="_blank"
+        >
+          Ordering the content in a meaningful sequence
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/css/C6"
+          target="_blank"
+        >
+          Positioning content based on structural markup
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/css/C27"
+          target="_blank"
+        >
+          Making the DOM order match the visual order
+        </a>
+      </div>
+      <h4>
+        Common failures
+      </h4>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/failures/F1"
+          target="_blank"
+        >
+          Failure of Success Criterion 1.3.2 due to changing the meaning of content by positioning information with CSS
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/failures/F49"
+          target="_blank"
+        >
+          Failure of Success Criterion 1.3.2 due to using an HTML layout table that does not make sense when linearized
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/failures/F33"
+          target="_blank"
+        >
+          Failure of Success Criterion 1.3.1 and 1.3.2 due to using white space characters to create multiple columns in plain text content
+        </a>
+      </div>
+    </div>
+    <div
+      class="content-right"
+    />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`A11Y for content pages High Contrast mode test/sequence/layoutTables/infoAndExamples 1`] = `
+<DocumentFragment>
+  <div
+    class="content-container"
+  >
+    <div
+      class="content-left"
+    />
+    <div
+      class="content"
+    >
+      <h1>
+        Layout tables
+      </h1>
+      <p>
+        The content in an HTML layout table must make sense when presented in DOM order.
+      </p>
+      <h2>
+        Why it matters
+      </h2>
+      <p>
+        Assistive technologies present content in DOM order (the order that content appears in the HTML). Because layout tables are structured in HTML as a series of rows, they are presented to users row-by-row. If a layout table's expected reading order is different from the DOM order, it won't make sense to people who use assistive technologies.
+      </p>
+      <h2>
+        How to fix
+      </h2>
+      <p>
+        Restructure the layout table so the DOM order matches the expected reading order.
+      </p>
+      <div
+        class="pass-fail-grid"
+      >
+        <div
+          class="fail-section"
+        >
+          <div
+            class="fail-header"
+          >
+            <span
+              class="check-container"
+            >
+              <span
+                class="cross-icon"
+              />
+            </span>
+             
+            <h3>
+              Fail
+            </h3>
+          </div>
+          <p>
+            The expected reading order of this layout table is column-by-column instead of row-by-row. When read column-by-column, it says, "When life gives you lemons, make lemonade." When read in DOM order, it says, "When gives you make life lemons lemonade." 
+          </p>
+        </div>
+        <div
+          class="fail-example"
+        >
+          <div
+            class="code-example"
+          >
+            <div
+              class="code-example-code"
+            >
+              <div
+                class="insights-code"
+              >
+                &lt;table role="presentation" width="100%"&gt;
+                <br />
+                           &lt;tr&gt;
+                <br />
+                           
+                <span
+                  class="highlight"
+                >
+                  &lt;td width="33%"&gt;When&lt;/td&gt;
+                  <br />
+                             &lt;td width="33%"&gt;gives you&lt;/td&gt;
+                  <br />
+                             &lt;td width="33%"&gt;make&lt;/td&gt;
+                </span>
+                <br />
+                           &lt;/tr&gt;
+                <br />
+                           &lt;tr&gt;
+                <br />
+                           
+                <span
+                  class="highlight"
+                >
+                  &lt;td&gt;LIFE&lt;/td&gt;
+                  <br />
+                             &lt;td&gt;LEMONS&lt;/td&gt;
+                  <br />
+                             &lt;td&gt;LEMONADE&lt;/td&gt;
+                </span>
+                <br />
+                           &lt;/tr&gt;
+                <br />
+                           &lt;/table&gt;
+                <br />
+                           
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="pass-section"
+        >
+          <div
+            class="pass-header"
+          >
+            <span
+              class="check-container"
+            >
+              <span
+                class="check-icon"
+              />
+            </span>
+             
+            <h3>
+              Pass
+            </h3>
+          </div>
+          <p>
+            The layout table is simplified so that the DOM order matches the expected reading order. 
+          </p>
+        </div>
+        <div
+          class="pass-example"
+        >
+          <div
+            class="code-example"
+          >
+            <div
+              class="code-example-code"
+            >
+              <div
+                class="insights-code"
+              >
+                &lt;table role="presentation" width="100%"&gt;
+                <br />
+                            &lt;tr&gt;
+                <br />
+                            
+                <span
+                  class="highlight"
+                >
+                  &lt;td width="33%"&gt;When&lt;br&gt;LIFE&lt;/td&gt;
+                  <br />
+                              &lt;td width="33%"&gt;gives you&lt;br&gt;
+                  <br />
+                              LEMONS&lt;/td&gt;
+                  <br />
+                              &lt;td width="33%"&gt;make&lt;br&gt;
+                  <br />
+                              LEMONADE&lt;/td&gt;
+                </span>
+                <br />
+                            &lt;/tr&gt;
+                <br />
+                            &lt;/table&gt;
+                <br />
+                            
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h2>
+        More examples
+      </h2>
+      <h3>
+        WCAG success criteria
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Understanding/meaningful-sequence.html"
+          target="_blank"
+        >
+          Understanding Success Criterion 1.3.2: Meaningful Sequence
+        </a>
+      </div>
+      <h3>
+        Sufficient techniques
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/general/G57"
+          target="_blank"
+        >
+          Ordering the content in a meaningful sequence
+        </a>
+      </div>
+      <h3>
+        Common failures
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/failures/F49"
+          target="_blank"
+        >
+          Failure of Success Criterion 1.3.2 due to using an HTML layout table that does not make sense when linearized
         </a>
       </div>
     </div>
@@ -42917,6 +46126,2198 @@ exports[`A11Y for content pages Normal mode test/repetitiveContent/guidance 1`] 
 </DocumentFragment>
 `;
 
+exports[`A11Y for content pages Normal mode test/semantics/cssContent/infoAndExamples 1`] = `
+<DocumentFragment>
+  <div
+    class="content-container"
+  >
+    <div
+      class="content-left"
+    />
+    <div
+      class="content"
+    >
+      <h1>
+        CSS content
+      </h1>
+      <p>
+        Meaningful content must not be inserted using CSS 
+        <span
+          class="insights-code"
+        >
+          :before
+        </span>
+         or 
+        <span
+          class="insights-code"
+        >
+          :after
+        </span>
+        .
+      </p>
+      <h2>
+        Why it matters
+      </h2>
+      <p>
+        Some people with visual disabilities need to customize the styling of a web page to see its content. When they modify or disable CSS styling, content inserted using 
+        <span
+          class="insights-code"
+        >
+          :before
+        </span>
+         or 
+        <span
+          class="insights-code"
+        >
+          :after
+        </span>
+         might move or disappear entirely.
+      </p>
+      <h2>
+        How to fix
+      </h2>
+      <p>
+        Avoid inserting meaningful page content using CSS 
+        <span
+          class="insights-code"
+        >
+          :before
+        </span>
+         or 
+        <span
+          class="insights-code"
+        >
+          :after
+        </span>
+        .
+      </p>
+      <h2>
+        Example
+      </h2>
+      <div
+        class="pass-fail-grid"
+      >
+        <div
+          class="fail-section"
+        >
+          <div
+            class="fail-header"
+          >
+            <span
+              class="check-container"
+            >
+              <span
+                class="cross-icon"
+              />
+            </span>
+             
+            <h3>
+              Fail
+            </h3>
+          </div>
+          <p>
+            An online book review site uses 
+            <span
+              class="insights-code"
+            >
+              :before
+            </span>
+             (and its content property) to indicate the titles of newly reviewed books. 
+          </p>
+        </div>
+        <div
+          class="fail-example"
+        >
+          <div
+            class="code-example"
+          >
+            <div
+              class="code-example-code"
+            >
+              <div
+                class="insights-code"
+              >
+                &lt;style&gt;
+                <br />
+                                
+                <span
+                  class="highlight"
+                >
+                  .new-title::before {content: "New!" ;}
+                </span>
+                <br />
+                                &lt;/style&gt;
+                <br />
+                                ...
+                <br />
+                                &lt;h3 class="new-title"&gt;Potato Life&lt;/h3&gt;
+                <br />
+                                &lt;h3&gt;Angry Anteaters&lt;/h3&gt;
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="pass-section"
+        >
+          <div
+            class="pass-header"
+          >
+            <span
+              class="check-container"
+            >
+              <span
+                class="check-icon"
+              />
+            </span>
+             
+            <h3>
+              Pass
+            </h3>
+          </div>
+          <p>
+            "New!" is inserted directly into the titles of newly reviewed books.
+          </p>
+        </div>
+        <div
+          class="pass-example"
+        >
+          <div
+            class="code-example"
+          >
+            <div
+              class="code-example-code"
+            >
+              <div
+                class="insights-code"
+              >
+                &lt;h3&gt;
+                <span
+                  class="highlight"
+                >
+                  New!
+                </span>
+                 Potato Life&lt;/h3&gt;
+                <br />
+                                &lt;h3&gt;Angry Anteaters&lt;/h3&gt;
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h2>
+        More examples
+      </h2>
+      <h3>
+        WCAG success criteria
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships.html"
+          target="_blank"
+        >
+          Understanding Success Criterion 1.3.1: Info and Relationships
+        </a>
+      </div>
+      <h3>
+        Common failures
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/failures/F87"
+          target="_blank"
+        >
+          Failure of Success Criterion 1.3.1 due to inserting non-decorative content by using :before and :after pseudo-elements and the 'content' property in CSS
+        </a>
+      </div>
+    </div>
+    <div
+      class="content-right"
+    />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`A11Y for content pages Normal mode test/semantics/dataTables/infoAndExamples 1`] = `
+<DocumentFragment>
+  <div
+    class="content-container"
+  >
+    <div
+      class="content-left"
+    />
+    <div
+      class="content"
+    >
+      <h1>
+        Data tables
+      </h1>
+      <p>
+        Semantic elements in a data table must not be coded as presentational.
+      </p>
+      <h2>
+        Why it matters
+      </h2>
+      <p>
+        The semantic elements in a data table communicate relationships between cells and row or column headers. When 
+        <span
+          class="insights-code"
+        >
+          role="presentation"
+        </span>
+         is applied to a data table element, its semantics are suppressed, and critical relationships are consequently hidden from people who use assistive technologies. Moreover, they can't use the standard navigational shortcuts for data tables.
+      </p>
+      <p>
+        (Applying 
+        <span
+          class="insights-code"
+        >
+          role="presentation"
+        </span>
+         is appropriate for layout tables, because their table semantics do not communicate any meaningful relationships.)
+      </p>
+      <h2>
+        How to fix
+      </h2>
+      <p>
+        Do not use 
+        <span
+          class="insights-code"
+        >
+          role="presentation"
+        </span>
+         on any of the semantic elements in a data table:
+      </p>
+      <ul>
+        <li>
+          &lt;table&gt;
+        </li>
+        <li>
+          &lt;tr&gt;
+        </li>
+        <li>
+           &lt;th&gt;
+        </li>
+        <li>
+           &lt;td&gt;
+        </li>
+        <li>
+           &lt;caption&gt;
+        </li>
+        <li>
+           &lt;col&gt;
+        </li>
+        <li>
+           &lt;colgroup&gt;
+        </li>
+        <li>
+           &lt;thead&gt;
+        </li>
+        <li>
+           &lt;tfoot&gt;
+        </li>
+        <li>
+           &lt;tbody&gt;
+        </li>
+      </ul>
+      <p />
+      <div
+        class="pass-fail-grid"
+      >
+        <div
+          class="fail-section"
+        >
+          <div
+            class="fail-header"
+          >
+            <span
+              class="check-container"
+            >
+              <span
+                class="cross-icon"
+              />
+            </span>
+             
+            <h3>
+              Fail
+            </h3>
+          </div>
+          <p>
+            This data table is incorrectly coded as presentational. Assistive technologies are unaware of the table's semantic elements.
+          </p>
+        </div>
+        <div
+          class="fail-example"
+        >
+          <div
+            class="code-example"
+          >
+            <div
+              class="code-example-code"
+            >
+              <div
+                class="insights-code"
+              >
+                <span
+                  class="highlight"
+                >
+                  &lt;table role="presentation"&gt;
+                </span>
+                <br />
+                           &lt;tr&gt;
+                <br />
+                           &lt;th&gt;Park name&lt;/th&gt;
+                <br />
+                           &lt;th&gt;Location&lt;/th&gt;
+                <br />
+                           &lt;/tr&gt;
+                <br />
+                           &lt;tr&gt;
+                <br />
+                           &lt;td&gt;Bridle Trails State Park&lt;/td&gt;
+                <br />
+                           &lt;td&gt;Kirkland, WA&lt;/td&gt;
+                <br />
+                           &lt;/tr&gt;
+                <br />
+                           &lt;tr&gt;
+                <br />
+                           &lt;td&gt;Lake Sammamish State Park&lt;/td&gt;
+                <br />
+                           &lt;td&gt;Issaquah, WA&lt;/td&gt;
+                <br />
+                           &lt;/tr&gt;
+                <br />
+                           &lt;tr&gt;
+                <br />
+                           &lt;td&gt;Saltwater State Park&lt;/td&gt;
+                <br />
+                           &lt;td&gt;Des Moines, WA&lt;td&gt;
+                <br />
+                           &lt;/tr&gt;
+                <br />
+                           &lt;/table&gt;
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="pass-section"
+        >
+          <div
+            class="pass-header"
+          >
+            <span
+              class="check-container"
+            >
+              <span
+                class="check-icon"
+              />
+            </span>
+             
+            <h3>
+              Pass
+            </h3>
+          </div>
+          <p>
+            With 
+            <span
+              class="insights-code"
+            >
+              role="presentation"
+            </span>
+             removed, assistive technologies can help users understand the relationships between cells and column headers. 
+          </p>
+        </div>
+        <div
+          class="pass-example"
+        >
+          <div
+            class="code-example"
+          >
+            <div
+              class="code-example-code"
+            >
+              <div
+                class="insights-code"
+              >
+                <span
+                  class="highlight"
+                >
+                  &lt;table&gt;
+                </span>
+                <br />
+                            &lt;tr&gt;
+                <br />
+                            &lt;th&gt;Park name&lt;/th&gt;
+                <br />
+                            &lt;th&gt;Location&lt;/th&gt;
+                <br />
+                            &lt;/tr&gt;
+                <br />
+                            &lt;tr&gt;
+                <br />
+                            &lt;td&gt;Bridle Trails State Park&lt;/td&gt;
+                <br />
+                            &lt;td&gt;Kirkland, WA&lt;/td&gt;
+                <br />
+                            &lt;/tr&gt;
+                <br />
+                            &lt;tr&gt;
+                <br />
+                            &lt;td&gt;Lake Sammamish State Park&lt;/td&gt;
+                <br />
+                            &lt;td&gt;Issaquah, WA&lt;/td&gt;
+                <br />
+                            &lt;/tr&gt;
+                <br />
+                            &lt;tr&gt;
+                <br />
+                            &lt;td&gt;Saltwater State Park&lt;/td&gt;
+                <br />
+                            &lt;td&gt;Des Moines, WA&lt;td&gt;
+                <br />
+                            &lt;/tr&gt;
+                <br />
+                            &lt;/table&gt;
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h2>
+        More examples
+      </h2>
+      <h3>
+        WCAG success criteria
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships.html"
+          target="_blank"
+        >
+          Understanding Success Criterion 1.3.1: Info and Relationships
+        </a>
+      </div>
+      <h3>
+        Sufficient techniques
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/html/H51"
+          target="_blank"
+        >
+          Using table markup to present tabular information
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/html/H39"
+          target="_blank"
+        >
+          Using caption elements to associate data table captions with data tables
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/html/H73"
+          target="_blank"
+        >
+          Using the summary attribute of the table element to give an overview of data tables
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/html/H63"
+          target="_blank"
+        >
+          Using the scope attribute to associate header cells and data cells in data tables
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/html/H43"
+          target="_blank"
+        >
+          Using id and headers attributes to associate data cells with header cells in data tables
+        </a>
+      </div>
+      <h3>
+        Common failures
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/failures/F92"
+          target="_blank"
+        >
+          Failure of Success Criterion 1.3.1 due to the use of role presentation on content which conveys semantic information
+        </a>
+      </div>
+      <h3>
+        Additional guidance
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/TR/wai-aria-practices-1.1/"
+          target="_blank"
+        >
+          Intentionally Hiding Semantics with the Presentation Role
+        </a>
+      </div>
+    </div>
+    <div
+      class="content-right"
+    />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`A11Y for content pages Normal mode test/semantics/emphasis/infoAndExamples 1`] = `
+<DocumentFragment>
+  <div
+    class="content-container"
+  >
+    <div
+      class="content-left"
+    />
+    <div
+      class="content"
+    >
+      <h1>
+        Emphasis
+      </h1>
+      <p>
+        Words and phrases that are visually emphasized must be contained within semantically correct elements.
+      </p>
+      <h2>
+        Why it matters
+      </h2>
+      <p>
+        People with good vision can infer from visual styling that a word or phrase is especially important. For example, it might be displayed using bold or italic font. Unless the visually emphasized word or phrase is also contained in a semantically correct element, people who use screen readers won't know that it's emphasized.
+      </p>
+      <h2>
+        How to fix
+      </h2>
+      <p>
+        Contain the emphasized word or phrase in a semantically correct element:
+      </p>
+      <ul>
+        <li>
+          Use the 
+          <span
+            class="insights-code"
+          >
+            &lt;em&gt;
+          </span>
+           element when you want to stress a word or phrase within the context of a sentence or paragraph. By default, browsers will render the text using an italic font. A sighted person is likely to notice italic text when they read it, but it won't jump out at them when they skim the page. 
+        </li>
+        <li>
+          Use the 
+          <span
+            class="insights-code"
+          >
+            &lt;strong&gt;
+          </span>
+           element when the word or phrase is important within the context of the entire page. By default, browsers will render the text using a bold font. A sighted person will find it easy to spot bold text when they skim the page.
+        </li>
+      </ul>
+      <p />
+      <div
+        class="pass-fail-grid"
+      >
+        <div
+          class="fail-section"
+        >
+          <div
+            class="fail-header"
+          >
+            <span
+              class="check-container"
+            >
+              <span
+                class="cross-icon"
+              />
+            </span>
+             
+            <h3>
+              Fail
+            </h3>
+          </div>
+          <p>
+            Italic font is applied to visually emphasize certain words in a paragraph, but the emphasis is not conveyed to assistive technologies.
+          </p>
+        </div>
+        <div
+          class="fail-example"
+        >
+          <div
+            class="code-example"
+          >
+            <div
+              class="code-example-code"
+            >
+              <div
+                class="insights-code"
+              >
+                &lt;p&gt;These carrots are 
+                <span
+                  class="highlight"
+                >
+                  &lt;span style="font-style:italic;&gt;
+                </span>
+                not
+                <span
+                  class="highlight"
+                >
+                  &lt;/span&gt;
+                </span>
+                 crunchy!&lt;/p&gt;
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="pass-section"
+        >
+          <div
+            class="pass-header"
+          >
+            <span
+              class="check-container"
+            >
+              <span
+                class="check-icon"
+              />
+            </span>
+             
+            <h3>
+              Pass
+            </h3>
+          </div>
+          <p>
+            Containing the emphasized words in an 
+            <span
+              class="insights-code"
+            >
+              &lt;em&gt;
+            </span>
+             element conveys emphasis both visually and semantically.
+          </p>
+        </div>
+        <div
+          class="pass-example"
+        >
+          <div
+            class="code-example"
+          >
+            <div
+              class="code-example-code"
+            >
+              <div
+                class="insights-code"
+              >
+                &lt;p&gt;These carrots are 
+                <span
+                  class="highlight"
+                >
+                  &lt;em&gt;
+                </span>
+                not
+                <span
+                  class="highlight"
+                >
+                  &lt;/em&gt;
+                </span>
+                 crunchy!&lt;/p&gt;
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h2>
+        More examples
+      </h2>
+      <h3>
+        WCAG success criteria
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships.html"
+          target="_blank"
+        >
+          Understanding Success Criterion 1.3.1: Info and Relationships
+        </a>
+      </div>
+      <h3>
+        Sufficient techniques
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/general/G115"
+          target="_blank"
+        >
+          Using semantic elements to mark up structure
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/html/H49"
+          target="_blank"
+        >
+          Using semantic markup to mark emphasized or special text
+        </a>
+      </div>
+      <h3>
+        Common failures
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/failures/F2"
+          target="_blank"
+        >
+          Failure of Success Criterion 1.3.1 due to using changes in text presentation to convey information without using the appropriate markup or text
+        </a>
+      </div>
+    </div>
+    <div
+      class="content-right"
+    />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`A11Y for content pages Normal mode test/semantics/guidance 1`] = `
+<DocumentFragment>
+  <div
+    class="content-container"
+  >
+    <div
+      class="content-left"
+    />
+    <div
+      class="content"
+    >
+      <h1>
+        Semantics
+      </h1>
+      <h2>
+        Why it matters
+      </h2>
+      <p>
+        Assistive technologies use semantic markup to communicate meaning to users. When semantics are ignored or used incorrectly, users are likely to be confused. To ensure the best possible experience for all users, use the correct semantic elements and properties, and add CSS styling to achieve your desired visual presentation.
+      </p>
+      <div
+        class="columns"
+      >
+        <div
+          class="column"
+        >
+          <div
+            class="do-header"
+          >
+            <h2>
+              Do
+            </h2>
+            <span
+              class="check-container"
+            >
+              <span
+                class="check-icon"
+              />
+            </span>
+          </div>
+          <div
+            class="do-section"
+          >
+            <h3>
+              Code lists with semantically correct elements. (
+              <a
+                class="ms-Link insights-link root-000"
+                href="https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships"
+                target="_blank"
+              >
+                WCAG 1.3.1
+              </a>
+              )
+            </h3>
+            <ul>
+              <li>
+                Unordered lists
+                <ul>
+                  <li>
+                    Use the 
+                    <span
+                      class="insights-code"
+                    >
+                      &lt;ul&gt;
+                    </span>
+                     element for the container.
+                  </li>
+                  <li>
+                    Use the 
+                    <span
+                      class="insights-code"
+                    >
+                      &lt;li&gt;
+                    </span>
+                     element for list items.
+                  </li>
+                </ul>
+              </li>
+              <li>
+                Ordered lists
+                <ul>
+                  <li>
+                    Use the 
+                    <span
+                      class="insights-code"
+                    >
+                      &lt;ol&gt;
+                    </span>
+                     element for the container.
+                  </li>
+                  <li>
+                    Use the 
+                    <span
+                      class="insights-code"
+                    >
+                      &lt;li&gt;
+                    </span>
+                     element for list items.
+                  </li>
+                </ul>
+              </li>
+              <li>
+                Definition lists
+                <ul>
+                  <li>
+                    Use the 
+                    <span
+                      class="insights-code"
+                    >
+                      &lt;dl&gt;
+                    </span>
+                     element for the container.
+                  </li>
+                  <li>
+                    Use the 
+                    <span
+                      class="insights-code"
+                    >
+                      &lt;dt&gt;
+                    </span>
+                     element for terms.
+                  </li>
+                  <li>
+                    Use the 
+                    <span
+                      class="insights-code"
+                    >
+                      &lt;dd&gt;
+                    </span>
+                     element for definitions.
+                  </li>
+                </ul>
+              </li>
+            </ul>
+            <h3>
+              Contain words and phrases that are visually emphasized in semantically correct containers. (
+              <a
+                class="ms-Link insights-link root-000"
+                href="https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships"
+                target="_blank"
+              >
+                WCAG 1.3.1
+              </a>
+              )
+            </h3>
+            <ul>
+              <li>
+                Use the 
+                <span
+                  class="insights-code"
+                >
+                  &lt;em&gt;
+                </span>
+                 element when you want to stress a word or phrase within the context of a sentence or paragraph.
+              </li>
+              <li>
+                Use the 
+                <span
+                  class="insights-code"
+                >
+                  &lt;strong&gt;
+                </span>
+                 element when the word or phrase is important within the context of the entire page.
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div
+          class="column"
+        >
+          <div
+            class="dont-header"
+          >
+            <h2>
+              Don't
+            </h2>
+            <span
+              class="check-container"
+            >
+              <span
+                class="cross-icon"
+              />
+            </span>
+          </div>
+          <div
+            class="dont-section"
+          >
+            <h3>
+              Don't use CSS :before or :after to insert meaningful content in the page. (
+              <a
+                class="ms-Link insights-link root-000"
+                href="https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships"
+                target="_blank"
+              >
+                WCAG 1.3.1
+              </a>
+              )
+            </h3>
+            <ul>
+              <li>
+                Some people with visual disabilities need to modify or disable CSS styling, which might cause inserted content to move or disappear entirely.
+              </li>
+            </ul>
+            <h3>
+              Don’t code elements in a data table as presentational. (
+              <a
+                class="ms-Link insights-link root-000"
+                href="https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships"
+                target="_blank"
+              >
+                WCAG 1.3.1
+              </a>
+              )
+            </h3>
+            <ul>
+              <li>
+                When 
+                <span
+                  class="insights-code"
+                >
+                  role="presentation"
+                </span>
+                 is applied to a data table element, assistive technologies can't communicate to users the relationships between cells and row or column headers.
+              </li>
+            </ul>
+            <h3>
+              Don't use the 
+              <span
+                class="insights-code"
+              >
+                &lt;blockquote&gt;
+              </span>
+               element to indent non-quote text. (
+              <a
+                class="ms-Link insights-link root-000"
+                href="https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships"
+                target="_blank"
+              >
+                WCAG 1.3.1
+              </a>
+              )
+            </h3>
+            <ul>
+              <li>
+                Use CSS 
+                <span
+                  class="insights-code"
+                >
+                  margin
+                </span>
+                 properties to create space around blocks of text.
+              </li>
+            </ul>
+            <h3>
+              Don't use white space characters to increase the spacing between letters of a word. (
+              <a
+                class="ms-Link insights-link root-000"
+                href="https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships"
+                target="_blank"
+              >
+                WCAG 1.3.1
+              </a>
+              )
+            </h3>
+            <ul>
+              <li>
+                Use the CSS 
+                <span
+                  class="insights-code"
+                >
+                  letter-spacing
+                </span>
+                 attribute to adjust the spacing between letters.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <h2>
+        Learn more
+      </h2>
+      <h3>
+        Use CSS :before and :after correctly
+      </h3>
+      <h4>
+        WCAG success criteria
+      </h4>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships.html"
+          target="_blank"
+        >
+          Understanding Success Criterion 1.3.1: Info and Relationships
+        </a>
+      </div>
+      <h4>
+        Common failures
+      </h4>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/failures/F87"
+          target="_blank"
+        >
+          Failure of Success Criterion 1.3.1 due to inserting non-decorative content by using :before and :after pseudo-elements and the 'content' property in CSS
+        </a>
+      </div>
+      <h3>
+        Code data table elements correctly
+      </h3>
+      <h4>
+        WCAG success criteria
+      </h4>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships.html"
+          target="_blank"
+        >
+          Understanding Success Criterion 1.3.1: Info and Relationships
+        </a>
+      </div>
+      <h4>
+        Sufficient techniques
+      </h4>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/html/H51"
+          target="_blank"
+        >
+          Using table markup to present tabular information
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/html/H39"
+          target="_blank"
+        >
+          Using caption elements to associate data table captions with data tables
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/html/H73"
+          target="_blank"
+        >
+          Using the summary attribute of the table element to give an overview of data tables
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/html/H63"
+          target="_blank"
+        >
+          Using the scope attribute to associate header cells and data cells in data tables
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/html/H43"
+          target="_blank"
+        >
+          Using id and headers attributes to associate data cells with header cells in data tables
+        </a>
+      </div>
+      <h4>
+        Common failures
+      </h4>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/failures/F92"
+          target="_blank"
+        >
+          Failure of Success Criterion 1.3.1 due to the use of role presentation on content which conveys semantic information
+        </a>
+      </div>
+      <h4>
+        Additional guidance
+      </h4>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/TR/wai-aria-practices-1.1/"
+          target="_blank"
+        >
+          Intentionally Hiding Semantics with the Presentation Role
+        </a>
+      </div>
+      <h3>
+        Use semantically correct elements for lists
+      </h3>
+      <h4>
+        WCAG success criteria
+      </h4>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships.html"
+          target="_blank"
+        >
+          Understanding Success Criterion 1.3.1: Info and Relationships
+        </a>
+      </div>
+      <h4>
+        Sufficient techniques
+      </h4>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="http://www.w3.org/TR/2016/NOTE-WCAG20-TECHS-20161007/H48"
+          target="_blank"
+        >
+          Using ol, ul and dl for lists or groups of links
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/TR/2016/NOTE-WCAG20-TECHS-20161007/H40.html"
+          target="_blank"
+        >
+          Using description lists
+        </a>
+      </div>
+      <h3>
+        Use semantically correct elements to emphasize important text
+      </h3>
+      <h4>
+        WCAG success criteria
+      </h4>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships.html"
+          target="_blank"
+        >
+          Understanding Success Criterion 1.3.1: Info and Relationships
+        </a>
+      </div>
+      <h4>
+        Sufficient techniques
+      </h4>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/general/G115"
+          target="_blank"
+        >
+          Using semantic elements to mark up structure
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/html/H49"
+          target="_blank"
+        >
+          Using semantic markup to mark emphasized or special text
+        </a>
+      </div>
+      <h4>
+        Common failures
+      </h4>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/failures/F2"
+          target="_blank"
+        >
+          Failure of Success Criterion 1.3.1 due to using changes in text presentation to convey information without using the appropriate markup or text
+        </a>
+      </div>
+      <h3>
+        Use 
+        <span
+          class="insights-code"
+        >
+          &lt;blockquote&gt;
+        </span>
+         elements correctly
+      </h3>
+      <h4>
+        WCAG success criteria
+      </h4>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships.html"
+          target="_blank"
+        >
+          Understanding Success Criterion 1.3.1: Info and Relationships
+        </a>
+      </div>
+      <h4>
+        Sufficient techniques
+      </h4>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/general/G115"
+          target="_blank"
+        >
+          Using semantic elements to mark up structure
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/html/H49"
+          target="_blank"
+        >
+          Using semantic markup to mark emphasized or special text
+        </a>
+      </div>
+      <h4>
+        Common failures
+      </h4>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/failures/F43"
+          target="_blank"
+        >
+          Failure of Success Criterion 1.3.1 due to using structural markup in a way that does not represent relationships in the content
+        </a>
+      </div>
+      <h3>
+        Control CSS to control letter spacing
+      </h3>
+      <h4>
+        WCAG success criteria
+      </h4>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships.html"
+          target="_blank"
+        >
+          Understanding Success Criterion 1.3.1: Info and Relationships
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Understanding/meaningful-sequence.html"
+          target="_blank"
+        >
+          Understanding Success Criterion 1.3.2: Meaningful Sequence
+        </a>
+      </div>
+      <h4>
+        Sufficient techniques
+      </h4>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/css/C8"
+          target="_blank"
+        >
+          Using CSS letter-spacing to control spacing within a word
+        </a>
+      </div>
+      <h4>
+        Common failures
+      </h4>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/failures/F32"
+          target="_blank"
+        >
+          Failure of Success Criterion 1.3.2 due to using white space characters to control spacing within a word
+        </a>
+      </div>
+    </div>
+    <div
+      class="content-right"
+    />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`A11Y for content pages Normal mode test/semantics/letterSpacing/infoAndExamples 1`] = `
+<DocumentFragment>
+  <div
+    class="content-container"
+  >
+    <div
+      class="content-left"
+    />
+    <div
+      class="content"
+    >
+      <h1>
+        Letter spacing
+      </h1>
+      <p>
+        Spacing characters must not be used to increase the space between letters in a word.
+      </p>
+      <h2>
+        Why it matters
+      </h2>
+      <p>
+        When spacing characters —such as spaces, tabs, line breaks, or carriage returns— are inserted to increase letter spacing, assistive technologies might not recognize the word, with the result that they mispronounce it or spell it out. In some scripts, such as Kanji, adding a space between characters can completely change their meaning.
+      </p>
+      <h2>
+        How to fix
+      </h2>
+      <p>
+        Use the CSS 
+        <span
+          class="insights-code"
+        >
+          letter-spacing
+        </span>
+         property to adjust the space between the letters in a word. To maintain consistent spacing when users adjust the font size, use a relative unit, such as 
+        <span
+          class="insights-code"
+        >
+          em
+        </span>
+        .
+      </p>
+      <div
+        class="pass-fail-grid"
+      >
+        <div
+          class="fail-section"
+        >
+          <div
+            class="fail-header"
+          >
+            <span
+              class="check-container"
+            >
+              <span
+                class="cross-icon"
+              />
+            </span>
+             
+            <h3>
+              Fail
+            </h3>
+          </div>
+          <p>
+            Spaces are inserted between the letters of headings.
+          </p>
+        </div>
+        <div
+          class="fail-example"
+        >
+          <div
+            class="code-example"
+          >
+            <div
+              class="code-example-code"
+            >
+              <div
+                class="insights-code"
+              >
+                &lt;h2&gt;
+                <span
+                  class="highlight"
+                >
+                  C O N T E N T S
+                </span>
+                &lt;/h2&gt;
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="pass-section"
+        >
+          <div
+            class="pass-header"
+          >
+            <span
+              class="check-container"
+            >
+              <span
+                class="check-icon"
+              />
+            </span>
+             
+            <h3>
+              Pass
+            </h3>
+          </div>
+          <p>
+            Spacing around the link is achieved using the CSS 
+            <span
+              class="insights-code"
+            >
+              letter-spacing
+            </span>
+             property.
+          </p>
+        </div>
+        <div
+          class="pass-example"
+        >
+          <div
+            class="code-example"
+          >
+            <div
+              class="code-example-code"
+            >
+              <div
+                class="insights-code"
+              >
+                <span
+                  class="highlight"
+                >
+                  &lt;style&gt;
+                  <br />
+                              h2 {letter-spacing:.5em;}
+                  <br />
+                              &lt;/style&gt;
+                </span>
+                <br />
+                            ...
+                <br />
+                            &lt;h2&gt;
+                <span
+                  class="highlight"
+                >
+                  CONTENTS
+                </span>
+                &lt;/h2&gt;
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h2>
+        More examples
+      </h2>
+      <h3>
+        WCAG success criteria
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships.html"
+          target="_blank"
+        >
+          Understanding Success Criterion 1.3.1: Info and Relationships
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Understanding/meaningful-sequence.html"
+          target="_blank"
+        >
+          Understanding Success Criterion 1.3.2: Meaningful Sequence
+        </a>
+      </div>
+      <h3>
+        Sufficient techniques
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/css/C8"
+          target="_blank"
+        >
+          Using CSS letter-spacing to control spacing within a word
+        </a>
+      </div>
+      <h3>
+        Common failures
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/failures/F32"
+          target="_blank"
+        >
+          Failure of Success Criterion 1.3.2 due to using white space characters to control spacing within a word
+        </a>
+      </div>
+    </div>
+    <div
+      class="content-right"
+    />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`A11Y for content pages Normal mode test/semantics/lists/infoAndExamples 1`] = `
+<DocumentFragment>
+  <div
+    class="content-container"
+  >
+    <div
+      class="content-left"
+    />
+    <div
+      class="content"
+    >
+      <h1>
+        Lists
+      </h1>
+      <p>
+        Lists must be coded with semantically correct elements.
+      </p>
+      <h2>
+        Why it matters
+      </h2>
+      <p>
+        When lists are coded with semantically correct elements, navigating them is easier for people who use assistive technologies. For example, most assistive technologies allow users to navigate from the first list item to the last, or to jump to the next list.
+      </p>
+      <h2>
+        How to fix
+      </h2>
+      <p>
+        Code the list using semantically correct elements:
+      </p>
+      <ul>
+        <li>
+          Unordered lists
+          <ul>
+            <li>
+              Use the 
+              <span
+                class="insights-code"
+              >
+                &lt;ul&gt;
+              </span>
+               element for the container.
+            </li>
+            <li>
+              Use the 
+              <span
+                class="insights-code"
+              >
+                &lt;li&gt;
+              </span>
+               element for list items.
+            </li>
+          </ul>
+        </li>
+        <li>
+          Ordered lists
+          <ul>
+            <li>
+              Use the 
+              <span
+                class="insights-code"
+              >
+                &lt;ol&gt;
+              </span>
+               element for the container.
+            </li>
+            <li>
+              Use the 
+              <span
+                class="insights-code"
+              >
+                &lt;li&gt;
+              </span>
+               element for list items.
+            </li>
+          </ul>
+        </li>
+        <li>
+          Definition lists
+          <ul>
+            <li>
+              Use the 
+              <span
+                class="insights-code"
+              >
+                &lt;dl&gt;
+              </span>
+               element for the container.
+            </li>
+            <li>
+              Use the 
+              <span
+                class="insights-code"
+              >
+                &lt;dt&gt;
+              </span>
+               element for terms.
+            </li>
+            <li>
+              Use the 
+              <span
+                class="insights-code"
+              >
+                &lt;dd&gt;
+              </span>
+               element for definitions.
+            </li>
+          </ul>
+        </li>
+      </ul>
+      <p />
+      <div
+        class="pass-fail-grid"
+      >
+        <div
+          class="fail-section"
+        >
+          <div
+            class="fail-header"
+          >
+            <span
+              class="check-container"
+            >
+              <span
+                class="cross-icon"
+              />
+            </span>
+             
+            <h3>
+              Fail
+            </h3>
+          </div>
+          <p>
+            These links are visually formatted as an unordered list, but they are not coded list semantics.
+          </p>
+        </div>
+        <div
+          class="fail-example"
+        >
+          <div
+            class="code-example"
+          >
+            <div
+              class="code-example-code"
+            >
+              <div
+                class="insights-code"
+              >
+                &lt;h4&gt;Top Tutorials&lt;/h4&gt;
+                <br />
+                           
+                <span
+                  class="highlight"
+                >
+                  &lt;div&gt;
+                </span>
+                <br />
+                           &lt;a href="/html/default.asp"&gt;HTML Tutorial&lt;/a&gt;
+                <span
+                  class="highlight"
+                >
+                  &lt;br&gt;
+                </span>
+                <br />
+                           &lt;a href="/css/default.asp"&gt;CSS Tutorial&lt;/a&gt;
+                <span
+                  class="highlight"
+                >
+                  &lt;br&gt;
+                </span>
+                <br />
+                           &lt;a href="/js/default.asp"&gt;JavaScript Tutorial&lt;/a&gt;
+                <span
+                  class="highlight"
+                >
+                  &lt;br&gt;
+                </span>
+                <br />
+                           &lt;a href="/aria/default.asp"&gt;ARIA Tutorial&lt;/a&gt;
+                <span
+                  class="highlight"
+                >
+                  &lt;br&gt;
+                </span>
+                <br />
+                           
+                <span
+                  class="highlight"
+                >
+                  &lt;/div&gt;
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="pass-section"
+        >
+          <div
+            class="pass-header"
+          >
+            <span
+              class="check-container"
+            >
+              <span
+                class="check-icon"
+              />
+            </span>
+             
+            <h3>
+              Pass
+            </h3>
+          </div>
+          <p>
+            The set of links is built using semantically correct 
+            <span
+              class="insights-code"
+            >
+              &lt;ul&gt;
+            </span>
+             and 
+            <span
+              class="insights-code"
+            >
+              &lt;li&gt;
+            </span>
+             elements.
+          </p>
+        </div>
+        <div
+          class="pass-example"
+        >
+          <div
+            class="code-example"
+          >
+            <div
+              class="code-example-code"
+            >
+              <div
+                class="insights-code"
+              >
+                &lt;h4&gt;Top Tutorials&lt;/h4&gt;
+                <br />
+                            
+                <span
+                  class="highlight"
+                >
+                  &lt;ul&gt;
+                  <br />
+                              &lt;li&gt;
+                </span>
+                <br />
+                            &lt;a href="/html/default.asp"&gt;
+                <br />
+                            HTML Tutorial&lt;/a&gt;
+                <br />
+                            
+                <span
+                  class="highlight"
+                >
+                  &lt;/li&gt;
+                  <br />
+                              &lt;li&gt;
+                </span>
+                <br />
+                            &lt;a href="/css/default.asp"&gt;
+                <br />
+                            CSS Tutorial&lt;/a&gt;
+                <br />
+                            
+                <span
+                  class="highlight"
+                >
+                  &lt;/li&gt;
+                  <br />
+                              &lt;li&gt;
+                </span>
+                <br />
+                            &lt;a href="/js/default.asp"&gt;
+                <br />
+                            JavaScript Tutorial&lt;/a&gt;
+                <br />
+                            
+                <span
+                  class="highlight"
+                >
+                  &lt;/li&gt;
+                  <br />
+                              &lt;li&gt;
+                </span>
+                <br />
+                            &lt;a href="/aria/default.asp"&gt;
+                <br />
+                            ARIA Tutorial&lt;/a&gt;
+                <br />
+                            
+                <span
+                  class="highlight"
+                >
+                  &lt;/li&gt;
+                  <br />
+                              &lt;/ul&gt;
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h2>
+        More examples
+      </h2>
+      <h3>
+        WCAG success criteria
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships.html"
+          target="_blank"
+        >
+          Understanding Success Criterion 1.3.1: Info and Relationships
+        </a>
+      </div>
+      <h3>
+        Sufficient techniques
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="http://www.w3.org/TR/2016/NOTE-WCAG20-TECHS-20161007/H48"
+          target="_blank"
+        >
+          Using ol, ul and dl for lists or groups of links
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/TR/2016/NOTE-WCAG20-TECHS-20161007/H40.html"
+          target="_blank"
+        >
+          Using description lists
+        </a>
+      </div>
+    </div>
+    <div
+      class="content-right"
+    />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`A11Y for content pages Normal mode test/semantics/quotes/infoAndExamples 1`] = `
+<DocumentFragment>
+  <div
+    class="content-container"
+  >
+    <div
+      class="content-left"
+    />
+    <div
+      class="content"
+    >
+      <h1>
+        Quotes
+      </h1>
+      <h1>
+        Quotes
+      </h1>
+      <p>
+        The 
+        <span
+          class="insights-code"
+        >
+          &lt;blockquote&gt;
+        </span>
+         element must not be used to indent non-quote text.
+      </p>
+      <h2>
+        Why it matters
+      </h2>
+      <p>
+        The 
+        <span
+          class="insights-code"
+        >
+          &lt;blockquote&gt;
+        </span>
+         is a semantic element that conveys to assistive technologies that it contains a quote. People who use assistive technologies might be confused if this semantic element is used instead as a quick way to style non-quote text.
+      </p>
+      <h2>
+        How to fix
+      </h2>
+      <p>
+        Do not use the 
+        <span
+          class="insights-code"
+        >
+          &lt;blockquote&gt;
+        </span>
+         element. Instead, use CSS 
+        <span
+          class="insights-code"
+        >
+          margin
+        </span>
+         properties to create space around blocks of text.
+      </p>
+      <div
+        class="pass-fail-grid"
+      >
+        <div
+          class="fail-section"
+        >
+          <div
+            class="fail-header"
+          >
+            <span
+              class="check-container"
+            >
+              <span
+                class="cross-icon"
+              />
+            </span>
+             
+            <h3>
+              Fail
+            </h3>
+          </div>
+          <p>
+            A link is enclosed in a 
+            <span
+              class="insights-code"
+            >
+              &lt;blockquote&gt;
+            </span>
+             element to increase the spacing around it and thereby make it visually prominent.
+          </p>
+        </div>
+        <div
+          class="fail-example"
+        >
+          <div
+            class="code-example"
+          >
+            <div
+              class="code-example-code"
+            >
+              <div
+                class="insights-code"
+              >
+                &lt;p&gt;The Rentenmark was a currency introduced in 1923 in Weimar Germany after hyperinflation
+                <br />
+                           destroyed the value of the previous currency.&lt;/p&gt;
+                <br />
+                           
+                <span
+                  class="highlight"
+                >
+                  &lt;blockquote&gt;
+                </span>
+                <br />
+                           &lt;a href="/wiki/German_Rentenmark" title="German Rentenmark"&gt;Learn more about the Rentenmark&lt;/a&gt;
+                <br />
+                           
+                <span
+                  class="highlight"
+                >
+                  &lt;/blockquote&gt;
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="pass-section"
+        >
+          <div
+            class="pass-header"
+          >
+            <span
+              class="check-container"
+            >
+              <span
+                class="check-icon"
+              />
+            </span>
+             
+            <h3>
+              Pass
+            </h3>
+          </div>
+          <p>
+            Spacing around the link is achieved using the CSS margin property.
+          </p>
+        </div>
+        <div
+          class="pass-example"
+        >
+          <div
+            class="code-example"
+          >
+            <div
+              class="code-example-code"
+            >
+              <div
+                class="insights-code"
+              >
+                &lt;style&gt;
+                <br />
+                            
+                <span
+                  class="highlight"
+                >
+                  a {margin: 70px;}
+                </span>
+                <br />
+                            &lt;/style&gt;
+                <br />
+                            ...
+                <br />
+                            &lt;p&gt;The Rentenmark was a currency introduced in 1923 in Weimar Germany after hyperinflation destroyed the value of the previous currency.&lt;/p&gt;
+                <br />
+                            &lt;a href="/wiki/German_Rentenmark" title="German Rentenmark"&gt;Learn more about the Rentenmark&lt;/a&gt;
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h2>
+        More examples
+      </h2>
+      <h3>
+        WCAG success criteria
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships.html"
+          target="_blank"
+        >
+          Understanding Success Criterion 1.3.1: Info and Relationships
+        </a>
+      </div>
+      <h3>
+        Sufficient techniques
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/general/G115"
+          target="_blank"
+        >
+          Using semantic elements to mark up structure
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/html/H49"
+          target="_blank"
+        >
+          Using semantic markup to mark emphasized or special text
+        </a>
+      </div>
+      <h3>
+        Common failures
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/failures/F43"
+          target="_blank"
+        >
+          Failure of Success Criterion 1.3.1 due to using structural markup in a way that does not represent relationships in the content
+        </a>
+      </div>
+    </div>
+    <div
+      class="content-right"
+    />
+  </div>
+</DocumentFragment>
+`;
+
 exports[`A11Y for content pages Normal mode test/sensory/auditoryCues/infoAndExamples 1`] = `
 <DocumentFragment>
   <div
@@ -44065,6 +49466,1023 @@ exports[`A11Y for content pages Normal mode test/sensory/useOfColor/infoAndExamp
           target="_blank"
         >
           Failure of 1.4.1 due to identifying required or error fields using color differences only
+        </a>
+      </div>
+    </div>
+    <div
+      class="content-right"
+    />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`A11Y for content pages Normal mode test/sequence/columns/infoAndExamples 1`] = `
+<DocumentFragment>
+  <div
+    class="content-container"
+  >
+    <div
+      class="content-left"
+    />
+    <div
+      class="content"
+    >
+      <h1>
+        Columns
+      </h1>
+      <p>
+        White space characters must not be used to create the appearance of columns.
+      </p>
+      <h2>
+        Why it matters
+      </h2>
+      <p>
+        When white space characters are used to arrange text visually to create the appearance of columns, sighted users perceive a structure that isn't represented in the code. Because assistive technologies present content in DOM order (the order that content appears in the HTML), people who use assistive technologies are likely to read the text in an order that doesn't make sense. (Also, a screen reader might announce each space character individually.)
+      </p>
+      <h2>
+        How to fix
+      </h2>
+      <p>
+        Use one of the following techniques to restructure the content so that the DOM order matches the expected reading order:
+      </p>
+      <ul>
+        <li>
+           Good: Modify the content so it has no visually apparent columns. 
+        </li>
+        <li>
+           Better: Use a layout table to display the content in columns.
+        </li>
+        <li>
+           Best: Use CSS to display the content in columns.
+        </li>
+      </ul>
+      <p />
+      <div
+        class="pass-fail-grid"
+      >
+        <div
+          class="fail-section"
+        >
+          <div
+            class="fail-header"
+          >
+            <span
+              class="check-container"
+            >
+              <span
+                class="cross-icon"
+              />
+            </span>
+             
+            <h3>
+              Fail
+            </h3>
+          </div>
+          <p>
+            White space characters in a 
+            <span
+              class="insights-code"
+            >
+              &lt;pre&gt;
+            </span>
+             element are used to create the appearance of two columns. When read in DOM order, the content doesn't make sense: "We the People general of the United Welfare, and States, in secure the Order…" 
+          </p>
+        </div>
+        <div
+          class="fail-example"
+        >
+          <pre>
+            <div
+              class="code-example"
+            >
+              <div
+                class="code-example-code"
+              >
+                <div
+                  class="insights-code"
+                >
+                  &lt;pre&gt;
+                  <br />
+                  <span
+                    class="highlight"
+                  >
+                    We the People     promote the general
+                    <br />
+                    of the United     Welfare, and
+                    <br />
+                    States, in        secure the
+                    <br />
+                    Order to form a   Blessings of
+                    <br />
+                    more perfect      Liberty to
+                    <br />
+                    Union,            ourselves and
+                    <br />
+                    establish         our Posterity,
+                    <br />
+                    Justice, insure   do ordain and
+                    <br />
+                    domestic          establish this
+                    <br />
+                    Tranquility,      Constitution
+                    <br />
+                    provide for the   for the United
+                    <br />
+                    common defense,   States of America.
+                  </span>
+                  <br />
+                  &lt;/pre&gt;
+                </div>
+              </div>
+            </div>
+          </pre>
+        </div>
+        <div
+          class="pass-section"
+        >
+          <div
+            class="pass-header"
+          >
+            <span
+              class="check-container"
+            >
+              <span
+                class="check-icon"
+              />
+            </span>
+             
+            <h3>
+              Pass
+            </h3>
+          </div>
+          <p>
+            CSS is used to display the content in columns in a way that the DOM order matches the expected reading order.
+          </p>
+        </div>
+        <div
+          class="pass-example"
+        >
+          <div
+            class="code-example"
+          >
+            <div
+              class="code-example-code"
+            >
+              <div
+                class="insights-code"
+              >
+                &lt;style&gt;
+                <br />
+                            * {box-sizing: border-box;}
+                <br />
+                            .column {float:left; width:50%;
+                <br />
+                            padding:10px;}
+                <br />
+                            &lt;/style&gt;
+                <br />
+                            ...
+                <br />
+                            &lt;div class="column"&gt;
+                <span
+                  class="highlight"
+                >
+                  We the People
+                  <br />
+                              of the United States,
+                  <br />
+                              in Order to form a
+                  <br />
+                              more perfect Union,
+                  <br />
+                              establish Justice,
+                  <br />
+                              insure domestic Tranquility,
+                  <br />
+                              provide for the common defense,
+                  <br />
+                              
+                </span>
+                &lt;/div&gt;
+                <br />
+                            &lt;div class="column"&gt;
+                <span
+                  class="highlight"
+                >
+                  promote the
+                  <br />
+                              general Welfare,
+                  <br />
+                              and secure
+                  <br />
+                              the blessings of Liberty
+                  <br />
+                              to ourselves and our Posterity,
+                  <br />
+                              do ordain and establish this Constitution
+                  <br />
+                              for the United States of America.
+                </span>
+                &lt;/div&gt;
+                <br />
+                            &lt;/body&gt;
+                <br />
+                            &lt;/html&gt;
+                <br />
+                            
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h2>
+        More examples
+      </h2>
+      <h3>
+        WCAG success criteria
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships.html"
+          target="_blank"
+        >
+          Understanding Success Criterion 1.3.1: Info and Relationships
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Understanding/meaningful-sequence.html"
+          target="_blank"
+        >
+          Understanding Success Criterion 1.3.2: Meaningful Sequence
+        </a>
+      </div>
+      <h3>
+        Sufficient techniques
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/general/G57"
+          target="_blank"
+        >
+          Ordering the content in a meaningful sequence
+        </a>
+      </div>
+      <h3>
+        Common failures
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/failures/F33"
+          target="_blank"
+        >
+          Failure of Success Criterion 1.3.1 and 1.3.2 due to using white space characters to create multiple columns in plain text content
+        </a>
+      </div>
+    </div>
+    <div
+      class="content-right"
+    />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`A11Y for content pages Normal mode test/sequence/cssPositioning/infoAndExamples 1`] = `
+<DocumentFragment>
+  <div
+    class="content-container"
+  >
+    <div
+      class="content-left"
+    />
+    <div
+      class="content"
+    >
+      <h1>
+        CSS positioning
+      </h1>
+      <p>
+        Meaningful content positioned on the page using CSS must retain its meaning when CSS is disabled.
+      </p>
+      <h2>
+        Why it matters
+      </h2>
+      <p>
+        Assistive technologies present content to users in DOM order (the order that content appears in the HTML). When CSS is used to modify only the 
+        <em>
+          visual
+        </em>
+         order of content, assistive technologies might not be able to programmatically determine the expected reading order. As a result, people who use assistive technologies might receive content in an order that makes no sense.
+      </p>
+      <p>
+        Also, some people with limited vision need to customize the styling of a web page in order to see its content. When they modify or disable CSS styling, positioned content might move to a location where its meaning is changed or lost.
+      </p>
+      <h2>
+        How to fix
+      </h2>
+      <ul>
+        <li>
+          If you use 
+          <span
+            class="insights-code"
+          >
+            position:absolute
+          </span>
+          , be sure the DOM order matches the expected reading order. 
+        </li>
+        <li>
+          Avoid using 
+          <span
+            class="insights-code"
+          >
+            float:right
+          </span>
+          , as it 
+          <em>
+            always
+          </em>
+           creates a mismatch: elements displayed on the right of the screen appear in the DOM before those on the left. 
+        </li>
+      </ul>
+      <div
+        class="pass-fail-grid"
+      >
+        <div
+          class="fail-section"
+        >
+          <div
+            class="fail-header"
+          >
+            <span
+              class="check-container"
+            >
+              <span
+                class="cross-icon"
+              />
+            </span>
+             
+            <h3>
+              Fail
+            </h3>
+          </div>
+          <p>
+            A web page about U.S. presidents uses 
+            <span
+              class="insights-code"
+            >
+              float:right
+            </span>
+             to display an image of the home state of each president. The presidents are listed in chronological order. In the 
+            <em>
+              visual
+            </em>
+             reading order, the content says, "George Washington was born on February 22, 1732, in Virginia. John Adams was born on October 30, 1735, in Massachusetts…" The DOM order is reversed, so people who use assistive technology will encounter the content in an incorrect order: "Virginia. George Washington was born on February 22, 1732 in Massachusetts. John Adams was born on October 30, 1735, in…"
+          </p>
+        </div>
+        <div
+          class="fail-example"
+        >
+          <div
+            class="code-example"
+          >
+            <div
+              class="code-example-code"
+            >
+              <div
+                class="insights-code"
+              >
+                &lt;style&gt;
+                <br />
+                           
+                <span
+                  class="highlight"
+                >
+                  .right {float:right;}
+                </span>
+                <br />
+                           &lt;/style&gt;
+                <br />
+                           ...
+                <br />
+                           &lt;p&gt;&lt;img class="right" source="virginia.jpg" alt="
+                <span
+                  class="highlight"
+                >
+                  Virginia.
+                </span>
+                "&gt;
+                <br />
+                           
+                <span
+                  class="highlight"
+                >
+                  George Washington was born on February 22, 1732, in
+                </span>
+                &lt;/p&gt;
+                <br />
+                           &lt;p&gt;&lt;img class="right" source="massachusetts.jpg" alt= "
+                <span
+                  class="highlight"
+                >
+                  Massachusetts.
+                </span>
+                "&gt;
+                <br />
+                           
+                <span
+                  class="highlight"
+                >
+                  John Adams was born on October 30, 1735, in
+                </span>
+                &lt; /p&gt;
+                <br />
+                           ...
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="pass-section"
+        >
+          <div
+            class="pass-header"
+          >
+            <span
+              class="check-container"
+            >
+              <span
+                class="check-icon"
+              />
+            </span>
+             
+            <h3>
+              Pass
+            </h3>
+          </div>
+          <p>
+            The content is displayed in a layout table. The visual reading order matches the DOM order, so the president's name and birthdate always come first.
+          </p>
+        </div>
+        <div
+          class="pass-example"
+        >
+          <div
+            class="code-example"
+          >
+            <div
+              class="code-example-code"
+            >
+              <div
+                class="insights-code"
+              >
+                &lt;table role="presentation"&gt;
+                <br />
+                            &lt;tr&gt;
+                <br />
+                            &lt;td&gt;
+                <span
+                  class="highlight"
+                >
+                  George Washington was born on February 22, 1732, in
+                </span>
+                &lt;/td&gt;
+                <br />
+                            &lt;td&gt;&lt;img src="virginia.jpg" alt="
+                <span
+                  class="highlight"
+                >
+                  Virginia.
+                </span>
+                "&lt;/td&gt;
+                <br />
+                            &lt;/tr&gt;
+                <br />
+                            &lt;tr&gt;
+                <br />
+                            &lt;td&gt;
+                <span
+                  class="highlight"
+                >
+                  John Adams was born on October 30, 1735 in
+                </span>
+                &lt;/td&gt;
+                <br />
+                            &lt;td&gt;&lt;img src="massachusetts.jpg" alt="
+                <span
+                  class="highlight"
+                >
+                  Massachusetts.
+                </span>
+                "&lt;/td&gt;
+                <br />
+                            &lt;/tr&gt;
+                <br />
+                            ...
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h2>
+        More examples
+      </h2>
+      <h3>
+        WCAG success criteria
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Understanding/meaningful-sequence.html"
+          target="_blank"
+        >
+          Understanding Success Criterion 1.3.2: Meaningful Sequence
+        </a>
+      </div>
+      <h3>
+        Sufficient techniques
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/general/G57"
+          target="_blank"
+        >
+          Ordering the content in a meaningful sequence
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/css/C6"
+          target="_blank"
+        >
+          Positioning content based on structural markup
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/css/C27"
+          target="_blank"
+        >
+          Making the DOM order match the visual order
+        </a>
+      </div>
+      <h3>
+        Common failures
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/failures/F1"
+          target="_blank"
+        >
+          Failure of Success Criterion 1.3.2 due to changing the meaning of content by positioning information with CSS
+        </a>
+      </div>
+    </div>
+    <div
+      class="content-right"
+    />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`A11Y for content pages Normal mode test/sequence/guidance 1`] = `
+<DocumentFragment>
+  <div
+    class="content-container"
+  >
+    <div
+      class="content-left"
+    />
+    <div
+      class="content"
+    >
+      <h1>
+        Sequence
+      </h1>
+      <h2>
+        Why it matters
+      </h2>
+      <p>
+        Assistive technologies present content in DOM order (the order that it appears in the HTML), so it's important that the DOM order match the expected reading order. If they don't match, the content won't make sense to people who use assistive technologies.
+      </p>
+      <div
+        class="columns"
+      >
+        <div
+          class="column"
+        >
+          <div
+            class="do-header"
+          >
+            <h2>
+              Do
+            </h2>
+            <span
+              class="check-container"
+            >
+              <span
+                class="check-icon"
+              />
+            </span>
+          </div>
+          <div
+            class="do-section"
+          >
+            <h3>
+              When using CSS to position meaningful content, ensure it still makes sense when CSS is disabled. (
+              <a
+                class="ms-Link insights-link root-000"
+                href="https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships"
+                target="_blank"
+              >
+                WCAG 1.3.1
+              </a>
+              )
+            </h3>
+            <ul>
+              <li>
+                If you use 
+                <span
+                  class="insights-code"
+                >
+                  position:absolute
+                </span>
+                , be sure the DOM order matches the expected reading order. 
+              </li>
+              <li>
+                Avoid using 
+                <span
+                  class="insights-code"
+                >
+                  float:right
+                </span>
+                , as it always creates a mismatch: elements displayed on the right of the screen appear in the DOM before those on the left. 
+              </li>
+            </ul>
+            <h3>
+              When using layout tables to position content, ensure it still makes sense when the table is linearized. (
+              <a
+                class="ms-Link insights-link root-000"
+                href="https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships"
+                target="_blank"
+              >
+                WCAG 1.3.1
+              </a>
+              )
+            </h3>
+            <ul>
+              <li>
+                Because assistive technologies read tables in DOM order, tables are presented row-by-row, not column-by-column.
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div
+          class="column"
+        >
+          <div
+            class="dont-header"
+          >
+            <h2>
+              Don't
+            </h2>
+            <span
+              class="check-container"
+            >
+              <span
+                class="cross-icon"
+              />
+            </span>
+          </div>
+          <div
+            class="dont-section"
+          >
+            <h3>
+              Don't use white space characters to create the appearance of columns.
+            </h3>
+            <ul>
+              <li>
+                Instead, use a layout table or CSS to display the content in columns.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <h2>
+        Learn more
+      </h2>
+      <h3>
+        Ensure the DOM order matches the expected reading order
+      </h3>
+      <h4>
+        WCAG success criteria
+      </h4>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships.html"
+          target="_blank"
+        >
+          Understanding Success Criterion 1.3.1: Info and Relationships
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Understanding/meaningful-sequence.html"
+          target="_blank"
+        >
+          Understanding Success Criterion 1.3.2: Meaningful Sequence
+        </a>
+      </div>
+      <h4>
+        Sufficient techniques
+      </h4>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/general/G57"
+          target="_blank"
+        >
+          Ordering the content in a meaningful sequence
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/css/C6"
+          target="_blank"
+        >
+          Positioning content based on structural markup
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/css/C27"
+          target="_blank"
+        >
+          Making the DOM order match the visual order
+        </a>
+      </div>
+      <h4>
+        Common failures
+      </h4>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/failures/F1"
+          target="_blank"
+        >
+          Failure of Success Criterion 1.3.2 due to changing the meaning of content by positioning information with CSS
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/failures/F49"
+          target="_blank"
+        >
+          Failure of Success Criterion 1.3.2 due to using an HTML layout table that does not make sense when linearized
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/failures/F33"
+          target="_blank"
+        >
+          Failure of Success Criterion 1.3.1 and 1.3.2 due to using white space characters to create multiple columns in plain text content
+        </a>
+      </div>
+    </div>
+    <div
+      class="content-right"
+    />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`A11Y for content pages Normal mode test/sequence/layoutTables/infoAndExamples 1`] = `
+<DocumentFragment>
+  <div
+    class="content-container"
+  >
+    <div
+      class="content-left"
+    />
+    <div
+      class="content"
+    >
+      <h1>
+        Layout tables
+      </h1>
+      <p>
+        The content in an HTML layout table must make sense when presented in DOM order.
+      </p>
+      <h2>
+        Why it matters
+      </h2>
+      <p>
+        Assistive technologies present content in DOM order (the order that content appears in the HTML). Because layout tables are structured in HTML as a series of rows, they are presented to users row-by-row. If a layout table's expected reading order is different from the DOM order, it won't make sense to people who use assistive technologies.
+      </p>
+      <h2>
+        How to fix
+      </h2>
+      <p>
+        Restructure the layout table so the DOM order matches the expected reading order.
+      </p>
+      <div
+        class="pass-fail-grid"
+      >
+        <div
+          class="fail-section"
+        >
+          <div
+            class="fail-header"
+          >
+            <span
+              class="check-container"
+            >
+              <span
+                class="cross-icon"
+              />
+            </span>
+             
+            <h3>
+              Fail
+            </h3>
+          </div>
+          <p>
+            The expected reading order of this layout table is column-by-column instead of row-by-row. When read column-by-column, it says, "When life gives you lemons, make lemonade." When read in DOM order, it says, "When gives you make life lemons lemonade." 
+          </p>
+        </div>
+        <div
+          class="fail-example"
+        >
+          <div
+            class="code-example"
+          >
+            <div
+              class="code-example-code"
+            >
+              <div
+                class="insights-code"
+              >
+                &lt;table role="presentation" width="100%"&gt;
+                <br />
+                           &lt;tr&gt;
+                <br />
+                           
+                <span
+                  class="highlight"
+                >
+                  &lt;td width="33%"&gt;When&lt;/td&gt;
+                  <br />
+                             &lt;td width="33%"&gt;gives you&lt;/td&gt;
+                  <br />
+                             &lt;td width="33%"&gt;make&lt;/td&gt;
+                </span>
+                <br />
+                           &lt;/tr&gt;
+                <br />
+                           &lt;tr&gt;
+                <br />
+                           
+                <span
+                  class="highlight"
+                >
+                  &lt;td&gt;LIFE&lt;/td&gt;
+                  <br />
+                             &lt;td&gt;LEMONS&lt;/td&gt;
+                  <br />
+                             &lt;td&gt;LEMONADE&lt;/td&gt;
+                </span>
+                <br />
+                           &lt;/tr&gt;
+                <br />
+                           &lt;/table&gt;
+                <br />
+                           
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="pass-section"
+        >
+          <div
+            class="pass-header"
+          >
+            <span
+              class="check-container"
+            >
+              <span
+                class="check-icon"
+              />
+            </span>
+             
+            <h3>
+              Pass
+            </h3>
+          </div>
+          <p>
+            The layout table is simplified so that the DOM order matches the expected reading order. 
+          </p>
+        </div>
+        <div
+          class="pass-example"
+        >
+          <div
+            class="code-example"
+          >
+            <div
+              class="code-example-code"
+            >
+              <div
+                class="insights-code"
+              >
+                &lt;table role="presentation" width="100%"&gt;
+                <br />
+                            &lt;tr&gt;
+                <br />
+                            
+                <span
+                  class="highlight"
+                >
+                  &lt;td width="33%"&gt;When&lt;br&gt;LIFE&lt;/td&gt;
+                  <br />
+                              &lt;td width="33%"&gt;gives you&lt;br&gt;
+                  <br />
+                              LEMONS&lt;/td&gt;
+                  <br />
+                              &lt;td width="33%"&gt;make&lt;br&gt;
+                  <br />
+                              LEMONADE&lt;/td&gt;
+                </span>
+                <br />
+                            &lt;/tr&gt;
+                <br />
+                            &lt;/table&gt;
+                <br />
+                            
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h2>
+        More examples
+      </h2>
+      <h3>
+        WCAG success criteria
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Understanding/meaningful-sequence.html"
+          target="_blank"
+        >
+          Understanding Success Criterion 1.3.2: Meaningful Sequence
+        </a>
+      </div>
+      <h3>
+        Sufficient techniques
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/general/G57"
+          target="_blank"
+        >
+          Ordering the content in a meaningful sequence
+        </a>
+      </div>
+      <h3>
+        Common failures
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/failures/F49"
+          target="_blank"
+        >
+          Failure of Success Criterion 1.3.2 due to using an HTML layout table that does not make sense when linearized
         </a>
       </div>
     </div>

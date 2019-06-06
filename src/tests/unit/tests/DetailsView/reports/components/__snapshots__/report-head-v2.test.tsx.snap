@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ReportHeadV2 renders 1`] = `
+<head>
+  <title>
+    Accessibility Insights for Web
+     automated checks result
+  </title>
+  <style
+    dangerouslySetInnerHTML={
+      Object {
+        "__html": "<<CSS:DetailsView/reports/automated-checks-report.css>>",
+      }
+    }
+  />
+</head>
+`;

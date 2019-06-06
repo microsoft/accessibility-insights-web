@@ -1,0 +1,91 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+
+@import '../../../common/styles/colors.scss';
+@import '../../../common/styles/fonts.scss';
+
+.report-instance-table {
+    background: $neutral-0;
+    border-radius: 4px;
+    box-shadow: 0px 0.6px 1.8px rgba(0, 0, 0, 0.108), 0px 3.2px 7.2px rgba(0, 0, 0, 0.132);
+    display: block;
+    margin-bottom: 16px;
+
+    th {
+        padding-left: 20px;
+        padding-top: 14px;
+        padding-bottom: 14px;
+
+        vertical-align: top;
+    }
+
+    .row {
+        border-bottom: 0.5px solid $neutral-10;
+    }
+
+    .row:last-child {
+        border-bottom: none;
+    }
+}
+
+// TODO check for removal
+.report-instances .row {
+    top: calc(50% - 20px / 2);
+    border-bottom: 0.5px solid $neutral-10;
+}
+
+// TODO check for removal
+.report-instances .row:last-child {
+    border-bottom: none;
+}
+
+.report-instance-table .label {
+    font-size: 14px;
+    line-height: 20px;
+    font-family: $semiBoldFontFamily;
+    color: $primary-text;
+    text-align: left;
+    width: 70px;
+}
+
+.report-instance-table .instance-list-row-content {
+    color: $secondary-text;
+    margin: 12px 12px 12px 0px;
+    font-size: 14px;
+    line-height: 20px;
+    align-items: flex-end;
+    display: flex;
+}
+
+.report-instance-table .instance-list-row-content.content-snipppet {
+    font-family: Consolas, Segoe UI, Courier New, monospace;
+}
+
+table.report-instance-table {
+    border-collapse: collapse;
+    overflow-x: auto;
+}
+
+@media screen and (max-width: 480px) {
+    .report-instance-table tr {
+        display: block;
+    }
+
+    .report-instance-table td {
+        display: block;
+        .label {
+            text-align: left;
+        }
+        .instance-list-row-content {
+            text-align: right;
+        }
+    }
+
+    .report-instance-table td::before {
+        float: left;
+    }
+
+    .report-instance-table .label {
+        padding-top: 12px;
+    }
+}
