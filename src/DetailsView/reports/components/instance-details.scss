@@ -81,32 +81,39 @@ table.report-instance-table {
     }
 }
 
-.chevron {
-    display: inline-block;
-    border-right: 1px solid $secondary-text;
-    border-bottom: 1px solid $secondary-text;
-    width: 7px;
-    height: 7px;
-    align-items: center;
-    text-align: center;
-    cursor: hand;
-    margin-right: 8px;
-
-    &.closed {
+.rule-detail {
+    .chevron {
+        display: inline-block;
+        border-right: 1px solid $secondary-text;
+        border-bottom: 1px solid $secondary-text;
+        width: 7px;
+        height: 7px;
+        align-items: center;
+        text-align: center;
+        cursor: hand;
+        margin-right: 8px;
         transform: rotate(-45deg);
+        // &.closed {
+        //     transform: rotate(-45deg);
+        // }
+        // &.open {
+        //     transform: rotate(45deg);
+        // }
     }
-    &.open {
+    input:checked + .chevron {
+        display: inline-block;
+        border-right: 1px solid $secondary-text;
+        border-bottom: 1px solid $secondary-text;
+        width: 7px;
+        height: 7px;
+        align-items: center;
+        text-align: center;
+        cursor: hand;
+        margin-right: 8px;
         transform: rotate(45deg);
     }
-}
 
-span {
-    color: red;
-}
-input:checked + span {
-    color: blue;
-}
-
-.test-input {
-    display: none;
+    .test-input {
+        display: none;
+    }
 }

@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as classNames from 'classnames';
 import * as React from 'react';
 import { GuidanceLinks } from '../../../../common/components/guidance-links';
 import { NewTabLink } from '../../../../common/components/new-tab-link';
@@ -38,11 +37,11 @@ export const RuleDetail = NamedSFC<RuleDetailProps>('RuleDetails', ({ rule, chil
     return (
         <>
             <div className="rule-detail">
-                <input type="checkbox" id="cb1" className="test-input" />
                 {showDetails ? (
                     <>
-                        <label htmlFor="cb1" />
-                        <div className={classNames('chevron', 'closed')} />
+                        <label htmlFor="cb1">test</label>
+                        <input type="checkbox" id="cb1" className="test-input" />
+                        <span className="chevron" />
                     </>
                 ) : null}
                 {renderRuleName()}: {renderDescription()} ({renderGuidanceLinks()})
