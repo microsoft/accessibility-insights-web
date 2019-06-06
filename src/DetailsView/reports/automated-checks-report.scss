@@ -176,6 +176,10 @@ $outcome-not-applicable-summary-color: $neutral-outcome;
         padding-top: 12px;
     }
 
+    .description-text {
+        white-space: pre-wrap;
+    }
+
     tbody :first-child td {
         padding-top: 16px;
     }
