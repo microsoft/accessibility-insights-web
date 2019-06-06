@@ -54,14 +54,13 @@ describe('DevToolsStoreTest', () => {
 
         const payload = ['#frame1', '#elem1'];
 
-        const expectedState = getDefaultState();
-        expectedState.inspectElement = payload;
-        expectedState.frameUrl = null;
-        expectedState.inspectElementRequestId = 1;
+        const exepctedState = getDefaultState();
+        exepctedState.inspectElement = payload;
+        exepctedState.frameUrl = null;
 
         createStoreTesterForDevToolsActions('setInspectElement')
             .withActionParam(payload)
-            .testListenerToBeCalledOnce(initialState, expectedState);
+            .testListenerToBeCalledOnce(initialState, exepctedState);
     });
 
     test('on setFrameUrl', () => {

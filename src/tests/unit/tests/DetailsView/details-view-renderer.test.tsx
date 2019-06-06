@@ -18,6 +18,7 @@ import { DetailsViewRenderer } from '../../../../DetailsView/details-view-render
 import { AssessmentInstanceTableHandler } from '../../../../DetailsView/handlers/assessment-instance-table-handler';
 import { DetailsViewToggleClickHandlerFactory } from '../../../../DetailsView/handlers/details-view-toggle-click-handler-factory';
 import { PreviewFeatureFlagsHandler } from '../../../../DetailsView/handlers/preview-feature-flags-handler';
+import { ReportGenerator } from '../../../../DetailsView/reports/report-generator';
 import { CreateTestAssessmentProvider } from '../../common/test-assessment-provider';
 
 describe('DetailsViewRendererTest', () => {
@@ -39,6 +40,7 @@ describe('DetailsViewRendererTest', () => {
         const scopingFlagsHandlerMock = Mock.ofType(PreviewFeatureFlagsHandler);
         const dropdownClickHandlerMock = Mock.ofType(DropdownClickHandler);
         const assessmentInstanceTableHandlerMock = Mock.ofType(AssessmentInstanceTableHandler);
+        const reportGeneratorMock = Mock.ofType(ReportGenerator);
         const assessmentsProviderMock = Mock.ofInstance(CreateTestAssessmentProvider());
 
         const expectedIcon16 = 'icon128.png';
@@ -67,6 +69,7 @@ describe('DetailsViewRendererTest', () => {
                                 assessmentInstanceTableHandler={assessmentInstanceTableHandlerMock.object}
                                 previewFeatureFlagsHandler={previewFeatureFlagsHandlerMock.object}
                                 scopingFlagsHandler={scopingFlagsHandlerMock.object}
+                                reportGenerator={reportGeneratorMock.object}
                                 dropdownClickHandler={dropdownClickHandlerMock.object}
                                 assessmentsProvider={assessmentsProviderMock.object}
                             />
@@ -88,6 +91,7 @@ describe('DetailsViewRendererTest', () => {
             visualizationConfigurationFactoryMock.object,
             issuesTableHandlerMock.object,
             assessmentInstanceTableHandlerMock.object,
+            reportGeneratorMock.object,
             previewFeatureFlagsHandlerMock.object,
             scopingFlagsHandlerMock.object,
             dropdownClickHandlerMock.object,

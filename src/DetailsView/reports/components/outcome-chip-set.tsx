@@ -4,11 +4,11 @@ import * as React from 'react';
 
 import { NamedSFC } from '../../../common/react/named-sfc';
 import { OutcomeChip } from './outcome-chip';
-import { allRequirementOutcomeTypes, RequirementOutcomeStats } from './requirement-outcome-type';
+import { allOutcomeTypes, OutcomeStats } from './outcome-type';
 
-export const OutcomeChipSet = NamedSFC<RequirementOutcomeStats>('OutcomeChipSet', props => (
+export const OutcomeChipSet = NamedSFC<OutcomeStats>('OutcomeChipSet', props => (
     <div className="outcome-chip-set">
-        {allRequirementOutcomeTypes.map(outcomeType =>
+        {allOutcomeTypes.map(outcomeType =>
             props[outcomeType] ? <OutcomeChip key={outcomeType} outcomeType={outcomeType} count={props[outcomeType]} /> : null,
         )}
     </div>

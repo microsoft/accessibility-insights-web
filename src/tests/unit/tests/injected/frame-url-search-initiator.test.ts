@@ -19,7 +19,6 @@ describe('FrameUrlSearchInitiatorTest', () => {
         const stateStub: DevToolState = {
             isOpen: null,
             inspectElement: ['abc', 'def'],
-            inspectElementRequestId: 0,
         };
 
         devToolStoreMock.setupAddChangedListener(1);
@@ -42,7 +41,6 @@ describe('FrameUrlSearchInitiatorTest', () => {
             isOpen: null,
             inspectElement: ['abc', 'def'],
             frameUrl: 'test',
-            inspectElementRequestId: 0,
         };
 
         devToolStoreMock.setupAddChangedListener(1);
@@ -64,7 +62,6 @@ describe('FrameUrlSearchInitiatorTest', () => {
         const stateStub: DevToolState = {
             isOpen: null,
             inspectElement: ['abc'],
-            inspectElementRequestId: 0,
         };
 
         devToolStoreMock.setupAddChangedListener(1);

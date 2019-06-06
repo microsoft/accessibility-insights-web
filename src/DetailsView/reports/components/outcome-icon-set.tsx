@@ -5,24 +5,23 @@ import * as React from 'react';
 
 import { NamedSFC } from '../../../common/react/named-sfc';
 import { OutcomeIcon } from './outcome-icon';
-import { outcomeTypeSemantics } from './outcome-type';
-import { allRequirementOutcomeTypes, RequirementOutcomeStats } from './requirement-outcome-type';
+import { allOutcomeTypes, OutcomeStats, outcomeTypeSemantics } from './outcome-type';
 
-function getText(stats: RequirementOutcomeStats): string {
+function getText(stats: OutcomeStats): string {
     function textForOutcome(outcomeType): string {
         const count = stats[outcomeType];
         const { pastTense } = outcomeTypeSemantics[outcomeType];
         return `${count} ${pastTense}`;
     }
-    return join(allRequirementOutcomeTypes.map(textForOutcome), ', ');
+    return join(allOutcomeTypes.map(textForOutcome), ', ');
 }
 
-export const OutcomeIconSet = NamedSFC<RequirementOutcomeStats>('OutcomeIconSet', props => {
+export const OutcomeIconSet = NamedSFC<OutcomeStats>('OutcomeIconSet', props => {
     const text = getText(props);
 
     return (
         <div className="outcome-icon-set" title={text}>
-            {allRequirementOutcomeTypes.map(outcomeType =>
+            {allOutcomeTypes.map(outcomeType =>
                 times(props[outcomeType], index => (
                     <span className={'outcome-icon outcome-icon-' + outcomeType} key={`outcome-icon-index-${index}`}>
                         <OutcomeIcon outcomeType={outcomeType} />

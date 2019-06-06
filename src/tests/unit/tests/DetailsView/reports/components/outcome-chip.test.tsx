@@ -20,10 +20,5 @@ describe('OutcomeChip', () => {
             const wrapper = shallow(<OutcomeChip outcomeType="fail" count={4} />);
             expect(wrapper.getElement()).toMatchSnapshot();
         });
-
-        test('inapplicable', () => {
-            const wrapper = shallow(<OutcomeChip outcomeType="inapplicable" count={4} />);
-            expect(wrapper.getElement()).toMatchSnapshot();
-        });
     });
 });

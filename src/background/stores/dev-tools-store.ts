@@ -19,7 +19,6 @@ export class DevToolStore extends BaseStoreImpl<DevToolState> {
     public getDefaultState(): DevToolState {
         const defaultValues: DevToolState = {
             isOpen: false,
-            inspectElementRequestId: 0,
         };
 
         return defaultValues;
@@ -47,8 +46,6 @@ export class DevToolStore extends BaseStoreImpl<DevToolState> {
     private onInspectElement(target: string[]): void {
         this.state.inspectElement = target;
         this.state.frameUrl = null;
-        // we're only using this to make sure the store proxy emit the change when the user inspect the same element twice
-        this.state.inspectElementRequestId++;
         this.emitChanged();
     }
 

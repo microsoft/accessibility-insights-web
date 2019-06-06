@@ -161,7 +161,7 @@ export class MainWindowInitializer extends WindowInitializer {
             this.clientChromeAdapter.sendMessageToFrames,
             new ScannerUtils(scan, generateUID),
             telemetryDataFactory,
-            DateProvider.getCurrentDate,
+            DateProvider.getDate,
             this.visualizationConfigurationFactory,
             filterResultsByRules,
         );

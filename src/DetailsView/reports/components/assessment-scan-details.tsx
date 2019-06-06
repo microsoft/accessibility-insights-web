@@ -43,7 +43,7 @@ export class AssessmentScanDetails extends React.Component<AssessmentScanDetails
                             <td className="icon" aria-hidden="true">
                                 <CommentIcon />
                             </td>
-                            <td className="assessment-scan-details-description">{this.props.description}</td>
+                            <td>{this.props.description}</td>
                         </tr>
                     </tbody>
                 </table>

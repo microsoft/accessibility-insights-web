@@ -3,8 +3,8 @@
 import * as React from 'react';
 
 import { HeaderIcon, HeaderIconDeps } from '../../common/components/header-icon';
+import { config } from '../../common/configuration';
 import { NamedSFC } from '../../common/react/named-sfc';
-import { title } from '../../content/strings/application';
 
 export type PageProps = {
     deps: PageDeps;
@@ -13,11 +13,13 @@ export type PageProps = {
 export type PageDeps = HeaderIconDeps;
 
 export const Page = NamedSFC<PageProps>('Page', ({ deps, children }) => {
+    const extensionFullName = config.getOption('extensionFullName');
+
     return (
         <>
             <header className="header-bar">
                 <HeaderIcon deps={deps} />
-                <div className="ms-font-m header-text">{title}</div>
+                <div className="ms-font-m header-text">{extensionFullName}</div>
             </header>
             <main>{children}</main>
         </>

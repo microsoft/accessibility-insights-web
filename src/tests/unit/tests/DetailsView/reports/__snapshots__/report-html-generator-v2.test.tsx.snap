@@ -1,3 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`ReportHtmlGeneratorV2 generateHtml 1`] = `"<html lang=\\"en\\"><head-markup /><body-markup /></html>"`;

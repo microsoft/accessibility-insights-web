@@ -4,7 +4,6 @@ import { shallow } from 'enzyme';
 import { ISelection } from 'office-ui-fabric-react/lib/DetailsList';
 import * as React from 'react';
 import { IMock, Mock, MockBehavior } from 'typemoq';
-
 import { DisplayableVisualizationTypeData } from '../../../../../common/configs/visualization-configuration-factory';
 import { TabStoreData } from '../../../../../common/types/store-data/tab-store-data';
 import { VisualizationScanResultData } from '../../../../../common/types/store-data/visualization-scan-result-data';
@@ -14,6 +13,7 @@ import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/acti
 import { AdhocIssuesTestView, AdhocIssuesTestViewProps } from '../../../../../DetailsView/components/adhoc-issues-test-view';
 import { IssuesTableHandler } from '../../../../../DetailsView/components/issues-table-handler';
 import { DetailsViewToggleClickHandlerFactory } from '../../../../../DetailsView/handlers/details-view-toggle-click-handler-factory';
+import { ReportGenerator } from '../../../../../DetailsView/reports/report-generator';
 import { VisualizationScanResultStoreDataBuilder } from '../../../common/visualization-scan-result-store-data-builder';
 
 describe('AdhocIssuesTestView', () => {
@@ -29,6 +29,7 @@ describe('AdhocIssuesTestView', () => {
     let selectedTest: VisualizationType;
     let actionMessageCreatorStub: DetailsViewActionMessageCreator;
     let issuesSelectionStub: ISelection;
+    let reportGeneratorStub: ReportGenerator;
     let issuesTableHandlerStub: IssuesTableHandler;
 
     beforeEach(() => {
@@ -52,6 +53,7 @@ describe('AdhocIssuesTestView', () => {
         clickHandlerStub = () => {};
         actionMessageCreatorStub = {} as DetailsViewActionMessageCreator;
         issuesSelectionStub = {} as ISelection;
+        reportGeneratorStub = {} as ReportGenerator;
         issuesTableHandlerStub = {} as IssuesTableHandler;
         selectedTest = -1;
 
@@ -68,6 +70,7 @@ describe('AdhocIssuesTestView', () => {
             visualizationStoreData: visualizationStoreDataStub,
             selectedTest,
             issuesSelection: issuesSelectionStub,
+            reportGenerator: reportGeneratorStub,
             issuesTableHandler: issuesTableHandlerStub,
             visualizationScanResultData: visualizationScanResultStoreDataStub,
         } as any;

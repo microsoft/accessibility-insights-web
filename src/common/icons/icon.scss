@@ -9,7 +9,7 @@
     border: $border-size solid $neutral-0;
 }
 
-@mixin check-icon-styles($iconSize, $border-size: 1px, $iconColor: $neutral-0) {
+@mixin check-icon-styles($iconSize, $border-size: 1px) {
     // maxTickLength = iconSize - borderthickness - spacingBetweenCircleAndTick
     $maxTickLength: ($iconSize - $border-size * 2 - 2);
     $check-height: ($maxTickLength / 2);
@@ -24,8 +24,8 @@
             height: $check-height;
             width: ($check-height / 2);
             transform: scaleX(-1) rotate(135deg);
-            border-right: $check-line-thickness solid $iconColor;
-            border-top: $check-line-thickness solid $iconColor;
+            border-right: $check-line-thickness solid $neutral-0;
+            border-top: $check-line-thickness solid $neutral-0;
             content: '';
             left: $left-value;
             bottom: $bottom-value;
@@ -34,7 +34,7 @@
     }
 }
 
-@mixin cross-icon-styles($iconSize, $border-size: 1px, $iconColor: $neutral-0) {
+@mixin cross-icon-styles($iconSize, $border-size: 1px) {
     $true-icon-size: ($iconSize - $border-size * 2);
     $width-value: (2/14 * $true-icon-size);
 
@@ -65,7 +65,7 @@
                 height: $cross-line-height;
                 width: $width-value;
                 bottom: $bottom-value;
-                background-color: $iconColor;
+                background-color: $neutral-0;
             }
         }
     }
@@ -74,30 +74,5 @@
 @mixin incomplete-icon-styles($iconSize, $border-size: 1px) {
     .check-container {
         @include getCheckContainerStyle($iconSize, $border-size);
-    }
-}
-
-@mixin inapplicable-icon-styles($iconSize, $border-size: 1px, $iconColor: $neutral-0) {
-    $true-icon-size: ($iconSize - $border-size * 2);
-    $width-value: (1/7 * $true-icon-size);
-
-    .check-container {
-        @include getCheckContainerStyle($iconSize, $border-size);
-        $inapplicable-line-height: (4/7 * $true-icon-size);
-        $bottom-value: (($true-icon-size - $inapplicable-line-height) / 2);
-        $left-value: (($true-icon-size - $width-value) / 2);
-
-        .inapplicable-icon {
-            content: '';
-            position: absolute;
-            width: $true-icon-size;
-            height: $true-icon-size;
-            left: $left-value;
-            height: $inapplicable-line-height;
-            width: $width-value;
-            bottom: $bottom-value;
-            background-color: $iconColor;
-            transform: rotate(-45deg);
-        }
     }
 }

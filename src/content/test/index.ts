@@ -17,9 +17,7 @@ import { nativeWidgets } from './native-widgets';
 import { page } from './page';
 import { parsing } from './parsing';
 import { repetitiveContent } from './repetitive-content';
-import { semantics } from './semantics';
 import { sensory } from './sensory';
-import { sequence } from './sequence';
 import { textLegibility } from './text-legibility';
 import { timedEvents } from './timed-events';
 
@@ -38,8 +36,6 @@ export const test = {
     parsing,
     repetitiveContent,
     sensory,
-    semantics,
-    sequence,
     textLegibility,
     timedEvents,
     nativeWidgets,

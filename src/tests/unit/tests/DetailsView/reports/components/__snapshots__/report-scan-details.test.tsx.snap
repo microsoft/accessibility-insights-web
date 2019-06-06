@@ -35,9 +35,7 @@ exports[`ReportScanDetailsTest renders 1`] = `
         >
           Description
         </td>
-        <td
-          className="report-result-description"
-        >
+        <td>
           description-text
         </td>
       </tr>

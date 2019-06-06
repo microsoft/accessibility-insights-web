@@ -3,12 +3,12 @@
 exports[`OutcomeIconSet render render all zero 1`] = `
 <div
   className="outcome-icon-set"
-  title="0 Passed, 0 Incomplete, 0 Failed"
+  title="0 passed, 0 incomplete, 0 failed"
 >
   <span
     className="screen-reader-only"
   >
-    0 Passed, 0 Incomplete, 0 Failed
+    0 passed, 0 incomplete, 0 failed
   </span>
 </div>
 `;
@@ -16,7 +16,7 @@ exports[`OutcomeIconSet render render all zero 1`] = `
 exports[`OutcomeIconSet render render incomplete zero 1`] = `
 <div
   className="outcome-icon-set"
-  title="3 Passed, 0 Incomplete, 4 Failed"
+  title="3 passed, 0 incomplete, 4 failed"
 >
   <span
     className="outcome-icon outcome-icon-pass"
@@ -70,7 +70,7 @@ exports[`OutcomeIconSet render render incomplete zero 1`] = `
   <span
     className="screen-reader-only"
   >
-    3 Passed, 0 Incomplete, 4 Failed
+    3 passed, 0 incomplete, 4 failed
   </span>
 </div>
 `;
@@ -78,7 +78,7 @@ exports[`OutcomeIconSet render render incomplete zero 1`] = `
 exports[`OutcomeIconSet render render with all properties 1`] = `
 <div
   className="outcome-icon-set"
-  title="3 Passed, 2 Incomplete, 4 Failed"
+  title="3 passed, 2 incomplete, 4 failed"
 >
   <span
     className="outcome-icon outcome-icon-pass"
@@ -146,7 +146,7 @@ exports[`OutcomeIconSet render render with all properties 1`] = `
   <span
     className="screen-reader-only"
   >
-    3 Passed, 2 Incomplete, 4 Failed
+    3 passed, 2 incomplete, 4 failed
   </span>
 </div>
 `;

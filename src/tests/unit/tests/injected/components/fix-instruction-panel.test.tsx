@@ -2,18 +2,13 @@
 // Licensed under the MIT License.
 import { shallow } from 'enzyme';
 import * as React from 'react';
-import { IMock, It, Mock, MockBehavior } from 'typemoq';
 import { CheckType } from '../../../../../injected/components/details-dialog';
 import { FixInstructionPanel, FixInstructionPanelProps } from '../../../../../injected/components/fix-instruction-panel';
-import { FixInstructionProcessor } from '../../../../../injected/fix-instruction-processor';
 
 describe('FixInstructionPanelTests', () => {
-    let fixInstructionProcessorMock: IMock<FixInstructionProcessor>;
-
-    beforeEach(() => {
-        fixInstructionProcessorMock = Mock.ofType<FixInstructionProcessor>(undefined, MockBehavior.Strict);
-        fixInstructionProcessorMock.setup(processor => processor.process(It.isAnyString())).returns(instruction => <>{instruction}</>);
-    });
+    function renderTitleAsDiv(titleText: string, className: string): JSX.Element {
+        return <div className={className}>{titleText}</div>;
+    }
 
     test('render all checks', () => {
         const allchecks: FormattedCheckResult[] = [
@@ -33,9 +28,6 @@ describe('FixInstructionPanelTests', () => {
             checkType: CheckType.All,
             checks: allchecks,
             renderTitleElement: renderTitleAsDiv,
-            deps: {
-                fixInstructionProcessor: fixInstructionProcessorMock.object,
-            },
         };
 
         const wrapped = shallow(<FixInstructionPanel {...props} />);
@@ -56,9 +48,6 @@ describe('FixInstructionPanelTests', () => {
             checkType: CheckType.All,
             checks: allchecks,
             renderTitleElement: renderTitleAsDiv,
-            deps: {
-                fixInstructionProcessor: fixInstructionProcessorMock.object,
-            },
         };
 
         const wrapped = shallow(<FixInstructionPanel {...props} />);
@@ -84,9 +73,6 @@ describe('FixInstructionPanelTests', () => {
             checkType: CheckType.None,
             checks: noneChecks,
             renderTitleElement: renderTitleAsDiv,
-            deps: {
-                fixInstructionProcessor: fixInstructionProcessorMock.object,
-            },
         };
 
         const wrapped = shallow(<FixInstructionPanel {...props} />);
@@ -101,17 +87,10 @@ describe('FixInstructionPanelTests', () => {
             checkType: CheckType.None,
             checks: checks,
             renderTitleElement: renderTitleAsDiv,
-            deps: {
-                fixInstructionProcessor: fixInstructionProcessorMock.object,
-            },
         };
 
         const wrapped = shallow(<FixInstructionPanel {...props} />);
 
         expect(wrapped.getElement()).toMatchSnapshot();
     });
-
-    function renderTitleAsDiv(titleText: string, className: string): JSX.Element {
-        return <div className={className}>{titleText}</div>;
-    }
 });

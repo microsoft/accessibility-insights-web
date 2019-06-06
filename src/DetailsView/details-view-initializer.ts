@@ -48,7 +48,6 @@ import { VisualizationStoreData } from '../common/types/store-data/visualization
 import { UrlParser } from '../common/url-parser';
 import { WindowUtils } from '../common/window-utils';
 import { contentPages } from '../content';
-import { FixInstructionProcessor } from '../injected/fix-instruction-processor';
 import { ScannerUtils } from '../injected/scanner-utils';
 import { getVersion, scan } from '../scanner/exposed-apis';
 import { DictionaryStringTo } from '../types/common-types';
@@ -72,20 +71,18 @@ import { MasterCheckBoxConfigProvider } from './handlers/master-checkbox-config-
 import { PreviewFeatureFlagsHandler } from './handlers/preview-feature-flags-handler';
 import { AssessmentReportHtmlGenerator } from './reports/assessment-report-html-generator';
 import { AssessmentReportModelBuilderFactory } from './reports/assessment-report-model-builder-factory';
-import { AutomatedChecksReportSectionFactory } from './reports/components/report-sections/automated-checks-report-section-factory';
 import {
     outcomeStatsFromManualTestStatus,
     outcomeTypeFromTestStatus,
     outcomeTypeSemanticsFromTestStatus,
-} from './reports/components/requirement-outcome-type';
+} from './reports/components/outcome-type';
 import {
     getAssessmentSummaryModelFromProviderAndStatusData,
     getAssessmentSummaryModelFromProviderAndStoreData,
 } from './reports/get-assessment-summary-model';
 import { ReactStaticRenderer } from './reports/react-static-renderer';
-import { createReportGeneratorProvider } from './reports/report-generator-provider';
-import { ReportHtmlGeneratorV1 } from './reports/report-html-generator-v1';
-import { ReportHtmlGeneratorV2 } from './reports/report-html-generator-v2';
+import { ReportGenerator } from './reports/report-generator';
+import { ReportHtmlGenerator } from './reports/report-html-generator';
 import { ReportNameGenerator } from './reports/report-name-generator';
 
 declare const window: AutoChecker & Window;
@@ -180,50 +177,31 @@ if (isNaN(tabId) === false) {
 
             const extensionVersion = chromeAdapter.getManifest().version;
             const axeVersion = getVersion();
-            const browserSpec = new NavigatorUtils(window.navigator).getBrowserSpec();
-
-            const environmentInfoProvider = new EnvironmentInfoProvider(
-                chromeAdapter.extensionVersion,
-                browserSpec,
-                AxeInfo.Default.version,
-            );
-
             const reactStaticRenderer = new ReactStaticRenderer();
             const reportNameGenerator = new ReportNameGenerator();
-
-            const reportHtmlGeneratorV1 = new ReportHtmlGeneratorV1(
+            const reportHtmlGenerator = new ReportHtmlGenerator(
                 reactStaticRenderer,
                 new NavigatorUtils(window.navigator).getBrowserSpec(),
                 extensionVersion,
                 axeVersion,
             );
-            const reportHtmlGeneratorV2 = new ReportHtmlGeneratorV2(
-                AutomatedChecksReportSectionFactory,
-                reactStaticRenderer,
-                environmentInfoProvider.getEnvironmentInfo(),
-            );
+
             const assessmentReportHtmlGeneratorDeps = {
                 outcomeTypeSemanticsFromTestStatus,
                 getGuidanceTagsFromGuidanceLinks: GetGuidanceTagsFromGuidanceLinks,
             };
+
             const assessmentReportHtmlGenerator = new AssessmentReportHtmlGenerator(
                 assessmentReportHtmlGeneratorDeps,
                 reactStaticRenderer,
                 new AssessmentReportModelBuilderFactory(),
-                DateProvider.getCurrentDate,
+                DateProvider.getDate,
                 extensionVersion,
                 axeVersion,
                 new NavigatorUtils(window.navigator).getBrowserSpec(),
                 assessmentDefaultMessageGenerator,
             );
-
-            const reportGeneratorProvider = createReportGeneratorProvider(
-                reportNameGenerator,
-                reportHtmlGeneratorV1,
-                reportHtmlGeneratorV2,
-                assessmentReportHtmlGenerator,
-                featureFlagStore,
-            );
+            const reportGenerator = new ReportGenerator(reportNameGenerator, reportHtmlGenerator, assessmentReportHtmlGenerator);
 
             visualizationStore.setTabId(tab.id);
             tabStore.setTabId(tab.id);
@@ -249,16 +227,20 @@ if (isNaN(tabId) === false) {
             );
             documentTitleUpdater.initialize();
 
+            const browserSpec = new NavigatorUtils(window.navigator).getBrowserSpec();
             const issueDetailsTextGenerator = new IssueDetailsTextGenerator(
                 chromeAdapter.extensionVersion,
                 browserSpec,
                 AxeInfo.Default.version,
             );
 
-            const fixInstructionProcessor = new FixInstructionProcessor();
+            const environmentInfoProvider = new EnvironmentInfoProvider(
+                chromeAdapter.extensionVersion,
+                browserSpec,
+                AxeInfo.Default.version,
+            );
 
             const deps: DetailsViewContainerDeps = {
-                fixInstructionProcessor,
                 dropdownClickHandler,
                 issueFilingActionMessageCreator,
                 contentProvider: contentPages,
@@ -287,13 +269,11 @@ if (isNaN(tabId) === false) {
                 storesHub,
                 loadTheme,
                 urlParser,
-                getDateFromTimestamp: DateProvider.getDateFromTimestamp,
-                getCurrentDate: DateProvider.getCurrentDate,
+                dateProvider: DateProvider.getDate,
                 settingsProvider: SettingsProviderImpl,
                 environmentInfoProvider,
                 issueFilingServiceProvider: IssueFilingServiceProviderImpl,
                 getGuidanceTagsFromGuidanceLinks: GetGuidanceTagsFromGuidanceLinks,
-                reportGeneratorProvider,
             };
 
             const renderer = new DetailsViewRenderer(
@@ -307,6 +287,7 @@ if (isNaN(tabId) === false) {
                 visualizationConfigurationFactory,
                 issuesTableHandler,
                 assessmentInstanceTableHandler,
+                reportGenerator,
                 previewFeatureFlagsHandler,
                 scopingFlagsHandler,
                 dropdownClickHandler,
@@ -330,6 +311,7 @@ function createNullifiedRenderer(doc, render): DetailsViewRenderer {
         null,
         doc,
         render,
+        null,
         null,
         null,
         null,

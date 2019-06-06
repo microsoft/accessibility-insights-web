@@ -2,9 +2,6 @@
 // Licensed under the MIT License.
 import { shallow } from 'enzyme';
 import * as React from 'react';
-import { Mock } from 'typemoq';
-
-import { GetGuidanceTagsFromGuidanceLinks } from '../../../../../../common/get-guidance-tags-from-guidance-links';
 import { ManualTestStatus } from '../../../../../../common/types/manual-test-status';
 import { RequirementHeaderReportModel, RequirementType } from '../../../../../../DetailsView/reports/assessment-report-model';
 import {
@@ -12,7 +9,9 @@ import {
     AssessmentReportStepHeaderDeps,
 } from '../../../../../../DetailsView/reports/components/assessment-report-step-header';
 import { OutcomeChip } from '../../../../../../DetailsView/reports/components/outcome-chip';
-import { RequirementOutcomeType } from '../../../../../../DetailsView/reports/components/requirement-outcome-type';
+import { OutcomeType } from '../../../../../../DetailsView/reports/components/outcome-type';
+import { Mock } from 'typemoq';
+import { GetGuidanceTagsFromGuidanceLinks } from '../../../../../../common/get-guidance-tags-from-guidance-links';
 
 describe('AssessmentReportStepHeader', () => {
     function genHeader(requirementType: RequirementType): RequirementHeaderReportModel {
@@ -42,7 +41,7 @@ describe('AssessmentReportStepHeader', () => {
         expect(actual.getElement()).toMatchSnapshot();
     });
 
-    const outcomePairs: [ManualTestStatus, RequirementOutcomeType][] = [[PASS, 'pass'], [UNKNOWN, 'incomplete'], [FAIL, 'fail']];
+    const outcomePairs: [ManualTestStatus, OutcomeType][] = [[PASS, 'pass'], [UNKNOWN, 'incomplete'], [FAIL, 'fail']];
 
     outcomePairs.forEach(([status, outcomeType]) =>
         describe(`in ${outcomeType} section`, () => {

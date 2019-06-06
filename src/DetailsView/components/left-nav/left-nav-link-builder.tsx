@@ -8,8 +8,7 @@ import { VisualizationConfiguration } from '../../../common/configs/visualizatio
 import { ManualTestStatus, ManualTestStatusData } from '../../../common/types/manual-test-status';
 import { VisualizationType } from '../../../common/types/visualization-type';
 import { DictionaryStringTo } from '../../../types/common-types';
-import { OutcomeTypeSemantic } from '../../reports/components/outcome-type';
-import { RequirementOutcomeStats } from '../../reports/components/requirement-outcome-type';
+import { OutcomeStats, OutcomeTypeSemantic } from '../../reports/components/outcome-type';
 import { GetAssessmentSummaryModelFromProviderAndStatusData } from '../../reports/get-assessment-summary-model';
 import { BaseLeftNavLink, onBaseLeftNavItemClick, onBaseLeftNavItemRender } from '../base-left-nav';
 import { OverviewLeftNavLink } from './overview-left-nav-link';
@@ -22,9 +21,9 @@ export type OverviewLinkBuilderDeps = {
 };
 
 export type AssessmentLinkBuilderDeps = {
-    getStatusForTest: (stats: RequirementOutcomeStats) => ManualTestStatus;
+    getStatusForTest: (stats: OutcomeStats) => ManualTestStatus;
     outcomeTypeSemanticsFromTestStatus: (testStatus: ManualTestStatus) => OutcomeTypeSemantic;
-    outcomeStatsFromManualTestStatus: (testStepStatus: ManualTestStatusData) => RequirementOutcomeStats;
+    outcomeStatsFromManualTestStatus: (testStepStatus: ManualTestStatusData) => OutcomeStats;
 };
 
 export type VisualizationConfigurationLinkBuilderDeps = {};

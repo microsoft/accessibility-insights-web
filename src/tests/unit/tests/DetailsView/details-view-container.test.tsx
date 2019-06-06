@@ -263,6 +263,7 @@ describe('DetailsViewContainer', () => {
                 clickHandlerFactory={props.clickHandlerFactory}
                 assessmentInstanceTableHandler={props.assessmentInstanceTableHandler}
                 issuesSelection={props.issuesSelection}
+                reportGenerator={props.reportGenerator}
                 issuesTableHandler={props.issuesTableHandler}
                 rightPanelConfiguration={rightPanelConfiguration}
                 switcherNavConfiguration={switcherNavConfiguration}

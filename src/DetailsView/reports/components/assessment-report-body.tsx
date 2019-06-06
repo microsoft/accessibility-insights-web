@@ -9,7 +9,7 @@ import { AssessmentReportBodyHeader } from './assessment-report-body-header';
 import { AssessmentReportSummary } from './assessment-report-summary';
 import { AssessmentScanDetails } from './assessment-scan-details';
 import { OutcomeChip } from './outcome-chip';
-import { allRequirementOutcomeTypes } from './requirement-outcome-type';
+import { allOutcomeTypes } from './outcome-type';
 
 export type AssessmentReportBodyDeps = AssessmentReportAssessmentListDeps;
 
@@ -68,7 +68,7 @@ export class AssessmentReportBody extends React.Component<AssessmentReportBodyPr
         return (
             <h2 className="details-section-header">
                 {title}
-                <OutcomeChip count={count} outcomeType={allRequirementOutcomeTypes[status]} />
+                <OutcomeChip count={count} outcomeType={allOutcomeTypes[status]} />
             </h2>
         );
     }

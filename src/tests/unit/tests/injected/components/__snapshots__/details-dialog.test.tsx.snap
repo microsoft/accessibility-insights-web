@@ -194,37 +194,11 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: false 
       <FixInstructionPanel
         checkType={0}
         checks={Array []}
-        deps={
-          Object {
-            "clientBrowserAdapter": Object {
-              "getUrl": [Function],
-            },
-            "issueDetailsTextGenerator": null,
-            "issueFilingActionMessageCreator": null,
-            "targetPageActionMessageCreator": Object {
-              "copyIssueDetailsClicked": [Function],
-            },
-            "windowUtils": null,
-          }
-        }
         renderTitleElement={[Function]}
       />
       <FixInstructionPanel
         checkType={1}
         checks={Array []}
-        deps={
-          Object {
-            "clientBrowserAdapter": Object {
-              "getUrl": [Function],
-            },
-            "issueDetailsTextGenerator": null,
-            "issueFilingActionMessageCreator": null,
-            "targetPageActionMessageCreator": Object {
-              "copyIssueDetailsClicked": [Function],
-            },
-            "windowUtils": null,
-          }
-        }
         renderTitleElement={[Function]}
       />
     </div>
@@ -588,37 +562,11 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: false 
                     <FixInstructionPanel
                       checkType={0}
                       checks={Array []}
-                      deps={
-                        Object {
-                          "clientBrowserAdapter": Object {
-                            "getUrl": [Function],
-                          },
-                          "issueDetailsTextGenerator": null,
-                          "issueFilingActionMessageCreator": null,
-                          "targetPageActionMessageCreator": Object {
-                            "copyIssueDetailsClicked": [Function],
-                          },
-                          "windowUtils": null,
-                        }
-                      }
                       renderTitleElement={[Function]}
                     />
                     <FixInstructionPanel
                       checkType={1}
                       checks={Array []}
-                      deps={
-                        Object {
-                          "clientBrowserAdapter": Object {
-                            "getUrl": [Function],
-                          },
-                          "issueDetailsTextGenerator": null,
-                          "issueFilingActionMessageCreator": null,
-                          "targetPageActionMessageCreator": Object {
-                            "copyIssueDetailsClicked": [Function],
-                          },
-                          "windowUtils": null,
-                        }
-                      }
                       renderTitleElement={[Function]}
                     />
                   </div>
@@ -932,37 +880,11 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: true }
         <FixInstructionPanel
           checkType={0}
           checks={Array []}
-          deps={
-            Object {
-              "clientBrowserAdapter": Object {
-                "getUrl": [Function],
-              },
-              "issueDetailsTextGenerator": null,
-              "issueFilingActionMessageCreator": null,
-              "targetPageActionMessageCreator": Object {
-                "copyIssueDetailsClicked": [Function],
-              },
-              "windowUtils": null,
-            }
-          }
           renderTitleElement={[Function]}
         />
         <FixInstructionPanel
           checkType={1}
           checks={Array []}
-          deps={
-            Object {
-              "clientBrowserAdapter": Object {
-                "getUrl": [Function],
-              },
-              "issueDetailsTextGenerator": null,
-              "issueFilingActionMessageCreator": null,
-              "targetPageActionMessageCreator": Object {
-                "copyIssueDetailsClicked": [Function],
-              },
-              "windowUtils": null,
-            }
-          }
           renderTitleElement={[Function]}
         />
       </div>
@@ -1330,37 +1252,11 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: true }
                         <FixInstructionPanel
                           checkType={0}
                           checks={Array []}
-                          deps={
-                            Object {
-                              "clientBrowserAdapter": Object {
-                                "getUrl": [Function],
-                              },
-                              "issueDetailsTextGenerator": null,
-                              "issueFilingActionMessageCreator": null,
-                              "targetPageActionMessageCreator": Object {
-                                "copyIssueDetailsClicked": [Function],
-                              },
-                              "windowUtils": null,
-                            }
-                          }
                           renderTitleElement={[Function]}
                         />
                         <FixInstructionPanel
                           checkType={1}
                           checks={Array []}
-                          deps={
-                            Object {
-                              "clientBrowserAdapter": Object {
-                                "getUrl": [Function],
-                              },
-                              "issueDetailsTextGenerator": null,
-                              "issueFilingActionMessageCreator": null,
-                              "targetPageActionMessageCreator": Object {
-                                "copyIssueDetailsClicked": [Function],
-                              },
-                              "windowUtils": null,
-                            }
-                          }
                           renderTitleElement={[Function]}
                         />
                       </div>
@@ -1665,37 +1561,11 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: false }
       <FixInstructionPanel
         checkType={0}
         checks={Array []}
-        deps={
-          Object {
-            "clientBrowserAdapter": Object {
-              "getUrl": [Function],
-            },
-            "issueDetailsTextGenerator": null,
-            "issueFilingActionMessageCreator": null,
-            "targetPageActionMessageCreator": Object {
-              "copyIssueDetailsClicked": [Function],
-            },
-            "windowUtils": null,
-          }
-        }
         renderTitleElement={[Function]}
       />
       <FixInstructionPanel
         checkType={1}
         checks={Array []}
-        deps={
-          Object {
-            "clientBrowserAdapter": Object {
-              "getUrl": [Function],
-            },
-            "issueDetailsTextGenerator": null,
-            "issueFilingActionMessageCreator": null,
-            "targetPageActionMessageCreator": Object {
-              "copyIssueDetailsClicked": [Function],
-            },
-            "windowUtils": null,
-          }
-        }
         renderTitleElement={[Function]}
       />
     </div>
@@ -2054,37 +1924,11 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: false }
                     <FixInstructionPanel
                       checkType={0}
                       checks={Array []}
-                      deps={
-                        Object {
-                          "clientBrowserAdapter": Object {
-                            "getUrl": [Function],
-                          },
-                          "issueDetailsTextGenerator": null,
-                          "issueFilingActionMessageCreator": null,
-                          "targetPageActionMessageCreator": Object {
-                            "copyIssueDetailsClicked": [Function],
-                          },
-                          "windowUtils": null,
-                        }
-                      }
                       renderTitleElement={[Function]}
                     />
                     <FixInstructionPanel
                       checkType={1}
                       checks={Array []}
-                      deps={
-                        Object {
-                          "clientBrowserAdapter": Object {
-                            "getUrl": [Function],
-                          },
-                          "issueDetailsTextGenerator": null,
-                          "issueFilingActionMessageCreator": null,
-                          "targetPageActionMessageCreator": Object {
-                            "copyIssueDetailsClicked": [Function],
-                          },
-                          "windowUtils": null,
-                        }
-                      }
                       renderTitleElement={[Function]}
                     />
                   </div>
@@ -2393,37 +2237,11 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: true } 
         <FixInstructionPanel
           checkType={0}
           checks={Array []}
-          deps={
-            Object {
-              "clientBrowserAdapter": Object {
-                "getUrl": [Function],
-              },
-              "issueDetailsTextGenerator": null,
-              "issueFilingActionMessageCreator": null,
-              "targetPageActionMessageCreator": Object {
-                "copyIssueDetailsClicked": [Function],
-              },
-              "windowUtils": null,
-            }
-          }
           renderTitleElement={[Function]}
         />
         <FixInstructionPanel
           checkType={1}
           checks={Array []}
-          deps={
-            Object {
-              "clientBrowserAdapter": Object {
-                "getUrl": [Function],
-              },
-              "issueDetailsTextGenerator": null,
-              "issueFilingActionMessageCreator": null,
-              "targetPageActionMessageCreator": Object {
-                "copyIssueDetailsClicked": [Function],
-              },
-              "windowUtils": null,
-            }
-          }
           renderTitleElement={[Function]}
         />
       </div>
@@ -2786,37 +2604,11 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: true } 
                         <FixInstructionPanel
                           checkType={0}
                           checks={Array []}
-                          deps={
-                            Object {
-                              "clientBrowserAdapter": Object {
-                                "getUrl": [Function],
-                              },
-                              "issueDetailsTextGenerator": null,
-                              "issueFilingActionMessageCreator": null,
-                              "targetPageActionMessageCreator": Object {
-                                "copyIssueDetailsClicked": [Function],
-                              },
-                              "windowUtils": null,
-                            }
-                          }
                           renderTitleElement={[Function]}
                         />
                         <FixInstructionPanel
                           checkType={1}
                           checks={Array []}
-                          deps={
-                            Object {
-                              "clientBrowserAdapter": Object {
-                                "getUrl": [Function],
-                              },
-                              "issueDetailsTextGenerator": null,
-                              "issueFilingActionMessageCreator": null,
-                              "targetPageActionMessageCreator": Object {
-                                "copyIssueDetailsClicked": [Function],
-                              },
-                              "windowUtils": null,
-                            }
-                          }
                           renderTitleElement={[Function]}
                         />
                       </div>
@@ -3126,37 +2918,11 @@ exports[`DetailsDialogTest render: with relative help url 1`] = `
       <FixInstructionPanel
         checkType={0}
         checks={Array []}
-        deps={
-          Object {
-            "clientBrowserAdapter": Object {
-              "getUrl": [Function],
-            },
-            "issueDetailsTextGenerator": null,
-            "issueFilingActionMessageCreator": null,
-            "targetPageActionMessageCreator": Object {
-              "copyIssueDetailsClicked": [Function],
-            },
-            "windowUtils": null,
-          }
-        }
         renderTitleElement={[Function]}
       />
       <FixInstructionPanel
         checkType={1}
         checks={Array []}
-        deps={
-          Object {
-            "clientBrowserAdapter": Object {
-              "getUrl": [Function],
-            },
-            "issueDetailsTextGenerator": null,
-            "issueFilingActionMessageCreator": null,
-            "targetPageActionMessageCreator": Object {
-              "copyIssueDetailsClicked": [Function],
-            },
-            "windowUtils": null,
-          }
-        }
         renderTitleElement={[Function]}
       />
     </div>
@@ -3520,37 +3286,11 @@ exports[`DetailsDialogTest render: with relative help url 1`] = `
                     <FixInstructionPanel
                       checkType={0}
                       checks={Array []}
-                      deps={
-                        Object {
-                          "clientBrowserAdapter": Object {
-                            "getUrl": [Function],
-                          },
-                          "issueDetailsTextGenerator": null,
-                          "issueFilingActionMessageCreator": null,
-                          "targetPageActionMessageCreator": Object {
-                            "copyIssueDetailsClicked": [Function],
-                          },
-                          "windowUtils": null,
-                        }
-                      }
                       renderTitleElement={[Function]}
                     />
                     <FixInstructionPanel
                       checkType={1}
                       checks={Array []}
-                      deps={
-                        Object {
-                          "clientBrowserAdapter": Object {
-                            "getUrl": [Function],
-                          },
-                          "issueDetailsTextGenerator": null,
-                          "issueFilingActionMessageCreator": null,
-                          "targetPageActionMessageCreator": Object {
-                            "copyIssueDetailsClicked": [Function],
-                          },
-                          "windowUtils": null,
-                        }
-                      }
                       renderTitleElement={[Function]}
                     />
                   </div>

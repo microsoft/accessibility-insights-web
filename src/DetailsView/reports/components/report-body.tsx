@@ -2,11 +2,12 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
+import { NewTabLink } from '../../../common/components/new-tab-link';
+import { toolName } from '../../../content/strings/application';
 import { ScanResults } from '../../../scanner/iruleresults';
 import { ReportCheckList } from './report-check-list';
 import { ReportHeader } from './report-header';
 import { ReportScanDetails } from './report-scan-details';
-import { FooterSection } from './report-sections/footer-section';
 
 export interface ReportBodyProps {
     scanResult: ScanResults;
@@ -66,8 +67,25 @@ export class ReportBody extends React.Component<ReportBodyProps> {
                         />
                     </div>
                 </div>
-                <FooterSection />
+                {this.renderFooter()}
             </body>
+        );
+    }
+
+    private renderFooter(): JSX.Element {
+        return (
+            <div className="report-footer" role="contentinfo">
+                This automated checks result was generated using <b id="tool-name">{toolName}</b>, a tool that helps debug and find
+                accessibility issues earlier. Get more information & download this tool at{' '}
+                <NewTabLink
+                    href="http://aka.ms/AccessibilityInsights"
+                    aria-labelledby="tool-name"
+                    title={`Get more information and download ${toolName}`}
+                >
+                    http://aka.ms/AccessibilityInsights
+                </NewTabLink>
+                .
+            </div>
         );
     }
 }

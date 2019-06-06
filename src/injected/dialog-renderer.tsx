@@ -16,7 +16,6 @@ import { WindowUtils } from '../common/window-utils';
 import { DictionaryStringTo } from '../types/common-types';
 import { rootContainerId } from './constants';
 import { DetailsDialogHandler } from './details-dialog-handler';
-import { FixInstructionProcessor } from './fix-instruction-processor';
 import { ErrorMessageContent } from './frameCommunicators/error-message-content';
 import { FrameCommunicator, MessageRequest } from './frameCommunicators/frame-communicator';
 import { FrameMessageResponseCallback } from './frameCommunicators/window-message-handler';
@@ -68,10 +67,7 @@ export class DialogRenderer {
                 AxeInfo.Default.version,
             );
 
-            const fixInstructionProcessor = new FixInstructionProcessor();
-
             const deps: LayeredDetailsDialogDeps = {
-                fixInstructionProcessor,
                 issueDetailsTextGenerator,
                 windowUtils: this.windowUtils,
                 targetPageActionMessageCreator: mainWindowContext.getTargetPageActionMessageCreator(),

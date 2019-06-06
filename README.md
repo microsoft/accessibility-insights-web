@@ -30,7 +30,7 @@ Please ensure that you have at least the **minimum** recommended versions
 -   Node - 10.15.0 (Check by running `node --version`) - This is the version being enforced on our builds
 -   Yarn - Version >= v1.15.2 (Check by running `yarn --version`)
 
-> In case you don't have yarn, please install from: [Yarn](https://yarnpkg.com/en/)
+> In case you dont have yarn, please install from: [Yarn](https://yarnpkg.com/en/)
 
 #### 1. Clone the repository
 
@@ -57,13 +57,13 @@ Please ensure that you have at least the **minimum** recommended versions
 
 #### 3. Build and run unit tests
 
--   Build and run the unit tests
+-   Run the unit tests
     ```bash
-    yarn build
     yarn test
     ```
--   Run the end-to-end tests (note: you must use a **non**-admin prompt to avoid [this issue](https://stackoverflow.com/questions/36835130))
+-   Build and run the end-to-end tests (note: you must use a **non**-admin prompt to avoid [this issue](https://stackoverflow.com/questions/36835130))
     ```bash
+    yarn build
     yarn test:e2e
     ```
     There are more details in the Testing section below.

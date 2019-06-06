@@ -94,8 +94,8 @@ exports[`IssuesDetailsPaneTest render with single selection, test copy to clipbo
             How to fix
           </td>
           <td className=\\"fix-content\\">
-            <FixInstructionPanel deps={{...}} checkType={0} checks={{...}} renderTitleElement={[Function]} />
-            <FixInstructionPanel deps={{...}} checkType={1} checks={{...}} renderTitleElement={[Function]} />
+            <FixInstructionPanel checkType={0} checks={{...}} renderTitleElement={[Function]} />
+            <FixInstructionPanel checkType={1} checks={{...}} renderTitleElement={[Function]} />
           </td>
         </tr>
         <tr>

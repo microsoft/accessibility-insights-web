@@ -2,15 +2,15 @@
 // Licensed under the MIT License.
 import { sumBy } from 'lodash';
 
-import { RequirementOutcomeStats } from './requirement-outcome-type';
+import { OutcomeStats } from './outcome-type';
 
-function percentageComplete(stats: RequirementOutcomeStats): number {
+function percentageComplete(stats: OutcomeStats): number {
     const complete = stats.pass + stats.fail;
     const total = stats.pass + stats.fail + stats.incomplete;
     return Math.round((100 * complete) / total);
 }
 
-function normalize(stats: RequirementOutcomeStats): RequirementOutcomeStats {
+function normalize(stats: OutcomeStats): OutcomeStats {
     const total = stats.pass + stats.incomplete + stats.fail;
     return {
         pass: stats.pass / total,
@@ -19,7 +19,7 @@ function normalize(stats: RequirementOutcomeStats): RequirementOutcomeStats {
     };
 }
 
-function sum(statsArray: RequirementOutcomeStats[]): RequirementOutcomeStats {
+function sum(statsArray: OutcomeStats[]): OutcomeStats {
     return {
         pass: sumBy(statsArray, data => data.pass),
         fail: sumBy(statsArray, data => data.fail),
@@ -27,11 +27,11 @@ function sum(statsArray: RequirementOutcomeStats[]): RequirementOutcomeStats {
     };
 }
 
-function weightedPercentage(statsArray: RequirementOutcomeStats[]): RequirementOutcomeStats {
+function weightedPercentage(statsArray: OutcomeStats[]): OutcomeStats {
     return percentize(sum(statsArray.map(normalize)));
 }
 
-function percentize(stats: RequirementOutcomeStats): RequirementOutcomeStats {
+function percentize(stats: OutcomeStats): OutcomeStats {
     const normal = normalize(stats);
 
     const pass = Math.round(normal.pass * 100);

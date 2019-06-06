@@ -4,5 +4,4 @@ export interface DevToolState {
     isOpen: boolean;
     inspectElement?: string[];
     frameUrl?: string;
-    inspectElementRequestId: number;
 }

@@ -1,11 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 export class DateProvider {
-    public static getDateFromTimestamp(timestamp: string): Date {
-        return new Date(timestamp);
-    }
-
-    public static getCurrentDate(): Date {
+    public static getDate(): Date {
         return new Date();
     }
 

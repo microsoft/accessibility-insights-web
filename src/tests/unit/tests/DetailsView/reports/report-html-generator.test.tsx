@@ -6,7 +6,7 @@ import { It, Mock, MockBehavior, Times } from 'typemoq';
 import { ReportBody } from '../../../../../DetailsView/reports/components/report-body';
 import { ReportHead } from '../../../../../DetailsView/reports/components/report-head';
 import { ReactStaticRenderer } from '../../../../../DetailsView/reports/react-static-renderer';
-import { ReportHtmlGeneratorV1 } from '../../../../../DetailsView/reports/report-html-generator-v1';
+import { ReportHtmlGenerator } from '../../../../../DetailsView/reports/report-html-generator';
 import { ScanResults } from '../../../../../scanner/iruleresults';
 
 describe('ReportHtmlGeneratorTest', () => {
@@ -44,7 +44,7 @@ describe('ReportHtmlGeneratorTest', () => {
             .returns(() => '<body-markup />')
             .verifiable(Times.once());
 
-        const testObject = new ReportHtmlGeneratorV1(renderer.object, userAgent, version, axeVersion);
+        const testObject = new ReportHtmlGenerator(renderer.object, userAgent, version, axeVersion);
         const actual = testObject.generateHtml(scanResult, scanDate, pageTitle, pageUrl, description);
 
         const expected = '<html lang="en"><head-markup /><body-markup /></html>';

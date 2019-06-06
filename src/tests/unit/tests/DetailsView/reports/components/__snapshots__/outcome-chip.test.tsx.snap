@@ -3,7 +3,7 @@
 exports[`OutcomeChip render fail 1`] = `
 <span
   className="outcome-chip outcome-chip-fail"
-  title="4 Failed"
+  title="4 failed"
 >
   <span
     className="icon"
@@ -22,34 +22,7 @@ exports[`OutcomeChip render fail 1`] = `
   <span
     className="screen-reader-only"
   >
-    4 Failed
-  </span>
-</span>
-`;
-
-exports[`OutcomeChip render inapplicable 1`] = `
-<span
-  className="outcome-chip outcome-chip-inapplicable"
-  title="4 Not applicable"
->
-  <span
-    className="icon"
-  >
-    <OutcomeIcon
-      outcomeType="inapplicable"
-    />
-  </span>
-  <span
-    aria-hidden="true"
-    className="count"
-  >
-     
-    4
-  </span>
-  <span
-    className="screen-reader-only"
-  >
-    4 Not applicable
+    4 failed
   </span>
 </span>
 `;
@@ -57,7 +30,7 @@ exports[`OutcomeChip render inapplicable 1`] = `
 exports[`OutcomeChip render incomplete 1`] = `
 <span
   className="outcome-chip outcome-chip-incomplete"
-  title="2 Incomplete"
+  title="2 incomplete"
 >
   <span
     className="icon"
@@ -76,7 +49,7 @@ exports[`OutcomeChip render incomplete 1`] = `
   <span
     className="screen-reader-only"
   >
-    2 Incomplete
+    2 incomplete
   </span>
 </span>
 `;
@@ -84,7 +57,7 @@ exports[`OutcomeChip render incomplete 1`] = `
 exports[`OutcomeChip render pass 1`] = `
 <span
   className="outcome-chip outcome-chip-pass"
-  title="3 Passed"
+  title="3 passed"
 >
   <span
     className="icon"
@@ -103,7 +76,7 @@ exports[`OutcomeChip render pass 1`] = `
   <span
     className="screen-reader-only"
   >
-    3 Passed
+    3 passed
   </span>
 </span>
 `;

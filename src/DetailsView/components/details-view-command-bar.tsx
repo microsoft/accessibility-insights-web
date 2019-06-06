@@ -1,6 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { css } from '@uifabric/utilities';
+import { autobind, css } from '@uifabric/utilities';
+import { escape } from 'lodash';
+import { ActionButton } from 'office-ui-fabric-react/lib/Button';
 import { Link } from 'office-ui-fabric-react/lib/Link';
 import * as React from 'react';
 
@@ -9,17 +11,14 @@ import { AssessmentStoreData } from '../../common/types/store-data/assessment-re
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { TabStoreData } from '../../common/types/store-data/tab-store-data';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
-import { ReportGeneratorProvider } from '../reports/report-generator-provider';
-import { ReportGeneratorDeps } from '../reports/report-generator-v1';
+import { ReportGenerator, ReportGeneratorDeps } from '../reports/report-generator';
 import { DetailsRightPanelConfiguration } from './details-view-right-panel';
-import { ExportDialogDeps } from './export-dialog';
-import { ReportExportComponent } from './report-export-component';
+import { ExportDialog, ExportDialogDeps } from './export-dialog';
 import { StartOverDropdown } from './start-over-dropdown';
 
 export type DetailsViewCommandBarDeps = ExportDialogDeps &
     ReportGeneratorDeps & {
-        getCurrentDate: () => Date;
-        reportGeneratorProvider: ReportGeneratorProvider;
+        dateProvider: () => Date;
     };
 
 export interface DetailsViewCommandBarProps {
@@ -29,11 +28,31 @@ export interface DetailsViewCommandBarProps {
     actionMessageCreator: DetailsViewActionMessageCreator;
     assessmentStoreData: AssessmentStoreData;
     assessmentsProvider: AssessmentsProvider;
+    reportGenerator: ReportGenerator;
     renderExportAndStartOver: boolean;
     rightPanelConfiguration: DetailsRightPanelConfiguration;
 }
 
-export class DetailsViewCommandBar extends React.Component<DetailsViewCommandBarProps> {
+export interface DetailsViewCommandBarState {
+    isExportDialogOpen: boolean;
+    exportDialogDescription: string;
+    exportHtmlWithPlaceholder: string;
+    exportHtmlWithDescription: string;
+    exportFileName: string;
+}
+
+export class DetailsViewCommandBar extends React.Component<DetailsViewCommandBarProps, DetailsViewCommandBarState> {
+    constructor(props) {
+        super(props);
+        this.state = {
+            isExportDialogOpen: false,
+            exportDialogDescription: '',
+            exportHtmlWithPlaceholder: '',
+            exportHtmlWithDescription: '',
+            exportFileName: '',
+        };
+    }
+
     public render(): JSX.Element {
         if (this.props.tabStoreData.isClosed) {
             return null;
@@ -68,28 +87,15 @@ export class DetailsViewCommandBar extends React.Component<DetailsViewCommandBar
         if (!this.props.renderExportAndStartOver) {
             return null;
         }
-        const { deps, assessmentStoreData, assessmentsProvider, featureFlagStoreData, tabStoreData } = this.props;
-        const reportGenerator = deps.reportGeneratorProvider.getGenerator();
+
         const selectedTest = this.props.assessmentStoreData.assessmentNavState.selectedTestType;
         const test = this.props.assessmentsProvider.forType(selectedTest);
-        const htmlGenerator = reportGenerator.generateAssessmentReport.bind(
-            reportGenerator,
-            assessmentStoreData,
-            assessmentsProvider,
-            featureFlagStoreData,
-            tabStoreData,
-        );
 
         return (
             <div className="details-view-command-buttons">
-                <ReportExportComponent
-                    deps={deps}
-                    reportGenerator={reportGenerator}
-                    pageTitle={tabStoreData.title}
-                    exportResultsType={'Assessment'}
-                    scanDate={deps.getCurrentDate()}
-                    htmlGenerator={htmlGenerator}
-                />
+                <ActionButton iconProps={{ iconName: 'Export' }} onClick={this.onExportButtonClick}>
+                    Export result
+                </ActionButton>
                 <StartOverDropdown
                     testName={test.title}
                     test={selectedTest}
@@ -97,7 +103,64 @@ export class DetailsViewCommandBar extends React.Component<DetailsViewCommandBar
                     actionMessageCreator={this.props.actionMessageCreator}
                     rightPanelConfiguration={this.props.rightPanelConfiguration}
                 />
+                <ExportDialog
+                    deps={this.props.deps}
+                    isOpen={this.state.isExportDialogOpen}
+                    fileName={this.state.exportFileName}
+                    description={this.state.exportDialogDescription}
+                    html={this.state.exportHtmlWithDescription}
+                    onClose={this.onExportDialogClose}
+                    onDescriptionChange={this.onExportDialogDescriptionChanged}
+                    exportResultsType="Assessment"
+                />
             </div>
         );
+    }
+
+    private descriptionPlaceholder: string = '7efdac3c-8c94-4e00-a765-6fc8c59a232b';
+
+    @autobind
+    private onExportButtonClick(): void {
+        const exportHtmlWithPlaceholder = this.props.reportGenerator.generateAssessmentHtml(
+            this.props.assessmentStoreData,
+            this.props.assessmentsProvider,
+            this.props.featureFlagStoreData,
+            this.props.tabStoreData,
+            this.descriptionPlaceholder,
+        );
+
+        const description = '';
+        const exportHtmlWithDescription = exportHtmlWithPlaceholder.replace(this.descriptionPlaceholder, description);
+        const exportFileName = this.props.reportGenerator.generateName(
+            'AssessmentReport',
+            this.props.deps.dateProvider(),
+            this.props.tabStoreData.title,
+        );
+
+        this.setState({
+            isExportDialogOpen: true,
+            exportFileName,
+            exportDialogDescription: description,
+            exportHtmlWithPlaceholder: exportHtmlWithPlaceholder,
+            exportHtmlWithDescription: exportHtmlWithDescription,
+        });
+    }
+
+    @autobind
+    private onExportDialogClose(): void {
+        this.setState({
+            isExportDialogOpen: false,
+        });
+    }
+
+    @autobind
+    private onExportDialogDescriptionChanged(description: string): void {
+        const escapedDescription = escape(description);
+        const exportHtmlWithDescription = this.state.exportHtmlWithPlaceholder.replace(this.descriptionPlaceholder, escapedDescription);
+
+        this.setState({
+            exportDialogDescription: description,
+            exportHtmlWithDescription: exportHtmlWithDescription,
+        });
     }
 }

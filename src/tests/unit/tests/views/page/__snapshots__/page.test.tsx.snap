@@ -11,7 +11,7 @@ exports[`page view renders 1`] = `
     <div
       className="ms-font-m header-text"
     >
-      Accessibility Insights for Web
+      EXTENSION_NAME
     </div>
   </header>
   <main>
