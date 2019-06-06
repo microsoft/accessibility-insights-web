@@ -286,3 +286,73 @@ $outcome-not-applicable-summary-color: $neutral-outcome;
         @include transform(rotate(-45deg));
     }
 }
+
+.a11y-report-instance-table {
+    table,
+    thead,
+    tbody,
+    th,
+    td,
+    tr {
+        display: block;
+    }
+
+    table {
+        font-size: 14px;
+        line-height: 20px;
+    }
+
+    thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+
+    tr {
+        box-shadow: 0px 0.6px 1.8px rgba(0, 0, 0, 0.108), 0px 3.2px 7.2px rgba(0, 0, 0, 0.132);
+        border-radius: 4px;
+        margin-bottom: 16px;
+        background: $neutral-0;
+    }
+
+    td {
+        border: none;
+        position: relative;
+        padding-left: 110px;
+        padding-top: 14px;
+        padding-right: 14px;
+        padding-bottom: 14px;
+
+        border-bottom: 0.5px solid $neutral-10;
+
+        color: $secondary-text;
+    }
+
+    td:nth-of-type(2) {
+        font-family: Consolas, Segoe UI, Courier New, monospace;
+    }
+
+    td:before {
+        position: absolute;
+        top: 14px;
+        left: 20px;
+        width: 66px;
+        padding-right: 10px;
+        white-space: nowrap;
+
+        font-family: $semiBoldFontFamily;
+        color: $primary-text;
+    }
+
+    td:nth-of-type(1):before {
+        content: 'Path';
+    }
+
+    td:nth-of-type(2):before {
+        content: 'Snippet';
+    }
+
+    td:nth-of-type(3):before {
+        content: 'How to fix';
+    }
+}
