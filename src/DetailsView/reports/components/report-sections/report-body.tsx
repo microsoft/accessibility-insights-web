@@ -14,31 +14,31 @@ export const ReportBody = NamedSFC<ReportBodyProps>('ReportBody', props => {
     const {
         BodySection,
         ContentContainer,
-        Header,
-        Title,
-        Summary,
-        Details,
-        ResultSection,
-        FailedInstances,
-        PassedChecks,
-        NotApplicableChecks,
-        Footer,
+        HeaderSection,
+        TitleSection,
+        SummarySection,
+        DetailsSection,
+        ResultsContainer,
+        FailedInstancesSection,
+        PassedChecksSection,
+        NotApplicableChecksSection,
+        FooterSection,
     } = sectionFactory;
 
     return (
         <BodySection>
-            <Header {...sectionProps} />
+            <HeaderSection {...sectionProps} />
             <ContentContainer>
-                <Title />
-                <Summary {...sectionProps} />
-                <Details {...sectionProps} />
-                <ResultSection>
-                    <FailedInstances {...sectionProps} />
-                    <PassedChecks {...sectionProps} />
-                    <NotApplicableChecks {...sectionProps} />
-                </ResultSection>
+                <TitleSection />
+                <SummarySection {...sectionProps} />
+                <DetailsSection {...sectionProps} />
+                <ResultsContainer>
+                    <FailedInstancesSection {...sectionProps} />
+                    <PassedChecksSection {...sectionProps} />
+                    <NotApplicableChecksSection {...sectionProps} />
+                </ResultsContainer>
             </ContentContainer>
-            <Footer />
+            <FooterSection />
         </BodySection>
     );
 });
