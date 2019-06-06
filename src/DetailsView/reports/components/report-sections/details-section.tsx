@@ -42,7 +42,7 @@ export const DetailsSection = NamedSFC<DetailsSectionProps>('DetailsSection', pr
                         <td className="icon" aria-hidden="true">
                             <CommentIcon />
                         </td>
-                        <td className="text">{description}</td>
+                        <td className="text description-text">{description}</td>
                     </tr>
                 </tbody>
             </table>

@@ -35,7 +35,7 @@ export class ReportScanDetails extends React.Component<ReportScanDetailsProps> {
                         </tr>
                         <tr>
                             <td className="label">Description</td>
-                            <td>{this.props.description}</td>
+                            <td className="report-result-description">{this.props.description}</td>
                         </tr>
                         <tr>
                             <td className="label">Scan date/time</td>

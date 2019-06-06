@@ -50,7 +50,7 @@ exports[`DetailsSection renders 1`] = `
           <CommentIcon />
         </td>
         <td
-          className="text"
+          className="text description-text"
         >
           description-text
         </td>
