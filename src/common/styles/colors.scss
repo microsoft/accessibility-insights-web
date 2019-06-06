@@ -78,6 +78,8 @@
     --help-links-section-background: var(--neutral-4);
     --help-links-section-border: var(--neutral-4);
     --highlighted-text: var(--black);
+    --pill: var(--primary-text);
+    --pill-background: var(--neutral-alpha-6);
     --spinner-text: var(--communication-primary);
 
     // Landmark colors
@@ -137,6 +139,8 @@
         --help-links-section-background: transparent;
         --help-links-section-border: var(--white);
         --highlighted-text: var(--black);
+        --pill: var(--black);
+        --pill-background: var(--white);
         --spinner-text: var(--communication-tint-40);
     }
 }
@@ -218,6 +222,8 @@ $switcher-focus-border: var(--switcher-focus-border);
 $help-links-section-background: var(--help-links-section-background);
 $help-links-section-border: var(--help-links-section-border);
 $highlighted-text: var(--highlighted-text);
+$pill: var(--pill);
+$pill-background: var(--pill-background);
 $spinner-text: var(--spinner-text);
 
 // consistent colors
