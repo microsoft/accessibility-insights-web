@@ -18,7 +18,7 @@ export const RuleDetailsGroup = NamedSFC<RuleDetailsGroupProps>('RuleDetailsGrou
     return (
         <div className="rule-details-group">
             {rules.map(rule => (
-                <RuleDetail key={rule.id} rule={rule} outcomeType={outcomeType}>
+                <RuleDetail key={rule.id} rule={rule} outcomeType={outcomeType} isHeader={showDetails}>
                     {showDetails ? <InstanceDetailsGroup key={`${rule.id}-rule-group`} nodeResults={rule.nodes} /> : null}
                 </RuleDetail>
             ))}

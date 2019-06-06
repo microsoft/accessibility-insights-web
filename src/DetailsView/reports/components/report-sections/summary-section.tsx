@@ -10,7 +10,7 @@ export type SummarySectionProps = OutcomeSummaryBarProps;
 export const SummarySection = NamedSFC<SummarySectionProps>('SummarySection', props => {
     return (
         <div className="summary-section">
-            <h3>Summary</h3>
+            <h2>Summary</h2>
             <OutcomeSummaryBar {...props} />
         </div>
     );
