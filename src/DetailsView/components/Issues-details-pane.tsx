@@ -5,6 +5,7 @@ import * as React from 'react';
 import { IssueDetailsTextGenerator } from '../../background/issue-details-text-generator';
 import { CopyIssueDetailsButton } from '../../common/components/copy-issue-details-button';
 import { GuidanceLinks } from '../../common/components/guidance-links';
+import { GuidanceTags, GuidanceTagsDeps } from '../../common/components/guidance-tags';
 import { IssueFilingButton, IssueFilingButtonDeps } from '../../common/components/issue-filing-button';
 import { NewTabLink } from '../../common/components/new-tab-link';
 import { ToastDeps } from '../../common/components/toast';
@@ -19,7 +20,8 @@ import { DetailsViewActionMessageCreator } from '../actions/details-view-action-
 import { IssueFilingDialog } from './issue-filing-dialog';
 
 export type IssuesDetailsPaneDeps = ToastDeps &
-    IssueFilingButtonDeps & {
+    IssueFilingButtonDeps &
+    GuidanceTagsDeps & {
         issueDetailsTextGenerator: IssueDetailsTextGenerator;
         detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
     };
@@ -107,6 +109,7 @@ export class IssuesDetailsPane extends React.Component<IssuesDetailsPaneProps, I
                                 {`: ${result.help}`}
                                 &nbsp;&nbsp;
                                 <GuidanceLinks links={result.guidanceLinks} />
+                                <GuidanceTags deps={this.props.deps} links={result.guidanceLinks} />
                             </td>
                         </tr>
                         <tr>
