@@ -67,15 +67,15 @@ describe('ReportBody', () => {
         const sectionFactoryStub: ReportSectionFactory = {
             BodySection: BodySection,
             ContentContainer: ContentContainer,
-            Header: Header,
-            Title: Title,
-            Summary: Summary,
-            Details: Details,
-            ResultSection: ResultSection,
-            FailedInstances: FailedInstances,
-            PassedChecks: PassedChecks,
-            NotApplicableChecks: NotApplicableChecks,
-            Footer: Footer,
+            HeaderSection: Header,
+            TitleSection: Title,
+            SummarySection: Summary,
+            DetailsSection: Details,
+            ResultsContainer: ResultSection,
+            FailedInstancesSection: FailedInstances,
+            PassedChecksSection: PassedChecks,
+            NotApplicableChecksSection: NotApplicableChecks,
+            FooterSection: Footer,
         };
 
         return sectionFactoryStub;

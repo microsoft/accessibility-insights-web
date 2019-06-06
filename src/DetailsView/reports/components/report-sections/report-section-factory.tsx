@@ -16,13 +16,13 @@ export type SectionProps = {
 export type ReportSectionFactory = {
     BodySection: ReactSFCWithDisplayName;
     ContentContainer: ReactSFCWithDisplayName;
-    Header: ReactSFCWithDisplayName<SectionProps>;
-    Title: ReactSFCWithDisplayName;
-    Summary: ReactSFCWithDisplayName<SectionProps>;
-    Details: ReactSFCWithDisplayName<SectionProps>;
-    ResultSection: ReactSFCWithDisplayName;
-    FailedInstances: ReactSFCWithDisplayName<SectionProps>;
-    PassedChecks: ReactSFCWithDisplayName<SectionProps>;
-    NotApplicableChecks: ReactSFCWithDisplayName<SectionProps>;
-    Footer: ReactSFCWithDisplayName;
+    HeaderSection: ReactSFCWithDisplayName<SectionProps>;
+    TitleSection: ReactSFCWithDisplayName;
+    SummarySection: ReactSFCWithDisplayName<SectionProps>;
+    DetailsSection: ReactSFCWithDisplayName<SectionProps>;
+    ResultsContainer: ReactSFCWithDisplayName;
+    FailedInstancesSection: ReactSFCWithDisplayName<SectionProps>;
+    PassedChecksSection: ReactSFCWithDisplayName<SectionProps>;
+    NotApplicableChecksSection: ReactSFCWithDisplayName<SectionProps>;
+    FooterSection: ReactSFCWithDisplayName;
 };
