@@ -17,14 +17,18 @@ export type RuleDetailsGroupProps = {
 export const RuleDetailsGroup = NamedSFC<RuleDetailsGroupProps>('RuleDetailsGroup', ({ rules, showDetails, outcomeType }) => {
     return (
         <div className="rule-details-group">
-            {rules.map(rule => (
-                <details>
-                    <summary>
-                        <RuleDetail key={rule.id} rule={rule} outcomeType={outcomeType} isHeader={showDetails}></RuleDetail>
-                    </summary>
-                    {showDetails ? <InstanceDetailsGroup key={`${rule.id}-rule-group`} nodeResults={rule.nodes} /> : null}
-                </details>
-            ))}
+            {rules.map(rule => {
+                return showDetails ? (
+                    <details>
+                        <summary>
+                            <RuleDetail key={rule.id} rule={rule} outcomeType={outcomeType} isHeader={showDetails} />
+                        </summary>
+                        <InstanceDetailsGroup key={`${rule.id}-rule-group`} nodeResults={rule.nodes} />
+                    </details>
+                ) : (
+                    <RuleDetail key={rule.id} rule={rule} outcomeType={outcomeType} isHeader={showDetails} />
+                );
+            })}
         </div>
     );
 });

@@ -250,3 +250,34 @@ $outcome-not-applicable-summary-color: $neutral-outcome;
 .not-applicable-checks-section {
     margin-top: 56px;
 }
+
+.rule-details-group {
+    @mixin transform($property) {
+        -webkit-transform: $property;
+        -ms-transform: $property;
+        transform: $property;
+    }
+
+    %common-summary-chevron {
+        display: inline-block;
+        border-right: 1px solid $secondary-text;
+        border-bottom: 1px solid $secondary-text;
+        width: 7px;
+        height: 7px;
+        cursor: hand;
+        margin-right: 8px;
+        content: '';
+    }
+
+    summary::-webkit-details-marker {
+        display: none;
+    }
+    details[open] summary:before {
+        @extend %common-summary-chevron;
+        @include transform(rotate(45deg));
+    }
+    summary:before {
+        @extend %common-summary-chevron;
+        @include transform(rotate(-45deg));
+    }
+}
