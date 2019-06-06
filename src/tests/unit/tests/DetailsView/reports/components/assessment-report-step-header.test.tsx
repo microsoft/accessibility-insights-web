@@ -10,6 +10,8 @@ import {
 } from '../../../../../../DetailsView/reports/components/assessment-report-step-header';
 import { OutcomeChip } from '../../../../../../DetailsView/reports/components/outcome-chip';
 import { OutcomeType } from '../../../../../../DetailsView/reports/components/outcome-type';
+import { Mock } from 'typemoq';
+import { GetGuidanceTagsFromGuidanceLinks } from '../../../../../../common/get-guidance-tags-from-guidance-links';
 
 describe('AssessmentReportStepHeader', () => {
     function genHeader(requirementType: RequirementType): RequirementHeaderReportModel {
@@ -27,6 +29,7 @@ describe('AssessmentReportStepHeader', () => {
         outcomeTypeSemanticsFromTestStatus: testStatus => {
             return { pastTense: ManualTestStatus[testStatus] + '-tested' };
         },
+        getGuidanceTagsFromGuidanceLinks: Mock.ofInstance(GetGuidanceTagsFromGuidanceLinks).object,
     };
 
     test('matches snapshot', () => {

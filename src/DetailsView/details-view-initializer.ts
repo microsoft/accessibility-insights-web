@@ -185,7 +185,12 @@ if (isNaN(tabId) === false) {
                 extensionVersion,
                 axeVersion,
             );
-            const assessmentReportHtmlGeneratorDeps = { outcomeTypeSemanticsFromTestStatus };
+
+            const assessmentReportHtmlGeneratorDeps = {
+                outcomeTypeSemanticsFromTestStatus,
+                getGuidanceTagsFromGuidanceLinks: GetGuidanceTagsFromGuidanceLinks,
+            };
+
             const assessmentReportHtmlGenerator = new AssessmentReportHtmlGenerator(
                 assessmentReportHtmlGeneratorDeps,
                 reactStaticRenderer,

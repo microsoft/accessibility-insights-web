@@ -66,7 +66,7 @@ describe('DetailsViewCommandBar', () => {
             detailsViewActionMessageCreator: actionMessageCreatorMock.object,
             outcomeTypeSemanticsFromTestStatus: { stub: 'outcomeTypeSemanticsFromTestStatus' } as any,
             dateProvider: () => theDate,
-        };
+        } as DetailsViewCommandBarDeps;
 
         return {
             deps,

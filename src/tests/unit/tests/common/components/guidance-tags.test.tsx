@@ -43,6 +43,11 @@ describe('GuidanceTags', () => {
                 text: null,
                 tags: sampleTags,
             },
+            {
+                href: null,
+                text: null,
+                tags: [],
+            },
         ];
         const props: GuidanceTagsProps = {
             deps: {

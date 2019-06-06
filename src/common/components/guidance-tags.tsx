@@ -25,6 +25,10 @@ export const GuidanceTags = NamedSFC<GuidanceTagsProps>('GuidanceTags', props =>
 
     const tags = deps.getGuidanceTagsFromGuidanceLinks(links);
 
+    if (isEmpty(tags)) {
+        return null;
+    }
+
     const tagElements = tags.map((tag, index) => {
         return <div key={index}>{tag.displayText}</div>;
     });

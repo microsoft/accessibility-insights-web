@@ -13,7 +13,7 @@ describe('AssessmentReportBody', () => {
     test('render', () => {
         const deps: AssessmentReportBodyDeps = {
             outcomeTypeSemanticsFromTestStatus: { stub: 'outcomeTypeSemanticsFromTestStatus' } as any,
-        };
+        } as AssessmentReportBodyDeps;
 
         const props: AssessmentReportBodyProps = {
             deps: deps,
