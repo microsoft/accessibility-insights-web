@@ -2,10 +2,9 @@
 // Licensed under the MIT License.
 import { shallow } from 'enzyme';
 import * as React from 'react';
+
 import { AssessmentReport, AssessmentReportDeps } from '../../../../../../DetailsView/reports/components/assessment-report';
 import { AssessmentReportBuilderTestHelper } from '../../assessment-report-builder-test-helper';
-import { Mock } from 'typemoq';
-import { GetGuidanceTagsFromGuidanceLinks } from '../../../../../../common/get-guidance-tags-from-guidance-links';
 
 describe('AssessmentReport', () => {
     test('render', () => {
