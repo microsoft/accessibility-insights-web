@@ -10,7 +10,7 @@ import { RuleResult } from '../../../../../scanner/iruleresults';
 describe('InstanceListGroupHeaderTest', () => {
     const getSampleRuleResult = () => {
         const ruleResult: RuleResult = {
-            id: 'ruleid',
+            id: 'image-alt',
             nodes: [{} as AxeNodeResult],
             description: 'rule description',
             helpUrl: 'help url',

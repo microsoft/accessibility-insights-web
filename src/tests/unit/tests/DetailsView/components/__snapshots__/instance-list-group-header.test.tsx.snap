@@ -1,9 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`InstanceListGroupHeaderTest render for fail instances 1`] = `
-<div
-  role="heading"
->
+<div>
   <OutcomeChip
     count={1}
     outcomeType="fail"
@@ -13,16 +11,17 @@ exports[`InstanceListGroupHeaderTest render for fail instances 1`] = `
     className="rule-details-id"
   >
     <NewTabLink
-      aria-describedby="ruleid-rule-description"
-      aria-label="rule ruleid"
+      aria-describedby="failed-rule-image-alt-description"
+      aria-label="rule image-alt"
       href="help url"
     >
-      ruleid
+      image-alt
     </NewTabLink>
   </span>
   : 
   <span
     className="rule-details-description"
+    id="failed-rule-image-alt-description"
   >
     rule description
   </span>
@@ -46,16 +45,17 @@ exports[`InstanceListGroupHeaderTest render for fail instances and handles aria-
     className="rule-details-id"
   >
     <NewTabLink
-      aria-describedby="ruleid-rule-description"
-      aria-label="rule ruleid"
+      aria-describedby="failed-rule-image-alt-description"
+      aria-label="rule image-alt"
       href="help url"
     >
-      ruleid
+      image-alt
     </NewTabLink>
   </span>
   : 
   <span
     className="rule-details-description"
+    id="failed-rule-image-alt-description"
   >
     rule description
   </span>
@@ -66,24 +66,23 @@ exports[`InstanceListGroupHeaderTest render for fail instances and handles aria-
 `;
 
 exports[`InstanceListGroupHeaderTest render for incomplete instances 1`] = `
-<div
-  role="heading"
->
+<div>
    
   <span
     className="rule-details-id"
   >
     <NewTabLink
-      aria-describedby="ruleid-rule-description"
-      aria-label="rule ruleid"
+      aria-describedby="incomplete-rule-image-alt-description"
+      aria-label="rule image-alt"
       href="help url"
     >
-      ruleid
+      image-alt
     </NewTabLink>
   </span>
   : 
   <span
     className="rule-details-description"
+    id="incomplete-rule-image-alt-description"
   >
     rule description
   </span>
@@ -103,16 +102,17 @@ exports[`InstanceListGroupHeaderTest render for incomplete instances and handles
     className="rule-details-id"
   >
     <NewTabLink
-      aria-describedby="ruleid-rule-description"
-      aria-label="rule ruleid"
+      aria-describedby="incomplete-rule-image-alt-description"
+      aria-label="rule image-alt"
       href="help url"
     >
-      ruleid
+      image-alt
     </NewTabLink>
   </span>
   : 
   <span
     className="rule-details-description"
+    id="incomplete-rule-image-alt-description"
   >
     rule description
   </span>
@@ -123,24 +123,23 @@ exports[`InstanceListGroupHeaderTest render for incomplete instances and handles
 `;
 
 exports[`InstanceListGroupHeaderTest render for pass instances 1`] = `
-<div
-  role="heading"
->
+<div>
    
   <span
     className="rule-details-id"
   >
     <NewTabLink
-      aria-describedby="ruleid-rule-description"
-      aria-label="rule ruleid"
+      aria-describedby="passed-rule-image-alt-description"
+      aria-label="rule image-alt"
       href="help url"
     >
-      ruleid
+      image-alt
     </NewTabLink>
   </span>
   : 
   <span
     className="rule-details-description"
+    id="passed-rule-image-alt-description"
   >
     rule description
   </span>
@@ -160,16 +159,17 @@ exports[`InstanceListGroupHeaderTest render for pass instances and handles aria-
     className="rule-details-id"
   >
     <NewTabLink
-      aria-describedby="ruleid-rule-description"
-      aria-label="rule ruleid"
+      aria-describedby="passed-rule-image-alt-description"
+      aria-label="rule image-alt"
       href="help url"
     >
-      ruleid
+      image-alt
     </NewTabLink>
   </span>
   : 
   <span
     className="rule-details-description"
+    id="passed-rule-image-alt-description"
   >
     rule description
   </span>
