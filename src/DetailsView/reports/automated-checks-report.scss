@@ -213,6 +213,7 @@ $outcome-not-applicable-summary-color: $neutral-outcome;
 
     height: 56px;
     padding: 0 8px;
+    margin-left: 6px;
 
     box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.08);
 
@@ -249,4 +250,37 @@ $outcome-not-applicable-summary-color: $neutral-outcome;
 
 .not-applicable-checks-section {
     margin-top: 56px;
+}
+
+.rule-details-group {
+    @mixin transform($property) {
+        -webkit-transform: $property;
+        -ms-transform: $property;
+        transform: $property;
+    }
+
+    %common-summary-chevron {
+        display: inline-block;
+        border-right: 1px solid $secondary-text;
+        border-bottom: 1px solid $secondary-text;
+        width: 7px;
+        height: 7px;
+        cursor: hand;
+        margin-right: 8px;
+        content: '';
+        position: absolute;
+        margin-top: 6px;
+    }
+
+    summary::-webkit-details-marker {
+        display: none;
+    }
+    details[open] summary:before {
+        @extend %common-summary-chevron;
+        @include transform(rotate(45deg));
+    }
+    summary:before {
+        @extend %common-summary-chevron;
+        @include transform(rotate(-45deg));
+    }
 }
