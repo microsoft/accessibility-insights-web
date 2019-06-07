@@ -20,8 +20,8 @@ export const RuleDetailsGroup = NamedSFC<RuleDetailsGroupProps>('RuleDetailsGrou
             {rules.map(rule => {
                 return showDetails ? (
                     <details>
-                        <summary>
-                            <RuleDetail key={rule.id} rule={rule} outcomeType={outcomeType} isHeader={showDetails} />
+                        <summary role='heading' aria-level={3} >
+                            <RuleDetail key={rule.id} rule={rule} outcomeType={outcomeType} isHeader={false} />
                         </summary>
                         <InstanceDetailsGroup key={`${rule.id}-rule-group`} nodeResults={rule.nodes} />
                     </details>
