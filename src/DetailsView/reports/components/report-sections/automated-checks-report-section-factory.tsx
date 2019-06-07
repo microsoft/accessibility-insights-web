@@ -4,7 +4,6 @@ import { BodySection } from './body-section';
 import { ContentContainer } from './content-container';
 import { DetailsSection } from './details-section';
 import { FailedInstancesSection } from './failed-instances-section';
-import { FooterSection } from './footer-section';
 import { HeaderSection } from './header-section';
 import { NotApplicableChecksSection } from './not-applicable-section';
 import { PassedChecksSection } from './passed-checks-section';

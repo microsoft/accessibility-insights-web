@@ -2,8 +2,8 @@
 // Licensed under the MIT License.
 import { shallow } from 'enzyme';
 import * as React from 'react';
-import { ReportFooter } from '../../../../../../../DetailsView/reports/components/report-sections/report-footer';
 import { EnvironmentInfo } from '../../../../../../../common/environment-info-provider';
+import { ReportFooter } from '../../../../../../../DetailsView/reports/components/report-sections/report-footer';
 import { SectionProps } from '../../../../../../../DetailsView/reports/components/report-sections/report-section-factory';
 
 describe('ReportFooter', () => {
