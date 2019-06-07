@@ -270,6 +270,8 @@ $outcome-not-applicable-summary-color: $neutral-outcome;
         content: '';
         position: absolute;
         margin-top: 6px;
+        transform-origin: 50% 50%;
+        transition: transform 0.1s linear 0s;
     }
 
     summary::-webkit-details-marker {
