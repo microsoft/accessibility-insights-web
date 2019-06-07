@@ -17,4 +17,10 @@ describe('DateProviderTest', () => {
         const UTCDate = DateProvider.getUTCDate();
         expect(UTCDate.getTime()).toEqual(new Date(UTCDate).getTime());
     });
+
+    test('getUTCStringFromDate', () => {
+        const timestamp = 'Thu May 30 2019 16:57:54 GMT-0700 (Pacific Daylight Time)';
+        const date = new Date(timestamp);
+        expect(DateProvider.getUTCStringFromDate(date)).toBe('2019-05-30 11:57 PM UTC');
+    });
 });

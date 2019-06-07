@@ -30,6 +30,7 @@ exports[`SummarySection renders 1`] = `
         "violations": Array [],
       }
     }
+    utcDateConverter={[Function]}
   />
 </div>
 `;

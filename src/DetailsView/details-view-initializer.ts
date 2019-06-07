@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 import { loadTheme } from 'office-ui-fabric-react';
 import * as ReactDOM from 'react-dom';
-
 import { AssessmentDefaultMessageGenerator } from '../assessments/assessment-default-message-generator';
 import { Assessments } from '../assessments/assessments';
 import { assessmentsProviderWithFeaturesEnabled } from '../assessments/assessments-feature-flag-filter';
@@ -200,6 +199,7 @@ if (isNaN(tabId) === false) {
                 AutomatedChecksReportSectionFactory,
                 reactStaticRenderer,
                 environmentInfoProvider.getEnvironmentInfo(),
+                DateProvider.getUTCStringFromDate,
             );
 
             const assessmentReportHtmlGeneratorDeps = { outcomeTypeSemanticsFromTestStatus };

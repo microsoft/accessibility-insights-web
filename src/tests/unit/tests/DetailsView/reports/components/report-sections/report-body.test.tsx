@@ -33,6 +33,7 @@ describe('ReportBody', () => {
                 targetPageTitle: pageTitle,
                 targetPageUrl: pageUrl,
             },
+            utcDateConverter: () => '',
         };
 
         const props: ReportBodyProps = {
