@@ -11,10 +11,12 @@ export type InstanceDetailsGroupProps = {
 
 export const InstanceDetailsGroup = NamedSFC<InstanceDetailsGroupProps>('InstanceDetailsGroup', props => {
     return (
-        <>
+        <ul className="instance-details-list">
             {props.nodeResults.map((node, index) => (
-                <InstanceDetails key={`instance-details-${index}`} {...{ index, ...node }} />
+                <li>
+                    <InstanceDetails key={`instance-details-${index}`} {...{ index, ...node }} />
+                </li>
             ))}
-        </>
+        </ul>
     );
 });

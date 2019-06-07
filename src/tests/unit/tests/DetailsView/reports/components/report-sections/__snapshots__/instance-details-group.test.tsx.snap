@@ -1,26 +1,32 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`InstanceDetailsGroup renders 1`] = `
-<React.Fragment>
-  <InstanceDetail
-    failureSummary="fix the error on html"
-    html="<html>"
-    index={0}
-    target={
-      Array [
-        "<html>",
-      ]
-    }
-  />
-  <InstanceDetail
-    failureSummary="fix the error on body"
-    html="<body >"
-    index={1}
-    target={
-      Array [
-        "<body>",
-      ]
-    }
-  />
-</React.Fragment>
+<ul
+  className="instance-details-list"
+>
+  <li>
+    <InstanceDetail
+      failureSummary="fix the error on html"
+      html="<html>"
+      index={0}
+      target={
+        Array [
+          "<html>",
+        ]
+      }
+    />
+  </li>
+  <li>
+    <InstanceDetail
+      failureSummary="fix the error on body"
+      html="<body >"
+      index={1}
+      target={
+        Array [
+          "<body>",
+        ]
+      }
+    />
+  </li>
+</ul>
 `;
