@@ -8,7 +8,7 @@ import { DetailsSection, DetailsSectionProps } from '../../../../../../../Detail
 describe('DetailsSection', () => {
     it('renders', () => {
         const scanDate = new Date(Date.UTC(2018, 2, 9, 9, 48));
-        const getUTCStringFromDateStub: typeof DateProvider.getUTCStringFromDate = scanDate => '2018-03-12 11:24 PM UTC';
+        const getUTCStringFromDateStub: typeof DateProvider.getUTCStringFromDate = anyDate => '2018-03-12 11:24 PM UTC';
 
         const props: DetailsSectionProps = {
             scanDate,

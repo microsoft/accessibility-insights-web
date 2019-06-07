@@ -22,7 +22,7 @@ describe('ReportHtmlGeneratorV2', () => {
         const pageUrl: string = 'https://page-url/';
         const description: string = 'description';
 
-        const getUTCStringFromDateStub: typeof DateProvider.getUTCStringFromDate = scanDate => '2018-03-12 11:24 PM UTC';
+        const getUTCStringFromDateStub: typeof DateProvider.getUTCStringFromDate = anyDate => '2018-03-12 11:24 PM UTC';
 
         const sectionFactoryMock = Mock.ofType<ReportSectionFactory>();
         const environmentInfo: EnvironmentInfo = {

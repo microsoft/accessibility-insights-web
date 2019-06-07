@@ -10,7 +10,7 @@ describe('SummarySection', () => {
     const pageTitle = 'page-title';
     const pageUrl = 'url:target-page';
     const scanDate = new Date('2019-05-29T19:12:16.804Z');
-    const getUTCStringFromDateStub: typeof DateProvider.getUTCStringFromDate = scanDate => '2018-03-12 11:24 PM UTC';
+    const getUTCStringFromDateStub: typeof DateProvider.getUTCStringFromDate = anyDate => '2018-03-12 11:24 PM UTC';
 
     const props: SectionProps = {
         pageTitle,
