@@ -214,38 +214,6 @@ $outcome-not-applicable-summary-color: $neutral-outcome;
     margin-bottom: 16px;
 }
 
-.rule-detail {
-    font-size: 14px;
-
-    height: 56px;
-    padding: 0 8px;
-    margin-left: 6px;
-
-    box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.08);
-
-    .outcome-chip {
-        vertical-align: middle;
-        margin-bottom: 2px;
-    }
-
-    .rule-details-id {
-        a {
-            font-family: $semiBoldFontFamily;
-            color: $primary-text !important;
-        }
-    }
-
-    .rule-detail-description {
-        color: $secondary-text !important;
-    }
-
-    .guidance-links {
-        a {
-            color: $secondary-text !important;
-        }
-    }
-}
-
 .failed-instances-section {
     margin-top: 56px;
 }
@@ -272,10 +240,7 @@ $outcome-not-applicable-summary-color: $neutral-outcome;
         width: 7px;
         height: 7px;
         cursor: hand;
-        margin-right: 8px;
         content: '';
-        position: absolute;
-        margin-top: 6px;
         transform-origin: 50% 50%;
         transition: transform 0.1s linear 0s;
     }
@@ -283,12 +248,66 @@ $outcome-not-applicable-summary-color: $neutral-outcome;
     summary::-webkit-details-marker {
         display: none;
     }
-    details[open] summary:before {
-        @extend %common-summary-chevron;
-        @include transform(rotate(45deg));
+
+    details[open] {
+        padding-bottom: 16px;
+
+        summary:before {
+            @extend %common-summary-chevron;
+            @include transform(rotate(45deg));
+        }
     }
+
     summary:before {
         @extend %common-summary-chevron;
         @include transform(rotate(-45deg));
+    }
+
+    details {
+        box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.08);
+    }
+
+    summary {
+        display: flex;
+        align-items: center;
+        padding-left: 2px;
+
+        .rule-detail {
+            box-shadow: unset;
+        }
+    }
+
+    .rule-detail {
+        font-size: 14px;
+
+        height: 56px;
+        padding: 0 8px;
+
+        box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.08);
+
+        display: flex;
+        align-items: center;
+
+        .outcome-chip {
+            vertical-align: middle;
+            margin-bottom: 2px;
+        }
+
+        .rule-details-id {
+            a {
+                font-family: $semiBoldFontFamily;
+                color: $primary-text !important;
+            }
+        }
+
+        .rule-detail-description {
+            color: $secondary-text !important;
+        }
+
+        .guidance-links {
+            a {
+                color: $secondary-text !important;
+            }
+        }
     }
 }
