@@ -126,7 +126,6 @@ $outcome-not-applicable-summary-color: $neutral-outcome;
             @include cross-icon-styles($outcome-summary-icon-size, 0px, $outcome-fail-summary-color);
             .check-container {
                 bottom: -1px;
-                background: $neutral-0;
             }
             background-color: $outcome-fail-summary-color;
             border-top-right-radius: 2px;
@@ -139,7 +138,6 @@ $outcome-not-applicable-summary-color: $neutral-outcome;
                 bottom: -1px;
                 margin-right: 8px;
                 margin-left: 4px;
-                background: $neutral-0;
             }
             background-color: $outcome-pass-summary-color;
             margin-left: 4px;
@@ -154,7 +152,6 @@ $outcome-not-applicable-summary-color: $neutral-outcome;
                 bottom: -1px;
                 margin-right: 8px;
                 margin-left: 4px;
-                background: $neutral-0;
             }
             background-color: $outcome-not-applicable-summary-color;
             margin-left: 4px;
