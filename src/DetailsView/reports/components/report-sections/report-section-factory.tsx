@@ -11,6 +11,7 @@ export type SectionProps = {
     scanDate: Date;
     environmentInfo: EnvironmentInfo;
     scanResult: ScanResults;
+    toUtcString: (date: Date) => string;
 };
 
 export type ReportSectionFactory = {
