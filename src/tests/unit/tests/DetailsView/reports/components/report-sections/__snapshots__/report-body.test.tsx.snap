@@ -25,6 +25,7 @@ exports[`ReportBody renders 1`] = `
         "violations": Array [],
       }
     }
+    toUtcString={[Function]}
   />
   <content-container>
     <title-section />
@@ -51,6 +52,7 @@ exports[`ReportBody renders 1`] = `
           "violations": Array [],
         }
       }
+      toUtcString={[Function]}
     />
     <details-section
       description="test description"
@@ -75,6 +77,7 @@ exports[`ReportBody renders 1`] = `
           "violations": Array [],
         }
       }
+      toUtcString={[Function]}
     />
     <result-section>
       <failed-instances-section
@@ -100,6 +103,7 @@ exports[`ReportBody renders 1`] = `
             "violations": Array [],
           }
         }
+        toUtcString={[Function]}
       />
       <passed-checks-section
         description="test description"
@@ -124,6 +128,7 @@ exports[`ReportBody renders 1`] = `
             "violations": Array [],
           }
         }
+        toUtcString={[Function]}
       />
       <not-applicable-checks-section
         description="test description"
@@ -148,9 +153,33 @@ exports[`ReportBody renders 1`] = `
             "violations": Array [],
           }
         }
+        toUtcString={[Function]}
       />
     </result-section>
   </content-container>
-  <footer-section />
+  <footer-section
+    description="test description"
+    environmentInfo={
+      Object {
+        "axeCoreVersion": "axe-core-version",
+        "browserSpec": "browser-spec",
+        "extensionVersion": "extension-version",
+      }
+    }
+    pageTitle="page-title"
+    pageUrl="url:target-page"
+    scanDate={2019-05-29T19:12:16.804Z}
+    scanResult={
+      Object {
+        "inapplicable": Array [],
+        "incomplete": Array [],
+        "passes": Array [],
+        "targetPageTitle": "page-title",
+        "targetPageUrl": "url:target-page",
+        "timestamp": "today",
+        "violations": Array [],
+      }
+    }
+  />
 </body-section>
 `;

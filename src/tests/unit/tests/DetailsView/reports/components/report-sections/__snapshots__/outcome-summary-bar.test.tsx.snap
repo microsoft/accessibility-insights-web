@@ -4,48 +4,75 @@ exports[`OutcomeSummaryBar failure only 1`] = `
 <div
   className="outcome-summary-bar"
 >
-  <span
-    className="fail"
+  <div
+    aria-label="3 Failed"
     style={
       Object {
         "flexGrow": 3,
       }
     }
   >
-    <CrossIcon />
-     
-    3
-     
-    Failed
-  </span>
-  <span
-    className="pass"
+    <span
+      aria-hidden="true"
+      className="fail"
+    >
+      <CrossIcon />
+       
+      3
+       
+      <span
+        className="outcome-past-tense"
+      >
+        Failed
+      </span>
+    </span>
+  </div>
+  <div
+    aria-label="0 Passed"
     style={
       Object {
         "flexGrow": 0,
       }
     }
   >
-    <CheckIcon />
-     
-    0
-     
-    Passed
-  </span>
-  <span
-    className="inapplicable"
+    <span
+      aria-hidden="true"
+      className="pass"
+    >
+      <CheckIcon />
+       
+      0
+       
+      <span
+        className="outcome-past-tense"
+      >
+        Passed
+      </span>
+    </span>
+  </div>
+  <div
+    aria-label="0 Not applicable"
     style={
       Object {
         "flexGrow": 0,
       }
     }
   >
-    <InapplicableIcon />
-     
-    0
-     
-    Not applicable
-  </span>
+    <span
+      aria-hidden="true"
+      className="inapplicable"
+    >
+      <InapplicableIcon />
+       
+      0
+       
+      <span
+        className="outcome-past-tense"
+      >
+        Not applicable
+      </span>
+    </span>
+  </div>
 </div>
 `;
 
@@ -53,48 +80,75 @@ exports[`OutcomeSummaryBar failures + not applicable + passes 1`] = `
 <div
   className="outcome-summary-bar"
 >
-  <span
-    className="fail"
+  <div
+    aria-label="3 Failed"
     style={
       Object {
         "flexGrow": 3,
       }
     }
   >
-    <CrossIcon />
-     
-    3
-     
-    Failed
-  </span>
-  <span
-    className="pass"
+    <span
+      aria-hidden="true"
+      className="fail"
+    >
+      <CrossIcon />
+       
+      3
+       
+      <span
+        className="outcome-past-tense"
+      >
+        Failed
+      </span>
+    </span>
+  </div>
+  <div
+    aria-label="2 Passed"
     style={
       Object {
         "flexGrow": 2,
       }
     }
   >
-    <CheckIcon />
-     
-    2
-     
-    Passed
-  </span>
-  <span
-    className="inapplicable"
+    <span
+      aria-hidden="true"
+      className="pass"
+    >
+      <CheckIcon />
+       
+      2
+       
+      <span
+        className="outcome-past-tense"
+      >
+        Passed
+      </span>
+    </span>
+  </div>
+  <div
+    aria-label="3 Not applicable"
     style={
       Object {
         "flexGrow": 3,
       }
     }
   >
-    <InapplicableIcon />
-     
-    3
-     
-    Not applicable
-  </span>
+    <span
+      aria-hidden="true"
+      className="inapplicable"
+    >
+      <InapplicableIcon />
+       
+      3
+       
+      <span
+        className="outcome-past-tense"
+      >
+        Not applicable
+      </span>
+    </span>
+  </div>
 </div>
 `;
 
@@ -102,48 +156,75 @@ exports[`OutcomeSummaryBar failures + not applicable only 1`] = `
 <div
   className="outcome-summary-bar"
 >
-  <span
-    className="fail"
+  <div
+    aria-label="3 Failed"
     style={
       Object {
         "flexGrow": 3,
       }
     }
   >
-    <CrossIcon />
-     
-    3
-     
-    Failed
-  </span>
-  <span
-    className="pass"
+    <span
+      aria-hidden="true"
+      className="fail"
+    >
+      <CrossIcon />
+       
+      3
+       
+      <span
+        className="outcome-past-tense"
+      >
+        Failed
+      </span>
+    </span>
+  </div>
+  <div
+    aria-label="0 Passed"
     style={
       Object {
         "flexGrow": 0,
       }
     }
   >
-    <CheckIcon />
-     
-    0
-     
-    Passed
-  </span>
-  <span
-    className="inapplicable"
+    <span
+      aria-hidden="true"
+      className="pass"
+    >
+      <CheckIcon />
+       
+      0
+       
+      <span
+        className="outcome-past-tense"
+      >
+        Passed
+      </span>
+    </span>
+  </div>
+  <div
+    aria-label="3 Not applicable"
     style={
       Object {
         "flexGrow": 3,
       }
     }
   >
-    <InapplicableIcon />
-     
-    3
-     
-    Not applicable
-  </span>
+    <span
+      aria-hidden="true"
+      className="inapplicable"
+    >
+      <InapplicableIcon />
+       
+      3
+       
+      <span
+        className="outcome-past-tense"
+      >
+        Not applicable
+      </span>
+    </span>
+  </div>
 </div>
 `;
 
@@ -151,48 +232,75 @@ exports[`OutcomeSummaryBar failures + passes only 1`] = `
 <div
   className="outcome-summary-bar"
 >
-  <span
-    className="fail"
+  <div
+    aria-label="3 Failed"
     style={
       Object {
         "flexGrow": 3,
       }
     }
   >
-    <CrossIcon />
-     
-    3
-     
-    Failed
-  </span>
-  <span
-    className="pass"
+    <span
+      aria-hidden="true"
+      className="fail"
+    >
+      <CrossIcon />
+       
+      3
+       
+      <span
+        className="outcome-past-tense"
+      >
+        Failed
+      </span>
+    </span>
+  </div>
+  <div
+    aria-label="2 Passed"
     style={
       Object {
         "flexGrow": 2,
       }
     }
   >
-    <CheckIcon />
-     
-    2
-     
-    Passed
-  </span>
-  <span
-    className="inapplicable"
+    <span
+      aria-hidden="true"
+      className="pass"
+    >
+      <CheckIcon />
+       
+      2
+       
+      <span
+        className="outcome-past-tense"
+      >
+        Passed
+      </span>
+    </span>
+  </div>
+  <div
+    aria-label="0 Not applicable"
     style={
       Object {
         "flexGrow": 0,
       }
     }
   >
-    <InapplicableIcon />
-     
-    0
-     
-    Not applicable
-  </span>
+    <span
+      aria-hidden="true"
+      className="inapplicable"
+    >
+      <InapplicableIcon />
+       
+      0
+       
+      <span
+        className="outcome-past-tense"
+      >
+        Not applicable
+      </span>
+    </span>
+  </div>
 </div>
 `;
 
@@ -200,48 +308,75 @@ exports[`OutcomeSummaryBar not applicable + passes only 1`] = `
 <div
   className="outcome-summary-bar"
 >
-  <span
-    className="fail"
+  <div
+    aria-label="0 Failed"
     style={
       Object {
         "flexGrow": 0,
       }
     }
   >
-    <CrossIcon />
-     
-    0
-     
-    Failed
-  </span>
-  <span
-    className="pass"
+    <span
+      aria-hidden="true"
+      className="fail"
+    >
+      <CrossIcon />
+       
+      0
+       
+      <span
+        className="outcome-past-tense"
+      >
+        Failed
+      </span>
+    </span>
+  </div>
+  <div
+    aria-label="2 Passed"
     style={
       Object {
         "flexGrow": 2,
       }
     }
   >
-    <CheckIcon />
-     
-    2
-     
-    Passed
-  </span>
-  <span
-    className="inapplicable"
+    <span
+      aria-hidden="true"
+      className="pass"
+    >
+      <CheckIcon />
+       
+      2
+       
+      <span
+        className="outcome-past-tense"
+      >
+        Passed
+      </span>
+    </span>
+  </div>
+  <div
+    aria-label="3 Not applicable"
     style={
       Object {
         "flexGrow": 3,
       }
     }
   >
-    <InapplicableIcon />
-     
-    3
-     
-    Not applicable
-  </span>
+    <span
+      aria-hidden="true"
+      className="inapplicable"
+    >
+      <InapplicableIcon />
+       
+      3
+       
+      <span
+        className="outcome-past-tense"
+      >
+        Not applicable
+      </span>
+    </span>
+  </div>
 </div>
 `;
 
@@ -249,48 +384,75 @@ exports[`OutcomeSummaryBar not applicable only 1`] = `
 <div
   className="outcome-summary-bar"
 >
-  <span
-    className="fail"
+  <div
+    aria-label="0 Failed"
     style={
       Object {
         "flexGrow": 0,
       }
     }
   >
-    <CrossIcon />
-     
-    0
-     
-    Failed
-  </span>
-  <span
-    className="pass"
+    <span
+      aria-hidden="true"
+      className="fail"
+    >
+      <CrossIcon />
+       
+      0
+       
+      <span
+        className="outcome-past-tense"
+      >
+        Failed
+      </span>
+    </span>
+  </div>
+  <div
+    aria-label="2 Passed"
     style={
       Object {
         "flexGrow": 2,
       }
     }
   >
-    <CheckIcon />
-     
-    2
-     
-    Passed
-  </span>
-  <span
-    className="inapplicable"
+    <span
+      aria-hidden="true"
+      className="pass"
+    >
+      <CheckIcon />
+       
+      2
+       
+      <span
+        className="outcome-past-tense"
+      >
+        Passed
+      </span>
+    </span>
+  </div>
+  <div
+    aria-label="0 Not applicable"
     style={
       Object {
         "flexGrow": 0,
       }
     }
   >
-    <InapplicableIcon />
-     
-    0
-     
-    Not applicable
-  </span>
+    <span
+      aria-hidden="true"
+      className="inapplicable"
+    >
+      <InapplicableIcon />
+       
+      0
+       
+      <span
+        className="outcome-past-tense"
+      >
+        Not applicable
+      </span>
+    </span>
+  </div>
 </div>
 `;
 
@@ -298,47 +460,74 @@ exports[`OutcomeSummaryBar passes only 1`] = `
 <div
   className="outcome-summary-bar"
 >
-  <span
-    className="fail"
+  <div
+    aria-label="0 Failed"
     style={
       Object {
         "flexGrow": 0,
       }
     }
   >
-    <CrossIcon />
-     
-    0
-     
-    Failed
-  </span>
-  <span
-    className="pass"
+    <span
+      aria-hidden="true"
+      className="fail"
+    >
+      <CrossIcon />
+       
+      0
+       
+      <span
+        className="outcome-past-tense"
+      >
+        Failed
+      </span>
+    </span>
+  </div>
+  <div
+    aria-label="2 Passed"
     style={
       Object {
         "flexGrow": 2,
       }
     }
   >
-    <CheckIcon />
-     
-    2
-     
-    Passed
-  </span>
-  <span
-    className="inapplicable"
+    <span
+      aria-hidden="true"
+      className="pass"
+    >
+      <CheckIcon />
+       
+      2
+       
+      <span
+        className="outcome-past-tense"
+      >
+        Passed
+      </span>
+    </span>
+  </div>
+  <div
+    aria-label="0 Not applicable"
     style={
       Object {
         "flexGrow": 0,
       }
     }
   >
-    <InapplicableIcon />
-     
-    0
-     
-    Not applicable
-  </span>
+    <span
+      aria-hidden="true"
+      className="inapplicable"
+    >
+      <InapplicableIcon />
+       
+      0
+       
+      <span
+        className="outcome-past-tense"
+      >
+        Not applicable
+      </span>
+    </span>
+  </div>
 </div>
 `;

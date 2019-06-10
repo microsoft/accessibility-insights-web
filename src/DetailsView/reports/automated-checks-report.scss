@@ -79,6 +79,12 @@ $outcome-incomplete-summary-background: $neutral-outcome;
 $outcome-incomplete-border-color: $incomplete-color;
 $outcome-not-applicable-summary-color: $neutral-outcome;
 
+@media screen and (max-width: 640px) {
+    .outcome-past-tense {
+        display: none;
+    }
+}
+
 .summary-section {
     @include boxShadow();
 
@@ -197,6 +203,10 @@ $outcome-not-applicable-summary-color: $neutral-outcome;
         line-height: 20px;
 
         color: $secondary-text;
+
+        .tool-name-link {
+            color: $secondary-text !important;
+        }
     }
 }
 
@@ -206,37 +216,6 @@ $outcome-not-applicable-summary-color: $neutral-outcome;
     justify-content: flex-start;
     align-items: center;
     margin-bottom: 16px;
-}
-
-.rule-detail {
-    font-size: 14px;
-
-    height: 56px;
-    padding: 0 8px;
-
-    box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.08);
-
-    .outcome-chip {
-        vertical-align: middle;
-        margin-bottom: 2px;
-    }
-
-    .rule-details-id {
-        a {
-            font-family: $semiBoldFontFamily;
-            color: $primary-text !important;
-        }
-    }
-
-    .rule-detail-description {
-        color: $secondary-text !important;
-    }
-
-    .guidance-links {
-        a {
-            color: $secondary-text !important;
-        }
-    }
 }
 
 .failed-instances-section {
@@ -249,4 +228,90 @@ $outcome-not-applicable-summary-color: $neutral-outcome;
 
 .not-applicable-checks-section {
     margin-top: 56px;
+}
+
+.rule-details-group {
+    @mixin transform($property) {
+        -webkit-transform: $property;
+        -ms-transform: $property;
+        transform: $property;
+    }
+
+    %common-summary-chevron {
+        display: inline-block;
+        border-right: 1px solid $secondary-text;
+        border-bottom: 1px solid $secondary-text;
+        width: 7px;
+        height: 7px;
+        cursor: hand;
+        content: '';
+        transform-origin: 50% 50%;
+        transition: transform 0.1s linear 0s;
+    }
+
+    summary::-webkit-details-marker {
+        display: none;
+    }
+
+    details[open] {
+        padding-bottom: 16px;
+
+        summary:before {
+            @extend %common-summary-chevron;
+            @include transform(rotate(45deg));
+        }
+    }
+
+    summary:before {
+        @extend %common-summary-chevron;
+        @include transform(rotate(-45deg));
+    }
+
+    details {
+        box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.08);
+    }
+
+    summary {
+        display: flex;
+        align-items: center;
+        padding-left: 2px;
+
+        .rule-detail {
+            box-shadow: unset;
+        }
+    }
+
+    .rule-detail {
+        font-size: 14px;
+
+        height: 56px;
+        padding: 0 8px;
+
+        box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.08);
+
+        display: flex;
+        align-items: center;
+
+        .outcome-chip {
+            vertical-align: middle;
+            margin-bottom: 2px;
+        }
+
+        .rule-details-id {
+            a {
+                font-family: $semiBoldFontFamily;
+                color: $primary-text !important;
+            }
+        }
+
+        .rule-detail-description {
+            color: $secondary-text !important;
+        }
+
+        .guidance-links {
+            a {
+                color: $secondary-text !important;
+            }
+        }
+    }
 }
