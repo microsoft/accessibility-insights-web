@@ -35,7 +35,7 @@ describe('AssessmentReportHtmlGenerator', () => {
 
         const deps: AssessmentReportHtmlGeneratorDeps = {
             outcomeTypeSemanticsFromTestStatus: { stub: 'outcomeTypeSemanticsFromTestStatus' } as any,
-        };
+        } as AssessmentReportHtmlGeneratorDeps;
 
         const modelBuilderMock = Mock.ofType(AssessmentReportModelBuilder, MockBehavior.Strict);
         const model: ReportModel = { stub: 'model' } as any;

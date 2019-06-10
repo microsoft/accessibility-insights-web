@@ -2,6 +2,9 @@
 // Licensed under the MIT License.
 import { shallow } from 'enzyme';
 import * as React from 'react';
+import { Mock } from 'typemoq';
+
+import { GetGuidanceTagsFromGuidanceLinks } from '../../../../../../common/get-guidance-tags-from-guidance-links';
 import { ManualTestStatus } from '../../../../../../common/types/manual-test-status';
 import { RequirementHeaderReportModel, RequirementType } from '../../../../../../DetailsView/reports/assessment-report-model';
 import {
@@ -27,6 +30,7 @@ describe('AssessmentReportStepHeader', () => {
         outcomeTypeSemanticsFromTestStatus: testStatus => {
             return { pastTense: ManualTestStatus[testStatus] + '-tested' };
         },
+        getGuidanceTagsFromGuidanceLinks: Mock.ofInstance(GetGuidanceTagsFromGuidanceLinks).object,
     };
 
     test('matches snapshot', () => {

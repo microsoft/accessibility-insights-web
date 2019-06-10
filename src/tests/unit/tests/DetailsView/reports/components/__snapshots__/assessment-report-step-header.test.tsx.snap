@@ -38,5 +38,21 @@ exports[`AssessmentReportStepHeader matches snapshot 1`] = `
     count={42}
     outcomeType="fail"
   />
+  <GuidanceTags
+    deps={
+      Object {
+        "getGuidanceTagsFromGuidanceLinks": [Function],
+        "outcomeTypeSemanticsFromTestStatus": [Function],
+      }
+    }
+    links={
+      Array [
+        Object {
+          "href": "LINK_URL",
+          "text": "LINK_TEXT",
+        },
+      ]
+    }
+  />
 </div>
 `;
