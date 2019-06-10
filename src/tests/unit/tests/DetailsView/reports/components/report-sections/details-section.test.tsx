@@ -10,13 +10,10 @@ describe('DetailsSection', () => {
     it('renders', () => {
         const scanDate = new Date(Date.UTC(2018, 2, 9, 9, 48));
 
-        const getUTCStringFromDateMock: IMock<(date: Date) => string> = Mock.ofInstance(
-            DateProvider.getUTCStringFromDate,
-            MockBehavior.Strict,
-        );
+        const toUtcStringMock: IMock<(date: Date) => string> = Mock.ofInstance(DateProvider.getUTCStringFromDate, MockBehavior.Strict);
 
-        getUTCStringFromDateMock
-            .setup(x => x(scanDate))
+        toUtcStringMock
+            .setup(getter => getter(scanDate))
             .returns(() => '2018-03-12 11:24 PM UTC')
             .verifiable();
 
@@ -30,7 +27,7 @@ describe('DetailsSection', () => {
                 extensionVersion: 'extension-version',
                 axeCoreVersion: 'axe-version',
             },
-            toUtcString: getUTCStringFromDateMock.object,
+            toUtcString: toUtcStringMock.object,
         };
 
         const wrapper = shallow(<DetailsSection {...props} />);
