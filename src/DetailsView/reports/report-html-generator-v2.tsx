@@ -28,7 +28,7 @@ export class ReportHtmlGeneratorV2 implements ReportHtmlGenerator {
             scanDate,
             scanResult,
             environmentInfo: this.environmentInfo,
-            utcDateConverter: this.utcDateConverter,
+            toUtcString: this.utcDateConverter,
         };
 
         const props: ReportBodyProps = {

@@ -25,7 +25,7 @@ exports[`ReportBody renders 1`] = `
         "violations": Array [],
       }
     }
-    utcDateConverter={[Function]}
+    toUtcString={[Function]}
   />
   <content-container>
     <title-section />
@@ -52,7 +52,7 @@ exports[`ReportBody renders 1`] = `
           "violations": Array [],
         }
       }
-      utcDateConverter={[Function]}
+      toUtcString={[Function]}
     />
     <details-section
       description="test description"
@@ -77,7 +77,7 @@ exports[`ReportBody renders 1`] = `
           "violations": Array [],
         }
       }
-      utcDateConverter={[Function]}
+      toUtcString={[Function]}
     />
     <result-section>
       <failed-instances-section
@@ -103,7 +103,7 @@ exports[`ReportBody renders 1`] = `
             "violations": Array [],
           }
         }
-        utcDateConverter={[Function]}
+        toUtcString={[Function]}
       />
       <passed-checks-section
         description="test description"
@@ -128,7 +128,7 @@ exports[`ReportBody renders 1`] = `
             "violations": Array [],
           }
         }
-        utcDateConverter={[Function]}
+        toUtcString={[Function]}
       />
       <not-applicable-checks-section
         description="test description"
@@ -153,7 +153,7 @@ exports[`ReportBody renders 1`] = `
             "violations": Array [],
           }
         }
-        utcDateConverter={[Function]}
+        toUtcString={[Function]}
       />
     </result-section>
   </content-container>

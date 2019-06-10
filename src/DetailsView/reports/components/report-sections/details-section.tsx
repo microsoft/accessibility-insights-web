@@ -8,10 +8,10 @@ import { UrlIcon } from '../../../../common/icons/url-icon';
 import { NamedSFC } from '../../../../common/react/named-sfc';
 import { SectionProps } from './report-section-factory';
 
-export type DetailsSectionProps = Pick<SectionProps, 'pageUrl' | 'description' | 'scanDate' | 'utcDateConverter'>;
+export type DetailsSectionProps = Pick<SectionProps, 'pageUrl' | 'description' | 'scanDate' | 'toUtcString'>;
 
 export const DetailsSection = NamedSFC<DetailsSectionProps>('DetailsSection', props => {
-    const { pageUrl, description, scanDate, utcDateConverter } = props;
+    const { pageUrl, description, scanDate, toUtcString } = props;
     return (
         <div className="scan-details-section">
             <h2>Scan details</h2>
@@ -31,7 +31,7 @@ export const DetailsSection = NamedSFC<DetailsSectionProps>('DetailsSection', pr
                         <td className="icon" aria-hidden="true">
                             <DateIcon />
                         </td>
-                        <td className="text">{utcDateConverter(scanDate)}</td>
+                        <td className="text">{toUtcString(scanDate)}</td>
                     </tr>
                     <tr>
                         <td className="icon" aria-hidden="true">
