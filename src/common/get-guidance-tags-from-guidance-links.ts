@@ -3,9 +3,9 @@
 import { isArray, isObject } from 'lodash';
 
 import { GuidanceTag } from '../content/guidance-tags';
-import { HyperlinkDefinition } from '../views/content/content-page';
+import { GuidanceLink } from '../scanner/rule-to-links-mappings';
 
-export type GetGuidanceTagsFromGuidanceLinks = (links: HyperlinkDefinition[]) => GuidanceTag[];
+export type GetGuidanceTagsFromGuidanceLinks = (links: GuidanceLink[]) => GuidanceTag[];
 export const GetGuidanceTagsFromGuidanceLinks: GetGuidanceTagsFromGuidanceLinks = links => {
     if (isArray(links) === false) {
         return [];

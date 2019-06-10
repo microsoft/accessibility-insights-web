@@ -6,7 +6,7 @@ import { IMock, Mock, MockBehavior } from 'typemoq';
 
 import { GuidanceTags, GuidanceTagsProps } from '../../../../../common/components/guidance-tags';
 import { GetGuidanceTagsFromGuidanceLinks } from '../../../../../common/get-guidance-tags-from-guidance-links';
-import { HyperlinkDefinition } from '../../../../../views/content/content-page';
+import { GuidanceLink } from '../../../../../scanner/rule-to-links-mappings';
 
 describe('GuidanceTags', () => {
     let getGuidanceTagsFromGuidanceLinksMock: IMock<GetGuidanceTagsFromGuidanceLinks>;
@@ -15,7 +15,7 @@ describe('GuidanceTags', () => {
         getGuidanceTagsFromGuidanceLinksMock = Mock.ofType<GetGuidanceTagsFromGuidanceLinks>(null, MockBehavior.Strict);
     });
 
-    test.each([null, []])('tags is: %o', (tags: HyperlinkDefinition[]) => {
+    test.each([null, []])('tags is: %o', (tags: GuidanceLink[]) => {
         const props: GuidanceTagsProps = {
             deps: {
                 getGuidanceTagsFromGuidanceLinks: getGuidanceTagsFromGuidanceLinksMock.object,

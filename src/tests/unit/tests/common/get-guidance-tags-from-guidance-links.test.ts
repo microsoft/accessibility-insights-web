@@ -1,19 +1,19 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { GetGuidanceTagsFromGuidanceLinks } from '../../../../common/get-guidance-tags-from-guidance-links';
-import { HyperlinkDefinition } from '../../../../views/content/content-page';
+import { GuidanceLink } from '../../../../scanner/rule-to-links-mappings';
 
 describe('GetGuidanceTagsFromGuidanceLinks', () => {
-    it.each([null, [], [undefined]])('handles invalid arg %o', (links: HyperlinkDefinition[]) => {
+    it.each([null, [], [undefined]])('handles invalid arg %o', (links: GuidanceLink[]) => {
         expect(GetGuidanceTagsFromGuidanceLinks(links)).toEqual([]);
     });
 
-    const testLink1: HyperlinkDefinition = {
+    const testLink1: GuidanceLink = {
         href: null,
         text: null,
         tags: [{ id: 'guidanceLinks-tags-id-1', displayText: 'guidanceLinks-tags-displayText-1' }],
     };
-    const testLink2: HyperlinkDefinition = {
+    const testLink2: GuidanceLink = {
         href: null,
         text: null,
         tags: [{ id: 'guidanceLinks-tags-id-2', displayText: 'guidanceLinks-tags-displayText-2' }],
