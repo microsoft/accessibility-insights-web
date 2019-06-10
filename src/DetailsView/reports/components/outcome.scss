@@ -21,6 +21,8 @@ $outcome-incomplete-summary-consistent-foreground: $always-white;
 $outcome-fail-color: $negative-outcome;
 $outcome-inapplicable-color: $neutral-outcome;
 $outcome-fail-summary-color: $negative-outcome;
+$outcome-count-border-size: 1.5px;
+
 @mixin outcome-chip-color($outcome-color) {
     .check-container {
         background-color: $outcome-color;
@@ -28,7 +30,7 @@ $outcome-fail-summary-color: $negative-outcome;
     }
     .count {
         background-color: transparent;
-        border: 1px solid $outcome-color;
+        border: $outcome-count-border-size solid $outcome-color;
     }
 }
 
@@ -55,13 +57,13 @@ $outcome-fail-summary-color: $negative-outcome;
     }
     .count {
         font-family: $fontFamily;
-        line-height: $outcome-chip-icon-size - 2;
+        line-height: $outcome-chip-icon-size - (2 * $outcome-count-border-size);
         font-size: 11px;
         border-radius: 0 8px 8px 0;
         padding: 0 6px 0 10px;
         font-weight: 700;
         margin-left: -8px;
-        height: $outcome-chip-icon-size - 2;
+        height: $outcome-chip-icon-size - (2 * $outcome-count-border-size);
     }
     &.outcome-chip-pass {
         @include check-icon-styles($outcome-chip-icon-size, 0px);

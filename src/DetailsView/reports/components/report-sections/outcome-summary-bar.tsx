@@ -4,7 +4,7 @@ import { kebabCase } from 'lodash';
 import * as React from 'react';
 
 import { NamedSFC } from '../../../../common/react/named-sfc';
-import { outcomeIconMap, outcomeTypeSemantics } from '../outcome-type';
+import { outcomeIconMapInverted, outcomeTypeSemantics } from '../outcome-type';
 import { SectionProps } from './report-section-factory';
 
 export type InstanceOutcomeType = 'pass' | 'fail' | 'inapplicable';
@@ -25,7 +25,7 @@ export const OutcomeSummaryBar = NamedSFC<OutcomeSummaryBarProps>('OutcomeSummar
         <div className="outcome-summary-bar">
             {allInstanceOutcomeTypes.map(outcomeType => {
                 const text = outcomeTypeSemantics[outcomeType].pastTense;
-                const outcomeIcon = outcomeIconMap[outcomeType];
+                const outcomeIcon = outcomeIconMapInverted[outcomeType];
                 const count = countSummary[outcomeType];
 
                 const ariaLabel = `${count} ${text}`;
