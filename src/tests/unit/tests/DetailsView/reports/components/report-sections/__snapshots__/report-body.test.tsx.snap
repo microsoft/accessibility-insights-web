@@ -180,6 +180,7 @@ exports[`ReportBody renders 1`] = `
         "violations": Array [],
       }
     }
+    toUtcString={[Function]}
   />
 </body-section>
 `;
