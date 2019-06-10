@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SummaryDetails renders 1`] = `
+<details>
+  <summary
+    customProp="custom value"
+  >
+    <div>
+      this is the summary content
+    </div>
+  </summary>
+  <div>
+     this is the details content 
+  </div>
+</details>
+`;
