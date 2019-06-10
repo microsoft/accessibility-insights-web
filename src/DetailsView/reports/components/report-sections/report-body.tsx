@@ -38,7 +38,7 @@ export const ReportBody = NamedSFC<ReportBodyProps>('ReportBody', props => {
                     <NotApplicableChecksSection {...sectionProps} />
                 </ResultsContainer>
             </ContentContainer>
-            <FooterSection />
+            <FooterSection {...sectionProps} />
         </BodySection>
     );
 });
