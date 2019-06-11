@@ -9,7 +9,7 @@ import { ChromeAdapter } from '../background/browser-adapters/chrome-adapter';
 import { IssueDetailsTextGenerator } from '../background/issue-details-text-generator';
 import { A11YSelfValidator } from '../common/a11y-self-validator';
 import { AxeInfo } from '../common/axe-info';
-import { BlobProvider } from '../common/blob-provider';
+import { provideBlob } from '../common/blob-provider';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
 import { DateProvider } from '../common/date-provider';
 import { DocumentManipulator } from '../common/document-manipulator';
@@ -292,7 +292,7 @@ if (isNaN(tabId) === false) {
                 urlParser,
                 getDateFromTimestamp: DateProvider.getDateFromTimestamp,
                 getCurrentDate: DateProvider.getCurrentDate,
-                provideBlob: BlobProvider.provideBlob,
+                provideBlob: provideBlob,
                 settingsProvider: SettingsProviderImpl,
                 environmentInfoProvider,
                 issueFilingServiceProvider: IssueFilingServiceProviderImpl,
