@@ -56,9 +56,5 @@
         $inapplicable-line-height: (4/7 * $true-icon-size);
         $bottom-value: (($true-icon-size - $inapplicable-line-height) / 2);
         $left-value: (($true-icon-size - $width-value) / 2);
-
-        svg circle {
-            fill: $iconColor;
-        }
     }
 }
