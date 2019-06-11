@@ -49,6 +49,7 @@ exports[`RuleDetailsGroup renders, with details 1`] = `
         }
       />
     }
+    id="1"
     summaryContent={
       <RuleDetails
         isHeader={false}
