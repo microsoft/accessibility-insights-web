@@ -207,21 +207,21 @@
     }
 
     .do-header {
-        @include check-icon-styles($icon-size, 0px);
+        @include check-icon-styles($icon-size, 0px, $do-color);
         border-bottom: 2px solid $do-color;
     }
 
     .dont-header {
-        @include cross-icon-styles($icon-size, 0px);
+        @include cross-icon-styles($icon-size, 0px, $dont-color);
         border-bottom: 2px solid $dont-color;
     }
 
     .pass-header {
-        @include check-icon-styles(12px, 0px);
+        @include check-icon-styles(12px, 0px, $do-color);
     }
 
     .fail-header {
-        @include cross-icon-styles(12px, 0px);
+        @include cross-icon-styles(12px, 0px, $dont-color);
     }
 
     .table {

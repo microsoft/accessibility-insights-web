@@ -19,17 +19,8 @@
 
     .check-container {
         @include getCheckContainerStyle($iconSize, $border-size);
-
-        .check-icon {
-            height: $check-height;
-            width: ($check-height / 2);
-            transform: scaleX(-1) rotate(135deg);
-            border-right: $check-line-thickness solid $iconColor;
-            border-top: $check-line-thickness solid $iconColor;
-            content: '';
-            left: $left-value;
-            bottom: $bottom-value;
-            position: absolute;
+        svg circle {
+            fill: $iconColor;
         }
     }
 }
@@ -44,29 +35,8 @@
         $bottom-value: (($true-icon-size - $cross-line-height) / 2);
         $left-value: (($true-icon-size - $width-value) / 2);
 
-        .cross-icon {
-            position: absolute;
-            width: $true-icon-size;
-            height: $true-icon-size;
-
-            &:before {
-                transform: rotate(45deg);
-            }
-
-            &:after {
-                transform: rotate(-45deg);
-            }
-
-            &:before,
-            &:after {
-                position: absolute;
-                left: $left-value;
-                content: ' ';
-                height: $cross-line-height;
-                width: $width-value;
-                bottom: $bottom-value;
-                background-color: $iconColor;
-            }
+        svg circle {
+            fill: $iconColor;
         }
     }
 }
@@ -87,17 +57,8 @@
         $bottom-value: (($true-icon-size - $inapplicable-line-height) / 2);
         $left-value: (($true-icon-size - $width-value) / 2);
 
-        .inapplicable-icon {
-            content: '';
-            position: absolute;
-            width: $true-icon-size;
-            height: $true-icon-size;
-            left: $left-value;
-            height: $inapplicable-line-height;
-            width: $width-value;
-            bottom: $bottom-value;
-            background-color: $iconColor;
-            transform: rotate(-45deg);
+        svg circle {
+            fill: $iconColor;
         }
     }
 }

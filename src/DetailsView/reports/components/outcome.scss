@@ -34,9 +34,6 @@ $standard-icon-size: 16px;
 @mixin outcome-chip-color($outcome-color) {
     .check-container {
         background-color: $outcome-color;
-        svg circle {
-            fill: $outcome-color;
-        }
     }
     .count {
         background-color: transparent;
@@ -69,7 +66,7 @@ $standard-icon-size: 16px;
         height: $outcome-chip-icon-size - (2 * $outcome-count-border-size);
     }
     &.outcome-chip-pass {
-        @include check-icon-styles($outcome-chip-icon-size, 0px);
+        @include check-icon-styles($outcome-chip-icon-size, 0px, $outcome-pass-color);
         @include outcome-chip-color($outcome-pass-color);
     }
     &.outcome-chip-incomplete {
@@ -77,7 +74,7 @@ $standard-icon-size: 16px;
         @include outcome-chip-color($outcome-incomplete-border-color);
     }
     &.outcome-chip-fail {
-        @include cross-icon-styles($outcome-chip-icon-size, 0px);
+        @include cross-icon-styles($outcome-chip-icon-size, 0px, $outcome-fail-color);
         @include outcome-chip-color($outcome-fail-color);
     }
     &.outcome-chip-inapplicable {
@@ -93,10 +90,7 @@ $standard-icon-size: 16px;
         border-radius: 50%;
     }
     .outcome-icon-pass {
-        @include check-icon-styles($outcome-icon-size, 0px);
-        svg circle {
-            fill: $outcome-pass-color;
-        }
+        @include check-icon-styles($outcome-icon-size, 0px, $outcome-pass-color);
     }
     .outcome-icon-incomplete {
         @include incomplete-icon-styles($outcome-icon-size, 1px);
@@ -105,10 +99,7 @@ $standard-icon-size: 16px;
         }
     }
     .outcome-icon-fail {
-        @include cross-icon-styles($outcome-icon-size, 0px);
-        svg circle {
-            fill: $outcome-fail-color;
-        }
+        @include cross-icon-styles($outcome-icon-size, 0px, $outcome-fail-color);
     }
 }
 
@@ -137,15 +128,12 @@ $standard-icon-size: 16px;
     }
     .pass {
         @extend .block;
-        @include check-icon-styles($outcome-summary-icon-size, 0px);
+        @include check-icon-styles($outcome-summary-icon-size, 0px, $outcome-pass-summary-color);
         .check-container {
             margin-right: 4px;
             margin-left: 4px;
         }
         background-color: $outcome-pass-summary-color;
-        svg circle {
-            fill: $outcome-pass-summary-color;
-        }
         border-top-left-radius: 2px;
         border-bottom-left-radius: 2px;
     }
@@ -166,15 +154,12 @@ $standard-icon-size: 16px;
     }
     .fail {
         @extend .block;
-        @include cross-icon-styles($outcome-summary-icon-size, 0px);
+        @include cross-icon-styles($outcome-summary-icon-size, 0px, $outcome-fail-summary-color);
         .check-container {
             margin-right: 2px;
         }
         background-color: $outcome-fail-summary-color;
         border-top-right-radius: 2px;
         border-bottom-right-radius: 2px;
-        svg circle {
-            fill: $outcome-fail-summary-color;
-        }
     }
 }

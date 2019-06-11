@@ -2,9 +2,11 @@
 // Licensed under the MIT License.
 import { shallow } from 'enzyme';
 import * as React from 'react';
-import { CheckIcon } from '../../../../../../common/icons/check-icon';
+
+import { CheckIcon, CheckIconInverted } from '../../../../../../common/icons/check-icon';
 import { CircleIcon } from '../../../../../../common/icons/circle-icon';
-import { CrossIcon } from '../../../../../../common/icons/cross-icon';
+import { CrossIconInverted } from '../../../../../../common/icons/cross-icon';
+import { InapplicableIcon, InapplicableIconInverted } from '../../../../../../common/icons/inapplicable-icon';
 import { OutcomeIcon } from '../../../../../../DetailsView/reports/components/outcome-icon';
 import { allRequirementOutcomeTypes } from '../../../../../../DetailsView/reports/components/requirement-outcome-type';
 
@@ -19,7 +21,7 @@ describe('OutcomeIcon', () => {
     });
 });
 
-[CheckIcon, CircleIcon, CrossIcon].forEach(Icon => {
+[CheckIcon, CheckIconInverted, CircleIcon, CrossIconInverted, InapplicableIcon, InapplicableIconInverted].forEach(Icon => {
     const name = Icon.displayName;
     describe(name, () => {
         test('render', () => {
