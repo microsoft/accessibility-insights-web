@@ -3,7 +3,6 @@
 import { escape } from 'lodash';
 import { ActionButton } from 'office-ui-fabric-react/lib/Button';
 import * as React from 'react';
-
 import { ExportResultType } from '../../common/telemetry-events';
 import { ReportGenerator } from '../reports/report-generator';
 import { ExportDialog, ExportDialogDeps } from './export-dialog';
@@ -27,6 +26,7 @@ export interface ReportExportComponentState {
 
 export class ReportExportComponent extends React.Component<ReportExportComponentProps, ReportExportComponentState> {
     private descriptionPlaceholder: string = 'd68d50a0-8249-464d-b2fd-709049c89ee4';
+    private replaceRegex: RegExp = new RegExp(`${this.descriptionPlaceholder}`, 'g');
 
     constructor(props) {
         super(props);
@@ -44,7 +44,7 @@ export class ReportExportComponent extends React.Component<ReportExportComponent
     };
 
     private onExportDescriptionChange = (value: string) => {
-        const exportData = this.state.exportDataWithPlaceholder.replace(this.descriptionPlaceholder, escape(value));
+        const exportData = this.state.exportDataWithPlaceholder.replace(this.replaceRegex, escape(value));
         this.setState({ exportDescription: value, exportData });
     };
 
@@ -52,7 +52,7 @@ export class ReportExportComponent extends React.Component<ReportExportComponent
         const { reportGenerator, exportResultsType, scanDate, pageTitle, htmlGenerator } = this.props;
         const exportName = reportGenerator.generateName(exportResultsType, scanDate, pageTitle);
         const exportDataWithPlaceholder = htmlGenerator(this.descriptionPlaceholder);
-        const exportData = exportDataWithPlaceholder.replace(this.descriptionPlaceholder, '');
+        const exportData = exportDataWithPlaceholder.replace(this.replaceRegex, '');
         this.setState({ exportDescription: '', exportName, exportDataWithPlaceholder, exportData, isOpen: true });
     };
 
