@@ -1,10 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as React from 'react';
-import { InapplicableIcon } from '../../../common/icons/inapplicable-icon';
-import { CheckIcon } from './../../../common/icons/check-icon';
+
+import { InapplicableIcon, InapplicableIconInverted } from '../../../common/icons/inapplicable-icon';
+import { CheckIcon, CheckIconInverted } from './../../../common/icons/check-icon';
 import { CircleIcon } from './../../../common/icons/circle-icon';
-import { CrossIcon } from './../../../common/icons/cross-icon';
+import { CrossIcon, CrossIconInverted } from './../../../common/icons/cross-icon';
 import { InstanceOutcomeType } from './report-sections/outcome-summary-bar';
 import { RequirementOutcomeType } from './requirement-outcome-type';
 
@@ -26,4 +27,11 @@ export const outcomeIconMap: { [OT in OutcomeType]: JSX.Element } = {
     incomplete: <CircleIcon />,
     fail: <CrossIcon />,
     inapplicable: <InapplicableIcon />,
+};
+
+export const outcomeIconMapInverted: { [OT in OutcomeType]: JSX.Element } = {
+    pass: <CheckIconInverted />,
+    incomplete: <CircleIcon />,
+    fail: <CrossIconInverted />,
+    inapplicable: <InapplicableIconInverted />,
 };

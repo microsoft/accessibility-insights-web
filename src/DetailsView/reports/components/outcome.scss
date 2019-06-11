@@ -21,21 +21,23 @@ $outcome-incomplete-summary-consistent-foreground: $always-white;
 $outcome-fail-color: $negative-outcome;
 $outcome-inapplicable-color: $neutral-outcome;
 $outcome-fail-summary-color: $negative-outcome;
-@mixin outcome-chip-color($outcome-color) {
-    .check-container {
-        background-color: $outcome-color;
-        border: 1px solid $outcome-color;
-    }
-    .count {
-        background-color: transparent;
-        border: 1px solid $outcome-color;
+$outcome-count-border-size: 1.5px;
+$standard-icon-size: 16px;
+
+.check-container {
+    svg {
+        width: 100%;
+        height: 100%;
     }
 }
 
-@mixin outcome-icon-set-color($color) {
+@mixin outcome-chip-color($outcome-color) {
     .check-container {
-        border-color: $color;
-        background-color: $color;
+        background-color: $outcome-color;
+    }
+    .count {
+        background-color: transparent;
+        border: $outcome-count-border-size solid $outcome-color;
     }
 }
 
@@ -50,19 +52,21 @@ $outcome-fail-summary-color: $negative-outcome;
     margin-bottom: -3px;
     .icon {
         border-radius: 50%;
+        width: $outcome-chip-icon-size;
+        height: $outcome-chip-icon-size;
     }
     .count {
         font-family: $fontFamily;
-        line-height: $outcome-chip-icon-size - 2;
+        line-height: $outcome-chip-icon-size - (2 * $outcome-count-border-size);
         font-size: 11px;
         border-radius: 0 8px 8px 0;
         padding: 0 6px 0 10px;
         font-weight: 700;
         margin-left: -8px;
-        height: $outcome-chip-icon-size - 2;
+        height: $outcome-chip-icon-size - (2 * $outcome-count-border-size);
     }
     &.outcome-chip-pass {
-        @include check-icon-styles($outcome-chip-icon-size, 1px);
+        @include check-icon-styles($outcome-chip-icon-size, 0px, $outcome-pass-color);
         @include outcome-chip-color($outcome-pass-color);
     }
     &.outcome-chip-incomplete {
@@ -70,11 +74,11 @@ $outcome-fail-summary-color: $negative-outcome;
         @include outcome-chip-color($outcome-incomplete-border-color);
     }
     &.outcome-chip-fail {
-        @include cross-icon-styles($outcome-chip-icon-size, 1px);
+        @include cross-icon-styles($outcome-chip-icon-size, 0px, $outcome-fail-color);
         @include outcome-chip-color($outcome-fail-color);
     }
     &.outcome-chip-inapplicable {
-        @include inapplicable-icon-styles($outcome-chip-icon-size, 1px);
+        @include inapplicable-icon-styles($outcome-chip-icon-size, 0px);
         @include outcome-chip-color($outcome-inapplicable-color);
     }
 }
@@ -86,8 +90,7 @@ $outcome-fail-summary-color: $negative-outcome;
         border-radius: 50%;
     }
     .outcome-icon-pass {
-        @include check-icon-styles($outcome-icon-size, 0px);
-        @include outcome-icon-set-color($outcome-pass-color);
+        @include check-icon-styles($outcome-icon-size, 0px, $outcome-pass-color);
     }
     .outcome-icon-incomplete {
         @include incomplete-icon-styles($outcome-icon-size, 1px);
@@ -96,8 +99,7 @@ $outcome-fail-summary-color: $negative-outcome;
         }
     }
     .outcome-icon-fail {
-        @include cross-icon-styles($outcome-icon-size, 0px);
-        @include outcome-icon-set-color($outcome-fail-color);
+        @include cross-icon-styles($outcome-icon-size, 0px, $outcome-fail-color);
     }
 }
 
@@ -126,9 +128,8 @@ $outcome-fail-summary-color: $negative-outcome;
     }
     .pass {
         @extend .block;
-        @include check-icon-styles($outcome-summary-icon-size, 0px);
+        @include check-icon-styles($outcome-summary-icon-size, 0px, $outcome-pass-summary-color);
         .check-container {
-            bottom: -1px;
             margin-right: 4px;
             margin-left: 4px;
         }
@@ -140,7 +141,6 @@ $outcome-fail-summary-color: $negative-outcome;
         @extend .block;
         @include incomplete-icon-styles(14px, 3px);
         .check-container {
-            bottom: -1px;
             margin-right: 6px;
             margin-left: 5px;
             border-color: $outcome-incomplete-summary-consistent-foreground;
@@ -154,9 +154,8 @@ $outcome-fail-summary-color: $negative-outcome;
     }
     .fail {
         @extend .block;
-        @include cross-icon-styles($outcome-summary-icon-size, 0px);
+        @include cross-icon-styles($outcome-summary-icon-size, 0px, $outcome-fail-summary-color);
         .check-container {
-            bottom: -1px;
             margin-right: 2px;
         }
         background-color: $outcome-fail-summary-color;

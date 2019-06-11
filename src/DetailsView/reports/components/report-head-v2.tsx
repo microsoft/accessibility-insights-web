@@ -8,7 +8,7 @@ import * as reportStyles from '../automated-checks-report.styles';
 export const ReportHeadV2 = NamedSFC('ReportHead', () => {
     return (
         <head>
-            <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+            <meta httpEquiv="Content-Type" content="text/html;charset=utf-8" />
             <title>{title} automated checks result</title>
             <style dangerouslySetInnerHTML={{ __html: reportStyles.styleSheet }} />
         </head>
