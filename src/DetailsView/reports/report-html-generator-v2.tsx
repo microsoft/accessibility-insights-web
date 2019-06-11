@@ -16,7 +16,7 @@ export class ReportHtmlGeneratorV2 implements ReportHtmlGenerator {
         private readonly sectionFactory: ReportSectionFactory,
         private readonly reactStaticRenderer: ReactStaticRenderer,
         private readonly environmentInfo: EnvironmentInfo,
-        private readonly collapsibleScriptProvider: CollapsibleScriptProvider;
+        private readonly collapsibleScriptProvider: CollapsibleScriptProvider,
         private readonly utcDateConverter: (scanDate: Date) => string,
     ) {}
 

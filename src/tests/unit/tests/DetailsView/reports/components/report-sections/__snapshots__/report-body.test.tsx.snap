@@ -3,6 +3,7 @@
 exports[`ReportBody renders 1`] = `
 <body-section>
   <header-section
+    collapsibleScriptProvider={Object {}}
     description="test description"
     environmentInfo={
       Object {
@@ -30,6 +31,7 @@ exports[`ReportBody renders 1`] = `
   <content-container>
     <title-section />
     <summary-section
+      collapsibleScriptProvider={Object {}}
       description="test description"
       environmentInfo={
         Object {
@@ -55,6 +57,7 @@ exports[`ReportBody renders 1`] = `
       toUtcString={[Function]}
     />
     <details-section
+      collapsibleScriptProvider={Object {}}
       description="test description"
       environmentInfo={
         Object {
@@ -81,6 +84,7 @@ exports[`ReportBody renders 1`] = `
     />
     <result-section>
       <failed-instances-section
+        collapsibleScriptProvider={Object {}}
         description="test description"
         environmentInfo={
           Object {
@@ -106,6 +110,7 @@ exports[`ReportBody renders 1`] = `
         toUtcString={[Function]}
       />
       <passed-checks-section
+        collapsibleScriptProvider={Object {}}
         description="test description"
         environmentInfo={
           Object {
@@ -131,6 +136,7 @@ exports[`ReportBody renders 1`] = `
         toUtcString={[Function]}
       />
       <not-applicable-checks-section
+        collapsibleScriptProvider={Object {}}
         description="test description"
         environmentInfo={
           Object {
@@ -158,6 +164,7 @@ exports[`ReportBody renders 1`] = `
     </result-section>
   </content-container>
   <footer-section
+    collapsibleScriptProvider={Object {}}
     description="test description"
     environmentInfo={
       Object {
