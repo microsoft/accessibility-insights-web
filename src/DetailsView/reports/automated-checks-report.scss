@@ -18,6 +18,7 @@
 }
 
 body {
+    font-size: 14px;
     margin: auto;
     background-color: $neutral-2;
     color: black;
@@ -173,7 +174,7 @@ $outcome-not-applicable-summary-color: $neutral-outcome;
     }
 
     table {
-        font-size: 12px;
+        font-size: 14px;
         line-height: 16px;
     }
 
@@ -198,7 +199,6 @@ $outcome-not-applicable-summary-color: $neutral-outcome;
     .report-footer {
         margin-top: 24px;
 
-        font-size: 15px;
         line-height: 20px;
 
         color: $secondary-text;
