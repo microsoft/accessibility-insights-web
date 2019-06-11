@@ -10,12 +10,13 @@ import {
     AssessmentReportAssessmentListDeps,
     AssessmentReportAssessmentListProps,
 } from '../../../../../../DetailsView/reports/components/assessment-report-assessment-list';
+import { AssessmentReportStepListDeps } from '../../../../../../DetailsView/reports/components/assessment-report-step-list';
 import { AssessmentReportBuilderTestHelper } from '../../assessment-report-builder-test-helper';
 
 describe('AssessmentReportAssessmentListTest', () => {
     const deps: AssessmentReportAssessmentListDeps = {
         outcomeTypeSemanticsFromTestStatus: { stub: 'outcomeTypeSemanticsFromTestStatus' } as any,
-    };
+    } as AssessmentReportStepListDeps;
 
     test('render: pass', () => {
         const assessments: AssessmentReportAssessmentListProps = {

@@ -16,6 +16,7 @@ import { DropdownClickHandler } from '../common/dropdown-click-handler';
 import { EnvironmentInfoProvider } from '../common/environment-info-provider';
 import { initializeFabricIcons } from '../common/fabric-icons';
 import { getAllFeatureFlagDetails } from '../common/feature-flags';
+import { GetGuidanceTagsFromGuidanceLinks } from '../common/get-guidance-tags-from-guidance-links';
 import { getInnerTextFromJsxElement } from '../common/get-inner-text-from-jsx-element';
 import { HTMLElementUtils } from '../common/html-element-utils';
 import { Tab } from '../common/itab';
@@ -207,7 +208,10 @@ if (isNaN(tabId) === false) {
                 DateProvider.getUTCStringFromDate,
             );
 
-            const assessmentReportHtmlGeneratorDeps = { outcomeTypeSemanticsFromTestStatus };
+            const assessmentReportHtmlGeneratorDeps = {
+                outcomeTypeSemanticsFromTestStatus,
+                getGuidanceTagsFromGuidanceLinks: GetGuidanceTagsFromGuidanceLinks,
+            };
             const assessmentReportHtmlGenerator = new AssessmentReportHtmlGenerator(
                 assessmentReportHtmlGeneratorDeps,
                 reactStaticRenderer,
@@ -294,6 +298,7 @@ if (isNaN(tabId) === false) {
                 settingsProvider: SettingsProviderImpl,
                 environmentInfoProvider,
                 issueFilingServiceProvider: IssueFilingServiceProviderImpl,
+                getGuidanceTagsFromGuidanceLinks: GetGuidanceTagsFromGuidanceLinks,
                 reportGeneratorProvider,
             };
 

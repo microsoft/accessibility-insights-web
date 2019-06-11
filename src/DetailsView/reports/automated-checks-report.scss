@@ -34,6 +34,10 @@ body {
         font-size: 17px;
         line-height: 24px;
     }
+
+    @media only screen and (max-width: 1000px) {
+        margin: 0 16px 0 16px;
+    }
 }
 
 .title-section {
@@ -91,6 +95,7 @@ $outcome-not-applicable-summary-color: $neutral-outcome;
     background-color: $neutral-0;
     padding: 25px;
     margin-bottom: 24px;
+    white-space: pre-wrap;
 
     .outcome-summary-bar {
         $outcome-summary-icon-size: 16px;
@@ -121,7 +126,6 @@ $outcome-not-applicable-summary-color: $neutral-outcome;
             @include cross-icon-styles($outcome-summary-icon-size, 0px, $outcome-fail-summary-color);
             .check-container {
                 bottom: -1px;
-                margin-right: 8px;
                 background: $neutral-0;
             }
             background-color: $outcome-fail-summary-color;

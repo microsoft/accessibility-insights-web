@@ -71,7 +71,7 @@ describe('DetailsViewCommandBar', () => {
             outcomeTypeSemanticsFromTestStatus: { stub: 'outcomeTypeSemanticsFromTestStatus' } as any,
             getCurrentDate: () => theDate,
             reportGeneratorProvider: reportGeneratorProviderMock.object,
-        };
+        } as DetailsViewCommandBarDeps;
 
         return {
             deps,
