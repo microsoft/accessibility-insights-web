@@ -34,6 +34,9 @@ $standard-icon-size: 16px;
 @mixin outcome-chip-color($outcome-color) {
     .check-container {
         background-color: $outcome-color;
+        svg circle {
+            fill: $outcome-color;
+        }
     }
     .count {
         background-color: transparent;
@@ -91,6 +94,9 @@ $standard-icon-size: 16px;
     }
     .outcome-icon-pass {
         @include check-icon-styles($outcome-icon-size, 0px);
+        svg circle {
+            fill: $outcome-pass-color;
+        }
     }
     .outcome-icon-incomplete {
         @include incomplete-icon-styles($outcome-icon-size, 1px);
@@ -100,6 +106,9 @@ $standard-icon-size: 16px;
     }
     .outcome-icon-fail {
         @include cross-icon-styles($outcome-icon-size, 0px);
+        svg circle {
+            fill: $outcome-fail-color;
+        }
     }
 }
 
@@ -134,6 +143,9 @@ $standard-icon-size: 16px;
             margin-left: 4px;
         }
         background-color: $outcome-pass-summary-color;
+        svg circle {
+            fill: $outcome-pass-summary-color;
+        }
         border-top-left-radius: 2px;
         border-bottom-left-radius: 2px;
     }
@@ -161,5 +173,8 @@ $standard-icon-size: 16px;
         background-color: $outcome-fail-summary-color;
         border-top-right-radius: 2px;
         border-bottom-right-radius: 2px;
+        svg circle {
+            fill: $outcome-fail-summary-color;
+        }
     }
 }
