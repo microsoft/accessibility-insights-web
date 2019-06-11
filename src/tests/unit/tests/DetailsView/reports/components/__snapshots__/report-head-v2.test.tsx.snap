@@ -4,7 +4,7 @@ exports[`ReportHeadV2 renders 1`] = `
 <head>
   <meta
     content="text/html;charset=utf-8"
-    http-equiv="Content-Type"
+    httpEquiv="Content-Type"
   />
   <title>
     Accessibility Insights for Web
