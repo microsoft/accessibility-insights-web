@@ -6,8 +6,9 @@ exports[`SummaryDetails renders 1`] = `
   id="summary-details-test-id"
 >
   <div
+    aria-level={5}
     className="summary-container"
-    customProp="custom value"
+    role="custom role"
   >
     <button
       aria-controls="details-content-test-id"

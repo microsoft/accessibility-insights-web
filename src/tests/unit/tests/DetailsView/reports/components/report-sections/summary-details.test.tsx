@@ -11,7 +11,8 @@ describe('SummaryDetails', () => {
             id: 'test-id',
             summaryContent: <div>this is the summary content</div>,
             summaryProps: {
-                customProp: 'custom value',
+                role: 'custom role',
+                'aria-level': 5,
             },
             detailsContent: <div> this is the details content </div>,
         };

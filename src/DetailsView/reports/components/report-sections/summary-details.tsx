@@ -4,8 +4,13 @@ import * as React from 'react';
 
 import { NamedSFC } from '../../../../common/react/named-sfc';
 
+type HeadingProps = {
+    role: string;
+    'aria-level': number;
+};
+
 export type SummaryDetailsProps = {
-    summaryProps?: Object;
+    summaryProps: HeadingProps;
     id: string;
     summaryContent: JSX.Element;
     detailsContent: JSX.Element;
