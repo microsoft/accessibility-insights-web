@@ -4,7 +4,6 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 import { Mock } from 'typemoq';
 
-import { CollapsibleScriptProvider } from '../../../../../../../DetailsView/reports/components/report-sections/collapsible-script-provider';
 import {
     FailedInstancesSection,
     FailedInstancesSectionProps,
@@ -13,11 +12,11 @@ import { RuleResult } from '../../../../../../../scanner/iruleresults';
 
 describe('FailedInstancesSection', () => {
     it('renders', () => {
-        const collapsibleScriptProviderMock = Mock.ofType<CollapsibleScriptProvider>();
-        collapsibleScriptProviderMock.setup(provider => provider.getDefault()).returns(() => 'test script');
+        const getScriptMock = Mock.ofInstance(() => '');
+        getScriptMock.setup(getScript => getScript()).returns(() => 'test script');
 
         const props: FailedInstancesSectionProps = {
-            collapsibleScriptProvider: collapsibleScriptProviderMock.object,
+            getCollapsibleScript: getScriptMock.object,
             scanResult: {
                 violations: [{ nodes: [{}, {}] } as RuleResult, { nodes: [{}] } as RuleResult, { nodes: [{}, {}, {}] } as RuleResult],
                 passes: [],

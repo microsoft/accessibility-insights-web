@@ -3,7 +3,6 @@
 import { EnvironmentInfo } from '../../../../common/environment-info-provider';
 import { ReactSFCWithDisplayName } from '../../../../common/react/named-sfc';
 import { ScanResults } from '../../../../scanner/iruleresults';
-import { CollapsibleScriptProvider } from './collapsible-script-provider';
 
 export type SectionProps = {
     pageTitle: string;
@@ -13,7 +12,7 @@ export type SectionProps = {
     environmentInfo: EnvironmentInfo;
     scanResult: ScanResults;
     toUtcString: (date: Date) => string;
-    collapsibleScriptProvider: CollapsibleScriptProvider;
+    getCollapsibleScript: () => string;
 };
 
 export type ReportSectionFactory = {

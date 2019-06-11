@@ -6,11 +6,11 @@ import { NamedSFC } from '../../../../common/react/named-sfc';
 import { SectionProps } from './report-section-factory';
 import { ResultSection } from './result-section';
 
-export type FailedInstancesSectionProps = Pick<SectionProps, 'scanResult' | 'collapsibleScriptProvider'>;
+export type FailedInstancesSectionProps = Pick<SectionProps, 'scanResult' | 'getCollapsibleScript'>;
 
 export const FailedInstancesSection = NamedSFC<FailedInstancesSectionProps>(
     'FailedInstancesSection',
-    ({ scanResult, collapsibleScriptProvider }) => {
+    ({ scanResult, getCollapsibleScript }) => {
         const rules = scanResult.violations;
         const count = rules.reduce((total, rule) => {
             return total + rule.nodes.length;
@@ -26,7 +26,7 @@ export const FailedInstancesSection = NamedSFC<FailedInstancesSectionProps>(
                     showDetails={true}
                     badgeCount={count}
                 />
-                <script dangerouslySetInnerHTML={{ __html: collapsibleScriptProvider.getDefault() }} />
+                <script dangerouslySetInnerHTML={{ __html: getCollapsibleScript() }} />
             </>
         );
     },

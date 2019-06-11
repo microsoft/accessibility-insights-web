@@ -5,7 +5,6 @@ import * as React from 'react';
 import { EnvironmentInfo } from '../../common/environment-info-provider';
 import { ScanResults } from '../../scanner/iruleresults';
 import { ReportHeadV2 } from './components/report-head-v2';
-import { CollapsibleScriptProvider } from './components/report-sections/collapsible-script-provider';
 import { ReportBody, ReportBodyProps } from './components/report-sections/report-body';
 import { ReportSectionFactory, SectionProps } from './components/report-sections/report-section-factory';
 import { ReactStaticRenderer } from './react-static-renderer';
@@ -16,7 +15,7 @@ export class ReportHtmlGeneratorV2 implements ReportHtmlGenerator {
         private readonly sectionFactory: ReportSectionFactory,
         private readonly reactStaticRenderer: ReactStaticRenderer,
         private readonly environmentInfo: EnvironmentInfo,
-        private readonly collapsibleScriptProvider: CollapsibleScriptProvider,
+        private readonly getCollpasibleScript: () => string,
         private readonly utcDateConverter: (scanDate: Date) => string,
     ) {}
 
@@ -32,7 +31,7 @@ export class ReportHtmlGeneratorV2 implements ReportHtmlGenerator {
             scanResult,
             environmentInfo: this.environmentInfo,
             toUtcString: this.utcDateConverter,
-            collapsibleScriptProvider: this.collapsibleScriptProvider,
+            getCollapsibleScript: this.getCollpasibleScript,
         };
 
         const props: ReportBodyProps = {

@@ -2,10 +2,8 @@
 // Licensed under the MIT License.
 import { shallow } from 'enzyme';
 import * as React from 'react';
-import { Mock } from 'typemoq';
 
 import { NamedSFC } from '../../../../../../../common/react/named-sfc';
-import { CollapsibleScriptProvider } from '../../../../../../../DetailsView/reports/components/report-sections/collapsible-script-provider';
 import { ReportBody, ReportBodyProps } from '../../../../../../../DetailsView/reports/components/report-sections/report-body';
 import {
     ReportSectionFactory,
@@ -16,8 +14,7 @@ describe('ReportBody', () => {
     it('renders', () => {
         const pageTitle = 'page-title';
         const pageUrl = 'url:target-page';
-
-        const collapsibleScriptProviderStub = {} as CollapsibleScriptProvider;
+        const getScriptStub = () => '';
 
         const detailsProps: SectionProps = {
             pageTitle,
@@ -39,7 +36,7 @@ describe('ReportBody', () => {
                 targetPageUrl: pageUrl,
             },
             toUtcString: () => '',
-            collapsibleScriptProvider: collapsibleScriptProviderStub,
+            getCollapsibleScript: getScriptStub,
         };
 
         const props: ReportBodyProps = {
