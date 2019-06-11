@@ -71,6 +71,7 @@ import { PreviewFeatureFlagsHandler } from './handlers/preview-feature-flags-han
 import { AssessmentReportHtmlGenerator } from './reports/assessment-report-html-generator';
 import { AssessmentReportModelBuilderFactory } from './reports/assessment-report-model-builder-factory';
 import { AutomatedChecksReportSectionFactory } from './reports/components/report-sections/automated-checks-report-section-factory';
+import { CollapsibleScriptProvider } from './reports/components/report-sections/collapsible-script-provider';
 import {
     outcomeStatsFromManualTestStatus,
     outcomeTypeFromTestStatus,
@@ -195,10 +196,14 @@ if (isNaN(tabId) === false) {
                 extensionVersion,
                 axeVersion,
             );
+
+            const collapsibleScriptProvider = new CollapsibleScriptProvider();
+
             const reportHtmlGeneratorV2 = new ReportHtmlGeneratorV2(
                 AutomatedChecksReportSectionFactory,
                 reactStaticRenderer,
                 environmentInfoProvider.getEnvironmentInfo(),
+                collapsibleScriptProvider,
                 DateProvider.getUTCStringFromDate,
             );
 
