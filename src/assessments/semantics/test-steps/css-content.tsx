@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as React from 'react';
+import { NewTabLink } from '../../../common/components/new-tab-link';
 import { VisualizationType } from '../../../common/types/visualization-type';
 import { link } from '../../../content/link';
 import * as content from '../../../content/test/semantics/css-content';
@@ -10,7 +11,6 @@ import { ManualTestRecordYourResults } from '../../common/manual-test-record-you
 import * as Markup from '../../markup';
 import { Requirement } from '../../types/requirement';
 import { SemanticsTestStep } from './test-steps';
-import { NewTabLink } from '../../../common/components/new-tab-link';
 
 const cssContentHowToTest: JSX.Element = (
     <div>
