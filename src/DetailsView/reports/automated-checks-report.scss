@@ -18,6 +18,7 @@
 }
 
 body {
+    font-size: 14px;
     margin: auto;
     background-color: $neutral-2;
     color: black;
@@ -36,12 +37,13 @@ body {
     }
 
     @media only screen and (max-width: 1000px) {
-        margin: 0 16px 0 16px;
+        margin: 24px 16px 0 16px;
     }
 }
 
 .title-section {
     h1 {
+        font-family: $semiBoldFontFamily;
         margin: 0px 0px 24px 0px;
         font-size: 21px;
         line-height: 32px;
@@ -61,6 +63,7 @@ body {
     min-height: fit-content;
     align-items: center;
     background-color: $neutral-0;
+    box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.08);
 }
 
 .report-header-command-bar .target-page {
@@ -69,7 +72,6 @@ body {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    width: 50%;
     color: $neutral-60;
     font-family: $fontFamily;
     font-size: 14px;
@@ -93,7 +95,7 @@ $outcome-not-applicable-summary-color: $neutral-outcome;
     @include boxShadow();
 
     background-color: $neutral-0;
-    padding: 25px;
+    padding: 20px;
     margin-bottom: 24px;
     white-space: pre-wrap;
 
@@ -124,12 +126,11 @@ $outcome-not-applicable-summary-color: $neutral-outcome;
         .fail {
             @extend .block;
             @include cross-icon-styles($outcome-summary-icon-size, 0px, $outcome-fail-summary-color);
+            border-radius: 2px 0 0 2px;
             .check-container {
                 bottom: -1px;
             }
             background-color: $outcome-fail-summary-color;
-            border-top-right-radius: 2px;
-            border-bottom-right-radius: 2px;
         }
         .pass {
             @extend .block;
@@ -148,16 +149,13 @@ $outcome-not-applicable-summary-color: $neutral-outcome;
         .inapplicable {
             @extend .block;
             @include inapplicable-icon-styles($outcome-summary-icon-size, 0px, $outcome-not-applicable-summary-color);
+            border-radius: 0 2px 2px 0;
             .check-container {
                 bottom: -1px;
                 margin-right: 8px;
                 margin-left: 4px;
             }
             background-color: $outcome-not-applicable-summary-color;
-            margin-left: 4px;
-            margin-right: 4px;
-            border-top-left-radius: 2px;
-            border-bottom-left-radius: 2px;
         }
     }
 }
@@ -175,7 +173,7 @@ $outcome-not-applicable-summary-color: $neutral-outcome;
     }
 
     table {
-        font-size: 12px;
+        font-size: 14px;
         line-height: 16px;
     }
 
@@ -200,7 +198,6 @@ $outcome-not-applicable-summary-color: $neutral-outcome;
     .report-footer {
         margin-top: 24px;
 
-        font-size: 15px;
         line-height: 20px;
 
         color: $secondary-text;
