@@ -39,7 +39,6 @@ describe('OverviewContainer', () => {
     const filteredProvider = {} as AssessmentsProvider;
     const detailsViewActionMessageCreatorStub = {} as DetailsViewActionMessageCreator;
     const assessmentsProviderWithFeaturesEnabledMock = Mock.ofInstance((provider, featureFlagData) => null, MockBehavior.Strict);
-
     const getAssessmentSummaryModelFromProviderAndStoreData = jest.fn();
 
     const deps: OverviewContainerDeps = {
