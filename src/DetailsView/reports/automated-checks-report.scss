@@ -273,6 +273,7 @@ $outcome-not-applicable-summary-color: $neutral-outcome;
 
         .summary-container {
             display: flex;
+            align-items: baseline;
 
             .rule-detail {
                 box-shadow: unset;
