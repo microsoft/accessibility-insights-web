@@ -8,17 +8,6 @@ exports[`SummarySection renders 1`] = `
     Summary
   </h2>
   <OutcomeSummaryBar
-    description="test description"
-    environmentInfo={
-      Object {
-        "axeCoreVersion": "axe-core-version",
-        "browserSpec": "browser-spec",
-        "extensionVersion": "extension-version",
-      }
-    }
-    pageTitle="page-title"
-    pageUrl="url:target-page"
-    scanDate={2019-05-29T19:12:16.804Z}
     scanResult={
       Object {
         "inapplicable": Array [],

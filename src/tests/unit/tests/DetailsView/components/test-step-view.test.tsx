@@ -42,7 +42,7 @@ describe('TestStepViewTest', () => {
         const title = mainDiv.find('h3.test-step-view-title');
 
         expect(title.exists()).toBeTruthy();
-        expect(props.testStep.name).toBe(title.text());
+        expect(title.text().startsWith(props.testStep.name)).toBe(true);
 
         const testInstructions = wrapper.find(CollapsibleComponent);
 

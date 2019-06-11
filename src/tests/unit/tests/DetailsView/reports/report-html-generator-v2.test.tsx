@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 import { It, Mock, MockBehavior, Times } from 'typemoq';
-
+import { DateProvider } from '../../../../../common/date-provider';
 import { EnvironmentInfo } from '../../../../../common/environment-info-provider';
 import { ReportHeadV2 } from '../../../../../DetailsView/reports/components/report-head-v2';
 import { ReportBody, ReportBodyProps } from '../../../../../DetailsView/reports/components/report-sections/report-body';
@@ -22,6 +22,8 @@ describe('ReportHtmlGeneratorV2', () => {
         const pageUrl: string = 'https://page-url/';
         const description: string = 'description';
 
+        const getUTCStringFromDateStub: typeof DateProvider.getUTCStringFromDate = () => '';
+
         const sectionFactoryMock = Mock.ofType<ReportSectionFactory>();
         const environmentInfo: EnvironmentInfo = {
             axeCoreVersion,
@@ -36,6 +38,7 @@ describe('ReportHtmlGeneratorV2', () => {
             scanDate,
             scanResult,
             environmentInfo,
+            toUtcString: getUTCStringFromDateStub,
         };
 
         const headElement: JSX.Element = <ReportHeadV2 />;
@@ -51,7 +54,12 @@ describe('ReportHtmlGeneratorV2', () => {
             .returns(() => '<body-markup />')
             .verifiable(Times.once());
 
-        const testObject = new ReportHtmlGeneratorV2(sectionFactoryMock.object, rendererMock.object, environmentInfo);
+        const testObject = new ReportHtmlGeneratorV2(
+            sectionFactoryMock.object,
+            rendererMock.object,
+            environmentInfo,
+            getUTCStringFromDateStub,
+        );
 
         const actual = testObject.generateHtml(scanResult, scanDate, pageTitle, pageUrl, description);
 

@@ -37,9 +37,7 @@ exports[`DetailsSection renders 1`] = `
         <td
           className="text"
         >
-          <FormattedDate
-            date={2018-03-09T09:48:00.000Z}
-          />
+          2018-03-12 11:24 PM UTC
         </td>
       </tr>
       <tr>

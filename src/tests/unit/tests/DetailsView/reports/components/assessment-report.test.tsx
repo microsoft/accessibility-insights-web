@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { shallow } from 'enzyme';
 import * as React from 'react';
+
 import { AssessmentReport, AssessmentReportDeps } from '../../../../../../DetailsView/reports/components/assessment-report';
 import { AssessmentReportBuilderTestHelper } from '../../assessment-report-builder-test-helper';
 
@@ -9,7 +10,7 @@ describe('AssessmentReport', () => {
     test('render', () => {
         const deps: AssessmentReportDeps = {
             outcomeTypeSemanticsFromTestStatus: { stub: 'outcomeTypeSemanticsFromTestStatus' } as any,
-        };
+        } as AssessmentReportDeps;
 
         const data = AssessmentReportBuilderTestHelper.getAssessmentReportModel();
 
