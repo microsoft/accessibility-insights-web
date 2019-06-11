@@ -15,17 +15,21 @@ describe('ExportDialog', () => {
     const onDescriptionChangeMock = Mock.ofInstance((value: string) => {});
     const actionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator, MockBehavior.Strict);
     const windowUtilsMock = Mock.ofType<WindowUtils>();
+    const provideBlobMock = Mock.ofType<(blobParts?: any[], mimeType?: string) => Blob>();
     const eventStub = 'event stub' as any;
+    const blobStub = {} as Blob;
     let props: ExportDialogProps;
 
     beforeEach(() => {
         onCloseMock.reset();
         onDescriptionChangeMock.reset();
         actionMessageCreatorMock.reset();
+        provideBlobMock.reset();
 
         const deps = {
             detailsViewActionMessageCreator: actionMessageCreatorMock.object,
             windowUtils: windowUtilsMock.object,
+            provideBlob: provideBlobMock.object,
         };
 
         props = {
@@ -45,8 +49,12 @@ describe('ExportDialog', () => {
         const isOpenOptions = [true, false];
 
         it.each(isOpenOptions)('with open %p', isOpen => {
+            provideBlobMock
+                .setup(p => p(It.isAny(), It.isAnyString()))
+                .returns(() => blobStub)
+                .verifiable(Times.once());
             windowUtilsMock
-                .setup(m => m.createObjectURL(It.isAny()))
+                .setup(w => w.createObjectURL(blobStub))
                 .returns(() => 'fake-url')
                 .verifiable(Times.once());
             props.isOpen = isOpen;
@@ -57,8 +65,12 @@ describe('ExportDialog', () => {
     describe('user interaction', () => {
         it('closes the dialog onDismiss', () => {
             onCloseMock.setup(oc => oc()).verifiable(Times.once());
+            provideBlobMock
+                .setup(p => p(It.isAny(), It.isAnyString()))
+                .returns(() => blobStub)
+                .verifiable(Times.once());
             windowUtilsMock
-                .setup(m => m.createObjectURL(It.isAny()))
+                .setup(w => w.createObjectURL(blobStub))
                 .returns(() => 'fake-url')
                 .verifiable(Times.once());
 
@@ -73,8 +85,12 @@ describe('ExportDialog', () => {
 
         it('handles click on export button', () => {
             onCloseMock.setup(oc => oc()).verifiable(Times.once());
+            provideBlobMock
+                .setup(p => p(It.isAny(), It.isAnyString()))
+                .returns(() => blobStub)
+                .verifiable(Times.once());
             windowUtilsMock
-                .setup(m => m.createObjectURL(It.isAny()))
+                .setup(w => w.createObjectURL(blobStub))
                 .returns(() => 'fake-url')
                 .verifiable(Times.once());
 
@@ -95,8 +111,12 @@ describe('ExportDialog', () => {
             props.isOpen = true;
             const changedDescription = 'changed-description';
             onDescriptionChangeMock.setup(handler => handler(It.isValue(changedDescription))).verifiable(Times.once());
+            provideBlobMock
+                .setup(p => p(It.isAny(), It.isAnyString()))
+                .returns(() => blobStub)
+                .verifiable(Times.once());
             windowUtilsMock
-                .setup(m => m.createObjectURL(It.isAny()))
+                .setup(w => w.createObjectURL(blobStub))
                 .returns(() => 'fake-url')
                 .verifiable(Times.once());
 

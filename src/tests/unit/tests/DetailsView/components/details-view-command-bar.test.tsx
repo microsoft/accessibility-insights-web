@@ -75,6 +75,7 @@ describe('DetailsViewCommandBar', () => {
             getCurrentDate: () => theDate,
             reportGeneratorProvider: reportGeneratorProviderMock.object,
             windowUtils: windowUtilsMock.object,
+            provideBlob: () => null,
         };
 
         return {
