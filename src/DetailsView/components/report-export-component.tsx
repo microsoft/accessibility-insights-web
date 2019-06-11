@@ -26,7 +26,7 @@ export interface ReportExportComponentState {
 
 export class ReportExportComponent extends React.Component<ReportExportComponentProps, ReportExportComponentState> {
     private descriptionPlaceholder: string = 'd68d50a0-8249-464d-b2fd-709049c89ee4';
-    private replaceRegex: RegExp = new RegExp(`${this.descriptionPlaceholder}`, 'g');
+    private replaceRegex: RegExp = new RegExp(this.descriptionPlaceholder, 'g');
 
     constructor(props) {
         super(props);
