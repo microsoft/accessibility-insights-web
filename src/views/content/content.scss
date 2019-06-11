@@ -188,21 +188,21 @@
         }
     }
 
-    .do-header,
-    .pass-header {
-        .check-container {
-            border-color: $do-color;
-            background-color: $do-color;
-        }
-    }
+    // .do-header,
+    // .pass-header {
+    //     .check-container {
+    //         border-color: $do-color;
+    //         background-color: $do-color;
+    //     }
+    // }
 
-    .dont-header,
-    .fail-header {
-        .check-container {
-            border-color: $dont-color;
-            background-color: $dont-color;
-        }
-    }
+    // .dont-header,
+    // .fail-header {
+    //     .check-container {
+    //         border-color: $dont-color;
+    //         background-color: $dont-color;
+    //     }
+    // }
 
     .do-section,
     .pass-section,

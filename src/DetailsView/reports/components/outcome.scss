@@ -22,6 +22,14 @@ $outcome-fail-color: $negative-outcome;
 $outcome-inapplicable-color: $neutral-outcome;
 $outcome-fail-summary-color: $negative-outcome;
 $outcome-count-border-size: 1.5px;
+$standard-icon-size: 16px;
+
+.check-container {
+    svg {
+        width: 100%;
+        height: 100%;
+    }
+}
 
 @mixin outcome-chip-color($outcome-color) {
     .check-container {
@@ -35,10 +43,10 @@ $outcome-count-border-size: 1.5px;
 }
 
 @mixin outcome-icon-set-color($color) {
-    .check-container {
-        border-color: $color;
-        background-color: $color;
-    }
+    // .check-container {
+    //     border-color: $color;
+    //     background-color: $color;
+    // }
 }
 
 .outcome-chip {
