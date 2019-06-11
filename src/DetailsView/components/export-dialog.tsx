@@ -6,6 +6,7 @@ import { TextField } from 'office-ui-fabric-react/lib/TextField';
 import * as React from 'react';
 import { NamedSFC } from '../../common/react/named-sfc';
 import { ExportResultType } from '../../common/telemetry-events';
+import { WindowUtils } from '../../common/window-utils';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 
 export interface ExportDialogProps {
@@ -21,6 +22,8 @@ export interface ExportDialogProps {
 
 export interface ExportDialogDeps {
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
+    windowUtils: WindowUtils;
+    provideBlob: (blobParts?: any[], mimeType?: string) => Blob;
 }
 
 export const ExportDialog = NamedSFC<ExportDialogProps>('ExportDialog', props => {
@@ -38,7 +41,8 @@ export const ExportDialog = NamedSFC<ExportDialogProps>('ExportDialog', props =>
         props.onDescriptionChange(value);
     };
 
-    const encodedHtml = encodeURIComponent(props.html);
+    const blob = props.deps.provideBlob([props.html], 'text/html');
+    const blobUrl = props.deps.windowUtils.createObjectURL(blob);
 
     return (
         <Dialog
@@ -64,7 +68,7 @@ export const ExportDialog = NamedSFC<ExportDialogProps>('ExportDialog', props =>
                 ariaLabel="Provide result description"
             />
             <DialogFooter>
-                <PrimaryButton onClick={onExportLinkClick} download={props.fileName} href={'data:text/html,' + encodedHtml}>
+                <PrimaryButton onClick={onExportLinkClick} download={props.fileName} href={blobUrl}>
                     Export
                 </PrimaryButton>
             </DialogFooter>
