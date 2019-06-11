@@ -13,6 +13,7 @@ exports[`SummaryDetails renders 1`] = `
     <button
       aria-controls="details-content-test-id"
       aria-expanded="false"
+      aria-label="show failed instance list"
       className="collapsible-control"
     />
     <div
