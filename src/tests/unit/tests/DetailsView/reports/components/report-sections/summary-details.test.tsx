@@ -8,6 +8,7 @@ import { SummaryDetails, SummaryDetailsProps } from '../../../../../../../Detail
 describe('SummaryDetails', () => {
     it('renders', () => {
         const props: SummaryDetailsProps = {
+            id: 'test-id',
             summaryContent: <div>this is the summary content</div>,
             summaryProps: {
                 customProp: 'custom value',

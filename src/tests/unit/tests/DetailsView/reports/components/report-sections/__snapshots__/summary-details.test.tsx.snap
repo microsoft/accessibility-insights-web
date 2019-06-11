@@ -1,16 +1,35 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`SummaryDetails renders 1`] = `
-<details>
-  <summary
+<div
+  className="summary-details"
+  id="summary-details-test-id"
+>
+  <div
+    className="summary-container"
     customProp="custom value"
   >
-    <div>
-      this is the summary content
+    <button
+      aria-controls="details-content-test-id"
+      aria-expanded="false"
+      className="collapsible-control"
+    />
+    <div
+      id="summary-test-id"
+    >
+      <div>
+        this is the summary content
+      </div>
     </div>
-  </summary>
-  <div>
-     this is the details content 
   </div>
-</details>
+  <div
+    aria-hidden="true"
+    className="details-container"
+    id="details-content-test-id"
+  >
+    <div>
+       this is the details content 
+    </div>
+  </div>
+</div>
 `;

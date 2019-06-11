@@ -6,15 +6,23 @@ import { NamedSFC } from '../../../../common/react/named-sfc';
 
 export type SummaryDetailsProps = {
     summaryProps?: Object;
+    id: string;
     summaryContent: JSX.Element;
     detailsContent: JSX.Element;
 };
 
-export const SummaryDetails = NamedSFC<SummaryDetailsProps>('SummaryDetails', ({ summaryContent, summaryProps, detailsContent }) => {
+export const SummaryDetails = NamedSFC<SummaryDetailsProps>('SummaryDetails', ({ id, summaryContent, summaryProps, detailsContent }) => {
+    const contentId = `details-content-${id}`;
+    const summaryId = `summary-${id}`;
     return (
-        <details>
-            <summary {...summaryProps}>{summaryContent}</summary>
-            {detailsContent}
-        </details>
+        <div className="summary-details" id={`summary-details-${id}`}>
+            <div className="summary-container" {...summaryProps}>
+                <button className="collapsible-control" aria-expanded="false" aria-controls={contentId} />
+                <div id={summaryId}>{summaryContent}</div>
+            </div>
+            <div id={contentId} className="details-container" aria-hidden="true">
+                {detailsContent}
+            </div>
+        </div>
     );
 });
