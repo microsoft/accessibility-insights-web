@@ -28,6 +28,7 @@ exports[`FailedInstancesSection renders 1`] = `
         },
       ]
     }
+    showCongratsIfNotInstances={true}
     showDetails={true}
     title="Failed instances"
   />

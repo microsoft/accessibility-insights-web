@@ -1,5 +1,18 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`PassedChecksSection renders, no rules and show congrats 1`] = `
+<div
+  className="result-section-class-name"
+>
+  <ResultSectionTitle
+    count={2}
+    outcomeType="pass"
+    title="result section title"
+  />
+  <NoFailedInstancesCongrats />
+</div>
+`;
+
 exports[`PassedChecksSection renders, not showDetails 1`] = `
 <div
   className="result-section-class-name"

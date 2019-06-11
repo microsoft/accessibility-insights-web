@@ -35,4 +35,20 @@ describe('PassedChecksSection', () => {
 
         expect(wrapper.getElement()).toMatchSnapshot();
     });
+
+    it('renders, no rules and show congrats', () => {
+        const props: ResultSectionProps = {
+            title: 'result section title',
+            containerClassName: 'result-section-class-name',
+            rules: [],
+            outcomeType: 'pass',
+            showDetails: true,
+            showCongratsIfNotInstances: true,
+            badgeCount: 2,
+        };
+
+        const wrapper = shallow(<ResultSection {...props} />);
+
+        expect(wrapper.getElement()).toMatchSnapshot();
+    });
 });

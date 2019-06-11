@@ -24,6 +24,7 @@ export const FailedInstancesSection = NamedSFC<FailedInstancesSectionProps>(
                     containerClassName="failed-instances-section"
                     outcomeType="fail"
                     showDetails={true}
+                    showCongratsIfNotInstances={true}
                     badgeCount={count}
                 />
                 <script dangerouslySetInnerHTML={{ __html: getCollapsibleScript() }} />
