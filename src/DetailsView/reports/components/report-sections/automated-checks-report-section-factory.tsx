@@ -4,10 +4,10 @@ import { BodySection } from './body-section';
 import { ContentContainer } from './content-container';
 import { DetailsSection } from './details-section';
 import { FailedInstancesSection } from './failed-instances-section';
-import { FooterSection } from './footer-section';
 import { HeaderSection } from './header-section';
 import { NotApplicableChecksSection } from './not-applicable-section';
 import { PassedChecksSection } from './passed-checks-section';
+import { ReportFooter } from './report-footer';
 import { ReportSectionFactory } from './report-section-factory';
 import { ResultsContainer } from './results-container';
 import { SummarySection } from './summary-section';
@@ -24,5 +24,5 @@ export const AutomatedChecksReportSectionFactory: ReportSectionFactory = {
     FailedInstancesSection,
     PassedChecksSection,
     NotApplicableChecksSection,
-    FooterSection,
+    FooterSection: ReportFooter,
 };

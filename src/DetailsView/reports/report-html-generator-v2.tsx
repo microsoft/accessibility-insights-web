@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as React from 'react';
-
 import { EnvironmentInfo } from '../../common/environment-info-provider';
 import { ScanResults } from '../../scanner/iruleresults';
 import { ReportHeadV2 } from './components/report-head-v2';
@@ -15,6 +14,7 @@ export class ReportHtmlGeneratorV2 implements ReportHtmlGenerator {
         private readonly sectionFactory: ReportSectionFactory,
         private readonly reactStaticRenderer: ReactStaticRenderer,
         private readonly environmentInfo: EnvironmentInfo,
+        private readonly utcDateConverter: (scanDate: Date) => string,
     ) {}
 
     public generateHtml(scanResult: ScanResults, scanDate: Date, pageTitle: string, pageUrl: string, description: string): string {
@@ -28,6 +28,7 @@ export class ReportHtmlGeneratorV2 implements ReportHtmlGenerator {
             scanDate,
             scanResult,
             environmentInfo: this.environmentInfo,
+            toUtcString: this.utcDateConverter,
         };
 
         const props: ReportBodyProps = {

@@ -2,13 +2,23 @@
 // Licensed under the MIT License.
 import { shallow } from 'enzyme';
 import * as React from 'react';
-
+import { IMock, Mock, MockBehavior } from 'typemoq';
+import { DateProvider } from '../../../../../../../common/date-provider';
 import { DetailsSection, DetailsSectionProps } from '../../../../../../../DetailsView/reports/components/report-sections/details-section';
 
 describe('DetailsSection', () => {
     it('renders', () => {
+        const scanDate = new Date(Date.UTC(2018, 2, 9, 9, 48));
+
+        const toUtcStringMock: IMock<(date: Date) => string> = Mock.ofInstance(DateProvider.getUTCStringFromDate, MockBehavior.Strict);
+
+        toUtcStringMock
+            .setup(getter => getter(scanDate))
+            .returns(() => '2018-03-12 11:24 PM UTC')
+            .verifiable();
+
         const props: DetailsSectionProps = {
-            scanDate: new Date(Date.UTC(2018, 2, 9, 9, 48)),
+            scanDate,
             pageTitle: 'page-title',
             pageUrl: 'https://page-url/',
             description: 'description-text',
@@ -17,6 +27,7 @@ describe('DetailsSection', () => {
                 extensionVersion: 'extension-version',
                 axeCoreVersion: 'axe-version',
             },
+            toUtcString: toUtcStringMock.object,
         };
 
         const wrapper = shallow(<DetailsSection {...props} />);

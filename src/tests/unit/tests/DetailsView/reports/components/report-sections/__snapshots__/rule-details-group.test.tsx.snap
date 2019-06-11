@@ -35,22 +35,25 @@ exports[`RuleDetailsGroup renders, with details 1`] = `
 <div
   className="rule-details-group"
 >
-  <RuleDetails
-    isHeader={true}
-    outcomeType="pass"
-    rule={
-      Object {
-        "id": "1",
-        "nodes": Array [
+  <details>
+    <summary>
+      <RuleDetails
+        isHeader={true}
+        outcomeType="pass"
+        rule={
           Object {
-            "failureSummary": "fix the error on html tag",
-            "html": "<html>",
-            "snippet": "<html>",
-          },
-        ],
-      }
-    }
-  >
+            "id": "1",
+            "nodes": Array [
+              Object {
+                "failureSummary": "fix the error on html tag",
+                "html": "<html>",
+                "snippet": "<html>",
+              },
+            ],
+          }
+        }
+      />
+    </summary>
     <InstanceDetailsGroup
       nodeResults={
         Array [
@@ -62,6 +65,6 @@ exports[`RuleDetailsGroup renders, with details 1`] = `
         ]
       }
     />
-  </RuleDetails>
+  </details>
 </div>
 `;
