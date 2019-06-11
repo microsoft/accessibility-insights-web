@@ -5,6 +5,7 @@ import { It, Mock, MockBehavior, Times } from 'typemoq';
 import { DateProvider } from '../../../../../common/date-provider';
 import { EnvironmentInfo } from '../../../../../common/environment-info-provider';
 import { ReportHeadV2 } from '../../../../../DetailsView/reports/components/report-head-v2';
+import { CollapsibleScriptProvider } from '../../../../../DetailsView/reports/components/report-sections/collapsible-script-provider';
 import { ReportBody, ReportBodyProps } from '../../../../../DetailsView/reports/components/report-sections/report-body';
 import { ReportSectionFactory } from '../../../../../DetailsView/reports/components/report-sections/report-section-factory';
 import { ReactStaticRenderer } from '../../../../../DetailsView/reports/react-static-renderer';
@@ -30,6 +31,9 @@ describe('ReportHtmlGeneratorV2', () => {
             browserSpec,
             extensionVersion,
         };
+
+        const scriptProvider = Mock.ofType<CollapsibleScriptProvider>();
+
         const sectionProps: ReportBodyProps = {
             sectionFactory: sectionFactoryMock.object,
             pageTitle,
@@ -39,6 +43,7 @@ describe('ReportHtmlGeneratorV2', () => {
             scanResult,
             environmentInfo,
             toUtcString: getUTCStringFromDateStub,
+            collapsibleScriptProvider: scriptProvider.object,
         };
 
         const headElement: JSX.Element = <ReportHeadV2 />;
@@ -58,6 +63,7 @@ describe('ReportHtmlGeneratorV2', () => {
             sectionFactoryMock.object,
             rendererMock.object,
             environmentInfo,
+            scriptProvider.object,
             getUTCStringFromDateStub,
         );
 
