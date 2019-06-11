@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NoFailedInstancesCongrats renders 1`] = `
+<div
+  className="report-congrats"
+>
+  <div
+    className="report-congrats-image"
+  >
+    <InlineImage
+      alt=""
+      imageType={5}
+    />
+  </div>
+  <div
+    className="report-congrats-screen"
+  >
+    <div
+      className="report-congrats-message"
+    >
+      <div
+        className="report-congrats-head"
+      >
+        Congratulations!
+      </div>
+      <div
+        className="report-congrats-info"
+      >
+        No failed automated checks were found.
+      </div>
+    </div>
+  </div>
+</div>
+`;
