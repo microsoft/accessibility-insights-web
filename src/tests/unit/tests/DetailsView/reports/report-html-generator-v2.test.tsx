@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 import { It, Mock, MockBehavior, Times } from 'typemoq';
+
 import { DateProvider } from '../../../../../common/date-provider';
 import { EnvironmentInfo } from '../../../../../common/environment-info-provider';
 import { ReportHeadV2 } from '../../../../../DetailsView/reports/components/report-head-v2';
@@ -30,6 +31,9 @@ describe('ReportHtmlGeneratorV2', () => {
             browserSpec,
             extensionVersion,
         };
+
+        const getScriptMock = Mock.ofInstance(() => '');
+
         const sectionProps: ReportBodyProps = {
             sectionFactory: sectionFactoryMock.object,
             pageTitle,
@@ -39,6 +43,7 @@ describe('ReportHtmlGeneratorV2', () => {
             scanResult,
             environmentInfo,
             toUtcString: getUTCStringFromDateStub,
+            getCollapsibleScript: getScriptMock.object,
         };
 
         const headElement: JSX.Element = <ReportHeadV2 />;
@@ -58,6 +63,7 @@ describe('ReportHtmlGeneratorV2', () => {
             sectionFactoryMock.object,
             rendererMock.object,
             environmentInfo,
+            getScriptMock.object,
             getUTCStringFromDateStub,
         );
 

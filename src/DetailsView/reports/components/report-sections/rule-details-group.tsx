@@ -7,6 +7,7 @@ import { RuleResult } from '../../../../scanner/iruleresults';
 import { InstanceDetailsGroup } from './instance-details-group';
 import { InstanceOutcomeType } from './outcome-summary-bar';
 import { RuleDetail } from './rule-detail';
+import { SummaryDetails } from './summary-details';
 
 export type RuleDetailsGroupProps = {
     rules: RuleResult[];
@@ -19,12 +20,12 @@ export const RuleDetailsGroup = NamedSFC<RuleDetailsGroupProps>('RuleDetailsGrou
         <div className="rule-details-group">
             {rules.map(rule => {
                 return showDetails ? (
-                    <details>
-                        <summary>
-                            <RuleDetail key={rule.id} rule={rule} outcomeType={outcomeType} isHeader={showDetails} />
-                        </summary>
-                        <InstanceDetailsGroup key={`${rule.id}-rule-group`} nodeResults={rule.nodes} />
-                    </details>
+                    <SummaryDetails
+                        id={rule.id}
+                        summaryProps={{ role: 'heading', 'aria-level': 3 }}
+                        summaryContent={<RuleDetail key={rule.id} rule={rule} outcomeType={outcomeType} isHeader={false} />}
+                        detailsContent={<InstanceDetailsGroup key={`${rule.id}-rule-group`} nodeResults={rule.nodes} />}
+                    />
                 ) : (
                     <RuleDetail key={rule.id} rule={rule} outcomeType={outcomeType} isHeader={showDetails} />
                 );

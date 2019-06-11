@@ -12,6 +12,7 @@ export type SectionProps = {
     environmentInfo: EnvironmentInfo;
     scanResult: ScanResults;
     toUtcString: (date: Date) => string;
+    getCollapsibleScript: () => string;
 };
 
 export type ReportSectionFactory = {

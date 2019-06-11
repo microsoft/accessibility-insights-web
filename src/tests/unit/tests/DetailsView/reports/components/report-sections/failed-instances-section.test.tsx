@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { shallow } from 'enzyme';
 import * as React from 'react';
+import { Mock } from 'typemoq';
 
 import {
     FailedInstancesSection,
@@ -11,7 +12,11 @@ import { RuleResult } from '../../../../../../../scanner/iruleresults';
 
 describe('FailedInstancesSection', () => {
     it('renders', () => {
+        const getScriptMock = Mock.ofInstance(() => '');
+        getScriptMock.setup(getScript => getScript()).returns(() => 'test script');
+
         const props: FailedInstancesSectionProps = {
+            getCollapsibleScript: getScriptMock.object,
             scanResult: {
                 violations: [{ nodes: [{}, {}] } as RuleResult, { nodes: [{}] } as RuleResult, { nodes: [{}, {}, {}] } as RuleResult],
                 passes: [],

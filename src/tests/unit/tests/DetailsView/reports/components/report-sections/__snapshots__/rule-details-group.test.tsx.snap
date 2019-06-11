@@ -35,10 +35,24 @@ exports[`RuleDetailsGroup renders, with details 1`] = `
 <div
   className="rule-details-group"
 >
-  <details>
-    <summary>
+  <SummaryDetails
+    detailsContent={
+      <InstanceDetailsGroup
+        nodeResults={
+          Array [
+            Object {
+              "failureSummary": "fix the error on html tag",
+              "html": "<html>",
+              "snippet": "<html>",
+            },
+          ]
+        }
+      />
+    }
+    id="1"
+    summaryContent={
       <RuleDetails
-        isHeader={true}
+        isHeader={false}
         outcomeType="pass"
         rule={
           Object {
@@ -53,18 +67,13 @@ exports[`RuleDetailsGroup renders, with details 1`] = `
           }
         }
       />
-    </summary>
-    <InstanceDetailsGroup
-      nodeResults={
-        Array [
-          Object {
-            "failureSummary": "fix the error on html tag",
-            "html": "<html>",
-            "snippet": "<html>",
-          },
-        ]
+    }
+    summaryProps={
+      Object {
+        "aria-level": 3,
+        "role": "heading",
       }
-    />
-  </details>
+    }
+  />
 </div>
 `;

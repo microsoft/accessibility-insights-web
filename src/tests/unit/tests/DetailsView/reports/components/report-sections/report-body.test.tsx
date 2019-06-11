@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { shallow } from 'enzyme';
 import * as React from 'react';
+
 import { NamedSFC } from '../../../../../../../common/react/named-sfc';
 import { ReportBody, ReportBodyProps } from '../../../../../../../DetailsView/reports/components/report-sections/report-body';
 import {
@@ -13,6 +14,7 @@ describe('ReportBody', () => {
     it('renders', () => {
         const pageTitle = 'page-title';
         const pageUrl = 'url:target-page';
+        const getScriptStub = () => '';
 
         const detailsProps: SectionProps = {
             pageTitle,
@@ -34,6 +36,7 @@ describe('ReportBody', () => {
                 targetPageUrl: pageUrl,
             },
             toUtcString: () => '',
+            getCollapsibleScript: getScriptStub,
         };
 
         const props: ReportBodyProps = {
