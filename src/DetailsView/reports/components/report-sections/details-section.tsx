@@ -36,7 +36,6 @@ export const DetailsSection = NamedSFC<DetailsSectionProps>('DetailsSection', pr
                         <td className="icon" aria-hidden="true">
                             <UrlIcon />
                         </td>
-
                         <td className="text" aria-labelledby="target-page-text" aria-hidden="true">
                             <NewTabLink href={pageUrl} title="Navigate to target page">
                                 {pageUrl}
@@ -47,7 +46,6 @@ export const DetailsSection = NamedSFC<DetailsSectionProps>('DetailsSection', pr
                         <td className="icon" aria-hidden="true">
                             <DateIcon />
                         </td>
-
                         <td className="text" aria-labelledby="scan-date-text" aria-hidden="true">
                             {scanDateUTC}
                         </td>
@@ -56,7 +54,6 @@ export const DetailsSection = NamedSFC<DetailsSectionProps>('DetailsSection', pr
                         <td className="icon" aria-hidden="true">
                             <CommentIcon />
                         </td>
-
                         <td className="text description-text" aria-labelledby="comment-text" aria-hidden="true">
                             {description}
                         </td>
