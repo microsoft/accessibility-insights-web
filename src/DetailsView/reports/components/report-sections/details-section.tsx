@@ -21,16 +21,23 @@ export const DetailsSection = NamedSFC<DetailsSectionProps>('DetailsSection', pr
     return (
         <div className="scan-details-section">
             <h2>Scan details</h2>
+            <span className="screen-reader-only" id="target-page-text">
+                {screenReaderTexts.targetPageLink}
+            </span>
+            <span className="screen-reader-only" id="scan-date-text">
+                {screenReaderTexts.scanDate}
+            </span>
+            <span className="screen-reader-only" id="comment-text">
+                {screenReaderTexts.comment}
+            </span>
             <table>
                 <tbody>
                     <tr>
                         <td className="icon" aria-hidden="true">
                             <UrlIcon />
                         </td>
-                        <span className="screen-reader-only" id="target-page-text">
-                            {screenReaderTexts.targetPageLink}
-                        </span>
-                        <td className="text" aria-labelledby="target-page-text">
+
+                        <td className="text" aria-labelledby="target-page-text" aria-hidden="true">
                             <NewTabLink href={pageUrl} title="Navigate to target page">
                                 {pageUrl}
                             </NewTabLink>
@@ -40,10 +47,8 @@ export const DetailsSection = NamedSFC<DetailsSectionProps>('DetailsSection', pr
                         <td className="icon" aria-hidden="true">
                             <DateIcon />
                         </td>
-                        <span className="screen-reader-only" id="scan-date-text">
-                            {screenReaderTexts.scanDate}
-                        </span>
-                        <td className="text" aria-labelledby="scan-date-text">
+
+                        <td className="text" aria-labelledby="scan-date-text" aria-hidden="true">
                             {scanDateUTC}
                         </td>
                     </tr>
@@ -51,10 +56,8 @@ export const DetailsSection = NamedSFC<DetailsSectionProps>('DetailsSection', pr
                         <td className="icon" aria-hidden="true">
                             <CommentIcon />
                         </td>
-                        <span className="screen-reader-only" id="comment-text">
-                            {screenReaderTexts.comment}
-                        </span>
-                        <td className="text description-text" aria-labelledby="comment-text">
+
+                        <td className="text description-text" aria-labelledby="comment-text" aria-hidden="true">
                             {description}
                         </td>
                     </tr>
