@@ -18,9 +18,10 @@ export type RuleDetailsGroupProps = {
 export const RuleDetailsGroup = NamedSFC<RuleDetailsGroupProps>('RuleDetailsGroup', ({ rules, showDetails, outcomeType }) => {
     return (
         <div className="rule-details-group">
-            {rules.map(rule => {
+            {rules.map((rule, idx) => {
                 return showDetails ? (
                     <SummaryDetails
+                        key={`summary-details-${idx + 1}`}
                         id={rule.id}
                         summaryProps={{ role: 'heading', 'aria-level': 3 }}
                         summaryContent={<RuleDetail key={rule.id} rule={rule} outcomeType={outcomeType} isHeader={false} />}
