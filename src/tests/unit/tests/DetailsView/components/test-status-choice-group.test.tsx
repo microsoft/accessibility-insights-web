@@ -8,6 +8,7 @@ import { Mock, Times } from 'typemoq';
 
 import { ManualTestStatus } from '../../../../../common/types/manual-test-status';
 import { TestStatusChoiceGroup, TestStatusChoiceGroupProps } from '../../../../../DetailsView/components/test-status-choice-group';
+import { undoButton } from '../../../../../DetailsView/components/test-status-choice-group.scss';
 
 describe('TestStatusChoiceGroup', () => {
     const options = [
@@ -26,6 +27,7 @@ describe('TestStatusChoiceGroup', () => {
             onUndoClicked: null,
         };
         const component = new TestStatusChoiceGroup(props);
+
         expect(component.state).toMatchObject({ selectedKey: 'PASS' });
     });
 
@@ -137,7 +139,7 @@ describe('TestStatusChoiceGroup', () => {
 
         const component = React.createElement(TestableTestStatusChoiceGroup, props);
         const testObject = TestUtils.renderIntoDocument(component);
-        const link = TestUtils.findRenderedDOMComponentWithClass(testObject, 'undo-button');
+        const link = TestUtils.findRenderedDOMComponentWithClass(testObject, undoButton);
 
         expect(link).toBeDefined();
 
