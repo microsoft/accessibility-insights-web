@@ -221,6 +221,19 @@ $outcome-not-applicable-summary-color: $neutral-outcome;
 
 .failed-instances-section {
     margin-top: 56px;
+    .how-to-fix-content {
+        margin-bottom: 16px;
+        .fix-instruction-title {
+            margin-bottom: 8px;
+        }
+        ul {
+            padding-left: 16px;
+            li.fix-instruction-listitem {
+                list-style-type: disc;
+                margin-bottom: 4px;
+            }
+        }
+    }
 }
 
 .passed-checks-section {

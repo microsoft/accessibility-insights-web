@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as classNames from 'classnames';
+import { isEmpty } from 'lodash';
 import * as React from 'react';
 
 import { NamedSFC } from '../../../../common/react/named-sfc';
@@ -10,7 +11,7 @@ export type InstanceDetailsProps = Pick<AxeNodeResult, 'failureSummary' | 'html'
 export const InstanceDetails = NamedSFC<InstanceDetailsProps>('InstanceDetail', props => {
     const { failureSummary, html, target, index } = props;
 
-    const createTableRow = (label: string, content: string, rowKey: string, needsExtraClassname?: boolean) => {
+    const createTableRow = (label: string, content: string | JSX.Element, rowKey: string, needsExtraClassname?: boolean) => {
         const contentStyling = classNames({
             'instance-list-row-content': true,
             'content-snipppet': !!needsExtraClassname,
@@ -22,12 +23,55 @@ export const InstanceDetails = NamedSFC<InstanceDetailsProps>('InstanceDetail', 
             </tr>
         );
     };
+
+    const renderInstructions = (howToFixString: string) => {
+        const lines = howToFixString.split(/\r?\n/);
+        const title = lines[0];
+        const instructions = lines.slice(1).filter(instruction => !isEmpty(instruction));
+        return (
+            <div>
+                <div className="fix-instruction-title">{title}</div>
+                <ul>
+                    {instructions.map((instruction, index) => {
+                        return (
+                            <li className={`fix-instruction-listitem`} key={`fix-instruction-${index + 1}`}>
+                                {instruction}
+                            </li>
+                        );
+                    })}
+                </ul>
+            </div>
+        );
+    };
+
+    const renderHowToFix = (failureSummary: string) => {
+        const titleRegex = /fix (one of the|all of the|any of the|the) following:/gi;
+        const titles = failureSummary.match(titleRegex);
+        const howToFixStringGroups: string[] = [];
+        let startAt = 0;
+
+        for (let index = 0; index < titles.length; index++) {
+            const endAt = index == titles.length - 1 ? failureSummary.length - 1 : failureSummary.indexOf(titles[index + 1], startAt);
+            const howToFixString = failureSummary.substring(startAt, endAt);
+            startAt = endAt;
+            howToFixStringGroups.push(howToFixString);
+        }
+
+        return (
+            <div className="how-to-fix-content">
+                {howToFixStringGroups.map((howToFix, idx) => {
+                    return <div key={`how-to-fix-instructions-group-${idx + 1}`}>{renderInstructions(howToFix)}</div>;
+                })}
+            </div>
+        );
+    };
+
     return (
         <table className="report-instance-table">
             <tbody>
                 {createTableRow('Path', target.join(', '), `path-row-${index}`)}
                 {createTableRow('Snippet', html, `snippet-row-${index}`, true)}
-                {createTableRow('How to fix', failureSummary, `how-to-fix-row-${index}`)}
+                {createTableRow('How to fix', renderHowToFix(failureSummary), `how-to-fix-row-${index}`)}
             </tbody>
         </table>
     );

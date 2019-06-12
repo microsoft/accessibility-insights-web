@@ -44,7 +44,97 @@ exports[`InstanceDetails renders 1`] = `
       <td
         className="instance-list-row-content"
       >
-        fix the error
+        <div
+          className="how-to-fix-content"
+        >
+          <div>
+            <div>
+              <div
+                className="fix-instruction-title"
+              >
+                
+              </div>
+              <ul>
+                <li
+                  className="fix-instruction-listitem"
+                >
+                              Fix all of the following:
+                </li>
+                <li
+                  className="fix-instruction-listitem"
+                >
+                              Element is in tab order and does not have accessible text
+                </li>
+                <li
+                  className="fix-instruction-listitem"
+                >
+                          
+                </li>
+                <li
+                  className="fix-instruction-listitem"
+                >
+                              
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div>
+            <div>
+              <div
+                className="fix-instruction-title"
+              >
+                Fix any of the following:
+              </div>
+              <ul>
+                <li
+                  className="fix-instruction-listitem"
+                >
+                              Element has a value attribute and the value attribute is empty
+                </li>
+                <li
+                  className="fix-instruction-listitem"
+                >
+                              Element has no value attribute or the value attribute is empty
+                </li>
+                <li
+                  className="fix-instruction-listitem"
+                >
+                              Element does not have inner text that is visible to screen readers
+                </li>
+                <li
+                  className="fix-instruction-listitem"
+                >
+                              aria-label attribute does not exist or is empty
+                </li>
+                <li
+                  className="fix-instruction-listitem"
+                >
+                              aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
+                </li>
+                <li
+                  className="fix-instruction-listitem"
+                >
+                              Element's default semantics were not overridden with role="presentation"
+                </li>
+                <li
+                  className="fix-instruction-listitem"
+                >
+                              Element's default semantics were not overridden with role="none"
+                </li>
+                <li
+                  className="fix-instruction-listitem"
+                >
+                              Element has no title attribute or the title attribute is empty
+                </li>
+                <li
+                  className="fix-instruction-listitem"
+                >
+                         
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
       </td>
     </tr>
   </tbody>
