@@ -6,7 +6,7 @@ import * as React from 'react';
 import {
     CollapsibleContainer,
     CollapsibleContainerProps,
-} from '../../../../../../../DetailsView/reports/components/report-sections/summary-details';
+} from '../../../../../../../DetailsView/reports/components/report-sections/collapsible-container';
 
 describe('CollapsibleContainer', () => {
     it('renders', () => {

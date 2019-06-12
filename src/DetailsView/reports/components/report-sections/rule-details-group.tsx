@@ -4,10 +4,10 @@ import * as React from 'react';
 
 import { NamedSFC } from '../../../../common/react/named-sfc';
 import { RuleResult } from '../../../../scanner/iruleresults';
+import { CollapsibleContainer } from './collapsible-container';
 import { InstanceDetailsGroup } from './instance-details-group';
 import { InstanceOutcomeType } from './outcome-summary-bar';
 import { RuleDetail } from './rule-detail';
-import { CollapsibleContainer } from './summary-details';
 
 export type RuleDetailsGroupProps = {
     rules: RuleResult[];
