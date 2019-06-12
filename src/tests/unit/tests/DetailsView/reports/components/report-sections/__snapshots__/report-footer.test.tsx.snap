@@ -15,7 +15,6 @@ exports[`ReportFooter renders 1`] = `
     . Get more information & download this tool at
      
     <NewTabLink
-      aria-labelledby="tool-name"
       className="tool-name-link"
       href="http://aka.ms/AccessibilityInsights"
       title="Get more information and download Accessibility Insights for Web"
