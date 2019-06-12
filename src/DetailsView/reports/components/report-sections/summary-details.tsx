@@ -9,7 +9,7 @@ type HeadingProps = {
     'aria-level': number;
 };
 
-export type SummaryDetailsProps = {
+export type CollapsibleContainerProps = {
     summaryProps: HeadingProps;
     id: string;
     summaryContent: JSX.Element;
@@ -17,7 +17,7 @@ export type SummaryDetailsProps = {
     buttonAriaLabel: string;
 };
 
-export const SummaryDetails = NamedSFC<SummaryDetailsProps>('SummaryDetails', props => {
+export const CollapsibleContainer = NamedSFC<CollapsibleContainerProps>('CollapsibleContainer', props => {
     const { id, summaryContent, summaryProps, detailsContent, buttonAriaLabel } = props;
 
     const contentId = `details-content-${id}`;

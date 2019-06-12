@@ -3,11 +3,14 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-import { SummaryDetails, SummaryDetailsProps } from '../../../../../../../DetailsView/reports/components/report-sections/summary-details';
+import {
+    CollapsibleContainer,
+    CollapsibleContainerProps,
+} from '../../../../../../../DetailsView/reports/components/report-sections/summary-details';
 
-describe('SummaryDetails', () => {
+describe('CollapsibleContainer', () => {
     it('renders', () => {
-        const props: SummaryDetailsProps = {
+        const props: CollapsibleContainerProps = {
             id: 'test-id',
             summaryContent: <div>this is the summary content</div>,
             summaryProps: {
@@ -18,7 +21,7 @@ describe('SummaryDetails', () => {
             buttonAriaLabel: 'button aria label',
         };
 
-        const wrapped = shallow(<SummaryDetails {...props} />);
+        const wrapped = shallow(<CollapsibleContainer {...props} />);
 
         expect(wrapped.getElement()).toMatchSnapshot();
     });

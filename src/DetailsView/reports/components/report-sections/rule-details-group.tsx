@@ -7,7 +7,7 @@ import { RuleResult } from '../../../../scanner/iruleresults';
 import { InstanceDetailsGroup } from './instance-details-group';
 import { InstanceOutcomeType } from './outcome-summary-bar';
 import { RuleDetail } from './rule-detail';
-import { SummaryDetails } from './summary-details';
+import { CollapsibleContainer } from './summary-details';
 
 export type RuleDetailsGroupProps = {
     rules: RuleResult[];
@@ -20,7 +20,7 @@ export const RuleDetailsGroup = NamedSFC<RuleDetailsGroupProps>('RuleDetailsGrou
         <div className="rule-details-group">
             {rules.map((rule, idx) => {
                 return showDetails ? (
-                    <SummaryDetails
+                    <CollapsibleContainer
                         key={`summary-details-${idx + 1}`}
                         id={rule.id}
                         summaryProps={{ role: 'heading', 'aria-level': 3 }}

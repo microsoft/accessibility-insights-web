@@ -35,7 +35,7 @@ exports[`RuleDetailsGroup renders, with details 1`] = `
 <div
   className="rule-details-group"
 >
-  <SummaryDetails
+  <CollapsibleContainer
     buttonAriaLabel="show failed instance list"
     detailsContent={
       <InstanceDetailsGroup

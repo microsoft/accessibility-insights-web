@@ -1,5 +1,38 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`CollapsibleContainer renders 1`] = `
+<div
+  className="summary-details"
+>
+  <div
+    aria-level={5}
+    className="summary-container"
+    role="custom role"
+  >
+    <button
+      aria-controls="details-content-test-id"
+      aria-expanded="false"
+      aria-label="button aria label"
+      className="collapsible-control"
+    />
+    <div>
+      <div>
+        this is the summary content
+      </div>
+    </div>
+  </div>
+  <div
+    aria-hidden="true"
+    className="details-container"
+    id="details-content-test-id"
+  >
+    <div>
+       this is the details content 
+    </div>
+  </div>
+</div>
+`;
+
 exports[`SummaryDetails renders 1`] = `
 <div
   className="summary-details"
