@@ -27,7 +27,6 @@ describe('TestStatusChoiceGroup', () => {
             onUndoClicked: null,
         };
         const component = new TestStatusChoiceGroup(props);
-
         expect(component.state).toMatchObject({ selectedKey: 'PASS' });
     });
 
