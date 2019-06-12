@@ -274,8 +274,6 @@ $outcome-not-applicable-summary-color: $neutral-outcome;
 }
 
 .collapsible-container {
-    // box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.08);
-
     @mixin transform($property) {
         -webkit-transform: $property;
         -ms-transform: $property;
@@ -285,12 +283,6 @@ $outcome-not-applicable-summary-color: $neutral-outcome;
     .title-container {
         display: flex;
         align-items: baseline;
-
-        // .rule-detail {
-        //     box-shadow: unset;
-        //     margin-bottom: 16px;
-        //     margin-top: 16px;
-        // }
     }
 
     %common-control-chevron {
