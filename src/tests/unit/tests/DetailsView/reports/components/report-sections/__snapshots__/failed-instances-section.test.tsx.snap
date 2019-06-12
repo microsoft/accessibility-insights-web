@@ -1,43 +1,34 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`FailedInstancesSection renders 1`] = `
-<React.Fragment>
-  <ResultSection
-    badgeCount={6}
-    containerClassName="failed-instances-section"
-    outcomeType="fail"
-    rules={
-      Array [
-        Object {
-          "nodes": Array [
-            Object {},
-            Object {},
-          ],
-        },
-        Object {
-          "nodes": Array [
-            Object {},
-          ],
-        },
-        Object {
-          "nodes": Array [
-            Object {},
-            Object {},
-            Object {},
-          ],
-        },
-      ]
-    }
-    showCongratsIfNotInstances={true}
-    showDetails={true}
-    title="Failed instances"
-  />
-  <script
-    dangerouslySetInnerHTML={
+<ResultSection
+  badgeCount={6}
+  containerClassName="failed-instances-section"
+  outcomeType="fail"
+  rules={
+    Array [
       Object {
-        "__html": "test script",
-      }
-    }
-  />
-</React.Fragment>
+        "nodes": Array [
+          Object {},
+          Object {},
+        ],
+      },
+      Object {
+        "nodes": Array [
+          Object {},
+        ],
+      },
+      Object {
+        "nodes": Array [
+          Object {},
+          Object {},
+          Object {},
+        ],
+      },
+    ]
+  }
+  showCongratsIfNotInstances={true}
+  showDetails={true}
+  title="Failed instances"
+/>
 `;

@@ -22,7 +22,7 @@ export type ReportSectionFactory = {
     TitleSection: ReactSFCWithDisplayName;
     SummarySection: ReactSFCWithDisplayName<SectionProps>;
     DetailsSection: ReactSFCWithDisplayName<SectionProps>;
-    ResultsContainer: ReactSFCWithDisplayName;
+    ResultsContainer: ReactSFCWithDisplayName<SectionProps>;
     FailedInstancesSection: ReactSFCWithDisplayName<SectionProps>;
     PassedChecksSection: ReactSFCWithDisplayName<SectionProps>;
     NotApplicableChecksSection: ReactSFCWithDisplayName<SectionProps>;
