@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CollapsibleResultSection renders 1`] = `
+<div
+  className="result-section-class-name"
+>
+  <CollapsibleContainer
+    buttonAriaLabel="button aria label test"
+    detailsContent={
+      <ResultSectionContent
+        buttonAriaLabel="button aria label test"
+        containerClassName="result-section-class-name"
+      />
+    }
+    id="result-section-class-name"
+    summaryContent={
+      <ResultSectionTitle
+        buttonAriaLabel="button aria label test"
+        containerClassName="result-section-class-name"
+      />
+    }
+  />
+</div>
+`;
