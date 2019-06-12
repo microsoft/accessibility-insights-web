@@ -23,10 +23,11 @@ export const RuleDetailsGroup = NamedSFC<RuleDetailsGroupProps>('RuleDetailsGrou
                     <CollapsibleContainer
                         key={`summary-details-${idx + 1}`}
                         id={rule.id}
-                        summaryProps={{ role: 'heading', 'aria-level': 3 }}
+                        titleContainerProps={{ role: 'heading', 'aria-level': 3 }}
                         summaryContent={<RuleDetail key={rule.id} rule={rule} outcomeType={outcomeType} isHeader={false} />}
                         detailsContent={<InstanceDetailsGroup key={`${rule.id}-rule-group`} nodeResults={rule.nodes} />}
                         buttonAriaLabel="show failed instance list"
+                        containerClassName="collapsible-rule-details-group"
                     />
                 ) : (
                     <RuleDetail key={rule.id} rule={rule} outcomeType={outcomeType} isHeader={showDetails} />

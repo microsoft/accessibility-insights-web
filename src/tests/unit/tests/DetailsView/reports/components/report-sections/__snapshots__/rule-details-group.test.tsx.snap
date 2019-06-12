@@ -37,6 +37,7 @@ exports[`RuleDetailsGroup renders, with details 1`] = `
 >
   <CollapsibleContainer
     buttonAriaLabel="show failed instance list"
+    containerClassName="collapsible-rule-details-group"
     detailsContent={
       <InstanceDetailsGroup
         nodeResults={

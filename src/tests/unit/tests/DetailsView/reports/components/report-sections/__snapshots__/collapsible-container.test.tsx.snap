@@ -2,15 +2,15 @@
 
 exports[`CollapsibleContainer renders 1`] = `
 <div
-  className="summary-details"
+  className="collapsible-container"
 >
   <div
     aria-level={5}
-    className="summary-container"
+    className="title-container"
     role="custom role"
   >
     <button
-      aria-controls="details-content-test-id"
+      aria-controls="content-container-test-id"
       aria-expanded="false"
       aria-label="button aria label"
       className="collapsible-control"
@@ -23,8 +23,41 @@ exports[`CollapsibleContainer renders 1`] = `
   </div>
   <div
     aria-hidden="true"
-    className="details-container"
-    id="details-content-test-id"
+    className="content-container"
+    id="content-container-test-id"
+  >
+    <div>
+       this is the details content 
+    </div>
+  </div>
+</div>
+`;
+
+exports[`CollapsibleContainer renders, with extra class name for the container div 1`] = `
+<div
+  className="collapsible-container extra-class-name"
+>
+  <div
+    aria-level={5}
+    className="title-container"
+    role="custom role"
+  >
+    <button
+      aria-controls="content-container-test-id"
+      aria-expanded="false"
+      aria-label="button aria label"
+      className="collapsible-control"
+    />
+    <div>
+      <div>
+        this is the summary content
+      </div>
+    </div>
+  </div>
+  <div
+    aria-hidden="true"
+    className="content-container"
+    id="content-container-test-id"
   >
     <div>
        this is the details content 
