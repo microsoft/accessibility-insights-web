@@ -9,7 +9,7 @@ import {
 } from '../../../../../../../DetailsView/reports/components/report-sections/not-applicable-section';
 import { RuleResult } from '../../../../../../../scanner/iruleresults';
 
-describe('PassedChecksSection', () => {
+describe('NotApplicableChecksSection', () => {
     it('renders', () => {
         const props: NotApplicableChecksSectionProps = {
             scanResult: {
