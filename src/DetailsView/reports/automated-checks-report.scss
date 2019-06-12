@@ -222,10 +222,18 @@ $outcome-not-applicable-summary-color: $neutral-outcome;
 
 .passed-checks-section {
     margin-top: 76px;
+
+    .rule-detail {
+        height: 56px;
+    }
 }
 
 .not-applicable-checks-section {
     margin-top: 56px;
+
+    .rule-detail {
+        height: 56px;
+    }
 }
 
 .rule-details-group {
@@ -233,7 +241,6 @@ $outcome-not-applicable-summary-color: $neutral-outcome;
         box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.08);
         font-size: 14px;
 
-        height: 56px;
         padding: 0 8px;
 
         display: flex;
