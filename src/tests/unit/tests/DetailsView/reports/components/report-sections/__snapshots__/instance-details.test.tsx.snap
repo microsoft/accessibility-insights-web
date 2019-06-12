@@ -68,11 +68,6 @@ exports[`InstanceDetails renders 1`] = `
                 <li
                   className="fix-instruction-listitem"
                 >
-                          
-                </li>
-                <li
-                  className="fix-instruction-listitem"
-                >
                               
                 </li>
               </ul>
