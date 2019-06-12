@@ -233,8 +233,7 @@ $outcome-not-applicable-summary-color: $neutral-outcome;
         box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.08);
         font-size: 14px;
 
-        height: 56px;
-        padding: 0 8px;
+        padding: 16px 8px;
 
         display: flex;
         align-items: center;
@@ -277,8 +276,6 @@ $outcome-not-applicable-summary-color: $neutral-outcome;
 
             .rule-detail {
                 box-shadow: unset;
-                margin-bottom: 16px;
-                margin-top: 16px;
             }
         }
 
