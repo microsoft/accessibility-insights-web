@@ -26,6 +26,7 @@ export const RuleDetailsGroup = NamedSFC<RuleDetailsGroupProps>('RuleDetailsGrou
                         summaryProps={{ role: 'heading', 'aria-level': 3 }}
                         summaryContent={<RuleDetail key={rule.id} rule={rule} outcomeType={outcomeType} isHeader={false} />}
                         detailsContent={<InstanceDetailsGroup key={`${rule.id}-rule-group`} nodeResults={rule.nodes} />}
+                        buttonAriaLabel="show failed instance list"
                     />
                 ) : (
                     <RuleDetail key={rule.id} rule={rule} outcomeType={outcomeType} isHeader={showDetails} />

@@ -15,6 +15,7 @@ describe('SummaryDetails', () => {
                 'aria-level': 5,
             },
             detailsContent: <div> this is the details content </div>,
+            buttonAriaLabel: 'button aria label',
         };
 
         const wrapped = shallow(<SummaryDetails {...props} />);

@@ -3,7 +3,6 @@
 exports[`SummaryDetails renders 1`] = `
 <div
   className="summary-details"
-  id="summary-details-test-id"
 >
   <div
     aria-level={5}
@@ -13,12 +12,10 @@ exports[`SummaryDetails renders 1`] = `
     <button
       aria-controls="details-content-test-id"
       aria-expanded="false"
-      aria-label="show failed instance list"
+      aria-label="button aria label"
       className="collapsible-control"
     />
-    <div
-      id="summary-test-id"
-    >
+    <div>
       <div>
         this is the summary content
       </div>

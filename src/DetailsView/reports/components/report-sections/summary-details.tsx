@@ -14,21 +14,19 @@ export type SummaryDetailsProps = {
     id: string;
     summaryContent: JSX.Element;
     detailsContent: JSX.Element;
+    buttonAriaLabel: string;
 };
 
-export const SummaryDetails = NamedSFC<SummaryDetailsProps>('SummaryDetails', ({ id, summaryContent, summaryProps, detailsContent }) => {
+export const SummaryDetails = NamedSFC<SummaryDetailsProps>('SummaryDetails', props => {
+    const { id, summaryContent, summaryProps, detailsContent, buttonAriaLabel } = props;
+
     const contentId = `details-content-${id}`;
-    const summaryId = `summary-${id}`;
+
     return (
-        <div className="summary-details" id={`summary-details-${id}`}>
+        <div className="summary-details">
             <div className="summary-container" {...summaryProps}>
-                <button
-                    className="collapsible-control"
-                    aria-expanded="false"
-                    aria-controls={contentId}
-                    aria-label="show failed instance list"
-                />
-                <div id={summaryId}>{summaryContent}</div>
+                <button className="collapsible-control" aria-expanded="false" aria-controls={contentId} aria-label={buttonAriaLabel} />
+                <div>{summaryContent}</div>
             </div>
             <div id={contentId} className="details-container" aria-hidden="true">
                 {detailsContent}
