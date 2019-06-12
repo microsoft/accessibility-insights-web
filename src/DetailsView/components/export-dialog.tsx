@@ -18,6 +18,7 @@ export interface ExportDialogProps {
     onClose: () => void;
     onDescriptionChange: (value: string) => void;
     exportResultsType: ExportResultType;
+    onExportDialogFooterClick: () => void;
 }
 
 export interface ExportDialogDeps {
@@ -34,6 +35,7 @@ export const ExportDialog = NamedSFC<ExportDialogProps>('ExportDialog', props =>
     const onExportLinkClick = (event: React.MouseEvent<HTMLDivElement>): void => {
         const { detailsViewActionMessageCreator } = props.deps;
         detailsViewActionMessageCreator.exportResultsClicked(props.exportResultsType, props.html, event);
+        props.onExportDialogFooterClick();
         props.onClose();
     };
 

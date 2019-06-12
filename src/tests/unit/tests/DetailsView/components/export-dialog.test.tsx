@@ -42,6 +42,7 @@ describe('ExportDialog', () => {
             onDescriptionChange: onDescriptionChangeMock.object,
             actionMessageCreator: actionMessageCreatorMock.object,
             exportResultsType: 'Assessment',
+            onExportDialogFooterClick: () => {},
         };
     });
 
