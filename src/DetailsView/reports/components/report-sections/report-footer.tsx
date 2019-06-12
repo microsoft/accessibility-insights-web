@@ -19,7 +19,6 @@ export const ReportFooter = NamedSFC<ReportFooterProps>('ReportFooter', ({ envir
                 <NewTabLink
                     className={'tool-name-link'}
                     href="http://aka.ms/AccessibilityInsights"
-                    aria-labelledby="tool-name"
                     title={`Get more information and download ${toolName}`}
                 >
                     http://aka.ms/AccessibilityInsights
