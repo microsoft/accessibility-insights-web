@@ -12,6 +12,12 @@ export type DetailsSectionProps = Pick<SectionProps, 'pageUrl' | 'description' |
 
 export const DetailsSection = NamedSFC<DetailsSectionProps>('DetailsSection', props => {
     const { pageUrl, description, scanDate, toUtcString } = props;
+    const scanDateUTC: string = toUtcString(scanDate);
+    const screenReaderTexts = {
+        targetPageLink: `Target Page: ${pageUrl}`,
+        scanDate: `Scan date: ${scanDateUTC}`,
+        comment: `Comment: ${description}`,
+    };
     return (
         <div className="scan-details-section">
             <h2>Scan details</h2>
@@ -21,7 +27,10 @@ export const DetailsSection = NamedSFC<DetailsSectionProps>('DetailsSection', pr
                         <td className="icon" aria-hidden="true">
                             <UrlIcon />
                         </td>
-                        <td className="text">
+                        <td className="screen-reader-only" id="target-page-text">
+                            {screenReaderTexts.targetPageLink}
+                        </td>
+                        <td className="text" aria-labelledby="target-page-text" aria-hidden="true">
                             <NewTabLink href={pageUrl} title="Navigate to target page">
                                 {pageUrl}
                             </NewTabLink>
@@ -31,13 +40,23 @@ export const DetailsSection = NamedSFC<DetailsSectionProps>('DetailsSection', pr
                         <td className="icon" aria-hidden="true">
                             <DateIcon />
                         </td>
-                        <td className="text">{toUtcString(scanDate)}</td>
+                        <td className="screen-reader-only" id="scan-date-text">
+                            {screenReaderTexts.scanDate}
+                        </td>
+                        <td className="text" aria-labelledby="scan-date-text" aria-hidden="true">
+                            {scanDateUTC}
+                        </td>
                     </tr>
                     <tr>
                         <td className="icon" aria-hidden="true">
                             <CommentIcon />
                         </td>
-                        <td className="text description-text">{description}</td>
+                        <td className="screen-reader-only" id="comment-text">
+                            {screenReaderTexts.comment}
+                        </td>
+                        <td className="text description-text" aria-labelledby="comment-text" aria-hidden="true">
+                            {description}
+                        </td>
                     </tr>
                 </tbody>
             </table>
