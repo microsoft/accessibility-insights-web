@@ -13,7 +13,7 @@ describe('InstanceDetails', () => {
         const failureSummary = `
             Fix all of the following:
             Element is in tab order and does not have accessible text
-        
+
             Fix any of the following:
             Element has a value attribute and the value attribute is empty
             Element has no value attribute or the value attribute is empty

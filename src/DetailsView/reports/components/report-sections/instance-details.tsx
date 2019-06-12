@@ -32,9 +32,9 @@ export const InstanceDetails = NamedSFC<InstanceDetailsProps>('InstanceDetail', 
             <div>
                 <div className="fix-instruction-title">{title}</div>
                 <ul>
-                    {instructions.map((instruction, index) => {
+                    {instructions.map((instruction, idx) => {
                         return (
-                            <li className={`fix-instruction-listitem`} key={`fix-instruction-${index + 1}`}>
+                            <li className={`fix-instruction-listitem`} key={`fix-instruction-${idx + 1}`}>
                                 {instruction}
                             </li>
                         );
@@ -44,15 +44,15 @@ export const InstanceDetails = NamedSFC<InstanceDetailsProps>('InstanceDetail', 
         );
     };
 
-    const renderHowToFix = (failureSummary: string) => {
+    const renderHowToFix = (summary: string) => {
         const titleRegex = /fix (one of the|all of the|any of the|the) following:/gi;
-        const titles = failureSummary.match(titleRegex);
+        const titles = summary.match(titleRegex);
         const howToFixStringGroups: string[] = [];
         let startAt = 0;
 
-        for (let index = 0; index < titles.length; index++) {
-            const endAt = index == titles.length - 1 ? failureSummary.length - 1 : failureSummary.indexOf(titles[index + 1], startAt);
-            const howToFixString = failureSummary.substring(startAt, endAt);
+        for (let titleIdx = 0; titleIdx < titles.length; titleIdx++) {
+            const endAt = titleIdx === titles.length - 1 ? summary.length - 1 : summary.indexOf(titles[titleIdx + 1], startAt);
+            const howToFixString = summary.substring(startAt, endAt);
             startAt = endAt;
             howToFixStringGroups.push(howToFixString);
         }
