@@ -1,6 +1,67 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`DetailsSection renders 1`] = `
+exports[`DetailsSection rendering of comment row is dependent on description value renders and matches saved snapshot for description value:  1`] = `
+<div
+  className="scan-details-section"
+>
+  <h2>
+    Scan details
+  </h2>
+  <table>
+    <tbody>
+      <tr>
+        <td
+          aria-hidden="true"
+          className="icon"
+        >
+          <UrlIcon />
+        </td>
+        <td
+          className="screen-reader-only"
+          id="target-page-text"
+        >
+          Target Page: https://page-url/
+        </td>
+        <td
+          aria-hidden="true"
+          aria-labelledby="target-page-text"
+          className="text"
+        >
+          <NewTabLink
+            href="https://page-url/"
+            title="Navigate to target page"
+          >
+            https://page-url/
+          </NewTabLink>
+        </td>
+      </tr>
+      <tr>
+        <td
+          aria-hidden="true"
+          className="icon"
+        >
+          <DateIcon />
+        </td>
+        <td
+          className="screen-reader-only"
+          id="scan-date-text"
+        >
+          Scan date: 2018-03-12 11:24 PM UTC
+        </td>
+        <td
+          aria-hidden="true"
+          aria-labelledby="scan-date-text"
+          className="text"
+        >
+          2018-03-12 11:24 PM UTC
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+`;
+
+exports[`DetailsSection rendering of comment row is dependent on description value renders and matches saved snapshot for description value: description-text 1`] = `
 <div
   className="scan-details-section"
 >
@@ -75,6 +136,128 @@ exports[`DetailsSection renders 1`] = `
           className="text description-text"
         >
           description-text
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+`;
+
+exports[`DetailsSection rendering of comment row is dependent on description value renders and matches saved snapshot for description value: null 1`] = `
+<div
+  className="scan-details-section"
+>
+  <h2>
+    Scan details
+  </h2>
+  <table>
+    <tbody>
+      <tr>
+        <td
+          aria-hidden="true"
+          className="icon"
+        >
+          <UrlIcon />
+        </td>
+        <td
+          className="screen-reader-only"
+          id="target-page-text"
+        >
+          Target Page: https://page-url/
+        </td>
+        <td
+          aria-hidden="true"
+          aria-labelledby="target-page-text"
+          className="text"
+        >
+          <NewTabLink
+            href="https://page-url/"
+            title="Navigate to target page"
+          >
+            https://page-url/
+          </NewTabLink>
+        </td>
+      </tr>
+      <tr>
+        <td
+          aria-hidden="true"
+          className="icon"
+        >
+          <DateIcon />
+        </td>
+        <td
+          className="screen-reader-only"
+          id="scan-date-text"
+        >
+          Scan date: 2018-03-12 11:24 PM UTC
+        </td>
+        <td
+          aria-hidden="true"
+          aria-labelledby="scan-date-text"
+          className="text"
+        >
+          2018-03-12 11:24 PM UTC
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+`;
+
+exports[`DetailsSection rendering of comment row is dependent on description value renders and matches saved snapshot for description value: undefined 1`] = `
+<div
+  className="scan-details-section"
+>
+  <h2>
+    Scan details
+  </h2>
+  <table>
+    <tbody>
+      <tr>
+        <td
+          aria-hidden="true"
+          className="icon"
+        >
+          <UrlIcon />
+        </td>
+        <td
+          className="screen-reader-only"
+          id="target-page-text"
+        >
+          Target Page: https://page-url/
+        </td>
+        <td
+          aria-hidden="true"
+          aria-labelledby="target-page-text"
+          className="text"
+        >
+          <NewTabLink
+            href="https://page-url/"
+            title="Navigate to target page"
+          >
+            https://page-url/
+          </NewTabLink>
+        </td>
+      </tr>
+      <tr>
+        <td
+          aria-hidden="true"
+          className="icon"
+        >
+          <DateIcon />
+        </td>
+        <td
+          className="screen-reader-only"
+          id="scan-date-text"
+        >
+          Scan date: 2018-03-12 11:24 PM UTC
+        </td>
+        <td
+          aria-hidden="true"
+          aria-labelledby="scan-date-text"
+          className="text"
+        >
+          2018-03-12 11:24 PM UTC
         </td>
       </tr>
     </tbody>
