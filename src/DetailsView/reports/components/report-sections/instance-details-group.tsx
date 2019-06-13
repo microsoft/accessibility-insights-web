@@ -3,9 +3,11 @@
 import * as React from 'react';
 
 import { NamedSFC } from '../../../../common/react/named-sfc';
+import { FixInstructionProcessor } from '../../../../injected/fix-instruction-processor';
 import { InstanceDetails } from './instance-details';
 
 export type InstanceDetailsGroupProps = {
+    fixInstructionProcessor: FixInstructionProcessor;
     nodeResults: AxeNodeResult[];
 };
 
@@ -14,7 +16,10 @@ export const InstanceDetailsGroup = NamedSFC<InstanceDetailsGroupProps>('Instanc
         <ul className="instance-details-list" aria-label="failed instances with path, snippet and how to fix information">
             {props.nodeResults.map((node, index) => (
                 <li>
-                    <InstanceDetails key={`instance-details-${index}`} {...{ index, ...node }} />
+                    <InstanceDetails
+                        key={`instance-details-${index}`}
+                        {...{ index, ...node, fixInstructionProcessor: props.fixInstructionProcessor }}
+                    />
                 </li>
             ))}
         </ul>

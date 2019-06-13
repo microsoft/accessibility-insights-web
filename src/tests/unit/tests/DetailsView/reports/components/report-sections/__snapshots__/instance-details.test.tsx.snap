@@ -47,88 +47,71 @@ exports[`InstanceDetails renders 1`] = `
         <div
           className="how-to-fix-content"
         >
-          <div>
-            <div>
-              <div
-                className="fix-instruction-title"
-              >
-                
-              </div>
-              <ul>
-                <li
-                  className="fix-instruction-listitem"
-                >
-                              Fix all of the following:
-                </li>
-                <li
-                  className="fix-instruction-listitem"
-                >
-                              Element is in tab order and does not have accessible text
-                </li>
-                <li
-                  className="fix-instruction-listitem"
-                >
-                              
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div>
-            <div>
-              <div
-                className="fix-instruction-title"
-              >
-                Fix any of the following:
-              </div>
-              <ul>
-                <li
-                  className="fix-instruction-listitem"
-                >
-                              Element has a value attribute and the value attribute is empty
-                </li>
-                <li
-                  className="fix-instruction-listitem"
-                >
-                              Element has no value attribute or the value attribute is empty
-                </li>
-                <li
-                  className="fix-instruction-listitem"
-                >
-                              Element does not have inner text that is visible to screen readers
-                </li>
-                <li
-                  className="fix-instruction-listitem"
-                >
-                              aria-label attribute does not exist or is empty
-                </li>
-                <li
-                  className="fix-instruction-listitem"
-                >
-                              aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
-                </li>
-                <li
-                  className="fix-instruction-listitem"
-                >
-                              Element's default semantics were not overridden with role="presentation"
-                </li>
-                <li
-                  className="fix-instruction-listitem"
-                >
-                              Element's default semantics were not overridden with role="none"
-                </li>
-                <li
-                  className="fix-instruction-listitem"
-                >
-                              Element has no title attribute or the title attribute is empty
-                </li>
-                <li
-                  className="fix-instruction-listitem"
-                >
-                         
-                </li>
-              </ul>
-            </div>
-          </div>
+          <FixInstructionPanel
+            checkType={0}
+            checks={
+              Array [
+                Object {
+                  "data": null,
+                  "id": "all",
+                  "message": "fix all of the following",
+                },
+                Object {
+                  "data": null,
+                  "id": "none",
+                  "message": "fix the following",
+                },
+              ]
+            }
+            deps={
+              Object {
+                "fixInstructionProcessor": proxy {
+                  "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                  "backgroundColorText": "background color: ",
+                  "backgroundRegExp": /background color: \\(\\?<color>#\\[0-9a-f\\]\\{6\\}\\)/i,
+                  "colorGroupName": "color",
+                  "colorValueMatcher": "(?<color>#[0-9a-f]{6})",
+                  "createColorBox": [Function],
+                  "foregroundColorText": "foreground color: ",
+                  "foregroundRegExp": /foreground color: \\(\\?<color>#\\[0-9a-f\\]\\{6\\}\\)/i,
+                  "getColorMatch": [Function],
+                  "process": [Function],
+                  "splitFixInstruction": [Function],
+                },
+              }
+            }
+            renderTitleElement={[Function]}
+          />
+          <FixInstructionPanel
+            checkType={1}
+            checks={
+              Array [
+                Object {
+                  "data": null,
+                  "id": "any",
+                  "message": "fix any of the following",
+                },
+              ]
+            }
+            deps={
+              Object {
+                "fixInstructionProcessor": proxy {
+                  "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                  "backgroundColorText": "background color: ",
+                  "backgroundRegExp": /background color: \\(\\?<color>#\\[0-9a-f\\]\\{6\\}\\)/i,
+                  "colorGroupName": "color",
+                  "colorValueMatcher": "(?<color>#[0-9a-f]{6})",
+                  "createColorBox": [Function],
+                  "foregroundColorText": "foreground color: ",
+                  "foregroundRegExp": /foreground color: \\(\\?<color>#\\[0-9a-f\\]\\{6\\}\\)/i,
+                  "getColorMatch": [Function],
+                  "process": [Function],
+                  "splitFixInstruction": [Function],
+                },
+              }
+            }
+            renderTitleElement={[Function]}
+          />
         </div>
       </td>
     </tr>

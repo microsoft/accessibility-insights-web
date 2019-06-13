@@ -3,6 +3,7 @@
 import * as React from 'react';
 
 import { NamedSFC } from '../../../../common/react/named-sfc';
+import { FixInstructionProcessor } from '../../../../injected/fix-instruction-processor';
 import { RuleResult } from '../../../../scanner/iruleresults';
 import { NoFailedInstancesCongrats } from './no-failed-instances-congrats';
 import { InstanceOutcomeType } from './outcome-summary-bar';
@@ -10,6 +11,7 @@ import { ResultSectionTitle } from './result-section-title';
 import { RuleDetailsGroup } from './rule-details-group';
 
 export type ResultSectionProps = {
+    fixInstructionProcessor?: FixInstructionProcessor;
     rules: RuleResult[];
     containerClassName: string;
     title: string;
@@ -20,9 +22,16 @@ export type ResultSectionProps = {
 };
 
 export const ResultSection = NamedSFC<ResultSectionProps>('ResultSection', props => {
-    const { rules, containerClassName, title, outcomeType, badgeCount, showCongratsIfNotInstances } = props;
+    const { rules, containerClassName, title, outcomeType, badgeCount, showCongratsIfNotInstances, fixInstructionProcessor } = props;
 
-    let content = <RuleDetailsGroup rules={rules} showDetails={props.showDetails} outcomeType={outcomeType} />;
+    let content = (
+        <RuleDetailsGroup
+            fixInstructionProcessor={fixInstructionProcessor}
+            rules={rules}
+            showDetails={props.showDetails}
+            outcomeType={outcomeType}
+        />
+    );
 
     if (rules.length === 0 && showCongratsIfNotInstances) {
         content = <NoFailedInstancesCongrats />;

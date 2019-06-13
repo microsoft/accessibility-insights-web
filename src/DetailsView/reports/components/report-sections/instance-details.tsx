@@ -1,15 +1,20 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as classNames from 'classnames';
-import { isEmpty } from 'lodash';
 import * as React from 'react';
 
 import { NamedSFC } from '../../../../common/react/named-sfc';
+import { CheckType } from '../../../../injected/components/details-dialog';
+import { FixInstructionPanel } from '../../../../injected/components/fix-instruction-panel';
+import { FixInstructionProcessor } from '../../../../injected/fix-instruction-processor';
 
-export type InstanceDetailsProps = Pick<AxeNodeResult, 'failureSummary' | 'html' | 'target'> & { index: number };
+export type InstanceDetailsProps = Pick<AxeNodeResult, 'none' | 'all' | 'any' | 'html' | 'target'> & {
+    index: number;
+    fixInstructionProcessor: FixInstructionProcessor;
+};
 
 export const InstanceDetails = NamedSFC<InstanceDetailsProps>('InstanceDetail', props => {
-    const { failureSummary, html, target, index } = props;
+    const { any, all, none, html, target, index } = props;
 
     const createTableRow = (label: string, content: string | JSX.Element, rowKey: string, needsExtraClassname?: boolean) => {
         const contentStyling = classNames({
@@ -24,44 +29,28 @@ export const InstanceDetails = NamedSFC<InstanceDetailsProps>('InstanceDetail', 
         );
     };
 
-    const renderInstructions = (howToFixString: string) => {
-        const lines = howToFixString.split(/\r?\n/);
-        const title = lines[0];
-        const instructions = lines.slice(1).filter(instruction => !isEmpty(instruction));
-        return (
-            <div>
-                <div className="fix-instruction-title">{title}</div>
-                <ul>
-                    {instructions.map((instruction, idx) => {
-                        return (
-                            <li className={`fix-instruction-listitem`} key={`fix-instruction-${idx + 1}`}>
-                                {instruction}
-                            </li>
-                        );
-                    })}
-                </ul>
-            </div>
-        );
+    const renderFixInstructionsTitleElement = (titleText: string, className: string) => {
+        return <div className={className}>{titleText}</div>;
     };
 
-    const renderHowToFix = (summary: string) => {
-        const titleRegex = /fix (one of the|all of the|any of the|the) following:/gi;
-        const titles = summary.match(titleRegex);
-        const howToFixStringGroups: string[] = [];
-        let startAt = 0;
-
-        for (let titleIdx = 0; titleIdx < titles.length; titleIdx++) {
-            const endAt = titleIdx === titles.length - 1 ? summary.length - 1 : summary.indexOf(titles[titleIdx + 1], startAt);
-            const howToFixString = summary.substring(startAt, endAt);
-            startAt = endAt;
-            howToFixStringGroups.push(howToFixString);
-        }
-
+    const renderFixInstructionsContent = () => {
+        const deps = {
+            fixInstructionProcessor: props.fixInstructionProcessor,
+        };
         return (
             <div className="how-to-fix-content">
-                {howToFixStringGroups.map((howToFix, idx) => {
-                    return <div key={`how-to-fix-instructions-group-${idx + 1}`}>{renderInstructions(howToFix)}</div>;
-                })}
+                <FixInstructionPanel
+                    deps={deps}
+                    checkType={CheckType.All}
+                    checks={all.concat(none)}
+                    renderTitleElement={renderFixInstructionsTitleElement}
+                />
+                <FixInstructionPanel
+                    deps={deps}
+                    checkType={CheckType.Any}
+                    checks={any}
+                    renderTitleElement={renderFixInstructionsTitleElement}
+                />
             </div>
         );
     };
@@ -71,7 +60,7 @@ export const InstanceDetails = NamedSFC<InstanceDetailsProps>('InstanceDetail', 
             <tbody>
                 {createTableRow('Path', target.join(', '), `path-row-${index}`)}
                 {createTableRow('Snippet', html, `snippet-row-${index}`, true)}
-                {createTableRow('How to fix', renderHowToFix(failureSummary), `how-to-fix-row-${index}`)}
+                {createTableRow('How to fix', renderFixInstructionsContent(), `how-to-fix-row-${index}`)}
             </tbody>
         </table>
     );

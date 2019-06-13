@@ -9,6 +9,7 @@ import { ReportBody, ReportBodyProps } from './components/report-sections/report
 import { ReportSectionFactory, SectionProps } from './components/report-sections/report-section-factory';
 import { ReactStaticRenderer } from './react-static-renderer';
 import { ReportHtmlGenerator } from './report-html-generator';
+import { FixInstructionProcessor } from '../../injected/fix-instruction-processor';
 
 export class ReportHtmlGeneratorV2 implements ReportHtmlGenerator {
     constructor(
@@ -17,6 +18,7 @@ export class ReportHtmlGeneratorV2 implements ReportHtmlGenerator {
         private readonly environmentInfo: EnvironmentInfo,
         private readonly getCollpasibleScript: () => string,
         private readonly utcDateConverter: (scanDate: Date) => string,
+        private readonly fixInstructionProcessor: FixInstructionProcessor,
     ) {}
 
     public generateHtml(scanResult: ScanResults, scanDate: Date, pageTitle: string, pageUrl: string, description: string): string {
@@ -32,6 +34,7 @@ export class ReportHtmlGeneratorV2 implements ReportHtmlGenerator {
             environmentInfo: this.environmentInfo,
             toUtcString: this.utcDateConverter,
             getCollapsibleScript: this.getCollpasibleScript,
+            fixInstructionProcessor: this.fixInstructionProcessor,
         };
 
         const props: ReportBodyProps = {
