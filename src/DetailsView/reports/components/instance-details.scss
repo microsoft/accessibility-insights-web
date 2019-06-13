@@ -12,9 +12,7 @@
     margin-left: 24px;
 
     th {
-        padding-left: 20px;
-        padding-top: 14px;
-        padding-bottom: 14px;
+        padding: 12px 20px;
 
         vertical-align: top;
     }
@@ -40,7 +38,7 @@
 
 .report-instance-table .instance-list-row-content {
     color: $secondary-text;
-    margin: 12px 12px 12px 0px;
+    padding: 12px 20px;
     font-size: 14px;
     line-height: 20px;
     align-items: flex-end;
@@ -76,6 +74,10 @@ table.report-instance-table {
     }
 
     .report-instance-table .label {
-        padding-top: 12px;
+        padding: 14px 20px 6px 20px;
+    }
+
+    .report-instance-table .instance-list-row-content {
+        padding: 6px 20px 14px 20px;
     }
 }
