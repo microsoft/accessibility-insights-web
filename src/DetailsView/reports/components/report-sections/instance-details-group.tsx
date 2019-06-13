@@ -15,11 +15,8 @@ export const InstanceDetailsGroup = NamedSFC<InstanceDetailsGroupProps>('Instanc
     return (
         <ul className="instance-details-list" aria-label="failed instances with path, snippet and how to fix information">
             {props.nodeResults.map((node, index) => (
-                <li>
-                    <InstanceDetails
-                        key={`instance-details-${index}`}
-                        {...{ index, ...node, fixInstructionProcessor: props.fixInstructionProcessor }}
-                    />
+                <li key={`instance-details-${index}`}>
+                    <InstanceDetails {...{ index, ...node, fixInstructionProcessor: props.fixInstructionProcessor }} />
                 </li>
             ))}
         </ul>

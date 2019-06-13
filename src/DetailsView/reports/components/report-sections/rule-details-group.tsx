@@ -5,10 +5,10 @@ import * as React from 'react';
 import { NamedSFC } from '../../../../common/react/named-sfc';
 import { FixInstructionProcessor } from '../../../../injected/fix-instruction-processor';
 import { RuleResult } from '../../../../scanner/iruleresults';
+import { CollapsibleContainer } from './collapsible-container';
 import { InstanceDetailsGroup } from './instance-details-group';
 import { InstanceOutcomeType } from './outcome-summary-bar';
 import { RuleDetail } from './rule-detail';
-import { SummaryDetails } from './summary-details';
 
 export type RuleDetailsGroupProps = {
     fixInstructionProcessor: FixInstructionProcessor;
@@ -22,11 +22,11 @@ export const RuleDetailsGroup = NamedSFC<RuleDetailsGroupProps>(
     ({ rules, showDetails, outcomeType, fixInstructionProcessor }) => {
         return (
             <div className="rule-details-group">
-                {rules.map(rule => {
+                {rules.map((rule, idx) => {
                     return showDetails ? (
-                        <SummaryDetails
+                        <CollapsibleContainer
+                            key={`summary-details-${idx + 1}`}
                             id={rule.id}
-                            summaryProps={{ role: 'heading', 'aria-level': 3 }}
                             summaryContent={<RuleDetail key={rule.id} rule={rule} outcomeType={outcomeType} isHeader={false} />}
                             detailsContent={
                                 <InstanceDetailsGroup
@@ -35,6 +35,9 @@ export const RuleDetailsGroup = NamedSFC<RuleDetailsGroupProps>(
                                     nodeResults={rule.nodes}
                                 />
                             }
+                            buttonAriaLabel="show failed instance list"
+                            containerClassName="collapsible-rule-details-group"
+                            titleHeadingLevel={3}
                         />
                     ) : (
                         <RuleDetail key={rule.id} rule={rule} outcomeType={outcomeType} isHeader={showDetails} />

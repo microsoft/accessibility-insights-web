@@ -4,14 +4,14 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 import {
     ResultSectionTitle,
-    ResultSectionTitlePros,
+    ResultSectionTitleProps,
 } from '../../../../../../../DetailsView/reports/components/report-sections/result-section-title';
 
 describe('ResultSectionTitle', () => {
     it('renders', () => {
-        const props: ResultSectionTitlePros = {
+        const props: ResultSectionTitleProps = {
             title: 'test title',
-            count: 10,
+            badgeCount: 10,
             outcomeType: 'pass',
         };
 

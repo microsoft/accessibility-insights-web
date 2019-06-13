@@ -92,10 +92,10 @@ export const ruleToLinkConfiguration: DictionaryStringTo<HyperlinkDefinition[]> 
     'get-frame-title': [link.WCAG_4_1_2],
     'page-title': [link.WCAG_2_4_2],
     'aria-allowed-role': [BestPractice],
-    'autocomplete-valid': [BestPractice],
+    'autocomplete-valid': [link.WCAG_1_3_5],
     'css-orientation-lock': [BestPractice],
     'aria-hidden-focus': [link.WCAG_4_1_2],
     'form-field-multiple-labels': [BestPractice],
-    'label-content-name-mismatch': [BestPractice],
+    'label-content-name-mismatch': [link.WCAG_2_5_3],
     'landmark-complementary-is-top-level': [link.WCAG_1_3_1, BestPractice],
 };

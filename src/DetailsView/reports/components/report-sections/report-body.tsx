@@ -32,7 +32,7 @@ export const ReportBody = NamedSFC<ReportBodyProps>('ReportBody', props => {
                 <TitleSection />
                 <SummarySection {...sectionProps} />
                 <DetailsSection {...sectionProps} />
-                <ResultsContainer>
+                <ResultsContainer {...sectionProps}>
                     <FailedInstancesSection {...sectionProps} />
                     <PassedChecksSection {...sectionProps} />
                     <NotApplicableChecksSection {...sectionProps} />

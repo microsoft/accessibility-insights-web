@@ -127,7 +127,47 @@ exports[`ReportBody renders 1`] = `
       }
       toUtcString={[Function]}
     />
-    <result-section>
+    <result-section
+      description="test description"
+      environmentInfo={
+        Object {
+          "axeCoreVersion": "axe-core-version",
+          "browserSpec": "browser-spec",
+          "extensionVersion": "extension-version",
+        }
+      }
+      fixInstructionProcessor={
+        proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "backgroundColorText": "background color: ",
+          "backgroundRegExp": /background color: \\(\\?<color>#\\[0-9a-f\\]\\{6\\}\\)/i,
+          "colorGroupName": "color",
+          "colorValueMatcher": "(?<color>#[0-9a-f]{6})",
+          "createColorBox": [Function],
+          "foregroundColorText": "foreground color: ",
+          "foregroundRegExp": /foreground color: \\(\\?<color>#\\[0-9a-f\\]\\{6\\}\\)/i,
+          "getColorMatch": [Function],
+          "process": [Function],
+          "splitFixInstruction": [Function],
+        }
+      }
+      getCollapsibleScript={[Function]}
+      pageTitle="page-title"
+      pageUrl="url:target-page"
+      scanDate={2019-05-29T19:12:16.804Z}
+      scanResult={
+        Object {
+          "inapplicable": Array [],
+          "incomplete": Array [],
+          "passes": Array [],
+          "targetPageTitle": "page-title",
+          "targetPageUrl": "url:target-page",
+          "timestamp": "today",
+          "violations": Array [],
+        }
+      }
+      toUtcString={[Function]}
+    >
       <failed-instances-section
         description="test description"
         environmentInfo={

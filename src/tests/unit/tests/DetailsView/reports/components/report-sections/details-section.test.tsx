@@ -32,5 +32,6 @@ describe('DetailsSection', () => {
 
         const wrapper = shallow(<DetailsSection {...props} />);
         expect(wrapper.getElement()).toMatchSnapshot();
+        toUtcStringMock.verifyAll();
     });
 });

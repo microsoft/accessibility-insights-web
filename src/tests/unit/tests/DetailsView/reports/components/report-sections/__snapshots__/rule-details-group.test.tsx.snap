@@ -35,7 +35,9 @@ exports[`RuleDetailsGroup renders, with details 1`] = `
 <div
   className="rule-details-group"
 >
-  <SummaryDetails
+  <CollapsibleContainer
+    buttonAriaLabel="show failed instance list"
+    containerClassName="collapsible-rule-details-group"
     detailsContent={
       <InstanceDetailsGroup
         fixInstructionProcessor={
@@ -83,12 +85,7 @@ exports[`RuleDetailsGroup renders, with details 1`] = `
         }
       />
     }
-    summaryProps={
-      Object {
-        "aria-level": 3,
-        "role": "heading",
-      }
-    }
+    titleHeadingLevel={3}
   />
 </div>
 `;

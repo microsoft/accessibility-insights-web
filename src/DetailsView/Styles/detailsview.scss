@@ -628,47 +628,6 @@ div.insights-file-issue-details-dialog-container {
                 text-overflow: ellipsis;
                 color: $secondary-text;
             }
-            .radio-button-group {
-                float: left;
-                line-height: 24px;
-                .ms-ChoiceField {
-                    float: left;
-                    margin-top: 0px !important;
-                }
-                .ms-Label {
-                    font-size: 14px;
-                    padding: 0 0 0 26px;
-                    display: inline-block;
-                }
-                .ms-ChoiceField:nth-of-type(1) {
-                    margin-right: 8px;
-                }
-                .ms-ChoiceField-input {
-                    position: absolute;
-                }
-                .PASS {
-                    .ms-ChoiceField:nth-of-type(1) {
-                        .ms-ChoiceField-field::before,
-                        .ms-ChoiceField-field::after {
-                            border-color: $positive-outcome;
-                        }
-                    }
-                }
-                .FAIL {
-                    .ms-ChoiceField:nth-of-type(2) {
-                        .ms-ChoiceField-field::before,
-                        .ms-ChoiceField-field::after {
-                            border-color: $negative-outcome;
-                        }
-                    }
-                }
-            }
-            .undo-button {
-                margin-left: 8px;
-                font-size: 16px;
-                line-height: 24px;
-                color: $neutral-100;
-            }
             .remove-button {
                 margin-left: 12px;
                 font-size: 16px;

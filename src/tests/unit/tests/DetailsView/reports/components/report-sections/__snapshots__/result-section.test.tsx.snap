@@ -1,57 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`PassedChecksSection renders, no rules and show congrats 1`] = `
+exports[`ResultSection renders 1`] = `
 <div
   className="result-section-class-name"
 >
   <ResultSectionTitle
-    count={2}
-    outcomeType="pass"
-    title="result section title"
+    containerClassName="result-section-class-name"
   />
-  <NoFailedInstancesCongrats />
-</div>
-`;
-
-exports[`PassedChecksSection renders, not showDetails 1`] = `
-<div
-  className="result-section-class-name"
->
-  <ResultSectionTitle
-    count={2}
-    outcomeType="pass"
-    title="result section title"
-  />
-  <RuleDetailsGroup
-    outcomeType="pass"
-    rules={
-      Array [
-        Object {},
-        Object {},
-      ]
-    }
-  />
-</div>
-`;
-
-exports[`PassedChecksSection renders, with showDetails 1`] = `
-<div
-  className="result-section-class-name"
->
-  <ResultSectionTitle
-    count={2}
-    outcomeType="pass"
-    title="result section title"
-  />
-  <RuleDetailsGroup
-    outcomeType="pass"
-    rules={
-      Array [
-        Object {},
-        Object {},
-      ]
-    }
-    showDetails={true}
+  <ResultSectionContent
+    containerClassName="result-section-class-name"
   />
 </div>
 `;

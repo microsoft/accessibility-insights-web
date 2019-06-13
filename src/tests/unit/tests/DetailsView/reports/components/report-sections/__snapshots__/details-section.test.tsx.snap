@@ -17,6 +17,14 @@ exports[`DetailsSection renders 1`] = `
           <UrlIcon />
         </td>
         <td
+          className="screen-reader-only"
+          id="target-page-text"
+        >
+          Target Page: https://page-url/
+        </td>
+        <td
+          aria-hidden="true"
+          aria-labelledby="target-page-text"
           className="text"
         >
           <NewTabLink
@@ -35,6 +43,14 @@ exports[`DetailsSection renders 1`] = `
           <DateIcon />
         </td>
         <td
+          className="screen-reader-only"
+          id="scan-date-text"
+        >
+          Scan date: 2018-03-12 11:24 PM UTC
+        </td>
+        <td
+          aria-hidden="true"
+          aria-labelledby="scan-date-text"
           className="text"
         >
           2018-03-12 11:24 PM UTC
@@ -48,6 +64,14 @@ exports[`DetailsSection renders 1`] = `
           <CommentIcon />
         </td>
         <td
+          className="screen-reader-only"
+          id="comment-text"
+        >
+          Comment: description-text
+        </td>
+        <td
+          aria-hidden="true"
+          aria-labelledby="comment-text"
           className="text description-text"
         >
           description-text
