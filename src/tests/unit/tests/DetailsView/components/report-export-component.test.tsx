@@ -38,10 +38,9 @@ describe('ReportExportComponentTest', () => {
             reportGeneratorMock
                 .setup(rgm => rgm.generateName(props.exportResultsType, props.scanDate, props.pageTitle))
                 .verifiable(Times.once());
-            htmlGeneratorMock
-                .setup(hgm => hgm(It.isAnyString()))
-                .returns(() => 'test html')
-                .verifiable(Times.never());
+
+            htmlGeneratorMock.setup(hgm => hgm(It.isAnyString())).verifiable(Times.never());
+
             const wrapper = shallow(<ReportExportComponent {...props} />);
             const exportButton = wrapper.find(ActionButton);
 
@@ -61,10 +60,8 @@ describe('ReportExportComponentTest', () => {
             reportGeneratorMock
                 .setup(rgm => rgm.generateName(props.exportResultsType, props.scanDate, props.pageTitle))
                 .verifiable(Times.once());
-            htmlGeneratorMock
-                .setup(hgm => hgm(It.isAnyString()))
-                .returns(() => 'test html')
-                .verifiable(Times.never());
+
+            htmlGeneratorMock.setup(hgm => hgm(It.isAnyString())).verifiable(Times.never());
 
             const exportButton = wrapper.find(ActionButton);
             exportButton.simulate('click');
@@ -88,18 +85,10 @@ describe('ReportExportComponentTest', () => {
         test('clicking export on the dialog should trigger the generateHtml', () => {
             const wrapper = shallow(<ReportExportComponent {...props} />);
 
-            reportGeneratorMock
-                .setup(rgm => rgm.generateName(props.exportResultsType, props.scanDate, props.pageTitle))
-                .verifiable(Times.once());
-
             htmlGeneratorMock
                 .setup(hgm => hgm(wrapper.state('exportDescription')))
                 .returns(() => 'test html')
                 .verifiable(Times.once());
-
-            const exportButton = wrapper.find(ActionButton);
-
-            exportButton.simulate('click');
 
             const dialog = wrapper.find(ExportDialog);
 
