@@ -55,6 +55,7 @@
 table.report-instance-table {
     border-collapse: collapse;
     overflow-x: auto;
+    word-break: break-all;
 }
 
 @media screen and (max-width: 480px) {
