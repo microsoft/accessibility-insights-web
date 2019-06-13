@@ -10,6 +10,20 @@ import { SectionProps } from './report-section-factory';
 
 export type DetailsSectionProps = Pick<SectionProps, 'pageUrl' | 'description' | 'scanDate' | 'toUtcString'>;
 
+const createCommentRow = (description: string, screenReaderText: string) => (
+    <tr>
+        <td className="icon" aria-hidden="true">
+            <CommentIcon />
+        </td>
+        <td className="screen-reader-only" id="comment-text">
+            {screenReaderText}
+        </td>
+        <td className="text description-text" aria-labelledby="comment-text" aria-hidden="true">
+            {description}
+        </td>
+    </tr>
+);
+
 export const DetailsSection = NamedSFC<DetailsSectionProps>('DetailsSection', props => {
     const { pageUrl, description, scanDate, toUtcString } = props;
     const scanDateUTC: string = toUtcString(scanDate);
@@ -18,6 +32,7 @@ export const DetailsSection = NamedSFC<DetailsSectionProps>('DetailsSection', pr
         scanDate: `Scan date: ${scanDateUTC}`,
         comment: `Comment: ${description}`,
     };
+    const showCommentRow = !!description && description !== '';
     return (
         <div className="scan-details-section">
             <h2>Scan details</h2>
@@ -47,17 +62,7 @@ export const DetailsSection = NamedSFC<DetailsSectionProps>('DetailsSection', pr
                             {scanDateUTC}
                         </td>
                     </tr>
-                    <tr>
-                        <td className="icon" aria-hidden="true">
-                            <CommentIcon />
-                        </td>
-                        <td className="screen-reader-only" id="comment-text">
-                            {screenReaderTexts.comment}
-                        </td>
-                        <td className="text description-text" aria-labelledby="comment-text" aria-hidden="true">
-                            {description}
-                        </td>
-                    </tr>
+                    {showCommentRow ? createCommentRow(description, screenReaderTexts.comment) : null}
                 </tbody>
             </table>
         </div>

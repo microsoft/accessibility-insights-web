@@ -44,7 +44,75 @@ exports[`InstanceDetails renders 1`] = `
       <td
         className="instance-list-row-content"
       >
-        fix the error
+        <div
+          className="how-to-fix-content"
+        >
+          <FixInstructionPanel
+            checkType={0}
+            checks={
+              Array [
+                Object {
+                  "data": null,
+                  "id": "all",
+                  "message": "fix all of the following",
+                },
+                Object {
+                  "data": null,
+                  "id": "none",
+                  "message": "fix the following",
+                },
+              ]
+            }
+            deps={
+              Object {
+                "fixInstructionProcessor": proxy {
+                  "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                  "backgroundColorText": "background color: ",
+                  "backgroundRegExp": /background color: \\(\\?<color>#\\[0-9a-f\\]\\{6\\}\\)/i,
+                  "colorGroupName": "color",
+                  "colorValueMatcher": "(?<color>#[0-9a-f]{6})",
+                  "createColorBox": [Function],
+                  "foregroundColorText": "foreground color: ",
+                  "foregroundRegExp": /foreground color: \\(\\?<color>#\\[0-9a-f\\]\\{6\\}\\)/i,
+                  "getColorMatch": [Function],
+                  "process": [Function],
+                  "splitFixInstruction": [Function],
+                },
+              }
+            }
+            renderTitleElement={[Function]}
+          />
+          <FixInstructionPanel
+            checkType={1}
+            checks={
+              Array [
+                Object {
+                  "data": null,
+                  "id": "any",
+                  "message": "fix any of the following",
+                },
+              ]
+            }
+            deps={
+              Object {
+                "fixInstructionProcessor": proxy {
+                  "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                  "backgroundColorText": "background color: ",
+                  "backgroundRegExp": /background color: \\(\\?<color>#\\[0-9a-f\\]\\{6\\}\\)/i,
+                  "colorGroupName": "color",
+                  "colorValueMatcher": "(?<color>#[0-9a-f]{6})",
+                  "createColorBox": [Function],
+                  "foregroundColorText": "foreground color: ",
+                  "foregroundRegExp": /foreground color: \\(\\?<color>#\\[0-9a-f\\]\\{6\\}\\)/i,
+                  "getColorMatch": [Function],
+                  "process": [Function],
+                  "splitFixInstruction": [Function],
+                },
+              }
+            }
+            renderTitleElement={[Function]}
+          />
+        </div>
       </td>
     </tr>
   </tbody>

@@ -11,6 +11,7 @@ import { ReportBody, ReportBodyProps } from '../../../../../DetailsView/reports/
 import { ReportSectionFactory } from '../../../../../DetailsView/reports/components/report-sections/report-section-factory';
 import { ReactStaticRenderer } from '../../../../../DetailsView/reports/react-static-renderer';
 import { ReportHtmlGeneratorV2 } from '../../../../../DetailsView/reports/report-html-generator-v2';
+import { FixInstructionProcessor } from '../../../../../injected/fix-instruction-processor';
 import { ScanResults } from '../../../../../scanner/iruleresults';
 
 describe('ReportHtmlGeneratorV2', () => {
@@ -23,6 +24,7 @@ describe('ReportHtmlGeneratorV2', () => {
         const pageTitle: string = 'page-title';
         const pageUrl: string = 'https://page-url/';
         const description: string = 'description';
+        const fixInstructionProcessorMock = Mock.ofType(FixInstructionProcessor);
 
         const getUTCStringFromDateStub: typeof DateProvider.getUTCStringFromDate = () => '';
         const getGuidanceTagsStub: GetGuidanceTagsFromGuidanceLinks = () => [];
@@ -37,6 +39,7 @@ describe('ReportHtmlGeneratorV2', () => {
         const getScriptMock = Mock.ofInstance(() => '');
 
         const sectionProps: ReportBodyProps = {
+            fixInstructionProcessor: fixInstructionProcessorMock.object,
             sectionFactory: sectionFactoryMock.object,
             pageTitle,
             pageUrl,
@@ -69,6 +72,7 @@ describe('ReportHtmlGeneratorV2', () => {
             getScriptMock.object,
             getUTCStringFromDateStub,
             getGuidanceTagsStub,
+            fixInstructionProcessorMock.object,
         );
 
         const actual = testObject.generateHtml(scanResult, scanDate, pageTitle, pageUrl, description);

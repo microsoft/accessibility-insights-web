@@ -2,14 +2,17 @@
 // Licensed under the MIT License.
 import { shallow } from 'enzyme';
 import * as React from 'react';
+import { Mock } from 'typemoq';
 
 import {
     InstanceDetailsGroup,
     InstanceDetailsGroupProps,
 } from '../../../../../../../DetailsView/reports/components/report-sections/instance-details-group';
+import { FixInstructionProcessor } from '../../../../../../../injected/fix-instruction-processor';
 
 describe('InstanceDetailsGroup', () => {
     it('renders', () => {
+        const fixInstructionProcessorMock = Mock.ofType(FixInstructionProcessor);
         const nodes: AxeNodeResult[] = [
             {
                 target: ['<html>'],
@@ -24,6 +27,7 @@ describe('InstanceDetailsGroup', () => {
         ];
 
         const props: InstanceDetailsGroupProps = {
+            fixInstructionProcessor: fixInstructionProcessorMock.object,
             nodeResults: nodes,
         };
 

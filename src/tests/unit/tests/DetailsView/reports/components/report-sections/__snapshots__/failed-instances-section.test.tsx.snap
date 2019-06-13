@@ -9,6 +9,21 @@ exports[`FailedInstancesSection renders 1`] = `
       "getGuidanceTagsFromGuidanceLinks": [Function],
     }
   }
+  fixInstructionProcessor={
+    proxy {
+      "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+      "backgroundColorText": "background color: ",
+      "backgroundRegExp": /background color: \\(\\?<color>#\\[0-9a-f\\]\\{6\\}\\)/i,
+      "colorGroupName": "color",
+      "colorValueMatcher": "(?<color>#[0-9a-f]{6})",
+      "createColorBox": [Function],
+      "foregroundColorText": "foreground color: ",
+      "foregroundRegExp": /foreground color: \\(\\?<color>#\\[0-9a-f\\]\\{6\\}\\)/i,
+      "getColorMatch": [Function],
+      "process": [Function],
+      "splitFixInstruction": [Function],
+    }
+  }
   outcomeType="fail"
   rules={
     Array [

@@ -3,9 +3,11 @@
 import { EnvironmentInfo } from '../../../../common/environment-info-provider';
 import { GetGuidanceTagsFromGuidanceLinks } from '../../../../common/get-guidance-tags-from-guidance-links';
 import { ReactSFCWithDisplayName } from '../../../../common/react/named-sfc';
+import { FixInstructionProcessor } from '../../../../injected/fix-instruction-processor';
 import { ScanResults } from '../../../../scanner/iruleresults';
 
 export type SectionProps = {
+    fixInstructionProcessor: FixInstructionProcessor;
     pageTitle: string;
     pageUrl: string;
     description: string;

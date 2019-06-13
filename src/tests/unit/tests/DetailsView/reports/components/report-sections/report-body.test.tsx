@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { shallow } from 'enzyme';
 import * as React from 'react';
+import { Mock } from 'typemoq';
 
 import { NamedSFC } from '../../../../../../../common/react/named-sfc';
 import { ReportBody, ReportBodyProps } from '../../../../../../../DetailsView/reports/components/report-sections/report-body';
@@ -9,6 +10,7 @@ import {
     ReportSectionFactory,
     SectionProps,
 } from '../../../../../../../DetailsView/reports/components/report-sections/report-section-factory';
+import { FixInstructionProcessor } from '../../../../../../../injected/fix-instruction-processor';
 
 describe('ReportBody', () => {
     it('renders', () => {
@@ -16,8 +18,10 @@ describe('ReportBody', () => {
         const pageUrl = 'url:target-page';
         const getScriptStub = () => '';
         const getGuidanceTagsStub = () => [];
+        const fixInstructionProcessorMock = Mock.ofType(FixInstructionProcessor);
 
         const detailsProps: SectionProps = {
+            fixInstructionProcessor: fixInstructionProcessorMock.object,
             pageTitle,
             pageUrl,
             description: 'test description',
