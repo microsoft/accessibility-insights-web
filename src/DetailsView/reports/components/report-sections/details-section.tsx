@@ -32,7 +32,7 @@ export const DetailsSection = NamedSFC<DetailsSectionProps>('DetailsSection', pr
         scanDate: `Scan date: ${scanDateUTC}`,
         comment: `Comment: ${description}`,
     };
-    const showCommentRow = description !== '';
+    const showCommentRow = !!description && description !== '';
     return (
         <div className="scan-details-section">
             <h2>Scan details</h2>
