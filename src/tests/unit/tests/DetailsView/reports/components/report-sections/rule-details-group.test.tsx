@@ -2,15 +2,25 @@
 // Licensed under the MIT License.
 import { shallow } from 'enzyme';
 import * as React from 'react';
+import { IMock, Mock } from 'typemoq';
 
 import { RuleDetailsGroup } from '../../../../../../../DetailsView/reports/components/report-sections/rule-details-group';
+import { FixInstructionProcessor } from '../../../../../../../injected/fix-instruction-processor';
 import { RuleResult } from '../../../../../../../scanner/iruleresults';
 
 describe('RuleDetailsGroup', () => {
+    let fixInstructionProcessorMock: IMock<FixInstructionProcessor>;
+
+    beforeEach(() => {
+        fixInstructionProcessorMock = Mock.ofType(FixInstructionProcessor);
+    });
+
     it('renders, no details', () => {
         const rules = [{ id: '1' } as RuleResult, { id: '2' } as RuleResult, { id: '3' } as RuleResult];
 
-        const wrapped = shallow(<RuleDetailsGroup outcomeType={'pass'} rules={rules} />);
+        const wrapped = shallow(
+            <RuleDetailsGroup fixInstructionProcessor={fixInstructionProcessorMock.object} outcomeType={'pass'} rules={rules} />,
+        );
 
         expect(wrapped.getElement()).toMatchSnapshot();
     });
@@ -29,7 +39,14 @@ describe('RuleDetailsGroup', () => {
             } as RuleResult,
         ];
 
-        const wrapped = shallow(<RuleDetailsGroup outcomeType={'pass'} rules={rules} showDetails={true} />);
+        const wrapped = shallow(
+            <RuleDetailsGroup
+                fixInstructionProcessor={fixInstructionProcessorMock.object}
+                outcomeType={'pass'}
+                rules={rules}
+                showDetails={true}
+            />,
+        );
 
         expect(wrapped.getElement()).toMatchSnapshot();
     });

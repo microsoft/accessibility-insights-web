@@ -11,6 +11,21 @@ exports[`ReportBody renders 1`] = `
         "extensionVersion": "extension-version",
       }
     }
+    fixInstructionProcessor={
+      proxy {
+        "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+        "backgroundColorText": "background color: ",
+        "backgroundRegExp": /background color: \\(\\?<color>#\\[0-9a-f\\]\\{6\\}\\)/i,
+        "colorGroupName": "color",
+        "colorValueMatcher": "(?<color>#[0-9a-f]{6})",
+        "createColorBox": [Function],
+        "foregroundColorText": "foreground color: ",
+        "foregroundRegExp": /foreground color: \\(\\?<color>#\\[0-9a-f\\]\\{6\\}\\)/i,
+        "getColorMatch": [Function],
+        "process": [Function],
+        "splitFixInstruction": [Function],
+      }
+    }
     getCollapsibleScript={[Function]}
     pageTitle="page-title"
     pageUrl="url:target-page"
@@ -39,6 +54,21 @@ exports[`ReportBody renders 1`] = `
           "extensionVersion": "extension-version",
         }
       }
+      fixInstructionProcessor={
+        proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "backgroundColorText": "background color: ",
+          "backgroundRegExp": /background color: \\(\\?<color>#\\[0-9a-f\\]\\{6\\}\\)/i,
+          "colorGroupName": "color",
+          "colorValueMatcher": "(?<color>#[0-9a-f]{6})",
+          "createColorBox": [Function],
+          "foregroundColorText": "foreground color: ",
+          "foregroundRegExp": /foreground color: \\(\\?<color>#\\[0-9a-f\\]\\{6\\}\\)/i,
+          "getColorMatch": [Function],
+          "process": [Function],
+          "splitFixInstruction": [Function],
+        }
+      }
       getCollapsibleScript={[Function]}
       pageTitle="page-title"
       pageUrl="url:target-page"
@@ -63,6 +93,21 @@ exports[`ReportBody renders 1`] = `
           "axeCoreVersion": "axe-core-version",
           "browserSpec": "browser-spec",
           "extensionVersion": "extension-version",
+        }
+      }
+      fixInstructionProcessor={
+        proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "backgroundColorText": "background color: ",
+          "backgroundRegExp": /background color: \\(\\?<color>#\\[0-9a-f\\]\\{6\\}\\)/i,
+          "colorGroupName": "color",
+          "colorValueMatcher": "(?<color>#[0-9a-f]{6})",
+          "createColorBox": [Function],
+          "foregroundColorText": "foreground color: ",
+          "foregroundRegExp": /foreground color: \\(\\?<color>#\\[0-9a-f\\]\\{6\\}\\)/i,
+          "getColorMatch": [Function],
+          "process": [Function],
+          "splitFixInstruction": [Function],
         }
       }
       getCollapsibleScript={[Function]}
@@ -91,6 +136,21 @@ exports[`ReportBody renders 1`] = `
           "extensionVersion": "extension-version",
         }
       }
+      fixInstructionProcessor={
+        proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "backgroundColorText": "background color: ",
+          "backgroundRegExp": /background color: \\(\\?<color>#\\[0-9a-f\\]\\{6\\}\\)/i,
+          "colorGroupName": "color",
+          "colorValueMatcher": "(?<color>#[0-9a-f]{6})",
+          "createColorBox": [Function],
+          "foregroundColorText": "foreground color: ",
+          "foregroundRegExp": /foreground color: \\(\\?<color>#\\[0-9a-f\\]\\{6\\}\\)/i,
+          "getColorMatch": [Function],
+          "process": [Function],
+          "splitFixInstruction": [Function],
+        }
+      }
       getCollapsibleScript={[Function]}
       pageTitle="page-title"
       pageUrl="url:target-page"
@@ -115,6 +175,21 @@ exports[`ReportBody renders 1`] = `
             "axeCoreVersion": "axe-core-version",
             "browserSpec": "browser-spec",
             "extensionVersion": "extension-version",
+          }
+        }
+        fixInstructionProcessor={
+          proxy {
+            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+            "backgroundColorText": "background color: ",
+            "backgroundRegExp": /background color: \\(\\?<color>#\\[0-9a-f\\]\\{6\\}\\)/i,
+            "colorGroupName": "color",
+            "colorValueMatcher": "(?<color>#[0-9a-f]{6})",
+            "createColorBox": [Function],
+            "foregroundColorText": "foreground color: ",
+            "foregroundRegExp": /foreground color: \\(\\?<color>#\\[0-9a-f\\]\\{6\\}\\)/i,
+            "getColorMatch": [Function],
+            "process": [Function],
+            "splitFixInstruction": [Function],
           }
         }
         getCollapsibleScript={[Function]}
@@ -143,6 +218,21 @@ exports[`ReportBody renders 1`] = `
             "extensionVersion": "extension-version",
           }
         }
+        fixInstructionProcessor={
+          proxy {
+            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+            "backgroundColorText": "background color: ",
+            "backgroundRegExp": /background color: \\(\\?<color>#\\[0-9a-f\\]\\{6\\}\\)/i,
+            "colorGroupName": "color",
+            "colorValueMatcher": "(?<color>#[0-9a-f]{6})",
+            "createColorBox": [Function],
+            "foregroundColorText": "foreground color: ",
+            "foregroundRegExp": /foreground color: \\(\\?<color>#\\[0-9a-f\\]\\{6\\}\\)/i,
+            "getColorMatch": [Function],
+            "process": [Function],
+            "splitFixInstruction": [Function],
+          }
+        }
         getCollapsibleScript={[Function]}
         pageTitle="page-title"
         pageUrl="url:target-page"
@@ -167,6 +257,21 @@ exports[`ReportBody renders 1`] = `
             "axeCoreVersion": "axe-core-version",
             "browserSpec": "browser-spec",
             "extensionVersion": "extension-version",
+          }
+        }
+        fixInstructionProcessor={
+          proxy {
+            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+            "backgroundColorText": "background color: ",
+            "backgroundRegExp": /background color: \\(\\?<color>#\\[0-9a-f\\]\\{6\\}\\)/i,
+            "colorGroupName": "color",
+            "colorValueMatcher": "(?<color>#[0-9a-f]{6})",
+            "createColorBox": [Function],
+            "foregroundColorText": "foreground color: ",
+            "foregroundRegExp": /foreground color: \\(\\?<color>#\\[0-9a-f\\]\\{6\\}\\)/i,
+            "getColorMatch": [Function],
+            "process": [Function],
+            "splitFixInstruction": [Function],
           }
         }
         getCollapsibleScript={[Function]}
@@ -195,6 +300,21 @@ exports[`ReportBody renders 1`] = `
         "axeCoreVersion": "axe-core-version",
         "browserSpec": "browser-spec",
         "extensionVersion": "extension-version",
+      }
+    }
+    fixInstructionProcessor={
+      proxy {
+        "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+        "backgroundColorText": "background color: ",
+        "backgroundRegExp": /background color: \\(\\?<color>#\\[0-9a-f\\]\\{6\\}\\)/i,
+        "colorGroupName": "color",
+        "colorValueMatcher": "(?<color>#[0-9a-f]{6})",
+        "createColorBox": [Function],
+        "foregroundColorText": "foreground color: ",
+        "foregroundRegExp": /foreground color: \\(\\?<color>#\\[0-9a-f\\]\\{6\\}\\)/i,
+        "getColorMatch": [Function],
+        "process": [Function],
+        "splitFixInstruction": [Function],
       }
     }
     getCollapsibleScript={[Function]}

@@ -3,15 +3,19 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
+import { Mock } from 'typemoq';
 import {
     FailedInstancesSection,
     FailedInstancesSectionProps,
 } from '../../../../../../../DetailsView/reports/components/report-sections/failed-instances-section';
+import { FixInstructionProcessor } from '../../../../../../../injected/fix-instruction-processor';
 import { RuleResult } from '../../../../../../../scanner/iruleresults';
 
 describe('FailedInstancesSection', () => {
     it('renders', () => {
+        const fixInstructionProcessorMock = Mock.ofType(FixInstructionProcessor);
         const props: FailedInstancesSectionProps = {
+            fixInstructionProcessor: fixInstructionProcessorMock.object,
             scanResult: {
                 violations: [{ nodes: [{}, {}] } as RuleResult, { nodes: [{}] } as RuleResult, { nodes: [{}, {}, {}] } as RuleResult],
                 passes: [],
