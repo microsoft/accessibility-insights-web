@@ -18,20 +18,19 @@ exports[`DetailsSection rendering of comment row is dependent on description val
         </td>
         <td
           className="screen-reader-only"
-          id="target-page-text"
-        >
-          Target Page: https://page-url/
-        </td>
+        />
         <td
-          aria-hidden="true"
-          aria-labelledby="target-page-text"
           className="text"
         >
           <NewTabLink
-            disabled={true}
             href="https://page-url/"
             title="Navigate to target page"
           >
+            <span
+              className="screen-reader-only"
+            >
+              Target page: 
+            </span>
             https://page-url/
           </NewTabLink>
         </td>
@@ -80,20 +79,19 @@ exports[`DetailsSection rendering of comment row is dependent on description val
         </td>
         <td
           className="screen-reader-only"
-          id="target-page-text"
-        >
-          Target Page: https://page-url/
-        </td>
+        />
         <td
-          aria-hidden="true"
-          aria-labelledby="target-page-text"
           className="text"
         >
           <NewTabLink
-            disabled={true}
             href="https://page-url/"
             title="Navigate to target page"
           >
+            <span
+              className="screen-reader-only"
+            >
+              Target page: 
+            </span>
             https://page-url/
           </NewTabLink>
         </td>
@@ -163,20 +161,19 @@ exports[`DetailsSection rendering of comment row is dependent on description val
         </td>
         <td
           className="screen-reader-only"
-          id="target-page-text"
-        >
-          Target Page: https://page-url/
-        </td>
+        />
         <td
-          aria-hidden="true"
-          aria-labelledby="target-page-text"
           className="text"
         >
           <NewTabLink
-            disabled={true}
             href="https://page-url/"
             title="Navigate to target page"
           >
+            <span
+              className="screen-reader-only"
+            >
+              Target page: 
+            </span>
             https://page-url/
           </NewTabLink>
         </td>
@@ -225,20 +222,19 @@ exports[`DetailsSection rendering of comment row is dependent on description val
         </td>
         <td
           className="screen-reader-only"
-          id="target-page-text"
-        >
-          Target Page: https://page-url/
-        </td>
+        />
         <td
-          aria-hidden="true"
-          aria-labelledby="target-page-text"
           className="text"
         >
           <NewTabLink
-            disabled={true}
             href="https://page-url/"
             title="Navigate to target page"
           >
+            <span
+              className="screen-reader-only"
+            >
+              Target page: 
+            </span>
             https://page-url/
           </NewTabLink>
         </td>

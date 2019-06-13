@@ -28,7 +28,6 @@ export const DetailsSection = NamedSFC<DetailsSectionProps>('DetailsSection', pr
     const { pageUrl, description, scanDate, toUtcString } = props;
     const scanDateUTC: string = toUtcString(scanDate);
     const screenReaderTexts = {
-        targetPageLink: `Target Page: ${pageUrl}`,
         scanDate: `Scan date: ${scanDateUTC}`,
         comment: `Comment: ${description}`,
     };
@@ -42,11 +41,10 @@ export const DetailsSection = NamedSFC<DetailsSectionProps>('DetailsSection', pr
                         <td className="icon" aria-hidden="true">
                             <UrlIcon />
                         </td>
-                        <td className="screen-reader-only" id="target-page-text">
-                            {screenReaderTexts.targetPageLink}
-                        </td>
-                        <td className="text" aria-labelledby="target-page-text" aria-hidden="true">
-                            <NewTabLink href={pageUrl} title="Navigate to target page" disabled>
+                        <td className="screen-reader-only">{/* empty but needed for layout */}</td>
+                        <td className="text">
+                            <NewTabLink href={pageUrl} title="Navigate to target page">
+                                <span className="screen-reader-only">Target page: </span>
                                 {pageUrl}
                             </NewTabLink>
                         </td>
