@@ -6,6 +6,7 @@
 @import '../../common/icons/icon.scss';
 @import './components/outcome.scss';
 @import './components/instance-details.scss';
+@import '../../common/components/guidance-tags.scss';
 
 @mixin contentSize {
     max-width: 960px;
