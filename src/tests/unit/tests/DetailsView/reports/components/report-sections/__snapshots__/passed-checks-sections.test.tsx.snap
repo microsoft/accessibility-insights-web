@@ -1,8 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`PassedChecksSection renders 1`] = `
-<ResultSection
+<CollapsibleResultSection
   badgeCount={3}
+  buttonAriaLabel="show passed checks list"
   containerClassName="passed-checks-section"
   deps={
     Object {

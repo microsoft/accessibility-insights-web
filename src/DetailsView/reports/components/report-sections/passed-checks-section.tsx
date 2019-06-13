@@ -3,8 +3,8 @@
 import * as React from 'react';
 
 import { NamedSFC } from '../../../../common/react/named-sfc';
+import { CollapsibleResultSection } from './collapsible-result-section';
 import { SectionProps } from './report-section-factory';
-import { ResultSection } from './result-section';
 
 export type PassedChecksSectionProps = Pick<SectionProps, 'scanResult' | 'getGuidanceTagsFromGuidanceLinks'>;
 
@@ -13,13 +13,14 @@ export const PassedChecksSection = NamedSFC<PassedChecksSectionProps>(
     ({ scanResult, getGuidanceTagsFromGuidanceLinks }) => {
         const rules = scanResult.passes;
         return (
-            <ResultSection
+            <CollapsibleResultSection
                 deps={{ getGuidanceTagsFromGuidanceLinks }}
                 title="Passed checks"
                 rules={rules}
                 containerClassName="passed-checks-section"
                 outcomeType="pass"
                 badgeCount={rules.length}
+                buttonAriaLabel="show passed checks list"
             />
         );
     },
