@@ -3,11 +3,11 @@
 import * as React from 'react';
 
 import { NamedSFC } from '../../../../common/react/named-sfc';
+import { FixInstructionProcessor } from '../../../../injected/fix-instruction-processor';
 import { RuleResult } from '../../../../scanner/iruleresults';
 import { NoFailedInstancesCongrats } from './no-failed-instances-congrats';
 import { InstanceOutcomeType } from './outcome-summary-bar';
 import { RuleDetailsGroup } from './rule-details-group';
-import { FixInstructionProcessor } from '../../../../injected/fix-instruction-processor';
 
 export type ResultSectionContentProps = {
     rules: RuleResult[];

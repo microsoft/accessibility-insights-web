@@ -3,13 +3,13 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
+import { Mock } from 'typemoq';
 import {
     FailedInstancesSection,
     FailedInstancesSectionProps,
 } from '../../../../../../../DetailsView/reports/components/report-sections/failed-instances-section';
 import { FixInstructionProcessor } from '../../../../../../../injected/fix-instruction-processor';
 import { RuleResult } from '../../../../../../../scanner/iruleresults';
-import { Mock } from 'typemoq';
 
 describe('FailedInstancesSection', () => {
     it('renders', () => {

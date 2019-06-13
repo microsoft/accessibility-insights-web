@@ -3,7 +3,6 @@
 import * as React from 'react';
 
 import { NamedSFC } from '../../../../common/react/named-sfc';
-import { FixInstructionProcessor } from '../../../../injected/fix-instruction-processor';
 import { ResultSectionContent, ResultSectionContentProps } from './result-section-content';
 import { ResultSectionTitle, ResultSectionTitleProps } from './result-section-title';
 
