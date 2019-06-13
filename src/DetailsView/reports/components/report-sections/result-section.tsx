@@ -3,35 +3,21 @@
 import * as React from 'react';
 
 import { NamedSFC } from '../../../../common/react/named-sfc';
-import { RuleResult } from '../../../../scanner/iruleresults';
-import { NoFailedInstancesCongrats } from './no-failed-instances-congrats';
-import { InstanceOutcomeType } from './outcome-summary-bar';
-import { ResultSectionTitle } from './result-section-title';
-import { RuleDetailsGroup } from './rule-details-group';
+import { ResultSectionContent, ResultSectionContentProps } from './result-section-content';
+import { ResultSectionTitle, ResultSectionTitleProps } from './result-section-title';
 
-export type ResultSectionProps = {
-    rules: RuleResult[];
-    containerClassName: string;
-    title: string;
-    outcomeType: InstanceOutcomeType;
-    showDetails?: boolean;
-    showCongratsIfNotInstances?: boolean;
-    badgeCount: number;
-};
+export type ResultSectionProps = ResultSectionContentProps &
+    ResultSectionTitleProps & {
+        containerClassName: string;
+    };
 
 export const ResultSection = NamedSFC<ResultSectionProps>('ResultSection', props => {
-    const { rules, containerClassName, title, outcomeType, badgeCount, showCongratsIfNotInstances } = props;
-
-    let content = <RuleDetailsGroup rules={rules} showDetails={props.showDetails} outcomeType={outcomeType} />;
-
-    if (rules.length === 0 && showCongratsIfNotInstances) {
-        content = <NoFailedInstancesCongrats />;
-    }
+    const { containerClassName } = props;
 
     return (
         <div className={containerClassName}>
-            <ResultSectionTitle title={title} count={badgeCount} outcomeType={outcomeType} />
-            {content}
+            <ResultSectionTitle {...props} />
+            <ResultSectionContent {...props} />
         </div>
     );
 });

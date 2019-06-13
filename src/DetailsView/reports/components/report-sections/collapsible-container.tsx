@@ -5,26 +5,23 @@ import * as React from 'react';
 
 import { NamedSFC } from '../../../../common/react/named-sfc';
 
-type HeadingProps = {
-    role: string;
-    'aria-level': number;
-};
-
 export type CollapsibleContainerProps = {
-    titleContainerProps: HeadingProps;
     id: string;
     summaryContent: JSX.Element;
     detailsContent: JSX.Element;
     buttonAriaLabel: string;
+    titleHeadingLevel?: number;
     containerClassName?: string;
 };
 
 export const CollapsibleContainer = NamedSFC<CollapsibleContainerProps>('CollapsibleContainer', props => {
-    const { id, summaryContent, titleContainerProps, detailsContent, buttonAriaLabel, containerClassName } = props;
+    const { id, summaryContent, titleHeadingLevel, detailsContent, buttonAriaLabel, containerClassName } = props;
 
     const contentId = `content-container-${id}`;
 
     const outerDivClassName = css('collapsible-container', containerClassName);
+
+    const titleContainerProps = titleHeadingLevel ? { role: 'heading', 'aria-level': titleHeadingLevel } : undefined;
 
     return (
         <div className={outerDivClassName}>
