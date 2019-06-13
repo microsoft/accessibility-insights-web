@@ -6,23 +6,27 @@ import { NamedSFC } from '../../../../common/react/named-sfc';
 import { SectionProps } from './report-section-factory';
 import { ResultSection } from './result-section';
 
-export type FailedInstancesSectionProps = Pick<SectionProps, 'scanResult'>;
+export type FailedInstancesSectionProps = Pick<SectionProps, 'scanResult' | 'getGuidanceTagsFromGuidanceLinks'>;
 
-export const FailedInstancesSection = NamedSFC<FailedInstancesSectionProps>('FailedInstancesSection', ({ scanResult }) => {
-    const rules = scanResult.violations;
-    const count = rules.reduce((total, rule) => {
-        return total + rule.nodes.length;
-    }, 0);
+export const FailedInstancesSection = NamedSFC<FailedInstancesSectionProps>(
+    'FailedInstancesSection',
+    ({ scanResult, getGuidanceTagsFromGuidanceLinks }) => {
+        const rules = scanResult.violations;
+        const count = rules.reduce((total, rule) => {
+            return total + rule.nodes.length;
+        }, 0);
 
-    return (
-        <ResultSection
-            title="Failed instances"
-            rules={rules}
-            containerClassName="failed-instances-section"
-            outcomeType="fail"
-            showDetails={true}
-            showCongratsIfNotInstances={true}
-            badgeCount={count}
-        />
-    );
-});
+        return (
+            <ResultSection
+                deps={{ getGuidanceTagsFromGuidanceLinks }}
+                title="Failed instances"
+                rules={rules}
+                containerClassName="failed-instances-section"
+                outcomeType="fail"
+                showDetails={true}
+                showCongratsIfNotInstances={true}
+                badgeCount={count}
+            />
+        );
+    },
+);

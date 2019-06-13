@@ -27,7 +27,14 @@ exports[`InstanceListGroupHeaderTest render for fail instances 1`] = `
   </span>
    (
   <GuidanceLinks />
-  )
+  ) 
+  <GuidanceTags
+    deps={
+      Object {
+        "getGuidanceTagsFromGuidanceLinks": [Function],
+      }
+    }
+  />
 </div>
 `;
 
@@ -61,7 +68,14 @@ exports[`InstanceListGroupHeaderTest render for fail instances and handles aria-
   </span>
    (
   <GuidanceLinks />
-  )
+  ) 
+  <GuidanceTags
+    deps={
+      Object {
+        "getGuidanceTagsFromGuidanceLinks": [Function],
+      }
+    }
+  />
 </div>
 `;
 
@@ -88,7 +102,14 @@ exports[`InstanceListGroupHeaderTest render for incomplete instances 1`] = `
   </span>
    (
   <GuidanceLinks />
-  )
+  ) 
+  <GuidanceTags
+    deps={
+      Object {
+        "getGuidanceTagsFromGuidanceLinks": [Function],
+      }
+    }
+  />
 </div>
 `;
 
@@ -118,7 +139,14 @@ exports[`InstanceListGroupHeaderTest render for incomplete instances and handles
   </span>
    (
   <GuidanceLinks />
-  )
+  ) 
+  <GuidanceTags
+    deps={
+      Object {
+        "getGuidanceTagsFromGuidanceLinks": [Function],
+      }
+    }
+  />
 </div>
 `;
 
@@ -145,7 +173,14 @@ exports[`InstanceListGroupHeaderTest render for pass instances 1`] = `
   </span>
    (
   <GuidanceLinks />
-  )
+  ) 
+  <GuidanceTags
+    deps={
+      Object {
+        "getGuidanceTagsFromGuidanceLinks": [Function],
+      }
+    }
+  />
 </div>
 `;
 
@@ -175,6 +210,13 @@ exports[`InstanceListGroupHeaderTest render for pass instances and handles aria-
   </span>
    (
   <GuidanceLinks />
-  )
+  ) 
+  <GuidanceTags
+    deps={
+      Object {
+        "getGuidanceTagsFromGuidanceLinks": [Function],
+      }
+    }
+  />
 </div>
 `;

@@ -3,12 +3,19 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-import { ResultSection, ResultSectionProps } from '../../../../../../../DetailsView/reports/components/report-sections/result-section';
+import {
+    ResultSection,
+    ResultSectionDeps,
+    ResultSectionProps,
+} from '../../../../../../../DetailsView/reports/components/report-sections/result-section';
 import { RuleResult } from '../../../../../../../scanner/iruleresults';
 
 describe('PassedChecksSection', () => {
+    const depsStub = {} as ResultSectionDeps;
+
     it('renders, not showDetails', () => {
         const props: ResultSectionProps = {
+            deps: depsStub,
             title: 'result section title',
             containerClassName: 'result-section-class-name',
             rules: [{} as RuleResult, {} as RuleResult],
@@ -23,6 +30,7 @@ describe('PassedChecksSection', () => {
 
     it('renders, with showDetails', () => {
         const props: ResultSectionProps = {
+            deps: depsStub,
             title: 'result section title',
             containerClassName: 'result-section-class-name',
             rules: [{} as RuleResult, {} as RuleResult],
@@ -38,6 +46,7 @@ describe('PassedChecksSection', () => {
 
     it('renders, no rules and show congrats', () => {
         const props: ResultSectionProps = {
+            deps: depsStub,
             title: 'result section title',
             containerClassName: 'result-section-class-name',
             rules: [],

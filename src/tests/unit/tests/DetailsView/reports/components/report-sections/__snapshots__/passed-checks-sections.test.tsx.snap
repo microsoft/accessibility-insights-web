@@ -4,6 +4,11 @@ exports[`PassedChecksSection renders 1`] = `
 <ResultSection
   badgeCount={3}
   containerClassName="passed-checks-section"
+  deps={
+    Object {
+      "getGuidanceTagsFromGuidanceLinks": [Function],
+    }
+  }
   outcomeType="pass"
   rules={
     Array [

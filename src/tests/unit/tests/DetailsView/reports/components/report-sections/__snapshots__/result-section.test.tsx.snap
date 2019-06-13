@@ -23,6 +23,7 @@ exports[`PassedChecksSection renders, not showDetails 1`] = `
     title="result section title"
   />
   <RuleDetailsGroup
+    deps={Object {}}
     outcomeType="pass"
     rules={
       Array [
@@ -44,6 +45,7 @@ exports[`PassedChecksSection renders, with showDetails 1`] = `
     title="result section title"
   />
   <RuleDetailsGroup
+    deps={Object {}}
     outcomeType="pass"
     rules={
       Array [

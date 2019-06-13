@@ -3,6 +3,7 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
+import { GetGuidanceTagsFromGuidanceLinks } from '../../../../../../../common/get-guidance-tags-from-guidance-links';
 import {
     PassedChecksSection,
     PassedChecksSectionProps,
@@ -11,7 +12,9 @@ import { RuleResult } from '../../../../../../../scanner/iruleresults';
 
 describe('PassedChecksSection', () => {
     it('renders', () => {
+        const getGuidanceTagsStub: GetGuidanceTagsFromGuidanceLinks = () => [];
         const props: PassedChecksSectionProps = {
+            getGuidanceTagsFromGuidanceLinks: getGuidanceTagsStub,
             scanResult: {
                 passes: [{} as RuleResult, {} as RuleResult, {} as RuleResult],
                 violations: [],

@@ -7,9 +7,12 @@ import { RuleResult } from '../../../../scanner/iruleresults';
 import { NoFailedInstancesCongrats } from './no-failed-instances-congrats';
 import { InstanceOutcomeType } from './outcome-summary-bar';
 import { ResultSectionTitle } from './result-section-title';
-import { RuleDetailsGroup } from './rule-details-group';
+import { RuleDetailsGroup, RuleDetailsGroupDeps } from './rule-details-group';
+
+export type ResultSectionDeps = RuleDetailsGroupDeps;
 
 export type ResultSectionProps = {
+    deps: ResultSectionDeps;
     rules: RuleResult[];
     containerClassName: string;
     title: string;
@@ -22,7 +25,7 @@ export type ResultSectionProps = {
 export const ResultSection = NamedSFC<ResultSectionProps>('ResultSection', props => {
     const { rules, containerClassName, title, outcomeType, badgeCount, showCongratsIfNotInstances } = props;
 
-    let content = <RuleDetailsGroup rules={rules} showDetails={props.showDetails} outcomeType={outcomeType} />;
+    let content = <RuleDetailsGroup deps={props.deps} rules={rules} showDetails={props.showDetails} outcomeType={outcomeType} />;
 
     if (rules.length === 0 && showCongratsIfNotInstances) {
         content = <NoFailedInstancesCongrats />;

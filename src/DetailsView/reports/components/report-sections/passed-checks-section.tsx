@@ -6,17 +6,21 @@ import { NamedSFC } from '../../../../common/react/named-sfc';
 import { SectionProps } from './report-section-factory';
 import { ResultSection } from './result-section';
 
-export type PassedChecksSectionProps = Pick<SectionProps, 'scanResult'>;
+export type PassedChecksSectionProps = Pick<SectionProps, 'scanResult' | 'getGuidanceTagsFromGuidanceLinks'>;
 
-export const PassedChecksSection = NamedSFC<PassedChecksSectionProps>('PassedChecksSection', ({ scanResult }) => {
-    const rules = scanResult.passes;
-    return (
-        <ResultSection
-            title="Passed checks"
-            rules={rules}
-            containerClassName="passed-checks-section"
-            outcomeType="pass"
-            badgeCount={rules.length}
-        />
-    );
-});
+export const PassedChecksSection = NamedSFC<PassedChecksSectionProps>(
+    'PassedChecksSection',
+    ({ scanResult, getGuidanceTagsFromGuidanceLinks }) => {
+        const rules = scanResult.passes;
+        return (
+            <ResultSection
+                deps={{ getGuidanceTagsFromGuidanceLinks }}
+                title="Passed checks"
+                rules={rules}
+                containerClassName="passed-checks-section"
+                outcomeType="pass"
+                badgeCount={rules.length}
+            />
+        );
+    },
+);

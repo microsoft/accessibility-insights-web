@@ -15,6 +15,7 @@ describe('ReportBody', () => {
         const pageTitle = 'page-title';
         const pageUrl = 'url:target-page';
         const getScriptStub = () => '';
+        const getGuidanceTagsStub = () => [];
 
         const detailsProps: SectionProps = {
             pageTitle,
@@ -37,6 +38,7 @@ describe('ReportBody', () => {
             },
             toUtcString: () => '',
             getCollapsibleScript: getScriptStub,
+            getGuidanceTagsFromGuidanceLinks: getGuidanceTagsStub,
         };
 
         const props: ReportBodyProps = {

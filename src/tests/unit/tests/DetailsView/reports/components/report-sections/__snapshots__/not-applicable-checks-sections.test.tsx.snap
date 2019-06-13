@@ -1,9 +1,198 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`NotApp renders 1`] = `
+<ResultSection
+  badgeCount={3}
+  containerClassName="not-applicable-checks-section"
+  deps={
+    Object {
+      "getGuidanceTagsFromGuidanceLinks": [Function],
+    }
+  }
+  outcomeType="inapplicable"
+  rules={
+    Array [
+      Object {},
+      Object {},
+      Object {},
+    ]
+  }
+  title="Not applicable"
+/>
+`;
+
+exports[`NotApplicable renders 1`] = `
+<ResultSection
+  badgeCount={3}
+  containerClassName="not-applicable-checks-section"
+  deps={
+    Object {
+      "getGuidanceTagsFromGuidanceLinks": [Function],
+    }
+  }
+  outcomeType="inapplicable"
+  rules={
+    Array [
+      Object {},
+      Object {},
+      Object {},
+    ]
+  }
+  title="Not applicable"
+/>
+`;
+
+exports[`NotApplicableChecksSection renders 1`] = `
+<ResultSection
+  badgeCount={3}
+  containerClassName="not-applicable-checks-section"
+  deps={
+    Object {
+      "getGuidanceTagsFromGuidanceLinks": [Function],
+    }
+  }
+  outcomeType="inapplicable"
+  rules={
+    Array [
+      Object {},
+      Object {},
+      Object {},
+    ]
+  }
+  title="Not applicable"
+/>
+`;
+
+exports[`NotApplicableChecsSection renders 1`] = `
+<ResultSection
+  badgeCount={3}
+  containerClassName="not-applicable-checks-section"
+  deps={
+    Object {
+      "getGuidanceTagsFromGuidanceLinks": [Function],
+    }
+  }
+  outcomeType="inapplicable"
+  rules={
+    Array [
+      Object {},
+      Object {},
+      Object {},
+    ]
+  }
+  title="Not applicable"
+/>
+`;
+
+exports[`NotApplicableHckec renders 1`] = `
+<ResultSection
+  badgeCount={3}
+  containerClassName="not-applicable-checks-section"
+  deps={
+    Object {
+      "getGuidanceTagsFromGuidanceLinks": [Function],
+    }
+  }
+  outcomeType="inapplicable"
+  rules={
+    Array [
+      Object {},
+      Object {},
+      Object {},
+    ]
+  }
+  title="Not applicable"
+/>
+`;
+
+exports[`NotApplicableHckecsSec renders 1`] = `
+<ResultSection
+  badgeCount={3}
+  containerClassName="not-applicable-checks-section"
+  deps={
+    Object {
+      "getGuidanceTagsFromGuidanceLinks": [Function],
+    }
+  }
+  outcomeType="inapplicable"
+  rules={
+    Array [
+      Object {},
+      Object {},
+      Object {},
+    ]
+  }
+  title="Not applicable"
+/>
+`;
+
+exports[`NotApplicableHckecsSection renders 1`] = `
+<ResultSection
+  badgeCount={3}
+  containerClassName="not-applicable-checks-section"
+  deps={
+    Object {
+      "getGuidanceTagsFromGuidanceLinks": [Function],
+    }
+  }
+  outcomeType="inapplicable"
+  rules={
+    Array [
+      Object {},
+      Object {},
+      Object {},
+    ]
+  }
+  title="Not applicable"
+/>
+`;
+
+exports[`NotApplicableecsSection renders 1`] = `
+<ResultSection
+  badgeCount={3}
+  containerClassName="not-applicable-checks-section"
+  deps={
+    Object {
+      "getGuidanceTagsFromGuidanceLinks": [Function],
+    }
+  }
+  outcomeType="inapplicable"
+  rules={
+    Array [
+      Object {},
+      Object {},
+      Object {},
+    ]
+  }
+  title="Not applicable"
+/>
+`;
+
 exports[`PassedChecksSection renders 1`] = `
 <ResultSection
   badgeCount={3}
   containerClassName="not-applicable-checks-section"
+  outcomeType="inapplicable"
+  rules={
+    Array [
+      Object {},
+      Object {},
+      Object {},
+    ]
+  }
+  title="Not applicable"
+/>
+`;
+
+exports[`renders 1`] = `
+<ResultSection
+  badgeCount={3}
+  containerClassName="not-applicable-checks-section"
+  deps={
+    Object {
+      "getGuidanceTagsFromGuidanceLinks": [Function],
+    }
+  }
   outcomeType="inapplicable"
   rules={
     Array [
