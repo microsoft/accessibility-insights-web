@@ -46,7 +46,7 @@ export const DetailsSection = NamedSFC<DetailsSectionProps>('DetailsSection', pr
                             {screenReaderTexts.targetPageLink}
                         </td>
                         <td className="text" aria-labelledby="target-page-text" aria-hidden="true">
-                            <NewTabLink href={pageUrl} title="Navigate to target page">
+                            <NewTabLink href={pageUrl} title="Navigate to target page" disabled>
                                 {pageUrl}
                             </NewTabLink>
                         </td>

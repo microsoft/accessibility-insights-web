@@ -28,6 +28,7 @@ exports[`DetailsSection rendering of comment row is dependent on description val
           className="text"
         >
           <NewTabLink
+            disabled={true}
             href="https://page-url/"
             title="Navigate to target page"
           >
@@ -89,6 +90,7 @@ exports[`DetailsSection rendering of comment row is dependent on description val
           className="text"
         >
           <NewTabLink
+            disabled={true}
             href="https://page-url/"
             title="Navigate to target page"
           >
@@ -171,6 +173,7 @@ exports[`DetailsSection rendering of comment row is dependent on description val
           className="text"
         >
           <NewTabLink
+            disabled={true}
             href="https://page-url/"
             title="Navigate to target page"
           >
@@ -232,6 +235,7 @@ exports[`DetailsSection rendering of comment row is dependent on description val
           className="text"
         >
           <NewTabLink
+            disabled={true}
             href="https://page-url/"
             title="Navigate to target page"
           >
