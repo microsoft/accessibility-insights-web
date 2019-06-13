@@ -38,10 +38,10 @@ describe('ReportExportComponentTest', () => {
             reportGeneratorMock
                 .setup(rgm => rgm.generateName(props.exportResultsType, props.scanDate, props.pageTitle))
                 .verifiable(Times.once());
-            // htmlGeneratorMock
-            //     .setup(hgm => hgm(It.isAnyString()))
-            //     .returns(() => 'test html')
-            //     .verifiable(Times.never());
+            htmlGeneratorMock
+                .setup(hgm => hgm(It.isAnyString()))
+                .returns(() => 'test html')
+                .verifiable(Times.never());
             const wrapper = shallow(<ReportExportComponent {...props} />);
             const exportButton = wrapper.find(ActionButton);
 
@@ -53,24 +53,27 @@ describe('ReportExportComponentTest', () => {
             dialog.props().onClose();
 
             reportGeneratorMock.verifyAll();
-            // htmlGeneratorMock.verifyAll();
+            htmlGeneratorMock.verifyAll();
         });
 
         test('dismiss dialog', () => {
+            const wrapper = shallow(<ReportExportComponent {...props} />);
             reportGeneratorMock
                 .setup(rgm => rgm.generateName(props.exportResultsType, props.scanDate, props.pageTitle))
                 .verifiable(Times.once());
             htmlGeneratorMock
                 .setup(hgm => hgm(It.isAnyString()))
                 .returns(() => 'test html')
-                .verifiable(Times.once());
-            const wrapper = shallow(<ReportExportComponent {...props} />);
+                .verifiable(Times.never());
+
             const exportButton = wrapper.find(ActionButton);
             exportButton.simulate('click');
             const dialog = wrapper.find(ExportDialog);
             dialog.props().onClose();
 
             expect(wrapper.getElement()).toMatchSnapshot('dialog should be dismissed');
+            reportGeneratorMock.verifyAll();
+            htmlGeneratorMock.verifyAll();
         });
 
         test('edit text field', () => {
@@ -80,6 +83,29 @@ describe('ReportExportComponentTest', () => {
             dialog.props().onDescriptionChange('new discription');
 
             expect(wrapper.getElement()).toMatchSnapshot('user input new discription');
+        });
+
+        test('clicking export on the dialog should trigger the generateHtml', () => {
+            const wrapper = shallow(<ReportExportComponent {...props} />);
+
+            reportGeneratorMock
+                .setup(rgm => rgm.generateName(props.exportResultsType, props.scanDate, props.pageTitle))
+                .verifiable(Times.once());
+
+            htmlGeneratorMock
+                .setup(hgm => hgm(wrapper.state('exportDescription')))
+                .returns(() => 'test html')
+                .verifiable(Times.once());
+
+            const exportButton = wrapper.find(ActionButton);
+
+            exportButton.simulate('click');
+
+            const dialog = wrapper.find(ExportDialog);
+
+            dialog.props().onExportClick();
+
+            htmlGeneratorMock.verifyAll();
         });
     });
 });
