@@ -6,7 +6,8 @@ export const infoAndExamples = create(({ Markup, Link }) => (
     <>
         <h1>CSS content</h1>
         <p>
-            Meaningful content must not be inserted using CSS <Markup.Code>:before</Markup.Code> or <Markup.Code>:after</Markup.Code>.
+            Meaningful content must not be implemented using only CSS <Markup.Code>:before</Markup.Code> or{' '}
+            <Markup.Code>:after</Markup.Code>.
         </p>
 
         <h2>Why it matters</h2>
@@ -17,9 +18,17 @@ export const infoAndExamples = create(({ Markup, Link }) => (
         </p>
 
         <h2>How to fix</h2>
-        <p>
-            Avoid inserting meaningful page content using CSS <Markup.Code>:before</Markup.Code> or <Markup.Code>:after</Markup.Code>.
-        </p>
+        <ul>
+            <li>
+                Good: Ensure that any information in inserted content is (1) available to assistive technologies, and (2) visible when CSS
+                is turned off.
+            </li>
+            <li>
+                Better: Avoid inserting meaningful page content using CSS <Markup.Code>:before</Markup.Code> or{' '}
+                <Markup.Code>:after</Markup.Code>.
+            </li>
+        </ul>
+        <p />
 
         <h2>Example</h2>
         <Markup.PassFail

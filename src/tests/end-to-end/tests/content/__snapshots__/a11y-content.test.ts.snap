@@ -22034,7 +22034,7 @@ exports[`A11Y for content pages High Contrast mode test/semantics/cssContent/inf
         CSS content
       </h1>
       <p>
-        Meaningful content must not be inserted using CSS 
+        Meaningful content must not be implemented using only CSS 
         <span
           class="insights-code"
         >
@@ -22069,21 +22069,27 @@ exports[`A11Y for content pages High Contrast mode test/semantics/cssContent/inf
       <h2>
         How to fix
       </h2>
-      <p>
-        Avoid inserting meaningful page content using CSS 
-        <span
-          class="insights-code"
-        >
-          :before
-        </span>
-         or 
-        <span
-          class="insights-code"
-        >
-          :after
-        </span>
-        .
-      </p>
+      <ul>
+        <li>
+          Good: Ensure that any information in inserted content is (1) available to assistive technologies, and (2) visible when CSS is turned off.
+        </li>
+        <li>
+          Better: Avoid inserting meaningful page content using CSS 
+          <span
+            class="insights-code"
+          >
+            :before
+          </span>
+           or 
+          <span
+            class="insights-code"
+          >
+            :after
+          </span>
+          .
+        </li>
+      </ul>
+      <p />
       <h2>
         Example
       </h2>
@@ -51435,7 +51441,7 @@ exports[`A11Y for content pages Normal mode test/semantics/cssContent/infoAndExa
         CSS content
       </h1>
       <p>
-        Meaningful content must not be inserted using CSS 
+        Meaningful content must not be implemented using only CSS 
         <span
           class="insights-code"
         >
@@ -51470,21 +51476,27 @@ exports[`A11Y for content pages Normal mode test/semantics/cssContent/infoAndExa
       <h2>
         How to fix
       </h2>
-      <p>
-        Avoid inserting meaningful page content using CSS 
-        <span
-          class="insights-code"
-        >
-          :before
-        </span>
-         or 
-        <span
-          class="insights-code"
-        >
-          :after
-        </span>
-        .
-      </p>
+      <ul>
+        <li>
+          Good: Ensure that any information in inserted content is (1) available to assistive technologies, and (2) visible when CSS is turned off.
+        </li>
+        <li>
+          Better: Avoid inserting meaningful page content using CSS 
+          <span
+            class="insights-code"
+          >
+            :before
+          </span>
+           or 
+          <span
+            class="insights-code"
+          >
+            :after
+          </span>
+          .
+        </li>
+      </ul>
+      <p />
       <h2>
         Example
       </h2>

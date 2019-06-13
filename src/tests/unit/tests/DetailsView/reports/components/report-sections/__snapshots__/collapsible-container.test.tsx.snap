@@ -1,13 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`CollapsibleContainer renders 1`] = `
+exports[`CollapsibleContainer renders, no optional fields 1`] = `
 <div
   className="collapsible-container"
 >
   <div
-    aria-level={5}
     className="title-container"
-    role="custom role"
   >
     <button
       aria-controls="content-container-test-id"
@@ -38,9 +36,40 @@ exports[`CollapsibleContainer renders, with extra class name for the container d
   className="collapsible-container extra-class-name"
 >
   <div
+    className="title-container"
+  >
+    <button
+      aria-controls="content-container-test-id"
+      aria-expanded="false"
+      aria-label="button aria label"
+      className="collapsible-control"
+    />
+    <div>
+      <div>
+        this is the summary content
+      </div>
+    </div>
+  </div>
+  <div
+    aria-hidden="true"
+    className="content-container"
+    id="content-container-test-id"
+  >
+    <div>
+       this is the details content 
+    </div>
+  </div>
+</div>
+`;
+
+exports[`CollapsibleContainer renders, with heading level for the title container 1`] = `
+<div
+  className="collapsible-container"
+>
+  <div
     aria-level={5}
     className="title-container"
-    role="custom role"
+    role="heading"
   >
     <button
       aria-controls="content-container-test-id"
