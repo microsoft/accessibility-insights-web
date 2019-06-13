@@ -72,7 +72,7 @@ export class ReportExportComponent extends React.Component<ReportExportComponent
                     onClose={this.onDismissExportDialog}
                     onDescriptionChange={this.onExportDescriptionChange}
                     exportResultsType={exportResultsType}
-                    onExportDialogFooterClick={this.generateHtml}
+                    onExportClick={this.generateHtml}
                 />
             </>
         );
