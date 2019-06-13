@@ -13,21 +13,6 @@ import { FixInstructionProcessor } from '../../../../../../../injected/fix-instr
 describe('InstanceDetails', () => {
     it('renders', () => {
         const fixInstructionProcessorMock = Mock.ofType(FixInstructionProcessor);
-
-        const failureSummary = `
-            Fix all of the following:
-            Element is in tab order and does not have accessible text
-
-            Fix any of the following:
-            Element has a value attribute and the value attribute is empty
-            Element has no value attribute or the value attribute is empty
-            Element does not have inner text that is visible to screen readers
-            aria-label attribute does not exist or is empty
-            aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
-            Element's default semantics were not overridden with role="presentation"
-            Element's default semantics were not overridden with role="none"
-            Element has no title attribute or the title attribute is empty
-        `;
         const props: InstanceDetailsProps = {
             target: ['<html>'],
             html: '<html>',

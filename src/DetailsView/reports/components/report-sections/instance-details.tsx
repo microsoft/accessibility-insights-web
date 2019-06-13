@@ -14,7 +14,10 @@ export type InstanceDetailsProps = Pick<AxeNodeResult, 'none' | 'all' | 'any' | 
 };
 
 export const InstanceDetails = NamedSFC<InstanceDetailsProps>('InstanceDetail', props => {
-    const { any, all, none, html, target, index } = props;
+    const { html, target, index } = props;
+    const anyCheck = props.any;
+    const allCheck = props.all;
+    const noneCheck = props.none;
 
     const createTableRow = (label: string, content: string | JSX.Element, rowKey: string, needsExtraClassname?: boolean) => {
         const contentStyling = classNames({
@@ -42,13 +45,13 @@ export const InstanceDetails = NamedSFC<InstanceDetailsProps>('InstanceDetail', 
                 <FixInstructionPanel
                     deps={deps}
                     checkType={CheckType.All}
-                    checks={all.concat(none)}
+                    checks={allCheck.concat(noneCheck)}
                     renderTitleElement={renderFixInstructionsTitleElement}
                 />
                 <FixInstructionPanel
                     deps={deps}
                     checkType={CheckType.Any}
-                    checks={any}
+                    checks={anyCheck}
                     renderTitleElement={renderFixInstructionsTitleElement}
                 />
             </div>

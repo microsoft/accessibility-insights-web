@@ -3,13 +3,13 @@
 import * as React from 'react';
 
 import { EnvironmentInfo } from '../../common/environment-info-provider';
+import { FixInstructionProcessor } from '../../injected/fix-instruction-processor';
 import { ScanResults } from '../../scanner/iruleresults';
 import { ReportHeadV2 } from './components/report-head-v2';
 import { ReportBody, ReportBodyProps } from './components/report-sections/report-body';
 import { ReportSectionFactory, SectionProps } from './components/report-sections/report-section-factory';
 import { ReactStaticRenderer } from './react-static-renderer';
 import { ReportHtmlGenerator } from './report-html-generator';
-import { FixInstructionProcessor } from '../../injected/fix-instruction-processor';
 
 export class ReportHtmlGeneratorV2 implements ReportHtmlGenerator {
     constructor(
