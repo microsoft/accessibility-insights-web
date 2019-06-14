@@ -2,7 +2,7 @@
 
 exports[`GuidanceTags renders tags 1`] = `
 <div
-  className="guidanceTags"
+  className="guidance-tags"
 >
   <div>
     some display text

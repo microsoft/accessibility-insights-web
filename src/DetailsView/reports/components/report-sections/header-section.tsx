@@ -6,7 +6,6 @@ import { NewTabLink } from '../../../../common/components/new-tab-link';
 import { NamedSFC } from '../../../../common/react/named-sfc';
 import { productName } from '../../../../content/strings/application';
 import { BrandWhite } from '../../../../icons/brand/white/brand-white';
-import { reportHeaderBar, reportHeaderCommandBar, targetPage } from './header-section.scss';
 
 export interface HeaderSectionProps {
     pageTitle: string;
@@ -16,12 +15,12 @@ export interface HeaderSectionProps {
 export const HeaderSection = NamedSFC<HeaderSectionProps>('HeaderSection', ({ pageTitle, pageUrl }) => {
     return (
         <header>
-            <div className={reportHeaderBar}>
+            <div className="report-header-bar">
                 <BrandWhite />
                 <div className="ms-font-m header-text ms-fontWeight-semibold">{productName}</div>
             </div>
-            <div className={reportHeaderCommandBar}>
-                <div className={targetPage}>
+            <div className="report-header-command-bar">
+                <div className="target-page">
                     Target page:&nbsp;
                     <NewTabLink href={pageUrl} title={pageTitle}>
                         {pageTitle}

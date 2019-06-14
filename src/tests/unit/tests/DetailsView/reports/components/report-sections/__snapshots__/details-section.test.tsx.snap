@@ -117,7 +117,7 @@ exports[`DetailsSection rendering of comment row is dependent on description val
         comment:
       </span>
       <span
-        className="text"
+        className="text description-text"
       >
         description-text
       </span>

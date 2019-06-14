@@ -3,7 +3,7 @@
 exports[`HeaderSection renders 1`] = `
 <header>
   <div
-    className="reportHeaderBar"
+    className="report-header-bar"
   >
     <BrandWhite />
     <div
@@ -13,10 +13,10 @@ exports[`HeaderSection renders 1`] = `
     </div>
   </div>
   <div
-    className="reportHeaderCommandBar"
+    className="report-header-command-bar"
   >
     <div
-      className="targetPage"
+      className="target-page"
     >
       Target page: 
       <NewTabLink
