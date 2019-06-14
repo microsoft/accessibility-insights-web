@@ -8,6 +8,7 @@
 @import './components/outcome.scss';
 @import './components/instance-details.scss';
 @import './components/report-sections/header-section.scss';
+@import './components/report-sections/footer-section.scss';
 
 @mixin contentSize {
     max-width: 960px;
@@ -174,24 +175,6 @@ $outcome-not-applicable-summary-color: $neutral-outcome;
 
     .description-text {
         white-space: pre-wrap;
-    }
-}
-
-.report-footer-container {
-    @include contentSize();
-
-    margin-bottom: 96px;
-
-    .report-footer {
-        margin-top: 24px;
-
-        line-height: 20px;
-
-        color: $secondary-text;
-
-        .tool-name-link {
-            color: $secondary-text !important;
-        }
     }
 }
 
