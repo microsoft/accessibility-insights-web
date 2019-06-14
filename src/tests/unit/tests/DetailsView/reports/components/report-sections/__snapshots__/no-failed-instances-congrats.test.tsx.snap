@@ -2,29 +2,27 @@
 
 exports[`NoFailedInstancesCongrats renders 1`] = `
 <div
-  className="report-congrats"
+  className="reportCongrats"
 >
-  <div
-    className="report-congrats-image"
-  >
+  <div>
     <InlineImage
       alt=""
       imageType={5}
     />
   </div>
   <div
-    className="report-congrats-screen"
+    className="reportCongratsScreen"
   >
     <div
-      className="report-congrats-message"
+      className="reportCongratsMessage"
     >
       <div
-        className="report-congrats-head"
+        className="reportCongratsHead"
       >
         Congratulations!
       </div>
       <div
-        className="report-congrats-info"
+        className="reportCongratsInfo"
       >
         No failed automated checks were found.
       </div>
