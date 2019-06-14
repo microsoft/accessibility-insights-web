@@ -20,7 +20,7 @@ exports[`DetailsSection rendering of comment row is dependent on description val
       <span
         className="screen-reader-only"
       >
-        Target page: 
+        target page:
       </span>
       <span
         className="text"
@@ -41,13 +41,10 @@ exports[`DetailsSection rendering of comment row is dependent on description val
       </span>
       <span
         className="screen-reader-only"
-        id="scan-date-text"
       >
-        Scan date: 2018-03-12 11:24 PM UTC
+        scan date:
       </span>
       <span
-        aria-hidden="true"
-        aria-labelledby="scan-date-text"
         className="text"
       >
         2018-03-12 11:24 PM UTC
@@ -77,7 +74,7 @@ exports[`DetailsSection rendering of comment row is dependent on description val
       <span
         className="screen-reader-only"
       >
-        Target page: 
+        target page:
       </span>
       <span
         className="text"
@@ -98,13 +95,10 @@ exports[`DetailsSection rendering of comment row is dependent on description val
       </span>
       <span
         className="screen-reader-only"
-        id="scan-date-text"
       >
-        Scan date: 2018-03-12 11:24 PM UTC
+        scan date:
       </span>
       <span
-        aria-hidden="true"
-        aria-labelledby="scan-date-text"
         className="text"
       >
         2018-03-12 11:24 PM UTC
@@ -119,14 +113,11 @@ exports[`DetailsSection rendering of comment row is dependent on description val
       </span>
       <span
         className="screen-reader-only"
-        id="comment-text"
       >
-        Comment: description-text
+        comment:
       </span>
       <span
-        aria-hidden="true"
-        aria-labelledby="comment-text"
-        className="text description-text"
+        className="text"
       >
         description-text
       </span>
@@ -155,7 +146,7 @@ exports[`DetailsSection rendering of comment row is dependent on description val
       <span
         className="screen-reader-only"
       >
-        Target page: 
+        target page:
       </span>
       <span
         className="text"
@@ -176,13 +167,10 @@ exports[`DetailsSection rendering of comment row is dependent on description val
       </span>
       <span
         className="screen-reader-only"
-        id="scan-date-text"
       >
-        Scan date: 2018-03-12 11:24 PM UTC
+        scan date:
       </span>
       <span
-        aria-hidden="true"
-        aria-labelledby="scan-date-text"
         className="text"
       >
         2018-03-12 11:24 PM UTC
@@ -212,7 +200,7 @@ exports[`DetailsSection rendering of comment row is dependent on description val
       <span
         className="screen-reader-only"
       >
-        Target page: 
+        target page:
       </span>
       <span
         className="text"
@@ -233,13 +221,10 @@ exports[`DetailsSection rendering of comment row is dependent on description val
       </span>
       <span
         className="screen-reader-only"
-        id="scan-date-text"
       >
-        Scan date: 2018-03-12 11:24 PM UTC
+        scan date:
       </span>
       <span
-        aria-hidden="true"
-        aria-labelledby="scan-date-text"
         className="text"
       >
         2018-03-12 11:24 PM UTC
