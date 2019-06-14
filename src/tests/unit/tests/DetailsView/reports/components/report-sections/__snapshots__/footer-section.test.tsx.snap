@@ -2,10 +2,10 @@
 
 exports[`FooterSection renders 1`] = `
 <div
-  className="report-footer-container"
+  className="reportFooterContainer"
 >
   <div
-    className="report-footer"
+    className="reportFooter"
     role="contentinfo"
   >
     This automated checks result was generated using 
