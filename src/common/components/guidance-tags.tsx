@@ -6,7 +6,6 @@ import * as React from 'react';
 import { GuidanceLink } from '../../scanner/rule-to-links-mappings';
 import { GetGuidanceTagsFromGuidanceLinks } from '../get-guidance-tags-from-guidance-links';
 import { NamedSFC } from '../react/named-sfc';
-import { guidanceTags } from './guidance-tags.scss';
 
 export interface GuidanceTagsDeps {
     getGuidanceTagsFromGuidanceLinks: GetGuidanceTagsFromGuidanceLinks;
@@ -33,5 +32,5 @@ export const GuidanceTags = NamedSFC<GuidanceTagsProps>('GuidanceTags', props =>
         return <div key={index}>{tag.displayText}</div>;
     });
 
-    return <div className={guidanceTags}>{tagElements}</div>;
+    return <div className="guidance-tags">{tagElements}</div>;
 });
