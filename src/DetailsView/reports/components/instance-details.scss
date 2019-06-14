@@ -13,6 +13,7 @@
     width: -webkit-fill-available; /* Mozilla-based browsers will ignore this. */
     width: fill-available;
     margin-left: 24px;
+    table-layout: fixed;
 
     th {
         padding: 12px 20px;
@@ -50,6 +51,9 @@
 
 .report-instance-table .instance-list-row-content.content-snipppet {
     font-family: Consolas, Segoe UI, Courier New, monospace;
+    white-space: normal;
+    word-wrap: break-word;
+    word-break: break-word;
 }
 
 table.report-instance-table {
