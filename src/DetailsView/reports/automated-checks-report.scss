@@ -140,27 +140,39 @@ $outcome-not-applicable-summary-color: $neutral-outcome;
     background-color: $neutral-0;
     padding: 20px;
 
+    .details-section-list {
+        list-style: none;
+        font-size: 14px;
+        line-height: 16px;
+        padding-left: 0px;
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        flex-direction: column;
+    }
+
     h3 {
         margin: 0px;
         font-size: 17px;
         line-height: 24px;
     }
 
-    table {
-        font-size: 14px;
-        line-height: 16px;
+    ul :first-child li {
+        padding-top: 16px;
     }
 
-    td {
+    li {
+        display: inline-block;
         padding-top: 12px;
+        .icon {
+            padding-right: 12px;
+            position: relative;
+            top: 3px;
+        }
     }
 
     .description-text {
         white-space: pre-wrap;
-    }
-
-    tbody :first-child td {
-        padding-top: 16px;
     }
 }
 

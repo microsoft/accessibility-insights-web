@@ -7,57 +7,53 @@ exports[`DetailsSection rendering of comment row is dependent on description val
   <h2>
     Scan details
   </h2>
-  <table>
-    <tbody>
-      <tr>
-        <td
-          aria-hidden="true"
-          className="icon"
+  <ul
+    className="details-section-list"
+  >
+    <li>
+      <span
+        aria-hidden="true"
+        className="icon"
+      >
+        <UrlIcon />
+      </span>
+      <span
+        className="screen-reader-only"
+      >
+        Target page: 
+      </span>
+      <span
+        className="text"
+      >
+        <NewTabLink
+          href="https://page-url/"
         >
-          <UrlIcon />
-        </td>
-        <td
-          className="screen-reader-only"
-          id="target-page-text"
-        >
-          Target Page: https://page-url/
-        </td>
-        <td
-          aria-hidden="true"
-          aria-labelledby="target-page-text"
-          className="text"
-        >
-          <NewTabLink
-            href="https://page-url/"
-            title="Navigate to target page"
-          >
-            https://page-url/
-          </NewTabLink>
-        </td>
-      </tr>
-      <tr>
-        <td
-          aria-hidden="true"
-          className="icon"
-        >
-          <DateIcon />
-        </td>
-        <td
-          className="screen-reader-only"
-          id="scan-date-text"
-        >
-          Scan date: 2018-03-12 11:24 PM UTC
-        </td>
-        <td
-          aria-hidden="true"
-          aria-labelledby="scan-date-text"
-          className="text"
-        >
-          2018-03-12 11:24 PM UTC
-        </td>
-      </tr>
-    </tbody>
-  </table>
+          https://page-url/
+        </NewTabLink>
+      </span>
+    </li>
+    <li>
+      <span
+        aria-hidden="true"
+        className="icon"
+      >
+        <DateIcon />
+      </span>
+      <span
+        className="screen-reader-only"
+        id="scan-date-text"
+      >
+        Scan date: 2018-03-12 11:24 PM UTC
+      </span>
+      <span
+        aria-hidden="true"
+        aria-labelledby="scan-date-text"
+        className="text"
+      >
+        2018-03-12 11:24 PM UTC
+      </span>
+    </li>
+  </ul>
 </div>
 `;
 
@@ -68,78 +64,74 @@ exports[`DetailsSection rendering of comment row is dependent on description val
   <h2>
     Scan details
   </h2>
-  <table>
-    <tbody>
-      <tr>
-        <td
-          aria-hidden="true"
-          className="icon"
+  <ul
+    className="details-section-list"
+  >
+    <li>
+      <span
+        aria-hidden="true"
+        className="icon"
+      >
+        <UrlIcon />
+      </span>
+      <span
+        className="screen-reader-only"
+      >
+        Target page: 
+      </span>
+      <span
+        className="text"
+      >
+        <NewTabLink
+          href="https://page-url/"
         >
-          <UrlIcon />
-        </td>
-        <td
-          className="screen-reader-only"
-          id="target-page-text"
-        >
-          Target Page: https://page-url/
-        </td>
-        <td
-          aria-hidden="true"
-          aria-labelledby="target-page-text"
-          className="text"
-        >
-          <NewTabLink
-            href="https://page-url/"
-            title="Navigate to target page"
-          >
-            https://page-url/
-          </NewTabLink>
-        </td>
-      </tr>
-      <tr>
-        <td
-          aria-hidden="true"
-          className="icon"
-        >
-          <DateIcon />
-        </td>
-        <td
-          className="screen-reader-only"
-          id="scan-date-text"
-        >
-          Scan date: 2018-03-12 11:24 PM UTC
-        </td>
-        <td
-          aria-hidden="true"
-          aria-labelledby="scan-date-text"
-          className="text"
-        >
-          2018-03-12 11:24 PM UTC
-        </td>
-      </tr>
-      <tr>
-        <td
-          aria-hidden="true"
-          className="icon"
-        >
-          <CommentIcon />
-        </td>
-        <td
-          className="screen-reader-only"
-          id="comment-text"
-        >
-          Comment: description-text
-        </td>
-        <td
-          aria-hidden="true"
-          aria-labelledby="comment-text"
-          className="text description-text"
-        >
-          description-text
-        </td>
-      </tr>
-    </tbody>
-  </table>
+          https://page-url/
+        </NewTabLink>
+      </span>
+    </li>
+    <li>
+      <span
+        aria-hidden="true"
+        className="icon"
+      >
+        <DateIcon />
+      </span>
+      <span
+        className="screen-reader-only"
+        id="scan-date-text"
+      >
+        Scan date: 2018-03-12 11:24 PM UTC
+      </span>
+      <span
+        aria-hidden="true"
+        aria-labelledby="scan-date-text"
+        className="text"
+      >
+        2018-03-12 11:24 PM UTC
+      </span>
+    </li>
+    <li>
+      <span
+        aria-hidden="true"
+        className="icon"
+      >
+        <CommentIcon />
+      </span>
+      <span
+        className="screen-reader-only"
+        id="comment-text"
+      >
+        Comment: description-text
+      </span>
+      <span
+        aria-hidden="true"
+        aria-labelledby="comment-text"
+        className="text description-text"
+      >
+        description-text
+      </span>
+    </li>
+  </ul>
 </div>
 `;
 
@@ -150,57 +142,53 @@ exports[`DetailsSection rendering of comment row is dependent on description val
   <h2>
     Scan details
   </h2>
-  <table>
-    <tbody>
-      <tr>
-        <td
-          aria-hidden="true"
-          className="icon"
+  <ul
+    className="details-section-list"
+  >
+    <li>
+      <span
+        aria-hidden="true"
+        className="icon"
+      >
+        <UrlIcon />
+      </span>
+      <span
+        className="screen-reader-only"
+      >
+        Target page: 
+      </span>
+      <span
+        className="text"
+      >
+        <NewTabLink
+          href="https://page-url/"
         >
-          <UrlIcon />
-        </td>
-        <td
-          className="screen-reader-only"
-          id="target-page-text"
-        >
-          Target Page: https://page-url/
-        </td>
-        <td
-          aria-hidden="true"
-          aria-labelledby="target-page-text"
-          className="text"
-        >
-          <NewTabLink
-            href="https://page-url/"
-            title="Navigate to target page"
-          >
-            https://page-url/
-          </NewTabLink>
-        </td>
-      </tr>
-      <tr>
-        <td
-          aria-hidden="true"
-          className="icon"
-        >
-          <DateIcon />
-        </td>
-        <td
-          className="screen-reader-only"
-          id="scan-date-text"
-        >
-          Scan date: 2018-03-12 11:24 PM UTC
-        </td>
-        <td
-          aria-hidden="true"
-          aria-labelledby="scan-date-text"
-          className="text"
-        >
-          2018-03-12 11:24 PM UTC
-        </td>
-      </tr>
-    </tbody>
-  </table>
+          https://page-url/
+        </NewTabLink>
+      </span>
+    </li>
+    <li>
+      <span
+        aria-hidden="true"
+        className="icon"
+      >
+        <DateIcon />
+      </span>
+      <span
+        className="screen-reader-only"
+        id="scan-date-text"
+      >
+        Scan date: 2018-03-12 11:24 PM UTC
+      </span>
+      <span
+        aria-hidden="true"
+        aria-labelledby="scan-date-text"
+        className="text"
+      >
+        2018-03-12 11:24 PM UTC
+      </span>
+    </li>
+  </ul>
 </div>
 `;
 
@@ -211,56 +199,52 @@ exports[`DetailsSection rendering of comment row is dependent on description val
   <h2>
     Scan details
   </h2>
-  <table>
-    <tbody>
-      <tr>
-        <td
-          aria-hidden="true"
-          className="icon"
+  <ul
+    className="details-section-list"
+  >
+    <li>
+      <span
+        aria-hidden="true"
+        className="icon"
+      >
+        <UrlIcon />
+      </span>
+      <span
+        className="screen-reader-only"
+      >
+        Target page: 
+      </span>
+      <span
+        className="text"
+      >
+        <NewTabLink
+          href="https://page-url/"
         >
-          <UrlIcon />
-        </td>
-        <td
-          className="screen-reader-only"
-          id="target-page-text"
-        >
-          Target Page: https://page-url/
-        </td>
-        <td
-          aria-hidden="true"
-          aria-labelledby="target-page-text"
-          className="text"
-        >
-          <NewTabLink
-            href="https://page-url/"
-            title="Navigate to target page"
-          >
-            https://page-url/
-          </NewTabLink>
-        </td>
-      </tr>
-      <tr>
-        <td
-          aria-hidden="true"
-          className="icon"
-        >
-          <DateIcon />
-        </td>
-        <td
-          className="screen-reader-only"
-          id="scan-date-text"
-        >
-          Scan date: 2018-03-12 11:24 PM UTC
-        </td>
-        <td
-          aria-hidden="true"
-          aria-labelledby="scan-date-text"
-          className="text"
-        >
-          2018-03-12 11:24 PM UTC
-        </td>
-      </tr>
-    </tbody>
-  </table>
+          https://page-url/
+        </NewTabLink>
+      </span>
+    </li>
+    <li>
+      <span
+        aria-hidden="true"
+        className="icon"
+      >
+        <DateIcon />
+      </span>
+      <span
+        className="screen-reader-only"
+        id="scan-date-text"
+      >
+        Scan date: 2018-03-12 11:24 PM UTC
+      </span>
+      <span
+        aria-hidden="true"
+        aria-labelledby="scan-date-text"
+        className="text"
+      >
+        2018-03-12 11:24 PM UTC
+      </span>
+    </li>
+  </ul>
 </div>
 `;
