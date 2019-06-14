@@ -28,11 +28,9 @@ export const OutcomeSummaryBar = NamedSFC<OutcomeSummaryBarProps>('OutcomeSummar
                 const outcomeIcon = outcomeIconMapInverted[outcomeType];
                 const count = countSummary[outcomeType];
 
-                const ariaLabel = `${count} ${text}`;
-
                 return (
-                    <div key={outcomeType} aria-label={ariaLabel} style={{ flexGrow: count }}>
-                        <span className={kebabCase(outcomeType)} aria-hidden="true">
+                    <div key={outcomeType} style={{ flexGrow: count }}>
+                        <span className={kebabCase(outcomeType)}>
                             {outcomeIcon} {count} <span className="outcome-past-tense">{text}</span>
                         </span>
                     </div>
