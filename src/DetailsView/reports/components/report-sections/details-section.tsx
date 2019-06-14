@@ -34,7 +34,7 @@ export const DetailsSection = NamedSFC<DetailsSectionProps>('DetailsSection', pr
             <ul className="details-section-list">
                 {createListItem(<UrlIcon />, 'target page:', <NewTabLink href={pageUrl}>{pageUrl}</NewTabLink>)}
                 {createListItem(<DateIcon />, 'scan date:', scanDateUTC)}
-                {showCommentRow && createListItem(<CommentIcon />, 'comment:', description)}
+                {showCommentRow && createListItem(<CommentIcon />, 'comment:', description, 'description-text')}
             </ul>
         </div>
     );
