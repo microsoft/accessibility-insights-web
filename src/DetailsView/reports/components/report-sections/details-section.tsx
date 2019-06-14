@@ -11,24 +11,23 @@ import { SectionProps } from './report-section-factory';
 export type DetailsSectionProps = Pick<SectionProps, 'pageUrl' | 'description' | 'scanDate' | 'toUtcString'>;
 
 const createCommentRow = (description: string, screenReaderText: string) => (
-    <tr>
-        <td className="icon" aria-hidden="true">
+    <li>
+        <span className="icon" aria-hidden="true">
             <CommentIcon />
-        </td>
-        <td className="screen-reader-only" id="comment-text">
+        </span>
+        <span className="screen-reader-only" id="comment-text">
             {screenReaderText}
-        </td>
-        <td className="text description-text" aria-labelledby="comment-text" aria-hidden="true">
+        </span>
+        <span className="text description-text" aria-labelledby="comment-text" aria-hidden="true">
             {description}
-        </td>
-    </tr>
+        </span>
+    </li>
 );
 
 export const DetailsSection = NamedSFC<DetailsSectionProps>('DetailsSection', props => {
     const { pageUrl, description, scanDate, toUtcString } = props;
     const scanDateUTC: string = toUtcString(scanDate);
     const screenReaderTexts = {
-        targetPageLink: `Target Page: ${pageUrl}`,
         scanDate: `Scan date: ${scanDateUTC}`,
         comment: `Comment: ${description}`,
     };
@@ -36,35 +35,29 @@ export const DetailsSection = NamedSFC<DetailsSectionProps>('DetailsSection', pr
     return (
         <div className="scan-details-section">
             <h2>Scan details</h2>
-            <table>
-                <tbody>
-                    <tr>
-                        <td className="icon" aria-hidden="true">
-                            <UrlIcon />
-                        </td>
-                        <td className="screen-reader-only" id="target-page-text">
-                            {screenReaderTexts.targetPageLink}
-                        </td>
-                        <td className="text" aria-labelledby="target-page-text" aria-hidden="true">
-                            <NewTabLink href={pageUrl} title="Navigate to target page">
-                                {pageUrl}
-                            </NewTabLink>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td className="icon" aria-hidden="true">
-                            <DateIcon />
-                        </td>
-                        <td className="screen-reader-only" id="scan-date-text">
-                            {screenReaderTexts.scanDate}
-                        </td>
-                        <td className="text" aria-labelledby="scan-date-text" aria-hidden="true">
-                            {scanDateUTC}
-                        </td>
-                    </tr>
-                    {showCommentRow ? createCommentRow(description, screenReaderTexts.comment) : null}
-                </tbody>
-            </table>
+            <ul className="details-section-list">
+                <li>
+                    <span className="icon" aria-hidden="true">
+                        <UrlIcon />
+                    </span>
+                    <span className="screen-reader-only">Target page: </span>
+                    <span className="text">
+                        <NewTabLink href={pageUrl}>{pageUrl}</NewTabLink>
+                    </span>
+                </li>
+                <li>
+                    <span className="icon" aria-hidden="true">
+                        <DateIcon />
+                    </span>
+                    <span className="screen-reader-only" id="scan-date-text">
+                        {screenReaderTexts.scanDate}
+                    </span>
+                    <span className="text" aria-labelledby="scan-date-text" aria-hidden="true">
+                        {scanDateUTC}
+                    </span>
+                </li>
+                {showCommentRow ? createCommentRow(description, screenReaderTexts.comment) : null}
+            </ul>
         </div>
     );
 });

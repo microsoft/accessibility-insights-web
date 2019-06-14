@@ -1,10 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as React from 'react';
+
 import { NewTabLink } from '../../../../common/components/new-tab-link';
 import { NamedSFC } from '../../../../common/react/named-sfc';
 import { productName } from '../../../../content/strings/application';
 import { BrandWhite } from '../../../../icons/brand/white/brand-white';
+import { reportHeaderBar, reportHeaderCommandBar, targetPage } from './header-section.scss';
 
 export interface HeaderSectionProps {
     pageTitle: string;
@@ -14,12 +16,12 @@ export interface HeaderSectionProps {
 export const HeaderSection = NamedSFC<HeaderSectionProps>('HeaderSection', ({ pageTitle, pageUrl }) => {
     return (
         <header>
-            <div className="report-header-bar">
+            <div className={reportHeaderBar}>
                 <BrandWhite />
                 <div className="ms-font-m header-text ms-fontWeight-semibold">{productName}</div>
             </div>
-            <div className="report-header-command-bar">
-                <div className="target-page">
+            <div className={reportHeaderCommandBar}>
+                <div className={targetPage}>
                     Target page:&nbsp;
                     <NewTabLink href={pageUrl} title={pageTitle}>
                         {pageTitle}

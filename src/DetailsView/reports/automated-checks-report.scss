@@ -7,6 +7,7 @@
 @import './components/outcome.scss';
 @import './components/instance-details.scss';
 @import '../../common/components/guidance-tags.scss';
+@import './components/report-sections/header-section.scss';
 
 @mixin contentSize {
     max-width: 960px;
@@ -50,33 +51,6 @@ body {
         line-height: 32px;
         letter-spacing: -0.02em;
     }
-}
-
-.report-header-bar svg {
-    margin-left: 8px;
-}
-
-.report-header-command-bar {
-    height: 40px;
-    width: 100%;
-    display: flex;
-    justify-content: end;
-    min-height: fit-content;
-    align-items: center;
-    background-color: $neutral-0;
-    box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.08);
-}
-
-.report-header-command-bar .target-page {
-    margin: 0px 0px 0px 16px;
-    display: inherit;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    color: $neutral-60;
-    font-family: $fontFamily;
-    font-size: 14px;
-    line-height: 20px;
 }
 
 $outcome-pass-summary-color: $positive-outcome;
@@ -167,27 +141,39 @@ $outcome-not-applicable-summary-color: $neutral-outcome;
     background-color: $neutral-0;
     padding: 20px;
 
+    .details-section-list {
+        list-style: none;
+        font-size: 14px;
+        line-height: 16px;
+        padding-left: 0px;
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        flex-direction: column;
+    }
+
     h3 {
         margin: 0px;
         font-size: 17px;
         line-height: 24px;
     }
 
-    table {
-        font-size: 14px;
-        line-height: 16px;
+    ul :first-child li {
+        padding-top: 16px;
     }
 
-    td {
+    li {
+        display: inline-block;
         padding-top: 12px;
+        .icon {
+            padding-right: 12px;
+            position: relative;
+            top: 3px;
+        }
     }
 
     .description-text {
         white-space: pre-wrap;
-    }
-
-    tbody :first-child td {
-        padding-top: 16px;
     }
 }
 
