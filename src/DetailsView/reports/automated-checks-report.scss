@@ -4,6 +4,7 @@
 @import '../../common/styles/fonts.scss';
 @import '../../common/styles/common.scss';
 @import '../../common/icons/icon.scss';
+@import './components/report-sections/no-failed-instances-congrats.scss';
 @import './components/outcome.scss';
 @import './components/instance-details.scss';
 @import './components/report-sections/header-section.scss';
@@ -339,34 +340,4 @@ ul.instance-details-list {
     li:last-child {
         margin-bottom: unset;
     }
-}
-
-.report-congrats {
-    position: relative;
-}
-
-.report-congrats-screen {
-    top: 181px;
-    position: absolute;
-    width: 488px;
-    left: 105px;
-    height: 295px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.report-congrats-message {
-    width: 364px;
-    text-align: center;
-}
-.report-congrats-head {
-    font-size: 48px;
-    font-weight: 600;
-    color: rgba(0, 0, 0, 0.9);
-    padding: 10px 0 10px 0;
-}
-.report-congrats-info {
-    font-size: 40px;
-    color: rgba(0, 0, 0, 0.55);
-    padding: 10px 0 10px 0;
 }
