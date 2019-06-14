@@ -4,6 +4,7 @@ exports[`ResultSectionContent renders, no rules and show congrats 1`] = `<NoFail
 
 exports[`ResultSectionContent renders, no rules, do not show congrats 1`] = `
 <RuleDetailsGroup
+  deps={Object {}}
   outcomeType="pass"
   rules={Array []}
 />
@@ -11,6 +12,7 @@ exports[`ResultSectionContent renders, no rules, do not show congrats 1`] = `
 
 exports[`ResultSectionContent renders, with some rules 1`] = `
 <RuleDetailsGroup
+  deps={Object {}}
   outcomeType="pass"
   rules={
     Array [

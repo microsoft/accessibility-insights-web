@@ -3,6 +3,7 @@
 import * as React from 'react';
 
 import { EnvironmentInfo } from '../../common/environment-info-provider';
+import { GetGuidanceTagsFromGuidanceLinks } from '../../common/get-guidance-tags-from-guidance-links';
 import { FixInstructionProcessor } from '../../injected/fix-instruction-processor';
 import { ScanResults } from '../../scanner/iruleresults';
 import { ReportHeadV2 } from './components/report-head-v2';
@@ -18,6 +19,7 @@ export class ReportHtmlGeneratorV2 implements ReportHtmlGenerator {
         private readonly environmentInfo: EnvironmentInfo,
         private readonly getCollpasibleScript: () => string,
         private readonly utcDateConverter: (scanDate: Date) => string,
+        private readonly getGuidanceTagsFromGuidanceLinks: GetGuidanceTagsFromGuidanceLinks,
         private readonly fixInstructionProcessor: FixInstructionProcessor,
     ) {}
 
@@ -34,6 +36,7 @@ export class ReportHtmlGeneratorV2 implements ReportHtmlGenerator {
             environmentInfo: this.environmentInfo,
             toUtcString: this.utcDateConverter,
             getCollapsibleScript: this.getCollpasibleScript,
+            getGuidanceTagsFromGuidanceLinks: this.getGuidanceTagsFromGuidanceLinks,
             fixInstructionProcessor: this.fixInstructionProcessor,
         };
 

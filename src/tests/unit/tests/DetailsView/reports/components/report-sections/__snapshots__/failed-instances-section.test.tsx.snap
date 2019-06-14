@@ -4,6 +4,11 @@ exports[`FailedInstancesSection renders 1`] = `
 <ResultSection
   badgeCount={6}
   containerClassName="failed-instances-section"
+  deps={
+    Object {
+      "getGuidanceTagsFromGuidanceLinks": [Function],
+    }
+  }
   fixInstructionProcessor={
     proxy {
       "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",

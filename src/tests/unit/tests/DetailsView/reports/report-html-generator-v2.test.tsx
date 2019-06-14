@@ -5,6 +5,7 @@ import { It, Mock, MockBehavior, Times } from 'typemoq';
 
 import { DateProvider } from '../../../../../common/date-provider';
 import { EnvironmentInfo } from '../../../../../common/environment-info-provider';
+import { GetGuidanceTagsFromGuidanceLinks } from '../../../../../common/get-guidance-tags-from-guidance-links';
 import { ReportHeadV2 } from '../../../../../DetailsView/reports/components/report-head-v2';
 import { ReportBody, ReportBodyProps } from '../../../../../DetailsView/reports/components/report-sections/report-body';
 import { ReportSectionFactory } from '../../../../../DetailsView/reports/components/report-sections/report-section-factory';
@@ -26,6 +27,7 @@ describe('ReportHtmlGeneratorV2', () => {
         const fixInstructionProcessorMock = Mock.ofType(FixInstructionProcessor);
 
         const getUTCStringFromDateStub: typeof DateProvider.getUTCStringFromDate = () => '';
+        const getGuidanceTagsStub: GetGuidanceTagsFromGuidanceLinks = () => [];
 
         const sectionFactoryMock = Mock.ofType<ReportSectionFactory>();
         const environmentInfo: EnvironmentInfo = {
@@ -47,6 +49,7 @@ describe('ReportHtmlGeneratorV2', () => {
             environmentInfo,
             toUtcString: getUTCStringFromDateStub,
             getCollapsibleScript: getScriptMock.object,
+            getGuidanceTagsFromGuidanceLinks: getGuidanceTagsStub,
         };
 
         const headElement: JSX.Element = <ReportHeadV2 />;
@@ -68,6 +71,7 @@ describe('ReportHtmlGeneratorV2', () => {
             environmentInfo,
             getScriptMock.object,
             getUTCStringFromDateStub,
+            getGuidanceTagsStub,
             fixInstructionProcessorMock.object,
         );
 

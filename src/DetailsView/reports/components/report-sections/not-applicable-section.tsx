@@ -6,19 +6,23 @@ import { NamedSFC } from '../../../../common/react/named-sfc';
 import { CollapsibleResultSection } from './collapsible-result-section';
 import { SectionProps } from './report-section-factory';
 
-export type NotApplicableChecksSectionProps = Pick<SectionProps, 'scanResult'>;
+export type NotApplicableChecksSectionProps = Pick<SectionProps, 'scanResult' | 'getGuidanceTagsFromGuidanceLinks'>;
 
-export const NotApplicableChecksSection = NamedSFC<NotApplicableChecksSectionProps>('NotApplicableChecksSection', ({ scanResult }) => {
-    const rules = scanResult.inapplicable;
+export const NotApplicableChecksSection = NamedSFC<NotApplicableChecksSectionProps>(
+    'NotApplicableChecksSection',
+    ({ scanResult, getGuidanceTagsFromGuidanceLinks }) => {
+        const rules = scanResult.inapplicable;
 
-    return (
-        <CollapsibleResultSection
-            title="Not applicable"
-            rules={rules}
-            containerClassName="not-applicable-checks-section"
-            outcomeType="inapplicable"
-            badgeCount={rules.length}
-            buttonAriaLabel="show not applicable checks list"
-        />
-    );
-});
+        return (
+            <CollapsibleResultSection
+                deps={{ getGuidanceTagsFromGuidanceLinks }}
+                title="Not applicable"
+                rules={rules}
+                containerClassName="not-applicable-checks-section"
+                outcomeType="inapplicable"
+                badgeCount={rules.length}
+                buttonAriaLabel="show not applicable checks list"
+            />
+        );
+    },
+);

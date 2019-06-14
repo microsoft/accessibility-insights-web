@@ -207,6 +207,7 @@ if (isNaN(tabId) === false) {
                 environmentInfoProvider.getEnvironmentInfo(),
                 getDefaultAddListenerForCollapsibleSection,
                 DateProvider.getUTCStringFromDate,
+                GetGuidanceTagsFromGuidanceLinks,
                 fixInstructionProcessor,
             );
 

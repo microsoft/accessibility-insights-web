@@ -3,10 +3,12 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-import { RuleDetail } from '../../../../../../../DetailsView/reports/components/report-sections/rule-detail';
+import { RuleDetail, RuleDetailDeps } from '../../../../../../../DetailsView/reports/components/report-sections/rule-detail';
 import { RuleResult } from '../../../../../../../scanner/iruleresults';
 
-describe('RuleDetailsGroup', () => {
+describe('RuleDetail', () => {
+    const depsStub = {} as RuleDetailDeps;
+
     it('renders, not a header', () => {
         const rule = {
             helpUrl: 'url://help.url',
@@ -27,7 +29,7 @@ describe('RuleDetailsGroup', () => {
         const children = <span>children</span>;
 
         const wrapped = shallow(
-            <RuleDetail rule={rule} isHeader={false} outcomeType={'fail'}>
+            <RuleDetail deps={depsStub} rule={rule} isHeader={false} outcomeType={'fail'}>
                 {children}
             </RuleDetail>,
         );
@@ -55,7 +57,7 @@ describe('RuleDetailsGroup', () => {
         const children = <span>children</span>;
 
         const wrapped = shallow(
-            <RuleDetail rule={rule} isHeader={true} outcomeType={'fail'}>
+            <RuleDetail deps={depsStub} rule={rule} isHeader={true} outcomeType={'fail'}>
                 {children}
             </RuleDetail>,
         );

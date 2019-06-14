@@ -17,6 +17,7 @@ describe('ReportBody', () => {
         const pageTitle = 'page-title';
         const pageUrl = 'url:target-page';
         const getScriptStub = () => '';
+        const getGuidanceTagsStub = () => [];
         const fixInstructionProcessorMock = Mock.ofType(FixInstructionProcessor);
 
         const detailsProps: SectionProps = {
@@ -41,6 +42,7 @@ describe('ReportBody', () => {
             },
             toUtcString: () => '',
             getCollapsibleScript: getScriptStub,
+            getGuidanceTagsFromGuidanceLinks: getGuidanceTagsStub,
         };
 
         const props: ReportBodyProps = {

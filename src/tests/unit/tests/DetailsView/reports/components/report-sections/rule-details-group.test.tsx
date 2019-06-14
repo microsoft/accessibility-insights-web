@@ -4,12 +4,16 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 import { IMock, Mock } from 'typemoq';
 
-import { RuleDetailsGroup } from '../../../../../../../DetailsView/reports/components/report-sections/rule-details-group';
+import {
+    RuleDetailsGroup,
+    RuleDetailsGroupDeps,
+} from '../../../../../../../DetailsView/reports/components/report-sections/rule-details-group';
 import { FixInstructionProcessor } from '../../../../../../../injected/fix-instruction-processor';
 import { RuleResult } from '../../../../../../../scanner/iruleresults';
 
 describe('RuleDetailsGroup', () => {
     let fixInstructionProcessorMock: IMock<FixInstructionProcessor>;
+    const depsStub = {} as RuleDetailsGroupDeps;
 
     beforeEach(() => {
         fixInstructionProcessorMock = Mock.ofType(FixInstructionProcessor);
@@ -19,7 +23,12 @@ describe('RuleDetailsGroup', () => {
         const rules = [{ id: '1' } as RuleResult, { id: '2' } as RuleResult, { id: '3' } as RuleResult];
 
         const wrapped = shallow(
-            <RuleDetailsGroup fixInstructionProcessor={fixInstructionProcessorMock.object} outcomeType={'pass'} rules={rules} />,
+            <RuleDetailsGroup
+                deps={depsStub}
+                fixInstructionProcessor={fixInstructionProcessorMock.object}
+                outcomeType={'pass'}
+                rules={rules}
+            />,
         );
 
         expect(wrapped.getElement()).toMatchSnapshot();
@@ -41,6 +50,7 @@ describe('RuleDetailsGroup', () => {
 
         const wrapped = shallow(
             <RuleDetailsGroup
+                deps={depsStub}
                 fixInstructionProcessor={fixInstructionProcessorMock.object}
                 outcomeType={'pass'}
                 rules={rules}

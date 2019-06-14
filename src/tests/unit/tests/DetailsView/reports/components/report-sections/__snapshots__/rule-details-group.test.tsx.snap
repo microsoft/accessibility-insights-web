@@ -5,6 +5,7 @@ exports[`RuleDetailsGroup renders, no details 1`] = `
   className="rule-details-group"
 >
   <RuleDetails
+    deps={Object {}}
     outcomeType="pass"
     rule={
       Object {
@@ -13,6 +14,7 @@ exports[`RuleDetailsGroup renders, no details 1`] = `
     }
   />
   <RuleDetails
+    deps={Object {}}
     outcomeType="pass"
     rule={
       Object {
@@ -21,6 +23,7 @@ exports[`RuleDetailsGroup renders, no details 1`] = `
     }
   />
   <RuleDetails
+    deps={Object {}}
     outcomeType="pass"
     rule={
       Object {
@@ -69,6 +72,7 @@ exports[`RuleDetailsGroup renders, with details 1`] = `
     id="1"
     summaryContent={
       <RuleDetails
+        deps={Object {}}
         isHeader={false}
         outcomeType="pass"
         rule={

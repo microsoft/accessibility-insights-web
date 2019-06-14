@@ -27,6 +27,7 @@ exports[`ReportBody renders 1`] = `
       }
     }
     getCollapsibleScript={[Function]}
+    getGuidanceTagsFromGuidanceLinks={[Function]}
     pageTitle="page-title"
     pageUrl="url:target-page"
     scanDate={2019-05-29T19:12:16.804Z}
@@ -70,6 +71,7 @@ exports[`ReportBody renders 1`] = `
         }
       }
       getCollapsibleScript={[Function]}
+      getGuidanceTagsFromGuidanceLinks={[Function]}
       pageTitle="page-title"
       pageUrl="url:target-page"
       scanDate={2019-05-29T19:12:16.804Z}
@@ -111,6 +113,7 @@ exports[`ReportBody renders 1`] = `
         }
       }
       getCollapsibleScript={[Function]}
+      getGuidanceTagsFromGuidanceLinks={[Function]}
       pageTitle="page-title"
       pageUrl="url:target-page"
       scanDate={2019-05-29T19:12:16.804Z}
@@ -152,6 +155,7 @@ exports[`ReportBody renders 1`] = `
         }
       }
       getCollapsibleScript={[Function]}
+      getGuidanceTagsFromGuidanceLinks={[Function]}
       pageTitle="page-title"
       pageUrl="url:target-page"
       scanDate={2019-05-29T19:12:16.804Z}
@@ -193,6 +197,7 @@ exports[`ReportBody renders 1`] = `
           }
         }
         getCollapsibleScript={[Function]}
+        getGuidanceTagsFromGuidanceLinks={[Function]}
         pageTitle="page-title"
         pageUrl="url:target-page"
         scanDate={2019-05-29T19:12:16.804Z}
@@ -234,6 +239,7 @@ exports[`ReportBody renders 1`] = `
           }
         }
         getCollapsibleScript={[Function]}
+        getGuidanceTagsFromGuidanceLinks={[Function]}
         pageTitle="page-title"
         pageUrl="url:target-page"
         scanDate={2019-05-29T19:12:16.804Z}
@@ -275,6 +281,7 @@ exports[`ReportBody renders 1`] = `
           }
         }
         getCollapsibleScript={[Function]}
+        getGuidanceTagsFromGuidanceLinks={[Function]}
         pageTitle="page-title"
         pageUrl="url:target-page"
         scanDate={2019-05-29T19:12:16.804Z}
@@ -318,6 +325,7 @@ exports[`ReportBody renders 1`] = `
       }
     }
     getCollapsibleScript={[Function]}
+    getGuidanceTagsFromGuidanceLinks={[Function]}
     pageTitle="page-title"
     pageUrl="url:target-page"
     scanDate={2019-05-29T19:12:16.804Z}

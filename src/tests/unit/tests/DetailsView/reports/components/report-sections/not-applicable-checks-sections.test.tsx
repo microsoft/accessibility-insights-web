@@ -3,6 +3,7 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
+import { GetGuidanceTagsFromGuidanceLinks } from '../../../../../../../common/get-guidance-tags-from-guidance-links';
 import {
     NotApplicableChecksSection,
     NotApplicableChecksSectionProps,
@@ -11,7 +12,9 @@ import { RuleResult } from '../../../../../../../scanner/iruleresults';
 
 describe('NotApplicableChecksSection', () => {
     it('renders', () => {
+        const getGuidanceTagsStub: GetGuidanceTagsFromGuidanceLinks = () => [];
         const props: NotApplicableChecksSectionProps = {
+            getGuidanceTagsFromGuidanceLinks: getGuidanceTagsStub,
             scanResult: {
                 inapplicable: [{} as RuleResult, {} as RuleResult, {} as RuleResult],
                 violations: [],
