@@ -181,6 +181,9 @@ $outcome-not-applicable-summary-color: $neutral-outcome;
         .collapsible-control {
             padding-left: 0px;
             padding-right: 16px;
+
+            position: relative;
+            bottom: 2px;
         }
     }
 
