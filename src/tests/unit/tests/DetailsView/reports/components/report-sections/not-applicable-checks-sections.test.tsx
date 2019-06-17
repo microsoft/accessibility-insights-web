@@ -7,7 +7,7 @@ import { GetGuidanceTagsFromGuidanceLinks } from '../../../../../../../common/ge
 import {
     NotApplicableChecksSection,
     NotApplicableChecksSectionProps,
-} from '../../../../../../../DetailsView/reports/components/report-sections/not-applicable-section';
+} from '../../../../../../../DetailsView/reports/components/report-sections/not-applicable-checks-section';
 import { RuleResult } from '../../../../../../../scanner/iruleresults';
 
 describe('NotApplicableChecksSection', () => {

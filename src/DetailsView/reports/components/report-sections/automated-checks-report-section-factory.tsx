@@ -5,7 +5,7 @@ import { ContentContainer } from './content-container';
 import { DetailsSection } from './details-section';
 import { FailedInstancesSection } from './failed-instances-section';
 import { HeaderSection } from './header-section';
-import { NotApplicableChecksSection } from './not-applicable-section';
+import { NotApplicableChecksSection } from './not-applicable-checks-section';
 import { PassedChecksSection } from './passed-checks-section';
 import { ReportFooter } from './report-footer';
 import { ReportSectionFactory } from './report-section-factory';
