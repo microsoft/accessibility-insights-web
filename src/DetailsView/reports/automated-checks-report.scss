@@ -206,12 +206,8 @@ $outcome-not-applicable-summary-color: $neutral-outcome;
         @include transform(rotate(45deg));
     }
 
-    .content-container {
+    .collapsible-content {
         margin-bottom: 16px;
-
-        &[aria-hidden='false'] {
-            padding-bottom: 16px;
-        }
 
         &[aria-hidden='true'] {
             display: none;
