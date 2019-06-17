@@ -177,6 +177,13 @@ $outcome-not-applicable-summary-color: $neutral-outcome;
         align-items: baseline;
     }
 
+    &:not(.collapsible-rule-details-group) {
+        .collapsible-control {
+            padding-left: 0px;
+            padding-right: 16px;
+        }
+    }
+
     %common-control-chevron {
         display: inline-block;
         border-right: 1px solid $secondary-text;
