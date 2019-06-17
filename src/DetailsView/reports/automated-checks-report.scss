@@ -107,7 +107,6 @@ $outcome-not-applicable-summary-color: $neutral-outcome;
 }
 
 .failed-instances-section {
-    margin-top: 56px;
     .how-to-fix-content {
         margin-bottom: 16px;
         ul {
@@ -120,12 +119,8 @@ $outcome-not-applicable-summary-color: $neutral-outcome;
     }
 }
 
-.passed-checks-section {
-    margin-top: 76px;
-}
-
-.not-applicable-checks-section {
-    margin-top: 76px;
+.result-section {
+    margin-top: 56px;
 }
 
 .rule-details-group {
@@ -182,6 +177,16 @@ $outcome-not-applicable-summary-color: $neutral-outcome;
         align-items: baseline;
     }
 
+    &:not(.collapsible-rule-details-group) {
+        .collapsible-control {
+            padding-left: 0px;
+            padding-right: 16px;
+
+            position: relative;
+            bottom: 2px;
+        }
+    }
+
     %common-control-chevron {
         display: inline-block;
         border-right: 1px solid $secondary-text;
@@ -211,13 +216,7 @@ $outcome-not-applicable-summary-color: $neutral-outcome;
         @include transform(rotate(45deg));
     }
 
-    .content-container {
-        margin-bottom: 16px;
-
-        &[aria-hidden='false'] {
-            padding-bottom: 16px;
-        }
-
+    .collapsible-content {
         &[aria-hidden='true'] {
             display: none;
         }

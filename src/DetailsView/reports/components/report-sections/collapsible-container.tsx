@@ -29,7 +29,7 @@ export const CollapsibleContainer = NamedSFC<CollapsibleContainerProps>('Collaps
                 <button className="collapsible-control" aria-expanded="false" aria-controls={contentId} aria-label={buttonAriaLabel} />
                 <div>{summaryContent}</div>
             </div>
-            <div id={contentId} className="content-container" aria-hidden="true">
+            <div id={contentId} className="collapsible-content" aria-hidden="true">
                 {detailsContent}
             </div>
         </div>

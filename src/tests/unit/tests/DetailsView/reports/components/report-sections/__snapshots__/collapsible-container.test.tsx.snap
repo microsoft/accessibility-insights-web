@@ -21,7 +21,7 @@ exports[`CollapsibleContainer renders, no optional fields 1`] = `
   </div>
   <div
     aria-hidden="true"
-    className="content-container"
+    className="collapsible-content"
     id="content-container-test-id"
   >
     <div>
@@ -52,7 +52,7 @@ exports[`CollapsibleContainer renders, with extra class name for the container d
   </div>
   <div
     aria-hidden="true"
-    className="content-container"
+    className="collapsible-content"
     id="content-container-test-id"
   >
     <div>
@@ -85,7 +85,7 @@ exports[`CollapsibleContainer renders, with heading level for the title containe
   </div>
   <div
     aria-hidden="true"
-    className="content-container"
+    className="collapsible-content"
     id="content-container-test-id"
   >
     <div>
