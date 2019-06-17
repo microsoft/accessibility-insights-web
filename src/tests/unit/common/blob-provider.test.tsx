@@ -5,7 +5,7 @@ import { provideBlob } from '../../../common/blob-provider';
 describe('BlobProviderTest', () => {
     test('provideBlob', () => {
         const mimeType = 'text/html';
-        const oMyBlob = provideBlob(['<a></a>'], mimeType);
-        expect(oMyBlob.type).toEqual(mimeType);
+        const blobProvided = provideBlob(['<a></a>'], mimeType);
+        expect(blobProvided.type).toEqual(mimeType);
     });
 });

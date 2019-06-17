@@ -6,7 +6,7 @@ import { Dialog } from 'office-ui-fabric-react/lib/Dialog';
 import { TextField } from 'office-ui-fabric-react/lib/TextField';
 import * as React from 'react';
 import { WindowUtils } from 'src/common/window-utils';
-import { It, Mock, MockBehavior, Times } from 'typemoq';
+import { It, Mock, MockBehavior, Times, IMock } from 'typemoq';
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
 import { ExportDialog, ExportDialogProps } from '../../../../../DetailsView/components/export-dialog';
 
@@ -15,23 +15,21 @@ describe('ExportDialog', () => {
     const onDescriptionChangeMock = Mock.ofInstance((value: string) => {});
     const actionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator, MockBehavior.Strict);
     const windowUtilsMock = Mock.ofType<WindowUtils>();
-    const provideBlobMock = Mock.ofType<(blobParts?: any[], mimeType?: string) => Blob>();
     const eventStub = 'event stub' as any;
-    const blobStub = {} as Blob;
     const onExportClickMock = Mock.ofInstance(() => {});
     let props: ExportDialogProps;
+    let provideURLMock: IMock<(blobParts?: any[], mimeType?: string) => string>;
 
     beforeEach(() => {
         onCloseMock.reset();
         onDescriptionChangeMock.reset();
         actionMessageCreatorMock.reset();
-        provideBlobMock.reset();
         onExportClickMock.reset();
+        provideURLMock = Mock.ofInstance(blobParts, mimeType => '');
 
         const deps = {
             detailsViewActionMessageCreator: actionMessageCreatorMock.object,
             windowUtils: windowUtilsMock.object,
-            provideBlob: provideBlobMock.object,
         };
 
         props = {
@@ -52,15 +50,11 @@ describe('ExportDialog', () => {
         const isOpenOptions = [true, false];
 
         it.each(isOpenOptions)('with open %p', isOpen => {
-            provideBlobMock
-                .setup(p => p(It.isAny(), It.isAnyString()))
-                .returns(() => blobStub)
-                .verifiable(Times.once());
-            windowUtilsMock
-                .setup(w => w.createObjectURL(blobStub))
-                .returns(() => 'fake-url')
-                .verifiable(Times.once());
             props.isOpen = isOpen;
+            provideURLMock
+                .setup(pro => pro(It.isAny(), It.isAnyString()))
+                .returns('fake-url')
+                .verifiable(Times.once());
             const wrapper = shallow(<ExportDialog {...props} />);
             expect(wrapper.getElement()).toMatchSnapshot();
         });
@@ -68,14 +62,6 @@ describe('ExportDialog', () => {
     describe('user interaction', () => {
         it('closes the dialog onDismiss', () => {
             onCloseMock.setup(oc => oc()).verifiable(Times.once());
-            provideBlobMock
-                .setup(p => p(It.isAny(), It.isAnyString()))
-                .returns(() => blobStub)
-                .verifiable(Times.once());
-            windowUtilsMock
-                .setup(w => w.createObjectURL(blobStub))
-                .returns(() => 'fake-url')
-                .verifiable(Times.once());
             onExportClickMock.setup(getter => getter()).verifiable(Times.never());
             const wrapper = shallow(<ExportDialog {...props} />);
 
@@ -90,14 +76,6 @@ describe('ExportDialog', () => {
         it('handles click on export button', () => {
             onCloseMock.setup(oc => oc()).verifiable(Times.once());
             onExportClickMock.setup(getter => getter()).verifiable(Times.once());
-            provideBlobMock
-                .setup(p => p(It.isAny(), It.isAnyString()))
-                .returns(() => blobStub)
-                .verifiable(Times.once());
-            windowUtilsMock
-                .setup(w => w.createObjectURL(blobStub))
-                .returns(() => 'fake-url')
-                .verifiable(Times.once());
 
             actionMessageCreatorMock
                 .setup(a => a.exportResultsClicked(props.exportResultsType, props.html, eventStub))
@@ -117,14 +95,6 @@ describe('ExportDialog', () => {
             props.isOpen = true;
             const changedDescription = 'changed-description';
             onDescriptionChangeMock.setup(handler => handler(It.isValue(changedDescription))).verifiable(Times.once());
-            provideBlobMock
-                .setup(p => p(It.isAny(), It.isAnyString()))
-                .returns(() => blobStub)
-                .verifiable(Times.once());
-            windowUtilsMock
-                .setup(w => w.createObjectURL(blobStub))
-                .returns(() => 'fake-url')
-                .verifiable(Times.once());
 
             const wrapper = shallow(<ExportDialog {...props} />);
 
