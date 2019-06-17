@@ -12,31 +12,9 @@
 @import './components/report-sections/footer-section.scss';
 @import './components/report-sections/details-section.scss';
 @import './components/report-sections/common-report-styles.scss';
-
-.content-container {
-    @include contentSize();
-    margin-top: 24px;
-
-    h2 {
-        margin: 0px;
-        font-size: 17px;
-        line-height: 24px;
-    }
-
-    @media only screen and (max-width: 1000px) {
-        margin: 24px 16px 0 16px;
-    }
-}
-
-.title-section {
-    h1 {
-        font-family: $semiBoldFontFamily;
-        margin: 0px 0px 24px 0px;
-        font-size: 21px;
-        line-height: 32px;
-        letter-spacing: -0.02em;
-    }
-}
+@import './components/report-sections/body-section-styles.scss';
+@import './components/report-sections/content-container-styles.scss';
+@import './components/report-sections/title-section-styles.scss';
 
 $outcome-pass-summary-color: $positive-outcome;
 $outcome-fail-summary-color: $negative-outcome;

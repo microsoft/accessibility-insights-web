@@ -1,0 +1,18 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+@import './common-report-styles.scss';
+
+.content-container {
+    @include contentSize();
+    margin-top: 24px;
+
+    h2 {
+        margin: 0px;
+        font-size: 17px;
+        line-height: 24px;
+    }
+
+    @media only screen and (max-width: 1000px) {
+        margin: 24px 16px 0 16px;
+    }
+}
