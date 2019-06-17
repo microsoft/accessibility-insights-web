@@ -207,8 +207,6 @@ $outcome-not-applicable-summary-color: $neutral-outcome;
     }
 
     .collapsible-content {
-        margin-bottom: 16px;
-
         &[aria-hidden='true'] {
             display: none;
         }
