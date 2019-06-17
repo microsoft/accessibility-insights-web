@@ -16,7 +16,7 @@ export const NotApplicableChecksSection = NamedSFC<NotApplicableChecksSectionPro
         return (
             <CollapsibleResultSection
                 deps={{ getGuidanceTagsFromGuidanceLinks }}
-                title="Not applicable"
+                title="Not applicable checks"
                 rules={rules}
                 containerClassName="result-section"
                 outcomeType="inapplicable"

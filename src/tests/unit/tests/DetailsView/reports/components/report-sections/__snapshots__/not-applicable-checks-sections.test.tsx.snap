@@ -18,6 +18,6 @@ exports[`NotApplicableChecksSection renders 1`] = `
       Object {},
     ]
   }
-  title="Not applicable"
+  title="Not applicable checks"
 />
 `;
