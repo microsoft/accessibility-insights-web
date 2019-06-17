@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
-import { FeatureFlags, getDefaultFeatureFlagValues } from '../../../../common/feature-flags';
+import { getDefaultFeatureFlagValues } from '../../../../common/feature-flags';
 import { HTMLElementUtils } from '../../../../common/html-element-utils';
 import { FeatureFlagStoreData } from '../../../../common/types/store-data/feature-flag-store-data';
 import { DrawingController, VisualizationWindowMessage } from '../../../../injected/drawing-controller';
