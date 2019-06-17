@@ -1,19 +1,19 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-@import '../../common/styles/colors.scss';
-@import '../../common/styles/fonts.scss';
-@import '../../common/styles/common.scss';
-@import '../../common/icons/icon.scss';
-@import './components/report-sections/no-failed-instances-congrats.scss';
-@import './components/outcome.scss';
-@import './components/instance-details.scss';
 @import '../../common/components/guidance-tags.scss';
-@import './components/report-sections/header-section.scss';
-@import './components/report-sections/footer-section.scss';
-@import './components/report-sections/details-section.scss';
-@import './components/report-sections/common-mixins.scss';
+@import '../../common/icons/icon.scss';
+@import '../../common/styles/colors.scss';
+@import '../../common/styles/common.scss';
+@import '../../common/styles/fonts.scss';
+@import './components/instance-details.scss';
+@import './components/outcome.scss';
 @import './components/report-sections/body-section.scss';
+@import './components/report-sections/common-mixins.scss';
 @import './components/report-sections/content-container.scss';
+@import './components/report-sections/details-section.scss';
+@import './components/report-sections/footer-section.scss';
+@import './components/report-sections/header-section.scss';
+@import './components/report-sections/no-failed-instances-congrats.scss';
 @import './components/report-sections/title-section.scss';
 
 $outcome-pass-summary-color: $positive-outcome;
