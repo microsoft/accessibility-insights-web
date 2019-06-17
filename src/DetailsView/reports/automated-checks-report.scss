@@ -274,17 +274,12 @@ $outcome-not-applicable-summary-color: $neutral-outcome;
         transition: transform 0.1s linear 0s;
     }
 
-    button {
-        outline: -webkit-focus-ring-color auto 5px;
-    }
-
     .collapsible-control {
         font-family: 'Segoe UI Web (West European)', 'Segoe UI', '-apple-system', BlinkMacSystemFont, Roboto, 'Helvetica Neue', Helvetica,
             Ubuntu, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
         background-color: transparent;
         cursor: pointer;
         border: none;
-        outline: none;
     }
 
     .collapsible-control[aria-expanded='false']:before {
