@@ -2,13 +2,13 @@
 
 exports[`DetailsSection rendering of comment row is dependent on description value renders and matches saved snapshot for description value:  1`] = `
 <div
-  className="scan-details-section"
+  className="scanDetailsSection"
 >
   <h2>
     Scan details
   </h2>
   <ul
-    className="details-section-list"
+    className="detailsSectionList"
   >
     <li>
       <span
@@ -18,7 +18,7 @@ exports[`DetailsSection rendering of comment row is dependent on description val
         <UrlIcon />
       </span>
       <span
-        className="screen-reader-only"
+        className="screenReaderOnly"
       >
         target page:
       </span>
@@ -40,7 +40,7 @@ exports[`DetailsSection rendering of comment row is dependent on description val
         <DateIcon />
       </span>
       <span
-        className="screen-reader-only"
+        className="screenReaderOnly"
       >
         scan date:
       </span>
@@ -56,13 +56,13 @@ exports[`DetailsSection rendering of comment row is dependent on description val
 
 exports[`DetailsSection rendering of comment row is dependent on description value renders and matches saved snapshot for description value: description-text 1`] = `
 <div
-  className="scan-details-section"
+  className="scanDetailsSection"
 >
   <h2>
     Scan details
   </h2>
   <ul
-    className="details-section-list"
+    className="detailsSectionList"
   >
     <li>
       <span
@@ -72,7 +72,7 @@ exports[`DetailsSection rendering of comment row is dependent on description val
         <UrlIcon />
       </span>
       <span
-        className="screen-reader-only"
+        className="screenReaderOnly"
       >
         target page:
       </span>
@@ -94,7 +94,7 @@ exports[`DetailsSection rendering of comment row is dependent on description val
         <DateIcon />
       </span>
       <span
-        className="screen-reader-only"
+        className="screenReaderOnly"
       >
         scan date:
       </span>
@@ -112,7 +112,7 @@ exports[`DetailsSection rendering of comment row is dependent on description val
         <CommentIcon />
       </span>
       <span
-        className="screen-reader-only"
+        className="screenReaderOnly"
       >
         comment:
       </span>
@@ -128,13 +128,13 @@ exports[`DetailsSection rendering of comment row is dependent on description val
 
 exports[`DetailsSection rendering of comment row is dependent on description value renders and matches saved snapshot for description value: null 1`] = `
 <div
-  className="scan-details-section"
+  className="scanDetailsSection"
 >
   <h2>
     Scan details
   </h2>
   <ul
-    className="details-section-list"
+    className="detailsSectionList"
   >
     <li>
       <span
@@ -144,7 +144,7 @@ exports[`DetailsSection rendering of comment row is dependent on description val
         <UrlIcon />
       </span>
       <span
-        className="screen-reader-only"
+        className="screenReaderOnly"
       >
         target page:
       </span>
@@ -166,7 +166,7 @@ exports[`DetailsSection rendering of comment row is dependent on description val
         <DateIcon />
       </span>
       <span
-        className="screen-reader-only"
+        className="screenReaderOnly"
       >
         scan date:
       </span>
@@ -182,13 +182,13 @@ exports[`DetailsSection rendering of comment row is dependent on description val
 
 exports[`DetailsSection rendering of comment row is dependent on description value renders and matches saved snapshot for description value: undefined 1`] = `
 <div
-  className="scan-details-section"
+  className="scanDetailsSection"
 >
   <h2>
     Scan details
   </h2>
   <ul
-    className="details-section-list"
+    className="detailsSectionList"
   >
     <li>
       <span
@@ -198,7 +198,7 @@ exports[`DetailsSection rendering of comment row is dependent on description val
         <UrlIcon />
       </span>
       <span
-        className="screen-reader-only"
+        className="screenReaderOnly"
       >
         target page:
       </span>
@@ -220,7 +220,7 @@ exports[`DetailsSection rendering of comment row is dependent on description val
         <DateIcon />
       </span>
       <span
-        className="screen-reader-only"
+        className="screenReaderOnly"
       >
         scan date:
       </span>
