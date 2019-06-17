@@ -3,6 +3,12 @@
 @import '../../../../common/styles/colors.scss';
 @import '../../../../common/styles/fonts.scss';
 
+@mixin ellipsedText {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 .report-header-bar svg {
     margin-left: 8px;
 }
@@ -18,14 +24,18 @@
     box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.08);
 
     .target-page {
+        @include ellipsedText();
+
         margin: 0px 0px 0px 16px;
         display: inherit;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
+
         color: $neutral-60;
         font-family: $fontFamily;
         font-size: 14px;
         line-height: 20px;
+
+        a {
+            @include ellipsedText();
+        }
     }
 }
