@@ -65,6 +65,7 @@ export class ChromeAdapter extends ClientChromeAdapter implements BrowserAdapter
             {
                 allFrames: true,
                 file: file,
+                runAt: 'document_start',
             },
             callback,
         );
