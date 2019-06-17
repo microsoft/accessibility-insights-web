@@ -22327,34 +22327,74 @@ exports[`A11Y for content pages High Contrast mode test/semantics/dataTables/inf
       </p>
       <ul>
         <li>
-          &lt;table&gt;
+          <span
+            class="insights-code"
+          >
+            &lt;table&gt;
+          </span>
         </li>
         <li>
-          &lt;tr&gt;
+          <span
+            class="insights-code"
+          >
+            &lt;tr&gt;
+          </span>
         </li>
         <li>
-           &lt;th&gt;
+          <span
+            class="insights-code"
+          >
+             &lt;th&gt;
+          </span>
         </li>
         <li>
-           &lt;td&gt;
+          <span
+            class="insights-code"
+          >
+             &lt;td&gt;
+          </span>
         </li>
         <li>
-           &lt;caption&gt;
+          <span
+            class="insights-code"
+          >
+             &lt;caption&gt;
+          </span>
         </li>
         <li>
-           &lt;col&gt;
+          <span
+            class="insights-code"
+          >
+             &lt;col&gt;
+          </span>
         </li>
         <li>
-           &lt;colgroup&gt;
+          <span
+            class="insights-code"
+          >
+             &lt;colgroup&gt;
+          </span>
         </li>
         <li>
-           &lt;thead&gt;
+          <span
+            class="insights-code"
+          >
+             &lt;thead&gt;
+          </span>
         </li>
         <li>
-           &lt;tfoot&gt;
+          <span
+            class="insights-code"
+          >
+             &lt;tfoot&gt;
+          </span>
         </li>
         <li>
-           &lt;tbody&gt;
+          <span
+            class="insights-code"
+          >
+             &lt;tbody&gt;
+          </span>
         </li>
       </ul>
       <p />
@@ -51734,34 +51774,74 @@ exports[`A11Y for content pages Normal mode test/semantics/dataTables/infoAndExa
       </p>
       <ul>
         <li>
-          &lt;table&gt;
+          <span
+            class="insights-code"
+          >
+            &lt;table&gt;
+          </span>
         </li>
         <li>
-          &lt;tr&gt;
+          <span
+            class="insights-code"
+          >
+            &lt;tr&gt;
+          </span>
         </li>
         <li>
-           &lt;th&gt;
+          <span
+            class="insights-code"
+          >
+             &lt;th&gt;
+          </span>
         </li>
         <li>
-           &lt;td&gt;
+          <span
+            class="insights-code"
+          >
+             &lt;td&gt;
+          </span>
         </li>
         <li>
-           &lt;caption&gt;
+          <span
+            class="insights-code"
+          >
+             &lt;caption&gt;
+          </span>
         </li>
         <li>
-           &lt;col&gt;
+          <span
+            class="insights-code"
+          >
+             &lt;col&gt;
+          </span>
         </li>
         <li>
-           &lt;colgroup&gt;
+          <span
+            class="insights-code"
+          >
+             &lt;colgroup&gt;
+          </span>
         </li>
         <li>
-           &lt;thead&gt;
+          <span
+            class="insights-code"
+          >
+             &lt;thead&gt;
+          </span>
         </li>
         <li>
-           &lt;tfoot&gt;
+          <span
+            class="insights-code"
+          >
+             &lt;tfoot&gt;
+          </span>
         </li>
         <li>
-           &lt;tbody&gt;
+          <span
+            class="insights-code"
+          >
+             &lt;tbody&gt;
+          </span>
         </li>
       </ul>
       <p />
