@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 @import '../../../../common/styles/colors.scss';
-@import '../../../../common/styles/fonts.scss';
 
 @mixin contentSize {
     max-width: 960px;
@@ -11,12 +10,4 @@
 @mixin boxShadow {
     box-shadow: 0px 0.3px 0.9px rgba(0, 0, 0, 0.108), 0px 1.6px 3.6px rgba(0, 0, 0, 0.132);
     border-radius: 4px;
-}
-
-body {
-    font-size: 14px;
-    margin: auto;
-    background-color: $neutral-2;
-    color: black;
-    font-family: $fontFamily;
 }

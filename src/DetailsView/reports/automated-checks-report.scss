@@ -1,42 +1,20 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-@import '../../common/styles/colors.scss';
-@import '../../common/styles/fonts.scss';
-@import '../../common/styles/common.scss';
-@import '../../common/icons/icon.scss';
-@import './components/report-sections/no-failed-instances-congrats.scss';
-@import './components/outcome.scss';
-@import './components/instance-details.scss';
 @import '../../common/components/guidance-tags.scss';
-@import './components/report-sections/header-section.scss';
-@import './components/report-sections/footer-section.scss';
+@import '../../common/icons/icon.scss';
+@import '../../common/styles/colors.scss';
+@import '../../common/styles/common.scss';
+@import '../../common/styles/fonts.scss';
+@import './components/instance-details.scss';
+@import './components/outcome.scss';
+@import './components/report-sections/body-section.scss';
+@import './components/report-sections/common-mixins.scss';
+@import './components/report-sections/content-container.scss';
 @import './components/report-sections/details-section.scss';
-@import './components/report-sections/common-report-styles.scss';
-
-.content-container {
-    @include contentSize();
-    margin-top: 24px;
-
-    h2 {
-        margin: 0px;
-        font-size: 17px;
-        line-height: 24px;
-    }
-
-    @media only screen and (max-width: 1000px) {
-        margin: 24px 16px 0 16px;
-    }
-}
-
-.title-section {
-    h1 {
-        font-family: $semiBoldFontFamily;
-        margin: 0px 0px 24px 0px;
-        font-size: 21px;
-        line-height: 32px;
-        letter-spacing: -0.02em;
-    }
-}
+@import './components/report-sections/footer-section.scss';
+@import './components/report-sections/header-section.scss';
+@import './components/report-sections/no-failed-instances-congrats.scss';
+@import './components/report-sections/title-section.scss';
 
 $outcome-pass-summary-color: $positive-outcome;
 $outcome-fail-summary-color: $negative-outcome;
