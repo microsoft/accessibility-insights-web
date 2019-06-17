@@ -41,9 +41,14 @@
         }
     }
 
+    .text {
+        word-break: break-all;
+    }
+
     .description-text {
         white-space: pre-wrap;
     }
+
     .screen-reader-only {
         position: absolute;
         left: -10000px;
