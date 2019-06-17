@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FooterSection renders 1`] = `
+<div
+  className="reportFooterContainer"
+>
+  <div
+    className="reportFooter"
+    role="contentinfo"
+  >
+    This automated checks result was generated using 
+    <b
+      id="tool-name"
+    >
+      Accessibility Insights for Web
+    </b>
+    , a tool that helps debug and find accessibility issues earlier. Get more information & download this tool at
+     
+    <NewTabLink
+      aria-labelledby="tool-name"
+      href="http://aka.ms/AccessibilityInsights"
+      title="Get more information and download Accessibility Insights for Web"
+    >
+      http://aka.ms/AccessibilityInsights
+    </NewTabLink>
+    .
+  </div>
+</div>
+`;

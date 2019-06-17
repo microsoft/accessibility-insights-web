@@ -32,7 +32,6 @@ import { DetailsViewMainContent, DetailsViewMainContentDeps } from './details-vi
 import { AssessmentInstanceTableHandler } from './handlers/assessment-instance-table-handler';
 import { DetailsViewToggleClickHandlerFactory } from './handlers/details-view-toggle-click-handler-factory';
 import { PreviewFeatureFlagsHandler } from './handlers/preview-feature-flags-handler';
-import { ReportGenerator } from './reports/report-generator';
 
 export type DetailsViewContainerDeps = {
     getDetailsRightPanelConfiguration: GetDetailsRightPanelConfiguration;
@@ -55,7 +54,6 @@ export interface DetailsViewContainerProps {
     visualizationConfigurationFactory: VisualizationConfigurationFactory;
     issuesTableHandler: IssuesTableHandler;
     assessmentInstanceTableHandler: AssessmentInstanceTableHandler;
-    reportGenerator: ReportGenerator;
     previewFeatureFlagsHandler: PreviewFeatureFlagsHandler;
     scopingFlagsHandler: PreviewFeatureFlagsHandler;
     dropdownClickHandler: DropdownClickHandler;
@@ -187,7 +185,6 @@ export class DetailsViewContainer extends React.Component<DetailsViewContainerPr
                 clickHandlerFactory={this.props.clickHandlerFactory}
                 assessmentInstanceTableHandler={this.props.assessmentInstanceTableHandler}
                 issuesSelection={this.props.issuesSelection}
-                reportGenerator={this.props.reportGenerator}
                 issuesTableHandler={this.props.issuesTableHandler}
                 rightPanelConfiguration={selectedDetailsRightPanelConfiguration}
                 switcherNavConfiguration={selectedDetailsViewSwitcherNavConfiguration}

@@ -73,6 +73,9 @@ export class ReportHead extends React.Component {
         .report-scan-details td {
             font-size: 12px;
         }
+        .report-result-description {
+            white-space: pre-wrap;
+        }
         .report-congrats {
             position: relative;
         }

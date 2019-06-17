@@ -58,7 +58,7 @@ const roleToDesignPatternsMapping: DictionaryStringTo<DesignPattern[]> = {
     button: [
         { designPattern: 'Accordion', URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#accordion' },
         { designPattern: 'Button', URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#button' },
-        { designPattern: 'Dislosure (Show/Hide)', URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#disclosure' },
+        { designPattern: 'Disclosure (Show/Hide)', URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#disclosure' },
         { designPattern: 'Menu Button', URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#menubutton' },
     ],
     checkbox: [{ designPattern: 'Checkbox', URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#checkbox' }],

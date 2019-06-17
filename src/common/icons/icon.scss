@@ -9,7 +9,7 @@
     border: $border-size solid $neutral-0;
 }
 
-@mixin check-icon-styles($iconSize, $border-size: 1px) {
+@mixin check-icon-styles($iconSize, $border-size: 1px, $iconColor: $neutral-0) {
     // maxTickLength = iconSize - borderthickness - spacingBetweenCircleAndTick
     $maxTickLength: ($iconSize - $border-size * 2 - 2);
     $check-height: ($maxTickLength / 2);
@@ -19,22 +19,13 @@
 
     .check-container {
         @include getCheckContainerStyle($iconSize, $border-size);
-
-        .check-icon {
-            height: $check-height;
-            width: ($check-height / 2);
-            transform: scaleX(-1) rotate(135deg);
-            border-right: $check-line-thickness solid $neutral-0;
-            border-top: $check-line-thickness solid $neutral-0;
-            content: '';
-            left: $left-value;
-            bottom: $bottom-value;
-            position: absolute;
+        svg circle {
+            fill: $iconColor;
         }
     }
 }
 
-@mixin cross-icon-styles($iconSize, $border-size: 1px) {
+@mixin cross-icon-styles($iconSize, $border-size: 1px, $iconColor: $neutral-0) {
     $true-icon-size: ($iconSize - $border-size * 2);
     $width-value: (2/14 * $true-icon-size);
 
@@ -44,29 +35,8 @@
         $bottom-value: (($true-icon-size - $cross-line-height) / 2);
         $left-value: (($true-icon-size - $width-value) / 2);
 
-        .cross-icon {
-            position: absolute;
-            width: $true-icon-size;
-            height: $true-icon-size;
-
-            &:before {
-                transform: rotate(45deg);
-            }
-
-            &:after {
-                transform: rotate(-45deg);
-            }
-
-            &:before,
-            &:after {
-                position: absolute;
-                left: $left-value;
-                content: ' ';
-                height: $cross-line-height;
-                width: $width-value;
-                bottom: $bottom-value;
-                background-color: $neutral-0;
-            }
+        svg circle {
+            fill: $iconColor;
         }
     }
 }
@@ -74,5 +44,17 @@
 @mixin incomplete-icon-styles($iconSize, $border-size: 1px) {
     .check-container {
         @include getCheckContainerStyle($iconSize, $border-size);
+    }
+}
+
+@mixin inapplicable-icon-styles($iconSize, $border-size: 1px, $iconColor: $neutral-0) {
+    $true-icon-size: ($iconSize - $border-size * 2);
+    $width-value: (1/7 * $true-icon-size);
+
+    .check-container {
+        @include getCheckContainerStyle($iconSize, $border-size);
+        $inapplicable-line-height: (4/7 * $true-icon-size);
+        $bottom-value: (($true-icon-size - $inapplicable-line-height) / 2);
+        $left-value: (($true-icon-size - $width-value) / 2);
     }
 }

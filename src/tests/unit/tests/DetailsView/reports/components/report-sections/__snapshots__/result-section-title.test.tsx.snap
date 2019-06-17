@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ResultSectionTitle renders 1`] = `
+<div
+  className="result-section-title"
+>
+  <h2>
+    test title
+  </h2>
+  <OutcomeChip
+    count={10}
+    outcomeType="pass"
+  />
+</div>
+`;

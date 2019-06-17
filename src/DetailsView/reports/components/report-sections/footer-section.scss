@@ -1,0 +1,22 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+@import '../../../../common/styles/colors.scss';
+
+.report-footer-container {
+    max-width: 960px;
+    margin: 0 auto;
+
+    margin-bottom: 96px;
+
+    .report-footer {
+        margin-top: 24px;
+
+        line-height: 20px;
+
+        color: $secondary-text;
+
+        .tool-name-link {
+            color: $secondary-text !important;
+        }
+    }
+}

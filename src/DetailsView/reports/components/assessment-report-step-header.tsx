@@ -4,13 +4,15 @@ import * as React from 'react';
 
 import { DefaultMessageInterface } from '../../../assessments/assessment-default-message-generator';
 import { GuidanceLinks } from '../../../common/components/guidance-links';
+import { GuidanceTags, GuidanceTagsDeps } from '../../../common/components/guidance-tags';
 import { NamedSFC } from '../../../common/react/named-sfc';
 import { ManualTestStatus } from '../../../common/types/manual-test-status';
 import { RequirementHeaderReportModel } from '../assessment-report-model';
 import { OutcomeChip } from './outcome-chip';
-import { allOutcomeTypes, OutcomeTypeSemantic } from './outcome-type';
+import { OutcomeTypeSemantic } from './outcome-type';
+import { allRequirementOutcomeTypes } from './requirement-outcome-type';
 
-export type AssessmentReportStepHeaderDeps = {
+export type AssessmentReportStepHeaderDeps = GuidanceTagsDeps & {
     outcomeTypeSemanticsFromTestStatus: (testStatus: ManualTestStatus) => OutcomeTypeSemantic;
 };
 
@@ -26,7 +28,7 @@ export const AssessmentReportStepHeader = NamedSFC<AssessmentReportStepHeaderPro
     const { deps, header, instanceCount, status, defaultMessageComponent } = props;
     const { outcomeTypeSemanticsFromTestStatus } = deps;
 
-    const outcomeType = allOutcomeTypes[status];
+    const outcomeType = allRequirementOutcomeTypes[status];
     const minCount = header.requirementType === 'manual' && outcomeType === 'pass' ? 1 : 0;
     let count = Math.max(minCount, instanceCount);
     let message: JSX.Element = null;
@@ -48,6 +50,7 @@ export const AssessmentReportStepHeader = NamedSFC<AssessmentReportStepHeaderPro
             -
             <GuidanceLinks classNameForDiv={`test-guidance-links-group`} links={header.guidanceLinks} />
             <OutcomeChip count={count} outcomeType={outcomeType} />
+            <GuidanceTags deps={deps} links={header.guidanceLinks} />
             {message && <span className="step-header-message">{message}</span>}
         </div>
     );

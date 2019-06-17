@@ -79,11 +79,11 @@ export function getAllFeatureFlagDetails(): FeatureFlagDetail[] {
         },
         {
             id: FeatureFlags.newAutomatedChecksReport,
-            defaultValue: false,
+            defaultValue: true,
             displayableName: 'Enable new automated checks report',
             displayableDescription: 'Enable the new FastPass Automated checks report, with new UX and accessibility improvements',
             isPreviewFeature: false,
-            forceDefault: false,
+            forceDefault: true,
         },
     ];
 }

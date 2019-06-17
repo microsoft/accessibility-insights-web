@@ -1,0 +1,180 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FixInstructionProcessor background and foreground on the message (mind the order) 1`] = `
+<React.Fragment>
+  <span
+    aria-hidden="true"
+  >
+    <span>
+      Element has insufficient color contrast of 2.52 (background color: 
+    </span>
+    <span
+      className="fix-instruction-color-box"
+      style={
+        Object {
+          "backgroundColor": "#8a94a8",
+        }
+      }
+    />
+    <span>
+      #8a94a8, foreground color: 
+    </span>
+    <span
+      className="fix-instruction-color-box"
+      style={
+        Object {
+          "backgroundColor": "#e7ecd8",
+        }
+      }
+    />
+    <span>
+      #e7ecd8, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1
+    </span>
+  </span>
+  <span
+    className="screen-reader-only"
+  >
+    Element has insufficient color contrast of 2.52 (background color: #8a94a8, foreground color: #e7ecd8, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1
+  </span>
+</React.Fragment>
+`;
+
+exports[`FixInstructionProcessor background color on the message 1`] = `
+<React.Fragment>
+  <span
+    aria-hidden="true"
+  >
+    <span>
+      color contrast of 2.52 (background color: 
+    </span>
+    <span
+      className="fix-instruction-color-box"
+      style={
+        Object {
+          "backgroundColor": "#8a94a8",
+        }
+      }
+    />
+    <span>
+      #8a94a8; nothing else to match here)
+    </span>
+  </span>
+  <span
+    className="screen-reader-only"
+  >
+    color contrast of 2.52 (background color: #8a94a8; nothing else to match here)
+  </span>
+</React.Fragment>
+`;
+
+exports[`FixInstructionProcessor foreground and background color on the message (mind the order) 1`] = `
+<React.Fragment>
+  <span
+    aria-hidden="true"
+  >
+    <span>
+      Element has insufficient color contrast of 2.52 (foreground color: 
+    </span>
+    <span
+      className="fix-instruction-color-box"
+      style={
+        Object {
+          "backgroundColor": "#8a94a8",
+        }
+      }
+    />
+    <span>
+      #8a94a8, background color: 
+    </span>
+    <span
+      className="fix-instruction-color-box"
+      style={
+        Object {
+          "backgroundColor": "#e7ecd8",
+        }
+      }
+    />
+    <span>
+      #e7ecd8, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1
+    </span>
+  </span>
+  <span
+    className="screen-reader-only"
+  >
+    Element has insufficient color contrast of 2.52 (foreground color: #8a94a8, background color: #e7ecd8, font size: 12.0pt, font weight: normal). Expected contrast ratio of 4.5:1
+  </span>
+</React.Fragment>
+`;
+
+exports[`FixInstructionProcessor foreground color on the message 1`] = `
+<React.Fragment>
+  <span
+    aria-hidden="true"
+  >
+    <span>
+      color contrast of 2.52 (foreground color: 
+    </span>
+    <span
+      className="fix-instruction-color-box"
+      style={
+        Object {
+          "backgroundColor": "#8a94a8",
+        }
+      }
+    />
+    <span>
+      #8a94a8; nothing else to match here)
+    </span>
+  </span>
+  <span
+    className="screen-reader-only"
+  >
+    color contrast of 2.52 (foreground color: #8a94a8; nothing else to match here)
+  </span>
+</React.Fragment>
+`;
+
+exports[`FixInstructionProcessor no background nor foreground on the message 1`] = `
+<React.Fragment>
+  there is nothing that will trigger the processor to change the fix instruction here
+</React.Fragment>
+`;
+
+exports[`FixInstructionProcessor we assume only one instance of fore/background color, second instance will be ignored 1`] = `
+<React.Fragment>
+  <span
+    aria-hidden="true"
+  >
+    <span>
+      first foreground color: 
+    </span>
+    <span
+      className="fix-instruction-color-box"
+      style={
+        Object {
+          "backgroundColor": "#ffffff",
+        }
+      }
+    />
+    <span>
+      #ffffff, second foreground: #000000, first background color: 
+    </span>
+    <span
+      className="fix-instruction-color-box"
+      style={
+        Object {
+          "backgroundColor": "#AAAAAA",
+        }
+      }
+    />
+    <span>
+      #AAAAAA, second background color: #bbBBbb
+    </span>
+  </span>
+  <span
+    className="screen-reader-only"
+  >
+    first foreground color: #ffffff, second foreground: #000000, first background color: #AAAAAA, second background color: #bbBBbb
+  </span>
+</React.Fragment>
+`;

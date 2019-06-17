@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ResultSection renders 1`] = `
+<div
+  className="result-section-class-name"
+>
+  <ResultSectionTitle
+    containerClassName="result-section-class-name"
+    deps={Object {}}
+  />
+  <ResultSectionContent
+    containerClassName="result-section-class-name"
+    deps={Object {}}
+  />
+</div>
+`;

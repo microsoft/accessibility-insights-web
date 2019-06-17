@@ -39,7 +39,7 @@ describe('buildTestStepsFromRules', () => {
         const expectedHowToTest = (
             <React.Fragment>
                 {expectedDescription}{' '}
-                <NewTabLink href={rule.url} aria-label={`See more info about ${rule.id} rule`}>
+                <NewTabLink href={rule.url} aria-label={`See more info here about ${rule.id} rule`}>
                     See more info here.
                 </NewTabLink>
             </React.Fragment>
@@ -152,6 +152,6 @@ describe('buildTestStepsFromRules', () => {
     }
 
     function expectResultToContainBase(result: Object, base: Object): void {
-        expect(isMatch(result, base)).toBeTruthy();
+        expect(isMatch(result, base)).toBe(true);
     }
 });

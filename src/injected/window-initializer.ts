@@ -3,10 +3,8 @@
 import { autobind, getRTL } from '@uifabric/utilities';
 import * as Q from 'q';
 
-import { XMLHttpRequestFactory } from '../background/xml-http-request-factory';
 import { ClientChromeAdapter } from '../common/client-browser-adapter';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
-import { FileRequestHelper } from '../common/file-request-helper';
 import { HTMLElementUtils } from '../common/html-element-utils';
 import { generateUID } from '../common/uid-generator';
 import { WindowUtils } from '../common/window-utils';
@@ -56,17 +54,12 @@ export class WindowInitializer {
         this.clientChromeAdapter = new ClientChromeAdapter();
         this.windowUtils = new WindowUtils();
         const htmlElementUtils = new HTMLElementUtils();
-        const xmlHttpRequestFactory = new XMLHttpRequestFactory();
         this.clientUtils = new ClientUtils(window);
         this.scannerUtils = new ScannerUtils(scan);
 
         new RootContainerCreator(htmlElementUtils).create(rootContainerId);
 
-        this.shadowInitializer = new ShadowInitializer(
-            this.clientChromeAdapter,
-            htmlElementUtils,
-            new FileRequestHelper(xmlHttpRequestFactory),
-        );
+        this.shadowInitializer = new ShadowInitializer(this.clientChromeAdapter, htmlElementUtils);
         asyncInitializationSteps.push(this.shadowInitializer.initialize());
 
         this.visualizationConfigurationFactory = new VisualizationConfigurationFactory();

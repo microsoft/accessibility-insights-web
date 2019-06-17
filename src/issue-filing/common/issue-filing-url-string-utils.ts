@@ -28,7 +28,12 @@ const getSelectorLastPart = (selector: string): string => {
     return selectorLastPart;
 };
 
-const standardizeTags = (data: CreateIssueDetailsTextData): string[] => data.ruleResult.guidanceLinks.map(tag => tag.text.toUpperCase());
+const standardizeTags = (data: CreateIssueDetailsTextData): string[] => {
+    const guidanceLinkTextTags = data.ruleResult.guidanceLinks.map(link => link.text.toUpperCase());
+    const tagsFromGuidanceLinkTags = [];
+    data.ruleResult.guidanceLinks.map(link => (link.tags ? link.tags.map(tag => tagsFromGuidanceLinkTags.push(tag.displayText)) : []));
+    return guidanceLinkTextTags.concat(tagsFromGuidanceLinkTags);
+};
 
 export const IssueFilingUrlStringUtils = {
     getTitle,

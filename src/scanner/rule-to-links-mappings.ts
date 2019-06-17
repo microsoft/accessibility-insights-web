@@ -1,8 +1,15 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { GuidanceTag } from '../content/guidance-tags';
 import { link } from '../content/link';
 import { DictionaryStringTo } from '../types/common-types';
 import { HyperlinkDefinition } from '../views/content/content-page';
+
+export interface GuidanceLink {
+    href: string;
+    text: string;
+    tags?: GuidanceTag[];
+}
 
 const BestPractice: HyperlinkDefinition = {
     text: 'Best Practice',
@@ -85,10 +92,10 @@ export const ruleToLinkConfiguration: DictionaryStringTo<HyperlinkDefinition[]> 
     'get-frame-title': [link.WCAG_4_1_2],
     'page-title': [link.WCAG_2_4_2],
     'aria-allowed-role': [BestPractice],
-    'autocomplete-valid': [BestPractice],
+    'autocomplete-valid': [link.WCAG_1_3_5],
     'css-orientation-lock': [BestPractice],
     'aria-hidden-focus': [link.WCAG_4_1_2],
     'form-field-multiple-labels': [BestPractice],
-    'label-content-name-mismatch': [BestPractice],
+    'label-content-name-mismatch': [link.WCAG_2_5_3],
     'landmark-complementary-is-top-level': [link.WCAG_1_3_1, BestPractice],
 };

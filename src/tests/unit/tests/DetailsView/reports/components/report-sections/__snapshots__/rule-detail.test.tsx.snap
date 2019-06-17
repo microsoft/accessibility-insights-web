@@ -1,0 +1,68 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RuleDetail renders, it is header 1`] = `
+<React.Fragment>
+  <div
+    className="rule-detail"
+  >
+    <InstaceListGroupHeader
+      ariaLevel={3}
+      deps={Object {}}
+      outcomeType="fail"
+      ruleResult={
+        Object {
+          "description": "rule description",
+          "guidanceLinks": Array [
+            Object {
+              "href": "url://guidance-01.link",
+              "text": "guidance-01",
+            },
+            Object {
+              "href": "url://guidance-02.link",
+              "text": "guidance-02",
+            },
+          ],
+          "helpUrl": "url://help.url",
+          "id": "rule id",
+        }
+      }
+    />
+  </div>
+  <span>
+    children
+  </span>
+</React.Fragment>
+`;
+
+exports[`RuleDetail renders, not a header 1`] = `
+<React.Fragment>
+  <div
+    className="rule-detail"
+  >
+    <InstaceListGroupHeader
+      deps={Object {}}
+      outcomeType="fail"
+      ruleResult={
+        Object {
+          "description": "rule description",
+          "guidanceLinks": Array [
+            Object {
+              "href": "url://guidance-01.link",
+              "text": "guidance-01",
+            },
+            Object {
+              "href": "url://guidance-02.link",
+              "text": "guidance-02",
+            },
+          ],
+          "helpUrl": "url://help.url",
+          "id": "rule id",
+        }
+      }
+    />
+  </div>
+  <span>
+    children
+  </span>
+</React.Fragment>
+`;

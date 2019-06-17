@@ -10,6 +10,7 @@ import { ChromeAdapter } from '../background/browser-adapters/chrome-adapter';
 import { IssueDetailsTextGenerator } from '../background/issue-details-text-generator';
 import { A11YSelfValidator } from '../common/a11y-self-validator';
 import { AxeInfo } from '../common/axe-info';
+import { provideBlob } from '../common/blob-provider';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
 import { DateProvider } from '../common/date-provider';
 import { DocumentManipulator } from '../common/document-manipulator';
@@ -17,6 +18,7 @@ import { DropdownClickHandler } from '../common/dropdown-click-handler';
 import { EnvironmentInfoProvider } from '../common/environment-info-provider';
 import { initializeFabricIcons } from '../common/fabric-icons';
 import { getAllFeatureFlagDetails } from '../common/feature-flags';
+import { GetGuidanceTagsFromGuidanceLinks } from '../common/get-guidance-tags-from-guidance-links';
 import { getInnerTextFromJsxElement } from '../common/get-inner-text-from-jsx-element';
 import { HTMLElementUtils } from '../common/html-element-utils';
 import { Tab } from '../common/itab';
@@ -47,6 +49,7 @@ import { VisualizationStoreData } from '../common/types/store-data/visualization
 import { UrlParser } from '../common/url-parser';
 import { WindowUtils } from '../common/window-utils';
 import { contentPages } from '../content';
+import { FixInstructionProcessor } from '../injected/fix-instruction-processor';
 import { ScannerUtils } from '../injected/scanner-utils';
 import { getVersion, scan } from '../scanner/exposed-apis';
 import { DictionaryStringTo } from '../types/common-types';
@@ -70,18 +73,21 @@ import { MasterCheckBoxConfigProvider } from './handlers/master-checkbox-config-
 import { PreviewFeatureFlagsHandler } from './handlers/preview-feature-flags-handler';
 import { AssessmentReportHtmlGenerator } from './reports/assessment-report-html-generator';
 import { AssessmentReportModelBuilderFactory } from './reports/assessment-report-model-builder-factory';
+import { AutomatedChecksReportSectionFactory } from './reports/components/report-sections/automated-checks-report-section-factory';
+import { getDefaultAddListenerForCollapsibleSection } from './reports/components/report-sections/collapsible-script-provider';
 import {
     outcomeStatsFromManualTestStatus,
     outcomeTypeFromTestStatus,
     outcomeTypeSemanticsFromTestStatus,
-} from './reports/components/outcome-type';
+} from './reports/components/requirement-outcome-type';
 import {
     getAssessmentSummaryModelFromProviderAndStatusData,
     getAssessmentSummaryModelFromProviderAndStoreData,
 } from './reports/get-assessment-summary-model';
 import { ReactStaticRenderer } from './reports/react-static-renderer';
-import { ReportGenerator } from './reports/report-generator';
-import { ReportHtmlGenerator } from './reports/report-html-generator';
+import { createReportGeneratorProvider } from './reports/report-generator-provider';
+import { ReportHtmlGeneratorV1 } from './reports/report-html-generator-v1';
+import { ReportHtmlGeneratorV2 } from './reports/report-html-generator-v2';
 import { ReportNameGenerator } from './reports/report-name-generator';
 
 declare const window: AutoChecker & Window;
@@ -176,26 +182,57 @@ if (isNaN(tabId) === false) {
 
             const extensionVersion = chromeAdapter.getManifest().version;
             const axeVersion = getVersion();
+            const browserSpec = new NavigatorUtils(window.navigator).getBrowserSpec();
+
+            const environmentInfoProvider = new EnvironmentInfoProvider(
+                chromeAdapter.extensionVersion,
+                browserSpec,
+                AxeInfo.Default.version,
+            );
+
             const reactStaticRenderer = new ReactStaticRenderer();
             const reportNameGenerator = new ReportNameGenerator();
-            const reportHtmlGenerator = new ReportHtmlGenerator(
+
+            const reportHtmlGeneratorV1 = new ReportHtmlGeneratorV1(
                 reactStaticRenderer,
                 new NavigatorUtils(window.navigator).getBrowserSpec(),
                 extensionVersion,
                 axeVersion,
             );
-            const assessmentReportHtmlGeneratorDeps = { outcomeTypeSemanticsFromTestStatus };
+            const fixInstructionProcessor = new FixInstructionProcessor();
+
+            const reportHtmlGeneratorV2 = new ReportHtmlGeneratorV2(
+                AutomatedChecksReportSectionFactory,
+                reactStaticRenderer,
+                environmentInfoProvider.getEnvironmentInfo(),
+                getDefaultAddListenerForCollapsibleSection,
+                DateProvider.getUTCStringFromDate,
+                GetGuidanceTagsFromGuidanceLinks,
+                fixInstructionProcessor,
+            );
+
+            const assessmentReportHtmlGeneratorDeps = {
+                outcomeTypeSemanticsFromTestStatus,
+                getGuidanceTagsFromGuidanceLinks: GetGuidanceTagsFromGuidanceLinks,
+            };
             const assessmentReportHtmlGenerator = new AssessmentReportHtmlGenerator(
                 assessmentReportHtmlGeneratorDeps,
                 reactStaticRenderer,
                 new AssessmentReportModelBuilderFactory(),
-                DateProvider.getDate,
+                DateProvider.getCurrentDate,
                 extensionVersion,
                 axeVersion,
                 new NavigatorUtils(window.navigator).getBrowserSpec(),
                 assessmentDefaultMessageGenerator,
             );
-            const reportGenerator = new ReportGenerator(reportNameGenerator, reportHtmlGenerator, assessmentReportHtmlGenerator);
+
+            const reportGeneratorProvider = createReportGeneratorProvider(
+                reportNameGenerator,
+                reportHtmlGeneratorV1,
+                reportHtmlGeneratorV2,
+                assessmentReportHtmlGenerator,
+                featureFlagStore,
+            );
 
             visualizationStore.setTabId(tab.id);
             tabStore.setTabId(tab.id);
@@ -221,20 +258,14 @@ if (isNaN(tabId) === false) {
             );
             documentTitleUpdater.initialize();
 
-            const browserSpec = new NavigatorUtils(window.navigator).getBrowserSpec();
             const issueDetailsTextGenerator = new IssueDetailsTextGenerator(
                 chromeAdapter.extensionVersion,
                 browserSpec,
                 AxeInfo.Default.version,
             );
 
-            const environmentInfoProvider = new EnvironmentInfoProvider(
-                chromeAdapter.extensionVersion,
-                browserSpec,
-                AxeInfo.Default.version,
-            );
-
             const deps: DetailsViewContainerDeps = {
+                fixInstructionProcessor,
                 dropdownClickHandler,
                 issueFilingActionMessageCreator,
                 contentProvider: contentPages,
@@ -263,10 +294,14 @@ if (isNaN(tabId) === false) {
                 storesHub,
                 loadTheme,
                 urlParser,
-                dateProvider: DateProvider.getDate,
+                getDateFromTimestamp: DateProvider.getDateFromTimestamp,
+                getCurrentDate: DateProvider.getCurrentDate,
+                provideBlob: provideBlob,
                 settingsProvider: SettingsProviderImpl,
                 environmentInfoProvider,
                 issueFilingServiceProvider: IssueFilingServiceProviderImpl,
+                getGuidanceTagsFromGuidanceLinks: GetGuidanceTagsFromGuidanceLinks,
+                reportGeneratorProvider,
             };
 
             const renderer = new DetailsViewRenderer(
@@ -280,7 +315,6 @@ if (isNaN(tabId) === false) {
                 visualizationConfigurationFactory,
                 issuesTableHandler,
                 assessmentInstanceTableHandler,
-                reportGenerator,
                 previewFeatureFlagsHandler,
                 scopingFlagsHandler,
                 dropdownClickHandler,
@@ -304,7 +338,6 @@ function createNullifiedRenderer(doc, render): DetailsViewRenderer {
         null,
         doc,
         render,
-        null,
         null,
         null,
         null,

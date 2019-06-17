@@ -13,7 +13,16 @@ describe('IssueFilingUrlStringUtilsTest', () => {
             pageUrl: 'pageUrl',
             ruleResult: {
                 failureSummary: 'RR-failureSummary',
-                guidanceLinks: [{ text: 'WCAG-1.4.1' }, { text: 'wcag-2.8.2' }],
+                guidanceLinks: [
+                    {
+                        text: 'WCAG-1.4.1',
+                        tags: [
+                            { id: 'some-id', displayText: 'some displayText' },
+                            { id: 'some-other-id', displayText: 'some other displayText' },
+                        ],
+                    },
+                    { text: 'wcag-2.8.2' },
+                ],
                 help: 'RR-help',
                 html: 'RR-html',
                 ruleId: 'RR-rule-id',
@@ -31,6 +40,7 @@ describe('IssueFilingUrlStringUtilsTest', () => {
 
         test('without tags', () => {
             sampleIssueDetailsData.ruleResult.guidanceLinks = [];
+
             expect(IssueFilingUrlStringUtils.getTitle(sampleIssueDetailsData)).toMatchSnapshot();
         });
     });
@@ -41,7 +51,7 @@ describe('IssueFilingUrlStringUtilsTest', () => {
     });
 
     test('standardizeTags', () => {
-        const expected = ['WCAG-1.4.1', 'WCAG-2.8.2'];
+        const expected = ['WCAG-1.4.1', 'WCAG-2.8.2', 'some displayText', 'some other displayText'];
         expect(IssueFilingUrlStringUtils.standardizeTags(sampleIssueDetailsData)).toEqual(expected);
     });
 });

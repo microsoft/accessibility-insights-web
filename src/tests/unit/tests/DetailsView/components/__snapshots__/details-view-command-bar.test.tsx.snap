@@ -9,11 +9,18 @@ exports[`DetailsViewCommandBar renders with export button and dialog 1`] = `
     </StyledLinkBase>
   </div>
   <div className=\\"details-view-command-buttons\\">
-    <CustomizedActionButton iconProps={{...}} onClick={[Function: bound ]}>
-      Export result
-    </CustomizedActionButton>
+    <ReportExportComponent deps={{...}} reportGenerator={[Function: function () {
+                        var args = [];
+                        for (var _i = 0; _i < arguments.length; _i++) {
+                            args[_i] = arguments[_i];
+                        }
+                        _this._interceptor.removeInvocation(invocation_1);
+                        var method = new MethodInfo(target, p);
+                        var methodInvocation = new MethodInvocation(target, method, args, ProxyType.DYNAMIC);
+                        _this._interceptor.intercept(methodInvocation);
+                        return methodInvocation.returnValue;
+                    }]} pageTitle=\\"command-bar-test-tab-title\\" exportResultsType=\\"Assessment\\" scanDate={{...}} htmlGenerator={[Function: bound ]} />
     <StartOverDropdown testName=\\"test title\\" test={-1} requirementKey={[undefined]} actionMessageCreator={{...}} rightPanelConfiguration={{...}} />
-    <ExportDialog deps={{...}} isOpen={false} fileName=\\"\\" description=\\"\\" html=\\"\\" onClose={[Function: bound ]} onDescriptionChange={[Function: bound ]} exportResultsType=\\"Assessment\\" />
   </div>
 </div>"
 `;
