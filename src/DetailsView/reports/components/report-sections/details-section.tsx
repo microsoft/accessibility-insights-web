@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { css } from '@uifabric/utilities';
 import * as React from 'react';
+
 import { NewTabLink } from '../../../../common/components/new-tab-link';
 import { CommentIcon } from '../../../../common/icons/comment-icon';
 import { DateIcon } from '../../../../common/icons/date-icon';
