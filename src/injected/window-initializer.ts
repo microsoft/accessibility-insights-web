@@ -5,7 +5,9 @@ import * as Q from 'q';
 
 import { ClientChromeAdapter } from '../common/client-browser-adapter';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
+import { EnumHelper } from '../common/enum-helper';
 import { HTMLElementUtils } from '../common/html-element-utils';
+import { VisualizationType } from '../common/types/visualization-type';
 import { generateUID } from '../common/uid-generator';
 import { WindowUtils } from '../common/window-utils';
 import { scan } from '../scanner/exposed-apis';
@@ -26,12 +28,10 @@ import { ScannerUtils } from './scanner-utils';
 import { ShadowInitializer } from './shadow-initializer';
 import { ShadowUtils } from './shadow-utils';
 import { TabStopsListener } from './tab-stops-listener';
+import { VisualizationTypeDrawerRegistrator } from './visualization-type-drawer-registrator';
 import { DrawerProvider } from './visualization/drawer-provider';
 import { DrawerUtils } from './visualization/drawer-utils';
 import { RootContainerCreator } from './visualization/root-container-creator';
-import { VisualizationTypeDrawerRegistrator } from './visualization-type-drawer-registrator';
-import { EnumHelper } from '../common/enum-helper';
-import { VisualizationType } from '../common/types/visualization-type';
 
 export class WindowInitializer {
     public shadowInitializer: any;
@@ -108,7 +108,7 @@ export class WindowInitializer {
             Assessments,
             drawerProvider,
         );
-        visualizationTypeDrawerRegistrator.registerAllDrawers(EnumHelper.getNumericValues(VisualizationType));
+        EnumHelper.getNumericValues(VisualizationType).forEach(visualizationTypeDrawerRegistrator.registerType);
 
         const port = this.clientChromeAdapter.connect();
         port.onDisconnect.addListener(this.dispose);
