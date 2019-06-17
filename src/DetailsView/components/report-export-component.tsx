@@ -14,6 +14,8 @@ export interface ReportExportComponentProps {
     pageTitle: string;
     scanDate: Date;
     htmlGenerator: (descriptionPlaceholder: string) => string;
+    updatePersistedDescription: (value: string) => void;
+    getExportDescription: () => string;
 }
 
 export interface ReportExportComponentState {
@@ -44,6 +46,7 @@ export class ReportExportComponent extends React.Component<ReportExportComponent
     };
 
     private onExportDescriptionChange = (value: string) => {
+        this.props.updatePersistedDescription(value);
         const exportData = this.state.exportDataWithPlaceholder.replace(this.replaceRegex, escape(value));
         this.setState({ exportDescription: value, exportData });
     };
@@ -53,7 +56,8 @@ export class ReportExportComponent extends React.Component<ReportExportComponent
         const exportName = reportGenerator.generateName(exportResultsType, scanDate, pageTitle);
         const exportDataWithPlaceholder = htmlGenerator(this.descriptionPlaceholder);
         const exportData = exportDataWithPlaceholder.replace(this.replaceRegex, '');
-        this.setState({ exportDescription: '', exportName, exportDataWithPlaceholder, exportData, isOpen: true });
+        const exportDescription = this.props.getExportDescription();
+        this.setState({ exportDescription, exportName, exportDataWithPlaceholder, exportData, isOpen: true });
     };
 
     public render(): JSX.Element {

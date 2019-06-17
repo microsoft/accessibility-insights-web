@@ -52,6 +52,7 @@ describe('DetailsViewCommandBar', () => {
             assessmentNavState: {
                 selectedTestType: -1,
             },
+            resultDescription: 'test description',
         } as AssessmentStoreData;
         rightPanelConfig = {} as DetailsRightPanelConfiguration;
         assessmentsProviderMock

@@ -25,6 +25,54 @@ exports[`ReportExportComponentTest render 1`] = `
 </React.Fragment>
 `;
 
+exports[`ReportExportComponentTest user interactions click export button with persisted description: description persisted 1`] = `
+<React.Fragment>
+  <CustomizedActionButton
+    iconProps={
+      Object {
+        "iconName": "Export",
+      }
+    }
+    onClick={[Function]}
+  >
+    Export result
+  </CustomizedActionButton>
+  <ExportDialog
+    deps={Object {}}
+    description="persisted description"
+    exportResultsType="Assessment"
+    html="test html"
+    isOpen={true}
+    onClose={[Function]}
+    onDescriptionChange={[Function]}
+  />
+</React.Fragment>
+`;
+
+exports[`ReportExportComponentTest user interactions click export button with updated persisted description: persisted description updated 1`] = `
+<React.Fragment>
+  <CustomizedActionButton
+    iconProps={
+      Object {
+        "iconName": "Export",
+      }
+    }
+    onClick={[Function]}
+  >
+    Export result
+  </CustomizedActionButton>
+  <ExportDialog
+    deps={Object {}}
+    description="the new description"
+    exportResultsType="Assessment"
+    html="test html"
+    isOpen={true}
+    onClose={[Function]}
+    onDescriptionChange={[Function]}
+  />
+</React.Fragment>
+`;
+
 exports[`ReportExportComponentTest user interactions click export button: dialog should show 1`] = `
 <React.Fragment>
   <CustomizedActionButton
@@ -73,7 +121,7 @@ exports[`ReportExportComponentTest user interactions dismiss dialog: dialog shou
 </React.Fragment>
 `;
 
-exports[`ReportExportComponentTest user interactions edit text field: user input new discription 1`] = `
+exports[`ReportExportComponentTest user interactions edit text field: user input new description 1`] = `
 <React.Fragment>
   <CustomizedActionButton
     iconProps={
@@ -87,7 +135,7 @@ exports[`ReportExportComponentTest user interactions edit text field: user input
   </CustomizedActionButton>
   <ExportDialog
     deps={Object {}}
-    description="new discription"
+    description="new description"
     exportResultsType="Assessment"
     fileName=""
     html=""

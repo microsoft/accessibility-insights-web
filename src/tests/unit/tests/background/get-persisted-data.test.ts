@@ -14,7 +14,12 @@ describe('GetPersistedDataTest', () => {
     let userConfigurationData: UserConfigurationStoreData;
 
     beforeEach(() => {
-        assessmentStoreData = { assessmentNavState: null, assessments: null, persistedTabInfo: {} as PersistedTabInfo };
+        assessmentStoreData = {
+            assessmentNavState: null,
+            assessments: null,
+            persistedTabInfo: {} as PersistedTabInfo,
+            resultDescription: '',
+        };
         userConfigurationData = {
             isFirstTime: true,
             enableTelemetry: false,

@@ -9,6 +9,7 @@ import { ScanBasePayload, ScanCompletedPayload, ScanUpdatePayload } from '../../
 import { TelemetryEventHandler } from '../telemetry/telemetry-event-handler';
 import {
     AddFailureInstancePayload,
+    AddResultDescriptionPayload,
     AssessmentActionInstancePayload,
     ChangeInstanceSelectionPayload,
     ChangeInstanceStatusPayload,
@@ -52,6 +53,7 @@ export class AssessmentActionCreator {
         this.registerTypeToPayloadCallback(AssessmentMessages.ChangeRequirementStatus, this.onChangeManualRequirementStatus);
         this.registerTypeToPayloadCallback(AssessmentMessages.UndoChangeRequirementStatus, this.onUndoChangeManualRequirementStatus);
         this.registerTypeToPayloadCallback(AssessmentMessages.AddFailureInstance, this.onAddFailureInstance);
+        this.registerTypeToPayloadCallback(AssessmentMessages.AddResultDescription, this.onAddResultDescription);
         this.registerTypeToPayloadCallback(AssessmentMessages.RemoveFailureInstance, this.onRemoveFailureInstance);
         this.registerTypeToPayloadCallback(AssessmentMessages.EditFailureInstance, this.onEditFailureInstance);
         this.registerTypeToPayloadCallback(AssessmentMessages.UpdateInstanceVisibility, this.onUpdateInstanceVisibility);
@@ -96,6 +98,13 @@ export class AssessmentActionCreator {
         const eventName = TelemetryEvents.ADD_FAILURE_INSTANCE;
         this.telemetryEventHandler.publishTelemetry(eventName, payload);
         this.assessmentActions.addFailureInstance.invoke(payload);
+    }
+
+    @autobind
+    private onAddResultDescription(payload: AddResultDescriptionPayload): void {
+        const eventName = TelemetryEvents.ADD_RESULT_DESCRIPTION;
+        this.telemetryEventHandler.publishTelemetry(eventName, payload);
+        this.assessmentActions.addResultDescription.invoke(payload);
     }
 
     @autobind

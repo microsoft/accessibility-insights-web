@@ -28,6 +28,7 @@ export class InitialAssessmentStoreDataGenerator {
             persistedTabInfo: targetTab,
             assessmentNavState: { selectedTestType: selectedTestType, selectedTestStep: selectedTestStep },
             assessments: this.constructInitialDataForAssessment(persistedTests),
+            resultDescription: '',
         };
 
         return state as AssessmentStoreData;

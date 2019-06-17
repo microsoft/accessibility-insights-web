@@ -135,6 +135,7 @@ export class Messages {
         Undo: `${messagePrefix}/assessment/undo`,
         UndoChangeRequirementStatus: `${messagePrefix}/assessment/undoChangeManualRequirementStatus`,
         AddFailureInstance: `${messagePrefix}/assessment/addFailureInstance`,
+        AddResultDescription: `${messagePrefix}/assessment/addResultDescription`,
         RemoveFailureInstance: `${messagePrefix}/assessment/removeFailureInstance`,
         EditFailureInstance: `${messagePrefix}/assessment/editFailureInstance`,
         PassUnmarkedInstances: `${messagePrefix}/assessment/passUnmarkedInstances`,

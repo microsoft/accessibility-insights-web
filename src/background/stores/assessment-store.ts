@@ -18,7 +18,7 @@ import {
 } from '../../common/types/store-data/assessment-result-data';
 import { ScanBasePayload, ScanCompletedPayload, ScanUpdatePayload } from '../../injected/analyzers/analyzer';
 import { DictionaryStringTo } from '../../types/common-types';
-import { SelectRequirementPayload, UpdateVisibilityPayload } from '../actions/action-payloads';
+import { SelectRequirementPayload, UpdateVisibilityPayload, AddResultDescriptionPayload } from '../actions/action-payloads';
 import { AssessmentDataConverter } from '../assessment-data-converter';
 import { InitialAssessmentStoreDataGenerator } from '../initial-assessment-store-data-generator';
 import { VisualizationType } from './../../common/types/visualization-type';
@@ -106,6 +106,7 @@ export class AssessmentStore extends BaseStoreImpl<AssessmentStoreData> {
         this.assessmentActions.undoInstanceStatusChange.addListener(this.onUndoInstanceStatusChange);
         this.assessmentActions.changeAssessmentVisualizationState.addListener(this.onChangeAssessmentVisualizationState);
         this.assessmentActions.addFailureInstance.addListener(this.onAddFailureInstance);
+        this.assessmentActions.addResultDescription.addListener(this.onAddResultDescription);
         this.assessmentActions.removeFailureInstance.addListener(this.onRemoveFailureInstance);
         this.assessmentActions.editFailureInstance.addListener(this.onEditFailureInstance);
         this.assessmentActions.changeAssessmentVisualizationStateForAll.addListener(this.onChangeAssessmentVisualizationStateForAll);
@@ -222,6 +223,12 @@ export class AssessmentStore extends BaseStoreImpl<AssessmentStoreData> {
         assessmentData.manualTestStepResultMap[payload.requirement].instances.push(newInstance);
         this.updateManualTestStepStatus(assessmentData, payload.requirement, payload.test);
 
+        this.emitChanged();
+    }
+
+    @autobind
+    private onAddResultDescription(payload: AddResultDescriptionPayload): void {
+        this.state.resultDescription = payload.description;
         this.emitChanged();
     }
 

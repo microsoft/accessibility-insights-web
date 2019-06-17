@@ -3,6 +3,7 @@
 import { autobind } from '@uifabric/utilities';
 import {
     AddFailureInstancePayload,
+    AddResultDescriptionPayload,
     AssessmentActionInstancePayload,
     AssessmentToggleActionPayload,
     BaseActionPayload,
@@ -341,6 +342,17 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
 
         this.dispatcher.dispatchMessage({
             messageType: Messages.Assessment.AddFailureInstance,
+            payload,
+        });
+    }
+
+    public addResultDescription(description: string): void {
+        const payload: AddResultDescriptionPayload = {
+            description,
+        };
+
+        this.dispatcher.dispatchMessage({
+            messageType: Messages.Assessment.AddResultDescription,
             payload,
         });
     }

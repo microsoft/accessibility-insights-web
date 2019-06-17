@@ -4,6 +4,7 @@ import { Action } from '../../common/flux/action';
 import { ScanBasePayload, ScanCompletedPayload, ScanUpdatePayload } from '../../injected/analyzers/analyzer';
 import {
     AddFailureInstancePayload,
+    AddResultDescriptionPayload,
     AssessmentActionInstancePayload,
     ChangeInstanceSelectionPayload,
     ChangeInstanceStatusPayload,
@@ -21,6 +22,7 @@ export class AssessmentActions {
     public readonly changeInstanceStatus = new Action<ChangeInstanceStatusPayload>();
     public readonly changeRequirementStatus = new Action<ChangeRequirementStatusPayload>();
     public readonly addFailureInstance = new Action<AddFailureInstancePayload>();
+    public readonly addResultDescription = new Action<AddResultDescriptionPayload>();
     public readonly removeFailureInstance = new Action<RemoveFailureInstancePayload>();
     public readonly editFailureInstance = new Action<EditFailureInstancePayload>();
     public readonly passUnmarkedInstance = new Action<ToggleActionPayload>();

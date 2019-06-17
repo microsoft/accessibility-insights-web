@@ -81,6 +81,7 @@ describe('InitialAssessmentStoreDataGenerator.generateInitialState', () => {
                 persistedTabInfo: { ...validTargetTab, appRefreshed: persistedAppRefreshed },
                 assessmentNavState: null,
                 assessments: null,
+                resultDescription: '',
             });
 
             expect(generatedState.persistedTabInfo.appRefreshed).toBe(true);
@@ -92,6 +93,7 @@ describe('InitialAssessmentStoreDataGenerator.generateInitialState', () => {
             persistedTabInfo: validTargetTab,
             assessmentNavState: null,
             assessments: null,
+            resultDescription: '',
         });
 
         const { appRefreshed, ...tabInfoPropertiesThatShouldPropagate } = validTargetTab;

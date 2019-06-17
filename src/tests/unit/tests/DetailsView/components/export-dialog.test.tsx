@@ -84,6 +84,9 @@ describe('ExportDialog', () => {
         });
 
         it('handles click on export button', () => {
+            const unchangedDescription = 'description';
+            onDescriptionChangeMock.setup(dc => dc(It.isValue(unchangedDescription))).verifiable(Times.once());
+
             onCloseMock.setup(oc => oc()).verifiable(Times.once());
             provideBlobMock
                 .setup(p => p(It.isAny(), It.isAnyString()))
