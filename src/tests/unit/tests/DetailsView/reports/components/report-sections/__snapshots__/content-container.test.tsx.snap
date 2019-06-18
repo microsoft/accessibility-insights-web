@@ -2,15 +2,19 @@
 
 exports[`ContentContainer renders 1`] = `
 <div
-  className="content-container"
+  className="outer-container"
 >
-  <div>
-    1
-  </div>
   <div
-    id="2"
+    className="content-container"
   >
-    2
+    <div>
+      1
+    </div>
+    <div
+      id="2"
+    >
+      2
+    </div>
   </div>
 </div>
 `;
