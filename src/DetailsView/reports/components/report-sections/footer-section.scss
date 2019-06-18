@@ -6,10 +6,9 @@
 .report-footer-container {
     @include contentSize();
     margin-bottom: 68px;
+    margin-top: 24px;
 
     .report-footer {
-        margin-top: 34px;
-
         line-height: 20px;
 
         color: $secondary-text;
