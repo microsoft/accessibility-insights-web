@@ -15,6 +15,7 @@
 @import './components/report-sections/header-section.scss';
 @import './components/report-sections/no-failed-instances-congrats.scss';
 @import './components/report-sections/title-section.scss';
+@import './components/report-sections/results-container.scss';
 
 $outcome-pass-summary-color: $positive-outcome;
 $outcome-fail-summary-color: $negative-outcome;
@@ -117,10 +118,6 @@ $outcome-not-applicable-summary-color: $neutral-outcome;
             }
         }
     }
-}
-
-.results-container {
-    margin-top: 56px;
 }
 
 .result-section {
