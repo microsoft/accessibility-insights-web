@@ -3,13 +3,13 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-import { GetGuidanceTagsFromGuidanceLinks } from '../../../../../common/get-guidance-tags-from-guidance-links';
+import { GetGuidanceTagsFromGuidanceLinks } from '../../../../../../../common/get-guidance-tags-from-guidance-links';
 import {
     InstanceListGroupHeader,
     InstanceListGroupHeaderProps,
-} from '../../../../../DetailsView/reports/components/instance-list-group-header';
-import { InstanceOutcomeType } from '../../../../../DetailsView/reports/components/report-sections/outcome-summary-bar';
-import { RuleResult } from '../../../../../scanner/iruleresults';
+} from '../../../../../../../DetailsView/reports/components/report-sections/instance-list-group-header';
+import { InstanceOutcomeType } from '../../../../../../../DetailsView/reports/components/report-sections/outcome-summary-bar';
+import { RuleResult } from '../../../../../../../scanner/iruleresults';
 
 describe('InstanceListGroupHeaderTest', () => {
     const guidanceTagsStub: GetGuidanceTagsFromGuidanceLinks = () => [{ id: '1', displayText: 'tag-1' }];
