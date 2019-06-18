@@ -67,7 +67,7 @@ describe('InitialAssessmentStoreDataGenerator.generateInitialState', () => {
     });
 
     it('passes persisted result description data to initial data creator if persistedData.resultDescription exists', () => {
-        const persistedDescription = 'persistant description';
+        const persistedDescription = 'persistent description';
 
         const generatedState = generator.generateInitialState({
             resultDescription: persistedDescription,
