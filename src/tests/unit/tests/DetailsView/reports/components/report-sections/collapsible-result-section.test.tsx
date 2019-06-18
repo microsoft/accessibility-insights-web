@@ -13,6 +13,7 @@ describe('CollapsibleResultSection', () => {
         const props: CollapsibleResultSectionProps = {
             containerClassName: 'result-section-class-name',
             buttonAriaLabel: 'button aria label test',
+            containerId: 'container-id',
         } as CollapsibleResultSectionProps;
 
         const wrapper = shallow(<CollapsibleResultSection {...props} />);

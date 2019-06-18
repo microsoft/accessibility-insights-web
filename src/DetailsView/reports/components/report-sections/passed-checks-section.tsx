@@ -21,6 +21,7 @@ export const PassedChecksSection = NamedSFC<PassedChecksSectionProps>(
                 outcomeType="pass"
                 badgeCount={rules.length}
                 buttonAriaLabel="show passed checks list"
+                containerId="passed-checks-section"
             />
         );
     },

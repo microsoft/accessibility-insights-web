@@ -22,6 +22,7 @@ export const NotApplicableChecksSection = NamedSFC<NotApplicableChecksSectionPro
                 outcomeType="inapplicable"
                 badgeCount={rules.length}
                 buttonAriaLabel="show not applicable checks list"
+                containerId="not-applicable-checks-section"
             />
         );
     },
