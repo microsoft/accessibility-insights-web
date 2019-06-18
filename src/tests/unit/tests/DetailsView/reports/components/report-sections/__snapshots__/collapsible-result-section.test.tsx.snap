@@ -10,13 +10,15 @@ exports[`CollapsibleResultSection renders 1`] = `
       <ResultSectionContent
         buttonAriaLabel="button aria label test"
         containerClassName="result-section-class-name"
+        containerId="container-id"
       />
     }
-    id="result-section-class-name"
+    id="container-id"
     summaryContent={
       <ResultSectionTitle
         buttonAriaLabel="button aria label test"
         containerClassName="result-section-class-name"
+        containerId="container-id"
       />
     }
   />

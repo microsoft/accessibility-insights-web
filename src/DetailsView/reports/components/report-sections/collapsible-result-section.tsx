@@ -10,15 +10,16 @@ import { ResultSectionTitle } from './result-section-title';
 
 export type CollapsibleResultSectionProps = ResultSectionProps & {
     buttonAriaLabel: string;
+    containerId: string;
 };
 
 export const CollapsibleResultSection = NamedSFC<CollapsibleResultSectionProps>('CollapsibleResultSection', props => {
-    const { containerClassName, buttonAriaLabel } = props;
+    const { containerClassName, buttonAriaLabel, containerId } = props;
 
     return (
         <div className={containerClassName}>
             <CollapsibleContainer
-                id={containerClassName}
+                id={containerId}
                 summaryContent={<ResultSectionTitle {...props} />}
                 detailsContent={<ResultSectionContent {...props} />}
                 buttonAriaLabel={buttonAriaLabel}
