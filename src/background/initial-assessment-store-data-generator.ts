@@ -23,12 +23,13 @@ export class InitialAssessmentStoreDataGenerator {
         const first = head(this.tests) || this.NULL_FIRST_TEST;
         const selectedTestType = first.visualizationType;
         const selectedTestStep = first.requirements && first.requirements[0] && first.requirements[0].key;
+        const resultDescription = (persistedData && persistedData.resultDescription) || '';
 
         const state: Partial<AssessmentStoreData> = {
             persistedTabInfo: targetTab,
             assessmentNavState: { selectedTestType: selectedTestType, selectedTestStep: selectedTestStep },
             assessments: this.constructInitialDataForAssessment(persistedTests),
-            resultDescription: '',
+            resultDescription: resultDescription,
         };
 
         return state as AssessmentStoreData;

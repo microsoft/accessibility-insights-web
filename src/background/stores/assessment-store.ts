@@ -18,7 +18,7 @@ import {
 } from '../../common/types/store-data/assessment-result-data';
 import { ScanBasePayload, ScanCompletedPayload, ScanUpdatePayload } from '../../injected/analyzers/analyzer';
 import { DictionaryStringTo } from '../../types/common-types';
-import { SelectRequirementPayload, UpdateVisibilityPayload, AddResultDescriptionPayload } from '../actions/action-payloads';
+import { AddResultDescriptionPayload, SelectRequirementPayload, UpdateVisibilityPayload } from '../actions/action-payloads';
 import { AssessmentDataConverter } from '../assessment-data-converter';
 import { InitialAssessmentStoreDataGenerator } from '../initial-assessment-store-data-generator';
 import { VisualizationType } from './../../common/types/visualization-type';

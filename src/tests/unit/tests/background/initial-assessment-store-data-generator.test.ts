@@ -66,6 +66,16 @@ describe('InitialAssessmentStoreDataGenerator.generateInitialState', () => {
         expect(generatedState.assessments).toEqual(defaultState.assessments);
     });
 
+    it('passes persisted result description data to initial data creator if persistedData.resultDescription exists', () => {
+        const persistedDescription = 'persistant description';
+
+        const generatedState = generator.generateInitialState({
+            resultDescription: persistedDescription,
+        } as AssessmentStoreData);
+
+        expect(generatedState.resultDescription).toEqual(persistedDescription);
+    });
+
     it.each([[undefined], [null]])('propagates unspecified persistedTabInfo values as-is', persistedTabInfo => {
         const generatedState = generator.generateInitialState({
             persistedTabInfo,

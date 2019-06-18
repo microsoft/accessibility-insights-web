@@ -53,16 +53,19 @@ describe('ReportExportComponentTest', () => {
                 .setup(gdm => gdm())
                 .returns(() => '')
                 .verifiable(Times.once());
+            updateDescriptionMock.setup(udm => udm(It.isValue(''))).verifiable(Times.once());
             const wrapper = shallow(<ReportExportComponent {...props} />);
             const exportButton = wrapper.find(ActionButton);
 
             exportButton.simulate('click');
+            const dialog = wrapper.find(ExportDialog);
+            dialog.props().onDescriptionChange('');
 
             expect(wrapper.getElement()).toMatchSnapshot('dialog should show');
 
-            const dialog = wrapper.find(ExportDialog);
             dialog.props().onClose();
 
+            updateDescriptionMock.verifyAll();
             getDescriptionMock.verifyAll();
             reportGeneratorMock.verifyAll();
             htmlGeneratorMock.verifyAll();
@@ -80,16 +83,19 @@ describe('ReportExportComponentTest', () => {
                 .setup(gdm => gdm())
                 .returns(() => 'persisted description')
                 .verifiable(Times.once());
+            updateDescriptionMock.setup(udm => udm(It.isValue('persisted description'))).verifiable(Times.once());
             const wrapper = shallow(<ReportExportComponent {...props} />);
             const exportButton = wrapper.find(ActionButton);
 
             exportButton.simulate('click');
+            const dialog = wrapper.find(ExportDialog);
+            dialog.props().onDescriptionChange('persisted description');
 
             expect(wrapper.getElement()).toMatchSnapshot('description persisted');
 
-            const dialog = wrapper.find(ExportDialog);
             dialog.props().onClose();
 
+            updateDescriptionMock.verifyAll();
             getDescriptionMock.verifyAll();
             reportGeneratorMock.verifyAll();
             htmlGeneratorMock.verifyAll();
@@ -110,13 +116,15 @@ describe('ReportExportComponentTest', () => {
             updateDescriptionMock
                 .setup(udm => udm('the new description'))
                 .returns(() => null)
-                .verifiable(Times.once());
+                .verifiable(Times.exactly(2));
             const wrapper = shallow(<ReportExportComponent {...props} />);
             const exportButton = wrapper.find(ActionButton);
 
+            const dialog = wrapper.find(ExportDialog);
+            dialog.props().onDescriptionChange('the new description');
+
             exportButton.simulate('click');
 
-            const dialog = wrapper.find(ExportDialog);
             dialog.props().onDescriptionChange('the new description');
 
             expect(wrapper.getElement()).toMatchSnapshot('persisted description updated');
@@ -148,15 +156,23 @@ describe('ReportExportComponentTest', () => {
             dialog.props().onClose();
 
             expect(wrapper.getElement()).toMatchSnapshot('dialog should be dismissed');
+            getDescriptionMock.verifyAll();
         });
 
         test('edit text field', () => {
+            updateDescriptionMock
+                .setup(udm => udm(It.isValue('new description')))
+                .returns(() => null)
+                .verifiable(Times.once());
+
             const wrapper = shallow(<ReportExportComponent {...props} />);
 
             const dialog = wrapper.find(ExportDialog);
             dialog.props().onDescriptionChange('new description');
 
             expect(wrapper.getElement()).toMatchSnapshot('user input new description');
+
+            updateDescriptionMock.verifyAll();
         });
     });
 });
