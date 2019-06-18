@@ -119,8 +119,12 @@ $outcome-not-applicable-summary-color: $neutral-outcome;
     }
 }
 
-.result-section {
+.results-container {
     margin-top: 56px;
+}
+
+.result-section {
+    padding-bottom: 58px;
 }
 
 .rule-details-group {
