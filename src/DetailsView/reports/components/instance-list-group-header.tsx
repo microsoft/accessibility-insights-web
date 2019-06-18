@@ -44,7 +44,7 @@ export const InstanceListGroupHeader = NamedSFC<InstanceListGroupHeaderProps>('I
         const ruleUrl = ruleResult.helpUrl;
         return (
             <span className="rule-details-id">
-                <NewTabLink href={ruleUrl} aria-label={`rule ${ruleId}`} aria-describedby={ariaDescribedBy}>
+                <NewTabLink href={ruleUrl} aria-label={`rule ${ruleId}`}>
                     {ruleId}
                 </NewTabLink>
             </span>
