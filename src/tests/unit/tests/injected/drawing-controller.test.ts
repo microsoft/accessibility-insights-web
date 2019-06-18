@@ -12,7 +12,7 @@ import {
     HtmlElementAxeResultsHelper,
 } from '../../../../injected/frameCommunicators/html-element-axe-results-helper';
 import { HtmlElementAxeResults } from '../../../../injected/scanner-utils';
-import { DrawerInitData } from '../../../../injected/visualization/drawer';
+import { Drawer, DrawerInitData } from '../../../../injected/visualization/drawer';
 import { HighlightBoxDrawer } from '../../../../injected/visualization/highlight-box-drawer';
 import { NodeListBuilder } from '../../common/node-list-builder';
 
@@ -327,5 +327,13 @@ describe('DrawingControllerTest', () => {
         testObject.dispose();
 
         drawerMock.verifyAll();
+    });
+
+    test('drawer already registered', () => {
+        const configId = 'stub id';
+        const drawerMock = Mock.ofType<Drawer>();
+        const testObject = new DrawingController(frameCommunicatorMock.object, axeResultsHelperMock.object, hTMLElementUtils.object);
+        testObject.registerDrawer(configId, drawerMock.object);
+        expect(() => testObject.registerDrawer(configId, drawerMock.object)).toThrowErrorMatchingSnapshot();
     });
 });

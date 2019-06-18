@@ -43,6 +43,9 @@ export class DrawingController {
     }
 
     public registerDrawer: RegisterDrawer = (id: string, drawer: Drawer) => {
+        if (this.drawers[id]) {
+            throw new Error(`Drawer already registered to id: ${id}`);
+        }
         this.drawers[id] = drawer;
     };
 

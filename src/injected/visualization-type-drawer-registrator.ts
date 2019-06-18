@@ -16,7 +16,7 @@ export class VisualizationTypeDrawerRegistrator {
         private drawerProvider: DrawerProvider,
     ) {}
 
-    public registerType(visualizationType: VisualizationType): void {
+    public registerType = (visualizationType: VisualizationType) => {
         const config = this.visualizationConfigurationFactory.getConfiguration(visualizationType);
         let id: string;
         let drawer: Drawer;
@@ -33,5 +33,5 @@ export class VisualizationTypeDrawerRegistrator {
         }
 
         this.registerDrawer(id, drawer);
-    }
+    };
 }
