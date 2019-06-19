@@ -64,7 +64,7 @@ describe('ExportDialog', () => {
         it('closes the dialog onDismiss', () => {
             onCloseMock.setup(oc => oc()).verifiable(Times.once());
             fileProviderMock
-                .setup(f => f.provideURL(It.isAny(), It.isAnyString()))
+                .setup(provider => provider.provideURL(It.isAny(), It.isAnyString()))
                 .returns(() => 'fake-url')
                 .verifiable(Times.once());
             onExportClickMock.setup(getter => getter()).verifiable(Times.never());
@@ -82,7 +82,7 @@ describe('ExportDialog', () => {
         it('handles click on export button', () => {
             onCloseMock.setup(oc => oc()).verifiable(Times.once());
             fileProviderMock
-                .setup(f => f.provideURL(It.isAny(), It.isAnyString()))
+                .setup(provider => provider.provideURL(It.isAny(), It.isAnyString()))
                 .returns(() => 'fake-url')
                 .verifiable(Times.once());
             onExportClickMock.setup(getter => getter()).verifiable(Times.once());
@@ -105,7 +105,7 @@ describe('ExportDialog', () => {
         it('handles text changes for the description', () => {
             props.isOpen = true;
             fileProviderMock
-                .setup(f => f.provideURL(It.isAny(), It.isAnyString()))
+                .setup(provider => provider.provideURL(It.isAny(), It.isAnyString()))
                 .returns(() => 'fake-url')
                 .verifiable(Times.once());
             const changedDescription = 'changed-description';
