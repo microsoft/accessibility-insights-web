@@ -16,14 +16,13 @@ export type ResultSectionContentProps = {
     rules: RuleResult[];
     outcomeType: InstanceOutcomeType;
     showDetails?: boolean;
-    showCongratsIfNotInstances?: boolean;
     fixInstructionProcessor?: FixInstructionProcessor;
 };
 
 export const ResultSectionContent = NamedSFC<ResultSectionContentProps>(
     'ResultSectionContent',
-    ({ rules, showDetails, outcomeType, showCongratsIfNotInstances, deps, fixInstructionProcessor }) => {
-        if (rules.length === 0 && showCongratsIfNotInstances) {
+    ({ rules, showDetails, outcomeType, deps, fixInstructionProcessor }) => {
+        if (rules.length === 0) {
             return <NoFailedInstancesCongrats />;
         }
 

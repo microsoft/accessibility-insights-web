@@ -25,7 +25,6 @@ export const FailedInstancesSection = NamedSFC<FailedInstancesSectionProps>(
                 containerClassName="failed-instances-section result-section"
                 outcomeType="fail"
                 showDetails={true}
-                showCongratsIfNotInstances={true}
                 badgeCount={count}
             />
         );
