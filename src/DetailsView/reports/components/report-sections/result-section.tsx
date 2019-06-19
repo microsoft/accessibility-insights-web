@@ -5,10 +5,14 @@ import * as React from 'react';
 import { NamedSFC } from '../../../../common/react/named-sfc';
 import { ResultSectionContent, ResultSectionContentProps } from './result-section-content';
 import { ResultSectionTitle, ResultSectionTitleProps } from './result-section-title';
+import { RuleDetailsGroupDeps } from './rule-details-group';
+
+export type ResultSectionDeps = RuleDetailsGroupDeps;
 
 export type ResultSectionProps = ResultSectionContentProps &
     ResultSectionTitleProps & {
         containerClassName: string;
+        deps: ResultSectionDeps;
     };
 
 export const ResultSection = NamedSFC<ResultSectionProps>('ResultSection', props => {

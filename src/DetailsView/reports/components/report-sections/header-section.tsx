@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as React from 'react';
+
 import { NewTabLink } from '../../../../common/components/new-tab-link';
 import { NamedSFC } from '../../../../common/react/named-sfc';
 import { productName } from '../../../../content/strings/application';

@@ -4,13 +4,22 @@ import * as classNames from 'classnames';
 import * as React from 'react';
 
 import { NamedSFC } from '../../../../common/react/named-sfc';
+import { CheckType } from '../../../../injected/components/details-dialog';
+import { FixInstructionPanel } from '../../../../injected/components/fix-instruction-panel';
+import { FixInstructionProcessor } from '../../../../injected/fix-instruction-processor';
 
-export type InstanceDetailsProps = Pick<AxeNodeResult, 'failureSummary' | 'html' | 'target'> & { index: number };
+export type InstanceDetailsProps = Pick<AxeNodeResult, 'none' | 'all' | 'any' | 'html' | 'target'> & {
+    index: number;
+    fixInstructionProcessor: FixInstructionProcessor;
+};
 
 export const InstanceDetails = NamedSFC<InstanceDetailsProps>('InstanceDetail', props => {
-    const { failureSummary, html, target, index } = props;
+    const { html, target, index } = props;
+    const anyCheck = props.any;
+    const allCheck = props.all;
+    const noneCheck = props.none;
 
-    const createTableRow = (label: string, content: string, rowKey: string, needsExtraClassname?: boolean) => {
+    const createTableRow = (label: string, content: string | JSX.Element, rowKey: string, needsExtraClassname?: boolean) => {
         const contentStyling = classNames({
             'instance-list-row-content': true,
             'content-snipppet': !!needsExtraClassname,
@@ -22,12 +31,39 @@ export const InstanceDetails = NamedSFC<InstanceDetailsProps>('InstanceDetail', 
             </tr>
         );
     };
+
+    const renderFixInstructionsTitleElement = (titleText: string, className: string) => {
+        return <div className={className}>{titleText}</div>;
+    };
+
+    const renderFixInstructionsContent = () => {
+        const deps = {
+            fixInstructionProcessor: props.fixInstructionProcessor,
+        };
+        return (
+            <div className="how-to-fix-content">
+                <FixInstructionPanel
+                    deps={deps}
+                    checkType={CheckType.All}
+                    checks={allCheck.concat(noneCheck)}
+                    renderTitleElement={renderFixInstructionsTitleElement}
+                />
+                <FixInstructionPanel
+                    deps={deps}
+                    checkType={CheckType.Any}
+                    checks={anyCheck}
+                    renderTitleElement={renderFixInstructionsTitleElement}
+                />
+            </div>
+        );
+    };
+
     return (
         <table className="report-instance-table">
             <tbody>
                 {createTableRow('Path', target.join(', '), `path-row-${index}`)}
                 {createTableRow('Snippet', html, `snippet-row-${index}`, true)}
-                {createTableRow('How to fix', failureSummary, `how-to-fix-row-${index}`)}
+                {createTableRow('How to fix', renderFixInstructionsContent(), `how-to-fix-row-${index}`)}
             </tbody>
         </table>
     );

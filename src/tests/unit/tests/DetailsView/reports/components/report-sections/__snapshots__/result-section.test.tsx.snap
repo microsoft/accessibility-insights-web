@@ -6,9 +6,11 @@ exports[`ResultSection renders 1`] = `
 >
   <ResultSectionTitle
     containerClassName="result-section-class-name"
+    deps={Object {}}
   />
   <ResultSectionContent
     containerClassName="result-section-class-name"
+    deps={Object {}}
   />
 </div>
 `;

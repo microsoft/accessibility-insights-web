@@ -23,16 +23,36 @@ export const infoAndExamples = create(({ Markup, Link }) => (
         <p>
             Do not use <Markup.Code>role="presentation"</Markup.Code> on any of the semantic elements in a data table:
             <ul>
-                <li>{'<table>'}</li>
-                <li>{'<tr>'}</li>
-                <li> {'<th>'}</li>
-                <li> {'<td>'}</li>
-                <li> {'<caption>'}</li>
-                <li> {'<col>'}</li>
-                <li> {'<colgroup>'}</li>
-                <li> {'<thead>'}</li>
-                <li> {'<tfoot>'}</li>
-                <li> {'<tbody>'}</li>
+                <li>
+                    <Markup.Code>{'<table>'}</Markup.Code>
+                </li>
+                <li>
+                    <Markup.Code>{'<tr>'}</Markup.Code>
+                </li>
+                <li>
+                    <Markup.Code> {'<th>'}</Markup.Code>
+                </li>
+                <li>
+                    <Markup.Code> {'<td>'}</Markup.Code>
+                </li>
+                <li>
+                    <Markup.Code> {'<caption>'}</Markup.Code>
+                </li>
+                <li>
+                    <Markup.Code> {'<col>'}</Markup.Code>
+                </li>
+                <li>
+                    <Markup.Code> {'<colgroup>'}</Markup.Code>
+                </li>
+                <li>
+                    <Markup.Code> {'<thead>'}</Markup.Code>
+                </li>
+                <li>
+                    <Markup.Code> {'<tfoot>'}</Markup.Code>
+                </li>
+                <li>
+                    <Markup.Code> {'<tbody>'}</Markup.Code>
+                </li>
             </ul>
         </p>
         <Markup.PassFail

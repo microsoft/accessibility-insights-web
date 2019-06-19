@@ -89,6 +89,6 @@ export interface ScanResults {
 }
 
 export interface RuleDecorations {
-    guidanceLinks?: HyperlinkDefinition[];
+    guidanceLinks?: GuidanceLink[];
     helpUrl?: string;
 }

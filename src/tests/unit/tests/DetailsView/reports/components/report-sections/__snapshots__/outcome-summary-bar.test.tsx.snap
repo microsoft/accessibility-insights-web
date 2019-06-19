@@ -5,7 +5,6 @@ exports[`OutcomeSummaryBar failure only 1`] = `
   className="outcome-summary-bar"
 >
   <div
-    aria-label="3 Failed"
     style={
       Object {
         "flexGrow": 3,
@@ -13,7 +12,6 @@ exports[`OutcomeSummaryBar failure only 1`] = `
     }
   >
     <span
-      aria-hidden="true"
       className="fail"
     >
       <CrossIconInverted />
@@ -28,7 +26,6 @@ exports[`OutcomeSummaryBar failure only 1`] = `
     </span>
   </div>
   <div
-    aria-label="0 Passed"
     style={
       Object {
         "flexGrow": 0,
@@ -36,7 +33,6 @@ exports[`OutcomeSummaryBar failure only 1`] = `
     }
   >
     <span
-      aria-hidden="true"
       className="pass"
     >
       <CheckIconInverted />
@@ -51,7 +47,6 @@ exports[`OutcomeSummaryBar failure only 1`] = `
     </span>
   </div>
   <div
-    aria-label="0 Not applicable"
     style={
       Object {
         "flexGrow": 0,
@@ -59,7 +54,6 @@ exports[`OutcomeSummaryBar failure only 1`] = `
     }
   >
     <span
-      aria-hidden="true"
       className="inapplicable"
     >
       <InapplicableIconInverted />
@@ -81,7 +75,6 @@ exports[`OutcomeSummaryBar failures + not applicable + passes 1`] = `
   className="outcome-summary-bar"
 >
   <div
-    aria-label="3 Failed"
     style={
       Object {
         "flexGrow": 3,
@@ -89,7 +82,6 @@ exports[`OutcomeSummaryBar failures + not applicable + passes 1`] = `
     }
   >
     <span
-      aria-hidden="true"
       className="fail"
     >
       <CrossIconInverted />
@@ -104,7 +96,6 @@ exports[`OutcomeSummaryBar failures + not applicable + passes 1`] = `
     </span>
   </div>
   <div
-    aria-label="2 Passed"
     style={
       Object {
         "flexGrow": 2,
@@ -112,7 +103,6 @@ exports[`OutcomeSummaryBar failures + not applicable + passes 1`] = `
     }
   >
     <span
-      aria-hidden="true"
       className="pass"
     >
       <CheckIconInverted />
@@ -127,7 +117,6 @@ exports[`OutcomeSummaryBar failures + not applicable + passes 1`] = `
     </span>
   </div>
   <div
-    aria-label="3 Not applicable"
     style={
       Object {
         "flexGrow": 3,
@@ -135,7 +124,6 @@ exports[`OutcomeSummaryBar failures + not applicable + passes 1`] = `
     }
   >
     <span
-      aria-hidden="true"
       className="inapplicable"
     >
       <InapplicableIconInverted />
@@ -157,7 +145,6 @@ exports[`OutcomeSummaryBar failures + not applicable only 1`] = `
   className="outcome-summary-bar"
 >
   <div
-    aria-label="3 Failed"
     style={
       Object {
         "flexGrow": 3,
@@ -165,7 +152,6 @@ exports[`OutcomeSummaryBar failures + not applicable only 1`] = `
     }
   >
     <span
-      aria-hidden="true"
       className="fail"
     >
       <CrossIconInverted />
@@ -180,7 +166,6 @@ exports[`OutcomeSummaryBar failures + not applicable only 1`] = `
     </span>
   </div>
   <div
-    aria-label="0 Passed"
     style={
       Object {
         "flexGrow": 0,
@@ -188,7 +173,6 @@ exports[`OutcomeSummaryBar failures + not applicable only 1`] = `
     }
   >
     <span
-      aria-hidden="true"
       className="pass"
     >
       <CheckIconInverted />
@@ -203,7 +187,6 @@ exports[`OutcomeSummaryBar failures + not applicable only 1`] = `
     </span>
   </div>
   <div
-    aria-label="3 Not applicable"
     style={
       Object {
         "flexGrow": 3,
@@ -211,7 +194,6 @@ exports[`OutcomeSummaryBar failures + not applicable only 1`] = `
     }
   >
     <span
-      aria-hidden="true"
       className="inapplicable"
     >
       <InapplicableIconInverted />
@@ -233,7 +215,6 @@ exports[`OutcomeSummaryBar failures + passes only 1`] = `
   className="outcome-summary-bar"
 >
   <div
-    aria-label="3 Failed"
     style={
       Object {
         "flexGrow": 3,
@@ -241,7 +222,6 @@ exports[`OutcomeSummaryBar failures + passes only 1`] = `
     }
   >
     <span
-      aria-hidden="true"
       className="fail"
     >
       <CrossIconInverted />
@@ -256,7 +236,6 @@ exports[`OutcomeSummaryBar failures + passes only 1`] = `
     </span>
   </div>
   <div
-    aria-label="2 Passed"
     style={
       Object {
         "flexGrow": 2,
@@ -264,7 +243,6 @@ exports[`OutcomeSummaryBar failures + passes only 1`] = `
     }
   >
     <span
-      aria-hidden="true"
       className="pass"
     >
       <CheckIconInverted />
@@ -279,7 +257,6 @@ exports[`OutcomeSummaryBar failures + passes only 1`] = `
     </span>
   </div>
   <div
-    aria-label="0 Not applicable"
     style={
       Object {
         "flexGrow": 0,
@@ -287,7 +264,6 @@ exports[`OutcomeSummaryBar failures + passes only 1`] = `
     }
   >
     <span
-      aria-hidden="true"
       className="inapplicable"
     >
       <InapplicableIconInverted />
@@ -309,7 +285,6 @@ exports[`OutcomeSummaryBar not applicable + passes only 1`] = `
   className="outcome-summary-bar"
 >
   <div
-    aria-label="0 Failed"
     style={
       Object {
         "flexGrow": 0,
@@ -317,7 +292,6 @@ exports[`OutcomeSummaryBar not applicable + passes only 1`] = `
     }
   >
     <span
-      aria-hidden="true"
       className="fail"
     >
       <CrossIconInverted />
@@ -332,7 +306,6 @@ exports[`OutcomeSummaryBar not applicable + passes only 1`] = `
     </span>
   </div>
   <div
-    aria-label="2 Passed"
     style={
       Object {
         "flexGrow": 2,
@@ -340,7 +313,6 @@ exports[`OutcomeSummaryBar not applicable + passes only 1`] = `
     }
   >
     <span
-      aria-hidden="true"
       className="pass"
     >
       <CheckIconInverted />
@@ -355,7 +327,6 @@ exports[`OutcomeSummaryBar not applicable + passes only 1`] = `
     </span>
   </div>
   <div
-    aria-label="3 Not applicable"
     style={
       Object {
         "flexGrow": 3,
@@ -363,7 +334,6 @@ exports[`OutcomeSummaryBar not applicable + passes only 1`] = `
     }
   >
     <span
-      aria-hidden="true"
       className="inapplicable"
     >
       <InapplicableIconInverted />
@@ -385,7 +355,6 @@ exports[`OutcomeSummaryBar not applicable only 1`] = `
   className="outcome-summary-bar"
 >
   <div
-    aria-label="0 Failed"
     style={
       Object {
         "flexGrow": 0,
@@ -393,7 +362,6 @@ exports[`OutcomeSummaryBar not applicable only 1`] = `
     }
   >
     <span
-      aria-hidden="true"
       className="fail"
     >
       <CrossIconInverted />
@@ -408,7 +376,6 @@ exports[`OutcomeSummaryBar not applicable only 1`] = `
     </span>
   </div>
   <div
-    aria-label="2 Passed"
     style={
       Object {
         "flexGrow": 2,
@@ -416,7 +383,6 @@ exports[`OutcomeSummaryBar not applicable only 1`] = `
     }
   >
     <span
-      aria-hidden="true"
       className="pass"
     >
       <CheckIconInverted />
@@ -431,7 +397,6 @@ exports[`OutcomeSummaryBar not applicable only 1`] = `
     </span>
   </div>
   <div
-    aria-label="0 Not applicable"
     style={
       Object {
         "flexGrow": 0,
@@ -439,7 +404,6 @@ exports[`OutcomeSummaryBar not applicable only 1`] = `
     }
   >
     <span
-      aria-hidden="true"
       className="inapplicable"
     >
       <InapplicableIconInverted />
@@ -461,7 +425,6 @@ exports[`OutcomeSummaryBar passes only 1`] = `
   className="outcome-summary-bar"
 >
   <div
-    aria-label="0 Failed"
     style={
       Object {
         "flexGrow": 0,
@@ -469,7 +432,6 @@ exports[`OutcomeSummaryBar passes only 1`] = `
     }
   >
     <span
-      aria-hidden="true"
       className="fail"
     >
       <CrossIconInverted />
@@ -484,7 +446,6 @@ exports[`OutcomeSummaryBar passes only 1`] = `
     </span>
   </div>
   <div
-    aria-label="2 Passed"
     style={
       Object {
         "flexGrow": 2,
@@ -492,7 +453,6 @@ exports[`OutcomeSummaryBar passes only 1`] = `
     }
   >
     <span
-      aria-hidden="true"
       className="pass"
     >
       <CheckIconInverted />
@@ -507,7 +467,6 @@ exports[`OutcomeSummaryBar passes only 1`] = `
     </span>
   </div>
   <div
-    aria-label="0 Not applicable"
     style={
       Object {
         "flexGrow": 0,
@@ -515,7 +474,6 @@ exports[`OutcomeSummaryBar passes only 1`] = `
     }
   >
     <span
-      aria-hidden="true"
       className="inapplicable"
     >
       <InapplicableIconInverted />

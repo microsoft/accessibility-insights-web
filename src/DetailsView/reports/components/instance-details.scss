@@ -8,13 +8,15 @@
     background: $neutral-0;
     border-radius: 4px;
     box-shadow: 0px 0.6px 1.8px rgba(0, 0, 0, 0.108), 0px 3.2px 7.2px rgba(0, 0, 0, 0.132);
-    display: block;
+    display: table;
+    width: -moz-available; /* WebKit-based browsers will ignore this. */
+    width: -webkit-fill-available; /* Mozilla-based browsers will ignore this. */
+    width: fill-available;
     margin-left: 24px;
+    table-layout: fixed;
 
     th {
-        padding-left: 20px;
-        padding-top: 14px;
-        padding-bottom: 14px;
+        padding: 12px 20px;
 
         vertical-align: top;
     }
@@ -40,20 +42,47 @@
 
 .report-instance-table .instance-list-row-content {
     color: $secondary-text;
-    margin: 12px 12px 12px 0px;
+    padding: 12px 20px;
     font-size: 14px;
     line-height: 20px;
     align-items: flex-end;
     display: flex;
 }
 
+.how-to-fix-content {
+    .insights-fix-instruction-list {
+        li {
+            span.fix-instruction-color-box {
+                width: 14px;
+                height: 14px;
+                display: inline-block;
+                vertical-align: -5%;
+                margin: 0px 2px;
+                border: 1px solid $always-black;
+            }
+        }
+        .screen-reader-only {
+            position: absolute;
+            left: -10000px;
+            top: auto;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+        }
+    }
+}
+
 .report-instance-table .instance-list-row-content.content-snipppet {
     font-family: Consolas, Segoe UI, Courier New, monospace;
+    white-space: normal;
+    word-wrap: break-word;
+    word-break: break-word;
 }
 
 table.report-instance-table {
     border-collapse: collapse;
     overflow-x: auto;
+    word-break: break-all;
 }
 
 @media screen and (max-width: 480px) {
@@ -76,6 +105,10 @@ table.report-instance-table {
     }
 
     .report-instance-table .label {
-        padding-top: 12px;
+        padding: 14px 20px 6px 20px;
+    }
+
+    .report-instance-table .instance-list-row-content {
+        padding: 6px 20px 14px 20px;
     }
 }

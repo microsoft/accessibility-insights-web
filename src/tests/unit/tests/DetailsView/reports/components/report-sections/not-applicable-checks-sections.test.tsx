@@ -3,15 +3,18 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
+import { GetGuidanceTagsFromGuidanceLinks } from '../../../../../../../common/get-guidance-tags-from-guidance-links';
 import {
     NotApplicableChecksSection,
     NotApplicableChecksSectionProps,
-} from '../../../../../../../DetailsView/reports/components/report-sections/not-applicable-section';
+} from '../../../../../../../DetailsView/reports/components/report-sections/not-applicable-checks-section';
 import { RuleResult } from '../../../../../../../scanner/iruleresults';
 
-describe('PassedChecksSection', () => {
+describe('NotApplicableChecksSection', () => {
     it('renders', () => {
+        const getGuidanceTagsStub: GetGuidanceTagsFromGuidanceLinks = () => [];
         const props: NotApplicableChecksSectionProps = {
+            getGuidanceTagsFromGuidanceLinks: getGuidanceTagsStub,
             scanResult: {
                 inapplicable: [{} as RuleResult, {} as RuleResult, {} as RuleResult],
                 violations: [],

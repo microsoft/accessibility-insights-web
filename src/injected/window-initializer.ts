@@ -5,7 +5,9 @@ import * as Q from 'q';
 
 import { ClientChromeAdapter } from '../common/client-browser-adapter';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
+import { EnumHelper } from '../common/enum-helper';
 import { HTMLElementUtils } from '../common/html-element-utils';
+import { VisualizationType } from '../common/types/visualization-type';
 import { generateUID } from '../common/uid-generator';
 import { WindowUtils } from '../common/window-utils';
 import { scan } from '../scanner/exposed-apis';
@@ -26,6 +28,7 @@ import { ScannerUtils } from './scanner-utils';
 import { ShadowInitializer } from './shadow-initializer';
 import { ShadowUtils } from './shadow-utils';
 import { TabStopsListener } from './tab-stops-listener';
+import { VisualizationTypeDrawerRegistrator } from './visualization-type-drawer-registrator';
 import { DrawerProvider } from './visualization/drawer-provider';
 import { DrawerUtils } from './visualization/drawer-utils';
 import { RootContainerCreator } from './visualization/root-container-creator';
@@ -87,12 +90,8 @@ export class WindowInitializer {
         );
         this.drawingController = new DrawingController(
             this.frameCommunicator,
-            this.instanceVisibilityChecker,
             new HtmlElementAxeResultsHelper(htmlElementUtils),
             htmlElementUtils,
-            this.visualizationConfigurationFactory,
-            drawerProvider,
-            Assessments,
         );
         this.scrollingController = new ScrollingController(this.frameCommunicator, htmlElementUtils);
         this.frameUrlFinder = new FrameUrlFinder(this.frameCommunicator, this.windowUtils, htmlElementUtils);
@@ -102,6 +101,14 @@ export class WindowInitializer {
         this.drawingController.initialize();
         this.scrollingController.initialize();
         this.frameUrlFinder.initialize();
+
+        const visualizationTypeDrawerRegistrator = new VisualizationTypeDrawerRegistrator(
+            this.drawingController.registerDrawer,
+            this.visualizationConfigurationFactory,
+            Assessments,
+            drawerProvider,
+        );
+        EnumHelper.getNumericValues(VisualizationType).forEach(visualizationTypeDrawerRegistrator.registerType);
 
         const port = this.clientChromeAdapter.connect();
         port.onDisconnect.addListener(this.dispose);

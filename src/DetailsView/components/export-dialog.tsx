@@ -18,6 +18,7 @@ export interface ExportDialogProps {
     onClose: () => void;
     onDescriptionChange: (value: string) => void;
     exportResultsType: ExportResultType;
+    onExportClick: () => void;
 }
 
 export interface ExportDialogDeps {
@@ -35,6 +36,7 @@ export const ExportDialog = NamedSFC<ExportDialogProps>('ExportDialog', props =>
         const { detailsViewActionMessageCreator } = props.deps;
         props.onDescriptionChange(props.description);
         detailsViewActionMessageCreator.exportResultsClicked(props.exportResultsType, props.html, event);
+        props.onExportClick();
         props.onClose();
     };
 

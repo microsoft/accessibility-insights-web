@@ -199,6 +199,7 @@ if (isNaN(tabId) === false) {
                 extensionVersion,
                 axeVersion,
             );
+            const fixInstructionProcessor = new FixInstructionProcessor();
 
             const reportHtmlGeneratorV2 = new ReportHtmlGeneratorV2(
                 AutomatedChecksReportSectionFactory,
@@ -206,6 +207,8 @@ if (isNaN(tabId) === false) {
                 environmentInfoProvider.getEnvironmentInfo(),
                 getDefaultAddListenerForCollapsibleSection,
                 DateProvider.getUTCStringFromDate,
+                GetGuidanceTagsFromGuidanceLinks,
+                fixInstructionProcessor,
             );
 
             const assessmentReportHtmlGeneratorDeps = {
@@ -260,8 +263,6 @@ if (isNaN(tabId) === false) {
                 browserSpec,
                 AxeInfo.Default.version,
             );
-
-            const fixInstructionProcessor = new FixInstructionProcessor();
 
             const deps: DetailsViewContainerDeps = {
                 fixInstructionProcessor,

@@ -5,6 +5,7 @@ exports[`RuleDetailsGroup renders, no details 1`] = `
   className="rule-details-group"
 >
   <RuleDetails
+    deps={Object {}}
     outcomeType="pass"
     rule={
       Object {
@@ -13,6 +14,7 @@ exports[`RuleDetailsGroup renders, no details 1`] = `
     }
   />
   <RuleDetails
+    deps={Object {}}
     outcomeType="pass"
     rule={
       Object {
@@ -21,6 +23,7 @@ exports[`RuleDetailsGroup renders, no details 1`] = `
     }
   />
   <RuleDetails
+    deps={Object {}}
     outcomeType="pass"
     rule={
       Object {
@@ -40,6 +43,21 @@ exports[`RuleDetailsGroup renders, with details 1`] = `
     containerClassName="collapsible-rule-details-group"
     detailsContent={
       <InstanceDetailsGroup
+        fixInstructionProcessor={
+          proxy {
+            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+            "backgroundColorText": "background color: ",
+            "backgroundRegExp": /background color: \\(\\?<color>#\\[0-9a-f\\]\\{6\\}\\)/i,
+            "colorGroupName": "color",
+            "colorValueMatcher": "(?<color>#[0-9a-f]{6})",
+            "createColorBox": [Function],
+            "foregroundColorText": "foreground color: ",
+            "foregroundRegExp": /foreground color: \\(\\?<color>#\\[0-9a-f\\]\\{6\\}\\)/i,
+            "getColorMatch": [Function],
+            "process": [Function],
+            "splitFixInstruction": [Function],
+          }
+        }
         nodeResults={
           Array [
             Object {
@@ -54,6 +72,7 @@ exports[`RuleDetailsGroup renders, with details 1`] = `
     id="1"
     summaryContent={
       <RuleDetails
+        deps={Object {}}
         isHeader={false}
         outcomeType="pass"
         rule={

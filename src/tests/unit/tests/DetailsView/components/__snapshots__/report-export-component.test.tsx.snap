@@ -21,6 +21,7 @@ exports[`ReportExportComponentTest render 1`] = `
     isOpen={false}
     onClose={[Function]}
     onDescriptionChange={[Function]}
+    onExportClick={[Function]}
   />
 </React.Fragment>
 `;
@@ -89,10 +90,11 @@ exports[`ReportExportComponentTest user interactions click export button: dialog
     deps={Object {}}
     description=""
     exportResultsType="Assessment"
-    html="test html"
+    html=""
     isOpen={true}
     onClose={[Function]}
     onDescriptionChange={[Function]}
+    onExportClick={[Function]}
   />
 </React.Fragment>
 `;
@@ -113,10 +115,11 @@ exports[`ReportExportComponentTest user interactions dismiss dialog: dialog shou
     deps={Object {}}
     description=""
     exportResultsType="Assessment"
-    html="test html"
+    html=""
     isOpen={false}
     onClose={[Function]}
     onDescriptionChange={[Function]}
+    onExportClick={[Function]}
   />
 </React.Fragment>
 `;
@@ -142,6 +145,7 @@ exports[`ReportExportComponentTest user interactions edit text field: user input
     isOpen={false}
     onClose={[Function]}
     onDescriptionChange={[Function]}
+    onExportClick={[Function]}
   />
 </React.Fragment>
 `;

@@ -1,83 +1,235 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`DetailsSection renders 1`] = `
+exports[`DetailsSection rendering of comment row is dependent on description value renders and matches saved snapshot for description value:  1`] = `
 <div
   className="scan-details-section"
 >
   <h2>
     Scan details
   </h2>
-  <table>
-    <tbody>
-      <tr>
-        <td
-          aria-hidden="true"
-          className="icon"
+  <ul
+    className="details-section-list"
+  >
+    <li>
+      <span
+        aria-hidden="true"
+        className="icon"
+      >
+        <UrlIcon />
+      </span>
+      <span
+        className="screen-reader-only"
+      >
+        target page:
+      </span>
+      <span
+        className="text"
+      >
+        <NewTabLink
+          href="https://page-url/"
         >
-          <UrlIcon />
-        </td>
-        <td
-          className="screen-reader-only"
-          id="target-page-text"
+          https://page-url/
+        </NewTabLink>
+      </span>
+    </li>
+    <li>
+      <span
+        aria-hidden="true"
+        className="icon"
+      >
+        <DateIcon />
+      </span>
+      <span
+        className="screen-reader-only"
+      >
+        scan date:
+      </span>
+      <span
+        className="text"
+      >
+        2018-03-12 11:24 PM UTC
+      </span>
+    </li>
+  </ul>
+</div>
+`;
+
+exports[`DetailsSection rendering of comment row is dependent on description value renders and matches saved snapshot for description value: description-text 1`] = `
+<div
+  className="scan-details-section"
+>
+  <h2>
+    Scan details
+  </h2>
+  <ul
+    className="details-section-list"
+  >
+    <li>
+      <span
+        aria-hidden="true"
+        className="icon"
+      >
+        <UrlIcon />
+      </span>
+      <span
+        className="screen-reader-only"
+      >
+        target page:
+      </span>
+      <span
+        className="text"
+      >
+        <NewTabLink
+          href="https://page-url/"
         >
-          Target Page: https://page-url/
-        </td>
-        <td
-          aria-hidden="true"
-          aria-labelledby="target-page-text"
-          className="text"
+          https://page-url/
+        </NewTabLink>
+      </span>
+    </li>
+    <li>
+      <span
+        aria-hidden="true"
+        className="icon"
+      >
+        <DateIcon />
+      </span>
+      <span
+        className="screen-reader-only"
+      >
+        scan date:
+      </span>
+      <span
+        className="text"
+      >
+        2018-03-12 11:24 PM UTC
+      </span>
+    </li>
+    <li>
+      <span
+        aria-hidden="true"
+        className="icon"
+      >
+        <CommentIcon />
+      </span>
+      <span
+        className="screen-reader-only"
+      >
+        comment:
+      </span>
+      <span
+        className="text description-text"
+      >
+        description-text
+      </span>
+    </li>
+  </ul>
+</div>
+`;
+
+exports[`DetailsSection rendering of comment row is dependent on description value renders and matches saved snapshot for description value: null 1`] = `
+<div
+  className="scan-details-section"
+>
+  <h2>
+    Scan details
+  </h2>
+  <ul
+    className="details-section-list"
+  >
+    <li>
+      <span
+        aria-hidden="true"
+        className="icon"
+      >
+        <UrlIcon />
+      </span>
+      <span
+        className="screen-reader-only"
+      >
+        target page:
+      </span>
+      <span
+        className="text"
+      >
+        <NewTabLink
+          href="https://page-url/"
         >
-          <NewTabLink
-            href="https://page-url/"
-            title="Navigate to target page"
-          >
-            https://page-url/
-          </NewTabLink>
-        </td>
-      </tr>
-      <tr>
-        <td
-          aria-hidden="true"
-          className="icon"
+          https://page-url/
+        </NewTabLink>
+      </span>
+    </li>
+    <li>
+      <span
+        aria-hidden="true"
+        className="icon"
+      >
+        <DateIcon />
+      </span>
+      <span
+        className="screen-reader-only"
+      >
+        scan date:
+      </span>
+      <span
+        className="text"
+      >
+        2018-03-12 11:24 PM UTC
+      </span>
+    </li>
+  </ul>
+</div>
+`;
+
+exports[`DetailsSection rendering of comment row is dependent on description value renders and matches saved snapshot for description value: undefined 1`] = `
+<div
+  className="scan-details-section"
+>
+  <h2>
+    Scan details
+  </h2>
+  <ul
+    className="details-section-list"
+  >
+    <li>
+      <span
+        aria-hidden="true"
+        className="icon"
+      >
+        <UrlIcon />
+      </span>
+      <span
+        className="screen-reader-only"
+      >
+        target page:
+      </span>
+      <span
+        className="text"
+      >
+        <NewTabLink
+          href="https://page-url/"
         >
-          <DateIcon />
-        </td>
-        <td
-          className="screen-reader-only"
-          id="scan-date-text"
-        >
-          Scan date: 2018-03-12 11:24 PM UTC
-        </td>
-        <td
-          aria-hidden="true"
-          aria-labelledby="scan-date-text"
-          className="text"
-        >
-          2018-03-12 11:24 PM UTC
-        </td>
-      </tr>
-      <tr>
-        <td
-          aria-hidden="true"
-          className="icon"
-        >
-          <CommentIcon />
-        </td>
-        <td
-          className="screen-reader-only"
-          id="comment-text"
-        >
-          Comment: description-text
-        </td>
-        <td
-          aria-hidden="true"
-          aria-labelledby="comment-text"
-          className="text description-text"
-        >
-          description-text
-        </td>
-      </tr>
-    </tbody>
-  </table>
+          https://page-url/
+        </NewTabLink>
+      </span>
+    </li>
+    <li>
+      <span
+        aria-hidden="true"
+        className="icon"
+      >
+        <DateIcon />
+      </span>
+      <span
+        className="screen-reader-only"
+      >
+        scan date:
+      </span>
+      <span
+        className="text"
+      >
+        2018-03-12 11:24 PM UTC
+      </span>
+    </li>
+  </ul>
 </div>
 `;

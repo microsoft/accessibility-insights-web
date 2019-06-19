@@ -22,21 +22,16 @@ export interface ReportExportComponentState {
     isOpen: boolean;
     exportName: string;
     exportDescription: string;
-    exportDataWithPlaceholder: string;
     exportData: string;
 }
 
 export class ReportExportComponent extends React.Component<ReportExportComponentProps, ReportExportComponentState> {
-    private descriptionPlaceholder: string = 'd68d50a0-8249-464d-b2fd-709049c89ee4';
-    private replaceRegex: RegExp = new RegExp(this.descriptionPlaceholder, 'g');
-
     constructor(props) {
         super(props);
         this.state = {
             isOpen: false,
             exportName: '',
             exportDescription: '',
-            exportDataWithPlaceholder: '',
             exportData: '',
         };
     }
@@ -47,17 +42,21 @@ export class ReportExportComponent extends React.Component<ReportExportComponent
 
     private onExportDescriptionChange = (value: string) => {
         this.props.updatePersistedDescription(value);
-        const exportData = this.state.exportDataWithPlaceholder.replace(this.replaceRegex, escape(value));
-        this.setState({ exportDescription: value, exportData });
+        const escapedExportDescription = escape(value);
+        this.setState({ exportDescription: escapedExportDescription });
+    };
+
+    private generateHtml = () => {
+        const { htmlGenerator } = this.props;
+        const exportData = htmlGenerator(this.state.exportDescription);
+        this.setState({ exportDescription: '', exportData });
     };
 
     private onExportButtonClick = () => {
-        const { reportGenerator, exportResultsType, scanDate, pageTitle, htmlGenerator } = this.props;
+        const { reportGenerator, exportResultsType, scanDate, pageTitle } = this.props;
         const exportName = reportGenerator.generateName(exportResultsType, scanDate, pageTitle);
-        const exportDataWithPlaceholder = htmlGenerator(this.descriptionPlaceholder);
-        const exportData = exportDataWithPlaceholder.replace(this.replaceRegex, '');
         const exportDescription = this.props.getExportDescription();
-        this.setState({ exportDescription, exportName, exportDataWithPlaceholder, exportData, isOpen: true });
+        this.setState({ exportDescription, exportName,isOpen: true });
     };
 
     public render(): JSX.Element {
@@ -77,6 +76,7 @@ export class ReportExportComponent extends React.Component<ReportExportComponent
                     onClose={this.onDismissExportDialog}
                     onDescriptionChange={this.onExportDescriptionChange}
                     exportResultsType={exportResultsType}
+                    onExportClick={this.generateHtml}
                 />
             </>
         );

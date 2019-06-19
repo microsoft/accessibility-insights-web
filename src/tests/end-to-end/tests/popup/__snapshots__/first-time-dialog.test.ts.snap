@@ -12,6 +12,11 @@ exports[`First time Dialog content should match snapshot 1`] = `
       class="ms-Dialog-main insights-dialog-main-override telemetry-permission-dialog main-000"
     >
       <div
+        data-is-visible="true"
+        style="pointer-events: none; position: fixed;"
+        tabindex="0"
+      />
+      <div
         class="ms-Modal-scrollableContent scrollableContent-000"
         data-is-scrollable="true"
       >
@@ -77,6 +82,7 @@ exports[`First time Dialog content should match snapshot 1`] = `
                       class="ms-Checkbox-checkbox checkbox-000"
                     >
                       <i
+                        aria-hidden="true"
                         class="ms-Checkbox-checkmark checkmark-000"
                         data-icon-name="CheckMark"
                         role="presentation"
@@ -137,6 +143,11 @@ exports[`First time Dialog content should match snapshot 1`] = `
           </div>
         </div>
       </div>
+      <div
+        data-is-visible="true"
+        style="pointer-events: none; position: fixed;"
+        tabindex="0"
+      />
     </div>
   </div>
 </DocumentFragment>

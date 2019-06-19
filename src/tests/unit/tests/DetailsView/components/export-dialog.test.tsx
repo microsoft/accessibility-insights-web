@@ -18,6 +18,7 @@ describe('ExportDialog', () => {
     const provideBlobMock = Mock.ofType<(blobParts?: any[], mimeType?: string) => Blob>();
     const eventStub = 'event stub' as any;
     const blobStub = {} as Blob;
+    const onExportClickMock = Mock.ofInstance(() => {});
     let props: ExportDialogProps;
 
     beforeEach(() => {
@@ -25,6 +26,7 @@ describe('ExportDialog', () => {
         onDescriptionChangeMock.reset();
         actionMessageCreatorMock.reset();
         provideBlobMock.reset();
+        onExportClickMock.reset();
 
         const deps = {
             detailsViewActionMessageCreator: actionMessageCreatorMock.object,
@@ -42,6 +44,7 @@ describe('ExportDialog', () => {
             onDescriptionChange: onDescriptionChangeMock.object,
             actionMessageCreator: actionMessageCreatorMock.object,
             exportResultsType: 'Assessment',
+            onExportClick: onExportClickMock.object,
         };
     });
 
@@ -73,7 +76,7 @@ describe('ExportDialog', () => {
                 .setup(w => w.createObjectURL(blobStub))
                 .returns(() => 'fake-url')
                 .verifiable(Times.once());
-
+            onExportClickMock.setup(getter => getter()).verifiable(Times.never());
             const wrapper = shallow(<ExportDialog {...props} />);
 
             wrapper.find(Dialog).prop('onDismiss')();
@@ -81,6 +84,7 @@ describe('ExportDialog', () => {
             onCloseMock.verifyAll();
             onDescriptionChangeMock.verifyAll();
             actionMessageCreatorMock.verifyAll();
+            onExportClickMock.verifyAll();
         });
 
         it('handles click on export button', () => {
@@ -88,6 +92,7 @@ describe('ExportDialog', () => {
             onDescriptionChangeMock.setup(dc => dc(It.isValue(unchangedDescription))).verifiable(Times.once());
 
             onCloseMock.setup(oc => oc()).verifiable(Times.once());
+            onExportClickMock.setup(getter => getter()).verifiable(Times.once());
             provideBlobMock
                 .setup(p => p(It.isAny(), It.isAnyString()))
                 .returns(() => blobStub)
@@ -108,6 +113,7 @@ describe('ExportDialog', () => {
             onCloseMock.verifyAll();
             onDescriptionChangeMock.verifyAll();
             actionMessageCreatorMock.verifyAll();
+            onExportClickMock.verifyAll();
         });
 
         it('handles text changes for the description', () => {
@@ -131,6 +137,7 @@ describe('ExportDialog', () => {
             onCloseMock.verifyAll();
             onDescriptionChangeMock.verifyAll();
             actionMessageCreatorMock.verifyAll();
+            onExportClickMock.verifyAll();
         });
     });
 });
