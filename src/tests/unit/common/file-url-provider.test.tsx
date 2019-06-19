@@ -1,9 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { Mock, Times } from 'typemoq';
 import { FileURLProvider } from '../../../common/file-url-provider';
 import { WindowUtils } from '../../../common/window-utils';
-import { It, Mock, Times } from 'typemoq';
-import { provideBlob } from '../../../common/blob-provider';
 
 describe('FileURLProviderTest', () => {
     it('provideURL', () => {
@@ -12,15 +11,19 @@ describe('FileURLProviderTest', () => {
         const content = ['<a></a>'];
         const mimeType = 'text/html';
         const returnedURL = 'returned url';
+        const blobStub = {} as Blob;
 
-        const givenBlob = provideBlob(content, mimeType);
+        provideBlobMock
+            .setup(pbm => pbm(content, mimeType))
+            .returns(() => blobStub)
+            .verifiable(Times.once());
 
         windowUtilsMock
-            .setup(w => w.createObjectURL(givenBlob))
+            .setup(w => w.createObjectURL(blobStub))
             .returns(() => returnedURL)
             .verifiable(Times.once());
 
-        const testProvider = new FileURLProvider(windowUtilsMock.object);
+        const testProvider = new FileURLProvider(windowUtilsMock.object, provideBlobMock.object);
         testProvider.provideURL(content, mimeType);
 
         provideBlobMock.verifyAll();

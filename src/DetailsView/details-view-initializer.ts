@@ -10,6 +10,7 @@ import { ChromeAdapter } from '../background/browser-adapters/chrome-adapter';
 import { IssueDetailsTextGenerator } from '../background/issue-details-text-generator';
 import { A11YSelfValidator } from '../common/a11y-self-validator';
 import { AxeInfo } from '../common/axe-info';
+import { provideBlob } from '../common/blob-provider';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
 import { DateProvider } from '../common/date-provider';
 import { DocumentManipulator } from '../common/document-manipulator';
@@ -266,7 +267,7 @@ if (isNaN(tabId) === false) {
 
             const windowUtils = new WindowUtils();
 
-            const fileURLProvider = new FileURLProvider(windowUtils);
+            const fileURLProvider = new FileURLProvider(windowUtils, provideBlob);
 
             const deps: DetailsViewContainerDeps = {
                 fixInstructionProcessor,
