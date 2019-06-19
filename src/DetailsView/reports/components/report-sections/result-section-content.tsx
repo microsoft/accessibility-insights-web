@@ -15,25 +15,16 @@ export type ResultSectionContentProps = {
     deps: ResultSectionContentDeps;
     rules: RuleResult[];
     outcomeType: InstanceOutcomeType;
-    showDetails?: boolean;
     fixInstructionProcessor?: FixInstructionProcessor;
 };
 
 export const ResultSectionContent = NamedSFC<ResultSectionContentProps>(
     'ResultSectionContent',
-    ({ rules, showDetails, outcomeType, deps, fixInstructionProcessor }) => {
+    ({ rules, outcomeType, deps, fixInstructionProcessor }) => {
         if (rules.length === 0) {
             return <NoFailedInstancesCongrats />;
         }
 
-        return (
-            <RuleDetailsGroup
-                deps={deps}
-                rules={rules}
-                showDetails={showDetails}
-                outcomeType={outcomeType}
-                fixInstructionProcessor={fixInstructionProcessor}
-            />
-        );
+        return <RuleDetailsGroup deps={deps} rules={rules} outcomeType={outcomeType} fixInstructionProcessor={fixInstructionProcessor} />;
     },
 );

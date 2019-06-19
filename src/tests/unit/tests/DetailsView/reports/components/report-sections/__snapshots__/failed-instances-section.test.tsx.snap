@@ -47,7 +47,6 @@ exports[`FailedInstancesSection renders 1`] = `
       },
     ]
   }
-  showDetails={true}
   title="Failed instances"
 />
 `;

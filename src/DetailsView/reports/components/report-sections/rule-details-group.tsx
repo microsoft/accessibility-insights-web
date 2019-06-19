@@ -17,7 +17,6 @@ export type RuleDetailsGroupProps = {
     fixInstructionProcessor: FixInstructionProcessor;
     rules: RuleResult[];
     outcomeType: InstanceOutcomeType;
-    showDetails?: boolean;
 };
 
 export const RuleDetailsGroup = NamedSFC<RuleDetailsGroupProps>(
