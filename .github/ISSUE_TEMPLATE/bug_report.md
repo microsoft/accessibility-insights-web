@@ -21,8 +21,9 @@ Steps to reproduce the behavior:
 
 ## CodePen repro example
 
-Please provide a reproduction of the bug in a codepen, if possible. Here’s how
 <!--
+Please provide a reproduction of the bug in a codepen, if possible. Here’s how
+
 * Goto https://codepen.io/ for a starting codepen
 * Create a simple example of the page that you have issues with and Export that codepen or give us a link to that codepen.
 -->
