@@ -101,7 +101,7 @@ describe('AssessmentActionCreatorTest', () => {
         actionMock.verifyAll();
     });
 
-    test('onRemoveFailureInstance', () => {
+    test('onAddFailureInstance', () => {
         const payload: BaseActionPayload = {};
 
         telemetryEventHandlerMock.setup(tp => tp.publishTelemetry(TelemetryEvents.ADD_FAILURE_INSTANCE, payload)).verifiable(Times.once());
@@ -109,6 +109,18 @@ describe('AssessmentActionCreatorTest', () => {
         const actionMock = createActionMock(payload);
         setupAssessmentActionsMock('addFailureInstance', actionMock);
         setupRegisterTypeToPayloadCallbackMock(AssessmentMessages.AddFailureInstance, payload, testTabId);
+
+        testObject.registerCallbacks();
+
+        actionMock.verifyAll();
+    });
+
+    test('addResultDescription', () => {
+        const payload: BaseActionPayload = {};
+
+        const actionMock = createActionMock(payload);
+        setupAssessmentActionsMock('addResultDescription', actionMock);
+        setupRegisterTypeToPayloadCallbackMock(AssessmentMessages.AddResultDescription, payload, testTabId);
 
         testObject.registerCallbacks();
 
