@@ -28,7 +28,7 @@ import { ScannerUtils } from './scanner-utils';
 import { ShadowInitializer } from './shadow-initializer';
 import { ShadowUtils } from './shadow-utils';
 import { TabStopsListener } from './tab-stops-listener';
-import { VisualizationTypeDrawerRegistrator } from './visualization-type-drawer-registrator';
+import { VisualizationTypeDrawerRegistrar } from './visualization-type-drawer-registrar';
 import { DrawerProvider } from './visualization/drawer-provider';
 import { DrawerUtils } from './visualization/drawer-utils';
 import { RootContainerCreator } from './visualization/root-container-creator';
@@ -102,13 +102,13 @@ export class WindowInitializer {
         this.scrollingController.initialize();
         this.frameUrlFinder.initialize();
 
-        const visualizationTypeDrawerRegistrator = new VisualizationTypeDrawerRegistrator(
+        const visualizationTypeDrawerRegistrar = new VisualizationTypeDrawerRegistrar(
             this.drawingController.registerDrawer,
             this.visualizationConfigurationFactory,
             Assessments,
             drawerProvider,
         );
-        EnumHelper.getNumericValues(VisualizationType).forEach(visualizationTypeDrawerRegistrator.registerType);
+        EnumHelper.getNumericValues(VisualizationType).forEach(visualizationTypeDrawerRegistrar.registerType);
 
         const port = this.clientChromeAdapter.connect();
         port.onDisconnect.addListener(this.dispose);

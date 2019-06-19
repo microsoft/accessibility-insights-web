@@ -8,7 +8,7 @@ import { DrawerProvider } from './visualization/drawer-provider';
 
 export type RegisterDrawer = (id: string, drawer: Drawer) => void;
 
-export class VisualizationTypeDrawerRegistrator {
+export class VisualizationTypeDrawerRegistrar {
     constructor(
         private registerDrawer: RegisterDrawer,
         private visualizationConfigurationFactory: VisualizationConfigurationFactory,
