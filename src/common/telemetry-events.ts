@@ -25,7 +25,6 @@ export const START_OVER_TEST: string = 'startOverTest';
 export const CANCEL_START_OVER_TEST: string = 'cancelStartOverTest';
 export const START_OVER_ASSESSMENT: string = 'startOverAssessment';
 export const CANCEL_START_OVER_ASSESSMENT: string = 'cancelStartOverAssessment';
-export const ADD_RESULT_DESCRIPTION: string = 'addResultDescription';
 export const ADD_FAILURE_INSTANCE: string = 'addFailureInstance';
 export const REMOVE_FAILURE_INSTANCE: string = 'removeFailureInstance';
 export const EDIT_FAILURE_INSTANCE: string = 'editFailureInstance';

@@ -102,8 +102,6 @@ export class AssessmentActionCreator {
 
     @autobind
     private onAddResultDescription(payload: AddResultDescriptionPayload): void {
-        const eventName = TelemetryEvents.ADD_RESULT_DESCRIPTION;
-        this.telemetryEventHandler.publishTelemetry(eventName, payload);
         this.assessmentActions.addResultDescription.invoke(payload);
     }
 
