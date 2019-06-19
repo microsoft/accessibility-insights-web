@@ -5,8 +5,8 @@ import * as React from 'react';
 import { NamedSFC } from '../../../../common/react/named-sfc';
 import { CollapsibleContainer } from './collapsible-container';
 import { ResultSectionProps } from './result-section';
-import { ResultSectionContent } from './result-section-content';
 import { ResultSectionTitle } from './result-section-title';
+import { Rules } from './rules';
 
 export type CollapsibleResultSectionProps = ResultSectionProps & {
     buttonAriaLabel: string;
@@ -21,7 +21,7 @@ export const CollapsibleResultSection = NamedSFC<CollapsibleResultSectionProps>(
             <CollapsibleContainer
                 id={containerId}
                 summaryContent={<ResultSectionTitle {...props} />}
-                detailsContent={<ResultSectionContent {...props} />}
+                detailsContent={<Rules {...props} />}
                 buttonAriaLabel={buttonAriaLabel}
             />
         </div>
