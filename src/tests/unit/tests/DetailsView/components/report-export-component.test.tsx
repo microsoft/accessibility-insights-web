@@ -72,15 +72,13 @@ describe('ReportExportComponentTest', () => {
             reportGeneratorMock
                 .setup(rgm => rgm.generateName(props.exportResultsType, props.scanDate, props.pageTitle))
                 .verifiable(Times.once());
-            htmlGeneratorMock
-                .setup(hgm => hgm(It.isAnyString()))
-                .returns(() => 'test html')
-                .verifiable(Times.once());
             getDescriptionMock
                 .setup(gdm => gdm())
                 .returns(() => 'persisted description')
                 .verifiable(Times.once());
             updateDescriptionMock.setup(udm => udm(It.isValue('persisted description'))).verifiable(Times.once());
+            htmlGeneratorMock.setup(hgm => hgm(It.isAnyString())).verifiable(Times.never());
+
             const wrapper = shallow(<ReportExportComponent {...props} />);
             const exportButton = wrapper.find(ActionButton);
 
@@ -102,10 +100,7 @@ describe('ReportExportComponentTest', () => {
             reportGeneratorMock
                 .setup(rgm => rgm.generateName(props.exportResultsType, props.scanDate, props.pageTitle))
                 .verifiable(Times.once());
-            htmlGeneratorMock
-                .setup(hgm => hgm(It.isAnyString()))
-                .returns(() => 'test html')
-                .verifiable(Times.once());
+            htmlGeneratorMock.setup(hgm => hgm(It.isAnyString())).verifiable(Times.never());
             getDescriptionMock
                 .setup(gdm => gdm())
                 .returns(() => 'the old description')
@@ -143,10 +138,9 @@ describe('ReportExportComponentTest', () => {
                 .setup(gdm => gdm())
                 .returns(() => '')
                 .verifiable(Times.once());
-            const wrapper = shallow(<ReportExportComponent {...props} />);
-            
-          htmlGeneratorMock.setup(hgm => hgm(It.isAnyString())).verifiable(Times.never());
-           
+
+            htmlGeneratorMock.setup(hgm => hgm(It.isAnyString())).verifiable(Times.never());
+
             const exportButton = wrapper.find(ActionButton);
             exportButton.simulate('click');
             const dialog = wrapper.find(ExportDialog);

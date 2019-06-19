@@ -42,10 +42,11 @@ exports[`ReportExportComponentTest user interactions click export button with pe
     deps={Object {}}
     description="persisted description"
     exportResultsType="Assessment"
-    html="test html"
+    html=""
     isOpen={true}
     onClose={[Function]}
     onDescriptionChange={[Function]}
+    onExportClick={[Function]}
   />
 </React.Fragment>
 `;
@@ -66,10 +67,11 @@ exports[`ReportExportComponentTest user interactions click export button with up
     deps={Object {}}
     description="the new description"
     exportResultsType="Assessment"
-    html="test html"
+    html=""
     isOpen={true}
     onClose={[Function]}
     onDescriptionChange={[Function]}
+    onExportClick={[Function]}
   />
 </React.Fragment>
 `;

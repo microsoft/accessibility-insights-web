@@ -56,7 +56,7 @@ export class ReportExportComponent extends React.Component<ReportExportComponent
         const { reportGenerator, exportResultsType, scanDate, pageTitle } = this.props;
         const exportName = reportGenerator.generateName(exportResultsType, scanDate, pageTitle);
         const exportDescription = this.props.getExportDescription();
-        this.setState({ exportDescription, exportName,isOpen: true });
+        this.setState({ exportDescription, exportName, isOpen: true });
     };
 
     public render(): JSX.Element {
