@@ -26,56 +26,6 @@ exports[`ReportExportComponentTest render 1`] = `
 </React.Fragment>
 `;
 
-exports[`ReportExportComponentTest user interactions click export button with persisted description: description persisted 1`] = `
-<React.Fragment>
-  <CustomizedActionButton
-    iconProps={
-      Object {
-        "iconName": "Export",
-      }
-    }
-    onClick={[Function]}
-  >
-    Export result
-  </CustomizedActionButton>
-  <ExportDialog
-    deps={Object {}}
-    description="persisted description"
-    exportResultsType="Assessment"
-    html=""
-    isOpen={true}
-    onClose={[Function]}
-    onDescriptionChange={[Function]}
-    onExportClick={[Function]}
-  />
-</React.Fragment>
-`;
-
-exports[`ReportExportComponentTest user interactions click export button with updated persisted description: persisted description updated 1`] = `
-<React.Fragment>
-  <CustomizedActionButton
-    iconProps={
-      Object {
-        "iconName": "Export",
-      }
-    }
-    onClick={[Function]}
-  >
-    Export result
-  </CustomizedActionButton>
-  <ExportDialog
-    deps={Object {}}
-    description="the new description"
-    exportResultsType="Assessment"
-    html=""
-    isOpen={true}
-    onClose={[Function]}
-    onDescriptionChange={[Function]}
-    onExportClick={[Function]}
-  />
-</React.Fragment>
-`;
-
 exports[`ReportExportComponentTest user interactions click export button: dialog should show 1`] = `
 <React.Fragment>
   <CustomizedActionButton
@@ -90,7 +40,7 @@ exports[`ReportExportComponentTest user interactions click export button: dialog
   </CustomizedActionButton>
   <ExportDialog
     deps={Object {}}
-    description=""
+    description="persisted description"
     exportResultsType="Assessment"
     html=""
     isOpen={true}

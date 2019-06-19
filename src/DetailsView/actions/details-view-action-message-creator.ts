@@ -331,6 +331,17 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
         });
     }
 
+    public addResultDescription(description: string): void {
+        const payload: AddResultDescriptionPayload = {
+            description,
+        };
+
+        this.dispatcher.dispatchMessage({
+            messageType: Messages.Assessment.AddResultDescription,
+            payload,
+        });
+    }
+
     public addFailureInstance(description: string, test: VisualizationType, requirement: string): void {
         const telemetry = this.telemetryFactory.forRequirementFromDetailsView(test, requirement);
         const payload: AddFailureInstancePayload = {
@@ -342,17 +353,6 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
 
         this.dispatcher.dispatchMessage({
             messageType: Messages.Assessment.AddFailureInstance,
-            payload,
-        });
-    }
-
-    public addResultDescription(description: string): void {
-        const payload: AddResultDescriptionPayload = {
-            description,
-        };
-
-        this.dispatcher.dispatchMessage({
-            messageType: Messages.Assessment.AddResultDescription,
             payload,
         });
     }

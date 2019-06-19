@@ -97,9 +97,7 @@ export class IssuesTable extends React.Component<IssuesTableProps> {
 
     private nullUpdatePersistedDescription(value: string): void {}
 
-    private nullGetExportDescription = () => {
-        return '';
-    };
+    private getEmptyExportDescription = () => '';
 
     private renderExportButton(): JSX.Element {
         const shouldShowButton = this.props.issuesEnabled && !this.props.scanning;
@@ -123,7 +121,7 @@ export class IssuesTable extends React.Component<IssuesTableProps> {
                         pageUrl,
                     )}
                     updatePersistedDescription={this.nullUpdatePersistedDescription}
-                    getExportDescription={this.nullGetExportDescription}
+                    getExportDescription={this.getEmptyExportDescription}
                 />
             );
         } else {

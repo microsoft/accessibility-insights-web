@@ -41,14 +41,16 @@ describe('ReportExportComponentTest', () => {
 
     describe('user interactions', () => {
         test('click export button', () => {
+            const persistedDescription = 'persisted description';
+
             reportGeneratorMock
                 .setup(rgm => rgm.generateName(props.exportResultsType, props.scanDate, props.pageTitle))
                 .verifiable(Times.once());
             getDescriptionMock
                 .setup(gdm => gdm())
-                .returns(() => '')
+                .returns(() => persistedDescription)
                 .verifiable(Times.once());
-            updateDescriptionMock.setup(udm => udm(It.isValue(''))).verifiable(Times.once());
+            updateDescriptionMock.setup(udm => udm(It.isValue(persistedDescription))).verifiable(Times.once());
             htmlGeneratorMock.setup(hgm => hgm(It.isAnyString())).verifiable(Times.never());
 
             const wrapper = shallow(<ReportExportComponent {...props} />);
@@ -56,7 +58,7 @@ describe('ReportExportComponentTest', () => {
 
             exportButton.simulate('click');
             const dialog = wrapper.find(ExportDialog);
-            dialog.props().onDescriptionChange('');
+            dialog.props().onDescriptionChange(persistedDescription);
 
             expect(wrapper.getElement()).toMatchSnapshot('dialog should show');
 
@@ -64,67 +66,6 @@ describe('ReportExportComponentTest', () => {
 
             updateDescriptionMock.verifyAll();
             getDescriptionMock.verifyAll();
-            reportGeneratorMock.verifyAll();
-            htmlGeneratorMock.verifyAll();
-        });
-
-        test('click export button with persisted description', () => {
-            reportGeneratorMock
-                .setup(rgm => rgm.generateName(props.exportResultsType, props.scanDate, props.pageTitle))
-                .verifiable(Times.once());
-            getDescriptionMock
-                .setup(gdm => gdm())
-                .returns(() => 'persisted description')
-                .verifiable(Times.once());
-            updateDescriptionMock.setup(udm => udm(It.isValue('persisted description'))).verifiable(Times.once());
-            htmlGeneratorMock.setup(hgm => hgm(It.isAnyString())).verifiable(Times.never());
-
-            const wrapper = shallow(<ReportExportComponent {...props} />);
-            const exportButton = wrapper.find(ActionButton);
-
-            exportButton.simulate('click');
-            const dialog = wrapper.find(ExportDialog);
-            dialog.props().onDescriptionChange('persisted description');
-
-            expect(wrapper.getElement()).toMatchSnapshot('description persisted');
-
-            dialog.props().onClose();
-
-            updateDescriptionMock.verifyAll();
-            getDescriptionMock.verifyAll();
-            reportGeneratorMock.verifyAll();
-            htmlGeneratorMock.verifyAll();
-        });
-
-        test('click export button with updated persisted description', () => {
-            reportGeneratorMock
-                .setup(rgm => rgm.generateName(props.exportResultsType, props.scanDate, props.pageTitle))
-                .verifiable(Times.once());
-            htmlGeneratorMock.setup(hgm => hgm(It.isAnyString())).verifiable(Times.never());
-            getDescriptionMock
-                .setup(gdm => gdm())
-                .returns(() => 'the old description')
-                .verifiable(Times.once());
-            updateDescriptionMock
-                .setup(udm => udm('the new description'))
-                .returns(() => null)
-                .verifiable(Times.exactly(2));
-            const wrapper = shallow(<ReportExportComponent {...props} />);
-            const exportButton = wrapper.find(ActionButton);
-
-            const dialog = wrapper.find(ExportDialog);
-            dialog.props().onDescriptionChange('the new description');
-
-            exportButton.simulate('click');
-
-            dialog.props().onDescriptionChange('the new description');
-
-            expect(wrapper.getElement()).toMatchSnapshot('persisted description updated');
-
-            dialog.props().onClose();
-
-            getDescriptionMock.verifyAll();
-            updateDescriptionMock.verifyAll();
             reportGeneratorMock.verifyAll();
             htmlGeneratorMock.verifyAll();
         });
