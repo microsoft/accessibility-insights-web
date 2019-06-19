@@ -55,16 +55,24 @@ describe('VisualizationTypeDrawerRegistrator', () => {
         const requirementStub = {
             key: 'some key',
         } as Requirement;
+        const requirementStubTwo = {
+            key: 'some other key',
+        } as Requirement;
         const stepMapStub = {
             [requirementStub.key]: requirementStub,
+            [requirementStubTwo.key]: requirementStubTwo,
         };
+        const secondIdentifierStub = 'some other id';
 
         visualizationConfigFactoryMock.setup(mock => mock.getConfiguration(typeStub)).returns(() => configMock.object);
         assessmentProviderMock.setup(mock => mock.isValidType(typeStub)).returns(() => true);
         assessmentProviderMock.setup(mock => mock.getStepMap(typeStub)).returns(() => stepMapStub);
         configMock.setup(mock => mock.getIdentifier(requirementStub.key)).returns(() => identifierStub);
+        configMock.setup(mock => mock.getIdentifier(requirementStubTwo.key)).returns(() => secondIdentifierStub);
         configMock.setup(mock => mock.getDrawer(drawerProviderMock.object, identifierStub)).returns(() => drawerStub);
+        configMock.setup(mock => mock.getDrawer(drawerProviderMock.object, secondIdentifierStub)).returns(() => drawerStub);
         registerDrawerMock.setup(mock => mock(identifierStub, drawerStub)).verifiable();
+        registerDrawerMock.setup(mock => mock(secondIdentifierStub, drawerStub)).verifiable();
 
         testSubject.registerType(typeStub);
 
