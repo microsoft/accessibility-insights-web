@@ -74,6 +74,7 @@ export class LandmarkFormatter extends FailureInstanceFormatter {
                 text: elemData.label,
                 fontSize: '14pt !important',
                 fontWeight: '600',
+                outline: `3px dashed ${style.borderColor}`,
             },
             borderColor: style.borderColor,
             outlineStyle: 'dashed',

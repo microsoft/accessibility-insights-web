@@ -31,6 +31,7 @@ export interface BoxConfig {
     boxWidth?: string;
     fontSize?: string;
     fontWeight?: string;
+    outline?: string;
 }
 
 export interface StrokeConfiguration {

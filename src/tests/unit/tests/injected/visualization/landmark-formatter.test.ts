@@ -113,6 +113,7 @@ describe('LandmarkFormatterTests', () => {
         expect(config.textBoxConfig.fontColor).toEqual(landmarkStyle.fontColor);
         expect(config.textBoxConfig.fontSize).toEqual('14pt !important');
         expect(config.textBoxConfig.fontWeight).toBe('600');
+        expect(config.textBoxConfig.outline).toBe(`3px dashed ${landmarkStyle.borderColor}`);
 
         if (isFailure) {
             expect(config.failureBoxConfig).toEqual(FailureInstanceFormatter.failureBoxConfig);

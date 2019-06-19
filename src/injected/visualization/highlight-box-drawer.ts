@@ -135,6 +135,7 @@ export class HighlightBoxDrawer extends BaseDrawer {
         box.style.color = boxConfig.fontColor;
         box.style.fontSize = boxConfig.fontSize;
         box.style.fontWeight = boxConfig.fontWeight;
+        box.style.outline = boxConfig.outline;
         box.style.setProperty('width', boxConfig.boxWidth, 'important');
         box.style.setProperty('cursor', drawerConfig.cursor, 'important');
         box.style.setProperty('text-align', drawerConfig.textAlign, 'important');
