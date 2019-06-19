@@ -19,22 +19,7 @@ describe('RuleDetailsGroup', () => {
         fixInstructionProcessorMock = Mock.ofType(FixInstructionProcessor);
     });
 
-    it('renders, no details', () => {
-        const rules = [{ id: '1' } as RuleResult, { id: '2' } as RuleResult, { id: '3' } as RuleResult];
-
-        const wrapped = shallow(
-            <RuleDetailsGroup
-                deps={depsStub}
-                fixInstructionProcessor={fixInstructionProcessorMock.object}
-                outcomeType={'pass'}
-                rules={rules}
-            />,
-        );
-
-        expect(wrapped.getElement()).toMatchSnapshot();
-    });
-
-    it('renders, with details', () => {
+    it('renders', () => {
         const rules = [
             {
                 id: '1',
@@ -54,7 +39,6 @@ describe('RuleDetailsGroup', () => {
                 fixInstructionProcessor={fixInstructionProcessorMock.object}
                 outcomeType={'pass'}
                 rules={rules}
-                showDetails={true}
             />,
         );
 

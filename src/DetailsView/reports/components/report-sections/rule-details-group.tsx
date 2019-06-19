@@ -22,11 +22,11 @@ export type RuleDetailsGroupProps = {
 
 export const RuleDetailsGroup = NamedSFC<RuleDetailsGroupProps>(
     'RuleDetailsGroup',
-    ({ rules, showDetails, outcomeType, fixInstructionProcessor, deps }) => {
+    ({ rules, outcomeType, fixInstructionProcessor, deps }) => {
         return (
             <div className="rule-details-group">
                 {rules.map((rule, idx) => {
-                    return showDetails ? (
+                    return (
                         <CollapsibleContainer
                             key={`summary-details-${idx + 1}`}
                             id={rule.id}
@@ -42,8 +42,6 @@ export const RuleDetailsGroup = NamedSFC<RuleDetailsGroupProps>(
                             containerClassName="collapsible-rule-details-group"
                             titleHeadingLevel={3}
                         />
-                    ) : (
-                        <RuleDetail deps={deps} key={rule.id} rule={rule} outcomeType={outcomeType} isHeader={showDetails} />
                     );
                 })}
             </div>
