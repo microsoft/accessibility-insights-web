@@ -23,7 +23,11 @@ export type ResultSectionContentProps = {
 export const ResultSectionContent = NamedSFC<ResultSectionContentProps>(
     'ResultSectionContent',
     ({ rules, showDetails, outcomeType, showCongratsIfNotInstances, deps, fixInstructionProcessor }) => {
-        let content = (
+        if (rules.length === 0 && showCongratsIfNotInstances) {
+            return <NoFailedInstancesCongrats />;
+        }
+
+        return (
             <RuleDetailsGroup
                 deps={deps}
                 rules={rules}
@@ -32,11 +36,5 @@ export const ResultSectionContent = NamedSFC<ResultSectionContentProps>(
                 fixInstructionProcessor={fixInstructionProcessor}
             />
         );
-
-        if (rules.length === 0 && showCongratsIfNotInstances) {
-            content = <NoFailedInstancesCongrats />;
-        }
-
-        return content;
     },
 );
