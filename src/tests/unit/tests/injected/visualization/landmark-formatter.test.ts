@@ -108,8 +108,11 @@ describe('LandmarkFormatterTests', () => {
         const landmarkStyle = getLandmarkStyle(givenRole);
         expect(config.showVisualization).toBe(true);
         expect(config.outlineStyle).toEqual('dashed');
+        expect(config.outlineWidth).toBe('3px');
         expect(config.borderColor).toEqual(landmarkStyle.borderColor);
         expect(config.textBoxConfig.fontColor).toEqual(landmarkStyle.fontColor);
+        expect(config.textBoxConfig.fontSize).toEqual('14pt !important');
+        expect(config.textBoxConfig.fontWeight).toBe('600');
 
         if (isFailure) {
             expect(config.failureBoxConfig).toEqual(FailureInstanceFormatter.failureBoxConfig);
