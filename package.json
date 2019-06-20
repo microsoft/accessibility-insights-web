@@ -57,7 +57,7 @@
         "case-sensitive-paths-webpack-plugin": "^2.2.0",
         "css-loader": "^2.1.1",
         "electron": "^5.0.1",
-        "enzyme": "^3.9.0",
+        "enzyme": "^3.10.0",
         "enzyme-adapter-react-16": "^1.12.1",
         "express": "^4.16.4",
         "fake-indexeddb": "^2.1.1",
