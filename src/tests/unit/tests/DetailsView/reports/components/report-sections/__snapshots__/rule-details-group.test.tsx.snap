@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`RuleDetailsGroup renders 1`] = `
+exports[`RuleWithInstances renders 1`] = `
 <div
   className="rule-details-group"
 >

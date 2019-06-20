@@ -10,17 +10,17 @@ import { InstanceDetailsGroup } from './instance-details-group';
 import { InstanceOutcomeType } from './outcome-summary-bar';
 import { RuleDetail, RuleDetailDeps } from './rule-detail';
 
-export type RuleDetailsGroupDeps = RuleDetailDeps;
+export type RulesWithInstancesDeps = RuleDetailDeps;
 
-export type RuleDetailsGroupProps = {
-    deps: RuleDetailsGroupDeps;
+export type RulesWithInstancesProps = {
+    deps: RulesWithInstancesDeps;
     fixInstructionProcessor: FixInstructionProcessor;
     rules: RuleResult[];
     outcomeType: InstanceOutcomeType;
 };
 
-export const RuleDetailsGroup = NamedSFC<RuleDetailsGroupProps>(
-    'RuleDetailsGroup',
+export const RulesWithInstances = NamedSFC<RulesWithInstancesProps>(
+    'RulesWithInstances',
     ({ rules, outcomeType, fixInstructionProcessor, deps }) => {
         return (
             <div className="rule-details-group">

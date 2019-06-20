@@ -3,12 +3,12 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-import { RuleDetailsGroupDeps } from '../../../../../../../DetailsView/reports/components/report-sections/rule-details-group';
+import { RulesWithInstancesDeps } from '../../../../../../../DetailsView/reports/components/report-sections/rule-details-group';
 import { Rules } from '../../../../../../../DetailsView/reports/components/report-sections/rules';
 import { RuleResult } from '../../../../../../../scanner/iruleresults';
 
 describe('Rules', () => {
-    const depsStub = {} as RuleDetailsGroupDeps;
+    const depsStub = {} as RulesWithInstancesDeps;
 
     it('renders', () => {
         const rules = [{ id: '1' } as RuleResult, { id: '2' } as RuleResult, { id: '3' } as RuleResult];

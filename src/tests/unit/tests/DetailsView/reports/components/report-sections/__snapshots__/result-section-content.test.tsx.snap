@@ -3,7 +3,7 @@
 exports[`ResultSectionContent renders, no rules 1`] = `<NoFailedInstancesCongrats />`;
 
 exports[`ResultSectionContent renders, with some rules 1`] = `
-<RuleDetailsGroup
+<RulesWithInstances
   deps={Object {}}
   outcomeType="pass"
   rules={
