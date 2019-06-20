@@ -115,7 +115,7 @@ describe('AssessmentActionCreatorTest', () => {
         actionMock.verifyAll();
     });
 
-    test('addResultDescription', () => {
+    test('onaddResultDescription', () => {
         const payload: BaseActionPayload = {};
 
         const actionMock = createActionMock(payload);
