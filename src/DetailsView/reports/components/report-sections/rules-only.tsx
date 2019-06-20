@@ -15,7 +15,7 @@ export type RulesProps = {
     outcomeType: InstanceOutcomeType;
 };
 
-export const RulesOnly = NamedSFC<RulesProps>('RuleDetailsGroup', ({ rules, outcomeType, deps }) => {
+export const RulesOnly = NamedSFC<RulesProps>('RulesOnly', ({ rules, outcomeType, deps }) => {
     return (
         <div className="rule-details-group">
             {rules.map(rule => {
