@@ -10,8 +10,7 @@ import { GetGuidanceTagsFromGuidanceLinks } from '../../../../common/get-guidanc
 import { NamedSFC } from '../../../../common/react/named-sfc';
 import { RuleResult } from '../../../../scanner/iruleresults';
 import { OutcomeChip } from '../outcome-chip';
-import { outcomeTypeSemantics } from '../outcome-type';
-import { InstanceOutcomeType } from './outcome-summary-bar';
+import { InstanceOutcomeType, outcomeTypeSemantics } from '../outcome-type';
 
 export type InstanceListGroupHeaderDeps = {
     getGuidanceTagsFromGuidanceLinks: GetGuidanceTagsFromGuidanceLinks;
@@ -70,9 +69,9 @@ export const InstanceListGroupHeader = NamedSFC<InstanceListGroupHeaderProps>('I
     const headingProps =
         props.ariaLevel != null
             ? {
-                  role: 'heading',
-                  'aria-level': props.ariaLevel,
-              }
+                role: 'heading',
+                'aria-level': props.ariaLevel,
+            }
             : null;
 
     return (

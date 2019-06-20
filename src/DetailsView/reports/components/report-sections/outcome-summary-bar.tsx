@@ -4,38 +4,38 @@ import { kebabCase } from 'lodash';
 import * as React from 'react';
 
 import { NamedSFC } from '../../../../common/react/named-sfc';
-import { outcomeIconMapInverted, outcomeTypeSemantics } from '../outcome-type';
-import { SectionProps } from './report-section-factory';
+import {
+    allOutcomeTypes,
+    outcomeIconMap,
+    outcomeIconMapInverted,
+    OutcomeStats,
+    outcomeTypeSemantics,
+    OutcomeUnits,
+} from '../outcome-type';
 
-export type InstanceOutcomeType = 'pass' | 'fail' | 'inapplicable';
-const allInstanceOutcomeTypes: InstanceOutcomeType[] = ['fail', 'pass', 'inapplicable'];
+export type OutcomeSummaryBarProps = Partial<OutcomeStats> & { units?: OutcomeUnits, inverted?: boolean };
 
-export type OutcomeSummaryBarProps = Pick<SectionProps, 'scanResult'>;
-
-export const OutcomeSummaryBar = NamedSFC<OutcomeSummaryBarProps>('OutcomeSummaryBar', ({ scanResult }) => {
-    const countSummary: { [type in InstanceOutcomeType]: number } = {
-        pass: scanResult.passes.length,
-        fail: scanResult.violations.reduce((total, violation) => {
-            return total + violation.nodes.length;
-        }, 0),
-        inapplicable: scanResult.inapplicable.length,
-    };
-
+export const OutcomeSummaryBar = NamedSFC<OutcomeSummaryBarProps>('OutcomeSummaryBar', (props) => {
     return (
         <div className="outcome-summary-bar">
-            {allInstanceOutcomeTypes.map(outcomeType => {
-                const text = outcomeTypeSemantics[outcomeType].pastTense;
-                const outcomeIcon = outcomeIconMapInverted[outcomeType];
-                const count = countSummary[outcomeType];
+            {allOutcomeTypes
+                .filter(outcomeType => props[outcomeType] != null)
+                .map(outcomeType => {
+                    const { units, inverted } = props;
+                    const text = outcomeTypeSemantics[outcomeType].pastTense;
+                    const iconMap = inverted === true ? outcomeIconMapInverted : outcomeIconMap;
+                    const outcomeIcon = iconMap[outcomeType];
+                    const count = props[outcomeType];
+                    const suffix = units === 'percentage' ? '% ' : '';
 
-                return (
-                    <div key={outcomeType} style={{ flexGrow: count }}>
-                        <span className={kebabCase(outcomeType)}>
-                            {outcomeIcon} {count} <span className="outcome-past-tense">{text}</span>
-                        </span>
-                    </div>
-                );
-            })}
+                    return (
+                        <div key={outcomeType} style={{ flexGrow: count }}>
+                            <span className={kebabCase(outcomeType)}>
+                                {outcomeIcon} {count + suffix} <span className="outcome-past-tense">{text}</span>
+                            </span>
+                        </div>
+                    );
+                })}
         </div>
     );
 });

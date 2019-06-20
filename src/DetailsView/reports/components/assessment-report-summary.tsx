@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { OverviewSummaryReportModel } from '../assessment-report-model';
 import { AssessmentSummaryDetails } from './assessment-summary-details';
-import { OutcomeSummaryBar } from './outcome-summary-bar';
+import { OutcomeSummaryBar } from './report-sections/outcome-summary-bar';
 
 export interface AssessmentReportSummaryProps {
     summary: OverviewSummaryReportModel;

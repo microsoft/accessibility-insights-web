@@ -4,7 +4,7 @@ import * as React from 'react';
 
 import { NamedSFC } from '../../../../common/react/named-sfc';
 import { OutcomeChip } from '../outcome-chip';
-import { InstanceOutcomeType } from './outcome-summary-bar';
+import { InstanceOutcomeType } from '../outcome-type';
 
 export type ResultSectionTitleProps = {
     title: string;

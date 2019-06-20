@@ -4,8 +4,8 @@ import * as React from 'react';
 
 import { NamedSFC } from '../../../../common/react/named-sfc';
 import { RuleResult } from '../../../../scanner/iruleresults';
+import { InstanceOutcomeType } from '../outcome-type';
 import { InstanceListGroupHeader, InstanceListGroupHeaderDeps } from './instance-list-group-header';
-import { InstanceOutcomeType } from './outcome-summary-bar';
 
 export type RuleDetailDeps = InstanceListGroupHeaderDeps;
 
