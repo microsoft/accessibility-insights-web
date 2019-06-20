@@ -12,6 +12,7 @@ export class FeatureFlags {
     public static readonly scoping = 'scoping';
     public static readonly showInstanceVisibility = 'showInstanceVisibility';
     public static readonly newAutomatedChecksReport = 'newAutomatedChecksReport';
+    public static readonly manualInstanceDetails = 'manualInstanceDetails';
 }
 
 export interface FeatureFlagDetail {
@@ -84,6 +85,16 @@ export function getAllFeatureFlagDetails(): FeatureFlagDetail[] {
             displayableDescription: 'Enable the new FastPass Automated checks report, with new UX and accessibility improvements',
             isPreviewFeature: false,
             forceDefault: true,
+        },
+        {
+            id: FeatureFlags.manualInstanceDetails,
+            defaultValue: false,
+            displayableName: 'Enable manual instance details',
+            displayableDescription:
+                'Allow addition of path (CSS selector) which automatically ' +
+                'populates the corresponding code snippet when adding manual failure instance.',
+            isPreviewFeature: false,
+            forceDefault: false,
         },
     ];
 }
