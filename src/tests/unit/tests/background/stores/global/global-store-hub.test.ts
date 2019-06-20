@@ -37,6 +37,7 @@ describe('GlobalStoreHubTest', () => {
                 persistedTabInfo: {} as PersistedTabInfo,
                 assessmentNavState: null,
                 assessments: null,
+                resultDescription: '',
             },
             userConfigurationData: {
                 enableTelemetry: true,

@@ -164,6 +164,7 @@ describe('AssessmentStoreTest', () => {
                 selectedTestType: expectedTestType,
                 selectedTestStep: expectedTestStep,
             },
+            resultDescription: '',
         };
 
         const defaultValues: Partial<AssessmentData> = {
@@ -179,6 +180,7 @@ describe('AssessmentStoreTest', () => {
                 selectedTestType: expectedTestType,
                 selectedTestStep: expectedTestStep,
             },
+            resultDescription: '',
         };
 
         assessments.forEach(assessment => {

@@ -587,6 +587,20 @@ describe('DetailsViewActionMessageCreatorTest', () => {
         dispatcherMock.verify(dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage)), Times.once());
     });
 
+    test('addResultDescription', () => {
+        const persistedDescription = 'persisted description';
+        const expectedMessage = {
+            messageType: Messages.Assessment.AddResultDescription,
+            payload: {
+                description: persistedDescription,
+            },
+        };
+
+        testSubject.addResultDescription(persistedDescription);
+
+        dispatcherMock.verify(dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage)), Times.once());
+    });
+
     test('addFailureInstance', () => {
         const telemetry = {
             source: TelemetryEventSource.DetailsView,

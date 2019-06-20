@@ -22,6 +22,10 @@
         "format": "prettier --config prettier.config.js --write \"**/*\"",
         "format-check": "prettier --config prettier.config.js --check \"**/*\"",
         "generate-scss-typings": "tsm src/**/*.scss",
+<<<<<<< HEAD
+=======
+        "clean:scss-typings": "grunt clean:scss",
+>>>>>>> 7d23c3d5f758e7417a0d3976de6f1b5529b61955
         "precheckin": "npm-run-all --serial clean:scss-typings format-check tslint copyrightheaders build:all test test:e2e",
         "start:electron": "electron drop/electron/extension/bundle/main.bundle.js",
         "test": "jest --projects src/tests/unit",

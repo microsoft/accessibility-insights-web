@@ -89,7 +89,7 @@ exports[`IssuesTableTest spinner, issuesEnabled is an empty object 1`] = `
                           var methodInvocation = new MethodInvocation(target, method, args, ProxyType.DYNAMIC);
                           _this._interceptor.intercept(methodInvocation);
                           return methodInvocation.returnValue;
-                      }]} pageTitle=\\"pageTitle\\" exportResultsType=\\"AutomatedChecks\\" htmlGenerator={[Function: bound ]} />
+                      }]} pageTitle=\\"pageTitle\\" exportResultsType=\\"AutomatedChecks\\" htmlGenerator={[Function: bound ]} updatePersistedDescription={[Function]} getExportDescription={[Function]} />
     </div>
     <StyledSpinnerBase className=\\"details-view-spinner\\" size={3} label=\\"Loading data...\\" />
   </div>
@@ -114,7 +114,7 @@ exports[`IssuesTableTest table with 0 issues 1`] = `
                           var methodInvocation = new MethodInvocation(target, method, args, ProxyType.DYNAMIC);
                           _this._interceptor.intercept(methodInvocation);
                           return methodInvocation.returnValue;
-                      }]} pageTitle=\\"pageTitle\\" exportResultsType=\\"AutomatedChecks\\" htmlGenerator={[Function: bound ]} />
+                      }]} pageTitle=\\"pageTitle\\" exportResultsType=\\"AutomatedChecks\\" htmlGenerator={[Function: bound ]} updatePersistedDescription={[Function]} getExportDescription={[Function]} />
     </div>
     <div className=\\"issues-table-details\\">
       <IssuesDetailsList violations={{...}} issuesTableHandler={{...}} issuesSelection={{...}} />
@@ -144,7 +144,7 @@ exports[`IssuesTableTest table with 1 issues 1`] = `
                           var methodInvocation = new MethodInvocation(target, method, args, ProxyType.DYNAMIC);
                           _this._interceptor.intercept(methodInvocation);
                           return methodInvocation.returnValue;
-                      }]} pageTitle=\\"pageTitle\\" exportResultsType=\\"AutomatedChecks\\" htmlGenerator={[Function: bound ]} />
+                      }]} pageTitle=\\"pageTitle\\" exportResultsType=\\"AutomatedChecks\\" htmlGenerator={[Function: bound ]} updatePersistedDescription={[Function]} getExportDescription={[Function]} />
     </div>
     <div className=\\"issues-table-details\\">
       <IssuesDetailsList violations={{...}} issuesTableHandler={{...}} issuesSelection={{...}} />
@@ -174,7 +174,7 @@ exports[`IssuesTableTest table with 2 issues 1`] = `
                           var methodInvocation = new MethodInvocation(target, method, args, ProxyType.DYNAMIC);
                           _this._interceptor.intercept(methodInvocation);
                           return methodInvocation.returnValue;
-                      }]} pageTitle=\\"pageTitle\\" exportResultsType=\\"AutomatedChecks\\" htmlGenerator={[Function: bound ]} />
+                      }]} pageTitle=\\"pageTitle\\" exportResultsType=\\"AutomatedChecks\\" htmlGenerator={[Function: bound ]} updatePersistedDescription={[Function]} getExportDescription={[Function]} />
     </div>
     <div className=\\"issues-table-details\\">
       <IssuesDetailsList violations={{...}} issuesTableHandler={{...}} issuesSelection={{...}} />

@@ -11,5 +11,6 @@ Object {
     "assessment-2": Object {},
   },
   "persistedTabInfo": null,
+  "resultDescription": "",
 }
 `;

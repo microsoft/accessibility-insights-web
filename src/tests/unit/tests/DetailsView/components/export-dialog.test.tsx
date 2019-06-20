@@ -80,6 +80,9 @@ describe('ExportDialog', () => {
         });
 
         it('handles click on export button', () => {
+            const unchangedDescription = 'description';
+            onDescriptionChangeMock.setup(dc => dc(It.isValue(unchangedDescription))).verifiable(Times.once());
+
             onCloseMock.setup(oc => oc()).verifiable(Times.once());
             fileProviderMock
                 .setup(provider => provider.provideURL(It.isAny(), It.isAnyString()))
