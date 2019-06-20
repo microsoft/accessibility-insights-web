@@ -211,6 +211,7 @@ module.exports = function(grunt) {
             },
             clean: {
                 [targetName]: dropPath,
+                scss: path.join('src', '**/*.scss.d.ts'),
             },
             copy: {
                 [targetName]: {
