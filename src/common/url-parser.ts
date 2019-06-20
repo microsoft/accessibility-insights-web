@@ -10,6 +10,26 @@ export class UrlParser {
     public areURLHostNamesEqual(urlA: string, urlB: string): boolean {
         const urlAObj = new URL(urlA);
         const urlBObj = new URL(urlB);
-        return urlAObj.hostname === urlBObj.hostname;
+
+        if (this.areBothFileUrls(urlAObj, urlBObj)) {
+            return this.areFileUrlsEqual(urlA, urlB);
+        }
+
+        return this.areUrlProtocolsEqual(urlAObj, urlBObj) && urlAObj.hostname === urlBObj.hostname;
+    }
+
+    public areFileUrlsEqual(urlA: string, urlB: string): boolean {
+        const urlAObj = new URL(urlA);
+        const urlBObj = new URL(urlB);
+
+        return urlAObj.href === urlBObj.href;
+    }
+
+    private areBothFileUrls(urlAObj: URL, urlBObj: URL): boolean {
+        return this.areUrlProtocolsEqual(urlAObj, urlBObj) && urlAObj.protocol === 'file:' && urlBObj.protocol === 'file:';
+    }
+
+    private areUrlProtocolsEqual(urlAObj: URL, urlBObj: URL): boolean {
+        return urlAObj.protocol === urlBObj.protocol;
     }
 }

@@ -68,5 +68,35 @@ describe('UrlParserTest', () => {
             const urlB = 'http://same.com/randompath&someparam=true';
             expect(testSubject.areURLHostNamesEqual(urlA, urlB)).toEqual(true);
         });
+
+        it('should return false it anything changes for a file url', () => {
+            const urlA = 'file://same.com';
+            const urlB = 'file://same2.com';
+
+            expect(testSubject.areURLHostNamesEqual(urlA, urlB)).toEqual(false);
+        });
+
+        it('should return false when only protocol differs', () => {
+            const urlA = 'http://same.com';
+            const urlB = 'file://same.com';
+
+            expect(testSubject.areURLHostNamesEqual(urlA, urlB)).toEqual(false);
+        });
+    });
+
+    describe('areFileUrlsEqual', () => {
+        it('should only return true when urls match exactly', () => {
+            const urlA = 'file://same.com';
+            const urlB = 'file://same.com';
+
+            expect(testSubject.areFileUrlsEqual(urlA, urlB)).toEqual(true);
+        });
+
+        it('should return false on any change', () => {
+            const urlA = 'file://same.com';
+            const urlB = 'file://same.com/randompath&someparam=true';
+
+            expect(testSubject.areFileUrlsEqual(urlA, urlB)).toEqual(false);
+        });
     });
 });
