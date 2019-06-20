@@ -64,6 +64,14 @@ export class DetailsViewCommandBar extends React.Component<DetailsViewCommandBar
         );
     }
 
+    private updatePersistedDescription = (value: string) => {
+        this.props.actionMessageCreator.addResultDescription(value);
+    };
+
+    private getExportDescription = () => {
+        return this.props.assessmentStoreData.resultDescription;
+    };
+
     private renderCommandButtons(): JSX.Element {
         if (!this.props.renderExportAndStartOver) {
             return null;
@@ -89,6 +97,8 @@ export class DetailsViewCommandBar extends React.Component<DetailsViewCommandBar
                     exportResultsType={'Assessment'}
                     scanDate={deps.getCurrentDate()}
                     htmlGenerator={htmlGenerator}
+                    updatePersistedDescription={this.updatePersistedDescription}
+                    getExportDescription={this.getExportDescription}
                 />
                 <StartOverDropdown
                     testName={test.title}

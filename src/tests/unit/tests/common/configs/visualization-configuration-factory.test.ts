@@ -53,6 +53,7 @@ describe('VisualizationConfigurationFactoryTest', () => {
                 } as AssessmentData,
             },
             assessmentNavState: null,
+            resultDescription: '',
         };
         const selectorMap = {
             selector: {},
