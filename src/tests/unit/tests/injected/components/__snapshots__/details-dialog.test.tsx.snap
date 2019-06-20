@@ -21,10 +21,9 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: false 
   hidden={false}
   modalProps={
     Object {
-      "containerClassName": "insights-dialog-main-container",
+      "containerClassName": "insights-dialog-main-override insights-dialog-main-container",
       "isBlocking": false,
       "layerProps": Object {
-        "className": "insights-dialog-main-override",
         "hostId": "insights-dialog-layer-host",
         "onLayerDidMount": [Function],
       },
@@ -415,10 +414,9 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: false 
                 hidden={false}
                 modalProps={
                   Object {
-                    "containerClassName": "insights-dialog-main-container",
+                    "containerClassName": "insights-dialog-main-override insights-dialog-main-container",
                     "isBlocking": false,
                     "layerProps": Object {
-                      "className": "insights-dialog-main-override",
                       "hostId": "insights-dialog-layer-host",
                       "onLayerDidMount": [Function],
                     },
@@ -1497,10 +1495,9 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: false }
   hidden={false}
   modalProps={
     Object {
-      "containerClassName": "insights-dialog-main-container",
+      "containerClassName": "insights-dialog-main-override insights-dialog-main-container",
       "isBlocking": false,
       "layerProps": Object {
-        "className": "insights-dialog-main-override",
         "hostId": "insights-dialog-layer-host",
         "onLayerDidMount": [Function],
       },
@@ -1886,10 +1883,9 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: false }
                 hidden={false}
                 modalProps={
                   Object {
-                    "containerClassName": "insights-dialog-main-container",
+                    "containerClassName": "insights-dialog-main-override insights-dialog-main-container",
                     "isBlocking": false,
                     "layerProps": Object {
-                      "className": "insights-dialog-main-override",
                       "hostId": "insights-dialog-layer-host",
                       "onLayerDidMount": [Function],
                     },
@@ -2953,10 +2949,9 @@ exports[`DetailsDialogTest render: with relative help url 1`] = `
   hidden={false}
   modalProps={
     Object {
-      "containerClassName": "insights-dialog-main-container",
+      "containerClassName": "insights-dialog-main-override insights-dialog-main-container",
       "isBlocking": false,
       "layerProps": Object {
-        "className": "insights-dialog-main-override",
         "hostId": "insights-dialog-layer-host",
         "onLayerDidMount": [Function],
       },
@@ -3347,10 +3342,9 @@ exports[`DetailsDialogTest render: with relative help url 1`] = `
                 hidden={false}
                 modalProps={
                   Object {
-                    "containerClassName": "insights-dialog-main-container",
+                    "containerClassName": "insights-dialog-main-override insights-dialog-main-container",
                     "isBlocking": false,
                     "layerProps": Object {
-                      "className": "insights-dialog-main-override",
                       "hostId": "insights-dialog-layer-host",
                       "onLayerDidMount": [Function],
                     },
