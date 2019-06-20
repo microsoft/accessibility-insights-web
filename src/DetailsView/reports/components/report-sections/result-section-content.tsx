@@ -6,7 +6,7 @@ import { FixInstructionProcessor } from '../../../../injected/fix-instruction-pr
 import { RuleResult } from '../../../../scanner/iruleresults';
 import { NoFailedInstancesCongrats } from './no-failed-instances-congrats';
 import { InstanceOutcomeType } from './outcome-summary-bar';
-import { RulesWithInstances, RulesWithInstancesDeps } from './rule-details-group';
+import { RulesWithInstances, RulesWithInstancesDeps } from './rules-with-instances';
 
 export type ResultSectionContentDeps = RulesWithInstancesDeps;
 

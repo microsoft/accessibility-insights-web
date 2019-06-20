@@ -3,8 +3,8 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-import { RulesWithInstancesDeps } from '../../../../../../../DetailsView/reports/components/report-sections/rule-details-group';
 import { Rules } from '../../../../../../../DetailsView/reports/components/report-sections/rules';
+import { RulesWithInstancesDeps } from '../../../../../../../DetailsView/reports/components/report-sections/rules-with-instances';
 import { RuleResult } from '../../../../../../../scanner/iruleresults';
 
 describe('Rules', () => {

@@ -7,11 +7,11 @@ import { IMock, Mock } from 'typemoq';
 import {
     RulesWithInstances,
     RulesWithInstancesDeps,
-} from '../../../../../../../DetailsView/reports/components/report-sections/rule-details-group';
+} from '../../../../../../../DetailsView/reports/components/report-sections/rules-with-instances';
 import { FixInstructionProcessor } from '../../../../../../../injected/fix-instruction-processor';
 import { RuleResult } from '../../../../../../../scanner/iruleresults';
 
-describe('RuleWithInstances', () => {
+describe('RulesWithInstances', () => {
     let fixInstructionProcessorMock: IMock<FixInstructionProcessor>;
     const depsStub = {} as RulesWithInstancesDeps;
 
