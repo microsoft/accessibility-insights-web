@@ -10,7 +10,6 @@ import { Assessment } from '../../../../../assessments/types/iassessment';
 import { AssessmentStoreData } from '../../../../../common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from '../../../../../common/types/store-data/feature-flag-store-data';
 import { TabStoreData } from '../../../../../common/types/store-data/tab-store-data';
-import { WindowUtils } from '../../../../../common/window-utils';
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
 import {
     DetailsViewCommandBar,
@@ -36,11 +35,9 @@ describe('DetailsViewCommandBar', () => {
     let reportGeneratorProviderMock: IMock<ReportGeneratorProvider>;
     let descriptionPlaceholder: string;
     let renderExportAndStartOver: boolean;
-    let windowUtilsMock: IMock<WindowUtils>;
 
     beforeEach(() => {
         featureFlagStoreData = {};
-        windowUtilsMock = Mock.ofType<WindowUtils>();
         actionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator, MockBehavior.Loose);
         tabStoreData = {
             title: thePageTitle,
@@ -74,8 +71,6 @@ describe('DetailsViewCommandBar', () => {
             outcomeTypeSemanticsFromTestStatus: { stub: 'outcomeTypeSemanticsFromTestStatus' } as any,
             getCurrentDate: () => theDate,
             reportGeneratorProvider: reportGeneratorProviderMock.object,
-            windowUtils: windowUtilsMock.object,
-            provideBlob: () => null,
         } as DetailsViewCommandBarDeps;
 
         return {

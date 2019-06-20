@@ -5,8 +5,8 @@ import { PrimaryButton } from 'office-ui-fabric-react/lib/Button';
 import { Dialog } from 'office-ui-fabric-react/lib/Dialog';
 import { TextField } from 'office-ui-fabric-react/lib/TextField';
 import * as React from 'react';
-import { WindowUtils } from 'src/common/window-utils';
 import { It, Mock, MockBehavior, Times } from 'typemoq';
+import { FileURLProvider } from '../../../../../common/file-url-provider';
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
 import { ExportDialog, ExportDialogProps } from '../../../../../DetailsView/components/export-dialog';
 
@@ -14,10 +14,8 @@ describe('ExportDialog', () => {
     const onCloseMock = Mock.ofInstance(() => {});
     const onDescriptionChangeMock = Mock.ofInstance((value: string) => {});
     const actionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator, MockBehavior.Strict);
-    const windowUtilsMock = Mock.ofType<WindowUtils>();
-    const provideBlobMock = Mock.ofType<(blobParts?: any[], mimeType?: string) => Blob>();
+    const fileProviderMock = Mock.ofType<FileURLProvider>();
     const eventStub = 'event stub' as any;
-    const blobStub = {} as Blob;
     const onExportClickMock = Mock.ofInstance(() => {});
     let props: ExportDialogProps;
 
@@ -25,13 +23,12 @@ describe('ExportDialog', () => {
         onCloseMock.reset();
         onDescriptionChangeMock.reset();
         actionMessageCreatorMock.reset();
-        provideBlobMock.reset();
         onExportClickMock.reset();
+        fileProviderMock.reset();
 
         const deps = {
             detailsViewActionMessageCreator: actionMessageCreatorMock.object,
-            windowUtils: windowUtilsMock.object,
-            provideBlob: provideBlobMock.object,
+            fileURLProvider: fileProviderMock.object,
         };
 
         props = {
@@ -52,28 +49,22 @@ describe('ExportDialog', () => {
         const isOpenOptions = [true, false];
 
         it.each(isOpenOptions)('with open %p', isOpen => {
-            provideBlobMock
-                .setup(p => p(It.isAny(), It.isAnyString()))
-                .returns(() => blobStub)
-                .verifiable(Times.once());
-            windowUtilsMock
-                .setup(w => w.createObjectURL(blobStub))
+            props.isOpen = isOpen;
+            fileProviderMock
+                .setup(provider => provider.provideURL(It.isAny(), It.isAnyString()))
                 .returns(() => 'fake-url')
                 .verifiable(Times.once());
-            props.isOpen = isOpen;
             const wrapper = shallow(<ExportDialog {...props} />);
             expect(wrapper.getElement()).toMatchSnapshot();
+
+            fileProviderMock.verifyAll();
         });
     });
     describe('user interaction', () => {
         it('closes the dialog onDismiss', () => {
             onCloseMock.setup(oc => oc()).verifiable(Times.once());
-            provideBlobMock
-                .setup(p => p(It.isAny(), It.isAnyString()))
-                .returns(() => blobStub)
-                .verifiable(Times.once());
-            windowUtilsMock
-                .setup(w => w.createObjectURL(blobStub))
+            fileProviderMock
+                .setup(provider => provider.provideURL(It.isAny(), It.isAnyString()))
                 .returns(() => 'fake-url')
                 .verifiable(Times.once());
             onExportClickMock.setup(getter => getter()).verifiable(Times.never());
@@ -81,6 +72,7 @@ describe('ExportDialog', () => {
 
             wrapper.find(Dialog).prop('onDismiss')();
 
+            fileProviderMock.verifyAll();
             onCloseMock.verifyAll();
             onDescriptionChangeMock.verifyAll();
             actionMessageCreatorMock.verifyAll();
@@ -89,15 +81,11 @@ describe('ExportDialog', () => {
 
         it('handles click on export button', () => {
             onCloseMock.setup(oc => oc()).verifiable(Times.once());
-            onExportClickMock.setup(getter => getter()).verifiable(Times.once());
-            provideBlobMock
-                .setup(p => p(It.isAny(), It.isAnyString()))
-                .returns(() => blobStub)
-                .verifiable(Times.once());
-            windowUtilsMock
-                .setup(w => w.createObjectURL(blobStub))
+            fileProviderMock
+                .setup(provider => provider.provideURL(It.isAny(), It.isAnyString()))
                 .returns(() => 'fake-url')
                 .verifiable(Times.once());
+            onExportClickMock.setup(getter => getter()).verifiable(Times.once());
 
             actionMessageCreatorMock
                 .setup(a => a.exportResultsClicked(props.exportResultsType, props.html, eventStub))
@@ -107,6 +95,7 @@ describe('ExportDialog', () => {
 
             wrapper.find(PrimaryButton).simulate('click', eventStub);
 
+            fileProviderMock.verifyAll();
             onCloseMock.verifyAll();
             onDescriptionChangeMock.verifyAll();
             actionMessageCreatorMock.verifyAll();
@@ -115,22 +104,19 @@ describe('ExportDialog', () => {
 
         it('handles text changes for the description', () => {
             props.isOpen = true;
-            const changedDescription = 'changed-description';
-            onDescriptionChangeMock.setup(handler => handler(It.isValue(changedDescription))).verifiable(Times.once());
-            provideBlobMock
-                .setup(p => p(It.isAny(), It.isAnyString()))
-                .returns(() => blobStub)
-                .verifiable(Times.once());
-            windowUtilsMock
-                .setup(w => w.createObjectURL(blobStub))
+            fileProviderMock
+                .setup(provider => provider.provideURL(It.isAny(), It.isAnyString()))
                 .returns(() => 'fake-url')
                 .verifiable(Times.once());
+            const changedDescription = 'changed-description';
+            onDescriptionChangeMock.setup(handler => handler(It.isValue(changedDescription))).verifiable(Times.once());
 
             const wrapper = shallow(<ExportDialog {...props} />);
 
             const textField = wrapper.find(TextField);
             textField.simulate('change', eventStub, changedDescription);
 
+            fileProviderMock.verifyAll();
             onCloseMock.verifyAll();
             onDescriptionChangeMock.verifyAll();
             actionMessageCreatorMock.verifyAll();

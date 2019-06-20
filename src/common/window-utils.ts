@@ -22,8 +22,8 @@ export class WindowUtils {
         return window.setInterval(handler, timeout);
     }
 
-    public createObjectURL(ob: Blob | File | MediaSource): string {
-        return window.URL.createObjectURL(ob);
+    public createObjectURL(sourceObject: Blob | File | MediaSource): string {
+        return window.URL.createObjectURL(sourceObject);
     }
 
     public clearTimeout(timeout: number): void {
