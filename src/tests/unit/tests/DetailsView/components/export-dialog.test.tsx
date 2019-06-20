@@ -51,7 +51,7 @@ describe('ExportDialog', () => {
         it.each(isOpenOptions)('with open %p', isOpen => {
             props.isOpen = isOpen;
             fileProviderMock
-                .setup(f => f.provideURL(It.isAny(), It.isAnyString()))
+                .setup(provider => provider.provideURL(It.isAny(), It.isAnyString()))
                 .returns(() => 'fake-url')
                 .verifiable(Times.once());
             const wrapper = shallow(<ExportDialog {...props} />);

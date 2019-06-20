@@ -14,12 +14,12 @@ describe('FileURLProviderTest', () => {
         const blobStub = {} as Blob;
 
         provideBlobMock
-            .setup(pbm => pbm(content, mimeType))
+            .setup(blobProvider => blobProvider(content, mimeType))
             .returns(() => blobStub)
             .verifiable(Times.once());
 
         windowUtilsMock
-            .setup(w => w.createObjectURL(blobStub))
+            .setup(windowUtil => windowUtil.createObjectURL(blobStub))
             .returns(() => returnedURL)
             .verifiable(Times.once());
 
