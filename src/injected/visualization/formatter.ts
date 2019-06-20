@@ -5,6 +5,7 @@ import { AxeResultsWithFrameLevel } from '../frameCommunicators/html-element-axe
 
 export interface DrawerConfiguration {
     outlineStyle?: string;
+    outlineWidth?: string;
     borderColor: string;
     showVisualization: boolean;
     textAlign?: string;
@@ -28,6 +29,9 @@ export interface BoxConfig {
     background: string;
     text: string;
     boxWidth?: string;
+    fontSize?: string;
+    fontWeight?: string;
+    outline?: string;
 }
 
 export interface StrokeConfiguration {

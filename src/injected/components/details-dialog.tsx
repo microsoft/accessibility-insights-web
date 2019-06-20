@@ -342,10 +342,9 @@ export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDi
                 }}
                 modalProps={{
                     isBlocking: false,
-                    containerClassName: 'insights-dialog-main-container',
+                    containerClassName: 'insights-dialog-main-override insights-dialog-main-container',
                     layerProps: {
                         onLayerDidMount: this.onLayoutDidMount,
-                        className: 'insights-dialog-main-override',
                         hostId: 'insights-dialog-layer-host',
                     },
                 }}

@@ -8,7 +8,7 @@ import { DrawerProvider } from './visualization/drawer-provider';
 
 export type RegisterDrawer = (id: string, drawer: Drawer) => void;
 
-export class VisualizationTypeDrawerRegistrator {
+export class VisualizationTypeDrawerRegistrar {
     constructor(
         private registerDrawer: RegisterDrawer,
         private visualizationConfigurationFactory: VisualizationConfigurationFactory,
@@ -18,20 +18,18 @@ export class VisualizationTypeDrawerRegistrator {
 
     public registerType = (visualizationType: VisualizationType) => {
         const config = this.visualizationConfigurationFactory.getConfiguration(visualizationType);
-        let id: string;
-        let drawer: Drawer;
         if (this.assessmentProvider.isValidType(visualizationType)) {
             const steps = this.assessmentProvider.getStepMap(visualizationType);
             Object.keys(steps).forEach(key => {
                 const step = steps[key];
-                id = config.getIdentifier(step.key);
-                drawer = config.getDrawer(this.drawerProvider, id);
+                const id = config.getIdentifier(step.key);
+                const drawer = config.getDrawer(this.drawerProvider, id);
+                this.registerDrawer(id, drawer);
             });
         } else {
-            id = config.getIdentifier();
-            drawer = config.getDrawer(this.drawerProvider);
+            const id = config.getIdentifier();
+            const drawer = config.getDrawer(this.drawerProvider);
+            this.registerDrawer(id, drawer);
         }
-
-        this.registerDrawer(id, drawer);
     };
 }

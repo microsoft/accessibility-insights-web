@@ -18,6 +18,7 @@ import { DropdownClickHandler } from '../common/dropdown-click-handler';
 import { EnvironmentInfoProvider } from '../common/environment-info-provider';
 import { initializeFabricIcons } from '../common/fabric-icons';
 import { getAllFeatureFlagDetails } from '../common/feature-flags';
+import { FileURLProvider } from '../common/file-url-provider';
 import { GetGuidanceTagsFromGuidanceLinks } from '../common/get-guidance-tags-from-guidance-links';
 import { getInnerTextFromJsxElement } from '../common/get-inner-text-from-jsx-element';
 import { HTMLElementUtils } from '../common/html-element-utils';
@@ -264,6 +265,10 @@ if (isNaN(tabId) === false) {
                 AxeInfo.Default.version,
             );
 
+            const windowUtils = new WindowUtils();
+
+            const fileURLProvider = new FileURLProvider(windowUtils, provideBlob);
+
             const deps: DetailsViewContainerDeps = {
                 fixInstructionProcessor,
                 dropdownClickHandler,
@@ -275,7 +280,8 @@ if (isNaN(tabId) === false) {
                 actionInitiators,
                 assessmentDefaultMessageGenerator: assessmentDefaultMessageGenerator,
                 issueDetailsTextGenerator,
-                windowUtils: new WindowUtils(),
+                windowUtils,
+                fileURLProvider,
                 getAssessmentSummaryModelFromProviderAndStoreData: getAssessmentSummaryModelFromProviderAndStoreData,
                 getAssessmentSummaryModelFromProviderAndStatusData: getAssessmentSummaryModelFromProviderAndStatusData,
                 visualizationConfigurationFactory,
@@ -296,7 +302,6 @@ if (isNaN(tabId) === false) {
                 urlParser,
                 getDateFromTimestamp: DateProvider.getDateFromTimestamp,
                 getCurrentDate: DateProvider.getCurrentDate,
-                provideBlob: provideBlob,
                 settingsProvider: SettingsProviderImpl,
                 environmentInfoProvider,
                 issueFilingServiceProvider: IssueFilingServiceProviderImpl,
