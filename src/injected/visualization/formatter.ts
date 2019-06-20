@@ -1,19 +1,23 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { TextAlignProperty } from 'csstype';
 import { DialogRenderer } from '../dialog-renderer';
 import { AxeResultsWithFrameLevel } from '../frameCommunicators/html-element-axe-results-helper';
 
-export interface DrawerConfiguration {
+export interface DrawerConfiguration extends SimpleHighlightDrawerConfiguration {
     outlineStyle?: string;
     outlineWidth?: string;
     borderColor: string;
     showVisualization: boolean;
-    textAlign?: string;
-    cursor?: string;
     failureBoxConfig?: FailureBoxConfig;
     toolTip?: string;
     textBoxConfig?: TextBoxConfig;
     getBoundingRect?: (e: Element) => ClientRect | DOMRect;
+}
+
+export interface SimpleHighlightDrawerConfiguration {
+    textAlign?: TextAlignProperty;
+    cursor?: string;
 }
 
 export interface TextBoxConfig extends BoxConfig {
