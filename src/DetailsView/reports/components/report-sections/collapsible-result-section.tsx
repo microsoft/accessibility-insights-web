@@ -6,7 +6,7 @@ import { NamedSFC } from '../../../../common/react/named-sfc';
 import { CollapsibleContainer } from './collapsible-container';
 import { ResultSectionProps } from './result-section';
 import { ResultSectionTitle } from './result-section-title';
-import { RulesOnly } from './rules';
+import { RulesOnly } from './rules-only';
 
 export type CollapsibleResultSectionProps = ResultSectionProps & {
     buttonAriaLabel: string;

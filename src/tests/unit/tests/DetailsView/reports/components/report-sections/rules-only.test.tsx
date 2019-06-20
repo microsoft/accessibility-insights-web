@@ -3,11 +3,11 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-import { RulesOnly } from '../../../../../../../DetailsView/reports/components/report-sections/rules';
+import { RulesOnly } from '../../../../../../../DetailsView/reports/components/report-sections/rules-only';
 import { RulesWithInstancesDeps } from '../../../../../../../DetailsView/reports/components/report-sections/rules-with-instances';
 import { RuleResult } from '../../../../../../../scanner/iruleresults';
 
-describe('Rules', () => {
+describe('RulesOnly', () => {
     const depsStub = {} as RulesWithInstancesDeps;
 
     it('renders', () => {
