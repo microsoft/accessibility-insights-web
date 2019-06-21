@@ -12,8 +12,10 @@ export interface DrawerConfiguration extends SimpleHighlightDrawerConfiguration 
     failureBoxConfig?: FailureBoxConfig;
     toolTip?: string;
     textBoxConfig?: TextBoxConfig;
-    getBoundingRect?: (e: Element) => ClientRect | DOMRect;
+    getBoundingRect?: GetBoundingRect;
 }
+
+export type GetBoundingRect = (e: Element) => ClientRect;
 
 export interface SimpleHighlightDrawerConfiguration {
     textAlign?: TextAlignProperty;

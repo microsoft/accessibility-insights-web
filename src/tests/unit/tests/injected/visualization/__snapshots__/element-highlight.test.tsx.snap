@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ElementHighlight renders null when drawerConfig showVisualization is false 1`] = `null`;
+
+exports[`ElementHighlight renders null when element is outside of document 1`] = `null`;
