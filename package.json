@@ -112,7 +112,7 @@
         "react-dom": "^16.8.6",
         "react-helmet": "^5.2.0",
         "react-router-dom": "^4.3.1",
-        "ua-parser-js": "^0.7.19",
+        "ua-parser-js": "^0.7.20",
         "uuid": "^3.3.2"
     }
 }
