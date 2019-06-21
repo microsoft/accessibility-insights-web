@@ -32,8 +32,8 @@ describe('ElementHighlight', () => {
     let offsetStub: ClientRectOffset;
 
     beforeEach(() => {
-        drawerUtilsMock = Mock.ofType<DrawerUtils>(null);
-        clientUtilsMock = Mock.ofType<ClientUtils>(null);
+        drawerUtilsMock = Mock.ofType(DrawerUtils);
+        clientUtilsMock = Mock.ofType(ClientUtils);
         dialogRenderMock = Mock.ofType<RenderDialog>();
         getBoundingRect = Mock.ofType<GetBoundingRect>();
         documentMock = Mock.ofType<Document>();
