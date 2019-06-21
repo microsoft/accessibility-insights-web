@@ -3,29 +3,33 @@
 import { kebabCase } from 'lodash';
 import * as React from 'react';
 
-import { NamedSFC } from '../../../../common/react/named-sfc';
+import { NamedSFC } from '../../../common/react/named-sfc';
 import {
-    allOutcomeTypes,
     outcomeIconMap,
     outcomeIconMapInverted,
     OutcomeStats,
+    OutcomeType,
     outcomeTypeSemantics,
     OutcomeUnits,
-} from '../outcome-type';
+} from './outcome-type';
 
-export type OutcomeSummaryBarProps = Partial<OutcomeStats> & { units?: OutcomeUnits, inverted?: boolean };
+export type OutcomeSummaryBarProps = {
+    outcomeStats: Partial<OutcomeStats>,
+    allOutcomeTypes: OutcomeType[],
+    units?: OutcomeUnits,
+    inverted?: boolean
+}
 
 export const OutcomeSummaryBar = NamedSFC<OutcomeSummaryBarProps>('OutcomeSummaryBar', (props) => {
     return (
         <div className="outcome-summary-bar">
-            {allOutcomeTypes
-                .filter(outcomeType => props[outcomeType] != null)
+            {props.allOutcomeTypes
                 .map(outcomeType => {
                     const { units, inverted } = props;
                     const text = outcomeTypeSemantics[outcomeType].pastTense;
                     const iconMap = inverted === true ? outcomeIconMapInverted : outcomeIconMap;
                     const outcomeIcon = iconMap[outcomeType];
-                    const count = props[outcomeType];
+                    const count = props.outcomeStats[outcomeType];
                     const suffix = units === 'percentage' ? '% ' : '';
 
                     return (
