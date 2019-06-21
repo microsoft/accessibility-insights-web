@@ -9,8 +9,9 @@ import { NewTabLink } from '../../../../common/components/new-tab-link';
 import { GetGuidanceTagsFromGuidanceLinks } from '../../../../common/get-guidance-tags-from-guidance-links';
 import { NamedSFC } from '../../../../common/react/named-sfc';
 import { RuleResult } from '../../../../scanner/iruleresults';
+import { InstanceOutcomeType } from '../instance-outcome-type';
 import { OutcomeChip } from '../outcome-chip';
-import { InstanceOutcomeType, outcomeTypeSemantics } from '../outcome-type';
+import { outcomeTypeSemantics } from '../outcome-type';
 
 export type InstanceListGroupHeaderDeps = {
     getGuidanceTagsFromGuidanceLinks: GetGuidanceTagsFromGuidanceLinks;
@@ -69,9 +70,9 @@ export const InstanceListGroupHeader = NamedSFC<InstanceListGroupHeaderProps>('I
     const headingProps =
         props.ariaLevel != null
             ? {
-                  role: 'heading',
-                  'aria-level': props.ariaLevel,
-              }
+                role: 'heading',
+                'aria-level': props.ariaLevel,
+            }
             : null;
 
     return (

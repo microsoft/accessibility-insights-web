@@ -14,21 +14,21 @@ describe('OutcomeSummaryBar', () => {
     };
 
     it('show by percentage', () => {
-        const props: OutcomeSummaryBarProps = { outcomeStats, allOutcomeTypes, units: 'percentage' };
+        const props: OutcomeSummaryBarProps = { outcomeStats, allOutcomeTypes, countSuffix: '%' };
         const wrapper = shallow(<OutcomeSummaryBar {...props} />);
 
         expect(wrapper.getElement()).toMatchSnapshot();
     });
 
     it('show by percentage', () => {
-        const props: OutcomeSummaryBarProps = { outcomeStats, allOutcomeTypes, units: 'requirements' };
+        const props: OutcomeSummaryBarProps = { outcomeStats, allOutcomeTypes };
         const wrapper = shallow(<OutcomeSummaryBar {...props} />);
 
         expect(wrapper.getElement()).toMatchSnapshot();
     });
 
     it('render inverted badges', () => {
-        const props: OutcomeSummaryBarProps = { outcomeStats, allOutcomeTypes, inverted: true };
+        const props: OutcomeSummaryBarProps = { outcomeStats, allOutcomeTypes, iconStyleInverted: true };
         const wrapper = shallow(<OutcomeSummaryBar {...props} />);
 
         expect(wrapper.getElement()).toMatchSnapshot();

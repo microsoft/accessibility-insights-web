@@ -3,7 +3,7 @@
 import * as React from 'react';
 
 import { NamedSFC } from '../../../../common/react/named-sfc';
-import { InstanceOutcomeType, InstanceOutcomeTypes } from '../outcome-type';
+import { allInstanceOutcomeTypes, InstanceOutcomeType } from '../instance-outcome-type';
 import { OutcomeSummaryBar } from './../outcome-summary-bar';
 import { SectionProps } from './report-section-factory';
 
@@ -22,7 +22,7 @@ export const SummarySection = NamedSFC<SummarySectionProps>('SummarySection', pr
     return (
         <div className="summary-section">
             <h2>Summary</h2>
-            <OutcomeSummaryBar {...props} outcomeStats={countSummary} inverted={true} allOutcomeTypes={InstanceOutcomeTypes} />
+            <OutcomeSummaryBar {...props} outcomeStats={countSummary} iconStyleInverted={true} allOutcomeTypes={allInstanceOutcomeTypes} />
         </div>
     );
 });

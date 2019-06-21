@@ -15,7 +15,7 @@ exports[`SummarySection failure only 1`] = `
         "inapplicable",
       ]
     }
-    inverted={true}
+    iconStyleInverted={true}
     outcomeStats={
       Object {
         "fail": 3,
@@ -61,7 +61,7 @@ exports[`SummarySection failures + not applicable + passes 1`] = `
         "inapplicable",
       ]
     }
-    inverted={true}
+    iconStyleInverted={true}
     outcomeStats={
       Object {
         "fail": 3,
@@ -114,7 +114,7 @@ exports[`SummarySection failures + not applicable only 1`] = `
         "inapplicable",
       ]
     }
-    inverted={true}
+    iconStyleInverted={true}
     outcomeStats={
       Object {
         "fail": 3,
@@ -164,7 +164,7 @@ exports[`SummarySection failures + passes only 1`] = `
         "inapplicable",
       ]
     }
-    inverted={true}
+    iconStyleInverted={true}
     outcomeStats={
       Object {
         "fail": 3,
@@ -213,7 +213,7 @@ exports[`SummarySection not applicable + passes only 1`] = `
         "inapplicable",
       ]
     }
-    inverted={true}
+    iconStyleInverted={true}
     outcomeStats={
       Object {
         "fail": 0,
@@ -254,7 +254,7 @@ exports[`SummarySection not applicable only 1`] = `
         "inapplicable",
       ]
     }
-    inverted={true}
+    iconStyleInverted={true}
     outcomeStats={
       Object {
         "fail": 0,
@@ -291,7 +291,7 @@ exports[`SummarySection passes only 1`] = `
         "inapplicable",
       ]
     }
-    inverted={true}
+    iconStyleInverted={true}
     outcomeStats={
       Object {
         "fail": 0,

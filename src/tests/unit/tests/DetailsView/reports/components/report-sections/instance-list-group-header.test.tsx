@@ -4,7 +4,7 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 
 import { GetGuidanceTagsFromGuidanceLinks } from '../../../../../../../common/get-guidance-tags-from-guidance-links';
-import { InstanceOutcomeType } from '../../../../../../../DetailsView/reports/components/outcome-type';
+import { InstanceOutcomeType } from '../../../../../../../DetailsView/reports/components/instance-outcome-type';
 import {
     InstanceListGroupHeader,
     InstanceListGroupHeaderProps,

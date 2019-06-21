@@ -15,7 +15,7 @@ exports[`AssessmentReportSummary render Correct composition 1`] = `
         "fail",
       ]
     }
-    units="percentage"
+    countSuffix="%"
   />
   <h3
     className="test-details-text"

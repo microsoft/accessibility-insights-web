@@ -9,25 +9,24 @@ import { outcomeIconMap, outcomeIconMapInverted, OutcomeStats, OutcomeType, outc
 export type OutcomeSummaryBarProps = {
     outcomeStats: Partial<OutcomeStats>;
     allOutcomeTypes: OutcomeType[];
-    units?: OutcomeUnits;
-    inverted?: boolean;
+    iconStyleInverted?: boolean;
+    countSuffix?: string;
 };
 
 export const OutcomeSummaryBar = NamedSFC<OutcomeSummaryBarProps>('OutcomeSummaryBar', props => {
     return (
         <div className="outcome-summary-bar">
             {props.allOutcomeTypes.map(outcomeType => {
-                const { units, inverted } = props;
+                const { iconStyleInverted, countSuffix } = props;
                 const text = outcomeTypeSemantics[outcomeType].pastTense;
-                const iconMap = inverted === true ? outcomeIconMapInverted : outcomeIconMap;
+                const iconMap = iconStyleInverted === true ? outcomeIconMapInverted : outcomeIconMap;
                 const outcomeIcon = iconMap[outcomeType];
                 const count = props.outcomeStats[outcomeType];
-                const suffix = units === 'percentage' ? '% ' : '';
 
                 return (
                     <div key={outcomeType} style={{ flexGrow: count }}>
                         <span className={kebabCase(outcomeType)}>
-                            {outcomeIcon} {count + suffix} <span className="outcome-past-tense">{text}</span>
+                            {outcomeIcon} {count + countSuffix} <span className="outcome-past-tense">{text}</span>
                         </span>
                     </div>
                 );

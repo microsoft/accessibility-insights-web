@@ -5,7 +5,7 @@ import * as React from 'react';
 import { NamedSFC } from '../../../../common/react/named-sfc';
 import { FixInstructionProcessor } from '../../../../injected/fix-instruction-processor';
 import { RuleResult } from '../../../../scanner/iruleresults';
-import { InstanceOutcomeType } from '../outcome-type';
+import { InstanceOutcomeType } from '../instance-outcome-type';
 import { NoFailedInstancesCongrats } from './no-failed-instances-congrats';
 import { RuleDetailsGroup, RuleDetailsGroupDeps } from './rule-details-group';
 

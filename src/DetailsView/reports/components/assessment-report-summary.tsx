@@ -5,7 +5,7 @@ import * as React from 'react';
 import { OverviewSummaryReportModel } from '../assessment-report-model';
 import { AssessmentSummaryDetails } from './assessment-summary-details';
 import { OutcomeSummaryBar } from './outcome-summary-bar';
-import { RequirementOutcomeTypes } from './outcome-type';
+import { allRequirementOutcomeTypes } from './requirement-outcome-type';
 
 export interface AssessmentReportSummaryProps {
     summary: OverviewSummaryReportModel;
@@ -18,8 +18,8 @@ export class AssessmentReportSummary extends React.Component<AssessmentReportSum
                 <h2>Summary</h2>
                 <OutcomeSummaryBar
                     outcomeStats={this.props.summary.byPercentage}
-                    units="percentage"
-                    allOutcomeTypes={RequirementOutcomeTypes}
+                    countSuffix="%"
+                    allOutcomeTypes={allRequirementOutcomeTypes}
                 />
                 <h3 className="test-details-text">Test details</h3>
                 {this.renderDetails()}
