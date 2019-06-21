@@ -8,6 +8,13 @@ exports[`AssessmentReportSummary render Correct composition 1`] = `
     Summary
   </h2>
   <OutcomeSummaryBar
+    allOutcomeTypes={
+      Array [
+        "pass",
+        "incomplete",
+        "fail",
+      ]
+    }
     units="percentage"
   />
   <h3
