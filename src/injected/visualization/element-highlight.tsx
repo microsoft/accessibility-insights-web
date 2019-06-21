@@ -30,7 +30,7 @@ export interface ElementHighlightProps {
 }
 
 export const ElementHighlight = NamedSFC<ElementHighlightProps>('HighlightBox', props => {
-    const { deps, drawerConfig, dialogRender, element, elementResult, bodyStyle, docStyle, getBoundingRect } = props;
+    const { deps, drawerConfig, featureFlagStoreData, dialogRender, element, elementResult, bodyStyle, docStyle, getBoundingRect } = props;
     const { clientUtils, drawerUtils } = deps;
 
     if (!drawerConfig.showVisualization) {
@@ -45,7 +45,7 @@ export const ElementHighlight = NamedSFC<ElementHighlightProps>('HighlightBox', 
     }
 
     const onClickFailureBoxHandler = () => {
-        dialogRender(elementResult, this.featureFlagStoreData);
+        dialogRender(elementResult, featureFlagStoreData);
     };
 
     const offset = clientUtils.getOffset(element);

@@ -11,7 +11,6 @@ import { HtmlElementAxeResults } from '../../../../../injected/scanner-utils';
 import { DrawerUtils } from '../../../../../injected/visualization/drawer-utils';
 import { ElementHighlight, ElementHighlightDeps, ElementHighlightProps } from '../../../../../injected/visualization/element-highlight';
 import { BoxConfig, DrawerConfiguration, GetBoundingRect } from '../../../../../injected/visualization/formatter';
-import { HightlightBox } from '../../../../../injected/visualization/highlight-box';
 
 describe('ElementHighlight', () => {
     let deps: ElementHighlightDeps;
@@ -39,6 +38,8 @@ describe('ElementHighlight', () => {
         getBoundingRect = Mock.ofType<GetBoundingRect>();
         documentMock = Mock.ofType<Document>();
 
+        elementResultStub = {} as HtmlElementAxeResults;
+        featureFlagStoreDataStub = {} as FeatureFlagStoreData;
         elementStub = {} as Element;
         elementBoundingClientRectStub = {
             bottom: 1,
