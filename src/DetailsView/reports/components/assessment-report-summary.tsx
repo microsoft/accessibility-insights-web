@@ -4,8 +4,8 @@ import * as React from 'react';
 
 import { OverviewSummaryReportModel } from '../assessment-report-model';
 import { AssessmentSummaryDetails } from './assessment-summary-details';
-import { RequirementOutcomeTypes } from './outcome-type';
 import { OutcomeSummaryBar } from './outcome-summary-bar';
+import { RequirementOutcomeTypes } from './outcome-type';
 
 export interface AssessmentReportSummaryProps {
     summary: OverviewSummaryReportModel;

@@ -43,8 +43,8 @@ export const RuleDetailsGroup = NamedSFC<RuleDetailsGroupProps>(
                             titleHeadingLevel={3}
                         />
                     ) : (
-                            <RuleDetail deps={deps} key={rule.id} rule={rule} outcomeType={outcomeType} isHeader={showDetails} />
-                        );
+                        <RuleDetail deps={deps} key={rule.id} rule={rule} outcomeType={outcomeType} isHeader={showDetails} />
+                    );
                 })}
             </div>
         );

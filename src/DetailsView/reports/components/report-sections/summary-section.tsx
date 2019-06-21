@@ -7,7 +7,7 @@ import { InstanceOutcomeType, InstanceOutcomeTypes } from '../outcome-type';
 import { OutcomeSummaryBar } from './../outcome-summary-bar';
 import { SectionProps } from './report-section-factory';
 
-export type SummarySectionProps = Pick<SectionProps, 'scanResult'>;;
+export type SummarySectionProps = Pick<SectionProps, 'scanResult'>;
 
 export const SummarySection = NamedSFC<SummarySectionProps>('SummarySection', props => {
     const scanResult = props.scanResult;
@@ -22,12 +22,7 @@ export const SummarySection = NamedSFC<SummarySectionProps>('SummarySection', pr
     return (
         <div className="summary-section">
             <h2>Summary</h2>
-            <OutcomeSummaryBar
-                {...props}
-                outcomeStats={countSummary}
-                inverted={true}
-                allOutcomeTypes={InstanceOutcomeTypes}
-            />
+            <OutcomeSummaryBar {...props} outcomeStats={countSummary} inverted={true} allOutcomeTypes={InstanceOutcomeTypes} />
         </div>
     );
 });

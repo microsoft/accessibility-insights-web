@@ -69,9 +69,9 @@ export const InstanceListGroupHeader = NamedSFC<InstanceListGroupHeaderProps>('I
     const headingProps =
         props.ariaLevel != null
             ? {
-                role: 'heading',
-                'aria-level': props.ariaLevel,
-            }
+                  role: 'heading',
+                  'aria-level': props.ariaLevel,
+              }
             : null;
 
     return (
