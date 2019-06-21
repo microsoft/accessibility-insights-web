@@ -11,6 +11,7 @@ import { VisualizationConfigurationFactory } from '../common/configs/visualizati
 import { DropdownClickHandler } from '../common/dropdown-click-handler';
 import { EnumHelper } from '../common/enum-helper';
 import { HTMLElementUtils } from '../common/html-element-utils';
+import { IsSupportedBrowser } from '../common/is-supported-browser';
 import { createDefaultLogger } from '../common/logging/default-logger';
 import { Logger } from '../common/logging/logger';
 import { ActionMessageDispatcher } from '../common/message-creators/action-message-dispatcher';
@@ -57,12 +58,12 @@ export class PopupInitializer {
     constructor(
         private readonly chromeAdapter: BrowserAdapter,
         private readonly targetTabFinder: TargetTabFinder,
-        private readonly userAgentBrowser: IUAParser.IBrowser,
+        private readonly isSupportedBrowser: IsSupportedBrowser,
         private logger: Logger = createDefaultLogger(),
     ) {}
 
     public initialize(): Promise<void> {
-        if (this.userAgentBrowser.name === 'Edge') {
+        if (!this.isSupportedBrowser()) {
             this.useIncompatibleBrowserRenderer();
             return;
         }

@@ -5,28 +5,12 @@ import { UAParser } from 'ua-parser-js';
 
 import { createSupportedBrowserChecker } from '../../../../common/is-supported-browser';
 
-type TestCase = {
-    testedBrowser: string;
-    browserName: string;
-    engineName: string;
-    isSupported: boolean;
-};
-
 describe('isSupportedBrowser', () => {
     let uaParserMock: IMock<UAParser>;
 
     beforeEach(() => {
         uaParserMock = Mock.ofType<UAParser>();
     });
-
-    const testCases: TestCase[] = [
-        {
-            testedBrowser: 'Microsoft Edge',
-            browserName: 'Edge',
-            engineName: 'Blink',
-            isSupported: false,
-        },
-    ];
 
     it.each`
         testedBrowser                   | browserName    | engineName      | isSupported
