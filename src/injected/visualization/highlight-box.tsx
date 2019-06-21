@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { css } from '@uifabric/utilities';
 import { CSSProperties } from 'react';
 import * as React from 'react';
 
@@ -28,7 +29,7 @@ export const HightlightBox = NamedSFC<HightlightBoxProps>('HighlightBox', props 
         textAlign: drawerConfig.textAlign,
     };
 
-    const combinedClass = 'insights-highlight-text ' + className;
+    const combinedClass = css('insights-highlight-text', className);
 
     return (
         <div className={combinedClass} onClick={onClickHandler} style={styles}>

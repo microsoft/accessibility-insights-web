@@ -29,7 +29,7 @@ export interface ElementHighlightProps {
     getBoundingRect: GetBoundingRect;
 }
 
-export const ElementHighlight = NamedSFC<ElementHighlightProps>('HighlightBox', props => {
+export const ElementHighlight = NamedSFC<ElementHighlightProps>('ElementHighlight', props => {
     const { deps, drawerConfig, featureFlagStoreData, dialogRender, element, elementResult, bodyStyle, docStyle, getBoundingRect } = props;
     const { clientUtils, drawerUtils } = deps;
 
