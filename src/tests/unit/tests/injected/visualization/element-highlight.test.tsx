@@ -11,6 +11,7 @@ import { HtmlElementAxeResults } from '../../../../../injected/scanner-utils';
 import { DrawerUtils } from '../../../../../injected/visualization/drawer-utils';
 import { ElementHighlight, ElementHighlightDeps, ElementHighlightProps } from '../../../../../injected/visualization/element-highlight';
 import { BoxConfig, DrawerConfiguration, GetBoundingRect } from '../../../../../injected/visualization/formatter';
+import { HightlightBox } from '../../../../../injected/visualization/highlight-box';
 
 describe('ElementHighlight', () => {
     let deps: ElementHighlightDeps;
@@ -128,7 +129,13 @@ describe('ElementHighlight', () => {
             )
             .returns(() => minHeightStub);
 
+        dialogRenderMock.setup(mock => mock(elementResultStub, featureFlagStoreDataStub)).verifiable();
+
         const testObject = shallow(<ElementHighlight {...props} />);
+        const failureHighlightBox = testObject.findWhere(node => node.prop('onClickHandler') != null);
+        failureHighlightBox.prop('onClickHandler')();
+
         expect(testObject.getElement()).toMatchSnapshot();
+        dialogRenderMock.verifyAll();
     });
 });
