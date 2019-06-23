@@ -34,6 +34,7 @@ import { TelemetryEventHandler } from './telemetry/telemetry-event-handler';
 import { TelemetryLogger } from './telemetry/telemetry-logger';
 import { TelemetryStateListener } from './telemetry/telemetry-state-listener';
 import { UserStoredDataCleaner } from './user-stored-data-cleaner';
+import { createDefaultPromiseFactory } from '../common/promises/promise-factory';
 
 declare var window: Window & InsightsFeatureFlags;
 const browserAdapter = new ChromeAdapter();
@@ -102,6 +103,8 @@ getPersistedData(indexedDBInstance).then((persistedData: PersistedData) => {
 
         const targetTabController = new TargetTabController(browserAdapter, visualizationConfigurationFactory);
 
+        const promiseFactory = createDefaultPromiseFactory();
+
         const tabContextFactory = new TabContextFactory(
             visualizationConfigurationFactory,
             telemetryEventHandler,
@@ -109,6 +112,7 @@ getPersistedData(indexedDBInstance).then((persistedData: PersistedData) => {
             targetTabController,
             globalContext.stores.assessmentStore,
             assessmentsProvider,
+            promiseFactory,
         );
 
         const clientHandler = new TabController(

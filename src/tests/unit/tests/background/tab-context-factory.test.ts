@@ -24,6 +24,7 @@ import { StoreNames } from '../../../../common/stores/store-names';
 import { StoreUpdateMessage } from '../../../../common/types/store-update-message';
 import { VisualizationType } from '../../../../common/types/visualization-type';
 import { WindowUtils } from '../../../../common/window-utils';
+import { PromiseFactory } from '../../../../common/promises/promise-factory';
 
 function getConfigs(visualizationType: VisualizationType): VisualizationConfiguration {
     return new VisualizationConfigurationFactory().getConfiguration(visualizationType);
@@ -70,6 +71,7 @@ describe('TabContextFactoryTest', () => {
         const visualizationConfigurationFactoryMock = Mock.ofType(VisualizationConfigurationFactory);
         visualizationConfigurationFactoryMock.setup(vcfm => vcfm.getConfiguration(It.isAny())).returns(theType => getConfigs(theType));
 
+        const promiseFactoryMock = Mock.ofType<PromiseFactory>();
         const testObject = new TabContextFactory(
             visualizationConfigurationFactoryMock.object,
             telemetryEventHandlerMock.object,
@@ -77,6 +79,7 @@ describe('TabContextFactoryTest', () => {
             targetTabControllerMock.object,
             assessmentStore.object,
             assessmentProvider.object,
+            promiseFactoryMock.object,
         );
 
         const tabContext = testObject.createTabContext(
