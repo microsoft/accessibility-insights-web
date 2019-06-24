@@ -89,11 +89,21 @@ describe('DetailsDialogHandlerTest', () => {
         detailsDialogMock.verifyAll();
     });
 
-    test('inspectButtonClickHandler', () => {
+    test('inspectButtonClickHandler when the devtools are opened', () => {
+        const devToolStoreMock = Mock.ofType<BaseStore<DevToolState>>(undefined, MockBehavior.Strict);
         const devToolActionMessageCreatorMock = Mock.ofType<DevToolActionMessageCreator>(undefined, MockBehavior.Strict);
         const eventFactory = new EventStubFactory();
         const event = eventFactory.createMouseClickEvent();
         const target = ['frame', 'div'];
+
+        devToolStoreMock
+            .setup(store => store.getState())
+            .returns(() => {
+                return {
+                    isOpen: true,
+                } as any;
+            })
+            .verifiable(Times.once());
 
         devToolActionMessageCreatorMock
             .setup(creator => creator.setInspectElement(It.isValue(event as any), It.isValue(target)))
@@ -105,16 +115,20 @@ describe('DetailsDialogHandlerTest', () => {
                 return {
                     target: target,
                     devToolActionMessageCreator: devToolActionMessageCreatorMock.object,
+                    devToolStore: devToolStoreMock.object,
                 } as any;
             })
             .verifiable(Times.atLeastOnce());
 
-        detailsDialogMock.setup(dialog => dialog.setState(It.isValue({ showDialog: false }))).verifiable(Times.once());
+        detailsDialogMock
+            .setup(dialog => dialog.setState(It.isValue({ showDialog: false, showInspectMessage: false })))
+            .verifiable(Times.once());
 
         testSubject.inspectButtonClickHandler(detailsDialogMock.object, event as any);
 
         detailsDialogMock.verifyAll();
         devToolActionMessageCreatorMock.verifyAll();
+        devToolStoreMock.verifyAll();
     });
 
     test('showDialog', () => {
@@ -139,6 +153,7 @@ describe('DetailsDialogHandlerTest', () => {
                 dialog.setState(
                     It.isValue({
                         showDialog: false,
+                        showInspectMessage: false,
                     }),
                 ),
             )

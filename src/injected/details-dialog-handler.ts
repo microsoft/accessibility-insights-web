@@ -44,7 +44,7 @@ export class DetailsDialogHandler {
 
     @autobind
     public hideDialog(dialog: DetailsDialog): void {
-        dialog.setState({ showDialog: false });
+        dialog.setState({ showDialog: false, showInspectMessage: false });
     }
 
     @autobind
@@ -65,7 +65,7 @@ export class DetailsDialogHandler {
     @autobind
     public onDevToolChanged(dialog: DetailsDialog): void {
         const canInspect: boolean = this.canInspect(dialog);
-        dialog.setState({ canInspect, showInspectMessage: !canInspect });
+        dialog.setState({ canInspect });
     }
 
     @autobind
