@@ -103,7 +103,7 @@ describe('IssueFilingButtonTest', () => {
         issueFilingActionMessageCreatorMock
             .setup(creator => creator.fileIssue(eventStub, testKey, props.issueDetailsData))
             .verifiable(Times.once());
-        const wrapper = shallow(<IssueFilingButton {...props} />);
+        const wrapper = shallow<IssueFilingButton>(<IssueFilingButton {...props} />);
 
         wrapper.find(DefaultButton).simulate('click', eventStub);
 
@@ -131,7 +131,7 @@ describe('IssueFilingButtonTest', () => {
             userConfigurationStoreData: userConfigurationStoreData,
             needsSettingsContentRenderer,
         };
-        const wrapper = shallow(<IssueFilingButton {...props} />);
+        const wrapper = shallow<IssueFilingButton>(<IssueFilingButton {...props} />);
         expect(wrapper.state().showNeedsSettingsContent).toBe(false);
 
         wrapper.find(DefaultButton).simulate('click', eventStub);
