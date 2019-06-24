@@ -68,12 +68,12 @@ export class HighlightBoxDrawer extends BaseDrawer {
         const body = currentDom.querySelector('body');
         const bodyStyle = this.windowUtils.getComputedStyle(body);
 
-        let drawerConfig = HighlightBoxDrawer.defaultConfiguration;
+        const drawerConfig = HighlightBoxDrawer.defaultConfiguration;
         if (this.formatter) {
             drawerConfig = this.formatter.getDrawerConfiguration(element, data) as DrawerConfiguration;
         }
 
-        let elementBoundingClientRect = element.getBoundingClientRect();
+        const elementBoundingClientRect = element.getBoundingClientRect();
         if (drawerConfig.getBoundingRect) {
             elementBoundingClientRect = drawerConfig.getBoundingRect(element);
         }
