@@ -15,9 +15,10 @@ const getCSSModulesLoadersConfig = isDevMode => {
             {
                 loader: 'css-loader',
                 options: {
-                    modules: true,
-                    camelCase: 'only',
-                    localIdentName: isDevMode ? '[local]' : '[local][hash:base64:5]',
+                    modules: {
+                        localIdentName: isDevMode ? '[local]' : '[local][hash:base64:5]',
+                    },
+                    localsConvention: 'camelCaseOnly',
                 },
             },
             'sass-loader',
