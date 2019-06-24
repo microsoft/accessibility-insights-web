@@ -364,10 +364,10 @@
     "@types/cheerio" "*"
     "@types/react" "*"
 
-"@types/enzyme@3.1.0":
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/@types/enzyme/-/enzyme-3.1.0.tgz#6b5b2d85232ee4200c78d4fcf19a97921f438c7c"
-  integrity sha512-AVqvXLZOTxyOzB9kE700qxIgT6hOiLi73C5gN9cDuCfh4IDpnkcEymLNZhT2m8IM+1rtoRkyGpezF7olR23PkQ==
+"@types/enzyme@3.9.4":
+  version "3.9.4"
+  resolved "https://registry.yarnpkg.com/@types/enzyme/-/enzyme-3.9.4.tgz#08f3ebfa24aa881021693a0fe615d6d2720c07ad"
+  integrity sha512-bQcwt5gcKnekrbci4hcapfE2J6rkkFbHM1l4VobLtSl4ogOfj0lvSxrdS6FftCakmJqqPBqdQCwb5KnlivL6SQ==
   dependencies:
     "@types/cheerio" "*"
     "@types/react" "*"

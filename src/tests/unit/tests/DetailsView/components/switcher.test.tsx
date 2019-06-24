@@ -40,7 +40,7 @@ describe('Switcher', () => {
         actionCreatorMock
             .setup(creator => creator.sendPivotItemClicked(DetailsViewPivotType[DetailsViewPivotType.assessment]))
             .verifiable(Times.once());
-        const wrapper = mount(<Switcher {...defaultProps} />);
+        const wrapper = mount<Switcher>(<Switcher {...defaultProps} />);
         const dropdown = wrapper.find(Dropdown);
 
         expect(wrapper.state().selectedKey).toBe(DetailsViewPivotType.fastPass);
