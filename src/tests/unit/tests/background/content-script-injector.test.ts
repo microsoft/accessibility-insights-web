@@ -43,6 +43,6 @@ describe('ContentScriptInjectorTest', () => {
 
         const injected = testSubject.injectScripts(tabId);
 
-        return expect(injected).resolves.toBe(null);
+        return expect(injected).resolves.toBeUndefined();
     });
 });
