@@ -39,7 +39,6 @@ exports[`RulesWithInstances renders 1`] = `
     summaryContent={
       <RuleDetails
         deps={Object {}}
-        isHeader={false}
         outcomeType="pass"
         rule={
           Object {

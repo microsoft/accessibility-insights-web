@@ -29,7 +29,7 @@ export const RulesWithInstances = NamedSFC<RulesWithInstancesProps>(
                         <CollapsibleContainer
                             key={`summary-details-${idx + 1}`}
                             id={rule.id}
-                            summaryContent={<RuleDetail deps={deps} key={rule.id} rule={rule} outcomeType={outcomeType} isHeader={false} />}
+                            summaryContent={<RuleDetail deps={deps} key={rule.id} rule={rule} outcomeType={outcomeType} />}
                             detailsContent={
                                 <InstanceDetailsGroup
                                     fixInstructionProcessor={fixInstructionProcessor}

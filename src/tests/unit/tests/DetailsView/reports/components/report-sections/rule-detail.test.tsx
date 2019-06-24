@@ -29,20 +29,13 @@ describe('RuleDetail', () => {
         nodes: [{} as AxeNodeResult],
     } as RuleResult;
 
-    const partialProps: Partial<RuleDetailProps> = {
+    const props: RuleDetailProps = {
         deps: depsStub,
         rule: rule,
         outcomeType: 'fail',
     };
 
-    const isHeaderValues = [true, false];
-
-    it.each(isHeaderValues)('renders, isHeader %s', isHeader => {
-        const props: RuleDetailProps = {
-            ...partialProps,
-            isHeader,
-        } as RuleDetailProps;
-
+    it('renders', () => {
         const wrapped = shallow(<RuleDetail {...props} />);
 
         expect(wrapped.getElement()).toMatchSnapshot();
