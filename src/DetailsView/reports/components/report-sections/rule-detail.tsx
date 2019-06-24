@@ -17,7 +17,7 @@ export type RuleDetailProps = {
 };
 
 export const RuleDetail = NamedSFC<RuleDetailProps>('RuleDetails', props => {
-    const { rule, children, outcomeType, isHeader, deps } = props;
+    const { rule, outcomeType, isHeader, deps } = props;
 
     const ariaLabel = isHeader ? 3 : undefined;
 
@@ -26,7 +26,6 @@ export const RuleDetail = NamedSFC<RuleDetailProps>('RuleDetails', props => {
             <div className="rule-detail">
                 <InstanceListGroupHeader deps={deps} ruleResult={rule} outcomeType={outcomeType} ariaLevel={ariaLabel} />
             </div>
-            {children}
         </>
     );
 });

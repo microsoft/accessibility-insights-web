@@ -28,9 +28,6 @@ exports[`RuleDetail renders, it is header 1`] = `
       }
     />
   </div>
-  <span>
-    children
-  </span>
 </React.Fragment>
 `;
 
@@ -61,8 +58,5 @@ exports[`RuleDetail renders, not a header 1`] = `
       }
     />
   </div>
-  <span>
-    children
-  </span>
 </React.Fragment>
 `;

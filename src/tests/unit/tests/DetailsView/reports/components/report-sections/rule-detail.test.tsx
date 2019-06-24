@@ -26,13 +26,7 @@ describe('RuleDetail', () => {
             ],
         } as RuleResult;
 
-        const children = <span>children</span>;
-
-        const wrapped = shallow(
-            <RuleDetail deps={depsStub} rule={rule} isHeader={false} outcomeType={'fail'}>
-                {children}
-            </RuleDetail>,
-        );
+        const wrapped = shallow(<RuleDetail deps={depsStub} rule={rule} isHeader={false} outcomeType={'fail'} />);
 
         expect(wrapped.getElement()).toMatchSnapshot();
     });
@@ -54,13 +48,7 @@ describe('RuleDetail', () => {
             ],
         } as RuleResult;
 
-        const children = <span>children</span>;
-
-        const wrapped = shallow(
-            <RuleDetail deps={depsStub} rule={rule} isHeader={true} outcomeType={'fail'}>
-                {children}
-            </RuleDetail>,
-        );
+        const wrapped = shallow(<RuleDetail deps={depsStub} rule={rule} isHeader={true} outcomeType={'fail'}></RuleDetail>);
 
         expect(wrapped.getElement()).toMatchSnapshot();
     });
