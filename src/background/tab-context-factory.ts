@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as Q from 'q';
 import { AssessmentsProvider } from '../assessments/types/assessments-provider';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
 import { NotificationCreator } from '../common/notification-creator';
+import { PromiseFactory } from '../common/promises/promise-factory';
 import { StateDispatcher } from '../common/state-dispatcher';
 import { WindowUtils } from '../common/window-utils';
 import { ActionCreator } from './actions/action-creator';
@@ -37,6 +37,7 @@ export class TabContextFactory {
         private targetTabController: TargetTabController,
         private assessmentStore: AssessmentStore,
         private assessmentsProvider: AssessmentsProvider,
+        private readonly promiseFactory: PromiseFactory,
     ) {}
 
     public createTabContext(
@@ -104,7 +105,7 @@ export class TabContextFactory {
         );
 
         const injectorController = new InjectorController(
-            new ContentScriptInjector(browserAdapter, Q),
+            new ContentScriptInjector(browserAdapter, this.promiseFactory),
             storeHub.visualizationStore,
             interpreter,
             storeHub.tabStore,
