@@ -1,40 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`RuleDetailsGroup renders, no details 1`] = `
-<div
-  className="rule-details-group"
->
-  <RuleDetails
-    deps={Object {}}
-    outcomeType="pass"
-    rule={
-      Object {
-        "id": "1",
-      }
-    }
-  />
-  <RuleDetails
-    deps={Object {}}
-    outcomeType="pass"
-    rule={
-      Object {
-        "id": "2",
-      }
-    }
-  />
-  <RuleDetails
-    deps={Object {}}
-    outcomeType="pass"
-    rule={
-      Object {
-        "id": "3",
-      }
-    }
-  />
-</div>
-`;
-
-exports[`RuleDetailsGroup renders, with details 1`] = `
+exports[`RulesWithInstances renders 1`] = `
 <div
   className="rule-details-group"
 >

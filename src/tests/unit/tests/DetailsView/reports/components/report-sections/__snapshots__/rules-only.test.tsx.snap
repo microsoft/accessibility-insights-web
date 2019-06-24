@@ -1,0 +1,38 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RulesOnly renders 1`] = `
+<div
+  className="rule-details-group"
+>
+  <RuleDetails
+    deps={Object {}}
+    isHeader={false}
+    outcomeType="pass"
+    rule={
+      Object {
+        "id": "1",
+      }
+    }
+  />
+  <RuleDetails
+    deps={Object {}}
+    isHeader={false}
+    outcomeType="pass"
+    rule={
+      Object {
+        "id": "2",
+      }
+    }
+  />
+  <RuleDetails
+    deps={Object {}}
+    isHeader={false}
+    outcomeType="pass"
+    rule={
+      Object {
+        "id": "3",
+      }
+    }
+  />
+</div>
+`;

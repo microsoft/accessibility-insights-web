@@ -27,20 +27,7 @@ describe('ResultSectionContent', () => {
         expect(wrapper.getElement()).toMatchSnapshot();
     });
 
-    it('renders, no rules, do not show congrats', () => {
-        const props: ResultSectionContentProps = {
-            deps: depsStub,
-            rules: emptyRules,
-            outcomeType: 'pass',
-            showCongratsIfNotInstances: false,
-        };
-
-        const wrapper = shallow(<ResultSectionContent {...props} />);
-
-        expect(wrapper.getElement()).toMatchSnapshot();
-    });
-
-    it('renders, no rules and show congrats', () => {
+    it('renders, no rules', () => {
         const props: ResultSectionContentProps = {
             deps: depsStub,
             rules: emptyRules,
