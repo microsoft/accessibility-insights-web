@@ -20,11 +20,11 @@ import { TelemetryEventHandler } from '../../../../background/telemetry/telemetr
 import { VisualizationConfiguration } from '../../../../common/configs/visualization-configuration';
 import { VisualizationConfigurationFactory } from '../../../../common/configs/visualization-configuration-factory';
 import { Messages } from '../../../../common/messages';
+import { PromiseFactory } from '../../../../common/promises/promise-factory';
 import { StoreNames } from '../../../../common/stores/store-names';
 import { StoreUpdateMessage } from '../../../../common/types/store-update-message';
 import { VisualizationType } from '../../../../common/types/visualization-type';
 import { WindowUtils } from '../../../../common/window-utils';
-import { PromiseFactory } from '../../../../common/promises/promise-factory';
 
 function getConfigs(visualizationType: VisualizationType): VisualizationConfiguration {
     return new VisualizationConfigurationFactory().getConfiguration(visualizationType);

@@ -11,6 +11,7 @@ import { InsightsFeatureFlags } from '../common/insights-feature-flags';
 import { createDefaultLogger } from '../common/logging/default-logger';
 import { NavigatorUtils } from '../common/navigator-utils';
 import { NotificationCreator } from '../common/notification-creator';
+import { createDefaultPromiseFactory } from '../common/promises/promise-factory';
 import { TelemetryDataFactory } from '../common/telemetry-data-factory';
 import { UrlValidator } from '../common/url-validator';
 import { WindowUtils } from '../common/window-utils';
@@ -34,7 +35,6 @@ import { TelemetryEventHandler } from './telemetry/telemetry-event-handler';
 import { TelemetryLogger } from './telemetry/telemetry-logger';
 import { TelemetryStateListener } from './telemetry/telemetry-state-listener';
 import { UserStoredDataCleaner } from './user-stored-data-cleaner';
-import { createDefaultPromiseFactory } from '../common/promises/promise-factory';
 
 declare var window: Window & InsightsFeatureFlags;
 const browserAdapter = new ChromeAdapter();

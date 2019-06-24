@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { autobind } from '@uifabric/utilities';
-import { InspectMode } from '../background/inspect-modes';
-import { WindowUtils } from '../common/window-utils';
 
+import { InspectMode } from '../background/inspect-modes';
 import { Messages } from '../common/messages';
+import { WindowUtils } from '../common/window-utils';
 import { ContentScriptInjector } from './injector/content-script-injector';
 import { Interpreter } from './interpreter';
 import { InspectStore } from './stores/inspect-store';
@@ -61,6 +61,7 @@ export class InjectorController {
                 });
             }, InjectorController.injectionStartedWaitTime);
 
+            // tslint:disable-next-line:no-floating-promises - grandfathered
             this._injector.injectScripts(tabId).then(() => {
                 this._interpreter.interpret({
                     messageType: Messages.Visualizations.State.InjectionCompleted,
