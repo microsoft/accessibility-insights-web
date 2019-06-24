@@ -3,52 +3,47 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-import { RuleDetail, RuleDetailDeps } from '../../../../../../../DetailsView/reports/components/report-sections/rule-detail';
+import {
+    RuleDetail,
+    RuleDetailDeps,
+    RuleDetailProps,
+} from '../../../../../../../DetailsView/reports/components/report-sections/rule-detail';
 import { RuleResult } from '../../../../../../../scanner/iruleresults';
 
 describe('RuleDetail', () => {
     const depsStub = {} as RuleDetailDeps;
+    const rule = {
+        helpUrl: 'url://help.url',
+        id: 'rule id',
+        description: 'rule description',
+        guidanceLinks: [
+            {
+                href: 'url://guidance-01.link',
+                text: 'guidance-01',
+            },
+            {
+                href: 'url://guidance-02.link',
+                text: 'guidance-02',
+            },
+        ],
+        nodes: [{} as AxeNodeResult],
+    } as RuleResult;
 
-    it('renders, not a header', () => {
-        const rule = {
-            helpUrl: 'url://help.url',
-            id: 'rule id',
-            description: 'rule description',
-            guidanceLinks: [
-                {
-                    href: 'url://guidance-01.link',
-                    text: 'guidance-01',
-                },
-                {
-                    href: 'url://guidance-02.link',
-                    text: 'guidance-02',
-                },
-            ],
-        } as RuleResult;
+    const partialProps: Partial<RuleDetailProps> = {
+        deps: depsStub,
+        rule: rule,
+        outcomeType: 'fail',
+    };
 
-        const wrapped = shallow(<RuleDetail deps={depsStub} rule={rule} isHeader={false} outcomeType={'fail'} />);
+    const isHeaderValues = [true, false];
 
-        expect(wrapped.getElement()).toMatchSnapshot();
-    });
+    it.each(isHeaderValues)('renders, isHeader %s', isHeader => {
+        const props: RuleDetailProps = {
+            ...partialProps,
+            isHeader,
+        } as RuleDetailProps;
 
-    it('renders, it is header', () => {
-        const rule = {
-            helpUrl: 'url://help.url',
-            id: 'rule id',
-            description: 'rule description',
-            guidanceLinks: [
-                {
-                    href: 'url://guidance-01.link',
-                    text: 'guidance-01',
-                },
-                {
-                    href: 'url://guidance-02.link',
-                    text: 'guidance-02',
-                },
-            ],
-        } as RuleResult;
-
-        const wrapped = shallow(<RuleDetail deps={depsStub} rule={rule} isHeader={true} outcomeType={'fail'}></RuleDetail>);
+        const wrapped = shallow(<RuleDetail {...props} />);
 
         expect(wrapped.getElement()).toMatchSnapshot();
     });
