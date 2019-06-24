@@ -40,7 +40,7 @@ exports[`ReportExportComponentTest user interactions click export button: dialog
   </CustomizedActionButton>
   <ExportDialog
     deps={Object {}}
-    description=""
+    description="persisted description"
     exportResultsType="Assessment"
     html=""
     isOpen={true}
@@ -76,7 +76,7 @@ exports[`ReportExportComponentTest user interactions dismiss dialog: dialog shou
 </React.Fragment>
 `;
 
-exports[`ReportExportComponentTest user interactions edit text field: user input new discription 1`] = `
+exports[`ReportExportComponentTest user interactions edit text field: user input new description 1`] = `
 <React.Fragment>
   <CustomizedActionButton
     iconProps={
@@ -90,7 +90,7 @@ exports[`ReportExportComponentTest user interactions edit text field: user input
   </CustomizedActionButton>
   <ExportDialog
     deps={Object {}}
-    description="new discription"
+    description="new description"
     exportResultsType="Assessment"
     fileName=""
     html=""

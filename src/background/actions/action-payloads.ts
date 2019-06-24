@@ -44,6 +44,10 @@ export interface AddFailureInstancePayload extends AssessmentToggleActionPayload
     description: string;
 }
 
+export interface AddResultDescriptionPayload extends BaseActionPayload {
+    description: string;
+}
+
 export interface RemoveFailureInstancePayload extends AssessmentToggleActionPayload {
     id: string;
 }

@@ -95,6 +95,7 @@ describe('DetailsViewMainContentTest', () => {
                     } as AssessmentData,
                 },
                 persistedTabInfo: {} as PersistedTabInfo,
+                resultDescription: '',
             } as AssessmentStoreData;
 
             props = {

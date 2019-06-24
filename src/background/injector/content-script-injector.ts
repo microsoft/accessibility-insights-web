@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as Q from 'q';
-
+import { PromiseFactory } from '../../common/promises/promise-factory';
 import { BrowserAdapter } from '../browser-adapters/browser-adapter';
 
 export class ContentScriptInjector {
@@ -10,31 +9,26 @@ export class ContentScriptInjector {
     public static readonly cssFiles: string[] = ['injected/styles/default/injected.css', 'bundle/injected.css'];
 
     public static timeoutInMilliSec = 5e4;
-    private readonly _chromeAdapter: BrowserAdapter;
-    private readonly _q: typeof Q;
 
-    constructor(chromeAdapter: BrowserAdapter, q: typeof Q) {
-        this._chromeAdapter = chromeAdapter;
-        this._q = q;
-    }
+    constructor(private readonly chromeAdapter: BrowserAdapter, private readonly promiseFactory: PromiseFactory) {}
 
-    public injectScripts(tabId: number): Q.IPromise<null> {
-        const deferred = this._q.defer<null>();
+    public injectScripts(tabId: number): Promise<null> {
+        const inject = new Promise<null>((resolve, reject) => {
+            ContentScriptInjector.cssFiles.forEach(file => {
+                this.chromeAdapter.injectCss(tabId, file, null);
+            });
 
-        ContentScriptInjector.cssFiles.forEach(file => {
-            this._chromeAdapter.injectCss(tabId, file, null);
+            this.injectJsFiles(tabId, ContentScriptInjector.jsFiles, () => {
+                resolve(null);
+            });
         });
 
-        this.injectJsFiles(tabId, ContentScriptInjector.jsFiles, () => {
-            deferred.resolve(null);
-        });
-
-        return this._q.timeout(deferred.promise, ContentScriptInjector.timeoutInMilliSec);
+        return this.promiseFactory.timeout(inject, ContentScriptInjector.timeoutInMilliSec);
     }
 
     private injectJsFiles(tabId: number, files: string[], callback: Function): void {
         if (files.length > 0) {
-            this._chromeAdapter.injectJs(tabId, files[0], () => {
+            this.chromeAdapter.injectJs(tabId, files[0], () => {
                 this.injectJsFiles(tabId, files.slice(1, files.length), callback);
             });
         } else {

@@ -17,6 +17,7 @@ export interface AssessmentStoreData {
         [key: string]: AssessmentData;
     };
     assessmentNavState: AssessmentNavState;
+    resultDescription: string;
 }
 
 export type InstanceIdToInstanceDataMap = DictionaryStringTo<GeneratedAssessmentInstance>;

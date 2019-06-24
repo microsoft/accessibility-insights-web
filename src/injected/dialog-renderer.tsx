@@ -30,6 +30,8 @@ export interface DetailsDialogWindowMessage {
     featureFlagStoreData: FeatureFlagStoreData;
 }
 
+export type RenderDialog = (data: HtmlElementAxeResults, featureFlagStoreData: FeatureFlagStoreData) => void;
+
 export class DialogRenderer {
     private static readonly renderDetailsDialogCommand = 'insights.detailsDialog';
 
@@ -49,7 +51,7 @@ export class DialogRenderer {
         }
     }
 
-    public render(data: HtmlElementAxeResults, featureFlagStoreData: FeatureFlagStoreData): void {
+    public render: RenderDialog = (data: HtmlElementAxeResults, featureFlagStoreData: FeatureFlagStoreData) => {
         if (this.isInMainWindow()) {
             const mainWindowContext = MainWindowContext.getMainWindowContext();
             mainWindowContext.getTargetPageActionMessageCreator().openIssuesDialog();
@@ -106,7 +108,7 @@ export class DialogRenderer {
             };
             this.frameCommunicator.sendMessage(windowMessageRequest);
         }
-    }
+    };
 
     @autobind
     private processRequest(
