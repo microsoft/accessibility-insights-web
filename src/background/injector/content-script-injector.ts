@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as Q from 'q';
-
+import { PromiseFactory } from '../../common/promises/promise-factory';
 import { BrowserAdapter } from '../browser-adapters/browser-adapter';
 
 export class ContentScriptInjector {
@@ -11,7 +11,11 @@ export class ContentScriptInjector {
 
     public static timeoutInMilliSec = 5e4;
 
-    constructor(private readonly chromeAdapter: BrowserAdapter, private readonly q: typeof Q) {}
+    constructor(
+        private readonly chromeAdapter: BrowserAdapter,
+        private readonly q: typeof Q,
+        private readonly promiseFactory: PromiseFactory,
+    ) {}
 
     public injectScripts(tabId: number): Q.IPromise<null> {
         const deferred = this.q.defer<null>();
