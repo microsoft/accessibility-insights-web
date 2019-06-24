@@ -12,14 +12,14 @@ export class ContentScriptInjector {
 
     constructor(private readonly chromeAdapter: BrowserAdapter, private readonly promiseFactory: PromiseFactory) {}
 
-    public injectScripts(tabId: number): Promise<null> {
-        const inject = new Promise<null>((resolve, reject) => {
+    public injectScripts(tabId: number): Promise<void> {
+        const inject = new Promise<null>(resolve => {
             ContentScriptInjector.cssFiles.forEach(file => {
                 this.chromeAdapter.injectCss(tabId, file, null);
             });
 
             this.injectJsFiles(tabId, ContentScriptInjector.jsFiles, () => {
-                resolve(null);
+                resolve();
             });
         });
 
