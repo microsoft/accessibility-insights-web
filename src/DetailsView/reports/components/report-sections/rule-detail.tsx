@@ -71,9 +71,9 @@ export const RuleDetail = NamedSFC<RuleDetailProps>('RuleDetails', props => {
     const headingProps =
         ariaLevel != null
             ? {
-                role: 'heading',
-                'aria-level': ariaLevel,
-            }
+                  role: 'heading',
+                  'aria-level': ariaLevel,
+              }
             : null;
 
     return (
