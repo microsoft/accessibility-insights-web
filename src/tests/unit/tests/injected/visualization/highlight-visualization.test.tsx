@@ -47,6 +47,7 @@ describe('HighlightVisualization', () => {
             width: '1',
         } as CSSStyleDeclaration;
         documentElementStub = {} as HTMLElement;
+        bodyStub = {} as HTMLBodyElement;
 
         drawerUtilsMock.setup(mock => mock.getDocumentElement()).returns(() => documentMock.object);
         documentMock.setup(mock => mock.querySelector('body')).returns(() => bodyStub);
@@ -121,7 +122,7 @@ describe('HighlightVisualization', () => {
         expect(testSubject.getElement()).toMatchSnapshot();
     });
 
-    function getElementResultStub() {
+    function getElementResultStub(): AxeResultsWithFrameLevel {
         return {
             target: ['some target'],
             targetIndex: 0,
