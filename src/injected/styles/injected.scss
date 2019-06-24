@@ -339,6 +339,8 @@
     .insights-dialog-main-override .insights-dialog-inspect-disabled {
         margin-top: 4px !important;
         font-size: 12px !important;
+        color: $negative-outcome;
+        font-weight: $fontWeightSemiBold;
     }
 
     .insights-dialog-main-override .file-issue-button-help {

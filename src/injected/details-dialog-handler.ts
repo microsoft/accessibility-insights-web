@@ -29,8 +29,12 @@ export class DetailsDialogHandler {
 
     @autobind
     public inspectButtonClickHandler(dialog: DetailsDialog, event: React.SyntheticEvent<MouseEvent>): void {
-        this.hideDialog(dialog);
-        dialog.props.devToolActionMessageCreator.setInspectElement(event, dialog.props.target);
+        if (this.canInspect(dialog)) {
+            this.hideDialog(dialog);
+            dialog.props.devToolActionMessageCreator.setInspectElement(event, dialog.props.target);
+        } else {
+            dialog.setState({ showInspectMessage: true });
+        }
     }
 
     @autobind
@@ -60,13 +64,19 @@ export class DetailsDialogHandler {
 
     @autobind
     public onDevToolChanged(dialog: DetailsDialog): void {
-        dialog.setState({ canInspect: this.canInspect(dialog) });
+        const canInspect: boolean = this.canInspect(dialog);
+        dialog.setState({ canInspect, showInspectMessage: !canInspect });
     }
 
     @autobind
     public canInspect(dialog: DetailsDialog): boolean {
         const devToolState = dialog.props.devToolStore.getState();
         return devToolState && devToolState.isOpen;
+    }
+
+    @autobind
+    public shouldShowInspectButtonMessage(dialog: DetailsDialog): boolean {
+        return dialog.state.showInspectMessage;
     }
 
     @autobind

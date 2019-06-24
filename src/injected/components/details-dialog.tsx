@@ -59,6 +59,7 @@ export interface DetailsDialogState {
     currentRuleIndex: number;
     canInspect: boolean;
     userConfigurationStoreData: UserConfigurationStoreData;
+    showInspectMessage: boolean;
 }
 
 export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDialogState> {
@@ -70,6 +71,7 @@ export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDi
     public isBackButtonDisabled: () => boolean;
     public isNextButtonDisabled: () => boolean;
     public isInspectButtonDisabled: () => boolean;
+    public showInspectButtonMessage: () => boolean;
 
     constructor(props: DetailsDialogProps) {
         super(props);
@@ -108,13 +110,18 @@ export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDi
             return this.props.dialogHandler.isNextButtonDisabled(this);
         };
         this.isInspectButtonDisabled = () => {
-            return this.props.dialogHandler.isInspectButtonDisabled(this);
+            return this.props.dialogHandler.shouldShowInspectButtonMessage(this);
+        };
+
+        this.showInspectButtonMessage = () => {
+            return this.props.dialogHandler.shouldShowInspectButtonMessage(this);
         };
 
         this.state = {
             showDialog: true,
             currentRuleIndex: 0,
             canInspect: true,
+            showInspectMessage: false,
             userConfigurationStoreData: props.userConfigStore.getState(),
         };
     }
@@ -157,7 +164,6 @@ export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDi
         return (
             <DefaultButton
                 className="insights-dialog-button-inspect"
-                disabled={this.props.dialogHandler.isInspectButtonDisabled(this)}
                 onClick={this.getOnClickWhenNotInShadowDom(this.onClickInspectButton)}
             >
                 <FileHTMLIcon />
@@ -200,7 +206,7 @@ export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDi
     }
 
     private renderInspectMessage(): JSX.Element {
-        if (this.props.dialogHandler.isInspectButtonDisabled(this)) {
+        if (this.props.dialogHandler.shouldShowInspectButtonMessage(this)) {
             return (
                 <div className="insights-dialog-inspect-disabled">
                     {`To enable the Inspect HTML button, open the developer tools (${this.props.devToolsShortcut}).`}
