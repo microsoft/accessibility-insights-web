@@ -131,6 +131,40 @@ describe('DetailsDialogHandlerTest', () => {
         devToolStoreMock.verifyAll();
     });
 
+    test('inspectButtonClickHandler when the devtools are not opened', () => {
+        const devToolStoreMock = Mock.ofType<BaseStore<DevToolState>>(undefined, MockBehavior.Strict);
+        const devToolActionMessageCreatorMock = Mock.ofType<DevToolActionMessageCreator>(undefined, MockBehavior.Strict);
+        const eventFactory = new EventStubFactory();
+        const event = eventFactory.createMouseClickEvent();
+
+        devToolStoreMock
+            .setup(store => store.getState())
+            .returns(() => {
+                return {
+                    isOpen: false,
+                } as any;
+            })
+            .verifiable(Times.once());
+
+        detailsDialogMock
+            .setup(dialog => dialog.props)
+            .returns(() => {
+                return {
+                    devToolActionMessageCreator: devToolActionMessageCreatorMock.object,
+                    devToolStore: devToolStoreMock.object,
+                } as any;
+            })
+            .verifiable(Times.atLeastOnce());
+
+        detailsDialogMock.setup(dialog => dialog.setState(It.isValue({ showInspectMessage: true }))).verifiable(Times.once());
+
+        testSubject.inspectButtonClickHandler(detailsDialogMock.object, event as any);
+
+        detailsDialogMock.verifyAll();
+        devToolActionMessageCreatorMock.verifyAll();
+        devToolStoreMock.verifyAll();
+    });
+
     test('showDialog', () => {
         detailsDialogMock
             .setup(dialog =>
