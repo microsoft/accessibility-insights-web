@@ -13,7 +13,7 @@ describe('PromiseFactory', () => {
             const actual = 'the result';
             const resolving = Promise.resolve(actual);
 
-            const result = testObject.timeout(10, resolving);
+            const result = testObject.timeout(resolving, 10);
 
             return expect(result).resolves.toEqual(actual);
         });
@@ -22,7 +22,7 @@ describe('PromiseFactory', () => {
             expect.assertions(1);
 
             const reason = 'rejecting!';
-            const rejecting = Promise.reject(reason);
+            const rejecting = testObject.timeout(Promise.reject(reason), 10);
 
             return expect(rejecting).rejects.toEqual(reason);
         });
@@ -36,7 +36,7 @@ describe('PromiseFactory', () => {
 
             const delay = 1;
 
-            const timingOut = testObject.timeout(delay, notResolving);
+            const timingOut = testObject.timeout(notResolving, delay);
 
             return expect(timingOut).rejects.toEqual(`Timed out ${delay} ms`);
         });

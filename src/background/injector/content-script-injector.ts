@@ -23,7 +23,7 @@ export class ContentScriptInjector {
             });
         });
 
-        return this.promiseFactory.timeout(ContentScriptInjector.timeoutInMilliSec, inject);
+        return this.promiseFactory.timeout(inject, ContentScriptInjector.timeoutInMilliSec);
     }
 
     private injectJsFiles(tabId: number, files: string[], callback: Function): void {

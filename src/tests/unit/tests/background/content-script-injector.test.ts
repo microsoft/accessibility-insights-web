@@ -27,8 +27,8 @@ describe('ContentScriptInjectorTest', () => {
         const tabId = -1;
 
         promiseFactoryMock
-            .setup(factory => factory.timeout(ContentScriptInjector.timeoutInMilliSec, It.is(promise => promise instanceof Promise)))
-            .returns((delay, promise) => promise);
+            .setup(factory => factory.timeout(It.is(promise => promise instanceof Promise), ContentScriptInjector.timeoutInMilliSec))
+            .returns((promise, delay) => promise);
 
         ContentScriptInjector.cssFiles.forEach(cssFile =>
             browserAdapterMock.setup(adapter => adapter.injectCss(tabId, cssFile, null)).verifiable(Times.once()),
