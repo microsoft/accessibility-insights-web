@@ -2,25 +2,35 @@
 // Licensed under the MIT License.
 import { shallow } from 'enzyme';
 import * as React from 'react';
-
-import { OutcomeSummaryBar } from '../../../../../../DetailsView/reports/components/outcome-summary-bar';
+import { OutcomeSummaryBar, OutcomeSummaryBarProps } from '../../../../../../DetailsView/reports/components/outcome-summary-bar';
+import { OutcomeType } from '../../../../../../DetailsView/reports/components/outcome-type';
 
 describe('OutcomeSummaryBar', () => {
-    const reportData = {
+    const allOutcomeTypes: OutcomeType[] = ['pass', 'fail', 'incomplete'];
+    const outcomeStats = {
         pass: 42,
         incomplete: 7,
         fail: 13,
     };
 
-    it('renders with defaults', () => {
-        expect(shallow(<OutcomeSummaryBar {...reportData} />).debug()).toMatchSnapshot();
+    it('show by percentage', () => {
+        const props: OutcomeSummaryBarProps = { outcomeStats, allOutcomeTypes, countSuffix: '%' };
+        const wrapper = shallow(<OutcomeSummaryBar {...props} />);
+
+        expect(wrapper.getElement()).toMatchSnapshot();
     });
 
-    it('renders reporting requirements', () => {
-        expect(shallow(<OutcomeSummaryBar {...reportData} units="requirements" />).debug()).toMatchSnapshot();
+    it('show by percentage', () => {
+        const props: OutcomeSummaryBarProps = { outcomeStats, allOutcomeTypes };
+        const wrapper = shallow(<OutcomeSummaryBar {...props} />);
+
+        expect(wrapper.getElement()).toMatchSnapshot();
     });
 
-    it('renders reporting percentage', () => {
-        expect(shallow(<OutcomeSummaryBar {...reportData} units="percentage" />).debug()).toMatchSnapshot();
+    it('render inverted badges', () => {
+        const props: OutcomeSummaryBarProps = { outcomeStats, allOutcomeTypes, iconStyleInverted: true };
+        const wrapper = shallow(<OutcomeSummaryBar {...props} />);
+
+        expect(wrapper.getElement()).toMatchSnapshot();
     });
 });

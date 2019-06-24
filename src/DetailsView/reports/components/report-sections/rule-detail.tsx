@@ -9,9 +9,9 @@ import { NewTabLink } from '../../../../common/components/new-tab-link';
 import { GetGuidanceTagsFromGuidanceLinks } from '../../../../common/get-guidance-tags-from-guidance-links';
 import { NamedSFC } from '../../../../common/react/named-sfc';
 import { RuleResult } from '../../../../scanner/iruleresults';
+import { InstanceOutcomeType } from '../instance-outcome-type';
 import { OutcomeChip } from '../outcome-chip';
 import { outcomeTypeSemantics } from '../outcome-type';
-import { InstanceOutcomeType } from './outcome-summary-bar';
 
 export type RuleDetailDeps = {
     getGuidanceTagsFromGuidanceLinks: GetGuidanceTagsFromGuidanceLinks;

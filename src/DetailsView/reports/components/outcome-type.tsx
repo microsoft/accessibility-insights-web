@@ -6,9 +6,12 @@ import { InapplicableIcon, InapplicableIconInverted } from '../../../common/icon
 import { CheckIcon, CheckIconInverted } from './../../../common/icons/check-icon';
 import { CircleIcon } from './../../../common/icons/circle-icon';
 import { CrossIcon, CrossIconInverted } from './../../../common/icons/cross-icon';
-import { InstanceOutcomeType } from './report-sections/outcome-summary-bar';
+import { InstanceOutcomeType } from './instance-outcome-type';
 import { RequirementOutcomeType } from './requirement-outcome-type';
 
+export type OutcomeUnits = 'percentage' | 'requirements';
+
+export type OutcomeStats = { [OT in OutcomeType]: number };
 export type OutcomeType = RequirementOutcomeType | InstanceOutcomeType;
 
 export interface OutcomeTypeSemantic {

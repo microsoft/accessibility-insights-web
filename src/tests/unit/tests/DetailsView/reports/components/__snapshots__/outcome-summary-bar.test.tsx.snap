@@ -1,79 +1,211 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`OutcomeSummaryBar renders reporting percentage 1`] = `
-"<div className=\\"outcome-summary-bar\\">
-  <span className=\\"pass\\" style={{...}}>
-    <OutcomeIcon outcomeType=\\"pass\\" />
-     
-    42%
-     
-    Passed
-  </span>
-  <span className=\\"incomplete\\" style={{...}}>
-    <OutcomeIcon outcomeType=\\"incomplete\\" />
-     
-    7%
-     
-    Incomplete
-  </span>
-  <span className=\\"fail\\" style={{...}}>
-    <OutcomeIcon outcomeType=\\"fail\\" />
-     
-    13%
-     
-    Failed
-  </span>
-</div>"
+exports[`OutcomeSummaryBar render inverted badges 1`] = `
+<div
+  className="outcome-summary-bar"
+>
+  <div
+    style={
+      Object {
+        "flexGrow": 42,
+      }
+    }
+  >
+    <span
+      className="pass"
+    >
+      <CheckIconInverted />
+       
+      NaN
+       
+      <span
+        className="outcome-past-tense"
+      >
+        Passed
+      </span>
+    </span>
+  </div>
+  <div
+    style={
+      Object {
+        "flexGrow": 13,
+      }
+    }
+  >
+    <span
+      className="fail"
+    >
+      <CrossIconInverted />
+       
+      NaN
+       
+      <span
+        className="outcome-past-tense"
+      >
+        Failed
+      </span>
+    </span>
+  </div>
+  <div
+    style={
+      Object {
+        "flexGrow": 7,
+      }
+    }
+  >
+    <span
+      className="incomplete"
+    >
+      <CircleIcon />
+       
+      NaN
+       
+      <span
+        className="outcome-past-tense"
+      >
+        Incomplete
+      </span>
+    </span>
+  </div>
+</div>
 `;
 
-exports[`OutcomeSummaryBar renders reporting requirements 1`] = `
-"<div className=\\"outcome-summary-bar\\">
-  <span className=\\"pass\\" style={{...}}>
-    <OutcomeIcon outcomeType=\\"pass\\" />
-     
-    42
-     
-    Passed
-  </span>
-  <span className=\\"incomplete\\" style={{...}}>
-    <OutcomeIcon outcomeType=\\"incomplete\\" />
-     
-    7
-     
-    Incomplete
-  </span>
-  <span className=\\"fail\\" style={{...}}>
-    <OutcomeIcon outcomeType=\\"fail\\" />
-     
-    13
-     
-    Failed
-  </span>
-</div>"
+exports[`OutcomeSummaryBar show by percentage 1`] = `
+<div
+  className="outcome-summary-bar"
+>
+  <div
+    style={
+      Object {
+        "flexGrow": 42,
+      }
+    }
+  >
+    <span
+      className="pass"
+    >
+      <CheckIcon />
+       
+      42%
+       
+      <span
+        className="outcome-past-tense"
+      >
+        Passed
+      </span>
+    </span>
+  </div>
+  <div
+    style={
+      Object {
+        "flexGrow": 13,
+      }
+    }
+  >
+    <span
+      className="fail"
+    >
+      <CrossIcon />
+       
+      13%
+       
+      <span
+        className="outcome-past-tense"
+      >
+        Failed
+      </span>
+    </span>
+  </div>
+  <div
+    style={
+      Object {
+        "flexGrow": 7,
+      }
+    }
+  >
+    <span
+      className="incomplete"
+    >
+      <CircleIcon />
+       
+      7%
+       
+      <span
+        className="outcome-past-tense"
+      >
+        Incomplete
+      </span>
+    </span>
+  </div>
+</div>
 `;
 
-exports[`OutcomeSummaryBar renders with defaults 1`] = `
-"<div className=\\"outcome-summary-bar\\">
-  <span className=\\"pass\\" style={{...}}>
-    <OutcomeIcon outcomeType=\\"pass\\" />
-     
-    42
-     
-    Passed
-  </span>
-  <span className=\\"incomplete\\" style={{...}}>
-    <OutcomeIcon outcomeType=\\"incomplete\\" />
-     
-    7
-     
-    Incomplete
-  </span>
-  <span className=\\"fail\\" style={{...}}>
-    <OutcomeIcon outcomeType=\\"fail\\" />
-     
-    13
-     
-    Failed
-  </span>
-</div>"
+exports[`OutcomeSummaryBar show by percentage 2`] = `
+<div
+  className="outcome-summary-bar"
+>
+  <div
+    style={
+      Object {
+        "flexGrow": 42,
+      }
+    }
+  >
+    <span
+      className="pass"
+    >
+      <CheckIcon />
+       
+      NaN
+       
+      <span
+        className="outcome-past-tense"
+      >
+        Passed
+      </span>
+    </span>
+  </div>
+  <div
+    style={
+      Object {
+        "flexGrow": 13,
+      }
+    }
+  >
+    <span
+      className="fail"
+    >
+      <CrossIcon />
+       
+      NaN
+       
+      <span
+        className="outcome-past-tense"
+      >
+        Failed
+      </span>
+    </span>
+  </div>
+  <div
+    style={
+      Object {
+        "flexGrow": 7,
+      }
+    }
+  >
+    <span
+      className="incomplete"
+    >
+      <CircleIcon />
+       
+      NaN
+       
+      <span
+        className="outcome-past-tense"
+      >
+        Incomplete
+      </span>
+    </span>
+  </div>
+</div>
 `;

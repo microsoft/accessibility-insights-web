@@ -5,9 +5,9 @@ import * as React from 'react';
 import { NamedSFC } from '../../../../common/react/named-sfc';
 import { FixInstructionProcessor } from '../../../../injected/fix-instruction-processor';
 import { RuleResult } from '../../../../scanner/iruleresults';
+import { InstanceOutcomeType } from '../instance-outcome-type';
 import { CollapsibleContainer } from './collapsible-container';
 import { InstanceDetailsGroup } from './instance-details-group';
-import { InstanceOutcomeType } from './outcome-summary-bar';
 import { RuleDetail, RuleDetailDeps } from './rule-detail';
 
 export type RulesWithInstancesDeps = RuleDetailDeps;
