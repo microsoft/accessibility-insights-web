@@ -26,7 +26,8 @@ export const OutcomeSummaryBar = NamedSFC<OutcomeSummaryBarProps>('OutcomeSummar
                 return (
                     <div key={outcomeType} style={{ flexGrow: count }}>
                         <span className={kebabCase(outcomeType)}>
-                            {outcomeIcon} {count + countSuffix} <span className="outcome-past-tense">{text}</span>
+                            {outcomeIcon} {count}
+                            {countSuffix} <span className="outcome-past-tense">{text}</span>
                         </span>
                     </div>
                 );
