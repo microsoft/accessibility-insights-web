@@ -9,27 +9,32 @@ import {
 } from '../../../../../../../DetailsView/reports/components/report-sections/collapsible-container';
 
 describe('CollapsibleContainer', () => {
-    it('renders, no optional fields', () => {
-        const props: CollapsibleContainerProps = {
+    const getProps = (customProps?: Partial<CollapsibleContainerProps>): CollapsibleContainerProps => {
+        const defaultProps: Partial<CollapsibleContainerProps> = {
             id: 'test-id',
-            summaryContent: <div>this is the summary content</div>,
-            detailsContent: <div> this is the details content </div>,
+            accessibleHeadingContent: <div>this is the accessible heading content</div>,
+            visibleHeadingContent: <div>this is the visible heading content</div>,
+            collapsibleContent: <div> this is the collapsible content </div>,
             buttonAriaLabel: 'button aria label',
         };
 
+        return {
+            ...defaultProps,
+            ...customProps,
+        } as CollapsibleContainerProps;
+    };
+
+    it('renders, no optional fields', () => {
+        const props = getProps();
         const wrapped = shallow(<CollapsibleContainer {...props} />);
 
         expect(wrapped.getElement()).toMatchSnapshot();
     });
 
     it('renders, with extra class name for the container div', () => {
-        const props: CollapsibleContainerProps = {
-            id: 'test-id',
-            summaryContent: <div>this is the summary content</div>,
-            detailsContent: <div> this is the details content </div>,
-            buttonAriaLabel: 'button aria label',
+        const props = getProps({
             containerClassName: 'extra-class-name',
-        };
+        });
 
         const wrapped = shallow(<CollapsibleContainer {...props} />);
 
@@ -37,13 +42,9 @@ describe('CollapsibleContainer', () => {
     });
 
     it('renders, with heading level for the title container', () => {
-        const props: CollapsibleContainerProps = {
-            id: 'test-id',
-            summaryContent: <div>this is the summary content</div>,
-            detailsContent: <div> this is the details content </div>,
-            buttonAriaLabel: 'button aria label',
+        const props = getProps({
             titleHeadingLevel: 5,
-        };
+        });
 
         const wrapped = shallow(<CollapsibleContainer {...props} />);
 

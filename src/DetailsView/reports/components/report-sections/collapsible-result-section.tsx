@@ -14,14 +14,23 @@ export type CollapsibleResultSectionProps = ResultSectionProps & {
 };
 
 export const CollapsibleResultSection = NamedSFC<CollapsibleResultSectionProps>('CollapsibleResultSection', props => {
-    const { containerClassName, buttonAriaLabel, containerId } = props;
+    const { containerClassName, buttonAriaLabel, containerId, title, badgeCount } = props;
 
     return (
         <div className={containerClassName}>
             <CollapsibleContainer
                 id={containerId}
-                summaryContent={<ResultSectionTitle {...props} />}
-                detailsContent={<RulesOnly {...props} />}
+                accessibleHeadingContent={
+                    <h2 className="screen-reader-only">
+                        {title} {badgeCount}
+                    </h2>
+                }
+                visibleHeadingContent={
+                    <div aria-hidden="true">
+                        <ResultSectionTitle {...props} />
+                    </div>
+                }
+                collapsibleContent={<RulesOnly {...props} />}
                 buttonAriaLabel={buttonAriaLabel}
             />
         </div>
