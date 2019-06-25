@@ -68,6 +68,7 @@ describe('DetailsDialogTest', () => {
             helpUrl,
             snippet: 'html',
         };
+
         const expectedFailedRules: DictionaryStringTo<DecoratedAxeNodeResult> = {};
         expectedFailedRules[ruleId] = expectedNodeResult;
 
@@ -78,6 +79,7 @@ describe('DetailsDialogTest', () => {
             isInspectButtonDisabled: () => !isDevToolOpen,
             getFailureInfo: () => 'Failure 1 of 1 for this target',
             componentDidMount: () => {},
+            shouldShowInspectButtonMessage: () => false,
         };
 
         const deps: DetailsDialogDeps = {
