@@ -49,11 +49,11 @@ describe('HighlightVisualization', () => {
         documentElementStub = {} as HTMLElement;
         bodyStub = {} as HTMLBodyElement;
 
-        drawerUtilsMock.setup(mock => mock.getDocumentElement()).returns(() => documentMock.object);
-        documentMock.setup(mock => mock.querySelector('body')).returns(() => bodyStub);
-        windowUtilsMock.setup(mock => mock.getComputedStyle(bodyStub)).returns(() => bodyStyleStub);
-        documentMock.setup(mock => mock.documentElement).returns(() => documentElementStub);
-        windowUtilsMock.setup(mock => mock.getComputedStyle(documentElementStub)).returns(() => docStyleStub);
+        drawerUtilsMock.setup(drawerUtils => drawerUtils.getDocumentElement()).returns(() => documentMock.object);
+        documentMock.setup(document => document.querySelector('body')).returns(() => bodyStub);
+        windowUtilsMock.setup(windowUtils => windowUtils.getComputedStyle(bodyStub)).returns(() => bodyStyleStub);
+        documentMock.setup(document => document.documentElement).returns(() => documentElementStub);
+        windowUtilsMock.setup(windowUtils => windowUtils.getComputedStyle(documentElementStub)).returns(() => docStyleStub);
 
         deps = {
             drawerUtils: drawerUtilsMock.object,
@@ -69,7 +69,7 @@ describe('HighlightVisualization', () => {
         };
     });
 
-    test('it should return an empty fragment', () => {
+    it('should return an empty fragment', () => {
         elementResults = [];
         props.elementResults = elementResults;
 
@@ -78,7 +78,7 @@ describe('HighlightVisualization', () => {
         expect(testSubject.getElement()).toMatchSnapshot();
     });
 
-    test('it should return highlight visualizations with default configuration', () => {
+    it('should return highlight visualizations with default configuration', () => {
         const elementResultStubOne = getElementResultStub();
         const elementResultStubTwo = getElementResultStub();
         const elementStub = {} as Element;
@@ -89,7 +89,7 @@ describe('HighlightVisualization', () => {
 
         elementResults.forEach(elementResultStub => {
             documentMock
-                .setup(mock => mock.querySelectorAll(elementResultStub.target[elementResultStub.targetIndex]))
+                .setup(document => document.querySelectorAll(elementResultStub.target[elementResultStub.targetIndex]))
                 .returns(() => elementStubList);
         });
 
@@ -98,7 +98,7 @@ describe('HighlightVisualization', () => {
         expect(testSubject.getElement()).toMatchSnapshot();
     });
 
-    test('it should return highlight visualizations with formatter configuration', () => {
+    it('should return highlight visualizations with formatter configuration', () => {
         const elementResultStubOne = getElementResultStub();
         const elementResultStubTwo = getElementResultStub();
         const elementStub = {} as Element;
@@ -111,10 +111,12 @@ describe('HighlightVisualization', () => {
 
         elementResults.forEach(elementResultStub => {
             documentMock
-                .setup(mock => mock.querySelectorAll(elementResultStub.target[elementResultStub.targetIndex]))
+                .setup(document => document.querySelectorAll(elementResultStub.target[elementResultStub.targetIndex]))
                 .returns(() => elementStubList);
 
-            formatterMock.setup(mock => mock.getDrawerConfiguration(elementStub, elementResultStub)).returns(() => drawerConfigStub);
+            formatterMock
+                .setup(formatter => formatter.getDrawerConfiguration(elementStub, elementResultStub))
+                .returns(() => drawerConfigStub);
         });
 
         const testSubject = shallow(<HighlightVisualization {...props} />);

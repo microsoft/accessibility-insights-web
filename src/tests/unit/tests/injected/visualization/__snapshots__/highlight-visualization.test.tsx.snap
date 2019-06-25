@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`HighlightVisualization it should return an empty fragment 1`] = `<React.Fragment />`;
+exports[`HighlightVisualization should return an empty fragment 1`] = `<React.Fragment />`;
 
-exports[`HighlightVisualization it should return highlight visualizations with default configuration 1`] = `
+exports[`HighlightVisualization should return highlight visualizations with default configuration 1`] = `
 <React.Fragment>
   <ElementHighlight
     bodyStyle={
@@ -149,7 +149,7 @@ exports[`HighlightVisualization it should return highlight visualizations with d
 </React.Fragment>
 `;
 
-exports[`HighlightVisualization it should return highlight visualizations with formatter configuration 1`] = `
+exports[`HighlightVisualization should return highlight visualizations with formatter configuration 1`] = `
 <React.Fragment>
   <ElementHighlight
     bodyStyle={
