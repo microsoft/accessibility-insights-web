@@ -36,67 +36,6 @@ $outcome-not-applicable-summary-color: $neutral-outcome;
     background-color: $neutral-0;
     padding: 20px;
     margin-bottom: 24px;
-    white-space: pre-wrap;
-
-    .outcome-summary-bar {
-        $outcome-summary-icon-size: 16px;
-        flex: 0 0 100%;
-        display: flex;
-        align-items: center;
-        height: 32px;
-        margin-top: 16px;
-        margin-bottom: 0px;
-        line-height: 24px;
-        font-size: 17px;
-        font-weight: 600;
-        .block {
-            font-family: $fontFamily;
-            line-height: 20px;
-            font-size: 16px;
-            color: $neutral-0;
-            padding: 8px 8px 10px 10px;
-            height: 16px;
-            display: flex;
-            align-items: center;
-        }
-        .count {
-            font-weight: 600;
-        }
-        .fail {
-            @extend .block;
-            @include cross-icon-styles($outcome-summary-icon-size, 0px, $outcome-fail-summary-color);
-            border-radius: 2px 0 0 2px;
-            .check-container {
-                bottom: -1px;
-            }
-            background-color: $outcome-fail-summary-color;
-        }
-        .pass {
-            @extend .block;
-            @include check-icon-styles($outcome-summary-icon-size, 0px, $outcome-pass-summary-color);
-            .check-container {
-                bottom: -1px;
-                margin-right: 8px;
-                margin-left: 4px;
-            }
-            background-color: $outcome-pass-summary-color;
-            margin-left: 4px;
-            margin-right: 4px;
-            border-top-left-radius: 2px;
-            border-bottom-left-radius: 2px;
-        }
-        .inapplicable {
-            @extend .block;
-            @include inapplicable-icon-styles($outcome-summary-icon-size, 0px, $outcome-not-applicable-summary-color);
-            border-radius: 0 2px 2px 0;
-            .check-container {
-                bottom: -1px;
-                margin-right: 8px;
-                margin-left: 4px;
-            }
-            background-color: $outcome-not-applicable-summary-color;
-        }
-    }
 }
 
 .result-section-title {

@@ -5,28 +5,27 @@ import * as React from 'react';
 import { NamedSFC } from '../../../../common/react/named-sfc';
 import { FixInstructionProcessor } from '../../../../injected/fix-instruction-processor';
 import { RuleResult } from '../../../../scanner/iruleresults';
+import { InstanceOutcomeType } from '../instance-outcome-type';
 import { CollapsibleContainer } from './collapsible-container';
 import { InstanceDetailsGroup } from './instance-details-group';
-import { InstanceOutcomeType } from './outcome-summary-bar';
 import { RuleDetail, RuleDetailDeps } from './rule-detail';
 
-export type RuleDetailsGroupDeps = RuleDetailDeps;
+export type RulesWithInstancesDeps = RuleDetailDeps;
 
-export type RuleDetailsGroupProps = {
-    deps: RuleDetailsGroupDeps;
+export type RulesWithInstancesProps = {
+    deps: RulesWithInstancesDeps;
     fixInstructionProcessor: FixInstructionProcessor;
     rules: RuleResult[];
     outcomeType: InstanceOutcomeType;
-    showDetails?: boolean;
 };
 
-export const RuleDetailsGroup = NamedSFC<RuleDetailsGroupProps>(
-    'RuleDetailsGroup',
-    ({ rules, showDetails, outcomeType, fixInstructionProcessor, deps }) => {
+export const RulesWithInstances = NamedSFC<RulesWithInstancesProps>(
+    'RulesWithInstances',
+    ({ rules, outcomeType, fixInstructionProcessor, deps }) => {
         return (
             <div className="rule-details-group">
                 {rules.map((rule, idx) => {
-                    return showDetails ? (
+                    return (
                         <CollapsibleContainer
                             key={`summary-details-${idx + 1}`}
                             id={rule.id}
@@ -42,8 +41,6 @@ export const RuleDetailsGroup = NamedSFC<RuleDetailsGroupProps>(
                             containerClassName="collapsible-rule-details-group"
                             titleHeadingLevel={3}
                         />
-                    ) : (
-                        <RuleDetail deps={deps} key={rule.id} rule={rule} outcomeType={outcomeType} isHeader={showDetails} />
                     );
                 })}
             </div>

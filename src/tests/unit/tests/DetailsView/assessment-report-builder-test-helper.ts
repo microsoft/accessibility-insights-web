@@ -178,6 +178,7 @@ export class AssessmentReportBuilderTestHelper {
                 ['assessment2']: this.getAssessmentData2(),
             },
             assessmentNavState: null,
+            resultDescription: '',
         } as AssessmentStoreData;
     }
 

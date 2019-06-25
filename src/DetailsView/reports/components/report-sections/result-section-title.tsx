@@ -3,8 +3,8 @@
 import * as React from 'react';
 
 import { NamedSFC } from '../../../../common/react/named-sfc';
+import { InstanceOutcomeType } from '../instance-outcome-type';
 import { OutcomeChip } from '../outcome-chip';
-import { InstanceOutcomeType } from './outcome-summary-bar';
 
 export type ResultSectionTitleProps = {
     title: string;

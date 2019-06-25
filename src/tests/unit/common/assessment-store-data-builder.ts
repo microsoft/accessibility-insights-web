@@ -37,6 +37,7 @@ export class AssessmentsStoreDataBuilder extends BaseDataBuilder<AssessmentStore
             persistedTabInfo: null,
             assessments: {},
             assessmentNavState: { selectedTestType: null, selectedTestStep: null },
+            resultDescription: '',
         };
 
         this.storeDataGeneratorMock.setup(mock => mock.generateInitialState(It.isAny())).returns(() => stubData);

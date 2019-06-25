@@ -5,9 +5,9 @@ import * as React from 'react';
 import { NamedSFC } from '../../../../common/react/named-sfc';
 import { ResultSectionContent, ResultSectionContentProps } from './result-section-content';
 import { ResultSectionTitle, ResultSectionTitleProps } from './result-section-title';
-import { RuleDetailsGroupDeps } from './rule-details-group';
+import { RulesWithInstancesDeps } from './rules-with-instances';
 
-export type ResultSectionDeps = RuleDetailsGroupDeps;
+export type ResultSectionDeps = RulesWithInstancesDeps;
 
 export type ResultSectionProps = ResultSectionContentProps &
     ResultSectionTitleProps & {

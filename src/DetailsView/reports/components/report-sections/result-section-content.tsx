@@ -5,38 +5,26 @@ import * as React from 'react';
 import { NamedSFC } from '../../../../common/react/named-sfc';
 import { FixInstructionProcessor } from '../../../../injected/fix-instruction-processor';
 import { RuleResult } from '../../../../scanner/iruleresults';
+import { InstanceOutcomeType } from '../instance-outcome-type';
 import { NoFailedInstancesCongrats } from './no-failed-instances-congrats';
-import { InstanceOutcomeType } from './outcome-summary-bar';
-import { RuleDetailsGroup, RuleDetailsGroupDeps } from './rule-details-group';
+import { RulesWithInstances, RulesWithInstancesDeps } from './rules-with-instances';
 
-export type ResultSectionContentDeps = RuleDetailsGroupDeps;
+export type ResultSectionContentDeps = RulesWithInstancesDeps;
 
 export type ResultSectionContentProps = {
     deps: ResultSectionContentDeps;
     rules: RuleResult[];
     outcomeType: InstanceOutcomeType;
-    showDetails?: boolean;
-    showCongratsIfNotInstances?: boolean;
     fixInstructionProcessor?: FixInstructionProcessor;
 };
 
 export const ResultSectionContent = NamedSFC<ResultSectionContentProps>(
     'ResultSectionContent',
-    ({ rules, showDetails, outcomeType, showCongratsIfNotInstances, deps, fixInstructionProcessor }) => {
-        let content = (
-            <RuleDetailsGroup
-                deps={deps}
-                rules={rules}
-                showDetails={showDetails}
-                outcomeType={outcomeType}
-                fixInstructionProcessor={fixInstructionProcessor}
-            />
-        );
-
-        if (rules.length === 0 && showCongratsIfNotInstances) {
-            content = <NoFailedInstancesCongrats />;
+    ({ rules, outcomeType, deps, fixInstructionProcessor }) => {
+        if (rules.length === 0) {
+            return <NoFailedInstancesCongrats />;
         }
 
-        return content;
+        return <RulesWithInstances deps={deps} rules={rules} outcomeType={outcomeType} fixInstructionProcessor={fixInstructionProcessor} />;
     },
 );
