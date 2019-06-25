@@ -34,7 +34,11 @@ export const RuleDetail = NamedSFC<RuleDetailProps>('RuleDetails', props => {
             return null;
         }
 
-        return <OutcomeChip count={rule.nodes.length} outcomeType={outcomeType} />;
+        return (
+            <span aria-hidden="true">
+                <OutcomeChip count={rule.nodes.length} outcomeType={outcomeType} />
+            </span>
+        );
     };
 
     const renderRuleLink = () => {
@@ -69,7 +73,7 @@ export const RuleDetail = NamedSFC<RuleDetailProps>('RuleDetails', props => {
         <>
             <div className="rule-detail">
                 <div>
-                    {renderCountBadge()} {renderRuleLink()}: {renderDescription()} ({renderGuidanceLinks()}) {renderGuidanceTags()}
+                    {renderCountBadge()} {renderRuleLink()}: {renderDescription()} ({renderGuidanceLinks()}){renderGuidanceTags()}
                 </div>
             </div>
         </>

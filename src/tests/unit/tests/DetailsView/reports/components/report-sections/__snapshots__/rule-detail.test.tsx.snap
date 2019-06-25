@@ -6,10 +6,14 @@ exports[`RuleDetail renders 1`] = `
     className="rule-detail"
   >
     <div>
-      <OutcomeChip
-        count={1}
-        outcomeType="fail"
-      />
+      <span
+        aria-hidden="true"
+      >
+        <OutcomeChip
+          count={1}
+          outcomeType="fail"
+        />
+      </span>
        
       <span
         className="rule-details-id"
@@ -44,7 +48,7 @@ exports[`RuleDetail renders 1`] = `
           ]
         }
       />
-      ) 
+      )
       <GuidanceTags
         deps={Object {}}
         links={
