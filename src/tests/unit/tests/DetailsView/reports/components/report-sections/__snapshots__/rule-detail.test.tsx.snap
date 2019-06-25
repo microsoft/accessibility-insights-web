@@ -1,18 +1,38 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`RuleDetail renders, it is header 1`] = `
+exports[`RuleDetail renders, isHeader false 1`] = `
 <React.Fragment>
   <div
     className="rule-detail"
   >
-    <InstaceListGroupHeader
-      ariaLevel={3}
-      deps={Object {}}
-      outcomeType="fail"
-      ruleResult={
-        Object {
-          "description": "rule description",
-          "guidanceLinks": Array [
+    <div>
+      <OutcomeChip
+        count={1}
+        outcomeType="fail"
+      />
+       
+      <span
+        className="rule-details-id"
+      >
+        <NewTabLink
+          aria-describedby="failed-rule-rule id-description"
+          aria-label="rule rule id"
+          href="url://help.url"
+        >
+          rule id
+        </NewTabLink>
+      </span>
+      : 
+      <span
+        className="rule-details-description"
+        id="failed-rule-rule id-description"
+      >
+        rule description
+      </span>
+       (
+      <GuidanceLinks
+        links={
+          Array [
             Object {
               "href": "url://guidance-01.link",
               "text": "guidance-01",
@@ -21,31 +41,66 @@ exports[`RuleDetail renders, it is header 1`] = `
               "href": "url://guidance-02.link",
               "text": "guidance-02",
             },
-          ],
-          "helpUrl": "url://help.url",
-          "id": "rule id",
+          ]
         }
-      }
-    />
+      />
+      ) 
+      <GuidanceTags
+        deps={Object {}}
+        links={
+          Array [
+            Object {
+              "href": "url://guidance-01.link",
+              "text": "guidance-01",
+            },
+            Object {
+              "href": "url://guidance-02.link",
+              "text": "guidance-02",
+            },
+          ]
+        }
+      />
+    </div>
   </div>
-  <span>
-    children
-  </span>
 </React.Fragment>
 `;
 
-exports[`RuleDetail renders, not a header 1`] = `
+exports[`RuleDetail renders, isHeader true 1`] = `
 <React.Fragment>
   <div
     className="rule-detail"
   >
-    <InstaceListGroupHeader
-      deps={Object {}}
-      outcomeType="fail"
-      ruleResult={
-        Object {
-          "description": "rule description",
-          "guidanceLinks": Array [
+    <div
+      aria-level={3}
+      role="heading"
+    >
+      <OutcomeChip
+        count={1}
+        outcomeType="fail"
+      />
+       
+      <span
+        className="rule-details-id"
+      >
+        <NewTabLink
+          aria-describedby="failed-rule-rule id-description"
+          aria-label="rule rule id"
+          href="url://help.url"
+        >
+          rule id
+        </NewTabLink>
+      </span>
+      : 
+      <span
+        className="rule-details-description"
+        id="failed-rule-rule id-description"
+      >
+        rule description
+      </span>
+       (
+      <GuidanceLinks
+        links={
+          Array [
             Object {
               "href": "url://guidance-01.link",
               "text": "guidance-01",
@@ -54,15 +109,26 @@ exports[`RuleDetail renders, not a header 1`] = `
               "href": "url://guidance-02.link",
               "text": "guidance-02",
             },
-          ],
-          "helpUrl": "url://help.url",
-          "id": "rule id",
+          ]
         }
-      }
-    />
+      />
+      ) 
+      <GuidanceTags
+        deps={Object {}}
+        links={
+          Array [
+            Object {
+              "href": "url://guidance-01.link",
+              "text": "guidance-01",
+            },
+            Object {
+              "href": "url://guidance-02.link",
+              "text": "guidance-02",
+            },
+          ]
+        }
+      />
+    </div>
   </div>
-  <span>
-    children
-  </span>
 </React.Fragment>
 `;

@@ -4,7 +4,7 @@ import * as React from 'react';
 
 import { NamedSFC } from '../../../../common/react/named-sfc';
 import { RuleResult } from '../../../../scanner/iruleresults';
-import { InstanceOutcomeType } from './outcome-summary-bar';
+import { InstanceOutcomeType } from '../instance-outcome-type';
 import { RuleDetail, RuleDetailDeps } from './rule-detail';
 
 export type RulesDeps = RuleDetailDeps;

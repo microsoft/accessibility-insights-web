@@ -1,11 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as Enzyme from 'enzyme';
 import { shallow } from 'enzyme';
 import { ActionButton } from 'office-ui-fabric-react/lib/Button';
 import { TextField } from 'office-ui-fabric-react/lib/TextField';
 import * as React from 'react';
 import { IMock, Mock, Times } from 'typemoq';
+
 import { Assessments } from '../../../../../assessments/assessments';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
 import { ActionAndCancelButtonsComponent } from '../../../../../DetailsView/components/action-and-cancel-buttons-component';
@@ -42,7 +42,7 @@ describe('FailureInstancePanelControlTest', () => {
     test('onFailureDescriptionChange', () => {
         const description = 'abc';
         const props = createPropsWithType(CapturedInstanceActionType.CREATE);
-        const wrapper = shallow(<FailureInstancePanelControl {...props} />);
+        const wrapper = shallow<FailureInstancePanelControl>(<FailureInstancePanelControl {...props} />);
         wrapper
             .find(TextField)
             .props()
@@ -54,7 +54,7 @@ describe('FailureInstancePanelControlTest', () => {
     test('openFailureInstancePanel', () => {
         const props = createPropsWithType(CapturedInstanceActionType.CREATE);
         props.originalText = 'original text';
-        const wrapper = shallow(<FailureInstancePanelControl {...props} />);
+        const wrapper = shallow<FailureInstancePanelControl>(<FailureInstancePanelControl {...props} />);
         wrapper
             .find(TextField)
             .props()
@@ -71,7 +71,7 @@ describe('FailureInstancePanelControlTest', () => {
     test('closeFailureInstancePanel', () => {
         const description = 'description';
         const props = createPropsWithType(CapturedInstanceActionType.CREATE);
-        const wrapper = shallow(<FailureInstancePanelControl {...props} />);
+        const wrapper = shallow<FailureInstancePanelControl>(<FailureInstancePanelControl {...props} />);
         wrapper
             .find(TextField)
             .props()
@@ -96,7 +96,7 @@ describe('FailureInstancePanelControlTest', () => {
 
         editInstanceMock.setup(handler => handler(description, props.test, props.step, props.instanceId)).verifiable(Times.once());
 
-        const wrapper = Enzyme.shallow(<FailureInstancePanelControl {...props} />);
+        const wrapper = shallow<FailureInstancePanelControl>(<FailureInstancePanelControl {...props} />);
 
         wrapper
             .find(TextField)
@@ -120,7 +120,7 @@ describe('FailureInstancePanelControlTest', () => {
         const props = createPropsWithType(CapturedInstanceActionType.CREATE);
 
         addInstanceMock.setup(handler => handler(description, props.test, props.step)).verifiable(Times.once());
-        const wrapper = Enzyme.shallow(<FailureInstancePanelControl {...props} />);
+        const wrapper = shallow<FailureInstancePanelControl>(<FailureInstancePanelControl {...props} />);
 
         wrapper
             .find(TextField)

@@ -3,15 +3,26 @@
 import * as React from 'react';
 
 import { NamedSFC } from '../../../../common/react/named-sfc';
-import { OutcomeSummaryBar, OutcomeSummaryBarProps } from './outcome-summary-bar';
+import { allInstanceOutcomeTypes, InstanceOutcomeType } from '../instance-outcome-type';
+import { OutcomeSummaryBar } from './../outcome-summary-bar';
+import { SectionProps } from './report-section-factory';
 
-export type SummarySectionProps = OutcomeSummaryBarProps;
+export type SummarySectionProps = Pick<SectionProps, 'scanResult'>;
 
 export const SummarySection = NamedSFC<SummarySectionProps>('SummarySection', props => {
+    const scanResult = props.scanResult;
+    const countSummary: { [type in InstanceOutcomeType]: number } = {
+        fail: scanResult.violations.reduce((total, violation) => {
+            return total + violation.nodes.length;
+        }, 0),
+        pass: scanResult.passes.length,
+        inapplicable: scanResult.inapplicable.length,
+    };
+
     return (
         <div className="summary-section">
             <h2>Summary</h2>
-            <OutcomeSummaryBar {...props} />
+            <OutcomeSummaryBar {...props} outcomeStats={countSummary} iconStyleInverted={true} allOutcomeTypes={allInstanceOutcomeTypes} />
         </div>
     );
 });
