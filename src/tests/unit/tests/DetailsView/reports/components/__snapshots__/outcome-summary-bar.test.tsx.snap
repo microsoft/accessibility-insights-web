@@ -16,7 +16,7 @@ exports[`OutcomeSummaryBar render inverted badges 1`] = `
     >
       <CheckIconInverted />
        
-      NaN
+      42
        
       <span
         className="outcome-past-tense"
@@ -37,7 +37,7 @@ exports[`OutcomeSummaryBar render inverted badges 1`] = `
     >
       <CrossIconInverted />
        
-      NaN
+      13
        
       <span
         className="outcome-past-tense"
@@ -58,7 +58,7 @@ exports[`OutcomeSummaryBar render inverted badges 1`] = `
     >
       <CircleIcon />
        
-      NaN
+      7
        
       <span
         className="outcome-past-tense"
@@ -156,7 +156,7 @@ exports[`OutcomeSummaryBar show by percentage 2`] = `
     >
       <CheckIcon />
        
-      NaN
+      42
        
       <span
         className="outcome-past-tense"
@@ -177,7 +177,7 @@ exports[`OutcomeSummaryBar show by percentage 2`] = `
     >
       <CrossIcon />
        
-      NaN
+      13
        
       <span
         className="outcome-past-tense"
@@ -198,7 +198,7 @@ exports[`OutcomeSummaryBar show by percentage 2`] = `
     >
       <CircleIcon />
        
-      NaN
+      7
        
       <span
         className="outcome-past-tense"
