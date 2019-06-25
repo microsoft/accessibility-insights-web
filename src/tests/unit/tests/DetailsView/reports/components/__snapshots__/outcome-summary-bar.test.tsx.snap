@@ -86,7 +86,8 @@ exports[`OutcomeSummaryBar show by percentage 1`] = `
     >
       <CheckIcon />
        
-      42%
+      42
+      %
        
       <span
         className="outcome-past-tense"
@@ -107,7 +108,8 @@ exports[`OutcomeSummaryBar show by percentage 1`] = `
     >
       <CrossIcon />
        
-      13%
+      13
+      %
        
       <span
         className="outcome-past-tense"
@@ -128,7 +130,8 @@ exports[`OutcomeSummaryBar show by percentage 1`] = `
     >
       <CircleIcon />
        
-      7%
+      7
+      %
        
       <span
         className="outcome-past-tense"
