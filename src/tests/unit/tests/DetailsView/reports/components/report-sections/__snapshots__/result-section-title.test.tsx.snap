@@ -13,6 +13,7 @@ exports[`ResultSectionTitle renders 1`] = `
   </h2>
   <span
     aria-hidden="true"
+    className="title"
   >
     test title
   </span>

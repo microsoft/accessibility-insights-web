@@ -18,7 +18,9 @@ export const ResultSectionTitle = NamedSFC<ResultSectionTitleProps>('ResultSecti
             <h2 className="screen-reader-only">
                 {props.title} {props.badgeCount}
             </h2>
-            <span aria-hidden="true">{props.title}</span>
+            <span className="title" aria-hidden="true">
+                {props.title}
+            </span>
             <div aria-hidden="true">
                 <OutcomeChip outcomeType={props.outcomeType} count={props.badgeCount} />
             </div>
