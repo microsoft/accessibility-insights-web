@@ -106,7 +106,8 @@ Please ensure that you have at least the **minimum** recommended versions
 
 We use [jest](https://github.com/facebook/jest) as our test framework and [puppeteer](https://github.com/GoogleChrome/puppeteer) for browser automation in our end-to-end UI tests.
 
-> We have a known issue with running E2E on WSL in Windows 10. Issue posted [here](https://github.com/microsoft/accessibility-insights-web/issues/853).
+> This project's end to end tests require the ability to run a non-headless chromium process. Because of this, they are incompatible with non-graphical development environments (notably, a default WSL environment on Windows)
+> Issue for this posted [here](https://github.com/microsoft/accessibility-insights-web/issues/853).
 
 #### Using VS Code
 
