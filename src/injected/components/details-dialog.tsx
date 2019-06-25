@@ -110,7 +110,7 @@ export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDi
             return this.props.dialogHandler.isNextButtonDisabled(this);
         };
         this.isInspectButtonDisabled = () => {
-            return this.props.dialogHandler.isBackButtonDisabled(this);
+            return this.props.dialogHandler.isInspectButtonDisabled(this);
         };
 
         this.showInspectButtonMessage = () => {
