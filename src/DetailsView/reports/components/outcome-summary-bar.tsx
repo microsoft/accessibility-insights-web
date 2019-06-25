@@ -22,12 +22,12 @@ export const OutcomeSummaryBar = NamedSFC<OutcomeSummaryBarProps>('OutcomeSummar
                 const iconMap = iconStyleInverted === true ? outcomeIconMapInverted : outcomeIconMap;
                 const outcomeIcon = iconMap[outcomeType];
                 const count = props.outcomeStats[outcomeType];
-                const suffix = countSuffix || '';
 
                 return (
                     <div key={outcomeType} style={{ flexGrow: count }}>
                         <span className={kebabCase(outcomeType)}>
-                            {outcomeIcon} {count + suffix} <span className="outcome-past-tense">{text}</span>
+                            {outcomeIcon} {count}
+                            {countSuffix} <span className="outcome-past-tense">{text}</span>
                         </span>
                     </div>
                 );
