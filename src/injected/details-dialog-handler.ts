@@ -64,8 +64,7 @@ export class DetailsDialogHandler {
 
     @autobind
     public onDevToolChanged(dialog: DetailsDialog): void {
-        const canInspect: boolean = this.canInspect(dialog);
-        dialog.setState({ canInspect });
+        dialog.setState({ canInspect: this.canInspect(dialog) });
     }
 
     @autobind
