@@ -142,7 +142,7 @@ describe('DetailsDialogHandlerTest', () => {
             .returns(() => {
                 return {
                     isOpen: false,
-                } as any;
+                } as DevToolState;
             })
             .verifiable(Times.once());
 
@@ -205,7 +205,7 @@ describe('DetailsDialogHandlerTest', () => {
                 return {
                     showDialog: true,
                     currentRuleIndex: 1,
-                } as any;
+                } as DetailsDialogState;
             });
 
         detailsDialogMock
@@ -237,7 +237,7 @@ describe('DetailsDialogHandlerTest', () => {
                 return {
                     showDialog: true,
                     currentRuleIndex: 3,
-                } as any;
+                } as DetailsDialogState;
             });
 
         detailsDialogMock
@@ -269,7 +269,7 @@ describe('DetailsDialogHandlerTest', () => {
                 return {
                     showDialog: true,
                     currentRuleIndex: 0,
-                } as any;
+                } as DetailsDialogState;
             });
 
         detailsDialogMock
@@ -301,7 +301,7 @@ describe('DetailsDialogHandlerTest', () => {
                 return {
                     showDialog: true,
                     currentRuleIndex: 1,
-                } as any;
+                } as DetailsDialogState;
             });
 
         detailsDialogMock
