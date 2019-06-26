@@ -46,7 +46,6 @@ export type DetailsViewContainerDeps = {
 
 export interface DetailsViewContainerProps {
     deps: DetailsViewContainerDeps;
-    document: Document;
     issuesSelection: ISelection;
     clickHandlerFactory: DetailsViewToggleClickHandlerFactory;
     scopingActionMessageCreator: ScopingActionMessageCreator;
