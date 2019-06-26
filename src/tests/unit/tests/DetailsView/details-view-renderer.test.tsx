@@ -59,7 +59,6 @@ describe('DetailsViewRendererTest', () => {
                                 deps={deps}
                                 scopingActionMessageCreator={scopingActionMessageCreatorStrictMock.object}
                                 inspectActionMessageCreator={inspectActionMessageCreatorStrictMock.object}
-                                document={dom as any}
                                 issuesSelection={selectionMock.object}
                                 clickHandlerFactory={clickHandlerFactoryMock.object}
                                 visualizationConfigurationFactory={visualizationConfigurationFactoryMock.object}
