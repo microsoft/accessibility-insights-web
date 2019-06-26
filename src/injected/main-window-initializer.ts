@@ -204,12 +204,16 @@ export class MainWindowInitializer extends WindowInitializer {
         await Promise.all(asyncInitializationSteps);
     }
 
-    protected dispose = (): void => {
-        super.dispose();
+    protected dispose(): void {
+        // Using .bind(this) instead of an arrow function because ES5 only supports accessing methods (not properties) of super
+        // When we move to target ES6, this can be simplified to super.dispose()
+        // See https://github.com/microsoft/TypeScript/issues/338
+        super.dispose.bind(this)();
+
         this.frameCommunicator.dispose();
         this.tabStoreProxy.dispose();
         this.visualizationScanResultStoreProxy.dispose();
         this.visualizationStoreProxy.dispose();
         this.devToolStoreProxy.dispose();
-    };
+    }
 }

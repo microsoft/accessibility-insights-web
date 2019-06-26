@@ -125,7 +125,7 @@ export class WindowInitializer {
         await Promise.all(asyncInitializationSteps);
     }
 
-    protected dispose = (): void => {
+    protected dispose(): void {
         this.drawingController.dispose();
-    };
+    }
 }
