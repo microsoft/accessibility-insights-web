@@ -60,5 +60,5 @@ export abstract class BaseVisualHelperToggle extends React.Component<VisualHelpe
         return null;
     }
 
-    protected abstract onClick(event): void;
+    protected abstract onClick: (event: any) => void;
 }

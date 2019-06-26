@@ -39,7 +39,7 @@ export class TabStopsAnalyzer extends BaseAnalyzer {
         this.getResults().progress(this.onProgress);
     }
 
-    protected getResults(): Q.Promise<AxeAnalyzerResult> {
+    protected getResults = (): Q.Promise<AxeAnalyzerResult> => {
         this.deferred = Q.defer<AxeAnalyzerResult>();
         this.tabStopsListener.setTabEventListenerOnMainWindow((tabEvent: TabStopEvent) => {
             if (this._onTabbedTimeoutId != null) {
@@ -61,7 +61,7 @@ export class TabStopsAnalyzer extends BaseAnalyzer {
         this.tabStopsListener.startListenToTabStops();
         this.analyzerSetupComplete();
         return this.deferred.promise;
-    }
+    };
 
     private analyzerSetupComplete(): void {
         this.onResolve(this.emptyResults);
