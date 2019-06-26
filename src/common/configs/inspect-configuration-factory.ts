@@ -16,6 +16,14 @@ export class InspectConfigurationFactory {
         this.scopingActionMessageCreator = scopingActionMessageCreator;
     }
 
+    private addIncludeSelector = (event: MouseEvent, selector: string[]): void => {
+        this.scopingActionMessageCreator.addSelector(event, ScopingInputTypes.include, selector);
+    };
+
+    private addExcludeSelector = (event: MouseEvent, selector: string[]): void => {
+        this.scopingActionMessageCreator.addSelector(event, ScopingInputTypes.exclude, selector);
+    };
+
     private configurationByType: DictionaryStringTo<IInspectCallback> = {
         [InspectMode.scopingAddInclude]: this.addIncludeSelector,
         [InspectMode.scopingAddExclude]: this.addExcludeSelector,
@@ -30,12 +38,4 @@ export class InspectConfigurationFactory {
 
         return configuration;
     }
-
-    private addIncludeSelector = (event: MouseEvent, selector: string[]): void => {
-        this.scopingActionMessageCreator.addSelector(event, ScopingInputTypes.include, selector);
-    };
-
-    private addExcludeSelector = (event: MouseEvent, selector: string[]): void => {
-        this.scopingActionMessageCreator.addSelector(event, ScopingInputTypes.exclude, selector);
-    };
 }
