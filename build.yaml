@@ -4,7 +4,7 @@ jobs:
     - job: 'unit_tests_and_lints'
 
       pool:
-          vmImage: 'macOS-10.13'
+          vmImage: ${{ parameters.vmImage }}
 
       steps:
           - template: pipeline/prerequisites.yaml
@@ -52,7 +52,7 @@ jobs:
     - job: 'e2e_tests_and_publish_drop'
 
       pool:
-          vmImage: 'macOS-10.13'
+          vmImage: ${{ parameters.vmImage }}
 
       steps:
           - template: pipeline/prerequisites.yaml
