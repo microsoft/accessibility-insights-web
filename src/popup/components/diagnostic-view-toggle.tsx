@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { autobind } from '@uifabric/utilities';
 import { Link } from 'office-ui-fabric-react/lib/Link';
 import { Spinner, SpinnerSize } from 'office-ui-fabric-react/lib/Spinner';
 import { IToggle } from 'office-ui-fabric-react/lib/Toggle';
@@ -118,26 +117,23 @@ export class DiagnosticViewToggle extends React.Component<DiagnosticViewTogglePr
         }
     }
 
-    @autobind
-    private onFocusHandler(): void {
+    private onFocusHandler = (): void => {
         if (this._isMounted) {
             this.setState({
                 isFocused: true,
             });
         }
-    }
+    };
 
-    @autobind
-    private onBlurHandler(): void {
+    private onBlurHandler = (): void => {
         if (this._isMounted) {
             this.setState({
                 isFocused: false,
             });
         }
-    }
+    };
 
-    @autobind
-    private addUserEventListener(): void {
+    private addUserEventListener = (): void => {
         if (!this._userEventListenerAdded) {
             this.dom.addEventListener('keydown', (event: any) => {
                 if (event.keyCode === KeyCodeConstants.TAB) {
@@ -154,7 +150,7 @@ export class DiagnosticViewToggle extends React.Component<DiagnosticViewTogglePr
 
             this._userEventListenerAdded = true;
         }
-    }
+    };
 
     private renderLink(linkText: string): JSX.Element {
         if (this.configuration.guidance) {

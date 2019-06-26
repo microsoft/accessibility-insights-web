@@ -1,7 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { autobind } from '@uifabric/utilities';
-
 import { InspectMode } from '../background/inspect-modes';
 import { Messages } from '../common/messages';
 import { WindowUtils } from '../common/window-utils';
@@ -43,8 +41,7 @@ export class InjectorController {
         this._inspectStore.addChangedListener(this.inject);
     }
 
-    @autobind
-    private inject(): void {
+    private inject = (): void => {
         const tabId: number = this._tabStore.getState().id;
         const visualizationStoreState = this._visualizationStore.getState();
         const inspectStoreState = this._inspectStore.getState();
@@ -71,5 +68,5 @@ export class InjectorController {
         }
 
         this._oldInspectType = inspectStoreState.inspectMode;
-    }
+    };
 }

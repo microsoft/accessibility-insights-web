@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { autobind } from '@uifabric/utilities';
 import { InspectMode } from '../../background/inspect-modes';
 import { Messages } from '../messages';
 import { TelemetryDataFactory } from '../telemetry-data-factory';
@@ -15,8 +14,7 @@ export class InspectActionMessageCreator {
         private readonly dispatcher: ActionMessageDispatcher,
     ) {}
 
-    @autobind
-    public changeInspectMode(event: React.MouseEvent<HTMLElement> | MouseEvent, inspectMode: InspectMode): void {
+    public changeInspectMode = (event: React.MouseEvent<HTMLElement> | MouseEvent, inspectMode: InspectMode): void => {
         const messageType = Messages.Inspect.ChangeInspectMode;
         const telemetry = this.telemetryFactory.withTriggeredByAndSource(event, this.source);
         const payload: InspectPayload = {
@@ -27,5 +25,5 @@ export class InspectActionMessageCreator {
             messageType: messageType,
             payload: payload,
         });
-    }
+    };
 }

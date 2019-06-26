@@ -1,7 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { autobind } from '@uifabric/utilities';
-
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
 import { DisplayableStrings } from '../common/constants/displayable-strings';
 import { createDefaultLogger } from '../common/logging/default-logger';
@@ -43,8 +41,7 @@ export class ChromeCommandHandler {
         this.commandsAdapter.addCommandListener(this.onCommand);
     }
 
-    @autobind
-    private async onCommand(commandId: string): Promise<void> {
+    private onCommand = async (commandId: string): Promise<void> => {
         try {
             if (this.userConfigurationStore.getState().isFirstTime) {
                 // Avoid launching functionality until a user has decided whether to allow telemetry
@@ -92,7 +89,7 @@ export class ChromeCommandHandler {
         } catch (err) {
             this.logger.error('Error occurred at chrome command handler:', err);
         }
-    }
+    };
 
     private async checkAccessUrl(): Promise<boolean> {
         return await this.urlValidator.isSupportedUrl(this.targetTabUrl);

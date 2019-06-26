@@ -1,7 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { autobind } from '@uifabric/utilities';
-
 import { DictionaryStringTo } from '../types/common-types';
 import { BrowserAdapter } from './browser-adapters/browser-adapter';
 
@@ -33,8 +31,7 @@ export class DetailsViewController {
         });
     }
 
-    @autobind
-    private onUpdateTab(tabId: number, changeInfo: chrome.tabs.TabChangeInfo, tab: chrome.tabs.Tab): void {
+    private onUpdateTab = (tabId: number, changeInfo: chrome.tabs.TabChangeInfo, tab: chrome.tabs.Tab): void => {
         const targetTabId = this.getTargetTabIdForDetailsTabId(tabId);
 
         if (targetTabId == null) {
@@ -47,7 +44,7 @@ export class DetailsViewController {
                 this._detailsViewRemovedHandler(targetTabId);
             }
         }
-    }
+    };
 
     private hasUrlChange(changeInfo: chrome.tabs.TabChangeInfo, targetTabId): boolean {
         return (
@@ -79,8 +76,7 @@ export class DetailsViewController {
         return null;
     }
 
-    @autobind
-    private onRemoveTab(tabId: number, removeInfo: chrome.tabs.TabRemoveInfo): void {
+    private onRemoveTab = (tabId: number, removeInfo: chrome.tabs.TabRemoveInfo): void => {
         if (this._tabIdToDetailsViewMap[tabId]) {
             delete this._tabIdToDetailsViewMap[tabId];
         } else {
@@ -92,5 +88,5 @@ export class DetailsViewController {
                 }
             }
         }
-    }
+    };
 }

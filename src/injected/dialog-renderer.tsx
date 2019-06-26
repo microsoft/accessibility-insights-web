@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { autobind, getRTL } from '@uifabric/utilities';
+import { getRTL } from '@uifabric/utilities';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
@@ -110,15 +110,14 @@ export class DialogRenderer {
         }
     };
 
-    @autobind
-    private processRequest(
+    private processRequest = (
         message: DetailsDialogWindowMessage,
         error: ErrorMessageContent,
         sourceWin: Window,
         responder?: FrameMessageResponseCallback,
-    ): void {
+    ): void => {
         this.render(message.data, message.featureFlagStoreData);
-    }
+    };
 
     private initializeDialogContainerInShadowDom(): HTMLDivElement {
         const shadowContainer = this.shadowUtils.getShadowContainer();

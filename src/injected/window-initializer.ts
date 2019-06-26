@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { autobind, getRTL } from '@uifabric/utilities';
+import { getRTL } from '@uifabric/utilities';
 import * as Q from 'q';
 
 import { ClientChromeAdapter } from '../common/client-browser-adapter';
@@ -125,8 +125,7 @@ export class WindowInitializer {
         await Promise.all(asyncInitializationSteps);
     }
 
-    @autobind
-    protected dispose(): void {
+    protected dispose = (): void => {
         this.drawingController.dispose();
-    }
+    };
 }

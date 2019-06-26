@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { autobind } from '@uifabric/utilities';
 import { StoreHub } from '../background/stores/store-hub';
 import { BaseStore } from './base-store';
 import { GenericStoreMessageTypes } from './constants/generic-store-messages-types';
@@ -25,8 +24,7 @@ export class StateDispatcher {
         dispatchStateUpdateDelegate();
     }
 
-    @autobind
-    private getDispatchStateUpdateEvent(store: BaseStore<any>): () => void {
+    private getDispatchStateUpdateEvent = (store: BaseStore<any>): (() => void) => {
         return () => {
             this.broadcastMessage({
                 isStoreUpdateMessage: true,
@@ -36,5 +34,5 @@ export class StateDispatcher {
                 payload: store.getState(),
             });
         };
-    }
+    };
 }

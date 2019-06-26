@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { autobind } from '@uifabric/utilities';
 import { forOwn } from 'lodash';
 
 import { HTMLElementUtils } from '../common/html-element-utils';
@@ -49,8 +48,7 @@ export class DrawingController {
         this.drawers[id] = drawer;
     };
 
-    @autobind
-    public processRequest(message: VisualizationWindowMessage): void {
+    public processRequest = (message: VisualizationWindowMessage): void => {
         this.featureFlagStoreData = message.featureFlagStoreData;
         if (message.isEnabled) {
             const elementResultsByFrames = message.elementResults
@@ -60,18 +58,17 @@ export class DrawingController {
         } else {
             this.disableVisualization(message.configId);
         }
-    }
+    };
 
-    @autobind
-    private onTriggerVisualization(
+    private onTriggerVisualization = (
         result: VisualizationWindowMessage,
         error: ErrorMessageContent,
         sourceWindow: Window,
         responder?: FrameMessageResponseCallback,
-    ): void {
+    ): void => {
         this.processRequest(result);
         this.invokeMethodIfExists(responder, null);
-    }
+    };
 
     private enableVisualization(elementResultsByFrames: HTMLIFrameResult[], configId: string): void {
         if (elementResultsByFrames) {

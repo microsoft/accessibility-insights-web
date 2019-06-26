@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { autobind } from '@uifabric/utilities';
 import { InspectMode } from '../../background/inspect-modes';
 import { ScopingInputTypes } from '../../background/scoping-input-types';
 import { DictionaryStringTo } from '../../types/common-types';
@@ -32,13 +31,11 @@ export class InspectConfigurationFactory {
         return configuration;
     }
 
-    @autobind
-    private addIncludeSelector(event: MouseEvent, selector: string[]): void {
+    private addIncludeSelector = (event: MouseEvent, selector: string[]): void => {
         this.scopingActionMessageCreator.addSelector(event, ScopingInputTypes.include, selector);
-    }
+    };
 
-    @autobind
-    private addExcludeSelector(event: MouseEvent, selector: string[]): void {
+    private addExcludeSelector = (event: MouseEvent, selector: string[]): void => {
         this.scopingActionMessageCreator.addSelector(event, ScopingInputTypes.exclude, selector);
-    }
+    };
 }

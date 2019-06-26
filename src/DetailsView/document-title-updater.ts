@@ -1,7 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { autobind } from '@uifabric/utilities';
-
 import { BaseStore } from '../common/base-store';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
 import { AssessmentStoreData } from '../common/types/store-data/assessment-result-data';
@@ -31,13 +29,12 @@ export class DocumentTitleUpdater {
         this.assessmentStore.addChangedListener(this.onStoreChange);
     }
 
-    @autobind
-    private onStoreChange(): void {
+    private onStoreChange = (): void => {
         const documentTitle = this.getDocumentTitle();
         const defaultTitle = title;
 
         this.doc.title = documentTitle ? `${documentTitle} - ${defaultTitle}` : defaultTitle;
-    }
+    };
 
     private getDocumentTitle(): string {
         if (!this.hasAllStoreData() || this.tabStore.getState().isClosed) {

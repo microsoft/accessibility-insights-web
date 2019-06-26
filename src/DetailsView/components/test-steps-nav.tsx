@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { autobind } from '@uifabric/utilities';
 import { INavLink, Nav } from 'office-ui-fabric-react/lib/Nav';
 import * as React from 'react';
 
@@ -52,8 +51,7 @@ export class TestStepsNav extends React.Component<TestStepNavProps> {
         );
     }
 
-    @autobind
-    protected renderNavLink(link: INavLink): JSX.Element {
+    protected renderNavLink = (link: INavLink): JSX.Element => {
         return (
             <RequirementLink
                 link={link}
@@ -61,18 +59,17 @@ export class TestStepsNav extends React.Component<TestStepNavProps> {
                 renderRequirementDescription={link.renderRequirementDescription}
             />
         );
-    }
+    };
 
     private getStepStatus(key: string): ManualTestStatus {
         return this.props.stepStatus[key].stepFinalResult;
     }
 
-    @autobind
-    protected onTestStepSelected(event?: React.MouseEvent<HTMLElement>, item?: INavLink): void {
+    protected onTestStepSelected = (event?: React.MouseEvent<HTMLElement>, item?: INavLink): void => {
         if (item) {
             this.props.deps.detailsViewActionMessageCreator.selectRequirement(event, item.key, this.props.selectedTest);
         }
-    }
+    };
 
     private getLinks(): INavLink[] {
         const { selectedTest, stepStatus } = this.props;

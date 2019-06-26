@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { autobind } from '@uifabric/utilities';
 import * as _ from 'lodash';
 import { BaseStore } from '../common/base-store';
 import { TestMode } from '../common/configs/test-mode';
@@ -82,8 +81,7 @@ export class ClientViewController {
         this.previousVisualizationStates = {};
     }
 
-    @autobind
-    public onChangedState(): void {
+    public onChangedState = (): void => {
         const oldVisualizationState = this.currentVisualizationState;
 
         this.currentVisualizationState = this.visualizationStore.getState();
@@ -101,7 +99,7 @@ export class ClientViewController {
             this.executeUpdates();
             this.handleFocusChanges(oldVisualizationState);
         }
-    }
+    };
 
     private handleFocusChanges(oldVisualizationState: VisualizationStoreData): void {
         if (

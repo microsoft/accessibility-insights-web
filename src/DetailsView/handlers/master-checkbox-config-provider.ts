@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { autobind } from '@uifabric/utilities';
 import * as classNames from 'classnames';
 import { IColumn } from 'office-ui-fabric-react/lib/DetailsList';
 
@@ -34,11 +33,10 @@ export class MasterCheckBoxConfigProvider {
         };
     }
 
-    @autobind
-    private getMasterCheckBoxClickHandler(
+    private getMasterCheckBoxClickHandler = (
         assessmentNavState: AssessmentNavState,
         allEnabled: boolean,
-    ): (ev: React.MouseEvent<HTMLElement>, column: IColumn) => void {
+    ): ((ev: React.MouseEvent<HTMLElement>, column: IColumn) => void) => {
         return (ev: React.MouseEvent<HTMLElement>, column: IColumn) => {
             this.actionMessageCreator.changeAssessmentVisualizationStateForAll(
                 !allEnabled,
@@ -46,5 +44,5 @@ export class MasterCheckBoxConfigProvider {
                 assessmentNavState.selectedTestStep,
             );
         };
-    }
+    };
 }

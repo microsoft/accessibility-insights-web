@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { autobind } from '@uifabric/utilities';
 import { StoreNames } from '../../../common/stores/store-names';
 import { LaunchPanelStoreData } from '../../../common/types/store-data/launch-panel-store-data';
 import { LaunchPanelType } from '../../../popup/components/popup-view';
@@ -37,10 +36,9 @@ export class LaunchPanelStore extends BaseStoreImpl<LaunchPanelStoreData> {
         this.launchPanelStateActions.getCurrentState.addListener(this.onGetCurrentState);
     }
 
-    @autobind
-    private onSetLaunchPanelType(panelType: LaunchPanelType): void {
+    private onSetLaunchPanelType = (panelType: LaunchPanelType): void => {
         this.state.launchPanelType = panelType;
         this.storageAdapter.setUserData({ [LocalStorageDataKeys.launchPanelSetting]: panelType });
         this.emitChanged();
-    }
+    };
 }

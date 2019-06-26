@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { autobind } from '@uifabric/utilities';
 import { FeatureFlags } from '../common/feature-flags';
 import { HTMLElementUtils } from '../common/html-element-utils';
 import { DetailsDialog } from './components/details-dialog';
@@ -11,79 +10,66 @@ export class DetailsDialogHandler {
 
     constructor(private htmlElementUtils: HTMLElementUtils) {}
 
-    @autobind
-    public backButtonClickHandler(dialog: DetailsDialog): void {
+    public backButtonClickHandler = (dialog: DetailsDialog): void => {
         const currentRuleIndex = dialog.state.currentRuleIndex;
         dialog.setState({
             currentRuleIndex: currentRuleIndex - 1,
         });
-    }
+    };
 
-    @autobind
-    public nextButtonClickHandler(dialog: DetailsDialog): void {
+    public nextButtonClickHandler = (dialog: DetailsDialog): void => {
         const currentRuleIndex = dialog.state.currentRuleIndex;
         dialog.setState({
             currentRuleIndex: currentRuleIndex + 1,
         });
-    }
+    };
 
-    @autobind
-    public inspectButtonClickHandler(dialog: DetailsDialog, event: React.SyntheticEvent<MouseEvent>): void {
+    public inspectButtonClickHandler = (dialog: DetailsDialog, event: React.SyntheticEvent<MouseEvent>): void => {
         this.hideDialog(dialog);
         dialog.props.devToolActionMessageCreator.setInspectElement(event, dialog.props.target);
-    }
+    };
 
-    @autobind
-    public showDialog(dialog: DetailsDialog): void {
+    public showDialog = (dialog: DetailsDialog): void => {
         dialog.setState({ showDialog: true });
-    }
+    };
 
-    @autobind
-    public hideDialog(dialog: DetailsDialog): void {
+    public hideDialog = (dialog: DetailsDialog): void => {
         dialog.setState({ showDialog: false });
-    }
+    };
 
-    @autobind
-    public isNextButtonDisabled(dialog: DetailsDialog): boolean {
+    public isNextButtonDisabled = (dialog: DetailsDialog): boolean => {
         return dialog.state.currentRuleIndex >= Object.keys(dialog.props.failedRules).length - 1;
-    }
+    };
 
-    @autobind
-    public isBackButtonDisabled(dialog: DetailsDialog): boolean {
+    public isBackButtonDisabled = (dialog: DetailsDialog): boolean => {
         return dialog.state.currentRuleIndex <= 0;
-    }
+    };
 
-    @autobind
-    public isInspectButtonDisabled(dialog: DetailsDialog): boolean {
+    public isInspectButtonDisabled = (dialog: DetailsDialog): boolean => {
         return !dialog.state.canInspect;
-    }
+    };
 
-    @autobind
-    public onDevToolChanged(dialog: DetailsDialog): void {
+    public onDevToolChanged = (dialog: DetailsDialog): void => {
         dialog.setState({ canInspect: this.canInspect(dialog) });
-    }
+    };
 
-    @autobind
-    public canInspect(dialog: DetailsDialog): boolean {
+    public canInspect = (dialog: DetailsDialog): boolean => {
         const devToolState = dialog.props.devToolStore.getState();
         return devToolState && devToolState.isOpen;
-    }
+    };
 
-    @autobind
-    public onUserConfigChanged(dialog: DetailsDialog): void {
+    public onUserConfigChanged = (dialog: DetailsDialog): void => {
         const storeState = dialog.props.userConfigStore.getState();
         dialog.setState({
             userConfigurationStoreData: storeState,
         });
-    }
+    };
 
-    @autobind
-    public getFailureInfo(dialog: DetailsDialog): string {
+    public getFailureInfo = (dialog: DetailsDialog): string => {
         return `Failure ${dialog.state.currentRuleIndex + 1} of ${Object.keys(dialog.props.failedRules).length} for this target`;
-    }
+    };
 
-    @autobind
-    public onLayoutDidMount(): void {
+    public onLayoutDidMount = (): void => {
         const dialogContainer = this.htmlElementUtils.querySelector('.insights-dialog-main-override') as HTMLElement;
 
         if (dialogContainer == null) {
@@ -99,10 +85,9 @@ export class DetailsDialogHandler {
             }
             parentLayer = parentLayer.parentElement;
         }
-    }
+    };
 
-    @autobind
-    public componentDidMount(dialog: DetailsDialog): void {
+    public componentDidMount = (dialog: DetailsDialog): void => {
         if (!this.hasStore(dialog)) {
             return;
         }
@@ -122,7 +107,7 @@ export class DetailsDialogHandler {
         if (dialog.props.featureFlagStoreData[FeatureFlags.shadowDialog]) {
             this.addListenerForDialogInShadowDom(dialog);
         }
-    }
+    };
 
     private addListenerForDialogInShadowDom(dialog: DetailsDialog): void {
         const shadowRoot = this.htmlElementUtils.querySelector('#insights-shadow-host').shadowRoot;
@@ -176,11 +161,10 @@ export class DetailsDialogHandler {
         this.addShadowClickEventListener(shadowRoot, '.insights-dialog-button-inspect', inspectButtonListener);
     }
 
-    @autobind
-    public componentWillUnmount(dialog: DetailsDialog): void {
+    public componentWillUnmount = (dialog: DetailsDialog): void => {
         dialog.props.devToolStore.removeChangedListener(this._onDevToolChanged);
         dialog.props.userConfigStore.removeChangedListener(this._onUserConfigChanged);
-    }
+    };
 
     private hasStore(dialog: DetailsDialog): boolean {
         return dialog.props != null && dialog.props.devToolStore != null;

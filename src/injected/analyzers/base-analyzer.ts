@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { autobind } from '@uifabric/utilities';
 import * as Q from 'q';
 
 import { Message } from '../../common/message';
@@ -34,15 +33,13 @@ export class BaseAnalyzer implements Analyzer {
 
     public teardown(): void {}
 
-    @autobind
-    protected getResults(): Q.Promise<AxeAnalyzerResult> {
+    protected getResults = (): Q.Promise<AxeAnalyzerResult> => {
         return Q(this.emptyResults);
-    }
+    };
 
-    @autobind
-    protected onResolve(analyzerResult: AxeAnalyzerResult): void {
+    protected onResolve = (analyzerResult: AxeAnalyzerResult): void => {
         this.sendMessage(this.createBaseMessage(analyzerResult, this.config));
-    }
+    };
 
     protected createBaseMessage(analyzerResult: AxeAnalyzerResult, config: AnalyzerConfiguration): Message {
         const messageType = config.analyzerMessageType;

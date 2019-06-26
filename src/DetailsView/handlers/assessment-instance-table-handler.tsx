@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { autobind } from '@uifabric/utilities';
 import { IColumn } from 'office-ui-fabric-react/lib/DetailsList';
 import * as React from 'react';
 
@@ -35,20 +34,17 @@ export class AssessmentInstanceTableHandler {
         this.assessmentsProvider = assessmentsProvider;
     }
 
-    @autobind
-    public changeRequirementStatus(status: ManualTestStatus, test: VisualizationType, step: string): void {
+    public changeRequirementStatus = (status: ManualTestStatus, test: VisualizationType, step: string): void => {
         this.actionMessageCreator.changeManualRequirementStatus(status, test, step);
-    }
+    };
 
-    @autobind
-    public undoRequirementStatusChange(test: VisualizationType, step: string): void {
+    public undoRequirementStatusChange = (test: VisualizationType, step: string): void => {
         this.actionMessageCreator.undoManualRequirementStatusChange(test, step);
-    }
+    };
 
-    @autobind
-    public addFailureInstance(description: string, test: VisualizationType, step: string): void {
+    public addFailureInstance = (description: string, test: VisualizationType, step: string): void => {
         this.actionMessageCreator.addFailureInstance(description, test, step);
-    }
+    };
 
     public passUnmarkedInstances(test: VisualizationType, step: string): void {
         this.actionMessageCreator.passUnmarkedInstances(test, step);
@@ -111,8 +107,11 @@ export class AssessmentInstanceTableHandler {
         return this.assessmentTableColumnConfigHandler.getColumnConfigsForCapturedInstances();
     }
 
-    @autobind
-    private renderChoiceGroup(instance: GeneratedAssessmentInstance, key: string, assessmentNavState: AssessmentNavState): JSX.Element {
+    private renderChoiceGroup = (
+        instance: GeneratedAssessmentInstance,
+        key: string,
+        assessmentNavState: AssessmentNavState,
+    ): JSX.Element => {
         const step = assessmentNavState.selectedTestStep;
         const test = assessmentNavState.selectedTestType;
         return (
@@ -126,10 +125,13 @@ export class AssessmentInstanceTableHandler {
                 onUndoClicked={this.actionMessageCreator.undoManualTestStatusChange}
             />
         );
-    }
+    };
 
-    @autobind
-    private renderSelectedButton(instance: GeneratedAssessmentInstance, key: string, assessmentNavState: AssessmentNavState): JSX.Element {
+    private renderSelectedButton = (
+        instance: GeneratedAssessmentInstance,
+        key: string,
+        assessmentNavState: AssessmentNavState,
+    ): JSX.Element => {
         const step = assessmentNavState.selectedTestStep;
         const test = assessmentNavState.selectedTestType;
 
@@ -143,10 +145,9 @@ export class AssessmentInstanceTableHandler {
                 onSelected={this.actionMessageCreator.changeAssessmentVisualizationState}
             />
         );
-    }
+    };
 
-    @autobind
-    private renderInstanceActionButtons(instance: UserCapturedInstance, test: VisualizationType, step: string): JSX.Element {
+    private renderInstanceActionButtons = (instance: UserCapturedInstance, test: VisualizationType, step: string): JSX.Element => {
         return (
             <AssessmentInstanceEditAndRemoveControl
                 test={test}
@@ -158,7 +159,7 @@ export class AssessmentInstanceTableHandler {
                 assessmentsProvider={this.assessmentsProvider}
             />
         );
-    }
+    };
 
     private getInstanceKeys(
         instancesMap: DictionaryStringTo<GeneratedAssessmentInstance>,
