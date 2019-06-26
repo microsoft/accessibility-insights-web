@@ -9,10 +9,6 @@ import { CONTENT_HYPERLINK_OPENED, CONTENT_PAGE_OPENED, TelemetryEventSource } f
 import { ActionMessageDispatcher } from './action-message-dispatcher';
 
 export class ContentActionMessageCreator {
-    public initiators: Pick<ActionInitiators, 'openExternalLink'> = {
-        openExternalLink: this.openExternalLink,
-    };
-
     constructor(
         private readonly telemetryFactory: TelemetryDataFactory,
         private readonly source: TelemetryEventSource,
@@ -75,5 +71,9 @@ export class ContentActionMessageCreator {
 
     private openExternalLink = (event: React.MouseEvent<any> | MouseEvent, details: { href: string }): void => {
         this.openContentHyperLink(event, details.href);
+    };
+
+    public initiators: Pick<ActionInitiators, 'openExternalLink'> = {
+        openExternalLink: this.openExternalLink,
     };
 }
