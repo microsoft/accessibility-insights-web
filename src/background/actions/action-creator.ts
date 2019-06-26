@@ -117,47 +117,47 @@ export class ActionCreator {
 
     private onEnableVisualHelperWithoutScan = (payload: ToggleActionPayload): void => {
         this.visualizationActions.enableVisualizationWithoutScan.invoke(payload);
-    }
+    };
 
     private onEnableVisualHelper = (payload: ToggleActionPayload): void => {
         this.visualizationActions.enableVisualization.invoke(payload);
-    }
+    };
 
     private onDisableVisualHelpersForTest = (payload: ToggleActionPayload): void => {
         this.visualizationActions.disableVisualization.invoke(payload.test);
-    }
+    };
 
     private onDisableVisualHelper = (payload: ToggleActionPayload): void => {
         const eventName = TelemetryEvents.DISABLE_VISUAL_HELPER;
         this.telemetryEventHandler.publishTelemetry(eventName, payload);
         this.visualizationActions.disableVisualization.invoke(payload.test);
-    }
+    };
 
     private onStartOver = (payload: ToggleActionPayload): void => {
         const eventName = TelemetryEvents.START_OVER_TEST;
         this.telemetryEventHandler.publishTelemetry(eventName, payload);
         this.visualizationActions.disableVisualization.invoke(payload.test);
-    }
+    };
 
     private onCancelStartOver = (payload: BaseActionPayload): void => {
         const eventName = TelemetryEvents.CANCEL_START_OVER_TEST;
         this.telemetryEventHandler.publishTelemetry(eventName, payload);
-    }
+    };
 
     private onStartOverAllAssessments = (payload: ToggleActionPayload): void => {
         const eventName = TelemetryEvents.START_OVER_ASSESSMENT;
         this.telemetryEventHandler.publishTelemetry(eventName, payload);
         this.visualizationActions.disableAssessmentVisualizations.invoke(null);
-    }
+    };
 
     private onCancelStartOverAllAssessments = (payload: BaseActionPayload): void => {
         const eventName = TelemetryEvents.CANCEL_START_OVER_ASSESSMENT;
         this.telemetryEventHandler.publishTelemetry(eventName, payload);
-    }
+    };
 
     private onDetailsViewClosed = (): void => {
         this.visualizationActions.disableAssessmentVisualizations.invoke(null);
-    }
+    };
 
     private onAssessmentScanCompleted = (payload: ScanCompletedPayload<any>, tabId: number): void => {
         const eventName = TelemetryEvents.ASSESSMENT_SCAN_COMPLETED;
@@ -165,43 +165,43 @@ export class ActionCreator {
         this.visualizationActions.scanCompleted.invoke(null);
         this.notificationCreator.createNotificationByVisualizationKey(payload.selectorMap, payload.key, payload.testType);
         this.targetTabController.showTargetTab(tabId, payload.testType, payload.key);
-    }
+    };
 
     private onOpenPreviewFeaturesPanel = (payload: BaseActionPayload, tabId: number): void => {
         this.previewFeaturesActions.openPreviewFeatures.invoke(null);
         this.showDetailsView(tabId);
         this.telemetryEventHandler.publishTelemetry(TelemetryEvents.PREVIEW_FEATURES_OPEN, payload);
-    }
+    };
 
     private onClosePreviewFeaturesPanel = (payload: BaseActionPayload): void => {
         this.previewFeaturesActions.closePreviewFeatures.invoke(null);
         this.telemetryEventHandler.publishTelemetry(TelemetryEvents.PREVIEW_FEATURES_CLOSE, payload);
-    }
+    };
 
     private onTabbedElementAdded = (payload: AddTabbedElementPayload): void => {
         this.visualizationScanResultActions.addTabbedElement.invoke(payload);
-    }
+    };
 
     private onRecordingCompleted = (payload: BaseActionPayload): void => {
         this.telemetryEventHandler.publishTelemetry(TelemetryEvents.TABSTOPS_RECORDING_COMPLETE, payload);
-    }
+    };
 
     private onRecordingTerminated = (payload: BaseActionPayload): void => {
         this.visualizationScanResultActions.disableTabStop.invoke(payload);
-    }
+    };
 
     private onOpenConfigureCommandTab = (payload: BaseActionPayload): void => {
         this.chromeFeatureController.openCommandConfigureTab();
         this.telemetryEventHandler.publishTelemetry(TelemetryEvents.SHORTCUT_CONFIGURE_OPEN, payload);
-    }
+    };
 
     private onUpdateIssuesSelectedTargets = (payload: string[]): void => {
         this.visualizationScanResultActions.updateIssuesSelectedTargets.invoke(payload);
-    }
+    };
 
     private onUpdateFocusedInstance = (payload: string[]): void => {
         this.visualizationActions.updateFocusedInstance.invoke(payload);
-    }
+    };
 
     private onScanCompleted = (payload: ScanCompletedPayload<any>, tabId: number): void => {
         const telemetryEventName = TelemetryEvents.ADHOC_SCAN_COMPLETED;
@@ -210,11 +210,11 @@ export class ActionCreator {
         this.visualizationActions.scanCompleted.invoke(null);
         this.notificationCreator.createNotificationByVisualizationKey(payload.selectorMap, payload.key, payload.testType);
         this.targetTabController.showTargetTab(tabId, payload.testType, payload.key);
-    }
+    };
 
     private onScrollRequested = (payload: BaseActionPayload): void => {
         this.visualizationActions.scrollRequested.invoke(null);
-    }
+    };
 
     private onDetailsViewOpen = (payload: OnDetailsViewOpenPayload, tabId: number): void => {
         if (this.shouldEnableToggleOnDetailsViewOpen(payload.detailsViewType)) {
@@ -222,7 +222,7 @@ export class ActionCreator {
         }
 
         this.onPivotChildSelected(payload, tabId);
-    }
+    };
 
     private shouldEnableToggleOnDetailsViewOpen(visualizationType: VisualizationType): boolean {
         return (
@@ -250,16 +250,16 @@ export class ActionCreator {
         this.visualizationActions.updateSelectedPivotChild.invoke(payload);
         this.showDetailsView(tabId);
         this.telemetryEventHandler.publishTelemetry(TelemetryEvents.PIVOT_CHILD_SELECTED, payload);
-    }
+    };
 
     private onDetailsViewPivotSelected = (payload: OnDetailsViewPivotSelected): void => {
         this.visualizationActions.updateSelectedPivot.invoke(payload);
         this.telemetryEventHandler.publishTelemetry(TelemetryEvents.DETAILS_VIEW_PIVOT_ACTIVATED, payload);
-    }
+    };
 
     private showDetailsView = (tabId: number): void => {
         this.detailsViewController.showDetailsView(tabId);
-    }
+    };
 
     private onVisualizationToggle = (payload: VisualizationTogglePayload): void => {
         const telemetryEvent = this.adhocTestTypeToTelemetryEvent[payload.test];
@@ -270,25 +270,25 @@ export class ActionCreator {
         } else {
             this.visualizationActions.disableVisualization.invoke(payload.test);
         }
-    }
+    };
 
     private injectionCompleted = (): void => {
         this.visualizationActions.injectionCompleted.invoke(null);
-    }
+    };
 
     private injectionStarted = (): void => {
         this.visualizationActions.injectionStarted.invoke(null);
-    }
+    };
 
     private getVisualizationToggleCurrentState = (): void => {
         this.visualizationActions.getCurrentState.invoke(null);
-    }
+    };
 
     private getScanResultsCurrentState = (): void => {
         this.visualizationScanResultActions.getCurrentState.invoke(null);
-    }
+    };
 
     private onSetHoveredOverSelector = (payload: string[]): void => {
         this.inspectActions.setHoveredOverSelector.invoke(payload);
-    }
+    };
 }

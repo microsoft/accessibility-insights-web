@@ -103,9 +103,7 @@ export class StartOverDropdown extends React.Component<StartOverProps, StartOver
         }
 
         if (this.state.dialogState === 'test') {
-            messageText = `Starting over will clear all existing results from the ${
-                this.props.testName
-            } test. Are you sure you want to start over?`;
+            messageText = `Starting over will clear all existing results from the ${this.props.testName} test. Are you sure you want to start over?`;
             onPrimaryButtonClick = this.onStartTestOver;
         }
 
