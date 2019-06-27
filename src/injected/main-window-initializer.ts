@@ -205,10 +205,7 @@ export class MainWindowInitializer extends WindowInitializer {
     }
 
     protected dispose(): void {
-        // Using .bind(this) instead of an arrow function because ES5 only supports accessing methods (not properties) of super
-        // When we move to target ES6, this can be simplified to super.dispose()
-        // See https://github.com/microsoft/TypeScript/issues/338
-        super.dispose.bind(this)();
+        super.dispose();
 
         this.frameCommunicator.dispose();
         this.tabStoreProxy.dispose();

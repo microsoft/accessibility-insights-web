@@ -111,7 +111,7 @@ export class WindowInitializer {
         EnumHelper.getNumericValues(VisualizationType).forEach(visualizationTypeDrawerRegistrar.registerType);
 
         const port = this.clientChromeAdapter.connect();
-        port.onDisconnect.addListener(this.dispose);
+        port.onDisconnect.addListener(() => this.dispose());
 
         this.elementFinderByPosition = new ElementFinderByPosition(
             this.frameCommunicator,
