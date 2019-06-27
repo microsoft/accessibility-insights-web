@@ -13,7 +13,7 @@ import { DrawerUtils } from '../../../../../injected/visualization/drawer-utils'
 import { HighlightBoxDrawer } from '../../../../../injected/visualization/highlight-box-drawer';
 import { NullDrawer } from '../../../../../injected/visualization/null-drawer';
 import { SingleTargetDrawer } from '../../../../../injected/visualization/single-target-drawer';
-import { SVGDrawerV2 } from '../../../../../injected/visualization/svg-drawer-v2';
+import { SVGDrawer } from '../../../../../injected/visualization/svg-drawer';
 
 describe('DrawerProviderTests', () => {
     let testObject: DrawerProvider;
@@ -74,14 +74,14 @@ describe('DrawerProviderTests', () => {
     test('getSVGDrawer: svg drawer v2 with null/no config', () => {
         const drawer = testObject.createSVGDrawer() as any;
         expect(drawer.formatter.givenConfiguration).toBeNull();
-        expect(drawer).toBeInstanceOf(SVGDrawerV2);
+        expect(drawer).toBeInstanceOf(SVGDrawer);
     });
 
     test('getSVGDrawer: svg drawer v2 with non null config', () => {
         const configStub = {};
         const drawer = testObject.createSVGDrawer(configStub) as any;
         expect(drawer.formatter.givenConfiguration).toEqual(configStub);
-        expect(drawer).toBeInstanceOf(SVGDrawerV2);
+        expect(drawer).toBeInstanceOf(SVGDrawer);
     });
 
     test('default case: null drawer', () => {
