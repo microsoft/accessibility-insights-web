@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { autobind } from '@uifabric/utilities';
 import * as _ from 'lodash';
 
 import { AssessmentsProvider } from '../assessments/types/assessments-provider';
@@ -37,11 +36,10 @@ export class CompletedTestStepTelemetryCreator {
         this.store.addChangedListener(this.onAssessmentChange);
     }
 
-    @autobind
-    private onAssessmentChange(): void {
+    private onAssessmentChange = (): void => {
         this.provider.all().some(assessment => this.sendTelemetryIfNewCompletedTestStep(assessment));
         this.updateOldTestStatusState();
-    }
+    };
 
     private sendTelemetryIfNewCompletedTestStep(assessment: Assessment): boolean {
         const completedStep = assessment.requirements.find(step => this.isNewCompletedTestStep(assessment, step));

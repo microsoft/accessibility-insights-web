@@ -1,7 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { autobind } from '@uifabric/utilities';
-
 import { Assessments } from '../assessments/assessments';
 import { AxeInfo } from '../common/axe-info';
 import { InspectConfigurationFactory } from '../common/configs/inspect-configuration-factory';
@@ -206,9 +204,9 @@ export class MainWindowInitializer extends WindowInitializer {
         await Promise.all(asyncInitializationSteps);
     }
 
-    @autobind
     protected dispose(): void {
         super.dispose();
+
         this.frameCommunicator.dispose();
         this.tabStoreProxy.dispose();
         this.visualizationScanResultStoreProxy.dispose();

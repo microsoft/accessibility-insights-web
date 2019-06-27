@@ -30,9 +30,9 @@ exports[`HeaderTest render: tabClosed is false 1`] = `
       proxy {
         "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
         "dropdownActionMessageCreator": undefined,
-        "openPreviewFeaturesPanelHandler": undefined,
-        "openScopingPanelHandler": undefined,
-        "openSettingsPanelHandler": undefined,
+        "openPreviewFeaturesPanelHandler": [Function],
+        "openScopingPanelHandler": [Function],
+        "openSettingsPanelHandler": [Function],
         "source": undefined,
       }
     }

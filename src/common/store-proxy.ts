@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { autobind } from '@uifabric/utilities';
 import * as _ from 'lodash';
 
 import { BaseStore } from './base-store';
@@ -23,8 +22,7 @@ export class StoreProxy<TState> extends Store implements BaseStore<TState> {
         this._clientChomeAdapter.addListenerOnMessage(this.onChange);
     }
 
-    @autobind
-    private onChange(message: StoreUpdateMessage<TState>): void {
+    private onChange = (message: StoreUpdateMessage<TState>): void => {
         if (!this.isValidMessage(message)) {
             return;
         }
@@ -33,7 +31,7 @@ export class StoreProxy<TState> extends Store implements BaseStore<TState> {
             this._state = message.payload;
             this.emitChanged();
         }
-    }
+    };
 
     private isValidMessage(message: StoreUpdateMessage<TState>): boolean {
         return (
@@ -53,10 +51,9 @@ export class StoreProxy<TState> extends Store implements BaseStore<TState> {
         return message.payload && message.storeId === this.getId();
     }
 
-    @autobind
-    public getState(): TState {
+    public getState = (): TState => {
         return this._state;
-    }
+    };
 
     public getId(): string {
         return this._storeId;

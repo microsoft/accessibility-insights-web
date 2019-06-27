@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { autobind } from '@uifabric/utilities';
 import { forEach, isEmpty } from 'lodash';
 
 import { AssessmentsProvider } from '../../assessments/types/assessments-provider';
@@ -137,29 +136,25 @@ export class AssessmentStore extends BaseStoreImpl<AssessmentStoreData> {
         );
     }
 
-    @autobind
-    private onContinuePreviousAssessment(tabId: number): void {
+    private onContinuePreviousAssessment = (tabId: number): void => {
         this.updateTargetTabWithId(tabId);
-    }
+    };
 
-    @autobind
-    private onUpdateTargetTabId(tabId: number): void {
+    private onUpdateTargetTabId = (tabId: number): void => {
         if (this.state.persistedTabInfo == null || this.state.persistedTabInfo.id !== tabId) {
             this.updateTargetTabWithId(tabId);
         }
-    }
+    };
 
-    @autobind
-    private onUpdateSelectedTest(payload: UpdateSelectedDetailsViewPayload): void {
+    private onUpdateSelectedTest = (payload: UpdateSelectedDetailsViewPayload): void => {
         if (payload.pivotType === DetailsViewPivotType.assessment && payload.detailsViewType != null) {
             this.state.assessmentNavState.selectedTestType = payload.detailsViewType;
             this.state.assessmentNavState.selectedTestStep = this.getDefaultTestStepForTest(payload.detailsViewType);
             this.emitChanged();
         }
-    }
+    };
 
-    @autobind
-    private onTrackingCompleted(payload: ScanBasePayload): void {
+    private onTrackingCompleted = (payload: ScanBasePayload): void => {
         const test = payload.testType;
         const step = payload.key;
         const config = this.assessmentsProvider.forType(test).getVisualizationConfiguration();
@@ -167,10 +162,9 @@ export class AssessmentStore extends BaseStoreImpl<AssessmentStoreData> {
         this.assessmentDataRemover.deleteDataFromGeneratedMapWithStepKey(assessmentData.generatedAssessmentInstancesMap, step);
 
         this.emitChanged();
-    }
+    };
 
-    @autobind
-    private onPassUnmarkedInstances(payload: AssessmentActionInstancePayload): void {
+    private onPassUnmarkedInstances = (payload: AssessmentActionInstancePayload): void => {
         const config = this.assessmentsProvider.forType(payload.test).getVisualizationConfiguration();
         const assessmentData = config.getAssessmentData(this.state);
         forEach(Object.keys(assessmentData.generatedAssessmentInstancesMap), key => {
@@ -183,10 +177,9 @@ export class AssessmentStore extends BaseStoreImpl<AssessmentStoreData> {
 
         this.updateTestStepStatusForGeneratedInstances(assessmentData, payload.requirement);
         this.emitChanged();
-    }
+    };
 
-    @autobind
-    private onEditFailureInstance(payload: EditFailureInstancePayload): void {
+    private onEditFailureInstance = (payload: EditFailureInstancePayload): void => {
         const config = this.assessmentsProvider.forType(payload.test).getVisualizationConfiguration();
         const assessmentData = config.getAssessmentData(this.state);
         const instances = assessmentData.manualTestStepResultMap[payload.requirement].instances;
@@ -199,10 +192,9 @@ export class AssessmentStore extends BaseStoreImpl<AssessmentStoreData> {
         }
 
         this.emitChanged();
-    }
+    };
 
-    @autobind
-    private onRemoveFailureInstance(payload: RemoveFailureInstancePayload): void {
+    private onRemoveFailureInstance = (payload: RemoveFailureInstancePayload): void => {
         const config = this.assessmentsProvider.forType(payload.test).getVisualizationConfiguration();
         const assessmentData = config.getAssessmentData(this.state);
         assessmentData.manualTestStepResultMap[payload.requirement].instances = assessmentData.manualTestStepResultMap[
@@ -213,10 +205,9 @@ export class AssessmentStore extends BaseStoreImpl<AssessmentStoreData> {
         this.updateManualTestStepStatus(assessmentData, payload.requirement, payload.test);
 
         this.emitChanged();
-    }
+    };
 
-    @autobind
-    private onAddFailureInstance(payload: AddFailureInstancePayload): void {
+    private onAddFailureInstance = (payload: AddFailureInstancePayload): void => {
         const config = this.assessmentsProvider.forType(payload.test).getVisualizationConfiguration();
         const assessmentData = config.getAssessmentData(this.state);
         const newInstance: UserCapturedInstance = this.assessmentDataConverter.generateFailureInstance(payload.description);
@@ -224,16 +215,14 @@ export class AssessmentStore extends BaseStoreImpl<AssessmentStoreData> {
         this.updateManualTestStepStatus(assessmentData, payload.requirement, payload.test);
 
         this.emitChanged();
-    }
+    };
 
-    @autobind
-    private onAddResultDescription(payload: AddResultDescriptionPayload): void {
+    private onAddResultDescription = (payload: AddResultDescriptionPayload): void => {
         this.state.resultDescription = payload.description;
         this.emitChanged();
-    }
+    };
 
-    @autobind
-    private onChangeAssessmentVisualizationStateForAll(payload: ChangeInstanceSelectionPayload): void {
+    private onChangeAssessmentVisualizationStateForAll = (payload: ChangeInstanceSelectionPayload): void => {
         const config = this.assessmentsProvider.forType(payload.test).getVisualizationConfiguration();
         const assessmentDataMap = config.getAssessmentData(this.state).generatedAssessmentInstancesMap;
         forEach(assessmentDataMap, val => {
@@ -245,10 +234,9 @@ export class AssessmentStore extends BaseStoreImpl<AssessmentStoreData> {
         });
 
         this.emitChanged();
-    }
+    };
 
-    @autobind
-    private onChangeStepStatus(payload: ChangeRequirementStatusPayload): void {
+    private onChangeStepStatus = (payload: ChangeRequirementStatusPayload): void => {
         const config = this.assessmentsProvider.forType(payload.test).getVisualizationConfiguration();
         const assessmentData = config.getAssessmentData(this.state);
         assessmentData.manualTestStepResultMap[payload.requirement].status = payload.status;
@@ -259,20 +247,18 @@ export class AssessmentStore extends BaseStoreImpl<AssessmentStoreData> {
 
         this.updateManualTestStepStatus(assessmentData, payload.requirement, payload.test);
         this.emitChanged();
-    }
+    };
 
-    @autobind
-    private onUndoStepStatusChange(payload: ChangeRequirementStatusPayload): void {
+    private onUndoStepStatusChange = (payload: ChangeRequirementStatusPayload): void => {
         const config = this.assessmentsProvider.forType(payload.test).getVisualizationConfiguration();
         const assessmentData = config.getAssessmentData(this.state);
         assessmentData.manualTestStepResultMap[payload.requirement].status = ManualTestStatus.UNKNOWN;
         assessmentData.manualTestStepResultMap[payload.requirement].instances = [];
         this.updateManualTestStepStatus(assessmentData, payload.requirement, payload.test);
         this.emitChanged();
-    }
+    };
 
-    @autobind
-    private onChangeAssessmentVisualizationState(payload: ChangeInstanceSelectionPayload): void {
+    private onChangeAssessmentVisualizationState = (payload: ChangeInstanceSelectionPayload): void => {
         const config = this.assessmentsProvider.forType(payload.test).getVisualizationConfiguration();
         const assessmentData = config.getAssessmentData(this.state);
         const stepResult: TestStepResult =
@@ -280,10 +266,9 @@ export class AssessmentStore extends BaseStoreImpl<AssessmentStoreData> {
         stepResult.isVisualizationEnabled = payload.isVisualizationEnabled;
 
         this.emitChanged();
-    }
+    };
 
-    @autobind
-    private onUpdateInstanceVisibility(payload: UpdateVisibilityPayload): void {
+    private onUpdateInstanceVisibility = (payload: UpdateVisibilityPayload): void => {
         const step = this.state.assessmentNavState.selectedTestStep;
         payload.payloadBatch.forEach(updateInstanceVisibilityPayload => {
             const config = this.assessmentsProvider.forType(updateInstanceVisibilityPayload.test).getVisualizationConfiguration();
@@ -297,10 +282,9 @@ export class AssessmentStore extends BaseStoreImpl<AssessmentStoreData> {
         });
 
         this.emitChanged();
-    }
+    };
 
-    @autobind
-    private onUndoInstanceStatusChange(payload: AssessmentActionInstancePayload): void {
+    private onUndoInstanceStatusChange = (payload: AssessmentActionInstancePayload): void => {
         const config = this.assessmentsProvider.forType(payload.test).getVisualizationConfiguration();
         const assessmentData = config.getAssessmentData(this.state);
         const stepResult: TestStepResult =
@@ -309,10 +293,9 @@ export class AssessmentStore extends BaseStoreImpl<AssessmentStoreData> {
         stepResult.originalStatus = null;
         this.updateTestStepStatusForGeneratedInstances(assessmentData, payload.requirement);
         this.emitChanged();
-    }
+    };
 
-    @autobind
-    private onChangeInstanceStatus(payload: ChangeInstanceStatusPayload): void {
+    private onChangeInstanceStatus = (payload: ChangeInstanceStatusPayload): void => {
         const config = this.assessmentsProvider.forType(payload.test).getVisualizationConfiguration();
         const assessmentData = config.getAssessmentData(this.state);
         const stepResult: TestStepResult =
@@ -323,17 +306,15 @@ export class AssessmentStore extends BaseStoreImpl<AssessmentStoreData> {
         stepResult.status = payload.status;
         this.updateTestStepStatusForGeneratedInstances(assessmentData, payload.requirement);
         this.emitChanged();
-    }
+    };
 
-    @autobind
-    private onSelectTestStep(payload: SelectRequirementPayload): void {
+    private onSelectTestStep = (payload: SelectRequirementPayload): void => {
         this.state.assessmentNavState.selectedTestType = payload.selectedTest;
         this.state.assessmentNavState.selectedTestStep = payload.selectedRequirement;
         this.emitChanged();
-    }
+    };
 
-    @autobind
-    private onScanCompleted(payload: ScanCompletedPayload<any>): void {
+    private onScanCompleted = (payload: ScanCompletedPayload<any>): void => {
         const test = payload.testType;
         const step = payload.key;
         const config = this.assessmentsProvider.forType(test).getVisualizationConfiguration();
@@ -351,10 +332,9 @@ export class AssessmentStore extends BaseStoreImpl<AssessmentStoreData> {
         assessmentData.testStepStatus[step].isStepScanned = true;
         this.updateTestStepStatusOnScanUpdate(assessmentData, step, test);
         this.emitChanged();
-    }
+    };
 
-    @autobind
-    private onScanUpdate(payload: ScanUpdatePayload): void {
+    private onScanUpdate = (payload: ScanUpdatePayload): void => {
         const test = payload.testType;
         const step = payload.key;
         const config = this.assessmentsProvider.forType(test).getVisualizationConfiguration();
@@ -369,23 +349,21 @@ export class AssessmentStore extends BaseStoreImpl<AssessmentStoreData> {
         assessmentData.generatedAssessmentInstancesMap = generatedAssessmentInstancesMap;
         this.updateTestStepStatusOnScanUpdate(assessmentData, step, test);
         this.emitChanged();
-    }
+    };
 
-    @autobind
-    private onResetData(payload: ToggleActionPayload): void {
+    private onResetData = (payload: ToggleActionPayload): void => {
         const test = this.assessmentsProvider.forType(payload.test);
         const config = test.getVisualizationConfiguration();
         const defaultTestStatus: AssessmentData = config.getAssessmentData(this.generateDefaultState());
         this.state.assessments[test.key] = defaultTestStatus;
         this.state.assessmentNavState.selectedTestStep = test.requirements[0].key;
         this.emitChanged();
-    }
+    };
 
-    @autobind
-    private onResetAllAssessmentsData(targetTabId: number): void {
+    private onResetAllAssessmentsData = (targetTabId: number): void => {
         this.state = this.generateDefaultState();
         this.updateTargetTabWithId(targetTabId);
-    }
+    };
 
     private getDefaultTestStepForTest(testType: VisualizationType): string {
         return this.assessmentsProvider.forType(testType).requirements[0].key;

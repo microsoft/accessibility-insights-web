@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { autobind } from '@uifabric/utilities';
 import { StoreNames } from '../../common/stores/store-names';
 import { InspectStoreData } from '../../common/types/store-data/inspect-store-data';
 import { InspectActions, InspectPayload } from '../actions/inspect-actions';
@@ -35,22 +34,19 @@ export class InspectStore extends BaseStoreImpl<InspectStoreData> {
         this.tabActions.tabChange.addListener(this.onTabChange);
     }
 
-    @autobind
-    private onChangeInspectMode(payload: InspectPayload): void {
+    private onChangeInspectMode = (payload: InspectPayload): void => {
         this.state.inspectMode = payload.inspectMode;
         this.state.hoveredOverSelector = null;
         this.emitChanged();
-    }
+    };
 
-    @autobind
-    private onSetHoveredOverSelector(payload: string[]): void {
+    private onSetHoveredOverSelector = (payload: string[]): void => {
         this.state.hoveredOverSelector = payload;
         this.emitChanged();
-    }
+    };
 
-    @autobind
-    private onTabChange(): void {
+    private onTabChange = (): void => {
         this.state = this.getDefaultState();
         this.emitChanged();
-    }
+    };
 }

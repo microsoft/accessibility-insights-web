@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { autobind } from '@uifabric/utilities';
 import { Icon } from 'office-ui-fabric-react/lib/Icon';
 import { Link } from 'office-ui-fabric-react/lib/Link';
 import * as React from 'react';
@@ -39,8 +38,7 @@ export class AssessmentInstanceEditAndRemoveControl extends React.Component<Asse
         );
     }
 
-    @autobind
-    protected onRemoveButtonClicked(event?: React.MouseEvent<any>): void {
+    protected onRemoveButtonClicked = (event?: React.MouseEvent<any>): void => {
         this.props.onRemove(this.props.test, this.props.step, this.props.id);
-    }
+    };
 }

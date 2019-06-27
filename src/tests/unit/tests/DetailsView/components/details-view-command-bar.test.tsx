@@ -101,8 +101,6 @@ describe('DetailsViewCommandBar', () => {
     });
 
     function testOnPivot(givenRenderExportAndStartOver: boolean): void {
-        const switchToTargetTabStub = () => {};
-        actionMessageCreatorMock.setup(amc => amc.switchToTargetTab).returns(() => switchToTargetTabStub);
         renderExportAndStartOver = givenRenderExportAndStartOver;
         const props = getProps();
         const rendered = shallow(<DetailsViewCommandBar {...props} />);

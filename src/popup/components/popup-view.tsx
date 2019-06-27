@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { autobind } from '@uifabric/utilities';
 import { Spinner, SpinnerSize } from 'office-ui-fabric-react/lib/Spinner';
 import * as React from 'react';
 import { BrowserAdapter } from '../../background/browser-adapters/browser-adapter';
@@ -216,11 +215,10 @@ export class PopupView extends React.Component<PopupViewProps> {
         return <Header title={this.props.title} />;
     }
 
-    @autobind
-    public setlaunchPanelType(launchPanelType: LaunchPanelType): void {
+    public setlaunchPanelType = (launchPanelType: LaunchPanelType): void => {
         const { popupActionMessageCreator } = this.props.deps;
         popupActionMessageCreator.setLaunchPanelType(launchPanelType);
-    }
+    };
 }
 
 export const PopupViewWithStoreSubscription = withStoreSubscription<PopupViewProps, PopupViewControllerState>(PopupView);

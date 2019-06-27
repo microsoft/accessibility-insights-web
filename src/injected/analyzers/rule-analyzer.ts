@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { autobind } from '@uifabric/utilities';
 import * as Q from 'q';
 import { ScopingInputTypes } from '../../background/scoping-input-types';
 import { BaseStore } from '../../common/base-store';
@@ -30,7 +29,7 @@ export class RuleAnalyzer extends BaseAnalyzer {
         super(config, sendMessageDelegate);
     }
 
-    protected getResults(): Q.Promise<AxeAnalyzerResult> {
+    protected getResults = (): Q.Promise<AxeAnalyzerResult> => {
         const deferred = Q.defer<AxeAnalyzerResult>();
         const scopingState = this.scopingStore.getState().selectors;
         const include = scopingState[ScopingInputTypes.include];
@@ -58,16 +57,15 @@ export class RuleAnalyzer extends BaseAnalyzer {
         this.scanner.scan(scanOptions, scanCallback);
 
         return deferred.promise;
-    }
+    };
 
     protected getRulesToRun(): string[] {
         return this.config.rules;
     }
 
-    @autobind
-    protected onResolve(analyzerResult: AxeAnalyzerResult): void {
+    protected onResolve = (analyzerResult: AxeAnalyzerResult): void => {
         this.sendScanCompleteResolveMessage(analyzerResult, this.config);
-    }
+    };
 
     protected sendScanCompleteResolveMessage(analyzerResult: AxeAnalyzerResult, config: RuleAnalyzerConfiguration): void {
         const endTime = this.dateGetter().getTime();

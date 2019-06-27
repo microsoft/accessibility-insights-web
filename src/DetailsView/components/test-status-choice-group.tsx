@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { autobind } from '@uifabric/utilities';
 import { isEqual } from 'lodash';
 import { ChoiceGroup, IChoiceGroup, IChoiceGroupOption } from 'office-ui-fabric-react/lib/ChoiceGroup';
 import { Icon } from 'office-ui-fabric-react/lib/Icon';
@@ -61,14 +60,13 @@ export class TestStatusChoiceGroup extends React.Component<TestStatusChoiceGroup
         );
     }
 
-    @autobind
-    private onRenderLabel(option: IChoiceGroupOption): JSX.Element {
+    private onRenderLabel = (option: IChoiceGroupOption): JSX.Element => {
         return (
             <span id={option.labelId} className={radioLabel} aria-label={option.text}>
                 {this.props.isLabelVisible ? option.text : ''}
             </span>
         );
-    }
+    };
 
     private renderUndoButton(): JSX.Element {
         if (this.props.originalStatus == null) {
@@ -82,21 +80,18 @@ export class TestStatusChoiceGroup extends React.Component<TestStatusChoiceGroup
         );
     }
 
-    @autobind
-    protected compomentRef(component: IChoiceGroup): void {
+    protected compomentRef = (component: IChoiceGroup): void => {
         this._choiceGroup = component;
-    }
+    };
 
-    @autobind
-    protected onChange(ev: React.FocusEvent<HTMLElement>, option: IChoiceGroupOption): void {
+    protected onChange = (ev: React.FocusEvent<HTMLElement>, option: IChoiceGroupOption): void => {
         this.setState({ selectedKey: option.key });
         this.props.onGroupChoiceChange(ManualTestStatus[option.key], this.props.test, this.props.step, this.props.selector);
-    }
+    };
 
-    @autobind
-    protected onUndoClicked(): void {
+    protected onUndoClicked = (): void => {
         this.setState({ selectedKey: ManualTestStatus[ManualTestStatus.UNKNOWN] });
         this._choiceGroup.focus();
         this.props.onUndoClicked(this.props.test, this.props.step, this.props.selector);
-    }
+    };
 }

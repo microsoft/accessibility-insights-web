@@ -1,7 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { autobind } from '@uifabric/utilities';
-
 import { WindowUtils } from '../../common/window-utils';
 import { DictionaryStringTo } from '../../types/common-types';
 import { ErrorMessageContent } from './error-message-content';
@@ -58,8 +56,7 @@ export class WindowMessageHandler {
         this._windowUtils.postMessage(win, data, '*');
     }
 
-    @autobind
-    private windowMessageHandler(e: MessageEvent): void {
+    private windowMessageHandler = (e: MessageEvent): void => {
         const data: WindowMessage = this._windowMessageParser.parseMessage(e.data);
         if (data == null) {
             return;
@@ -76,7 +73,7 @@ export class WindowMessageHandler {
         } catch (err) {
             this.post(e.source, data.command, err, null, messageId);
         }
-    }
+    };
 
     private updateResponseCallbackMap(messageId, callback): void {
         if (callback) {

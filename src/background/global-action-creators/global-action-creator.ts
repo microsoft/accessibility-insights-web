@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { autobind } from '@uifabric/utilities';
 import { Messages } from '../../common/messages';
 import * as TelemetryEvents from '../../common/telemetry-events';
 import { PayloadWithEventName, SetLaunchPanelState } from '../actions/action-payloads';
@@ -47,8 +46,7 @@ export class GlobalActionCreator {
         this.interpreter.registerTypeToPayloadCallback(Messages.Telemetry.Send, this.onSendTelemetry);
     }
 
-    @autobind
-    private onGetCommands(payload, tabId: number): void {
+    private onGetCommands = (payload, tabId: number): void => {
         this.commandsAdapter.getCommands((commands: chrome.commands.Command[]) => {
             const getCommandsPayload: GetCommandsPayload = {
                 commands: commands,
@@ -56,37 +54,31 @@ export class GlobalActionCreator {
             };
             this.commandActions.getCommands.invoke(getCommandsPayload);
         });
-    }
+    };
 
-    @autobind
-    private onGetFeatureFlags(payload, tabId: number): void {
+    private onGetFeatureFlags = (payload, tabId: number): void => {
         this.featureFlagActions.getCurrentState.invoke(null);
-    }
+    };
 
-    @autobind
-    private onSetFeatureFlags(payload): void {
+    private onSetFeatureFlags = (payload): void => {
         this.telemetryEventHandler.publishTelemetry(TelemetryEvents.PREVIEW_FEATURES_TOGGLE, payload);
         this.featureFlagActions.setFeatureFlag.invoke(payload);
-    }
+    };
 
-    @autobind
-    private onResetFeatureFlags(payload, tabId: number): void {
+    private onResetFeatureFlags = (payload, tabId: number): void => {
         this.featureFlagActions.resetFeatureFlags.invoke(null);
-    }
+    };
 
-    @autobind
-    private onGetLaunchPanelState(): void {
+    private onGetLaunchPanelState = (): void => {
         this.launchPanelStateActions.getCurrentState.invoke(null);
-    }
+    };
 
-    @autobind
-    private onSetLaunchPanelState(payload: SetLaunchPanelState): void {
+    private onSetLaunchPanelState = (payload: SetLaunchPanelState): void => {
         this.launchPanelStateActions.setLaunchPanelType.invoke(payload.launchPanelType);
-    }
+    };
 
-    @autobind
-    private onSendTelemetry(payload: PayloadWithEventName): void {
+    private onSendTelemetry = (payload: PayloadWithEventName): void => {
         const eventName = payload.eventName;
         this.telemetryEventHandler.publishTelemetry(eventName, payload);
-    }
+    };
 }

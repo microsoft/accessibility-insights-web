@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { autobind } from '@uifabric/utilities';
 import * as classNames from 'classnames';
 import { IconButton } from 'office-ui-fabric-react/lib/Button';
 import * as React from 'react';
@@ -46,11 +45,10 @@ export class AssessmentInstanceSelectedButton extends React.Component<Assessment
         );
     }
 
-    @autobind
-    private onButtonClicked(event: React.MouseEvent<any>): void {
+    private onButtonClicked = (event: React.MouseEvent<any>): void => {
         if (this.props.isVisible) {
             const checked = !this.props.isVisualizationEnabled;
             this.props.onSelected(checked, this.props.test, this.props.step, this.props.selector);
         }
-    }
+    };
 }

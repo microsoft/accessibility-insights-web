@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { autobind } from '@uifabric/utilities';
 import * as Q from 'q';
 import { WindowUtils } from '../../common/window-utils';
 import { TabStopEvent, TabStopsListener } from '../tab-stops-listener';
@@ -40,7 +39,7 @@ export class TabStopsAnalyzer extends BaseAnalyzer {
         this.getResults().progress(this.onProgress);
     }
 
-    protected getResults(): Q.Promise<AxeAnalyzerResult> {
+    protected getResults = (): Q.Promise<AxeAnalyzerResult> => {
         this.deferred = Q.defer<AxeAnalyzerResult>();
         this.tabStopsListener.setTabEventListenerOnMainWindow((tabEvent: TabStopEvent) => {
             if (this._onTabbedTimeoutId != null) {
@@ -62,14 +61,13 @@ export class TabStopsAnalyzer extends BaseAnalyzer {
         this.tabStopsListener.startListenToTabStops();
         this.analyzerSetupComplete();
         return this.deferred.promise;
-    }
+    };
 
     private analyzerSetupComplete(): void {
         this.onResolve(this.emptyResults);
     }
 
-    @autobind
-    protected onProgress(progressResult: ProgressResult<TabStopEvent[]>): void {
+    protected onProgress = (progressResult: ProgressResult<TabStopEvent[]>): void => {
         const payload: ScanUpdatePayload = {
             key: this.config.key,
             testType: this.config.testType,
@@ -82,7 +80,7 @@ export class TabStopsAnalyzer extends BaseAnalyzer {
             payload,
         };
         this.sendMessage(message);
-    }
+    };
 
     public teardown(): void {
         this.tabStopsListener.stopListenToTabStops();
