@@ -9,7 +9,7 @@ import { WindowMessageMarshaller } from './window-message-marshaller';
 export type FrameMessageResponseCallback = (
     result: any,
     error: ErrorMessageContent,
-    messageSourceWindow: Window,
+    messageSourceWindow: MessageEventSource,
     responder?: FrameMessageResponseCallback,
 ) => void;
 
@@ -48,12 +48,18 @@ export class WindowMessageHandler {
         this._windowUtils.removeEventListener(window, 'message', this.windowMessageHandler, false);
     }
 
-    public post(win: Window, command: string, message: any, callback?: FrameMessageResponseCallback, responseId?: string): void {
+    public post(
+        win: MessageEventSource,
+        command: string,
+        message: any,
+        callback?: FrameMessageResponseCallback,
+        responseId?: string,
+    ): void {
         const data = this._windowMessageParser.createMessage(command, message, responseId);
 
         this.updateResponseCallbackMap(data.messageId, callback);
 
-        this._windowUtils.postMessage(win, data, '*');
+        this._windowUtils.postMessage(win as Window, data, '*');
     }
 
     private windowMessageHandler = (e: MessageEvent): void => {
@@ -68,7 +74,7 @@ export class WindowMessageHandler {
             if (callback) {
                 this.processResponseFromPreviousRequest(e.source, data, callback);
             } else {
-                this.processNewMessage(e.source, data);
+                this.notifySubscriber(e.source, data);
             }
         } catch (err) {
             this.post(e.source, data.command, err, null, messageId);
@@ -83,26 +89,35 @@ export class WindowMessageHandler {
         }
     }
 
-    private processResponseFromPreviousRequest(source: Window, data: WindowMessage, callback: FrameMessageResponseCallback): void {
+    private processResponseFromPreviousRequest(
+        source: MessageEventSource,
+        data: WindowMessage,
+        callback: FrameMessageResponseCallback,
+    ): void {
         const responderCallback = this.createFrameResponderCallback(source, data.command, data.messageId);
         callback(data.message, data.error, source, responderCallback);
         delete this._callbacksForMessagesSentFromCurrentFrame[data.messageId];
     }
 
-    private processNewMessage(source: Window, data: WindowMessage): void {
-        this.notifySubscriber(source, data);
-    }
-
-    public createFrameResponderCallback(windowSource: Window, command: string, messageId: string): FrameMessageResponseCallback {
+    public createFrameResponderCallback(
+        messageSource: MessageEventSource,
+        command: string,
+        messageId: string,
+    ): FrameMessageResponseCallback {
         return (result: any, error: ErrorMessageContent, messageSourceWin: Window, callback?: FrameMessageResponseCallback) => {
-            this.post(windowSource, command, result, callback, messageId);
+            this.post(messageSource, command, result, callback, messageId);
         };
     }
 
-    private notifySubscriber(target: Window, data: WindowMessage): void {
+    private notifySubscriber(messageSource: MessageEventSource, data: WindowMessage): void {
         const subscriber = this._messageSubscribers[data.command];
         if (subscriber) {
-            subscriber(data.message, data.error, target, this.createFrameResponderCallback(target, data.command, data.messageId));
+            subscriber(
+                data.message,
+                data.error,
+                messageSource,
+                this.createFrameResponderCallback(messageSource, data.command, data.messageId),
+            );
         }
     }
 }
