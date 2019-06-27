@@ -11,7 +11,7 @@ import { DrawerInitData } from '../../../../../injected/visualization/drawer';
 import { FocusIndicator } from '../../../../../injected/visualization/focus-indicator';
 import { SVGDrawerConfiguration } from '../../../../../injected/visualization/formatter';
 import { SVGNamespaceUrl } from '../../../../../injected/visualization/svg-constants';
-import { SVGDrawer } from '../../../../../injected/visualization/svg-drawer-v2';
+import { SVGDrawer } from '../../../../../injected/visualization/svg-drawer';
 import { SVGShapeFactory } from '../../../../../injected/visualization/svg-shape-factory';
 import { SVGSolidShadowFilterFactory } from '../../../../../injected/visualization/svg-solid-shadow-filter-factory';
 import { TabStopsFormatter } from '../../../../../injected/visualization/tab-stops-formatter';

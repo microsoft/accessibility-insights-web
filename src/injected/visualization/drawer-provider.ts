@@ -25,7 +25,7 @@ import { LandmarkFormatter } from './landmark-formatter';
 import { NullDrawer } from './null-drawer';
 import { SingleTargetDrawer } from './single-target-drawer';
 import { SingleTargetFormatter } from './single-target-formatter';
-import { SVGDrawer } from './svg-drawer-v2';
+import { SVGDrawer } from './svg-drawer';
 import { SVGShapeFactory } from './svg-shape-factory';
 import { SVGSolidShadowFilterFactory } from './svg-solid-shadow-filter-factory';
 import { TabStopsFormatter } from './tab-stops-formatter';
