@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { shallow } from 'enzyme';
 import * as React from 'react';
-import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
+import { IMock, Mock, MockBehavior, Times } from 'typemoq';
 
 import { AssessmentsProviderImpl } from '../../../../../assessments/assessments-provider';
 import { AssessmentsProvider } from '../../../../../assessments/types/assessments-provider';

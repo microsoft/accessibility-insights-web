@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as React from 'react';
-import { IMock, It, Mock, Times } from 'typemoq';
+import { IMock, Mock, Times } from 'typemoq';
 
 import { ManualTestStatus } from '../../../../../common/types/manual-test-status';
 import {

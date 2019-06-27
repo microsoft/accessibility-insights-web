@@ -6,7 +6,6 @@ import { Mock } from 'typemoq';
 import { shallow } from 'enzyme';
 import { DisplayableFeatureFlag } from '../../../../../common/types/store-data/displayable-feature-flag';
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
-import { GenericToggle } from '../../../../../DetailsView/components/generic-toggle';
 import {
     PreviewFeaturesToggleList,
     PreviewFeaturesToggleListProps,
