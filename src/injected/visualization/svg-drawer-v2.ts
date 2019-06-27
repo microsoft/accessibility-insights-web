@@ -18,7 +18,7 @@ import { SVGSolidShadowFilterFactory } from './svg-solid-shadow-filter-factory';
 import { TabStopsFormatter } from './tab-stops-formatter';
 import { TabbedItem } from './tabbed-item';
 
-export class SVGDrawerV2 extends BaseDrawer {
+export class SVGDrawer extends BaseDrawer {
     protected tabbedElements: TabbedItem[];
     private SVGContainer: HTMLElement;
     private filterFactory: SVGSolidShadowFilterFactory;

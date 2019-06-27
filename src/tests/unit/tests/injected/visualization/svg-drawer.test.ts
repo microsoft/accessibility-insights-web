@@ -11,7 +11,7 @@ import { DrawerInitData } from '../../../../../injected/visualization/drawer';
 import { FocusIndicator } from '../../../../../injected/visualization/focus-indicator';
 import { SVGDrawerConfiguration } from '../../../../../injected/visualization/formatter';
 import { SVGNamespaceUrl } from '../../../../../injected/visualization/svg-constants';
-import { SVGDrawerV2 } from '../../../../../injected/visualization/svg-drawer-v2';
+import { SVGDrawer } from '../../../../../injected/visualization/svg-drawer-v2';
 import { SVGShapeFactory } from '../../../../../injected/visualization/svg-shape-factory';
 import { SVGSolidShadowFilterFactory } from '../../../../../injected/visualization/svg-solid-shadow-filter-factory';
 import { TabStopsFormatter } from '../../../../../injected/visualization/tab-stops-formatter';
@@ -77,7 +77,7 @@ describe('SVGDrawer', () => {
 
         const drawerUtilsMock = new DrawerUtilsMockBuilder(dom, styleStub).build();
 
-        const testSubject = new SVGDrawerV2(
+        const testSubject = new SVGDrawer(
             dom,
             containerClass,
             windowUtilsMock.object,
@@ -124,7 +124,7 @@ describe('SVGDrawer', () => {
 
         const drawerUtilsMock = new DrawerUtilsMockBuilder(dom, styleStub).build();
 
-        const testSubject = new SVGDrawerV2(
+        const testSubject = new SVGDrawer(
             dom,
             containerClass,
             windowUtilsMock.object,
@@ -195,7 +195,7 @@ describe('SVGDrawer', () => {
 
         const drawerUtilsMock = new DrawerUtilsMockBuilder(dom, styleStub).build();
 
-        const testSubject = new SVGDrawerV2(
+        const testSubject = new SVGDrawer(
             dom,
             containerClass,
             windowUtilsMock.object,
@@ -276,7 +276,7 @@ describe('SVGDrawer', () => {
 
         const drawerUtilsMock = new DrawerUtilsMockBuilder(dom, styleStub).build();
 
-        const testSubject = new SVGDrawerV2(
+        const testSubject = new SVGDrawer(
             dom,
             containerClass,
             windowUtilsMock.object,
@@ -392,7 +392,7 @@ describe('SVGDrawer', () => {
 
         const drawerUtilsMock = new DrawerUtilsMockBuilder(dom, styleStub).build();
 
-        const testSubject = new SVGDrawerV2(
+        const testSubject = new SVGDrawer(
             dom,
             containerClass,
             windowUtilsMock.object,
@@ -426,7 +426,7 @@ describe('SVGDrawer', () => {
         };
         removeMock.setup(r => r()).verifiable(Times.exactly(3));
 
-        const testSubject = new SVGDrawerV2(
+        const testSubject = new SVGDrawer(
             null,
             containerClass,
             windowUtilsMock.object,
@@ -471,7 +471,7 @@ describe('SVGDrawer', () => {
             .returns(() => drawerConfig)
             .verifiable();
 
-        const testSubject = new SVGDrawerV2(
+        const testSubject = new SVGDrawer(
             dom,
             containerClass,
             windowUtilsMock.object,
@@ -537,7 +537,7 @@ describe('SVGDrawer', () => {
             .returns(() => drawerConfig)
             .verifiable();
 
-        const testSubject = new SVGDrawerV2(
+        const testSubject = new SVGDrawer(
             dom,
             containerClass,
             windowUtilsMock.object,
@@ -603,7 +603,7 @@ describe('SVGDrawer', () => {
             .returns(() => drawerConfig)
             .verifiable();
 
-        const testSubject = new SVGDrawerV2(
+        const testSubject = new SVGDrawer(
             dom,
             containerClass,
             windowUtilsMock.object,
@@ -669,7 +669,7 @@ describe('SVGDrawer', () => {
             .returns(() => drawerConfig)
             .verifiable();
 
-        const testSubject = new SVGDrawerV2(
+        const testSubject = new SVGDrawer(
             dom,
             containerClass,
             windowUtilsMock.object,
@@ -738,7 +738,7 @@ describe('SVGDrawer', () => {
             .setup(c => c.getElementCenterPosition(document.getElementById('id1')))
             .returns(element => null)
             .verifiable();
-        const testSubject = new SVGDrawerV2(
+        const testSubject = new SVGDrawer(
             dom,
             containerClass,
             windowUtilsMock.object,
@@ -803,7 +803,7 @@ describe('SVGDrawer', () => {
             .returns(() => drawerConfig)
             .verifiable();
 
-        const testSubject = new SVGDrawerV2(
+        const testSubject = new SVGDrawer(
             dom,
             containerClass,
             windowUtilsMock.object,
@@ -868,7 +868,7 @@ describe('SVGDrawer', () => {
             .returns(() => drawerConfig)
             .verifiable();
 
-        const testSubject = new SVGDrawerV2(
+        const testSubject = new SVGDrawer(
             dom,
             containerClass,
             windowUtilsMock.object,

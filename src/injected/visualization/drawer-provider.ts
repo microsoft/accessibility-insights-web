@@ -25,7 +25,7 @@ import { LandmarkFormatter } from './landmark-formatter';
 import { NullDrawer } from './null-drawer';
 import { SingleTargetDrawer } from './single-target-drawer';
 import { SingleTargetFormatter } from './single-target-formatter';
-import { SVGDrawerV2 } from './svg-drawer-v2';
+import { SVGDrawer } from './svg-drawer-v2';
 import { SVGShapeFactory } from './svg-shape-factory';
 import { SVGSolidShadowFilterFactory } from './svg-solid-shadow-filter-factory';
 import { TabStopsFormatter } from './tab-stops-formatter';
@@ -63,7 +63,7 @@ export class DrawerProvider {
             this.clientUtils,
         );
         const containerClass = 'insights-tab-stops';
-        return new SVGDrawerV2(
+        return new SVGDrawer(
             this.dom,
             containerClass,
             this.windowUtils,
