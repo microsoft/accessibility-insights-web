@@ -56,7 +56,7 @@ describe('SVGDrawer', () => {
                     <div id='id1'></div>
                 `);
 
-        const element: HTMLElement = dom.querySelector('#id1') as HTMLElement;
+        const element = dom.querySelector('#id1');
         const expectedTabbedElements: TabbedItem[] = [
             {
                 element: element,
@@ -99,7 +99,7 @@ describe('SVGDrawer', () => {
                     <div id='id1'></div>
                 `);
 
-        const element: HTMLElement = dom.querySelector('#id1') as HTMLElement;
+        const element = dom.querySelector('#id1');
         const expectedTabbedElements: TabbedItem[] = [
             {
                 element: element,
@@ -148,8 +148,8 @@ describe('SVGDrawer', () => {
                     <div id='id3'></div>
                 `);
 
-        const element1: HTMLElement = dom.querySelector('#id1') as HTMLElement;
-        const element2: HTMLElement = dom.querySelector('#id2') as HTMLElement;
+        const element1 = dom.querySelector('#id1');
+        const element2 = dom.querySelector('#id2');
 
         const existingTabbedElements: TabbedItem[] = [
             {
@@ -221,8 +221,8 @@ describe('SVGDrawer', () => {
                     <div id='id3'></div>
                 `);
 
-        const element1: HTMLElement = dom.querySelector('#id1') as HTMLElement;
-        const element2: HTMLElement = dom.querySelector('#id2') as HTMLElement;
+        const element1 = dom.querySelector('#id1');
+        const element2 = dom.querySelector('#id2');
 
         const existingTabbedElements: TabbedItem[] = [
             {
@@ -303,10 +303,10 @@ describe('SVGDrawer', () => {
                     <div id='id4'></div>
                 `);
 
-        const element1: HTMLElement = dom.querySelector('#id1') as HTMLElement;
-        const element2: HTMLElement = dom.querySelector('#id2') as HTMLElement;
-        const element3: HTMLElement = dom.querySelector('#id3') as HTMLElement;
-        const element4: HTMLElement = dom.querySelector('#id4') as HTMLElement;
+        const element1 = dom.querySelector('#id1');
+        const element2 = dom.querySelector('#id2');
+        const element3 = dom.querySelector('#id3');
+        const element4 = dom.querySelector('#id4');
 
         const existingTabbedElements: TabbedItem[] = [
             {
@@ -451,7 +451,7 @@ describe('SVGDrawer', () => {
                     </body>
                 `);
         const docMock = dom.ownerDocument || dom;
-        const element: HTMLElement = dom.querySelector('#id1') as HTMLElement;
+        const element = dom.querySelector<HTMLElement>('#id1');
         const drawerConfig: SVGDrawerConfiguration = createTestDrawingConfig();
         const tabbedElements: TabbedElementData[] = [
             {
@@ -517,7 +517,7 @@ describe('SVGDrawer', () => {
         document.body.appendChild(dom);
 
         const drawerConfig: SVGDrawerConfiguration = createTestDrawingConfig();
-        const element: HTMLElement = dom.querySelector('#id1') as HTMLElement;
+        const element = dom.querySelector<HTMLElement>('#id1');
         const tabbedElements: TabbedElementData[] = [
             {
                 tabOrder: 1,
