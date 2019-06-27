@@ -1,8 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { IPoint } from '@uifabric/utilities';
-import { IMock, Mock, Times } from 'typemoq';
-
+import { IMock, Mock } from 'typemoq';
 import { TabbableElementsHelper } from '../../../../../common/tabbable-elements-helper';
 import { WindowUtils } from '../../../../../common/window-utils';
 import { ClientUtils } from '../../../../../injected/client-utils';
