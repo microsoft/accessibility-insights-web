@@ -40,5 +40,7 @@ describe('PreviewFeaturesToggleListTest', () => {
 
         const testSubject = shallow(<PreviewFeaturesToggleList {...props} />);
         expect(testSubject.debug()).toMatchSnapshot();
+
+        expect(testSubject.find({ id: 'test-id-1' }).props().onClick).toBe(actionMessageCreatorMock.object.setFeatureFlag);
     });
 });
