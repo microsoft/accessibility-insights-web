@@ -1284,7 +1284,7 @@ describe('Drawer', () => {
     }
 
     class DrawerBuilder {
-        private dom: NodeSelector & Node;
+        private dom: Document;
         private containerClass: string = containerClass;
         private windowUtils: WindowUtils;
         private drawerUtils: DrawerUtils;
@@ -1310,7 +1310,7 @@ describe('Drawer', () => {
             return this;
         }
 
-        public setDomAndDrawerUtils(dom: NodeSelector & Node): DrawerBuilder {
+        public setDomAndDrawerUtils(dom: Document): DrawerBuilder {
             this.dom = dom;
             this.drawerUtils = new DrawerUtils(dom);
             return this;

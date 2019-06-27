@@ -24,7 +24,7 @@ export class ScanParameterGenerator {
         return result;
     }
 
-    public getContext(dom: NodeSelector & Node, options: ScanOptions): AxeScanContext {
+    public getContext(dom: Document, options: ScanOptions): AxeScanContext {
         if (options == null) {
             return dom;
         }

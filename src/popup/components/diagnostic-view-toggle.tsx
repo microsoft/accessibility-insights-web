@@ -27,7 +27,7 @@ export interface DiagnosticViewToggleProps {
     clickHandler: DiagnosticViewClickHandler;
     shortcutCommands: chrome.commands.Command[];
     telemetrySource: TelemetryEventSource;
-    dom: NodeSelector & Node;
+    dom: Document;
 }
 
 export type DiagnosticViewToggleDeps = ContentLinkDeps;
@@ -39,7 +39,7 @@ export interface DiagnosticViewToggleState {
 export class DiagnosticViewToggle extends React.Component<DiagnosticViewToggleProps, DiagnosticViewToggleState> {
     private configuration: VisualizationConfiguration;
     private _toggle: React.RefObject<IToggle> = React.createRef<IToggle>();
-    private dom: NodeSelector & Node;
+    private dom: Document;
     private _isMounted: boolean;
     private _userEventListenerAdded: boolean;
 
