@@ -5,9 +5,19 @@ exports[`RulesWithInstances renders 1`] = `
   className="rule-details-group"
 >
   <CollapsibleContainer
+    accessibleHeadingContent={
+      <h3
+        className="screen-reader-only"
+      >
+        rule 
+        1
+        , 
+        1
+         failures
+      </h3>
+    }
     buttonAriaLabel="show failed instance list"
-    containerClassName="collapsible-rule-details-group"
-    detailsContent={
+    collapsibleContent={
       <InstanceDetailsGroup
         fixInstructionProcessor={
           proxy {
@@ -35,11 +45,11 @@ exports[`RulesWithInstances renders 1`] = `
         }
       />
     }
+    containerClassName="collapsible-rule-details-group"
     id="1"
-    summaryContent={
+    visibleHeadingContent={
       <RuleDetails
         deps={Object {}}
-        isHeader={false}
         outcomeType="pass"
         rule={
           Object {
@@ -55,7 +65,6 @@ exports[`RulesWithInstances renders 1`] = `
         }
       />
     }
-    titleHeadingLevel={3}
   />
 </div>
 `;

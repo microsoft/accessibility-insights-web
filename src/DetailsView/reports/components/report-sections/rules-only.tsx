@@ -19,7 +19,7 @@ export const RulesOnly = NamedSFC<RulesProps>('RulesOnly', ({ rules, outcomeType
     return (
         <div className="rule-details-group">
             {rules.map(rule => {
-                return <RuleDetail deps={deps} key={rule.id} rule={rule} outcomeType={outcomeType} isHeader={false} />;
+                return <RuleDetail deps={deps} key={rule.id} rule={rule} outcomeType={outcomeType} />;
             })}
         </div>
     );

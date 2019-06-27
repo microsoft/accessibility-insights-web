@@ -7,6 +7,9 @@ exports[`CollapsibleContainer renders, no optional fields 1`] = `
   <div
     className="title-container"
   >
+    <div>
+      this is the accessible heading content
+    </div>
     <button
       aria-controls="content-container-test-id"
       aria-expanded="false"
@@ -15,7 +18,7 @@ exports[`CollapsibleContainer renders, no optional fields 1`] = `
     />
     <div>
       <div>
-        this is the summary content
+        this is the visible heading content
       </div>
     </div>
   </div>
@@ -25,7 +28,7 @@ exports[`CollapsibleContainer renders, no optional fields 1`] = `
     id="content-container-test-id"
   >
     <div>
-       this is the details content 
+       this is the collapsible content 
     </div>
   </div>
 </div>
@@ -38,6 +41,9 @@ exports[`CollapsibleContainer renders, with extra class name for the container d
   <div
     className="title-container"
   >
+    <div>
+      this is the accessible heading content
+    </div>
     <button
       aria-controls="content-container-test-id"
       aria-expanded="false"
@@ -46,7 +52,7 @@ exports[`CollapsibleContainer renders, with extra class name for the container d
     />
     <div>
       <div>
-        this is the summary content
+        this is the visible heading content
       </div>
     </div>
   </div>
@@ -56,7 +62,7 @@ exports[`CollapsibleContainer renders, with extra class name for the container d
     id="content-container-test-id"
   >
     <div>
-       this is the details content 
+       this is the collapsible content 
     </div>
   </div>
 </div>
@@ -71,6 +77,9 @@ exports[`CollapsibleContainer renders, with heading level for the title containe
     className="title-container"
     role="heading"
   >
+    <div>
+      this is the accessible heading content
+    </div>
     <button
       aria-controls="content-container-test-id"
       aria-expanded="false"
@@ -79,7 +88,7 @@ exports[`CollapsibleContainer renders, with heading level for the title containe
     />
     <div>
       <div>
-        this is the summary content
+        this is the visible heading content
       </div>
     </div>
   </div>
@@ -89,7 +98,7 @@ exports[`CollapsibleContainer renders, with heading level for the title containe
     id="content-container-test-id"
   >
     <div>
-       this is the details content 
+       this is the collapsible content 
     </div>
   </div>
 </div>
