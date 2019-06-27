@@ -19,7 +19,7 @@ import { TabbedItem } from '../../../../../injected/visualization/tabbed-item';
 import { TestDocumentCreator } from '../../../common/test-document-creator';
 import { DrawerUtilsMockBuilder } from './drawer-utils-mock-builder';
 
-describe('SVGDrawerV2Tests', () => {
+describe('SVGDrawer', () => {
     let svgShapeFactoryMock: IMock<SVGShapeFactory>;
     let formatterMock: IMock<TabStopsFormatter>;
     let shadowUtilsMock: IMock<ShadowUtils>;
