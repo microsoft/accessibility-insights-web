@@ -9,7 +9,7 @@ Licensed under the MIT License.
 [![Azure DevOps coverage](https://img.shields.io/azure-devops/coverage/ms/accessibility-insights-web/63.svg)](https://dev.azure.com/ms/accessibility-insights-web/_build?definitionId=63&_a=summary)
 [![Chrome Web Store](https://img.shields.io/chrome-web-store/v/pbjjkligggfmakdaogkfomddhfmpjeni.svg?label=Version)](https://chrome.google.com/webstore/detail/accessibility-insights-fo/pbjjkligggfmakdaogkfomddhfmpjeni)
 [![Chrome Web Store](https://img.shields.io/chrome-web-store/users/pbjjkligggfmakdaogkfomddhfmpjeni.svg)](https://chrome.google.com/webstore/detail/accessibility-insights-fo/pbjjkligggfmakdaogkfomddhfmpjeni)
-[![Chrome Web Store](https://img.shields.io/chrome-web-store/stars/pbjjkligggfmakdaogkfomddhfmpjeni.svg)](https://chrome.google.com/webstore/detail/accessibility-insights-fo/pbjjkligggfmakdaogkfomddhfmpjeni/reviews)
+[![Chrome Web Store](https://img.shields.io/chrome-web-store/stars/pbjjkligggfmakdaogkfomddhfmpjeni.svg)](https://chrome.google.com/webstore/detail/accessibility-insights-fo/pbjjkligggfmakdaogkfomddhfmpjeni/reviews) [![Greenkeeper badge](https://badges.greenkeeper.io/microsoft/accessibility-insights-web.svg)](https://greenkeeper.io/)
 
 Accessibility Insights for Web is a Google Chrome and Microsoft Edge Insider browser extension for assessing the accessibility of web sites and web applications.
 
