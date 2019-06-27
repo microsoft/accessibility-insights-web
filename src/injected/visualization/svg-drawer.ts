@@ -26,7 +26,7 @@ export class SVGDrawer extends BaseDrawer {
     private centerPositionCalculator: CenterPositionCalculator;
 
     constructor(
-        dom: NodeSelector & Node,
+        dom: ParentNode,
         containerClass: string,
         windowUtils: WindowUtils,
         shadowUtils: ShadowUtils,

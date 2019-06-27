@@ -18,7 +18,7 @@ export class MainRenderer {
         private readonly deps: MainRendererDeps,
         private readonly popupHandlers: IPopupHandlers,
         private readonly renderer: typeof ReactDOM.render,
-        private readonly dom: NodeSelector & Node,
+        private readonly dom: ParentNode,
         private readonly popupWindow: Window,
         private readonly browserAdapter: BrowserAdapter,
         private readonly targetTabUrl: string,

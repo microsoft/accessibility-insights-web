@@ -8,7 +8,7 @@ import { DrawerUtils } from './drawer-utils';
 import { Formatter } from './formatter';
 
 export abstract class BaseDrawer implements Drawer {
-    protected dom: NodeSelector & Node;
+    protected dom: ParentNode;
     protected formatter: Formatter;
     protected isEnabled = false;
     protected containerClass: string;
@@ -23,7 +23,7 @@ export abstract class BaseDrawer implements Drawer {
     private _shadowUtils: ShadowUtils;
 
     constructor(
-        dom: NodeSelector & Node,
+        dom: ParentNode,
         containerClass: string,
         windowUtils: WindowUtils,
         shadowUtils: ShadowUtils,
