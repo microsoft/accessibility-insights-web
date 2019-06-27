@@ -54,6 +54,7 @@
         "@types/react-helmet": "^5.0.8",
         "@types/react-router-dom": "^4.3.4",
         "@types/serve-static": "^1.13.2",
+        "@types/ua-parser-js": "^0.7.33",
         "@types/uuid": "^3.4.4",
         "case-sensitive-paths-webpack-plugin": "^2.2.0",
         "css-loader": "^3.0.0",
@@ -99,7 +100,6 @@
         "webpack-cli": "^3.3.5"
     },
     "dependencies": {
-        "@types/ua-parser-js": "^0.7.33",
         "applicationinsights-js": "^1.0.20",
         "axe-core": "3.2.2",
         "classnames": "^2.2.6",
