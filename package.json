@@ -94,7 +94,7 @@
         "tslint-microsoft-contrib": "6.2.0",
         "typed-scss-modules": "^0.0.10",
         "typemoq": "^2.1.0",
-        "typescript": "^2.9.2",
+        "typescript": "^3.5.2",
         "uglifyjs-webpack-plugin": "^2.1.2",
         "webpack": "^4.35.0",
         "webpack-cli": "^3.3.5"
@@ -105,7 +105,7 @@
         "classnames": "^2.2.6",
         "lodash": "^4.17.11",
         "moment": "^2.24.0",
-        "office-ui-fabric-react": "6.189.4",
+        "office-ui-fabric-react": "7.6.1",
         "q": "1.5.1",
         "react": "^16.8.6",
         "react-copy-to-clipboard": "^5.0.1",
