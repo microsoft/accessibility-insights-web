@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as React from 'react';
-import { IMock, Mock, Times } from 'typemoq';
+import { IMock, It, Mock, Times } from 'typemoq';
 
 import { ManualTestStatus } from '../../../../../common/types/manual-test-status';
 import {
@@ -63,10 +63,6 @@ describe('AssessmentInstanceTableHandlerTest', () => {
             selectedTestType: 5,
         };
 
-        actionMessageCreatorMock.setup(a => a.changeManualTestStatus).verifiable(Times.atLeastOnce());
-
-        actionMessageCreatorMock.setup(a => a.undoManualTestStatusChange).verifiable(Times.atLeastOnce());
-
         const rows = testSubject.createAssessmentInstanceTableItems(instancesMap, assessmentNavState, true);
         const choiceGroup: JSX.Element = (
             <TestStatusChoiceGroup
@@ -109,7 +105,6 @@ describe('AssessmentInstanceTableHandlerTest', () => {
                 visualizationButton: selectedButton,
             },
         ];
-        actionMessageCreatorMock.verifyAll();
         configFactoryMock.verifyAll();
         expect(expectedRows).toEqual(rows);
     });
@@ -123,8 +118,6 @@ describe('AssessmentInstanceTableHandlerTest', () => {
             selectedTestStep: 'step1',
             selectedTestType: 5,
         };
-
-        actionMessageCreatorMock.setup(a => a.removeFailureInstance).verifiable(Times.atLeastOnce());
 
         const rows = testSubject.createCapturedInstanceTableItems(
             [instance],
@@ -149,7 +142,6 @@ describe('AssessmentInstanceTableHandlerTest', () => {
                 instanceActionButtons: instanceActionButtons,
             },
         ];
-        actionMessageCreatorMock.verifyAll();
         expect(expectedRows).toEqual(rows);
     });
 
