@@ -82,7 +82,7 @@
         "npm-run-all": "^4.1.5",
         "preprocess": "^3.1.0",
         "prettier": "^1.18.0",
-        "puppeteer": "^1.18.0",
+        "puppeteer": "^1.18.1",
         "sass-loader": "^7.1.0",
         "script-loader": "0.7.2",
         "serve-static": "^1.13.2",
