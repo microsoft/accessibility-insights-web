@@ -20,11 +20,24 @@ count. In your own fork, you can create as many branches as you like.
 -   Navigate to the [accessibility-insights-web](https://github.com/Microsoft/accessibility-insights-web) repository in the same browser session.
 -   Click on the **Fork** button at the top right corner of the page.
 -   Create the fork under your account. Your GitHub profile should now show **accessibility-insights-web** as one of your repositories.
--   Create a folder on your device and clone your fork of the **accessibility-insights-web** repository. e.g. `https://github.com/ada-cat/accessibility-insights-web`. Notice how your GitHub username is in the repository location.
 
-```
-> git clone https://github.com/ada-cat/accessibility-insights-web
-```
+## Cloning your fork
+
+-   Create a folder on your device and clone your fork of the **accessibility-insights-web** repository using one of the following commands. _Notice how your GitHub username is in the repository location._
+
+    -   Using HTTPS
+        ```bash
+        > git clone https://github.com/ada-cat/accessibility-insights-web.git
+        ```
+    -   or if you prefer SSH
+        ```bash
+        > git clone git@github.com:ada-cat/accessibility-insights-web.git
+        ```
+
+-   Select the created directory
+    ```bash
+    > cd accessibility-insights-web
+    ```
 
 ## Setting up the upstream repository
 
@@ -33,27 +46,27 @@ primary **accessibility-insights-web** repository.
 
 -   When you run git remote -v, you should see only your fork in the output list
 
-```
-> git remote -v
-origin  https://github.com/ada-cat/accessibility-insights-web (fetch)
-origin  https://github.com/ada-cat/accessibility-insights-web (push)
-```
+    ```bash
+    > git remote -v
+    origin  https://github.com/ada-cat/accessibility-insights-web (fetch)
+    origin  https://github.com/ada-cat/accessibility-insights-web (push)
+    ```
 
 -   Map the primary **accessibility-insights-web** as the upstream remote
 
-```
-> git remote add upstream https://github.com/Microsoft/accessibility-insights-web
-```
+    ```bash
+    > git remote add upstream https://github.com/Microsoft/accessibility-insights-web
+    ```
 
 -   Now running `git remote -v` should show the upstream repository also
 
-```
-> git remote -v
-origin  https://github.com/ada-cat/accessibility-insights-web (fetch)
-origin  https://github.com/ada-cat/accessibility-insights-web (push)
-upstream        https://github.com/Microsoft/accessibility-insights-web (fetch)
-upstream        https://github.com/Microsoft/accessibility-insights-web (push)
-```
+    ```bash
+    > git remote -v
+    origin  https://github.com/ada-cat/accessibility-insights-web (fetch)
+    origin  https://github.com/ada-cat/accessibility-insights-web (push)
+    upstream        https://github.com/Microsoft/accessibility-insights-web (fetch)
+    upstream        https://github.com/Microsoft/accessibility-insights-web (push)
+    ```
 
 -   At this point you are ready to start branching and contributing back changes.
 

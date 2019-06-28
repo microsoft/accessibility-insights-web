@@ -32,20 +32,9 @@ Please ensure that you have at least the **minimum** recommended versions
 
 > In case you don't have yarn, please install from: [Yarn](https://yarnpkg.com/en/)
 
-#### 1. Clone the repository
+#### 1. Fork and clone the repository
 
--   Clone the repository using one of the following commands
-    ```bash
-    git clone https://github.com/Microsoft/accessibility-insights-web.git
-    ```
-    or
-    ```bash
-    git clone git@github.com:Microsoft/accessibility-insights-web.git
-    ```
--   Select the created directory
-    ```bash
-    cd accessibility-insights-web
-    ```
+-   [Fork and clone the repository](docs/git-branch-setup.md)
 
 #### 2. Install packages
 
