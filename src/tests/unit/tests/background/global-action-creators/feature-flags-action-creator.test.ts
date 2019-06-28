@@ -34,7 +34,7 @@ describe('FeatureFlagsActionCreator', () => {
 
         setupActionsMock('getCurrentState', getCurrentStateMock.object);
 
-        testSubject.registerCallback();
+        testSubject.registerCallbacks();
 
         getCurrentStateMock.verifyAll();
     });
@@ -53,7 +53,7 @@ describe('FeatureFlagsActionCreator', () => {
 
         setupActionsMock('setFeatureFlag', setFeatureFlagMock.object);
 
-        testSubject.registerCallback();
+        testSubject.registerCallbacks();
 
         setFeatureFlagMock.verifyAll();
     });
@@ -67,7 +67,7 @@ describe('FeatureFlagsActionCreator', () => {
 
         setupActionsMock('resetFeatureFlags', resetFeatureFlagMock.object);
 
-        testSubject.registerCallback();
+        testSubject.registerCallbacks();
 
         resetFeatureFlagMock.verifyAll();
     });

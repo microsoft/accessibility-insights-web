@@ -85,7 +85,7 @@ export class GlobalContextFactory {
         assessmentActionCreator.registerCallbacks();
         userConfigurationActionCreator.registerCallback();
         scopingActionCreator.registerCallback();
-        featureFlagsActionCreator.registerCallback();
+        featureFlagsActionCreator.registerCallbacks();
 
         const dispatcher = new StateDispatcher(browserAdapter.sendMessageToAllFramesAndTabs, globalStoreHub);
         dispatcher.initialize();

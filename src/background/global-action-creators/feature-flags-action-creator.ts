@@ -13,7 +13,7 @@ export class FeatureFlagsActionCreator {
         private readonly telemetryEventHandler: TelemetryEventHandler,
     ) {}
 
-    public registerCallback(): void {
+    public registerCallbacks(): void {
         this.interpreter.registerTypeToPayloadCallback(Messages.FeatureFlags.GetFeatureFlags, this.onGetFeatureFlags);
         this.interpreter.registerTypeToPayloadCallback(Messages.FeatureFlags.SetFeatureFlag, this.onSetFeatureFlags);
         this.interpreter.registerTypeToPayloadCallback(Messages.FeatureFlags.ResetFeatureFlag, this.onResetFeatureFlags);
