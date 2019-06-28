@@ -1,10 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
+
 import { SetLaunchPanelState } from '../../../../../background/actions/action-payloads';
 import { AssessmentActions } from '../../../../../background/actions/assessment-actions';
 import { CommandActions } from '../../../../../background/actions/command-actions';
-import { FeatureFlagActions, FeatureFlagPayload } from '../../../../../background/actions/feature-flag-actions';
+import { FeatureFlagActions } from '../../../../../background/actions/feature-flag-actions';
 import { GlobalActionHub } from '../../../../../background/actions/global-action-hub';
 import { LaunchPanelStateActions } from '../../../../../background/actions/launch-panel-state-action';
 import { UserConfigurationActions } from '../../../../../background/actions/user-configuration-actions';
@@ -14,7 +15,6 @@ import { Interpreter } from '../../../../../background/interpreter';
 import { TelemetryEventHandler } from '../../../../../background/telemetry/telemetry-event-handler';
 import { Action } from '../../../../../common/flux/action';
 import { Messages } from '../../../../../common/messages';
-import * as TelemetryEvents from '../../../../../common/telemetry-events';
 import { LaunchPanelType } from '../../../../../popup/components/popup-view';
 import { DictionaryStringTo } from '../../../../../types/common-types';
 
@@ -47,52 +47,6 @@ describe('GlobalActionCreatorTest', () => {
         actionCreator.registerCallbacks();
 
         builder.verifyAll();
-    });
-
-    test('registerCallback for FeatureFlags.GetFeatureFlags', () => {
-        const actionName = 'getCurrentState';
-        const validator = new GlobalActionCreatorValidator()
-            .setupRegistrationCallback(Messages.FeatureFlags.GetFeatureFlags)
-            .setupActionOnFeatureFlagActions(actionName)
-            .setupFeatureFlagActionWithInvokeParameter(actionName, null);
-
-        const actionCreator = validator.buildActionCreator();
-        actionCreator.registerCallbacks();
-
-        validator.verifyAll();
-    });
-
-    test('registerCallback for FeatureFlags.SetFeatureFlag', () => {
-        const featureFlagActionName = 'setFeatureFlag';
-        const payload: FeatureFlagPayload = {
-            feature: 'registerCallback test feature',
-            enabled: true,
-        };
-        const args = [payload];
-
-        const validator = new GlobalActionCreatorValidator()
-            .setupRegistrationCallback(Messages.FeatureFlags.SetFeatureFlag, args)
-            .setupActionOnFeatureFlagActions(featureFlagActionName)
-            .setupFeatureFlagActionWithInvokeParameter(featureFlagActionName, payload)
-            .setupTelemetrySend(TelemetryEvents.PREVIEW_FEATURES_TOGGLE);
-
-        const actionCreator = validator.buildActionCreator();
-        actionCreator.registerCallbacks();
-
-        validator.verifyAll();
-    });
-
-    test('registerCallback for FeatureFlags.ResetFeatureFlag', () => {
-        const actionName = 'resetFeatureFlags';
-        const validator = new GlobalActionCreatorValidator()
-            .setupRegistrationCallback(Messages.FeatureFlags.ResetFeatureFlag)
-            .setupActionOnFeatureFlagActions(actionName)
-            .setupFeatureFlagActionWithInvokeParameter(actionName, null);
-
-        const actionCreator = validator.buildActionCreator();
-        actionCreator.registerCallbacks();
-
-        validator.verifyAll();
     });
 
     test('registerCallback for on get launch panel state', () => {
