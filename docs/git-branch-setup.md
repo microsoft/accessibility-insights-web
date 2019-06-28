@@ -29,7 +29,7 @@ count. In your own fork, you can create as many branches as you like.
         ```bash
         > git clone https://github.com/ada-cat/accessibility-insights-web.git
         ```
-        or if you prefer SSH
+    -   or if you prefer SSH
         ```bash
         > git clone git@github.com:ada-cat/accessibility-insights-web.git
         ```
