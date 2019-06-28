@@ -30,6 +30,7 @@ export class AssessmentInstanceEditAndRemoveControl extends React.Component<Asse
                     editFailureInstance={this.props.onEdit}
                     originalText={this.props.description}
                     assessmentsProvider={this.props.assessmentsProvider}
+                    featureFlagStoreData={null}
                 />
                 <Link className="remove-button" onClick={this.onRemoveButtonClicked}>
                     <Icon iconName="delete" ariaLabel={'delete instance'} />

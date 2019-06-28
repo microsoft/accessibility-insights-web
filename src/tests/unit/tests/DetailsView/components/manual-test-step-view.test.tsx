@@ -6,6 +6,7 @@ import { Mock } from 'typemoq';
 
 import { ManualTestStatus } from '../../../../../common/types/manual-test-status';
 import { ManualTestStepResult } from '../../../../../common/types/store-data/assessment-result-data';
+import { FeatureFlagStoreData } from '../../../../../common/types/store-data/feature-flag-store-data';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
 import {
     CapturedInstanceActionType,
@@ -17,6 +18,8 @@ import { AssessmentInstanceTableHandler } from '../../../../../DetailsView/handl
 import { CreateTestAssessmentProvider } from '../../../common/test-assessment-provider';
 
 describe('ManualTestStepView', () => {
+    const featureFlagStoreData = {} as FeatureFlagStoreData;
+
     test('constructor: default', () => {
         const assessmentInstanceTableHandlerMock = Mock.ofType(AssessmentInstanceTableHandler);
         const props: ManualTestStepViewProps = {
@@ -29,6 +32,7 @@ describe('ManualTestStepView', () => {
                 } as ManualTestStepResult,
             },
             assessmentsProvider: CreateTestAssessmentProvider(),
+            featureFlagStoreData: featureFlagStoreData,
         };
         const testObject = new ManualTestStepView(props);
 
@@ -71,6 +75,7 @@ describe('ManualTestStepView', () => {
                 },
             },
             assessmentsProvider: CreateTestAssessmentProvider(),
+            featureFlagStoreData: featureFlagStoreData,
         };
         assessmentInstanceTableHandlerMock.setup(a => a.getColumnConfigsForCapturedInstance()).returns(() => cols);
         assessmentInstanceTableHandlerMock
@@ -100,6 +105,7 @@ describe('ManualTestStepView', () => {
                             actionType={CapturedInstanceActionType.CREATE}
                             addFailureInstance={props.assessmentInstanceTableHandler.addFailureInstance}
                             assessmentsProvider={props.assessmentsProvider}
+                            featureFlagStoreData={featureFlagStoreData}
                         />
                         <DetailsList
                             items={items}

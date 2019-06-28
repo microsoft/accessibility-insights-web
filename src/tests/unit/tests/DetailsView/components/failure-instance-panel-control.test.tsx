@@ -7,6 +7,7 @@ import * as React from 'react';
 import { IMock, Mock, Times } from 'typemoq';
 
 import { Assessments } from '../../../../../assessments/assessments';
+import { FeatureFlagStoreData } from '../../../../../common/types/store-data/feature-flag-store-data';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
 import { ActionAndCancelButtonsComponent } from '../../../../../DetailsView/components/action-and-cancel-buttons-component';
 import {
@@ -26,14 +27,30 @@ describe('FailureInstancePanelControlTest', () => {
     });
 
     test('render FailureInstancePanelControl: add instance', () => {
-        const props = createPropsWithType(CapturedInstanceActionType.CREATE);
+        const featureFlagStoreData = {
+            manualInstanceDetails: false,
+        };
+
+        const props = createPropsWithTypeAndData(CapturedInstanceActionType.CREATE, featureFlagStoreData);
+
+        const rendered = shallow(<FailureInstancePanelControl {...props} />);
+        expect(rendered.getElement()).toMatchSnapshot();
+    });
+
+    test('render FailureInstancePanelControl with details: add instance', () => {
+        const featureFlagStoreData = {
+            manualInstanceDetails: true,
+        };
+
+        const props = createPropsWithTypeAndData(CapturedInstanceActionType.CREATE, featureFlagStoreData);
 
         const rendered = shallow(<FailureInstancePanelControl {...props} />);
         expect(rendered.getElement()).toMatchSnapshot();
     });
 
     test('render FailureInstancePanelControl: edit instance', () => {
-        const props = createPropsWithType(CapturedInstanceActionType.EDIT);
+        const featureFlagStoreData = null;
+        const props = createPropsWithTypeAndData(CapturedInstanceActionType.EDIT, featureFlagStoreData);
 
         const rendered = shallow(<FailureInstancePanelControl {...props} />);
         expect(rendered.getElement()).toMatchSnapshot();
@@ -140,12 +157,28 @@ describe('FailureInstancePanelControlTest', () => {
     });
 
     function createPropsWithType(actionType: CapturedInstanceActionType): FailureInstancePanelControlProps {
+        const featureFlagStoreData = {} as FeatureFlagStoreData;
         return {
             step: 'missingHeadings',
             test: VisualizationType.HeadingsAssessment,
             addFailureInstance: addInstanceMock.object,
             actionType: actionType,
             assessmentsProvider: Assessments,
+            featureFlagStoreData: featureFlagStoreData,
+        };
+    }
+
+    function createPropsWithTypeAndData(
+        actionType: CapturedInstanceActionType,
+        featureData: FeatureFlagStoreData,
+    ): FailureInstancePanelControlProps {
+        return {
+            step: 'missingHeadings',
+            test: VisualizationType.HeadingsAssessment,
+            addFailureInstance: addInstanceMock.object,
+            actionType: actionType,
+            assessmentsProvider: Assessments,
+            featureFlagStoreData: featureData,
         };
     }
 });

@@ -46,6 +46,7 @@ describe('AssessmentInstanceRemoveButton', () => {
                     editFailureInstance={props.onEdit}
                     originalText={props.description}
                     assessmentsProvider={props.assessmentsProvider}
+                    featureFlagStoreData={null}
                 />
                 <Link className="remove-button" onClick={testSubject.getOnRemoveButtonClicked()}>
                     <Icon iconName="delete" ariaLabel={'delete instance'} />
