@@ -325,7 +325,7 @@ div.insights-file-issue-details-dialog-container {
             text-overflow: ellipsis;
             width: 50%;
             .ms-Link {
-                color: $communication-shade-10;
+                color: $communication-primary;
             }
         }
         .details-view-command-buttons {
@@ -782,7 +782,7 @@ div.insights-file-issue-details-dialog-container {
             .info-message-bar {
                 background-color: $communication-tint-40;
                 .ms-MessageBar-icon {
-                    color: $communication-shade-10;
+                    color: $communication-primary;
                 }
                 .ms-link {
                     font-weight: 700;
@@ -804,7 +804,7 @@ div.insights-file-issue-details-dialog-container {
                 word-break: break-all;
                 font-weight: 600;
                 .ms-Link {
-                    color: $communication-shade-10;
+                    color: $communication-primary;
                 }
                 .target-page-link {
                     font-family: $fontFamily;
@@ -959,7 +959,7 @@ div.insights-file-issue-details-dialog-container {
                 .more-info {
                     font-size: 14px;
                     .ms-Link {
-                        color: $communication-shade-10;
+                        color: $communication-primary;
                     }
                 }
                 .landmark-roles-table {
