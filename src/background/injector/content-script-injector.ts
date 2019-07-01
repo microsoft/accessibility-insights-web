@@ -15,6 +15,9 @@ export class ContentScriptInjector {
     public injectScripts(tabId: number): Promise<void> {
         const inject = new Promise<null>(resolve => {
             ContentScriptInjector.cssFiles.forEach(file => {
+                // we need js to be injected in all frames before we start sending message, but,
+                // we do not need to wait for css, since css loading doesn't affect our messaging,
+                // hence the null callback here.
                 this.chromeAdapter.injectCss(tabId, file, null);
             });
 
