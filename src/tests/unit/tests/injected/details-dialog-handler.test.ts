@@ -498,7 +498,7 @@ describe('DetailsDialogHandlerTest', () => {
     });
 
     describe('hasStore', () => {
-        it.each([[undefined, false], [{}, false], [{ devToolStore: {} }, true]])('', (props, expected) =>
+        it.each([[undefined, false], [{}, false], [{ devToolStore: {} }, true]])('', (props, expected: boolean) =>
             testHasStoreGivenPropsReturns(props, expected),
         );
     });
