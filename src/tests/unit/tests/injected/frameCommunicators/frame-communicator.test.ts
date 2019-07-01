@@ -8,7 +8,7 @@ import { Logger } from '../../../../../common/logging/logger';
 import { WindowUtils } from '../../../../../common/window-utils';
 import { FrameCommunicator, MessageRequest } from '../../../../../injected/frameCommunicators/frame-communicator';
 import { FrameMessageResponseCallback, WindowMessageHandler } from '../../../../../injected/frameCommunicators/window-message-handler';
-import { HTMLCollectionOfBuilder } from '../../../common/node-list-builder';
+import { HTMLCollectionOfBuilder } from "../../../common/HTMLCollectionOfBuilder";
 import { IsSameObject } from '../../../common/typemoq-helper';
 import { QStub } from '../../../stubs/q-stub';
 
