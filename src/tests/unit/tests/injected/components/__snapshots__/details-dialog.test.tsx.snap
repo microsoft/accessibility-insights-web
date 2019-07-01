@@ -293,7 +293,6 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: false 
           },
           "refs": Object {},
           "setState": [Function],
-          "showInspectButtonMessage": [Function],
           "state": Object {
             "canInspect": true,
             "currentRuleIndex": 0,
@@ -1025,7 +1024,6 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: true }
             },
             "refs": Object {},
             "setState": [Function],
-            "showInspectButtonMessage": [Function],
             "state": Object {
               "canInspect": true,
               "currentRuleIndex": 0,
@@ -1757,7 +1755,6 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: false }
           },
           "refs": Object {},
           "setState": [Function],
-          "showInspectButtonMessage": [Function],
           "state": Object {
             "canInspect": true,
             "currentRuleIndex": 0,
@@ -2489,7 +2486,6 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: true } 
             },
             "refs": Object {},
             "setState": [Function],
-            "showInspectButtonMessage": [Function],
             "state": Object {
               "canInspect": true,
               "currentRuleIndex": 0,
@@ -3221,7 +3217,6 @@ exports[`DetailsDialogTest render: with relative help url 1`] = `
           },
           "refs": Object {},
           "setState": [Function],
-          "showInspectButtonMessage": [Function],
           "state": Object {
             "canInspect": true,
             "currentRuleIndex": 0,
