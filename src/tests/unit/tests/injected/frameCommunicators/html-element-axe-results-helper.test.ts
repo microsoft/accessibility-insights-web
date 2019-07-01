@@ -7,7 +7,7 @@ import {
     AxeResultsWithFrameLevel,
     HtmlElementAxeResultsHelper,
 } from '../../../../../injected/frameCommunicators/html-element-axe-results-helper';
-import { HTMLCollectionOfBuilder } from "../../../common/HTMLCollectionOfBuilder";
+import { HTMLCollectionOfBuilder } from '../../../common/html-collection-of-builder';
 import { HTMLElementUtils } from '.././../../../../common/html-element-utils';
 
 describe('HtmlElementAxeResultsHelperTest', () => {

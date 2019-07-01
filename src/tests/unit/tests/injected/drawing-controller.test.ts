@@ -14,7 +14,7 @@ import {
 import { HtmlElementAxeResults } from '../../../../injected/scanner-utils';
 import { Drawer, DrawerInitData } from '../../../../injected/visualization/drawer';
 import { HighlightBoxDrawer } from '../../../../injected/visualization/highlight-box-drawer';
-import { HTMLCollectionOfBuilder } from "../../common/HTMLCollectionOfBuilder";
+import { HTMLCollectionOfBuilder } from '../../common/html-collection-of-builder';
 
 class VisualizationWindowMessageStubBuilder {
     private isEnabled: boolean;

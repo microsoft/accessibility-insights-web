@@ -3,7 +3,7 @@
 import { It, Mock, Times } from 'typemoq';
 
 import { HTMLElementUtils } from '../../../../common/html-element-utils';
-import { HTMLCollectionOfBuilder } from "../../common/HTMLCollectionOfBuilder";
+import { HTMLCollectionOfBuilder } from '../../common/html-collection-of-builder';
 
 describe('HTMLElementUtilsTest', () => {
     test('getContentWindow', () => {
