@@ -514,8 +514,6 @@ describe('SVGDrawer', () => {
                 `);
         const docMock = dom.ownerDocument || dom;
 
-        document.body.appendChild(dom);
-
         const drawerConfig: SVGDrawerConfiguration = createTestDrawingConfig();
         const element = dom.querySelector<HTMLElement>('#id1');
         const tabbedElements: TabbedElementData[] = [
@@ -564,8 +562,6 @@ describe('SVGDrawer', () => {
         expect(circles.length).toBe(1);
         expect(lines.length).toBe(0);
         expect(labels.length).toBe(0);
-
-        document.body.removeChild(dom);
     });
 
     test('draw circles with line in between without details', () => {
@@ -574,8 +570,6 @@ describe('SVGDrawer', () => {
                     <div id='id2'></div>
                 `);
         const docMock = dom.ownerDocument || dom;
-
-        document.body.appendChild(dom);
 
         const drawerConfig: SVGDrawerConfiguration = createTestDrawingConfig(false, false);
         const tabbedElements: TabbedElementData[] = [
@@ -631,8 +625,6 @@ describe('SVGDrawer', () => {
         expect(circles.length).toBe(2);
         expect(lines.length).toBe(1);
         expect(labels.length).toBe(0);
-
-        document.body.removeChild(dom);
     });
 
     test('draw circles with line in between with details', () => {
@@ -641,7 +633,7 @@ describe('SVGDrawer', () => {
                     <div id='id2'></div>
                 `);
         const docMock = dom.ownerDocument || dom;
-        document.body.appendChild(dom);
+
         // pass true or false in createTestDrawingConfig falseto set showDetailedTabOrder parameter in config
         const drawerConfig: SVGDrawerConfiguration = createTestDrawingConfig();
         const tabbedElements: TabbedElementData[] = [
@@ -697,8 +689,6 @@ describe('SVGDrawer', () => {
         expect(circles.length).toBe(2);
         expect(lines.length).toBe(1);
         expect(labels.length).toBe(1);
-
-        document.body.removeChild(dom);
     });
 
     test('draw circles with line in between with details', () => {
@@ -707,7 +697,7 @@ describe('SVGDrawer', () => {
                     <div id='id2'></div>
                 `);
         const docMock = dom.ownerDocument || dom;
-        document.body.appendChild(dom);
+
         // pass true or false in createTestDrawingConfig falseto set showDetailedTabOrder parameter in config
         const drawerConfig: SVGDrawerConfiguration = createTestDrawingConfig();
         const tabbedElements: TabbedElementData[] = [
@@ -735,7 +725,7 @@ describe('SVGDrawer', () => {
             .returns(() => drawerConfig)
             .verifiable();
         centerPositionCalculatorMock
-            .setup(c => c.getElementCenterPosition(document.getElementById('id1')))
+            .setup(c => c.getElementCenterPosition(dom.getElementById('id1')))
             .returns(element => null)
             .verifiable();
         const testSubject = new SVGDrawer(
@@ -766,8 +756,6 @@ describe('SVGDrawer', () => {
         expect(circles.length).toBe(2);
         expect(lines.length).toBe(0);
         expect(labels.length).toBe(1);
-
-        document.body.removeChild(dom);
     });
 
     test('break graph', () => {
@@ -776,7 +764,7 @@ describe('SVGDrawer', () => {
                     <div id='id2'></div>
                 `);
         const docMock = dom.ownerDocument || dom;
-        document.body.appendChild(dom);
+
         const drawerConfig: SVGDrawerConfiguration = createTestDrawingConfig();
         const tabbedElements: TabbedElementData[] = [
             {
@@ -831,8 +819,6 @@ describe('SVGDrawer', () => {
         expect(circles.length).toBe(2);
         expect(lines.length).toBe(0);
         expect(labels.length).toBe(1);
-
-        document.body.removeChild(dom);
     });
 
     test('eraseLayout', () => {
@@ -841,7 +827,7 @@ describe('SVGDrawer', () => {
                     <div id='id2'></div>
                 `);
         const docMock = dom.ownerDocument || dom;
-        document.body.appendChild(dom);
+
         const drawerConfig: SVGDrawerConfiguration = createTestDrawingConfig();
         const tabbedElements: TabbedElementData[] = [
             {
@@ -898,8 +884,6 @@ describe('SVGDrawer', () => {
         expect(circles.length).toBe(0);
         expect(lines.length).toBe(0);
         expect(labels.length).toBe(0);
-
-        document.body.removeChild(dom);
     });
 
     function createTestDrawingConfig(showSolidFocusLine = true, showTabIndexedLabel = true): SVGDrawerConfiguration {
@@ -1016,7 +1000,7 @@ describe('SVGDrawer', () => {
             .returns((center, config, tabOrder) => {
                 const text = doc.createElementNS(SVGNamespaceUrl, 'text');
                 text.setAttributeNS(null, 'class', 'insights-svg-focus-indicator-text');
-                text.innerHTML = tabOrder;
+                text.innerHTML = `<span>${tabOrder}</span>`;
                 return text;
             });
     }
