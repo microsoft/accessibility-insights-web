@@ -1,11 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { autobind } from '@uifabric/utilities';
 import { Messages } from '../../common/messages';
-import * as TelemetryEvents from '../../common/telemetry-events';
 import { PayloadWithEventName, SetLaunchPanelState } from '../actions/action-payloads';
 import { CommandActions, GetCommandsPayload } from '../actions/command-actions';
-import { FeatureFlagActions } from '../actions/feature-flag-actions';
 import { GlobalActionHub } from '../actions/global-action-hub';
 import { LaunchPanelStateActions } from '../actions/launch-panel-state-action';
 import { CommandsAdapter } from '../browser-adapters/commands-adapter';
@@ -18,7 +15,6 @@ export class GlobalActionCreator {
     private telemetryEventHandler: TelemetryEventHandler;
 
     private commandActions: CommandActions;
-    private featureFlagActions: FeatureFlagActions;
     private launchPanelStateActions: LaunchPanelStateActions;
 
     constructor(
@@ -31,15 +27,11 @@ export class GlobalActionCreator {
         this.commandsAdapter = commandsAdapter;
         this.telemetryEventHandler = telemetryEventHandler;
         this.commandActions = globalActionHub.commandActions;
-        this.featureFlagActions = globalActionHub.featureFlagActions;
         this.launchPanelStateActions = globalActionHub.launchPanelStateActions;
     }
 
     public registerCallbacks(): void {
         this.interpreter.registerTypeToPayloadCallback(Messages.Command.GetCommands, this.onGetCommands);
-        this.interpreter.registerTypeToPayloadCallback(Messages.FeatureFlags.GetFeatureFlags, this.onGetFeatureFlags);
-        this.interpreter.registerTypeToPayloadCallback(Messages.FeatureFlags.SetFeatureFlag, this.onSetFeatureFlags);
-        this.interpreter.registerTypeToPayloadCallback(Messages.FeatureFlags.ResetFeatureFlag, this.onResetFeatureFlags);
 
         this.interpreter.registerTypeToPayloadCallback(Messages.LaunchPanel.Get, this.onGetLaunchPanelState);
         this.interpreter.registerTypeToPayloadCallback(Messages.LaunchPanel.Set, this.onSetLaunchPanelState);
@@ -47,8 +39,7 @@ export class GlobalActionCreator {
         this.interpreter.registerTypeToPayloadCallback(Messages.Telemetry.Send, this.onSendTelemetry);
     }
 
-    @autobind
-    private onGetCommands(payload, tabId: number): void {
+    private onGetCommands = (payload, tabId: number): void => {
         this.commandsAdapter.getCommands((commands: chrome.commands.Command[]) => {
             const getCommandsPayload: GetCommandsPayload = {
                 commands: commands,
@@ -56,37 +47,18 @@ export class GlobalActionCreator {
             };
             this.commandActions.getCommands.invoke(getCommandsPayload);
         });
-    }
+    };
 
-    @autobind
-    private onGetFeatureFlags(payload, tabId: number): void {
-        this.featureFlagActions.getCurrentState.invoke(null);
-    }
-
-    @autobind
-    private onSetFeatureFlags(payload): void {
-        this.telemetryEventHandler.publishTelemetry(TelemetryEvents.PREVIEW_FEATURES_TOGGLE, payload);
-        this.featureFlagActions.setFeatureFlag.invoke(payload);
-    }
-
-    @autobind
-    private onResetFeatureFlags(payload, tabId: number): void {
-        this.featureFlagActions.resetFeatureFlags.invoke(null);
-    }
-
-    @autobind
-    private onGetLaunchPanelState(): void {
+    private onGetLaunchPanelState = (): void => {
         this.launchPanelStateActions.getCurrentState.invoke(null);
-    }
+    };
 
-    @autobind
-    private onSetLaunchPanelState(payload: SetLaunchPanelState): void {
+    private onSetLaunchPanelState = (payload: SetLaunchPanelState): void => {
         this.launchPanelStateActions.setLaunchPanelType.invoke(payload.launchPanelType);
-    }
+    };
 
-    @autobind
-    private onSendTelemetry(payload: PayloadWithEventName): void {
+    private onSendTelemetry = (payload: PayloadWithEventName): void => {
         const eventName = payload.eventName;
         this.telemetryEventHandler.publishTelemetry(eventName, payload);
-    }
+    };
 }

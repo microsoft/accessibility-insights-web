@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { autobind } from '@uifabric/utilities';
 import { PrimaryButton } from 'office-ui-fabric-react/lib/Button';
 import { Checkbox } from 'office-ui-fabric-react/lib/Checkbox';
 import { Dialog, DialogFooter, DialogType } from 'office-ui-fabric-react/lib/Dialog';
@@ -73,8 +72,7 @@ export class TelemetryPermissionDialog extends React.Component<TelemetryPermissi
         );
     }
 
-    @autobind
-    private onCheckboxChange(ev?, checked?: boolean): void {
+    private onCheckboxChange = (ev?, checked?: boolean): void => {
         this.setState({ isEnableTelemetryChecked: checked });
-    }
+    };
 }

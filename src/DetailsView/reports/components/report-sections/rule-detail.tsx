@@ -21,11 +21,10 @@ export type RuleDetailProps = {
     deps: RuleDetailDeps;
     rule: RuleResult;
     outcomeType: InstanceOutcomeType;
-    isHeader: boolean;
 };
 
 export const RuleDetail = NamedSFC<RuleDetailProps>('RuleDetails', props => {
-    const { rule, outcomeType, isHeader, deps } = props;
+    const { rule, outcomeType, deps } = props;
 
     const outcomeText = outcomeTypeSemantics[props.outcomeType].pastTense;
     const ariaDescribedBy = `${kebabCase(outcomeText)}-rule-${rule.id}-description`;
@@ -35,7 +34,11 @@ export const RuleDetail = NamedSFC<RuleDetailProps>('RuleDetails', props => {
             return null;
         }
 
-        return <OutcomeChip count={rule.nodes.length} outcomeType={outcomeType} />;
+        return (
+            <span aria-hidden="true">
+                <OutcomeChip count={rule.nodes.length} outcomeType={outcomeType} />
+            </span>
+        );
     };
 
     const renderRuleLink = () => {
@@ -66,21 +69,11 @@ export const RuleDetail = NamedSFC<RuleDetailProps>('RuleDetails', props => {
         return <GuidanceTags deps={deps} links={rule.guidanceLinks} />;
     };
 
-    const ariaLevel = isHeader ? 3 : undefined;
-
-    const headingProps =
-        ariaLevel != null
-            ? {
-                  role: 'heading',
-                  'aria-level': ariaLevel,
-              }
-            : null;
-
     return (
         <>
             <div className="rule-detail">
-                <div {...headingProps}>
-                    {renderCountBadge()} {renderRuleLink()}: {renderDescription()} ({renderGuidanceLinks()}) {renderGuidanceTags()}
+                <div>
+                    {renderCountBadge()} {renderRuleLink()}: {renderDescription()} ({renderGuidanceLinks()}){renderGuidanceTags()}
                 </div>
             </div>
         </>

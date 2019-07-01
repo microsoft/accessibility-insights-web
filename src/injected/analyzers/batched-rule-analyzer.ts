@@ -1,7 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { autobind } from '@uifabric/utilities';
-
 import { BaseStore } from '../../common/base-store';
 import { VisualizationConfigurationFactory } from '../../common/configs/visualization-configuration-factory';
 import { TelemetryDataFactory } from '../../common/telemetry-data-factory';
@@ -34,8 +32,7 @@ export class BatchedRuleAnalyzer extends RuleAnalyzer {
         return null;
     }
 
-    @autobind
-    protected onResolve(results: AxeAnalyzerResult): void {
+    protected onResolve = (results: AxeAnalyzerResult): void => {
         BatchedRuleAnalyzer.batchConfigs.forEach(config => {
             const filteredScannerResult = this.postScanFilter(results.originalResult, config.rules);
             const processResults = config.resultProcessor(this.scanner);
@@ -46,5 +43,5 @@ export class BatchedRuleAnalyzer extends RuleAnalyzer {
             };
             this.sendScanCompleteResolveMessage(filteredAxeAnalyzerResult, config);
         });
-    }
+    };
 }

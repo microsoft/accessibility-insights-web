@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { autobind, getRTL } from '@uifabric/utilities';
+import { getRTL } from '@uifabric/utilities';
 import * as Q from 'q';
 
 import { ClientChromeAdapter } from '../common/client-browser-adapter';
@@ -111,7 +111,7 @@ export class WindowInitializer {
         EnumHelper.getNumericValues(VisualizationType).forEach(visualizationTypeDrawerRegistrar.registerType);
 
         const port = this.clientChromeAdapter.connect();
-        port.onDisconnect.addListener(this.dispose);
+        port.onDisconnect.addListener(() => this.dispose());
 
         this.elementFinderByPosition = new ElementFinderByPosition(
             this.frameCommunicator,
@@ -125,7 +125,6 @@ export class WindowInitializer {
         await Promise.all(asyncInitializationSteps);
     }
 
-    @autobind
     protected dispose(): void {
         this.drawingController.dispose();
     }

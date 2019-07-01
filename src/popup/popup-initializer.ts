@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { autobind } from '@uifabric/utilities';
 import { loadTheme } from 'office-ui-fabric-react';
 import * as ReactDOM from 'react-dom';
 
@@ -83,8 +82,7 @@ export class PopupInitializer {
         incompatibleBrowserRenderer.render();
     };
 
-    @autobind
-    private initializePopup(): void {
+    private initializePopup = (): void => {
         const telemetryFactory = new TelemetryDataFactory();
         const actionMessageDispatcher = new ActionMessageDispatcher(this.chromeAdapter.sendMessageToFrames, this.targetTabInfo.tab.id);
         const visualizationActionCreator = new VisualizationActionMessageCreator(actionMessageDispatcher);
@@ -204,5 +202,5 @@ export class PopupInitializer {
 
         const a11ySelfValidator = new A11YSelfValidator(new ScannerUtils(scan), new HTMLElementUtils());
         window.A11YSelfValidator = a11ySelfValidator;
-    }
+    };
 }

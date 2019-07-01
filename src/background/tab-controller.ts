@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { autobind } from '@uifabric/utilities';
 import { Message } from '../common/message';
 import { Messages } from '../common/messages';
 import { Logger } from './../common/logging/logger';
@@ -55,15 +54,13 @@ export class TabController {
         this.detailsViewController.setupDetailsViewTabRemovedHandler(this.onDetailsViewTabRemoved);
     }
 
-    @autobind
-    private onTabNavigated(details: chrome.webNavigation.WebNavigationFramedCallbackDetails): void {
+    private onTabNavigated = (details: chrome.webNavigation.WebNavigationFramedCallbackDetails): void => {
         if (details.frameId === 0) {
             this.handleTabUpdate(details.tabId);
         }
-    }
+    };
 
-    @autobind
-    private onTabActivated(activeInfo: chrome.tabs.TabActiveInfo): void {
+    private onTabActivated = (activeInfo: chrome.tabs.TabActiveInfo): void => {
         const activeTabId = activeInfo.tabId;
         const windowId = activeInfo.windowId;
 
@@ -76,10 +73,9 @@ export class TabController {
                 }
             });
         });
-    }
+    };
 
-    @autobind
-    private onWindowFocusChanged(windowId: number): void {
+    private onWindowFocusChanged = (windowId: number): void => {
         this.chromeAdapter.getAllWindows(
             { populate: false, windowTypes: ['normal', 'popup'] },
             (chromeWindows: chrome.windows.Window[]) => {
@@ -94,17 +90,16 @@ export class TabController {
                 });
             },
         );
-    }
+    };
 
-    @autobind
-    private handleTabUpdate(tabId: number): void {
+    private handleTabUpdate = (tabId: number): void => {
         if (this.hasTabContext(tabId)) {
             this.sendTabChangedAction(tabId);
         } else {
             this.addTabContext(tabId);
             this.sendTabUpdateAction(tabId);
         }
-    }
+    };
 
     private hasTabContext(tabId: number): boolean {
         return tabId in this.tabIdToContextMap;
@@ -179,8 +174,7 @@ export class TabController {
         );
     }
 
-    @autobind
-    private onTabRemoved(tabId: number, messageType: string): void {
+    private onTabRemoved = (tabId: number, messageType: string): void => {
         const tabContext = this.tabIdToContextMap[tabId];
         if (tabContext) {
             const interpreter = tabContext.interpreter;
@@ -190,16 +184,14 @@ export class TabController {
                 tabId: tabId,
             });
         }
-    }
+    };
 
-    @autobind
-    private onTargetTabRemoved(tabId: number): void {
+    private onTargetTabRemoved = (tabId: number): void => {
         this.onTabRemoved(tabId, Messages.Tab.Remove);
         delete this.tabIdToContextMap[tabId];
-    }
+    };
 
-    @autobind
-    private onDetailsViewTabRemoved(tabId: number): void {
+    private onDetailsViewTabRemoved = (tabId: number): void => {
         this.onTabRemoved(tabId, Messages.Visualizations.DetailsView.Close);
-    }
+    };
 }

@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { autobind } from '@uifabric/utilities';
 import { StoreNames } from '../../common/stores/store-names';
 import { CurrentPanel } from '../../common/types/store-data/current-panel';
 import { DetailsViewData } from '../../common/types/store-data/details-view-data';
@@ -55,8 +54,7 @@ export class DetailsViewStore extends BaseStoreImpl<DetailsViewData> {
         this.detailsViewActions.getCurrentState.addListener(this.onGetCurrentState);
     }
 
-    @autobind
-    private onOpen(flagName: keyof CurrentPanel, mutator?: (IDetailsViewData) => void): void {
+    private onOpen = (flagName: keyof CurrentPanel, mutator?: (IDetailsViewData) => void): void => {
         Object.keys(this.state.currentPanel).forEach(key => {
             this.state.currentPanel[key] = false;
         });
@@ -67,21 +65,19 @@ export class DetailsViewStore extends BaseStoreImpl<DetailsViewData> {
         }
 
         this.emitChanged();
-    }
+    };
 
-    @autobind
-    private onClose(flagName: keyof CurrentPanel, mutator?: (IDetailsViewData) => void): void {
+    private onClose = (flagName: keyof CurrentPanel, mutator?: (IDetailsViewData) => void): void => {
         this.state.currentPanel[flagName] = false;
 
         if (mutator != null) {
             mutator(this.state);
         }
         this.emitChanged();
-    }
+    };
 
-    @autobind
-    private onSetSelectedDetailsViewRightContentPanel(view: DetailsViewRightContentPanelType): void {
+    private onSetSelectedDetailsViewRightContentPanel = (view: DetailsViewRightContentPanelType): void => {
         this.state.detailsViewRightContentPanel = view;
         this.emitChanged();
-    }
+    };
 }

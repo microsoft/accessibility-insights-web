@@ -29,8 +29,13 @@ export const RulesWithInstances = NamedSFC<RulesWithInstancesProps>(
                         <CollapsibleContainer
                             key={`summary-details-${idx + 1}`}
                             id={rule.id}
-                            summaryContent={<RuleDetail deps={deps} key={rule.id} rule={rule} outcomeType={outcomeType} isHeader={false} />}
-                            detailsContent={
+                            accessibleHeadingContent={
+                                <h3 className="screen-reader-only">
+                                    rule {rule.id}, {rule.nodes.length} failures
+                                </h3>
+                            }
+                            visibleHeadingContent={<RuleDetail deps={deps} key={rule.id} rule={rule} outcomeType={outcomeType} />}
+                            collapsibleContent={
                                 <InstanceDetailsGroup
                                     fixInstructionProcessor={fixInstructionProcessor}
                                     key={`${rule.id}-rule-group`}
@@ -39,7 +44,6 @@ export const RulesWithInstances = NamedSFC<RulesWithInstancesProps>(
                             }
                             buttonAriaLabel="show failed instance list"
                             containerClassName="collapsible-rule-details-group"
-                            titleHeadingLevel={3}
                         />
                     );
                 })}

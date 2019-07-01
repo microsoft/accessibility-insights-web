@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { autobind } from '@uifabric/utilities';
 import { DefaultButton } from 'office-ui-fabric-react/lib/Button';
 import * as React from 'react';
 import * as CopyToClipboard from 'react-copy-to-clipboard';
@@ -41,13 +40,12 @@ export class CopyIssueDetailsButton extends React.Component<CopyIssueDetailsButt
         return this.props.deps.issueDetailsTextGenerator.buildText(data);
     }
 
-    @autobind
-    private copyButtonClicked(event: React.MouseEvent<any>): void {
+    private copyButtonClicked = (event: React.MouseEvent<any>): void => {
         if (this.props.onClick) {
             this.props.onClick(event);
         }
         this.setState({ showingCopyToast: true });
-    }
+    };
 
     public render(): JSX.Element {
         return (

@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { autobind } from '@uifabric/utilities';
 import { capitalize } from 'lodash';
 import { RegisterTypeToPayloadCallback } from '../../common/message';
 import { Messages } from '../../common/messages';
@@ -64,139 +63,118 @@ export class AssessmentActionCreator {
         this.registerTypeToPayloadCallback(Messages.Visualizations.DetailsView.Select, this.onPivotChildSelected);
     }
 
-    @autobind
-    private onContinuePreviousAssessment(payload: any, tabId: number): void {
+    private onContinuePreviousAssessment = (payload: any, tabId: number): void => {
         const eventName = TelemetryEvents.CONTINUE_PREVIOUS_ASSESSMENT;
         this.telemetryEventHandler.publishTelemetry(eventName, payload);
         this.assessmentActions.continuePreviousAssessment.invoke(tabId);
-    }
+    };
 
-    @autobind
-    private onPassUnmarkedInstances(payload: ToggleActionPayload, tabId: number): void {
+    private onPassUnmarkedInstances = (payload: ToggleActionPayload, tabId: number): void => {
         const eventName = TelemetryEvents.PASS_UNMARKED_INSTANCES;
         this.telemetryEventHandler.publishTelemetry(eventName, payload);
         this.assessmentActions.updateTargetTabId.invoke(tabId);
         this.assessmentActions.passUnmarkedInstance.invoke(payload);
-    }
+    };
 
-    @autobind
-    private onEditFailureInstance(payload: EditFailureInstancePayload): void {
+    private onEditFailureInstance = (payload: EditFailureInstancePayload): void => {
         const eventName = TelemetryEvents.EDIT_FAILURE_INSTANCE;
         this.telemetryEventHandler.publishTelemetry(eventName, payload);
         this.assessmentActions.editFailureInstance.invoke(payload);
-    }
+    };
 
-    @autobind
-    private onRemoveFailureInstance(payload: RemoveFailureInstancePayload): void {
+    private onRemoveFailureInstance = (payload: RemoveFailureInstancePayload): void => {
         const eventName = TelemetryEvents.REMOVE_FAILURE_INSTANCE;
         this.telemetryEventHandler.publishTelemetry(eventName, payload);
         this.assessmentActions.removeFailureInstance.invoke(payload);
-    }
+    };
 
-    @autobind
-    private onAddFailureInstance(payload: AddFailureInstancePayload): void {
+    private onAddFailureInstance = (payload: AddFailureInstancePayload): void => {
         const eventName = TelemetryEvents.ADD_FAILURE_INSTANCE;
         this.telemetryEventHandler.publishTelemetry(eventName, payload);
         this.assessmentActions.addFailureInstance.invoke(payload);
-    }
+    };
 
-    @autobind
-    private onAddResultDescription(payload: AddResultDescriptionPayload): void {
+    private onAddResultDescription = (payload: AddResultDescriptionPayload): void => {
         this.assessmentActions.addResultDescription.invoke(payload);
-    }
+    };
 
-    @autobind
-    private onChangeManualRequirementStatus(payload: ChangeRequirementStatusPayload, tabId: number): void {
+    private onChangeManualRequirementStatus = (payload: ChangeRequirementStatusPayload, tabId: number): void => {
         const eventName = TelemetryEvents.CHANGE_INSTANCE_STATUS;
         this.telemetryEventHandler.publishTelemetry(eventName, payload);
         this.assessmentActions.updateTargetTabId.invoke(tabId);
         this.assessmentActions.changeRequirementStatus.invoke(payload);
-    }
+    };
 
-    @autobind
-    private onUndoChangeManualRequirementStatus(payload: ChangeRequirementStatusPayload): void {
+    private onUndoChangeManualRequirementStatus = (payload: ChangeRequirementStatusPayload): void => {
         const eventName = TelemetryEvents.UNDO_REQUIREMENT_STATUS_CHANGE;
         this.telemetryEventHandler.publishTelemetry(eventName, payload);
         this.assessmentActions.undoRequirementStatusChange.invoke(payload);
-    }
+    };
 
-    @autobind
-    private onUndoAssessmentInstanceStatusChange(payload: AssessmentActionInstancePayload): void {
+    private onUndoAssessmentInstanceStatusChange = (payload: AssessmentActionInstancePayload): void => {
         const eventName = TelemetryEvents.UNDO_TEST_STATUS_CHANGE;
         this.telemetryEventHandler.publishTelemetry(eventName, payload);
         this.assessmentActions.undoInstanceStatusChange.invoke(payload);
-    }
+    };
 
-    @autobind
-    private onChangeAssessmentInstanceStatus(payload: ChangeInstanceStatusPayload, tabId: number): void {
+    private onChangeAssessmentInstanceStatus = (payload: ChangeInstanceStatusPayload, tabId: number): void => {
         const eventName = TelemetryEvents.CHANGE_INSTANCE_STATUS;
         this.telemetryEventHandler.publishTelemetry(eventName, payload);
         this.assessmentActions.updateTargetTabId.invoke(tabId);
         this.assessmentActions.changeInstanceStatus.invoke(payload);
-    }
+    };
 
-    @autobind
-    private onChangeAssessmentVisualizationState(payload: ChangeInstanceSelectionPayload): void {
+    private onChangeAssessmentVisualizationState = (payload: ChangeInstanceSelectionPayload): void => {
         const eventName = TelemetryEvents.CHANGE_ASSESSMENT_VISUALIZATION_STATUS;
         this.telemetryEventHandler.publishTelemetry(eventName, payload);
         this.assessmentActions.changeAssessmentVisualizationState.invoke(payload);
-    }
+    };
 
-    @autobind
-    private onChangeVisualizationStateForAll(payload: ChangeInstanceSelectionPayload): void {
+    private onChangeVisualizationStateForAll = (payload: ChangeInstanceSelectionPayload): void => {
         const eventName = TelemetryEvents.CHANGE_ASSESSMENT_VISUALIZATION_STATUS_FOR_ALL;
         this.telemetryEventHandler.publishTelemetry(eventName, payload);
         this.assessmentActions.changeAssessmentVisualizationStateForAll.invoke(payload);
-    }
+    };
 
-    @autobind
-    private onStartOverAssessment(payload: ToggleActionPayload): void {
+    private onStartOverAssessment = (payload: ToggleActionPayload): void => {
         this.assessmentActions.resetData.invoke(payload);
-    }
+    };
 
-    @autobind
-    private onStartOverAllAssessments(payload: ToggleActionPayload, tabId: number): void {
+    private onStartOverAllAssessments = (payload: ToggleActionPayload, tabId: number): void => {
         this.assessmentActions.resetAllAssessmentsData.invoke(tabId);
-    }
+    };
 
-    @autobind
-    private onUpdateInstanceVisibility(payload: UpdateVisibilityPayload): void {
+    private onUpdateInstanceVisibility = (payload: UpdateVisibilityPayload): void => {
         this.assessmentActions.updateInstanceVisibility.invoke(payload);
-    }
+    };
 
-    @autobind
-    private onAssessmentScanCompleted(payload: ScanCompletedPayload<any>, tabId: number): void {
+    private onAssessmentScanCompleted = (payload: ScanCompletedPayload<any>, tabId: number): void => {
         this.assessmentActions.updateTargetTabId.invoke(tabId);
         this.assessmentActions.scanCompleted.invoke(payload);
-    }
+    };
 
-    @autobind
-    private onGetAssessmentCurrentState(): void {
+    private onGetAssessmentCurrentState = (): void => {
         this.assessmentActions.getCurrentState.invoke(null);
-    }
+    };
 
-    @autobind
-    private onSelectTestStep(payload: SelectRequirementPayload): void {
+    private onSelectTestStep = (payload: SelectRequirementPayload): void => {
         this.assessmentActions.selectRequirement.invoke(payload);
         this.telemetryEventHandler.publishTelemetry(TelemetryEvents.SELECT_REQUIREMENT, payload);
-    }
+    };
 
-    @autobind
-    private onScanUpdate(payload: ScanUpdatePayload): void {
+    private onScanUpdate = (payload: ScanUpdatePayload): void => {
         const telemetryEventName = 'ScanUpdate' + capitalize(payload.key);
         this.telemetryEventHandler.publishTelemetry(telemetryEventName, payload);
         this.assessmentActions.scanUpdate.invoke(payload);
-    }
+    };
 
-    @autobind
-    private onTrackingCompleted(payload: ScanBasePayload): void {
+    private onTrackingCompleted = (payload: ScanBasePayload): void => {
         const telemetryEventName = 'TrackingCompleted' + capitalize(payload.key);
         this.telemetryEventHandler.publishTelemetry(telemetryEventName, payload);
         this.assessmentActions.trackingCompleted.invoke(payload);
-    }
+    };
 
-    @autobind
-    private onPivotChildSelected(payload: OnDetailsViewOpenPayload): void {
+    private onPivotChildSelected = (payload: OnDetailsViewOpenPayload): void => {
         this.assessmentActions.updateSelectedPivotChild.invoke(payload);
-    }
+    };
 }

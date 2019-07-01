@@ -1,7 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { autobind } from '@uifabric/utilities';
-
 import { BrowserAdapter } from '../background/browser-adapters/browser-adapter';
 import { Tab } from '../common/itab';
 import { UrlParser } from '../common/url-parser';
@@ -25,8 +23,7 @@ export class TargetTabFinder {
         return await this.createTargetTabInfo(tabInfo);
     }
 
-    @autobind
-    private getTabInfo(): Promise<Tab> {
+    private getTabInfo = (): Promise<Tab> => {
         return new Promise((resolve, reject) => {
             const tabIdInUrl = this.urlParser.getIntParam(this.win.location.href, 'tabId');
 
@@ -52,15 +49,14 @@ export class TargetTabFinder {
                 );
             }
         });
-    }
+    };
 
-    @autobind
-    private async createTargetTabInfo(tab: Tab): Promise<TargetTabInfo> {
+    private createTargetTabInfo = async (tab: Tab): Promise<TargetTabInfo> => {
         const hasAccess = await this.urlValidator.isSupportedUrl(tab.url);
         const targetTab: TargetTabInfo = {
             tab: tab,
             hasAccess,
         };
         return targetTab;
-    }
+    };
 }

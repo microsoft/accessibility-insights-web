@@ -4,12 +4,26 @@ exports[`ResultSectionTitle renders 1`] = `
 <div
   className="result-section-title"
 >
-  <h2>
+  <h2
+    className="screen-reader-only"
+  >
     test title
+     
+    10
   </h2>
-  <OutcomeChip
-    count={10}
-    outcomeType="pass"
-  />
+  <span
+    aria-hidden="true"
+    className="title"
+  >
+    test title
+  </span>
+  <div
+    aria-hidden="true"
+  >
+    <OutcomeChip
+      count={10}
+      outcomeType="pass"
+    />
+  </div>
 </div>
 `;

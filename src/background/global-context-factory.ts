@@ -15,6 +15,7 @@ import { StorageAdapter } from './browser-adapters/storage-adapter';
 import { CompletedTestStepTelemetryCreator } from './completed-test-step-telemetry-creator';
 import { FeatureFlagsController } from './feature-flags-controller';
 import { PersistedData } from './get-persisted-data';
+import { FeatureFlagsActionCreator } from './global-action-creators/feature-flags-action-creator';
 import { GlobalActionCreator } from './global-action-creators/global-action-creator';
 import { IssueFilingActionCreator } from './global-action-creators/issue-filing-action-creator';
 import { ScopingActionCreator } from './global-action-creators/scoping-action-creator';
@@ -73,12 +74,18 @@ export class GlobalContextFactory {
             interpreter.registerTypeToPayloadCallback,
         );
         const userConfigurationActionCreator = new UserConfigurationActionCreator(interpreter, globalActionsHub.userConfigurationActions);
+        const featureFlagsActionCreator = new FeatureFlagsActionCreator(
+            interpreter,
+            globalActionsHub.featureFlagActions,
+            telemetryEventHandler,
+        );
 
         issueFilingActionCreator.registerCallbacks();
         actionCreator.registerCallbacks();
         assessmentActionCreator.registerCallbacks();
         userConfigurationActionCreator.registerCallback();
         scopingActionCreator.registerCallback();
+        featureFlagsActionCreator.registerCallbacks();
 
         const dispatcher = new StateDispatcher(browserAdapter.sendMessageToAllFramesAndTabs, globalStoreHub);
         dispatcher.initialize();

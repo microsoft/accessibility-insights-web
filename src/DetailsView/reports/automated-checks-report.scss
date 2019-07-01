@@ -44,6 +44,12 @@ $outcome-not-applicable-summary-color: $neutral-outcome;
     justify-content: flex-start;
     align-items: center;
     margin-bottom: 16px;
+
+    .title {
+        font-size: 17px;
+        line-height: 24px;
+        font-weight: 700;
+    }
 }
 
 .failed-instances-section {

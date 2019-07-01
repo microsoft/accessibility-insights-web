@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { autobind } from '@uifabric/utilities';
 import * as Q from 'q';
 
 import { BoundRectAccessor, ClientUtils } from './client-utils';
@@ -34,13 +33,12 @@ export class ElementFinderByPosition {
         this.frameCommunicator.subscribe(ElementFinderByPosition.findElementByPositionCommand, this.onfindElementByPosition);
     }
 
-    @autobind
-    protected onfindElementByPosition(
+    protected onfindElementByPosition = (
         message: ElementFinderByPositionMessage,
         error: ErrorMessageContent,
         sourceWin: Window,
         responder?: FrameMessageResponseCallback,
-    ): void {
+    ): void => {
         this.processRequest(message).then(
             result => {
                 responder(result, null, sourceWin);
@@ -49,7 +47,7 @@ export class ElementFinderByPosition {
                 responder(null, err, sourceWin);
             },
         );
-    }
+    };
 
     public processRequest(message: ElementFinderByPositionMessage): Q.IPromise<string[]> {
         let path = [];

@@ -1,7 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { autobind } from '@uifabric/utilities';
-
 import { HTMLElementUtils } from './../../common/html-element-utils';
 import { ErrorMessageContent } from './error-message-content';
 import { FrameCommunicator, MessageRequest } from './frame-communicator';
@@ -25,15 +23,14 @@ export class ScrollingController {
         this._frameCommunicator.subscribe(ScrollingController.triggerScrollingCommand, this.onTriggerScrolling);
     }
 
-    @autobind
-    private onTriggerScrolling(
+    private onTriggerScrolling = (
         message: ScrollingWindowMessage,
         error: ErrorMessageContent,
         sourceWin: Window,
         responder?: FrameMessageResponseCallback,
-    ): void {
+    ): void => {
         this.processRequest(message);
-    }
+    };
 
     public processRequest(message: ScrollingWindowMessage): void {
         const selector: string[] = message.focusedTarget;

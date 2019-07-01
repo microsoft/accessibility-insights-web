@@ -75,7 +75,6 @@ export class DetailsViewRenderer {
                 <Theme deps={this.deps} />
                 <DetailsView
                     deps={this.deps}
-                    document={this.dom as Document}
                     issuesSelection={this.issuesSelection}
                     clickHandlerFactory={this.clickHandlerFactory}
                     visualizationConfigurationFactory={this.visualizationConfigurationFactory}

@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { autobind } from '@uifabric/utilities';
 import * as _ from 'lodash/index';
 import { DefaultButton, IconButton } from 'office-ui-fabric-react/lib/Button';
 import { FocusZone, FocusZoneDirection } from 'office-ui-fabric-react/lib/FocusZone';
@@ -81,13 +80,11 @@ export class SelectorInputList extends React.Component<SelectorInputListProps, S
         );
     }
 
-    @autobind
-    protected setTextField(textField: ITextField): void {
+    protected setTextField = (textField: ITextField): void => {
         this.textField = textField;
-    }
+    };
 
-    @autobind
-    private onRenderCell(item: string[]): JSX.Element {
+    private onRenderCell = (item: string[]): JSX.Element => {
         return (
             <div className="selector-input-itemCell" data-is-focusable={true}>
                 <div className="selector-input-itemContent">
@@ -100,14 +97,13 @@ export class SelectorInputList extends React.Component<SelectorInputListProps, S
                 </div>
             </div>
         );
-    }
+    };
 
     private renderItemName(selector: string[]): string {
         return selector.join('; ');
     }
 
-    @autobind
-    private updateFieldValueValidState(event, textFieldValue: string): void {
+    private updateFieldValueValidState = (event, textFieldValue: string): void => {
         this.setState({
             value: textFieldValue,
         });
@@ -119,15 +115,14 @@ export class SelectorInputList extends React.Component<SelectorInputListProps, S
             });
 
         this.setState({ isTextFieldValueValid: selectorIsValid });
-    }
+    };
 
-    @autobind
-    private addSelector(event: React.MouseEvent<HTMLButtonElement>): void {
+    private addSelector = (event: React.MouseEvent<HTMLButtonElement>): void => {
         const selector = this.textField.value;
         this.props.onAddSelector(event, this.props.inputType, this.formatSelector(selector));
         this.restore();
         this.refocus();
-    }
+    };
 
     private formatSelector(selector: string): string[] {
         const formattedSelector: string[] = [];
@@ -142,31 +137,27 @@ export class SelectorInputList extends React.Component<SelectorInputListProps, S
         this.props.onDeleteSelector(event, this.props.inputType, item);
     }
 
-    @autobind
-    private getDeleteSelectorHandler(item: string[]): (event: React.MouseEvent<HTMLButtonElement>) => void {
+    private getDeleteSelectorHandler = (item: string[]): ((event: React.MouseEvent<HTMLButtonElement>) => void) => {
         return (event: React.MouseEvent<HTMLButtonElement>) => {
             this.deleteSelector(event, item);
         };
-    }
+    };
 
-    @autobind
-    private onChangeSelectorHandler(event: React.MouseEvent<HTMLButtonElement>): void {
+    private onChangeSelectorHandler = (event: React.MouseEvent<HTMLButtonElement>): void => {
         this.onChangeSelector(event, this.props.inspectMode);
-    }
+    };
 
     private onChangeSelector(event: React.MouseEvent<HTMLButtonElement>, inspectType: string): void {
         this.props.onChangeInspectMode(event, inspectType);
     }
 
-    @autobind
-    private restore(): void {
+    private restore = (): void => {
         this.setState({
             value: this.emptyStringInitialValue,
         });
-    }
+    };
 
-    @autobind
-    private refocus(): void {
+    private refocus = (): void => {
         this.textField.focus();
-    }
+    };
 }

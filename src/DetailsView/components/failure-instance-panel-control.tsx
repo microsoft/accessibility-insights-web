@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { autobind } from '@uifabric/utilities';
 import { ActionButton } from 'office-ui-fabric-react/lib/Button';
 import { Icon } from 'office-ui-fabric-react/lib/Icon';
 import { Link } from 'office-ui-fabric-react/lib/Link';
@@ -116,30 +115,25 @@ export class FailureInstancePanelControl extends React.Component<FailureInstance
         );
     }
 
-    @autobind
-    protected onFailureDescriptionChange(event, value: string): void {
+    protected onFailureDescriptionChange = (event, value: string): void => {
         this.setState({ failureDescription: value });
-    }
+    };
 
-    @autobind
-    protected onAddFailureInstance(): void {
+    protected onAddFailureInstance = (): void => {
         this.props.addFailureInstance(this.state.failureDescription, this.props.test, this.props.step);
         this.setState({ isPanelOpen: false });
-    }
+    };
 
-    @autobind
-    protected onSaveEditedFailureInstance(): void {
+    protected onSaveEditedFailureInstance = (): void => {
         this.props.editFailureInstance(this.state.failureDescription, this.props.test, this.props.step, this.props.instanceId);
         this.setState({ isPanelOpen: false });
-    }
+    };
 
-    @autobind
-    protected openFailureInstancePanel(): void {
+    protected openFailureInstancePanel = (): void => {
         this.setState({ isPanelOpen: true, failureDescription: this.props.originalText || '' });
-    }
+    };
 
-    @autobind
-    protected closeFailureInstancePanel(): void {
+    protected closeFailureInstancePanel = (): void => {
         this.setState({ isPanelOpen: false });
-    }
+    };
 }

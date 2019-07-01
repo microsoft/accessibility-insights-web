@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { autobind } from '@uifabric/utilities';
 import {
     AddFailureInstancePayload,
     AddResultDescriptionPayload,
@@ -42,8 +41,7 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
         this.dispatcher.dispatchMessage(message);
     }
 
-    @autobind
-    public closePreviewFeaturesPanel(): void {
+    public closePreviewFeaturesPanel = (): void => {
         const messageType = Messages.PreviewFeatures.ClosePanel;
         const telemetry = this.telemetryFactory.fromDetailsViewNoTriggeredBy();
         const payload: BaseActionPayload = {
@@ -54,10 +52,9 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
             messageType: messageType,
             payload,
         });
-    }
+    };
 
-    @autobind
-    public closeScopingPanel(): void {
+    public closeScopingPanel = (): void => {
         const messageType = Messages.Scoping.ClosePanel;
         const telemetry = this.telemetryFactory.fromDetailsViewNoTriggeredBy();
         const payload: BaseActionPayload = {
@@ -68,10 +65,9 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
             messageType: messageType,
             payload,
         });
-    }
+    };
 
-    @autobind
-    public closeSettingsPanel(): void {
+    public closeSettingsPanel = (): void => {
         const messageType = Messages.SettingsPanel.ClosePanel;
         const telemetry = this.telemetryFactory.fromDetailsViewNoTriggeredBy();
         const payload: BaseActionPayload = {
@@ -82,10 +78,9 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
             messageType: messageType,
             payload,
         });
-    }
+    };
 
-    @autobind
-    public setFeatureFlag(featureFlagId: string, enabled: boolean, event: React.MouseEvent<HTMLElement>): void {
+    public setFeatureFlag = (featureFlagId: string, enabled: boolean, event: React.MouseEvent<HTMLElement>): void => {
         const messageType = Messages.FeatureFlags.SetFeatureFlag;
         const telemetry = this.telemetryFactory.forFeatureFlagToggle(
             event,
@@ -103,7 +98,7 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
             messageType: messageType,
             payload: payload,
         });
-    }
+    };
 
     public exportResultsClicked(exportResultsType: ExportResultType, exportedHtml: string, event: React.MouseEvent<HTMLElement>): void {
         const telemetryData = this.telemetryFactory.forExportedHtml(
@@ -116,11 +111,10 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
         this.dispatcher.sendTelemetry(TelemetryEvents.EXPORT_RESULTS, telemetryData);
     }
 
-    @autobind
-    public copyIssueDetailsClicked(event: React.MouseEvent<any>): void {
+    public copyIssueDetailsClicked = (event: React.MouseEvent<any>): void => {
         const telemetryData = this.telemetryFactory.withTriggeredByAndSource(event, TelemetryEvents.TelemetryEventSource.DetailsView);
         this.dispatcher.sendTelemetry(TelemetryEvents.COPY_ISSUE_DETAILS, telemetryData);
-    }
+    };
 
     public updateFocusedInstanceTarget(instanceTarget: string[]): void {
         const payload: string[] = instanceTarget;
@@ -180,8 +174,7 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
         });
     }
 
-    @autobind
-    public switchToTargetTab(event: React.MouseEvent<HTMLElement>): void {
+    public switchToTargetTab = (event: React.MouseEvent<HTMLElement>): void => {
         const telemetry = this.telemetryFactory.fromDetailsView(event);
         const payload: SwitchToTargetTabPayload = {
             telemetry,
@@ -191,7 +184,7 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
             messageType: Messages.Tab.Switch,
             payload,
         });
-    }
+    };
 
     public startOverAssessment(event: React.MouseEvent<any>, test: VisualizationType, requirement: string): void {
         const telemetry = this.telemetryFactory.forAssessmentActionFromDetailsView(test, event);
@@ -245,8 +238,7 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
         });
     }
 
-    @autobind
-    public changeManualTestStatus(status: ManualTestStatus, test: VisualizationType, requirement: string, selector: string): void {
+    public changeManualTestStatus = (status: ManualTestStatus, test: VisualizationType, requirement: string, selector: string): void => {
         const telemetry = this.telemetryFactory.forRequirementFromDetailsView(test, requirement);
         const payload: ChangeInstanceStatusPayload = {
             test,
@@ -260,10 +252,9 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
             messageType: Messages.Assessment.ChangeStatus,
             payload,
         });
-    }
+    };
 
-    @autobind
-    public changeManualRequirementStatus(status: ManualTestStatus, test: VisualizationType, requirement: string): void {
+    public changeManualRequirementStatus = (status: ManualTestStatus, test: VisualizationType, requirement: string): void => {
         const telemetry = this.telemetryFactory.forRequirementFromDetailsView(test, requirement);
         const payload: ChangeRequirementStatusPayload = {
             test,
@@ -276,10 +267,9 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
             messageType: Messages.Assessment.ChangeRequirementStatus,
             payload,
         });
-    }
+    };
 
-    @autobind
-    public undoManualTestStatusChange(test: VisualizationType, requirement: string, selector: string): void {
+    public undoManualTestStatusChange = (test: VisualizationType, requirement: string, selector: string): void => {
         const telemetry = this.telemetryFactory.forRequirementFromDetailsView(test, requirement);
         const payload: AssessmentActionInstancePayload = {
             test,
@@ -292,10 +282,9 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
             messageType: Messages.Assessment.Undo,
             payload,
         });
-    }
+    };
 
-    @autobind
-    public undoManualRequirementStatusChange(test: VisualizationType, requirement: string): void {
+    public undoManualRequirementStatusChange = (test: VisualizationType, requirement: string): void => {
         const telemetry = this.telemetryFactory.fromDetailsViewNoTriggeredBy();
         const payload: ChangeRequirementStatusPayload = {
             test: test,
@@ -307,15 +296,14 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
             messageType: Messages.Assessment.UndoChangeRequirementStatus,
             payload,
         });
-    }
+    };
 
-    @autobind
-    public changeAssessmentVisualizationState(
+    public changeAssessmentVisualizationState = (
         isVisualizationEnabled: boolean,
         test: VisualizationType,
         requirement: string,
         selector: string,
-    ): void {
+    ): void => {
         const telemetry = this.telemetryFactory.fromDetailsViewNoTriggeredBy();
         const payload: ChangeInstanceSelectionPayload = {
             test,
@@ -329,7 +317,7 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
             messageType: Messages.Assessment.ChangeVisualizationState,
             payload,
         });
-    }
+    };
 
     public addResultDescription(description: string): void {
         const payload: AddResultDescriptionPayload = {
@@ -357,8 +345,7 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
         });
     }
 
-    @autobind
-    public removeFailureInstance(test: VisualizationType, requirement: string, id: string): void {
+    public removeFailureInstance = (test: VisualizationType, requirement: string, id: string): void => {
         const telemetry = this.telemetryFactory.forRequirementFromDetailsView(test, requirement);
         const payload: RemoveFailureInstancePayload = {
             test,
@@ -371,15 +358,14 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
             messageType: Messages.Assessment.RemoveFailureInstance,
             payload,
         });
-    }
+    };
 
     public detailsViewOpened(selectedPivot: DetailsViewPivotType): void {
         const telemetryData = this.telemetryFactory.forDetailsViewOpened(selectedPivot);
         this.dispatcher.sendTelemetry(TelemetryEvents.DETAILS_VIEW_OPEN, telemetryData);
     }
 
-    @autobind
-    public editFailureInstance(description: string, test: VisualizationType, requirement: string, id: string): void {
+    public editFailureInstance = (description: string, test: VisualizationType, requirement: string, id: string): void => {
         const telemetry = this.telemetryFactory.fromDetailsViewNoTriggeredBy();
         const payload: EditFailureInstancePayload = {
             test,
@@ -393,7 +379,7 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
             messageType: Messages.Assessment.EditFailureInstance,
             payload,
         });
-    }
+    };
 
     public passUnmarkedInstances(test: VisualizationType, requirement: string): void {
         const telemetry = this.telemetryFactory.fromDetailsViewNoTriggeredBy();
@@ -425,8 +411,7 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
         });
     }
 
-    @autobind
-    public continuePreviousAssessment(event: React.MouseEvent<any>): void {
+    public continuePreviousAssessment = (event: React.MouseEvent<any>): void => {
         const telemetry = this.telemetryFactory.fromDetailsView(event);
         const payload: BaseActionPayload = {
             telemetry: telemetry,
@@ -435,10 +420,9 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
             messageType: Messages.Assessment.ContinuePreviousAssessment,
             payload,
         });
-    }
+    };
 
-    @autobind
-    public startOverAllAssessments(event: React.MouseEvent<any>): void {
+    public startOverAllAssessments = (event: React.MouseEvent<any>): void => {
         const telemetry = this.telemetryFactory.fromDetailsView(event);
         const payload: BaseActionPayload = {
             telemetry: telemetry,
@@ -447,10 +431,9 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
             messageType: Messages.Assessment.StartOverAllAssessments,
             payload,
         });
-    }
+    };
 
-    @autobind
-    public cancelStartOver(event: React.MouseEvent<any>, test: VisualizationType, requirement: string): void {
+    public cancelStartOver = (event: React.MouseEvent<any>, test: VisualizationType, requirement: string): void => {
         const telemetry = this.telemetryFactory.forCancelStartOver(event, test, requirement);
         const payload: BaseActionPayload = {
             telemetry: telemetry,
@@ -460,10 +443,9 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
             messageType: Messages.Assessment.CancelStartOver,
             payload,
         });
-    }
+    };
 
-    @autobind
-    public cancelStartOverAllAssessments(event: React.MouseEvent<any>): void {
+    public cancelStartOverAllAssessments = (event: React.MouseEvent<any>): void => {
         const telemetry = this.telemetryFactory.fromDetailsView(event);
         const payload: BaseActionPayload = {
             telemetry: telemetry,
@@ -473,7 +455,7 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
             messageType: Messages.Assessment.CancelStartOverAllAssessments,
             payload,
         });
-    }
+    };
 
     public changeRightContentPanel(viewType: DetailsViewRightContentPanelType): void {
         const payload: DetailsViewRightContentPanelType = viewType;
