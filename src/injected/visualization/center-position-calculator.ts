@@ -86,8 +86,8 @@ export class CenterPositionCalculator {
         const left = this.drawerUtils.getContainerLeftOffset(offset);
         let x = left;
         let y = top;
-        const shape = (element as HTMLAreaElement).shape;
-        const coords = (element as HTMLAreaElement).coords.split(',');
+        const shape = element.shape;
+        const coords = element.getAttribute('coords') ? element.getAttribute('coords').split(',') : [];
 
         if (coords.length > 0) {
             let deltaX: number;
