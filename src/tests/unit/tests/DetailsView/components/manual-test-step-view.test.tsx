@@ -79,7 +79,7 @@ describe('ManualTestStepView', () => {
         };
         assessmentInstanceTableHandlerMock.setup(a => a.getColumnConfigsForCapturedInstance()).returns(() => cols);
         assessmentInstanceTableHandlerMock
-            .setup(a => a.createCapturedInstanceTableItems(instances, props.test, props.step))
+            .setup(a => a.createCapturedInstanceTableItems(instances, props.test, props.step, featureFlagStoreData))
             .returns(() => items);
         const testObject = new ManualTestStepView(props);
 

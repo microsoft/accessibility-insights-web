@@ -48,7 +48,7 @@ export class FailureInstancePanelControl extends React.Component<FailureInstance
             isPanelOpen: false,
             failureDescription: this.props.originalText || '',
             selector: '',
-            snippet: 'Code snippet will auto-populate based on the CSS selector input.',
+            snippet: '',
         };
     }
 
@@ -125,7 +125,7 @@ export class FailureInstancePanelControl extends React.Component<FailureInstance
                 </div>
                 <div>
                     <label>Code Snippet</label>
-                    <div> {this.state.snippet} </div>
+                    <div>{this.state.snippet}</div>
                 </div>
                 <TextField
                     className="observed-failure-textfield"

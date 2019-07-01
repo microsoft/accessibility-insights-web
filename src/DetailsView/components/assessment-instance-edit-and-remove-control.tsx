@@ -5,6 +5,7 @@ import { Link } from 'office-ui-fabric-react/lib/Link';
 import * as React from 'react';
 
 import { AssessmentsProvider } from '../../assessments/types/assessments-provider';
+import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { VisualizationType } from '../../common/types/visualization-type';
 import { CapturedInstanceActionType, FailureInstancePanelControl } from './failure-instance-panel-control';
 
@@ -16,6 +17,7 @@ export interface AssessmentInstanceEditAndRemoveControlProps {
     onRemove: (test, step, id) => void;
     onEdit: (description, test, step, id) => void;
     assessmentsProvider: AssessmentsProvider;
+    featureFlagStoreData: FeatureFlagStoreData;
 }
 
 export class AssessmentInstanceEditAndRemoveControl extends React.Component<AssessmentInstanceEditAndRemoveControlProps> {
@@ -30,7 +32,7 @@ export class AssessmentInstanceEditAndRemoveControl extends React.Component<Asse
                     editFailureInstance={this.props.onEdit}
                     originalText={this.props.description}
                     assessmentsProvider={this.props.assessmentsProvider}
-                    featureFlagStoreData={null}
+                    featureFlagStoreData={this.props.featureFlagStoreData}
                 />
                 <Link className="remove-button" onClick={this.onRemoveButtonClicked}>
                     <Icon iconName="delete" ariaLabel={'delete instance'} />

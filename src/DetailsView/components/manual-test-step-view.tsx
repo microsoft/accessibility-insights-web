@@ -52,6 +52,7 @@ export class ManualTestStepView extends React.Component<ManualTestStepViewProps>
             this.props.manualTestStepResultMap[this.props.step].instances,
             this.props.test,
             this.props.step,
+            this.props.featureFlagStoreData,
         );
         return (
             <React.Fragment>
