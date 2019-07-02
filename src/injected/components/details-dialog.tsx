@@ -59,6 +59,7 @@ export interface DetailsDialogState {
     currentRuleIndex: number;
     canInspect: boolean;
     userConfigurationStoreData: UserConfigurationStoreData;
+    showInspectMessage: boolean;
 }
 
 export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDialogState> {
@@ -115,6 +116,7 @@ export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDi
             showDialog: true,
             currentRuleIndex: 0,
             canInspect: true,
+            showInspectMessage: false,
             userConfigurationStoreData: props.userConfigStore.getState(),
         };
     }
@@ -157,7 +159,6 @@ export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDi
         return (
             <DefaultButton
                 className="insights-dialog-button-inspect"
-                disabled={this.props.dialogHandler.isInspectButtonDisabled(this)}
                 onClick={this.getOnClickWhenNotInShadowDom(this.onClickInspectButton)}
             >
                 <FileHTMLIcon />
@@ -200,10 +201,10 @@ export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDi
     }
 
     private renderInspectMessage(): JSX.Element {
-        if (this.props.dialogHandler.isInspectButtonDisabled(this)) {
+        if (this.props.dialogHandler.shouldShowInspectButtonMessage(this)) {
             return (
                 <div className="insights-dialog-inspect-disabled">
-                    {`To enable the Inspect HTML button, open the developer tools (${this.props.devToolsShortcut}).`}
+                    {`To use the Inspect HTML button, first open the developer tools (${this.props.devToolsShortcut}).`}
                 </div>
             );
         }

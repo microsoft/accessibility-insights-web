@@ -25,8 +25,12 @@ export class DetailsDialogHandler {
     };
 
     public inspectButtonClickHandler = (dialog: DetailsDialog, event: React.SyntheticEvent<MouseEvent>): void => {
-        this.hideDialog(dialog);
-        dialog.props.devToolActionMessageCreator.setInspectElement(event, dialog.props.target);
+        if (this.canInspect(dialog)) {
+            this.hideDialog(dialog);
+            dialog.props.devToolActionMessageCreator.setInspectElement(event, dialog.props.target);
+        } else {
+            dialog.setState({ showInspectMessage: true });
+        }
     };
 
     public showDialog = (dialog: DetailsDialog): void => {
@@ -34,7 +38,7 @@ export class DetailsDialogHandler {
     };
 
     public hideDialog = (dialog: DetailsDialog): void => {
-        dialog.setState({ showDialog: false });
+        dialog.setState({ showDialog: false, showInspectMessage: false });
     };
 
     public isNextButtonDisabled = (dialog: DetailsDialog): boolean => {
@@ -56,6 +60,10 @@ export class DetailsDialogHandler {
     public canInspect = (dialog: DetailsDialog): boolean => {
         const devToolState = dialog.props.devToolStore.getState();
         return devToolState && devToolState.isOpen;
+    };
+
+    public shouldShowInspectButtonMessage = (dialog: DetailsDialog): boolean => {
+        return dialog.state.showInspectMessage;
     };
 
     public onUserConfigChanged = (dialog: DetailsDialog): void => {

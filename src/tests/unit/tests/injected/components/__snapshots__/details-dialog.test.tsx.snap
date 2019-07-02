@@ -83,7 +83,6 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: false 
     >
       <CustomizedDefaultButton
         className="insights-dialog-button-inspect"
-        disabled={true}
         onClick={[Function]}
       >
         <FileHTMLIcon />
@@ -181,11 +180,6 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: false 
           needsSettingsContentRenderer={[Function]}
         />
       </React.Fragment>
-      <div
-        className="insights-dialog-inspect-disabled"
-      >
-        To enable the Inspect HTML button, open the developer tools (shortcut).
-      </div>
     </div>
     <div
       className="insights-dialog-fix-instruction-container"
@@ -263,6 +257,7 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: false 
               "isBackButtonDisabled": [Function],
               "isInspectButtonDisabled": [Function],
               "isNextButtonDisabled": [Function],
+              "shouldShowInspectButtonMessage": [Function],
             },
             "elementSelector": "ruleId",
             "failedRules": Object {
@@ -302,6 +297,7 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: false 
             "canInspect": true,
             "currentRuleIndex": 0,
             "showDialog": true,
+            "showInspectMessage": false,
             "userConfigurationStoreData": undefined,
           },
           "updater": Updater {
@@ -347,6 +343,7 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: false 
                     "isBackButtonDisabled": [Function],
                     "isInspectButtonDisabled": [Function],
                     "isNextButtonDisabled": [Function],
+                    "shouldShowInspectButtonMessage": [Function],
                   }
                 }
                 elementSelector="ruleId"
@@ -476,7 +473,6 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: false 
                   >
                     <CustomizedDefaultButton
                       className="insights-dialog-button-inspect"
-                      disabled={true}
                       onClick={[Function]}
                     >
                       <FileHTMLIcon />
@@ -574,11 +570,6 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: false 
                         needsSettingsContentRenderer={[Function]}
                       />
                     </React.Fragment>
-                    <div
-                      className="insights-dialog-inspect-disabled"
-                    >
-                      To enable the Inspect HTML button, open the developer tools (shortcut).
-                    </div>
                   </div>
                   <div
                     className="insights-dialog-fix-instruction-container"
@@ -630,6 +621,7 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: false 
                         "isBackButtonDisabled": [Function],
                         "isInspectButtonDisabled": [Function],
                         "isNextButtonDisabled": [Function],
+                        "shouldShowInspectButtonMessage": [Function],
                       }
                     }
                     failuresCount={1}
@@ -656,6 +648,7 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: false 
           "isBackButtonDisabled": [Function],
           "isInspectButtonDisabled": [Function],
           "isNextButtonDisabled": [Function],
+          "shouldShowInspectButtonMessage": [Function],
         }
       }
       failuresCount={1}
@@ -728,6 +721,7 @@ Object {
   "canInspect": true,
   "currentRuleIndex": 0,
   "showDialog": true,
+  "showInspectMessage": false,
   "userConfigurationStoreData": undefined,
 }
 `;
@@ -820,7 +814,6 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: true }
       >
         <CustomizedDefaultButton
           className="insights-dialog-button-inspect"
-          disabled={true}
           onClick={null}
         >
           <FileHTMLIcon />
@@ -918,11 +911,6 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: true }
             needsSettingsContentRenderer={[Function]}
           />
         </React.Fragment>
-        <div
-          className="insights-dialog-inspect-disabled"
-        >
-          To enable the Inspect HTML button, open the developer tools (shortcut).
-        </div>
       </div>
       <div
         className="insights-dialog-fix-instruction-container"
@@ -1000,6 +988,7 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: true }
                 "isBackButtonDisabled": [Function],
                 "isInspectButtonDisabled": [Function],
                 "isNextButtonDisabled": [Function],
+                "shouldShowInspectButtonMessage": [Function],
               },
               "elementSelector": "ruleId",
               "failedRules": Object {
@@ -1039,6 +1028,7 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: true }
               "canInspect": true,
               "currentRuleIndex": 0,
               "showDialog": true,
+              "showInspectMessage": false,
               "userConfigurationStoreData": undefined,
             },
             "updater": Updater {
@@ -1084,6 +1074,7 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: true }
                       "isBackButtonDisabled": [Function],
                       "isInspectButtonDisabled": [Function],
                       "isNextButtonDisabled": [Function],
+                      "shouldShowInspectButtonMessage": [Function],
                     }
                   }
                   elementSelector="ruleId"
@@ -1218,7 +1209,6 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: true }
                       >
                         <CustomizedDefaultButton
                           className="insights-dialog-button-inspect"
-                          disabled={true}
                           onClick={null}
                         >
                           <FileHTMLIcon />
@@ -1316,11 +1306,6 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: true }
                             needsSettingsContentRenderer={[Function]}
                           />
                         </React.Fragment>
-                        <div
-                          className="insights-dialog-inspect-disabled"
-                        >
-                          To enable the Inspect HTML button, open the developer tools (shortcut).
-                        </div>
                       </div>
                       <div
                         className="insights-dialog-fix-instruction-container"
@@ -1372,6 +1357,7 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: true }
                             "isBackButtonDisabled": [Function],
                             "isInspectButtonDisabled": [Function],
                             "isNextButtonDisabled": [Function],
+                            "shouldShowInspectButtonMessage": [Function],
                           }
                         }
                         failuresCount={1}
@@ -1399,6 +1385,7 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: true }
             "isBackButtonDisabled": [Function],
             "isInspectButtonDisabled": [Function],
             "isNextButtonDisabled": [Function],
+            "shouldShowInspectButtonMessage": [Function],
           }
         }
         failuresCount={1}
@@ -1470,6 +1457,7 @@ Object {
   "canInspect": true,
   "currentRuleIndex": 0,
   "showDialog": true,
+  "showInspectMessage": false,
   "userConfigurationStoreData": undefined,
 }
 `;
@@ -1557,7 +1545,6 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: false }
     >
       <CustomizedDefaultButton
         className="insights-dialog-button-inspect"
-        disabled={false}
         onClick={[Function]}
       >
         <FileHTMLIcon />
@@ -1732,6 +1719,7 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: false }
               "isBackButtonDisabled": [Function],
               "isInspectButtonDisabled": [Function],
               "isNextButtonDisabled": [Function],
+              "shouldShowInspectButtonMessage": [Function],
             },
             "elementSelector": "ruleId",
             "failedRules": Object {
@@ -1771,6 +1759,7 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: false }
             "canInspect": true,
             "currentRuleIndex": 0,
             "showDialog": true,
+            "showInspectMessage": false,
             "userConfigurationStoreData": undefined,
           },
           "updater": Updater {
@@ -1816,6 +1805,7 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: false }
                     "isBackButtonDisabled": [Function],
                     "isInspectButtonDisabled": [Function],
                     "isNextButtonDisabled": [Function],
+                    "shouldShowInspectButtonMessage": [Function],
                   }
                 }
                 elementSelector="ruleId"
@@ -1945,7 +1935,6 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: false }
                   >
                     <CustomizedDefaultButton
                       className="insights-dialog-button-inspect"
-                      disabled={false}
                       onClick={[Function]}
                     >
                       <FileHTMLIcon />
@@ -2094,6 +2083,7 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: false }
                         "isBackButtonDisabled": [Function],
                         "isInspectButtonDisabled": [Function],
                         "isNextButtonDisabled": [Function],
+                        "shouldShowInspectButtonMessage": [Function],
                       }
                     }
                     failuresCount={1}
@@ -2120,6 +2110,7 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: false }
           "isBackButtonDisabled": [Function],
           "isInspectButtonDisabled": [Function],
           "isNextButtonDisabled": [Function],
+          "shouldShowInspectButtonMessage": [Function],
         }
       }
       failuresCount={1}
@@ -2192,6 +2183,7 @@ Object {
   "canInspect": true,
   "currentRuleIndex": 0,
   "showDialog": true,
+  "showInspectMessage": false,
   "userConfigurationStoreData": undefined,
 }
 `;
@@ -2284,7 +2276,6 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: true } 
       >
         <CustomizedDefaultButton
           className="insights-dialog-button-inspect"
-          disabled={false}
           onClick={null}
         >
           <FileHTMLIcon />
@@ -2459,6 +2450,7 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: true } 
                 "isBackButtonDisabled": [Function],
                 "isInspectButtonDisabled": [Function],
                 "isNextButtonDisabled": [Function],
+                "shouldShowInspectButtonMessage": [Function],
               },
               "elementSelector": "ruleId",
               "failedRules": Object {
@@ -2498,6 +2490,7 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: true } 
               "canInspect": true,
               "currentRuleIndex": 0,
               "showDialog": true,
+              "showInspectMessage": false,
               "userConfigurationStoreData": undefined,
             },
             "updater": Updater {
@@ -2543,6 +2536,7 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: true } 
                       "isBackButtonDisabled": [Function],
                       "isInspectButtonDisabled": [Function],
                       "isNextButtonDisabled": [Function],
+                      "shouldShowInspectButtonMessage": [Function],
                     }
                   }
                   elementSelector="ruleId"
@@ -2677,7 +2671,6 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: true } 
                       >
                         <CustomizedDefaultButton
                           className="insights-dialog-button-inspect"
-                          disabled={false}
                           onClick={null}
                         >
                           <FileHTMLIcon />
@@ -2826,6 +2819,7 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: true } 
                             "isBackButtonDisabled": [Function],
                             "isInspectButtonDisabled": [Function],
                             "isNextButtonDisabled": [Function],
+                            "shouldShowInspectButtonMessage": [Function],
                           }
                         }
                         failuresCount={1}
@@ -2853,6 +2847,7 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: true } 
             "isBackButtonDisabled": [Function],
             "isInspectButtonDisabled": [Function],
             "isNextButtonDisabled": [Function],
+            "shouldShowInspectButtonMessage": [Function],
           }
         }
         failuresCount={1}
@@ -2924,6 +2919,7 @@ Object {
   "canInspect": true,
   "currentRuleIndex": 0,
   "showDialog": true,
+  "showInspectMessage": false,
   "userConfigurationStoreData": undefined,
 }
 `;
@@ -3011,7 +3007,6 @@ exports[`DetailsDialogTest render: with relative help url 1`] = `
     >
       <CustomizedDefaultButton
         className="insights-dialog-button-inspect"
-        disabled={true}
         onClick={[Function]}
       >
         <FileHTMLIcon />
@@ -3109,11 +3104,6 @@ exports[`DetailsDialogTest render: with relative help url 1`] = `
           needsSettingsContentRenderer={[Function]}
         />
       </React.Fragment>
-      <div
-        className="insights-dialog-inspect-disabled"
-      >
-        To enable the Inspect HTML button, open the developer tools (shortcut).
-      </div>
     </div>
     <div
       className="insights-dialog-fix-instruction-container"
@@ -3191,6 +3181,7 @@ exports[`DetailsDialogTest render: with relative help url 1`] = `
               "isBackButtonDisabled": [Function],
               "isInspectButtonDisabled": [Function],
               "isNextButtonDisabled": [Function],
+              "shouldShowInspectButtonMessage": [Function],
             },
             "elementSelector": "ruleId",
             "failedRules": Object {
@@ -3230,6 +3221,7 @@ exports[`DetailsDialogTest render: with relative help url 1`] = `
             "canInspect": true,
             "currentRuleIndex": 0,
             "showDialog": true,
+            "showInspectMessage": false,
             "userConfigurationStoreData": undefined,
           },
           "updater": Updater {
@@ -3275,6 +3267,7 @@ exports[`DetailsDialogTest render: with relative help url 1`] = `
                     "isBackButtonDisabled": [Function],
                     "isInspectButtonDisabled": [Function],
                     "isNextButtonDisabled": [Function],
+                    "shouldShowInspectButtonMessage": [Function],
                   }
                 }
                 elementSelector="ruleId"
@@ -3404,7 +3397,6 @@ exports[`DetailsDialogTest render: with relative help url 1`] = `
                   >
                     <CustomizedDefaultButton
                       className="insights-dialog-button-inspect"
-                      disabled={true}
                       onClick={[Function]}
                     >
                       <FileHTMLIcon />
@@ -3502,11 +3494,6 @@ exports[`DetailsDialogTest render: with relative help url 1`] = `
                         needsSettingsContentRenderer={[Function]}
                       />
                     </React.Fragment>
-                    <div
-                      className="insights-dialog-inspect-disabled"
-                    >
-                      To enable the Inspect HTML button, open the developer tools (shortcut).
-                    </div>
                   </div>
                   <div
                     className="insights-dialog-fix-instruction-container"
@@ -3558,6 +3545,7 @@ exports[`DetailsDialogTest render: with relative help url 1`] = `
                         "isBackButtonDisabled": [Function],
                         "isInspectButtonDisabled": [Function],
                         "isNextButtonDisabled": [Function],
+                        "shouldShowInspectButtonMessage": [Function],
                       }
                     }
                     failuresCount={1}
@@ -3584,6 +3572,7 @@ exports[`DetailsDialogTest render: with relative help url 1`] = `
           "isBackButtonDisabled": [Function],
           "isInspectButtonDisabled": [Function],
           "isNextButtonDisabled": [Function],
+          "shouldShowInspectButtonMessage": [Function],
         }
       }
       failuresCount={1}
@@ -3656,6 +3645,7 @@ Object {
   "canInspect": true,
   "currentRuleIndex": 0,
   "showDialog": true,
+  "showInspectMessage": false,
   "userConfigurationStoreData": undefined,
 }
 `;
