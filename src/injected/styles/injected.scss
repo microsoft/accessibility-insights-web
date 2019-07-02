@@ -107,7 +107,7 @@
     }
 
     .insights-dialog-main-override .insights-dialog-button-inspect svg path {
-        fill: $communication-shade-10 !important;
+        fill: $primary-text !important;
     }
 
     .insights-dialog-main-override .insights-dialog-button-inspect.is-disabled svg path {
@@ -115,7 +115,7 @@
     }
 
     .insights-dialog-main-override-shadow .insights-dialog-button-inspect svg path {
-        fill: $communication-shade-10 !important;
+        fill: $communication-primary !important;
     }
 
     .insights-dialog-main-override-shadow .insights-dialog-button-inspect.is-disabled svg path {
@@ -176,7 +176,7 @@
         padding: 0 !important;
 
         .ms-Link {
-            color: $communication-shade-10;
+            color: $communication-primary;
         }
     }
 
@@ -218,7 +218,7 @@
                     cursor: pointer;
 
                     &:hover {
-                        color: $communication-shade-30;
+                        color: $communication-shade-20;
                     }
                 }
 

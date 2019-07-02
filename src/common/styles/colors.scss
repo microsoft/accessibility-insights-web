@@ -22,14 +22,14 @@
     --disabled-text-invert: rgba(255, 255, 255, 0.32);
 
     // UI colors
-    --communication-primary: #0078d4;
+    --communication-primary: #106ebe;
     --communication-tint-40: #eff6fc;
     --communication-tint-30: #deecf9;
     --communication-tint-20: #c7e0f4;
     --communication-tint-10: #2b88d8;
-    --communication-shade-10: #106ebe;
-    --communication-shade-20: #005a9e;
-    --communication-shade-30: #004578;
+    --communication-shade-10: #005a9e;
+    --communication-shade-20: #004578;
+    --communication-shade-30: #003358;
     // Base
     --neutral-0: var(--white);
     --neutral-100: var(--black);
@@ -65,15 +65,15 @@
     --accent2-dark: rgb(16, 124, 16);
     --communication-alpha-5: rgba(0, 120, 212, 0.05);
     --overview-percent-selected: var(--neutral-55);
-    --index-circle-background: var(--communication-shade-10);
+    --index-circle-background: var(--communication-primary);
     --check-box-border: var(--neutral-30);
     --check-box-tick: var(--neutral-100);
     --check-box-background: var(--neutral-8);
     --row-selected-background: var(--communication-tint-40);
     --group-selected-background: var(--communication-tint-40);
     --row-hover-background: var(--neutral-4);
-    --link: var(--communication-shade-10);
-    --link-hover: var(--communication-shade-30);
+    --link: var(--communication-primary);
+    --link-hover: var(--communication-shade-20);
     --switcher-border: var(--ada-brand-variant);
     --switcher-focus-border: var(--neutral-0);
     --help-links-section-background: var(--neutral-4);

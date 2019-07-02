@@ -180,7 +180,7 @@ html {
 }
 
 .popup-menu .ms-ContextualMenu-icon {
-    color: $communication-shade-10;
+    color: $communication-primary;
     max-height: 30px;
 }
 
@@ -350,7 +350,7 @@ button[disabled]:focus:not(.ms-ContextualMenu-link) {
 
 #popup-container {
     .ms-Link {
-        color: $communication-shade-10;
+        color: $communication-primary;
         font-weight: 600;
     }
 

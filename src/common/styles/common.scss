@@ -23,10 +23,10 @@ button::after {
 }
 
 .ms-Button.ms-Button--primary:not(.is-disabled) {
-    background: $communication-shade-10;
+    background: $communication-primary;
 
     &:hover {
-        background: $communication-shade-20;
+        background: $communication-shade-10;
     }
 }
 
