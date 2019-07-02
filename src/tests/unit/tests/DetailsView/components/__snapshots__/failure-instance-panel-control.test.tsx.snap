@@ -1,81 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`FailureInstancePanelControlTest render FailureInstancePanelControl with details: add instance 1`] = `
-<React.Fragment>
-  <CustomizedActionButton
-    ariaDescription="Open add a failure instance panel"
-    ariaLabel="Add a failure instance"
-    iconProps={
-      Object {
-        "iconName": "Add",
-      }
-    }
-    onClick={[Function]}
-  >
-    Add a failure instance
-  </CustomizedActionButton>
-  <GenericPanel
-    className="failure-instance-panel"
-    closeButtonAriaLabel={null}
-    hasCloseButton={false}
-    isOpen={false}
-    onDismiss={[Function]}
-    title="Add a failure instance"
-  >
-    <a
-      className="learn-more"
-    >
-       Learn more about adding failure instances 
-    </a>
-    <StyledTextFieldBase
-      className="selector-failure-textfield"
-      defaultValue="CSS selector"
-      label="CSS Selector"
-      multiline={true}
-      onChange={[Function]}
-      resizable={false}
-      rows={8}
-      value=""
-    />
-    <div>
-      Note: If the CSS selector maps to multiple snippets, the first will be selected.
-    </div>
-    <div>
-      <CustomizedDefaultButton
-        disabled={true}
-        onClick={[Function]}
-        text="Validate CSS selector"
-      />
-    </div>
-    <div>
-      <label>
-        Code Snippet
-      </label>
-      <div>
-        
-      </div>
-    </div>
-    <StyledTextFieldBase
-      className="observed-failure-textfield"
-      defaultValue="Comments"
-      label="Observed failure"
-      multiline={true}
-      onChange={[Function]}
-      resizable={false}
-      rows={8}
-      value=""
-    />
-    <ActionAndCancelButtonsComponent
-      cancelButtonOnClick={[Function]}
-      isHidden={false}
-      primaryButtonDisabled={true}
-      primaryButtonOnClick={[Function]}
-      primaryButtonText="Add failed instance"
-    />
-  </GenericPanel>
-</React.Fragment>
-`;
-
 exports[`FailureInstancePanelControlTest render FailureInstancePanelControl: add instance 1`] = `
 <React.Fragment>
   <CustomizedActionButton
@@ -98,6 +22,47 @@ exports[`FailureInstancePanelControlTest render FailureInstancePanelControl: add
     onDismiss={[Function]}
     title="Add a failure instance"
   >
+    <FlaggedComponent
+      enableJSXElement={
+        <div>
+          <a
+            className="learn-more"
+          >
+             Learn more about adding failure instances 
+          </a>
+          <StyledTextFieldBase
+            className="selector-failure-textfield"
+            defaultValue="CSS selector"
+            label="CSS Selector"
+            multiline={true}
+            onChange={[Function]}
+            resizable={false}
+            rows={8}
+            value=""
+          />
+          <div>
+            Note: If the CSS selector maps to multiple snippets, the first will be selected.
+          </div>
+          <div>
+            <CustomizedDefaultButton
+              disabled={true}
+              onClick={[Function]}
+              text="Validate CSS selector"
+            />
+          </div>
+          <div>
+            <label>
+              Code Snippet
+            </label>
+            <div>
+              
+            </div>
+          </div>
+        </div>
+      }
+      featureFlag="manualInstanceDetails"
+      featureFlagStoreData={Object {}}
+    />
     <StyledTextFieldBase
       className="observed-failure-textfield"
       label="Observed failure"
@@ -137,6 +102,47 @@ exports[`FailureInstancePanelControlTest render FailureInstancePanelControl: edi
     onDismiss={[Function]}
     title="Edit failure instance"
   >
+    <FlaggedComponent
+      enableJSXElement={
+        <div>
+          <a
+            className="learn-more"
+          >
+             Learn more about adding failure instances 
+          </a>
+          <StyledTextFieldBase
+            className="selector-failure-textfield"
+            defaultValue="CSS selector"
+            label="CSS Selector"
+            multiline={true}
+            onChange={[Function]}
+            resizable={false}
+            rows={8}
+            value=""
+          />
+          <div>
+            Note: If the CSS selector maps to multiple snippets, the first will be selected.
+          </div>
+          <div>
+            <CustomizedDefaultButton
+              disabled={true}
+              onClick={[Function]}
+              text="Validate CSS selector"
+            />
+          </div>
+          <div>
+            <label>
+              Code Snippet
+            </label>
+            <div>
+              
+            </div>
+          </div>
+        </div>
+      }
+      featureFlag="manualInstanceDetails"
+      featureFlagStoreData={Object {}}
+    />
     <StyledTextFieldBase
       className="observed-failure-textfield"
       label="Observed failure"

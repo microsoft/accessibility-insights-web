@@ -9,6 +9,7 @@ import * as React from 'react';
 import { AssessmentsProvider } from '../../assessments/types/assessments-provider';
 import { Requirement } from '../../assessments/types/requirement';
 import { BaseStore } from '../../common/base-store';
+import { FlaggedComponent } from '../../common/components/flagged-component';
 import { FeatureFlags } from '../../common/feature-flags';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { VisualizationType } from '../../common/types/visualization-type';
@@ -97,17 +98,41 @@ export class FailureInstancePanelControl extends React.Component<FailureInstance
             closeButtonAriaLabel: null,
         };
 
-        if (this.props.featureFlagStoreData && this.props.featureFlagStoreData[FeatureFlags.manualInstanceDetails]) {
-            return this.panelWithSelectorAndSnippet(testStepConfig, panelProps);
-        } else {
-            return this.panelWithoutSelectorAndSnippet(testStepConfig, panelProps);
-        }
-    }
-
-    protected panelWithSelectorAndSnippet = (testStepConfig: Readonly<Requirement>, panelProps: GenericPanelProps): JSX.Element => {
         return (
             <GenericPanel {...panelProps}>
                 {testStepConfig.addFailureInstruction}
+                <FlaggedComponent
+                    enableJSXElement={this.getSelectorAndSnippet()}
+                    featureFlag={FeatureFlags[FeatureFlags.manualInstanceDetails]}
+                    featureFlagStoreData={this.props.featureFlagStoreData}
+                />
+                <TextField
+                    className="observed-failure-textfield"
+                    label="Observed failure"
+                    multiline={true}
+                    rows={8}
+                    value={this.state.failureDescription}
+                    onChange={this.onFailureDescriptionChange}
+                    resizable={false}
+                />
+                <ActionAndCancelButtonsComponent
+                    isHidden={false}
+                    primaryButtonDisabled={this.state.failureDescription === ''}
+                    primaryButtonText={this.props.actionType === CapturedInstanceActionType.CREATE ? 'Add' : 'Save'}
+                    primaryButtonOnClick={
+                        this.props.actionType === CapturedInstanceActionType.CREATE
+                            ? this.onAddFailureInstance
+                            : this.onSaveEditedFailureInstance
+                    }
+                    cancelButtonOnClick={this.closeFailureInstancePanel}
+                />
+            </GenericPanel>
+        );
+    }
+
+    protected getSelectorAndSnippet = (): JSX.Element => {
+        return (
+            <div>
                 <a className="learn-more"> Learn more about adding failure instances </a>
                 <TextField
                     className="selector-failure-textfield"
@@ -127,28 +152,7 @@ export class FailureInstancePanelControl extends React.Component<FailureInstance
                     <label>Code Snippet</label>
                     <div>{this.state.snippet}</div>
                 </div>
-                <TextField
-                    className="observed-failure-textfield"
-                    label="Observed failure"
-                    multiline={true}
-                    rows={8}
-                    value={this.state.failureDescription}
-                    onChange={this.onFailureDescriptionChange}
-                    resizable={false}
-                    defaultValue="Comments"
-                />
-                <ActionAndCancelButtonsComponent
-                    isHidden={false}
-                    primaryButtonDisabled={this.state.failureDescription === '' && this.state.selector === ''}
-                    primaryButtonText={this.props.actionType === CapturedInstanceActionType.CREATE ? 'Add failed instance' : 'Save'}
-                    primaryButtonOnClick={
-                        this.props.actionType === CapturedInstanceActionType.CREATE
-                            ? this.onAddFailureInstance
-                            : this.onSaveEditedFailureInstance
-                    }
-                    cancelButtonOnClick={this.closeFailureInstancePanel}
-                />
-            </GenericPanel>
+            </div>
         );
     };
 

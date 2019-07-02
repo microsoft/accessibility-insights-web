@@ -27,31 +27,13 @@ describe('FailureInstancePanelControlTest', () => {
     });
 
     test('render FailureInstancePanelControl: add instance', () => {
-        const featureFlagStoreData = {
-            manualInstanceDetails: false,
-        };
-
-        const props = createPropsWithTypeAndData(CapturedInstanceActionType.CREATE, featureFlagStoreData);
-
-        const rendered = shallow(<FailureInstancePanelControl {...props} />);
-        expect(rendered.getElement()).toMatchSnapshot();
-    });
-
-    test('render FailureInstancePanelControl with details: add instance', () => {
-        const featureFlagStoreData = {
-            manualInstanceDetails: true,
-        };
-
-        const props = createPropsWithTypeAndData(CapturedInstanceActionType.CREATE, featureFlagStoreData);
-
+        const props = createPropsWithType(CapturedInstanceActionType.CREATE);
         const rendered = shallow(<FailureInstancePanelControl {...props} />);
         expect(rendered.getElement()).toMatchSnapshot();
     });
 
     test('render FailureInstancePanelControl: edit instance', () => {
-        const featureFlagStoreData = null;
-        const props = createPropsWithTypeAndData(CapturedInstanceActionType.EDIT, featureFlagStoreData);
-
+        const props = createPropsWithType(CapturedInstanceActionType.EDIT);
         const rendered = shallow(<FailureInstancePanelControl {...props} />);
         expect(rendered.getElement()).toMatchSnapshot();
     });
@@ -59,6 +41,7 @@ describe('FailureInstancePanelControlTest', () => {
     test('onFailureDescriptionChange', () => {
         const description = 'abc';
         const props = createPropsWithType(CapturedInstanceActionType.CREATE);
+
         const wrapper = shallow<FailureInstancePanelControl>(<FailureInstancePanelControl {...props} />);
         wrapper
             .find(TextField)
@@ -157,21 +140,7 @@ describe('FailureInstancePanelControlTest', () => {
     });
 
     function createPropsWithType(actionType: CapturedInstanceActionType): FailureInstancePanelControlProps {
-        const featureFlagStoreData = {} as FeatureFlagStoreData;
-        return {
-            step: 'missingHeadings',
-            test: VisualizationType.HeadingsAssessment,
-            addFailureInstance: addInstanceMock.object,
-            actionType: actionType,
-            assessmentsProvider: Assessments,
-            featureFlagStoreData: featureFlagStoreData,
-        };
-    }
-
-    function createPropsWithTypeAndData(
-        actionType: CapturedInstanceActionType,
-        featureData: FeatureFlagStoreData,
-    ): FailureInstancePanelControlProps {
+        const featureData = {} as FeatureFlagStoreData;
         return {
             step: 'missingHeadings',
             test: VisualizationType.HeadingsAssessment,
