@@ -130,7 +130,7 @@ export class FailureInstancePanelControl extends React.Component<FailureInstance
         );
     }
 
-    protected getSelectorAndSnippet = (): JSX.Element => {
+    private getSelectorAndSnippet = (): JSX.Element => {
         return (
             <div>
                 <a className="learn-more"> Learn more about adding failure instances </a>
@@ -156,43 +156,15 @@ export class FailureInstancePanelControl extends React.Component<FailureInstance
         );
     };
 
-    protected panelWithoutSelectorAndSnippet = (testStepConfig: Readonly<Requirement>, panelProps: GenericPanelProps): JSX.Element => {
-        return (
-            <GenericPanel {...panelProps}>
-                {testStepConfig.addFailureInstruction}
-                <TextField
-                    className="observed-failure-textfield"
-                    label="Observed failure"
-                    multiline={true}
-                    rows={8}
-                    value={this.state.failureDescription}
-                    onChange={this.onFailureDescriptionChange}
-                    resizable={false}
-                />
-                <ActionAndCancelButtonsComponent
-                    isHidden={false}
-                    primaryButtonDisabled={this.state.failureDescription === ''}
-                    primaryButtonText={this.props.actionType === CapturedInstanceActionType.CREATE ? 'Add' : 'Save'}
-                    primaryButtonOnClick={
-                        this.props.actionType === CapturedInstanceActionType.CREATE
-                            ? this.onAddFailureInstance
-                            : this.onSaveEditedFailureInstance
-                    }
-                    cancelButtonOnClick={this.closeFailureInstancePanel}
-                />
-            </GenericPanel>
-        );
-    };
-
     protected onFailureDescriptionChange = (event, value: string): void => {
         this.setState({ failureDescription: value });
     };
 
-    protected onSelectorChange = (event, value: string): void => {
+    private onSelectorChange = (event, value: string): void => {
         this.setState({ selector: value });
     };
 
-    protected onValidateSelector = (event): void => {
+    private onValidateSelector = (event): void => {
         const currSelector = this.state.selector;
         this.setState({ snippet: 'snippet for ' + currSelector });
     };
