@@ -10,21 +10,12 @@ export type CollapsibleContainerProps = {
     visibleHeadingContent: JSX.Element;
     collapsibleContent: JSX.Element;
     buttonAriaLabel: string;
-    accessibleHeadingContent?: JSX.Element;
     titleHeadingLevel?: number;
     containerClassName?: string;
 };
 
 export const CollapsibleContainer = NamedSFC<CollapsibleContainerProps>('CollapsibleContainer', props => {
-    const {
-        id,
-        visibleHeadingContent,
-        titleHeadingLevel,
-        collapsibleContent,
-        buttonAriaLabel,
-        containerClassName,
-        accessibleHeadingContent,
-    } = props;
+    const { id, visibleHeadingContent, titleHeadingLevel, collapsibleContent, buttonAriaLabel, containerClassName } = props;
 
     const contentId = `content-container-${id}`;
 
@@ -35,7 +26,6 @@ export const CollapsibleContainer = NamedSFC<CollapsibleContainerProps>('Collaps
     return (
         <div className={outerDivClassName}>
             <div className="title-container" {...titleContainerProps}>
-                {accessibleHeadingContent}
                 <button className="collapsible-control" aria-expanded="false" aria-controls={contentId} aria-label={buttonAriaLabel} />
                 <div>{visibleHeadingContent}</div>
             </div>

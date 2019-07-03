@@ -31,40 +31,6 @@ exports[`CollapsibleContainer renders, no optional fields 1`] = `
 </div>
 `;
 
-exports[`CollapsibleContainer renders, with accessible heading content 1`] = `
-<div
-  className="collapsible-container"
->
-  <div
-    className="title-container"
-  >
-    <div>
-      this is the accessible heading content
-    </div>
-    <button
-      aria-controls="content-container-test-id"
-      aria-expanded="false"
-      aria-label="button aria label"
-      className="collapsible-control"
-    />
-    <div>
-      <div>
-        this is the visible heading content
-      </div>
-    </div>
-  </div>
-  <div
-    aria-hidden="true"
-    className="collapsible-content"
-    id="content-container-test-id"
-  >
-    <div>
-       this is the collapsible content 
-    </div>
-  </div>
-</div>
-`;
-
 exports[`CollapsibleContainer renders, with extra class name for the container div 1`] = `
 <div
   className="collapsible-container extra-class-name"

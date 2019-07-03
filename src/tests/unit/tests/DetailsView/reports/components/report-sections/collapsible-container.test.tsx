@@ -49,14 +49,4 @@ describe('CollapsibleContainer', () => {
 
         expect(wrapped.getElement()).toMatchSnapshot();
     });
-
-    it('renders, with accessible heading content', () => {
-        const props = getProps({
-            accessibleHeadingContent: <div>this is the accessible heading content</div>,
-        });
-
-        const wrapped = shallow(<CollapsibleContainer {...props} />);
-
-        expect(wrapped.getElement()).toMatchSnapshot();
-    });
 });
