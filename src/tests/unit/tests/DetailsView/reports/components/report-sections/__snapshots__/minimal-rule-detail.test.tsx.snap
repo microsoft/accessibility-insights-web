@@ -15,7 +15,7 @@ exports[`MinimalRuleDetail renders, outcomeType = fail 1`] = `
     >
       rule id
     </span>
-     
+    : 
     <span
       className="rule-details-description"
     >
@@ -36,7 +36,7 @@ exports[`MinimalRuleDetail renders, outcomeType = inapplicable 1`] = `
     >
       rule id
     </span>
-     
+    : 
     <span
       className="rule-details-description"
     >
@@ -57,7 +57,7 @@ exports[`MinimalRuleDetail renders, outcomeType = pass 1`] = `
     >
       rule id
     </span>
-     
+    : 
     <span
       className="rule-details-description"
     >
