@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`RuleDetail renders 1`] = `
+exports[`FullRuleDetail renders 1`] = `
 <React.Fragment>
   <div
     className="rule-detail"
