@@ -7,3 +7,18 @@ steps:
 
     - script: yarn test:e2e -- --ci
       displayName: run e2e tests
+
+    - task: PublishTestResults@2
+      inputs:
+          testResultsFiles: test-results/e2e/junit-e2e.xml
+          testRunTitle: accessibility-insights-web e2e
+      condition: always()
+      displayName: publish e2e test results
+
+    - task: PublishBuildArtifacts@1
+      inputs:
+          pathtoPublish: '$(System.DefaultWorkingDirectory)/test-results/e2e'
+          artifactName: 'e2e-failure-screenshots'
+      condition: always()
+      continueOnError: true
+      displayName: publish e2e-failure-screenshots
