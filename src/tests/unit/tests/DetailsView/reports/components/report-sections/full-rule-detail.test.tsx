@@ -5,13 +5,13 @@ import * as React from 'react';
 
 import {
     FullRuleDetail,
-    RuleDetailDeps,
-    RuleDetailProps,
+    FullRuleDetailDeps,
+    FullRuleDetailProps,
 } from '../../../../../../../DetailsView/reports/components/report-sections/full-rule-detail';
 import { RuleResult } from '../../../../../../../scanner/iruleresults';
 
-describe('RuleDetail', () => {
-    const depsStub = {} as RuleDetailDeps;
+describe('FullRuleDetail', () => {
+    const depsStub = {} as FullRuleDetailDeps;
     const rule = {
         helpUrl: 'url://help.url',
         id: 'rule id',
@@ -29,7 +29,7 @@ describe('RuleDetail', () => {
         nodes: [{} as AxeNodeResult],
     } as RuleResult;
 
-    const props: RuleDetailProps = {
+    const props: FullRuleDetailProps = {
         deps: depsStub,
         rule: rule,
         outcomeType: 'fail',

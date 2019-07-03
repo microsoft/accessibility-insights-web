@@ -5,9 +5,9 @@ import * as React from 'react';
 import { NamedSFC } from '../../../../common/react/named-sfc';
 import { RuleResult } from '../../../../scanner/iruleresults';
 import { InstanceOutcomeType } from '../instance-outcome-type';
-import { FullRuleDetail, RuleDetailDeps } from './full-rule-detail';
+import { FullRuleDetail, FullRuleDetailDeps } from './full-rule-detail';
 
-export type RulesDeps = RuleDetailDeps;
+export type RulesDeps = FullRuleDetailDeps;
 
 export type RulesProps = {
     deps: RulesDeps;
