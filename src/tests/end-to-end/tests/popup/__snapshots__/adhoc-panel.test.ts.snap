@@ -1,5 +1,64 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Ad hoc tools Automated checks toggle button should toggle visualizations on a target page containing errors 1`] = `
+<DocumentFragment>
+  <div
+    id="insights-shadow-container"
+  >
+    <link
+      href="chrome-extension://akiplfjoiekiceeppgmkgfggdekaofga/injected/styles/default/injected.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="chrome-extension://akiplfjoiekiceeppgmkgfggdekaofga/bundle/injected.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <div
+      class="insights-container insights-highlight-container insights-issues"
+    >
+      <div
+        class="insights-highlight-box"
+        style="outline-style: solid; outline-color: rgb(204, 0, 0); top: 79.5417px; left: 8px; min-width: 787px; min-height: 154px;"
+        title="Failed rules: frame-title"
+      >
+        <div
+          class="insights-highlight-text failure-label"
+          style="background: rgb(204, 0, 0); color: rgb(255, 255, 255); width: 2em !important; cursor: pointer !important; text-align: center !important;"
+        >
+          !
+        </div>
+      </div>
+      <div
+        class="insights-highlight-box"
+        style="outline-style: solid; outline-color: rgb(204, 0, 0); top: 317.083px; left: 8px; min-width: 787px; min-height: 154px;"
+        title="Failed rules: frame-title"
+      >
+        <div
+          class="insights-highlight-text failure-label"
+          style="background: rgb(204, 0, 0); color: rgb(255, 255, 255); width: 2em !important; cursor: pointer !important; text-align: center !important;"
+        >
+          !
+        </div>
+      </div>
+      <div
+        class="insights-highlight-box"
+        style="outline-style: solid; outline-color: rgb(204, 0, 0); top: 5px; left: 5px; min-width: 790px; min-height: 483.083px;"
+        title="Failed rules: html-has-lang"
+      >
+        <div
+          class="insights-highlight-text failure-label"
+          style="background: rgb(204, 0, 0); color: rgb(255, 255, 255); width: 2em !important; cursor: pointer !important; text-align: center !important;"
+        >
+          !
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
 exports[`Ad hoc tools should pass accessibility validation in high contrast 1`] = `
 Array [
   Object {

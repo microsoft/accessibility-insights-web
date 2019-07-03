@@ -58,14 +58,29 @@ export class Page {
         );
     }
 
-    public async waitForSelector(selector: string): Promise<Puppeteer.ElementHandle<Element>> {
+    public async waitForSelector(selector: string, options?: Puppeteer.WaitForSelectorOptions): Promise<Puppeteer.ElementHandle<Element>> {
         return await this.screenshotOnError(
-            async () => await this.underlyingPage.waitForSelector(selector, { timeout: DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS }),
+            async () => await this.underlyingPage.waitForSelector(selector, { timeout: DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS, ...options }),
+        );
+    }
+
+    public async waitForSelectorXPath(xpath: string): Promise<Puppeteer.ElementHandle<Element>> {
+        return await this.screenshotOnError(
+            async () => await this.underlyingPage.waitForXPath(xpath, { timeout: DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS }),
         );
     }
 
     public async waitForId(id: string): Promise<Puppeteer.ElementHandle<Element>> {
         return this.waitForSelector(`#${id}`);
+    }
+
+    public async waitForShadowRootOfSelector(selector: string): Promise<Puppeteer.ElementHandle<Element>> {
+        return await this.screenshotOnError(async () =>
+            (await this.underlyingPage.evaluateHandle(
+                selectorInEval => document.querySelector(selectorInEval).shadowRoot,
+                selector,
+            )).asElement(),
+        );
     }
 
     public async waitForSelectorToDisappear(selector: string): Promise<void> {
@@ -86,9 +101,9 @@ export class Page {
         });
     }
 
-    public async clickSelectorXPath(xPathString: string): Promise<void> {
+    public async clickSelectorXPath(xpath: string): Promise<void> {
+        const element = await this.waitForSelectorXPath(xpath);
         await this.screenshotOnError(async () => {
-            const element = await this.underlyingPage.waitForXPath(xPathString, { timeout: DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS });
             await element.click();
         });
     }
@@ -122,7 +137,7 @@ export class Page {
     }
 }
 
-function generateFormattedHtml(innerHTMLString: string): Node {
+export function generateFormattedHtml(innerHTMLString: string): Node {
     const template = document.createElement('template');
 
     // office fabric generates a random class & id name which changes every time.
