@@ -12,7 +12,6 @@ describe('CollapsibleContainer', () => {
     const getProps = (customProps?: Partial<CollapsibleContainerProps>): CollapsibleContainerProps => {
         const defaultProps: Partial<CollapsibleContainerProps> = {
             id: 'test-id',
-            accessibleHeadingContent: <div>this is the accessible heading content</div>,
             visibleHeadingContent: <div>this is the visible heading content</div>,
             collapsibleContent: <div> this is the collapsible content </div>,
             buttonAriaLabel: 'button aria label',
@@ -44,6 +43,16 @@ describe('CollapsibleContainer', () => {
     it('renders, with heading level for the title container', () => {
         const props = getProps({
             titleHeadingLevel: 5,
+        });
+
+        const wrapped = shallow(<CollapsibleContainer {...props} />);
+
+        expect(wrapped.getElement()).toMatchSnapshot();
+    });
+
+    it('renders, with accessible heading content', () => {
+        const props = getProps({
+            accessibleHeadingContent: <div>this is the accessible heading content</div>,
         });
 
         const wrapped = shallow(<CollapsibleContainer {...props} />);

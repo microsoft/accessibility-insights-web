@@ -7,10 +7,10 @@ import { NamedSFC } from '../../../../common/react/named-sfc';
 
 export type CollapsibleContainerProps = {
     id: string;
-    accessibleHeadingContent: JSX.Element;
     visibleHeadingContent: JSX.Element;
     collapsibleContent: JSX.Element;
     buttonAriaLabel: string;
+    accessibleHeadingContent?: JSX.Element;
     titleHeadingLevel?: number;
     containerClassName?: string;
 };
