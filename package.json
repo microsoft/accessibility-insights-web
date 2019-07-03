@@ -17,6 +17,7 @@
         "build:dev": "grunt build-dev",
         "build:electron": "grunt build-electron",
         "build:prod": "grunt build-prod",
+        "build:web-extension": "grunt build-web-extension",
         "copyrightheaders": "grunt copyright-check",
         "copyrightheaders:fix": "grunt copyright-add",
         "format": "prettier --config prettier.config.js --write \"**/*\"",
