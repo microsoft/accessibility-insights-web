@@ -5,6 +5,7 @@ exports[`RulesWithInstances renders 1`] = `
   className="rule-details-group"
 >
   <CollapsibleContainer
+    buttonAriaLabel="test-rule 1 Passed undefined"
     collapsibleContent={
       <InstanceDetailsGroup
         fixInstructionProcessor={
@@ -34,14 +35,14 @@ exports[`RulesWithInstances renders 1`] = `
       />
     }
     containerClassName="collapsible-rule-details-group"
-    id="1"
+    id="test-rule"
     titleHeadingLevel={3}
     visibleHeadingContent={
       <MinimalRuleDetail
         outcomeType="pass"
         rule={
           Object {
-            "id": "1",
+            "id": "test-rule",
             "nodes": Array [
               Object {
                 "failureSummary": "fix the error on html tag",
