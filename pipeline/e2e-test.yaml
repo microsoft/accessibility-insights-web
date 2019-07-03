@@ -5,5 +5,17 @@ steps:
     - script: yarn build:dev
       displayName: build:dev
 
+    - bash: |
+          export IPADDR=$(ip addr | grep 'state UP' -A2 | tail -n1 | awk '{print $2}' | cut -f1  -d'/')
+          echo "##vso[task.setvariable variable=IP_ADDR]$IPADDR"
+          # Enable user namespace cloning
+          "sysctl kernel.unprivileged_userns_clone=1"
+          # Launch XVFB
+          "export DISPLAY=:99.0"
+          "sh -e /etc/init.d/xvfb start"
+
+      condition: eq( variables['Agent.OS'], 'Linux' )
+      displayName: Get IP on Linux
+
     - script: yarn test:e2e -- --ci
       displayName: run e2e tests

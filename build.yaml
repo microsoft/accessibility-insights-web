@@ -49,16 +49,16 @@ jobs:
             inputs:
                 verbosity: Normal
 
-    - job: 'e2e'
+    - job: 'e2e_tests'
 
       strategy:
           matrix:
               linux:
                   imageName: 'ubuntu-16.04'
-              mac:
-                  imageName: 'macos-10.13'
-              windows:
-                  imageName: 'vs2017-win2016'
+              # mac:
+              #     imageName: 'macos-10.13'
+              # windows:
+              #     imageName: 'vs2017-win2016'
 
       pool:
           vmImage: $(imageName)
@@ -81,6 +81,23 @@ jobs:
             condition: always()
             continueOnError: true
             displayName: publish e2e-failure-screenshots
+
+          - task: PublishBuildArtifacts@1
+            inputs:
+                pathtoPublish: '$(System.DefaultWorkingDirectory)/drop'
+                artifactName: 'drop'
+            displayName: publish drop
+
+    - job: 'publish_build_drops'
+
+      pool:
+          vmImage: 'macos-10.13'
+
+      steps:
+          - template: pipeline/prerequisites.yaml
+
+          - script: yarn build:all
+            displayName: build:all
 
           - task: PublishBuildArtifacts@1
             inputs:
