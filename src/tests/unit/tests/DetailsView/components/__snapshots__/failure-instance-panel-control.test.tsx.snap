@@ -24,48 +24,19 @@ exports[`FailureInstancePanelControlTest render FailureInstancePanelControl: add
   >
     <FlaggedComponent
       enableJSXElement={
-        <div>
-          <a
-            className="learn-more"
-          >
-             Learn more about adding failure instances 
-          </a>
-          <StyledTextFieldBase
-            className="selector-failure-textfield"
-            defaultValue="CSS selector"
-            label="CSS Selector"
-            multiline={true}
-            onChange={[Function]}
-            resizable={false}
-            rows={8}
-            value=""
-          />
-          <div>
-            Note: If the CSS selector maps to multiple snippets, the first will be selected.
-          </div>
-          <div>
-            <CustomizedDefaultButton
-              disabled={true}
-              onClick={[Function]}
-              text="Validate CSS selector"
-            />
-          </div>
-          <div>
-            <label>
-              Code Snippet
-            </label>
-            <div>
-              
-            </div>
-          </div>
-        </div>
+        <FailureInstancePanelDetails
+          onSelectorChange={[Function]}
+          onValidateSelector={[Function]}
+          path=""
+          snippet=""
+        />
       }
       featureFlag="manualInstanceDetails"
       featureFlagStoreData={Object {}}
     />
     <StyledTextFieldBase
       className="observed-failure-textfield"
-      label="Observed failure"
+      label="Comments"
       multiline={true}
       onChange={[Function]}
       resizable={false}
@@ -104,48 +75,19 @@ exports[`FailureInstancePanelControlTest render FailureInstancePanelControl: edi
   >
     <FlaggedComponent
       enableJSXElement={
-        <div>
-          <a
-            className="learn-more"
-          >
-             Learn more about adding failure instances 
-          </a>
-          <StyledTextFieldBase
-            className="selector-failure-textfield"
-            defaultValue="CSS selector"
-            label="CSS Selector"
-            multiline={true}
-            onChange={[Function]}
-            resizable={false}
-            rows={8}
-            value=""
-          />
-          <div>
-            Note: If the CSS selector maps to multiple snippets, the first will be selected.
-          </div>
-          <div>
-            <CustomizedDefaultButton
-              disabled={true}
-              onClick={[Function]}
-              text="Validate CSS selector"
-            />
-          </div>
-          <div>
-            <label>
-              Code Snippet
-            </label>
-            <div>
-              
-            </div>
-          </div>
-        </div>
+        <FailureInstancePanelDetails
+          onSelectorChange={[Function]}
+          onValidateSelector={[Function]}
+          path=""
+          snippet=""
+        />
       }
       featureFlag="manualInstanceDetails"
       featureFlagStoreData={Object {}}
     />
     <StyledTextFieldBase
       className="observed-failure-textfield"
-      label="Observed failure"
+      label="Comments"
       multiline={true}
       onChange={[Function]}
       resizable={false}

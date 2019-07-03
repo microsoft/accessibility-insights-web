@@ -1,19 +1,19 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { ActionButton, DefaultButton } from 'office-ui-fabric-react/lib/Button';
+import { ActionButton } from 'office-ui-fabric-react/lib/Button';
 import { Icon } from 'office-ui-fabric-react/lib/Icon';
 import { Link } from 'office-ui-fabric-react/lib/Link';
 import { TextField } from 'office-ui-fabric-react/lib/TextField';
 import * as React from 'react';
 
 import { AssessmentsProvider } from '../../assessments/types/assessments-provider';
-import { Requirement } from '../../assessments/types/requirement';
 import { BaseStore } from '../../common/base-store';
 import { FlaggedComponent } from '../../common/components/flagged-component';
 import { FeatureFlags } from '../../common/feature-flags';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { VisualizationType } from '../../common/types/visualization-type';
 import { ActionAndCancelButtonsComponent } from './action-and-cancel-buttons-component';
+import { FailureInstancePanelDetails } from './failure-instance-panel-details';
 import { GenericPanel, GenericPanelProps } from './generic-panel';
 
 export interface FailureInstancePanelControlProps {
@@ -31,7 +31,7 @@ export interface FailureInstancePanelControlProps {
 export interface FailureInstancePanelControlState {
     isPanelOpen: boolean;
     failureDescription: string;
-    selector: string;
+    path: string;
     snippet: string;
 }
 
@@ -48,7 +48,7 @@ export class FailureInstancePanelControl extends React.Component<FailureInstance
         this.state = {
             isPanelOpen: false,
             failureDescription: this.props.originalText || '',
-            selector: '',
+            path: '',
             snippet: '',
         };
     }
@@ -102,13 +102,13 @@ export class FailureInstancePanelControl extends React.Component<FailureInstance
             <GenericPanel {...panelProps}>
                 {testStepConfig.addFailureInstruction}
                 <FlaggedComponent
-                    enableJSXElement={this.getSelectorAndSnippet()}
+                    enableJSXElement={this.getFailureInstancePanelDetails()}
                     featureFlag={FeatureFlags[FeatureFlags.manualInstanceDetails]}
                     featureFlagStoreData={this.props.featureFlagStoreData}
                 />
                 <TextField
                     className="observed-failure-textfield"
-                    label="Observed failure"
+                    label="Comments"
                     multiline={true}
                     rows={8}
                     value={this.state.failureDescription}
@@ -130,29 +130,14 @@ export class FailureInstancePanelControl extends React.Component<FailureInstance
         );
     }
 
-    private getSelectorAndSnippet = (): JSX.Element => {
+    private getFailureInstancePanelDetails = (): JSX.Element => {
         return (
-            <div>
-                <a className="learn-more"> Learn more about adding failure instances </a>
-                <TextField
-                    className="selector-failure-textfield"
-                    label="CSS Selector"
-                    multiline={true}
-                    rows={8}
-                    value={this.state.selector}
-                    onChange={this.onSelectorChange}
-                    resizable={false}
-                    defaultValue="CSS selector"
-                />
-                <div>Note: If the CSS selector maps to multiple snippets, the first will be selected.</div>
-                <div>
-                    <DefaultButton text="Validate CSS selector" onClick={this.onValidateSelector} disabled={this.state.selector === ''} />
-                </div>
-                <div>
-                    <label>Code Snippet</label>
-                    <div>{this.state.snippet}</div>
-                </div>
-            </div>
+            <FailureInstancePanelDetails
+                path={this.state.path}
+                snippet={this.state.snippet}
+                onSelectorChange={this.onSelectorChange}
+                onValidateSelector={this.onValidateSelector}
+            />
         );
     };
 
@@ -160,12 +145,12 @@ export class FailureInstancePanelControl extends React.Component<FailureInstance
         this.setState({ failureDescription: value });
     };
 
-    private onSelectorChange = (event, value: string): void => {
-        this.setState({ selector: value });
+    protected onSelectorChange = (event, value: string): void => {
+        this.setState({ path: value });
     };
 
-    private onValidateSelector = (event): void => {
-        const currSelector = this.state.selector;
+    protected onValidateSelector = (event): void => {
+        const currSelector = this.state.path;
         this.setState({ snippet: 'snippet for ' + currSelector });
     };
 
