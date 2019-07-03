@@ -7,7 +7,7 @@ import {
     RuleDetail,
     RuleDetailDeps,
     RuleDetailProps,
-} from '../../../../../../../DetailsView/reports/components/report-sections/rule-detail';
+} from '../../../../../../../DetailsView/reports/components/report-sections/full-rule-detail';
 import { RuleResult } from '../../../../../../../scanner/iruleresults';
 
 describe('RuleDetail', () => {

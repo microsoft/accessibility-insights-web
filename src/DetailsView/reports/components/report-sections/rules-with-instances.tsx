@@ -7,8 +7,8 @@ import { FixInstructionProcessor } from '../../../../injected/fix-instruction-pr
 import { RuleResult } from '../../../../scanner/iruleresults';
 import { InstanceOutcomeType } from '../instance-outcome-type';
 import { CollapsibleContainer } from './collapsible-container';
+import { RuleDetail, RuleDetailDeps } from './full-rule-detail';
 import { InstanceDetailsGroup } from './instance-details-group';
-import { RuleDetail, RuleDetailDeps } from './rule-detail';
 
 export type RulesWithInstancesDeps = RuleDetailDeps;
 
