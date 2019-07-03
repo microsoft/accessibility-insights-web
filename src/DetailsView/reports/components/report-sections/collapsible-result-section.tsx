@@ -21,6 +21,7 @@ export const CollapsibleResultSection = NamedSFC<CollapsibleResultSectionProps>(
                 id={containerId}
                 visibleHeadingContent={<ResultSectionTitle {...props} />}
                 collapsibleContent={<RulesOnly {...props} />}
+                titleHeadingLevel={2}
             />
         </div>
     );
