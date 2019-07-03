@@ -75,6 +75,9 @@ jobs:
       steps:
           - template: pipeline/prerequisites.yaml
 
+          - script: yarn build:all
+            displayName: build:all
+
           - task: PublishBuildArtifacts@1
             inputs:
                 pathtoPublish: '$(System.DefaultWorkingDirectory)/drop'
