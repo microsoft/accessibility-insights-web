@@ -1,0 +1,12 @@
+# Copyright (c) Microsoft Corporation. All rights reserved.
+# Licensed under the MIT License.
+steps:
+    # run cosmetic tests on code like formatting and lint checks
+    - script: yarn tslint
+      displayName: check lint errors
+
+    - script: yarn format-check
+      displayName: check formatting errors
+
+    - script: yarn copyrightheaders
+      displayName: check copyrightheaders

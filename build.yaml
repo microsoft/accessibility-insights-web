@@ -8,15 +8,7 @@ jobs:
 
       steps:
           - template: pipeline/prerequisites.yaml
-
-          - script: yarn tslint
-            displayName: check lint errors
-
-          - script: yarn format-check
-            displayName: check formatting errors
-
-          - script: yarn copyrightheaders
-            displayName: check copyrightheaders
+          - template: pipeline/code-cosmetic-tests.yaml
 
           - script: yarn generate-scss-typings
             displayName: generate typings for scss files
@@ -49,7 +41,7 @@ jobs:
             inputs:
                 verbosity: Normal
 
-    - job: 'e2e_tests_and_publish_drop'
+    - job: 'e2e_tests_mac'
 
       pool:
           vmImage: 'macOS-10.13'
@@ -57,6 +49,23 @@ jobs:
       steps:
           - template: pipeline/prerequisites.yaml
           - template: pipeline/e2e-test.yaml
+
+    - job: 'e2e_tests_ubuntu'
+
+      pool:
+          vmImage: 'ubuntu-16.04'
+
+      steps:
+          - template: pipeline/prerequisites.yaml
+          - template: pipeline/e2e-test.yaml
+
+    - job: 'publish_drop'
+
+      pool:
+          vmImage: 'macOS-10.13'
+
+      steps:
+          - template: pipeline/prerequisites.yaml
 
           - task: PublishTestResults@2
             inputs:
