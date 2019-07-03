@@ -67,7 +67,7 @@ async function launchNewBrowser(): Promise<Puppeteer.Browser> {
             `--load-extension=${extensionPath}`,
             '--no-sandbox',
         ],
-        executablePath: '/usr/bin/chromium-browser',
+        executablePath: '/usr/bin/google-chrome',
         timeout: DEFAULT_BROWSER_LAUNCH_TIMEOUT_MS,
     });
 
