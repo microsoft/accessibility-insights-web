@@ -23,7 +23,7 @@ export type RuleDetailProps = {
     outcomeType: InstanceOutcomeType;
 };
 
-export const RuleDetail = NamedSFC<RuleDetailProps>('RuleDetails', props => {
+export const FullRuleDetail = NamedSFC<RuleDetailProps>('RuleDetails', props => {
     const { rule, outcomeType, deps } = props;
 
     const outcomeText = outcomeTypeSemantics[props.outcomeType].pastTense;

@@ -4,7 +4,7 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 
 import {
-    RuleDetail,
+    FullRuleDetail,
     RuleDetailDeps,
     RuleDetailProps,
 } from '../../../../../../../DetailsView/reports/components/report-sections/full-rule-detail';
@@ -36,7 +36,7 @@ describe('RuleDetail', () => {
     };
 
     it('renders', () => {
-        const wrapped = shallow(<RuleDetail {...props} />);
+        const wrapped = shallow(<FullRuleDetail {...props} />);
 
         expect(wrapped.getElement()).toMatchSnapshot();
     });

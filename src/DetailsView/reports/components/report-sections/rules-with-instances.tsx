@@ -7,7 +7,7 @@ import { FixInstructionProcessor } from '../../../../injected/fix-instruction-pr
 import { RuleResult } from '../../../../scanner/iruleresults';
 import { InstanceOutcomeType } from '../instance-outcome-type';
 import { CollapsibleContainer } from './collapsible-container';
-import { RuleDetail, RuleDetailDeps } from './full-rule-detail';
+import { FullRuleDetail, RuleDetailDeps } from './full-rule-detail';
 import { InstanceDetailsGroup } from './instance-details-group';
 
 export type RulesWithInstancesDeps = RuleDetailDeps;
@@ -34,7 +34,7 @@ export const RulesWithInstances = NamedSFC<RulesWithInstancesProps>(
                                     rule {rule.id}, {rule.nodes.length} failures
                                 </h3>
                             }
-                            visibleHeadingContent={<RuleDetail deps={deps} key={rule.id} rule={rule} outcomeType={outcomeType} />}
+                            visibleHeadingContent={<FullRuleDetail deps={deps} key={rule.id} rule={rule} outcomeType={outcomeType} />}
                             collapsibleContent={
                                 <InstanceDetailsGroup
                                     fixInstructionProcessor={fixInstructionProcessor}

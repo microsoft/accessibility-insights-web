@@ -5,7 +5,7 @@ import * as React from 'react';
 import { NamedSFC } from '../../../../common/react/named-sfc';
 import { RuleResult } from '../../../../scanner/iruleresults';
 import { InstanceOutcomeType } from '../instance-outcome-type';
-import { RuleDetail, RuleDetailDeps } from './full-rule-detail';
+import { FullRuleDetail, RuleDetailDeps } from './full-rule-detail';
 
 export type RulesDeps = RuleDetailDeps;
 
@@ -19,7 +19,7 @@ export const RulesOnly = NamedSFC<RulesProps>('RulesOnly', ({ rules, outcomeType
     return (
         <div className="rule-details-group">
             {rules.map(rule => {
-                return <RuleDetail deps={deps} key={rule.id} rule={rule} outcomeType={outcomeType} />;
+                return <FullRuleDetail deps={deps} key={rule.id} rule={rule} outcomeType={outcomeType} />;
             })}
         </div>
     );
