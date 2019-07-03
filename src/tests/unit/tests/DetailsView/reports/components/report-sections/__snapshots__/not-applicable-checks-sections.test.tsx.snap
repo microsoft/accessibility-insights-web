@@ -3,7 +3,6 @@
 exports[`NotApplicableChecksSection renders 1`] = `
 <CollapsibleResultSection
   badgeCount={3}
-  buttonAriaLabel="show not applicable checks list"
   containerClassName="result-section"
   containerId="not-applicable-checks-section"
   deps={

@@ -10,7 +10,6 @@ exports[`CollapsibleContainer renders, no optional fields 1`] = `
     <button
       aria-controls="content-container-test-id"
       aria-expanded="false"
-      aria-label="button aria label"
       className="collapsible-control"
     >
       <div>
@@ -40,7 +39,6 @@ exports[`CollapsibleContainer renders, with extra class name for the container d
     <button
       aria-controls="content-container-test-id"
       aria-expanded="false"
-      aria-label="button aria label"
       className="collapsible-control"
     >
       <div>
@@ -72,7 +70,6 @@ exports[`CollapsibleContainer renders, with heading level for the title containe
     <button
       aria-controls="content-container-test-id"
       aria-expanded="false"
-      aria-label="button aria label"
       className="collapsible-control"
     >
       <div>

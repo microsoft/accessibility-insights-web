@@ -5,10 +5,8 @@ exports[`CollapsibleResultSection renders 1`] = `
   className="result-section-class-name"
 >
   <CollapsibleContainer
-    buttonAriaLabel="button aria label test"
     collapsibleContent={
       <RulesOnly
-        buttonAriaLabel="button aria label test"
         containerClassName="result-section-class-name"
         containerId="container-id"
       />
@@ -16,7 +14,6 @@ exports[`CollapsibleResultSection renders 1`] = `
     id="container-id"
     visibleHeadingContent={
       <ResultSectionTitle
-        buttonAriaLabel="button aria label test"
         containerClassName="result-section-class-name"
         containerId="container-id"
       />

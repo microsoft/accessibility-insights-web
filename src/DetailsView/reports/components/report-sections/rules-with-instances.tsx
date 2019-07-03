@@ -37,7 +37,6 @@ export const RulesWithInstances = NamedSFC<RulesWithInstancesProps>(
                                     nodeResults={rule.nodes}
                                 />
                             }
-                            buttonAriaLabel="show failed instance list"
                             containerClassName="collapsible-rule-details-group"
                             titleHeadingLevel={3}
                         />

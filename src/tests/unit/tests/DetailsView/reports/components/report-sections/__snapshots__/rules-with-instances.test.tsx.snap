@@ -5,7 +5,6 @@ exports[`RulesWithInstances renders 1`] = `
   className="rule-details-group"
 >
   <CollapsibleContainer
-    buttonAriaLabel="show failed instance list"
     collapsibleContent={
       <InstanceDetailsGroup
         fixInstructionProcessor={

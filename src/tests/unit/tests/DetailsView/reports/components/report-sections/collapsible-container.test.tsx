@@ -14,7 +14,6 @@ describe('CollapsibleContainer', () => {
             id: 'test-id',
             visibleHeadingContent: <div>this is the visible heading content</div>,
             collapsibleContent: <div> this is the collapsible content </div>,
-            buttonAriaLabel: 'button aria label',
         };
 
         return {

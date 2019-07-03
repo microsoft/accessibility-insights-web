@@ -9,12 +9,11 @@ import { ResultSectionTitle } from './result-section-title';
 import { RulesOnly } from './rules-only';
 
 export type CollapsibleResultSectionProps = ResultSectionProps & {
-    buttonAriaLabel: string;
     containerId: string;
 };
 
 export const CollapsibleResultSection = NamedSFC<CollapsibleResultSectionProps>('CollapsibleResultSection', props => {
-    const { containerClassName, buttonAriaLabel, containerId } = props;
+    const { containerClassName, containerId } = props;
 
     return (
         <div className={containerClassName}>
@@ -22,7 +21,6 @@ export const CollapsibleResultSection = NamedSFC<CollapsibleResultSectionProps>(
                 id={containerId}
                 visibleHeadingContent={<ResultSectionTitle {...props} />}
                 collapsibleContent={<RulesOnly {...props} />}
-                buttonAriaLabel={buttonAriaLabel}
             />
         </div>
     );
