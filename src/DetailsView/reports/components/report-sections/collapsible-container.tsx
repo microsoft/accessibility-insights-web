@@ -26,8 +26,9 @@ export const CollapsibleContainer = NamedSFC<CollapsibleContainerProps>('Collaps
     return (
         <div className={outerDivClassName}>
             <div className="title-container" {...titleContainerProps}>
-                <button className="collapsible-control" aria-expanded="false" aria-controls={contentId} aria-label={buttonAriaLabel} />
-                <div>{visibleHeadingContent}</div>
+                <button className="collapsible-control" aria-expanded="false" aria-controls={contentId} aria-label={buttonAriaLabel}>
+                    {visibleHeadingContent}
+                </button>
             </div>
             <div id={contentId} className="collapsible-content" aria-hidden="true">
                 {collapsibleContent}

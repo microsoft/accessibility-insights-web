@@ -12,12 +12,11 @@ exports[`CollapsibleContainer renders, no optional fields 1`] = `
       aria-expanded="false"
       aria-label="button aria label"
       className="collapsible-control"
-    />
-    <div>
+    >
       <div>
         this is the visible heading content
       </div>
-    </div>
+    </button>
   </div>
   <div
     aria-hidden="true"
@@ -43,12 +42,11 @@ exports[`CollapsibleContainer renders, with extra class name for the container d
       aria-expanded="false"
       aria-label="button aria label"
       className="collapsible-control"
-    />
-    <div>
+    >
       <div>
         this is the visible heading content
       </div>
-    </div>
+    </button>
   </div>
   <div
     aria-hidden="true"
@@ -76,12 +74,11 @@ exports[`CollapsibleContainer renders, with heading level for the title containe
       aria-expanded="false"
       aria-label="button aria label"
       className="collapsible-control"
-    />
-    <div>
+    >
       <div>
         this is the visible heading content
       </div>
-    </div>
+    </button>
   </div>
   <div
     aria-hidden="true"
