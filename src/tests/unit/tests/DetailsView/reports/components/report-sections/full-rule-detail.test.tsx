@@ -3,6 +3,7 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
+import { allInstanceOutcomeTypes } from '../../../../../../../DetailsView/reports/components/instance-outcome-type';
 import {
     FullRuleDetail,
     FullRuleDetailDeps,
@@ -29,13 +30,13 @@ describe('FullRuleDetail', () => {
         nodes: [{} as AxeNodeResult],
     } as RuleResult;
 
-    const props: FullRuleDetailProps = {
-        deps: depsStub,
-        rule: rule,
-        outcomeType: 'fail',
-    };
+    it.each(allInstanceOutcomeTypes)('renders, outcomeType = %s', outcomeType => {
+        const props: FullRuleDetailProps = {
+            deps: depsStub,
+            rule: rule,
+            outcomeType,
+        };
 
-    it('renders', () => {
         const wrapped = shallow(<FullRuleDetail {...props} />);
 
         expect(wrapped.getElement()).toMatchSnapshot();
