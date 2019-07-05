@@ -6,7 +6,7 @@ jobs:
       strategy:
           matrix:
               mac:
-                  imageName: 'macos-10.13'
+                  imageName: 'macOs-10.13'
               ubuntu:
                   imageName: 'ubuntu-16.04'
 
@@ -61,7 +61,7 @@ jobs:
       strategy:
           matrix:
               mac:
-                  imageName: 'macos-10.13'
+                  imageName: 'macOs-10.13'
               windows:
                   imageName: 'vs2017-win2016'
 
