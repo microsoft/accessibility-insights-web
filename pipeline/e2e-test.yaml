@@ -5,5 +5,14 @@ steps:
     - script: yarn build:web-extension
       displayName: build:web-extension
 
+    - script: docker build -t app
+      condition: eq( variables['Agent.OS'], 'Linux' )
+      displayName: setup docker on linux
+
+    - script: docker run --network=host -it app
+      condition: eq( variables['Agent.OS'], 'Linux' )
+      displayName: run e2e tests on linux
+
     - script: yarn test:e2e -- --ci
+      condition: eq( in( variables['Agent.OS'], 'Darwin', 'Windows_NT' ))
       displayName: run e2e tests
