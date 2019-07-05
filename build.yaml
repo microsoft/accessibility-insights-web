@@ -4,7 +4,7 @@ jobs:
     - job: 'unit_tests_and_lints'
 
       pool:
-          vmImage: 'macOs-10.13'
+          vmImage: 'macOS-10.13'
 
       steps:
           - template: pipeline/prerequisites.yaml
@@ -54,7 +54,7 @@ jobs:
       strategy:
           matrix:
               mac:
-                  imageName: 'macOs-10.13'
+                  imageName: 'macOS-10.13'
               windows:
                   imageName: 'vs2017-win2016'
 
