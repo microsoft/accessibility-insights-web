@@ -9,7 +9,7 @@ steps:
       condition: eq( variables['Agent.OS'], 'Linux' )
       displayName: setup docker on linux
 
-    - script: docker run -it app
+    - script: docker run --network=host -i app
       condition: eq( variables['Agent.OS'], 'Linux' )
       displayName: run e2e tests on linux
 
