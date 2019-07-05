@@ -9,18 +9,22 @@ import { DEFAULT_NEW_PAGE_WAIT_TIMEOUT_MS, DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS 
 export class Page {
     constructor(private readonly underlyingPage: Puppeteer.Page) {
         underlyingPage.on('error', error => {
-            forceTestFailure(`error occurred - ${error.message}`);
+            forceTestFailure(`Puppeteer.Page '${underlyingPage.url()}' emitted 'error' with stack: ${error.stack}`);
         });
 
         underlyingPage.on('pageerror', error => {
-            forceTestFailure(`Unhandled pageerror (console.error) emitted from page '${underlyingPage.url()}': ${error}`);
+            forceTestFailure(`Puppeteer.Page '${underlyingPage.url()}' emitted 'pageerror' (console.error) with stack: ${error.stack}`);
         });
         underlyingPage.on('requestfailed', request => {
-            forceTestFailure(`request failed - ${request.failure().errorText}, ${request.url()}`);
+            forceTestFailure(
+                `Puppeteer.Page '${underlyingPage.url()}' emitted 'requestfailed' with errorText: ${request.failure().errorText}`,
+            );
         });
         underlyingPage.on('response', response => {
-            if (response.status() >= 400) {
-                forceTestFailure(`response error - ${response.status()}, ${response.url()}`);
+            if (!response.ok()) {
+                forceTestFailure(
+                    `Puppeteer.Page '${underlyingPage.url()}' emitted 'response' from '${response.url()}' with nonsuccessful status '${response.status()}: ${response.statusText()}'`,
+                );
             }
         });
     }
