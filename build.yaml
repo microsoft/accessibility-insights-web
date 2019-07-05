@@ -1,10 +1,10 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
 jobs:
-    - job: 'lints'
+    - job: 'unit_tests_and_lints'
 
       pool:
-          vmImage: 'macOS-10.13'
+          vmImage: 'macos-10.13'
 
       steps:
           - template: pipeline/prerequisites.yaml
@@ -17,14 +17,6 @@ jobs:
 
           - script: yarn copyrightheaders
             displayName: check copyrightheaders
-
-    - job: 'unit_tests'
-
-      pool:
-          vmImage: 'macos-10.13'
-
-      steps:
-          - template: pipeline/prerequisites.yaml
 
           - script: yarn generate-scss-typings
             displayName: generate typings for scss files
@@ -64,7 +56,7 @@ jobs:
               mac:
                   imageName: 'macos-10.13'
               windows:
-                  imageName: 'vs2017-win2016'
+                  imageName: 'windows-2019'
 
       pool:
           vmImage: $(imageName)
@@ -94,34 +86,12 @@ jobs:
                 artifactName: 'drop'
             displayName: publish drop
 
-    - job: 'build_electron_app'
-
-      strategy:
-          matrix:
-              linux:
-                  imageName: 'ubuntu-16.04'
-              mac:
-                  imageName: 'macos-10.13'
-              windows:
-                  imageName: 'vs2017-win2016'
-
-      pool:
-          vmImage: $(imageName)
-
-      steps:
-          - template: pipeline/prerequisites.yaml
-
-          - script: yarn build:electron
-            displayName: build electron app
-
     - job: 'publish_build_drops'
 
       strategy:
           matrix:
               linux:
                   imageName: 'ubuntu-16.04'
-              mac:
-                  imageName: 'macos-10.13'
               windows:
                   imageName: 'windows-2019'
 
