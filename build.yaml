@@ -56,7 +56,7 @@ jobs:
               mac:
                   imageName: 'macos-10.13'
               windows:
-                  imageName: 'windows-2019'
+                  imageName: 'vs2017-win2016'
 
       pool:
           vmImage: $(imageName)
@@ -93,7 +93,7 @@ jobs:
               linux:
                   imageName: 'ubuntu-16.04'
               windows:
-                  imageName: 'windows-2019'
+                  imageName: 'vs2017-win2016'
 
       pool:
           vmImage: $(imageName)
