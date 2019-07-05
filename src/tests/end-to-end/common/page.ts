@@ -21,7 +21,7 @@ export class Page {
             );
         });
         underlyingPage.on('response', response => {
-            if (!response.ok()) {
+            if (response.status() >= 400) {
                 forceTestFailure(
                     `Puppeteer.Page '${underlyingPage.url()}' emitted 'response' from '${response.url()}' with nonsuccessful status '${response.status()}: ${response.statusText()}'`,
                 );
