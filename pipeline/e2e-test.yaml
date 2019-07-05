@@ -14,5 +14,5 @@ steps:
       displayName: run e2e tests on linux
 
     - script: yarn test:e2e -- --ci
-      condition: eq( in( variables['Agent.OS'], 'Darwin', 'Windows_NT' ))
+      condition: eq( variables['Agent.OS'], 'Windows_NT' )
       displayName: run e2e tests
