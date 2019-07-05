@@ -3,8 +3,15 @@
 jobs:
     - job: 'unit_tests_and_lints'
 
+      strategy:
+          matrix:
+              mac:
+                  imageName: 'macos-10.13'
+              ubuntu:
+                  imageName: 'ubuntu-16.04'
+
       pool:
-          vmImage: 'macos-10.13'
+          vmImage: $(imageName)
 
       steps:
           - template: pipeline/prerequisites.yaml
