@@ -105,6 +105,8 @@ jobs:
           vmImage: 'macos-10.13'
 
       steps:
+          - template: pipeline/prerequisites.yaml
+
           - script: yarn build:all
             displayName: build:all
 
