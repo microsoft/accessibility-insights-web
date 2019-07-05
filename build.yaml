@@ -88,14 +88,23 @@ jobs:
                 artifactName: 'drop'
             displayName: publish drop
 
+    - job: 'build_electron_app'
+
+      pool:
+          vmImage: 'macOS-10.13'
+
+      steps:
+          - template: pipeline/prerequisites.yaml
+
+          - script: yarn build:electron
+            displayName: build electron app
+
     - job: 'publish_build_drops'
 
       pool:
           vmImage: 'macos-10.13'
 
       steps:
-          - template: pipeline/prerequisites.yaml
-
           - script: yarn build:all
             displayName: build:all
 
