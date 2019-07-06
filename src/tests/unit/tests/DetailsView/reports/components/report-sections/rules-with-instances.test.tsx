@@ -22,7 +22,7 @@ describe('RulesWithInstances', () => {
     it('renders', () => {
         const rules = [
             {
-                id: '1',
+                id: 'test-rule',
                 nodes: [
                     {
                         html: '<html>',

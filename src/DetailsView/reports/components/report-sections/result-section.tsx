@@ -20,7 +20,9 @@ export const ResultSection = NamedSFC<ResultSectionProps>('ResultSection', props
 
     return (
         <div className={containerClassName}>
-            <ResultSectionTitle {...props} />
+            <h2>
+                <ResultSectionTitle {...props} />
+            </h2>
             <ResultSectionContent {...props} />
         </div>
     );

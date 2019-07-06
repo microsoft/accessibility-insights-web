@@ -2,8 +2,8 @@
 # Licensed under the MIT License.
 steps:
     # e2e tests depend drop folder. run build:all will create said folder
-    - script: yarn build:web-extension
-      displayName: build:web-extension
+    - script: yarn build:all
+      displayName: build:all
 
     - script: docker build -t app .
       condition: eq( variables['Agent.OS'], 'Linux' )

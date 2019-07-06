@@ -3,15 +3,16 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
+import { allInstanceOutcomeTypes } from '../../../../../../../DetailsView/reports/components/instance-outcome-type';
 import {
-    RuleDetail,
-    RuleDetailDeps,
-    RuleDetailProps,
-} from '../../../../../../../DetailsView/reports/components/report-sections/rule-detail';
+    FullRuleDetail,
+    FullRuleDetailDeps,
+    FullRuleDetailProps,
+} from '../../../../../../../DetailsView/reports/components/report-sections/full-rule-detail';
 import { RuleResult } from '../../../../../../../scanner/iruleresults';
 
-describe('RuleDetail', () => {
-    const depsStub = {} as RuleDetailDeps;
+describe('FullRuleDetail', () => {
+    const depsStub = {} as FullRuleDetailDeps;
     const rule = {
         helpUrl: 'url://help.url',
         id: 'rule id',
@@ -29,14 +30,14 @@ describe('RuleDetail', () => {
         nodes: [{} as AxeNodeResult],
     } as RuleResult;
 
-    const props: RuleDetailProps = {
-        deps: depsStub,
-        rule: rule,
-        outcomeType: 'fail',
-    };
+    it.each(allInstanceOutcomeTypes)('renders, outcomeType = %s', outcomeType => {
+        const props: FullRuleDetailProps = {
+            deps: depsStub,
+            rule: rule,
+            outcomeType,
+        };
 
-    it('renders', () => {
-        const wrapped = shallow(<RuleDetail {...props} />);
+        const wrapped = shallow(<FullRuleDetail {...props} />);
 
         expect(wrapped.getElement()).toMatchSnapshot();
     });

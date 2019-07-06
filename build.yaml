@@ -53,8 +53,6 @@ jobs:
 
       strategy:
           matrix:
-              # mac:
-              #     imageName: 'macOS-10.14'
               windows:
                   imageName: 'vs2017-win2016'
               linux:
