@@ -38,7 +38,7 @@ export const InstanceDetailsGroup = NamedSFC<InstanceDetailsGroupProps>('Instanc
     return (
         <>
             <div className="rule-more-resources">
-                <div>Resources for this rule</div>
+                <div className="more-resources-title">Resources for this rule</div>
                 {renderRuleLink()}
                 {renderGuidanceLinks()}
             </div>
