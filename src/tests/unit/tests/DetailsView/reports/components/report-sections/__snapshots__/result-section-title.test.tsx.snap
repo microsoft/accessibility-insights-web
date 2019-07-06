@@ -4,13 +4,13 @@ exports[`ResultSectionTitle renders 1`] = `
 <div
   className="result-section-title"
 >
-  <h2
+  <div
     className="screen-reader-only"
   >
     test title
      
     10
-  </h2>
+  </div>
   <span
     aria-hidden="true"
     className="title"

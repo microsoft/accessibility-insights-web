@@ -12,10 +12,9 @@ describe('CollapsibleContainer', () => {
     const getProps = (customProps?: Partial<CollapsibleContainerProps>): CollapsibleContainerProps => {
         const defaultProps: Partial<CollapsibleContainerProps> = {
             id: 'test-id',
-            accessibleHeadingContent: <div>this is the accessible heading content</div>,
             visibleHeadingContent: <div>this is the visible heading content</div>,
             collapsibleContent: <div> this is the collapsible content </div>,
-            buttonAriaLabel: 'button aria label',
+            titleHeadingLevel: 5,
         };
 
         return {
@@ -41,9 +40,9 @@ describe('CollapsibleContainer', () => {
         expect(wrapped.getElement()).toMatchSnapshot();
     });
 
-    it('renders, with heading level for the title container', () => {
+    it('renders, with button aria label', () => {
         const props = getProps({
-            titleHeadingLevel: 5,
+            buttonAriaLabel: 'test button aria label',
         });
 
         const wrapped = shallow(<CollapsibleContainer {...props} />);
