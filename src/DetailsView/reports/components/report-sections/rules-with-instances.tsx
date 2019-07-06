@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as React from 'react';
-
 import { NamedSFC } from '../../../../common/react/named-sfc';
 import { FixInstructionProcessor } from '../../../../injected/fix-instruction-processor';
 import { RuleResult } from '../../../../scanner/iruleresults';
@@ -9,10 +8,10 @@ import { InstanceOutcomeType } from '../instance-outcome-type';
 import { outcomeTypeSemantics } from '../outcome-type';
 import { CollapsibleContainer } from './collapsible-container';
 import { FullRuleDetailDeps } from './full-rule-detail';
-import { InstanceDetailsGroup } from './instance-details-group';
+import { InstanceDetailsGroup, InstanceDetailsGroupDeps } from './instance-details-group';
 import { MinimalRuleDetail } from './minimal-rule-detail';
 
-export type RulesWithInstancesDeps = FullRuleDetailDeps;
+export type RulesWithInstancesDeps = FullRuleDetailDeps & InstanceDetailsGroupDeps;
 
 export type RulesWithInstancesProps = {
     deps: RulesWithInstancesDeps;
@@ -36,9 +35,10 @@ export const RulesWithInstances = NamedSFC<RulesWithInstancesProps>(
                             visibleHeadingContent={<MinimalRuleDetail key={rule.id} rule={rule} outcomeType={outcomeType} />}
                             collapsibleContent={
                                 <InstanceDetailsGroup
-                                    fixInstructionProcessor={fixInstructionProcessor}
                                     key={`${rule.id}-rule-group`}
-                                    nodeResults={rule.nodes}
+                                    deps={deps}
+                                    rule={rule}
+                                    fixInstructionProcessor={fixInstructionProcessor}
                                 />
                             }
                             containerClassName="collapsible-rule-details-group"

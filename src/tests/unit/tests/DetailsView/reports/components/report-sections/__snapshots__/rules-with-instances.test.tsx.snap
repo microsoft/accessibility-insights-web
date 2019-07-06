@@ -8,6 +8,7 @@ exports[`RulesWithInstances renders 1`] = `
     buttonAriaLabel="test-rule 1 Passed undefined"
     collapsibleContent={
       <InstanceDetailsGroup
+        deps={Object {}}
         fixInstructionProcessor={
           proxy {
             "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
@@ -23,14 +24,17 @@ exports[`RulesWithInstances renders 1`] = `
             "splitFixInstruction": [Function],
           }
         }
-        nodeResults={
-          Array [
-            Object {
-              "failureSummary": "fix the error on html tag",
-              "html": "<html>",
-              "snippet": "<html>",
-            },
-          ]
+        rule={
+          Object {
+            "id": "test-rule",
+            "nodes": Array [
+              Object {
+                "failureSummary": "fix the error on html tag",
+                "html": "<html>",
+                "snippet": "<html>",
+              },
+            ],
+          }
         }
       />
     }

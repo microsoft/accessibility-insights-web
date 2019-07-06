@@ -3,12 +3,13 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import { Mock } from 'typemoq';
-
 import {
     InstanceDetailsGroup,
+    InstanceDetailsGroupDeps,
     InstanceDetailsGroupProps,
 } from '../../../../../../../DetailsView/reports/components/report-sections/instance-details-group';
 import { FixInstructionProcessor } from '../../../../../../../injected/fix-instruction-processor';
+import { RuleResult } from '../../../../../../../scanner/iruleresults';
 
 describe('InstanceDetailsGroup', () => {
     it('renders', () => {
@@ -26,9 +27,16 @@ describe('InstanceDetailsGroup', () => {
             } as AxeNodeResult,
         ];
 
+        const rule: RuleResult = {
+            nodes: nodes,
+        } as RuleResult;
+
+        const depsStub: InstanceDetailsGroupDeps = {} as InstanceDetailsGroupDeps;
+
         const props: InstanceDetailsGroupProps = {
+            deps: depsStub,
             fixInstructionProcessor: fixInstructionProcessorMock.object,
-            nodeResults: nodes,
+            rule,
         };
 
         const wrapper = shallow(<InstanceDetailsGroup {...props} />);
