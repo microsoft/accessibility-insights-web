@@ -2,12 +2,11 @@
 // Licensed under the MIT License.
 import { shallow } from 'enzyme';
 import * as React from 'react';
-
 import { allInstanceOutcomeTypes } from '../../../../../../../DetailsView/reports/components/instance-outcome-type';
 import {
     MinimalRuleHeader,
     MinimalRuleHeaderProps,
-} from '../../../../../../../DetailsView/reports/components/report-sections/minimal-rule-detail';
+} from '../../../../../../../DetailsView/reports/components/report-sections/minimal-rule-header';
 import { RuleResult } from '../../../../../../../scanner/iruleresults';
 
 describe('MinimalRuleDetail', () => {
