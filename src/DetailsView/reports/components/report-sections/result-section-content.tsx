@@ -25,6 +25,6 @@ export const ResultSectionContent = NamedSFC<ResultSectionContentProps>(
             return <NoFailedInstancesCongrats />;
         }
 
-        return <RulesWithInstances deps={deps} rules={rules} outcomeType={outcomeType} fixInstructionProcessor={fixInstructionProcessor} />;
+        return <RulesWithInstances rules={rules} outcomeType={outcomeType} fixInstructionProcessor={fixInstructionProcessor} />;
     },
 );
