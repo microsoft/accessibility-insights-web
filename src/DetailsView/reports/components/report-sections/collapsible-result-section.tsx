@@ -6,9 +6,9 @@ import { NamedSFC } from '../../../../common/react/named-sfc';
 import { CollapsibleContainer } from './collapsible-container';
 import { ResultSectionProps } from './result-section';
 import { ResultSectionTitle } from './result-section-title';
-import { RulesOnly, RulesDeps, RulesProps } from './rules-only';
+import { RulesOnly, RulesOnlyDeps, RulesOnlyProps } from './rules-only';
 
-export type CollapsibleResultSectionProps = RulesProps &
+export type CollapsibleResultSectionProps = RulesOnlyProps &
     ResultSectionProps & {
         containerId: string;
     };

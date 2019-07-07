@@ -2,11 +2,11 @@
 // Licensed under the MIT License.
 import { shallow } from 'enzyme';
 import * as React from 'react';
-import { RulesDeps, RulesOnly } from '../../../../../../../DetailsView/reports/components/report-sections/rules-only';
+import { RulesOnlyDeps, RulesOnly } from '../../../../../../../DetailsView/reports/components/report-sections/rules-only';
 import { RuleResult } from '../../../../../../../scanner/iruleresults';
 
 describe('RulesOnly', () => {
-    const depsStub = {} as RulesDeps;
+    const depsStub = {} as RulesOnlyDeps;
 
     it('renders', () => {
         const rules = [{ id: '1' } as RuleResult, { id: '2' } as RuleResult, { id: '3' } as RuleResult];
