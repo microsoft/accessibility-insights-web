@@ -5,8 +5,8 @@ import * as React from 'react';
 
 import { allInstanceOutcomeTypes } from '../../../../../../../DetailsView/reports/components/instance-outcome-type';
 import {
-    MinimalRuleDetail,
-    MinimalRuleDetailProps,
+    MinimalRuleHeader,
+    MinimalRuleHeaderProps,
 } from '../../../../../../../DetailsView/reports/components/report-sections/minimal-rule-detail';
 import { RuleResult } from '../../../../../../../scanner/iruleresults';
 
@@ -29,12 +29,12 @@ describe('MinimalRuleDetail', () => {
     } as RuleResult;
 
     it.each(allInstanceOutcomeTypes)('renders, outcomeType = %s', outcomeType => {
-        const props: MinimalRuleDetailProps = {
+        const props: MinimalRuleHeaderProps = {
             rule,
             outcomeType,
         };
 
-        const wrapped = shallow(<MinimalRuleDetail {...props} />);
+        const wrapped = shallow(<MinimalRuleHeader {...props} />);
 
         expect(wrapped.getElement()).toMatchSnapshot();
     });

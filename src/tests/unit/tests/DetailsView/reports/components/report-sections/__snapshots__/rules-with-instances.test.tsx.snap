@@ -42,7 +42,7 @@ exports[`RulesWithInstances renders 1`] = `
     id="test-rule"
     titleHeadingLevel={3}
     visibleHeadingContent={
-      <MinimalRuleDetail
+      <MinimalRuleHeader
         outcomeType="pass"
         rule={
           Object {
