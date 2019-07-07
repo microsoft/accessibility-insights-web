@@ -10,6 +10,7 @@ import { CollapsibleContainer } from './collapsible-container';
 import { FullRuleDetailDeps } from './full-rule-detail';
 import { InstanceDetailsGroup, InstanceDetailsGroupDeps } from './instance-details-group';
 import { MinimalRuleDetail } from './minimal-rule-detail';
+import { RuleContent } from './rule-content';
 
 export type RulesWithInstancesDeps = FullRuleDetailDeps & InstanceDetailsGroupDeps;
 
@@ -34,7 +35,7 @@ export const RulesWithInstances = NamedSFC<RulesWithInstancesProps>(
                             id={rule.id}
                             visibleHeadingContent={<MinimalRuleDetail key={rule.id} rule={rule} outcomeType={outcomeType} />}
                             collapsibleContent={
-                                <InstanceDetailsGroup
+                                <RuleContent
                                     key={`${rule.id}-rule-group`}
                                     deps={deps}
                                     rule={rule}

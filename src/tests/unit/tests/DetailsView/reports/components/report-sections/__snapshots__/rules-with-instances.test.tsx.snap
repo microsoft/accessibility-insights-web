@@ -7,7 +7,7 @@ exports[`RulesWithInstances renders 1`] = `
   <CollapsibleContainer
     buttonAriaLabel="test-rule 1 Passed undefined"
     collapsibleContent={
-      <InstanceDetailsGroup
+      <RuleContent
         deps={Object {}}
         fixInstructionProcessor={
           proxy {
