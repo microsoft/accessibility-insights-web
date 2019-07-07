@@ -9,10 +9,7 @@ import { InstanceOutcomeType } from '../instance-outcome-type';
 import { NoFailedInstancesCongrats } from './no-failed-instances-congrats';
 import { RulesWithInstances, RulesWithInstancesDeps } from './rules-with-instances';
 
-export type ResultSectionContentDeps = RulesWithInstancesDeps;
-
 export type ResultSectionContentProps = {
-    deps: ResultSectionContentDeps;
     rules: RuleResult[];
     outcomeType: InstanceOutcomeType;
     fixInstructionProcessor?: FixInstructionProcessor;
@@ -20,7 +17,7 @@ export type ResultSectionContentProps = {
 
 export const ResultSectionContent = NamedSFC<ResultSectionContentProps>(
     'ResultSectionContent',
-    ({ rules, outcomeType, deps, fixInstructionProcessor }) => {
+    ({ rules, outcomeType, fixInstructionProcessor }) => {
         if (rules.length === 0) {
             return <NoFailedInstancesCongrats />;
         }
