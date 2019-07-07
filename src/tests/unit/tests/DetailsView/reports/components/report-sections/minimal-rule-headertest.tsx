@@ -9,7 +9,7 @@ import {
 } from '../../../../../../../DetailsView/reports/components/report-sections/minimal-rule-header';
 import { RuleResult } from '../../../../../../../scanner/iruleresults';
 
-describe('MinimalRuleDetail', () => {
+describe('MinimalRuleHeader', () => {
     const rule = {
         helpUrl: 'url://help.url',
         id: 'rule id',
