@@ -6,11 +6,11 @@ import { NamedSFC } from '../../../../common/react/named-sfc';
 import { SectionProps } from './report-section-factory';
 import { ResultSection } from './result-section';
 
-export type FailedInstancesSectionProps = Pick<SectionProps, 'scanResult' | 'getGuidanceTagsFromGuidanceLinks' | 'fixInstructionProcessor'>;
+export type FailedInstancesSectionProps = Pick<SectionProps, 'scanResult' | 'fixInstructionProcessor'>;
 
 export const FailedInstancesSection = NamedSFC<FailedInstancesSectionProps>(
     'FailedInstancesSection',
-    ({ scanResult, getGuidanceTagsFromGuidanceLinks, fixInstructionProcessor }) => {
+    ({ scanResult, fixInstructionProcessor }) => {
         const rules = scanResult.violations;
         const count = rules.reduce((total, rule) => {
             return total + rule.nodes.length;
@@ -19,7 +19,6 @@ export const FailedInstancesSection = NamedSFC<FailedInstancesSectionProps>(
         return (
             <ResultSection
                 fixInstructionProcessor={fixInstructionProcessor}
-                deps={{ getGuidanceTagsFromGuidanceLinks }}
                 title="Failed instances"
                 rules={rules}
                 containerClassName="failed-instances-section result-section"

@@ -12,7 +12,6 @@ export type ResultSectionDeps = RulesWithInstancesDeps;
 export type ResultSectionProps = ResultSectionContentProps &
     ResultSectionTitleProps & {
         containerClassName: string;
-        deps: ResultSectionDeps;
     };
 
 export const ResultSection = NamedSFC<ResultSectionProps>('ResultSection', props => {
