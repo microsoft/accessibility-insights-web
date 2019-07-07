@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`DetailsSection rendering of comment row is dependent on description value renders and matches saved snapshot for description value:  1`] = `
+exports[`DetailsSection renders with description:  1`] = `
 <div
   className="scan-details-section"
 >
@@ -26,6 +26,7 @@ exports[`DetailsSection rendering of comment row is dependent on description val
         className="text"
       >
         <NewTabLink
+          aria-label="page-title"
           href="https://page-url/"
         >
           https://page-url/
@@ -54,7 +55,7 @@ exports[`DetailsSection rendering of comment row is dependent on description val
 </div>
 `;
 
-exports[`DetailsSection rendering of comment row is dependent on description value renders and matches saved snapshot for description value: description-text 1`] = `
+exports[`DetailsSection renders with description: description-text 1`] = `
 <div
   className="scan-details-section"
 >
@@ -80,6 +81,7 @@ exports[`DetailsSection rendering of comment row is dependent on description val
         className="text"
       >
         <NewTabLink
+          aria-label="page-title"
           href="https://page-url/"
         >
           https://page-url/
@@ -126,7 +128,7 @@ exports[`DetailsSection rendering of comment row is dependent on description val
 </div>
 `;
 
-exports[`DetailsSection rendering of comment row is dependent on description value renders and matches saved snapshot for description value: null 1`] = `
+exports[`DetailsSection renders with description: null 1`] = `
 <div
   className="scan-details-section"
 >
@@ -152,6 +154,7 @@ exports[`DetailsSection rendering of comment row is dependent on description val
         className="text"
       >
         <NewTabLink
+          aria-label="page-title"
           href="https://page-url/"
         >
           https://page-url/
@@ -180,7 +183,7 @@ exports[`DetailsSection rendering of comment row is dependent on description val
 </div>
 `;
 
-exports[`DetailsSection rendering of comment row is dependent on description value renders and matches saved snapshot for description value: undefined 1`] = `
+exports[`DetailsSection renders with description: undefined 1`] = `
 <div
   className="scan-details-section"
 >
@@ -206,6 +209,7 @@ exports[`DetailsSection rendering of comment row is dependent on description val
         className="text"
       >
         <NewTabLink
+          aria-label="page-title"
           href="https://page-url/"
         >
           https://page-url/
