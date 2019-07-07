@@ -1,8 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as React from 'react';
-import { GuidanceLinks } from '../../../../common/components/guidance-links';
-import { NewTabLink } from '../../../../common/components/new-tab-link';
 import { GetGuidanceTagsFromGuidanceLinks } from '../../../../common/get-guidance-tags-from-guidance-links';
 import { NamedSFC } from '../../../../common/react/named-sfc';
 import { FixInstructionProcessor } from '../../../../injected/fix-instruction-processor';
@@ -23,32 +21,13 @@ export const InstanceDetailsGroup = NamedSFC<InstanceDetailsGroupProps>('Instanc
     const { fixInstructionProcessor, rule } = props;
     const { nodes } = rule;
 
-    const renderRuleLink = () => {
-        const ruleId = rule.id;
-        const ruleUrl = rule.helpUrl;
-        return (
-            <span className="rule-details-id">
-                <NewTabLink href={ruleUrl}>More information about {ruleId}</NewTabLink>
-            </span>
-        );
-    };
-
-    const renderGuidanceLinks = () => <GuidanceLinks links={rule.guidanceLinks} />;
-
     return (
-        <>
-            <div className="rule-more-resources">
-                <div className="more-resources-title">Resources for this rule</div>
-                {renderRuleLink()}
-                {renderGuidanceLinks()}
-            </div>
-            <ul className="instance-details-list" aria-label="failed instances with path, snippet and how to fix information">
-                {nodes.map((node, index) => (
-                    <li key={`instance-details-${index}`}>
-                        <InstanceDetails {...{ index, ...node, fixInstructionProcessor: fixInstructionProcessor }} />
-                    </li>
-                ))}
-            </ul>
-        </>
+        <ul className="instance-details-list" aria-label="failed instances with path, snippet and how to fix information">
+            {nodes.map((node, index) => (
+                <li key={`instance-details-${index}`}>
+                    <InstanceDetails {...{ index, ...node, fixInstructionProcessor: fixInstructionProcessor }} />
+                </li>
+            ))}
+        </ul>
     );
 });
