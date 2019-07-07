@@ -4,6 +4,7 @@ exports[`ResultSectionContent renders, no rules 1`] = `<NoFailedInstancesCongrat
 
 exports[`ResultSectionContent renders, with some rules 1`] = `
 <RulesWithInstances
+  deps={Object {}}
   outcomeType="pass"
   rules={
     Array [

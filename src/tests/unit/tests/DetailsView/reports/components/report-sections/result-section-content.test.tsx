@@ -4,6 +4,7 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 import {
     ResultSectionContent,
+    ResultSectionContentDeps,
     ResultSectionContentProps,
 } from '../../../../../../../DetailsView/reports/components/report-sections/result-section-content';
 import { RuleResult } from '../../../../../../../scanner/iruleresults';
@@ -11,9 +12,11 @@ import { RuleResult } from '../../../../../../../scanner/iruleresults';
 describe('ResultSectionContent', () => {
     const emptyRules: RuleResult[] = [];
     const someRules: RuleResult[] = [{} as RuleResult, {} as RuleResult];
+    const depsStub = {} as ResultSectionContentDeps;
 
     it('renders, with some rules', () => {
         const props: ResultSectionContentProps = {
+            deps: depsStub,
             rules: someRules,
             outcomeType: 'pass',
         };
@@ -25,6 +28,7 @@ describe('ResultSectionContent', () => {
 
     it('renders, no rules', () => {
         const props: ResultSectionContentProps = {
+            deps: depsStub,
             rules: emptyRules,
             outcomeType: 'pass',
             showCongratsIfNotInstances: true,

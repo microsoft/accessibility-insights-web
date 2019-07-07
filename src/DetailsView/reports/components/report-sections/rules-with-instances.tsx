@@ -13,6 +13,7 @@ import { RuleContent, RuleContentDeps } from './rule-content';
 export type RulesWithInstancesDeps = RuleContentDeps;
 
 export type RulesWithInstancesProps = {
+    deps: RulesWithInstancesDeps;
     fixInstructionProcessor: FixInstructionProcessor;
     rules: RuleResult[];
     outcomeType: InstanceOutcomeType;
@@ -20,7 +21,7 @@ export type RulesWithInstancesProps = {
 
 export const RulesWithInstances = NamedSFC<RulesWithInstancesProps>(
     'RulesWithInstances',
-    ({ rules, outcomeType, fixInstructionProcessor }) => {
+    ({ rules, outcomeType, fixInstructionProcessor, deps }) => {
         return (
             <div className="rule-details-group">
                 {rules.map((rule, idx) => {

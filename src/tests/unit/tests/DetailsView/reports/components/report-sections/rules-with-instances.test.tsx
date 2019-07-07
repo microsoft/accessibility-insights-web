@@ -3,7 +3,10 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import { IMock, Mock } from 'typemoq';
-import { RulesWithInstances } from '../../../../../../../DetailsView/reports/components/report-sections/rules-with-instances';
+import {
+    RulesWithInstances,
+    RulesWithInstancesDeps,
+} from '../../../../../../../DetailsView/reports/components/report-sections/rules-with-instances';
 import { FixInstructionProcessor } from '../../../../../../../injected/fix-instruction-processor';
 import { RuleResult } from '../../../../../../../scanner/iruleresults';
 
@@ -28,8 +31,15 @@ describe('RulesWithInstances', () => {
             } as RuleResult,
         ];
 
+        const depsStub = {} as RulesWithInstancesDeps;
+
         const wrapped = shallow(
-            <RulesWithInstances fixInstructionProcessor={fixInstructionProcessorMock.object} outcomeType={'pass'} rules={rules} />,
+            <RulesWithInstances
+                deps={depsStub}
+                fixInstructionProcessor={fixInstructionProcessorMock.object}
+                outcomeType={'pass'}
+                rules={rules}
+            />,
         );
 
         expect(wrapped.getElement()).toMatchSnapshot();
