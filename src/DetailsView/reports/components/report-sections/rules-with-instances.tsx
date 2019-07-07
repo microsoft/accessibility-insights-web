@@ -8,11 +8,10 @@ import { InstanceOutcomeType } from '../instance-outcome-type';
 import { outcomeTypeSemantics } from '../outcome-type';
 import { CollapsibleContainer } from './collapsible-container';
 import { FullRuleDetailDeps } from './full-rule-detail';
-import { InstanceDetailsGroup, InstanceDetailsGroupDeps } from './instance-details-group';
 import { MinimalRuleDetail } from './minimal-rule-detail';
-import { RuleContent } from './rule-content';
+import { RuleContent, RuleContentDeps } from './rule-content';
 
-export type RulesWithInstancesDeps = FullRuleDetailDeps & InstanceDetailsGroupDeps;
+export type RulesWithInstancesDeps = FullRuleDetailDeps & RuleContentDeps;
 
 export type RulesWithInstancesProps = {
     deps: RulesWithInstancesDeps;
