@@ -5,14 +5,14 @@ import * as React from 'react';
 
 import { allInstanceOutcomeTypes } from '../../../../../../../DetailsView/reports/components/instance-outcome-type';
 import {
-    FullRuleDetail,
-    FullRuleDetailDeps,
-    FullRuleDetailProps,
+    FullRuleHeader,
+    FullRuleHeaderDeps,
+    FullRuleHeaderProps,
 } from '../../../../../../../DetailsView/reports/components/report-sections/full-rule-detail';
 import { RuleResult } from '../../../../../../../scanner/iruleresults';
 
-describe('FullRuleDetail', () => {
-    const depsStub = {} as FullRuleDetailDeps;
+describe('FullRuleHeader', () => {
+    const depsStub = {} as FullRuleHeaderDeps;
     const rule = {
         helpUrl: 'url://help.url',
         id: 'rule id',
@@ -31,13 +31,13 @@ describe('FullRuleDetail', () => {
     } as RuleResult;
 
     it.each(allInstanceOutcomeTypes)('renders, outcomeType = %s', outcomeType => {
-        const props: FullRuleDetailProps = {
+        const props: FullRuleHeaderProps = {
             deps: depsStub,
             rule: rule,
             outcomeType,
         };
 
-        const wrapped = shallow(<FullRuleDetail {...props} />);
+        const wrapped = shallow(<FullRuleHeader {...props} />);
 
         expect(wrapped.getElement()).toMatchSnapshot();
     });
