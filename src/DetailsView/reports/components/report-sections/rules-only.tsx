@@ -1,11 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as React from 'react';
-
 import { NamedSFC } from '../../../../common/react/named-sfc';
 import { RuleResult } from '../../../../scanner/iruleresults';
 import { InstanceOutcomeType } from '../instance-outcome-type';
-import { FullRuleHeader, FullRuleHeaderDeps } from './full-rule-detail';
+import { FullRuleHeader, FullRuleHeaderDeps } from './full-rule-header';
 
 export type RulesDeps = FullRuleHeaderDeps;
 
