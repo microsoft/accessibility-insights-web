@@ -15,7 +15,5 @@ RUN yarn install --frozen-lockfile
 
 COPY . /app
 
-EXPOSE 3000
-
 # Start script on Xvfb
 CMD xvfb-run --server-args="-screen 0 1024x768x24" yarn test:e2e
