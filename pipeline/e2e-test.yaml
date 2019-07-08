@@ -6,4 +6,4 @@ steps:
       displayName: build:dev
 
     - script: yarn test:e2e -- --ci
-      displayName: run e2e tests on windows
+      displayName: run e2e tests

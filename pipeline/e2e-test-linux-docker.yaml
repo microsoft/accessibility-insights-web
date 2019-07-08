@@ -3,15 +3,15 @@
 
 steps:
     - script: docker build -t app .
-      displayName: setup docker on linux
+      displayName: setup docker
 
     - script: docker run --network=host -i app
-      displayName: run e2e tests on linux
+      displayName: run e2e tests on docker
 
     - bash: |
           export CONTAINERID=$(docker ps -alq)
           echo "##vso[task.setvariable variable=CONTAINER_ID]$CONTAINERID"
-      displayName: get container id for docker on Linux
+      displayName: get container id for docker
 
     - script: docker cp $(CONTAINER_ID):/app/test-results/ .
       displayName: copy test results from docker to base agent
@@ -21,7 +21,7 @@ steps:
           testResultsFiles: test-results/e2e/junit-e2e.xml
           testRunTitle: accessibility-insights-web e2e
       condition: always()
-      displayName: publish e2e test results
+      displayName: publish e2e test results from base agent
 
     - task: PublishBuildArtifacts@1
       inputs:
@@ -29,4 +29,4 @@ steps:
           artifactName: 'e2e-failure-screenshots'
       condition: always()
       continueOnError: true
-      displayName: publish e2e-failure-screenshots
+      displayName: publish e2e-failure-screenshots from base agent
