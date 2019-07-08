@@ -73,6 +73,15 @@ jobs:
             continueOnError: true
             displayName: publish e2e-failure-screenshots
 
+    # e2e run on linux - using docker.
+    - job: 'e2e_tests_linux'
+
+      pool:
+          vmImage: 'ubuntu-16.04'
+
+      steps:
+          - template: pipeline/e2e-test-linux-docker.yaml
+
     - job: 'build_electron_app'
 
       pool:
@@ -100,11 +109,3 @@ jobs:
                 pathtoPublish: '$(System.DefaultWorkingDirectory)/drop'
                 artifactName: 'drop'
             displayName: publish drop
-
-    - job: 'e2e_tests_linux'
-
-      pool:
-          vmImage: 'ubuntu-16.04'
-
-      steps:
-          - template: pipeline/e2e-test-linux-docker.yaml
