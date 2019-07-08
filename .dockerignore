@@ -5,6 +5,5 @@
 .git/
 dist/
 drop/
-!drop/dev/
 extension/
 node_modules/

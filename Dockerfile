@@ -12,6 +12,7 @@ COPY package.json /app
 COPY yarn.lock /app
 
 RUN yarn install --frozen-lockfile
+RUN yarn build:dev
 
 COPY . /app
 
