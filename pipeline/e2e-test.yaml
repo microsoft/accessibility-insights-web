@@ -21,8 +21,8 @@ steps:
 
     - script: docker cp $(CONTAINER_ID):/app/test-results/ .
       condition: eq( variables['Agent.OS'], 'Linux' )
-      displayName: copy test results
+      displayName: copy test results from docker to base agent
 
     - script: yarn test:e2e -- --ci
       condition: eq( variables['Agent.OS'], 'Windows_NT' )
-      displayName: run e2e tests
+      displayName: run e2e tests on windows
