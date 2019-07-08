@@ -10,6 +10,7 @@ import {
     GeneratedAssessmentInstance,
     UserCapturedInstance,
 } from '../../common/types/store-data/assessment-result-data';
+import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { VisualizationType } from '../../common/types/visualization-type';
 import { DictionaryStringTo } from '../../types/common-types';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
@@ -94,11 +95,12 @@ export class AssessmentInstanceTableHandler {
         instances: UserCapturedInstance[],
         test: VisualizationType,
         step: string,
+        featureFlagStoreData: FeatureFlagStoreData,
     ): CapturedInstanceRowData[] {
         return instances.map((instance: UserCapturedInstance) => {
             return {
                 instance: instance,
-                instanceActionButtons: this.renderInstanceActionButtons(instance, test, step),
+                instanceActionButtons: this.renderInstanceActionButtons(instance, test, step, featureFlagStoreData),
             };
         });
     }
@@ -147,7 +149,12 @@ export class AssessmentInstanceTableHandler {
         );
     };
 
-    private renderInstanceActionButtons = (instance: UserCapturedInstance, test: VisualizationType, step: string): JSX.Element => {
+    private renderInstanceActionButtons = (
+        instance: UserCapturedInstance,
+        test: VisualizationType,
+        step: string,
+        featureFlagStoreData: FeatureFlagStoreData,
+    ): JSX.Element => {
         return (
             <AssessmentInstanceEditAndRemoveControl
                 test={test}
@@ -157,6 +164,7 @@ export class AssessmentInstanceTableHandler {
                 onRemove={this.actionMessageCreator.removeFailureInstance}
                 onEdit={this.actionMessageCreator.editFailureInstance}
                 assessmentsProvider={this.assessmentsProvider}
+                featureFlagStoreData={featureFlagStoreData}
             />
         );
     };

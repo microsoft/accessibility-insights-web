@@ -7,8 +7,13 @@ import { TextField } from 'office-ui-fabric-react/lib/TextField';
 import * as React from 'react';
 
 import { AssessmentsProvider } from '../../assessments/types/assessments-provider';
+import { BaseStore } from '../../common/base-store';
+import { FlaggedComponent } from '../../common/components/flagged-component';
+import { FeatureFlags } from '../../common/feature-flags';
+import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { VisualizationType } from '../../common/types/visualization-type';
 import { ActionAndCancelButtonsComponent } from './action-and-cancel-buttons-component';
+import { FailureInstancePanelDetails } from './failure-instance-panel-details';
 import { GenericPanel, GenericPanelProps } from './generic-panel';
 
 export interface FailureInstancePanelControlProps {
@@ -20,11 +25,14 @@ export interface FailureInstancePanelControlProps {
     instanceId?: string;
     originalText?: string;
     assessmentsProvider: AssessmentsProvider;
+    featureFlagStoreData: BaseStore<FeatureFlagStoreData>;
 }
 
 export interface FailureInstancePanelControlState {
     isPanelOpen: boolean;
     failureDescription: string;
+    path: string;
+    snippet: string;
 }
 
 export enum CapturedInstanceActionType {
@@ -40,6 +48,8 @@ export class FailureInstancePanelControl extends React.Component<FailureInstance
         this.state = {
             isPanelOpen: false,
             failureDescription: this.props.originalText || '',
+            path: '',
+            snippet: '',
         };
     }
 
@@ -91,9 +101,14 @@ export class FailureInstancePanelControl extends React.Component<FailureInstance
         return (
             <GenericPanel {...panelProps}>
                 {testStepConfig.addFailureInstruction}
+                <FlaggedComponent
+                    enableJSXElement={this.getFailureInstancePanelDetails()}
+                    featureFlag={FeatureFlags[FeatureFlags.manualInstanceDetails]}
+                    featureFlagStoreData={this.props.featureFlagStoreData}
+                />
                 <TextField
                     className="observed-failure-textfield"
-                    label="Observed failure"
+                    label="Comments"
                     multiline={true}
                     rows={8}
                     value={this.state.failureDescription}
@@ -115,8 +130,28 @@ export class FailureInstancePanelControl extends React.Component<FailureInstance
         );
     }
 
+    private getFailureInstancePanelDetails = (): JSX.Element => {
+        return (
+            <FailureInstancePanelDetails
+                path={this.state.path}
+                snippet={this.state.snippet}
+                onSelectorChange={this.onSelectorChange}
+                onValidateSelector={this.onValidateSelector}
+            />
+        );
+    };
+
     protected onFailureDescriptionChange = (event, value: string): void => {
         this.setState({ failureDescription: value });
+    };
+
+    private onSelectorChange = (event, value: string): void => {
+        this.setState({ path: value });
+    };
+
+    private onValidateSelector = (event): void => {
+        const currSelector = this.state.path;
+        this.setState({ snippet: 'snippet for ' + currSelector });
     };
 
     protected onAddFailureInstance = (): void => {
