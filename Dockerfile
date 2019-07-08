@@ -12,9 +12,10 @@ COPY package.json /app
 COPY yarn.lock /app
 
 RUN yarn install --frozen-lockfile
-RUN yarn build:dev
 
 COPY . /app
+
+RUN yarn build:dev
 
 # Start script on Xvfb
 CMD xvfb-run --server-args="-screen 0 1024x768x24" yarn test:e2e
