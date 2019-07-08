@@ -145,11 +145,11 @@ export class FailureInstancePanelControl extends React.Component<FailureInstance
         this.setState({ failureDescription: value });
     };
 
-    protected onSelectorChange = (event, value: string): void => {
+    private onSelectorChange = (event, value: string): void => {
         this.setState({ path: value });
     };
 
-    protected onValidateSelector = (event): void => {
+    private onValidateSelector = (event): void => {
         const currSelector = this.state.path;
         this.setState({ snippet: 'snippet for ' + currSelector });
     };
