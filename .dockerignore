@@ -1,5 +1,10 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
 
-# Dependency directories
+# ignoring files that we dont need for e2e tests
+.git/
+dist/
+drop/
+!drop/dev/
+extension/
 node_modules/
