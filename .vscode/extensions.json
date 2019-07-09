@@ -3,6 +3,7 @@
         "esbenp.prettier-vscode",
         "ms-vscode.vscode-typescript-tslint-plugin",
         "msjsdiag.debugger-for-chrome",
-        "psioniq.psi-header"
+        "psioniq.psi-header",
+        "jebbs.plantuml"
     ]
 }
