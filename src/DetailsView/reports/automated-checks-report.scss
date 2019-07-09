@@ -84,6 +84,13 @@ $outcome-not-applicable-summary-color: $neutral-outcome;
 
 .result-section {
     padding-bottom: 58px;
+
+    .title-container[aria-level='2'] {
+        .collapsible-control::before {
+            position: relative;
+            bottom: 2px;
+        }
+    }
 }
 
 .rule-details-group {
