@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import * as Puppeteer from 'puppeteer';
 
+import { formatHtmlForSnapshot } from './element-snapshot-formatter';
 import { forceTestFailure } from './force-test-failure';
 import { takeScreenshot } from './generate-screenshot';
 import { DEFAULT_NEW_PAGE_WAIT_TIMEOUT_MS, DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS } from './timeouts';
@@ -79,7 +80,7 @@ export class Page {
         return this.waitForSelector(`#${id}`);
     }
 
-    public async waitForShadowRootOfSelector(selector: string): Promise<Puppeteer.ElementHandle<Element>> {
+    public async getShadowRootOfSelector(selector: string): Promise<Puppeteer.ElementHandle<Element>> {
         return await this.screenshotOnError(async () =>
             (await this.underlyingPage.evaluateHandle(
                 selectorInEval => document.querySelector(selectorInEval).shadowRoot,
@@ -125,10 +126,9 @@ export class Page {
         await this.underlyingPage.keyboard.press(key);
     }
 
-    public async getPrintableHtmlElement(selector: string): Promise<Node> {
+    public async getOuterHTMLOfSelector(selector: string): Promise<string> {
         return await this.screenshotOnError(async () => {
-            const html = await this.underlyingPage.$eval(selector, el => el.outerHTML);
-            return generateFormattedHtml(html);
+            return await this.underlyingPage.$eval(selector, el => el.outerHTML);
         });
     }
 
@@ -140,18 +140,4 @@ export class Page {
             throw error;
         }
     }
-}
-
-export function generateFormattedHtml(innerHTMLString: string): Node {
-    const template = document.createElement('template');
-
-    // office fabric generates a random class & id name which changes every time.
-    // We remove the random number before snapshot comparison to avoid flakiness
-    innerHTMLString = innerHTMLString.replace(/(class|id)="[\w\s-]+[\d]+"/g, (subString, args) => {
-        return subString.replace(/[\d]+/g, '000');
-    });
-
-    template.innerHTML = innerHTMLString.trim();
-
-    return template.content.cloneNode(true);
 }

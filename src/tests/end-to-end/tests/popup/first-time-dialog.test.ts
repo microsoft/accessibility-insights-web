@@ -3,6 +3,7 @@
 import { Browser } from '../../common/browser';
 import { launchBrowser } from '../../common/browser-factory';
 import { popupPageElementIdentifiers } from '../../common/element-identifiers/popup-page-element-identifiers';
+import { formatPageElementForSnapshot } from '../../common/element-snapshot-formatter';
 import { Page } from '../../common/page';
 import { scanForAccessibilityIssues } from '../../common/scan-for-accessibility-issues';
 
@@ -50,7 +51,7 @@ describe('First time Dialog', () => {
         const popupPage = await newPopupPage();
         await popupPage.waitForSelector(popupPageElementIdentifiers.telemetryDialog);
 
-        const element = await popupPage.getPrintableHtmlElement(popupPageElementIdentifiers.telemetryDialog);
+        const element = await formatPageElementForSnapshot(popupPage, popupPageElementIdentifiers.telemetryDialog);
         expect(element).toMatchSnapshot();
     });
 

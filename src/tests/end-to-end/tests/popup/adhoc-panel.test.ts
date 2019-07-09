@@ -4,8 +4,9 @@ import { targetPage } from '../../../../DetailsView/reports/components/report-se
 import { Browser, TargetPageInfo } from '../../common/browser';
 import { launchBrowser } from '../../common/browser-factory';
 import { popupPageElementIdentifiers } from '../../common/element-identifiers/popup-page-element-identifiers';
+import { formatChildElementForSnapshot } from '../../common/element-snapshot-formatter';
 import { enableHighContrast } from '../../common/enable-high-contrast';
-import { generateFormattedHtml, Page } from '../../common/page';
+import { Page } from '../../common/page';
 import { scanForAccessibilityIssues } from '../../common/scan-for-accessibility-issues';
 import { DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS } from '../../common/timeouts';
 
@@ -67,19 +68,20 @@ describe('Ad hoc tools', () => {
         expect(results).toMatchSnapshot();
     });
 
-    describe('Automated checks toggle button', () => {
-        it.only('should toggle visualizations on a target page containing errors', async () => {
+    it.each(['Automated checks', 'Landmarks', 'Headings', 'Color'])(
+        'should display the pinned target page visualizations when enabling the "%s" toggle',
+        async (toggleAriaLabel: string) => {
             await gotoAdhocPanel();
 
-            await enableToggleLabelled('Automated checks', 5000);
+            await enableToggleByAriaLabel(toggleAriaLabel);
 
-            const injectedShadowRoot = await targetPageInfo.page.waitForShadowRootOfSelector('#insights-shadow-host');
-            const injectedShadowContainerHtml = await injectedShadowRoot.$eval('#insights-shadow-container', el => el.outerHTML);
-            expect(generateFormattedHtml(injectedShadowContainerHtml)).toMatchSnapshot();
-        });
-    });
+            const injectedShadowRoot = await targetPageInfo.page.getShadowRootOfSelector('#insights-shadow-host');
+            const shadowRootContents = await formatChildElementForSnapshot(injectedShadowRoot, '#insights-shadow-container');
+            expect(shadowRootContents).toMatchSnapshot();
+        },
+    );
 
-    async function enableToggleLabelled(ariaLabel: string, toggleOperationTimeoutMs: number): Promise<void> {
+    async function enableToggleByAriaLabel(ariaLabel: string): Promise<void> {
         const toggleSelector = `button[aria-label="${ariaLabel}"]`;
         const enabledToggleSelector = `${toggleSelector}[aria-checked=true]`;
         const disabledToggleSelector = `${toggleSelector}[aria-checked=false]`;
@@ -89,8 +91,10 @@ describe('Ad hoc tools', () => {
         // The toggles will go through a state where they are removed and replaced with a spinner, then re-added to the page
         // We intentionally omit looking for the loading spinner because it can be fast enough to not be seen by Puppeteer
 
+        const EXTRA_TOGGLE_OPERATION_TIMEOUT_MS = 5000;
+
         await popupPage.waitForSelector(enabledToggleSelector, {
-            timeout: DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS + toggleOperationTimeoutMs,
+            timeout: DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS + EXTRA_TOGGLE_OPERATION_TIMEOUT_MS,
         });
     }
 

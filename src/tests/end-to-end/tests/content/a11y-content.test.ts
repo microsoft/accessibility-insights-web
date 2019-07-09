@@ -4,6 +4,7 @@ import { contentPages } from '../../../../content';
 import { Browser } from '../../common/browser';
 import { launchBrowser } from '../../common/browser-factory';
 import { GuidaceContentSelectors } from '../../common/element-identifiers/common-selectors';
+import { formatPageElementForSnapshot } from '../../common/element-snapshot-formatter';
 import { enableHighContrast } from '../../common/enable-high-contrast';
 import { scanForAccessibilityIssues } from '../../common/scan-for-accessibility-issues';
 
@@ -31,8 +32,8 @@ describe('A11Y for content pages', () => {
 
             expect(results).toHaveLength(0);
 
-            const contentHtml = await content.getPrintableHtmlElement(GuidaceContentSelectors.mainContentContainer);
-            expect(contentHtml).toMatchSnapshot();
+            const mainContentContainer = await formatPageElementForSnapshot(content, GuidaceContentSelectors.mainContentContainer);
+            expect(mainContentContainer).toMatchSnapshot();
 
             await content.close();
         });
@@ -63,8 +64,8 @@ describe('A11Y for content pages', () => {
 
             expect(results).toHaveLength(0);
 
-            const contentHtml = await content.getPrintableHtmlElement(GuidaceContentSelectors.mainContentContainer);
-            expect(contentHtml).toMatchSnapshot();
+            const mainContentContainer = await formatPageElementForSnapshot(content, GuidaceContentSelectors.mainContentContainer);
+            expect(mainContentContainer).toMatchSnapshot();
 
             await content.close();
         });

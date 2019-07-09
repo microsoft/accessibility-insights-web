@@ -4,6 +4,7 @@ import { Browser, TargetPageInfo } from '../../common/browser';
 import { launchBrowser } from '../../common/browser-factory';
 import { CommonSelectors } from '../../common/element-identifiers/common-selectors';
 import { popupPageElementIdentifiers } from '../../common/element-identifiers/popup-page-element-identifiers';
+import { formatPageElementForSnapshot } from '../../common/element-snapshot-formatter';
 import { enableHighContrast } from '../../common/enable-high-contrast';
 import { Page } from '../../common/page';
 import { scanForAccessibilityIssues } from '../../common/scan-for-accessibility-issues';
@@ -29,7 +30,7 @@ describe('Launch Pad', () => {
         });
 
         it('content should match snapshot', async () => {
-            const element = await popupPage.getPrintableHtmlElement(popupPageElementIdentifiers.launchPad);
+            const element = await formatPageElementForSnapshot(popupPage, popupPageElementIdentifiers.launchPad);
             expect(element).toMatchSnapshot();
         });
 

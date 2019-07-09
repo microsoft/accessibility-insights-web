@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Ad hoc tools Automated checks toggle button should toggle visualizations on a target page containing errors 1`] = `
+exports[`Ad hoc tools should display the pinned target page visualizations when enabling the "Automated checks" toggle 1`] = `
 <DocumentFragment>
   <div
     id="insights-shadow-container"
@@ -55,6 +55,94 @@ exports[`Ad hoc tools Automated checks toggle button should toggle visualization
         </div>
       </div>
     </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Ad hoc tools should display the pinned target page visualizations when enabling the "Color" toggle 1`] = `
+<DocumentFragment>
+  <div
+    id="insights-shadow-container"
+  >
+    <link
+      href="chrome-extension://akiplfjoiekiceeppgmkgfggdekaofga/injected/styles/default/injected.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="chrome-extension://akiplfjoiekiceeppgmkgfggdekaofga/bundle/injected.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Ad hoc tools should display the pinned target page visualizations when enabling the "Headings" toggle 1`] = `
+<DocumentFragment>
+  <div
+    id="insights-shadow-container"
+  >
+    <link
+      href="chrome-extension://akiplfjoiekiceeppgmkgfggdekaofga/injected/styles/default/injected.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="chrome-extension://akiplfjoiekiceeppgmkgfggdekaofga/bundle/injected.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <div
+      class="insights-container insights-highlight-container insights-heading"
+    >
+      <div
+        class="insights-highlight-box"
+        style="outline-style: solid; outline-color: rgb(0, 102, 204); top: 21.4375px; left: 8px; min-width: 784px; min-height: 36.6667px;"
+        title=""
+      >
+        <div
+          class="insights-highlight-text text-label"
+          style="background: rgb(0, 102, 204); color: rgb(255, 255, 255); text-align: center !important;"
+        >
+          H1
+        </div>
+      </div>
+      <div
+        class="insights-highlight-box"
+        style="outline-style: solid; outline-color: rgb(0, 102, 204); top: 258.979px; left: 8px; min-width: 784px; min-height: 36.6667px;"
+        title=""
+      >
+        <div
+          class="insights-highlight-text text-label"
+          style="background: rgb(0, 102, 204); color: rgb(255, 255, 255); text-align: center !important;"
+        >
+          H1
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`Ad hoc tools should display the pinned target page visualizations when enabling the "Landmarks" toggle 1`] = `
+<DocumentFragment>
+  <div
+    id="insights-shadow-container"
+  >
+    <link
+      href="chrome-extension://akiplfjoiekiceeppgmkgfggdekaofga/injected/styles/default/injected.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="chrome-extension://akiplfjoiekiceeppgmkgfggdekaofga/bundle/injected.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <div
+      class="insights-container insights-highlight-container insights-landmark"
+    />
   </div>
 </DocumentFragment>
 `;
