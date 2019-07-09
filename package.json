@@ -96,7 +96,7 @@
         "typemoq": "^2.1.0",
         "typescript": "^2.9.2",
         "uglifyjs-webpack-plugin": "^2.1.2",
-        "webpack": "^4.35.0",
+        "webpack": "^4.35.3",
         "webpack-cli": "^3.3.5"
     },
     "dependencies": {
