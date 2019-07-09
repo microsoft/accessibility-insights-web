@@ -16,21 +16,21 @@ Array [
         "failureSummary": "Fix any of the following:
   Element has insufficient color contrast of 1.07 (foreground color: #ffff00, background color: #ffffff, font size: 10.5pt, font weight: bold). Expected contrast ratio of 4.5:1",
         "selector": Array [
-          "button[aria-describedby=\\"launch-pad-item-description-1\\"]",
+          "#fast-pass",
         ],
       },
       Object {
         "failureSummary": "Fix any of the following:
   Element has insufficient color contrast of 1.07 (foreground color: #ffff00, background color: #ffffff, font size: 10.5pt, font weight: bold). Expected contrast ratio of 4.5:1",
         "selector": Array [
-          "button[aria-describedby=\\"launch-pad-item-description-2\\"]",
+          "#assessment",
         ],
       },
       Object {
         "failureSummary": "Fix any of the following:
   Element has insufficient color contrast of 1.07 (foreground color: #ffff00, background color: #ffffff, font size: 10.5pt, font weight: bold). Expected contrast ratio of 4.5:1",
         "selector": Array [
-          "button[aria-describedby=\\"launch-pad-item-description-3\\"]",
+          "#ad-hoc-tools",
         ],
       },
       Object {
@@ -170,6 +170,7 @@ exports[`Launch Pad Normal mode content should match snapshot 1`] = `
                     <button
                       aria-describedby="launch-pad-item-description-1"
                       class="ms-Link insights-link root-000"
+                      id="fast-pass"
                       role="link"
                       type="button"
                     >
@@ -218,6 +219,7 @@ exports[`Launch Pad Normal mode content should match snapshot 1`] = `
                     <button
                       aria-describedby="launch-pad-item-description-2"
                       class="ms-Link insights-link root-000"
+                      id="assessment"
                       role="link"
                       type="button"
                     >
@@ -266,6 +268,7 @@ exports[`Launch Pad Normal mode content should match snapshot 1`] = `
                     <button
                       aria-describedby="launch-pad-item-description-3"
                       class="ms-Link insights-link root-000"
+                      id="ad-hoc-tools"
                       role="link"
                       type="button"
                     >
