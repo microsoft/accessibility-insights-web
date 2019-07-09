@@ -1,0 +1,54 @@
+' Copyright (c) Microsoft Corporation. All rights reserved.
+' Licensed under the MIT License.
+@startuml
+
+title Issue Details Builder
+
+class MarkupFormatter {
+ +sectionHeader()
+ +snippet()
+ +link()
+ +howToFixSection()
+}
+
+class HTMLFormatter {
+ +sectionHeader()
+ +snippet()
+ +link()
+ +howToFixSection()
+}
+
+class MarkdownFormatter {
+ +sectionHeader()
+ +snippet()
+ +link()
+ +howToFixSection()
+}
+
+class Text <<string>>
+class HTMLHeader
+class MarkdownHeader
+
+class HTMLSnippet
+class MarkdownSnippet
+
+class createIssueDetailsBuilder
+
+MarkupFormatter <-- createIssueDetailsBuilder
+
+createIssueDetailsBuilder --> Text
+
+MarkupFormatter <|.. HTMLFormatter
+MarkupFormatter <|.. MarkdownFormatter
+
+Text <|.. MarkdownHeader
+Text <|.. HTMLHeader
+Text <|.. HTMLSnippet
+Text <|.. MarkdownSnippet
+
+HTMLHeader <-- HTMLFormatter
+HTMLSnippet <-- HTMLFormatter
+MarkdownHeader <-- MarkdownFormatter
+MarkdownSnippet <-- MarkdownFormatter
+
+@enduml

@@ -1,0 +1,50 @@
+' Copyright (c) Microsoft Corporation. All rights reserved.
+' Licensed under the MIT License.
+@startuml
+
+title Abstract Factory Pattern
+
+class AbstractFactory <<interface>> {
+ +CreateProductA()
+ +CreateProductB()
+}
+
+class ConcreteFactory1 {
+ +CreateProductA()
+ +CreateProductB()
+}
+
+class ConcreteFactory2 {
+ +CreateProductA()
+ +CreateProductB()
+}
+
+class AbstractProductA <<interface>>
+class ProductA2
+class ProductA1
+
+class AbstractProductB <<interface>>
+class ProductB1
+class ProductB2
+
+class Client
+
+AbstractFactory <-- Client
+
+Client --> AbstractProductA
+Client --> AbstractProductB
+
+AbstractFactory <|.. ConcreteFactory1
+AbstractFactory <|.. ConcreteFactory2
+
+AbstractProductA <|.. ProductA1
+AbstractProductA <|.. ProductA2
+AbstractProductB <|.. ProductB1
+AbstractProductB <|.. ProductB2
+
+ProductA1 <-- ConcreteFactory1
+ProductB1 <-- ConcreteFactory1
+ProductA2 <-- ConcreteFactory2
+ProductB2 <-- ConcreteFactory2
+
+@enduml
