@@ -1,25 +1,24 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as React from 'react';
-
 import { NamedSFC } from '../../../../common/react/named-sfc';
 import { RuleResult } from '../../../../scanner/iruleresults';
 import { InstanceOutcomeType } from '../instance-outcome-type';
-import { RuleDetail, RuleDetailDeps } from './rule-detail';
+import { FullRuleHeader, FullRuleHeaderDeps } from './full-rule-header';
 
-export type RulesDeps = RuleDetailDeps;
+export type RulesOnlyDeps = FullRuleHeaderDeps;
 
-export type RulesProps = {
-    deps: RulesDeps;
+export type RulesOnlyProps = {
+    deps: RulesOnlyDeps;
     rules: RuleResult[];
     outcomeType: InstanceOutcomeType;
 };
 
-export const RulesOnly = NamedSFC<RulesProps>('RulesOnly', ({ rules, outcomeType, deps }) => {
+export const RulesOnly = NamedSFC<RulesOnlyProps>('RulesOnly', ({ rules, outcomeType, deps }) => {
     return (
         <div className="rule-details-group">
             {rules.map(rule => {
-                return <RuleDetail deps={deps} key={rule.id} rule={rule} outcomeType={outcomeType} />;
+                return <FullRuleHeader deps={deps} key={rule.id} rule={rule} outcomeType={outcomeType} />;
             })}
         </div>
     );

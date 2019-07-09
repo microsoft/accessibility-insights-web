@@ -9,6 +9,7 @@ import { CollapsibleComponent } from '../../common/components/collapsible-compon
 import { reactExtensionPoint } from '../../common/extensibility/react-extension-point';
 import { Tab } from '../../common/itab';
 import { AssessmentData, AssessmentNavState, PersistedTabInfo } from '../../common/types/store-data/assessment-result-data';
+import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { VisualizationType } from '../../common/types/visualization-type';
 import { ContentLink, ContentLinkDeps } from '../../views/content/content-link';
 import { ContentPageComponent } from '../../views/content/content-page';
@@ -43,6 +44,7 @@ export interface AssessmentViewProps {
     prevTarget: PersistedTabInfo;
     assessmentDefaultMessageGenerator: AssessmentDefaultMessageGenerator;
     assessmentTestResult: AssessmentTestResult;
+    featureFlagStoreData: FeatureFlagStoreData;
 }
 
 export class AssessmentView extends React.Component<AssessmentViewProps> {
@@ -196,6 +198,7 @@ export class AssessmentView extends React.Component<AssessmentViewProps> {
                         isStepEnabled={this.props.isEnabled}
                         isStepScanned={isStepScanned}
                         assessmentDefaultMessageGenerator={this.props.assessmentDefaultMessageGenerator}
+                        featureFlagStoreData={this.props.featureFlagStoreData}
                     />
                 </div>
             </div>

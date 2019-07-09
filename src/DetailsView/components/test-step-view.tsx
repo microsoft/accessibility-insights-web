@@ -13,6 +13,7 @@ import {
     GeneratedAssessmentInstance,
     ManualTestStepResult,
 } from '../../common/types/store-data/assessment-result-data';
+import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { DictionaryStringTo } from '../../types/common-types';
 import { ContentPanelButton, ContentPanelButtonDeps } from '../../views/content/content-panel-button';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
@@ -36,6 +37,7 @@ export interface TestStepViewProps {
     actionMessageCreator: DetailsViewActionMessageCreator;
     assessmentsProvider: AssessmentsProvider;
     assessmentDefaultMessageGenerator: AssessmentDefaultMessageGenerator;
+    featureFlagStoreData: FeatureFlagStoreData;
 }
 
 export class TestStepView extends React.Component<TestStepViewProps> {
@@ -71,6 +73,7 @@ export class TestStepView extends React.Component<TestStepViewProps> {
                     manualTestStepResultMap={this.props.manualTestStepResultMap}
                     assessmentInstanceTableHandler={this.props.assessmentInstanceTableHandler}
                     assessmentsProvider={this.props.assessmentsProvider}
+                    featureFlagStoreData={this.props.featureFlagStoreData}
                 />
             );
         }

@@ -7,24 +7,15 @@ import { NamedSFC } from '../../../../common/react/named-sfc';
 
 export type CollapsibleContainerProps = {
     id: string;
-    accessibleHeadingContent: JSX.Element;
     visibleHeadingContent: JSX.Element;
     collapsibleContent: JSX.Element;
-    buttonAriaLabel: string;
-    titleHeadingLevel?: number;
+    buttonAriaLabel?: string;
+    titleHeadingLevel: number;
     containerClassName?: string;
 };
 
 export const CollapsibleContainer = NamedSFC<CollapsibleContainerProps>('CollapsibleContainer', props => {
-    const {
-        id,
-        visibleHeadingContent,
-        titleHeadingLevel,
-        collapsibleContent,
-        buttonAriaLabel,
-        containerClassName,
-        accessibleHeadingContent,
-    } = props;
+    const { id, visibleHeadingContent, titleHeadingLevel, collapsibleContent, containerClassName, buttonAriaLabel } = props;
 
     const contentId = `content-container-${id}`;
 
@@ -35,9 +26,9 @@ export const CollapsibleContainer = NamedSFC<CollapsibleContainerProps>('Collaps
     return (
         <div className={outerDivClassName}>
             <div className="title-container" {...titleContainerProps}>
-                {accessibleHeadingContent}
-                <button className="collapsible-control" aria-expanded="false" aria-controls={contentId} aria-label={buttonAriaLabel} />
-                <div>{visibleHeadingContent}</div>
+                <button className="collapsible-control" aria-expanded="false" aria-controls={contentId} aria-label={buttonAriaLabel}>
+                    {visibleHeadingContent}
+                </button>
             </div>
             <div id={contentId} className="collapsible-content" aria-hidden="true">
                 {collapsibleContent}

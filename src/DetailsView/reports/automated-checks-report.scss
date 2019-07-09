@@ -43,7 +43,24 @@ $outcome-not-applicable-summary-color: $neutral-outcome;
     flex-wrap: nowrap;
     justify-content: flex-start;
     align-items: center;
-    margin-bottom: 16px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+
+    .outcome-chip {
+        margin-top: 5px;
+
+        &.outcome-chip-fail {
+            margin-top: 10px;
+
+            .count {
+                line-height: 11px;
+            }
+
+            svg {
+                margin-bottom: 3px;
+            }
+        }
+    }
 
     .title {
         font-size: 17px;
@@ -63,10 +80,51 @@ $outcome-not-applicable-summary-color: $neutral-outcome;
             }
         }
     }
+
+    .rule-more-resources {
+        display: flex;
+        flex-direction: column;
+
+        margin-left: 24px;
+        margin-bottom: 16px;
+        padding: 14px 20px;
+
+        background-color: $always-white;
+
+        box-shadow: 0px 0.3px 0.9px rgba(0, 0, 0, 0.108), 0px 1.6px 3.6px rgba(0, 0, 0, 0.132);
+
+        border-radius: 4px;
+
+        line-height: 20px;
+
+        .more-resources-title {
+            font-family: $semiBoldFontFamily;
+        }
+
+        .rule-details-id {
+            padding: 12px 0;
+            font-size: 15px;
+
+            a {
+                text-decoration: none !important;
+            }
+        }
+
+        .guidance-links a {
+            text-decoration: none !important;
+        }
+    }
 }
 
 .result-section {
     padding-bottom: 58px;
+
+    .title-container[aria-level='2'] {
+        .collapsible-control::before {
+            position: relative;
+            bottom: 2px;
+        }
+    }
 }
 
 .rule-details-group {
@@ -85,6 +143,9 @@ $outcome-not-applicable-summary-color: $neutral-outcome;
         }
 
         .rule-details-id {
+            font-family: $semiBoldFontFamily;
+            color: $primary-text;
+
             a {
                 font-family: $semiBoldFontFamily;
                 color: $primary-text !important;
@@ -118,14 +179,9 @@ $outcome-not-applicable-summary-color: $neutral-outcome;
         transform: $property;
     }
 
-    .title-container {
-        display: flex;
-        align-items: baseline;
-    }
-
     &:not(.collapsible-rule-details-group) {
         .collapsible-control {
-            padding-left: 0px;
+            padding-left: 2px;
             padding-right: 16px;
 
             position: relative;
@@ -150,6 +206,19 @@ $outcome-not-applicable-summary-color: $neutral-outcome;
         background-color: transparent;
         cursor: pointer;
         border: none;
+
+        display: flex;
+        align-items: baseline;
+
+        width: 100%;
+
+        .result-section-title {
+            padding-left: 14px;
+        }
+
+        &:hover {
+            background-color: $neutral-alpha-4;
+        }
     }
 
     .collapsible-control[aria-expanded='false']:before {

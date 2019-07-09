@@ -1,0 +1,192 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FullRuleHeader renders, outcomeType = fail 1`] = `
+<React.Fragment>
+  <div
+    className="rule-detail"
+  >
+    <div>
+      <span
+        aria-hidden="true"
+      >
+        <OutcomeChip
+          count={1}
+          outcomeType="fail"
+        />
+      </span>
+       
+      <span
+        className="rule-details-id"
+      >
+        <NewTabLink
+          aria-describedby="failed-rule-rule id-description"
+          aria-label="rule rule id"
+          href="url://help.url"
+        >
+          rule id
+        </NewTabLink>
+      </span>
+      : 
+      <span
+        className="rule-details-description"
+        id="failed-rule-rule id-description"
+      >
+        rule description
+      </span>
+       (
+      <GuidanceLinks
+        links={
+          Array [
+            Object {
+              "href": "url://guidance-01.link",
+              "text": "guidance-01",
+            },
+            Object {
+              "href": "url://guidance-02.link",
+              "text": "guidance-02",
+            },
+          ]
+        }
+      />
+      )
+      <GuidanceTags
+        deps={Object {}}
+        links={
+          Array [
+            Object {
+              "href": "url://guidance-01.link",
+              "text": "guidance-01",
+            },
+            Object {
+              "href": "url://guidance-02.link",
+              "text": "guidance-02",
+            },
+          ]
+        }
+      />
+    </div>
+  </div>
+</React.Fragment>
+`;
+
+exports[`FullRuleHeader renders, outcomeType = inapplicable 1`] = `
+<React.Fragment>
+  <div
+    className="rule-detail"
+  >
+    <div>
+       
+      <span
+        className="rule-details-id"
+      >
+        <NewTabLink
+          aria-describedby="not-applicable-rule-rule id-description"
+          aria-label="rule rule id"
+          href="url://help.url"
+        >
+          rule id
+        </NewTabLink>
+      </span>
+      : 
+      <span
+        className="rule-details-description"
+        id="not-applicable-rule-rule id-description"
+      >
+        rule description
+      </span>
+       (
+      <GuidanceLinks
+        links={
+          Array [
+            Object {
+              "href": "url://guidance-01.link",
+              "text": "guidance-01",
+            },
+            Object {
+              "href": "url://guidance-02.link",
+              "text": "guidance-02",
+            },
+          ]
+        }
+      />
+      )
+      <GuidanceTags
+        deps={Object {}}
+        links={
+          Array [
+            Object {
+              "href": "url://guidance-01.link",
+              "text": "guidance-01",
+            },
+            Object {
+              "href": "url://guidance-02.link",
+              "text": "guidance-02",
+            },
+          ]
+        }
+      />
+    </div>
+  </div>
+</React.Fragment>
+`;
+
+exports[`FullRuleHeader renders, outcomeType = pass 1`] = `
+<React.Fragment>
+  <div
+    className="rule-detail"
+  >
+    <div>
+       
+      <span
+        className="rule-details-id"
+      >
+        <NewTabLink
+          aria-describedby="passed-rule-rule id-description"
+          aria-label="rule rule id"
+          href="url://help.url"
+        >
+          rule id
+        </NewTabLink>
+      </span>
+      : 
+      <span
+        className="rule-details-description"
+        id="passed-rule-rule id-description"
+      >
+        rule description
+      </span>
+       (
+      <GuidanceLinks
+        links={
+          Array [
+            Object {
+              "href": "url://guidance-01.link",
+              "text": "guidance-01",
+            },
+            Object {
+              "href": "url://guidance-02.link",
+              "text": "guidance-02",
+            },
+          ]
+        }
+      />
+      )
+      <GuidanceTags
+        deps={Object {}}
+        links={
+          Array [
+            Object {
+              "href": "url://guidance-01.link",
+              "text": "guidance-01",
+            },
+            Object {
+              "href": "url://guidance-02.link",
+              "text": "guidance-02",
+            },
+          ]
+        }
+      />
+    </div>
+  </div>
+</React.Fragment>
+`;

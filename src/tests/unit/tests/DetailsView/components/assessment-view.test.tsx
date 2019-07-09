@@ -12,6 +12,7 @@ import { getInnerTextFromJsxElement } from '../../../../../common/get-inner-text
 import { ContentActionMessageCreator } from '../../../../../common/message-creators/content-action-message-creator';
 import { ManualTestStatus } from '../../../../../common/types/manual-test-status';
 import { AssessmentData } from '../../../../../common/types/store-data/assessment-result-data';
+import { FeatureFlagStoreData } from '../../../../../common/types/store-data/feature-flag-store-data';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
 import { UrlParser } from '../../../../../common/url-parser';
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
@@ -252,6 +253,8 @@ class AssessmentViewPropsBuilder {
             manualTestStepResultMap: {},
         } as AssessmentData;
 
+        const featureFlagStoreData = {} as FeatureFlagStoreData;
+
         const props: AssessmentViewProps = {
             deps,
             prevTarget,
@@ -266,6 +269,7 @@ class AssessmentViewPropsBuilder {
             assessmentData,
             assessmentDefaultMessageGenerator: this.assessmentGeneratorInstance,
             assessmentTestResult: new AssessmentTestResult(this.provider, assessment.visualizationType, assessmentData),
+            featureFlagStoreData,
         };
 
         return props;

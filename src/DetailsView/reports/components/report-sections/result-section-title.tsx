@@ -14,16 +14,16 @@ export type ResultSectionTitleProps = {
 
 export const ResultSectionTitle = NamedSFC<ResultSectionTitleProps>('ResultSectionTitle', props => {
     return (
-        <div className="result-section-title">
-            <h2 className="screen-reader-only">
+        <span className="result-section-title">
+            <span className="screen-reader-only">
                 {props.title} {props.badgeCount}
-            </h2>
+            </span>
             <span className="title" aria-hidden="true">
                 {props.title}
             </span>
-            <div aria-hidden="true">
+            <span aria-hidden="true">
                 <OutcomeChip outcomeType={props.outcomeType} count={props.badgeCount} />
-            </div>
-        </div>
+            </span>
+        </span>
     );
 });

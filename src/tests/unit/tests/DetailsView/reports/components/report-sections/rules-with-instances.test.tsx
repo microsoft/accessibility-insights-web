@@ -3,7 +3,6 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import { IMock, Mock } from 'typemoq';
-
 import {
     RulesWithInstances,
     RulesWithInstancesDeps,
@@ -13,7 +12,6 @@ import { RuleResult } from '../../../../../../../scanner/iruleresults';
 
 describe('RulesWithInstances', () => {
     let fixInstructionProcessorMock: IMock<FixInstructionProcessor>;
-    const depsStub = {} as RulesWithInstancesDeps;
 
     beforeEach(() => {
         fixInstructionProcessorMock = Mock.ofType(FixInstructionProcessor);
@@ -22,7 +20,7 @@ describe('RulesWithInstances', () => {
     it('renders', () => {
         const rules = [
             {
-                id: '1',
+                id: 'test-rule',
                 nodes: [
                     {
                         html: '<html>',
@@ -32,6 +30,8 @@ describe('RulesWithInstances', () => {
                 ],
             } as RuleResult,
         ];
+
+        const depsStub = {} as RulesWithInstancesDeps;
 
         const wrapped = shallow(
             <RulesWithInstances
