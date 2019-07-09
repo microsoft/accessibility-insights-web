@@ -82,17 +82,6 @@ jobs:
       steps:
           - template: pipeline/e2e-test-linux-docker.yaml
 
-    - job: 'build_electron_app'
-
-      pool:
-          vmImage: 'macOS-10.14'
-
-      steps:
-          - template: pipeline/prerequisites.yaml
-
-          - script: yarn build:electron
-            displayName: build electron app
-
     - job: 'publish_build_drops'
 
       pool:
