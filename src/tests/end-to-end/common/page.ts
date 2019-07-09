@@ -9,13 +9,7 @@ import { DEFAULT_NEW_PAGE_WAIT_TIMEOUT_MS, DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS 
 export class Page {
     constructor(private readonly underlyingPage: Puppeteer.Page) {
         function forceEventFailure(eventDescription: string): void {
-            let pageDescriptor: string;
-            try {
-                pageDescriptor = underlyingPage.url();
-            } catch (urlError) {
-                pageDescriptor = `<ERROR READING URL: ${urlError}>`;
-            }
-            forceTestFailure(`Puppeteer.Page '${pageDescriptor}' emitted ${eventDescription}`);
+            forceTestFailure(`Puppeteer.Page '${underlyingPage.url()}' emitted ${eventDescription}`);
         }
 
         underlyingPage.on('error', error => {
