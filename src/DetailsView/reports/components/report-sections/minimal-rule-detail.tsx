@@ -27,10 +27,10 @@ export const MinimalRuleDetail = NamedSFC<MinimalRuleDetailProps>('MinimalRuleDe
     const renderDescription = () => <span className="rule-details-description">{rule.description}</span>;
 
     return (
-        <div className="rule-detail">
-            <div>
+        <span className="rule-detail">
+            <span>
                 {renderCountBadge()} {renderRuleName()}: {renderDescription()}
-            </div>
-        </div>
+            </span>
+        </span>
     );
 });

@@ -46,6 +46,22 @@ $outcome-not-applicable-summary-color: $neutral-outcome;
     margin-top: 8px;
     margin-bottom: 8px;
 
+    .outcome-chip {
+        margin-top: 5px;
+
+        &.outcome-chip-fail {
+            margin-top: 10px;
+
+            .count {
+                line-height: 11px;
+            }
+
+            svg {
+                margin-bottom: 3px;
+            }
+        }
+    }
+
     .title {
         font-size: 17px;
         line-height: 24px;
@@ -102,6 +118,13 @@ $outcome-not-applicable-summary-color: $neutral-outcome;
 
 .result-section {
     padding-bottom: 58px;
+
+    .title-container[aria-level='2'] {
+        .collapsible-control::before {
+            position: relative;
+            bottom: 2px;
+        }
+    }
 }
 
 .rule-details-group {
