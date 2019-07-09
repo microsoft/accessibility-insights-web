@@ -14,4 +14,3 @@ steps:
 
     - script: docker cp $(CONTAINER_ID):/app/test-results/ .
       displayName: copy test results from docker to base agent
-
