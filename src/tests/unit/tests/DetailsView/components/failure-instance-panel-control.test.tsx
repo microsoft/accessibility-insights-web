@@ -7,6 +7,7 @@ import * as React from 'react';
 import { IMock, Mock, Times } from 'typemoq';
 
 import { Assessments } from '../../../../../assessments/assessments';
+import { FeatureFlagStoreData } from '../../../../../common/types/store-data/feature-flag-store-data';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
 import { ActionAndCancelButtonsComponent } from '../../../../../DetailsView/components/action-and-cancel-buttons-component';
 import {
@@ -27,14 +28,12 @@ describe('FailureInstancePanelControlTest', () => {
 
     test('render FailureInstancePanelControl: add instance', () => {
         const props = createPropsWithType(CapturedInstanceActionType.CREATE);
-
         const rendered = shallow(<FailureInstancePanelControl {...props} />);
         expect(rendered.getElement()).toMatchSnapshot();
     });
 
     test('render FailureInstancePanelControl: edit instance', () => {
         const props = createPropsWithType(CapturedInstanceActionType.EDIT);
-
         const rendered = shallow(<FailureInstancePanelControl {...props} />);
         expect(rendered.getElement()).toMatchSnapshot();
     });
@@ -42,6 +41,7 @@ describe('FailureInstancePanelControlTest', () => {
     test('onFailureDescriptionChange', () => {
         const description = 'abc';
         const props = createPropsWithType(CapturedInstanceActionType.CREATE);
+
         const wrapper = shallow<FailureInstancePanelControl>(<FailureInstancePanelControl {...props} />);
         wrapper
             .find(TextField)
@@ -140,12 +140,14 @@ describe('FailureInstancePanelControlTest', () => {
     });
 
     function createPropsWithType(actionType: CapturedInstanceActionType): FailureInstancePanelControlProps {
+        const featureData = {} as FeatureFlagStoreData;
         return {
             step: 'missingHeadings',
             test: VisualizationType.HeadingsAssessment,
             addFailureInstance: addInstanceMock.object,
             actionType: actionType,
             assessmentsProvider: Assessments,
+            featureFlagStoreData: featureData,
         };
     }
 });

@@ -2,16 +2,16 @@
 // Licensed under the MIT License.
 import { shallow } from 'enzyme';
 import * as React from 'react';
-
+import { allInstanceOutcomeTypes } from '../../../../../../../DetailsView/reports/components/instance-outcome-type';
 import {
-    RuleDetail,
-    RuleDetailDeps,
-    RuleDetailProps,
-} from '../../../../../../../DetailsView/reports/components/report-sections/rule-detail';
+    FullRuleHeader,
+    FullRuleHeaderDeps,
+    FullRuleHeaderProps,
+} from '../../../../../../../DetailsView/reports/components/report-sections/full-rule-header';
 import { RuleResult } from '../../../../../../../scanner/iruleresults';
 
-describe('RuleDetail', () => {
-    const depsStub = {} as RuleDetailDeps;
+describe('FullRuleHeader', () => {
+    const depsStub = {} as FullRuleHeaderDeps;
     const rule = {
         helpUrl: 'url://help.url',
         id: 'rule id',
@@ -29,14 +29,14 @@ describe('RuleDetail', () => {
         nodes: [{} as AxeNodeResult],
     } as RuleResult;
 
-    const props: RuleDetailProps = {
-        deps: depsStub,
-        rule: rule,
-        outcomeType: 'fail',
-    };
+    it.each(allInstanceOutcomeTypes)('renders, outcomeType = %s', outcomeType => {
+        const props: FullRuleHeaderProps = {
+            deps: depsStub,
+            rule: rule,
+            outcomeType,
+        };
 
-    it('renders', () => {
-        const wrapped = shallow(<RuleDetail {...props} />);
+        const wrapped = shallow(<FullRuleHeader {...props} />);
 
         expect(wrapped.getElement()).toMatchSnapshot();
     });

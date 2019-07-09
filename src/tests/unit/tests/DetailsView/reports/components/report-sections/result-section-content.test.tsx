@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 import { shallow } from 'enzyme';
 import * as React from 'react';
-
 import {
     ResultSectionContent,
     ResultSectionContentDeps,

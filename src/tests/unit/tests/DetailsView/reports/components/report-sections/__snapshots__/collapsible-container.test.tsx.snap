@@ -5,22 +5,51 @@ exports[`CollapsibleContainer renders, no optional fields 1`] = `
   className="collapsible-container"
 >
   <div
+    aria-level={5}
     className="title-container"
+    role="heading"
   >
-    <div>
-      this is the accessible heading content
-    </div>
     <button
       aria-controls="content-container-test-id"
       aria-expanded="false"
-      aria-label="button aria label"
       className="collapsible-control"
-    />
-    <div>
+    >
       <div>
         this is the visible heading content
       </div>
+    </button>
+  </div>
+  <div
+    aria-hidden="true"
+    className="collapsible-content"
+    id="content-container-test-id"
+  >
+    <div>
+       this is the collapsible content 
     </div>
+  </div>
+</div>
+`;
+
+exports[`CollapsibleContainer renders, with button aria label 1`] = `
+<div
+  className="collapsible-container"
+>
+  <div
+    aria-level={5}
+    className="title-container"
+    role="heading"
+  >
+    <button
+      aria-controls="content-container-test-id"
+      aria-expanded="false"
+      aria-label="test button aria label"
+      className="collapsible-control"
+    >
+      <div>
+        this is the visible heading content
+      </div>
+    </button>
   </div>
   <div
     aria-hidden="true"
@@ -39,58 +68,19 @@ exports[`CollapsibleContainer renders, with extra class name for the container d
   className="collapsible-container extra-class-name"
 >
   <div
-    className="title-container"
-  >
-    <div>
-      this is the accessible heading content
-    </div>
-    <button
-      aria-controls="content-container-test-id"
-      aria-expanded="false"
-      aria-label="button aria label"
-      className="collapsible-control"
-    />
-    <div>
-      <div>
-        this is the visible heading content
-      </div>
-    </div>
-  </div>
-  <div
-    aria-hidden="true"
-    className="collapsible-content"
-    id="content-container-test-id"
-  >
-    <div>
-       this is the collapsible content 
-    </div>
-  </div>
-</div>
-`;
-
-exports[`CollapsibleContainer renders, with heading level for the title container 1`] = `
-<div
-  className="collapsible-container"
->
-  <div
     aria-level={5}
     className="title-container"
     role="heading"
   >
-    <div>
-      this is the accessible heading content
-    </div>
     <button
       aria-controls="content-container-test-id"
       aria-expanded="false"
-      aria-label="button aria label"
       className="collapsible-control"
-    />
-    <div>
+    >
       <div>
         this is the visible heading content
       </div>
-    </div>
+    </button>
   </div>
   <div
     aria-hidden="true"

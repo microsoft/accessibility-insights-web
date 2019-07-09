@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ContentContainer renders 1`] = `
-<div
+<main
   className="outer-container"
 >
   <div
@@ -16,5 +16,5 @@ exports[`ContentContainer renders 1`] = `
       2
     </div>
   </div>
-</div>
+</main>
 `;

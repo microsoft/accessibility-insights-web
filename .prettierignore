@@ -15,5 +15,7 @@ docs/LICENSE.txt
 **/*.snap
 **/*.png
 **/*.ico
+**/*.dockerignore
 **/*.gitignore
 **/*.gitattributes
+**/Dockerfile

@@ -2,8 +2,8 @@
 # Licensed under the MIT License.
 steps:
     # e2e tests depend drop folder. run build:all will create said folder
-    - script: yarn build:web-extension
-      displayName: build:web-extension
+    - script: yarn build:dev
+      displayName: build:dev
 
     - script: yarn test:e2e -- --ci
       displayName: run e2e tests

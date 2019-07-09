@@ -21,7 +21,6 @@ export const NotApplicableChecksSection = NamedSFC<NotApplicableChecksSectionPro
                 containerClassName="result-section"
                 outcomeType="inapplicable"
                 badgeCount={rules.length}
-                buttonAriaLabel="show not applicable checks list"
                 containerId="not-applicable-checks-section"
             />
         );

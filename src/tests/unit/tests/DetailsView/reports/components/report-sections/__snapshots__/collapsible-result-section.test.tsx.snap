@@ -5,32 +5,19 @@ exports[`CollapsibleResultSection renders 1`] = `
   className="result-section-class-name"
 >
   <CollapsibleContainer
-    accessibleHeadingContent={
-      <h2
-        className="screen-reader-only"
-      >
-         
-      </h2>
-    }
-    buttonAriaLabel="button aria label test"
     collapsibleContent={
       <RulesOnly
-        buttonAriaLabel="button aria label test"
         containerClassName="result-section-class-name"
         containerId="container-id"
       />
     }
     id="container-id"
+    titleHeadingLevel={2}
     visibleHeadingContent={
-      <div
-        aria-hidden="true"
-      >
-        <ResultSectionTitle
-          buttonAriaLabel="button aria label test"
-          containerClassName="result-section-class-name"
-          containerId="container-id"
-        />
-      </div>
+      <ResultSectionTitle
+        containerClassName="result-section-class-name"
+        containerId="container-id"
+      />
     }
   />
 </div>

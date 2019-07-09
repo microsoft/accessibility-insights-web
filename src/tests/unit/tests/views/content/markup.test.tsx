@@ -51,7 +51,7 @@ describe('ContentPage', () => {
         );
 
         it('<LandmarkLegend> renders', () => {
-            const wrapper = shallow(<LandmarkLegend role="test">TEST</LandmarkLegend>);
+            const wrapper = shallow(<LandmarkLegend role="main">TEST</LandmarkLegend>);
             expect(wrapper.getElement()).toMatchSnapshot();
         });
 
