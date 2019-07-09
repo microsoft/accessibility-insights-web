@@ -8662,7 +8662,7 @@ exports[`A11Y for content pages High Contrast mode test/images/guidance 1`] = `
                     <span
                       class="insights-code"
                     >
-                      role="image"
+                      role="img"
                     </span>
                      and a non-empty 
                     <span
@@ -8721,7 +8721,7 @@ exports[`A11Y for content pages High Contrast mode test/images/guidance 1`] = `
                     <span
                       class="insights-code"
                     >
-                      role="image"
+                      role="img"
                     </span>
                      and 
                     <span
@@ -9430,7 +9430,7 @@ exports[`A11Y for content pages High Contrast mode test/images/imageFunction/inf
               <span
                 class="insights-code"
               >
-                role="image"
+                role="img"
               </span>
               .
             </li>
@@ -9493,7 +9493,7 @@ exports[`A11Y for content pages High Contrast mode test/images/imageFunction/inf
               <span
                 class="insights-code"
               >
-                role="image"
+                role="img"
               </span>
                and 
               <span
@@ -38109,7 +38109,7 @@ exports[`A11Y for content pages Normal mode test/images/guidance 1`] = `
                     <span
                       class="insights-code"
                     >
-                      role="image"
+                      role="img"
                     </span>
                      and a non-empty 
                     <span
@@ -38168,7 +38168,7 @@ exports[`A11Y for content pages Normal mode test/images/guidance 1`] = `
                     <span
                       class="insights-code"
                     >
-                      role="image"
+                      role="img"
                     </span>
                      and 
                     <span
@@ -38877,7 +38877,7 @@ exports[`A11Y for content pages Normal mode test/images/imageFunction/infoAndExa
               <span
                 class="insights-code"
               >
-                role="image"
+                role="img"
               </span>
               .
             </li>
@@ -38940,7 +38940,7 @@ exports[`A11Y for content pages Normal mode test/images/imageFunction/infoAndExa
               <span
                 class="insights-code"
               >
-                role="image"
+                role="img"
               </span>
                and 
               <span

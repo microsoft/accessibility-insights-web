@@ -6,6 +6,7 @@ import * as React from 'react';
 import { AssessmentsProvider } from '../../assessments/types/assessments-provider';
 import { ManualTestStatus } from '../../common/types/manual-test-status';
 import { ManualTestStepResult } from '../../common/types/store-data/assessment-result-data';
+import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { VisualizationType } from '../../common/types/visualization-type';
 import { DictionaryStringTo } from '../../types/common-types';
 import { AssessmentInstanceTableHandler } from '../handlers/assessment-instance-table-handler';
@@ -18,6 +19,7 @@ export interface ManualTestStepViewProps {
     assessmentInstanceTableHandler: AssessmentInstanceTableHandler;
     manualTestStepResultMap: DictionaryStringTo<ManualTestStepResult>;
     assessmentsProvider: AssessmentsProvider;
+    featureFlagStoreData: FeatureFlagStoreData;
 }
 
 export class ManualTestStepView extends React.Component<ManualTestStepViewProps> {
@@ -50,6 +52,7 @@ export class ManualTestStepView extends React.Component<ManualTestStepViewProps>
             this.props.manualTestStepResultMap[this.props.step].instances,
             this.props.test,
             this.props.step,
+            this.props.featureFlagStoreData,
         );
         return (
             <React.Fragment>
@@ -60,6 +63,7 @@ export class ManualTestStepView extends React.Component<ManualTestStepViewProps>
                     addFailureInstance={this.props.assessmentInstanceTableHandler.addFailureInstance}
                     actionType={CapturedInstanceActionType.CREATE}
                     assessmentsProvider={this.props.assessmentsProvider}
+                    featureFlagStoreData={this.props.featureFlagStoreData}
                 />
                 <DetailsList
                     items={items}

@@ -9,29 +9,19 @@ import { ResultSectionTitle } from './result-section-title';
 import { RulesOnly } from './rules-only';
 
 export type CollapsibleResultSectionProps = ResultSectionProps & {
-    buttonAriaLabel: string;
     containerId: string;
 };
 
 export const CollapsibleResultSection = NamedSFC<CollapsibleResultSectionProps>('CollapsibleResultSection', props => {
-    const { containerClassName, buttonAriaLabel, containerId, title, badgeCount } = props;
+    const { containerClassName, containerId } = props;
 
     return (
         <div className={containerClassName}>
             <CollapsibleContainer
                 id={containerId}
-                accessibleHeadingContent={
-                    <h2 className="screen-reader-only">
-                        {title} {badgeCount}
-                    </h2>
-                }
-                visibleHeadingContent={
-                    <div aria-hidden="true">
-                        <ResultSectionTitle {...props} />
-                    </div>
-                }
+                visibleHeadingContent={<ResultSectionTitle {...props} />}
                 collapsibleContent={<RulesOnly {...props} />}
-                buttonAriaLabel={buttonAriaLabel}
+                titleHeadingLevel={2}
             />
         </div>
     );

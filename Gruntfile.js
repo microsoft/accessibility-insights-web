@@ -361,15 +361,6 @@ module.exports = function(grunt) {
         'drop:electron',
         'release-drops',
     ]);
-    grunt.registerTask('build-web-extension', [
-        'clean:intermediates',
-        'exec:generate-scss-typings',
-        'build-assets',
-        'exec:webpack-dev', // needed for running e2e tests
-        'exec:webpack-prod',
-        'drop:dev',
-        'release-drops',
-    ]);
 
     grunt.registerTask('default', ['build-dev']);
 };

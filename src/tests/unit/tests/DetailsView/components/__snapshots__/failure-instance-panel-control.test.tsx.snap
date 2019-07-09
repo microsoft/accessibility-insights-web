@@ -22,9 +22,21 @@ exports[`FailureInstancePanelControlTest render FailureInstancePanelControl: add
     onDismiss={[Function]}
     title="Add a failure instance"
   >
+    <FlaggedComponent
+      enableJSXElement={
+        <FailureInstancePanelDetails
+          onSelectorChange={[Function]}
+          onValidateSelector={[Function]}
+          path=""
+          snippet=""
+        />
+      }
+      featureFlag="manualInstanceDetails"
+      featureFlagStoreData={Object {}}
+    />
     <StyledTextFieldBase
       className="observed-failure-textfield"
-      label="Observed failure"
+      label="Comments"
       multiline={true}
       onChange={[Function]}
       resizable={false}
@@ -61,9 +73,21 @@ exports[`FailureInstancePanelControlTest render FailureInstancePanelControl: edi
     onDismiss={[Function]}
     title="Edit failure instance"
   >
+    <FlaggedComponent
+      enableJSXElement={
+        <FailureInstancePanelDetails
+          onSelectorChange={[Function]}
+          onValidateSelector={[Function]}
+          path=""
+          snippet=""
+        />
+      }
+      featureFlag="manualInstanceDetails"
+      featureFlagStoreData={Object {}}
+    />
     <StyledTextFieldBase
       className="observed-failure-textfield"
-      label="Observed failure"
+      label="Comments"
       multiline={true}
       onChange={[Function]}
       resizable={false}

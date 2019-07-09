@@ -9,6 +9,7 @@ import {
     GeneratedAssessmentInstance,
     UserCapturedInstance,
 } from '../../../../../common/types/store-data/assessment-result-data';
+import { FeatureFlagStoreData } from '../../../../../common/types/store-data/feature-flag-store-data';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
 import { AssessmentInstanceEditAndRemoveControl } from '../../../../../DetailsView/components/assessment-instance-edit-and-remove-control';
@@ -25,6 +26,7 @@ describe('AssessmentInstanceTableHandlerTest', () => {
     let actionMessageCreatorMock: IMock<DetailsViewActionMessageCreator>;
     let configFactoryMock: IMock<AssessmentTableColumnConfigHandler>;
     const assessmentsProvider = CreateTestAssessmentProvider();
+    const featureFlagStoreData = {} as FeatureFlagStoreData;
 
     beforeEach(() => {
         actionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator);
@@ -123,6 +125,7 @@ describe('AssessmentInstanceTableHandlerTest', () => {
             [instance],
             assessmentNavState.selectedTestType,
             assessmentNavState.selectedTestStep,
+            featureFlagStoreData,
         );
 
         const instanceActionButtons: JSX.Element = (
@@ -134,6 +137,7 @@ describe('AssessmentInstanceTableHandlerTest', () => {
                 onEdit={actionMessageCreatorMock.object.editFailureInstance}
                 description={instance.description}
                 assessmentsProvider={assessmentsProvider}
+                featureFlagStoreData={featureFlagStoreData}
             />
         );
         const expectedRows: CapturedInstanceRowData[] = [

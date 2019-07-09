@@ -13,17 +13,17 @@ import { InstanceOutcomeType } from '../instance-outcome-type';
 import { OutcomeChip } from '../outcome-chip';
 import { outcomeTypeSemantics } from '../outcome-type';
 
-export type RuleDetailDeps = {
+export type FullRuleDetailDeps = {
     getGuidanceTagsFromGuidanceLinks: GetGuidanceTagsFromGuidanceLinks;
 };
 
-export type RuleDetailProps = {
-    deps: RuleDetailDeps;
+export type FullRuleDetailProps = {
+    deps: FullRuleDetailDeps;
     rule: RuleResult;
     outcomeType: InstanceOutcomeType;
 };
 
-export const RuleDetail = NamedSFC<RuleDetailProps>('RuleDetails', props => {
+export const FullRuleDetail = NamedSFC<FullRuleDetailProps>('FullRuleDetail', props => {
     const { rule, outcomeType, deps } = props;
 
     const outcomeText = outcomeTypeSemantics[props.outcomeType].pastTense;
