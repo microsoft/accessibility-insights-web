@@ -4,7 +4,7 @@ jobs:
     - job: 'unit_tests_and_lints'
 
       pool:
-          vmImage: 'macOS-10.13'
+          vmImage: 'macOS-10.14'
 
       steps:
           - template: pipeline/prerequisites.yaml
@@ -49,10 +49,10 @@ jobs:
             inputs:
                 verbosity: Normal
 
-    - job: 'e2e_tests_and_publish_drop'
+    - job: 'e2e_tests_windows'
 
       pool:
-          vmImage: 'macOS-10.13'
+          vmImage: 'vs2017-win2016'
 
       steps:
           - template: pipeline/prerequisites.yaml
@@ -72,6 +72,26 @@ jobs:
             condition: always()
             continueOnError: true
             displayName: publish e2e-failure-screenshots
+
+    # e2e run on linux - using docker.
+    - job: 'e2e_tests_linux'
+
+      pool:
+          vmImage: 'ubuntu-16.04'
+
+      steps:
+          - template: pipeline/e2e-test-linux-docker.yaml
+
+    - job: 'publish_build_drops'
+
+      pool:
+          vmImage: 'ubuntu-16.04'
+
+      steps:
+          - template: pipeline/prerequisites.yaml
+
+          - script: yarn build:all
+            displayName: build:all
 
           - task: PublishBuildArtifacts@1
             inputs:
