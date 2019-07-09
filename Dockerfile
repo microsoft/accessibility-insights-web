@@ -9,7 +9,7 @@ RUN apt-get update && apt-get install -yq gconf-service libasound2 libatk1.0-0 l
 
 WORKDIR /app
 
-COPY package.json,yarn.lock /app
+COPY package.json yarn.lock /app/
 
 RUN yarn install --frozen-lockfile
 
