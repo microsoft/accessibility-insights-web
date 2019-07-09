@@ -7,11 +7,10 @@ import { RuleResult } from '../../../../scanner/iruleresults';
 import { InstanceOutcomeType } from '../instance-outcome-type';
 import { outcomeTypeSemantics } from '../outcome-type';
 import { CollapsibleContainer } from './collapsible-container';
-import { FullRuleDetailDeps } from './full-rule-detail';
-import { MinimalRuleDetail } from './minimal-rule-detail';
+import { MinimalRuleHeader } from './minimal-rule-header';
 import { RuleContent, RuleContentDeps } from './rule-content';
 
-export type RulesWithInstancesDeps = FullRuleDetailDeps & RuleContentDeps;
+export type RulesWithInstancesDeps = RuleContentDeps;
 
 export type RulesWithInstancesProps = {
     deps: RulesWithInstancesDeps;
@@ -32,7 +31,7 @@ export const RulesWithInstances = NamedSFC<RulesWithInstancesProps>(
                         <CollapsibleContainer
                             key={`summary-details-${idx + 1}`}
                             id={rule.id}
-                            visibleHeadingContent={<MinimalRuleDetail key={rule.id} rule={rule} outcomeType={outcomeType} />}
+                            visibleHeadingContent={<MinimalRuleHeader key={rule.id} rule={rule} outcomeType={outcomeType} />}
                             collapsibleContent={
                                 <RuleContent
                                     key={`${rule.id}-rule-group`}

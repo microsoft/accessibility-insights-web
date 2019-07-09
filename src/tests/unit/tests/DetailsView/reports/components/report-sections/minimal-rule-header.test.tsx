@@ -2,15 +2,14 @@
 // Licensed under the MIT License.
 import { shallow } from 'enzyme';
 import * as React from 'react';
-
 import { allInstanceOutcomeTypes } from '../../../../../../../DetailsView/reports/components/instance-outcome-type';
 import {
-    MinimalRuleDetail,
-    MinimalRuleDetailProps,
-} from '../../../../../../../DetailsView/reports/components/report-sections/minimal-rule-detail';
+    MinimalRuleHeader,
+    MinimalRuleHeaderProps,
+} from '../../../../../../../DetailsView/reports/components/report-sections/minimal-rule-header';
 import { RuleResult } from '../../../../../../../scanner/iruleresults';
 
-describe('MinimalRuleDetail', () => {
+describe('MinimalRuleHeader', () => {
     const rule = {
         helpUrl: 'url://help.url',
         id: 'rule id',
@@ -29,12 +28,12 @@ describe('MinimalRuleDetail', () => {
     } as RuleResult;
 
     it.each(allInstanceOutcomeTypes)('renders, outcomeType = %s', outcomeType => {
-        const props: MinimalRuleDetailProps = {
+        const props: MinimalRuleHeaderProps = {
             rule,
             outcomeType,
         };
 
-        const wrapped = shallow(<MinimalRuleDetail {...props} />);
+        const wrapped = shallow(<MinimalRuleHeader {...props} />);
 
         expect(wrapped.getElement()).toMatchSnapshot();
     });
