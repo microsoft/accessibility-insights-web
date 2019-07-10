@@ -187,6 +187,8 @@ export class AssessmentStore extends BaseStoreImpl<AssessmentStoreData> {
             const instance = instances[instanceIndex];
             if (instance.id === payload.id) {
                 instance.description = payload.description;
+                instance.html = payload.snippet;
+                instance.selector = payload.path;
                 break;
             }
         }

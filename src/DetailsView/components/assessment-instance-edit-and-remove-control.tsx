@@ -13,7 +13,9 @@ export interface AssessmentInstanceEditAndRemoveControlProps {
     test: VisualizationType;
     step: string;
     id: string;
-    description: string;
+    description?: string;
+    path?: string;
+    snippet?: string;
     onRemove: (test, step, id) => void;
     onEdit: (description, path, snippet, test, step, id) => void;
     assessmentsProvider: AssessmentsProvider;
@@ -31,6 +33,8 @@ export class AssessmentInstanceEditAndRemoveControl extends React.Component<Asse
                     instanceId={this.props.id}
                     editFailureInstance={this.props.onEdit}
                     originalText={this.props.description}
+                    originalPath={this.props.path}
+                    originalSnippet={this.props.snippet}
                     assessmentsProvider={this.props.assessmentsProvider}
                     featureFlagStoreData={this.props.featureFlagStoreData}
                 />

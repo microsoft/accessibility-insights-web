@@ -24,6 +24,8 @@ export interface FailureInstancePanelControlProps {
     actionType: CapturedInstanceActionType;
     instanceId?: string;
     originalText?: string;
+    originalPath?: string;
+    originalSnippet?: string;
     assessmentsProvider: AssessmentsProvider;
     featureFlagStoreData: BaseStore<FeatureFlagStoreData>;
 }
@@ -48,8 +50,8 @@ export class FailureInstancePanelControl extends React.Component<FailureInstance
         this.state = {
             isPanelOpen: false,
             failureDescription: this.props.originalText || '',
-            path: '',
-            snippet: '',
+            path: this.props.originalPath || '',
+            snippet: this.props.originalSnippet || '',
         };
     }
 
@@ -172,7 +174,12 @@ export class FailureInstancePanelControl extends React.Component<FailureInstance
     };
 
     protected openFailureInstancePanel = (): void => {
-        this.setState({ isPanelOpen: true, failureDescription: this.props.originalText || '' });
+        this.setState({
+            isPanelOpen: true,
+            failureDescription: this.props.originalText || '',
+            path: this.props.originalPath || '',
+            snippet: this.props.originalSnippet || '',
+        });
     };
 
     protected closeFailureInstancePanel = (): void => {

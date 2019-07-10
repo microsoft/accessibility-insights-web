@@ -161,6 +161,8 @@ export class AssessmentInstanceTableHandler {
                 step={step}
                 id={instance.id}
                 description={instance.description}
+                path={instance.selector}
+                snippet={instance.html}
                 onRemove={this.actionMessageCreator.removeFailureInstance}
                 onEdit={this.actionMessageCreator.editFailureInstance}
                 assessmentsProvider={this.assessmentsProvider}

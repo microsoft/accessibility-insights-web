@@ -1205,13 +1205,15 @@ describe('AssessmentStoreTest', () => {
     test('on editFailureInstance', () => {
         const oldDescription = 'old';
         const newDescription = 'new';
-        const path = 'old path';
-        const snippet = 'old snippet';
+        const oldPath = 'old path';
+        const newPath = 'new path';
+        const oldSnippet = 'old snippet';
+        const newSnippet = 'new snippet';
         const failureInstance = {
             id: '1',
             description: oldDescription,
-            selector: path,
-            html: snippet,
+            selector: oldPath,
+            html: oldSnippet,
         };
 
         const assessmentData = new AssessmentDataBuilder()
@@ -1231,8 +1233,8 @@ describe('AssessmentStoreTest', () => {
             requirement: requirementKey,
             id: '1',
             description: newDescription,
-            path: path,
-            snippet: snippet,
+            path: newPath,
+            snippet: newSnippet,
         };
 
         assessmentsProviderMock.setup(apm => apm.forType(payload.test)).returns(() => assessmentMock.object);
@@ -1248,8 +1250,8 @@ describe('AssessmentStoreTest', () => {
                         {
                             id: '1',
                             description: newDescription,
-                            selector: path,
-                            html: snippet,
+                            selector: newPath,
+                            html: newSnippet,
                         },
                     ],
                 },
