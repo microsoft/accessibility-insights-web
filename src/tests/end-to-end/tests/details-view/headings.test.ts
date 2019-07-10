@@ -7,6 +7,7 @@ import { popupPageElementIdentifiers } from '../../common/element-identifiers/po
 import { enableHighContrast } from '../../common/enable-high-contrast';
 import { Page } from '../../common/page';
 import { scanForAccessibilityIssues } from '../../common/scan-for-accessibility-issues';
+import { detailsViewSelectors } from '../../common/element-identifiers/details-view-selectors';
 
 describe('Headings Page', () => {
     describe('Normal mode', () => {
@@ -76,7 +77,7 @@ describe('Headings Page', () => {
             popupPage.clickSelector(popupPageElementIdentifiers.launchPadAssessmentButton),
         ]);
 
-        await detailsViewPage.waitForSelector('.details-view-test-nav-area');
+        await detailsViewPage.waitForSelector(detailsViewSelectors.testNavArea);
 
         await detailsViewPage.clickSelector(GuidanceContentSelectors.headingsNav);
         await detailsViewPage.waitForSelectorToDisappear(DetailsViewCommonSelectors.loadingSpinner);
