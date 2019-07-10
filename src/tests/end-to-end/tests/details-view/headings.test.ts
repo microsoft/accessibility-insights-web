@@ -76,7 +76,7 @@ describe('Headings Page', () => {
             popupPage.clickSelector(popupPageElementIdentifiers.launchPadAssessmentButton),
         ]);
 
-        // await detailsViewPage.waitForSelector('.details-view-test-nav-area');
+        await detailsViewPage.waitForSelector('.details-view-test-nav-area');
 
         await detailsViewPage.clickSelector('a[title="5: Headings (Incomplete)"]');
         await detailsViewPage.waitForSelectorToDisappear('.ms-Spinner');
