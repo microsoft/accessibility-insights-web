@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 import { shallow } from 'enzyme';
 import * as React from 'react';
-
 import {
     ResultSection,
     ResultSectionDeps,
@@ -11,10 +10,9 @@ import {
 
 describe('ResultSection', () => {
     it('renders', () => {
-        const depsStub = {} as ResultSectionDeps;
         const props: ResultSectionProps = {
-            deps: depsStub,
             containerClassName: 'result-section-class-name',
+            deps: {} as ResultSectionDeps,
         } as ResultSectionProps;
 
         const wrapper = shallow(<ResultSection {...props} />);

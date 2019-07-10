@@ -1,17 +1,18 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as React from 'react';
+
 import { NamedSFC } from '../../../../common/react/named-sfc';
 import { RuleResult } from '../../../../scanner/iruleresults';
 import { InstanceOutcomeType } from '../instance-outcome-type';
 import { OutcomeChip } from '../outcome-chip';
 
-export type MinimalRuleDetailProps = {
+export type MinimalRuleHeaderProps = {
     rule: RuleResult;
     outcomeType: InstanceOutcomeType;
 };
 
-export const MinimalRuleDetail = NamedSFC<MinimalRuleDetailProps>('MinimalRuleDetail', props => {
+export const MinimalRuleHeader = NamedSFC<MinimalRuleHeaderProps>('MinimalRuleHeader', props => {
     const { outcomeType, rule } = props;
 
     const renderCountBadge = () => {
@@ -27,10 +28,10 @@ export const MinimalRuleDetail = NamedSFC<MinimalRuleDetailProps>('MinimalRuleDe
     const renderDescription = () => <span className="rule-details-description">{rule.description}</span>;
 
     return (
-        <div className="rule-detail">
-            <div>
+        <span className="rule-detail">
+            <span>
                 {renderCountBadge()} {renderRuleName()}: {renderDescription()}
-            </div>
-        </div>
+            </span>
+        </span>
     );
 });
