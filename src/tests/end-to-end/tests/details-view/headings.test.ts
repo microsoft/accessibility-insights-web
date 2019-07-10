@@ -8,7 +8,6 @@ import { popupPageElementIdentifiers } from '../../common/element-identifiers/po
 import { enableHighContrast } from '../../common/enable-high-contrast';
 import { Page } from '../../common/page';
 import { scanForAccessibilityIssues } from '../../common/scan-for-accessibility-issues';
-import { detailsViewSelectors } from '../../common/element-identifiers/details-view-selectors';
 
 describe('Headings Page', () => {
     describe('Normal mode', () => {
