@@ -19,9 +19,9 @@ export class Page {
         underlyingPage.on('pageerror', error => {
             forceEventFailure(`'pageerror' (console.error) with stack: ${error.stack}`);
         });
-        // Modifying this error handler as a workaround for #923
         underlyingPage.on('requestfailed', request => {
             const url = request.url();
+            // Checking for 'fonts' and 'icons' in url as a workaround for #923
             if (!includes(url, 'fonts') && !includes(url, 'icons')) {
                 forceEventFailure(`'requestfailed' from '${url}' with errorText: ${request.failure().errorText}`);
             }
