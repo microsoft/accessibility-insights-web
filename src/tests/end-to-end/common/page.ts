@@ -23,7 +23,7 @@ export class Page {
         underlyingPage.on('requestfailed', request => {
             const url = request.url();
             if (!includes(url, 'fonts') && !includes(url, 'icons')) {
-                forceTestFailure(`'requestfailed' from '${url}' with errorText: ${request.failure().errorText}`);
+                forceEventFailure(`'requestfailed' from '${url}' with errorText: ${request.failure().errorText}`);
             }
         });
         underlyingPage.on('response', response => {
