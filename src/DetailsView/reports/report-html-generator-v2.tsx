@@ -48,6 +48,6 @@ export class ReportHtmlGeneratorV2 implements ReportHtmlGenerator {
         const bodyElement: JSX.Element = <ReportBody {...props} />;
         const bodyMarkup: string = this.reactStaticRenderer.renderToStaticMarkup(bodyElement);
 
-        return '<html lang="en">' + headMarkup + bodyMarkup + '</html>';
+        return '<!DOCTYPE html><html lang="en">' + headMarkup + bodyMarkup + '</html>';
     }
 }
