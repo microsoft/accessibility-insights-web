@@ -25,9 +25,10 @@ module.exports = function(grunt) {
             './test-results',
             './docs/NOTICE.html',
             './docs/LICENSE.txt',
+            './docs/diagrams/out',
         ],
         file_type_method: 'INCLUDE',
-        file_types: ['.ts', '.tsx', '.d.ts', '.js', '.html', '.css', '.scss', '.yaml', '.md', '.txt', '.xml'],
+        file_types: ['.ts', '.tsx', '.d.ts', '.js', '.html', '.css', '.scss', '.yaml', '.md', '.txt', '.xml', '.puml'],
         insert_license: false,
         license_formats: {
             'yaml|npmrc': {
@@ -42,6 +43,11 @@ module.exports = function(grunt) {
             'snap|ts|tsx|d.ts|js|scss|css': {
                 eachLine: {
                     prepend: '// ',
+                },
+            },
+            puml: {
+                eachLine: {
+                    prepend: "' ",
                 },
             },
         },
