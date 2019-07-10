@@ -5,5 +5,5 @@ steps:
     - script: yarn build:dev
       displayName: build:dev
 
-    - script: yarn test:e2e -- --ci
+    - script: yarn test:e2e --ci
       displayName: run e2e tests
