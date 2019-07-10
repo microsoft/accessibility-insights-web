@@ -5,18 +5,18 @@
 title Abstract Factory Pattern
 
 class AbstractFactory <<interface>> {
- +CreateProductA()
- +CreateProductB()
+    +CreateProductA()
+    +CreateProductB()
 }
 
 class ConcreteFactory1 {
- +CreateProductA()
- +CreateProductB()
+    +CreateProductA()
+    +CreateProductB()
 }
 
 class ConcreteFactory2 {
- +CreateProductA()
- +CreateProductB()
+    +CreateProductA()
+    +CreateProductB()
 }
 
 class AbstractProductA <<interface>>

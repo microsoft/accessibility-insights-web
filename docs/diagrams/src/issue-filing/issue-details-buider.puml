@@ -6,24 +6,24 @@ title Issue Details Builder
 header partial diagram
 
 class MarkupFormatter {
- +sectionHeader()
- +snippet()
- +link()
- +howToFixSection()
+    +sectionHeader()
+    +snippet()
+    +link()
+    +howToFixSection()
 }
 
 class HTMLFormatter {
- +sectionHeader()
- +snippet()
- +link()
- +howToFixSection()
+    +sectionHeader()
+    +snippet()
+    +link()
+    +howToFixSection()
 }
 
 class MarkdownFormatter {
- +sectionHeader()
- +snippet()
- +link()
- +howToFixSection()
+    +sectionHeader()
+    +snippet()
+    +link()
+    +howToFixSection()
 }
 
 class Text <<string>>
