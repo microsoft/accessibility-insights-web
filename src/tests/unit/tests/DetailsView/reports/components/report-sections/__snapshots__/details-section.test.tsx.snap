@@ -20,14 +20,14 @@ exports[`DetailsSection renders with description:  1`] = `
       <span
         className="screen-reader-only"
       >
-        target page:
+        target page url:
       </span>
       <span
         className="text"
       >
         <NewTabLink
-          aria-label="page-title"
           href="https://page-url/"
+          title="page-title"
         >
           https://page-url/
         </NewTabLink>
@@ -75,14 +75,14 @@ exports[`DetailsSection renders with description: description-text 1`] = `
       <span
         className="screen-reader-only"
       >
-        target page:
+        target page url:
       </span>
       <span
         className="text"
       >
         <NewTabLink
-          aria-label="page-title"
           href="https://page-url/"
+          title="page-title"
         >
           https://page-url/
         </NewTabLink>
@@ -148,14 +148,14 @@ exports[`DetailsSection renders with description: null 1`] = `
       <span
         className="screen-reader-only"
       >
-        target page:
+        target page url:
       </span>
       <span
         className="text"
       >
         <NewTabLink
-          aria-label="page-title"
           href="https://page-url/"
+          title="page-title"
         >
           https://page-url/
         </NewTabLink>
@@ -203,14 +203,14 @@ exports[`DetailsSection renders with description: undefined 1`] = `
       <span
         className="screen-reader-only"
       >
-        target page:
+        target page url:
       </span>
       <span
         className="text"
       >
         <NewTabLink
-          aria-label="page-title"
           href="https://page-url/"
+          title="page-title"
         >
           https://page-url/
         </NewTabLink>

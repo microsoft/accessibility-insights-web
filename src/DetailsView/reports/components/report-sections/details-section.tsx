@@ -34,8 +34,8 @@ export const DetailsSection = NamedSFC<DetailsSectionProps>('DetailsSection', pr
             <ul className="details-section-list">
                 {createListItem(
                     <UrlIcon />,
-                    'target page:',
-                    <NewTabLink href={pageUrl} aria-label={pageTitle}>
+                    'target page url:',
+                    <NewTabLink href={pageUrl} title={pageTitle}>
                         {pageUrl}
                     </NewTabLink>,
                 )}
