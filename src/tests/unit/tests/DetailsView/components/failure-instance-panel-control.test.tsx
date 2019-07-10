@@ -90,11 +90,15 @@ describe('FailureInstancePanelControlTest', () => {
 
     test('onSaveEditedFailureInstance', () => {
         const description = 'text';
+        const unchangedPath = '';
+        const unchangedSnippet = '';
         const props = createPropsWithType(CapturedInstanceActionType.EDIT);
         props.instanceId = '1';
         props.editFailureInstance = editInstanceMock.object;
 
-        editInstanceMock.setup(handler => handler(description, '', '', props.test, props.step, props.instanceId)).verifiable(Times.once());
+        editInstanceMock
+            .setup(handler => handler(description, unchangedPath, unchangedSnippet, props.test, props.step, props.instanceId))
+            .verifiable(Times.once());
 
         const wrapper = shallow<FailureInstancePanelControl>(<FailureInstancePanelControl {...props} />);
 
@@ -117,9 +121,13 @@ describe('FailureInstancePanelControlTest', () => {
 
     test('onAddFailureInstance', () => {
         const description = 'text';
+        const unchangedPath = '';
+        const unchangedSnippet = '';
         const props = createPropsWithType(CapturedInstanceActionType.CREATE);
 
-        addInstanceMock.setup(handler => handler(description, '', '', props.test, props.step)).verifiable(Times.once());
+        addInstanceMock
+            .setup(handler => handler(description, unchangedPath, unchangedSnippet, props.test, props.step))
+            .verifiable(Times.once());
         const wrapper = shallow<FailureInstancePanelControl>(<FailureInstancePanelControl {...props} />);
 
         wrapper
