@@ -29,8 +29,8 @@ describe('Tabstop tests', () => {
 
         it('clicks on fastpass page link', async () => {
             await popupPage.clickSelector(CommonSelectors.fastPassButton);
-            const detailsViewPage = await waitForDetailsViewPage(browser, popupPage, targetTabId);
-
+            const detailsViewPage = await waitForDetailsViewPage(browser, popupPage, targetPageInfo.tabId);
+            await detailsViewPage.waitForId(componentId);
             expect(undefined).toBeUndefined();
         });
 
