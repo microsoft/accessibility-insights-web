@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { Browser } from '../../common/browser';
 import { launchBrowser } from '../../common/browser-factory';
-import { GuidanceContentSelectors } from '../../common/element-identifiers/common-selectors';
+import { DetailsViewCommonSelectors, GuidanceContentSelectors } from '../../common/element-identifiers/common-selectors';
 import { popupPageElementIdentifiers } from '../../common/element-identifiers/popup-page-element-identifiers';
 import { enableHighContrast } from '../../common/enable-high-contrast';
 import { Page } from '../../common/page';
@@ -79,7 +79,7 @@ describe('Headings Page', () => {
         await detailsViewPage.waitForSelector('.details-view-test-nav-area');
 
         await detailsViewPage.clickSelector(GuidanceContentSelectors.headingsNav);
-        await detailsViewPage.waitForSelectorToDisappear('.ms-Spinner');
+        await detailsViewPage.waitForSelectorToDisappear(DetailsViewCommonSelectors.loadingSpinner);
 
         return detailsViewPage;
     }

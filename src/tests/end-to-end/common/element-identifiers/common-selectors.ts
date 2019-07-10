@@ -11,6 +11,7 @@ export const DetailsViewCommonSelectors = {
     gearButton: '.gear-options-icon',
     settingsButton: 'button[name="Settings"]',
     highContrastToggle: 'button#enable-high-contrast-mode',
+    loadingSpinner: '.ms-Spinner',
 };
 
 export const GuidanceContentSelectors = {
