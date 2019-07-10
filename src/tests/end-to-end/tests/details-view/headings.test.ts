@@ -3,6 +3,7 @@
 import { Browser } from '../../common/browser';
 import { launchBrowser } from '../../common/browser-factory';
 import { DetailsViewCommonSelectors, GuidanceContentSelectors } from '../../common/element-identifiers/common-selectors';
+import { detailsViewSelectors } from '../../common/element-identifiers/details-view-selectors';
 import { popupPageElementIdentifiers } from '../../common/element-identifiers/popup-page-element-identifiers';
 import { enableHighContrast } from '../../common/enable-high-contrast';
 import { Page } from '../../common/page';
@@ -76,7 +77,7 @@ describe('Headings Page', () => {
             popupPage.clickSelector(popupPageElementIdentifiers.launchPadAssessmentButton),
         ]);
 
-        await detailsViewPage.waitForSelector('.details-view-test-nav-area');
+        await detailsViewPage.waitForSelector(detailsViewSelectors.testNavArea);
 
         await detailsViewPage.clickSelector(GuidanceContentSelectors.headingsNav);
         await detailsViewPage.waitForSelectorToDisappear(DetailsViewCommonSelectors.loadingSpinner);
