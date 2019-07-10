@@ -29,8 +29,8 @@ export const GuidanceTags = NamedSFC<GuidanceTagsProps>('GuidanceTags', props =>
     }
 
     const tagElements = tags.map((tag, index) => {
-        return <div key={index}>{tag.displayText}</div>;
+        return <span key={index}>{tag.displayText}</span>;
     });
 
-    return <div className="guidance-tags">{tagElements}</div>;
+    return <span className="guidance-tags">{tagElements}</span>;
 });
