@@ -19,8 +19,14 @@ exports[`RuleResources renders 1`] = `
       test-rule-id
     </NewTabLink>
   </span>
-  <GuidanceLinks
-    links={Array []}
-  />
+  <span>
+    <GuidanceLinks
+      links={Array []}
+    />
+    <GuidanceTags
+      deps={Object {}}
+      links={Array []}
+    />
+  </span>
 </div>
 `;
