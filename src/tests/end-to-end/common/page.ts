@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 import * as Puppeteer from 'puppeteer';
 
-import { formatHtmlForSnapshot } from './element-snapshot-formatter';
 import { forceTestFailure } from './force-test-failure';
 import { takeScreenshot } from './generate-screenshot';
 import { DEFAULT_NEW_PAGE_WAIT_TIMEOUT_MS, DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS } from './timeouts';
