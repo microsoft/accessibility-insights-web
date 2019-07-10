@@ -11,9 +11,9 @@ export const DetailsViewCommonSelectors = {
     gearButton: '.gear-options-icon',
     settingsButton: 'button[name="Settings"]',
     highContrastToggle: 'button#enable-high-contrast-mode',
-    detailsContent: '.details-content',
 };
 
-export const GuidaceContentSelectors = {
+export const GuidanceContentSelectors = {
     mainContentContainer: '.content-container',
+    detailsContent: '.details-content',
 };
