@@ -78,7 +78,7 @@ describe('Headings Page', () => {
 
         await detailsViewPage.waitForSelector('.details-view-test-nav-area');
 
-        await detailsViewPage.clickSelector('a[title="5: Headings (Incomplete)"]');
+        await detailsViewPage.clickSelector(GuidanceContentSelectors.headingsNav);
         await detailsViewPage.waitForSelectorToDisappear('.ms-Spinner');
 
         return detailsViewPage;

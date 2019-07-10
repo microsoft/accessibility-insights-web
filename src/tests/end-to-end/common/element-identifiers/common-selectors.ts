@@ -16,4 +16,5 @@ export const DetailsViewCommonSelectors = {
 export const GuidanceContentSelectors = {
     mainContentContainer: '.content-container',
     detailsContent: '.details-content',
+    headingsNav: 'a[title="5: Headings (Incomplete)"]',
 };
