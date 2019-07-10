@@ -364,10 +364,10 @@
     "@types/cheerio" "*"
     "@types/react" "*"
 
-"@types/enzyme@^3.10.1":
-  version "3.10.1"
-  resolved "https://registry.yarnpkg.com/@types/enzyme/-/enzyme-3.10.1.tgz#74a7f7345075a4c03e574661068d3f96a054f495"
-  integrity sha512-Jd2hvn3w/0rBH8qD2n+JLMq2GjmZoKTZc5TTg8q9cDnJ9jkR7gzPV+ZdipKwGkWpMRXKDm9kuc9UiUqsW5s20w==
+"@types/enzyme@^3.10.2":
+  version "3.10.2"
+  resolved "https://registry.yarnpkg.com/@types/enzyme/-/enzyme-3.10.2.tgz#455d34854611fc8dbec70338fe0651ab692c74ea"
+  integrity sha512-tAFqfBVAxaxOCCcCpFrv6yFDg/hwL1KtJc7dsOaO+BBdSppTcyRP7jO2ze5va7NDa8iSFfAaZ9NeuybmMulu0w==
   dependencies:
     "@types/cheerio" "*"
     "@types/react" "*"
@@ -4560,10 +4560,10 @@ lodash@^4.0.0, lodash@^4.15.0, lodash@^4.17.10, lodash@^4.17.11, lodash@^4.17.4,
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.11.tgz#b39ea6229ef607ecd89e2c8df12536891cac9b8d"
   integrity sha512-cQKh8igo5QUhZ7lg38DYWAxMvjSAKG0A8wGSVimP07SIUEK2UO+arSRKbRZWtelMtN5V0Hkwh5ryOto/SshYIg==
 
-lodash@^4.17.13:
-  version "4.17.13"
-  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.13.tgz#0bdc3a6adc873d2f4e0c4bac285df91b64fc7b93"
-  integrity sha512-vm3/XWXfWtRua0FkUyEHBZy8kCPjErNBT9fJx8Zvs+U6zjqPbTUOpkaoum3O5uiA8sm+yNMHXfYkTUHFoMxFNA==
+lodash@^4.17.14:
+  version "4.17.14"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.14.tgz#9ce487ae66c96254fe20b599f21b6816028078ba"
+  integrity sha512-mmKYbW3GLuJeX+iGP+Y7Gp1AiGHGbXHCOh/jZmrawMmsE7MS4znI3RL2FsjbqOyMayHInjOeykW7PEajUk1/xw==
 
 loose-envify@^1.0.0, loose-envify@^1.1.0, loose-envify@^1.2.0, loose-envify@^1.3.1, loose-envify@^1.4.0:
   version "1.4.0"
@@ -6037,10 +6037,10 @@ punycode@^2.1.0, punycode@^2.1.1:
   resolved "https://registry.yarnpkg.com/punycode/-/punycode-2.1.1.tgz#b58b010ac40c22c5657616c8d2c2c02c7bf479ec"
   integrity sha512-XRsRjdf+j5ml+y/6GKHPZbrF/8p2Yga0JPtdqTIY2Xe5ohJPD9saDJJLPvp9+NSBprVvevdXZybnj2cv8OEd0A==
 
-puppeteer@^1.18.0:
-  version "1.18.0"
-  resolved "https://registry.yarnpkg.com/puppeteer/-/puppeteer-1.18.0.tgz#227bccc52806db37b3ccf762a7d95c06163f296e"
-  integrity sha512-NCwSN4wEIj43k4jO8Asa5nzibrIDFHWykqkZFjkGr0/f6U73k1ysql0gadQmOGLtZewXvvWqlNo+4ZMgX+5vZA==
+puppeteer@^1.18.1:
+  version "1.18.1"
+  resolved "https://registry.yarnpkg.com/puppeteer/-/puppeteer-1.18.1.tgz#4a66f3bdab01115ededf70443ec904c99917a815"
+  integrity sha512-luUy0HPSuWPsPZ1wAp6NinE0zgetWtudf5zwZ6dHjMWfYpTQcmKveFRox7VBNhQ98OjNA9PQ9PzQyX8k/KrxTg==
   dependencies:
     debug "^4.1.0"
     extract-zip "^1.6.6"
