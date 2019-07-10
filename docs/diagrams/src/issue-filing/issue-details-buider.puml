@@ -3,6 +3,7 @@
 @startuml
 
 title Issue Details Builder
+header partial diagram
 
 class MarkupFormatter {
  +sectionHeader()
