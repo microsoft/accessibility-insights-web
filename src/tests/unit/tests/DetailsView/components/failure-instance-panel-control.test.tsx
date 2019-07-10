@@ -18,8 +18,8 @@ import {
 import { GenericPanel } from '../../../../../DetailsView/components/generic-panel';
 
 describe('FailureInstancePanelControlTest', () => {
-    let addInstanceMock: IMock<(description, test, step) => void>;
-    let editInstanceMock: IMock<(description, test, step, id) => void>;
+    let addInstanceMock: IMock<(description, path, snippet, test, step) => void>;
+    let editInstanceMock: IMock<(description, path, snippet, test, step, id) => void>;
 
     beforeEach(() => {
         addInstanceMock = Mock.ofInstance(() => {});
@@ -94,7 +94,7 @@ describe('FailureInstancePanelControlTest', () => {
         props.instanceId = '1';
         props.editFailureInstance = editInstanceMock.object;
 
-        editInstanceMock.setup(handler => handler(description, props.test, props.step, props.instanceId)).verifiable(Times.once());
+        editInstanceMock.setup(handler => handler(description, '', '', props.test, props.step, props.instanceId)).verifiable(Times.once());
 
         const wrapper = shallow<FailureInstancePanelControl>(<FailureInstancePanelControl {...props} />);
 
@@ -119,7 +119,7 @@ describe('FailureInstancePanelControlTest', () => {
         const description = 'text';
         const props = createPropsWithType(CapturedInstanceActionType.CREATE);
 
-        addInstanceMock.setup(handler => handler(description, props.test, props.step)).verifiable(Times.once());
+        addInstanceMock.setup(handler => handler(description, '', '', props.test, props.step)).verifiable(Times.once());
         const wrapper = shallow<FailureInstancePanelControl>(<FailureInstancePanelControl {...props} />);
 
         wrapper

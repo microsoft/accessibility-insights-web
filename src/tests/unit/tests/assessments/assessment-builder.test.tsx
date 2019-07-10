@@ -96,8 +96,8 @@ describe('AssessmentBuilderTest', () => {
             expect(nonDefaultManual[assessmentKey]).toEqual(nonDefaultAssessment[assessmentKey]);
         });
 
-        const { comment } = ReportInstanceField.common;
-        expect(requirement.reportInstanceFields).toEqual([comment]);
+        const { comment, manualPath, manualSnippet } = ReportInstanceField.common;
+        expect(requirement.reportInstanceFields).toEqual([comment, manualPath, manualSnippet]);
 
         const config = manual.getVisualizationConfiguration();
         const scanData = { enabled: true, stepStatus: { key: true } } as AssessmentScanData;
@@ -231,12 +231,12 @@ describe('AssessmentBuilderTest', () => {
         expect(assisted.requirementOrder).toBe(RequirementComparer.byOutcomeAndName);
         expect(nonDefaultAssisted.requirementOrder).toBe(RequirementComparer.byOutcomeAndName);
 
-        const { comment, snippet, path } = ReportInstanceField.common;
+        const { comment, snippet, path, manualSnippet, manualPath } = ReportInstanceField.common;
         const manualRequirement = [requirement1, requirement2, requirement3, requirement3];
         manualRequirement.forEach(requirement => {
-            expect(requirement.reportInstanceFields).toEqual([comment]);
+            expect(requirement.reportInstanceFields).toEqual([comment, manualPath, manualSnippet]);
         });
-        expect(requirement4.reportInstanceFields).toEqual([comment, extraField]);
+        expect(requirement4.reportInstanceFields).toEqual([comment, manualPath, manualSnippet, extraField]);
         expect(requirement5.reportInstanceFields).toEqual([path, snippet]);
 
         Object.keys(assistedAssessment).forEach(assessmentKey => {

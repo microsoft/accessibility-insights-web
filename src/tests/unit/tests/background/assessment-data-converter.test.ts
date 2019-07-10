@@ -447,14 +447,30 @@ describe('AssessmentDataConverterTest', () => {
         expect(actual).toEqual(expectedGeneratedInstance);
     });
 
-    test('generateFailureInstance', () => {
+    test('generateFailureInstanceWithDescription', () => {
         const description = 'description';
+        const path = '';
+        const snippet = '';
         const expectedResult = {
             id: uid,
             description: description,
         };
 
-        expect(testSubject.generateFailureInstance(description)).toEqual(expectedResult);
+        expect(testSubject.generateFailureInstance(description, path, snippet)).toEqual(expectedResult);
+    });
+
+    test('generateFailureInstanceWithDescriptionAndPath', () => {
+        const description = 'description';
+        const path = 'path';
+        const snippet = 'snippet';
+        const expectedResult = {
+            id: uid,
+            description: description,
+            selector: path,
+            html: snippet,
+        };
+
+        expect(testSubject.generateFailureInstance(description, path, snippet)).toEqual(expectedResult);
     });
 
     function setupGenerateInstanceIdentifierMock(instance: UniquelyIdentifiableInstances, identifier: string): void {

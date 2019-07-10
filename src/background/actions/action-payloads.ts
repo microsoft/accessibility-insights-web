@@ -42,6 +42,8 @@ export interface ChangeRequirementStatusPayload extends AssessmentToggleActionPa
 
 export interface AddFailureInstancePayload extends AssessmentToggleActionPayload {
     description: string;
+    path: string;
+    snippet: string;
 }
 
 export interface AddResultDescriptionPayload extends BaseActionPayload {

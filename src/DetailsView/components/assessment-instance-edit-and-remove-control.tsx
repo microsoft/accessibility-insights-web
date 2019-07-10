@@ -15,7 +15,7 @@ export interface AssessmentInstanceEditAndRemoveControlProps {
     id: string;
     description: string;
     onRemove: (test, step, id) => void;
-    onEdit: (description, test, step, id) => void;
+    onEdit: (description, path, snippet, test, step, id) => void;
     assessmentsProvider: AssessmentsProvider;
     featureFlagStoreData: FeatureFlagStoreData;
 }

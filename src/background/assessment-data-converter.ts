@@ -183,11 +183,20 @@ export class AssessmentDataConverter {
         return null;
     }
 
-    public generateFailureInstance(description: string): UserCapturedInstance {
-        return {
+    public generateFailureInstance(description: string, path: string, snippet: string): UserCapturedInstance {
+        const instance = {
             id: this.generateUID(),
-            description: description,
-        };
+        } as UserCapturedInstance;
+        if (description !== '') {
+            instance.description = description;
+        }
+        if (path !== '') {
+            instance.selector = path;
+        }
+        if (snippet !== '') {
+            instance.html = snippet;
+        }
+        return instance;
     }
 }
 

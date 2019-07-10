@@ -43,8 +43,8 @@ export class AssessmentInstanceTableHandler {
         this.actionMessageCreator.undoManualRequirementStatusChange(test, step);
     };
 
-    public addFailureInstance = (description: string, test: VisualizationType, step: string): void => {
-        this.actionMessageCreator.addFailureInstance(description, test, step);
+    public addFailureInstance = (description: string, path: string, snippet: string, test: VisualizationType, step: string): void => {
+        this.actionMessageCreator.addFailureInstance(description, path, snippet, test, step);
     };
 
     public passUnmarkedInstances(test: VisualizationType, step: string): void {

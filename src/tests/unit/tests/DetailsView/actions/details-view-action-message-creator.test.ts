@@ -615,12 +615,14 @@ describe('DetailsViewActionMessageCreatorTest', () => {
                 test: 1,
                 requirement: 'requirement',
                 description: 'description',
+                path: 'path',
+                snippet: 'snippet',
                 telemetry: telemetry,
             },
         };
         telemetryFactoryMock.setup(tf => tf.forRequirementFromDetailsView(1, 'requirement')).returns(() => telemetry);
 
-        testSubject.addFailureInstance('description', 1, 'requirement');
+        testSubject.addFailureInstance('description', 'path', 'snippet', 1, 'requirement');
 
         dispatcherMock.verify(dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage)), Times.once());
     });
@@ -656,6 +658,8 @@ describe('DetailsViewActionMessageCreatorTest', () => {
             triggeredBy: TriggeredByNotApplicable,
         };
         const description = 'des';
+        const path = 'path';
+        const snippet = 'snippet';
         const expectedMessage = {
             messageType: Messages.Assessment.EditFailureInstance,
             payload: {
@@ -663,13 +667,15 @@ describe('DetailsViewActionMessageCreatorTest', () => {
                 requirement: 'requirement',
                 id: '1',
                 description: description,
+                path: path,
+                snippet: snippet,
                 telemetry: telemetry,
             },
         };
 
         setupTelemetryFactory('fromDetailsViewNoTriggeredBy', telemetry);
 
-        testSubject.editFailureInstance(description, 1, 'requirement', '1');
+        testSubject.editFailureInstance(description, path, snippet, 1, 'requirement', '1');
 
         dispatcherMock.verify(dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage)), Times.once());
     });

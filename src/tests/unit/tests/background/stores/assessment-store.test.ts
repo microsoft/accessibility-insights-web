@@ -1118,18 +1118,24 @@ describe('AssessmentStoreTest', () => {
             test: assessmentType,
             requirement: requirementKey,
             description: 'description',
+            path: 'path',
+            snippet: 'snippet',
         };
 
         const failureInstance = {
             id: '1',
             description: 'description',
+            selector: 'path',
+            html: 'snippet',
         };
 
         assessmentsProviderMock.setup(apm => apm.forType(payload.test)).returns(() => assessmentMock.object);
 
         assessmentMock.setup(am => am.getVisualizationConfiguration()).returns(() => configStub);
 
-        assessmentDataConverterMock.setup(a => a.generateFailureInstance(payload.description)).returns(description => failureInstance);
+        assessmentDataConverterMock
+            .setup(a => a.generateFailureInstance(payload.description, payload.path, payload.snippet))
+            .returns(description => failureInstance);
 
         const expectedAssessment = new AssessmentDataBuilder()
             .with('manualTestStepResultMap', {
@@ -1199,9 +1205,13 @@ describe('AssessmentStoreTest', () => {
     test('on editFailureInstance', () => {
         const oldDescription = 'old';
         const newDescription = 'new';
+        const path = 'old path';
+        const snippet = 'old snippet';
         const failureInstance = {
             id: '1',
             description: oldDescription,
+            selector: path,
+            html: snippet,
         };
 
         const assessmentData = new AssessmentDataBuilder()
@@ -1221,6 +1231,8 @@ describe('AssessmentStoreTest', () => {
             requirement: requirementKey,
             id: '1',
             description: newDescription,
+            path: path,
+            snippet: snippet,
         };
 
         assessmentsProviderMock.setup(apm => apm.forType(payload.test)).returns(() => assessmentMock.object);
@@ -1236,6 +1248,8 @@ describe('AssessmentStoreTest', () => {
                         {
                             id: '1',
                             description: newDescription,
+                            selector: path,
+                            html: snippet,
                         },
                     ],
                 },
