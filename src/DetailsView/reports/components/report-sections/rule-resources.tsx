@@ -3,15 +3,21 @@
 import * as React from 'react';
 
 import { GuidanceLinks } from '../../../../common/components/guidance-links';
+import { GuidanceTags, GuidanceTagsDeps } from '../../../../common/components/guidance-tags';
 import { NewTabLink } from '../../../../common/components/new-tab-link';
 import { NamedSFC } from '../../../../common/react/named-sfc';
 import { RuleResult } from '../../../../scanner/iruleresults';
 
+export type RuleResourcesDeps = GuidanceTagsDeps;
+
 export type RuleResourcesProps = {
+    deps: RuleResourcesDeps;
     rule: RuleResult;
 };
 
-export const RuleResources = NamedSFC<RuleResourcesProps>('RuleResources', ({ rule }) => {
+export const RuleResources = NamedSFC<RuleResourcesProps>('RuleResources', ({ deps, rule }) => {
+    const renderTitle = () => <div className="more-resources-title">Resources for this rule</div>;
+
     const renderRuleLink = () => {
         const ruleId = rule.id;
         const ruleUrl = rule.helpUrl;
@@ -24,11 +30,16 @@ export const RuleResources = NamedSFC<RuleResourcesProps>('RuleResources', ({ ru
     };
 
     const renderGuidanceLinks = () => <GuidanceLinks links={rule.guidanceLinks} />;
+    const renderGuidanceTags = () => <GuidanceTags deps={deps} links={rule.guidanceLinks} />;
+
     return (
         <div className="rule-more-resources">
-            <div className="more-resources-title">Resources for this rule</div>
+            {renderTitle()}
             {renderRuleLink()}
-            {renderGuidanceLinks()}
+            <span>
+                {renderGuidanceLinks()}
+                {renderGuidanceTags()}
+            </span>
         </div>
     );
 });

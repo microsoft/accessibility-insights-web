@@ -3,7 +3,11 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-import { RuleResources } from '../../../../../../../DetailsView/reports/components/report-sections/rule-resources';
+import {
+    RuleResources,
+    RuleResourcesDeps,
+    RuleResourcesProps,
+} from '../../../../../../../DetailsView/reports/components/report-sections/rule-resources';
 import { RuleResult } from '../../../../../../../scanner/iruleresults';
 
 describe('RuleResources', () => {
@@ -14,7 +18,12 @@ describe('RuleResources', () => {
             guidanceLinks: [],
         } as RuleResult;
 
-        const wrapper = shallow(<RuleResources rule={rule} />);
+        const props: RuleResourcesProps = {
+            rule,
+            deps: {} as RuleResourcesDeps,
+        };
+
+        const wrapper = shallow(<RuleResources {...props} />);
 
         expect(wrapper.getElement()).toMatchSnapshot();
     });
