@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import * as Puppeteer from 'puppeteer';
 
+import { includes } from 'lodash';
 import { forceTestFailure } from './force-test-failure';
 import { takeScreenshot } from './generate-screenshot';
 import { DEFAULT_NEW_PAGE_WAIT_TIMEOUT_MS, DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS } from './timeouts';
@@ -15,10 +16,13 @@ export class Page {
         underlyingPage.on('pageerror', error => {
             forceTestFailure(`Unhandled pageerror (console.error) emitted from page '${underlyingPage.url()}': ${error}`);
         });
-        // Removing this error handler as a temporary workaround for #923
-        // underlyingPage.on('requestfailed', request => {
-        //     forceTestFailure(`request failed - ${request.failure().errorText}, ${request.url()}`);
-        // });
+        // Modifying this error handler as a workaround for #923
+        underlyingPage.on('requestfailed', request => {
+            const url = request.url();
+            if (!includes(url, 'fonts') && !includes(url, 'icons')) {
+                forceTestFailure(`'requestfailed' from '${url}' with errorText: ${request.failure().errorText}`);
+            }
+        });
         underlyingPage.on('response', response => {
             if (response.status() >= 400) {
                 forceTestFailure(`response error - ${response.status()}, ${response.url()}`);
