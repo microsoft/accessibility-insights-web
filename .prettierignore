@@ -19,3 +19,5 @@ docs/LICENSE.txt
 **/*.gitignore
 **/*.gitattributes
 **/Dockerfile
+docs/diagrams/out/
+docs/diagrams/**/*.puml
