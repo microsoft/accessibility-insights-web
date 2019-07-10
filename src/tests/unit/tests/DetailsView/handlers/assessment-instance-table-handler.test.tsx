@@ -128,14 +128,18 @@ describe('AssessmentInstanceTableHandlerTest', () => {
             featureFlagStoreData,
         );
 
+        const currentInstance = {
+            instanceId: instance.id,
+            originalText: instance.description,
+        };
+
         const instanceActionButtons: JSX.Element = (
             <AssessmentInstanceEditAndRemoveControl
                 test={assessmentNavState.selectedTestType}
                 step={assessmentNavState.selectedTestStep}
-                id={instance.id}
+                currentInstance={currentInstance}
                 onRemove={actionMessageCreatorMock.object.removeFailureInstance}
                 onEdit={actionMessageCreatorMock.object.editFailureInstance}
-                description={instance.description}
                 assessmentsProvider={assessmentsProvider}
                 featureFlagStoreData={featureFlagStoreData}
             />

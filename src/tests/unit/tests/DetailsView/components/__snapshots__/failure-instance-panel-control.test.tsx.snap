@@ -104,3 +104,111 @@ exports[`FailureInstancePanelControlTest render FailureInstancePanelControl: edi
   </GenericPanel>
 </React.Fragment>
 `;
+
+exports[`FailureInstancePanelControlTest render FailureInstancePanelControl: partial original instance 1`] = `
+<React.Fragment>
+  <CustomizedActionButton
+    ariaDescription="Open add a failure instance panel"
+    ariaLabel="Add a failure instance"
+    iconProps={
+      Object {
+        "iconName": "Add",
+      }
+    }
+    onClick={[Function]}
+  >
+    Add a failure instance
+  </CustomizedActionButton>
+  <GenericPanel
+    className="failure-instance-panel"
+    closeButtonAriaLabel={null}
+    hasCloseButton={false}
+    isOpen={false}
+    onDismiss={[Function]}
+    title="Add a failure instance"
+  >
+    <FlaggedComponent
+      enableJSXElement={
+        <FailureInstancePanelDetails
+          onSelectorChange={[Function]}
+          onValidateSelector={[Function]}
+          path=""
+          snippet=""
+        />
+      }
+      featureFlag="manualInstanceDetails"
+      featureFlagStoreData={null}
+    />
+    <StyledTextFieldBase
+      className="observed-failure-textfield"
+      label="Comments"
+      multiline={true}
+      onChange={[Function]}
+      resizable={false}
+      rows={8}
+      value="originalText"
+    />
+    <ActionAndCancelButtonsComponent
+      cancelButtonOnClick={[Function]}
+      isHidden={false}
+      primaryButtonDisabled={false}
+      primaryButtonOnClick={[Function]}
+      primaryButtonText="Add"
+    />
+  </GenericPanel>
+</React.Fragment>
+`;
+
+exports[`FailureInstancePanelControlTest render FailureInstancePanelControl: undefined original instance 1`] = `
+<React.Fragment>
+  <CustomizedActionButton
+    ariaDescription="Open add a failure instance panel"
+    ariaLabel="Add a failure instance"
+    iconProps={
+      Object {
+        "iconName": "Add",
+      }
+    }
+    onClick={[Function]}
+  >
+    Add a failure instance
+  </CustomizedActionButton>
+  <GenericPanel
+    className="failure-instance-panel"
+    closeButtonAriaLabel={null}
+    hasCloseButton={false}
+    isOpen={false}
+    onDismiss={[Function]}
+    title="Add a failure instance"
+  >
+    <FlaggedComponent
+      enableJSXElement={
+        <FailureInstancePanelDetails
+          onSelectorChange={[Function]}
+          onValidateSelector={[Function]}
+          path=""
+          snippet=""
+        />
+      }
+      featureFlag="manualInstanceDetails"
+      featureFlagStoreData={null}
+    />
+    <StyledTextFieldBase
+      className="observed-failure-textfield"
+      label="Comments"
+      multiline={true}
+      onChange={[Function]}
+      resizable={false}
+      rows={8}
+      value=""
+    />
+    <ActionAndCancelButtonsComponent
+      cancelButtonOnClick={[Function]}
+      isHidden={false}
+      primaryButtonDisabled={true}
+      primaryButtonOnClick={[Function]}
+      primaryButtonText="Add"
+    />
+  </GenericPanel>
+</React.Fragment>
+`;

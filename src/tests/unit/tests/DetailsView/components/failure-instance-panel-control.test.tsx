@@ -32,6 +32,34 @@ describe('FailureInstancePanelControlTest', () => {
         expect(rendered.getElement()).toMatchSnapshot();
     });
 
+    test('render FailureInstancePanelControl: undefined original instance', () => {
+        const props = {
+            step: 'missingHeadings',
+            test: VisualizationType.HeadingsAssessment,
+            addFailureInstance: addInstanceMock.object,
+            actionType: CapturedInstanceActionType.CREATE,
+            assessmentsProvider: Assessments,
+            featureFlagStoreData: null,
+        };
+        const rendered = shallow(<FailureInstancePanelControl {...props} />);
+        expect(rendered.getElement()).toMatchSnapshot();
+    });
+
+    test('render FailureInstancePanelControl: partial original instance', () => {
+        const props = {
+            step: 'missingHeadings',
+            test: VisualizationType.HeadingsAssessment,
+            addFailureInstance: addInstanceMock.object,
+            actionType: CapturedInstanceActionType.CREATE,
+            assessmentsProvider: Assessments,
+            featureFlagStoreData: null,
+            originalInstance: { instanceId: 'instanceId', originalText: 'originalText' },
+        };
+        const rendered = shallow<FailureInstancePanelControl>(<FailureInstancePanelControl {...props} />);
+        expect(rendered.getElement()).toMatchSnapshot();
+        expect(rendered.state().path).toEqual('');
+    });
+
     test('render FailureInstancePanelControl: edit instance', () => {
         const props = createPropsWithType(CapturedInstanceActionType.EDIT);
         const rendered = shallow(<FailureInstancePanelControl {...props} />);
@@ -53,7 +81,7 @@ describe('FailureInstancePanelControlTest', () => {
 
     test('openFailureInstancePanel', () => {
         const props = createPropsWithType(CapturedInstanceActionType.CREATE);
-        props.originalText = 'original text';
+        props.originalInstance.originalText = 'original text';
         const wrapper = shallow<FailureInstancePanelControl>(<FailureInstancePanelControl {...props} />);
         wrapper
             .find(TextField)
@@ -65,7 +93,7 @@ describe('FailureInstancePanelControlTest', () => {
             .onClick(null);
 
         expect(wrapper.state().isPanelOpen).toBe(true);
-        expect(wrapper.state().failureDescription).toEqual(props.originalText);
+        expect(wrapper.state().failureDescription).toEqual(props.originalInstance.originalText);
     });
 
     test('closeFailureInstancePanel', () => {
@@ -93,11 +121,13 @@ describe('FailureInstancePanelControlTest', () => {
         const unchangedPath = '';
         const unchangedSnippet = '';
         const props = createPropsWithType(CapturedInstanceActionType.EDIT);
-        props.instanceId = '1';
+        props.originalInstance.instanceId = '1';
         props.editFailureInstance = editInstanceMock.object;
 
         editInstanceMock
-            .setup(handler => handler(description, unchangedPath, unchangedSnippet, props.test, props.step, props.instanceId))
+            .setup(handler =>
+                handler(description, unchangedPath, unchangedSnippet, props.test, props.step, props.originalInstance.instanceId),
+            )
             .verifiable(Times.once());
 
         const wrapper = shallow<FailureInstancePanelControl>(<FailureInstancePanelControl {...props} />);
@@ -149,6 +179,11 @@ describe('FailureInstancePanelControlTest', () => {
 
     function createPropsWithType(actionType: CapturedInstanceActionType): FailureInstancePanelControlProps {
         const featureData = {} as FeatureFlagStoreData;
+        const instanceId = '';
+        const originalText = '';
+        const originalPath = '';
+        const originalSnippet = '';
+
         return {
             step: 'missingHeadings',
             test: VisualizationType.HeadingsAssessment,
@@ -156,6 +191,7 @@ describe('FailureInstancePanelControlTest', () => {
             actionType: actionType,
             assessmentsProvider: Assessments,
             featureFlagStoreData: featureData,
+            originalInstance: { instanceId, originalText, originalPath, originalSnippet },
         };
     }
 });

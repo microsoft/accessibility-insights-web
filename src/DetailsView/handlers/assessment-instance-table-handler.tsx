@@ -155,14 +155,17 @@ export class AssessmentInstanceTableHandler {
         step: string,
         featureFlagStoreData: FeatureFlagStoreData,
     ): JSX.Element => {
+        const currentInstance = {
+            instanceId: instance.id,
+            originalText: instance.description,
+            originalPath: instance.selector,
+            originalSnippet: instance.html,
+        };
         return (
             <AssessmentInstanceEditAndRemoveControl
                 test={test}
                 step={step}
-                id={instance.id}
-                description={instance.description}
-                path={instance.selector}
-                snippet={instance.html}
+                currentInstance={currentInstance}
                 onRemove={this.actionMessageCreator.removeFailureInstance}
                 onEdit={this.actionMessageCreator.editFailureInstance}
                 assessmentsProvider={this.assessmentsProvider}

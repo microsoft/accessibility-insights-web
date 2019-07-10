@@ -22,10 +22,12 @@ export interface FailureInstancePanelControlProps {
     addFailureInstance?: (description, path, snippet, test, step) => void;
     editFailureInstance?: (description, path, snippet, test, step, id) => void;
     actionType: CapturedInstanceActionType;
-    instanceId?: string;
-    originalText?: string;
-    originalPath?: string;
-    originalSnippet?: string;
+    originalInstance?: {
+        instanceId: string;
+        originalText?: string;
+        originalPath?: string;
+        originalSnippet?: string;
+    };
     assessmentsProvider: AssessmentsProvider;
     featureFlagStoreData: BaseStore<FeatureFlagStoreData>;
 }
@@ -35,6 +37,12 @@ export interface FailureInstancePanelControlState {
     failureDescription: string;
     path: string;
     snippet: string;
+    originalInstance: {
+        instanceId: string;
+        originalText?: string;
+        originalPath?: string;
+        originalSnippet?: string;
+    };
 }
 
 export enum CapturedInstanceActionType {
@@ -47,11 +55,18 @@ export class FailureInstancePanelControl extends React.Component<FailureInstance
 
     constructor(props) {
         super(props);
+        let filledOriginalInstance;
+        if (this.props.originalInstance) {
+            filledOriginalInstance = this.props.originalInstance;
+        } else {
+            filledOriginalInstance = { instanceId: '', originalText: '', originalPath: '', originalSnippet: '' };
+        }
         this.state = {
             isPanelOpen: false,
-            failureDescription: this.props.originalText || '',
-            path: this.props.originalPath || '',
-            snippet: this.props.originalSnippet || '',
+            originalInstance: filledOriginalInstance,
+            failureDescription: filledOriginalInstance.originalText || '',
+            path: filledOriginalInstance.originalPath || '',
+            snippet: filledOriginalInstance.originalSnippet || '',
         };
     }
 
@@ -168,7 +183,7 @@ export class FailureInstancePanelControl extends React.Component<FailureInstance
             this.state.snippet,
             this.props.test,
             this.props.step,
-            this.props.instanceId,
+            this.props.originalInstance.instanceId,
         );
         this.setState({ isPanelOpen: false });
     };
@@ -176,9 +191,9 @@ export class FailureInstancePanelControl extends React.Component<FailureInstance
     protected openFailureInstancePanel = (): void => {
         this.setState({
             isPanelOpen: true,
-            failureDescription: this.props.originalText || '',
-            path: this.props.originalPath || '',
-            snippet: this.props.originalSnippet || '',
+            failureDescription: this.state.originalInstance.originalText || '',
+            path: this.state.originalInstance.originalPath || '',
+            snippet: this.state.originalInstance.originalSnippet || '',
         });
     };
 

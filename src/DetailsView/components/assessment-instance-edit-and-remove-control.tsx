@@ -12,10 +12,12 @@ import { CapturedInstanceActionType, FailureInstancePanelControl } from './failu
 export interface AssessmentInstanceEditAndRemoveControlProps {
     test: VisualizationType;
     step: string;
-    id: string;
-    description?: string;
-    path?: string;
-    snippet?: string;
+    currentInstance: {
+        instanceId: string;
+        originalText?: string;
+        originalPath?: string;
+        originalSnippet?: string;
+    };
     onRemove: (test, step, id) => void;
     onEdit: (description, path, snippet, test, step, id) => void;
     assessmentsProvider: AssessmentsProvider;
@@ -30,11 +32,8 @@ export class AssessmentInstanceEditAndRemoveControl extends React.Component<Asse
                     step={this.props.step}
                     test={this.props.test}
                     actionType={CapturedInstanceActionType.EDIT}
-                    instanceId={this.props.id}
+                    originalInstance={this.props.currentInstance}
                     editFailureInstance={this.props.onEdit}
-                    originalText={this.props.description}
-                    originalPath={this.props.path}
-                    originalSnippet={this.props.snippet}
                     assessmentsProvider={this.props.assessmentsProvider}
                     featureFlagStoreData={this.props.featureFlagStoreData}
                 />
@@ -46,6 +45,6 @@ export class AssessmentInstanceEditAndRemoveControl extends React.Component<Asse
     }
 
     protected onRemoveButtonClicked = (event?: React.MouseEvent<any>): void => {
-        this.props.onRemove(this.props.test, this.props.step, this.props.id);
+        this.props.onRemove(this.props.test, this.props.step, this.props.currentInstance.instanceId);
     };
 }
