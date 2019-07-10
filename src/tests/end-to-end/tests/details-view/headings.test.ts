@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { Browser } from '../../common/browser';
 import { launchBrowser } from '../../common/browser-factory';
+import { DetailsViewCommonSelectors } from '../../common/element-identifiers/common-selectors';
 import { popupPageElementIdentifiers } from '../../common/element-identifiers/popup-page-element-identifiers';
 import { enableHighContrast } from '../../common/enable-high-contrast';
 import { Page } from '../../common/page';
@@ -27,7 +28,7 @@ describe('Headings Page', () => {
         });
 
         it('should pass accessibility validation', async () => {
-            const results = await scanForAccessibilityIssues(headingsPage, '.details-content');
+            const results = await scanForAccessibilityIssues(headingsPage, DetailsViewCommonSelectors.detailsContent);
             expect(results).toHaveLength(0);
         });
     });
@@ -54,7 +55,7 @@ describe('Headings Page', () => {
         });
 
         it('should pass accessibility validation', async () => {
-            const results = await scanForAccessibilityIssues(headingsPage, '.details-content');
+            const results = await scanForAccessibilityIssues(headingsPage, DetailsViewCommonSelectors.detailsContent);
             expect(results).toHaveLength(0);
         });
 
