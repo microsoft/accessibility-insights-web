@@ -20,7 +20,6 @@ describe('FeatureFlagsTest', () => {
             [FeatureFlags.showAllFeatureFlags]: false,
             [FeatureFlags.scoping]: false,
             [FeatureFlags.showInstanceVisibility]: false,
-            [FeatureFlags.newAutomatedChecksReport]: true,
             [FeatureFlags.manualInstanceDetails]: false,
         };
 
