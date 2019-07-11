@@ -21,6 +21,7 @@ export interface FailureInstancePanelControlProps {
     test: VisualizationType;
     addFailureInstance?: (description, test, step) => void;
     editFailureInstance?: (description, test, step, id) => void;
+    addPathForValidation: (path) => void;
     actionType: CapturedInstanceActionType;
     instanceId?: string;
     originalText?: string;
@@ -152,6 +153,7 @@ export class FailureInstancePanelControl extends React.Component<FailureInstance
     private onValidateSelector = (event): void => {
         const currSelector = this.state.path;
         this.setState({ snippet: 'snippet for ' + currSelector });
+        this.props.addPathForValidation(this.state.path);
     };
 
     protected onAddFailureInstance = (): void => {

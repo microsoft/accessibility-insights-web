@@ -20,10 +20,12 @@ import { GenericPanel } from '../../../../../DetailsView/components/generic-pane
 describe('FailureInstancePanelControlTest', () => {
     let addInstanceMock: IMock<(description, test, step) => void>;
     let editInstanceMock: IMock<(description, test, step, id) => void>;
+    let addPathForValidationMock: IMock<(path) => void>;
 
     beforeEach(() => {
         addInstanceMock = Mock.ofInstance(() => {});
         editInstanceMock = Mock.ofInstance(() => {});
+        addPathForValidationMock = Mock.ofInstance(() => {});
     });
 
     test('render FailureInstancePanelControl: add instance', () => {
@@ -145,6 +147,7 @@ describe('FailureInstancePanelControlTest', () => {
             step: 'missingHeadings',
             test: VisualizationType.HeadingsAssessment,
             addFailureInstance: addInstanceMock.object,
+            addPathForValidation: addPathForValidationMock.object,
             actionType: actionType,
             assessmentsProvider: Assessments,
             featureFlagStoreData: featureData,

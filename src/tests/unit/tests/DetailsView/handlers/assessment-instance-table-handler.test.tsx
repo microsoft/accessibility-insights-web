@@ -135,6 +135,7 @@ describe('AssessmentInstanceTableHandlerTest', () => {
                 id={instance.id}
                 onRemove={actionMessageCreatorMock.object.removeFailureInstance}
                 onEdit={actionMessageCreatorMock.object.editFailureInstance}
+                onAddPath={actionMessageCreatorMock.object.addPathForValidation}
                 description={instance.description}
                 assessmentsProvider={assessmentsProvider}
                 featureFlagStoreData={featureFlagStoreData}
@@ -206,6 +207,13 @@ describe('AssessmentInstanceTableHandlerTest', () => {
             assessmentsProvider,
         );
         testObject.undoRequirementStatusChange(test, requirement);
+    });
+
+    test('addPathForValidation', () => {
+        const path = 'test path';
+
+        actionMessageCreatorMock.setup(a => a.addPathForValidation(path)).verifiable(Times.once());
+        testSubject.addPathForValidation(path);
     });
 
     test('addFailureInstance', () => {

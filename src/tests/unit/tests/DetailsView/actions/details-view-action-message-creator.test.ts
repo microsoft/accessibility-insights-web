@@ -601,6 +601,17 @@ describe('DetailsViewActionMessageCreatorTest', () => {
         dispatcherMock.verify(dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage)), Times.once());
     });
 
+    test('addPathForValidation', () => {
+        const path = 'test path';
+        const expectedMessage = {
+            messageType: Messages.PathSnippet.AddPathForValidation,
+            payload: path,
+        };
+
+        testSubject.addPathForValidation(path);
+        dispatcherMock.verify(dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage)), Times.once());
+    });
+
     test('addFailureInstance', () => {
         const telemetry = {
             source: TelemetryEventSource.DetailsView,

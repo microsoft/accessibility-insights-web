@@ -25,6 +25,7 @@ import {
     VisualizationTogglePayload,
 } from './action-payloads';
 import { InspectActions } from './inspect-actions';
+import { PathSnippetActions } from './path-snippet-actions';
 import { PreviewFeaturesActions } from './preview-features-actions';
 
 const visualizationMessages = Messages.Visualizations;
@@ -48,6 +49,7 @@ export class ActionCreator {
         [VisualizationType.TabStops]: TelemetryEvents.TABSTOPS_TOGGLE,
     };
     private inspectActions: InspectActions;
+    private pathSnippetActions: PathSnippetActions;
 
     constructor(
         actionHub: ActionHub,
@@ -63,6 +65,7 @@ export class ActionCreator {
         this.previewFeaturesActions = actionHub.previewFeaturesActions;
         this.visualizationScanResultActions = actionHub.visualizationScanResultActions;
         this.inspectActions = actionHub.inspectActions;
+        this.pathSnippetActions = actionHub.pathSnippetActions;
         this.registerTypeToPayloadCallback = registerTypeToPayloadCallback;
         this.detailsViewController = detailsViewController;
         this.chromeFeatureController = chromeFeatureController;
@@ -113,6 +116,8 @@ export class ActionCreator {
         this.registerTypeToPayloadCallback(Messages.Assessment.EnableVisualHelperWithoutScan, this.onEnableVisualHelperWithoutScan);
 
         this.registerTypeToPayloadCallback(Messages.Inspect.SetHoveredOverSelector, this.onSetHoveredOverSelector);
+
+        this.registerTypeToPayloadCallback(Messages.PathSnippet.AddPathForValidation, this.onAddPathForValidation);
     }
 
     private onEnableVisualHelperWithoutScan = (payload: ToggleActionPayload): void => {
@@ -290,5 +295,9 @@ export class ActionCreator {
 
     private onSetHoveredOverSelector = (payload: string[]): void => {
         this.inspectActions.setHoveredOverSelector.invoke(payload);
+    };
+
+    private onAddPathForValidation = (payload: string): void => {
+        this.pathSnippetActions.onAddPath.invoke(payload);
     };
 }
