@@ -117,14 +117,14 @@ You can start an interactive watch session that automatically runs tests affecte
 #### Using the terminal
 
 `yarn test` runs all unit tests.
-`yarn test -- -u` runs all unit tests and updates snapshot files.
+`yarn test -u` runs all unit tests and updates snapshot files.
 
 `yarn test:e2e` runs all end-to-end tests - you'll need to run `yarn build` first if you've changed non-test code.
-`yarn test:e2e -- -u` runs all end-to-end tests and updates snapshot files.
+`yarn test:e2e -u` runs all end-to-end tests and updates snapshot files.
 
-To run a single or small number of test files, run `yarn test -- {FILE_NAME_REGEX}`
+To run a single or small number of test files, run `yarn test {FILE_NAME_REGEX}`
 
-Options after the `--` are passed to Jest. For example, `yarn test -- --watch` will start an interactive watch session. See more about Jest options [here](https://jestjs.io/docs/en/cli.html).
+Extra command line arguments and flags are passed to Jest. For example, `yarn test --watch` will start an interactive watch session. See more about Jest options [here](https://jestjs.io/docs/en/cli.html).
 
 To debug using an external tool, run `node --inspect-brk ./node_modules/jest/bin/jest.js --runInBand {RELATIVE_FILE_PATH}`. In Chrome, for example, navigate to `chrome://inspect` and click `Open dedicated DevTools for Node`.
 
