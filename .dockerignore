@@ -7,3 +7,4 @@ dist/
 drop/
 extension/
 node_modules/
+test-results/

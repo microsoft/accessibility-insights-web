@@ -193,6 +193,7 @@ $outcome-not-applicable-summary-color: $neutral-outcome;
         display: inline-block;
         border-right: 1px solid $secondary-text;
         border-bottom: 1px solid $secondary-text;
+        min-width: 7px;
         width: 7px;
         height: 7px;
         content: '';

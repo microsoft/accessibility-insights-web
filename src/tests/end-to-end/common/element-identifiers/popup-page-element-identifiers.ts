@@ -11,4 +11,5 @@ export const popupPageElementIdentifiers = {
     hamburgerMenuButton: '#feedback-collapse-menu-button',
     hamburgerMenu: '.popup-menu',
     fastPass: '#launch-pad-item-description-1',
+    launchPadAssessmentButton: '#assessment',
 };

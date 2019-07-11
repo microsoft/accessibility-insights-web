@@ -4,3 +4,8 @@ export const detailsViewSelectors = {
     previewFeaturesPanel: '.preview-features-panel',
     previewFeaturesPanelToggleList: '.preview-feature-toggle-list',
 };
+
+export const overviewSelectors = {
+    overview: '.overview',
+    overviewHeading: '.overview-heading',
+};
