@@ -104,7 +104,9 @@ To run a task from the command palette, press **Ctrl + Shift + P**, select `Task
 
 -   `yarn test` runs all unit tests
 -   `Test current file in VSCode` runs just the tests in the currently-opened test file
--   `yarn test:e2e` runs all end-to-end tests
+-   `yarn test:e2e` runs all end-to-end tests directly on your machine
+-   `yarn test:e2e:docker` runs all end-to-end tests in the same Docker container our linux CI build uses
+    -   Prerequisite: [Install Docker](https://docs.docker.com/install/)
 
 To debug a test inside VS Code, set a breakpoint and click the debug button or press **F5**.
 
