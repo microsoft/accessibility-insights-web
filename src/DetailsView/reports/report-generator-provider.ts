@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { AssessmentReportHtmlGenerator } from './assessment-report-html-generator';
 import { ReportGenerator } from './report-generator';
-import { ReportGeneratorImpl } from './report-generator-v2';
+import { ReportGeneratorImpl } from './report-generator-impl';
 import { ReportHtmlGenerator } from './report-html-generator';
 import { ReportNameGenerator } from './report-name-generator';
 

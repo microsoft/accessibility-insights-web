@@ -6,7 +6,7 @@ import { AssessmentStoreData } from '../../../../../common/types/store-data/asse
 import { FeatureFlagStoreData } from '../../../../../common/types/store-data/feature-flag-store-data';
 import { TabStoreData } from '../../../../../common/types/store-data/tab-store-data';
 import { AssessmentReportHtmlGenerator } from '../../../../../DetailsView/reports/assessment-report-html-generator';
-import { ReportGeneratorImpl } from '../../../../../DetailsView/reports/report-generator-v2';
+import { ReportGeneratorImpl } from '../../../../../DetailsView/reports/report-generator-impl';
 import { ReportHtmlGenerator } from '../../../../../DetailsView/reports/report-html-generator';
 import { ReportNameGenerator } from '../../../../../DetailsView/reports/report-name-generator';
 import { ScanResults } from '../../../../../scanner/iruleresults';
