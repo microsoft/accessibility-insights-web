@@ -6,7 +6,7 @@ import { AssessmentStoreData } from '../../../../../common/types/store-data/asse
 import { FeatureFlagStoreData } from '../../../../../common/types/store-data/feature-flag-store-data';
 import { TabStoreData } from '../../../../../common/types/store-data/tab-store-data';
 import { AssessmentReportHtmlGenerator } from '../../../../../DetailsView/reports/assessment-report-html-generator';
-import { ReportGeneratorV2 } from '../../../../../DetailsView/reports/report-generator-v2';
+import { ReportGeneratorImpl } from '../../../../../DetailsView/reports/report-generator-v2';
 import { ReportHtmlGenerator } from '../../../../../DetailsView/reports/report-html-generator';
 import { ReportNameGenerator } from '../../../../../DetailsView/reports/report-name-generator';
 import { ScanResults } from '../../../../../scanner/iruleresults';
@@ -41,7 +41,11 @@ describe('ReportGeneratorV2', () => {
             )
             .returns(() => 'returned-data');
 
-        const testObject = new ReportGeneratorV2(nameBuilderMock.object, dataBuilderMock.object, assessmentReportHtmlGeneratorMock.object);
+        const testObject = new ReportGeneratorImpl(
+            nameBuilderMock.object,
+            dataBuilderMock.object,
+            assessmentReportHtmlGeneratorMock.object,
+        );
         const actual = testObject.generateFastPassAutomateChecksReport(scanResult, date, title, url, description);
 
         expect(actual).toMatchSnapshot();
@@ -61,7 +65,11 @@ describe('ReportGeneratorV2', () => {
             .returns(() => 'generated-assessment-html')
             .verifiable(Times.once());
 
-        const testObject = new ReportGeneratorV2(nameBuilderMock.object, dataBuilderMock.object, assessmentReportHtmlGeneratorMock.object);
+        const testObject = new ReportGeneratorImpl(
+            nameBuilderMock.object,
+            dataBuilderMock.object,
+            assessmentReportHtmlGeneratorMock.object,
+        );
         const actual = testObject.generateAssessmentReport(
             assessmentStoreData,
             assessmentsProvider,
@@ -80,7 +88,11 @@ describe('ReportGeneratorV2', () => {
             .returns(() => 'returned-name')
             .verifiable(Times.once());
 
-        const testObject = new ReportGeneratorV2(nameBuilderMock.object, dataBuilderMock.object, assessmentReportHtmlGeneratorMock.object);
+        const testObject = new ReportGeneratorImpl(
+            nameBuilderMock.object,
+            dataBuilderMock.object,
+            assessmentReportHtmlGeneratorMock.object,
+        );
         const actual = testObject.generateName('InsightsScan', date, title);
 
         const expected = 'returned-name';

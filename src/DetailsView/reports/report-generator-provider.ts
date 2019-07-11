@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { AssessmentReportHtmlGenerator } from './assessment-report-html-generator';
 import { ReportGenerator } from './report-generator';
-import { ReportGeneratorV2 } from './report-generator-v2';
+import { ReportGeneratorImpl } from './report-generator-v2';
 import { ReportHtmlGenerator } from './report-html-generator';
 import { ReportNameGenerator } from './report-name-generator';
 
@@ -16,7 +16,7 @@ export const createReportGeneratorProvider = (
     assessmentReportHtmlGenerator: AssessmentReportHtmlGenerator,
 ): ReportGeneratorProvider => {
     const getGenerator = () => {
-        return new ReportGeneratorV2(reportNameGenerator, newReportHtmlGenerator, assessmentReportHtmlGenerator);
+        return new ReportGeneratorImpl(reportNameGenerator, newReportHtmlGenerator, assessmentReportHtmlGenerator);
     };
 
     return {

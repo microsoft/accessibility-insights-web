@@ -3,7 +3,7 @@
 import { IMock, Mock } from 'typemoq';
 import { AssessmentReportHtmlGenerator } from '../../../../../DetailsView/reports/assessment-report-html-generator';
 import { createReportGeneratorProvider, ReportGeneratorProvider } from '../../../../../DetailsView/reports/report-generator-provider';
-import { ReportGeneratorV2 } from '../../../../../DetailsView/reports/report-generator-v2';
+import { ReportGeneratorImpl } from '../../../../../DetailsView/reports/report-generator-v2';
 import { ReportHtmlGenerator } from '../../../../../DetailsView/reports/report-html-generator';
 import { ReportNameGenerator } from '../../../../../DetailsView/reports/report-name-generator';
 
@@ -23,6 +23,6 @@ describe('ReportGeneratorProvider', () => {
     it('creates report generator', () => {
         const generator = provider.getGenerator();
 
-        expect(generator).toBeInstanceOf(ReportGeneratorV2);
+        expect(generator).toBeInstanceOf(ReportGeneratorImpl);
     });
 });

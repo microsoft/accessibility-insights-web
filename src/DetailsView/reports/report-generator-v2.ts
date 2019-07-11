@@ -10,7 +10,7 @@ import { ReportGenerator } from './report-generator';
 import { ReportHtmlGenerator } from './report-html-generator';
 import { ReportNameGenerator } from './report-name-generator';
 
-export class ReportGeneratorV2 implements ReportGenerator {
+export class ReportGeneratorImpl implements ReportGenerator {
     constructor(
         private reportNameGenerator: ReportNameGenerator,
         private reportHtmlGenerator: ReportHtmlGenerator,
