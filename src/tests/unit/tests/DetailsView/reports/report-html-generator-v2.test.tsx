@@ -2,11 +2,10 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 import { It, Mock, MockBehavior, Times } from 'typemoq';
-
 import { DateProvider } from '../../../../../common/date-provider';
 import { EnvironmentInfo } from '../../../../../common/environment-info-provider';
 import { GetGuidanceTagsFromGuidanceLinks } from '../../../../../common/get-guidance-tags-from-guidance-links';
-import { ReportHead } from '../../../../../DetailsView/reports/components/report-head-v2';
+import { ReportHead } from '../../../../../DetailsView/reports/components/report-head';
 import { ReportBody, ReportBodyProps } from '../../../../../DetailsView/reports/components/report-sections/report-body';
 import { ReportSectionFactory } from '../../../../../DetailsView/reports/components/report-sections/report-section-factory';
 import { ReactStaticRenderer } from '../../../../../DetailsView/reports/react-static-renderer';

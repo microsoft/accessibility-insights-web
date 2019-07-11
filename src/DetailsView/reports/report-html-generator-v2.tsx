@@ -1,12 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as React from 'react';
-
 import { EnvironmentInfo } from '../../common/environment-info-provider';
 import { GetGuidanceTagsFromGuidanceLinks } from '../../common/get-guidance-tags-from-guidance-links';
 import { FixInstructionProcessor } from '../../injected/fix-instruction-processor';
 import { ScanResults } from '../../scanner/iruleresults';
-import { ReportHead } from './components/report-head-v2';
+import { ReportHead } from './components/report-head';
 import { ReportBody, ReportBodyProps } from './components/report-sections/report-body';
 import { ReportSectionFactory, SectionProps } from './components/report-sections/report-section-factory';
 import { ReactStaticRenderer } from './react-static-renderer';
