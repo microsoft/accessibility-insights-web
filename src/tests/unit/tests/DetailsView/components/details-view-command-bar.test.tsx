@@ -7,6 +7,7 @@ import { IMock, Mock, MockBehavior, Times } from 'typemoq';
 import { AssessmentsProviderImpl } from '../../../../../assessments/assessments-provider';
 import { AssessmentsProvider } from '../../../../../assessments/types/assessments-provider';
 import { Assessment } from '../../../../../assessments/types/iassessment';
+import { FileURLProvider } from '../../../../../common/file-url-provider';
 import { AssessmentStoreData } from '../../../../../common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from '../../../../../common/types/store-data/feature-flag-store-data';
 import { TabStoreData } from '../../../../../common/types/store-data/tab-store-data';
@@ -69,10 +70,11 @@ describe('DetailsViewCommandBar', () => {
     function getProps(): DetailsViewCommandBarProps {
         const deps: DetailsViewCommandBarDeps = {
             detailsViewActionMessageCreator: actionMessageCreatorMock.object,
+            fileURLProvider: Mock.ofType<FileURLProvider>().object,
             outcomeTypeSemanticsFromTestStatus: { stub: 'outcomeTypeSemanticsFromTestStatus' } as any,
             getCurrentDate: () => theDate,
             reportGeneratorProvider: reportGeneratorProviderMock.object,
-        } as DetailsViewCommandBarDeps;
+        };
 
         return {
             deps,
