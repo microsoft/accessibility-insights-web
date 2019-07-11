@@ -5,3 +5,8 @@ export const detailsViewSelectors = {
     previewFeaturesPanelToggleList: '.preview-feature-toggle-list',
     testNavArea: '.details-view-test-nav-area',
 };
+
+export const overviewSelectors = {
+    overview: '.overview',
+    overviewHeading: '.overview-heading',
+};
