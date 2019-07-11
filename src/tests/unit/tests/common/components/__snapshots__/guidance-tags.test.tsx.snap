@@ -1,16 +1,16 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`GuidanceTags renders tags 1`] = `
-<div
+<span
   className="guidance-tags"
 >
-  <div>
+  <span>
     some display text
-  </div>
-  <div>
+  </span>
+  <span>
     some other text
-  </div>
-</div>
+  </span>
+</span>
 `;
 
 exports[`GuidanceTags tags is: [ [length]: 0 ] 1`] = `null`;
