@@ -1,8 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IMock, Mock, MockBehavior } from 'typemoq';
-import { BaseStore } from '../../../../../common/base-store';
-import { FeatureFlagStoreData } from '../../../../../common/types/store-data/feature-flag-store-data';
+import { IMock, Mock } from 'typemoq';
 import { AssessmentReportHtmlGenerator } from '../../../../../DetailsView/reports/assessment-report-html-generator';
 import { createReportGeneratorProvider, ReportGeneratorProvider } from '../../../../../DetailsView/reports/report-generator-provider';
 import { ReportGeneratorV2 } from '../../../../../DetailsView/reports/report-generator-v2';
@@ -13,21 +11,13 @@ describe('ReportGeneratorProvider', () => {
     let nameGeneratorMock: IMock<ReportNameGenerator>;
     let htmlGeneratorMock: IMock<ReportHtmlGenerator>;
     let assessmentHtmlGeneratorMock: IMock<AssessmentReportHtmlGenerator>;
-    let featureFlagStoreMock: IMock<BaseStore<FeatureFlagStoreData>>;
     let provider: ReportGeneratorProvider;
 
     beforeEach(() => {
         nameGeneratorMock = Mock.ofType<ReportNameGenerator>();
         htmlGeneratorMock = Mock.ofType<ReportHtmlGenerator>();
         assessmentHtmlGeneratorMock = Mock.ofType<AssessmentReportHtmlGenerator>();
-        featureFlagStoreMock = Mock.ofType<BaseStore<FeatureFlagStoreData>>(undefined, MockBehavior.Strict);
-        provider = createReportGeneratorProvider(
-            nameGeneratorMock.object,
-            htmlGeneratorMock.object,
-            htmlGeneratorMock.object,
-            assessmentHtmlGeneratorMock.object,
-            featureFlagStoreMock.object,
-        );
+        provider = createReportGeneratorProvider(nameGeneratorMock.object, htmlGeneratorMock.object, assessmentHtmlGeneratorMock.object);
     });
 
     it('creates report generator', () => {
