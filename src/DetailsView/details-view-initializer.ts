@@ -86,7 +86,7 @@ import {
 } from './reports/get-assessment-summary-model';
 import { ReactStaticRenderer } from './reports/react-static-renderer';
 import { createReportGeneratorProvider } from './reports/report-generator-provider';
-import { ReportHtmlGeneratorV2 } from './reports/report-html-generator-v2';
+import { ReportHtmlGeneratorImpl } from './reports/report-html-generator-v2';
 import { ReportNameGenerator } from './reports/report-name-generator';
 
 declare const window: AutoChecker & Window;
@@ -194,7 +194,7 @@ if (isNaN(tabId) === false) {
 
             const fixInstructionProcessor = new FixInstructionProcessor();
 
-            const reportHtmlGeneratorV2 = new ReportHtmlGeneratorV2(
+            const reportHtmlGeneratorV2 = new ReportHtmlGeneratorImpl(
                 AutomatedChecksReportSectionFactory,
                 reactStaticRenderer,
                 environmentInfoProvider.getEnvironmentInfo(),

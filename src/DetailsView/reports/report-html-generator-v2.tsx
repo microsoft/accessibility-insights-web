@@ -11,7 +11,7 @@ import { ReportSectionFactory, SectionProps } from './components/report-sections
 import { ReactStaticRenderer } from './react-static-renderer';
 import { ReportHtmlGenerator } from './report-html-generator';
 
-export class ReportHtmlGeneratorV2 implements ReportHtmlGenerator {
+export class ReportHtmlGeneratorImpl implements ReportHtmlGenerator {
     constructor(
         private readonly sectionFactory: ReportSectionFactory,
         private readonly reactStaticRenderer: ReactStaticRenderer,

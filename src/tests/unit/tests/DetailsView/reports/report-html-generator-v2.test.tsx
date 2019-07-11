@@ -9,7 +9,7 @@ import { ReportHead } from '../../../../../DetailsView/reports/components/report
 import { ReportBody, ReportBodyProps } from '../../../../../DetailsView/reports/components/report-sections/report-body';
 import { ReportSectionFactory } from '../../../../../DetailsView/reports/components/report-sections/report-section-factory';
 import { ReactStaticRenderer } from '../../../../../DetailsView/reports/react-static-renderer';
-import { ReportHtmlGeneratorV2 } from '../../../../../DetailsView/reports/report-html-generator-v2';
+import { ReportHtmlGeneratorImpl } from '../../../../../DetailsView/reports/report-html-generator-v2';
 import { FixInstructionProcessor } from '../../../../../injected/fix-instruction-processor';
 import { ScanResults } from '../../../../../scanner/iruleresults';
 
@@ -64,7 +64,7 @@ describe('ReportHtmlGeneratorV2', () => {
             .returns(() => '<body-markup />')
             .verifiable(Times.once());
 
-        const testObject = new ReportHtmlGeneratorV2(
+        const testObject = new ReportHtmlGeneratorImpl(
             sectionFactoryMock.object,
             rendererMock.object,
             environmentInfo,
