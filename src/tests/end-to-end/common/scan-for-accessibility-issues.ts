@@ -24,7 +24,7 @@ export async function scanForAccessibilityIssues(page: Page, selector: string): 
         } as ElementContext);
     }, selector)) as AxeResults;
 
-    const violations = axeResults.violations;
+    const violations = axeResults.violations.filter(violation => violation.tags.indexOf('best-practice') === -1);
     const printableViolations: PrintableResult[] = violations.map(result => {
         const nodeResults: PrintableNode[] = result.nodes.map(node => {
             return {
