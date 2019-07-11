@@ -3,6 +3,7 @@
 import * as Puppeteer from 'puppeteer';
 
 import { includes } from 'lodash';
+import { async } from 'q';
 import { forceTestFailure } from './force-test-failure';
 import { takeScreenshot } from './generate-screenshot';
 import { DEFAULT_NEW_PAGE_WAIT_TIMEOUT_MS, DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS } from './timeouts';
@@ -54,7 +55,7 @@ export class Page {
         return await this.screenshotOnError(async () => await this.underlyingPage.evaluate(fn, ...args));
     }
 
-    public async getMatchingElements<T>(selector: string, elementProperty: keyof Element): Promise<T[]> {
+    public async getMatchingElements<T>(selector: string, elementProperty?: keyof Element): Promise<T[]> {
         return await this.screenshotOnError(
             async () =>
                 await this.evaluate(

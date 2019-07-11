@@ -1,24 +1,23 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { launchBrowser } from '../../common/browser-factory';
+import { overviewSelectors } from '../../common/element-identifiers/details-view-selectors';
 import { popupPageElementIdentifiers } from '../../common/element-identifiers/popup-page-element-identifiers';
 import { Page } from '../../common/page';
 import { Browser, TargetPageInfo } from './../../common/browser';
-import { CommonSelectors } from './../../common/element-identifiers/common-selectors';
 
 describe('Tabstop tests', () => {
     describe('tabstop from fastpass', () => {
         let browser: Browser;
         let targetPageInfo: TargetPageInfo;
         let popupPage: Page;
+        let fastPassPage: Page;
 
         beforeAll(async () => {
             browser = await launchBrowser({ suppressFirstTimeDialog: true });
             targetPageInfo = await browser.setupNewTargetPage();
-            popupPage = await browser.newExtensionPopupPage(targetPageInfo.tabId);
-            await popupPage.bringToFront();
-            await popupPage.waitForSelector(popupPageElementIdentifiers.launchPad);
-            await popupPage.waitForSelector(popupPageElementIdentifiers.fastPass);
+
+            fastPassPage = await openFastPassPage(browser, targetPageInfo.tabId);
         });
 
         afterAll(async () => {
@@ -28,20 +27,27 @@ describe('Tabstop tests', () => {
         });
 
         it('clicks on fastpass page link', async () => {
-            await popupPage.clickSelector(CommonSelectors.fastPassButton);
-            const detailsViewPage = await waitForDetailsViewPage(browser, popupPage, targetPageInfo.tabId);
-            await detailsViewPage.waitForId(componentId);
+            // await detailsViewPage.waitForId(componentId);
             expect(undefined).toBeUndefined();
         });
-
-        async function waitForDetailsViewPage(browser: Browser, popupPage: Page, targetTabId: number): Promise<Page> {
-            let detailsViewPage: Page;
-
-            await Promise.all([
-                browser.waitForPageMatchingUrl(await browser.getDetailsViewPageUrl(targetTabId)).then(page => (detailsViewPage = page)),
-            ]);
-
-            return detailsViewPage;
-        }
     });
+
+    async function openFastPassPage(browser: Browser, targetTabId: number): Promise<Page> {
+        const popupPage = await browser.newExtensionPopupPage(targetTabId);
+
+        let detailsViewPage: Page;
+
+        await Promise.all([
+            browser.waitForPageMatchingUrl(await browser.getDetailsViewPageUrl(targetTabId)).then(page => (detailsViewPage = page)),
+            popupPage.clickSelector(popupPageElementIdentifiers.fastPass),
+        ]);
+
+        await detailsViewPage.waitForSelector('.button-flex-container');
+        const example = await detailsViewPage.evaluate(() =>
+            Array.from(document.querySelectorAll('.button-flex-container'), element => element),
+        );
+        example[1].click();
+
+        return detailsViewPage;
+    }
 });

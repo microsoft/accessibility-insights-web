@@ -5,7 +5,6 @@ export const CommonSelectors = {
     settingsDropdownMenu: '#settings-dropdown-menu',
     previewFeaturesDropdownButton: '.preview-features-drop-down-button',
     highContrastThemeSelector: 'body.high-contrast-theme',
-    fastPassButton: '#launch-pad-item-description-1',
 };
 
 export const DetailsViewCommonSelectors = {
