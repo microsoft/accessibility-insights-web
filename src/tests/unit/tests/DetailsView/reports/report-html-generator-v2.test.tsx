@@ -9,7 +9,7 @@ import { ReportHead } from '../../../../../DetailsView/reports/components/report
 import { ReportBody, ReportBodyProps } from '../../../../../DetailsView/reports/components/report-sections/report-body';
 import { ReportSectionFactory } from '../../../../../DetailsView/reports/components/report-sections/report-section-factory';
 import { ReactStaticRenderer } from '../../../../../DetailsView/reports/react-static-renderer';
-import { ReportHtmlGeneratorImpl } from '../../../../../DetailsView/reports/report-html-generator-v2';
+import { ReportHtmlGeneratorImpl } from '../../../../../DetailsView/reports/report-html-generator-impl';
 import { FixInstructionProcessor } from '../../../../../injected/fix-instruction-processor';
 import { ScanResults } from '../../../../../scanner/iruleresults';
 
