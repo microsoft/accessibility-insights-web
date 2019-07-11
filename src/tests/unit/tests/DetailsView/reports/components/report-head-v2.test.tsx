@@ -3,11 +3,11 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-import { ReportHeadV2 } from '../../../../../../DetailsView/reports/components/report-head-v2';
+import { ReportHead } from '../../../../../../DetailsView/reports/components/report-head-v2';
 
 describe('ReportHeadV2', () => {
     it('renders', () => {
-        const wrapper = shallow(<ReportHeadV2 />);
+        const wrapper = shallow(<ReportHead />);
         expect(wrapper.getElement()).toMatchSnapshot();
     });
 });

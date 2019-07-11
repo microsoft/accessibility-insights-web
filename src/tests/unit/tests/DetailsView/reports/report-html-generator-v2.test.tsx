@@ -6,7 +6,7 @@ import { It, Mock, MockBehavior, Times } from 'typemoq';
 import { DateProvider } from '../../../../../common/date-provider';
 import { EnvironmentInfo } from '../../../../../common/environment-info-provider';
 import { GetGuidanceTagsFromGuidanceLinks } from '../../../../../common/get-guidance-tags-from-guidance-links';
-import { ReportHeadV2 } from '../../../../../DetailsView/reports/components/report-head-v2';
+import { ReportHead } from '../../../../../DetailsView/reports/components/report-head-v2';
 import { ReportBody, ReportBodyProps } from '../../../../../DetailsView/reports/components/report-sections/report-body';
 import { ReportSectionFactory } from '../../../../../DetailsView/reports/components/report-sections/report-section-factory';
 import { ReactStaticRenderer } from '../../../../../DetailsView/reports/react-static-renderer';
@@ -52,7 +52,7 @@ describe('ReportHtmlGeneratorV2', () => {
             getGuidanceTagsFromGuidanceLinks: getGuidanceTagsStub,
         };
 
-        const headElement: JSX.Element = <ReportHeadV2 />;
+        const headElement: JSX.Element = <ReportHead />;
         const bodyElement: JSX.Element = <ReportBody {...sectionProps} />;
 
         const rendererMock = Mock.ofType(ReactStaticRenderer, MockBehavior.Strict);

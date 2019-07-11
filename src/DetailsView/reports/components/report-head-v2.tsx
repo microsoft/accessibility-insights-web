@@ -5,7 +5,7 @@ import { NamedSFC } from '../../../common/react/named-sfc';
 import { title } from '../../../content/strings/application';
 import * as reportStyles from '../automated-checks-report.styles';
 
-export const ReportHeadV2 = NamedSFC('ReportHead', () => {
+export const ReportHead = NamedSFC('ReportHead', () => {
     return (
         <head>
             <meta httpEquiv="Content-Type" content="text/html;charset=utf-8" />

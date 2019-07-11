@@ -6,7 +6,7 @@ import { EnvironmentInfo } from '../../common/environment-info-provider';
 import { GetGuidanceTagsFromGuidanceLinks } from '../../common/get-guidance-tags-from-guidance-links';
 import { FixInstructionProcessor } from '../../injected/fix-instruction-processor';
 import { ScanResults } from '../../scanner/iruleresults';
-import { ReportHeadV2 } from './components/report-head-v2';
+import { ReportHead } from './components/report-head-v2';
 import { ReportBody, ReportBodyProps } from './components/report-sections/report-body';
 import { ReportSectionFactory, SectionProps } from './components/report-sections/report-section-factory';
 import { ReactStaticRenderer } from './react-static-renderer';
@@ -24,7 +24,7 @@ export class ReportHtmlGeneratorV2 implements ReportHtmlGenerator {
     ) {}
 
     public generateHtml(scanResult: ScanResults, scanDate: Date, pageTitle: string, pageUrl: string, description: string): string {
-        const headElement: JSX.Element = <ReportHeadV2 />;
+        const headElement: JSX.Element = <ReportHead />;
         const headMarkup: string = this.reactStaticRenderer.renderToStaticMarkup(headElement);
 
         const detailsProps: SectionProps = {
