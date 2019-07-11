@@ -80,7 +80,7 @@ describe('Headings Page', () => {
         await detailsViewPage.waitForSelector(detailsViewSelectors.testNavArea);
 
         await detailsViewPage.clickSelector(GuidanceContentSelectors.headingsNav);
-        await detailsViewPage.waitForSelectorToDisappear(DetailsViewCommonSelectors.loadingSpinner);
+        await detailsViewPage.waitForSelector(GuidanceContentSelectors.assessmentInstanceText);
 
         return detailsViewPage;
     }
