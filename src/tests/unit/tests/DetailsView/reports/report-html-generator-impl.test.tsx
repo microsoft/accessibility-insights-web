@@ -13,7 +13,7 @@ import { ReportHtmlGeneratorImpl } from '../../../../../DetailsView/reports/repo
 import { FixInstructionProcessor } from '../../../../../injected/fix-instruction-processor';
 import { ScanResults } from '../../../../../scanner/iruleresults';
 
-describe('ReportHtmlGeneratorV2', () => {
+describe('ReportHtmlGeneratorImpl', () => {
     test('generateHtml', () => {
         const browserSpec: string = 'browser-spect';
         const extensionVersion: string = 'extension-version';
