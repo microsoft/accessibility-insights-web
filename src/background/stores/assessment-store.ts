@@ -192,6 +192,7 @@ export class AssessmentStore extends BaseStoreImpl<AssessmentStoreData> {
                 break;
             }
         }
+        console.log('payload id was ' + payload.id);
 
         this.emitChanged();
     };
@@ -220,6 +221,7 @@ export class AssessmentStore extends BaseStoreImpl<AssessmentStoreData> {
         assessmentData.manualTestStepResultMap[payload.requirement].instances.push(newInstance);
         this.updateManualTestStepStatus(assessmentData, payload.requirement, payload.test);
 
+        console.log('this be weird ' + payload.description);
         this.emitChanged();
     };
 

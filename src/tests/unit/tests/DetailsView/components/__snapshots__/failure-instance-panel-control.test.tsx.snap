@@ -146,7 +146,7 @@ exports[`FailureInstancePanelControlTest render FailureInstancePanelControl: par
       onChange={[Function]}
       resizable={false}
       rows={8}
-      value="originalText"
+      value="original text"
     />
     <ActionAndCancelButtonsComponent
       cancelButtonOnClick={[Function]}

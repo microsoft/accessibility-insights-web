@@ -53,11 +53,11 @@ describe('FailureInstancePanelControlTest', () => {
             actionType: CapturedInstanceActionType.CREATE,
             assessmentsProvider: Assessments,
             featureFlagStoreData: null,
-            originalInstance: { instanceId: 'instanceId', originalText: 'originalText' },
+            originalInstance: { failureDescription: 'original text' },
         };
         const rendered = shallow<FailureInstancePanelControl>(<FailureInstancePanelControl {...props} />);
         expect(rendered.getElement()).toMatchSnapshot();
-        expect(rendered.state().path).toEqual('');
+        expect(rendered.state().currentInstance.path).toEqual('');
     });
 
     test('render FailureInstancePanelControl: edit instance', () => {
@@ -76,12 +76,14 @@ describe('FailureInstancePanelControlTest', () => {
             .props()
             .onChange(null, description);
 
-        expect(wrapper.state().failureDescription).toEqual(description);
+        expect(wrapper.state().currentInstance.failureDescription).toEqual(description);
     });
 
     test('openFailureInstancePanel', () => {
         const props = createPropsWithType(CapturedInstanceActionType.CREATE);
-        props.originalInstance.originalText = 'original text';
+        props.originalInstance.failureDescription = 'new text';
+        props.originalInstance.path = 'new path';
+        props.originalInstance.snippet = 'new snippet';
         const wrapper = shallow<FailureInstancePanelControl>(<FailureInstancePanelControl {...props} />);
         wrapper
             .find(TextField)
@@ -93,7 +95,9 @@ describe('FailureInstancePanelControlTest', () => {
             .onClick(null);
 
         expect(wrapper.state().isPanelOpen).toBe(true);
-        expect(wrapper.state().failureDescription).toEqual(props.originalInstance.originalText);
+        expect(wrapper.state().currentInstance.failureDescription).toEqual(props.originalInstance.failureDescription);
+        expect(wrapper.state().currentInstance.path).toEqual(props.originalInstance.path);
+        expect(wrapper.state().currentInstance.snippet).toEqual(props.originalInstance.snippet);
     });
 
     test('closeFailureInstancePanel', () => {
@@ -113,7 +117,7 @@ describe('FailureInstancePanelControlTest', () => {
         expect(wrapper.state().isPanelOpen).toBe(false);
 
         // This shouldn't be cleared because it stays briefly visible as the panel close animation happens
-        expect(wrapper.state().failureDescription).toEqual(description);
+        expect(wrapper.state().currentInstance.failureDescription).toEqual(description);
     });
 
     test('onSaveEditedFailureInstance', () => {
@@ -121,13 +125,11 @@ describe('FailureInstancePanelControlTest', () => {
         const unchangedPath = '';
         const unchangedSnippet = '';
         const props = createPropsWithType(CapturedInstanceActionType.EDIT);
-        props.originalInstance.instanceId = '1';
+        props.instanceId = '1';
         props.editFailureInstance = editInstanceMock.object;
 
         editInstanceMock
-            .setup(handler =>
-                handler(description, unchangedPath, unchangedSnippet, props.test, props.step, props.originalInstance.instanceId),
-            )
+            .setup(handler => handler(description, unchangedPath, unchangedSnippet, props.test, props.step, props.instanceId))
             .verifiable(Times.once());
 
         const wrapper = shallow<FailureInstancePanelControl>(<FailureInstancePanelControl {...props} />);
@@ -144,7 +146,7 @@ describe('FailureInstancePanelControlTest', () => {
         expect(wrapper.state().isPanelOpen).toBe(false);
 
         // This shouldn't be cleared because it stays briefly visible as the panel close animation happens
-        expect(wrapper.state().failureDescription).toEqual(description);
+        expect(wrapper.state().currentInstance.failureDescription).toEqual(description);
 
         editInstanceMock.verifyAll();
     });
@@ -172,17 +174,16 @@ describe('FailureInstancePanelControlTest', () => {
         expect(wrapper.state().isPanelOpen).toBe(false);
 
         // This shouldn't be cleared because it stays briefly visible as the panel close animation happens
-        expect(wrapper.state().failureDescription).toEqual(description);
+        expect(wrapper.state().currentInstance.failureDescription).toEqual(description);
 
         addInstanceMock.verifyAll();
     });
 
     function createPropsWithType(actionType: CapturedInstanceActionType): FailureInstancePanelControlProps {
         const featureData = {} as FeatureFlagStoreData;
-        const instanceId = '';
-        const originalText = '';
-        const originalPath = '';
-        const originalSnippet = '';
+        const failureDescription = '';
+        const path = '';
+        const snippet = '';
 
         return {
             step: 'missingHeadings',
@@ -191,7 +192,7 @@ describe('FailureInstancePanelControlTest', () => {
             actionType: actionType,
             assessmentsProvider: Assessments,
             featureFlagStoreData: featureData,
-            originalInstance: { instanceId, originalText, originalPath, originalSnippet },
+            originalInstance: { failureDescription, path, snippet },
         };
     }
 });

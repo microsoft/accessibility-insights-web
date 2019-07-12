@@ -22,27 +22,21 @@ export interface FailureInstancePanelControlProps {
     addFailureInstance?: (description, path, snippet, test, step) => void;
     editFailureInstance?: (description, path, snippet, test, step, id) => void;
     actionType: CapturedInstanceActionType;
-    originalInstance?: {
-        instanceId: string;
-        originalText?: string;
-        originalPath?: string;
-        originalSnippet?: string;
-    };
+    originalInstance?: FailureInstanceData;
+    instanceId?: string;
     assessmentsProvider: AssessmentsProvider;
     featureFlagStoreData: BaseStore<FeatureFlagStoreData>;
 }
 
+export type FailureInstanceData = {
+    failureDescription?: string;
+    path?: string;
+    snippet?: string;
+};
+
 export interface FailureInstancePanelControlState {
     isPanelOpen: boolean;
-    failureDescription: string;
-    path: string;
-    snippet: string;
-    originalInstance: {
-        instanceId: string;
-        originalText?: string;
-        originalPath?: string;
-        originalSnippet?: string;
-    };
+    currentInstance: FailureInstanceData;
 }
 
 export enum CapturedInstanceActionType {
@@ -57,16 +51,22 @@ export class FailureInstancePanelControl extends React.Component<FailureInstance
         super(props);
         let filledOriginalInstance;
         if (this.props.originalInstance) {
-            filledOriginalInstance = this.props.originalInstance;
+            filledOriginalInstance = {
+                failureDescription: this.props.originalInstance.failureDescription,
+                path: this.props.originalInstance.path,
+                snippet: this.props.originalInstance.snippet,
+            };
         } else {
-            filledOriginalInstance = { instanceId: '', originalText: '', originalPath: '', originalSnippet: '' };
+            filledOriginalInstance = { failureDescription: '', path: '', snippet: '' };
         }
+
         this.state = {
             isPanelOpen: false,
-            originalInstance: filledOriginalInstance,
-            failureDescription: filledOriginalInstance.originalText || '',
-            path: filledOriginalInstance.originalPath || '',
-            snippet: filledOriginalInstance.originalSnippet || '',
+            currentInstance: {
+                failureDescription: filledOriginalInstance.failureDescription || '',
+                path: filledOriginalInstance.path || '',
+                snippet: filledOriginalInstance.snippet || '',
+            },
         };
     }
 
@@ -128,13 +128,13 @@ export class FailureInstancePanelControl extends React.Component<FailureInstance
                     label="Comments"
                     multiline={true}
                     rows={8}
-                    value={this.state.failureDescription}
+                    value={this.state.currentInstance.failureDescription}
                     onChange={this.onFailureDescriptionChange}
                     resizable={false}
                 />
                 <ActionAndCancelButtonsComponent
                     isHidden={false}
-                    primaryButtonDisabled={this.state.failureDescription === ''}
+                    primaryButtonDisabled={this.state.currentInstance.failureDescription === ''}
                     primaryButtonText={this.props.actionType === CapturedInstanceActionType.CREATE ? 'Add' : 'Save'}
                     primaryButtonOnClick={
                         this.props.actionType === CapturedInstanceActionType.CREATE
@@ -150,50 +150,85 @@ export class FailureInstancePanelControl extends React.Component<FailureInstance
     private getFailureInstancePanelDetails = (): JSX.Element => {
         return (
             <FailureInstancePanelDetails
-                path={this.state.path}
-                snippet={this.state.snippet}
+                path={this.state.currentInstance.path}
+                snippet={this.state.currentInstance.snippet}
                 onSelectorChange={this.onSelectorChange}
                 onValidateSelector={this.onValidateSelector}
             />
         );
     };
 
+    private getCurrentInstance = (): FailureInstanceData => {
+        const updatedInstance = {
+            failureDescription: this.state.currentInstance.failureDescription,
+            path: this.state.currentInstance.path,
+            snippet: this.state.currentInstance.snippet,
+        };
+
+        return updatedInstance;
+    };
+
     protected onFailureDescriptionChange = (event, value: string): void => {
-        this.setState({ failureDescription: value });
+        const updatedInstance = this.getCurrentInstance();
+        updatedInstance.failureDescription = value;
+        this.setState({ currentInstance: updatedInstance });
     };
 
     private onSelectorChange = (event, value: string): void => {
-        this.setState({ path: value });
+        const updatedInstance = this.getCurrentInstance();
+        updatedInstance.path = value;
+        this.setState({ currentInstance: updatedInstance });
     };
 
     private onValidateSelector = (event): void => {
-        const currSelector = this.state.path;
-        this.setState({ snippet: 'snippet for ' + currSelector });
+        const currSelector = this.state.currentInstance.path;
+        const currSnippet = 'snippet for ' + currSelector;
+        const updatedInstance = this.getCurrentInstance();
+        updatedInstance.snippet = currSnippet;
+        this.setState({ currentInstance: updatedInstance });
     };
 
     protected onAddFailureInstance = (): void => {
-        this.props.addFailureInstance(this.state.failureDescription, this.state.path, this.state.snippet, this.props.test, this.props.step);
+        this.props.addFailureInstance(
+            this.state.currentInstance.failureDescription,
+            this.state.currentInstance.path,
+            this.state.currentInstance.snippet,
+            this.props.test,
+            this.props.step,
+        );
         this.setState({ isPanelOpen: false });
     };
 
     protected onSaveEditedFailureInstance = (): void => {
         this.props.editFailureInstance(
-            this.state.failureDescription,
-            this.state.path,
-            this.state.snippet,
+            this.state.currentInstance.failureDescription,
+            this.state.currentInstance.path,
+            this.state.currentInstance.snippet,
             this.props.test,
             this.props.step,
-            this.props.originalInstance.instanceId,
+            this.props.instanceId,
         );
         this.setState({ isPanelOpen: false });
     };
 
     protected openFailureInstancePanel = (): void => {
+        let propsDescription = '';
+        let propsPath = '';
+        let propsSnippet = '';
+        if (this.props.originalInstance) {
+            propsDescription = this.props.originalInstance.failureDescription || '';
+            propsPath = this.props.originalInstance.path || '';
+            propsSnippet = this.props.originalInstance.snippet || '';
+        }
+
+        const updatedInstance = this.getCurrentInstance();
+        updatedInstance.failureDescription = propsDescription;
+        updatedInstance.path = propsPath;
+        updatedInstance.snippet = propsSnippet;
+
         this.setState({
             isPanelOpen: true,
-            failureDescription: this.state.originalInstance.originalText || '',
-            path: this.state.originalInstance.originalPath || '',
-            snippet: this.state.originalInstance.originalSnippet || '',
+            currentInstance: updatedInstance,
         });
     };
 

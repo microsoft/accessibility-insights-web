@@ -30,18 +30,18 @@ describe('AssessmentInstanceRemoveButton', () => {
         const props: AssessmentInstanceEditAndRemoveControlProps = {
             test: VisualizationType.HeadingsAssessment,
             step: 'headingLevel',
+            id: 'id',
             currentInstance: {
-                instanceId: 'instanceId',
-                originalText: 'original text',
-                originalPath: 'original path',
-                originalSnippet: 'original snippet',
+                failureDescription: 'original text',
+                path: 'original path',
+                snippet: 'original snippet',
             },
             onRemove: onRemoveMock.object,
             onEdit: null,
             assessmentsProvider: CreateTestAssessmentProvider(),
             featureFlagStoreData: featureFlagStoreData,
         };
-        onRemoveMock.setup(r => r(props.test, props.step, props.currentInstance.instanceId)).verifiable(Times.once());
+        onRemoveMock.setup(r => r(props.test, props.step, props.id)).verifiable(Times.once());
 
         const testSubject = new TestableAssessmentInstanceRemoveButton(props);
         const expected = (
@@ -50,6 +50,7 @@ describe('AssessmentInstanceRemoveButton', () => {
                     step={props.step}
                     test={props.test}
                     actionType={CapturedInstanceActionType.EDIT}
+                    instanceId={props.id}
                     originalInstance={props.currentInstance}
                     editFailureInstance={props.onEdit}
                     assessmentsProvider={props.assessmentsProvider}

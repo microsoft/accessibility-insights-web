@@ -7,17 +7,13 @@ import * as React from 'react';
 import { AssessmentsProvider } from '../../assessments/types/assessments-provider';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { VisualizationType } from '../../common/types/visualization-type';
-import { CapturedInstanceActionType, FailureInstancePanelControl } from './failure-instance-panel-control';
+import { CapturedInstanceActionType, FailureInstanceData, FailureInstancePanelControl } from './failure-instance-panel-control';
 
 export interface AssessmentInstanceEditAndRemoveControlProps {
     test: VisualizationType;
     step: string;
-    currentInstance: {
-        instanceId: string;
-        originalText?: string;
-        originalPath?: string;
-        originalSnippet?: string;
-    };
+    id: string;
+    currentInstance: FailureInstanceData;
     onRemove: (test, step, id) => void;
     onEdit: (description, path, snippet, test, step, id) => void;
     assessmentsProvider: AssessmentsProvider;
@@ -32,6 +28,7 @@ export class AssessmentInstanceEditAndRemoveControl extends React.Component<Asse
                     step={this.props.step}
                     test={this.props.test}
                     actionType={CapturedInstanceActionType.EDIT}
+                    instanceId={this.props.id}
                     originalInstance={this.props.currentInstance}
                     editFailureInstance={this.props.onEdit}
                     assessmentsProvider={this.props.assessmentsProvider}
@@ -45,6 +42,6 @@ export class AssessmentInstanceEditAndRemoveControl extends React.Component<Asse
     }
 
     protected onRemoveButtonClicked = (event?: React.MouseEvent<any>): void => {
-        this.props.onRemove(this.props.test, this.props.step, this.props.currentInstance.instanceId);
+        this.props.onRemove(this.props.test, this.props.step, this.props.id);
     };
 }
