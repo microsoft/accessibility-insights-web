@@ -101,9 +101,15 @@ export class AssessmentReportModelBuilder {
             const { reportInstanceFields } = _.find(assessment.requirements, s => s.key === stepKey);
 
             function getInstanceReportModel(instance: Partial<TestStepInstance>): InstanceReportModel {
-                const props = reportInstanceFields.map(
-                    ({ label, getValue }) => ({ key: label, value: getValue(instance) } as InstancePairReportModel),
-                );
+                const props = reportInstanceFields
+                    .filter(element => {
+                        if (element.getValue(instance)) {
+                            return true;
+                        }
+                        return false;
+                    })
+                    .map(({ label, getValue }) => ({ key: label, value: getValue(instance) } as InstancePairReportModel));
+
                 return { props };
             }
 
