@@ -8,14 +8,14 @@ import { AssessmentStoreData } from '../../common/types/store-data/assessment-re
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { TabStoreData } from '../../common/types/store-data/tab-store-data';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
-import { ReportGeneratorProvider } from '../reports/report-generator-provider';
+import { ReportGenerator } from '../reports/report-generator';
 import { DetailsRightPanelConfiguration } from './details-view-right-panel';
 import { ReportExportComponent, ReportExportComponentDeps } from './report-export-component';
 import { StartOverDropdown } from './start-over-dropdown';
 
 export type DetailsViewCommandBarDeps = ReportExportComponentDeps & {
     getCurrentDate: () => Date;
-    reportGeneratorProvider: ReportGeneratorProvider;
+    reportGenerator: ReportGenerator;
 };
 
 export interface DetailsViewCommandBarProps {
@@ -73,7 +73,7 @@ export class DetailsViewCommandBar extends React.Component<DetailsViewCommandBar
             return null;
         }
         const { deps, assessmentStoreData, assessmentsProvider, featureFlagStoreData, tabStoreData } = this.props;
-        const reportGenerator = deps.reportGeneratorProvider.getGenerator();
+        const reportGenerator = deps.reportGenerator;
         const selectedTest = this.props.assessmentStoreData.assessmentNavState.selectedTestType;
         const test = this.props.assessmentsProvider.forType(selectedTest);
         const htmlGenerator = reportGenerator.generateAssessmentReport.bind(
