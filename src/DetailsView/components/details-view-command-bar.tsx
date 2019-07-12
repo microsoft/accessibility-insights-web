@@ -3,24 +3,20 @@
 import { css } from '@uifabric/utilities';
 import { Link } from 'office-ui-fabric-react/lib/Link';
 import * as React from 'react';
-
 import { AssessmentsProvider } from '../../assessments/types/assessments-provider';
 import { AssessmentStoreData } from '../../common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { TabStoreData } from '../../common/types/store-data/tab-store-data';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 import { ReportGeneratorProvider } from '../reports/report-generator-provider';
-import { ReportGeneratorDeps } from '../reports/report-generator-v1';
 import { DetailsRightPanelConfiguration } from './details-view-right-panel';
-import { ExportDialogDeps } from './export-dialog';
-import { ReportExportComponent } from './report-export-component';
+import { ReportExportComponent, ReportExportComponentDeps } from './report-export-component';
 import { StartOverDropdown } from './start-over-dropdown';
 
-export type DetailsViewCommandBarDeps = ExportDialogDeps &
-    ReportGeneratorDeps & {
-        getCurrentDate: () => Date;
-        reportGeneratorProvider: ReportGeneratorProvider;
-    };
+export type DetailsViewCommandBarDeps = ReportExportComponentDeps & {
+    getCurrentDate: () => Date;
+    reportGeneratorProvider: ReportGeneratorProvider;
+};
 
 export interface DetailsViewCommandBarProps {
     deps: DetailsViewCommandBarDeps;
