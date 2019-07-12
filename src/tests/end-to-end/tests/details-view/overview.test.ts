@@ -4,7 +4,7 @@ import { Browser } from '../../common/browser';
 import { launchBrowser } from '../../common/browser-factory';
 import { overviewSelectors } from '../../common/element-identifiers/details-view-selectors';
 import { popupPageElementIdentifiers } from '../../common/element-identifiers/popup-page-element-identifiers';
-import { enableHighContrast } from '../../common/enable-high-contrast';
+import { setupHighContrastMode } from '../../common/enable-high-contrast';
 import { Page } from '../../common/page';
 import { scanForAccessibilityIssues } from '../../common/scan-for-accessibility-issues';
 
@@ -42,7 +42,7 @@ describe('Overview Page', () => {
             browser = await launchBrowser({ suppressFirstTimeDialog: true });
 
             targetTabId = (await browser.setupNewTargetPage()).tabId;
-            await setupHighContrastMode();
+            await setupHighContrastMode(browser, targetTabId);
 
             overviewPage = await openOverviewPage(browser, targetTabId);
         });
@@ -58,12 +58,6 @@ describe('Overview Page', () => {
             const results = await scanForAccessibilityIssues(overviewPage, overviewSelectors.overview);
             expect(results).toHaveLength(0);
         });
-
-        async function setupHighContrastMode(): Promise<void> {
-            const tempDetailsViewPage = await browser.newExtensionDetailsViewPage(targetTabId);
-            await enableHighContrast(tempDetailsViewPage);
-            await tempDetailsViewPage.close();
-        }
     });
 
     async function openOverviewPage(browser: Browser, targetTabId: number): Promise<Page> {
