@@ -19,12 +19,13 @@ export interface PrintableResult {
 
 export async function scanForAccessibilityIssues(page: Page, selector: string): Promise<PrintableResult[]> {
     const axeResults = (await page.evaluate(selectorInEvaluate => {
-        return axe.run({
-            include: [selectorInEvaluate],
-        } as ElementContext);
+        return axe.run(
+            { include: [selectorInEvaluate] } as ElementContext,
+            { runOnly: { type: 'tag', values: ['wcag2a', 'wcag2aa'] } } as ElementContext,
+        );
     }, selector)) as AxeResults;
 
-    const violations = axeResults.violations.filter(violation => violation.tags.indexOf('best-practice') === -1);
+    const violations = axeResults.violations;
     const printableViolations: PrintableResult[] = violations.map(result => {
         const nodeResults: PrintableNode[] = result.nodes.map(node => {
             return {
