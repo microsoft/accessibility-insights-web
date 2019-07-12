@@ -194,7 +194,7 @@ if (isNaN(tabId) === false) {
 
             const fixInstructionProcessor = new FixInstructionProcessor();
 
-            const reportHtmlGeneratorV2 = new ReportHtmlGeneratorImpl(
+            const reportHtmlGenerator = new ReportHtmlGeneratorImpl(
                 AutomatedChecksReportSectionFactory,
                 reactStaticRenderer,
                 environmentInfoProvider.getEnvironmentInfo(),
@@ -253,7 +253,7 @@ if (isNaN(tabId) === false) {
 
             const fileURLProvider = new FileURLProvider(windowUtils, provideBlob);
 
-            const reportGenerator = new ReportGenerator(reportNameGenerator, reportHtmlGeneratorV2, assessmentReportHtmlGenerator);
+            const reportGenerator = new ReportGenerator(reportNameGenerator, reportHtmlGenerator, assessmentReportHtmlGenerator);
 
             const deps: DetailsViewContainerDeps = {
                 fixInstructionProcessor,
