@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { Browser } from './browser';
 import { CommonSelectors, DetailsViewCommonSelectors } from './element-identifiers/common-selectors';
 import { Page } from './page';
 
@@ -9,4 +10,10 @@ export async function enableHighContrast(detailsViewPage: Page): Promise<void> {
     await detailsViewPage.clickSelector(DetailsViewCommonSelectors.highContrastToggle);
     await detailsViewPage.waitForSelector(CommonSelectors.highContrastThemeSelector);
     await detailsViewPage.keyPress('Escape');
+}
+
+export async function setupHighContrastMode(browser: Browser, targetTabId: number): Promise<void> {
+    const tempDetailsViewPage = await browser.newExtensionDetailsViewPage(targetTabId);
+    await enableHighContrast(tempDetailsViewPage);
+    await tempDetailsViewPage.close();
 }
