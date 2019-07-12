@@ -4,7 +4,7 @@ import { escape } from 'lodash';
 import { ActionButton } from 'office-ui-fabric-react/lib/Button';
 import * as React from 'react';
 import { ExportResultType } from '../../common/telemetry-events';
-import { ReportGenerator } from '../reports/report-generator';
+import { ReportGeneratorImpl } from '../reports/report-generator-impl';
 import { ExportDialog, ExportDialogDeps } from './export-dialog';
 
 export type ReportExportComponentDeps = ExportDialogDeps;
@@ -12,7 +12,7 @@ export type ReportExportComponentDeps = ExportDialogDeps;
 export interface ReportExportComponentProps {
     deps: ReportExportComponentDeps;
     exportResultsType: ExportResultType;
-    reportGenerator: ReportGenerator;
+    reportGenerator: ReportGeneratorImpl;
     pageTitle: string;
     scanDate: Date;
     htmlGenerator: (descriptionPlaceholder: string) => string;

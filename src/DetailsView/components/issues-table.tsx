@@ -13,7 +13,7 @@ import { VisualizationType } from '../../common/types/visualization-type';
 import { DecoratedAxeNodeResult } from '../../injected/scanner-utils';
 import { RuleResult, ScanResults } from '../../scanner/iruleresults';
 import { DictionaryStringTo } from '../../types/common-types';
-import { ReportGenerator } from '../reports/report-generator';
+import { ReportGeneratorImpl } from '../reports/report-generator-impl';
 import { ExportDialogDeps } from './export-dialog';
 import { IssuesDetailsList } from './issues-details-list';
 import { IssuesDetailsPane, IssuesDetailsPaneDeps } from './Issues-details-pane';
@@ -23,7 +23,7 @@ import { ReportExportComponent } from './report-export-component';
 export type IssuesTableDeps = IssuesDetailsPaneDeps &
     ExportDialogDeps & {
         getDateFromTimestamp: (timestamp: string) => Date;
-        reportGenerator: ReportGenerator;
+        reportGenerator: ReportGeneratorImpl;
     };
 
 export interface IssuesTableProps {
