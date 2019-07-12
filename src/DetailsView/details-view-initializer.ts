@@ -86,7 +86,6 @@ import {
 } from './reports/get-assessment-summary-model';
 import { ReactStaticRenderer } from './reports/react-static-renderer';
 import { ReportGeneratorImpl } from './reports/report-generator-impl';
-import { createReportGeneratorProvider } from './reports/report-generator-provider';
 import { ReportHtmlGeneratorImpl } from './reports/report-html-generator-impl';
 import { ReportNameGenerator } from './reports/report-name-generator';
 
@@ -220,12 +219,6 @@ if (isNaN(tabId) === false) {
                 assessmentDefaultMessageGenerator,
             );
 
-            const reportGeneratorProvider = createReportGeneratorProvider(
-                reportNameGenerator,
-                reportHtmlGeneratorV2,
-                assessmentReportHtmlGenerator,
-            );
-
             visualizationStore.setTabId(tab.id);
             tabStore.setTabId(tab.id);
             visualizationScanResultStore.setTabId(tab.id);
@@ -299,7 +292,6 @@ if (isNaN(tabId) === false) {
                 environmentInfoProvider,
                 issueFilingServiceProvider: IssueFilingServiceProviderImpl,
                 getGuidanceTagsFromGuidanceLinks: GetGuidanceTagsFromGuidanceLinks,
-                reportGeneratorProvider,
                 reportGenerator,
             };
 
