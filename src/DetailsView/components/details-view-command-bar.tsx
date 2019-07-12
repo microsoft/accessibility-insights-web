@@ -8,14 +8,14 @@ import { AssessmentStoreData } from '../../common/types/store-data/assessment-re
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { TabStoreData } from '../../common/types/store-data/tab-store-data';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
-import { ReportGeneratorImpl } from '../reports/report-generator-impl';
+import { ReportGenerator } from '../reports/report-generator-impl';
 import { DetailsRightPanelConfiguration } from './details-view-right-panel';
 import { ReportExportComponent, ReportExportComponentDeps } from './report-export-component';
 import { StartOverDropdown } from './start-over-dropdown';
 
 export type DetailsViewCommandBarDeps = ReportExportComponentDeps & {
     getCurrentDate: () => Date;
-    reportGenerator: ReportGeneratorImpl;
+    reportGenerator: ReportGenerator;
 };
 
 export interface DetailsViewCommandBarProps {

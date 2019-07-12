@@ -6,19 +6,19 @@ import * as React from 'react';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { ExportDialog, ExportDialogDeps } from '../../../../../DetailsView/components/export-dialog';
 import { ReportExportComponent, ReportExportComponentProps } from '../../../../../DetailsView/components/report-export-component';
-import { ReportGeneratorImpl } from '../../../../../DetailsView/reports/report-generator-impl';
+import { ReportGenerator } from '../../../../../DetailsView/reports/report-generator-impl';
 
 describe('ReportExportComponentTest', () => {
     let deps: ExportDialogDeps;
     let props: ReportExportComponentProps;
-    let reportGeneratorMock: IMock<ReportGeneratorImpl>;
+    let reportGeneratorMock: IMock<ReportGenerator>;
     let htmlGeneratorMock: IMock<(description: string) => string>;
     let updateDescriptionMock: IMock<(value: string) => void>;
     let getDescriptionMock: IMock<() => string>;
 
     beforeEach(() => {
         deps = {} as ExportDialogDeps;
-        reportGeneratorMock = Mock.ofType<ReportGeneratorImpl>(undefined, MockBehavior.Strict);
+        reportGeneratorMock = Mock.ofType<ReportGenerator>(undefined, MockBehavior.Strict);
         htmlGeneratorMock = Mock.ofInstance(description => null);
         updateDescriptionMock = Mock.ofInstance(value => null);
         getDescriptionMock = Mock.ofInstance(() => '');

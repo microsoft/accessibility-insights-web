@@ -9,7 +9,7 @@ import { AssessmentReportHtmlGenerator } from './assessment-report-html-generato
 import { ReportHtmlGenerator } from './report-html-generator';
 import { ReportNameGenerator } from './report-name-generator';
 
-export class ReportGeneratorImpl {
+export class ReportGenerator {
     constructor(
         private reportNameGenerator: ReportNameGenerator,
         private reportHtmlGenerator: ReportHtmlGenerator,

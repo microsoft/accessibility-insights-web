@@ -85,7 +85,7 @@ import {
     getAssessmentSummaryModelFromProviderAndStoreData,
 } from './reports/get-assessment-summary-model';
 import { ReactStaticRenderer } from './reports/react-static-renderer';
-import { ReportGeneratorImpl } from './reports/report-generator-impl';
+import { ReportGenerator } from './reports/report-generator-impl';
 import { ReportHtmlGeneratorImpl } from './reports/report-html-generator-impl';
 import { ReportNameGenerator } from './reports/report-name-generator';
 
@@ -253,7 +253,7 @@ if (isNaN(tabId) === false) {
 
             const fileURLProvider = new FileURLProvider(windowUtils, provideBlob);
 
-            const reportGenerator = new ReportGeneratorImpl(reportNameGenerator, reportHtmlGeneratorV2, assessmentReportHtmlGenerator);
+            const reportGenerator = new ReportGenerator(reportNameGenerator, reportHtmlGeneratorV2, assessmentReportHtmlGenerator);
 
             const deps: DetailsViewContainerDeps = {
                 fixInstructionProcessor,

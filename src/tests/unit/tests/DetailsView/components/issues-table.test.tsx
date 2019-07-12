@@ -9,17 +9,17 @@ import { DateProvider } from '../../../../../common/date-provider';
 import { UserConfigurationStoreData } from '../../../../../common/types/store-data/user-configuration-store';
 import { IssuesTable, IssuesTableDeps, IssuesTableProps } from '../../../../../DetailsView/components/issues-table';
 import { DetailsRowData, IssuesTableHandler } from '../../../../../DetailsView/components/issues-table-handler';
-import { ReportGeneratorImpl } from '../../../../../DetailsView/reports/report-generator-impl';
+import { ReportGenerator } from '../../../../../DetailsView/reports/report-generator-impl';
 import { DecoratedAxeNodeResult } from '../../../../../injected/scanner-utils';
 import { RuleResult } from '../../../../../scanner/iruleresults';
 import { DictionaryStringTo } from '../../../../../types/common-types';
 
 describe('IssuesTableTest', () => {
     let deps: IssuesTableDeps;
-    let reportGeneratorMock: IMock<ReportGeneratorImpl>;
+    let reportGeneratorMock: IMock<ReportGenerator>;
 
     beforeEach(() => {
-        reportGeneratorMock = Mock.ofType<ReportGeneratorImpl>();
+        reportGeneratorMock = Mock.ofType<ReportGenerator>();
         deps = {
             getDateFromTimestamp: DateProvider.getDateFromTimestamp,
             reportGenerator: reportGeneratorMock.object,
