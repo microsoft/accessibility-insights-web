@@ -29,10 +29,11 @@
         margin: 0px 0px 0px 16px;
         display: inherit;
 
-        color: $neutral-60;
+        color: $primary-text;
         font-family: $fontFamily;
         font-size: 14px;
         line-height: 20px;
+        font-weight: 600;
 
         a {
             @include ellipsedText();
