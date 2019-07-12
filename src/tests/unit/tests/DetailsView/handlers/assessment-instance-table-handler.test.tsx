@@ -215,12 +215,15 @@ describe('AssessmentInstanceTableHandlerTest', () => {
     test('addFailureInstance', () => {
         const test = VisualizationType.HeadingsAssessment;
         const requirement = 'requirement';
-        const description = 'description';
-        const path = 'path';
-        const snippet = 'snippet';
-        actionMessageCreatorMock.setup(a => a.addFailureInstance(description, path, snippet, test, requirement)).verifiable(Times.once());
+        const instanceData = {
+            failureDescription: 'description',
+            path: 'path',
+            snippet: 'snippet',
+        };
 
-        testSubject.addFailureInstance(description, path, snippet, test, requirement);
+        actionMessageCreatorMock.setup(a => a.addFailureInstance(instanceData, test, requirement)).verifiable(Times.once());
+
+        testSubject.addFailureInstance(instanceData, test, requirement);
     });
 
     test('passUnmarkedInstances', () => {

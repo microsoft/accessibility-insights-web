@@ -1117,9 +1117,11 @@ describe('AssessmentStoreTest', () => {
         const payload: AddFailureInstancePayload = {
             test: assessmentType,
             requirement: requirementKey,
-            description: 'description',
-            path: 'path',
-            snippet: 'snippet',
+            instanceData: {
+                failureDescription: 'description',
+                path: 'path',
+                snippet: 'snippet',
+            },
         };
 
         const failureInstance = {
@@ -1134,7 +1136,9 @@ describe('AssessmentStoreTest', () => {
         assessmentMock.setup(am => am.getVisualizationConfiguration()).returns(() => configStub);
 
         assessmentDataConverterMock
-            .setup(a => a.generateFailureInstance(payload.description, payload.path, payload.snippet))
+            .setup(a =>
+                a.generateFailureInstance(payload.instanceData.failureDescription, payload.instanceData.path, payload.instanceData.snippet),
+            )
             .returns(description => failureInstance);
 
         const expectedAssessment = new AssessmentDataBuilder()
@@ -1232,9 +1236,11 @@ describe('AssessmentStoreTest', () => {
             test: assessmentType,
             requirement: requirementKey,
             id: '1',
-            description: newDescription,
-            path: newPath,
-            snippet: newSnippet,
+            instanceData: {
+                failureDescription: newDescription,
+                path: newPath,
+                snippet: newSnippet,
+            },
         };
 
         assessmentsProviderMock.setup(apm => apm.forType(payload.test)).returns(() => assessmentMock.object);

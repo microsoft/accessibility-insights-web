@@ -15,7 +15,7 @@ export interface AssessmentInstanceEditAndRemoveControlProps {
     id: string;
     currentInstance: FailureInstanceData;
     onRemove: (test, step, id) => void;
-    onEdit: (description, path, snippet, test, step, id) => void;
+    onEdit: (instanceData, test, step, id) => void;
     assessmentsProvider: AssessmentsProvider;
     featureFlagStoreData: FeatureFlagStoreData;
 }

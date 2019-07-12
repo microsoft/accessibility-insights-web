@@ -7,6 +7,7 @@ import { DetailsViewPivotType } from '../../common/types/details-view-pivot-type
 import { ManualTestStatus } from '../../common/types/manual-test-status';
 import { IssueFilingServiceProperties } from '../../common/types/store-data/user-configuration-store';
 import { VisualizationType } from '../../common/types/visualization-type';
+import { FailureInstanceData } from '../../DetailsView/components/failure-instance-panel-control';
 import { TabStopEvent } from '../../injected/tab-stops-listener';
 import { LaunchPanelType } from '../../popup/components/popup-view';
 
@@ -41,9 +42,7 @@ export interface ChangeRequirementStatusPayload extends AssessmentToggleActionPa
 }
 
 export interface AddFailureInstancePayload extends AssessmentToggleActionPayload {
-    description: string;
-    path: string;
-    snippet: string;
+    instanceData: FailureInstanceData;
 }
 
 export interface AddResultDescriptionPayload extends BaseActionPayload {

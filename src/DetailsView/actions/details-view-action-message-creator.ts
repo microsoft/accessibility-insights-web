@@ -26,6 +26,7 @@ import { ExportResultType } from '../../common/telemetry-events';
 import { DetailsViewPivotType } from '../../common/types/details-view-pivot-type';
 import { ManualTestStatus } from '../../common/types/manual-test-status';
 import { VisualizationType } from '../../common/types/visualization-type';
+import { FailureInstanceData } from '../components/failure-instance-panel-control';
 import { DetailsViewRightContentPanelType } from '../components/left-nav/details-view-right-content-panel-type';
 
 const messages = Messages.Visualizations;
@@ -330,14 +331,12 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
         });
     }
 
-    public addFailureInstance(description: string, path: string, snippet: string, test: VisualizationType, requirement: string): void {
+    public addFailureInstance(instanceData: FailureInstanceData, test: VisualizationType, requirement: string): void {
         const telemetry = this.telemetryFactory.forRequirementFromDetailsView(test, requirement);
         const payload: AddFailureInstancePayload = {
             test,
             requirement,
-            description,
-            path,
-            snippet,
+            instanceData,
             telemetry,
         };
 
@@ -367,22 +366,13 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
         this.dispatcher.sendTelemetry(TelemetryEvents.DETAILS_VIEW_OPEN, telemetryData);
     }
 
-    public editFailureInstance = (
-        description: string,
-        path: string,
-        snippet: string,
-        test: VisualizationType,
-        requirement: string,
-        id: string,
-    ): void => {
+    public editFailureInstance = (instanceData: FailureInstanceData, test: VisualizationType, requirement: string, id: string): void => {
         const telemetry = this.telemetryFactory.fromDetailsViewNoTriggeredBy();
         const payload: EditFailureInstancePayload = {
             test,
             requirement,
             id,
-            description,
-            path,
-            snippet,
+            instanceData,
             telemetry,
         };
 

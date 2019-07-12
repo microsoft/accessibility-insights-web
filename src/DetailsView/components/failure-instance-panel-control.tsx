@@ -19,8 +19,8 @@ import { GenericPanel, GenericPanelProps } from './generic-panel';
 export interface FailureInstancePanelControlProps {
     step: string;
     test: VisualizationType;
-    addFailureInstance?: (description, path, snippet, test, step) => void;
-    editFailureInstance?: (description, path, snippet, test, step, id) => void;
+    addFailureInstance?: (instanceData, test, step) => void;
+    editFailureInstance?: (instanceData, test, step, id) => void;
     actionType: CapturedInstanceActionType;
     originalInstance?: FailureInstanceData;
     instanceId?: string;
@@ -189,25 +189,12 @@ export class FailureInstancePanelControl extends React.Component<FailureInstance
     };
 
     protected onAddFailureInstance = (): void => {
-        this.props.addFailureInstance(
-            this.state.currentInstance.failureDescription,
-            this.state.currentInstance.path,
-            this.state.currentInstance.snippet,
-            this.props.test,
-            this.props.step,
-        );
+        this.props.addFailureInstance(this.state.currentInstance, this.props.test, this.props.step);
         this.setState({ isPanelOpen: false });
     };
 
     protected onSaveEditedFailureInstance = (): void => {
-        this.props.editFailureInstance(
-            this.state.currentInstance.failureDescription,
-            this.state.currentInstance.path,
-            this.state.currentInstance.snippet,
-            this.props.test,
-            this.props.step,
-            this.props.instanceId,
-        );
+        this.props.editFailureInstance(this.state.currentInstance, this.props.test, this.props.step, this.props.instanceId);
         this.setState({ isPanelOpen: false });
     };
 
