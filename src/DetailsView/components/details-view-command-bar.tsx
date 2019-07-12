@@ -8,7 +8,7 @@ import { AssessmentStoreData } from '../../common/types/store-data/assessment-re
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { TabStoreData } from '../../common/types/store-data/tab-store-data';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
-import { ReportGenerator } from '../reports/report-generator-impl';
+import { ReportGenerator } from '../reports/report-generator';
 import { DetailsRightPanelConfiguration } from './details-view-right-panel';
 import { ReportExportComponent, ReportExportComponentDeps } from './report-export-component';
 import { StartOverDropdown } from './start-over-dropdown';

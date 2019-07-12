@@ -18,7 +18,7 @@ import {
 } from '../../../../../DetailsView/components/details-view-command-bar';
 import { DetailsRightPanelConfiguration } from '../../../../../DetailsView/components/details-view-right-panel';
 import { ReportExportComponent } from '../../../../../DetailsView/components/report-export-component';
-import { ReportGenerator } from '../../../../../DetailsView/reports/report-generator-impl';
+import { ReportGenerator } from '../../../../../DetailsView/reports/report-generator';
 
 describe('DetailsViewCommandBar', () => {
     const theDate = new Date(2019, 2, 12, 9, 0);

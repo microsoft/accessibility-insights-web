@@ -85,7 +85,7 @@ import {
     getAssessmentSummaryModelFromProviderAndStoreData,
 } from './reports/get-assessment-summary-model';
 import { ReactStaticRenderer } from './reports/react-static-renderer';
-import { ReportGenerator } from './reports/report-generator-impl';
+import { ReportGenerator } from './reports/report-generator';
 import { ReportHtmlGeneratorImpl } from './reports/report-html-generator-impl';
 import { ReportNameGenerator } from './reports/report-name-generator';
 
