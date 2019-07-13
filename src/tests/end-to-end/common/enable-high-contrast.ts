@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { Browser } from './browser';
 import { CommonSelectors, DetailsViewCommonSelectors } from './element-identifiers/common-selectors';
 import { Page } from './page';
 
