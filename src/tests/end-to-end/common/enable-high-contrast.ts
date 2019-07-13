@@ -11,9 +11,3 @@ export async function enableHighContrast(detailsViewPage: Page): Promise<void> {
     await detailsViewPage.waitForSelector(CommonSelectors.highContrastThemeSelector);
     await detailsViewPage.keyPress('Escape');
 }
-
-export async function setupHighContrastMode(browser: Browser, targetTabId: number): Promise<void> {
-    const tempDetailsViewPage = await browser.newExtensionDetailsViewPage(targetTabId);
-    await enableHighContrast(tempDetailsViewPage);
-    await tempDetailsViewPage.close();
-}

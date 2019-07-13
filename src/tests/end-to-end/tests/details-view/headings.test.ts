@@ -5,7 +5,7 @@ import { launchBrowser } from '../../common/browser-factory';
 import { GuidanceContentSelectors } from '../../common/element-identifiers/common-selectors';
 import { detailsViewSelectors } from '../../common/element-identifiers/details-view-selectors';
 import { popupPageElementIdentifiers } from '../../common/element-identifiers/popup-page-element-identifiers';
-import { setupHighContrastMode } from '../../common/enable-high-contrast';
+import { enableHighContrast } from '../../common/enable-high-contrast';
 import { Page } from '../../common/page';
 import { scanForAccessibilityIssues } from '../../common/scan-for-accessibility-issues';
 
@@ -41,11 +41,9 @@ describe('Headings Page', () => {
 
         beforeAll(async () => {
             browser = await launchBrowser({ suppressFirstTimeDialog: true });
-
             targetTabId = (await browser.setupNewTargetPage()).tabId;
-            await setupHighContrastMode(browser, targetTabId);
-
             headingsPage = await openHeadingsPage(browser, targetTabId);
+            await enableHighContrast(headingsPage);
         });
 
         afterAll(async () => {

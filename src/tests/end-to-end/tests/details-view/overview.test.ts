@@ -4,7 +4,7 @@ import { Browser } from '../../common/browser';
 import { launchBrowser } from '../../common/browser-factory';
 import { overviewSelectors } from '../../common/element-identifiers/details-view-selectors';
 import { popupPageElementIdentifiers } from '../../common/element-identifiers/popup-page-element-identifiers';
-import { setupHighContrastMode } from '../../common/enable-high-contrast';
+import { enableHighContrast } from '../../common/enable-high-contrast';
 import { Page } from '../../common/page';
 import { scanForAccessibilityIssues } from '../../common/scan-for-accessibility-issues';
 
@@ -40,11 +40,9 @@ describe('Overview Page', () => {
 
         beforeAll(async () => {
             browser = await launchBrowser({ suppressFirstTimeDialog: true });
-
             targetTabId = (await browser.setupNewTargetPage()).tabId;
-            await setupHighContrastMode(browser, targetTabId);
-
             overviewPage = await openOverviewPage(browser, targetTabId);
+            await enableHighContrast(overviewPage);
         });
 
         afterAll(async () => {
