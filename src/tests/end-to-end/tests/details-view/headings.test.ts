@@ -4,7 +4,6 @@ import { Browser } from '../../common/browser';
 import { launchBrowser } from '../../common/browser-factory';
 import { GuidanceContentSelectors } from '../../common/element-identifiers/common-selectors';
 import { detailsViewSelectors } from '../../common/element-identifiers/details-view-selectors';
-import { popupPageElementIdentifiers } from '../../common/element-identifiers/popup-page-element-identifiers';
 import { enableHighContrast } from '../../common/enable-high-contrast';
 import { Page } from '../../common/page';
 import { scanForAccessibilityIssues } from '../../common/scan-for-accessibility-issues';
@@ -60,14 +59,7 @@ describe('Headings Page', () => {
     });
 
     async function openHeadingsPage(browser: Browser, targetTabId: number): Promise<Page> {
-        const popupPage = await browser.newExtensionPopupPage(targetTabId);
-
-        let detailsViewPage: Page;
-
-        await Promise.all([
-            browser.waitForPageMatchingUrl(await browser.getDetailsViewPageUrl(targetTabId)).then(page => (detailsViewPage = page)),
-            popupPage.clickSelector(popupPageElementIdentifiers.launchPadAssessmentButton),
-        ]);
+        const detailsViewPage: Page = await browser.newExtensionAssessmentDetailsViewPage(targetTabId);
 
         await detailsViewPage.waitForSelector(detailsViewSelectors.testNavArea);
 

@@ -3,7 +3,6 @@
 import { Browser } from '../../common/browser';
 import { launchBrowser } from '../../common/browser-factory';
 import { overviewSelectors } from '../../common/element-identifiers/details-view-selectors';
-import { popupPageElementIdentifiers } from '../../common/element-identifiers/popup-page-element-identifiers';
 import { enableHighContrast } from '../../common/enable-high-contrast';
 import { Page } from '../../common/page';
 import { scanForAccessibilityIssues } from '../../common/scan-for-accessibility-issues';
@@ -59,15 +58,7 @@ describe('Overview Page', () => {
     });
 
     async function openOverviewPage(browser: Browser, targetTabId: number): Promise<Page> {
-        const popupPage = await browser.newExtensionPopupPage(targetTabId);
-
-        let overviewPage: Page;
-
-        await Promise.all([
-            browser.waitForPageMatchingUrl(await browser.getDetailsViewPageUrl(targetTabId)).then(page => (overviewPage = page)),
-            popupPage.clickSelector(popupPageElementIdentifiers.launchPadAssessmentButton),
-        ]);
-
+        const overviewPage: Page = await browser.newExtensionAssessmentDetailsViewPage(targetTabId);
         await overviewPage.waitForSelector(overviewSelectors.overviewHeading);
 
         return overviewPage;

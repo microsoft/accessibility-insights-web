@@ -66,7 +66,7 @@ export class Browser {
         return await this.newPage(await this.getDetailsViewPageUrl(targetTabId));
     }
 
-    public async newExtensionDetailsViewAssessmentPage(targetTabId: number): Promise<Page> {
+    public async newExtensionAssessmentDetailsViewPage(targetTabId: number): Promise<Page> {
         const popupPage = await this.newExtensionPopupPage(targetTabId);
 
         let detailsViewPage: Page;
