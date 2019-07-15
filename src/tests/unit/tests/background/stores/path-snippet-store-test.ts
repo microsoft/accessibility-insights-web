@@ -3,7 +3,7 @@
 import { PathSnippetActions } from '../../../../../background/actions/path-snippet-actions';
 import { PathSnippetStore } from '../../../../../background/stores/path-snippet-store';
 import { StoreNames } from '../../../../../common/stores/store-names';
-import { PathSnippetData } from '../../../../../common/types/store-data/path-snippet-data';
+import { PathSnippetStoreData } from '../../../../../common/types/store-data/path-snippet-store-data';
 import { createStoreWithNullParams, StoreTester } from '../../../common/store-tester';
 
 describe('PathSnippetStoreTest', () => {
@@ -35,11 +35,11 @@ describe('PathSnippetStoreTest', () => {
             .testListenerToBeCalledOnce(initialState, finalState);
     });
 
-    function getDefaultState(): PathSnippetData {
+    function getDefaultState(): PathSnippetStoreData {
         return createStoreWithNullParams(PathSnippetStore).getDefaultState();
     }
 
-    function createStoreForPathSnippetActions(actionName: keyof PathSnippetActions): StoreTester<PathSnippetData, PathSnippetActions> {
+    function createStoreForPathSnippetActions(actionName: keyof PathSnippetActions): StoreTester<PathSnippetStoreData, PathSnippetActions> {
         const factory = (actions: PathSnippetActions) => new PathSnippetStore(actions);
         return new StoreTester(PathSnippetActions, actionName, factory);
     }

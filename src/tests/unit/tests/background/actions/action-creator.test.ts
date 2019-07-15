@@ -911,23 +911,6 @@ describe('ActionCreatorTest', () => {
         builder.verifyAll();
     });
 
-    test('registerCallbacks for onAddPathForValidation', () => {
-        const path = 'test path';
-        const args = [path];
-        const actionName = 'onAddPath';
-
-        const builder = new ActionCreatorValidator()
-            .setupRegistrationCallback(Messages.PathSnippet.AddPathForValidation, args)
-            .setupActionsOnPathSnippetActions(actionName)
-            .setupPathSnippetActionWithInvokeParameter(actionName, path);
-
-        const actionCreator = builder.buildActionCreator();
-
-        actionCreator.registerCallbacks();
-
-        builder.verifyAll();
-    });
-
     function testScanCompleteWithExpectedParams(
         key: string,
         messageType: string,

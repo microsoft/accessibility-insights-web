@@ -1,21 +1,17 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { StoreNames } from '../../common/stores/store-names';
-import { PathSnippetData } from '../../common/types/store-data/path-snippet-data';
+import { PathSnippetStoreData } from '../../common/types/store-data/path-snippet-store-data';
 import { PathSnippetActions } from '../actions/path-snippet-actions';
 import { BaseStoreImpl } from './base-store-impl';
 
-export class PathSnippetStore extends BaseStoreImpl<PathSnippetData> {
-    private pathSnippetActions: PathSnippetActions;
-
-    constructor(pathSnippetActions: PathSnippetActions) {
+export class PathSnippetStore extends BaseStoreImpl<PathSnippetStoreData> {
+    constructor(private readonly pathSnippetActions: PathSnippetActions) {
         super(StoreNames.PathSnippetStore);
-
-        this.pathSnippetActions = pathSnippetActions;
     }
 
-    public getDefaultState(): PathSnippetData {
-        const defaultValue: PathSnippetData = {
+    public getDefaultState(): PathSnippetStoreData {
+        const defaultValue: PathSnippetStoreData = {
             path: '',
             snippet: '',
         };
@@ -24,17 +20,12 @@ export class PathSnippetStore extends BaseStoreImpl<PathSnippetData> {
     }
 
     protected addActionListeners(): void {
-        this.pathSnippetActions.onAddPath.addListener(this.onAddPath);
-        this.pathSnippetActions.onAddSnippet.addListener(this.onAddSnippet);
+        this.pathSnippetActions.onAddPath.addListener(payload => this.onChangeProperty('path', payload));
+        this.pathSnippetActions.onAddSnippet.addListener(payload => this.onChangeProperty('snippet', payload));
     }
 
-    private onAddPath = (payload: string): void => {
-        this.state.path = payload;
-        this.emitChanged();
-    };
-
-    private onAddSnippet = (payload: string): void => {
-        this.state.snippet = payload;
+    private onChangeProperty = (property: keyof PathSnippetStoreData, payload: string): void => {
+        this.state[property] = payload;
         this.emitChanged();
     };
 }
