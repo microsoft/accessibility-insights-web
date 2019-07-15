@@ -10,10 +10,10 @@ import { UrlIcon } from '../../../../common/icons/url-icon';
 import { NamedSFC } from '../../../../common/react/named-sfc';
 import { SectionProps } from './report-section-factory';
 
-export type DetailsSectionProps = Pick<SectionProps, 'pageUrl' | 'description' | 'scanDate' | 'toUtcString'>;
+export type DetailsSectionProps = Pick<SectionProps, 'pageTitle' | 'pageUrl' | 'description' | 'scanDate' | 'toUtcString'>;
 
 export const DetailsSection = NamedSFC<DetailsSectionProps>('DetailsSection', props => {
-    const { pageUrl, description, scanDate, toUtcString } = props;
+    const { pageTitle, pageUrl, description, scanDate, toUtcString } = props;
 
     const createListItem = (icon: JSX.Element, label: string, content: string | JSX.Element, contentClassName?: string) => (
         <li>
@@ -32,7 +32,13 @@ export const DetailsSection = NamedSFC<DetailsSectionProps>('DetailsSection', pr
         <div className="scan-details-section">
             <h2>Scan details</h2>
             <ul className="details-section-list">
-                {createListItem(<UrlIcon />, 'target page:', <NewTabLink href={pageUrl}>{pageUrl}</NewTabLink>)}
+                {createListItem(
+                    <UrlIcon />,
+                    'target page url:',
+                    <NewTabLink href={pageUrl} title={pageTitle}>
+                        {pageUrl}
+                    </NewTabLink>,
+                )}
                 {createListItem(<DateIcon />, 'scan date:', scanDateUTC)}
                 {showCommentRow && createListItem(<CommentIcon />, 'comment:', description, 'description-text')}
             </ul>

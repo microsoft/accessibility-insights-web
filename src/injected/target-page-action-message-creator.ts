@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import * as React from 'react';
 import { BaseActionPayload } from '../background/actions/action-payloads';
 import { Message } from '../common/message';
 import { ActionMessageDispatcher } from '../common/message-creators/action-message-dispatcher';

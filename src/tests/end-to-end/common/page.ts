@@ -2,25 +2,35 @@
 // Licensed under the MIT License.
 import * as Puppeteer from 'puppeteer';
 
+import { includes } from 'lodash';
 import { forceTestFailure } from './force-test-failure';
 import { takeScreenshot } from './generate-screenshot';
 import { DEFAULT_NEW_PAGE_WAIT_TIMEOUT_MS, DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS } from './timeouts';
 
 export class Page {
     constructor(private readonly underlyingPage: Puppeteer.Page) {
-        underlyingPage.on('error', error => {
-            forceTestFailure(`error occurred - ${error.message}`);
-        });
+        function forceEventFailure(eventDescription: string): void {
+            forceTestFailure(`Puppeteer.Page '${underlyingPage.url()}' emitted ${eventDescription}`);
+        }
 
+        underlyingPage.on('error', error => {
+            forceEventFailure(`'error' with stack: ${error.stack}`);
+        });
         underlyingPage.on('pageerror', error => {
-            forceTestFailure(`Unhandled pageerror (console.error) emitted from page '${underlyingPage.url()}': ${error}`);
+            forceEventFailure(`'pageerror' (console.error) with stack: ${error.stack}`);
         });
         underlyingPage.on('requestfailed', request => {
-            forceTestFailure(`request failed - ${request.failure().errorText}, ${request.url()}`);
+            const url = request.url();
+            // Checking for 'fonts' and 'icons' in url as a workaround for #923
+            if (!includes(url, 'fonts') && !includes(url, 'icons')) {
+                forceEventFailure(`'requestfailed' from '${url}' with errorText: ${request.failure().errorText}`);
+            }
         });
         underlyingPage.on('response', response => {
             if (response.status() >= 400) {
-                forceTestFailure(`response error - ${response.status()}, ${response.url()}`);
+                forceEventFailure(
+                    `'response' from '${response.url()}' with nonsuccessful status '${response.status()}: ${response.statusText()}'`,
+                );
             }
         });
     }

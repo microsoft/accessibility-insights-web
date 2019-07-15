@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 import { loadTheme } from 'office-ui-fabric-react';
 import * as ReactDOM from 'react-dom';
-
 import { AssessmentDefaultMessageGenerator } from '../assessments/assessment-default-message-generator';
 import { Assessments } from '../assessments/assessments';
 import { assessmentsProviderWithFeaturesEnabled } from '../assessments/assessments-feature-flag-filter';
@@ -86,9 +85,8 @@ import {
     getAssessmentSummaryModelFromProviderAndStoreData,
 } from './reports/get-assessment-summary-model';
 import { ReactStaticRenderer } from './reports/react-static-renderer';
-import { createReportGeneratorProvider } from './reports/report-generator-provider';
-import { ReportHtmlGeneratorV1 } from './reports/report-html-generator-v1';
-import { ReportHtmlGeneratorV2 } from './reports/report-html-generator-v2';
+import { ReportGenerator } from './reports/report-generator';
+import { ReportHtmlGeneratorImpl } from './reports/report-html-generator-impl';
 import { ReportNameGenerator } from './reports/report-name-generator';
 
 declare const window: AutoChecker & Window;
@@ -194,15 +192,9 @@ if (isNaN(tabId) === false) {
             const reactStaticRenderer = new ReactStaticRenderer();
             const reportNameGenerator = new ReportNameGenerator();
 
-            const reportHtmlGeneratorV1 = new ReportHtmlGeneratorV1(
-                reactStaticRenderer,
-                new NavigatorUtils(window.navigator).getBrowserSpec(),
-                extensionVersion,
-                axeVersion,
-            );
             const fixInstructionProcessor = new FixInstructionProcessor();
 
-            const reportHtmlGeneratorV2 = new ReportHtmlGeneratorV2(
+            const reportHtmlGenerator = new ReportHtmlGeneratorImpl(
                 AutomatedChecksReportSectionFactory,
                 reactStaticRenderer,
                 environmentInfoProvider.getEnvironmentInfo(),
@@ -225,14 +217,6 @@ if (isNaN(tabId) === false) {
                 axeVersion,
                 new NavigatorUtils(window.navigator).getBrowserSpec(),
                 assessmentDefaultMessageGenerator,
-            );
-
-            const reportGeneratorProvider = createReportGeneratorProvider(
-                reportNameGenerator,
-                reportHtmlGeneratorV1,
-                reportHtmlGeneratorV2,
-                assessmentReportHtmlGenerator,
-                featureFlagStore,
             );
 
             visualizationStore.setTabId(tab.id);
@@ -268,6 +252,8 @@ if (isNaN(tabId) === false) {
             const windowUtils = new WindowUtils();
 
             const fileURLProvider = new FileURLProvider(windowUtils, provideBlob);
+
+            const reportGenerator = new ReportGenerator(reportNameGenerator, reportHtmlGenerator, assessmentReportHtmlGenerator);
 
             const deps: DetailsViewContainerDeps = {
                 fixInstructionProcessor,
@@ -306,7 +292,7 @@ if (isNaN(tabId) === false) {
                 environmentInfoProvider,
                 issueFilingServiceProvider: IssueFilingServiceProviderImpl,
                 getGuidanceTagsFromGuidanceLinks: GetGuidanceTagsFromGuidanceLinks,
-                reportGeneratorProvider,
+                reportGenerator,
             };
 
             const renderer = new DetailsViewRenderer(

@@ -1,29 +1,29 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ResultSectionTitle renders 1`] = `
-<div
+<span
   className="result-section-title"
 >
-  <div
+  <span
     className="screen-reader-only"
   >
     test title
      
     10
-  </div>
+  </span>
   <span
     aria-hidden="true"
     className="title"
   >
     test title
   </span>
-  <div
+  <span
     aria-hidden="true"
   >
     <OutcomeChip
       count={10}
       outcomeType="pass"
     />
-  </div>
-</div>
+  </span>
+</span>
 `;

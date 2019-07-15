@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import * as Puppeteer from 'puppeteer';
 
+import { popupPageElementIdentifiers } from './element-identifiers/popup-page-element-identifiers';
 import { forceTestFailure } from './force-test-failure';
 import { Page } from './page';
 import { getTestResourceUrl } from './test-resources';
@@ -63,6 +64,19 @@ export class Browser {
 
     public async newExtensionDetailsViewPage(targetTabId: number): Promise<Page> {
         return await this.newPage(await this.getDetailsViewPageUrl(targetTabId));
+    }
+
+    public async newExtensionAssessmentDetailsViewPage(targetTabId: number): Promise<Page> {
+        const popupPage = await this.newExtensionPopupPage(targetTabId);
+
+        let detailsViewPage: Page;
+
+        await Promise.all([
+            this.waitForPageMatchingUrl(await this.getDetailsViewPageUrl(targetTabId)).then(page => (detailsViewPage = page)),
+            popupPage.clickSelector(popupPageElementIdentifiers.launchPadAssessmentButton),
+        ]);
+
+        return detailsViewPage;
     }
 
     public async getPopupPageUrl(targetTabId: number): Promise<string> {

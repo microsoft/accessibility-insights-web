@@ -4,7 +4,7 @@ exports[`RulesOnly renders 1`] = `
 <div
   className="rule-details-group"
 >
-  <FullRuleDetail
+  <FullRuleHeader
     deps={Object {}}
     outcomeType="pass"
     rule={
@@ -13,7 +13,7 @@ exports[`RulesOnly renders 1`] = `
       }
     }
   />
-  <FullRuleDetail
+  <FullRuleHeader
     deps={Object {}}
     outcomeType="pass"
     rule={
@@ -22,7 +22,7 @@ exports[`RulesOnly renders 1`] = `
       }
     }
   />
-  <FullRuleDetail
+  <FullRuleHeader
     deps={Object {}}
     outcomeType="pass"
     rule={

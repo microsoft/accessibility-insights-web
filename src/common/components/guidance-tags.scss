@@ -3,10 +3,7 @@
 @import '../styles/colors.scss';
 
 .guidance-tags {
-    display: inline-block;
-
-    div {
-        display: inline;
+    span {
         font-size: 12px;
         font-weight: normal;
         margin-left: 8px;

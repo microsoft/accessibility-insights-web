@@ -4,9 +4,9 @@ import * as React from 'react';
 
 import { NamedSFC } from '../../../../common/react/named-sfc';
 import { InstanceDetailsGroup, InstanceDetailsGroupDeps, InstanceDetailsGroupProps } from './instance-details-group';
-import { RuleResources, RuleResourcesProps } from './rule-resources';
+import { RuleResources, RuleResourcesDeps, RuleResourcesProps } from './rule-resources';
 
-export type RuleContentDeps = InstanceDetailsGroupDeps;
+export type RuleContentDeps = InstanceDetailsGroupDeps & RuleResourcesDeps;
 
 type Omit<T, K> = Pick<T, Exclude<keyof T, K>>;
 

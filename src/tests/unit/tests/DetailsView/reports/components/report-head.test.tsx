@@ -4,7 +4,7 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 import { ReportHead } from '../../../../../../DetailsView/reports/components/report-head';
 
-describe('ReportHeadTest', () => {
+describe('ReportHead', () => {
     it('renders', () => {
         const wrapper = shallow(<ReportHead />);
         expect(wrapper.getElement()).toMatchSnapshot();

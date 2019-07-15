@@ -95,16 +95,13 @@ Please ensure that you have at least the **minimum** recommended versions
 
 We use [jest](https://github.com/facebook/jest) as our test framework and [puppeteer](https://github.com/GoogleChrome/puppeteer) for browser automation in our end-to-end UI tests.
 
-> This project's end to end tests require the ability to run a non-headless chromium process. Because of this, they are incompatible with non-graphical development environments (notably, a default WSL environment on Windows)
-> Issue for this posted [here](https://github.com/microsoft/accessibility-insights-web/issues/853).
+> This project's end to end tests require the ability to run a non-headless chromium process. Because of this, they are incompatible with non-graphical development environments (notably, a default WSL environment on Windows). For an example of emulating a graphical environment using `xvfb`, see [./Dockerfile](./Dockerfile). For details, see [issue #853](https://github.com/microsoft/accessibility-insights-web/issues/853).
 
 #### Using VS Code
 
 To run a task from the command palette, press **Ctrl + Shift + P**, select `Tasks: Run Task`, and select the task you want to run:
 
--   `yarn test` runs all unit tests
 -   `Test current file in VSCode` runs just the tests in the currently-opened test file
--   `yarn test:e2e` runs all end-to-end tests
 
 To debug a test inside VS Code, set a breakpoint and click the debug button or press **F5**.
 
@@ -117,14 +114,19 @@ You can start an interactive watch session that automatically runs tests affecte
 #### Using the terminal
 
 `yarn test` runs all unit tests.
-`yarn test -- -u` runs all unit tests and updates snapshot files.
+`yarn test -u` runs all unit tests and updates snapshot files.
 
 `yarn test:e2e` runs all end-to-end tests - you'll need to run `yarn build` first if you've changed non-test code.
-`yarn test:e2e -- -u` runs all end-to-end tests and updates snapshot files.
+`yarn test:e2e -u` runs all end-to-end tests and updates snapshot files.
 
-To run a single or small number of test files, run `yarn test -- {FILE_NAME_REGEX}`
+`yarn test:e2e:docker` runs all end-to-end tests in the same Docker container our linux CI build uses. Prerequisite: [Install Docker](https://docs.docker.com/install/).
 
-Options after the `--` are passed to Jest. For example, `yarn test -- --watch` will start an interactive watch session. See more about Jest options [here](https://jestjs.io/docs/en/cli.html).
+Extra command line arguments and flags are passed along to Jest. For example:
+
+-   To run a single or small number of unit test files, run `yarn test {FILE_NAME_REGEX}`
+-   `yarn test --watch` will start an interactive watch session.
+
+See more about Jest options [here](https://jestjs.io/docs/en/cli.html).
 
 To debug using an external tool, run `node --inspect-brk ./node_modules/jest/bin/jest.js --runInBand {RELATIVE_FILE_PATH}`. In Chrome, for example, navigate to `chrome://inspect` and click `Open dedicated DevTools for Node`.
 
