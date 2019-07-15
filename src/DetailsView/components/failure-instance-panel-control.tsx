@@ -126,7 +126,7 @@ export class FailureInstancePanelControl extends React.Component<FailureInstance
                 />
                 <ActionAndCancelButtonsComponent
                     isHidden={false}
-                    primaryButtonDisabled={this.state.currentInstance.failureDescription === ''}
+                    primaryButtonDisabled={this.state.currentInstance.failureDescription === null}
                     primaryButtonText={this.props.actionType === CapturedInstanceActionType.CREATE ? 'Add' : 'Save'}
                     primaryButtonOnClick={
                         this.props.actionType === CapturedInstanceActionType.CREATE
@@ -152,22 +152,22 @@ export class FailureInstancePanelControl extends React.Component<FailureInstance
 
     private getDefaultInstance = (): FailureInstanceData => {
         const defaultInstance = {
-            failureDescription: '',
-            path: '',
-            snippet: '',
+            failureDescription: null,
+            path: null,
+            snippet: null,
         };
 
         return defaultInstance;
     };
 
     protected onFailureDescriptionChange = (event, value: string): void => {
-        const updatedInstance = clone(this.state.currentInstance as any);
+        const updatedInstance = clone(this.state.currentInstance);
         updatedInstance.failureDescription = value;
         this.setState({ currentInstance: updatedInstance });
     };
 
     private onSelectorChange = (event, value: string): void => {
-        const updatedInstance = clone(this.state.currentInstance as any);
+        const updatedInstance = clone(this.state.currentInstance);
         updatedInstance.path = value;
         this.setState({ currentInstance: updatedInstance });
     };
@@ -175,7 +175,7 @@ export class FailureInstancePanelControl extends React.Component<FailureInstance
     private onValidateSelector = (event): void => {
         const currSelector = this.state.currentInstance.path;
         const currSnippet = 'snippet for ' + currSelector;
-        const updatedInstance = clone(this.state.currentInstance as any);
+        const updatedInstance = clone(this.state.currentInstance);
         updatedInstance.snippet = currSnippet;
         this.setState({ currentInstance: updatedInstance });
     };

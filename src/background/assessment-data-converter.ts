@@ -184,12 +184,12 @@ export class AssessmentDataConverter {
     }
 
     public generateFailureInstance(description: string, path: string, snippet: string): UserCapturedInstance {
-        const instance = {
+        const instance: UserCapturedInstance = {
             id: this.generateUID(),
-            ...(description !== '' && { description }),
-            ...(path !== '' && { selector: path }),
-            ...(snippet !== '' && { html: snippet }),
-        } as UserCapturedInstance;
+            description,
+            selector: path,
+            html: snippet,
+        };
         return instance;
     }
 }
