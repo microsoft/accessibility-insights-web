@@ -10,7 +10,7 @@ import { ReportBody, ReportBodyProps } from './components/report-sections/report
 import { ReportSectionFactory, SectionProps } from './components/report-sections/report-section-factory';
 import { ReactStaticRenderer } from './react-static-renderer';
 
-export class ReportHtmlGeneratorImpl {
+export class ReportHtmlGenerator {
     constructor(
         private readonly sectionFactory: ReportSectionFactory,
         private readonly reactStaticRenderer: ReactStaticRenderer,

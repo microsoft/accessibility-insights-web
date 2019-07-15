@@ -7,7 +7,7 @@ import { FeatureFlagStoreData } from '../../../../../common/types/store-data/fea
 import { TabStoreData } from '../../../../../common/types/store-data/tab-store-data';
 import { AssessmentReportHtmlGenerator } from '../../../../../DetailsView/reports/assessment-report-html-generator';
 import { ReportGenerator } from '../../../../../DetailsView/reports/report-generator';
-import { ReportHtmlGeneratorImpl } from '../../../../../DetailsView/reports/report-html-generator-impl';
+import { ReportHtmlGenerator } from '../../../../../DetailsView/reports/report-html-generator-impl';
 import { ReportNameGenerator } from '../../../../../DetailsView/reports/report-name-generator';
 import { ScanResults } from '../../../../../scanner/iruleresults';
 
@@ -18,13 +18,13 @@ describe('ReportGenerator', () => {
     const url = 'http://url/';
     const description = 'description';
 
-    let dataBuilderMock: IMock<ReportHtmlGeneratorImpl>;
+    let dataBuilderMock: IMock<ReportHtmlGenerator>;
     let nameBuilderMock: IMock<ReportNameGenerator>;
     let assessmentReportHtmlGeneratorMock: IMock<AssessmentReportHtmlGenerator>;
 
     beforeEach(() => {
         nameBuilderMock = Mock.ofType<ReportNameGenerator>(undefined, MockBehavior.Strict);
-        dataBuilderMock = Mock.ofType<ReportHtmlGeneratorImpl>(undefined, MockBehavior.Strict);
+        dataBuilderMock = Mock.ofType<ReportHtmlGenerator>(undefined, MockBehavior.Strict);
         assessmentReportHtmlGeneratorMock = Mock.ofType(AssessmentReportHtmlGenerator, MockBehavior.Strict);
     });
 

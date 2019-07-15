@@ -6,13 +6,13 @@ import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag
 import { TabStoreData } from '../../common/types/store-data/tab-store-data';
 import { ScanResults } from '../../scanner/iruleresults';
 import { AssessmentReportHtmlGenerator } from './assessment-report-html-generator';
-import { ReportHtmlGeneratorImpl } from './report-html-generator-impl';
+import { ReportHtmlGenerator } from './report-html-generator-impl';
 import { ReportNameGenerator } from './report-name-generator';
 
 export class ReportGenerator {
     constructor(
         private reportNameGenerator: ReportNameGenerator,
-        private reportHtmlGenerator: ReportHtmlGeneratorImpl,
+        private reportHtmlGenerator: ReportHtmlGenerator,
         private assessmentReportHtmlGenerator: AssessmentReportHtmlGenerator,
     ) {}
 
