@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { clone } from 'lodash';
 import { ActionButton } from 'office-ui-fabric-react/lib/Button';
 import { Icon } from 'office-ui-fabric-react/lib/Icon';
 import { Link } from 'office-ui-fabric-react/lib/Link';
@@ -49,24 +50,15 @@ export class FailureInstancePanelControl extends React.Component<FailureInstance
 
     constructor(props) {
         super(props);
-        let filledOriginalInstance;
-        if (this.props.originalInstance) {
-            filledOriginalInstance = {
-                failureDescription: this.props.originalInstance.failureDescription,
-                path: this.props.originalInstance.path,
-                snippet: this.props.originalInstance.snippet,
-            };
-        } else {
-            filledOriginalInstance = { failureDescription: '', path: '', snippet: '' };
-        }
+        const defaultInstance = this.getDefaultInstance();
+        const currentInstance = {
+            ...defaultInstance,
+            ...this.props.originalInstance,
+        };
 
         this.state = {
             isPanelOpen: false,
-            currentInstance: {
-                failureDescription: filledOriginalInstance.failureDescription || '',
-                path: filledOriginalInstance.path || '',
-                snippet: filledOriginalInstance.snippet || '',
-            },
+            currentInstance: currentInstance,
         };
     }
 
@@ -158,24 +150,24 @@ export class FailureInstancePanelControl extends React.Component<FailureInstance
         );
     };
 
-    private getCurrentInstance = (): FailureInstanceData => {
-        const updatedInstance = {
-            failureDescription: this.state.currentInstance.failureDescription,
-            path: this.state.currentInstance.path,
-            snippet: this.state.currentInstance.snippet,
+    private getDefaultInstance = (): FailureInstanceData => {
+        const defaultInstance = {
+            failureDescription: '',
+            path: '',
+            snippet: '',
         };
 
-        return updatedInstance;
+        return defaultInstance;
     };
 
     protected onFailureDescriptionChange = (event, value: string): void => {
-        const updatedInstance = this.getCurrentInstance();
+        const updatedInstance = clone(this.state.currentInstance as any);
         updatedInstance.failureDescription = value;
         this.setState({ currentInstance: updatedInstance });
     };
 
     private onSelectorChange = (event, value: string): void => {
-        const updatedInstance = this.getCurrentInstance();
+        const updatedInstance = clone(this.state.currentInstance as any);
         updatedInstance.path = value;
         this.setState({ currentInstance: updatedInstance });
     };
@@ -183,7 +175,7 @@ export class FailureInstancePanelControl extends React.Component<FailureInstance
     private onValidateSelector = (event): void => {
         const currSelector = this.state.currentInstance.path;
         const currSnippet = 'snippet for ' + currSelector;
-        const updatedInstance = this.getCurrentInstance();
+        const updatedInstance = clone(this.state.currentInstance as any);
         updatedInstance.snippet = currSnippet;
         this.setState({ currentInstance: updatedInstance });
     };
@@ -199,19 +191,11 @@ export class FailureInstancePanelControl extends React.Component<FailureInstance
     };
 
     protected openFailureInstancePanel = (): void => {
-        let propsDescription = '';
-        let propsPath = '';
-        let propsSnippet = '';
-        if (this.props.originalInstance) {
-            propsDescription = this.props.originalInstance.failureDescription || '';
-            propsPath = this.props.originalInstance.path || '';
-            propsSnippet = this.props.originalInstance.snippet || '';
-        }
-
-        const updatedInstance = this.getCurrentInstance();
-        updatedInstance.failureDescription = propsDescription;
-        updatedInstance.path = propsPath;
-        updatedInstance.snippet = propsSnippet;
+        const defaultInstance = this.getDefaultInstance();
+        const updatedInstance = {
+            ...defaultInstance,
+            ...this.props.originalInstance,
+        };
 
         this.setState({
             isPanelOpen: true,
