@@ -71,8 +71,11 @@ button::after {
 .insights-link {
     // marking important to override office fabric style
     color: $link !important;
+    text-decoration: none;
+
     &:hover {
         color: $link-hover !important;
+        text-decoration: underline;
     }
 }
 

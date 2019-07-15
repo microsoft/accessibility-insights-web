@@ -85,8 +85,8 @@ import {
     getAssessmentSummaryModelFromProviderAndStoreData,
 } from './reports/get-assessment-summary-model';
 import { ReactStaticRenderer } from './reports/react-static-renderer';
-import { createReportGeneratorProvider } from './reports/report-generator-provider';
-import { ReportHtmlGeneratorV2 } from './reports/report-html-generator-v2';
+import { ReportGenerator } from './reports/report-generator';
+import { ReportHtmlGeneratorImpl } from './reports/report-html-generator-impl';
 import { ReportNameGenerator } from './reports/report-name-generator';
 
 declare const window: AutoChecker & Window;
@@ -194,7 +194,7 @@ if (isNaN(tabId) === false) {
 
             const fixInstructionProcessor = new FixInstructionProcessor();
 
-            const reportHtmlGeneratorV2 = new ReportHtmlGeneratorV2(
+            const reportHtmlGenerator = new ReportHtmlGeneratorImpl(
                 AutomatedChecksReportSectionFactory,
                 reactStaticRenderer,
                 environmentInfoProvider.getEnvironmentInfo(),
@@ -217,12 +217,6 @@ if (isNaN(tabId) === false) {
                 axeVersion,
                 new NavigatorUtils(window.navigator).getBrowserSpec(),
                 assessmentDefaultMessageGenerator,
-            );
-
-            const reportGeneratorProvider = createReportGeneratorProvider(
-                reportNameGenerator,
-                reportHtmlGeneratorV2,
-                assessmentReportHtmlGenerator,
             );
 
             visualizationStore.setTabId(tab.id);
@@ -258,6 +252,8 @@ if (isNaN(tabId) === false) {
             const windowUtils = new WindowUtils();
 
             const fileURLProvider = new FileURLProvider(windowUtils, provideBlob);
+
+            const reportGenerator = new ReportGenerator(reportNameGenerator, reportHtmlGenerator, assessmentReportHtmlGenerator);
 
             const deps: DetailsViewContainerDeps = {
                 fixInstructionProcessor,
@@ -296,7 +292,7 @@ if (isNaN(tabId) === false) {
                 environmentInfoProvider,
                 issueFilingServiceProvider: IssueFilingServiceProviderImpl,
                 getGuidanceTagsFromGuidanceLinks: GetGuidanceTagsFromGuidanceLinks,
-                reportGeneratorProvider,
+                reportGenerator,
             };
 
             const renderer = new DetailsViewRenderer(
