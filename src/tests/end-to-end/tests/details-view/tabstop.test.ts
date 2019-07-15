@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { launchBrowser } from '../../common/browser-factory';
+import { fastPassSelectors } from '../../common/element-identifiers/common-selectors';
 import { overviewSelectors } from '../../common/element-identifiers/details-view-selectors';
 import { popupPageElementIdentifiers } from '../../common/element-identifiers/popup-page-element-identifiers';
 import { Page } from '../../common/page';
@@ -10,14 +11,12 @@ describe('Tabstop tests', () => {
     describe('tabstop from fastpass', () => {
         let browser: Browser;
         let targetPageInfo: TargetPageInfo;
-        let popupPage: Page;
-        let fastPassPage: Page;
 
         beforeAll(async () => {
             browser = await launchBrowser({ suppressFirstTimeDialog: true });
             targetPageInfo = await browser.setupNewTargetPage();
 
-            fastPassPage = await openFastPassPage(browser, targetPageInfo.tabId);
+            await startTabStopTest(browser, targetPageInfo.tabId);
         });
 
         afterAll(async () => {
@@ -26,28 +25,31 @@ describe('Tabstop tests', () => {
             }
         });
 
-        it('clicks on fastpass page link', async () => {
-            // await detailsViewPage.waitForId(componentId);
+        test('if visualHelper is turned on after starting tabstop and pressing tabs on target page', async () => {
+            const { page: targetPage, tabId: activeTabId } = targetPageInfo;
+
+            await targetPage.bringToFront();
+
+            // presss tabs 3 times. todo: DRY this code
+            await targetPage.keyPress('Tab');
+            await targetPage.keyPress('Tab');
+            await targetPage.keyPress('Tab');
+
             expect(undefined).toBeUndefined();
         });
     });
 
-    async function openFastPassPage(browser: Browser, targetTabId: number): Promise<Page> {
+    async function startTabStopTest(browser: Browser, targetTabId: number): Promise<void> {
         const popupPage = await browser.newExtensionPopupPage(targetTabId);
 
-        let detailsViewPage: Page;
+        let tabStopPage: Page;
 
         await Promise.all([
-            browser.waitForPageMatchingUrl(await browser.getDetailsViewPageUrl(targetTabId)).then(page => (detailsViewPage = page)),
+            browser.waitForPageMatchingUrl(await browser.getDetailsViewPageUrl(targetTabId)).then(page => (tabStopPage = page)),
             popupPage.clickSelector(popupPageElementIdentifiers.fastPass),
         ]);
 
-        await detailsViewPage.waitForSelector('.button-flex-container');
-        const example = await detailsViewPage.evaluate(() =>
-            Array.from(document.querySelectorAll('.button-flex-container'), element => element),
-        );
-        example[1].click();
-
-        return detailsViewPage;
+        await tabStopPage.clickSelector(fastPassSelectors.tabstopNavButtonSelector);
+        await tabStopPage.clickSelector(fastPassSelectors.tabStopToggle);
     }
 });

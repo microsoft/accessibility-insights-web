@@ -19,3 +19,8 @@ export const GuidanceContentSelectors = {
     assessmentInstanceText: '.assessment-instance-textContent',
     headingsNav: 'a[title="5: Headings (Incomplete)"]',
 };
+
+export const fastPassSelectors = {
+    tabstopNavButtonSelector: 'a[title="Tab stops"]',
+    tabStopToggle: 'button[aria-label="Tab stops"]',
+};
