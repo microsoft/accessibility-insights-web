@@ -12,7 +12,7 @@ export const link = {
     WCAG_1_3_1: guidanceLinkTo('WCAG 1.3.1', 'https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships'),
     WCAG_1_3_2: guidanceLinkTo('WCAG 1.3.2', 'https://www.w3.org/WAI/WCAG21/Understanding/meaningful-sequence.html'),
     WCAG_1_3_3: guidanceLinkTo('WCAG 1.3.3', 'https://www.w3.org/WAI/WCAG21/Understanding/sensory-characteristics.html'),
-    WCAG_1_3_4: guidanceLinkTo('WCAG 1.3.4', 'https://www.w3.org/WAI/WCAG21/Understanding/orientation.html'),
+    WCAG_1_3_4: guidanceLinkTo('WCAG 1.3.4', 'https://www.w3.org/WAI/WCAG21/Understanding/orientation.html', [guidanceTags.WCAG_2_1]),
     WCAG_1_3_5: guidanceLinkTo('WCAG 1.3.5', 'https://www.w3.org/WAI/WCAG21/Understanding/identify-input-purpose.html', [
         guidanceTags.WCAG_2_1,
     ]),
@@ -21,6 +21,7 @@ export const link = {
     WCAG_1_4_3: guidanceLinkTo('WCAG 1.4.3', 'https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum.html'),
     WCAG_1_4_4: guidanceLinkTo('WCAG 1.4.4', 'https://www.w3.org/WAI/WCAG21/Understanding/resize-text.html'),
     WCAG_1_4_5: guidanceLinkTo('WCAG 1.4.5', 'https://www.w3.org/WAI/WCAG21/Understanding/images-of-text.html'),
+    WCAG_1_4_10: guidanceLinkTo('WCAG 1.4.10', 'https://www.w3.org/WAI/WCAG21/Understanding/reflow.html', [guidanceTags.WCAG_2_1]),
     WCAG_2_1_1: guidanceLinkTo('WCAG 2.1.1', 'https://www.w3.org/WAI/WCAG21/Understanding/keyboard.html'),
     WCAG_2_1_2: guidanceLinkTo('WCAG 2.1.2', 'https://www.w3.org/WAI/WCAG21/Understanding/no-keyboard-trap.html'),
     WCAG_2_2_1: guidanceLinkTo('WCAG 2.2.1', 'https://www.w3.org/WAI/WCAG21/Understanding/timing-adjustable.html'),
