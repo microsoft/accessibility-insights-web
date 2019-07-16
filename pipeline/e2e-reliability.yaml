@@ -11,7 +11,7 @@ pr:
 jobs:
     - job: 'e2e_tests_windows_1'
       pool:
-          vmImage: 'vs2017-win2016'
+          vmImage: 'windows-2019'
       steps:
           - template: ./install-node-prerequisites.yaml
           - template: ./e2e-test-from-agent.yaml
@@ -19,7 +19,7 @@ jobs:
 
     - job: 'e2e_tests_windows_2'
       pool:
-          vmImage: 'vs2017-win2016'
+          vmImage: 'windows-2019'
       steps:
           - template: ./install-node-prerequisites.yaml
           - template: ./e2e-test-from-agent.yaml
@@ -27,7 +27,7 @@ jobs:
 
     - job: 'e2e_tests_windows_3'
       pool:
-          vmImage: 'vs2017-win2016'
+          vmImage: 'windows-2019'
       steps:
           - template: ./install-node-prerequisites.yaml
           - template: ./e2e-test-from-agent.yaml
@@ -35,7 +35,7 @@ jobs:
 
     - job: 'e2e_tests_windows_4'
       pool:
-          vmImage: 'vs2017-win2016'
+          vmImage: 'windows-2019'
       steps:
           - template: ./install-node-prerequisites.yaml
           - template: ./e2e-test-from-agent.yaml
@@ -43,7 +43,7 @@ jobs:
 
     - job: 'e2e_tests_windows_5'
       pool:
-          vmImage: 'vs2017-win2016'
+          vmImage: 'windows-2019'
       steps:
           - template: ./install-node-prerequisites.yaml
           - template: ./e2e-test-from-agent.yaml
