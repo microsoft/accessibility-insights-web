@@ -89,7 +89,6 @@ jobs:
           - template: ./e2e-test-from-agent.yaml
           - template: ./e2e-test-publish-results.yaml
 
-
     - job: 'e2e_tests_linux_1'
       pool:
           vmImage: 'ubuntu-16.04'
