@@ -3,6 +3,7 @@
 import { Browser } from '../../common/browser';
 import { launchBrowser } from '../../common/browser-factory';
 import { CommonSelectors } from '../../common/element-identifiers/common-selectors';
+import { formatPageElementForSnapshot } from '../../common/element-snapshot-formatter';
 import { enableHighContrast } from '../../common/enable-high-contrast';
 import { Page } from '../../common/page';
 import { scanForAccessibilityIssues } from '../../common/scan-for-accessibility-issues';
@@ -56,7 +57,7 @@ describe('Settings Dropdown', () => {
 
         async function getDropdownPanelElement(page: Page): Promise<Node> {
             await page.clickSelector(CommonSelectors.settingsGearButton);
-            return await page.getPrintableHtmlElement(CommonSelectors.settingsDropdownMenu);
+            return await formatPageElementForSnapshot(page, CommonSelectors.settingsDropdownMenu);
         }
     });
     describe('High contrast mode', () => {
