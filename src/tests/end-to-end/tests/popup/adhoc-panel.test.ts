@@ -1,23 +1,23 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { Browser, TargetPageInfo } from '../../common/browser';
+import { Browser } from '../../common/browser';
 import { launchBrowser } from '../../common/browser-factory';
 import { popupPageElementIdentifiers } from '../../common/element-identifiers/popup-page-element-identifiers';
-import { formatChildElementForSnapshot } from '../../common/element-snapshot-formatter';
 import { enableHighContrast } from '../../common/enable-high-contrast';
 import { Page } from '../../common/page';
 import { scanForAccessibilityIssues } from '../../common/scan-for-accessibility-issues';
+import { TargetPageController } from '../../common/target-page-controller';
 import { DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS } from '../../common/timeouts';
 
 describe('Ad hoc tools', () => {
     let browser: Browser;
-    let targetPageInfo: TargetPageInfo;
+    let targetPage: TargetPageController;
     let popupPage: Page;
 
     beforeEach(async () => {
         browser = await launchBrowser({ suppressFirstTimeDialog: true });
-        targetPageInfo = await browser.setupNewTargetPage();
-        popupPage = await browser.newExtensionPopupPage(targetPageInfo.tabId);
+        targetPage = await browser.setupNewTargetPage();
+        popupPage = await browser.newExtensionPopupPage(targetPage.tabId);
         await popupPage.bringToFront();
     });
 
@@ -32,8 +32,8 @@ describe('Ad hoc tools', () => {
         await gotoAdhocPanel();
 
         // verify adhoc panel state is sticky
-        targetPageInfo = await browser.setupNewTargetPage();
-        popupPage = await browser.newExtensionPopupPage(targetPageInfo.tabId);
+        targetPage = await browser.setupNewTargetPage();
+        popupPage = await browser.newExtensionPopupPage(targetPage.tabId);
         await verifyAdhocPanelLoaded();
     });
 
@@ -44,8 +44,8 @@ describe('Ad hoc tools', () => {
         await verifyLaunchPadLoaded();
 
         // verify adhoc panel state is sticky
-        targetPageInfo = await browser.setupNewTargetPage();
-        popupPage = await browser.newExtensionPopupPage(targetPageInfo.tabId);
+        targetPage = await browser.setupNewTargetPage();
+        popupPage = await browser.newExtensionPopupPage(targetPage.tabId);
         await verifyLaunchPadLoaded();
     });
 
@@ -57,7 +57,7 @@ describe('Ad hoc tools', () => {
     });
 
     it('should pass accessibility validation in high contrast', async () => {
-        const detailsViewPage = await browser.newExtensionDetailsViewPage(targetPageInfo.tabId);
+        const detailsViewPage = await browser.newExtensionDetailsViewPage(targetPage.tabId);
         await enableHighContrast(detailsViewPage);
 
         await popupPage.bringToFront();
@@ -74,9 +74,7 @@ describe('Ad hoc tools', () => {
 
             await enableToggleByAriaLabel(toggleAriaLabel);
 
-            const injectedShadowRoot = await targetPageInfo.page.getShadowRootOfSelector('#insights-shadow-host');
-            const shadowRootContents = await formatChildElementForSnapshot(injectedShadowRoot, '#insights-shadow-container');
-            expect(shadowRootContents).toMatchSnapshot();
+            expect(await targetPage.getShadowRootHtmlSnapshot()).toMatchSnapshot();
         },
     );
 

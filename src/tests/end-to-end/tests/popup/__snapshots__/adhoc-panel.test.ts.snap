@@ -20,7 +20,7 @@ exports[`Ad hoc tools should display the pinned target page visualizations when 
     >
       <div
         class="insights-highlight-box"
-        style="outline-style: solid; outline-color: rgb(204, 0, 0); top: 79.5417px; left: 8px; min-width: 787px; min-height: 154px;"
+        style="outline-style: solid; outline-color: rgb(204, 0, 0); top: {{ENVIRONMENT_SENSITIVE_POSITION}}px; left: {{ENVIRONMENT_SENSITIVE_POSITION}}px; min-width: {{ENVIRONMENT_SENSITIVE_POSITION}}px; min-height: {{ENVIRONMENT_SENSITIVE_POSITION}}px;"
         title="Failed rules: frame-title"
       >
         <div
@@ -32,7 +32,7 @@ exports[`Ad hoc tools should display the pinned target page visualizations when 
       </div>
       <div
         class="insights-highlight-box"
-        style="outline-style: solid; outline-color: rgb(204, 0, 0); top: 317.083px; left: 8px; min-width: 787px; min-height: 154px;"
+        style="outline-style: solid; outline-color: rgb(204, 0, 0); top: {{ENVIRONMENT_SENSITIVE_POSITION}}px; left: {{ENVIRONMENT_SENSITIVE_POSITION}}px; min-width: {{ENVIRONMENT_SENSITIVE_POSITION}}px; min-height: {{ENVIRONMENT_SENSITIVE_POSITION}}px;"
         title="Failed rules: frame-title"
       >
         <div
@@ -44,7 +44,7 @@ exports[`Ad hoc tools should display the pinned target page visualizations when 
       </div>
       <div
         class="insights-highlight-box"
-        style="outline-style: solid; outline-color: rgb(204, 0, 0); top: 5px; left: 5px; min-width: 790px; min-height: 483.083px;"
+        style="outline-style: solid; outline-color: rgb(204, 0, 0); top: {{ENVIRONMENT_SENSITIVE_POSITION}}px; left: {{ENVIRONMENT_SENSITIVE_POSITION}}px; min-width: {{ENVIRONMENT_SENSITIVE_POSITION}}px; min-height: {{ENVIRONMENT_SENSITIVE_POSITION}}px;"
         title="Failed rules: html-has-lang"
       >
         <div
@@ -98,7 +98,7 @@ exports[`Ad hoc tools should display the pinned target page visualizations when 
     >
       <div
         class="insights-highlight-box"
-        style="outline-style: solid; outline-color: rgb(0, 102, 204); top: 21.4375px; left: 8px; min-width: 784px; min-height: 36.6667px;"
+        style="outline-style: solid; outline-color: rgb(0, 102, 204); top: {{ENVIRONMENT_SENSITIVE_POSITION}}px; left: {{ENVIRONMENT_SENSITIVE_POSITION}}px; min-width: {{ENVIRONMENT_SENSITIVE_POSITION}}px; min-height: {{ENVIRONMENT_SENSITIVE_POSITION}}px;"
         title=""
       >
         <div
@@ -110,7 +110,7 @@ exports[`Ad hoc tools should display the pinned target page visualizations when 
       </div>
       <div
         class="insights-highlight-box"
-        style="outline-style: solid; outline-color: rgb(0, 102, 204); top: 258.979px; left: 8px; min-width: 784px; min-height: 36.6667px;"
+        style="outline-style: solid; outline-color: rgb(0, 102, 204); top: {{ENVIRONMENT_SENSITIVE_POSITION}}px; left: {{ENVIRONMENT_SENSITIVE_POSITION}}px; min-width: {{ENVIRONMENT_SENSITIVE_POSITION}}px; min-height: {{ENVIRONMENT_SENSITIVE_POSITION}}px;"
         title=""
       >
         <div

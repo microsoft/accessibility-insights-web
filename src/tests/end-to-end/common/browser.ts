@@ -5,12 +5,8 @@ import * as Puppeteer from 'puppeteer';
 import { popupPageElementIdentifiers } from './element-identifiers/popup-page-element-identifiers';
 import { forceTestFailure } from './force-test-failure';
 import { Page } from './page';
+import { TargetPageController } from './target-page-controller';
 import { getTestResourceUrl } from './test-resources';
-
-export interface TargetPageInfo {
-    page: Page;
-    tabId: number;
-}
 
 export class Browser {
     private memoizedBackgroundPage: Page;
@@ -33,15 +29,12 @@ export class Browser {
         return page;
     }
 
-    public async setupNewTargetPage(): Promise<TargetPageInfo> {
+    public async setupNewTargetPage(): Promise<TargetPageController> {
         const targetPage = await this.newTestResourcePage('all.html');
 
         await targetPage.bringToFront();
         const targetPageTabId = await this.getActivePageTabId();
-        return {
-            page: targetPage,
-            tabId: targetPageTabId,
-        };
+        return new TargetPageController(targetPage, targetPageTabId);
     }
 
     public async newExtensionPage(relativePath: string): Promise<Page> {
