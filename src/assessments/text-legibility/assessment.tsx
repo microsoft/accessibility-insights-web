@@ -8,9 +8,11 @@ import { AssessmentBuilder } from '../assessment-builder';
 import { Assessment } from '../types/iassessment';
 import { Contrast } from './test-steps/contrast';
 import { HighContrastMode } from './test-steps/high-contrast-mode';
+import { HoverFocusContent } from './test-steps/hover-focus-content';
 import { Orientation } from './test-steps/orientation';
 import { Reflow } from './test-steps/reflow';
 import { ResizeText } from './test-steps/resize-text';
+import { TextSpacing } from './test-steps/text-spacing';
 
 const key = 'textLegibility';
 const title = 'Text legibility';
@@ -37,6 +39,6 @@ export const TextLegibilityAssessment: Assessment = AssessmentBuilder.Assisted({
     title,
     gettingStarted,
     guidance,
-    requirements: [HighContrastMode, ResizeText, Contrast, Orientation, Reflow],
+    requirements: [HighContrastMode, ResizeText, Contrast, Orientation, Reflow, TextSpacing, HoverFocusContent],
     storeDataKey: 'textLegibilityAssessment',
 });

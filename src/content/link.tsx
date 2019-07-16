@@ -22,6 +22,10 @@ export const link = {
     WCAG_1_4_4: guidanceLinkTo('WCAG 1.4.4', 'https://www.w3.org/WAI/WCAG21/Understanding/resize-text.html'),
     WCAG_1_4_5: guidanceLinkTo('WCAG 1.4.5', 'https://www.w3.org/WAI/WCAG21/Understanding/images-of-text.html'),
     WCAG_1_4_10: guidanceLinkTo('WCAG 1.4.10', 'https://www.w3.org/WAI/WCAG21/Understanding/reflow.html', [guidanceTags.WCAG_2_1]),
+    WCAG_1_4_12: guidanceLinkTo('WCAG 1.4.12', 'https://www.w3.org/WAI/WCAG21/Understanding/text-spacing.html', [guidanceTags.WCAG_2_1]),
+    WCAG_1_4_13: guidanceLinkTo('WCAG 1.4.13', 'https://www.w3.org/WAI/WCAG21/Understanding/content-on-hover-or-focus.html', [
+        guidanceTags.WCAG_2_1,
+    ]),
     WCAG_2_1_1: guidanceLinkTo('WCAG 2.1.1', 'https://www.w3.org/WAI/WCAG21/Understanding/keyboard.html'),
     WCAG_2_1_2: guidanceLinkTo('WCAG 2.1.2', 'https://www.w3.org/WAI/WCAG21/Understanding/no-keyboard-trap.html'),
     WCAG_2_2_1: guidanceLinkTo('WCAG 2.2.1', 'https://www.w3.org/WAI/WCAG21/Understanding/timing-adjustable.html'),
