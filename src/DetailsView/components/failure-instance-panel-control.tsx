@@ -23,7 +23,7 @@ export interface FailureInstancePanelControlProps {
     addFailureInstance?: (instanceData, test, step) => void;
     editFailureInstance?: (instanceData, test, step, id) => void;
     actionType: CapturedInstanceActionType;
-    originalInstance?: FailureInstanceData;
+    failureInstance?: FailureInstanceData;
     instanceId?: string;
     assessmentsProvider: AssessmentsProvider;
     featureFlagStoreData: BaseStore<FeatureFlagStoreData>;
@@ -53,7 +53,7 @@ export class FailureInstancePanelControl extends React.Component<FailureInstance
         const defaultInstance = this.getDefaultInstance();
         const currentInstance = {
             ...defaultInstance,
-            ...this.props.originalInstance,
+            ...this.props.failureInstance,
         };
 
         this.state = {
@@ -194,7 +194,7 @@ export class FailureInstancePanelControl extends React.Component<FailureInstance
         const defaultInstance = this.getDefaultInstance();
         const updatedInstance = {
             ...defaultInstance,
-            ...this.props.originalInstance,
+            ...this.props.failureInstance,
         };
 
         this.setState({
