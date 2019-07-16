@@ -1,10 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as Puppeteer from 'puppeteer';
 import { launchBrowser } from '../../common/browser-factory';
 import { fastPassSelectors } from '../../common/element-identifiers/common-selectors';
 import { popupPageElementIdentifiers } from '../../common/element-identifiers/popup-page-element-identifiers';
-import { takeScreenshot } from '../../common/generate-screenshot';
 import { Page } from '../../common/page';
 import { Browser, TargetPageInfo } from './../../common/browser';
 
@@ -36,6 +34,7 @@ describe('Tabstop tests', () => {
             await targetPage.keyPress('Tab');
             await targetPage.keyPress('Tab');
 
+            // todo: add targetpage snapshot assertion
             expect(undefined).toBeUndefined();
         });
     });
