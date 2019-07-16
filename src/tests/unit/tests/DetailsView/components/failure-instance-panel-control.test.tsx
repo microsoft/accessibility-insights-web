@@ -42,7 +42,7 @@ describe('FailureInstancePanelControlTest', () => {
             actionType: CapturedInstanceActionType.CREATE,
             assessmentsProvider: Assessments,
             featureFlagStoreData: null,
-            originalInstance: { failureDescription: 'original text' },
+            failureInstance: { failureDescription: 'original text' },
         };
         const rendered = shallow<FailureInstancePanelControl>(<FailureInstancePanelControl {...props} />);
         expect(rendered.getElement()).toMatchSnapshot();
@@ -88,13 +88,13 @@ describe('FailureInstancePanelControlTest', () => {
         const snippet = 'snippet for ' + selector;
         const eventStub = null;
         const props = createPropsWithType(CapturedInstanceActionType.CREATE);
-        const originalInstance = {
+        const failureInstance = {
             failureDescription: 'new text',
             path: selector,
             snippet: null,
         };
 
-        props.failureInstance = originalInstance;
+        props.failureInstance = failureInstance;
 
         const wrapper = shallow<FailureInstancePanelControl>(<FailureInstancePanelControl {...props} />);
         const flaggedComponent = wrapper.find(FlaggedComponent);
@@ -109,12 +109,12 @@ describe('FailureInstancePanelControlTest', () => {
     test('openFailureInstancePanel', () => {
         const props = createPropsWithType(CapturedInstanceActionType.CREATE);
         const eventStub = null;
-        const originalInstance = {
+        const failureInstance = {
             failureDescription: 'new text',
             path: 'new path',
             snippet: 'new snippet',
         };
-        props.failureInstance = originalInstance;
+        props.failureInstance = failureInstance;
         const wrapper = shallow<FailureInstancePanelControl>(<FailureInstancePanelControl {...props} />);
         wrapper
             .find(TextField)
