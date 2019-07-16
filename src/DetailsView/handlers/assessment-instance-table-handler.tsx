@@ -18,6 +18,7 @@ import { AssessmentInstanceEditAndRemoveControl } from '../components/assessment
 import { AssessmentInstanceSelectedButton } from '../components/assessment-instance-selected-button';
 import { AssessmentInstanceRowData, CapturedInstanceRowData } from '../components/assessment-instance-table';
 import { AssessmentTableColumnConfigHandler } from '../components/assessment-table-column-config-handler';
+import { FailureInstanceData } from '../components/failure-instance-panel-control';
 import { TestStatusChoiceGroup } from '../components/test-status-choice-group';
 
 export class AssessmentInstanceTableHandler {
@@ -43,8 +44,8 @@ export class AssessmentInstanceTableHandler {
         this.actionMessageCreator.undoManualRequirementStatusChange(test, step);
     };
 
-    public addFailureInstance = (description: string, test: VisualizationType, step: string): void => {
-        this.actionMessageCreator.addFailureInstance(description, test, step);
+    public addFailureInstance = (instanceData: FailureInstanceData, test: VisualizationType, step: string): void => {
+        this.actionMessageCreator.addFailureInstance(instanceData, test, step);
     };
 
     public passUnmarkedInstances(test: VisualizationType, step: string): void {
@@ -155,12 +156,17 @@ export class AssessmentInstanceTableHandler {
         step: string,
         featureFlagStoreData: FeatureFlagStoreData,
     ): JSX.Element => {
+        const currentInstance = {
+            failureDescription: instance.description,
+            path: instance.selector,
+            snippet: instance.html,
+        };
         return (
             <AssessmentInstanceEditAndRemoveControl
                 test={test}
                 step={step}
                 id={instance.id}
-                description={instance.description}
+                currentInstance={currentInstance}
                 onRemove={this.actionMessageCreator.removeFailureInstance}
                 onEdit={this.actionMessageCreator.editFailureInstance}
                 assessmentsProvider={this.assessmentsProvider}

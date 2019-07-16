@@ -1117,19 +1117,29 @@ describe('AssessmentStoreTest', () => {
         const payload: AddFailureInstancePayload = {
             test: assessmentType,
             requirement: requirementKey,
-            description: 'description',
+            instanceData: {
+                failureDescription: 'description',
+                path: 'path',
+                snippet: 'snippet',
+            },
         };
 
         const failureInstance = {
             id: '1',
             description: 'description',
+            selector: 'path',
+            html: 'snippet',
         };
 
         assessmentsProviderMock.setup(apm => apm.forType(payload.test)).returns(() => assessmentMock.object);
 
         assessmentMock.setup(am => am.getVisualizationConfiguration()).returns(() => configStub);
 
-        assessmentDataConverterMock.setup(a => a.generateFailureInstance(payload.description)).returns(description => failureInstance);
+        assessmentDataConverterMock
+            .setup(a =>
+                a.generateFailureInstance(payload.instanceData.failureDescription, payload.instanceData.path, payload.instanceData.snippet),
+            )
+            .returns(description => failureInstance);
 
         const expectedAssessment = new AssessmentDataBuilder()
             .with('manualTestStepResultMap', {
@@ -1199,9 +1209,15 @@ describe('AssessmentStoreTest', () => {
     test('on editFailureInstance', () => {
         const oldDescription = 'old';
         const newDescription = 'new';
+        const oldPath = 'old path';
+        const newPath = 'new path';
+        const oldSnippet = 'old snippet';
+        const newSnippet = 'new snippet';
         const failureInstance = {
             id: '1',
             description: oldDescription,
+            selector: oldPath,
+            html: oldSnippet,
         };
 
         const assessmentData = new AssessmentDataBuilder()
@@ -1220,7 +1236,11 @@ describe('AssessmentStoreTest', () => {
             test: assessmentType,
             requirement: requirementKey,
             id: '1',
-            description: newDescription,
+            instanceData: {
+                failureDescription: newDescription,
+                path: newPath,
+                snippet: newSnippet,
+            },
         };
 
         assessmentsProviderMock.setup(apm => apm.forType(payload.test)).returns(() => assessmentMock.object);
@@ -1236,6 +1256,8 @@ describe('AssessmentStoreTest', () => {
                         {
                             id: '1',
                             description: newDescription,
+                            selector: newPath,
+                            html: newSnippet,
                         },
                     ],
                 },
