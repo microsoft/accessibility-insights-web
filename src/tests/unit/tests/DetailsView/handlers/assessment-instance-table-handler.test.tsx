@@ -128,15 +128,19 @@ describe('AssessmentInstanceTableHandlerTest', () => {
             featureFlagStoreData,
         );
 
+        const currentInstance = {
+            failureDescription: instance.description,
+        };
+
         const instanceActionButtons: JSX.Element = (
             <AssessmentInstanceEditAndRemoveControl
                 test={assessmentNavState.selectedTestType}
                 step={assessmentNavState.selectedTestStep}
                 id={instance.id}
+                currentInstance={currentInstance}
                 onRemove={actionMessageCreatorMock.object.removeFailureInstance}
                 onEdit={actionMessageCreatorMock.object.editFailureInstance}
                 onAddPath={actionMessageCreatorMock.object.addPathForValidation}
-                description={instance.description}
                 assessmentsProvider={assessmentsProvider}
                 featureFlagStoreData={featureFlagStoreData}
             />
@@ -219,10 +223,15 @@ describe('AssessmentInstanceTableHandlerTest', () => {
     test('addFailureInstance', () => {
         const test = VisualizationType.HeadingsAssessment;
         const requirement = 'requirement';
-        const description = 'description';
-        actionMessageCreatorMock.setup(a => a.addFailureInstance(description, test, requirement)).verifiable(Times.once());
+        const instanceData = {
+            failureDescription: 'description',
+            path: 'path',
+            snippet: 'snippet',
+        };
 
-        testSubject.addFailureInstance(description, test, requirement);
+        actionMessageCreatorMock.setup(a => a.addFailureInstance(instanceData, test, requirement)).verifiable(Times.once());
+
+        testSubject.addFailureInstance(instanceData, test, requirement);
     });
 
     test('passUnmarkedInstances', () => {

@@ -61,6 +61,7 @@ async function launchNewBrowser(): Promise<Puppeteer.Browser> {
     const browser = await Puppeteer.launch({
         // Headless doesn't support extensions, see https://github.com/GoogleChrome/puppeteer/issues/659
         headless: false,
+        defaultViewport: null,
         args: [
             // Required to work around https://github.com/GoogleChrome/puppeteer/pull/774
             `--disable-extensions-except=${extensionPath}`,

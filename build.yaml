@@ -49,21 +49,6 @@ jobs:
             inputs:
                 verbosity: Normal
 
-    - job: 'e2e_tests_windows'
-      pool:
-          vmImage: 'vs2017-win2016'
-      steps:
-          - template: pipeline/install-node-prerequisites.yaml
-          - template: pipeline/e2e-test-from-agent.yaml
-          - template: pipeline/e2e-test-publish-results.yaml
-
-    - job: 'e2e_tests_linux'
-      pool:
-          vmImage: 'ubuntu-16.04'
-      steps:
-          - template: pipeline/e2e-test-from-docker.yaml
-          - template: pipeline/e2e-test-publish-results.yaml
-
     - job: 'publish_build_drops'
       pool:
           vmImage: 'ubuntu-16.04'

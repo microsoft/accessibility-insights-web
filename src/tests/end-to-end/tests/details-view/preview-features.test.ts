@@ -5,6 +5,7 @@ import { Browser } from '../../common/browser';
 import { launchBrowser } from '../../common/browser-factory';
 import { CommonSelectors } from '../../common/element-identifiers/common-selectors';
 import { detailsViewSelectors } from '../../common/element-identifiers/details-view-selectors';
+import { formatPageElementForSnapshot } from '../../common/element-snapshot-formatter';
 import { enableHighContrast } from '../../common/enable-high-contrast';
 import { Page } from '../../common/page';
 import { scanForAccessibilityIssues } from '../../common/scan-for-accessibility-issues';
@@ -29,7 +30,7 @@ describe('Preview Features Panel', () => {
         });
 
         it('should match content in snapshot', async () => {
-            const previewFeaturesPanel = await detailsViewPage.getPrintableHtmlElement(detailsViewSelectors.previewFeaturesPanel);
+            const previewFeaturesPanel = await formatPageElementForSnapshot(detailsViewPage, detailsViewSelectors.previewFeaturesPanel);
             expect(previewFeaturesPanel).toMatchSnapshot();
         });
 

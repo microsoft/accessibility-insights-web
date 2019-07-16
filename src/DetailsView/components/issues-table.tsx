@@ -3,7 +3,6 @@
 import { ISelection } from 'office-ui-fabric-react/lib/DetailsList';
 import { Spinner, SpinnerSize } from 'office-ui-fabric-react/lib/Spinner';
 import * as React from 'react';
-
 import * as Markup from '../../assessments/markup';
 import { VisualizationToggle } from '../../common/components/visualization-toggle';
 import { VisualizationConfiguration } from '../../common/configs/visualization-configuration';
@@ -14,7 +13,7 @@ import { VisualizationType } from '../../common/types/visualization-type';
 import { DecoratedAxeNodeResult } from '../../injected/scanner-utils';
 import { RuleResult, ScanResults } from '../../scanner/iruleresults';
 import { DictionaryStringTo } from '../../types/common-types';
-import { ReportGeneratorProvider } from '../reports/report-generator-provider';
+import { ReportGenerator } from '../reports/report-generator';
 import { ExportDialogDeps } from './export-dialog';
 import { IssuesDetailsList } from './issues-details-list';
 import { IssuesDetailsPane, IssuesDetailsPaneDeps } from './Issues-details-pane';
@@ -24,7 +23,7 @@ import { ReportExportComponent } from './report-export-component';
 export type IssuesTableDeps = IssuesDetailsPaneDeps &
     ExportDialogDeps & {
         getDateFromTimestamp: (timestamp: string) => Date;
-        reportGeneratorProvider: ReportGeneratorProvider;
+        reportGenerator: ReportGenerator;
     };
 
 export interface IssuesTableProps {
@@ -105,7 +104,7 @@ export class IssuesTable extends React.Component<IssuesTableProps> {
         if (shouldShowButton) {
             const { deps, scanResult, pageTitle, pageUrl } = this.props;
             const scanDate = deps.getDateFromTimestamp(scanResult.timestamp);
-            const reportGenerator = deps.reportGeneratorProvider.getGenerator();
+            const reportGenerator = deps.reportGenerator;
             return (
                 <ReportExportComponent
                     deps={deps}
