@@ -90,8 +90,8 @@ export class Page {
     }
 
     public async clickSelector(selector: string): Promise<void> {
+        const element = await this.waitForSelector(selector);
         await this.screenshotOnError(async () => {
-            const element = await this.waitForSelector(selector);
             await element.click();
         });
     }
@@ -120,6 +120,10 @@ export class Page {
             const html = await this.underlyingPage.$eval(selector, el => el.outerHTML);
             return generateFormattedHtml(html);
         });
+    }
+
+    public async takePagesScreenshot(): Promise<void> {
+        await takeScreenshot(this.underlyingPage);
     }
 
     private async screenshotOnError<T>(fn: () => Promise<T>): Promise<T> {

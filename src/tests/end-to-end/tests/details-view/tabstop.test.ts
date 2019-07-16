@@ -1,9 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import * as Puppeteer from 'puppeteer';
 import { launchBrowser } from '../../common/browser-factory';
 import { fastPassSelectors } from '../../common/element-identifiers/common-selectors';
-import { overviewSelectors } from '../../common/element-identifiers/details-view-selectors';
 import { popupPageElementIdentifiers } from '../../common/element-identifiers/popup-page-element-identifiers';
+import { takeScreenshot } from '../../common/generate-screenshot';
 import { Page } from '../../common/page';
 import { Browser, TargetPageInfo } from './../../common/browser';
 
@@ -50,6 +51,9 @@ describe('Tabstop tests', () => {
         ]);
 
         await tabStopPage.clickSelector(fastPassSelectors.tabstopNavButtonSelector);
+
+        // waiting for an alternate selector just to make sure that the fastpass toggle is present before clicking it
+        await tabStopPage.waitForSelector(fastPassSelectors.tabStopToggleAlternativeSelector);
         await tabStopPage.clickSelector(fastPassSelectors.tabStopToggle);
     }
 });
