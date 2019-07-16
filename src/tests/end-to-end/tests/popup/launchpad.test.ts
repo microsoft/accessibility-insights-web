@@ -1,23 +1,25 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { Browser, TargetPageInfo } from '../../common/browser';
+import { Browser } from '../../common/browser';
 import { launchBrowser } from '../../common/browser-factory';
 import { CommonSelectors } from '../../common/element-identifiers/common-selectors';
 import { popupPageElementIdentifiers } from '../../common/element-identifiers/popup-page-element-identifiers';
+import { formatPageElementForSnapshot } from '../../common/element-snapshot-formatter';
 import { enableHighContrast } from '../../common/enable-high-contrast';
 import { Page } from '../../common/page';
 import { scanForAccessibilityIssues } from '../../common/scan-for-accessibility-issues';
+import { TargetPageController } from '../../common/target-page-controller';
 
 describe('Launch Pad', () => {
     describe('Normal mode', () => {
         let browser: Browser;
-        let targetPageInfo: TargetPageInfo;
+        let targetPage: TargetPageController;
         let popupPage: Page;
 
         beforeAll(async () => {
             browser = await launchBrowser({ suppressFirstTimeDialog: true });
-            targetPageInfo = await browser.setupNewTargetPage();
-            popupPage = await browser.newExtensionPopupPage(targetPageInfo.tabId);
+            targetPage = await browser.setupNewTargetPage();
+            popupPage = await browser.newExtensionPopupPage(targetPage.tabId);
             await popupPage.bringToFront();
             await popupPage.waitForSelector(popupPageElementIdentifiers.launchPad);
         });
@@ -29,7 +31,7 @@ describe('Launch Pad', () => {
         });
 
         it('content should match snapshot', async () => {
-            const element = await popupPage.getPrintableHtmlElement(popupPageElementIdentifiers.launchPad);
+            const element = await formatPageElementForSnapshot(popupPage, popupPageElementIdentifiers.launchPad);
             expect(element).toMatchSnapshot();
         });
 
@@ -40,16 +42,16 @@ describe('Launch Pad', () => {
     });
     describe('High contrast mode', () => {
         let browser: Browser;
-        let targetPageInfo: TargetPageInfo;
+        let targetPage: TargetPageController;
         let popupPage: Page;
 
         beforeAll(async () => {
             browser = await launchBrowser({ suppressFirstTimeDialog: true });
-            targetPageInfo = await browser.setupNewTargetPage();
-            const detailsViewPage = await browser.newExtensionDetailsViewPage(targetPageInfo.tabId);
+            targetPage = await browser.setupNewTargetPage();
+            const detailsViewPage = await browser.newExtensionDetailsViewPage(targetPage.tabId);
             await enableHighContrast(detailsViewPage);
 
-            popupPage = await browser.newExtensionPopupPage(targetPageInfo.tabId);
+            popupPage = await browser.newExtensionPopupPage(targetPage.tabId);
             await popupPage.bringToFront();
 
             await popupPage.waitForSelector(CommonSelectors.highContrastThemeSelector);
