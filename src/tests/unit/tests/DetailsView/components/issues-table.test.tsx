@@ -3,15 +3,13 @@
 import { shallow } from 'enzyme';
 import { ISelection, Selection } from 'office-ui-fabric-react/lib/DetailsList';
 import * as React from 'react';
-import { IMock, Mock, Times } from 'typemoq';
-
+import { IMock, Mock } from 'typemoq';
 import { VisualizationConfigurationFactory } from '../../../../../common/configs/visualization-configuration-factory';
 import { DateProvider } from '../../../../../common/date-provider';
 import { UserConfigurationStoreData } from '../../../../../common/types/store-data/user-configuration-store';
 import { IssuesTable, IssuesTableDeps, IssuesTableProps } from '../../../../../DetailsView/components/issues-table';
 import { DetailsRowData, IssuesTableHandler } from '../../../../../DetailsView/components/issues-table-handler';
 import { ReportGenerator } from '../../../../../DetailsView/reports/report-generator';
-import { ReportGeneratorProvider } from '../../../../../DetailsView/reports/report-generator-provider';
 import { DecoratedAxeNodeResult } from '../../../../../injected/scanner-utils';
 import { RuleResult } from '../../../../../scanner/iruleresults';
 import { DictionaryStringTo } from '../../../../../types/common-types';
@@ -19,25 +17,21 @@ import { DictionaryStringTo } from '../../../../../types/common-types';
 describe('IssuesTableTest', () => {
     let deps: IssuesTableDeps;
     let reportGeneratorMock: IMock<ReportGenerator>;
-    let reportGeneratorProviderMock: IMock<ReportGeneratorProvider>;
+
     beforeEach(() => {
         reportGeneratorMock = Mock.ofType<ReportGenerator>();
-        reportGeneratorProviderMock = Mock.ofType<ReportGeneratorProvider>();
-        reportGeneratorProviderMock.setup(provider => provider.getGenerator()).returns(() => reportGeneratorMock.object);
         deps = {
             getDateFromTimestamp: DateProvider.getDateFromTimestamp,
-            reportGeneratorProvider: reportGeneratorProviderMock.object,
-        } as any;
+            reportGenerator: reportGeneratorMock.object,
+        } as IssuesTableDeps;
     });
 
     it('spinner, issuesEnabled == null', () => {
         const props = new TestPropsBuilder().setDeps(deps).build();
-        reportGeneratorProviderMock.setup(rgm => rgm.getGenerator()).verifiable(Times.never());
 
         const wrapped = shallow(<IssuesTable {...props} />);
 
         expect(wrapped.debug()).toMatchSnapshot();
-        reportGeneratorProviderMock.verifyAll();
     });
 
     it('includes subtitle if specified', () => {

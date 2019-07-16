@@ -103,15 +103,6 @@ $outcome-not-applicable-summary-color: $neutral-outcome;
 
         .rule-details-id {
             padding: 12px 0;
-            font-size: 15px;
-
-            a {
-                text-decoration: none !important;
-            }
-        }
-
-        .guidance-links a {
-            text-decoration: none !important;
         }
     }
 }
@@ -193,6 +184,7 @@ $outcome-not-applicable-summary-color: $neutral-outcome;
         display: inline-block;
         border-right: 1px solid $secondary-text;
         border-bottom: 1px solid $secondary-text;
+        min-width: 7px;
         width: 7px;
         height: 7px;
         content: '';

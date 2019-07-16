@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import * as Puppeteer from 'puppeteer';
 
+import { includes } from 'lodash';
 import { forceTestFailure } from './force-test-failure';
 import { takeScreenshot } from './generate-screenshot';
 import { DEFAULT_NEW_PAGE_WAIT_TIMEOUT_MS, DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS } from './timeouts';
@@ -19,7 +20,11 @@ export class Page {
             forceEventFailure(`'pageerror' (console.error) with stack: ${error.stack}`);
         });
         underlyingPage.on('requestfailed', request => {
-            forceEventFailure(`'requestfailed' from '${request.url()}' with errorText: ${request.failure().errorText}`);
+            const url = request.url();
+            // Checking for 'fonts' and 'icons' in url as a workaround for #923
+            if (!includes(url, 'fonts') && !includes(url, 'icons')) {
+                forceEventFailure(`'requestfailed' from '${url}' with errorText: ${request.failure().errorText}`);
+            }
         });
         underlyingPage.on('response', response => {
             if (response.status() >= 400) {

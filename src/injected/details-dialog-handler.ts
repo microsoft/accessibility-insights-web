@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import * as React from 'react';
 import { FeatureFlags } from '../common/feature-flags';
 import { HTMLElementUtils } from '../common/html-element-utils';
 import { DetailsDialog } from './components/details-dialog';

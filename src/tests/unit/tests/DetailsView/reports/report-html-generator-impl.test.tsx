@@ -2,19 +2,18 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 import { It, Mock, MockBehavior, Times } from 'typemoq';
-
 import { DateProvider } from '../../../../../common/date-provider';
 import { EnvironmentInfo } from '../../../../../common/environment-info-provider';
 import { GetGuidanceTagsFromGuidanceLinks } from '../../../../../common/get-guidance-tags-from-guidance-links';
-import { ReportHeadV2 } from '../../../../../DetailsView/reports/components/report-head-v2';
+import { ReportHead } from '../../../../../DetailsView/reports/components/report-head';
 import { ReportBody, ReportBodyProps } from '../../../../../DetailsView/reports/components/report-sections/report-body';
 import { ReportSectionFactory } from '../../../../../DetailsView/reports/components/report-sections/report-section-factory';
 import { ReactStaticRenderer } from '../../../../../DetailsView/reports/react-static-renderer';
-import { ReportHtmlGeneratorV2 } from '../../../../../DetailsView/reports/report-html-generator-v2';
+import { ReportHtmlGeneratorImpl } from '../../../../../DetailsView/reports/report-html-generator-impl';
 import { FixInstructionProcessor } from '../../../../../injected/fix-instruction-processor';
 import { ScanResults } from '../../../../../scanner/iruleresults';
 
-describe('ReportHtmlGeneratorV2', () => {
+describe('ReportHtmlGeneratorImpl', () => {
     test('generateHtml', () => {
         const browserSpec: string = 'browser-spect';
         const extensionVersion: string = 'extension-version';
@@ -52,7 +51,7 @@ describe('ReportHtmlGeneratorV2', () => {
             getGuidanceTagsFromGuidanceLinks: getGuidanceTagsStub,
         };
 
-        const headElement: JSX.Element = <ReportHeadV2 />;
+        const headElement: JSX.Element = <ReportHead />;
         const bodyElement: JSX.Element = <ReportBody {...sectionProps} />;
 
         const rendererMock = Mock.ofType(ReactStaticRenderer, MockBehavior.Strict);
@@ -65,7 +64,7 @@ describe('ReportHtmlGeneratorV2', () => {
             .returns(() => '<body-markup />')
             .verifiable(Times.once());
 
-        const testObject = new ReportHtmlGeneratorV2(
+        const testObject = new ReportHtmlGeneratorImpl(
             sectionFactoryMock.object,
             rendererMock.object,
             environmentInfo,

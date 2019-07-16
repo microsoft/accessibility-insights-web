@@ -7,8 +7,10 @@ import { ExportResultType } from '../../common/telemetry-events';
 import { ReportGenerator } from '../reports/report-generator';
 import { ExportDialog, ExportDialogDeps } from './export-dialog';
 
+export type ReportExportComponentDeps = ExportDialogDeps;
+
 export interface ReportExportComponentProps {
-    deps: ExportDialogDeps;
+    deps: ReportExportComponentDeps;
     exportResultsType: ExportResultType;
     reportGenerator: ReportGenerator;
     pageTitle: string;

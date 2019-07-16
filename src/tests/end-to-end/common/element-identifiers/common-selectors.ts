@@ -13,6 +13,9 @@ export const DetailsViewCommonSelectors = {
     highContrastToggle: 'button#enable-high-contrast-mode',
 };
 
-export const GuidaceContentSelectors = {
+export const GuidanceContentSelectors = {
     mainContentContainer: '.content-container',
+    detailsContent: '.details-content',
+    assessmentInstanceText: '.assessment-instance-textContent',
+    headingsNav: 'a[title="5: Headings (Incomplete)"]',
 };

@@ -7,6 +7,7 @@ import * as React from 'react';
 import * as TestUtils from 'react-dom/test-utils';
 import { Mock, Times } from 'typemoq';
 
+import { kebabCase } from 'lodash';
 import { LaunchPadItemRow, LaunchPadItemRowProps } from '../../../../../popup/components/launch-pad-item-row';
 import { EventStubFactory } from '../../../common/event-stub-factory';
 
@@ -43,6 +44,7 @@ describe('LaunchPadItemRow', () => {
         const testObject = new LaunchPadItemRow(props);
 
         const { descriptionId } = getPrivate(testObject);
+        const testId = kebabCase(props.title);
 
         const expected = (
             <div className="ms-Grid">
@@ -52,7 +54,13 @@ describe('LaunchPadItemRow', () => {
                     </div>
                     <div className="ms-Grid-col ms-sm9">
                         <div className="launch-pad-item-title">
-                            <Link role="link" className="insights-link" onClick={props.onClickTitle} aria-describedby={descriptionId}>
+                            <Link
+                                role="link"
+                                className="insights-link"
+                                id={testId}
+                                onClick={props.onClickTitle}
+                                aria-describedby={descriptionId}
+                            >
                                 {props.title}
                             </Link>
                         </div>
