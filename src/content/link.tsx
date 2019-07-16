@@ -28,6 +28,9 @@ export const link = {
     ]),
     WCAG_2_1_1: guidanceLinkTo('WCAG 2.1.1', 'https://www.w3.org/WAI/WCAG21/Understanding/keyboard.html'),
     WCAG_2_1_2: guidanceLinkTo('WCAG 2.1.2', 'https://www.w3.org/WAI/WCAG21/Understanding/no-keyboard-trap.html'),
+    WCAG_2_1_4: guidanceLinkTo('WCAG 2.1.4', 'https://www.w3.org/WAI/WCAG21/Understanding/character-key-shortcuts.html', [
+        guidanceTags.WCAG_2_1,
+    ]),
     WCAG_2_2_1: guidanceLinkTo('WCAG 2.2.1', 'https://www.w3.org/WAI/WCAG21/Understanding/timing-adjustable.html'),
     WCAG_2_2_2: guidanceLinkTo('WCAG 2.2.2', 'https://www.w3.org/WAI/WCAG21/Understanding/pause-stop-hide'),
     WCAG_2_3_1: guidanceLinkTo('WCAG 2.3.1', 'https://www.w3.org/WAI/WCAG21/Understanding/three-flashes-or-below-threshold.html'),

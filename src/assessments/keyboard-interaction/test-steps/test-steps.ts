@@ -6,4 +6,5 @@ export const enum KeyboardInteractionTestStep {
     onFocus = 'on-focus',
     onInput = 'on-input',
     noKeystrokeTiming = 'on-keystroke-timing',
+    characterKeyShortcuts = 'character-key-shortcuts',
 }
