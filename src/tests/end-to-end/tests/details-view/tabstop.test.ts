@@ -25,7 +25,7 @@ describe('Tabstop tests', () => {
         });
 
         test('if visualHelper is turned on after starting tabstop and pressing tabs on target page', async () => {
-            const { page: targetPage, tabId: activeTabId } = targetPageInfo;
+            const { page: targetPage } = targetPageInfo;
 
             await targetPage.bringToFront();
 
@@ -34,7 +34,7 @@ describe('Tabstop tests', () => {
             await targetPage.keyPress('Tab');
             await targetPage.keyPress('Tab');
 
-            // todo: add targetpage snapshot assertion
+            // todo: add target page snapshot assertion
             expect(undefined).toBeUndefined();
         });
     });
