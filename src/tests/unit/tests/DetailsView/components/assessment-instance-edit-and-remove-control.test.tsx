@@ -31,7 +31,11 @@ describe('AssessmentInstanceRemoveButton', () => {
             test: VisualizationType.HeadingsAssessment,
             step: 'headingLevel',
             id: 'id',
-            description: 'description',
+            currentInstance: {
+                failureDescription: 'original text',
+                path: 'original path',
+                snippet: 'original snippet',
+            },
             onRemove: onRemoveMock.object,
             onEdit: null,
             assessmentsProvider: CreateTestAssessmentProvider(),
@@ -47,8 +51,8 @@ describe('AssessmentInstanceRemoveButton', () => {
                     test={props.test}
                     actionType={CapturedInstanceActionType.EDIT}
                     instanceId={props.id}
+                    failureInstance={props.currentInstance}
                     editFailureInstance={props.onEdit}
-                    originalText={props.description}
                     assessmentsProvider={props.assessmentsProvider}
                     featureFlagStoreData={featureFlagStoreData}
                 />
