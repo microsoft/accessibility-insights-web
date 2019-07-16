@@ -5,13 +5,10 @@ import { Messages } from '../../common/messages';
 import { PathSnippetActions } from './path-snippet-actions';
 
 export class PathSnippetActionCreator {
-    private pathSnippetActions: PathSnippetActions;
-    private registerTypeToPayloadCallback: RegisterTypeToPayloadCallback;
-
-    constructor(pathSnippetActions: PathSnippetActions, registerTypeToPayloadCallback: RegisterTypeToPayloadCallback) {
-        this.pathSnippetActions = pathSnippetActions;
-        this.registerTypeToPayloadCallback = registerTypeToPayloadCallback;
-    }
+    constructor(
+        private readonly pathSnippetActions: PathSnippetActions,
+        private readonly registerTypeToPayloadCallback: RegisterTypeToPayloadCallback,
+    ) {}
 
     public registerCallbacks(): void {
         this.registerTypeToPayloadCallback(Messages.PathSnippet.AddPathForValidation, this.onAddPathForValidation);

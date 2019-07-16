@@ -16,7 +16,6 @@ import {
 import { DetailsViewActions } from '../../../../../background/actions/details-view-actions';
 import { DevToolActions } from '../../../../../background/actions/dev-tools-actions';
 import { InspectActions } from '../../../../../background/actions/inspect-actions';
-import { PathSnippetActions } from '../../../../../background/actions/path-snippet-actions';
 import { ScopingActions } from '../../../../../background/actions/scoping-actions';
 import { VisualizationActions } from '../../../../../background/actions/visualization-actions';
 import { VisualizationScanResultActions } from '../../../../../background/actions/visualization-scan-result-actions';
@@ -959,13 +958,11 @@ class ActionCreatorValidator {
     private scopingActionsContainerMock = Mock.ofType(ScopingActions);
     private assessmentActionsContainerMock = Mock.ofType(AssessmentActions);
     private inspectActionsContainerMock = Mock.ofType(InspectActions);
-    private pathSnippetActionsContainerMock = Mock.ofType(PathSnippetActions);
     private previewFeaturesActionMocks: DictionaryStringTo<IMock<Action<any>>> = {};
     private scopingActionMocks: DictionaryStringTo<IMock<Action<any>>> = {};
     private detailsViewActionsMocks: DictionaryStringTo<IMock<Action<any>>> = {};
 
     private inspectActionsMock: DictionaryStringTo<IMock<Action<any>>> = {};
-    private pathSnippetActionsMock: DictionaryStringTo<IMock<Action<any>>> = {};
 
     private devToolActionsContainerMock = Mock.ofType(DevToolActions);
 
@@ -986,9 +983,9 @@ class ActionCreatorValidator {
         scopingActions: this.scopingActionsContainerMock.object,
         assessmentActions: this.assessmentActionsContainerMock.object,
         inspectActions: this.inspectActionsContainerMock.object,
-        pathSnippetActions: this.pathSnippetActionsContainerMock.object,
         contentActions: null,
         detailsViewActions: this.detailsViewActionsContainerMock.object,
+        pathSnippetActions: null,
     };
 
     private telemetryEventHandlerStrictMock = Mock.ofType<TelemetryEventHandler>(null, MockBehavior.Strict);
@@ -1059,14 +1056,6 @@ class ActionCreatorValidator {
 
     public setupInspectActionWithInvokeParameter(actionName: keyof InspectActions, expectedInvokeParam: any): ActionCreatorValidator {
         this.setupActionWithInvokeParameter(actionName, expectedInvokeParam, this.inspectActionsMock);
-        return this;
-    }
-
-    public setupPathSnippetActionWithInvokeParameter(
-        actionName: keyof PathSnippetActions,
-        expectedInvokeParam: any,
-    ): ActionCreatorValidator {
-        this.setupActionWithInvokeParameter(actionName, expectedInvokeParam, this.pathSnippetActionsMock);
         return this;
     }
 
@@ -1168,11 +1157,6 @@ class ActionCreatorValidator {
         return this;
     }
 
-    public setupActionsOnPathSnippetActions(actionName: keyof PathSnippetActions): ActionCreatorValidator {
-        this.setupAction(actionName, this.pathSnippetActionsMock, this.pathSnippetActionsContainerMock);
-        return this;
-    }
-
     public setupRegistrationCallback(expectedType: string, callbackParams?: any[]): ActionCreatorValidator {
         this.registerCallbackMock
             .setup(rc => rc(It.isValue(expectedType), It.isAny()))
@@ -1236,7 +1220,6 @@ class ActionCreatorValidator {
         this.verifyAllActions(this.detailsViewActionsMocks);
         this.verifyAllActions(this.previewFeaturesActionMocks);
         this.verifyAllActions(this.scopingActionMocks);
-        this.verifyAllActions(this.pathSnippetActionsMock);
     }
 
     private verifyAllActions(actionsMap: DictionaryStringTo<IMock<Action<any>>>): void {
