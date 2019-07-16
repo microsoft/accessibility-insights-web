@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { Browser } from '../../common/browser';
+import { Browser, TargetPageInfo } from '../../common/browser';
 import { launchBrowser } from '../../common/browser-factory';
 import { detailsViewSelectors } from '../../common/element-identifiers/details-view-selectors';
 import { popupPageElementIdentifiers } from '../../common/element-identifiers/popup-page-element-identifiers';
@@ -8,40 +8,37 @@ import { Page } from '../../common/page';
 import { scanForAccessibilityIssues } from '../../common/scan-for-accessibility-issues';
 
 describe('Target Page', () => {
+    let browser: Browser;
+    let targetPageInfo: TargetPageInfo;
+    let adhocPanel: Page;
+
+    beforeAll(async () => {
+        browser = await launchBrowser({ suppressFirstTimeDialog: true });
+        targetPageInfo = await browser.setupNewTargetPage();
+        adhocPanel = await openAdhocPanel(browser, targetPageInfo.tabId);
+    });
+
+    afterAll(async () => {
+        if (browser) {
+            await browser.close();
+            browser = undefined;
+        }
+    });
+
     describe('issue dialog', () => {
-        let browser: Browser;
-        let targetTabId: number;
-        let headingsPage: Page;
-
-        beforeAll(async () => {
-            browser = await launchBrowser({ suppressFirstTimeDialog: true });
-            targetTabId = (await browser.setupNewTargetPage()).tabId;
-            headingsPage = await openHeadingsPage(browser, targetTabId);
-        });
-
-        afterAll(async () => {
-            if (browser) {
-                await browser.close();
-                browser = undefined;
-            }
-        });
-
         it('should pass accessibility validation', async () => {
-            // const results = await scanForAccessibilityIssues(headingsPage, GuidanceContentSelectors.detailsContent);
-            // expect(results).toHaveLength(0);
+            await adhocPanel.clickSelector('button[aria-label="Automated checks"]');
+
+            const results = await scanForAccessibilityIssues(targetPageInfo.page, '#accessibility-insights-root-container');
+            expect(results).toHaveLength(0);
         });
     });
 
-    async function openHeadingsPage(browser: Browser, targetTabId: number): Promise<Page> {
+    async function openAdhocPanel(browser: Browser, targetTabId: number): Promise<Page> {
         const popupPage = await browser.newExtensionPopupPage(targetTabId);
+        await popupPage.clickSelectorXPath(popupPageElementIdentifiers.adhocLaunchPadLinkXPath);
+        await popupPage.waitForSelector(popupPageElementIdentifiers.adhocPanel);
 
-        let detailsViewPage: Page;
-
-        // await Promise.all([
-        //     browser.waitForPageMatchingUrl(await browser.getDetailsViewPageUrl(targetTabId)).then(page => (detailsViewPage = page)),
-        //     popupPage.clickSelector(popupPageElementIdentifiers.launchPadAssessmentButton),
-        // ]);
-
-        return detailsViewPage;
+        return popupPage;
     }
 });
