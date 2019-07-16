@@ -21,7 +21,7 @@ export function formatHtmlForSnapshot(htmlString: string): Node {
     const template = document.createElement('template');
     template.innerHTML = htmlString;
 
-    template.content.querySelectorAll('.insights-highlight-box').forEach(normalizeEnvironmentSensitivePositionStyles);
+    Array.from(template.content.querySelectorAll('.insights-highlight-box')).forEach(normalizeEnvironmentSensitivePositionStyles);
 
     return template.content.cloneNode(true);
 }
