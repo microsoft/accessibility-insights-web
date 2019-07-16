@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Tabstop tests tabstop from fastpass if visualHelper is turned on after starting tabstop and pressing tabs on target page 1`] = `
+<DocumentFragment>
+  <div
+    id="insights-shadow-container"
+  >
+    <link
+      href="{{EXTENSION_URL_BASE}}/injected/styles/default/injected.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="{{EXTENSION_URL_BASE}}/bundle/injected.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+  </div>
+</DocumentFragment>
+`;

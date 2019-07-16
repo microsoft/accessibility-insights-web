@@ -54,6 +54,10 @@ export class Page {
         return await this.screenshotOnError(async () => await this.underlyingPage.evaluate(fn, ...args));
     }
 
+    public async $(selector: string): Promise<any> {
+        return await this.screenshotOnError(async () => await this.underlyingPage.$(selector));
+    }
+
     public async getMatchingElements<T>(selector: string, elementProperty?: keyof Element): Promise<T[]> {
         return await this.screenshotOnError(
             async () =>
