@@ -94,7 +94,7 @@ describe('FailureInstancePanelControlTest', () => {
             snippet: null,
         };
 
-        props.originalInstance = originalInstance;
+        props.failureInstance = originalInstance;
 
         const wrapper = shallow<FailureInstancePanelControl>(<FailureInstancePanelControl {...props} />);
         const flaggedComponent = wrapper.find(FlaggedComponent);
@@ -114,7 +114,7 @@ describe('FailureInstancePanelControlTest', () => {
             path: 'new path',
             snippet: 'new snippet',
         };
-        props.originalInstance = originalInstance;
+        props.failureInstance = originalInstance;
         const wrapper = shallow<FailureInstancePanelControl>(<FailureInstancePanelControl {...props} />);
         wrapper
             .find(TextField)
@@ -126,9 +126,9 @@ describe('FailureInstancePanelControlTest', () => {
             .onClick(eventStub);
 
         expect(wrapper.state().isPanelOpen).toBe(true);
-        expect(wrapper.state().currentInstance.failureDescription).toEqual(props.originalInstance.failureDescription);
-        expect(wrapper.state().currentInstance.path).toEqual(props.originalInstance.path);
-        expect(wrapper.state().currentInstance.snippet).toEqual(props.originalInstance.snippet);
+        expect(wrapper.state().currentInstance.failureDescription).toEqual(props.failureInstance.failureDescription);
+        expect(wrapper.state().currentInstance.path).toEqual(props.failureInstance.path);
+        expect(wrapper.state().currentInstance.snippet).toEqual(props.failureInstance.snippet);
     });
 
     test('closeFailureInstancePanel', () => {

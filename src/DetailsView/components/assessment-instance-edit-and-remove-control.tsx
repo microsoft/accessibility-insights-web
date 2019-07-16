@@ -29,7 +29,7 @@ export class AssessmentInstanceEditAndRemoveControl extends React.Component<Asse
                     test={this.props.test}
                     actionType={CapturedInstanceActionType.EDIT}
                     instanceId={this.props.id}
-                    originalInstance={this.props.currentInstance}
+                    failureInstance={this.props.currentInstance}
                     editFailureInstance={this.props.onEdit}
                     assessmentsProvider={this.props.assessmentsProvider}
                     featureFlagStoreData={this.props.featureFlagStoreData}
