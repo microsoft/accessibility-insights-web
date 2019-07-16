@@ -58,15 +58,26 @@ async function launchNewBrowser(): Promise<Puppeteer.Browser> {
     // end shows up as a generic timeout error with no meaningful logging".
     await verifyExtensionIsBuilt(extensionPath);
 
+    const platformSpecificArgs: string[] = [];
+    if (process.platform === 'win32') {
+        // Works around "Error: Page crashed!" failures caused by out-of-memory issues
+        // (empirically, these issues have been win32-specific; we aren't sure why)
+        platformSpecificArgs.push('--max-old-space-size=2048');
+    }
+
     const browser = await Puppeteer.launch({
         // Headless doesn't support extensions, see https://github.com/GoogleChrome/puppeteer/issues/659
         headless: false,
-        defaultViewport: null,
+        defaultViewport: {
+            width: 1024,
+            height: 768,
+        },
         args: [
             // Required to work around https://github.com/GoogleChrome/puppeteer/pull/774
             `--disable-extensions-except=${extensionPath}`,
             `--load-extension=${extensionPath}`,
             '--no-sandbox',
+            ...platformSpecificArgs,
         ],
         timeout: DEFAULT_BROWSER_LAUNCH_TIMEOUT_MS,
     });
