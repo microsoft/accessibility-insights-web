@@ -30,7 +30,7 @@ describe('Tabstop tests', () => {
 
             await targetPage.bringToFront();
 
-            // presss tabs 3 times. todo: DRY this code
+            // press tabs 3 times. todo: DRY this code
             await targetPage.keyPress('Tab');
             await targetPage.keyPress('Tab');
             await targetPage.keyPress('Tab');
