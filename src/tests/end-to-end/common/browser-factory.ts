@@ -62,7 +62,7 @@ async function launchNewBrowser(): Promise<Puppeteer.Browser> {
     if (process.platform === 'win32') {
         // Works around "Error: Page crashed!" failures caused by out-of-memory issues
         // (empirically, these issues have been win32-specific; we aren't sure why)
-        platformSpecificArgs.push('--max-old-space-size=2048');
+        platformSpecificArgs.push('--js-flags="--max-old-space-size=2048"');
     }
 
     const browser = await Puppeteer.launch({
