@@ -8,10 +8,7 @@ steps:
       condition: always()
       displayName: publish e2e test results
 
-    - task: PublishBuildArtifacts@1
-      inputs:
-          pathtoPublish: '$(System.DefaultWorkingDirectory)/test-results/e2e'
-          artifactName: '$(Agent.JobName)-failure-screenshots'
+    - publish: '$(System.DefaultWorkingDirectory)/test-results/e2e'
+      artifact: '$(Agent.JobName)-screenshots-and-extended-logs'
       condition: always()
       continueOnError: true
-      displayName: publish e2e-failure-screenshots
