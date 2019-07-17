@@ -69,9 +69,10 @@ async function launchNewBrowser(browserInstanceId: string): Promise<Puppeteer.Br
     await verifyExtensionIsBuilt(extensionPath);
 
     const browserLogDir = browserLogPath(browserInstanceId);
+    const userDataDir = path.join(browserLogDir, 'userDataDir');
 
     // If this isn't present when chrome launches, it'll silently fail to log anything
-    await util.promisify(fs.mkdir)(browserLogDir, { recursive: true });
+    await util.promisify(fs.mkdir)(userDataDir, { recursive: true });
 
     const browser = await Puppeteer.launch({
         // Headless doesn't support extensions, see https://github.com/GoogleChrome/puppeteer/issues/659
@@ -92,7 +93,7 @@ async function launchNewBrowser(browserInstanceId: string): Promise<Puppeteer.Br
         env: {
             CHROME_LOG_FILE: path.join(browserLogDir, `CHROME_LOG_FILE.txt`),
         },
-        userDataDir: path.join(browserLogDir, 'userDataDir'),
+        userDataDir: userDataDir,
     });
 
     return browser;
