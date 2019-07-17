@@ -64,6 +64,11 @@ async function launchNewBrowser(browserInstanceId: string): Promise<Puppeteer.Br
     // end shows up as a generic timeout error with no meaningful logging".
     await verifyExtensionIsBuilt(extensionPath);
 
+    const browserLogPath = path.join(chromeLogsPath, browserInstanceId);
+
+    // If this isn't present when chrome launches, it'll silently fail to log anything
+    await util.promisify(fs.mkdir)(browserLogPath, { recursive: true });
+
     const browser = await Puppeteer.launch({
         // Headless doesn't support extensions, see https://github.com/GoogleChrome/puppeteer/issues/659
         headless: false,
@@ -76,73 +81,18 @@ async function launchNewBrowser(browserInstanceId: string): Promise<Puppeteer.Br
             `--disable-extensions-except=${extensionPath}`,
             `--load-extension=${extensionPath}`,
             '--no-sandbox',
-            ...cypressDefaultChromiumArgs,
+            // Causes crash dumps to be saved locally rather than handled by the underlying OS reporting mechanism
+            '--noerrdialogs',
+            // Keeps process logs, useful for debugging page crashes
+            '--enable-logging',
+            '--v=1',
         ],
         timeout: DEFAULT_BROWSER_LAUNCH_TIMEOUT_MS,
         env: {
-            CHROME_LOG_FILE: path.join(chromeLogsPath, `${browserInstanceId}.txt`),
+            CHROME_LOG_FILE: path.join(browserLogPath, `CHROME_LOG_FILE.txt`),
         },
+        userDataDir: path.join(browserLogPath, 'userDataDir'),
     });
 
     return browser;
 }
-
-// cypressDefaultChromiumArgs definition taken from Cypress, which is MIT licensed per https://github.com/cypress-io/cypress/blob/develop/LICENSE
-// https://github.com/cypress-io/cypress/blob/4506ead8831db78dc2488ba875dfde37e6e31c74/packages/server/lib/browsers/chrome.coffee#L21
-const cypressDefaultChromiumArgs: string[] = [
-    '--test-type',
-    '--ignore-certificate-errors',
-    '--start-maximized',
-    '--silent-debugger-extension-api',
-    '--no-default-browser-check',
-    '--no-first-run',
-    '--noerrdialogs',
-    '--enable-fixed-layout',
-    '--disable-popup-blocking',
-    '--disable-password-generation',
-    '--disable-save-password-bubble',
-    '--disable-single-click-autofill',
-    '--disable-prompt-on-repos',
-    '--disable-background-timer-throttling',
-    '--disable-renderer-backgrounding',
-    '--disable-renderer-throttling',
-    '--disable-restore-session-state',
-    '--disable-translate',
-    '--disable-new-profile-management',
-    '--disable-new-avatar-menu',
-    '--allow-insecure-localhost',
-    '--reduce-security-for-testing',
-    '--enable-automation',
-    '--disable-infobars',
-    '--disable-device-discovery-notifications',
-
-    // https://github.com/cypress-io/cypress/issues/2376
-    '--autoplay-policy=no-user-gesture-required',
-
-    // http://www.chromium.org/Home/chromium-security/site-isolation
-    // https://github.com/cypress-io/cypress/issues/1951
-    '--disable-site-isolation-trials',
-
-    // the following come frome chromedriver
-    // https://code.google.com/p/chromium/codesearch#chromium/src/chrome/test/chromedriver/chrome_launcher.cc&sq=package:chromium&l=70
-    '--metrics-recording-only',
-    '--disable-prompt-on-repost',
-    '--disable-hang-monitor',
-    '--disable-sync',
-    // this flag is causing throttling of XHR callbacks for
-    // as much as 30 seconds. If you VNC in and open dev tools or
-    // click on a button, it'll "instantly" work. with this
-    // option enabled, it will time out some of our tests in circle
-    // "--disable-background-networking",
-    '--disable-web-resources',
-    '--safebrowsing-disable-auto-update',
-    '--safebrowsing-disable-download-protection',
-    '--disable-client-side-phishing-detection',
-    '--disable-component-update',
-    '--disable-default-apps',
-
-    // These flags are for webcam/WebRTC testing
-    // https://github.com/cypress-io/cypress/issues/2704
-    '--use-fake-ui-for-media-stream',
-    '--use-fake-device-for-media-stream',
-];
