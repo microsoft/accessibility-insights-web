@@ -15,6 +15,7 @@ export interface AssessmentInstanceEditAndRemoveControlProps {
     id: string;
     currentInstance: FailureInstanceData;
     onRemove: (test, step, id) => void;
+    onAddPath: (path) => void;
     onEdit: (instanceData, test, step, id) => void;
     assessmentsProvider: AssessmentsProvider;
     featureFlagStoreData: FeatureFlagStoreData;
@@ -31,6 +32,7 @@ export class AssessmentInstanceEditAndRemoveControl extends React.Component<Asse
                     instanceId={this.props.id}
                     failureInstance={this.props.currentInstance}
                     editFailureInstance={this.props.onEdit}
+                    addPathForValidation={this.props.onAddPath}
                     assessmentsProvider={this.props.assessmentsProvider}
                     featureFlagStoreData={this.props.featureFlagStoreData}
                 />

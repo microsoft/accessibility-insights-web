@@ -192,4 +192,8 @@ export class Messages {
     public static readonly IssueFiling = {
         FileIssue: `${messagePrefix}/issueFiling/file`,
     };
+
+    public static readonly PathSnippet = {
+        AddPathForValidation: `${messagePrefix}/pathSnippet/addPathForValidation`,
+    };
 }

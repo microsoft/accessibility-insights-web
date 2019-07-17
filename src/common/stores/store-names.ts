@@ -13,4 +13,5 @@ export enum StoreNames {
     ScopingPanelStateStore,
     InspectStore,
     UserConfigurationStore,
+    PathSnippetStore,
 }
