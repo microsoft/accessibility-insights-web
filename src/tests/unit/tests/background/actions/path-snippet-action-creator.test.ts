@@ -36,6 +36,20 @@ describe('PathSnippetActionCreatorTest', () => {
         addPathForValidationMock.verifyAll();
     });
 
+    test('registerCallbacks for onAddCorrespondingSnippet', () => {
+        const snippet = 'test corresponding snippet';
+        const actionName = 'onAddSnippet';
+
+        const payload = snippet;
+        const addCorrespondingSnippetMock = createActionMock(payload);
+
+        setupPathSnippetActionMock(actionName, addCorrespondingSnippetMock);
+        setupRegisterTypeToPayloadCallbackMock(Messages.PathSnippet.AddCorrespondingSnippet, payload);
+
+        testObject.registerCallbacks();
+        addCorrespondingSnippetMock.verifyAll();
+    });
+
     function createActionMock<TPayload>(actionPayload: TPayload): IMock<Action<TPayload>> {
         const getCurrentStateMock = Mock.ofType<Action<TPayload>>(Action, MockBehavior.Strict);
         getCurrentStateMock.setup(action => action.invoke(actionPayload)).verifiable(Times.once());

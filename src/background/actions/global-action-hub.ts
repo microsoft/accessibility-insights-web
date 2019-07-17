@@ -4,7 +4,6 @@ import { FeatureFlagActions } from '../actions/feature-flag-actions';
 import { LaunchPanelStateActions } from '../actions/launch-panel-state-action';
 import { AssessmentActions } from './assessment-actions';
 import { CommandActions } from './command-actions';
-import { PathSnippetActions } from './path-snippet-actions';
 import { ScopingActions } from './scoping-actions';
 import { UserConfigurationActions } from './user-configuration-actions';
 
@@ -15,7 +14,6 @@ export class GlobalActionHub {
     public scopingActions: ScopingActions;
     public assessmentActions: AssessmentActions;
     public userConfigurationActions: UserConfigurationActions;
-    public pathSnippetActions: PathSnippetActions;
 
     constructor() {
         this.commandActions = new CommandActions();
@@ -24,6 +22,5 @@ export class GlobalActionHub {
         this.scopingActions = new ScopingActions();
         this.assessmentActions = new AssessmentActions();
         this.userConfigurationActions = new UserConfigurationActions();
-        this.pathSnippetActions = new PathSnippetActions();
     }
 }

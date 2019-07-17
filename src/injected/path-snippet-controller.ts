@@ -21,13 +21,13 @@ export class PathSnippetController {
 
         const pathSnippetStoreState = this.pathSnippetStore.getState();
 
-        if (pathSnippetStoreState.path !== '' && pathSnippetStoreState.snippet === '') {
+        if (pathSnippetStoreState.path !== '') {
             const retrievedSnippet = this.getElementFromPath(pathSnippetStoreState.path);
             this.addCorrespondingSnippet(retrievedSnippet);
         }
     };
 
     private getElementFromPath = (path: string): string => {
-        return 'Retrieved Path from Store';
+        return 'Retrieved Snippet from Store for Path: ' + path;
     };
 }
