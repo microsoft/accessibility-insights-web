@@ -2,18 +2,14 @@
 // Licensed under the MIT License.
 import { autobind, getRTL } from '@uifabric/utilities';
 import * as Q from 'q';
-
 import { ElectronRendererAdapter } from '../background/browser-adapters/electron-renderer-adapter';
-import { XMLHttpRequestFactory } from '../background/xml-http-request-factory';
 import { ClientBrowserAdapter } from '../common/client-browser-adapter';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
-import { FileRequestHelper } from '../common/file-request-helper';
 import { HTMLElementUtils } from '../common/html-element-utils';
 import { generateUID } from '../common/uid-generator';
 import { WindowUtils } from '../common/window-utils';
 import { fromBackgroundChannel, toBackgroundChannel } from '../electron/main/communication-channel';
 import { scan } from '../scanner/exposed-apis';
-import { Assessments } from './../assessments/assessments';
 import { ClientUtils } from './client-utils';
 import { rootContainerId } from './constants';
 import { DetailsDialogHandler } from './details-dialog-handler';
@@ -55,17 +51,12 @@ export class ElectronWindowInitializer {
         this.clientChromeAdapter = new ElectronRendererAdapter(toBackgroundChannel, fromBackgroundChannel);
         this.windowUtils = new WindowUtils();
         const htmlElementUtils = new HTMLElementUtils();
-        const xmlHttpRequestFactory = new XMLHttpRequestFactory();
         this.clientUtils = new ClientUtils(window);
         this.scannerUtils = new ScannerUtils(scan);
 
         new RootContainerCreator(htmlElementUtils).create(rootContainerId);
 
-        this.shadowInitializer = new ShadowInitializer(
-            this.clientChromeAdapter,
-            htmlElementUtils,
-            new FileRequestHelper(xmlHttpRequestFactory),
-        );
+        this.shadowInitializer = new ShadowInitializer(this.clientChromeAdapter, htmlElementUtils);
         asyncInitializationSteps.push(this.shadowInitializer.initialize());
 
         this.visualizationConfigurationFactory = new VisualizationConfigurationFactory();
@@ -96,13 +87,10 @@ export class ElectronWindowInitializer {
         );
         this.drawingController = new DrawingController(
             this.frameCommunicator,
-            this.instanceVisibilityChecker,
             new HtmlElementAxeResultsHelper(htmlElementUtils),
             htmlElementUtils,
-            this.visualizationConfigurationFactory,
-            drawerProvider,
-            Assessments,
         );
+
         this.scrollingController = new ScrollingController(this.frameCommunicator, htmlElementUtils);
         this.frameUrlFinder = new FrameUrlFinder(this.frameCommunicator, this.windowUtils, htmlElementUtils);
         windowMessageHandler.initialize();
