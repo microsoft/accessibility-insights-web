@@ -332,6 +332,15 @@ export class DetailsViewActionMessageCreator extends DevToolActionMessageCreator
         });
     }
 
+    public addPathForValidation(path: string): void {
+        const payload = path;
+
+        this.dispatcher.dispatchMessage({
+            messageType: Messages.PathSnippet.AddPathForValidation,
+            payload,
+        });
+    }
+
     public addFailureInstance(instanceData: FailureInstanceData, test: VisualizationType, requirement: string): void {
         const telemetry = this.telemetryFactory.forRequirementFromDetailsView(test, requirement);
         const payload: AddFailureInstancePayload = {

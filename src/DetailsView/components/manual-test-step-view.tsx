@@ -61,6 +61,7 @@ export class ManualTestStepView extends React.Component<ManualTestStepViewProps>
                     step={this.props.step}
                     test={this.props.test}
                     addFailureInstance={this.props.assessmentInstanceTableHandler.addFailureInstance}
+                    addPathForValidation={this.props.assessmentInstanceTableHandler.addPathForValidation}
                     actionType={CapturedInstanceActionType.CREATE}
                     assessmentsProvider={this.props.assessmentsProvider}
                     featureFlagStoreData={this.props.featureFlagStoreData}

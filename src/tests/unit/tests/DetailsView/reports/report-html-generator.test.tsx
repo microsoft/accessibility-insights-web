@@ -9,11 +9,11 @@ import { ReportHead } from '../../../../../DetailsView/reports/components/report
 import { ReportBody, ReportBodyProps } from '../../../../../DetailsView/reports/components/report-sections/report-body';
 import { ReportSectionFactory } from '../../../../../DetailsView/reports/components/report-sections/report-section-factory';
 import { ReactStaticRenderer } from '../../../../../DetailsView/reports/react-static-renderer';
-import { ReportHtmlGeneratorImpl } from '../../../../../DetailsView/reports/report-html-generator-impl';
+import { ReportHtmlGenerator } from '../../../../../DetailsView/reports/report-html-generator';
 import { FixInstructionProcessor } from '../../../../../injected/fix-instruction-processor';
 import { ScanResults } from '../../../../../scanner/iruleresults';
 
-describe('ReportHtmlGeneratorImpl', () => {
+describe('ReportHtmlGenerator', () => {
     test('generateHtml', () => {
         const browserSpec: string = 'browser-spect';
         const extensionVersion: string = 'extension-version';
@@ -64,7 +64,7 @@ describe('ReportHtmlGeneratorImpl', () => {
             .returns(() => '<body-markup />')
             .verifiable(Times.once());
 
-        const testObject = new ReportHtmlGeneratorImpl(
+        const testObject = new ReportHtmlGenerator(
             sectionFactoryMock.object,
             rendererMock.object,
             environmentInfo,

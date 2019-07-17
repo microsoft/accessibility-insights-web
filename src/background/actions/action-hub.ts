@@ -8,6 +8,7 @@ import { ContentActions } from './content-actions';
 import { DetailsViewActions } from './details-view-actions';
 import { DevToolActions } from './dev-tools-actions';
 import { InspectActions } from './inspect-actions';
+import { PathSnippetActions } from './path-snippet-actions';
 import { PreviewFeaturesActions } from './preview-features-actions';
 import { ScopingActions } from './scoping-actions';
 
@@ -22,6 +23,7 @@ export class ActionHub {
     public inspectActions: InspectActions;
     public contentActions: ContentActions;
     public detailsViewActions: DetailsViewActions;
+    public pathSnippetActions: PathSnippetActions;
 
     constructor() {
         this.visualizationActions = new VisualizationActions();
@@ -34,5 +36,6 @@ export class ActionHub {
         this.inspectActions = new InspectActions();
         this.contentActions = new ContentActions();
         this.detailsViewActions = new DetailsViewActions();
+        this.pathSnippetActions = new PathSnippetActions();
     }
 }
