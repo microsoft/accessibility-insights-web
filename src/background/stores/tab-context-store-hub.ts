@@ -7,7 +7,6 @@ import { ActionHub } from '../actions/action-hub';
 import { DetailsViewStore } from './details-view-store';
 import { DevToolStore } from './dev-tools-store';
 import { InspectStore } from './inspect-store';
-import { PathSnippetStore } from './path-snippet-store';
 import { StoreHub } from './store-hub';
 import { TabStore } from './tab-store';
 import { VisualizationScanResultStore } from './visualization-scan-result-store';
@@ -20,7 +19,6 @@ export class TabContextStoreHub implements StoreHub {
     public devToolStore: DevToolStore;
     public detailsViewStore: DetailsViewStore;
     public inspectStore: InspectStore;
-    public pathSnippetStore: PathSnippetStore;
 
     constructor(actionHub: ActionHub, visualizationConfigurationFactory: VisualizationConfigurationFactory) {
         this.visualizationStore = new VisualizationStore(
@@ -52,9 +50,6 @@ export class TabContextStoreHub implements StoreHub {
 
         this.inspectStore = new InspectStore(actionHub.inspectActions, actionHub.tabActions);
         this.inspectStore.initialize();
-
-        this.pathSnippetStore = new PathSnippetStore(actionHub.pathSnippetActions);
-        this.pathSnippetStore.initialize();
     }
 
     public getAllStores(): BaseStore<any>[] {
@@ -65,7 +60,6 @@ export class TabContextStoreHub implements StoreHub {
             this.devToolStore,
             this.detailsViewStore,
             this.inspectStore,
-            this.pathSnippetStore,
         ].filter(store => store != null);
     }
 

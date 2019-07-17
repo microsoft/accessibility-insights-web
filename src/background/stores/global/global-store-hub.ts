@@ -10,6 +10,7 @@ import { StorageAdapter } from '../../browser-adapters/storage-adapter';
 import { PersistedData } from '../../get-persisted-data';
 import { LocalStorageData } from '../../storage-data';
 import { TelemetryEventHandler } from '../../telemetry/telemetry-event-handler';
+import { PathSnippetStore } from '../path-snippet-store';
 import { StoreHub } from '../store-hub';
 import { AssessmentsProvider } from './../../../assessments/types/assessments-provider';
 import { AssessmentDataConverter } from './../../assessment-data-converter';
@@ -29,6 +30,7 @@ export class GlobalStoreHub implements StoreHub {
     public scopingStore: ScopingStore;
     public assessmentStore: AssessmentStore;
     public userConfigurationStore: UserConfigurationStore;
+    public pathSnippetStore: PathSnippetStore;
 
     constructor(
         globalActionHub: GlobalActionHub,
@@ -59,6 +61,7 @@ export class GlobalStoreHub implements StoreHub {
             globalActionHub.userConfigurationActions,
             indexedDbInstance,
         );
+        this.pathSnippetStore = new PathSnippetStore(globalActionHub.pathSnippetActions);
     }
 
     public initialize(): void {
@@ -68,6 +71,7 @@ export class GlobalStoreHub implements StoreHub {
         this.scopingStore.initialize();
         this.assessmentStore.initialize();
         this.userConfigurationStore.initialize();
+        this.pathSnippetStore.initialize();
     }
 
     public getAllStores(): BaseStore<any>[] {
@@ -78,6 +82,7 @@ export class GlobalStoreHub implements StoreHub {
             this.scopingStore,
             this.assessmentStore,
             this.userConfigurationStore,
+            this.pathSnippetStore,
         ];
     }
 

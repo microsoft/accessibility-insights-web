@@ -195,5 +195,6 @@ export class Messages {
 
     public static readonly PathSnippet = {
         AddPathForValidation: `${messagePrefix}/pathSnippet/addPathForValidation`,
+        AddCorrespondingSnippet: `${messagePrefix}/pathSnippet/addCorrespondingSnippet`,
     };
 }
