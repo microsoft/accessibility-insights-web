@@ -44,8 +44,8 @@ async function suppressFirstTimeUsagePrompt(browser: Browser): Promise<void> {
     await popupPage.close();
 }
 
-function fileExists(path: string): Promise<boolean> {
-    return new Promise(resolve => fs.exists(path, resolve));
+function fileExists(filePath: string): Promise<boolean> {
+    return new Promise(resolve => fs.exists(filePath, resolve));
 }
 
 async function verifyExtensionIsBuilt(extensionPath: string): Promise<void> {

@@ -1,8 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as path from 'path';
 import * as Puppeteer from 'puppeteer';
-import { browserLogPath, chromeLogsPath } from './browser-factory';
+import { browserLogPath } from './browser-factory';
 import { popupPageElementIdentifiers } from './element-identifiers/popup-page-element-identifiers';
 import { forceTestFailure } from './force-test-failure';
 import { Page } from './page';
