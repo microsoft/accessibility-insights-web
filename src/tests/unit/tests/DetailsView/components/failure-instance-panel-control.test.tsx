@@ -41,6 +41,7 @@ describe('FailureInstancePanelControlTest', () => {
             step: 'missingHeadings',
             test: VisualizationType.HeadingsAssessment,
             addFailureInstance: addInstanceMock.object,
+            addPathForValidation: addPathForValidationMock.object,
             actionType: CapturedInstanceActionType.CREATE,
             assessmentsProvider: Assessments,
             featureFlagStoreData: null,
