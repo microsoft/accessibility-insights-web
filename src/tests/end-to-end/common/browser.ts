@@ -135,7 +135,7 @@ export class Browser {
 
     private onPageCrash = () => {
         const errorMessage = `!!! Browser.onPageCrashed: see detailed chrome logs '${browserLogPath(this.browserInstanceId)}'`;
-        console.log(errorMessage);
+        console.error(errorMessage);
     };
 
     private static isExtensionBackgroundPage(url: string): boolean {
