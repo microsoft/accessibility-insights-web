@@ -10,6 +10,7 @@ import { ElectronRendererAdapter } from '../background/browser-adapters/electron
 import { IssueDetailsTextGenerator } from '../background/issue-details-text-generator';
 import { A11YSelfValidator } from '../common/a11y-self-validator';
 import { AxeInfo } from '../common/axe-info';
+import { provideBlob } from '../common/blob-provider';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
 import { DateProvider } from '../common/date-provider';
 import { DocumentManipulator } from '../common/document-manipulator';
@@ -17,6 +18,8 @@ import { DropdownClickHandler } from '../common/dropdown-click-handler';
 import { EnvironmentInfoProvider } from '../common/environment-info-provider';
 import { initializeFabricIcons } from '../common/fabric-icons';
 import { getAllFeatureFlagDetails } from '../common/feature-flags';
+import { FileURLProvider } from '../common/file-url-provider';
+import { GetGuidanceTagsFromGuidanceLinks } from '../common/get-guidance-tags-from-guidance-links';
 import { getInnerTextFromJsxElement } from '../common/get-inner-text-from-jsx-element';
 import { HTMLElementUtils } from '../common/html-element-utils';
 import { Tab } from '../common/itab';
@@ -48,10 +51,12 @@ import { UrlParser } from '../common/url-parser';
 import { WindowUtils } from '../common/window-utils';
 import { contentPages } from '../content';
 import { fromBackgroundChannel, toBackgroundChannel } from '../electron/main/communication-channel';
+import { FixInstructionProcessor } from '../injected/fix-instruction-processor';
 import { ScannerUtils } from '../injected/scanner-utils';
 import { getVersion, scan } from '../scanner/exposed-apis';
 import { DictionaryStringTo } from '../types/common-types';
 import { ElectronUrlDecorator } from '../views/content/url-decorator/electron-url-decorator';
+import { NullUrlDecorator } from '../views/content/url-decorator/null-url-decorator';
 import { IssueFilingServiceProviderImpl } from './../issue-filing/issue-filing-service-provider-impl';
 import { DetailsViewActionMessageCreator } from './actions/details-view-action-message-creator';
 import { IssuesSelectionFactory } from './actions/issues-selection-factory';
@@ -72,11 +77,13 @@ import { MasterCheckBoxConfigProvider } from './handlers/master-checkbox-config-
 import { PreviewFeatureFlagsHandler } from './handlers/preview-feature-flags-handler';
 import { AssessmentReportHtmlGenerator } from './reports/assessment-report-html-generator';
 import { AssessmentReportModelBuilderFactory } from './reports/assessment-report-model-builder-factory';
+import { AutomatedChecksReportSectionFactory } from './reports/components/report-sections/automated-checks-report-section-factory';
+import { getDefaultAddListenerForCollapsibleSection } from './reports/components/report-sections/collapsible-script-provider';
 import {
     outcomeStatsFromManualTestStatus,
     outcomeTypeFromTestStatus,
     outcomeTypeSemanticsFromTestStatus,
-} from './reports/components/outcome-type';
+} from './reports/components/requirement-outcome-type';
 import {
     getAssessmentSummaryModelFromProviderAndStatusData,
     getAssessmentSummaryModelFromProviderAndStoreData,
@@ -173,26 +180,39 @@ adapter.getTab(
 
         const extensionVersion = adapter.getManifest().version;
         const axeVersion = getVersion();
+        const browserSpec = new NavigatorUtils(window.navigator).getBrowserSpec();
+
+        const environmentInfoProvider = new EnvironmentInfoProvider(adapter.extensionVersion, browserSpec, AxeInfo.Default.version);
+
         const reactStaticRenderer = new ReactStaticRenderer();
         const reportNameGenerator = new ReportNameGenerator();
+
+        const fixInstructionProcessor = new FixInstructionProcessor();
+
         const reportHtmlGenerator = new ReportHtmlGenerator(
+            AutomatedChecksReportSectionFactory,
             reactStaticRenderer,
-            new NavigatorUtils(window.navigator).getBrowserSpec(),
-            extensionVersion,
-            axeVersion,
+            environmentInfoProvider.getEnvironmentInfo(),
+            getDefaultAddListenerForCollapsibleSection,
+            DateProvider.getUTCStringFromDate,
+            GetGuidanceTagsFromGuidanceLinks,
+            fixInstructionProcessor,
         );
-        const assessmentReportHtmlGeneratorDeps = { outcomeTypeSemanticsFromTestStatus };
+
+        const assessmentReportHtmlGeneratorDeps = {
+            outcomeTypeSemanticsFromTestStatus,
+            getGuidanceTagsFromGuidanceLinks: GetGuidanceTagsFromGuidanceLinks,
+        };
         const assessmentReportHtmlGenerator = new AssessmentReportHtmlGenerator(
             assessmentReportHtmlGeneratorDeps,
             reactStaticRenderer,
             new AssessmentReportModelBuilderFactory(),
-            DateProvider.getDate,
+            DateProvider.getCurrentDate,
             extensionVersion,
             axeVersion,
             new NavigatorUtils(window.navigator).getBrowserSpec(),
             assessmentDefaultMessageGenerator,
         );
-        const reportGenerator = new ReportGenerator(reportNameGenerator, reportHtmlGenerator, assessmentReportHtmlGenerator);
 
         visualizationStore.setTabId(tab.id);
         tabStore.setTabId(tab.id);
@@ -218,12 +238,16 @@ adapter.getTab(
         );
         documentTitleUpdater.initialize();
 
-        const browserSpec = new NavigatorUtils(window.navigator).getBrowserSpec();
         const issueDetailsTextGenerator = new IssueDetailsTextGenerator(adapter.extensionVersion, browserSpec, AxeInfo.Default.version);
 
-        const environmentInfoProvider = new EnvironmentInfoProvider(adapter.extensionVersion, browserSpec, AxeInfo.Default.version);
+        const windowUtils = new WindowUtils();
+
+        const fileURLProvider = new FileURLProvider(windowUtils, provideBlob);
+
+        const reportGenerator = new ReportGenerator(reportNameGenerator, reportHtmlGenerator, assessmentReportHtmlGenerator);
 
         const deps: DetailsViewContainerDeps = {
+            fixInstructionProcessor,
             dropdownClickHandler,
             issueFilingActionMessageCreator,
             contentProvider: contentPages,
@@ -233,7 +257,8 @@ adapter.getTab(
             actionInitiators,
             assessmentDefaultMessageGenerator: assessmentDefaultMessageGenerator,
             issueDetailsTextGenerator,
-            windowUtils: new WindowUtils(),
+            windowUtils,
+            fileURLProvider,
             getAssessmentSummaryModelFromProviderAndStoreData: getAssessmentSummaryModelFromProviderAndStoreData,
             getAssessmentSummaryModelFromProviderAndStatusData: getAssessmentSummaryModelFromProviderAndStatusData,
             visualizationConfigurationFactory,
@@ -252,11 +277,14 @@ adapter.getTab(
             storesHub,
             loadTheme,
             urlParser,
-            dateProvider: DateProvider.getDate,
+            getDateFromTimestamp: DateProvider.getDateFromTimestamp,
+            getCurrentDate: DateProvider.getCurrentDate,
             settingsProvider: SettingsProviderImpl,
             environmentInfoProvider,
             issueFilingServiceProvider: IssueFilingServiceProviderImpl,
-            contentUrlDecorator: ElectronUrlDecorator,
+            getGuidanceTagsFromGuidanceLinks: GetGuidanceTagsFromGuidanceLinks,
+            reportGenerator,
+            contentUrlDecorator: NullUrlDecorator,
         };
 
         const renderer = new DetailsViewRenderer(
@@ -270,7 +298,6 @@ adapter.getTab(
             visualizationConfigurationFactory,
             issuesTableHandler,
             assessmentInstanceTableHandler,
-            reportGenerator,
             previewFeatureFlagsHandler,
             scopingFlagsHandler,
             dropdownClickHandler,
@@ -293,7 +320,6 @@ function createNullifiedRenderer(doc, render): DetailsViewRenderer {
         null,
         doc,
         render,
-        null,
         null,
         null,
         null,
