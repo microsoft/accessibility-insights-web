@@ -85,14 +85,11 @@ async function launchNewBrowser(browserInstanceId: string): Promise<Puppeteer.Br
             '--no-sandbox',
             // Causes crash dumps to be saved locally rather than handled by the underlying OS reporting mechanism
             '--noerrdialogs',
-            // Keeps process logs, useful for debugging page crashes
+            // Enables keeping a verbose chrome log at userDataDir/chrome_debug.log, useful for debugging page crashes
             '--enable-logging',
             '--v=1',
         ],
         timeout: DEFAULT_BROWSER_LAUNCH_TIMEOUT_MS,
-        env: {
-            CHROME_LOG_FILE: path.join(browserLogDir, `CHROME_LOG_FILE.txt`),
-        },
         userDataDir: userDataDir,
     });
 
