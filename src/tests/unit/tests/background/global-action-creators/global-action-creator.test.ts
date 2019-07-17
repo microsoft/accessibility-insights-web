@@ -8,7 +8,6 @@ import { CommandActions } from '../../../../../background/actions/command-action
 import { FeatureFlagActions } from '../../../../../background/actions/feature-flag-actions';
 import { GlobalActionHub } from '../../../../../background/actions/global-action-hub';
 import { LaunchPanelStateActions } from '../../../../../background/actions/launch-panel-state-action';
-import { PathSnippetActions } from '../../../../../background/actions/path-snippet-actions';
 import { UserConfigurationActions } from '../../../../../background/actions/user-configuration-actions';
 import { CommandsAdapter } from '../../../../../background/browser-adapters/commands-adapter';
 import { GlobalActionCreator } from '../../../../../background/global-action-creators/global-action-creator';
@@ -106,7 +105,6 @@ class GlobalActionCreatorValidator {
     private launchPanelStateActionsContainerMock = Mock.ofType(LaunchPanelStateActions);
     private assessmentActionsContainerMock = Mock.ofType(AssessmentActions);
     private userConfigActionsContainerMock = Mock.ofType(UserConfigurationActions);
-    private pathSnippetActionsContainerMock = Mock.ofType(PathSnippetActions);
     private interpreterMock = Mock.ofType<Interpreter>();
     private commandsAdapterMock = Mock.ofType<CommandsAdapter>();
 
@@ -119,7 +117,6 @@ class GlobalActionCreatorValidator {
         scopingActions: null,
         assessmentActions: this.assessmentActionsContainerMock.object,
         userConfigurationActions: this.userConfigActionsContainerMock.object,
-        pathSnippetActions: this.pathSnippetActionsContainerMock.object,
     };
 
     private actionsSetup: boolean = false;
