@@ -162,7 +162,7 @@ export class ElectronMainWindowInitializer extends ElectronWindowInitializer {
             this.clientChromeAdapter.sendMessageToFrames,
             new ScannerUtils(scan, generateUID),
             telemetryDataFactory,
-            DateProvider.getDate,
+            DateProvider.getCurrentDate,
             this.visualizationConfigurationFactory,
             filterResultsByRules,
         );
