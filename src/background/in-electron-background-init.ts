@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { AppInsights } from 'applicationinsights-js';
-
 import { Assessments } from '../assessments/assessments';
 import { AxeInfo } from '../common/axe-info';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
@@ -11,6 +10,7 @@ import { InsightsFeatureFlags } from '../common/insights-feature-flags';
 import { createDefaultLogger } from '../common/logging/default-logger';
 import { NavigatorUtils } from '../common/navigator-utils';
 import { NotificationCreator } from '../common/notification-creator';
+import { createDefaultPromiseFactory } from '../common/promises/promise-factory';
 import { TelemetryDataFactory } from '../common/telemetry-data-factory';
 import { UrlValidator } from '../common/url-validator';
 import { WindowUtils } from '../common/window-utils';
@@ -103,6 +103,8 @@ getPersistedData(indexedDBInstance).then((persistedData: PersistedData) => {
 
         const targetTabController = new TargetTabController(browserAdapter, visualizationConfigurationFactory);
 
+        const promiseFactory = createDefaultPromiseFactory();
+
         const tabContextFactory = new TabContextFactory(
             visualizationConfigurationFactory,
             telemetryEventHandler,
@@ -110,6 +112,7 @@ getPersistedData(indexedDBInstance).then((persistedData: PersistedData) => {
             targetTabController,
             globalContext.stores.assessmentStore,
             assessmentsProvider,
+            promiseFactory,
         );
 
         const clientHandler = new TabController(
