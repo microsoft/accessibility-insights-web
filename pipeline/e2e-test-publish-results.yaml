@@ -12,3 +12,4 @@ steps:
       artifact: '$(Agent.JobName)-screenshots-and-extended-logs'
       condition: always()
       continueOnError: true
+      displayName: publish e2e screenshots and extended logs
