@@ -83,13 +83,17 @@ async function launchNewBrowser(browserInstanceId: string): Promise<Puppeteer.Br
             `--disable-extensions-except=${extensionPath}`,
             `--load-extension=${extensionPath}`,
             '--no-sandbox',
-            // Causes crash dumps to be saved locally rather than handled by the underlying OS reporting mechanism
+            // Causes crash dumps to be saved locally (in ${userDataDir}/Crashpad/reports)
             '--noerrdialogs',
-            // Enables keeping a verbose chrome log at userDataDir/chrome_debug.log, useful for debugging page crashes
+            // Writes a verbose chrome log at ${userDataDir}/chrome_debug.log, useful for debugging page crashes
             '--enable-logging',
             '--v=1',
         ],
         timeout: DEFAULT_BROWSER_LAUNCH_TIMEOUT_MS,
+        // For reasons we haven't fully root caused, allowing Puppeteer to use its default userDataDir location based on fs.mkdtemp
+        // causes inconsistent page crashes on the Pipelines hosted Windows build agents. We suspect there may be some overaggressive
+        // cleanup task removing the temp directories. Using a userDataDir in our test-results directory instead of the system %TEMP%
+        // directory seems to prevent the crashes.
         userDataDir: userDataDir,
     });
 
