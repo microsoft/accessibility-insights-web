@@ -140,6 +140,7 @@ export class Page {
         try {
             return await fn();
         } catch (error) {
+            console.log(`error thrown by page ${this.underlyingPage} in screenshot method`, error);
             await takeScreenshot(this.underlyingPage);
             throw error;
         }
