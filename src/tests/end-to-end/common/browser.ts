@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import * as path from 'path';
 import * as Puppeteer from 'puppeteer';
-import { chromeLogsPath } from './browser-factory';
+import { browserLogPath, chromeLogsPath } from './browser-factory';
 import { popupPageElementIdentifiers } from './element-identifiers/popup-page-element-identifiers';
 import { forceTestFailure } from './force-test-failure';
 import { Page } from './page';
@@ -135,8 +135,7 @@ export class Browser {
     }
 
     private onPageCrash = () => {
-        const chromeLogFile = path.join(chromeLogsPath, `${this.browserInstanceId}.txt`);
-        const errorMessage = `!!! Browser.onPageCrashed: see detailed chrome process log at '${chromeLogFile}'`;
+        const errorMessage = `!!! Browser.onPageCrashed: see detailed chrome logs '${browserLogPath(this.browserInstanceId)}'`;
         console.log(errorMessage);
     };
 

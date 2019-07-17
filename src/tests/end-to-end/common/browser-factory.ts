@@ -11,6 +11,10 @@ import { DEFAULT_BROWSER_LAUNCH_TIMEOUT_MS } from './timeouts';
 
 export const chromeLogsPath = path.join(__dirname, '../../../../test-results/e2e/chrome-logs/');
 
+export function browserLogPath(browserInstanceId: string): string {
+    return path.join(chromeLogsPath, browserInstanceId);
+}
+
 export interface ExtensionOptions {
     suppressFirstTimeDialog: boolean;
 }
@@ -64,18 +68,15 @@ async function launchNewBrowser(browserInstanceId: string): Promise<Puppeteer.Br
     // end shows up as a generic timeout error with no meaningful logging".
     await verifyExtensionIsBuilt(extensionPath);
 
-    const browserLogPath = path.join(chromeLogsPath, browserInstanceId);
+    const browserLogDir = browserLogPath(browserInstanceId);
 
     // If this isn't present when chrome launches, it'll silently fail to log anything
-    await util.promisify(fs.mkdir)(browserLogPath, { recursive: true });
+    await util.promisify(fs.mkdir)(browserLogDir, { recursive: true });
 
     const browser = await Puppeteer.launch({
         // Headless doesn't support extensions, see https://github.com/GoogleChrome/puppeteer/issues/659
         headless: false,
-        defaultViewport: {
-            width: 1024,
-            height: 768,
-        },
+        defaultViewport: null,
         args: [
             // Required to work around https://github.com/GoogleChrome/puppeteer/pull/774
             `--disable-extensions-except=${extensionPath}`,
@@ -89,9 +90,9 @@ async function launchNewBrowser(browserInstanceId: string): Promise<Puppeteer.Br
         ],
         timeout: DEFAULT_BROWSER_LAUNCH_TIMEOUT_MS,
         env: {
-            CHROME_LOG_FILE: path.join(browserLogPath, `CHROME_LOG_FILE.txt`),
+            CHROME_LOG_FILE: path.join(browserLogDir, `CHROME_LOG_FILE.txt`),
         },
-        userDataDir: path.join(browserLogPath, 'userDataDir'),
+        userDataDir: path.join(browserLogDir, 'userDataDir'),
     });
 
     return browser;
