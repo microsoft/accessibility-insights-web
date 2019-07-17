@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { tabstops } from '../../../../content/adhoc/tabstops';
 import { launchBrowser } from '../../common/browser-factory';
 import { fastPassSelectors } from '../../common/element-identifiers/common-selectors';
 import { popupPageElementIdentifiers } from '../../common/element-identifiers/popup-page-element-identifiers';
@@ -44,11 +43,11 @@ describe('Tabstop tests', () => {
             expect(await targetPage.getShadowRootHtmlSnapshot()).toMatchSnapshot();
         });
 
-        async function gotoFastPass(browser: Browser, targetTabId: number): Promise<Page> {
-            const popupPage = await browser.newExtensionPopupPage(targetTabId);
+        async function gotoFastPass(browserLocal: Browser, targetTabId: number): Promise<Page> {
+            const popupPage = await browserLocal.newExtensionPopupPage(targetTabId);
             let fastPass: Page;
             await Promise.all([
-                browser.waitForPageMatchingUrl(await browser.getDetailsViewPageUrl(targetTabId)).then(page => (fastPass = page)),
+                browserLocal.waitForPageMatchingUrl(await browserLocal.getDetailsViewPageUrl(targetTabId)).then(page => (fastPass = page)),
                 popupPage.clickSelector(popupPageElementIdentifiers.fastPass),
             ]);
 
