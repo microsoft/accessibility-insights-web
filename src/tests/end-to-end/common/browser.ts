@@ -12,7 +12,7 @@ export class Browser {
     private memoizedBackgroundPage: Page;
     private pages: Array<Page> = [];
 
-    constructor(public readonly browserInstanceId: string, private readonly underlyingBrowser: Puppeteer.Browser) {
+    constructor(private readonly browserInstanceId: string, private readonly underlyingBrowser: Puppeteer.Browser) {
         underlyingBrowser.on('disconnected', onBrowserDisconnected);
     }
 
