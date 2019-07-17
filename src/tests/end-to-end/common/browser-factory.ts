@@ -71,7 +71,8 @@ async function launchNewBrowser(browserInstanceId: string): Promise<Puppeteer.Br
     const browserLogDir = browserLogPath(browserInstanceId);
     const userDataDir = path.join(browserLogDir, 'userDataDir');
 
-    // If this isn't present when chrome launches, it'll silently fail to log anything
+    // The userDataDir needs to be created before we launch Chromium; if we skip this, it prevents the
+    // --enable-logging flag we pass to launch() below from producing the log file it's supposed to.
     await util.promisify(fs.mkdir)(userDataDir, { recursive: true });
 
     const browser = await Puppeteer.launch({
