@@ -1,18 +1,24 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as fs from 'fs';
+import * as path from 'path';
 import * as Puppeteer from 'puppeteer';
+import * as util from 'util';
+import { generateUID } from '../../../common/uid-generator';
 import { Browser } from './browser';
 import { popupPageElementIdentifiers } from './element-identifiers/popup-page-element-identifiers';
 import { DEFAULT_BROWSER_LAUNCH_TIMEOUT_MS } from './timeouts';
+
+export const chromeLogsPath = path.join(__dirname, '../../../../test-results/e2e/chrome-logs/');
 
 export interface ExtensionOptions {
     suppressFirstTimeDialog: boolean;
 }
 
 export async function launchBrowser(extensionOptions: ExtensionOptions): Promise<Browser> {
-    const puppeteerBrowser = await launchNewBrowser();
-    const browser = new Browser(puppeteerBrowser);
+    const browserInstanceId = generateUID();
+    const puppeteerBrowser = await launchNewBrowser(browserInstanceId);
+    const browser = new Browser(browserInstanceId, puppeteerBrowser);
 
     if (extensionOptions.suppressFirstTimeDialog) {
         await suppressFirstTimeUsagePrompt(browser);
@@ -49,7 +55,7 @@ async function verifyExtensionIsBuilt(extensionPath: string): Promise<void> {
     }
 }
 
-async function launchNewBrowser(): Promise<Puppeteer.Browser> {
+async function launchNewBrowser(browserInstanceId: string): Promise<Puppeteer.Browser> {
     // only unpacked extension paths are supported
     const extensionPath = `${(global as any).rootDir}/drop/dev/extension/`;
 
@@ -60,9 +66,9 @@ async function launchNewBrowser(): Promise<Puppeteer.Browser> {
 
     const platformSpecificArgs: string[] = [];
     if (process.platform === 'win32') {
-        // Works around "Error: Page crashed!" failures caused by out-of-memory issues
-        // (empirically, these issues have been win32-specific; we aren't sure why)
-        platformSpecificArgs.push('--js-flags="--max-old-space-size=2048"');
+        await util.promisify(fs.mkdir)(chromeLogsPath, { recursive: true });
+
+        platformSpecificArgs.push('--enable-logging', '--v=1');
     }
 
     const browser = await Puppeteer.launch({
@@ -80,6 +86,9 @@ async function launchNewBrowser(): Promise<Puppeteer.Browser> {
             ...platformSpecificArgs,
         ],
         timeout: DEFAULT_BROWSER_LAUNCH_TIMEOUT_MS,
+        env: {
+            CHROME_LOG_FILE: path.join(chromeLogsPath, `${browserInstanceId}.txt`),
+        },
     });
 
     return browser;

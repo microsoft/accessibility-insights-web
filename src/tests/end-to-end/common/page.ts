@@ -7,13 +7,21 @@ import { forceTestFailure } from './force-test-failure';
 import { takeScreenshot } from './generate-screenshot';
 import { DEFAULT_NEW_PAGE_WAIT_TIMEOUT_MS, DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS } from './timeouts';
 
+export type PageOptions = {
+    onPageCrash?: () => void;
+};
+
 export class Page {
-    constructor(private readonly underlyingPage: Puppeteer.Page) {
+    constructor(private readonly underlyingPage: Puppeteer.Page, options?: PageOptions) {
         function forceEventFailure(eventDescription: string): void {
             forceTestFailure(`Puppeteer.Page '${underlyingPage.url()}' emitted ${eventDescription}`);
         }
 
         underlyingPage.on('error', error => {
+            if (error.stack && error.stack.includes('Page crashed!') && options && options.onPageCrash) {
+                options.onPageCrash();
+            }
+
             forceEventFailure(`'error' with stack: ${error.stack}`);
         });
         underlyingPage.on('pageerror', error => {

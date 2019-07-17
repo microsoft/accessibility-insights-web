@@ -1,7 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import * as path from 'path';
 import * as Puppeteer from 'puppeteer';
-
+import { chromeLogsPath } from './browser-factory';
 import { popupPageElementIdentifiers } from './element-identifiers/popup-page-element-identifiers';
 import { forceTestFailure } from './force-test-failure';
 import { Page } from './page';
@@ -12,7 +13,7 @@ export class Browser {
     private memoizedBackgroundPage: Page;
     private pages: Array<Page> = [];
 
-    constructor(private readonly underlyingBrowser: Puppeteer.Browser) {
+    constructor(public readonly browserInstanceId: string, private readonly underlyingBrowser: Puppeteer.Browser) {
         underlyingBrowser.on('disconnected', onBrowserDisconnected);
     }
 
@@ -23,7 +24,7 @@ export class Browser {
 
     public async newPage(url: string): Promise<Page> {
         const underlyingPage = await this.underlyingBrowser.newPage();
-        const page = new Page(underlyingPage);
+        const page = new Page(underlyingPage, { onPageCrash: this.onPageCrash });
         await page.goto(url);
         this.pages.push(page);
         return page;
@@ -93,7 +94,7 @@ export class Browser {
     public async getLastOpenPage(): Promise<Page> {
         const targets = await this.underlyingBrowser.targets();
         const puppeteerPage = await targets[targets.length - 1].page();
-        return new Page(puppeteerPage);
+        return new Page(puppeteerPage, { onPageCrash: this.onPageCrash });
     }
 
     public async getActivePageTabId(): Promise<number> {
@@ -108,7 +109,7 @@ export class Browser {
     public async waitForPageMatchingUrl(url: string): Promise<Page> {
         const underlyingTarget = await this.underlyingBrowser.waitForTarget(t => t.url().toLowerCase() === url.toLowerCase());
         const underlyingPage = await underlyingTarget.page();
-        return new Page(underlyingPage);
+        return new Page(underlyingPage, { onPageCrash: this.onPageCrash });
     }
 
     private async getExtensionUrl(relativePath: string): Promise<string> {
@@ -128,10 +129,16 @@ export class Browser {
             t => t.type() === 'background_page' && Browser.isExtensionBackgroundPage(t.url()),
         );
 
-        this.memoizedBackgroundPage = new Page(await backgroundPageTarget.page());
+        this.memoizedBackgroundPage = new Page(await backgroundPageTarget.page(), { onPageCrash: this.onPageCrash });
 
         return this.memoizedBackgroundPage;
     }
+
+    private onPageCrash = () => {
+        const chromeLogFile = path.join(chromeLogsPath, `${this.browserInstanceId}.txt`);
+        const errorMessage = `!!! Browser.onPageCrashed: see detailed chrome process log at '${chromeLogFile}'`;
+        console.log(errorMessage);
+    };
 
     private static isExtensionBackgroundPage(url: string): boolean {
         return new URL(url).pathname === '/background/background.html';
