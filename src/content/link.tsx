@@ -41,7 +41,12 @@ export const link = {
     WCAG_2_4_5: guidanceLinkTo('WCAG 2.4.5', 'https://www.w3.org/WAI/WCAG21/Understanding/multiple-ways.html'),
     WCAG_2_4_6: guidanceLinkTo('WCAG 2.4.6', 'https://www.w3.org/WAI/WCAG21/Understanding/headings-and-labels'),
     WCAG_2_4_7: guidanceLinkTo('WCAG 2.4.7', 'https://www.w3.org/WAI/WCAG21/Understanding/focus-visible.html'),
+    WCAG_2_5_1: guidanceLinkTo('WCAG 2.5.1', 'https://www.w3.org/WAI/WCAG21/Understanding/pointer-gestures.html', [guidanceTags.WCAG_2_1]),
+    WCAG_2_5_2: guidanceLinkTo('WCAG 2.5.2', 'https://www.w3.org/WAI/WCAG21/Understanding/pointer-cancellation.html', [
+        guidanceTags.WCAG_2_1,
+    ]),
     WCAG_2_5_3: guidanceLinkTo('WCAG 2.5.3', 'https://www.w3.org/WAI/WCAG21/Understanding/label-in-name', [guidanceTags.WCAG_2_1]),
+    WCAG_2_5_4: guidanceLinkTo('WCAG 2.5.4', 'https://www.w3.org/WAI/WCAG21/Understanding/motion-actuation.html', [guidanceTags.WCAG_2_1]),
     WCAG_3_1_1: guidanceLinkTo('WCAG 3.1.1', 'https://www.w3.org/WAI/WCAG21/Understanding/language-of-page.html'),
     WCAG_3_1_2: guidanceLinkTo('WCAG 3.1.2', 'https://www.w3.org/WAI/WCAG21/Understanding/language-of-parts.html'),
     WCAG_3_2_1: guidanceLinkTo('WCAG 3.2.1', 'https://www.w3.org/WAI/WCAG21/Understanding/on-focus.html'),
