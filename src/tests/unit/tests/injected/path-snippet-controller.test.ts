@@ -31,6 +31,9 @@ describe('InspectControllerTests', () => {
 
     test('do not add snippet if path snippet store state is null', () => {
         pathSnippetStoreState = null;
+
+        testObject.listenToStore();
+
         listenAndVerify();
     });
 
@@ -45,6 +48,8 @@ describe('InspectControllerTests', () => {
 
         addCorrespondingSnippetMock.setup(sm => sm(retrievedSnippet)).verifiable(Times.once());
 
+        testObject.listenToStore();
+
         listenAndVerify();
     });
 
@@ -56,11 +61,12 @@ describe('InspectControllerTests', () => {
             snippet: '',
         };
 
+        testObject.listenToStore();
+
         listenAndVerify();
     });
 
     function listenAndVerify(): void {
-        testObject.listenToStore();
         pathSnippetStoreMock.verifyAll();
         addCorrespondingSnippetMock.verifyAll();
     }
