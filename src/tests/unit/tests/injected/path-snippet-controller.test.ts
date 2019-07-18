@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { isFunction } from 'lodash';
 import { IMock, It, Mock, Times } from 'typemoq';
 import { PathSnippetStore } from '../../../../background/stores/path-snippet-store';
 import { PathSnippetStoreData } from '../../../../common/types/store-data/path-snippet-store-data';
@@ -17,12 +18,13 @@ describe('InspectControllerTests', () => {
 
         testObject = new PathSnippetController(pathSnippetStoreMock.object, addCorrespondingSnippetMock.object);
 
-        pathSnippetStoreMock.setup(sm => sm.addChangedListener(It.isAny()));
+        pathSnippetStoreMock.setup(sm => sm.addChangedListener(It.is(isFunction)));
         pathSnippetStoreMock.setup(sm => sm.getState()).returns(() => pathSnippetStoreState);
     });
 
     afterEach(() => {
         pathSnippetStoreMock.verifyAll();
+        addCorrespondingSnippetMock.verifyAll();
         pathSnippetStoreState = {
             path: '',
             snippet: '',
@@ -32,7 +34,6 @@ describe('InspectControllerTests', () => {
     test('do not add snippet if path snippet store state is null', () => {
         pathSnippetStoreState = null;
         testObject.listenToStore();
-        addCorrespondingSnippetMock.verifyAll();
     });
 
     test('call add snippet if path snippet store state has changed', () => {
@@ -47,7 +48,6 @@ describe('InspectControllerTests', () => {
         addCorrespondingSnippetMock.setup(sm => sm(retrievedSnippet)).verifiable(Times.once());
 
         testObject.listenToStore();
-        addCorrespondingSnippetMock.verifyAll();
     });
 
     test("don't call add snippet if path snippet store state has empty path", () => {
@@ -59,6 +59,5 @@ describe('InspectControllerTests', () => {
         };
 
         testObject.listenToStore();
-        addCorrespondingSnippetMock.verifyAll();
     });
 });

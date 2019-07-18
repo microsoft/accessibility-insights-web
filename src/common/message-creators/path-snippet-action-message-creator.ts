@@ -10,8 +10,8 @@ export class PathSnippetActionMessageCreator {
         const messageType = Messages.PathSnippet.AddCorrespondingSnippet;
         const payload = snippet;
         this.dispatcher.dispatchMessage({
-            messageType: messageType,
-            payload: payload,
+            messageType,
+            payload,
         });
     };
 }

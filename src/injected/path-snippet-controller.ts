@@ -15,11 +15,11 @@ export class PathSnippetController {
     }
 
     private onChangedState = (): void => {
-        if (this.pathSnippetStore.getState() == null) {
+        const pathSnippetStoreState = this.pathSnippetStore.getState();
+
+        if (pathSnippetStoreState == null) {
             return;
         }
-
-        const pathSnippetStoreState = this.pathSnippetStore.getState();
 
         if (pathSnippetStoreState.path !== '') {
             const retrievedSnippet = this.getElementFromPath(pathSnippetStoreState.path);
