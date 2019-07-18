@@ -12,6 +12,7 @@ import { ContentActionCreator } from './actions/content-action-creator';
 import { DetailsViewActionCreator } from './actions/details-view-action-creator';
 import { DevToolsActionCreator } from './actions/dev-tools-action-creator';
 import { InspectActionCreator } from './actions/inspect-action-creator';
+import { PathSnippetActionCreator } from './actions/path-snippet-action-creator';
 import { ScopingPanelActionCreator } from './actions/scoping-panel-action-creator';
 import { TabActionCreator } from './actions/tab-action-creator';
 import { AssessmentScanPolicyRunner } from './assessment-scan-policy-runner';
@@ -90,6 +91,11 @@ export class TabContextFactory {
             interpreter.registerTypeToPayloadCallback,
         );
 
+        const pathSnippetActionCreator = new PathSnippetActionCreator(
+            actionsHub.pathSnippetActions,
+            interpreter.registerTypeToPayloadCallback,
+        );
+
         const scopingPanelActionCreator = new ScopingPanelActionCreator(
             actionsHub.scopingActions,
             this.telemetryEventHandler,
@@ -127,6 +133,7 @@ export class TabContextFactory {
         detailsViewActionCreator.registerCallback();
         devToolsActionCreator.registerCallbacks();
         inspectActionsCreator.registerCallbacks();
+        pathSnippetActionCreator.registerCallbacks();
         tabActionCreator.registerCallbacks();
         scopingPanelActionCreator.registerCallbacks();
         contentActionCreator.registerCallbacks();

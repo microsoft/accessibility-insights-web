@@ -10,7 +10,6 @@ import { AssessmentStore } from '../../../../background/stores/assessment-store'
 import { DetailsViewStore } from '../../../../background/stores/details-view-store';
 import { DevToolStore } from '../../../../background/stores/dev-tools-store';
 import { InspectStore } from '../../../../background/stores/inspect-store';
-import { PathSnippetStore } from '../../../../background/stores/path-snippet-store';
 import { TabStore } from '../../../../background/stores/tab-store';
 import { VisualizationScanResultStore } from '../../../../background/stores/visualization-scan-result-store';
 import { VisualizationStore } from '../../../../background/stores/visualization-store';
@@ -112,7 +111,6 @@ describe('TabContextFactoryTest', () => {
         expect(tabContext.stores.devToolStore).toBeInstanceOf(DevToolStore);
         expect(tabContext.stores.detailsViewStore).toBeInstanceOf(DetailsViewStore);
         expect(tabContext.stores.inspectStore).toBeInstanceOf(InspectStore);
-        expect(tabContext.stores.pathSnippetStore).toBeInstanceOf(PathSnippetStore);
 
         broadcastMock.verifyAll();
     });

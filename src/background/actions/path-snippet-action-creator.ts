@@ -12,9 +12,14 @@ export class PathSnippetActionCreator {
 
     public registerCallbacks(): void {
         this.registerTypeToPayloadCallback(Messages.PathSnippet.AddPathForValidation, this.onAddPathForValidation);
+        this.registerTypeToPayloadCallback(Messages.PathSnippet.AddCorrespondingSnippet, this.onAddCorrespondingSnippet);
     }
 
     private onAddPathForValidation = (payload: string): void => {
         this.pathSnippetActions.onAddPath.invoke(payload);
+    };
+
+    private onAddCorrespondingSnippet = (payload: string): void => {
+        this.pathSnippetActions.onAddSnippet.invoke(payload);
     };
 }

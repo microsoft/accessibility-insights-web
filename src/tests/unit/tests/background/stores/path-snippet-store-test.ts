@@ -35,6 +35,17 @@ describe('PathSnippetStoreTest', () => {
             .testListenerToBeCalledOnce(initialState, finalState);
     });
 
+    test('on addSnippet', () => {
+        const initialState = getDefaultState();
+        const payload = 'new snippet';
+        const finalState = getDefaultState();
+        finalState.snippet = payload;
+
+        createStoreForPathSnippetActions('onAddSnippet')
+            .withActionParam(payload)
+            .testListenerToBeCalledOnce(initialState, finalState);
+    });
+
     function getDefaultState(): PathSnippetStoreData {
         return createStoreWithNullParams(PathSnippetStore).getDefaultState();
     }

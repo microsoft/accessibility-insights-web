@@ -9,6 +9,7 @@ import { HTMLElementUtils } from '../common/html-element-utils';
 import { ActionMessageDispatcher } from '../common/message-creators/action-message-dispatcher';
 import { DevToolActionMessageCreator } from '../common/message-creators/dev-tool-action-message-creator';
 import { InspectActionMessageCreator } from '../common/message-creators/inspect-action-message-creator';
+import { PathSnippetActionMessageCreator } from '../common/message-creators/path-snippet-action-message-creator';
 import { ScopingActionMessageCreator } from '../common/message-creators/scoping-action-message-creator';
 import { StoreActionMessageCreatorFactory } from '../common/message-creators/store-action-message-creator-factory';
 import { UserConfigMessageCreator } from '../common/message-creators/user-config-message-creator';
@@ -21,6 +22,7 @@ import { AssessmentStoreData } from '../common/types/store-data/assessment-resul
 import { FeatureFlagStoreData } from '../common/types/store-data/feature-flag-store-data';
 import { DevToolState } from '../common/types/store-data/idev-tool-state';
 import { InspectStoreData } from '../common/types/store-data/inspect-store-data';
+import { PathSnippetStoreData } from '../common/types/store-data/path-snippet-store-data';
 import { ScopingStoreData } from '../common/types/store-data/scoping-store-data';
 import { TabStoreData } from '../common/types/store-data/tab-store-data';
 import { UserConfigurationStoreData } from '../common/types/store-data/user-configuration-store';
@@ -41,6 +43,7 @@ import { FrameUrlSearchInitiator } from './frame-url-search-initiator';
 import { FrameCommunicator } from './frameCommunicators/frame-communicator';
 import { InspectController } from './inspect-controller';
 import { MainWindowContext } from './main-window-context';
+import { PathSnippetController } from './path-snippet-controller';
 import { ScannerUtils } from './scanner-utils';
 import { ScopingListener } from './scoping-listener';
 import { SelectorMapHelper } from './selector-map-helper';
@@ -54,6 +57,7 @@ export class MainWindowInitializer extends WindowInitializer {
     private frameUrlSearchInitiator: FrameUrlSearchInitiator;
     private analyzerController: AnalyzerController;
     private inspectController: InspectController;
+    private pathSnippetController: PathSnippetController;
     private visualizationStoreProxy: StoreProxy<VisualizationStoreData>;
     private assessmentStoreProxy: StoreProxy<AssessmentStoreData>;
     private featureFlagStoreProxy: StoreProxy<FeatureFlagStoreData>;
@@ -63,6 +67,7 @@ export class MainWindowInitializer extends WindowInitializer {
     private scopingStoreProxy: StoreProxy<ScopingStoreData>;
     private tabStoreProxy: StoreProxy<TabStoreData>;
     private devToolStoreProxy: StoreProxy<DevToolState>;
+    private pathSnippetStoreProxy: StoreProxy<PathSnippetStoreData>;
 
     public async initialize(): Promise<void> {
         const asyncInitializationSteps: Promise<void>[] = [];
@@ -89,6 +94,10 @@ export class MainWindowInitializer extends WindowInitializer {
         this.tabStoreProxy = new StoreProxy<TabStoreData>(StoreNames[StoreNames.TabStore], this.clientChromeAdapter);
         this.devToolStoreProxy = new StoreProxy<DevToolState>(StoreNames[StoreNames.DevToolsStore], this.clientChromeAdapter);
         this.inspectStoreProxy = new StoreProxy<InspectStoreData>(StoreNames[StoreNames.InspectStore], this.clientChromeAdapter);
+        this.pathSnippetStoreProxy = new StoreProxy<PathSnippetStoreData>(
+            StoreNames[StoreNames.PathSnippetStore],
+            this.clientChromeAdapter,
+        );
 
         const actionMessageDispatcher = new ActionMessageDispatcher(this.clientChromeAdapter.sendMessageToFrames, null);
 
@@ -191,6 +200,8 @@ export class MainWindowInitializer extends WindowInitializer {
             actionMessageDispatcher,
         );
 
+        const pathSnippetActionMessageCreator = new PathSnippetActionMessageCreator(actionMessageDispatcher);
+
         this.inspectController = new InspectController(
             this.inspectStoreProxy,
             scopingListener,
@@ -200,6 +211,13 @@ export class MainWindowInitializer extends WindowInitializer {
         );
 
         this.inspectController.listenToStore();
+
+        this.pathSnippetController = new PathSnippetController(
+            this.pathSnippetStoreProxy,
+            pathSnippetActionMessageCreator.addCorrespondingSnippet,
+        );
+
+        this.pathSnippetController.listenToStore();
 
         await Promise.all(asyncInitializationSteps);
     }
