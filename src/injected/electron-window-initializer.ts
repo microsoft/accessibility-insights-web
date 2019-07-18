@@ -2,10 +2,13 @@
 // Licensed under the MIT License.
 import { autobind, getRTL } from '@uifabric/utilities';
 import * as Q from 'q';
+import { Assessments } from '../assessments/assessments';
 import { ElectronRendererAdapter } from '../background/browser-adapters/electron-renderer-adapter';
 import { ClientBrowserAdapter } from '../common/client-browser-adapter';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
+import { EnumHelper } from '../common/enum-helper';
 import { HTMLElementUtils } from '../common/html-element-utils';
+import { VisualizationType } from '../common/types/visualization-type';
 import { generateUID } from '../common/uid-generator';
 import { WindowUtils } from '../common/window-utils';
 import { fromBackgroundChannel, toBackgroundChannel } from '../electron/main/communication-channel';
@@ -26,6 +29,7 @@ import { ScannerUtils } from './scanner-utils';
 import { ShadowInitializer } from './shadow-initializer';
 import { ShadowUtils } from './shadow-utils';
 import { TabStopsListener } from './tab-stops-listener';
+import { VisualizationTypeDrawerRegistrar } from './visualization-type-drawer-registrar';
 import { DrawerProvider } from './visualization/drawer-provider';
 import { DrawerUtils } from './visualization/drawer-utils';
 import { RootContainerCreator } from './visualization/root-container-creator';
@@ -99,6 +103,14 @@ export class ElectronWindowInitializer {
         this.drawingController.initialize();
         this.scrollingController.initialize();
         this.frameUrlFinder.initialize();
+
+        const visualizationTypeDrawerRegistrar = new VisualizationTypeDrawerRegistrar(
+            this.drawingController.registerDrawer,
+            this.visualizationConfigurationFactory,
+            Assessments,
+            drawerProvider,
+        );
+        EnumHelper.getNumericValues(VisualizationType).forEach(visualizationTypeDrawerRegistrar.registerType);
 
         const port = this.clientChromeAdapter.connect();
         port.onDisconnect.addListener(this.dispose);
