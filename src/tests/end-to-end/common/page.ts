@@ -147,9 +147,17 @@ export class Page {
     private async screenshotOnError<T>(fn: () => Promise<T>): Promise<T> {
         try {
             return await fn();
-        } catch (error) {
-            await takeScreenshot(this.underlyingPage);
-            throw error;
+        } catch (originalError) {
+            try {
+                await takeScreenshot(this.underlyingPage);
+            } catch (secondaryTakeScreenshotError) {
+                console.error(
+                    `screenshotOnError: Detected an error, and then *additionally* hit a second error while trying to take a screenshot of the page state after the first error.\n` +
+                        `screenshotOnError: The secondary error from taking the screenshot is: ${secondaryTakeScreenshotError.stack}\n` +
+                        `screenshotOnError: rethrowing the original error...`,
+                );
+            }
+            throw originalError;
         }
     }
 }
