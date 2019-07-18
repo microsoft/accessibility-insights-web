@@ -110,6 +110,7 @@ const prodModules = {
 const createElectronConfig = (entry, nameAndTarget) => {
     return {
         ...commonConfig,
+        module: devModules,
         entry,
         name: nameAndTarget,
         mode: 'development',
