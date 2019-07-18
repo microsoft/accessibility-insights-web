@@ -20,7 +20,11 @@ export const MinimalRuleHeader = NamedSFC<MinimalRuleHeaderProps>('MinimalRuleHe
             return null;
         }
 
-        return <OutcomeChip count={rule.nodes.length} outcomeType={outcomeType} />;
+        return (
+            <span aria-hidden="true">
+                <OutcomeChip count={rule.nodes.length} outcomeType={outcomeType} />
+            </span>
+        );
     };
 
     const renderRuleName = () => <span className="rule-details-id">{rule.id}</span>;

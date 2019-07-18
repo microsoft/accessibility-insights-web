@@ -5,10 +5,14 @@ exports[`MinimalRuleHeader renders, outcomeType = fail 1`] = `
   className="rule-detail"
 >
   <span>
-    <OutcomeChip
-      count={1}
-      outcomeType="fail"
-    />
+    <span
+      aria-hidden="true"
+    >
+      <OutcomeChip
+        count={1}
+        outcomeType="fail"
+      />
+    </span>
      
     <span
       className="rule-details-id"
