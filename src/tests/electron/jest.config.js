@@ -10,8 +10,6 @@ module.exports = {
     displayName: 'electron tests',
     moduleFileExtensions: [
         'ts',
-        'tsx',
-        'json', // adding json, since puppeteer.launch throws error - refer https://github.com/GoogleChrome/puppeteer/issues/2754
         'js',
     ],
     rootDir: rootDir,
@@ -20,6 +18,7 @@ module.exports = {
         outputDirectory: '.',
         outputName: '<rootDir>/test-results/electron/junit-e2e.xml'
     }]],
+    setupFilesAfterEnv: [`${currentDir}/setup/test-setup.ts`],
     globals: {
         rootDir: path.resolve(__dirname, rootDir),
     },

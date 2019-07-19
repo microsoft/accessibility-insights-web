@@ -4,7 +4,6 @@ import { Application } from 'spectron';
 
 describe('ElectronE2E', () => {
     let app: Application;
-    jest.setTimeout(15000);
 
     beforeAll(() => {
         const electronPath = `${(global as any).rootDir}/drop/electron/extension/bundle/main.bundle.js`;
@@ -16,12 +15,8 @@ describe('ElectronE2E', () => {
         return app.start();
     });
 
-    test('test for getBuild variants', () => {
-        return Promise.resolve()
-            .then(function(): boolean {
-                // Check if the window is visible
-                return app.isRunning();
-            })
+    test('test that app opened & loaded site', () => {
+        return Promise.resolve(app.browserWindow.isVisible())
             .then(function(isVisible: boolean): void {
                 // Verify the window is visible
                 expect(isVisible).toBe(true);
