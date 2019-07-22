@@ -13,6 +13,8 @@ import { DictionaryStringTo } from '../../../../../types/common-types';
 type DetailsDialogTestCase = {
     isDevToolsOpen: boolean;
     shadowDialog: boolean;
+    helpUrl?: string;
+    expectedHelpUrl?: string;
 };
 
 describe('DetailsDialogTest', () => {
@@ -33,22 +35,17 @@ describe('DetailsDialogTest', () => {
             isDevToolsOpen: true,
             shadowDialog: true,
         },
+        {
+            isDevToolsOpen: false,
+            shadowDialog: false,
+            helpUrl: 'help-relative',
+            expectedHelpUrl: 'http://extension/help-relative',
+        },
     ];
 
     test.each(testCases)('render: %o', (testCase: DetailsDialogTestCase) => {
-        testRender(testCase.isDevToolsOpen, testCase.shadowDialog);
-    });
+        const { isDevToolsOpen, shadowDialog, helpUrl = 'http://extension/help1', expectedHelpUrl = 'http://extension/help1' } = testCase;
 
-    test('render: with relative help url', () => {
-        testRender(false, false, 'help-relative', 'http://extension/help-relative');
-    });
-
-    function testRender(
-        isDevToolOpen: boolean,
-        shadowDialog: boolean,
-        helpUrl = 'http://extension/help1',
-        expectedHelpUrl = 'http://extension/help1',
-    ): void {
         const fingerprint: string = '12345678-9ABC-1234-1234-123456789ABC';
         const ruleId: string = 'ruleId';
         const help: string = 'help';
@@ -76,7 +73,7 @@ describe('DetailsDialogTest', () => {
             getRuleUrl: () => 'test-url',
             isBackButtonDisabled: () => true,
             isNextButtonDisabled: () => true,
-            isInspectButtonDisabled: () => !isDevToolOpen,
+            isInspectButtonDisabled: () => !isDevToolsOpen,
             getFailureInfo: () => 'Failure 1 of 1 for this target',
             componentDidMount: () => {},
             shouldShowInspectButtonMessage: () => false,
@@ -134,5 +131,5 @@ describe('DetailsDialogTest', () => {
         wrapper.setState({ userConfigurationStoreData: userConfigStoreDataStub });
 
         expect(wrapper.find(IssueFilingButton).getElement()).toMatchSnapshot('issue filing button UI');
-    }
+    });
 });
