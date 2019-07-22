@@ -122,14 +122,5 @@ describe('DetailsDialogTest', () => {
                     .dialogContentProps.topButtonsProps[0].onRenderIcon(),
             ).toMatchSnapshot('verify close button for non shadow dom');
         }
-
-        const userConfigStoreDataStub = {
-            bugService: 'service',
-            bugServicePropertiesMap: {},
-        };
-
-        wrapper.setState({ userConfigurationStoreData: userConfigStoreDataStub });
-
-        expect(wrapper.find(IssueFilingButton).getElement()).toMatchSnapshot('issue filing button UI');
     });
 });
