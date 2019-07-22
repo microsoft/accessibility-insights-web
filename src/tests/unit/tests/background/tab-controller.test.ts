@@ -451,16 +451,16 @@ describe('TabControllerTest', () => {
             .verifiable(Times.once());
 
         mockChromeAdapter
-            .setup(ca => ca.getSelectedTabInWindow(windowStub1.id, It.isAny()))
+            .setup(ca => ca.tabsQuery({ windowId: windowStub1.id, active: true }, It.isAny()))
             .callback((id, getSelectedTabInWindowCallback) => {
-                getSelectedTabInWindowCallback(tabStub1 as chrome.tabs.Tab);
+                getSelectedTabInWindowCallback([tabStub1 as chrome.tabs.Tab]);
             })
             .verifiable(Times.once());
 
         mockChromeAdapter
-            .setup(ca => ca.getSelectedTabInWindow(windowStub2.id, It.isAny()))
+            .setup(ca => ca.tabsQuery({ windowId: windowStub2.id, active: true }, It.isAny()))
             .callback((id, getSelectedTabInWindowCallback) => {
-                getSelectedTabInWindowCallback(tabStub2 as chrome.tabs.Tab);
+                getSelectedTabInWindowCallback([tabStub2 as chrome.tabs.Tab]);
             })
             .verifiable(Times.once());
 
@@ -542,16 +542,16 @@ describe('TabControllerTest', () => {
             .verifiable(Times.once());
 
         mockChromeAdapter
-            .setup(ca => ca.getSelectedTabInWindow(windowStub1.id, It.isAny()))
+            .setup(ca => ca.tabsQuery({ windowId: windowStub1.id, active: true }, It.isAny()))
             .callback((id, getSelectedTabInWindowCallback) => {
-                getSelectedTabInWindowCallback(tabStub1 as chrome.tabs.Tab);
+                getSelectedTabInWindowCallback([tabStub1 as chrome.tabs.Tab]);
             })
             .verifiable(Times.once());
 
         mockChromeAdapter
-            .setup(ca => ca.getSelectedTabInWindow(windowStub2.id, It.isAny()))
+            .setup(ca => ca.tabsQuery({ windowId: windowStub2.id, active: true }, It.isAny()))
             .callback((id, getSelectedTabInWindowCallback) => {
-                getSelectedTabInWindowCallback(tabStub2 as chrome.tabs.Tab);
+                getSelectedTabInWindowCallback([tabStub2 as chrome.tabs.Tab]);
             })
             .verifiable(Times.once());
 
