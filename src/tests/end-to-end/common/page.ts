@@ -62,7 +62,7 @@ export class Page {
             if (document.readyState !== 'loading') {
                 addDisableStyleToBody();
             } else {
-                window.addEventListener('load', addDisableStyleToBody, false);
+                window.addEventListener('load', addDisableStyleToBody);
             }
         });
     }
