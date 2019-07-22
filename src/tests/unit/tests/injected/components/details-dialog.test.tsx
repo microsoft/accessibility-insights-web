@@ -8,6 +8,7 @@ import { FeatureFlags } from '../../../../../common/feature-flags';
 import { DetailsDialog, DetailsDialogDeps, DetailsDialogProps } from '../../../../../injected/components/details-dialog';
 import { DecoratedAxeNodeResult } from '../../../../../injected/scanner-utils';
 import { DictionaryStringTo } from '../../../../../types/common-types';
+import { BaseDataBuilder } from '../../../common/base-data-builder';
 
 type DetailsDialogTestCase = {
     isDevToolsOpen: boolean;
@@ -17,6 +18,10 @@ type DetailsDialogTestCase = {
 };
 
 describe('DetailsDialogTest', () => {
+    const fingerprint: string = '12345678-9ABC-1234-1234-123456789ABC';
+    const ruleId: string = 'ruleId';
+    const help: string = 'help';
+
     describe('renders', () => {
         const testCases: DetailsDialogTestCase[] = [
             {
@@ -51,67 +56,29 @@ describe('DetailsDialogTest', () => {
                 expectedHelpUrl = 'http://extension/help1',
             } = testCase;
 
-            const fingerprint: string = '12345678-9ABC-1234-1234-123456789ABC';
-            const ruleId: string = 'ruleId';
-            const help: string = 'help';
-            const expectedNodeResult: DecoratedAxeNodeResult = {
-                any: [],
-                all: [],
-                none: [],
-                status: false,
-                ruleId: ruleId,
-                help: help,
-                selector: 'selector',
-                html: 'html',
-                failureSummary: 'failureSummary',
-                fingerprint: fingerprint,
-                id: 'id1',
-                guidanceLinks: [{ text: 'Guidance Link', href: 'http://example.com' }],
-                helpUrl,
-                snippet: 'html',
-            };
+            const expectedNodeResult: DecoratedAxeNodeResult = defaultDecoratedAxeNodeResultBuilder()
+                .with('helpUrl', helpUrl)
+                .build();
 
             const expectedFailedRules: DictionaryStringTo<DecoratedAxeNodeResult> = {};
             expectedFailedRules[ruleId] = expectedNodeResult;
 
-            const dialogDetailsHandlerMockObject = {
-                getRuleUrl: () => 'test-url',
-                isBackButtonDisabled: () => true,
-                isNextButtonDisabled: () => true,
-                isInspectButtonDisabled: () => !isDevToolsOpen,
-                getFailureInfo: () => 'Failure 1 of 1 for this target',
-                componentDidMount: () => {},
-                shouldShowInspectButtonMessage: () => false,
-            };
+            const dialogDetailsHandlerMockObject = getDetailsDialogHandlerStub(isDevToolsOpen);
 
-            const deps: DetailsDialogDeps = {
-                windowUtils: null,
-                issueDetailsTextGenerator: null,
-                targetPageActionMessageCreator: {
-                    copyIssueDetailsClicked: () => {},
-                } as any,
-                issueFilingActionMessageCreator: null,
-                clientBrowserAdapter: {
+            const deps: DetailsDialogDeps = defaultDetailsDialogDepsBuilder()
+                .with('clientBrowserAdapter', {
                     getUrl: url => expectedHelpUrl,
-                } as any,
-            } as DetailsDialogDeps;
+                } as any)
+                .build();
 
-            const props: DetailsDialogProps = {
-                deps,
-                elementSelector: ruleId,
-                failedRules: expectedFailedRules,
-                target: [],
-                dialogHandler: dialogDetailsHandlerMockObject as any,
-                featureFlagStoreData: {
+            const props: DetailsDialogProps = defaultDetailsDialogPropsBuilder()
+                .with('deps', deps)
+                .with('failedRules', expectedFailedRules)
+                .with('dialogHandler', dialogDetailsHandlerMockObject as any)
+                .with('featureFlagStoreData', {
                     [FeatureFlags.shadowDialog]: shadowDialog,
-                },
-                devToolStore: {} as any,
-                userConfigStore: {
-                    getState: () => {},
-                } as any,
-                devToolActionMessageCreator: {} as any,
-                devToolsShortcut: 'shortcut',
-            };
+                })
+                .build();
 
             const wrapper = shallow(<DetailsDialog {...props} />);
 
@@ -129,4 +96,58 @@ describe('DetailsDialogTest', () => {
             }
         });
     });
+
+    const getDetailsDialogHandlerStub = (isDevToolsOpen: boolean) => {
+        return {
+            getRuleUrl: () => 'test-url',
+            isBackButtonDisabled: () => true,
+            isNextButtonDisabled: () => true,
+            isInspectButtonDisabled: () => !isDevToolsOpen,
+            getFailureInfo: () => 'Failure 1 of 1 for this target',
+            componentDidMount: () => {},
+            shouldShowInspectButtonMessage: () => false,
+        };
+    };
+
+    const defaultDecoratedAxeNodeResultBuilder = () => {
+        return new BaseDataBuilder<DecoratedAxeNodeResult>({
+            any: [],
+            all: [],
+            none: [],
+            status: false,
+            ruleId: ruleId,
+            help: help,
+            selector: 'selector',
+            html: 'html',
+            failureSummary: 'failureSummary',
+            fingerprint: fingerprint,
+            id: 'id1',
+            guidanceLinks: [{ text: 'Guidance Link', href: 'http://example.com' }],
+            snippet: 'html',
+        } as DecoratedAxeNodeResult);
+    };
+
+    const defaultDetailsDialogDepsBuilder = () => {
+        return new BaseDataBuilder<DetailsDialogDeps>({
+            windowUtils: null,
+            issueDetailsTextGenerator: null,
+            targetPageActionMessageCreator: {
+                copyIssueDetailsClicked: () => {},
+            } as any,
+            issueFilingActionMessageCreator: null,
+        } as DetailsDialogDeps);
+    };
+
+    const defaultDetailsDialogPropsBuilder = () => {
+        return new BaseDataBuilder<DetailsDialogProps>({
+            elementSelector: ruleId,
+            target: [],
+            devToolStore: {} as any,
+            userConfigStore: {
+                getState: () => {},
+            } as any,
+            devToolActionMessageCreator: {} as any,
+            devToolsShortcut: 'shortcut',
+        } as DetailsDialogProps);
+    };
 });
