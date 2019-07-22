@@ -214,8 +214,8 @@ describe('DetailsDialogTest', () => {
         };
     };
 
-    const defaultDecoratedAxeNodeResultBuilder = () => {
-        return new BaseDataBuilder<DecoratedAxeNodeResult>({
+    const defaultDecoratedAxeNodeResultBuilder = () =>
+        new BaseDataBuilder<DecoratedAxeNodeResult>({
             any: [],
             all: [],
             none: [],
@@ -230,10 +230,9 @@ describe('DetailsDialogTest', () => {
             guidanceLinks: [{ text: 'Guidance Link', href: 'http://example.com' }],
             snippet: 'html',
         } as DecoratedAxeNodeResult);
-    };
 
-    const defaultDetailsDialogDepsBuilder = () => {
-        return new BaseDataBuilder<DetailsDialogDeps>({
+    const defaultDetailsDialogDepsBuilder = () =>
+        new BaseDataBuilder<DetailsDialogDeps>({
             windowUtils: null,
             issueDetailsTextGenerator: null,
             targetPageActionMessageCreator: {
@@ -241,10 +240,9 @@ describe('DetailsDialogTest', () => {
             } as any,
             issueFilingActionMessageCreator: null,
         } as DetailsDialogDeps);
-    };
 
-    const defaultDetailsDialogPropsBuilder = () => {
-        return new BaseDataBuilder<DetailsDialogProps>({
+    const defaultDetailsDialogPropsBuilder = () =>
+        new BaseDataBuilder<DetailsDialogProps>({
             elementSelector: ruleId,
             target: [],
             devToolStore: {} as any,
@@ -254,5 +252,4 @@ describe('DetailsDialogTest', () => {
             devToolActionMessageCreator: {} as any,
             devToolsShortcut: 'shortcut',
         } as DetailsDialogProps);
-    };
 });
