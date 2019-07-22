@@ -50,7 +50,7 @@ export class Page {
 
     public async disableAnimations(): Promise<void> {
         await this.underlyingPage.evaluate(() => {
-            function addDisableStyleToBody() {
+            function addDisableStyleToBody(): void {
                 const disableAnimationsStyleElement = document.createElement('style');
                 disableAnimationsStyleElement.type = 'text/css';
                 disableAnimationsStyleElement.innerHTML = `* {
