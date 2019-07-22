@@ -4,7 +4,6 @@ import { shallow } from 'enzyme';
 import { Dialog } from 'office-ui-fabric-react';
 import * as React from 'react';
 
-import { IssueFilingButton } from '../../../../../common/components/issue-filing-button';
 import { FeatureFlags } from '../../../../../common/feature-flags';
 import { DetailsDialog, DetailsDialogDeps, DetailsDialogProps } from '../../../../../injected/components/details-dialog';
 import { DecoratedAxeNodeResult } from '../../../../../injected/scanner-utils';
@@ -18,109 +17,116 @@ type DetailsDialogTestCase = {
 };
 
 describe('DetailsDialogTest', () => {
-    const testCases: DetailsDialogTestCase[] = [
-        {
-            isDevToolsOpen: false,
-            shadowDialog: false,
-        },
-        {
-            isDevToolsOpen: false,
-            shadowDialog: true,
-        },
-        {
-            isDevToolsOpen: true,
-            shadowDialog: false,
-        },
-        {
-            isDevToolsOpen: true,
-            shadowDialog: true,
-        },
-        {
-            isDevToolsOpen: false,
-            shadowDialog: false,
-            helpUrl: 'help-relative',
-            expectedHelpUrl: 'http://extension/help-relative',
-        },
-    ];
-
-    test.each(testCases)('render: %o', (testCase: DetailsDialogTestCase) => {
-        const { isDevToolsOpen, shadowDialog, helpUrl = 'http://extension/help1', expectedHelpUrl = 'http://extension/help1' } = testCase;
-
-        const fingerprint: string = '12345678-9ABC-1234-1234-123456789ABC';
-        const ruleId: string = 'ruleId';
-        const help: string = 'help';
-        const expectedNodeResult: DecoratedAxeNodeResult = {
-            any: [],
-            all: [],
-            none: [],
-            status: false,
-            ruleId: ruleId,
-            help: help,
-            selector: 'selector',
-            html: 'html',
-            failureSummary: 'failureSummary',
-            fingerprint: fingerprint,
-            id: 'id1',
-            guidanceLinks: [{ text: 'Guidance Link', href: 'http://example.com' }],
-            helpUrl,
-            snippet: 'html',
-        };
-
-        const expectedFailedRules: DictionaryStringTo<DecoratedAxeNodeResult> = {};
-        expectedFailedRules[ruleId] = expectedNodeResult;
-
-        const dialogDetailsHandlerMockObject = {
-            getRuleUrl: () => 'test-url',
-            isBackButtonDisabled: () => true,
-            isNextButtonDisabled: () => true,
-            isInspectButtonDisabled: () => !isDevToolsOpen,
-            getFailureInfo: () => 'Failure 1 of 1 for this target',
-            componentDidMount: () => {},
-            shouldShowInspectButtonMessage: () => false,
-        };
-
-        const deps: DetailsDialogDeps = {
-            windowUtils: null,
-            issueDetailsTextGenerator: null,
-            targetPageActionMessageCreator: {
-                copyIssueDetailsClicked: () => {},
-            } as any,
-            issueFilingActionMessageCreator: null,
-            clientBrowserAdapter: {
-                getUrl: url => expectedHelpUrl,
-            } as any,
-        } as DetailsDialogDeps;
-
-        const props: DetailsDialogProps = {
-            deps,
-            elementSelector: ruleId,
-            failedRules: expectedFailedRules,
-            target: [],
-            dialogHandler: dialogDetailsHandlerMockObject as any,
-            featureFlagStoreData: {
-                [FeatureFlags.shadowDialog]: shadowDialog,
+    describe('renders', () => {
+        const testCases: DetailsDialogTestCase[] = [
+            {
+                isDevToolsOpen: false,
+                shadowDialog: false,
             },
-            devToolStore: {} as any,
-            userConfigStore: {
-                getState: () => {},
-            } as any,
-            devToolActionMessageCreator: {} as any,
-            devToolsShortcut: 'shortcut',
-        };
+            {
+                isDevToolsOpen: false,
+                shadowDialog: true,
+            },
+            {
+                isDevToolsOpen: true,
+                shadowDialog: false,
+            },
+            {
+                isDevToolsOpen: true,
+                shadowDialog: true,
+            },
+            {
+                isDevToolsOpen: false,
+                shadowDialog: false,
+                helpUrl: 'help-relative',
+                expectedHelpUrl: 'http://extension/help-relative',
+            },
+        ];
 
-        const wrapper = shallow(<DetailsDialog {...props} />);
+        test.each(testCases)('with: %o', (testCase: DetailsDialogTestCase) => {
+            const {
+                isDevToolsOpen,
+                shadowDialog,
+                helpUrl = 'http://extension/help1',
+                expectedHelpUrl = 'http://extension/help1',
+            } = testCase;
 
-        expect(wrapper.getElement()).toMatchSnapshot();
+            const fingerprint: string = '12345678-9ABC-1234-1234-123456789ABC';
+            const ruleId: string = 'ruleId';
+            const help: string = 'help';
+            const expectedNodeResult: DecoratedAxeNodeResult = {
+                any: [],
+                all: [],
+                none: [],
+                status: false,
+                ruleId: ruleId,
+                help: help,
+                selector: 'selector',
+                html: 'html',
+                failureSummary: 'failureSummary',
+                fingerprint: fingerprint,
+                id: 'id1',
+                guidanceLinks: [{ text: 'Guidance Link', href: 'http://example.com' }],
+                helpUrl,
+                snippet: 'html',
+            };
 
-        expect(wrapper.state()).toMatchSnapshot('verify initial state');
+            const expectedFailedRules: DictionaryStringTo<DecoratedAxeNodeResult> = {};
+            expectedFailedRules[ruleId] = expectedNodeResult;
 
-        if (!shadowDialog) {
-            expect(
-                wrapper
-                    .find(Dialog)
-                    .props()
-                    .dialogContentProps.topButtonsProps[0].onRenderIcon(),
-            ).toMatchSnapshot('verify close button for non shadow dom');
-        }
+            const dialogDetailsHandlerMockObject = {
+                getRuleUrl: () => 'test-url',
+                isBackButtonDisabled: () => true,
+                isNextButtonDisabled: () => true,
+                isInspectButtonDisabled: () => !isDevToolsOpen,
+                getFailureInfo: () => 'Failure 1 of 1 for this target',
+                componentDidMount: () => {},
+                shouldShowInspectButtonMessage: () => false,
+            };
+
+            const deps: DetailsDialogDeps = {
+                windowUtils: null,
+                issueDetailsTextGenerator: null,
+                targetPageActionMessageCreator: {
+                    copyIssueDetailsClicked: () => {},
+                } as any,
+                issueFilingActionMessageCreator: null,
+                clientBrowserAdapter: {
+                    getUrl: url => expectedHelpUrl,
+                } as any,
+            } as DetailsDialogDeps;
+
+            const props: DetailsDialogProps = {
+                deps,
+                elementSelector: ruleId,
+                failedRules: expectedFailedRules,
+                target: [],
+                dialogHandler: dialogDetailsHandlerMockObject as any,
+                featureFlagStoreData: {
+                    [FeatureFlags.shadowDialog]: shadowDialog,
+                },
+                devToolStore: {} as any,
+                userConfigStore: {
+                    getState: () => {},
+                } as any,
+                devToolActionMessageCreator: {} as any,
+                devToolsShortcut: 'shortcut',
+            };
+
+            const wrapper = shallow(<DetailsDialog {...props} />);
+
+            expect(wrapper.getElement()).toMatchSnapshot();
+
+            expect(wrapper.state()).toMatchSnapshot('verify initial state');
+
+            if (!shadowDialog) {
+                expect(
+                    wrapper
+                        .find(Dialog)
+                        .props()
+                        .dialogContentProps.topButtonsProps[0].onRenderIcon(),
+                ).toMatchSnapshot('verify close button for non shadow dom');
+            }
+        });
     });
 });
