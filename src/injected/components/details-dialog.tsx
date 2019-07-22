@@ -134,7 +134,7 @@ export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDi
         }
     }
 
-    private renderButtonContainer(): JSX.Element {
+    private renderCommandBar(): JSX.Element {
         const props: CommandBarProps = {
             currentRuleIndex: this.state.currentRuleIndex,
             deps: this.props.deps,
@@ -234,7 +234,7 @@ export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDi
                 {this.renderRuleName(rule)}
                 {this.renderSuccessCriteria(rule.guidanceLinks)}
                 {this.renderPathSelector()}
-                {this.renderButtonContainer()}
+                {this.renderCommandBar()}
                 {this.renderFixInstructions(rule)}
                 {this.renderNextAndBackButtons()}
             </div>
