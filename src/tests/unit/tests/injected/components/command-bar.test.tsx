@@ -17,7 +17,9 @@ describe('CommandBar', () => {
         const showInspectButtonMessage = [true, false];
 
         it.each(showInspectButtonMessage)('renders, shows inspect button message: %s', show => {
-            const props = new CommandBarPropsBuilder().with('shouldShowInspectButtonMessage', () => show).build();
+            const props = defaultCommandBarPropsBuilder()
+                .with('shouldShowInspectButtonMessage', () => show)
+                .build();
 
             const wrapper = shallow(<CommandBar {...props} />);
 
@@ -33,7 +35,9 @@ describe('CommandBar', () => {
                 (event: React.MouseEvent<Button | BaseButton | HTMLDivElement | HTMLAnchorElement | HTMLButtonElement, MouseEvent>) => {},
             );
 
-            const props = new CommandBarPropsBuilder().with('onClickInspectButton', onClickMock.object).build();
+            const props = defaultCommandBarPropsBuilder()
+                .with('onClickInspectButton', onClickMock.object)
+                .build();
 
             const wrapper = shallow(<CommandBar {...props} />);
 
@@ -47,7 +51,9 @@ describe('CommandBar', () => {
         test('for copy issue details button', () => {
             const onClickMock = Mock.ofInstance((event: React.MouseEvent<any, MouseEvent>) => {});
 
-            const props = new CommandBarPropsBuilder().with('onClickCopyIssueDetailsButton', onClickMock.object).build();
+            const props = defaultCommandBarPropsBuilder()
+                .with('onClickCopyIssueDetailsButton', onClickMock.object)
+                .build();
 
             const wrapper = shallow(<CommandBar {...props} />);
 
@@ -58,13 +64,9 @@ describe('CommandBar', () => {
             onClickMock.verify(onClick => onClick(eventStub), Times.once());
         });
     });
-});
 
-class CommandBarPropsBuilder extends BaseDataBuilder<CommandBarProps> {
-    constructor() {
-        super();
-
-        this.data = {
+    const defaultCommandBarPropsBuilder = () =>
+        new BaseDataBuilder<CommandBarProps>({
             deps: {} as CommandBarDeps,
             onClickInspectButton: undefined,
             onClickCopyIssueDetailsButton: undefined,
@@ -93,6 +95,5 @@ class CommandBarPropsBuilder extends BaseDataBuilder<CommandBarProps> {
                     snippet: 'RR-snippet   space',
                 } as DecoratedAxeNodeResult,
             },
-        };
-    }
-}
+        });
+});
