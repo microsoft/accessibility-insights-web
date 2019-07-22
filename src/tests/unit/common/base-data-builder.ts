@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-export abstract class BaseDataBuilder<T> {
+export class BaseDataBuilder<T> {
     protected data: T;
 
-    constructor() {
-        this.data = {} as T;
+    constructor(data?: T) {
+        this.data = data || ({} as T);
     }
 
     public build(): T {
