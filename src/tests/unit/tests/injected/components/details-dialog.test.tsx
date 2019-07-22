@@ -3,12 +3,15 @@
 import { shallow } from 'enzyme';
 import { Dialog } from 'office-ui-fabric-react';
 import * as React from 'react';
-
+import { Mock, Times } from 'typemoq';
 import { FeatureFlags } from '../../../../../common/feature-flags';
+import { CommandBar } from '../../../../../injected/components/command-bar';
 import { DetailsDialog, DetailsDialogDeps, DetailsDialogProps } from '../../../../../injected/components/details-dialog';
 import { DecoratedAxeNodeResult } from '../../../../../injected/scanner-utils';
+import { TargetPageActionMessageCreator } from '../../../../../injected/target-page-action-message-creator';
 import { DictionaryStringTo } from '../../../../../types/common-types';
 import { BaseDataBuilder } from '../../../common/base-data-builder';
+import { EventStubFactory } from '../../../common/event-stub-factory';
 
 type DetailsDialogTestCase = {
     isDevToolsOpen: boolean;
@@ -94,6 +97,108 @@ describe('DetailsDialogTest', () => {
                         .dialogContentProps.topButtonsProps[0].onRenderIcon(),
                 ).toMatchSnapshot('verify close button for non shadow dom');
             }
+        });
+    });
+
+    describe('handlers', () => {
+        describe('for CommandBar', () => {
+            const shadowDialogEnabled = [true, false];
+            const eventStub = new EventStubFactory().createKeypressEvent() as any;
+
+            let depsBuilder: BaseDataBuilder<DetailsDialogDeps>;
+            let propsBuilder: BaseDataBuilder<DetailsDialogProps>;
+            let expectedFailedRules: DictionaryStringTo<DecoratedAxeNodeResult>;
+            let dialogDetailsHandlerMockObject;
+
+            beforeEach(() => {
+                const expectedNodeResult = defaultDecoratedAxeNodeResultBuilder()
+                    .with('helpUrl', 'help-url')
+                    .build();
+
+                expectedFailedRules = {};
+                expectedFailedRules[ruleId] = expectedNodeResult;
+
+                depsBuilder = defaultDetailsDialogDepsBuilder().with('clientBrowserAdapter', {
+                    getUrl: url => 'test-url',
+                } as any);
+                dialogDetailsHandlerMockObject = getDetailsDialogHandlerStub(true);
+
+                propsBuilder = defaultDetailsDialogPropsBuilder()
+                    .with('failedRules', expectedFailedRules)
+                    .with('dialogHandler', dialogDetailsHandlerMockObject);
+            });
+
+            test.each(shadowDialogEnabled)('on click copy issue details button, shadow dialog: %s', shadowDialog => {
+                const targetPageActionMessageCreatorMock = Mock.ofType<TargetPageActionMessageCreator>();
+
+                const deps = depsBuilder.with('targetPageActionMessageCreator', targetPageActionMessageCreatorMock.object).build();
+
+                const props = propsBuilder
+                    .with('deps', deps)
+                    .with('featureFlagStoreData', {
+                        [FeatureFlags.shadowDialog]: shadowDialog,
+                    })
+                    .build();
+
+                const wrapper = shallow(<DetailsDialog {...props} />);
+
+                const commandBar = wrapper.find(CommandBar);
+
+                commandBar.prop('onClickCopyIssueDetailsButton')(eventStub);
+
+                targetPageActionMessageCreatorMock.verify(creator => creator.copyIssueDetailsClicked(eventStub), Times.once());
+            });
+
+            test.each(shadowDialogEnabled)('on click inspect button, shadow dialog: %s', shadowDialog => {
+                const clickHandlerMock = Mock.ofInstance((component: DetailsDialog, event: React.SyntheticEvent<MouseEvent>) => {});
+
+                dialogDetailsHandlerMockObject.inspectButtonClickHandler = clickHandlerMock.object;
+
+                const deps = depsBuilder.build();
+
+                const props = propsBuilder
+                    .with('deps', deps)
+                    .with('featureFlagStoreData', {
+                        [FeatureFlags.shadowDialog]: shadowDialog,
+                    })
+                    .build();
+
+                const wrapper = shallow<DetailsDialog>(<DetailsDialog {...props} />);
+
+                const commandBar = wrapper.find(CommandBar);
+                const onClick = commandBar.prop('onClickInspectButton');
+
+                if (shadowDialog) {
+                    expect(onClick).toBeNull();
+                } else {
+                    onClick(eventStub);
+
+                    clickHandlerMock.verify(handler => handler(wrapper.instance(), eventStub), Times.once());
+                }
+            });
+
+            test.each(shadowDialogEnabled)('should should inspect button message, shadow dialog: %s', shadowDialog => {
+                const handlerMock = Mock.ofInstance<(component: DetailsDialog) => boolean>((component: DetailsDialog) => true);
+
+                dialogDetailsHandlerMockObject.shouldShowInspectButtonMessage = handlerMock.object;
+
+                const deps = depsBuilder.build();
+
+                const props = propsBuilder
+                    .with('deps', deps)
+                    .with('featureFlagStoreData', {
+                        [FeatureFlags.shadowDialog]: shadowDialog,
+                    })
+                    .build();
+
+                const wrapper = shallow<DetailsDialog>(<DetailsDialog {...props} />);
+
+                const commandBar = wrapper.find(CommandBar);
+
+                commandBar.prop('shouldShowInspectButtonMessage')();
+
+                handlerMock.verify(handler => handler(wrapper.instance()), Times.once());
+            });
         });
     });
 
