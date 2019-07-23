@@ -170,7 +170,7 @@ export class PopupInitializer {
             loadTheme,
             axeInfo,
             launchPanelHeaderClickHandler,
-            browserAdapter: this.chromeAdapter,
+            browserAdapter: this.browserAdapter,
         };
 
         const diagnosticViewToggleFactory = new DiagnosticViewToggleFactory(

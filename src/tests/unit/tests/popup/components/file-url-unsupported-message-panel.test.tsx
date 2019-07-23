@@ -4,7 +4,7 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 import { IMock, Mock } from 'typemoq';
 
-import { BrowserAdapter } from '../../../../../background/browser-adapters/browser-adapter';
+import { BrowserAdapter } from '../../../../../common/browser-adapters/browser-adapter';
 import {
     FileUrlUnsupportedMessagePanel,
     FileUrlUnsupportedMessagePanelProps,

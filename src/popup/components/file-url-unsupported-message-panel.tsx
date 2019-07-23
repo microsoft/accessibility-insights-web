@@ -1,7 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as React from 'react';
-import { BrowserAdapter } from '../../background/browser-adapters/browser-adapter';
+
+import { BrowserAdapter } from '../../common/browser-adapters/browser-adapter';
 import { NewTabLink } from '../../common/components/new-tab-link';
 import { DisplayableStrings } from '../../common/constants/displayable-strings';
 import { NamedSFC } from '../../common/react/named-sfc';
