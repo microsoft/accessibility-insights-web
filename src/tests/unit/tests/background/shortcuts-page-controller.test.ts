@@ -5,7 +5,7 @@ import { Mock, Times } from 'typemoq';
 import { BrowserAdapter } from '../../../../background/browser-adapters/browser-adapter';
 import { ShortcutsPageController } from '../../../../background/shortcuts-page-controller';
 
-describe('ChromeShortcutsPageController', () => {
+describe('ShortcutsPageController', () => {
     it('opens the shortcuts tab', () => {
         const browserAdapterMock = Mock.ofType<BrowserAdapter>();
 
