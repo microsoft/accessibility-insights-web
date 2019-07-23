@@ -5,6 +5,7 @@ import * as React from 'react';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 import { BrowserAdapter } from '../../../../../common/browser-adapters/browser-adapter';
+import { ChromeAdapter } from '../../../../../common/browser-adapters/chrome-adapter';
 import { NewTabLink } from '../../../../../common/components/new-tab-link';
 import { DropdownClickHandler } from '../../../../../common/dropdown-click-handler';
 import { StoreActionMessageCreatorImpl } from '../../../../../common/message-creators/store-action-message-creator-impl';
@@ -28,7 +29,7 @@ import { BaseDataBuilder } from '../../../common/base-data-builder';
 import { IsSameObject } from '../../../common/typemoq-helper';
 
 describe('PopupView', () => {
-    const browserAdapterMock = Mock.ofType<BrowserAdapter>();
+    const browserAdapterMock = Mock.ofType<BrowserAdapter>(ChromeAdapter);
     const launchPanelStateStoreState: LaunchPanelStoreData = {
         launchPanelType: LaunchPanelType.LaunchPad,
     };
