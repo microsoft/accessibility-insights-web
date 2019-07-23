@@ -3,7 +3,7 @@
 import { RegisterTypeToPayloadCallback } from '../../common/message';
 import { Messages } from '../../common/messages';
 import * as TelemetryEvents from '../../common/telemetry-events';
-import { BrowserAdapter } from '../browser-adapters/browser-adapter';
+import { BrowserAdapter } from '../../common/browser-adapters/browser-adapter';
 import { TelemetryEventHandler } from '../telemetry/telemetry-event-handler';
 import { InspectActions, InspectPayload } from './inspect-actions';
 

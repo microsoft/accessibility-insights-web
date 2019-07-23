@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
 import { VisualizationType } from '../common/types/visualization-type';
-import { BrowserAdapter } from './browser-adapters/browser-adapter';
+import { BrowserAdapter } from '../common/browser-adapters/browser-adapter';
 
 export class TargetTabController {
     private browserAdapter: BrowserAdapter;

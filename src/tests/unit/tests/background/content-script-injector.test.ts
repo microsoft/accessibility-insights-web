@@ -3,7 +3,7 @@
 import { isFunction } from 'lodash';
 import { IMock, It, Mock, Times } from 'typemoq';
 
-import { BrowserAdapter } from '../../../../background/browser-adapters/browser-adapter';
+import { BrowserAdapter } from '../../../../common/browser-adapters/browser-adapter';
 import { ContentScriptInjector } from '../../../../background/injector/content-script-injector';
 import { PromiseFactory } from '../../../../common/promises/promise-factory';
 

@@ -3,7 +3,7 @@
 import { loadTheme } from 'office-ui-fabric-react';
 import * as ReactDOM from 'react-dom';
 
-import { ChromeAdapter } from '../../background/browser-adapters/chrome-adapter';
+import { ChromeAdapter } from '../../common/browser-adapters/chrome-adapter';
 import { initializeFabricIcons } from '../../common/fabric-icons';
 import { ActionMessageDispatcher } from '../../common/message-creators/action-message-dispatcher';
 import { ContentActionMessageCreator } from '../../common/message-creators/content-action-message-creator';

@@ -5,7 +5,7 @@ import { PayloadWithEventName, SetLaunchPanelState } from '../actions/action-pay
 import { CommandActions, GetCommandsPayload } from '../actions/command-actions';
 import { GlobalActionHub } from '../actions/global-action-hub';
 import { LaunchPanelStateActions } from '../actions/launch-panel-state-action';
-import { CommandsAdapter } from '../browser-adapters/commands-adapter';
+import { CommandsAdapter } from '../../common/browser-adapters/commands-adapter';
 import { Interpreter } from '../interpreter';
 import { TelemetryEventHandler } from '../telemetry/telemetry-event-handler';
 

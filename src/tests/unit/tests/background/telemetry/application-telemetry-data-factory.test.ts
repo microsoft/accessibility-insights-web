@@ -3,7 +3,7 @@
 import { IMock, Mock, Times } from 'typemoq';
 
 import { ApplicationBuildGenerator } from '../../../../../background/application-build-generator';
-import { BrowserAdapter } from '../../../../../background/browser-adapters/browser-adapter';
+import { BrowserAdapter } from '../../../../../common/browser-adapters/browser-adapter';
 import { InstallDataGenerator } from '../../../../../background/install-data-generator';
 import {
     ApplicationTelemetryData,

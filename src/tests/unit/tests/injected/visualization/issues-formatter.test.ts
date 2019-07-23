@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { IMock, Mock } from 'typemoq';
 
-import { BrowserAdapter } from '../../../../../background/browser-adapters/browser-adapter';
+import { BrowserAdapter } from '../../../../../common/browser-adapters/browser-adapter';
 import { HTMLElementUtils } from '../../../../../common/html-element-utils';
 import { WindowUtils } from '../../../../../common/window-utils';
 import { DetailsDialogHandler } from '../../../../../injected/details-dialog-handler';

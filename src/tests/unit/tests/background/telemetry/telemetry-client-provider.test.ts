@@ -2,8 +2,8 @@
 // Licensed under the MIT License.
 import { Mock } from 'typemoq';
 
-import { BrowserAdapter } from '../../../../../background/browser-adapters/browser-adapter';
-import { StorageAdapter } from '../../../../../background/browser-adapters/storage-adapter';
+import { BrowserAdapter } from '../../../../../common/browser-adapters/browser-adapter';
+import { StorageAdapter } from '../../../../../common/browser-adapters/storage-adapter';
 import { LocalStorageData } from '../../../../../background/storage-data';
 import { AppInsightsTelemetryClient } from '../../../../../background/telemetry/app-insights-telemetry-client';
 import { NullTelemetryClient } from '../../../../../background/telemetry/null-telemetry-client';

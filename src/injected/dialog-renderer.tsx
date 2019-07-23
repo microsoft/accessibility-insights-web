@@ -4,7 +4,7 @@ import { getRTL } from '@uifabric/utilities';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
-import { BrowserAdapter } from '../background/browser-adapters/browser-adapter';
+import { BrowserAdapter } from '../common/browser-adapters/browser-adapter';
 import { IssueDetailsTextGenerator } from '../background/issue-details-text-generator';
 import { AxeInfo } from '../common/axe-info';
 import { FeatureFlags } from '../common/feature-flags';

@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { IMock, It, Mock, Times } from 'typemoq';
 import { FeatureFlagActions, FeatureFlagPayload } from '../../../../../../background/actions/feature-flag-actions';
-import { StorageAdapter } from '../../../../../../background/browser-adapters/storage-adapter';
+import { StorageAdapter } from '../../../../../../common/browser-adapters/storage-adapter';
 import { LocalStorageDataKeys } from '../../../../../../background/local-storage-data-keys';
 import { LocalStorageData } from '../../../../../../background/storage-data';
 import { FeatureFlagStore } from '../../../../../../background/stores/global/feature-flag-store';

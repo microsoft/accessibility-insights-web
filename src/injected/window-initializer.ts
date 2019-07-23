@@ -3,8 +3,8 @@
 import { getRTL } from '@uifabric/utilities';
 import * as Q from 'q';
 
-import { BrowserAdapter } from '../background/browser-adapters/browser-adapter';
-import { ChromeAdapter } from '../background/browser-adapters/chrome-adapter';
+import { BrowserAdapter } from '../common/browser-adapters/browser-adapter';
+import { ChromeAdapter } from '../common/browser-adapters/chrome-adapter';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
 import { EnumHelper } from '../common/enum-helper';
 import { HTMLElementUtils } from '../common/html-element-utils';

@@ -3,7 +3,7 @@
 import { StoreNames } from '../../../common/stores/store-names';
 import { LaunchPanelStoreData } from '../../../common/types/store-data/launch-panel-store-data';
 import { LaunchPanelType } from '../../../popup/components/popup-view';
-import { StorageAdapter } from '../../browser-adapters/storage-adapter';
+import { StorageAdapter } from '../../../common/browser-adapters/storage-adapter';
 import { LocalStorageDataKeys } from '../../local-storage-data-keys';
 import { LocalStorageData } from '../../storage-data';
 import { BaseStoreImpl } from '../base-store-impl';

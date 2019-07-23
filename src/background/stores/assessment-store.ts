@@ -34,7 +34,7 @@ import {
 } from './../actions/action-payloads';
 import { AssessmentActions } from './../actions/assessment-actions';
 import { AssessmentDataRemover } from './../assessment-data-remover';
-import { BrowserAdapter } from './../browser-adapters/browser-adapter';
+import { BrowserAdapter } from '../../common/browser-adapters/browser-adapter';
 import { BaseStoreImpl } from './base-store-impl';
 
 export class AssessmentStore extends BaseStoreImpl<AssessmentStoreData> {

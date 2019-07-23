@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { It, Mock } from 'typemoq';
 
-import { BrowserAdapter } from '../../../../background/browser-adapters/browser-adapter';
+import { BrowserAdapter } from '../../../../common/browser-adapters/browser-adapter';
 import { GenericStoreMessageTypes } from '../../../../common/constants/generic-store-messages-types';
 import { StoreProxy } from '../../../../common/store-proxy';
 import { StoreType } from '../../../../common/types/store-type';

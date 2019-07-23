@@ -6,7 +6,7 @@ import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { PageVisibilityChangeTabPayload, SwitchToTargetTabPayload } from '../../../../../background/actions/action-payloads';
 import { TabActionCreator } from '../../../../../background/actions/tab-action-creator';
 import { TabActions } from '../../../../../background/actions/tab-actions';
-import { BrowserAdapter } from '../../../../../background/browser-adapters/browser-adapter';
+import { BrowserAdapter } from '../../../../../common/browser-adapters/browser-adapter';
 import { TelemetryEventHandler } from '../../../../../background/telemetry/telemetry-event-handler';
 import { Action } from '../../../../../common/flux/action';
 import { Tab } from '../../../../../common/itab';

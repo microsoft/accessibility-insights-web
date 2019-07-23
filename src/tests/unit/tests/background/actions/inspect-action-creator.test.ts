@@ -5,7 +5,7 @@ import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 import { InspectActionCreator } from '../../../../../background/actions/inspect-action-creator';
 import { InspectActions, InspectPayload } from '../../../../../background/actions/inspect-actions';
-import { BrowserAdapter } from '../../../../../background/browser-adapters/browser-adapter';
+import { BrowserAdapter } from '../../../../../common/browser-adapters/browser-adapter';
 import { InspectMode } from '../../../../../background/inspect-modes';
 import { TelemetryEventHandler } from '../../../../../background/telemetry/telemetry-event-handler';
 import { Action } from '../../../../../common/flux/action';

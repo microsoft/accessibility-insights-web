@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { It, Mock } from 'typemoq';
 
-import { BrowserAdapter } from '../../../../background/browser-adapters/browser-adapter';
+import { BrowserAdapter } from '../../../../common/browser-adapters/browser-adapter';
 import { configMutator } from '../../../../common/configuration';
 import { WindowUtils } from '../../../../common/window-utils';
 import { SupportLinkHandler } from '../../../../popup/support-link-handler';

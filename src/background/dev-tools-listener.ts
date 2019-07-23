@@ -4,7 +4,7 @@ import { ConnectionNames } from '../common/constants/connection-names';
 import { Messages } from '../common/messages';
 import { DevToolsOpenMessage } from '../common/types/dev-tools-open-message';
 import { OnDevToolOpenPayload } from './actions/action-payloads';
-import { BrowserAdapter } from './browser-adapters/browser-adapter';
+import { BrowserAdapter } from '../common/browser-adapters/browser-adapter';
 import { TabToContextMap } from './tab-context';
 
 export interface PortWithTabId extends chrome.runtime.Port {

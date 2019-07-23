@@ -2,8 +2,8 @@
 // Licensed under the MIT License.
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
-import { BrowserAdapter } from '../../../../background/browser-adapters/browser-adapter';
-import { CommandsAdapter } from '../../../../background/browser-adapters/commands-adapter';
+import { BrowserAdapter } from '../../../../common/browser-adapters/browser-adapter';
+import { CommandsAdapter } from '../../../../common/browser-adapters/commands-adapter';
 import { ChromeCommandHandler } from '../../../../background/chrome-command-handler';
 import { Interpreter } from '../../../../background/interpreter';
 import { UserConfigurationStore } from '../../../../background/stores/global/user-configuration-store';

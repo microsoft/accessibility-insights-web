@@ -3,7 +3,7 @@
 import { getRTL } from '@uifabric/utilities';
 import * as ReactDOM from 'react-dom';
 
-import { BrowserAdapter } from '../../background/browser-adapters/browser-adapter';
+import { BrowserAdapter } from '../../common/browser-adapters/browser-adapter';
 import { HTMLElementUtils } from '../../common/html-element-utils';
 import { WindowUtils } from '../../common/window-utils';
 import { DetailsDialogHandler } from '../details-dialog-handler';

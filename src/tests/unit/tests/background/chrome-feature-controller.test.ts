@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { Mock } from 'typemoq';
 
-import { BrowserAdapter } from '../../../../background/browser-adapters/browser-adapter';
+import { BrowserAdapter } from '../../../../common/browser-adapters/browser-adapter';
 import { ChromeFeatureController } from '../../../../background/chrome-feature-controller';
 
 describe('ChromeFeatureControllerTest', () => {
