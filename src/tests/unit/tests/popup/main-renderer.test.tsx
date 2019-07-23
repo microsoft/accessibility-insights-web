@@ -57,9 +57,9 @@ describe('MainRenderer', () => {
                                     popupViewControllerHandler: gettingStartedDialogHandlerMock.object,
                                     launchPanelHeaderClickHandler: feedbackMenuClickhandlerMock.object,
                                     supportLinkHandler: supportLinkHandlerMock.object,
+                                    browserAdapter: browserAdapterMock.object,
                                 }}
                                 popupWindow={popupWindowMock.object}
-                                browserAdapter={browserAdapterMock.object}
                                 targetTabUrl={targetTabUrl}
                                 hasAccess={hasAccess}
                                 launchPadRowConfigurationFactory={launchPadRowConfigurationFactoryMock.object}
@@ -80,11 +80,11 @@ describe('MainRenderer', () => {
                 popupViewControllerHandler: gettingStartedDialogHandlerMock.object,
                 launchPanelHeaderClickHandler: feedbackMenuClickhandlerMock.object,
                 supportLinkHandler: supportLinkHandlerMock.object,
+                browserAdapter: browserAdapterMock.object,
             },
             renderMock.object,
             dom,
             popupWindowMock.object,
-            browserAdapterMock.object,
             targetTabUrl,
             hasAccess,
             launchPadRowConfigurationFactoryMock.object,

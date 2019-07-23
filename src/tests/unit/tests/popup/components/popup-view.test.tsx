@@ -123,6 +123,7 @@ describe('PopupView', () => {
             deps = {
                 popupActionMessageCreator: actionMessageCreatorStrictMock.object,
                 dropdownClickHandler: dropdownClickHandlerMock.object,
+                browserAdapter: browserAdapterMock.object,
             } as PopupViewControllerDeps;
         });
 
@@ -268,7 +269,7 @@ describe('PopupView', () => {
     });
 
     function createDefaultPropsBuilder(storeHub: BaseClientStoresHub<any>): PopupViewPropsBuilder {
-        return new PopupViewPropsBuilder().withStoresHub(storeHub).with('browserAdapter', browserAdapterMock.object);
+        return new PopupViewPropsBuilder().withStoresHub(storeHub).withBrowserAdapter(browserAdapterMock.object);
     }
 
     function createDefaultStoresHubMock(hasStores = true, hasStoreData = true): IMock<BaseClientStoresHub<any>> {
@@ -293,11 +294,20 @@ class PopupViewPropsBuilder extends BaseDataBuilder<PopupViewProps> {
         return this;
     }
     public withStoresHub(storesHub: BaseClientStoresHub<any>): PopupViewPropsBuilder {
-        this.data = {
-            deps: {
-                storesHub,
-            },
-        } as PopupViewProps;
+        this.data.deps = {
+            ...this.data.deps,
+            storesHub,
+        };
+
+        return this;
+    }
+
+    public withBrowserAdapter(browserAdapter: BrowserAdapter): PopupViewPropsBuilder {
+        this.data.deps = {
+            ...this.data.deps,
+            browserAdapter,
+        };
+
         return this;
     }
 }

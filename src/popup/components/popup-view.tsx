@@ -16,6 +16,7 @@ import { PopupViewControllerHandler } from '../handlers/popup-view-controller-ha
 import { LaunchPadRowConfigurationFactory } from '../launch-pad-row-configuration-factory';
 import { AdHocToolsPanel } from './ad-hoc-tools-panel';
 import { DiagnosticViewToggleFactory } from './diagnostic-view-toggle-factory';
+import { FileUrlUnsupportedMessagePanelDeps } from './file-url-unsupported-message-panel';
 import { Header } from './header';
 import { LaunchPad, LaunchPadDeps, LaunchPadRowConfiguration } from './launch-pad';
 import { LaunchPanelHeader, LaunchPanelHeaderDeps } from './launch-panel-header';
@@ -26,7 +27,6 @@ export interface PopupViewProps {
     title: string;
     popupHandlers: IPopupHandlers;
     popupWindow: Window;
-    browserAdapter: BrowserAdapter;
     targetTabUrl: string;
     hasAccess: boolean;
     launchPadRowConfigurationFactory: LaunchPadRowConfigurationFactory;
@@ -38,7 +38,10 @@ export interface PopupViewProps {
 export type PopupViewControllerDeps = LaunchPadDeps &
     LaunchPanelHeaderDeps &
     TelemetryPermissionDialogDeps &
-    WithStoreSubscriptionDeps<PopupViewControllerState>;
+    FileUrlUnsupportedMessagePanelDeps &
+    WithStoreSubscriptionDeps<PopupViewControllerState> & {
+        browserAdapter: BrowserAdapter;
+    };
 
 export enum LaunchPanelType {
     AdhocToolsPanel,
@@ -61,7 +64,7 @@ export class PopupView extends React.Component<PopupViewProps> {
     constructor(props: PopupViewProps) {
         super(props);
         this.handler = props.popupHandlers.popupViewControllerHandler;
-        this.versionNumber = props.browserAdapter.getManifest().version;
+        this.versionNumber = props.deps.browserAdapter.getManifest().version;
         this.openTogglesView = () => {
             this.handler.openLaunchPad(this);
         };
@@ -194,7 +197,7 @@ export class PopupView extends React.Component<PopupViewProps> {
                         <div>
                             {'1. Open '}
                             <NewTabLink
-                                onClick={this.props.browserAdapter.openManageExtensionPage}
+                                onClick={this.props.deps.browserAdapter.openManageExtensionPage}
                                 aria-label={`open ${this.props.title} extension page`}
                             >
                                 {`${this.props.title} extension page`}

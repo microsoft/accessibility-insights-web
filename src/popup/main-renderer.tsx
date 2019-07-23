@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { BrowserAdapter } from '../common/browser-adapters/browser-adapter';
+
 import { Theme, ThemeDeps, ThemeInnerState } from '../common/components/theme';
 import { WithStoreSubscriptionDeps } from '../common/components/with-store-subscription';
 import { DropdownClickHandler } from '../common/dropdown-click-handler';
@@ -13,6 +13,7 @@ import { IPopupHandlers } from './handlers/ipopup-handlers';
 import { LaunchPadRowConfigurationFactory } from './launch-pad-row-configuration-factory';
 
 export type MainRendererDeps = PopupViewControllerDeps & WithStoreSubscriptionDeps<ThemeInnerState> & ThemeDeps;
+
 export class MainRenderer {
     constructor(
         private readonly deps: MainRendererDeps,
@@ -20,7 +21,6 @@ export class MainRenderer {
         private readonly renderer: typeof ReactDOM.render,
         private readonly dom: NodeSelector & Node,
         private readonly popupWindow: Window,
-        private readonly browserAdapter: BrowserAdapter,
         private readonly targetTabUrl: string,
         private readonly hasAccess: boolean,
         private readonly launchPadRowConfigurationFactory: LaunchPadRowConfigurationFactory,
@@ -39,7 +39,6 @@ export class MainRenderer {
                     title={title}
                     popupHandlers={this.popupHandlers}
                     popupWindow={this.popupWindow}
-                    browserAdapter={this.browserAdapter}
                     targetTabUrl={this.targetTabUrl}
                     hasAccess={this.hasAccess}
                     launchPadRowConfigurationFactory={this.launchPadRowConfigurationFactory}

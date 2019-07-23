@@ -170,6 +170,7 @@ export class PopupInitializer {
             loadTheme,
             axeInfo,
             launchPanelHeaderClickHandler,
+            browserAdapter: this.chromeAdapter,
         };
 
         const diagnosticViewToggleFactory = new DiagnosticViewToggleFactory(
@@ -190,7 +191,6 @@ export class PopupInitializer {
             ReactDOM.render,
             document,
             window,
-            this.browserAdapter,
             this.targetTabInfo.tab.url,
             this.targetTabInfo.hasAccess,
             launchPadRowConfigurationFactory,
