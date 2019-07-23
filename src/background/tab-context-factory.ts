@@ -17,13 +17,13 @@ import { ScopingPanelActionCreator } from './actions/scoping-panel-action-creato
 import { TabActionCreator } from './actions/tab-action-creator';
 import { AssessmentScanPolicyRunner } from './assessment-scan-policy-runner';
 import { BrowserAdapter } from './browser-adapters/browser-adapter';
-import { ShortcutsPageController } from './chrome-shortcuts-page-controller';
 import { DetailsViewController } from './details-view-controller';
 import { InjectorController } from './injector-controller';
 import { ContentScriptInjector } from './injector/content-script-injector';
 import { Interpreter } from './interpreter';
 import { isAnAssessmentSelected } from './is-an-assessment-selected';
 import { ScannerUtility } from './scanner-utility';
+import { ShortcutsPageController } from './shortcuts-page-controller';
 import { AssessmentStore } from './stores/assessment-store';
 import { TabContextStoreHub } from './stores/tab-context-store-hub';
 import { TabContext } from './tab-context';

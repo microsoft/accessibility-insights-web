@@ -2,8 +2,8 @@
 // Licensed under the MIT License.
 import { Messages } from '../../common/messages';
 import { SHORTCUT_CONFIGURE_OPEN } from '../../common/telemetry-events';
-import { ShortcutsPageController } from '../chrome-shortcuts-page-controller';
 import { Interpreter } from '../interpreter';
+import { ShortcutsPageController } from '../shortcuts-page-controller';
 import { TelemetryEventHandler } from '../telemetry/telemetry-event-handler';
 import { BaseActionPayload } from './action-payloads';
 

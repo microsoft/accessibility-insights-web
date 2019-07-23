@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { forOwn } from 'lodash';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
+
 import { ActionCreator } from '../../../../../background/actions/action-creator';
 import { ActionHub } from '../../../../../background/actions/action-hub';
 import {
@@ -19,9 +20,9 @@ import { InspectActions } from '../../../../../background/actions/inspect-action
 import { ScopingActions } from '../../../../../background/actions/scoping-actions';
 import { VisualizationActions } from '../../../../../background/actions/visualization-actions';
 import { VisualizationScanResultActions } from '../../../../../background/actions/visualization-scan-result-actions';
-import { ShortcutsPageController } from '../../../../../background/chrome-shortcuts-page-controller';
 import { DetailsViewController } from '../../../../../background/details-view-controller';
 import { ContentScriptInjector } from '../../../../../background/injector/content-script-injector';
+import { ShortcutsPageController } from '../../../../../background/shortcuts-page-controller';
 import { TargetTabController } from '../../../../../background/target-tab-controller';
 import { TelemetryEventHandler } from '../../../../../background/telemetry/telemetry-event-handler';
 import { VisualizationConfigurationFactory } from '../../../../../common/configs/visualization-configuration-factory';
