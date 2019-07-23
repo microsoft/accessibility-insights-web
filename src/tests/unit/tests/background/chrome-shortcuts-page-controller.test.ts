@@ -3,7 +3,7 @@
 import { Mock, Times } from 'typemoq';
 
 import { BrowserAdapter } from '../../../../background/browser-adapters/browser-adapter';
-import { ChromeShortcutsPageController } from '../../../../background/chrome-feature-controller';
+import { ChromeShortcutsPageController } from '../../../../background/chrome-shortcuts-page-controller';
 
 describe('ChromeShortcutsPageController', () => {
     it('opens the shortcuts tab', () => {

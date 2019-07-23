@@ -19,7 +19,7 @@ import { InspectActions } from '../../../../../background/actions/inspect-action
 import { ScopingActions } from '../../../../../background/actions/scoping-actions';
 import { VisualizationActions } from '../../../../../background/actions/visualization-actions';
 import { VisualizationScanResultActions } from '../../../../../background/actions/visualization-scan-result-actions';
-import { ChromeShortcutsPageController } from '../../../../../background/chrome-feature-controller';
+import { ChromeShortcutsPageController } from '../../../../../background/chrome-shortcuts-page-controller';
 import { DetailsViewController } from '../../../../../background/details-view-controller';
 import { ContentScriptInjector } from '../../../../../background/injector/content-script-injector';
 import { TargetTabController } from '../../../../../background/target-tab-controller';
@@ -29,7 +29,6 @@ import { Action } from '../../../../../common/flux/action';
 import { PayloadCallback } from '../../../../../common/message';
 import { Messages } from '../../../../../common/messages';
 import { NotificationCreator } from '../../../../../common/notification-creator';
-import * as TelemetryEvents from '../../../../../common/telemetry-events';
 import {
     BaseTelemetryData,
     DetailsViewOpenTelemetryData,
@@ -38,6 +37,7 @@ import {
     ToggleTelemetryData,
     TriggeredBy,
 } from '../../../../../common/telemetry-events';
+import * as TelemetryEvents from '../../../../../common/telemetry-events';
 import { DetailsViewPivotType } from '../../../../../common/types/details-view-pivot-type';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
 import { ScanCompletedPayload } from '../../../../../injected/analyzers/analyzer';

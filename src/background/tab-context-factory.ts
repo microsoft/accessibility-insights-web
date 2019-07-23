@@ -17,7 +17,7 @@ import { ScopingPanelActionCreator } from './actions/scoping-panel-action-creato
 import { TabActionCreator } from './actions/tab-action-creator';
 import { AssessmentScanPolicyRunner } from './assessment-scan-policy-runner';
 import { BrowserAdapter } from './browser-adapters/browser-adapter';
-import { ChromeShortcutsPageController } from './chrome-feature-controller';
+import { ChromeShortcutsPageController } from './chrome-shortcuts-page-controller';
 import { DetailsViewController } from './details-view-controller';
 import { InjectorController } from './injector-controller';
 import { ContentScriptInjector } from './injector/content-script-injector';
@@ -51,13 +51,13 @@ export class TabContextFactory {
         const actionsHub = new ActionHub();
         const storeHub = new TabContextStoreHub(actionsHub, this.visualizationConfigurationFactory);
         const notificationCreator = new NotificationCreator(browserAdapter, this.visualizationConfigurationFactory);
-        const chromeFeatureController = new ChromeShortcutsPageController(browserAdapter);
+        const chromeShortcutsPageController = new ChromeShortcutsPageController(browserAdapter);
 
         const actionCreator = new ActionCreator(
             actionsHub,
             interpreter.registerTypeToPayloadCallback,
             detailsViewController,
-            chromeFeatureController,
+            chromeShortcutsPageController,
             this.telemetryEventHandler,
             notificationCreator,
             this.visualizationConfigurationFactory,

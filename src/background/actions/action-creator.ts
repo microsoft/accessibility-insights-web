@@ -11,7 +11,7 @@ import { ScanCompletedPayload } from '../../injected/analyzers/analyzer';
 import { DictionaryNumberTo } from '../../types/common-types';
 import { VisualizationActions } from '../actions/visualization-actions';
 import { VisualizationScanResultActions } from '../actions/visualization-scan-result-actions';
-import { ChromeShortcutsPageController } from '../chrome-feature-controller';
+import { ChromeShortcutsPageController } from '../chrome-shortcuts-page-controller';
 import { DetailsViewController } from '../details-view-controller';
 import { TargetTabController } from '../target-tab-controller';
 import { TelemetryEventHandler } from '../telemetry/telemetry-event-handler';
@@ -35,7 +35,7 @@ export class ActionCreator {
     private previewFeaturesActions: PreviewFeaturesActions;
     private registerTypeToPayloadCallback: RegisterTypeToPayloadCallback;
     private detailsViewController: DetailsViewController;
-    private chromeFeatureController: ChromeShortcutsPageController;
+    private chromeShortcutsPageController: ChromeShortcutsPageController;
     private telemetryEventHandler: TelemetryEventHandler;
     private notificationCreator: NotificationCreator;
     private visualizationConfigurationFactory: VisualizationConfigurationFactory;
@@ -65,7 +65,7 @@ export class ActionCreator {
         this.inspectActions = actionHub.inspectActions;
         this.registerTypeToPayloadCallback = registerTypeToPayloadCallback;
         this.detailsViewController = detailsViewController;
-        this.chromeFeatureController = chromeFeatureController;
+        this.chromeShortcutsPageController = chromeFeatureController;
         this.telemetryEventHandler = telemetryEventHandler;
         this.notificationCreator = notificationCreator;
         this.visualizationConfigurationFactory = visualizationConfigurationFactory;
@@ -191,7 +191,7 @@ export class ActionCreator {
     };
 
     private onOpenConfigureCommandTab = (payload: BaseActionPayload): void => {
-        this.chromeFeatureController.openShortcutsTab();
+        this.chromeShortcutsPageController.openShortcutsTab();
         this.telemetryEventHandler.publishTelemetry(TelemetryEvents.SHORTCUT_CONFIGURE_OPEN, payload);
     };
 
