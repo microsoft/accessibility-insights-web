@@ -11,7 +11,7 @@ import { ScanCompletedPayload } from '../../injected/analyzers/analyzer';
 import { DictionaryNumberTo } from '../../types/common-types';
 import { VisualizationActions } from '../actions/visualization-actions';
 import { VisualizationScanResultActions } from '../actions/visualization-scan-result-actions';
-import { ChromeFeatureController } from '../chrome-feature-controller';
+import { ChromeShortcutsPageController } from '../chrome-feature-controller';
 import { DetailsViewController } from '../details-view-controller';
 import { TargetTabController } from '../target-tab-controller';
 import { TelemetryEventHandler } from '../telemetry/telemetry-event-handler';
@@ -35,7 +35,7 @@ export class ActionCreator {
     private previewFeaturesActions: PreviewFeaturesActions;
     private registerTypeToPayloadCallback: RegisterTypeToPayloadCallback;
     private detailsViewController: DetailsViewController;
-    private chromeFeatureController: ChromeFeatureController;
+    private chromeFeatureController: ChromeShortcutsPageController;
     private telemetryEventHandler: TelemetryEventHandler;
     private notificationCreator: NotificationCreator;
     private visualizationConfigurationFactory: VisualizationConfigurationFactory;
@@ -53,7 +53,7 @@ export class ActionCreator {
         actionHub: ActionHub,
         registerTypeToPayloadCallback: RegisterTypeToPayloadCallback,
         detailsViewController: DetailsViewController,
-        chromeFeatureController: ChromeFeatureController,
+        chromeFeatureController: ChromeShortcutsPageController,
         telemetryEventHandler: TelemetryEventHandler,
         notificationCreator: NotificationCreator,
         visualizationConfigurationFactory: VisualizationConfigurationFactory,
@@ -191,7 +191,7 @@ export class ActionCreator {
     };
 
     private onOpenConfigureCommandTab = (payload: BaseActionPayload): void => {
-        this.chromeFeatureController.openCommandConfigureTab();
+        this.chromeFeatureController.openShortcutsTab();
         this.telemetryEventHandler.publishTelemetry(TelemetryEvents.SHORTCUT_CONFIGURE_OPEN, payload);
     };
 
