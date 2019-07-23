@@ -20,6 +20,15 @@ exports[`PopupView render actual content render toggles view: launch pad 1`] = `
 </Fragment>"
 `;
 
+exports[`PopupView render actual content render toggles view: launch pad: subtitle 1`] = `
+"<Fragment>
+  <NewTabLink href=\\"https://go.microsoft.com/fwlink/?linkid=2082374\\" aria-label=\\"demo video\\" title=\\"watch the 3 minute video introduction\\" onClick={[Function: onClickTutorialLink]}>
+    Watch 3-minute video introduction
+  </NewTabLink>
+   
+</Fragment>"
+`;
+
 exports[`PopupView render actual content renderAdHocToolsPanel 1`] = `
 "<Fragment>
   <div className=\\"ms-Fabric ad-hoc-tools-panel\\">
