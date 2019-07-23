@@ -3,7 +3,6 @@
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 import { AssessmentsProviderImpl } from '../../../../assessments/assessments-provider';
-import { BrowserAdapter } from '../../../../common/browser-adapters/browser-adapter';
 import { DetailsViewController } from '../../../../background/details-view-controller';
 import { Interpreter } from '../../../../background/interpreter';
 import { AssessmentStore } from '../../../../background/stores/assessment-store';
@@ -17,6 +16,7 @@ import { TabContext } from '../../../../background/tab-context';
 import { TabContextFactory } from '../../../../background/tab-context-factory';
 import { TargetTabController } from '../../../../background/target-tab-controller';
 import { TelemetryEventHandler } from '../../../../background/telemetry/telemetry-event-handler';
+import { BrowserAdapter } from '../../../../common/browser-adapters/browser-adapter';
 import { VisualizationConfiguration } from '../../../../common/configs/visualization-configuration';
 import { VisualizationConfigurationFactory } from '../../../../common/configs/visualization-configuration-factory';
 import { Messages } from '../../../../common/messages';

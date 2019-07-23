@@ -6,8 +6,8 @@ import { DefaultButton } from 'office-ui-fabric-react/lib/Button';
 import { Dialog, DialogType } from 'office-ui-fabric-react/lib/Dialog';
 import * as React from 'react';
 
-import { BrowserAdapter } from '../../common/browser-adapters/browser-adapter';
 import { BaseStore } from '../../common/base-store';
+import { BrowserAdapter } from '../../common/browser-adapters/browser-adapter';
 import { CopyIssueDetailsButton, CopyIssueDetailsButtonDeps } from '../../common/components/copy-issue-details-button';
 import { GuidanceLinks } from '../../common/components/guidance-links';
 import { IssueFilingButton, IssueFilingButtonDeps } from '../../common/components/issue-filing-button';

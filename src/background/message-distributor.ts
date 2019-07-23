@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { BrowserAdapter } from '../common/browser-adapters/browser-adapter';
 import { createDefaultLogger } from '../common/logging/default-logger';
 import { Logger } from '../common/logging/logger';
 import { InterpreterMessage } from '../common/message';
 import { Tab } from './../common/itab.d';
-import { BrowserAdapter } from '../common/browser-adapters/browser-adapter';
 import { GlobalContext } from './global-context';
 import { TabToContextMap } from './tab-context';
 

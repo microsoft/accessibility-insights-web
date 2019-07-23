@@ -3,8 +3,8 @@
 import { isFunction } from 'lodash';
 import { IMock, It, Mock, Times } from 'typemoq';
 
-import { BrowserAdapter } from '../../../../common/browser-adapters/browser-adapter';
 import { ContentScriptInjector } from '../../../../background/injector/content-script-injector';
+import { BrowserAdapter } from '../../../../common/browser-adapters/browser-adapter';
 import { PromiseFactory } from '../../../../common/promises/promise-factory';
 
 describe('ContentScriptInjectorTest', () => {

@@ -2,8 +2,6 @@
 // Licensed under the MIT License.
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
-import { BrowserAdapter } from '../../../../common/browser-adapters/browser-adapter';
-import { CommandsAdapter } from '../../../../common/browser-adapters/commands-adapter';
 import { ChromeCommandHandler } from '../../../../background/chrome-command-handler';
 import { Interpreter } from '../../../../background/interpreter';
 import { UserConfigurationStore } from '../../../../background/stores/global/user-configuration-store';
@@ -11,6 +9,8 @@ import { TabContextStoreHub } from '../../../../background/stores/tab-context-st
 import { VisualizationStore } from '../../../../background/stores/visualization-store';
 import { TabContext, TabToContextMap } from '../../../../background/tab-context';
 import { BaseStore } from '../../../../common/base-store';
+import { BrowserAdapter } from '../../../../common/browser-adapters/browser-adapter';
+import { CommandsAdapter } from '../../../../common/browser-adapters/commands-adapter';
 import { VisualizationConfigurationFactory } from '../../../../common/configs/visualization-configuration-factory';
 import { DisplayableStrings } from '../../../../common/constants/displayable-strings';
 import { Message } from '../../../../common/message';

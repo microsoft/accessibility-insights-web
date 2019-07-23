@@ -1,5 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { BrowserAdapter } from '../common/browser-adapters/browser-adapter';
+import { CommandsAdapter } from '../common/browser-adapters/commands-adapter';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
 import { DisplayableStrings } from '../common/constants/displayable-strings';
 import { createDefaultLogger } from '../common/logging/default-logger';
@@ -13,8 +15,6 @@ import { VisualizationType } from '../common/types/visualization-type';
 import { UrlValidator } from '../common/url-validator';
 import { DictionaryStringTo } from '../types/common-types';
 import { VisualizationTogglePayload } from './actions/action-payloads';
-import { BrowserAdapter } from '../common/browser-adapters/browser-adapter';
-import { CommandsAdapter } from '../common/browser-adapters/commands-adapter';
 import { UserConfigurationStore } from './stores/global/user-configuration-store';
 import { TabToContextMap } from './tab-context';
 

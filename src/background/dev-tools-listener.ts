@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { BrowserAdapter } from '../common/browser-adapters/browser-adapter';
 import { ConnectionNames } from '../common/constants/connection-names';
 import { Messages } from '../common/messages';
 import { DevToolsOpenMessage } from '../common/types/dev-tools-open-message';
 import { OnDevToolOpenPayload } from './actions/action-payloads';
-import { BrowserAdapter } from '../common/browser-adapters/browser-adapter';
 import { TabToContextMap } from './tab-context';
 
 export interface PortWithTabId extends chrome.runtime.Port {

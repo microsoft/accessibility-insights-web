@@ -2,8 +2,8 @@
 // Licensed under the MIT License.
 import * as _ from 'lodash';
 
-import { BrowserAdapter } from './browser-adapters/browser-adapter';
 import { BaseStore } from './base-store';
+import { BrowserAdapter } from './browser-adapters/browser-adapter';
 import { GenericStoreMessageTypes } from './constants/generic-store-messages-types';
 import { Store } from './flux/store';
 import { StoreType } from './types/store-type';

@@ -2,8 +2,8 @@
 // Licensed under the MIT License.
 import { Mock } from 'typemoq';
 
-import { BrowserAdapter } from '../../../../common/browser-adapters/browser-adapter';
 import { ChromeFeatureController } from '../../../../background/chrome-feature-controller';
+import { BrowserAdapter } from '../../../../common/browser-adapters/browser-adapter';
 
 describe('ChromeFeatureControllerTest', () => {
     test('openCommandConfigureTab', () => {

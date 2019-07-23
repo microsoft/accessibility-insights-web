@@ -4,9 +4,9 @@ import { getRTL } from '@uifabric/utilities';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
-import { BrowserAdapter } from '../common/browser-adapters/browser-adapter';
 import { IssueDetailsTextGenerator } from '../background/issue-details-text-generator';
 import { AxeInfo } from '../common/axe-info';
+import { BrowserAdapter } from '../common/browser-adapters/browser-adapter';
 import { FeatureFlags } from '../common/feature-flags';
 import { HTMLElementUtils } from '../common/html-element-utils';
 import { NavigatorUtils } from '../common/navigator-utils';

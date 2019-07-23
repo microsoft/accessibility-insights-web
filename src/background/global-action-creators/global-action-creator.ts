@@ -1,11 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { CommandsAdapter } from '../../common/browser-adapters/commands-adapter';
 import { Messages } from '../../common/messages';
 import { PayloadWithEventName, SetLaunchPanelState } from '../actions/action-payloads';
 import { CommandActions, GetCommandsPayload } from '../actions/command-actions';
 import { GlobalActionHub } from '../actions/global-action-hub';
 import { LaunchPanelStateActions } from '../actions/launch-panel-state-action';
-import { CommandsAdapter } from '../../common/browser-adapters/commands-adapter';
 import { Interpreter } from '../interpreter';
 import { TelemetryEventHandler } from '../telemetry/telemetry-event-handler';
 

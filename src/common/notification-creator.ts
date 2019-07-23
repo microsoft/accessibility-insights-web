@@ -2,9 +2,9 @@
 // Licensed under the MIT License.
 import * as _ from 'lodash';
 
-import { BrowserAdapter } from './browser-adapters/browser-adapter';
 import { VisualizationType } from '../common/types/visualization-type';
 import { DictionaryStringTo } from '../types/common-types';
+import { BrowserAdapter } from './browser-adapters/browser-adapter';
 import { VisualizationConfigurationFactory } from './configs/visualization-configuration-factory';
 
 export class NotificationCreator {

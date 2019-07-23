@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { StorageAdapter } from '../../../common/browser-adapters/storage-adapter';
 import { StoreNames } from '../../../common/stores/store-names';
 import { LaunchPanelStoreData } from '../../../common/types/store-data/launch-panel-store-data';
 import { LaunchPanelType } from '../../../popup/components/popup-view';
-import { StorageAdapter } from '../../../common/browser-adapters/storage-adapter';
 import { LocalStorageDataKeys } from '../../local-storage-data-keys';
 import { LocalStorageData } from '../../storage-data';
 import { BaseStoreImpl } from '../base-store-impl';

@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { DictionaryStringTo } from '../types/common-types';
 import { BrowserAdapter } from '../common/browser-adapters/browser-adapter';
+import { DictionaryStringTo } from '../types/common-types';
 
 export class DetailsViewController {
     private _tabIdToDetailsViewMap: DictionaryStringTo<number> = {};

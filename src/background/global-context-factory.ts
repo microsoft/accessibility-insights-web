@@ -1,5 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { BrowserAdapter } from '../common/browser-adapters/browser-adapter';
+import { CommandsAdapter } from '../common/browser-adapters/commands-adapter';
+import { StorageAdapter } from '../common/browser-adapters/storage-adapter';
 import { EnvironmentInfo } from '../common/environment-info-provider';
 import { IndexedDBAPI } from '../common/indexedDB/indexedDB';
 import { StateDispatcher } from '../common/state-dispatcher';
@@ -9,9 +12,6 @@ import { IssueFilingServiceProvider } from '../issue-filing/issue-filing-service
 import { AssessmentsProvider } from './../assessments/types/assessments-provider';
 import { AssessmentActionCreator } from './actions/assessment-action-creator';
 import { GlobalActionHub } from './actions/global-action-hub';
-import { BrowserAdapter } from '../common/browser-adapters/browser-adapter';
-import { CommandsAdapter } from '../common/browser-adapters/commands-adapter';
-import { StorageAdapter } from '../common/browser-adapters/storage-adapter';
 import { CompletedTestStepTelemetryCreator } from './completed-test-step-telemetry-creator';
 import { FeatureFlagsController } from './feature-flags-controller';
 import { PersistedData } from './get-persisted-data';
