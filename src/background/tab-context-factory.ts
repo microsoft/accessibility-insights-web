@@ -14,6 +14,7 @@ import { DevToolsActionCreator } from './actions/dev-tools-action-creator';
 import { InspectActionCreator } from './actions/inspect-action-creator';
 import { PathSnippetActionCreator } from './actions/path-snippet-action-creator';
 import { ScopingPanelActionCreator } from './actions/scoping-panel-action-creator';
+import { ShortcutsPageActionCreator } from './actions/shortcuts-page-action-creator';
 import { TabActionCreator } from './actions/tab-action-creator';
 import { AssessmentScanPolicyRunner } from './assessment-scan-policy-runner';
 import { BrowserAdapter } from './browser-adapters/browser-adapter';
@@ -51,13 +52,14 @@ export class TabContextFactory {
         const actionsHub = new ActionHub();
         const storeHub = new TabContextStoreHub(actionsHub, this.visualizationConfigurationFactory);
         const notificationCreator = new NotificationCreator(browserAdapter, this.visualizationConfigurationFactory);
-        const chromeShortcutsPageController = new ShortcutsPageController(browserAdapter);
+        const shortcutsPageController = new ShortcutsPageController(browserAdapter);
+
+        const shortcutsPageActionCreator = new ShortcutsPageActionCreator(interpreter, shortcutsPageController, this.telemetryEventHandler);
 
         const actionCreator = new ActionCreator(
             actionsHub,
             interpreter.registerTypeToPayloadCallback,
             detailsViewController,
-            chromeShortcutsPageController,
             this.telemetryEventHandler,
             notificationCreator,
             this.visualizationConfigurationFactory,
@@ -129,6 +131,7 @@ export class TabContextFactory {
         );
         simpleSequentialScanner.beginListeningToStores();
 
+        shortcutsPageActionCreator.registerCallbacks();
         actionCreator.registerCallbacks();
         detailsViewActionCreator.registerCallback();
         devToolsActionCreator.registerCallbacks();
