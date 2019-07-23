@@ -1,13 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as React from 'react';
+
 import { TextLegibilityTestStep } from '../../../assessments/text-legibility/test-steps/test-step';
 import { Requirement } from '../../../assessments/types/requirement';
 import { NewTabLink } from '../../../common/components/new-tab-link';
 import { link } from '../../../content/link';
 import { ManualTestRecordYourResults } from '../../common/manual-test-record-your-results';
 import * as Markup from '../../markup';
-import { Emphasis } from '../../markup';
 
 const textSpacingDescription: JSX.Element = (
     <span>Users must be able to adjust text spacing with no loss of content or functionality.</span>
