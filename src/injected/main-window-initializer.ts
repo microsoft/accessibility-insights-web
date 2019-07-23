@@ -78,10 +78,7 @@ export class MainWindowInitializer extends WindowInitializer {
             this.browserAdapter,
         );
         this.scopingStoreProxy = new StoreProxy<ScopingStoreData>(StoreNames[StoreNames.ScopingPanelStateStore], this.browserAdapter);
-        this.featureFlagStoreProxy = new StoreProxy<FeatureFlagStoreData>(
-            StoreNames[StoreNames.FeatureFlagStore],
-            this.browserAdapter,
-        );
+        this.featureFlagStoreProxy = new StoreProxy<FeatureFlagStoreData>(StoreNames[StoreNames.FeatureFlagStore], this.browserAdapter);
         this.userConfigStoreProxy = new StoreProxy<UserConfigurationStoreData>(
             StoreNames[StoreNames.UserConfigurationStore],
             this.browserAdapter,
@@ -94,10 +91,7 @@ export class MainWindowInitializer extends WindowInitializer {
         this.tabStoreProxy = new StoreProxy<TabStoreData>(StoreNames[StoreNames.TabStore], this.browserAdapter);
         this.devToolStoreProxy = new StoreProxy<DevToolState>(StoreNames[StoreNames.DevToolsStore], this.browserAdapter);
         this.inspectStoreProxy = new StoreProxy<InspectStoreData>(StoreNames[StoreNames.InspectStore], this.browserAdapter);
-        this.pathSnippetStoreProxy = new StoreProxy<PathSnippetStoreData>(
-            StoreNames[StoreNames.PathSnippetStore],
-            this.browserAdapter,
-        );
+        this.pathSnippetStoreProxy = new StoreProxy<PathSnippetStoreData>(StoreNames[StoreNames.PathSnippetStore], this.browserAdapter);
 
         const actionMessageDispatcher = new ActionMessageDispatcher(this.browserAdapter.sendMessageToFrames, null);
 
