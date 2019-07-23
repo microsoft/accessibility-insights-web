@@ -26,7 +26,7 @@ describe('InspectActionCreatorTest', () => {
         inspectActionsMock = Mock.ofType(InspectActions, MockBehavior.Strict);
         telemetryEventHandlerMock = Mock.ofType(TelemetryEventHandler, MockBehavior.Strict);
         browserAdapterMock = Mock.ofType<BrowserAdapter>(undefined, MockBehavior.Strict);
-        registerTypeToPayloadCallbackMock = Mock.ofInstance((_type, _callback) => {});
+        registerTypeToPayloadCallbackMock = Mock.ofInstance((payloadType, callback) => {});
 
         testObject = new InspectActionCreator(
             inspectActionsMock.object,
@@ -79,9 +79,9 @@ describe('InspectActionCreatorTest', () => {
         inspectActionsMock.setup(actions => actions[actionName]).returns(() => actionMock.object);
     }
 
-    function setupRegisterTypeToPayloadCallbackMock(message: string, payload: any, _tabId: number): void {
+    function setupRegisterTypeToPayloadCallbackMock(message: string, payload: any, listeningTabId: number): void {
         registerTypeToPayloadCallbackMock
             .setup(registrar => registrar(message, It.is(_.isFunction)))
-            .callback((_message, listener) => listener(payload, _tabId));
+            .callback((passedMessage, listener) => listener(payload, listeningTabId));
     }
 });

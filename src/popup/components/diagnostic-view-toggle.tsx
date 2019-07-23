@@ -40,8 +40,11 @@ export class DiagnosticViewToggle extends React.Component<DiagnosticViewTogglePr
     private configuration: VisualizationConfiguration;
     private toggle: React.RefObject<IToggle> = React.createRef<IToggle>();
     private dom: NodeSelector & Node;
-    private _isMounted: boolean;
     private userEventListenerAdded: boolean;
+
+    // Must be consistent with internal react naming for same property to work
+    // tslint:disable-next-line: variable-name
+    private _isMounted: boolean;
 
     constructor(props: DiagnosticViewToggleProps) {
         super(props);

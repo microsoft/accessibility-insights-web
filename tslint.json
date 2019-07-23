@@ -1,24 +1,40 @@
 {
     "rules": {
-        "arrow-parens": [true, "ban-single-arg-parens"],
+        "arrow-parens": [
+            true,
+            "ban-single-arg-parens"
+        ],
         "await-promise": true,
         "class-name": true,
         "comment-format": [
             true,
             "check-space",
             {
-                "ignore-words": ["TODO", "HACK", "NOTE"]
+                "ignore-words": [
+                    "TODO",
+                    "HACK",
+                    "NOTE"
+                ]
             }
         ],
         "curly": true,
         "eofline": true,
         "forin": true,
         "function-constructor": true,
-        "indent": [true, "spaces"],
-        "interface-name": [true, "never-prefix"],
+        "indent": [
+            true,
+            "spaces"
+        ],
+        "interface-name": [
+            true,
+            "never-prefix"
+        ],
         "jsdoc-format": true,
         "label-position": true,
-        "max-classes-per-file": [true, 2],
+        "max-classes-per-file": [
+            true,
+            2
+        ],
         "member-access": true,
         "new-parens": true,
         "no-angle-bracket-type-assertion": true,
@@ -28,7 +44,14 @@
         "no-bitwise": true,
         "no-conditional-assignment": true,
         "no-consecutive-blank-lines": false,
-        "no-console": [true, "debug", "info", "time", "timeEnd", "trace"],
+        "no-console": [
+            true,
+            "debug",
+            "info",
+            "time",
+            "timeEnd",
+            "trace"
+        ],
         "no-construct": true,
         "no-constructor-vars": false,
         "no-debugger": true,
@@ -38,13 +61,19 @@
         "no-document-domain": true,
         "no-duplicate-parameter-names": true,
         "no-duplicate-variable": true,
-        "no-empty": [true, "allow-empty-functions"],
+        "no-empty": [
+            true,
+            "allow-empty-functions"
+        ],
         "no-eval": true,
         "no-exec-script": true,
         "no-floating-promises": true,
         "no-inferrable-types": false,
         "no-internal-module": true,
-        "no-invalid-this": [true, "check-function-in-method"],
+        "no-invalid-this": [
+            true,
+            "check-function-in-method"
+        ],
         "no-null-keyword": false,
         "no-octal-literal": true,
         "no-require-imports": true,
@@ -62,8 +91,15 @@
         "no-useless-files": true,
         "no-var-keyword": true,
         "no-var-requires": true,
-        "one-line": [true, "check-open-brace", "check-whitespace"],
-        "one-variable-per-declaration": [true, "ignore-for-loop"],
+        "one-line": [
+            true,
+            "check-open-brace",
+            "check-whitespace"
+        ],
+        "one-variable-per-declaration": [
+            true,
+            "ignore-for-loop"
+        ],
         "ordered-imports": true,
         "prefer-const": [
             true,
@@ -71,7 +107,12 @@
                 "destructuring": "all"
             }
         ],
-        "quotemark": [true, "single", "avoid-escape", "jsx-double"],
+        "quotemark": [
+            true,
+            "single",
+            "avoid-escape",
+            "jsx-double"
+        ],
         "radix": true,
         "react-a11y-aria-unsupported-elements": true,
         "react-a11y-img-has-alt": true,
@@ -81,7 +122,11 @@
         "react-a11y-role": true,
         "react-a11y-role-has-required-aria-props": true,
         "react-a11y-role-supports-aria-props": true,
-        "semicolon": [true, "always", "ignore-bound-class-methods"],
+        "semicolon": [
+            true,
+            "always",
+            "ignore-bound-class-methods"
+        ],
         "switch-default": true,
         "trailing-comma": [
             true,
@@ -90,8 +135,16 @@
                 "singleline": "never"
             }
         ],
-        "triple-equals": [true, "allow-null-check", "allow-undefined-check"],
-        "typedef": [true, "call-signature", "property-declaration"],
+        "triple-equals": [
+            true,
+            "allow-null-check",
+            "allow-undefined-check"
+        ],
+        "typedef": [
+            true,
+            "call-signature",
+            "property-declaration"
+        ],
         "typedef-whitespace": [
             true,
             {
@@ -110,16 +163,29 @@
             }
         ],
         "use-isnan": true,
-        "use-strict": [false, "check-module", "check-function"],
+        "use-strict": [
+            false,
+            "check-module",
+            "check-function"
+        ],
         "variable-name": [
             true,
             "ban-keywords",
             "check-format",
-            "allow-leading-underscore",
             "allow-trailing-underscore",
             "allow-pascal-case"
         ],
-        "whitespace": [true, "check-branch", "check-decl", "check-operator", "check-separator", "check-type", "check-type-operator"]
+        "whitespace": [
+            true,
+            "check-branch",
+            "check-decl",
+            "check-operator",
+            "check-separator",
+            "check-type",
+            "check-type-operator"
+        ]
     },
-    "rulesDirectory": ["tslint-microsoft-contrib"]
+    "rulesDirectory": [
+        "tslint-microsoft-contrib"
+    ]
 }
