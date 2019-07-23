@@ -1,11 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { ClientChromeAdapter } from '../../common/client-browser-adapter';
 import { BrowserAdapter, NotificationOptions } from './browser-adapter';
 import { CommandsAdapter } from './commands-adapter';
 import { StorageAdapter } from './storage-adapter';
 
-export class ChromeAdapter extends ClientChromeAdapter implements BrowserAdapter, StorageAdapter, CommandsAdapter {
+export class ChromeAdapter implements BrowserAdapter, StorageAdapter, CommandsAdapter {
     public openManageExtensionPage(): void {
         chrome.tabs.create({
             url: `chrome://extensions/?id=${chrome.runtime.id}`,
@@ -187,5 +186,37 @@ export class ChromeAdapter extends ClientChromeAdapter implements BrowserAdapter
 
     public getCommands(callback: (commands: chrome.commands.Command[]) => void): void {
         chrome.commands.getAll(callback);
+    }
+
+    public addListenerOnConnect(callback: (port: chrome.runtime.Port) => void): void {
+        chrome.runtime.onConnect.addListener(callback);
+    }
+
+    public addListenerOnMessage(
+        callback: (message: any, sender: chrome.runtime.MessageSender, sendResponse: (response: any) => void) => void,
+    ): void {
+        chrome.runtime.onMessage.addListener(callback);
+    }
+
+    public removeListenerOnMessage(
+        callback: (message: any, sender: chrome.runtime.MessageSender, sendResponse: (response: any) => void) => void,
+    ): void {
+        chrome.runtime.onMessage.removeListener(callback);
+    }
+
+    public connect(connectionInfo?: chrome.runtime.ConnectInfo): chrome.runtime.Port {
+        return chrome.runtime.connect(chrome.runtime.id, connectionInfo);
+    }
+
+    public getManifest(): chrome.runtime.Manifest {
+        return chrome.runtime.getManifest();
+    }
+
+    public get extensionVersion(): string {
+        return this.getManifest().version;
+    }
+
+    public getUrl(urlPart: string): string {
+        return chrome.extension.getURL(urlPart);
     }
 }

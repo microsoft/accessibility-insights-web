@@ -13,15 +13,15 @@ export interface PortWithTabId extends chrome.runtime.Port {
 
 export class DevToolsListener {
     private _tabIdToContextMap: TabToContextMap;
-    private _chromeAdapter: BrowserAdapter;
+    private _browserAdapter: BrowserAdapter;
 
-    constructor(tabIdToContextMap: TabToContextMap, chromeAdapter: BrowserAdapter) {
+    constructor(tabIdToContextMap: TabToContextMap, browserAdapter: BrowserAdapter) {
         this._tabIdToContextMap = tabIdToContextMap;
-        this._chromeAdapter = chromeAdapter;
+        this._browserAdapter = browserAdapter;
     }
 
     public initialize(): void {
-        this._chromeAdapter.addListenerOnConnect((devToolsConnection: PortWithTabId) => {
+        this._browserAdapter.addListenerOnConnect((devToolsConnection: PortWithTabId) => {
             if (devToolsConnection.name === ConnectionNames.devTools) {
                 const devToolsListener = (message: DevToolsOpenMessage, port: chrome.runtime.Port) => {
                     devToolsConnection.targetPageTabId = message.tabId;

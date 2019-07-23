@@ -22,15 +22,15 @@ describe('SupportLinkHandlerTest', () => {
             id: 101,
         };
 
-        const chromeAdapterMock = Mock.ofType<BrowserAdapter>();
-        chromeAdapterMock
+        const browserAdapterMock = Mock.ofType<BrowserAdapter>();
+        browserAdapterMock
             .setup(ca => ca.createInactiveTab(expectedEmail, It.isAny()))
             .callback((mail, cb) => {
                 cb(tabStub);
             })
             .verifiable();
 
-        chromeAdapterMock.setup(ca => ca.closeTab(tabStub.id)).verifiable();
+        browserAdapterMock.setup(ca => ca.closeTab(tabStub.id)).verifiable();
 
         const windowUtilsMock = Mock.ofType(WindowUtils);
         windowUtilsMock
@@ -40,11 +40,11 @@ describe('SupportLinkHandlerTest', () => {
             })
             .verifiable();
 
-        const testObject = new SupportLinkHandler(chromeAdapterMock.object, windowUtilsMock.object);
+        const testObject = new SupportLinkHandler(browserAdapterMock.object, windowUtilsMock.object);
 
         testObject.sendEmail(testTitle);
 
-        chromeAdapterMock.verifyAll();
+        browserAdapterMock.verifyAll();
         windowUtilsMock.verifyAll();
     });
 });

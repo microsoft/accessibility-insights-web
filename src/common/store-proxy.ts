@@ -2,8 +2,8 @@
 // Licensed under the MIT License.
 import * as _ from 'lodash';
 
+import { BrowserAdapter } from '../background/browser-adapters/browser-adapter';
 import { BaseStore } from './base-store';
-import { ClientChromeAdapter } from './client-browser-adapter';
 import { GenericStoreMessageTypes } from './constants/generic-store-messages-types';
 import { Store } from './flux/store';
 import { StoreType } from './types/store-type';
@@ -13,13 +13,13 @@ export class StoreProxy<TState> extends Store implements BaseStore<TState> {
     private _state: TState;
     private _storeId: string;
     private _tabId: number;
-    private _clientChomeAdapter: ClientChromeAdapter;
+    private _browserAdapter: BrowserAdapter;
 
-    constructor(storeId: string, chromeAdapter: ClientChromeAdapter) {
+    constructor(storeId: string, browserAdapter: BrowserAdapter) {
         super();
         this._storeId = storeId;
-        this._clientChomeAdapter = chromeAdapter;
-        this._clientChomeAdapter.addListenerOnMessage(this.onChange);
+        this._browserAdapter = browserAdapter;
+        this._browserAdapter.addListenerOnMessage(this.onChange);
     }
 
     private onChange = (message: StoreUpdateMessage<TState>): void => {
@@ -64,6 +64,6 @@ export class StoreProxy<TState> extends Store implements BaseStore<TState> {
     }
 
     public dispose(): void {
-        this._clientChomeAdapter.removeListenerOnMessage(this.onChange);
+        this._browserAdapter.removeListenerOnMessage(this.onChange);
     }
 }

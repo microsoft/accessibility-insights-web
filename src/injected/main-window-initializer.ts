@@ -75,31 +75,31 @@ export class MainWindowInitializer extends WindowInitializer {
 
         this.visualizationStoreProxy = new StoreProxy<VisualizationStoreData>(
             StoreNames[StoreNames.VisualizationStore],
-            this.clientChromeAdapter,
+            this.browserAdapter,
         );
-        this.scopingStoreProxy = new StoreProxy<ScopingStoreData>(StoreNames[StoreNames.ScopingPanelStateStore], this.clientChromeAdapter);
+        this.scopingStoreProxy = new StoreProxy<ScopingStoreData>(StoreNames[StoreNames.ScopingPanelStateStore], this.browserAdapter);
         this.featureFlagStoreProxy = new StoreProxy<FeatureFlagStoreData>(
             StoreNames[StoreNames.FeatureFlagStore],
-            this.clientChromeAdapter,
+            this.browserAdapter,
         );
         this.userConfigStoreProxy = new StoreProxy<UserConfigurationStoreData>(
             StoreNames[StoreNames.UserConfigurationStore],
-            this.clientChromeAdapter,
+            this.browserAdapter,
         );
         this.visualizationScanResultStoreProxy = new StoreProxy<VisualizationScanResultData>(
             StoreNames[StoreNames.VisualizationScanResultStore],
-            this.clientChromeAdapter,
+            this.browserAdapter,
         );
-        this.assessmentStoreProxy = new StoreProxy<AssessmentStoreData>(StoreNames[StoreNames.AssessmentStore], this.clientChromeAdapter);
-        this.tabStoreProxy = new StoreProxy<TabStoreData>(StoreNames[StoreNames.TabStore], this.clientChromeAdapter);
-        this.devToolStoreProxy = new StoreProxy<DevToolState>(StoreNames[StoreNames.DevToolsStore], this.clientChromeAdapter);
-        this.inspectStoreProxy = new StoreProxy<InspectStoreData>(StoreNames[StoreNames.InspectStore], this.clientChromeAdapter);
+        this.assessmentStoreProxy = new StoreProxy<AssessmentStoreData>(StoreNames[StoreNames.AssessmentStore], this.browserAdapter);
+        this.tabStoreProxy = new StoreProxy<TabStoreData>(StoreNames[StoreNames.TabStore], this.browserAdapter);
+        this.devToolStoreProxy = new StoreProxy<DevToolState>(StoreNames[StoreNames.DevToolsStore], this.browserAdapter);
+        this.inspectStoreProxy = new StoreProxy<InspectStoreData>(StoreNames[StoreNames.InspectStore], this.browserAdapter);
         this.pathSnippetStoreProxy = new StoreProxy<PathSnippetStoreData>(
             StoreNames[StoreNames.PathSnippetStore],
-            this.clientChromeAdapter,
+            this.browserAdapter,
         );
 
-        const actionMessageDispatcher = new ActionMessageDispatcher(this.clientChromeAdapter.sendMessageToFrames, null);
+        const actionMessageDispatcher = new ActionMessageDispatcher(this.browserAdapter.sendMessageToFrames, null);
 
         const storeActionMessageCreatorFactory = new StoreActionMessageCreatorFactory(actionMessageDispatcher);
 
@@ -121,7 +121,7 @@ export class MainWindowInitializer extends WindowInitializer {
         const browserSpec = new NavigatorUtils(window.navigator).getBrowserSpec();
 
         const environmentInfoProvider = new EnvironmentInfoProvider(
-            this.clientChromeAdapter.extensionVersion,
+            this.browserAdapter.extensionVersion,
             browserSpec,
             AxeInfo.Default.version,
         );
@@ -165,7 +165,7 @@ export class MainWindowInitializer extends WindowInitializer {
         const analyzerProvider = new AnalyzerProvider(
             this.tabStopsListener,
             this.scopingStoreProxy,
-            this.clientChromeAdapter.sendMessageToFrames,
+            this.browserAdapter.sendMessageToFrames,
             new ScannerUtils(scan, generateUID),
             telemetryDataFactory,
             DateProvider.getCurrentDate,

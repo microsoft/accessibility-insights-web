@@ -4,9 +4,9 @@ import { getRTL } from '@uifabric/utilities';
 import * as ReactDOM from 'react-dom';
 import { GlobalMock, GlobalScope, IGlobalMock, IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
+import { BrowserAdapter } from '../../../../background/browser-adapters/browser-adapter';
 import { DevToolStore } from '../../../../background/stores/dev-tools-store';
 import { UserConfigurationStore } from '../../../../background/stores/global/user-configuration-store';
-import { ClientBrowserAdapter } from '../../../../common/client-browser-adapter';
 import { EnvironmentInfoProvider } from '../../../../common/environment-info-provider';
 import { FeatureFlags, getDefaultFeatureFlagValues } from '../../../../common/feature-flags';
 import { HTMLElementUtils } from '../../../../common/html-element-utils';
@@ -35,7 +35,7 @@ describe('DialogRendererTests', () => {
     let frameCommunicator: IMock<FrameCommunicator>;
     let mainWindowContext: MainWindowContext;
     let shadowUtilMock: IMock<ShadowUtils>;
-    let clientBrowserAdapter: IMock<ClientBrowserAdapter>;
+    let browserAdapter: IMock<BrowserAdapter>;
     let shadowContainerMock: IMock<HTMLElement>;
     let domMock: IMock<Document>;
     let shadowRootMock: IMock<Element>;
@@ -55,7 +55,7 @@ describe('DialogRendererTests', () => {
         htmlElementUtilsMock = Mock.ofType(HTMLElementUtils);
         windowUtilsMock = Mock.ofType(WindowUtils);
         shadowUtilMock = Mock.ofType(ShadowUtils);
-        clientBrowserAdapter = Mock.ofType<ClientBrowserAdapter>();
+        browserAdapter = Mock.ofType<BrowserAdapter>();
         detailsDialogHandlerMock = Mock.ofType<DetailsDialogHandler>();
 
         getMainWindoContextMock = GlobalMock.ofInstance(MainWindowContext.getMainWindowContext, 'getMainWindowContext', MainWindowContext);
@@ -550,7 +550,7 @@ describe('DialogRendererTests', () => {
             htmlElementUtilsMock.object,
             windowUtilsMock.object,
             shadowUtilMock.object,
-            clientBrowserAdapter.object,
+            browserAdapter.object,
             getRTLMock.object,
             detailsDialogHandlerMock.object,
         );

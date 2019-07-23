@@ -8,18 +8,18 @@ import { DictionaryStringTo } from '../types/common-types';
 import { VisualizationConfigurationFactory } from './configs/visualization-configuration-factory';
 
 export class NotificationCreator {
-    private chromeAdapter: BrowserAdapter;
+    private browserAdapter: BrowserAdapter;
     private visualizationConfigurationFactory: VisualizationConfigurationFactory;
 
-    constructor(chromeAdapter: BrowserAdapter, visualizationConfigurationFactory: VisualizationConfigurationFactory) {
-        this.chromeAdapter = chromeAdapter;
+    constructor(browserAdapter: BrowserAdapter, visualizationConfigurationFactory: VisualizationConfigurationFactory) {
+        this.browserAdapter = browserAdapter;
         this.visualizationConfigurationFactory = visualizationConfigurationFactory;
     }
 
     public createNotification(message: string): void {
         if (message) {
-            const manifest = this.chromeAdapter.getManifest();
-            this.chromeAdapter.createNotification({
+            const manifest = this.browserAdapter.getManifest();
+            this.browserAdapter.createNotification({
                 message: message,
                 title: manifest.name,
                 iconUrl: '../' + manifest.icons[128],

@@ -91,7 +91,7 @@ import { ReportNameGenerator } from './reports/report-name-generator';
 
 declare const window: AutoChecker & Window;
 
-const chromeAdapter = new ChromeAdapter();
+const browserAdapter = new ChromeAdapter();
 const urlParser = new UrlParser();
 const tabId = urlParser.getIntParam(window.location.href, 'tabId');
 const dom = document;
@@ -100,25 +100,25 @@ const documentElementSetter = new DocumentManipulator(dom);
 initializeFabricIcons();
 
 if (isNaN(tabId) === false) {
-    chromeAdapter.getTab(
+    browserAdapter.getTab(
         tabId,
         (tab: Tab): void => {
             const telemetryFactory = new TelemetryDataFactory();
 
-            const visualizationStore = new StoreProxy<VisualizationStoreData>(StoreNames[StoreNames.VisualizationStore], chromeAdapter);
-            const tabStore = new StoreProxy<TabStoreData>(StoreNames[StoreNames.TabStore], chromeAdapter);
+            const visualizationStore = new StoreProxy<VisualizationStoreData>(StoreNames[StoreNames.VisualizationStore], browserAdapter);
+            const tabStore = new StoreProxy<TabStoreData>(StoreNames[StoreNames.TabStore], browserAdapter);
             const visualizationScanResultStore = new StoreProxy<VisualizationScanResultData>(
                 StoreNames[StoreNames.VisualizationScanResultStore],
-                chromeAdapter,
+                browserAdapter,
             );
-            const detailsViewStore = new StoreProxy<DetailsViewData>(StoreNames[StoreNames.DetailsViewStore], chromeAdapter);
-            const assessmentStore = new StoreProxy<AssessmentStoreData>(StoreNames[StoreNames.AssessmentStore], chromeAdapter);
-            const featureFlagStore = new StoreProxy<DictionaryStringTo<boolean>>(StoreNames[StoreNames.FeatureFlagStore], chromeAdapter);
-            const scopingStore = new StoreProxy<ScopingStoreData>(StoreNames[StoreNames.ScopingPanelStateStore], chromeAdapter);
-            const inspectStore = new StoreProxy<InspectStoreData>(StoreNames[StoreNames.InspectStore], chromeAdapter);
+            const detailsViewStore = new StoreProxy<DetailsViewData>(StoreNames[StoreNames.DetailsViewStore], browserAdapter);
+            const assessmentStore = new StoreProxy<AssessmentStoreData>(StoreNames[StoreNames.AssessmentStore], browserAdapter);
+            const featureFlagStore = new StoreProxy<DictionaryStringTo<boolean>>(StoreNames[StoreNames.FeatureFlagStore], browserAdapter);
+            const scopingStore = new StoreProxy<ScopingStoreData>(StoreNames[StoreNames.ScopingPanelStateStore], browserAdapter);
+            const inspectStore = new StoreProxy<InspectStoreData>(StoreNames[StoreNames.InspectStore], browserAdapter);
             const userConfigStore = new StoreProxy<UserConfigurationStoreData>(
                 StoreNames[StoreNames.UserConfigurationStore],
-                chromeAdapter,
+                browserAdapter,
             );
             const storesHub = new BaseClientStoresHub<DetailsViewContainerState>([
                 detailsViewStore,
@@ -131,7 +131,7 @@ if (isNaN(tabId) === false) {
                 userConfigStore,
             ]);
 
-            const actionMessageDispatcher = new ActionMessageDispatcher(chromeAdapter.sendMessageToFrames, tab.id);
+            const actionMessageDispatcher = new ActionMessageDispatcher(browserAdapter.sendMessageToFrames, tab.id);
 
             const actionMessageCreator = new DetailsViewActionMessageCreator(telemetryFactory, actionMessageDispatcher);
             const scopingActionMessageCreator = new ScopingActionMessageCreator(
@@ -179,12 +179,12 @@ if (isNaN(tabId) === false) {
             const scopingFlagsHandler = new PreviewFeatureFlagsHandler(getAllFeatureFlagDetails());
             const dropdownClickHandler = new DropdownClickHandler(dropdownActionMessageCreator, TelemetryEventSource.DetailsView);
 
-            const extensionVersion = chromeAdapter.getManifest().version;
+            const extensionVersion = browserAdapter.getManifest().version;
             const axeVersion = getVersion();
             const browserSpec = new NavigatorUtils(window.navigator).getBrowserSpec();
 
             const environmentInfoProvider = new EnvironmentInfoProvider(
-                chromeAdapter.extensionVersion,
+                browserAdapter.extensionVersion,
                 browserSpec,
                 AxeInfo.Default.version,
             );
@@ -244,7 +244,7 @@ if (isNaN(tabId) === false) {
             documentTitleUpdater.initialize();
 
             const issueDetailsTextGenerator = new IssueDetailsTextGenerator(
-                chromeAdapter.extensionVersion,
+                browserAdapter.extensionVersion,
                 browserSpec,
                 AxeInfo.Default.version,
             );

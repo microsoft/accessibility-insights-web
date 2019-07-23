@@ -3,7 +3,7 @@
 import { getRTL } from '@uifabric/utilities';
 import * as ReactDOM from 'react-dom';
 
-import { ClientBrowserAdapter } from '../../common/client-browser-adapter';
+import { BrowserAdapter } from '../../background/browser-adapters/browser-adapter';
 import { HTMLElementUtils } from '../../common/html-element-utils';
 import { WindowUtils } from '../../common/window-utils';
 import { DetailsDialogHandler } from '../details-dialog-handler';
@@ -22,7 +22,7 @@ export class IssuesFormatter implements Formatter {
         htmlElementUtils: HTMLElementUtils,
         windowUtils: WindowUtils,
         shadowUtils: ShadowUtils,
-        clientBrowserAdapter: ClientBrowserAdapter,
+        browserAdapter: BrowserAdapter,
         getRTLFunc: typeof getRTL,
         detailsDialogHandler: DetailsDialogHandler,
     ) {
@@ -33,7 +33,7 @@ export class IssuesFormatter implements Formatter {
             htmlElementUtils,
             windowUtils,
             shadowUtils,
-            clientBrowserAdapter,
+            browserAdapter,
             getRTLFunc,
             detailsDialogHandler,
         );

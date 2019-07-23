@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { ClientBrowserAdapter } from '../common/client-browser-adapter';
+import { BrowserAdapter } from '../background/browser-adapters/browser-adapter';
 import { createDefaultLogger } from '../common/logging/default-logger';
 import { Logger } from '../common/logging/logger';
 import { HTMLElementUtils } from './../common/html-element-utils';
@@ -11,7 +11,7 @@ export class ShadowInitializer {
     public static readonly generatedBundleInjectedCssPath: string = 'bundle/injected.css';
 
     constructor(
-        private chromeAdapter: ClientBrowserAdapter,
+        private browserAdapter: BrowserAdapter,
         private htmlElementUtils: HTMLElementUtils,
         private logger: Logger = createDefaultLogger(),
     ) {}
@@ -29,7 +29,7 @@ export class ShadowInitializer {
     private addLinkElement(relativeCssPath: string, container: HTMLElement): void {
         const styleElement = document.createElement('link');
         styleElement.rel = 'stylesheet';
-        styleElement.href = this.chromeAdapter.getUrl(relativeCssPath);
+        styleElement.href = this.browserAdapter.getUrl(relativeCssPath);
         styleElement.type = 'text/css';
         container.appendChild(styleElement);
     }
