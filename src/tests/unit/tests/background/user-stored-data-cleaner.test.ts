@@ -3,8 +3,8 @@
 import { isFunction } from 'lodash';
 import { IMock, It, Mock, Times } from 'typemoq';
 
-import { StorageAdapter } from '../../../../background/browser-adapters/storage-adapter';
 import { UserStoredDataCleaner } from '../../../../background/user-stored-data-cleaner';
+import { StorageAdapter } from '../../../../common/browser-adapters/storage-adapter';
 
 describe('UserStoredDataCleanerTest', () => {
     let storageAdapterMock: IMock<StorageAdapter>;

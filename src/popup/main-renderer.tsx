@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { BrowserAdapter } from '../background/browser-adapters/browser-adapter';
+import { BrowserAdapter } from '../common/browser-adapters/browser-adapter';
 import { Theme, ThemeDeps, ThemeInnerState } from '../common/components/theme';
 import { WithStoreSubscriptionDeps } from '../common/components/with-store-subscription';
 import { DropdownClickHandler } from '../common/dropdown-click-handler';

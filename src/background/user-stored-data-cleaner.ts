@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { each } from 'lodash';
 
-import { StorageAdapter } from './browser-adapters/storage-adapter';
+import { StorageAdapter } from '../common/browser-adapters/storage-adapter';
 
 export class UserStoredDataCleaner {
     constructor(private readonly storageAdapter: StorageAdapter) {}

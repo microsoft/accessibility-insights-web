@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { ClientBrowserAdapter } from '../../common/client-browser-adapter';
+import { BrowserAdapter } from '../../common/browser-adapters/browser-adapter';
 import { ErrorMessageContent } from './error-message-content';
 import { WindowMessage } from './window-message';
 
@@ -14,7 +14,7 @@ export class WindowMessageMarshaller {
     public readonly messageSourceId: string;
     public readonly messageVersion: string;
 
-    constructor(browserAdapter: ClientBrowserAdapter, private readonly generateUIDFunc: () => string) {
+    constructor(browserAdapter: BrowserAdapter, private readonly generateUIDFunc: () => string) {
         const manifest = browserAdapter.getManifest();
         this.messageSourceId = manifest.name;
         this.messageVersion = manifest.version;

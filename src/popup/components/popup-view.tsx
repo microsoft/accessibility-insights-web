@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { Spinner, SpinnerSize } from 'office-ui-fabric-react/lib/Spinner';
 import * as React from 'react';
-import { BrowserAdapter } from '../../background/browser-adapters/browser-adapter';
+import { BrowserAdapter } from '../../common/browser-adapters/browser-adapter';
 import { NewTabLink } from '../../common/components/new-tab-link';
 import { withStoreSubscription, WithStoreSubscriptionDeps } from '../../common/components/with-store-subscription';
 import { DisplayableStrings } from '../../common/constants/displayable-strings';

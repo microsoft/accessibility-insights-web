@@ -7,13 +7,13 @@ import { TabContext, TabToContextMap } from '../../../../background/tab-context'
 import { ConnectionNames } from '../../../../common/constants/connection-names';
 import { Messages } from '../../../../common/messages';
 import { DevToolsOpenMessage } from '../../../../common/types/dev-tools-open-message';
-import { ChromeAdapterMock, PortWithTabTabIdStub } from '../../mock-helpers/chrome-adapter-mock';
+import { DevToolsChromeAdapterMock, PortWithTabTabIdStub } from '../../mock-helpers/dev-tools-chrome-adapter-mock';
 import { PortOnDisconnectMock } from '../../mock-helpers/port-on-disconnect-mock';
 import { PortOnMessageMock } from '../../mock-helpers/port-on-message-mock';
 
 describe('DevToolsListenerTests', () => {
     let _testSubject: DevToolsListener;
-    let _chromeAdapterMock: ChromeAdapterMock;
+    let _devToolsChromeAdapterMock: DevToolsChromeAdapterMock;
     let _tabIdToContextMap: TabToContextMap;
     let _tabId1InterpreterMock: IMock<Interpreter>;
     let _tabId2InterpreterMock: IMock<Interpreter>;
@@ -25,8 +25,8 @@ describe('DevToolsListenerTests', () => {
             1: new TabContext(_tabId1InterpreterMock.object, null),
             2: new TabContext(_tabId2InterpreterMock.object, null),
         };
-        _chromeAdapterMock = new ChromeAdapterMock();
-        _testSubject = new DevToolsListener(_tabIdToContextMap, _chromeAdapterMock.getObject());
+        _devToolsChromeAdapterMock = new DevToolsChromeAdapterMock();
+        _testSubject = new DevToolsListener(_tabIdToContextMap, _devToolsChromeAdapterMock.getObject());
     });
 
     test('initialize - ignore non-dev tools connections', () => {
@@ -38,7 +38,7 @@ describe('DevToolsListenerTests', () => {
             .returns(() => 'some other connection')
             .verifiable();
 
-        _chromeAdapterMock.setUpAddListenerOnConnect(cb => {
+        _devToolsChromeAdapterMock.setUpAddListenerOnConnect(cb => {
             listenerCB = cb;
         });
 
@@ -47,7 +47,7 @@ describe('DevToolsListenerTests', () => {
         listenerCB(portMock.object);
 
         portMock.verifyAll();
-        _chromeAdapterMock.verifyAll();
+        _devToolsChromeAdapterMock.verifyAll();
     });
 
     test('initialize - ignore if tab context does not exist', () => {
@@ -65,7 +65,7 @@ describe('DevToolsListenerTests', () => {
         onMessagePortMock.setupAddListenerMock();
         onDisconnectPortMock.setupAddListenerMock();
 
-        _chromeAdapterMock.setUpAddListenerOnConnect(cb => {
+        _devToolsChromeAdapterMock.setUpAddListenerOnConnect(cb => {
             listenerCB = cb;
         });
 
@@ -73,7 +73,7 @@ describe('DevToolsListenerTests', () => {
 
         listenerCB(portStub);
 
-        _chromeAdapterMock.verifyAll();
+        _devToolsChromeAdapterMock.verifyAll();
         onMessagePortMock.verify();
         onDisconnectPortMock.verify();
     });
@@ -94,7 +94,7 @@ describe('DevToolsListenerTests', () => {
         });
         onDisconnectPortMock.setupAddListenerMock();
 
-        _chromeAdapterMock.setUpAddListenerOnConnect(cb => {
+        _devToolsChromeAdapterMock.setUpAddListenerOnConnect(cb => {
             connectListenerCB = cb;
         });
 
@@ -117,7 +117,7 @@ describe('DevToolsListenerTests', () => {
 
         messageListenerCB({ tabId: 2 }, null);
 
-        _chromeAdapterMock.verifyAll();
+        _devToolsChromeAdapterMock.verifyAll();
         onMessagePortMock.verify();
         onDisconnectPortMock.verify();
 
@@ -144,7 +144,7 @@ describe('DevToolsListenerTests', () => {
             disconnectMessageCB = cb;
         });
 
-        _chromeAdapterMock.setUpAddListenerOnConnect(cb => {
+        _devToolsChromeAdapterMock.setUpAddListenerOnConnect(cb => {
             connectListenerCB = cb;
         });
 
@@ -167,7 +167,7 @@ describe('DevToolsListenerTests', () => {
 
         disconnectMessageCB({ tabId: 2 }, null);
 
-        _chromeAdapterMock.verifyAll();
+        _devToolsChromeAdapterMock.verifyAll();
         onMessagePortMockValidator.verify();
         onDisconnectPortMockValidator.verify();
 

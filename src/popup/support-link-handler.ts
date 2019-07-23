@@ -1,15 +1,15 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { BrowserAdapter } from '../background/browser-adapters/browser-adapter';
+import { BrowserAdapter } from '../common/browser-adapters/browser-adapter';
 import { config } from '../common/configuration';
 import { WindowUtils } from '../common/window-utils';
 
 export class SupportLinkHandler {
-    private _chromeAdapter: BrowserAdapter;
+    private _browserAdapter: BrowserAdapter;
     private _windowUtils: WindowUtils;
 
-    constructor(chromeAdapter: BrowserAdapter, windowUtils: WindowUtils) {
-        this._chromeAdapter = chromeAdapter;
+    constructor(browserAdapter: BrowserAdapter, windowUtils: WindowUtils) {
+        this._browserAdapter = browserAdapter;
         this._windowUtils = windowUtils;
     }
 
@@ -17,9 +17,9 @@ export class SupportLinkHandler {
         const emailHelpAlias = config.getOption('emailHelpAlias');
         const mailToLink = encodeURI(`mailto:${emailHelpAlias}?subject=Question about ${title}`);
 
-        this._chromeAdapter.createInactiveTab(mailToLink, tab => {
+        this._browserAdapter.createInactiveTab(mailToLink, tab => {
             this._windowUtils.setTimeout(() => {
-                this._chromeAdapter.closeTab(tab.id);
+                this._browserAdapter.closeTab(tab.id);
             }, 500);
         });
     }
