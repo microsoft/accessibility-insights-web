@@ -31,7 +31,7 @@ describe('ShortcutsPageActionCreator', () => {
     });
 
     it('handles ConfigureShortcuts', () => {
-        const expectedMessage = Messages.ChromeFeature.configureCommand;
+        const expectedMessage = Messages.Shortcuts.ConfigureShortcuts;
 
         const payload: BaseActionPayload = {};
 

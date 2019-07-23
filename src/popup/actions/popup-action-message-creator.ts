@@ -66,7 +66,7 @@ export class PopupActionMessageCreator {
             telemetry,
         };
         this.dispatcher.dispatchMessage({
-            messageType: Messages.ChromeFeature.configureCommand,
+            messageType: Messages.Shortcuts.ConfigureShortcuts,
             payload,
         });
     }

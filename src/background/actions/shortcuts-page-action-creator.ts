@@ -15,7 +15,7 @@ export class ShortcutsPageActionCreator {
     ) {}
 
     public registerCallbacks(): void {
-        this.interpreter.registerTypeToPayloadCallback(Messages.ChromeFeature.configureCommand, this.onOpenConfigureCommandTab);
+        this.interpreter.registerTypeToPayloadCallback(Messages.Shortcuts.ConfigureShortcuts, this.onOpenConfigureCommandTab);
     }
 
     private onOpenConfigureCommandTab = (payload: BaseActionPayload): void => {
