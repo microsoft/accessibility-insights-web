@@ -2,12 +2,12 @@
 // Licensed under the MIT License.
 import { BrowserAdapter } from './browser-adapters/browser-adapter';
 
-export class ChromeShortcutsPageController {
+export class ShortcutsPageController {
     public static configureCommandTabUrl: string = 'chrome://extensions/shortcuts';
 
     constructor(private readonly browserAdapter: BrowserAdapter) {}
 
     public openShortcutsTab(): void {
-        this.browserAdapter.createTab(ChromeShortcutsPageController.configureCommandTabUrl);
+        this.browserAdapter.createTab(ShortcutsPageController.configureCommandTabUrl);
     }
 }

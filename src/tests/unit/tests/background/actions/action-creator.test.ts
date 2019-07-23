@@ -19,7 +19,7 @@ import { InspectActions } from '../../../../../background/actions/inspect-action
 import { ScopingActions } from '../../../../../background/actions/scoping-actions';
 import { VisualizationActions } from '../../../../../background/actions/visualization-actions';
 import { VisualizationScanResultActions } from '../../../../../background/actions/visualization-scan-result-actions';
-import { ChromeShortcutsPageController } from '../../../../../background/chrome-shortcuts-page-controller';
+import { ShortcutsPageController } from '../../../../../background/chrome-shortcuts-page-controller';
 import { DetailsViewController } from '../../../../../background/details-view-controller';
 import { ContentScriptInjector } from '../../../../../background/injector/content-script-injector';
 import { TargetTabController } from '../../../../../background/target-tab-controller';
@@ -992,7 +992,7 @@ class ActionCreatorValidator {
     private notificationCreatorStrictMock = Mock.ofType<NotificationCreator>(null, MockBehavior.Strict);
     private targetTabControllerStrictMock = Mock.ofType<TargetTabController>(null, MockBehavior.Strict);
     private detailsViewControllerStrictMock: IMock<DetailsViewController> = Mock.ofType<DetailsViewController>(null, MockBehavior.Strict);
-    private chromeFeatureControllerStrictMock: IMock<ChromeShortcutsPageController> = Mock.ofType<ChromeShortcutsPageController>(
+    private chromeFeatureControllerStrictMock: IMock<ShortcutsPageController> = Mock.ofType<ShortcutsPageController>(
         null,
         MockBehavior.Strict,
     );

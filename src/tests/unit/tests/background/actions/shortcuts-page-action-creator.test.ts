@@ -5,7 +5,7 @@ import { IMock, It, Mock, Times } from 'typemoq';
 
 import { BaseActionPayload } from '../../../../../background/actions/action-payloads';
 import { ShortcutsPageActionCreator } from '../../../../../background/actions/shortcuts-page-action-creator';
-import { ChromeShortcutsPageController } from '../../../../../background/chrome-shortcuts-page-controller';
+import { ShortcutsPageController } from '../../../../../background/chrome-shortcuts-page-controller';
 import { Interpreter } from '../../../../../background/interpreter';
 import { TelemetryEventHandler } from '../../../../../background/telemetry/telemetry-event-handler';
 import { Messages } from '../../../../../common/messages';
@@ -14,14 +14,14 @@ import { SHORTCUT_CONFIGURE_OPEN } from '../../../../../common/telemetry-events'
 describe('ShortcutsPageActionCreator', () => {
     let interpreterMock: IMock<Interpreter>;
     let telemetryHandlerMock: IMock<TelemetryEventHandler>;
-    let shortcutsPageControllerMock: IMock<ChromeShortcutsPageController>;
+    let shortcutsPageControllerMock: IMock<ShortcutsPageController>;
 
     let testSubject: ShortcutsPageActionCreator;
 
     beforeEach(() => {
         interpreterMock = Mock.ofType<Interpreter>();
         telemetryHandlerMock = Mock.ofType<TelemetryEventHandler>();
-        shortcutsPageControllerMock = Mock.ofType<ChromeShortcutsPageController>();
+        shortcutsPageControllerMock = Mock.ofType<ShortcutsPageController>();
 
         testSubject = new ShortcutsPageActionCreator(
             interpreterMock.object,
