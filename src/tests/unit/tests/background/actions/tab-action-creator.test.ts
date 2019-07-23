@@ -121,9 +121,9 @@ describe('TestActionCreatorTest', () => {
         tabActionsMock.setup(actions => actions[actionName]).returns(() => actionMock.object);
     }
 
-    function setupRegisterTypeToPayloadCallbackMock(message: string, actionPayload: any, _tabId: number): void {
+    function setupRegisterTypeToPayloadCallbackMock(message: string, actionPayload: any, listeningTabId: number): void {
         registerTypeToPayloadCallbackMock
             .setup(regitrar => regitrar(message, It.is(param => _.isFunction(param))))
-            .callback((_message, handler) => handler(actionPayload, _tabId));
+            .callback((passedMessage, handler) => handler(actionPayload, listeningTabId));
     }
 });

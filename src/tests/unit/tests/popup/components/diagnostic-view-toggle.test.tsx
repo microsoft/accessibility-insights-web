@@ -280,7 +280,7 @@ describe('DiagnosticViewToggleTest', () => {
         const addUserEventListenerFunction = (testObject as any).addUserEventListener;
         addUserEventListenerFunction();
 
-        expect((testObject as any)._userEventListenerAdded).toBe(true);
+        expect((testObject as any).userEventListenerAdded).toBe(true);
         propsBuilder.addUserListenerVerifyAll();
     });
 
