@@ -78,17 +78,17 @@ export class DiagnosticViewToggle extends React.Component<DiagnosticViewTogglePr
     }
 
     private renderToggleOrSpinner(): JSX.Element {
-        const _scanning = this.props.visualizationStoreData.scanning;
+        const scanning = this.props.visualizationStoreData.scanning;
         const id = this.configuration.getIdentifier();
-        const _scanData = this.configuration.getStoreData(this.props.visualizationStoreData.tests);
+        const scanData = this.configuration.getStoreData(this.props.visualizationStoreData.tests);
 
-        if (_scanning === id) {
+        if (scanning === id) {
             return <Spinner size={SpinnerSize.small} componentRef={this.addUserEventListener} />;
         } else {
-            const disabled = _scanning != null;
+            const disabled = scanning != null;
             return (
                 <VisualizationToggle
-                    checked={_scanData.enabled}
+                    checked={scanData.enabled}
                     disabled={disabled}
                     onClick={ev =>
                         this.props.clickHandler.toggleVisualization(this.props.visualizationStoreData, this.props.visualizationType, ev)
