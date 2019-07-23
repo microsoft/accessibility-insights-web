@@ -167,6 +167,6 @@ class TestableTestStatusChoiceGroup extends TestStatusChoiceGroup {
     }
 
     public getComponent(): IChoiceGroup {
-        return this._choiceGroup;
+        return this.choiceGroup;
     }
 }

@@ -5,21 +5,21 @@ import { config } from '../common/configuration';
 import { WindowUtils } from '../common/window-utils';
 
 export class SupportLinkHandler {
-    private _browserAdapter: BrowserAdapter;
-    private _windowUtils: WindowUtils;
+    private browserAdapter: BrowserAdapter;
+    private windowUtils: WindowUtils;
 
     constructor(browserAdapter: BrowserAdapter, windowUtils: WindowUtils) {
-        this._browserAdapter = browserAdapter;
-        this._windowUtils = windowUtils;
+        this.browserAdapter = browserAdapter;
+        this.windowUtils = windowUtils;
     }
 
     public sendEmail(title: string): void {
         const emailHelpAlias = config.getOption('emailHelpAlias');
         const mailToLink = encodeURI(`mailto:${emailHelpAlias}?subject=Question about ${title}`);
 
-        this._browserAdapter.createInactiveTab(mailToLink, tab => {
-            this._windowUtils.setTimeout(() => {
-                this._browserAdapter.closeTab(tab.id);
+        this.browserAdapter.createInactiveTab(mailToLink, tab => {
+            this.windowUtils.setTimeout(() => {
+                this.browserAdapter.closeTab(tab.id);
             }, 500);
         });
     }

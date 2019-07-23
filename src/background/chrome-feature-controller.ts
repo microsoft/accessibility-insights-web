@@ -4,13 +4,13 @@ import { BrowserAdapter } from '../common/browser-adapters/browser-adapter';
 
 export class ChromeFeatureController {
     public static configureCommandTabUrl: string = 'chrome://extensions/configureCommands';
-    private _browserAdapter: BrowserAdapter;
+    private browserAdapter: BrowserAdapter;
 
     constructor(adapter: BrowserAdapter) {
-        this._browserAdapter = adapter;
+        this.browserAdapter = adapter;
     }
 
     public openCommandConfigureTab(): void {
-        this._browserAdapter.createTab(ChromeFeatureController.configureCommandTabUrl);
+        this.browserAdapter.createTab(ChromeFeatureController.configureCommandTabUrl);
     }
 }

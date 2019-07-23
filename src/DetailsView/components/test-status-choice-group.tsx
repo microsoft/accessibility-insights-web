@@ -26,7 +26,7 @@ interface ChoiceGroupState {
 }
 
 export class TestStatusChoiceGroup extends React.Component<TestStatusChoiceGroupProps, ChoiceGroupState> {
-    protected _choiceGroup: IChoiceGroup;
+    protected choiceGroup: IChoiceGroup;
 
     constructor(props) {
         super(props);
@@ -81,7 +81,7 @@ export class TestStatusChoiceGroup extends React.Component<TestStatusChoiceGroup
     }
 
     protected compomentRef = (component: IChoiceGroup): void => {
-        this._choiceGroup = component;
+        this.choiceGroup = component;
     };
 
     protected onChange = (ev: React.FocusEvent<HTMLElement>, option: IChoiceGroupOption): void => {
@@ -91,7 +91,7 @@ export class TestStatusChoiceGroup extends React.Component<TestStatusChoiceGroup
 
     protected onUndoClicked = (): void => {
         this.setState({ selectedKey: ManualTestStatus[ManualTestStatus.UNKNOWN] });
-        this._choiceGroup.focus();
+        this.choiceGroup.focus();
         this.props.onUndoClicked(this.props.test, this.props.step, this.props.selector);
     };
 }

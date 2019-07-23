@@ -7,15 +7,15 @@ import { DevToolState } from '../common/types/store-data/idev-tool-state';
 import { InspectHandler } from './inspect-handler';
 
 export class DevToolInitializer {
-    protected _devToolsChromeAdapter: DevToolsChromeAdapter;
+    protected devToolsChromeAdapter: DevToolsChromeAdapter;
 
     constructor(devToolsChromeAdapter: DevToolsChromeAdapter) {
-        this._devToolsChromeAdapter = devToolsChromeAdapter;
+        this.devToolsChromeAdapter = devToolsChromeAdapter;
     }
 
     public initialize(): void {
-        const devtoolsStore = new StoreProxy<DevToolState>(StoreNames[StoreNames.DevToolsStore], this._devToolsChromeAdapter);
-        const inspectHandler = new InspectHandler(devtoolsStore, this._devToolsChromeAdapter);
+        const devtoolsStore = new StoreProxy<DevToolState>(StoreNames[StoreNames.DevToolsStore], this.devToolsChromeAdapter);
+        const inspectHandler = new InspectHandler(devtoolsStore, this.devToolsChromeAdapter);
 
         inspectHandler.initialize();
     }

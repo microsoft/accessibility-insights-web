@@ -38,17 +38,17 @@ export interface DiagnosticViewToggleState {
 
 export class DiagnosticViewToggle extends React.Component<DiagnosticViewToggleProps, DiagnosticViewToggleState> {
     private configuration: VisualizationConfiguration;
-    private _toggle: React.RefObject<IToggle> = React.createRef<IToggle>();
+    private toggle: React.RefObject<IToggle> = React.createRef<IToggle>();
     private dom: NodeSelector & Node;
-    private _isMounted: boolean;
-    private _userEventListenerAdded: boolean;
+    private isMounted: boolean;
+    private userEventListenerAdded: boolean;
 
     constructor(props: DiagnosticViewToggleProps) {
         super(props);
         this.configuration = this.props.visualizationConfigurationFactory.getConfiguration(this.props.visualizationType);
         this.dom = this.props.dom;
-        this._isMounted = false;
-        this._userEventListenerAdded = false;
+        this.isMounted = false;
+        this.userEventListenerAdded = false;
         this.state = {
             isFocused: false,
         };
@@ -94,7 +94,7 @@ export class DiagnosticViewToggle extends React.Component<DiagnosticViewTogglePr
                         this.props.clickHandler.toggleVisualization(this.props.visualizationStoreData, this.props.visualizationType, ev)
                     }
                     visualizationName={this.configuration.displayableData.title}
-                    componentRef={this._toggle}
+                    componentRef={this.toggle}
                     onFocus={this.onFocusHandler}
                     onBlur={this.onBlurHandler}
                 />
@@ -103,7 +103,7 @@ export class DiagnosticViewToggle extends React.Component<DiagnosticViewTogglePr
     }
 
     public componentDidMount(): void {
-        this._isMounted = true;
+        this.isMounted = true;
         this.setFocus();
     }
 
@@ -112,13 +112,13 @@ export class DiagnosticViewToggle extends React.Component<DiagnosticViewTogglePr
     }
 
     private setFocus(): void {
-        if (this._isMounted && this.state.isFocused && this._toggle.current) {
-            this._toggle.current.focus();
+        if (this.isMounted && this.state.isFocused && this.toggle.current) {
+            this.toggle.current.focus();
         }
     }
 
     private onFocusHandler = (): void => {
-        if (this._isMounted) {
+        if (this.isMounted) {
             this.setState({
                 isFocused: true,
             });
@@ -126,7 +126,7 @@ export class DiagnosticViewToggle extends React.Component<DiagnosticViewTogglePr
     };
 
     private onBlurHandler = (): void => {
-        if (this._isMounted) {
+        if (this.isMounted) {
             this.setState({
                 isFocused: false,
             });
@@ -134,7 +134,7 @@ export class DiagnosticViewToggle extends React.Component<DiagnosticViewTogglePr
     };
 
     private addUserEventListener = (): void => {
-        if (!this._userEventListenerAdded) {
+        if (!this.userEventListenerAdded) {
             this.dom.addEventListener('keydown', (event: any) => {
                 if (event.keyCode === KeyCodeConstants.TAB) {
                     this.onBlurHandler();
@@ -148,7 +148,7 @@ export class DiagnosticViewToggle extends React.Component<DiagnosticViewTogglePr
                 });
             }
 
-            this._userEventListenerAdded = true;
+            this.userEventListenerAdded = true;
         }
     };
 
