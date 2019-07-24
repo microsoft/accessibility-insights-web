@@ -108,7 +108,7 @@ exports[`PopupView renderFailureMsgPanelForFileUrl 1`] = `
         "removeUserData": [Function],
         "sendMessageToAllFramesAndTabs": [Function],
         "sendMessageToFrames": [Function],
-        "sendMessageToFramesAndTab": [Function],
+        "sendMessageToTab": [Function],
         "setUserData": [Function],
         "switchToTab": [Function],
         "tabsQuery": [Function],

@@ -16,7 +16,7 @@ export interface BrowserAdapter {
     closeTab(tabId: number): void;
     switchToTab(tabId: number): void;
     getTab(tabId: number, onResolve: (tab: chrome.tabs.Tab) => void, onReject?: () => void): void;
-    sendMessageToFramesAndTab(tabId: number, message: any): void;
+    sendMessageToTab(tabId: number, message: any): void;
     sendMessageToFrames(message: any): void;
     sendMessageToAllFramesAndTabs(message: any): void;
     injectJs(tabId, file: string, callback: Function): void;
@@ -36,7 +36,6 @@ export interface BrowserAdapter {
         callback: (message: any, sender: chrome.runtime.MessageSender, sendResponse: (response: any) => void) => void,
     ): void;
     connect(connectionInfo?: chrome.runtime.ConnectInfo): chrome.runtime.Port;
-    sendMessageToFrames(message: any): void;
     getManifest(): chrome.runtime.Manifest;
     extensionVersion: string;
 
