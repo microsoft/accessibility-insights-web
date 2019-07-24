@@ -15,10 +15,10 @@ export class ShortcutsPageActionCreator {
     ) {}
 
     public registerCallbacks(): void {
-        this.interpreter.registerTypeToPayloadCallback(Messages.Shortcuts.ConfigureShortcuts, this.onOpenConfigureCommandTab);
+        this.interpreter.registerTypeToPayloadCallback(Messages.Shortcuts.ConfigureShortcuts, this.onConfigureShortcuts);
     }
 
-    private onOpenConfigureCommandTab = (payload: BaseActionPayload): void => {
+    private onConfigureShortcuts = (payload: BaseActionPayload): void => {
         this.shortcutsPageController.openShortcutsTab();
         this.telemetryEventHandler.publishTelemetry(SHORTCUT_CONFIGURE_OPEN, payload);
     };
