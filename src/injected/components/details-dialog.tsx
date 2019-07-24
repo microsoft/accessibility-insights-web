@@ -7,7 +7,7 @@ import { Dialog, DialogType } from 'office-ui-fabric-react/lib/Dialog';
 import * as React from 'react';
 
 import { BaseStore } from '../../common/base-store';
-import { ClientBrowserAdapter } from '../../common/client-browser-adapter';
+import { BrowserAdapter } from '../../common/browser-adapters/browser-adapter';
 import { CopyIssueDetailsButton, CopyIssueDetailsButtonDeps } from '../../common/components/copy-issue-details-button';
 import { GuidanceLinks } from '../../common/components/guidance-links';
 import { IssueFilingButton, IssueFilingButtonDeps } from '../../common/components/issue-filing-button';
@@ -36,7 +36,7 @@ export enum CheckType {
 
 export type DetailsDialogDeps = {
     targetPageActionMessageCreator: TargetPageActionMessageCreator;
-    clientBrowserAdapter: ClientBrowserAdapter;
+    browserAdapter: BrowserAdapter;
 } & CopyIssueDetailsButtonDeps &
     IssueFilingButtonDeps &
     FixInstructionPanelDeps;
@@ -230,8 +230,8 @@ export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDi
             if (url.indexOf('://') >= 0) {
                 return url;
             } else {
-                const { clientBrowserAdapter } = this.props.deps;
-                return clientBrowserAdapter.getUrl(url);
+                const { browserAdapter } = this.props.deps;
+                return browserAdapter.getUrl(url);
             }
         };
 

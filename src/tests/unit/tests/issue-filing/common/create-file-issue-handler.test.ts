@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { Mock, MockBehavior, Times } from 'typemoq';
 
-import { BrowserAdapter } from '../../../../../background/browser-adapters/browser-adapter';
+import { BrowserAdapter } from '../../../../../common/browser-adapters/browser-adapter';
 import { EnvironmentInfo } from '../../../../../common/environment-info-provider';
 import { CreateIssueDetailsTextData } from '../../../../../common/types/create-issue-details-text-data';
 import { IssueFilingServicePropertiesMap } from '../../../../../common/types/store-data/user-configuration-store';

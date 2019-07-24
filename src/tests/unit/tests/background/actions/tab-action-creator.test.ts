@@ -6,8 +6,8 @@ import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { PageVisibilityChangeTabPayload, SwitchToTargetTabPayload } from '../../../../../background/actions/action-payloads';
 import { TabActionCreator } from '../../../../../background/actions/tab-action-creator';
 import { TabActions } from '../../../../../background/actions/tab-actions';
-import { BrowserAdapter } from '../../../../../background/browser-adapters/browser-adapter';
 import { TelemetryEventHandler } from '../../../../../background/telemetry/telemetry-event-handler';
+import { BrowserAdapter } from '../../../../../common/browser-adapters/browser-adapter';
 import { Action } from '../../../../../common/flux/action';
 import { Tab } from '../../../../../common/itab';
 import { RegisterTypeToPayloadCallback } from '../../../../../common/message';
@@ -121,9 +121,9 @@ describe('TestActionCreatorTest', () => {
         tabActionsMock.setup(actions => actions[actionName]).returns(() => actionMock.object);
     }
 
-    function setupRegisterTypeToPayloadCallbackMock(message: string, actionPayload: any, _tabId: number): void {
+    function setupRegisterTypeToPayloadCallbackMock(message: string, actionPayload: any, listeningTabId: number): void {
         registerTypeToPayloadCallbackMock
             .setup(regitrar => regitrar(message, It.is(param => _.isFunction(param))))
-            .callback((_message, handler) => handler(actionPayload, _tabId));
+            .callback((passedMessage, handler) => handler(actionPayload, listeningTabId));
     }
 });

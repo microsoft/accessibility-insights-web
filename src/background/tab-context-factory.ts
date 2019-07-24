@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { AssessmentsProvider } from '../assessments/types/assessments-provider';
+import { BrowserAdapter } from '../common/browser-adapters/browser-adapter';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
 import { NotificationCreator } from '../common/notification-creator';
 import { PromiseFactory } from '../common/promises/promise-factory';
@@ -17,7 +18,6 @@ import { ScopingPanelActionCreator } from './actions/scoping-panel-action-creato
 import { ShortcutsPageActionCreator } from './actions/shortcuts-page-action-creator';
 import { TabActionCreator } from './actions/tab-action-creator';
 import { AssessmentScanPolicyRunner } from './assessment-scan-policy-runner';
-import { BrowserAdapter } from './browser-adapters/browser-adapter';
 import { DetailsViewController } from './details-view-controller';
 import { InjectorController } from './injector-controller';
 import { ContentScriptInjector } from './injector/content-script-injector';

@@ -5,9 +5,9 @@ import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 import { InspectActionCreator } from '../../../../../background/actions/inspect-action-creator';
 import { InspectActions, InspectPayload } from '../../../../../background/actions/inspect-actions';
-import { BrowserAdapter } from '../../../../../background/browser-adapters/browser-adapter';
 import { InspectMode } from '../../../../../background/inspect-modes';
 import { TelemetryEventHandler } from '../../../../../background/telemetry/telemetry-event-handler';
+import { BrowserAdapter } from '../../../../../common/browser-adapters/browser-adapter';
 import { Action } from '../../../../../common/flux/action';
 import { RegisterTypeToPayloadCallback } from '../../../../../common/message';
 import { Messages } from '../../../../../common/messages';
@@ -26,7 +26,7 @@ describe('InspectActionCreatorTest', () => {
         inspectActionsMock = Mock.ofType(InspectActions, MockBehavior.Strict);
         telemetryEventHandlerMock = Mock.ofType(TelemetryEventHandler, MockBehavior.Strict);
         browserAdapterMock = Mock.ofType<BrowserAdapter>(undefined, MockBehavior.Strict);
-        registerTypeToPayloadCallbackMock = Mock.ofInstance((_type, _callback) => {});
+        registerTypeToPayloadCallbackMock = Mock.ofInstance((payloadType, callback) => {});
 
         testObject = new InspectActionCreator(
             inspectActionsMock.object,
@@ -79,9 +79,9 @@ describe('InspectActionCreatorTest', () => {
         inspectActionsMock.setup(actions => actions[actionName]).returns(() => actionMock.object);
     }
 
-    function setupRegisterTypeToPayloadCallbackMock(message: string, payload: any, _tabId: number): void {
+    function setupRegisterTypeToPayloadCallbackMock(message: string, payload: any, listeningTabId: number): void {
         registerTypeToPayloadCallbackMock
             .setup(registrar => registrar(message, It.is(_.isFunction)))
-            .callback((_message, listener) => listener(payload, _tabId));
+            .callback((passedMessage, listener) => listener(payload, listeningTabId));
     }
 });

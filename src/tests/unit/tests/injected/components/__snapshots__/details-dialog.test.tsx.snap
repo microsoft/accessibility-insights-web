@@ -96,7 +96,7 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: false 
         <CopyIssueDetailsButton
           deps={
             Object {
-              "clientBrowserAdapter": Object {
+              "browserAdapter": Object {
                 "getUrl": [Function],
               },
               "issueDetailsTextGenerator": null,
@@ -139,7 +139,7 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: false 
         <IssueFilingButton
           deps={
             Object {
-              "clientBrowserAdapter": Object {
+              "browserAdapter": Object {
                 "getUrl": [Function],
               },
               "issueDetailsTextGenerator": null,
@@ -189,7 +189,7 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: false 
         checks={Array []}
         deps={
           Object {
-            "clientBrowserAdapter": Object {
+            "browserAdapter": Object {
               "getUrl": [Function],
             },
             "issueDetailsTextGenerator": null,
@@ -207,7 +207,7 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: false 
         checks={Array []}
         deps={
           Object {
-            "clientBrowserAdapter": Object {
+            "browserAdapter": Object {
               "getUrl": [Function],
             },
             "issueDetailsTextGenerator": null,
@@ -237,7 +237,7 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: false 
           "onLayoutDidMount": [Function],
           "props": Object {
             "deps": Object {
-              "clientBrowserAdapter": Object {
+              "browserAdapter": Object {
                 "getUrl": [Function],
               },
               "issueDetailsTextGenerator": null,
@@ -321,7 +321,7 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: false 
               "_element": <DetailsDialog
                 deps={
                   Object {
-                    "clientBrowserAdapter": Object {
+                    "browserAdapter": Object {
                       "getUrl": [Function],
                     },
                     "issueDetailsTextGenerator": null,
@@ -486,7 +486,7 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: false 
                       <CopyIssueDetailsButton
                         deps={
                           Object {
-                            "clientBrowserAdapter": Object {
+                            "browserAdapter": Object {
                               "getUrl": [Function],
                             },
                             "issueDetailsTextGenerator": null,
@@ -529,7 +529,7 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: false 
                       <IssueFilingButton
                         deps={
                           Object {
-                            "clientBrowserAdapter": Object {
+                            "browserAdapter": Object {
                               "getUrl": [Function],
                             },
                             "issueDetailsTextGenerator": null,
@@ -579,7 +579,7 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: false 
                       checks={Array []}
                       deps={
                         Object {
-                          "clientBrowserAdapter": Object {
+                          "browserAdapter": Object {
                             "getUrl": [Function],
                           },
                           "issueDetailsTextGenerator": null,
@@ -597,7 +597,7 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: false 
                       checks={Array []}
                       deps={
                         Object {
-                          "clientBrowserAdapter": Object {
+                          "browserAdapter": Object {
                             "getUrl": [Function],
                           },
                           "issueDetailsTextGenerator": null,
@@ -666,7 +666,7 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: false 
 <IssueFilingButton
   deps={
     Object {
-      "clientBrowserAdapter": Object {
+      "browserAdapter": Object {
         "getUrl": [Function],
       },
       "issueDetailsTextGenerator": null,
@@ -827,7 +827,7 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: true }
           <CopyIssueDetailsButton
             deps={
               Object {
-                "clientBrowserAdapter": Object {
+                "browserAdapter": Object {
                   "getUrl": [Function],
                 },
                 "issueDetailsTextGenerator": null,
@@ -870,7 +870,7 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: true }
           <IssueFilingButton
             deps={
               Object {
-                "clientBrowserAdapter": Object {
+                "browserAdapter": Object {
                   "getUrl": [Function],
                 },
                 "issueDetailsTextGenerator": null,
@@ -920,7 +920,7 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: true }
           checks={Array []}
           deps={
             Object {
-              "clientBrowserAdapter": Object {
+              "browserAdapter": Object {
                 "getUrl": [Function],
               },
               "issueDetailsTextGenerator": null,
@@ -938,7 +938,7 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: true }
           checks={Array []}
           deps={
             Object {
-              "clientBrowserAdapter": Object {
+              "browserAdapter": Object {
                 "getUrl": [Function],
               },
               "issueDetailsTextGenerator": null,
@@ -968,7 +968,7 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: true }
             "onLayoutDidMount": [Function],
             "props": Object {
               "deps": Object {
-                "clientBrowserAdapter": Object {
+                "browserAdapter": Object {
                   "getUrl": [Function],
                 },
                 "issueDetailsTextGenerator": null,
@@ -1052,7 +1052,7 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: true }
                 "_element": <DetailsDialog
                   deps={
                     Object {
-                      "clientBrowserAdapter": Object {
+                      "browserAdapter": Object {
                         "getUrl": [Function],
                       },
                       "issueDetailsTextGenerator": null,
@@ -1222,7 +1222,7 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: true }
                           <CopyIssueDetailsButton
                             deps={
                               Object {
-                                "clientBrowserAdapter": Object {
+                                "browserAdapter": Object {
                                   "getUrl": [Function],
                                 },
                                 "issueDetailsTextGenerator": null,
@@ -1265,7 +1265,7 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: true }
                           <IssueFilingButton
                             deps={
                               Object {
-                                "clientBrowserAdapter": Object {
+                                "browserAdapter": Object {
                                   "getUrl": [Function],
                                 },
                                 "issueDetailsTextGenerator": null,
@@ -1315,7 +1315,7 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: true }
                           checks={Array []}
                           deps={
                             Object {
-                              "clientBrowserAdapter": Object {
+                              "browserAdapter": Object {
                                 "getUrl": [Function],
                               },
                               "issueDetailsTextGenerator": null,
@@ -1333,7 +1333,7 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: true }
                           checks={Array []}
                           deps={
                             Object {
-                              "clientBrowserAdapter": Object {
+                              "browserAdapter": Object {
                                 "getUrl": [Function],
                               },
                               "issueDetailsTextGenerator": null,
@@ -1404,7 +1404,7 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: false, shadowDialog: true }
 <IssueFilingButton
   deps={
     Object {
-      "clientBrowserAdapter": Object {
+      "browserAdapter": Object {
         "getUrl": [Function],
       },
       "issueDetailsTextGenerator": null,
@@ -1558,7 +1558,7 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: false }
         <CopyIssueDetailsButton
           deps={
             Object {
-              "clientBrowserAdapter": Object {
+              "browserAdapter": Object {
                 "getUrl": [Function],
               },
               "issueDetailsTextGenerator": null,
@@ -1601,7 +1601,7 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: false }
         <IssueFilingButton
           deps={
             Object {
-              "clientBrowserAdapter": Object {
+              "browserAdapter": Object {
                 "getUrl": [Function],
               },
               "issueDetailsTextGenerator": null,
@@ -1651,7 +1651,7 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: false }
         checks={Array []}
         deps={
           Object {
-            "clientBrowserAdapter": Object {
+            "browserAdapter": Object {
               "getUrl": [Function],
             },
             "issueDetailsTextGenerator": null,
@@ -1669,7 +1669,7 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: false }
         checks={Array []}
         deps={
           Object {
-            "clientBrowserAdapter": Object {
+            "browserAdapter": Object {
               "getUrl": [Function],
             },
             "issueDetailsTextGenerator": null,
@@ -1699,7 +1699,7 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: false }
           "onLayoutDidMount": [Function],
           "props": Object {
             "deps": Object {
-              "clientBrowserAdapter": Object {
+              "browserAdapter": Object {
                 "getUrl": [Function],
               },
               "issueDetailsTextGenerator": null,
@@ -1783,7 +1783,7 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: false }
               "_element": <DetailsDialog
                 deps={
                   Object {
-                    "clientBrowserAdapter": Object {
+                    "browserAdapter": Object {
                       "getUrl": [Function],
                     },
                     "issueDetailsTextGenerator": null,
@@ -1948,7 +1948,7 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: false }
                       <CopyIssueDetailsButton
                         deps={
                           Object {
-                            "clientBrowserAdapter": Object {
+                            "browserAdapter": Object {
                               "getUrl": [Function],
                             },
                             "issueDetailsTextGenerator": null,
@@ -1991,7 +1991,7 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: false }
                       <IssueFilingButton
                         deps={
                           Object {
-                            "clientBrowserAdapter": Object {
+                            "browserAdapter": Object {
                               "getUrl": [Function],
                             },
                             "issueDetailsTextGenerator": null,
@@ -2041,7 +2041,7 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: false }
                       checks={Array []}
                       deps={
                         Object {
-                          "clientBrowserAdapter": Object {
+                          "browserAdapter": Object {
                             "getUrl": [Function],
                           },
                           "issueDetailsTextGenerator": null,
@@ -2059,7 +2059,7 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: false }
                       checks={Array []}
                       deps={
                         Object {
-                          "clientBrowserAdapter": Object {
+                          "browserAdapter": Object {
                             "getUrl": [Function],
                           },
                           "issueDetailsTextGenerator": null,
@@ -2128,7 +2128,7 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: false }
 <IssueFilingButton
   deps={
     Object {
-      "clientBrowserAdapter": Object {
+      "browserAdapter": Object {
         "getUrl": [Function],
       },
       "issueDetailsTextGenerator": null,
@@ -2289,7 +2289,7 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: true } 
           <CopyIssueDetailsButton
             deps={
               Object {
-                "clientBrowserAdapter": Object {
+                "browserAdapter": Object {
                   "getUrl": [Function],
                 },
                 "issueDetailsTextGenerator": null,
@@ -2332,7 +2332,7 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: true } 
           <IssueFilingButton
             deps={
               Object {
-                "clientBrowserAdapter": Object {
+                "browserAdapter": Object {
                   "getUrl": [Function],
                 },
                 "issueDetailsTextGenerator": null,
@@ -2382,7 +2382,7 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: true } 
           checks={Array []}
           deps={
             Object {
-              "clientBrowserAdapter": Object {
+              "browserAdapter": Object {
                 "getUrl": [Function],
               },
               "issueDetailsTextGenerator": null,
@@ -2400,7 +2400,7 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: true } 
           checks={Array []}
           deps={
             Object {
-              "clientBrowserAdapter": Object {
+              "browserAdapter": Object {
                 "getUrl": [Function],
               },
               "issueDetailsTextGenerator": null,
@@ -2430,7 +2430,7 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: true } 
             "onLayoutDidMount": [Function],
             "props": Object {
               "deps": Object {
-                "clientBrowserAdapter": Object {
+                "browserAdapter": Object {
                   "getUrl": [Function],
                 },
                 "issueDetailsTextGenerator": null,
@@ -2514,7 +2514,7 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: true } 
                 "_element": <DetailsDialog
                   deps={
                     Object {
-                      "clientBrowserAdapter": Object {
+                      "browserAdapter": Object {
                         "getUrl": [Function],
                       },
                       "issueDetailsTextGenerator": null,
@@ -2684,7 +2684,7 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: true } 
                           <CopyIssueDetailsButton
                             deps={
                               Object {
-                                "clientBrowserAdapter": Object {
+                                "browserAdapter": Object {
                                   "getUrl": [Function],
                                 },
                                 "issueDetailsTextGenerator": null,
@@ -2727,7 +2727,7 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: true } 
                           <IssueFilingButton
                             deps={
                               Object {
-                                "clientBrowserAdapter": Object {
+                                "browserAdapter": Object {
                                   "getUrl": [Function],
                                 },
                                 "issueDetailsTextGenerator": null,
@@ -2777,7 +2777,7 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: true } 
                           checks={Array []}
                           deps={
                             Object {
-                              "clientBrowserAdapter": Object {
+                              "browserAdapter": Object {
                                 "getUrl": [Function],
                               },
                               "issueDetailsTextGenerator": null,
@@ -2795,7 +2795,7 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: true } 
                           checks={Array []}
                           deps={
                             Object {
-                              "clientBrowserAdapter": Object {
+                              "browserAdapter": Object {
                                 "getUrl": [Function],
                               },
                               "issueDetailsTextGenerator": null,
@@ -2866,7 +2866,7 @@ exports[`DetailsDialogTest render: { isDevToolsOpen: true, shadowDialog: true }:
 <IssueFilingButton
   deps={
     Object {
-      "clientBrowserAdapter": Object {
+      "browserAdapter": Object {
         "getUrl": [Function],
       },
       "issueDetailsTextGenerator": null,
@@ -3020,7 +3020,7 @@ exports[`DetailsDialogTest render: with relative help url 1`] = `
         <CopyIssueDetailsButton
           deps={
             Object {
-              "clientBrowserAdapter": Object {
+              "browserAdapter": Object {
                 "getUrl": [Function],
               },
               "issueDetailsTextGenerator": null,
@@ -3063,7 +3063,7 @@ exports[`DetailsDialogTest render: with relative help url 1`] = `
         <IssueFilingButton
           deps={
             Object {
-              "clientBrowserAdapter": Object {
+              "browserAdapter": Object {
                 "getUrl": [Function],
               },
               "issueDetailsTextGenerator": null,
@@ -3113,7 +3113,7 @@ exports[`DetailsDialogTest render: with relative help url 1`] = `
         checks={Array []}
         deps={
           Object {
-            "clientBrowserAdapter": Object {
+            "browserAdapter": Object {
               "getUrl": [Function],
             },
             "issueDetailsTextGenerator": null,
@@ -3131,7 +3131,7 @@ exports[`DetailsDialogTest render: with relative help url 1`] = `
         checks={Array []}
         deps={
           Object {
-            "clientBrowserAdapter": Object {
+            "browserAdapter": Object {
               "getUrl": [Function],
             },
             "issueDetailsTextGenerator": null,
@@ -3161,7 +3161,7 @@ exports[`DetailsDialogTest render: with relative help url 1`] = `
           "onLayoutDidMount": [Function],
           "props": Object {
             "deps": Object {
-              "clientBrowserAdapter": Object {
+              "browserAdapter": Object {
                 "getUrl": [Function],
               },
               "issueDetailsTextGenerator": null,
@@ -3245,7 +3245,7 @@ exports[`DetailsDialogTest render: with relative help url 1`] = `
               "_element": <DetailsDialog
                 deps={
                   Object {
-                    "clientBrowserAdapter": Object {
+                    "browserAdapter": Object {
                       "getUrl": [Function],
                     },
                     "issueDetailsTextGenerator": null,
@@ -3410,7 +3410,7 @@ exports[`DetailsDialogTest render: with relative help url 1`] = `
                       <CopyIssueDetailsButton
                         deps={
                           Object {
-                            "clientBrowserAdapter": Object {
+                            "browserAdapter": Object {
                               "getUrl": [Function],
                             },
                             "issueDetailsTextGenerator": null,
@@ -3453,7 +3453,7 @@ exports[`DetailsDialogTest render: with relative help url 1`] = `
                       <IssueFilingButton
                         deps={
                           Object {
-                            "clientBrowserAdapter": Object {
+                            "browserAdapter": Object {
                               "getUrl": [Function],
                             },
                             "issueDetailsTextGenerator": null,
@@ -3503,7 +3503,7 @@ exports[`DetailsDialogTest render: with relative help url 1`] = `
                       checks={Array []}
                       deps={
                         Object {
-                          "clientBrowserAdapter": Object {
+                          "browserAdapter": Object {
                             "getUrl": [Function],
                           },
                           "issueDetailsTextGenerator": null,
@@ -3521,7 +3521,7 @@ exports[`DetailsDialogTest render: with relative help url 1`] = `
                       checks={Array []}
                       deps={
                         Object {
-                          "clientBrowserAdapter": Object {
+                          "browserAdapter": Object {
                             "getUrl": [Function],
                           },
                           "issueDetailsTextGenerator": null,
@@ -3590,7 +3590,7 @@ exports[`DetailsDialogTest render: with relative help url: issue filing button U
 <IssueFilingButton
   deps={
     Object {
-      "clientBrowserAdapter": Object {
+      "browserAdapter": Object {
         "getUrl": [Function],
       },
       "issueDetailsTextGenerator": null,

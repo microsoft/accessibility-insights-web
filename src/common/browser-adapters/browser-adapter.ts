@@ -1,7 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { ClientBrowserAdapter } from '../../common/client-browser-adapter';
-
 export interface NotificationOptions {
     message: string;
     title: string;
@@ -9,7 +7,7 @@ export interface NotificationOptions {
     notificationType?: string;
 }
 
-export interface BrowserAdapter extends ClientBrowserAdapter {
+export interface BrowserAdapter {
     getAllWindows(getInfo: chrome.windows.GetInfo, callback: (chromeWindows: chrome.windows.Window[]) => void): void;
     getSelectedTabInWindow(windowId: number, callback: (activeTab: chrome.tabs.Tab) => void): void;
     addListenerToTabsOnActivated(callback: (activeInfo: chrome.tabs.TabActiveInfo) => void): void;
@@ -35,4 +33,18 @@ export interface BrowserAdapter extends ClientBrowserAdapter {
     isAllowedFileSchemeAccess(callback: Function): void;
     addListenerToLocalStorage(callback: (changes: object) => void): void;
     openManageExtensionPage(): void;
+    addListenerOnConnect(callback: (port: chrome.runtime.Port) => void): void;
+    addListenerOnMessage(
+        callback: (message: any, sender: chrome.runtime.MessageSender, sendResponse: (response: any) => void) => void,
+    ): void;
+
+    removeListenerOnMessage(
+        callback: (message: any, sender: chrome.runtime.MessageSender, sendResponse: (response: any) => void) => void,
+    ): void;
+    connect(connectionInfo?: chrome.runtime.ConnectInfo): chrome.runtime.Port;
+    sendMessageToFrames(message: any): void;
+    getManifest(): chrome.runtime.Manifest;
+    extensionVersion: string;
+
+    getUrl(urlPart: string): string;
 }

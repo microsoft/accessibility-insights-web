@@ -3,9 +3,9 @@
 import { loadTheme } from 'office-ui-fabric-react';
 import * as ReactDOM from 'react-dom';
 
-import { BrowserAdapter } from '../background/browser-adapters/browser-adapter';
 import { A11YSelfValidator } from '../common/a11y-self-validator';
 import { AxeInfo } from '../common/axe-info';
+import { BrowserAdapter } from '../common/browser-adapters/browser-adapter';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
 import { DropdownClickHandler } from '../common/dropdown-click-handler';
 import { EnumHelper } from '../common/enum-helper';
@@ -55,7 +55,7 @@ export class PopupInitializer {
     private targetTabInfo: TargetTabInfo;
 
     constructor(
-        private readonly chromeAdapter: BrowserAdapter,
+        private readonly browserAdapter: BrowserAdapter,
         private readonly targetTabFinder: TargetTabFinder,
         private readonly isSupportedBrowser: IsSupportedBrowser,
         private logger: Logger = createDefaultLogger(),
@@ -84,7 +84,7 @@ export class PopupInitializer {
 
     private initializePopup = (): void => {
         const telemetryFactory = new TelemetryDataFactory();
-        const actionMessageDispatcher = new ActionMessageDispatcher(this.chromeAdapter.sendMessageToFrames, this.targetTabInfo.tab.id);
+        const actionMessageDispatcher = new ActionMessageDispatcher(this.browserAdapter.sendMessageToFrames, this.targetTabInfo.tab.id);
         const visualizationActionCreator = new VisualizationActionMessageCreator(actionMessageDispatcher);
 
         const windowUtils = new WindowUtils();
@@ -110,11 +110,11 @@ export class PopupInitializer {
         const launchPanelStateStoreName = StoreNames[StoreNames.LaunchPanelStateStore];
         const userConfigurationStoreName = StoreNames[StoreNames.UserConfigurationStore];
 
-        const visualizationStore = new StoreProxy<VisualizationStoreData>(visualizationStoreName, this.chromeAdapter);
-        const launchPanelStateStore = new StoreProxy<LaunchPanelStoreData>(launchPanelStateStoreName, this.chromeAdapter);
-        const commandStore = new StoreProxy<CommandStoreData>(commandStoreName, this.chromeAdapter);
-        const featureFlagStore = new StoreProxy<FeatureFlagStoreData>(featureFlagStoreName, this.chromeAdapter);
-        const userConfigurationStore = new StoreProxy<UserConfigurationStoreData>(userConfigurationStoreName, this.chromeAdapter);
+        const visualizationStore = new StoreProxy<VisualizationStoreData>(visualizationStoreName, this.browserAdapter);
+        const launchPanelStateStore = new StoreProxy<LaunchPanelStoreData>(launchPanelStateStoreName, this.browserAdapter);
+        const commandStore = new StoreProxy<CommandStoreData>(commandStoreName, this.browserAdapter);
+        const featureFlagStore = new StoreProxy<FeatureFlagStoreData>(featureFlagStoreName, this.browserAdapter);
+        const userConfigurationStore = new StoreProxy<UserConfigurationStoreData>(userConfigurationStoreName, this.browserAdapter);
 
         visualizationStore.setTabId(this.targetTabInfo.tab.id);
         commandStore.setTabId(this.targetTabInfo.tab.id);
@@ -134,7 +134,7 @@ export class PopupInitializer {
         const popupViewControllerHandler = new PopupViewControllerHandler();
         const dropdownClickHandler = new DropdownClickHandler(dropdownActionMessageCreator, TelemetryEventSource.LaunchPad);
         const launchPanelHeaderClickHandler = new LaunchPanelHeaderClickHandler();
-        const supportLinkHandler = new SupportLinkHandler(this.chromeAdapter, windowUtils);
+        const supportLinkHandler = new SupportLinkHandler(this.browserAdapter, windowUtils);
 
         const popupHandlers: IPopupHandlers = {
             diagnosticViewClickHandler,
@@ -170,6 +170,7 @@ export class PopupInitializer {
             loadTheme,
             axeInfo,
             launchPanelHeaderClickHandler,
+            browserAdapter: this.browserAdapter,
         };
 
         const diagnosticViewToggleFactory = new DiagnosticViewToggleFactory(
@@ -190,7 +191,6 @@ export class PopupInitializer {
             ReactDOM.render,
             document,
             window,
-            this.chromeAdapter,
             this.targetTabInfo.tab.url,
             this.targetTabInfo.hasAccess,
             launchPadRowConfigurationFactory,

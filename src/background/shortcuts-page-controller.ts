@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { BrowserAdapter } from './browser-adapters/browser-adapter';
+import { BrowserAdapter } from '../common/browser-adapters/browser-adapter';
 
 export class ShortcutsPageController {
     public static configureCommandTabUrl: string = 'chrome://extensions/shortcuts';

@@ -89,7 +89,7 @@ describe('DetailsDialogTest', () => {
                 copyIssueDetailsClicked: () => {},
             } as any,
             issueFilingActionMessageCreator: null,
-            clientBrowserAdapter: {
+            browserAdapter: {
                 getUrl: url => expectedHelpUrl,
             } as any,
         } as DetailsDialogDeps;

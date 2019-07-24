@@ -6,7 +6,7 @@ import * as ReactDOM from 'react-dom';
 
 import { IssueDetailsTextGenerator } from '../background/issue-details-text-generator';
 import { AxeInfo } from '../common/axe-info';
-import { ClientBrowserAdapter } from '../common/client-browser-adapter';
+import { BrowserAdapter } from '../common/browser-adapters/browser-adapter';
 import { FeatureFlags } from '../common/feature-flags';
 import { HTMLElementUtils } from '../common/html-element-utils';
 import { NavigatorUtils } from '../common/navigator-utils';
@@ -42,7 +42,7 @@ export class DialogRenderer {
         private readonly htmlElementUtils: HTMLElementUtils,
         private readonly windowUtils: WindowUtils,
         private readonly shadowUtils: ShadowUtils,
-        private readonly clientBrowserAdapter: ClientBrowserAdapter,
+        private readonly browserAdapter: BrowserAdapter,
         private readonly getRTLFunc: typeof getRTL,
         private readonly detailsDialogHandler: DetailsDialogHandler,
     ) {
@@ -65,7 +65,7 @@ export class DialogRenderer {
 
             const browserSpec = new NavigatorUtils(window.navigator).getBrowserSpec();
             const issueDetailsTextGenerator = new IssueDetailsTextGenerator(
-                this.clientBrowserAdapter.extensionVersion,
+                this.browserAdapter.extensionVersion,
                 browserSpec,
                 AxeInfo.Default.version,
             );
@@ -78,7 +78,7 @@ export class DialogRenderer {
                 windowUtils: this.windowUtils,
                 targetPageActionMessageCreator: mainWindowContext.getTargetPageActionMessageCreator(),
                 issueFilingActionMessageCreator: mainWindowContext.getIssueFilingActionMessageCreator(),
-                clientBrowserAdapter: this.clientBrowserAdapter,
+                browserAdapter: this.browserAdapter,
                 getRTL: this.getRTLFunc,
                 environmentInfoProvider: mainWindowContext.getEnvironmentInfoProvider(),
                 issueFilingServiceProvider: mainWindowContext.getIssueFilingServiceProvider(),

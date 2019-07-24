@@ -3,22 +3,22 @@
 import { FunctionPPR } from '../../types/common-types';
 
 export class EventHandlerList<TSender, TEventArgs> {
-    private _handlers: FunctionPPR<TSender, TEventArgs, any>[] = [];
+    private handlers: FunctionPPR<TSender, TEventArgs, any>[] = [];
 
     public subscribe(handler: FunctionPPR<TSender, TEventArgs, any>): void {
         if (handler) {
-            this._handlers.push(handler);
+            this.handlers.push(handler);
         }
     }
 
     public unsubscribe(handler: FunctionPPR<TSender, TEventArgs, any>): void {
-        if (this._handlers) {
-            this._handlers = this._handlers.filter(h => h !== handler);
+        if (this.handlers) {
+            this.handlers = this.handlers.filter(h => h !== handler);
         }
     }
 
     public invokeHandlers(sender?: TSender, eventArgs?: TEventArgs): void {
-        const handlersCopy = Array.apply(null, this._handlers);
+        const handlersCopy = Array.apply(null, this.handlers);
 
         handlersCopy.forEach(handler => handler(sender, eventArgs));
     }

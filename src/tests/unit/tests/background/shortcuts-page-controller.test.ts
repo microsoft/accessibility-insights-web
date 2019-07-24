@@ -2,8 +2,8 @@
 // Licensed under the MIT License.
 import { Mock, Times } from 'typemoq';
 
-import { BrowserAdapter } from '../../../../background/browser-adapters/browser-adapter';
 import { ShortcutsPageController } from '../../../../background/shortcuts-page-controller';
+import { BrowserAdapter } from '../../../../common/browser-adapters/browser-adapter';
 
 describe('ShortcutsPageController', () => {
     it('opens the shortcuts tab', () => {

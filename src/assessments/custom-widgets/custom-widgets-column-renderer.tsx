@@ -16,7 +16,7 @@ export function customWidgetsColumnRenderer<TPropertyBag extends ColumnValueBag>
 ): JSX.Element {
     const mapDesignPatterns = (pattern: DesignPattern) => {
         return (
-            <div className="expanded-property-div">
+            <div key={`pattern-${pattern.designPattern}`} className="expanded-property-div">
                 {includeLink ? renderDesignPatternWithLink(pattern) : renderDesignPatternWithoutLink(pattern)}
             </div>
         );
