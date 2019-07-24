@@ -13,13 +13,45 @@ import { BaseDataBuilder } from '../../../common/base-data-builder';
 import { EventStubFactory } from '../../../common/event-stub-factory';
 
 describe('CommandBar', () => {
+    const defaultCommandBarProps: CommandBarProps = {
+        deps: {} as CommandBarDeps,
+        onClickInspectButton: undefined,
+        onClickCopyIssueDetailsButton: undefined,
+        shouldShowInspectButtonMessage: () => false,
+        userConfigurationStoreData: { isFirstTime: false, bugService: 'None' } as UserConfigurationStoreData,
+        devToolsShortcut: 'dev-tools-shortcut',
+        currentRuleIndex: 0,
+        failedRules: {
+            'RR-rule-id': {
+                failureSummary: 'RR-failureSummary',
+                guidanceLinks: [
+                    {
+                        text: 'WCAG-1.4.1',
+                        tags: [
+                            { id: 'some-id', displayText: 'some displayText' },
+                            { id: 'some-other-id', displayText: 'some other displayText' },
+                        ],
+                    },
+                    { text: 'wcag-2.8.2' },
+                ],
+                help: 'RR-help',
+                html: 'RR-html',
+                ruleId: 'RR-rule-id',
+                helpUrl: 'RR-help-url',
+                selector: 'RR-selector<x>',
+                snippet: 'RR-snippet   space',
+            } as DecoratedAxeNodeResult,
+        },
+    };
+
     describe('renders', () => {
         const showInspectButtonMessage = [true, false];
 
         it.each(showInspectButtonMessage)('renders, shows inspect button message: %s', show => {
-            const props = defaultCommandBarPropsBuilder()
-                .with('shouldShowInspectButtonMessage', () => show)
-                .build();
+            const props = {
+                ...defaultCommandBarProps,
+                shouldShowInspectButtonMessage: () => show,
+            };
 
             const wrapper = shallow(<CommandBar {...props} />);
 
@@ -35,9 +67,10 @@ describe('CommandBar', () => {
                 (event: React.MouseEvent<Button | BaseButton | HTMLDivElement | HTMLAnchorElement | HTMLButtonElement, MouseEvent>) => {},
             );
 
-            const props = defaultCommandBarPropsBuilder()
-                .with('onClickInspectButton', onClickMock.object)
-                .build();
+            const props = {
+                ...defaultCommandBarProps,
+                onClickInspectButton: onClickMock.object,
+            };
 
             const wrapper = shallow(<CommandBar {...props} />);
 
@@ -51,9 +84,10 @@ describe('CommandBar', () => {
         test('for copy issue details button', () => {
             const onClickMock = Mock.ofInstance((event: React.MouseEvent<any, MouseEvent>) => {});
 
-            const props = defaultCommandBarPropsBuilder()
-                .with('onClickCopyIssueDetailsButton', onClickMock.object)
-                .build();
+            const props = {
+                ...defaultCommandBarProps,
+                onClickCopyIssueDetailsButton: onClickMock.object,
+            };
 
             const wrapper = shallow(<CommandBar {...props} />);
 
@@ -64,36 +98,4 @@ describe('CommandBar', () => {
             onClickMock.verify(onClick => onClick(eventStub), Times.once());
         });
     });
-
-    const defaultCommandBarPropsBuilder = () =>
-        new BaseDataBuilder<CommandBarProps>({
-            deps: {} as CommandBarDeps,
-            onClickInspectButton: undefined,
-            onClickCopyIssueDetailsButton: undefined,
-            shouldShowInspectButtonMessage: () => false,
-            userConfigurationStoreData: { isFirstTime: false, bugService: 'None' } as UserConfigurationStoreData,
-            devToolsShortcut: 'dev-tools-shortcut',
-            currentRuleIndex: 0,
-            failedRules: {
-                'RR-rule-id': {
-                    failureSummary: 'RR-failureSummary',
-                    guidanceLinks: [
-                        {
-                            text: 'WCAG-1.4.1',
-                            tags: [
-                                { id: 'some-id', displayText: 'some displayText' },
-                                { id: 'some-other-id', displayText: 'some other displayText' },
-                            ],
-                        },
-                        { text: 'wcag-2.8.2' },
-                    ],
-                    help: 'RR-help',
-                    html: 'RR-html',
-                    ruleId: 'RR-rule-id',
-                    helpUrl: 'RR-help-url',
-                    selector: 'RR-selector<x>',
-                    snippet: 'RR-snippet   space',
-                } as DecoratedAxeNodeResult,
-            },
-        });
 });
