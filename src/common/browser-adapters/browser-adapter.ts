@@ -1,11 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-export interface NotificationOptions {
-    message: string;
-    title: string;
-    iconUrl: string;
-    notificationType?: string;
-}
 
 export interface BrowserAdapter {
     getAllWindows(getInfo: chrome.windows.GetInfo, callback: (chromeWindows: chrome.windows.Window[]) => void): void;
@@ -28,7 +22,7 @@ export interface BrowserAdapter {
     injectJs(tabId, file: string, callback: Function): void;
     injectCss(tabId, file: string, callback: Function): void;
     getRunTimeId(): string;
-    createNotification(options: NotificationOptions): void;
+    createNotification(options: chrome.notifications.NotificationOptions): void;
     getRuntimeLastError(): chrome.runtime.LastError;
     isAllowedFileSchemeAccess(callback: Function): void;
     addListenerToLocalStorage(callback: (changes: object) => void): void;
