@@ -16,6 +16,11 @@ import { PopupViewControllerHandler } from '../handlers/popup-view-controller-ha
 import { LaunchPadRowConfigurationFactory } from '../launch-pad-row-configuration-factory';
 import { AdHocToolsPanel } from './ad-hoc-tools-panel';
 import { DiagnosticViewToggleFactory } from './diagnostic-view-toggle-factory';
+import {
+    FileUrlUnsupportedMessagePanel,
+    FileUrlUnsupportedMessagePanelDeps,
+    FileUrlUnsupportedMessagePanelProps,
+} from './file-url-unsupported-message-panel';
 import { Header } from './header';
 import { LaunchPad, LaunchPadDeps, LaunchPadRowConfiguration } from './launch-pad';
 import { LaunchPanelHeader, LaunchPanelHeaderDeps } from './launch-panel-header';
@@ -26,7 +31,6 @@ export interface PopupViewProps {
     title: string;
     popupHandlers: IPopupHandlers;
     popupWindow: Window;
-    browserAdapter: BrowserAdapter;
     targetTabUrl: string;
     hasAccess: boolean;
     launchPadRowConfigurationFactory: LaunchPadRowConfigurationFactory;
@@ -38,7 +42,10 @@ export interface PopupViewProps {
 export type PopupViewControllerDeps = LaunchPadDeps &
     LaunchPanelHeaderDeps &
     TelemetryPermissionDialogDeps &
-    WithStoreSubscriptionDeps<PopupViewControllerState>;
+    FileUrlUnsupportedMessagePanelDeps &
+    WithStoreSubscriptionDeps<PopupViewControllerState> & {
+        browserAdapter: BrowserAdapter;
+    };
 
 export enum LaunchPanelType {
     AdhocToolsPanel,
@@ -61,7 +68,7 @@ export class PopupView extends React.Component<PopupViewProps> {
     constructor(props: PopupViewProps) {
         super(props);
         this.handler = props.popupHandlers.popupViewControllerHandler;
-        this.versionNumber = props.browserAdapter.getManifest().version;
+        this.versionNumber = props.deps.browserAdapter.getManifest().version;
         this.openTogglesView = () => {
             this.handler.openLaunchPad(this);
         };
@@ -184,31 +191,13 @@ export class PopupView extends React.Component<PopupViewProps> {
     }
 
     private renderUnsupportedMsgPanelForFileUrl(): JSX.Element {
-        return (
-            <div className="ms-Fabric unsupported-url-info-panel">
-                {this.renderDefaultHeader()}
-                <div className="ms-Grid main-section">
-                    <div className="launch-panel-general-container">{DisplayableStrings.fileUrlDoesNotHaveAccess}</div>
-                    <div>
-                        <div>To allow this extension to run on file URLs:</div>
-                        <div>
-                            {'1. Open '}
-                            <NewTabLink
-                                onClick={this.props.browserAdapter.openManageExtensionPage}
-                                aria-label={`open ${this.props.title} extension page`}
-                            >
-                                {`${this.props.title} extension page`}
-                            </NewTabLink>
-                            {'.'}
-                        </div>
-                        <div>
-                            {'2. Enable '}
-                            <span className="ms-fontWeight-semibold">Allow Access to file URLs</span>.
-                        </div>
-                    </div>
-                </div>
-            </div>
-        );
+        const props: FileUrlUnsupportedMessagePanelProps = {
+            title: this.props.title,
+            header: this.renderDefaultHeader(),
+            deps: this.props.deps,
+        };
+
+        return <FileUrlUnsupportedMessagePanel {...props} />;
     }
 
     private renderDefaultHeader(): JSX.Element {
