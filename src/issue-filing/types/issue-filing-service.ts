@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { BrowserAdapter } from '../../background/browser-adapters/browser-adapter';
+import { BrowserAdapter } from '../../common/browser-adapters/browser-adapter';
 import { IssueFilingServicePropertiesMap } from '../../common/types/store-data/user-configuration-store';
 import { EnvironmentInfo } from './../../common/environment-info-provider';
 import { ReactSFCWithDisplayName } from './../../common/react/named-sfc';

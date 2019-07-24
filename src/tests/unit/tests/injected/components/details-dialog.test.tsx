@@ -20,7 +20,7 @@ type DetailsDialogTestCase = {
     expectedHelpUrl?: string;
 };
 
-describe('DetailsDialogTest', () => {
+describe('DetailsDialog', () => {
     const fingerprint: string = '12345678-9ABC-1234-1234-123456789ABC';
     const ruleId: string = 'ruleId';
     const help: string = 'help';
@@ -69,7 +69,7 @@ describe('DetailsDialogTest', () => {
             const dialogDetailsHandlerMockObject = getDetailsDialogHandlerStub(isDevToolsOpen);
 
             const deps: DetailsDialogDeps = defaultDetailsDialogDepsBuilder()
-                .with('clientBrowserAdapter', {
+                .with('browserAdapter', {
                     getUrl: url => expectedHelpUrl,
                 } as any)
                 .build();
@@ -118,7 +118,7 @@ describe('DetailsDialogTest', () => {
                 expectedFailedRules = {};
                 expectedFailedRules[ruleId] = expectedNodeResult;
 
-                depsBuilder = defaultDetailsDialogDepsBuilder().with('clientBrowserAdapter', {
+                depsBuilder = defaultDetailsDialogDepsBuilder().with('browserAdapter', {
                     getUrl: url => 'test-url',
                 } as any);
                 dialogDetailsHandlerMockObject = getDetailsDialogHandlerStub(true);

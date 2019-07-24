@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { UAParser } from 'ua-parser-js';
 
-import { ChromeAdapter } from '../background/browser-adapters/chrome-adapter';
+import { ChromeAdapter } from '../common/browser-adapters/chrome-adapter';
 import { initializeFabricIcons } from '../common/fabric-icons';
 import { createSupportedBrowserChecker } from '../common/is-supported-browser';
 import { UrlParser } from '../common/url-parser';

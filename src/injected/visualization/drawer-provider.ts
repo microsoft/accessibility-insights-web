@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { getRTL } from '@uifabric/utilities';
 
-import { ClientBrowserAdapter } from '../../common/client-browser-adapter';
+import { BrowserAdapter } from '../../common/browser-adapters/browser-adapter';
 import { HTMLElementUtils } from '../../common/html-element-utils';
 import { TabbableElementsHelper } from '../../common/tabbable-elements-helper';
 import { DeepPartial } from '../../common/types/deep-partial';
@@ -41,7 +41,7 @@ export class DrawerProvider {
         private readonly clientUtils: ClientUtils,
         private readonly dom: Document,
         private readonly frameCommunicator: FrameCommunicator,
-        private readonly clientBrowserAdapter: ClientBrowserAdapter,
+        private readonly browserAdapter: BrowserAdapter,
         private readonly getRTLFunc: typeof getRTL,
         private readonly detailsDialogHandler: DetailsDialogHandler,
     ) {}
@@ -97,7 +97,7 @@ export class DrawerProvider {
             this.htmlElementUtils,
             this.windowUtils,
             this.shadowUtils,
-            this.clientBrowserAdapter,
+            this.browserAdapter,
             this.getRTLFunc,
             this.detailsDialogHandler,
         );

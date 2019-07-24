@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`DetailsDialogTest renders with: { isDevToolsOpen: false,
+exports[`DetailsDialog renders with: { isDevToolsOpen: false,
   shadowDialog: false,
   helpUrl: 'help-relative',
   expectedHelpUrl: 'http://extension/help-relative' } 1`] = `
@@ -85,7 +85,7 @@ exports[`DetailsDialogTest renders with: { isDevToolsOpen: false,
       currentRuleIndex={0}
       deps={
         Object {
-          "clientBrowserAdapter": Object {
+          "browserAdapter": Object {
             "getUrl": [Function],
           },
           "issueDetailsTextGenerator": null,
@@ -134,7 +134,7 @@ exports[`DetailsDialogTest renders with: { isDevToolsOpen: false,
         checks={Array []}
         deps={
           Object {
-            "clientBrowserAdapter": Object {
+            "browserAdapter": Object {
               "getUrl": [Function],
             },
             "issueDetailsTextGenerator": null,
@@ -152,7 +152,7 @@ exports[`DetailsDialogTest renders with: { isDevToolsOpen: false,
         checks={Array []}
         deps={
           Object {
-            "clientBrowserAdapter": Object {
+            "browserAdapter": Object {
               "getUrl": [Function],
             },
             "issueDetailsTextGenerator": null,
@@ -182,7 +182,7 @@ exports[`DetailsDialogTest renders with: { isDevToolsOpen: false,
           "onLayoutDidMount": [Function],
           "props": Object {
             "deps": Object {
-              "clientBrowserAdapter": Object {
+              "browserAdapter": Object {
                 "getUrl": [Function],
               },
               "issueDetailsTextGenerator": null,
@@ -266,7 +266,7 @@ exports[`DetailsDialogTest renders with: { isDevToolsOpen: false,
               "_element": <DetailsDialog
                 deps={
                   Object {
-                    "clientBrowserAdapter": Object {
+                    "browserAdapter": Object {
                       "getUrl": [Function],
                     },
                     "issueDetailsTextGenerator": null,
@@ -417,7 +417,7 @@ exports[`DetailsDialogTest renders with: { isDevToolsOpen: false,
                     currentRuleIndex={0}
                     deps={
                       Object {
-                        "clientBrowserAdapter": Object {
+                        "browserAdapter": Object {
                           "getUrl": [Function],
                         },
                         "issueDetailsTextGenerator": null,
@@ -466,7 +466,7 @@ exports[`DetailsDialogTest renders with: { isDevToolsOpen: false,
                       checks={Array []}
                       deps={
                         Object {
-                          "clientBrowserAdapter": Object {
+                          "browserAdapter": Object {
                             "getUrl": [Function],
                           },
                           "issueDetailsTextGenerator": null,
@@ -484,7 +484,7 @@ exports[`DetailsDialogTest renders with: { isDevToolsOpen: false,
                       checks={Array []}
                       deps={
                         Object {
-                          "clientBrowserAdapter": Object {
+                          "browserAdapter": Object {
                             "getUrl": [Function],
                           },
                           "issueDetailsTextGenerator": null,
@@ -549,12 +549,12 @@ exports[`DetailsDialogTest renders with: { isDevToolsOpen: false,
 </StyledWithResponsiveMode>
 `;
 
-exports[`DetailsDialogTest renders with: { isDevToolsOpen: false,
+exports[`DetailsDialog renders with: { isDevToolsOpen: false,
   shadowDialog: false,
   helpUrl: 'help-relative',
   expectedHelpUrl: 'http://extension/help-relative' }: verify close button for non shadow dom 1`] = `<CancelIcon />`;
 
-exports[`DetailsDialogTest renders with: { isDevToolsOpen: false,
+exports[`DetailsDialog renders with: { isDevToolsOpen: false,
   shadowDialog: false,
   helpUrl: 'help-relative',
   expectedHelpUrl: 'http://extension/help-relative' }: verify initial state 1`] = `
@@ -567,7 +567,7 @@ Object {
 }
 `;
 
-exports[`DetailsDialogTest renders with: { isDevToolsOpen: false, shadowDialog: false } 1`] = `
+exports[`DetailsDialog renders with: { isDevToolsOpen: false, shadowDialog: false } 1`] = `
 <StyledWithResponsiveMode
   dialogContentProps={
     Object {
@@ -649,7 +649,7 @@ exports[`DetailsDialogTest renders with: { isDevToolsOpen: false, shadowDialog: 
       currentRuleIndex={0}
       deps={
         Object {
-          "clientBrowserAdapter": Object {
+          "browserAdapter": Object {
             "getUrl": [Function],
           },
           "issueDetailsTextGenerator": null,
@@ -698,7 +698,7 @@ exports[`DetailsDialogTest renders with: { isDevToolsOpen: false, shadowDialog: 
         checks={Array []}
         deps={
           Object {
-            "clientBrowserAdapter": Object {
+            "browserAdapter": Object {
               "getUrl": [Function],
             },
             "issueDetailsTextGenerator": null,
@@ -716,7 +716,7 @@ exports[`DetailsDialogTest renders with: { isDevToolsOpen: false, shadowDialog: 
         checks={Array []}
         deps={
           Object {
-            "clientBrowserAdapter": Object {
+            "browserAdapter": Object {
               "getUrl": [Function],
             },
             "issueDetailsTextGenerator": null,
@@ -746,7 +746,7 @@ exports[`DetailsDialogTest renders with: { isDevToolsOpen: false, shadowDialog: 
           "onLayoutDidMount": [Function],
           "props": Object {
             "deps": Object {
-              "clientBrowserAdapter": Object {
+              "browserAdapter": Object {
                 "getUrl": [Function],
               },
               "issueDetailsTextGenerator": null,
@@ -830,7 +830,7 @@ exports[`DetailsDialogTest renders with: { isDevToolsOpen: false, shadowDialog: 
               "_element": <DetailsDialog
                 deps={
                   Object {
-                    "clientBrowserAdapter": Object {
+                    "browserAdapter": Object {
                       "getUrl": [Function],
                     },
                     "issueDetailsTextGenerator": null,
@@ -981,7 +981,7 @@ exports[`DetailsDialogTest renders with: { isDevToolsOpen: false, shadowDialog: 
                     currentRuleIndex={0}
                     deps={
                       Object {
-                        "clientBrowserAdapter": Object {
+                        "browserAdapter": Object {
                           "getUrl": [Function],
                         },
                         "issueDetailsTextGenerator": null,
@@ -1030,7 +1030,7 @@ exports[`DetailsDialogTest renders with: { isDevToolsOpen: false, shadowDialog: 
                       checks={Array []}
                       deps={
                         Object {
-                          "clientBrowserAdapter": Object {
+                          "browserAdapter": Object {
                             "getUrl": [Function],
                           },
                           "issueDetailsTextGenerator": null,
@@ -1048,7 +1048,7 @@ exports[`DetailsDialogTest renders with: { isDevToolsOpen: false, shadowDialog: 
                       checks={Array []}
                       deps={
                         Object {
-                          "clientBrowserAdapter": Object {
+                          "browserAdapter": Object {
                             "getUrl": [Function],
                           },
                           "issueDetailsTextGenerator": null,
@@ -1113,9 +1113,9 @@ exports[`DetailsDialogTest renders with: { isDevToolsOpen: false, shadowDialog: 
 </StyledWithResponsiveMode>
 `;
 
-exports[`DetailsDialogTest renders with: { isDevToolsOpen: false, shadowDialog: false }: verify close button for non shadow dom 1`] = `<CancelIcon />`;
+exports[`DetailsDialog renders with: { isDevToolsOpen: false, shadowDialog: false }: verify close button for non shadow dom 1`] = `<CancelIcon />`;
 
-exports[`DetailsDialogTest renders with: { isDevToolsOpen: false, shadowDialog: false }: verify initial state 1`] = `
+exports[`DetailsDialog renders with: { isDevToolsOpen: false, shadowDialog: false }: verify initial state 1`] = `
 Object {
   "canInspect": true,
   "currentRuleIndex": 0,
@@ -1125,7 +1125,7 @@ Object {
 }
 `;
 
-exports[`DetailsDialogTest renders with: { isDevToolsOpen: false, shadowDialog: true } 1`] = `
+exports[`DetailsDialog renders with: { isDevToolsOpen: false, shadowDialog: true } 1`] = `
 <div
   className="insights-dialog-main-override-shadow"
   style={
@@ -1212,7 +1212,7 @@ exports[`DetailsDialogTest renders with: { isDevToolsOpen: false, shadowDialog: 
         currentRuleIndex={0}
         deps={
           Object {
-            "clientBrowserAdapter": Object {
+            "browserAdapter": Object {
               "getUrl": [Function],
             },
             "issueDetailsTextGenerator": null,
@@ -1261,7 +1261,7 @@ exports[`DetailsDialogTest renders with: { isDevToolsOpen: false, shadowDialog: 
           checks={Array []}
           deps={
             Object {
-              "clientBrowserAdapter": Object {
+              "browserAdapter": Object {
                 "getUrl": [Function],
               },
               "issueDetailsTextGenerator": null,
@@ -1279,7 +1279,7 @@ exports[`DetailsDialogTest renders with: { isDevToolsOpen: false, shadowDialog: 
           checks={Array []}
           deps={
             Object {
-              "clientBrowserAdapter": Object {
+              "browserAdapter": Object {
                 "getUrl": [Function],
               },
               "issueDetailsTextGenerator": null,
@@ -1309,7 +1309,7 @@ exports[`DetailsDialogTest renders with: { isDevToolsOpen: false, shadowDialog: 
             "onLayoutDidMount": [Function],
             "props": Object {
               "deps": Object {
-                "clientBrowserAdapter": Object {
+                "browserAdapter": Object {
                   "getUrl": [Function],
                 },
                 "issueDetailsTextGenerator": null,
@@ -1393,7 +1393,7 @@ exports[`DetailsDialogTest renders with: { isDevToolsOpen: false, shadowDialog: 
                 "_element": <DetailsDialog
                   deps={
                     Object {
-                      "clientBrowserAdapter": Object {
+                      "browserAdapter": Object {
                         "getUrl": [Function],
                       },
                       "issueDetailsTextGenerator": null,
@@ -1549,7 +1549,7 @@ exports[`DetailsDialogTest renders with: { isDevToolsOpen: false, shadowDialog: 
                         currentRuleIndex={0}
                         deps={
                           Object {
-                            "clientBrowserAdapter": Object {
+                            "browserAdapter": Object {
                               "getUrl": [Function],
                             },
                             "issueDetailsTextGenerator": null,
@@ -1598,7 +1598,7 @@ exports[`DetailsDialogTest renders with: { isDevToolsOpen: false, shadowDialog: 
                           checks={Array []}
                           deps={
                             Object {
-                              "clientBrowserAdapter": Object {
+                              "browserAdapter": Object {
                                 "getUrl": [Function],
                               },
                               "issueDetailsTextGenerator": null,
@@ -1616,7 +1616,7 @@ exports[`DetailsDialogTest renders with: { isDevToolsOpen: false, shadowDialog: 
                           checks={Array []}
                           deps={
                             Object {
-                              "clientBrowserAdapter": Object {
+                              "browserAdapter": Object {
                                 "getUrl": [Function],
                               },
                               "issueDetailsTextGenerator": null,
@@ -1683,7 +1683,7 @@ exports[`DetailsDialogTest renders with: { isDevToolsOpen: false, shadowDialog: 
 </div>
 `;
 
-exports[`DetailsDialogTest renders with: { isDevToolsOpen: false, shadowDialog: true }: verify initial state 1`] = `
+exports[`DetailsDialog renders with: { isDevToolsOpen: false, shadowDialog: true }: verify initial state 1`] = `
 Object {
   "canInspect": true,
   "currentRuleIndex": 0,
@@ -1693,7 +1693,7 @@ Object {
 }
 `;
 
-exports[`DetailsDialogTest renders with: { isDevToolsOpen: true, shadowDialog: false } 1`] = `
+exports[`DetailsDialog renders with: { isDevToolsOpen: true, shadowDialog: false } 1`] = `
 <StyledWithResponsiveMode
   dialogContentProps={
     Object {
@@ -1775,7 +1775,7 @@ exports[`DetailsDialogTest renders with: { isDevToolsOpen: true, shadowDialog: f
       currentRuleIndex={0}
       deps={
         Object {
-          "clientBrowserAdapter": Object {
+          "browserAdapter": Object {
             "getUrl": [Function],
           },
           "issueDetailsTextGenerator": null,
@@ -1824,7 +1824,7 @@ exports[`DetailsDialogTest renders with: { isDevToolsOpen: true, shadowDialog: f
         checks={Array []}
         deps={
           Object {
-            "clientBrowserAdapter": Object {
+            "browserAdapter": Object {
               "getUrl": [Function],
             },
             "issueDetailsTextGenerator": null,
@@ -1842,7 +1842,7 @@ exports[`DetailsDialogTest renders with: { isDevToolsOpen: true, shadowDialog: f
         checks={Array []}
         deps={
           Object {
-            "clientBrowserAdapter": Object {
+            "browserAdapter": Object {
               "getUrl": [Function],
             },
             "issueDetailsTextGenerator": null,
@@ -1872,7 +1872,7 @@ exports[`DetailsDialogTest renders with: { isDevToolsOpen: true, shadowDialog: f
           "onLayoutDidMount": [Function],
           "props": Object {
             "deps": Object {
-              "clientBrowserAdapter": Object {
+              "browserAdapter": Object {
                 "getUrl": [Function],
               },
               "issueDetailsTextGenerator": null,
@@ -1956,7 +1956,7 @@ exports[`DetailsDialogTest renders with: { isDevToolsOpen: true, shadowDialog: f
               "_element": <DetailsDialog
                 deps={
                   Object {
-                    "clientBrowserAdapter": Object {
+                    "browserAdapter": Object {
                       "getUrl": [Function],
                     },
                     "issueDetailsTextGenerator": null,
@@ -2107,7 +2107,7 @@ exports[`DetailsDialogTest renders with: { isDevToolsOpen: true, shadowDialog: f
                     currentRuleIndex={0}
                     deps={
                       Object {
-                        "clientBrowserAdapter": Object {
+                        "browserAdapter": Object {
                           "getUrl": [Function],
                         },
                         "issueDetailsTextGenerator": null,
@@ -2156,7 +2156,7 @@ exports[`DetailsDialogTest renders with: { isDevToolsOpen: true, shadowDialog: f
                       checks={Array []}
                       deps={
                         Object {
-                          "clientBrowserAdapter": Object {
+                          "browserAdapter": Object {
                             "getUrl": [Function],
                           },
                           "issueDetailsTextGenerator": null,
@@ -2174,7 +2174,7 @@ exports[`DetailsDialogTest renders with: { isDevToolsOpen: true, shadowDialog: f
                       checks={Array []}
                       deps={
                         Object {
-                          "clientBrowserAdapter": Object {
+                          "browserAdapter": Object {
                             "getUrl": [Function],
                           },
                           "issueDetailsTextGenerator": null,
@@ -2239,9 +2239,9 @@ exports[`DetailsDialogTest renders with: { isDevToolsOpen: true, shadowDialog: f
 </StyledWithResponsiveMode>
 `;
 
-exports[`DetailsDialogTest renders with: { isDevToolsOpen: true, shadowDialog: false }: verify close button for non shadow dom 1`] = `<CancelIcon />`;
+exports[`DetailsDialog renders with: { isDevToolsOpen: true, shadowDialog: false }: verify close button for non shadow dom 1`] = `<CancelIcon />`;
 
-exports[`DetailsDialogTest renders with: { isDevToolsOpen: true, shadowDialog: false }: verify initial state 1`] = `
+exports[`DetailsDialog renders with: { isDevToolsOpen: true, shadowDialog: false }: verify initial state 1`] = `
 Object {
   "canInspect": true,
   "currentRuleIndex": 0,
@@ -2251,7 +2251,7 @@ Object {
 }
 `;
 
-exports[`DetailsDialogTest renders with: { isDevToolsOpen: true, shadowDialog: true } 1`] = `
+exports[`DetailsDialog renders with: { isDevToolsOpen: true, shadowDialog: true } 1`] = `
 <div
   className="insights-dialog-main-override-shadow"
   style={
@@ -2338,7 +2338,7 @@ exports[`DetailsDialogTest renders with: { isDevToolsOpen: true, shadowDialog: t
         currentRuleIndex={0}
         deps={
           Object {
-            "clientBrowserAdapter": Object {
+            "browserAdapter": Object {
               "getUrl": [Function],
             },
             "issueDetailsTextGenerator": null,
@@ -2387,7 +2387,7 @@ exports[`DetailsDialogTest renders with: { isDevToolsOpen: true, shadowDialog: t
           checks={Array []}
           deps={
             Object {
-              "clientBrowserAdapter": Object {
+              "browserAdapter": Object {
                 "getUrl": [Function],
               },
               "issueDetailsTextGenerator": null,
@@ -2405,7 +2405,7 @@ exports[`DetailsDialogTest renders with: { isDevToolsOpen: true, shadowDialog: t
           checks={Array []}
           deps={
             Object {
-              "clientBrowserAdapter": Object {
+              "browserAdapter": Object {
                 "getUrl": [Function],
               },
               "issueDetailsTextGenerator": null,
@@ -2435,7 +2435,7 @@ exports[`DetailsDialogTest renders with: { isDevToolsOpen: true, shadowDialog: t
             "onLayoutDidMount": [Function],
             "props": Object {
               "deps": Object {
-                "clientBrowserAdapter": Object {
+                "browserAdapter": Object {
                   "getUrl": [Function],
                 },
                 "issueDetailsTextGenerator": null,
@@ -2519,7 +2519,7 @@ exports[`DetailsDialogTest renders with: { isDevToolsOpen: true, shadowDialog: t
                 "_element": <DetailsDialog
                   deps={
                     Object {
-                      "clientBrowserAdapter": Object {
+                      "browserAdapter": Object {
                         "getUrl": [Function],
                       },
                       "issueDetailsTextGenerator": null,
@@ -2675,7 +2675,7 @@ exports[`DetailsDialogTest renders with: { isDevToolsOpen: true, shadowDialog: t
                         currentRuleIndex={0}
                         deps={
                           Object {
-                            "clientBrowserAdapter": Object {
+                            "browserAdapter": Object {
                               "getUrl": [Function],
                             },
                             "issueDetailsTextGenerator": null,
@@ -2724,7 +2724,7 @@ exports[`DetailsDialogTest renders with: { isDevToolsOpen: true, shadowDialog: t
                           checks={Array []}
                           deps={
                             Object {
-                              "clientBrowserAdapter": Object {
+                              "browserAdapter": Object {
                                 "getUrl": [Function],
                               },
                               "issueDetailsTextGenerator": null,
@@ -2742,7 +2742,7 @@ exports[`DetailsDialogTest renders with: { isDevToolsOpen: true, shadowDialog: t
                           checks={Array []}
                           deps={
                             Object {
-                              "clientBrowserAdapter": Object {
+                              "browserAdapter": Object {
                                 "getUrl": [Function],
                               },
                               "issueDetailsTextGenerator": null,
@@ -2809,7 +2809,7 @@ exports[`DetailsDialogTest renders with: { isDevToolsOpen: true, shadowDialog: t
 </div>
 `;
 
-exports[`DetailsDialogTest renders with: { isDevToolsOpen: true, shadowDialog: true }: verify initial state 1`] = `
+exports[`DetailsDialog renders with: { isDevToolsOpen: true, shadowDialog: true }: verify initial state 1`] = `
 Object {
   "canInspect": true,
   "currentRuleIndex": 0,

@@ -13,10 +13,10 @@ export interface ProgressResult<T> {
 export class TabStopsAnalyzer extends BaseAnalyzer {
     private tabStopsListener: TabStopsListener;
     private deferred: Q.Deferred<AxeAnalyzerResult>;
-    private _windowUtils: WindowUtils;
+    private windowUtils: WindowUtils;
 
-    private _pendingTabbedElements: TabStopEvent[] = [];
-    private _onTabbedTimeoutId: number;
+    private pendingTabbedElements: TabStopEvent[] = [];
+    private onTabbedTimeoutId: number;
     protected config: FocusAnalyzerConfiguration;
 
     constructor(
@@ -27,7 +27,7 @@ export class TabStopsAnalyzer extends BaseAnalyzer {
     ) {
         super(config, sendMessageDelegate);
         this.tabStopsListener = tabStopsListener;
-        this._windowUtils = windowUtils;
+        this.windowUtils = windowUtils;
     }
 
     public analyze(): void {
@@ -42,19 +42,19 @@ export class TabStopsAnalyzer extends BaseAnalyzer {
     protected getResults = (): Q.Promise<AxeAnalyzerResult> => {
         this.deferred = Q.defer<AxeAnalyzerResult>();
         this.tabStopsListener.setTabEventListenerOnMainWindow((tabEvent: TabStopEvent) => {
-            if (this._onTabbedTimeoutId != null) {
-                this._windowUtils.clearTimeout(this._onTabbedTimeoutId);
-                this._onTabbedTimeoutId = null;
+            if (this.onTabbedTimeoutId != null) {
+                this.windowUtils.clearTimeout(this.onTabbedTimeoutId);
+                this.onTabbedTimeoutId = null;
             }
 
-            this._pendingTabbedElements.push(tabEvent);
+            this.pendingTabbedElements.push(tabEvent);
 
-            this._onTabbedTimeoutId = this._windowUtils.setTimeout(() => {
+            this.onTabbedTimeoutId = this.windowUtils.setTimeout(() => {
                 this.deferred.notify({
-                    result: this._pendingTabbedElements,
+                    result: this.pendingTabbedElements,
                 });
-                this._onTabbedTimeoutId = null;
-                this._pendingTabbedElements = [];
+                this.onTabbedTimeoutId = null;
+                this.pendingTabbedElements = [];
             }, 50);
         });
 

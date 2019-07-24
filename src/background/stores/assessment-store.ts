@@ -4,6 +4,7 @@ import { forEach, isEmpty } from 'lodash';
 
 import { AssessmentsProvider } from '../../assessments/types/assessments-provider';
 import { IndexedDBDataKeys } from '../../background/IndexedDBDataKeys';
+import { BrowserAdapter } from '../../common/browser-adapters/browser-adapter';
 import { IndexedDBAPI } from '../../common/indexedDB/indexedDB';
 import { StoreNames } from '../../common/stores/store-names';
 import { DetailsViewPivotType } from '../../common/types/details-view-pivot-type';
@@ -34,7 +35,6 @@ import {
 } from './../actions/action-payloads';
 import { AssessmentActions } from './../actions/assessment-actions';
 import { AssessmentDataRemover } from './../assessment-data-remover';
-import { BrowserAdapter } from './../browser-adapters/browser-adapter';
 import { BaseStoreImpl } from './base-store-impl';
 
 export class AssessmentStore extends BaseStoreImpl<AssessmentStoreData> {
