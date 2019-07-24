@@ -90,12 +90,6 @@ export class Browser {
         }
     }
 
-    public async getLastOpenPage(): Promise<Page> {
-        const targets = await this.underlyingBrowser.targets();
-        const puppeteerPage = await targets[targets.length - 1].page();
-        return new Page(puppeteerPage, { onPageCrash: this.onPageCrash });
-    }
-
     public async getActivePageTabId(): Promise<number> {
         const backgroundPage = await this.waitForExtensionBackgroundPage();
         return await backgroundPage.evaluate(() => {
@@ -108,7 +102,9 @@ export class Browser {
     public async waitForPageMatchingUrl(url: string): Promise<Page> {
         const underlyingTarget = await this.underlyingBrowser.waitForTarget(t => t.url().toLowerCase() === url.toLowerCase());
         const underlyingPage = await underlyingTarget.page();
-        return new Page(underlyingPage, { onPageCrash: this.onPageCrash });
+        const page = new Page(underlyingPage, { onPageCrash: this.onPageCrash });
+        await page.disableAnimations();
+        return page;
     }
 
     private async getExtensionUrl(relativePath: string): Promise<string> {
