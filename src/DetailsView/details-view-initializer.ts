@@ -41,6 +41,7 @@ import { TelemetryEventSource } from '../common/telemetry-events';
 import { AssessmentStoreData } from '../common/types/store-data/assessment-result-data';
 import { DetailsViewData } from '../common/types/store-data/details-view-data';
 import { InspectStoreData } from '../common/types/store-data/inspect-store-data';
+import { PathSnippetStoreData } from '../common/types/store-data/path-snippet-store-data';
 import { ScopingStoreData } from '../common/types/store-data/scoping-store-data';
 import { TabStoreData } from '../common/types/store-data/tab-store-data';
 import { UserConfigurationStoreData } from '../common/types/store-data/user-configuration-store';
@@ -113,6 +114,7 @@ if (isNaN(tabId) === false) {
             );
             const detailsViewStore = new StoreProxy<DetailsViewData>(StoreNames[StoreNames.DetailsViewStore], chromeAdapter);
             const assessmentStore = new StoreProxy<AssessmentStoreData>(StoreNames[StoreNames.AssessmentStore], chromeAdapter);
+            const pathSnippetStore = new StoreProxy<PathSnippetStoreData>(StoreNames[StoreNames.PathSnippetStore], chromeAdapter);
             const featureFlagStore = new StoreProxy<DictionaryStringTo<boolean>>(StoreNames[StoreNames.FeatureFlagStore], chromeAdapter);
             const scopingStore = new StoreProxy<ScopingStoreData>(StoreNames[StoreNames.ScopingPanelStateStore], chromeAdapter);
             const inspectStore = new StoreProxy<InspectStoreData>(StoreNames[StoreNames.InspectStore], chromeAdapter);
@@ -127,6 +129,7 @@ if (isNaN(tabId) === false) {
                 visualizationScanResultStore,
                 visualizationStore,
                 assessmentStore,
+                pathSnippetStore,
                 scopingStore,
                 userConfigStore,
             ]);

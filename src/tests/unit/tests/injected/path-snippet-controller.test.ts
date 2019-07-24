@@ -31,7 +31,16 @@ describe('InspectControllerTests', () => {
 
     test('do not add snippet if path snippet store state is null', () => {
         pathSnippetStoreState = null;
+        testObject.listenToStore();
 
+        listenAndVerify();
+    });
+
+    test('do not add snippet if path is null', () => {
+        pathSnippetStoreState = {
+            path: null,
+            snippet: null,
+        };
         testObject.listenToStore();
 
         listenAndVerify();

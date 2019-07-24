@@ -111,7 +111,7 @@ describe('AssessmentInstanceTableHandlerTest', () => {
         expect(expectedRows).toEqual(rows);
     });
 
-    test('createCapturedInstanceTableItems', () => {
+    test('createCapturedInstanceTableItems with PathSnippetStoreData', () => {
         const instance: UserCapturedInstance = {
             id: '1',
             description: 'des',
@@ -121,15 +121,23 @@ describe('AssessmentInstanceTableHandlerTest', () => {
             selectedTestType: 5,
         };
 
+        const pathSnippetStoreData = {
+            path: 'test path',
+            snippet: 'test snippet for path',
+        };
+
         const rows = testSubject.createCapturedInstanceTableItems(
             [instance],
             assessmentNavState.selectedTestType,
             assessmentNavState.selectedTestStep,
             featureFlagStoreData,
+            pathSnippetStoreData,
         );
 
         const currentInstance = {
             failureDescription: instance.description,
+            path: pathSnippetStoreData.path,
+            snippet: pathSnippetStoreData.snippet,
         };
 
         const instanceActionButtons: JSX.Element = (
@@ -141,6 +149,61 @@ describe('AssessmentInstanceTableHandlerTest', () => {
                 onRemove={actionMessageCreatorMock.object.removeFailureInstance}
                 onEdit={actionMessageCreatorMock.object.editFailureInstance}
                 onAddPath={actionMessageCreatorMock.object.addPathForValidation}
+                onClearPathSnippetData={actionMessageCreatorMock.object.clearPathSnippetData}
+                assessmentsProvider={assessmentsProvider}
+                featureFlagStoreData={featureFlagStoreData}
+            />
+        );
+        const expectedRows: CapturedInstanceRowData[] = [
+            {
+                instance: instance,
+                instanceActionButtons: instanceActionButtons,
+            },
+        ];
+        expect(expectedRows).toEqual(rows);
+    });
+
+    test('createCapturedInstanceTableItems withoutPathSnippetStoreData', () => {
+        const instance: UserCapturedInstance = {
+            id: '1',
+            description: 'des',
+            selector: 'saved path',
+            html: 'saved instance',
+        };
+        const assessmentNavState: AssessmentNavState = {
+            selectedTestStep: 'step1',
+            selectedTestType: 5,
+        };
+
+        const pathSnippetStoreData = {
+            path: null,
+            snippet: null,
+        };
+
+        const rows = testSubject.createCapturedInstanceTableItems(
+            [instance],
+            assessmentNavState.selectedTestType,
+            assessmentNavState.selectedTestStep,
+            featureFlagStoreData,
+            pathSnippetStoreData,
+        );
+
+        const currentInstance = {
+            failureDescription: instance.description,
+            path: instance.selector,
+            snippet: instance.html,
+        };
+
+        const instanceActionButtons: JSX.Element = (
+            <AssessmentInstanceEditAndRemoveControl
+                test={assessmentNavState.selectedTestType}
+                step={assessmentNavState.selectedTestStep}
+                id={instance.id}
+                currentInstance={currentInstance}
+                onRemove={actionMessageCreatorMock.object.removeFailureInstance}
+                onEdit={actionMessageCreatorMock.object.editFailureInstance}
+                onAddPath={actionMessageCreatorMock.object.addPathForValidation}
+                onClearPathSnippetData={actionMessageCreatorMock.object.clearPathSnippetData}
                 assessmentsProvider={assessmentsProvider}
                 featureFlagStoreData={featureFlagStoreData}
             />
@@ -218,6 +281,11 @@ describe('AssessmentInstanceTableHandlerTest', () => {
 
         actionMessageCreatorMock.setup(a => a.addPathForValidation(path)).verifiable(Times.once());
         testSubject.addPathForValidation(path);
+    });
+
+    test('clearPathSnippetData', () => {
+        actionMessageCreatorMock.setup(a => a.clearPathSnippetData()).verifiable(Times.once());
+        testSubject.clearPathSnippetData();
     });
 
     test('addFailureInstance', () => {

@@ -13,6 +13,7 @@ import { VisualizationType } from '../../../../../common/types/visualization-typ
 import { ActionAndCancelButtonsComponent } from '../../../../../DetailsView/components/action-and-cancel-buttons-component';
 import {
     CapturedInstanceActionType,
+    FailureInstanceData,
     FailureInstancePanelControl,
     FailureInstancePanelControlProps,
 } from '../../../../../DetailsView/components/failure-instance-panel-control';
@@ -23,11 +24,13 @@ describe('FailureInstancePanelControlTest', () => {
     let addPathForValidationMock: IMock<(path) => void>;
     let addInstanceMock: IMock<(instanceData, test, step) => void>;
     let editInstanceMock: IMock<(instanceData, test, step, id) => void>;
+    let clearPathSnippetDataMock: IMock<() => void>;
 
     beforeEach(() => {
         addInstanceMock = Mock.ofInstance(() => {});
         editInstanceMock = Mock.ofInstance(() => {});
         addPathForValidationMock = Mock.ofInstance(() => {});
+        clearPathSnippetDataMock = Mock.ofInstance(() => {});
     });
 
     test('render FailureInstancePanelControl: create without instance', () => {
@@ -42,6 +45,7 @@ describe('FailureInstancePanelControlTest', () => {
             test: VisualizationType.HeadingsAssessment,
             addFailureInstance: addInstanceMock.object,
             addPathForValidation: addPathForValidationMock.object,
+            clearPathSnippetData: clearPathSnippetDataMock.object,
             actionType: CapturedInstanceActionType.CREATE,
             assessmentsProvider: Assessments,
             featureFlagStoreData: null,
@@ -87,17 +91,19 @@ describe('FailureInstancePanelControlTest', () => {
     });
 
     test('onValidateSelector ', () => {
-        const selector = 'some selector';
-        const snippet = 'snippet for ' + selector;
+        const path = 'some selector';
         const eventStub = null;
         const props = createPropsWithType(CapturedInstanceActionType.CREATE);
+
         const failureInstance = {
             failureDescription: 'new text',
-            path: selector,
+            path: path,
             snippet: null,
         };
 
         props.failureInstance = failureInstance;
+
+        addPathForValidationMock.setup(handler => handler(failureInstance.path)).verifiable(Times.once());
 
         const wrapper = shallow<FailureInstancePanelControl>(<FailureInstancePanelControl {...props} />);
         const flaggedComponent = wrapper.find(FlaggedComponent);
@@ -106,7 +112,7 @@ describe('FailureInstancePanelControlTest', () => {
         const failureInstancePanelDetailsProps = failureInstancePanelDetails.props as FailureInstancePanelDetailsProps;
         failureInstancePanelDetailsProps.onValidateSelector(eventStub);
 
-        expect(wrapper.state().currentInstance.snippet).toEqual(snippet);
+        addPathForValidationMock.verifyAll();
     });
 
     test('openFailureInstancePanel', () => {
@@ -148,10 +154,13 @@ describe('FailureInstancePanelControlTest', () => {
             .props()
             .onDismiss();
 
+        clearPathSnippetDataMock.setup(handler => handler()).verifiable(Times.once());
         expect(wrapper.state().isPanelOpen).toBe(false);
 
         // This shouldn't be cleared because it stays briefly visible as the panel close animation happens
         expect(wrapper.state().currentInstance.failureDescription).toEqual(description);
+
+        clearPathSnippetDataMock.verifyAll();
     });
 
     test('onSaveEditedFailureInstance', () => {
@@ -179,12 +188,14 @@ describe('FailureInstancePanelControlTest', () => {
             .props()
             .primaryButtonOnClick(null);
 
+        clearPathSnippetDataMock.setup(handler => handler()).verifiable(Times.once());
         expect(wrapper.state().isPanelOpen).toBe(false);
 
         // This shouldn't be cleared because it stays briefly visible as the panel close animation happens
         expect(wrapper.state().currentInstance.failureDescription).toEqual(description);
 
         editInstanceMock.verifyAll();
+        clearPathSnippetDataMock.verifyAll();
     });
 
     test('onAddFailureInstance', () => {
@@ -209,25 +220,57 @@ describe('FailureInstancePanelControlTest', () => {
             .props()
             .primaryButtonOnClick(null);
 
+        clearPathSnippetDataMock.setup(handler => handler()).verifiable(Times.once());
         expect(wrapper.state().isPanelOpen).toBe(false);
 
         // This shouldn't be cleared because it stays briefly visible as the panel close animation happens
         expect(wrapper.state().currentInstance.failureDescription).toEqual(description);
 
         addInstanceMock.verifyAll();
+        clearPathSnippetDataMock.verifyAll();
+    });
+
+    test('componentDidUpdate reassigns state', () => {
+        const prevProps = createPropsWithType(CapturedInstanceActionType.CREATE);
+        const newProps = createPropsWithType(CapturedInstanceActionType.CREATE);
+        const newFailureInstance = {
+            failureDescription: null,
+            path: 'inputed path',
+            snippet: 'snippet for path',
+        };
+        newProps.failureInstance = newFailureInstance;
+
+        const wrapper = shallow<FailureInstancePanelControl>(<FailureInstancePanelControl {...newProps} />);
+        (wrapper.instance() as FailureInstancePanelControl).setState({
+            currentInstance: prevProps.failureInstance,
+        });
+
+        const firstStateCurrentInstance = (wrapper.instance() as FailureInstancePanelControl).state.currentInstance;
+        (wrapper.instance() as FailureInstancePanelControl).componentDidUpdate(prevProps);
+        const secondStateCurrentInstance = (wrapper.instance() as FailureInstancePanelControl).state.currentInstance;
+
+        expect(firstStateCurrentInstance).toEqual(prevProps.failureInstance);
+        expect(secondStateCurrentInstance).toEqual(newProps.failureInstance);
     });
 
     function createPropsWithType(actionType: CapturedInstanceActionType): FailureInstancePanelControlProps {
         const featureData = {} as FeatureFlagStoreData;
+        const emptyFailureInstance = {
+            failureDescription: null,
+            path: null,
+            snippet: null,
+        };
 
         return {
             step: 'missingHeadings',
             test: VisualizationType.HeadingsAssessment,
             addFailureInstance: addInstanceMock.object,
             addPathForValidation: addPathForValidationMock.object,
+            clearPathSnippetData: clearPathSnippetDataMock.object,
             actionType: actionType,
             assessmentsProvider: Assessments,
             featureFlagStoreData: featureData,
+            failureInstance: emptyFailureInstance,
         };
     }
 });

@@ -194,7 +194,9 @@ export class Messages {
     };
 
     public static readonly PathSnippet = {
+        GetCurrentState: `${messagePrefix}/pathSnippet/getCurrentState`,
         AddPathForValidation: `${messagePrefix}/pathSnippet/addPathForValidation`,
         AddCorrespondingSnippet: `${messagePrefix}/pathSnippet/addCorrespondingSnippet`,
+        ClearPathSnippetData: `${messagePrefix}/pathSnippet/clearPathSnippetData`,
     };
 }

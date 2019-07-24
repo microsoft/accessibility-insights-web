@@ -13,6 +13,7 @@ import { ContentActionMessageCreator } from '../../../../../common/message-creat
 import { ManualTestStatus } from '../../../../../common/types/manual-test-status';
 import { AssessmentData } from '../../../../../common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from '../../../../../common/types/store-data/feature-flag-store-data';
+import { PathSnippetStoreData } from '../../../../../common/types/store-data/path-snippet-store-data';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
 import { UrlParser } from '../../../../../common/url-parser';
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
@@ -254,6 +255,7 @@ class AssessmentViewPropsBuilder {
         } as AssessmentData;
 
         const featureFlagStoreData = {} as FeatureFlagStoreData;
+        const pathSnippetStoreData = {} as PathSnippetStoreData;
 
         const props: AssessmentViewProps = {
             deps,
@@ -270,6 +272,7 @@ class AssessmentViewPropsBuilder {
             assessmentDefaultMessageGenerator: this.assessmentGeneratorInstance,
             assessmentTestResult: new AssessmentTestResult(this.provider, assessment.visualizationType, assessmentData),
             featureFlagStoreData,
+            pathSnippetStoreData,
         };
 
         return props;

@@ -7,10 +7,11 @@ import { AssessmentsProvider } from '../../assessments/types/assessments-provide
 import { ManualTestStatus } from '../../common/types/manual-test-status';
 import { ManualTestStepResult } from '../../common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
+import { PathSnippetStoreData } from '../../common/types/store-data/path-snippet-store-data';
 import { VisualizationType } from '../../common/types/visualization-type';
 import { DictionaryStringTo } from '../../types/common-types';
 import { AssessmentInstanceTableHandler } from '../handlers/assessment-instance-table-handler';
-import { CapturedInstanceActionType, FailureInstancePanelControl } from './failure-instance-panel-control';
+import { CapturedInstanceActionType, FailureInstanceData, FailureInstancePanelControl } from './failure-instance-panel-control';
 import { TestStatusChoiceGroup } from './test-status-choice-group';
 
 export interface ManualTestStepViewProps {
@@ -20,6 +21,7 @@ export interface ManualTestStepViewProps {
     manualTestStepResultMap: DictionaryStringTo<ManualTestStepResult>;
     assessmentsProvider: AssessmentsProvider;
     featureFlagStoreData: FeatureFlagStoreData;
+    pathSnippetStoreData: PathSnippetStoreData;
 }
 
 export class ManualTestStepView extends React.Component<ManualTestStepViewProps> {
@@ -53,7 +55,12 @@ export class ManualTestStepView extends React.Component<ManualTestStepViewProps>
             this.props.test,
             this.props.step,
             this.props.featureFlagStoreData,
+            this.props.pathSnippetStoreData,
         );
+        const instance: FailureInstanceData = {
+            path: this.props.pathSnippetStoreData.path,
+            snippet: this.props.pathSnippetStoreData.snippet,
+        };
         return (
             <React.Fragment>
                 <h3 className="test-step-instances-header">Instances</h3>
@@ -62,9 +69,11 @@ export class ManualTestStepView extends React.Component<ManualTestStepViewProps>
                     test={this.props.test}
                     addFailureInstance={this.props.assessmentInstanceTableHandler.addFailureInstance}
                     addPathForValidation={this.props.assessmentInstanceTableHandler.addPathForValidation}
+                    clearPathSnippetData={this.props.assessmentInstanceTableHandler.clearPathSnippetData}
                     actionType={CapturedInstanceActionType.CREATE}
                     assessmentsProvider={this.props.assessmentsProvider}
                     featureFlagStoreData={this.props.featureFlagStoreData}
+                    failureInstance={instance}
                 />
                 <DetailsList
                     items={items}

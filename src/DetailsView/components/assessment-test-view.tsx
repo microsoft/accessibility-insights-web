@@ -9,6 +9,7 @@ import { VisualizationConfiguration } from '../../common/configs/visualization-c
 import { NamedSFC } from '../../common/react/named-sfc';
 import { AssessmentStoreData } from '../../common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
+import { PathSnippetStoreData } from '../../common/types/store-data/path-snippet-store-data';
 import { TabStoreData } from '../../common/types/store-data/tab-store-data';
 import { VisualizationStoreData } from '../../common/types/store-data/visualization-store-data';
 import { AssessmentInstanceTableHandler } from '../handlers/assessment-instance-table-handler';
@@ -23,6 +24,7 @@ export interface AssessmentTestViewProps {
     deps: AssessmentTestViewDeps;
     tabStoreData: TabStoreData;
     assessmentStoreData: AssessmentStoreData;
+    pathSnippetStoreData: PathSnippetStoreData;
     visualizationStoreData: VisualizationStoreData;
     assessmentInstanceTableHandler: AssessmentInstanceTableHandler;
     configuration: VisualizationConfiguration;
@@ -58,6 +60,7 @@ export const AssessmentTestView = NamedSFC<AssessmentTestViewProps>('AssessmentT
             assessmentDefaultMessageGenerator={deps.assessmentDefaultMessageGenerator}
             assessmentTestResult={assessmentTestResult}
             featureFlagStoreData={props.featureFlagStoreData}
+            pathSnippetStoreData={props.pathSnippetStoreData}
         />
     );
 });

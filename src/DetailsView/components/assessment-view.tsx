@@ -10,6 +10,7 @@ import { reactExtensionPoint } from '../../common/extensibility/react-extension-
 import { Tab } from '../../common/itab';
 import { AssessmentData, AssessmentNavState, PersistedTabInfo } from '../../common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
+import { PathSnippetStoreData } from '../../common/types/store-data/path-snippet-store-data';
 import { VisualizationType } from '../../common/types/visualization-type';
 import { ContentLink, ContentLinkDeps } from '../../views/content/content-link';
 import { ContentPageComponent } from '../../views/content/content-page';
@@ -45,6 +46,7 @@ export interface AssessmentViewProps {
     assessmentDefaultMessageGenerator: AssessmentDefaultMessageGenerator;
     assessmentTestResult: AssessmentTestResult;
     featureFlagStoreData: FeatureFlagStoreData;
+    pathSnippetStoreData: PathSnippetStoreData;
 }
 
 export class AssessmentView extends React.Component<AssessmentViewProps> {
@@ -199,6 +201,7 @@ export class AssessmentView extends React.Component<AssessmentViewProps> {
                         isStepScanned={isStepScanned}
                         assessmentDefaultMessageGenerator={this.props.assessmentDefaultMessageGenerator}
                         featureFlagStoreData={this.props.featureFlagStoreData}
+                        pathSnippetStoreData={this.props.pathSnippetStoreData}
                     />
                 </div>
             </div>

@@ -14,6 +14,7 @@ import { ScopingActionMessageCreator } from '../common/message-creators/scoping-
 import { AssessmentStoreData } from '../common/types/store-data/assessment-result-data';
 import { DetailsViewData } from '../common/types/store-data/details-view-data';
 import { FeatureFlagStoreData } from '../common/types/store-data/feature-flag-store-data';
+import { PathSnippetStoreData } from '../common/types/store-data/path-snippet-store-data';
 import { ScopingStoreData } from '../common/types/store-data/scoping-store-data';
 import { TabStoreData } from '../common/types/store-data/tab-store-data';
 import { UserConfigurationStoreData } from '../common/types/store-data/user-configuration-store';
@@ -67,6 +68,7 @@ export interface DetailsViewContainerState {
     featureFlagStoreData: FeatureFlagStoreData;
     detailsViewStoreData: DetailsViewData;
     assessmentStoreData: AssessmentStoreData;
+    pathSnippetStoreData: PathSnippetStoreData;
     scopingPanelStateStoreData: ScopingStoreData;
     userConfigurationStoreData: UserConfigurationStoreData;
     selectedDetailsView: VisualizationType;
@@ -173,6 +175,7 @@ export class DetailsViewContainer extends React.Component<DetailsViewContainerPr
                 deps={deps}
                 tabStoreData={storeState.tabStoreData}
                 assessmentStoreData={storeState.assessmentStoreData}
+                pathSnippetStoreData={storeState.pathSnippetStoreData}
                 featureFlagStoreData={storeState.featureFlagStoreData}
                 selectedTest={selectedTest}
                 detailsViewStoreData={storeState.detailsViewStoreData}
