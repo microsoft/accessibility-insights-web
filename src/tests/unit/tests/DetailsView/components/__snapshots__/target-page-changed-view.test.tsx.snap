@@ -1,28 +1,23 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`TargetPageChangedView renders case { subtitle:
-   { '$$typeof': Symbol(react.element),
-     type: 'span',
-     key: null,
-     ref: null,
-     props: { children: 'subtitle' },
-     _owner: null,
-     _store: { [validated]: false },
-     [_self]: null,
-     [_source]: null } } 1`] = `
+exports[`TargetPageChangedView renders with optional subtitle 1`] = `
 <div
   className="target-page-changed"
 >
   <h1>
-    
+    test title
   </h1>
   <div
     className="target-page-changed-subtitle"
-  />
+  >
+    <span>
+      test subtitle content
+    </span>
+  </div>
   <StyledToggleBase
     checked={false}
     className="details-view-toggle"
-    label=""
+    label="test toggle label"
     offText="Off"
     onClick={[Function]}
     onText="On"
@@ -33,12 +28,12 @@ exports[`TargetPageChangedView renders case { subtitle:
 </div>
 `;
 
-exports[`TargetPageChangedView renders case { title: 'title' } 1`] = `
+exports[`TargetPageChangedView renders without optional subtitle 1`] = `
 <div
   className="target-page-changed"
 >
   <h1>
-    title
+    test title
   </h1>
   <div
     className="target-page-changed-subtitle"
@@ -46,90 +41,7 @@ exports[`TargetPageChangedView renders case { title: 'title' } 1`] = `
   <StyledToggleBase
     checked={false}
     className="details-view-toggle"
-    label=""
-    offText="Off"
-    onClick={[Function]}
-    onText="On"
-  />
-  <p>
-    The target page was changed. Use the toggle to enable the visualization in the current target page.
-  </p>
-</div>
-`;
-
-exports[`TargetPageChangedView renders case { title: 'title',
-  toggleLabel: 'toggle-label',
-  subtitle:
-   { '$$typeof': Symbol(react.element),
-     type: 'span',
-     key: null,
-     ref: null,
-     props: { children: 'subtitle' },
-     _owner: null,
-     _store: { [validated]: false },
-     [_self]: null,
-     [_source]: null } } 1`] = `
-<div
-  className="target-page-changed"
->
-  <h1>
-    title
-  </h1>
-  <div
-    className="target-page-changed-subtitle"
-  />
-  <StyledToggleBase
-    checked={false}
-    className="details-view-toggle"
-    label="toggle-label"
-    offText="Off"
-    onClick={[Function]}
-    onText="On"
-  />
-  <p>
-    The target page was changed. Use the toggle to enable the visualization in the current target page.
-  </p>
-</div>
-`;
-
-exports[`TargetPageChangedView renders case { toggleLabel: 'toggle-label' } 1`] = `
-<div
-  className="target-page-changed"
->
-  <h1>
-    
-  </h1>
-  <div
-    className="target-page-changed-subtitle"
-  />
-  <StyledToggleBase
-    checked={false}
-    className="details-view-toggle"
-    label="toggle-label"
-    offText="Off"
-    onClick={[Function]}
-    onText="On"
-  />
-  <p>
-    The target page was changed. Use the toggle to enable the visualization in the current target page.
-  </p>
-</div>
-`;
-
-exports[`TargetPageChangedView renders case {} 1`] = `
-<div
-  className="target-page-changed"
->
-  <h1>
-    
-  </h1>
-  <div
-    className="target-page-changed-subtitle"
-  />
-  <StyledToggleBase
-    checked={false}
-    className="details-view-toggle"
-    label=""
+    label="test toggle label"
     offText="Off"
     onClick={[Function]}
     onText="On"
