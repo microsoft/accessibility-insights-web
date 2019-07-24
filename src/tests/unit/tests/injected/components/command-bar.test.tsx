@@ -9,7 +9,6 @@ import { CopyIssueDetailsButton } from '../../../../../common/components/copy-is
 import { UserConfigurationStoreData } from '../../../../../common/types/store-data/user-configuration-store';
 import { CommandBar, CommandBarDeps, CommandBarProps } from '../../../../../injected/components/command-bar';
 import { DecoratedAxeNodeResult } from '../../../../../injected/scanner-utils';
-import { BaseDataBuilder } from '../../../common/base-data-builder';
 import { EventStubFactory } from '../../../common/event-stub-factory';
 
 describe('CommandBar', () => {
