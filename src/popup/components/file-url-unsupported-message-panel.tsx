@@ -21,6 +21,10 @@ export const FileUrlUnsupportedMessagePanel = NamedSFC<FileUrlUnsupportedMessage
     ({ deps, header, title }) => {
         const { browserAdapter } = deps;
 
+        const openExtensionPage = () => {
+            browserAdapter.createTab(browserAdapter.getManageExtensionUrl());
+        };
+
         return (
             <div className="ms-Fabric unsupported-url-info-panel">
                 {header}
@@ -30,7 +34,7 @@ export const FileUrlUnsupportedMessagePanel = NamedSFC<FileUrlUnsupportedMessage
                         <div>To allow this extension to run on file URLs:</div>
                         <div>
                             {'1. Open '}
-                            <NewTabLink onClick={browserAdapter.openManageExtensionPage} aria-label={`open ${title} extension page`}>
+                            <NewTabLink onClick={openExtensionPage} aria-label={`open ${title} extension page`}>
                                 {`${title} extension page`}
                             </NewTabLink>
                             {'.'}

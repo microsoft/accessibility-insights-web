@@ -26,7 +26,7 @@ export interface BrowserAdapter {
     getRuntimeLastError(): chrome.runtime.LastError;
     isAllowedFileSchemeAccess(callback: Function): void;
     addListenerToLocalStorage(callback: (changes: object) => void): void;
-    openManageExtensionPage(): void;
+    getManageExtensionUrl(): string;
     addListenerOnConnect(callback: (port: chrome.runtime.Port) => void): void;
     addListenerOnMessage(
         callback: (message: any, sender: chrome.runtime.MessageSender, sendResponse: (response: any) => void) => void,
