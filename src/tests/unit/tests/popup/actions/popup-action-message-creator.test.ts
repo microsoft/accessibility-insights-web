@@ -107,7 +107,7 @@ describe('PopupActionMessageCreatorTest', () => {
         };
 
         const message = {
-            messageType: Messages.ChromeFeature.configureCommand,
+            messageType: Messages.Shortcuts.ConfigureShortcuts,
             payload: {
                 telemetry,
             },
