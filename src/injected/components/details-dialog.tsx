@@ -7,7 +7,6 @@ import * as React from 'react';
 
 import { BaseStore } from '../../common/base-store';
 import { BrowserAdapter } from '../../common/browser-adapters/browser-adapter';
-import { CopyIssueDetailsButtonDeps } from '../../common/components/copy-issue-details-button';
 import { GuidanceLinks } from '../../common/components/guidance-links';
 import { NewTabLink } from '../../common/components/new-tab-link';
 import { FeatureFlags } from '../../common/feature-flags';
@@ -33,8 +32,7 @@ export enum CheckType {
 export type DetailsDialogDeps = {
     targetPageActionMessageCreator: TargetPageActionMessageCreator;
     browserAdapter: BrowserAdapter;
-} & CopyIssueDetailsButtonDeps &
-    CommandBarDeps &
+} & CommandBarDeps &
     FixInstructionPanelDeps;
 
 export interface DetailsDialogProps {
