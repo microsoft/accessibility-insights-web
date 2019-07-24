@@ -45,6 +45,26 @@ export class Page {
 
     public async goto(url: string): Promise<void> {
         await this.screenshotOnError(async () => await this.underlyingPage.goto(url, { timeout: DEFAULT_NEW_PAGE_WAIT_TIMEOUT_MS }));
+        await this.disableAnimations();
+    }
+
+    public async disableAnimations(): Promise<void> {
+        await this.underlyingPage.evaluate(() => {
+            function addDisableStyleToBody(): void {
+                const disableAnimationsStyleElement = document.createElement('style');
+                disableAnimationsStyleElement.type = 'text/css';
+                disableAnimationsStyleElement.innerHTML = `* {
+                    transition: none !important;
+                    animation: none !important;
+                }`;
+                document.body.appendChild(disableAnimationsStyleElement);
+            }
+            if (document.readyState !== 'loading') {
+                addDisableStyleToBody();
+            } else {
+                window.addEventListener('load', addDisableStyleToBody);
+            }
+        });
     }
 
     public async close(ignoreIfAlreadyClosed: boolean = false): Promise<void> {

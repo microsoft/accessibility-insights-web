@@ -1,11 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { BrowserAdapter } from '../../common/browser-adapters/browser-adapter';
+import { StorageAdapter } from '../../common/browser-adapters/storage-adapter';
 import { config } from '../../common/configuration';
 import { DateProvider } from '../../common/date-provider';
 import { generateUID } from '../../common/uid-generator';
 import { ApplicationBuildGenerator } from '../application-build-generator';
-import { BrowserAdapter } from '../browser-adapters/browser-adapter';
-import { StorageAdapter } from '../browser-adapters/storage-adapter';
 import { InstallDataGenerator } from '../install-data-generator';
 import { LocalStorageData } from '../storage-data';
 import { AppInsightsTelemetryClient } from './app-insights-telemetry-client';

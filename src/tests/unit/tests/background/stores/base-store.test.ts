@@ -46,7 +46,7 @@ describe('BaseStoreTest', () => {
     });
 
     test('onGetCurrentState', () => {
-        const changedListener = Mock.ofInstance((_testObject: TestStore, _args: any) => {}, MockBehavior.Strict);
+        const changedListener = Mock.ofInstance((testStore: TestStore, args: any) => {}, MockBehavior.Strict);
 
         const listenerAdder = function(): void {
             // hack to access onGetCurrentState from the BaseStore class

@@ -4,6 +4,7 @@ import * as axe from 'axe-core';
 import { GlobalMock, GlobalScope, IGlobalMock, It, MockBehavior, Times } from 'typemoq';
 
 import * as AxeUtils from '../../../../scanner/axe-utils';
+import { setAxeGlobalTreeTo } from '../../common/axe-internals';
 
 describe('AxeUtils', () => {
     describe('getMatchesFromRule', () => {
@@ -51,11 +52,9 @@ describe('AxeUtils', () => {
 
     describe('getAccessibleDescription', () => {
         let fixture: HTMLElement;
-        let _axe;
 
         beforeEach(() => {
             fixture = createTestFixture('test-fixture', '');
-            _axe = axe as any;
         });
 
         afterEach(() => {
@@ -67,7 +66,7 @@ describe('AxeUtils', () => {
                 <img id="el1" />
             `;
             const element1 = fixture.querySelector('#el1');
-            _axe._tree = _axe.utils.getFlattenedTree(document.documentElement);
+            setAxeGlobalTreeTo(document.documentElement);
 
             const result = AxeUtils.getAccessibleDescription(element1 as HTMLElement);
             expect(result).toEqual('');
@@ -80,7 +79,7 @@ describe('AxeUtils', () => {
                 <div id="el3"> hello </div>
             `;
             const element1 = fixture.querySelector('#el1');
-            _axe._tree = _axe.utils.getFlattenedTree(document.documentElement);
+            setAxeGlobalTreeTo(document.documentElement);
 
             const result = AxeUtils.getAccessibleDescription(element1 as HTMLElement);
             expect(result).toEqual('hello');
@@ -93,7 +92,7 @@ describe('AxeUtils', () => {
                 <div id="el3">world</div>
             `;
             const element1 = fixture.querySelector('#el1');
-            _axe._tree = _axe.utils.getFlattenedTree(document.documentElement);
+            setAxeGlobalTreeTo(document.documentElement);
 
             const result = AxeUtils.getAccessibleDescription(element1 as HTMLElement);
             expect(result).toEqual('hello world');
@@ -102,11 +101,9 @@ describe('AxeUtils', () => {
 
     describe('getImageCodedAs', () => {
         let fixture: HTMLElement;
-        let _axe;
 
         beforeEach(() => {
             fixture = createTestFixture('test-fixture', '');
-            _axe = axe as any;
         });
 
         afterEach(() => {
@@ -118,7 +115,7 @@ describe('AxeUtils', () => {
                 <img id="el1" alt="" />
             `;
             const element1 = fixture.querySelector('#el1');
-            _axe._tree = _axe.utils.getFlattenedTree(document.documentElement);
+            setAxeGlobalTreeTo(document.documentElement);
 
             const result = AxeUtils.getImageCodedAs(element1 as HTMLElement);
             expect(result).toEqual('Decorative');
@@ -129,7 +126,7 @@ describe('AxeUtils', () => {
                 <img id="el1" alt="" aria-label="some"/>
             `;
             const element1 = fixture.querySelector('#el1');
-            _axe._tree = _axe.utils.getFlattenedTree(document.documentElement);
+            setAxeGlobalTreeTo(document.documentElement);
 
             const result = AxeUtils.getImageCodedAs(element1 as HTMLElement);
             expect(result).toEqual('Decorative');
@@ -140,7 +137,7 @@ describe('AxeUtils', () => {
                 <img id="el1" alt aria-label="some"/>
             `;
             const element1 = fixture.querySelector('#el1');
-            _axe._tree = _axe.utils.getFlattenedTree(document.documentElement);
+            setAxeGlobalTreeTo(document.documentElement);
 
             const result = AxeUtils.getImageCodedAs(element1 as HTMLElement);
             expect(result).toEqual('Decorative');
@@ -151,7 +148,7 @@ describe('AxeUtils', () => {
                 <img id="el1" alt="some value"/>
             `;
             const element1 = fixture.querySelector('#el1');
-            _axe._tree = _axe.utils.getFlattenedTree(document.documentElement);
+            setAxeGlobalTreeTo(document.documentElement);
 
             const result = AxeUtils.getImageCodedAs(element1 as HTMLElement);
             expect(result).toEqual('Meaningful');
@@ -162,7 +159,7 @@ describe('AxeUtils', () => {
                 <img id="el1" aria-label="some"/>
             `;
             const element1 = fixture.querySelector('#el1');
-            _axe._tree = _axe.utils.getFlattenedTree(document.documentElement);
+            setAxeGlobalTreeTo(document.documentElement);
 
             const result = AxeUtils.getImageCodedAs(element1 as HTMLElement);
             expect(result).toEqual('Meaningful');
@@ -174,7 +171,7 @@ describe('AxeUtils', () => {
                 <div id="some"> hello </div>
             `;
             const element1 = fixture.querySelector('#el1');
-            _axe._tree = _axe.utils.getFlattenedTree(document.documentElement);
+            setAxeGlobalTreeTo(document.documentElement);
 
             const result = AxeUtils.getImageCodedAs(element1 as HTMLElement);
             expect(result).toEqual('Meaningful');
@@ -185,7 +182,7 @@ describe('AxeUtils', () => {
                 <img id="el1" title="some"/>
             `;
             const element1 = fixture.querySelector('#el1');
-            _axe._tree = _axe.utils.getFlattenedTree(document.documentElement);
+            setAxeGlobalTreeTo(document.documentElement);
 
             const result = AxeUtils.getImageCodedAs(element1 as HTMLElement);
             expect(result).toEqual('Meaningful');
@@ -196,7 +193,7 @@ describe('AxeUtils', () => {
                 <img id="el1" alt="   "/>
             `;
             const element1 = fixture.querySelector('#el1');
-            _axe._tree = _axe.utils.getFlattenedTree(document.documentElement);
+            setAxeGlobalTreeTo(document.documentElement);
 
             const result = AxeUtils.getImageCodedAs(element1 as HTMLElement);
             expect(result).toEqual('Meaningful');
@@ -207,7 +204,7 @@ describe('AxeUtils', () => {
                 <img id="el1"/>
             `;
             const element1 = fixture.querySelector('#el1');
-            _axe._tree = _axe.utils.getFlattenedTree(document.documentElement);
+            setAxeGlobalTreeTo(document.documentElement);
 
             const result = AxeUtils.getImageCodedAs(element1 as HTMLElement);
             expect(result).toBeNull();
@@ -219,7 +216,7 @@ describe('AxeUtils', () => {
                 <div id="some-id"> hello </div>
             `;
             const element1 = fixture.querySelector('#el1');
-            _axe._tree = _axe.utils.getFlattenedTree(document.documentElement);
+            setAxeGlobalTreeTo(document.documentElement);
 
             const result = AxeUtils.getImageCodedAs(element1 as HTMLElement);
             expect(result).toBeNull();

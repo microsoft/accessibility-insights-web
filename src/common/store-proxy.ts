@@ -3,23 +3,23 @@
 import * as _ from 'lodash';
 
 import { BaseStore } from './base-store';
-import { ClientChromeAdapter } from './client-browser-adapter';
+import { BrowserAdapter } from './browser-adapters/browser-adapter';
 import { GenericStoreMessageTypes } from './constants/generic-store-messages-types';
 import { Store } from './flux/store';
 import { StoreType } from './types/store-type';
 import { StoreUpdateMessage } from './types/store-update-message';
 
 export class StoreProxy<TState> extends Store implements BaseStore<TState> {
-    private _state: TState;
-    private _storeId: string;
-    private _tabId: number;
-    private _clientChomeAdapter: ClientChromeAdapter;
+    private state: TState;
+    private storeId: string;
+    private tabId: number;
+    private browserAdapter: BrowserAdapter;
 
-    constructor(storeId: string, chromeAdapter: ClientChromeAdapter) {
+    constructor(storeId: string, browserAdapter: BrowserAdapter) {
         super();
-        this._storeId = storeId;
-        this._clientChomeAdapter = chromeAdapter;
-        this._clientChomeAdapter.addListenerOnMessage(this.onChange);
+        this.storeId = storeId;
+        this.browserAdapter = browserAdapter;
+        this.browserAdapter.addListenerOnMessage(this.onChange);
     }
 
     private onChange = (message: StoreUpdateMessage<TState>): void => {
@@ -27,8 +27,8 @@ export class StoreProxy<TState> extends Store implements BaseStore<TState> {
             return;
         }
 
-        if (message.type === GenericStoreMessageTypes.storeStateChanged && !_.isEqual(this._state, message.payload)) {
-            this._state = message.payload;
+        if (message.type === GenericStoreMessageTypes.storeStateChanged && !_.isEqual(this.state, message.payload)) {
+            this.state = message.payload;
             this.emitChanged();
         }
     };
@@ -43,7 +43,7 @@ export class StoreProxy<TState> extends Store implements BaseStore<TState> {
 
     private isMessageForCurrentTab(message: StoreUpdateMessage<TState>): boolean {
         return (
-            this._tabId == null || message.tabId === this._tabId // tabid will be null on inital state in content script of target page
+            this.tabId == null || message.tabId === this.tabId // tabid will be null on inital state in content script of target page
         );
     }
 
@@ -52,18 +52,18 @@ export class StoreProxy<TState> extends Store implements BaseStore<TState> {
     }
 
     public getState = (): TState => {
-        return this._state;
+        return this.state;
     };
 
     public getId(): string {
-        return this._storeId;
+        return this.storeId;
     }
 
     public setTabId(tabId: number): void {
-        this._tabId = tabId;
+        this.tabId = tabId;
     }
 
     public dispose(): void {
-        this._clientChomeAdapter.removeListenerOnMessage(this.onChange);
+        this.browserAdapter.removeListenerOnMessage(this.onChange);
     }
 }

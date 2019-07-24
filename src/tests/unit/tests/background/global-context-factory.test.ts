@@ -2,9 +2,6 @@
 // Licensed under the MIT License.
 import { IMock, It, Mock } from 'typemoq';
 
-import { BrowserAdapter } from '../../../../background/browser-adapters/browser-adapter';
-import { CommandsAdapter } from '../../../../background/browser-adapters/commands-adapter';
-import { StorageAdapter } from '../../../../background/browser-adapters/storage-adapter';
 import { PersistedData } from '../../../../background/get-persisted-data';
 import { GlobalContext } from '../../../../background/global-context';
 import { GlobalContextFactory } from '../../../../background/global-context-factory';
@@ -14,6 +11,9 @@ import { CommandStore } from '../../../../background/stores/global/command-store
 import { FeatureFlagStore } from '../../../../background/stores/global/feature-flag-store';
 import { LaunchPanelStore } from '../../../../background/stores/global/launch-panel-store';
 import { TelemetryEventHandler } from '../../../../background/telemetry/telemetry-event-handler';
+import { BrowserAdapter } from '../../../../common/browser-adapters/browser-adapter';
+import { CommandsAdapter } from '../../../../common/browser-adapters/commands-adapter';
+import { StorageAdapter } from '../../../../common/browser-adapters/storage-adapter';
 import { EnvironmentInfo } from '../../../../common/environment-info-provider';
 import { IndexedDBAPI } from '../../../../common/indexedDB/indexedDB';
 import { TelemetryDataFactory } from '../../../../common/telemetry-data-factory';

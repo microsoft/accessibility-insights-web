@@ -111,14 +111,7 @@
         ],
         "use-isnan": true,
         "use-strict": [false, "check-module", "check-function"],
-        "variable-name": [
-            true,
-            "ban-keywords",
-            "check-format",
-            "allow-leading-underscore",
-            "allow-trailing-underscore",
-            "allow-pascal-case"
-        ],
+        "variable-name": [true, "ban-keywords", "check-format", "allow-trailing-underscore", "allow-pascal-case"],
         "whitespace": [true, "check-branch", "check-decl", "check-operator", "check-separator", "check-type", "check-type-operator"]
     },
     "rulesDirectory": ["tslint-microsoft-contrib"]
