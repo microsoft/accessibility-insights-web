@@ -11,7 +11,6 @@ import { DetailsDialog, DetailsDialogDeps, DetailsDialogProps } from '../../../.
 import { DecoratedAxeNodeResult } from '../../../../../injected/scanner-utils';
 import { TargetPageActionMessageCreator } from '../../../../../injected/target-page-action-message-creator';
 import { DictionaryStringTo } from '../../../../../types/common-types';
-import { BaseDataBuilder } from '../../../common/base-data-builder';
 import { EventStubFactory } from '../../../common/event-stub-factory';
 
 type DetailsDialogTestCase = {
