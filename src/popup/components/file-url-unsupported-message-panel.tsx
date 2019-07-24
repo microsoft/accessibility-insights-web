@@ -34,7 +34,12 @@ export const FileUrlUnsupportedMessagePanel = NamedSFC<FileUrlUnsupportedMessage
                         <div>To allow this extension to run on file URLs:</div>
                         <div>
                             {'1. Open '}
-                            <NewTabLink onClick={openExtensionPage} aria-label={`open ${title} extension page`}>
+                            <NewTabLink
+                                // It's important that we use an onClick handler that invokes createTab, rather than just setting href.
+                                // The browser will allow the former but not the latter.
+                                onClick={openExtensionPage}
+                                aria-label={`open ${title} extension page`}
+                            >
                                 {`${title} extension page`}
                             </NewTabLink>
                             {'.'}

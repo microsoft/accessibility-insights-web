@@ -28,8 +28,6 @@ describe('FileUrlUnsupportedMessagePanel', () => {
         expect(wrapper.getElement()).toMatchSnapshot();
     });
 
-    // It's important that we verify it uses createTab onClick for this link rather than using href,
-    // since the browser will only allow navigation to the extension page via the chrome.tabs API
     it('has a NewTabLink that uses createTab to open the manage extension page', () => {
         const stubExtensionPageUrl = 'protocol://extension-page';
         const browserAdapterMock = Mock.ofType<BrowserAdapter>(null, MockBehavior.Strict);
