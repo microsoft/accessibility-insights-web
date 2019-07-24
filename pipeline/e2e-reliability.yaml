@@ -8,10 +8,15 @@ pr:
         include:
             - src/tests/end-to-end/
 
+variables:
+    windowsImage: 'windows-2019'
+    macOsImage: 'macOS-10.14'
+    ubuntuImage: 'ubuntu-16.04'
+
 jobs:
     - job: 'e2e_tests_windows_1'
       pool:
-          vmImage: 'windows-2019'
+          vmImage: $(windowsImage)
       steps:
           - template: ./install-node-prerequisites.yaml
           - template: ./e2e-test-from-agent.yaml
@@ -19,7 +24,7 @@ jobs:
 
     - job: 'e2e_tests_windows_2'
       pool:
-          vmImage: 'windows-2019'
+          vmImage: $(windowsImage)
       steps:
           - template: ./install-node-prerequisites.yaml
           - template: ./e2e-test-from-agent.yaml
@@ -27,7 +32,7 @@ jobs:
 
     - job: 'e2e_tests_windows_3'
       pool:
-          vmImage: 'windows-2019'
+          vmImage: $(windowsImage)
       steps:
           - template: ./install-node-prerequisites.yaml
           - template: ./e2e-test-from-agent.yaml
@@ -35,7 +40,7 @@ jobs:
 
     - job: 'e2e_tests_windows_4'
       pool:
-          vmImage: 'windows-2019'
+          vmImage: $(windowsImage)
       steps:
           - template: ./install-node-prerequisites.yaml
           - template: ./e2e-test-from-agent.yaml
@@ -43,7 +48,7 @@ jobs:
 
     - job: 'e2e_tests_windows_5'
       pool:
-          vmImage: 'windows-2019'
+          vmImage: $(windowsImage)
       steps:
           - template: ./install-node-prerequisites.yaml
           - template: ./e2e-test-from-agent.yaml
@@ -51,7 +56,7 @@ jobs:
 
     - job: 'e2e_tests_mac_1'
       pool:
-          vmImage: 'macOS-10.14'
+          vmImage: $(macOsImage)
       steps:
           - template: ./install-node-prerequisites.yaml
           - template: ./e2e-test-from-agent.yaml
@@ -59,7 +64,7 @@ jobs:
 
     - job: 'e2e_tests_mac_2'
       pool:
-          vmImage: 'macOS-10.14'
+          vmImage: $(macOsImage)
       steps:
           - template: ./install-node-prerequisites.yaml
           - template: ./e2e-test-from-agent.yaml
@@ -67,7 +72,7 @@ jobs:
 
     - job: 'e2e_tests_mac_3'
       pool:
-          vmImage: 'macOS-10.14'
+          vmImage: $(macOsImage)
       steps:
           - template: ./install-node-prerequisites.yaml
           - template: ./e2e-test-from-agent.yaml
@@ -75,7 +80,7 @@ jobs:
 
     - job: 'e2e_tests_mac_4'
       pool:
-          vmImage: 'macOS-10.14'
+          vmImage: $(macOsImage)
       steps:
           - template: ./install-node-prerequisites.yaml
           - template: ./e2e-test-from-agent.yaml
@@ -83,7 +88,7 @@ jobs:
 
     - job: 'e2e_tests_mac_5'
       pool:
-          vmImage: 'macOS-10.14'
+          vmImage: $(macOsImage)
       steps:
           - template: ./install-node-prerequisites.yaml
           - template: ./e2e-test-from-agent.yaml
@@ -91,35 +96,35 @@ jobs:
 
     - job: 'e2e_tests_linux_1'
       pool:
-          vmImage: 'ubuntu-16.04'
+          vmImage: $(ubuntuImage)
       steps:
           - template: ./e2e-test-from-docker.yaml
           - template: ./e2e-test-publish-results.yaml
 
     - job: 'e2e_tests_linux_2'
       pool:
-          vmImage: 'ubuntu-16.04'
+          vmImage: $(ubuntuImage)
       steps:
           - template: ./e2e-test-from-docker.yaml
           - template: ./e2e-test-publish-results.yaml
 
     - job: 'e2e_tests_linux_3'
       pool:
-          vmImage: 'ubuntu-16.04'
+          vmImage: $(ubuntuImage)
       steps:
           - template: ./e2e-test-from-docker.yaml
           - template: ./e2e-test-publish-results.yaml
 
     - job: 'e2e_tests_linux_4'
       pool:
-          vmImage: 'ubuntu-16.04'
+          vmImage: $(ubuntuImage)
       steps:
           - template: ./e2e-test-from-docker.yaml
           - template: ./e2e-test-publish-results.yaml
 
     - job: 'e2e_tests_linux_5'
       pool:
-          vmImage: 'ubuntu-16.04'
+          vmImage: $(ubuntuImage)
       steps:
           - template: ./e2e-test-from-docker.yaml
           - template: ./e2e-test-publish-results.yaml
