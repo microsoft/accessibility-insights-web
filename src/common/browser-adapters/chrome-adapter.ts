@@ -128,8 +128,7 @@ export class ChromeAdapter implements BrowserAdapter, StorageAdapter, CommandsAd
         });
     }
 
-    public sendMessageToFramesAndTab(tabId: number, message: any): void {
-        chrome.runtime.sendMessage(message);
+    public sendMessageToTab(tabId: number, message: any): void {
         chrome.tabs.sendMessage(tabId, message);
     }
 

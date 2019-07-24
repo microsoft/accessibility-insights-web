@@ -78,7 +78,7 @@ getPersistedData(indexedDBInstance).then((persistedData: PersistedData) => {
         const telemetryStateListener = new TelemetryStateListener(globalContext.stores.userConfigurationStore, telemetryEventHandler);
         telemetryStateListener.initialize();
 
-        const broadcaster = new TabContextBroadcaster(browserAdapter.sendMessageToFramesAndTab);
+        const broadcaster = new TabContextBroadcaster(browserAdapter);
         const detailsViewController = new DetailsViewController(browserAdapter);
 
         const tabToContextMap: TabToContextMap = {};
