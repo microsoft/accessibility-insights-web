@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { BrowserAdapter, NotificationOptions } from './browser-adapter';
+import { BrowserAdapter } from './browser-adapter';
 import { CommandsAdapter } from './commands-adapter';
 import { StorageAdapter } from './storage-adapter';
 
@@ -163,13 +163,8 @@ export class ChromeAdapter implements BrowserAdapter, StorageAdapter, CommandsAd
         return chrome.runtime.lastError;
     }
 
-    public createNotification(options: NotificationOptions): void {
-        chrome.notifications.create({
-            type: options.notificationType || 'basic',
-            iconUrl: options.iconUrl,
-            title: options.title,
-            message: options.message,
-        });
+    public createNotification(options: chrome.notifications.NotificationOptions): void {
+        chrome.notifications.create(options);
     }
 
     public isAllowedFileSchemeAccess(callback: (isAllowed: boolean) => void): void {

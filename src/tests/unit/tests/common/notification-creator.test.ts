@@ -42,6 +42,7 @@ describe('NotificationCreator', () => {
             .setup(x => x.createNotification(It.isAny()))
             .returns(message => {
                 const expectedMessage = {
+                    type: 'basic',
                     message: notificationMessage,
                     title: 'testname',
                     iconUrl: '../iconUrl',
@@ -68,6 +69,7 @@ describe('NotificationCreator', () => {
             .setup(x => x.createNotification(It.isAny()))
             .returns(message => {
                 const expectedMessage = {
+                    type: 'basic',
                     message: notificationMessage,
                     title: 'testname',
                     iconUrl: '../iconUrl',

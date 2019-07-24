@@ -20,6 +20,7 @@ export class NotificationCreator {
         if (message) {
             const manifest = this.browserAdapter.getManifest();
             this.browserAdapter.createNotification({
+                type: 'basic',
                 message: message,
                 title: manifest.name,
                 iconUrl: '../' + manifest.icons[128],
