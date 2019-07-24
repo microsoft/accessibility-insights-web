@@ -4,6 +4,7 @@ import { shallow } from 'enzyme';
 import { Dialog } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { Mock, Times } from 'typemoq';
+
 import { FeatureFlags } from '../../../../../common/feature-flags';
 import { CommandBar } from '../../../../../injected/components/command-bar';
 import { DetailsDialog, DetailsDialogDeps, DetailsDialogProps } from '../../../../../injected/components/details-dialog';
@@ -24,6 +25,42 @@ describe('DetailsDialog', () => {
     const fingerprint: string = '12345678-9ABC-1234-1234-123456789ABC';
     const ruleId: string = 'ruleId';
     const help: string = 'help';
+
+    const defaultDecoratedAxeNodeResult: DecoratedAxeNodeResult = {
+        any: [],
+        all: [],
+        none: [],
+        status: false,
+        ruleId: ruleId,
+        help: help,
+        selector: 'selector',
+        html: 'html',
+        failureSummary: 'failureSummary',
+        fingerprint: fingerprint,
+        id: 'id1',
+        guidanceLinks: [{ text: 'Guidance Link', href: 'http://example.com' }],
+        snippet: 'html',
+    } as DecoratedAxeNodeResult;
+
+    const defaultDetailsDialogDeps: DetailsDialogDeps = {
+        windowUtils: null,
+        issueDetailsTextGenerator: null,
+        targetPageActionMessageCreator: {
+            copyIssueDetailsClicked: () => {},
+        } as any,
+        issueFilingActionMessageCreator: null,
+    } as DetailsDialogDeps;
+
+    const defaultDetailsDialogProps: DetailsDialogProps = {
+        elementSelector: ruleId,
+        target: [],
+        devToolStore: {} as any,
+        userConfigStore: {
+            getState: () => {},
+        } as any,
+        devToolActionMessageCreator: {} as any,
+        devToolsShortcut: 'shortcut',
+    } as DetailsDialogProps;
 
     describe('renders', () => {
         const testCases: DetailsDialogTestCase[] = [
@@ -59,29 +96,32 @@ describe('DetailsDialog', () => {
                 expectedHelpUrl = 'http://extension/help1',
             } = testCase;
 
-            const expectedNodeResult: DecoratedAxeNodeResult = defaultDecoratedAxeNodeResultBuilder()
-                .with('helpUrl', helpUrl)
-                .build();
+            const expectedNodeResult = {
+                ...defaultDecoratedAxeNodeResult,
+                helpUrl,
+            };
 
             const expectedFailedRules: DictionaryStringTo<DecoratedAxeNodeResult> = {};
             expectedFailedRules[ruleId] = expectedNodeResult;
 
             const dialogDetailsHandlerMockObject = getDetailsDialogHandlerStub(isDevToolsOpen);
 
-            const deps: DetailsDialogDeps = defaultDetailsDialogDepsBuilder()
-                .with('browserAdapter', {
+            const deps: DetailsDialogDeps = {
+                ...defaultDetailsDialogDeps,
+                browserAdapter: {
                     getUrl: url => expectedHelpUrl,
-                } as any)
-                .build();
+                } as any,
+            };
 
-            const props: DetailsDialogProps = defaultDetailsDialogPropsBuilder()
-                .with('deps', deps)
-                .with('failedRules', expectedFailedRules)
-                .with('dialogHandler', dialogDetailsHandlerMockObject as any)
-                .with('featureFlagStoreData', {
+            const props = {
+                ...defaultDetailsDialogProps,
+                deps,
+                failedRules: expectedFailedRules,
+                dialogHandler: dialogDetailsHandlerMockObject as any,
+                featureFlagStoreData: {
                     [FeatureFlags.shadowDialog]: shadowDialog,
-                })
-                .build();
+                },
+            };
 
             const wrapper = shallow(<DetailsDialog {...props} />);
 
@@ -105,40 +145,41 @@ describe('DetailsDialog', () => {
             const shadowDialogEnabled = [true, false];
             const eventStub = new EventStubFactory().createKeypressEvent() as any;
 
-            let depsBuilder: BaseDataBuilder<DetailsDialogDeps>;
-            let propsBuilder: BaseDataBuilder<DetailsDialogProps>;
             let expectedFailedRules: DictionaryStringTo<DecoratedAxeNodeResult>;
             let dialogDetailsHandlerMockObject;
 
             beforeEach(() => {
-                const expectedNodeResult = defaultDecoratedAxeNodeResultBuilder()
-                    .with('helpUrl', 'help-url')
-                    .build();
+                const expectedNodeResult = {
+                    ...defaultDecoratedAxeNodeResult,
+                    helpUrl: 'help-url',
+                };
 
                 expectedFailedRules = {};
                 expectedFailedRules[ruleId] = expectedNodeResult;
 
-                depsBuilder = defaultDetailsDialogDepsBuilder().with('browserAdapter', {
-                    getUrl: url => 'test-url',
-                } as any);
                 dialogDetailsHandlerMockObject = getDetailsDialogHandlerStub(true);
-
-                propsBuilder = defaultDetailsDialogPropsBuilder()
-                    .with('failedRules', expectedFailedRules)
-                    .with('dialogHandler', dialogDetailsHandlerMockObject);
             });
 
             test.each(shadowDialogEnabled)('on click copy issue details button, shadow dialog: %s', shadowDialog => {
                 const targetPageActionMessageCreatorMock = Mock.ofType<TargetPageActionMessageCreator>();
 
-                const deps = depsBuilder.with('targetPageActionMessageCreator', targetPageActionMessageCreatorMock.object).build();
+                const deps = {
+                    ...defaultDetailsDialogDeps,
+                    browserAdapter: {
+                        getUrl: url => 'test-url',
+                    } as any,
+                    targetPageActionMessageCreator: targetPageActionMessageCreatorMock.object,
+                };
 
-                const props = propsBuilder
-                    .with('deps', deps)
-                    .with('featureFlagStoreData', {
+                const props = {
+                    ...defaultDetailsDialogProps,
+                    deps,
+                    featureFlagStoreData: {
                         [FeatureFlags.shadowDialog]: shadowDialog,
-                    })
-                    .build();
+                    },
+                    failedRules: expectedFailedRules,
+                    dialogHandler: dialogDetailsHandlerMockObject,
+                };
 
                 const wrapper = shallow(<DetailsDialog {...props} />);
 
@@ -154,14 +195,22 @@ describe('DetailsDialog', () => {
 
                 dialogDetailsHandlerMockObject.inspectButtonClickHandler = clickHandlerMock.object;
 
-                const deps = depsBuilder.build();
+                const deps = {
+                    ...defaultDetailsDialogDeps,
+                    browserAdapter: {
+                        getUrl: url => 'test-url',
+                    } as any,
+                };
 
-                const props = propsBuilder
-                    .with('deps', deps)
-                    .with('featureFlagStoreData', {
+                const props = {
+                    ...defaultDetailsDialogProps,
+                    deps,
+                    featureFlagStoreData: {
                         [FeatureFlags.shadowDialog]: shadowDialog,
-                    })
-                    .build();
+                    },
+                    failedRules: expectedFailedRules,
+                    dialogHandler: dialogDetailsHandlerMockObject,
+                };
 
                 const wrapper = shallow<DetailsDialog>(<DetailsDialog {...props} />);
 
@@ -182,14 +231,22 @@ describe('DetailsDialog', () => {
 
                 dialogDetailsHandlerMockObject.shouldShowInspectButtonMessage = handlerMock.object;
 
-                const deps = depsBuilder.build();
+                const deps = {
+                    ...defaultDetailsDialogDeps,
+                    browserAdapter: {
+                        getUrl: url => 'test-url',
+                    } as any,
+                };
 
-                const props = propsBuilder
-                    .with('deps', deps)
-                    .with('featureFlagStoreData', {
+                const props = {
+                    ...defaultDetailsDialogProps,
+                    deps,
+                    featureFlagStoreData: {
                         [FeatureFlags.shadowDialog]: shadowDialog,
-                    })
-                    .build();
+                    },
+                    failedRules: expectedFailedRules,
+                    dialogHandler: dialogDetailsHandlerMockObject,
+                };
 
                 const wrapper = shallow<DetailsDialog>(<DetailsDialog {...props} />);
 
@@ -213,43 +270,4 @@ describe('DetailsDialog', () => {
             shouldShowInspectButtonMessage: () => false,
         };
     };
-
-    const defaultDecoratedAxeNodeResultBuilder = () =>
-        new BaseDataBuilder<DecoratedAxeNodeResult>({
-            any: [],
-            all: [],
-            none: [],
-            status: false,
-            ruleId: ruleId,
-            help: help,
-            selector: 'selector',
-            html: 'html',
-            failureSummary: 'failureSummary',
-            fingerprint: fingerprint,
-            id: 'id1',
-            guidanceLinks: [{ text: 'Guidance Link', href: 'http://example.com' }],
-            snippet: 'html',
-        } as DecoratedAxeNodeResult);
-
-    const defaultDetailsDialogDepsBuilder = () =>
-        new BaseDataBuilder<DetailsDialogDeps>({
-            windowUtils: null,
-            issueDetailsTextGenerator: null,
-            targetPageActionMessageCreator: {
-                copyIssueDetailsClicked: () => {},
-            } as any,
-            issueFilingActionMessageCreator: null,
-        } as DetailsDialogDeps);
-
-    const defaultDetailsDialogPropsBuilder = () =>
-        new BaseDataBuilder<DetailsDialogProps>({
-            elementSelector: ruleId,
-            target: [],
-            devToolStore: {} as any,
-            userConfigStore: {
-                getState: () => {},
-            } as any,
-            devToolActionMessageCreator: {} as any,
-            devToolsShortcut: 'shortcut',
-        } as DetailsDialogProps);
 });
