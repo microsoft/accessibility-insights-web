@@ -8,11 +8,6 @@ import { PromiseFactory } from '../../../../common/promises/promise-factory';
 
 describe('ContentScriptInjector', () => {
     const testTabId = 1;
-    const resolveCallbackImmediately = (tabId, details, callback) => {
-        if (callback) {
-            callback();
-        }
-    };
     let browserAdapterMock: IMock<BrowserAdapter>;
     let promiseFactoryMock: IMock<PromiseFactory>;
 
@@ -25,7 +20,7 @@ describe('ContentScriptInjector', () => {
         testSubject = new ContentScriptInjector(browserAdapterMock.object, promiseFactoryMock.object);
     });
 
-    it('uses a timeout promise the expected timeout constant', async () => {
+    it('uses a timeout promise with the expected timeout constant', async () => {
         promiseFactoryMock
             .setup(factory => factory.timeout(It.isAny(), ContentScriptInjector.timeoutInMilliSec))
             .returns(() => Promise.resolve())
@@ -48,15 +43,15 @@ describe('ContentScriptInjector', () => {
         });
 
         it('injects each CSS file once with the expected parameters', async () => {
-            ContentScriptInjector.cssFiles.forEach(cssFile =>
-                browserAdapterMock
-                    .setup(adapter => adapter.insertCSSInTab(testTabId, { allFrames: true, file: cssFile }, It.isAny()))
-                    .verifiable(Times.once()),
-            );
+            setupExecuteScriptToSucceedImmediately();
 
-            browserAdapterMock
-                .setup(adapter => adapter.executeScriptInTab(It.isAny(), It.isAny(), It.isAny()))
-                .callback(resolveCallbackImmediately);
+            ContentScriptInjector.cssFiles.forEach(cssFile => {
+                const expectedDetails = { allFrames: true, file: cssFile };
+                browserAdapterMock
+                    .setup(adapter => adapter.insertCSSInTab(testTabId, expectedDetails, It.isAny()))
+                    .callback(resolveCallbackImmediately)
+                    .verifiable(Times.once());
+            });
 
             await testSubject.injectScripts(testTabId);
 
@@ -64,14 +59,15 @@ describe('ContentScriptInjector', () => {
         });
 
         it('injects each JS file once with the expected parameters', async () => {
-            ContentScriptInjector.jsFiles.forEach(jsFile =>
+            setupInsertCSSToSucceedImmediately();
+
+            ContentScriptInjector.jsFiles.forEach(jsFile => {
+                const expectedDetails = { allFrames: true, file: jsFile, runAt: 'document_start' };
                 browserAdapterMock
-                    .setup(adapter =>
-                        adapter.executeScriptInTab(testTabId, { allFrames: true, file: jsFile, runAt: 'document_start' }, It.isAny()),
-                    )
+                    .setup(adapter => adapter.executeScriptInTab(testTabId, expectedDetails, It.isAny()))
                     .callback(resolveCallbackImmediately)
-                    .verifiable(Times.once()),
-            );
+                    .verifiable(Times.once());
+            });
 
             await testSubject.injectScripts(testTabId);
 
@@ -79,6 +75,8 @@ describe('ContentScriptInjector', () => {
         });
 
         it('resolves only after JS files have finished injecting', async () => {
+            setupInsertCSSToSucceedImmediately();
+
             let callbackPassedToExecuteScript: Function;
 
             // simulate JS injection taking a while, only completing asynchronously when we explicitly invoke the callback
@@ -105,16 +103,31 @@ describe('ContentScriptInjector', () => {
         });
 
         it('does not wait for CSS files to be injected before resolving', async () => {
-            // simulate JS injection immediately succeeding
-            browserAdapterMock
-                .setup(adapter => adapter.executeScriptInTab(It.isAny(), It.isAny(), It.isAny()))
-                .callback(resolveCallbackImmediately);
+            setupExecuteScriptToSucceedImmediately();
 
-            // simulate CSS injection never completing (by not setting it up with any callback)
+            // Intentionally don't set up insertCSS callbacks to be called
 
             await testSubject.injectScripts(testTabId);
 
             // expect to not timeout
         });
+
+        function resolveCallbackImmediately(tabId: any, details: any, callback?: Function): void {
+            if (callback) {
+                callback();
+            }
+        }
+
+        function setupInsertCSSToSucceedImmediately(): void {
+            browserAdapterMock
+                .setup(adapter => adapter.insertCSSInTab(It.isAny(), It.isAny(), It.isAny()))
+                .callback(resolveCallbackImmediately);
+        }
+
+        function setupExecuteScriptToSucceedImmediately(): void {
+            browserAdapterMock
+                .setup(adapter => adapter.executeScriptInTab(It.isAny(), It.isAny(), It.isAny()))
+                .callback(resolveCallbackImmediately);
+        }
     });
 });
