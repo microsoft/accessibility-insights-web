@@ -19,8 +19,8 @@ export interface BrowserAdapter {
     sendMessageToTab(tabId: number, message: any): void;
     sendMessageToFrames(message: any): void;
     sendMessageToAllFramesAndTabs(message: any): void;
-    injectJs(tabId, file: string, callback: Function): void;
-    injectCss(tabId, file: string, callback: Function): void;
+    executeScriptInTab(tabId: number, details: chrome.tabs.InjectDetails, callback?: (result: any[]) => void): void;
+    insertCSSInTab(tabId: number, details: chrome.tabs.InjectDetails, callback?: Function): void;
     getRunTimeId(): string;
     createNotification(options: chrome.notifications.NotificationOptions): void;
     getRuntimeLastError(): chrome.runtime.LastError;
