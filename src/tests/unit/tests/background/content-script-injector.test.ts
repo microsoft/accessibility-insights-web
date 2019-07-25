@@ -23,7 +23,7 @@ describe('ContentScriptInjector', () => {
     it('uses a timeout promise with the expected timeout constant', async () => {
         promiseFactoryMock
             .setup(factory => factory.timeout(It.isAny(), ContentScriptInjector.timeoutInMilliSec))
-            .returns(() => Promise.resolve())
+            .returns(() => Promise.resolve({}))
             .verifiable(Times.once());
 
         await testSubject.injectScripts(testTabId);
