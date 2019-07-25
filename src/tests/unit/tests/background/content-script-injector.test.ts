@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { isFunction, range } from 'lodash';
 import { IMock, It, Mock, Times } from 'typemoq';
 
 import { ContentScriptInjector } from '../../../../background/injector/content-script-injector';
@@ -21,7 +20,6 @@ describe('ContentScriptInjector', () => {
 
     beforeEach(() => {
         browserAdapterMock = Mock.ofType<BrowserAdapter>();
-
         promiseFactoryMock = Mock.ofType<PromiseFactory>();
 
         testSubject = new ContentScriptInjector(browserAdapterMock.object, promiseFactoryMock.object);
