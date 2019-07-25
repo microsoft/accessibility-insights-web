@@ -5,10 +5,8 @@ import { CommandsAdapter } from './commands-adapter';
 import { StorageAdapter } from './storage-adapter';
 
 export class ChromeAdapter implements BrowserAdapter, StorageAdapter, CommandsAdapter {
-    public openManageExtensionPage(): void {
-        chrome.tabs.create({
-            url: `chrome://extensions/?id=${chrome.runtime.id}`,
-        });
+    public getManageExtensionUrl(): string {
+        return `chrome://extensions/?id=${chrome.runtime.id}`;
     }
 
     public getAllWindows(getInfo: chrome.windows.GetInfo, callback: (chromeWindows: chrome.windows.Window[]) => void): void {
