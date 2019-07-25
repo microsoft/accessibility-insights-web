@@ -2,22 +2,16 @@
 // Licensed under the MIT License.
 import { isEmpty, size } from 'lodash';
 import { css } from 'office-ui-fabric-react';
-import { DefaultButton } from 'office-ui-fabric-react/lib/Button';
 import { Dialog, DialogType } from 'office-ui-fabric-react/lib/Dialog';
 import * as React from 'react';
 
 import { BaseStore } from '../../common/base-store';
 import { BrowserAdapter } from '../../common/browser-adapters/browser-adapter';
-import { CopyIssueDetailsButton, CopyIssueDetailsButtonDeps } from '../../common/components/copy-issue-details-button';
 import { GuidanceLinks } from '../../common/components/guidance-links';
-import { IssueFilingButton, IssueFilingButtonDeps } from '../../common/components/issue-filing-button';
-import { IssueFilingNeedsSettingsHelpText } from '../../common/components/issue-filing-needs-settings-help-text';
 import { NewTabLink } from '../../common/components/new-tab-link';
 import { FeatureFlags } from '../../common/feature-flags';
 import { CancelIcon } from '../../common/icons/cancel-icon';
-import { FileHTMLIcon } from '../../common/icons/file-html-icon';
 import { DevToolActionMessageCreator } from '../../common/message-creators/dev-tool-action-message-creator';
-import { CreateIssueDetailsTextData } from '../../common/types/create-issue-details-text-data';
 import { DevToolState } from '../../common/types/store-data/idev-tool-state';
 import { UserConfigurationStoreData } from '../../common/types/store-data/user-configuration-store';
 import { DictionaryStringTo } from '../../types/common-types';
@@ -25,6 +19,7 @@ import { HyperlinkDefinition } from '../../views/content/content-page';
 import { DetailsDialogHandler } from '../details-dialog-handler';
 import { DecoratedAxeNodeResult } from '../scanner-utils';
 import { TargetPageActionMessageCreator } from '../target-page-action-message-creator';
+import { CommandBar, CommandBarDeps, CommandBarProps } from './command-bar';
 import { FixInstructionPanel, FixInstructionPanelDeps } from './fix-instruction-panel';
 import { IssueDetailsNavigationControls, IssueDetailsNavigationControlsProps } from './issue-details-navigation-controls';
 
@@ -37,8 +32,7 @@ export enum CheckType {
 export type DetailsDialogDeps = {
     targetPageActionMessageCreator: TargetPageActionMessageCreator;
     browserAdapter: BrowserAdapter;
-} & CopyIssueDetailsButtonDeps &
-    IssueFilingButtonDeps &
+} & CommandBarDeps &
     FixInstructionPanelDeps;
 
 export interface DetailsDialogProps {
@@ -141,73 +135,23 @@ export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDi
         }
     }
 
-    private renderButtonContainer(): JSX.Element {
-        return (
-            <div className="insights-dialog-target-button-container">
-                {this.renderInspectButton()}
-                {this.renderIssueButtons()}
-                {this.renderInspectMessage()}
-            </div>
-        );
+    private renderCommandBar(): JSX.Element {
+        const props: CommandBarProps = {
+            currentRuleIndex: this.state.currentRuleIndex,
+            deps: this.props.deps,
+            devToolsShortcut: this.props.devToolsShortcut,
+            failedRules: this.props.failedRules,
+            onClickCopyIssueDetailsButton: this.props.deps.targetPageActionMessageCreator.copyIssueDetailsClicked,
+            onClickInspectButton: this.getOnClickWhenNotInShadowDom(this.onClickInspectButton),
+            shouldShowInspectButtonMessage: () => this.props.dialogHandler.shouldShowInspectButtonMessage(this),
+            userConfigurationStoreData: this.state.userConfigurationStoreData,
+        };
+
+        return <CommandBar {...props} />;
     }
 
     private renderCloseIcon(): JSX.Element {
         return <CancelIcon />;
-    }
-
-    private renderInspectButton(): JSX.Element {
-        return (
-            <DefaultButton
-                className="insights-dialog-button-inspect"
-                onClick={this.getOnClickWhenNotInShadowDom(this.onClickInspectButton)}
-            >
-                <FileHTMLIcon />
-                <div className="ms-Button-label">Inspect HTML</div>
-            </DefaultButton>
-        );
-    }
-
-    private renderFileIssueButton(issueData: CreateIssueDetailsTextData): JSX.Element {
-        return (
-            <IssueFilingButton
-                deps={this.props.deps}
-                issueDetailsData={issueData}
-                userConfigurationStoreData={this.state.userConfigurationStoreData}
-                needsSettingsContentRenderer={IssueFilingNeedsSettingsHelpText}
-            />
-        );
-    }
-
-    private renderIssueButtons(): JSX.Element {
-        const failedRuleIds: string[] = Object.keys(this.props.failedRules);
-        const ruleName: string = failedRuleIds[this.state.currentRuleIndex];
-        const ruleResult: DecoratedAxeNodeResult = this.props.failedRules[ruleName];
-        const issueData: CreateIssueDetailsTextData = {
-            pageTitle: document.title,
-            pageUrl: document.URL,
-            ruleResult,
-        };
-
-        return (
-            <>
-                <CopyIssueDetailsButton
-                    deps={this.props.deps}
-                    issueDetailsData={issueData}
-                    onClick={this.props.deps.targetPageActionMessageCreator.copyIssueDetailsClicked}
-                />
-                {this.renderFileIssueButton(issueData)}
-            </>
-        );
-    }
-
-    private renderInspectMessage(): JSX.Element {
-        if (this.props.dialogHandler.shouldShowInspectButtonMessage(this)) {
-            return (
-                <div className="insights-dialog-inspect-disabled">
-                    {`To use the Inspect HTML button, first open the developer tools (${this.props.devToolsShortcut}).`}
-                </div>
-            );
-        }
     }
 
     private renderNextAndBackButtons(): JSX.Element {
@@ -291,7 +235,7 @@ export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDi
                 {this.renderRuleName(rule)}
                 {this.renderSuccessCriteria(rule.guidanceLinks)}
                 {this.renderPathSelector()}
-                {this.renderButtonContainer()}
+                {this.renderCommandBar()}
                 {this.renderFixInstructions(rule)}
                 {this.renderNextAndBackButtons()}
             </div>
