@@ -3,12 +3,12 @@
 import * as Puppeteer from 'puppeteer';
 import { Page, PageOptions } from './page';
 
-export class PopupPage extends Page {
+export class ContentPage extends Page {
     constructor(underlyingPage: Puppeteer.Page, options?: PageOptions) {
         super(underlyingPage, options);
     }
 }
 
-export function popupPageRelativeUrl(targetTabId: number): string {
-    return `popup/popup.html?tabId=${targetTabId}`;
+export function contentPageRelativeUrl(contentPath: string): string {
+    return `insights.html#/content/${contentPath}`;
 }

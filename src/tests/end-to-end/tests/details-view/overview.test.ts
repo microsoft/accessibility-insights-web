@@ -3,20 +3,20 @@
 import { Browser } from '../../common/browser';
 import { launchBrowser } from '../../common/browser-factory';
 import { overviewSelectors } from '../../common/element-identifiers/details-view-selectors';
-import { enableHighContrast } from '../../common/enable-high-contrast';
-import { Page } from '../../common/page-controllers/page';
+import { DetailsViewPage } from '../../common/page-controllers/details-view-page';
+import { TargetPage } from '../../common/page-controllers/target-page';
 import { scanForAccessibilityIssues } from '../../common/scan-for-accessibility-issues';
 
 describe('Overview Page', () => {
     describe('Normal mode', () => {
         let browser: Browser;
-        let targetTabId: number;
-        let overviewPage: Page;
+        let targetPage: TargetPage;
+        let overviewPage: DetailsViewPage;
 
         beforeAll(async () => {
             browser = await launchBrowser({ suppressFirstTimeDialog: true });
-            targetTabId = (await browser.setupNewTargetPage()).tabId;
-            overviewPage = await openOverviewPage(browser, targetTabId);
+            targetPage = await browser.newTargetPage();
+            overviewPage = await openOverviewPage(browser, targetPage);
         });
 
         afterAll(async () => {
@@ -34,14 +34,14 @@ describe('Overview Page', () => {
 
     describe('High contrast mode', () => {
         let browser: Browser;
-        let targetTabId: number;
-        let overviewPage: Page;
+        let targetPage: TargetPage;
+        let overviewPage: DetailsViewPage;
 
         beforeAll(async () => {
             browser = await launchBrowser({ suppressFirstTimeDialog: true });
-            targetTabId = (await browser.setupNewTargetPage()).tabId;
-            overviewPage = await openOverviewPage(browser, targetTabId);
-            await enableHighContrast(overviewPage);
+            targetPage = await browser.newTargetPage();
+            overviewPage = await openOverviewPage(browser, targetPage);
+            await overviewPage.enableHighContrast();
         });
 
         afterAll(async () => {
@@ -57,10 +57,11 @@ describe('Overview Page', () => {
         });
     });
 
-    async function openOverviewPage(browser: Browser, targetTabId: number): Promise<Page> {
-        const overviewPage: Page = await browser.newExtensionAssessmentDetailsViewPage(targetTabId);
-        await overviewPage.waitForSelector(overviewSelectors.overviewHeading);
+    async function openOverviewPage(browser: Browser, targetPage: TargetPage): Promise<DetailsViewPage> {
+        const detailsViewPage = await browser.newDetailsViewPage(targetPage);
+        await detailsViewPage.switchToAssessment();
+        await detailsViewPage.waitForSelector(overviewSelectors.overviewHeading);
 
-        return overviewPage;
+        return detailsViewPage;
     }
 });

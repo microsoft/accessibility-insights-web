@@ -3,8 +3,7 @@
 import { Browser } from '../../common/browser';
 import { launchBrowser } from '../../common/browser-factory';
 import { popupPageElementIdentifiers } from '../../common/element-identifiers/popup-page-element-identifiers';
-import { enableHighContrast } from '../../common/enable-high-contrast';
-import { Page } from '../../common/page-controllers/page';
+import { PopupPage } from '../../common/page-controllers/popup-page';
 import { TargetPage } from '../../common/page-controllers/target-page';
 import { scanForAccessibilityIssues } from '../../common/scan-for-accessibility-issues';
 import { DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS } from '../../common/timeouts';
@@ -12,12 +11,12 @@ import { DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS } from '../../common/timeouts';
 describe('Ad hoc tools', () => {
     let browser: Browser;
     let targetPage: TargetPage;
-    let popupPage: Page;
+    let popupPage: PopupPage;
 
     beforeEach(async () => {
         browser = await launchBrowser({ suppressFirstTimeDialog: true });
-        targetPage = await browser.setupNewTargetPage();
-        popupPage = await browser.newExtensionPopupPage(targetPage.tabId);
+        targetPage = await browser.newTargetPage();
+        popupPage = await browser.newPopupPage(targetPage);
         await popupPage.bringToFront();
     });
 
@@ -32,8 +31,8 @@ describe('Ad hoc tools', () => {
         await gotoAdhocPanel();
 
         // verify adhoc panel state is sticky
-        targetPage = await browser.setupNewTargetPage();
-        popupPage = await browser.newExtensionPopupPage(targetPage.tabId);
+        targetPage = await browser.newTargetPage();
+        popupPage = await browser.newPopupPage(targetPage);
         await verifyAdhocPanelLoaded();
     });
 
@@ -44,8 +43,8 @@ describe('Ad hoc tools', () => {
         await verifyLaunchPadLoaded();
 
         // verify adhoc panel state is sticky
-        targetPage = await browser.setupNewTargetPage();
-        popupPage = await browser.newExtensionPopupPage(targetPage.tabId);
+        targetPage = await browser.newTargetPage();
+        popupPage = await browser.newPopupPage(targetPage);
         await verifyLaunchPadLoaded();
     });
 
@@ -57,8 +56,8 @@ describe('Ad hoc tools', () => {
     });
 
     it('should pass accessibility validation in high contrast', async () => {
-        const detailsViewPage = await browser.newExtensionDetailsViewPage(targetPage.tabId);
-        await enableHighContrast(detailsViewPage);
+        const detailsViewPage = await browser.newDetailsViewPage(targetPage);
+        await detailsViewPage.enableHighContrast();
 
         await popupPage.bringToFront();
         await gotoAdhocPanel();

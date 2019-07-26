@@ -4,23 +4,22 @@ import { Browser } from '../../common/browser';
 import { launchBrowser } from '../../common/browser-factory';
 import { CommonSelectors } from '../../common/element-identifiers/common-selectors';
 import { formatPageElementForSnapshot } from '../../common/element-snapshot-formatter';
-import { enableHighContrast } from '../../common/enable-high-contrast';
+import { DetailsViewPage } from '../../common/page-controllers/details-view-page';
 import { Page } from '../../common/page-controllers/page';
+import { TargetPage } from '../../common/page-controllers/target-page';
 import { scanForAccessibilityIssues } from '../../common/scan-for-accessibility-issues';
 
 describe('Settings Dropdown', () => {
     describe('Normal mode', () => {
         let browser: Browser;
-        let targetTabId: number;
+        let targetPage: TargetPage;
 
         beforeAll(async () => {
             browser = await launchBrowser({ suppressFirstTimeDialog: true });
         });
 
         beforeEach(async () => {
-            const targetPage = await browser.newTestResourcePage('all.html');
-            await targetPage.bringToFront();
-            targetTabId = await browser.getActivePageTabId();
+            targetPage = await browser.newTargetPage();
         });
 
         afterEach(async () => {
@@ -37,10 +36,10 @@ describe('Settings Dropdown', () => {
         });
 
         it('content should match snapshot', async () => {
-            const popupPage = await browser.newExtensionPopupPage(targetTabId);
+            const popupPage = await browser.newPopupPage(targetPage);
             const popupDropdownElement = await getDropdownPanelElement(popupPage);
 
-            const detailsViewPage = await browser.newExtensionDetailsViewPage(targetTabId);
+            const detailsViewPage = await browser.newDetailsViewPage(targetPage);
             const detailsViewDropdownElement = await getDropdownPanelElement(detailsViewPage);
 
             expect(popupDropdownElement).toEqual(detailsViewDropdownElement);
@@ -48,7 +47,7 @@ describe('Settings Dropdown', () => {
         });
 
         it('should pass accessibility validation', async () => {
-            const popupPage = await browser.newExtensionPopupPage(targetTabId);
+            const popupPage = await browser.newPopupPage(targetPage);
             await popupPage.clickSelector(CommonSelectors.settingsGearButton);
 
             const results = await scanForAccessibilityIssues(popupPage, CommonSelectors.settingsDropdownMenu);
@@ -62,18 +61,14 @@ describe('Settings Dropdown', () => {
     });
     describe('High contrast mode', () => {
         let browser: Browser;
-        let targetTabId: number;
-        let detailsViewPage: Page;
+        let targetPage: TargetPage;
+        let detailsViewPage: DetailsViewPage;
 
         beforeAll(async () => {
             browser = await launchBrowser({ suppressFirstTimeDialog: true });
-            const targetPage = await browser.newTestResourcePage('all.html');
-
-            await targetPage.bringToFront();
-            targetTabId = await browser.getActivePageTabId();
-
-            detailsViewPage = await browser.newExtensionDetailsViewPage(targetTabId);
-            await enableHighContrast(detailsViewPage);
+            targetPage = await browser.newTargetPage();
+            detailsViewPage = await browser.newDetailsViewPage(targetPage);
+            await detailsViewPage.enableHighContrast();
         });
 
         afterAll(async () => {
@@ -84,7 +79,7 @@ describe('Settings Dropdown', () => {
         });
 
         it('should pass accessibility validation in popup dropdown', async () => {
-            const popupPage = await browser.newExtensionPopupPage(targetTabId);
+            const popupPage = await browser.newPopupPage(targetPage);
             await popupPage.clickSelector(CommonSelectors.settingsGearButton);
 
             const results = await scanForAccessibilityIssues(popupPage, CommonSelectors.settingsDropdownMenu);

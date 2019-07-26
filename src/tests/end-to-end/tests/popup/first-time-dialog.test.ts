@@ -4,17 +4,17 @@ import { Browser } from '../../common/browser';
 import { launchBrowser } from '../../common/browser-factory';
 import { popupPageElementIdentifiers } from '../../common/element-identifiers/popup-page-element-identifiers';
 import { formatPageElementForSnapshot } from '../../common/element-snapshot-formatter';
-import { Page } from '../../common/page-controllers/page';
+import { PopupPage } from '../../common/page-controllers/popup-page';
+import { TargetPage } from '../../common/page-controllers/target-page';
 import { scanForAccessibilityIssues } from '../../common/scan-for-accessibility-issues';
 
 describe('First time Dialog', () => {
     let browser: Browser;
-    let targetPage: Page;
-    let targetPageTabId: number;
+    let targetPage: TargetPage;
 
     beforeEach(async () => {
         browser = await launchBrowser({ suppressFirstTimeDialog: false });
-        await setupTargetPage();
+        targetPage = await browser.newTargetPage();
     });
 
     afterEach(async () => {
@@ -24,14 +24,8 @@ describe('First time Dialog', () => {
         }
     });
 
-    async function setupTargetPage(): Promise<void> {
-        targetPage = await browser.newTestResourcePage('all.html');
-        await targetPage.bringToFront();
-        targetPageTabId = await browser.getActivePageTabId();
-    }
-
-    async function newPopupPage(): Promise<Page> {
-        return await browser.newExtensionPopupPage(targetPageTabId);
+    async function newPopupPage(): Promise<PopupPage> {
+        return await browser.newPopupPage(targetPage);
     }
 
     it('should be dismissed by clicking the OK button', async () => {
