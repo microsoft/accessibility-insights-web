@@ -1,24 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as Puppeteer from 'puppeteer';
-import { InsightsWindowGlobals } from '../../../../common/insights-feature-flags';
-import { Page, PageOptions } from '../page';
+import { Page, PageOptions } from './page';
 
 export class BackgroundPage extends Page {
     constructor(underlyingPage: Puppeteer.Page, options?: PageOptions) {
         super(underlyingPage, options);
-    }
-
-    public async setHighContrastMode(enableHighContrast: boolean): Promise<void> {
-        return await this.underlyingPage.evaluate(enableHighContrastInPage => {
-            (window as Window & InsightsWindowGlobals).insightsUserConfiguration.setHighContrastMode(enableHighContrastInPage);
-        }, enableHighContrast);
-    }
-
-    public async setTelemetryEnabled(enableTelemetry: boolean): Promise<void> {
-        return await this.underlyingPage.evaluate(enableTelemetryInPage => {
-            (window as Window & InsightsWindowGlobals).insightsUserConfiguration.setTelemetryEnabled(enableTelemetryInPage);
-        }, enableTelemetry);
     }
 }
 

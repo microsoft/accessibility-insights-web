@@ -3,7 +3,7 @@
 import { ElementHandle } from 'puppeteer';
 import * as Puppeteer from 'puppeteer';
 import { formatChildElementForSnapshot } from '../element-snapshot-formatter';
-import { Page } from '../page';
+import { Page, PageOptions } from './page';
 
 export class TargetPage extends Page {
     constructor(underlyingPage: Puppeteer.Page, public readonly tabId: number, options?: PageOptions) {

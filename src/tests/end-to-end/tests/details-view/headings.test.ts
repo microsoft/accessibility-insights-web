@@ -5,7 +5,7 @@ import { launchBrowser } from '../../common/browser-factory';
 import { GuidanceContentSelectors } from '../../common/element-identifiers/common-selectors';
 import { detailsViewSelectors } from '../../common/element-identifiers/details-view-selectors';
 import { enableHighContrast } from '../../common/enable-high-contrast';
-import { Page } from '../../common/page';
+import { Page } from '../../common/page-controllers/page';
 import { scanForAccessibilityIssues } from '../../common/scan-for-accessibility-issues';
 
 describe('Headings Page', () => {

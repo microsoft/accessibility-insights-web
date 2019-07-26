@@ -7,7 +7,7 @@ import { CommonSelectors } from '../../common/element-identifiers/common-selecto
 import { detailsViewSelectors } from '../../common/element-identifiers/details-view-selectors';
 import { formatPageElementForSnapshot } from '../../common/element-snapshot-formatter';
 import { enableHighContrast } from '../../common/enable-high-contrast';
-import { Page } from '../../common/page';
+import { Page } from '../../common/page-controllers/page';
 import { scanForAccessibilityIssues } from '../../common/scan-for-accessibility-issues';
 
 describe('Preview Features Panel', () => {

@@ -4,7 +4,7 @@ import { Browser } from '../../common/browser';
 import { launchBrowser } from '../../common/browser-factory';
 import { popupPageElementIdentifiers } from '../../common/element-identifiers/popup-page-element-identifiers';
 import { formatPageElementForSnapshot } from '../../common/element-snapshot-formatter';
-import { Page } from '../../common/page';
+import { Page } from '../../common/page-controllers/page';
 import { scanForAccessibilityIssues } from '../../common/scan-for-accessibility-issues';
 
 describe('First time Dialog', () => {

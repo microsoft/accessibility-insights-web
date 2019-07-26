@@ -6,7 +6,7 @@ import { CommonSelectors } from '../../common/element-identifiers/common-selecto
 import { popupPageElementIdentifiers } from '../../common/element-identifiers/popup-page-element-identifiers';
 import { formatPageElementForSnapshot } from '../../common/element-snapshot-formatter';
 import { enableHighContrast } from '../../common/enable-high-contrast';
-import { Page } from '../../common/page';
+import { Page } from '../../common/page-controllers/page';
 import { TargetPage } from '../../common/page-controllers/target-page';
 import { scanForAccessibilityIssues } from '../../common/scan-for-accessibility-issues';
 

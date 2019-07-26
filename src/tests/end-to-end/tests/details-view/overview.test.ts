@@ -4,7 +4,7 @@ import { Browser } from '../../common/browser';
 import { launchBrowser } from '../../common/browser-factory';
 import { overviewSelectors } from '../../common/element-identifiers/details-view-selectors';
 import { enableHighContrast } from '../../common/enable-high-contrast';
-import { Page } from '../../common/page';
+import { Page } from '../../common/page-controllers/page';
 import { scanForAccessibilityIssues } from '../../common/scan-for-accessibility-issues';
 
 describe('Overview Page', () => {
