@@ -41,24 +41,7 @@ describe('DetailsDialogHandlerTest', () => {
     });
 
     test('backButtonClickHandler', () => {
-        detailsDialogMock
-            .setup(dialog => dialog.state)
-            .returns(() => {
-                return {
-                    showDialog: true,
-                    currentRuleIndex: 1,
-                } as any;
-            });
-
-        detailsDialogMock
-            .setup(dialog =>
-                dialog.setState(
-                    It.isValue({
-                        currentRuleIndex: 0,
-                    }),
-                ),
-            )
-            .verifiable();
+        detailsDialogMock.setup(dialog => dialog.forceUpdate()).verifiable(Times.once());
 
         testSubject.backButtonClickHandler(detailsDialogMock.object);
 
@@ -66,24 +49,7 @@ describe('DetailsDialogHandlerTest', () => {
     });
 
     test('nextButtonClickHandler', () => {
-        detailsDialogMock
-            .setup(dialog => dialog.state)
-            .returns(() => {
-                return {
-                    showDialog: true,
-                    currentRuleIndex: 0,
-                } as any;
-            });
-
-        detailsDialogMock
-            .setup(dialog =>
-                dialog.setState(
-                    It.isValue({
-                        currentRuleIndex: 1,
-                    }),
-                ),
-            )
-            .verifiable();
+        detailsDialogMock.setup(dialog => dialog.forceUpdate()).verifiable(Times.once());
 
         testSubject.nextButtonClickHandler(detailsDialogMock.object);
 
@@ -205,7 +171,6 @@ describe('DetailsDialogHandlerTest', () => {
             .returns(() => {
                 return {
                     showDialog: true,
-                    currentRuleIndex: 1,
                 } as DetailsDialogState;
             });
 
@@ -222,7 +187,6 @@ describe('DetailsDialogHandlerTest', () => {
                 dialog.setState(
                     It.isValue({
                         showDialog: true,
-                        currentRuleIndex: 1,
                     }),
                 ),
             )
@@ -233,34 +197,18 @@ describe('DetailsDialogHandlerTest', () => {
 
     test('NextButtonIsDisabled', () => {
         detailsDialogMock
-            .setup(dialog => dialog.state)
-            .returns(() => {
-                return {
-                    showDialog: true,
-                    currentRuleIndex: 3,
-                } as DetailsDialogState;
-            });
-
-        detailsDialogMock
             .setup(dialog => dialog.props)
             .returns(() => {
                 return {
-                    failedRules: [1, 2, 3, 4],
+                    failedRules: [1, 2],
                 } as any;
             });
 
-        detailsDialogMock
-            .setup(dialog =>
-                dialog.setState(
-                    It.isValue({
-                        showDialog: true,
-                        currentRuleIndex: 1,
-                    }),
-                ),
-            )
-            .verifiable();
+        testSubject.nextButtonClickHandler(detailsDialogMock.object);
 
-        expect(testSubject.isNextButtonDisabled(detailsDialogMock.object)).toBe(true);
+        const result = testSubject.isNextButtonDisabled(detailsDialogMock.object);
+
+        expect(result).toBe(true);
     });
 
     test('BackButtonIsDisabled', () => {
@@ -269,7 +217,6 @@ describe('DetailsDialogHandlerTest', () => {
             .returns(() => {
                 return {
                     showDialog: true,
-                    currentRuleIndex: 0,
                 } as DetailsDialogState;
             });
 
@@ -286,7 +233,6 @@ describe('DetailsDialogHandlerTest', () => {
                 dialog.setState(
                     It.isValue({
                         showDialog: true,
-                        currentRuleIndex: 1,
                     }),
                 ),
             )
@@ -297,15 +243,6 @@ describe('DetailsDialogHandlerTest', () => {
 
     test('BackButtonNotDisabled', () => {
         detailsDialogMock
-            .setup(dialog => dialog.state)
-            .returns(() => {
-                return {
-                    showDialog: true,
-                    currentRuleIndex: 1,
-                } as DetailsDialogState;
-            });
-
-        detailsDialogMock
             .setup(dialog => dialog.props)
             .returns(() => {
                 return {
@@ -313,18 +250,11 @@ describe('DetailsDialogHandlerTest', () => {
                 } as any;
             });
 
-        detailsDialogMock
-            .setup(dialog =>
-                dialog.setState(
-                    It.isValue({
-                        showDialog: true,
-                        currentRuleIndex: 1,
-                    }),
-                ),
-            )
-            .verifiable();
+        testSubject.nextButtonClickHandler(detailsDialogMock.object);
 
-        expect(testSubject.isBackButtonDisabled(detailsDialogMock.object)).toBe(false);
+        const result = testSubject.isBackButtonDisabled(detailsDialogMock.object);
+
+        expect(result).toBe(false);
     });
 
     describe('isInspectButtonDisabled', () => {
@@ -345,22 +275,17 @@ describe('DetailsDialogHandlerTest', () => {
 
     test('getFailureInfo', () => {
         detailsDialogMock
-            .setup(dialog => dialog.state)
-            .returns(() => {
-                return { currentRuleIndex: 0 } as DetailsDialogState;
-            });
-
-        detailsDialogMock
             .setup(dialog => dialog.props)
             .returns(() => {
                 return {
                     showDialog: true,
-                    currentRuleIndex: 0,
                     failedRules: [1, 2, 3, 4],
                 } as any;
             });
 
-        expect(testSubject.getFailureInfo(detailsDialogMock.object)).toEqual('Failure 1 of 4 for this target');
+        const failureInfo = testSubject.getFailureInfo(detailsDialogMock.object);
+
+        expect(failureInfo).toEqual('Failure 1 of 4 for this target');
     });
 
     test('onLayoutDidMount_ableToFindDialog', () => {
@@ -592,9 +517,7 @@ describe('DetailsDialogHandlerTest', () => {
             } as DecoratedAxeNodeResult,
         };
 
-        const currentRuleIndex = 0;
-
-        const result = testSubject.getCurrentRule(failedRules, currentRuleIndex);
+        const result = testSubject.getCurrentRule(failedRules);
 
         expect(result).toBe(failedRules['rule-1']);
     });

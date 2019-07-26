@@ -8,30 +8,34 @@ import { DictionaryStringTo } from '../types/common-types';
 import { DetailsDialog } from './components/details-dialog';
 import { DecoratedAxeNodeResult } from './scanner-utils';
 
+type DetailsDialogHandlerState = {
+    currentRuleIndex: number;
+};
+
 export class DetailsDialogHandler {
     private onDevToolChangedHandler: () => void;
     private onUserConfigChangedHandler: () => void;
 
+    private state: DetailsDialogHandlerState = {
+        currentRuleIndex: 0,
+    };
+
     constructor(private htmlElementUtils: HTMLElementUtils) {}
 
-    public getCurrentRule(failedRules: DictionaryStringTo<DecoratedAxeNodeResult>, currentRuleIndex: number): DecoratedAxeNodeResult {
+    public getCurrentRule(failedRules: DictionaryStringTo<DecoratedAxeNodeResult>): DecoratedAxeNodeResult {
         const failedRuleIds: string[] = Object.keys(failedRules);
-        const ruleName: string = failedRuleIds[currentRuleIndex];
+        const ruleName: string = failedRuleIds[this.state.currentRuleIndex];
         return failedRules[ruleName];
     }
 
     public backButtonClickHandler = (dialog: DetailsDialog): void => {
-        const currentRuleIndex = dialog.state.currentRuleIndex;
-        dialog.setState({
-            currentRuleIndex: currentRuleIndex - 1,
-        });
+        this.state.currentRuleIndex--;
+        dialog.forceUpdate();
     };
 
     public nextButtonClickHandler = (dialog: DetailsDialog): void => {
-        const currentRuleIndex = dialog.state.currentRuleIndex;
-        dialog.setState({
-            currentRuleIndex: currentRuleIndex + 1,
-        });
+        this.state.currentRuleIndex++;
+        dialog.forceUpdate();
     };
 
     public inspectButtonClickHandler = (dialog: DetailsDialog, event: React.SyntheticEvent<MouseEvent>): void => {
@@ -52,11 +56,11 @@ export class DetailsDialogHandler {
     };
 
     public isNextButtonDisabled = (dialog: DetailsDialog): boolean => {
-        return dialog.state.currentRuleIndex >= Object.keys(dialog.props.failedRules).length - 1;
+        return this.state.currentRuleIndex >= Object.keys(dialog.props.failedRules).length - 1;
     };
 
     public isBackButtonDisabled = (dialog: DetailsDialog): boolean => {
-        return dialog.state.currentRuleIndex <= 0;
+        return this.state.currentRuleIndex <= 0;
     };
 
     public isInspectButtonDisabled = (dialog: DetailsDialog): boolean => {
@@ -84,7 +88,7 @@ export class DetailsDialogHandler {
     };
 
     public getFailureInfo = (dialog: DetailsDialog): string => {
-        return `Failure ${dialog.state.currentRuleIndex + 1} of ${Object.keys(dialog.props.failedRules).length} for this target`;
+        return `Failure ${this.state.currentRuleIndex + 1} of ${Object.keys(dialog.props.failedRules).length} for this target`;
     };
 
     public onLayoutDidMount = (): void => {

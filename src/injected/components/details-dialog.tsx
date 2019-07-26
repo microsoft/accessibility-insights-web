@@ -50,7 +50,6 @@ export interface DetailsDialogProps {
 
 export interface DetailsDialogState {
     showDialog: boolean;
-    currentRuleIndex: number;
     canInspect: boolean;
     userConfigurationStoreData: UserConfigurationStoreData;
     showInspectMessage: boolean;
@@ -108,7 +107,6 @@ export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDi
 
         this.state = {
             showDialog: true,
-            currentRuleIndex: 0,
             canInspect: true,
             showInspectMessage: false,
             userConfigurationStoreData: props.userConfigStore.getState(),
@@ -116,7 +114,7 @@ export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDi
     }
 
     public render(): JSX.Element {
-        const rule = this.props.dialogHandler.getCurrentRule(this.props.failedRules, this.state.currentRuleIndex);
+        const rule = this.props.dialogHandler.getCurrentRule(this.props.failedRules);
 
         if (this.props.featureFlagStoreData[FeatureFlags.shadowDialog]) {
             return this.withshadowDomTurnedOn(rule);
@@ -137,7 +135,7 @@ export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDi
         const props: CommandBarProps = {
             deps: this.props.deps,
             devToolsShortcut: this.props.devToolsShortcut,
-            selectedRule: this.props.dialogHandler.getCurrentRule(this.props.failedRules, this.state.currentRuleIndex),
+            selectedRule: this.props.dialogHandler.getCurrentRule(this.props.failedRules),
             onClickCopyIssueDetailsButton: this.props.deps.targetPageActionMessageCreator.copyIssueDetailsClicked,
             onClickInspectButton: this.getOnClickWhenNotInShadowDom(this.onClickInspectButton),
             shouldShowInspectButtonMessage: () => this.props.dialogHandler.shouldShowInspectButtonMessage(this),

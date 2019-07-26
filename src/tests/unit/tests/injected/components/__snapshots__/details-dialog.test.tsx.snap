@@ -238,7 +238,6 @@ exports[`DetailsDialog renders with: { isDevToolsOpen: false,
           "setState": [Function],
           "state": Object {
             "canInspect": true,
-            "currentRuleIndex": 0,
             "showDialog": true,
             "showInspectMessage": false,
             "userConfigurationStoreData": undefined,
@@ -558,7 +557,6 @@ exports[`DetailsDialog renders with: { isDevToolsOpen: false,
   expectedHelpUrl: 'http://extension/help-relative' }: verify initial state 1`] = `
 Object {
   "canInspect": true,
-  "currentRuleIndex": 0,
   "showDialog": true,
   "showInspectMessage": false,
   "userConfigurationStoreData": undefined,
@@ -800,7 +798,6 @@ exports[`DetailsDialog renders with: { isDevToolsOpen: false, shadowDialog: fals
           "setState": [Function],
           "state": Object {
             "canInspect": true,
-            "currentRuleIndex": 0,
             "showDialog": true,
             "showInspectMessage": false,
             "userConfigurationStoreData": undefined,
@@ -1114,7 +1111,6 @@ exports[`DetailsDialog renders with: { isDevToolsOpen: false, shadowDialog: fals
 exports[`DetailsDialog renders with: { isDevToolsOpen: false, shadowDialog: false }: verify initial state 1`] = `
 Object {
   "canInspect": true,
-  "currentRuleIndex": 0,
   "showDialog": true,
   "showInspectMessage": false,
   "userConfigurationStoreData": undefined,
@@ -1361,7 +1357,6 @@ exports[`DetailsDialog renders with: { isDevToolsOpen: false, shadowDialog: true
             "setState": [Function],
             "state": Object {
               "canInspect": true,
-              "currentRuleIndex": 0,
               "showDialog": true,
               "showInspectMessage": false,
               "userConfigurationStoreData": undefined,
@@ -1680,7 +1675,6 @@ exports[`DetailsDialog renders with: { isDevToolsOpen: false, shadowDialog: true
 exports[`DetailsDialog renders with: { isDevToolsOpen: false, shadowDialog: true }: verify initial state 1`] = `
 Object {
   "canInspect": true,
-  "currentRuleIndex": 0,
   "showDialog": true,
   "showInspectMessage": false,
   "userConfigurationStoreData": undefined,
@@ -1922,7 +1916,6 @@ exports[`DetailsDialog renders with: { isDevToolsOpen: true, shadowDialog: false
           "setState": [Function],
           "state": Object {
             "canInspect": true,
-            "currentRuleIndex": 0,
             "showDialog": true,
             "showInspectMessage": false,
             "userConfigurationStoreData": undefined,
@@ -2236,7 +2229,6 @@ exports[`DetailsDialog renders with: { isDevToolsOpen: true, shadowDialog: false
 exports[`DetailsDialog renders with: { isDevToolsOpen: true, shadowDialog: false }: verify initial state 1`] = `
 Object {
   "canInspect": true,
-  "currentRuleIndex": 0,
   "showDialog": true,
   "showInspectMessage": false,
   "userConfigurationStoreData": undefined,
@@ -2483,7 +2475,6 @@ exports[`DetailsDialog renders with: { isDevToolsOpen: true, shadowDialog: true 
             "setState": [Function],
             "state": Object {
               "canInspect": true,
-              "currentRuleIndex": 0,
               "showDialog": true,
               "showInspectMessage": false,
               "userConfigurationStoreData": undefined,
@@ -2802,7 +2793,6 @@ exports[`DetailsDialog renders with: { isDevToolsOpen: true, shadowDialog: true 
 exports[`DetailsDialog renders with: { isDevToolsOpen: true, shadowDialog: true }: verify initial state 1`] = `
 Object {
   "canInspect": true,
-  "currentRuleIndex": 0,
   "showDialog": true,
   "showInspectMessage": false,
   "userConfigurationStoreData": undefined,
