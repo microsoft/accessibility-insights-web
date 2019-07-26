@@ -12,6 +12,7 @@ export const link = {
     WCAG_1_3_1: guidanceLinkTo('WCAG 1.3.1', 'https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships'),
     WCAG_1_3_2: guidanceLinkTo('WCAG 1.3.2', 'https://www.w3.org/WAI/WCAG21/Understanding/meaningful-sequence.html'),
     WCAG_1_3_3: guidanceLinkTo('WCAG 1.3.3', 'https://www.w3.org/WAI/WCAG21/Understanding/sensory-characteristics.html'),
+    WCAG_1_3_4: guidanceLinkTo('WCAG 1.3.4', 'https://www.w3.org/WAI/WCAG21/Understanding/orientation.html', [guidanceTags.WCAG_2_1]),
     WCAG_1_3_5: guidanceLinkTo('WCAG 1.3.5', 'https://www.w3.org/WAI/WCAG21/Understanding/identify-input-purpose.html', [
         guidanceTags.WCAG_2_1,
     ]),
@@ -20,8 +21,16 @@ export const link = {
     WCAG_1_4_3: guidanceLinkTo('WCAG 1.4.3', 'https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum.html'),
     WCAG_1_4_4: guidanceLinkTo('WCAG 1.4.4', 'https://www.w3.org/WAI/WCAG21/Understanding/resize-text.html'),
     WCAG_1_4_5: guidanceLinkTo('WCAG 1.4.5', 'https://www.w3.org/WAI/WCAG21/Understanding/images-of-text.html'),
+    WCAG_1_4_10: guidanceLinkTo('WCAG 1.4.10', 'https://www.w3.org/WAI/WCAG21/Understanding/reflow.html', [guidanceTags.WCAG_2_1]),
+    WCAG_1_4_12: guidanceLinkTo('WCAG 1.4.12', 'https://www.w3.org/WAI/WCAG21/Understanding/text-spacing.html', [guidanceTags.WCAG_2_1]),
+    WCAG_1_4_13: guidanceLinkTo('WCAG 1.4.13', 'https://www.w3.org/WAI/WCAG21/Understanding/content-on-hover-or-focus.html', [
+        guidanceTags.WCAG_2_1,
+    ]),
     WCAG_2_1_1: guidanceLinkTo('WCAG 2.1.1', 'https://www.w3.org/WAI/WCAG21/Understanding/keyboard.html'),
     WCAG_2_1_2: guidanceLinkTo('WCAG 2.1.2', 'https://www.w3.org/WAI/WCAG21/Understanding/no-keyboard-trap.html'),
+    WCAG_2_1_4: guidanceLinkTo('WCAG 2.1.4', 'https://www.w3.org/WAI/WCAG21/Understanding/character-key-shortcuts.html', [
+        guidanceTags.WCAG_2_1,
+    ]),
     WCAG_2_2_1: guidanceLinkTo('WCAG 2.2.1', 'https://www.w3.org/WAI/WCAG21/Understanding/timing-adjustable.html'),
     WCAG_2_2_2: guidanceLinkTo('WCAG 2.2.2', 'https://www.w3.org/WAI/WCAG21/Understanding/pause-stop-hide'),
     WCAG_2_3_1: guidanceLinkTo('WCAG 2.3.1', 'https://www.w3.org/WAI/WCAG21/Understanding/three-flashes-or-below-threshold.html'),
@@ -32,7 +41,12 @@ export const link = {
     WCAG_2_4_5: guidanceLinkTo('WCAG 2.4.5', 'https://www.w3.org/WAI/WCAG21/Understanding/multiple-ways.html'),
     WCAG_2_4_6: guidanceLinkTo('WCAG 2.4.6', 'https://www.w3.org/WAI/WCAG21/Understanding/headings-and-labels'),
     WCAG_2_4_7: guidanceLinkTo('WCAG 2.4.7', 'https://www.w3.org/WAI/WCAG21/Understanding/focus-visible.html'),
+    WCAG_2_5_1: guidanceLinkTo('WCAG 2.5.1', 'https://www.w3.org/WAI/WCAG21/Understanding/pointer-gestures.html', [guidanceTags.WCAG_2_1]),
+    WCAG_2_5_2: guidanceLinkTo('WCAG 2.5.2', 'https://www.w3.org/WAI/WCAG21/Understanding/pointer-cancellation.html', [
+        guidanceTags.WCAG_2_1,
+    ]),
     WCAG_2_5_3: guidanceLinkTo('WCAG 2.5.3', 'https://www.w3.org/WAI/WCAG21/Understanding/label-in-name', [guidanceTags.WCAG_2_1]),
+    WCAG_2_5_4: guidanceLinkTo('WCAG 2.5.4', 'https://www.w3.org/WAI/WCAG21/Understanding/motion-actuation.html', [guidanceTags.WCAG_2_1]),
     WCAG_3_1_1: guidanceLinkTo('WCAG 3.1.1', 'https://www.w3.org/WAI/WCAG21/Understanding/language-of-page.html'),
     WCAG_3_1_2: guidanceLinkTo('WCAG 3.1.2', 'https://www.w3.org/WAI/WCAG21/Understanding/language-of-parts.html'),
     WCAG_3_2_1: guidanceLinkTo('WCAG 3.2.1', 'https://www.w3.org/WAI/WCAG21/Understanding/on-focus.html'),
@@ -45,6 +59,7 @@ export const link = {
     WCAG_3_3_4: guidanceLinkTo('WCAG 3.3.4', 'https://www.w3.org/WAI/WCAG21/Understanding/error-prevention-legal-financial-data.html'),
     WCAG_4_1_1: guidanceLinkTo('WCAG 4.1.1', 'https://www.w3.org/WAI/WCAG21/Understanding/parsing.html'),
     WCAG_4_1_2: guidanceLinkTo('WCAG 4.1.2', 'https://www.w3.org/WAI/WCAG21/Understanding/name-role-value.html'),
+    WCAG_4_1_3: guidanceLinkTo('WCAG 4.1.3', 'https://www.w3.org/WAI/WCAG21/Understanding/status-messages.html', [guidanceTags.WCAG_2_1]),
     BingoBakery: linkTo('Bingo Bakery Video', 'https://go.microsoft.com/fwlink/?linkid=2080372'),
     IdentifyHeadings: linkTo('Techniques for WCAG 2.0: Using h1-h6 to identify headings', 'https://www.w3.org/TR/WCAG20-TECHS/H42.html'),
     LandmarkRegions: linkTo(
