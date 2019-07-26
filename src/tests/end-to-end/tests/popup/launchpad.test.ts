@@ -7,13 +7,13 @@ import { popupPageElementIdentifiers } from '../../common/element-identifiers/po
 import { formatPageElementForSnapshot } from '../../common/element-snapshot-formatter';
 import { enableHighContrast } from '../../common/enable-high-contrast';
 import { Page } from '../../common/page';
+import { TargetPage } from '../../common/page-controllers/target-page';
 import { scanForAccessibilityIssues } from '../../common/scan-for-accessibility-issues';
-import { TargetPageController } from '../../common/target-page-controller';
 
 describe('Launch Pad', () => {
     describe('Normal mode', () => {
         let browser: Browser;
-        let targetPage: TargetPageController;
+        let targetPage: TargetPage;
         let popupPage: Page;
 
         beforeAll(async () => {
@@ -42,7 +42,7 @@ describe('Launch Pad', () => {
     });
     describe('High contrast mode', () => {
         let browser: Browser;
-        let targetPage: TargetPageController;
+        let targetPage: TargetPage;
         let popupPage: Page;
 
         beforeAll(async () => {

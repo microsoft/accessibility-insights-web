@@ -12,7 +12,7 @@ export type PageOptions = {
 };
 
 export class Page {
-    constructor(private readonly underlyingPage: Puppeteer.Page, options?: PageOptions) {
+    constructor(protected readonly underlyingPage: Puppeteer.Page, options?: PageOptions) {
         function forceEventFailure(eventDescription: string): void {
             forceTestFailure(`Puppeteer.Page '${underlyingPage.url()}' emitted ${eventDescription}`);
         }

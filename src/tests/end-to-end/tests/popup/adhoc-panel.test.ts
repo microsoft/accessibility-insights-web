@@ -5,13 +5,13 @@ import { launchBrowser } from '../../common/browser-factory';
 import { popupPageElementIdentifiers } from '../../common/element-identifiers/popup-page-element-identifiers';
 import { enableHighContrast } from '../../common/enable-high-contrast';
 import { Page } from '../../common/page';
+import { TargetPage } from '../../common/page-controllers/target-page';
 import { scanForAccessibilityIssues } from '../../common/scan-for-accessibility-issues';
-import { TargetPageController } from '../../common/target-page-controller';
 import { DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS } from '../../common/timeouts';
 
 describe('Ad hoc tools', () => {
     let browser: Browser;
-    let targetPage: TargetPageController;
+    let targetPage: TargetPage;
     let popupPage: Page;
 
     beforeEach(async () => {

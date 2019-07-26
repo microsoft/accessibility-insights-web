@@ -5,11 +5,14 @@ import { browserLogPath } from './browser-factory';
 import { popupPageElementIdentifiers } from './element-identifiers/popup-page-element-identifiers';
 import { forceTestFailure } from './force-test-failure';
 import { Page } from './page';
-import { TargetPageController } from './target-page-controller';
+import { BackgroundPage, isBackgroundPageTarget } from './page-controllers/background-page';
+import { DetailsViewPage } from './page-controllers/details-view-page';
+import { PopupPage } from './page-controllers/popup-page';
+import { TargetPage } from './page-controllers/target-page';
 import { getTestResourceUrl } from './test-resources';
 
 export class Browser {
-    private memoizedBackgroundPage: Page;
+    private memoizedBackgroundPage: BackgroundPage;
     private pages: Array<Page> = [];
 
     constructor(private readonly browserInstanceId: string, private readonly underlyingBrowser: Puppeteer.Browser) {
@@ -21,20 +24,52 @@ export class Browser {
         await this.underlyingBrowser.close();
     }
 
+    public async backgroundPage(): Promise<BackgroundPage> {
+        if (this.memoizedBackgroundPage) {
+            return this.memoizedBackgroundPage;
+        }
+
+        const backgroundPageTarget = await this.underlyingBrowser.waitForTarget(isBackgroundPageTarget);
+
+        this.memoizedBackgroundPage = new BackgroundPage(await backgroundPageTarget.page(), { onPageCrash: this.onPageCrash });
+
+        return this.memoizedBackgroundPage;
+    }
+
     public async newPage(url: string): Promise<Page> {
         const underlyingPage = await this.underlyingBrowser.newPage();
         const page = new Page(underlyingPage, { onPageCrash: this.onPageCrash });
-        await page.goto(url);
         this.pages.push(page);
+        await page.goto(url);
         return page;
     }
 
-    public async setupNewTargetPage(): Promise<TargetPageController> {
-        const targetPage = await this.newTestResourcePage('all.html');
+    public async newTargetPage(url: string): Promise<TargetPage> {
+        const underlyingPage = await this.underlyingBrowser.newPage();
+        await underlyingPage.bringToFront();
+        const tabId = await this.getActivePageTabId();
+        const targetPage = new TargetPage(underlyingPage, tabId);
+        this.pages.push(targetPage);
+        await targetPage.goto(url);
+        return targetPage;
+    }
 
-        await targetPage.bringToFront();
-        const targetPageTabId = await this.getActivePageTabId();
-        return new TargetPageController(targetPage, targetPageTabId);
+    public async newPopupPage(targetPage: TargetPage): Promise<PopupPage> {
+        const popupUrl = await this.getPopupPageUrl(targetPage.tabId);
+        const underlyingPage = await this.underlyingBrowser.newPage();
+        const page = new PopupPage(underlyingPage, { onPageCrash: this.onPageCrash });
+        this.pages.push(page);
+        await page.goto(popupUrl);
+        return page;
+    }
+
+    public async newDetailsViewPage(targetPage: TargetPage): Promise<DetailsViewPage> {
+        const detailsViewUrl = await this.getDetailsViewPageUrl(targetPage.tabId);
+        const underlyingPage = await this.underlyingBrowser.newPage();
+        const page = new DetailsViewPage(underlyingPage, { onPageCrash: this.onPageCrash });
+        this.pages.push(page);
+        await page.goto(detailsViewUrl);
+        return page;
     }
 
     public async newExtensionPage(relativePath: string): Promise<Page> {
@@ -42,21 +77,13 @@ export class Browser {
         return await this.newPage(url);
     }
 
-    public async newTestResourcePage(relativePath: string): Promise<Page> {
+    public async newTestResourceTargetPage(relativePath: string): Promise<TargetPage> {
         const url = getTestResourceUrl(relativePath);
-        return await this.newPage(url);
+        return await this.newTargetPage(url);
     }
 
     public async newContentPage(contentPath: string): Promise<Page> {
         return await this.newPage(await this.getContentPageUrl(contentPath));
-    }
-
-    public async newExtensionPopupPage(targetTabId: number): Promise<Page> {
-        return await this.newPage(await this.getPopupPageUrl(targetTabId));
-    }
-
-    public async newExtensionDetailsViewPage(targetTabId: number): Promise<Page> {
-        return await this.newPage(await this.getDetailsViewPageUrl(targetTabId));
     }
 
     public async newExtensionAssessmentDetailsViewPage(targetTabId: number): Promise<Page> {
@@ -91,7 +118,7 @@ export class Browser {
     }
 
     public async getActivePageTabId(): Promise<number> {
-        const backgroundPage = await this.waitForExtensionBackgroundPage();
+        const backgroundPage = await this.backgroundPage();
         return await backgroundPage.evaluate(() => {
             return new Promise(resolve => {
                 chrome.tabs.query({ active: true, currentWindow: true }, tabs => resolve(tabs[0].id));
@@ -108,35 +135,17 @@ export class Browser {
     }
 
     private async getExtensionUrl(relativePath: string): Promise<string> {
-        const backgroundPage = await this.waitForExtensionBackgroundPage();
+        const backgroundPage = await this.backgroundPage();
         const pageUrl = backgroundPage.url();
 
         // pageUrl.origin would be correct here, but it doesn't get populated correctly in all node.js versions we build
         return `${pageUrl.protocol}//${pageUrl.host}/${relativePath}`;
     }
 
-    private async waitForExtensionBackgroundPage(): Promise<Page> {
-        if (this.memoizedBackgroundPage) {
-            return this.memoizedBackgroundPage;
-        }
-
-        const backgroundPageTarget = await this.underlyingBrowser.waitForTarget(
-            t => t.type() === 'background_page' && Browser.isExtensionBackgroundPage(t.url()),
-        );
-
-        this.memoizedBackgroundPage = new Page(await backgroundPageTarget.page(), { onPageCrash: this.onPageCrash });
-
-        return this.memoizedBackgroundPage;
-    }
-
     private onPageCrash = () => {
         const errorMessage = `!!! Browser.onPageCrashed: see detailed chrome logs '${browserLogPath(this.browserInstanceId)}'`;
         console.error(errorMessage);
     };
-
-    private static isExtensionBackgroundPage(url: string): boolean {
-        return new URL(url).pathname === '/background/background.html';
-    }
 }
 
 function onBrowserDisconnected(): void {
