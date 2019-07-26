@@ -13,11 +13,11 @@ const key = 'pointerMotion';
 const title = 'Pointer / motion';
 
 const gettingStarted: JSX.Element = (
-    <React.Fragment>
+    <>
         <p>
             The requirements in this test ensure that functionality operated through touch or motion can be used successfully by everyone.
         </p>
-    </React.Fragment>
+    </>
 );
 
 export const PointerMotionAssessment: Assessment = AssessmentBuilder.Assisted({

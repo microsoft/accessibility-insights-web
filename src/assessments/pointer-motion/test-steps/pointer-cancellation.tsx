@@ -15,29 +15,34 @@ const howToTest: JSX.Element = (
     <div>
         <ol>
             <li>
-                Examine the target page to identify any functions that can be operated using a
-                <NewTabLink href="https://www.w3.org/TR/WCAG21/#dfn-single-pointer"> single pointer</NewTabLink>.
-                <li>
-                    <Markup.Term>Multipoint gestures</Markup.Term>, such as a two-fingered pinch zoom or a three-fingered tap.
-                </li>
-                <li>
-                    <Markup.Term>Path-based gestures</Markup.Term>, such as dragging or swiping.
-                </li>
+                Examine the target page to identify any functions that can be operated using a{' '}
+                <NewTabLink href="https://www.w3.org/TR/WCAG21/#dfn-single-pointer">single pointer</NewTabLink>.
+                <ol>
+                    <li>
+                        <Markup.Term>Multipoint gestures</Markup.Term>, such as a two-fingered pinch zoom or a three-fingered tap.
+                    </li>
+                    <li>
+                        <Markup.Term>Path-based gestures</Markup.Term>, such as dragging or swiping.
+                    </li>
+                </ol>
             </li>
             <li>
                 Verify that at least one of the following is true:
-                <li>
-                    <Markup.Term>No down-event.</Markup.Term> The down-event of the pointer is not used to execute any part of the function.
-                </li>
-                <li>
-                    <Markup.Term>Abort or Undo.</Markup.Term> Completion of the function is on the up-event, and a mechanism is available to
-                    abort the function before completion or to undo the function after completion.
-                </li>
-                <li>
-                    <Markup.Term>Up reversal.</Markup.Term> The up-event reverses any outcome of the preceding down-event.
-                </li>
-                Exception: This requirement does not apply if completing the function on the down-event is
-                <NewTabLink href="https://aka.ms/keros/essential"> essential</NewTabLink> to the underlying function. For example, for a
+                <ol>
+                    <li>
+                        <Markup.Term>No down-event.</Markup.Term> The down-event of the pointer is not used to execute any part of the
+                        function.
+                    </li>
+                    <li>
+                        <Markup.Term>Abort or Undo.</Markup.Term> Completion of the function is on the up-event, and a mechanism is
+                        available to abort the function before completion or to undo the function after completion.
+                    </li>
+                    <li>
+                        <Markup.Term>Up reversal.</Markup.Term> The up-event reverses any outcome of the preceding down-event.
+                    </li>
+                </ol>
+                Exception: This requirement does not apply if completing the function on the down-event is{' '}
+                <NewTabLink href="https://aka.ms/keros/essential">essential</NewTabLink> to the underlying function. For example, for a
                 keyboard emulator, entering a key press on the down-event is considered essential.
             </li>
             <ManualTestRecordYourResults isMultipleFailurePossible={true} />

@@ -19,7 +19,7 @@ const textSpacingHowToTest: JSX.Element = (
         <NewTabLink href="https://www.w3.org/TR/WCAG21/#dfn-https://www.html5accessibility.com/tests/tsbookmarklet.html">
             Text spacing
         </NewTabLink>{' '}
-        to the underlying functionality (such bookmarklet to adjust text spacing in the target page.
+        to the underlying functionality (such bookmarklet to adjust text spacing in the target page).
         <ol>
             <li>
                 Add the{' '}

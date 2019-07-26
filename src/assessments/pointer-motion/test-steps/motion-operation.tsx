@@ -19,10 +19,12 @@ const howToTest: JSX.Element = (
             </li>
             <li>
                 Verify that both of the following are true:
-                <li>The function is also operable through user interface components (such as a toggle button). </li>
-                <li>Motion operation can be disabled by the user.</li>
-                Exception: This requirement does not apply if motion activation is
-                <NewTabLink href="https://aka.ms/keros/essential"> essential</NewTabLink> to the underlying function, such as tracking a
+                <ol>
+                    <li>The function is also operable through user interface components (such as a toggle button). </li>
+                    <li>Motion operation can be disabled by the user.</li>
+                </ol>
+                Exception: This requirement does not apply if motion activation is{' '}
+                <NewTabLink href="https://aka.ms/keros/essential">essential</NewTabLink> to the underlying function, such as tracking a
                 user’s steps.
             </li>
             <ManualTestRecordYourResults isMultipleFailurePossible={true} />
