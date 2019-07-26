@@ -56,26 +56,12 @@ export class ChromeAdapter implements BrowserAdapter, StorageAdapter, CommandsAd
         });
     }
 
-    public injectJs(tabId, file: string, callback?: (result: any[]) => void): void {
-        chrome.tabs.executeScript(
-            tabId,
-            {
-                allFrames: true,
-                file: file,
-                runAt: 'document_start',
-            },
-            callback,
-        );
+    public executeScriptInTab(tabId: number, details: chrome.tabs.InjectDetails, callback?: (result: any[]) => void): void {
+        chrome.tabs.executeScript(tabId, details, callback);
     }
-    public injectCss(tabId, file: string, callback?: Function): void {
-        chrome.tabs.insertCSS(
-            tabId,
-            {
-                allFrames: true,
-                file: file,
-            },
-            callback,
-        );
+
+    public insertCSSInTab(tabId: number, details: chrome.tabs.InjectDetails, callback?: Function): void {
+        chrome.tabs.insertCSS(tabId, details, callback);
     }
 
     public createTab(url: string, callback?: (tab: chrome.tabs.Tab) => void): void {
