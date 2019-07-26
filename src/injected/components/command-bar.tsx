@@ -21,8 +21,7 @@ export type CommandBarProps = {
         event: React.MouseEvent<Button | BaseButton | HTMLDivElement | HTMLAnchorElement | HTMLButtonElement, MouseEvent>,
     ) => void;
     onClickCopyIssueDetailsButton: (event: React.MouseEvent<any, MouseEvent>) => void;
-    failedRules: DictionaryStringTo<DecoratedAxeNodeResult>;
-    currentRuleIndex: number;
+    selectedRule: DecoratedAxeNodeResult;
     userConfigurationStoreData: UserConfigurationStoreData;
     shouldShowInspectButtonMessage: () => boolean;
     devToolsShortcut: string;
@@ -39,13 +38,10 @@ export const CommandBar = NamedSFC<CommandBarProps>('CommandBar', props => {
     };
 
     const renderIssueButtons = (): JSX.Element => {
-        const failedRuleIds: string[] = Object.keys(props.failedRules);
-        const ruleName: string = failedRuleIds[props.currentRuleIndex];
-        const ruleResult: DecoratedAxeNodeResult = props.failedRules[ruleName];
         const issueData: CreateIssueDetailsTextData = {
             pageTitle: document.title,
             pageUrl: document.URL,
-            ruleResult,
+            ruleResult: props.selectedRule,
         };
 
         return (

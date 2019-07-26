@@ -39,6 +39,7 @@ describe('DetailsDialog', () => {
         id: 'id1',
         guidanceLinks: [{ text: 'Guidance Link', href: 'http://example.com' }],
         snippet: 'html',
+        helpUrl: 'help-url',
     } as DecoratedAxeNodeResult;
 
     const defaultDetailsDialogDeps: DetailsDialogDeps = {
@@ -267,6 +268,7 @@ describe('DetailsDialog', () => {
             getFailureInfo: () => 'Failure 1 of 1 for this target',
             componentDidMount: () => {},
             shouldShowInspectButtonMessage: () => false,
+            getCurrentRule: () => defaultDecoratedAxeNodeResult,
         };
     };
 });

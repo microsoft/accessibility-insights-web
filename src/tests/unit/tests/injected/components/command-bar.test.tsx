@@ -12,6 +12,23 @@ import { DecoratedAxeNodeResult } from '../../../../../injected/scanner-utils';
 import { EventStubFactory } from '../../../common/event-stub-factory';
 
 describe('CommandBar', () => {
+    const failedRule: DecoratedAxeNodeResult = {
+        failureSummary: 'RR-failureSummary',
+        guidanceLinks: [
+            {
+                text: 'WCAG-1.4.1',
+                tags: [{ id: 'some-id', displayText: 'some displayText' }, { id: 'some-other-id', displayText: 'some other displayText' }],
+            },
+            { text: 'wcag-2.8.2' },
+        ],
+        help: 'RR-help',
+        html: 'RR-html',
+        ruleId: 'RR-rule-id',
+        helpUrl: 'RR-help-url',
+        selector: 'RR-selector<x>',
+        snippet: 'RR-snippet   space',
+    } as DecoratedAxeNodeResult;
+
     const defaultCommandBarProps: CommandBarProps = {
         deps: {} as CommandBarDeps,
         onClickInspectButton: undefined,
@@ -19,28 +36,7 @@ describe('CommandBar', () => {
         shouldShowInspectButtonMessage: () => false,
         userConfigurationStoreData: { isFirstTime: false, bugService: 'None' } as UserConfigurationStoreData,
         devToolsShortcut: 'dev-tools-shortcut',
-        currentRuleIndex: 0,
-        failedRules: {
-            'RR-rule-id': {
-                failureSummary: 'RR-failureSummary',
-                guidanceLinks: [
-                    {
-                        text: 'WCAG-1.4.1',
-                        tags: [
-                            { id: 'some-id', displayText: 'some displayText' },
-                            { id: 'some-other-id', displayText: 'some other displayText' },
-                        ],
-                    },
-                    { text: 'wcag-2.8.2' },
-                ],
-                help: 'RR-help',
-                html: 'RR-html',
-                ruleId: 'RR-rule-id',
-                helpUrl: 'RR-help-url',
-                selector: 'RR-selector<x>',
-                snippet: 'RR-snippet   space',
-            } as DecoratedAxeNodeResult,
-        },
+        selectedRule: failedRule,
     };
 
     describe('renders', () => {

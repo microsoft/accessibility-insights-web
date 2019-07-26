@@ -116,9 +116,7 @@ export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDi
     }
 
     public render(): JSX.Element {
-        const failedRuleIds: string[] = Object.keys(this.props.failedRules);
-        const ruleName: string = failedRuleIds[this.state.currentRuleIndex];
-        const rule: DecoratedAxeNodeResult = this.props.failedRules[ruleName];
+        const rule = this.props.dialogHandler.getCurrentRule(this.props.failedRules, this.state.currentRuleIndex);
 
         if (this.props.featureFlagStoreData[FeatureFlags.shadowDialog]) {
             return this.withshadowDomTurnedOn(rule);
@@ -137,10 +135,9 @@ export class DetailsDialog extends React.Component<DetailsDialogProps, DetailsDi
 
     private renderCommandBar(): JSX.Element {
         const props: CommandBarProps = {
-            currentRuleIndex: this.state.currentRuleIndex,
             deps: this.props.deps,
             devToolsShortcut: this.props.devToolsShortcut,
-            failedRules: this.props.failedRules,
+            selectedRule: this.props.dialogHandler.getCurrentRule(this.props.failedRules, this.state.currentRuleIndex),
             onClickCopyIssueDetailsButton: this.props.deps.targetPageActionMessageCreator.copyIssueDetailsClicked,
             onClickInspectButton: this.getOnClickWhenNotInShadowDom(this.onClickInspectButton),
             shouldShowInspectButtonMessage: () => this.props.dialogHandler.shouldShowInspectButtonMessage(this),

@@ -82,7 +82,6 @@ exports[`DetailsDialog renders with: { isDevToolsOpen: false,
       ruleId
     </div>
     <CommandBar
-      currentRuleIndex={0}
       deps={
         Object {
           "browserAdapter": Object {
@@ -97,33 +96,31 @@ exports[`DetailsDialog renders with: { isDevToolsOpen: false,
         }
       }
       devToolsShortcut="shortcut"
-      failedRules={
-        Object {
-          "ruleId": Object {
-            "all": Array [],
-            "any": Array [],
-            "failureSummary": "failureSummary",
-            "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
-            "guidanceLinks": Array [
-              Object {
-                "href": "http://example.com",
-                "text": "Guidance Link",
-              },
-            ],
-            "help": "help",
-            "helpUrl": "help-relative",
-            "html": "html",
-            "id": "id1",
-            "none": Array [],
-            "ruleId": "ruleId",
-            "selector": "selector",
-            "snippet": "html",
-            "status": false,
-          },
-        }
-      }
       onClickCopyIssueDetailsButton={[Function]}
       onClickInspectButton={[Function]}
+      selectedRule={
+        Object {
+          "all": Array [],
+          "any": Array [],
+          "failureSummary": "failureSummary",
+          "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
+          "guidanceLinks": Array [
+            Object {
+              "href": "http://example.com",
+              "text": "Guidance Link",
+            },
+          ],
+          "help": "help",
+          "helpUrl": "help-url",
+          "html": "html",
+          "id": "id1",
+          "none": Array [],
+          "ruleId": "ruleId",
+          "selector": "selector",
+          "snippet": "html",
+          "status": false,
+        }
+      }
       shouldShowInspectButtonMessage={[Function]}
     />
     <div
@@ -197,6 +194,7 @@ exports[`DetailsDialog renders with: { isDevToolsOpen: false,
             "devToolsShortcut": "shortcut",
             "dialogHandler": Object {
               "componentDidMount": [Function],
+              "getCurrentRule": [Function],
               "getFailureInfo": [Function],
               "getRuleUrl": [Function],
               "isBackButtonDisabled": [Function],
@@ -283,6 +281,7 @@ exports[`DetailsDialog renders with: { isDevToolsOpen: false,
                 dialogHandler={
                   Object {
                     "componentDidMount": [Function],
+                    "getCurrentRule": [Function],
                     "getFailureInfo": [Function],
                     "getRuleUrl": [Function],
                     "isBackButtonDisabled": [Function],
@@ -414,7 +413,6 @@ exports[`DetailsDialog renders with: { isDevToolsOpen: false,
                     ruleId
                   </div>
                   <CommandBar
-                    currentRuleIndex={0}
                     deps={
                       Object {
                         "browserAdapter": Object {
@@ -429,33 +427,31 @@ exports[`DetailsDialog renders with: { isDevToolsOpen: false,
                       }
                     }
                     devToolsShortcut="shortcut"
-                    failedRules={
-                      Object {
-                        "ruleId": Object {
-                          "all": Array [],
-                          "any": Array [],
-                          "failureSummary": "failureSummary",
-                          "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
-                          "guidanceLinks": Array [
-                            Object {
-                              "href": "http://example.com",
-                              "text": "Guidance Link",
-                            },
-                          ],
-                          "help": "help",
-                          "helpUrl": "help-relative",
-                          "html": "html",
-                          "id": "id1",
-                          "none": Array [],
-                          "ruleId": "ruleId",
-                          "selector": "selector",
-                          "snippet": "html",
-                          "status": false,
-                        },
-                      }
-                    }
                     onClickCopyIssueDetailsButton={[Function]}
                     onClickInspectButton={[Function]}
+                    selectedRule={
+                      Object {
+                        "all": Array [],
+                        "any": Array [],
+                        "failureSummary": "failureSummary",
+                        "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
+                        "guidanceLinks": Array [
+                          Object {
+                            "href": "http://example.com",
+                            "text": "Guidance Link",
+                          },
+                        ],
+                        "help": "help",
+                        "helpUrl": "help-url",
+                        "html": "html",
+                        "id": "id1",
+                        "none": Array [],
+                        "ruleId": "ruleId",
+                        "selector": "selector",
+                        "snippet": "html",
+                        "status": false,
+                      }
+                    }
                     shouldShowInspectButtonMessage={[Function]}
                   />
                   <div
@@ -503,6 +499,7 @@ exports[`DetailsDialog renders with: { isDevToolsOpen: false,
                     dialogHandler={
                       Object {
                         "componentDidMount": [Function],
+                        "getCurrentRule": [Function],
                         "getFailureInfo": [Function],
                         "getRuleUrl": [Function],
                         "isBackButtonDisabled": [Function],
@@ -530,6 +527,7 @@ exports[`DetailsDialog renders with: { isDevToolsOpen: false,
       dialogHandler={
         Object {
           "componentDidMount": [Function],
+          "getCurrentRule": [Function],
           "getFailureInfo": [Function],
           "getRuleUrl": [Function],
           "isBackButtonDisabled": [Function],
@@ -646,7 +644,6 @@ exports[`DetailsDialog renders with: { isDevToolsOpen: false, shadowDialog: fals
       ruleId
     </div>
     <CommandBar
-      currentRuleIndex={0}
       deps={
         Object {
           "browserAdapter": Object {
@@ -661,33 +658,31 @@ exports[`DetailsDialog renders with: { isDevToolsOpen: false, shadowDialog: fals
         }
       }
       devToolsShortcut="shortcut"
-      failedRules={
-        Object {
-          "ruleId": Object {
-            "all": Array [],
-            "any": Array [],
-            "failureSummary": "failureSummary",
-            "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
-            "guidanceLinks": Array [
-              Object {
-                "href": "http://example.com",
-                "text": "Guidance Link",
-              },
-            ],
-            "help": "help",
-            "helpUrl": "http://extension/help1",
-            "html": "html",
-            "id": "id1",
-            "none": Array [],
-            "ruleId": "ruleId",
-            "selector": "selector",
-            "snippet": "html",
-            "status": false,
-          },
-        }
-      }
       onClickCopyIssueDetailsButton={[Function]}
       onClickInspectButton={[Function]}
+      selectedRule={
+        Object {
+          "all": Array [],
+          "any": Array [],
+          "failureSummary": "failureSummary",
+          "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
+          "guidanceLinks": Array [
+            Object {
+              "href": "http://example.com",
+              "text": "Guidance Link",
+            },
+          ],
+          "help": "help",
+          "helpUrl": "help-url",
+          "html": "html",
+          "id": "id1",
+          "none": Array [],
+          "ruleId": "ruleId",
+          "selector": "selector",
+          "snippet": "html",
+          "status": false,
+        }
+      }
       shouldShowInspectButtonMessage={[Function]}
     />
     <div
@@ -761,6 +756,7 @@ exports[`DetailsDialog renders with: { isDevToolsOpen: false, shadowDialog: fals
             "devToolsShortcut": "shortcut",
             "dialogHandler": Object {
               "componentDidMount": [Function],
+              "getCurrentRule": [Function],
               "getFailureInfo": [Function],
               "getRuleUrl": [Function],
               "isBackButtonDisabled": [Function],
@@ -847,6 +843,7 @@ exports[`DetailsDialog renders with: { isDevToolsOpen: false, shadowDialog: fals
                 dialogHandler={
                   Object {
                     "componentDidMount": [Function],
+                    "getCurrentRule": [Function],
                     "getFailureInfo": [Function],
                     "getRuleUrl": [Function],
                     "isBackButtonDisabled": [Function],
@@ -978,7 +975,6 @@ exports[`DetailsDialog renders with: { isDevToolsOpen: false, shadowDialog: fals
                     ruleId
                   </div>
                   <CommandBar
-                    currentRuleIndex={0}
                     deps={
                       Object {
                         "browserAdapter": Object {
@@ -993,33 +989,31 @@ exports[`DetailsDialog renders with: { isDevToolsOpen: false, shadowDialog: fals
                       }
                     }
                     devToolsShortcut="shortcut"
-                    failedRules={
-                      Object {
-                        "ruleId": Object {
-                          "all": Array [],
-                          "any": Array [],
-                          "failureSummary": "failureSummary",
-                          "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
-                          "guidanceLinks": Array [
-                            Object {
-                              "href": "http://example.com",
-                              "text": "Guidance Link",
-                            },
-                          ],
-                          "help": "help",
-                          "helpUrl": "http://extension/help1",
-                          "html": "html",
-                          "id": "id1",
-                          "none": Array [],
-                          "ruleId": "ruleId",
-                          "selector": "selector",
-                          "snippet": "html",
-                          "status": false,
-                        },
-                      }
-                    }
                     onClickCopyIssueDetailsButton={[Function]}
                     onClickInspectButton={[Function]}
+                    selectedRule={
+                      Object {
+                        "all": Array [],
+                        "any": Array [],
+                        "failureSummary": "failureSummary",
+                        "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
+                        "guidanceLinks": Array [
+                          Object {
+                            "href": "http://example.com",
+                            "text": "Guidance Link",
+                          },
+                        ],
+                        "help": "help",
+                        "helpUrl": "help-url",
+                        "html": "html",
+                        "id": "id1",
+                        "none": Array [],
+                        "ruleId": "ruleId",
+                        "selector": "selector",
+                        "snippet": "html",
+                        "status": false,
+                      }
+                    }
                     shouldShowInspectButtonMessage={[Function]}
                   />
                   <div
@@ -1067,6 +1061,7 @@ exports[`DetailsDialog renders with: { isDevToolsOpen: false, shadowDialog: fals
                     dialogHandler={
                       Object {
                         "componentDidMount": [Function],
+                        "getCurrentRule": [Function],
                         "getFailureInfo": [Function],
                         "getRuleUrl": [Function],
                         "isBackButtonDisabled": [Function],
@@ -1094,6 +1089,7 @@ exports[`DetailsDialog renders with: { isDevToolsOpen: false, shadowDialog: fals
       dialogHandler={
         Object {
           "componentDidMount": [Function],
+          "getCurrentRule": [Function],
           "getFailureInfo": [Function],
           "getRuleUrl": [Function],
           "isBackButtonDisabled": [Function],
@@ -1209,7 +1205,6 @@ exports[`DetailsDialog renders with: { isDevToolsOpen: false, shadowDialog: true
         ruleId
       </div>
       <CommandBar
-        currentRuleIndex={0}
         deps={
           Object {
             "browserAdapter": Object {
@@ -1224,33 +1219,31 @@ exports[`DetailsDialog renders with: { isDevToolsOpen: false, shadowDialog: true
           }
         }
         devToolsShortcut="shortcut"
-        failedRules={
-          Object {
-            "ruleId": Object {
-              "all": Array [],
-              "any": Array [],
-              "failureSummary": "failureSummary",
-              "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
-              "guidanceLinks": Array [
-                Object {
-                  "href": "http://example.com",
-                  "text": "Guidance Link",
-                },
-              ],
-              "help": "help",
-              "helpUrl": "http://extension/help1",
-              "html": "html",
-              "id": "id1",
-              "none": Array [],
-              "ruleId": "ruleId",
-              "selector": "selector",
-              "snippet": "html",
-              "status": false,
-            },
-          }
-        }
         onClickCopyIssueDetailsButton={[Function]}
         onClickInspectButton={null}
+        selectedRule={
+          Object {
+            "all": Array [],
+            "any": Array [],
+            "failureSummary": "failureSummary",
+            "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
+            "guidanceLinks": Array [
+              Object {
+                "href": "http://example.com",
+                "text": "Guidance Link",
+              },
+            ],
+            "help": "help",
+            "helpUrl": "help-url",
+            "html": "html",
+            "id": "id1",
+            "none": Array [],
+            "ruleId": "ruleId",
+            "selector": "selector",
+            "snippet": "html",
+            "status": false,
+          }
+        }
         shouldShowInspectButtonMessage={[Function]}
       />
       <div
@@ -1324,6 +1317,7 @@ exports[`DetailsDialog renders with: { isDevToolsOpen: false, shadowDialog: true
               "devToolsShortcut": "shortcut",
               "dialogHandler": Object {
                 "componentDidMount": [Function],
+                "getCurrentRule": [Function],
                 "getFailureInfo": [Function],
                 "getRuleUrl": [Function],
                 "isBackButtonDisabled": [Function],
@@ -1410,6 +1404,7 @@ exports[`DetailsDialog renders with: { isDevToolsOpen: false, shadowDialog: true
                   dialogHandler={
                     Object {
                       "componentDidMount": [Function],
+                      "getCurrentRule": [Function],
                       "getFailureInfo": [Function],
                       "getRuleUrl": [Function],
                       "isBackButtonDisabled": [Function],
@@ -1546,7 +1541,6 @@ exports[`DetailsDialog renders with: { isDevToolsOpen: false, shadowDialog: true
                         ruleId
                       </div>
                       <CommandBar
-                        currentRuleIndex={0}
                         deps={
                           Object {
                             "browserAdapter": Object {
@@ -1561,33 +1555,31 @@ exports[`DetailsDialog renders with: { isDevToolsOpen: false, shadowDialog: true
                           }
                         }
                         devToolsShortcut="shortcut"
-                        failedRules={
-                          Object {
-                            "ruleId": Object {
-                              "all": Array [],
-                              "any": Array [],
-                              "failureSummary": "failureSummary",
-                              "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
-                              "guidanceLinks": Array [
-                                Object {
-                                  "href": "http://example.com",
-                                  "text": "Guidance Link",
-                                },
-                              ],
-                              "help": "help",
-                              "helpUrl": "http://extension/help1",
-                              "html": "html",
-                              "id": "id1",
-                              "none": Array [],
-                              "ruleId": "ruleId",
-                              "selector": "selector",
-                              "snippet": "html",
-                              "status": false,
-                            },
-                          }
-                        }
                         onClickCopyIssueDetailsButton={[Function]}
                         onClickInspectButton={null}
+                        selectedRule={
+                          Object {
+                            "all": Array [],
+                            "any": Array [],
+                            "failureSummary": "failureSummary",
+                            "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
+                            "guidanceLinks": Array [
+                              Object {
+                                "href": "http://example.com",
+                                "text": "Guidance Link",
+                              },
+                            ],
+                            "help": "help",
+                            "helpUrl": "help-url",
+                            "html": "html",
+                            "id": "id1",
+                            "none": Array [],
+                            "ruleId": "ruleId",
+                            "selector": "selector",
+                            "snippet": "html",
+                            "status": false,
+                          }
+                        }
                         shouldShowInspectButtonMessage={[Function]}
                       />
                       <div
@@ -1635,6 +1627,7 @@ exports[`DetailsDialog renders with: { isDevToolsOpen: false, shadowDialog: true
                         dialogHandler={
                           Object {
                             "componentDidMount": [Function],
+                            "getCurrentRule": [Function],
                             "getFailureInfo": [Function],
                             "getRuleUrl": [Function],
                             "isBackButtonDisabled": [Function],
@@ -1663,6 +1656,7 @@ exports[`DetailsDialog renders with: { isDevToolsOpen: false, shadowDialog: true
         dialogHandler={
           Object {
             "componentDidMount": [Function],
+            "getCurrentRule": [Function],
             "getFailureInfo": [Function],
             "getRuleUrl": [Function],
             "isBackButtonDisabled": [Function],
@@ -1772,7 +1766,6 @@ exports[`DetailsDialog renders with: { isDevToolsOpen: true, shadowDialog: false
       ruleId
     </div>
     <CommandBar
-      currentRuleIndex={0}
       deps={
         Object {
           "browserAdapter": Object {
@@ -1787,33 +1780,31 @@ exports[`DetailsDialog renders with: { isDevToolsOpen: true, shadowDialog: false
         }
       }
       devToolsShortcut="shortcut"
-      failedRules={
-        Object {
-          "ruleId": Object {
-            "all": Array [],
-            "any": Array [],
-            "failureSummary": "failureSummary",
-            "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
-            "guidanceLinks": Array [
-              Object {
-                "href": "http://example.com",
-                "text": "Guidance Link",
-              },
-            ],
-            "help": "help",
-            "helpUrl": "http://extension/help1",
-            "html": "html",
-            "id": "id1",
-            "none": Array [],
-            "ruleId": "ruleId",
-            "selector": "selector",
-            "snippet": "html",
-            "status": false,
-          },
-        }
-      }
       onClickCopyIssueDetailsButton={[Function]}
       onClickInspectButton={[Function]}
+      selectedRule={
+        Object {
+          "all": Array [],
+          "any": Array [],
+          "failureSummary": "failureSummary",
+          "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
+          "guidanceLinks": Array [
+            Object {
+              "href": "http://example.com",
+              "text": "Guidance Link",
+            },
+          ],
+          "help": "help",
+          "helpUrl": "help-url",
+          "html": "html",
+          "id": "id1",
+          "none": Array [],
+          "ruleId": "ruleId",
+          "selector": "selector",
+          "snippet": "html",
+          "status": false,
+        }
+      }
       shouldShowInspectButtonMessage={[Function]}
     />
     <div
@@ -1887,6 +1878,7 @@ exports[`DetailsDialog renders with: { isDevToolsOpen: true, shadowDialog: false
             "devToolsShortcut": "shortcut",
             "dialogHandler": Object {
               "componentDidMount": [Function],
+              "getCurrentRule": [Function],
               "getFailureInfo": [Function],
               "getRuleUrl": [Function],
               "isBackButtonDisabled": [Function],
@@ -1973,6 +1965,7 @@ exports[`DetailsDialog renders with: { isDevToolsOpen: true, shadowDialog: false
                 dialogHandler={
                   Object {
                     "componentDidMount": [Function],
+                    "getCurrentRule": [Function],
                     "getFailureInfo": [Function],
                     "getRuleUrl": [Function],
                     "isBackButtonDisabled": [Function],
@@ -2104,7 +2097,6 @@ exports[`DetailsDialog renders with: { isDevToolsOpen: true, shadowDialog: false
                     ruleId
                   </div>
                   <CommandBar
-                    currentRuleIndex={0}
                     deps={
                       Object {
                         "browserAdapter": Object {
@@ -2119,33 +2111,31 @@ exports[`DetailsDialog renders with: { isDevToolsOpen: true, shadowDialog: false
                       }
                     }
                     devToolsShortcut="shortcut"
-                    failedRules={
-                      Object {
-                        "ruleId": Object {
-                          "all": Array [],
-                          "any": Array [],
-                          "failureSummary": "failureSummary",
-                          "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
-                          "guidanceLinks": Array [
-                            Object {
-                              "href": "http://example.com",
-                              "text": "Guidance Link",
-                            },
-                          ],
-                          "help": "help",
-                          "helpUrl": "http://extension/help1",
-                          "html": "html",
-                          "id": "id1",
-                          "none": Array [],
-                          "ruleId": "ruleId",
-                          "selector": "selector",
-                          "snippet": "html",
-                          "status": false,
-                        },
-                      }
-                    }
                     onClickCopyIssueDetailsButton={[Function]}
                     onClickInspectButton={[Function]}
+                    selectedRule={
+                      Object {
+                        "all": Array [],
+                        "any": Array [],
+                        "failureSummary": "failureSummary",
+                        "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
+                        "guidanceLinks": Array [
+                          Object {
+                            "href": "http://example.com",
+                            "text": "Guidance Link",
+                          },
+                        ],
+                        "help": "help",
+                        "helpUrl": "help-url",
+                        "html": "html",
+                        "id": "id1",
+                        "none": Array [],
+                        "ruleId": "ruleId",
+                        "selector": "selector",
+                        "snippet": "html",
+                        "status": false,
+                      }
+                    }
                     shouldShowInspectButtonMessage={[Function]}
                   />
                   <div
@@ -2193,6 +2183,7 @@ exports[`DetailsDialog renders with: { isDevToolsOpen: true, shadowDialog: false
                     dialogHandler={
                       Object {
                         "componentDidMount": [Function],
+                        "getCurrentRule": [Function],
                         "getFailureInfo": [Function],
                         "getRuleUrl": [Function],
                         "isBackButtonDisabled": [Function],
@@ -2220,6 +2211,7 @@ exports[`DetailsDialog renders with: { isDevToolsOpen: true, shadowDialog: false
       dialogHandler={
         Object {
           "componentDidMount": [Function],
+          "getCurrentRule": [Function],
           "getFailureInfo": [Function],
           "getRuleUrl": [Function],
           "isBackButtonDisabled": [Function],
@@ -2335,7 +2327,6 @@ exports[`DetailsDialog renders with: { isDevToolsOpen: true, shadowDialog: true 
         ruleId
       </div>
       <CommandBar
-        currentRuleIndex={0}
         deps={
           Object {
             "browserAdapter": Object {
@@ -2350,33 +2341,31 @@ exports[`DetailsDialog renders with: { isDevToolsOpen: true, shadowDialog: true 
           }
         }
         devToolsShortcut="shortcut"
-        failedRules={
-          Object {
-            "ruleId": Object {
-              "all": Array [],
-              "any": Array [],
-              "failureSummary": "failureSummary",
-              "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
-              "guidanceLinks": Array [
-                Object {
-                  "href": "http://example.com",
-                  "text": "Guidance Link",
-                },
-              ],
-              "help": "help",
-              "helpUrl": "http://extension/help1",
-              "html": "html",
-              "id": "id1",
-              "none": Array [],
-              "ruleId": "ruleId",
-              "selector": "selector",
-              "snippet": "html",
-              "status": false,
-            },
-          }
-        }
         onClickCopyIssueDetailsButton={[Function]}
         onClickInspectButton={null}
+        selectedRule={
+          Object {
+            "all": Array [],
+            "any": Array [],
+            "failureSummary": "failureSummary",
+            "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
+            "guidanceLinks": Array [
+              Object {
+                "href": "http://example.com",
+                "text": "Guidance Link",
+              },
+            ],
+            "help": "help",
+            "helpUrl": "help-url",
+            "html": "html",
+            "id": "id1",
+            "none": Array [],
+            "ruleId": "ruleId",
+            "selector": "selector",
+            "snippet": "html",
+            "status": false,
+          }
+        }
         shouldShowInspectButtonMessage={[Function]}
       />
       <div
@@ -2450,6 +2439,7 @@ exports[`DetailsDialog renders with: { isDevToolsOpen: true, shadowDialog: true 
               "devToolsShortcut": "shortcut",
               "dialogHandler": Object {
                 "componentDidMount": [Function],
+                "getCurrentRule": [Function],
                 "getFailureInfo": [Function],
                 "getRuleUrl": [Function],
                 "isBackButtonDisabled": [Function],
@@ -2536,6 +2526,7 @@ exports[`DetailsDialog renders with: { isDevToolsOpen: true, shadowDialog: true 
                   dialogHandler={
                     Object {
                       "componentDidMount": [Function],
+                      "getCurrentRule": [Function],
                       "getFailureInfo": [Function],
                       "getRuleUrl": [Function],
                       "isBackButtonDisabled": [Function],
@@ -2672,7 +2663,6 @@ exports[`DetailsDialog renders with: { isDevToolsOpen: true, shadowDialog: true 
                         ruleId
                       </div>
                       <CommandBar
-                        currentRuleIndex={0}
                         deps={
                           Object {
                             "browserAdapter": Object {
@@ -2687,33 +2677,31 @@ exports[`DetailsDialog renders with: { isDevToolsOpen: true, shadowDialog: true 
                           }
                         }
                         devToolsShortcut="shortcut"
-                        failedRules={
-                          Object {
-                            "ruleId": Object {
-                              "all": Array [],
-                              "any": Array [],
-                              "failureSummary": "failureSummary",
-                              "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
-                              "guidanceLinks": Array [
-                                Object {
-                                  "href": "http://example.com",
-                                  "text": "Guidance Link",
-                                },
-                              ],
-                              "help": "help",
-                              "helpUrl": "http://extension/help1",
-                              "html": "html",
-                              "id": "id1",
-                              "none": Array [],
-                              "ruleId": "ruleId",
-                              "selector": "selector",
-                              "snippet": "html",
-                              "status": false,
-                            },
-                          }
-                        }
                         onClickCopyIssueDetailsButton={[Function]}
                         onClickInspectButton={null}
+                        selectedRule={
+                          Object {
+                            "all": Array [],
+                            "any": Array [],
+                            "failureSummary": "failureSummary",
+                            "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
+                            "guidanceLinks": Array [
+                              Object {
+                                "href": "http://example.com",
+                                "text": "Guidance Link",
+                              },
+                            ],
+                            "help": "help",
+                            "helpUrl": "help-url",
+                            "html": "html",
+                            "id": "id1",
+                            "none": Array [],
+                            "ruleId": "ruleId",
+                            "selector": "selector",
+                            "snippet": "html",
+                            "status": false,
+                          }
+                        }
                         shouldShowInspectButtonMessage={[Function]}
                       />
                       <div
@@ -2761,6 +2749,7 @@ exports[`DetailsDialog renders with: { isDevToolsOpen: true, shadowDialog: true 
                         dialogHandler={
                           Object {
                             "componentDidMount": [Function],
+                            "getCurrentRule": [Function],
                             "getFailureInfo": [Function],
                             "getRuleUrl": [Function],
                             "isBackButtonDisabled": [Function],
@@ -2789,6 +2778,7 @@ exports[`DetailsDialog renders with: { isDevToolsOpen: true, shadowDialog: true 
         dialogHandler={
           Object {
             "componentDidMount": [Function],
+            "getCurrentRule": [Function],
             "getFailureInfo": [Function],
             "getRuleUrl": [Function],
             "isBackButtonDisabled": [Function],
