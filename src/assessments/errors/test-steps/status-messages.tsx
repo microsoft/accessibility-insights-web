@@ -3,6 +3,7 @@
 import * as React from 'react';
 
 import { link } from '../../../content/link';
+import * as content from '../../../content/test/errors/status-messages';
 import { ManualTestRecordYourResults } from '../../common/manual-test-record-your-results';
 import { Requirement } from '../../types/requirement';
 import { ErrorsTestStep } from './test-steps';
@@ -46,6 +47,7 @@ export const StatusMessages: Requirement = {
     name: 'Status messages',
     description,
     howToTest,
+    ...content,
     isManual: true,
     guidanceLinks: [link.WCAG_4_1_3],
 };

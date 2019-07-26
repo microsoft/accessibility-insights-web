@@ -5,6 +5,7 @@ import * as React from 'react';
 import { TextLegibilityTestStep } from '../../../assessments/text-legibility/test-steps/test-step';
 import { Requirement } from '../../../assessments/types/requirement';
 import { link } from '../../../content/link';
+import * as content from '../../../content/test/text-legibility/hover-focus-content';
 import { ManualTestRecordYourResults } from '../../common/manual-test-record-your-results';
 import * as Markup from '../../markup';
 
@@ -49,6 +50,7 @@ export const HoverFocusContent: Requirement = {
     name: 'Hover / focus content',
     description: hoverFocusContentDescription,
     howToTest: hoverFocusContentHowToTest,
+    ...content,
     isManual: true,
     guidanceLinks: [link.WCAG_1_4_13],
 };

@@ -6,7 +6,9 @@ import { TextLegibilityTestStep } from '../../../assessments/text-legibility/tes
 import { Requirement } from '../../../assessments/types/requirement';
 import { NewTabLink } from '../../../common/components/new-tab-link';
 import { link } from '../../../content/link';
+import * as content from '../../../content/test/text-legibility/text-spacing';
 import { ManualTestRecordYourResults } from '../../common/manual-test-record-your-results';
+
 import * as Markup from '../../markup';
 
 const textSpacingDescription: JSX.Element = (
@@ -64,6 +66,7 @@ export const TextSpacing: Requirement = {
     name: 'Text spacing',
     description: textSpacingDescription,
     howToTest: textSpacingHowToTest,
+    ...content,
     isManual: true,
     guidanceLinks: [link.WCAG_1_4_12],
 };

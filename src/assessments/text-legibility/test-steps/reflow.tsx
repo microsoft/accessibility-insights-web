@@ -5,7 +5,9 @@ import * as React from 'react';
 import { TextLegibilityTestStep } from '../../../assessments/text-legibility/test-steps/test-step';
 import { Requirement } from '../../../assessments/types/requirement';
 import { link } from '../../../content/link';
+import * as content from '../../../content/test/text-legibility/reflow';
 import { ManualTestRecordYourResults } from '../../common/manual-test-record-your-results';
+
 import * as Markup from '../../markup';
 
 const reflowDescription: JSX.Element = <span>Text content must be visible without having to scroll in two dimensions.</span>;
@@ -44,6 +46,7 @@ export const Reflow: Requirement = {
     name: 'Reflow',
     description: reflowDescription,
     howToTest: reflowHowToTest,
+    ...content,
     isManual: true,
     guidanceLinks: [link.WCAG_1_4_10],
 };

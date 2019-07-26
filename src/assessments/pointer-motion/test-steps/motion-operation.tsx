@@ -4,6 +4,7 @@ import * as React from 'react';
 
 import { NewTabLink } from '../../../common/components/new-tab-link';
 import { link } from '../../../content/link';
+import * as content from '../../../content/test/pointer-motion/motion-operation';
 import { ManualTestRecordYourResults } from '../../common/manual-test-record-your-results';
 import { Requirement } from '../../types/requirement';
 import { PointerMotionTestStep } from './test-steps';
@@ -37,6 +38,7 @@ export const MotionOperation: Requirement = {
     name: 'Motion operation',
     description,
     howToTest,
+    ...content,
     isManual: true,
     guidanceLinks: [link.WCAG_2_5_4],
 };

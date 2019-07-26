@@ -4,6 +4,7 @@ import * as React from 'react';
 
 import { NewTabLink } from '../../../common/components/new-tab-link';
 import { link } from '../../../content/link';
+import * as content from '../../../content/test/pointer-motion/pointer-gestures';
 import { ManualTestRecordYourResults } from '../../common/manual-test-record-your-results';
 import * as Markup from '../../markup';
 import { Requirement } from '../../types/requirement';
@@ -43,6 +44,7 @@ export const PointerGestures: Requirement = {
     name: 'Pointer gestures',
     description,
     howToTest,
+    ...content,
     isManual: true,
     guidanceLinks: [link.WCAG_2_5_1],
 };
