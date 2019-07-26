@@ -10,7 +10,6 @@ import { FileHTMLIcon } from '../../common/icons/file-html-icon';
 import { NamedSFC } from '../../common/react/named-sfc';
 import { CreateIssueDetailsTextData } from '../../common/types/create-issue-details-text-data';
 import { UserConfigurationStoreData } from '../../common/types/store-data/user-configuration-store';
-import { DictionaryStringTo } from '../../types/common-types';
 import { DecoratedAxeNodeResult } from '../scanner-utils';
 
 export type CommandBarDeps = CopyIssueDetailsButtonDeps & IssueFilingButtonDeps;
