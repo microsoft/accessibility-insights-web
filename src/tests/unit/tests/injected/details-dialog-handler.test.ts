@@ -8,6 +8,7 @@ import { DevToolActionMessageCreator } from '../../../../common/message-creators
 import { DevToolState } from '../../../../common/types/store-data/idev-tool-state';
 import { DetailsDialog, DetailsDialogState } from '../../../../injected/components/details-dialog';
 import { DetailsDialogHandler } from '../../../../injected/details-dialog-handler';
+import { DecoratedAxeNodeResult } from '../../../../injected/scanner-utils';
 import { DictionaryStringTo } from '../../../../types/common-types';
 import { EventStubFactory } from '../../common/event-stub-factory';
 import { UserConfigurationStoreData } from './../../../../common/types/store-data/user-configuration-store';
@@ -577,6 +578,25 @@ describe('DetailsDialogHandlerTest', () => {
         expect(container.querySelector('.insights-shadow-dialog-container')).toBeNull();
         shadowRootMock.verifyAll();
         htmlElementUtilsMock.verifyAll();
+    });
+
+    test('getCurrentRule', () => {
+        const failedRules: DictionaryStringTo<DecoratedAxeNodeResult> = {
+            'rule-1': {
+                ruleId: 'rule-1',
+                html: 'html for rule 1 failure',
+            } as DecoratedAxeNodeResult,
+            'rule-2': {
+                ruleId: 'rule-2',
+                html: 'html for rule 2 failure',
+            } as DecoratedAxeNodeResult,
+        };
+
+        const currentRuleIndex = 0;
+
+        const result = testSubject.getCurrentRule(failedRules, currentRuleIndex);
+
+        expect(result).toBe(failedRules['rule-1']);
     });
 
     function setupInspectButtonQuerySelector(shadowRootMock: IMock<Element>, clickableMock: IMock<any>): void {

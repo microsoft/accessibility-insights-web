@@ -1,15 +1,24 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as React from 'react';
+
 import { FeatureFlags } from '../common/feature-flags';
 import { HTMLElementUtils } from '../common/html-element-utils';
+import { DictionaryStringTo } from '../types/common-types';
 import { DetailsDialog } from './components/details-dialog';
+import { DecoratedAxeNodeResult } from './scanner-utils';
 
 export class DetailsDialogHandler {
     private onDevToolChangedHandler: () => void;
     private onUserConfigChangedHandler: () => void;
 
     constructor(private htmlElementUtils: HTMLElementUtils) {}
+
+    public getCurrentRule(failedRules: DictionaryStringTo<DecoratedAxeNodeResult>, currentRuleIndex: number): DecoratedAxeNodeResult {
+        const failedRuleIds: string[] = Object.keys(failedRules);
+        const ruleName: string = failedRuleIds[currentRuleIndex];
+        return failedRules[ruleName];
+    }
 
     public backButtonClickHandler = (dialog: DetailsDialog): void => {
         const currentRuleIndex = dialog.state.currentRuleIndex;
