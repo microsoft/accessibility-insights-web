@@ -60,21 +60,14 @@ export class Page {
     }
 
     public async disableAnimations(): Promise<void> {
-        await this.underlyingPage.evaluate(() => {
-            function addDisableStyleToBody(): void {
-                const disableAnimationsStyleElement = document.createElement('style');
-                disableAnimationsStyleElement.type = 'text/css';
-                disableAnimationsStyleElement.innerHTML = `* {
-                    transition: none !important;
-                    animation: none !important;
-                }`;
-                document.body.appendChild(disableAnimationsStyleElement);
-            }
-            if (document.readyState !== 'loading') {
-                addDisableStyleToBody();
-            } else {
-                window.addEventListener('load', addDisableStyleToBody);
-            }
+        await this.underlyingPage.mainFrame().addStyleTag({
+            content: `*, ::before, ::after {
+                transition-property: none !important;
+                transition-duration: 0s !important;
+                transition: none !important;
+                animation: none !important;
+                animation-duration: 0s !important;
+            }`,
         });
     }
 
