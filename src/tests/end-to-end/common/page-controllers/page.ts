@@ -17,15 +17,19 @@ export class Page {
             forceTestFailure(`Puppeteer.Page '${underlyingPage.url()}' emitted ${eventDescription}`);
         }
 
+        function serializeError(error: Error): string {
+            return `[Error]{name: '${error.name}', message: '${error.message}', stack: '${error.stack}'}`;
+        }
+
         underlyingPage.on('error', error => {
             if (error.stack && error.stack.includes('Page crashed!') && options && options.onPageCrash) {
                 options.onPageCrash();
             }
 
-            forceEventFailure(`'error' with stack: ${error.stack}`);
+            forceEventFailure(`'error': ${serializeError(error)}`);
         });
         underlyingPage.on('pageerror', error => {
-            forceEventFailure(`'pageerror' (console.error) with stack: ${error.stack}`);
+            forceEventFailure(`'pageerror' (console.error): ${serializeError(error)}`);
         });
         underlyingPage.on('requestfailed', request => {
             const url = request.url();
