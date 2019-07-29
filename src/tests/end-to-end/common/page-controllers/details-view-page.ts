@@ -10,19 +10,37 @@ export class DetailsViewPage extends Page {
         super(underlyingPage, options);
     }
 
+    public async ensureNoModals(): Promise<void> {
+        await this.waitForSelectorToDisappear(CommonSelectors.anyModalDialog);
+    }
+
     public async switchToFastPass(): Promise<void> {
+        await this.ensureNoModals();
+
         await this.clickSelector('*[aria-label="select activity"]');
         await this.clickSelector('button[title="FastPass"]');
     }
 
     public async switchToAssessment(): Promise<void> {
+        await this.ensureNoModals();
+
         await this.clickSelector('*[aria-label="select activity"]');
         await this.clickSelector('button[title="Assessment"]');
     }
 
     public async openSettingsPanel(): Promise<void> {
+        await this.ensureNoModals();
+
         await this.clickSelector(detailsViewSelectors.gearButton);
         await this.clickSelector(detailsViewSelectors.settingsButton);
+        await this.waitForSelector(detailsViewSelectors.settingsPanel);
+    }
+
+    public async closeSettingsPanel(): Promise<void> {
+        await this.waitForSelector(detailsViewSelectors.settingsPanel);
+
+        await this.keyPress('Escape');
+        await this.waitForSelectorToDisappear(detailsViewSelectors.settingsPanel);
     }
 
     public async enableHighContrast(): Promise<void> {
@@ -30,7 +48,8 @@ export class DetailsViewPage extends Page {
 
         await this.clickSelector(detailsViewSelectors.highContrastToggle);
         await this.waitForSelector(CommonSelectors.highContrastThemeSelector);
-        await this.keyPress('Escape');
+
+        await this.closeSettingsPanel();
     }
 }
 

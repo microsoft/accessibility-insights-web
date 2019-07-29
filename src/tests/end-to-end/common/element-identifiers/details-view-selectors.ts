@@ -12,6 +12,7 @@ export const detailsViewSelectors = {
 
     gearButton: '.gear-options-icon',
     settingsButton: 'button[name="Settings"]',
+    settingsPanel: '.settings-panel',
     highContrastToggle: 'button#enable-high-contrast-mode',
 };
 

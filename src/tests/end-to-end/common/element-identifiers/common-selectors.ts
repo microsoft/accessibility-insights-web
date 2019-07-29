@@ -5,6 +5,7 @@ export const CommonSelectors = {
     settingsDropdownMenu: '#settings-dropdown-menu',
     previewFeaturesDropdownButton: '.preview-features-drop-down-button',
     highContrastThemeSelector: 'body.high-contrast-theme',
+    anyModalDialog: '[role~="dialog"][aria-modal="true"]', // ~="dialog" catches "alertdialog" too
 };
 
 export const GuidanceContentSelectors = {
