@@ -6,11 +6,11 @@ import { ChromeEventMock } from './chrome-event-mock';
 import { PortOnMessageStub } from '../stubs/chrome-adapter-stub';
 
 export class PortOnMessageMock extends ChromeEventMock {
-    private _portOnMessageMock: IMock<PortOnMessageStub>;
+    private portOnMessageMock: IMock<PortOnMessageStub>;
 
     constructor() {
         super(Mock.ofType(PortOnMessageStub, MockBehavior.Strict));
-        this._portOnMessageMock = this._eventMock as IMock<PortOnMessageStub>;
+        this.portOnMessageMock = this.eventMock as IMock<PortOnMessageStub>;
     }
 
     public setupAddListenerMock(callback?: (onAddListener: (msg: any, port: chrome.runtime.Port) => void) => void): PortOnMessageMock {
@@ -18,6 +18,6 @@ export class PortOnMessageMock extends ChromeEventMock {
     }
 
     public getObject(): PortOnMessageStub {
-        return this._portOnMessageMock.object;
+        return this.portOnMessageMock.object;
     }
 }

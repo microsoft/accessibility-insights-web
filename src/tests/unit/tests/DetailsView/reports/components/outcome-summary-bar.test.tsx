@@ -20,7 +20,7 @@ describe('OutcomeSummaryBar', () => {
         expect(wrapper.getElement()).toMatchSnapshot();
     });
 
-    it('show by percentage', () => {
+    it('show by count', () => {
         const props: OutcomeSummaryBarProps = { outcomeStats, allOutcomeTypes };
         const wrapper = shallow(<OutcomeSummaryBar {...props} />);
 

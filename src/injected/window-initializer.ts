@@ -3,7 +3,8 @@
 import { getRTL } from '@uifabric/utilities';
 import * as Q from 'q';
 
-import { ClientChromeAdapter } from '../common/client-browser-adapter';
+import { BrowserAdapter } from '../common/browser-adapters/browser-adapter';
+import { ChromeAdapter } from '../common/browser-adapters/chrome-adapter';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
 import { EnumHelper } from '../common/enum-helper';
 import { HTMLElementUtils } from '../common/html-element-utils';
@@ -35,7 +36,7 @@ import { RootContainerCreator } from './visualization/root-container-creator';
 
 export class WindowInitializer {
     public shadowInitializer: any;
-    protected clientChromeAdapter: ClientChromeAdapter;
+    protected browserAdapter: BrowserAdapter;
     protected windowUtils: WindowUtils;
     protected frameCommunicator: FrameCommunicator;
     protected drawingController: DrawingController;
@@ -51,7 +52,7 @@ export class WindowInitializer {
     public async initialize(): Promise<void> {
         const asyncInitializationSteps: Promise<void>[] = [];
 
-        this.clientChromeAdapter = new ClientChromeAdapter();
+        this.browserAdapter = new ChromeAdapter();
         this.windowUtils = new WindowUtils();
         const htmlElementUtils = new HTMLElementUtils();
         this.clientUtils = new ClientUtils(window);
@@ -59,19 +60,19 @@ export class WindowInitializer {
 
         new RootContainerCreator(htmlElementUtils).create(rootContainerId);
 
-        this.shadowInitializer = new ShadowInitializer(this.clientChromeAdapter, htmlElementUtils);
+        this.shadowInitializer = new ShadowInitializer(this.browserAdapter, htmlElementUtils);
         asyncInitializationSteps.push(this.shadowInitializer.initialize());
 
         this.visualizationConfigurationFactory = new VisualizationConfigurationFactory();
 
         const windowMessageHandler = new WindowMessageHandler(
             this.windowUtils,
-            new WindowMessageMarshaller(this.clientChromeAdapter, generateUID),
+            new WindowMessageMarshaller(this.browserAdapter, generateUID),
         );
         this.frameCommunicator = new FrameCommunicator(windowMessageHandler, htmlElementUtils, this.windowUtils, Q);
         this.tabStopsListener = new TabStopsListener(this.frameCommunicator, this.windowUtils, htmlElementUtils, this.scannerUtils);
         this.instanceVisibilityChecker = new InstanceVisibilityChecker(
-            this.clientChromeAdapter.sendMessageToFrames,
+            this.browserAdapter.sendMessageToFrames,
             this.windowUtils,
             htmlElementUtils,
             this.visualizationConfigurationFactory,
@@ -84,7 +85,7 @@ export class WindowInitializer {
             this.clientUtils,
             document,
             this.frameCommunicator,
-            this.clientChromeAdapter,
+            this.browserAdapter,
             getRTL,
             new DetailsDialogHandler(htmlElementUtils),
         );
@@ -110,7 +111,7 @@ export class WindowInitializer {
         );
         EnumHelper.getNumericValues(VisualizationType).forEach(visualizationTypeDrawerRegistrar.registerType);
 
-        const port = this.clientChromeAdapter.connect();
+        const port = this.browserAdapter.connect();
         port.onDisconnect.addListener(() => this.dispose());
 
         this.elementFinderByPosition = new ElementFinderByPosition(

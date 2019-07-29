@@ -128,14 +128,19 @@ describe('AssessmentInstanceTableHandlerTest', () => {
             featureFlagStoreData,
         );
 
+        const currentInstance = {
+            failureDescription: instance.description,
+        };
+
         const instanceActionButtons: JSX.Element = (
             <AssessmentInstanceEditAndRemoveControl
                 test={assessmentNavState.selectedTestType}
                 step={assessmentNavState.selectedTestStep}
                 id={instance.id}
+                currentInstance={currentInstance}
                 onRemove={actionMessageCreatorMock.object.removeFailureInstance}
                 onEdit={actionMessageCreatorMock.object.editFailureInstance}
-                description={instance.description}
+                onAddPath={actionMessageCreatorMock.object.addPathForValidation}
                 assessmentsProvider={assessmentsProvider}
                 featureFlagStoreData={featureFlagStoreData}
             />
@@ -208,13 +213,25 @@ describe('AssessmentInstanceTableHandlerTest', () => {
         testObject.undoRequirementStatusChange(test, requirement);
     });
 
+    test('addPathForValidation', () => {
+        const path = 'test path';
+
+        actionMessageCreatorMock.setup(a => a.addPathForValidation(path)).verifiable(Times.once());
+        testSubject.addPathForValidation(path);
+    });
+
     test('addFailureInstance', () => {
         const test = VisualizationType.HeadingsAssessment;
         const requirement = 'requirement';
-        const description = 'description';
-        actionMessageCreatorMock.setup(a => a.addFailureInstance(description, test, requirement)).verifiable(Times.once());
+        const instanceData = {
+            failureDescription: 'description',
+            path: 'path',
+            snippet: 'snippet',
+        };
 
-        testSubject.addFailureInstance(description, test, requirement);
+        actionMessageCreatorMock.setup(a => a.addFailureInstance(instanceData, test, requirement)).verifiable(Times.once());
+
+        testSubject.addFailureInstance(instanceData, test, requirement);
     });
 
     test('passUnmarkedInstances', () => {

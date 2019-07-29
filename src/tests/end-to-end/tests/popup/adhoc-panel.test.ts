@@ -1,21 +1,22 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { Browser, TargetPageInfo } from '../../common/browser';
+import { Browser } from '../../common/browser';
 import { launchBrowser } from '../../common/browser-factory';
 import { popupPageElementIdentifiers } from '../../common/element-identifiers/popup-page-element-identifiers';
-import { enableHighContrast } from '../../common/enable-high-contrast';
-import { Page } from '../../common/page';
+import { PopupPage } from '../../common/page-controllers/popup-page';
+import { TargetPage } from '../../common/page-controllers/target-page';
 import { scanForAccessibilityIssues } from '../../common/scan-for-accessibility-issues';
+import { DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS } from '../../common/timeouts';
 
 describe('Ad hoc tools', () => {
     let browser: Browser;
-    let targetPageInfo: TargetPageInfo;
-    let popupPage: Page;
+    let targetPage: TargetPage;
+    let popupPage: PopupPage;
 
     beforeEach(async () => {
         browser = await launchBrowser({ suppressFirstTimeDialog: true });
-        targetPageInfo = await browser.setupNewTargetPage();
-        popupPage = await browser.newExtensionPopupPage(targetPageInfo.tabId);
+        targetPage = await browser.newTargetPage();
+        popupPage = await browser.newPopupPage(targetPage);
         await popupPage.bringToFront();
     });
 
@@ -30,8 +31,8 @@ describe('Ad hoc tools', () => {
         await gotoAdhocPanel();
 
         // verify adhoc panel state is sticky
-        targetPageInfo = await browser.setupNewTargetPage();
-        popupPage = await browser.newExtensionPopupPage(targetPageInfo.tabId);
+        targetPage = await browser.newTargetPage();
+        popupPage = await browser.newPopupPage(targetPage);
         await verifyAdhocPanelLoaded();
     });
 
@@ -42,8 +43,8 @@ describe('Ad hoc tools', () => {
         await verifyLaunchPadLoaded();
 
         // verify adhoc panel state is sticky
-        targetPageInfo = await browser.setupNewTargetPage();
-        popupPage = await browser.newExtensionPopupPage(targetPageInfo.tabId);
+        targetPage = await browser.newTargetPage();
+        popupPage = await browser.newPopupPage(targetPage);
         await verifyLaunchPadLoaded();
     });
 
@@ -55,8 +56,8 @@ describe('Ad hoc tools', () => {
     });
 
     it('should pass accessibility validation in high contrast', async () => {
-        const detailsViewPage = await browser.newExtensionDetailsViewPage(targetPageInfo.tabId);
-        await enableHighContrast(detailsViewPage);
+        const detailsViewPage = await browser.newDetailsViewPage(targetPage);
+        await detailsViewPage.enableHighContrast();
 
         await popupPage.bringToFront();
         await gotoAdhocPanel();
@@ -64,6 +65,34 @@ describe('Ad hoc tools', () => {
         const results = await scanForAccessibilityIssues(popupPage, '*');
         expect(results).toMatchSnapshot();
     });
+
+    it.each(['Automated checks', 'Landmarks', 'Headings', 'Color'])(
+        'should display the pinned target page visualizations when enabling the "%s" toggle',
+        async (toggleAriaLabel: string) => {
+            await gotoAdhocPanel();
+
+            await enableToggleByAriaLabel(toggleAriaLabel);
+
+            expect(await targetPage.getShadowRootHtmlSnapshot()).toMatchSnapshot();
+        },
+    );
+
+    async function enableToggleByAriaLabel(ariaLabel: string): Promise<void> {
+        const toggleSelector = `button[aria-label="${ariaLabel}"]`;
+        const enabledToggleSelector = `${toggleSelector}[aria-checked=true]`;
+        const disabledToggleSelector = `${toggleSelector}[aria-checked=false]`;
+
+        await popupPage.clickSelector(disabledToggleSelector);
+
+        // The toggles will go through a state where they are removed and replaced with a spinner, then re-added to the page
+        // We intentionally omit looking for the loading spinner because it can be fast enough to not be seen by Puppeteer
+
+        const EXTRA_TOGGLE_OPERATION_TIMEOUT_MS = 5000;
+
+        await popupPage.waitForSelector(enabledToggleSelector, {
+            timeout: DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS + EXTRA_TOGGLE_OPERATION_TIMEOUT_MS,
+        });
+    }
 
     async function gotoAdhocPanel(): Promise<void> {
         await popupPage.clickSelectorXPath(popupPageElementIdentifiers.adhocLaunchPadLinkXPath);

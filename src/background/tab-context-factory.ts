@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { AssessmentsProvider } from '../assessments/types/assessments-provider';
+import { BrowserAdapter } from '../common/browser-adapters/browser-adapter';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
 import { NotificationCreator } from '../common/notification-creator';
 import { PromiseFactory } from '../common/promises/promise-factory';
@@ -12,17 +13,18 @@ import { ContentActionCreator } from './actions/content-action-creator';
 import { DetailsViewActionCreator } from './actions/details-view-action-creator';
 import { DevToolsActionCreator } from './actions/dev-tools-action-creator';
 import { InspectActionCreator } from './actions/inspect-action-creator';
+import { PathSnippetActionCreator } from './actions/path-snippet-action-creator';
 import { ScopingPanelActionCreator } from './actions/scoping-panel-action-creator';
+import { ShortcutsPageActionCreator } from './actions/shortcuts-page-action-creator';
 import { TabActionCreator } from './actions/tab-action-creator';
 import { AssessmentScanPolicyRunner } from './assessment-scan-policy-runner';
-import { BrowserAdapter } from './browser-adapters/browser-adapter';
-import { ChromeFeatureController } from './chrome-feature-controller';
 import { DetailsViewController } from './details-view-controller';
 import { InjectorController } from './injector-controller';
 import { ContentScriptInjector } from './injector/content-script-injector';
 import { Interpreter } from './interpreter';
 import { isAnAssessmentSelected } from './is-an-assessment-selected';
 import { ScannerUtility } from './scanner-utility';
+import { ShortcutsPageController } from './shortcuts-page-controller';
 import { AssessmentStore } from './stores/assessment-store';
 import { TabContextStoreHub } from './stores/tab-context-store-hub';
 import { TabContext } from './tab-context';
@@ -50,13 +52,14 @@ export class TabContextFactory {
         const actionsHub = new ActionHub();
         const storeHub = new TabContextStoreHub(actionsHub, this.visualizationConfigurationFactory);
         const notificationCreator = new NotificationCreator(browserAdapter, this.visualizationConfigurationFactory);
-        const chromeFeatureController = new ChromeFeatureController(browserAdapter);
+        const shortcutsPageController = new ShortcutsPageController(browserAdapter);
+
+        const shortcutsPageActionCreator = new ShortcutsPageActionCreator(interpreter, shortcutsPageController, this.telemetryEventHandler);
 
         const actionCreator = new ActionCreator(
             actionsHub,
             interpreter.registerTypeToPayloadCallback,
             detailsViewController,
-            chromeFeatureController,
             this.telemetryEventHandler,
             notificationCreator,
             this.visualizationConfigurationFactory,
@@ -87,6 +90,11 @@ export class TabContextFactory {
             actionsHub.inspectActions,
             this.telemetryEventHandler,
             browserAdapter,
+            interpreter.registerTypeToPayloadCallback,
+        );
+
+        const pathSnippetActionCreator = new PathSnippetActionCreator(
+            actionsHub.pathSnippetActions,
             interpreter.registerTypeToPayloadCallback,
         );
 
@@ -123,10 +131,12 @@ export class TabContextFactory {
         );
         simpleSequentialScanner.beginListeningToStores();
 
+        shortcutsPageActionCreator.registerCallbacks();
         actionCreator.registerCallbacks();
         detailsViewActionCreator.registerCallback();
         devToolsActionCreator.registerCallbacks();
         inspectActionsCreator.registerCallbacks();
+        pathSnippetActionCreator.registerCallbacks();
         tabActionCreator.registerCallbacks();
         scopingPanelActionCreator.registerCallbacks();
         contentActionCreator.registerCallbacks();

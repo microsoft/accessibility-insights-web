@@ -21,9 +21,9 @@ import {
 import { AssessmentActions } from '../../../../../background/actions/assessment-actions';
 import { AssessmentDataConverter } from '../../../../../background/assessment-data-converter';
 import { AssessmentDataRemover } from '../../../../../background/assessment-data-remover';
-import { BrowserAdapter } from '../../../../../background/browser-adapters/browser-adapter';
 import { InitialAssessmentStoreDataGenerator } from '../../../../../background/initial-assessment-store-data-generator';
 import { AssessmentStore } from '../../../../../background/stores/assessment-store';
+import { BrowserAdapter } from '../../../../../common/browser-adapters/browser-adapter';
 import { AssesssmentVisualizationConfiguration } from '../../../../../common/configs/assesssment-visualization-configuration';
 import { IndexedDBAPI } from '../../../../../common/indexedDB/indexedDB';
 import { Tab } from '../../../../../common/itab';
@@ -1117,19 +1117,29 @@ describe('AssessmentStoreTest', () => {
         const payload: AddFailureInstancePayload = {
             test: assessmentType,
             requirement: requirementKey,
-            description: 'description',
+            instanceData: {
+                failureDescription: 'description',
+                path: 'path',
+                snippet: 'snippet',
+            },
         };
 
         const failureInstance = {
             id: '1',
             description: 'description',
+            selector: 'path',
+            html: 'snippet',
         };
 
         assessmentsProviderMock.setup(apm => apm.forType(payload.test)).returns(() => assessmentMock.object);
 
         assessmentMock.setup(am => am.getVisualizationConfiguration()).returns(() => configStub);
 
-        assessmentDataConverterMock.setup(a => a.generateFailureInstance(payload.description)).returns(description => failureInstance);
+        assessmentDataConverterMock
+            .setup(a =>
+                a.generateFailureInstance(payload.instanceData.failureDescription, payload.instanceData.path, payload.instanceData.snippet),
+            )
+            .returns(description => failureInstance);
 
         const expectedAssessment = new AssessmentDataBuilder()
             .with('manualTestStepResultMap', {
@@ -1199,9 +1209,15 @@ describe('AssessmentStoreTest', () => {
     test('on editFailureInstance', () => {
         const oldDescription = 'old';
         const newDescription = 'new';
+        const oldPath = 'old path';
+        const newPath = 'new path';
+        const oldSnippet = 'old snippet';
+        const newSnippet = 'new snippet';
         const failureInstance = {
             id: '1',
             description: oldDescription,
+            selector: oldPath,
+            html: oldSnippet,
         };
 
         const assessmentData = new AssessmentDataBuilder()
@@ -1220,7 +1236,11 @@ describe('AssessmentStoreTest', () => {
             test: assessmentType,
             requirement: requirementKey,
             id: '1',
-            description: newDescription,
+            instanceData: {
+                failureDescription: newDescription,
+                path: newPath,
+                snippet: newSnippet,
+            },
         };
 
         assessmentsProviderMock.setup(apm => apm.forType(payload.test)).returns(() => assessmentMock.object);
@@ -1236,6 +1256,8 @@ describe('AssessmentStoreTest', () => {
                         {
                             id: '1',
                             description: newDescription,
+                            selector: newPath,
+                            html: newSnippet,
                         },
                     ],
                 },

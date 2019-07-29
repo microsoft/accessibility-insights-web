@@ -27,7 +27,7 @@
         "allowJs": false,
         "typeRoots": ["node_modules/@types"],
         "plugins": [{ "name": "tslint-language-service" }],
-        "baseUrl": ".",
+        "baseUrl": "./src",
         "paths": {
             "*": ["*"],
             "typemoq": ["typemoq/typemoq"]

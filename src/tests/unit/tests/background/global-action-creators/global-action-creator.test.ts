@@ -9,10 +9,10 @@ import { FeatureFlagActions } from '../../../../../background/actions/feature-fl
 import { GlobalActionHub } from '../../../../../background/actions/global-action-hub';
 import { LaunchPanelStateActions } from '../../../../../background/actions/launch-panel-state-action';
 import { UserConfigurationActions } from '../../../../../background/actions/user-configuration-actions';
-import { CommandsAdapter } from '../../../../../background/browser-adapters/commands-adapter';
 import { GlobalActionCreator } from '../../../../../background/global-action-creators/global-action-creator';
 import { Interpreter } from '../../../../../background/interpreter';
 import { TelemetryEventHandler } from '../../../../../background/telemetry/telemetry-event-handler';
+import { CommandsAdapter } from '../../../../../common/browser-adapters/commands-adapter';
 import { Action } from '../../../../../common/flux/action';
 import { Messages } from '../../../../../common/messages';
 import { LaunchPanelType } from '../../../../../popup/components/popup-view';

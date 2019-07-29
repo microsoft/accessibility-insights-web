@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 module.exports = {
     clearMocks: true,
+    moduleDirectories: ['node_modules', 'src'],
     moduleNameMapper: {
         'office-ui-fabric-react/lib/(.*)$': 'office-ui-fabric-react/lib-commonjs/$1',
         '@uifabric/utilities': '@uifabric/utilities/lib-commonjs',

@@ -1,17 +1,17 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { BrowserAdapter } from '../common/browser-adapters/browser-adapter';
 import { Message } from '../common/message';
 import { Messages } from '../common/messages';
 import { Logger } from './../common/logging/logger';
 import { PageVisibilityChangeTabPayload } from './actions/action-payloads';
-import { BrowserAdapter } from './browser-adapters/browser-adapter';
 import { DetailsViewController } from './details-view-controller';
 import { TabToContextMap } from './tab-context';
 import { TabContextBroadcaster } from './tab-context-broadcaster';
 import { TabContextFactory } from './tab-context-factory';
 
 export class TabController {
-    private chromeAdapter: BrowserAdapter;
+    private browserAdapter: BrowserAdapter;
     private readonly tabIdToContextMap: TabToContextMap;
     private readonly broadcaster: TabContextBroadcaster;
     private readonly detailsViewController: DetailsViewController;
@@ -20,20 +20,20 @@ export class TabController {
     constructor(
         tabToInterpreterMap: TabToContextMap,
         broadcaster: TabContextBroadcaster,
-        chromeAdapter: BrowserAdapter,
+        browserAdapter: BrowserAdapter,
         detailsViewController: DetailsViewController,
         tabContextFactory: TabContextFactory,
         private readonly logger: Logger,
     ) {
         this.tabIdToContextMap = tabToInterpreterMap;
         this.broadcaster = broadcaster;
-        this.chromeAdapter = chromeAdapter;
+        this.browserAdapter = browserAdapter;
         this.detailsViewController = detailsViewController;
         this.tabContextFactory = tabContextFactory;
     }
 
     public initialize(): void {
-        this.chromeAdapter.tabsQuery({}, (tabs: chrome.tabs.Tab[]) => {
+        this.browserAdapter.tabsQuery({}, (tabs: chrome.tabs.Tab[]) => {
             if (tabs) {
                 tabs.forEach(tab => {
                     this.handleTabUpdate(tab.id);
@@ -41,15 +41,15 @@ export class TabController {
             }
         });
 
-        this.chromeAdapter.addListenerOnConnect(port => {
+        this.browserAdapter.addListenerOnConnect(port => {
             // do not remove this. We need this to detect if the extension is reloaded from the content scripts
         });
 
-        this.chromeAdapter.addListenerToWebNavigationUpdated(this.onTabNavigated);
-        this.chromeAdapter.addListenerToTabsOnRemoved(this.onTargetTabRemoved);
-        this.chromeAdapter.addListenerOnWindowsFocusChanged(this.onWindowFocusChanged);
-        this.chromeAdapter.addListenerToTabsOnActivated(this.onTabActivated);
-        this.chromeAdapter.addListenerToTabsOnUpdated(this.handleTabUpdate);
+        this.browserAdapter.addListenerToWebNavigationUpdated(this.onTabNavigated);
+        this.browserAdapter.addListenerToTabsOnRemoved(this.onTargetTabRemoved);
+        this.browserAdapter.addListenerOnWindowsFocusChanged(this.onWindowFocusChanged);
+        this.browserAdapter.addListenerToTabsOnActivated(this.onTabActivated);
+        this.browserAdapter.addListenerToTabsOnUpdated(this.handleTabUpdate);
 
         this.detailsViewController.setupDetailsViewTabRemovedHandler(this.onDetailsViewTabRemoved);
     }
@@ -66,7 +66,7 @@ export class TabController {
 
         this.sendTabVisibilityChangeAction(activeTabId, false);
 
-        this.chromeAdapter.tabsQuery({ windowId: windowId }, (tabs: chrome.tabs.Tab[]) => {
+        this.browserAdapter.tabsQuery({ windowId: windowId }, (tabs: chrome.tabs.Tab[]) => {
             tabs.forEach((tab: chrome.tabs.Tab) => {
                 if (!tab.active) {
                     this.sendTabVisibilityChangeAction(tab.id, true);
@@ -76,12 +76,12 @@ export class TabController {
     };
 
     private onWindowFocusChanged = (windowId: number): void => {
-        this.chromeAdapter.getAllWindows(
+        this.browserAdapter.getAllWindows(
             { populate: false, windowTypes: ['normal', 'popup'] },
             (chromeWindows: chrome.windows.Window[]) => {
                 chromeWindows.forEach((chromeWindow: chrome.windows.Window) => {
-                    this.chromeAdapter.getSelectedTabInWindow(chromeWindow.id, (activeTab: chrome.tabs.Tab) => {
-                        if (!this.chromeAdapter.getRuntimeLastError()) {
+                    this.browserAdapter.getSelectedTabInWindow(chromeWindow.id, (activeTab: chrome.tabs.Tab) => {
+                        if (!this.browserAdapter.getRuntimeLastError()) {
                             if (activeTab) {
                                 this.sendTabVisibilityChangeAction(activeTab.id, chromeWindow.state === 'minimized');
                             }
@@ -106,7 +106,7 @@ export class TabController {
     }
 
     private sendTabChangedAction(tabId: number): void {
-        this.chromeAdapter.getTab(
+        this.browserAdapter.getTab(
             tabId,
             (tab: chrome.tabs.Tab) => {
                 const tabContext = this.tabIdToContextMap[tabId];
@@ -126,7 +126,7 @@ export class TabController {
     }
 
     private sendTabUpdateAction(tabId: number): void {
-        this.chromeAdapter.getTab(
+        this.browserAdapter.getTab(
             tabId,
             (tab: chrome.tabs.Tab) => {
                 const tabContext = this.tabIdToContextMap[tabId];
@@ -168,7 +168,7 @@ export class TabController {
     private addTabContext(tabId: number): void {
         this.tabIdToContextMap[tabId] = this.tabContextFactory.createTabContext(
             this.broadcaster.getBroadcastMessageDelegate(tabId),
-            this.chromeAdapter,
+            this.browserAdapter,
             this.detailsViewController,
             tabId,
         );

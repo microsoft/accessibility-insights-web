@@ -7,7 +7,12 @@ import { ContentContainer } from '../../../../../../../DetailsView/reports/compo
 
 describe('ContentContainer', () => {
     it('renders', () => {
-        const children: JSX.Element[] = [<div>1</div>, <div id="2">2</div>];
+        const children: JSX.Element[] = [
+            <div key="1">1</div>,
+            <div key="2" id="2">
+                2
+            </div>,
+        ];
 
         const wrapped = shallow(<ContentContainer>{children}</ContentContainer>);
 

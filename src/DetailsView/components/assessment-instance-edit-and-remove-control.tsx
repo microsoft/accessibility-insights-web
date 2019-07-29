@@ -7,15 +7,16 @@ import * as React from 'react';
 import { AssessmentsProvider } from '../../assessments/types/assessments-provider';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { VisualizationType } from '../../common/types/visualization-type';
-import { CapturedInstanceActionType, FailureInstancePanelControl } from './failure-instance-panel-control';
+import { CapturedInstanceActionType, FailureInstanceData, FailureInstancePanelControl } from './failure-instance-panel-control';
 
 export interface AssessmentInstanceEditAndRemoveControlProps {
     test: VisualizationType;
     step: string;
     id: string;
-    description: string;
+    currentInstance: FailureInstanceData;
     onRemove: (test, step, id) => void;
-    onEdit: (description, test, step, id) => void;
+    onAddPath: (path) => void;
+    onEdit: (instanceData, test, step, id) => void;
     assessmentsProvider: AssessmentsProvider;
     featureFlagStoreData: FeatureFlagStoreData;
 }
@@ -29,8 +30,9 @@ export class AssessmentInstanceEditAndRemoveControl extends React.Component<Asse
                     test={this.props.test}
                     actionType={CapturedInstanceActionType.EDIT}
                     instanceId={this.props.id}
+                    failureInstance={this.props.currentInstance}
                     editFailureInstance={this.props.onEdit}
-                    originalText={this.props.description}
+                    addPathForValidation={this.props.onAddPath}
                     assessmentsProvider={this.props.assessmentsProvider}
                     featureFlagStoreData={this.props.featureFlagStoreData}
                 />

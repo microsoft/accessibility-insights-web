@@ -1,19 +1,19 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { DateProvider } from 'common/date-provider';
+import { EnvironmentInfo } from 'common/environment-info-provider';
+import { GetGuidanceTagsFromGuidanceLinks } from 'common/get-guidance-tags-from-guidance-links';
+import { FixInstructionProcessor } from 'injected/fix-instruction-processor';
 import * as React from 'react';
+import { ScanResults } from 'scanner/iruleresults';
 import { It, Mock, MockBehavior, Times } from 'typemoq';
-import { DateProvider } from '../../../../../common/date-provider';
-import { EnvironmentInfo } from '../../../../../common/environment-info-provider';
-import { GetGuidanceTagsFromGuidanceLinks } from '../../../../../common/get-guidance-tags-from-guidance-links';
 import { ReportHead } from '../../../../../DetailsView/reports/components/report-head';
 import { ReportBody, ReportBodyProps } from '../../../../../DetailsView/reports/components/report-sections/report-body';
 import { ReportSectionFactory } from '../../../../../DetailsView/reports/components/report-sections/report-section-factory';
 import { ReactStaticRenderer } from '../../../../../DetailsView/reports/react-static-renderer';
-import { ReportHtmlGeneratorImpl } from '../../../../../DetailsView/reports/report-html-generator-impl';
-import { FixInstructionProcessor } from '../../../../../injected/fix-instruction-processor';
-import { ScanResults } from '../../../../../scanner/iruleresults';
+import { ReportHtmlGenerator } from '../../../../../DetailsView/reports/report-html-generator';
 
-describe('ReportHtmlGeneratorImpl', () => {
+describe('ReportHtmlGenerator', () => {
     test('generateHtml', () => {
         const browserSpec: string = 'browser-spect';
         const extensionVersion: string = 'extension-version';
@@ -64,7 +64,7 @@ describe('ReportHtmlGeneratorImpl', () => {
             .returns(() => '<body-markup />')
             .verifiable(Times.once());
 
-        const testObject = new ReportHtmlGeneratorImpl(
+        const testObject = new ReportHtmlGenerator(
             sectionFactoryMock.object,
             rendererMock.object,
             environmentInfo,

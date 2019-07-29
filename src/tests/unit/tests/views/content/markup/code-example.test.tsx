@@ -18,7 +18,7 @@ describe('<CodeExample>', () => {
 
     it('renders with no title', () => {
         const wrapper = shallow(<CodeExample>code</CodeExample>);
-        expect(wrapper.find('.code-example-title').isEmpty()).toEqual(true);
+        expect(wrapper.find('.code-example-title').exists()).toEqual(false);
         expect(wrapper.getElement()).toMatchSnapshot();
     });
 

@@ -7,6 +7,8 @@
 // using this code till that issue is fixed
 
 export class Store {
+    // keeping naming consistent with original external source
+    // tslint:disable-next-line: variable-name
     public readonly _dbp: Promise<IDBDatabase>;
 
     constructor(dbName = 'default-db', readonly storeName = 'default-store') {

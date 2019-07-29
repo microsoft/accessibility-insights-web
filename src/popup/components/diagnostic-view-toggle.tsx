@@ -38,17 +38,20 @@ export interface DiagnosticViewToggleState {
 
 export class DiagnosticViewToggle extends React.Component<DiagnosticViewToggleProps, DiagnosticViewToggleState> {
     private configuration: VisualizationConfiguration;
-    private _toggle: React.RefObject<IToggle> = React.createRef<IToggle>();
+    private toggle: React.RefObject<IToggle> = React.createRef<IToggle>();
     private dom: NodeSelector & Node;
+    private userEventListenerAdded: boolean;
+
+    // Must be consistent with internal react naming for same property to work
+    // tslint:disable-next-line: variable-name
     private _isMounted: boolean;
-    private _userEventListenerAdded: boolean;
 
     constructor(props: DiagnosticViewToggleProps) {
         super(props);
         this.configuration = this.props.visualizationConfigurationFactory.getConfiguration(this.props.visualizationType);
         this.dom = this.props.dom;
         this._isMounted = false;
-        this._userEventListenerAdded = false;
+        this.userEventListenerAdded = false;
         this.state = {
             isFocused: false,
         };
@@ -78,23 +81,23 @@ export class DiagnosticViewToggle extends React.Component<DiagnosticViewTogglePr
     }
 
     private renderToggleOrSpinner(): JSX.Element {
-        const _scanning = this.props.visualizationStoreData.scanning;
+        const scanning = this.props.visualizationStoreData.scanning;
         const id = this.configuration.getIdentifier();
-        const _scanData = this.configuration.getStoreData(this.props.visualizationStoreData.tests);
+        const scanData = this.configuration.getStoreData(this.props.visualizationStoreData.tests);
 
-        if (_scanning === id) {
+        if (scanning === id) {
             return <Spinner size={SpinnerSize.small} componentRef={this.addUserEventListener} />;
         } else {
-            const disabled = _scanning != null;
+            const disabled = scanning != null;
             return (
                 <VisualizationToggle
-                    checked={_scanData.enabled}
+                    checked={scanData.enabled}
                     disabled={disabled}
                     onClick={ev =>
                         this.props.clickHandler.toggleVisualization(this.props.visualizationStoreData, this.props.visualizationType, ev)
                     }
                     visualizationName={this.configuration.displayableData.title}
-                    componentRef={this._toggle}
+                    componentRef={this.toggle}
                     onFocus={this.onFocusHandler}
                     onBlur={this.onBlurHandler}
                 />
@@ -112,8 +115,8 @@ export class DiagnosticViewToggle extends React.Component<DiagnosticViewTogglePr
     }
 
     private setFocus(): void {
-        if (this._isMounted && this.state.isFocused && this._toggle.current) {
-            this._toggle.current.focus();
+        if (this._isMounted && this.state.isFocused && this.toggle.current) {
+            this.toggle.current.focus();
         }
     }
 
@@ -134,7 +137,7 @@ export class DiagnosticViewToggle extends React.Component<DiagnosticViewTogglePr
     };
 
     private addUserEventListener = (): void => {
-        if (!this._userEventListenerAdded) {
+        if (!this.userEventListenerAdded) {
             this.dom.addEventListener('keydown', (event: any) => {
                 if (event.keyCode === KeyCodeConstants.TAB) {
                     this.onBlurHandler();
@@ -148,7 +151,7 @@ export class DiagnosticViewToggle extends React.Component<DiagnosticViewTogglePr
                 });
             }
 
-            this._userEventListenerAdded = true;
+            this.userEventListenerAdded = true;
         }
     };
 

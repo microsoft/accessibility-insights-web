@@ -22,7 +22,7 @@ describe('DevToolsActionCreatorTest', () => {
     beforeEach(() => {
         devtoolActionsMock = Mock.ofType(DevToolActions, MockBehavior.Strict);
         telemetryEventHandlerMock = Mock.ofType(TelemetryEventHandler, MockBehavior.Strict);
-        registerTypeToPayloadCallback = Mock.ofInstance((_type, _callback) => {});
+        registerTypeToPayloadCallback = Mock.ofInstance((payloadType, callback) => {});
 
         testObject = new DevToolsActionCreator(
             devtoolActionsMock.object,
@@ -108,9 +108,9 @@ describe('DevToolsActionCreatorTest', () => {
         return getCurrentStateAction;
     }
 
-    function setupRegisterTypeToPayloadCallbackMock(message: string, payload: any, _tabId: number): void {
+    function setupRegisterTypeToPayloadCallbackMock(message: string, payload: any, listeningTabId: number): void {
         registerTypeToPayloadCallback
             .setup(registrar => registrar(message, It.is(_.isFunction)))
-            .callback((_message, listener) => listener(payload, _tabId));
+            .callback((passedMessage, listener) => listener(payload, listeningTabId));
     }
 });

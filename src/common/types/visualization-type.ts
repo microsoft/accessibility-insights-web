@@ -28,4 +28,5 @@ export enum VisualizationType {
     AutomatedChecks,
     SequenceAssessment,
     SemanticsAssessment,
+    PointerMotionAssessment,
 }

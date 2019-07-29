@@ -104,6 +104,7 @@ describe('ManualTestStepView', () => {
                             test={props.test}
                             actionType={CapturedInstanceActionType.CREATE}
                             addFailureInstance={props.assessmentInstanceTableHandler.addFailureInstance}
+                            addPathForValidation={props.assessmentInstanceTableHandler.addPathForValidation}
                             assessmentsProvider={props.assessmentsProvider}
                             featureFlagStoreData={featureFlagStoreData}
                         />

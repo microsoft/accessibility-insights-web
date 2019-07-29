@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { NamedSFC } from 'common/react/named-sfc';
 import { kebabCase } from 'lodash';
 import * as React from 'react';
 
-import { NamedSFC } from '../../../common/react/named-sfc';
 import { outcomeIconMap, outcomeIconMapInverted, OutcomeStats, OutcomeType, outcomeTypeSemantics } from './outcome-type';
 
 export type OutcomeSummaryBarProps = {
@@ -26,7 +26,8 @@ export const OutcomeSummaryBar = NamedSFC<OutcomeSummaryBarProps>('OutcomeSummar
                 return (
                     <div key={outcomeType} style={{ flexGrow: count }}>
                         <span className={kebabCase(outcomeType)}>
-                            {outcomeIcon} {count}
+                            <span aria-hidden="true">{outcomeIcon}</span>
+                            {count}
                             {countSuffix} <span className="outcome-past-tense">{text}</span>
                         </span>
                     </div>

@@ -6,38 +6,32 @@ import { DisplayableVisualizationTypeData } from '../../../../../common/configs/
 import { VisualizationType } from '../../../../../common/types/visualization-type';
 import { TargetPageChangedView, TargetPageChangedViewProps } from '../../../../../DetailsView/components/target-page-changed-view';
 
-type RenderTestCases = {
-    title?: string;
-    toggleLabel?: string;
-    subtitle?: JSX.Element;
-};
-
 describe('TargetPageChangedView', () => {
-    describe('renders', () => {
-        const clickHandlerStub: () => void = () => {};
-        const testCases: RenderTestCases[] = [
-            {},
-            { title: 'title' },
-            { toggleLabel: 'toggle-label' },
-            { subtitle: <span>subtitle</span> },
-            { title: 'title', toggleLabel: 'toggle-label', subtitle: <span>subtitle</span> },
-        ];
-
-        it.each(testCases)('case %o', testCase => {
-            const { title = '', toggleLabel = '' } = testCase;
-
-            const visualizationType = VisualizationType.Landmarks;
-            const displayableData = { title, toggleLabel } as DisplayableVisualizationTypeData;
-
-            const props: TargetPageChangedViewProps = {
-                visualizationType,
-                displayableData,
-                toggleClickHandler: clickHandlerStub,
-            };
-
-            const wrapped = shallow(<TargetPageChangedView {...props} />);
-
-            expect(wrapped.getElement()).toMatchSnapshot();
-        });
+    it('renders without optional subtitle', () => {
+        testRenderWithOptionalSubtitle(undefined);
     });
+
+    it('renders with optional subtitle', () => {
+        testRenderWithOptionalSubtitle(<span>test subtitle content</span>);
+    });
+
+    function testRenderWithOptionalSubtitle(subtitle?: JSX.Element): void {
+        const visualizationType = VisualizationType.Landmarks;
+        const clickHandlerStub: () => void = () => {};
+        const displayableData = {
+            title: 'test title',
+            toggleLabel: 'test toggle label',
+            subtitle,
+        } as DisplayableVisualizationTypeData;
+
+        const props: TargetPageChangedViewProps = {
+            visualizationType,
+            displayableData,
+            toggleClickHandler: clickHandlerStub,
+        };
+
+        const wrapped = shallow(<TargetPageChangedView {...props} />);
+
+        expect(wrapped.getElement()).toMatchSnapshot();
+    }
 });

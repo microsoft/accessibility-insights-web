@@ -6,7 +6,12 @@ import { BodySection } from '../../../../../../../DetailsView/reports/components
 
 describe('BodySection', () => {
     it('renders', () => {
-        const children: JSX.Element[] = [<div>1</div>, <div id="2">2</div>];
+        const children: JSX.Element[] = [
+            <div key="1">1</div>,
+            <div key="2" id="2">
+                2
+            </div>,
+        ];
 
         const wrapped = shallow(<BodySection>{children}</BodySection>);
 

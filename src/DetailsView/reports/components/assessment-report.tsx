@@ -5,7 +5,7 @@ import * as React from 'react';
 import { ReportModel } from '../assessment-report-model';
 import { AssessmentReportBody, AssessmentReportBodyDeps } from './assessment-report-body';
 import { AssessmentReportFooter } from './assessment-report-footer';
-import { AssessmentReportHeader } from './assessment-report-header';
+import { HeaderSection } from './report-sections/header-section';
 
 export type AssessmentReportDeps = AssessmentReportBodyDeps;
 
@@ -22,10 +22,7 @@ export class AssessmentReport extends React.Component<AssessmentReportProps> {
     public render(): JSX.Element {
         return (
             <React.Fragment>
-                <AssessmentReportHeader
-                    targetPageTitle={this.props.data.scanDetails.targetPage}
-                    targetPageUrl={this.props.data.scanDetails.url}
-                />
+                <HeaderSection pageTitle={this.props.data.scanDetails.targetPage} pageUrl={this.props.data.scanDetails.url} />
                 <AssessmentReportBody deps={this.props.deps} data={this.props.data} description={this.props.description} />
 
                 <AssessmentReportFooter
