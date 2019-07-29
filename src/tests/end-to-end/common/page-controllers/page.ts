@@ -30,8 +30,8 @@ export class Page {
         });
         underlyingPage.on('pageerror', error => {
             if (
-                error.message.startsWith(`TypeError: Cannot read property 'focusElement' of null
-            at eval (webpack-internal:/node_modules/office-ui-fabric-react/lib/components/Dropdown/Dropdown.base.js)`)
+                error.message.startsWith("TypeError: Cannot read property 'focusElement' of null") &&
+                error.message.includes('office-ui-fabric-react/lib/components/Dropdown/Dropdown.base.js')
             ) {
                 return; // benign; caused by https://github.com/OfficeDev/office-ui-fabric-react/issues/9715
             }
