@@ -3,18 +3,22 @@
 import * as Puppeteer from 'puppeteer';
 
 import { includes } from 'lodash';
-import { forceTestFailure } from './force-test-failure';
-import { takeScreenshot } from './generate-screenshot';
-import { DEFAULT_NEW_PAGE_WAIT_TIMEOUT_MS, DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS } from './timeouts';
+import { forceTestFailure } from '../force-test-failure';
+import { takeScreenshot } from '../generate-screenshot';
+import { DEFAULT_NEW_PAGE_WAIT_TIMEOUT_MS, DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS } from '../timeouts';
 
 export type PageOptions = {
     onPageCrash?: () => void;
 };
 
 export class Page {
-    constructor(private readonly underlyingPage: Puppeteer.Page, options?: PageOptions) {
+    constructor(protected readonly underlyingPage: Puppeteer.Page, options?: PageOptions) {
         function forceEventFailure(eventDescription: string): void {
             forceTestFailure(`Puppeteer.Page '${underlyingPage.url()}' emitted ${eventDescription}`);
+        }
+
+        function serializeError(error: Error): string {
+            return `[Error]{name: '${error.name}', message: '${error.message}', stack: '${error.stack}'}`;
         }
 
         underlyingPage.on('error', error => {
@@ -22,10 +26,10 @@ export class Page {
                 options.onPageCrash();
             }
 
-            forceEventFailure(`'error' with stack: ${error.stack}`);
+            forceEventFailure(`'error': ${serializeError(error)}`);
         });
         underlyingPage.on('pageerror', error => {
-            forceEventFailure(`'pageerror' (console.error) with stack: ${error.stack}`);
+            forceEventFailure(`'pageerror' (console.error): ${serializeError(error)}`);
         });
         underlyingPage.on('requestfailed', request => {
             const url = request.url();

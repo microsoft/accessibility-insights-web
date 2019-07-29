@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { ElementHandle } from 'puppeteer';
-import { Page } from './page';
+import { Page } from './page-controllers/page';
 
 export async function formatPageElementForSnapshot(page: Page, selector: string): Promise<Node> {
     const outerHtml = await page.getOuterHTMLOfSelector(selector);

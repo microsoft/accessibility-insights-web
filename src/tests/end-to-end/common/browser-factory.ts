@@ -31,12 +31,8 @@ export async function launchBrowser(extensionOptions: ExtensionOptions): Promise
 }
 
 async function suppressFirstTimeUsagePrompt(browser: Browser): Promise<void> {
-    const targetPage = await browser.newTestResourcePage('all.html');
-
-    await targetPage.bringToFront();
-
-    const targetPageId = await browser.getActivePageTabId();
-    const popupPage = await browser.newExtensionPopupPage(targetPageId);
+    const targetPage = await browser.newTargetPage();
+    const popupPage = await browser.newPopupPage(targetPage);
 
     await popupPage.clickSelector(popupPageElementIdentifiers.startUsingProductButton);
 

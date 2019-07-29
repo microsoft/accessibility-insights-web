@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import { ManualTestStatus } from '../../../common/types/manual-test-status';
+import { ManualTestStatus } from 'common/types/manual-test-status';
 import { AssessmentDetailsReportModel } from '../assessment-report-model';
 import { AssessmentReportStepList, AssessmentReportStepListDeps } from './assessment-report-step-list';
 import { OutcomeChip } from './outcome-chip';

@@ -2,9 +2,9 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import { NewTabLink } from '../../../../common/components/new-tab-link';
-import { NamedSFC } from '../../../../common/react/named-sfc';
-import { toolName } from '../../../../content/strings/application';
+import { NewTabLink } from 'common/components/new-tab-link';
+import { NamedSFC } from 'common/react/named-sfc';
+import { toolName } from 'content/strings/application';
 
 import { reportFooter, reportFooterContainer } from './footer-section.scss';
 

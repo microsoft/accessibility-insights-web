@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { AxeResults, ElementContext } from 'axe-core';
 
-import { Page } from './page';
+import { Page } from './page-controllers/page';
 
 // we are using axe object in target page scope. so we shouldn't be importing axe object via axe-core
 declare var axe;

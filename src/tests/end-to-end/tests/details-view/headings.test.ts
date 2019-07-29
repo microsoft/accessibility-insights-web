@@ -2,22 +2,22 @@
 // Licensed under the MIT License.
 import { Browser } from '../../common/browser';
 import { launchBrowser } from '../../common/browser-factory';
-import { GuidanceContentSelectors } from '../../common/element-identifiers/common-selectors';
 import { detailsViewSelectors } from '../../common/element-identifiers/details-view-selectors';
-import { enableHighContrast } from '../../common/enable-high-contrast';
-import { Page } from '../../common/page';
+import { DetailsViewPage } from '../../common/page-controllers/details-view-page';
+import { TargetPage } from '../../common/page-controllers/target-page';
 import { scanForAccessibilityIssues } from '../../common/scan-for-accessibility-issues';
+import { DEFAULT_TARGET_PAGE_SCAN_TIMEOUT_MS } from '../../common/timeouts';
 
 describe('Headings Page', () => {
     describe('Normal mode', () => {
         let browser: Browser;
-        let targetTabId: number;
-        let headingsPage: Page;
+        let targetPage: TargetPage;
+        let headingsPage: DetailsViewPage;
 
         beforeAll(async () => {
             browser = await launchBrowser({ suppressFirstTimeDialog: true });
-            targetTabId = (await browser.setupNewTargetPage()).tabId;
-            headingsPage = await openHeadingsPage(browser, targetTabId);
+            targetPage = await browser.newTargetPage();
+            headingsPage = await openHeadingsPage(browser, targetPage);
         });
 
         afterAll(async () => {
@@ -28,21 +28,21 @@ describe('Headings Page', () => {
         });
 
         it('should pass accessibility validation', async () => {
-            const results = await scanForAccessibilityIssues(headingsPage, GuidanceContentSelectors.detailsContent);
+            const results = await scanForAccessibilityIssues(headingsPage, detailsViewSelectors.mainContent);
             expect(results).toHaveLength(0);
         });
     });
 
     describe('High contrast mode', () => {
         let browser: Browser;
-        let targetTabId: number;
-        let headingsPage: Page;
+        let targetPage: TargetPage;
+        let headingsPage: DetailsViewPage;
 
         beforeAll(async () => {
             browser = await launchBrowser({ suppressFirstTimeDialog: true });
-            targetTabId = (await browser.setupNewTargetPage()).tabId;
-            headingsPage = await openHeadingsPage(browser, targetTabId);
-            await enableHighContrast(headingsPage);
+            targetPage = await browser.newTargetPage();
+            headingsPage = await openHeadingsPage(browser, targetPage);
+            await headingsPage.enableHighContrast();
         });
 
         afterAll(async () => {
@@ -53,18 +53,21 @@ describe('Headings Page', () => {
         });
 
         it('should pass accessibility validation', async () => {
-            const results = await scanForAccessibilityIssues(headingsPage, GuidanceContentSelectors.detailsContent);
+            const results = await scanForAccessibilityIssues(headingsPage, detailsViewSelectors.mainContent);
             expect(results).toHaveLength(0);
         });
     });
 
-    async function openHeadingsPage(browser: Browser, targetTabId: number): Promise<Page> {
-        const detailsViewPage: Page = await browser.newExtensionAssessmentDetailsViewPage(targetTabId);
+    async function openHeadingsPage(browser: Browser, targetPage: TargetPage): Promise<DetailsViewPage> {
+        const detailsViewPage = await browser.newDetailsViewPage(targetPage);
+        await detailsViewPage.switchToAssessment();
 
-        await detailsViewPage.waitForSelector(detailsViewSelectors.testNavArea);
+        await detailsViewPage.clickSelector(detailsViewSelectors.testNavLink('Headings'));
 
-        await detailsViewPage.clickSelector(GuidanceContentSelectors.headingsNav);
-        await detailsViewPage.waitForSelector(GuidanceContentSelectors.assessmentInstanceText);
+        // Populating the instance table requires scanning the target page
+        await detailsViewPage.waitForSelector(detailsViewSelectors.instanceTableTextContent, {
+            timeout: DEFAULT_TARGET_PAGE_SCAN_TIMEOUT_MS,
+        });
 
         return detailsViewPage;
     }
