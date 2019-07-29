@@ -2,13 +2,13 @@
 // Licensed under the MIT License.
 import { shallow } from 'enzyme';
 import * as React from 'react';
+import { RuleResult } from 'scanner/iruleresults';
 import { allInstanceOutcomeTypes } from '../../../../../../../DetailsView/reports/components/instance-outcome-type';
 import {
     FullRuleHeader,
     FullRuleHeaderDeps,
     FullRuleHeaderProps,
 } from '../../../../../../../DetailsView/reports/components/report-sections/full-rule-header';
-import { RuleResult } from '../../../../../../../scanner/iruleresults';
 
 describe('FullRuleHeader', () => {
     const depsStub = {} as FullRuleHeaderDeps;

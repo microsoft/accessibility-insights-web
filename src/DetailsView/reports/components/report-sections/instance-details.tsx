@@ -3,10 +3,10 @@
 import * as classNames from 'classnames';
 import * as React from 'react';
 
-import { NamedSFC } from '../../../../common/react/named-sfc';
-import { CheckType } from '../../../../injected/components/details-dialog';
-import { FixInstructionPanel } from '../../../../injected/components/fix-instruction-panel';
-import { FixInstructionProcessor } from '../../../../injected/fix-instruction-processor';
+import { NamedSFC } from 'common/react/named-sfc';
+import { CheckType } from 'injected/components/details-dialog';
+import { FixInstructionPanel } from 'injected/components/fix-instruction-panel';
+import { FixInstructionProcessor } from 'injected/fix-instruction-processor';
 
 export type InstanceDetailsProps = Pick<AxeNodeResult, 'none' | 'all' | 'any' | 'html' | 'target'> & {
     index: number;

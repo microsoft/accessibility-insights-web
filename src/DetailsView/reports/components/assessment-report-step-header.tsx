@@ -1,12 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { DefaultMessageInterface } from 'assessments/assessment-default-message-generator';
+import { GuidanceLinks } from 'common/components/guidance-links';
+import { GuidanceTags, GuidanceTagsDeps } from 'common/components/guidance-tags';
+import { NamedSFC } from 'common/react/named-sfc';
+import { ManualTestStatus } from 'common/types/manual-test-status';
 import * as React from 'react';
 
-import { DefaultMessageInterface } from '../../../assessments/assessment-default-message-generator';
-import { GuidanceLinks } from '../../../common/components/guidance-links';
-import { GuidanceTags, GuidanceTagsDeps } from '../../../common/components/guidance-tags';
-import { NamedSFC } from '../../../common/react/named-sfc';
-import { ManualTestStatus } from '../../../common/types/manual-test-status';
 import { RequirementHeaderReportModel } from '../assessment-report-model';
 import { OutcomeChip } from './outcome-chip';
 import { OutcomeTypeSemantic } from './outcome-type';

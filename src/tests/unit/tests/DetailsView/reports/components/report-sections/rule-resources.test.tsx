@@ -3,12 +3,12 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
+import { RuleResult } from 'scanner/iruleresults';
 import {
     RuleResources,
     RuleResourcesDeps,
     RuleResourcesProps,
 } from '../../../../../../../DetailsView/reports/components/report-sections/rule-resources';
-import { RuleResult } from '../../../../../../../scanner/iruleresults';
 
 describe('RuleResources', () => {
     it('renders', () => {

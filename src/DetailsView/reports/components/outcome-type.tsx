@@ -1,11 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { CheckIcon, CheckIconInverted } from 'common/icons/check-icon';
+import { CircleIcon } from 'common/icons/circle-icon';
+import { CrossIcon, CrossIconInverted } from 'common/icons/cross-icon';
+import { InapplicableIcon, InapplicableIconInverted } from 'common/icons/inapplicable-icon';
 import * as React from 'react';
 
-import { InapplicableIcon, InapplicableIconInverted } from '../../../common/icons/inapplicable-icon';
-import { CheckIcon, CheckIconInverted } from './../../../common/icons/check-icon';
-import { CircleIcon } from './../../../common/icons/circle-icon';
-import { CrossIcon, CrossIconInverted } from './../../../common/icons/cross-icon';
 import { InstanceOutcomeType } from './instance-outcome-type';
 import { RequirementOutcomeType } from './requirement-outcome-type';
 

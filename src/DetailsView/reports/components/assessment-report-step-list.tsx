@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { NamedSFC } from 'common/react/named-sfc';
+import { ManualTestStatus } from 'common/types/manual-test-status';
 import * as React from 'react';
 
-import { NamedSFC } from '../../../common/react/named-sfc';
-import { ManualTestStatus } from '../../../common/types/manual-test-status';
 import { InstanceReportModel, RequirementReportModel } from '../assessment-report-model';
 import { AssessmentReportInstanceList } from './assessment-report-instance-list';
 import { AssessmentReportStepHeader, AssessmentReportStepHeaderDeps } from './assessment-report-step-header';

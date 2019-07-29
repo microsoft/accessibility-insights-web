@@ -2,8 +2,8 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import { NamedSFC } from '../../../../common/react/named-sfc';
-import { RuleResult } from '../../../../scanner/iruleresults';
+import { NamedSFC } from 'common/react/named-sfc';
+import { RuleResult } from 'scanner/iruleresults';
 import { InstanceOutcomeType } from '../instance-outcome-type';
 import { OutcomeChip } from '../outcome-chip';
 
