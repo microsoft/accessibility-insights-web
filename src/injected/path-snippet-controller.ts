@@ -2,10 +2,12 @@
 // Licensed under the MIT License.
 import { BaseStore } from '../common/base-store';
 import { PathSnippetStoreData } from '../common/types/store-data/path-snippet-store-data';
+import { ElementFinderByPath } from './element-finder-by-path';
 
 export class PathSnippetController {
     constructor(
         private readonly pathSnippetStore: BaseStore<PathSnippetStoreData>,
+        private readonly elementFinderByPath: ElementFinderByPath,
         private readonly addCorrespondingSnippet: (snippet: string) => void,
     ) {}
 
@@ -28,6 +30,7 @@ export class PathSnippetController {
     };
 
     private getElementFromPath = (path: string): string => {
-        return 'Retrieved Snippet from Store for Path: ' + path;
+        const splitPath = path.split(';');
+        return this.elementFinderByPath.onFindElementByPath(splitPath);
     };
 }

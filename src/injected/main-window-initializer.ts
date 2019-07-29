@@ -50,6 +50,7 @@ import { SelectorMapHelper } from './selector-map-helper';
 import { ShadowUtils } from './shadow-utils';
 import { TargetPageActionMessageCreator } from './target-page-action-message-creator';
 import { WindowInitializer } from './window-initializer';
+import { ElementFinderByPath } from './element-finder-by-path';
 
 export class MainWindowInitializer extends WindowInitializer {
     protected frameCommunicator: FrameCommunicator;
@@ -181,6 +182,7 @@ export class MainWindowInitializer extends WindowInitializer {
 
         const htmlElementUtils = new HTMLElementUtils();
         const shadowUtils = new ShadowUtils(htmlElementUtils);
+        const elementFinderByPath = new ElementFinderByPath(htmlElementUtils);
         const scopingListener = new ScopingListener(this.elementFinderByPosition, this.windowUtils, shadowUtils, document);
         const inspectActionMessageCreator = new InspectActionMessageCreator(
             telemetryDataFactory,
@@ -208,6 +210,7 @@ export class MainWindowInitializer extends WindowInitializer {
 
         this.pathSnippetController = new PathSnippetController(
             this.pathSnippetStoreProxy,
+            elementFinderByPath,
             pathSnippetActionMessageCreator.addCorrespondingSnippet,
         );
 

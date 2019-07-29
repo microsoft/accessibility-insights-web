@@ -16,7 +16,7 @@ describe('InspectControllerTests', () => {
         pathSnippetStoreMock = Mock.ofType(PathSnippetStore);
         addCorrespondingSnippetMock = Mock.ofInstance((snippet: string) => {});
 
-        testObject = new PathSnippetController(pathSnippetStoreMock.object, addCorrespondingSnippetMock.object);
+        testObject = new PathSnippetController(pathSnippetStoreMock.object, null, addCorrespondingSnippetMock.object);
 
         pathSnippetStoreMock.setup(sm => sm.addChangedListener(It.is(isFunction)));
         pathSnippetStoreMock.setup(sm => sm.getState()).returns(() => pathSnippetStoreState);
