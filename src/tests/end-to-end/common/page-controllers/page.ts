@@ -29,6 +29,13 @@ export class Page {
             forceEventFailure(`'error': ${serializeError(error)}`);
         });
         underlyingPage.on('pageerror', error => {
+            if (
+                error.message.startsWith(`TypeError: Cannot read property 'focusElement' of null
+            at eval (webpack-internal:/node_modules/office-ui-fabric-react/lib/components/Dropdown/Dropdown.base.js)`)
+            ) {
+                return; // benign; caused by https://github.com/OfficeDev/office-ui-fabric-react/issues/9715
+            }
+
             forceEventFailure(`'pageerror' (console.error): ${serializeError(error)}`);
         });
         underlyingPage.on('requestfailed', request => {
@@ -49,6 +56,26 @@ export class Page {
 
     public async goto(url: string): Promise<void> {
         await this.screenshotOnError(async () => await this.underlyingPage.goto(url, { timeout: DEFAULT_NEW_PAGE_WAIT_TIMEOUT_MS }));
+        await this.disableAnimations();
+    }
+
+    public async disableAnimations(): Promise<void> {
+        await this.underlyingPage.evaluate(() => {
+            function addDisableStyleToBody(): void {
+                const disableAnimationsStyleElement = document.createElement('style');
+                disableAnimationsStyleElement.type = 'text/css';
+                disableAnimationsStyleElement.innerHTML = `* {
+                    transition: none !important;
+                    animation: none !important;
+                }`;
+                document.body.appendChild(disableAnimationsStyleElement);
+            }
+            if (document.readyState !== 'loading') {
+                addDisableStyleToBody();
+            } else {
+                window.addEventListener('load', addDisableStyleToBody);
+            }
+        });
     }
 
     public async close(ignoreIfAlreadyClosed: boolean = false): Promise<void> {
