@@ -8,7 +8,7 @@ import {
     FullRuleHeaderDeps,
     FullRuleHeaderProps,
 } from '../../../../../../../DetailsView/reports/components/report-sections/full-rule-header';
-import { RuleResult } from '../../../../../../../scanner/iruleresults';
+import { RuleResult } from 'scanner/iruleresults';
 
 describe('FullRuleHeader', () => {
     const depsStub = {} as FullRuleHeaderDeps;

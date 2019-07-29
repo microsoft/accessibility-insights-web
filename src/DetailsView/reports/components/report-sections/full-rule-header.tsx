@@ -3,12 +3,12 @@
 import { kebabCase } from 'lodash';
 import * as React from 'react';
 
-import { GuidanceLinks } from '../../../../common/components/guidance-links';
-import { GuidanceTags } from '../../../../common/components/guidance-tags';
-import { NewTabLink } from '../../../../common/components/new-tab-link';
-import { GetGuidanceTagsFromGuidanceLinks } from '../../../../common/get-guidance-tags-from-guidance-links';
-import { NamedSFC } from '../../../../common/react/named-sfc';
-import { RuleResult } from '../../../../scanner/iruleresults';
+import { GuidanceLinks } from 'common/components/guidance-links';
+import { GuidanceTags } from 'common/components/guidance-tags';
+import { NewTabLink } from 'common/components/new-tab-link';
+import { GetGuidanceTagsFromGuidanceLinks } from 'common/get-guidance-tags-from-guidance-links';
+import { NamedSFC } from 'common/react/named-sfc';
+import { RuleResult } from 'scanner/iruleresults';
 import { InstanceOutcomeType } from '../instance-outcome-type';
 import { OutcomeChip } from '../outcome-chip';
 import { outcomeTypeSemantics } from '../outcome-type';

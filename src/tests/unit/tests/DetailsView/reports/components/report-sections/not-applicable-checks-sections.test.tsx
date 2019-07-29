@@ -3,12 +3,12 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-import { GetGuidanceTagsFromGuidanceLinks } from '../../../../../../../common/get-guidance-tags-from-guidance-links';
+import { GetGuidanceTagsFromGuidanceLinks } from 'common/get-guidance-tags-from-guidance-links';
 import {
     NotApplicableChecksSection,
     NotApplicableChecksSectionProps,
 } from '../../../../../../../DetailsView/reports/components/report-sections/not-applicable-checks-section';
-import { RuleResult } from '../../../../../../../scanner/iruleresults';
+import { RuleResult } from 'scanner/iruleresults';
 
 describe('NotApplicableChecksSection', () => {
     it('renders', () => {

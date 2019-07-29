@@ -4,11 +4,11 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 import { Mock } from 'typemoq';
 
+import { FixInstructionProcessor } from 'injected/fix-instruction-processor';
 import {
     InstanceDetails,
     InstanceDetailsProps,
 } from '../../../../../../../DetailsView/reports/components/report-sections/instance-details';
-import { FixInstructionProcessor } from '../../../../../../../injected/fix-instruction-processor';
 
 describe('InstanceDetails', () => {
     it('renders', () => {

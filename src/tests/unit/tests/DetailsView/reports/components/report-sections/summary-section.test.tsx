@@ -3,7 +3,7 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import { SummarySection, SummarySectionProps } from '../../../../../../../DetailsView/reports/components/report-sections/summary-section';
-import { ScanResults } from '../../../../../../../scanner/iruleresults';
+import { ScanResults } from 'scanner/iruleresults';
 
 describe('SummarySection', () => {
     const noViolations = [];

@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import { NamedSFC } from '../../../../common/react/named-sfc';
+import { NamedSFC } from 'common/react/named-sfc';
 import { SectionProps } from './report-section-factory';
 import { ResultSection } from './result-section';
 

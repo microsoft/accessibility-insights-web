@@ -4,7 +4,7 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 
 import { IMock, Mock, MockBehavior } from 'typemoq';
-import { DateProvider } from '../../../../../../../common/date-provider';
+import { DateProvider } from 'common/date-provider';
 import { DetailsSection, DetailsSectionProps } from '../../../../../../../DetailsView/reports/components/report-sections/details-section';
 
 describe('DetailsSection', () => {

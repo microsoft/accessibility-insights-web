@@ -7,8 +7,8 @@ import {
     RulesWithInstances,
     RulesWithInstancesDeps,
 } from '../../../../../../../DetailsView/reports/components/report-sections/rules-with-instances';
-import { FixInstructionProcessor } from '../../../../../../../injected/fix-instruction-processor';
-import { RuleResult } from '../../../../../../../scanner/iruleresults';
+import { FixInstructionProcessor } from 'injected/fix-instruction-processor';
+import { RuleResult } from 'scanner/iruleresults';
 
 describe('RulesWithInstances', () => {
     let fixInstructionProcessorMock: IMock<FixInstructionProcessor>;

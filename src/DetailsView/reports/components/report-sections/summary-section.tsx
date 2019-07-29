@@ -2,9 +2,9 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import { NamedSFC } from '../../../../common/react/named-sfc';
+import { NamedSFC } from 'common/react/named-sfc';
 import { allInstanceOutcomeTypes, InstanceOutcomeType } from '../instance-outcome-type';
-import { OutcomeSummaryBar } from './../outcome-summary-bar';
+import { OutcomeSummaryBar } from '../outcome-summary-bar';
 import { SectionProps } from './report-section-factory';
 
 export type SummarySectionProps = Pick<SectionProps, 'scanResult'>;

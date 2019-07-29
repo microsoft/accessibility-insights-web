@@ -7,7 +7,7 @@ import {
     MinimalRuleHeader,
     MinimalRuleHeaderProps,
 } from '../../../../../../../DetailsView/reports/components/report-sections/minimal-rule-header';
-import { RuleResult } from '../../../../../../../scanner/iruleresults';
+import { RuleResult } from 'scanner/iruleresults';
 
 describe('MinimalRuleHeader', () => {
     const rule = {

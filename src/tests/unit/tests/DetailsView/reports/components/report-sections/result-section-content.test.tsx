@@ -7,7 +7,7 @@ import {
     ResultSectionContentDeps,
     ResultSectionContentProps,
 } from '../../../../../../../DetailsView/reports/components/report-sections/result-section-content';
-import { RuleResult } from '../../../../../../../scanner/iruleresults';
+import { RuleResult } from 'scanner/iruleresults';
 
 describe('ResultSectionContent', () => {
     const emptyRules: RuleResult[] = [];

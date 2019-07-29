@@ -8,7 +8,7 @@ import {
     RuleResourcesDeps,
     RuleResourcesProps,
 } from '../../../../../../../DetailsView/reports/components/report-sections/rule-resources';
-import { RuleResult } from '../../../../../../../scanner/iruleresults';
+import { RuleResult } from 'scanner/iruleresults';
 
 describe('RuleResources', () => {
     it('renders', () => {

@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as React from 'react';
-import { NamedSFC } from '../../../../common/react/named-sfc';
+import { NamedSFC } from 'common/react/named-sfc';
 import { SectionProps } from './report-section-factory';
 
 export type ResultsContainerProps = Pick<SectionProps, 'getCollapsibleScript'>;
