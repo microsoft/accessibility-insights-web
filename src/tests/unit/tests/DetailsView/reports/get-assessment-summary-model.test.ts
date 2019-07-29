@@ -4,14 +4,14 @@ import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { Assessment } from 'assessments/types/iassessment';
 import { ManualTestStatus, TestStepData } from 'common/types/manual-test-status';
 import { AssessmentStoreData } from 'common/types/store-data/assessment-result-data';
-import { OverviewSummaryReportModel } from '../../../../../DetailsView/reports/assessment-report-model';
+import { OverviewSummaryReportModel } from 'reports/assessment-report-model';
 import {
     AssessmentStatusData,
     AssessmentSummaryResult,
     getAssessmentSummaryModelFromProviderAndStatusData,
     getAssessmentSummaryModelFromProviderAndStoreData,
     getAssessmentSummaryModelFromResults,
-} from '../../../../../DetailsView/reports/get-assessment-summary-model';
+} from 'reports/get-assessment-summary-model';
 
 type IAssessmentSubsetForSummary = Pick<Assessment, 'title' | 'key'>;
 

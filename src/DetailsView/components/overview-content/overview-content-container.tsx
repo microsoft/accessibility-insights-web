@@ -2,6 +2,9 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
+import { OverviewSummaryReportModel } from 'reports/assessment-report-model';
+import { AssessmentReportSummary } from 'reports/components/assessment-report-summary';
+import { GetAssessmentSummaryModelFromProviderAndStoreData } from 'reports/get-assessment-summary-model';
 import { AssessmentsProvider } from '../../../assessments/types/assessments-provider';
 import { NamedSFC } from '../../../common/react/named-sfc';
 import { AssessmentStoreData } from '../../../common/types/store-data/assessment-result-data';
@@ -9,9 +12,6 @@ import { FeatureFlagStoreData } from '../../../common/types/store-data/feature-f
 import { TabStoreData } from '../../../common/types/store-data/tab-store-data';
 import { HyperlinkDefinition } from '../../../views/content/content-page';
 import { DetailsViewActionMessageCreator } from '../../actions/details-view-action-message-creator';
-import { OverviewSummaryReportModel } from '../../reports/assessment-report-model';
-import { AssessmentReportSummary } from '../../reports/components/assessment-report-summary';
-import { GetAssessmentSummaryModelFromProviderAndStoreData } from '../../reports/get-assessment-summary-model';
 import { TargetChangeDialog, TargetChangeDialogDeps } from '../target-change-dialog';
 import { OverviewHeading } from './overview-heading';
 import { OverviewHelpSection, OverviewHelpSectionDeps } from './overview-help-section';

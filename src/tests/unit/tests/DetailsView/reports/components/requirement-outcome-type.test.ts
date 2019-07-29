@@ -3,12 +3,12 @@
 import { times } from 'lodash';
 
 import { ManualTestStatus, ManualTestStatusData } from 'common/types/manual-test-status';
-import { OutcomeTypeSemantic } from '../../../../../../DetailsView/reports/components/outcome-type';
+import { OutcomeTypeSemantic } from 'reports/components/outcome-type';
 import {
     outcomeStatsFromManualTestStatus,
     outcomeTypeFromTestStatus,
     outcomeTypeSemanticsFromTestStatus,
-} from '../../../../../../DetailsView/reports/components/requirement-outcome-type';
+} from 'reports/components/requirement-outcome-type';
 
 describe('OutcomeType', () => {
     it('translates fromTestStatus', () => {

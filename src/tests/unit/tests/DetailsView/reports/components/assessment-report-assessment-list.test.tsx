@@ -4,13 +4,13 @@ import * as Enzyme from 'enzyme';
 import * as React from 'react';
 
 import { ManualTestStatus } from 'common/types/manual-test-status';
-import { AssessmentDetailsReportModel } from '../../../../../../DetailsView/reports/assessment-report-model';
+import { AssessmentDetailsReportModel } from 'reports/assessment-report-model';
 import {
     AssessmentReportAssessmentList,
     AssessmentReportAssessmentListDeps,
     AssessmentReportAssessmentListProps,
-} from '../../../../../../DetailsView/reports/components/assessment-report-assessment-list';
-import { AssessmentReportStepListDeps } from '../../../../../../DetailsView/reports/components/assessment-report-step-list';
+} from 'reports/components/assessment-report-assessment-list';
+import { AssessmentReportStepListDeps } from 'reports/components/assessment-report-step-list';
 import { AssessmentReportBuilderTestHelper } from '../../assessment-report-builder-test-helper';
 
 describe('AssessmentReportAssessmentListTest', () => {

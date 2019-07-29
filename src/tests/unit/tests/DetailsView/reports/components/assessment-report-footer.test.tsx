@@ -5,7 +5,7 @@ import * as React from 'react';
 import {
     AssessmentReportFooter,
     AssessmentReportFooterProps,
-} from '../../../../../../DetailsView/reports/components/assessment-report-footer';
+} from 'reports/components/assessment-report-footer';
 
 describe('AssessmentReportFooter', () => {
     it('renders', () => {

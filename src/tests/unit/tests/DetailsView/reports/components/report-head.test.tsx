@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { shallow } from 'enzyme';
 import * as React from 'react';
-import { ReportHead } from '../../../../../../DetailsView/reports/components/report-head';
+import { ReportHead } from 'reports/components/report-head';
 
 describe('ReportHead', () => {
     it('renders', () => {

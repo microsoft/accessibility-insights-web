@@ -7,7 +7,7 @@ import {
     AssessmentReportStepList,
     AssessmentReportStepListDeps,
     AssessmentReportStepListProps,
-} from '../../../../../../DetailsView/reports/components/assessment-report-step-list';
+} from 'reports/components/assessment-report-step-list';
 import { AssessmentReportBuilderTestHelper } from '../../assessment-report-builder-test-helper';
 
 describe('AssessmentReportStepListTest', () => {

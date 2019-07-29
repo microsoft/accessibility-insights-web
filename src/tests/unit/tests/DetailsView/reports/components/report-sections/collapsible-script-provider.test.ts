@@ -6,7 +6,7 @@ import { It, Mock, MockBehavior, Times } from 'typemoq';
 import {
     addEventListenerForCollapsibleSection,
     getAddListenerForCollapsibleSection,
-} from '../../../../../../../DetailsView/reports/components/report-sections/collapsible-script-provider';
+} from 'reports/components/report-sections/collapsible-script-provider';
 
 describe('CollapsibleScriptProvider', () => {
     it('match content', () => {

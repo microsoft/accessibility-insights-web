@@ -5,7 +5,7 @@ import * as React from 'react';
 import {
     ResultSectionTitle,
     ResultSectionTitleProps,
-} from '../../../../../../../DetailsView/reports/components/report-sections/result-section-title';
+} from 'reports/components/report-sections/result-section-title';
 
 describe('ResultSectionTitle', () => {
     it('renders', () => {

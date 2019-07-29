@@ -8,7 +8,7 @@ import { RuleResult } from 'scanner/iruleresults';
 import {
     NotApplicableChecksSection,
     NotApplicableChecksSectionProps,
-} from '../../../../../../../DetailsView/reports/components/report-sections/not-applicable-checks-section';
+} from 'reports/components/report-sections/not-applicable-checks-section';
 
 describe('NotApplicableChecksSection', () => {
     it('renders', () => {

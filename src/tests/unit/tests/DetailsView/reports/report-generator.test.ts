@@ -6,10 +6,10 @@ import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store
 import { TabStoreData } from 'common/types/store-data/tab-store-data';
 import { ScanResults } from 'scanner/iruleresults';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
-import { AssessmentReportHtmlGenerator } from '../../../../../DetailsView/reports/assessment-report-html-generator';
-import { ReportGenerator } from '../../../../../DetailsView/reports/report-generator';
-import { ReportHtmlGenerator } from '../../../../../DetailsView/reports/report-html-generator';
-import { ReportNameGenerator } from '../../../../../DetailsView/reports/report-name-generator';
+import { AssessmentReportHtmlGenerator } from 'reports/assessment-report-html-generator';
+import { ReportGenerator } from 'reports/report-generator';
+import { ReportHtmlGenerator } from 'reports/report-html-generator';
+import { ReportNameGenerator } from 'reports/report-name-generator';
 
 describe('ReportGenerator', () => {
     const scanResult: ScanResults = {} as any;

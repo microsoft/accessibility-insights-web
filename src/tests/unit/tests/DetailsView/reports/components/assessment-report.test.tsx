@@ -3,7 +3,7 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-import { AssessmentReport, AssessmentReportDeps } from '../../../../../../DetailsView/reports/components/assessment-report';
+import { AssessmentReport, AssessmentReportDeps } from 'reports/components/assessment-report';
 import { AssessmentReportBuilderTestHelper } from '../../assessment-report-builder-test-helper';
 
 describe('AssessmentReport', () => {

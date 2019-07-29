@@ -8,7 +8,7 @@ import { IMock, Mock } from 'typemoq';
 import {
     RulesWithInstances,
     RulesWithInstancesDeps,
-} from '../../../../../../../DetailsView/reports/components/report-sections/rules-with-instances';
+} from 'reports/components/report-sections/rules-with-instances';
 
 describe('RulesWithInstances', () => {
     let fixInstructionProcessorMock: IMock<FixInstructionProcessor>;

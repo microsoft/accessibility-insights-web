@@ -3,7 +3,7 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-import { ContentContainer } from '../../../../../../../DetailsView/reports/components/report-sections/content-container';
+import { ContentContainer } from 'reports/components/report-sections/content-container';
 
 describe('ContentContainer', () => {
     it('renders', () => {

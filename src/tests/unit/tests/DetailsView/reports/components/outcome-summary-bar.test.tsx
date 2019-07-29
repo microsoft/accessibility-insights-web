@@ -2,8 +2,8 @@
 // Licensed under the MIT License.
 import { shallow } from 'enzyme';
 import * as React from 'react';
-import { OutcomeSummaryBar, OutcomeSummaryBarProps } from '../../../../../../DetailsView/reports/components/outcome-summary-bar';
-import { OutcomeType } from '../../../../../../DetailsView/reports/components/outcome-type';
+import { OutcomeSummaryBar, OutcomeSummaryBarProps } from 'reports/components/outcome-summary-bar';
+import { OutcomeType } from 'reports/components/outcome-type';
 
 describe('OutcomeSummaryBar', () => {
     const allOutcomeTypes: OutcomeType[] = ['pass', 'fail', 'incomplete'];

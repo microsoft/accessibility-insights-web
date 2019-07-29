@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { shallow } from 'enzyme';
 import * as React from 'react';
-import { AssessmentReportInstanceList } from '../../../../../../DetailsView/reports/components/assessment-report-instance-list';
+import { AssessmentReportInstanceList } from 'reports/components/assessment-report-instance-list';
 import { AssessmentReportBuilderTestHelper } from '../../assessment-report-builder-test-helper';
 
 describe('AssessmentReportInstanceListTest', () => {

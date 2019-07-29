@@ -9,7 +9,7 @@ import { DateProvider } from '../../../../../common/date-provider';
 import { UserConfigurationStoreData } from '../../../../../common/types/store-data/user-configuration-store';
 import { IssuesTable, IssuesTableDeps, IssuesTableProps } from '../../../../../DetailsView/components/issues-table';
 import { DetailsRowData, IssuesTableHandler } from '../../../../../DetailsView/components/issues-table-handler';
-import { ReportGenerator } from '../../../../../DetailsView/reports/report-generator';
+import { ReportGenerator } from 'reports/report-generator';
 import { DecoratedAxeNodeResult } from '../../../../../injected/scanner-utils';
 import { RuleResult } from '../../../../../scanner/iruleresults';
 import { DictionaryStringTo } from '../../../../../types/common-types';

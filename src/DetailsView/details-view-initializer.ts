@@ -2,6 +2,24 @@
 // Licensed under the MIT License.
 import { loadTheme } from 'office-ui-fabric-react';
 import * as ReactDOM from 'react-dom';
+import { AssessmentReportHtmlGenerator } from 'reports/assessment-report-html-generator';
+import { AssessmentReportModelBuilderFactory } from 'reports/assessment-report-model-builder-factory';
+import { AutomatedChecksReportSectionFactory } from 'reports/components/report-sections/automated-checks-report-section-factory';
+import { getDefaultAddListenerForCollapsibleSection } from 'reports/components/report-sections/collapsible-script-provider';
+import {
+    outcomeStatsFromManualTestStatus,
+    outcomeTypeFromTestStatus,
+    outcomeTypeSemanticsFromTestStatus,
+} from 'reports/components/requirement-outcome-type';
+import {
+    getAssessmentSummaryModelFromProviderAndStatusData,
+    getAssessmentSummaryModelFromProviderAndStoreData,
+} from 'reports/get-assessment-summary-model';
+import { ReactStaticRenderer } from 'reports/react-static-renderer';
+import { ReportGenerator } from 'reports/report-generator';
+import { ReportHtmlGenerator } from 'reports/report-html-generator';
+import { ReportNameGenerator } from 'reports/report-name-generator';
+
 import { AssessmentDefaultMessageGenerator } from '../assessments/assessment-default-message-generator';
 import { Assessments } from '../assessments/assessments';
 import { assessmentsProviderWithFeaturesEnabled } from '../assessments/assessments-feature-flag-filter';
@@ -71,23 +89,6 @@ import { AssessmentInstanceTableHandler } from './handlers/assessment-instance-t
 import { DetailsViewToggleClickHandlerFactory } from './handlers/details-view-toggle-click-handler-factory';
 import { MasterCheckBoxConfigProvider } from './handlers/master-checkbox-config-provider';
 import { PreviewFeatureFlagsHandler } from './handlers/preview-feature-flags-handler';
-import { AssessmentReportHtmlGenerator } from './reports/assessment-report-html-generator';
-import { AssessmentReportModelBuilderFactory } from './reports/assessment-report-model-builder-factory';
-import { AutomatedChecksReportSectionFactory } from './reports/components/report-sections/automated-checks-report-section-factory';
-import { getDefaultAddListenerForCollapsibleSection } from './reports/components/report-sections/collapsible-script-provider';
-import {
-    outcomeStatsFromManualTestStatus,
-    outcomeTypeFromTestStatus,
-    outcomeTypeSemanticsFromTestStatus,
-} from './reports/components/requirement-outcome-type';
-import {
-    getAssessmentSummaryModelFromProviderAndStatusData,
-    getAssessmentSummaryModelFromProviderAndStoreData,
-} from './reports/get-assessment-summary-model';
-import { ReactStaticRenderer } from './reports/react-static-renderer';
-import { ReportGenerator } from './reports/report-generator';
-import { ReportHtmlGenerator } from './reports/report-html-generator';
-import { ReportNameGenerator } from './reports/report-name-generator';
 
 declare const window: AutoChecker & Window;
 

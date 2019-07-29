@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import { ReactStaticRenderer } from '../../../../../DetailsView/reports/react-static-renderer';
+import { ReactStaticRenderer } from 'reports/react-static-renderer';
 
 describe('ReactStaticRendererTest', () => {
     test('render', () => {

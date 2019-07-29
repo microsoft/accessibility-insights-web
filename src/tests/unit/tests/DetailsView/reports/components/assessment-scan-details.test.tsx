@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { ScanDetailsReportModel } from '../../../../../../DetailsView/reports/assessment-report-model';
+import { ScanDetailsReportModel } from 'reports/assessment-report-model';
 import {
     AssessmentScanDetails,
     AssessmentScanDetailsProps,
-} from '../../../../../../DetailsView/reports/components/assessment-scan-details';
+} from 'reports/components/assessment-scan-details';
 
 describe('AssessmentScanDetails', () => {
     describe('render', () => {

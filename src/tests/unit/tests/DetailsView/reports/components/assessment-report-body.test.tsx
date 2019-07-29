@@ -6,7 +6,7 @@ import {
     AssessmentReportBody,
     AssessmentReportBodyDeps,
     AssessmentReportBodyProps,
-} from '../../../../../../DetailsView/reports/components/assessment-report-body';
+} from 'reports/components/assessment-report-body';
 import { AssessmentReportBuilderTestHelper } from '../../assessment-report-builder-test-helper';
 
 describe('AssessmentReportBody', () => {

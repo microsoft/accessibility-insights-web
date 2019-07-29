@@ -7,7 +7,7 @@ import {
     ResultSectionContent,
     ResultSectionContentDeps,
     ResultSectionContentProps,
-} from '../../../../../../../DetailsView/reports/components/report-sections/result-section-content';
+} from 'reports/components/report-sections/result-section-content';
 
 describe('ResultSectionContent', () => {
     const emptyRules: RuleResult[] = [];

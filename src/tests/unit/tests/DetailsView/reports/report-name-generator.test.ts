@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { range } from 'lodash';
-import { ReportNameGenerator } from '../../../../../DetailsView/reports/report-name-generator';
+import { ReportNameGenerator } from 'reports/report-name-generator';
 
 describe('ReportNameGenerator', () => {
     const theBase = 'BASE';

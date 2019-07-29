@@ -8,7 +8,7 @@ import {
     RuleResources,
     RuleResourcesDeps,
     RuleResourcesProps,
-} from '../../../../../../../DetailsView/reports/components/report-sections/rule-resources';
+} from 'reports/components/report-sections/rule-resources';
 
 describe('RuleResources', () => {
     it('renders', () => {

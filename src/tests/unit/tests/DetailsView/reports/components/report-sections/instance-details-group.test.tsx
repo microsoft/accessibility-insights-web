@@ -9,7 +9,7 @@ import {
     InstanceDetailsGroup,
     InstanceDetailsGroupDeps,
     InstanceDetailsGroupProps,
-} from '../../../../../../../DetailsView/reports/components/report-sections/instance-details-group';
+} from 'reports/components/report-sections/instance-details-group';
 
 describe('InstanceDetailsGroup', () => {
     it('renders', () => {

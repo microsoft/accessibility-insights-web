@@ -21,7 +21,7 @@ import {
     ReportModel,
     RequirementReportModel,
     ScanDetailsReportModel,
-} from '../../../../DetailsView/reports/assessment-report-model';
+} from 'reports/assessment-report-model';
 import { DictionaryStringTo } from '../../../../types/common-types';
 
 export class AssessmentReportBuilderTestHelper {

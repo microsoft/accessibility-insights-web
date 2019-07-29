@@ -5,7 +5,7 @@ import * as React from 'react';
 
 import { DateProvider } from 'common/date-provider';
 import { IMock, Mock, MockBehavior } from 'typemoq';
-import { DetailsSection, DetailsSectionProps } from '../../../../../../../DetailsView/reports/components/report-sections/details-section';
+import { DetailsSection, DetailsSectionProps } from 'reports/components/report-sections/details-section';
 
 describe('DetailsSection', () => {
     const descriptionValues = ['description-text', '', undefined, null];
