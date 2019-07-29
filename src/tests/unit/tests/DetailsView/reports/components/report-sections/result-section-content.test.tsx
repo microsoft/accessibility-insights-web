@@ -2,12 +2,12 @@
 // Licensed under the MIT License.
 import { shallow } from 'enzyme';
 import * as React from 'react';
-import { RuleResult } from 'scanner/iruleresults';
 import {
     ResultSectionContent,
     ResultSectionContentDeps,
     ResultSectionContentProps,
 } from 'reports/components/report-sections/result-section-content';
+import { RuleResult } from 'scanner/iruleresults';
 
 describe('ResultSectionContent', () => {
     const emptyRules: RuleResult[] = [];

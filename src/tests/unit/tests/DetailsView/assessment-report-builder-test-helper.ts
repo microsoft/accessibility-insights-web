@@ -2,6 +2,15 @@
 // Licensed under the MIT License.
 import { flatten } from 'lodash';
 
+import {
+    AssessmentDetailsReportModel,
+    InstanceElementKey,
+    InstanceReportModel,
+    OverviewSummaryReportModel,
+    ReportModel,
+    RequirementReportModel,
+    ScanDetailsReportModel,
+} from 'reports/assessment-report-model';
 import { Assessment } from '../../../../assessments/types/iassessment';
 import { ReportInstanceFields } from '../../../../assessments/types/report-instance-field';
 import { ManualTestStatus, ManualTestStatusData } from '../../../../common/types/manual-test-status';
@@ -13,15 +22,6 @@ import {
     PersistedTabInfo,
 } from '../../../../common/types/store-data/assessment-result-data';
 import { excludePassingInstancesFromAssessmentReport } from '../../../../DetailsView/extensions/exclude-passing-instances-from-assessment-report';
-import {
-    AssessmentDetailsReportModel,
-    InstanceElementKey,
-    InstanceReportModel,
-    OverviewSummaryReportModel,
-    ReportModel,
-    RequirementReportModel,
-    ScanDetailsReportModel,
-} from 'reports/assessment-report-model';
 import { DictionaryStringTo } from '../../../../types/common-types';
 
 export class AssessmentReportBuilderTestHelper {

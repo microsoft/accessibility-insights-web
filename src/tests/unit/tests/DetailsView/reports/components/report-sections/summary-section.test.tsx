@@ -2,8 +2,8 @@
 // Licensed under the MIT License.
 import { shallow } from 'enzyme';
 import * as React from 'react';
-import { ScanResults } from 'scanner/iruleresults';
 import { SummarySection, SummarySectionProps } from 'reports/components/report-sections/summary-section';
+import { ScanResults } from 'scanner/iruleresults';
 
 describe('SummarySection', () => {
     const noViolations = [];

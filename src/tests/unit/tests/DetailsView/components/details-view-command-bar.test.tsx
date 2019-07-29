@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { shallow } from 'enzyme';
 import * as React from 'react';
+import { ReportGenerator } from 'reports/report-generator';
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';
 import { AssessmentsProviderImpl } from '../../../../../assessments/assessments-provider';
 import { AssessmentsProvider } from '../../../../../assessments/types/assessments-provider';
@@ -18,7 +19,6 @@ import {
 } from '../../../../../DetailsView/components/details-view-command-bar';
 import { DetailsRightPanelConfiguration } from '../../../../../DetailsView/components/details-view-right-panel';
 import { ReportExportComponent } from '../../../../../DetailsView/components/report-export-component';
-import { ReportGenerator } from 'reports/report-generator';
 
 describe('DetailsViewCommandBar', () => {
     const theDate = new Date(2019, 2, 12, 9, 0);

@@ -3,6 +3,7 @@
 import { forOwn } from 'lodash';
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';
 
+import { AssessmentReportModelBuilder } from 'reports/assessment-report-model-builder';
 import {
     AssessmentDefaultMessageGenerator,
     DefaultMessageInterface,
@@ -14,7 +15,6 @@ import { AssessmentsProvider } from '../../../../assessments/types/assessments-p
 import { Assessment } from '../../../../assessments/types/iassessment';
 import { AssessmentStoreData } from '../../../../common/types/store-data/assessment-result-data';
 import { TabStoreData } from '../../../../common/types/store-data/tab-store-data';
-import { AssessmentReportModelBuilder } from 'reports/assessment-report-model-builder';
 import { AssessmentReportBuilderTestHelper } from './assessment-report-builder-test-helper';
 
 describe('AssessmentReportModelBuilderTest', () => {

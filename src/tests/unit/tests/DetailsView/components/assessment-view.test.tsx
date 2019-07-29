@@ -4,6 +4,10 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 import { IMock, It, Mock, Times } from 'typemoq';
 
+import {
+    outcomeTypeFromTestStatus,
+    outcomeTypeSemanticsFromTestStatus,
+} from 'reports/components/requirement-outcome-type';
 import { AssessmentDefaultMessageGenerator } from '../../../../../assessments/assessment-default-message-generator';
 import { AssessmentsProvider } from '../../../../../assessments/types/assessments-provider';
 import { AssessmentTestResult } from '../../../../../common/assessment/assessment-test-result';
@@ -18,10 +22,6 @@ import { UrlParser } from '../../../../../common/url-parser';
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
 import { AssessmentView, AssessmentViewDeps, AssessmentViewProps } from '../../../../../DetailsView/components/assessment-view';
 import { AssessmentInstanceTableHandler } from '../../../../../DetailsView/handlers/assessment-instance-table-handler';
-import {
-    outcomeTypeFromTestStatus,
-    outcomeTypeSemanticsFromTestStatus,
-} from 'reports/components/requirement-outcome-type';
 import { contentProvider, CreateTestAssessmentProvider } from '../../../common/test-assessment-provider';
 
 describe('AssessmentViewTest', () => {

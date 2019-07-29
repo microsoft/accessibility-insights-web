@@ -3,14 +3,14 @@
 import { map } from 'lodash';
 import * as React from 'react';
 
+import { OutcomeTypeSemantic } from 'reports/components/outcome-type';
+import { RequirementOutcomeStats } from 'reports/components/requirement-outcome-type';
+import { GetAssessmentSummaryModelFromProviderAndStatusData } from 'reports/get-assessment-summary-model';
 import { AssessmentsProvider } from '../../../assessments/types/assessments-provider';
 import { VisualizationConfiguration } from '../../../common/configs/visualization-configuration';
 import { ManualTestStatus, ManualTestStatusData } from '../../../common/types/manual-test-status';
 import { VisualizationType } from '../../../common/types/visualization-type';
 import { DictionaryStringTo } from '../../../types/common-types';
-import { OutcomeTypeSemantic } from 'reports/components/outcome-type';
-import { RequirementOutcomeStats } from 'reports/components/requirement-outcome-type';
-import { GetAssessmentSummaryModelFromProviderAndStatusData } from 'reports/get-assessment-summary-model';
 import { BaseLeftNavLink, onBaseLeftNavItemClick, onBaseLeftNavItemRender } from '../base-left-nav';
 import { OverviewLeftNavLink } from './overview-left-nav-link';
 import { TestViewLeftNavLink } from './test-view-left-nav-link';

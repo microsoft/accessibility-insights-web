@@ -3,6 +3,10 @@
 import { isMatch } from 'lodash';
 import { IMock, Mock, MockBehavior } from 'typemoq';
 
+import { OverviewSummaryReportModel } from 'reports/assessment-report-model';
+import { OutcomeTypeSemantic } from 'reports/components/outcome-type';
+import { RequirementOutcomeStats } from 'reports/components/requirement-outcome-type';
+import { GetAssessmentSummaryModelFromProviderAndStatusData } from 'reports/get-assessment-summary-model';
 import { AssessmentsProviderImpl } from '../../../../../../assessments/assessments-provider';
 import { AssessmentsProvider } from '../../../../../../assessments/types/assessments-provider';
 import { Assessment } from '../../../../../../assessments/types/iassessment';
@@ -11,10 +15,6 @@ import { ManualTestStatus, ManualTestStatusData } from '../../../../../../common
 import { VisualizationType } from '../../../../../../common/types/visualization-type';
 import { BaseLeftNavLink, onBaseLeftNavItemClick } from '../../../../../../DetailsView/components/base-left-nav';
 import { LeftNavLinkBuilder, LeftNavLinkBuilderDeps } from '../../../../../../DetailsView/components/left-nav/left-nav-link-builder';
-import { OverviewSummaryReportModel } from 'reports/assessment-report-model';
-import { OutcomeTypeSemantic } from 'reports/components/outcome-type';
-import { RequirementOutcomeStats } from 'reports/components/requirement-outcome-type';
-import { GetAssessmentSummaryModelFromProviderAndStatusData } from 'reports/get-assessment-summary-model';
 import { DictionaryStringTo } from '../../../../../../types/common-types';
 
 describe('LeftNavBuilder', () => {

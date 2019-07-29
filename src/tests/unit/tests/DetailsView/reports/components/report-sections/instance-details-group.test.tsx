@@ -3,13 +3,13 @@
 import { shallow } from 'enzyme';
 import { FixInstructionProcessor } from 'injected/fix-instruction-processor';
 import * as React from 'react';
-import { RuleResult } from 'scanner/iruleresults';
-import { Mock } from 'typemoq';
 import {
     InstanceDetailsGroup,
     InstanceDetailsGroupDeps,
     InstanceDetailsGroupProps,
 } from 'reports/components/report-sections/instance-details-group';
+import { RuleResult } from 'scanner/iruleresults';
+import { Mock } from 'typemoq';
 
 describe('InstanceDetailsGroup', () => {
     it('renders', () => {
