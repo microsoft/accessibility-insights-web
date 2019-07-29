@@ -95,7 +95,7 @@ describe('AnalyzerProviderTests', () => {
         const analyzer = testObject.createFocusTrackingAnalyzer(config);
         const openAnalyzer = analyzer as any;
         expect(analyzer).toBeInstanceOf(BaseAnalyzer);
-        expect(openAnalyzer._windowUtils).toBeInstanceOf(WindowUtils);
+        expect(openAnalyzer.windowUtils).toBeInstanceOf(WindowUtils);
         expect(openAnalyzer.tabStopsListener).toEqual(tabStopsListener.object);
         expect(openAnalyzer.config).toEqual(config);
         expect(openAnalyzer.sendMessage).toEqual(sendMessageMock.object);

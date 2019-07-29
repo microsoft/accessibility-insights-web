@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { StorageAdapter } from './browser-adapters/storage-adapter';
+import { StorageAdapter } from '../common/browser-adapters/storage-adapter';
 import { InstallationData } from './installation-data';
 import { LocalStorageDataKeys } from './local-storage-data-keys';
 

@@ -20,12 +20,14 @@ import { FailureInstancePanelDetailsProps } from '../../../../../DetailsView/com
 import { GenericPanel } from '../../../../../DetailsView/components/generic-panel';
 
 describe('FailureInstancePanelControlTest', () => {
+    let addPathForValidationMock: IMock<(path) => void>;
     let addInstanceMock: IMock<(instanceData, test, step) => void>;
     let editInstanceMock: IMock<(instanceData, test, step, id) => void>;
 
     beforeEach(() => {
         addInstanceMock = Mock.ofInstance(() => {});
         editInstanceMock = Mock.ofInstance(() => {});
+        addPathForValidationMock = Mock.ofInstance(() => {});
     });
 
     test('render FailureInstancePanelControl: create without instance', () => {
@@ -39,6 +41,7 @@ describe('FailureInstancePanelControlTest', () => {
             step: 'missingHeadings',
             test: VisualizationType.HeadingsAssessment,
             addFailureInstance: addInstanceMock.object,
+            addPathForValidation: addPathForValidationMock.object,
             actionType: CapturedInstanceActionType.CREATE,
             assessmentsProvider: Assessments,
             featureFlagStoreData: null,
@@ -221,6 +224,7 @@ describe('FailureInstancePanelControlTest', () => {
             step: 'missingHeadings',
             test: VisualizationType.HeadingsAssessment,
             addFailureInstance: addInstanceMock.object,
+            addPathForValidation: addPathForValidationMock.object,
             actionType: actionType,
             assessmentsProvider: Assessments,
             featureFlagStoreData: featureData,

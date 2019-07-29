@@ -6,8 +6,8 @@ import { HTMLElementUtils } from '../common/html-element-utils';
 import { DetailsDialog } from './components/details-dialog';
 
 export class DetailsDialogHandler {
-    private _onDevToolChanged: () => void;
-    private _onUserConfigChanged: () => void;
+    private onDevToolChangedHandler: () => void;
+    private onUserConfigChangedHandler: () => void;
 
     constructor(private htmlElementUtils: HTMLElementUtils) {}
 
@@ -101,16 +101,16 @@ export class DetailsDialogHandler {
             return;
         }
 
-        this._onDevToolChanged = () => {
+        this.onDevToolChangedHandler = () => {
             this.onDevToolChanged(dialog);
         };
-        dialog.props.devToolStore.addChangedListener(this._onDevToolChanged);
+        dialog.props.devToolStore.addChangedListener(this.onDevToolChangedHandler);
         this.onDevToolChanged(dialog);
 
-        this._onUserConfigChanged = () => {
+        this.onUserConfigChangedHandler = () => {
             this.onUserConfigChanged(dialog);
         };
-        dialog.props.userConfigStore.addChangedListener(this._onUserConfigChanged);
+        dialog.props.userConfigStore.addChangedListener(this.onUserConfigChangedHandler);
         this.onUserConfigChanged(dialog);
 
         if (dialog.props.featureFlagStoreData[FeatureFlags.shadowDialog]) {
@@ -171,8 +171,8 @@ export class DetailsDialogHandler {
     }
 
     public componentWillUnmount = (dialog: DetailsDialog): void => {
-        dialog.props.devToolStore.removeChangedListener(this._onDevToolChanged);
-        dialog.props.userConfigStore.removeChangedListener(this._onUserConfigChanged);
+        dialog.props.devToolStore.removeChangedListener(this.onDevToolChangedHandler);
+        dialog.props.userConfigStore.removeChangedListener(this.onUserConfigChangedHandler);
     };
 
     private hasStore(dialog: DetailsDialog): boolean {

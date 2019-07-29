@@ -2,8 +2,8 @@
 // Licensed under the MIT License.
 import { IMock, It, Mock, Times } from 'typemoq';
 
-import { BrowserAdapter } from '../../../../background/browser-adapters/browser-adapter';
 import { DetailsViewController } from '../../../../background/details-view-controller';
+import { BrowserAdapter } from '../../../../common/browser-adapters/browser-adapter';
 
 describe('DetailsViewControllerTest', () => {
     let mockBrowserAdpater: IMock<BrowserAdapter>;

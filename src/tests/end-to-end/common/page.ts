@@ -7,13 +7,21 @@ import { forceTestFailure } from './force-test-failure';
 import { takeScreenshot } from './generate-screenshot';
 import { DEFAULT_NEW_PAGE_WAIT_TIMEOUT_MS, DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS } from './timeouts';
 
+export type PageOptions = {
+    onPageCrash?: () => void;
+};
+
 export class Page {
-    constructor(private readonly underlyingPage: Puppeteer.Page) {
+    constructor(private readonly underlyingPage: Puppeteer.Page, options?: PageOptions) {
         function forceEventFailure(eventDescription: string): void {
             forceTestFailure(`Puppeteer.Page '${underlyingPage.url()}' emitted ${eventDescription}`);
         }
 
         underlyingPage.on('error', error => {
+            if (error.stack && error.stack.includes('Page crashed!') && options && options.onPageCrash) {
+                options.onPageCrash();
+            }
+
             forceEventFailure(`'error' with stack: ${error.stack}`);
         });
         underlyingPage.on('pageerror', error => {
@@ -37,6 +45,26 @@ export class Page {
 
     public async goto(url: string): Promise<void> {
         await this.screenshotOnError(async () => await this.underlyingPage.goto(url, { timeout: DEFAULT_NEW_PAGE_WAIT_TIMEOUT_MS }));
+        await this.disableAnimations();
+    }
+
+    public async disableAnimations(): Promise<void> {
+        await this.underlyingPage.evaluate(() => {
+            function addDisableStyleToBody(): void {
+                const disableAnimationsStyleElement = document.createElement('style');
+                disableAnimationsStyleElement.type = 'text/css';
+                disableAnimationsStyleElement.innerHTML = `* {
+                    transition: none !important;
+                    animation: none !important;
+                }`;
+                document.body.appendChild(disableAnimationsStyleElement);
+            }
+            if (document.readyState !== 'loading') {
+                addDisableStyleToBody();
+            } else {
+                window.addEventListener('load', addDisableStyleToBody);
+            }
+        });
     }
 
     public async close(ignoreIfAlreadyClosed: boolean = false): Promise<void> {
@@ -147,9 +175,17 @@ export class Page {
     private async screenshotOnError<T>(fn: () => Promise<T>): Promise<T> {
         try {
             return await fn();
-        } catch (error) {
-            await takeScreenshot(this.underlyingPage);
-            throw error;
+        } catch (originalError) {
+            try {
+                await takeScreenshot(this.underlyingPage);
+            } catch (secondaryTakeScreenshotError) {
+                console.error(
+                    `screenshotOnError: Detected an error, and then *additionally* hit a second error while trying to take a screenshot of the page state after the first error.\n` +
+                        `screenshotOnError: The secondary error from taking the screenshot is: ${secondaryTakeScreenshotError.stack}\n` +
+                        `screenshotOnError: rethrowing the original error...`,
+                );
+            }
+            throw originalError;
         }
     }
 }

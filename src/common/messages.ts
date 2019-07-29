@@ -151,8 +151,8 @@ export class Messages {
         ResetFeatureFlag: `${messagePrefix}/featureFlags/reset`,
     };
 
-    public static readonly ChromeFeature = {
-        configureCommand: `${messagePrefix}/command/configureCommand`,
+    public static readonly Shortcuts = {
+        ConfigureShortcuts: `${messagePrefix}/command/configureShortcuts`,
     };
 
     public static readonly LaunchPanel = {
@@ -191,5 +191,10 @@ export class Messages {
 
     public static readonly IssueFiling = {
         FileIssue: `${messagePrefix}/issueFiling/file`,
+    };
+
+    public static readonly PathSnippet = {
+        AddPathForValidation: `${messagePrefix}/pathSnippet/addPathForValidation`,
+        AddCorrespondingSnippet: `${messagePrefix}/pathSnippet/addCorrespondingSnippet`,
     };
 }

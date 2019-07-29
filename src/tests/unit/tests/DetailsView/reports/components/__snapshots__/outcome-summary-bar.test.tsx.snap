@@ -14,8 +14,11 @@ exports[`OutcomeSummaryBar render inverted badges 1`] = `
     <span
       className="pass"
     >
-      <CheckIconInverted />
-       
+      <span
+        aria-hidden="true"
+      >
+        <CheckIconInverted />
+      </span>
       42
        
       <span
@@ -35,8 +38,11 @@ exports[`OutcomeSummaryBar render inverted badges 1`] = `
     <span
       className="fail"
     >
-      <CrossIconInverted />
-       
+      <span
+        aria-hidden="true"
+      >
+        <CrossIconInverted />
+      </span>
       13
        
       <span
@@ -56,8 +62,90 @@ exports[`OutcomeSummaryBar render inverted badges 1`] = `
     <span
       className="incomplete"
     >
-      <CircleIcon />
+      <span
+        aria-hidden="true"
+      >
+        <CircleIcon />
+      </span>
+      7
        
+      <span
+        className="outcome-past-tense"
+      >
+        Incomplete
+      </span>
+    </span>
+  </div>
+</div>
+`;
+
+exports[`OutcomeSummaryBar show by count 1`] = `
+<div
+  className="outcome-summary-bar"
+>
+  <div
+    style={
+      Object {
+        "flexGrow": 42,
+      }
+    }
+  >
+    <span
+      className="pass"
+    >
+      <span
+        aria-hidden="true"
+      >
+        <CheckIcon />
+      </span>
+      42
+       
+      <span
+        className="outcome-past-tense"
+      >
+        Passed
+      </span>
+    </span>
+  </div>
+  <div
+    style={
+      Object {
+        "flexGrow": 13,
+      }
+    }
+  >
+    <span
+      className="fail"
+    >
+      <span
+        aria-hidden="true"
+      >
+        <CrossIcon />
+      </span>
+      13
+       
+      <span
+        className="outcome-past-tense"
+      >
+        Failed
+      </span>
+    </span>
+  </div>
+  <div
+    style={
+      Object {
+        "flexGrow": 7,
+      }
+    }
+  >
+    <span
+      className="incomplete"
+    >
+      <span
+        aria-hidden="true"
+      >
+        <CircleIcon />
+      </span>
       7
        
       <span
@@ -84,8 +172,11 @@ exports[`OutcomeSummaryBar show by percentage 1`] = `
     <span
       className="pass"
     >
-      <CheckIcon />
-       
+      <span
+        aria-hidden="true"
+      >
+        <CheckIcon />
+      </span>
       42
       %
        
@@ -106,8 +197,11 @@ exports[`OutcomeSummaryBar show by percentage 1`] = `
     <span
       className="fail"
     >
-      <CrossIcon />
-       
+      <span
+        aria-hidden="true"
+      >
+        <CrossIcon />
+      </span>
       13
       %
        
@@ -128,80 +222,13 @@ exports[`OutcomeSummaryBar show by percentage 1`] = `
     <span
       className="incomplete"
     >
-      <CircleIcon />
-       
+      <span
+        aria-hidden="true"
+      >
+        <CircleIcon />
+      </span>
       7
       %
-       
-      <span
-        className="outcome-past-tense"
-      >
-        Incomplete
-      </span>
-    </span>
-  </div>
-</div>
-`;
-
-exports[`OutcomeSummaryBar show by percentage 2`] = `
-<div
-  className="outcome-summary-bar"
->
-  <div
-    style={
-      Object {
-        "flexGrow": 42,
-      }
-    }
-  >
-    <span
-      className="pass"
-    >
-      <CheckIcon />
-       
-      42
-       
-      <span
-        className="outcome-past-tense"
-      >
-        Passed
-      </span>
-    </span>
-  </div>
-  <div
-    style={
-      Object {
-        "flexGrow": 13,
-      }
-    }
-  >
-    <span
-      className="fail"
-    >
-      <CrossIcon />
-       
-      13
-       
-      <span
-        className="outcome-past-tense"
-      >
-        Failed
-      </span>
-    </span>
-  </div>
-  <div
-    style={
-      Object {
-        "flexGrow": 7,
-      }
-    }
-  >
-    <span
-      className="incomplete"
-    >
-      <CircleIcon />
-       
-      7
        
       <span
         className="outcome-past-tense"

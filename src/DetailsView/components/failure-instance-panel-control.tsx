@@ -20,6 +20,7 @@ import { GenericPanel, GenericPanelProps } from './generic-panel';
 export interface FailureInstancePanelControlProps {
     step: string;
     test: VisualizationType;
+    addPathForValidation: (path) => void;
     addFailureInstance?: (instanceData, test, step) => void;
     editFailureInstance?: (instanceData, test, step, id) => void;
     actionType: CapturedInstanceActionType;
@@ -178,6 +179,7 @@ export class FailureInstancePanelControl extends React.Component<FailureInstance
         const updatedInstance = clone(this.state.currentInstance);
         updatedInstance.snippet = currSnippet;
         this.setState({ currentInstance: updatedInstance });
+        this.props.addPathForValidation(this.state.currentInstance.path);
     };
 
     protected onAddFailureInstance = (): void => {

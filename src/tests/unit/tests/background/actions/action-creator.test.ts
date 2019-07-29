@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { forOwn } from 'lodash';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
+
 import { ActionCreator } from '../../../../../background/actions/action-creator';
 import { ActionHub } from '../../../../../background/actions/action-hub';
 import {
@@ -19,7 +20,6 @@ import { InspectActions } from '../../../../../background/actions/inspect-action
 import { ScopingActions } from '../../../../../background/actions/scoping-actions';
 import { VisualizationActions } from '../../../../../background/actions/visualization-actions';
 import { VisualizationScanResultActions } from '../../../../../background/actions/visualization-scan-result-actions';
-import { ChromeFeatureController } from '../../../../../background/chrome-feature-controller';
 import { DetailsViewController } from '../../../../../background/details-view-controller';
 import { ContentScriptInjector } from '../../../../../background/injector/content-script-injector';
 import { TargetTabController } from '../../../../../background/target-tab-controller';
@@ -29,7 +29,6 @@ import { Action } from '../../../../../common/flux/action';
 import { PayloadCallback } from '../../../../../common/message';
 import { Messages } from '../../../../../common/messages';
 import { NotificationCreator } from '../../../../../common/notification-creator';
-import * as TelemetryEvents from '../../../../../common/telemetry-events';
 import {
     BaseTelemetryData,
     DetailsViewOpenTelemetryData,
@@ -38,6 +37,7 @@ import {
     ToggleTelemetryData,
     TriggeredBy,
 } from '../../../../../common/telemetry-events';
+import * as TelemetryEvents from '../../../../../common/telemetry-events';
 import { DetailsViewPivotType } from '../../../../../common/types/details-view-pivot-type';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
 import { ScanCompletedPayload } from '../../../../../injected/analyzers/analyzer';
@@ -576,21 +576,6 @@ describe('ActionCreatorTest', () => {
         builder.verifyAll();
     });
 
-    test('test for open configureCommand tab', () => {
-        const tabId: number = 1;
-        const payload = { eventName: TelemetryEvents.SHORTCUT_CONFIGURE_OPEN, telemetry: {} };
-        const args = [payload, tabId];
-        const builder = new ActionCreatorValidator()
-            .setupRegistrationCallback(Messages.ChromeFeature.configureCommand, args)
-            .setupTelemetrySend(TelemetryEvents.SHORTCUT_CONFIGURE_OPEN, payload, tabId)
-            .setupChromeFeatureController();
-
-        const actionCreator = builder.buildActionCreator();
-        actionCreator.registerCallbacks();
-
-        builder.verifyAll();
-    });
-
     test('registerCallback for onDetailsViewSelected', () => {
         const viewType = VisualizationType.Issues;
         const pivotType = DetailsViewPivotType.allTest;
@@ -985,16 +970,13 @@ class ActionCreatorValidator {
         inspectActions: this.inspectActionsContainerMock.object,
         contentActions: null,
         detailsViewActions: this.detailsViewActionsContainerMock.object,
+        pathSnippetActions: null,
     };
 
     private telemetryEventHandlerStrictMock = Mock.ofType<TelemetryEventHandler>(null, MockBehavior.Strict);
     private notificationCreatorStrictMock = Mock.ofType<NotificationCreator>(null, MockBehavior.Strict);
     private targetTabControllerStrictMock = Mock.ofType<TargetTabController>(null, MockBehavior.Strict);
     private detailsViewControllerStrictMock: IMock<DetailsViewController> = Mock.ofType<DetailsViewController>(null, MockBehavior.Strict);
-    private chromeFeatureControllerStrictMock: IMock<ChromeFeatureController> = Mock.ofType<ChromeFeatureController>(
-        null,
-        MockBehavior.Strict,
-    );
 
     public setupSwithToTab(tabId: number): ActionCreatorValidator {
         this.switchToTabMock.setup(stt => stt(tabId)).verifiable(Times.once());
@@ -1182,7 +1164,6 @@ class ActionCreatorValidator {
             this.actionHubMock,
             this.registerCallbackMock.object,
             this.detailsViewControllerStrictMock.object,
-            this.chromeFeatureControllerStrictMock.object,
             this.telemetryEventHandlerStrictMock.object,
             this.notificationCreatorStrictMock.object,
             new VisualizationConfigurationFactory(),
@@ -1201,14 +1182,7 @@ class ActionCreatorValidator {
         this.registerCallbackMock.verifyAll();
         this.detailsViewControllerStrictMock.verifyAll();
         this.contentScriptInjectorStrictMock.verifyAll();
-        this.chromeFeatureControllerStrictMock.verifyAll();
         this.targetTabControllerStrictMock.verifyAll();
-    }
-
-    public setupChromeFeatureController(): ActionCreatorValidator {
-        this.chromeFeatureControllerStrictMock.setup(cfc => cfc.openCommandConfigureTab()).verifiable();
-
-        return this;
     }
 
     private verifyAllActionMocks(): void {
