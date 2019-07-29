@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { ColumnActionsMode, IColumn } from 'office-ui-fabric-react/lib/DetailsList';
 import * as React from 'react';
-import { AssessmentsProvider } from '../../assessments/types/assessments-provider';
+import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { AssessmentNavState } from '../../common/types/store-data/assessment-result-data';
 import { MasterCheckBoxConfigProvider } from '../handlers/master-checkbox-config-provider';
 import { AssessmentInstanceDetailsColumn } from './assessment-instance-details-column';

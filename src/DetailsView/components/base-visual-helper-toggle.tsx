@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import * as _ from 'lodash';
 import * as React from 'react';
-import { VisualHelperToggleConfig } from '../../assessments/types/requirement';
+import { VisualHelperToggleConfig } from 'assessments/types/requirement';
 import { VisualizationToggle } from '../../common/components/visualization-toggle';
 import { GeneratedAssessmentInstance } from '../../common/types/store-data/assessment-result-data';
 import { DictionaryStringTo } from '../../types/common-types';

@@ -4,7 +4,7 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 import { It, Mock, MockBehavior } from 'typemoq';
 
-import { AssessmentsProvider } from '../../../../../../assessments/types/assessments-provider';
+import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { NamedSFC, ReactSFCWithDisplayName } from '../../../../../../common/react/named-sfc';
 import { AssessmentData, AssessmentStoreData } from '../../../../../../common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from '../../../../../../common/types/store-data/feature-flag-store-data';

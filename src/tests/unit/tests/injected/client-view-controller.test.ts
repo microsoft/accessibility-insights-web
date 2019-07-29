@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
-import { AssessmentsProviderImpl } from '../../../../assessments/assessments-provider';
+import { AssessmentsProviderImpl } from 'assessments/assessments-provider';
 import { AssessmentDataConverter } from '../../../../background/assessment-data-converter';
 import { FeatureFlagStore } from '../../../../background/stores/global/feature-flag-store';
 import { TabStore } from '../../../../background/stores/tab-store';

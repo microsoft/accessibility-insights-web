@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { isFunction } from 'lodash';
 import { Mock } from 'typemoq';
-import { AnalyzerConfigurationFactory } from '../../../../../assessments/common/analyzer-configuration-factory';
+import { AnalyzerConfigurationFactory } from 'assessments/common/analyzer-configuration-factory';
 import { Messages } from '../../../../../common/messages';
 import { TelemetryDataFactory } from '../../../../../common/telemetry-data-factory';
 import { VisualizationType } from '../../../../../common/types/visualization-type';

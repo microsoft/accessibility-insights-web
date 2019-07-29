@@ -3,7 +3,7 @@
 import { ISelection } from 'office-ui-fabric-react/lib/DetailsList';
 import { Spinner, SpinnerSize } from 'office-ui-fabric-react/lib/Spinner';
 import * as React from 'react';
-import * as Markup from '../../assessments/markup';
+import * as Markup from 'assessments/markup';
 import { VisualizationToggle } from '../../common/components/visualization-toggle';
 import { VisualizationConfiguration } from '../../common/configs/visualization-configuration';
 import { VisualizationConfigurationFactory } from '../../common/configs/visualization-configuration-factory';

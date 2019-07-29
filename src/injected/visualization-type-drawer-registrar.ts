@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { AssessmentsProvider } from '../assessments/types/assessments-provider';
+import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
 import { VisualizationType } from '../common/types/visualization-type';
 import { Drawer } from './visualization/drawer';

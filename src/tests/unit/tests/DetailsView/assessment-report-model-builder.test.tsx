@@ -8,10 +8,10 @@ import {
     DefaultMessageInterface,
     IGetMessageGenerator,
     IMessageGenerator,
-} from '../../../../assessments/assessment-default-message-generator';
-import { AssessmentsProviderImpl } from '../../../../assessments/assessments-provider';
-import { AssessmentsProvider } from '../../../../assessments/types/assessments-provider';
-import { Assessment } from '../../../../assessments/types/iassessment';
+} from 'assessments/assessment-default-message-generator';
+import { AssessmentsProviderImpl } from 'assessments/assessments-provider';
+import { AssessmentsProvider } from 'assessments/types/assessments-provider';
+import { Assessment } from 'assessments/types/iassessment';
 import { AssessmentStoreData } from '../../../../common/types/store-data/assessment-result-data';
 import { TabStoreData } from '../../../../common/types/store-data/tab-store-data';
 import { AssessmentReportModelBuilder } from '../../../../DetailsView/reports/assessment-report-model-builder';

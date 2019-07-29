@@ -7,7 +7,7 @@ import { HeadingsAdHocVisualization } from '../../ad-hoc-visualizations/headings
 import { IssuesAdHocVisualization } from '../../ad-hoc-visualizations/issues/visualization';
 import { LandmarksAdHocVisualization } from '../../ad-hoc-visualizations/landmarks/visualization';
 import { TabStopsAdHocVisualization } from '../../ad-hoc-visualizations/tab-stops/visualization';
-import { Assessments } from '../../assessments/assessments';
+import { Assessments } from 'assessments/assessments';
 import { DictionaryNumberTo, DictionaryStringTo } from '../../types/common-types';
 import { EnumHelper } from '../enum-helper';
 import { VisualizationType } from '../types/visualization-type';

@@ -3,8 +3,8 @@
 import { IColumn } from 'office-ui-fabric-react/lib/DetailsList';
 import * as React from 'react';
 
-import { AssessmentsProviderImpl } from '../../../assessments/assessments-provider';
-import { Assessment } from '../../../assessments/types/iassessment';
+import { AssessmentsProviderImpl } from 'assessments/assessments-provider';
+import { Assessment } from 'assessments/types/iassessment';
 import { RequirementComparer } from '../../../common/assessment/requirement-comparer';
 import { AssesssmentVisualizationConfiguration } from '../../../common/configs/assesssment-visualization-configuration';
 import { FeatureFlags } from '../../../common/feature-flags';
