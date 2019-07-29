@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IMock, Mock, MockBehavior } from 'typemoq';
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
+import { IMock, Mock, MockBehavior } from 'typemoq';
 import { AssessmentStore } from '../../../../background/stores/assessment-store';
 import { VisualizationScanResultStore } from '../../../../background/stores/visualization-scan-result-store';
 import { BaseStore } from '../../../../common/base-store';

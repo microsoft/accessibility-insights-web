@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { It, Mock, MockBehavior } from 'typemoq';
 import { AssessmentsProviderImpl } from 'assessments/assessments-provider';
+import { It, Mock, MockBehavior } from 'typemoq';
 import { AssessmentDataConverter } from '../../../../background/assessment-data-converter';
 import { ScopingInputTypes } from '../../../../background/scoping-input-types';
 import { AssessmentStore } from '../../../../background/stores/assessment-store';
