@@ -3,20 +3,20 @@
 import { launchBrowser } from '../../common/browser-factory';
 import { fastPassSelectors } from '../../common/element-identifiers/common-selectors';
 import { popupPageElementIdentifiers } from '../../common/element-identifiers/popup-page-element-identifiers';
-import { Page } from '../../common/page';
-import { TargetPageController } from '../../common/target-page-controller';
-import { DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS } from '../../common/timeouts';
+import { Page } from '../../common/page-controllers/page';
+import { TargetPage } from '../../common/page-controllers/target-page';
 import { Browser } from './../../common/browser';
+import { DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS } from './../../common/timeouts';
 
 describe('Tabstop tests', () => {
     describe('tabstop from fastpass', () => {
         let browser: Browser;
-        let targetPage: TargetPageController;
+        let targetPage: TargetPage;
         let fastPassPage: Page;
 
         beforeAll(async () => {
             browser = await launchBrowser({ suppressFirstTimeDialog: true });
-            targetPage = await browser.setupNewTargetPage();
+            targetPage = await browser.newTargetPage();
             fastPassPage = await gotoFastPass(browser, targetPage.tabId);
         });
 
@@ -28,26 +28,25 @@ describe('Tabstop tests', () => {
 
         test('if visualHelper is turned on after starting tabstop and pressing tabs on target page', async () => {
             const toggleAriaLabel = 'Tab stops';
-            const { page: activeTargetPage } = targetPage;
 
             await goToTabStopTest();
             await enableToggleByAriaLabel(toggleAriaLabel);
 
-            await activeTargetPage.bringToFront();
+            await targetPage.bringToFront();
 
             // press tabs 3 times. todo: DRY this code
-            await activeTargetPage.keyPress('Tab');
-            await activeTargetPage.keyPress('Tab');
-            await activeTargetPage.keyPress('Tab');
+            await targetPage.keyPress('Tab');
+            await targetPage.keyPress('Tab');
+            await targetPage.keyPress('Tab');
 
             expect(await targetPage.getShadowRootHtmlSnapshot()).toMatchSnapshot();
         });
 
         async function gotoFastPass(browserLocal: Browser, targetTabId: number): Promise<Page> {
-            const popupPage = await browserLocal.newExtensionPopupPage(targetTabId);
+            const popupPage = await browserLocal.newPopupPage(targetPage);
             let fastPass: Page;
             await Promise.all([
-                browserLocal.waitForPageMatchingUrl(await browserLocal.getDetailsViewPageUrl(targetTabId)).then(page => (fastPass = page)),
+                browserLocal.waitForDetailsViewPage(targetPage).then(page => (fastPass = page)),
                 popupPage.clickSelector(popupPageElementIdentifiers.fastPass),
             ]);
 
