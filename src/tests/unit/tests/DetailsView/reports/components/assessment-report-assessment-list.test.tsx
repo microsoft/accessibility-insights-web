@@ -3,7 +3,7 @@
 import * as Enzyme from 'enzyme';
 import * as React from 'react';
 
-import { ManualTestStatus } from '../../../../../../common/types/manual-test-status';
+import { ManualTestStatus } from 'common/types/manual-test-status';
 import { AssessmentDetailsReportModel } from '../../../../../../DetailsView/reports/assessment-report-model';
 import {
     AssessmentReportAssessmentList,

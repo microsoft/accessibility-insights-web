@@ -1,8 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { NamedSFC } from 'common/react/named-sfc';
+import { title } from 'content/strings/application';
 import * as React from 'react';
-import { NamedSFC } from '../../../common/react/named-sfc';
-import { title } from '../../../content/strings/application';
+
 import * as reportStyles from '../automated-checks-report.styles';
 
 export const ReportHead = NamedSFC('ReportHead', () => {
