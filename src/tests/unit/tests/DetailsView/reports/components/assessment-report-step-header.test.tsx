@@ -7,10 +7,7 @@ import { Mock } from 'typemoq';
 import { GetGuidanceTagsFromGuidanceLinks } from 'common/get-guidance-tags-from-guidance-links';
 import { ManualTestStatus } from 'common/types/manual-test-status';
 import { RequirementHeaderReportModel, RequirementType } from 'reports/assessment-report-model';
-import {
-    AssessmentReportStepHeader,
-    AssessmentReportStepHeaderDeps,
-} from 'reports/components/assessment-report-step-header';
+import { AssessmentReportStepHeader, AssessmentReportStepHeaderDeps } from 'reports/components/assessment-report-step-header';
 import { OutcomeChip } from 'reports/components/outcome-chip';
 import { RequirementOutcomeType } from 'reports/components/requirement-outcome-type';
 

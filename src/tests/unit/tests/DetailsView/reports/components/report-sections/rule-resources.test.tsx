@@ -3,11 +3,7 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-import {
-    RuleResources,
-    RuleResourcesDeps,
-    RuleResourcesProps,
-} from 'reports/components/report-sections/rule-resources';
+import { RuleResources, RuleResourcesDeps, RuleResourcesProps } from 'reports/components/report-sections/rule-resources';
 import { RuleResult } from 'scanner/iruleresults';
 
 describe('RuleResources', () => {

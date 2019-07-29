@@ -3,10 +3,7 @@
 import { shallow } from 'enzyme';
 import { FixInstructionProcessor } from 'injected/fix-instruction-processor';
 import * as React from 'react';
-import {
-    RulesWithInstances,
-    RulesWithInstancesDeps,
-} from 'reports/components/report-sections/rules-with-instances';
+import { RulesWithInstances, RulesWithInstancesDeps } from 'reports/components/report-sections/rules-with-instances';
 import { RuleResult } from 'scanner/iruleresults';
 import { IMock, Mock } from 'typemoq';
 

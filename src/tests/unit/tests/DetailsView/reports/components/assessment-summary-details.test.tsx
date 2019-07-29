@@ -2,10 +2,7 @@
 // Licensed under the MIT License.
 import { shallow } from 'enzyme';
 import * as React from 'react';
-import {
-    AssessmentSummaryDetails,
-    AssessmentSummaryDetailsProps,
-} from 'reports/components/assessment-summary-details';
+import { AssessmentSummaryDetails, AssessmentSummaryDetailsProps } from 'reports/components/assessment-summary-details';
 import { AssessmentReportBuilderTestHelper } from '../../assessment-report-builder-test-helper';
 
 describe('AssessmentSummaryDetails', () => {

@@ -7,10 +7,7 @@ import { TabStoreData } from 'common/types/store-data/tab-store-data';
 import * as React from 'react';
 import { It, Mock, MockBehavior } from 'typemoq';
 
-import {
-    AssessmentReportHtmlGenerator,
-    AssessmentReportHtmlGeneratorDeps,
-} from 'reports/assessment-report-html-generator';
+import { AssessmentReportHtmlGenerator, AssessmentReportHtmlGeneratorDeps } from 'reports/assessment-report-html-generator';
 import { ReportModel } from 'reports/assessment-report-model';
 import { AssessmentReportModelBuilder } from 'reports/assessment-report-model-builder';
 import { AssessmentReportModelBuilderFactory } from 'reports/assessment-report-model-builder-factory';

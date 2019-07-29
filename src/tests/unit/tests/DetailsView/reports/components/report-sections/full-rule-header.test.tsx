@@ -3,11 +3,7 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import { allInstanceOutcomeTypes } from 'reports/components/instance-outcome-type';
-import {
-    FullRuleHeader,
-    FullRuleHeaderDeps,
-    FullRuleHeaderProps,
-} from 'reports/components/report-sections/full-rule-header';
+import { FullRuleHeader, FullRuleHeaderDeps, FullRuleHeaderProps } from 'reports/components/report-sections/full-rule-header';
 import { RuleResult } from 'scanner/iruleresults';
 
 describe('FullRuleHeader', () => {

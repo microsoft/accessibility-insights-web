@@ -4,10 +4,7 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 
 import { GetGuidanceTagsFromGuidanceLinks } from 'common/get-guidance-tags-from-guidance-links';
-import {
-    PassedChecksSection,
-    PassedChecksSectionProps,
-} from 'reports/components/report-sections/passed-checks-section';
+import { PassedChecksSection, PassedChecksSectionProps } from 'reports/components/report-sections/passed-checks-section';
 import { RuleResult } from 'scanner/iruleresults';
 
 describe('PassedChecksSection', () => {

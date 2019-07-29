@@ -7,10 +7,7 @@ import { Mock } from 'typemoq';
 import { NamedSFC } from 'common/react/named-sfc';
 import { FixInstructionProcessor } from 'injected/fix-instruction-processor';
 import { ReportBody, ReportBodyProps } from 'reports/components/report-sections/report-body';
-import {
-    ReportSectionFactory,
-    SectionProps,
-} from 'reports/components/report-sections/report-section-factory';
+import { ReportSectionFactory, SectionProps } from 'reports/components/report-sections/report-section-factory';
 
 describe('ReportBody', () => {
     it('renders', () => {

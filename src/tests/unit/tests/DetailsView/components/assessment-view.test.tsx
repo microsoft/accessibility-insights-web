@@ -4,10 +4,7 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 import { IMock, It, Mock, Times } from 'typemoq';
 
-import {
-    outcomeTypeFromTestStatus,
-    outcomeTypeSemanticsFromTestStatus,
-} from 'reports/components/requirement-outcome-type';
+import { outcomeTypeFromTestStatus, outcomeTypeSemanticsFromTestStatus } from 'reports/components/requirement-outcome-type';
 import { AssessmentDefaultMessageGenerator } from '../../../../../assessments/assessment-default-message-generator';
 import { AssessmentsProvider } from '../../../../../assessments/types/assessments-provider';
 import { AssessmentTestResult } from '../../../../../common/assessment/assessment-test-result';
