@@ -1,13 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { AssessmentDefaultMessageGenerator, DefaultMessageInterface } from 'assessments/assessment-default-message-generator';
+import { AssessmentsProvider } from 'assessments/types/assessments-provider';
+import { Assessment } from 'assessments/types/iassessment';
+import { ManualTestStatus } from 'common/types/manual-test-status';
+import { AssessmentData, AssessmentStoreData, TestStepInstance } from 'common/types/store-data/assessment-result-data';
+import { TabStoreData } from 'common/types/store-data/tab-store-data';
 import * as _ from 'lodash';
 
-import { AssessmentDefaultMessageGenerator, DefaultMessageInterface } from '../../assessments/assessment-default-message-generator';
-import { AssessmentsProvider } from '../../assessments/types/assessments-provider';
-import { Assessment } from '../../assessments/types/iassessment';
-import { ManualTestStatus } from '../../common/types/manual-test-status';
-import { AssessmentData, AssessmentStoreData, TestStepInstance } from '../../common/types/store-data/assessment-result-data';
-import { TabStoreData } from '../../common/types/store-data/tab-store-data';
 import { assessmentReportExtensionPoint } from '../extensions/assessment-report-extension-point';
 import {
     AssessmentDetailsReportModel,

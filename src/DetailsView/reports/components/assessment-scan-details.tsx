@@ -1,11 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { NewTabLink } from 'common/components/new-tab-link';
+import { CommentIcon } from 'common/icons/comment-icon';
+import { DateIcon } from 'common/icons/date-icon';
+import { UrlIcon } from 'common/icons/url-icon';
 import * as React from 'react';
 
-import { NewTabLink } from '../../../common/components/new-tab-link';
-import { CommentIcon } from '../../../common/icons/comment-icon';
-import { DateIcon } from '../../../common/icons/date-icon';
-import { UrlIcon } from '../../../common/icons/url-icon';
 import { ScanDetailsReportModel } from '../assessment-report-model';
 import { FormattedDate } from './formatted-date';
 

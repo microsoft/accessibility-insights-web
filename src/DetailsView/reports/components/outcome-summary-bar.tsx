@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { NamedSFC } from 'common/react/named-sfc';
 import { kebabCase } from 'lodash';
 import * as React from 'react';
 
-import { NamedSFC } from '../../../common/react/named-sfc';
 import { outcomeIconMap, outcomeIconMapInverted, OutcomeStats, OutcomeType, outcomeTypeSemantics } from './outcome-type';
 
 export type OutcomeSummaryBarProps = {

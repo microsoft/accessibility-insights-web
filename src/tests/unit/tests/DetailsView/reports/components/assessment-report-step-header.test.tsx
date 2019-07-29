@@ -4,8 +4,8 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 import { Mock } from 'typemoq';
 
-import { GetGuidanceTagsFromGuidanceLinks } from '../../../../../../common/get-guidance-tags-from-guidance-links';
-import { ManualTestStatus } from '../../../../../../common/types/manual-test-status';
+import { GetGuidanceTagsFromGuidanceLinks } from 'common/get-guidance-tags-from-guidance-links';
+import { ManualTestStatus } from 'common/types/manual-test-status';
 import { RequirementHeaderReportModel, RequirementType } from '../../../../../../DetailsView/reports/assessment-report-model';
 import {
     AssessmentReportStepHeader,
