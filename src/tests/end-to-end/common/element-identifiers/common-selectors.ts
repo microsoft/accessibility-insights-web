@@ -7,15 +7,6 @@ export const CommonSelectors = {
     highContrastThemeSelector: 'body.high-contrast-theme',
 };
 
-export const DetailsViewCommonSelectors = {
-    gearButton: '.gear-options-icon',
-    settingsButton: 'button[name="Settings"]',
-    highContrastToggle: 'button#enable-high-contrast-mode',
-};
-
 export const GuidanceContentSelectors = {
     mainContentContainer: '.content-container',
-    detailsContent: '.details-content',
-    assessmentInstanceText: '.assessment-instance-textContent',
-    headingsNav: 'a[title="5: Headings (Incomplete)"]',
 };

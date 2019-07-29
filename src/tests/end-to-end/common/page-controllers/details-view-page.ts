@@ -1,7 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as Puppeteer from 'puppeteer';
-import { CommonSelectors, DetailsViewCommonSelectors } from '../element-identifiers/common-selectors';
+import { CommonSelectors } from '../element-identifiers/common-selectors';
+import { detailsViewSelectors } from '../element-identifiers/details-view-selectors';
 import { Page, PageOptions } from './page';
 
 export class DetailsViewPage extends Page {
@@ -20,14 +21,14 @@ export class DetailsViewPage extends Page {
     }
 
     public async openSettingsPanel(): Promise<void> {
-        await this.clickSelector(DetailsViewCommonSelectors.gearButton);
-        await this.clickSelector(DetailsViewCommonSelectors.settingsButton);
+        await this.clickSelector(detailsViewSelectors.gearButton);
+        await this.clickSelector(detailsViewSelectors.settingsButton);
     }
 
     public async enableHighContrast(): Promise<void> {
         await this.openSettingsPanel();
 
-        await this.clickSelector(DetailsViewCommonSelectors.highContrastToggle);
+        await this.clickSelector(detailsViewSelectors.highContrastToggle);
         await this.waitForSelector(CommonSelectors.highContrastThemeSelector);
         await this.keyPress('Escape');
     }

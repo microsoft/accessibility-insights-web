@@ -2,11 +2,11 @@
 // Licensed under the MIT License.
 import { Browser } from '../../common/browser';
 import { launchBrowser } from '../../common/browser-factory';
-import { GuidanceContentSelectors } from '../../common/element-identifiers/common-selectors';
 import { detailsViewSelectors } from '../../common/element-identifiers/details-view-selectors';
 import { DetailsViewPage } from '../../common/page-controllers/details-view-page';
 import { TargetPage } from '../../common/page-controllers/target-page';
 import { scanForAccessibilityIssues } from '../../common/scan-for-accessibility-issues';
+import { DEFAULT_TARGET_PAGE_SCAN_TIMEOUT_MS } from '../../common/timeouts';
 
 describe('Headings Page', () => {
     describe('Normal mode', () => {
@@ -28,7 +28,7 @@ describe('Headings Page', () => {
         });
 
         it('should pass accessibility validation', async () => {
-            const results = await scanForAccessibilityIssues(headingsPage, GuidanceContentSelectors.detailsContent);
+            const results = await scanForAccessibilityIssues(headingsPage, detailsViewSelectors.mainContent);
             expect(results).toHaveLength(0);
         });
     });
@@ -53,7 +53,7 @@ describe('Headings Page', () => {
         });
 
         it('should pass accessibility validation', async () => {
-            const results = await scanForAccessibilityIssues(headingsPage, GuidanceContentSelectors.detailsContent);
+            const results = await scanForAccessibilityIssues(headingsPage, detailsViewSelectors.mainContent);
             expect(results).toHaveLength(0);
         });
     });
@@ -62,10 +62,12 @@ describe('Headings Page', () => {
         const detailsViewPage = await browser.newDetailsViewPage(targetPage);
         await detailsViewPage.switchToAssessment();
 
-        await detailsViewPage.waitForSelector(detailsViewSelectors.testNavArea);
+        await detailsViewPage.clickSelector(detailsViewSelectors.testNavLink('Headings'));
 
-        await detailsViewPage.clickSelector(GuidanceContentSelectors.headingsNav);
-        await detailsViewPage.waitForSelector(GuidanceContentSelectors.assessmentInstanceText);
+        // Populating the instance table requires scanning the target page
+        await detailsViewPage.waitForSelector(detailsViewSelectors.instanceTableTextContent, {
+            timeout: DEFAULT_TARGET_PAGE_SCAN_TIMEOUT_MS,
+        });
 
         return detailsViewPage;
     }
