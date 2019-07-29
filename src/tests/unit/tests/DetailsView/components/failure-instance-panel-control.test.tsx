@@ -91,13 +91,12 @@ describe('FailureInstancePanelControlTest', () => {
     });
 
     test('onValidateSelector ', () => {
-        const path = 'some selector';
         const eventStub = null;
         const props = createPropsWithType(CapturedInstanceActionType.CREATE);
 
         const failureInstance = {
             failureDescription: 'new text',
-            path: path,
+            path: 'some selector',
             snippet: null,
         };
 
@@ -144,6 +143,7 @@ describe('FailureInstancePanelControlTest', () => {
         const description = 'description';
         const props = createPropsWithType(CapturedInstanceActionType.CREATE);
         const wrapper = shallow<FailureInstancePanelControl>(<FailureInstancePanelControl {...props} />);
+
         wrapper
             .find(TextField)
             .props()
@@ -154,13 +154,12 @@ describe('FailureInstancePanelControlTest', () => {
             .props()
             .onDismiss();
 
-        clearPathSnippetDataMock.setup(handler => handler()).verifiable(Times.once());
         expect(wrapper.state().isPanelOpen).toBe(false);
 
         // This shouldn't be cleared because it stays briefly visible as the panel close animation happens
         expect(wrapper.state().currentInstance.failureDescription).toEqual(description);
 
-        clearPathSnippetDataMock.verifyAll();
+        clearPathSnippetDataMock.verify(handler => handler(), Times.once());
     });
 
     test('onSaveEditedFailureInstance', () => {
@@ -188,14 +187,13 @@ describe('FailureInstancePanelControlTest', () => {
             .props()
             .primaryButtonOnClick(null);
 
-        clearPathSnippetDataMock.setup(handler => handler()).verifiable(Times.once());
         expect(wrapper.state().isPanelOpen).toBe(false);
 
         // This shouldn't be cleared because it stays briefly visible as the panel close animation happens
         expect(wrapper.state().currentInstance.failureDescription).toEqual(description);
 
         editInstanceMock.verifyAll();
-        clearPathSnippetDataMock.verifyAll();
+        clearPathSnippetDataMock.verify(handler => handler(), Times.once());
     });
 
     test('onAddFailureInstance', () => {
@@ -209,8 +207,8 @@ describe('FailureInstancePanelControlTest', () => {
         };
 
         addInstanceMock.setup(handler => handler(instanceData, props.test, props.step)).verifiable(Times.once());
-        const wrapper = shallow<FailureInstancePanelControl>(<FailureInstancePanelControl {...props} />);
 
+        const wrapper = shallow<FailureInstancePanelControl>(<FailureInstancePanelControl {...props} />);
         wrapper
             .find(TextField)
             .props()
@@ -220,14 +218,13 @@ describe('FailureInstancePanelControlTest', () => {
             .props()
             .primaryButtonOnClick(null);
 
-        clearPathSnippetDataMock.setup(handler => handler()).verifiable(Times.once());
         expect(wrapper.state().isPanelOpen).toBe(false);
 
         // This shouldn't be cleared because it stays briefly visible as the panel close animation happens
         expect(wrapper.state().currentInstance.failureDescription).toEqual(description);
 
         addInstanceMock.verifyAll();
-        clearPathSnippetDataMock.verifyAll();
+        clearPathSnippetDataMock.verify(handler => handler(), Times.once());
     });
 
     test('componentDidUpdate reassigns state', () => {

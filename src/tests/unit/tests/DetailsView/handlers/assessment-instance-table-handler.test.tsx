@@ -163,7 +163,7 @@ describe('AssessmentInstanceTableHandlerTest', () => {
         expect(expectedRows).toEqual(rows);
     });
 
-    test('createCapturedInstanceTableItems withoutPathSnippetStoreData', () => {
+    test('createCapturedInstanceTableItems without PathSnippetStoreData', () => {
         const instance: UserCapturedInstance = {
             id: '1',
             description: 'des',
@@ -278,14 +278,17 @@ describe('AssessmentInstanceTableHandlerTest', () => {
 
     test('addPathForValidation', () => {
         const path = 'test path';
-
         actionMessageCreatorMock.setup(a => a.addPathForValidation(path)).verifiable(Times.once());
         testSubject.addPathForValidation(path);
+
+        actionMessageCreatorMock.verifyAll();
     });
 
     test('clearPathSnippetData', () => {
         actionMessageCreatorMock.setup(a => a.clearPathSnippetData()).verifiable(Times.once());
         testSubject.clearPathSnippetData();
+
+        actionMessageCreatorMock.verifyAll();
     });
 
     test('addFailureInstance', () => {
@@ -300,6 +303,8 @@ describe('AssessmentInstanceTableHandlerTest', () => {
         actionMessageCreatorMock.setup(a => a.addFailureInstance(instanceData, test, requirement)).verifiable(Times.once());
 
         testSubject.addFailureInstance(instanceData, test, requirement);
+
+        actionMessageCreatorMock.verifyAll();
     });
 
     test('passUnmarkedInstances', () => {
@@ -308,12 +313,16 @@ describe('AssessmentInstanceTableHandlerTest', () => {
         actionMessageCreatorMock.setup(a => a.passUnmarkedInstances(test, requirement)).verifiable(Times.once());
 
         testSubject.passUnmarkedInstances(test, requirement);
+
+        actionMessageCreatorMock.verifyAll();
     });
 
     test('updateFocusedInstance', () => {
         const targetStub = ['target'];
         actionMessageCreatorMock.setup(a => a.updateFocusedInstanceTarget(targetStub)).verifiable(Times.once());
         testSubject.updateFocusedTarget(targetStub);
+
+        actionMessageCreatorMock.verifyAll();
     });
 
     test('renderSelectedButton should trigger addOneInstance', () => {
