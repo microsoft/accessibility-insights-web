@@ -1,13 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-@import '../../common/styles/common.scss';
-@import '../../views/content/content.scss';
-@import '../../DetailsView/reports/components/outcome.scss';
-@import '../../DetailsView/reports/components/assessment-report-header.scss';
-@import '../../DetailsView/reports/components/assessment-report-summary.scss';
-@import '../../DetailsView/reports/components/assessment-summary-details.scss';
-@import '../../common/components/toast.scss';
 @import '../../common/components//guidance-tags.scss';
+@import '../../common/components/toast.scss';
+@import '../../common/styles/common.scss';
+@import '../../reports//components//outcome.scss';
+@import '../../reports/components/assessment-report-header.scss';
+@import '../../reports/components/assessment-report-summary.scss';
+@import '../../reports/components/assessment-summary-details.scss';
+@import '../../views/content/content.scss';
 
 body {
     margin: 0;
