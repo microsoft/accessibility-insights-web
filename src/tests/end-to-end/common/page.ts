@@ -116,6 +116,10 @@ export class Page {
         return this.waitForSelector(`#${id}`);
     }
 
+    public async waitForDuration(duration: number): Promise<void> {
+        await this.underlyingPage.waitFor(duration);
+    }
+
     public async getShadowRootOfSelector(selector: string): Promise<Puppeteer.ElementHandle<Element>> {
         return await this.screenshotOnError(async () =>
             (await this.underlyingPage.evaluateHandle(
