@@ -2,8 +2,8 @@
 // Licensed under the MIT License.
 import { shallow } from 'enzyme';
 import * as React from 'react';
+import { RuleResult } from 'scanner/iruleresults';
 import { RulesOnly, RulesOnlyDeps } from '../../../../../../../DetailsView/reports/components/report-sections/rules-only';
-import { RuleResult } from '../../../../../../../scanner/iruleresults';
 
 describe('RulesOnly', () => {
     const depsStub = {} as RulesOnlyDeps;

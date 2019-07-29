@@ -1,14 +1,14 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { shallow } from 'enzyme';
+import { FixInstructionProcessor } from 'injected/fix-instruction-processor';
 import * as React from 'react';
+import { RuleResult } from 'scanner/iruleresults';
 import { IMock, Mock } from 'typemoq';
 import {
     RulesWithInstances,
     RulesWithInstancesDeps,
 } from '../../../../../../../DetailsView/reports/components/report-sections/rules-with-instances';
-import { FixInstructionProcessor } from '../../../../../../../injected/fix-instruction-processor';
-import { RuleResult } from '../../../../../../../scanner/iruleresults';
 
 describe('RulesWithInstances', () => {
     let fixInstructionProcessorMock: IMock<FixInstructionProcessor>;
