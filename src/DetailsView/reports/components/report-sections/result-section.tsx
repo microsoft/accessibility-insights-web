@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as React from 'react';
 import { NamedSFC } from 'common/react/named-sfc';
+import * as React from 'react';
 import { ResultSectionContent, ResultSectionContentDeps, ResultSectionContentProps } from './result-section-content';
 import { ResultSectionTitle, ResultSectionTitleProps } from './result-section-title';
 
