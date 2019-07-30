@@ -6,7 +6,7 @@ import { PopupPage } from '../../common/page-controllers/popup-page';
 import { TargetPage } from '../../common/page-controllers/target-page';
 import { scanForAccessibilityIssues } from '../../common/scan-for-accessibility-issues';
 
-describe('Target Page', () => {
+describe('Target Page issue dialog', () => {
     let browser: Browser;
     let targetPage: TargetPage;
     let popupPage: PopupPage;
@@ -24,17 +24,15 @@ describe('Target Page', () => {
         }
     });
 
-    describe('issue dialog', () => {
-        it('should pass accessibility validation', async () => {
-            await popupPage.gotoAdhocPanel();
-            await popupPage.enableToggleByAriaLabel('Automated checks');
+    it('should pass accessibility validation', async () => {
+        await popupPage.gotoAdhocPanel();
+        await popupPage.enableToggleByAriaLabel('Automated checks');
 
-            const shadowRoot = await targetPage.getShadowRoot();
-            const issueHighlightLabel = await shadowRoot.$('.failure-label');
-            await issueHighlightLabel.click();
+        const shadowRoot = await targetPage.getShadowRoot();
+        const issueHighlightLabel = await shadowRoot.$('.failure-label');
+        await issueHighlightLabel.click();
 
-            const results = await scanForAccessibilityIssues(targetPage, '#accessibility-insights-root-container');
-            expect(results).toHaveLength(0);
-        });
+        const results = await scanForAccessibilityIssues(targetPage, '#accessibility-insights-root-container');
+        expect(results).toHaveLength(0);
     });
 });
