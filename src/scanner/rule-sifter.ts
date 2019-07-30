@@ -2,8 +2,8 @@
 // Licensed under the MIT License.
 import { isEmpty } from 'lodash';
 
+import { HyperlinkDefinition } from 'views/content/content-page';
 import { DictionaryStringTo } from '../types/common-types';
-import { HyperlinkDefinition } from '../views/content/content-page';
 
 export interface RuleInfo {
     id: string;

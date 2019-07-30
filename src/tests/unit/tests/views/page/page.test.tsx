@@ -3,7 +3,7 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-import { Page, PageDeps } from '../../../../../views/page/page';
+import { Page, PageDeps } from 'views/page/page';
 
 describe('page view', () => {
     it('renders', () => {

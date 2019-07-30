@@ -2,8 +2,8 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
+import { HyperlinkDefinition } from 'views/content/content-page';
 import { NamedSFC } from '../../../common/react/named-sfc';
-import { HyperlinkDefinition } from '../../../views/content/content-page';
 import { HelpLinks, HelpLinksDeps } from './help-links';
 
 export type OverviewHelpSectionDeps = HelpLinksDeps;

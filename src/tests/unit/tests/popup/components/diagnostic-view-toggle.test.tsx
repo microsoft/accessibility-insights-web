@@ -6,6 +6,8 @@ import * as React from 'react';
 import * as TestUtils from 'react-dom/test-utils';
 import { IMock, It, Mock, Times } from 'typemoq';
 
+import { ContentLinkDeps } from 'views/content/content-link';
+import { ContentProvider } from 'views/content/content-page';
 import { VisualizationToggle } from '../../../../../common/components/visualization-toggle';
 import { VisualizationConfiguration } from '../../../../../common/configs/visualization-configuration';
 import { VisualizationConfigurationFactory } from '../../../../../common/configs/visualization-configuration-factory';
@@ -17,8 +19,6 @@ import { PopupActionMessageCreator } from '../../../../../popup/actions/popup-ac
 import { DiagnosticViewToggle, DiagnosticViewToggleProps } from '../../../../../popup/components/diagnostic-view-toggle';
 import { DiagnosticViewClickHandler } from '../../../../../popup/handlers/diagnostic-view-toggle-click-handler';
 import { DictionaryStringTo } from '../../../../../types/common-types';
-import { ContentLinkDeps } from '../../../../../views/content/content-link';
-import { ContentProvider } from '../../../../../views/content/content-page';
 import { EventStubFactory } from '../../../common/event-stub-factory';
 import { ShortcutCommandsTestData } from '../../../common/sample-test-data';
 import { VisualizationStoreDataBuilder } from '../../../common/visualization-store-data-builder';

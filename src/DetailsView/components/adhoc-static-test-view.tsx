@@ -2,12 +2,12 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
+import { ContentReference } from 'views/content/content-page';
 import { VisualizationConfiguration } from '../../common/configs/visualization-configuration';
 import { NamedSFC } from '../../common/react/named-sfc';
 import { TabStoreData } from '../../common/types/store-data/tab-store-data';
 import { VisualizationStoreData } from '../../common/types/store-data/visualization-store-data';
 import { VisualizationType } from '../../common/types/visualization-type';
-import { ContentReference } from '../../views/content/content-page';
 import { DetailsViewToggleClickHandlerFactory } from '../handlers/details-view-toggle-click-handler-factory';
 import { StaticContentDetailsView, StaticContentDetailsViewDeps, StaticContentDetailsViewProps } from './static-content-details-view';
 import { TargetPageChangedView } from './target-page-changed-view';
