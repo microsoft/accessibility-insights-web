@@ -19,13 +19,14 @@ export interface PrintableResult {
 }
 
 export async function scanForAccessibilityIssues(page: Page, selector: string): Promise<PrintableResult[]> {
-    if (
-        await page.evaluate(() => {
-            return (window as any).axe === undefined;
-        })
-    ) {
+    const axeIsUndefined = await page.evaluate(() => {
+        return (window as any).axe === undefined;
+    });
+
+    if (axeIsUndefined) {
         await page.injectScriptFile(path.join(__dirname, '../../../../node_modules/axe-core/axe.min.js'));
     }
+
     const axeResults = (await page.evaluate(selectorInEvaluate => {
         return axe.run(
             { include: [selectorInEvaluate] } as ElementContext,
