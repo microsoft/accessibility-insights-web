@@ -184,4 +184,8 @@ export class Page {
             throw originalError;
         }
     }
+
+    public async injectScriptFile(filePath: string): Promise<void> {
+        await this.underlyingPage.addScriptTag({ path: filePath });
+    }
 }

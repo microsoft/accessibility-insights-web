@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { AxeResults, ElementContext } from 'axe-core';
 
+import * as path from 'path';
 import { Page } from './page-controllers/page';
 
 // we are using axe object in target page scope. so we shouldn't be importing axe object via axe-core
@@ -18,6 +19,13 @@ export interface PrintableResult {
 }
 
 export async function scanForAccessibilityIssues(page: Page, selector: string): Promise<PrintableResult[]> {
+    if (
+        await page.evaluate(() => {
+            return axe == undefined;
+        })
+    ) {
+        await page.injectScriptFile(path.join(__dirname, '../../../../node_modules/axe-core/axe.min.js'));
+    }
     const axeResults = (await page.evaluate(selectorInEvaluate => {
         return axe.run(
             { include: [selectorInEvaluate] } as ElementContext,
