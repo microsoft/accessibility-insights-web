@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { clone } from 'lodash';
+import { clone, isEqual } from 'lodash';
 import { ActionButton } from 'office-ui-fabric-react/lib/Button';
 import { Icon } from 'office-ui-fabric-react/lib/Icon';
 import { Link } from 'office-ui-fabric-react/lib/Link';
@@ -23,8 +23,9 @@ export interface FailureInstancePanelControlProps {
     addPathForValidation: (path) => void;
     addFailureInstance?: (instanceData, test, step) => void;
     editFailureInstance?: (instanceData, test, step, id) => void;
+    clearPathSnippetData: () => void;
     actionType: CapturedInstanceActionType;
-    failureInstance?: FailureInstanceData;
+    failureInstance: FailureInstanceData;
     instanceId?: string;
     assessmentsProvider: AssessmentsProvider;
     featureFlagStoreData: BaseStore<FeatureFlagStoreData>;
@@ -61,6 +62,18 @@ export class FailureInstancePanelControl extends React.Component<FailureInstance
             isPanelOpen: false,
             currentInstance: currentInstance,
         };
+    }
+
+    public componentDidUpdate(prevProps: Readonly<FailureInstancePanelControlProps>): void {
+        if (isEqual(prevProps, this.props) === false) {
+            this.setState(() => ({
+                currentInstance: {
+                    failureDescription: this.state.currentInstance.failureDescription,
+                    path: this.props.failureInstance.path,
+                    snippet: this.props.failureInstance.snippet,
+                },
+            }));
+        }
     }
 
     public render(): JSX.Element {
@@ -127,7 +140,9 @@ export class FailureInstancePanelControl extends React.Component<FailureInstance
                 />
                 <ActionAndCancelButtonsComponent
                     isHidden={false}
-                    primaryButtonDisabled={this.state.currentInstance.failureDescription === null}
+                    primaryButtonDisabled={
+                        this.state.currentInstance.failureDescription === null && this.state.currentInstance.path === null
+                    }
                     primaryButtonText={this.props.actionType === CapturedInstanceActionType.CREATE ? 'Add' : 'Save'}
                     primaryButtonOnClick={
                         this.props.actionType === CapturedInstanceActionType.CREATE
@@ -174,22 +189,17 @@ export class FailureInstancePanelControl extends React.Component<FailureInstance
     };
 
     private onValidateSelector = (event): void => {
-        const currSelector = this.state.currentInstance.path;
-        const currSnippet = 'snippet for ' + currSelector;
-        const updatedInstance = clone(this.state.currentInstance);
-        updatedInstance.snippet = currSnippet;
-        this.setState({ currentInstance: updatedInstance });
         this.props.addPathForValidation(this.state.currentInstance.path);
     };
 
     protected onAddFailureInstance = (): void => {
         this.props.addFailureInstance(this.state.currentInstance, this.props.test, this.props.step);
-        this.setState({ isPanelOpen: false });
+        this.closeFailureInstancePanel();
     };
 
     protected onSaveEditedFailureInstance = (): void => {
         this.props.editFailureInstance(this.state.currentInstance, this.props.test, this.props.step, this.props.instanceId);
-        this.setState({ isPanelOpen: false });
+        this.closeFailureInstancePanel();
     };
 
     protected openFailureInstancePanel = (): void => {
@@ -206,6 +216,7 @@ export class FailureInstancePanelControl extends React.Component<FailureInstance
     };
 
     protected closeFailureInstancePanel = (): void => {
+        this.props.clearPathSnippetData();
         this.setState({ isPanelOpen: false });
     };
 }

@@ -41,6 +41,7 @@ import { TelemetryEventSource } from '../common/telemetry-events';
 import { AssessmentStoreData } from '../common/types/store-data/assessment-result-data';
 import { DetailsViewData } from '../common/types/store-data/details-view-data';
 import { InspectStoreData } from '../common/types/store-data/inspect-store-data';
+import { PathSnippetStoreData } from '../common/types/store-data/path-snippet-store-data';
 import { ScopingStoreData } from '../common/types/store-data/scoping-store-data';
 import { TabStoreData } from '../common/types/store-data/tab-store-data';
 import { UserConfigurationStoreData } from '../common/types/store-data/user-configuration-store';
@@ -111,6 +112,7 @@ if (isNaN(tabId) === false) {
                 StoreNames[StoreNames.VisualizationScanResultStore],
                 browserAdapter,
             );
+            const pathSnippetStore = new StoreProxy<PathSnippetStoreData>(StoreNames[StoreNames.PathSnippetStore], browserAdapter);
             const detailsViewStore = new StoreProxy<DetailsViewData>(StoreNames[StoreNames.DetailsViewStore], browserAdapter);
             const assessmentStore = new StoreProxy<AssessmentStoreData>(StoreNames[StoreNames.AssessmentStore], browserAdapter);
             const featureFlagStore = new StoreProxy<DictionaryStringTo<boolean>>(StoreNames[StoreNames.FeatureFlagStore], browserAdapter);
@@ -127,6 +129,7 @@ if (isNaN(tabId) === false) {
                 visualizationScanResultStore,
                 visualizationStore,
                 assessmentStore,
+                pathSnippetStore,
                 scopingStore,
                 userConfigStore,
             ]);

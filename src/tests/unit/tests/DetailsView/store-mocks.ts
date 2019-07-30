@@ -12,6 +12,7 @@ import { LaunchPanelStore } from '../../../../background/stores/global/launch-pa
 import { ScopingStore } from '../../../../background/stores/global/scoping-store';
 import { UserConfigurationStore } from '../../../../background/stores/global/user-configuration-store';
 import { InspectStore } from '../../../../background/stores/inspect-store';
+import { PathSnippetStore } from '../../../../background/stores/path-snippet-store';
 import { TabStore } from '../../../../background/stores/tab-store';
 import { VisualizationScanResultStore } from '../../../../background/stores/visualization-scan-result-store';
 import { VisualizationStore } from '../../../../background/stores/visualization-store';
@@ -41,6 +42,7 @@ export class StoreMocks {
     public assessmentsProviderMock = Mock.ofType(AssessmentsProviderImpl);
     public scopingStoreMock = Mock.ofType(ScopingStore, MockBehavior.Strict);
     public inspectStoreMock = Mock.ofType(InspectStore, MockBehavior.Strict);
+    public pathSnippetStoreMock = Mock.ofType(PathSnippetStore, MockBehavior.Strict);
     public commandStoreMock = Mock.ofType(CommandStore, MockBehavior.Strict);
     public userConfigurationStoreMock = Mock.ofType(UserConfigurationStore, MockBehavior.Strict);
     public launchPanelStateStoreMock = Mock.ofType(LaunchPanelStore, MockBehavior.Strict);
@@ -60,6 +62,7 @@ export class StoreMocks {
     public userConfigurationStoreData = new UserConfigurationStore(null, null, null).getDefaultState();
     public scopingStoreData = new ScopingStore(null).getDefaultState();
     public inspectStoreData = new InspectStore(null, null).getDefaultState();
+    public pathSnippetStoreData = new PathSnippetStore(null).getDefaultState();
     public launchPanelStateStoreData = new LaunchPanelStore(null, null, null).getDefaultState();
     public featureFlagStoreData: FeatureFlagStoreData = {
         [FeatureFlags[FeatureFlags.logTelemetryToConsole]]: false,
@@ -133,5 +136,6 @@ export class StoreMocks {
         this.visualizationStoreMock.verifyAll();
         this.scopingStoreMock.verifyAll();
         this.inspectStoreMock.verifyAll();
+        this.pathSnippetStoreMock.verifyAll();
     }
 }

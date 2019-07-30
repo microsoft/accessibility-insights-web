@@ -35,6 +35,7 @@ describe('StoreActionMessageCreatorFactoryTest', () => {
             Messages.Assessment.GetCurrentState,
             Messages.Scoping.GetCurrentState,
             Messages.UserConfig.GetCurrentState,
+            Messages.PathSnippet.GetCurrentState,
         ];
 
         testWithExpectedMessages(messages, testObject => testObject.forDetailsView());

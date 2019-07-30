@@ -50,6 +50,30 @@ describe('PathSnippetActionCreatorTest', () => {
         addCorrespondingSnippetMock.verifyAll();
     });
 
+    test('registerCallbacks for onGetPathSnippetCurrentState', () => {
+        const actionName = 'getCurrentState';
+
+        const getPathSnippetCurrentStateMock = createActionMock(null);
+
+        setupPathSnippetActionMock(actionName, getPathSnippetCurrentStateMock);
+        setupRegisterTypeToPayloadCallbackMock(Messages.PathSnippet.GetCurrentState, null);
+
+        testObject.registerCallbacks();
+        getPathSnippetCurrentStateMock.verifyAll();
+    });
+
+    test('registerCallbacks for onClearPathSnippetData', () => {
+        const actionName = 'onClearData';
+
+        const clearPathSnippetDataMock = createActionMock(null);
+
+        setupPathSnippetActionMock(actionName, clearPathSnippetDataMock);
+        setupRegisterTypeToPayloadCallbackMock(Messages.PathSnippet.ClearPathSnippetData, null);
+
+        testObject.registerCallbacks();
+        clearPathSnippetDataMock.verifyAll();
+    });
+
     function createActionMock<TPayload>(actionPayload: TPayload): IMock<Action<TPayload>> {
         const getCurrentStateMock = Mock.ofType<Action<TPayload>>(Action, MockBehavior.Strict);
         getCurrentStateMock.setup(action => action.invoke(actionPayload)).verifiable(Times.once());

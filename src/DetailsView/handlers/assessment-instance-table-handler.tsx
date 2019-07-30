@@ -11,6 +11,7 @@ import {
     UserCapturedInstance,
 } from '../../common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
+import { PathSnippetStoreData } from '../../common/types/store-data/path-snippet-store-data';
 import { VisualizationType } from '../../common/types/visualization-type';
 import { DictionaryStringTo } from '../../types/common-types';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
@@ -50,6 +51,10 @@ export class AssessmentInstanceTableHandler {
 
     public addPathForValidation = (path: string): void => {
         this.actionMessageCreator.addPathForValidation(path);
+    };
+
+    public clearPathSnippetData = (): void => {
+        this.actionMessageCreator.clearPathSnippetData();
     };
 
     public passUnmarkedInstances(test: VisualizationType, step: string): void {
@@ -101,11 +106,12 @@ export class AssessmentInstanceTableHandler {
         test: VisualizationType,
         step: string,
         featureFlagStoreData: FeatureFlagStoreData,
+        pathSnippetStoreData: PathSnippetStoreData,
     ): CapturedInstanceRowData[] {
         return instances.map((instance: UserCapturedInstance) => {
             return {
                 instance: instance,
-                instanceActionButtons: this.renderInstanceActionButtons(instance, test, step, featureFlagStoreData),
+                instanceActionButtons: this.renderInstanceActionButtons(instance, test, step, featureFlagStoreData, pathSnippetStoreData),
             };
         });
     }
@@ -159,11 +165,12 @@ export class AssessmentInstanceTableHandler {
         test: VisualizationType,
         step: string,
         featureFlagStoreData: FeatureFlagStoreData,
+        pathSnippetStoreData: PathSnippetStoreData,
     ): JSX.Element => {
         const currentInstance = {
             failureDescription: instance.description,
-            path: instance.selector,
-            snippet: instance.html,
+            path: pathSnippetStoreData.path || instance.selector,
+            snippet: pathSnippetStoreData.snippet || instance.html,
         };
         return (
             <AssessmentInstanceEditAndRemoveControl
@@ -173,6 +180,7 @@ export class AssessmentInstanceTableHandler {
                 currentInstance={currentInstance}
                 onRemove={this.actionMessageCreator.removeFailureInstance}
                 onEdit={this.actionMessageCreator.editFailureInstance}
+                onClearPathSnippetData={this.actionMessageCreator.clearPathSnippetData}
                 onAddPath={this.actionMessageCreator.addPathForValidation}
                 assessmentsProvider={this.assessmentsProvider}
                 featureFlagStoreData={featureFlagStoreData}
