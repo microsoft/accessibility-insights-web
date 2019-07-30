@@ -11,7 +11,6 @@ import { ScanCompletedPayload } from '../../injected/analyzers/analyzer';
 import { DictionaryNumberTo } from '../../types/common-types';
 import { VisualizationActions } from '../actions/visualization-actions';
 import { VisualizationScanResultActions } from '../actions/visualization-scan-result-actions';
-import { ChromeFeatureController } from '../chrome-feature-controller';
 import { DetailsViewController } from '../details-view-controller';
 import { TargetTabController } from '../target-tab-controller';
 import { TelemetryEventHandler } from '../telemetry/telemetry-event-handler';
@@ -35,7 +34,6 @@ export class ActionCreator {
     private previewFeaturesActions: PreviewFeaturesActions;
     private registerTypeToPayloadCallback: RegisterTypeToPayloadCallback;
     private detailsViewController: DetailsViewController;
-    private chromeFeatureController: ChromeFeatureController;
     private telemetryEventHandler: TelemetryEventHandler;
     private notificationCreator: NotificationCreator;
     private visualizationConfigurationFactory: VisualizationConfigurationFactory;
@@ -53,7 +51,6 @@ export class ActionCreator {
         actionHub: ActionHub,
         registerTypeToPayloadCallback: RegisterTypeToPayloadCallback,
         detailsViewController: DetailsViewController,
-        chromeFeatureController: ChromeFeatureController,
         telemetryEventHandler: TelemetryEventHandler,
         notificationCreator: NotificationCreator,
         visualizationConfigurationFactory: VisualizationConfigurationFactory,
@@ -65,7 +62,6 @@ export class ActionCreator {
         this.inspectActions = actionHub.inspectActions;
         this.registerTypeToPayloadCallback = registerTypeToPayloadCallback;
         this.detailsViewController = detailsViewController;
-        this.chromeFeatureController = chromeFeatureController;
         this.telemetryEventHandler = telemetryEventHandler;
         this.notificationCreator = notificationCreator;
         this.visualizationConfigurationFactory = visualizationConfigurationFactory;
@@ -96,8 +92,6 @@ export class ActionCreator {
         this.registerTypeToPayloadCallback(visualizationMessages.DetailsView.Select, this.onPivotChildSelected);
         this.registerTypeToPayloadCallback(visualizationMessages.DetailsView.PivotSelect, this.onDetailsViewPivotSelected);
         this.registerTypeToPayloadCallback(visualizationMessages.DetailsView.Close, this.onDetailsViewClosed);
-
-        this.registerTypeToPayloadCallback(Messages.ChromeFeature.configureCommand, this.onOpenConfigureCommandTab);
 
         this.registerTypeToPayloadCallback(Messages.PreviewFeatures.OpenPanel, this.onOpenPreviewFeaturesPanel);
         this.registerTypeToPayloadCallback(Messages.PreviewFeatures.ClosePanel, this.onClosePreviewFeaturesPanel);
@@ -188,11 +182,6 @@ export class ActionCreator {
 
     private onRecordingTerminated = (payload: BaseActionPayload): void => {
         this.visualizationScanResultActions.disableTabStop.invoke(payload);
-    };
-
-    private onOpenConfigureCommandTab = (payload: BaseActionPayload): void => {
-        this.chromeFeatureController.openCommandConfigureTab();
-        this.telemetryEventHandler.publishTelemetry(TelemetryEvents.SHORTCUT_CONFIGURE_OPEN, payload);
     };
 
     private onUpdateIssuesSelectedTargets = (payload: string[]): void => {

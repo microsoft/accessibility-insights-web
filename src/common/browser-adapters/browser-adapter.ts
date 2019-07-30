@@ -1,15 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { ClientBrowserAdapter } from '../../common/client-browser-adapter';
 
-export interface NotificationOptions {
-    message: string;
-    title: string;
-    iconUrl: string;
-    notificationType?: string;
-}
-
-export interface BrowserAdapter extends ClientBrowserAdapter {
+export interface BrowserAdapter {
     getAllWindows(getInfo: chrome.windows.GetInfo, callback: (chromeWindows: chrome.windows.Window[]) => void): void;
     getSelectedTabInWindow(windowId: number, callback: (activeTab: chrome.tabs.Tab) => void): void;
     addListenerToTabsOnActivated(callback: (activeInfo: chrome.tabs.TabActiveInfo) => void): void;
@@ -24,15 +16,28 @@ export interface BrowserAdapter extends ClientBrowserAdapter {
     closeTab(tabId: number): void;
     switchToTab(tabId: number): void;
     getTab(tabId: number, onResolve: (tab: chrome.tabs.Tab) => void, onReject?: () => void): void;
-    sendMessageToFramesAndTab(tabId: number, message: any): void;
+    sendMessageToTab(tabId: number, message: any): void;
     sendMessageToFrames(message: any): void;
     sendMessageToAllFramesAndTabs(message: any): void;
-    injectJs(tabId, file: string, callback: Function): void;
-    injectCss(tabId, file: string, callback: Function): void;
+    executeScriptInTab(tabId: number, details: chrome.tabs.InjectDetails, callback?: (result: any[]) => void): void;
+    insertCSSInTab(tabId: number, details: chrome.tabs.InjectDetails, callback?: Function): void;
     getRunTimeId(): string;
-    createNotification(options: NotificationOptions): void;
+    createNotification(options: chrome.notifications.NotificationOptions): void;
     getRuntimeLastError(): chrome.runtime.LastError;
     isAllowedFileSchemeAccess(callback: Function): void;
     addListenerToLocalStorage(callback: (changes: object) => void): void;
-    openManageExtensionPage(): void;
+    getManageExtensionUrl(): string;
+    addListenerOnConnect(callback: (port: chrome.runtime.Port) => void): void;
+    addListenerOnMessage(
+        callback: (message: any, sender: chrome.runtime.MessageSender, sendResponse: (response: any) => void) => void,
+    ): void;
+
+    removeListenerOnMessage(
+        callback: (message: any, sender: chrome.runtime.MessageSender, sendResponse: (response: any) => void) => void,
+    ): void;
+    connect(connectionInfo?: chrome.runtime.ConnectInfo): chrome.runtime.Port;
+    getManifest(): chrome.runtime.Manifest;
+    extensionVersion: string;
+
+    getUrl(urlPart: string): string;
 }

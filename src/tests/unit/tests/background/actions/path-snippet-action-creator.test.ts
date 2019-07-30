@@ -17,7 +17,7 @@ describe('PathSnippetActionCreatorTest', () => {
 
     beforeAll(() => {
         pathSnippetActionsMock = Mock.ofType(PathSnippetActions, MockBehavior.Strict);
-        registerTypeToPayloadCallbackMock = Mock.ofInstance((_type, _callback) => {});
+        registerTypeToPayloadCallbackMock = Mock.ofInstance((payloadType, callback) => {});
 
         testObject = new PathSnippetActionCreator(pathSnippetActionsMock.object, registerTypeToPayloadCallbackMock.object);
     });
@@ -64,6 +64,6 @@ describe('PathSnippetActionCreatorTest', () => {
     function setupRegisterTypeToPayloadCallbackMock(message: string, payload: any): void {
         registerTypeToPayloadCallbackMock
             .setup(registrar => registrar(message, It.is(_.isFunction)))
-            .callback((_message, listener) => listener(payload));
+            .callback((passedMessage, listener) => listener(payload));
     }
 });

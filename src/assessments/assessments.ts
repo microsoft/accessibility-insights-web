@@ -16,6 +16,7 @@ import { LiveMultimediaAssessment } from './live-multimedia/assessment';
 import { NativeWidgetsAssessment } from './native-widgets/assessment';
 import { PageAssessment } from './page/assessment';
 import { ParsingAssessment } from './parsing/assessment';
+import { PointerMotionAssessment } from './pointer-motion/assessment';
 import { PrerecordedMultimediaAssessment } from './prerecorded-multimedia/assessment';
 import { RepetitiveContentAssessment } from './repetitive-content/assessment';
 import { SemanticsAssessment } from './semantics/assessment';
@@ -48,4 +49,5 @@ export const Assessments: AssessmentsProvider = AssessmentsProviderImpl.Create([
     LiveMultimediaAssessment,
     SequenceAssessment,
     SemanticsAssessment,
+    PointerMotionAssessment,
 ]);

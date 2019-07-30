@@ -3,10 +3,10 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-import { CheckIcon, CheckIconInverted } from '../../../../../../common/icons/check-icon';
-import { CircleIcon } from '../../../../../../common/icons/circle-icon';
-import { CrossIconInverted } from '../../../../../../common/icons/cross-icon';
-import { InapplicableIcon, InapplicableIconInverted } from '../../../../../../common/icons/inapplicable-icon';
+import { CheckIcon, CheckIconInverted } from 'common/icons/check-icon';
+import { CircleIcon } from 'common/icons/circle-icon';
+import { CrossIconInverted } from 'common/icons/cross-icon';
+import { InapplicableIcon, InapplicableIconInverted } from 'common/icons/inapplicable-icon';
 import { OutcomeIcon } from '../../../../../../DetailsView/reports/components/outcome-icon';
 import { allRequirementOutcomeTypes } from '../../../../../../DetailsView/reports/components/requirement-outcome-type';
 

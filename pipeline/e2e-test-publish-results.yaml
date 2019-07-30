@@ -5,7 +5,7 @@ steps:
       inputs:
           testResultsFiles: test-results/e2e/junit-e2e.xml
           testRunTitle: $(Agent.JobName)
-      condition: always()
+      condition: succeededOrFailed()
       displayName: publish e2e test results
 
     - publish: '$(System.DefaultWorkingDirectory)/test-results/e2e'

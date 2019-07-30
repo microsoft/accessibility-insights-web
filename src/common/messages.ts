@@ -151,8 +151,8 @@ export class Messages {
         ResetFeatureFlag: `${messagePrefix}/featureFlags/reset`,
     };
 
-    public static readonly ChromeFeature = {
-        configureCommand: `${messagePrefix}/command/configureCommand`,
+    public static readonly Shortcuts = {
+        ConfigureShortcuts: `${messagePrefix}/command/configureShortcuts`,
     };
 
     public static readonly LaunchPanel = {

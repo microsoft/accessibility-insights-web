@@ -4,7 +4,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { IMock, It, Mock } from 'typemoq';
 
-import { BrowserAdapter } from '../../../../background/browser-adapters/browser-adapter';
+import { BrowserAdapter } from '../../../../common/browser-adapters/browser-adapter';
 import { Theme } from '../../../../common/components/theme';
 import { DropdownClickHandler } from '../../../../common/dropdown-click-handler';
 import { title } from '../../../../content/strings/application';
@@ -57,9 +57,9 @@ describe('MainRenderer', () => {
                                     popupViewControllerHandler: gettingStartedDialogHandlerMock.object,
                                     launchPanelHeaderClickHandler: feedbackMenuClickhandlerMock.object,
                                     supportLinkHandler: supportLinkHandlerMock.object,
+                                    browserAdapter: browserAdapterMock.object,
                                 }}
                                 popupWindow={popupWindowMock.object}
-                                browserAdapter={browserAdapterMock.object}
                                 targetTabUrl={targetTabUrl}
                                 hasAccess={hasAccess}
                                 launchPadRowConfigurationFactory={launchPadRowConfigurationFactoryMock.object}
@@ -80,11 +80,11 @@ describe('MainRenderer', () => {
                 popupViewControllerHandler: gettingStartedDialogHandlerMock.object,
                 launchPanelHeaderClickHandler: feedbackMenuClickhandlerMock.object,
                 supportLinkHandler: supportLinkHandlerMock.object,
+                browserAdapter: browserAdapterMock.object,
             },
             renderMock.object,
             dom,
             popupWindowMock.object,
-            browserAdapterMock.object,
             targetTabUrl,
             hasAccess,
             launchPadRowConfigurationFactoryMock.object,

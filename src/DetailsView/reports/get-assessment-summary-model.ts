@@ -1,11 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { AssessmentsProvider } from 'assessments/types/assessments-provider';
+import { Assessment } from 'assessments/types/iassessment';
+import { ManualTestStatusData } from 'common/types/manual-test-status';
+import { AssessmentData, AssessmentStoreData } from 'common/types/store-data/assessment-result-data';
 import { chain, zipObject } from 'lodash';
 
-import { AssessmentsProvider } from '../../assessments/types/assessments-provider';
-import { Assessment } from '../../assessments/types/iassessment';
-import { ManualTestStatusData } from '../../common/types/manual-test-status';
-import { AssessmentData, AssessmentStoreData } from '../../common/types/store-data/assessment-result-data';
 import * as Model from './assessment-report-model';
 import { OutcomeMath } from './components/outcome-math';
 import {

@@ -1,0 +1,44 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FileUrlUnsupportedMessagePanel renders 1`] = `
+<div
+  className="ms-Fabric unsupported-url-info-panel"
+>
+  <span>
+    TEST HEADER
+  </span>
+  <div
+    className="ms-Grid main-section"
+  >
+    <div
+      className="launch-panel-general-container"
+    >
+      Your browser settings don't allow Accessibility Insights for Web to run on file URLs.
+    </div>
+    <div>
+      <div>
+        To allow this extension to run on file URLs:
+      </div>
+      <div>
+        1. Open 
+        <NewTabLink
+          aria-label="open test-title extension page"
+          onClick={[Function]}
+        >
+          test-title extension page
+        </NewTabLink>
+        .
+      </div>
+      <div>
+        2. Enable 
+        <span
+          className="ms-fontWeight-semibold"
+        >
+          Allow Access to file URLs
+        </span>
+        .
+      </div>
+    </div>
+  </div>
+</div>
+`;

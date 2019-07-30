@@ -1,8 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { title } from 'content/strings/application';
 import * as React from 'react';
-
-import { title } from '../../../content/strings/application';
 
 export interface AssessmentReportFooterProps {
     extensionVersion: string;

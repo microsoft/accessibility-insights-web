@@ -4,13 +4,13 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 import { Mock } from 'typemoq';
 
-import { NamedSFC } from '../../../../../../../common/react/named-sfc';
+import { NamedSFC } from 'common/react/named-sfc';
+import { FixInstructionProcessor } from 'injected/fix-instruction-processor';
 import { ReportBody, ReportBodyProps } from '../../../../../../../DetailsView/reports/components/report-sections/report-body';
 import {
     ReportSectionFactory,
     SectionProps,
 } from '../../../../../../../DetailsView/reports/components/report-sections/report-section-factory';
-import { FixInstructionProcessor } from '../../../../../../../injected/fix-instruction-processor';
 
 describe('ReportBody', () => {
     it('renders', () => {

@@ -3,7 +3,7 @@
 import { loadTheme } from 'office-ui-fabric-react';
 import * as ReactDOM from 'react-dom';
 
-import { ChromeAdapter } from '../../background/browser-adapters/chrome-adapter';
+import { ChromeAdapter } from '../../common/browser-adapters/chrome-adapter';
 import { initializeFabricIcons } from '../../common/fabric-icons';
 import { ActionMessageDispatcher } from '../../common/message-creators/action-message-dispatcher';
 import { ContentActionMessageCreator } from '../../common/message-creators/content-action-message-creator';
@@ -18,10 +18,10 @@ import { contentPages } from '../../content';
 import { RendererDeps } from './renderer';
 
 export const rendererDependencies: () => RendererDeps = () => {
-    const chromeAdapter = new ChromeAdapter();
+    const browserAdapter = new ChromeAdapter();
     const url = new URL(window.location.href);
     const tabId = parseInt(url.searchParams.get('tabId'), 10);
-    const actionMessageDispatcher = new ActionMessageDispatcher(chromeAdapter.sendMessageToFrames, tabId);
+    const actionMessageDispatcher = new ActionMessageDispatcher(browserAdapter.sendMessageToFrames, tabId);
 
     const telemetryFactory = new TelemetryDataFactory();
 
@@ -31,7 +31,7 @@ export const rendererDependencies: () => RendererDeps = () => {
         actionMessageDispatcher,
     );
 
-    const store = new StoreProxy<UserConfigurationStoreData>(StoreNames[StoreNames.UserConfigurationStore], chromeAdapter);
+    const store = new StoreProxy<UserConfigurationStoreData>(StoreNames[StoreNames.UserConfigurationStore], browserAdapter);
     const storesHub = new BaseClientStoresHub<any>([store]);
     const storeActionMessageCreatorFactory = new StoreActionMessageCreatorFactory(actionMessageDispatcher);
     const storeActionMessageCreator = storeActionMessageCreatorFactory.forContent();

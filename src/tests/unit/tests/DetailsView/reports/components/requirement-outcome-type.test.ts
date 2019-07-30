@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { times } from 'lodash';
 
-import { ManualTestStatus, ManualTestStatusData } from '../../../../../../common/types/manual-test-status';
+import { ManualTestStatus, ManualTestStatusData } from 'common/types/manual-test-status';
 import { OutcomeTypeSemantic } from '../../../../../../DetailsView/reports/components/outcome-type';
 import {
     outcomeStatsFromManualTestStatus,

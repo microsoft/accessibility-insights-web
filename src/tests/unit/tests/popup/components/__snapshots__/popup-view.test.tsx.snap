@@ -70,44 +70,65 @@ exports[`PopupView renderFailureMsgPanelForChromeUrl 1`] = `
 `;
 
 exports[`PopupView renderFailureMsgPanelForFileUrl 1`] = `
-<div
-  className="ms-Fabric unsupported-url-info-panel"
->
-  <Header
-    title="test title"
-  />
-  <div
-    className="ms-Grid main-section"
-  >
-    <div
-      className="launch-panel-general-container"
-    >
-      Your browser settings don't allow Accessibility Insights for Web to run on file URLs.
-    </div>
-    <div>
-      <div>
-        To allow this extension to run on file URLs:
-      </div>
-      <div>
-        1. Open 
-        <NewTabLink
-          aria-label="open test title extension page"
-          onClick={[Function]}
-        >
-          test title extension page
-        </NewTabLink>
-        .
-      </div>
-      <div>
-        2. Enable 
-        <span
-          className="ms-fontWeight-semibold"
-        >
-          Allow Access to file URLs
-        </span>
-        .
-      </div>
-    </div>
-  </div>
-</div>
+<FileUrlUnsupportedMessagePanel
+  deps={
+    Object {
+      "browserAdapter": proxy {
+        "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+        "addCommandListener": [Function],
+        "addListenerOnConnect": [Function],
+        "addListenerOnMessage": [Function],
+        "addListenerOnWindowsFocusChanged": [Function],
+        "addListenerToLocalStorage": [Function],
+        "addListenerToTabsOnActivated": [Function],
+        "addListenerToTabsOnRemoved": [Function],
+        "addListenerToTabsOnUpdated": [Function],
+        "addListenerToWebNavigationUpdated": [Function],
+        "closeTab": [Function],
+        "connect": [Function],
+        "createInactiveTab": [Function],
+        "createNotification": [Function],
+        "createTab": [Function],
+        "createTabInNewWindow": [Function],
+        "executeScriptInTab": [Function],
+        "extensionVersion": undefined,
+        "getAllWindows": [Function],
+        "getCommands": [Function],
+        "getManageExtensionUrl": [Function],
+        "getManifest": [Function],
+        "getRunTimeId": [Function],
+        "getRuntimeLastError": [Function],
+        "getSelectedTabInWindow": [Function],
+        "getTab": [Function],
+        "getUrl": [Function],
+        "getUserData": [Function],
+        "insertCSSInTab": [Function],
+        "isAllowedFileSchemeAccess": [Function],
+        "removeListenerOnMessage": [Function],
+        "removeUserData": [Function],
+        "sendMessageToAllFramesAndTabs": [Function],
+        "sendMessageToFrames": [Function],
+        "sendMessageToTab": [Function],
+        "setUserData": [Function],
+        "switchToTab": [Function],
+        "tabsQuery": [Function],
+      },
+      "storesHub": proxy {
+        "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+        "addChangedListenerToAllStores": [Function],
+        "getAllStoreData": [Function],
+        "hasStoreData": [Function],
+        "hasStores": [Function],
+        "removeChangedListenerFromAllStores": [Function],
+        "stores": undefined,
+      },
+    }
+  }
+  header={
+    <Header
+      title="test title"
+    />
+  }
+  title="test title"
+/>
 `;

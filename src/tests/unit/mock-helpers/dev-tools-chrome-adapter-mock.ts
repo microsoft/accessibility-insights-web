@@ -18,14 +18,14 @@ export class PortWithTabTabIdStub extends PortStub implements PortWithTabId {
     public targetPageTabId: number = 0;
 }
 
-export class ChromeAdapterMock {
-    private _chromeAdapterMock: IMock<DevToolsChromeAdapter> = Mock.ofType(DevToolsChromeAdapterImpl, MockBehavior.Strict);
+export class DevToolsChromeAdapterMock {
+    private underlyingMock: IMock<DevToolsChromeAdapter> = Mock.ofType(DevToolsChromeAdapterImpl, MockBehavior.Strict);
 
     public setUpAddListenerOnConnect(
         callback?: (onListenerConnect: (port: PortWithTabTabIdStub) => void) => void,
         times: number = 1,
-    ): ChromeAdapterMock {
-        this._chromeAdapterMock
+    ): DevToolsChromeAdapterMock {
+        this.underlyingMock
             .setup(x => x.addListenerOnConnect(It.isAny()))
             .callback(cb => {
                 if (callback) {
@@ -37,8 +37,8 @@ export class ChromeAdapterMock {
         return this;
     }
 
-    public setUpConnect(name: string, onConnectPort: chrome.runtime.Port): ChromeAdapterMock {
-        this._chromeAdapterMock
+    public setUpConnect(name: string, onConnectPort: chrome.runtime.Port): DevToolsChromeAdapterMock {
+        this.underlyingMock
             .setup(x => x.connect(It.isObjectWith({ name: name })))
             .returns(() => onConnectPort)
             .verifiable(Times.once());
@@ -46,8 +46,8 @@ export class ChromeAdapterMock {
         return this;
     }
 
-    public setupGetInspectedWindowTabId(tabId: number): ChromeAdapterMock {
-        this._chromeAdapterMock
+    public setupGetInspectedWindowTabId(tabId: number): DevToolsChromeAdapterMock {
+        this.underlyingMock
             .setup(x => x.getInspectedWindowTabId())
             .returns(() => tabId)
             .verifiable(Times.once());
@@ -55,17 +55,17 @@ export class ChromeAdapterMock {
         return this;
     }
 
-    public setupExecuteScriptInInspectedWindow(script: string, frameUrl: string): ChromeAdapterMock {
-        this._chromeAdapterMock.setup(x => x.executeScriptInInspectedWindow(It.isValue(script), frameUrl)).verifiable(Times.once());
+    public setupExecuteScriptInInspectedWindow(script: string, frameUrl: string): DevToolsChromeAdapterMock {
+        this.underlyingMock.setup(x => x.executeScriptInInspectedWindow(It.isValue(script), frameUrl)).verifiable(Times.once());
 
         return this;
     }
 
     public verifyAll(): void {
-        this._chromeAdapterMock.verifyAll();
+        this.underlyingMock.verifyAll();
     }
 
     public getObject(): DevToolsChromeAdapter {
-        return this._chromeAdapterMock.object;
+        return this.underlyingMock.object;
     }
 }

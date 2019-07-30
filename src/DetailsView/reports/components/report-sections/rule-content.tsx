@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import { NamedSFC } from '../../../../common/react/named-sfc';
+import { NamedSFC } from 'common/react/named-sfc';
 import { InstanceDetailsGroup, InstanceDetailsGroupDeps, InstanceDetailsGroupProps } from './instance-details-group';
 import { RuleResources, RuleResourcesDeps, RuleResourcesProps } from './rule-resources';
 

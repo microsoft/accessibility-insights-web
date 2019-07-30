@@ -8,6 +8,7 @@ import { AssessmentBuilder } from '../assessment-builder';
 import { ErrorIdentification } from './test-steps/error-identification';
 import { ErrorPrevention } from './test-steps/error-prevention';
 import { ErrorSuggestion } from './test-steps/error-suggestion';
+import { StatusMessages } from './test-steps/status-messages';
 
 const key = 'errors';
 const title = 'Errors';
@@ -27,5 +28,5 @@ export const ErrorsAssessment = AssessmentBuilder.Manual({
     title,
     gettingStarted,
     guidance,
-    requirements: [ErrorIdentification, ErrorSuggestion, ErrorPrevention],
+    requirements: [ErrorIdentification, ErrorSuggestion, ErrorPrevention, StatusMessages],
 });
