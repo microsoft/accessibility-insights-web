@@ -13,5 +13,7 @@ export const GuidanceContentSelectors = {
 };
 
 export const fastPassSelectors = {
-    tabstopNavButtonSelector: 'a[title="Tab stops"]',
+    tabStopNavButtonSelector: 'a[title="Tab stops"]',
+    tabStopToggleCheckedSelector: 'button[aria-label="Tab stops"][aria-checked=true]',
+    tabStopToggleUncheckedSelector: 'button[aria-label="Tab stops"][aria-checked=false]',
 };
