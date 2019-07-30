@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 import { Browser } from '../../common/browser';
 import { launchBrowser } from '../../common/browser-factory';
-import { popupPageElementIdentifiers } from '../../common/element-identifiers/popup-page-element-identifiers';
 import { PopupPage } from '../../common/page-controllers/popup-page';
 import { TargetPage } from '../../common/page-controllers/target-page';
 import { scanForAccessibilityIssues } from '../../common/scan-for-accessibility-issues';
@@ -10,12 +9,12 @@ import { scanForAccessibilityIssues } from '../../common/scan-for-accessibility-
 describe('Target Page', () => {
     let browser: Browser;
     let targetPage: TargetPage;
-    let adhocPanel: PopupPage;
+    let popupPage: PopupPage;
 
     beforeAll(async () => {
         browser = await launchBrowser({ suppressFirstTimeDialog: true });
         targetPage = await browser.newTargetPage();
-        adhocPanel = await openAdhocPanel(browser, targetPage);
+        popupPage = await browser.newPopupPage(targetPage);
     });
 
     afterAll(async () => {
@@ -27,18 +26,15 @@ describe('Target Page', () => {
 
     describe('issue dialog', () => {
         it('should pass accessibility validation', async () => {
-            await adhocPanel.clickSelector('button[aria-label="Automated checks"]');
+            await popupPage.gotoAdhocPanel();
+            await popupPage.enableToggleByAriaLabel('Automated checks');
+
+            const shadowRoot = await targetPage.getShadowRoot();
+            const issueHighlightLabel = await shadowRoot.$('.failure-label');
+            await issueHighlightLabel.click();
 
             const results = await scanForAccessibilityIssues(targetPage, '#accessibility-insights-root-container');
             expect(results).toHaveLength(0);
         });
     });
-
-    async function openAdhocPanel(browser: Browser, targetPage: TargetPage): Promise<PopupPage> {
-        const popupPage = await browser.newPopupPage(targetPage);
-        await popupPage.clickSelectorXPath(popupPageElementIdentifiers.adhocLaunchPadLinkXPath);
-        await popupPage.waitForSelector(popupPageElementIdentifiers.adhocPanel);
-
-        return popupPage;
-    }
 });
