@@ -2,12 +2,12 @@
 // Licensed under the MIT License.
 import * as _ from 'lodash';
 
+import { ColorAdHocVisualization } from 'ad-hoc-visualizations/color/visualization';
+import { HeadingsAdHocVisualization } from 'ad-hoc-visualizations/headings/visualization';
+import { IssuesAdHocVisualization } from 'ad-hoc-visualizations/issues/visualization';
+import { LandmarksAdHocVisualization } from 'ad-hoc-visualizations/landmarks/visualization';
+import { TabStopsAdHocVisualization } from 'ad-hoc-visualizations/tab-stops/visualization';
 import { Assessments } from 'assessments/assessments';
-import { ColorAdHocVisualization } from '../../ad-hoc-visualizations/color/visualization';
-import { HeadingsAdHocVisualization } from '../../ad-hoc-visualizations/headings/visualization';
-import { IssuesAdHocVisualization } from '../../ad-hoc-visualizations/issues/visualization';
-import { LandmarksAdHocVisualization } from '../../ad-hoc-visualizations/landmarks/visualization';
-import { TabStopsAdHocVisualization } from '../../ad-hoc-visualizations/tab-stops/visualization';
 import { DictionaryNumberTo, DictionaryStringTo } from '../../types/common-types';
 import { EnumHelper } from '../enum-helper';
 import { VisualizationType } from '../types/visualization-type';
