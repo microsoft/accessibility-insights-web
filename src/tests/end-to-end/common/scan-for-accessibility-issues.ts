@@ -21,7 +21,7 @@ export interface PrintableResult {
 export async function scanForAccessibilityIssues(page: Page, selector: string): Promise<PrintableResult[]> {
     if (
         await page.evaluate(() => {
-            return axe == undefined;
+            return (window as any).axe === undefined;
         })
     ) {
         await page.injectScriptFile(path.join(__dirname, '../../../../node_modules/axe-core/axe.min.js'));
