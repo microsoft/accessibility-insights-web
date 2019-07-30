@@ -14,7 +14,7 @@ import {
 import { Spinner, SpinnerSize } from 'office-ui-fabric-react/lib/Spinner';
 import * as React from 'react';
 
-import { AssessmentDefaultMessageGenerator } from '../../assessments/assessment-default-message-generator';
+import { AssessmentDefaultMessageGenerator } from 'assessments/assessment-default-message-generator';
 import { ManualTestStatus } from '../../common/types/manual-test-status';
 import {
     AssessmentNavState,

@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { IMock, It, Mock, Times } from 'typemoq';
 
-import { HeadingsTestStep } from '../../../../../assessments/headings/test-steps/test-steps';
+import { HeadingsTestStep } from 'assessments/headings/test-steps/test-steps';
 import { OnDetailsViewPivotSelected } from '../../../../../background/actions/action-payloads';
 import { Message } from '../../../../../common/message';
 import { ActionMessageDispatcher } from '../../../../../common/message-creators/action-message-dispatcher';

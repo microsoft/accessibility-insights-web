@@ -3,7 +3,7 @@
 import { IColumn } from 'office-ui-fabric-react/lib/DetailsList';
 import * as React from 'react';
 
-import { AssessmentsProvider } from '../../assessments/types/assessments-provider';
+import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { ManualTestStatus } from '../../common/types/manual-test-status';
 import {
     AssessmentNavState,

@@ -2,8 +2,8 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import { AssessmentDefaultMessageGenerator } from '../../assessments/assessment-default-message-generator';
-import { AssessmentsProvider } from '../../assessments/types/assessments-provider';
+import { AssessmentDefaultMessageGenerator } from 'assessments/assessment-default-message-generator';
+import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { AssessmentTestResult } from '../../common/assessment/assessment-test-result';
 import { CollapsibleComponent } from '../../common/components/collapsible-component';
 import { reactExtensionPoint } from '../../common/extensibility/react-extension-point';

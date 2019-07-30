@@ -3,7 +3,7 @@
 import { CheckboxVisibility, ConstrainMode, DetailsList } from 'office-ui-fabric-react/lib/DetailsList';
 import * as React from 'react';
 
-import { AssessmentsProvider } from '../../assessments/types/assessments-provider';
+import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { ManualTestStatus } from '../../common/types/manual-test-status';
 import { ManualTestStepResult } from '../../common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';

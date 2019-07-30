@@ -4,8 +4,8 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 import { IMock, It, Mock, Times } from 'typemoq';
 
-import { AssessmentDefaultMessageGenerator } from '../../../../../assessments/assessment-default-message-generator';
-import { AssessmentsProvider } from '../../../../../assessments/types/assessments-provider';
+import { AssessmentDefaultMessageGenerator } from 'assessments/assessment-default-message-generator';
+import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { AssessmentTestResult } from '../../../../../common/assessment/assessment-test-result';
 import { GetGuidanceTagsFromGuidanceLinks } from '../../../../../common/get-guidance-tags-from-guidance-links';
 import { getInnerTextFromJsxElement } from '../../../../../common/get-inner-text-from-jsx-element';

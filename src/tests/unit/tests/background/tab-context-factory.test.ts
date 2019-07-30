@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
-import { AssessmentsProviderImpl } from '../../../../assessments/assessments-provider';
+import { AssessmentsProviderImpl } from 'assessments/assessments-provider';
 import { DetailsViewController } from '../../../../background/details-view-controller';
 import { Interpreter } from '../../../../background/interpreter';
 import { AssessmentStore } from '../../../../background/stores/assessment-store';

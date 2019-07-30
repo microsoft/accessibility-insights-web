@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { AssessmentDefaultMessageGenerator } from 'assessments/assessment-default-message-generator';
+import { Assessments } from 'assessments/assessments';
+import { assessmentsProviderWithFeaturesEnabled } from 'assessments/assessments-feature-flag-filter';
 import { loadTheme } from 'office-ui-fabric-react';
 import * as ReactDOM from 'react-dom';
-import { AssessmentDefaultMessageGenerator } from '../assessments/assessment-default-message-generator';
-import { Assessments } from '../assessments/assessments';
-import { assessmentsProviderWithFeaturesEnabled } from '../assessments/assessments-feature-flag-filter';
 import { IssueDetailsTextGenerator } from '../background/issue-details-text-generator';
 import { A11YSelfValidator } from '../common/a11y-self-validator';
 import { AxeInfo } from '../common/axe-info';

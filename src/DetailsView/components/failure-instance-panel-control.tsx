@@ -7,7 +7,7 @@ import { Link } from 'office-ui-fabric-react/lib/Link';
 import { TextField } from 'office-ui-fabric-react/lib/TextField';
 import * as React from 'react';
 
-import { AssessmentsProvider } from '../../assessments/types/assessments-provider';
+import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { BaseStore } from '../../common/base-store';
 import { FlaggedComponent } from '../../common/components/flagged-component';
 import { FeatureFlags } from '../../common/feature-flags';

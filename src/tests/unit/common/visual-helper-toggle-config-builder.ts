@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { VisualHelperToggleConfig } from '../../../assessments/types/requirement';
+import { VisualHelperToggleConfig } from 'assessments/types/requirement';
 import { ManualTestStatus } from '../../../common/types/manual-test-status';
 import { AssessmentResultType, GeneratedAssessmentInstance, TestStepResult } from '../../../common/types/store-data/assessment-result-data';
 import { VisualizationType } from '../../../common/types/visualization-type';

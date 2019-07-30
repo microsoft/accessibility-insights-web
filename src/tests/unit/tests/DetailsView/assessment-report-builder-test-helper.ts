@@ -2,8 +2,8 @@
 // Licensed under the MIT License.
 import { flatten } from 'lodash';
 
-import { Assessment } from '../../../../assessments/types/iassessment';
-import { ReportInstanceFields } from '../../../../assessments/types/report-instance-field';
+import { Assessment } from 'assessments/types/iassessment';
+import { ReportInstanceFields } from 'assessments/types/report-instance-field';
 import { ManualTestStatus, ManualTestStatusData } from '../../../../common/types/manual-test-status';
 import {
     AssessmentData,

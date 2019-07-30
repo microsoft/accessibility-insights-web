@@ -3,9 +3,9 @@
 import { Spinner, SpinnerSize } from 'office-ui-fabric-react/lib/Spinner';
 import * as React from 'react';
 
-import { AssessmentDefaultMessageGenerator } from '../../assessments/assessment-default-message-generator';
-import { AssessmentsProvider } from '../../assessments/types/assessments-provider';
-import { Requirement, VisualHelperToggleConfig } from '../../assessments/types/requirement';
+import { AssessmentDefaultMessageGenerator } from 'assessments/assessment-default-message-generator';
+import { AssessmentsProvider } from 'assessments/types/assessments-provider';
+import { Requirement, VisualHelperToggleConfig } from 'assessments/types/requirement';
 import { CollapsibleComponent } from '../../common/components/collapsible-component';
 import { GuidanceTags, GuidanceTagsDeps } from '../../common/components/guidance-tags';
 import {
