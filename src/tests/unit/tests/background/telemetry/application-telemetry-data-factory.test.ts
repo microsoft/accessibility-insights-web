@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { IMock, Mock, Times } from 'typemoq';
 
+import { title } from 'content/strings/application';
 import { ApplicationBuildGenerator } from '../../../../../background/application-build-generator';
 import { InstallDataGenerator } from '../../../../../background/install-data-generator';
 import {
@@ -9,7 +10,6 @@ import {
     ApplicationTelemetryDataFactory,
 } from '../../../../../background/telemetry/application-telemetry-data-factory';
 import { BrowserAdapter } from '../../../../../common/browser-adapters/browser-adapter';
-import { title } from 'content/strings/application';
 
 describe('ApplicationTelemetryDataFactoryTest', () => {
     const applicationBuildStub: string = 'application build id';

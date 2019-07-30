@@ -2,8 +2,8 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import { NamedSFC } from '../../../common/react/named-sfc';
 import { productName } from 'content/strings/application';
+import { NamedSFC } from '../../../common/react/named-sfc';
 
 export const OverviewHeading = NamedSFC('OverviewHeading', () => {
     return (

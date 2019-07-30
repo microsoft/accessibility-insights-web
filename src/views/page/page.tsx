@@ -2,9 +2,9 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
+import { title } from 'content/strings/application';
 import { HeaderIcon, HeaderIconDeps } from '../../common/components/header-icon';
 import { NamedSFC } from '../../common/react/named-sfc';
-import { title } from 'content/strings/application';
 
 export type PageProps = {
     deps: PageDeps;

@@ -2,11 +2,11 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
+import { title } from 'content/strings/application';
+import { test as content } from 'content/test';
 import { createAutomatedChecksInitialAssessmentTestData } from '../../background/create-initial-assessment-test-data';
 import { RequirementComparer } from '../../common/assessment/requirement-comparer';
 import { VisualizationType } from '../../common/types/visualization-type';
-import { title } from 'content/strings/application';
-import { test as content } from 'content/test';
 import { excludePassingInstancesFromAssessmentReport } from '../../DetailsView/extensions/exclude-passing-instances-from-assessment-report';
 import { selectFirstRequirementAfterAutomatedChecks } from '../../DetailsView/extensions/select-first-requirement-after-automated-checks';
 import { waitForAllRequirementsToComplete } from '../../DetailsView/extensions/wait-for-all-requirements-to-complete';

@@ -3,8 +3,8 @@
 import { flatten, toPairs } from 'lodash';
 import * as React from 'react';
 
-import { NamedSFC } from '../../common/react/named-sfc';
 import { GuidanceTag } from 'content/guidance-tags';
+import { NamedSFC } from '../../common/react/named-sfc';
 import { GuidanceLink } from '../../scanner/rule-to-links-mappings';
 import { createMarkup, Markup, MarkupDeps } from './markup';
 
