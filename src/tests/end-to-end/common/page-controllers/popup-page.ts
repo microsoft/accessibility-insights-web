@@ -27,6 +27,13 @@ export class PopupPage extends Page {
         });
     }
 
+    public async disableAllToggles(): Promise<void> {
+        const enabledToggles = await this.underlyingPage.$$('button[aria-checked="true"]');
+        for (let i = 0; i < enabledToggles.length; i++) {
+            await enabledToggles[i].click();
+        }
+    }
+
     public async gotoAdhocPanel(): Promise<void> {
         await this.clickSelectorXPath(popupPageElementIdentifiers.adhocLaunchPadLinkXPath);
         await this.verifyAdhocPanelLoaded();

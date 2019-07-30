@@ -18,6 +18,10 @@ describe('Target Page visualization boxes', () => {
         await popupPage.gotoAdhocPanel();
     });
 
+    beforeEach(async () => {
+        await popupPage.disableAllToggles();
+    });
+
     afterAll(async () => {
         if (browser) {
             await browser.close();
