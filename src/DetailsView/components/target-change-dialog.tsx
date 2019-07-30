@@ -8,7 +8,7 @@ import { TooltipHost } from 'office-ui-fabric-react/lib/Tooltip';
 import * as React from 'react';
 
 import { css } from '@uifabric/utilities';
-import * as Markup from '../../assessments/markup';
+import * as Markup from 'assessments/markup';
 import { BlockingDialog } from '../../common/components/blocking-dialog';
 import { NewTabLink } from '../../common/components/new-tab-link';
 import { Tab } from '../../common/itab';

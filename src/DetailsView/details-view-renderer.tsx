@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { ISelection } from 'office-ui-fabric-react/lib/DetailsList';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { AssessmentsProvider } from '../assessments/types/assessments-provider';
 import { Theme } from '../common/components/theme';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
 import { config } from '../common/configuration';

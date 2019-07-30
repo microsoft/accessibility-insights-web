@@ -21,7 +21,7 @@ export class PathSnippetController {
             return;
         }
 
-        if (pathSnippetStoreState.path !== '') {
+        if (pathSnippetStoreState.path) {
             const retrievedSnippet = this.getElementFromPath(pathSnippetStoreState.path);
             this.addCorrespondingSnippet(retrievedSnippet);
         }

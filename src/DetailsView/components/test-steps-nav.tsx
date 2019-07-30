@@ -3,7 +3,7 @@
 import { INavLink, Nav } from 'office-ui-fabric-react/lib/Nav';
 import * as React from 'react';
 
-import { AssessmentsProvider } from '../../assessments/types/assessments-provider';
+import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { getRequirementsResults } from '../../common/assessment/requirement';
 import { ManualTestStatus, ManualTestStatusData } from '../../common/types/manual-test-status';
 import { VisualizationType } from '../../common/types/visualization-type';

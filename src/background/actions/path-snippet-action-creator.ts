@@ -11,8 +11,10 @@ export class PathSnippetActionCreator {
     ) {}
 
     public registerCallbacks(): void {
+        this.registerTypeToPayloadCallback(Messages.PathSnippet.GetCurrentState, this.onGetPathSnippetCurrentState);
         this.registerTypeToPayloadCallback(Messages.PathSnippet.AddPathForValidation, this.onAddPathForValidation);
         this.registerTypeToPayloadCallback(Messages.PathSnippet.AddCorrespondingSnippet, this.onAddCorrespondingSnippet);
+        this.registerTypeToPayloadCallback(Messages.PathSnippet.ClearPathSnippetData, this.onClearPathSnippetData);
     }
 
     private onAddPathForValidation = (payload: string): void => {
@@ -21,5 +23,13 @@ export class PathSnippetActionCreator {
 
     private onAddCorrespondingSnippet = (payload: string): void => {
         this.pathSnippetActions.onAddSnippet.invoke(payload);
+    };
+
+    private onGetPathSnippetCurrentState = (): void => {
+        this.pathSnippetActions.getCurrentState.invoke(null);
+    };
+
+    private onClearPathSnippetData = (): void => {
+        this.pathSnippetActions.onClearData.invoke(null);
     };
 }

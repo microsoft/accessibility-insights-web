@@ -33,6 +33,7 @@ describe('ManualTestStepView', () => {
             },
             assessmentsProvider: CreateTestAssessmentProvider(),
             featureFlagStoreData: featureFlagStoreData,
+            pathSnippetStoreData: null,
         };
         const testObject = new ManualTestStepView(props);
 
@@ -62,6 +63,16 @@ describe('ManualTestStepView', () => {
         const assessmentInstanceTableHandlerMock = Mock.ofType(AssessmentInstanceTableHandler);
         const cols = [];
 
+        const pathSnippetStoreData = {
+            path: 'Validated Path',
+            snippet: 'Corresponding Snippet',
+        };
+
+        const failureInstance = {
+            path: pathSnippetStoreData.path,
+            snippet: pathSnippetStoreData.snippet,
+        };
+
         const props: ManualTestStepViewProps = {
             step: 'step',
             test: VisualizationType.HeadingsAssessment,
@@ -75,11 +86,12 @@ describe('ManualTestStepView', () => {
                 },
             },
             assessmentsProvider: CreateTestAssessmentProvider(),
-            featureFlagStoreData: featureFlagStoreData,
+            featureFlagStoreData,
+            pathSnippetStoreData,
         };
         assessmentInstanceTableHandlerMock.setup(a => a.getColumnConfigsForCapturedInstance()).returns(() => cols);
         assessmentInstanceTableHandlerMock
-            .setup(a => a.createCapturedInstanceTableItems(instances, props.test, props.step, featureFlagStoreData))
+            .setup(a => a.createCapturedInstanceTableItems(instances, props.test, props.step, featureFlagStoreData, pathSnippetStoreData))
             .returns(() => items);
         const testObject = new ManualTestStepView(props);
 
@@ -105,8 +117,10 @@ describe('ManualTestStepView', () => {
                             actionType={CapturedInstanceActionType.CREATE}
                             addFailureInstance={props.assessmentInstanceTableHandler.addFailureInstance}
                             addPathForValidation={props.assessmentInstanceTableHandler.addPathForValidation}
+                            clearPathSnippetData={props.assessmentInstanceTableHandler.clearPathSnippetData}
                             assessmentsProvider={props.assessmentsProvider}
                             featureFlagStoreData={featureFlagStoreData}
+                            failureInstance={failureInstance}
                         />
                         <DetailsList
                             items={items}

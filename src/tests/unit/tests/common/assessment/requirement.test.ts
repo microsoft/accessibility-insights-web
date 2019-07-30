@@ -3,7 +3,7 @@
 import { find } from 'lodash';
 import { It, Mock } from 'typemoq';
 
-import { AssessmentsProvider } from '../../../../../assessments/types/assessments-provider';
+import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { AssessmentTestDefinition } from '../../../../../common/assessment/assessment-test-result';
 import { getRequirementsResults, RequirementDefinition } from '../../../../../common/assessment/requirement';
 import { RequirementComparer } from '../../../../../common/assessment/requirement-comparer';
