@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { EnvironmentInfo } from '../../common/environment-info-provider';
 import { CreateIssueDetailsTextData } from '../../common/types/create-issue-details-text-data';
-import { title } from '../../content/strings/application';
+import { title } from 'content/strings/application';
 import { IssueDetailsBuilder } from './issue-details-builder';
 import { MarkupFormatter } from './markup/markup-formatter';
 

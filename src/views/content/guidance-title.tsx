@@ -3,7 +3,7 @@
 import * as React from 'react';
 import Helmet from 'react-helmet';
 import { NamedSFC } from '../../common/react/named-sfc';
-import { productName } from '../../content/strings/application';
+import { productName } from 'content/strings/application';
 
 export type GuidanceTitleProps = {
     name: string;

@@ -10,7 +10,7 @@ import {
     telemetryPopupCheckboxTitle,
     telemetryPopupNotice,
     telemetryPopupTitle,
-} from '../../content/settings/improve-accessibility-insights';
+} from 'content/settings/improve-accessibility-insights';
 
 export interface TelemetryPermissionDialogState {
     isEnableTelemetryChecked: boolean;

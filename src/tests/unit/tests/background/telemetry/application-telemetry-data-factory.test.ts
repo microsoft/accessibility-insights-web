@@ -9,7 +9,7 @@ import {
     ApplicationTelemetryDataFactory,
 } from '../../../../../background/telemetry/application-telemetry-data-factory';
 import { BrowserAdapter } from '../../../../../common/browser-adapters/browser-adapter';
-import { title } from '../../../../../content/strings/application';
+import { title } from 'content/strings/application';
 
 describe('ApplicationTelemetryDataFactoryTest', () => {
     const applicationBuildStub: string = 'application build id';

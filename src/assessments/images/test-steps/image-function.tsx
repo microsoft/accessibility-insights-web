@@ -4,9 +4,9 @@ import { NoValue, PropertyBagColumnRendererConfig } from 'assessments/common/pro
 import * as React from 'react';
 import { ImageFunctionPropertyBag } from '../../../common/types/property-bag/image-function';
 import { VisualizationType } from '../../../common/types/visualization-type';
-import { link } from '../../../content/link';
-import { productName } from '../../../content/strings/application';
-import * as content from '../../../content/test/images/image-function';
+import { link } from 'content/link';
+import { productName } from 'content/strings/application';
+import * as content from 'content/test/images/image-function';
 import { AssessmentVisualizationEnabledToggle } from '../../../DetailsView/components/assessment-visualization-enabled-toggle';
 import { AnalyzerConfigurationFactory } from '../../common/analyzer-configuration-factory';
 import { AssistedTestRecordYourResults } from '../../common/assisted-test-record-your-results';

@@ -4,10 +4,10 @@ import * as React from 'react';
 
 import { DefaultWidgetPropertyBag } from '../../../common/types/property-bag/default-widget';
 import { VisualizationType } from '../../../common/types/visualization-type';
-import { link } from '../../../content/link';
-import { productName } from '../../../content/strings/application';
-import { TestAutomaticallyPassedNotice } from '../../../content/test/common/test-automatically-passed-notice';
-import * as content from '../../../content/test/native-widgets/instructions';
+import { link } from 'content/link';
+import { productName } from 'content/strings/application';
+import { TestAutomaticallyPassedNotice } from 'content/test/common/test-automatically-passed-notice';
+import * as content from 'content/test/native-widgets/instructions';
 import { AssessmentVisualizationEnabledToggle } from '../../../DetailsView/components/assessment-visualization-enabled-toggle';
 import { ScannerUtils } from '../../../injected/scanner-utils';
 import { AnalyzerConfigurationFactory } from '../../common/analyzer-configuration-factory';

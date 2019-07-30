@@ -4,7 +4,7 @@ import * as React from 'react';
 import ReactDOM from 'react-dom';
 
 import { NewTabLink } from '../common/components/new-tab-link';
-import { title } from '../content/strings/application';
+import { title } from 'content/strings/application';
 import { Header } from './components/header';
 
 export class IncompatibleBrowserRenderer {

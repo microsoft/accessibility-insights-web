@@ -4,7 +4,7 @@ import * as React from 'react';
 
 import { HeaderIcon, HeaderIconDeps } from '../../common/components/header-icon';
 import { NamedSFC } from '../../common/react/named-sfc';
-import { title } from '../../content/strings/application';
+import { title } from 'content/strings/application';
 
 export type PageProps = {
     deps: PageDeps;

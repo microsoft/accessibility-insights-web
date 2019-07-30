@@ -6,7 +6,7 @@ import * as ReactDOM from 'react-dom';
 import { Theme, ThemeDeps, ThemeInnerState } from '../common/components/theme';
 import { WithStoreSubscriptionDeps } from '../common/components/with-store-subscription';
 import { DropdownClickHandler } from '../common/dropdown-click-handler';
-import { title } from '../content/strings/application';
+import { title } from 'content/strings/application';
 import { DiagnosticViewToggleFactory } from './components/diagnostic-view-toggle-factory';
 import { PopupViewControllerDeps, PopupViewWithStoreSubscription } from './components/popup-view';
 import { IPopupHandlers } from './handlers/ipopup-handlers';

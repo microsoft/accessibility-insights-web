@@ -8,7 +8,7 @@ import { NewTabLink } from '../../common/components/new-tab-link';
 import { CheckIcon } from '../../common/icons/check-icon';
 import { CrossIcon } from '../../common/icons/cross-icon';
 import { ContentActionMessageCreator } from '../../common/message-creators/content-action-message-creator';
-import { productName } from '../../content/strings/application';
+import { productName } from 'content/strings/application';
 import { ContentPageComponent, ContentPageOptions } from './content-page';
 import { CodeExample, CodeExampleProps } from './markup/code-example';
 

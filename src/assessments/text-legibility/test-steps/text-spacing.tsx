@@ -5,7 +5,7 @@ import * as React from 'react';
 import { TextLegibilityTestStep } from 'assessments/text-legibility/test-steps/test-step';
 import { Requirement } from 'assessments/types/requirement';
 import { NewTabLink } from '../../../common/components/new-tab-link';
-import { link } from '../../../content/link';
+import { link } from 'content/link';
 import { ManualTestRecordYourResults } from '../../common/manual-test-record-your-results';
 import * as Markup from '../../markup';
 

@@ -4,10 +4,10 @@ import * as React from 'react';
 
 import { CustomWidgetPropertyBag } from '../../../common/types/property-bag/icustom-widgets';
 import { VisualizationType } from '../../../common/types/visualization-type';
-import { link } from '../../../content/link';
-import { productName } from '../../../content/strings/application';
-import { TestAutomaticallyPassedNotice } from '../../../content/test/common/test-automatically-passed-notice';
-import * as content from '../../../content/test/custom-widgets/keyboard-interaction';
+import { link } from 'content/link';
+import { productName } from 'content/strings/application';
+import { TestAutomaticallyPassedNotice } from 'content/test/common/test-automatically-passed-notice';
+import * as content from 'content/test/custom-widgets/keyboard-interaction';
 import { AssessmentVisualizationEnabledToggle } from '../../../DetailsView/components/assessment-visualization-enabled-toggle';
 import { ScannerUtils } from '../../../injected/scanner-utils';
 import { AnalyzerConfigurationFactory } from '../../common/analyzer-configuration-factory';

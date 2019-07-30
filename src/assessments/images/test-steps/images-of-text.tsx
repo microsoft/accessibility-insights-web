@@ -3,10 +3,10 @@
 import * as React from 'react';
 import { ImagesOfTextPropertyBag } from '../../../common/types/property-bag/image-of-text';
 import { VisualizationType } from '../../../common/types/visualization-type';
-import { link } from '../../../content/link';
-import { productName } from '../../../content/strings/application';
-import { TestAutomaticallyPassedNotice } from '../../../content/test/common/test-automatically-passed-notice';
-import * as content from '../../../content/test/images/images-of-text';
+import { link } from 'content/link';
+import { productName } from 'content/strings/application';
+import { TestAutomaticallyPassedNotice } from 'content/test/common/test-automatically-passed-notice';
+import * as content from 'content/test/images/images-of-text';
 import { AssessmentVisualizationEnabledToggle } from '../../../DetailsView/components/assessment-visualization-enabled-toggle';
 import { AnalyzerConfigurationFactory } from '../../common/analyzer-configuration-factory';
 import { AssistedTestRecordYourResults } from '../../common/assisted-test-record-your-results';

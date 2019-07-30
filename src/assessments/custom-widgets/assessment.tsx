@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { NewTabLink } from '../../common/components/new-tab-link';
 import { VisualizationType } from '../../common/types/visualization-type';
-import { test as content } from '../../content/test';
+import { test as content } from 'content/test';
 import { AssessmentBuilder } from '../assessment-builder';
 import * as Markup from '../markup';
 import { Assessment } from '../types/iassessment';

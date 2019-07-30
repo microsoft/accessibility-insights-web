@@ -4,7 +4,7 @@ import * as React from 'react';
 
 import { Messages } from '../../common/messages';
 import { VisualizationType } from '../../common/types/visualization-type';
-import { test as content } from '../../content/test';
+import { test as content } from 'content/test';
 import { AssessmentBuilder } from '../assessment-builder';
 import { Assessment } from '../types/iassessment';
 import { ClosingContent } from './test-steps/closing-content';

@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { shallow } from 'enzyme';
 import * as React from 'react';
-import { productName } from '../../../../../content/strings/application';
+import { productName } from 'content/strings/application';
 import { GuidanceTitle } from '../../../../../views/content/guidance-title';
 
 describe('guidance title', () => {

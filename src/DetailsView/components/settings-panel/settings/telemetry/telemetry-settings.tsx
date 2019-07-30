@@ -5,7 +5,7 @@ import { NamedSFC } from '../../../../../common/react/named-sfc';
 import {
     enableTelemetrySettingDescription,
     enableTelemetrySettingsPanelTitle,
-} from '../../../../../content/settings/improve-accessibility-insights';
+} from 'content/settings/improve-accessibility-insights';
 import { GenericToggle } from '../../../generic-toggle';
 import { SettingsProps } from '../settings-props';
 

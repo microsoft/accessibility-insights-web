@@ -7,8 +7,8 @@ import { VisualizationConfiguration } from '../../common/configs/visualization-c
 import { Messages } from '../../common/messages';
 import { VisualizationType } from '../../common/types/visualization-type';
 import { generateUID } from '../../common/uid-generator';
-import { adhoc as content } from '../../content/adhoc';
-import { createHowToTest } from '../../content/adhoc/tabstops/how-to-test';
+import { adhoc as content } from 'content/adhoc';
+import { createHowToTest } from 'content/adhoc/tabstops/how-to-test';
 import { AdhocStaticTestView } from '../../DetailsView/components/adhoc-static-test-view';
 import { VisualizationInstanceProcessor } from '../../injected/visualization-instance-processor';
 
