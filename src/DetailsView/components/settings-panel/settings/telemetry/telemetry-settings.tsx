@@ -1,9 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import {
-    enableTelemetrySettingDescription,
-    enableTelemetrySettingsPanelTitle,
-} from 'content/settings/improve-accessibility-insights';
+import { enableTelemetrySettingDescription, enableTelemetrySettingsPanelTitle } from 'content/settings/improve-accessibility-insights';
 import * as React from 'react';
 import { NamedSFC } from '../../../../../common/react/named-sfc';
 import { GenericToggle } from '../../../generic-toggle';
