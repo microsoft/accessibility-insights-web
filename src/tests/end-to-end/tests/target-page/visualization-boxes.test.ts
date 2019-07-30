@@ -29,10 +29,10 @@ describe('Target Page visualization boxes', () => {
         }
     });
 
-    const adHocTools = ['Automated checks', 'Headings', 'Landmarks'];
+    const adhocTools = ['Automated checks', 'Headings', 'Landmarks'];
 
-    it.each(adHocTools)('should pass accessibility validation', async adHocTool => {
-        await popupPage.enableToggleByAriaLabel(adHocTool);
+    it.each(adhocTools)('should pass accessibility validation', async adhocTool => {
+        await popupPage.enableToggleByAriaLabel(adhocTool);
 
         const results = await scanForAccessibilityIssues(targetPage, '#accessibility-insights-root-container');
         expect(results).toHaveLength(0);
