@@ -31,7 +31,7 @@ describe('Target Page visualization boxes', () => {
 
     const adhocTools = ['Automated checks', 'Headings', 'Landmarks'];
 
-    it.each(adhocTools)('should pass accessibility validation', async adhocTool => {
+    it.each(adhocTools)('for adhoc tool "%s" should pass accessibility validation', async adhocTool => {
         await popupPage.enableToggleByAriaLabel(adhocTool);
 
         const results = await scanForAccessibilityIssues(targetPage, '#accessibility-insights-root-container');
