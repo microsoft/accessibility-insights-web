@@ -28,9 +28,13 @@ describe('Target Page issue dialog', () => {
         await popupPage.gotoAdhocPanel();
         await popupPage.enableToggleByAriaLabel('Automated checks');
 
+        await targetPage.bringToFront();
+
         const shadowRoot = await targetPage.getShadowRoot();
         const issueHighlightLabel = await shadowRoot.$('.failure-label');
         await issueHighlightLabel.click();
+
+        await targetPage.waitForSelector('.insights-dialog-main-container');
 
         const results = await scanForAccessibilityIssues(targetPage, '#accessibility-insights-root-container');
         expect(results).toHaveLength(0);
