@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { enableHighContrastSettingsTitle, highContrastSettingsDescription } from 'content/settings/high-contrast-mode';
 import * as React from 'react';
 import { NamedSFC } from '../../../../../common/react/named-sfc';
-import { enableHighContrastSettingsTitle, highContrastSettingsDescription } from '../../../../../content/settings/high-contrast-mode';
 import { GenericToggle } from '../../../generic-toggle';
 import { SettingsProps } from '../settings-props';
 

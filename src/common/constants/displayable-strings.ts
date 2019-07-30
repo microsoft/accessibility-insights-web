@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { title } from '../../content/strings/application';
+import { title } from 'content/strings/application';
 
 export class DisplayableStrings {
     public static previewFeaturesDescription: string =

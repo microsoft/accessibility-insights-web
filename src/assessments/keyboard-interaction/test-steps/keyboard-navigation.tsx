@@ -2,11 +2,11 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
+import { link } from 'content/link';
+import * as content from 'content/test/keyboard/keyboard-navigation';
 import { Messages } from '../../../common/messages';
 import { VisualizationType } from '../../../common/types/visualization-type';
 import { generateUID } from '../../../common/uid-generator';
-import { link } from '../../../content/link';
-import * as content from '../../../content/test/keyboard/keyboard-navigation';
 import { RestartScanVisualHelperToggle } from '../../../DetailsView/components/restart-scan-visual-helper-toggle';
 import { VisualizationInstanceProcessor } from '../../../injected/visualization-instance-processor';
 import { ManualTestRecordYourResults } from '../../common/manual-test-record-your-results';
