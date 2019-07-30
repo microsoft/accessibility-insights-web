@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import { HyperlinkDefinition } from '../../views/content/content-page';
+import { HyperlinkDefinition } from 'views/content/content-page';
 import { NamedSFC } from '../react/named-sfc';
 import { NewTabLink } from './new-tab-link';
 

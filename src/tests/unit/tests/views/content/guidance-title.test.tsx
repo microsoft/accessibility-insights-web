@@ -3,7 +3,7 @@
 import { productName } from 'content/strings/application';
 import { shallow } from 'enzyme';
 import * as React from 'react';
-import { GuidanceTitle } from '../../../../../views/content/guidance-title';
+import { GuidanceTitle } from 'views/content/guidance-title';
 
 describe('guidance title', () => {
     test('has correct structure', () => {
