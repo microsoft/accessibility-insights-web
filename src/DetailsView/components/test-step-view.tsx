@@ -3,9 +3,9 @@
 import { Spinner, SpinnerSize } from 'office-ui-fabric-react/lib/Spinner';
 import * as React from 'react';
 
-import { AssessmentDefaultMessageGenerator } from '../../assessments/assessment-default-message-generator';
-import { AssessmentsProvider } from '../../assessments/types/assessments-provider';
-import { Requirement, VisualHelperToggleConfig } from '../../assessments/types/requirement';
+import { AssessmentDefaultMessageGenerator } from 'assessments/assessment-default-message-generator';
+import { AssessmentsProvider } from 'assessments/types/assessments-provider';
+import { Requirement, VisualHelperToggleConfig } from 'assessments/types/requirement';
 import { CollapsibleComponent } from '../../common/components/collapsible-component';
 import { GuidanceTags, GuidanceTagsDeps } from '../../common/components/guidance-tags';
 import {
@@ -14,6 +14,7 @@ import {
     ManualTestStepResult,
 } from '../../common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
+import { PathSnippetStoreData } from '../../common/types/store-data/path-snippet-store-data';
 import { DictionaryStringTo } from '../../types/common-types';
 import { ContentPanelButton, ContentPanelButtonDeps } from '../../views/content/content-panel-button';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
@@ -38,6 +39,7 @@ export interface TestStepViewProps {
     assessmentsProvider: AssessmentsProvider;
     assessmentDefaultMessageGenerator: AssessmentDefaultMessageGenerator;
     featureFlagStoreData: FeatureFlagStoreData;
+    pathSnippetStoreData: PathSnippetStoreData;
 }
 
 export class TestStepView extends React.Component<TestStepViewProps> {
@@ -74,6 +76,7 @@ export class TestStepView extends React.Component<TestStepViewProps> {
                     assessmentInstanceTableHandler={this.props.assessmentInstanceTableHandler}
                     assessmentsProvider={this.props.assessmentsProvider}
                     featureFlagStoreData={this.props.featureFlagStoreData}
+                    pathSnippetStoreData={this.props.pathSnippetStoreData}
                 />
             );
         }

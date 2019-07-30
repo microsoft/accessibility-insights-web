@@ -39,6 +39,7 @@ describe('AssessmentInstanceRemoveButton', () => {
             onRemove: onRemoveMock.object,
             onEdit: null,
             onAddPath: null,
+            onClearPathSnippetData: null,
             assessmentsProvider: CreateTestAssessmentProvider(),
             featureFlagStoreData: featureFlagStoreData,
         };
@@ -55,6 +56,7 @@ describe('AssessmentInstanceRemoveButton', () => {
                     failureInstance={props.currentInstance}
                     editFailureInstance={props.onEdit}
                     addPathForValidation={props.onAddPath}
+                    clearPathSnippetData={null}
                     assessmentsProvider={props.assessmentsProvider}
                     featureFlagStoreData={featureFlagStoreData}
                 />
