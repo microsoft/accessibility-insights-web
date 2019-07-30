@@ -55,27 +55,20 @@ describe('Tabstop tests', () => {
 
         async function goToTabStopTest(): Promise<void> {
             await fastPassPage.clickSelector(fastPassSelectors.tabstopNavButtonSelector);
-            // await fastPassPage.disableAnimations();
-            await verifyTabStopPageLoaded();
         }
 
         async function enableToggleByAriaLabel(ariaLabel: string): Promise<void> {
             const toggleSelector = `button[aria-label="${ariaLabel}"]`;
             const enabledToggleSelector = `${toggleSelector}[aria-checked=true]`;
             const disabledToggleSelector = `${toggleSelector}[aria-checked=false]`;
-
-            await fastPassPage.waitForDuration(6000);
-            await fastPassPage.clickSelector(disabledToggleSelector);
-
             const EXTRA_TOGGLE_OPERATION_TIMEOUT_MS = 5000;
+
+            await fastPassPage.waitForDuration(EXTRA_TOGGLE_OPERATION_TIMEOUT_MS);
+            await fastPassPage.clickSelector(disabledToggleSelector);
 
             await fastPassPage.waitForSelector(enabledToggleSelector, {
                 timeout: DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS + EXTRA_TOGGLE_OPERATION_TIMEOUT_MS,
             });
-        }
-
-        async function verifyTabStopPageLoaded(): Promise<void> {
-            await fastPassPage.waitForSelector(fastPassSelectors.tabStopToggle);
         }
     });
 });
