@@ -6,7 +6,6 @@ import { popupPageElementIdentifiers } from '../../common/element-identifiers/po
 import { PopupPage } from '../../common/page-controllers/popup-page';
 import { TargetPage } from '../../common/page-controllers/target-page';
 import { scanForAccessibilityIssues } from '../../common/scan-for-accessibility-issues';
-import { DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS } from '../../common/timeouts';
 
 describe('Ad hoc tools', () => {
     let browser: Browser;
@@ -28,28 +27,28 @@ describe('Ad hoc tools', () => {
     });
 
     it('should have launchpad link that takes us to adhoc panel & is sticky', async () => {
-        await gotoAdhocPanel();
+        await popupPage.gotoAdhocPanel();
 
         // verify adhoc panel state is sticky
         targetPage = await browser.newTargetPage();
         popupPage = await browser.newPopupPage(targetPage);
-        await verifyAdhocPanelLoaded();
+        await popupPage.verifyAdhocPanelLoaded();
     });
 
     it('should take back to Launch pad on clicking "Back to Launch pad" link & is sticky', async () => {
         await popupPage.clickSelectorXPath(popupPageElementIdentifiers.adhocLaunchPadLinkXPath);
         await popupPage.clickSelector(popupPageElementIdentifiers.backToLaunchPadLink);
 
-        await verifyLaunchPadLoaded();
+        await popupPage.verifyLaunchPadLoaded();
 
         // verify adhoc panel state is sticky
         targetPage = await browser.newTargetPage();
         popupPage = await browser.newPopupPage(targetPage);
-        await verifyLaunchPadLoaded();
+        await popupPage.verifyLaunchPadLoaded();
     });
 
     it('should pass accessibility validation', async () => {
-        await gotoAdhocPanel();
+        await popupPage.gotoAdhocPanel();
 
         const results = await scanForAccessibilityIssues(popupPage, '*');
         expect(results).toHaveLength(0);
@@ -60,7 +59,7 @@ describe('Ad hoc tools', () => {
         await detailsViewPage.enableHighContrast();
 
         await popupPage.bringToFront();
-        await gotoAdhocPanel();
+        await popupPage.gotoAdhocPanel();
 
         const results = await scanForAccessibilityIssues(popupPage, '*');
         expect(results).toMatchSnapshot();
@@ -69,41 +68,11 @@ describe('Ad hoc tools', () => {
     it.each(['Automated checks', 'Landmarks', 'Headings', 'Color'])(
         'should display the pinned target page visualizations when enabling the "%s" toggle',
         async (toggleAriaLabel: string) => {
-            await gotoAdhocPanel();
+            await popupPage.gotoAdhocPanel();
 
-            await enableToggleByAriaLabel(toggleAriaLabel);
+            await popupPage.enableToggleByAriaLabel(toggleAriaLabel);
 
             expect(await targetPage.getShadowRootHtmlSnapshot()).toMatchSnapshot();
         },
     );
-
-    async function enableToggleByAriaLabel(ariaLabel: string): Promise<void> {
-        const toggleSelector = `button[aria-label="${ariaLabel}"]`;
-        const enabledToggleSelector = `${toggleSelector}[aria-checked=true]`;
-        const disabledToggleSelector = `${toggleSelector}[aria-checked=false]`;
-
-        await popupPage.clickSelector(disabledToggleSelector);
-
-        // The toggles will go through a state where they are removed and replaced with a spinner, then re-added to the page
-        // We intentionally omit looking for the loading spinner because it can be fast enough to not be seen by Puppeteer
-
-        const EXTRA_TOGGLE_OPERATION_TIMEOUT_MS = 5000;
-
-        await popupPage.waitForSelector(enabledToggleSelector, {
-            timeout: DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS + EXTRA_TOGGLE_OPERATION_TIMEOUT_MS,
-        });
-    }
-
-    async function gotoAdhocPanel(): Promise<void> {
-        await popupPage.clickSelectorXPath(popupPageElementIdentifiers.adhocLaunchPadLinkXPath);
-        await verifyAdhocPanelLoaded();
-    }
-
-    async function verifyAdhocPanelLoaded(): Promise<void> {
-        await popupPage.waitForSelector(popupPageElementIdentifiers.adhocPanel);
-    }
-
-    async function verifyLaunchPadLoaded(): Promise<void> {
-        await popupPage.waitForSelector(popupPageElementIdentifiers.launchPad);
-    }
 });
