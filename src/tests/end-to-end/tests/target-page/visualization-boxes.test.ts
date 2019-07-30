@@ -15,6 +15,7 @@ describe('Target Page visualization boxes', () => {
         browser = await launchBrowser({ suppressFirstTimeDialog: true });
         targetPage = await browser.newTargetPage();
         popupPage = await browser.newPopupPage(targetPage);
+        await popupPage.gotoAdhocPanel();
     });
 
     afterAll(async () => {
@@ -24,13 +25,12 @@ describe('Target Page visualization boxes', () => {
         }
     });
 
-    describe('Headings', () => {
-        it('should pass accessibility validation', async () => {
-            await popupPage.gotoAdhocPanel();
-            await popupPage.enableToggleByAriaLabel('Headings');
+    const adHocTools = ['Automated checks', 'Headings', 'Landmarks'];
 
-            const results = await scanForAccessibilityIssues(targetPage, '#accessibility-insights-root-container');
-            expect(results).toHaveLength(0);
-        });
+    it.each(adHocTools)('should pass accessibility validation', async adHocTool => {
+        await popupPage.enableToggleByAriaLabel(adHocTool);
+
+        const results = await scanForAccessibilityIssues(targetPage, '#accessibility-insights-root-container');
+        expect(results).toHaveLength(0);
     });
 });
