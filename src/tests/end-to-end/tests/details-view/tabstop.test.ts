@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { launchBrowser } from '../../common/browser-factory';
-import { fastPassSelectors } from '../../common/element-identifiers/common-selectors';
+import { fastPassSelectors, targetPageSelectors } from '../../common/element-identifiers/common-selectors';
 import { Page } from '../../common/page-controllers/page';
 import { TargetPage } from '../../common/page-controllers/target-page';
 import { Browser } from './../../common/browser';
@@ -31,15 +31,15 @@ describe('Tabstop tests', () => {
             await targetPage.bringToFront();
             await targetPage.keyPress('Tab');
 
-            const nativeWidgetHeadingTargetPage = await targetPage.$('#h1-native-widget');
+            const nativeWidgetHeadingTargetPage = await targetPage.$(targetPageSelectors.targetPageNativeWidgetH1);
             await nativeWidgetHeadingTargetPage.click();
 
-            const frame = targetPage.frames().find(f => f.name() === 'native-widgets');
-            const button = await frame.$('#input-radio-1');
+            const frame = targetPage.frames().find(f => f.name() === targetPageSelectors.targetPageNativeWidgetIFrameName);
+            const button = await frame.$(targetPageSelectors.targetPageNativeWidgetFirstRadio);
             await button.click();
 
             const shadowRoot = await targetPage.getShadowRoot();
-            await targetPage.waitForDescendentSelector(shadowRoot, '.insights-tab-stops', { visible: true });
+            await targetPage.waitForDescendentSelector(shadowRoot, fastPassSelectors.tabStopVisulizationStart, { visible: true });
 
             for (let i = 0; i < 3; i++) {
                 await targetPage.keyPress('Tab');
