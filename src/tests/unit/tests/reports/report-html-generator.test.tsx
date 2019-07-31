@@ -5,13 +5,13 @@ import { EnvironmentInfo } from 'common/environment-info-provider';
 import { GetGuidanceTagsFromGuidanceLinks } from 'common/get-guidance-tags-from-guidance-links';
 import { FixInstructionProcessor } from 'injected/fix-instruction-processor';
 import * as React from 'react';
-import { ScanResults } from 'scanner/iruleresults';
-import { It, Mock, MockBehavior, Times } from 'typemoq';
 import { ReportHead } from 'reports/components/report-head';
 import { ReportBody, ReportBodyProps } from 'reports/components/report-sections/report-body';
 import { ReportSectionFactory } from 'reports/components/report-sections/report-section-factory';
 import { ReactStaticRenderer } from 'reports/react-static-renderer';
 import { ReportHtmlGenerator } from 'reports/report-html-generator';
+import { ScanResults } from 'scanner/iruleresults';
+import { It, Mock, MockBehavior, Times } from 'typemoq';
 
 describe('ReportHtmlGenerator', () => {
     test('generateHtml', () => {

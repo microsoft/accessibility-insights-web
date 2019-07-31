@@ -4,12 +4,12 @@ import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { AssessmentStoreData } from 'common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { TabStoreData } from 'common/types/store-data/tab-store-data';
-import { ScanResults } from 'scanner/iruleresults';
-import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { AssessmentReportHtmlGenerator } from 'reports/assessment-report-html-generator';
 import { ReportGenerator } from 'reports/report-generator';
 import { ReportHtmlGenerator } from 'reports/report-html-generator';
 import { ReportNameGenerator } from 'reports/report-name-generator';
+import { ScanResults } from 'scanner/iruleresults';
+import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 describe('ReportGenerator', () => {
     const scanResult: ScanResults = {} as any;

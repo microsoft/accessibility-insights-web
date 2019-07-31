@@ -6,11 +6,11 @@ import { Mock } from 'typemoq';
 
 import { GetGuidanceTagsFromGuidanceLinks } from 'common/get-guidance-tags-from-guidance-links';
 import { FixInstructionProcessor } from 'injected/fix-instruction-processor';
-import { RuleResult } from 'scanner/iruleresults';
 import {
     FailedInstancesSection,
     FailedInstancesSectionProps,
 } from 'reports/components/report-sections/failed-instances-section';
+import { RuleResult } from 'scanner/iruleresults';
 
 describe('FailedInstancesSection', () => {
     it('renders', () => {

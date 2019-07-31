@@ -12,9 +12,9 @@ import {
 import { AssessmentsProviderImpl } from 'assessments/assessments-provider';
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { Assessment } from 'assessments/types/iassessment';
+import { AssessmentReportModelBuilder } from 'reports/assessment-report-model-builder';
 import { AssessmentStoreData } from '../../../../common/types/store-data/assessment-result-data';
 import { TabStoreData } from '../../../../common/types/store-data/tab-store-data';
-import { AssessmentReportModelBuilder } from 'reports/assessment-report-model-builder';
 import { AssessmentReportBuilderTestHelper } from './assessment-report-builder-test-helper';
 
 describe('AssessmentReportModelBuilderTest', () => {
