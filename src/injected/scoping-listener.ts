@@ -93,10 +93,10 @@ export class ScopingListener {
         }, ScopingListener.onHoverTimeout);
     };
 
-    private processRequestForEvent(event: MouseEvent): PromiseLike<SingleElementSelector> {
+    private processRequestForEvent = (event: MouseEvent): PromiseLike<SingleElementSelector> => {
         return this.elementFinderByPosition.processRequest({
             x: event.clientX,
             y: event.clientY,
         });
-    }
+    };
 }
