@@ -110,17 +110,6 @@ export class Page {
         );
     }
 
-    public async waitForFunction(
-        fn: Puppeteer.EvaluateFn,
-        options?: Puppeteer.PageFnOptions,
-        ...args: Puppeteer.SerializableOrJSHandle[]
-    ): Promise<Puppeteer.JSHandle> {
-        return await this.screenshotOnError(
-            async () =>
-                await this.underlyingPage.waitForFunction(fn, { timeout: DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS, ...options }, ...args),
-        );
-    }
-
     public async waitForSelector(selector: string, options?: Puppeteer.WaitForSelectorOptions): Promise<Puppeteer.ElementHandle<Element>> {
         return await this.screenshotOnError(
             async () => await this.underlyingPage.waitForSelector(selector, { timeout: DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS, ...options }),
