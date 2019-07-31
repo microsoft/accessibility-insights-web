@@ -141,6 +141,23 @@ export class Page {
         await this.underlyingPage.waitFor(duration);
     }
 
+    public async waitForDescendentSelector(
+        parentElement: Puppeteer.ElementHandle<Element>,
+        descendentSelector: string,
+        options?: Puppeteer.WaitForSelectorOptions,
+    ): Promise<Puppeteer.JSHandle> {
+        options = {
+            timeout: DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS,
+            ...options,
+        };
+        return await this.underlyingPage.waitForFunction(
+            (parent, selector) => parent.querySelector(selector),
+            options,
+            parentElement,
+            descendentSelector,
+        );
+    }
+
     public async getShadowRootOfSelector(selector: string): Promise<Puppeteer.ElementHandle<Element>> {
         return await this.screenshotOnError(async () =>
             (await this.underlyingPage.evaluateHandle(
@@ -181,6 +198,10 @@ export class Page {
         // * There is at least one edge case (the background page) where we've seen puppeteer
         //   mis-populating url() but not target().url() as ':'
         return new URL(this.underlyingPage.target().url());
+    }
+
+    public frames(): Puppeteer.Frame[] {
+        return this.underlyingPage.frames();
     }
 
     public async keyPress(key: string): Promise<void> {

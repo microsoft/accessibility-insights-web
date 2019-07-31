@@ -28,10 +28,19 @@ describe('Tabstop tests', () => {
         });
 
         test('if visualHelper is turned on after starting tabstop and pressing tabs on target page', async () => {
+            await targetPage.bringToFront();
             await targetPage.keyPress('Tab');
-            await targetPage.waitForDuration(1000);
+
+            const nativeWidgetHeadingTargetPage = await targetPage.$('#h1-native-widget');
+            await nativeWidgetHeadingTargetPage.click();
+
+            const frame = targetPage.frames().find(f => f.name() === 'native-widgets');
+            const button = await frame.$('#input-radio-1');
+            await button.click();
+
             const shadowRoot = await targetPage.getShadowRoot();
-            await shadowRoot.$('.insights-tab-stops');
+            await targetPage.waitForDescendentSelector(shadowRoot, '.insights-tab-stops', { visible: true });
+
             for (let i = 0; i < 3; i++) {
                 await targetPage.keyPress('Tab');
             }
