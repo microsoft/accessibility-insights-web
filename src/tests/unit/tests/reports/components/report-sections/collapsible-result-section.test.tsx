@@ -3,10 +3,7 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-import {
-    CollapsibleResultSection,
-    CollapsibleResultSectionProps,
-} from 'reports/components/report-sections/collapsible-result-section';
+import { CollapsibleResultSection, CollapsibleResultSectionProps } from 'reports/components/report-sections/collapsible-result-section';
 
 describe('CollapsibleResultSection', () => {
     it('renders', () => {

@@ -3,10 +3,7 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import { allInstanceOutcomeTypes } from 'reports/components/instance-outcome-type';
-import {
-    MinimalRuleHeader,
-    MinimalRuleHeaderProps,
-} from 'reports/components/report-sections/minimal-rule-header';
+import { MinimalRuleHeader, MinimalRuleHeaderProps } from 'reports/components/report-sections/minimal-rule-header';
 import { RuleResult } from 'scanner/iruleresults';
 
 describe('MinimalRuleHeader', () => {

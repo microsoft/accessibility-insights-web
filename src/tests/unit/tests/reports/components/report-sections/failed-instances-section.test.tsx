@@ -6,10 +6,7 @@ import { Mock } from 'typemoq';
 
 import { GetGuidanceTagsFromGuidanceLinks } from 'common/get-guidance-tags-from-guidance-links';
 import { FixInstructionProcessor } from 'injected/fix-instruction-processor';
-import {
-    FailedInstancesSection,
-    FailedInstancesSectionProps,
-} from 'reports/components/report-sections/failed-instances-section';
+import { FailedInstancesSection, FailedInstancesSectionProps } from 'reports/components/report-sections/failed-instances-section';
 import { RuleResult } from 'scanner/iruleresults';
 
 describe('FailedInstancesSection', () => {

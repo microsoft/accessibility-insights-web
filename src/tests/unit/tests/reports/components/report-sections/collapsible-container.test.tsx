@@ -3,10 +3,7 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-import {
-    CollapsibleContainer,
-    CollapsibleContainerProps,
-} from 'reports/components/report-sections/collapsible-container';
+import { CollapsibleContainer, CollapsibleContainerProps } from 'reports/components/report-sections/collapsible-container';
 
 describe('CollapsibleContainer', () => {
     const getProps = (customProps?: Partial<CollapsibleContainerProps>): CollapsibleContainerProps => {

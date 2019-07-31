@@ -3,10 +3,7 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-import {
-    ResultsContainer,
-    ResultsContainerProps,
-} from 'reports/components/report-sections/results-container';
+import { ResultsContainer, ResultsContainerProps } from 'reports/components/report-sections/results-container';
 import { Mock } from 'typemoq';
 
 describe('ResultsContainer', () => {
