@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { Browser } from '../../common/browser';
 import { launchBrowser } from '../../common/browser-factory';
+import { TargetPageInjectedComponentSelectors } from '../../common/element-identifiers/target-page-selectors';
 import { PopupPage } from '../../common/page-controllers/popup-page';
 import { TargetPage } from '../../common/page-controllers/target-page';
 import { scanForAccessibilityIssues } from '../../common/scan-for-accessibility-issues';
@@ -35,9 +36,11 @@ describe('Target Page visualization boxes', () => {
         await popupPage.enableToggleByAriaLabel(adhocTool);
 
         const shadowRoot = await targetPage.getShadowRoot();
-        await targetPage.waitForDescendentSelector(shadowRoot, '.insights-highlight-container', { visible: true });
+        await targetPage.waitForDescendentSelector(shadowRoot, TargetPageInjectedComponentSelectors.insightsVisualizationBox, {
+            visible: true,
+        });
 
-        const results = await scanForAccessibilityIssues(targetPage, '#accessibility-insights-root-container');
+        const results = await scanForAccessibilityIssues(targetPage, TargetPageInjectedComponentSelectors.insightsRootContainer);
         expect(results).toHaveLength(0);
     });
 });

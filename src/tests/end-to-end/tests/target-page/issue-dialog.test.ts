@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { Browser } from '../../common/browser';
 import { launchBrowser } from '../../common/browser-factory';
+import { TargetPageInjectedComponentSelectors } from '../../common/element-identifiers/target-page-selectors';
 import { PopupPage } from '../../common/page-controllers/popup-page';
 import { TargetPage } from '../../common/page-controllers/target-page';
 import { scanForAccessibilityIssues } from '../../common/scan-for-accessibility-issues';
@@ -31,13 +32,13 @@ describe('Target Page issue dialog', () => {
         await targetPage.bringToFront();
 
         const shadowRoot = await targetPage.getShadowRoot();
-        await targetPage.waitForDescendentSelector(shadowRoot, '.failure-label', { visible: true });
-        const issueHighlightLabel = await shadowRoot.$('.failure-label');
+        await targetPage.waitForDescendentSelector(shadowRoot, TargetPageInjectedComponentSelectors.failureLabel, { visible: true });
+        const issueHighlightLabel = await shadowRoot.$(TargetPageInjectedComponentSelectors.failureLabel);
         await issueHighlightLabel.click();
 
-        await targetPage.waitForSelector('.insights-dialog-main-container');
+        await targetPage.waitForSelector(TargetPageInjectedComponentSelectors.issueDialog);
 
-        const results = await scanForAccessibilityIssues(targetPage, '.insights-dialog-main-container');
+        const results = await scanForAccessibilityIssues(targetPage, TargetPageInjectedComponentSelectors.issueDialog);
         expect(results).toHaveLength(0);
     });
 });
