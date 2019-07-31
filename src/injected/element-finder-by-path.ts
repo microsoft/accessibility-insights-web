@@ -56,6 +56,15 @@ export class ElementFinderByPath {
 
         if (element.tagName.toLocaleLowerCase() !== 'iframe' && message.path.length === 1) {
             const response = element ? element.outerHTML : 'error';
+
+            const removal = '<div id="accessibility-insights-root-container"><div id="insights-shadow-host"></div></div>';
+            const removalIndex = response.search(removal);
+            if (removalIndex !== -1) {
+                const cleanedResponse = response.slice(0, removalIndex) + response.slice(removalIndex + removal.length);
+                deferred.resolve(cleanedResponse);
+                return deferred.promise;
+            }
+
             deferred.resolve(response);
             return deferred.promise;
         }
