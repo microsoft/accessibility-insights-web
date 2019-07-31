@@ -23,7 +23,8 @@ export class PathSnippetController {
             return;
         }
 
-        if (pathSnippetStoreState.path !== '') {
+
+        if (pathSnippetStoreState.path) {
             this.getElementFromPath(pathSnippetStoreState.path);
         }
     };

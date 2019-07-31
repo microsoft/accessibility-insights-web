@@ -4,10 +4,10 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { IMock, It, Mock } from 'typemoq';
 
+import { title } from 'content/strings/application';
 import { BrowserAdapter } from '../../../../common/browser-adapters/browser-adapter';
 import { Theme } from '../../../../common/components/theme';
 import { DropdownClickHandler } from '../../../../common/dropdown-click-handler';
-import { title } from '../../../../content/strings/application';
 import { DiagnosticViewToggleFactory } from '../../../../popup/components/diagnostic-view-toggle-factory';
 import { PopupViewWithStoreSubscription } from '../../../../popup/components/popup-view';
 import { DiagnosticViewClickHandler } from '../../../../popup/handlers/diagnostic-view-toggle-click-handler';

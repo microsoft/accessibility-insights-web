@@ -4,12 +4,12 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 import { Mock } from 'typemoq';
 
+import { HyperlinkDefinition } from 'views/content/content-page';
 import {
     OverviewHelpSection,
     OverviewHelpSectionDeps,
     OverviewHelpSectionProps,
 } from '../../../../../../DetailsView/components/overview-content/overview-help-section';
-import { HyperlinkDefinition } from '../../../../../../views/content/content-page';
 
 describe('OverviewHelpSection', () => {
     const deps = Mock.ofType<OverviewHelpSectionDeps>().object;

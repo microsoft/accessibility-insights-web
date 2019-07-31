@@ -3,8 +3,8 @@
 import * as Axe from 'axe-core';
 
 import { difference } from 'lodash';
+import { HyperlinkDefinition } from 'views/content/content-page';
 import { ruleToLinkConfiguration } from '../../../../scanner/rule-to-links-mappings';
-import { HyperlinkDefinition } from '../../../../views/content/content-page';
 
 describe('ruleToLinkConfiguration', () => {
     const axe = Axe as any;

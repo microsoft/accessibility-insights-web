@@ -20,8 +20,15 @@ describe('PathSnippetStoreTest', () => {
     test('check defaultState is empty', () => {
         const defaultState = getDefaultState();
 
-        expect(defaultState.path).toEqual('');
-        expect(defaultState.snippet).toEqual('');
+        expect(defaultState.path).toEqual(null);
+        expect(defaultState.snippet).toEqual(null);
+    });
+
+    test('on getCurrentState', () => {
+        const initialState = getDefaultState();
+        const finalState = getDefaultState();
+
+        createStoreForPathSnippetActions('getCurrentState').testListenerToBeCalledOnce(initialState, finalState);
     });
 
     test('on addPath', () => {
@@ -43,6 +50,18 @@ describe('PathSnippetStoreTest', () => {
 
         createStoreForPathSnippetActions('onAddSnippet')
             .withActionParam(payload)
+            .testListenerToBeCalledOnce(initialState, finalState);
+    });
+
+    test('on clearState', () => {
+        const initialState = {
+            path: 'test path',
+            snippet: 'test snippet',
+        };
+        const finalState = getDefaultState();
+
+        createStoreForPathSnippetActions('onClearData')
+            .withActionParam(null)
             .testListenerToBeCalledOnce(initialState, finalState);
     });
 

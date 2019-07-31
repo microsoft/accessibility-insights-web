@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import * as Markup from '../../assessments/markup';
+import * as Markup from 'assessments/markup';
 import { InspectMode } from '../../background/inspect-modes';
 import { ScopingInputTypes } from '../../background/scoping-input-types';
 import { SelectorInputList } from '../../common/components/selector-input-list';

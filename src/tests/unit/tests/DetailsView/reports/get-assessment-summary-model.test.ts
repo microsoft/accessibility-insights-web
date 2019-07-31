@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { AssessmentsProvider } from '../../../../../assessments/types/assessments-provider';
-import { Assessment } from '../../../../../assessments/types/iassessment';
-import { ManualTestStatus, TestStepData } from '../../../../../common/types/manual-test-status';
-import { AssessmentStoreData } from '../../../../../common/types/store-data/assessment-result-data';
+import { AssessmentsProvider } from 'assessments/types/assessments-provider';
+import { Assessment } from 'assessments/types/iassessment';
+import { ManualTestStatus, TestStepData } from 'common/types/manual-test-status';
+import { AssessmentStoreData } from 'common/types/store-data/assessment-result-data';
 import { OverviewSummaryReportModel } from '../../../../../DetailsView/reports/assessment-report-model';
 import {
     AssessmentStatusData,

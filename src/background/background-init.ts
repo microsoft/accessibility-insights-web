@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { AppInsights } from 'applicationinsights-js';
 
-import { Assessments } from '../assessments/assessments';
+import { Assessments } from 'assessments/assessments';
 import { AxeInfo } from '../common/axe-info';
 import { ChromeAdapter } from '../common/browser-adapters/chrome-adapter';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';

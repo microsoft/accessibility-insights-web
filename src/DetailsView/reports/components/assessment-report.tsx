@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as React from 'react';
+
 import { ReportModel } from '../assessment-report-model';
 import { AssessmentReportBody, AssessmentReportBodyDeps } from './assessment-report-body';
 import { AssessmentReportFooter } from './assessment-report-footer';

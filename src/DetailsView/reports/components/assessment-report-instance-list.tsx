@@ -3,8 +3,8 @@
 import { flatten, toPairs } from 'lodash';
 import * as React from 'react';
 
-import { NamedSFC } from '../../../common/react/named-sfc';
-import { BagOf, isScalarColumnValue, ScalarColumnValue } from '../../../common/types/property-bag/column-value-bag';
+import { NamedSFC } from 'common/react/named-sfc';
+import { BagOf, isScalarColumnValue, ScalarColumnValue } from 'common/types/property-bag/column-value-bag';
 import { InstanceReportModel } from '../assessment-report-model';
 
 export interface AssessmentReportInstanceListProps {

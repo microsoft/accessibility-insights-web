@@ -2,9 +2,9 @@
 // Licensed under the MIT License.
 import * as _ from 'lodash';
 
-import { AssessmentsProvider } from '../assessments/types/assessments-provider';
-import { Assessment } from '../assessments/types/iassessment';
-import { Requirement } from '../assessments/types/requirement';
+import { AssessmentsProvider } from 'assessments/types/assessments-provider';
+import { Assessment } from 'assessments/types/iassessment';
+import { Requirement } from 'assessments/types/requirement';
 import { Messages } from '../common/messages';
 import { TelemetryDataFactory } from '../common/telemetry-data-factory';
 import { RequirementStatusTelemetryData } from '../common/telemetry-events';

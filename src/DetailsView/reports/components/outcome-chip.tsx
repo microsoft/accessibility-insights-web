@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { NamedSFC } from 'common/react/named-sfc';
 import * as React from 'react';
 
-import { NamedSFC } from '../../../common/react/named-sfc';
 import { OutcomeIcon } from './outcome-icon';
 import { OutcomeType, outcomeTypeSemantics } from './outcome-type';
 

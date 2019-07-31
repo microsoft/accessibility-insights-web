@@ -4,7 +4,7 @@ import { Icon } from 'office-ui-fabric-react/lib/Icon';
 import { Link } from 'office-ui-fabric-react/lib/Link';
 import * as React from 'react';
 
-import { AssessmentsProvider } from '../../assessments/types/assessments-provider';
+import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { VisualizationType } from '../../common/types/visualization-type';
 import { CapturedInstanceActionType, FailureInstanceData, FailureInstancePanelControl } from './failure-instance-panel-control';
@@ -17,6 +17,7 @@ export interface AssessmentInstanceEditAndRemoveControlProps {
     onRemove: (test, step, id) => void;
     onAddPath: (path) => void;
     onEdit: (instanceData, test, step, id) => void;
+    onClearPathSnippetData: () => void;
     assessmentsProvider: AssessmentsProvider;
     featureFlagStoreData: FeatureFlagStoreData;
 }
@@ -33,6 +34,7 @@ export class AssessmentInstanceEditAndRemoveControl extends React.Component<Asse
                     failureInstance={this.props.currentInstance}
                     editFailureInstance={this.props.onEdit}
                     addPathForValidation={this.props.onAddPath}
+                    clearPathSnippetData={this.props.onClearPathSnippetData}
                     assessmentsProvider={this.props.assessmentsProvider}
                     featureFlagStoreData={this.props.featureFlagStoreData}
                 />

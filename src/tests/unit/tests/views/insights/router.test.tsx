@@ -4,7 +4,7 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 import { StaticRouter } from 'react-router';
 
-import { RouterDeps, RouterSwitch } from '../../../../../views/insights/router';
+import { RouterDeps, RouterSwitch } from 'views/insights/router';
 
 describe('router', () => {
     const deps = ('DEPS' as Partial<RouterDeps>) as RouterDeps;

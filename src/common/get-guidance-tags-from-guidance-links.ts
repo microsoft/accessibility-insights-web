@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { isArray, isObject } from 'lodash';
 
-import { GuidanceTag } from '../content/guidance-tags';
+import { GuidanceTag } from 'content/guidance-tags';
 import { GuidanceLink } from '../scanner/rule-to-links-mappings';
 
 export type GetGuidanceTagsFromGuidanceLinks = (links: GuidanceLink[]) => GuidanceTag[];

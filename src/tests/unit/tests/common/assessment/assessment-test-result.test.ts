@@ -2,8 +2,8 @@
 // Licensed under the MIT License.
 import { Mock } from 'typemoq';
 
-import { AssessmentsProvider } from '../../../../../assessments/types/assessments-provider';
-import { Assessment } from '../../../../../assessments/types/iassessment';
+import { AssessmentsProvider } from 'assessments/types/assessments-provider';
+import { Assessment } from 'assessments/types/iassessment';
 import { AssessmentTestProviderDeps, AssessmentTestResult } from '../../../../../common/assessment/assessment-test-result';
 import { RequirementResult } from '../../../../../common/assessment/requirement';
 import { ManualTestStatus, ManualTestStatusData } from '../../../../../common/types/manual-test-status';

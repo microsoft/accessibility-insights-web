@@ -3,11 +3,11 @@
 import { css } from '@uifabric/utilities';
 import * as React from 'react';
 
-import { NewTabLink } from '../../../../common/components/new-tab-link';
-import { CommentIcon } from '../../../../common/icons/comment-icon';
-import { DateIcon } from '../../../../common/icons/date-icon';
-import { UrlIcon } from '../../../../common/icons/url-icon';
-import { NamedSFC } from '../../../../common/react/named-sfc';
+import { NewTabLink } from 'common/components/new-tab-link';
+import { CommentIcon } from 'common/icons/comment-icon';
+import { DateIcon } from 'common/icons/date-icon';
+import { UrlIcon } from 'common/icons/url-icon';
+import { NamedSFC } from 'common/react/named-sfc';
 import { SectionProps } from './report-section-factory';
 
 export type DetailsSectionProps = Pick<SectionProps, 'pageTitle' | 'pageUrl' | 'description' | 'scanDate' | 'toUtcString'>;

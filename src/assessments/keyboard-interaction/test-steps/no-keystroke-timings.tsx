@@ -2,8 +2,8 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import { link } from '../../../content/link';
-import * as content from '../../../content/test/keyboard/no-keystroke-timings';
+import { link } from 'content/link';
+import * as content from 'content/test/keyboard/no-keystroke-timings';
 import { ManualTestRecordYourResults } from '../../common/manual-test-record-your-results';
 import { Requirement } from '../../types/requirement';
 import { KeyboardInteractionTestStep } from './test-steps';

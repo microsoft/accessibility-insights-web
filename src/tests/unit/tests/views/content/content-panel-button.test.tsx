@@ -2,9 +2,9 @@
 // Licensed under the MIT License.
 import { shallow } from 'enzyme';
 import * as React from 'react';
+import { ContentPage } from 'views/content/content-page';
+import { ContentPanelButton } from 'views/content/content-panel-button';
 import { ContentActionMessageCreator } from '../../../../../common/message-creators/content-action-message-creator';
-import { ContentPage } from '../../../../../views/content/content-page';
-import { ContentPanelButton } from '../../../../../views/content/content-panel-button';
 
 describe('ContentPanelButton', () => {
     const content = {

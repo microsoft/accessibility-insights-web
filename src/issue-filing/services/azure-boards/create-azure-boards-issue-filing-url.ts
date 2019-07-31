@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { title } from 'content/strings/application';
 import { EnvironmentInfo } from '../../../common/environment-info-provider';
 import { CreateIssueDetailsTextData } from '../../../common/types/create-issue-details-text-data';
-import { title } from '../../../content/strings/application';
 import { createIssueDetailsBuilder } from '../../common/create-issue-details-builder';
 import { HTTPQueryBuilder } from '../../common/http-query-builder';
 import { IssueDetailsBuilder } from '../../common/issue-details-builder';

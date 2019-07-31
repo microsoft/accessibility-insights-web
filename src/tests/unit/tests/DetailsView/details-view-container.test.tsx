@@ -170,6 +170,7 @@ describe('DetailsViewContainer', () => {
                         It.isObjectWith({
                             assessmentStoreData: state.assessmentStoreData,
                             visualizationStoreData: state.visualizationStoreData,
+                            pathSnippetStoreData: state.pathSnippetStoreData,
                         }),
                     ),
                 )
@@ -232,6 +233,7 @@ describe('DetailsViewContainer', () => {
                         featureFlagStoreData: storeMocks.featureFlagStoreData,
                         detailsViewStoreData: storeMocks.detailsViewStoreData,
                         assessmentStoreData: storeMocks.assessmentStoreData,
+                        pathSnippetStoreData: storeMocks.pathSnippetStoreData,
                         scopingPanelStateStoreData: storeMocks.scopingStoreData,
                         userConfigurationStoreData: storeMocks.userConfigurationStoreData,
                     }
@@ -252,6 +254,7 @@ describe('DetailsViewContainer', () => {
                 deps={deps}
                 tabStoreData={storeMocks.tabStoreData}
                 assessmentStoreData={storeMocks.assessmentStoreData}
+                pathSnippetStoreData={storeMocks.pathSnippetStoreData}
                 featureFlagStoreData={storeMocks.featureFlagStoreData}
                 selectedTest={selectedDetailsView}
                 detailsViewStoreData={storeMocks.detailsViewStoreData}
@@ -328,6 +331,7 @@ describe('DetailsViewContainer', () => {
             featureFlagStoreData: storeMocks.featureFlagStoreData,
             detailsViewStoreData: storeMocks.detailsViewStoreData,
             assessmentStoreData: storeMocks.assessmentStoreData,
+            pathSnippetStoreData: storeMocks.pathSnippetStoreData,
             userConfigurationStoreData: storeMocks.userConfigurationStoreData,
             visualizationScanResultStoreData: storeMocks.visualizationScanResultsStoreData,
             scopingPanelStateStoreData: storeMocks.scopingSelectorsData,
@@ -403,6 +407,7 @@ describe('DetailsViewContainer', () => {
                     It.isObjectWith({
                         assessmentStoreData: state.assessmentStoreData,
                         visualizationStoreData: state.visualizationStoreData,
+                        pathSnippetStoreData: state.pathSnippetStoreData,
                     }),
                 ),
             )
