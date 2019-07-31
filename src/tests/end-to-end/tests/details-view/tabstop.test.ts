@@ -28,9 +28,10 @@ describe('Tabstop tests', () => {
         });
 
         test('if visualHelper is turned on after starting tabstop and pressing tabs on target page', async () => {
+            await targetPage.keyPress('Tab');
+            await targetPage.waitForDuration(1000);
             const shadowRoot = await targetPage.getShadowRoot();
-
-            // const insightTabStopsDiv = await shadowRoot.$('.insights-tab-stops');
+            await shadowRoot.$('.insights-tab-stops');
             for (let i = 0; i < 3; i++) {
                 await targetPage.keyPress('Tab');
             }
