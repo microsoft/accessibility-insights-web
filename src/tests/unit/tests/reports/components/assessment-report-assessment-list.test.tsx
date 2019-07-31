@@ -11,7 +11,7 @@ import {
     AssessmentReportAssessmentListProps,
 } from 'reports/components/assessment-report-assessment-list';
 import { AssessmentReportStepListDeps } from 'reports/components/assessment-report-step-list';
-import { AssessmentReportBuilderTestHelper } from '../../assessment-report-builder-test-helper';
+import { AssessmentReportBuilderTestHelper } from '../../DetailsView/assessment-report-builder-test-helper';
 
 describe('AssessmentReportAssessmentListTest', () => {
     const deps: AssessmentReportAssessmentListDeps = {

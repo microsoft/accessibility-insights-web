@@ -7,17 +7,14 @@ import { TabStoreData } from 'common/types/store-data/tab-store-data';
 import * as React from 'react';
 import { It, Mock, MockBehavior } from 'typemoq';
 
-import {
-    AssessmentReportHtmlGenerator,
-    AssessmentReportHtmlGeneratorDeps,
-} from 'reports/assessment-report-html-generator';
+import { AssessmentReportHtmlGenerator, AssessmentReportHtmlGeneratorDeps } from 'reports/assessment-report-html-generator';
 import { ReportModel } from 'reports/assessment-report-model';
 import { AssessmentReportModelBuilder } from 'reports/assessment-report-model-builder';
 import { AssessmentReportModelBuilderFactory } from 'reports/assessment-report-model-builder-factory';
 import * as reportStyles from 'reports/assessment-report.styles';
 import { AssessmentReport } from 'reports/components/assessment-report';
 import { ReactStaticRenderer } from 'reports/react-static-renderer';
-import { CreateTestAssessmentProviderWithFeatureFlag } from '../../../common/test-assessment-provider';
+import { CreateTestAssessmentProviderWithFeatureFlag } from '../../common/test-assessment-provider';
 
 describe('AssessmentReportHtmlGenerator', () => {
     test('generateHtml', () => {

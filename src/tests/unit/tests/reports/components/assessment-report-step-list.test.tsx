@@ -8,7 +8,7 @@ import {
     AssessmentReportStepListDeps,
     AssessmentReportStepListProps,
 } from 'reports/components/assessment-report-step-list';
-import { AssessmentReportBuilderTestHelper } from '../../assessment-report-builder-test-helper';
+import { AssessmentReportBuilderTestHelper } from '../../DetailsView/assessment-report-builder-test-helper';
 
 describe('AssessmentReportStepListTest', () => {
     const deps: AssessmentReportStepListDeps = {

@@ -4,7 +4,7 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 
 import { AssessmentReport, AssessmentReportDeps } from 'reports/components/assessment-report';
-import { AssessmentReportBuilderTestHelper } from '../../assessment-report-builder-test-helper';
+import { AssessmentReportBuilderTestHelper } from '../../DetailsView/assessment-report-builder-test-helper';
 
 describe('AssessmentReport', () => {
     test('render', () => {
