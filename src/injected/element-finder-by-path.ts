@@ -54,11 +54,6 @@ export class ElementFinderByPath {
             return deferred.promise;
         }
 
-        if (element.tagName.toLocaleLowerCase() === 'iframe' && message.path.length === 1) {
-            deferred.resolve('error');
-            return deferred.promise;
-        }
-
         if (element.tagName.toLocaleLowerCase() !== 'iframe' && message.path.length === 1) {
             const response = element ? element.outerHTML : 'error';
             deferred.resolve(response);

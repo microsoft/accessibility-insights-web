@@ -121,6 +121,22 @@ describe('ElementFinderByPositionTest', () => {
         testSubject.processRequest(messageStub);
     });
 
+    test('process request when path is invalid', () => {
+        const messageStub = {
+            path: ['invalid path', 'more invalid path'],
+        } as ElementFinderByPathMessage;
+
+        const elementStub = { tagName: 'test' } as HTMLElement;
+
+        setupQuerySelectorMock(messageStub, elementStub);
+
+        mockQ.setup(q => q.defer()).returns(() => deferredObjectStub);
+
+        setupResolveMock('error');
+
+        testSubject.processRequest(messageStub);
+    });
+
     test('process request when element is not iframe', () => {
         const messageStub = {
             path: ['.test path'],
