@@ -36,7 +36,7 @@ describe('Target Page issue dialog', () => {
 
         await targetPage.waitForSelector('.insights-dialog-main-container');
 
-        const results = await scanForAccessibilityIssues(targetPage, '#accessibility-insights-root-container');
+        const results = await scanForAccessibilityIssues(targetPage, '.insights-dialog-main-container');
         expect(results).toHaveLength(0);
     });
 });
