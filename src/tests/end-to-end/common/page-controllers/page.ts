@@ -116,6 +116,23 @@ export class Page {
         return this.waitForSelector(`#${id}`);
     }
 
+    public async waitForDescendentSelector(
+        parentElement: Puppeteer.ElementHandle<Element>,
+        descendentSelector: string,
+        options?: Puppeteer.WaitForSelectorOptions,
+    ): Promise<Puppeteer.JSHandle> {
+        options = {
+            timeout: DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS,
+            ...options,
+        };
+        return await this.underlyingPage.waitForFunction(
+            (parent, selector) => parent.querySelector(selector),
+            options,
+            parentElement,
+            descendentSelector,
+        );
+    }
+
     public async getShadowRootOfSelector(selector: string): Promise<Puppeteer.ElementHandle<Element>> {
         return await this.screenshotOnError(async () =>
             (await this.underlyingPage.evaluateHandle(

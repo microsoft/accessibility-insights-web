@@ -34,6 +34,9 @@ describe('Target Page visualization boxes', () => {
     it.each(adhocTools)('for adhoc tool "%s" should pass accessibility validation', async adhocTool => {
         await popupPage.enableToggleByAriaLabel(adhocTool);
 
+        const shadowRoot = await targetPage.getShadowRoot();
+        await targetPage.waitForDescendentSelector(shadowRoot, '.insights-highlight-container', { visible: true });
+
         const results = await scanForAccessibilityIssues(targetPage, '#accessibility-insights-root-container');
         expect(results).toHaveLength(0);
     });
