@@ -19,13 +19,7 @@ export interface PrintableResult {
 }
 
 export async function scanForAccessibilityIssues(page: Page, selector: string): Promise<PrintableResult[]> {
-    const axeIsUndefined = await page.evaluate(() => {
-        return (window as any).axe === undefined;
-    });
-
-    if (axeIsUndefined) {
-        await page.injectScriptFile(path.join(__dirname, '../../../../node_modules/axe-core/axe.min.js'));
-    }
+    await injectAxeIfUndefined(page);
 
     const axeResults = (await page.evaluate(selectorInEvaluate => {
         return axe.run(
@@ -48,4 +42,14 @@ export async function scanForAccessibilityIssues(page: Page, selector: string): 
         };
     });
     return printableViolations;
+}
+
+async function injectAxeIfUndefined(page: Page): Promise<void> {
+    const axeIsUndefined = await page.evaluate(() => {
+        return (window as any).axe === undefined;
+    });
+
+    if (axeIsUndefined) {
+        await page.injectScriptFile(path.join(__dirname, '../../../../node_modules/axe-core/axe.min.js'));
+    }
 }
