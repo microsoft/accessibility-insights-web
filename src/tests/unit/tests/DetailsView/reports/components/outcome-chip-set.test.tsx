@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { shallow } from 'enzyme';
 import * as React from 'react';
-import { OutcomeChipSet } from '../../../../../../DetailsView/reports/components/outcome-chip-set';
+import { OutcomeChipSet } from 'reports/components/outcome-chip-set';
 
 describe('OutcomeChipSet', () => {
     describe('render', () => {

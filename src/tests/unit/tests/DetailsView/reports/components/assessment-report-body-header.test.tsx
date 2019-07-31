@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { shallow } from 'enzyme';
 import * as React from 'react';
-import { AssessmentReportBodyHeader } from '../../../../../../DetailsView/reports/components/assessment-report-body-header';
+import { AssessmentReportBodyHeader } from 'reports/components/assessment-report-body-header';
 
 describe('AssessmentReportBodyHeader', () => {
     describe('render', () => {

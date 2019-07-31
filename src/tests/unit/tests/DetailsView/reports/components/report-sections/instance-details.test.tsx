@@ -8,7 +8,7 @@ import { FixInstructionProcessor } from 'injected/fix-instruction-processor';
 import {
     InstanceDetails,
     InstanceDetailsProps,
-} from '../../../../../../../DetailsView/reports/components/report-sections/instance-details';
+} from 'reports/components/report-sections/instance-details';
 
 describe('InstanceDetails', () => {
     it('renders', () => {

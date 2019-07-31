@@ -3,7 +3,7 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import { RuleResult } from 'scanner/iruleresults';
-import { RulesOnly, RulesOnlyDeps } from '../../../../../../../DetailsView/reports/components/report-sections/rules-only';
+import { RulesOnly, RulesOnlyDeps } from 'reports/components/report-sections/rules-only';
 
 describe('RulesOnly', () => {
     const depsStub = {} as RulesOnlyDeps;

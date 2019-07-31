@@ -3,12 +3,12 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import { RuleResult } from 'scanner/iruleresults';
-import { allInstanceOutcomeTypes } from '../../../../../../../DetailsView/reports/components/instance-outcome-type';
+import { allInstanceOutcomeTypes } from 'reports/components/instance-outcome-type';
 import {
     FullRuleHeader,
     FullRuleHeaderDeps,
     FullRuleHeaderProps,
-} from '../../../../../../../DetailsView/reports/components/report-sections/full-rule-header';
+} from 'reports/components/report-sections/full-rule-header';
 
 describe('FullRuleHeader', () => {
     const depsStub = {} as FullRuleHeaderDeps;

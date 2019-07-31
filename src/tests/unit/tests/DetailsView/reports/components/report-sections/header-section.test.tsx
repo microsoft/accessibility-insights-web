@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { shallow } from 'enzyme';
 import * as React from 'react';
-import { HeaderSection } from '../../../../../../../DetailsView/reports/components/report-sections/header-section';
+import { HeaderSection } from 'reports/components/report-sections/header-section';
 
 describe('HeaderSection', () => {
     it('renders', () => {

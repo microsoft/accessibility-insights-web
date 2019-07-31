@@ -9,9 +9,9 @@ import { AssessmentStoreData } from '../../../common/types/store-data/assessment
 import { FeatureFlagStoreData } from '../../../common/types/store-data/feature-flag-store-data';
 import { TabStoreData } from '../../../common/types/store-data/tab-store-data';
 import { DetailsViewActionMessageCreator } from '../../actions/details-view-action-message-creator';
-import { OverviewSummaryReportModel } from '../../reports/assessment-report-model';
-import { AssessmentReportSummary } from '../../reports/components/assessment-report-summary';
-import { GetAssessmentSummaryModelFromProviderAndStoreData } from '../../reports/get-assessment-summary-model';
+import { OverviewSummaryReportModel } from 'reports/assessment-report-model';
+import { AssessmentReportSummary } from 'reports/components/assessment-report-summary';
+import { GetAssessmentSummaryModelFromProviderAndStoreData } from 'reports/get-assessment-summary-model';
 import { TargetChangeDialog, TargetChangeDialogDeps } from '../target-change-dialog';
 import { OverviewHeading } from './overview-heading';
 import { OverviewHelpSection, OverviewHelpSectionDeps } from './overview-help-section';

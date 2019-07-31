@@ -6,11 +6,11 @@ import { Mock } from 'typemoq';
 
 import { NamedSFC } from 'common/react/named-sfc';
 import { FixInstructionProcessor } from 'injected/fix-instruction-processor';
-import { ReportBody, ReportBodyProps } from '../../../../../../../DetailsView/reports/components/report-sections/report-body';
+import { ReportBody, ReportBodyProps } from 'reports/components/report-sections/report-body';
 import {
     ReportSectionFactory,
     SectionProps,
-} from '../../../../../../../DetailsView/reports/components/report-sections/report-section-factory';
+} from 'reports/components/report-sections/report-section-factory';
 
 describe('ReportBody', () => {
     it('renders', () => {

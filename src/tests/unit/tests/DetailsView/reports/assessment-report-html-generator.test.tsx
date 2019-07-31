@@ -10,13 +10,13 @@ import { It, Mock, MockBehavior } from 'typemoq';
 import {
     AssessmentReportHtmlGenerator,
     AssessmentReportHtmlGeneratorDeps,
-} from '../../../../../DetailsView/reports/assessment-report-html-generator';
-import { ReportModel } from '../../../../../DetailsView/reports/assessment-report-model';
-import { AssessmentReportModelBuilder } from '../../../../../DetailsView/reports/assessment-report-model-builder';
-import { AssessmentReportModelBuilderFactory } from '../../../../../DetailsView/reports/assessment-report-model-builder-factory';
-import * as reportStyles from '../../../../../DetailsView/reports/assessment-report.styles';
-import { AssessmentReport } from '../../../../../DetailsView/reports/components/assessment-report';
-import { ReactStaticRenderer } from '../../../../../DetailsView/reports/react-static-renderer';
+} from 'reports/assessment-report-html-generator';
+import { ReportModel } from 'reports/assessment-report-model';
+import { AssessmentReportModelBuilder } from 'reports/assessment-report-model-builder';
+import { AssessmentReportModelBuilderFactory } from 'reports/assessment-report-model-builder-factory';
+import * as reportStyles from 'reports/assessment-report.styles';
+import { AssessmentReport } from 'reports/components/assessment-report';
+import { ReactStaticRenderer } from 'reports/react-static-renderer';
 import { CreateTestAssessmentProviderWithFeatureFlag } from '../../../common/test-assessment-provider';
 
 describe('AssessmentReportHtmlGenerator', () => {

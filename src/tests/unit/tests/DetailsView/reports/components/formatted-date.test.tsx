@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { FormattedDate, FormattedDateProps } from '../../../../../../DetailsView/reports/components/formatted-date';
+import { FormattedDate, FormattedDateProps } from 'reports/components/formatted-date';
 
 describe('FormattedDate', () => {
     describe('render', () => {

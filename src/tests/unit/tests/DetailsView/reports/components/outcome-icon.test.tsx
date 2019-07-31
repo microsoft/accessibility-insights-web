@@ -7,8 +7,8 @@ import { CheckIcon, CheckIconInverted } from 'common/icons/check-icon';
 import { CircleIcon } from 'common/icons/circle-icon';
 import { CrossIconInverted } from 'common/icons/cross-icon';
 import { InapplicableIcon, InapplicableIconInverted } from 'common/icons/inapplicable-icon';
-import { OutcomeIcon } from '../../../../../../DetailsView/reports/components/outcome-icon';
-import { allRequirementOutcomeTypes } from '../../../../../../DetailsView/reports/components/requirement-outcome-type';
+import { OutcomeIcon } from 'reports/components/outcome-icon';
+import { allRequirementOutcomeTypes } from 'reports/components/requirement-outcome-type';
 
 describe('OutcomeIcon', () => {
     describe('render', () => {

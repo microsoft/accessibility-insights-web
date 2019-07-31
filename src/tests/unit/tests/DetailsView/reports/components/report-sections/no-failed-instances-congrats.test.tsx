@@ -3,7 +3,7 @@
 import * as React from 'react';
 
 import { shallow } from 'enzyme';
-import { NoFailedInstancesCongrats } from '../../../../../../../DetailsView/reports/components/report-sections/no-failed-instances-congrats';
+import { NoFailedInstancesCongrats } from 'reports/components/report-sections/no-failed-instances-congrats';
 
 describe('NoFailedInstancesCongrats', () => {
     it('renders', () => {

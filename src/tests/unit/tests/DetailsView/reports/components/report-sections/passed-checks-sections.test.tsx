@@ -8,7 +8,7 @@ import { RuleResult } from 'scanner/iruleresults';
 import {
     PassedChecksSection,
     PassedChecksSectionProps,
-} from '../../../../../../../DetailsView/reports/components/report-sections/passed-checks-section';
+} from 'reports/components/report-sections/passed-checks-section';
 
 describe('PassedChecksSection', () => {
     it('renders', () => {

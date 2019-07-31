@@ -3,8 +3,8 @@
 import { EnvironmentInfo } from 'common/environment-info-provider';
 import { shallow } from 'enzyme';
 import * as React from 'react';
-import { ReportFooter } from '../../../../../../../DetailsView/reports/components/report-sections/report-footer';
-import { SectionProps } from '../../../../../../../DetailsView/reports/components/report-sections/report-section-factory';
+import { ReportFooter } from 'reports/components/report-sections/report-footer';
+import { SectionProps } from 'reports/components/report-sections/report-section-factory';
 
 describe('ReportFooter', () => {
     it('renders', () => {

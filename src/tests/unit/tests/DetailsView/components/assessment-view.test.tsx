@@ -22,7 +22,7 @@ import { AssessmentInstanceTableHandler } from '../../../../../DetailsView/handl
 import {
     outcomeTypeFromTestStatus,
     outcomeTypeSemanticsFromTestStatus,
-} from '../../../../../DetailsView/reports/components/requirement-outcome-type';
+} from 'reports/components/requirement-outcome-type';
 import { contentProvider, CreateTestAssessmentProvider } from '../../../common/test-assessment-provider';
 
 describe('AssessmentViewTest', () => {

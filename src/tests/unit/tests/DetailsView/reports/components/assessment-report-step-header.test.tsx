@@ -6,13 +6,13 @@ import { Mock } from 'typemoq';
 
 import { GetGuidanceTagsFromGuidanceLinks } from 'common/get-guidance-tags-from-guidance-links';
 import { ManualTestStatus } from 'common/types/manual-test-status';
-import { RequirementHeaderReportModel, RequirementType } from '../../../../../../DetailsView/reports/assessment-report-model';
+import { RequirementHeaderReportModel, RequirementType } from 'reports/assessment-report-model';
 import {
     AssessmentReportStepHeader,
     AssessmentReportStepHeaderDeps,
-} from '../../../../../../DetailsView/reports/components/assessment-report-step-header';
-import { OutcomeChip } from '../../../../../../DetailsView/reports/components/outcome-chip';
-import { RequirementOutcomeType } from '../../../../../../DetailsView/reports/components/requirement-outcome-type';
+} from 'reports/components/assessment-report-step-header';
+import { OutcomeChip } from 'reports/components/outcome-chip';
+import { RequirementOutcomeType } from 'reports/components/requirement-outcome-type';
 
 describe('AssessmentReportStepHeader', () => {
     function genHeader(requirementType: RequirementType): RequirementHeaderReportModel {

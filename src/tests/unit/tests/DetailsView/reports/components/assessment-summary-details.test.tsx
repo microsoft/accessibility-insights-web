@@ -5,7 +5,7 @@ import * as React from 'react';
 import {
     AssessmentSummaryDetails,
     AssessmentSummaryDetailsProps,
-} from '../../../../../../DetailsView/reports/components/assessment-summary-details';
+} from 'reports/components/assessment-summary-details';
 import { AssessmentReportBuilderTestHelper } from '../../assessment-report-builder-test-helper';
 
 describe('AssessmentSummaryDetails', () => {

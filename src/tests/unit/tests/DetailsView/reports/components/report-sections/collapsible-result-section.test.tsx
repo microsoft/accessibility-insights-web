@@ -6,7 +6,7 @@ import * as React from 'react';
 import {
     CollapsibleResultSection,
     CollapsibleResultSectionProps,
-} from '../../../../../../../DetailsView/reports/components/report-sections/collapsible-result-section';
+} from 'reports/components/report-sections/collapsible-result-section';
 
 describe('CollapsibleResultSection', () => {
     it('renders', () => {

@@ -3,7 +3,7 @@
 import {
     AssessmentReportSummary,
     AssessmentReportSummaryProps,
-} from '../../../../../../DetailsView/reports/components/assessment-report-summary';
+} from 'reports/components/assessment-report-summary';
 
 describe('AssessmentReportSummary', () => {
     describe('render', () => {

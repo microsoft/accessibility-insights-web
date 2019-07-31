@@ -6,7 +6,7 @@ import {
     ResultSection,
     ResultSectionDeps,
     ResultSectionProps,
-} from '../../../../../../../DetailsView/reports/components/report-sections/result-section';
+} from 'reports/components/report-sections/result-section';
 
 describe('ResultSection', () => {
     it('renders', () => {

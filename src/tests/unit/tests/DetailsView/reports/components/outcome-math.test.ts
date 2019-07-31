@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { OutcomeMath } from '../../../../../../DetailsView/reports/components/outcome-math';
+import { OutcomeMath } from 'reports/components/outcome-math';
 
 describe('OutcomeMath', () => {
     const { sum, weightedPercentage, percentageComplete } = OutcomeMath;

@@ -4,7 +4,7 @@ import { AssessmentDefaultMessageGenerator } from 'assessments/assessment-defaul
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { AssessmentStoreData } from 'common/types/store-data/assessment-result-data';
 import { TabStoreData } from 'common/types/store-data/tab-store-data';
-import { AssessmentReportModelBuilderFactory } from '../../../../../DetailsView/reports/assessment-report-model-builder-factory';
+import { AssessmentReportModelBuilderFactory } from 'reports/assessment-report-model-builder-factory';
 
 describe('AssessmentReportModelBuilderFactory', () => {
     test('create', () => {

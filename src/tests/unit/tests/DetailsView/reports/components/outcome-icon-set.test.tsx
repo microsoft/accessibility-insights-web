@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { shallow } from 'enzyme';
 import * as React from 'react';
-import { OutcomeIconSet } from '../../../../../../DetailsView/reports/components/outcome-icon-set';
+import { OutcomeIconSet } from 'reports/components/outcome-icon-set';
 
 describe('OutcomeIconSet', () => {
     describe('render', () => {

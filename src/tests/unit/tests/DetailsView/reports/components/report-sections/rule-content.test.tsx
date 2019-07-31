@@ -3,7 +3,7 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-import { RuleContent, RuleContentProps } from '../../../../../../../DetailsView/reports/components/report-sections/rule-content';
+import { RuleContent, RuleContentProps } from 'reports/components/report-sections/rule-content';
 
 describe('RuleContent', () => {
     it('renders', () => {

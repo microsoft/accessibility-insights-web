@@ -7,7 +7,7 @@ import { Mock } from 'typemoq';
 import {
     ResultsContainer,
     ResultsContainerProps,
-} from '../../../../../../../DetailsView/reports/components/report-sections/results-container';
+} from 'reports/components/report-sections/results-container';
 
 describe('ResultsContainer', () => {
     it('renders', () => {

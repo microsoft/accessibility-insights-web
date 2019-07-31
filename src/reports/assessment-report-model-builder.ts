@@ -8,7 +8,7 @@ import { AssessmentData, AssessmentStoreData, TestStepInstance } from 'common/ty
 import { TabStoreData } from 'common/types/store-data/tab-store-data';
 import * as _ from 'lodash';
 
-import { assessmentReportExtensionPoint } from '../extensions/assessment-report-extension-point';
+import { assessmentReportExtensionPoint } from '../DetailsView/extensions/assessment-report-extension-point';
 import {
     AssessmentDetailsReportModel,
     InstancePairReportModel,

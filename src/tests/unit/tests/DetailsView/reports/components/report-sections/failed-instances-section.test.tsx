@@ -10,7 +10,7 @@ import { RuleResult } from 'scanner/iruleresults';
 import {
     FailedInstancesSection,
     FailedInstancesSectionProps,
-} from '../../../../../../../DetailsView/reports/components/report-sections/failed-instances-section';
+} from 'reports/components/report-sections/failed-instances-section';
 
 describe('FailedInstancesSection', () => {
     it('renders', () => {
