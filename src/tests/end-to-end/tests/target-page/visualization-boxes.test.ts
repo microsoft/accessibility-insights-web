@@ -21,6 +21,7 @@ describe('Target Page visualization boxes', () => {
 
     beforeEach(async () => {
         await popupPage.disableAllToggles();
+        await targetPage.waitForVisualizationBoxesToDisappear();
     });
 
     afterAll(async () => {
