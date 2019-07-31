@@ -3,11 +3,11 @@
 import * as React from 'react';
 
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
+import { HyperlinkDefinition } from 'views/content/content-page';
 import { NamedSFC } from '../../../common/react/named-sfc';
 import { AssessmentStoreData } from '../../../common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from '../../../common/types/store-data/feature-flag-store-data';
 import { TabStoreData } from '../../../common/types/store-data/tab-store-data';
-import { HyperlinkDefinition } from '../../../views/content/content-page';
 import { DetailsViewActionMessageCreator } from '../../actions/details-view-action-message-creator';
 import { OverviewSummaryReportModel } from '../../reports/assessment-report-model';
 import { AssessmentReportSummary } from '../../reports/components/assessment-report-summary';

@@ -4,6 +4,7 @@ import { Link } from 'office-ui-fabric-react/lib/Link';
 import { Spinner, SpinnerSize } from 'office-ui-fabric-react/lib/Spinner';
 import { IToggle } from 'office-ui-fabric-react/lib/Toggle';
 import * as React from 'react';
+import { ContentLink, ContentLinkDeps } from 'views/content/content-link';
 import { VisualizationToggle } from '../../common/components/visualization-toggle';
 import { VisualizationConfiguration } from '../../common/configs/visualization-configuration';
 import { VisualizationConfigurationFactory } from '../../common/configs/visualization-configuration-factory';
@@ -13,7 +14,6 @@ import { DetailsViewPivotType } from '../../common/types/details-view-pivot-type
 import { VisualizationStoreData } from '../../common/types/store-data/visualization-store-data';
 import { VisualizationType } from '../../common/types/visualization-type';
 import { DictionaryStringTo } from '../../types/common-types';
-import { ContentLink, ContentLinkDeps } from '../../views/content/content-link';
 import { PopupActionMessageCreator } from '../actions/popup-action-message-creator';
 import { DiagnosticViewClickHandler } from '../handlers/diagnostic-view-toggle-click-handler';
 

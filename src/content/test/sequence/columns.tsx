@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { CodeExample } from '../../../views/content/markup/code-example';
+import { CodeExample } from 'views/content/markup/code-example';
 import { create, React } from '../../common';
 
 export const infoAndExamples = create(({ Markup, Link }) => (

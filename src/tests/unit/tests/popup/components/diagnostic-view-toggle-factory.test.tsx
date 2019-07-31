@@ -3,6 +3,7 @@
 import * as React from 'react';
 import { Mock, MockBehavior } from 'typemoq';
 
+import { ContentLinkDeps } from 'views/content/content-link';
 import { CommandStore } from '../../../../../background/stores/global/command-store';
 import { FeatureFlagStore } from '../../../../../background/stores/global/feature-flag-store';
 import { VisualizationStore } from '../../../../../background/stores/visualization-store';
@@ -15,7 +16,6 @@ import { PopupActionMessageCreator } from '../../../../../popup/actions/popup-ac
 import { DiagnosticViewToggle } from '../../../../../popup/components/diagnostic-view-toggle';
 import { DiagnosticViewToggleFactory } from '../../../../../popup/components/diagnostic-view-toggle-factory';
 import { DiagnosticViewClickHandler } from '../../../../../popup/handlers/diagnostic-view-toggle-click-handler';
-import { ContentLinkDeps } from '../../../../../views/content/content-link';
 import { ShortcutCommandsTestData } from '../../../common/sample-test-data';
 import { VisualizationStoreDataBuilder } from '../../../common/visualization-store-data-builder';
 

@@ -199,7 +199,10 @@ export class Page {
 
     public async getOuterHTMLOfSelector(selector: string): Promise<string> {
         return await this.screenshotOnError(async () => {
-            return await this.underlyingPage.$eval(selector, el => el.outerHTML);
+            const element = await this.underlyingPage.waitForSelector(selector, {
+                timeout: DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS,
+            });
+            return await this.underlyingPage.evaluate(el => el.outerHTML, element);
         });
     }
 

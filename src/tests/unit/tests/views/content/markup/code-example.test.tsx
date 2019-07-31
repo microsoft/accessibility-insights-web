@@ -3,7 +3,7 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-import { CodeExample } from '../../../../../../views/content/markup/code-example';
+import { CodeExample } from 'views/content/markup/code-example';
 
 describe('<CodeExample>', () => {
     it('renders with title', () => {

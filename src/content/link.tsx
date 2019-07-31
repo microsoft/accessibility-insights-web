@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { guidanceLinkTo, linkTo } from '../views/content/content-page';
+import { guidanceLinkTo, linkTo } from 'views/content/content-page';
 import { guidanceTags } from './guidance-tags';
 
 export const link = {
