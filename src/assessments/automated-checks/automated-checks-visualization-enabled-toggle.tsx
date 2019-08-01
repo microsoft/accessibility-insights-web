@@ -2,8 +2,8 @@
 // Licensed under the MIT License.
 import { isEmpty } from 'lodash';
 
+import { GeneratedAssessmentInstance, TestStepResult } from 'common/types/store-data/assessment-result-data';
 import { ManualTestStatus } from '../../common/types/manual-test-status';
-import { GeneratedAssessmentInstance, TestStepResult } from '../../common/types/store-data/assessment-result-data';
 import { AssessmentVisualizationEnabledToggle } from '../../DetailsView/components/assessment-visualization-enabled-toggle';
 
 function failingInstances(result: TestStepResult): boolean {

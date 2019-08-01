@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { TestStepInstance } from 'common/types/store-data/assessment-result-data';
 import { ColumnValue, ColumnValueBag, isScalarColumnValue } from '../../common/types/property-bag/column-value-bag';
-import { TestStepInstance } from '../../common/types/store-data/assessment-result-data';
 import { PropertyBagColumnRendererConfig } from '../common/property-bag-column-renderer';
 
 export type ReportInstanceField = {
