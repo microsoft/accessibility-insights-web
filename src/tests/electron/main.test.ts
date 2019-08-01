@@ -1,8 +1,7 @@
-// A simple test to verify a visible window is opened with a title
 import * as Electron from 'electron';
 import { Application } from 'spectron';
 
-describe('ElectronE2E', () => {
+describe('Electron E2E', () => {
     let app: Application;
 
     beforeAll(() => {
@@ -18,14 +17,12 @@ describe('ElectronE2E', () => {
     test('test that app opened & loaded site', () => {
         return Promise.resolve(app.browserWindow.isVisible())
             .then(function(isVisible: boolean): void {
-                // Verify the window is visible
                 expect(isVisible).toBe(true);
             })
             .then(function(): Promise<number> {
                 return app.client.getWindowCount();
             })
             .then(function(count: number): void {
-                // Verify the window count
                 expect(count).toBe(2);
             })
             .then(function(): string {
@@ -35,7 +32,6 @@ describe('ElectronE2E', () => {
                 expect(title).toBe('Accessible University Demo Site - Inaccessible Version');
             })
             .catch(function(error: Error): void {
-                // Log any failures
                 console.error('Test failed', error.message);
                 expect(error).toBeNull();
             });
