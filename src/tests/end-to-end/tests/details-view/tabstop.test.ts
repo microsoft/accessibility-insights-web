@@ -44,7 +44,6 @@ describe('Tabstop tests', () => {
             for (let i = 0; i < 3; i++) {
                 await targetPage.keyPress('Tab');
             }
-            await targetPage.takePagesScreenshot();
 
             expect(await targetPage.getShadowRootHtmlSnapshot()).toMatchSnapshot();
         });
