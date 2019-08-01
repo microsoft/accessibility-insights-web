@@ -1,0 +1,24 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+@import '../../../common/styles/colors.scss';
+@import './common-mixins.scss';
+
+.report-footer-container {
+    @include contentSize();
+    margin-bottom: 68px;
+    margin-top: 24px;
+
+    .report-footer {
+        line-height: 20px;
+
+        color: $secondary-text;
+
+        .tool-name-link {
+            color: $secondary-text !important;
+        }
+    }
+
+    @media only screen and (max-width: 1000px) {
+        margin: 0px 16px 68px 16px;
+    }
+}

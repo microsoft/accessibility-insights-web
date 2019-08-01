@@ -5,6 +5,7 @@ import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { Assessment } from 'assessments/types/iassessment';
 import { shallow } from 'enzyme';
 import * as React from 'react';
+import { ReportGenerator } from 'reports/report-generator';
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';
 import { FileURLProvider } from '../../../../../common/file-url-provider';
 import { AssessmentStoreData } from '../../../../../common/types/store-data/assessment-result-data';
@@ -18,7 +19,6 @@ import {
 } from '../../../../../DetailsView/components/details-view-command-bar';
 import { DetailsRightPanelConfiguration } from '../../../../../DetailsView/components/details-view-right-panel';
 import { ReportExportComponent } from '../../../../../DetailsView/components/report-export-component';
-import { ReportGenerator } from '../../../../../DetailsView/reports/report-generator';
 
 describe('DetailsViewCommandBar', () => {
     const theDate = new Date(2019, 2, 12, 9, 0);
