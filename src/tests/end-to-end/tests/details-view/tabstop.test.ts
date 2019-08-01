@@ -31,9 +31,6 @@ describe('Tabstop tests', () => {
             await targetPage.bringToFront();
             await targetPage.keyPress('Tab');
 
-            const nativeWidgetHeadingTargetPage = await targetPage.$(targetPageSelectors.targetPageNativeWidgetH1);
-            await nativeWidgetHeadingTargetPage.click();
-
             const frame = targetPage.frames().find(f => f.name() === targetPageSelectors.targetPageNativeWidgetIFrameName);
             const button = await frame.$(targetPageSelectors.targetPageNativeWidgetFirstRadio);
             await button.click();
