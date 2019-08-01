@@ -22,9 +22,9 @@ import {
     VisualizationInstanceProcessorCallback,
 } from 'injected/visualization-instance-processor';
 import { DrawerProvider } from 'injected/visualization/drawer-provider';
+import { DictionaryStringTo } from 'types/common-types';
 import { AssesssmentVisualizationConfiguration } from '../common/configs/assesssment-visualization-configuration';
 import { ManualTestStatus } from '../common/types/manual-test-status';
-import { DictionaryStringTo } from '../types/common-types';
 import { Assessment, AssistedAssessment, ManualAssessment } from './types/iassessment';
 import { ReportInstanceField } from './types/report-instance-field';
 import { Requirement } from './types/requirement';
