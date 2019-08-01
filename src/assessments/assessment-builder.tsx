@@ -16,14 +16,14 @@ import { ManualTestStatus } from '../common/types/manual-test-status';
 import { AssessmentInstanceRowData, AssessmentInstanceTable } from '../DetailsView/components/assessment-instance-table';
 import { AssessmentTestView } from '../DetailsView/components/assessment-test-view';
 import { RequirementLink } from '../DetailsView/components/requirement-link';
-import { AnalyzerProvider } from '../injected/analyzers/analyzer-provider';
-import { DecoratedAxeNodeResult, ScannerUtils } from '../injected/scanner-utils';
+import { AnalyzerProvider } from 'injected/analyzers/analyzer-provider';
+import { DecoratedAxeNodeResult, ScannerUtils } from 'injected/scanner-utils';
 import {
     PropertyBags,
     VisualizationInstanceProcessor,
     VisualizationInstanceProcessorCallback,
-} from '../injected/visualization-instance-processor';
-import { DrawerProvider } from '../injected/visualization/drawer-provider';
+} from 'injected/visualization-instance-processor';
+import { DrawerProvider } from 'injected/visualization/drawer-provider';
 import { DictionaryStringTo } from '../types/common-types';
 import { Assessment, AssistedAssessment, ManualAssessment } from './types/iassessment';
 import { ReportInstanceField } from './types/report-instance-field';

@@ -9,7 +9,7 @@ import * as content from 'content/test/links/link-purpose';
 import { LinkPurposePropertyBag } from 'common/types/property-bag/ilink-purpose';
 import { VisualizationType } from 'common/types/visualization-type';
 import { AssessmentVisualizationEnabledToggle } from '../../../DetailsView/components/assessment-visualization-enabled-toggle';
-import { ScannerUtils } from '../../../injected/scanner-utils';
+import { ScannerUtils } from 'injected/scanner-utils';
 import { AnalyzerConfigurationFactory } from '../../common/analyzer-configuration-factory';
 import { AssistedTestRecordYourResults } from '../../common/assisted-test-record-your-results';
 import { NoValue, PropertyBagColumnRendererConfig } from '../../common/property-bag-column-renderer';

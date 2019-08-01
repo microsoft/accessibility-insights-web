@@ -4,7 +4,7 @@ import { HeadingsAssessmentProperties } from 'common/types/store-data/assessment
 import * as React from 'react';
 import { AssessmentInstanceDetailsColumn } from '../../DetailsView/components/assessment-instance-details-column';
 import { AssessmentInstanceRowData } from '../../DetailsView/components/assessment-instance-table';
-import { HeadingFormatter } from '../../injected/visualization/heading-formatter';
+import { HeadingFormatter } from 'injected/visualization/heading-formatter';
 
 export function headingsAssessmentInstanceDetailsColumnRenderer(
     item: AssessmentInstanceRowData<HeadingsAssessmentProperties>,

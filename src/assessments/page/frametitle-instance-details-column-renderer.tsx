@@ -4,7 +4,7 @@ import { FrameAssessmentProperties } from 'common/types/store-data/assessment-re
 import * as React from 'react';
 import { AssessmentInstanceDetailsColumn } from '../../DetailsView/components/assessment-instance-details-column';
 import { AssessmentInstanceRowData } from '../../DetailsView/components/assessment-instance-table';
-import { FrameFormatter } from '../../injected/visualization/frame-formatter';
+import { FrameFormatter } from 'injected/visualization/frame-formatter';
 
 export function frameTitleInstanceDetailsColumnRenderer(item: AssessmentInstanceRowData<FrameAssessmentProperties>): JSX.Element {
     const propertyBag = item.instance.propertyBag;
