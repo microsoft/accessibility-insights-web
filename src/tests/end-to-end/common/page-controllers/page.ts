@@ -184,6 +184,12 @@ export class Page {
         });
     }
 
+    public async clickElementHandle(element: Puppeteer.ElementHandle<Element>): Promise<void> {
+        await this.screenshotOnError(async () => {
+            await element.click();
+        });
+    }
+
     public url(): URL {
         // We use target().url() instead of just url() here because:
         // * They ought to be equivalent in every case we care to test
@@ -220,6 +226,8 @@ export class Page {
     }
 
     public async injectScriptFile(filePath: string): Promise<void> {
-        await this.underlyingPage.addScriptTag({ path: filePath });
+        await this.screenshotOnError(async () => {
+            await this.underlyingPage.addScriptTag({ path: filePath });
+        });
     }
 }

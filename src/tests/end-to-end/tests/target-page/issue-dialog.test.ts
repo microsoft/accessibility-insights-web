@@ -34,7 +34,7 @@ describe('Target Page issue dialog', () => {
         const shadowRoot = await targetPage.getShadowRoot();
         await targetPage.waitForDescendentSelector(shadowRoot, TargetPageInjectedComponentSelectors.failureLabel, { visible: true });
         const issueHighlightLabel = await shadowRoot.$(TargetPageInjectedComponentSelectors.failureLabel);
-        await issueHighlightLabel.click();
+        await targetPage.clickElementHandle(issueHighlightLabel);
 
         await targetPage.waitForSelector(TargetPageInjectedComponentSelectors.issueDialog);
 

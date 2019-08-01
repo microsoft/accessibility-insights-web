@@ -28,7 +28,7 @@ export class PopupPage extends Page {
     public async disableAllToggles(): Promise<void> {
         const enabledToggles = await this.underlyingPage.$$('button[aria-checked="true"]');
         for (const toggle of enabledToggles) {
-            await toggle.click();
+            await this.clickElementHandle(toggle);
         }
     }
 
