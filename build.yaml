@@ -58,8 +58,32 @@ jobs:
           - script: yarn build:all
             displayName: build:all
 
+          - script: yarn dist:electron -mwl
+            displayName: create electron distributables
+
           - task: PublishBuildArtifacts@1
             inputs:
                 pathtoPublish: '$(System.DefaultWorkingDirectory)/drop'
                 artifactName: 'drop'
             displayName: publish drop
+
+          - task: PublishBuildArtifacts@1
+            inputs:
+                pathtoPublish: '$(System.DefaultWorkingDirectory)/dist'
+                artifactName: 'dist'
+            displayName: publish dist
+
+    - job: 'publish_electron_dist'
+      pool:
+          vmImage: 'macOS-10.14'
+      steps:
+          - template: pipeline/install-node-prerequisites.yaml
+
+          - script: yarn dist:electron -mwl
+            displayName: create electron distributables
+
+          - task: PublishBuildArtifacts@1
+            inputs:
+                pathtoPublish: '$(System.DefaultWorkingDirectory)/dist'
+                artifactName: 'dist'
+            displayName: publish dist
