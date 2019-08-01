@@ -4,9 +4,9 @@ import * as _ from 'lodash';
 import { IColumn } from 'office-ui-fabric-react/lib/DetailsList';
 import * as React from 'react';
 
-import { AssessmentToggleActionPayload } from '../background/actions/action-payloads';
-import { createInitialAssessmentTestData } from '../background/create-initial-assessment-test-data';
-import { InstanceIdentifierGenerator, UniquelyIdentifiableInstances } from '../background/instance-identifier-generator';
+import { AssessmentToggleActionPayload } from 'background/actions/action-payloads';
+import { createInitialAssessmentTestData } from 'background/create-initial-assessment-test-data';
+import { InstanceIdentifierGenerator, UniquelyIdentifiableInstances } from 'background/instance-identifier-generator';
 import { RequirementComparer } from '../common/assessment/requirement-comparer';
 import { AssesssmentVisualizationConfiguration } from '../common/configs/assesssment-visualization-configuration';
 import { Messages } from '../common/messages';
