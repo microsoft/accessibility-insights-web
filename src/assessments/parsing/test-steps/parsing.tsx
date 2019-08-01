@@ -3,7 +3,7 @@
 import { link } from 'content/link';
 import * as content from 'content/test/parsing/parsing';
 import * as React from 'react';
-import { NewTabLink } from '../../../common/components/new-tab-link';
+import { NewTabLink } from 'common/components/new-tab-link';
 import { ManualTestRecordYourResults } from '../../common/manual-test-record-your-results';
 import { Requirement } from '../../types/requirement';
 import { ParsingTestStep } from './test-steps';

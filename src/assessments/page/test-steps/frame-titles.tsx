@@ -4,7 +4,7 @@ import { link } from 'content/link';
 import { productName } from 'content/strings/application';
 import * as content from 'content/test/page/frame-titles';
 import * as React from 'react';
-import { VisualizationType } from '../../../common/types/visualization-type';
+import { VisualizationType } from 'common/types/visualization-type';
 import { AssessmentVisualizationEnabledToggle } from '../../../DetailsView/components/assessment-visualization-enabled-toggle';
 import { ScannerUtils } from '../../../injected/scanner-utils';
 import { AnalyzerConfigurationFactory } from '../../common/analyzer-configuration-factory';

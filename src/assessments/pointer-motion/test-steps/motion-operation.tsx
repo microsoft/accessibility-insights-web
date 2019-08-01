@@ -3,7 +3,7 @@
 import * as React from 'react';
 
 import { link } from 'content/link';
-import { NewTabLink } from '../../../common/components/new-tab-link';
+import { NewTabLink } from 'common/components/new-tab-link';
 import { ManualTestRecordYourResults } from '../../common/manual-test-record-your-results';
 import { Requirement } from '../../types/requirement';
 import { PointerMotionTestStep } from './test-steps';

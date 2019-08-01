@@ -3,9 +3,9 @@
 import { link } from 'content/link';
 import * as content from 'content/test/focus/focus-order';
 import * as React from 'react';
-import { Messages } from '../../../common/messages';
-import { VisualizationType } from '../../../common/types/visualization-type';
-import { generateUID } from '../../../common/uid-generator';
+import { Messages } from 'common/messages';
+import { VisualizationType } from 'common/types/visualization-type';
+import { generateUID } from 'common/uid-generator';
 import { RestartScanVisualHelperToggle } from '../../../DetailsView/components/restart-scan-visual-helper-toggle';
 import { VisualizationInstanceProcessor } from '../../../injected/visualization-instance-processor';
 import { ManualTestRecordYourResults } from '../../common/manual-test-record-your-results';
