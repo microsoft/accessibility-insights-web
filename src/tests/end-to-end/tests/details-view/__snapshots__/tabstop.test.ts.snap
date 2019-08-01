@@ -19,8 +19,8 @@ exports[`Tabstop tests tabstop from fastpass if visualHelper is turned on after 
       class="insights-container insights-highlight-container insights-tab-stops"
     >
       <svg
-        height="484px"
-        width="945px"
+        height="{{ENVIRONMENT_SENSITIVE_POSITION}}px"
+        width="{{ENVIRONMENT_SENSITIVE_POSITION}}px"
       >
         <defs>
           <filter
