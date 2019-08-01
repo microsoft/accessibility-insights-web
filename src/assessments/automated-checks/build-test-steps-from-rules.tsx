@@ -5,7 +5,7 @@ import * as React from 'react';
 import { NewTabLink } from '../../common/components/new-tab-link';
 import { Messages } from '../../common/messages';
 import { ManualTestStatus } from '../../common/types/manual-test-status';
-import { VisualizationType } from '../../common/types/visualization-type';
+import { VisualizationType } from 'common/types/visualization-type';
 import { AssessmentInstanceDetailsColumn } from '../../DetailsView/components/assessment-instance-details-column';
 import { AssessmentInstanceRowData } from '../../DetailsView/components/assessment-instance-table';
 import { RuleAnalyzerConfiguration } from '../../injected/analyzers/analyzer';

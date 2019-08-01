@@ -3,7 +3,7 @@
 import * as React from 'react';
 
 import { test as content } from 'content/test';
-import { VisualizationType } from '../../common/types/visualization-type';
+import { VisualizationType } from 'common/types/visualization-type';
 import { AssessmentBuilder } from '../assessment-builder';
 import { Parsing } from './test-steps/parsing';
 

@@ -6,7 +6,7 @@ import { RequirementOrdering } from '../../common/assessment/requirement';
 import { AssesssmentVisualizationConfiguration } from '../../common/configs/assesssment-visualization-configuration';
 import { AnyExtension } from '../../common/extensibility/extension-point';
 import { AssessmentData } from '../../common/types/store-data/assessment-result-data';
-import { VisualizationType } from '../../common/types/visualization-type';
+import { VisualizationType } from 'common/types/visualization-type';
 import { Requirement } from './requirement';
 
 interface BaseAssessment {

@@ -6,7 +6,7 @@ import { createAutomatedChecksInitialAssessmentTestData } from 'background/creat
 import { title } from 'content/strings/application';
 import { test as content } from 'content/test';
 import { RequirementComparer } from '../../common/assessment/requirement-comparer';
-import { VisualizationType } from '../../common/types/visualization-type';
+import { VisualizationType } from 'common/types/visualization-type';
 import { excludePassingInstancesFromAssessmentReport } from '../../DetailsView/extensions/exclude-passing-instances-from-assessment-report';
 import { selectFirstRequirementAfterAutomatedChecks } from '../../DetailsView/extensions/select-first-requirement-after-automated-checks';
 import { waitForAllRequirementsToComplete } from '../../DetailsView/extensions/wait-for-all-requirements-to-complete';

@@ -5,7 +5,7 @@ import * as React from 'react';
 import { test as content } from 'content/test';
 import { NewTabLink } from '../../common/components/new-tab-link';
 import { Messages } from '../../common/messages';
-import { VisualizationType } from '../../common/types/visualization-type';
+import { VisualizationType } from 'common/types/visualization-type';
 import { AssessmentBuilder } from '../assessment-builder';
 import { Assessment } from '../types/iassessment';
 import { CharacterKeyShortcuts } from './test-steps/character-key-shortcuts';
