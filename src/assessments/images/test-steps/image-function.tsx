@@ -7,7 +7,7 @@ import * as content from 'content/test/images/image-function';
 import * as React from 'react';
 import { ImageFunctionPropertyBag } from 'common/types/property-bag/image-function';
 import { VisualizationType } from 'common/types/visualization-type';
-import { AssessmentVisualizationEnabledToggle } from '../../../DetailsView/components/assessment-visualization-enabled-toggle';
+import { AssessmentVisualizationEnabledToggle } from 'DetailsView/components/assessment-visualization-enabled-toggle';
 import { AnalyzerConfigurationFactory } from '../../common/analyzer-configuration-factory';
 import { AssistedTestRecordYourResults } from '../../common/assisted-test-record-your-results';
 import { PropertyBagColumnRendererFactory } from '../../common/property-bag-column-renderer-factory';

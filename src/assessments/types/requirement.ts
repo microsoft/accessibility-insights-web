@@ -6,9 +6,9 @@ import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store
 import { IColumn } from 'office-ui-fabric-react/lib/DetailsList';
 import { ContentPageComponent, HyperlinkDefinition } from 'views/content/content-page';
 import { ManualTestStatus } from '../../common/types/manual-test-status';
-import { DetailsViewActionMessageCreator } from '../../DetailsView/actions/details-view-action-message-creator';
-import { AssessmentInstanceRowData, AssessmentInstanceTable } from '../../DetailsView/components/assessment-instance-table';
-import { RequirementLink } from '../../DetailsView/components/requirement-link';
+import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
+import { AssessmentInstanceRowData, AssessmentInstanceTable } from 'DetailsView/components/assessment-instance-table';
+import { RequirementLink } from 'DetailsView/components/requirement-link';
 import { Analyzer } from 'injected/analyzers/analyzer';
 import { AnalyzerProvider } from 'injected/analyzers/analyzer-provider';
 import { DecoratedAxeNodeResult } from 'injected/scanner-utils';

@@ -8,7 +8,7 @@ import * as content from 'content/test/native-widgets/cues';
 import * as React from 'react';
 import { CuesPropertyBag } from 'common/types/property-bag/cues';
 import { VisualizationType } from 'common/types/visualization-type';
-import { AssessmentVisualizationEnabledToggle } from '../../../DetailsView/components/assessment-visualization-enabled-toggle';
+import { AssessmentVisualizationEnabledToggle } from 'DetailsView/components/assessment-visualization-enabled-toggle';
 import { ScannerUtils } from 'injected/scanner-utils';
 import { AssistedTestRecordYourResults } from '../../common/assisted-test-record-your-results';
 import { NoValue, PropertyBagColumnRendererConfig } from '../../common/property-bag-column-renderer';

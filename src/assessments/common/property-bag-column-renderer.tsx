@@ -4,7 +4,7 @@ import { isEmpty } from 'lodash';
 import * as React from 'react';
 
 import { ColumnValue, ColumnValueBag } from '../../common/types/property-bag/column-value-bag';
-import { AssessmentInstanceRowData } from '../../DetailsView/components/assessment-instance-table';
+import { AssessmentInstanceRowData } from 'DetailsView/components/assessment-instance-table';
 import { DictionaryStringTo } from '../../types/common-types';
 
 export const NoValue = '(no value)';

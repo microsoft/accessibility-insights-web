@@ -8,7 +8,7 @@ import { TestAutomaticallyPassedNotice } from 'content/test/common/test-automati
 import * as content from 'content/test/headings/heading-level';
 import { HeadingsAssessmentProperties } from 'common/types/store-data/assessment-result-data';
 import { VisualizationType } from 'common/types/visualization-type';
-import { AssessmentVisualizationEnabledToggle } from '../../../DetailsView/components/assessment-visualization-enabled-toggle';
+import { AssessmentVisualizationEnabledToggle } from 'DetailsView/components/assessment-visualization-enabled-toggle';
 import { AnalyzerConfigurationFactory } from '../../common/analyzer-configuration-factory';
 import { AssistedTestRecordYourResults } from '../../common/assisted-test-record-your-results';
 import * as Markup from '../../markup';

@@ -9,7 +9,7 @@ import * as content from 'content/test/custom-widgets/design-pattern';
 import { NewTabLink } from 'common/components/new-tab-link';
 import { CustomWidgetPropertyBag } from 'common/types/property-bag/icustom-widgets';
 import { VisualizationType } from 'common/types/visualization-type';
-import { AssessmentVisualizationEnabledToggle } from '../../../DetailsView/components/assessment-visualization-enabled-toggle';
+import { AssessmentVisualizationEnabledToggle } from 'DetailsView/components/assessment-visualization-enabled-toggle';
 import { ScannerUtils } from 'injected/scanner-utils';
 import { AnalyzerConfigurationFactory } from '../../common/analyzer-configuration-factory';
 import { AssistedTestRecordYourResults } from '../../common/assisted-test-record-your-results';
