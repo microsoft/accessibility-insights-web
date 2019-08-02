@@ -2,10 +2,10 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import { NewTabLink } from '../../common/components/new-tab-link';
-import { ColumnValueBag } from '../../common/types/property-bag/column-value-bag';
-import { AssessmentInstanceRowData } from '../../DetailsView/components/assessment-instance-table';
-import { DictionaryStringTo } from '../../types/common-types';
+import { NewTabLink } from 'common/components/new-tab-link';
+import { ColumnValueBag } from 'common/types/property-bag/column-value-bag';
+import { AssessmentInstanceRowData } from 'DetailsView/components/assessment-instance-table';
+import { DictionaryStringTo } from 'types/common-types';
 import { PropertyBagColumnRendererConfig } from '../common/property-bag-column-renderer';
 import { PropertyBagColumnRendererFactory } from '../common/property-bag-column-renderer-factory';
 
