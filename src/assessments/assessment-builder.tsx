@@ -10,6 +10,7 @@ import { InstanceIdentifierGenerator, UniquelyIdentifiableInstances } from 'back
 import { RequirementComparer } from 'common/assessment/requirement-comparer';
 import { AssesssmentVisualizationConfiguration } from 'common/configs/assesssment-visualization-configuration';
 import { Messages } from 'common/messages';
+import { ManualTestStatus } from 'common/types/manual-test-status';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { AssessmentScanData, ScanData } from 'common/types/store-data/visualization-store-data';
 import { AssessmentInstanceRowData, AssessmentInstanceTable } from 'DetailsView/components/assessment-instance-table';
@@ -24,7 +25,6 @@ import {
 } from 'injected/visualization-instance-processor';
 import { DrawerProvider } from 'injected/visualization/drawer-provider';
 import { DictionaryStringTo } from 'types/common-types';
-import { ManualTestStatus } from '../common/types/manual-test-status';
 import { Assessment, AssistedAssessment, ManualAssessment } from './types/iassessment';
 import { ReportInstanceField } from './types/report-instance-field';
 import { Requirement } from './types/requirement';
