@@ -1,50 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Launch Pad High contrast mode should pass accessibility validation 1`] = `
-Array [
-  Object {
-    "id": "color-contrast",
-    "nodes": Array [
-      Object {
-        "failureSummary": "Fix any of the following:
-  Element has insufficient color contrast of 1.07 (foreground color: #ffff00, background color: #ffffff, font size: 8.3pt, font weight: bold). Expected contrast ratio of 4.5:1",
-        "selector": Array [
-          "a[aria-label=\\"demo\\\\ video\\"]",
-        ],
-      },
-      Object {
-        "failureSummary": "Fix any of the following:
-  Element has insufficient color contrast of 1.07 (foreground color: #ffff00, background color: #ffffff, font size: 10.5pt, font weight: bold). Expected contrast ratio of 4.5:1",
-        "selector": Array [
-          "#fast-pass",
-        ],
-      },
-      Object {
-        "failureSummary": "Fix any of the following:
-  Element has insufficient color contrast of 1.07 (foreground color: #ffff00, background color: #ffffff, font size: 10.5pt, font weight: bold). Expected contrast ratio of 4.5:1",
-        "selector": Array [
-          "#assessment",
-        ],
-      },
-      Object {
-        "failureSummary": "Fix any of the following:
-  Element has insufficient color contrast of 1.07 (foreground color: #ffff00, background color: #ffffff, font size: 10.5pt, font weight: bold). Expected contrast ratio of 4.5:1",
-        "selector": Array [
-          "#ad-hoc-tools",
-        ],
-      },
-      Object {
-        "failureSummary": "Fix any of the following:
-  Element has insufficient color contrast of 1.07 (foreground color: #ffff00, background color: #ffffff, font size: 8.3pt, font weight: bold). Expected contrast ratio of 4.5:1",
-        "selector": Array [
-          "a[title=\\"Navigate\\\\ to\\\\ axe-core\\\\ npm\\\\ page\\"]",
-        ],
-      },
-    ],
-  },
-]
-`;
-
 exports[`Launch Pad Normal mode content should match snapshot 1`] = `
 <DocumentFragment>
   <div
