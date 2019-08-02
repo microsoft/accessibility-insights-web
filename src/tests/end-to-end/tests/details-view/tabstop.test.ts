@@ -32,6 +32,9 @@ describe('Tabstop tests', () => {
             await targetPage.bringToFront();
             await targetPage.keyPress('Tab');
 
+            const nativeWidgetHeadingTargetPage = await targetPage.$(targetPageSelectors.targetPageNativeWidgetH1);
+            nativeWidgetHeadingTargetPage.click();
+
             const frame = targetPage.frames().find(f => f.name() === targetPageSelectors.targetPageNativeWidgetIFrameName);
             const button = await frame.$(targetPageSelectors.targetPageNativeWidgetFirstRadio);
             await button.click();
@@ -79,6 +82,10 @@ describe('Tabstop tests', () => {
             await popupPage.enableToggleByAriaLabel('Tab stops');
 
             await targetPage.bringToFront();
+
+            const nativeWidgetHeadingTargetPage = await targetPage.$(targetPageSelectors.targetPageNativeWidgetH1);
+            nativeWidgetHeadingTargetPage.click();
+
             const frame = targetPage.frames().find(f => f.name() === targetPageSelectors.targetPageNativeWidgetIFrameName);
             const button = await frame.$(targetPageSelectors.targetPageNativeWidgetFirstRadio);
             await button.click();
