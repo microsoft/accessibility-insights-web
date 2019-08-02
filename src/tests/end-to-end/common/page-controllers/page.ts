@@ -56,7 +56,10 @@ export class Page {
     }
 
     public async goto(url: string): Promise<void> {
-        await this.screenshotOnError(async () => await this.underlyingPage.goto(url, { timeout: DEFAULT_NEW_PAGE_WAIT_TIMEOUT_MS }));
+        await this.screenshotOnError(async () => {
+            await this.underlyingPage.goto(url, { timeout: DEFAULT_NEW_PAGE_WAIT_TIMEOUT_MS });
+            await this.underlyingPage.waitFor(200);
+        });
         await this.disableAnimations();
     }
 
@@ -140,14 +143,14 @@ export class Page {
     public async clickSelector(selector: string): Promise<void> {
         const element = await this.waitForSelector(selector);
         await this.screenshotOnError(async () => {
-            await element.click({ delay: 50 });
+            await element.click();
         });
     }
 
     public async clickSelectorXPath(xpath: string): Promise<void> {
         const element = await this.waitForSelectorXPath(xpath);
         await this.screenshotOnError(async () => {
-            await element.click({ delay: 50 });
+            await element.click();
         });
     }
 
