@@ -70,8 +70,8 @@ jobs:
       steps:
           - template: pipeline/install-node-prerequisites.yaml
 
-          - script: yarn dist:electron
-            displayName: create electron distributables
+          - script: yarn dist:electron -wl
+            displayName: create electron distributables (windows, linux)
 
           - task: PublishBuildArtifacts@1
             inputs:
