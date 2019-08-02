@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { AssessmentsProvider } from '../../assessments/types/assessments-provider';
-import { Assessment } from '../../assessments/types/iassessment';
-import { outcomeStatsFromManualTestStatus, RequirementOutcomeStats } from '../../DetailsView/reports/components/requirement-outcome-type';
+import { AssessmentsProvider } from 'assessments/types/assessments-provider';
+import { Assessment } from 'assessments/types/iassessment';
+import { outcomeStatsFromManualTestStatus, RequirementOutcomeStats } from 'reports/components/requirement-outcome-type';
 import { ManualTestStatusData } from '../types/manual-test-status';
 import { AssessmentData } from '../types/store-data/assessment-result-data';
 import { VisualizationType } from '../types/visualization-type';

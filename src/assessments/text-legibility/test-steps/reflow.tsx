@@ -2,10 +2,10 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import { TextLegibilityTestStep } from '../../../assessments/text-legibility/test-steps/test-step';
-import { Requirement } from '../../../assessments/types/requirement';
-import { link } from '../../../content/link';
-import * as content from '../../../content/test/text-legibility/reflow';
+import { TextLegibilityTestStep } from 'assessments/text-legibility/test-steps/test-step';
+import { Requirement } from 'assessments/types/requirement';
+import { link } from 'content/link';
+import * as content from 'content/test/text-legibility/reflow';
 import { ManualTestRecordYourResults } from '../../common/manual-test-record-your-results';
 
 const reflowDescription: JSX.Element = <span>Text content must be visible without having to scroll in two dimensions.</span>;

@@ -1,8 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { PropertyBagColumnRendererConfig } from '../../../../assessments/common/property-bag-column-renderer';
-import { ReportInstanceField } from '../../../../assessments/types/report-instance-field';
-import { BagOf } from '../../../../common/types/property-bag/column-value-bag';
+import { ReportInstanceField } from 'assessments/types/report-instance-field';
+import { BagOf } from 'common/types/property-bag/column-value-bag';
+
+import { PropertyBagColumnRendererConfig } from 'assessments/common/property-bag-column-renderer';
 
 describe('ReportInstanceField', () => {
     type Bag = { one?: string; two?: string; attr?: BagOf<string> };

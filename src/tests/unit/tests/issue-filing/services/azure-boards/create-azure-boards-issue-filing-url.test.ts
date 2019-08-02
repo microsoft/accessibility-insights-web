@@ -2,8 +2,8 @@
 // Licensed under the MIT License.
 import { IMock, Mock } from 'typemoq';
 
+import { title } from 'content/strings/application';
 import { EnvironmentInfo } from '../../../../../../common/environment-info-provider';
-import { title } from '../../../../../../content/strings/application';
 import { HTTPQueryBuilder } from '../../../../../../issue-filing/common/http-query-builder';
 import { IssueDetailsBuilder } from '../../../../../../issue-filing/common/issue-details-builder';
 import { IssueUrlCreationUtils } from '../../../../../../issue-filing/common/issue-filing-url-string-utils';

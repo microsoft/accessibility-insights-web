@@ -3,12 +3,12 @@
 import * as React from 'react';
 import Helmet from 'react-helmet';
 
-import { Code, Emphasis, Tag, Term } from '../../assessments/markup';
+import { Code, Emphasis, Tag, Term } from 'assessments/markup';
+import { productName } from 'content/strings/application';
 import { NewTabLink } from '../../common/components/new-tab-link';
 import { CheckIcon } from '../../common/icons/check-icon';
 import { CrossIcon } from '../../common/icons/cross-icon';
 import { ContentActionMessageCreator } from '../../common/message-creators/content-action-message-creator';
-import { productName } from '../../content/strings/application';
 import { ContentPageComponent, ContentPageOptions } from './content-page';
 import { CodeExample, CodeExampleProps } from './markup/code-example';
 

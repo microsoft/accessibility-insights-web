@@ -3,6 +3,7 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
+import { HyperlinkDefinition } from 'views/content/content-page';
 import { IssueFilingButton } from '../../../../../common/components/issue-filing-button';
 import { UserConfigurationStoreData } from '../../../../../common/types/store-data/user-configuration-store';
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
@@ -14,7 +15,6 @@ import {
 import { FixInstructionPanel } from '../../../../../injected/components/fix-instruction-panel';
 import { DecoratedAxeNodeResult } from '../../../../../injected/scanner-utils';
 import { DictionaryStringTo } from '../../../../../types/common-types';
-import { HyperlinkDefinition } from '../../../../../views/content/content-page';
 
 describe('IssuesDetailsPaneTest', () => {
     const samplePageTitle = 'pageTitle';

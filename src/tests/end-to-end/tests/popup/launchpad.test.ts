@@ -5,21 +5,20 @@ import { launchBrowser } from '../../common/browser-factory';
 import { CommonSelectors } from '../../common/element-identifiers/common-selectors';
 import { popupPageElementIdentifiers } from '../../common/element-identifiers/popup-page-element-identifiers';
 import { formatPageElementForSnapshot } from '../../common/element-snapshot-formatter';
-import { enableHighContrast } from '../../common/enable-high-contrast';
-import { Page } from '../../common/page';
+import { PopupPage } from '../../common/page-controllers/popup-page';
+import { TargetPage } from '../../common/page-controllers/target-page';
 import { scanForAccessibilityIssues } from '../../common/scan-for-accessibility-issues';
-import { TargetPageController } from '../../common/target-page-controller';
 
 describe('Launch Pad', () => {
     describe('Normal mode', () => {
         let browser: Browser;
-        let targetPage: TargetPageController;
-        let popupPage: Page;
+        let targetPage: TargetPage;
+        let popupPage: PopupPage;
 
         beforeAll(async () => {
             browser = await launchBrowser({ suppressFirstTimeDialog: true });
-            targetPage = await browser.setupNewTargetPage();
-            popupPage = await browser.newExtensionPopupPage(targetPage.tabId);
+            targetPage = await browser.newTargetPage();
+            popupPage = await browser.newPopupPage(targetPage);
             await popupPage.bringToFront();
             await popupPage.waitForSelector(popupPageElementIdentifiers.launchPad);
         });
@@ -42,16 +41,16 @@ describe('Launch Pad', () => {
     });
     describe('High contrast mode', () => {
         let browser: Browser;
-        let targetPage: TargetPageController;
-        let popupPage: Page;
+        let targetPage: TargetPage;
+        let popupPage: PopupPage;
 
         beforeAll(async () => {
             browser = await launchBrowser({ suppressFirstTimeDialog: true });
-            targetPage = await browser.setupNewTargetPage();
-            const detailsViewPage = await browser.newExtensionDetailsViewPage(targetPage.tabId);
-            await enableHighContrast(detailsViewPage);
+            targetPage = await browser.newTargetPage();
+            const detailsViewPage = await browser.newDetailsViewPage(targetPage);
+            await detailsViewPage.enableHighContrast();
 
-            popupPage = await browser.newExtensionPopupPage(targetPage.tabId);
+            popupPage = await browser.newPopupPage(targetPage);
             await popupPage.bringToFront();
 
             await popupPage.waitForSelector(CommonSelectors.highContrastThemeSelector);

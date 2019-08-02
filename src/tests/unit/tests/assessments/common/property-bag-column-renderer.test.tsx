@@ -3,7 +3,7 @@
 import { shallow, ShallowWrapper } from 'enzyme';
 import * as React from 'react';
 
-import { propertyBagColumnRenderer, PropertyBagColumnRendererConfig } from '../../../../../assessments/common/property-bag-column-renderer';
+import { propertyBagColumnRenderer, PropertyBagColumnRendererConfig } from 'assessments/common/property-bag-column-renderer';
 import { ColumnValueBag } from '../../../../../common/types/property-bag/column-value-bag';
 import { AssessmentInstanceRowData } from '../../../../../DetailsView/components/assessment-instance-table';
 import { DictionaryStringTo } from '../../../../../types/common-types';

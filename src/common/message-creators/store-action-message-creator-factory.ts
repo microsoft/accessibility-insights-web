@@ -30,6 +30,7 @@ export class StoreActionMessageCreatorFactory {
             Messages.Assessment.GetCurrentState,
             Messages.Scoping.GetCurrentState,
             Messages.UserConfig.GetCurrentState,
+            Messages.PathSnippet.GetCurrentState,
         ];
 
         return new StoreActionMessageCreatorImpl(getStateMessages, this.dispatcher);

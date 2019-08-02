@@ -2,9 +2,9 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
+import { HyperlinkDefinition } from 'views/content/content-page';
 import { ExternalLink, ExternalLinkDeps } from '../../../common/components/external-link';
 import { NamedSFC } from '../../../common/react/named-sfc';
-import { HyperlinkDefinition } from '../../../views/content/content-page';
 
 export type HelpLinksDeps = ExternalLinkDeps;
 

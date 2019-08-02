@@ -3,7 +3,17 @@
 export const detailsViewSelectors = {
     previewFeaturesPanel: '.preview-features-panel',
     previewFeaturesPanelToggleList: '.preview-feature-toggle-list',
-    testNavArea: '.details-view-test-nav-area',
+
+    testNavArea: 'nav',
+    testNavLink: (testName: string): string => `nav [name=${testName}] a`,
+
+    mainContent: '[role=main]',
+    instanceTableTextContent: '.assessment-instance-textContent',
+
+    gearButton: '.gear-options-icon',
+    settingsButton: 'button[name="Settings"]',
+    settingsPanel: '.settings-panel',
+    highContrastToggle: 'button#enable-high-contrast-mode',
 };
 
 export const overviewSelectors = {

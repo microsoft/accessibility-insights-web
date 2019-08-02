@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { TextLegibilityTestStep } from 'assessments/text-legibility/test-steps/test-step';
+import { Requirement } from 'assessments/types/requirement';
+import { link } from 'content/link';
+import * as content from 'content/test/text-legibility/resize-text';
 import * as React from 'react';
-import { TextLegibilityTestStep } from '../../../assessments/text-legibility/test-steps/test-step';
-import { Requirement } from '../../../assessments/types/requirement';
-import { link } from '../../../content/link';
-import * as content from '../../../content/test/text-legibility/resize-text';
 import { ManualTestRecordYourResults } from '../../common/manual-test-record-your-results';
 import * as Markup from '../../markup';
 import { Emphasis } from '../../markup';

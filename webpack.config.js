@@ -79,7 +79,7 @@ const commonConfig = {
         ],
     },
     resolve: {
-        modules: [path.resolve(__dirname, 'node_modules')],
+        modules: [path.resolve(__dirname, './src'), path.resolve(__dirname, 'node_modules')],
         extensions: ['.tsx', '.ts', '.js'],
     },
     plugins: commonPlugins,
@@ -107,6 +107,7 @@ const electronConfig = {
     entry: electronEntryFiles,
     name: 'electron',
     mode: 'development',
+    devtool: 'eval-source-map',
     output: {
         path: path.join(__dirname, 'extension/electronBundle'),
         filename: '[name].bundle.js',

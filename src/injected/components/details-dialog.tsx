@@ -5,6 +5,7 @@ import { css } from 'office-ui-fabric-react';
 import { Dialog, DialogType } from 'office-ui-fabric-react/lib/Dialog';
 import * as React from 'react';
 
+import { HyperlinkDefinition } from 'views/content/content-page';
 import { BaseStore } from '../../common/base-store';
 import { BrowserAdapter } from '../../common/browser-adapters/browser-adapter';
 import { GuidanceLinks } from '../../common/components/guidance-links';
@@ -15,7 +16,6 @@ import { DevToolActionMessageCreator } from '../../common/message-creators/dev-t
 import { DevToolState } from '../../common/types/store-data/idev-tool-state';
 import { UserConfigurationStoreData } from '../../common/types/store-data/user-configuration-store';
 import { DictionaryStringTo } from '../../types/common-types';
-import { HyperlinkDefinition } from '../../views/content/content-page';
 import { DetailsDialogHandler } from '../details-dialog-handler';
 import { DecoratedAxeNodeResult } from '../scanner-utils';
 import { TargetPageActionMessageCreator } from '../target-page-action-message-creator';

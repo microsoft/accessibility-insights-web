@@ -2,9 +2,9 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
+import { link } from 'content/link';
+import * as content from 'content/test/headings/no-missing-headings';
 import { VisualizationType } from '../../../common/types/visualization-type';
-import { link } from '../../../content/link';
-import * as content from '../../../content/test/headings/no-missing-headings';
 import { AssessmentVisualizationEnabledToggle } from '../../../DetailsView/components/assessment-visualization-enabled-toggle';
 import { AnalyzerConfigurationFactory } from '../../common/analyzer-configuration-factory';
 import { ManualTestRecordYourResults } from '../../common/manual-test-record-your-results';

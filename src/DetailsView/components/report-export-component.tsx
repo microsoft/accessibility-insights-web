@@ -3,8 +3,8 @@
 import { escape } from 'lodash';
 import { ActionButton } from 'office-ui-fabric-react/lib/Button';
 import * as React from 'react';
+import { ReportGenerator } from 'reports/report-generator';
 import { ExportResultType } from '../../common/telemetry-events';
-import { ReportGenerator } from '../reports/report-generator';
 import { ExportDialog, ExportDialogDeps } from './export-dialog';
 
 export type ReportExportComponentDeps = ExportDialogDeps;

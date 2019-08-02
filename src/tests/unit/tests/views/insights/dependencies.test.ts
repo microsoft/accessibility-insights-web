@@ -2,9 +2,9 @@
 // Licensed under the MIT License.
 import * as ReactDOM from 'react-dom';
 
+import { rendererDependencies } from 'views/insights/dependencies';
 import { initializeFabricIcons } from '../../../../../common/fabric-icons';
 import { ContentActionMessageCreator } from '../../../../../common/message-creators/content-action-message-creator';
-import { rendererDependencies } from '../../../../../views/insights/dependencies';
 import { RendererDeps } from './../../../../../views/insights/renderer';
 
 describe('rendererDependencies', () => {

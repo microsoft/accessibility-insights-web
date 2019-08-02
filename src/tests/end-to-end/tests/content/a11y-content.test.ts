@@ -5,7 +5,7 @@ import { Browser } from '../../common/browser';
 import { launchBrowser } from '../../common/browser-factory';
 import { GuidanceContentSelectors } from '../../common/element-identifiers/common-selectors';
 import { formatPageElementForSnapshot } from '../../common/element-snapshot-formatter';
-import { enableHighContrast } from '../../common/enable-high-contrast';
+import { TargetPage } from '../../common/page-controllers/target-page';
 import { scanForAccessibilityIssues } from '../../common/scan-for-accessibility-issues';
 
 describe('A11Y for content pages', () => {
@@ -41,13 +41,13 @@ describe('A11Y for content pages', () => {
 
     describe('High Contrast mode', () => {
         let browser: Browser;
-        let targetTabId: number;
+        let targetPage: TargetPage;
 
         beforeAll(async () => {
             browser = await launchBrowser({ suppressFirstTimeDialog: true });
-            targetTabId = await generateTargetTabId();
-            const detailsViewPage = await browser.newExtensionDetailsViewPage(targetTabId);
-            await enableHighContrast(detailsViewPage);
+            targetPage = await browser.newTargetPage();
+            const detailsViewPage = await browser.newDetailsViewPage(targetPage);
+            await detailsViewPage.enableHighContrast();
         });
 
         afterAll(async () => {
@@ -69,11 +69,5 @@ describe('A11Y for content pages', () => {
 
             await content.close();
         });
-
-        async function generateTargetTabId(): Promise<number> {
-            const targetPage = await browser.newTestResourcePage('all.html');
-            await targetPage.bringToFront();
-            return await browser.getActivePageTabId();
-        }
     });
 });

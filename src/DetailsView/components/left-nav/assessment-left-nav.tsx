@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import { AssessmentsProvider } from '../../../assessments/types/assessments-provider';
+import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { NamedSFC } from '../../../common/react/named-sfc';
 import { ManualTestStatus, ManualTestStatusData } from '../../../common/types/manual-test-status';
 import { DictionaryStringTo } from '../../../types/common-types';

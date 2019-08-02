@@ -2,8 +2,8 @@
 // Licensed under the MIT License.
 import { IMock, It, Mock, Times } from 'typemoq';
 
-import { HeadingsTestStep } from '../../../../assessments/headings/test-steps/test-steps';
-import { LandmarkTestStep } from '../../../../assessments/landmarks/test-steps/test-steps';
+import { HeadingsTestStep } from 'assessments/headings/test-steps/test-steps';
+import { LandmarkTestStep } from 'assessments/landmarks/test-steps/test-steps';
 import { VisualizationConfigurationFactory } from '../../../../common/configs/visualization-configuration-factory';
 import { VisualizationStoreData } from '../../../../common/types/store-data/visualization-store-data';
 import { AnalyzerStateUpdateHandler } from '../../../../injected/analyzer-state-update-handler';
