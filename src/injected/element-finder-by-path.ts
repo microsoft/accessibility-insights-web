@@ -15,7 +15,7 @@ export class ElementFinderByPath {
     constructor(private readonly htmlElementUtils: HTMLElementUtils, private readonly frameCommunicator: FrameCommunicator) {}
 
     public initialize = (): void => {
-        this.frameCommunicator.subscribe(ElementFinderByPath.findElementByPathCommand, this.onfindElementByPath);
+        this.frameCommunicator.subscribe(ElementFinderByPath.findElementByPathCommand, this.onFindElementByPath);
     };
 
     protected onFindElementByPath = (
