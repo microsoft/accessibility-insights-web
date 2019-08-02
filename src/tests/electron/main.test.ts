@@ -16,27 +16,14 @@ describe('Electron E2E', () => {
         return app.start();
     });
 
-    test('test that app opened & loaded site', () => {
-        return Promise.resolve(app.browserWindow.isVisible())
-            .then(function(isVisible: boolean): void {
-                expect(isVisible).toBe(true);
-            })
-            .then(function(): Promise<number> {
-                return app.client.getWindowCount();
-            })
-            .then(function(count: number): void {
-                expect(count).toBe(2);
-            })
-            .then(function(): string {
-                return app.webContents.getTitle();
-            })
-            .then(function(title: string): void {
-                expect(title).toBe('Accessible University Demo Site - Inaccessible Version');
-            })
-            .catch(function(error: Error): void {
-                console.error('Test failed', error.message);
-                expect(error).toBeNull();
-            });
+    test('test that app opened & loaded site', async () => {
+        // spectron wraps calls to electron APIs as promises. Unfortunately, only electron typings are used,
+        // so tslint thinks some of the methods do not return promises.
+        // tslint:disable: await-promise
+        expect(await app.browserWindow.isVisible()).toBe(true);
+        expect(await app.client.getWindowCount()).toBe(2);
+        expect(await app.webContents.getTitle()).toBe('Accessible University Demo Site - Inaccessible Version');
+        // tslint:enable: await-promise
     });
 
     afterAll(() => {
