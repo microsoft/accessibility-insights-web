@@ -213,6 +213,12 @@ export class Page {
         });
     }
 
+    public async getSelectorElement(selector: string): Promise<Puppeteer.ElementHandle<Element>> {
+        return await this.screenshotOnError(async () => {
+            return await this.underlyingPage.$(selector);
+        });
+    }
+
     public async getSelectorElements(selector: string): Promise<Puppeteer.ElementHandle<Element>[]> {
         return await this.screenshotOnError(async () => {
             return await this.underlyingPage.$$(selector);

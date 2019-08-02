@@ -41,7 +41,8 @@ export class TargetPage extends Page {
     }
 
     public async waitForVisualizationBoxesToDisappear(): Promise<void> {
-        if (document.querySelector(TargetPageInjectedComponentSelectors.insightsRootContainer)) {
+        const insightsRootContainer = await this.getSelectorElement(TargetPageInjectedComponentSelectors.insightsRootContainer);
+        if (insightsRootContainer) {
             const shadowRoot = await this.getShadowRoot();
             await this.waitForDescendentSelectorToDisappear(shadowRoot, TargetPageInjectedComponentSelectors.insightsVisualizationBox);
         }
