@@ -2,9 +2,9 @@
 // Licensed under the MIT License.
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
-import { InstallDataGenerator } from '../../../../background/install-data-generator';
-import { InstallationData } from '../../../../background/installation-data';
-import { LocalStorageDataKeys } from '../../../../background/local-storage-data-keys';
+import { InstallDataGenerator } from 'background/install-data-generator';
+import { InstallationData } from 'background/installation-data';
+import { LocalStorageDataKeys } from 'background/local-storage-data-keys';
 import { StorageAdapter } from '../../../../common/browser-adapters/storage-adapter';
 import { generateUID } from '../../../../common/uid-generator';
 

@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+import { NullTelemetryClient } from 'background/telemetry/null-telemetry-client';
+import { TelemetryBaseData } from 'background/telemetry/telemetry-base-data';
+import { TelemetryLogger } from 'background/telemetry/telemetry-logger';
 import { IMock, Mock, Times } from 'typemoq';
-import { NullTelemetryClient } from '../../../../../background/telemetry/null-telemetry-client';
-import { TelemetryBaseData } from '../../../../../background/telemetry/telemetry-base-data';
-import { TelemetryLogger } from '../../../../../background/telemetry/telemetry-logger';
 
 describe('Null telemetry client', () => {
     let loggerMock: IMock<TelemetryLogger>;

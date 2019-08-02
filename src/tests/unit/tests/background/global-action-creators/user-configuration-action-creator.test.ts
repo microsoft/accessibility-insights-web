@@ -1,17 +1,17 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { isFunction } from 'lodash';
-import { IMock, It, Mock, Times } from 'typemoq';
 import {
     SaveIssueFilingSettingsPayload,
     SetHighContrastModePayload,
     SetIssueFilingServicePayload,
     SetIssueFilingServicePropertyPayload,
     SetTelemetryStatePayload,
-} from '../../../../../background/actions/action-payloads';
-import { UserConfigurationActions } from '../../../../../background/actions/user-configuration-actions';
-import { UserConfigurationActionCreator } from '../../../../../background/global-action-creators/user-configuration-action-creator';
-import { Interpreter } from '../../../../../background/interpreter';
+} from 'background/actions/action-payloads';
+import { UserConfigurationActions } from 'background/actions/user-configuration-actions';
+import { UserConfigurationActionCreator } from 'background/global-action-creators/user-configuration-action-creator';
+import { Interpreter } from 'background/interpreter';
+import { isFunction } from 'lodash';
+import { IMock, It, Mock, Times } from 'typemoq';
 import { Action } from '../../../../../common/flux/action';
 import { Messages } from '../../../../../common/messages';
 import { TelemetryEventSource, TriggeredBy } from '../../../../../common/telemetry-events';

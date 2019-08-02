@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { UpdateInstanceVisibilityPayload } from '../background/actions/action-payloads';
+import { UpdateInstanceVisibilityPayload } from 'background/actions/action-payloads';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
 import { HTMLElementUtils } from '../common/html-element-utils';
 import { Message } from '../common/message';

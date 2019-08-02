@@ -3,11 +3,11 @@
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 import { AssessmentsProviderImpl } from 'assessments/assessments-provider';
-import { AssessmentDataConverter } from '../../../../background/assessment-data-converter';
-import { FeatureFlagStore } from '../../../../background/stores/global/feature-flag-store';
-import { TabStore } from '../../../../background/stores/tab-store';
-import { VisualizationScanResultStore } from '../../../../background/stores/visualization-scan-result-store';
-import { VisualizationStore } from '../../../../background/stores/visualization-store';
+import { AssessmentDataConverter } from 'background/assessment-data-converter';
+import { FeatureFlagStore } from 'background/stores/global/feature-flag-store';
+import { TabStore } from 'background/stores/tab-store';
+import { VisualizationScanResultStore } from 'background/stores/visualization-scan-result-store';
+import { VisualizationStore } from 'background/stores/visualization-store';
 import { BaseStore } from '../../../../common/base-store';
 import { TestMode } from '../../../../common/configs/test-mode';
 import { VisualizationConfigurationFactory } from '../../../../common/configs/visualization-configuration-factory';

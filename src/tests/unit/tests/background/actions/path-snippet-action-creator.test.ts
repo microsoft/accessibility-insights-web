@@ -3,8 +3,8 @@
 import * as _ from 'lodash';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
-import { PathSnippetActionCreator } from '../../../../../background/actions/path-snippet-action-creator';
-import { PathSnippetActions } from '../../../../../background/actions/path-snippet-actions';
+import { PathSnippetActionCreator } from 'background/actions/path-snippet-action-creator';
+import { PathSnippetActions } from 'background/actions/path-snippet-actions';
 import { Action } from '../../../../../common/flux/action';
 import { RegisterTypeToPayloadCallback } from '../../../../../common/message';
 import { Messages } from '../../../../../common/messages';

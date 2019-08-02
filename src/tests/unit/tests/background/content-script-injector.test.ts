@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { IMock, It, Mock, Times } from 'typemoq';
 
-import { ContentScriptInjector } from '../../../../background/injector/content-script-injector';
+import { ContentScriptInjector } from 'background/injector/content-script-injector';
 import { BrowserAdapter } from '../../../../common/browser-adapters/browser-adapter';
 import { PromiseFactory } from '../../../../common/promises/promise-factory';
 

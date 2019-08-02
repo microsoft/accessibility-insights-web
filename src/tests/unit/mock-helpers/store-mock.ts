@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { IMock, It, Mock, Times } from 'typemoq';
 
-import { DevToolStore } from '../../../background/stores/dev-tools-store';
+import { DevToolStore } from 'background/stores/dev-tools-store';
 import { BaseStore } from '../../../common/base-store';
 
 export class StoreMock<TStoreState> {

@@ -1,12 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { BaseActionPayload } from 'background/actions/action-payloads';
+import { ScopingActions } from 'background/actions/scoping-actions';
+import { ScopingPanelActionCreator } from 'background/actions/scoping-panel-action-creator';
+import { DetailsViewController } from 'background/details-view-controller';
+import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
 import * as _ from 'lodash';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
-import { BaseActionPayload } from '../../../../../background/actions/action-payloads';
-import { ScopingActions } from '../../../../../background/actions/scoping-actions';
-import { ScopingPanelActionCreator } from '../../../../../background/actions/scoping-panel-action-creator';
-import { DetailsViewController } from '../../../../../background/details-view-controller';
-import { TelemetryEventHandler } from '../../../../../background/telemetry/telemetry-event-handler';
 import { Action } from '../../../../../common/flux/action';
 import { RegisterTypeToPayloadCallback } from '../../../../../common/message';
 import { Messages } from '../../../../../common/messages';

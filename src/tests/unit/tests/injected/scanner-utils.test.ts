@@ -2,8 +2,8 @@
 // Licensed under the MIT License.
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
-import { ScopingInputTypes } from '../../../../background/scoping-input-types';
-import { ScopingStore } from '../../../../background/stores/global/scoping-store';
+import { ScopingInputTypes } from 'background/scoping-input-types';
+import { ScopingStore } from 'background/stores/global/scoping-store';
 import { Logger } from '../../../../common/logging/logger';
 import { ScopingStoreData } from '../../../../common/types/store-data/scoping-store-data';
 import { DecoratedAxeNodeResult, HtmlElementAxeResults, ScannerUtils } from '../../../../injected/scanner-utils';

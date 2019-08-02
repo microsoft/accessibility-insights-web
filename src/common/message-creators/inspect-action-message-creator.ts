@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { InspectMode } from 'background/inspect-modes';
 import * as React from 'react';
-import { InspectMode } from '../../background/inspect-modes';
 import { Messages } from '../messages';
 import { TelemetryDataFactory } from '../telemetry-data-factory';
 import { InspectPayload } from './../../background/actions/inspect-actions';

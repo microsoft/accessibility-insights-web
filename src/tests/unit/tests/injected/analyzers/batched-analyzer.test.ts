@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { ScopingInputTypes } from 'background/scoping-input-types';
+import { ScopingStore } from 'background/stores/global/scoping-store';
 import { clone, isFunction } from 'lodash';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
-import { ScopingInputTypes } from '../../../../../background/scoping-input-types';
-import { ScopingStore } from '../../../../../background/stores/global/scoping-store';
 import { VisualizationConfiguration } from '../../../../../common/configs/visualization-configuration';
 import { VisualizationConfigurationFactory } from '../../../../../common/configs/visualization-configuration-factory';
 import { Message } from '../../../../../common/message';

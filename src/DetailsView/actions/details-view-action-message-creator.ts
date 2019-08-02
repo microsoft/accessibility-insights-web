@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as React from 'react';
 import {
     AddFailureInstancePayload,
     AddResultDescriptionPayload,
@@ -17,8 +16,9 @@ import {
     SelectRequirementPayload,
     SwitchToTargetTabPayload,
     ToggleActionPayload,
-} from '../../background/actions/action-payloads';
-import { FeatureFlagPayload } from '../../background/actions/feature-flag-actions';
+} from 'background/actions/action-payloads';
+import { FeatureFlagPayload } from 'background/actions/feature-flag-actions';
+import * as React from 'react';
 import { Message } from '../../common/message';
 import { DevToolActionMessageCreator } from '../../common/message-creators/dev-tool-action-message-creator';
 import { Messages } from '../../common/messages';

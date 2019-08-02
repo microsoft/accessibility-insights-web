@@ -9,10 +9,10 @@ import {
     ToggleActionPayload,
     UpdateSelectedDetailsViewPayload,
     UpdateSelectedPivot,
-} from '../../../../../background/actions/action-payloads';
-import { TabActions } from '../../../../../background/actions/tab-actions';
-import { VisualizationActions } from '../../../../../background/actions/visualization-actions';
-import { VisualizationStore } from '../../../../../background/stores/visualization-store';
+} from 'background/actions/action-payloads';
+import { TabActions } from 'background/actions/tab-actions';
+import { VisualizationActions } from 'background/actions/visualization-actions';
+import { VisualizationStore } from 'background/stores/visualization-store';
 import { AdHocTestkeys } from '../../../../../common/configs/adhoc-test-keys';
 import { VisualizationConfigurationFactory } from '../../../../../common/configs/visualization-configuration-factory';
 import { StoreNames } from '../../../../../common/stores/store-names';
