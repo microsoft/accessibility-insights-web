@@ -125,12 +125,14 @@ export class Page {
             timeout: DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS,
             ...options,
         };
-        return await this.underlyingPage.waitForFunction(
-            (parent, selector) => parent.querySelector(selector),
-            options,
-            parentElement,
-            descendentSelector,
-        );
+        return await this.screenshotOnError(async () => {
+            return await this.underlyingPage.waitForFunction(
+                (parent, selector) => parent.querySelector(selector),
+                options,
+                parentElement,
+                descendentSelector,
+            );
+        });
     }
 
     public async getShadowRootOfSelector(selector: string): Promise<Puppeteer.ElementHandle<Element>> {
@@ -162,12 +164,14 @@ export class Page {
             timeout: DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS,
             ...options,
         };
-        return await this.underlyingPage.waitForFunction(
-            (parent, selector) => !parent.querySelector(selector),
-            options,
-            parentElement,
-            descendentSelector,
-        );
+        return await this.screenshotOnError(async () => {
+            return await this.underlyingPage.waitForFunction(
+                (parent, selector) => !parent.querySelector(selector),
+                options,
+                parentElement,
+                descendentSelector,
+            );
+        });
     }
 
     public async clickSelector(selector: string): Promise<void> {
