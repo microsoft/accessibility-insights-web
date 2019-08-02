@@ -3,10 +3,11 @@
 import { StoreNames } from '../../common/stores/store-names';
 import { PathSnippetStoreData } from '../../common/types/store-data/path-snippet-store-data';
 import { PathSnippetActions } from '../actions/path-snippet-actions';
+import { TabActions } from '../actions/tab-actions';
 import { BaseStoreImpl } from './base-store-impl';
 
 export class PathSnippetStore extends BaseStoreImpl<PathSnippetStoreData> {
-    constructor(private readonly pathSnippetActions: PathSnippetActions) {
+    constructor(private readonly pathSnippetActions: PathSnippetActions, private readonly tabActions: TabActions) {
         super(StoreNames.PathSnippetStore);
     }
 
@@ -23,6 +24,7 @@ export class PathSnippetStore extends BaseStoreImpl<PathSnippetStoreData> {
         this.pathSnippetActions.getCurrentState.addListener(this.onGetCurrentState);
         this.pathSnippetActions.onAddPath.addListener(payload => this.onChangeProperty('path', payload));
         this.pathSnippetActions.onAddSnippet.addListener(payload => this.onChangeProperty('snippet', payload));
+        this.tabActions.tabChange.addListener(this.onClearState);
         this.pathSnippetActions.onClearData.addListener(this.onClearState);
     }
 

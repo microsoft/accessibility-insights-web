@@ -53,7 +53,7 @@ export class TabContextStoreHub implements StoreHub {
         this.inspectStore = new InspectStore(actionHub.inspectActions, actionHub.tabActions);
         this.inspectStore.initialize();
 
-        this.pathSnippetStore = new PathSnippetStore(actionHub.pathSnippetActions);
+        this.pathSnippetStore = new PathSnippetStore(actionHub.pathSnippetActions, actionHub.tabActions);
         this.pathSnippetStore.initialize();
     }
 

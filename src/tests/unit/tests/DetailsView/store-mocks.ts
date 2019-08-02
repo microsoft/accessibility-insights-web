@@ -62,7 +62,7 @@ export class StoreMocks {
     public userConfigurationStoreData = new UserConfigurationStore(null, null, null).getDefaultState();
     public scopingStoreData = new ScopingStore(null).getDefaultState();
     public inspectStoreData = new InspectStore(null, null).getDefaultState();
-    public pathSnippetStoreData = new PathSnippetStore(null).getDefaultState();
+    public pathSnippetStoreData = new PathSnippetStore(null, null).getDefaultState();
     public launchPanelStateStoreData = new LaunchPanelStore(null, null, null).getDefaultState();
     public featureFlagStoreData: FeatureFlagStoreData = {
         [FeatureFlags[FeatureFlags.logTelemetryToConsole]]: false,

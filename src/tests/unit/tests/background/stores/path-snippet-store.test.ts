@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { PathSnippetActions } from '../../../../../background/actions/path-snippet-actions';
+import { TabActions } from '../../../../../background/actions/tab-actions';
 import { PathSnippetStore } from '../../../../../background/stores/path-snippet-store';
 import { StoreNames } from '../../../../../common/stores/store-names';
 import { PathSnippetStoreData } from '../../../../../common/types/store-data/path-snippet-store-data';
@@ -65,12 +66,31 @@ describe('PathSnippetStoreTest', () => {
             .testListenerToBeCalledOnce(initialState, finalState);
     });
 
+    test('on clearState from tab change', () => {
+        const initialState = {
+            path: 'test path',
+            snippet: 'test snippet',
+        };
+        const finalState = getDefaultState();
+
+        createStoreForTabActions('tabChange')
+            .withActionParam(null)
+            .testListenerToBeCalledOnce(initialState, finalState);
+    });
+
     function getDefaultState(): PathSnippetStoreData {
         return createStoreWithNullParams(PathSnippetStore).getDefaultState();
     }
 
     function createStoreForPathSnippetActions(actionName: keyof PathSnippetActions): StoreTester<PathSnippetStoreData, PathSnippetActions> {
-        const factory = (actions: PathSnippetActions) => new PathSnippetStore(actions);
+        const tabActions = new TabActions();
+        const factory = (actions: PathSnippetActions) => new PathSnippetStore(actions, tabActions);
+
         return new StoreTester(PathSnippetActions, actionName, factory);
+    }
+
+    function createStoreForTabActions(actionName: keyof TabActions): StoreTester<PathSnippetStoreData, TabActions> {
+        const factory = (actions: TabActions) => new PathSnippetStore(new PathSnippetActions(), actions);
+        return new StoreTester(TabActions, actionName, factory);
     }
 });
