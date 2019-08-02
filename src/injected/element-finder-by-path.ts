@@ -18,7 +18,7 @@ export class ElementFinderByPath {
         this.frameCommunicator.subscribe(ElementFinderByPath.findElementByPathCommand, this.onfindElementByPath);
     };
 
-    protected onfindElementByPath = (
+    protected onFindElementByPath = (
         message: ElementFinderByPathMessage,
         error: ErrorMessageContent,
         sourceWin: Window,
