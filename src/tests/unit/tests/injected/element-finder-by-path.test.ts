@@ -16,7 +16,7 @@ class TestablePathElementFinder extends ElementFinderByPath {
         sourceWin: Window,
         responder?: FrameMessageResponseCallback,
     ) => void {
-        return this.onfindElementByPath;
+        return this.onFindElementByPath;
     }
 }
 describe('ElementFinderByPositionTest', () => {
