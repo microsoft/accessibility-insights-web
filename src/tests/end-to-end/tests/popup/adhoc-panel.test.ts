@@ -63,7 +63,7 @@ describe('Ad hoc tools', () => {
         await gotoAdhocPanel();
 
         const results = await scanForAccessibilityIssues(popupPage, '*');
-        expect(results).toMatchSnapshot();
+        expect(results).toHaveLength(0);
     });
 
     it.each(['Automated checks', 'Landmarks', 'Headings', 'Color'])(

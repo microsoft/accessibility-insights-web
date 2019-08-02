@@ -65,7 +65,7 @@ describe('Launch Pad', () => {
 
         it('should pass accessibility validation', async () => {
             const results = await scanForAccessibilityIssues(popupPage, '*');
-            expect(results).toMatchSnapshot();
+            expect(results).toHaveLength(0);
         });
     });
 });
