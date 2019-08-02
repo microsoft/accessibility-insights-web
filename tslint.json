@@ -1,7 +1,7 @@
 {
     "rules": {
         "arrow-parens": [true, "ban-single-arg-parens"],
-        "await-promise": true,
+        "await-promise": [true, "PromiseLike"],
         "class-name": true,
         "comment-format": [
             true,
