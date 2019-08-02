@@ -64,7 +64,9 @@ jobs:
                 artifactName: 'drop'
             displayName: publish drop
 
+    # CI build only
     - job: 'publish_electron_dist'
+      condition: and(always(), in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI'))
       pool:
           vmImage: 'windows-latest'
       steps:
