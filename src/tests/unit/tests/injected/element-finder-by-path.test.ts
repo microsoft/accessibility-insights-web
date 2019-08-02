@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-/* tslint:disable await-promise*/
 import { IMock, It, Mock } from 'typemoq';
 
 import { HTMLElementUtils } from '../../../../common/html-element-utils';
