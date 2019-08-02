@@ -3,6 +3,7 @@
 import { launchBrowser } from '../../common/browser-factory';
 import { fastPassSelectors, targetPageSelectors } from '../../common/element-identifiers/common-selectors';
 import { Page } from '../../common/page-controllers/page';
+import { PopupPage } from '../../common/page-controllers/popup-page';
 import { TargetPage } from '../../common/page-controllers/target-page';
 import { Browser } from './../../common/browser';
 
@@ -54,5 +55,42 @@ describe('Tabstop tests', () => {
 
             await detailsViewpage.waitForSelector(fastPassSelectors.tabStopToggleCheckedSelector);
         }
+    });
+
+    describe('tabstop from adhoc tools', () => {
+        let browser: Browser;
+        let targetPage: TargetPage;
+        let popupPage: PopupPage;
+
+        beforeAll(async () => {
+            browser = await launchBrowser({ suppressFirstTimeDialog: true });
+            targetPage = await browser.newTargetPage();
+            popupPage = await browser.newPopupPage(targetPage);
+            await popupPage.gotoAdhocPanel();
+        });
+
+        afterAll(async () => {
+            if (browser) {
+                await browser.close();
+            }
+        });
+
+        test('matches snapshot when tabstop is used from adhoc panel', async () => {
+            await popupPage.enableToggleByAriaLabel('Tab stops');
+
+            await targetPage.bringToFront();
+            const frame = targetPage.frames().find(f => f.name() === targetPageSelectors.targetPageNativeWidgetIFrameName);
+            const button = await frame.$(targetPageSelectors.targetPageNativeWidgetFirstRadio);
+            await button.click();
+
+            const shadowRoot = await targetPage.getShadowRoot();
+            await targetPage.waitForDescendentSelector(shadowRoot, fastPassSelectors.tabStopVisulizationStart, { visible: true });
+
+            for (let i = 0; i < 3; i++) {
+                await targetPage.keyPress('Tab');
+            }
+
+            expect(await targetPage.getShadowRootHtmlSnapshot()).toMatchSnapshot();
+        });
     });
 });

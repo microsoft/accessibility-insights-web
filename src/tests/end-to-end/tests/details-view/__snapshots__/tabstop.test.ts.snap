@@ -1,5 +1,105 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Tabstop tests tabstop from adhoc tools matches snapshot when tabstop is used from adhoc panel 1`] = `
+<DocumentFragment>
+  <div
+    id="insights-shadow-container"
+  >
+    <link
+      href="{{EXTENSION_URL_BASE}}/injected/styles/default/injected.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="{{EXTENSION_URL_BASE}}/bundle/injected.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <div
+      class="insights-container insights-highlight-container insights-tab-stops"
+    >
+      <svg
+        height="{{ENVIRONMENT_SENSITIVE_POSITION}}px"
+        width="{{ENVIRONMENT_SENSITIVE_POSITION}}px"
+      >
+        <defs>
+          <filter
+            filterUnits="userSpaceOnUse"
+            id="insights-tab-stops-solid-shadow"
+          >
+            <femorphology
+              in="SourceGraphic"
+              operator="dilate"
+              radius="1"
+              result="expand"
+            />
+            <feoffset
+              dx="1"
+              dy="0"
+              in="expand"
+              result="shadow_1"
+            />
+            <feoffset
+              dx="-1"
+              dy="0"
+              in="expand"
+              result="shadow_2"
+            />
+            <feoffset
+              dx="0"
+              dy="1"
+              in="expand"
+              result="shadow_3"
+            />
+            <feoffset
+              dx="0"
+              dy="-1"
+              in="expand"
+              result="shadow_4"
+            />
+            <femerge
+              result="shadow"
+            >
+              <femergenode
+                in="shadow_1"
+              />
+              <femergenode
+                in="shadow_2"
+              />
+              <femergenode
+                in="shadow_3"
+              />
+              <femergenode
+                in="shadow_4"
+              />
+              <femergenode
+                in="expand"
+              />
+            </femerge>
+            <feflood
+              flood-color="white"
+            />
+            <fecomposite
+              in2="shadow"
+              operator="in"
+              result="shadow"
+            />
+            <femerge>
+              <femergenode
+                in="shadow"
+              />
+              <femergenode
+                in="SourceGraphic"
+              />
+            </femerge>
+          </filter>
+        </defs>
+      </svg>
+    </div>
+  </div>
+</DocumentFragment>
+`;
+
 exports[`Tabstop tests tabstop from fastpass if visualHelper is turned on after starting tabstop and pressing tabs on target page 1`] = `
 <DocumentFragment>
   <div
