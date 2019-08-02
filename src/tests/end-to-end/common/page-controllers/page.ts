@@ -184,9 +184,34 @@ export class Page {
         });
     }
 
+    public async clickDescendentSelector(
+        parentElement: Puppeteer.ElementHandle<Element>,
+        descendentSelector: string,
+        options?: Puppeteer.WaitForSelectorOptions,
+    ): Promise<void> {
+        await this.waitForDescendentSelector(parentElement, descendentSelector, options);
+        const element = await this.getDescendentSelectorElement(parentElement, descendentSelector);
+        await this.clickElementHandle(element);
+    }
+
     public async clickElementHandle(element: Puppeteer.ElementHandle<Element>): Promise<void> {
         await this.screenshotOnError(async () => {
             await element.click();
+        });
+    }
+
+    public async getDescendentSelectorElement(
+        parentElement: Puppeteer.ElementHandle<Element>,
+        descendentSelector: string,
+    ): Promise<Puppeteer.ElementHandle<Element>> {
+        return await this.screenshotOnError(async () => {
+            return await parentElement.$(descendentSelector);
+        });
+    }
+
+    public async getSelectorElements(selector: string): Promise<Puppeteer.ElementHandle<Element>[]> {
+        return await this.screenshotOnError(async () => {
+            return await this.underlyingPage.$$(selector);
         });
     }
 
