@@ -16,7 +16,7 @@ const reflowHowToTest: JSX.Element = (
         (top-to-bottom).
         <ol>
             <li>Use your system's display settings to set the display resolution to 1280 x 1024.</li>
-            <li>Use the browser settings to set the target page's zoom to 400%.</li>
+            <li>Use your browser's settings to set the target page's zoom to 400%.</li>
             <li>
                 Examine the target page to verify that all text content is available without horizontal scrolling. Content can be displayed
                 directly in the page, revealed via accessible controls, or accessed via direct links.
