@@ -98,7 +98,6 @@ exports[`PopupView renderFailureMsgPanelForFileUrl 1`] = `
         "getManifest": [Function],
         "getRunTimeId": [Function],
         "getRuntimeLastError": [Function],
-        "getSelectedTabInWindow": [Function],
         "getTab": [Function],
         "getUrl": [Function],
         "getUserData": [Function],
