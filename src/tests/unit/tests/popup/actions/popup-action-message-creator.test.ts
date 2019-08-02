@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { OnDetailsViewOpenPayload, SetLaunchPanelState } from 'background/actions/action-payloads';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
-import { OnDetailsViewOpenPayload, SetLaunchPanelState } from '../../../../../background/actions/action-payloads';
 import { ActionMessageDispatcher } from '../../../../../common/message-creators/action-message-dispatcher';
 import { Messages } from '../../../../../common/messages';
 import { TelemetryDataFactory } from '../../../../../common/telemetry-data-factory';

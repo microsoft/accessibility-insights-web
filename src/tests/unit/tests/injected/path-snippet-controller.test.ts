@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { PathSnippetStore } from 'background/stores/path-snippet-store';
 import { isFunction } from 'lodash';
 import { IMock, It, Mock, Times } from 'typemoq';
-import { PathSnippetStore } from '../../../../background/stores/path-snippet-store';
 import { PathSnippetStoreData } from '../../../../common/types/store-data/path-snippet-store-data';
 import { PathSnippetController } from '../../../../injected/path-snippet-controller';
 

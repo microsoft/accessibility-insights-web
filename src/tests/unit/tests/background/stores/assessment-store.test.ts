@@ -17,12 +17,12 @@ import {
     ToggleActionPayload,
     UpdateSelectedDetailsViewPayload,
     UpdateVisibilityPayload,
-} from '../../../../../background/actions/action-payloads';
-import { AssessmentActions } from '../../../../../background/actions/assessment-actions';
-import { AssessmentDataConverter } from '../../../../../background/assessment-data-converter';
-import { AssessmentDataRemover } from '../../../../../background/assessment-data-remover';
-import { InitialAssessmentStoreDataGenerator } from '../../../../../background/initial-assessment-store-data-generator';
-import { AssessmentStore } from '../../../../../background/stores/assessment-store';
+} from 'background/actions/action-payloads';
+import { AssessmentActions } from 'background/actions/assessment-actions';
+import { AssessmentDataConverter } from 'background/assessment-data-converter';
+import { AssessmentDataRemover } from 'background/assessment-data-remover';
+import { InitialAssessmentStoreDataGenerator } from 'background/initial-assessment-store-data-generator';
+import { AssessmentStore } from 'background/stores/assessment-store';
 import { BrowserAdapter } from '../../../../../common/browser-adapters/browser-adapter';
 import { AssesssmentVisualizationConfiguration } from '../../../../../common/configs/assesssment-visualization-configuration';
 import { IndexedDBAPI } from '../../../../../common/indexedDB/indexedDB';

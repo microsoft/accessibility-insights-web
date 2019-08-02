@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { IssueDetailsTextGenerator } from 'background/issue-details-text-generator';
 import { DefaultButton } from 'office-ui-fabric-react/lib/Button';
 import * as React from 'react';
 import * as CopyToClipboard from 'react-copy-to-clipboard';
-import { IssueDetailsTextGenerator } from '../../background/issue-details-text-generator';
 import { CopyIcon } from '../../common/icons/copy-icon';
 import { DecoratedAxeNodeResult } from '../../injected/scanner-utils';
 import { CreateIssueDetailsTextData } from '../types/create-issue-details-text-data';

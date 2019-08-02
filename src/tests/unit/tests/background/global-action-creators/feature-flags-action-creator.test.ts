@@ -3,10 +3,10 @@
 import { isFunction } from 'lodash';
 import { IMock, It, Mock, Times } from 'typemoq';
 
-import { FeatureFlagActions, FeatureFlagPayload } from '../../../../../background/actions/feature-flag-actions';
-import { FeatureFlagsActionCreator } from '../../../../../background/global-action-creators/feature-flags-action-creator';
-import { Interpreter } from '../../../../../background/interpreter';
-import { TelemetryEventHandler } from '../../../../../background/telemetry/telemetry-event-handler';
+import { FeatureFlagActions, FeatureFlagPayload } from 'background/actions/feature-flag-actions';
+import { FeatureFlagsActionCreator } from 'background/global-action-creators/feature-flags-action-creator';
+import { Interpreter } from 'background/interpreter';
+import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
 import { Action } from '../../../../../common/flux/action';
 import { Messages } from '../../../../../common/messages';
 

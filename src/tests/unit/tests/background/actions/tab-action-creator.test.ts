@@ -3,10 +3,10 @@
 import * as _ from 'lodash';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
-import { PageVisibilityChangeTabPayload, SwitchToTargetTabPayload } from '../../../../../background/actions/action-payloads';
-import { TabActionCreator } from '../../../../../background/actions/tab-action-creator';
-import { TabActions } from '../../../../../background/actions/tab-actions';
-import { TelemetryEventHandler } from '../../../../../background/telemetry/telemetry-event-handler';
+import { PageVisibilityChangeTabPayload, SwitchToTargetTabPayload } from 'background/actions/action-payloads';
+import { TabActionCreator } from 'background/actions/tab-action-creator';
+import { TabActions } from 'background/actions/tab-actions';
+import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
 import { BrowserAdapter } from '../../../../../common/browser-adapters/browser-adapter';
 import { Action } from '../../../../../common/flux/action';
 import { Tab } from '../../../../../common/itab';

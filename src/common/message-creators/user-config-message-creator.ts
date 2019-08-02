@@ -6,7 +6,7 @@ import {
     SetIssueFilingServicePayload,
     SetIssueFilingServicePropertyPayload,
     SetTelemetryStatePayload,
-} from '../../background/actions/action-payloads';
+} from 'background/actions/action-payloads';
 import { Messages } from '../messages';
 import { IssueFilingServiceProperties } from '../types/store-data/user-configuration-store';
 import { ActionMessageDispatcher } from './action-message-dispatcher';

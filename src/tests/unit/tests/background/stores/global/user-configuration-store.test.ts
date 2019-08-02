@@ -1,17 +1,17 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { cloneDeep } from 'lodash';
-import { IMock, It, Mock, Times } from 'typemoq';
 import {
     SaveIssueFilingSettingsPayload,
     SetHighContrastModePayload,
     SetIssueFilingServicePayload,
     SetIssueFilingServicePropertyPayload,
     SetTelemetryStatePayload,
-} from '../../../../../../background/actions/action-payloads';
-import { UserConfigurationActions } from '../../../../../../background/actions/user-configuration-actions';
-import { IndexedDBDataKeys } from '../../../../../../background/IndexedDBDataKeys';
-import { UserConfigurationStore } from '../../../../../../background/stores/global/user-configuration-store';
+} from 'background/actions/action-payloads';
+import { UserConfigurationActions } from 'background/actions/user-configuration-actions';
+import { IndexedDBDataKeys } from 'background/IndexedDBDataKeys';
+import { UserConfigurationStore } from 'background/stores/global/user-configuration-store';
+import { cloneDeep } from 'lodash';
+import { IMock, It, Mock, Times } from 'typemoq';
 import { IndexedDBAPI } from '../../../../../../common/indexedDB/indexedDB';
 import { StoreNames } from '../../../../../../common/stores/store-names';
 import {

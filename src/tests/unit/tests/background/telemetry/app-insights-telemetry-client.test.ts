@@ -3,9 +3,9 @@
 import * as _ from 'lodash';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
-import { AppInsightsTelemetryClient, ExtendedEnvelop } from '../../../../../background/telemetry/app-insights-telemetry-client';
-import { ApplicationTelemetryDataFactory } from '../../../../../background/telemetry/application-telemetry-data-factory';
-import { TelemetryLogger } from '../../../../../background/telemetry/telemetry-logger';
+import { AppInsightsTelemetryClient, ExtendedEnvelop } from 'background/telemetry/app-insights-telemetry-client';
+import { ApplicationTelemetryDataFactory } from 'background/telemetry/application-telemetry-data-factory';
+import { TelemetryLogger } from 'background/telemetry/telemetry-logger';
 import { configMutator } from '../../../../../common/configuration';
 
 describe('AppInsights telemetry client tests', () => {

@@ -2,12 +2,12 @@
 // Licensed under the MIT License.
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
-import { ChromeCommandHandler } from '../../../../background/chrome-command-handler';
-import { Interpreter } from '../../../../background/interpreter';
-import { UserConfigurationStore } from '../../../../background/stores/global/user-configuration-store';
-import { TabContextStoreHub } from '../../../../background/stores/tab-context-store-hub';
-import { VisualizationStore } from '../../../../background/stores/visualization-store';
-import { TabContext, TabToContextMap } from '../../../../background/tab-context';
+import { ChromeCommandHandler } from 'background/chrome-command-handler';
+import { Interpreter } from 'background/interpreter';
+import { UserConfigurationStore } from 'background/stores/global/user-configuration-store';
+import { TabContextStoreHub } from 'background/stores/tab-context-store-hub';
+import { VisualizationStore } from 'background/stores/visualization-store';
+import { TabContext, TabToContextMap } from 'background/tab-context';
 import { BaseStore } from '../../../../common/base-store';
 import { BrowserAdapter } from '../../../../common/browser-adapters/browser-adapter';
 import { CommandsAdapter } from '../../../../common/browser-adapters/commands-adapter';
