@@ -11,7 +11,7 @@ import { ErrorSuggestion } from './test-steps/error-suggestion';
 import { StatusMessages } from './test-steps/status-messages';
 
 const key = 'errors';
-const title = 'Errors';
+const title = 'Errors / status';
 const { guidance } = content.errors;
 
 const gettingStarted: JSX.Element = (

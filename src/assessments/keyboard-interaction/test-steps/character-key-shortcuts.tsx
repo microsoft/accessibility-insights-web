@@ -19,7 +19,7 @@ const howToTest: JSX.Element = (
                 numbers, symbols, or punctuation. (Alt, Shift, and Ctrl are non-printable keys.)
             </li>
             <li>
-                Verify that individual keystrokes do not require specific timings, such as requiring users to:
+                Verify that at least one of the following is true:
                 <ol>
                     <li>
                         <Markup.Term>Turn off.</Markup.Term> A mechanism is available to turn off the shortcut.

@@ -5,6 +5,7 @@ import * as React from 'react';
 import { link } from '../../../content/link';
 import * as content from '../../../content/test/errors/status-messages';
 import { ManualTestRecordYourResults } from '../../common/manual-test-record-your-results';
+import * as Markup from '../../markup';
 import { Requirement } from '../../types/requirement';
 import { ErrorsTestStep } from './test-steps';
 
@@ -29,10 +30,18 @@ const howToTest: JSX.Element = (
             <li>
                 Inspect the page's HTML to identify an empty container with one of the following attributes:
                 <ol>
-                    <li>role="alert"</li>
-                    <li>role="log"</li>
-                    <li>role="progressbar"</li>
-                    <li>aria-live="assertive" </li>
+                    <li>
+                        <Markup.CodeTerm>role="alert"</Markup.CodeTerm>
+                    </li>
+                    <li>
+                        <Markup.CodeTerm>role="log"</Markup.CodeTerm>
+                    </li>
+                    <li>
+                        <Markup.CodeTerm>role="progressbar"</Markup.CodeTerm>
+                    </li>
+                    <li>
+                        <Markup.CodeTerm>aria-live="assertive" </Markup.CodeTerm>
+                    </li>
                 </ol>
             </li>
             <li>Trigger the action that generates the status message.</li>
