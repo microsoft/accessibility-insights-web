@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import Q from '../../node_modules/@types/q';
 import { HTMLElementUtils } from '../common/html-element-utils';
 import { ErrorMessageContent } from './frameCommunicators/error-message-content';
 import { FrameCommunicator } from './frameCommunicators/frame-communicator';
@@ -13,15 +12,11 @@ export interface ElementFinderByPathMessage {
 export class ElementFinderByPath {
     public static readonly findElementByPathCommand = 'insights.findElementByPathCommand';
 
-    constructor(
-        private readonly htmlElementUtils: HTMLElementUtils,
-        private readonly frameCommunicator: FrameCommunicator,
-        private readonly q: typeof Q,
-    ) {}
+    constructor(private readonly htmlElementUtils: HTMLElementUtils, private readonly frameCommunicator: FrameCommunicator) {}
 
-    public initialize(): void {
+    public initialize = (): void => {
         this.frameCommunicator.subscribe(ElementFinderByPath.findElementByPathCommand, this.onfindElementByPath);
-    }
+    };
 
     protected onfindElementByPath = (
         message: ElementFinderByPathMessage,
@@ -39,54 +34,34 @@ export class ElementFinderByPath {
         );
     };
 
-    public processRequest = (message: ElementFinderByPathMessage): Q.IPromise<string> => {
+    public processRequest = (message: ElementFinderByPathMessage): PromiseLike<string> => {
         const element = this.htmlElementUtils.querySelector(message.path[0]) as HTMLElement;
 
-        const deferred = this.q.defer<string>();
-
         if (element == null) {
-            deferred.resolve('error');
-            return deferred.promise;
+            return Promise.resolve('error');
         }
 
         if (element.tagName.toLocaleLowerCase() !== 'iframe' && message.path.length > 1) {
-            deferred.resolve('error');
-            return deferred.promise;
+            return Promise.resolve('error');
         }
 
         if (element.tagName.toLocaleLowerCase() !== 'iframe' && message.path.length === 1) {
-            const response = element ? element.outerHTML : 'error';
-
-            const removal = '<div id="accessibility-insights-root-container"><div id="insights-shadow-host"></div></div>';
-            const removalIndex = response.search(removal);
-            if (removalIndex !== -1) {
-                const cleanedResponse = response.slice(0, removalIndex) + response.slice(removalIndex + removal.length);
-                deferred.resolve(cleanedResponse);
-                return deferred.promise;
-            }
-
-            deferred.resolve(response);
-            return deferred.promise;
+            const response = element.outerHTML;
+            return Promise.resolve(response);
         }
 
+        return this.iterateDeeperOnIframe(element, message);
+    };
+
+    private iterateDeeperOnIframe = (element: HTMLElement, message: ElementFinderByPathMessage): PromiseLike<string> => {
         message.path.shift();
 
-        this.frameCommunicator
-            .sendMessage<ElementFinderByPathMessage, string>({
-                command: ElementFinderByPath.findElementByPathCommand,
-                frame: element as HTMLIFrameElement,
-                message: {
-                    path: message.path,
-                } as ElementFinderByPathMessage,
-            })
-            .then(
-                result => {
-                    deferred.resolve(result);
-                },
-                err => {
-                    deferred.resolve('error');
-                },
-            );
-        return deferred.promise;
+        return this.frameCommunicator.sendMessage<ElementFinderByPathMessage, string>({
+            command: ElementFinderByPath.findElementByPathCommand,
+            frame: element as HTMLIFrameElement,
+            message: {
+                path: message.path,
+            } as ElementFinderByPathMessage,
+        });
     };
 }

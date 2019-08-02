@@ -23,7 +23,6 @@ export class PathSnippetController {
             return;
         }
 
-
         if (pathSnippetStoreState.path) {
             this.getElementFromPath(pathSnippetStoreState.path);
         }
@@ -35,12 +34,21 @@ export class PathSnippetController {
             path: splitPath,
         } as ElementFinderByPathMessage;
 
-        this.elementFinderByPath.processRequest(message).then(snippet => {
-            this.sendBackElementFromPath(snippet);
-        });
+        this.elementFinderByPath.processRequest(message).then(
+            result => {
+                this.sendBackElementFromPath(result, path);
+            },
+            err => {
+                this.sendBackElementFromPath('error', path);
+            },
+        );
     };
 
-    private sendBackElementFromPath = (snippet: string): void => {
-        this.addCorrespondingSnippet(snippet);
+    private sendBackElementFromPath = (snippet: string, path: string): void => {
+        if (snippet === 'error') {
+            this.addCorrespondingSnippet('No code snippet is mapped to: ' + path);
+        } else {
+            this.addCorrespondingSnippet(snippet);
+        }
     };
 }

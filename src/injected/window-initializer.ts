@@ -125,7 +125,7 @@ export class WindowInitializer {
         );
         this.elementFinderByPosition.initialize();
 
-        this.elementFinderByPath = new ElementFinderByPath(htmlElementUtils, this.frameCommunicator, Q);
+        this.elementFinderByPath = new ElementFinderByPath(htmlElementUtils, this.frameCommunicator);
         this.elementFinderByPath.initialize();
 
         await Promise.all(asyncInitializationSteps);

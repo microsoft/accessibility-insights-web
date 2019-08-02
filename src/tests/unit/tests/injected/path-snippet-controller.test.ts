@@ -14,8 +14,8 @@ describe('InspectControllerTests', () => {
 
     let elementFinderMock: IMock<ElementFinderByPath>;
     let addCorrespondingSnippetMock: IMock<(snippet: string) => void>;
-    let processRequestCallback: (snippet: string) => void;
-    let promiseHandlerMock: IMock<(callback: Function) => void>;
+    let processRequestCallback: (snippet: string, path: string) => void;
+    let processRequestPromiseHandlerMock = Mock.ofInstance((successCb, errorCb) => {});
     let promiseStub;
 
     beforeEach(() => {
@@ -26,11 +26,10 @@ describe('InspectControllerTests', () => {
         elementFinderMock = Mock.ofType(ElementFinderByPath);
 
         addCorrespondingSnippetMock = Mock.ofInstance((snippet: string) => {});
-        processRequestCallback = null;
 
-        promiseHandlerMock = Mock.ofInstance(callback => {});
+        processRequestPromiseHandlerMock = Mock.ofInstance((successCb, errorCb) => {});
         promiseStub = {
-            then: promiseHandlerMock.object,
+            then: processRequestPromiseHandlerMock.object,
         };
 
         testObject = new PathSnippetController(pathSnippetStoreMock.object, elementFinderMock.object, addCorrespondingSnippetMock.object);
@@ -64,30 +63,27 @@ describe('InspectControllerTests', () => {
         const givenPath = '.test path';
         const retrievedSnippet = '<test snippet>';
 
-        pathSnippetStoreState = {
-            path: givenPath,
-            snippet: null,
-        };
-
-        const expectedMessage = {
-            path: [givenPath],
-        };
-
-        elementFinderMock
-            .setup(finder => finder.processRequest(It.isValue(expectedMessage)))
-            .returns(() => promiseStub)
-            .verifiable(Times.once());
-
-        promiseHandlerMock
-            .setup(phm => phm(It.isAny()))
-            .callback(callback => {
-                processRequestCallback = callback;
-            });
+        setupGetElementFromPath(givenPath);
 
         addCorrespondingSnippetMock.setup(sm => sm(retrievedSnippet)).verifiable(Times.once());
 
         testObject.listenToStore();
-        processRequestCallback(retrievedSnippet);
+        processRequestCallback(retrievedSnippet, pathSnippetStoreState.path);
+
+        listenAndVerify();
+    });
+
+    test('add failure message if no snippet found', async () => {
+        const givenPath = '.test path';
+        const retrievedSnippet = 'error';
+        const errorMessage = 'No code snippet is mapped to: ' + retrievedSnippet;
+
+        setupGetElementFromPath(givenPath);
+
+        addCorrespondingSnippetMock.setup(sm => sm(errorMessage)).verifiable(Times.once());
+
+        testObject.listenToStore();
+        processRequestCallback(errorMessage, pathSnippetStoreState.path);
 
         listenAndVerify();
     });
@@ -104,6 +100,28 @@ describe('InspectControllerTests', () => {
 
         listenAndVerify();
     });
+
+    function setupGetElementFromPath(givenPath: string): void {
+        pathSnippetStoreState = {
+            path: givenPath,
+            snippet: null,
+        };
+
+        const expectedMessage = {
+            path: [givenPath],
+        };
+
+        elementFinderMock
+            .setup(finder => finder.processRequest(It.isValue(expectedMessage)))
+            .returns(() => promiseStub)
+            .verifiable(Times.once());
+
+        processRequestPromiseHandlerMock
+            .setup(phm => phm(It.isAny(), It.isAny()))
+            .callback((success, error) => {
+                processRequestCallback = success;
+            });
+    }
 
     function listenAndVerify(): void {
         pathSnippetStoreMock.verifyAll();
