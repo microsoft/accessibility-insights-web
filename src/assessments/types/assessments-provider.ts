@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { VisualizationType } from '../../common/types/visualization-type';
-import { DictionaryStringTo } from '../../types/common-types';
+import { VisualizationType } from 'common/types/visualization-type';
+import { DictionaryStringTo } from 'types/common-types';
 import { Assessment } from './iassessment';
 import { Requirement } from './requirement';
 

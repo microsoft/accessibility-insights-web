@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as Puppeteer from 'puppeteer';
-
 import { popupPageElementIdentifiers } from '../element-identifiers/popup-page-element-identifiers';
 import { DEFAULT_TARGET_PAGE_SCAN_TIMEOUT_MS } from '../timeouts';
 import { Page, PageOptions } from './page';
@@ -9,15 +8,6 @@ import { Page, PageOptions } from './page';
 export class PopupPage extends Page {
     constructor(underlyingPage: Puppeteer.Page, options?: PageOptions) {
         super(underlyingPage, options);
-    }
-
-    public async gotoAdhocPanel(): Promise<void> {
-        await this.clickSelectorXPath(popupPageElementIdentifiers.adhocLaunchPadLinkXPath);
-        await this.verifyAdhocPanelLoaded();
-    }
-
-    public async verifyAdhocPanelLoaded(): Promise<void> {
-        await this.waitForSelector(popupPageElementIdentifiers.adhocPanel);
     }
 
     public async enableToggleByAriaLabel(ariaLabel: string): Promise<void> {
@@ -33,6 +23,26 @@ export class PopupPage extends Page {
         await this.waitForSelector(enabledToggleSelector, {
             timeout: DEFAULT_TARGET_PAGE_SCAN_TIMEOUT_MS,
         });
+    }
+
+    public async disableAllToggles(): Promise<void> {
+        const enabledToggles = await this.getSelectorElements('button[aria-checked="true"]');
+        for (const toggle of enabledToggles) {
+            await this.clickElementHandle(toggle);
+        }
+    }
+
+    public async gotoAdhocPanel(): Promise<void> {
+        await this.clickSelectorXPath(popupPageElementIdentifiers.adhocLaunchPadLinkXPath);
+        await this.verifyAdhocPanelLoaded();
+    }
+
+    public async verifyAdhocPanelLoaded(): Promise<void> {
+        await this.waitForSelector(popupPageElementIdentifiers.adhocPanel);
+    }
+
+    public async verifyLaunchPadLoaded(): Promise<void> {
+        await this.waitForSelector(popupPageElementIdentifiers.launchPad);
     }
 }
 

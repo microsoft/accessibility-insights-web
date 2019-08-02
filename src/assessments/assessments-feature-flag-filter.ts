@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import * as _ from 'lodash';
 
-import { FeatureFlagStoreData } from '../common/types/store-data/feature-flag-store-data';
+import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { AssessmentsProviderImpl } from './assessments-provider';
 import { AssessmentsProvider } from './types/assessments-provider';
 import { Assessment } from './types/iassessment';

@@ -139,12 +139,14 @@ export class Page {
             timeout: DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS,
             ...options,
         };
-        return await this.underlyingPage.waitForFunction(
-            (parent, selector) => parent.querySelector(selector),
-            options,
-            parentElement,
-            descendentSelector,
-        );
+        return await this.screenshotOnError(async () => {
+            return await this.underlyingPage.waitForFunction(
+                (parent, selector) => parent.querySelector(selector),
+                options,
+                parentElement,
+                descendentSelector,
+            );
+        });
     }
 
     public async getShadowRootOfSelector(selector: string): Promise<Puppeteer.ElementHandle<Element>> {
@@ -167,6 +169,25 @@ export class Page {
         );
     }
 
+    public async waitForDescendentSelectorToDisappear(
+        parentElement: Puppeteer.ElementHandle<Element>,
+        descendentSelector: string,
+        options?: Puppeteer.WaitForSelectorOptions,
+    ): Promise<Puppeteer.JSHandle> {
+        options = {
+            timeout: DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS,
+            ...options,
+        };
+        return await this.screenshotOnError(async () => {
+            return await this.underlyingPage.waitForFunction(
+                (parent, selector) => !parent.querySelector(selector),
+                options,
+                parentElement,
+                descendentSelector,
+            );
+        });
+    }
+
     public async clickSelector(selector: string): Promise<void> {
         const element = await this.waitForSelector(selector);
         await this.screenshotOnError(async () => {
@@ -178,6 +199,43 @@ export class Page {
         const element = await this.waitForSelectorXPath(xpath);
         await this.screenshotOnError(async () => {
             await element.click();
+        });
+    }
+
+    public async clickDescendentSelector(
+        parentElement: Puppeteer.ElementHandle<Element>,
+        descendentSelector: string,
+        options?: Puppeteer.WaitForSelectorOptions,
+    ): Promise<void> {
+        await this.waitForDescendentSelector(parentElement, descendentSelector, options);
+        const element = await this.getDescendentSelectorElement(parentElement, descendentSelector);
+        await this.clickElementHandle(element);
+    }
+
+    public async clickElementHandle(element: Puppeteer.ElementHandle<Element>): Promise<void> {
+        await this.screenshotOnError(async () => {
+            await element.click();
+        });
+    }
+
+    public async getDescendentSelectorElement(
+        parentElement: Puppeteer.ElementHandle<Element>,
+        descendentSelector: string,
+    ): Promise<Puppeteer.ElementHandle<Element>> {
+        return await this.screenshotOnError(async () => {
+            return await parentElement.$(descendentSelector);
+        });
+    }
+
+    public async getSelectorElement(selector: string): Promise<Puppeteer.ElementHandle<Element>> {
+        return await this.screenshotOnError(async () => {
+            return await this.underlyingPage.$(selector);
+        });
+    }
+
+    public async getSelectorElements(selector: string): Promise<Puppeteer.ElementHandle<Element>[]> {
+        return await this.screenshotOnError(async () => {
+            return await this.underlyingPage.$$(selector);
         });
     }
 
@@ -225,5 +283,11 @@ export class Page {
             }
             throw originalError;
         }
+    }
+
+    public async injectScriptFile(filePath: string): Promise<void> {
+        await this.screenshotOnError(async () => {
+            await this.underlyingPage.addScriptTag({ path: filePath });
+        });
     }
 }
