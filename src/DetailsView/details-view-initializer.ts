@@ -1,10 +1,27 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { AssessmentDefaultMessageGenerator } from 'assessments/assessment-default-message-generator';
+import { Assessments } from 'assessments/assessments';
+import { assessmentsProviderWithFeaturesEnabled } from 'assessments/assessments-feature-flag-filter';
 import { loadTheme } from 'office-ui-fabric-react';
 import * as ReactDOM from 'react-dom';
-import { AssessmentDefaultMessageGenerator } from '../assessments/assessment-default-message-generator';
-import { Assessments } from '../assessments/assessments';
-import { assessmentsProviderWithFeaturesEnabled } from '../assessments/assessments-feature-flag-filter';
+import { AssessmentReportHtmlGenerator } from 'reports/assessment-report-html-generator';
+import { AssessmentReportModelBuilderFactory } from 'reports/assessment-report-model-builder-factory';
+import { AutomatedChecksReportSectionFactory } from 'reports/components/report-sections/automated-checks-report-section-factory';
+import { getDefaultAddListenerForCollapsibleSection } from 'reports/components/report-sections/collapsible-script-provider';
+import {
+    outcomeStatsFromManualTestStatus,
+    outcomeTypeFromTestStatus,
+    outcomeTypeSemanticsFromTestStatus,
+} from 'reports/components/requirement-outcome-type';
+import {
+    getAssessmentSummaryModelFromProviderAndStatusData,
+    getAssessmentSummaryModelFromProviderAndStoreData,
+} from 'reports/get-assessment-summary-model';
+import { ReactStaticRenderer } from 'reports/react-static-renderer';
+import { ReportGenerator } from 'reports/report-generator';
+import { ReportHtmlGenerator } from 'reports/report-html-generator';
+import { ReportNameGenerator } from 'reports/report-name-generator';
 import { IssueDetailsTextGenerator } from '../background/issue-details-text-generator';
 import { A11YSelfValidator } from '../common/a11y-self-validator';
 import { AxeInfo } from '../common/axe-info';
@@ -41,6 +58,7 @@ import { TelemetryEventSource } from '../common/telemetry-events';
 import { AssessmentStoreData } from '../common/types/store-data/assessment-result-data';
 import { DetailsViewData } from '../common/types/store-data/details-view-data';
 import { InspectStoreData } from '../common/types/store-data/inspect-store-data';
+import { PathSnippetStoreData } from '../common/types/store-data/path-snippet-store-data';
 import { ScopingStoreData } from '../common/types/store-data/scoping-store-data';
 import { TabStoreData } from '../common/types/store-data/tab-store-data';
 import { UserConfigurationStoreData } from '../common/types/store-data/user-configuration-store';
@@ -71,23 +89,6 @@ import { AssessmentInstanceTableHandler } from './handlers/assessment-instance-t
 import { DetailsViewToggleClickHandlerFactory } from './handlers/details-view-toggle-click-handler-factory';
 import { MasterCheckBoxConfigProvider } from './handlers/master-checkbox-config-provider';
 import { PreviewFeatureFlagsHandler } from './handlers/preview-feature-flags-handler';
-import { AssessmentReportHtmlGenerator } from './reports/assessment-report-html-generator';
-import { AssessmentReportModelBuilderFactory } from './reports/assessment-report-model-builder-factory';
-import { AutomatedChecksReportSectionFactory } from './reports/components/report-sections/automated-checks-report-section-factory';
-import { getDefaultAddListenerForCollapsibleSection } from './reports/components/report-sections/collapsible-script-provider';
-import {
-    outcomeStatsFromManualTestStatus,
-    outcomeTypeFromTestStatus,
-    outcomeTypeSemanticsFromTestStatus,
-} from './reports/components/requirement-outcome-type';
-import {
-    getAssessmentSummaryModelFromProviderAndStatusData,
-    getAssessmentSummaryModelFromProviderAndStoreData,
-} from './reports/get-assessment-summary-model';
-import { ReactStaticRenderer } from './reports/react-static-renderer';
-import { ReportGenerator } from './reports/report-generator';
-import { ReportHtmlGenerator } from './reports/report-html-generator';
-import { ReportNameGenerator } from './reports/report-name-generator';
 
 declare const window: AutoChecker & Window;
 
@@ -111,6 +112,7 @@ if (isNaN(tabId) === false) {
                 StoreNames[StoreNames.VisualizationScanResultStore],
                 browserAdapter,
             );
+            const pathSnippetStore = new StoreProxy<PathSnippetStoreData>(StoreNames[StoreNames.PathSnippetStore], browserAdapter);
             const detailsViewStore = new StoreProxy<DetailsViewData>(StoreNames[StoreNames.DetailsViewStore], browserAdapter);
             const assessmentStore = new StoreProxy<AssessmentStoreData>(StoreNames[StoreNames.AssessmentStore], browserAdapter);
             const featureFlagStore = new StoreProxy<DictionaryStringTo<boolean>>(StoreNames[StoreNames.FeatureFlagStore], browserAdapter);
@@ -127,6 +129,7 @@ if (isNaN(tabId) === false) {
                 visualizationScanResultStore,
                 visualizationStore,
                 assessmentStore,
+                pathSnippetStore,
                 scopingStore,
                 userConfigStore,
             ]);

@@ -6,6 +6,7 @@ import { VisualizationConfigurationFactory } from '../../common/configs/visualiz
 import { NamedSFC } from '../../common/react/named-sfc';
 import { AssessmentStoreData } from '../../common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
+import { PathSnippetStoreData } from '../../common/types/store-data/path-snippet-store-data';
 import { TabStoreData } from '../../common/types/store-data/tab-store-data';
 import { UserConfigurationStoreData } from '../../common/types/store-data/user-configuration-store';
 import { VisualizationScanResultData } from '../../common/types/store-data/visualization-scan-result-data';
@@ -28,6 +29,7 @@ export interface TestViewContainerProps {
     tabStoreData: TabStoreData;
     assessmentStoreData: AssessmentStoreData;
     featureFlagStoreData: FeatureFlagStoreData;
+    pathSnippetStoreData: PathSnippetStoreData;
     selectedTest: VisualizationType;
     visualizationStoreData: VisualizationStoreData;
     visualizationScanResultData: VisualizationScanResultData;

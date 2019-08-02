@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { forEach, isEmpty } from 'lodash';
 
-import { AssessmentsProvider } from '../../assessments/types/assessments-provider';
+import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { IndexedDBDataKeys } from '../../background/IndexedDBDataKeys';
 import { BrowserAdapter } from '../../common/browser-adapters/browser-adapter';
 import { IndexedDBAPI } from '../../common/indexedDB/indexedDB';

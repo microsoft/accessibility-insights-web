@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { GuidanceTag } from '../content/guidance-tags';
-import { link } from '../content/link';
+import { GuidanceTag } from 'content/guidance-tags';
+import { link } from 'content/link';
+import { HyperlinkDefinition } from 'views/content/content-page';
 import { DictionaryStringTo } from '../types/common-types';
-import { HyperlinkDefinition } from '../views/content/content-page';
 
 export interface GuidanceLink {
     href: string;

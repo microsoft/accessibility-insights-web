@@ -2,10 +2,10 @@
 // Licensed under the MIT License.
 import { IMock, It, Mock, MockBehavior } from 'typemoq';
 
+import { title } from 'content/strings/application';
 import { VisualizationConfigurationFactory } from '../../../../common/configs/visualization-configuration-factory';
 import { TabStoreData } from '../../../../common/types/store-data/tab-store-data';
 import { VisualizationType } from '../../../../common/types/visualization-type';
-import { title } from '../../../../content/strings/application';
 import {
     DetailsRightPanelConfiguration,
     GetDetailsRightPanelConfigurationProps,

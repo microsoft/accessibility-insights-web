@@ -3,18 +3,18 @@
 import { isMatch } from 'lodash';
 import { IMock, Mock, MockBehavior } from 'typemoq';
 
-import { AssessmentsProviderImpl } from '../../../../../../assessments/assessments-provider';
-import { AssessmentsProvider } from '../../../../../../assessments/types/assessments-provider';
-import { Assessment } from '../../../../../../assessments/types/iassessment';
+import { AssessmentsProviderImpl } from 'assessments/assessments-provider';
+import { AssessmentsProvider } from 'assessments/types/assessments-provider';
+import { Assessment } from 'assessments/types/iassessment';
+import { OverviewSummaryReportModel } from 'reports/assessment-report-model';
+import { OutcomeTypeSemantic } from 'reports/components/outcome-type';
+import { RequirementOutcomeStats } from 'reports/components/requirement-outcome-type';
+import { GetAssessmentSummaryModelFromProviderAndStatusData } from 'reports/get-assessment-summary-model';
 import { VisualizationConfiguration } from '../../../../../../common/configs/visualization-configuration';
 import { ManualTestStatus, ManualTestStatusData } from '../../../../../../common/types/manual-test-status';
 import { VisualizationType } from '../../../../../../common/types/visualization-type';
 import { BaseLeftNavLink, onBaseLeftNavItemClick } from '../../../../../../DetailsView/components/base-left-nav';
 import { LeftNavLinkBuilder, LeftNavLinkBuilderDeps } from '../../../../../../DetailsView/components/left-nav/left-nav-link-builder';
-import { OverviewSummaryReportModel } from '../../../../../../DetailsView/reports/assessment-report-model';
-import { OutcomeTypeSemantic } from '../../../../../../DetailsView/reports/components/outcome-type';
-import { RequirementOutcomeStats } from '../../../../../../DetailsView/reports/components/requirement-outcome-type';
-import { GetAssessmentSummaryModelFromProviderAndStatusData } from '../../../../../../DetailsView/reports/get-assessment-summary-model';
 import { DictionaryStringTo } from '../../../../../../types/common-types';
 
 describe('LeftNavBuilder', () => {

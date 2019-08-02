@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { RequirementOutcomeStats } from 'reports/components/requirement-outcome-type';
 import { ManualTestStatus } from '../../../../../../common/types/manual-test-status';
 import { getStatusForTest } from '../../../../../../DetailsView/components/left-nav/get-status-for-test';
-import { RequirementOutcomeStats } from '../../../../../../DetailsView/reports/components/requirement-outcome-type';
 
 describe('getStatusForTest', () => {
     it('should return unknown', () => {

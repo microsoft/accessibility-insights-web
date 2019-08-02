@@ -2,8 +2,8 @@
 // Licensed under the MIT License.
 import * as _ from 'lodash';
 
-import { HeadingsTestStep } from '../../../../../assessments/headings/test-steps/test-steps';
-import { LandmarkTestStep } from '../../../../../assessments/landmarks/test-steps/test-steps';
+import { HeadingsTestStep } from 'assessments/headings/test-steps/test-steps';
+import { LandmarkTestStep } from 'assessments/landmarks/test-steps/test-steps';
 import {
     AssessmentToggleActionPayload,
     ToggleActionPayload,

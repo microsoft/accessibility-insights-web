@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import * as Markup from '../../../assessments/markup';
+import * as Markup from 'assessments/markup';
 import { NamedSFC } from '../../../common/react/named-sfc';
 
 export const TestAutomaticallyPassedNotice = NamedSFC('TestAutomaticallyPassedNotice', () => {

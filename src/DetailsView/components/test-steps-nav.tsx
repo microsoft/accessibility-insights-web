@@ -3,12 +3,12 @@
 import { INavLink, Nav } from 'office-ui-fabric-react/lib/Nav';
 import * as React from 'react';
 
-import { AssessmentsProvider } from '../../assessments/types/assessments-provider';
+import { AssessmentsProvider } from 'assessments/types/assessments-provider';
+import { OutcomeTypeSemantic } from 'reports/components/outcome-type';
 import { getRequirementsResults } from '../../common/assessment/requirement';
 import { ManualTestStatus, ManualTestStatusData } from '../../common/types/manual-test-status';
 import { VisualizationType } from '../../common/types/visualization-type';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
-import { OutcomeTypeSemantic } from '../reports/components/outcome-type';
 import { RequirementLink } from './requirement-link';
 
 export interface TestStepNavDeps {
