@@ -1,0 +1,60 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+
+@import '../../../common/styles/colors.scss';
+@import './common-mixins.scss';
+
+.scan-details-section {
+    @include boxShadow();
+
+    background-color: $neutral-0;
+    padding: 20px;
+
+    .details-section-list {
+        list-style: none;
+        font-size: 14px;
+        line-height: 16px;
+        padding-left: 0px;
+        display: flex;
+        align-items: flex-start;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    h3 {
+        margin: 0px;
+        font-size: 17px;
+        line-height: 24px;
+    }
+
+    ul :first-child li {
+        padding-top: 16px;
+    }
+
+    li {
+        display: inline-block;
+        padding-top: 12px;
+        .icon {
+            padding-right: 12px;
+            position: relative;
+            top: 3px;
+        }
+    }
+
+    .text {
+        word-break: break-all;
+    }
+
+    .description-text {
+        white-space: pre-wrap;
+    }
+
+    .screen-reader-only {
+        position: absolute;
+        left: -10000px;
+        top: auto;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+    }
+}

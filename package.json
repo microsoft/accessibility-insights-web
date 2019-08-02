@@ -21,7 +21,7 @@
         "copyrightheaders:fix": "grunt copyright-add",
         "format": "prettier --config prettier.config.js --write \"**/*\"",
         "format-check": "prettier --config prettier.config.js --check \"**/*\"",
-        "generate-scss-typings": "tsm src/**/*.scss",
+        "generate-scss-typings": "tsm \"src/**/*.scss\"",
         "clean:scss-typings": "grunt clean:scss",
         "precheckin": "npm-run-all --serial clean:scss-typings format-check tslint copyrightheaders build:all test test:e2e",
         "start:electron": "electron drop/electron/extension/bundle/main.bundle.js",

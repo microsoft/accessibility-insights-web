@@ -1,0 +1,39 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+@import '../../common/styles/colors.scss';
+@import '../../common/styles/fonts.scss';
+
+.assessment-scan-details {
+    background-color: $neutral-2;
+    border-radius: 4px;
+    padding: 4px 32px 10px;
+    margin: 0px 0px 40px 0px;
+
+    h3 {
+        font-size: 17px;
+        font-family: $semiBoldFontFamily;
+    }
+
+    td {
+        font-size: 12px;
+        font-family: $fontFamily;
+        padding-top: 1px;
+        padding-bottom: 16px;
+
+        &.icon {
+            padding-left: 2px;
+            padding-right: 12px;
+            vertical-align: top;
+        }
+
+        a {
+            color: $neutral-100;
+            text-decoration: none;
+            word-break: break-all;
+        }
+    }
+}
+
+.assessment-scan-details-description {
+    white-space: pre-wrap;
+}

@@ -1,0 +1,100 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+@import '../../common/icons/icon.scss';
+@import '../../common/styles/colors.scss';
+@import '../../common/styles/fonts.scss';
+@import './outcome-summary-bar.scss';
+
+.screen-reader-only {
+    position: absolute;
+    left: -10000px;
+    top: auto;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+
+$outcome-pass-color: $positive-outcome;
+$outcome-incomplete-border-color: $incomplete-color;
+$outcome-fail-color: $negative-outcome;
+$outcome-inapplicable-color: $neutral-outcome;
+$outcome-count-border-size: 1.5px;
+
+.check-container {
+    svg {
+        width: 100%;
+        height: 100%;
+    }
+}
+
+@mixin outcome-chip-color($outcome-color) {
+    .check-container {
+        background-color: $outcome-color;
+    }
+    .count {
+        background-color: transparent;
+        border: $outcome-count-border-size solid $outcome-color;
+    }
+}
+
+.outcome-chip {
+    $outcome-chip-icon-size: 16px;
+    height: $outcome-chip-icon-size;
+    color: $neutral-90;
+    border-radius: 0px 8px 8px 0px;
+    margin: 0 4px 0 4px;
+    display: inline-flex;
+    align-items: center;
+    margin-bottom: -3px;
+    .icon {
+        border-radius: 50%;
+        width: $outcome-chip-icon-size;
+        height: $outcome-chip-icon-size;
+    }
+    .count {
+        font-family: $fontFamily;
+        line-height: $outcome-chip-icon-size - (2 * $outcome-count-border-size);
+        font-size: 11px;
+        border-radius: 0 8px 8px 0;
+        padding: 0 6px 0 10px;
+        font-weight: 700;
+        margin-left: -8px;
+        height: $outcome-chip-icon-size - (2 * $outcome-count-border-size);
+    }
+    &.outcome-chip-pass {
+        @include check-icon-styles($outcome-chip-icon-size, 0px, $outcome-pass-color);
+        @include outcome-chip-color($outcome-pass-color);
+    }
+    &.outcome-chip-incomplete {
+        @include incomplete-icon-styles($outcome-chip-icon-size, 1px);
+        @include outcome-chip-color($outcome-incomplete-border-color);
+    }
+    &.outcome-chip-fail {
+        @include cross-icon-styles($outcome-chip-icon-size, 0px, $outcome-fail-color);
+        @include outcome-chip-color($outcome-fail-color);
+    }
+    &.outcome-chip-inapplicable {
+        @include inapplicable-icon-styles($outcome-chip-icon-size, 0px);
+        @include outcome-chip-color($outcome-inapplicable-color);
+    }
+}
+
+.outcome-icon-set {
+    $outcome-icon-size: 14px;
+    .outcome-icon {
+        margin-left: 4px;
+        border-radius: 50%;
+    }
+    .outcome-icon-pass {
+        @include check-icon-styles($outcome-icon-size, 0px, $outcome-pass-color);
+    }
+    .outcome-icon-incomplete {
+        @include incomplete-icon-styles($outcome-icon-size, 1px);
+        .check-container {
+            border-color: $outcome-incomplete-border-color;
+        }
+    }
+    .outcome-icon-fail {
+        @include cross-icon-styles($outcome-icon-size, 0px, $outcome-fail-color);
+    }
+}

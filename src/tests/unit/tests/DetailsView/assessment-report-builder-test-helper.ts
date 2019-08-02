@@ -4,6 +4,15 @@ import { flatten } from 'lodash';
 
 import { Assessment } from 'assessments/types/iassessment';
 import { ReportInstanceFields } from 'assessments/types/report-instance-field';
+import {
+    AssessmentDetailsReportModel,
+    InstanceElementKey,
+    InstanceReportModel,
+    OverviewSummaryReportModel,
+    ReportModel,
+    RequirementReportModel,
+    ScanDetailsReportModel,
+} from 'reports/assessment-report-model';
 import { ManualTestStatus, ManualTestStatusData } from '../../../../common/types/manual-test-status';
 import {
     AssessmentData,
@@ -13,15 +22,6 @@ import {
     PersistedTabInfo,
 } from '../../../../common/types/store-data/assessment-result-data';
 import { excludePassingInstancesFromAssessmentReport } from '../../../../DetailsView/extensions/exclude-passing-instances-from-assessment-report';
-import {
-    AssessmentDetailsReportModel,
-    InstanceElementKey,
-    InstanceReportModel,
-    OverviewSummaryReportModel,
-    ReportModel,
-    RequirementReportModel,
-    ScanDetailsReportModel,
-} from '../../../../DetailsView/reports/assessment-report-model';
 import { DictionaryStringTo } from '../../../../types/common-types';
 
 export class AssessmentReportBuilderTestHelper {
