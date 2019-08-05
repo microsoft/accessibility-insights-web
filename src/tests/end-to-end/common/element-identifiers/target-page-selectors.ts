@@ -8,9 +8,7 @@ export const TargetPageInjectedComponentSelectors = {
 };
 
 export const TargetPageElementSelectors = {
-    targetPageNativeWidgetIFrameName: 'native-widgets',
     targetPageNativeWidgetFirstRadio: '#input-radio-1',
-    targetPageNativeWidgetH1: '#h1-native-widget',
 };
 
 export const tabStopShadowDomSelectors = {
