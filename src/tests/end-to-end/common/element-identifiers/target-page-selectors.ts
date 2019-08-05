@@ -12,3 +12,10 @@ export const TargetPageElementSelectors = {
     targetPageNativeWidgetFirstRadio: '#input-radio-1',
     targetPageNativeWidgetH1: '#h1-native-widget',
 };
+
+export const tabStopShadowDomSelectors = {
+    svg: 'svg',
+    lines: 'line',
+    ellipse: 'ellipse',
+    text: 'text',
+};

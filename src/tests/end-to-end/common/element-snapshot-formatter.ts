@@ -22,7 +22,6 @@ export function formatHtmlForSnapshot(htmlString: string): Node {
     template.innerHTML = htmlString;
 
     Array.from(template.content.querySelectorAll('.insights-highlight-box')).forEach(normalizeEnvironmentSensitivePositionStyles);
-    Array.from(template.content.querySelectorAll('.insights-tab-stops svg')).forEach(normalizeEnvironmentSensitivePositionInHeightWidth);
 
     return template.content.cloneNode(true);
 }
@@ -53,14 +52,4 @@ function normalizeEnvironmentSensitivePositionStyles(absolutelyPositionedElement
         '$1{{ENVIRONMENT_SENSITIVE_POSITION}}$4',
     );
     absolutelyPositionedElement.setAttribute('style', sanitizedInlineStyle);
-}
-
-function normalizeEnvironmentSensitivePositionInHeightWidth(absolutelyPositionedElement: Element): void {
-    const originalHeightValue = absolutelyPositionedElement.getAttribute('height');
-    const heightSanitizedStyle = originalHeightValue.replace(/([\-0-9.]+)(px)/g, '{{ENVIRONMENT_SENSITIVE_POSITION}}$2');
-    absolutelyPositionedElement.setAttribute('height', heightSanitizedStyle);
-
-    const widthOriginalValue = absolutelyPositionedElement.getAttribute('width');
-    const widthSanitizedStyle = widthOriginalValue.replace(/([\-0-9.]+)(px)/g, '{{ENVIRONMENT_SENSITIVE_POSITION}}$2');
-    absolutelyPositionedElement.setAttribute('width', widthSanitizedStyle);
 }

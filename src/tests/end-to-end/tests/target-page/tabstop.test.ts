@@ -1,93 +1,89 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { ElementHandle } from 'puppeteer';
+import { Browser } from '../../common/browser';
 import { launchBrowser } from '../../common/browser-factory';
 import { fastPassSelectors } from '../../common/element-identifiers/fastpass-selectors';
-import { TargetPageElementSelectors } from '../../common/element-identifiers/target-page-selectors';
+import { tabStopShadowDomSelectors, TargetPageElementSelectors } from '../../common/element-identifiers/target-page-selectors';
 import { Page } from '../../common/page-controllers/page';
 import { PopupPage } from '../../common/page-controllers/popup-page';
 import { TargetPage } from '../../common/page-controllers/target-page';
-import { Browser } from '../../common/browser';
 
-describe('Tabstop tests', () => {
-    describe('tabstop from fastpass', () => {
-        let browser: Browser;
-        let targetPage: TargetPage;
-        let detailsViewpage: Page;
+describe('tabstop tests', () => {
+    let browser: Browser;
+    let targetPage: TargetPage;
+    let detailsViewpage: Page;
+    let popupPage: PopupPage;
 
-        beforeAll(async () => {
-            browser = await launchBrowser({ suppressFirstTimeDialog: true });
-            targetPage = await browser.newTargetPage({ testResourcePath: 'native-widgets/input-type-radio.html' });
-            detailsViewpage = await browser.newDetailsViewPage(targetPage);
+    beforeEach(async () => {
+        browser = await launchBrowser({ suppressFirstTimeDialog: true });
+        targetPage = await browser.newTargetPage({ testResourcePath: 'native-widgets/input-type-radio.html' });
+    });
 
-            await goToTabStopTest();
-        });
-
-        afterAll(async () => {
-            if (browser) {
-                await browser.close();
-            }
-        });
-
-        test('if visualHelper is turned on after starting tabstop and pressing tabs on target page', async () => {
-            await enableToggleByAriaLabel();
-            await targetPage.waitForSelector(TargetPageElementSelectors.targetPageNativeWidgetFirstRadio);
-            await targetPage.waitForDuration(200);
-
-            await targetPage.bringToFront();
-
-            await targetPage.keyPress('Tab');
-            await targetPage.keyPress('Tab');
-            await targetPage.keyPress('Tab');
-
-            const shadowRoot = await targetPage.getShadowRoot();
-            await targetPage.waitForDescendentSelector(shadowRoot, fastPassSelectors.tabStopVisulizationStart, { visible: true });
-
-            expect(await targetPage.getShadowRootHtmlSnapshot()).toMatchSnapshot();
-        });
-
-        async function goToTabStopTest(): Promise<void> {
-            await detailsViewpage.clickSelector(fastPassSelectors.tabStopNavButtonSelector);
-        }
-
-        async function enableToggleByAriaLabel(): Promise<void> {
-            await detailsViewpage.clickSelector(fastPassSelectors.tabStopToggleUncheckedSelector);
-            await detailsViewpage.waitForSelector(fastPassSelectors.tabStopToggleCheckedSelector);
+    afterEach(async () => {
+        if (browser) {
+            await browser.close();
         }
     });
 
-    describe('tabstop from adhoc tools', () => {
-        let browser: Browser;
-        let targetPage: TargetPage;
-        let popupPage: PopupPage;
+    test('tabstop work when triggered from fastpass page', async () => {
+        detailsViewpage = await browser.newDetailsViewPage(targetPage);
 
-        beforeAll(async () => {
-            browser = await launchBrowser({ suppressFirstTimeDialog: true });
-            targetPage = await browser.newTargetPage({ testResourcePath: 'native-widgets/input-type-radio.html' });
-            popupPage = await browser.newPopupPage(targetPage);
-            await popupPage.gotoAdhocPanel();
-        });
+        await goToTabStopTest();
+        await enableToggleByAriaLabel();
 
-        afterAll(async () => {
-            if (browser) {
-                await browser.close();
-            }
-        });
+        await targetPage.waitForDuration(200);
 
-        test('matches snapshot when tabstop is used from adhoc panel', async () => {
-            await popupPage.enableToggleByAriaLabel('Tab stops');
+        await targetPage.bringToFront();
+        await targetPage.waitForSelector(TargetPageElementSelectors.targetPageNativeWidgetFirstRadio);
 
-            await targetPage.bringToFront();
-
-            await targetPage.waitForSelector(TargetPageElementSelectors.targetPageNativeWidgetFirstRadio);
-
-            await targetPage.keyPress('Tab');
-            await targetPage.keyPress('Tab');
-            await targetPage.keyPress('Tab');
-
-            const shadowRoot = await targetPage.getShadowRoot();
-            await targetPage.waitForDescendentSelector(shadowRoot, fastPassSelectors.tabStopVisulizationStart, { visible: true });
-
-            expect(await targetPage.getShadowRootHtmlSnapshot()).toMatchSnapshot();
-        });
+        const shadowRoot = await getShadowRootAfterTabStopActivation();
+        await validateTabStopVisualizationOnTargetPage(shadowRoot);
     });
+
+    test('works when tabstop is triggered from adhoc panel', async () => {
+        popupPage = await browser.newPopupPage(targetPage);
+        await popupPage.gotoAdhocPanel();
+        await popupPage.enableToggleByAriaLabel('Tab stops');
+
+        await targetPage.bringToFront();
+        await targetPage.waitForSelector(TargetPageElementSelectors.targetPageNativeWidgetFirstRadio);
+
+        const shadowRoot = await getShadowRootAfterTabStopActivation();
+        await validateTabStopVisualizationOnTargetPage(shadowRoot);
+    });
+
+    async function goToTabStopTest(): Promise<void> {
+        await detailsViewpage.clickSelector(fastPassSelectors.tabStopNavButtonSelector);
+    }
+
+    async function enableToggleByAriaLabel(): Promise<void> {
+        await detailsViewpage.clickSelector(fastPassSelectors.tabStopToggleUncheckedSelector);
+        await detailsViewpage.waitForSelector(fastPassSelectors.tabStopToggleCheckedSelector);
+    }
+
+    async function getShadowRootAfterTabStopActivation(): Promise<ElementHandle<Element>> {
+        await targetPage.keyPress('Tab');
+        await targetPage.keyPress('Tab');
+        await targetPage.keyPress('Tab');
+
+        const shadowRoot = await targetPage.getShadowRoot();
+        await targetPage.waitForDescendentSelector(shadowRoot, fastPassSelectors.tabStopVisulizationStart, { visible: true });
+
+        return shadowRoot;
+    }
+
+    async function validateTabStopVisualizationOnTargetPage(shadowRoot: ElementHandle<Element>): Promise<void> {
+        const svgs = await shadowRoot.$$(tabStopShadowDomSelectors.svg);
+        const ellipses = await shadowRoot.$$(tabStopShadowDomSelectors.ellipse);
+        const lines = await shadowRoot.$$(tabStopShadowDomSelectors.lines);
+        const texts = await shadowRoot.$$(tabStopShadowDomSelectors.text);
+
+        // 3 tabs produce 1 svg, 2 ellipses, 1 texts and 1 line between them
+
+        expect(svgs).toHaveLength(1);
+        expect(ellipses).toHaveLength(2);
+        expect(lines).toHaveLength(1);
+        expect(texts).toHaveLength(1);
+    }
 });
