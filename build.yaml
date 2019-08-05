@@ -67,11 +67,11 @@ jobs:
     # CI build only
     - job: 'publish_electron_dist'
       pool:
-          vmImage: 'windows-latest'
+          vmImage: 'macOS-10.14'
       steps:
           - template: pipeline/install-node-prerequisites.yaml
 
-          - script: yarn dist:electron -wl
+          - script: yarn dist:electron -m
             displayName: create electron distributables (windows, linux)
 
           - task: PublishBuildArtifacts@1
