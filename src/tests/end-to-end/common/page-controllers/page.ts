@@ -260,7 +260,7 @@ export class Page {
         });
     }
 
-    public async takePagesScreenshot(): Promise<void> {
+    public async takeScreenshot(): Promise<void> {
         await takeScreenshot(this.underlyingPage);
     }
 
