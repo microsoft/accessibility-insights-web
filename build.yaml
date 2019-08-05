@@ -81,4 +81,10 @@ jobs:
                 artifactName: 'dist'
             displayName: publish dist
 
-    - template: pipeline/e2e-job-per-environment.yaml
+    - job: 'e2e_tests_mac'
+      pool:
+          vmImage: macOS-10.14
+      steps:
+          - template: ./install-node-prerequisites.yaml
+          - template: ./e2e-test-from-agent.yaml
+          - template: ./e2e-test-publish-results.yaml
