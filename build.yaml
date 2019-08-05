@@ -80,3 +80,5 @@ jobs:
                 pathtoPublish: '$(System.DefaultWorkingDirectory)/dist'
                 artifactName: 'dist'
             displayName: publish dist
+
+    - template: pipeline/e2e-job-per-environment.yaml
