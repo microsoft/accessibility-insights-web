@@ -9,8 +9,18 @@ pr:
             - src/tests/end-to-end/
 
 jobs:
-    - ${{ each index in [1,2,3,4,5] }}:
-        - template: ./e2e-job-per-environment.yaml
-          parameters:
-              jobNameSuffix: _${{index}}
+    - template: ./e2e-job-per-environment.yaml
+      parameters: { jobNameSuffix: _1 }
+
+    - template: ./e2e-job-per-environment.yaml
+      parameters: { jobNameSuffix: _2 }
+
+    - template: ./e2e-job-per-environment.yaml
+      parameters: { jobNameSuffix: _3 }
+
+    - template: ./e2e-job-per-environment.yaml
+      parameters: { jobNameSuffix: _4 }
+
+    - template: ./e2e-job-per-environment.yaml
+      parameters: { jobNameSuffix: _5 }
 
