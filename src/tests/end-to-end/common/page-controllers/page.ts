@@ -55,7 +55,16 @@ export class Page {
     }
 
     public async goto(url: string): Promise<void> {
-        await this.screenshotOnError(async () => await this.underlyingPage.goto(url, { timeout: DEFAULT_NEW_PAGE_WAIT_TIMEOUT_MS }));
+        await this.screenshotOnError(async () => {
+            await this.underlyingPage.goto(url, { timeout: DEFAULT_NEW_PAGE_WAIT_TIMEOUT_MS });
+
+            // This waitFor is a hack to work around a class of various different flakiness issues that generally take the form of
+            // "some button had been loaded into the DOM, but when we clicked on it, nothing happened". We would prefer to use a more
+            // reliable mechanism to wait for those elements being interactable; #1011 tracks adding and using such a mechanism.
+            //
+            // 200ms was chosen based on experimentation; it was the lowest value that reliably worked around the class of issue.
+            await this.underlyingPage.waitFor(200);
+        });
         await this.disableAnimations();
     }
 
