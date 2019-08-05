@@ -4,7 +4,7 @@ import * as Enzyme from 'enzyme';
 import * as React from 'react';
 import { Mock } from 'typemoq';
 
-import { ScopingInputTypes } from '../../../../../background/scoping-input-types';
+import { ScopingInputTypes } from 'background/scoping-input-types';
 import { SelectorInputList } from '../../../../../common/components/selector-input-list';
 import { InspectActionMessageCreator } from '../../../../../common/message-creators/inspect-action-message-creator';
 import { ScopingActionMessageCreator } from '../../../../../common/message-creators/scoping-action-message-creator';

@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import * as _ from 'lodash';
 
-import { VisualizationStore } from '../../../background/stores/visualization-store';
+import { VisualizationStore } from 'background/stores/visualization-store';
 import { VisualizationConfigurationFactory } from '../../../common/configs/visualization-configuration-factory';
 import { DetailsViewPivotType } from '../../../common/types/details-view-pivot-type';
 import { AssessmentScanData, VisualizationStoreData } from '../../../common/types/store-data/visualization-store-data';

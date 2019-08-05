@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import { IssueDetailsTextGenerator } from '../../background/issue-details-text-generator';
+import { IssueDetailsTextGenerator } from 'background/issue-details-text-generator';
 import { CopyIssueDetailsButton } from '../../common/components/copy-issue-details-button';
 import { GuidanceLinks } from '../../common/components/guidance-links';
 import { GuidanceTags, GuidanceTagsDeps } from '../../common/components/guidance-tags';

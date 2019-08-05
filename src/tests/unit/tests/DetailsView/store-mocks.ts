@@ -1,21 +1,21 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { AssessmentsProviderImpl } from 'assessments/assessments-provider';
+import { AssessmentDataConverter } from 'background/assessment-data-converter';
+import { ScopingInputTypes } from 'background/scoping-input-types';
+import { AssessmentStore } from 'background/stores/assessment-store';
+import { DetailsViewStore } from 'background/stores/details-view-store';
+import { CommandStore } from 'background/stores/global/command-store';
+import { FeatureFlagStore } from 'background/stores/global/feature-flag-store';
+import { LaunchPanelStore } from 'background/stores/global/launch-panel-store';
+import { ScopingStore } from 'background/stores/global/scoping-store';
+import { UserConfigurationStore } from 'background/stores/global/user-configuration-store';
+import { InspectStore } from 'background/stores/inspect-store';
+import { PathSnippetStore } from 'background/stores/path-snippet-store';
+import { TabStore } from 'background/stores/tab-store';
+import { VisualizationScanResultStore } from 'background/stores/visualization-scan-result-store';
+import { VisualizationStore } from 'background/stores/visualization-store';
 import { It, Mock, MockBehavior } from 'typemoq';
-import { AssessmentDataConverter } from '../../../../background/assessment-data-converter';
-import { ScopingInputTypes } from '../../../../background/scoping-input-types';
-import { AssessmentStore } from '../../../../background/stores/assessment-store';
-import { DetailsViewStore } from '../../../../background/stores/details-view-store';
-import { CommandStore } from '../../../../background/stores/global/command-store';
-import { FeatureFlagStore } from '../../../../background/stores/global/feature-flag-store';
-import { LaunchPanelStore } from '../../../../background/stores/global/launch-panel-store';
-import { ScopingStore } from '../../../../background/stores/global/scoping-store';
-import { UserConfigurationStore } from '../../../../background/stores/global/user-configuration-store';
-import { InspectStore } from '../../../../background/stores/inspect-store';
-import { PathSnippetStore } from '../../../../background/stores/path-snippet-store';
-import { TabStore } from '../../../../background/stores/tab-store';
-import { VisualizationScanResultStore } from '../../../../background/stores/visualization-scan-result-store';
-import { VisualizationStore } from '../../../../background/stores/visualization-store';
 import { FeatureFlags } from '../../../../common/feature-flags';
 import { AssessmentStoreData } from '../../../../common/types/store-data/assessment-result-data';
 import { CommandStoreData } from '../../../../common/types/store-data/command-store-data';

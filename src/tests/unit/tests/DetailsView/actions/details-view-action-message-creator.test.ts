@@ -3,7 +3,7 @@
 import { IMock, It, Mock, Times } from 'typemoq';
 
 import { HeadingsTestStep } from 'assessments/headings/test-steps/test-steps';
-import { OnDetailsViewPivotSelected } from '../../../../../background/actions/action-payloads';
+import { OnDetailsViewPivotSelected } from 'background/actions/action-payloads';
 import { Message } from '../../../../../common/message';
 import { ActionMessageDispatcher } from '../../../../../common/message-creators/action-message-dispatcher';
 import { Messages } from '../../../../../common/messages';

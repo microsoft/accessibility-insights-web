@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { Mock, Times } from 'typemoq';
 
-import { ShortcutsPageController } from '../../../../background/shortcuts-page-controller';
+import { ShortcutsPageController } from 'background/shortcuts-page-controller';
 import { BrowserAdapter } from '../../../../common/browser-adapters/browser-adapter';
 
 describe('ShortcutsPageController', () => {

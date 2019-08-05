@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { DevToolsListener } from 'background/dev-tools-listener';
+import { Interpreter } from 'background/interpreter';
+import { TabContext, TabToContextMap } from 'background/tab-context';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
-import { DevToolsListener } from '../../../../background/dev-tools-listener';
-import { Interpreter } from '../../../../background/interpreter';
-import { TabContext, TabToContextMap } from '../../../../background/tab-context';
 import { ConnectionNames } from '../../../../common/constants/connection-names';
 import { Messages } from '../../../../common/messages';
 import { DevToolsOpenMessage } from '../../../../common/types/dev-tools-open-message';

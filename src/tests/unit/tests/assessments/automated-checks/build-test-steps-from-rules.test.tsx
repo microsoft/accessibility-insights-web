@@ -3,11 +3,11 @@
 import { buildTestStepsFromRules } from 'assessments/automated-checks/build-test-steps-from-rules';
 import { InstanceTableColumn } from 'assessments/types/instance-table-column';
 import { Requirement } from 'assessments/types/requirement';
+import { InstanceIdentifierGenerator } from 'background/instance-identifier-generator';
 import { isMatch } from 'lodash';
 import * as React from 'react';
 import { It, Mock, MockBehavior, Times } from 'typemoq';
 import { HyperlinkDefinition } from 'views/content/content-page';
-import { InstanceIdentifierGenerator } from '../../../../../background/instance-identifier-generator';
 import { NewTabLink } from '../../../../../common/components/new-tab-link';
 import { Messages } from '../../../../../common/messages';
 import { TelemetryDataFactory } from '../../../../../common/telemetry-data-factory';

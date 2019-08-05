@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { BaseActionPayload, OnDetailsViewOpenPayload, SetLaunchPanelState } from 'background/actions/action-payloads';
 import * as React from 'react';
-import { BaseActionPayload, OnDetailsViewOpenPayload, SetLaunchPanelState } from '../../background/actions/action-payloads';
 import { ActionMessageDispatcher } from '../../common/message-creators/action-message-dispatcher';
 import { Messages } from '../../common/messages';
 import { SupportedMouseEvent, TelemetryDataFactory } from '../../common/telemetry-data-factory';

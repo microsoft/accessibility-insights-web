@@ -3,10 +3,10 @@
 import * as React from 'react';
 import { Mock, MockBehavior } from 'typemoq';
 
+import { CommandStore } from 'background/stores/global/command-store';
+import { FeatureFlagStore } from 'background/stores/global/feature-flag-store';
+import { VisualizationStore } from 'background/stores/visualization-store';
 import { ContentLinkDeps } from 'views/content/content-link';
-import { CommandStore } from '../../../../../background/stores/global/command-store';
-import { FeatureFlagStore } from '../../../../../background/stores/global/feature-flag-store';
-import { VisualizationStore } from '../../../../../background/stores/visualization-store';
 import { TestMode } from '../../../../../common/configs/test-mode';
 import { VisualizationConfiguration } from '../../../../../common/configs/visualization-configuration';
 import { VisualizationConfigurationFactory } from '../../../../../common/configs/visualization-configuration-factory';

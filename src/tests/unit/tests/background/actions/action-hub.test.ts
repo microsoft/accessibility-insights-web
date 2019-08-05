@@ -1,15 +1,15 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { ActionHub } from '../../../../../background/actions/action-hub';
-import { AssessmentActions } from '../../../../../background/actions/assessment-actions';
-import { ContentActions } from '../../../../../background/actions/content-actions';
-import { DevToolActions } from '../../../../../background/actions/dev-tools-actions';
-import { InspectActions } from '../../../../../background/actions/inspect-actions';
-import { PreviewFeaturesActions } from '../../../../../background/actions/preview-features-actions';
-import { ScopingActions } from '../../../../../background/actions/scoping-actions';
-import { TabActions } from '../../../../../background/actions/tab-actions';
-import { VisualizationActions } from '../../../../../background/actions/visualization-actions';
-import { VisualizationScanResultActions } from '../../../../../background/actions/visualization-scan-result-actions';
+import { ActionHub } from 'background/actions/action-hub';
+import { AssessmentActions } from 'background/actions/assessment-actions';
+import { ContentActions } from 'background/actions/content-actions';
+import { DevToolActions } from 'background/actions/dev-tools-actions';
+import { InspectActions } from 'background/actions/inspect-actions';
+import { PreviewFeaturesActions } from 'background/actions/preview-features-actions';
+import { ScopingActions } from 'background/actions/scoping-actions';
+import { TabActions } from 'background/actions/tab-actions';
+import { VisualizationActions } from 'background/actions/visualization-actions';
+import { VisualizationScanResultActions } from 'background/actions/visualization-scan-result-actions';
 
 describe('ActionHubTest', () => {
     it('tests constructor', () => {
