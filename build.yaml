@@ -85,6 +85,6 @@ jobs:
       pool:
           vmImage: macOS-10.14
       steps:
-          - template: ./install-node-prerequisites.yaml
-          - template: ./e2e-test-from-agent.yaml
-          - template: ./e2e-test-publish-results.yaml
+          - template: pipeline/install-node-prerequisites.yaml
+          - template: pipeline/e2e-test-from-agent.yaml
+          - template: pipeline/e2e-test-publish-results.yaml
