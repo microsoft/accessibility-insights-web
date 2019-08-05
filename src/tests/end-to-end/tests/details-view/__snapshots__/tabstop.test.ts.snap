@@ -94,6 +94,46 @@ exports[`Tabstop tests tabstop from adhoc tools matches snapshot when tabstop is
             </femerge>
           </filter>
         </defs>
+        <ellipse
+          class="insights-svg-focus-indicator"
+          cx="16.875"
+          cy="178"
+          fill="#ffffff"
+          rx="16"
+          ry="16"
+          stroke="#777777"
+          stroke-width="2"
+        />
+        <text
+          class="insights-svg-focus-indicator-text"
+          fill="#000000"
+          text-anchor="middle"
+          x="16.875"
+          y="183"
+        >
+          1
+        </text>
+        <ellipse
+          class="insights-svg-focus-indicator"
+          cx="32.875"
+          cy="364.125"
+          fill="transparent"
+          rx="16"
+          ry="16"
+          stroke="#C71585"
+          stroke-width="2"
+        />
+        <line
+          class="insights-svg-line"
+          filter="url(#insights-tab-stops-solid-shadow)"
+          stroke="#C71585"
+          stroke-dasharray="7 2"
+          stroke-width="3"
+          x1="18.58795715656648"
+          x2="31.162042843433518"
+          y1="197.92650942287102"
+          y2="344.19849057712895"
+        />
       </svg>
     </div>
   </div>
@@ -194,6 +234,46 @@ exports[`Tabstop tests tabstop from fastpass if visualHelper is turned on after 
             </femerge>
           </filter>
         </defs>
+        <ellipse
+          class="insights-svg-focus-indicator"
+          cx="16.875"
+          cy="178"
+          fill="#ffffff"
+          rx="16"
+          ry="16"
+          stroke="#777777"
+          stroke-width="2"
+        />
+        <text
+          class="insights-svg-focus-indicator-text"
+          fill="#000000"
+          text-anchor="middle"
+          x="16.875"
+          y="183"
+        >
+          1
+        </text>
+        <ellipse
+          class="insights-svg-focus-indicator"
+          cx="32.875"
+          cy="364.125"
+          fill="transparent"
+          rx="16"
+          ry="16"
+          stroke="#C71585"
+          stroke-width="2"
+        />
+        <line
+          class="insights-svg-line"
+          filter="url(#insights-tab-stops-solid-shadow)"
+          stroke="#C71585"
+          stroke-dasharray="7 2"
+          stroke-width="3"
+          x1="18.58795715656648"
+          x2="31.162042843433518"
+          y1="197.92650942287102"
+          y2="344.19849057712895"
+        />
       </svg>
     </div>
   </div>

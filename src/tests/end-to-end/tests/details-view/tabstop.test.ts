@@ -16,11 +16,10 @@ describe('Tabstop tests', () => {
 
         beforeAll(async () => {
             browser = await launchBrowser({ suppressFirstTimeDialog: true });
-            targetPage = await browser.newTargetPage();
+            targetPage = await browser.newTargetPage({ testResourcePath: 'native-widgets/input-type-radio.html' });
             detailsViewpage = await browser.newDetailsViewPage(targetPage);
 
             await goToTabStopTest();
-            await enableToggleByAriaLabel();
         });
 
         afterAll(async () => {
@@ -30,22 +29,18 @@ describe('Tabstop tests', () => {
         });
 
         test('if visualHelper is turned on after starting tabstop and pressing tabs on target page', async () => {
+            await enableToggleByAriaLabel();
+            await targetPage.waitForSelector(TargetPageElementSelectors.targetPageNativeWidgetFirstRadio);
+            await targetPage.waitForDuration(200);
+
             await targetPage.bringToFront();
+
             await targetPage.keyPress('Tab');
-
-            const nativeWidgetHeadingTargetPage = await targetPage.getSelectorElement(TargetPageElementSelectors.targetPageNativeWidgetH1);
-            await nativeWidgetHeadingTargetPage.click();
-
-            const frame = targetPage.frames().find(f => f.name() === TargetPageElementSelectors.targetPageNativeWidgetIFrameName);
-            const button = await frame.$(TargetPageElementSelectors.targetPageNativeWidgetFirstRadio);
-            await button.click();
+            await targetPage.keyPress('Tab');
+            await targetPage.keyPress('Tab');
 
             const shadowRoot = await targetPage.getShadowRoot();
             await targetPage.waitForDescendentSelector(shadowRoot, fastPassSelectors.tabStopVisulizationStart, { visible: true });
-
-            for (let i = 0; i < 3; i++) {
-                await targetPage.keyPress('Tab');
-            }
 
             expect(await targetPage.getShadowRootHtmlSnapshot()).toMatchSnapshot();
         });
@@ -56,7 +51,6 @@ describe('Tabstop tests', () => {
 
         async function enableToggleByAriaLabel(): Promise<void> {
             await detailsViewpage.clickSelector(fastPassSelectors.tabStopToggleUncheckedSelector);
-
             await detailsViewpage.waitForSelector(fastPassSelectors.tabStopToggleCheckedSelector);
         }
     });
@@ -68,7 +62,7 @@ describe('Tabstop tests', () => {
 
         beforeAll(async () => {
             browser = await launchBrowser({ suppressFirstTimeDialog: true });
-            targetPage = await browser.newTargetPage();
+            targetPage = await browser.newTargetPage({ testResourcePath: 'native-widgets/input-type-radio.html' });
             popupPage = await browser.newPopupPage(targetPage);
             await popupPage.gotoAdhocPanel();
         });
@@ -84,19 +78,14 @@ describe('Tabstop tests', () => {
 
             await targetPage.bringToFront();
 
-            const nativeWidgetHeadingTargetPage = await targetPage.getSelectorElement(TargetPageElementSelectors.targetPageNativeWidgetH1);
-            await nativeWidgetHeadingTargetPage.click();
+            await targetPage.waitForSelector(TargetPageElementSelectors.targetPageNativeWidgetFirstRadio);
 
-            const frame = targetPage.frames().find(f => f.name() === TargetPageElementSelectors.targetPageNativeWidgetIFrameName);
-            const button = await frame.$(TargetPageElementSelectors.targetPageNativeWidgetFirstRadio);
-            await button.click();
+            await targetPage.keyPress('Tab');
+            await targetPage.keyPress('Tab');
+            await targetPage.keyPress('Tab');
 
             const shadowRoot = await targetPage.getShadowRoot();
             await targetPage.waitForDescendentSelector(shadowRoot, fastPassSelectors.tabStopVisulizationStart, { visible: true });
-
-            for (let i = 0; i < 3; i++) {
-                await targetPage.keyPress('Tab');
-            }
 
             expect(await targetPage.getShadowRootHtmlSnapshot()).toMatchSnapshot();
         });
