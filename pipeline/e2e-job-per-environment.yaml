@@ -11,18 +11,18 @@ jobs:
     - job: 'e2e_tests_windows${{ parameters.jobNameSuffix }}'
       pool:
           vmImage: ${{ parameters.windowsImage }}
-          steps:
-              - template: ./install-node-prerequisites.yaml
-              - template: ./e2e-test-from-agent.yaml
-              - template: ./e2e-test-publish-results.yaml
+      steps:
+          - template: ./install-node-prerequisites.yaml
+          - template: ./e2e-test-from-agent.yaml
+          - template: ./e2e-test-publish-results.yaml
 
     - job: 'e2e_tests_mac_${{ parameters.jobNameSuffix }}'
       pool:
           vmImage: ${{ parameters.macImage }}
-          steps:
-              - template: ./install-node-prerequisites.yaml
-              - template: ./e2e-test-from-agent.yaml
-              - template: ./e2e-test-publish-results.yaml
+      steps:
+          - template: ./install-node-prerequisites.yaml
+          - template: ./e2e-test-from-agent.yaml
+          - template: ./e2e-test-publish-results.yaml
 
     - job: 'e2e_tests_linux_${{ parameters.jobNameSuffix }}'
       pool:
