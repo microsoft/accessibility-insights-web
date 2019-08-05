@@ -1,7 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { launchBrowser } from '../../common/browser-factory';
-import { fastPassSelectors, targetPageSelectors } from '../../common/element-identifiers/common-selectors';
+import { fastPassSelectors } from '../../common/element-identifiers/common-selectors';
+import { TargetPageElementSelectors } from '../../common/element-identifiers/target-page-selectors';
 import { Page } from '../../common/page-controllers/page';
 import { PopupPage } from '../../common/page-controllers/popup-page';
 import { TargetPage } from '../../common/page-controllers/target-page';
@@ -32,11 +33,11 @@ describe('Tabstop tests', () => {
             await targetPage.bringToFront();
             await targetPage.keyPress('Tab');
 
-            const nativeWidgetHeadingTargetPage = await targetPage.$(targetPageSelectors.targetPageNativeWidgetH1);
-            nativeWidgetHeadingTargetPage.click();
+            const nativeWidgetHeadingTargetPage = await targetPage.getSelectorElement(TargetPageElementSelectors.targetPageNativeWidgetH1);
+            await nativeWidgetHeadingTargetPage.click();
 
-            const frame = targetPage.frames().find(f => f.name() === targetPageSelectors.targetPageNativeWidgetIFrameName);
-            const button = await frame.$(targetPageSelectors.targetPageNativeWidgetFirstRadio);
+            const frame = targetPage.frames().find(f => f.name() === TargetPageElementSelectors.targetPageNativeWidgetIFrameName);
+            const button = await frame.$(TargetPageElementSelectors.targetPageNativeWidgetFirstRadio);
             await button.click();
 
             const shadowRoot = await targetPage.getShadowRoot();
@@ -83,11 +84,11 @@ describe('Tabstop tests', () => {
 
             await targetPage.bringToFront();
 
-            const nativeWidgetHeadingTargetPage = await targetPage.$(targetPageSelectors.targetPageNativeWidgetH1);
-            nativeWidgetHeadingTargetPage.click();
+            const nativeWidgetHeadingTargetPage = await targetPage.getSelectorElement(TargetPageElementSelectors.targetPageNativeWidgetH1);
+            await nativeWidgetHeadingTargetPage.click();
 
-            const frame = targetPage.frames().find(f => f.name() === targetPageSelectors.targetPageNativeWidgetIFrameName);
-            const button = await frame.$(targetPageSelectors.targetPageNativeWidgetFirstRadio);
+            const frame = targetPage.frames().find(f => f.name() === TargetPageElementSelectors.targetPageNativeWidgetIFrameName);
+            const button = await frame.$(TargetPageElementSelectors.targetPageNativeWidgetFirstRadio);
             await button.click();
 
             const shadowRoot = await targetPage.getShadowRoot();

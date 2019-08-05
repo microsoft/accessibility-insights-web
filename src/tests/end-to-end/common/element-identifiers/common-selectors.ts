@@ -18,9 +18,3 @@ export const fastPassSelectors = {
     tabStopToggleUncheckedSelector: 'button[aria-label="Tab stops"][aria-checked=false]',
     tabStopVisulizationStart: '.insights-tab-stops',
 };
-
-export const targetPageSelectors = {
-    targetPageNativeWidgetIFrameName: 'native-widgets',
-    targetPageNativeWidgetFirstRadio: '#input-radio-1',
-    targetPageNativeWidgetH1: '#h1-native-widget',
-};

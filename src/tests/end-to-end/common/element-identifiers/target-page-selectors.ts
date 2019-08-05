@@ -6,3 +6,9 @@ export const TargetPageInjectedComponentSelectors = {
     issueDialog: '.insights-dialog-main-container',
     insightsVisualizationBox: '.insights-highlight-container',
 };
+
+export const TargetPageElementSelectors = {
+    targetPageNativeWidgetIFrameName: 'native-widgets',
+    targetPageNativeWidgetFirstRadio: '#input-radio-1',
+    targetPageNativeWidgetH1: '#h1-native-widget',
+};
