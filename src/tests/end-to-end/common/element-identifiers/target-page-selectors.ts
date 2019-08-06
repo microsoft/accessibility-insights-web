@@ -7,10 +7,6 @@ export const TargetPageInjectedComponentSelectors = {
     insightsVisualizationBox: '.insights-highlight-container',
 };
 
-export const TargetPageElementSelectors = {
-    targetPageNativeWidgetFirstRadio: '#input-radio-1',
-};
-
 export const tabStopShadowDomSelectors = {
     svg: 'svg',
     lines: 'line',

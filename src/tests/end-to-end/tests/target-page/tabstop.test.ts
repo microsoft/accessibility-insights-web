@@ -5,7 +5,7 @@ import { ElementHandle } from 'puppeteer';
 import { Browser } from '../../common/browser';
 import { launchBrowser } from '../../common/browser-factory';
 import { fastPassSelectors } from '../../common/element-identifiers/fastpass-selectors';
-import { tabStopShadowDomSelectors, TargetPageElementSelectors } from '../../common/element-identifiers/target-page-selectors';
+import { tabStopShadowDomSelectors } from '../../common/element-identifiers/target-page-selectors';
 import { PopupPage } from '../../common/page-controllers/popup-page';
 import { TargetPage } from '../../common/page-controllers/target-page';
 
@@ -31,13 +31,7 @@ describe('tabstop tests', () => {
         await popupPage.enableToggleByAriaLabel('Tab stops');
 
         await targetPage.bringToFront();
-        await targetPage.waitForSelector(TargetPageElementSelectors.targetPageNativeWidgetFirstRadio);
 
-        const shadowRoot = await getShadowRootAfterTabStopActivation();
-        await validateTabStopVisualizationOnTargetPage(shadowRoot);
-    });
-
-    async function getShadowRootAfterTabStopActivation(): Promise<ElementHandle<Element>> {
         await targetPage.keyPress('Tab');
         await targetPage.keyPress('Tab');
         await targetPage.keyPress('Tab');
@@ -45,8 +39,8 @@ describe('tabstop tests', () => {
         const shadowRoot = await targetPage.getShadowRoot();
         await targetPage.waitForDescendentSelector(shadowRoot, fastPassSelectors.tabStopVisulizationStart, { visible: true });
 
-        return shadowRoot;
-    }
+        await validateTabStopVisualizationOnTargetPage(shadowRoot);
+    });
 
     async function validateTabStopVisualizationOnTargetPage(shadowRoot: ElementHandle<Element>): Promise<void> {
         const svgs = await shadowRoot.$$(tabStopShadowDomSelectors.svg);
