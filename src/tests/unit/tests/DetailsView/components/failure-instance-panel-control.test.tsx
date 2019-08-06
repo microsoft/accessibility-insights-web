@@ -159,7 +159,7 @@ describe('FailureInstancePanelControlTest', () => {
         // This shouldn't be cleared because it stays briefly visible as the panel close animation happens
         expect(wrapper.state().currentInstance.failureDescription).toEqual(description);
 
-        clearPathSnippetDataMock.verify(handler => handler(), Times.once());
+        clearPathSnippetDataMock.verify(handler => handler(), Times.exactly(2));
     });
 
     test('onSaveEditedFailureInstance', () => {
@@ -193,7 +193,7 @@ describe('FailureInstancePanelControlTest', () => {
         expect(wrapper.state().currentInstance.failureDescription).toEqual(description);
 
         editInstanceMock.verifyAll();
-        clearPathSnippetDataMock.verify(handler => handler(), Times.once());
+        clearPathSnippetDataMock.verify(handler => handler(), Times.exactly(2));
     });
 
     test('onAddFailureInstance', () => {
@@ -224,7 +224,22 @@ describe('FailureInstancePanelControlTest', () => {
         expect(wrapper.state().currentInstance.failureDescription).toEqual(description);
 
         addInstanceMock.verifyAll();
-        clearPathSnippetDataMock.verify(handler => handler(), Times.once());
+        clearPathSnippetDataMock.verify(handler => handler(), Times.exactly(2));
+    });
+
+    test('componentDidMount clears store', () => {
+        const props = createPropsWithType(CapturedInstanceActionType.CREATE);
+        const failureInstance = {
+            failureDescription: null,
+            path: 'inputed path',
+            snippet: 'snippet for path',
+        };
+        props.failureInstance = failureInstance;
+
+        const component = new FailureInstancePanelControl(props);
+        component.componentDidMount();
+
+        clearPathSnippetDataMock.verify(handler => handler(), Times.exactly(1));
     });
 
     test('componentDidUpdate reassigns state', () => {
