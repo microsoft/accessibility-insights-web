@@ -104,7 +104,7 @@ describe('InstanceVisibilityCheckerTest', () => {
 
         windowUtilsMock
             .setup(wU => wU.setInterval(itIsFunction, InstanceVisibilityChecker.recalculationTimeInterval))
-            .callback((cb, timeout) => {
+            .callback((cb: Function) => {
                 cb();
             })
             .verifiable(Times.once());
