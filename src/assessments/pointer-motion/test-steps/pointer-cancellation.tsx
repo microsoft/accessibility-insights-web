@@ -1,9 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as React from 'react';
-
 import { NewTabLink } from 'common/components/new-tab-link';
 import { link } from 'content/link';
+import * as content from 'content/test/pointer-motion/pointer-cancellation';
+import * as React from 'react';
+
 import { ManualTestRecordYourResults } from '../../common/manual-test-record-your-results';
 import * as Markup from '../../markup';
 import { Requirement } from '../../types/requirement';
@@ -17,14 +18,6 @@ const howToTest: JSX.Element = (
             <li>
                 Examine the target page to identify any functions that can be operated using a{' '}
                 <NewTabLink href="https://www.w3.org/TR/WCAG21/#dfn-single-pointer">single pointer</NewTabLink>.
-                <ol>
-                    <li>
-                        <Markup.Term>Multipoint gestures</Markup.Term>, such as a two-fingered pinch zoom or a three-fingered tap.
-                    </li>
-                    <li>
-                        <Markup.Term>Path-based gestures</Markup.Term>, such as dragging or swiping.
-                    </li>
-                </ol>
             </li>
             <li>
                 Verify that at least one of the following is true:
@@ -42,8 +35,8 @@ const howToTest: JSX.Element = (
                     </li>
                 </ol>
                 Exception: This requirement does not apply if completing the function on the down-event is{' '}
-                <NewTabLink href="https://aka.ms/keros/essential">essential</NewTabLink> to the underlying function. For example, for a
-                keyboard emulator, entering a key press on the down-event is considered essential.
+                <NewTabLink href="https://www.w3.org/TR/WCAG21/#dfn-essential">essential</NewTabLink> to the underlying function. For
+                example, for a keyboard emulator, entering a key press on the down-event is considered essential.
             </li>
             <ManualTestRecordYourResults isMultipleFailurePossible={true} />
         </ol>
@@ -55,6 +48,7 @@ export const PointerCancellation: Requirement = {
     name: 'Pointer cancellation',
     description,
     howToTest,
+    ...content,
     isManual: true,
     guidanceLinks: [link.WCAG_2_5_2],
 };

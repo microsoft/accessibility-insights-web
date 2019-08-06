@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { test as content } from 'content/test';
 import * as React from 'react';
 
 import { VisualizationType } from 'common/types/visualization-type';
@@ -9,6 +10,7 @@ import { MotionOperation } from './test-steps/motion-operation';
 import { PointerCancellation } from './test-steps/pointer-cancellation';
 import { PointerGestures } from './test-steps/pointer-gestures';
 
+const { guidance } = content.pointerMotion;
 const key = 'pointerMotion';
 const title = 'Pointer / motion';
 
@@ -24,6 +26,7 @@ export const PointerMotionAssessment: Assessment = AssessmentBuilder.Assisted({
     key,
     title: title,
     gettingStarted: gettingStarted,
+    guidance,
     visualizationType: VisualizationType.PointerMotionAssessment,
     requirements: [PointerGestures, PointerCancellation, MotionOperation],
     storeDataKey: 'pointerMotionAssessment',

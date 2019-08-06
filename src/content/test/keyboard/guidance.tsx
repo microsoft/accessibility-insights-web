@@ -13,10 +13,7 @@ export const guidance = create(({ Markup, Link }) => (
             if the user has no vision or low vision or doesn't have the physical capability or dexterity to effectively control a pointing
             device.
         </p>
-        <p>
-            Moreover, the keyboard experience must be predictable and easy to execute: no keyboard traps, no unexpected changes of context
-            triggered when navigating to a control or modifying its values, and no need to type quickly or to press and hold a key.
-        </p>
+        <p>Moreover, the keyboard experience must be predictable, easy to execute and under the user's control.</p>
 
         <p>
             See <Link.BingoBakery>this fun video</Link.BingoBakery> to learn how landmarks, headings, and tab stops work together to provide
@@ -50,6 +47,16 @@ export const guidance = create(({ Markup, Link }) => (
                     <li>
                         Keyboard traps are extremely disruptive for keyboard-only users; they can even force users to restart their computer
                         to regain keyboard access.
+                    </li>
+                </ul>
+
+                <h3>
+                    Allow users to control character key shortcuts. (<Link.WCAG_2_1_4 />)
+                </h3>
+                <ul>
+                    <li>
+                        If a keyboard shortcut is implemented using only letter, number, punctuation, or symbol characters, allow users to
+                        turn off or remap the shortcut to include a non-printable key, such as Alt or Ctrl.
                     </li>
                 </ul>
             </Markup.Do>
@@ -228,6 +235,25 @@ export const guidance = create(({ Markup, Link }) => (
         <Markup.Links>
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Understanding/keyboard.html">
                 Understanding Success Criterion 2.1.1: Keyboard
+            </Markup.HyperLink>
+        </Markup.Links>
+
+        <h3>Allow users to control character key shortcuts</h3>
+
+        <h4>WCAG success criteria</h4>
+        <Markup.Links>
+            <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Understanding/character-key-shortcuts.html">
+                Understanding Success Criterion 2.1.4 Character Key Shortcuts
+            </Markup.HyperLink>
+        </Markup.Links>
+
+        <h4>Additional guidance</h4>
+        <Markup.Links>
+            <Markup.HyperLink href="https://www.youtube.com/watch?v=xzSyIA4OWYE">
+                Single character key shortcuts affecting speech input – example 1
+            </Markup.HyperLink>
+            <Markup.HyperLink href="https://www.youtube.com/watch?v=OPjfpDU9S08">
+                Single character key shortcuts affecting speech input – example 2
             </Markup.HyperLink>
         </Markup.Links>
     </React.Fragment>
