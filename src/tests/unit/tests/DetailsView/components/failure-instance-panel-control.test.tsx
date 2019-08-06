@@ -236,10 +236,10 @@ describe('FailureInstancePanelControlTest', () => {
         };
         props.failureInstance = failureInstance;
 
-        const wrapper = shallow<FailureInstancePanelControl>(<FailureInstancePanelControl {...props} />);
-        (wrapper.instance() as FailureInstancePanelControl).componentDidMount();
+        const component = new FailureInstancePanelControl(props);
+        component.componentDidMount();
 
-        clearPathSnippetDataMock.verify(handler => handler(), Times.exactly(2));
+        clearPathSnippetDataMock.verify(handler => handler(), Times.exactly(1));
     });
 
     test('componentDidUpdate reassigns state', () => {
