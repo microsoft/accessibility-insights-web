@@ -35,6 +35,10 @@ export class ElementFinderByPath {
     };
 
     public processRequest = (message: ElementFinderByPathMessage): PromiseLike<string> => {
+        if (!this.checkSyntax(message.path[0])) {
+            return Promise.resolve('error');
+        }
+
         const element = this.htmlElementUtils.querySelector(message.path[0]) as HTMLElement;
 
         if (element == null) {
@@ -63,5 +67,12 @@ export class ElementFinderByPath {
                 path: message.path,
             } as ElementFinderByPathMessage,
         });
+    };
+
+    private checkSyntax = (pathSegment: string): boolean => {
+        if (pathSegment.startsWith(',') || pathSegment.startsWith(';')) {
+            return false;
+        }
+        return true;
     };
 }

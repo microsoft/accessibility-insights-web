@@ -84,6 +84,15 @@ describe('ElementFinderByPositionTest', () => {
         processRequestMock.verifyAll();
     });
 
+    test('process request when path begins with invalid char', async () => {
+        const messageStub = {
+            path: [',bad path'],
+        } as ElementFinderByPathMessage;
+
+        const response = await testSubject.processRequest(messageStub);
+        expect(response).toEqual('error');
+    });
+
     test('process request when element is null', async () => {
         const messageStub = {
             path: ['invalid path'],
