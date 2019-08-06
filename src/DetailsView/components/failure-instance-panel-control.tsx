@@ -64,10 +64,6 @@ export class FailureInstancePanelControl extends React.Component<FailureInstance
         };
     }
 
-    public componentDidMount(): void {
-        this.props.clearPathSnippetData();
-    }
-
     public componentDidUpdate(prevProps: Readonly<FailureInstancePanelControlProps>): void {
         if (isEqual(prevProps, this.props) === false) {
             this.setState(() => ({
