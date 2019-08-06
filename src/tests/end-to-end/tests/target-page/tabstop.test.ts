@@ -12,7 +12,6 @@ import { TargetPage } from '../../common/page-controllers/target-page';
 describe('tabstop tests', () => {
     let browser: Browser;
     let targetPage: TargetPage;
-    let detailsViewpage: Page;
     let popupPage: PopupPage;
 
     beforeEach(async () => {
@@ -26,21 +25,6 @@ describe('tabstop tests', () => {
         }
     });
 
-    test('tabstop work when triggered from fastpass page', async () => {
-        detailsViewpage = await browser.newDetailsViewPage(targetPage);
-
-        await goToTabStopTest();
-        await enableToggleByAriaLabel();
-
-        await targetPage.waitForDuration(200);
-
-        await targetPage.bringToFront();
-        await targetPage.waitForSelector(TargetPageElementSelectors.targetPageNativeWidgetFirstRadio);
-
-        const shadowRoot = await getShadowRootAfterTabStopActivation();
-        await validateTabStopVisualizationOnTargetPage(shadowRoot);
-    });
-
     test('works when tabstop is triggered from adhoc panel', async () => {
         popupPage = await browser.newPopupPage(targetPage);
         await popupPage.gotoAdhocPanel();
@@ -52,15 +36,6 @@ describe('tabstop tests', () => {
         const shadowRoot = await getShadowRootAfterTabStopActivation();
         await validateTabStopVisualizationOnTargetPage(shadowRoot);
     });
-
-    async function goToTabStopTest(): Promise<void> {
-        await detailsViewpage.clickSelector(fastPassSelectors.tabStopNavButtonSelector);
-    }
-
-    async function enableToggleByAriaLabel(): Promise<void> {
-        await detailsViewpage.clickSelector(fastPassSelectors.tabStopToggleUncheckedSelector);
-        await detailsViewpage.waitForSelector(fastPassSelectors.tabStopToggleCheckedSelector);
-    }
 
     async function getShadowRootAfterTabStopActivation(): Promise<ElementHandle<Element>> {
         await targetPage.keyPress('Tab');
