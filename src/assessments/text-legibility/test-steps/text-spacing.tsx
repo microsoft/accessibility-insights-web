@@ -1,11 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as React from 'react';
-
 import { TextLegibilityTestStep } from 'assessments/text-legibility/test-steps/test-step';
 import { Requirement } from 'assessments/types/requirement';
 import { NewTabLink } from 'common/components/new-tab-link';
 import { link } from 'content/link';
+import * as content from 'content/test/text-legibility/text-spacing';
+import * as React from 'react';
+
 import { ManualTestRecordYourResults } from '../../common/manual-test-record-your-results';
 import * as Markup from '../../markup';
 
@@ -19,16 +20,16 @@ const textSpacingHowToTest: JSX.Element = (
         <NewTabLink href="https://www.w3.org/TR/WCAG21/#dfn-https://www.html5accessibility.com/tests/tsbookmarklet.html">
             Text spacing
         </NewTabLink>{' '}
-        to the underlying functionality (such bookmarklet to adjust text spacing in the target page).
+        bookmarklet to adjust text spacing in the target page.
         <ol>
             <li>
                 Add the{' '}
                 <NewTabLink href="https://www.w3.org/TR/WCAG21/#dfn-https://www.html5accessibility.com/tests/tsbookmarklet.html">
                     Text spacing
                 </NewTabLink>{' '}
-                bookmarklet to Chrome bookmarks. (Mouse users can simply drag the link into the bookmarks bar.)
+                bookmarklet to your browser's bookmarks. (Mouse users can simply drag the link into the bookmarks bar.)
             </li>
-            <li>Use Chrome's settings to set the target page's zoom to 400%.</li>
+            <li>Use your browser's settings to set the target page's zoom to 400%.</li>
             <li>
                 Run the bookmarklet in the browser tab containing your target page. Text styling will automatically be adjusted as follows:
                 <ol>
@@ -64,6 +65,7 @@ export const TextSpacing: Requirement = {
     name: 'Text spacing',
     description: textSpacingDescription,
     howToTest: textSpacingHowToTest,
+    ...content,
     isManual: true,
     guidanceLinks: [link.WCAG_1_4_12],
 };

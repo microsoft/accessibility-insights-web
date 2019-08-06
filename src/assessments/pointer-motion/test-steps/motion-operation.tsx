@@ -1,14 +1,17 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as React from 'react';
-
 import { NewTabLink } from 'common/components/new-tab-link';
 import { link } from 'content/link';
+import * as content from 'content/test/pointer-motion/motion-operation';
+import * as React from 'react';
+
 import { ManualTestRecordYourResults } from '../../common/manual-test-record-your-results';
 import { Requirement } from '../../types/requirement';
 import { PointerMotionTestStep } from './test-steps';
 
-const description: JSX.Element = <span>Users must be able to cancel functions that can be operated using a single pointer.</span>;
+const description: JSX.Element = (
+    <span>If a function can be operated through motion, it must also be operable through user interface components.</span>
+);
 
 const howToTest: JSX.Element = (
     <div>
@@ -24,8 +27,8 @@ const howToTest: JSX.Element = (
                     <li>Motion operation can be disabled by the user.</li>
                 </ol>
                 Exception: This requirement does not apply if motion activation is{' '}
-                <NewTabLink href="https://aka.ms/keros/essential">essential</NewTabLink> to the underlying function, such as tracking a
-                user’s steps.
+                <NewTabLink href="https://www.w3.org/TR/WCAG21/#dfn-essential">essential</NewTabLink> to the underlying function, such as
+                tracking a user’s steps.
             </li>
             <ManualTestRecordYourResults isMultipleFailurePossible={true} />
         </ol>
@@ -37,6 +40,7 @@ export const MotionOperation: Requirement = {
     name: 'Motion operation',
     description,
     howToTest,
+    ...content,
     isManual: true,
     guidanceLinks: [link.WCAG_2_5_4],
 };

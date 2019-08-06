@@ -5,4 +5,12 @@ export const TargetPageInjectedComponentSelectors = {
     failureLabel: '.failure-label',
     issueDialog: '.insights-dialog-main-container',
     insightsVisualizationBox: '.insights-highlight-container',
+    tabStopVisulizationStart: '.insights-tab-stops',
+};
+
+export const TabStopShadowDomSelectors = {
+    svg: 'svg',
+    lines: 'line',
+    ellipse: 'ellipse',
+    text: 'text',
 };

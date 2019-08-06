@@ -1,9 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as React from 'react';
-
 import { NewTabLink } from 'common/components/new-tab-link';
 import { link } from 'content/link';
+import * as content from 'content/test/pointer-motion/pointer-gestures';
+import * as React from 'react';
+
 import { ManualTestRecordYourResults } from '../../common/manual-test-record-your-results';
 import * as Markup from '../../markup';
 import { Requirement } from '../../types/requirement';
@@ -30,8 +31,8 @@ const howToTest: JSX.Element = (
                 such as a double-click or a long press.
                 <br />
                 Exception: Multi-point and path-based gestures are allowed where they are
-                <NewTabLink href="https://aka.ms/keros/essential"> essential</NewTabLink> to the underlying function, such as freehand
-                drawing.
+                <NewTabLink href="https://www.w3.org/TR/WCAG21/#dfn-essential"> essential</NewTabLink> to the underlying function, such as
+                freehand drawing.
             </li>
             <ManualTestRecordYourResults isMultipleFailurePossible={true} />
         </ol>
@@ -43,6 +44,7 @@ export const PointerGestures: Requirement = {
     name: 'Pointer gestures',
     description,
     howToTest,
+    ...content,
     isManual: true,
     guidanceLinks: [link.WCAG_2_5_1],
 };
