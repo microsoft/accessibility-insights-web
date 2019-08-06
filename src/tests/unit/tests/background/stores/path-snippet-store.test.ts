@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { PathSnippetActions } from '../../../../../background/actions/path-snippet-actions';
-import { PathSnippetStore } from '../../../../../background/stores/path-snippet-store';
+import { PathSnippetActions } from 'background/actions/path-snippet-actions';
+import { PathSnippetStore } from 'background/stores/path-snippet-store';
 import { StoreNames } from '../../../../../common/stores/store-names';
 import { PathSnippetStoreData } from '../../../../../common/types/store-data/path-snippet-store-data';
 import { createStoreWithNullParams, StoreTester } from '../../../common/store-tester';

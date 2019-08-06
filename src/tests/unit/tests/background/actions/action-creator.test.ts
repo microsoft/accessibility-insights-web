@@ -3,8 +3,8 @@
 import { forOwn } from 'lodash';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
-import { ActionCreator } from '../../../../../background/actions/action-creator';
-import { ActionHub } from '../../../../../background/actions/action-hub';
+import { ActionCreator } from 'background/actions/action-creator';
+import { ActionHub } from 'background/actions/action-hub';
 import {
     AddTabbedElementPayload,
     BaseActionPayload,
@@ -13,17 +13,17 @@ import {
     OnDetailsViewPivotSelected,
     ToggleActionPayload,
     VisualizationTogglePayload,
-} from '../../../../../background/actions/action-payloads';
-import { DetailsViewActions } from '../../../../../background/actions/details-view-actions';
-import { DevToolActions } from '../../../../../background/actions/dev-tools-actions';
-import { InspectActions } from '../../../../../background/actions/inspect-actions';
-import { ScopingActions } from '../../../../../background/actions/scoping-actions';
-import { VisualizationActions } from '../../../../../background/actions/visualization-actions';
-import { VisualizationScanResultActions } from '../../../../../background/actions/visualization-scan-result-actions';
-import { DetailsViewController } from '../../../../../background/details-view-controller';
-import { ContentScriptInjector } from '../../../../../background/injector/content-script-injector';
-import { TargetTabController } from '../../../../../background/target-tab-controller';
-import { TelemetryEventHandler } from '../../../../../background/telemetry/telemetry-event-handler';
+} from 'background/actions/action-payloads';
+import { DetailsViewActions } from 'background/actions/details-view-actions';
+import { DevToolActions } from 'background/actions/dev-tools-actions';
+import { InspectActions } from 'background/actions/inspect-actions';
+import { ScopingActions } from 'background/actions/scoping-actions';
+import { VisualizationActions } from 'background/actions/visualization-actions';
+import { VisualizationScanResultActions } from 'background/actions/visualization-scan-result-actions';
+import { DetailsViewController } from 'background/details-view-controller';
+import { ContentScriptInjector } from 'background/injector/content-script-injector';
+import { TargetTabController } from 'background/target-tab-controller';
+import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
 import { VisualizationConfigurationFactory } from '../../../../../common/configs/visualization-configuration-factory';
 import { Action } from '../../../../../common/flux/action';
 import { PayloadCallback } from '../../../../../common/message';

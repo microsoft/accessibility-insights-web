@@ -2,11 +2,11 @@
 // Licensed under the MIT License.
 import { Mock } from 'typemoq';
 
-import { LocalStorageData } from '../../../../../background/storage-data';
-import { AppInsightsTelemetryClient } from '../../../../../background/telemetry/app-insights-telemetry-client';
-import { NullTelemetryClient } from '../../../../../background/telemetry/null-telemetry-client';
-import { getTelemetryClient } from '../../../../../background/telemetry/telemetry-client-provider';
-import { TelemetryLogger } from '../../../../../background/telemetry/telemetry-logger';
+import { LocalStorageData } from 'background/storage-data';
+import { AppInsightsTelemetryClient } from 'background/telemetry/app-insights-telemetry-client';
+import { NullTelemetryClient } from 'background/telemetry/null-telemetry-client';
+import { getTelemetryClient } from 'background/telemetry/telemetry-client-provider';
+import { TelemetryLogger } from 'background/telemetry/telemetry-logger';
 import { BrowserAdapter } from '../../../../../common/browser-adapters/browser-adapter';
 import { StorageAdapter } from '../../../../../common/browser-adapters/storage-adapter';
 import { configMutator } from '../../../../../common/configuration';

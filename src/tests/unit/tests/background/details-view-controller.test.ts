@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { IMock, It, Mock, Times } from 'typemoq';
 
-import { DetailsViewController } from '../../../../background/details-view-controller';
+import { DetailsViewController } from 'background/details-view-controller';
 import { BrowserAdapter } from '../../../../common/browser-adapters/browser-adapter';
 
 describe('DetailsViewControllerTest', () => {

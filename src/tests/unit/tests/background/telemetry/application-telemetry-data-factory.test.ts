@@ -2,13 +2,10 @@
 // Licensed under the MIT License.
 import { IMock, Mock, Times } from 'typemoq';
 
+import { ApplicationBuildGenerator } from 'background/application-build-generator';
+import { InstallDataGenerator } from 'background/install-data-generator';
+import { ApplicationTelemetryData, ApplicationTelemetryDataFactory } from 'background/telemetry/application-telemetry-data-factory';
 import { title } from 'content/strings/application';
-import { ApplicationBuildGenerator } from '../../../../../background/application-build-generator';
-import { InstallDataGenerator } from '../../../../../background/install-data-generator';
-import {
-    ApplicationTelemetryData,
-    ApplicationTelemetryDataFactory,
-} from '../../../../../background/telemetry/application-telemetry-data-factory';
 import { BrowserAdapter } from '../../../../../common/browser-adapters/browser-adapter';
 
 describe('ApplicationTelemetryDataFactoryTest', () => {

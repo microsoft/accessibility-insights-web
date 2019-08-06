@@ -3,11 +3,11 @@
 import { isFunction } from 'lodash';
 import { IMock, It, Mock, Times } from 'typemoq';
 
-import { BaseActionPayload } from '../../../../../background/actions/action-payloads';
-import { DetailsViewActionCreator } from '../../../../../background/actions/details-view-action-creator';
-import { DetailsViewActions } from '../../../../../background/actions/details-view-actions';
-import { DetailsViewController } from '../../../../../background/details-view-controller';
-import { TelemetryEventHandler } from '../../../../../background/telemetry/telemetry-event-handler';
+import { BaseActionPayload } from 'background/actions/action-payloads';
+import { DetailsViewActionCreator } from 'background/actions/details-view-action-creator';
+import { DetailsViewActions } from 'background/actions/details-view-actions';
+import { DetailsViewController } from 'background/details-view-controller';
+import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
 import { Action } from '../../../../../common/flux/action';
 import { RegisterTypeToPayloadCallback } from '../../../../../common/message';
 import { Messages } from '../../../../../common/messages';

@@ -1,13 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { Mock, Times } from 'typemoq';
 import {
     SaveIssueFilingSettingsPayload,
     SetHighContrastModePayload,
     SetIssueFilingServicePayload,
     SetIssueFilingServicePropertyPayload,
     SetTelemetryStatePayload,
-} from '../../../../../background/actions/action-payloads';
+} from 'background/actions/action-payloads';
+import { Mock, Times } from 'typemoq';
 import { Message } from '../../../../../common/message';
 import { ActionMessageDispatcher } from '../../../../../common/message-creators/action-message-dispatcher';
 import { UserConfigMessageCreator } from '../../../../../common/message-creators/user-config-message-creator';

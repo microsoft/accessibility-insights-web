@@ -2,16 +2,16 @@
 // Licensed under the MIT License.
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
-import { SetLaunchPanelState } from '../../../../../background/actions/action-payloads';
-import { AssessmentActions } from '../../../../../background/actions/assessment-actions';
-import { CommandActions } from '../../../../../background/actions/command-actions';
-import { FeatureFlagActions } from '../../../../../background/actions/feature-flag-actions';
-import { GlobalActionHub } from '../../../../../background/actions/global-action-hub';
-import { LaunchPanelStateActions } from '../../../../../background/actions/launch-panel-state-action';
-import { UserConfigurationActions } from '../../../../../background/actions/user-configuration-actions';
-import { GlobalActionCreator } from '../../../../../background/global-action-creators/global-action-creator';
-import { Interpreter } from '../../../../../background/interpreter';
-import { TelemetryEventHandler } from '../../../../../background/telemetry/telemetry-event-handler';
+import { SetLaunchPanelState } from 'background/actions/action-payloads';
+import { AssessmentActions } from 'background/actions/assessment-actions';
+import { CommandActions } from 'background/actions/command-actions';
+import { FeatureFlagActions } from 'background/actions/feature-flag-actions';
+import { GlobalActionHub } from 'background/actions/global-action-hub';
+import { LaunchPanelStateActions } from 'background/actions/launch-panel-state-action';
+import { UserConfigurationActions } from 'background/actions/user-configuration-actions';
+import { GlobalActionCreator } from 'background/global-action-creators/global-action-creator';
+import { Interpreter } from 'background/interpreter';
+import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
 import { CommandsAdapter } from '../../../../../common/browser-adapters/commands-adapter';
 import { Action } from '../../../../../common/flux/action';
 import { Messages } from '../../../../../common/messages';

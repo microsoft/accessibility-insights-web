@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { DevToolsChromeAdapter } from '../background/dev-tools-chrome-adapter';
+import { DevToolsChromeAdapter } from 'background/dev-tools-chrome-adapter';
 import { StoreProxy } from '../common/store-proxy';
 import { StoreNames } from '../common/stores/store-names';
 import { DevToolState } from '../common/types/store-data/idev-tool-state';

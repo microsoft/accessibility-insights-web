@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { ApplicationBuildGenerator } from '../../../../background/application-build-generator';
+import { ApplicationBuildGenerator } from 'background/application-build-generator';
 import { configMutator } from '../../../../common/configuration';
 
 describe('ApplicationBuildGeneratorTest', () => {

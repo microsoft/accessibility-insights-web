@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IssueDetailsTextGenerator } from '../../../../background/issue-details-text-generator';
+import { IssueDetailsTextGenerator } from 'background/issue-details-text-generator';
 import { CreateIssueDetailsTextData } from '../../../../common/types/create-issue-details-text-data';
 
 describe('Issue details text builder', () => {

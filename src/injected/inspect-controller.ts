@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { InspectMode } from '../background/inspect-modes';
+import { InspectMode } from 'background/inspect-modes';
 import { BaseStore } from '../common/base-store';
 import { ConfigurationKey, InspectConfigurationFactory } from '../common/configs/inspect-configuration-factory';
 import { InspectStoreData } from '../common/types/store-data/inspect-store-data';
