@@ -7,3 +7,5 @@
 *.scss.d.ts
 # Dependency directories
 node_modules/
+.DS_STORE
+yarn-error.log

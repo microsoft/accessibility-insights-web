@@ -95,7 +95,7 @@ export class Page {
         return await this.screenshotOnError(async () => await this.underlyingPage.evaluate(fn, ...args));
     }
 
-    public async getMatchingElements<T>(selector: string, elementProperty: keyof Element): Promise<T[]> {
+    public async getMatchingElements<T>(selector: string, elementProperty?: keyof Element): Promise<T[]> {
         return await this.screenshotOnError(
             async () =>
                 await this.evaluate(
@@ -243,7 +243,9 @@ export class Page {
     }
 
     public async keyPress(key: string): Promise<void> {
-        await this.underlyingPage.keyboard.press(key);
+        await this.screenshotOnError(async () => {
+            await this.underlyingPage.keyboard.press(key);
+        });
     }
 
     public async getOuterHTMLOfSelector(selector: string): Promise<string> {
