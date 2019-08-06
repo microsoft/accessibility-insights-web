@@ -58,7 +58,7 @@ export const infoAndExamples = create(({ Markup }) => (
                 <p [id="error"]>You must enter your username.</p>
                 <p>
                 <label for="username">Username (required): </label>
-                <input type="text" name="username" id="username"
+                <input type="text" name="username" id="username">
                 </p>
                 <p>
                 <input type="submit" name="submit" id="submit" value="Submit">
@@ -71,7 +71,7 @@ export const infoAndExamples = create(({ Markup }) => (
                 <p id="error" [role="alert"]>You must enter your username.</p>
                 <p>
                 <label for="username">Username (required): </label>
-                <input type="text" name="username" id="username"
+                <input type="text" name="username" id="username">
                 </p>
                 <p>
                 <input type="submit" name="submit" id="submit" value="Submit">

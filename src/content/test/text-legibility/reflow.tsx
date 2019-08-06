@@ -27,8 +27,8 @@ export const infoAndExamples = create(({ Markup }) => (
             <li>
                 Better: Do not require users to scroll in the direction of reading:
                 <ul>
-                    <li>if the script is read horizontally (left-to-right or right-to-left), text should scroll vertically.</li>
-                    <li>if the script is read vertically (top-to-bottom), text should scroll horizontally.</li>
+                    <li>if the text is read horizontally (left-to-right or right-to-left), text should scroll vertically.</li>
+                    <li>if the text is read vertically (top-to-bottom), text should scroll horizontally.</li>
                 </ul>
             </li>
         </ul>
