@@ -65,18 +65,35 @@ jobs:
             displayName: publish drop
 
     # CI build only
-    - job: 'publish_electron_dist'
-      condition: and(always(), in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI'))
+    - job: 'publish_electron_windows_linux'
+      #condition: and(always(), in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI'))
       pool:
           vmImage: 'windows-latest'
       steps:
           - template: pipeline/install-node-prerequisites.yaml
 
           - script: yarn dist:electron -wl
-            displayName: create electron distributables (windows, linux)
+            displayName: create electron distributables
 
           - task: PublishBuildArtifacts@1
             inputs:
                 pathtoPublish: '$(System.DefaultWorkingDirectory)/dist'
-                artifactName: 'dist'
+                artifactName: $(Agent.JobName)
+            displayName: publish dist
+
+    # CI build only
+    - job: 'publish_electron_mac'
+      #condition: and(always(), in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI'))
+      pool:
+          vmImage: 'macOS-10.14'
+      steps:
+          - template: pipeline/install-node-prerequisites.yaml
+
+          - script: yarn dist:electron -m
+            displayName: create electron distributables
+
+          - task: PublishBuildArtifacts@1
+            inputs:
+                pathtoPublish: '$(System.DefaultWorkingDirectory)/dist'
+                artifactName: $(Agent.JobName)
             displayName: publish dist
