@@ -101,7 +101,7 @@
         "ts-loader": "^6.0.4",
         "tslint": "^5.18.0",
         "tslint-microsoft-contrib": "6.2.0",
-        "typed-scss-modules": "^0.0.10",
+        "typed-scss-modules": "^0.0.11",
         "typemoq": "^2.1.0",
         "typescript": "^2.9.2",
         "uglifyjs-webpack-plugin": "^2.1.2",

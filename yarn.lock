@@ -8430,10 +8430,10 @@ type-is@~1.6.17, type-is@~1.6.18:
     media-typer "0.3.0"
     mime-types "~2.1.24"
 
-typed-scss-modules@^0.0.10:
-  version "0.0.10"
-  resolved "https://registry.yarnpkg.com/typed-scss-modules/-/typed-scss-modules-0.0.10.tgz#2a9f8d1657b5e299b630df195b84ee21bffd1d9e"
-  integrity sha512-uI3eoAsghJEaiGaex9PzQA6qHY4KX6Qx4iTXRWshBR/yMagivWxd24c7ku7C3422w11m+vgCgA4/zZqwc/9uWQ==
+typed-scss-modules@^0.0.11:
+  version "0.0.11"
+  resolved "https://registry.yarnpkg.com/typed-scss-modules/-/typed-scss-modules-0.0.11.tgz#9d63ebc4a7bc1add8dff80030a2406a930170215"
+  integrity sha512-cuH5f1SST2gzFu6zDgiaxZNEbO3Z3jmTOnJCqg2D6FQLtby+cQICkr1ec3u9Pe6NJUcAkguU3vCDSNZz2piebA==
   dependencies:
     "@types/reserved-words" "^0.1.0"
     camelcase "^5.0.0"
