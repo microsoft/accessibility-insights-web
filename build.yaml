@@ -94,7 +94,7 @@ jobs:
       pool:
           vmImage: 'windows-latest'
       steps:
-          - template: pipeline/distribute-electron.yaml
+          - template: pipeline/electron/distribute-electron.yaml
             parameters:
                 platforms: -wl
 
@@ -104,6 +104,6 @@ jobs:
       pool:
           vmImage: 'macOS-10.14'
       steps:
-          - template: pipeline/distribute-electron.yaml
+          - template: pipeline/electron/distribute-electron.yaml
             parameters:
                 platforms: -m
