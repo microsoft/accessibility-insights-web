@@ -1,11 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { ElementHandle } from 'puppeteer';
+
 import { Browser } from '../../common/browser';
 import { launchBrowser } from '../../common/browser-factory';
 import { fastPassSelectors } from '../../common/element-identifiers/fastpass-selectors';
 import { tabStopShadowDomSelectors, TargetPageElementSelectors } from '../../common/element-identifiers/target-page-selectors';
-import { Page } from '../../common/page-controllers/page';
 import { PopupPage } from '../../common/page-controllers/popup-page';
 import { TargetPage } from '../../common/page-controllers/target-page';
 
