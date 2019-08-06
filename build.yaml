@@ -90,7 +90,7 @@ jobs:
 
     # CI build only
     - job: 'publish_electron_windows_linux'
-      #condition: and(always(), in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI'))
+      condition: and(always(), in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI'))
       pool:
           vmImage: 'windows-latest'
       steps:
@@ -100,7 +100,7 @@ jobs:
 
     # CI build only
     - job: 'publish_electron_mac'
-      #condition: and(always(), in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI'))
+      condition: and(always(), in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI'))
       pool:
           vmImage: 'macOS-10.14'
       steps:
