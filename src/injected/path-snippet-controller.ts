@@ -36,19 +36,18 @@ export class PathSnippetController {
 
         this.elementFinderByPath.processRequest(message).then(
             result => {
-                this.sendBackElementFromPath(result, path);
+                this.sendBackSnippetFromPath(result);
             },
             err => {
-                this.sendBackElementFromPath('error', path);
+                this.sendBackErrorFromPath(path);
             },
         );
     };
 
-    private sendBackElementFromPath = (snippet: string, path: string): void => {
-        if (snippet === 'error') {
-            this.addCorrespondingSnippet('No code snippet is mapped to: ' + path);
-        } else {
-            this.addCorrespondingSnippet(snippet);
-        }
+    private sendBackSnippetFromPath = (snippet: string): void => {
+        this.addCorrespondingSnippet(snippet);
+    };
+    private sendBackErrorFromPath = (path: string): void => {
+        this.addCorrespondingSnippet('No code snippet is mapped to: ' + path);
     };
 }
