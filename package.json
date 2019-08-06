@@ -110,7 +110,7 @@
     },
     "dependencies": {
         "applicationinsights-js": "^1.0.20",
-        "axe-core": "3.2.2",
+        "axe-core": "3.3.1",
         "classnames": "^2.2.6",
         "lodash": "^4.17.15",
         "moment": "^2.24.0",
