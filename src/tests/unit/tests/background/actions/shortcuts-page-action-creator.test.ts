@@ -3,11 +3,11 @@
 import { isFunction } from 'lodash';
 import { IMock, It, Mock, Times } from 'typemoq';
 
-import { BaseActionPayload } from '../../../../../background/actions/action-payloads';
-import { ShortcutsPageActionCreator } from '../../../../../background/actions/shortcuts-page-action-creator';
-import { Interpreter } from '../../../../../background/interpreter';
-import { ShortcutsPageController } from '../../../../../background/shortcuts-page-controller';
-import { TelemetryEventHandler } from '../../../../../background/telemetry/telemetry-event-handler';
+import { BaseActionPayload } from 'background/actions/action-payloads';
+import { ShortcutsPageActionCreator } from 'background/actions/shortcuts-page-action-creator';
+import { Interpreter } from 'background/interpreter';
+import { ShortcutsPageController } from 'background/shortcuts-page-controller';
+import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
 import { Messages } from '../../../../../common/messages';
 import { SHORTCUT_CONFIGURE_OPEN } from '../../../../../common/telemetry-events';
 

@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { GlobalContext } from 'background/global-context';
+import { Interpreter } from 'background/interpreter';
+import { MessageDistributor, Sender } from 'background/message-distributor';
+import { TabContext, TabToContextMap } from 'background/tab-context';
 import { IMock, It, Mock, Times } from 'typemoq';
-import { GlobalContext } from '../../../../background/global-context';
-import { Interpreter } from '../../../../background/interpreter';
-import { MessageDistributor, Sender } from '../../../../background/message-distributor';
-import { TabContext, TabToContextMap } from '../../../../background/tab-context';
 import { BrowserAdapter } from '../../../../common/browser-adapters/browser-adapter';
 import { Logger } from '../../../../common/logging/logger';
 import { InterpreterMessage } from '../../../../common/message';

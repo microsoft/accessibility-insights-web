@@ -4,8 +4,8 @@ import { flatMap } from 'lodash';
 import { IMock, Mock, MockBehavior } from 'typemoq';
 
 import { Assessment } from 'assessments/types/iassessment';
-import { InitialDataCreator } from '../../../../background/create-initial-assessment-test-data';
-import { InitialAssessmentStoreDataGenerator } from '../../../../background/initial-assessment-store-data-generator';
+import { InitialDataCreator } from 'background/create-initial-assessment-test-data';
+import { InitialAssessmentStoreDataGenerator } from 'background/initial-assessment-store-data-generator';
 import { AssessmentData, AssessmentStoreData } from '../../../../common/types/store-data/assessment-result-data';
 import { VisualizationType } from '../../../../common/types/visualization-type';
 import { DictionaryStringTo } from '../../../../types/common-types';

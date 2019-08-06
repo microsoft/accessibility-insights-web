@@ -3,9 +3,9 @@
 import { isFunction } from 'lodash';
 import { IMock, It, Mock, Times } from 'typemoq';
 
-import { ScopingActions, ScopingPayload } from '../../../../../background/actions/scoping-actions';
-import { ScopingActionCreator } from '../../../../../background/global-action-creators/scoping-action-creator';
-import { Interpreter } from '../../../../../background/interpreter';
+import { ScopingActions, ScopingPayload } from 'background/actions/scoping-actions';
+import { ScopingActionCreator } from 'background/global-action-creators/scoping-action-creator';
+import { Interpreter } from 'background/interpreter';
 import { Action } from '../../../../../common/flux/action';
 import { Messages } from '../../../../../common/messages';
 

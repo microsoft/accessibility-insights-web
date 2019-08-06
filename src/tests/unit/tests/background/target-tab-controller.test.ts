@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { IMock, Mock, Times } from 'typemoq';
 
-import { TargetTabController } from '../../../../background/target-tab-controller';
+import { TargetTabController } from 'background/target-tab-controller';
 import { BrowserAdapter } from '../../../../common/browser-adapters/browser-adapter';
 import { VisualizationConfiguration } from '../../../../common/configs/visualization-configuration';
 import { VisualizationConfigurationFactory } from '../../../../common/configs/visualization-configuration-factory';

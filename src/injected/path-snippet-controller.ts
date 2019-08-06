@@ -2,17 +2,19 @@
 // Licensed under the MIT License.
 import { BaseStore } from '../common/base-store';
 import { PathSnippetStoreData } from '../common/types/store-data/path-snippet-store-data';
+import { ElementFinderByPath, ElementFinderByPathMessage } from './element-finder-by-path';
 
 export class PathSnippetController {
     constructor(
         private readonly pathSnippetStore: BaseStore<PathSnippetStoreData>,
+        private readonly elementFinderByPath: ElementFinderByPath,
         private readonly addCorrespondingSnippet: (snippet: string) => void,
     ) {}
 
-    public listenToStore(): void {
+    public listenToStore = (): void => {
         this.pathSnippetStore.addChangedListener(this.onChangedState);
         this.onChangedState();
-    }
+    };
 
     private onChangedState = (): void => {
         const pathSnippetStoreState = this.pathSnippetStore.getState();
@@ -22,12 +24,31 @@ export class PathSnippetController {
         }
 
         if (pathSnippetStoreState.path) {
-            const retrievedSnippet = this.getElementFromPath(pathSnippetStoreState.path);
-            this.addCorrespondingSnippet(retrievedSnippet);
+            this.getElementFromPath(pathSnippetStoreState.path);
         }
     };
 
-    private getElementFromPath = (path: string): string => {
-        return 'Retrieved Snippet from Store for Path: ' + path;
+    private getElementFromPath = (path: string): void => {
+        const splitPath = path.split(';');
+        const message = {
+            path: splitPath,
+        } as ElementFinderByPathMessage;
+
+        this.elementFinderByPath.processRequest(message).then(
+            result => {
+                this.sendBackElementFromPath(result, path);
+            },
+            err => {
+                this.sendBackElementFromPath('error', path);
+            },
+        );
+    };
+
+    private sendBackElementFromPath = (snippet: string, path: string): void => {
+        if (snippet === 'error') {
+            this.addCorrespondingSnippet('No code snippet is mapped to: ' + path);
+        } else {
+            this.addCorrespondingSnippet(snippet);
+        }
     };
 }

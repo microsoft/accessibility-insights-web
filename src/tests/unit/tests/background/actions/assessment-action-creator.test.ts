@@ -1,11 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { BaseActionPayload, ToggleActionPayload } from 'background/actions/action-payloads';
+import { AssessmentActionCreator } from 'background/actions/assessment-action-creator';
+import { AssessmentActions } from 'background/actions/assessment-actions';
+import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
 import { isFunction } from 'lodash';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
-import { BaseActionPayload, ToggleActionPayload } from '../../../../../background/actions/action-payloads';
-import { AssessmentActionCreator } from '../../../../../background/actions/assessment-action-creator';
-import { AssessmentActions } from '../../../../../background/actions/assessment-actions';
-import { TelemetryEventHandler } from '../../../../../background/telemetry/telemetry-event-handler';
 import { Action } from '../../../../../common/flux/action';
 import { RegisterTypeToPayloadCallback } from '../../../../../common/message';
 import { Messages } from '../../../../../common/messages';

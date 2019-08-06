@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { ScopingInputTypes } from 'background/scoping-input-types';
 import * as Q from 'q';
-import { ScopingInputTypes } from '../../background/scoping-input-types';
 import { BaseStore } from '../../common/base-store';
 import { VisualizationConfigurationFactory } from '../../common/configs/visualization-configuration-factory';
 import { TelemetryDataFactory } from '../../common/telemetry-data-factory';

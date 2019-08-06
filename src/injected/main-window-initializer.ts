@@ -208,6 +208,7 @@ export class MainWindowInitializer extends WindowInitializer {
 
         this.pathSnippetController = new PathSnippetController(
             this.pathSnippetStoreProxy,
+            this.elementFinderByPath,
             pathSnippetActionMessageCreator.addCorrespondingSnippet,
         );
 

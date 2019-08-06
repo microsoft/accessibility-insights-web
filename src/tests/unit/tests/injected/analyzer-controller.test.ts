@@ -2,10 +2,10 @@
 // Licensed under the MIT License.
 import { AssessmentsProviderImpl } from 'assessments/assessments-provider';
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
+import { FeatureFlagStore } from 'background/stores/global/feature-flag-store';
+import { ScopingStore } from 'background/stores/global/scoping-store';
+import { VisualizationStore } from 'background/stores/visualization-store';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
-import { FeatureFlagStore } from '../../../../background/stores/global/feature-flag-store';
-import { ScopingStore } from '../../../../background/stores/global/scoping-store';
-import { VisualizationStore } from '../../../../background/stores/visualization-store';
 import { BaseStore } from '../../../../common/base-store';
 import { VisualizationConfiguration } from '../../../../common/configs/visualization-configuration';
 import { VisualizationConfigurationFactory } from '../../../../common/configs/visualization-configuration-factory';

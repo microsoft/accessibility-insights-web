@@ -13,10 +13,6 @@ export class ChromeAdapter implements BrowserAdapter, StorageAdapter, CommandsAd
         chrome.windows.getAll(getInfo, callback);
     }
 
-    public getSelectedTabInWindow(windowId: number, callback: (activeTab: chrome.tabs.Tab) => void): void {
-        chrome.tabs.getSelected(windowId, callback);
-    }
-
     public addListenerToTabsOnActivated(callback: (activeInfo: chrome.tabs.TabActiveInfo) => void): void {
         chrome.tabs.onActivated.addListener(callback);
     }

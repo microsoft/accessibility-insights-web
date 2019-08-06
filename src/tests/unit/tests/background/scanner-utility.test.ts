@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { AssessmentToggleActionPayload } from 'background/actions/action-payloads';
+import { Interpreter } from 'background/interpreter';
+import { ScannerUtility } from 'background/scanner-utility';
 import { It, Mock, MockBehavior } from 'typemoq';
-import { AssessmentToggleActionPayload } from '../../../../background/actions/action-payloads';
-import { Interpreter } from '../../../../background/interpreter';
-import { ScannerUtility } from '../../../../background/scanner-utility';
 import { Messages } from '../../../../common/messages';
 import { WindowUtils } from '../../../../common/window-utils';
 import { itIsFunction } from '../../common/it-is-function';

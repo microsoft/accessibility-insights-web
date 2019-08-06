@@ -3,8 +3,8 @@
 import * as React from 'react';
 
 import * as Markup from 'assessments/markup';
-import { InspectMode } from '../../background/inspect-modes';
-import { ScopingInputTypes } from '../../background/scoping-input-types';
+import { InspectMode } from 'background/inspect-modes';
+import { ScopingInputTypes } from 'background/scoping-input-types';
 import { SelectorInputList } from '../../common/components/selector-input-list';
 import { InspectActionMessageCreator } from '../../common/message-creators/inspect-action-message-creator';
 import { ScopingActionMessageCreator } from '../../common/message-creators/scoping-action-message-creator';

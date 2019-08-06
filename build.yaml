@@ -63,3 +63,20 @@ jobs:
                 pathtoPublish: '$(System.DefaultWorkingDirectory)/drop'
                 artifactName: 'drop'
             displayName: publish drop
+
+    # CI build only
+    - job: 'publish_electron_dist'
+      condition: and(always(), in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI'))
+      pool:
+          vmImage: 'windows-latest'
+      steps:
+          - template: pipeline/install-node-prerequisites.yaml
+
+          - script: yarn dist:electron -wl
+            displayName: create electron distributables (windows, linux)
+
+          - task: PublishBuildArtifacts@1
+            inputs:
+                pathtoPublish: '$(System.DefaultWorkingDirectory)/dist'
+                artifactName: 'dist'
+            displayName: publish dist

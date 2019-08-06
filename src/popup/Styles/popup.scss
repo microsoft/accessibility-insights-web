@@ -5,7 +5,7 @@
 body {
     margin: 0;
     overflow-y: auto;
-    height: 0px;
+    height: fit-content; // required for the popup's window to resize properly when the details view is zoomed in/out
     background: $neutral-0;
     font-family: $fontFamily;
 }
@@ -49,7 +49,7 @@ div.insights-dialog-main-override.telemetry-permission-dialog {
 }
 
 html {
-    height: 0px; //required for properly resize the popup when zoom in/out
+    height: fit-content; // required for the popup's window to resize properly when the details view is zoomed in/out
 }
 
 // The CSS selector here specifically targets Microsoft Edge.

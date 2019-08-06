@@ -80,13 +80,19 @@ export class TabController {
             { populate: false, windowTypes: ['normal', 'popup'] },
             (chromeWindows: chrome.windows.Window[]) => {
                 chromeWindows.forEach((chromeWindow: chrome.windows.Window) => {
-                    this.browserAdapter.getSelectedTabInWindow(chromeWindow.id, (activeTab: chrome.tabs.Tab) => {
-                        if (!this.browserAdapter.getRuntimeLastError()) {
-                            if (activeTab) {
-                                this.sendTabVisibilityChangeAction(activeTab.id, chromeWindow.state === 'minimized');
+                    this.browserAdapter.tabsQuery(
+                        {
+                            active: true,
+                            windowId: chromeWindow.id,
+                        },
+                        (activeTabs: chrome.tabs.Tab[]) => {
+                            if (!this.browserAdapter.getRuntimeLastError()) {
+                                for (const activeTab of activeTabs) {
+                                    this.sendTabVisibilityChangeAction(activeTab.id, chromeWindow.state === 'minimized');
+                                }
                             }
-                        }
-                    });
+                        },
+                    );
                 });
             },
         );

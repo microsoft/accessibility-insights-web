@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { Mock, MockBehavior, Times } from 'typemoq';
 
-import { TabContextBroadcaster } from '../../../../background/tab-context-broadcaster';
+import { TabContextBroadcaster } from 'background/tab-context-broadcaster';
 import { BrowserAdapter } from '../../../../common/browser-adapters/browser-adapter';
 import { StoreUpdateMessage } from '../../../../common/types/store-update-message';
 

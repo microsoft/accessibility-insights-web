@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { VisualizationScanResultStore } from '../../../background/stores/visualization-scan-result-store';
+import { VisualizationScanResultStore } from 'background/stores/visualization-scan-result-store';
 import { TabbedElementData, VisualizationScanResultData } from '../../../common/types/store-data/visualization-scan-result-data';
 import { VisualizationType } from '../../../common/types/visualization-type';
 import { HtmlElementAxeResults } from '../../../injected/scanner-utils';

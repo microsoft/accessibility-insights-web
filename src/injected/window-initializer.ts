@@ -17,6 +17,7 @@ import { ClientUtils } from './client-utils';
 import { rootContainerId } from './constants';
 import { DetailsDialogHandler } from './details-dialog-handler';
 import { DrawingController } from './drawing-controller';
+import { ElementFinderByPath } from './element-finder-by-path';
 import { ElementFinderByPosition } from './element-finder-by-position';
 import { FrameUrlFinder } from './frame-url-finder';
 import { FrameCommunicator } from './frameCommunicators/frame-communicator';
@@ -45,6 +46,7 @@ export class WindowInitializer {
     protected frameUrlFinder: FrameUrlFinder;
     protected instanceVisibilityChecker: InstanceVisibilityChecker;
     protected elementFinderByPosition: ElementFinderByPosition;
+    protected elementFinderByPath: ElementFinderByPath;
     protected clientUtils: ClientUtils;
     protected scannerUtils: ScannerUtils;
     protected visualizationConfigurationFactory: VisualizationConfigurationFactory;
@@ -122,6 +124,9 @@ export class WindowInitializer {
             document,
         );
         this.elementFinderByPosition.initialize();
+
+        this.elementFinderByPath = new ElementFinderByPath(htmlElementUtils, this.frameCommunicator);
+        this.elementFinderByPath.initialize();
 
         await Promise.all(asyncInitializationSteps);
     }

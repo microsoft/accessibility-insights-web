@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { FeatureFlagActions, FeatureFlagPayload } from 'background/actions/feature-flag-actions';
+import { LocalStorageDataKeys } from 'background/local-storage-data-keys';
+import { LocalStorageData } from 'background/storage-data';
+import { FeatureFlagStore } from 'background/stores/global/feature-flag-store';
 import { IMock, It, Mock, Times } from 'typemoq';
-import { FeatureFlagActions, FeatureFlagPayload } from '../../../../../../background/actions/feature-flag-actions';
-import { LocalStorageDataKeys } from '../../../../../../background/local-storage-data-keys';
-import { LocalStorageData } from '../../../../../../background/storage-data';
-import { FeatureFlagStore } from '../../../../../../background/stores/global/feature-flag-store';
 import { StorageAdapter } from '../../../../../../common/browser-adapters/storage-adapter';
 import { getDefaultFeatureFlagValues } from '../../../../../../common/feature-flags';
 import { StoreNames } from '../../../../../../common/stores/store-names';

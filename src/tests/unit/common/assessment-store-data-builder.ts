@@ -3,9 +3,9 @@
 import { IMock, It, Mock, MockBehavior } from 'typemoq';
 
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
-import { AssessmentDataConverter } from '../../../background/assessment-data-converter';
-import { InitialAssessmentStoreDataGenerator } from '../../../background/initial-assessment-store-data-generator';
-import { AssessmentStore } from '../../../background/stores/assessment-store';
+import { AssessmentDataConverter } from 'background/assessment-data-converter';
+import { InitialAssessmentStoreDataGenerator } from 'background/initial-assessment-store-data-generator';
+import { AssessmentStore } from 'background/stores/assessment-store';
 import { AssessmentData, AssessmentStoreData } from '../../../common/types/store-data/assessment-result-data';
 import { VisualizationType } from '../../../common/types/visualization-type';
 import { BaseDataBuilder } from './base-data-builder';

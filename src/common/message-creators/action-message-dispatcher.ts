@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { PayloadWithEventName } from '../../background/actions/action-payloads';
+import { PayloadWithEventName } from 'background/actions/action-payloads';
 import { InterpreterMessage, Message } from '../message';
 import { Messages } from '../messages';
 import { TelemetryData } from '../telemetry-events';

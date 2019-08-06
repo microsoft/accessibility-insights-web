@@ -3,7 +3,7 @@
 import { isFunction } from 'lodash';
 import { IMock, It, Mock, Times } from 'typemoq';
 
-import { UserStoredDataCleaner } from '../../../../background/user-stored-data-cleaner';
+import { UserStoredDataCleaner } from 'background/user-stored-data-cleaner';
 import { StorageAdapter } from '../../../../common/browser-adapters/storage-adapter';
 
 describe('UserStoredDataCleanerTest', () => {

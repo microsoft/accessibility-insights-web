@@ -2,10 +2,10 @@
 // Licensed under the MIT License.
 import { Mock, Times } from 'typemoq';
 
-import { ContentActionCreator } from '../../../../../background/actions/content-action-creator';
-import { ContentActions, ContentPayload } from '../../../../../background/actions/content-actions';
-import { DetailsViewController } from '../../../../../background/details-view-controller';
-import { TelemetryEventHandler } from '../../../../../background/telemetry/telemetry-event-handler';
+import { ContentActionCreator } from 'background/actions/content-action-creator';
+import { ContentActions, ContentPayload } from 'background/actions/content-actions';
+import { DetailsViewController } from 'background/details-view-controller';
+import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
 import { Action } from '../../../../../common/flux/action';
 import { Messages } from '../../../../../common/messages';
 import { CONTENT_PANEL_CLOSED, CONTENT_PANEL_OPENED } from '../../../../../common/telemetry-events';
