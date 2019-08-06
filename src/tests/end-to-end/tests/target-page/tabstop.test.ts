@@ -4,8 +4,7 @@ import { ElementHandle } from 'puppeteer';
 
 import { Browser } from '../../common/browser';
 import { launchBrowser } from '../../common/browser-factory';
-import { fastPassSelectors } from '../../common/element-identifiers/fastpass-selectors';
-import { tabStopShadowDomSelectors } from '../../common/element-identifiers/target-page-selectors';
+import { TabStopShadowDomSelectors, TargetPageInjectedComponentSelectors } from '../../common/element-identifiers/target-page-selectors';
 import { PopupPage } from '../../common/page-controllers/popup-page';
 import { TargetPage } from '../../common/page-controllers/target-page';
 
@@ -37,16 +36,18 @@ describe('tabstop tests', () => {
         await targetPage.keyPress('Tab');
 
         const shadowRoot = await targetPage.getShadowRoot();
-        await targetPage.waitForDescendentSelector(shadowRoot, fastPassSelectors.tabStopVisulizationStart, { visible: true });
+        await targetPage.waitForDescendentSelector(shadowRoot, TargetPageInjectedComponentSelectors.tabStopVisulizationStart, {
+            visible: true,
+        });
 
         await validateTabStopVisualizationOnTargetPage(shadowRoot);
     });
 
     async function validateTabStopVisualizationOnTargetPage(shadowRoot: ElementHandle<Element>): Promise<void> {
-        const svgs = await shadowRoot.$$(tabStopShadowDomSelectors.svg);
-        const ellipses = await shadowRoot.$$(tabStopShadowDomSelectors.ellipse);
-        const lines = await shadowRoot.$$(tabStopShadowDomSelectors.lines);
-        const texts = await shadowRoot.$$(tabStopShadowDomSelectors.text);
+        const svgs = await shadowRoot.$$(TabStopShadowDomSelectors.svg);
+        const ellipses = await shadowRoot.$$(TabStopShadowDomSelectors.ellipse);
+        const lines = await shadowRoot.$$(TabStopShadowDomSelectors.lines);
+        const texts = await shadowRoot.$$(TabStopShadowDomSelectors.text);
 
         // 3 tabs produce 1 svg, 2 ellipses, 1 texts and 1 line between them
 
