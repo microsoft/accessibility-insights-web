@@ -131,10 +131,6 @@ export class Page {
         return this.waitForSelector(`#${id}`);
     }
 
-    public async waitForDuration(duration: number): Promise<void> {
-        await this.underlyingPage.waitFor(duration);
-    }
-
     public async waitForDescendentSelector(
         parentElement: Puppeteer.ElementHandle<Element>,
         descendentSelector: string,
@@ -252,10 +248,6 @@ export class Page {
         return new URL(this.underlyingPage.target().url());
     }
 
-    public frames(): Puppeteer.Frame[] {
-        return this.underlyingPage.frames();
-    }
-
     public async keyPress(key: string): Promise<void> {
         await this.screenshotOnError(async () => {
             await this.underlyingPage.keyboard.press(key);
@@ -269,10 +261,6 @@ export class Page {
             });
             return await this.underlyingPage.evaluate(el => el.outerHTML, element);
         });
-    }
-
-    public async takeScreenshot(): Promise<void> {
-        await takeScreenshot(this.underlyingPage);
     }
 
     private async screenshotOnError<T>(fn: () => Promise<T>): Promise<T> {
