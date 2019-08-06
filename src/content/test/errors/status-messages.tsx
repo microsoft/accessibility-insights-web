@@ -134,7 +134,7 @@ export const infoAndExamples = create(({ Markup }) => (
                 Using role=log to identify sequential information updates
             </Markup.HyperLink>
         </Markup.Links>
-        <p>Using role="progressbar" (future link)</p>
+        <p>Using role="progressbar"</p>
         <Markup.Links>
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/aria/ARIA22">
                 Using role=status to present status messages
@@ -150,11 +150,11 @@ export const infoAndExamples = create(({ Markup }) => (
         <h3>Common failures</h3>
         <p>
             Using <Markup.Code>role="alert"</Markup.Code> or <Markup.Code> aria-live="assertive"</Markup.Code> on content that's is not
-            important and time-sensitive (future link)
+            important and time-sensitive
         </p>
         <p>
             Using a <Markup.Code>visibilitychange</Markup.Code> event to hide or display a document without switching the document's live
-            regions between active and inactive (future link){' '}
+            regions between active and inactive
         </p>
     </>
 ));
