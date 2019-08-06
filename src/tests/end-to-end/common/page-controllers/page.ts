@@ -109,12 +109,6 @@ export class Page {
         );
     }
 
-    public async waitForNavigation(options?: Puppeteer.NavigationOptions): Promise<Puppeteer.Response> {
-        return await this.screenshotOnError(
-            async () => await this.underlyingPage.waitForNavigation({ timeout: DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS, ...options }),
-        );
-    }
-
     public async waitForSelector(selector: string, options?: Puppeteer.WaitForSelectorOptions): Promise<Puppeteer.ElementHandle<Element>> {
         return await this.screenshotOnError(
             async () => await this.underlyingPage.waitForSelector(selector, { timeout: DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS, ...options }),
