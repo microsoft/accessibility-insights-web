@@ -1,0 +1,15 @@
+# Copyright (c) Microsoft Corporation. All rights reserved.
+# Licensed under the MIT License.
+steps:
+    - script: yarn build:electron
+      displayName: build:electron
+
+    - script: yarn test:electron --ci
+      displayName: run electron e2e tests
+
+    - task: PublishTestResults@2
+      inputs:
+          testResultsFiles: test-results/electron/junit-electron.xml
+          testRunTitle: $(Agent.JobName)
+      condition: succeededOrFailed()
+      displayName: publish electron e2e test results

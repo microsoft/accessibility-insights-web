@@ -80,3 +80,24 @@ jobs:
                 pathtoPublish: '$(System.DefaultWorkingDirectory)/dist'
                 artifactName: 'dist'
             displayName: publish dist
+
+    - job: 'electron_tests_mac'
+      pool:
+          vmImage: macOS-10.14
+      steps:
+          - template: pipeline/install-node-prerequisites.yaml
+          - template: pipeline/electron-e2e-test.yaml
+
+    - job: 'electron_tests_linux'
+      pool:
+          vmImage: ubuntu-16.04
+      steps:
+          - template: pipeline/install-node-prerequisites.yaml
+          - template: pipeline/electron-e2e-test.yaml
+
+    - job: 'electron_tests_windows'
+      pool:
+          vmImage: windows-latest
+      steps:
+          - template: pipeline/install-node-prerequisites.yaml
+          - template: pipeline/electron-e2e-test.yaml
