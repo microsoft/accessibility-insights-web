@@ -257,7 +257,9 @@ export class Page {
     }
 
     public async keyPress(key: string): Promise<void> {
-        await this.underlyingPage.keyboard.press(key);
+        await this.screenshotOnError(async () => {
+            await this.underlyingPage.keyboard.press(key);
+        });
     }
 
     public async getOuterHTMLOfSelector(selector: string): Promise<string> {
