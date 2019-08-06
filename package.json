@@ -19,7 +19,7 @@
         "build:prod": "grunt build-prod",
         "copyrightheaders": "grunt copyright-check",
         "copyrightheaders:fix": "grunt copyright-add",
-        "dist:electron": "yarn build:electron && electron-builder -c.extraMetadata.main=drop/electron/extension/bundle/main.bundle.js -c.extraMetadata.name=ai-mobile -p never",
+        "dist:electron": "yarn build:electron && electron-builder -p never",
         "format": "prettier --config prettier.config.js --write \"**/*\"",
         "format-check": "prettier --config prettier.config.js --check \"**/*\"",
         "generate-scss-typings": "tsm \"src/**/*.scss\"",

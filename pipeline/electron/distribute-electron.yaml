@@ -1,0 +1,17 @@
+# Copyright (c) Microsoft Corporation. All rights reserved.
+# Licensed under the MIT License.
+
+parameters:
+    platforms: '' # electron-builder platforms, e.g. -wl for win/linux, -m for mac, etc
+
+steps:
+    - template: ../install-node-prerequisites.yaml
+
+    - script: yarn dist:electron ${{ parameters.platforms }}
+      displayName: create electron distributables
+
+    - task: PublishBuildArtifacts@1
+      inputs:
+          pathtoPublish: '$(System.DefaultWorkingDirectory)/dist'
+          artifactName: $(Agent.JobName)
+      displayName: publish dist
