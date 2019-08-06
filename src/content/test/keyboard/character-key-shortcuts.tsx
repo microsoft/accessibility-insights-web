@@ -4,14 +4,23 @@ import { create, React } from '../../common';
 
 export const infoAndExamples = create(({ Markup }) => (
     <>
-        <h1>Hover / focus content</h1>
-        <p>Content that appears on focus or hover must be dismissible, hoverable, and persistent.</p>
+        <h1>Character key shortcuts</h1>
+        <p>Users must be able to turn off or remap single-key key shortcuts.</p>
 
         <h2>Why it matters</h2>
-        <p>Additional content that appears on focus or hover can present problems if users can't easily see it or dismiss it.</p>
+        <p>
+            While single-key shortcuts are fast and convenient for some people who use keyboards, they can create problems for keyboard
+            users with dexterity problems and for speech input users. These users risk triggering shortcut keys accidentally—through an
+            errant keypress or utterance—with potentially serious consequences. To avoid unintended input, users must be able to turn off
+            single-key shortcuts or to remap them to include non-character keys, such as Alt or Ctrl. Because screen reader users typically
+            make heavy use of keyboard shortcuts, they also benefit from the ability to remap.
+        </p>
 
         <h2>How to fix</h2>
-        <p>Ensure that any content that appears on focus or hover is:</p>
+        <p>
+            If a keyboard shortcut is implemented using only letter, number, punctuation, or symbol characters, make sure at least one of
+            the following is true:
+        </p>
         <ul>
             <li> The user can turn off the keyboard shortcut.</li>
             <li> The user can remap the keyboard shortcut to include a non-printable key, such as Alt or Ctrl.</li>

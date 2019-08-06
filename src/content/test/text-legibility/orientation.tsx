@@ -24,7 +24,7 @@ export const infoAndExamples = create(({ Markup }) => (
         <Markup.PassFail
             failText={
                 <p>
-                    A banking application uses <Markup.Code>Screen.lockOrientation(‘landscape’)</Markup.Code> to lock all content to a
+                    A banking application uses <Markup.Code>Screen.lockOrientation('landscape')</Markup.Code> to lock all content to a
                     horizontal orientation.
                 </p>
             }

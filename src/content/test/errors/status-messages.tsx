@@ -54,11 +54,10 @@ export const infoAndExamples = create(({ Markup }) => (
                 </p>
             }
             failExample={`
-                <body>
                 <form name="enroll" id="enroll" method="post" action="">
                 <p [id="error"]>You must enter your username.</p>
                 <p>
-                <label for="email">Username (required): </label>
+                <label for="username">Username (required): </label>
                 <input type="text" name="username" id="username"
                 </p>
                 <p>
@@ -68,11 +67,10 @@ export const infoAndExamples = create(({ Markup }) => (
             `}
             passText={<p>The status message has the appropriate role (alert), so it is announced </p>}
             passExample={`
-                <body>
                 <form name="enroll" id="enroll" method="post" action="">
                 <p id="error" [role="alert"]>You must enter your username.</p>
                 <p>
-                <label for="email">Username (required): </label>
+                <label for="username">Username (required): </label>
                 <input type="text" name="username" id="username"
                 </p>
                 <p>
@@ -92,7 +90,7 @@ export const infoAndExamples = create(({ Markup }) => (
         </Markup.Links>
 
         <h3>Sufficient techniques</h3>
-        <h4>If a status message conveys a suggestion, or a warning on the existence of an error:</h4>
+        <p>If a status message conveys a suggestion, or a warning on the existence of an error:</p>
         <Markup.Links>
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/aria/ARIA19">
                 Using ARIA role=alert or Live Regions to Identify Errors
@@ -130,7 +128,7 @@ export const infoAndExamples = create(({ Markup }) => (
             </Markup.HyperLink>
         </Markup.Links>
 
-        <p>If a status message conveys information on the progress of a process</p>
+        <p>If a status message conveys information on the progress of a process:</p>
         <Markup.Links>
             <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Techniques/aria/ARIA23">
                 Using role=log to identify sequential information updates

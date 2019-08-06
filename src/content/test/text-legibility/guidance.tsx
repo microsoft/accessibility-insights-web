@@ -72,8 +72,8 @@ export const guidance = create(({ Markup, Link }) => (
                     <Link.WCAG_1_4_10 />)
                 </h3>
                 <ul>
-                    <li> Ideally, scripts read horizontally should require only vertical scrolling, and </li>
-                    <li> Scripts read vertically should require only horizontal scrolling.</li>
+                    <li> Ideally, text read horizontally should require only vertical scrolling, and </li>
+                    <li> Text read vertically should require only horizontal scrolling.</li>
                 </ul>
 
                 <h3>

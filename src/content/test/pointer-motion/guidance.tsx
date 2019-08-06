@@ -26,13 +26,13 @@ export const guidance = create(({ Markup, Link }) => (
                         users abort or undo the function, or
                     </li>
                     <li>
-                        Complete e the function on the down event, but use the up event to reverse the outcome of the preceding down event.
+                        Complete the function on the down event, but use the up event to reverse the outcome of the preceding down event.
                     </li>
                 </ul>
             </Markup.Do>
             <Markup.Dont>
                 <h3>
-                    Don't require multipoint or path-based gestures (<Link.WCAG_2_5_1 />)
+                    Don't require multipoint or path-based gestures. (<Link.WCAG_2_5_1 />)
                 </h3>
                 <ul>
                     <li>
@@ -46,7 +46,7 @@ export const guidance = create(({ Markup, Link }) => (
                 </h3>
                 <ul>
                     <li>Make sure users can operate all functionality using UI components, and</li>
-                    <li>Gie users the option of disabling motion operation.</li>
+                    <li>Give users the option of disabling motion operation.</li>
                 </ul>
             </Markup.Dont>
         </Markup.Columns>
@@ -64,8 +64,8 @@ export const guidance = create(({ Markup, Link }) => (
         <h3>Multipoint and path-based gestures</h3>
         <h4>WCAG success criteria</h4>
         <Markup.Links>
-            <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Understanding/pointer-cancellation.html">
-                Understanding Success Criterion 2.5.2 Pointer Cancellation
+            <Markup.HyperLink href="https://www.w3.org/WAI/WCAG21/Understanding/pointer-gestures">
+                Understanding Success Criterion 2.5.1 Pointer Gestures
             </Markup.HyperLink>
         </Markup.Links>
 

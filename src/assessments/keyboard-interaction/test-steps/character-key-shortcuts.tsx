@@ -21,13 +21,8 @@ const howToTest: JSX.Element = (
             <li>
                 Verify that at least one of the following is true:
                 <ol>
-                    <li>
-                        <Markup.Term>Turn off.</Markup.Term> A mechanism is available to turn off the shortcut.
-                    </li>
-                    <li>
-                        <Markup.Term>Remap.</Markup.Term> A mechanism is available to remap the shortcut to use one or more non-printable
-                        keyboard characters.
-                    </li>
+                    <li>A mechanism is available to turn off the shortcut.</li>
+                    <li>A mechanism is available to remap the shortcut to use one or more non-printable keyboard characters.</li>
                 </ol>
                 Exception: This requirement does not apply to a keyboard shortcut for a user interface component if the shortcut is active
                 only when that component has focus.
