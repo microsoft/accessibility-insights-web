@@ -16,7 +16,7 @@ exports[`FailureInstancePanelControlTest render FailureInstancePanelControl: cre
   </CustomizedActionButton>
   <GenericPanel
     className="failure-instance-panel"
-    closeButtonAriaLabel={null}
+    closeButtonAriaLabel="Close failure instance panel"
     hasCloseButton={true}
     isOpen={false}
     onDismiss={[Function]}
@@ -61,7 +61,7 @@ exports[`FailureInstancePanelControlTest render FailureInstancePanelControl: edi
   </StyledLinkBase>
   <GenericPanel
     className="failure-instance-panel"
-    closeButtonAriaLabel={null}
+    closeButtonAriaLabel="Close failure instance panel"
     hasCloseButton={true}
     isOpen={false}
     onDismiss={[Function]}
@@ -109,7 +109,7 @@ exports[`FailureInstancePanelControlTest render FailureInstancePanelControl: par
   </CustomizedActionButton>
   <GenericPanel
     className="failure-instance-panel"
-    closeButtonAriaLabel={null}
+    closeButtonAriaLabel="Close failure instance panel"
     hasCloseButton={true}
     isOpen={false}
     onDismiss={[Function]}

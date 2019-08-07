@@ -118,7 +118,7 @@ export class FailureInstancePanelControl extends React.Component<FailureInstance
                     ? FailureInstancePanelControl.addFailureInstanceLabel
                     : 'Edit failure instance',
             hasCloseButton: true,
-            closeButtonAriaLabel: null,
+            closeButtonAriaLabel: 'Close failure instance panel',
             onRenderFooterContent: this.getActionCancelbuttons,
         };
 
