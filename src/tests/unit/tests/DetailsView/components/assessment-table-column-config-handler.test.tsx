@@ -6,9 +6,9 @@ import * as React from 'react';
 import { IMock, It, Mock, Times } from 'typemoq';
 
 import { AssessmentNavState } from '../../../../../common/types/store-data/assessment-result-data';
-import { AssessmentInstanceDetailsColumn } from '../../../../../DetailsView/components/assessment-instance-details-column';
 import { CapturedInstanceRowData } from '../../../../../DetailsView/components/assessment-instance-table';
 import { AssessmentTableColumnConfigHandler } from '../../../../../DetailsView/components/assessment-table-column-config-handler';
+import { FailureInstanceDetailsColumn } from '../../../../../DetailsView/components/failure-instance-details-column';
 import { MasterCheckBoxConfigProvider } from '../../../../../DetailsView/handlers/master-checkbox-config-provider';
 import {
     CreateTestAssessmentProvider,
@@ -119,17 +119,12 @@ describe('AssessmentTableColumnConfigHandlerTest', () => {
             instance: {
                 id: 'id',
                 description: 'comment',
+                selector: 'path',
             },
             instanceActionButtons: null,
         };
         const expected = (
-            <AssessmentInstanceDetailsColumn
-                background={'#767676'}
-                labelText={'N/A'}
-                textContent={item.instance.description}
-                tooltipId={item.instance.id}
-                customClassName="not-applicable"
-            />
+            <FailureInstanceDetailsColumn descriptionContent={item.instance.description} pathContent={item.instance.selector} />
         );
 
         expect(onRender(item)).toEqual(expected);

@@ -117,8 +117,9 @@ export class FailureInstancePanelControl extends React.Component<FailureInstance
                 this.props.actionType === CapturedInstanceActionType.CREATE
                     ? FailureInstancePanelControl.addFailureInstanceLabel
                     : 'Edit failure instance',
-            hasCloseButton: false,
+            hasCloseButton: true,
             closeButtonAriaLabel: null,
+            onRenderFooterContent: this.getActionCancelbuttons,
         };
 
         return (
@@ -133,17 +134,24 @@ export class FailureInstancePanelControl extends React.Component<FailureInstance
                     className="observed-failure-textfield"
                     label="Comments"
                     multiline={true}
-                    rows={8}
+                    rows={4}
                     value={this.state.currentInstance.failureDescription}
                     onChange={this.onFailureDescriptionChange}
                     resizable={false}
                 />
+            </GenericPanel>
+        );
+    }
+
+    private getActionCancelbuttons = (): JSX.Element => {
+        return (
+            <div className="footer">
                 <ActionAndCancelButtonsComponent
                     isHidden={false}
                     primaryButtonDisabled={
                         this.state.currentInstance.failureDescription === null && this.state.currentInstance.path === null
                     }
-                    primaryButtonText={this.props.actionType === CapturedInstanceActionType.CREATE ? 'Add' : 'Save'}
+                    primaryButtonText={this.props.actionType === CapturedInstanceActionType.CREATE ? 'Add failed instance' : 'Save'}
                     primaryButtonOnClick={
                         this.props.actionType === CapturedInstanceActionType.CREATE
                             ? this.onAddFailureInstance
@@ -151,9 +159,9 @@ export class FailureInstancePanelControl extends React.Component<FailureInstance
                     }
                     cancelButtonOnClick={this.closeFailureInstancePanel}
                 />
-            </GenericPanel>
+            </div>
         );
-    }
+    };
 
     private getFailureInstancePanelDetails = (): JSX.Element => {
         return (

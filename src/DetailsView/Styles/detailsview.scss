@@ -217,6 +217,9 @@ div.insights-file-issue-details-dialog-container {
 
 .failure-instance-panel {
     .observed-failure-textfield {
+        .ms-Label {
+            padding-bottom: 8px;
+        }
         padding-bottom: 12px;
     }
     .add-failure-instruction {
@@ -228,6 +231,77 @@ div.insights-file-issue-details-dialog-container {
         margin-top: 30px;
         font-size: 21px;
     }
+    .footer {
+        margin-bottom: 16px;
+        margin-top: 8px;
+        padding-top: 16px;
+        padding-right: 16px;
+        border-top-style: solid;
+        border-top-width: 1px;
+        border-top-color: #edebe9;
+    }
+}
+
+.learn-more {
+    color: $communication-primary;
+    text-decoration: none;
+    display: inline-block;
+    margin-bottom: 24px;
+}
+
+.failure-instance-selector {
+    .ms-Label {
+        color: $primary-text;
+    }
+    .ms-TextField-fieldGroup {
+        margin-top: 3px;
+        margin-bottom: 8px;
+    }
+}
+
+.failure-instance-selector-note {
+    color: $secondary-text;
+    margin-bottom: 8px;
+}
+
+.failure-instance-snippet-title {
+    color: $primary-text;
+    margin-top: 24px;
+}
+
+.failure-instance-snippet-empty-body {
+    margin-top: 8px;
+    margin-bottom: 24px;
+    color: $secondary-text;
+}
+
+.failure-instance-snippet-filled-body {
+    margin-top: 8px;
+    margin-bottom: 24px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    padding-left: 16px;
+    padding-right: 16px;
+    color: $primary-text;
+    background-color: #f3f3f3;
+    word-wrap: break-word;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.failure-instance-snippet-error {
+    margin-top: 9px;
+    margin-bottom: 50px;
+    color: $secondary-text;
+    display: flex;
+    flex-direction: row;
+}
+
+.failure-instance-snippet-error-icon {
+    color: red;
+    padding-top: 3px;
+    padding-right: 8px;
 }
 
 .preview-features-panel {
@@ -544,6 +618,11 @@ div.insights-file-issue-details-dialog-container {
                     font-weight: normal;
                     padding-top: 15px;
                 }
+                .failure-instance-row {
+                    border-bottom-style: solid;
+                    border-bottom-width: 1px;
+                    border-bottom-color: #edebe9;
+                }
                 .no-matching-elements {
                     font-weight: bold;
                 }
@@ -630,6 +709,26 @@ div.insights-file-issue-details-dialog-container {
                 white-space: nowrap;
                 text-overflow: ellipsis;
                 color: $secondary-text;
+            }
+            .failure-instance-allContent {
+                display: flex;
+                flex-direction: row;
+                font-size: 14px;
+                line-height: 24px;
+                color: $primary-text;
+            }
+            .failure-instance-path {
+                padding-right: 70px;
+            }
+            .failure-instance-comment {
+                padding-right: 35px;
+            }
+            .failure-instance-valueContent {
+                max-width: 300px;
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+                word-wrap: break-word;
             }
             .remove-button {
                 margin-left: 12px;

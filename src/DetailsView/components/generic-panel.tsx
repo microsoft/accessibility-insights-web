@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { css } from '@uifabric/utilities';
-import { Panel, PanelType } from 'office-ui-fabric-react/lib/Panel';
+import { css, IRenderFunction } from '@uifabric/utilities';
+import { IPanelProps, Panel, PanelType } from 'office-ui-fabric-react/lib/Panel';
 import * as React from 'react';
 
 export interface GenericPanelProps {
@@ -11,6 +11,7 @@ export interface GenericPanelProps {
     className?: string;
     closeButtonAriaLabel: string;
     hasCloseButton: boolean;
+    onRenderFooterContent?: IRenderFunction<IPanelProps>;
 }
 
 export class GenericPanel extends React.Component<GenericPanelProps> {
@@ -27,6 +28,7 @@ export class GenericPanel extends React.Component<GenericPanelProps> {
                 hasCloseButton={this.props.hasCloseButton}
                 headerText={this.props.title}
                 headerClassName="header-text"
+                onRenderFooter={this.props.onRenderFooterContent}
             >
                 {this.props.children}
             </Panel>
