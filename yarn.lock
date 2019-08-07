@@ -6055,7 +6055,7 @@ object.values@^1.0.4, object.values@^1.1.0:
     function-bind "^1.1.1"
     has "^1.0.3"
 
-office-ui-fabric-react@^6.199.0:
+office-ui-fabric-react@6.199.0:
   version "6.199.0"
   resolved "https://registry.yarnpkg.com/office-ui-fabric-react/-/office-ui-fabric-react-6.199.0.tgz#1d18084bf53ad26db7b8224c48724de5e1a75f9e"
   integrity sha512-BUpH5XfTqEbpJOyBMUNL7luAhDDDEgkGPEgHPJxpWoviTjuPvC0Bx3qoQlSH+biLYoZdPKOEu+llp5zMcIG+Rw==
