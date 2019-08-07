@@ -5,8 +5,8 @@ import { ColumnActionsMode, IColumn } from 'office-ui-fabric-react/lib/DetailsLi
 import * as React from 'react';
 import { AssessmentNavState } from '../../common/types/store-data/assessment-result-data';
 import { MasterCheckBoxConfigProvider } from '../handlers/master-checkbox-config-provider';
+import { AssessmentInstanceDetailsColumn } from './assessment-instance-details-column';
 import { CapturedInstanceRowData } from './assessment-instance-table';
-import { FailureInstanceDetailsColumn } from './failure-instance-details-column';
 
 export class AssessmentTableColumnConfigHandler {
     public static readonly MASTER_CHECKBOX_KEY: string = 'visualizationButton';
@@ -36,7 +36,6 @@ export class AssessmentTableColumnConfigHandler {
             isResizable: true,
             onRender: this.onRenderCapturedInstanceDetailsColumn,
             columnActionsMode: ColumnActionsMode.disabled,
-            className: 'failure-instance-row',
         },
         {
             key: 'instanceActionButtons',
@@ -109,6 +108,16 @@ export class AssessmentTableColumnConfigHandler {
     }
 
     private onRenderCapturedInstanceDetailsColumn(item: CapturedInstanceRowData): JSX.Element {
-        return <FailureInstanceDetailsColumn descriptionContent={item.instance.description} pathContent={item.instance.selector} />;
+        const headerText = item.instance.description ? 'Comment' : 'Path';
+        const textContent = item.instance.description ? item.instance.description : item.instance.selector;
+        return (
+            <AssessmentInstanceDetailsColumn
+                background={'#767676'}
+                textContent={textContent}
+                headerText={headerText}
+                tooltipId={item.instance.id}
+                customClassName="not-applicable"
+            />
+        );
     }
 }

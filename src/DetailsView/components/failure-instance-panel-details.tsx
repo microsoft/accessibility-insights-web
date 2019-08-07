@@ -52,7 +52,7 @@ export const FailureInstancePanelDetails = NamedSFC<FailureInstancePanelDetailsP
             <div>
                 <DefaultButton text="Validate CSS selector" onClick={props.onValidateSelector} disabled={props.path === null} />
             </div>
-            <div aria-live="polite">
+            <div aria-live="polite" aria-atomic="true">
                 <div className="failure-instance-snippet-title"> Code Snippet</div>
                 {getSnippetInfo()}
             </div>

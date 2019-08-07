@@ -217,7 +217,7 @@ div.insights-file-issue-details-dialog-container {
 
 .failure-instance-panel {
     .observed-failure-textfield {
-        .ms-Label {
+        :first-child {
             padding-bottom: 8px;
         }
         padding-bottom: 12px;
@@ -236,9 +236,7 @@ div.insights-file-issue-details-dialog-container {
         margin-top: 8px;
         padding-top: 16px;
         padding-right: 16px;
-        border-top-style: solid;
-        border-top-width: 1px;
-        border-top-color: #edebe9;
+        border-top: #edebe9;
     }
 }
 
@@ -250,12 +248,8 @@ div.insights-file-issue-details-dialog-container {
 }
 
 .failure-instance-selector {
-    .ms-Label {
-        color: $primary-text;
-    }
-    .ms-TextField-fieldGroup {
-        margin-top: 3px;
-        margin-bottom: 8px;
+    :first-child {
+        padding-bottom: 8px;
     }
 }
 
@@ -615,11 +609,6 @@ div.insights-file-issue-details-dialog-container {
                     font-weight: normal;
                     padding-top: 15px;
                 }
-                .failure-instance-row {
-                    border-bottom-style: solid;
-                    border-bottom-width: 1px;
-                    border-bottom-color: #edebe9;
-                }
                 .no-matching-elements {
                     font-weight: bold;
                 }
@@ -707,25 +696,17 @@ div.insights-file-issue-details-dialog-container {
                 text-overflow: ellipsis;
                 color: $secondary-text;
             }
-            .failure-instance-allContent {
+            .all-content {
                 display: flex;
                 flex-direction: row;
+                vertical-align: center;
+            }
+            .instance-header {
+                padding-right: 70px;
                 font-size: 14px;
                 line-height: 24px;
                 color: $primary-text;
-            }
-            .failure-instance-path {
-                padding-right: 70px;
-            }
-            .failure-instance-comment {
-                padding-right: 35px;
-            }
-            .failure-instance-valueContent {
-                max-width: 300px;
-                overflow: hidden;
-                white-space: nowrap;
-                text-overflow: ellipsis;
-                word-wrap: break-word;
+                min-width: 100px;
             }
             .remove-button {
                 margin-left: 12px;

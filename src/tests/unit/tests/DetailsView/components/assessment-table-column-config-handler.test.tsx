@@ -6,9 +6,9 @@ import * as React from 'react';
 import { IMock, It, Mock, Times } from 'typemoq';
 
 import { AssessmentNavState } from '../../../../../common/types/store-data/assessment-result-data';
+import { AssessmentInstanceDetailsColumn } from '../../../../../DetailsView/components/assessment-instance-details-column';
 import { CapturedInstanceRowData } from '../../../../../DetailsView/components/assessment-instance-table';
 import { AssessmentTableColumnConfigHandler } from '../../../../../DetailsView/components/assessment-table-column-config-handler';
-import { FailureInstanceDetailsColumn } from '../../../../../DetailsView/components/failure-instance-details-column';
 import { MasterCheckBoxConfigProvider } from '../../../../../DetailsView/handlers/master-checkbox-config-provider';
 import {
     CreateTestAssessmentProvider,
@@ -124,7 +124,13 @@ describe('AssessmentTableColumnConfigHandlerTest', () => {
             instanceActionButtons: null,
         };
         const expected = (
-            <FailureInstanceDetailsColumn descriptionContent={item.instance.description} pathContent={item.instance.selector} />
+            <AssessmentInstanceDetailsColumn
+                background={'#767676'}
+                headerText={'Comment'}
+                textContent={item.instance.description}
+                tooltipId={item.instance.id}
+                customClassName="not-applicable"
+            />
         );
 
         expect(onRender(item)).toEqual(expected);
