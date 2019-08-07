@@ -64,30 +64,6 @@ jobs:
                 artifactName: 'drop'
             displayName: publish drop
 
-    - job: 'electron_tests_mac'
-      pool:
-          vmImage: macOS-10.14
-      steps:
-          - template: pipeline/install-node-prerequisites.yaml
-          - template: pipeline/electron/electron-e2e-test-interactive.yaml
-          - template: pipeline/electron/electron-e2e-publish-results.yaml
-
-    - job: 'electron_tests_linux'
-      pool:
-          vmImage: ubuntu-16.04
-      steps:
-          - template: pipeline/install-node-prerequisites.yaml
-          - template: pipeline/electron/electron-e2e-test-linux.yaml
-          - template: pipeline/electron/electron-e2e-publish-results.yaml
-
-    - job: 'electron_tests_windows'
-      pool:
-          vmImage: windows-latest
-      steps:
-          - template: pipeline/install-node-prerequisites.yaml
-          - template: pipeline/electron/electron-e2e-test-interactive.yaml
-          - template: pipeline/electron/electron-e2e-publish-results.yaml
-
     # CI build only
     - job: 'publish_electron_windows_linux'
       condition: and(always(), in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI'))
@@ -107,3 +83,29 @@ jobs:
           - template: pipeline/electron/distribute-electron.yaml
             parameters:
                 platforms: -m
+
+    - job: 'e2e_mac_web_electron'
+      pool:
+          vmImage: macOS-10.14
+      steps:
+          - template: pipeline/install-node-prerequisites.yaml
+          - template: pipeline/e2e-test-from-agent.yaml
+          - template: pipeline/e2e-test-publish-results.yaml
+          - template: pipeline/electron/electron-e2e-test-interactive.yaml
+          - template: pipeline/electron/electron-e2e-publish-results.yaml
+
+    - job: 'e2e_linux_electron'
+      pool:
+          vmImage: ubuntu-16.04
+      steps:
+          - template: pipeline/install-node-prerequisites.yaml
+          - template: pipeline/electron/electron-e2e-test-linux.yaml
+          - template: pipeline/electron/electron-e2e-publish-results.yaml
+
+    - job: 'e2e_windows_electron'
+      pool:
+          vmImage: windows-latest
+      steps:
+          - template: pipeline/install-node-prerequisites.yaml
+          - template: pipeline/electron/electron-e2e-test-interactive.yaml
+          - template: pipeline/electron/electron-e2e-publish-results.yaml
