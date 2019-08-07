@@ -20,7 +20,11 @@ const { guidance } = content.textLegibility;
 
 const gettingStarted: JSX.Element = (
     <React.Fragment>
-        <p>In general, larger text and higher contrast makes it easier to read text content.</p>
+        <p>
+            In general, larger fonts and ample spacing make it easier to read text, especially for people with low vision, dyslexia,
+            or presbyopia. A 2018 study found that 1.8 billion people worldwide have presbyopia. (All people are affected by presbyopia to
+            some degree as they age.)
+        </p>
         <p>
             People with low vision use high contrast mode to ease eye strain or to make the screen easier to read by removing extraneous
             information.

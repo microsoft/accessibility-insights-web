@@ -16,7 +16,7 @@ export const infoAndExamples = create(({ Markup }) => (
 
         <h2>How to fix</h2>
         <p>
-            Do not lock the content orientation unless a specific orientation is
+            Do not lock the content orientation unless a specific orientation is{' '}
             <Markup.HyperLink href="https://www.w3.org/TR/WCAG21/#dfn-essential">essential</Markup.HyperLink> to the functionality.
         </p>
 

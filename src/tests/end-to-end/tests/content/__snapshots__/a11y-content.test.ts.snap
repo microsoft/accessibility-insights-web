@@ -5720,7 +5720,7 @@ exports[`A11Y for content pages High Contrast mode test/errors/statusMessages/in
       </p>
       <ul>
         <li>
-          If the status message contains important, time-sensitive information that should be communicated to users immediately (potentially clearing the speech queue of previous updates), use
+          If the status message contains important, time-sensitive information that should be communicated to users immediately (potentially clearing the speech queue of previous updates), use 
           <a
             class="ms-Link insights-link root-000"
             href="https://www.w3.org/TR/wai-aria-1.2/#alert"
@@ -5728,7 +5728,7 @@ exports[`A11Y for content pages High Contrast mode test/errors/statusMessages/in
           >
             role="alert"
           </a>
-          , which has an implicit
+          , which has an implicit 
           <a
             class="ms-Link insights-link root-000"
             href="https://www.w3.org/TR/wai-aria-1.2/#aria-live"
@@ -5736,7 +5736,7 @@ exports[`A11Y for content pages High Contrast mode test/errors/statusMessages/in
           >
             aria-live
           </a>
-          value of 
+           value of 
           <em>
             assertive
           </em>
@@ -5780,7 +5780,7 @@ exports[`A11Y for content pages High Contrast mode test/errors/statusMessages/in
               >
                 role="progressbar"
               </a>
-              if the message conveys the status of a long-running process.
+               if the message conveys the status of a long-running process.
             </li>
           </ul>
         </li>
@@ -28706,7 +28706,7 @@ exports[`A11Y for content pages High Contrast mode test/textLegibility/guidance 
         >
           presbyopia
         </a>
-         also struggle to read small or low-contrast text. A
+         also struggle to read small or low-contrast text. A 
         <a
           class="ms-Link insights-link root-000"
           href="https://www.sciencedirect.com/science/article/pii/S0161642017337971"
@@ -29561,7 +29561,7 @@ exports[`A11Y for content pages High Contrast mode test/textLegibility/orientati
         How to fix
       </h2>
       <p>
-        Do not lock the content orientation unless a specific orientation is
+        Do not lock the content orientation unless a specific orientation is 
         <a
           class="ms-Link insights-link root-000"
           href="https://www.w3.org/TR/WCAG21/#dfn-essential"
@@ -30338,7 +30338,7 @@ exports[`A11Y for content pages High Contrast mode test/textLegibility/textSpaci
         How to fix
       </h2>
       <p>
-        Ensure that text fits within its container without being cut off or overlapping other text when the
+        Ensure that text fits within its container without being cut off or overlapping other text when the 
         <a
           class="ms-Link insights-link root-000"
           href="https://www.html5accessibility.com/tests/tsbookmarklet.html"
@@ -30346,7 +30346,7 @@ exports[`A11Y for content pages High Contrast mode test/textLegibility/textSpaci
         >
           Text spacing bookmarklet
         </a>
-        is run. Either of the following methods is sufficient:
+         is run. Either of the following methods is sufficient:
       </p>
       <ul>
         <li>
@@ -30449,6 +30449,8 @@ exports[`A11Y for content pages High Contrast mode test/textLegibility/textSpaci
                 <br />
                             augue diam porttitor lorem, et sollicitudin felis neque sit amet erat.&lt;/p&gt;
                 <br />
+                            &lt;/body&gt;
+                <br />
                             
               </div>
             </div>
@@ -30542,6 +30544,8 @@ exports[`A11Y for content pages High Contrast mode test/textLegibility/textSpaci
                             Pellentesque interdum, nisl nec interdum maximus,
                 <br />
                             augue diam porttitor lorem, et sollicitudin felis neque sit amet erat.&lt;/p&gt;
+                <br />
+                            &lt;/body&gt;
                 <br />
                             
               </div>
@@ -37722,7 +37726,7 @@ exports[`A11Y for content pages Normal mode test/errors/statusMessages/infoAndEx
       </p>
       <ul>
         <li>
-          If the status message contains important, time-sensitive information that should be communicated to users immediately (potentially clearing the speech queue of previous updates), use
+          If the status message contains important, time-sensitive information that should be communicated to users immediately (potentially clearing the speech queue of previous updates), use 
           <a
             class="ms-Link insights-link root-000"
             href="https://www.w3.org/TR/wai-aria-1.2/#alert"
@@ -37730,7 +37734,7 @@ exports[`A11Y for content pages Normal mode test/errors/statusMessages/infoAndEx
           >
             role="alert"
           </a>
-          , which has an implicit
+          , which has an implicit 
           <a
             class="ms-Link insights-link root-000"
             href="https://www.w3.org/TR/wai-aria-1.2/#aria-live"
@@ -37738,7 +37742,7 @@ exports[`A11Y for content pages Normal mode test/errors/statusMessages/infoAndEx
           >
             aria-live
           </a>
-          value of 
+           value of 
           <em>
             assertive
           </em>
@@ -37782,7 +37786,7 @@ exports[`A11Y for content pages Normal mode test/errors/statusMessages/infoAndEx
               >
                 role="progressbar"
               </a>
-              if the message conveys the status of a long-running process.
+               if the message conveys the status of a long-running process.
             </li>
           </ul>
         </li>
@@ -60708,7 +60712,7 @@ exports[`A11Y for content pages Normal mode test/textLegibility/guidance 1`] = `
         >
           presbyopia
         </a>
-         also struggle to read small or low-contrast text. A
+         also struggle to read small or low-contrast text. A 
         <a
           class="ms-Link insights-link root-000"
           href="https://www.sciencedirect.com/science/article/pii/S0161642017337971"
@@ -61563,7 +61567,7 @@ exports[`A11Y for content pages Normal mode test/textLegibility/orientation/info
         How to fix
       </h2>
       <p>
-        Do not lock the content orientation unless a specific orientation is
+        Do not lock the content orientation unless a specific orientation is 
         <a
           class="ms-Link insights-link root-000"
           href="https://www.w3.org/TR/WCAG21/#dfn-essential"
@@ -62340,7 +62344,7 @@ exports[`A11Y for content pages Normal mode test/textLegibility/textSpacing/info
         How to fix
       </h2>
       <p>
-        Ensure that text fits within its container without being cut off or overlapping other text when the
+        Ensure that text fits within its container without being cut off or overlapping other text when the 
         <a
           class="ms-Link insights-link root-000"
           href="https://www.html5accessibility.com/tests/tsbookmarklet.html"
@@ -62348,7 +62352,7 @@ exports[`A11Y for content pages Normal mode test/textLegibility/textSpacing/info
         >
           Text spacing bookmarklet
         </a>
-        is run. Either of the following methods is sufficient:
+         is run. Either of the following methods is sufficient:
       </p>
       <ul>
         <li>
@@ -62451,6 +62455,8 @@ exports[`A11Y for content pages Normal mode test/textLegibility/textSpacing/info
                 <br />
                             augue diam porttitor lorem, et sollicitudin felis neque sit amet erat.&lt;/p&gt;
                 <br />
+                            &lt;/body&gt;
+                <br />
                             
               </div>
             </div>
@@ -62544,6 +62550,8 @@ exports[`A11Y for content pages Normal mode test/textLegibility/textSpacing/info
                             Pellentesque interdum, nisl nec interdum maximus,
                 <br />
                             augue diam porttitor lorem, et sollicitudin felis neque sit amet erat.&lt;/p&gt;
+                <br />
+                            &lt;/body&gt;
                 <br />
                             
               </div>

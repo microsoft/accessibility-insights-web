@@ -20,10 +20,10 @@ export const infoAndExamples = create(({ Markup }) => (
         <ul>
             <li>
                 If the status message contains important, time-sensitive information that should be communicated to users immediately
-                (potentially clearing the speech queue of previous updates), use
-                <Markup.HyperLink href="https://www.w3.org/TR/wai-aria-1.2/#alert">role="alert"</Markup.HyperLink>, which has an implicit
-                <Markup.HyperLink href="https://www.w3.org/TR/wai-aria-1.2/#aria-live">aria-live</Markup.HyperLink>
-                value of <Markup.Emphasis>assertive</Markup.Emphasis>.
+                (potentially clearing the speech queue of previous updates), use{' '}
+                <Markup.HyperLink href="https://www.w3.org/TR/wai-aria-1.2/#alert">role="alert"</Markup.HyperLink>, which has an implicit{' '}
+                <Markup.HyperLink href="https://www.w3.org/TR/wai-aria-1.2/#aria-live">aria-live</Markup.HyperLink> value of{' '}
+                <Markup.Emphasis>assertive</Markup.Emphasis>.
             </li>
             <li>
                 Otherwise, use a role with an implicit aria-live value of <Markup.Emphasis>polite</Markup.Emphasis>:
@@ -38,7 +38,7 @@ export const infoAndExamples = create(({ Markup }) => (
                         log, game log, error log, or messaging history).
                     </li>
                     <li>
-                        Use <Markup.HyperLink href="https://www.w3.org/TR/wai-aria-1.2/#progressbar">role="progressbar"</Markup.HyperLink>
+                        Use <Markup.HyperLink href="https://www.w3.org/TR/wai-aria-1.2/#progressbar">role="progressbar"</Markup.HyperLink>{' '}
                         if the message conveys the status of a long-running process.
                     </li>
                 </ul>
