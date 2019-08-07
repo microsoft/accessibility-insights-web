@@ -276,8 +276,10 @@ div.insights-file-issue-details-dialog-container {
     padding-bottom: 12px;
     padding-left: 16px;
     padding-right: 16px;
+    max-height: 200px;
     color: $primary-text;
     background-color: #f3f3f3;
+    overflow-y: scroll;
     word-wrap: break-word;
 }
 
