@@ -14,7 +14,7 @@ export class InstanceVisibilityChecker {
     private sendMessage: (message) => void;
     private windowUtils: WindowUtils;
     private htmlElementUtils: HTMLElementUtils;
-    public static recalculationTimeInterval = 1500;
+    public static recalculationTimeInterval: number = 1500;
     private identifierToIntervalMap: DictionaryNumberTo<string> = {};
     private configurationFactory: VisualizationConfigurationFactory;
 
