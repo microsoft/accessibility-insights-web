@@ -30,7 +30,7 @@ export const guidance = create(({ Markup, Link }) => (
         </ul>
         <p>
             People with <Markup.HyperLink href="https://en.wikipedia.org/wiki/Presbyopia">presbyopia</Markup.HyperLink> also struggle to
-            read small or low-contrast text. A
+            read small or low-contrast text. A{' '}
             <Markup.HyperLink href="https://www.sciencedirect.com/science/article/pii/S0161642017337971">2018 study</Markup.HyperLink> found
             that 1.8 billion people worldwide have presbyopia. (All people are affected by presbyopia to some degree as they age.)
         </p>

@@ -15,8 +15,8 @@ export const infoAndExamples = create(({ Markup }) => (
 
         <h2>How to fix</h2>
         <p>
-            Ensure that text fits within its container without being cut off or overlapping other text when the
-            <Markup.HyperLink href="https://www.html5accessibility.com/tests/tsbookmarklet.html">Text spacing bookmarklet</Markup.HyperLink>
+            Ensure that text fits within its container without being cut off or overlapping other text when the{' '}
+            <Markup.HyperLink href="https://www.html5accessibility.com/tests/tsbookmarklet.html">Text spacing bookmarklet</Markup.HyperLink>{' '}
             is run. Either of the following methods is sufficient:
         </p>
         <ul>
@@ -47,6 +47,7 @@ export const infoAndExamples = create(({ Markup }) => (
             Maecenas imperdiet felis nisi, fringilla luctus felis hendrerit sit amet.
             Pellentesque interdum, nisl nec interdum maximus,
             augue diam porttitor lorem, et sollicitudin felis neque sit amet erat.</p>
+            </body>
             `}
             passText={<p>The height of the paragraph adjusts automatically when line spacing is increased.</p>}
             passExample={`
@@ -66,6 +67,7 @@ export const infoAndExamples = create(({ Markup }) => (
             Maecenas imperdiet felis nisi, fringilla luctus felis hendrerit sit amet.
             Pellentesque interdum, nisl nec interdum maximus,
             augue diam porttitor lorem, et sollicitudin felis neque sit amet erat.</p>
+            </body>
             `}
         />
         <h2>More examples</h2>
