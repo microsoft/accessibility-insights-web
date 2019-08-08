@@ -38,7 +38,7 @@ exports[`FailureInstancePanelControlTest render FailureInstancePanelControl: cre
     />
     <StyledTextFieldBase
       className="observed-failure-textfield"
-      label="Comments"
+      label="Comment"
       multiline={true}
       onChange={[Function]}
       resizable={false}
@@ -84,7 +84,7 @@ exports[`FailureInstancePanelControlTest render FailureInstancePanelControl: edi
     />
     <StyledTextFieldBase
       className="observed-failure-textfield"
-      label="Comments"
+      label="Comment"
       multiline={true}
       onChange={[Function]}
       resizable={false}
@@ -133,7 +133,7 @@ exports[`FailureInstancePanelControlTest render FailureInstancePanelControl: par
     />
     <StyledTextFieldBase
       className="observed-failure-textfield"
-      label="Comments"
+      label="Comment"
       multiline={true}
       onChange={[Function]}
       resizable={false}
