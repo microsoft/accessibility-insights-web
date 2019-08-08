@@ -65,12 +65,13 @@ describe('ManualTestStepView', () => {
 
         const pathSnippetStoreData = {
             path: 'Validated Path',
-            snippet: 'Corresponding Snippet',
+            snippetCondition: { snippet: 'Corresponding Snippet', showError: false },
         };
 
         const failureInstance = {
             path: pathSnippetStoreData.path,
-            snippet: pathSnippetStoreData.snippet,
+            snippetValue: pathSnippetStoreData.snippetCondition.snippet,
+            snippetError: pathSnippetStoreData.snippetCondition.showError,
         };
 
         const props: ManualTestStepViewProps = {

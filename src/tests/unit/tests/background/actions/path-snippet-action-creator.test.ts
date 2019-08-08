@@ -38,9 +38,10 @@ describe('PathSnippetActionCreatorTest', () => {
 
     test('registerCallbacks for onAddCorrespondingSnippet', () => {
         const snippet = 'test corresponding snippet';
+        const error = false;
         const actionName = 'onAddSnippet';
 
-        const payload = snippet;
+        const payload = { showError: error, snippet };
         const addCorrespondingSnippetMock = createActionMock(payload);
 
         setupPathSnippetActionMock(actionName, addCorrespondingSnippetMock);

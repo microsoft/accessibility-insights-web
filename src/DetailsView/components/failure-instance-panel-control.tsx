@@ -34,7 +34,8 @@ export interface FailureInstancePanelControlProps {
 export type FailureInstanceData = {
     failureDescription?: string;
     path?: string;
-    snippet?: string;
+    snippetError?: boolean;
+    snippetValue?: string;
 };
 
 export interface FailureInstancePanelControlState {
@@ -70,7 +71,8 @@ export class FailureInstancePanelControl extends React.Component<FailureInstance
                 currentInstance: {
                     failureDescription: this.state.currentInstance.failureDescription,
                     path: this.props.failureInstance.path,
-                    snippet: this.props.failureInstance.snippet,
+                    snippetValue: this.props.failureInstance.snippetValue,
+                    snippetError: this.props.failureInstance.snippetError,
                 },
             }));
         }
@@ -167,7 +169,8 @@ export class FailureInstancePanelControl extends React.Component<FailureInstance
         return (
             <FailureInstancePanelDetails
                 path={this.state.currentInstance.path}
-                snippet={this.state.currentInstance.snippet}
+                snippetValue={this.state.currentInstance.snippetValue}
+                snippetError={this.state.currentInstance.snippetError}
                 onSelectorChange={this.onSelectorChange}
                 onValidateSelector={this.onValidateSelector}
             />
@@ -178,7 +181,8 @@ export class FailureInstancePanelControl extends React.Component<FailureInstance
         const defaultInstance = {
             failureDescription: null,
             path: null,
-            snippet: null,
+            snippetValue: null,
+            snippetError: false,
         };
 
         return defaultInstance;

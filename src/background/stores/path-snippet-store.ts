@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { StoreNames } from '../../common/stores/store-names';
 import { PathSnippetStoreData } from '../../common/types/store-data/path-snippet-store-data';
-import { PathSnippetActions } from '../actions/path-snippet-actions';
+import { PathSnippetActions, SnippetPayload } from '../actions/path-snippet-actions';
 import { BaseStoreImpl } from './base-store-impl';
 
 export class PathSnippetStore extends BaseStoreImpl<PathSnippetStoreData> {
@@ -13,7 +13,10 @@ export class PathSnippetStore extends BaseStoreImpl<PathSnippetStoreData> {
     public getDefaultState(): PathSnippetStoreData {
         const defaultValue: PathSnippetStoreData = {
             path: null,
-            snippet: null,
+            snippetCondition: {
+                showError: false,
+                snippet: null,
+            },
         };
 
         return defaultValue;
@@ -21,13 +24,19 @@ export class PathSnippetStore extends BaseStoreImpl<PathSnippetStoreData> {
 
     protected addActionListeners(): void {
         this.pathSnippetActions.getCurrentState.addListener(this.onGetCurrentState);
-        this.pathSnippetActions.onAddPath.addListener(payload => this.onChangeProperty('path', payload));
-        this.pathSnippetActions.onAddSnippet.addListener(payload => this.onChangeProperty('snippet', payload));
+        this.pathSnippetActions.onAddPath.addListener(payload => this.onChangePath(payload));
+        this.pathSnippetActions.onAddSnippet.addListener(payload => this.onChangeSnippet(payload));
         this.pathSnippetActions.onClearData.addListener(this.onClearState);
     }
 
-    private onChangeProperty = (property: keyof PathSnippetStoreData, payload: string): void => {
-        this.state[property] = payload;
+    private onChangePath = (payload: string): void => {
+        this.state.path = payload;
+        this.emitChanged();
+    };
+
+    private onChangeSnippet = (payload: SnippetPayload): void => {
+        this.state.snippetCondition.showError = payload.showError;
+        this.state.snippetCondition.snippet = payload.snippet;
         this.emitChanged();
     };
 

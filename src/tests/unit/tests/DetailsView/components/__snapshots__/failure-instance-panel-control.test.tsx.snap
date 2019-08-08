@@ -29,7 +29,8 @@ exports[`FailureInstancePanelControlTest render FailureInstancePanelControl: cre
           onSelectorChange={[Function]}
           onValidateSelector={[Function]}
           path={null}
-          snippet={null}
+          snippetError={false}
+          snippetValue={null}
         />
       }
       featureFlag="manualInstanceDetails"
@@ -74,7 +75,8 @@ exports[`FailureInstancePanelControlTest render FailureInstancePanelControl: edi
           onSelectorChange={[Function]}
           onValidateSelector={[Function]}
           path={null}
-          snippet={null}
+          snippetError={false}
+          snippetValue={null}
         />
       }
       featureFlag="manualInstanceDetails"
@@ -122,7 +124,8 @@ exports[`FailureInstancePanelControlTest render FailureInstancePanelControl: par
           onSelectorChange={[Function]}
           onValidateSelector={[Function]}
           path={null}
-          snippet={null}
+          snippetError={false}
+          snippetValue={null}
         />
       }
       featureFlag="manualInstanceDetails"

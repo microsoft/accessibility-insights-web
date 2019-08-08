@@ -1114,21 +1114,28 @@ describe('AssessmentStoreTest', () => {
 
         const initialState = getStateWithAssessment(assessmentData);
 
+        const snippet = 'snippet';
+        const path = 'path';
+        const error = false;
+        const description = 'description';
+
         const payload: AddFailureInstancePayload = {
             test: assessmentType,
             requirement: requirementKey,
             instanceData: {
-                failureDescription: 'description',
-                path: 'path',
-                snippet: 'snippet',
+                failureDescription: description,
+                path: path,
+                snippetError: error,
+                snippetValue: snippet,
             },
         };
 
         const failureInstance = {
             id: '1',
-            description: 'description',
-            selector: 'path',
-            html: 'snippet',
+            description: description,
+            selector: path,
+            html: snippet,
+            htmlError: error,
         };
 
         assessmentsProviderMock.setup(apm => apm.forType(payload.test)).returns(() => assessmentMock.object);
@@ -1137,9 +1144,14 @@ describe('AssessmentStoreTest', () => {
 
         assessmentDataConverterMock
             .setup(a =>
-                a.generateFailureInstance(payload.instanceData.failureDescription, payload.instanceData.path, payload.instanceData.snippet),
+                a.generateFailureInstance(
+                    payload.instanceData.failureDescription,
+                    payload.instanceData.path,
+                    payload.instanceData.snippetValue,
+                    payload.instanceData.snippetError,
+                ),
             )
-            .returns(description => failureInstance);
+            .returns(() => failureInstance);
 
         const expectedAssessment = new AssessmentDataBuilder()
             .with('manualTestStepResultMap', {
@@ -1211,13 +1223,16 @@ describe('AssessmentStoreTest', () => {
         const newDescription = 'new';
         const oldPath = 'old path';
         const newPath = 'new path';
-        const oldSnippet = 'old snippet';
+        const oldSnippet = 'old invalid snippet';
         const newSnippet = 'new snippet';
+        const oldError = true;
+        const newError = false;
         const failureInstance = {
             id: '1',
             description: oldDescription,
             selector: oldPath,
             html: oldSnippet,
+            htmlError: oldError,
         };
 
         const assessmentData = new AssessmentDataBuilder()
@@ -1239,7 +1254,8 @@ describe('AssessmentStoreTest', () => {
             instanceData: {
                 failureDescription: newDescription,
                 path: newPath,
-                snippet: newSnippet,
+                snippetValue: newSnippet,
+                snippetError: newError,
             },
         };
 
@@ -1258,6 +1274,7 @@ describe('AssessmentStoreTest', () => {
                             description: newDescription,
                             selector: newPath,
                             html: newSnippet,
+                            htmlError: newError,
                         },
                     ],
                 },

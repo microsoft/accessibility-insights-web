@@ -8,26 +8,27 @@ import { NamedSFC } from '../../common/react/named-sfc';
 
 export type FailureInstancePanelDetailsProps = {
     path: string;
-    snippet: string;
+    snippetValue: string;
+    snippetError: boolean;
     onSelectorChange: (event, value) => void;
     onValidateSelector: (event) => void;
 };
 
 export const FailureInstancePanelDetails = NamedSFC<FailureInstancePanelDetailsProps>('FailureInstancePanelDetails', props => {
     const getSnippetInfo = (): JSX.Element => {
-        if (!props.snippet) {
+        if (!props.snippetError && !props.snippetValue) {
             return (
                 <div className="failure-instance-snippet-empty-body"> Code snippet will auto-populate based on the CSS selector input.</div>
             );
-        } else if (props.snippet.startsWith('No code snippet is mapped to:')) {
+        } else if (props.snippetError) {
             return (
                 <div className="failure-instance-snippet-error">
                     <Icon iconName="statusErrorFull" className="failure-instance-snippet-error-icon" />
-                    <div>{props.snippet}</div>
+                    <div>{props.snippetValue}</div>
                 </div>
             );
         } else {
-            return <div className="failure-instance-snippet-filled-body">{props.snippet}</div>;
+            return <div className="failure-instance-snippet-filled-body">{props.snippetValue}</div>;
         }
     };
 

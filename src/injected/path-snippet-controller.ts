@@ -8,7 +8,7 @@ export class PathSnippetController {
     constructor(
         private readonly pathSnippetStore: BaseStore<PathSnippetStoreData>,
         private readonly elementFinderByPath: ElementFinderByPath,
-        private readonly addCorrespondingSnippet: (snippet: string) => void,
+        private readonly addCorrespondingSnippet: (showError: boolean, snippet?: string) => void,
     ) {}
 
     public listenToStore = (): void => {
@@ -36,19 +36,11 @@ export class PathSnippetController {
 
         this.elementFinderByPath.processRequest(message).then(
             result => {
-                this.sendBackElementFromPath(result, path);
+                this.addCorrespondingSnippet(false, result);
             },
             err => {
-                this.sendBackElementFromPath('error', path);
+                this.addCorrespondingSnippet(true, 'No code snippet is mapped to: ' + path);
             },
         );
-    };
-
-    private sendBackElementFromPath = (snippet: string, path: string): void => {
-        if (snippet === 'error') {
-            this.addCorrespondingSnippet('No code snippet is mapped to: ' + path);
-        } else {
-            this.addCorrespondingSnippet(snippet);
-        }
     };
 }

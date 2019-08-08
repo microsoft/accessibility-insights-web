@@ -451,28 +451,32 @@ describe('AssessmentDataConverterTest', () => {
         const description = 'description';
         const path = null;
         const snippet = null;
+        const snippetError = false;
         const expectedResult = {
             id: uid,
             html: snippet,
             description: description,
             selector: path,
+            htmlError: snippetError,
         };
 
-        expect(testSubject.generateFailureInstance(description, path, snippet)).toEqual(expectedResult);
+        expect(testSubject.generateFailureInstance(description, path, snippet, snippetError)).toEqual(expectedResult);
     });
 
     test('generateFailureInstance with description and path', () => {
         const description = 'description';
-        const path = 'path';
-        const snippet = 'snippet';
+        const path = 'bad path';
+        const snippet = 'no code snippet mapped to: bad path';
+        const snippetError = true;
         const expectedResult = {
             id: uid,
             description: description,
             selector: path,
             html: snippet,
+            htmlError: snippetError,
         };
 
-        expect(testSubject.generateFailureInstance(description, path, snippet)).toEqual(expectedResult);
+        expect(testSubject.generateFailureInstance(description, path, snippet, snippetError)).toEqual(expectedResult);
     });
 
     function setupGenerateInstanceIdentifierMock(instance: UniquelyIdentifiableInstances, identifier: string): void {

@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { RegisterTypeToPayloadCallback } from '../../common/message';
 import { Messages } from '../../common/messages';
-import { PathSnippetActions } from './path-snippet-actions';
+import { PathSnippetActions, SnippetPayload } from './path-snippet-actions';
 
 export class PathSnippetActionCreator {
     constructor(
@@ -21,7 +21,7 @@ export class PathSnippetActionCreator {
         this.pathSnippetActions.onAddPath.invoke(payload);
     };
 
-    private onAddCorrespondingSnippet = (payload: string): void => {
+    private onAddCorrespondingSnippet = (payload: SnippetPayload): void => {
         this.pathSnippetActions.onAddSnippet.invoke(payload);
     };
 

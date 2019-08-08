@@ -170,7 +170,10 @@ export class AssessmentInstanceTableHandler {
         const currentInstance = {
             failureDescription: instance.description,
             path: pathSnippetStoreData.path || instance.selector,
-            snippet: pathSnippetStoreData.snippet || instance.html,
+            snippetValue: pathSnippetStoreData.snippetCondition.snippet || instance.html,
+            snippetError: pathSnippetStoreData.snippetCondition.snippet
+                ? pathSnippetStoreData.snippetCondition.showError
+                : instance.htmlError,
         };
         return (
             <AssessmentInstanceEditAndRemoveControl

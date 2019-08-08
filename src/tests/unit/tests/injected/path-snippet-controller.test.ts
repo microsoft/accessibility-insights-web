@@ -7,16 +7,17 @@ import { PathSnippetStoreData } from '../../../../common/types/store-data/path-s
 import { ElementFinderByPath } from '../../../../injected/element-finder-by-path';
 import { PathSnippetController } from '../../../../injected/path-snippet-controller';
 
-describe('InspectControllerTests', () => {
+describe('PathSnippetControllerTests', () => {
     let pathSnippetStoreMock: IMock<PathSnippetStore>;
     let pathSnippetStoreState: PathSnippetStoreData;
     let testObject: PathSnippetController;
 
     let elementFinderMock: IMock<ElementFinderByPath>;
-    let addCorrespondingSnippetMock: IMock<(snippet: string) => void>;
-    let processRequestCallback: (snippet: string, path: string) => void;
+    let addCorrespondingSnippetMock: IMock<(showError: boolean, snippet?: string) => void>;
     let processRequestPromiseHandlerMock = Mock.ofInstance((successCb, errorCb) => {});
     let promiseStub;
+    let successCallback;
+    let errorCallback;
 
     beforeEach(() => {
         pathSnippetStoreMock = Mock.ofType(PathSnippetStore);
@@ -25,7 +26,7 @@ describe('InspectControllerTests', () => {
 
         elementFinderMock = Mock.ofType(ElementFinderByPath);
 
-        addCorrespondingSnippetMock = Mock.ofInstance((snippet: string) => {});
+        addCorrespondingSnippetMock = Mock.ofInstance((showError: boolean, snippet?: string) => {});
 
         processRequestPromiseHandlerMock = Mock.ofInstance((successCb, errorCb) => {});
         promiseStub = {
@@ -38,7 +39,7 @@ describe('InspectControllerTests', () => {
     afterEach(() => {
         pathSnippetStoreState = {
             path: null,
-            snippet: null,
+            snippetCondition: { snippet: null, showError: false },
         };
     });
 
@@ -52,7 +53,7 @@ describe('InspectControllerTests', () => {
     test('do not add snippet if path is null', () => {
         pathSnippetStoreState = {
             path: null,
-            snippet: null,
+            snippetCondition: { snippet: null, showError: false },
         };
         testObject.listenToStore();
 
@@ -62,29 +63,29 @@ describe('InspectControllerTests', () => {
     test('call add snippet if path snippet store state has changed', async () => {
         const givenPath = '.test path';
         const retrievedSnippet = '<test snippet>';
+        const snippetError = false;
 
-        setupGetElementFromPath(givenPath);
+        setupGetElementFromPath(givenPath, true);
 
-        addCorrespondingSnippetMock.setup(sm => sm(retrievedSnippet)).verifiable(Times.once());
+        addCorrespondingSnippetMock.setup(sm => sm(snippetError, retrievedSnippet)).verifiable(Times.once());
 
         testObject.listenToStore();
-        processRequestCallback(retrievedSnippet, pathSnippetStoreState.path);
 
+        successCallback(retrievedSnippet);
         listenAndVerify();
     });
 
     test('add failure message if no snippet found', async () => {
         const givenPath = '.test path';
-        const retrievedSnippet = 'error';
-        const errorMessage = 'No code snippet is mapped to: ' + retrievedSnippet;
+        const showError = true;
 
-        setupGetElementFromPath(givenPath);
+        setupGetElementFromPath(givenPath, false);
 
-        addCorrespondingSnippetMock.setup(sm => sm(errorMessage)).verifiable(Times.once());
+        addCorrespondingSnippetMock.setup(sm => sm(showError, 'No code snippet is mapped to: ' + givenPath)).verifiable(Times.once());
 
         testObject.listenToStore();
-        processRequestCallback(errorMessage, pathSnippetStoreState.path);
 
+        errorCallback();
         listenAndVerify();
     });
 
@@ -93,7 +94,7 @@ describe('InspectControllerTests', () => {
 
         pathSnippetStoreState = {
             path: givenPath,
-            snippet: '',
+            snippetCondition: { snippet: null, showError: false },
         };
 
         testObject.listenToStore();
@@ -101,10 +102,10 @@ describe('InspectControllerTests', () => {
         listenAndVerify();
     });
 
-    function setupGetElementFromPath(givenPath: string): void {
+    function setupGetElementFromPath(givenPath: string, successful: boolean): void {
         pathSnippetStoreState = {
             path: givenPath,
-            snippet: null,
+            snippetCondition: { snippet: null, showError: false },
         };
 
         const expectedMessage = {
@@ -119,7 +120,11 @@ describe('InspectControllerTests', () => {
         processRequestPromiseHandlerMock
             .setup(phm => phm(It.isAny(), It.isAny()))
             .callback((success, error) => {
-                processRequestCallback = success;
+                if (successful) {
+                    successCallback = success;
+                } else {
+                    errorCallback = error;
+                }
             });
     }
 

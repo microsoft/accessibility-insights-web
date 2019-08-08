@@ -6,9 +6,9 @@ import { ActionMessageDispatcher } from './action-message-dispatcher';
 export class PathSnippetActionMessageCreator {
     constructor(private readonly dispatcher: ActionMessageDispatcher) {}
 
-    public addCorrespondingSnippet = (snippet: string): void => {
+    public addCorrespondingSnippet = (showError: boolean, snippet?: string): void => {
         const messageType = Messages.PathSnippet.AddCorrespondingSnippet;
-        const payload = snippet;
+        const payload = { showError, snippet };
         this.dispatcher.dispatchMessage({
             messageType,
             payload,

@@ -38,11 +38,11 @@ export class ElementFinderByPath {
         const element = this.htmlElementUtils.querySelector(message.path[0]) as HTMLElement;
 
         if (element == null) {
-            return Promise.resolve('error');
+            return Promise.reject();
         }
 
         if (element.tagName.toLocaleLowerCase() !== 'iframe' && message.path.length > 1) {
-            return Promise.resolve('error');
+            return Promise.reject();
         }
 
         if (element.tagName.toLocaleLowerCase() !== 'iframe' && message.path.length === 1) {

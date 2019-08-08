@@ -21,7 +21,8 @@ describe('PathSnippetStoreTest', () => {
         const defaultState = getDefaultState();
 
         expect(defaultState.path).toEqual(null);
-        expect(defaultState.snippet).toEqual(null);
+        expect(defaultState.snippetCondition.snippet).toEqual(null);
+        expect(defaultState.snippetCondition.showError).toEqual(false);
     });
 
     test('on getCurrentState', () => {
@@ -43,10 +44,12 @@ describe('PathSnippetStoreTest', () => {
     });
 
     test('on addSnippet', () => {
+        const newSnippet = 'new snippet';
+        const error = false;
         const initialState = getDefaultState();
-        const payload = 'new snippet';
+        const payload = { snippet: newSnippet, showError: error };
         const finalState = getDefaultState();
-        finalState.snippet = payload;
+        finalState.snippetCondition = payload;
 
         createStoreForPathSnippetActions('onAddSnippet')
             .withActionParam(payload)
@@ -56,7 +59,7 @@ describe('PathSnippetStoreTest', () => {
     test('on clearState', () => {
         const initialState = {
             path: 'test path',
-            snippet: 'test snippet',
+            snippetCondition: { snippet: 'test snippet', showError: false },
         };
         const finalState = getDefaultState();
 

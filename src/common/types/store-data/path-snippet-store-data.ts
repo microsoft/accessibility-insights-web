@@ -3,5 +3,10 @@
 
 export interface PathSnippetStoreData {
     path: string;
-    snippet: string;
+    snippetCondition: SnippetCondition;
 }
+
+export type SnippetCondition = {
+    showError: boolean;
+    snippet: string;
+};

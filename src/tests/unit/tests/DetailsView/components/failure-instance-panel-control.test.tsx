@@ -99,7 +99,8 @@ describe('FailureInstancePanelControlTest', () => {
         const failureInstance = {
             failureDescription: 'new text',
             path: 'some selector',
-            snippet: null,
+            snippetValue: null,
+            snippetError: false,
         };
 
         props.failureInstance = failureInstance;
@@ -122,7 +123,8 @@ describe('FailureInstancePanelControlTest', () => {
         const failureInstance = {
             failureDescription: 'new text',
             path: 'new path',
-            snippet: 'new snippet',
+            snippetValue: 'new snippet',
+            snippetError: false,
         };
         props.failureInstance = failureInstance;
         const wrapper = shallow<FailureInstancePanelControl>(<FailureInstancePanelControl {...props} />);
@@ -138,7 +140,8 @@ describe('FailureInstancePanelControlTest', () => {
         expect(wrapper.state().isPanelOpen).toBe(true);
         expect(wrapper.state().currentInstance.failureDescription).toEqual(props.failureInstance.failureDescription);
         expect(wrapper.state().currentInstance.path).toEqual(props.failureInstance.path);
-        expect(wrapper.state().currentInstance.snippet).toEqual(props.failureInstance.snippet);
+        expect(wrapper.state().currentInstance.snippetValue).toEqual(props.failureInstance.snippetValue);
+        expect(wrapper.state().currentInstance.snippetError).toEqual(props.failureInstance.snippetError);
     });
 
     test('closeFailureInstancePanel', () => {
@@ -173,7 +176,8 @@ describe('FailureInstancePanelControlTest', () => {
         const instanceData = {
             failureDescription: description,
             path: null,
-            snippet: null,
+            snippetValue: null,
+            snippetError: false,
         };
 
         editInstanceMock.setup(handler => handler(instanceData, props.test, props.step, props.instanceId)).verifiable(Times.once());
@@ -211,7 +215,8 @@ describe('FailureInstancePanelControlTest', () => {
         const instanceData = {
             failureDescription: description,
             path: null,
-            snippet: null,
+            snippetValue: null,
+            snippetError: false,
         };
 
         addInstanceMock.setup(handler => handler(instanceData, props.test, props.step)).verifiable(Times.once());
@@ -247,7 +252,8 @@ describe('FailureInstancePanelControlTest', () => {
         const newFailureInstance = {
             failureDescription: null,
             path: 'inputed path',
-            snippet: 'snippet for path',
+            snippetValue: 'snippet for path',
+            snippetError: false,
         };
         newProps.failureInstance = newFailureInstance;
 
@@ -269,7 +275,8 @@ describe('FailureInstancePanelControlTest', () => {
         const emptyFailureInstance = {
             failureDescription: null,
             path: null,
-            snippet: null,
+            snippetValue: null,
+            snippetError: false,
         };
 
         return {

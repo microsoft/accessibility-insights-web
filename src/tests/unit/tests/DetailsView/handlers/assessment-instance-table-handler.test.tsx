@@ -123,7 +123,7 @@ describe('AssessmentInstanceTableHandlerTest', () => {
 
         const pathSnippetStoreData = {
             path: 'test path',
-            snippet: 'test snippet for path',
+            snippetCondition: { snippet: 'test snippet for path', showError: false },
         };
 
         const rows = testSubject.createCapturedInstanceTableItems(
@@ -137,7 +137,8 @@ describe('AssessmentInstanceTableHandlerTest', () => {
         const currentInstance = {
             failureDescription: instance.description,
             path: pathSnippetStoreData.path,
-            snippet: pathSnippetStoreData.snippet,
+            snippetValue: pathSnippetStoreData.snippetCondition.snippet,
+            snippetError: pathSnippetStoreData.snippetCondition.showError,
         };
 
         const instanceActionButtons: JSX.Element = (
@@ -167,8 +168,9 @@ describe('AssessmentInstanceTableHandlerTest', () => {
         const instance: UserCapturedInstance = {
             id: '1',
             description: 'des',
-            selector: 'saved path',
-            html: 'saved instance',
+            selector: 'bad path',
+            html: 'No code snippet mapped to path: bad path',
+            htmlError: true,
         };
         const assessmentNavState: AssessmentNavState = {
             selectedTestStep: 'step1',
@@ -177,7 +179,7 @@ describe('AssessmentInstanceTableHandlerTest', () => {
 
         const pathSnippetStoreData = {
             path: null,
-            snippet: null,
+            snippetCondition: { snippet: null, showError: false },
         };
 
         const rows = testSubject.createCapturedInstanceTableItems(
@@ -191,7 +193,8 @@ describe('AssessmentInstanceTableHandlerTest', () => {
         const currentInstance = {
             failureDescription: instance.description,
             path: instance.selector,
-            snippet: instance.html,
+            snippetValue: instance.html,
+            snippetError: instance.htmlError,
         };
 
         const instanceActionButtons: JSX.Element = (
@@ -297,7 +300,8 @@ describe('AssessmentInstanceTableHandlerTest', () => {
         const instanceData = {
             failureDescription: 'description',
             path: 'path',
-            snippet: 'snippet',
+            snippetValue: 'snippet',
+            snippetError: false,
         };
 
         actionMessageCreatorMock.setup(a => a.addFailureInstance(instanceData, test, requirement)).verifiable(Times.once());

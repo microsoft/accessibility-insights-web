@@ -59,7 +59,8 @@ export class ManualTestStepView extends React.Component<ManualTestStepViewProps>
         );
         const instance: FailureInstanceData = {
             path: this.props.pathSnippetStoreData.path,
-            snippet: this.props.pathSnippetStoreData.snippet,
+            snippetError: this.props.pathSnippetStoreData.snippetCondition.showError,
+            snippetValue: this.props.pathSnippetStoreData.snippetCondition.snippet,
         };
         return (
             <React.Fragment>
