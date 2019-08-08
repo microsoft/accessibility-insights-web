@@ -704,11 +704,10 @@ div.insights-file-issue-details-dialog-container {
                 vertical-align: center;
             }
             .instance-header {
-                padding-right: 30px;
                 font-size: 14px;
                 line-height: 24px;
                 color: $primary-text;
-                min-width: 70px;
+                white-space: pre;
             }
             .remove-button {
                 margin-left: 12px;

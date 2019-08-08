@@ -134,7 +134,7 @@ export class FailureInstancePanelControl extends React.Component<FailureInstance
                 />
                 <TextField
                     className="observed-failure-textfield"
-                    label="Comments"
+                    label="Comment"
                     multiline={true}
                     rows={4}
                     value={this.state.currentInstance.failureDescription}

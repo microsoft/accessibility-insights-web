@@ -108,7 +108,7 @@ export class AssessmentTableColumnConfigHandler {
     }
 
     private onRenderCapturedInstanceDetailsColumn(item: CapturedInstanceRowData): JSX.Element {
-        const headerText = item.instance.description ? 'Comment' : 'Path';
+        const headerText = item.instance.description ? 'Comment:' : 'Path:';
         const textContent = item.instance.description ? item.instance.description : item.instance.selector;
         return (
             <AssessmentInstanceDetailsColumn
