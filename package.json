@@ -104,7 +104,7 @@
         "typed-scss-modules": "^0.0.11",
         "typemoq": "^2.1.0",
         "typescript": "^2.9.2",
-        "uglifyjs-webpack-plugin": "^2.1.2",
+        "uglifyjs-webpack-plugin": "^2.2.0",
         "webpack": "^4.39.1",
         "webpack-cli": "^3.3.6"
     },
