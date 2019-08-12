@@ -22,7 +22,7 @@ describe('Electron E2E', () => {
         // tslint:disable: await-promise
         expect(await app.browserWindow.isVisible()).toBe(true);
         expect(await app.client.getWindowCount()).toBe(2);
-        expect(await app.webContents.getTitle()).toBe('Accessible University Demo Site - Inaccessible Version');
+        expect(await app.webContents.getTitle()).toBe('Accessibility Insights for Mobile');
         // tslint:enable: await-promise
     });
 
