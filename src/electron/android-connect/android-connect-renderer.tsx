@@ -3,8 +3,8 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
-export class AndroidConnectRender {
-    constructor(private readonly renderer: typeof ReactDOM.render, private readonly dom: Document) {}
+export class AndroidConnectRenderer {
+    constructor(private readonly renderer: typeof ReactDOM.render, private readonly dom: ParentNode) {}
 
     public render(): void {
         const androidConnectContainer = this.dom.querySelector('#android-connect-container');
