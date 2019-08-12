@@ -3,16 +3,16 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
-export class AndroidConnectRenderer {
+export class DeviceConnectViewRenderer {
     constructor(private readonly renderer: typeof ReactDOM.render, private readonly dom: ParentNode) {}
 
     public render(): void {
-        const androidConnectContainer = this.dom.querySelector('#android-connect-container');
+        const deviceConnectViewContainer = this.dom.querySelector('#device-connect-view-container');
         this.renderer(
             <>
-                <h1>Hello, Android</h1>
+                <h1>Welcome to Accessibility Insights for Mobile</h1>
             </>,
-            androidConnectContainer,
+            deviceConnectViewContainer,
         );
     }
 }

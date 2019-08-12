@@ -8,7 +8,7 @@ const createWindow = () => {
     mainWindow = new BrowserWindow({ show: false, webPreferences: { nodeIntegration: true } });
 
     mainWindow
-        .loadFile('../electron/android-connect/androidConnect.html')
+        .loadFile('../electron/device-connect-view/deviceConnectView.html')
         .then(() => console.log('url loaded'))
         .catch(console.log);
 

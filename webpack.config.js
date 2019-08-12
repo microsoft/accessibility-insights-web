@@ -55,7 +55,7 @@ const commonEntryFiles = {
 };
 
 const electronEntryFiles = {
-    androidConnect: [path.resolve(__dirname, 'src/electron/android-connect/android-connect-initializer.ts')],
+    deviceConnectView: [path.resolve(__dirname, 'src/electron/device-connect-view/device-connect-view-initializer.ts')],
     main: [path.resolve(__dirname, 'src/electron/main/main.ts')],
     injected: [path.resolve(__dirname, 'src/injected/stylesheet-init.ts'), path.resolve(__dirname, 'src/injected/client-init.ts')],
 };
