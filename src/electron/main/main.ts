@@ -8,7 +8,7 @@ const createWindow = () => {
     mainWindow = new BrowserWindow({ show: false, webPreferences: { nodeIntegration: true } });
 
     mainWindow
-        .loadURL('https://ada-cat.github.io/AU/before.html')
+        .loadFile('../electron/android-connect/androidConnect.html')
         .then(() => console.log('url loaded'))
         .catch(console.log);
 
