@@ -22,11 +22,11 @@ export class DiagnosticViewToggleFactory {
     private commandStore: BaseStore<CommandStoreData>;
     private actionMessageCreator: PopupActionMessageCreator;
     private clickHandler: DiagnosticViewClickHandler;
-    private dom: NodeSelector & Node;
+    private dom: Document;
 
     constructor(
         private readonly deps: DiagnosticViewToggleDeps,
-        dom: NodeSelector & Node,
+        dom: Document,
         visualizationTypes: VisualizationType[],
         visualizationConfigurationFactory: VisualizationConfigurationFactory,
         visualizationStore: BaseStore<VisualizationStoreData>,

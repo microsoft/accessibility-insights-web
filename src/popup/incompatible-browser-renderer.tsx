@@ -8,7 +8,7 @@ import { NewTabLink } from '../common/components/new-tab-link';
 import { Header } from './components/header';
 
 export class IncompatibleBrowserRenderer {
-    constructor(private readonly renderer: typeof ReactDOM.render, private readonly dom: NodeSelector & Node) {}
+    constructor(private readonly renderer: typeof ReactDOM.render, private readonly dom: Document) {}
 
     public render(): void {
         const container = this.dom.querySelector('#popup-container');

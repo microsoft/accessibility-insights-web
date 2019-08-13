@@ -16,15 +16,16 @@ import { PopupViewControllerHandler } from '../../../../popup/handlers/popup-vie
 import { LaunchPadRowConfigurationFactory } from '../../../../popup/launch-pad-row-configuration-factory';
 import { MainRenderer, MainRendererDeps } from '../../../../popup/main-renderer';
 import { SupportLinkHandler } from '../../../../popup/support-link-handler';
+import { TestDocumentCreator } from '../../common/test-document-creator';
 
 describe('MainRenderer', () => {
     const expectedTitle = title;
 
     test('render', () => {
-        const dom = document.createElement('div');
-        const container = document.createElement('div');
+        const fakeDocument = TestDocumentCreator.createTestDocument();
+        const container = fakeDocument.createElement('div');
         container.setAttribute('id', 'popup-container');
-        dom.appendChild(container);
+        fakeDocument.appendChild(container);
 
         const diagnosticViewClickHandlerMock = Mock.ofType(DiagnosticViewClickHandler);
         const gettingStartedDialogHandlerMock = Mock.ofType(PopupViewControllerHandler);
@@ -83,7 +84,7 @@ describe('MainRenderer', () => {
                 browserAdapter: browserAdapterMock.object,
             },
             renderMock.object,
-            dom,
+            fakeDocument,
             popupWindowMock.object,
             targetTabUrl,
             hasAccess,

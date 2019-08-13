@@ -31,7 +31,7 @@ export class HighlightBoxDrawer extends BaseDrawer {
     };
 
     constructor(
-        dom: NodeSelector & Node,
+        dom: Document,
         containerClass: string,
         windowUtils: WindowUtils,
         shadowUtils: ShadowUtils,
