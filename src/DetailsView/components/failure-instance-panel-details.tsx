@@ -20,7 +20,7 @@ export const FailureInstancePanelDetails = NamedSFC<FailureInstancePanelDetailsP
             return (
                 <div className="failure-instance-snippet-empty-body"> Code snippet will auto-populate based on the CSS selector input.</div>
             );
-        } else if (props.snippet.startsWith('No code snippet map')) {
+        } else if (props.snippet.startsWith('No code snippet is map')) {
             return (
                 <div className="failure-instance-snippet-error">
                     <Icon iconName="statusErrorFull" className="failure-instance-snippet-error-icon" />
