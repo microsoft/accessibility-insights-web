@@ -3,7 +3,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const TerserWebpackPlugin = require('terser-webpack-plugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
@@ -153,9 +153,9 @@ const prodConfig = {
     optimization: {
         splitChunks: false,
         minimizer: [
-            new UglifyJsPlugin({
+            new TerserWebpackPlugin({
                 sourceMap: false,
-                uglifyOptions: {
+                terserOptions: {
                     compress: false,
                     mangle: false,
                     output: {
