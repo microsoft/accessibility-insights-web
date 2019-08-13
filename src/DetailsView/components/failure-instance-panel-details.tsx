@@ -18,7 +18,7 @@ export const FailureInstancePanelDetails = NamedSFC<FailureInstancePanelDetailsP
     const getSnippetInfo = (): JSX.Element => {
         if (!props.snippet) {
             return (
-                <div className="failure-instance-snippet-empty-body"> Code snippet will auto-populate based on the CSS selector input.</div>
+                <div className="failure-instance-snippet-empty-body">Code snippet will auto-populate based on the CSS selector input.</div>
             );
         } else if (props.snippet.startsWith('No code snippet is map')) {
             return (
@@ -53,7 +53,7 @@ export const FailureInstancePanelDetails = NamedSFC<FailureInstancePanelDetailsP
                 <DefaultButton text="Validate CSS selector" onClick={props.onValidateSelector} disabled={props.path === null} />
             </div>
             <div aria-live="polite" aria-atomic="true">
-                <div className="failure-instance-snippet-title"> Code Snippet</div>
+                <div className="failure-instance-snippet-title">Code Snippet</div>
                 {getSnippetInfo()}
             </div>
         </div>
