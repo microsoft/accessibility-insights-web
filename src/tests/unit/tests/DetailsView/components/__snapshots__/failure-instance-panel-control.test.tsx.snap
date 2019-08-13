@@ -16,10 +16,11 @@ exports[`FailureInstancePanelControlTest render FailureInstancePanelControl: cre
   </CustomizedActionButton>
   <GenericPanel
     className="failure-instance-panel"
-    closeButtonAriaLabel={null}
-    hasCloseButton={false}
+    closeButtonAriaLabel="Close failure instance panel"
+    hasCloseButton={true}
     isOpen={false}
     onDismiss={[Function]}
+    onRenderFooterContent={[Function]}
     title="Add a failure instance"
   >
     <FlaggedComponent
@@ -36,19 +37,13 @@ exports[`FailureInstancePanelControlTest render FailureInstancePanelControl: cre
     />
     <StyledTextFieldBase
       className="observed-failure-textfield"
-      label="Comments"
+      label="Comment"
       multiline={true}
       onChange={[Function]}
       resizable={false}
-      rows={8}
+      rows={4}
+      styles={[Function]}
       value={null}
-    />
-    <ActionAndCancelButtonsComponent
-      cancelButtonOnClick={[Function]}
-      isHidden={false}
-      primaryButtonDisabled={true}
-      primaryButtonOnClick={[Function]}
-      primaryButtonText="Add"
     />
   </GenericPanel>
 </React.Fragment>
@@ -67,10 +62,11 @@ exports[`FailureInstancePanelControlTest render FailureInstancePanelControl: edi
   </StyledLinkBase>
   <GenericPanel
     className="failure-instance-panel"
-    closeButtonAriaLabel={null}
-    hasCloseButton={false}
+    closeButtonAriaLabel="Close failure instance panel"
+    hasCloseButton={true}
     isOpen={false}
     onDismiss={[Function]}
+    onRenderFooterContent={[Function]}
     title="Edit failure instance"
   >
     <FlaggedComponent
@@ -87,19 +83,13 @@ exports[`FailureInstancePanelControlTest render FailureInstancePanelControl: edi
     />
     <StyledTextFieldBase
       className="observed-failure-textfield"
-      label="Comments"
+      label="Comment"
       multiline={true}
       onChange={[Function]}
       resizable={false}
-      rows={8}
+      rows={4}
+      styles={[Function]}
       value={null}
-    />
-    <ActionAndCancelButtonsComponent
-      cancelButtonOnClick={[Function]}
-      isHidden={false}
-      primaryButtonDisabled={true}
-      primaryButtonOnClick={[Function]}
-      primaryButtonText="Save"
     />
   </GenericPanel>
 </React.Fragment>
@@ -121,10 +111,11 @@ exports[`FailureInstancePanelControlTest render FailureInstancePanelControl: par
   </CustomizedActionButton>
   <GenericPanel
     className="failure-instance-panel"
-    closeButtonAriaLabel={null}
-    hasCloseButton={false}
+    closeButtonAriaLabel="Close failure instance panel"
+    hasCloseButton={true}
     isOpen={false}
     onDismiss={[Function]}
+    onRenderFooterContent={[Function]}
     title="Add a failure instance"
   >
     <FlaggedComponent
@@ -141,19 +132,13 @@ exports[`FailureInstancePanelControlTest render FailureInstancePanelControl: par
     />
     <StyledTextFieldBase
       className="observed-failure-textfield"
-      label="Comments"
+      label="Comment"
       multiline={true}
       onChange={[Function]}
       resizable={false}
-      rows={8}
+      rows={4}
+      styles={[Function]}
       value="original text"
-    />
-    <ActionAndCancelButtonsComponent
-      cancelButtonOnClick={[Function]}
-      isHidden={false}
-      primaryButtonDisabled={false}
-      primaryButtonOnClick={[Function]}
-      primaryButtonText="Add"
     />
   </GenericPanel>
 </React.Fragment>

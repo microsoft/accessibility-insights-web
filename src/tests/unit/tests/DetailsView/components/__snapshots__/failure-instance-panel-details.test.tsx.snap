@@ -4,21 +4,24 @@ exports[`FailureInstancePanelDetailsTest renders 1`] = `
 <div>
   <a
     className="learn-more"
+    href="#"
   >
-     Learn more about adding failure instances 
+    Learn more about adding failure instances
   </a>
   <StyledTextFieldBase
-    className="selector-failure-textfield"
-    defaultValue="CSS selector"
     label="CSS Selector"
     multiline={true}
     onChange={[Function]}
+    placeholder="CSS Selector"
     resizable={false}
-    rows={8}
+    rows={4}
+    styles={[Function]}
     value="Given Path"
   />
-  <div>
-    Note: If the CSS selector maps to multiple snippets, the first will be selected.
+  <div
+    className="failure-instance-selector-note"
+  >
+    Note: If the CSS selector maps to multiple snippets, the first will be selected
   </div>
   <div>
     <CustomizedDefaultButton
@@ -27,11 +30,18 @@ exports[`FailureInstancePanelDetailsTest renders 1`] = `
       text="Validate CSS selector"
     />
   </div>
-  <div>
-    <label>
-      Code Snippet
-    </label>
-    <div>
+  <div
+    aria-atomic="true"
+    aria-live="polite"
+  >
+    <div
+      className="failure-instance-snippet-title"
+    >
+       Code Snippet
+    </div>
+    <div
+      className="failure-instance-snippet-filled-body"
+    >
       Snippet for Given Path
     </div>
   </div>

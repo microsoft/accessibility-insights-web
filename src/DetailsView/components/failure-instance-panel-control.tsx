@@ -3,8 +3,9 @@
 import { clone, isEqual } from 'lodash';
 import { ActionButton } from 'office-ui-fabric-react/lib/Button';
 import { Icon } from 'office-ui-fabric-react/lib/Icon';
+import { ILabelStyles } from 'office-ui-fabric-react/lib/Label';
 import { Link } from 'office-ui-fabric-react/lib/Link';
-import { TextField } from 'office-ui-fabric-react/lib/TextField';
+import { ITextFieldStyles, TextField } from 'office-ui-fabric-react/lib/TextField';
 import * as React from 'react';
 
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
@@ -137,6 +138,7 @@ export class FailureInstancePanelControl extends React.Component<FailureInstance
                 <TextField
                     className="observed-failure-textfield"
                     label="Comment"
+                    styles={getStyles}
                     multiline={true}
                     rows={4}
                     value={this.state.currentInstance.failureDescription}
@@ -230,5 +232,23 @@ export class FailureInstancePanelControl extends React.Component<FailureInstance
     protected closeFailureInstancePanel = (): void => {
         this.props.clearPathSnippetData();
         this.setState({ isPanelOpen: false });
+    };
+}
+
+function getStyles(): Partial<ITextFieldStyles> {
+    return {
+        subComponentStyles: {
+            label: getLabelStyles,
+        },
+    };
+}
+
+function getLabelStyles(): ILabelStyles {
+    return {
+        root: [
+            {
+                paddingBottom: 8,
+            },
+        ],
     };
 }

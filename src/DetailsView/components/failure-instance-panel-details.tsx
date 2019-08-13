@@ -2,7 +2,8 @@
 // Licensed under the MIT License.
 import { DefaultButton } from 'office-ui-fabric-react/lib/Button';
 import { Icon } from 'office-ui-fabric-react/lib/Icon';
-import { TextField } from 'office-ui-fabric-react/lib/TextField';
+import { ILabelStyles } from 'office-ui-fabric-react/lib/Label';
+import { ITextFieldStyles, TextField } from 'office-ui-fabric-react/lib/TextField';
 import * as React from 'react';
 import { NamedSFC } from '../../common/react/named-sfc';
 
@@ -37,6 +38,7 @@ export const FailureInstancePanelDetails = NamedSFC<FailureInstancePanelDetailsP
             </a>
             <TextField
                 label="CSS Selector"
+                styles={getStyles}
                 multiline={true}
                 rows={4}
                 value={props.path}
@@ -57,3 +59,21 @@ export const FailureInstancePanelDetails = NamedSFC<FailureInstancePanelDetailsP
         </div>
     );
 });
+
+function getStyles(): Partial<ITextFieldStyles> {
+    return {
+        subComponentStyles: {
+            label: getLabelStyles,
+        },
+    };
+}
+
+function getLabelStyles(): ILabelStyles {
+    return {
+        root: [
+            {
+                paddingBottom: 8,
+            },
+        ],
+    };
+}
