@@ -150,7 +150,14 @@ export class FailureInstancePanelControl extends React.Component<FailureInstance
     }
 
     private getActionCancelButtons = (): JSX.Element => {
-        const createMode = this.props.actionType === CapturedInstanceActionType.CREATE;
+        let primaryButtonText = 'Save';
+        let primaryButtonOnClick = this.onSaveEditedFailureInstance;
+
+        if (this.props.actionType === CapturedInstanceActionType.CREATE) {
+            primaryButtonText = 'Add failed instance';
+            primaryButtonOnClick = this.onAddFailureInstance;
+        }
+
         return (
             <div className="footer">
                 <ActionAndCancelButtonsComponent
@@ -158,8 +165,8 @@ export class FailureInstancePanelControl extends React.Component<FailureInstance
                     primaryButtonDisabled={
                         this.state.currentInstance.failureDescription === null && this.state.currentInstance.path === null
                     }
-                    primaryButtonText={createMode ? 'Add failed instance' : 'Save'}
-                    primaryButtonOnClick={createMode ? this.onAddFailureInstance : this.onSaveEditedFailureInstance}
+                    primaryButtonText={primaryButtonText}
+                    primaryButtonOnClick={primaryButtonOnClick}
                     cancelButtonOnClick={this.closeFailureInstancePanel}
                 />
             </div>
