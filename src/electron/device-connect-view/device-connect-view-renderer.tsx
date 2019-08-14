@@ -2,6 +2,8 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
+import { BrandBlue } from '../../icons/brand/blue/brand-blue';
+import { WindowTitle } from './components/window-title';
 
 export class DeviceConnectViewRenderer {
     constructor(private readonly renderer: typeof ReactDOM.render, private readonly dom: ParentNode) {}
@@ -9,9 +11,9 @@ export class DeviceConnectViewRenderer {
     public render(): void {
         const deviceConnectViewContainer = this.dom.querySelector('#device-connect-view-container');
         this.renderer(
-            <>
-                <h1>Welcome to Accessibility Insights for Mobile</h1>
-            </>,
+            <WindowTitle title="Accessibility Insights">
+                <BrandBlue />
+            </WindowTitle>,
             deviceConnectViewContainer,
         );
     }

@@ -6,7 +6,13 @@ import * as path from 'path';
 let mainWindow: BrowserWindow;
 
 const createWindow = () => {
-    mainWindow = new BrowserWindow({ show: false, webPreferences: { nodeIntegration: true } });
+    mainWindow = new BrowserWindow({
+        show: false,
+        webPreferences: { nodeIntegration: true },
+        frame: false,
+        width: 600,
+        height: 391,
+    });
 
     mainWindow
         .loadFile(path.resolve(__dirname, '../electron/device-connect-view/deviceConnectView.html'))
@@ -14,10 +20,9 @@ const createWindow = () => {
         .catch(console.log);
 
     mainWindow.on('ready-to-show', () => {
-        mainWindow.maximize();
+        mainWindow.setMenu(null);
         mainWindow.show();
-
-        mainWindow.webContents.openDevTools({ mode: 'bottom' });
+        mainWindow.webContents.openDevTools({ mode: 'detach' });
     });
 };
 
