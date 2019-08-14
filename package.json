@@ -105,7 +105,7 @@
         "typed-scss-modules": "^0.0.11",
         "typemoq": "^2.1.0",
         "typescript": "^2.9.2",
-        "webpack": "^4.39.1",
+        "webpack": "^4.39.2",
         "webpack-cli": "^3.3.6"
     },
     "dependencies": {
