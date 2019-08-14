@@ -104,7 +104,7 @@
         "tslint-microsoft-contrib": "6.2.0",
         "typed-scss-modules": "^0.0.11",
         "typemoq": "^2.1.0",
-        "typescript": "^2.9.2",
+        "typescript": "^3.5.3",
         "webpack": "^4.39.2",
         "webpack-cli": "^3.3.6"
     },
