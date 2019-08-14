@@ -78,7 +78,7 @@
         "grunt-contrib-copy": "^1.0.0",
         "grunt-contrib-watch": "^1.1.0",
         "grunt-exec": "^3.0.0",
-        "grunt-sass": "^3.0.2",
+        "grunt-sass": "^3.1.0",
         "identity-obj-proxy": "^3.0.0",
         "jest": "^24.7.1",
         "jest-circus": "^24.7.1",
