@@ -157,7 +157,7 @@ const prodConfig = {
                 sourceMap: false,
                 terserOptions: {
                     compress: false,
-                    mangle: false,
+                    mangle: true,
                     output: {
                         ascii_only: true,
                         comments: /^\**!|@preserve|@license|@cc_on/i,
