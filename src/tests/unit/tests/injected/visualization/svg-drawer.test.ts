@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { JSDOM } from 'jsdom';
 import { IMock, It, Mock, Times } from 'typemoq';
 
 import { getDefaultFeatureFlagValues } from '../../../../../common/feature-flags';
