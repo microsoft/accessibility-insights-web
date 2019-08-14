@@ -22,7 +22,6 @@ const createWindow = () => {
     mainWindow.on('ready-to-show', () => {
         mainWindow.setMenu(null);
         mainWindow.show();
-        mainWindow.webContents.openDevTools({ mode: 'detach' });
     });
 };
 
