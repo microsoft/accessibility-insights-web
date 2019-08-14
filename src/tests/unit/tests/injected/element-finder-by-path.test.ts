@@ -84,14 +84,21 @@ describe('ElementFinderByPositionTest', () => {
         processRequestMock.verifyAll();
     });
 
+    test('process request when path begins with invalid char', async () => {
+        const messageStub = {
+            path: [',bad path'],
+        } as ElementFinderByPathMessage;
+
+        return expect(testSubject.processRequest(messageStub)).rejects.toBeUndefined();
+    });
+
     test('process request when element is null', async () => {
         const messageStub = {
             path: ['invalid path'],
         } as ElementFinderByPathMessage;
 
         setupQuerySelectorMock(messageStub, null);
-        const response = await testSubject.processRequest(messageStub);
-        expect(response).toEqual('error');
+        return expect(testSubject.processRequest(messageStub)).rejects.toBeUndefined();
     });
 
     test('process request when path is invalid', async () => {
@@ -102,9 +109,7 @@ describe('ElementFinderByPositionTest', () => {
         const elementStub = { tagName: 'test' } as HTMLElement;
 
         setupQuerySelectorMock(messageStub, elementStub);
-
-        const response = await testSubject.processRequest(messageStub);
-        expect(response).toEqual('error');
+        return expect(testSubject.processRequest(messageStub)).rejects.toBeUndefined();
     });
 
     test('process request when element is not iframe', async () => {
