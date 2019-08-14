@@ -3,8 +3,9 @@
 import { clone, isEqual } from 'lodash';
 import { ActionButton } from 'office-ui-fabric-react/lib/Button';
 import { Icon } from 'office-ui-fabric-react/lib/Icon';
+import { ILabelStyles } from 'office-ui-fabric-react/lib/Label';
 import { Link } from 'office-ui-fabric-react/lib/Link';
-import { TextField } from 'office-ui-fabric-react/lib/TextField';
+import { ITextFieldStyles, TextField } from 'office-ui-fabric-react/lib/TextField';
 import * as React from 'react';
 
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
@@ -121,8 +122,9 @@ export class FailureInstancePanelControl extends React.Component<FailureInstance
                 this.props.actionType === CapturedInstanceActionType.CREATE
                     ? FailureInstancePanelControl.addFailureInstanceLabel
                     : 'Edit failure instance',
-            hasCloseButton: false,
-            closeButtonAriaLabel: null,
+            hasCloseButton: true,
+            closeButtonAriaLabel: 'Close failure instance panel',
+            onRenderFooterContent: this.getActionCancelButtons,
         };
 
         return (
@@ -135,29 +137,41 @@ export class FailureInstancePanelControl extends React.Component<FailureInstance
                 />
                 <TextField
                     className="observed-failure-textfield"
-                    label="Comments"
+                    label="Comment"
+                    styles={getStyles}
                     multiline={true}
-                    rows={8}
+                    rows={4}
                     value={this.state.currentInstance.failureDescription}
                     onChange={this.onFailureDescriptionChange}
                     resizable={false}
                 />
+            </GenericPanel>
+        );
+    }
+
+    private getActionCancelButtons = (): JSX.Element => {
+        let primaryButtonText = 'Save';
+        let primaryButtonOnClick = this.onSaveEditedFailureInstance;
+
+        if (this.props.actionType === CapturedInstanceActionType.CREATE) {
+            primaryButtonText = 'Add failed instance';
+            primaryButtonOnClick = this.onAddFailureInstance;
+        }
+
+        return (
+            <div className="footer">
                 <ActionAndCancelButtonsComponent
                     isHidden={false}
                     primaryButtonDisabled={
                         this.state.currentInstance.failureDescription === null && this.state.currentInstance.path === null
                     }
-                    primaryButtonText={this.props.actionType === CapturedInstanceActionType.CREATE ? 'Add' : 'Save'}
-                    primaryButtonOnClick={
-                        this.props.actionType === CapturedInstanceActionType.CREATE
-                            ? this.onAddFailureInstance
-                            : this.onSaveEditedFailureInstance
-                    }
+                    primaryButtonText={primaryButtonText}
+                    primaryButtonOnClick={primaryButtonOnClick}
                     cancelButtonOnClick={this.closeFailureInstancePanel}
                 />
-            </GenericPanel>
+            </div>
         );
-    }
+    };
 
     private getFailureInstancePanelDetails = (): JSX.Element => {
         return (
@@ -222,5 +236,23 @@ export class FailureInstancePanelControl extends React.Component<FailureInstance
     protected closeFailureInstancePanel = (): void => {
         this.props.clearPathSnippetData();
         this.setState({ isPanelOpen: false });
+    };
+}
+
+function getStyles(): Partial<ITextFieldStyles> {
+    return {
+        subComponentStyles: {
+            label: getLabelStyles,
+        },
+    };
+}
+
+function getLabelStyles(): ILabelStyles {
+    return {
+        root: [
+            {
+                paddingBottom: 8,
+            },
+        ],
     };
 }
