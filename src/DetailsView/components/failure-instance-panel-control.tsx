@@ -150,7 +150,7 @@ export class FailureInstancePanelControl extends React.Component<FailureInstance
     }
 
     private getActionCancelButtons = (): JSX.Element => {
-        const createMode = this.props.actionType === CapturedInstanceActionType.CREATE ? true : false;
+        const createMode = this.props.actionType === CapturedInstanceActionType.CREATE;
         return (
             <div className="footer">
                 <ActionAndCancelButtonsComponent
