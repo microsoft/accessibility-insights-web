@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`WindowTitleTest render 1`] = `
+<header
+  className="ms-Grid window-title"
+>
+  <div
+    className="ms-Grid-row"
+  >
+    <span>
+      test
+    </span>
+    <div
+      aria-level={1}
+      className="ms-Grid-col header-text"
+      role="heading"
+    >
+      Test
+    </div>
+  </div>
+</header>
+`;

@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`WindowTitleTest render 1`] = `
+<footer
+  className="ms-Grid window-footer"
+>
+  <div
+    className="ms-Grid-row"
+  >
+    <CustomizedDefaultButton
+      className="window-footer-button-cancel"
+      onClick={[Function]}
+      text="Cancel"
+    />
+  </div>
+</footer>
+`;
