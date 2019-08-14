@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`IssuesView should return issues table with scanning to false 1`] = `"<IssuesTable deps={{...}} title=\\"test title\\" subtitle={{...}} issuesTableHandler={{...}} issuesEnabled={true} violations={{...}} issuesSelection={{...}} selectedIdToRuleResultMap={{...}} pageTitle={[undefined]} pageUrl={[undefined]} scanning={false} toggleClickHandler={[Function: clickHandlerStub]} visualizationConfigurationFactory={[undefined]} featureFlags={[undefined]} scanResult={{...}} userConfigurationStoreData={[undefined]} />"`;
+
+exports[`IssuesView should return issues table with violations to null 1`] = `
+<IssuesTable
+  deps={
+    Object {
+      "detailsViewActionMessageCreator": Object {},
+    }
+  }
+  issuesEnabled={true}
+  issuesSelection={Object {}}
+  issuesTableHandler={Object {}}
+  scanResult={null}
+  scanning={true}
+  selectedIdToRuleResultMap={null}
+  subtitle={
+    <React.Fragment>
+      test subtitle
+    </React.Fragment>
+  }
+  title="test title"
+  toggleClickHandler={[Function]}
+  violations={null}
+/>
+`;
