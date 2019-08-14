@@ -8,10 +8,18 @@ export class ScanResults {
     }
 
     public get deviceName(): string {
-        return this.rawData.axeContext.axeDevice.name;
+        try {
+            return this.rawData.axeContext.axeDevice.name;
+        } catch {
+            return null;
+        }
     }
 
     public get appIdentifier(): string {
-        return this.rawData.axeContext.axeMetaData.appIdentifier;
+        try {
+            return this.rawData.axeContext.axeMetaData.appIdentifier;
+        } catch {
+            return null;
+        }
     }
 }
