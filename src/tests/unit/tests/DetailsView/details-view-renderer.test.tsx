@@ -28,8 +28,7 @@ describe('DetailsViewRendererTest', () => {
         const scopingActionMessageCreatorStrictMock = Mock.ofType<ScopingActionMessageCreator>(null, MockBehavior.Strict);
         const inspectActionMessageCreatorStrictMock = Mock.ofType<InspectActionMessageCreator>(null, MockBehavior.Strict);
 
-        const fakeDocument = TestDocumentCreator.createTestDocument();
-        const detailsViewContainer = fakeDocument.createElement('div');
+        const fakeDocument = TestDocumentCreator.createTestDocument('<div id="details-container"></div>');
 
         const renderMock: IMock<typeof ReactDOM.render> = Mock.ofInstance(() => null);
         const selectionMock = Mock.ofType<ISelection>(Selection);
@@ -46,9 +45,6 @@ describe('DetailsViewRendererTest', () => {
         configMutator.setOption('icon128', expectedIcon16);
         const documentManipulatorMock = Mock.ofType(DocumentManipulator);
         documentManipulatorMock.setup(des => des.setShortcutIcon('../' + expectedIcon16)).verifiable();
-
-        detailsViewContainer.setAttribute('id', 'details-container');
-        fakeDocument.appendChild(detailsViewContainer);
 
         renderMock
             .setup(r =>
@@ -72,7 +68,7 @@ describe('DetailsViewRendererTest', () => {
                             />
                         </>,
                     ),
-                    detailsViewContainer,
+                    fakeDocument.getElementById('details-container'),
                 ),
             )
             .verifiable();

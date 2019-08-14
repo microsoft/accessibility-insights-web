@@ -22,10 +22,7 @@ describe('MainRenderer', () => {
     const expectedTitle = title;
 
     test('render', () => {
-        const fakeDocument = TestDocumentCreator.createTestDocument();
-        const container = fakeDocument.createElement('div');
-        container.setAttribute('id', 'popup-container');
-        fakeDocument.appendChild(container);
+        const fakeDocument = TestDocumentCreator.createTestDocument('<div id="popup-container"></div>');
 
         const diagnosticViewClickHandlerMock = Mock.ofType(DiagnosticViewClickHandler);
         const gettingStartedDialogHandlerMock = Mock.ofType(PopupViewControllerHandler);
@@ -69,7 +66,7 @@ describe('MainRenderer', () => {
                             />
                         </>,
                     ),
-                    container,
+                    fakeDocument.getElementById('popup-container'),
                 ),
             )
             .verifiable();
