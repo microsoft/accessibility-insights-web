@@ -4,12 +4,14 @@ import axios from 'axios';
 import { ScanResults } from './scan-results';
 
 export function fetchScanResults(port: number): Promise<ScanResults> {
-    return axios
-        .get(`http://localhost:${port}/axe/result`)
-        .then(response => {
-            return new ScanResults(response.data);
-        })
-        .catch(error => {
-            return error;
-        });
+    return new Promise<any>((resolve, reject) => {
+        axios
+            .get(`http://localhost:${port}/axe/result`)
+            .then(response => {
+                resolve(new ScanResults(response.data));
+            })
+            .catch(error => {
+                reject(error);
+            });
+    });
 }
