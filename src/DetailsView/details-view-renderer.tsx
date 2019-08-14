@@ -19,7 +19,7 @@ import { PreviewFeatureFlagsHandler } from './handlers/preview-feature-flags-han
 
 export class DetailsViewRenderer {
     private renderer: typeof ReactDOM.render;
-    private dom: NodeSelector & Node;
+    private dom: Document;
     private scopingActionMessageCreator: ScopingActionMessageCreator;
     private inspectActionMessageCreator: InspectActionMessageCreator;
     private issuesSelection: ISelection;
@@ -34,7 +34,7 @@ export class DetailsViewRenderer {
 
     constructor(
         private readonly deps: DetailsViewContainerDeps,
-        dom: NodeSelector & Node,
+        dom: Document,
         renderer: typeof ReactDOM.render,
         scopingActionMessageCreator: ScopingActionMessageCreator,
         inspectActionMessageCreator: InspectActionMessageCreator,

@@ -137,12 +137,10 @@ describe('SingleTargetDrawer Tests', () => {
         formatterMock.verifyAll();
     });
 
-    function setupDrawerUtilsMockDefault(dom): void {
+    function setupDrawerUtilsMockDefault(dom: Document): void {
         drawerUtilsMock
             .setup(d => d.getDocumentElement())
-            .returns(() => {
-                return dom.ownerDocument || (dom as Document);
-            })
+            .returns(() => dom)
             .verifiable(Times.atLeastOnce());
     }
 
