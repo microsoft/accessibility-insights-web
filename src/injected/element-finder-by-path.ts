@@ -35,11 +35,13 @@ export class ElementFinderByPath {
     };
 
     public processRequest = (message: ElementFinderByPathMessage): PromiseLike<string> => {
-        if (!this.checkSyntax(message.path[0])) {
+        let element = null;
+
+        try {
+            element = this.htmlElementUtils.querySelector(message.path[0]) as HTMLElement;
+        } catch (e) {
             return Promise.reject();
         }
-
-        const element = this.htmlElementUtils.querySelector(message.path[0]) as HTMLElement;
 
         if (element == null) {
             return Promise.reject();
@@ -67,12 +69,5 @@ export class ElementFinderByPath {
                 path: message.path,
             } as ElementFinderByPathMessage,
         });
-    };
-
-    private checkSyntax = (pathSegment: string): boolean => {
-        if (pathSegment.startsWith(',') || pathSegment.startsWith(';')) {
-            return false;
-        }
-        return true;
     };
 }
