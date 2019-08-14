@@ -7,6 +7,16 @@ body {
     margin: 0px;
 }
 
+button {
+    -webkit-app-region: no-drag;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    padding: 32px;
+}
+
 .window-title {
     padding: 6px 9px;
 

@@ -3,6 +3,7 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { BrandBlue } from '../../icons/brand/blue/brand-blue';
+import { WindowFooter } from './components/window-footer';
 import { WindowTitle } from './components/window-title';
 
 export class DeviceConnectViewRenderer {
@@ -11,9 +12,12 @@ export class DeviceConnectViewRenderer {
     public render(): void {
         const deviceConnectViewContainer = this.dom.querySelector('#device-connect-view-container');
         this.renderer(
-            <WindowTitle title="Accessibility Insights">
-                <BrandBlue />
-            </WindowTitle>,
+            <>
+                <WindowTitle title="Accessibility Insights">
+                    <BrandBlue />
+                </WindowTitle>
+                <WindowFooter></WindowFooter>
+            </>,
             deviceConnectViewContainer,
         );
     }

@@ -5,7 +5,6 @@ import * as React from 'react';
 
 export interface WindowTitleProps {
     title: string;
-    rowExtraClassName?: string;
     children?: JSX.Element;
 }
 
@@ -21,7 +20,7 @@ export class WindowTitle extends React.Component<WindowTitleProps> {
     public render(): JSX.Element {
         return (
             <header className="ms-Grid window-title">
-                <div className={css('ms-Grid-row', this.props.rowExtraClassName)}>
+                <div className={css('ms-Grid-row')}>
                     {this.props.children}
                     <div role="heading" aria-level={1} className="ms-Grid-col header-text">
                         {this.props.title}
