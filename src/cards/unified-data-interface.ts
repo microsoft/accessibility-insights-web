@@ -1,15 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-/**
- * The buckets that we might need for the unified data model
- *
- * rules
- * elements
- * results mapping the pas/fail, rules and elements
- * platform specific data
- * tool info. that is used for scanning
- * scan data
- */
 
 // this is similar to `TestEngine` interface from axe-core
 interface ScanEngine {
@@ -17,14 +7,20 @@ interface ScanEngine {
     version: string;
 }
 
-interface PlatformData {
+interface OSData {
     name: string;
     osVersion?: string;
     userAgent?: string;
+}
+
+interface ViewPortData {
     platformHeight?: number;
     platformWidth?: number;
-    // mobile specific
-    dpi?: number;
+}
+
+interface PlatformData {
+    osInfo: OSData;
+    viewPortInfo: ViewPortData;
 }
 
 interface ToolData {
@@ -34,9 +30,26 @@ interface ToolData {
 interface ScanMetaData {}
 
 interface ScanResults {
-    rules: AxeRule;
-    results: AxeResults;
+    results: UnifiedAxeResults;
     platformInfo: PlatformData;
     toolInfo: ToolData;
     scanMetaData: ScanMetaData;
 }
+
+interface UnifiedRule {
+    id: string;
+    nodes: UnifiedAxeResults[];
+    ruleDescription: string;
+}
+
+// interfaces below this mark is going to be related to ResultInstance work that is still in progress
+
+interface UnifiedAxeResults {
+    passes: ResultInstance[];
+    violations: ResultInstance[];
+    incomplete: ResultInstance[];
+}
+
+interface ResultInstance {}
+
+interface ScannedElementInfo {}
