@@ -24,9 +24,7 @@ describe('WindowTitleTest', () => {
     });
 
     test('cancel click', () => {
-        const onClickMock = Mock.ofInstance(
-            (event: React.MouseEvent<Button | BaseButton | HTMLDivElement | HTMLAnchorElement | HTMLButtonElement, MouseEvent>) => {},
-        );
+        const onClickMock = Mock.ofInstance(() => {});
 
         const eventStub = new EventStubFactory().createMouseClickEvent() as React.MouseEvent<Button>;
 
@@ -38,6 +36,6 @@ describe('WindowTitleTest', () => {
         const button = rendered.find('.window-footer-button-cancel');
         button.simulate('click', eventStub);
 
-        onClickMock.verify(onClick => onClick(eventStub), Times.once());
+        onClickMock.verify(onClick => onClick(), Times.once());
     });
 });
