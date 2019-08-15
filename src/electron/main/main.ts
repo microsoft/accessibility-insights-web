@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { app, BrowserWindow } from 'electron';
-import { fetchScanResults } from '../platform/android/fetch-scan-results';
 import * as path from 'path';
+import { fetchScanResults } from '../platform/android/fetch-scan-results';
 
 let mainWindow: BrowserWindow;
 
