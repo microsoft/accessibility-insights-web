@@ -38,16 +38,16 @@ interface ScanResults {
 
 interface UnifiedRule {
     id: string;
-    nodes: UnifiedAxeResults[];
+    nodes: ResultInstance[];
     ruleDescription: string;
 }
 
 // interfaces below this mark is going to be related to ResultInstance work that is still in progress
 
 interface UnifiedAxeResults {
-    passes: ResultInstance[];
-    violations: ResultInstance[];
-    incomplete: ResultInstance[];
+    passes: UnifiedRule[];
+    violations: UnifiedRule[];
+    incomplete: UnifiedRule[];
 }
 
 interface ResultInstance {}
