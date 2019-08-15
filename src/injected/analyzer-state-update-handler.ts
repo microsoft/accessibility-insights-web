@@ -4,7 +4,7 @@ import { TestMode } from '../common/configs/test-mode';
 import { VisualizationConfiguration } from '../common/configs/visualization-configuration';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
 import { EnumHelper } from '../common/enum-helper';
-import { AssessmentScanData, ScanData, VisualizationStoreData } from '../common/types/store-data/visualization-store-data';
+import { AssessmentScanData, VisualizationStoreData } from '../common/types/store-data/visualization-store-data';
 import { VisualizationType } from '../common/types/visualization-type';
 
 export class AnalyzerStateUpdateHandler {

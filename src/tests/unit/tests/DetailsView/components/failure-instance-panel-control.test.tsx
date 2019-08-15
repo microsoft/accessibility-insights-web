@@ -16,7 +16,6 @@ import {
 } from '../../../../../DetailsView/components/action-and-cancel-buttons-component';
 import {
     CapturedInstanceActionType,
-    FailureInstanceData,
     FailureInstancePanelControl,
     FailureInstancePanelControlProps,
 } from '../../../../../DetailsView/components/failure-instance-panel-control';
