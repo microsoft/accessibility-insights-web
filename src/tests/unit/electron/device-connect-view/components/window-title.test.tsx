@@ -5,10 +5,6 @@ import * as React from 'react';
 import { WindowTitle, WindowTitleProps } from '../../../../../electron/device-connect-view/components/window-title';
 
 describe('WindowTitleTest', () => {
-    test('constructor', () => {
-        expect(new WindowTitle({} as WindowTitleProps)).toBeDefined();
-    });
-
     test('render', () => {
         const props: WindowTitleProps = {
             title: 'Test',

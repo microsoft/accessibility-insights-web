@@ -8,10 +8,6 @@ import { WindowFooter, WindowFooterProps } from '../../../../../electron/device-
 import { EventStubFactory } from '../../../common/event-stub-factory';
 
 describe('WindowTitleTest', () => {
-    test('constructor', () => {
-        expect(new WindowFooter({} as WindowFooterProps)).toBeDefined();
-    });
-
     test('render', () => {
         const props: WindowFooterProps = {
             cancelClick: () => {
