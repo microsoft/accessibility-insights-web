@@ -36,7 +36,7 @@ interface ScanResults {
     scanMetaData: ScanMetaData;
 }
 
-interface UnifiedRule {
+interface UnifiedRuleResult {
     id: string;
     nodes: ResultInstance[];
     ruleDescription: string;
@@ -45,9 +45,9 @@ interface UnifiedRule {
 // interfaces below this mark is going to be related to ResultInstance work that is still in progress
 
 interface UnifiedAxeResults {
-    passes: UnifiedRule[];
-    violations: UnifiedRule[];
-    incomplete: UnifiedRule[];
+    passes: UnifiedRuleResult[];
+    violations: UnifiedRuleResult[];
+    incomplete: UnifiedRuleResult[];
 }
 
 interface ResultInstance {}
