@@ -261,6 +261,7 @@ exports[`DetailsDialog renders with: { isDevToolsOpen: false,
                 "useMemo": [Function],
                 "useReducer": [Function],
                 "useRef": [Function],
+                "useResponder": [Function],
                 "useState": [Function],
               },
               "_element": <DetailsDialog
@@ -825,6 +826,7 @@ exports[`DetailsDialog renders with: { isDevToolsOpen: false, shadowDialog: fals
                 "useMemo": [Function],
                 "useReducer": [Function],
                 "useRef": [Function],
+                "useResponder": [Function],
                 "useState": [Function],
               },
               "_element": <DetailsDialog
@@ -1388,6 +1390,7 @@ exports[`DetailsDialog renders with: { isDevToolsOpen: false, shadowDialog: true
                   "useMemo": [Function],
                   "useReducer": [Function],
                   "useRef": [Function],
+                  "useResponder": [Function],
                   "useState": [Function],
                 },
                 "_element": <DetailsDialog
@@ -1951,6 +1954,7 @@ exports[`DetailsDialog renders with: { isDevToolsOpen: true, shadowDialog: false
                 "useMemo": [Function],
                 "useReducer": [Function],
                 "useRef": [Function],
+                "useResponder": [Function],
                 "useState": [Function],
               },
               "_element": <DetailsDialog
@@ -2514,6 +2518,7 @@ exports[`DetailsDialog renders with: { isDevToolsOpen: true, shadowDialog: true 
                   "useMemo": [Function],
                   "useReducer": [Function],
                   "useRef": [Function],
+                  "useResponder": [Function],
                   "useState": [Function],
                 },
                 "_element": <DetailsDialog

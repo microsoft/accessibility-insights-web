@@ -110,6 +110,7 @@ exports[`LaunchPanelHeaderTest render contextual menu renders with new assessmen
                 "useMemo": [Function],
                 "useReducer": [Function],
                 "useRef": [Function],
+                "useResponder": [Function],
                 "useState": [Function],
               },
               "_element": <LaunchPanelHeader
@@ -273,6 +274,7 @@ exports[`LaunchPanelHeaderTest render contextual menu renders without new assess
                 "useMemo": [Function],
                 "useReducer": [Function],
                 "useRef": [Function],
+                "useResponder": [Function],
                 "useState": [Function],
               },
               "_element": <LaunchPanelHeader
