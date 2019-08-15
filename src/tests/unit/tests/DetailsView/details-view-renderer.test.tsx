@@ -19,6 +19,7 @@ import { AssessmentInstanceTableHandler } from '../../../../DetailsView/handlers
 import { DetailsViewToggleClickHandlerFactory } from '../../../../DetailsView/handlers/details-view-toggle-click-handler-factory';
 import { PreviewFeatureFlagsHandler } from '../../../../DetailsView/handlers/preview-feature-flags-handler';
 import { CreateTestAssessmentProvider } from '../../common/test-assessment-provider';
+import { TestDocumentCreator } from '../../common/test-document-creator';
 
 describe('DetailsViewRendererTest', () => {
     test('render', () => {
@@ -27,8 +28,7 @@ describe('DetailsViewRendererTest', () => {
         const scopingActionMessageCreatorStrictMock = Mock.ofType<ScopingActionMessageCreator>(null, MockBehavior.Strict);
         const inspectActionMessageCreatorStrictMock = Mock.ofType<InspectActionMessageCreator>(null, MockBehavior.Strict);
 
-        const dom = document.createElement('div');
-        const detailsViewContainer = document.createElement('div');
+        const fakeDocument = TestDocumentCreator.createTestDocument('<div id="details-container"></div>');
 
         const renderMock: IMock<typeof ReactDOM.render> = Mock.ofInstance(() => null);
         const selectionMock = Mock.ofType<ISelection>(Selection);
@@ -45,9 +45,6 @@ describe('DetailsViewRendererTest', () => {
         configMutator.setOption('icon128', expectedIcon16);
         const documentManipulatorMock = Mock.ofType(DocumentManipulator);
         documentManipulatorMock.setup(des => des.setShortcutIcon('../' + expectedIcon16)).verifiable();
-
-        detailsViewContainer.setAttribute('id', 'details-container');
-        dom.appendChild(detailsViewContainer);
 
         renderMock
             .setup(r =>
@@ -71,14 +68,14 @@ describe('DetailsViewRendererTest', () => {
                             />
                         </>,
                     ),
-                    detailsViewContainer,
+                    fakeDocument.getElementById('details-container'),
                 ),
             )
             .verifiable();
 
         const renderer = new DetailsViewRenderer(
             deps,
-            dom,
+            fakeDocument,
             renderMock.object,
             scopingActionMessageCreatorStrictMock.object,
             inspectActionMessageCreatorStrictMock.object,

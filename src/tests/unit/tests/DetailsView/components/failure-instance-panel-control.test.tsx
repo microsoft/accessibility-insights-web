@@ -10,10 +10,12 @@ import { Assessments } from 'assessments/assessments';
 import { FlaggedComponent } from '../../../../../common/components/flagged-component';
 import { FeatureFlagStoreData } from '../../../../../common/types/store-data/feature-flag-store-data';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
-import { ActionAndCancelButtonsComponent } from '../../../../../DetailsView/components/action-and-cancel-buttons-component';
+import {
+    ActionAndCancelButtonsComponent,
+    ActionAndCancelButtonsComponentProps,
+} from '../../../../../DetailsView/components/action-and-cancel-buttons-component';
 import {
     CapturedInstanceActionType,
-    FailureInstanceData,
     FailureInstancePanelControl,
     FailureInstancePanelControlProps,
 } from '../../../../../DetailsView/components/failure-instance-panel-control';
@@ -182,10 +184,17 @@ describe('FailureInstancePanelControlTest', () => {
             .find(TextField)
             .props()
             .onChange(null, description);
-        wrapper
-            .find(ActionAndCancelButtonsComponent)
-            .props()
-            .primaryButtonOnClick(null);
+
+        const buttonsWrapper = shallow<JSX.Element>(
+            wrapper
+                .find(GenericPanel)
+                .props()
+                .onRenderFooterContent(),
+        );
+        const buttons = buttonsWrapper.find(ActionAndCancelButtonsComponent);
+        const buttonProps = buttons.props() as ActionAndCancelButtonsComponentProps;
+
+        buttonProps.primaryButtonOnClick(null);
 
         expect(wrapper.state().isPanelOpen).toBe(false);
 
@@ -213,10 +222,17 @@ describe('FailureInstancePanelControlTest', () => {
             .find(TextField)
             .props()
             .onChange(null, description);
-        wrapper
-            .find(ActionAndCancelButtonsComponent)
-            .props()
-            .primaryButtonOnClick(null);
+
+        const buttonsWrapper = shallow<JSX.Element>(
+            wrapper
+                .find(GenericPanel)
+                .props()
+                .onRenderFooterContent(),
+        );
+        const buttons = buttonsWrapper.find(ActionAndCancelButtonsComponent);
+        const buttonProps = buttons.props() as ActionAndCancelButtonsComponentProps;
+
+        buttonProps.primaryButtonOnClick(null);
 
         expect(wrapper.state().isPanelOpen).toBe(false);
 

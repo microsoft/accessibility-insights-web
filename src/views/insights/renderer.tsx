@@ -9,7 +9,7 @@ import { DocumentManipulator } from '../../common/document-manipulator';
 import { Router, RouterDeps } from './router';
 
 export type RendererDeps = {
-    dom: Node & NodeSelector;
+    dom: Document;
     render: ReactDOM.Renderer;
     initializeFabricIcons: () => void;
 } & RouterDeps &

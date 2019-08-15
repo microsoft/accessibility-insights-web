@@ -10,7 +10,7 @@ export class Launcher {
     constructor(
         private axe: typeof Axe,
         private scanParameterGenerator: ScanParameterGenerator,
-        private dom: NodeSelector & Node,
+        private dom: Document,
         private options: ScanOptions,
     ) {}
 

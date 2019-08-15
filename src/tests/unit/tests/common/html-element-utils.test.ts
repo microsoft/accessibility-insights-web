@@ -3,7 +3,7 @@
 import { It, Mock, Times } from 'typemoq';
 
 import { HTMLElementUtils } from '../../../../common/html-element-utils';
-import { NodeListBuilder } from '../../common/node-list-builder';
+import { HTMLCollectionOfBuilder } from '../../common/html-collection-of-builder';
 
 describe('HTMLElementUtilsTest', () => {
     test('getContentWindow', () => {
@@ -73,9 +73,9 @@ describe('HTMLElementUtilsTest', () => {
 
         const elements = ['element1' as any, 'element2' as any];
 
-        const expectedElements: NodeListOf<Element> = NodeListBuilder.createNodeList(elements);
+        const expectedElements = HTMLCollectionOfBuilder.create(elements);
 
-        const querySelectorAllMock = Mock.ofInstance((_: string) => null as NodeListOf<Element>);
+        const querySelectorAllMock = Mock.ofInstance((_: string) => null as HTMLCollectionOf<Element>);
         querySelectorAllMock.setup(qs => qs(selector)).returns(() => expectedElements);
 
         const dom = {

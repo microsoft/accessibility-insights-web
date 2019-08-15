@@ -82,7 +82,7 @@ describe('HighlightVisualization', () => {
         const elementResultStubOne = getElementResultStub();
         const elementResultStubTwo = getElementResultStub();
         const elementStub = {} as Element;
-        const elementStubList = NodeListBuilder.createNodeList([elementStub]);
+        const elementStubList = NodeListBuilder.create([elementStub]);
         elementResults = [elementResultStubOne, elementResultStubTwo];
         props.elementResults = elementResults;
         props.formatter = null;
@@ -102,7 +102,7 @@ describe('HighlightVisualization', () => {
         const elementResultStubOne = getElementResultStub();
         const elementResultStubTwo = getElementResultStub();
         const elementStub = {} as Element;
-        const elementStubList = NodeListBuilder.createNodeList([elementStub]);
+        const elementStubList = NodeListBuilder.create([elementStub]);
         const drawerConfigStub: DrawerConfiguration = {
             getBoundingRect: someElement => null,
         } as DrawerConfiguration;

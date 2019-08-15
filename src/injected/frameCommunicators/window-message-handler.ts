@@ -57,6 +57,7 @@ export class WindowMessageHandler {
     }
 
     private windowMessageHandler = (e: MessageEvent): void => {
+        const sourceWindow = e.source as Window;
         const data: WindowMessage = this.windowMessageParser.parseMessage(e.data);
         if (data == null) {
             return;
@@ -66,12 +67,12 @@ export class WindowMessageHandler {
 
         try {
             if (callback) {
-                this.processResponseFromPreviousRequest(e.source, data, callback);
+                this.processResponseFromPreviousRequest(sourceWindow, data, callback);
             } else {
-                this.processNewMessage(e.source, data);
+                this.processNewMessage(sourceWindow, data);
             }
         } catch (err) {
-            this.post(e.source, data.command, err, null, messageId);
+            this.post(sourceWindow, data.command, err, null, messageId);
         }
     };
 
