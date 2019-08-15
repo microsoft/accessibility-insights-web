@@ -108,11 +108,13 @@ export class AssessmentTableColumnConfigHandler {
     }
 
     private onRenderCapturedInstanceDetailsColumn(item: CapturedInstanceRowData): JSX.Element {
+        const headerText = item.instance.description ? 'Comment:' : 'Path:';
+        const textContent = item.instance.description ? item.instance.description : item.instance.selector;
         return (
             <AssessmentInstanceDetailsColumn
                 background={'#767676'}
-                labelText={'N/A'}
-                textContent={item.instance.description}
+                textContent={textContent}
+                headerText={headerText}
                 tooltipId={item.instance.id}
                 customClassName="not-applicable"
             />

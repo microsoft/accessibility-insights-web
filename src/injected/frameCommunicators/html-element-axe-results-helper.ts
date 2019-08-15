@@ -65,7 +65,7 @@ export class HtmlElementAxeResultsHelper {
 
         const allFramesIncludingCurrentFrames = Array.prototype.slice.call(this.htmlElementUtils.getAllElementsByTagName(
             'iframe',
-        ) as NodeListOf<HTMLIFrameElement>);
+        ) as HTMLCollectionOf<HTMLIFrameElement>);
         allFramesIncludingCurrentFrames.push(null); // current frame
 
         for (let framePos = 0; framePos < allFramesIncludingCurrentFrames.length; framePos++) {

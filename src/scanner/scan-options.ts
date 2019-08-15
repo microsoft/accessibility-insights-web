@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 export interface ScanOptions {
     testsToRun?: string[];
-    dom?: NodeSelector & Node | NodeList;
+    dom?: Document | NodeList;
     selector?: string;
     include?: string[][];
     exclude?: string[][];

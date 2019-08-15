@@ -1,13 +1,10 @@
 {
     "compilerOptions": {
         "allowSyntheticDefaultImports": true,
-        "extendedDiagnostics": true,
         "target": "es5",
         "module": "amd",
         "lib": ["es5", "es6", "es2015.promise", "dom", "scripthost"],
         "jsx": "react",
-        "declaration": true,
-        "declarationDir": "./ref/",
         "sourceMap": true,
         "outDir": "./dist/",
         "rootDir": "./",
@@ -34,6 +31,5 @@
         },
         "forceConsistentCasingInFileNames": true
     },
-    "include": ["src/**/*.ts", "src/**/*.tsx", "references.ts"],
-    "exclude": ["src/common/references.ts", "src/webpack.config.js"]
+    "include": ["src/**/*.ts", "src/**/*.tsx"]
 }
