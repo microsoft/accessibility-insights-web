@@ -158,7 +158,7 @@ export class FrameCommunicator {
         }
     }
 
-    private getAllFrames(): NodeListOf<HTMLIFrameElement> {
-        return this.htmlElementUtils.getAllElementsByTagName('iframe') as NodeListOf<HTMLIFrameElement>;
+    private getAllFrames(): HTMLCollectionOf<HTMLIFrameElement> {
+        return this.htmlElementUtils.getAllElementsByTagName('iframe') as HTMLCollectionOf<HTMLIFrameElement>;
     }
 }
