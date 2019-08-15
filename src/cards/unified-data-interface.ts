@@ -47,6 +47,7 @@ interface UnifiedRuleResult {
     nodes: UnifiedResultInstance[];
     ruleDescription: string;
 }
+
 interface InstancePropertyBag<T> {
     [property: string]: T;
 }
