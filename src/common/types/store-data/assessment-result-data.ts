@@ -41,6 +41,7 @@ export interface UserCapturedInstance {
     description: string;
     html?: string;
     selector?: string;
+    htmlError?: boolean;
 }
 
 export interface GeneratedAssessmentInstance<T = {}, K = {}> {

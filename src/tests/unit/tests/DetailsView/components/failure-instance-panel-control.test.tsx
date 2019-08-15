@@ -16,7 +16,6 @@ import {
 } from '../../../../../DetailsView/components/action-and-cancel-buttons-component';
 import {
     CapturedInstanceActionType,
-    FailureInstanceData,
     FailureInstancePanelControl,
     FailureInstancePanelControlProps,
 } from '../../../../../DetailsView/components/failure-instance-panel-control';
@@ -100,7 +99,7 @@ describe('FailureInstancePanelControlTest', () => {
         const failureInstance = {
             failureDescription: 'new text',
             path: 'some selector',
-            snippet: null,
+            snippetCondition: { associatedPath: null, showError: false, snippet: null },
         };
 
         props.failureInstance = failureInstance;
@@ -120,10 +119,11 @@ describe('FailureInstancePanelControlTest', () => {
     test('openFailureInstancePanel', () => {
         const props = createPropsWithType(CapturedInstanceActionType.CREATE);
         const eventStub = null;
+        const newPath = 'new path';
         const failureInstance = {
             failureDescription: 'new text',
-            path: 'new path',
-            snippet: 'new snippet',
+            path: newPath,
+            snippetCondition: { associatedPath: newPath, showError: false, snippet: 'new snippet' },
         };
         props.failureInstance = failureInstance;
         const wrapper = shallow<FailureInstancePanelControl>(<FailureInstancePanelControl {...props} />);
@@ -139,7 +139,7 @@ describe('FailureInstancePanelControlTest', () => {
         expect(wrapper.state().isPanelOpen).toBe(true);
         expect(wrapper.state().currentInstance.failureDescription).toEqual(props.failureInstance.failureDescription);
         expect(wrapper.state().currentInstance.path).toEqual(props.failureInstance.path);
-        expect(wrapper.state().currentInstance.snippet).toEqual(props.failureInstance.snippet);
+        expect(wrapper.state().currentInstance.snippetCondition).toEqual(props.failureInstance.snippetCondition);
     });
 
     test('closeFailureInstancePanel', () => {
@@ -167,15 +167,16 @@ describe('FailureInstancePanelControlTest', () => {
 
     test('onSaveEditedFailureInstance', () => {
         const description = 'text';
-        const props = createPropsWithType(CapturedInstanceActionType.EDIT);
-        props.instanceId = '1';
-        props.editFailureInstance = editInstanceMock.object;
-
         const instanceData = {
             failureDescription: description,
             path: null,
-            snippet: null,
+            snippetCondition: { associatedPath: null, showError: false, snippet: null },
         };
+
+        const props = createPropsWithType(CapturedInstanceActionType.EDIT);
+        props.instanceId = '1';
+        props.editFailureInstance = editInstanceMock.object;
+        props.failureInstance = instanceData;
 
         editInstanceMock.setup(handler => handler(instanceData, props.test, props.step, props.instanceId)).verifiable(Times.once());
 
@@ -208,13 +209,14 @@ describe('FailureInstancePanelControlTest', () => {
 
     test('onAddFailureInstance', () => {
         const description = 'text';
-        const props = createPropsWithType(CapturedInstanceActionType.CREATE);
-
         const instanceData = {
             failureDescription: description,
-            path: null,
-            snippet: null,
+            path: 'path',
+            snippetCondition: { associatedPath: 'path', showError: false, snippet: 'snippet' },
         };
+
+        const props = createPropsWithType(CapturedInstanceActionType.CREATE);
+        props.failureInstance = instanceData;
 
         addInstanceMock.setup(handler => handler(instanceData, props.test, props.step)).verifiable(Times.once());
 
@@ -246,10 +248,11 @@ describe('FailureInstancePanelControlTest', () => {
 
     test('componentDidMount clears store', () => {
         const props = createPropsWithType(CapturedInstanceActionType.CREATE);
+        const inputPath = 'inputed path';
         const failureInstance = {
             failureDescription: null,
-            path: 'inputed path',
-            snippet: 'snippet for path',
+            path: inputPath,
+            snippetCondition: { associatedPath: inputPath, showError: false, snippet: 'snippet for path' },
         };
         props.failureInstance = failureInstance;
 
@@ -262,10 +265,11 @@ describe('FailureInstancePanelControlTest', () => {
     test('componentDidUpdate reassigns state', () => {
         const prevProps = createPropsWithType(CapturedInstanceActionType.CREATE);
         const newProps = createPropsWithType(CapturedInstanceActionType.CREATE);
+        const inputPath = 'inputed path';
         const newFailureInstance = {
             failureDescription: null,
-            path: 'inputed path',
-            snippet: 'snippet for path',
+            path: inputPath,
+            snippetCondition: { associatedPath: inputPath, showError: false, snippet: 'snippet for path' },
         };
         newProps.failureInstance = newFailureInstance;
 
@@ -287,7 +291,7 @@ describe('FailureInstancePanelControlTest', () => {
         const emptyFailureInstance = {
             failureDescription: null,
             path: null,
-            snippet: null,
+            snippetCondition: null,
         };
 
         return {

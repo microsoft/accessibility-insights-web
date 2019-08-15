@@ -8,7 +8,6 @@ import { FailureInstancePanelDetails } from '../../../../../DetailsView/componen
 
 describe('FailureInstancePanelDetailsTest', () => {
     const path = 'Given Path';
-    const snippet = 'Snippet for Given Path';
     const onSelectorChangeMock = Mock.ofInstance((value: string) => {});
     const onValidateSelectorMock = Mock.ofInstance(() => {});
 
@@ -17,33 +16,48 @@ describe('FailureInstancePanelDetailsTest', () => {
         onValidateSelectorMock.reset();
     });
 
-    const rendered = shallow(
-        <FailureInstancePanelDetails
-            path={path}
-            snippet={snippet}
-            onSelectorChange={onSelectorChangeMock.object}
-            onValidateSelector={onValidateSelectorMock.object}
-        ></FailureInstancePanelDetails>,
-    );
+    const rendered = shallow(createFailureInstancePanelDetails(null, false));
 
-    it('renders', () => {
-        expect(rendered.exists());
-        expect(rendered.getElement()).toMatchSnapshot();
+    test('renders with no snippet', () => {
+        const noSnippetRender = shallow(createFailureInstancePanelDetails(null, false));
+        expect(noSnippetRender.exists());
+        expect(noSnippetRender.getElement()).toMatchSnapshot();
     });
 
-    it('triggers selector change on typing', () => {
+    test('renders with invalid snippet', () => {
+        const invalidSnippetRender = shallow(createFailureInstancePanelDetails(null, true));
+        expect(invalidSnippetRender.exists());
+        expect(invalidSnippetRender.getElement()).toMatchSnapshot();
+    });
+
+    test('renders with valid snippet', () => {
+        const validSnippetRender = shallow(createFailureInstancePanelDetails('Found snippet', false));
+        expect(validSnippetRender.exists());
+        expect(validSnippetRender.getElement()).toMatchSnapshot();
+    });
+
+    test('triggers selector change on typing', () => {
         const newPath = 'updated path';
         onSelectorChangeMock.setup(dc => dc(It.isValue(newPath))).verifiable(Times.once());
-
         const textField = rendered.find(TextField);
         textField.simulate('change', newPath);
         onSelectorChangeMock.verifyAll();
     });
 
-    it('triggers validation on click', () => {
+    test('triggers validation on click', () => {
         onValidateSelectorMock.setup(getter => getter()).verifiable(Times.once());
-
         rendered.find(DefaultButton).simulate('click');
         onValidateSelectorMock.verifyAll();
     });
+
+    function createFailureInstancePanelDetails(snippet: string, error: boolean): JSX.Element {
+        return (
+            <FailureInstancePanelDetails
+                path={path}
+                snippetCondition={{ associatedPath: path, showError: error, snippet: snippet }}
+                onSelectorChange={onSelectorChangeMock.object}
+                onValidateSelector={onValidateSelectorMock.object}
+            ></FailureInstancePanelDetails>
+        );
+    }
 });

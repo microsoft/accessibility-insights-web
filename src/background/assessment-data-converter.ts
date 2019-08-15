@@ -10,6 +10,7 @@ import {
     TestStepResult,
     UserCapturedInstance,
 } from '../common/types/store-data/assessment-result-data';
+import { SnippetCondition } from '../common/types/store-data/path-snippet-store-data';
 import { DecoratedAxeNodeResult, HtmlElementAxeResults } from '../injected/scanner-utils';
 import { PartialTabOrderPropertyBag } from '../injected/tab-order-property-bag';
 import { TabStopEvent } from '../injected/tab-stops-listener';
@@ -183,12 +184,13 @@ export class AssessmentDataConverter {
         return null;
     }
 
-    public generateFailureInstance(description: string, path: string, snippet: string): UserCapturedInstance {
+    public generateFailureInstance(description: string, path: string, snippetCondition: SnippetCondition): UserCapturedInstance {
         const instance: UserCapturedInstance = {
             id: this.generateUID(),
             description,
             selector: path,
-            html: snippet,
+            html: snippetCondition.snippet,
+            htmlError: snippetCondition.showError,
         };
         return instance;
     }

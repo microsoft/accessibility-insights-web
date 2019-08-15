@@ -34,7 +34,7 @@ describe('AssessmentInstanceRemoveButton', () => {
             currentInstance: {
                 failureDescription: 'original text',
                 path: 'original path',
-                snippet: 'original snippet',
+                snippetCondition: { associatedPath: 'original path', showError: false, snippet: 'original snippet' },
             },
             onRemove: onRemoveMock.object,
             onEdit: null,

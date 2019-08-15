@@ -6,30 +6,30 @@ import { ILabelStyles } from 'office-ui-fabric-react/lib/Label';
 import { ITextFieldStyles, TextField } from 'office-ui-fabric-react/lib/TextField';
 import * as React from 'react';
 import { NamedSFC } from '../../common/react/named-sfc';
+import { SnippetCondition } from '../../common/types/store-data/path-snippet-store-data';
 
 export type FailureInstancePanelDetailsProps = {
     path: string;
-    snippet: string;
+    snippetCondition: SnippetCondition;
     onSelectorChange: (event, value) => void;
     onValidateSelector: (event) => void;
 };
 
 export const FailureInstancePanelDetails = NamedSFC<FailureInstancePanelDetailsProps>('FailureInstancePanelDetails', props => {
     const getSnippetInfo = (): JSX.Element => {
-        if (!props.snippet) {
-            return (
-                <div className="failure-instance-snippet-empty-body">Code snippet will auto-populate based on the CSS selector input.</div>
-            );
-        } else if (props.snippet.startsWith('No code snippet is map')) {
-            return (
-                <div className="failure-instance-snippet-error">
-                    <Icon iconName="statusErrorFull" className="failure-instance-snippet-error-icon" />
-                    <div>{props.snippet}</div>
-                </div>
-            );
-        } else {
-            return <div className="failure-instance-snippet-filled-body">{props.snippet}</div>;
+        if (props.snippetCondition) {
+            if (props.snippetCondition.showError) {
+                return (
+                    <div className="failure-instance-snippet-error">
+                        <Icon iconName="statusErrorFull" className="failure-instance-snippet-error-icon" />
+                        <div>No code snippet is mapped to: {props.snippetCondition.associatedPath}</div>
+                    </div>
+                );
+            } else if (props.snippetCondition.snippet) {
+                return <div className="failure-instance-snippet-filled-body">{props.snippetCondition.snippet}</div>;
+            }
         }
+        return <div className="failure-instance-snippet-empty-body">Code snippet will auto-populate based on the CSS selector input.</div>;
     };
     return (
         <div>

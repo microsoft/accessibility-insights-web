@@ -1,6 +1,109 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`FailureInstancePanelDetailsTest renders 1`] = `
+exports[`FailureInstancePanelDetailsTest renders with invalid snippet 1`] = `
+<div>
+  <a
+    className="learn-more"
+    href="#"
+  >
+    Learn more about adding failure instances
+  </a>
+  <StyledTextFieldBase
+    label="CSS Selector"
+    multiline={true}
+    onChange={[Function]}
+    placeholder="CSS Selector"
+    resizable={false}
+    rows={4}
+    styles={[Function]}
+    value="Given Path"
+  />
+  <div
+    className="failure-instance-selector-note"
+  >
+    Note: If the CSS selector maps to multiple snippets, the first will be selected
+  </div>
+  <div>
+    <CustomizedDefaultButton
+      disabled={false}
+      onClick={[Function]}
+      text="Validate CSS selector"
+    />
+  </div>
+  <div
+    aria-atomic="true"
+    aria-live="polite"
+  >
+    <div
+      className="failure-instance-snippet-title"
+    >
+      Code Snippet
+    </div>
+    <div
+      className="failure-instance-snippet-error"
+    >
+      <StyledIconBase
+        className="failure-instance-snippet-error-icon"
+        iconName="statusErrorFull"
+      />
+      <div>
+        No code snippet is mapped to: 
+        Given Path
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`FailureInstancePanelDetailsTest renders with no snippet 1`] = `
+<div>
+  <a
+    className="learn-more"
+    href="#"
+  >
+    Learn more about adding failure instances
+  </a>
+  <StyledTextFieldBase
+    label="CSS Selector"
+    multiline={true}
+    onChange={[Function]}
+    placeholder="CSS Selector"
+    resizable={false}
+    rows={4}
+    styles={[Function]}
+    value="Given Path"
+  />
+  <div
+    className="failure-instance-selector-note"
+  >
+    Note: If the CSS selector maps to multiple snippets, the first will be selected
+  </div>
+  <div>
+    <CustomizedDefaultButton
+      disabled={false}
+      onClick={[Function]}
+      text="Validate CSS selector"
+    />
+  </div>
+  <div
+    aria-atomic="true"
+    aria-live="polite"
+  >
+    <div
+      className="failure-instance-snippet-title"
+    >
+      Code Snippet
+    </div>
+    <div
+      className="failure-instance-snippet-empty-body"
+    >
+      Code snippet will auto-populate based on the CSS selector input.
+    </div>
+  </div>
+</div>
+`;
+
+exports[`FailureInstancePanelDetailsTest renders with valid snippet 1`] = `
 <div>
   <a
     className="learn-more"
@@ -42,7 +145,7 @@ exports[`FailureInstancePanelDetailsTest renders 1`] = `
     <div
       className="failure-instance-snippet-filled-body"
     >
-      Snippet for Given Path
+      Found snippet
     </div>
   </div>
 </div>

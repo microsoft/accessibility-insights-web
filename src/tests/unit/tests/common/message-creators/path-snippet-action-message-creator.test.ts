@@ -17,13 +17,15 @@ describe('PathSnippetActionMessageCreatorTest', () => {
 
     it('dispatches message for addCorrespondingSnippet', () => {
         const snippet = 'test snippet';
+        const showError = false;
+        const associatedPath = 'test path';
 
         const expectedMessage: Message = {
             messageType: Messages.PathSnippet.AddCorrespondingSnippet,
-            payload: snippet,
+            payload: { associatedPath, showError, snippet },
         };
 
-        testSubject.addCorrespondingSnippet(snippet);
+        testSubject.addCorrespondingSnippet(associatedPath, showError, snippet);
         dispatcherMock.verify(dispatcher => dispatcher.dispatchMessage(expectedMessage), Times.once());
     });
 });

@@ -121,9 +121,11 @@ describe('AssessmentInstanceTableHandlerTest', () => {
             selectedTestType: 5,
         };
 
+        const path = 'test path';
+
         const pathSnippetStoreData = {
-            path: 'test path',
-            snippet: 'test snippet for path',
+            path: path,
+            snippetCondition: { associatedPath: path, showError: false, snippet: 'test snippet for path' },
         };
 
         const rows = testSubject.createCapturedInstanceTableItems(
@@ -137,7 +139,7 @@ describe('AssessmentInstanceTableHandlerTest', () => {
         const currentInstance = {
             failureDescription: instance.description,
             path: pathSnippetStoreData.path,
-            snippet: pathSnippetStoreData.snippet,
+            snippetCondition: pathSnippetStoreData.snippetCondition,
         };
 
         const instanceActionButtons: JSX.Element = (
@@ -169,6 +171,7 @@ describe('AssessmentInstanceTableHandlerTest', () => {
             description: 'des',
             selector: 'saved path',
             html: 'saved instance',
+            htmlError: false,
         };
         const assessmentNavState: AssessmentNavState = {
             selectedTestStep: 'step1',
@@ -177,7 +180,7 @@ describe('AssessmentInstanceTableHandlerTest', () => {
 
         const pathSnippetStoreData = {
             path: null,
-            snippet: null,
+            snippetCondition: null,
         };
 
         const rows = testSubject.createCapturedInstanceTableItems(
@@ -191,7 +194,7 @@ describe('AssessmentInstanceTableHandlerTest', () => {
         const currentInstance = {
             failureDescription: instance.description,
             path: instance.selector,
-            snippet: instance.html,
+            snippetCondition: { associatedPath: instance.selector, showError: instance.htmlError, snippet: instance.html },
         };
 
         const instanceActionButtons: JSX.Element = (

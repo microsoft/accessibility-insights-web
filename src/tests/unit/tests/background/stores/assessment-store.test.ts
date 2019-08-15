@@ -1114,21 +1114,26 @@ describe('AssessmentStoreTest', () => {
 
         const initialState = getStateWithAssessment(assessmentData);
 
+        const path = 'path';
+        const snippet = 'snippet';
+        const error = false;
+
         const payload: AddFailureInstancePayload = {
             test: assessmentType,
             requirement: requirementKey,
             instanceData: {
                 failureDescription: 'description',
-                path: 'path',
-                snippet: 'snippet',
+                path: path,
+                snippetCondition: { associatedPath: path, showError: error, snippet: snippet },
             },
         };
 
         const failureInstance = {
             id: '1',
             description: 'description',
-            selector: 'path',
-            html: 'snippet',
+            selector: path,
+            html: snippet,
+            htmlError: error,
         };
 
         assessmentsProviderMock.setup(apm => apm.forType(payload.test)).returns(() => assessmentMock.object);
@@ -1137,9 +1142,13 @@ describe('AssessmentStoreTest', () => {
 
         assessmentDataConverterMock
             .setup(a =>
-                a.generateFailureInstance(payload.instanceData.failureDescription, payload.instanceData.path, payload.instanceData.snippet),
+                a.generateFailureInstance(
+                    payload.instanceData.failureDescription,
+                    payload.instanceData.path,
+                    payload.instanceData.snippetCondition,
+                ),
             )
-            .returns(description => failureInstance);
+            .returns(() => failureInstance);
 
         const expectedAssessment = new AssessmentDataBuilder()
             .with('manualTestStepResultMap', {
@@ -1218,6 +1227,7 @@ describe('AssessmentStoreTest', () => {
             description: oldDescription,
             selector: oldPath,
             html: oldSnippet,
+            htmlError: false,
         };
 
         const assessmentData = new AssessmentDataBuilder()
@@ -1239,7 +1249,7 @@ describe('AssessmentStoreTest', () => {
             instanceData: {
                 failureDescription: newDescription,
                 path: newPath,
-                snippet: newSnippet,
+                snippetCondition: { associatedPath: newPath, showError: false, snippet: newSnippet },
             },
         };
 
@@ -1258,6 +1268,7 @@ describe('AssessmentStoreTest', () => {
                             description: newDescription,
                             selector: newPath,
                             html: newSnippet,
+                            htmlError: false,
                         },
                     ],
                 },

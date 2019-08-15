@@ -62,15 +62,16 @@ describe('ManualTestStepView', () => {
         const items = [];
         const assessmentInstanceTableHandlerMock = Mock.ofType(AssessmentInstanceTableHandler);
         const cols = [];
+        const path = 'Validated Path';
 
         const pathSnippetStoreData = {
-            path: 'Validated Path',
-            snippet: 'Corresponding Snippet',
+            path: path,
+            snippetCondition: { associatedPath: path, showError: false, snippet: 'Corresponding Snippet' },
         };
 
         const failureInstance = {
             path: pathSnippetStoreData.path,
-            snippet: pathSnippetStoreData.snippet,
+            snippetCondition: pathSnippetStoreData.snippetCondition,
         };
 
         const props: ManualTestStepViewProps = {

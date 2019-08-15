@@ -632,7 +632,7 @@ describe('DetailsViewActionMessageCreatorTest', () => {
         const instanceData = {
             failureDescription: 'description',
             path: 'path',
-            snippet: 'snippet',
+            snippetCondition: { associatedPath: 'path', showError: false, snippet: 'snippet' },
         };
 
         const expectedMessage = {
@@ -685,7 +685,7 @@ describe('DetailsViewActionMessageCreatorTest', () => {
         const instanceData = {
             failureDescription: 'des',
             path: 'path',
-            snippet: 'snippet',
+            snippetCondition: { associatedPath: 'path', showError: false, snippet: 'snippet' },
         };
         const expectedMessage = {
             messageType: Messages.Assessment.EditFailureInstance,

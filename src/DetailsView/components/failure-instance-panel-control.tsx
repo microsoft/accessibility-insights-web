@@ -13,6 +13,7 @@ import { BaseStore } from '../../common/base-store';
 import { FlaggedComponent } from '../../common/components/flagged-component';
 import { FeatureFlags } from '../../common/feature-flags';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
+import { SnippetCondition } from '../../common/types/store-data/path-snippet-store-data';
 import { VisualizationType } from '../../common/types/visualization-type';
 import { ActionAndCancelButtonsComponent } from './action-and-cancel-buttons-component';
 import { FailureInstancePanelDetails } from './failure-instance-panel-details';
@@ -35,7 +36,7 @@ export interface FailureInstancePanelControlProps {
 export type FailureInstanceData = {
     failureDescription?: string;
     path?: string;
-    snippet?: string;
+    snippetCondition?: SnippetCondition;
 };
 
 export interface FailureInstancePanelControlState {
@@ -75,7 +76,7 @@ export class FailureInstancePanelControl extends React.Component<FailureInstance
                 currentInstance: {
                     failureDescription: this.state.currentInstance.failureDescription,
                     path: this.props.failureInstance.path,
-                    snippet: this.props.failureInstance.snippet,
+                    snippetCondition: this.props.failureInstance.snippetCondition,
                 },
             }));
         }
@@ -177,7 +178,7 @@ export class FailureInstancePanelControl extends React.Component<FailureInstance
         return (
             <FailureInstancePanelDetails
                 path={this.state.currentInstance.path}
-                snippet={this.state.currentInstance.snippet}
+                snippetCondition={this.state.currentInstance.snippetCondition}
                 onSelectorChange={this.onSelectorChange}
                 onValidateSelector={this.onValidateSelector}
             />
@@ -188,7 +189,7 @@ export class FailureInstancePanelControl extends React.Component<FailureInstance
         const defaultInstance = {
             failureDescription: null,
             path: null,
-            snippet: null,
+            snippetCondition: { associatedPath: null, showError: false, snippet: null },
         };
 
         return defaultInstance;
