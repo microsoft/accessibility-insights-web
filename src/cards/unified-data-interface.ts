@@ -36,20 +36,30 @@ interface ScanResults {
     scanMetaData: ScanMetaData;
 }
 
-interface UnifiedRuleResult {
-    id: string;
-    nodes: ResultInstance[];
-    ruleDescription: string;
-}
-
-// interfaces below this mark is going to be related to ResultInstance work that is still in progress
-
 interface UnifiedAxeResults {
     passes: UnifiedRuleResult[];
     violations: UnifiedRuleResult[];
     incomplete: UnifiedRuleResult[];
 }
 
-interface ResultInstance {}
+interface UnifiedRuleResult {
+    id: string;
+    nodes: UnifiedResultInstance[];
+    ruleDescription: string;
+}
+interface InstancePropertyBag<T> {
+    [property: string]: T;
+}
+
+type StoredInstancePropertyBag = InstancePropertyBag<any>;
+
+interface UnifiedResultInstance {
+    id: string;
+    evaluation: StoredInstancePropertyBag;
+    identifiers: StoredInstancePropertyBag;
+    descriptors: StoredInstancePropertyBag;
+    resolution: StoredInstancePropertyBag;
+}
+// interfaces below this mark is going to be related to ResultInstance work that is still in progress
 
 interface ScannedElementInfo {}
