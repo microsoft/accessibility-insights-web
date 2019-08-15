@@ -60,6 +60,3 @@ interface UnifiedResultInstance {
     descriptors: StoredInstancePropertyBag;
     resolution: StoredInstancePropertyBag;
 }
-// interfaces below this mark is going to be related to ResultInstance work that is still in progress
-
-interface ScannedElementInfo {}
