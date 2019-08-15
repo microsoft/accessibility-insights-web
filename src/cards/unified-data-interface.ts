@@ -30,13 +30,13 @@ interface ToolData {
 interface ScanMetaData {}
 
 interface ScanResults {
-    results: UnifiedAxeResults;
+    results: UnifiedResults;
     platformInfo: PlatformData;
     toolInfo: ToolData;
     scanMetaData: ScanMetaData;
 }
 
-interface UnifiedAxeResults {
+interface UnifiedResults {
     passes: UnifiedRuleResult[];
     violations: UnifiedRuleResult[];
     incomplete: UnifiedRuleResult[];
