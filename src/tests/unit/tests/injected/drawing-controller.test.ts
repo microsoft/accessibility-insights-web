@@ -14,7 +14,7 @@ import {
 import { HtmlElementAxeResults } from '../../../../injected/scanner-utils';
 import { Drawer, DrawerInitData } from '../../../../injected/visualization/drawer';
 import { HighlightBoxDrawer } from '../../../../injected/visualization/highlight-box-drawer';
-import { NodeListBuilder } from '../../common/node-list-builder';
+import { HTMLCollectionOfBuilder } from '../../common/html-collection-of-builder';
 
 class VisualizationWindowMessageStubBuilder {
     private isEnabled: boolean;
@@ -225,7 +225,7 @@ describe('DrawingControllerTest', () => {
 
         hTMLElementUtils
             .setup(dm => dm.getAllElementsByTagName('iframe'))
-            .returns(() => NodeListBuilder.createNodeList([iframeElement as any]))
+            .returns(() => HTMLCollectionOfBuilder.create([iframeElement as any]))
             .verifiable(Times.once());
 
         drawerMock
@@ -312,7 +312,7 @@ describe('DrawingControllerTest', () => {
         const iframeElement = 'iframeElement';
         hTMLElementUtils
             .setup(dm => dm.getAllElementsByTagName(It.isAny()))
-            .returns(() => NodeListBuilder.createNodeList([iframeElement as any]))
+            .returns(() => HTMLCollectionOfBuilder.create([iframeElement as any]))
             .verifiable(Times.once());
 
         const testObject = new DrawingController(frameCommunicatorMock.object, axeResultsHelperMock.object, hTMLElementUtils.object);

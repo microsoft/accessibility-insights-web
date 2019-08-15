@@ -151,8 +151,8 @@ export class DrawingController {
         drawer.eraseLayout();
     }
 
-    private getAllFrames(): NodeListOf<HTMLIFrameElement> {
-        return this.htmlElementUtils.getAllElementsByTagName('iframe') as NodeListOf<HTMLIFrameElement>;
+    private getAllFrames(): HTMLCollectionOf<HTMLIFrameElement> {
+        return this.htmlElementUtils.getAllElementsByTagName('iframe') as HTMLCollectionOf<HTMLIFrameElement>;
     }
 
     private getDrawer(configId: string): Drawer {

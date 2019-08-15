@@ -7,7 +7,7 @@ import {
     AxeResultsWithFrameLevel,
     HtmlElementAxeResultsHelper,
 } from '../../../../../injected/frameCommunicators/html-element-axe-results-helper';
-import { NodeListBuilder } from '../../../common/node-list-builder';
+import { HTMLCollectionOfBuilder } from '../../../common/html-collection-of-builder';
 import { HTMLElementUtils } from '.././../../../../common/html-element-utils';
 
 describe('HtmlElementAxeResultsHelperTest', () => {
@@ -25,7 +25,7 @@ describe('HtmlElementAxeResultsHelperTest', () => {
     });
 
     test('splitResultsByFrame_ShouldIncludeResultsForMissingFrames', () => {
-        const framesInWindow = NodeListBuilder.createNodeList([document.createElement('iframe'), document.createElement('iframe')]);
+        const framesInWindow = HTMLCollectionOfBuilder.create([document.createElement('iframe'), document.createElement('iframe')]);
 
         mockDocumentElementUtils.setup(x => x.getAllElementsByTagName('iframe')).returns(() => framesInWindow);
         const resultsByFrame = testSubject.splitResultsByFrame([]);
@@ -38,7 +38,7 @@ describe('HtmlElementAxeResultsHelperTest', () => {
     });
 
     test('splitResultsByFrame_ShouldNotUpdateSelectorForCurrentFrame', () => {
-        const framesInWindow = NodeListBuilder.createNodeList([]);
+        const framesInWindow = HTMLCollectionOfBuilder.create([]);
         const currentFrameResultInstance1: AxeResultsWithFrameLevel = {
             ruleResults: {},
             target: ['#id1'],
@@ -66,7 +66,7 @@ describe('HtmlElementAxeResultsHelperTest', () => {
 
     test('splitResultsByFrame_WithUndefinedTargetIndex_ShouldIncrementTargetIndexByOne', () => {
         const frame1 = document.createElement('iframe');
-        const framesInWindow = NodeListBuilder.createNodeList([frame1]);
+        const framesInWindow = HTMLCollectionOfBuilder.create([frame1]);
         const frameResult: AxeResultsWithFrameLevel = {
             ruleResults: {},
             target: ['#frame1', '#elementID'],
@@ -100,7 +100,7 @@ describe('HtmlElementAxeResultsHelperTest', () => {
 
     test('splitResultsByFrame_ShoulNotCrashIfSelectorIsEmpty', () => {
         const frame1 = document.createElement('iframe');
-        const framesInWindow = NodeListBuilder.createNodeList([frame1]);
+        const framesInWindow = HTMLCollectionOfBuilder.create([frame1]);
         const frameResult: AxeResultsWithFrameLevel = {
             ruleResults: {},
             target: [],
@@ -122,7 +122,7 @@ describe('HtmlElementAxeResultsHelperTest', () => {
     });
 
     test('splitResultsByFrame_ShouldNotAddResultsIfFrameDoesntExistAnymore', () => {
-        const framesInWindow = NodeListBuilder.createNodeList([]);
+        const framesInWindow = HTMLCollectionOfBuilder.create([]);
         const frameResult: AxeResultsWithFrameLevel = {
             ruleResults: {},
             target: ['#frame1', '#elementID'],
@@ -147,7 +147,7 @@ describe('HtmlElementAxeResultsHelperTest', () => {
 
     test('splitResultsByFrame: Invalid targetIndex', () => {
         const frame1 = document.createElement('iframe');
-        const framesInWindow = NodeListBuilder.createNodeList([frame1]);
+        const framesInWindow = HTMLCollectionOfBuilder.create([frame1]);
         const frameResult: AxeResultsWithFrameLevel = {
             ruleResults: {},
             target: [],

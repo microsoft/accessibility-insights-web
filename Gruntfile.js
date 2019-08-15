@@ -61,6 +61,9 @@ module.exports = function(grunt) {
         clean: {
             intermediates: ['dist', extensionPath],
         },
+        concurrent: {
+            'webpack-all': ['exec:webpack-dev', 'exec:webpack-electron', 'exec:webpack-prod'],
+        },
         copy: {
             code: {
                 files: [
@@ -141,7 +144,6 @@ module.exports = function(grunt) {
             'webpack-dev': `${path.resolve('./node_modules/.bin/webpack')} --config-name dev`,
             'webpack-prod': `${path.resolve('./node_modules/.bin/webpack')} --config-name prod`,
             'webpack-electron': `${path.resolve('./node_modules/.bin/webpack')} --config-name electron`,
-            'webpack-all': `${path.resolve('./node_modules/.bin/webpack')}`,
             'generate-scss-typings': `${path.resolve('./node_modules/.bin/tsm')} src`,
         },
         sass: {
@@ -247,6 +249,7 @@ module.exports = function(grunt) {
     });
 
     grunt.loadNpmTasks('grunt-bom-removal');
+    grunt.loadNpmTasks('grunt-concurrent');
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-watch');
@@ -355,7 +358,7 @@ module.exports = function(grunt) {
     grunt.registerTask('build-all', [
         'clean:intermediates',
         'exec:generate-scss-typings',
-        'exec:webpack-all',
+        'concurrent:webpack-all',
         'build-assets',
         'drop:dev',
         'drop:electron',

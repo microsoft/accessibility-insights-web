@@ -269,7 +269,7 @@ describe('WindowMessageHandlerTests', () => {
             .setup(x => x.createMessage(responseMessage.command, sampleError, responseMessage.messageId))
             .returns(() => responseMessage)
             .verifiable();
-        mockWindowUtils.setup(x => x.postMessage(responseEvent.source, responseMessage, '*')).verifiable(Times.once());
+        mockWindowUtils.setup(x => x.postMessage(responseEvent.source as Window, responseMessage, '*')).verifiable(Times.once());
 
         messageCallback(responseEvent);
 

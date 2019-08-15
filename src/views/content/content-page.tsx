@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { flatten, toPairs } from 'lodash';
+import { flatten, forEach, toPairs } from 'lodash';
 import * as React from 'react';
 
 import { GuidanceTag } from 'content/guidance-tags';
@@ -36,11 +36,9 @@ export function ContentCreator<M extends HyperlinkDefinitionMap>(
     function mapLinks(markup: Markup): HyperlinkComponentMap<M> {
         const map: Partial<HyperlinkComponentMap<M>> = {};
 
-        if (linkMap) {
-            toPairs(linkMap).forEach(([key, { href, text }]) => {
-                map[key] = ({ children }) => <markup.HyperLink href={href}>{children || text}</markup.HyperLink>;
-            });
-        }
+        forEach(linkMap, (hyperlink: HyperlinkDefinition, key: keyof M) => {
+            map[key] = ({ children }) => <markup.HyperLink href={hyperlink.href}>{children || hyperlink.text}</markup.HyperLink>;
+        });
 
         return map as HyperlinkComponentMap<M>;
     }
