@@ -46,6 +46,7 @@ export type StoredInstancePropertyBag = InstancePropertyBag;
 
 export interface UnifiedResultInstance {
     id: string;
+    status: ResultInstanceStatus;
     evaluation: StoredInstancePropertyBag;
     identifiers: StoredInstancePropertyBag;
     descriptors: StoredInstancePropertyBag;
