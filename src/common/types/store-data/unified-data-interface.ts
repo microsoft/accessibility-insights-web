@@ -29,8 +29,8 @@ export interface ToolData {
 
 export interface ScanResults {
     results: UnifiedResultInstance[];
-    platformInfo: PlatformData;
-    toolInfo: ToolData;
+    platformInfo?: PlatformData;
+    toolInfo?: ToolData;
 }
 
 export interface UnifiedRule {
