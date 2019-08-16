@@ -2,29 +2,29 @@
 // Licensed under the MIT License.
 
 // this is similar to `TestEngine` interface from axe-core
-export interface ScanEngine {
+export interface ScanEngineProperties {
     name: string;
     version: string;
 }
 
-export interface OSData {
+export interface OSProperties {
     name: string;
     version?: string;
     userAgent?: string;
 }
 
-export interface ViewPortData {
+export interface ViewPortProperties {
     height?: number;
     width?: number;
 }
 
 export interface PlatformData {
-    osInfo: OSData;
-    viewPortInfo: ViewPortData;
+    osInfo: OSProperties;
+    viewPortInfo: ViewPortProperties;
 }
 
 export interface ToolData {
-    scanEngine: ScanEngine;
+    scanEngineProperties: ScanEngineProperties;
 }
 
 export interface ScanResults {
