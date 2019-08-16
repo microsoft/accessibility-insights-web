@@ -185,16 +185,10 @@ describe('FailureInstancePanelControlTest', () => {
             .props()
             .onChange(null, description);
 
-        const buttonsWrapper = shallow<JSX.Element>(
-            wrapper
-                .find(GenericPanel)
-                .props()
-                .onRenderFooterContent(),
-        );
-        const buttons = buttonsWrapper.find(ActionAndCancelButtonsComponent);
-        const buttonProps = buttons.props() as ActionAndCancelButtonsComponentProps;
-
-        buttonProps.primaryButtonOnClick(null);
+        wrapper
+            .find(ActionAndCancelButtonsComponent)
+            .props()
+            .primaryButtonOnClick(null);
 
         expect(wrapper.state().isPanelOpen).toBe(false);
 
@@ -223,16 +217,10 @@ describe('FailureInstancePanelControlTest', () => {
             .props()
             .onChange(null, description);
 
-        const buttonsWrapper = shallow<JSX.Element>(
-            wrapper
-                .find(GenericPanel)
-                .props()
-                .onRenderFooterContent(),
-        );
-        const buttons = buttonsWrapper.find(ActionAndCancelButtonsComponent);
-        const buttonProps = buttons.props() as ActionAndCancelButtonsComponentProps;
-
-        buttonProps.primaryButtonOnClick(null);
+        wrapper
+            .find(ActionAndCancelButtonsComponent)
+            .props()
+            .primaryButtonOnClick(null);
 
         expect(wrapper.state().isPanelOpen).toBe(false);
 
