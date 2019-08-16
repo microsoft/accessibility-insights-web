@@ -34,29 +34,22 @@ export class ElementFinderByPath {
         );
     };
 
-    public processRequest = (message: ElementFinderByPathMessage): PromiseLike<string> => {
-        let element = null;
-
-        try {
-            element = this.htmlElementUtils.querySelector(message.path[0]) as HTMLElement;
-        } catch (e) {
-            return Promise.reject();
-        }
+    public processRequest = async (message: ElementFinderByPathMessage): Promise<string> => {
+        const element = this.htmlElementUtils.querySelector(message.path[0]) as HTMLElement;
 
         if (element == null) {
-            return Promise.reject();
+            throw new Error(`Element with selector ${message} not found`);
         }
 
         if (element.tagName.toLocaleLowerCase() !== 'iframe' && message.path.length > 1) {
-            return Promise.reject();
+            throw new Error(`Selector not following proper iframe syntax`);
         }
 
         if (element.tagName.toLocaleLowerCase() !== 'iframe' && message.path.length === 1) {
-            const response = element.outerHTML;
-            return Promise.resolve(response);
+            return element.outerHTML;
         }
 
-        return this.iterateDeeperOnIframe(element, message);
+        return await this.iterateDeeperOnIframe(element, message);
     };
 
     private iterateDeeperOnIframe = (element: HTMLElement, message: ElementFinderByPathMessage): PromiseLike<string> => {

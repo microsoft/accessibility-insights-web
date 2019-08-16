@@ -28,20 +28,18 @@ export class PathSnippetController {
         }
     };
 
-    private getElementFromPath = (path: string): void => {
+    private getElementFromPath = async (path: string): Promise<void> => {
         const splitPath = path.split(';');
         const message = {
             path: splitPath,
         } as ElementFinderByPathMessage;
 
-        this.elementFinderByPath.processRequest(message).then(
-            result => {
-                this.sendBackSnippetFromPath(result);
-            },
-            err => {
-                this.sendBackErrorFromPath(path);
-            },
-        );
+        try {
+            const responseSnippet = await this.elementFinderByPath.processRequest(message);
+            this.sendBackSnippetFromPath(responseSnippet);
+        } catch (error) {
+            this.sendBackErrorFromPath(path);
+        }
     };
 
     private sendBackSnippetFromPath = (snippet: string): void => {
