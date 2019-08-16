@@ -9,13 +9,13 @@ export interface ScanEngine {
 
 export interface OSData {
     name: string;
-    osVersion?: string;
+    version?: string;
     userAgent?: string;
 }
 
 export interface ViewPortData {
-    platformHeight?: number;
-    platformWidth?: number;
+    height?: number;
+    width?: number;
 }
 
 export interface PlatformData {
@@ -35,7 +35,7 @@ export interface ScanResults {
 
 export interface UnifiedRule {
     id: string;
-    ruleDescription: string;
+    description: string;
 }
 
 export interface InstancePropertyBag<T> {
