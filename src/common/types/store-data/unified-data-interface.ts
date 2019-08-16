@@ -27,8 +27,8 @@ export interface ToolData {
     scanEngineProperties: ScanEngineProperties;
 }
 
-export interface ScanResults {
-    results: UnifiedResultInstance[];
+export interface UnifiedResults {
+    results: UnifiedResult[];
     platformInfo?: PlatformData;
     toolInfo?: ToolData;
 }
@@ -44,13 +44,13 @@ export interface InstancePropertyBag {
 
 export type StoredInstancePropertyBag = InstancePropertyBag;
 
-export interface UnifiedResultInstance {
+export interface UnifiedResult {
     id: string;
-    status: ResultInstanceStatus;
+    status: ResultStatus;
     evaluation: StoredInstancePropertyBag;
     identifiers: StoredInstancePropertyBag;
     descriptors: StoredInstancePropertyBag;
     resolution: StoredInstancePropertyBag;
 }
 
-export type ResultInstanceStatus = 'pass' | 'fail' | 'unknown';
+export type ResultStatus = 'pass' | 'fail' | 'unknown';
