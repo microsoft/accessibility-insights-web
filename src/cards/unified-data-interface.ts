@@ -27,13 +27,10 @@ interface ToolData {
     scanEngine: ScanEngine;
 }
 
-interface ScanMetaData {}
-
 interface ScanResults {
     results: UnifiedResultInstance[];
     platformInfo: PlatformData;
     toolInfo: ToolData;
-    scanMetaData: ScanMetaData;
 }
 
 interface UnifiedRule {
