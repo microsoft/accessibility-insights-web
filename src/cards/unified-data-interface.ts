@@ -37,14 +37,13 @@ interface ScanResults {
 }
 
 interface UnifiedResults {
-    passes: UnifiedRuleResult[];
-    violations: UnifiedRuleResult[];
-    incomplete: UnifiedRuleResult[];
+    passes: UnifiedResultInstance[];
+    violations: UnifiedResultInstance[];
+    incomplete: UnifiedResultInstance[];
 }
 
 interface UnifiedRuleResult {
     id: string;
-    nodes: UnifiedResultInstance[];
     ruleDescription: string;
 }
 
