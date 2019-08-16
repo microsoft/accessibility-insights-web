@@ -38,11 +38,11 @@ export interface UnifiedRule {
     description: string;
 }
 
-export interface InstancePropertyBag<T> {
-    [property: string]: T;
+export interface InstancePropertyBag {
+    [property: string]: any;
 }
 
-export type StoredInstancePropertyBag = InstancePropertyBag<any>;
+export type StoredInstancePropertyBag = InstancePropertyBag;
 
 export interface UnifiedResultInstance {
     id: string;
