@@ -189,16 +189,7 @@ describe('BaseClientStoresHubTest', () => {
     }
 
     function buildClientStoresHub(stores: BaseStore<TestStoreData>[]): BaseClientStoresHub<TestStoreData> {
-        const builder: (stores) => BaseClientStoresHub<TestStoreData> = theStores => {
-            function ClientStoresHubFake(): void {
-                // tslint:disable-next-line: no-invalid-this
-                BaseClientStoresHub.call(this, theStores);
-            }
-            ClientStoresHubFake.prototype = BaseClientStoresHub.prototype;
-            return new ClientStoresHubFake();
-        };
-
-        return builder(stores);
+        return new BaseClientStoresHub<TestStoreData>(stores);
     }
 });
 
