@@ -5,7 +5,7 @@ exports[`page view renders 1`] = `
   <header
     className="header-bar"
   >
-    <class_1
+    <Component
       deps={Object {}}
     />
     <div
