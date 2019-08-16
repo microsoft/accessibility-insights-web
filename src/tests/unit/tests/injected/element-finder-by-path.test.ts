@@ -89,7 +89,7 @@ describe('ElementFinderByPositionTest', () => {
             path: [',bad path'],
         } as ElementFinderByPathMessage;
 
-        return expect(testSubject.processRequest(messageStub)).rejects.toBeUndefined();
+        return expect(testSubject.processRequest(messageStub)).rejects.toThrowError();
     });
 
     test('process request when element is null', async () => {
@@ -98,7 +98,8 @@ describe('ElementFinderByPositionTest', () => {
         } as ElementFinderByPathMessage;
 
         setupQuerySelectorMock(messageStub, null);
-        return expect(testSubject.processRequest(messageStub)).rejects.toBeUndefined();
+
+        return expect(testSubject.processRequest(messageStub)).rejects.toThrowError();
     });
 
     test('process request when path is invalid', async () => {
@@ -109,7 +110,8 @@ describe('ElementFinderByPositionTest', () => {
         const elementStub = { tagName: 'test' } as HTMLElement;
 
         setupQuerySelectorMock(messageStub, elementStub);
-        return expect(testSubject.processRequest(messageStub)).rejects.toBeUndefined();
+
+        return expect(testSubject.processRequest(messageStub)).rejects.toThrowError();
     });
 
     test('process request when element is not iframe', async () => {

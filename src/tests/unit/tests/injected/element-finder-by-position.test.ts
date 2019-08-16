@@ -142,6 +142,7 @@ describe('ElementFinderByPositionTest', () => {
         const selector = 'selectorTest';
 
         setupElementsFromPointMock(messageStub, [elementStub]);
+
         setupGetUniqueSelector(elementStub, selector);
 
         mockQ.setup(q => q.defer()).returns(() => deferredObjectStub);

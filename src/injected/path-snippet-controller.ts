@@ -35,8 +35,7 @@ export class PathSnippetController {
         } as ElementFinderByPathMessage;
 
         try {
-            const responseSnippet = await this.elementFinderByPath.processRequest(message);
-            this.sendBackSnippetFromPath(responseSnippet);
+            this.elementFinderByPath.processRequest(message).then(responseSnippet => this.sendBackSnippetFromPath(responseSnippet));
         } catch (error) {
             this.sendBackErrorFromPath(path);
         }
