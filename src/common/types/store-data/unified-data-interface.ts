@@ -52,4 +52,4 @@ export interface UnifiedResultInstance {
     resolution: StoredInstancePropertyBag;
 }
 
-export type ResultInstanceStatus = 'pass' | 'fail' | 'incomplete' | 'inapplicable';
+export type ResultInstanceStatus = 'pass' | 'fail' | 'unknown';
