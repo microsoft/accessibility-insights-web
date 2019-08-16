@@ -2,49 +2,49 @@
 // Licensed under the MIT License.
 
 // this is similar to `TestEngine` interface from axe-core
-interface ScanEngine {
+export interface ScanEngine {
     name: string;
     version: string;
 }
 
-interface OSData {
+export interface OSData {
     name: string;
     osVersion?: string;
     userAgent?: string;
 }
 
-interface ViewPortData {
+export interface ViewPortData {
     platformHeight?: number;
     platformWidth?: number;
 }
 
-interface PlatformData {
+export interface PlatformData {
     osInfo: OSData;
     viewPortInfo: ViewPortData;
 }
 
-interface ToolData {
+export interface ToolData {
     scanEngine: ScanEngine;
 }
 
-interface ScanResults {
+export interface ScanResults {
     results: UnifiedResultInstance[];
     platformInfo: PlatformData;
     toolInfo: ToolData;
 }
 
-interface UnifiedRule {
+export interface UnifiedRule {
     id: string;
     ruleDescription: string;
 }
 
-interface InstancePropertyBag<T> {
+export interface InstancePropertyBag<T> {
     [property: string]: T;
 }
 
-type StoredInstancePropertyBag = InstancePropertyBag<any>;
+export type StoredInstancePropertyBag = InstancePropertyBag<any>;
 
-interface UnifiedResultInstance {
+export interface UnifiedResultInstance {
     id: string;
     evaluation: StoredInstancePropertyBag;
     identifiers: StoredInstancePropertyBag;
@@ -52,4 +52,4 @@ interface UnifiedResultInstance {
     resolution: StoredInstancePropertyBag;
 }
 
-type status = 'pass' | 'fail' | 'incomplete' | 'inapplicable';
+export type ResultInstanceStatus = 'pass' | 'fail' | 'incomplete' | 'inapplicable';
