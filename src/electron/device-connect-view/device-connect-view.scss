@@ -1,0 +1,13 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+@import './components/window-footer.scss';
+@import './components/window-title.scss';
+
+body {
+    -webkit-app-region: drag;
+    margin: 0px;
+}
+
+button {
+    -webkit-app-region: no-drag;
+}

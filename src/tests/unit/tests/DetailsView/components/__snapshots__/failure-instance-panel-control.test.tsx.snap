@@ -20,7 +20,6 @@ exports[`FailureInstancePanelControlTest render FailureInstancePanelControl: cre
     hasCloseButton={true}
     isOpen={false}
     onDismiss={[Function]}
-    onRenderFooterContent={[Function]}
     title="Add a failure instance"
   >
     <FlaggedComponent
@@ -41,10 +40,21 @@ exports[`FailureInstancePanelControlTest render FailureInstancePanelControl: cre
       multiline={true}
       onChange={[Function]}
       resizable={false}
-      rows={4}
+      rows={8}
       styles={[Function]}
       value={null}
     />
+    <div
+      className="footer"
+    >
+      <ActionAndCancelButtonsComponent
+        cancelButtonOnClick={[Function]}
+        isHidden={false}
+        primaryButtonDisabled={true}
+        primaryButtonOnClick={[Function]}
+        primaryButtonText="Add failed instance"
+      />
+    </div>
   </GenericPanel>
 </React.Fragment>
 `;
@@ -66,7 +76,6 @@ exports[`FailureInstancePanelControlTest render FailureInstancePanelControl: edi
     hasCloseButton={true}
     isOpen={false}
     onDismiss={[Function]}
-    onRenderFooterContent={[Function]}
     title="Edit failure instance"
   >
     <FlaggedComponent
@@ -87,10 +96,21 @@ exports[`FailureInstancePanelControlTest render FailureInstancePanelControl: edi
       multiline={true}
       onChange={[Function]}
       resizable={false}
-      rows={4}
+      rows={8}
       styles={[Function]}
       value={null}
     />
+    <div
+      className="footer"
+    >
+      <ActionAndCancelButtonsComponent
+        cancelButtonOnClick={[Function]}
+        isHidden={false}
+        primaryButtonDisabled={true}
+        primaryButtonOnClick={[Function]}
+        primaryButtonText="Save"
+      />
+    </div>
   </GenericPanel>
 </React.Fragment>
 `;
@@ -115,7 +135,6 @@ exports[`FailureInstancePanelControlTest render FailureInstancePanelControl: par
     hasCloseButton={true}
     isOpen={false}
     onDismiss={[Function]}
-    onRenderFooterContent={[Function]}
     title="Add a failure instance"
   >
     <FlaggedComponent
@@ -136,10 +155,21 @@ exports[`FailureInstancePanelControlTest render FailureInstancePanelControl: par
       multiline={true}
       onChange={[Function]}
       resizable={false}
-      rows={4}
+      rows={8}
       styles={[Function]}
       value="original text"
     />
+    <div
+      className="footer"
+    >
+      <ActionAndCancelButtonsComponent
+        cancelButtonOnClick={[Function]}
+        isHidden={false}
+        primaryButtonDisabled={false}
+        primaryButtonOnClick={[Function]}
+        primaryButtonText="Add failed instance"
+      />
+    </div>
   </GenericPanel>
 </React.Fragment>
 `;

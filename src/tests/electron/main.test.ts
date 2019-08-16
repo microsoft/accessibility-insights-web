@@ -21,7 +21,7 @@ describe('Electron E2E', () => {
         // so tslint thinks some of the methods do not return promises.
         // tslint:disable: await-promise
         expect(await app.browserWindow.isVisible()).toBe(true);
-        expect(await app.client.getWindowCount()).toBe(2);
+        expect(await app.client.getWindowCount()).toBe(1);
         expect(await app.webContents.getTitle()).toBe('Accessibility Insights for Mobile');
         // tslint:enable: await-promise
     });

@@ -112,6 +112,12 @@ module.exports = function(grunt) {
                         expand: true,
                     },
                     {
+                        cwd: './dist/src/electron/device-connect-view',
+                        src: '*.css',
+                        dest: path.join(extensionPath, 'electron/device-connect-view/styles/default'),
+                        expand: true,
+                    },
+                    {
                         cwd: './dist/src/injected/styles',
                         src: '*.css',
                         dest: path.join(extensionPath, 'injected/styles/default'),
