@@ -7,7 +7,13 @@ import { fetchScanResults } from '../platform/android/fetch-scan-results';
 let mainWindow: BrowserWindow;
 
 const createWindow = () => {
-    mainWindow = new BrowserWindow({ show: false, webPreferences: { nodeIntegration: true } });
+    mainWindow = new BrowserWindow({
+        show: false,
+        webPreferences: { nodeIntegration: true },
+        frame: false,
+        width: 600,
+        height: 391,
+    });
 
     // These are just to test the connection and should later be removed.
     checkPort(48485);
@@ -20,10 +26,8 @@ const createWindow = () => {
         .catch(console.log);
 
     mainWindow.on('ready-to-show', () => {
-        mainWindow.maximize();
+        mainWindow.setMenu(null);
         mainWindow.show();
-
-        mainWindow.webContents.openDevTools({ mode: 'bottom' });
     });
 };
 
