@@ -36,7 +36,7 @@ interface ScanResults {
     scanMetaData: ScanMetaData;
 }
 
-interface UnifiedRuleResult {
+interface UnifiedRule {
     id: string;
     ruleDescription: string;
 }
@@ -54,3 +54,5 @@ interface UnifiedResultInstance {
     descriptors: StoredInstancePropertyBag;
     resolution: StoredInstancePropertyBag;
 }
+
+type status = 'pass' | 'fail' | 'incomplete' | 'inapplicable';
