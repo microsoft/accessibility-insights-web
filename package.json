@@ -82,7 +82,7 @@
         "grunt-sass": "^3.1.0",
         "identity-obj-proxy": "^3.0.0",
         "jest": "^24.9.0",
-        "jest-circus": "^24.7.1",
+        "jest-circus": "^24.9.0",
         "jest-junit": "^7.0.0",
         "license-check-and-add": "2.3.6",
         "make-dir": "^3.0.0",
