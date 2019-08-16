@@ -10,10 +10,7 @@ import { Assessments } from 'assessments/assessments';
 import { FlaggedComponent } from '../../../../../common/components/flagged-component';
 import { FeatureFlagStoreData } from '../../../../../common/types/store-data/feature-flag-store-data';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
-import {
-    ActionAndCancelButtonsComponent,
-    ActionAndCancelButtonsComponentProps,
-} from '../../../../../DetailsView/components/action-and-cancel-buttons-component';
+import { ActionAndCancelButtonsComponent } from '../../../../../DetailsView/components/action-and-cancel-buttons-component';
 import {
     CapturedInstanceActionType,
     FailureInstancePanelControl,
