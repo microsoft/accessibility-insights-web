@@ -12,8 +12,8 @@ import { StorageAdapter } from '../../../../../common/browser-adapters/storage-a
 import { configMutator } from '../../../../../common/configuration';
 
 describe('TelemetryClientProvider', () => {
-    beforeEach(configMutator.reset);
-    afterAll(configMutator.reset);
+    beforeEach(() => configMutator.reset());
+    afterAll(() => configMutator.reset());
 
     test('with instrumentation key', () => {
         configMutator.setOption('appInsightsInstrumentationKey', 'test-key');

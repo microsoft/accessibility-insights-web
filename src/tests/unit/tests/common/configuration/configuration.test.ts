@@ -3,8 +3,8 @@
 import { config, configMutator } from '../../../../../common/configuration';
 
 describe('configuration', () => {
-    beforeEach(configMutator.reset);
-    afterAll(configMutator.reset);
+    beforeEach(() => configMutator.reset());
+    afterAll(() => configMutator.reset());
 
     const defaultName = 'Accessibility Insights for Web';
     const newName = 'New Extension Name';
