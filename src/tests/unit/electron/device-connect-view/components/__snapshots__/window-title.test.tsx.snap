@@ -2,21 +2,17 @@
 
 exports[`WindowTitleTest render 1`] = `
 <header
-  className="ms-Grid window-title"
+  className="window-title"
 >
-  <div
-    className="ms-Grid-row"
-  >
+  <div>
     <span>
       test
     </span>
-    <div
-      aria-level={1}
-      className="ms-Grid-col header-text"
-      role="heading"
+    <h1
+      className="header-text"
     >
       Test
-    </div>
+    </h1>
   </div>
 </header>
 `;

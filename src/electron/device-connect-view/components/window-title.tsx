@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { css } from '@uifabric/utilities';
 import * as React from 'react';
 import { NamedSFC } from '../../../common/react/named-sfc';
 
@@ -11,12 +10,10 @@ export interface WindowTitleProps {
 
 export const WindowTitle = NamedSFC<WindowTitleProps>('WindowTitle', (props: WindowTitleProps) => {
     return (
-        <header className="ms-Grid window-title">
-            <div className={css('ms-Grid-row')}>
+        <header className="window-title">
+            <div>
                 {props.children}
-                <div role="heading" aria-level={1} className="ms-Grid-col header-text">
-                    {props.title}
-                </div>
+                <h1 className="header-text">{props.title}</h1>
             </div>
         </header>
     );
