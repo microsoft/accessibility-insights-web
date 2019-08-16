@@ -30,26 +30,34 @@ interface ToolData {
 interface ScanMetaData {}
 
 interface ScanResults {
-    results: UnifiedAxeResults;
+    results: UnifiedResults;
     platformInfo: PlatformData;
     toolInfo: ToolData;
     scanMetaData: ScanMetaData;
 }
 
-interface UnifiedRule {
+interface UnifiedResults {
+    passes: UnifiedRuleResult[];
+    violations: UnifiedRuleResult[];
+    incomplete: UnifiedRuleResult[];
+}
+
+interface UnifiedRuleResult {
     id: string;
-    nodes: UnifiedAxeResults[];
+    nodes: UnifiedResultInstance[];
     ruleDescription: string;
 }
 
-// interfaces below this mark is going to be related to ResultInstance work that is still in progress
-
-interface UnifiedAxeResults {
-    passes: ResultInstance[];
-    violations: ResultInstance[];
-    incomplete: ResultInstance[];
+interface InstancePropertyBag<T> {
+    [property: string]: T;
 }
 
-interface ResultInstance {}
+type StoredInstancePropertyBag = InstancePropertyBag<any>;
 
-interface ScannedElementInfo {}
+interface UnifiedResultInstance {
+    id: string;
+    evaluation: StoredInstancePropertyBag;
+    identifiers: StoredInstancePropertyBag;
+    descriptors: StoredInstancePropertyBag;
+    resolution: StoredInstancePropertyBag;
+}
