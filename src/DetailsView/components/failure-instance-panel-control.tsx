@@ -124,7 +124,6 @@ export class FailureInstancePanelControl extends React.Component<FailureInstance
                     : 'Edit failure instance',
             hasCloseButton: true,
             closeButtonAriaLabel: 'Close failure instance panel',
-            onRenderFooterContent: this.getActionCancelButtons,
         };
 
         return (
@@ -140,11 +139,12 @@ export class FailureInstancePanelControl extends React.Component<FailureInstance
                     label="Comment"
                     styles={getStyles}
                     multiline={true}
-                    rows={4}
+                    rows={8}
                     value={this.state.currentInstance.failureDescription}
                     onChange={this.onFailureDescriptionChange}
                     resizable={false}
                 />
+                {this.getActionCancelButtons()}
             </GenericPanel>
         );
     }
