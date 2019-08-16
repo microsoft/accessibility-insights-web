@@ -1,21 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-@import '../../../common/styles/common.scss';
-
-body {
-    -webkit-app-region: drag;
-    margin: 0px;
-}
-
-button {
-    -webkit-app-region: no-drag;
-}
-
-footer {
-    position: fixed;
-    bottom: 0;
-    padding: 32px;
-}
+@import '../../../common/styles/colors.scss';
+@import '../../../common/styles/fonts.scss';
 
 .window-title {
     padding: 6px 9px;

@@ -109,7 +109,7 @@ module.exports = function(grunt) {
                         expand: true,
                     },
                     {
-                        cwd: './dist/src/electron/device-connect-view/Styles',
+                        cwd: './dist/src/electron/device-connect-view',
                         src: '*.css',
                         dest: path.join(extensionPath, 'electron/device-connect-view/styles/default'),
                         expand: true,
