@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import { css } from '@uifabric/utilities';
 import { AssessmentSummaryReportModel } from '../assessment-report-model';
 import { OutcomeChipSet } from './outcome-chip-set';
 import { OutcomeIconSet } from './outcome-icon-set';
