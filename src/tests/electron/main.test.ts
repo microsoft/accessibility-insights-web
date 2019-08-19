@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import * as Electron from 'electron';
 import { Application } from 'spectron';
+import * as WebdriverIO from 'webdriverio';
 
 describe('Electron E2E', () => {
     let app: Application;
@@ -23,6 +24,11 @@ describe('Electron E2E', () => {
         expect(await app.browserWindow.isVisible()).toBe(true);
         expect(await app.client.getWindowCount()).toBe(1);
         expect(await app.webContents.getTitle()).toBe('Accessibility Insights for Mobile');
+
+        const cancelButton = '.window-footer-button-cancel';
+
+        const fullClient: WebdriverIO.Client<void> = app.client;
+        expect(await fullClient.isEnabled(cancelButton)).toBe(true);
         // tslint:enable: await-promise
     });
 
