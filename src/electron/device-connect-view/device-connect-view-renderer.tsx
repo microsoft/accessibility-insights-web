@@ -6,7 +6,6 @@ import * as ReactDOM from 'react-dom';
 import { brand } from '../../content/strings/application';
 import { BrandBlue } from '../../icons/brand/blue/brand-blue';
 import { DeviceConnectBody } from './components/device-connect-body';
-import { WindowFooter } from './components/window-footer';
 import { WindowTitle } from './components/window-title';
 
 export class DeviceConnectViewRenderer {
@@ -23,8 +22,7 @@ export class DeviceConnectViewRenderer {
                 <WindowTitle title={brand}>
                     <BrandBlue />
                 </WindowTitle>
-                <DeviceConnectBody />
-                <WindowFooter cancelClick={this.CurrentWindow.close} canStartTesting={false}></WindowFooter>
+                <DeviceConnectBody currentWindow={this.CurrentWindow} />
             </>,
             deviceConnectViewContainer,
         );

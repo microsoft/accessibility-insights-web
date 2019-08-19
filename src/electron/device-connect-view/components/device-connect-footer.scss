@@ -1,18 +1,18 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-.window-footer {
+.device-connect-footer {
     position: fixed;
     bottom: 0;
     left: 0;
     right: 0;
     padding: 32px;
 
-    .window-footer-button-cancel {
+    .footer-button-cancel {
         float: left;
     }
 
-    .window-footer-button-start {
+    .footer-button-start {
         float: right
     }
 }
