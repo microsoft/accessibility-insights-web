@@ -58,7 +58,7 @@
         "@types/react-dom": "^16.8.5",
         "@types/react-helmet": "^5.0.9",
         "@types/react-router-dom": "^4.3.4",
-        "@types/serve-static": "^1.13.2",
+        "@types/serve-static": "^1.13.3",
         "@types/ua-parser-js": "^0.7.33",
         "@types/uuid": "^3.4.5",
         "case-sensitive-paths-webpack-plugin": "^2.2.0",
