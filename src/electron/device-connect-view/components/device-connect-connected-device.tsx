@@ -4,8 +4,8 @@ import { Spinner, SpinnerSize } from 'office-ui-fabric-react/lib/Spinner';
 import * as React from 'react';
 
 export interface DeviceConnectConnectedDeviceProps {
-    IsConnecting: boolean;
-    ConnectedDevice?: string;
+    isConnecting: boolean;
+    connectedDevice?: string;
 }
 
 export class DeviceConnectConnectedDevice extends React.Component<DeviceConnectConnectedDeviceProps> {
@@ -24,7 +24,7 @@ export class DeviceConnectConnectedDevice extends React.Component<DeviceConnectC
     }
 
     private renderContents(): JSX.Element {
-        if (this.props.IsConnecting) {
+        if (this.props.isConnecting) {
             return (
                 <Spinner
                     className="device-connect-spinner"
@@ -35,8 +35,8 @@ export class DeviceConnectConnectedDevice extends React.Component<DeviceConnectC
             );
         }
 
-        if (this.props.ConnectedDevice) {
-            return <span>{this.props.ConnectedDevice}</span>;
+        if (this.props.connectedDevice) {
+            return <span>{this.props.connectedDevice}</span>;
         }
     }
 }
