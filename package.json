@@ -125,6 +125,6 @@
         "react-helmet": "^5.2.0",
         "react-router-dom": "^5.0.1",
         "ua-parser-js": "^0.7.20",
-        "uuid": "^3.3.2"
+        "uuid": "^3.3.3"
     }
 }
