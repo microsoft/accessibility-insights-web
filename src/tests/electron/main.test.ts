@@ -3,6 +3,7 @@
 import * as Electron from 'electron';
 import { Application } from 'spectron';
 import * as WebdriverIO from 'webdriverio';
+import { CommonSelectors } from './common/element-identifiers/common-selectors';
 
 describe('Electron E2E', () => {
     let app: Application;
@@ -17,7 +18,7 @@ describe('Electron E2E', () => {
         return app.start();
     });
 
-    test('test that app opened & loaded site', async () => {
+    test('test that app opened & set initial state', async () => {
         // spectron wraps calls to electron APIs as promises. Unfortunately, only electron typings are used,
         // so tslint thinks some of the methods do not return promises.
         // tslint:disable: await-promise
@@ -25,10 +26,8 @@ describe('Electron E2E', () => {
         expect(await app.client.getWindowCount()).toBe(1);
         expect(await app.webContents.getTitle()).toBe('Accessibility Insights for Mobile');
 
-        const cancelButton = '.window-footer-button-cancel';
-
-        const fullClient: WebdriverIO.Client<void> = app.client;
-        expect(await fullClient.isEnabled(cancelButton)).toBe(true);
+        const webDriverClient: WebdriverIO.Client<void> = app.client;
+        expect(await webDriverClient.isEnabled(CommonSelectors.cancelButton)).toBe(true);
         // tslint:enable: await-promise
     });
 
