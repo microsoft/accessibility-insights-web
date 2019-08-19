@@ -46,9 +46,9 @@
         "@types/chrome": "0.0.88",
         "@types/enzyme": "^3.10.3",
         "@types/enzyme-adapter-react-16": "^1.0.5",
-        "@types/jest": "^24.0.17",
+        "@types/jest": "^24.0.18",
         "@types/jsdom": "^12.2.4",
-        "@types/lodash": "^4.14.136",
+        "@types/lodash": "^4.14.137",
         "@types/make-dir": "^2.1.0",
         "@types/moment": "^2.13.0",
         "@types/puppeteer": "^1.19.1",
@@ -58,7 +58,7 @@
         "@types/react-dom": "^16.8.5",
         "@types/react-helmet": "^5.0.9",
         "@types/react-router-dom": "^4.3.4",
-        "@types/serve-static": "^1.13.2",
+        "@types/serve-static": "^1.13.3",
         "@types/ua-parser-js": "^0.7.33",
         "@types/uuid": "^3.4.5",
         "case-sensitive-paths-webpack-plugin": "^2.2.0",
@@ -106,8 +106,9 @@
         "typed-scss-modules": "^0.0.11",
         "typemoq": "^2.1.0",
         "typescript": "^3.5.3",
+        "webdriverio": "^4.13.0",
         "webpack": "^4.39.2",
-        "webpack-cli": "^3.3.6"
+        "webpack-cli": "^3.3.7"
     },
     "dependencies": {
         "applicationinsights-js": "^1.0.20",
@@ -124,6 +125,6 @@
         "react-helmet": "^5.2.0",
         "react-router-dom": "^5.0.1",
         "ua-parser-js": "^0.7.20",
-        "uuid": "^3.3.2"
+        "uuid": "^3.3.3"
     }
 }
