@@ -28,7 +28,14 @@ export class DeviceConnectPortEntry extends React.Component<DeviceConnectPortEnt
         return (
             <div className="device-connect-port-entry">
                 <h3>Android device port number</h3>
-                <MaskedTextField onChange={onPortTextChanged} placeholder="12345" className="port-number-field" maskChar="" mask="99999" />
+                <MaskedTextField
+                    aria-label="Port number"
+                    onChange={onPortTextChanged}
+                    placeholder="12345"
+                    className="port-number-field"
+                    maskChar=""
+                    mask="99999"
+                />
                 <Button
                     primary={this.props.needsValidation}
                     disabled={this.state.isValidateButtonDisabled}

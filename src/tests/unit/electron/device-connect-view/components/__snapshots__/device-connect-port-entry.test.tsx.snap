@@ -8,6 +8,7 @@ exports[`DeviceConnectPortEntryTest render 1`] = `
     Android device port number
   </h3>
   <MaskedTextField
+    aria-label="Port number"
     className="port-number-field"
     mask="99999"
     maskChar=""
