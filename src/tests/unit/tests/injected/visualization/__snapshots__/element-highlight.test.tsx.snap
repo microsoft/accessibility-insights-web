@@ -22,22 +22,12 @@ exports[`ElementHighlight renders elements appropriately 1`] = `
       Object {
         "clientUtils": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "getOffset": [Function],
-          "matchesSelector": [Function],
           "scroll": undefined,
         },
         "drawerUtils": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "clientWindowOffsetThreshold": 5,
           "dom": undefined,
-          "getContainerHeight": [Function],
-          "getContainerLeftOffset": [Function],
-          "getContainerTopOffset": [Function],
-          "getContainerWidth": [Function],
-          "getDocumentElement": [Function],
-          "getDocumentHeight": [Function],
-          "getDocumentWidth": [Function],
-          "isOutsideOfDocument": [Function],
         },
       }
     }
@@ -59,22 +49,12 @@ exports[`ElementHighlight renders elements appropriately 1`] = `
       Object {
         "clientUtils": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "getOffset": [Function],
-          "matchesSelector": [Function],
           "scroll": undefined,
         },
         "drawerUtils": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "clientWindowOffsetThreshold": 5,
           "dom": undefined,
-          "getContainerHeight": [Function],
-          "getContainerLeftOffset": [Function],
-          "getContainerTopOffset": [Function],
-          "getContainerWidth": [Function],
-          "getDocumentElement": [Function],
-          "getDocumentHeight": [Function],
-          "getDocumentWidth": [Function],
-          "isOutsideOfDocument": [Function],
         },
       }
     }

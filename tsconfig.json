@@ -1,9 +1,9 @@
 {
     "compilerOptions": {
         "allowSyntheticDefaultImports": true,
-        "target": "es5",
+        "target": "es2017",
         "module": "amd",
-        "lib": ["es5", "es6", "es2015.promise", "dom", "scripthost"],
+        "lib": ["es2017", "dom", "scripthost"],
         "jsx": "react",
         "sourceMap": true,
         "outDir": "./dist/",
@@ -23,7 +23,11 @@
         "noStrictGenericChecks": false,
         "allowJs": false,
         "typeRoots": ["node_modules/@types"],
-        "plugins": [{ "name": "tslint-language-service" }],
+        "plugins": [
+            {
+                "name": "tslint-language-service"
+            }
+        ],
         "baseUrl": "./src",
         "paths": {
             "*": ["*"],

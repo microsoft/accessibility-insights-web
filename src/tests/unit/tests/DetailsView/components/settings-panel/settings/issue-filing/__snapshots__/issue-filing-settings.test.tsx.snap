@@ -10,19 +10,14 @@ exports[`IssueFilingSettings renders 1`] = `
       Object {
         "issueFilingServiceProvider": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "all": [Function],
-          "allVisible": [Function],
-          "forKey": [Function],
           "services": undefined,
         },
         "userConfigMessageCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "dispatcher": undefined,
           "saveIssueFilingSettings": [Function],
-          "setHighContrastMode": [Function],
           "setIssueFilingService": [Function],
           "setIssueFilingServiceProperty": [Function],
-          "setTelemetryState": [Function],
         },
       }
     }

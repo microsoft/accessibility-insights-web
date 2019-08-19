@@ -18,12 +18,8 @@ exports[`ReportBody renders 1`] = `
         "backgroundRegExp": /background color: \\(\\?<color>#\\[0-9a-f\\]\\{6\\}\\)/i,
         "colorGroupName": "color",
         "colorValueMatcher": "(?<color>#[0-9a-f]{6})",
-        "createColorBox": [Function],
         "foregroundColorText": "foreground color: ",
         "foregroundRegExp": /foreground color: \\(\\?<color>#\\[0-9a-f\\]\\{6\\}\\)/i,
-        "getColorMatch": [Function],
-        "process": [Function],
-        "splitFixInstruction": [Function],
       }
     }
     getCollapsibleScript={[Function]}
@@ -62,12 +58,8 @@ exports[`ReportBody renders 1`] = `
           "backgroundRegExp": /background color: \\(\\?<color>#\\[0-9a-f\\]\\{6\\}\\)/i,
           "colorGroupName": "color",
           "colorValueMatcher": "(?<color>#[0-9a-f]{6})",
-          "createColorBox": [Function],
           "foregroundColorText": "foreground color: ",
           "foregroundRegExp": /foreground color: \\(\\?<color>#\\[0-9a-f\\]\\{6\\}\\)/i,
-          "getColorMatch": [Function],
-          "process": [Function],
-          "splitFixInstruction": [Function],
         }
       }
       getCollapsibleScript={[Function]}
@@ -104,12 +96,8 @@ exports[`ReportBody renders 1`] = `
           "backgroundRegExp": /background color: \\(\\?<color>#\\[0-9a-f\\]\\{6\\}\\)/i,
           "colorGroupName": "color",
           "colorValueMatcher": "(?<color>#[0-9a-f]{6})",
-          "createColorBox": [Function],
           "foregroundColorText": "foreground color: ",
           "foregroundRegExp": /foreground color: \\(\\?<color>#\\[0-9a-f\\]\\{6\\}\\)/i,
-          "getColorMatch": [Function],
-          "process": [Function],
-          "splitFixInstruction": [Function],
         }
       }
       getCollapsibleScript={[Function]}
@@ -146,12 +134,8 @@ exports[`ReportBody renders 1`] = `
           "backgroundRegExp": /background color: \\(\\?<color>#\\[0-9a-f\\]\\{6\\}\\)/i,
           "colorGroupName": "color",
           "colorValueMatcher": "(?<color>#[0-9a-f]{6})",
-          "createColorBox": [Function],
           "foregroundColorText": "foreground color: ",
           "foregroundRegExp": /foreground color: \\(\\?<color>#\\[0-9a-f\\]\\{6\\}\\)/i,
-          "getColorMatch": [Function],
-          "process": [Function],
-          "splitFixInstruction": [Function],
         }
       }
       getCollapsibleScript={[Function]}
@@ -188,12 +172,8 @@ exports[`ReportBody renders 1`] = `
             "backgroundRegExp": /background color: \\(\\?<color>#\\[0-9a-f\\]\\{6\\}\\)/i,
             "colorGroupName": "color",
             "colorValueMatcher": "(?<color>#[0-9a-f]{6})",
-            "createColorBox": [Function],
             "foregroundColorText": "foreground color: ",
             "foregroundRegExp": /foreground color: \\(\\?<color>#\\[0-9a-f\\]\\{6\\}\\)/i,
-            "getColorMatch": [Function],
-            "process": [Function],
-            "splitFixInstruction": [Function],
           }
         }
         getCollapsibleScript={[Function]}
@@ -230,12 +210,8 @@ exports[`ReportBody renders 1`] = `
             "backgroundRegExp": /background color: \\(\\?<color>#\\[0-9a-f\\]\\{6\\}\\)/i,
             "colorGroupName": "color",
             "colorValueMatcher": "(?<color>#[0-9a-f]{6})",
-            "createColorBox": [Function],
             "foregroundColorText": "foreground color: ",
             "foregroundRegExp": /foreground color: \\(\\?<color>#\\[0-9a-f\\]\\{6\\}\\)/i,
-            "getColorMatch": [Function],
-            "process": [Function],
-            "splitFixInstruction": [Function],
           }
         }
         getCollapsibleScript={[Function]}
@@ -272,12 +248,8 @@ exports[`ReportBody renders 1`] = `
             "backgroundRegExp": /background color: \\(\\?<color>#\\[0-9a-f\\]\\{6\\}\\)/i,
             "colorGroupName": "color",
             "colorValueMatcher": "(?<color>#[0-9a-f]{6})",
-            "createColorBox": [Function],
             "foregroundColorText": "foreground color: ",
             "foregroundRegExp": /foreground color: \\(\\?<color>#\\[0-9a-f\\]\\{6\\}\\)/i,
-            "getColorMatch": [Function],
-            "process": [Function],
-            "splitFixInstruction": [Function],
           }
         }
         getCollapsibleScript={[Function]}
@@ -316,12 +288,8 @@ exports[`ReportBody renders 1`] = `
         "backgroundRegExp": /background color: \\(\\?<color>#\\[0-9a-f\\]\\{6\\}\\)/i,
         "colorGroupName": "color",
         "colorValueMatcher": "(?<color>#[0-9a-f]{6})",
-        "createColorBox": [Function],
         "foregroundColorText": "foreground color: ",
         "foregroundRegExp": /foreground color: \\(\\?<color>#\\[0-9a-f\\]\\{6\\}\\)/i,
-        "getColorMatch": [Function],
-        "process": [Function],
-        "splitFixInstruction": [Function],
       }
     }
     getCollapsibleScript={[Function]}
