@@ -4,5 +4,15 @@
 .window-footer {
     position: fixed;
     bottom: 0;
+    left: 0;
+    right: 0;
     padding: 32px;
+
+    .window-footer-button-cancel {
+        float: left;
+    }
+
+    .window-footer-button-start {
+        float: right
+    }
 }

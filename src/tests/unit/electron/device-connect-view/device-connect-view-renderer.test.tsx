@@ -31,7 +31,7 @@ describe('DetailsViewRendererTest', () => {
                 <WindowTitle title={expectedTitle}>
                     <BrandBlue />
                 </WindowTitle>
-                <WindowFooter cancelClick={browserWindow.close}></WindowFooter>
+                <WindowFooter cancelClick={browserWindow.close} canStartTesting={false}></WindowFooter>
             </>
         );
 

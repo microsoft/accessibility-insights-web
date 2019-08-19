@@ -13,6 +13,7 @@ describe('WindowTitleTest', () => {
             cancelClick: () => {
                 return;
             },
+            canStartTesting: false,
         };
         const rendered = shallow(<WindowFooter {...props} />);
 
@@ -26,6 +27,7 @@ describe('WindowTitleTest', () => {
 
         const props: WindowFooterProps = {
             cancelClick: onClickMock.object,
+            canStartTesting: false,
         };
 
         const rendered = shallow(<WindowFooter {...props} />);
