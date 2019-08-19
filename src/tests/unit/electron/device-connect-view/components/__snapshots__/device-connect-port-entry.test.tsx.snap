@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DeviceConnectPortEntryTest render 1`] = `
+<div
+  className="device-connect-port-entry"
+>
+  <h3>
+    Android device port number
+  </h3>
+  <MaskedTextField
+    className="port-number-field"
+    mask="99999"
+    maskChar=""
+    maskFormat={
+      Object {
+        "*": /\\[a-zA-Z0-9\\]/,
+        "9": /\\[0-9\\]/,
+        "a": /\\[a-zA-Z\\]/,
+      }
+    }
+    onChange={[Function]}
+    placeholder="12345"
+  />
+  <Button
+    className="button-validate-port"
+    disabled={true}
+    onClick={[Function]}
+  >
+    Validate port number
+  </Button>
+</div>
+`;

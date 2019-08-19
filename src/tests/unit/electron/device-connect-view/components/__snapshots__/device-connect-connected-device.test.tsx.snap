@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DeviceConnectConnectedDeviceTest render, device: no content 1`] = `
+<div
+  className="device-connect-connected-device"
+>
+  <h3>
+    Connected device
+  </h3>
+  <span>
+    A Test Device!
+  </span>
+</div>
+`;
+
+exports[`DeviceConnectConnectedDeviceTest render, no content: no content 1`] = `
+<div
+  className="device-connect-connected-device"
+>
+  <h3>
+    Connected device
+  </h3>
+</div>
+`;
+
+exports[`DeviceConnectConnectedDeviceTest render, spinner: no content 1`] = `
+<div
+  className="device-connect-connected-device"
+>
+  <h3>
+    Connected device
+  </h3>
+  <StyledSpinnerBase
+    className="device-connect-spinner"
+    label="Connecting to mobile device"
+    labelPosition="right"
+    size={0}
+  />
+</div>
+`;
