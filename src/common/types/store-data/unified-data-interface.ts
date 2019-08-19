@@ -9,7 +9,7 @@ export interface ScanEngineProperties {
 
 export interface OSProperties {
     name: string;
-    version?: string;
+    version: string;
     userAgent?: string;
 }
 
