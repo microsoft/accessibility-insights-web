@@ -34,6 +34,10 @@ describe('HTMLFormatter', () => {
         expect(testSubject.footerSeparator()).toBe(null);
     });
 
+    it('return new line', () => {
+        expect(testSubject.newLine()).toBe('\n');
+    });
+
     describe('creates snippet', () => {
         beforeEach(() => {
             truncateMock.setup(truncate => truncate(It.isAnyString())).returns(text => text);

@@ -42,6 +42,10 @@ describe('MarkdownFormatter', () => {
         expect(result).toEqual(`\`this is code\``);
     });
 
+    it('return new line', () => {
+        expect(testSubject.newLine()).toBe('\n');
+    });
+
     describe('creates link', () => {
         it('handles href only', () => {
             const result = testSubject.link('test-href');

@@ -8,4 +8,5 @@ export type MarkupFormatter = {
     howToFixSection(failureSummary: string): string;
     sectionHeaderSeparator(): string;
     footerSeparator(): string;
+    newLine(): string;
 };
