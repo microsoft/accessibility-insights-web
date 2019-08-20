@@ -2,41 +2,38 @@
 // Licensed under the MIT License.
 import { Spinner, SpinnerSize } from 'office-ui-fabric-react/lib/Spinner';
 import * as React from 'react';
+import { NamedSFC } from '../../../common/react/named-sfc';
 
 export interface DeviceConnectConnectedDeviceProps {
     isConnecting: boolean;
     connectedDevice?: string;
 }
 
-export class DeviceConnectConnectedDevice extends React.Component<DeviceConnectConnectedDeviceProps> {
-    constructor(props: DeviceConnectConnectedDeviceProps) {
-        super(props);
-    }
+export const DeviceConnectConnectedDevice = NamedSFC<DeviceConnectConnectedDeviceProps>(
+    'DeviceConnectConnectedDevice',
+    (props: DeviceConnectConnectedDeviceProps) => {
+        const renderContents = (): JSX.Element => {
+            if (props.isConnecting) {
+                return (
+                    <Spinner
+                        className="device-connect-spinner"
+                        labelPosition="right"
+                        size={SpinnerSize.xSmall}
+                        label="Connecting to mobile device"
+                    />
+                );
+            }
 
-    public render(): JSX.Element {
-        const contents = this.renderContents();
+            if (props.connectedDevice) {
+                return <span>{props.connectedDevice}</span>;
+            }
+        };
+
         return (
             <div className="device-connect-connected-device">
                 <h3>Connected device</h3>
-                {contents}
+                {renderContents()}
             </div>
         );
-    }
-
-    private renderContents(): JSX.Element {
-        if (this.props.isConnecting) {
-            return (
-                <Spinner
-                    className="device-connect-spinner"
-                    labelPosition="right"
-                    size={SpinnerSize.xSmall}
-                    label="Connecting to mobile device"
-                />
-            );
-        }
-
-        if (this.props.connectedDevice) {
-            return <span>{this.props.connectedDevice}</span>;
-        }
-    }
-}
+    },
+);
