@@ -1,9 +1,15 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { CreateIssueDetailsTextData } from '../common/types/create-issue-details-text-data';
+import { IssueUrlCreationUtils } from '../issue-filing/common/issue-filing-url-string-utils';
 
 export class IssueDetailsTextGenerator {
-    constructor(private extensionVersion: string, private browserSpec: string, private axeCoreVersion: string) {}
+    constructor(
+        private extensionVersion: string,
+        private browserSpec: string,
+        private axeCoreVersion: string,
+        private issueFilingUrlStringUtils: IssueUrlCreationUtils,
+    ) {}
 
     public buildText(data: CreateIssueDetailsTextData): string {
         const result = data.ruleResult;
@@ -59,7 +65,7 @@ export class IssueDetailsTextGenerator {
             prefix = prefix + ': ';
         }
 
-        const selectorLastPart = this.getSelectorLastPart(data.ruleResult.selector);
+        const selectorLastPart = this.issueFilingUrlStringUtils.getSelectorLastPart(data.ruleResult.selector);
 
         return `${prefix}${data.ruleResult.help} (${selectorLastPart})`;
     }

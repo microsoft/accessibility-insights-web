@@ -1,14 +1,22 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { IssueDetailsTextGenerator } from 'background/issue-details-text-generator';
+import { IMock, Mock, MockBehavior } from 'typemoq';
 import { CreateIssueDetailsTextData } from '../../../../common/types/create-issue-details-text-data';
+import { IssueUrlCreationUtils } from '../../../../issue-filing/common/issue-filing-url-string-utils';
 
 describe('Issue details text builder', () => {
     let testSubject: IssueDetailsTextGenerator;
     let sampleIssueDetailsData: CreateIssueDetailsTextData;
+    let issueUrlCreationUtilsMock: IMock<IssueUrlCreationUtils>;
 
     beforeEach(() => {
-        testSubject = new IssueDetailsTextGenerator('MY.EXT.VER', 'browser spec', 'AXE.CORE.VER');
+        const selector = 'RR-selector<x>';
+
+        issueUrlCreationUtilsMock = Mock.ofType<IssueUrlCreationUtils>(undefined, MockBehavior.Strict);
+        issueUrlCreationUtilsMock.setup(utils => utils.getSelectorLastPart(selector)).returns(() => selector);
+
+        testSubject = new IssueDetailsTextGenerator('MY.EXT.VER', 'browser spec', 'AXE.CORE.VER', issueUrlCreationUtilsMock.object);
 
         sampleIssueDetailsData = {
             pageTitle: 'pageTitle<x>',
@@ -20,7 +28,7 @@ describe('Issue details text builder', () => {
                 html: 'RR-html',
                 ruleId: 'RR-rule-id',
                 helpUrl: 'RR-help-url',
-                selector: 'RR-selector<x>',
+                selector: selector,
                 snippet: 'RR-snippet   space',
             } as any,
         };
