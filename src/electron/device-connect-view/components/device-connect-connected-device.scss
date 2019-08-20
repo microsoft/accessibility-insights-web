@@ -1,0 +1,18 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+@import '../../../common/styles/fonts.scss';
+
+.device-connect-connected-device {
+    .device-connect-spinner {
+        font-family: $fontFamily;
+        font-size: 12px;
+        line-height: 16px;
+        float: left;
+    }
+
+    span {
+        font-family: $fontFamily;
+        font-size: 12px;
+        line-height: 16px;
+    }
+}

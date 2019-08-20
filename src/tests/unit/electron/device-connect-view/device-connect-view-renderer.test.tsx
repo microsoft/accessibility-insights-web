@@ -5,12 +5,12 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { IMock, It, Mock } from 'typemoq';
 import { brand } from '../../../../content/strings/application';
-import { WindowFooter } from '../../../../electron/device-connect-view/components/window-footer';
+import { DeviceConnectBody } from '../../../../electron/device-connect-view/components/device-connect-body';
 import { WindowTitle } from '../../../../electron/device-connect-view/components/window-title';
 import { DeviceConnectViewRenderer } from '../../../../electron/device-connect-view/device-connect-view-renderer';
 import { BrandBlue } from '../../../../icons/brand/blue/brand-blue';
 
-describe('DetailsViewRendererTest', () => {
+describe('DeviceConnectViewRendererTest', () => {
     test('render', () => {
         const dom = document.createElement('div');
         const deviceConnectViewContainer = document.createElement('div');
@@ -31,7 +31,7 @@ describe('DetailsViewRendererTest', () => {
                 <WindowTitle title={expectedTitle}>
                     <BrandBlue />
                 </WindowTitle>
-                <WindowFooter cancelClick={browserWindow.close}></WindowFooter>
+                <DeviceConnectBody currentWindow={browserWindow} />
             </>
         );
 

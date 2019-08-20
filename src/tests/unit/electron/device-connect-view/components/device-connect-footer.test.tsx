@@ -4,17 +4,21 @@ import { shallow } from 'enzyme';
 import { Button } from 'office-ui-fabric-react/lib/Button';
 import * as React from 'react';
 import { Mock, Times } from 'typemoq';
-import { WindowFooter, WindowFooterProps } from '../../../../../electron/device-connect-view/components/window-footer';
+import {
+    DeviceConnectFooter,
+    DeviceConnectFooterProps,
+} from '../../../../../electron/device-connect-view/components/device-connect-footer';
 import { EventStubFactory } from '../../../common/event-stub-factory';
 
-describe('WindowTitleTest', () => {
+describe('DeviceConnectFooterTest', () => {
     test('render', () => {
-        const props: WindowFooterProps = {
+        const props: DeviceConnectFooterProps = {
             cancelClick: () => {
                 return;
             },
+            canStartTesting: false,
         };
-        const rendered = shallow(<WindowFooter {...props} />);
+        const rendered = shallow(<DeviceConnectFooter {...props} />);
 
         expect(rendered.getElement()).toMatchSnapshot();
     });
@@ -24,12 +28,13 @@ describe('WindowTitleTest', () => {
 
         const eventStub = new EventStubFactory().createMouseClickEvent() as React.MouseEvent<Button>;
 
-        const props: WindowFooterProps = {
+        const props: DeviceConnectFooterProps = {
             cancelClick: onClickMock.object,
+            canStartTesting: false,
         };
 
-        const rendered = shallow(<WindowFooter {...props} />);
-        const button = rendered.find('.window-footer-button-cancel');
+        const rendered = shallow(<DeviceConnectFooter {...props} />);
+        const button = rendered.find('.footer-button-cancel');
         button.simulate('click', eventStub);
 
         onClickMock.verify(onClick => onClick(), Times.once());
