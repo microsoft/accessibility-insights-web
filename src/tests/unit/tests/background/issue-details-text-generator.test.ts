@@ -10,7 +10,8 @@ describe('Issue details text builder', () => {
     let sampleIssueDetailsData: CreateIssueDetailsTextData;
     let issueUrlCreationUtilsMock: IMock<IssueUrlCreationUtils>;
 
-    const title = 'WCAG-1.4.1,WCAG-2.8.2: RR-help (RR-selector<x>)';
+    const wcagTags = ['WCAG-1.4.1', 'WCAG-2.8.2'];
+    const title = `${wcagTags.join(',')}: RR-help (RR-selector<x>)`;
     const selector = 'RR-selector<x>';
 
     beforeEach(() => {
@@ -19,12 +20,12 @@ describe('Issue details text builder', () => {
             pageUrl: 'pageUrl',
             ruleResult: {
                 failureSummary: 'RR-failureSummary',
-                guidanceLinks: [{ text: 'WCAG-1.4.1' }, { text: 'wcag-2.8.2' }],
+                guidanceLinks: [{ text: wcagTags[0] }, { text: wcagTags[1] }],
                 help: 'RR-help',
                 html: 'RR-html',
                 ruleId: 'RR-rule-id',
                 helpUrl: 'RR-help-url',
-                selector: selector,
+                selector,
                 snippet: 'RR-snippet   space',
             } as any,
         };
@@ -32,6 +33,7 @@ describe('Issue details text builder', () => {
         issueUrlCreationUtilsMock = Mock.ofType<IssueUrlCreationUtils>(undefined, MockBehavior.Strict);
         issueUrlCreationUtilsMock.setup(utils => utils.getSelectorLastPart(selector)).returns(() => selector);
         issueUrlCreationUtilsMock.setup(utils => utils.getTitle(sampleIssueDetailsData)).returns(() => title);
+        issueUrlCreationUtilsMock.setup(utils => utils.standardizeTags(sampleIssueDetailsData)).returns(() => wcagTags);
 
         testSubject = new IssueDetailsTextGenerator('MY.EXT.VER', 'browser spec', 'AXE.CORE.VER', issueUrlCreationUtilsMock.object);
     });
@@ -40,7 +42,7 @@ describe('Issue details text builder', () => {
         const actual = testSubject.buildText(sampleIssueDetailsData);
         const expected = [
             `Title: ${title}`,
-            `Tags: Accessibility, WCAG-1.4.1, WCAG-2.8.2, RR-rule-id`,
+            `Tags: Accessibility, ${wcagTags.join(', ')}, RR-rule-id`,
             ``,
             `Issue: RR-help (RR-rule-id: RR-help-url)`,
             ``,

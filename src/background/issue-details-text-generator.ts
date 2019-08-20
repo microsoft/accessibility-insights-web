@@ -13,7 +13,7 @@ export class IssueDetailsTextGenerator {
 
     public buildText(data: CreateIssueDetailsTextData): string {
         const result = data.ruleResult;
-        const standardTags = this.standardizeTags(data);
+        const standardTags = this.issueFilingUrlStringUtils.standardizeTags(data);
 
         const text = [
             `Title: ${this.issueFilingUrlStringUtils.getTitle(data)}`,
@@ -58,9 +58,5 @@ export class IssueDetailsTextGenerator {
     public buildTags(createIssueData: CreateIssueDetailsTextData, standardTags: string[]): string {
         const tags = ['Accessibility', ...standardTags, createIssueData.ruleResult.ruleId];
         return tags.join(', ');
-    }
-
-    private standardizeTags(data: CreateIssueDetailsTextData): string[] {
-        return data.ruleResult.guidanceLinks.map(tag => tag.text.toUpperCase());
     }
 }
