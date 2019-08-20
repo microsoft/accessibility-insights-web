@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { title } from 'content/strings/application';
+import { compact } from 'lodash';
 import { EnvironmentInfo } from '../../common/environment-info-provider';
 import { CreateIssueDetailsTextData } from '../../common/types/create-issue-details-text-data';
 import { IssueDetailsBuilder } from './issue-details-builder';
@@ -10,34 +11,48 @@ export const createIssueDetailsBuilder = (markup: MarkupFormatter): IssueDetails
     const getter = (environmentInfo: EnvironmentInfo, data: CreateIssueDetailsTextData): string => {
         const result = data.ruleResult;
 
-        const { howToFixSection, link, sectionHeader, snippet } = markup;
+        const { howToFixSection, link, sectionHeader, snippet, sectionHeaderSeparator, footerSeparator } = markup;
 
-        const text = [
+        const lines = [
             sectionHeader('Issue'),
+            sectionHeaderSeparator(),
             `${snippet(result.help)} (${link(result.helpUrl, result.ruleId)})`,
+            '\n',
 
             sectionHeader('Target application'),
+            sectionHeaderSeparator(),
             link(data.pageUrl, data.pageTitle),
+            '\n',
 
             sectionHeader('Element path'),
+            sectionHeaderSeparator(),
             data.ruleResult.selector,
+            '\n',
 
             sectionHeader('Snippet'),
+            sectionHeaderSeparator(),
             snippet(result.snippet),
+            '\n',
 
             sectionHeader('How to fix'),
+            sectionHeaderSeparator(),
             howToFixSection(result.failureSummary),
+            '\n',
 
             sectionHeader('Environment'),
+            sectionHeaderSeparator(),
             environmentInfo.browserSpec,
+            '\n',
+
+            footerSeparator(),
 
             `This accessibility issue was found using ${title} ` +
                 `${environmentInfo.extensionVersion} (axe-core ${environmentInfo.axeCoreVersion}), ` +
                 'a tool that helps find and fix accessibility issues. Get more information & download ' +
                 `this tool at ${link('http://aka.ms/AccessibilityInsights')}.`,
-        ].join('\n');
+        ];
 
-        return text;
+        return compact(lines).join('');
     };
 
     return getter;
