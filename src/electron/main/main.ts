@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 import { app, BrowserWindow } from 'electron';
 import * as path from 'path';
-import { fetchScanResults } from '../platform/android/fetch-scan-results';
 
 let mainWindow: BrowserWindow;
 
