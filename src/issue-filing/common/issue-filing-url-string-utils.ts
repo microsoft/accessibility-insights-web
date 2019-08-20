@@ -21,10 +21,15 @@ const getTitle = (data: CreateIssueDetailsTextData): string => {
 };
 
 const getSelectorLastPart = (selector: string): string => {
-    let selectorLastPart = selector;
-    if (selector.lastIndexOf(' > ') > 0) {
-        selectorLastPart = selector.substr(selector.lastIndexOf(' > ') + 3);
+    const splitedSelector = selector.split(';');
+    let selectorLastPart = splitedSelector[splitedSelector.length - 1];
+
+    const childCombinator = ' > ';
+
+    if (selector.lastIndexOf(childCombinator) > 0) {
+        selectorLastPart = selector.substr(selector.lastIndexOf(childCombinator) + childCombinator.length);
     }
+
     return selectorLastPart;
 };
 
