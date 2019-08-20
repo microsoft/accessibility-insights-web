@@ -18,7 +18,6 @@ exports[`DeviceConnectConnectedDeviceTest render connection failure: connection 
     >
       No active applications were found at the provided local host.
     </span>
-    ;
   </React.Fragment>
 </div>
 `;

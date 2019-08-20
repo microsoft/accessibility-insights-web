@@ -30,7 +30,7 @@ export const DeviceConnectConnectedDevice = NamedSFC<DeviceConnectConnectedDevic
                 return (
                     <>
                         <Icon iconName="statusErrorFull" className="connection-error-icon" ariaLabel="Connection failed"></Icon>
-                        <span className="scanned-text">No active applications were found at the provided local host.</span>;
+                        <span className="scanned-text">No active applications were found at the provided local host.</span>
                     </>
                 );
             }
