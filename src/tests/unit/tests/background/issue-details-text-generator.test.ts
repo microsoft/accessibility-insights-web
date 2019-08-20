@@ -10,14 +10,10 @@ describe('Issue details text builder', () => {
     let sampleIssueDetailsData: CreateIssueDetailsTextData;
     let issueUrlCreationUtilsMock: IMock<IssueUrlCreationUtils>;
 
+    const title = 'WCAG-1.4.1,WCAG-2.8.2: RR-help (RR-selector<x>)';
+    const selector = 'RR-selector<x>';
+
     beforeEach(() => {
-        const selector = 'RR-selector<x>';
-
-        issueUrlCreationUtilsMock = Mock.ofType<IssueUrlCreationUtils>(undefined, MockBehavior.Strict);
-        issueUrlCreationUtilsMock.setup(utils => utils.getSelectorLastPart(selector)).returns(() => selector);
-
-        testSubject = new IssueDetailsTextGenerator('MY.EXT.VER', 'browser spec', 'AXE.CORE.VER', issueUrlCreationUtilsMock.object);
-
         sampleIssueDetailsData = {
             pageTitle: 'pageTitle<x>',
             pageUrl: 'pageUrl',
@@ -32,12 +28,18 @@ describe('Issue details text builder', () => {
                 snippet: 'RR-snippet   space',
             } as any,
         };
+
+        issueUrlCreationUtilsMock = Mock.ofType<IssueUrlCreationUtils>(undefined, MockBehavior.Strict);
+        issueUrlCreationUtilsMock.setup(utils => utils.getSelectorLastPart(selector)).returns(() => selector);
+        issueUrlCreationUtilsMock.setup(utils => utils.getTitle(sampleIssueDetailsData)).returns(() => title);
+
+        testSubject = new IssueDetailsTextGenerator('MY.EXT.VER', 'browser spec', 'AXE.CORE.VER', issueUrlCreationUtilsMock.object);
     });
 
     test('buildText', () => {
         const actual = testSubject.buildText(sampleIssueDetailsData);
         const expected = [
-            `Title: WCAG-1.4.1,WCAG-2.8.2: RR-help (RR-selector<x>)`,
+            `Title: ${title}`,
             `Tags: Accessibility, WCAG-1.4.1, WCAG-2.8.2, RR-rule-id`,
             ``,
             `Issue: RR-help (RR-rule-id: RR-help-url)`,
@@ -45,7 +47,7 @@ describe('Issue details text builder', () => {
             `Target application title: pageTitle<x>`,
             `Target application url: pageUrl`,
             ``,
-            `Element path: RR-selector<x>`,
+            `Element path: ${selector}`,
             ``,
             `Snippet: RR-snippet space`,
             ``,
@@ -67,36 +69,6 @@ describe('Issue details text builder', () => {
     const noStandardTags = [];
     const oneStandardTag = ['WCAG-1.4.1'];
     const manyStandardTags = ['WCAG-1.4.1', 'WCAG-2.8.2', 'WCAG-4.1.4'];
-
-    describe('buildTitle', () => {
-        test('no standard tags', () => {
-            const expected = 'RR-help (RR-selector<x>)';
-            const actual = testSubject.buildTitle(sampleIssueDetailsData, noStandardTags);
-
-            expect(actual).toEqual(expected);
-        });
-
-        test('one standard tag', () => {
-            const expected = 'WCAG-1.4.1: RR-help (RR-selector<x>)';
-            const actual = testSubject.buildTitle(sampleIssueDetailsData, oneStandardTag);
-
-            expect(actual).toEqual(expected);
-        });
-
-        test('many standard tags', () => {
-            const expected = 'WCAG-1.4.1,WCAG-2.8.2,WCAG-4.1.4: RR-help (RR-selector<x>)';
-            const actual = testSubject.buildTitle(sampleIssueDetailsData, manyStandardTags);
-
-            expect(actual).toEqual(expected);
-        });
-
-        test('single argument', () => {
-            const expected = 'WCAG-1.4.1,WCAG-2.8.2: RR-help (RR-selector<x>)';
-            const actual = testSubject.buildTitle(sampleIssueDetailsData);
-
-            expect(actual).toEqual(expected);
-        });
-    });
 
     describe('buildTags', () => {
         test('no standard tags', () => {
