@@ -11,6 +11,7 @@ describe('DeviceConnectConnectedDeviceTest', () => {
     test('render, no content', () => {
         const props: DeviceConnectConnectedDeviceProps = {
             isConnecting: false,
+            hasFailed: false,
         };
 
         validateRenderWithProps(props, 'no content');
@@ -19,6 +20,7 @@ describe('DeviceConnectConnectedDeviceTest', () => {
     test('render, spinner', () => {
         const props: DeviceConnectConnectedDeviceProps = {
             isConnecting: true,
+            hasFailed: false,
         };
 
         validateRenderWithProps(props, 'no content');
@@ -27,6 +29,7 @@ describe('DeviceConnectConnectedDeviceTest', () => {
     test('render, device', () => {
         const props: DeviceConnectConnectedDeviceProps = {
             isConnecting: false,
+            hasFailed: false,
             connectedDevice: 'A Test Device!',
         };
 

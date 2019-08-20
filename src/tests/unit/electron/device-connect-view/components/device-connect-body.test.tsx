@@ -21,20 +21,23 @@ describe('DeviceConnectBodyTest', () => {
 
     const expectedBeforeState: DeviceConnectBodyState = {
         canStartTesting: false,
+        hasFailedConnecting: false,
         needsValidation: true,
         isConnecting: false,
     };
 
     const expectedStateWhileConnecting: DeviceConnectBodyState = {
-        isConnecting: true,
         canStartTesting: false,
-        needsValidation: true,
         connectedDevice: '',
+        hasFailedConnecting: false,
+        isConnecting: true,
+        needsValidation: true,
     };
 
     const expectedStateConnectedSuccess: DeviceConnectBodyState = {
         isConnecting: false,
         canStartTesting: true,
+        hasFailedConnecting: false,
         needsValidation: false,
         connectedDevice: 'Test Device Name!',
     };
@@ -42,6 +45,7 @@ describe('DeviceConnectBodyTest', () => {
     const expectedStateConnectedFail: DeviceConnectBodyState = {
         isConnecting: false,
         canStartTesting: false,
+        hasFailedConnecting: false,
         needsValidation: true,
         connectedDevice: '',
     };

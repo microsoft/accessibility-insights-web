@@ -3,26 +3,30 @@
 import { Button } from 'office-ui-fabric-react/lib/Button';
 import { MaskedTextField } from 'office-ui-fabric-react/lib/TextField';
 import * as React from 'react';
+import { FetchScanResults } from '../../platform/android/fetch-scan-results';
 import { OnConnectedCallback, OnConnectingCallback } from './device-connect-body';
 
 export interface DeviceConnectPortEntryProps {
     needsValidation: boolean;
     onConnectedCallback: OnConnectedCallback;
     onConnectingCallback: OnConnectingCallback;
+    fetchScanResults: FetchScanResults;
 }
+
 export interface DeviceConnectPortEntryState {
     isValidateButtonDisabled: boolean;
+    port: string;
 }
 
 export class DeviceConnectPortEntry extends React.Component<DeviceConnectPortEntryProps, DeviceConnectPortEntryState> {
     constructor(props: DeviceConnectPortEntryProps) {
         super(props);
-        this.state = { isValidateButtonDisabled: true };
+        this.state = { isValidateButtonDisabled: true, port: '' };
     }
 
     public render(): JSX.Element {
         const onPortTextChanged = (event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>, newValue?: string) => {
-            this.setState({ isValidateButtonDisabled: !newValue || newValue === '' });
+            this.setState({ isValidateButtonDisabled: !newValue || newValue === '', port: newValue });
         };
 
         return (
@@ -51,9 +55,15 @@ export class DeviceConnectPortEntry extends React.Component<DeviceConnectPortEnt
     private onValidateClick = (event: React.MouseEvent<HTMLButtonElement>): void => {
         this.setState({ isValidateButtonDisabled: true });
         this.props.onConnectingCallback();
-        setTimeout(() => {
-            this.props.onConnectedCallback(true, 'Android emulator - Wildlife manager');
-            this.setState({ isValidateButtonDisabled: false });
-        }, 2000);
+        this.props
+            .fetchScanResults(parseInt(this.state.port, 10))
+            .then(data => {
+                this.props.onConnectedCallback(true, `${data.deviceName} - ${data.appIdentifier}`);
+                this.setState({ isValidateButtonDisabled: false });
+            })
+            .catch(error => {
+                this.props.onConnectedCallback(false);
+                this.setState({ isValidateButtonDisabled: false });
+            });
     };
 }

@@ -3,6 +3,8 @@
 import axios from 'axios';
 import { ScanResults } from './scan-results';
 
+export type FetchScanResults = (port: number) => Promise<ScanResults>;
+
 export function fetchScanResults(port: number): Promise<ScanResults> {
     return new Promise<any>((resolve, reject) => {
         axios
