@@ -106,7 +106,7 @@
         "typed-scss-modules": "^0.0.11",
         "typemoq": "^2.1.0",
         "typescript": "^3.5.3",
-        "webdriverio": "^4.13.0",
+        "webdriverio": "^5.12.1",
         "webpack": "^4.39.2",
         "webpack-cli": "^3.3.7"
     },
