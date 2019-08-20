@@ -75,14 +75,6 @@ export class IssueDetailsTextGenerator {
         return tags.join(', ');
     }
 
-    public getSelectorLastPart(selector: string): string {
-        let selectorLastPart = selector;
-        if (selector.lastIndexOf(' > ') > 0) {
-            selectorLastPart = selector.substr(selector.lastIndexOf(' > ') + 3);
-        }
-        return selectorLastPart;
-    }
-
     private standardizeTags(data: CreateIssueDetailsTextData): string[] {
         return data.ruleResult.guidanceLinks.map(tag => tag.text.toUpperCase());
     }

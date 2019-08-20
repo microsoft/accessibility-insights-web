@@ -120,10 +120,4 @@ describe('Issue details text builder', () => {
             expect(actual).toEqual(expected);
         });
     });
-
-    test('getSelectorLastPart', () => {
-        expect(testSubject.getSelectorLastPart('instance')).toEqual('instance');
-        expect(testSubject.getSelectorLastPart('first > last')).toEqual('last');
-        expect(testSubject.getSelectorLastPart('one > two > three')).toEqual('three');
-    });
 });
