@@ -22,12 +22,12 @@ const getTitle = (data: CreateIssueDetailsTextData): string => {
 
 const getSelectorLastPart = (selector: string): string => {
     const splitedSelector = selector.split(';');
-    let selectorLastPart = splitedSelector[splitedSelector.length - 1];
+    const selectorLastPart = splitedSelector[splitedSelector.length - 1];
 
     const childCombinator = ' > ';
 
-    if (selector.lastIndexOf(childCombinator) > 0) {
-        selectorLastPart = selector.substr(selector.lastIndexOf(childCombinator) + childCombinator.length);
+    if (selectorLastPart.lastIndexOf(childCombinator) > 0) {
+        return selectorLastPart.substr(selectorLastPart.lastIndexOf(childCombinator) + childCombinator.length);
     }
 
     return selectorLastPart;
