@@ -10,29 +10,31 @@ export const createIssueDetailsBuilder = (markup: MarkupFormatter): IssueDetails
     const getter = (environmentInfo: EnvironmentInfo, data: CreateIssueDetailsTextData): string => {
         const result = data.ruleResult;
 
+        const { howToFixSection, link, sectionHeader, snippet } = markup;
+
         const text = [
-            markup.sectionHeader('Issue'),
-            `${markup.snippet(result.help)} (${markup.link(result.helpUrl, result.ruleId)})`,
+            sectionHeader('Issue'),
+            `${snippet(result.help)} (${link(result.helpUrl, result.ruleId)})`,
 
-            markup.sectionHeader('Target application'),
-            markup.link(data.pageUrl, data.pageTitle),
+            sectionHeader('Target application'),
+            link(data.pageUrl, data.pageTitle),
 
-            markup.sectionHeader('Element path'),
+            sectionHeader('Element path'),
             data.ruleResult.selector,
 
-            markup.sectionHeader('Snippet'),
-            markup.snippet(result.snippet),
+            sectionHeader('Snippet'),
+            snippet(result.snippet),
 
-            markup.sectionHeader('How to fix'),
-            markup.howToFixSection(result.failureSummary),
+            sectionHeader('How to fix'),
+            howToFixSection(result.failureSummary),
 
-            markup.sectionHeader('Environment'),
+            sectionHeader('Environment'),
             environmentInfo.browserSpec,
 
             `This accessibility issue was found using ${title} ` +
                 `${environmentInfo.extensionVersion} (axe-core ${environmentInfo.axeCoreVersion}), ` +
                 'a tool that helps find and fix accessibility issues. Get more information & download ' +
-                `this tool at ${markup.link('http://aka.ms/AccessibilityInsights')}.`,
+                `this tool at ${link('http://aka.ms/AccessibilityInsights')}.`,
         ].join('\n');
 
         return text;
