@@ -29,7 +29,7 @@ export class DeviceConnectPortEntry extends React.Component<DeviceConnectPortEnt
             <div className="device-connect-port-entry">
                 <h3>Android device port number</h3>
                 <MaskedTextField
-                    aria-label="Port number"
+                    ariaLabel="Port number"
                     onChange={onPortTextChanged}
                     placeholder="12345"
                     className="port-number-field"
