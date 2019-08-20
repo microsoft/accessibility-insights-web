@@ -10,6 +10,7 @@ import { VisualizationType } from '../../common/types/visualization-type';
 import { FailureInstanceData } from '../../DetailsView/components/failure-instance-panel-control';
 import { TabStopEvent } from '../../injected/tab-stops-listener';
 import { LaunchPanelType } from '../../popup/components/popup-view';
+import { UnifiedResults } from '../../common/types/store-data/unified-data-interface';
 
 export interface BaseActionPayload {
     telemetry?: TelemetryData;
@@ -148,4 +149,8 @@ export interface SetIssueFilingServicePropertyPayload extends BaseActionPayload 
 export interface FileIssuePayload extends BaseActionPayload {
     issueData: CreateIssueDetailsTextData;
     service: string;
+}
+
+export interface UnifiedScanCompletedPayload extends BaseActionPayload {
+    scanResult: UnifiedResults;
 }
