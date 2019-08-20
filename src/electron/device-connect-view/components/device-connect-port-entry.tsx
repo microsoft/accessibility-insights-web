@@ -52,18 +52,17 @@ export class DeviceConnectPortEntry extends React.Component<DeviceConnectPortEnt
         );
     }
 
-    private onValidateClick = (event: React.MouseEvent<HTMLButtonElement>): void => {
+    private onValidateClick = async (event: React.MouseEvent<HTMLButtonElement>): Promise<void> => {
         this.setState({ isValidateButtonDisabled: true });
         this.props.onConnectingCallback();
-        this.props
+
+        await this.props
             .fetchScanResults(parseInt(this.state.port, 10))
             .then(data => {
                 this.props.onConnectedCallback(true, `${data.deviceName} - ${data.appIdentifier}`);
-                this.setState({ isValidateButtonDisabled: false });
             })
-            .catch(error => {
-                this.props.onConnectedCallback(false);
-                this.setState({ isValidateButtonDisabled: false });
-            });
+            .catch(err => this.props.onConnectedCallback(false));
+
+        this.setState({ isValidateButtonDisabled: false });
     };
 }

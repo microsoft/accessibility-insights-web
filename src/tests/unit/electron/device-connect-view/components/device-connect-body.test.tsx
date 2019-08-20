@@ -45,7 +45,7 @@ describe('DeviceConnectBodyTest', () => {
     const expectedStateConnectedFail: DeviceConnectBodyState = {
         isConnecting: false,
         canStartTesting: false,
-        hasFailedConnecting: false,
+        hasFailedConnecting: true,
         needsValidation: true,
         connectedDevice: '',
     };

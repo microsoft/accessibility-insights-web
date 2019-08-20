@@ -1,19 +1,44 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`DeviceConnectConnectedDeviceTest render, device: no content 1`] = `
+exports[`DeviceConnectConnectedDeviceTest render connection failure: connection failure 1`] = `
 <div
   className="device-connect-connected-device"
 >
   <h3>
     Connected device
   </h3>
-  <span>
+  <React.Fragment>
+    <StyledIconBase
+      ariaLabel="Connection failed"
+      className="connection-error-icon"
+      iconName="statusErrorFull"
+    />
+    <span
+      className="scanned-text"
+    >
+      No active applications were found at the provided local host.
+    </span>
+    ;
+  </React.Fragment>
+</div>
+`;
+
+exports[`DeviceConnectConnectedDeviceTest render connection success: connection success 1`] = `
+<div
+  className="device-connect-connected-device"
+>
+  <h3>
+    Connected device
+  </h3>
+  <span
+    className="scanned-text"
+  >
     A Test Device!
   </span>
 </div>
 `;
 
-exports[`DeviceConnectConnectedDeviceTest render, no content: no content 1`] = `
+exports[`DeviceConnectConnectedDeviceTest render no content: no content 1`] = `
 <div
   className="device-connect-connected-device"
 >
@@ -23,7 +48,7 @@ exports[`DeviceConnectConnectedDeviceTest render, no content: no content 1`] = `
 </div>
 `;
 
-exports[`DeviceConnectConnectedDeviceTest render, spinner: no content 1`] = `
+exports[`DeviceConnectConnectedDeviceTest render scanning spinner: scanning spinner 1`] = `
 <div
   className="device-connect-connected-device"
 >
