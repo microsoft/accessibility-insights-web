@@ -293,6 +293,7 @@ div.insights-file-issue-details-dialog-container {
         width: 100%;
     }
     .details-view-command-bar {
+        height: $detailsViewCommandBarHeight;
         width: 100%;
         display: flex;
         justify-content: space-between;
@@ -301,11 +302,11 @@ div.insights-file-issue-details-dialog-container {
         background-color: $neutral-0;
         font-size: 14px;
         font-weight: normal;
-        border-bottom: 1px solid $neutral-alpha-8;
+        border-bottom: $detailsViewCommandBarBorderHeight solid $neutral-alpha-8;
 
         .details-view-target-page {
             margin-left: 12px;
-            padding: 13px 8px;
+            padding: 8px 8px;
             display: inherit;
             white-space: nowrap;
             overflow: hidden;
@@ -384,10 +385,15 @@ div.insights-file-issue-details-dialog-container {
     .details-view-main-content {
         padding-left: 0px;
         padding-right: 0px;
-        flex-grow: 1;
+        display: grid;
+        grid-template-columns: 230px 1fr;
+        grid-template-rows: 1fr;
+        width: 100%;
         min-height: 0;
+
         .details-view-test-nav-area {
-            max-height: calc(100vh - #{$detailsViewHeaderBarHeight} - #{$detailsViewCommandBarHeight} - 12px);
+            box-sizing: border-box;
+            max-height: calc(100vh - #{detailsViewNavPivotsHeight} - #{$detailsViewHeaderBarHeight} - #{$detailsViewCommandBarHeight});
             .ms-Nav-groupContent,
             .ms-Nav-navItems {
                 margin-bottom: 0px;
@@ -742,6 +748,8 @@ div.insights-file-issue-details-dialog-container {
             width: 100%;
             padding-bottom: 1px;
             overflow: auto;
+            box-sizing: border-box;
+            max-height: calc(100vh - (#{$detailsViewTotalHeaderHeight}));
             > div {
                 min-width: 600px;
                 height: auto;
