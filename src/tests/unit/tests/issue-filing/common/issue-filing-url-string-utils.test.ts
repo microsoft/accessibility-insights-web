@@ -45,9 +45,17 @@ describe('IssueFilingUrlStringUtilsTest', () => {
         });
     });
 
-    test('getSelectorLastPart', () => {
-        expect(IssueFilingUrlStringUtils.getSelectorLastPart('hello world')).toEqual('hello world');
-        expect(IssueFilingUrlStringUtils.getSelectorLastPart('hello > world')).toEqual('world');
+    describe('getSelectorLastPart', () => {
+        const testCases = [
+            ['hello world', 'hello world'],
+            ['hello > world', 'world'],
+            ['iframe[name="image-text"];html', 'html'],
+            ['iframe[name="image-text"];a > img:nth-child(2)', 'img:nth-child(2)'],
+        ];
+
+        it.each(testCases)('find the selector last part for "%s"', (input, expected) => {
+            expect(IssueFilingUrlStringUtils.getSelectorLastPart(input)).toEqual(expected);
+        });
     });
 
     test('standardizeTags', () => {
