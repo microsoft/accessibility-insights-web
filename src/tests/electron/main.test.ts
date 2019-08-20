@@ -4,6 +4,7 @@ import * as Electron from 'electron';
 import { Application } from 'spectron';
 import * as WebdriverIO from 'webdriverio';
 import { CommonSelectors } from './common/element-identifiers/common-selectors';
+import { DEFAULT_ELECTRON_TEST_TIMEOUT_MS } from './setup/timeouts';
 
 describe('Electron E2E', () => {
     let app: Application;
@@ -25,7 +26,7 @@ describe('Electron E2E', () => {
     // tslint:disable-next-line:typedef
     async function ensureAppIsInDeviceConnectionDialog() {
         const webDriverClient: WebdriverIO.Client<void> = app.client;
-        await webDriverClient.waitForVisible(CommonSelectors.deviceViewContainer, 5000);
+        await webDriverClient.waitForVisible(CommonSelectors.deviceViewContainer, DEFAULT_ELECTRON_TEST_TIMEOUT_MS);
         expect(await app.webContents.getTitle()).toBe('Accessibility Insights for Mobile');
     }
 
