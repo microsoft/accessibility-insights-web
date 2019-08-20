@@ -13,10 +13,10 @@ export class IssueDetailsTextGenerator {
 
     public buildText(data: CreateIssueDetailsTextData): string {
         const result = data.ruleResult;
-        const standardTags = this.standardizeTags(data);
+        const standardTags = this.issueFilingUrlStringUtils.standardizeTags(data);
 
         const text = [
-            `Title: ${this.buildTitle(data, standardTags)}`,
+            `Title: ${this.issueFilingUrlStringUtils.getTitle(data)}`,
             `Tags: ${this.buildTags(data, standardTags)}`,
             ``,
             `Issue: ${result.help} (${result.ruleId}: ${result.helpUrl})`,
@@ -55,27 +55,8 @@ export class IssueDetailsTextGenerator {
         return input.replace(/\s+/g, ' ');
     }
 
-    public buildTitle(data: CreateIssueDetailsTextData, standardTags?: string[]): string {
-        if (!standardTags) {
-            standardTags = this.standardizeTags(data);
-        }
-
-        let prefix = standardTags.join(',');
-        if (prefix.length > 0) {
-            prefix = prefix + ': ';
-        }
-
-        const selectorLastPart = this.issueFilingUrlStringUtils.getSelectorLastPart(data.ruleResult.selector);
-
-        return `${prefix}${data.ruleResult.help} (${selectorLastPart})`;
-    }
-
     public buildTags(createIssueData: CreateIssueDetailsTextData, standardTags: string[]): string {
         const tags = ['Accessibility', ...standardTags, createIssueData.ruleResult.ruleId];
         return tags.join(', ');
-    }
-
-    private standardizeTags(data: CreateIssueDetailsTextData): string[] {
-        return data.ruleResult.guidanceLinks.map(tag => tag.text.toUpperCase());
     }
 }

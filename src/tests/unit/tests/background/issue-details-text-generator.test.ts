@@ -10,42 +10,46 @@ describe('Issue details text builder', () => {
     let sampleIssueDetailsData: CreateIssueDetailsTextData;
     let issueUrlCreationUtilsMock: IMock<IssueUrlCreationUtils>;
 
+    const wcagTags = ['WCAG-1.4.1', 'WCAG-2.8.2'];
+    const title = `${wcagTags.join(',')}: RR-help (RR-selector<x>)`;
+    const selector = 'RR-selector<x>';
+
     beforeEach(() => {
-        const selector = 'RR-selector<x>';
-
-        issueUrlCreationUtilsMock = Mock.ofType<IssueUrlCreationUtils>(undefined, MockBehavior.Strict);
-        issueUrlCreationUtilsMock.setup(utils => utils.getSelectorLastPart(selector)).returns(() => selector);
-
-        testSubject = new IssueDetailsTextGenerator('MY.EXT.VER', 'browser spec', 'AXE.CORE.VER', issueUrlCreationUtilsMock.object);
-
         sampleIssueDetailsData = {
             pageTitle: 'pageTitle<x>',
             pageUrl: 'pageUrl',
             ruleResult: {
                 failureSummary: 'RR-failureSummary',
-                guidanceLinks: [{ text: 'WCAG-1.4.1' }, { text: 'wcag-2.8.2' }],
+                guidanceLinks: [{ text: wcagTags[0] }, { text: wcagTags[1] }],
                 help: 'RR-help',
                 html: 'RR-html',
                 ruleId: 'RR-rule-id',
                 helpUrl: 'RR-help-url',
-                selector: selector,
+                selector,
                 snippet: 'RR-snippet   space',
             } as any,
         };
+
+        issueUrlCreationUtilsMock = Mock.ofType<IssueUrlCreationUtils>(undefined, MockBehavior.Strict);
+        issueUrlCreationUtilsMock.setup(utils => utils.getSelectorLastPart(selector)).returns(() => selector);
+        issueUrlCreationUtilsMock.setup(utils => utils.getTitle(sampleIssueDetailsData)).returns(() => title);
+        issueUrlCreationUtilsMock.setup(utils => utils.standardizeTags(sampleIssueDetailsData)).returns(() => wcagTags);
+
+        testSubject = new IssueDetailsTextGenerator('MY.EXT.VER', 'browser spec', 'AXE.CORE.VER', issueUrlCreationUtilsMock.object);
     });
 
     test('buildText', () => {
         const actual = testSubject.buildText(sampleIssueDetailsData);
         const expected = [
-            `Title: WCAG-1.4.1,WCAG-2.8.2: RR-help (RR-selector<x>)`,
-            `Tags: Accessibility, WCAG-1.4.1, WCAG-2.8.2, RR-rule-id`,
+            `Title: ${title}`,
+            `Tags: Accessibility, ${wcagTags.join(', ')}, RR-rule-id`,
             ``,
             `Issue: RR-help (RR-rule-id: RR-help-url)`,
             ``,
             `Target application title: pageTitle<x>`,
             `Target application url: pageUrl`,
             ``,
-            `Element path: RR-selector<x>`,
+            `Element path: ${selector}`,
             ``,
             `Snippet: RR-snippet space`,
             ``,
@@ -67,36 +71,6 @@ describe('Issue details text builder', () => {
     const noStandardTags = [];
     const oneStandardTag = ['WCAG-1.4.1'];
     const manyStandardTags = ['WCAG-1.4.1', 'WCAG-2.8.2', 'WCAG-4.1.4'];
-
-    describe('buildTitle', () => {
-        test('no standard tags', () => {
-            const expected = 'RR-help (RR-selector<x>)';
-            const actual = testSubject.buildTitle(sampleIssueDetailsData, noStandardTags);
-
-            expect(actual).toEqual(expected);
-        });
-
-        test('one standard tag', () => {
-            const expected = 'WCAG-1.4.1: RR-help (RR-selector<x>)';
-            const actual = testSubject.buildTitle(sampleIssueDetailsData, oneStandardTag);
-
-            expect(actual).toEqual(expected);
-        });
-
-        test('many standard tags', () => {
-            const expected = 'WCAG-1.4.1,WCAG-2.8.2,WCAG-4.1.4: RR-help (RR-selector<x>)';
-            const actual = testSubject.buildTitle(sampleIssueDetailsData, manyStandardTags);
-
-            expect(actual).toEqual(expected);
-        });
-
-        test('single argument', () => {
-            const expected = 'WCAG-1.4.1,WCAG-2.8.2: RR-help (RR-selector<x>)';
-            const actual = testSubject.buildTitle(sampleIssueDetailsData);
-
-            expect(actual).toEqual(expected);
-        });
-    });
 
     describe('buildTags', () => {
         test('no standard tags', () => {
