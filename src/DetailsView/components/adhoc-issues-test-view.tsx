@@ -5,7 +5,6 @@ import * as React from 'react';
 import { FlaggedComponent } from '../../common/components/flagged-component';
 import { FeatureFlags } from '../../common/feature-flags';
 import { NamedSFC } from '../../common/react/named-sfc';
-import { VisualizationType } from '../../common/types/visualization-type';
 import { CardsView } from './cards-view';
 import { DetailsListIssuesView, DetailsListIssuesViewDeps, DetailsListIssuesViewProps } from './details-list-issues-view';
 import { TargetPageChangedView } from './target-page-changed-view';
