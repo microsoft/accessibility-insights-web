@@ -2,9 +2,9 @@
 // Licensed under the MIT License.
 import { GlobalMock, GlobalScope, It, Mock, MockBehavior, Times } from 'typemoq';
 
-import * as AxeUtils from '../../../../scanner/axe-utils';
-import { cuesConfiguration, evaluateCues } from '../../../../scanner/custom-rules/cues-rule';
-import { createNodeStub, testNativeWidgetConfiguration } from './helpers';
+import * as AxeUtils from '../../../../../scanner/axe-utils';
+import { cuesConfiguration, evaluateCues } from '../../../../../scanner/custom-rules/cues-rule';
+import { createNodeStub, testNativeWidgetConfiguration } from '../helpers';
 
 describe('cues rule', () => {
     describe('verify cues configs', () => {

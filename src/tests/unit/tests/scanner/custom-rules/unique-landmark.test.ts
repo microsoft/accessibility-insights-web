@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import * as Axe from 'axe-core';
 
-import { uniqueLandmarkConfiguration } from '../../../../scanner/custom-rules/unique-landmark';
+import { uniqueLandmarkConfiguration } from '../../../../../scanner/custom-rules/unique-landmark';
 
 describe('unique-landmark', () => {
     let fixture: HTMLElement;

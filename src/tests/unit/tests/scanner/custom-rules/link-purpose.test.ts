@@ -2,8 +2,8 @@
 // Licensed under the MIT License.
 import { GlobalMock, GlobalScope, IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
-import * as AxeUtils from '../../../../scanner/axe-utils';
-import { linkPurposeConfiguration } from '../../../../scanner/custom-rules/link-purpose';
+import * as AxeUtils from '../../../../../scanner/axe-utils';
+import { linkPurposeConfiguration } from '../../../../../scanner/custom-rules/link-purpose';
 
 describe('link purpose', () => {
     describe('verify link purpose configs', () => {

@@ -2,13 +2,13 @@
 // Licensed under the MIT License.
 import { GlobalMock, GlobalScope, It, Mock, MockBehavior, Times } from 'typemoq';
 
-import * as AxeUtils from '../../../../scanner/axe-utils';
+import * as AxeUtils from '../../../../../scanner/axe-utils';
 import {
     getNativeWidgetElementType,
     nativeWidgetsDefaultConfiguration,
     nativeWidgetSelector,
-} from '../../../../scanner/custom-rules/native-widgets-default';
-import { createNodeStub, testNativeWidgetConfiguration } from './helpers';
+} from '../../../../../scanner/custom-rules/native-widgets-default';
+import { createNodeStub, testNativeWidgetConfiguration } from '../helpers';
 
 describe('native widgets default', () => {
     describe('verify native widgets default configs', () => {

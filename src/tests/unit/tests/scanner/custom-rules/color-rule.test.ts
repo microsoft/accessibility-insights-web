@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { colorConfiguration, isInTopWindow } from '../../../../scanner/custom-rules/color-rule';
+import { colorConfiguration, isInTopWindow } from '../../../../../scanner/custom-rules/color-rule';
 
 describe('ColorRule', () => {
     describe('verify color configs', () => {
