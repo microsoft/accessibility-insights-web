@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 import { StoreNames } from '../../common/stores/store-names';
 import { UnifiedResults } from '../../common/types/store-data/unified-data-interface';
-import { PathSnippetActions } from '../actions/path-snippet-actions';
 import { BaseStoreImpl } from './base-store-impl';
 
 export class UnifiedScanResultStore extends BaseStoreImpl<UnifiedResults> {
@@ -20,13 +19,12 @@ export class UnifiedScanResultStore extends BaseStoreImpl<UnifiedResults> {
 
     protected addActionListeners(): void {
         this.unifiedScanResultActions.getCurrentState.addListener(this.onGetCurrentState);
-        this.unifiedScanResultActions.onAddPath.addListener(payload => this.onChangeProperty('path', payload));
-        this.unifiedScanResultActions.onAddSnippet.addListener(payload => this.onChangeProperty('snippet', payload));
+        this.unifiedScanResultActions.scanCompleted.addListener(this.onScanCompleted);
         this.unifiedScanResultActions.onClearData.addListener(this.onClearState);
     }
 
-    private onChangeProperty = (property: keyof UnifiedResults, payload: string): void => {
-        this.state[property] = payload;
+    private onScanCompleted = (payload: UnifiedScanCompletedPayload): void => {
+        this.state = payload.scanResult;
         this.emitChanged();
     };
 
