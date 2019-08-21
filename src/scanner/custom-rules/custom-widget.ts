@@ -62,7 +62,7 @@ function evaluateCustomWidget(node: HTMLElement): boolean {
     const ariaCues = generateARIACuesDictionary(node);
 
     const data = {
-        accessibleName: accessibleName,
+        accessibleName,
         role,
         describedBy,
         htmlCues,
