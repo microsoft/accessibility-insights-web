@@ -7,18 +7,17 @@ import { IMock, It, Mock, Times } from 'typemoq';
 import { VisualizationConfiguration } from '../../../../../common/configs/visualization-configuration';
 import { VisualizationConfigurationFactory } from '../../../../../common/configs/visualization-configuration-factory';
 import { Message } from '../../../../../common/message';
+import { Messages } from '../../../../../common/messages';
 import { TelemetryDataFactory } from '../../../../../common/telemetry-data-factory';
 import { RuleAnalyzerScanTelemetryData } from '../../../../../common/telemetry-events';
 import { ScopingStoreData } from '../../../../../common/types/store-data/scoping-store-data';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
 import { RuleAnalyzerConfiguration } from '../../../../../injected/analyzers/analyzer';
-import { RuleAnalyzer } from '../../../../../injected/analyzers/rule-analyzer';
+import { UnifiedRuleAnalyzer } from '../../../../../injected/analyzers/unified-rule-analyzer';
 import { HtmlElementAxeResults, ScannerUtils } from '../../../../../injected/scanner-utils';
 import { ScanResults } from '../../../../../scanner/iruleresults';
 import { ScanOptions } from '../../../../../scanner/scan-options';
 import { DictionaryStringTo } from '../../../../../types/common-types';
-import { Messages } from '../../../../../common/messages';
-import { UnifiedRuleAnalyzer } from '../../../../../injected/analyzers/unified-rule-analyzer';
 
 describe('UnifiedRuleAnalyzer', () => {
     let scannerUtilsMock: IMock<ScannerUtils>;

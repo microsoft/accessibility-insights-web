@@ -5,12 +5,12 @@ import { BaseTelemetryData, TelemetryData, ToggleTelemetryData } from '../../com
 import { CreateIssueDetailsTextData } from '../../common/types/create-issue-details-text-data';
 import { DetailsViewPivotType } from '../../common/types/details-view-pivot-type';
 import { ManualTestStatus } from '../../common/types/manual-test-status';
+import { UnifiedResults } from '../../common/types/store-data/unified-data-interface';
 import { IssueFilingServiceProperties } from '../../common/types/store-data/user-configuration-store';
 import { VisualizationType } from '../../common/types/visualization-type';
 import { FailureInstanceData } from '../../DetailsView/components/failure-instance-panel-control';
 import { TabStopEvent } from '../../injected/tab-stops-listener';
 import { LaunchPanelType } from '../../popup/components/popup-view';
-import { UnifiedResults } from '../../common/types/store-data/unified-data-interface';
 
 export interface BaseActionPayload {
     telemetry?: TelemetryData;

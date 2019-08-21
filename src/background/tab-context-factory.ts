@@ -17,6 +17,7 @@ import { PathSnippetActionCreator } from './actions/path-snippet-action-creator'
 import { ScopingPanelActionCreator } from './actions/scoping-panel-action-creator';
 import { ShortcutsPageActionCreator } from './actions/shortcuts-page-action-creator';
 import { TabActionCreator } from './actions/tab-action-creator';
+import { UnifiedScanResultActionCreator } from './actions/unified-scan-result-action-creator';
 import { AssessmentScanPolicyRunner } from './assessment-scan-policy-runner';
 import { DetailsViewController } from './details-view-controller';
 import { InjectorController } from './injector-controller';
@@ -30,7 +31,6 @@ import { TabContextStoreHub } from './stores/tab-context-store-hub';
 import { TabContext } from './tab-context';
 import { TargetTabController } from './target-tab-controller';
 import { TelemetryEventHandler } from './telemetry/telemetry-event-handler';
-import { UnifiedScanResultActionCreator } from './actions/unified-scan-result-action-creator';
 
 export class TabContextFactory {
     constructor(
