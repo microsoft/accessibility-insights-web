@@ -971,6 +971,7 @@ class ActionCreatorValidator {
         contentActions: null,
         detailsViewActions: this.detailsViewActionsContainerMock.object,
         pathSnippetActions: null,
+        scanResultActions: null,
     };
 
     private telemetryEventHandlerStrictMock = Mock.ofType<TelemetryEventHandler>(null, MockBehavior.Strict);

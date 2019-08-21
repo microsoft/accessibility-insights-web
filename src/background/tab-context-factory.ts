@@ -30,6 +30,7 @@ import { TabContextStoreHub } from './stores/tab-context-store-hub';
 import { TabContext } from './tab-context';
 import { TargetTabController } from './target-tab-controller';
 import { TelemetryEventHandler } from './telemetry/telemetry-event-handler';
+import { UnifiedScanResultActionCreator } from './actions/unified-scan-result-action-creator';
 
 export class TabContextFactory {
     constructor(
@@ -98,6 +99,11 @@ export class TabContextFactory {
             interpreter.registerTypeToPayloadCallback,
         );
 
+        const scanResultActionCreator = new UnifiedScanResultActionCreator(
+            actionsHub.scanResultActions,
+            interpreter.registerTypeToPayloadCallback,
+        );
+
         const scopingPanelActionCreator = new ScopingPanelActionCreator(
             actionsHub.scopingActions,
             this.telemetryEventHandler,
@@ -140,6 +146,7 @@ export class TabContextFactory {
         tabActionCreator.registerCallbacks();
         scopingPanelActionCreator.registerCallbacks();
         contentActionCreator.registerCallbacks();
+        scanResultActionCreator.registerCallbacks();
 
         injectorController.initialize();
         const dispatcher = new StateDispatcher(broadcastMessage, storeHub);
