@@ -11,6 +11,6 @@ export const CardsView = NamedSFC<CardsViewProps>('CardsView', props => {
         <>
             <h2>Cards view</h2>
             <p>Hello, World!</p>
-</>
-        );
-    });
+        </>
+    );
+});
