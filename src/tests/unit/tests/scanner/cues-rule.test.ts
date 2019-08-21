@@ -3,7 +3,7 @@
 import { GlobalMock, GlobalScope, It, Mock, MockBehavior, Times } from 'typemoq';
 
 import * as AxeUtils from '../../../../scanner/axe-utils';
-import { cuesConfiguration, evaluateCues } from '../../../../scanner/cues-rule';
+import { cuesConfiguration, evaluateCues } from '../../../../scanner/custom-rules/cues-rule';
 import { createNodeStub, testNativeWidgetConfiguration } from './helpers';
 
 describe('cues rule', () => {

@@ -1,23 +1,23 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { colorConfiguration } from './color-rule';
-import { cssContentConfiguration } from './css-content-rule';
-import { cssPositioningConfiguration } from './css-positioning-rule';
-import { cuesConfiguration } from './cues-rule';
-import { customWidgetConfiguration } from './custom-widget';
-import { frameTitleConfiguration } from './frame-title';
-import { headingConfiguration } from './heading-rule';
-import { imageConfiguration } from './image-rule';
+import { colorConfiguration } from './custom-rules/color-rule';
+import { cssContentConfiguration } from './custom-rules/css-content-rule';
+import { cssPositioningConfiguration } from './custom-rules/css-positioning-rule';
+import { cuesConfiguration } from './custom-rules/cues-rule';
+import { customWidgetConfiguration } from './custom-rules/custom-widget';
+import { frameTitleConfiguration } from './custom-rules/frame-title';
+import { headingConfiguration } from './custom-rules/heading-rule';
+import { imageConfiguration } from './custom-rules/image-rule';
+import { landmarkConfiguration } from './custom-rules/landmark-rule';
+import { linkFunctionConfiguration } from './custom-rules/link-function';
+import { linkPurposeConfiguration } from './custom-rules/link-purpose';
+import { nativeWidgetsDefaultConfiguration } from './custom-rules/native-widgets-default';
+import { pageConfiguration } from './custom-rules/page-title';
+import { textAlternativeConfiguration } from './custom-rules/text-alternative';
+import { textContrastConfiguration } from './custom-rules/text-contrast';
+import { uniqueLandmarkConfiguration } from './custom-rules/unique-landmark';
+import { widgetFunctionConfiguration } from './custom-rules/widget-function';
 import { RuleConfiguration } from './iruleresults';
-import { landmarkConfiguration } from './landmark-rule';
-import { linkFunctionConfiguration } from './link-function';
-import { linkPurposeConfiguration } from './link-purpose';
-import { nativeWidgetsDefaultConfiguration } from './native-widgets-default';
-import { pageConfiguration } from './page-title';
-import { textAlternativeConfiguration } from './text-alternative';
-import { textContrastConfiguration } from './text-contrast';
-import { uniqueLandmarkConfiguration } from './unique-landmark';
-import { widgetFunctionConfiguration } from './widget-function';
 
 export const configuration: RuleConfiguration[] = [
     headingConfiguration,

@@ -4,7 +4,7 @@ import * as Axe from 'axe-core';
 import { difference, map } from 'lodash';
 import { Mock, MockBehavior } from 'typemoq';
 
-import { customWidgetConfiguration } from '../../../../scanner/custom-widget';
+import { customWidgetConfiguration } from '../../../../scanner/custom-rules/custom-widget';
 import { ICheckConfiguration } from '../../../../scanner/iruleresults';
 
 const axe = Axe as any;

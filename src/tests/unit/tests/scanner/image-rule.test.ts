@@ -3,7 +3,7 @@
 import * as Axe from 'axe-core';
 import { GlobalMock, GlobalScope, IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
-import { imageConfiguration } from '../../../../scanner/image-rule';
+import { imageConfiguration } from '../../../../scanner/custom-rules/image-rule';
 
 describe('imageRule', () => {
     describe('verify image rule configs', () => {

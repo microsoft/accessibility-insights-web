@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { It, Mock, Times } from 'typemoq';
 
-import { pageConfiguration } from '../../../../scanner/page-title';
+import { pageConfiguration } from '../../../../scanner/custom-rules/page-title';
 
 describe('PageTitleRule', () => {
     describe('selector and check', () => {

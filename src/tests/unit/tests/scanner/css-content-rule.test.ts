@@ -3,7 +3,7 @@
 import * as axe from 'axe-core';
 import { GlobalMock, GlobalScope, It, MockBehavior, Times } from 'typemoq';
 
-import { cssContentConfiguration } from '../../../../scanner/css-content-rule';
+import { cssContentConfiguration } from '../../../../scanner/custom-rules/css-content-rule';
 
 describe('verify meaningful semantic configs', () => {
     it('should have correct props', () => {

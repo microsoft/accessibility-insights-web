@@ -7,7 +7,7 @@ import {
     getNativeWidgetElementType,
     nativeWidgetsDefaultConfiguration,
     nativeWidgetSelector,
-} from '../../../../scanner/native-widgets-default';
+} from '../../../../scanner/custom-rules/native-widgets-default';
 import { createNodeStub, testNativeWidgetConfiguration } from './helpers';
 
 describe('native widgets default', () => {

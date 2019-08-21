@@ -3,7 +3,7 @@
 import { GlobalMock, GlobalScope, IGlobalMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 import * as AxeUtils from '../../../../scanner/axe-utils';
-import { linkFunctionConfiguration } from '../../../../scanner/link-function';
+import { linkFunctionConfiguration } from '../../../../scanner/custom-rules/link-function';
 
 const outerHTML = 'outerHTML';
 const parentOuterHTML = 'parentOuterHTML';

@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { landmarkConfiguration } from '../../../../scanner/landmark-rule';
+import { landmarkConfiguration } from '../../../../scanner/custom-rules/landmark-rule';
 
 describe('landmarkRule', () => {
     describe('verify landmark configs', () => {

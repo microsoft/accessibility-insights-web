@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as AxeUtils from './axe-utils';
-import { AxeNodeResult, RuleConfiguration } from './iruleresults';
-import { RoleUtils } from './role-utils';
+import * as AxeUtils from '../axe-utils';
+import { AxeNodeResult, RuleConfiguration } from '../iruleresults';
+import { RoleUtils } from '../role-utils';
 
 const checkId = 'link-function';
 const snippetKey = 'snippet';

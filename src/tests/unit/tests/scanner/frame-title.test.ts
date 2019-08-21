@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { It, Mock, Times } from 'typemoq';
 
-import { frameTitleConfiguration } from '../../../../scanner/frame-title';
+import { frameTitleConfiguration } from '../../../../scanner/custom-rules/frame-title';
 
 describe('FrameTitleRule', () => {
     describe('selector and check', () => {

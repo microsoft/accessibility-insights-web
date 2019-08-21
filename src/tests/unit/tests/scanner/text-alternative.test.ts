@@ -4,7 +4,7 @@ import * as Axe from 'axe-core';
 import { GlobalMock, GlobalScope, IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 import * as AxeUtils from '../../../../scanner/axe-utils';
-import { textAlternativeConfiguration } from '../../../../scanner/text-alternative';
+import { textAlternativeConfiguration } from '../../../../scanner/custom-rules/text-alternative';
 
 describe('text alternative', () => {
     describe('verify text alternative configs', () => {

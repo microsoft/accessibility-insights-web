@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { It, Mock, Times } from 'typemoq';
 
-import { headingConfiguration } from '../../../../scanner/heading-rule';
+import { headingConfiguration } from '../../../../scanner/custom-rules/heading-rule';
 
 describe('HeadingRule', () => {
     describe('evaluateCodedHeadings for heading with aria level', () => {

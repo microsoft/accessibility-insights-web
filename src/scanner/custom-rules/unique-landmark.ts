@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import * as axe from 'axe-core';
 
-import { RuleConfiguration } from './iruleresults';
+import { RuleConfiguration } from '../iruleresults';
 
 const id: string = 'unique-landmark';
 const passMessage: string = 'Landmarks must have a unique role or role/label combination (aria-label OR aria-labelledby)';

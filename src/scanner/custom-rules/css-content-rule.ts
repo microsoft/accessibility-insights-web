@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import * as axe from 'axe-core';
 
-import { RuleConfiguration } from './iruleresults';
+import { RuleConfiguration } from '../iruleresults';
 
 const cssContentCheckId: string = 'css-content';
 const cssContentRuleId: string = 'css-content';

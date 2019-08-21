@@ -3,7 +3,7 @@
 import { GlobalMock, GlobalScope, IGlobalMock, IMock, It, Mock, MockBehavior } from 'typemoq';
 
 import * as AxeUtils from '../../../../scanner/axe-utils';
-import { textContrastConfiguration } from '../../../../scanner/text-contrast';
+import { textContrastConfiguration } from '../../../../scanner/custom-rules/text-contrast';
 import { DictionaryStringTo } from '../../../../types/common-types';
 
 function testTextContrast(

@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { DocumentUtils } from './document-utils';
-import { RuleConfiguration } from './iruleresults';
+import { DocumentUtils } from '../document-utils';
+import { RuleConfiguration } from '../iruleresults';
 
 const pageCheckId: string = 'page-title';
 

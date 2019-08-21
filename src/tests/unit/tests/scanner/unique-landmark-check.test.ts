@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { IMock, It, Mock } from 'typemoq';
 
-import { uniqueLandmarkConfiguration } from '../../../../scanner/unique-landmark';
+import { uniqueLandmarkConfiguration } from '../../../../scanner/custom-rules/unique-landmark';
 
 declare let axe;
 

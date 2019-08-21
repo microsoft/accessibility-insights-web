@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as AxeUtils from './axe-utils';
-import { RuleConfiguration } from './iruleresults';
-import { RoleUtils } from './role-utils';
+import * as AxeUtils from '../axe-utils';
+import { RuleConfiguration } from '../iruleresults';
+import { RoleUtils } from '../role-utils';
 
 const checkId = 'link-purpose';
 const hasValidRoleIfPresent = 'valid-role-if-present';

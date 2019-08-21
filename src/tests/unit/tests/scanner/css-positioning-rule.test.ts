@@ -3,7 +3,7 @@
 import * as axe from 'axe-core';
 import { GlobalMock, GlobalScope, It, MockBehavior, Times } from 'typemoq';
 
-import { cssPositioningConfiguration } from '../../../../scanner/css-positioning-rule';
+import { cssPositioningConfiguration } from '../../../../scanner/custom-rules/css-positioning-rule';
 import { DictionaryStringTo } from '../../../../types/common-types';
 
 describe('verify meaningful sequence configs', () => {

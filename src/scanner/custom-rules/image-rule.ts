@@ -2,8 +2,8 @@
 // Licensed under the MIT License.
 import * as axe from 'axe-core';
 
-import * as AxeUtils from './axe-utils';
-import { RuleConfiguration } from './iruleresults';
+import * as AxeUtils from '../axe-utils';
+import { RuleConfiguration } from '../iruleresults';
 
 export const imageConfiguration: RuleConfiguration = {
     checks: [

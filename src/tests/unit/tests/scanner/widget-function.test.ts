@@ -4,7 +4,7 @@ import { difference, map } from 'lodash';
 import { GlobalMock, GlobalScope, It, Mock, MockBehavior, Times } from 'typemoq';
 
 import * as AxeUtils from '../../../../scanner/axe-utils';
-import { evaluateWidgetFunction, widgetFunctionConfiguration } from '../../../../scanner/widget-function';
+import { evaluateWidgetFunction, widgetFunctionConfiguration } from '../../../../scanner/custom-rules/widget-function';
 import { createNodeStub, testNativeWidgetConfiguration } from './helpers';
 
 declare let axe;

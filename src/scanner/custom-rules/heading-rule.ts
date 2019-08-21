@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IAxeCheckResultExtraData, RuleConfiguration } from './iruleresults';
+import { IAxeCheckResultExtraData, RuleConfiguration } from '../iruleresults';
 
 const headingCheckId: string = 'collect-headings';
 
