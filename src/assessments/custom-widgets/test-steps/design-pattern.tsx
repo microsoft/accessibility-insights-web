@@ -67,7 +67,7 @@ export const DesignPattern: Requirement = {
                     defaultValue: NoValue,
                 },
                 {
-                    propertyName: 'text',
+                    propertyName: 'accessibleName',
                     displayName: 'Accessible name',
                     defaultValue: NoValue,
                 },
