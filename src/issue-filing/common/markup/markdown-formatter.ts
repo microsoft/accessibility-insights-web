@@ -25,11 +25,20 @@ export const createFormatter = (truncateSnippet: (text: string) => string): Mark
             .join('\n');
     };
 
+    const sectionHeaderSeparator = () => '\n';
+
+    const footerSeparator = () => null;
+
+    const sectionSeparator = () => '\n';
+
     return {
         snippet,
         link,
         sectionHeader,
         howToFixSection,
+        sectionHeaderSeparator,
+        footerSeparator,
+        sectionSeparator,
     };
 };
 

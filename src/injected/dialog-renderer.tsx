@@ -5,15 +5,15 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 
 import { IssueDetailsTextGenerator } from 'background/issue-details-text-generator';
-import { AxeInfo } from '../common/axe-info';
 import { BrowserAdapter } from '../common/browser-adapters/browser-adapter';
 import { FeatureFlags } from '../common/feature-flags';
 import { HTMLElementUtils } from '../common/html-element-utils';
-import { NavigatorUtils } from '../common/navigator-utils';
 import { getPlatform } from '../common/platform';
 import { FeatureFlagStoreData } from '../common/types/store-data/feature-flag-store-data';
 import { WindowUtils } from '../common/window-utils';
+import { createIssueDetailsBuilder } from '../issue-filing/common/create-issue-details-builder';
 import { IssueFilingUrlStringUtils } from '../issue-filing/common/issue-filing-url-string-utils';
+import { PlainTextFormatter } from '../issue-filing/common/markup/plain-text-formatter';
 import { DictionaryStringTo } from '../types/common-types';
 import { rootContainerId } from './constants';
 import { DetailsDialogHandler } from './details-dialog-handler';
@@ -64,12 +64,10 @@ export class DialogRenderer {
                 ? this.initializeDialogContainerInShadowDom()
                 : this.appendDialogContainer();
 
-            const browserSpec = new NavigatorUtils(window.navigator).getBrowserSpec();
             const issueDetailsTextGenerator = new IssueDetailsTextGenerator(
-                this.browserAdapter.extensionVersion,
-                browserSpec,
-                AxeInfo.Default.version,
                 IssueFilingUrlStringUtils,
+                mainWindowContext.getEnvironmentInfoProvider(),
+                createIssueDetailsBuilder(PlainTextFormatter),
             );
 
             const fixInstructionProcessor = new FixInstructionProcessor();
