@@ -11,38 +11,38 @@ export const createIssueDetailsBuilder = (markup: MarkupFormatter): IssueDetails
     const getter = (environmentInfo: EnvironmentInfo, data: CreateIssueDetailsTextData): string => {
         const result = data.ruleResult;
 
-        const { howToFixSection, link, sectionHeader, snippet, sectionHeaderSeparator, footerSeparator, newLine } = markup;
+        const { howToFixSection, link, sectionHeader, snippet, sectionHeaderSeparator, footerSeparator, sectionSeparator } = markup;
 
         const lines = [
             sectionHeader('Issue'),
             sectionHeaderSeparator(),
             `${snippet(result.help)} (${link(result.helpUrl, result.ruleId)})`,
-            newLine(),
+            sectionSeparator(),
 
             sectionHeader('Target application'),
             sectionHeaderSeparator(),
             link(data.pageUrl, data.pageTitle),
-            newLine(),
+            sectionSeparator(),
 
             sectionHeader('Element path'),
             sectionHeaderSeparator(),
             data.ruleResult.selector,
-            newLine(),
+            sectionSeparator(),
 
             sectionHeader('Snippet'),
             sectionHeaderSeparator(),
             snippet(result.snippet),
-            newLine(),
+            sectionSeparator(),
 
             sectionHeader('How to fix'),
             sectionHeaderSeparator(),
             howToFixSection(result.failureSummary),
-            newLine(),
+            sectionSeparator(),
 
             sectionHeader('Environment'),
             sectionHeaderSeparator(),
             environmentInfo.browserSpec,
-            newLine(),
+            sectionSeparator(),
 
             footerSeparator(),
 

@@ -31,7 +31,7 @@ describe('PlainTextFormatter', () => {
     });
 
     it('return new line', () => {
-        expect(testSubject.newLine()).toBe('\n\n');
+        expect(testSubject.sectionSeparator()).toBe('\n\n');
     });
 
     describe('creates link', () => {

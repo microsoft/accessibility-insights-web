@@ -38,7 +38,7 @@ describe('Name of the group', () => {
         markupMock.setup(factory => factory.howToFixSection(It.isAnyString())).returns(text => `h-t--${text}--h-t`);
         markupMock.setup(factory => factory.sectionHeaderSeparator()).returns(() => '--s-h-s--');
         markupMock.setup(factory => factory.footerSeparator()).returns(() => '--f-s--');
-        markupMock.setup(factory => factory.newLine()).returns(() => '\n');
+        markupMock.setup(factory => factory.sectionSeparator()).returns(() => '\n');
     });
 
     it('build issue details', () => {

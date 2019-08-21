@@ -35,7 +35,7 @@ describe('HTMLFormatter', () => {
     });
 
     it('return new line', () => {
-        expect(testSubject.newLine()).toBe('\n');
+        expect(testSubject.sectionSeparator()).toBe('\n');
     });
 
     describe('creates snippet', () => {

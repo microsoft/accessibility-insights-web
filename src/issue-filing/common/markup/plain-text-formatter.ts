@@ -30,7 +30,7 @@ const createFormmatter = (): MarkupFormatter => {
         howToFixSection,
         sectionHeaderSeparator,
         footerSeparator,
-        newLine,
+        sectionSeparator: newLine,
     };
 };
 

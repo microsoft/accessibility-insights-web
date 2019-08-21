@@ -29,7 +29,7 @@ export const createFormatter = (truncateSnippet: (text: string) => string): Mark
 
     const footerSeparator = () => null;
 
-    const newLine = () => '\n';
+    const sectionSeparator = () => '\n';
 
     return {
         snippet,
@@ -38,7 +38,7 @@ export const createFormatter = (truncateSnippet: (text: string) => string): Mark
         howToFixSection,
         sectionHeaderSeparator,
         footerSeparator,
-        newLine,
+        sectionSeparator,
     };
 };
 
