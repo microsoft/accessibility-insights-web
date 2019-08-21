@@ -6,11 +6,13 @@ exports[`DeviceConnectBodyTest render 1`] = `
 >
   <DeviceConnectHeader />
   <DeviceConnectPortEntry
+    fetchScanResults={[Function]}
     needsValidation={true}
     onConnectedCallback={[Function]}
     onConnectingCallback={[Function]}
   />
   <DeviceConnectConnectedDevice
+    hasFailed={false}
     isConnecting={false}
   />
   <DeviceConnectFooter

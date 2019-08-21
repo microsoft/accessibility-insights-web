@@ -2,12 +2,13 @@
 // Licensed under the MIT License.
 import { BrowserWindow } from 'electron';
 import * as React from 'react';
+import { fetchScanResults } from '../../platform/android/fetch-scan-results';
 import { DeviceConnectConnectedDevice } from './device-connect-connected-device';
 import { DeviceConnectFooter } from './device-connect-footer';
 import { DeviceConnectHeader } from './device-connect-header';
 import { DeviceConnectPortEntry } from './device-connect-port-entry';
 
-export type OnConnectedCallback = (isConnected: boolean, deviceName: string) => void;
+export type OnConnectedCallback = (isConnected: boolean, deviceName?: string) => void;
 export type OnConnectingCallback = () => void;
 
 export interface DeviceConnectBodyProps {
@@ -16,8 +17,9 @@ export interface DeviceConnectBodyProps {
 
 export interface DeviceConnectBodyState {
     canStartTesting: boolean;
-    needsValidation: boolean;
+    hasFailedConnecting: boolean;
     isConnecting: boolean;
+    needsValidation: boolean;
     connectedDevice?: string;
 }
 
@@ -26,8 +28,9 @@ export class DeviceConnectBody extends React.Component<DeviceConnectBodyProps, D
         super(props);
         this.state = {
             canStartTesting: false,
-            needsValidation: true,
+            hasFailedConnecting: false,
             isConnecting: false,
+            needsValidation: true,
         };
     }
 
@@ -39,8 +42,13 @@ export class DeviceConnectBody extends React.Component<DeviceConnectBodyProps, D
                     needsValidation={this.state.needsValidation}
                     onConnectedCallback={this.OnConnectedCallback}
                     onConnectingCallback={this.OnConnectingCallback}
+                    fetchScanResults={fetchScanResults}
                 />
-                <DeviceConnectConnectedDevice isConnecting={this.state.isConnecting} connectedDevice={this.state.connectedDevice} />
+                <DeviceConnectConnectedDevice
+                    isConnecting={this.state.isConnecting}
+                    connectedDevice={this.state.connectedDevice}
+                    hasFailed={this.state.hasFailedConnecting}
+                />
                 <DeviceConnectFooter
                     cancelClick={this.props.currentWindow.close}
                     canStartTesting={this.state.canStartTesting}
@@ -50,10 +58,22 @@ export class DeviceConnectBody extends React.Component<DeviceConnectBodyProps, D
     }
 
     private OnConnectingCallback: OnConnectingCallback = () => {
-        this.setState({ isConnecting: true, canStartTesting: false, needsValidation: true, connectedDevice: '' });
+        this.setState({
+            canStartTesting: false,
+            connectedDevice: '',
+            hasFailedConnecting: false,
+            isConnecting: true,
+            needsValidation: true,
+        });
     };
 
-    private OnConnectedCallback: OnConnectedCallback = (isConnected: boolean, deviceName: string) => {
-        this.setState({ isConnecting: false, canStartTesting: isConnected, needsValidation: !isConnected, connectedDevice: deviceName });
+    private OnConnectedCallback: OnConnectedCallback = (isConnected: boolean, deviceName?: string) => {
+        this.setState({
+            canStartTesting: isConnected,
+            connectedDevice: deviceName,
+            hasFailedConnecting: !isConnected,
+            isConnecting: false,
+            needsValidation: !isConnected,
+        });
     };
 }
