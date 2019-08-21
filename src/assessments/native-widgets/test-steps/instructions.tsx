@@ -19,12 +19,14 @@ import { ReportInstanceField } from '../../types/report-instance-field';
 import { Requirement } from '../../types/requirement';
 import { NativeWidgetsTestStep } from './test-steps';
 
-const description: JSX.Element = <span>If a native widget has visible instructions, they must be programmatically related to it.</span>;
+const description: JSX.Element = (
+    <span>If a native widget has a visible label or instructions, they must be programmatically related.</span>
+);
 
 const howToTest: JSX.Element = (
     <div>
         <p>
-            For this requirement, {productName} highlights native widgets. Native widgets include
+            The visual helper for this requirement highlights native widgets. Native widgets include
             <Markup.NonBreakingSpace />
             <Markup.Tag tagName="button" isBold={true} />,
             <Markup.NonBreakingSpace />
@@ -34,11 +36,14 @@ const howToTest: JSX.Element = (
             <Markup.NonBreakingSpace />
             <Markup.Tag tagName="textarea" isBold={true} /> elements.
         </p>
-        <TestAutomaticallyPassedNotice />
         <ol>
+            <li>In the target page, examine each highlighted element to determine whether it has a visible label or instructions.</li>
             <li>
-                For each widget, verify that any instructions visible in the target page are also visible in the
-                <Markup.Term> Instances</Markup.Term> list.
+                Verify that all visible labels and instructions are displayed in the Instances list:
+                <ol>
+                    <li>Any label should appear in the accessible name.</li>
+                    <li>Any additional instructions should appear in the accessible description.</li>
+                </ol>
             </li>
             <AssistedTestRecordYourResults />
         </ol>
@@ -69,7 +74,7 @@ export const Instructions: Requirement = {
     description,
     howToTest,
     isManual: false,
-    guidanceLinks: [link.WCAG_1_3_1],
+    guidanceLinks: [link.WCAG_1_3_1, link.WCAG_2_5_3],
     ...content,
     columnsConfig: [
         {
