@@ -40,7 +40,7 @@ describe('PlainTextFormatter', () => {
         });
 
         it('handles href and text', () => {
-            expect(testSubject.link('test-href', 'test-text')).toEqual('test-text: test-href');
+            expect(testSubject.link('test-href', 'test-text')).toEqual('test-text - test-href');
         });
     });
 });

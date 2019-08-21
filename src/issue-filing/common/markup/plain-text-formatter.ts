@@ -7,7 +7,7 @@ const createFormmatter = (): MarkupFormatter => {
 
     const link = (href: string, text?: string): string => {
         if (text) {
-            return `${text}: ${href}`;
+            return `${text} - ${href}`;
         }
 
         return href;
