@@ -8,7 +8,7 @@ import { DeviceConnectFooter } from './device-connect-footer';
 import { DeviceConnectHeader } from './device-connect-header';
 import { DeviceConnectPortEntry } from './device-connect-port-entry';
 
-export type OnConnectedCallback = (isConnected: boolean, deviceName?: string) => void;
+export type OnConnectedCallback = (isConnected: boolean, hasFailedConnecting: boolean, deviceName?: string) => void;
 export type OnConnectingCallback = () => void;
 
 export interface DeviceConnectBodyProps {
@@ -67,11 +67,11 @@ export class DeviceConnectBody extends React.Component<DeviceConnectBodyProps, D
         });
     };
 
-    private OnConnectedCallback: OnConnectedCallback = (isConnected: boolean, deviceName?: string) => {
+    private OnConnectedCallback: OnConnectedCallback = (isConnected: boolean, hasFailedConnecting: boolean, deviceName?: string) => {
         this.setState({
             canStartTesting: isConnected,
             connectedDevice: deviceName,
-            hasFailedConnecting: !isConnected,
+            hasFailedConnecting: hasFailedConnecting,
             isConnecting: false,
             needsValidation: !isConnected,
         });

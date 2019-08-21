@@ -27,6 +27,7 @@ export class DeviceConnectPortEntry extends React.Component<DeviceConnectPortEnt
     public render(): JSX.Element {
         const onPortTextChanged = (event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>, newValue?: string) => {
             this.setState({ isValidateButtonDisabled: !newValue || newValue === '', port: newValue });
+            this.props.onConnectedCallback(false, false);
         };
 
         return (
@@ -59,9 +60,9 @@ export class DeviceConnectPortEntry extends React.Component<DeviceConnectPortEnt
         await this.props
             .fetchScanResults(parseInt(this.state.port, 10))
             .then(data => {
-                this.props.onConnectedCallback(true, `${data.deviceName} - ${data.appIdentifier}`);
+                this.props.onConnectedCallback(true, false, `${data.deviceName} - ${data.appIdentifier}`);
             })
-            .catch(err => this.props.onConnectedCallback(false));
+            .catch(err => this.props.onConnectedCallback(false, true));
 
         this.setState({ isValidateButtonDisabled: false });
     };

@@ -36,21 +36,40 @@ describe('DeviceConnectPortEntryTest', () => {
         expect(rendered.getElement()).toMatchSnapshot();
     });
 
+    test('onChange updates state', () => {
+        const fetch: FetchScanResultsType = _ => Promise.reject({} as ScanResults);
+        const props = SetupPropsMocks(fetch, false, false, undefined);
+        const rendered = shallow(<DeviceConnectPortEntry {...props} />);
+
+        expect(rendered.state()).toMatchSnapshot();
+
+        const onChangeHandler = rendered.find('.port-number-field').prop('onChange') as (
+            event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>,
+            newValue?: string,
+        ) => void;
+
+        onChangeHandler(null, testPortNumber.toString());
+
+        onConnectedMock.verifyAll();
+        expect(rendered.state()).toMatchSnapshot();
+    });
+
     test('validate click fetch succeeds', () => {
         const fetch: FetchScanResultsType = _ => Promise.resolve({ deviceName: 'dev', appIdentifier: 'app' } as ScanResults);
-        const props = SetupPropsMocks(fetch, true, 'dev - app');
+        const props = SetupPropsMocks(fetch, true, false, 'dev - app');
         ValidatePortValidateClick(props);
     });
 
     test('validate click fetch fails', () => {
         const fetch: FetchScanResultsType = _ => Promise.reject({} as ScanResults);
-        const props = SetupPropsMocks(fetch, false, undefined);
+        const props = SetupPropsMocks(fetch, false, true, undefined);
         ValidatePortValidateClick(props);
     });
 
     const SetupPropsMocks = (
         fetch: FetchScanResultsType,
         expectedSuccess: boolean,
+        expectedFailed: boolean,
         expectedDevice: string,
     ): DeviceConnectPortEntryProps => {
         onConnectingMock.reset();
@@ -63,7 +82,7 @@ describe('DeviceConnectPortEntryTest', () => {
             .verifiable();
 
         onConnectedMock.reset();
-        onConnectedMock.setup(r => r(expectedSuccess, expectedDevice)).verifiable();
+        onConnectedMock.setup(r => r(expectedSuccess, expectedFailed, expectedDevice)).verifiable();
 
         return {
             fetchScanResults: fetchScanResultsMock.object,
