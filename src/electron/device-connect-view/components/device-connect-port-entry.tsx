@@ -3,14 +3,14 @@
 import { Button } from 'office-ui-fabric-react/lib/Button';
 import { MaskedTextField } from 'office-ui-fabric-react/lib/TextField';
 import * as React from 'react';
-import { FetchScanResults } from '../../platform/android/fetch-scan-results';
+import { FetchScanResultsType } from '../../platform/android/fetch-scan-results';
 import { OnConnectedCallback, OnConnectingCallback } from './device-connect-body';
 
 export interface DeviceConnectPortEntryProps {
     needsValidation: boolean;
     onConnectedCallback: OnConnectedCallback;
     onConnectingCallback: OnConnectingCallback;
-    fetchScanResults: FetchScanResults;
+    fetchScanResults: FetchScanResultsType;
 }
 
 export interface DeviceConnectPortEntryState {
