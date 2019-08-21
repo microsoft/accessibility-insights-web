@@ -9,6 +9,8 @@ import { ScannerUtils } from '../scanner-utils';
 import { AxeAnalyzerResult, RuleAnalyzerConfiguration } from './analyzer';
 import { RuleAnalyzer } from './rule-analyzer';
 
+// This analyzer is meant to send an additional platform-agnostic ScanCompleted
+// message in parallel with the existing message type in the given config.
 export class UnifiedRuleAnalyzer extends RuleAnalyzer {
     constructor(
         protected config: RuleAnalyzerConfiguration,
