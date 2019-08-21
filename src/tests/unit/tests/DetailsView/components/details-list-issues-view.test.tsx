@@ -11,13 +11,13 @@ import { VisualizationScanResultData } from '../../../../../common/types/store-d
 import { ScanData, TestsEnabledState, VisualizationStoreData } from '../../../../../common/types/store-data/visualization-store-data';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
+import { DetailsListIssuesView, DetailsListIssuesViewProps } from '../../../../../DetailsView/components/details-list-issues-view';
 import { IssuesTableHandler } from '../../../../../DetailsView/components/issues-table-handler';
-import { IssuesView, IssuesViewProps } from '../../../../../DetailsView/components/issues-view';
 import { DetailsViewToggleClickHandlerFactory } from '../../../../../DetailsView/handlers/details-view-toggle-click-handler-factory';
 import { VisualizationScanResultStoreDataBuilder } from '../../../common/visualization-scan-result-store-data-builder';
 
-describe('IssuesView', () => {
-    let props: IssuesViewProps;
+describe('DetailsListIssuesView', () => {
+    let props: DetailsListIssuesViewProps;
     let getStoreDataMock: IMock<(data: TestsEnabledState) => ScanData>;
     let clickHandlerFactoryMock: IMock<DetailsViewToggleClickHandlerFactory>;
     let displayableDataStub: DisplayableVisualizationTypeData;
@@ -89,18 +89,18 @@ describe('IssuesView', () => {
         } as TabStoreData;
         props.visualizationStoreData.scanning = null;
 
-        const actual = shallow(<IssuesView {...props} />);
+        const actual = shallow(<DetailsListIssuesView {...props} />);
         expect(actual.debug()).toMatchSnapshot();
         verifyAll();
     });
 
-    it('should return issues table with violations to null', () => {
+    it('should return  issues table with violations to null', () => {
         props.tabStoreData = {
             isChanged: false,
         } as TabStoreData;
         props.visualizationScanResultData.issues.scanResult = null;
 
-        const actual = shallow(<IssuesView {...props} />);
+        const actual = shallow(<DetailsListIssuesView {...props} />);
         expect(actual.getElement()).toMatchSnapshot();
         verifyAll();
     });

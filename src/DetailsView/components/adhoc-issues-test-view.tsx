@@ -7,12 +7,12 @@ import { FeatureFlags } from '../../common/feature-flags';
 import { NamedSFC } from '../../common/react/named-sfc';
 import { VisualizationType } from '../../common/types/visualization-type';
 import { CardsView } from './cards-view';
-import { IssuesView, IssuesViewDeps, IssuesViewProps } from './issues-view';
+import { DetailsListIssuesView, DetailsListIssuesViewDeps, DetailsListIssuesViewProps } from './details-list-issues-view';
 import { TargetPageChangedView } from './target-page-changed-view';
 
-export type AdhocIssuesTestViewDeps = IssuesViewDeps;
+export type AdhocIssuesTestViewDeps = DetailsListIssuesViewDeps;
 
-export type AdhocIssuesTestViewProps = IssuesViewProps;
+export type AdhocIssuesTestViewProps = DetailsListIssuesViewProps;
 
 export const AdhocIssuesTestView = NamedSFC<AdhocIssuesTestViewProps>('AdhocIssuesTestView', ({ children, ...props }) => {
     if (props.tabStoreData.isChanged) {
@@ -21,7 +21,7 @@ export const AdhocIssuesTestView = NamedSFC<AdhocIssuesTestViewProps>('AdhocIssu
 
     return (
         <FlaggedComponent
-            disableJSXElement={<IssuesView {...props} />}
+            disableJSXElement={<DetailsListIssuesView {...props} />}
             enableJSXElement={<CardsView />}
             featureFlag={FeatureFlags.universalCardsUI}
             featureFlagStoreData={props.featureFlagStoreData}

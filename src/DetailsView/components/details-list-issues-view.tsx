@@ -16,10 +16,10 @@ import { DetailsViewToggleClickHandlerFactory } from '../handlers/details-view-t
 import { IssuesTable, IssuesTableDeps } from './issues-table';
 import { IssuesTableHandler } from './issues-table-handler';
 
-export type IssuesViewDeps = IssuesTableDeps;
+export type DetailsListIssuesViewDeps = IssuesTableDeps;
 
-export interface IssuesViewProps {
-    deps: IssuesViewDeps;
+export interface DetailsListIssuesViewProps {
+    deps: DetailsListIssuesViewDeps;
     tabStoreData: TabStoreData;
     featureFlagStoreData: FeatureFlagStoreData;
     selectedTest: VisualizationType;
@@ -33,7 +33,7 @@ export interface IssuesViewProps {
     userConfigurationStoreData: UserConfigurationStoreData;
 }
 
-export const IssuesView = NamedSFC<IssuesViewProps>('IssuesView', ({ children, ...props }) => {
+export const DetailsListIssuesView = NamedSFC<DetailsListIssuesViewProps>('DetailsListIssuesView', ({ children, ...props }) => {
     const selectedTest = props.selectedTest;
     const scanData = props.configuration.getStoreData(props.visualizationStoreData.tests);
     const clickHandler = props.clickHandlerFactory.createClickHandler(selectedTest, !scanData.enabled);
