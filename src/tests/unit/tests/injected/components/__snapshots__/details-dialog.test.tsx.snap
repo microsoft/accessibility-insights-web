@@ -1,11 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`DetailsDialog renders with: {
-  isDevToolsOpen: false,
+exports[`DetailsDialog renders with: { isDevToolsOpen: false,
   shadowDialog: false,
   helpUrl: 'help-relative',
-  expectedHelpUrl: 'http://extension/help-relative'
-} 1`] = `
+  expectedHelpUrl: 'http://extension/help-relative' } 1`] = `
 <StyledWithResponsiveMode
   dialogContentProps={
     Object {
@@ -551,19 +549,15 @@ exports[`DetailsDialog renders with: {
 </StyledWithResponsiveMode>
 `;
 
-exports[`DetailsDialog renders with: {
-  isDevToolsOpen: false,
+exports[`DetailsDialog renders with: { isDevToolsOpen: false,
   shadowDialog: false,
   helpUrl: 'help-relative',
-  expectedHelpUrl: 'http://extension/help-relative'
-}: verify close button for non shadow dom 1`] = `<CancelIcon />`;
+  expectedHelpUrl: 'http://extension/help-relative' }: verify close button for non shadow dom 1`] = `<CancelIcon />`;
 
-exports[`DetailsDialog renders with: {
-  isDevToolsOpen: false,
+exports[`DetailsDialog renders with: { isDevToolsOpen: false,
   shadowDialog: false,
   helpUrl: 'help-relative',
-  expectedHelpUrl: 'http://extension/help-relative'
-}: verify initial state 1`] = `
+  expectedHelpUrl: 'http://extension/help-relative' }: verify initial state 1`] = `
 Object {
   "canInspect": true,
   "currentRuleIndex": 0,
