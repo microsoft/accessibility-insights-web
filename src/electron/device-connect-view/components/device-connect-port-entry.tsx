@@ -4,12 +4,11 @@ import { Button } from 'office-ui-fabric-react/lib/Button';
 import { MaskedTextField } from 'office-ui-fabric-react/lib/TextField';
 import * as React from 'react';
 import { FetchScanResultsType } from '../../platform/android/fetch-scan-results';
-import { OnConnectedCallback, OnConnectingCallback } from './device-connect-body';
+import { DeviceConnectState, UpdateStateCallback } from './device-connect-body';
 
 export interface DeviceConnectPortEntryProps {
     needsValidation: boolean;
-    onConnectedCallback: OnConnectedCallback;
-    onConnectingCallback: OnConnectingCallback;
+    updateStateCallback: UpdateStateCallback;
     fetchScanResults: FetchScanResultsType;
 }
 
@@ -27,6 +26,7 @@ export class DeviceConnectPortEntry extends React.Component<DeviceConnectPortEnt
     public render(): JSX.Element {
         const onPortTextChanged = (event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>, newValue?: string) => {
             this.setState({ isValidateButtonDisabled: !newValue || newValue === '', port: newValue });
+            this.props.updateStateCallback(DeviceConnectState.Default);
         };
 
         return (
@@ -54,14 +54,14 @@ export class DeviceConnectPortEntry extends React.Component<DeviceConnectPortEnt
 
     private onValidateClick = async (event: React.MouseEvent<HTMLButtonElement>): Promise<void> => {
         this.setState({ isValidateButtonDisabled: true });
-        this.props.onConnectingCallback();
+        this.props.updateStateCallback(DeviceConnectState.Connecting);
 
         await this.props
             .fetchScanResults(parseInt(this.state.port, 10))
             .then(data => {
-                this.props.onConnectedCallback(true, `${data.deviceName} - ${data.appIdentifier}`);
+                this.props.updateStateCallback(DeviceConnectState.Connected, `${data.deviceName} - ${data.appIdentifier}`);
             })
-            .catch(err => this.props.onConnectedCallback(false));
+            .catch(err => this.props.updateStateCallback(DeviceConnectState.Error));
 
         this.setState({ isValidateButtonDisabled: false });
     };
