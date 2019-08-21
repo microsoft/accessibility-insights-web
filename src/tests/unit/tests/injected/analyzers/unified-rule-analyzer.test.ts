@@ -134,16 +134,16 @@ describe('UnifiedRuleAnalyzer', () => {
 
         resultProcessorMock.setup(processor => processor(scanResults)).returns(() => allInstancesMock);
 
-        sendMessageMock.setup(sm => sm(It.isValue(expectedMessage))).verifiable();
-
         const unifiedMessage: Message = {
             messageType: Messages.UnifiedScan.ScanCompleted,
-            payload: null,
+            payload: {
+                results: null,
+            },
         };
-
+        sendMessageMock.setup(sm => sm(It.isValue(expectedMessage))).verifiable();
         sendMessageMock
             .setup(sm => sm(It.isValue(unifiedMessage)))
-            .returns(() => {
+            .callback(() => {
                 sendMessageMock.verifyAll();
                 done();
             })
