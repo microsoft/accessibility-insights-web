@@ -27,13 +27,13 @@ const howToTest: JSX.Element = (
         <p>
             The visual helper for this requirement highlights native widgets. Native widgets include
             <Markup.NonBreakingSpace />
-            <Markup.Tag tagName="button" isBold={true} />,
+            <Markup.Tag tagName="button" isBold={false} />,
             <Markup.NonBreakingSpace />
-            <Markup.Tag tagName="input" isBold={true} />,
+            <Markup.Tag tagName="input" isBold={false} />,
             <Markup.NonBreakingSpace />
-            <Markup.Tag tagName="select" isBold={true} />, and
+            <Markup.Tag tagName="select" isBold={false} />, and
             <Markup.NonBreakingSpace />
-            <Markup.Tag tagName="textarea" isBold={true} /> elements.
+            <Markup.Tag tagName="textarea" isBold={false} /> elements.
         </p>
         <InstructionsAndLabelsNotes />
         <ol>
