@@ -10,7 +10,7 @@ import { AnalyzerConfiguration, FocusAnalyzerConfiguration, RuleAnalyzerConfigur
 import { AnalyzerProvider } from '../../../../../injected/analyzers/analyzer-provider';
 import { BaseAnalyzer } from '../../../../../injected/analyzers/base-analyzer';
 import { BatchedRuleAnalyzer, IResultRuleFilter } from '../../../../../injected/analyzers/batched-rule-analyzer';
-import { RuleAnalyzer } from '../../../../../injected/analyzers/rule-analyzer';
+import { RuleAnalyzer, PostResolveCallback } from '../../../../../injected/analyzers/rule-analyzer';
 import { ScannerUtils } from '../../../../../injected/scanner-utils';
 import { TabStopsListener } from '../../../../../injected/tab-stops-listener';
 
@@ -65,6 +65,23 @@ describe('AnalyzerProviderTests', () => {
         const analyzer = testObject.createRuleAnalyzer(config);
         expect(analyzer).toBeInstanceOf(RuleAnalyzer);
         validateRuleAnalyzer(analyzer, config);
+        expect((analyzer as any).postOnResolve).toEqual(null);
+    });
+
+    test('createRuleAnalyzerPostResolveCallback', () => {
+        const config: RuleAnalyzerConfiguration = {
+            testType: typeStub,
+            analyzerMessageType: analyzerMessageTypeStub,
+            key: keyStub,
+            rules: ['test rule'],
+            resultProcessor: null,
+            telemetryProcessor: null,
+        };
+        const mock = Mock.ofInstance((results, sendMessage) => {});
+        const analyzer = testObject.createRuleAnalyzerPostResolve(config, mock.object);
+        expect(analyzer).toBeInstanceOf(RuleAnalyzer);
+        validateRuleAnalyzer(analyzer, config);
+        expect((analyzer as any).postOnResolve).toEqual(mock.object);
     });
 
     test('createBatchedRuleAnalyzer', () => {

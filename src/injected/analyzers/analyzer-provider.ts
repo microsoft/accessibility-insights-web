@@ -7,10 +7,10 @@ import { ScopingStoreData } from '../../common/types/store-data/scoping-store-da
 import { WindowUtils } from '../../common/window-utils';
 import { ScannerUtils } from '../scanner-utils';
 import { TabStopsListener } from '../tab-stops-listener';
-import { Analyzer, AnalyzerConfiguration, FocusAnalyzerConfiguration, RuleAnalyzerConfiguration } from './analyzer';
+import { Analyzer, AnalyzerConfiguration, FocusAnalyzerConfiguration, RuleAnalyzerConfiguration, AxeAnalyzerResult } from './analyzer';
 import { BaseAnalyzer } from './base-analyzer';
 import { BatchedRuleAnalyzer, IResultRuleFilter } from './batched-rule-analyzer';
-import { RuleAnalyzer } from './rule-analyzer';
+import { RuleAnalyzer, PostResolveCallback } from './rule-analyzer';
 import { TabStopsAnalyzer } from './tab-stops-analyzer';
 
 export class AnalyzerProvider {
@@ -48,6 +48,20 @@ export class AnalyzerProvider {
             this.dateGetter,
             this.telemetryDataFactory,
             this.visualizationConfigFactory,
+            null,
+        );
+    }
+
+    public createRuleAnalyzerPostResolve(config: RuleAnalyzerConfiguration, postOnResolve: PostResolveCallback) {
+        return new RuleAnalyzer(
+            config,
+            this.scanner,
+            this.scopingStore,
+            this.sendMessageDelegate,
+            this.dateGetter,
+            this.telemetryDataFactory,
+            this.visualizationConfigFactory,
+            postOnResolve,
         );
     }
 

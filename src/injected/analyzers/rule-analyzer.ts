@@ -13,6 +13,9 @@ import { ScannerUtils } from '../scanner-utils';
 import { AxeAnalyzerResult, RuleAnalyzerConfiguration } from './analyzer';
 import { BaseAnalyzer } from './base-analyzer';
 
+export type MessageDelegate = (message: any) => void;
+export type PostResolveCallback = (results: AxeAnalyzerResult, messageDelegate: MessageDelegate) => void;
+
 export class RuleAnalyzer extends BaseAnalyzer {
     private startTime: number;
     private elementsScanned: number = 0; // Not implemented
@@ -25,6 +28,7 @@ export class RuleAnalyzer extends BaseAnalyzer {
         protected dateGetter: () => Date,
         protected telemetryFactory: TelemetryDataFactory,
         protected readonly visualizationConfigFactory: VisualizationConfigurationFactory,
+        private postOnResolve: PostResolveCallback,
     ) {
         super(config, sendMessageDelegate);
     }
@@ -65,6 +69,7 @@ export class RuleAnalyzer extends BaseAnalyzer {
 
     protected onResolve = (analyzerResult: AxeAnalyzerResult): void => {
         this.sendScanCompleteResolveMessage(analyzerResult, this.config);
+        this.postOnResolve(analyzerResult, this.sendMessageDelegate);
     };
 
     protected sendScanCompleteResolveMessage(analyzerResult: AxeAnalyzerResult, config: RuleAnalyzerConfiguration): void {

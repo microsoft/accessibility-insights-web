@@ -40,14 +40,23 @@ export const IssuesAdHocVisualization: VisualizationConfiguration = {
     adhocToolsPanelDisplayOrder: 1,
     resultProcessor: (scanner: ScannerUtils) => scanner.getFailingInstances,
     getAnalyzer: provider =>
-        provider.createRuleAnalyzer({
-            rules: null,
-            resultProcessor: (scanner: ScannerUtils) => scanner.getFailingInstances,
-            telemetryProcessor: (telemetryFactory: TelemetryDataFactory) => telemetryFactory.forIssuesAnalyzerScan,
-            key: AdHocTestkeys.Issues,
-            testType: VisualizationType.Issues,
-            analyzerMessageType: Messages.Visualizations.Common.ScanCompleted,
-        }),
+        provider.createRuleAnalyzerPostResolve(
+            {
+                rules: null,
+                resultProcessor: (scanner: ScannerUtils) => scanner.getFailingInstances,
+                telemetryProcessor: (telemetryFactory: TelemetryDataFactory) => telemetryFactory.forIssuesAnalyzerScan,
+                key: AdHocTestkeys.Issues,
+                testType: VisualizationType.Issues,
+                analyzerMessageType: Messages.Visualizations.Common.ScanCompleted,
+            },
+            (analyzerResults, sendMessage) =>
+                sendMessage({
+                    messageType: Messages.UnifiedScan.ScanCompleted,
+                    payload: {
+                        results: null,
+                    },
+                }),
+        ),
     getIdentifier: () => AdHocTestkeys.Issues,
     visualizationInstanceProcessor: () => VisualizationInstanceProcessor.nullProcessor,
     getNotificationMessage: selectorMap =>
