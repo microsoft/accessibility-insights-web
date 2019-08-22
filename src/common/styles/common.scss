@@ -96,10 +96,8 @@ $pivotItemBorderStyle: solid !default;
 $detailsViewHeaderBarHeight: 40px !default;
 $detailsViewNavPivotsHeight: 41px !default;
 $detailsViewCommandBarHeight: 40px !default;
-$detailsViewCommandBarBorderHeight: 1px !default;
-$detailsViewManNavWidth: 185px !default;
 
-$detailsViewTotalHeaderHeight: (#{$detailsViewCommandBarBorderHeight} + #{$detailsViewCommandBarHeight} + #{$detailsViewHeaderBarHeight});
+$detailsViewManNavWidth: 185px !default;
 
 .header-bar,
 .report-header-bar {

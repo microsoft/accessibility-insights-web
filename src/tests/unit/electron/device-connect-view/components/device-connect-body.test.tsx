@@ -7,6 +7,7 @@ import {
     DeviceConnectBody,
     DeviceConnectBodyProps,
     DeviceConnectBodyState,
+    DeviceConnectState,
 } from '../../../../../electron/device-connect-view/components/device-connect-body';
 import { DeviceConnectPortEntryProps } from '../../../../../electron/device-connect-view/components/device-connect-port-entry';
 
@@ -20,29 +21,21 @@ describe('DeviceConnectBodyTest', () => {
     };
 
     const expectedBeforeState: DeviceConnectBodyState = {
-        canStartTesting: false,
-        needsValidation: true,
-        isConnecting: false,
+        deviceConnectState: DeviceConnectState.Default,
     };
 
     const expectedStateWhileConnecting: DeviceConnectBodyState = {
-        isConnecting: true,
-        canStartTesting: false,
-        needsValidation: true,
-        connectedDevice: '',
+        deviceConnectState: DeviceConnectState.Connecting,
+        connectedDevice: undefined,
     };
 
     const expectedStateConnectedSuccess: DeviceConnectBodyState = {
-        isConnecting: false,
-        canStartTesting: true,
-        needsValidation: false,
+        deviceConnectState: DeviceConnectState.Connected,
         connectedDevice: 'Test Device Name!',
     };
 
     const expectedStateConnectedFail: DeviceConnectBodyState = {
-        isConnecting: false,
-        canStartTesting: false,
-        needsValidation: true,
+        deviceConnectState: DeviceConnectState.Error,
         connectedDevice: '',
     };
 
@@ -57,7 +50,7 @@ describe('DeviceConnectBodyTest', () => {
         const propsWithCallback = rendered.find('DeviceConnectPortEntry').props() as DeviceConnectPortEntryProps;
 
         expect(rendered.state()).toEqual(expectedBeforeState);
-        propsWithCallback.onConnectingCallback();
+        propsWithCallback.updateStateCallback(DeviceConnectState.Connecting);
         expect(rendered.state()).toEqual(expectedStateWhileConnecting);
     });
 
@@ -66,7 +59,7 @@ describe('DeviceConnectBodyTest', () => {
         const propsWithCallback = rendered.find('DeviceConnectPortEntry').props() as DeviceConnectPortEntryProps;
 
         expect(rendered.state()).toEqual(expectedBeforeState);
-        propsWithCallback.onConnectedCallback(true, expectedStateConnectedSuccess.connectedDevice);
+        propsWithCallback.updateStateCallback(DeviceConnectState.Connected, expectedStateConnectedSuccess.connectedDevice);
         expect(rendered.state()).toEqual(expectedStateConnectedSuccess);
     });
 
@@ -75,7 +68,7 @@ describe('DeviceConnectBodyTest', () => {
         const propsWithCallback = rendered.find('DeviceConnectPortEntry').props() as DeviceConnectPortEntryProps;
 
         expect(rendered.state()).toEqual(expectedBeforeState);
-        propsWithCallback.onConnectedCallback(false, expectedStateConnectedFail.connectedDevice);
+        propsWithCallback.updateStateCallback(DeviceConnectState.Error, expectedStateConnectedFail.connectedDevice);
         expect(rendered.state()).toEqual(expectedStateConnectedFail);
     });
 });

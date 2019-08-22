@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CardsView should return cards view 1`] = `
+"<Fragment>
+  <h2>
+    Cards view
+  </h2>
+  <p>
+    Hello, World!
+  </p>
+</Fragment>"
+`;

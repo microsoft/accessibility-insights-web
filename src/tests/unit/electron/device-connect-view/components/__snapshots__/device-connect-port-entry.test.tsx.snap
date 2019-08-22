@@ -1,5 +1,19 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`DeviceConnectPortEntryTest onChange updates state 1`] = `
+Object {
+  "isValidateButtonDisabled": true,
+  "port": "",
+}
+`;
+
+exports[`DeviceConnectPortEntryTest onChange updates state 2`] = `
+Object {
+  "isValidateButtonDisabled": false,
+  "port": "111",
+}
+`;
+
 exports[`DeviceConnectPortEntryTest render 1`] = `
 <div
   className="device-connect-port-entry"
