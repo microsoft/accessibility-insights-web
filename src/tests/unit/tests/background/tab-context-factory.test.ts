@@ -16,6 +16,7 @@ import { TabContext } from 'background/tab-context';
 import { TabContextFactory } from 'background/tab-context-factory';
 import { TargetTabController } from 'background/target-tab-controller';
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
+import { UnifiedScanResultStore } from '../../../../background/stores/unified-scan-result-store';
 import { BrowserAdapter } from '../../../../common/browser-adapters/browser-adapter';
 import { VisualizationConfiguration } from '../../../../common/configs/visualization-configuration';
 import { VisualizationConfigurationFactory } from '../../../../common/configs/visualization-configuration-factory';
@@ -25,7 +26,6 @@ import { StoreNames } from '../../../../common/stores/store-names';
 import { StoreUpdateMessage } from '../../../../common/types/store-update-message';
 import { VisualizationType } from '../../../../common/types/visualization-type';
 import { WindowUtils } from '../../../../common/window-utils';
-import { UnifiedScanResultStore } from '../../../../background/stores/unified-scan-result-store';
 
 function getConfigs(visualizationType: VisualizationType): VisualizationConfiguration {
     return new VisualizationConfigurationFactory().getConfiguration(visualizationType);

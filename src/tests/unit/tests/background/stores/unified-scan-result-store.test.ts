@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { UnifiedScanResultActions } from '../../../../../background/actions/unified-scan-result-actions';
 import { UnifiedScanResultStore } from '../../../../../background/stores/unified-scan-result-store';
 import { StoreNames } from '../../../../../common/stores/store-names';
 import { UnifiedResults } from '../../../../../common/types/store-data/unified-data-interface';

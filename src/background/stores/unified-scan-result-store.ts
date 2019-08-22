@@ -2,6 +2,8 @@
 // Licensed under the MIT License.
 import { StoreNames } from '../../common/stores/store-names';
 import { UnifiedResults } from '../../common/types/store-data/unified-data-interface';
+import { UnifiedScanCompletedPayload } from '../actions/action-payloads';
+import { UnifiedScanResultActions } from '../actions/unified-scan-result-actions';
 import { BaseStoreImpl } from './base-store-impl';
 
 export class UnifiedScanResultStore extends BaseStoreImpl<UnifiedResults> {
