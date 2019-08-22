@@ -12,7 +12,6 @@ import { BaseAnalyzer } from './base-analyzer';
 import { BatchedRuleAnalyzer, IResultRuleFilter } from './batched-rule-analyzer';
 import { RuleAnalyzer } from './rule-analyzer';
 import { TabStopsAnalyzer } from './tab-stops-analyzer';
-import { UnifiedRuleAnalyzer } from './unified-rule-analyzer';
 
 export class AnalyzerProvider {
     private tabStopsListener: TabStopsListener;
@@ -38,18 +37,6 @@ export class AnalyzerProvider {
         this.scanner = scanner;
         this.telemetryDataFactory = telemetryDataFactory;
         this.dateGetter = dateGetter;
-    }
-
-    public createUnifiedRuleAnalyzer(config: RuleAnalyzerConfiguration): Analyzer {
-        return new UnifiedRuleAnalyzer(
-            config,
-            this.scanner,
-            this.scopingStore,
-            this.sendMessageDelegate,
-            this.dateGetter,
-            this.telemetryDataFactory,
-            this.visualizationConfigFactory,
-        );
     }
 
     public createRuleAnalyzer(config: RuleAnalyzerConfiguration): Analyzer {
