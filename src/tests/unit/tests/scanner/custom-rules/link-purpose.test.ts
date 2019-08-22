@@ -45,6 +45,7 @@ describe('link purpose', () => {
             } as HTMLElement;
 
             const expectedData = {
+                element: 'link',
                 accessibleName: 'accessible-text',
                 accessibleDescription: 'accessible-description',
                 url,

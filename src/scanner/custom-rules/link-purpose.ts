@@ -34,6 +34,7 @@ function evaluateLinkPurpose(node: HTMLElement, options: any, virtualNode: any, 
     const url = node.getAttribute('href');
 
     const data = {
+        element: 'link',
         accessibleName,
         accessibleDescription,
         url,

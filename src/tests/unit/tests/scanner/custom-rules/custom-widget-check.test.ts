@@ -50,7 +50,7 @@ describe('custom-widget check', () => {
 
         expect(customWidgetConfiguration.checks[0].evaluate.call(context, node)).toBeTruthy();
         expect(context._data).toEqual({
-            text: '',
+            accessibleName: '',
             role: null,
             describedBy: '',
             htmlCues: {},
@@ -72,7 +72,7 @@ describe('custom-widget check', () => {
         expect(context._data.describedBy).toEqual('my description');
     });
 
-    it('returns text data', () => {
+    it('returns accessibleName data', () => {
         fixture.innerHTML = `
             <div id="myElement" />
             `;
@@ -84,7 +84,7 @@ describe('custom-widget check', () => {
         textFunctionMock.setup(m => m(node, false)).returns(() => 'my text');
 
         expect(customWidgetConfiguration.checks[0].evaluate.call(context, node)).toBeTruthy();
-        expect(context._data.text).toEqual('my text');
+        expect(context._data.accessibleName).toEqual('my text');
     });
 
     it('returns role data', () => {
