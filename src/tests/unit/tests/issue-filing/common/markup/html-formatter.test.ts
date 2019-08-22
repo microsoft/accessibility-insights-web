@@ -26,6 +26,18 @@ describe('HTMLFormatter', () => {
         expect(result).toEqual('fix<br>- 1<br> 2<br>3<br>4');
     });
 
+    it('returns section header separator', () => {
+        expect(testSubject.sectionHeaderSeparator()).toBe(null);
+    });
+
+    it('returns footer separator', () => {
+        expect(testSubject.footerSeparator()).toBe(null);
+    });
+
+    it('return new line', () => {
+        expect(testSubject.sectionSeparator()).toBe('\n');
+    });
+
     describe('creates snippet', () => {
         beforeEach(() => {
             truncateMock.setup(truncate => truncate(It.isAnyString())).returns(text => text);

@@ -2,13 +2,17 @@
 // Licensed under the MIT License.
 import { IssueDetailsTextGenerator } from 'background/issue-details-text-generator';
 import { IMock, Mock, MockBehavior } from 'typemoq';
+import { EnvironmentInfoProvider } from '../../../../common/environment-info-provider';
 import { CreateIssueDetailsTextData } from '../../../../common/types/create-issue-details-text-data';
+import { IssueDetailsBuilder } from '../../../../issue-filing/common/issue-details-builder';
 import { IssueUrlCreationUtils } from '../../../../issue-filing/common/issue-filing-url-string-utils';
 
 describe('Issue details text builder', () => {
     let testSubject: IssueDetailsTextGenerator;
     let sampleIssueDetailsData: CreateIssueDetailsTextData;
     let issueUrlCreationUtilsMock: IMock<IssueUrlCreationUtils>;
+    let envInfoProviderMock: IMock<EnvironmentInfoProvider>;
+    let issueDetailsBuilderMock: IMock<IssueDetailsBuilder>;
 
     const wcagTags = ['WCAG-1.4.1', 'WCAG-2.8.2'];
     const title = `${wcagTags.join(',')}: RR-help (RR-selector<x>)`;
@@ -35,7 +39,22 @@ describe('Issue details text builder', () => {
         issueUrlCreationUtilsMock.setup(utils => utils.getTitle(sampleIssueDetailsData)).returns(() => title);
         issueUrlCreationUtilsMock.setup(utils => utils.standardizeTags(sampleIssueDetailsData)).returns(() => wcagTags);
 
-        testSubject = new IssueDetailsTextGenerator('MY.EXT.VER', 'browser spec', 'AXE.CORE.VER', issueUrlCreationUtilsMock.object);
+        const envInfo = {
+            axeCoreVersion: 'AXE.CORE.VER',
+            browserSpec: 'BROWSER.SPEC',
+            extensionVersion: 'MY.EXT.VER',
+        };
+        envInfoProviderMock = Mock.ofType<EnvironmentInfoProvider>(undefined, MockBehavior.Strict);
+        envInfoProviderMock.setup(provider => provider.getEnvironmentInfo()).returns(() => envInfo);
+
+        issueDetailsBuilderMock = Mock.ofType<IssueDetailsBuilder>(undefined, MockBehavior.Strict);
+        issueDetailsBuilderMock.setup(builder => builder(envInfo, sampleIssueDetailsData)).returns(() => 'test-issue-details-builder');
+
+        testSubject = new IssueDetailsTextGenerator(
+            issueUrlCreationUtilsMock.object,
+            envInfoProviderMock.object,
+            issueDetailsBuilderMock.object,
+        );
     });
 
     test('buildText', () => {
@@ -44,26 +63,7 @@ describe('Issue details text builder', () => {
             `Title: ${title}`,
             `Tags: Accessibility, ${wcagTags.join(', ')}, RR-rule-id`,
             ``,
-            `Issue: RR-help (RR-rule-id: RR-help-url)`,
-            ``,
-            `Target application title: pageTitle<x>`,
-            `Target application url: pageUrl`,
-            ``,
-            `Element path: ${selector}`,
-            ``,
-            `Snippet: RR-snippet space`,
-            ``,
-            `How to fix:`,
-            `RR-failureSummary`,
-            ``,
-            `Environment:`,
-            `browser spec`,
-            ``,
-            `====`,
-            ``,
-            'This accessibility issue was found using Accessibility Insights for Web MY.EXT.VER (axe-core AXE.CORE.VER), ' +
-                'a tool that helps find and fix accessibility issues. Get more information & download ' +
-                'this tool at http://aka.ms/AccessibilityInsights.',
+            'test-issue-details-builder',
         ].join('\n');
         expect(actual).toEqual(expected);
     });

@@ -26,12 +26,24 @@ describe('MarkdownFormatter', () => {
         expect(result).toEqual('    fix\n    1\n    2\n    3\n    4');
     });
 
+    it('returns section header separator', () => {
+        expect(testSubject.sectionHeaderSeparator()).toBe('\n');
+    });
+
+    it('return footer separator', () => {
+        expect(testSubject.footerSeparator()).toBe(null);
+    });
+
     it('creates snippet', () => {
         truncateMock.setup(truncate => truncate(It.isAnyString())).returns(text => text);
 
         const result = testSubject.snippet('this is code');
 
         expect(result).toEqual(`\`this is code\``);
+    });
+
+    it('return new line', () => {
+        expect(testSubject.sectionSeparator()).toBe('\n');
     });
 
     describe('creates link', () => {

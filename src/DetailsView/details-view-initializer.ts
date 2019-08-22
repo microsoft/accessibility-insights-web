@@ -69,7 +69,9 @@ import { WindowUtils } from '../common/window-utils';
 import { contentPages } from '../content';
 import { FixInstructionProcessor } from '../injected/fix-instruction-processor';
 import { ScannerUtils } from '../injected/scanner-utils';
+import { createIssueDetailsBuilder } from '../issue-filing/common/create-issue-details-builder';
 import { IssueFilingUrlStringUtils } from '../issue-filing/common/issue-filing-url-string-utils';
+import { PlainTextFormatter } from '../issue-filing/common/markup/plain-text-formatter';
 import { getVersion, scan } from '../scanner/exposed-apis';
 import { DictionaryStringTo } from '../types/common-types';
 import { IssueFilingServiceProviderImpl } from './../issue-filing/issue-filing-service-provider-impl';
@@ -248,10 +250,9 @@ if (isNaN(tabId) === false) {
             documentTitleUpdater.initialize();
 
             const issueDetailsTextGenerator = new IssueDetailsTextGenerator(
-                browserAdapter.extensionVersion,
-                browserSpec,
-                AxeInfo.Default.version,
                 IssueFilingUrlStringUtils,
+                environmentInfoProvider,
+                createIssueDetailsBuilder(PlainTextFormatter),
             );
 
             const windowUtils = new WindowUtils();

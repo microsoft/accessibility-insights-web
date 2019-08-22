@@ -8,32 +8,43 @@ import {
 } from '../../../../../electron/device-connect-view/components/device-connect-connected-device';
 
 describe('DeviceConnectConnectedDeviceTest', () => {
-    test('render, no content', () => {
-        const props: DeviceConnectConnectedDeviceProps = {
-            isConnecting: false,
-        };
+    const testProps = [
+        [
+            'no content',
+            {
+                isConnecting: false,
+                hasFailed: false,
+            },
+        ],
+        [
+            'scanning spinner',
+            {
+                isConnecting: true,
+                hasFailed: false,
+            },
+        ],
+        [
+            'connection success',
+            {
+                isConnecting: false,
+                hasFailed: false,
+                connectedDevice: 'A Test Device!',
+            },
+        ],
+        [
+            'connection failure',
+            {
+                isConnecting: false,
+                hasFailed: true,
+            },
+        ],
+    ];
 
-        validateRenderWithProps(props, 'no content');
-    });
+    test.each(testProps)('render %s', (testName: string, props: DeviceConnectConnectedDeviceProps) =>
+        validateRenderWithProps(testName, props),
+    );
 
-    test('render, spinner', () => {
-        const props: DeviceConnectConnectedDeviceProps = {
-            isConnecting: true,
-        };
-
-        validateRenderWithProps(props, 'no content');
-    });
-
-    test('render, device', () => {
-        const props: DeviceConnectConnectedDeviceProps = {
-            isConnecting: false,
-            connectedDevice: 'A Test Device!',
-        };
-
-        validateRenderWithProps(props, 'no content');
-    });
-
-    function validateRenderWithProps(props: DeviceConnectConnectedDeviceProps, testname: string): void {
+    function validateRenderWithProps(testname: string, props: DeviceConnectConnectedDeviceProps): void {
         const rendered = shallow(<DeviceConnectConnectedDevice {...props} />);
 
         expect(rendered.getElement()).toMatchSnapshot(testname);
