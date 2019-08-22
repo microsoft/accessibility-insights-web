@@ -25,6 +25,7 @@ import { StoreNames } from '../../../../common/stores/store-names';
 import { StoreUpdateMessage } from '../../../../common/types/store-update-message';
 import { VisualizationType } from '../../../../common/types/visualization-type';
 import { WindowUtils } from '../../../../common/window-utils';
+import { UnifiedScanResultStore } from '../../../../background/stores/unified-scan-result-store';
 
 function getConfigs(visualizationType: VisualizationType): VisualizationConfiguration {
     return new VisualizationConfigurationFactory().getConfiguration(visualizationType);
@@ -58,6 +59,7 @@ describe('TabContextFactoryTest', () => {
             StoreNames.DetailsViewStore,
             StoreNames.InspectStore,
             StoreNames.PathSnippetStore,
+            StoreNames.UnifiedScanResultStore,
         ];
 
         storeNames.forEach(storeName => {
@@ -111,6 +113,7 @@ describe('TabContextFactoryTest', () => {
         expect(tabContext.stores.devToolStore).toBeInstanceOf(DevToolStore);
         expect(tabContext.stores.detailsViewStore).toBeInstanceOf(DetailsViewStore);
         expect(tabContext.stores.inspectStore).toBeInstanceOf(InspectStore);
+        expect(tabContext.stores.unifiedScanResultStore).toBeInstanceOf(UnifiedScanResultStore);
 
         broadcastMock.verifyAll();
     });
