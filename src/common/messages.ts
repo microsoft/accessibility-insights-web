@@ -199,4 +199,9 @@ export class Messages {
         AddCorrespondingSnippet: `${messagePrefix}/pathSnippet/addCorrespondingSnippet`,
         ClearPathSnippetData: `${messagePrefix}/pathSnippet/clearPathSnippetData`,
     };
+
+    public static readonly UnifiedScan = {
+        ScanCompleted: `${messagePrefix}/unifiedScan/scanCompleted`,
+        GetCurrentState: `${messagePrefix}/unifiedScan/getCurrentState`,
+    };
 }
