@@ -20,16 +20,10 @@ export class UnifiedScanResultStore extends BaseStoreImpl<UnifiedResults> {
     protected addActionListeners(): void {
         this.unifiedScanResultActions.getCurrentState.addListener(this.onGetCurrentState);
         this.unifiedScanResultActions.scanCompleted.addListener(this.onScanCompleted);
-        this.unifiedScanResultActions.onClearData.addListener(this.onClearState);
     }
 
     private onScanCompleted = (payload: UnifiedScanCompletedPayload): void => {
         this.state = payload.scanResult;
-        this.emitChanged();
-    };
-
-    private onClearState = () => {
-        this.state = this.getDefaultState();
         this.emitChanged();
     };
 }
