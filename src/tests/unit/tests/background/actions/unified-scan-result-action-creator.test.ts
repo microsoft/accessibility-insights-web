@@ -1,12 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { BaseActionPayload, UnifiedScanCompletedPayload } from 'background/actions/action-payloads';
+import { BaseActionPayload } from 'background/actions/action-payloads';
 import { isFunction } from 'lodash';
 import { IMock, It, Mock, Times } from 'typemoq';
 import { UnifiedScanResultActionCreator } from '../../../../../background/actions/unified-scan-result-action-creator';
 import { UnifiedScanResultActions } from '../../../../../background/actions/unified-scan-result-actions';
 import { Action } from '../../../../../common/flux/action';
-import { RegisterTypeToPayloadCallback, Message } from '../../../../../common/message';
+import { RegisterTypeToPayloadCallback } from '../../../../../common/message';
 import { Messages } from '../../../../../common/messages';
 
 describe('UnifiedScanResultActionCreator', () => {
