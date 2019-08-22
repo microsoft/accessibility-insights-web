@@ -48,7 +48,6 @@ export interface UnifiedResult {
     uid: string;
     status: ResultStatus;
     ruleId: string;
-    evaluation: StoredInstancePropertyBag;
     identifiers: StoredInstancePropertyBag;
     descriptors: StoredInstancePropertyBag;
     resolution: StoredInstancePropertyBag;
