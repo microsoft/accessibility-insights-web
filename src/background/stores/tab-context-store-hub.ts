@@ -71,6 +71,7 @@ export class TabContextStoreHub implements StoreHub {
             this.detailsViewStore,
             this.inspectStore,
             this.pathSnippetStore,
+            this.unifiedScanResultStore,
         ].filter(store => store != null);
     }
 
