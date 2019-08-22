@@ -16,6 +16,7 @@ import { TabContext } from 'background/tab-context';
 import { TabContextFactory } from 'background/tab-context-factory';
 import { TargetTabController } from 'background/target-tab-controller';
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
+import { UnifiedScanResultStore } from '../../../../background/stores/unified-scan-result-store';
 import { BrowserAdapter } from '../../../../common/browser-adapters/browser-adapter';
 import { VisualizationConfiguration } from '../../../../common/configs/visualization-configuration';
 import { VisualizationConfigurationFactory } from '../../../../common/configs/visualization-configuration-factory';
@@ -58,6 +59,7 @@ describe('TabContextFactoryTest', () => {
             StoreNames.DetailsViewStore,
             StoreNames.InspectStore,
             StoreNames.PathSnippetStore,
+            StoreNames.UnifiedScanResultStore,
         ];
 
         storeNames.forEach(storeName => {
@@ -111,6 +113,7 @@ describe('TabContextFactoryTest', () => {
         expect(tabContext.stores.devToolStore).toBeInstanceOf(DevToolStore);
         expect(tabContext.stores.detailsViewStore).toBeInstanceOf(DetailsViewStore);
         expect(tabContext.stores.inspectStore).toBeInstanceOf(InspectStore);
+        expect(tabContext.stores.unifiedScanResultStore).toBeInstanceOf(UnifiedScanResultStore);
 
         broadcastMock.verifyAll();
     });

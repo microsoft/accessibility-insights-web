@@ -14,4 +14,5 @@ export enum StoreNames {
     InspectStore,
     UserConfigurationStore,
     PathSnippetStore,
+    UnifiedScanResultStore,
 }
