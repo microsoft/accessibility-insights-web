@@ -1,3 +1,4 @@
+import { TestDocumentCreator } from './../../../common/test-document-creator';
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as Axe from 'axe-core';
@@ -28,50 +29,44 @@ input[type="color"]',
     });
 
     describe('verify evaluate', () => {
-        let fixture: HTMLElement;
         let dataSetterMock: IMock<(data) => void>;
-        let axe;
+        let testDom: Document;
 
         beforeEach(() => {
-            fixture = document.createElement('div');
-            fixture.setAttribute('id', 'test-fixture');
-            document.body.appendChild(fixture);
             dataSetterMock = Mock.ofInstance(data => {});
-            axe = Axe as any;
-        });
-
-        afterEach(() => {
-            document.body.querySelector('#test-fixture').remove();
         });
 
         it.each(['text', 'search', 'url', 'tel', 'email', 'password', 'date', 'date-time', 'date-time-local', 'range', 'color'])(
             'validate input with type %s is collected by rule',
             (inputType: string) => {
-                const node = document.createElement('input');
-                node.setAttribute('type', inputType);
-                fixture.appendChild(node);
+                testDom = TestDocumentCreator.createTestDocument(`
+                    <input type="${inputType}" id="test-node">
+                    </input>
+                `);
+                const node = testDom.querySelector('#test-node');
                 const expectedData = {
                     inputType,
                     autocomplete: null,
                 };
                 dataSetterMock.setup(d => d(It.isValue(expectedData))).verifiable(Times.once());
                 const result = autocompleteRuleConfiguration.checks[0].evaluate.call({ data: dataSetterMock.object }, node);
-                expect(result).toBeTruthy();
+                expect(result).toBe(true);
             },
         );
 
         it.each(['on', 'off'])('should pick autocomplete value', (autocomplete: string) => {
-            const node = document.createElement('input');
-            node.setAttribute('type', 'text');
-            node.setAttribute('autocomplete', autocomplete);
-            fixture.appendChild(node);
+            testDom = TestDocumentCreator.createTestDocument(`
+                    <input type="text" autocomplete="${autocomplete}" id="test-node">
+                    </input>
+                `);
+            const node = testDom.querySelector('#test-node');
             const expectedData = {
                 inputType: 'text',
-                autocomplete: null,
+                autocomplete,
             };
             dataSetterMock.setup(d => d(It.isValue(expectedData))).verifiable(Times.once());
             const result = autocompleteRuleConfiguration.checks[0].evaluate.call({ data: dataSetterMock.object }, node);
-            expect(result).toBeTruthy();
+            expect(result).toBe(true);
         });
     });
 });
