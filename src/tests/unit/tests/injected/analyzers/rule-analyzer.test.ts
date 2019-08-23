@@ -11,8 +11,8 @@ import { TelemetryDataFactory } from '../../../../../common/telemetry-data-facto
 import { RuleAnalyzerScanTelemetryData } from '../../../../../common/telemetry-events';
 import { ScopingStoreData } from '../../../../../common/types/store-data/scoping-store-data';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
-import { RuleAnalyzerConfiguration, AxeAnalyzerResult } from '../../../../../injected/analyzers/analyzer';
-import { RuleAnalyzer, PostResolveCallback } from '../../../../../injected/analyzers/rule-analyzer';
+import { AxeAnalyzerResult, RuleAnalyzerConfiguration } from '../../../../../injected/analyzers/analyzer';
+import { PostResolveCallback, RuleAnalyzer } from '../../../../../injected/analyzers/rule-analyzer';
 import { HtmlElementAxeResults, ScannerUtils } from '../../../../../injected/scanner-utils';
 import { ScanResults } from '../../../../../scanner/iruleresults';
 import { ScanOptions } from '../../../../../scanner/scan-options';
