@@ -57,7 +57,7 @@ const propertyBagConfig: PropertyBagColumnRendererConfig<DefaultWidgetPropertyBa
     },
 ];
 
-export const Label: Requirement = {
+export const ExpectedInput: Requirement = {
     key: NativeWidgetsTestStep.label, // DO NOT CHANGE THE KEY, doing so may break user on-going assessment
     name: 'Expected Input',
     description,
