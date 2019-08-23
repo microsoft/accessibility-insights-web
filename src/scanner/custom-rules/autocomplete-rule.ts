@@ -32,7 +32,7 @@ input[type="color"]`,
 
 function evaluateAutocomplete(node: HTMLElement): boolean {
     const inputType = node.getAttribute('type');
-    const autocomplete = node.getAttribute('aotocomplete');
+    const autocomplete = node.getAttribute('autocomplete');
 
     const data = {
         inputType,
