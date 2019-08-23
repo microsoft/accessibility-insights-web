@@ -1,0 +1,126 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+import { IMock, Mock, MockBehavior, Times } from 'typemoq';
+
+import { generateUID } from '../../../../../common/uid-generator';
+import { convertScanResultsToUnifiedResults } from '../../../../../injected/adapters/scan-results-to-unified-results';
+import { RuleResult, ScanResults } from '../../../../../scanner/iruleresults';
+
+describe('ScanResults to Unified Results Test', () => {
+    let generateGuidMock: IMock<() => string>;
+
+    beforeEach(() => {
+        const guidStub = 'gguid-mock-stub';
+        generateGuidMock = Mock.ofInstance(generateUID, MockBehavior.Strict);
+        generateGuidMock
+            .setup(ggm => ggm())
+            .returns(() => guidStub)
+            .verifiable(Times.atLeastOnce());
+    });
+
+    test('convertScanResultsToUnifiedResults provides a UnifiedResult instance', () => {
+        const scanResultsStub: ScanResults = {} as ScanResults;
+
+        const unifiedResults = convertScanResultsToUnifiedResults(scanResultsStub, generateGuidMock.object);
+        expect(unifiedResults).toBeDefined();
+    });
+
+    test('convesion works fine when the only value in the scanresults is timeStamp', () => {
+        const scanResultsStub: ScanResults = createTestResultsWithNoData();
+        expect(convertScanResultsToUnifiedResults(scanResultsStub, generateGuidMock.object)).toMatchSnapshot();
+    });
+
+    test('conversion works with filled up passes and failures value in scanresults', () => {
+        const scanResultsStub: ScanResults = createTestResults();
+        expect(convertScanResultsToUnifiedResults(scanResultsStub, generateGuidMock.object)).toMatchSnapshot();
+        generateGuidMock.verifyAll();
+    });
+
+    function createTestResultsWithNoData(): ScanResults {
+        return {
+            passes: [],
+            violations: [],
+            targetPageTitle: '',
+            targetPageUrl: '',
+        } as ScanResults;
+    }
+
+    const node1: AxeNodeResult = {
+        any: [],
+        none: [],
+        all: [],
+        instanceId: 'id1',
+        html: 'html1',
+        target: ['target1', 'id1'],
+    };
+
+    const node2: AxeNodeResult = {
+        any: [],
+        none: [],
+        all: [],
+        instanceId: 'id2',
+        html: 'html2',
+        target: ['target2', 'id2'],
+    };
+
+    const node3: AxeNodeResult = {
+        any: [],
+        none: [],
+        all: [],
+        instanceId: 'id3',
+        html: 'html3',
+        target: ['target3', 'id3'],
+    };
+
+    const passingNode: AxeNodeResult = {
+        any: [],
+        none: [],
+        all: [],
+        instanceId: 'id-pass',
+        html: 'html-pass',
+        target: ['passTarget1', 'passTarget2'],
+    };
+
+    const failedRules: RuleResult[] = [
+        {
+            id: 'id1',
+            nodes: [node1, node2],
+            description: 'des1',
+            help: 'help1',
+            guidanceLinks: [
+                {
+                    text: 'text1',
+                    href: 'testurl1',
+                },
+            ],
+            helpUrl: 'https://id1',
+        },
+        {
+            id: 'id2',
+            nodes: [node3],
+            description: 'des2',
+            help: 'help2',
+            guidanceLinks: [
+                {
+                    text: 'text2',
+                    href: 'testurl2',
+                },
+            ],
+            helpUrl: 'https://id2',
+        },
+    ];
+
+    function createTestResults(): ScanResults {
+        return {
+            passes: [
+                {
+                    id: 'test',
+                    nodes: [passingNode],
+                },
+            ],
+            violations: failedRules,
+            targetPageTitle: '',
+            targetPageUrl: '',
+        } as ScanResults;
+    }
+});
