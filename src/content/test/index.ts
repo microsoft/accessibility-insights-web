@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { audioVideoOnly } from './audio-video-only';
 import { automatedChecks } from './automated-checks';
+import { contrast } from './contrast';
 import { customWidgets } from './custom-widgets';
 import { errors } from './errors';
 import { focus } from './focus';
@@ -48,4 +49,5 @@ export const test = {
     focus,
     automatedChecks,
     pointerMotion,
+    contrast,
 };
