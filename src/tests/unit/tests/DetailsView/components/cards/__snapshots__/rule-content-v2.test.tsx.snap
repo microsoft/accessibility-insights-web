@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RuleContentV2 renders 1`] = `
+<React.Fragment>
+  <RuleResourcesV2
+    rule={
+      Object {
+        "id": "test-id",
+      }
+    }
+  />
+  <InstanceDetailsGroupV2
+    rule={
+      Object {
+        "id": "test-id",
+      }
+    }
+  />
+</React.Fragment>
+`;

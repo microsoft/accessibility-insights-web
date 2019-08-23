@@ -24,7 +24,7 @@ export class BatchedRuleAnalyzer extends RuleAnalyzer {
         protected readonly visualizationConfigFactory: VisualizationConfigurationFactory,
         private postScanFilter: IResultRuleFilter,
     ) {
-        super(config, scanner, scopingStore, sendMessageDelegate, dateGetter, telemetryFactory, visualizationConfigFactory);
+        super(config, scanner, scopingStore, sendMessageDelegate, dateGetter, telemetryFactory, visualizationConfigFactory, null);
         BatchedRuleAnalyzer.batchConfigs.push(config);
     }
 

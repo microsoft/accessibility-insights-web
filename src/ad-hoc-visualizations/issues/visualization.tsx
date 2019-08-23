@@ -40,7 +40,7 @@ export const IssuesAdHocVisualization: VisualizationConfiguration = {
     adhocToolsPanelDisplayOrder: 1,
     resultProcessor: (scanner: ScannerUtils) => scanner.getFailingInstances,
     getAnalyzer: provider =>
-        provider.createRuleAnalyzer({
+        provider.createRuleAnalyzerUnifiedScan({
             rules: null,
             resultProcessor: (scanner: ScannerUtils) => scanner.getFailingInstances,
             telemetryProcessor: (telemetryFactory: TelemetryDataFactory) => telemetryFactory.forIssuesAnalyzerScan,
