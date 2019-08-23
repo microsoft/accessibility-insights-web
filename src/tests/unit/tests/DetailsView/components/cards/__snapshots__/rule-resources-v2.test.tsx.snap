@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RuleResourcesV2 renders 1`] = `
+<div
+  className="rule-more-resources"
+>
+  <div
+    className="more-resources-title"
+  >
+    Resources for this rule
+  </div>
+  <span
+    className="rule-details-id"
+  >
+    <NewTabLink
+      href="sample-url"
+    >
+      More information about 
+      some-rule
+    </NewTabLink>
+  </span>
+  <span>
+    <GuidanceLinks
+      links={Array []}
+    />
+    <GuidanceTags
+      deps={Object {}}
+      links={Array []}
+    />
+  </span>
+</div>
+`;
