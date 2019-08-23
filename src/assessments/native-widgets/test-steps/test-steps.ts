@@ -5,4 +5,5 @@ export enum NativeWidgetsTestStep {
     instructions = 'nativeInstructions',
     label = 'nativeLabel',
     cues = 'nativeCues',
+    autocomplete = 'nativeAutocomplete',
 }
