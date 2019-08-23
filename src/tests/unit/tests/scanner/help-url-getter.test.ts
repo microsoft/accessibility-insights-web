@@ -14,15 +14,15 @@ describe('getHelpUrl', () => {
             },
         } as RuleConfiguration,
     ];
-    const axeHlepUrl = 'axe help';
+    const axeHelpUrl = 'axe help';
     const getter = new HelpUrlGetter(configurationStub);
 
     it('should return axe help url if no custom url specified', () => {
         const ruleId = 'sampleRuleId';
-        expect(getter.getlHelpUrl(ruleId, axeHlepUrl)).toBe(axeHlepUrl);
+        expect(getter.getHelpUrl(ruleId, axeHelpUrl)).toBe(axeHelpUrl);
     });
 
     it('should return custom url for custom rules', () => {
-        expect(getter.getlHelpUrl(customRuleId, axeHlepUrl)).toBe(`helpUrl`);
+        expect(getter.getHelpUrl(customRuleId, axeHelpUrl)).toBe(`helpUrl`);
     });
 });
