@@ -30,11 +30,11 @@ export function getUnifiedRuleResults(rules: UnifiedRule[], results: UnifiedResu
 
     for (const result of results) {
         if (result.status === 'pass') {
-            resultToRuleResult(result, rules, statusResults.pass, 'pass');
+            resultToRuleResult(result, rules, result.status, statusResults.pass);
         } else if (result.status === 'fail') {
-            resultToRuleResult(result, rules, statusResults.fail, 'fail');
-        } else {
-            resultToRuleResult(result, rules, statusResults.unknown, 'unknown');
+            resultToRuleResult(result, rules, result.status, statusResults.fail);
+        } else if (result.status === 'unknown') {
+            resultToRuleResult(result, rules, result.status, statusResults.unknown);
         }
         ruleIdsWithResultNodes.add(result.ruleId);
     }
@@ -51,8 +51,8 @@ export function getUnifiedRuleResults(rules: UnifiedRule[], results: UnifiedResu
 function resultToRuleResult(
     result: UnifiedResult,
     rules: UnifiedRule[],
-    ruleResults: UnifiedRuleResult[],
     status: UnifiedRuleResultStatus,
+    ruleResults: UnifiedRuleResult[],
 ): void {
     const ruleResultIndex: number = ruleResults.findIndex(ruleResult => ruleResult.id === result.ruleId);
     if (ruleResultIndex !== -1) {
