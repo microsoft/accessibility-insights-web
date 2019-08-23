@@ -11,8 +11,8 @@ import { TelemetryDataFactory } from '../../../../../common/telemetry-data-facto
 import { RuleAnalyzerScanTelemetryData } from '../../../../../common/telemetry-events';
 import { ScopingStoreData } from '../../../../../common/types/store-data/scoping-store-data';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
-import { RuleAnalyzerConfiguration } from '../../../../../injected/analyzers/analyzer';
-import { RuleAnalyzer } from '../../../../../injected/analyzers/rule-analyzer';
+import { AxeAnalyzerResult, RuleAnalyzerConfiguration } from '../../../../../injected/analyzers/analyzer';
+import { PostResolveCallback, RuleAnalyzer } from '../../../../../injected/analyzers/rule-analyzer';
 import { HtmlElementAxeResults, ScannerUtils } from '../../../../../injected/scanner-utils';
 import { ScanResults } from '../../../../../scanner/iruleresults';
 import { ScanOptions } from '../../../../../scanner/scan-options';
@@ -35,6 +35,7 @@ describe('RuleAnalyzer', () => {
     const name = 'test-name';
     let configStub: RuleAnalyzerConfiguration;
     let scanCallback: (results: ScanResults) => void;
+    let postResolveCallbackMock: IMock<PostResolveCallback>;
 
     beforeEach(() => {
         typeStub = -1 as VisualizationType;
@@ -44,6 +45,8 @@ describe('RuleAnalyzer', () => {
         scopingStoreMock = Mock.ofType(ScopingStore);
         telemetryDataFactoryMock = Mock.ofType(TelemetryDataFactory);
         visualizationConfigurationFactoryMock = Mock.ofType(VisualizationConfigurationFactory);
+        postResolveCallbackMock = Mock.ofInstance(results => null);
+
         const dateStub = {
             getTime: () => {
                 return null;
@@ -115,6 +118,7 @@ describe('RuleAnalyzer', () => {
             dateGetterMock.object,
             telemetryDataFactoryMock.object,
             visualizationConfigurationFactoryMock.object,
+            postResolveCallbackMock.object,
         );
 
         const scanResults = createTestResults();
@@ -131,12 +135,25 @@ describe('RuleAnalyzer', () => {
         };
 
         resultProcessorMock.setup(processor => processor(scanResults)).returns(() => allInstancesMock);
+        const axeAnalyzerResults: AxeAnalyzerResult = {
+            results: allInstancesMock,
+            include: scopingState.selectors.include,
+            exclude: scopingState.selectors.exclude,
+            originalResult: scanResults,
+        };
+
+        postResolveCallbackMock
+            .setup(m => m(axeAnalyzerResults))
+            .callback(() => {
+                postResolveCallbackMock.verifyAll();
+                done();
+            })
+            .verifiable(Times.exactly(1));
 
         sendMessageMock
             .setup(sm => sm(It.isValue(expectedMessage)))
             .returns(() => {
                 sendMessageMock.verifyAll();
-                done();
             })
             .verifiable();
 
