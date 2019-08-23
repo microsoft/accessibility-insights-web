@@ -1,17 +1,14 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { DeviceConnectState, UpdateStateCallback } from 'electron/device-connect-view/components/device-connect-body';
+import { DeviceConnectPortEntry, DeviceConnectPortEntryProps } from 'electron/device-connect-view/components/device-connect-port-entry';
+import { FetchScanResultsType } from 'electron/platform/android/fetch-scan-results';
+import { ScanResults } from 'electron/platform/android/scan-results';
 import { shallow } from 'enzyme';
 import { Button } from 'office-ui-fabric-react/lib/Button';
 import * as React from 'react';
+import { EventStubFactory } from 'tests/unit/common/event-stub-factory';
 import { IMock, Mock } from 'typemoq';
-import { DeviceConnectState, UpdateStateCallback } from '../../../../../electron/device-connect-view/components/device-connect-body';
-import {
-    DeviceConnectPortEntry,
-    DeviceConnectPortEntryProps,
-} from '../../../../../electron/device-connect-view/components/device-connect-port-entry';
-import { FetchScanResultsType } from '../../../../../electron/platform/android/fetch-scan-results';
-import { ScanResults } from '../../../../../electron/platform/android/scan-results';
-import { EventStubFactory } from '../../../common/event-stub-factory';
 
 describe('DeviceConnectPortEntryTest', () => {
     let testPortNumber: number;

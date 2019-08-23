@@ -1,11 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { shallow } from 'enzyme';
-import * as React from 'react';
 import {
     DeviceConnectConnectedDevice,
     DeviceConnectConnectedDeviceProps,
-} from '../../../../../electron/device-connect-view/components/device-connect-connected-device';
+} from 'electron/device-connect-view/components/device-connect-connected-device';
+import { shallow } from 'enzyme';
+import * as React from 'react';
 
 describe('DeviceConnectConnectedDeviceTest', () => {
     const testProps = [

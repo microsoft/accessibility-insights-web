@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { ScanResults } from '../../../../../electron/platform/android/scan-results';
+import { ScanResults } from 'electron/platform/android/scan-results';
 
 function buildTestObject(deviceName: string = null, appIdentifier: string = null): ScanResults {
     const scanResults = {};

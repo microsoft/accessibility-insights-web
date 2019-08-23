@@ -1,14 +1,14 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { brand } from 'content/strings/application';
 import { BrowserWindow } from 'electron';
+import { DeviceConnectBody } from 'electron/device-connect-view/components/device-connect-body';
+import { WindowTitle } from 'electron/device-connect-view/components/window-title';
+import { DeviceConnectViewRenderer } from 'electron/device-connect-view/device-connect-view-renderer';
+import { BrandBlue } from 'icons/brand/blue/brand-blue';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { IMock, It, Mock } from 'typemoq';
-import { brand } from '../../../../content/strings/application';
-import { DeviceConnectBody } from '../../../../electron/device-connect-view/components/device-connect-body';
-import { WindowTitle } from '../../../../electron/device-connect-view/components/window-title';
-import { DeviceConnectViewRenderer } from '../../../../electron/device-connect-view/device-connect-view-renderer';
-import { BrandBlue } from '../../../../icons/brand/blue/brand-blue';
 
 describe('DeviceConnectViewRendererTest', () => {
     test('render', () => {
