@@ -58,8 +58,8 @@ const propertyBagConfig: PropertyBagColumnRendererConfig<DefaultWidgetPropertyBa
 ];
 
 export const Label: Requirement = {
-    key: NativeWidgetsTestStep.label,
-    name: 'Label',
+    key: NativeWidgetsTestStep.label, // DO NOT CHANGE THE KEY, doing so may break user on-going assessment
+    name: 'Expected Input',
     description,
     howToTest,
     isManual: false,

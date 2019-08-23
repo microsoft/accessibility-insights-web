@@ -41,8 +41,8 @@ const labelHowToTest: JSX.Element = (
 );
 
 export const Label: Requirement = {
-    key: CustomWidgetsTestStep.label,
-    name: 'Label',
+    key: CustomWidgetsTestStep.label, // DO NOT CHANGE THE KEY, doing so may break user on-going assessment
+    name: 'Expected Input',
     description: labelDescription,
     howToTest: labelHowToTest,
     isManual: false,
