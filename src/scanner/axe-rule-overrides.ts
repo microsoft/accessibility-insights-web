@@ -21,7 +21,7 @@ export namespace AxeRuleOverrides {
         ],
     };
 
-    export function overide(axe: typeof Axe): void {
+    export function override(axe: typeof Axe): void {
         axe.configure(overrideConfiguration as Axe.Spec);
     }
 }
