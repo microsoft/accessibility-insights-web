@@ -1,0 +1,60 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FailedInstancesSectionV2 renders 1`] = `
+<ResultSectionV2
+  badgeCount={1}
+  containerClassName="failed-instances-section result-section"
+  deps={
+    Object {
+      "getGuidanceTagsFromGuidanceLinks": [Function],
+    }
+  }
+  fixInstructionProcessor={
+    proxy {
+      "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+      "backgroundColorText": "background color: ",
+      "backgroundRegExp": /background color: \\(\\?<color>#\\[0-9a-f\\]\\{6\\}\\)/i,
+      "colorGroupName": "color",
+      "colorValueMatcher": "(?<color>#[0-9a-f]{6})",
+      "foregroundColorText": "foreground color: ",
+      "foregroundRegExp": /foreground color: \\(\\?<color>#\\[0-9a-f\\]\\{6\\}\\)/i,
+    }
+  }
+  outcomeType="fail"
+  results={
+    Array [
+      Object {
+        "description": "sample-description",
+        "guidance": Array [],
+        "id": "some-rule",
+        "nodes": Array [
+          Object {
+            "descriptors": Object {
+              "snippet": "<img src=\\"https://placekitten.com/408/287\\">",
+            },
+            "identifiers": Object {
+              "css-selector": "body img",
+            },
+            "resolution": Object {
+              "how-to-fix-web": Object {
+                "all": Array [],
+                "any": Array [
+                  "Element does not have an alt attribute",
+                  "aria-label attribute does not exist or is empty",
+                  "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                ],
+                "none": Array [],
+              },
+            },
+            "ruleId": "image-alt",
+            "status": "fail",
+            "uid": "some-guid-here",
+          },
+        ],
+        "url": "sample-url",
+      },
+    ]
+  }
+  title="Failed instances"
+/>
+`;

@@ -29,7 +29,7 @@ export type UnifiedStatusResults = {
     [key in UnifiedRuleResultStatus]: UnifiedRuleResult[];
 };
 
-export const FailedInstancesSectionV2V2 = NamedSFC<FailedInstancesSectionV2Props>(
+export const FailedInstancesSectionV2 = NamedSFC<FailedInstancesSectionV2Props>(
     'FailedInstancesSectionV2',
     ({ result, fixInstructionProcessor, getGuidanceTagsFromGuidanceLinks }) => {
         return (
@@ -37,7 +37,7 @@ export const FailedInstancesSectionV2V2 = NamedSFC<FailedInstancesSectionV2Props
                 deps={{ getGuidanceTagsFromGuidanceLinks }}
                 fixInstructionProcessor={fixInstructionProcessor}
                 title="Failed instances"
-                unifiedResults={result.fail}
+                results={result.fail}
                 containerClassName="failed-instances-section result-section"
                 outcomeType="fail"
                 badgeCount={result.fail.length}

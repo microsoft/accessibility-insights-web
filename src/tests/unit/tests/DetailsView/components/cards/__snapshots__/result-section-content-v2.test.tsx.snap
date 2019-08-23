@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ResultSectionContentV2 renders, no rules 1`] = `<NoFailedInstancesCongrats />`;
+
+exports[`ResultSectionContentV2 renders, with some rules 1`] = `
+<RulesWithInstancesV2
+  deps={Object {}}
+  outcomeType="pass"
+  rules={Array []}
+/>
+`;

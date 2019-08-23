@@ -14,15 +14,15 @@ export type ResultSectionContentV2Deps = RulesWithInstancesDeps;
 
 export type ResultSectionContentV2Props = {
     deps: ResultSectionContentV2Deps;
-    unifiedResults: UnifiedRuleResult[];
+    results: UnifiedRuleResult[];
     outcomeType: InstanceOutcomeType;
     fixInstructionProcessor?: FixInstructionProcessor;
 };
 
 export const ResultSectionContentV2 = NamedSFC<ResultSectionContentV2Props>(
     'ResultSectionContentV2',
-    ({ unifiedResults, outcomeType, fixInstructionProcessor, deps }) => {
-        if (unifiedResults.length === 0) {
+    ({ results, outcomeType, fixInstructionProcessor, deps }) => {
+        if (results.length === 0) {
             return <NoFailedInstancesCongrats />;
         }
 
