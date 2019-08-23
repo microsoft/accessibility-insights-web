@@ -70,7 +70,7 @@ function createUnifiedRuleResult(status: UnifiedRuleResultStatus, result: Unifie
         id: rule.id,
         status: status,
         nodes: [result],
-        description: rule.id,
+        description: rule.description,
         url: rule.url,
         guidance: rule.guidance,
     };
@@ -81,7 +81,7 @@ function createRuleResultWithoutNodes(rule: UnifiedRule): UnifiedRuleResult {
         id: rule.id,
         status: 'inapplicable',
         nodes: [],
-        description: rule.id,
+        description: rule.description,
         url: rule.url,
         guidance: rule.guidance,
     };
