@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { HelpUrlGetter } from '../../../../scanner/help-url-getter';
-import { RuleConfiguration } from '../../../../scanner/iruleresults';
+import { RuleConfiguration } from '../../../../scanner/iruleresults.d';
 
 describe('getHelpUrl', () => {
     const customRuleId = 'custom-rule';

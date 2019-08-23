@@ -4,14 +4,11 @@ import { GetGuidanceTagsFromGuidanceLinks } from 'common/get-guidance-tags-from-
 import { shallow } from 'enzyme';
 import { FixInstructionProcessor } from 'injected/fix-instruction-processor';
 import * as React from 'react';
-import { RuleResult } from 'scanner/iruleresults';
 import { Mock } from 'typemoq';
 
-import { UnifiedResult } from '../../../../../../common/types/store-data/unified-data-interface';
 import {
     FailedInstancesSectionV2,
     FailedInstancesSectionV2Props,
-    UnifiedRuleResult,
 } from '../../../../../../DetailsView/components/cards/failed-instances-section-v2';
 import { exampleUnifiedRuleResult } from './sample-view-model-data';
 

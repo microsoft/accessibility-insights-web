@@ -4,7 +4,6 @@ import { GetGuidanceTagsFromGuidanceLinks } from 'common/get-guidance-tags-from-
 import { NamedSFC } from 'common/react/named-sfc';
 import { FixInstructionProcessor } from 'injected/fix-instruction-processor';
 import * as React from 'react';
-import { RuleResult } from 'scanner/iruleresults';
 
 import { InstanceDetails } from '../../../reports/components/report-sections/instance-details';
 import { UnifiedRuleResult } from './failed-instances-section-v2';

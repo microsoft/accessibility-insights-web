@@ -3,13 +3,12 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-import { RuleResult } from 'scanner/iruleresults';
 import {
     RuleResourcesV2,
     RuleResourcesV2Deps,
     RuleResourcesV2Props,
 } from '../../../../../../DetailsView/components/cards/rule-resources-v2';
-import { exampleUnifiedResult, exampleUnifiedRuleResult } from './sample-view-model-data';
+import { exampleUnifiedRuleResult } from './sample-view-model-data';
 
 describe('RuleResourcesV2', () => {
     it('renders', () => {

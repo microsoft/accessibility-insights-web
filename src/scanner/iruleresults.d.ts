@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { GuidanceLink } from './rule-to-links-mappings';
+import { HyperlinkDefinition } from 'views/content/content-page';
 
 export interface AxeRule {
     id: string;
