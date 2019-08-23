@@ -36,7 +36,7 @@ import { AnalyzerController } from './analyzer-controller';
 import { AnalyzerStateUpdateHandler } from './analyzer-state-update-handler';
 import { AnalyzerProvider } from './analyzers/analyzer-provider';
 import { filterResultsByRules } from './analyzers/filter-results-by-rules';
-import { sendConvertedResults } from './analyzers/send-converted-results';
+import { UnifiedResultSender } from './analyzers/unified-result-sender';
 import { ClientViewController } from './client-view-controller';
 import { DrawingInitiator } from './drawing-initiator';
 import { FrameUrlMessageDispatcher } from './frame-url-message-dispatcher';
@@ -157,6 +157,8 @@ export class MainWindowInitializer extends WindowInitializer {
 
         this.frameUrlSearchInitiator.listenToStore();
 
+        const unifedResultSender = new UnifiedResultSender(this.browserAdapter.sendMessageToFrames);
+
         const analyzerProvider = new AnalyzerProvider(
             this.tabStopsListener,
             this.scopingStoreProxy,
@@ -166,7 +168,7 @@ export class MainWindowInitializer extends WindowInitializer {
             DateProvider.getCurrentDate,
             this.visualizationConfigurationFactory,
             filterResultsByRules,
-            sendConvertedResults,
+            unifedResultSender.sendResults,
         );
 
         const analyzerStateUpdateHandler = new AnalyzerStateUpdateHandler(this.visualizationConfigurationFactory);

@@ -45,7 +45,7 @@ describe('RuleAnalyzer', () => {
         scopingStoreMock = Mock.ofType(ScopingStore);
         telemetryDataFactoryMock = Mock.ofType(TelemetryDataFactory);
         visualizationConfigurationFactoryMock = Mock.ofType(VisualizationConfigurationFactory);
-        postResolveCallbackMock = Mock.ofInstance((message, results) => null);
+        postResolveCallbackMock = Mock.ofInstance(results => null);
 
         const dateStub = {
             getTime: () => {
@@ -143,7 +143,7 @@ describe('RuleAnalyzer', () => {
         };
 
         postResolveCallbackMock
-            .setup(m => m(axeAnalyzerResults, sendMessageMock.object))
+            .setup(m => m(axeAnalyzerResults))
             .callback(() => {
                 postResolveCallbackMock.verifyAll();
                 done();

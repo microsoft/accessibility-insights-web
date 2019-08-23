@@ -14,7 +14,7 @@ import { AxeAnalyzerResult, RuleAnalyzerConfiguration } from './analyzer';
 import { BaseAnalyzer } from './base-analyzer';
 
 export type MessageDelegate = (message: any) => void;
-export type PostResolveCallback = (results: AxeAnalyzerResult, messageDelegate: MessageDelegate) => void;
+export type PostResolveCallback = (results: AxeAnalyzerResult) => void;
 
 export class RuleAnalyzer extends BaseAnalyzer {
     private startTime: number;
@@ -69,7 +69,7 @@ export class RuleAnalyzer extends BaseAnalyzer {
 
     protected onResolve = (analyzerResult: AxeAnalyzerResult): void => {
         this.sendScanCompleteResolveMessage(analyzerResult, this.config);
-        this.postOnResolve(analyzerResult, this.sendMessageDelegate);
+        this.postOnResolve(analyzerResult);
     };
 
     protected sendScanCompleteResolveMessage(analyzerResult: AxeAnalyzerResult, config: RuleAnalyzerConfiguration): void {
