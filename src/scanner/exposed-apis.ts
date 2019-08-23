@@ -48,6 +48,6 @@ export let getDefaultRules = (): ScannerRuleInfo[] => {
     return getRules(axe, (ruleId, axeHelpUrl) => helpUrlGetter.getlHelpUrl(ruleId, axeHelpUrl), ruleSifter);
 };
 
-AxeRuleOverrides.overide(axe);
+AxeRuleOverrides.override(axe);
 
 new AxeConfigurator().configureAxe(axe, configuration);
