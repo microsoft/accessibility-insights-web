@@ -1,10 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { IMock, It, Mock, Times } from 'typemoq';
+
 import { autocompleteRuleConfiguration } from '../../../../../scanner/custom-rules/autocomplete-rule';
 import { TestDocumentCreator } from './../../../common/test-document-creator';
 
 describe('aotocompleteRule', () => {
+    let testDom: Document;
+
     describe('verify autocomplete rule configs', () => {
         it('should have correct props', () => {
             expect(autocompleteRuleConfiguration.rule.id).toBe('autocomplete');
@@ -27,9 +30,21 @@ input[type="color"]',
         });
     });
 
+    describe('validate selector', () => {
+        it('should only pick input elements', () => {
+            testDom = TestDocumentCreator.createTestDocument(`
+                <input type="text" id="node-1">
+                <div type="text" id="node-2"></div>
+                <input type="invalid-type" id="node-3">
+            `);
+            const nodes = testDom.querySelectorAll(autocompleteRuleConfiguration.rule.selector);
+            expect(nodes.length).toBe(1);
+            expect(nodes[0].getAttribute('id')).toBe('node-1');
+        });
+    });
+
     describe('verify evaluate', () => {
         let dataSetterMock: IMock<(data) => void>;
-        let testDom: Document;
 
         beforeEach(() => {
             dataSetterMock = Mock.ofInstance(data => {});
@@ -38,9 +53,7 @@ input[type="color"]',
         it.each(['text', 'search', 'url', 'tel', 'email', 'password', 'date', 'date-time', 'date-time-local', 'range', 'color'])(
             'validate input with type %s is collected by rule',
             (inputType: string) => {
-                testDom = TestDocumentCreator.createTestDocument(`
-                    <input type="${inputType}" id="test-node">
-                `);
+                testDom = TestDocumentCreator.createTestDocument(`<input type="${inputType}" id="test-node">`);
                 const node = testDom.querySelector('#test-node');
                 const expectedData = {
                     inputType,
@@ -53,9 +66,7 @@ input[type="color"]',
         );
 
         it.each(['on', 'off'])('should pick autocomplete value', (autocomplete: string) => {
-            testDom = TestDocumentCreator.createTestDocument(`
-                    <input type="text" autocomplete="${autocomplete}" id="test-node">
-                `);
+            testDom = TestDocumentCreator.createTestDocument(`<input type="text" autocomplete="${autocomplete}" id="test-node">`);
             const node = testDom.querySelector('#test-node');
             const expectedData = {
                 inputType: 'text',
