@@ -8,7 +8,11 @@ import { InstanceOutcomeType } from '../instance-outcome-type';
 import { OutcomeChip } from '../outcome-chip';
 
 export type MinimalRuleHeaderProps = {
-    rule: RuleResult;
+    rule: {
+        id: string;
+        description: string;
+        nodes: any[];
+    };
     outcomeType: InstanceOutcomeType;
 };
 

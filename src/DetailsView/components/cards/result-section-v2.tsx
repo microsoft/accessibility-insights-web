@@ -2,19 +2,16 @@
 // Licensed under the MIT License.
 import { NamedSFC } from 'common/react/named-sfc';
 import * as React from 'react';
-import {
-    ResultSectionContentProps,
-    ResultSectionContentDeps,
-    ResultSectionContent,
-} from '../../../reports/components/report-sections/result-section-content';
-import { ResultSectionTitleProps, ResultSectionTitle } from '../../../reports/components/report-sections/result-section-title';
 
-export type ResultSectionDeps = ResultSectionContentDeps;
+import { ResultSectionTitle, ResultSectionTitleProps } from '../../../reports/components/report-sections/result-section-title';
+import { ResultSectionContentDepsV2, ResultSectionContentPropsV2, ResultSectionContentV2 } from './result-section-content-v2';
 
-export type ResultSectionPropsV2 = ResultSectionContentProps &
+export type ResultSectionDepsV2 = ResultSectionContentDepsV2;
+
+export type ResultSectionPropsV2 = ResultSectionContentPropsV2 &
     ResultSectionTitleProps & {
         containerClassName: string;
-        deps: ResultSectionDeps;
+        deps: ResultSectionDepsV2;
     };
 
 export const ResultSectionV2 = NamedSFC<ResultSectionPropsV2>('ResultSectionV2', props => {
@@ -25,7 +22,7 @@ export const ResultSectionV2 = NamedSFC<ResultSectionPropsV2>('ResultSectionV2',
             <h2>
                 <ResultSectionTitle {...props} />
             </h2>
-            <ResultSectionContent {...props} />
+            <ResultSectionContentV2 {...props} />
         </div>
     );
 });

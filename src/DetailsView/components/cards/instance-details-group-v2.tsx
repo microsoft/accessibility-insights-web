@@ -6,19 +6,20 @@ import { FixInstructionProcessor } from 'injected/fix-instruction-processor';
 import * as React from 'react';
 import { RuleResult } from 'scanner/iruleresults';
 
-import { InstanceDetails } from './instance-details';
+import { InstanceDetails } from '../../../reports/components/report-sections/instance-details';
+import { UnifiedRuleResult } from './failed-instances-section-v2';
 
-export type InstanceDetailsGroupDeps = {
+export type InstanceDetailsGroupDepsV2 = {
     getGuidanceTagsFromGuidanceLinks: GetGuidanceTagsFromGuidanceLinks;
 };
 
-export type InstanceDetailsGroupProps = {
-    deps: InstanceDetailsGroupDeps;
-    rule: RuleResult;
+export type InstanceDetailsGroupPropsV2 = {
+    deps: InstanceDetailsGroupDepsV2;
+    rule: UnifiedRuleResult;
     fixInstructionProcessor: FixInstructionProcessor;
 };
 
-export const InstanceDetailsGroup = NamedSFC<InstanceDetailsGroupProps>('InstanceDetailsGroup', props => {
+export const InstanceDetailsGroupV2 = NamedSFC<InstanceDetailsGroupPropsV2>('InstanceDetailsGroupV2', props => {
     const { fixInstructionProcessor, rule } = props;
     const { nodes } = rule;
 
@@ -26,7 +27,7 @@ export const InstanceDetailsGroup = NamedSFC<InstanceDetailsGroupProps>('Instanc
         <ul className="instance-details-list" aria-label="failed instances with path, snippet and how to fix information">
             {nodes.map((node, index) => (
                 <li key={`instance-details-${index}`}>
-                    <InstanceDetails {...{ index, ...node, fixInstructionProcessor: fixInstructionProcessor }} />
+                    <InstanceDetails {...{ index, ...(node as any), fixInstructionProcessor: fixInstructionProcessor }} />
                 </li>
             ))}
         </ul>

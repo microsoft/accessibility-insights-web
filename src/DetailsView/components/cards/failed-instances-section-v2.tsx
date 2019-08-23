@@ -1,36 +1,46 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { NamedSFC } from 'common/react/named-sfc';
 import * as React from 'react';
 
-import { NamedSFC } from 'common/react/named-sfc';
-import { ResultSectionV2 } from './result-section-v2';
-import { FixInstructionProcessor } from '../../../injected/fix-instruction-processor';
 import { GetGuidanceTagsFromGuidanceLinks } from '../../../common/get-guidance-tags-from-guidance-links';
-import { UnifiedResult } from '../../../common/types/store-data/unified-data-interface';
+import { ResultStatus, UnifiedResult } from '../../../common/types/store-data/unified-data-interface';
+import { FixInstructionProcessor } from '../../../injected/fix-instruction-processor';
+import { GuidanceLink } from '../../../scanner/rule-to-links-mappings';
+import { ResultSectionV2 } from './result-section-v2';
 
 export type FailedInstancesSectionPropsV2 = {
     fixInstructionProcessor: FixInstructionProcessor;
-    result: UnifiedResult[];
+    result: UnifiedStatusResults;
     getGuidanceTagsFromGuidanceLinks: GetGuidanceTagsFromGuidanceLinks;
+};
+
+export interface UnifiedRuleResult {
+    id: string;
+    nodes: UnifiedResult[];
+    description: string;
+    url: string;
+    guidance: GuidanceLink[];
+}
+
+export type UnifiedRuleResultStatus = ResultStatus | 'inapplicable';
+
+export type UnifiedStatusResults = {
+    [key in UnifiedRuleResultStatus]: UnifiedRuleResult[];
 };
 
 export const FailedInstancesSectionV2 = NamedSFC<FailedInstancesSectionPropsV2>(
     'FailedInstancesSection',
     ({ result, fixInstructionProcessor, getGuidanceTagsFromGuidanceLinks }) => {
-        const rules = [];
-        const count = result.reduce((total, rule) => {
-            return total + (rule.status === 'fail' ? 1 : 0);
-        }, 0);
-
         return (
             <ResultSectionV2
                 deps={{ getGuidanceTagsFromGuidanceLinks }}
                 fixInstructionProcessor={fixInstructionProcessor}
                 title="Failed instances"
-                rules={rules}
+                unifiedResults={result.fail}
                 containerClassName="failed-instances-section result-section"
                 outcomeType="fail"
-                badgeCount={count}
+                badgeCount={result.fail.length}
             />
         );
     },

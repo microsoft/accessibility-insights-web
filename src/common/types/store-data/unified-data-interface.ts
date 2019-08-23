@@ -1,3 +1,5 @@
+import { GuidanceLink } from '../../../scanner/rule-to-links-mappings';
+
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
@@ -36,6 +38,8 @@ export interface UnifiedResults {
 export interface UnifiedRule {
     id: string;
     description: string;
+    url: string;
+    guidance: GuidanceLink[];
 }
 
 export interface InstancePropertyBag {
