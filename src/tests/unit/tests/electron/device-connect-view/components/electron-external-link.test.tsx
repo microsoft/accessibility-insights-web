@@ -1,15 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { Shell } from 'electron';
+import { ElectronExternalLink, ElectronExternalLinkProps } from 'electron/device-connect-view/components/electron-external-link';
 import { shallow } from 'enzyme';
 import { Button } from 'office-ui-fabric-react/lib/Button';
 import * as React from 'react';
+import { EventStubFactory } from 'tests/unit/common/event-stub-factory';
 import { IMock, It, Mock } from 'typemoq';
-import {
-    ElectronExternalLink,
-    ElectronExternalLinkProps,
-} from '../../../../../electron/device-connect-view/components/electron-external-link';
-import { EventStubFactory } from '../../../common/event-stub-factory';
 
 describe('ElectronExternalLinkTest', () => {
     test('render', () => {

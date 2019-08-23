@@ -1,15 +1,15 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { BrowserWindow } from 'electron';
-import { shallow } from 'enzyme';
-import * as React from 'react';
 import {
     DeviceConnectBody,
     DeviceConnectBodyProps,
     DeviceConnectBodyState,
     DeviceConnectState,
-} from '../../../../../electron/device-connect-view/components/device-connect-body';
-import { DeviceConnectPortEntryProps } from '../../../../../electron/device-connect-view/components/device-connect-port-entry';
+} from 'electron/device-connect-view/components/device-connect-body';
+import { DeviceConnectPortEntryProps } from 'electron/device-connect-view/components/device-connect-port-entry';
+import { shallow } from 'enzyme';
+import * as React from 'react';
 
 describe('DeviceConnectBodyTest', () => {
     const props: DeviceConnectBodyProps = {
