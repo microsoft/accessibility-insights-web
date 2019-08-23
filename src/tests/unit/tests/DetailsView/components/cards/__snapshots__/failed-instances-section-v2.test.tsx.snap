@@ -30,7 +30,7 @@ exports[`FailedInstancesSectionV2 renders 1`] = `
         "nodes": Array [
           Object {
             "descriptors": Object {
-              "snippet": "<img src=\\"https://placekitten.com/408/287\\">",
+              "snippet": "this is a sample snippet",
             },
             "identifiers": Object {
               "css-selector": "body img",

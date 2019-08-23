@@ -9,7 +9,7 @@ exports[`InstanceDetailsGroupV2 renders 1`] = `
     <InstanceDetail
       descriptors={
         Object {
-          "snippet": "<img src=\\"https://placekitten.com/408/287\\">",
+          "snippet": "this is a sample snippet",
         }
       }
       fixInstructionProcessor={
