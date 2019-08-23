@@ -36,6 +36,7 @@ import { AnalyzerController } from './analyzer-controller';
 import { AnalyzerStateUpdateHandler } from './analyzer-state-update-handler';
 import { AnalyzerProvider } from './analyzers/analyzer-provider';
 import { filterResultsByRules } from './analyzers/filter-results-by-rules';
+import { sendConvertedResults } from './analyzers/send-converted-results';
 import { ClientViewController } from './client-view-controller';
 import { DrawingInitiator } from './drawing-initiator';
 import { FrameUrlMessageDispatcher } from './frame-url-message-dispatcher';
@@ -165,7 +166,9 @@ export class MainWindowInitializer extends WindowInitializer {
             DateProvider.getCurrentDate,
             this.visualizationConfigurationFactory,
             filterResultsByRules,
+            sendConvertedResults,
         );
+
         const analyzerStateUpdateHandler = new AnalyzerStateUpdateHandler(this.visualizationConfigurationFactory);
         this.analyzerController = new AnalyzerController(
             this.visualizationStoreProxy,

@@ -7,10 +7,10 @@ import { ScopingStoreData } from '../../common/types/store-data/scoping-store-da
 import { WindowUtils } from '../../common/window-utils';
 import { ScannerUtils } from '../scanner-utils';
 import { TabStopsListener } from '../tab-stops-listener';
-import { Analyzer, AnalyzerConfiguration, FocusAnalyzerConfiguration, RuleAnalyzerConfiguration, AxeAnalyzerResult } from './analyzer';
+import { Analyzer, AnalyzerConfiguration, FocusAnalyzerConfiguration, RuleAnalyzerConfiguration } from './analyzer';
 import { BaseAnalyzer } from './base-analyzer';
 import { BatchedRuleAnalyzer, IResultRuleFilter } from './batched-rule-analyzer';
-import { RuleAnalyzer, PostResolveCallback } from './rule-analyzer';
+import { PostResolveCallback, RuleAnalyzer } from './rule-analyzer';
 import { TabStopsAnalyzer } from './tab-stops-analyzer';
 
 export class AnalyzerProvider {
@@ -30,6 +30,7 @@ export class AnalyzerProvider {
         dateGetter: () => Date,
         private readonly visualizationConfigFactory: VisualizationConfigurationFactory,
         private filterResultsByRules: IResultRuleFilter,
+        private sendConvertedResults: PostResolveCallback,
     ) {
         this.tabStopsListener = tabStopsListener;
         this.scopingStore = scopingStore;
@@ -52,7 +53,9 @@ export class AnalyzerProvider {
         );
     }
 
-    public createRuleAnalyzerPostResolve(config: RuleAnalyzerConfiguration, postOnResolve: PostResolveCallback) {
+    // This analyzer is functionally identical to the rule-analyzer, but it
+    // sends an additional message to the unified-scan-results store
+    public createRuleAnalyzerUnifiedScan(config: RuleAnalyzerConfiguration): Analyzer {
         return new RuleAnalyzer(
             config,
             this.scanner,
@@ -61,7 +64,7 @@ export class AnalyzerProvider {
             this.dateGetter,
             this.telemetryDataFactory,
             this.visualizationConfigFactory,
-            postOnResolve,
+            this.sendConvertedResults,
         );
     }
 
