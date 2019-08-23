@@ -8,14 +8,14 @@ import * as React from 'react';
 
 import { UnifiedRule } from '../../../common/types/store-data/unified-data-interface';
 
-export type RuleResourcesDepsV2 = GuidanceTagsDeps;
+export type RuleResourcesV2Deps = GuidanceTagsDeps;
 
-export type RuleResourcesPropsV2 = {
-    deps: RuleResourcesDepsV2;
+export type RuleResourcesV2Props = {
+    deps: RuleResourcesV2Deps;
     rule: UnifiedRule;
 };
 
-export const RuleResourcesV2 = NamedSFC<RuleResourcesPropsV2>('RuleResourcesV2', ({ deps, rule }) => {
+export const RuleResourcesV2 = NamedSFC<RuleResourcesV2Props>('RuleResourcesV2', ({ deps, rule }) => {
     const renderTitle = () => <div className="more-resources-title">Resources for this rule</div>;
 
     const renderRuleLink = () => {

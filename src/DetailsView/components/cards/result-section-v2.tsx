@@ -4,17 +4,17 @@ import { NamedSFC } from 'common/react/named-sfc';
 import * as React from 'react';
 
 import { ResultSectionTitle, ResultSectionTitleProps } from '../../../reports/components/report-sections/result-section-title';
-import { ResultSectionContentDepsV2, ResultSectionContentPropsV2, ResultSectionContentV2 } from './result-section-content-v2';
+import { ResultSectionContentV2, ResultSectionContentV2Deps, ResultSectionContentV2Props } from './result-section-content-v2';
 
-export type ResultSectionDepsV2 = ResultSectionContentDepsV2;
+export type ResultSectionV2Deps = ResultSectionContentV2Deps;
 
-export type ResultSectionPropsV2 = ResultSectionContentPropsV2 &
+export type ResultSectionV2Props = ResultSectionContentV2Props &
     ResultSectionTitleProps & {
         containerClassName: string;
-        deps: ResultSectionDepsV2;
+        deps: ResultSectionV2Deps;
     };
 
-export const ResultSectionV2 = NamedSFC<ResultSectionPropsV2>('ResultSectionV2', props => {
+export const ResultSectionV2 = NamedSFC<ResultSectionV2Props>('ResultSectionV2', props => {
     const { containerClassName } = props;
 
     return (

@@ -9,18 +9,18 @@ import { outcomeTypeSemantics } from '../../../reports/components/outcome-type';
 import { CollapsibleContainer } from '../../../reports/components/report-sections/collapsible-container';
 import { MinimalRuleHeader } from '../../../reports/components/report-sections/minimal-rule-header';
 import { UnifiedRuleResult } from './failed-instances-section-v2';
-import { RuleContentDepsV2, RuleContentV2 } from './rule-content-v2';
+import { RuleContentV2, RuleContentV2Deps } from './rule-content-v2';
 
-export type RulesWithInstancesDepsV2 = RuleContentDepsV2;
+export type RulesWithInstancesV2Deps = RuleContentV2Deps;
 
-export type RulesWithInstancesPropsV2 = {
-    deps: RulesWithInstancesDepsV2;
+export type RulesWithInstancesV2Props = {
+    deps: RulesWithInstancesV2Deps;
     fixInstructionProcessor: FixInstructionProcessor;
     rules: UnifiedRuleResult[];
     outcomeType: InstanceOutcomeType;
 };
 
-export const RulesWithInstancesV2 = NamedSFC<RulesWithInstancesPropsV2>(
+export const RulesWithInstancesV2 = NamedSFC<RulesWithInstancesV2Props>(
     'RulesWithInstancesV2',
     ({ rules, outcomeType, fixInstructionProcessor, deps }) => {
         return (

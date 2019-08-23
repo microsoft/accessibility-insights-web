@@ -3,19 +3,19 @@
 import { NamedSFC } from 'common/react/named-sfc';
 import * as React from 'react';
 
-import { InstanceDetailsGroupDepsV2, InstanceDetailsGroupPropsV2, InstanceDetailsGroupV2 } from './instance-details-group-v2';
-import { RuleResourcesDepsV2, RuleResourcesPropsV2, RuleResourcesV2 } from './rule-resources-v2';
+import { InstanceDetailsGroupV2, InstanceDetailsGroupV2Deps, InstanceDetailsGroupV2Props } from './instance-details-group-v2';
+import { RuleResourcesV2, RuleResourcesV2Deps, RuleResourcesV2Props } from './rule-resources-v2';
 
-export type RuleContentDepsV2 = InstanceDetailsGroupDepsV2 & RuleResourcesDepsV2;
+export type RuleContentV2Deps = InstanceDetailsGroupV2Deps & RuleResourcesV2Deps;
 
 type Omit<T, K> = Pick<T, Exclude<keyof T, K>>;
 
-export type RuleContentPropsV2 = Omit<InstanceDetailsGroupPropsV2, 'deps'> &
-    RuleResourcesPropsV2 & {
-        deps: RuleContentDepsV2;
+export type RuleContentV2Props = Omit<InstanceDetailsGroupV2Props, 'deps'> &
+    RuleResourcesV2Props & {
+        deps: RuleContentV2Deps;
     };
 
-export const RuleContentV2 = NamedSFC<RuleContentPropsV2>('RuleContentV2', props => {
+export const RuleContentV2 = NamedSFC<RuleContentV2Props>('RuleContentV2', props => {
     return (
         <>
             <RuleResourcesV2 {...props} />

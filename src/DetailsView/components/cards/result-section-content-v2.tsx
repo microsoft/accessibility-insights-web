@@ -10,16 +10,16 @@ import { RulesWithInstancesDeps } from '../../../reports/components/report-secti
 import { UnifiedRuleResult } from './failed-instances-section-v2';
 import { RulesWithInstancesV2 } from './rules-with-instances-v2';
 
-export type ResultSectionContentDepsV2 = RulesWithInstancesDeps;
+export type ResultSectionContentV2Deps = RulesWithInstancesDeps;
 
-export type ResultSectionContentPropsV2 = {
-    deps: ResultSectionContentDepsV2;
+export type ResultSectionContentV2Props = {
+    deps: ResultSectionContentV2Deps;
     unifiedResults: UnifiedRuleResult[];
     outcomeType: InstanceOutcomeType;
     fixInstructionProcessor?: FixInstructionProcessor;
 };
 
-export const ResultSectionContentV2 = NamedSFC<ResultSectionContentPropsV2>(
+export const ResultSectionContentV2 = NamedSFC<ResultSectionContentV2Props>(
     'ResultSectionContentV2',
     ({ unifiedResults, outcomeType, fixInstructionProcessor, deps }) => {
         if (unifiedResults.length === 0) {

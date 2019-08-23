@@ -9,7 +9,7 @@ import { FixInstructionProcessor } from '../../../injected/fix-instruction-proce
 import { GuidanceLink } from '../../../scanner/rule-to-links-mappings';
 import { ResultSectionV2 } from './result-section-v2';
 
-export type FailedInstancesSectionPropsV2 = {
+export type FailedInstancesSectionV2Props = {
     fixInstructionProcessor: FixInstructionProcessor;
     result: UnifiedStatusResults;
     getGuidanceTagsFromGuidanceLinks: GetGuidanceTagsFromGuidanceLinks;
@@ -29,8 +29,8 @@ export type UnifiedStatusResults = {
     [key in UnifiedRuleResultStatus]: UnifiedRuleResult[];
 };
 
-export const FailedInstancesSectionV2 = NamedSFC<FailedInstancesSectionPropsV2>(
-    'FailedInstancesSection',
+export const FailedInstancesSectionV2V2 = NamedSFC<FailedInstancesSectionV2Props>(
+    'FailedInstancesSectionV2',
     ({ result, fixInstructionProcessor, getGuidanceTagsFromGuidanceLinks }) => {
         return (
             <ResultSectionV2

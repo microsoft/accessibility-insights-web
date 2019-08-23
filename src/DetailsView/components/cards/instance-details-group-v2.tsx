@@ -9,17 +9,17 @@ import { RuleResult } from 'scanner/iruleresults';
 import { InstanceDetails } from '../../../reports/components/report-sections/instance-details';
 import { UnifiedRuleResult } from './failed-instances-section-v2';
 
-export type InstanceDetailsGroupDepsV2 = {
+export type InstanceDetailsGroupV2Deps = {
     getGuidanceTagsFromGuidanceLinks: GetGuidanceTagsFromGuidanceLinks;
 };
 
-export type InstanceDetailsGroupPropsV2 = {
-    deps: InstanceDetailsGroupDepsV2;
+export type InstanceDetailsGroupV2Props = {
+    deps: InstanceDetailsGroupV2Deps;
     rule: UnifiedRuleResult;
     fixInstructionProcessor: FixInstructionProcessor;
 };
 
-export const InstanceDetailsGroupV2 = NamedSFC<InstanceDetailsGroupPropsV2>('InstanceDetailsGroupV2', props => {
+export const InstanceDetailsGroupV2 = NamedSFC<InstanceDetailsGroupV2Props>('InstanceDetailsGroupV2', props => {
     const { fixInstructionProcessor, rule } = props;
     const { nodes } = rule;
 
