@@ -29,7 +29,7 @@ export let scan = (options: ScanOptions, successCallback: (results: ScanResults)
     const documentUtils: DocumentUtils = new DocumentUtils(document);
     const helpUrlGetter = new HelpUrlGetter(configuration);
     const resultDecorator = new ResultDecorator(documentUtils, messageDecorator, (ruleId, axeHelpUrl) =>
-        helpUrlGetter.getlHelpUrl(ruleId, axeHelpUrl),
+        helpUrlGetter.getHelpUrl(ruleId, axeHelpUrl),
     );
     const launcher = new Launcher(axe, scanParameterGenerator, document, options);
     const axeResponseHandler = new AxeResponseHandler(successCallback, errorCallback, resultDecorator);
@@ -45,7 +45,7 @@ export let getVersion = (): string => {
 export let getDefaultRules = (): ScannerRuleInfo[] => {
     const ruleSifter = new RuleSifter((axe as any)._audit.rules, ruleToLinkConfiguration);
     const helpUrlGetter = new HelpUrlGetter(configuration);
-    return getRules(axe, (ruleId, axeHelpUrl) => helpUrlGetter.getlHelpUrl(ruleId, axeHelpUrl), ruleSifter);
+    return getRules(axe, (ruleId, axeHelpUrl) => helpUrlGetter.getHelpUrl(ruleId, axeHelpUrl), ruleSifter);
 };
 
 AxeRuleOverrides.override(axe);
