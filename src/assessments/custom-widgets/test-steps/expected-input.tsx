@@ -40,7 +40,7 @@ const labelHowToTest: JSX.Element = (
     </div>
 );
 
-export const Label: Requirement = {
+export const ExpectedInput: Requirement = {
     key: CustomWidgetsTestStep.label, // DO NOT CHANGE THE KEY, doing so may break user on-going assessment
     name: 'Expected Input',
     description: labelDescription,
