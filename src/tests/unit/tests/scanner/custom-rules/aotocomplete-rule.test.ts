@@ -1,9 +1,8 @@
-import { TestDocumentCreator } from './../../../common/test-document-creator';
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as Axe from 'axe-core';
-import { GlobalMock, GlobalScope, IMock, It, Mock, MockBehavior, Times } from 'typemoq';
+import { IMock, It, Mock, Times } from 'typemoq';
 import { autocompleteRuleConfiguration } from '../../../../../scanner/custom-rules/autocomplete-rule';
+import { TestDocumentCreator } from './../../../common/test-document-creator';
 
 describe('aotocompleteRule', () => {
     describe('verify autocomplete rule configs', () => {
@@ -41,7 +40,6 @@ input[type="color"]',
             (inputType: string) => {
                 testDom = TestDocumentCreator.createTestDocument(`
                     <input type="${inputType}" id="test-node">
-                    </input>
                 `);
                 const node = testDom.querySelector('#test-node');
                 const expectedData = {
@@ -57,7 +55,6 @@ input[type="color"]',
         it.each(['on', 'off'])('should pick autocomplete value', (autocomplete: string) => {
             testDom = TestDocumentCreator.createTestDocument(`
                     <input type="text" autocomplete="${autocomplete}" id="test-node">
-                    </input>
                 `);
             const node = testDom.querySelector('#test-node');
             const expectedData = {
