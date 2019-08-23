@@ -40,7 +40,7 @@ const howToTest: JSX.Element = (
 
 export const StateChanges: Requirement = {
     key: ContrastTestStep.stateChanges,
-    name: 'State Changes',
+    name: 'State changes',
     description,
     howToTest,
     ...content,

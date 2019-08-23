@@ -50,7 +50,7 @@ const howToTest: JSX.Element = (
 
 export const UIComponents: Requirement = {
     key: ContrastTestStep.uiComponents,
-    name: 'UI Components',
+    name: 'UI components',
     description,
     howToTest,
     ...content,
