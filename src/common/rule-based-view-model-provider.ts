@@ -1,22 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { GuidanceLink } from '../scanner/rule-to-links-mappings';
-import { InstanceResultStatus, UnifiedResult, UnifiedRule } from './types/store-data/unified-data-interface';
-
-export interface UnifiedRuleResult {
-    id: string;
-    status: UnifiedRuleResultStatus;
-    nodes: UnifiedResult[];
-    description: string;
-    url: string;
-    guidance: GuidanceLink[];
-}
-
-export type UnifiedRuleResultStatus = InstanceResultStatus | 'inapplicable';
-
-export type UnifiedStatusResults = {
-    [key in UnifiedRuleResultStatus]: UnifiedRuleResult[];
-};
+import {
+    UnifiedRuleResult,
+    UnifiedRuleResultStatus,
+    UnifiedStatusResults,
+} from '../DetailsView/components/cards/failed-instances-section-v2';
+import { UnifiedResult, UnifiedRule } from './types/store-data/unified-data-interface';
 
 export function getUnifiedRuleResults(rules: UnifiedRule[], results: UnifiedResult[]): UnifiedStatusResults {
     const statusResults = {
