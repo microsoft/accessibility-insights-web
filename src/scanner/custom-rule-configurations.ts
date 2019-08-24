@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { autocompleteRuleConfiguration } from './custom-rules/autocomplete-rule';
 import { colorConfiguration } from './custom-rules/color-rule';
 import { cssContentConfiguration } from './custom-rules/css-content-rule';
 import { cssPositioningConfiguration } from './custom-rules/css-positioning-rule';
@@ -37,4 +38,5 @@ export const configuration: RuleConfiguration[] = [
     customWidgetConfiguration,
     cssPositioningConfiguration,
     cssContentConfiguration,
+    autocompleteRuleConfiguration,
 ];
