@@ -1,10 +1,10 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
 steps:
-  - task: NodeTool@0
-    inputs:
-      versionSpec: "10.15.0"
-    displayName: use node 10.15.0
+    - task: NodeTool@0
+      inputs:
+          versionSpec: '12.6.0'
+      displayName: use node 12.6.0
 
-  - script: yarn install --frozen-lockfile
-    displayName: install packages and dependencies
+    - script: yarn install --frozen-lockfile
+      displayName: install packages and dependencies
