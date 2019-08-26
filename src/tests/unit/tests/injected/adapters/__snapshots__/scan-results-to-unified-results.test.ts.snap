@@ -19,7 +19,9 @@ Object {
       "resolution": Object {
         "how-to-fix-web": Object {
           "all": Array [],
-          "any": Array [],
+          "any": Array [
+            "any-test-message",
+          ],
           "none": Array [],
         },
       },
@@ -38,7 +40,9 @@ Object {
         "how-to-fix-web": Object {
           "all": Array [],
           "any": Array [],
-          "none": Array [],
+          "none": Array [
+            "none-test-message",
+          ],
         },
       },
       "ruleId": "id1",
@@ -54,7 +58,9 @@ Object {
       },
       "resolution": Object {
         "how-to-fix-web": Object {
-          "all": Array [],
+          "all": Array [
+            "all-test-message",
+          ],
           "any": Array [],
           "none": Array [],
         },

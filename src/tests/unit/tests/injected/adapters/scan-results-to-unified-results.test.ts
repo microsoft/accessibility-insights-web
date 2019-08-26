@@ -44,7 +44,13 @@ describe('ScanResults to Unified Results Test', () => {
     }
 
     const node1: AxeNodeResult = {
-        any: [],
+        any: [
+            {
+                id: 'test-id',
+                message: 'any-test-message',
+                data: {},
+            },
+        ],
         none: [],
         all: [],
         instanceId: 'id1',
@@ -54,7 +60,13 @@ describe('ScanResults to Unified Results Test', () => {
 
     const node2: AxeNodeResult = {
         any: [],
-        none: [],
+        none: [
+            {
+                id: 'none-test-id',
+                message: 'none-test-message',
+                data: {},
+            },
+        ],
         all: [],
         instanceId: 'id2',
         snippet: 'html2',
@@ -64,7 +76,13 @@ describe('ScanResults to Unified Results Test', () => {
     const node3: AxeNodeResult = {
         any: [],
         none: [],
-        all: [],
+        all: [
+            {
+                id: 'all-test-id',
+                message: 'all-test-message',
+                data: {},
+            },
+        ],
         instanceId: 'id3',
         html: 'html3',
         target: ['target3', 'id3'],
