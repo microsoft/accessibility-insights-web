@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { clone, isEqual } from 'lodash';
 import { ActionButton } from 'office-ui-fabric-react/lib/Button';
 import { Icon } from 'office-ui-fabric-react/lib/Icon';
@@ -8,8 +9,6 @@ import { Link } from 'office-ui-fabric-react/lib/Link';
 import { ITextFieldStyles, TextField } from 'office-ui-fabric-react/lib/TextField';
 import * as React from 'react';
 
-import { AssessmentsProvider } from 'assessments/types/assessments-provider';
-import { BaseStore } from '../../common/base-store';
 import { FlaggedComponent } from '../../common/components/flagged-component';
 import { FeatureFlags } from '../../common/feature-flags';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
@@ -29,7 +28,7 @@ export interface FailureInstancePanelControlProps {
     failureInstance: FailureInstanceData;
     instanceId?: string;
     assessmentsProvider: AssessmentsProvider;
-    featureFlagStoreData: BaseStore<FeatureFlagStoreData>;
+    featureFlagStoreData: FeatureFlagStoreData;
 }
 
 export type FailureInstanceData = {
