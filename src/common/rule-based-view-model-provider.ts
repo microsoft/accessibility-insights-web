@@ -1,11 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import {
-    UnifiedRuleResult,
-    UnifiedRuleResultStatus,
-    UnifiedStatusResults,
-} from '../DetailsView/components/cards/failed-instances-section-v2';
-import { AllRuleResultStatuses, UnifiedResult, UnifiedRule } from './types/store-data/unified-data-interface';
+import { UnifiedRuleResult, UnifiedStatusResults } from '../DetailsView/components/cards/failed-instances-section-v2';
+import { AllRuleResultStatuses, UnifiedResult, UnifiedRule, UnifiedRuleResultStatus } from './types/store-data/unified-data-interface';
 
 export function getUnifiedRuleResults(rules: UnifiedRule[], results: UnifiedResult[]): UnifiedStatusResults {
     const statusResults = getEmptyStatusResults();
