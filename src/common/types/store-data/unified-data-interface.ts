@@ -1,7 +1,6 @@
-import { GuidanceLink } from '../../../scanner/rule-to-links-mappings';
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { GuidanceLink } from '../../../scanner/rule-to-links-mappings';
 
 // this is similar to `TestEngine` interface from axe-core
 export interface ScanEngineProperties {
@@ -58,3 +57,5 @@ export interface UnifiedResult {
 }
 
 export type ResultStatus = 'pass' | 'fail' | 'unknown';
+
+export const AllInstanceResultStatuses = ['pass', 'fail', 'unknown'];

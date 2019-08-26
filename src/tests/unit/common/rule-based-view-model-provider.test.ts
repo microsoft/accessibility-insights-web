@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { getUnifiedRuleResults } from '../../../common/rule-based-view-model-provider';
-import { InstanceResultStatus, UnifiedResult, UnifiedRule } from '../../../common/types/store-data/unified-data-interface';
+import { ResultStatus, UnifiedResult, UnifiedRule } from '../../../common/types/store-data/unified-data-interface';
 import { UnifiedRuleResult, UnifiedStatusResults } from '../../../DetailsView/components/cards/failed-instances-section-v2';
 
 describe('RuleBasedViewModelProvider', () => {
@@ -75,7 +75,7 @@ describe('RuleBasedViewModelProvider', () => {
         };
     }
 
-    function createUnifiedResultStub(status: InstanceResultStatus, id: string): UnifiedResult {
+    function createUnifiedResultStub(status: ResultStatus, id: string): UnifiedResult {
         return {
             uid: 'stub_uid',
             status: status,
