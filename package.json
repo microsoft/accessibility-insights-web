@@ -8,8 +8,8 @@
         "url": "https://github.com/Microsoft/accessibility-insights-web"
     },
     "engines": {
-        "node": ">=10.15.0",
-        "yarn": "^1.15.2"
+        "node": ">=12.6.0",
+        "yarn": "^1.17.3"
     },
     "scripts": {
         "build": "grunt",
