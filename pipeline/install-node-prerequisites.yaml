@@ -6,13 +6,10 @@ steps:
           versionSpec: '10.16.3'
       displayName: use node 10.16.3
 
-    # next 2 scripts are a temp solution to a problem with windows hosted agents
-    # https://github.com/microsoft/azure-pipelines-tasks/issues/11199
-
     - script: npm install -g npm@6.11.1
       displayName: install npm 6.11.1
 
-    - script: npm install yarn -g
+    - script: npm install yarn@1.17.3 -g
       displayName: install yarn as a global dependency
 
     - script: yarn install --frozen-lockfile
