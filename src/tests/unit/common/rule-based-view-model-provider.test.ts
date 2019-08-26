@@ -6,10 +6,7 @@ import { UnifiedRuleResult, UnifiedStatusResults } from '../../../DetailsView/co
 
 describe('RuleBasedViewModelProvider', () => {
     test('getUnifiedRuleResults', () => {
-        const rules: UnifiedRule[] = [];
-        for (let i = 1; i <= 3; i++) {
-            rules.push(createUnifiedRuleStub(`rule${i}`));
-        }
+        const rules = getSampleRules();
 
         const resultStub1: UnifiedResult = createUnifiedResultStub('pass', 'rule1');
         const resultStub2: UnifiedResult = createUnifiedResultStub('fail', 'rule1');
@@ -85,6 +82,16 @@ describe('RuleBasedViewModelProvider', () => {
 
         expect(actualResults).toEqual(expectedResults);
     });
+
+    function getSampleRules(): UnifiedRule[] {
+        const rules: UnifiedRule[] = [];
+
+        for (let i = 1; i <= 3; i++) {
+            rules.push(createUnifiedRuleStub(`rule${i}`));
+        }
+
+        return rules;
+    }
 
     function createUnifiedRuleStub(id: string): UnifiedRule {
         return {
