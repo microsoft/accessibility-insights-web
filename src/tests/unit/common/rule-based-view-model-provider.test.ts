@@ -26,7 +26,12 @@ describe('RuleBasedViewModelProvider', () => {
                     nodes: [resultStub1],
                     description: 'stub_description_rule1',
                     url: 'stub_url_rule1',
-                    guidance: [],
+                    guidance: [
+                        {
+                            href: 'stub_guidance_href_rule1',
+                            text: 'stub_guidance_text_rule1',
+                        },
+                    ],
                 },
             ],
             fail: [
@@ -36,7 +41,12 @@ describe('RuleBasedViewModelProvider', () => {
                     nodes: [resultStub2],
                     description: 'stub_description_rule1',
                     url: 'stub_url_rule1',
-                    guidance: [],
+                    guidance: [
+                        {
+                            href: 'stub_guidance_href_rule1',
+                            text: 'stub_guidance_text_rule1',
+                        },
+                    ],
                 },
             ],
             unknown: [
@@ -46,7 +56,12 @@ describe('RuleBasedViewModelProvider', () => {
                     nodes: [resultStub3, resultStub4],
                     description: 'stub_description_rule2',
                     url: 'stub_url_rule2',
-                    guidance: [],
+                    guidance: [
+                        {
+                            href: 'stub_guidance_href_rule2',
+                            text: 'stub_guidance_text_rule2',
+                        },
+                    ],
                 },
             ],
             inapplicable: [
@@ -56,7 +71,12 @@ describe('RuleBasedViewModelProvider', () => {
                     nodes: [],
                     description: 'stub_description_rule3',
                     url: 'stub_url_rule3',
-                    guidance: [],
+                    guidance: [
+                        {
+                            href: 'stub_guidance_href_rule3',
+                            text: 'stub_guidance_text_rule3',
+                        },
+                    ],
                 } as UnifiedRuleResult,
             ],
         };
@@ -71,7 +91,12 @@ describe('RuleBasedViewModelProvider', () => {
             id: id,
             description: `stub_description_${id}`,
             url: `stub_url_${id}`,
-            guidance: [],
+            guidance: [
+                {
+                    href: `stub_guidance_href_${id}`,
+                    text: `stub_guidance_text_${id}`,
+                },
+            ],
         };
     }
 
