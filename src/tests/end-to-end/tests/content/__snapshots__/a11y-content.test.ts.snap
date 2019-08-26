@@ -2927,7 +2927,7 @@ exports[`A11Y for content pages High Contrast mode test/customWidgets/guidance 1
         Why it matters
       </h2>
       <p>
-        Many accessibility issues can be avoided simply by selecting the right native HTML widgets and implementing them to spec. If you provide good labels and instructions for your native widgets, browsers will do most of the work needed to make them accessible, including keyboard interaction, state changes, and visual styling.
+        Many accessibility issues can be avoided simply by selecting the right native HTML widgets and implementing them to spec. If native widgets have (1) accurate programmatically-related labels and instructions and (2) appropriate autocomplete attributes, browsers will do most of the remaining work needed to make them accessible, including keyboard interaction, state changes, and visual styling.
       </p>
       <p>
         Serious accessibility problems are most likely to arise when a native widget is coded in a way that changes its function. For example, a button, a text field, and a listbox might be programmed to function together as a combo box. A combo box is a custom widget, and for it to be accessible, it must follow the 
@@ -3011,6 +3011,49 @@ exports[`A11Y for content pages High Contrast mode test/customWidgets/guidance 1
               </li>
             </ul>
             <h3>
+              If a widget has visible instructions, make sure they are programmatically related to it. (
+              <a
+                class="ms-Link insights-link root-000"
+                href="https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships"
+                target="_blank"
+              >
+                WCAG 1.3.1
+              </a>
+              , 
+              <a
+                class="ms-Link insights-link root-000"
+                href="https://www.w3.org/WAI/WCAG21/Understanding/label-in-name"
+                target="_blank"
+              >
+                WCAG 2.5.3
+              </a>
+              )
+            </h3>
+            <ul>
+              <li>
+                A widget's visible label should be included in its accessible name.
+              </li>
+              <li>
+                Any additional instructions that are visible should be included in the widget's accessible description.
+              </li>
+            </ul>
+            <h3>
+              Use the widget's accessible name or accessible description to identify the expected input. (
+              <a
+                class="ms-Link insights-link root-000"
+                href="https://www.w3.org/WAI/WCAG21/Understanding/labels-or-instructions.html"
+                target="_blank"
+              >
+                WCAG 3.3.2
+              </a>
+              )
+            </h3>
+            <ul>
+              <li>
+                For example, a button should indicate what action it will initiate. A text field should indicate what type of data is expected and whether a specific format is required.
+              </li>
+            </ul>
+            <h3>
               Use the roles, states, and properties specified by the ARIA design patterns. (
               <a
                 class="ms-Link insights-link root-000"
@@ -3051,38 +3094,6 @@ exports[`A11Y for content pages High Contrast mode test/customWidgets/guidance 1
               </a>
               )
             </h3>
-            <h3>
-              If a widget has visible instructions, make sure they are programmatically related to it. (
-              <a
-                class="ms-Link insights-link root-000"
-                href="https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships"
-                target="_blank"
-              >
-                WCAG 1.3.1
-              </a>
-              )
-            </h3>
-            <ul>
-              <li>
-                All of a widget's visible instructions must be included in its accessible name or accessible description.
-              </li>
-            </ul>
-            <h3>
-              Use the widget's accessible name or accessible description to identify the expected input. (
-              <a
-                class="ms-Link insights-link root-000"
-                href="https://www.w3.org/WAI/WCAG21/Understanding/labels-or-instructions.html"
-                target="_blank"
-              >
-                WCAG 3.3.2
-              </a>
-              )
-            </h3>
-            <ul>
-              <li>
-                For example, a button should indicate what action it will initiate. A text field should indicate what type of data is expected and whether a specific format is required.
-              </li>
-            </ul>
           </div>
         </div>
         <div
@@ -3207,6 +3218,208 @@ exports[`A11Y for content pages High Contrast mode test/customWidgets/guidance 1
           target="_blank"
         >
           WAI-ARIA Authoring Practices 1.1: Design Patterns and Widgets
+        </a>
+      </div>
+      <h3>
+        Make sure labels and instructions are programmatically related
+      </h3>
+      <h4>
+        WCAG success criteria
+      </h4>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Understanding/label-in-name.html"
+          target="_blank"
+        >
+          Understanding 2.5.3 Label in Name
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships.html"
+          target="_blank"
+        >
+          Understanding Success Criterion 1.3.1: Info and Relationships
+        </a>
+      </div>
+      <h4>
+        Sufficient techniques
+      </h4>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/general/G208"
+          target="_blank"
+        >
+          Ensure the "accessible name" includes the visible text
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/html/H91"
+          target="_blank"
+        >
+          Using HTML form controls and links
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/html/H44"
+          target="_blank"
+        >
+          Using label elements to associate text labels with form controls
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/aria/ARIA14"
+          target="_blank"
+        >
+          Using aria-label to provide an invisible label where a visible label cannot be used
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/aria/ARIA16"
+          target="_blank"
+        >
+          Using aria-labelledby to provide a name for user interface controls
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/html/H65"
+          target="_blank"
+        >
+          Using the title attribute to identify form controls when the label element cannot be used
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/html/H71"
+          target="_blank"
+        >
+          Providing a description for groups of form controls using fieldset and legend elements
+        </a>
+      </div>
+      <h4>
+        Common failures
+      </h4>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/failures/F96"
+          target="_blank"
+        >
+          Failure due to "accessible name" not containing the visible label text
+        </a>
+      </div>
+      <h4>
+        Additional guidance
+      </h4>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/general/G162"
+          target="_blank"
+        >
+          Positioning labels to maximize predictability of relationships
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/aria/ARIA1"
+          target="_blank"
+        >
+          Using the aria-describedby property to provide a descriptive label for user interface controls
+        </a>
+      </div>
+      <h3>
+        Identify the expected input
+      </h3>
+      <h4>
+        WCAG success criteria
+      </h4>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Understanding/labels-or-instructions.html"
+          target="_blank"
+        >
+          Understanding Success Criterion 3.3.2: Labels or Instructions
+        </a>
+      </div>
+      <h4>
+        Sufficient techniques
+      </h4>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/general/G131"
+          target="_blank"
+        >
+          Providing descriptive labels
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/aria/ARIA1"
+          target="_blank"
+        >
+          Using the aria-describedby property to provide a descriptive label for user interface controls
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/aria/ARIA9"
+          target="_blank"
+        >
+          Using aria-labelledby to concatenate a label from several text nodes
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/aria/ARIA17"
+          target="_blank"
+        >
+          Using grouping roles to identify related form controls
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/general/G89"
+          target="_blank"
+        >
+          Providing expected data format and example
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/general/G184"
+          target="_blank"
+        >
+          Providing text instructions at the beginning of a form or set of fields that describes the necessary input
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/general/G162"
+          target="_blank"
+        >
+          Positioning labels to maximize predictability of relationships
+        </a>
+      </div>
+      <h4>
+        Common failures
+      </h4>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/failures/F82"
+          target="_blank"
+        >
+          Failure of Success Criterion 3.3.2 by visually formatting a set of phone number fields but not including a text label
         </a>
       </div>
       <h3>
@@ -3465,19 +3678,19 @@ exports[`A11Y for content pages High Contrast mode test/customWidgets/instructio
         Instructions
       </h1>
       <p>
-        If a custom widget has visible instructions, they must be programmatically related to it.
+        If a custom widget has visible label or instructions, they must be programmatically related to it.
       </p>
       <h2>
         Why it matters
       </h2>
       <p>
-        People with good vision can identify a widget's instructions by visually scanning the page and interpreting visual characteristics such as proximity. To provide an equivalent experience for people who use assistive technologies, a widget's instructions must be programmatically related to it.
+        People with good vision can identify a widget's label and instructions by visually scanning the page and interpreting visual characteristics such as proximity. To provide an equivalent experience for people who use assistive technologies, a widget's label and instructions must be programmatically related to it.
       </p>
       <h2>
         How to fix
       </h2>
       <p>
-        Make sure all of the widget's visible instructions are included in its accessible name or accessible description.
+        Make sure all of the widget's visible label and instructions are included in its accessible name or accessible description.
       </p>
       <h2>
         Example
@@ -3548,7 +3761,7 @@ exports[`A11Y for content pages High Contrast mode test/customWidgets/instructio
                 >
                   &lt;div&gt;Shirt sizes are unisex and can be worn by both men and women. Women typically choose smaller sizes, such as xxs-m, while
                   <br />
-                               men choose s-xxl.&lt;/div&gt;
+                              men choose s-xxl.&lt;/div&gt;
                 </span>
               </div>
             </div>
@@ -3658,9 +3871,31 @@ exports[`A11Y for content pages High Contrast mode test/customWidgets/instructio
           Understanding Success Criterion 1.3.1: Info and Relationships
         </a>
       </div>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Understanding/label-in-name.html"
+          target="_blank"
+        >
+          Understanding 2.5.3 Label in Name
+        </a>
+      </div>
       <h4>
         Sufficient techniques
       </h4>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/general/G208"
+          target="_blank"
+        >
+          Ensure the "accessible name" includes the visible text
+        </a>
+      </div>
       <div
         class="content-hyperlinks"
       >
@@ -3677,6 +3912,20 @@ exports[`A11Y for content pages High Contrast mode test/customWidgets/instructio
           target="_blank"
         >
           Using aria-labelledby to provide a name for user interface controls
+        </a>
+      </div>
+      <h4>
+        Common failures
+      </h4>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/failures/F96"
+          target="_blank"
+        >
+          Failure due to "accessible name" not containing the visible label text
         </a>
       </div>
       <h3>
@@ -18842,6 +19091,13 @@ exports[`A11Y for content pages High Contrast mode test/nativeWidgets/cues/infoA
       >
         <a
           class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Understanding/label-in-name.html"
+          target="_blank"
+        >
+          Understanding 2.5.3 Label in Name
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
           href="https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships.html"
           target="_blank"
         >
@@ -18909,7 +19165,7 @@ exports[`A11Y for content pages High Contrast mode test/nativeWidgets/guidance 1
         Why it matters
       </h2>
       <p>
-        Many accessibility issues can be avoided simply by selecting the right native HTML widgets and implementing them to spec. If you provide good labels and instructions for your native widgets, browsers will do most of the work needed to make them accessible, including keyboard interaction, state changes, and visual styling.
+        Many accessibility issues can be avoided simply by selecting the right native HTML widgets and implementing them to spec. If your native widgets have (1) accurate programmatically-related labels and instructions and (2) appropriate autocomplete attributes, browsers will do most of the remaining work needed to make them accessible, including keyboard interaction, state changes, and visual styling.
       </p>
       <p>
         Serious accessibility problems are most likely to arise when a native widget is coded in a way that changes its function. For example, a button, a text field, and a listbox might be programmed to function together as a combo box. A combo box is a custom widget, and for it to be accessible, it must follow the 
@@ -18993,7 +19249,7 @@ exports[`A11Y for content pages High Contrast mode test/nativeWidgets/guidance 1
               </li>
             </ul>
             <h3>
-              If a widget has visible instructions, make sure they are programmatically related to it. (
+              If a widget has visible label or instructions, make sure they are programmatically related to it. (
               <a
                 class="ms-Link insights-link root-000"
                 href="https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships"
@@ -19001,15 +19257,26 @@ exports[`A11Y for content pages High Contrast mode test/nativeWidgets/guidance 1
               >
                 WCAG 1.3.1
               </a>
+              , 
+              <a
+                class="ms-Link insights-link root-000"
+                href="https://www.w3.org/WAI/WCAG21/Understanding/label-in-name"
+                target="_blank"
+              >
+                WCAG 2.5.3
+              </a>
               )
             </h3>
             <ul>
               <li>
-                All of a widget's visible instructions must be included in its accessible name or accessible description.
+                A widget's visible label should be included in its accessible name.
+              </li>
+              <li>
+                Any additional instructions that are visible should be included in the widget's accessible description.
               </li>
             </ul>
             <h3>
-              Make sure the widget's accessible name or accessible description identifies the expected input. (
+              Use the widget's accessible name and/or accessible description to identify the expected input (
               <a
                 class="ms-Link insights-link root-000"
                 href="https://www.w3.org/WAI/WCAG21/Understanding/labels-or-instructions.html"
@@ -19024,6 +19291,25 @@ exports[`A11Y for content pages High Contrast mode test/nativeWidgets/guidance 1
                 For example, a button should indicate what action it will initiate. A text field should indicate what type of data is expected and whether a specific format is required.
               </li>
             </ul>
+            <h3>
+              For any form field that serves an 
+              <a
+                class="ms-Link insights-link root-000"
+                href="https://www.w3.org/TR/WCAG21/#input-purposes"
+                target="_blank"
+              >
+                identified input purpose
+              </a>
+              , provide the appropriate HTML 5.2 autocomplete attribute. (
+              <a
+                class="ms-Link insights-link root-000"
+                href="https://www.w3.org/WAI/WCAG21/Understanding/identify-input-purpose.html"
+                target="_blank"
+              >
+                WCAG 1.3.5
+              </a>
+              )
+            </h3>
             <h3>
               Make sure the widget provides the appropriate cues if it is disabled, read-only, or required. (
               <a
@@ -19153,7 +19439,7 @@ exports[`A11Y for content pages High Contrast mode test/nativeWidgets/guidance 1
         </a>
       </div>
       <h3>
-        Make sure instructions are programmatically related
+        Provide programmatically-related labels and instructions
       </h3>
       <h4>
         WCAG success criteria
@@ -19175,6 +19461,13 @@ exports[`A11Y for content pages High Contrast mode test/nativeWidgets/guidance 1
       <div
         class="content-hyperlinks"
       >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/general/G208"
+          target="_blank"
+        >
+          Ensure the "accessible name" includes the visible text
+        </a>
         <a
           class="ms-Link insights-link root-000"
           href="https://www.w3.org/WAI/WCAG21/Techniques/html/H91"
@@ -19216,6 +19509,20 @@ exports[`A11Y for content pages High Contrast mode test/nativeWidgets/guidance 1
           target="_blank"
         >
           Providing a description for groups of form controls using fieldset and legend elements
+        </a>
+      </div>
+      <h4>
+        Common failures
+      </h4>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/failures/F96"
+          target="_blank"
+        >
+          Failure due to "accessible name" not containing the visible label text
         </a>
       </div>
       <h4>
@@ -19327,6 +19634,37 @@ exports[`A11Y for content pages High Contrast mode test/nativeWidgets/guidance 1
         </a>
       </div>
       <h3>
+        Provide autocomplete attributes
+      </h3>
+      <h4>
+        WCAG success criteria
+      </h4>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Understanding/identify-input-purpose.html"
+          target="_blank"
+        >
+          Understanding 1.3.5 Identify Input Purpose
+        </a>
+      </div>
+      <h4>
+        Sufficient techniques
+      </h4>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/html/H98"
+          target="_blank"
+        >
+          Using HTML 5.2 autocomplete attributes
+        </a>
+      </div>
+      <h3>
         Provide appropriate cues
       </h3>
       <h4>
@@ -19401,19 +19739,19 @@ exports[`A11Y for content pages High Contrast mode test/nativeWidgets/instructio
         Instructions
       </h1>
       <p>
-        If a native widget has visible instructions, they must be programmatically related to it.
+        If a native widget has visible label or instructions, they must be programmatically related to it.
       </p>
       <h2>
         Why it matters
       </h2>
       <p>
-        People with good vision can identify a widget's instructions by visually scanning the page and interpreting visual characteristics such as proximity. To provide an equivalent experience for people who use assistive technologies, a widget's instructions must be programmatically related to it.
+        People with good vision can identify a widget's label and instructions by visually scanning the page and interpreting visual characteristics such as proximity. To provide an equivalent experience for people who use assistive technologies, a widget's label and instructions must be programmatically related to it.
       </p>
       <h2>
         How to fix
       </h2>
       <p>
-        Make sure all of the widget's visible instructions are included in its accessible name or accessible description.
+        Make sure all of the widget's visible label and instructions are included in its accessible name or accessible description.
       </p>
       <h2>
         Example
@@ -19576,9 +19914,31 @@ exports[`A11Y for content pages High Contrast mode test/nativeWidgets/instructio
           Understanding Success Criterion 1.3.1: Info and Relationships
         </a>
       </div>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Understanding/label-in-name.html"
+          target="_blank"
+        >
+          Understanding 2.5.3 Label in Name
+        </a>
+      </div>
       <h4>
         Sufficient techniques
       </h4>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/general/G208"
+          target="_blank"
+        >
+          Ensure the "accessible name" includes the visible text
+        </a>
+      </div>
       <div
         class="content-hyperlinks"
       >
@@ -19623,6 +19983,20 @@ exports[`A11Y for content pages High Contrast mode test/nativeWidgets/instructio
           target="_blank"
         >
           Providing a description for groups of form controls using fieldset and legend elements
+        </a>
+      </div>
+      <h4>
+        Common failures
+      </h4>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/failures/F96"
+          target="_blank"
+        >
+          Failure due to "accessible name" not containing the visible label text
         </a>
       </div>
       <h3>
@@ -35377,7 +35751,7 @@ exports[`A11Y for content pages Normal mode test/customWidgets/guidance 1`] = `
         Why it matters
       </h2>
       <p>
-        Many accessibility issues can be avoided simply by selecting the right native HTML widgets and implementing them to spec. If you provide good labels and instructions for your native widgets, browsers will do most of the work needed to make them accessible, including keyboard interaction, state changes, and visual styling.
+        Many accessibility issues can be avoided simply by selecting the right native HTML widgets and implementing them to spec. If native widgets have (1) accurate programmatically-related labels and instructions and (2) appropriate autocomplete attributes, browsers will do most of the remaining work needed to make them accessible, including keyboard interaction, state changes, and visual styling.
       </p>
       <p>
         Serious accessibility problems are most likely to arise when a native widget is coded in a way that changes its function. For example, a button, a text field, and a listbox might be programmed to function together as a combo box. A combo box is a custom widget, and for it to be accessible, it must follow the 
@@ -35461,6 +35835,49 @@ exports[`A11Y for content pages Normal mode test/customWidgets/guidance 1`] = `
               </li>
             </ul>
             <h3>
+              If a widget has visible instructions, make sure they are programmatically related to it. (
+              <a
+                class="ms-Link insights-link root-000"
+                href="https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships"
+                target="_blank"
+              >
+                WCAG 1.3.1
+              </a>
+              , 
+              <a
+                class="ms-Link insights-link root-000"
+                href="https://www.w3.org/WAI/WCAG21/Understanding/label-in-name"
+                target="_blank"
+              >
+                WCAG 2.5.3
+              </a>
+              )
+            </h3>
+            <ul>
+              <li>
+                A widget's visible label should be included in its accessible name.
+              </li>
+              <li>
+                Any additional instructions that are visible should be included in the widget's accessible description.
+              </li>
+            </ul>
+            <h3>
+              Use the widget's accessible name or accessible description to identify the expected input. (
+              <a
+                class="ms-Link insights-link root-000"
+                href="https://www.w3.org/WAI/WCAG21/Understanding/labels-or-instructions.html"
+                target="_blank"
+              >
+                WCAG 3.3.2
+              </a>
+              )
+            </h3>
+            <ul>
+              <li>
+                For example, a button should indicate what action it will initiate. A text field should indicate what type of data is expected and whether a specific format is required.
+              </li>
+            </ul>
+            <h3>
               Use the roles, states, and properties specified by the ARIA design patterns. (
               <a
                 class="ms-Link insights-link root-000"
@@ -35501,38 +35918,6 @@ exports[`A11Y for content pages Normal mode test/customWidgets/guidance 1`] = `
               </a>
               )
             </h3>
-            <h3>
-              If a widget has visible instructions, make sure they are programmatically related to it. (
-              <a
-                class="ms-Link insights-link root-000"
-                href="https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships"
-                target="_blank"
-              >
-                WCAG 1.3.1
-              </a>
-              )
-            </h3>
-            <ul>
-              <li>
-                All of a widget's visible instructions must be included in its accessible name or accessible description.
-              </li>
-            </ul>
-            <h3>
-              Use the widget's accessible name or accessible description to identify the expected input. (
-              <a
-                class="ms-Link insights-link root-000"
-                href="https://www.w3.org/WAI/WCAG21/Understanding/labels-or-instructions.html"
-                target="_blank"
-              >
-                WCAG 3.3.2
-              </a>
-              )
-            </h3>
-            <ul>
-              <li>
-                For example, a button should indicate what action it will initiate. A text field should indicate what type of data is expected and whether a specific format is required.
-              </li>
-            </ul>
           </div>
         </div>
         <div
@@ -35657,6 +36042,208 @@ exports[`A11Y for content pages Normal mode test/customWidgets/guidance 1`] = `
           target="_blank"
         >
           WAI-ARIA Authoring Practices 1.1: Design Patterns and Widgets
+        </a>
+      </div>
+      <h3>
+        Make sure labels and instructions are programmatically related
+      </h3>
+      <h4>
+        WCAG success criteria
+      </h4>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Understanding/label-in-name.html"
+          target="_blank"
+        >
+          Understanding 2.5.3 Label in Name
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships.html"
+          target="_blank"
+        >
+          Understanding Success Criterion 1.3.1: Info and Relationships
+        </a>
+      </div>
+      <h4>
+        Sufficient techniques
+      </h4>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/general/G208"
+          target="_blank"
+        >
+          Ensure the "accessible name" includes the visible text
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/html/H91"
+          target="_blank"
+        >
+          Using HTML form controls and links
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/html/H44"
+          target="_blank"
+        >
+          Using label elements to associate text labels with form controls
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/aria/ARIA14"
+          target="_blank"
+        >
+          Using aria-label to provide an invisible label where a visible label cannot be used
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/aria/ARIA16"
+          target="_blank"
+        >
+          Using aria-labelledby to provide a name for user interface controls
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/html/H65"
+          target="_blank"
+        >
+          Using the title attribute to identify form controls when the label element cannot be used
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/html/H71"
+          target="_blank"
+        >
+          Providing a description for groups of form controls using fieldset and legend elements
+        </a>
+      </div>
+      <h4>
+        Common failures
+      </h4>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/failures/F96"
+          target="_blank"
+        >
+          Failure due to "accessible name" not containing the visible label text
+        </a>
+      </div>
+      <h4>
+        Additional guidance
+      </h4>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/general/G162"
+          target="_blank"
+        >
+          Positioning labels to maximize predictability of relationships
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/aria/ARIA1"
+          target="_blank"
+        >
+          Using the aria-describedby property to provide a descriptive label for user interface controls
+        </a>
+      </div>
+      <h3>
+        Identify the expected input
+      </h3>
+      <h4>
+        WCAG success criteria
+      </h4>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Understanding/labels-or-instructions.html"
+          target="_blank"
+        >
+          Understanding Success Criterion 3.3.2: Labels or Instructions
+        </a>
+      </div>
+      <h4>
+        Sufficient techniques
+      </h4>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/general/G131"
+          target="_blank"
+        >
+          Providing descriptive labels
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/aria/ARIA1"
+          target="_blank"
+        >
+          Using the aria-describedby property to provide a descriptive label for user interface controls
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/aria/ARIA9"
+          target="_blank"
+        >
+          Using aria-labelledby to concatenate a label from several text nodes
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/aria/ARIA17"
+          target="_blank"
+        >
+          Using grouping roles to identify related form controls
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/general/G89"
+          target="_blank"
+        >
+          Providing expected data format and example
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/general/G184"
+          target="_blank"
+        >
+          Providing text instructions at the beginning of a form or set of fields that describes the necessary input
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/general/G162"
+          target="_blank"
+        >
+          Positioning labels to maximize predictability of relationships
+        </a>
+      </div>
+      <h4>
+        Common failures
+      </h4>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/failures/F82"
+          target="_blank"
+        >
+          Failure of Success Criterion 3.3.2 by visually formatting a set of phone number fields but not including a text label
         </a>
       </div>
       <h3>
@@ -35915,19 +36502,19 @@ exports[`A11Y for content pages Normal mode test/customWidgets/instructions/info
         Instructions
       </h1>
       <p>
-        If a custom widget has visible instructions, they must be programmatically related to it.
+        If a custom widget has visible label or instructions, they must be programmatically related to it.
       </p>
       <h2>
         Why it matters
       </h2>
       <p>
-        People with good vision can identify a widget's instructions by visually scanning the page and interpreting visual characteristics such as proximity. To provide an equivalent experience for people who use assistive technologies, a widget's instructions must be programmatically related to it.
+        People with good vision can identify a widget's label and instructions by visually scanning the page and interpreting visual characteristics such as proximity. To provide an equivalent experience for people who use assistive technologies, a widget's label and instructions must be programmatically related to it.
       </p>
       <h2>
         How to fix
       </h2>
       <p>
-        Make sure all of the widget's visible instructions are included in its accessible name or accessible description.
+        Make sure all of the widget's visible label and instructions are included in its accessible name or accessible description.
       </p>
       <h2>
         Example
@@ -35998,7 +36585,7 @@ exports[`A11Y for content pages Normal mode test/customWidgets/instructions/info
                 >
                   &lt;div&gt;Shirt sizes are unisex and can be worn by both men and women. Women typically choose smaller sizes, such as xxs-m, while
                   <br />
-                               men choose s-xxl.&lt;/div&gt;
+                              men choose s-xxl.&lt;/div&gt;
                 </span>
               </div>
             </div>
@@ -36108,9 +36695,31 @@ exports[`A11Y for content pages Normal mode test/customWidgets/instructions/info
           Understanding Success Criterion 1.3.1: Info and Relationships
         </a>
       </div>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Understanding/label-in-name.html"
+          target="_blank"
+        >
+          Understanding 2.5.3 Label in Name
+        </a>
+      </div>
       <h4>
         Sufficient techniques
       </h4>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/general/G208"
+          target="_blank"
+        >
+          Ensure the "accessible name" includes the visible text
+        </a>
+      </div>
       <div
         class="content-hyperlinks"
       >
@@ -36127,6 +36736,20 @@ exports[`A11Y for content pages Normal mode test/customWidgets/instructions/info
           target="_blank"
         >
           Using aria-labelledby to provide a name for user interface controls
+        </a>
+      </div>
+      <h4>
+        Common failures
+      </h4>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/failures/F96"
+          target="_blank"
+        >
+          Failure due to "accessible name" not containing the visible label text
         </a>
       </div>
       <h3>
@@ -51292,6 +51915,13 @@ exports[`A11Y for content pages Normal mode test/nativeWidgets/cues/infoAndExamp
       >
         <a
           class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Understanding/label-in-name.html"
+          target="_blank"
+        >
+          Understanding 2.5.3 Label in Name
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
           href="https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships.html"
           target="_blank"
         >
@@ -51359,7 +51989,7 @@ exports[`A11Y for content pages Normal mode test/nativeWidgets/guidance 1`] = `
         Why it matters
       </h2>
       <p>
-        Many accessibility issues can be avoided simply by selecting the right native HTML widgets and implementing them to spec. If you provide good labels and instructions for your native widgets, browsers will do most of the work needed to make them accessible, including keyboard interaction, state changes, and visual styling.
+        Many accessibility issues can be avoided simply by selecting the right native HTML widgets and implementing them to spec. If your native widgets have (1) accurate programmatically-related labels and instructions and (2) appropriate autocomplete attributes, browsers will do most of the remaining work needed to make them accessible, including keyboard interaction, state changes, and visual styling.
       </p>
       <p>
         Serious accessibility problems are most likely to arise when a native widget is coded in a way that changes its function. For example, a button, a text field, and a listbox might be programmed to function together as a combo box. A combo box is a custom widget, and for it to be accessible, it must follow the 
@@ -51443,7 +52073,7 @@ exports[`A11Y for content pages Normal mode test/nativeWidgets/guidance 1`] = `
               </li>
             </ul>
             <h3>
-              If a widget has visible instructions, make sure they are programmatically related to it. (
+              If a widget has visible label or instructions, make sure they are programmatically related to it. (
               <a
                 class="ms-Link insights-link root-000"
                 href="https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships"
@@ -51451,15 +52081,26 @@ exports[`A11Y for content pages Normal mode test/nativeWidgets/guidance 1`] = `
               >
                 WCAG 1.3.1
               </a>
+              , 
+              <a
+                class="ms-Link insights-link root-000"
+                href="https://www.w3.org/WAI/WCAG21/Understanding/label-in-name"
+                target="_blank"
+              >
+                WCAG 2.5.3
+              </a>
               )
             </h3>
             <ul>
               <li>
-                All of a widget's visible instructions must be included in its accessible name or accessible description.
+                A widget's visible label should be included in its accessible name.
+              </li>
+              <li>
+                Any additional instructions that are visible should be included in the widget's accessible description.
               </li>
             </ul>
             <h3>
-              Make sure the widget's accessible name or accessible description identifies the expected input. (
+              Use the widget's accessible name and/or accessible description to identify the expected input (
               <a
                 class="ms-Link insights-link root-000"
                 href="https://www.w3.org/WAI/WCAG21/Understanding/labels-or-instructions.html"
@@ -51474,6 +52115,25 @@ exports[`A11Y for content pages Normal mode test/nativeWidgets/guidance 1`] = `
                 For example, a button should indicate what action it will initiate. A text field should indicate what type of data is expected and whether a specific format is required.
               </li>
             </ul>
+            <h3>
+              For any form field that serves an 
+              <a
+                class="ms-Link insights-link root-000"
+                href="https://www.w3.org/TR/WCAG21/#input-purposes"
+                target="_blank"
+              >
+                identified input purpose
+              </a>
+              , provide the appropriate HTML 5.2 autocomplete attribute. (
+              <a
+                class="ms-Link insights-link root-000"
+                href="https://www.w3.org/WAI/WCAG21/Understanding/identify-input-purpose.html"
+                target="_blank"
+              >
+                WCAG 1.3.5
+              </a>
+              )
+            </h3>
             <h3>
               Make sure the widget provides the appropriate cues if it is disabled, read-only, or required. (
               <a
@@ -51603,7 +52263,7 @@ exports[`A11Y for content pages Normal mode test/nativeWidgets/guidance 1`] = `
         </a>
       </div>
       <h3>
-        Make sure instructions are programmatically related
+        Provide programmatically-related labels and instructions
       </h3>
       <h4>
         WCAG success criteria
@@ -51625,6 +52285,13 @@ exports[`A11Y for content pages Normal mode test/nativeWidgets/guidance 1`] = `
       <div
         class="content-hyperlinks"
       >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/general/G208"
+          target="_blank"
+        >
+          Ensure the "accessible name" includes the visible text
+        </a>
         <a
           class="ms-Link insights-link root-000"
           href="https://www.w3.org/WAI/WCAG21/Techniques/html/H91"
@@ -51666,6 +52333,20 @@ exports[`A11Y for content pages Normal mode test/nativeWidgets/guidance 1`] = `
           target="_blank"
         >
           Providing a description for groups of form controls using fieldset and legend elements
+        </a>
+      </div>
+      <h4>
+        Common failures
+      </h4>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/failures/F96"
+          target="_blank"
+        >
+          Failure due to "accessible name" not containing the visible label text
         </a>
       </div>
       <h4>
@@ -51777,6 +52458,37 @@ exports[`A11Y for content pages Normal mode test/nativeWidgets/guidance 1`] = `
         </a>
       </div>
       <h3>
+        Provide autocomplete attributes
+      </h3>
+      <h4>
+        WCAG success criteria
+      </h4>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Understanding/identify-input-purpose.html"
+          target="_blank"
+        >
+          Understanding 1.3.5 Identify Input Purpose
+        </a>
+      </div>
+      <h4>
+        Sufficient techniques
+      </h4>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/html/H98"
+          target="_blank"
+        >
+          Using HTML 5.2 autocomplete attributes
+        </a>
+      </div>
+      <h3>
         Provide appropriate cues
       </h3>
       <h4>
@@ -51851,19 +52563,19 @@ exports[`A11Y for content pages Normal mode test/nativeWidgets/instructions/info
         Instructions
       </h1>
       <p>
-        If a native widget has visible instructions, they must be programmatically related to it.
+        If a native widget has visible label or instructions, they must be programmatically related to it.
       </p>
       <h2>
         Why it matters
       </h2>
       <p>
-        People with good vision can identify a widget's instructions by visually scanning the page and interpreting visual characteristics such as proximity. To provide an equivalent experience for people who use assistive technologies, a widget's instructions must be programmatically related to it.
+        People with good vision can identify a widget's label and instructions by visually scanning the page and interpreting visual characteristics such as proximity. To provide an equivalent experience for people who use assistive technologies, a widget's label and instructions must be programmatically related to it.
       </p>
       <h2>
         How to fix
       </h2>
       <p>
-        Make sure all of the widget's visible instructions are included in its accessible name or accessible description.
+        Make sure all of the widget's visible label and instructions are included in its accessible name or accessible description.
       </p>
       <h2>
         Example
@@ -52026,9 +52738,31 @@ exports[`A11Y for content pages Normal mode test/nativeWidgets/instructions/info
           Understanding Success Criterion 1.3.1: Info and Relationships
         </a>
       </div>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Understanding/label-in-name.html"
+          target="_blank"
+        >
+          Understanding 2.5.3 Label in Name
+        </a>
+      </div>
       <h4>
         Sufficient techniques
       </h4>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/general/G208"
+          target="_blank"
+        >
+          Ensure the "accessible name" includes the visible text
+        </a>
+      </div>
       <div
         class="content-hyperlinks"
       >
@@ -52073,6 +52807,20 @@ exports[`A11Y for content pages Normal mode test/nativeWidgets/instructions/info
           target="_blank"
         >
           Providing a description for groups of form controls using fieldset and legend elements
+        </a>
+      </div>
+      <h4>
+        Common failures
+      </h4>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/failures/F96"
+          target="_blank"
+        >
+          Failure due to "accessible name" not containing the visible label text
         </a>
       </div>
       <h3>
