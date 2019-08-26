@@ -13,8 +13,5 @@ steps:
     - script: npm install -g npm@6.11.1
       displayName: install npm 6.11.1
 
-    - script: npm run prepare - successful
-      displayName: check if npm is proper
-
     - script: yarn install --frozen-lockfile
       displayName: install packages and dependencies
