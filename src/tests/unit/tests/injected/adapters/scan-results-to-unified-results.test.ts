@@ -17,15 +17,13 @@ describe('ScanResults to Unified Results Test', () => {
             .returns(() => guidStub)
             .verifiable(Times.atLeastOnce());
     });
-
-    test('convertScanResultsToUnifiedResults provides a UnifiedResult instance', () => {
-        const scanResultsStub: ScanResults = {} as ScanResults;
-
-        const unifiedResults = convertScanResultsToUnifiedResults(scanResultsStub, generateGuidMock.object);
+    const nullIdentifiers = [null, undefined, {}];
+    test.each(nullIdentifiers)('convertScanResultsToUnifiedResults provides a defined UnifiedResult instance %s', scanResultStub => {
+        const unifiedResults = convertScanResultsToUnifiedResults(scanResultStub as ScanResults, generateGuidMock.object);
         expect(unifiedResults).toBeDefined();
     });
 
-    test('convesion works fine when the only value in the scanresults is timeStamp', () => {
+    test('convesion works fine when there is no data in scanresults', () => {
         const scanResultsStub: ScanResults = createTestResultsWithNoData();
         expect(convertScanResultsToUnifiedResults(scanResultsStub, generateGuidMock.object)).toMatchSnapshot();
     });

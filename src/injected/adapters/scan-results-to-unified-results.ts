@@ -22,6 +22,9 @@ interface CreationData extends RuleResultData {
 }
 
 export const convertScanResultsToUnifiedResults = (scanResults: ScanResults, uuidGenerator: UUIDGeneratorType): UnifiedResults => {
+    if (!scanResults) {
+        return {} as UnifiedResults;
+    }
     return {
         results: createUnifiedResultsFromScanResults(scanResults, uuidGenerator),
     } as UnifiedResults;
