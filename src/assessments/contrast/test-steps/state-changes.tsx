@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { NewTabLink } from 'common/components/new-tab-link';
+import { MacContrastCheckerAppLink, WindowsContrastCheckerAppLink } from 'common/components/contrast-checker-app-links';
 import { link } from 'content/link';
 import * as content from 'content/test/contrast/state-changes';
 import * as React from 'react';
@@ -18,7 +18,7 @@ const howToTest: JSX.Element = (
         <p>The visual helper for this requirement highlights links, native widgets, and custom widgets in the target page.</p>
         <ol>
             <li>
-                In the target page, examine each highlighted user interface component in each of the following states:
+                In the target page, examine each highlighted element in each of the following states:
                 <ol>
                     <li>Normal</li>
                     <li>Focused</li>
@@ -27,11 +27,10 @@ const howToTest: JSX.Element = (
                 </ol>
             </li>
             <li>
-                If any component indicates state changes solely by a change of color, use{' '}
-                <NewTabLink href="https://accessibilityinsights.io/docs/en/windows/getstarted/colorcontrast">
-                    Accessibility Insights for Windows
-                </NewTabLink>{' '}
-                to verify that the contrast ratio between different states is at least 3:1.
+                If any component indicates state changes solely by a change of color, use <WindowsContrastCheckerAppLink /> to verify that
+                the contrast ratio between different states is at least 3:1. (If you are testing on a Mac, you can use the{' '}
+                <MacContrastCheckerAppLink />
+                .)
             </li>
             <AssistedTestRecordYourResults />
         </ol>

@@ -15,7 +15,8 @@ export const infoAndExamples = create(({ Markup }) => (
             A control's state changes can be indicated through changes in visual characteristics, such as shape, size, and color. If a color
             change <Markup.Emphasis>alone</Markup.Emphasis> is used to indicate a change of state, users must be able to perceive the color
             change. Sufficient contrast between states makes it easier for people with mild visual disabilities, low vision, limited color
-            perception, or presbyopia to perceive color changes.
+            perception, or <Markup.HyperLink href="https://en.wikipedia.org/wiki/Presbyopia">presbyopia</Markup.HyperLink> to perceive color
+            changes.
         </p>
 
         <h2>How to fix</h2>

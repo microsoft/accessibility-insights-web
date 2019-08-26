@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { NewTabLink } from 'common/components/new-tab-link';
+import { MacContrastCheckerAppLink, WindowsContrastCheckerAppLink } from 'common/components/contrast-checker-app-links';
 import { link } from 'content/link';
 import * as content from 'content/test/contrast/ui-components';
 import * as React from 'react';
@@ -27,12 +27,9 @@ const howToTest: JSX.Element = (
                 </ol>
             </li>
             <li>
-                In each state, use{' '}
-                <NewTabLink href="https://accessibilityinsights.io/docs/en/windows/getstarted/colorcontrast">
-                    Accessibility Insights for Windows
-                </NewTabLink>{' '}
-                to verify that the following visual presentations (if implemented) have a contrast ratio of at least 3:1 against the
-                adjacent background:
+                In each state, use <WindowsContrastCheckerAppLink /> (or if you are testing on a Mac, the <MacContrastCheckerAppLink />) to
+                verify that the following visual presentations (if implemented) have a contrast ratio of at least 3:1 against the adjacent
+                background:
                 <ol>
                     <li>Any visual effect that indicates state</li>
                     <li>Any visual boundary that indicates the component's clickable area</li>
