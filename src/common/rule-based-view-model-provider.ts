@@ -5,7 +5,7 @@ import {
     UnifiedRuleResultStatus,
     UnifiedStatusResults,
 } from '../DetailsView/components/cards/failed-instances-section-v2';
-import { UnifiedResult, UnifiedRule } from './types/store-data/unified-data-interface';
+import { AllInstanceResultStatuses, UnifiedResult, UnifiedRule } from './types/store-data/unified-data-interface';
 
 export function getUnifiedRuleResults(rules: UnifiedRule[], results: UnifiedResult[]): UnifiedStatusResults {
     const statusResults = {
@@ -18,13 +18,7 @@ export function getUnifiedRuleResults(rules: UnifiedRule[], results: UnifiedResu
     const ruleIdsWithResultNodes: Set<string> = new Set();
 
     for (const result of results) {
-        if (result.status === 'pass') {
-            resultToRuleResult(result, rules, result.status, statusResults.pass);
-        } else if (result.status === 'fail') {
-            resultToRuleResult(result, rules, result.status, statusResults.fail);
-        } else if (result.status === 'unknown') {
-            resultToRuleResult(result, rules, result.status, statusResults.unknown);
-        }
+        resultToRuleResult(result, rules, result.status, statusResults[result.status]);
         ruleIdsWithResultNodes.add(result.ruleId);
     }
 
