@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-
+import { flatMap } from 'lodash';
 import { ResultStatus, UnifiedResult, UnifiedResults } from '../../common/types/store-data/unified-data-interface';
 import { AxeNodeResult, RuleResult, ScanResults } from '../../scanner/iruleresults';
 
@@ -28,12 +28,10 @@ export const convertScanResultsToUnifiedResults = (scanResults: ScanResults, uui
 };
 
 function createUnifiedResultsFromScanResults(scanResults: ScanResults, uuidGenerator: UUIDGeneratorType): UnifiedResult[] {
-    let resultsArray: UnifiedResult[] = [];
-
-    resultsArray = createUnifiedResultsFromRuleResults(scanResults.violations, 'fail', uuidGenerator);
-    resultsArray = resultsArray.concat(createUnifiedResultsFromRuleResults(scanResults.passes, 'pass', uuidGenerator));
-
-    return resultsArray;
+    return [
+        ...createUnifiedResultsFromRuleResults(scanResults.violations, 'fail', uuidGenerator),
+        ...createUnifiedResultsFromRuleResults(scanResults.passes, 'pass', uuidGenerator),
+    ];
 }
 
 function createUnifiedResultsFromRuleResults(
@@ -41,14 +39,11 @@ function createUnifiedResultsFromRuleResults(
     status: ResultStatus,
     uuidGenerator: UUIDGeneratorType,
 ): UnifiedResult[] {
-    let unifiedResults: UnifiedResult[] = [];
+    const unifiedResultFromRuleResults = (ruleResults || []).map(result =>
+        createUnifiedResultsFromRuleResult(result, status, uuidGenerator),
+    );
 
-    (ruleResults || []).forEach(result => {
-        const moreUnifiedResults = createUnifiedResultsFromRuleResult(result, status, uuidGenerator);
-        unifiedResults = unifiedResults.concat(moreUnifiedResults);
-    });
-
-    return unifiedResults;
+    return flatMap(unifiedResultFromRuleResults);
 }
 
 function createUnifiedResultsFromRuleResult(
