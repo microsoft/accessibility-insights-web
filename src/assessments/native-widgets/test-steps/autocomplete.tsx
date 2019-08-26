@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { link } from 'content/link';
+import * as content from 'content/test/native-widgets/autocomplete';
 import * as React from 'react';
 
 import { NewTabLink } from '../../../common/components/new-tab-link';
@@ -63,6 +64,7 @@ export const Autocomplete: Requirement = {
     howToTest,
     isManual: false,
     guidanceLinks: [link.WCAG_1_3_5],
+    ...content,
     columnsConfig: [
         {
             key: 'autocomplete-info',

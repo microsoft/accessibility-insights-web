@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import * as autocomplete from './autocomplete';
 import * as cues from './cues';
 import { guidance } from './guidance';
 import * as instructions from './instructions';
@@ -12,4 +13,5 @@ export const nativeWidgets = {
     instructions,
     label,
     widgetFunction,
+    autocomplete,
 };
