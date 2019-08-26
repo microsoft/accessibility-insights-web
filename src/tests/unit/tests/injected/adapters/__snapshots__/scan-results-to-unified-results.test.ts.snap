@@ -1,5 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`ScanResults to Unified Results Test conversion works fine when there is no data in scanresults 1`] = `
+Object {
+  "results": Array [],
+}
+`;
+
 exports[`ScanResults to Unified Results Test conversion works with filled up passes and failures value in scanresults 1`] = `
 Object {
   "results": Array [
@@ -76,11 +82,5 @@ Object {
       "uid": "gguid-mock-stub",
     },
   ],
-}
-`;
-
-exports[`ScanResults to Unified Results Test convesion works fine when there is no data in scanresults 1`] = `
-Object {
-  "results": Array [],
 }
 `;

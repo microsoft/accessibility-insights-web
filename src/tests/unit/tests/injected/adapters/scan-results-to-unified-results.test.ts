@@ -23,7 +23,7 @@ describe('ScanResults to Unified Results Test', () => {
         expect(unifiedResults).toBeDefined();
     });
 
-    test('convesion works fine when there is no data in scanresults', () => {
+    test('conversion works fine when there is no data in scanresults', () => {
         const scanResultsStub: ScanResults = createTestResultsWithNoData();
         expect(convertScanResultsToUnifiedResults(scanResultsStub, generateGuidMock.object)).toMatchSnapshot();
     });
@@ -57,9 +57,9 @@ describe('ScanResults to Unified Results Test', () => {
         none: [],
         all: [],
         instanceId: 'id2',
-        html: 'html2',
+        snippet: 'html2',
         target: ['target2', 'id2'],
-    };
+    } as AxeNodeResult;
 
     const node3: AxeNodeResult = {
         any: [],
