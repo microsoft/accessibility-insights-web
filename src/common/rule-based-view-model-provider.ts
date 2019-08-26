@@ -14,6 +14,7 @@ export function getUnifiedRuleResults(rules: UnifiedRule[], results: UnifiedResu
     for (const result of results) {
         const ruleResults = statusResults[result.status];
         const ruleResultIndex: number = getRuleResultIndex(result, ruleResults);
+
         if (ruleResultIndex !== -1) {
             ruleResults[ruleResultIndex].nodes.push(result);
         } else {
@@ -22,6 +23,7 @@ export function getUnifiedRuleResults(rules: UnifiedRule[], results: UnifiedResu
                 ruleResults.push(createUnifiedRuleResult(result, unifiedRule));
             }
         }
+
         ruleIdsWithResultNodes.add(result.ruleId);
     }
 
