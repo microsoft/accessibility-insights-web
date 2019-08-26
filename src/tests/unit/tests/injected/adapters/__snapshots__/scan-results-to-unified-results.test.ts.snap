@@ -6,7 +6,7 @@ Object {
 }
 `;
 
-exports[`ScanResults to Unified Results Test conversion works with filled up passes and failures value in scanresults 1`] = `
+exports[`ScanResults to Unified Results Test conversion works with filled up passes and failures value in scan results 1`] = `
 Object {
   "results": Array [
     Object {
