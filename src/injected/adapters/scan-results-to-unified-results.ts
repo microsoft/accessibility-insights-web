@@ -27,30 +27,30 @@ export const convertScanResultsToUnifiedResults = (scanResults: ScanResults, uui
     } as UnifiedResults;
 };
 
-function createUnifiedResultsFromScanResults(scanResults: ScanResults, uuidGenerator: UUIDGeneratorType): UnifiedResult[] {
+const createUnifiedResultsFromScanResults = (scanResults: ScanResults, uuidGenerator: UUIDGeneratorType): UnifiedResult[] => {
     return [
         ...createUnifiedResultsFromRuleResults(scanResults.violations, 'fail', uuidGenerator),
         ...createUnifiedResultsFromRuleResults(scanResults.passes, 'pass', uuidGenerator),
     ];
-}
+};
 
-function createUnifiedResultsFromRuleResults(
+const createUnifiedResultsFromRuleResults = (
     ruleResults: RuleResult[],
     status: ResultStatus,
     uuidGenerator: UUIDGeneratorType,
-): UnifiedResult[] {
+): UnifiedResult[] => {
     const unifiedResultFromRuleResults = (ruleResults || []).map(result =>
         createUnifiedResultsFromRuleResult(result, status, uuidGenerator),
     );
 
     return flatMap(unifiedResultFromRuleResults);
-}
+};
 
-function createUnifiedResultsFromRuleResult(
+const createUnifiedResultsFromRuleResult = (
     ruleResult: RuleResult,
     status: ResultStatus,
     uuidGenerator: UUIDGeneratorType,
-): UnifiedResult[] {
+): UnifiedResult[] => {
     return ruleResult.nodes.map(node => {
         const data: RuleResultData = {
             status: status,
@@ -59,13 +59,13 @@ function createUnifiedResultsFromRuleResult(
 
         return createUnifiedResultFromNode(node, data, uuidGenerator);
     });
-}
+};
 
-function createUnifiedResultFromNode(
+const createUnifiedResultFromNode = (
     nodeResult: AxeNodeResult,
     ruleResultData: RuleResultData,
     uuidGenerator: UUIDGeneratorType,
-): UnifiedResult {
+): UnifiedResult => {
     return createUnifiedResult(
         {
             ...ruleResultData,
@@ -79,9 +79,9 @@ function createUnifiedResultFromNode(
         },
         uuidGenerator,
     );
-}
+};
 
-function createUnifiedResult(data: CreationData, uuidGenerator: UUIDGeneratorType): UnifiedResult {
+const createUnifiedResult = (data: CreationData, uuidGenerator: UUIDGeneratorType): UnifiedResult => {
     return {
         uid: uuidGenerator(),
         status: data.status,
@@ -100,4 +100,4 @@ function createUnifiedResult(data: CreationData, uuidGenerator: UUIDGeneratorTyp
             },
         },
     } as UnifiedResult;
-}
+};
