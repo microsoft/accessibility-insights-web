@@ -8,11 +8,11 @@ import {
 import { AllInstanceResultStatuses, UnifiedResult, UnifiedRule } from './types/store-data/unified-data-interface';
 
 export function getUnifiedRuleResults(rules: UnifiedRule[], results: UnifiedResult[]): UnifiedStatusResults {
-    const statusResults = {
-        inapplicable: [],
-    };
+    const statusInapplicable = 'inapplicable';
+    const RuleResultStatus = [...AllInstanceResultStatuses, statusInapplicable];
+    const statusResults = {} as UnifiedStatusResults;
 
-    AllInstanceResultStatuses.forEach(status => {
+    RuleResultStatus.forEach(status => {
         statusResults[status] = [];
     });
 
@@ -25,7 +25,7 @@ export function getUnifiedRuleResults(rules: UnifiedRule[], results: UnifiedResu
 
     for (const rule of rules) {
         if (!ruleIdsWithResultNodes.has(rule.id)) {
-            statusResults.inapplicable.push(createRuleResultWithoutNodes(rule));
+            statusResults[statusInapplicable].push(createRuleResultWithoutNodes(rule));
         }
     }
 
