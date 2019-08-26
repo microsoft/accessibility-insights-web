@@ -29,10 +29,6 @@
             }
         ],
         "baseUrl": "./src",
-        "paths": {
-            "*": ["*"],
-            "typemoq": ["typemoq/typemoq"]
-        },
         "forceConsistentCasingInFileNames": true
     },
     "include": ["src/**/*.ts", "src/**/*.tsx"]
