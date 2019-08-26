@@ -6,8 +6,5 @@ steps:
       versionSpec: "10.15.0"
     displayName: use node 10.15.0
 
-  - script: npm install --global yarn
-    displayName: install yarn globally
-
   - script: yarn install --frozen-lockfile
     displayName: install packages and dependencies
