@@ -6,12 +6,11 @@ steps:
           versionSpec: '12.6.0'
       displayName: use node 12.6.0
 
-    # - script: npm install --global yarn
-    #   displayName: install yarn globally
-
-    # temporary fix for npm issue with windows hosted agents
     - script: npm install -g npm@6.11.1
       displayName: install npm 6.11.1
+
+    - script: npm install yarn -g
+      displayName: install yarn as a global dependency
 
     - script: yarn install --frozen-lockfile
       displayName: install packages and dependencies
