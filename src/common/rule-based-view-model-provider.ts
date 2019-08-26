@@ -9,11 +9,12 @@ import { AllInstanceResultStatuses, UnifiedResult, UnifiedRule } from './types/s
 
 export function getUnifiedRuleResults(rules: UnifiedRule[], results: UnifiedResult[]): UnifiedStatusResults {
     const statusResults = {
-        pass: [],
-        fail: [],
-        unknown: [],
         inapplicable: [],
     };
+
+    AllInstanceResultStatuses.forEach(status => {
+        statusResults[status] = [];
+    });
 
     const ruleIdsWithResultNodes: Set<string> = new Set();
 
