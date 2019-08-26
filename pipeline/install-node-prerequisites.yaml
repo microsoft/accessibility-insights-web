@@ -3,8 +3,8 @@
 steps:
     - task: NodeTool@0
       inputs:
-          versionSpec: '12.6.0'
-      displayName: use node 12.6.0
+          versionSpec: '10.16.3'
+      displayName: use node 10.16.3
 
     # next 2 scripts are a temp solution to a problem with windows hosted agents
     # https://github.com/microsoft/azure-pipelines-tasks/issues/11199
