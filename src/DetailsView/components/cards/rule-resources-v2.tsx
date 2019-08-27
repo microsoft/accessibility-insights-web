@@ -5,6 +5,7 @@ import { GuidanceTags, GuidanceTagsDeps } from 'common/components/guidance-tags'
 import { NewTabLink } from 'common/components/new-tab-link';
 import { NamedSFC } from 'common/react/named-sfc';
 import * as React from 'react';
+import { moreResourcesTitle, ruleDetailsId, ruleMoreResources } from 'reports/automated-checks-report.scss';
 
 import { UnifiedRule } from '../../../common/types/store-data/unified-data-interface';
 
@@ -16,14 +17,14 @@ export type RuleResourcesV2Props = {
 };
 
 export const RuleResourcesV2 = NamedSFC<RuleResourcesV2Props>('RuleResourcesV2', ({ deps, rule }) => {
-    const renderTitle = () => <div className="more-resources-title">Resources for this rule</div>;
+    const renderTitle = () => <div className={moreResourcesTitle}>Resources for this rule</div>;
 
     const renderRuleLink = () => {
         const ruleId = rule.id;
         const ruleUrl = rule.url;
 
         return (
-            <span className="rule-details-id">
+            <span className={ruleDetailsId}>
                 <NewTabLink href={ruleUrl}>More information about {ruleId}</NewTabLink>
             </span>
         );
@@ -33,7 +34,7 @@ export const RuleResourcesV2 = NamedSFC<RuleResourcesV2Props>('RuleResourcesV2',
     const renderGuidanceTags = () => <GuidanceTags deps={deps} links={rule.guidance} />;
 
     return (
-        <div className="rule-more-resources">
+        <div className={ruleMoreResources}>
             {renderTitle()}
             {renderRuleLink()}
             <span>

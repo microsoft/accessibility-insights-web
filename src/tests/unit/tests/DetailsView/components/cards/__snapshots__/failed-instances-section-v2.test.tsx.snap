@@ -3,7 +3,7 @@
 exports[`FailedInstancesSectionV2 renders 1`] = `
 <ResultSectionV2
   badgeCount={1}
-  containerClassName="failed-instances-section result-section"
+  containerClassName="failedInstancesSection resultSection"
   deps={
     Object {
       "getGuidanceTagsFromGuidanceLinks": [Function],

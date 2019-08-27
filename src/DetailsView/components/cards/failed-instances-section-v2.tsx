@@ -3,9 +3,11 @@
 import { NamedSFC } from 'common/react/named-sfc';
 import * as React from 'react';
 
+import { css } from '@uifabric/utilities';
 import { GetGuidanceTagsFromGuidanceLinks } from '../../../common/get-guidance-tags-from-guidance-links';
 import { ResultStatus, UnifiedResult } from '../../../common/types/store-data/unified-data-interface';
 import { FixInstructionProcessor } from '../../../injected/fix-instruction-processor';
+import { failedInstancesSection, resultSection } from '../../../reports/automated-checks-report.scss';
 import { GuidanceLink } from '../../../scanner/rule-to-links-mappings';
 import { ResultSectionV2 } from './result-section-v2';
 
@@ -38,7 +40,7 @@ export const FailedInstancesSectionV2 = NamedSFC<FailedInstancesSectionV2Props>(
                 fixInstructionProcessor={fixInstructionProcessor}
                 title="Failed instances"
                 results={result.fail}
-                containerClassName="failed-instances-section result-section"
+                containerClassName={css(failedInstancesSection, resultSection)}
                 outcomeType="fail"
                 badgeCount={result.fail.length}
             />

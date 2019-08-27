@@ -26,9 +26,8 @@ export const ResultSectionContentV2 = NamedSFC<ResultSectionContentV2Props>(
             return <NoFailedInstancesCongrats />;
         }
 
-        const rules = [];
         return (
-            <RulesWithInstancesV2 deps={deps} rules={rules} outcomeType={outcomeType} fixInstructionProcessor={fixInstructionProcessor} />
+            <RulesWithInstancesV2 deps={deps} rules={results} outcomeType={outcomeType} fixInstructionProcessor={fixInstructionProcessor} />
         );
     },
 );

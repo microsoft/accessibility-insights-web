@@ -2,15 +2,15 @@
 
 exports[`RuleResourcesV2 renders 1`] = `
 <div
-  className="rule-more-resources"
+  className="ruleMoreResources"
 >
   <div
-    className="more-resources-title"
+    className="moreResourcesTitle"
   >
     Resources for this rule
   </div>
   <span
-    className="rule-details-id"
+    className="ruleDetailsId"
   >
     <NewTabLink
       href="sample-url"

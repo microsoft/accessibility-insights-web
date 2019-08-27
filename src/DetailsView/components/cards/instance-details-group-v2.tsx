@@ -4,7 +4,9 @@ import { GetGuidanceTagsFromGuidanceLinks } from 'common/get-guidance-tags-from-
 import { NamedSFC } from 'common/react/named-sfc';
 import { FixInstructionProcessor } from 'injected/fix-instruction-processor';
 import * as React from 'react';
+import { instanceDetailsList } from 'reports/automated-checks-report.scss';
 
+import { getPropertyConfiguration } from '../../../common/configs/unified-result-property-configurations';
 import { UnifiedRuleResult } from './failed-instances-section-v2';
 import { InstanceDetailsV2 } from './instance-details-v2';
 
@@ -23,10 +25,14 @@ export const InstanceDetailsGroupV2 = NamedSFC<InstanceDetailsGroupV2Props>('Ins
     const { nodes } = rule;
 
     return (
-        <ul className="instance-details-list" aria-label="failed instances with path, snippet and how to fix information">
+        <ul className={instanceDetailsList} aria-label="failed instances with path, snippet and how to fix information">
             {nodes.map((node, index) => (
                 <li key={`instance-details-${index}`}>
-                    <InstanceDetailsV2 {...{ index, fixInstructionProcessor: fixInstructionProcessor }} result={node} />
+                    <InstanceDetailsV2
+                        {...{ index, fixInstructionProcessor: fixInstructionProcessor }}
+                        result={node}
+                        getPropertyConfigById={getPropertyConfiguration}
+                    />
                 </li>
             ))}
         </ul>

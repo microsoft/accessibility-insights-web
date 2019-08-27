@@ -6,6 +6,39 @@ exports[`ResultSectionContentV2 renders, with some rules 1`] = `
 <RulesWithInstancesV2
   deps={Object {}}
   outcomeType="pass"
-  rules={Array []}
+  rules={
+    Array [
+      Object {
+        "description": "sample-description",
+        "guidance": Array [],
+        "id": "some-rule",
+        "nodes": Array [
+          Object {
+            "descriptors": Object {
+              "snippet": "this is a sample snippet",
+            },
+            "identifiers": Object {
+              "css-selector": "body img",
+            },
+            "resolution": Object {
+              "how-to-fix-web": Object {
+                "all": Array [],
+                "any": Array [
+                  "Element does not have an alt attribute",
+                  "aria-label attribute does not exist or is empty",
+                  "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                ],
+                "none": Array [],
+              },
+            },
+            "ruleId": "image-alt",
+            "status": "fail",
+            "uid": "some-guid-here",
+          },
+        ],
+        "url": "sample-url",
+      },
+    ]
+  }
 />
 `;

@@ -4,6 +4,7 @@ import { NamedSFC } from 'common/react/named-sfc';
 import { FixInstructionProcessor } from 'injected/fix-instruction-processor';
 import { forOwn } from 'lodash';
 import * as React from 'react';
+import { reportInstanceTable } from 'reports/components/instance-details.scss';
 
 import { PropertyConfiguration } from '../../../common/configs/unified-result-property-configurations';
 import { StoredInstancePropertyBag, UnifiedResult } from '../../../common/types/store-data/unified-data-interface';
@@ -22,24 +23,23 @@ export const InstanceDetailsV2 = NamedSFC<InstanceDetailsV2Props>('InstanceDetai
         fixInstructionProcessor: props.fixInstructionProcessor,
     };
 
-    const renderCardRowForProperty = (propertyBag: StoredInstancePropertyBag) => {
-        let propertyIndex = 0;
-        return (
-            <>
-                {forOwn(propertyBag, (propertyData, propertyName) => {
-                    const CardRow = props.getPropertyConfigById(propertyName).cardRow;
-                    return <CardRow deps={deps} propertyData={propertyData} index={index} key={`${propertyName}-${++propertyIndex}`} />;
-                })}
-            </>
-        );
+    const renderCardRowsForPropertyBag = (propertyBag: StoredInstancePropertyBag) => {
+        let propertyIndex = 2;
+        const cardRows = [];
+        forOwn(propertyBag, (propertyData, propertyName) => {
+            const CardRow = props.getPropertyConfigById(propertyName).cardRow;
+            ++propertyIndex;
+            cardRows.push(<CardRow deps={deps} propertyData={propertyData} index={index} key={`${propertyName}-${propertyIndex}`} />);
+        });
+        return <>{cardRows}</>;
     };
 
     return (
-        <table className="report-instance-table">
+        <table className={reportInstanceTable}>
             <tbody>
-                {renderCardRowForProperty(result.identifiers)}
-                {renderCardRowForProperty(result.descriptors)}
-                {renderCardRowForProperty(result.resolution)}
+                {renderCardRowsForPropertyBag(result.identifiers)}
+                {renderCardRowsForPropertyBag(result.descriptors)}
+                {renderCardRowsForPropertyBag(result.resolution)}
             </tbody>
         </table>
     );

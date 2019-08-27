@@ -3,15 +3,10 @@
 exports[`InstanceDetailsGroupV2 renders 1`] = `
 <ul
   aria-label="failed instances with path, snippet and how to fix information"
-  className="instance-details-list"
+  className="instanceDetailsList"
 >
   <li>
-    <InstanceDetail
-      descriptors={
-        Object {
-          "snippet": "this is a sample snippet",
-        }
-      }
+    <InstanceDetailsV2
       fixInstructionProcessor={
         proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
@@ -23,28 +18,32 @@ exports[`InstanceDetailsGroupV2 renders 1`] = `
           "foregroundRegExp": /foreground color: \\(\\?<color>#\\[0-9a-f\\]\\{6\\}\\)/i,
         }
       }
-      identifiers={
-        Object {
-          "css-selector": "body img",
-        }
-      }
+      getPropertyConfigById={[Function]}
       index={0}
-      resolution={
+      result={
         Object {
-          "how-to-fix-web": Object {
-            "all": Array [],
-            "any": Array [
-              "Element does not have an alt attribute",
-              "aria-label attribute does not exist or is empty",
-              "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
-            ],
-            "none": Array [],
+          "descriptors": Object {
+            "snippet": "this is a sample snippet",
           },
+          "identifiers": Object {
+            "css-selector": "body img",
+          },
+          "resolution": Object {
+            "how-to-fix-web": Object {
+              "all": Array [],
+              "any": Array [
+                "Element does not have an alt attribute",
+                "aria-label attribute does not exist or is empty",
+                "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+              ],
+              "none": Array [],
+            },
+          },
+          "ruleId": "image-alt",
+          "status": "fail",
+          "uid": "some-guid-here",
         }
       }
-      ruleId="image-alt"
-      status="fail"
-      uid="some-guid-here"
     />
   </li>
 </ul>
