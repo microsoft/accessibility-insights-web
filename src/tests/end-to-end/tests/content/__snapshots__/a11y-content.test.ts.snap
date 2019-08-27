@@ -1925,7 +1925,15 @@ exports[`A11Y for content pages High Contrast mode test/contrast/stateChanges/in
         <em>
           alone
         </em>
-         is used to indicate a change of state, users must be able to perceive the color change. Sufficient contrast between states makes it easier for people with mild visual disabilities, low vision, limited color perception, or presbyopia to perceive color changes.
+         is used to indicate a change of state, users must be able to perceive the color change. Sufficient contrast between states makes it easier for people with mild visual disabilities, low vision, limited color perception, or 
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://en.wikipedia.org/wiki/Presbyopia"
+          target="_blank"
+        >
+          presbyopia
+        </a>
+         to perceive color changes.
       </p>
       <h2>
         How to fix
@@ -34342,7 +34350,15 @@ exports[`A11Y for content pages Normal mode test/contrast/stateChanges/infoAndEx
         <em>
           alone
         </em>
-         is used to indicate a change of state, users must be able to perceive the color change. Sufficient contrast between states makes it easier for people with mild visual disabilities, low vision, limited color perception, or presbyopia to perceive color changes.
+         is used to indicate a change of state, users must be able to perceive the color change. Sufficient contrast between states makes it easier for people with mild visual disabilities, low vision, limited color perception, or 
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://en.wikipedia.org/wiki/Presbyopia"
+          target="_blank"
+        >
+          presbyopia
+        </a>
+         to perceive color changes.
       </p>
       <h2>
         How to fix
