@@ -6,28 +6,26 @@ import { forOwn } from 'lodash';
 import * as React from 'react';
 import { reportInstanceTable } from 'reports/components/instance-details.scss';
 
-import { PropertyConfiguration } from '../../../common/configs/unified-result-property-configurations';
+import { CardRowDeps, PropertyConfiguration } from '../../../common/configs/unified-result-property-configurations';
 import { StoredInstancePropertyBag, UnifiedResult } from '../../../common/types/store-data/unified-data-interface';
 
+export type InstanceDetailsV2Deps = {
+    getPropertyConfigById?: (id: string) => PropertyConfiguration;
+} & CardRowDeps;
 export type InstanceDetailsV2Props = {
+    deps: InstanceDetailsV2Deps;
     result: UnifiedResult;
     index: number;
-    fixInstructionProcessor: FixInstructionProcessor;
-    getPropertyConfigById?: (id: string) => PropertyConfiguration;
 };
 
 export const InstanceDetailsV2 = NamedSFC<InstanceDetailsV2Props>('InstanceDetailsV2', props => {
-    const { result, index } = props;
-
-    const deps = {
-        fixInstructionProcessor: props.fixInstructionProcessor,
-    };
+    const { result, index, deps } = props;
 
     const renderCardRowsForPropertyBag = (propertyBag: StoredInstancePropertyBag) => {
         let propertyIndex = 2;
         const cardRows = [];
         forOwn(propertyBag, (propertyData, propertyName) => {
-            const CardRow = props.getPropertyConfigById(propertyName).cardRow;
+            const CardRow = deps.getPropertyConfigById(propertyName).cardRow;
             ++propertyIndex;
             cardRows.push(<CardRow deps={deps} propertyData={propertyData} index={index} key={`${propertyName}-${propertyIndex}`} />);
         });
