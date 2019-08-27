@@ -3,16 +3,20 @@
 import { Messages } from '../../common/messages';
 import { AxeAnalyzerResult } from './analyzer';
 import { MessageDelegate, PostResolveCallback } from './rule-analyzer';
+import { ConvertResultsDelegate } from '../adapters/scan-results-to-unified-results';
+import { UUIDGeneratorType } from '../../common/uid-generator';
 
 export class UnifiedResultSender {
-    constructor(private readonly sendMessage: MessageDelegate) {}
+    constructor(
+        private readonly sendMessage: MessageDelegate,
+        private readonly convertScanResultsToUnifiedResults: ConvertResultsDelegate,
+        private readonly generateUID: UUIDGeneratorType,
+    ) {}
 
     public sendResults: PostResolveCallback = (axeResults: AxeAnalyzerResult) => {
         this.sendMessage({
             messageType: Messages.UnifiedScan.ScanCompleted,
-            payload: {
-                results: null,
-            },
+            payload: this.convertScanResultsToUnifiedResults(axeResults.originalResult, this.generateUID),
         });
     };
 }

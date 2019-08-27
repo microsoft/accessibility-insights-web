@@ -92,7 +92,8 @@ import { AssessmentInstanceTableHandler } from './handlers/assessment-instance-t
 import { DetailsViewToggleClickHandlerFactory } from './handlers/details-view-toggle-click-handler-factory';
 import { MasterCheckBoxConfigProvider } from './handlers/master-checkbox-config-provider';
 import { PreviewFeatureFlagsHandler } from './handlers/preview-feature-flags-handler';
-
+import { UnifiedResults } from '../common/types/store-data/unified-data-interface';
+import { getUnifiedRuleResults } from '../common/rule-based-view-model-provider';
 declare const window: AutoChecker & Window;
 
 const browserAdapter = new ChromeAdapter();
@@ -115,6 +116,7 @@ if (isNaN(tabId) === false) {
                 StoreNames[StoreNames.VisualizationScanResultStore],
                 browserAdapter,
             );
+            const unifiedScanResultStore = new StoreProxy<UnifiedResults>(StoreNames[StoreNames.UnifiedScanResultStore], browserAdapter);
             const pathSnippetStore = new StoreProxy<PathSnippetStoreData>(StoreNames[StoreNames.PathSnippetStore], browserAdapter);
             const detailsViewStore = new StoreProxy<DetailsViewData>(StoreNames[StoreNames.DetailsViewStore], browserAdapter);
             const assessmentStore = new StoreProxy<AssessmentStoreData>(StoreNames[StoreNames.AssessmentStore], browserAdapter);
@@ -130,6 +132,7 @@ if (isNaN(tabId) === false) {
                 featureFlagStore,
                 tabStore,
                 visualizationScanResultStore,
+                unifiedScanResultStore,
                 visualizationStore,
                 assessmentStore,
                 pathSnippetStore,
@@ -299,6 +302,7 @@ if (isNaN(tabId) === false) {
                 issueFilingServiceProvider: IssueFilingServiceProviderImpl,
                 getGuidanceTagsFromGuidanceLinks: GetGuidanceTagsFromGuidanceLinks,
                 reportGenerator,
+                getUnifiedRuleResults,
             };
 
             const renderer = new DetailsViewRenderer(

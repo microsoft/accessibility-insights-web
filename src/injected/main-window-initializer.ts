@@ -32,6 +32,7 @@ import { generateUID } from '../common/uid-generator';
 import { IssueFilingServiceProviderImpl } from '../issue-filing/issue-filing-service-provider-impl';
 import { scan } from '../scanner/exposed-apis';
 import { IssueFilingActionMessageCreator } from './../common/message-creators/issue-filing-action-message-creator';
+import { convertScanResultsToUnifiedResults } from './adapters/scan-results-to-unified-results';
 import { AnalyzerController } from './analyzer-controller';
 import { AnalyzerStateUpdateHandler } from './analyzer-state-update-handler';
 import { AnalyzerProvider } from './analyzers/analyzer-provider';
@@ -157,7 +158,11 @@ export class MainWindowInitializer extends WindowInitializer {
 
         this.frameUrlSearchInitiator.listenToStore();
 
-        const unifedResultSender = new UnifiedResultSender(this.browserAdapter.sendMessageToFrames);
+        const unifedResultSender = new UnifiedResultSender(
+            this.browserAdapter.sendMessageToFrames,
+            convertScanResultsToUnifiedResults,
+            generateUID,
+        );
 
         const analyzerProvider = new AnalyzerProvider(
             this.tabStopsListener,

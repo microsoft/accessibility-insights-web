@@ -4,7 +4,7 @@ import { shallow } from 'enzyme';
 import { ISelection, Selection } from 'office-ui-fabric-react/lib/DetailsList';
 import * as React from 'react';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
-
+import { GetUnifiedRuleResultsDelegate } from '../../../../common/rule-based-view-model-provider';
 import { DropdownClickHandler } from '../../../../common/dropdown-click-handler';
 import { StoreActionMessageCreator } from '../../../../common/message-creators/store-action-message-creator';
 import { StoreActionMessageCreatorImpl } from '../../../../common/message-creators/store-action-message-creator-impl';
@@ -43,21 +43,26 @@ import { CreateTestAssessmentProviderWithFeatureFlag } from '../../common/test-a
 import { VisualizationStoreDataBuilder } from '../../common/visualization-store-data-builder';
 import { DetailsViewContainerPropsBuilder } from './details-view-container-props-builder';
 import { StoreMocks } from './store-mocks';
+import { UnifiedStatusResults } from '../../../../DetailsView/components/cards/failed-instances-section-v2';
+import { UnifiedResult, UnifiedRule, UnifiedResults } from '../../../../common/types/store-data/unified-data-interface';
 
 describe('DetailsViewContainer', () => {
     let detailsViewActionMessageCreator: IMock<DetailsViewActionMessageCreator>;
     let deps: DetailsViewContainerDeps;
     let getDetailsRightPanelConfiguration: IMock<GetDetailsRightPanelConfiguration>;
     let getDetailsSwitcherNavConfiguration: IMock<GetDetailsSwitcherNavConfiguration>;
+    let getUnifiedRuleResultsMock: IMock<GetUnifiedRuleResultsDelegate>;
 
     beforeEach(() => {
         detailsViewActionMessageCreator = Mock.ofType<DetailsViewActionMessageCreator>();
         getDetailsRightPanelConfiguration = Mock.ofInstance((props: GetDetailsRightPanelConfigurationProps) => null, MockBehavior.Strict);
         getDetailsSwitcherNavConfiguration = Mock.ofInstance((props: GetDetailsSwitcherNavConfigurationProps) => null, MockBehavior.Strict);
+        getUnifiedRuleResultsMock = Mock.ofInstance((rules: UnifiedRule[], results: UnifiedResult[]) => null, MockBehavior.Strict);
         deps = {
             detailsViewActionMessageCreator: detailsViewActionMessageCreator.object,
             getDetailsRightPanelConfiguration: getDetailsRightPanelConfiguration.object,
             getDetailsSwitcherNavConfiguration: getDetailsSwitcherNavConfiguration.object,
+            getUnifiedRuleResults: getUnifiedRuleResultsMock.object,
         } as DetailsViewContainerDeps;
     });
 
@@ -151,7 +156,10 @@ describe('DetailsViewContainer', () => {
             const storeMocks = new StoreMocks()
                 .setVisualizationStoreData(visualizationStoreData)
                 .setTabStoreData(tabStoreData)
-                .setDetailsViewStoreData(detailsViewState);
+                .setDetailsViewStoreData(detailsViewState)
+                .setUnifiedScanResultStoreData({
+                    results: [],
+                });
 
             const props = new DetailsViewContainerPropsBuilder(deps)
                 .setStoreMocks(storeMocks)
@@ -175,6 +183,9 @@ describe('DetailsViewContainer', () => {
                     ),
                 )
                 .returns(() => viewType);
+
+            const ruleResults: UnifiedStatusResults = {} as any;
+            getUnifiedRuleResultsMock.setup(m => m(null, state.unifiedScanResultStoreData.results)).returns(() => ruleResults);
 
             testObject.render();
 
@@ -236,6 +247,7 @@ describe('DetailsViewContainer', () => {
                         pathSnippetStoreData: storeMocks.pathSnippetStoreData,
                         scopingPanelStateStoreData: storeMocks.scopingStoreData,
                         userConfigurationStoreData: storeMocks.userConfigurationStoreData,
+                        unifiedScanResultStoreData: storeMocks.unifiedScanResultStoreData,
                     }
                 );
             });
@@ -248,6 +260,7 @@ describe('DetailsViewContainer', () => {
         selectedDetailsView: VisualizationType,
         rightPanelConfiguration: DetailsRightPanelConfiguration,
         switcherNavConfiguration: DetailsViewSwitcherNavConfiguration,
+        ruleResults: UnifiedStatusResults,
     ): JSX.Element {
         return (
             <DetailsViewMainContent
@@ -260,6 +273,7 @@ describe('DetailsViewContainer', () => {
                 detailsViewStoreData={storeMocks.detailsViewStoreData}
                 visualizationStoreData={storeMocks.visualizationStoreData}
                 visualizationScanResultData={storeMocks.visualizationScanResultsStoreData}
+                unifiedResults={ruleResults}
                 visualizationConfigurationFactory={props.visualizationConfigurationFactory}
                 assessmentsProvider={props.assessmentsProvider}
                 dropdownClickHandler={props.dropdownClickHandler}
@@ -335,6 +349,7 @@ describe('DetailsViewContainer', () => {
             userConfigurationStoreData: storeMocks.userConfigurationStoreData,
             visualizationScanResultStoreData: storeMocks.visualizationScanResultsStoreData,
             scopingPanelStateStoreData: storeMocks.scopingSelectorsData,
+            unifiedScanResultStoreData: storeMocks.unifiedScanResultStoreData,
             selectedDetailsView: viewType,
             selectedDetailsRightPanelConfiguration: rightPanel,
         };
@@ -383,7 +398,10 @@ describe('DetailsViewContainer', () => {
         const storeMocks = new StoreMocks()
             .setVisualizationStoreData(visualizationStoreData)
             .setDetailsViewStoreData(detailsViewState)
-            .setUserConfigurationStoreData(userConfigurationStoreData);
+            .setUserConfigurationStoreData(userConfigurationStoreData)
+            .setUnifiedScanResultStoreData({
+                results: [],
+            });
 
         const storesHubMock = createStoresHubMock(storeMocks);
 
@@ -413,6 +431,9 @@ describe('DetailsViewContainer', () => {
             )
             .returns(() => viewType);
 
+        const ruleResults: UnifiedStatusResults = {} as any;
+        getUnifiedRuleResultsMock.setup(m => m(null, state.unifiedScanResultStoreData.results)).returns(() => ruleResults);
+
         const expected: JSX.Element = (
             <div className="table column-layout main-wrapper">
                 <Header
@@ -423,7 +444,7 @@ describe('DetailsViewContainer', () => {
                     tabClosed={storeMocks.tabStoreData.isClosed}
                 />
                 <div className="table column-layout details-view-body">
-                    {buildDetailsViewMainContent(storeMocks, props, viewType, rightContentPanelConfig, switcherNavConfig)}
+                    {buildDetailsViewMainContent(storeMocks, props, viewType, rightContentPanelConfig, switcherNavConfig, ruleResults)}
                 </div>
                 {buildOverlay(storeMocks, props)}
             </div>

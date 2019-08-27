@@ -23,6 +23,7 @@ import { DetailsViewLeftNav, DetailsViewLeftNavDeps } from './components/left-na
 import { TabInfo } from './components/tab-info';
 import { AssessmentInstanceTableHandler } from './handlers/assessment-instance-table-handler';
 import { DetailsViewToggleClickHandlerFactory } from './handlers/details-view-toggle-click-handler-factory';
+import { UnifiedStatusResults } from './components/cards/failed-instances-section-v2';
 
 export type DetailsViewMainContentDeps = DetailsViewContentDeps & DetailsViewLeftNavDeps & DetailsViewCommandBarDeps;
 
@@ -36,6 +37,7 @@ export interface DetailsViewMainContentProps {
     selectedTest: VisualizationType;
     visualizationStoreData: VisualizationStoreData;
     visualizationScanResultData: VisualizationScanResultData;
+    unifiedResults: UnifiedStatusResults;
     visualizationConfigurationFactory: VisualizationConfigurationFactory;
     assessmentsProvider: AssessmentsProvider;
     dropdownClickHandler: DropdownClickHandler;

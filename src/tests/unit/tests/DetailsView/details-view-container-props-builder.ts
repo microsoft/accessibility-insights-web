@@ -22,11 +22,13 @@ import { DetailsViewToggleClickHandlerFactory } from '../../../../DetailsView/ha
 import { PreviewFeatureFlagsHandler } from '../../../../DetailsView/handlers/preview-feature-flags-handler';
 import { DictionaryStringTo } from '../../../../types/common-types';
 import { StoreMocks } from './store-mocks';
+import { UnifiedResults } from '../../../../common/types/store-data/unified-data-interface';
 
 export class DetailsViewContainerPropsBuilder {
     private visualizationStore: BaseStore<VisualizationStoreData>;
     private assessmentStore: BaseStore<AssessmentStoreData>;
     private visualizationScanResultStore: BaseStore<VisualizationScanResultData>;
+    private unifiedScanResultStore: BaseStore<UnifiedResults>;
     private tabStore: BaseStore<TabStoreData>;
     private featureFlagStore: BaseStore<DictionaryStringTo<boolean>>;
     private scopingStateStore: BaseStore<ScopingStoreData>;
@@ -116,6 +118,7 @@ export class DetailsViewContainerPropsBuilder {
 
     public setStoreMocks(storeMocks: StoreMocks): DetailsViewContainerPropsBuilder {
         this.visualizationScanResultStore = storeMocks.visualizationScanResultStoreMock.object;
+        this.unifiedScanResultStore = storeMocks.unifiedScanResultStoreMock.object;
         this.visualizationStore = storeMocks.visualizationStoreMock.object;
         this.tabStore = storeMocks.tabStoreMock.object;
         this.detailsViewStore = storeMocks.detailsViewStoreMock.object;
@@ -133,6 +136,7 @@ export class DetailsViewContainerPropsBuilder {
                 this.featureFlagStore,
                 this.tabStore,
                 this.visualizationScanResultStore,
+                this.unifiedScanResultStore,
                 this.visualizationStore,
                 this.assessmentStore,
                 this.scopingStateStore,

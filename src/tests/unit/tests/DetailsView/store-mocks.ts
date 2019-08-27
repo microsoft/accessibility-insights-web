@@ -31,6 +31,8 @@ import { AssessmentsStoreDataBuilder } from '../../common/assessment-store-data-
 import { DetailsViewStoreDataBuilder } from '../../common/details-view-store-data-builder';
 import { VisualizationScanResultStoreDataBuilder } from '../../common/visualization-scan-result-store-data-builder';
 import { VisualizationStoreDataBuilder } from '../../common/visualization-store-data-builder';
+import { UnifiedScanResultStore } from '../../../../background/stores/unified-scan-result-store';
+import { UnifiedResults } from '../../../../common/types/store-data/unified-data-interface';
 
 export class StoreMocks {
     public visualizationStoreMock = Mock.ofType(VisualizationStore, MockBehavior.Strict);
@@ -46,6 +48,7 @@ export class StoreMocks {
     public commandStoreMock = Mock.ofType(CommandStore, MockBehavior.Strict);
     public userConfigurationStoreMock = Mock.ofType(UserConfigurationStore, MockBehavior.Strict);
     public launchPanelStateStoreMock = Mock.ofType(LaunchPanelStore, MockBehavior.Strict);
+    public unifiedScanResultStoreMock = Mock.ofType(UnifiedScanResultStore, MockBehavior.Strict);
 
     public visualizationStoreData = new VisualizationStoreDataBuilder().build();
     public visualizationScanResultsStoreData = new VisualizationScanResultStoreDataBuilder().build();
@@ -63,6 +66,7 @@ export class StoreMocks {
     public scopingStoreData = new ScopingStore(null).getDefaultState();
     public inspectStoreData = new InspectStore(null, null).getDefaultState();
     public pathSnippetStoreData = new PathSnippetStore(null).getDefaultState();
+    public unifiedScanResultStoreData = new UnifiedScanResultStore(null).getDefaultState();
     public launchPanelStateStoreData = new LaunchPanelStore(null, null, null).getDefaultState();
     public featureFlagStoreData: FeatureFlagStoreData = {
         [FeatureFlags[FeatureFlags.logTelemetryToConsole]]: false,
@@ -90,6 +94,11 @@ export class StoreMocks {
 
     public setVisualizationScanResultStoreData(data: VisualizationScanResultData): StoreMocks {
         this.visualizationScanResultsStoreData = data;
+        return this;
+    }
+
+    public setUnifiedScanResultStoreData(data: UnifiedResults): StoreMocks {
+        this.unifiedScanResultStoreData = data;
         return this;
     }
 
@@ -133,6 +142,7 @@ export class StoreMocks {
         this.featureFlagStoreMock.verifyAll();
         this.tabStoreMock.verifyAll();
         this.visualizationScanResultStoreMock.verifyAll();
+        this.unifiedScanResultStoreMock.verifyAll();
         this.visualizationStoreMock.verifyAll();
         this.scopingStoreMock.verifyAll();
         this.inspectStoreMock.verifyAll();
