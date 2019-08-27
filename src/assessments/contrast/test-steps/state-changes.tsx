@@ -5,7 +5,15 @@ import { link } from 'content/link';
 import * as content from 'content/test/contrast/state-changes';
 import * as React from 'react';
 
+import { StateChangesPropertyBag } from '../../../common/types/property-bag/state-changes';
+import { VisualizationType } from '../../../common/types/visualization-type';
+import { AssessmentVisualizationEnabledToggle } from '../../../DetailsView/components/assessment-visualization-enabled-toggle';
+import { ScannerUtils } from '../../../injected/scanner-utils';
+import { AnalyzerConfigurationFactory } from '../../common/analyzer-configuration-factory';
 import { AssistedTestRecordYourResults } from '../../common/assisted-test-record-your-results';
+import { NoValue, PropertyBagColumnRendererConfig } from '../../common/property-bag-column-renderer';
+import { PropertyBagColumnRendererFactory } from '../../common/property-bag-column-renderer-factory';
+import { ReportInstanceField } from '../../types/report-instance-field';
 import { Requirement } from '../../types/requirement';
 import { ContrastTestStep } from './test-steps';
 
@@ -37,6 +45,22 @@ const howToTest: JSX.Element = (
     </div>
 );
 
+const propertyBagConfig: PropertyBagColumnRendererConfig<StateChangesPropertyBag>[] = [
+    {
+        propertyName: 'accessibleName',
+        displayName: 'Accessible name',
+        defaultValue: NoValue,
+    },
+    {
+        propertyName: 'element',
+        displayName: 'Element',
+    },
+    {
+        propertyName: 'role',
+        displayName: 'Role',
+    },
+];
+
 export const StateChanges: Requirement = {
     key: ContrastTestStep.stateChanges,
     name: 'State changes',
@@ -44,6 +68,25 @@ export const StateChanges: Requirement = {
     howToTest,
     ...content,
     guidanceLinks: [link.WCAG_1_4_11],
-    isManual: true, // TODO: false
-    // TODO: columnsConfig, reportInstanceFields, getAnalyzer, getDrawer, getVisualHelperToggle
+    isManual: false,
+    columnsConfig: [
+        {
+            key: 'ui-component-info',
+            name: 'UI component info',
+            onRender: PropertyBagColumnRendererFactory.getRenderer(propertyBagConfig),
+        },
+    ],
+    reportInstanceFields: ReportInstanceField.fromColumns(propertyBagConfig),
+    getAnalyzer: provider =>
+        provider.createRuleAnalyzer(
+            AnalyzerConfigurationFactory.forScanner({
+                rules: ['link-purpose', 'native-widgets-default', 'custom-widget'],
+                key: ContrastTestStep.stateChanges,
+                testType: VisualizationType.ContrastAssessment,
+                resultProcessor: (scanner: ScannerUtils) => scanner.getPassingInstances,
+            }),
+        ),
+    getDrawer: provider => provider.createCustomWidgetsDrawer(),
+    updateVisibility: false,
+    getVisualHelperToggle: props => <AssessmentVisualizationEnabledToggle {...props} />,
 };
