@@ -17,8 +17,8 @@ export const infoAndExamples = create(({ Markup }) => (
         <h2>How to fix</h2>
         <p>
             For any form field that serves an{' '}
-            <Markup.HyperLink href="https://aka.ms/keros/inputpurpose">identified input purpose</Markup.HyperLink>, provide the appropriate
-            autocomplete attribute.
+            <Markup.HyperLink href="https://www.w3.org/TR/WCAG21/#input-purposes">identified input purpose</Markup.HyperLink>, provide the
+            appropriate autocomplete attribute.
         </p>
         <h2>Example</h2>
         <Markup.PassFail
