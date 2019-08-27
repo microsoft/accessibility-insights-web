@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 import { PropertyBagColumnRendererFactory } from 'assessments/common/property-bag-column-renderer-factory';
 import { MacContrastCheckerAppLink, WindowsContrastCheckerAppLink } from 'common/components/contrast-checker-app-links';
-import { NewTabLink } from 'common/components/new-tab-link';
 import { ContrastPropertyBag } from 'common/types/property-bag/contrast';
 import { VisualizationType } from 'common/types/visualization-type';
 import { link } from 'content/link';
