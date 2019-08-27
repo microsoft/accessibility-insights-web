@@ -7,6 +7,7 @@ import { FixInstructionProcessor } from '../../injected/fix-instruction-processo
 import { ReactSFCWithDisplayName } from '../react/named-sfc';
 
 export type PropertyType = 'css-selector' | 'how-to-fix-web' | 'snippet';
+export const AllPropertyTypes: PropertyType[] = ['css-selector', 'how-to-fix-web', 'snippet'];
 
 export interface CardRowDeps {
     fixInstructionProcessor: FixInstructionProcessor;
