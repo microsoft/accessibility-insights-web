@@ -19091,13 +19091,6 @@ exports[`A11Y for content pages High Contrast mode test/nativeWidgets/cues/infoA
       >
         <a
           class="ms-Link insights-link root-000"
-          href="https://www.w3.org/WAI/WCAG21/Understanding/label-in-name.html"
-          target="_blank"
-        >
-          Understanding 2.5.3 Label in Name
-        </a>
-        <a
-          class="ms-Link insights-link root-000"
           href="https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships.html"
           target="_blank"
         >
@@ -19447,6 +19440,13 @@ exports[`A11Y for content pages High Contrast mode test/nativeWidgets/guidance 1
       <div
         class="content-hyperlinks"
       >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Understanding/label-in-name.html"
+          target="_blank"
+        >
+          Understanding 2.5.3 Label in Name
+        </a>
         <a
           class="ms-Link insights-link root-000"
           href="https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships.html"
@@ -51915,13 +51915,6 @@ exports[`A11Y for content pages Normal mode test/nativeWidgets/cues/infoAndExamp
       >
         <a
           class="ms-Link insights-link root-000"
-          href="https://www.w3.org/WAI/WCAG21/Understanding/label-in-name.html"
-          target="_blank"
-        >
-          Understanding 2.5.3 Label in Name
-        </a>
-        <a
-          class="ms-Link insights-link root-000"
           href="https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships.html"
           target="_blank"
         >
@@ -52271,6 +52264,13 @@ exports[`A11Y for content pages Normal mode test/nativeWidgets/guidance 1`] = `
       <div
         class="content-hyperlinks"
       >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Understanding/label-in-name.html"
+          target="_blank"
+        >
+          Understanding 2.5.3 Label in Name
+        </a>
         <a
           class="ms-Link insights-link root-000"
           href="https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships.html"
