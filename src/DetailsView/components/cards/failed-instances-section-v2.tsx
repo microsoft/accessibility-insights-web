@@ -2,9 +2,8 @@
 // Licensed under the MIT License.
 import { NamedSFC } from 'common/react/named-sfc';
 import * as React from 'react';
-
 import { GetGuidanceTagsFromGuidanceLinks } from '../../../common/get-guidance-tags-from-guidance-links';
-import { ResultStatus, UnifiedResult } from '../../../common/types/store-data/unified-data-interface';
+import { UnifiedResult, UnifiedRuleResultStatus } from '../../../common/types/store-data/unified-data-interface';
 import { FixInstructionProcessor } from '../../../injected/fix-instruction-processor';
 import { GuidanceLink } from '../../../scanner/rule-to-links-mappings';
 import { ResultSectionV2 } from './result-section-v2';
@@ -22,8 +21,6 @@ export interface UnifiedRuleResult {
     url: string;
     guidance: GuidanceLink[];
 }
-
-export type UnifiedRuleResultStatus = ResultStatus | 'inapplicable';
 
 export type UnifiedStatusResults = {
     [key in UnifiedRuleResultStatus]: UnifiedRuleResult[];

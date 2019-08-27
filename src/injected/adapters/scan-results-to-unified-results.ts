@@ -1,13 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { flatMap } from 'lodash';
-import { ResultStatus, UnifiedResult, UnifiedResults } from '../../common/types/store-data/unified-data-interface';
+import { InstanceResultStatus, UnifiedResult, UnifiedResults } from '../../common/types/store-data/unified-data-interface';
 import { AxeNodeResult, RuleResult, ScanResults } from '../../scanner/iruleresults';
 
 type UUIDGeneratorType = () => string;
 
 interface RuleResultData {
-    status: ResultStatus;
+    status: InstanceResultStatus;
     ruleID: string;
 }
 
@@ -39,7 +39,7 @@ const createUnifiedResultsFromScanResults = (scanResults: ScanResults, uuidGener
 
 const createUnifiedResultsFromRuleResults = (
     ruleResults: RuleResult[],
-    status: ResultStatus,
+    status: InstanceResultStatus,
     uuidGenerator: UUIDGeneratorType,
 ): UnifiedResult[] => {
     const unifiedResultFromRuleResults = (ruleResults || []).map(result =>
@@ -51,7 +51,7 @@ const createUnifiedResultsFromRuleResults = (
 
 const createUnifiedResultsFromRuleResult = (
     ruleResult: RuleResult,
-    status: ResultStatus,
+    status: InstanceResultStatus,
     uuidGenerator: UUIDGeneratorType,
 ): UnifiedResult[] => {
     return ruleResult.nodes.map(node => {

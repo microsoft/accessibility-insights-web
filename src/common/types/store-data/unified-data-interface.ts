@@ -1,7 +1,6 @@
-import { GuidanceLink } from '../../../scanner/rule-to-links-mappings';
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { GuidanceLink } from '../../../scanner/rule-to-links-mappings';
 
 // this is similar to `TestEngine` interface from axe-core
 export interface ScanEngineProperties {
@@ -50,11 +49,15 @@ export type StoredInstancePropertyBag = InstancePropertyBag;
 
 export interface UnifiedResult {
     uid: string;
-    status: ResultStatus;
+    status: InstanceResultStatus;
     ruleId: string;
     identifiers: StoredInstancePropertyBag;
     descriptors: StoredInstancePropertyBag;
     resolution: StoredInstancePropertyBag;
 }
 
-export type ResultStatus = 'pass' | 'fail' | 'unknown';
+export type InstanceResultStatus = 'pass' | 'fail' | 'unknown';
+
+export type UnifiedRuleResultStatus = InstanceResultStatus | 'inapplicable';
+
+export const AllRuleResultStatuses: UnifiedRuleResultStatus[] = ['pass', 'fail', 'unknown', 'inapplicable'];
