@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { mapValues } from 'lodash';
 import * as React from 'react';
 
-import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { NamedSFC } from '../../../common/react/named-sfc';
 import { AssessmentStoreData } from '../../../common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from '../../../common/types/store-data/feature-flag-store-data';
@@ -13,7 +13,6 @@ import { DetailsViewSwitcherNavConfiguration, LeftNavDeps } from '../details-vie
 
 export type DetailsViewLeftNavDeps = {
     assessmentsProvider: AssessmentsProvider;
-    assessmentsProviderWithFeaturesEnabled: (assessmentProvider: AssessmentsProvider, flags: FeatureFlagStoreData) => AssessmentsProvider;
 } & LeftNavDeps;
 
 export type DetailsViewLeftNavProps = {
@@ -28,16 +27,15 @@ export type DetailsViewLeftNavProps = {
 export const DetailsViewLeftNav = NamedSFC<DetailsViewLeftNavProps>('DetailsViewLeftNav', props => {
     const { deps, selectedTest, switcherNavConfiguration, rightPanelConfiguration, featureFlagStoreData, assessmentStoreData } = props;
 
-    const { assessmentsProvider, assessmentsProviderWithFeaturesEnabled } = deps;
+    const { assessmentsProvider } = deps;
 
     const selectedKey: string = rightPanelConfiguration.GetLeftNavSelectedKey({ visualizationType: selectedTest });
-    const filteredProvider = assessmentsProviderWithFeaturesEnabled(assessmentsProvider, featureFlagStoreData);
 
     const leftNav: JSX.Element = (
         <div className="left-nav main-nav">
             <switcherNavConfiguration.LeftNav
                 {...props}
-                assessmentsProvider={filteredProvider}
+                assessmentsProvider={assessmentsProvider}
                 selectedKey={selectedKey}
                 assessmentsData={mapValues(assessmentStoreData.assessments, data => data.testStepStatus)}
             />

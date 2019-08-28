@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import { It, Mock, MockBehavior } from 'typemoq';
 
-import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { NamedSFC, ReactSFCWithDisplayName } from '../../../../../../common/react/named-sfc';
 import { AssessmentData, AssessmentStoreData } from '../../../../../../common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from '../../../../../../common/types/store-data/feature-flag-store-data';
@@ -23,9 +23,7 @@ describe('DetailsViewLeftNav', () => {
         const selectedTestStub: VisualizationType = -1;
         const selectedKeyStub: string = 'some key';
         const featureFlagDataStub: FeatureFlagStoreData = {};
-        const assessmentsProviderWithFeaturesEnabledMock = Mock.ofInstance((provider, featureFlagData) => null, MockBehavior.Strict);
         const assessmentProviderStub = {} as AssessmentsProvider;
-        const filteredProviderStub = {} as AssessmentsProvider;
         const GetLeftNavSelectedKeyMock = Mock.ofInstance((theProps: GetLeftNavSelectedKeyProps) => null, MockBehavior.Strict);
         const LeftNavStub: Readonly<ReactSFCWithDisplayName<DetailsViewLeftNavProps>> = NamedSFC<DetailsViewLeftNavProps>(
             'test',
@@ -46,7 +44,6 @@ describe('DetailsViewLeftNav', () => {
 
         const deps = {
             assessmentsProvider: assessmentProviderStub,
-            assessmentsProviderWithFeaturesEnabled: assessmentsProviderWithFeaturesEnabledMock.object,
         } as DetailsViewLeftNavDeps;
 
         const props = {
@@ -59,10 +56,6 @@ describe('DetailsViewLeftNav', () => {
         } as DetailsViewLeftNavProps;
 
         GetLeftNavSelectedKeyMock.setup(glnsm => glnsm(It.isValue({ visualizationType: selectedTestStub }))).returns(() => selectedKeyStub);
-
-        assessmentsProviderWithFeaturesEnabledMock
-            .setup(ap => ap(assessmentProviderStub, featureFlagDataStub))
-            .returns(() => filteredProviderStub);
 
         const actual = shallow(<DetailsViewLeftNav {...props} />);
         expect(actual.getElement()).toMatchSnapshot();

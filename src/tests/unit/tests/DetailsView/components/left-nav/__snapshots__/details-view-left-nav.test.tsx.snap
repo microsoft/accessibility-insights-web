@@ -23,7 +23,6 @@ exports[`DetailsViewLeftNav should render from switcher nav 1`] = `
     deps={
       Object {
         "assessmentsProvider": Object {},
-        "assessmentsProviderWithFeaturesEnabled": [Function],
       }
     }
     featureFlagStoreData={Object {}}
