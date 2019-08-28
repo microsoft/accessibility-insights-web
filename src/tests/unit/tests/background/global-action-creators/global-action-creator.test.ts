@@ -54,7 +54,7 @@ describe('GlobalActionCreatorTest', () => {
     test('registerCallback for on get launch panel state', () => {
         const actionName = 'getCurrentState';
         const validator = new GlobalActionCreatorValidator()
-            .setupRegistrationCallback(Messages.LaunchPanel.Get)
+            .setupRegistrationCallback(getStoreStateMessage(StoreNames.LaunchPanelStateStore))
             .setupActionOnLaunchPanelActions(actionName)
             .setupLaunchPanelActionWithInvokeParameter(actionName, null);
 

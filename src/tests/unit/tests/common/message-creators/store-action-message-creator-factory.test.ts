@@ -19,7 +19,7 @@ describe('StoreActionMessageCreatorFactoryTest', () => {
             getStoreStateMessage(StoreNames.VisualizationStore),
             getStoreStateMessage(StoreNames.CommandStore),
             getStoreStateMessage(StoreNames.FeatureFlagStore),
-            Messages.LaunchPanel.Get,
+            getStoreStateMessage(StoreNames.LaunchPanelStateStore),
             Messages.UserConfig.GetCurrentState,
         ];
 

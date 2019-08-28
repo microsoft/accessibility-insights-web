@@ -149,7 +149,6 @@ export class Messages {
     };
 
     public static readonly LaunchPanel = {
-        Get: `${messagePrefix}/launchpanel/get`,
         Set: `${messagePrefix}/launchpanel/set`,
     };
 
