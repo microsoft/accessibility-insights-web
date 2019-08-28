@@ -22,7 +22,9 @@ describe('UnifiedScanResultStore Test', () => {
     test('check defaultState is empty', () => {
         const defaultState = getDefaultState();
 
-        expect(defaultState.results).toEqual(null);
+        expect(defaultState.results).toEqual({
+            results: null,
+        });
         expect(defaultState.rules).toEqual(null);
     });
 
