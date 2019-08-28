@@ -5,15 +5,19 @@ import { ISelection } from 'office-ui-fabric-react/lib/DetailsList';
 import { Spinner, SpinnerSize } from 'office-ui-fabric-react/lib/Spinner';
 import * as React from 'react';
 import { ReportGenerator } from 'reports/report-generator';
+
+import { FlaggedComponent } from '../../common/components/flagged-component';
 import { VisualizationToggle } from '../../common/components/visualization-toggle';
 import { VisualizationConfiguration } from '../../common/configs/visualization-configuration';
 import { VisualizationConfigurationFactory } from '../../common/configs/visualization-configuration-factory';
+import { FeatureFlags } from '../../common/feature-flags';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { UserConfigurationStoreData } from '../../common/types/store-data/user-configuration-store';
 import { VisualizationType } from '../../common/types/visualization-type';
 import { DecoratedAxeNodeResult } from '../../injected/scanner-utils';
 import { RuleResult, ScanResults } from '../../scanner/iruleresults';
 import { DictionaryStringTo } from '../../types/common-types';
+import { CardsView } from './cards-view';
 import { ExportDialogDeps } from './export-dialog';
 import { IssuesDetailsList } from './issues-details-list';
 import { IssuesDetailsPane, IssuesDetailsPaneDeps } from './Issues-details-pane';
@@ -141,7 +145,14 @@ export class IssuesTable extends React.Component<IssuesTableProps> {
             return this.renderSpinner('Loading data...');
         }
 
-        return this.renderDetails();
+        return (
+            <FlaggedComponent
+                disableJSXElement={this.renderDetails()}
+                enableJSXElement={<CardsView />}
+                featureFlag={FeatureFlags.universalCardsUI}
+                featureFlagStoreData={this.props.featureFlags}
+            />
+        );
     }
 
     private renderToggle(): JSX.Element {

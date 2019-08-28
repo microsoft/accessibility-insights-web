@@ -2,10 +2,7 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import { FlaggedComponent } from '../../common/components/flagged-component';
-import { FeatureFlags } from '../../common/feature-flags';
 import { NamedSFC } from '../../common/react/named-sfc';
-import { CardsView } from './cards-view';
 import { DetailsListIssuesView, DetailsListIssuesViewDeps, DetailsListIssuesViewProps } from './details-list-issues-view';
 import { TargetPageChangedView } from './target-page-changed-view';
 
@@ -18,14 +15,7 @@ export const AdhocIssuesTestView = NamedSFC<AdhocIssuesTestViewProps>('AdhocIssu
         return createTargetPageChangedView(props);
     }
 
-    return (
-        <FlaggedComponent
-            disableJSXElement={<DetailsListIssuesView {...props} />}
-            enableJSXElement={<CardsView />}
-            featureFlag={FeatureFlags.universalCardsUI}
-            featureFlagStoreData={props.featureFlagStoreData}
-        />
-    );
+    return <DetailsListIssuesView {...props} />;
 });
 
 function createTargetPageChangedView(props: AdhocIssuesTestViewProps): JSX.Element {
