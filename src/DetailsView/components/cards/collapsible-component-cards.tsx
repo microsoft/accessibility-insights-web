@@ -11,6 +11,7 @@ export interface CollapsibleComponentCardsProps {
     content: JSX.Element;
     contentClassName?: string;
     containerClassName?: string;
+    buttonAriaLabel?: string;
 }
 
 interface CollapsibleComponentCardsState {
@@ -40,7 +41,12 @@ export class CollapsibleComponentCards extends React.Component<CollapsibleCompon
 
         return (
             <div className={css(this.props.containerClassName, collapsibleContainer, collapsedCSSClassName)}>
-                <ActionButton className={collapsibleControl} onClick={this.onClick} aria-expanded={showContent}>
+                <ActionButton
+                    className={collapsibleControl}
+                    onClick={this.onClick}
+                    aria-expanded={showContent}
+                    ariaLabel={this.props.buttonAriaLabel}
+                >
                     <span className={collapsibleTitle}>{this.props.header}</span>
                 </ActionButton>
                 {content}

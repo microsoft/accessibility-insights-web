@@ -5,6 +5,7 @@ exports[`RulesWithInstancesV2 renders 1`] = `
   className="ruleDetailsGroup"
 >
   <CollapsibleComponentCards
+    buttonAriaLabel="some-rule 1 Passed sample-description"
     containerClassName="collapsibleRuleDetailsGroup"
     content={
       <RuleContentV2

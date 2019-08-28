@@ -1,11 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`CollapsibleComponentCardsTest render expanded with content-class-name 1`] = `
+exports[`CollapsibleComponentCardsTest render with buttonAriaLabel set to: some button label 1`] = `
 <div
   className="collapsibleContainer"
 >
   <CustomizedActionButton
     aria-expanded={true}
+    ariaLabel="some button label"
     className="collapsibleControl"
     onClick={[Function]}
   >
@@ -18,7 +19,7 @@ exports[`CollapsibleComponentCardsTest render expanded with content-class-name 1
     </span>
   </CustomizedActionButton>
   <div
-    className="content-class-name-a collapsibleContent"
+    className="collapsibleContent"
   >
     <div>
       Some content
@@ -27,7 +28,7 @@ exports[`CollapsibleComponentCardsTest render expanded with content-class-name 1
 </div>
 `;
 
-exports[`CollapsibleComponentCardsTest render expanded without content-class-name 1`] = `
+exports[`CollapsibleComponentCardsTest render with buttonAriaLabel set to: undefined 1`] = `
 <div
   className="collapsibleContainer"
 >
@@ -54,7 +55,7 @@ exports[`CollapsibleComponentCardsTest render expanded without content-class-nam
 </div>
 `;
 
-exports[`CollapsibleComponentCardsTest render with container-class-name 1`] = `
+exports[`CollapsibleComponentCardsTest render with containerClassName set to: a-container 1`] = `
 <div
   className="a-container collapsibleContainer"
 >
@@ -81,7 +82,61 @@ exports[`CollapsibleComponentCardsTest render with container-class-name 1`] = `
 </div>
 `;
 
-exports[`CollapsibleComponentCardsTest render without container-class-name 1`] = `
+exports[`CollapsibleComponentCardsTest render with containerClassName set to: undefined 1`] = `
+<div
+  className="collapsibleContainer"
+>
+  <CustomizedActionButton
+    aria-expanded={true}
+    className="collapsibleControl"
+    onClick={[Function]}
+  >
+    <span
+      className="collapsibleTitle"
+    >
+      <div>
+        Some header
+      </div>
+    </span>
+  </CustomizedActionButton>
+  <div
+    className="collapsibleContent"
+  >
+    <div>
+      Some content
+    </div>
+  </div>
+</div>
+`;
+
+exports[`CollapsibleComponentCardsTest render with contentClassName set to: content-class-name-a 1`] = `
+<div
+  className="collapsibleContainer"
+>
+  <CustomizedActionButton
+    aria-expanded={true}
+    className="collapsibleControl"
+    onClick={[Function]}
+  >
+    <span
+      className="collapsibleTitle"
+    >
+      <div>
+        Some header
+      </div>
+    </span>
+  </CustomizedActionButton>
+  <div
+    className="content-class-name-a collapsibleContent"
+  >
+    <div>
+      Some content
+    </div>
+  </div>
+</div>
+`;
+
+exports[`CollapsibleComponentCardsTest render with contentClassName set to: undefined 1`] = `
 <div
   className="collapsibleContainer"
 >
