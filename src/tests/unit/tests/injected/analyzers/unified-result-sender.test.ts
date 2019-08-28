@@ -4,7 +4,7 @@ import { IMock, Mock, Times } from 'typemoq';
 import { UnifiedScanCompletedPayload } from '../../../../../background/actions/action-payloads';
 import { Message } from '../../../../../common/message';
 import { Messages } from '../../../../../common/messages';
-import { UnifiedResults } from '../../../../../common/types/store-data/unified-data-interface';
+import { UnifiedResult } from '../../../../../common/types/store-data/unified-data-interface';
 import { ConvertResultsDelegate } from '../../../../../injected/adapters/scan-results-to-unified-results';
 import { MessageDelegate } from '../../../../../injected/analyzers/rule-analyzer';
 import { UnifiedResultSender } from '../../../../../injected/analyzers/unified-result-sender';
@@ -17,9 +17,7 @@ describe('sendConvertedResults', () => {
         const testSubject = new UnifiedResultSender(sendDelegate.object, convertToUnifiedMock.object, uuidGeneratorStub);
 
         const axeInputResults = {} as any;
-        const unifiedResults: UnifiedResults = {
-            results: [],
-        };
+        const unifiedResults: UnifiedResult[] = [];
         convertToUnifiedMock.setup(m => m(axeInputResults, uuidGeneratorStub)).returns(val => unifiedResults);
         testSubject.sendResults({
             results: null,

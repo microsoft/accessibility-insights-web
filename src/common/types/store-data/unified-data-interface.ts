@@ -28,12 +28,6 @@ export interface ToolData {
     scanEngineProperties: ScanEngineProperties;
 }
 
-export interface UnifiedResults {
-    results: UnifiedResult[];
-    platformInfo?: PlatformData;
-    toolInfo?: ToolData;
-}
-
 export interface UnifiedRule {
     id: string;
     description: string;
@@ -42,8 +36,10 @@ export interface UnifiedRule {
 }
 
 export interface UnifiedScanResultStoreData {
-    results: UnifiedResults;
+    results: UnifiedResult[];
     rules: UnifiedRule[];
+    platformInfo?: PlatformData;
+    toolInfo?: ToolData;
 }
 
 export interface InstancePropertyBag {
