@@ -6,11 +6,10 @@ import * as React from 'react';
 
 import { InstanceOutcomeType } from '../../../reports/components/instance-outcome-type';
 import { NoFailedInstancesCongrats } from '../../../reports/components/report-sections/no-failed-instances-congrats';
-import { RulesWithInstancesDeps } from '../../../reports/components/report-sections/rules-with-instances';
 import { UnifiedRuleResult } from './failed-instances-section-v2';
-import { RulesWithInstancesV2 } from './rules-with-instances-v2';
+import { RulesWithInstancesV2, RulesWithInstancesV2Deps } from './rules-with-instances-v2';
 
-export type ResultSectionContentV2Deps = RulesWithInstancesDeps;
+export type ResultSectionContentV2Deps = RulesWithInstancesV2Deps;
 
 export type ResultSectionContentV2Props = {
     deps: ResultSectionContentV2Deps;

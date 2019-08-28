@@ -9,12 +9,12 @@ import { ResultStatus, UnifiedResult } from '../../../common/types/store-data/un
 import { FixInstructionProcessor } from '../../../injected/fix-instruction-processor';
 import { failedInstancesSection, resultSection } from '../../../reports/automated-checks-report.scss';
 import { GuidanceLink } from '../../../scanner/rule-to-links-mappings';
-import { ResultSectionV2 } from './result-section-v2';
+import { ResultSectionV2, ResultSectionV2Deps } from './result-section-v2';
 
+export type FailedInstancesSectionV2Deps = ResultSectionV2Deps;
 export type FailedInstancesSectionV2Props = {
-    fixInstructionProcessor: FixInstructionProcessor;
+    deps: FailedInstancesSectionV2Deps;
     result: UnifiedStatusResults;
-    getGuidanceTagsFromGuidanceLinks: GetGuidanceTagsFromGuidanceLinks;
 };
 
 export interface UnifiedRuleResult {
@@ -31,19 +31,15 @@ export type UnifiedStatusResults = {
     [key in UnifiedRuleResultStatus]: UnifiedRuleResult[];
 };
 
-export const FailedInstancesSectionV2 = NamedSFC<FailedInstancesSectionV2Props>(
-    'FailedInstancesSectionV2',
-    ({ result, fixInstructionProcessor, getGuidanceTagsFromGuidanceLinks }) => {
-        return (
-            <ResultSectionV2
-                deps={{ getGuidanceTagsFromGuidanceLinks }}
-                fixInstructionProcessor={fixInstructionProcessor}
-                title="Failed instances"
-                results={result.fail}
-                containerClassName={css(failedInstancesSection, resultSection)}
-                outcomeType="fail"
-                badgeCount={result.fail.length}
-            />
-        );
-    },
-);
+export const FailedInstancesSectionV2 = NamedSFC<FailedInstancesSectionV2Props>('FailedInstancesSectionV2', ({ result, deps }) => {
+    return (
+        <ResultSectionV2
+            deps={deps}
+            title="Failed instances"
+            results={result.fail}
+            containerClassName={css(failedInstancesSection, resultSection)}
+            outcomeType="fail"
+            badgeCount={result.fail.length}
+        />
+    );
+});
