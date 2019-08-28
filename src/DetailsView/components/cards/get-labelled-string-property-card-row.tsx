@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { CardRowProps } from '../../../common/configs/unified-result-property-configurations';
 import { NamedSFC } from '../../../common/react/named-sfc';
-import { CardRow } from './card-row';
+import { SimpleCardRow } from './simple-card-row';
 
 export interface StringPropertyCardRowProps extends CardRowProps {
     propertyData: string;
@@ -11,6 +11,6 @@ export interface StringPropertyCardRowProps extends CardRowProps {
 
 export const GetLabelledStringPropertyCardRow = (label: string) => {
     return NamedSFC<StringPropertyCardRowProps>('StringPropertyCardRowProps', props => {
-        return <CardRow label={label} content={props.propertyData} rowKey={`${label}-${props.index}`} />;
+        return <SimpleCardRow label={label} content={props.propertyData} rowKey={`${label}-${props.index}`} />;
     });
 };
