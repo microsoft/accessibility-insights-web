@@ -18,7 +18,7 @@ describe('StoreActionMessageCreatorFactoryTest', () => {
         const messages: string[] = [
             getStoreStateMessage(StoreNames.VisualizationStore),
             getStoreStateMessage(StoreNames.CommandStore),
-            Messages.FeatureFlags.GetFeatureFlags,
+            getStoreStateMessage(StoreNames.FeatureFlagStore),
             Messages.LaunchPanel.Get,
             Messages.UserConfig.GetCurrentState,
         ];
@@ -32,7 +32,7 @@ describe('StoreActionMessageCreatorFactoryTest', () => {
             getStoreStateMessage(StoreNames.VisualizationScanResultStore),
             getStoreStateMessage(StoreNames.VisualizationStore),
             getStoreStateMessage(StoreNames.TabStore),
-            Messages.FeatureFlags.GetFeatureFlags,
+            getStoreStateMessage(StoreNames.FeatureFlagStore),
             Messages.Assessment.GetCurrentState,
             Messages.Scoping.GetCurrentState,
             Messages.UserConfig.GetCurrentState,
@@ -48,7 +48,7 @@ describe('StoreActionMessageCreatorFactoryTest', () => {
             Messages.Scoping.GetCurrentState,
             Messages.Inspect.GetCurrentState,
             getStoreStateMessage(StoreNames.VisualizationScanResultStore),
-            Messages.FeatureFlags.GetFeatureFlags,
+            getStoreStateMessage(StoreNames.FeatureFlagStore),
             Messages.DevTools.Get,
             Messages.Assessment.GetCurrentState,
             getStoreStateMessage(StoreNames.TabStore),

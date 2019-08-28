@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { Messages } from '../../common/messages';
+import { getStoreStateMessage, Messages } from '../../common/messages';
+import { StoreNames } from '../../common/stores/store-names';
 import { PREVIEW_FEATURES_TOGGLE } from '../../common/telemetry-events';
 import { FeatureFlagActions, FeatureFlagPayload } from '../actions/feature-flag-actions';
 import { Interpreter } from '../interpreter';
@@ -14,7 +15,7 @@ export class FeatureFlagsActionCreator {
     ) {}
 
     public registerCallbacks(): void {
-        this.interpreter.registerTypeToPayloadCallback(Messages.FeatureFlags.GetFeatureFlags, this.onGetFeatureFlags);
+        this.interpreter.registerTypeToPayloadCallback(getStoreStateMessage(StoreNames.FeatureFlagStore), this.onGetFeatureFlags);
         this.interpreter.registerTypeToPayloadCallback(Messages.FeatureFlags.SetFeatureFlag, this.onSetFeatureFlags);
         this.interpreter.registerTypeToPayloadCallback(Messages.FeatureFlags.ResetFeatureFlag, this.onResetFeatureFlags);
     }

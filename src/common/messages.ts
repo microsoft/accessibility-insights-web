@@ -140,7 +140,6 @@ export class Messages {
     };
 
     public static readonly FeatureFlags = {
-        GetFeatureFlags: `${messagePrefix}/featureFlags/get`,
         SetFeatureFlag: `${messagePrefix}/featureFlags/set`,
         ResetFeatureFlag: `${messagePrefix}/featureFlags/reset`,
     };

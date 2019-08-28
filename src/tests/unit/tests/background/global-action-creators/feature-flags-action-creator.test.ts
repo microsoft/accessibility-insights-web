@@ -8,7 +8,8 @@ import { FeatureFlagsActionCreator } from 'background/global-action-creators/fea
 import { Interpreter } from 'background/interpreter';
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
 import { Action } from '../../../../../common/flux/action';
-import { Messages } from '../../../../../common/messages';
+import { getStoreStateMessage, Messages } from '../../../../../common/messages';
+import { StoreNames } from '../../../../../common/stores/store-names';
 
 describe('FeatureFlagsActionCreator', () => {
     let interpreterMock: IMock<Interpreter>;
@@ -26,7 +27,7 @@ describe('FeatureFlagsActionCreator', () => {
     });
 
     it('handles GetFeatureFlags message', () => {
-        const expectedMessage = Messages.FeatureFlags.GetFeatureFlags;
+        const expectedMessage = getStoreStateMessage(StoreNames.FeatureFlagStore);
 
         setupInterpreterMock(expectedMessage);
 
