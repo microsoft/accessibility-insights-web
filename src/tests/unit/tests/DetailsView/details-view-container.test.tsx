@@ -5,6 +5,7 @@ import { ISelection, Selection } from 'office-ui-fabric-react/lib/DetailsList';
 import * as React from 'react';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
+import { AssessmentsProviderWithFeaturesEnabled } from '../../../../assessments/assessments-feature-flag-filter';
 import { DropdownClickHandler } from '../../../../common/dropdown-click-handler';
 import { StoreActionMessageCreator } from '../../../../common/message-creators/store-action-message-creator';
 import { StoreActionMessageCreatorImpl } from '../../../../common/message-creators/store-action-message-creator-impl';
@@ -49,19 +50,25 @@ describe('DetailsViewContainer', () => {
     let deps: DetailsViewContainerDeps;
     let getDetailsRightPanelConfiguration: IMock<GetDetailsRightPanelConfiguration>;
     let getDetailsSwitcherNavConfiguration: IMock<GetDetailsSwitcherNavConfiguration>;
+    let assessmentsProviderWithFeaturesEnabledMock: IMock<AssessmentsProviderWithFeaturesEnabled>;
+
+    const assessmentProviderMock = Mock.ofInstance(CreateTestAssessmentProviderWithFeatureFlag());
 
     beforeEach(() => {
         detailsViewActionMessageCreator = Mock.ofType<DetailsViewActionMessageCreator>();
         getDetailsRightPanelConfiguration = Mock.ofInstance((props: GetDetailsRightPanelConfigurationProps) => null, MockBehavior.Strict);
         getDetailsSwitcherNavConfiguration = Mock.ofInstance((props: GetDetailsSwitcherNavConfigurationProps) => null, MockBehavior.Strict);
+        assessmentsProviderWithFeaturesEnabledMock = Mock.ofType<AssessmentsProviderWithFeaturesEnabled>();
+        assessmentsProviderWithFeaturesEnabledMock
+            .setup(filter => filter(assessmentProviderMock.object, It.isAny()))
+            .returns(() => assessmentProviderMock.object);
         deps = {
             detailsViewActionMessageCreator: detailsViewActionMessageCreator.object,
             getDetailsRightPanelConfiguration: getDetailsRightPanelConfiguration.object,
             getDetailsSwitcherNavConfiguration: getDetailsSwitcherNavConfiguration.object,
+            assessmentsProviderWithFeaturesEnabled: assessmentsProviderWithFeaturesEnabledMock.object,
         } as DetailsViewContainerDeps;
     });
-
-    const assessmentProviderMock = Mock.ofInstance(CreateTestAssessmentProviderWithFeatureFlag());
 
     describe('render', () => {
         it('renders spinner when stores not ready', () => {

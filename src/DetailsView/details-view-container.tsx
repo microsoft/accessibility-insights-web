@@ -5,6 +5,7 @@ import { Spinner, SpinnerSize } from 'office-ui-fabric-react/lib/Spinner';
 import * as React from 'react';
 
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
+import { AssessmentsProviderWithFeaturesEnabled } from '../assessments/assessments-feature-flag-filter';
 import { ThemeDeps } from '../common/components/theme';
 import { withStoreSubscription, WithStoreSubscriptionDeps } from '../common/components/with-store-subscription';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
@@ -37,6 +38,8 @@ import { PreviewFeatureFlagsHandler } from './handlers/preview-feature-flags-han
 export type DetailsViewContainerDeps = {
     getDetailsRightPanelConfiguration: GetDetailsRightPanelConfiguration;
     getDetailsSwitcherNavConfiguration: GetDetailsSwitcherNavConfiguration;
+    assessmentsProvider: AssessmentsProvider;
+    assessmentsProviderWithFeaturesEnabled: AssessmentsProviderWithFeaturesEnabled;
 } & DetailsViewMainContentDeps &
     DetailsViewOverlayDeps &
     DetailsViewCommandBarDeps &
@@ -119,6 +122,8 @@ export class DetailsViewContainer extends React.Component<DetailsViewContainerPr
     }
 
     private renderContent(): JSX.Element {
+        this.updateAssessmentsProvider();
+
         return (
             <div className="table column-layout main-wrapper">
                 {this.renderHeader()}
@@ -126,6 +131,11 @@ export class DetailsViewContainer extends React.Component<DetailsViewContainerPr
                 {this.renderOverlay()}
             </div>
         );
+    }
+
+    private updateAssessmentsProvider(): void {
+        const { assessmentsProvider, deps, storeState } = this.props;
+        deps.assessmentsProvider = deps.assessmentsProviderWithFeaturesEnabled(assessmentsProvider, storeState.featureFlagStoreData);
     }
 
     private renderHeader(): JSX.Element {
