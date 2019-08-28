@@ -30,13 +30,10 @@ export class ClientUtils {
     public getOffset(element: BoundRectAccessor): ClientRectOffset {
         const elementRect = element.getBoundingClientRect();
 
-        return {
-            left: elementRect.left + this.scroll.scrollX,
-            top: elementRect.top + this.scroll.scrollY,
-        };
+        return this.getOffsetFromBoundingRect(elementRect);
     }
 
-    public getOffsetFromBoundingRect(elementRect: ClientRect): ClientRectOffset {
+    public getOffsetFromBoundingRect(elementRect: ClientRect | ClientRectOffset): ClientRectOffset {
         return {
             left: elementRect.left + this.scroll.scrollX,
             top: elementRect.top + this.scroll.scrollY,
