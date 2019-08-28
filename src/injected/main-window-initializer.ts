@@ -33,6 +33,7 @@ import { IssueFilingServiceProviderImpl } from '../issue-filing/issue-filing-ser
 import { scan } from '../scanner/exposed-apis';
 import { IssueFilingActionMessageCreator } from './../common/message-creators/issue-filing-action-message-creator';
 import { convertScanResultsToUnifiedResults } from './adapters/scan-results-to-unified-results';
+import { convertScanResultsToUnifiedRules } from './adapters/scan-results-to-unified-rules';
 import { AnalyzerController } from './analyzer-controller';
 import { AnalyzerStateUpdateHandler } from './analyzer-state-update-handler';
 import { AnalyzerProvider } from './analyzers/analyzer-provider';
@@ -52,7 +53,6 @@ import { SelectorMapHelper } from './selector-map-helper';
 import { ShadowUtils } from './shadow-utils';
 import { TargetPageActionMessageCreator } from './target-page-action-message-creator';
 import { WindowInitializer } from './window-initializer';
-import { convertScanResultsToUnifiedRules } from './adapters/scan-results-to-unified-rules';
 
 export class MainWindowInitializer extends WindowInitializer {
     protected frameCommunicator: FrameCommunicator;
