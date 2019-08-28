@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as React from 'react';
-import { LabelledTableRow, LabelledTableRowProps } from '../../DetailsView/components/cards/css-selector-card-row';
+import { LabelledTableRow } from '../../DetailsView/components/cards/css-selector-card-row';
 import { HowToFixWebCardRow } from '../../DetailsView/components/cards/how-to-fix-web-card-row';
 import { FixInstructionProcessor } from '../../injected/fix-instruction-processor';
 import { ReactSFCWithDisplayName } from '../react/named-sfc';

@@ -9,6 +9,7 @@ import { FixInstructionPanel } from '../../../injected/components/fix-instructio
 import { TableRow } from './table-row';
 
 export interface HowToFixWebPropertyData {
+    // tslint:disable-next-line: no-reserved-keywords
     any: string[];
     none: string[];
     all: string[];
@@ -19,7 +20,7 @@ export interface HowToFixWebCardRowProps extends CardRowProps {
 }
 
 export const HowToFixWebCardRow = NamedSFC<HowToFixWebCardRowProps>('HowToFixWebCardRow', ({ deps, ...props }) => {
-    const { any, all, none } = props.propertyData;
+    const { any: anyOf, all, none } = props.propertyData;
 
     const renderFixInstructionsContent = () => {
         return (
@@ -33,7 +34,7 @@ export const HowToFixWebCardRow = NamedSFC<HowToFixWebCardRowProps>('HowToFixWeb
                 <FixInstructionPanel
                     deps={deps}
                     checkType={CheckType.Any}
-                    checks={any.map(turnStringToMessageObject)}
+                    checks={anyOf.map(turnStringToMessageObject)}
                     renderTitleElement={renderFixInstructionsTitleElement}
                 />
             </div>

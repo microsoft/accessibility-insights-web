@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 import { GetGuidanceTagsFromGuidanceLinks } from 'common/get-guidance-tags-from-guidance-links';
 import { NamedSFC } from 'common/react/named-sfc';
-import { FixInstructionProcessor } from 'injected/fix-instruction-processor';
 import * as React from 'react';
 import { instanceDetailsList } from 'reports/automated-checks-report.scss';
 
