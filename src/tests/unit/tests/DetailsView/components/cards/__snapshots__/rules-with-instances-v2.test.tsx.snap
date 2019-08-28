@@ -2,11 +2,12 @@
 
 exports[`RulesWithInstancesV2 renders 1`] = `
 <div
-  className="rule-details-group"
+  className="ruleDetailsGroup"
 >
-  <CollapsibleContainer
+  <CollapsibleComponentCards
     buttonAriaLabel="some-rule 1 Passed sample-description"
-    collapsibleContent={
+    containerClassName="collapsibleRuleDetailsGroup"
+    content={
       <RuleContentV2
         deps={Object {}}
         fixInstructionProcessor={
@@ -54,10 +55,7 @@ exports[`RulesWithInstancesV2 renders 1`] = `
         }
       />
     }
-    containerClassName="collapsible-rule-details-group"
-    id="some-rule"
-    titleHeadingLevel={3}
-    visibleHeadingContent={
+    header={
       <MinimalRuleHeader
         outcomeType="pass"
         rule={
@@ -94,6 +92,8 @@ exports[`RulesWithInstancesV2 renders 1`] = `
         }
       />
     }
+    id="some-rule"
+    titleHeadingLevel={3}
   />
 </div>
 `;

@@ -27,7 +27,6 @@ describe('RulesWithInstancesV2', () => {
                 rules={rules}
             />,
         );
-
         expect(wrapped.getElement()).toMatchSnapshot();
     });
 });

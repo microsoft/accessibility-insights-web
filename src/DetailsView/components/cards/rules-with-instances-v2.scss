@@ -1,0 +1,55 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+@import '../../../common/styles/colors.scss';
+@import '../../../common/styles/fonts.scss';
+
+.rule-details-group {
+    :global(.rule-detail) {
+        box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.08);
+        font-size: 14px;
+
+        padding: 16px 8px;
+
+        display: flex;
+        align-items: center;
+
+        .outcome-chip {
+            vertical-align: middle;
+            margin-bottom: 2px;
+        }
+
+        .rule-details-id {
+            font-family: $semiBoldFontFamily;
+            color: $primary-text;
+
+            a {
+                font-family: $semiBoldFontFamily;
+                color: $primary-text !important;
+            }
+        }
+
+        .rule-detail-description {
+            color: $secondary-text !important;
+        }
+
+        .guidance-links {
+            a {
+                color: $secondary-text !important;
+            }
+        }
+    }
+}
+
+.collapsible-rule-details-group {
+    box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.08);
+
+    global {
+        .rule-detail {
+            box-shadow: unset;
+        }
+
+        &:not(.collapsed) {
+            box-shadow: unset;
+        }
+    }
+}
