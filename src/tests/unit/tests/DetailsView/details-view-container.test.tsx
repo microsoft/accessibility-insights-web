@@ -4,16 +4,18 @@ import { shallow } from 'enzyme';
 import { ISelection, Selection } from 'office-ui-fabric-react/lib/DetailsList';
 import * as React from 'react';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
-import { GetUnifiedRuleResultsDelegate } from '../../../../common/rule-based-view-model-provider';
 import { DropdownClickHandler } from '../../../../common/dropdown-click-handler';
 import { StoreActionMessageCreator } from '../../../../common/message-creators/store-action-message-creator';
 import { StoreActionMessageCreatorImpl } from '../../../../common/message-creators/store-action-message-creator-impl';
+import { GetUnifiedRuleResultsDelegate } from '../../../../common/rule-based-view-model-provider';
 import { BaseClientStoresHub } from '../../../../common/stores/base-client-stores-hub';
 import { DetailsViewPivotType } from '../../../../common/types/details-view-pivot-type';
 import { TabStoreData } from '../../../../common/types/store-data/tab-store-data';
+import { UnifiedResult, UnifiedRule } from '../../../../common/types/store-data/unified-data-interface';
 import { UserConfigurationStoreData } from '../../../../common/types/store-data/user-configuration-store';
 import { VisualizationType } from '../../../../common/types/visualization-type';
 import { DetailsViewActionMessageCreator } from '../../../../DetailsView/actions/details-view-action-message-creator';
+import { UnifiedStatusResults } from '../../../../DetailsView/components/cards/failed-instances-section-v2';
 import { DetailsViewOverlay } from '../../../../DetailsView/components/details-view-overlay';
 import {
     DetailsRightPanelConfiguration,
@@ -43,8 +45,6 @@ import { CreateTestAssessmentProviderWithFeatureFlag } from '../../common/test-a
 import { VisualizationStoreDataBuilder } from '../../common/visualization-store-data-builder';
 import { DetailsViewContainerPropsBuilder } from './details-view-container-props-builder';
 import { StoreMocks } from './store-mocks';
-import { UnifiedStatusResults } from '../../../../DetailsView/components/cards/failed-instances-section-v2';
-import { UnifiedResult, UnifiedRule, UnifiedResults } from '../../../../common/types/store-data/unified-data-interface';
 
 describe('DetailsViewContainer', () => {
     let detailsViewActionMessageCreator: IMock<DetailsViewActionMessageCreator>;

@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { IMock, Mock, Times } from 'typemoq';
+import { UnifiedScanCompletedPayload } from '../../../../../background/actions/action-payloads';
 import { Message } from '../../../../../common/message';
 import { Messages } from '../../../../../common/messages';
 import { UnifiedResults } from '../../../../../common/types/store-data/unified-data-interface';
@@ -26,9 +27,13 @@ describe('sendConvertedResults', () => {
         });
         convertToUnifiedMock.verifyAll();
 
+        const expectedPayload: UnifiedScanCompletedPayload = {
+            scanResult: unifiedResults,
+            rules: [],
+        };
         const expectedMessage: Message = {
             messageType: Messages.UnifiedScan.ScanCompleted,
-            payload: unifiedResults,
+            payload: expectedPayload,
         };
         sendDelegate.verify(m => m(expectedMessage), Times.once());
     });

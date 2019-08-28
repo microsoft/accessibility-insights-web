@@ -16,6 +16,7 @@ import { TabStore } from 'background/stores/tab-store';
 import { VisualizationScanResultStore } from 'background/stores/visualization-scan-result-store';
 import { VisualizationStore } from 'background/stores/visualization-store';
 import { It, Mock, MockBehavior } from 'typemoq';
+import { UnifiedScanResultStore } from '../../../../background/stores/unified-scan-result-store';
 import { FeatureFlags } from '../../../../common/feature-flags';
 import { AssessmentStoreData } from '../../../../common/types/store-data/assessment-result-data';
 import { CommandStoreData } from '../../../../common/types/store-data/command-store-data';
@@ -24,6 +25,7 @@ import { FeatureFlagStoreData } from '../../../../common/types/store-data/featur
 import { LaunchPanelStoreData } from '../../../../common/types/store-data/launch-panel-store-data';
 import { ScopingStoreData } from '../../../../common/types/store-data/scoping-store-data';
 import { TabStoreData } from '../../../../common/types/store-data/tab-store-data';
+import { UnifiedResults } from '../../../../common/types/store-data/unified-data-interface';
 import { UserConfigurationStoreData } from '../../../../common/types/store-data/user-configuration-store';
 import { VisualizationScanResultData } from '../../../../common/types/store-data/visualization-scan-result-data';
 import { VisualizationStoreData } from '../../../../common/types/store-data/visualization-store-data';
@@ -31,8 +33,6 @@ import { AssessmentsStoreDataBuilder } from '../../common/assessment-store-data-
 import { DetailsViewStoreDataBuilder } from '../../common/details-view-store-data-builder';
 import { VisualizationScanResultStoreDataBuilder } from '../../common/visualization-scan-result-store-data-builder';
 import { VisualizationStoreDataBuilder } from '../../common/visualization-store-data-builder';
-import { UnifiedScanResultStore } from '../../../../background/stores/unified-scan-result-store';
-import { UnifiedResults } from '../../../../common/types/store-data/unified-data-interface';
 
 export class StoreMocks {
     public visualizationStoreMock = Mock.ofType(VisualizationStore, MockBehavior.Strict);

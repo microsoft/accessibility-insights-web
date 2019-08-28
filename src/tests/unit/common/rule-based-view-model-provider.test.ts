@@ -5,6 +5,17 @@ import { InstanceResultStatus, UnifiedResult, UnifiedRule } from '../../../commo
 import { UnifiedRuleResult, UnifiedStatusResults } from '../../../DetailsView/components/cards/failed-instances-section-v2';
 
 describe('RuleBasedViewModelProvider', () => {
+    test('getUnifiedRuleResults with null inputs', () => {
+        const emptyResults: UnifiedStatusResults = {
+            fail: [],
+            pass: [],
+            inapplicable: [],
+            unknown: [],
+        };
+        const actualResults: UnifiedStatusResults = getUnifiedRuleResults(null, null);
+
+        expect(actualResults).toEqual(emptyResults);
+    });
     test('getUnifiedRuleResults', () => {
         const rules = getSampleRules();
 

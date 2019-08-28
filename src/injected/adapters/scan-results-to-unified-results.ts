@@ -2,8 +2,8 @@
 // Licensed under the MIT License.
 import { flatMap } from 'lodash';
 import { InstanceResultStatus, UnifiedResult, UnifiedResults } from '../../common/types/store-data/unified-data-interface';
-import { AxeNodeResult, RuleResult, ScanResults } from '../../scanner/iruleresults';
 import { UUIDGeneratorType } from '../../common/uid-generator';
+import { AxeNodeResult, RuleResult, ScanResults } from '../../scanner/iruleresults';
 
 export type ConvertResultsDelegate = (scanResults: ScanResults, uuidGenerator: UUIDGeneratorType) => UnifiedResults;
 

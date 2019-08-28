@@ -49,6 +49,7 @@ import { StoreActionMessageCreatorFactory } from '../common/message-creators/sto
 import { UserConfigMessageCreator } from '../common/message-creators/user-config-message-creator';
 import { VisualizationActionMessageCreator } from '../common/message-creators/visualization-action-message-creator';
 import { NavigatorUtils } from '../common/navigator-utils';
+import { getUnifiedRuleResults } from '../common/rule-based-view-model-provider';
 import { AutoChecker } from '../common/self-validator';
 import { StoreProxy } from '../common/store-proxy';
 import { BaseClientStoresHub } from '../common/stores/base-client-stores-hub';
@@ -61,6 +62,7 @@ import { InspectStoreData } from '../common/types/store-data/inspect-store-data'
 import { PathSnippetStoreData } from '../common/types/store-data/path-snippet-store-data';
 import { ScopingStoreData } from '../common/types/store-data/scoping-store-data';
 import { TabStoreData } from '../common/types/store-data/tab-store-data';
+import { UnifiedResults } from '../common/types/store-data/unified-data-interface';
 import { UserConfigurationStoreData } from '../common/types/store-data/user-configuration-store';
 import { VisualizationScanResultData } from '../common/types/store-data/visualization-scan-result-data';
 import { VisualizationStoreData } from '../common/types/store-data/visualization-store-data';
@@ -92,8 +94,6 @@ import { AssessmentInstanceTableHandler } from './handlers/assessment-instance-t
 import { DetailsViewToggleClickHandlerFactory } from './handlers/details-view-toggle-click-handler-factory';
 import { MasterCheckBoxConfigProvider } from './handlers/master-checkbox-config-provider';
 import { PreviewFeatureFlagsHandler } from './handlers/preview-feature-flags-handler';
-import { UnifiedResults } from '../common/types/store-data/unified-data-interface';
-import { getUnifiedRuleResults } from '../common/rule-based-view-model-provider';
 declare const window: AutoChecker & Window;
 
 const browserAdapter = new ChromeAdapter();
