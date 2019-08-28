@@ -1875,6 +1875,31 @@ exports[`A11Y for content pages High Contrast mode test/automatedChecks/guidance
 </DocumentFragment>
 `;
 
+exports[`A11Y for content pages High Contrast mode test/contrast/graphics/infoAndExamples 1`] = `
+<DocumentFragment>
+  <div
+    class="content-container"
+  >
+    <div
+      class="content-left"
+    />
+    <div
+      class="content"
+    >
+      <h1>
+        Graphics
+      </h1>
+      <p>
+        TODO
+      </p>
+    </div>
+    <div
+      class="content-right"
+    />
+  </div>
+</DocumentFragment>
+`;
+
 exports[`A11Y for content pages High Contrast mode test/contrast/guidance 1`] = `
 <DocumentFragment>
   <div
@@ -34291,6 +34316,31 @@ exports[`A11Y for content pages Normal mode test/automatedChecks/guidance 1`] = 
       </h2>
       <p>
         We recommend fixing any issues detected through automated checks before proceeding to the remaining tests, which require human judgement. The human-powered tests are easier, faster, and more reliable when the auto-detected issues have already been eliminated.
+      </p>
+    </div>
+    <div
+      class="content-right"
+    />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`A11Y for content pages Normal mode test/contrast/graphics/infoAndExamples 1`] = `
+<DocumentFragment>
+  <div
+    class="content-container"
+  >
+    <div
+      class="content-left"
+    />
+    <div
+      class="content"
+    >
+      <h1>
+        Graphics
+      </h1>
+      <p>
+        TODO
       </p>
     </div>
     <div
