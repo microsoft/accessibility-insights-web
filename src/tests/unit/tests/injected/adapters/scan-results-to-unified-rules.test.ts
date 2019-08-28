@@ -5,57 +5,69 @@ import { convertScanResultsToUnifiedRules } from '../../../../../injected/adapte
 import { RuleResult, ScanResults } from '../../../../../scanner/iruleresults';
 
 describe('ScanResults to UnifiedRule[] test', () => {
-    test('convertScanResultsToUnifiedRules', () => {
-        const scanResultsStub = {
-            passes: [createRuleResultStub('rule1')],
-            violations: [createRuleResultStub('rule1')],
-            inapplicable: [createRuleResultStub('rule2'), createRuleResultStub('rule3')],
-            incomplete: [],
-        } as ScanResults;
+    describe('convertScanResultsToUnifiedRules', () => {
+        it('returns empty UnifiedRule array when scanResults is undefined/null', () => {
+            const undefinedScanResults = undefined;
+            const nullScanResults = null;
 
-        const expectedResults = getSampleUnifiedRuleStubs(3);
+            const expectedResults = [] as UnifiedRule[];
 
-        const actualResults = convertScanResultsToUnifiedRules(scanResultsStub);
+            expect(convertScanResultsToUnifiedRules(undefinedScanResults)).toEqual(expectedResults);
+            expect(convertScanResultsToUnifiedRules(nullScanResults)).toEqual(expectedResults);
+        });
 
-        expect(actualResults).toEqual(expectedResults);
-    });
+        it('returns the expected UnifiedRule[] from sample ScanResults', () => {
+            const scanResultsStub = {
+                passes: [createRuleResultStub('rule1')],
+                violations: [createRuleResultStub('rule1')],
+                inapplicable: [createRuleResultStub('rule2'), createRuleResultStub('rule3')],
+                incomplete: [],
+            } as ScanResults;
 
-    function createRuleResultStub(id: string): RuleResult {
-        return {
-            id: `stub_${id}`,
-            nodes: [],
-            description: `stub_description_${id}`,
-            helpUrl: `stub_url_${id}`,
-            guidanceLinks: [
-                {
-                    href: `stub_guidance_href_${id}`,
-                    text: `stub_guidance_text_${id}`,
-                },
-            ],
-        };
-    }
+            const expectedResults = getSampleUnifiedRuleStubs(3);
 
-    function createUnifiedRuleStub(id: string): UnifiedRule {
-        return {
-            id: `stub_${id}`,
-            description: `stub_description_${id}`,
-            url: `stub_url_${id}`,
-            guidance: [
-                {
-                    href: `stub_guidance_href_${id}`,
-                    text: `stub_guidance_text_${id}`,
-                },
-            ],
-        };
-    }
+            const actualResults = convertScanResultsToUnifiedRules(scanResultsStub);
 
-    function getSampleUnifiedRuleStubs(numRules: number): UnifiedRule[] {
-        const unifiedRules = [] as UnifiedRule[];
+            expect(actualResults).toEqual(expectedResults);
+        });
 
-        for (let i = 1; i <= numRules; i++) {
-            unifiedRules.push(createUnifiedRuleStub(`rule${i}`));
+        function createRuleResultStub(id: string): RuleResult {
+            return {
+                id: `stub_${id}`,
+                nodes: [],
+                description: `stub_description_${id}`,
+                helpUrl: `stub_url_${id}`,
+                guidanceLinks: [
+                    {
+                        href: `stub_guidance_href_${id}`,
+                        text: `stub_guidance_text_${id}`,
+                    },
+                ],
+            };
         }
 
-        return unifiedRules;
-    }
+        function createUnifiedRuleStub(id: string): UnifiedRule {
+            return {
+                id: `stub_${id}`,
+                description: `stub_description_${id}`,
+                url: `stub_url_${id}`,
+                guidance: [
+                    {
+                        href: `stub_guidance_href_${id}`,
+                        text: `stub_guidance_text_${id}`,
+                    },
+                ],
+            };
+        }
+
+        function getSampleUnifiedRuleStubs(numRules: number): UnifiedRule[] {
+            const unifiedRules = [] as UnifiedRule[];
+
+            for (let i = 1; i <= numRules; i++) {
+                unifiedRules.push(createUnifiedRuleStub(`rule${i}`));
+            }
+
+            return unifiedRules;
+        }
+    });
 });
