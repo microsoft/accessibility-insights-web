@@ -17,20 +17,17 @@ export interface TabInfoProps {
 
 export class TabInfo extends React.Component<TabInfoProps> {
     public render(): JSX.Element {
-        return <div>{this.renderMessageBarForTargetPageHidden()}</div>;
-    }
-
-    private renderMessageBarForTargetPageHidden(): JSX.Element {
-        if (this.props.isTargetPageHidden) {
-            const messageContent = (
-                <div>
-                    The Target page is in a hidden state. For better performance, use the Target page link above to make the page visible.
-                </div>
-            );
-            return this.renderMessageBar(messageContent, MessageBarType.warning, 'waring-message-bar');
-        } else {
+        if (!this.props.isTargetPageHidden) {
             return null;
         }
+
+        const messageContent = (
+            <div>
+                The Target page is in a hidden state. For better performance, use the Target page link above to make the page visible.
+            </div>
+        );
+
+        return <div>{this.renderMessageBar(messageContent, MessageBarType.warning, 'waring-message-bar')}</div>;
     }
 
     private renderMessageBar(messageContent: JSX.Element, messageBarType: MessageBarType, className: string): JSX.Element {
