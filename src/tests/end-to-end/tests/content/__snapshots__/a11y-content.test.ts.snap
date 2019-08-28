@@ -1887,8 +1887,11 @@ exports[`A11Y for content pages High Contrast mode test/contrast/graphics/infoAn
       class="content"
     >
       <h1>
-        Cannot find test/contrast/graphics/infoAndExamples
+        Graphics
       </h1>
+      <p>
+        TODO
+      </p>
     </div>
     <div
       class="content-right"
@@ -34334,8 +34337,11 @@ exports[`A11Y for content pages Normal mode test/contrast/graphics/infoAndExampl
       class="content"
     >
       <h1>
-        Cannot find test/contrast/graphics/infoAndExamples
+        Graphics
       </h1>
+      <p>
+        TODO
+      </p>
     </div>
     <div
       class="content-right"
