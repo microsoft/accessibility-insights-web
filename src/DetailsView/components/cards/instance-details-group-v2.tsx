@@ -8,31 +8,26 @@ import { instanceDetailsList } from 'reports/automated-checks-report.scss';
 
 import { getPropertyConfiguration } from '../../../common/configs/unified-result-property-configurations';
 import { UnifiedRuleResult } from './failed-instances-section-v2';
-import { InstanceDetailsV2 } from './instance-details-v2';
+import { InstanceDetailsV2, InstanceDetailsV2Deps } from './instance-details-v2';
 
 export type InstanceDetailsGroupV2Deps = {
     getGuidanceTagsFromGuidanceLinks: GetGuidanceTagsFromGuidanceLinks;
-};
+} & InstanceDetailsV2Deps;
 
 export type InstanceDetailsGroupV2Props = {
     deps: InstanceDetailsGroupV2Deps;
     rule: UnifiedRuleResult;
-    fixInstructionProcessor: FixInstructionProcessor;
 };
 
 export const InstanceDetailsGroupV2 = NamedSFC<InstanceDetailsGroupV2Props>('InstanceDetailsGroupV2', props => {
-    const { fixInstructionProcessor, rule } = props;
+    const { deps, rule } = props;
     const { nodes } = rule;
 
     return (
         <ul className={instanceDetailsList} aria-label="failed instances with path, snippet and how to fix information">
             {nodes.map((node, index) => (
                 <li key={`instance-details-${index}`}>
-                    <InstanceDetailsV2
-                        {...{ index, fixInstructionProcessor: fixInstructionProcessor }}
-                        result={node}
-                        getPropertyConfigById={getPropertyConfiguration}
-                    />
+                    <InstanceDetailsV2 {...{ index }} deps={deps} result={node} getPropertyConfigById={getPropertyConfiguration} />
                 </li>
             ))}
         </ul>
