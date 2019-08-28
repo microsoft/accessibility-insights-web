@@ -12,9 +12,9 @@ import { DrawerInitData } from '../../../../../injected/visualization/drawer';
 import { DrawerUtils } from '../../../../../injected/visualization/drawer-utils';
 import { DrawerConfiguration, Formatter } from '../../../../../injected/visualization/formatter';
 import { HighlightBoxDrawer } from '../../../../../injected/visualization/highlight-box-drawer';
+import { NonTextComponentFormatter } from '../../../../../injected/visualization/non-text-component-formatter';
 import { itIsFunction } from '../../../common/it-is-function';
 import { TestDocumentCreator } from '../../../common/test-document-creator';
-import { NonTextComponentFormatter } from '../../../../../injected/visualization/non-text-component-formatter';
 
 describe('Drawer', () => {
     const defaultStyleStub: CSSStyleDeclaration = {
