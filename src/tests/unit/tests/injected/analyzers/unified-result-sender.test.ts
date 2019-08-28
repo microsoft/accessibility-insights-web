@@ -5,7 +5,8 @@ import { UnifiedScanCompletedPayload } from '../../../../../background/actions/a
 import { Message } from '../../../../../common/message';
 import { Messages } from '../../../../../common/messages';
 import { UnifiedResult, UnifiedRule } from '../../../../../common/types/store-data/unified-data-interface';
-import { ConvertResultsDelegate } from '../../../../../injected/adapters/scan-results-to-unified-results';
+import { ConvertScanResultsToUnifiedResultsDelegate } from '../../../../../injected/adapters/scan-results-to-unified-results';
+import { ConvertScanResultsToUnifiedRulesDelegate } from '../../../../../injected/adapters/scan-results-to-unified-rules';
 import { MessageDelegate } from '../../../../../injected/analyzers/rule-analyzer';
 import { UnifiedResultSender } from '../../../../../injected/analyzers/unified-result-sender';
 import { ScanResults } from '../../../../../scanner/iruleresults';
@@ -13,8 +14,12 @@ import { ScanResults } from '../../../../../scanner/iruleresults';
 describe('sendConvertedResults', () => {
     it('should send a message', () => {
         const sendDelegate: IMock<MessageDelegate> = Mock.ofInstance(message => null);
-        const convertToUnifiedMock: IMock<ConvertResultsDelegate> = Mock.ofInstance((scanResults, uuidGenerator) => null);
-        const convertToUnifiedRulesMock = Mock.ofInstance((scanResults: ScanResults) => null);
+        const convertToUnifiedMock: IMock<ConvertScanResultsToUnifiedResultsDelegate> = Mock.ofInstance(
+            (scanResults, uuidGenerator) => null,
+        );
+        const convertToUnifiedRulesMock: IMock<ConvertScanResultsToUnifiedRulesDelegate> = Mock.ofInstance(
+            (scanResults: ScanResults) => null,
+        );
         const uuidGeneratorStub = () => null;
         const testSubject = new UnifiedResultSender(
             sendDelegate.object,

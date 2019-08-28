@@ -5,7 +5,7 @@ import { InstanceResultStatus, UnifiedResult } from '../../common/types/store-da
 import { UUIDGeneratorType } from '../../common/uid-generator';
 import { AxeNodeResult, RuleResult, ScanResults } from '../../scanner/iruleresults';
 
-export type ConvertResultsDelegate = (scanResults: ScanResults, uuidGenerator: UUIDGeneratorType) => UnifiedResult[];
+export type ConvertScanResultsToUnifiedResultsDelegate = (scanResults: ScanResults, uuidGenerator: UUIDGeneratorType) => UnifiedResult[];
 
 interface RuleResultData {
     status: InstanceResultStatus;
