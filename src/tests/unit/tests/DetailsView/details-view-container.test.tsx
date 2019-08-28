@@ -188,7 +188,9 @@ describe('DetailsViewContainer', () => {
                 .returns(() => viewType);
 
             const ruleResults: UnifiedStatusResults = {} as any;
-            getUnifiedRuleResultsMock.setup(m => m(null, state.unifiedScanResultStoreData.results)).returns(() => ruleResults);
+            getUnifiedRuleResultsMock
+                .setup(m => m(state.unifiedScanResultStoreData.rules, state.unifiedScanResultStoreData.results))
+                .returns(() => ruleResults);
 
             testObject.render();
 
@@ -438,7 +440,9 @@ describe('DetailsViewContainer', () => {
             .returns(() => viewType);
 
         const ruleResults: UnifiedStatusResults = {} as any;
-        getUnifiedRuleResultsMock.setup(m => m(null, state.unifiedScanResultStoreData.results)).returns(() => ruleResults);
+        getUnifiedRuleResultsMock
+            .setup(m => m(state.unifiedScanResultStoreData.rules, state.unifiedScanResultStoreData.results))
+            .returns(() => ruleResults);
 
         const expected: JSX.Element = (
             <div className="table column-layout main-wrapper">

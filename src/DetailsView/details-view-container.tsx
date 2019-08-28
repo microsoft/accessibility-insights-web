@@ -17,6 +17,7 @@ import { FeatureFlagStoreData } from '../common/types/store-data/feature-flag-st
 import { PathSnippetStoreData } from '../common/types/store-data/path-snippet-store-data';
 import { ScopingStoreData } from '../common/types/store-data/scoping-store-data';
 import { TabStoreData } from '../common/types/store-data/tab-store-data';
+import { UnifiedScanResultStoreData } from '../common/types/store-data/unified-data-interface';
 import { UserConfigurationStoreData } from '../common/types/store-data/user-configuration-store';
 import { VisualizationScanResultData } from '../common/types/store-data/visualization-scan-result-data';
 import { VisualizationStoreData } from '../common/types/store-data/visualization-store-data';
@@ -33,7 +34,6 @@ import { DetailsViewMainContent, DetailsViewMainContentDeps } from './details-vi
 import { AssessmentInstanceTableHandler } from './handlers/assessment-instance-table-handler';
 import { DetailsViewToggleClickHandlerFactory } from './handlers/details-view-toggle-click-handler-factory';
 import { PreviewFeatureFlagsHandler } from './handlers/preview-feature-flags-handler';
-import { UnifiedScanResultStoreData } from '../common/types/store-data/unified-data-interface';
 
 export type DetailsViewContainerDeps = {
     getDetailsRightPanelConfiguration: GetDetailsRightPanelConfiguration;
@@ -173,7 +173,10 @@ export class DetailsViewContainer extends React.Component<DetailsViewContainerPr
         });
         const selectedTest = selectedDetailsViewSwitcherNavConfiguration.getSelectedDetailsView(storeState);
 
-        const ruleResults = this.props.deps.getUnifiedRuleResults(null, this.props.storeState.unifiedScanResultStoreData.results);
+        const ruleResults = this.props.deps.getUnifiedRuleResults(
+            this.props.storeState.unifiedScanResultStoreData.rules,
+            this.props.storeState.unifiedScanResultStoreData.results,
+        );
 
         return (
             <DetailsViewMainContent
