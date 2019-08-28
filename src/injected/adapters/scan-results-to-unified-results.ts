@@ -1,10 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { flatMap } from 'lodash';
-import { InstanceResultStatus, UnifiedResult, UnifiedResults } from '../../common/types/store-data/unified-data-interface';
+import { InstanceResultStatus, UnifiedResult } from '../../common/types/store-data/unified-data-interface';
+import { UUIDGeneratorType } from '../../common/uid-generator';
 import { AxeNodeResult, RuleResult, ScanResults } from '../../scanner/iruleresults';
 
-type UUIDGeneratorType = () => string;
+export type ConvertScanResultsToUnifiedResultsDelegate = (scanResults: ScanResults, uuidGenerator: UUIDGeneratorType) => UnifiedResult[];
 
 interface RuleResultData {
     status: InstanceResultStatus;
@@ -21,13 +22,11 @@ interface CreationData extends RuleResultData {
     };
 }
 
-export const convertScanResultsToUnifiedResults = (scanResults: ScanResults, uuidGenerator: UUIDGeneratorType): UnifiedResults => {
+export const convertScanResultsToUnifiedResults = (scanResults: ScanResults, uuidGenerator: UUIDGeneratorType): UnifiedResult[] => {
     if (!scanResults) {
-        return {} as UnifiedResults;
+        return [];
     }
-    return {
-        results: createUnifiedResultsFromScanResults(scanResults, uuidGenerator),
-    } as UnifiedResults;
+    return createUnifiedResultsFromScanResults(scanResults, uuidGenerator);
 };
 
 const createUnifiedResultsFromScanResults = (scanResults: ScanResults, uuidGenerator: UUIDGeneratorType): UnifiedResult[] => {

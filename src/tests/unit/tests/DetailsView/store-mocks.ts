@@ -16,6 +16,7 @@ import { TabStore } from 'background/stores/tab-store';
 import { VisualizationScanResultStore } from 'background/stores/visualization-scan-result-store';
 import { VisualizationStore } from 'background/stores/visualization-store';
 import { It, Mock, MockBehavior } from 'typemoq';
+import { UnifiedScanResultStore } from '../../../../background/stores/unified-scan-result-store';
 import { FeatureFlags } from '../../../../common/feature-flags';
 import { AssessmentStoreData } from '../../../../common/types/store-data/assessment-result-data';
 import { CommandStoreData } from '../../../../common/types/store-data/command-store-data';
@@ -24,6 +25,7 @@ import { FeatureFlagStoreData } from '../../../../common/types/store-data/featur
 import { LaunchPanelStoreData } from '../../../../common/types/store-data/launch-panel-store-data';
 import { ScopingStoreData } from '../../../../common/types/store-data/scoping-store-data';
 import { TabStoreData } from '../../../../common/types/store-data/tab-store-data';
+import { UnifiedScanResultStoreData } from '../../../../common/types/store-data/unified-data-interface';
 import { UserConfigurationStoreData } from '../../../../common/types/store-data/user-configuration-store';
 import { VisualizationScanResultData } from '../../../../common/types/store-data/visualization-scan-result-data';
 import { VisualizationStoreData } from '../../../../common/types/store-data/visualization-store-data';
@@ -46,6 +48,7 @@ export class StoreMocks {
     public commandStoreMock = Mock.ofType(CommandStore, MockBehavior.Strict);
     public userConfigurationStoreMock = Mock.ofType(UserConfigurationStore, MockBehavior.Strict);
     public launchPanelStateStoreMock = Mock.ofType(LaunchPanelStore, MockBehavior.Strict);
+    public unifiedScanResultStoreMock = Mock.ofType(UnifiedScanResultStore, MockBehavior.Strict);
 
     public visualizationStoreData = new VisualizationStoreDataBuilder().build();
     public visualizationScanResultsStoreData = new VisualizationScanResultStoreDataBuilder().build();
@@ -63,6 +66,7 @@ export class StoreMocks {
     public scopingStoreData = new ScopingStore(null).getDefaultState();
     public inspectStoreData = new InspectStore(null, null).getDefaultState();
     public pathSnippetStoreData = new PathSnippetStore(null).getDefaultState();
+    public unifiedScanResultStoreData = new UnifiedScanResultStore(null).getDefaultState();
     public launchPanelStateStoreData = new LaunchPanelStore(null, null, null).getDefaultState();
     public featureFlagStoreData: FeatureFlagStoreData = {
         [FeatureFlags[FeatureFlags.logTelemetryToConsole]]: false,
@@ -90,6 +94,11 @@ export class StoreMocks {
 
     public setVisualizationScanResultStoreData(data: VisualizationScanResultData): StoreMocks {
         this.visualizationScanResultsStoreData = data;
+        return this;
+    }
+
+    public setUnifiedScanResultStoreData(data: UnifiedScanResultStoreData): StoreMocks {
+        this.unifiedScanResultStoreData = data;
         return this;
     }
 
@@ -133,6 +142,7 @@ export class StoreMocks {
         this.featureFlagStoreMock.verifyAll();
         this.tabStoreMock.verifyAll();
         this.visualizationScanResultStoreMock.verifyAll();
+        this.unifiedScanResultStoreMock.verifyAll();
         this.visualizationStoreMock.verifyAll();
         this.scopingStoreMock.verifyAll();
         this.inspectStoreMock.verifyAll();

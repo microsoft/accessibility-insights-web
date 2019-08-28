@@ -1,22 +1,23 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { ISelection } from 'office-ui-fabric-react/lib/DetailsList';
 import { Spinner, SpinnerSize } from 'office-ui-fabric-react/lib/Spinner';
 import * as React from 'react';
-
-import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { ThemeDeps } from '../common/components/theme';
 import { withStoreSubscription, WithStoreSubscriptionDeps } from '../common/components/with-store-subscription';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
 import { DropdownClickHandler } from '../common/dropdown-click-handler';
 import { InspectActionMessageCreator } from '../common/message-creators/inspect-action-message-creator';
 import { ScopingActionMessageCreator } from '../common/message-creators/scoping-action-message-creator';
+import { GetUnifiedRuleResultsDelegate } from '../common/rule-based-view-model-provider';
 import { AssessmentStoreData } from '../common/types/store-data/assessment-result-data';
 import { DetailsViewData } from '../common/types/store-data/details-view-data';
 import { FeatureFlagStoreData } from '../common/types/store-data/feature-flag-store-data';
 import { PathSnippetStoreData } from '../common/types/store-data/path-snippet-store-data';
 import { ScopingStoreData } from '../common/types/store-data/scoping-store-data';
 import { TabStoreData } from '../common/types/store-data/tab-store-data';
+import { UnifiedScanResultStoreData } from '../common/types/store-data/unified-data-interface';
 import { UserConfigurationStoreData } from '../common/types/store-data/user-configuration-store';
 import { VisualizationScanResultData } from '../common/types/store-data/visualization-scan-result-data';
 import { VisualizationStoreData } from '../common/types/store-data/visualization-store-data';
@@ -37,6 +38,7 @@ import { PreviewFeatureFlagsHandler } from './handlers/preview-feature-flags-han
 export type DetailsViewContainerDeps = {
     getDetailsRightPanelConfiguration: GetDetailsRightPanelConfiguration;
     getDetailsSwitcherNavConfiguration: GetDetailsSwitcherNavConfiguration;
+    getUnifiedRuleResults: GetUnifiedRuleResultsDelegate;
 } & DetailsViewMainContentDeps &
     DetailsViewOverlayDeps &
     DetailsViewCommandBarDeps &
@@ -65,6 +67,7 @@ export interface DetailsViewContainerState {
     visualizationStoreData: VisualizationStoreData;
     tabStoreData: TabStoreData;
     visualizationScanResultStoreData: VisualizationScanResultData;
+    unifiedScanResultStoreData: UnifiedScanResultStoreData;
     featureFlagStoreData: FeatureFlagStoreData;
     detailsViewStoreData: DetailsViewData;
     assessmentStoreData: AssessmentStoreData;
@@ -170,6 +173,11 @@ export class DetailsViewContainer extends React.Component<DetailsViewContainerPr
         });
         const selectedTest = selectedDetailsViewSwitcherNavConfiguration.getSelectedDetailsView(storeState);
 
+        const ruleResults = this.props.deps.getUnifiedRuleResults(
+            this.props.storeState.unifiedScanResultStoreData.rules,
+            this.props.storeState.unifiedScanResultStoreData.results,
+        );
+
         return (
             <DetailsViewMainContent
                 deps={deps}
@@ -181,6 +189,7 @@ export class DetailsViewContainer extends React.Component<DetailsViewContainerPr
                 detailsViewStoreData={storeState.detailsViewStoreData}
                 visualizationStoreData={storeState.visualizationStoreData}
                 visualizationScanResultData={storeState.visualizationScanResultStoreData}
+                unifiedResults={ruleResults}
                 visualizationConfigurationFactory={this.props.visualizationConfigurationFactory}
                 assessmentsProvider={this.props.assessmentsProvider}
                 dropdownClickHandler={this.props.dropdownClickHandler}

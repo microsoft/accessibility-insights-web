@@ -3,18 +3,26 @@
 import { UnifiedRuleResult, UnifiedStatusResults } from '../DetailsView/components/cards/failed-instances-section-v2';
 import { AllRuleResultStatuses, UnifiedResult, UnifiedRule, UnifiedRuleResultStatus } from './types/store-data/unified-data-interface';
 
-export function getUnifiedRuleResults(rules: UnifiedRule[], results: UnifiedResult[]): UnifiedStatusResults {
+export type GetUnifiedRuleResultsDelegate = (rules: UnifiedRule[], results: UnifiedResult[]) => UnifiedStatusResults;
+
+export const getUnifiedRuleResults: GetUnifiedRuleResultsDelegate = function(
+    rules: UnifiedRule[],
+    results: UnifiedResult[],
+): UnifiedStatusResults {
     const statusResults = getEmptyStatusResults();
     const ruleIdsWithResultNodes: Set<string> = new Set();
 
-    for (const result of results) {
+    const resultList = results || [];
+    const ruleList = rules || [];
+
+    for (const result of resultList) {
         const ruleResults = statusResults[result.status];
         const ruleResultIndex: number = getRuleResultIndex(result, ruleResults);
 
         if (ruleResultIndex !== -1) {
             ruleResults[ruleResultIndex].nodes.push(result);
         } else {
-            const unifiedRule: UnifiedRule = getUnifiedRule(result.ruleId, rules);
+            const unifiedRule: UnifiedRule = getUnifiedRule(result.ruleId, ruleList);
             if (unifiedRule) {
                 ruleResults.push(createUnifiedRuleResult(result, unifiedRule));
             }
@@ -23,14 +31,14 @@ export function getUnifiedRuleResults(rules: UnifiedRule[], results: UnifiedResu
         ruleIdsWithResultNodes.add(result.ruleId);
     }
 
-    for (const rule of rules) {
+    for (const rule of ruleList) {
         if (!ruleIdsWithResultNodes.has(rule.id)) {
             statusResults.inapplicable.push(createRuleResultWithoutNodes('inapplicable', rule));
         }
     }
 
     return statusResults;
-}
+};
 
 function getEmptyStatusResults(): UnifiedStatusResults {
     const statusResults = {};

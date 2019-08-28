@@ -1,9 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { UnifiedScanCompletedPayload } from '../../../../../background/actions/action-payloads';
 import { UnifiedScanResultActions } from '../../../../../background/actions/unified-scan-result-actions';
 import { UnifiedScanResultStore } from '../../../../../background/stores/unified-scan-result-store';
 import { StoreNames } from '../../../../../common/stores/store-names';
-import { UnifiedResults } from '../../../../../common/types/store-data/unified-data-interface';
+import { UnifiedScanResultStoreData } from '../../../../../common/types/store-data/unified-data-interface';
 import { createStoreWithNullParams, StoreTester } from '../../../common/store-tester';
 
 describe('UnifiedScanResultStore Test', () => {
@@ -22,6 +23,7 @@ describe('UnifiedScanResultStore Test', () => {
         const defaultState = getDefaultState();
 
         expect(defaultState.results).toEqual(null);
+        expect(defaultState.rules).toEqual(null);
     });
 
     test('onGetCurrentState', () => {
@@ -34,14 +36,14 @@ describe('UnifiedScanResultStore Test', () => {
     test('onScanCompleted', () => {
         const initialState = getDefaultState();
 
-        const scanResult: UnifiedResults = {
-            results: [],
+        const payload: UnifiedScanCompletedPayload = {
+            scanResult: [],
+            rules: [],
         };
 
-        const expectedState = scanResult;
-
-        const payload = {
-            scanResult: scanResult,
+        const expectedState: UnifiedScanResultStoreData = {
+            rules: payload.rules,
+            results: payload.scanResult,
         };
 
         createStoreForUnifiedScanResultActions('scanCompleted')
@@ -49,13 +51,13 @@ describe('UnifiedScanResultStore Test', () => {
             .testListenerToBeCalledOnce(initialState, expectedState);
     });
 
-    function getDefaultState(): UnifiedResults {
+    function getDefaultState(): UnifiedScanResultStoreData {
         return createStoreWithNullParams(UnifiedScanResultStore).getDefaultState();
     }
 
     function createStoreForUnifiedScanResultActions(
         actionName: keyof UnifiedScanResultActions,
-    ): StoreTester<UnifiedResults, UnifiedScanResultActions> {
+    ): StoreTester<UnifiedScanResultStoreData, UnifiedScanResultActions> {
         const factory = (actions: UnifiedScanResultActions) => new UnifiedScanResultStore(actions);
 
         return new StoreTester(UnifiedScanResultActions, actionName, factory);

@@ -3,6 +3,8 @@
 import { UnifiedRule } from '../../common/types/store-data/unified-data-interface';
 import { RuleResult, ScanResults } from '../../scanner/iruleresults';
 
+export type ConvertScanResultsToUnifiedRulesDelegate = (scanResults: ScanResults) => UnifiedRule[];
+
 export function convertScanResultsToUnifiedRules(scanResults: ScanResults): UnifiedRule[] {
     if (!scanResults) {
         return [] as UnifiedRule[];

@@ -5,7 +5,7 @@ import { BaseTelemetryData, TelemetryData, ToggleTelemetryData } from '../../com
 import { CreateIssueDetailsTextData } from '../../common/types/create-issue-details-text-data';
 import { DetailsViewPivotType } from '../../common/types/details-view-pivot-type';
 import { ManualTestStatus } from '../../common/types/manual-test-status';
-import { UnifiedResults } from '../../common/types/store-data/unified-data-interface';
+import { UnifiedResult, UnifiedRule } from '../../common/types/store-data/unified-data-interface';
 import { IssueFilingServiceProperties } from '../../common/types/store-data/user-configuration-store';
 import { VisualizationType } from '../../common/types/visualization-type';
 import { FailureInstanceData } from '../../DetailsView/components/failure-instance-panel-control';
@@ -152,5 +152,6 @@ export interface FileIssuePayload extends BaseActionPayload {
 }
 
 export interface UnifiedScanCompletedPayload extends BaseActionPayload {
-    scanResult: UnifiedResults;
+    scanResult: UnifiedResult[];
+    rules: UnifiedRule[];
 }
