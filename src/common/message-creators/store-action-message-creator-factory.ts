@@ -15,7 +15,7 @@ export class StoreActionMessageCreatorFactory {
             getStoreStateMessage(StoreNames.CommandStore),
             getStoreStateMessage(StoreNames.FeatureFlagStore),
             getStoreStateMessage(StoreNames.LaunchPanelStateStore),
-            Messages.UserConfig.GetCurrentState,
+            getStoreStateMessage(StoreNames.UserConfigurationStore),
         ];
 
         return new StoreActionMessageCreatorImpl(getStateMessages, this.dispatcher);
@@ -30,7 +30,7 @@ export class StoreActionMessageCreatorFactory {
             getStoreStateMessage(StoreNames.FeatureFlagStore),
             Messages.Assessment.GetCurrentState,
             Messages.Scoping.GetCurrentState,
-            Messages.UserConfig.GetCurrentState,
+            getStoreStateMessage(StoreNames.UserConfigurationStore),
             Messages.PathSnippet.GetCurrentState,
             Messages.UnifiedScan.GetCurrentState,
         ];
@@ -39,7 +39,7 @@ export class StoreActionMessageCreatorFactory {
     }
 
     public forContent(): StoreActionMessageCreator {
-        const getStateMessages: string[] = [Messages.UserConfig.GetCurrentState];
+        const getStateMessages: string[] = [getStoreStateMessage(StoreNames.UserConfigurationStore)];
 
         return new StoreActionMessageCreatorImpl(getStateMessages, this.dispatcher);
     }
@@ -54,7 +54,7 @@ export class StoreActionMessageCreatorFactory {
             Messages.DevTools.Get,
             Messages.Assessment.GetCurrentState,
             getStoreStateMessage(StoreNames.TabStore),
-            Messages.UserConfig.GetCurrentState,
+            getStoreStateMessage(StoreNames.UserConfigurationStore),
         ];
 
         return new StoreActionMessageCreatorImpl(getStateMessages, this.dispatcher);

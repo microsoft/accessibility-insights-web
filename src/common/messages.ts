@@ -93,7 +93,6 @@ export class Messages {
     };
 
     public static readonly UserConfig = {
-        GetCurrentState: `${messagePrefix}/userConfig/getCurrentState`,
         SetTelemetryConfig: `${messagePrefix}/userConfig/setTelemetryConfig`,
         SetHighContrastConfig: `${messagePrefix}/userConfig/setHighContrastConfig`,
         SetIssueFilingService: `${messagePrefix}/userConfig/setIssueFilingService`,

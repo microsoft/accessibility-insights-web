@@ -20,7 +20,7 @@ describe('StoreActionMessageCreatorFactoryTest', () => {
             getStoreStateMessage(StoreNames.CommandStore),
             getStoreStateMessage(StoreNames.FeatureFlagStore),
             getStoreStateMessage(StoreNames.LaunchPanelStateStore),
-            Messages.UserConfig.GetCurrentState,
+            getStoreStateMessage(StoreNames.UserConfigurationStore),
         ];
 
         testWithExpectedMessages(messages, testObject => testObject.forPopup());
@@ -35,7 +35,7 @@ describe('StoreActionMessageCreatorFactoryTest', () => {
             getStoreStateMessage(StoreNames.FeatureFlagStore),
             Messages.Assessment.GetCurrentState,
             Messages.Scoping.GetCurrentState,
-            Messages.UserConfig.GetCurrentState,
+            getStoreStateMessage(StoreNames.UserConfigurationStore),
             Messages.PathSnippet.GetCurrentState,
         ];
 
@@ -52,14 +52,14 @@ describe('StoreActionMessageCreatorFactoryTest', () => {
             Messages.DevTools.Get,
             Messages.Assessment.GetCurrentState,
             getStoreStateMessage(StoreNames.TabStore),
-            Messages.UserConfig.GetCurrentState,
+            getStoreStateMessage(StoreNames.UserConfigurationStore),
         ];
 
         testWithExpectedMessages(messages, testObject => testObject.forInjected());
     });
 
     it('dispatches message types for forContent', () => {
-        const messages: string[] = [Messages.UserConfig.GetCurrentState];
+        const messages: string[] = [getStoreStateMessage(StoreNames.UserConfigurationStore)];
 
         testWithExpectedMessages(messages, testObject => testObject.forContent());
     });
