@@ -6,8 +6,10 @@
 
 # We use Puppeteer, not Cypress; however, Cypress's docker images are up to date baselines that already contain both node and
 # the system dependencies required to run headful Chromium, so we use them to avoid the performance hit of having our own
-# build agents running apt-get for all those dependencies. 
+# build agents running apt-get for all those dependencies.
 FROM cypress/base:10.16.0
+
+RUN npm install -g yarn@1.17.3
 
 WORKDIR /app
 

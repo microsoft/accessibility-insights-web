@@ -8,7 +8,7 @@
         "url": "https://github.com/Microsoft/accessibility-insights-web"
     },
     "engines": {
-        "node": ">=10.16.3",
+        "node": ">=10.16.0",
         "yarn": "^1.17.3"
     },
     "scripts": {
@@ -48,7 +48,7 @@
         "@types/enzyme-adapter-react-16": "^1.0.5",
         "@types/jest": "^24.0.18",
         "@types/jsdom": "^12.2.4",
-        "@types/lodash": "^4.14.137",
+        "@types/lodash": "^4.14.138",
         "@types/make-dir": "^2.1.0",
         "@types/moment": "^2.13.0",
         "@types/puppeteer": "^1.19.1",
@@ -64,7 +64,7 @@
         "case-sensitive-paths-webpack-plugin": "^2.2.0",
         "core-js-bundle": "^3.2.1",
         "css-loader": "^3.2.0",
-        "electron": "^6.0.4",
+        "electron": "^6.0.5",
         "electron-builder": "^21.2.0",
         "enzyme": "^3.10.0",
         "enzyme-adapter-react-16": "^1.14.0",

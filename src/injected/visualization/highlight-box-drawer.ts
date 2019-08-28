@@ -64,7 +64,6 @@ export class HighlightBoxDrawer extends BaseDrawer {
 
     protected createHighlightElement(element: Element, data: HtmlElementAxeResults): HTMLElement {
         const currentDom = this.drawerUtils.getDocumentElement();
-        const offset = this.clientUtils.getOffset(element);
         const body = currentDom.querySelector('body');
         const bodyStyle = this.windowUtils.getComputedStyle(body);
 
@@ -77,6 +76,8 @@ export class HighlightBoxDrawer extends BaseDrawer {
         if (drawerConfig.getBoundingRect) {
             elementBoundingClientRect = drawerConfig.getBoundingRect(element);
         }
+
+        const offset = this.clientUtils.getOffsetFromBoundingRect(elementBoundingClientRect);
 
         const docStyle = this.windowUtils.getComputedStyle(currentDom.documentElement);
         if (this.drawerUtils.isOutsideOfDocument(elementBoundingClientRect, currentDom, bodyStyle, docStyle)) {
