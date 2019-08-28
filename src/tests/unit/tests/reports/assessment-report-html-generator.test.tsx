@@ -2,11 +2,8 @@
 // Licensed under the MIT License.
 import { AssessmentDefaultMessageGenerator } from 'assessments/assessment-default-message-generator';
 import { AssessmentStoreData } from 'common/types/store-data/assessment-result-data';
-import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { TabStoreData } from 'common/types/store-data/tab-store-data';
 import * as React from 'react';
-import { It, Mock, MockBehavior } from 'typemoq';
-
 import { AssessmentReportHtmlGenerator, AssessmentReportHtmlGeneratorDeps } from 'reports/assessment-report-html-generator';
 import { ReportModel } from 'reports/assessment-report-model';
 import { AssessmentReportModelBuilder } from 'reports/assessment-report-model-builder';
@@ -14,6 +11,8 @@ import { AssessmentReportModelBuilderFactory } from 'reports/assessment-report-m
 import * as reportStyles from 'reports/assessment-report.styles';
 import { AssessmentReport } from 'reports/components/assessment-report';
 import { ReactStaticRenderer } from 'reports/react-static-renderer';
+import { It, Mock, MockBehavior } from 'typemoq';
+
 import { CreateTestAssessmentProviderWithFeatureFlag } from '../../common/test-assessment-provider';
 
 describe('AssessmentReportHtmlGenerator', () => {
@@ -26,7 +25,6 @@ describe('AssessmentReportHtmlGenerator', () => {
 
         const assessmentsProvider = CreateTestAssessmentProviderWithFeatureFlag();
         const assessmentStoreData: AssessmentStoreData = { stub: 'assessmentStoreData' } as any;
-        const featureFlagStoreData: FeatureFlagStoreData = { stub: 'featureFlagStoreData' } as any;
         const tabStoreData: TabStoreData = { stub: 'tabStoreData' } as any;
         const description = 'generateHtml-description';
 
@@ -82,13 +80,7 @@ describe('AssessmentReportHtmlGenerator', () => {
             assessmentDefaultMessageGenerator,
         );
 
-        const actualHtml = testSubject.generateHtml(
-            assessmentStoreData,
-            assessmentsProvider,
-            featureFlagStoreData,
-            tabStoreData,
-            description,
-        );
+        const actualHtml = testSubject.generateHtml(assessmentStoreData, assessmentsProvider, tabStoreData, description);
 
         expect(actualHtml).toEqual(expectedHtml);
 

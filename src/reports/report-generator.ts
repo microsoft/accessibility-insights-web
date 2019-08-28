@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { AssessmentStoreData } from 'common/types/store-data/assessment-result-data';
-import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { TabStoreData } from 'common/types/store-data/tab-store-data';
 import { ScanResults } from 'scanner/iruleresults';
 
@@ -34,16 +33,9 @@ export class ReportGenerator {
     public generateAssessmentReport(
         assessmentStoreData: AssessmentStoreData,
         assessmentsProvider: AssessmentsProvider,
-        featureFlagStoreData: FeatureFlagStoreData,
         tabStoreData: TabStoreData,
         description: string,
     ): string {
-        return this.assessmentReportHtmlGenerator.generateHtml(
-            assessmentStoreData,
-            assessmentsProvider,
-            featureFlagStoreData,
-            tabStoreData,
-            description,
-        );
+        return this.assessmentReportHtmlGenerator.generateHtml(assessmentStoreData, assessmentsProvider, tabStoreData, description);
     }
 }

@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { AssessmentStoreData } from 'common/types/store-data/assessment-result-data';
-import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { TabStoreData } from 'common/types/store-data/tab-store-data';
 import { AssessmentReportHtmlGenerator } from 'reports/assessment-report-html-generator';
 import { ReportGenerator } from 'reports/report-generator';
@@ -50,25 +49,16 @@ describe('ReportGenerator', () => {
     test('generateAssessmentHtml', () => {
         const assessmentStoreData: AssessmentStoreData = { stub: 'assessmentStoreData' } as any;
         const assessmentsProvider: AssessmentsProvider = { stub: 'assessmentsProvider' } as any;
-        const featureFlagStoreData: FeatureFlagStoreData = { stub: 'featureFlagStoreData' } as any;
         const tabStoreData: TabStoreData = { stub: 'tabStoreData' } as any;
         const assessmentDescription = 'generateAssessmentHtml-description';
 
         assessmentReportHtmlGeneratorMock
-            .setup(builder =>
-                builder.generateHtml(assessmentStoreData, assessmentsProvider, featureFlagStoreData, tabStoreData, assessmentDescription),
-            )
+            .setup(builder => builder.generateHtml(assessmentStoreData, assessmentsProvider, tabStoreData, assessmentDescription))
             .returns(() => 'generated-assessment-html')
             .verifiable(Times.once());
 
         const testObject = new ReportGenerator(nameBuilderMock.object, dataBuilderMock.object, assessmentReportHtmlGeneratorMock.object);
-        const actual = testObject.generateAssessmentReport(
-            assessmentStoreData,
-            assessmentsProvider,
-            featureFlagStoreData,
-            tabStoreData,
-            assessmentDescription,
-        );
+        const actual = testObject.generateAssessmentReport(assessmentStoreData, assessmentsProvider, tabStoreData, assessmentDescription);
 
         const expected = 'generated-assessment-html';
         expect(actual).toEqual(expected);

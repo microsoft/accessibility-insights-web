@@ -5,8 +5,8 @@ import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { Link } from 'office-ui-fabric-react/lib/Link';
 import * as React from 'react';
 import { ReportGenerator } from 'reports/report-generator';
+
 import { AssessmentStoreData } from '../../common/types/store-data/assessment-result-data';
-import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { TabStoreData } from '../../common/types/store-data/tab-store-data';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 import { DetailsRightPanelConfiguration } from './details-view-right-panel';
@@ -21,7 +21,6 @@ export type DetailsViewCommandBarDeps = ReportExportComponentDeps & {
 
 export interface DetailsViewCommandBarProps {
     deps: DetailsViewCommandBarDeps;
-    featureFlagStoreData: FeatureFlagStoreData;
     tabStoreData: TabStoreData;
     actionMessageCreator: DetailsViewActionMessageCreator;
     assessmentStoreData: AssessmentStoreData;
@@ -72,7 +71,7 @@ export class DetailsViewCommandBar extends React.Component<DetailsViewCommandBar
         if (!this.props.renderExportAndStartOver) {
             return null;
         }
-        const { deps, assessmentStoreData, featureFlagStoreData, tabStoreData } = this.props;
+        const { deps, assessmentStoreData, tabStoreData } = this.props;
         const { assessmentsProvider } = deps;
         const reportGenerator = deps.reportGenerator;
         const selectedTest = this.props.assessmentStoreData.assessmentNavState.selectedTestType;
@@ -81,7 +80,6 @@ export class DetailsViewCommandBar extends React.Component<DetailsViewCommandBar
             reportGenerator,
             assessmentStoreData,
             assessmentsProvider,
-            featureFlagStoreData,
             tabStoreData,
         );
 

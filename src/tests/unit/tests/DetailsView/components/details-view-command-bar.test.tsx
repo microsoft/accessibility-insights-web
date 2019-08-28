@@ -10,7 +10,6 @@ import { IMock, Mock, MockBehavior, Times } from 'typemoq';
 
 import { FileURLProvider } from '../../../../../common/file-url-provider';
 import { AssessmentStoreData } from '../../../../../common/types/store-data/assessment-result-data';
-import { FeatureFlagStoreData } from '../../../../../common/types/store-data/feature-flag-store-data';
 import { TabStoreData } from '../../../../../common/types/store-data/tab-store-data';
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
 import {
@@ -25,7 +24,6 @@ describe('DetailsViewCommandBar', () => {
     const theDate = new Date(2019, 2, 12, 9, 0);
     const thePageTitle = 'command-bar-test-tab-title';
 
-    let featureFlagStoreData: FeatureFlagStoreData;
     let actionMessageCreatorMock: IMock<DetailsViewActionMessageCreator>;
     let tabStoreData: TabStoreData;
     let assessmentsProviderMock: IMock<AssessmentsProvider>;
@@ -36,7 +34,6 @@ describe('DetailsViewCommandBar', () => {
     let renderExportAndStartOver: boolean;
 
     beforeEach(() => {
-        featureFlagStoreData = {};
         actionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator, MockBehavior.Loose);
         tabStoreData = {
             title: thePageTitle,
@@ -75,7 +72,6 @@ describe('DetailsViewCommandBar', () => {
 
         return {
             deps,
-            featureFlagStoreData,
             actionMessageCreator: actionMessageCreatorMock.object,
             tabStoreData,
             renderExportAndStartOver,
@@ -111,7 +107,6 @@ describe('DetailsViewCommandBar', () => {
                     rgm.generateAssessmentReport(
                         props.assessmentStoreData,
                         props.deps.assessmentsProvider,
-                        props.featureFlagStoreData,
                         props.tabStoreData,
                         descriptionPlaceholder,
                     ),

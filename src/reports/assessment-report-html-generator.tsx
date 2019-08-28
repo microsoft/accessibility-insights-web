@@ -3,7 +3,6 @@
 import { AssessmentDefaultMessageGenerator } from 'assessments/assessment-default-message-generator';
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { AssessmentStoreData } from 'common/types/store-data/assessment-result-data';
-import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { TabStoreData } from 'common/types/store-data/tab-store-data';
 import * as React from 'react';
 
@@ -29,7 +28,6 @@ export class AssessmentReportHtmlGenerator {
     public generateHtml(
         assessmentStoreData: AssessmentStoreData,
         assessmentsProvider: AssessmentsProvider,
-        featureFlagStoreData: FeatureFlagStoreData,
         tabStoreData: TabStoreData,
         description: string,
     ): string {
