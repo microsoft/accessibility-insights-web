@@ -12,7 +12,7 @@ export class StoreActionMessageCreatorFactory {
     public forPopup(): StoreActionMessageCreator {
         const getStateMessages: string[] = [
             getStoreStateMessage(StoreNames.VisualizationStore),
-            Messages.Command.GetCommands,
+            getStoreStateMessage(StoreNames.CommandStore),
             Messages.FeatureFlags.GetFeatureFlags,
             Messages.LaunchPanel.Get,
             Messages.UserConfig.GetCurrentState,

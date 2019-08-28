@@ -17,7 +17,7 @@ describe('StoreActionMessageCreatorFactoryTest', () => {
     it('dispatches message types for forPopup', () => {
         const messages: string[] = [
             getStoreStateMessage(StoreNames.VisualizationStore),
-            Messages.Command.GetCommands,
+            getStoreStateMessage(StoreNames.CommandStore),
             Messages.FeatureFlags.GetFeatureFlags,
             Messages.LaunchPanel.Get,
             Messages.UserConfig.GetCurrentState,

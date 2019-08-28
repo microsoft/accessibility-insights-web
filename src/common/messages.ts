@@ -109,10 +109,6 @@ export class Messages {
         VisibilityChange: `${messagePrefix}/targetTab/visibilitychange`,
     };
 
-    public static readonly Command = {
-        GetCommands: `${messagePrefix}/command/get`,
-    };
-
     public static readonly Assessment = {
         GetCurrentState: `${messagePrefix}/assessment/getCurrentState`,
         SelectTestRequirement: `${messagePrefix}/details-view/requirement/select`,
