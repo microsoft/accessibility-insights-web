@@ -12,9 +12,12 @@ function assessmentIsFeatureEnabled(flags: FeatureFlagStoreData): (assessment: A
         !assessment.featureFlag || !assessment.featureFlag.required || _.every(assessment.featureFlag.required, f => flags[f]);
 }
 
-export function assessmentsProviderWithFeaturesEnabled(
+export type AssessmentsProviderWithFeaturesEnabled = (
     assessmentProvider: AssessmentsProvider,
     flags: FeatureFlagStoreData,
-): AssessmentsProvider {
-    return AssessmentsProviderImpl.Create(assessmentProvider.all().filter(assessmentIsFeatureEnabled(flags)));
-}
+) => AssessmentsProvider;
+
+export const assessmentsProviderWithFeaturesEnabled: AssessmentsProviderWithFeaturesEnabled = (
+    assessmentProvider: AssessmentsProvider,
+    flags: FeatureFlagStoreData,
+) => AssessmentsProviderImpl.Create(assessmentProvider.all().filter(assessmentIsFeatureEnabled(flags)));
