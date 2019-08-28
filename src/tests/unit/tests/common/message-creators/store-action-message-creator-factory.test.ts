@@ -31,7 +31,7 @@ describe('StoreActionMessageCreatorFactoryTest', () => {
             getStoreStateMessage(StoreNames.DetailsViewStore),
             getStoreStateMessage(StoreNames.VisualizationScanResultStore),
             getStoreStateMessage(StoreNames.VisualizationStore),
-            Messages.Tab.GetCurrent,
+            getStoreStateMessage(StoreNames.TabStore),
             Messages.FeatureFlags.GetFeatureFlags,
             Messages.Assessment.GetCurrentState,
             Messages.Scoping.GetCurrentState,
@@ -51,7 +51,7 @@ describe('StoreActionMessageCreatorFactoryTest', () => {
             Messages.FeatureFlags.GetFeatureFlags,
             Messages.DevTools.Get,
             Messages.Assessment.GetCurrentState,
-            Messages.Tab.GetCurrent,
+            getStoreStateMessage(StoreNames.TabStore),
             Messages.UserConfig.GetCurrentState,
         ];
 

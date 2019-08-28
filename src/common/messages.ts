@@ -103,7 +103,6 @@ export class Messages {
 
     public static readonly Tab = {
         Update: `${messagePrefix}/tab/update`,
-        GetCurrent: `${messagePrefix}/tab/current`,
         Remove: `${messagePrefix}/tab/remove`,
         Change: `${messagePrefix}/targetTab/changed`,
         Switch: `${messagePrefix}/targetTab/switch`,
