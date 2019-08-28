@@ -12,11 +12,13 @@ export function convertScanResultsToUnifiedRules(scanResults: ScanResults): Unif
 
 function createUnifiedRulesFromScanResults(scanResults: ScanResults): UnifiedRule[] {
     const unifiedRules: UnifiedRule[] = [];
+    const ruleIds: Set<string> = new Set();
     const allRuleResults = getAllRuleResults(scanResults);
 
     for (const ruleResult of allRuleResults) {
-        if (!unifiedRules.find(rule => rule.id === ruleResult.id)) {
+        if (!ruleIds.has(ruleResult.id)) {
             unifiedRules.push(createUnifiedRuleFromRuleResult(ruleResult));
+            ruleIds.add(ruleResult.id);
         }
     }
 
