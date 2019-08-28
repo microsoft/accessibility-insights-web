@@ -80,7 +80,7 @@ export class ActionCreator {
         this.registerTypeToPayloadCallback(visualizationMessages.State.InjectionCompleted, this.injectionCompleted);
         this.registerTypeToPayloadCallback(visualizationMessages.State.InjectionStarted, this.injectionStarted);
         this.registerTypeToPayloadCallback(getStoreStateMessage(StoreNames.VisualizationStore), this.getVisualizationToggleCurrentState);
-        this.registerTypeToPayloadCallback(visualizationMessages.State.GetCurrentVisualizationResultState, this.getScanResultsCurrentState);
+        this.registerTypeToPayloadCallback(getStoreStateMessage(StoreNames.VisualizationScanResultStore), this.getScanResultsCurrentState);
 
         this.registerTypeToPayloadCallback(visualizationMessages.TabStops.TabbedElementAdded, this.onTabbedElementAdded);
         this.registerTypeToPayloadCallback(visualizationMessages.TabStops.RecordingCompleted, this.onRecordingCompleted);

@@ -24,7 +24,7 @@ export class StoreActionMessageCreatorFactory {
     public forDetailsView(): StoreActionMessageCreator {
         const getStateMessages: string[] = [
             Messages.Visualizations.DetailsView.GetState,
-            Messages.Visualizations.State.GetCurrentVisualizationResultState,
+            getStoreStateMessage(StoreNames.VisualizationScanResultStore),
             getStoreStateMessage(StoreNames.VisualizationStore),
             Messages.Tab.GetCurrent,
             Messages.FeatureFlags.GetFeatureFlags,
@@ -49,7 +49,7 @@ export class StoreActionMessageCreatorFactory {
             getStoreStateMessage(StoreNames.VisualizationStore),
             Messages.Scoping.GetCurrentState,
             Messages.Inspect.GetCurrentState,
-            Messages.Visualizations.State.GetCurrentVisualizationResultState,
+            getStoreStateMessage(StoreNames.VisualizationScanResultStore),
             Messages.FeatureFlags.GetFeatureFlags,
             Messages.DevTools.Get,
             Messages.Assessment.GetCurrentState,

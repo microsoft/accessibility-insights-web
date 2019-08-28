@@ -3,7 +3,6 @@
 import { StoreNames } from './stores/store-names';
 
 export interface StateMessages {
-    GetCurrentVisualizationResultState: string;
     InjectionCompleted: string;
     InjectionStarted: string;
 }
@@ -71,7 +70,6 @@ export class Messages {
             UpdateFocusedInstance: `${messagePrefix}/visualization/issues/targets/focused/update`,
         },
         State: {
-            GetCurrentVisualizationResultState: `${messagePrefix}/results/state/current`,
             InjectionCompleted: `${messagePrefix}/visualization/state/injectionCompleted`,
             InjectionStarted: `${messagePrefix}/visualization/state/InjectionStarted`,
         },

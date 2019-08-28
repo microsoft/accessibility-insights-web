@@ -566,7 +566,7 @@ describe('ActionCreatorTest', () => {
         const args = [];
         const actionName = 'getCurrentState';
         const builder = new ActionCreatorValidator()
-            .setupRegistrationCallback(Messages.Visualizations.State.GetCurrentVisualizationResultState, args)
+            .setupRegistrationCallback(getStoreStateMessage(StoreNames.VisualizationScanResultStore), args)
             .setupActionOnVisualizationScanResultActions(actionName)
             .setupVisualizationScanResultActionWithInvokeParameter(actionName, null);
 
