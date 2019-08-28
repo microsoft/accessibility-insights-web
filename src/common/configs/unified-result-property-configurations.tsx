@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { LabelledTableRow } from '../../DetailsView/components/cards/css-selector-card-row';
-import { HowToFixWebCardRow } from '../../DetailsView/components/cards/how-to-fix-web-card-row';
+import { GetLabelledStringPropertyCardRow } from '../../DetailsView/components/cards/get-labelled-string-property-card-row';
+import { HowToFixWebCardRow } from '../../DetailsView/components/cards/how-to-fix-card-row';
 import { FixInstructionProcessor } from '../../injected/fix-instruction-processor';
 import { ReactSFCWithDisplayName } from '../react/named-sfc';
 
@@ -27,11 +27,11 @@ export const howToFixConfiguration: PropertyConfiguration = {
 };
 
 export const cssSelectorConfiguration: PropertyConfiguration = {
-    cardRow: LabelledTableRow('Path'),
+    cardRow: GetLabelledStringPropertyCardRow('Path'),
 };
 
 export const snippetConfiguration: PropertyConfiguration = {
-    cardRow: LabelledTableRow('Snippet'),
+    cardRow: GetLabelledStringPropertyCardRow('Snippet'),
 };
 
 type PropertyIdToConfigurationMap = {

@@ -6,7 +6,7 @@ import { CardRowProps } from '../../../common/configs/unified-result-property-co
 import { NamedSFC } from '../../../common/react/named-sfc';
 import { CheckType } from '../../../injected/components/details-dialog';
 import { FixInstructionPanel } from '../../../injected/components/fix-instruction-panel';
-import { TableRow } from './table-row';
+import { CardRow } from './card-row';
 
 export interface HowToFixWebPropertyData {
     // tslint:disable-next-line: no-reserved-keywords
@@ -49,5 +49,5 @@ export const HowToFixWebCardRow = NamedSFC<HowToFixWebCardRowProps>('HowToFixWeb
         return <div className={className}>{titleText}</div>;
     };
 
-    return <TableRow label="How to fix" content={renderFixInstructionsContent()} rowKey={`how-to-fix-row-${props.index}`} />;
+    return <CardRow label="How to fix" content={renderFixInstructionsContent()} rowKey={`how-to-fix-row-${props.index}`} />;
 });

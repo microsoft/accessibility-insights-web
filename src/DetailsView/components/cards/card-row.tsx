@@ -4,14 +4,14 @@ import * as classNames from 'classnames';
 import * as React from 'react';
 import { NamedSFC } from '../../../common/react/named-sfc';
 
-export interface TableRowProps {
+export interface CardRowProps {
     label: string;
     content: string | JSX.Element;
     rowKey: string;
     needsExtraClassname?: boolean;
 }
 
-export const TableRow = NamedSFC<TableRowProps>('TableRow', ({ label, content, rowKey, needsExtraClassname }) => {
+export const CardRow = NamedSFC<CardRowProps>('CardRow', ({ label, content, rowKey, needsExtraClassname }) => {
     const contentStyling = classNames({
         'instance-list-row-content': true,
         'content-snipppet': !!needsExtraClassname,

@@ -1,0 +1,65 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HowToFixWebCardRow renders 1`] = `
+<CardRow
+  content={
+    <div
+      className="how-to-fix-content"
+    >
+      <FixInstructionPanel
+        checkType={0}
+        checks={
+          Array [
+            Object {
+              "message": "some all message",
+            },
+            Object {
+              "message": "some none message",
+            },
+          ]
+        }
+        deps={
+          Object {
+            "fixInstructionProcessor": proxy {
+              "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+              "backgroundColorText": "background color: ",
+              "backgroundRegExp": /background color: \\(\\?<color>#\\[0-9a-f\\]\\{6\\}\\)/i,
+              "colorGroupName": "color",
+              "colorValueMatcher": "(?<color>#[0-9a-f]{6})",
+              "foregroundColorText": "foreground color: ",
+              "foregroundRegExp": /foreground color: \\(\\?<color>#\\[0-9a-f\\]\\{6\\}\\)/i,
+            },
+          }
+        }
+        renderTitleElement={[Function]}
+      />
+      <FixInstructionPanel
+        checkType={1}
+        checks={
+          Array [
+            Object {
+              "message": "some any message",
+            },
+          ]
+        }
+        deps={
+          Object {
+            "fixInstructionProcessor": proxy {
+              "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+              "backgroundColorText": "background color: ",
+              "backgroundRegExp": /background color: \\(\\?<color>#\\[0-9a-f\\]\\{6\\}\\)/i,
+              "colorGroupName": "color",
+              "colorValueMatcher": "(?<color>#[0-9a-f]{6})",
+              "foregroundColorText": "foreground color: ",
+              "foregroundRegExp": /foreground color: \\(\\?<color>#\\[0-9a-f\\]\\{6\\}\\)/i,
+            },
+          }
+        }
+        renderTitleElement={[Function]}
+      />
+    </div>
+  }
+  label="How to fix"
+  rowKey="how-to-fix-row-22"
+/>
+`;

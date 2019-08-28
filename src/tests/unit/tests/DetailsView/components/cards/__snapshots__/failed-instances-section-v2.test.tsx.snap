@@ -4,22 +4,7 @@ exports[`FailedInstancesSectionV2 renders 1`] = `
 <ResultSectionV2
   badgeCount={1}
   containerClassName="failedInstancesSection resultSection"
-  deps={
-    Object {
-      "getGuidanceTagsFromGuidanceLinks": [Function],
-    }
-  }
-  fixInstructionProcessor={
-    proxy {
-      "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-      "backgroundColorText": "background color: ",
-      "backgroundRegExp": /background color: \\(\\?<color>#\\[0-9a-f\\]\\{6\\}\\)/i,
-      "colorGroupName": "color",
-      "colorValueMatcher": "(?<color>#[0-9a-f]{6})",
-      "foregroundColorText": "foreground color: ",
-      "foregroundRegExp": /foreground color: \\(\\?<color>#\\[0-9a-f\\]\\{6\\}\\)/i,
-    }
-  }
+  deps={Object {}}
   outcomeType="fail"
   results={
     Array [
