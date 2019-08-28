@@ -41,6 +41,11 @@ export interface UnifiedRule {
     guidance: GuidanceLink[];
 }
 
+export interface UnifiedScanResultStoreData {
+    results: UnifiedResults;
+    rules: UnifiedRule[];
+}
+
 export interface InstancePropertyBag {
     [property: string]: any;
 }

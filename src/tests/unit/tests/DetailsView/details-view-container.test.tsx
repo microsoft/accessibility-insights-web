@@ -11,7 +11,7 @@ import { GetUnifiedRuleResultsDelegate } from '../../../../common/rule-based-vie
 import { BaseClientStoresHub } from '../../../../common/stores/base-client-stores-hub';
 import { DetailsViewPivotType } from '../../../../common/types/details-view-pivot-type';
 import { TabStoreData } from '../../../../common/types/store-data/tab-store-data';
-import { UnifiedResult, UnifiedRule } from '../../../../common/types/store-data/unified-data-interface';
+import { UnifiedResult, UnifiedRule, UnifiedScanResultStoreData } from '../../../../common/types/store-data/unified-data-interface';
 import { UserConfigurationStoreData } from '../../../../common/types/store-data/user-configuration-store';
 import { VisualizationType } from '../../../../common/types/visualization-type';
 import { DetailsViewActionMessageCreator } from '../../../../DetailsView/actions/details-view-action-message-creator';
@@ -153,13 +153,18 @@ describe('DetailsViewContainer', () => {
             setupGetSwitcherNavConfiguration(visualizationStoreData.selectedDetailsViewPivot, switcherNavConfig);
             setupActionMessageCreatorMock(detailsViewActionMessageCreator, visualizationStoreData.selectedDetailsViewPivot, 1);
 
+            const unifiedScanResultStoreData: UnifiedScanResultStoreData = {
+                results: {
+                    results: [],
+                },
+                rules: [],
+            };
+
             const storeMocks = new StoreMocks()
                 .setVisualizationStoreData(visualizationStoreData)
                 .setTabStoreData(tabStoreData)
                 .setDetailsViewStoreData(detailsViewState)
-                .setUnifiedScanResultStoreData({
-                    results: [],
-                });
+                .setUnifiedScanResultStoreData(unifiedScanResultStoreData);
 
             const props = new DetailsViewContainerPropsBuilder(deps)
                 .setStoreMocks(storeMocks)
@@ -185,7 +190,7 @@ describe('DetailsViewContainer', () => {
                 .returns(() => viewType);
 
             const ruleResults: UnifiedStatusResults = {} as any;
-            getUnifiedRuleResultsMock.setup(m => m(null, state.unifiedScanResultStoreData.results)).returns(() => ruleResults);
+            getUnifiedRuleResultsMock.setup(m => m(null, state.unifiedScanResultStoreData.results.results)).returns(() => ruleResults);
 
             testObject.render();
 
@@ -395,13 +400,18 @@ describe('DetailsViewContainer', () => {
             bugServicePropertiesMap: { gitHub: { repository: 'gitHub-repository' } },
         };
 
+        const unifiedScanResultStoreData: UnifiedScanResultStoreData = {
+            results: {
+                results: [],
+            },
+            rules: [],
+        };
+
         const storeMocks = new StoreMocks()
             .setVisualizationStoreData(visualizationStoreData)
             .setDetailsViewStoreData(detailsViewState)
             .setUserConfigurationStoreData(userConfigurationStoreData)
-            .setUnifiedScanResultStoreData({
-                results: [],
-            });
+            .setUnifiedScanResultStoreData(unifiedScanResultStoreData);
 
         const storesHubMock = createStoresHubMock(storeMocks);
 
@@ -432,7 +442,7 @@ describe('DetailsViewContainer', () => {
             .returns(() => viewType);
 
         const ruleResults: UnifiedStatusResults = {} as any;
-        getUnifiedRuleResultsMock.setup(m => m(null, state.unifiedScanResultStoreData.results)).returns(() => ruleResults);
+        getUnifiedRuleResultsMock.setup(m => m(null, state.unifiedScanResultStoreData.results.results)).returns(() => ruleResults);
 
         const expected: JSX.Element = (
             <div className="table column-layout main-wrapper">

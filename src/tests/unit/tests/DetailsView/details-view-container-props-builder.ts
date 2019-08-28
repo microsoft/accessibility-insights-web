@@ -13,7 +13,7 @@ import { AssessmentStoreData } from '../../../../common/types/store-data/assessm
 import { DetailsViewData } from '../../../../common/types/store-data/details-view-data';
 import { ScopingStoreData } from '../../../../common/types/store-data/scoping-store-data';
 import { TabStoreData } from '../../../../common/types/store-data/tab-store-data';
-import { UnifiedResults } from '../../../../common/types/store-data/unified-data-interface';
+import { UnifiedScanResultStoreData } from '../../../../common/types/store-data/unified-data-interface';
 import { VisualizationScanResultData } from '../../../../common/types/store-data/visualization-scan-result-data';
 import { VisualizationStoreData } from '../../../../common/types/store-data/visualization-store-data';
 import { IssuesTableHandler } from '../../../../DetailsView/components/issues-table-handler';
@@ -28,7 +28,7 @@ export class DetailsViewContainerPropsBuilder {
     private visualizationStore: BaseStore<VisualizationStoreData>;
     private assessmentStore: BaseStore<AssessmentStoreData>;
     private visualizationScanResultStore: BaseStore<VisualizationScanResultData>;
-    private unifiedScanResultStore: BaseStore<UnifiedResults>;
+    private unifiedScanResultStore: BaseStore<UnifiedScanResultStoreData>;
     private tabStore: BaseStore<TabStoreData>;
     private featureFlagStore: BaseStore<DictionaryStringTo<boolean>>;
     private scopingStateStore: BaseStore<ScopingStoreData>;

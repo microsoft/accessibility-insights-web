@@ -62,7 +62,7 @@ import { InspectStoreData } from '../common/types/store-data/inspect-store-data'
 import { PathSnippetStoreData } from '../common/types/store-data/path-snippet-store-data';
 import { ScopingStoreData } from '../common/types/store-data/scoping-store-data';
 import { TabStoreData } from '../common/types/store-data/tab-store-data';
-import { UnifiedResults } from '../common/types/store-data/unified-data-interface';
+import { UnifiedScanResultStoreData } from '../common/types/store-data/unified-data-interface';
 import { UserConfigurationStoreData } from '../common/types/store-data/user-configuration-store';
 import { VisualizationScanResultData } from '../common/types/store-data/visualization-scan-result-data';
 import { VisualizationStoreData } from '../common/types/store-data/visualization-store-data';
@@ -116,7 +116,10 @@ if (isNaN(tabId) === false) {
                 StoreNames[StoreNames.VisualizationScanResultStore],
                 browserAdapter,
             );
-            const unifiedScanResultStore = new StoreProxy<UnifiedResults>(StoreNames[StoreNames.UnifiedScanResultStore], browserAdapter);
+            const unifiedScanResultStore = new StoreProxy<UnifiedScanResultStoreData>(
+                StoreNames[StoreNames.UnifiedScanResultStore],
+                browserAdapter,
+            );
             const pathSnippetStore = new StoreProxy<PathSnippetStoreData>(StoreNames[StoreNames.PathSnippetStore], browserAdapter);
             const detailsViewStore = new StoreProxy<DetailsViewData>(StoreNames[StoreNames.DetailsViewStore], browserAdapter);
             const assessmentStore = new StoreProxy<AssessmentStoreData>(StoreNames[StoreNames.AssessmentStore], browserAdapter);

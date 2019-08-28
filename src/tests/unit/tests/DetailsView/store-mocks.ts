@@ -25,7 +25,7 @@ import { FeatureFlagStoreData } from '../../../../common/types/store-data/featur
 import { LaunchPanelStoreData } from '../../../../common/types/store-data/launch-panel-store-data';
 import { ScopingStoreData } from '../../../../common/types/store-data/scoping-store-data';
 import { TabStoreData } from '../../../../common/types/store-data/tab-store-data';
-import { UnifiedResults } from '../../../../common/types/store-data/unified-data-interface';
+import { UnifiedScanResultStoreData } from '../../../../common/types/store-data/unified-data-interface';
 import { UserConfigurationStoreData } from '../../../../common/types/store-data/user-configuration-store';
 import { VisualizationScanResultData } from '../../../../common/types/store-data/visualization-scan-result-data';
 import { VisualizationStoreData } from '../../../../common/types/store-data/visualization-store-data';
@@ -97,7 +97,7 @@ export class StoreMocks {
         return this;
     }
 
-    public setUnifiedScanResultStoreData(data: UnifiedResults): StoreMocks {
+    public setUnifiedScanResultStoreData(data: UnifiedScanResultStoreData): StoreMocks {
         this.unifiedScanResultStoreData = data;
         return this;
     }
