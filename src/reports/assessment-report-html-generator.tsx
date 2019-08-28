@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { AssessmentDefaultMessageGenerator } from 'assessments/assessment-default-message-generator';
-import { assessmentsProviderWithFeaturesEnabled } from 'assessments/assessments-feature-flag-filter';
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { AssessmentStoreData } from 'common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
@@ -34,10 +33,8 @@ export class AssessmentReportHtmlGenerator {
         tabStoreData: TabStoreData,
         description: string,
     ): string {
-        const filteredProvider = assessmentsProviderWithFeaturesEnabled(assessmentsProvider, featureFlagStoreData);
-
         const modelBuilder = this.assessmentReportModelBuilderFactory.create(
-            filteredProvider,
+            assessmentsProvider,
             assessmentStoreData,
             tabStoreData,
             this.dateGetter(),
