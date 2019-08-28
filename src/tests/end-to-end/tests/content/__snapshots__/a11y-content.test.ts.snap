@@ -18606,7 +18606,7 @@ exports[`A11Y for content pages High Contrast mode test/nativeWidgets/autocomple
         For any form field that serves an 
         <a
           class="ms-Link insights-link root-000"
-          href="https://aka.ms/keros/inputpurpose"
+          href="https://www.w3.org/TR/WCAG21/#input-purposes"
           target="_blank"
         >
           identified input purpose
@@ -51265,7 +51265,7 @@ exports[`A11Y for content pages Normal mode test/nativeWidgets/autocomplete/info
         For any form field that serves an 
         <a
           class="ms-Link insights-link root-000"
-          href="https://aka.ms/keros/inputpurpose"
+          href="https://www.w3.org/TR/WCAG21/#input-purposes"
           target="_blank"
         >
           identified input purpose
