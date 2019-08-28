@@ -8,7 +8,9 @@ import { BasicCommandBar, CommandBarProps, CommandBarWithExportAndStartOver } fr
 describe('getCommandBarWithExportAndStartOver', () => {
     it('should return command bar with renderExportAndStartOver as true', () => {
         const props = {
-            assessmentsProvider: null,
+            deps: {
+                assessmentsProvider: null,
+            },
         } as CommandBarProps;
         const actual = shallow(<CommandBarWithExportAndStartOver {...props} />);
 
@@ -19,7 +21,9 @@ describe('getCommandBarWithExportAndStartOver', () => {
 describe('getBasicCommandBar', () => {
     it('should return command bar with renderExportAndStartOver as false', () => {
         const props = {
-            assessmentsProvider: null,
+            deps: {
+                assessmentsProvider: null,
+            },
         } as CommandBarProps;
         const actual = shallow(<BasicCommandBar {...props} />);
 

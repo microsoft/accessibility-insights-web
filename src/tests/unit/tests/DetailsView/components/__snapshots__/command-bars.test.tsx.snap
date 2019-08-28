@@ -2,14 +2,22 @@
 
 exports[`getBasicCommandBar should return command bar with renderExportAndStartOver as false 1`] = `
 <DetailsViewCommandBar
-  assessmentsProvider={null}
+  deps={
+    Object {
+      "assessmentsProvider": null,
+    }
+  }
   renderExportAndStartOver={false}
 />
 `;
 
 exports[`getCommandBarWithExportAndStartOver should return command bar with renderExportAndStartOver as true 1`] = `
 <DetailsViewCommandBar
-  assessmentsProvider={null}
+  deps={
+    Object {
+      "assessmentsProvider": null,
+    }
+  }
   renderExportAndStartOver={true}
 />
 `;
