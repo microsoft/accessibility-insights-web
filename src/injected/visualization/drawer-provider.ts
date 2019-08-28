@@ -22,6 +22,7 @@ import { HighlightBoxDrawer } from './highlight-box-drawer';
 import { HighlightBoxFormatter } from './highlight-box-formatter';
 import { IssuesFormatter } from './issues-formatter';
 import { LandmarkFormatter } from './landmark-formatter';
+import { NonTextComponentFormatter } from './non-text-component-formatter';
 import { NullDrawer } from './null-drawer';
 import { SingleTargetDrawer } from './single-target-drawer';
 import { SingleTargetFormatter } from './single-target-formatter';
@@ -112,6 +113,11 @@ export class DrawerProvider {
     public createCustomWidgetsDrawer(): Drawer {
         const formatter = new CustomWidgetsFormatter();
         return this.createDrawer('insights-custom-widgets', formatter);
+    }
+
+    public createNonTextComponentDrawer(): Drawer {
+        const formatter = new NonTextComponentFormatter();
+        return this.createDrawer('non-text-component', formatter);
     }
 
     private createDrawer(containerClass: string, formatter: Formatter): Drawer {

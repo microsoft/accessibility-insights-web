@@ -86,7 +86,7 @@ export const StateChanges: Requirement = {
                 resultProcessor: (scanner: ScannerUtils) => scanner.getPassingInstances,
             }),
         ),
-    getDrawer: provider => provider.createCustomWidgetsDrawer(),
+    getDrawer: provider => provider.createNonTextComponentDrawer(),
     updateVisibility: false,
     getVisualHelperToggle: props => <AssessmentVisualizationEnabledToggle {...props} />,
 };
