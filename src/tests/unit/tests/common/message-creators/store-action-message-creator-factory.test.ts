@@ -28,7 +28,7 @@ describe('StoreActionMessageCreatorFactoryTest', () => {
 
     it('dispatches message types for forDetailsView', () => {
         const messages: string[] = [
-            Messages.Visualizations.DetailsView.GetState,
+            getStoreStateMessage(StoreNames.DetailsViewStore),
             getStoreStateMessage(StoreNames.VisualizationScanResultStore),
             getStoreStateMessage(StoreNames.VisualizationStore),
             Messages.Tab.GetCurrent,

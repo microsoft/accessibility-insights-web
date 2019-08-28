@@ -10,7 +10,8 @@ import { DetailsViewController } from 'background/details-view-controller';
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
 import { Action } from '../../../../../common/flux/action';
 import { RegisterTypeToPayloadCallback } from '../../../../../common/message';
-import { Messages } from '../../../../../common/messages';
+import { getStoreStateMessage, Messages } from '../../../../../common/messages';
+import { StoreNames } from '../../../../../common/stores/store-names';
 import { SETTINGS_PANEL_CLOSE, SETTINGS_PANEL_OPEN, TelemetryEventSource, TriggeredBy } from '../../../../../common/telemetry-events';
 import { DetailsViewRightContentPanelType } from '../../../../../DetailsView/components/left-nav/details-view-right-content-panel-type';
 
@@ -103,7 +104,7 @@ describe('DetailsViewActionCreatorTest', () => {
         detailsViewActionsMock.setup(actions => actions['getCurrentState']).returns(() => getCurrentStateMock.object);
 
         registerCallbackMock
-            .setup(register => register(Messages.Visualizations.DetailsView.GetState, It.is(isFunction)))
+            .setup(register => register(getStoreStateMessage(StoreNames.DetailsViewStore), It.is(isFunction)))
             .callback((message, listener) => listener());
 
         testSubject.registerCallback();

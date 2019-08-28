@@ -23,7 +23,7 @@ export class StoreActionMessageCreatorFactory {
 
     public forDetailsView(): StoreActionMessageCreator {
         const getStateMessages: string[] = [
-            Messages.Visualizations.DetailsView.GetState,
+            getStoreStateMessage(StoreNames.DetailsViewStore),
             getStoreStateMessage(StoreNames.VisualizationScanResultStore),
             getStoreStateMessage(StoreNames.VisualizationStore),
             Messages.Tab.GetCurrent,

@@ -13,7 +13,6 @@ export interface DetailsViewMessages {
     PivotSelect: string;
     Close: string;
     SetDetailsViewRightContentPanel: string;
-    GetState: string;
 }
 
 export interface IssuesMessages {
@@ -79,7 +78,6 @@ export class Messages {
             PivotSelect: `${messagePrefix}/details-view/pivot/select`,
             Close: `${messagePrefix}/details-view/closed`,
             SetDetailsViewRightContentPanel: `${messagePrefix}/details-view/setRightContentPanel`,
-            GetState: `${messagePrefix}/details-view/state/current`,
         },
     };
 
