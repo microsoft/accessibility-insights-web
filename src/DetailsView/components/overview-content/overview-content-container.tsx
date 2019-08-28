@@ -1,15 +1,14 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as React from 'react';
-
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
+import * as React from 'react';
 import { OverviewSummaryReportModel } from 'reports/assessment-report-model';
 import { AssessmentReportSummary } from 'reports/components/assessment-report-summary';
 import { GetAssessmentSummaryModelFromProviderAndStoreData } from 'reports/get-assessment-summary-model';
 import { HyperlinkDefinition } from 'views/content/content-page';
+
 import { NamedSFC } from '../../../common/react/named-sfc';
 import { AssessmentStoreData } from '../../../common/types/store-data/assessment-result-data';
-import { FeatureFlagStoreData } from '../../../common/types/store-data/feature-flag-store-data';
 import { TabStoreData } from '../../../common/types/store-data/tab-store-data';
 import { DetailsViewActionMessageCreator } from '../../actions/details-view-action-message-creator';
 import { TargetChangeDialog, TargetChangeDialogDeps } from '../target-change-dialog';
@@ -39,7 +38,6 @@ export type OverviewContainerDeps = {
     assessmentsProvider: AssessmentsProvider;
     getAssessmentSummaryModelFromProviderAndStoreData: GetAssessmentSummaryModelFromProviderAndStoreData;
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
-    assessmentsProviderWithFeaturesEnabled: (assessmentProvider: AssessmentsProvider, flags: FeatureFlagStoreData) => AssessmentsProvider;
 } & OverviewHelpSectionDeps &
     TargetChangeDialogDeps;
 
@@ -47,22 +45,20 @@ export interface OverviewContainerProps {
     deps: OverviewContainerDeps;
     assessmentStoreData: AssessmentStoreData;
     tabStoreData: TabStoreData;
-    featureFlagStoreData: FeatureFlagStoreData;
 }
 
 export const OverviewContainer = NamedSFC<OverviewContainerProps>('OverviewContainer', props => {
-    const { deps, assessmentStoreData, tabStoreData, featureFlagStoreData } = props;
-    const { assessmentsProvider, getAssessmentSummaryModelFromProviderAndStoreData, assessmentsProviderWithFeaturesEnabled } = deps;
+    const { deps, assessmentStoreData, tabStoreData } = props;
+    const { assessmentsProvider, getAssessmentSummaryModelFromProviderAndStoreData } = deps;
     const prevTarget = assessmentStoreData.persistedTabInfo;
     const currentTarget = {
         id: tabStoreData.id,
         url: tabStoreData.url,
         title: tabStoreData.title,
     };
-    const filteredProvider = assessmentsProviderWithFeaturesEnabled(assessmentsProvider, featureFlagStoreData);
 
     const summaryData: OverviewSummaryReportModel = getAssessmentSummaryModelFromProviderAndStoreData(
-        filteredProvider,
+        assessmentsProvider,
         assessmentStoreData,
     );
 

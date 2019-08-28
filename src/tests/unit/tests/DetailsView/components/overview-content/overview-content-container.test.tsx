@@ -1,10 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { shallow } from 'enzyme';
 import * as React from 'react';
-import { Mock, MockBehavior } from 'typemoq';
 
-import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { AssessmentStoreData, PersistedTabInfo } from '../../../../../../common/types/store-data/assessment-result-data';
 import { TabStoreData } from '../../../../../../common/types/store-data/tab-store-data';
 import { UrlParser } from '../../../../../../common/url-parser';
@@ -36,9 +35,7 @@ describe('OverviewContainer', () => {
         all: () => [],
     } as any;
 
-    const filteredProvider = {} as AssessmentsProvider;
     const detailsViewActionMessageCreatorStub = {} as DetailsViewActionMessageCreator;
-    const assessmentsProviderWithFeaturesEnabledMock = Mock.ofInstance((provider, featureFlagData) => null, MockBehavior.Strict);
     const getAssessmentSummaryModelFromProviderAndStoreData = jest.fn();
 
     const deps: OverviewContainerDeps = {
@@ -47,27 +44,13 @@ describe('OverviewContainer', () => {
         getAssessmentSummaryModelFromProviderAndStoreData: getAssessmentSummaryModelFromProviderAndStoreData,
         detailsViewActionMessageCreator: detailsViewActionMessageCreatorStub,
         urlParser: urlParserMock,
-        assessmentsProviderWithFeaturesEnabled: assessmentsProviderWithFeaturesEnabledMock.object,
     };
-
-    const featureFlagDataStub = {};
 
     const assessmentStoreData: AssessmentStoreData = {
         persistedTabInfo: {} as PersistedTabInfo,
     } as AssessmentStoreData;
 
-    assessmentsProviderWithFeaturesEnabledMock
-        .setup(mock => mock(assessmentsProvider, featureFlagDataStub))
-        .returns(() => filteredProvider);
-
-    const component = (
-        <OverviewContainer
-            deps={deps}
-            assessmentStoreData={assessmentStoreData}
-            featureFlagStoreData={featureFlagDataStub}
-            tabStoreData={tabStoreDataStub}
-        />
-    );
+    const component = <OverviewContainer deps={deps} assessmentStoreData={assessmentStoreData} tabStoreData={tabStoreDataStub} />;
     const wrapper = shallow(component);
 
     test('component is defined and matches snapshot', () => {

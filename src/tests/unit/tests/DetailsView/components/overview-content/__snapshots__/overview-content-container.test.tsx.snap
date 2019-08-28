@@ -14,7 +14,6 @@ exports[`OverviewContainer component is defined and matches snapshot 1`] = `
         "assessmentsProvider": Object {
           "all": [Function],
         },
-        "assessmentsProviderWithFeaturesEnabled": [Function],
         "detailsViewActionMessageCreator": Object {},
         "getAssessmentSummaryModelFromProviderAndStoreData": [MockFunction],
         "urlParser": Object {},
@@ -47,7 +46,6 @@ exports[`OverviewContainer component is defined and matches snapshot 1`] = `
           "assessmentsProvider": Object {
             "all": [Function],
           },
-          "assessmentsProviderWithFeaturesEnabled": [Function],
           "detailsViewActionMessageCreator": Object {},
           "getAssessmentSummaryModelFromProviderAndStoreData": [MockFunction],
           "urlParser": Object {},
