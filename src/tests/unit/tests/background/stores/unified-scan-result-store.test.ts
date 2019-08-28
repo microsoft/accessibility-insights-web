@@ -22,9 +22,7 @@ describe('UnifiedScanResultStore Test', () => {
     test('check defaultState is empty', () => {
         const defaultState = getDefaultState();
 
-        expect(defaultState.results).toEqual({
-            results: null,
-        });
+        expect(defaultState.results).toEqual(null);
         expect(defaultState.rules).toEqual(null);
     });
 
@@ -39,9 +37,7 @@ describe('UnifiedScanResultStore Test', () => {
         const initialState = getDefaultState();
 
         const payload: UnifiedScanCompletedPayload = {
-            scanResult: {
-                results: [],
-            },
+            scanResult: [],
             rules: [],
         };
 

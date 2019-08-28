@@ -173,7 +173,7 @@ export class DetailsViewContainer extends React.Component<DetailsViewContainerPr
         });
         const selectedTest = selectedDetailsViewSwitcherNavConfiguration.getSelectedDetailsView(storeState);
 
-        const ruleResults = this.props.deps.getUnifiedRuleResults(null, this.props.storeState.unifiedScanResultStoreData.results.results);
+        const ruleResults = this.props.deps.getUnifiedRuleResults(null, this.props.storeState.unifiedScanResultStoreData.results);
 
         return (
             <DetailsViewMainContent

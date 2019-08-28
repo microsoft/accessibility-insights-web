@@ -13,9 +13,7 @@ export class UnifiedScanResultStore extends BaseStoreImpl<UnifiedScanResultStore
 
     public getDefaultState(): UnifiedScanResultStoreData {
         const defaultValue: UnifiedScanResultStoreData = {
-            results: {
-                results: null,
-            },
+            results: null,
             rules: null,
         };
 
