@@ -21,7 +21,7 @@ export const InstanceDetailsV2 = NamedSFC<InstanceDetailsV2Props>('InstanceDetai
     const { result, index, deps } = props;
 
     const renderCardRowsForPropertyBag = (propertyBag: StoredInstancePropertyBag) => {
-        let propertyIndex = 2;
+        let propertyIndex = 0;
         const cardRows = [];
         forOwn(propertyBag, (propertyData, propertyName) => {
             const CardRow = deps.getPropertyConfigById(propertyName).cardRow;
