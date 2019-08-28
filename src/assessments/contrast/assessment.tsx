@@ -6,6 +6,7 @@ import * as React from 'react';
 import { VisualizationType } from 'common/types/visualization-type';
 import { AssessmentBuilder } from '../assessment-builder';
 import { Assessment } from '../types/iassessment';
+import { Graphics } from './test-steps/graphics';
 import { StateChanges } from './test-steps/state-changes';
 import { UIComponents } from './test-steps/ui-components';
 
@@ -29,7 +30,7 @@ export const ContrastAssessment: Assessment = AssessmentBuilder.Assisted({
     gettingStarted: gettingStarted,
     guidance,
     visualizationType: VisualizationType.ContrastAssessment,
-    requirements: [UIComponents, StateChanges],
+    requirements: [UIComponents, StateChanges, Graphics],
     storeDataKey: 'contrastAssessment',
     featureFlag: { required: ['showAllAssessments'] },
 });

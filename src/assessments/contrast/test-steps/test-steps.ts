@@ -3,4 +3,5 @@
 export const enum ContrastTestStep {
     uiComponents = 'ui-components',
     stateChanges = 'state-changes',
+    graphics = 'graphics',
 }
