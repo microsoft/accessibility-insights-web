@@ -4,7 +4,8 @@ import { Mock } from 'typemoq';
 import { ActionMessageDispatcher } from '../../../../../common/message-creators/action-message-dispatcher';
 import { StoreActionMessageCreator } from '../../../../../common/message-creators/store-action-message-creator';
 import { StoreActionMessageCreatorFactory } from '../../../../../common/message-creators/store-action-message-creator-factory';
-import { Messages } from '../../../../../common/messages';
+import { getStoreStateMessage, Messages } from '../../../../../common/messages';
+import { StoreNames } from '../../../../../common/stores/store-names';
 
 describe('StoreActionMessageCreatorFactoryTest', () => {
     const dispatcherMock = Mock.ofType<ActionMessageDispatcher>();
@@ -15,7 +16,7 @@ describe('StoreActionMessageCreatorFactoryTest', () => {
 
     it('dispatches message types for forPopup', () => {
         const messages: string[] = [
-            Messages.Visualizations.State.GetCurrentVisualizationToggleState,
+            getStoreStateMessage(StoreNames.VisualizationStore),
             Messages.Command.GetCommands,
             Messages.FeatureFlags.GetFeatureFlags,
             Messages.LaunchPanel.Get,
@@ -29,7 +30,7 @@ describe('StoreActionMessageCreatorFactoryTest', () => {
         const messages: string[] = [
             Messages.Visualizations.DetailsView.GetState,
             Messages.Visualizations.State.GetCurrentVisualizationResultState,
-            Messages.Visualizations.State.GetCurrentVisualizationToggleState,
+            getStoreStateMessage(StoreNames.VisualizationStore),
             Messages.Tab.GetCurrent,
             Messages.FeatureFlags.GetFeatureFlags,
             Messages.Assessment.GetCurrentState,
@@ -43,7 +44,7 @@ describe('StoreActionMessageCreatorFactoryTest', () => {
 
     it('dispatches message types for forInjected', () => {
         const messages: string[] = [
-            Messages.Visualizations.State.GetCurrentVisualizationToggleState,
+            getStoreStateMessage(StoreNames.VisualizationStore),
             Messages.Scoping.GetCurrentState,
             Messages.Inspect.GetCurrentState,
             Messages.Visualizations.State.GetCurrentVisualizationResultState,

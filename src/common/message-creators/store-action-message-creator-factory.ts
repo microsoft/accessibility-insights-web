@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { Messages } from '../messages';
+import { getStoreStateMessage, Messages } from '../messages';
+import { StoreNames } from '../stores/store-names';
 import { ActionMessageDispatcher } from './action-message-dispatcher';
 import { StoreActionMessageCreator } from './store-action-message-creator';
 import { StoreActionMessageCreatorImpl } from './store-action-message-creator-impl';
@@ -10,7 +11,7 @@ export class StoreActionMessageCreatorFactory {
 
     public forPopup(): StoreActionMessageCreator {
         const getStateMessages: string[] = [
-            Messages.Visualizations.State.GetCurrentVisualizationToggleState,
+            getStoreStateMessage(StoreNames.VisualizationStore),
             Messages.Command.GetCommands,
             Messages.FeatureFlags.GetFeatureFlags,
             Messages.LaunchPanel.Get,
@@ -24,7 +25,7 @@ export class StoreActionMessageCreatorFactory {
         const getStateMessages: string[] = [
             Messages.Visualizations.DetailsView.GetState,
             Messages.Visualizations.State.GetCurrentVisualizationResultState,
-            Messages.Visualizations.State.GetCurrentVisualizationToggleState,
+            getStoreStateMessage(StoreNames.VisualizationStore),
             Messages.Tab.GetCurrent,
             Messages.FeatureFlags.GetFeatureFlags,
             Messages.Assessment.GetCurrentState,
@@ -45,7 +46,7 @@ export class StoreActionMessageCreatorFactory {
 
     public forInjected(): StoreActionMessageCreator {
         const getStateMessages: string[] = [
-            Messages.Visualizations.State.GetCurrentVisualizationToggleState,
+            getStoreStateMessage(StoreNames.VisualizationStore),
             Messages.Scoping.GetCurrentState,
             Messages.Inspect.GetCurrentState,
             Messages.Visualizations.State.GetCurrentVisualizationResultState,
