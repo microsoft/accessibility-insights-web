@@ -16,7 +16,6 @@ describe('ResultSectionV2', () => {
         } as ResultSectionV2Props;
 
         const wrapper = shallow(<ResultSectionV2 {...props} />);
-
         expect(wrapper.getElement()).toMatchSnapshot();
     });
 });

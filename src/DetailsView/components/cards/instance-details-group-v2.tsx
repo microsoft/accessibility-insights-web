@@ -3,10 +3,10 @@
 import { GetGuidanceTagsFromGuidanceLinks } from 'common/get-guidance-tags-from-guidance-links';
 import { NamedSFC } from 'common/react/named-sfc';
 import * as React from 'react';
-import { instanceDetailsList } from 'reports/automated-checks-report.scss';
 
 import { getPropertyConfiguration } from '../../../common/configs/unified-result-property-configurations';
 import { UnifiedRuleResult } from './failed-instances-section-v2';
+import { instanceDetailsList } from './instance-details-group.scss';
 import { InstanceDetailsV2, InstanceDetailsV2Deps } from './instance-details-v2';
 
 export type InstanceDetailsGroupV2Deps = {

@@ -2,7 +2,7 @@
 
 exports[`ResultSectionV2 renders 1`] = `
 <div
-  className="result-section-class-name"
+  className="result-section-class-name resultSection"
 >
   <h2>
     <ResultSectionTitle
