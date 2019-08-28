@@ -1,5 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { StoreNames } from './stores/store-names';
+
 export interface StateMessages {
     GetCurrentVisualizationToggleState: string;
     GetCurrentVisualizationResultState: string;
@@ -49,6 +51,9 @@ export interface VisualizationMessages {
 }
 
 const messagePrefix = 'insights';
+export const getStoreStateMessage = (storeName: StoreNames): string => {
+    return `${messagePrefix}/${StoreNames[storeName]}/state/current`;
+};
 
 export class Messages {
     public static readonly Visualizations: VisualizationMessages = {
