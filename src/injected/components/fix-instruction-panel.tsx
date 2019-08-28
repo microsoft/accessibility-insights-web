@@ -13,7 +13,7 @@ export interface FixInstructionPanelDeps {
 export interface FixInstructionPanelProps {
     deps: FixInstructionPanelDeps;
     checkType: CheckType;
-    checks: FormattedCheckResult[];
+    checks: { message: string }[];
     renderTitleElement: (titleText: string, className: string) => JSX.Element;
 }
 

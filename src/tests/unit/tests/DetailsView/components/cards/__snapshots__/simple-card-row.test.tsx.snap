@@ -1,0 +1,35 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SimpleCardRow renders 1`] = `
+<tr
+  className="row"
+>
+  <th
+    className="label"
+  >
+    test label
+  </th>
+  <td
+    className="instance-list-row-content"
+  >
+    test content
+  </td>
+</tr>
+`;
+
+exports[`SimpleCardRow renders with correct styling when extra class name is needed 1`] = `
+<tr
+  className="row"
+>
+  <th
+    className="label"
+  >
+    test label
+  </th>
+  <td
+    className="instance-list-row-content content-snipppet"
+  >
+    test content
+  </td>
+</tr>
+`;

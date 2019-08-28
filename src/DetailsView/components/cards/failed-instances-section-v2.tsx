@@ -2,16 +2,16 @@
 // Licensed under the MIT License.
 import { NamedSFC } from 'common/react/named-sfc';
 import * as React from 'react';
-import { GetGuidanceTagsFromGuidanceLinks } from '../../../common/get-guidance-tags-from-guidance-links';
-import { UnifiedResult, UnifiedRuleResultStatus } from '../../../common/types/store-data/unified-data-interface';
-import { FixInstructionProcessor } from '../../../injected/fix-instruction-processor';
-import { GuidanceLink } from '../../../scanner/rule-to-links-mappings';
-import { ResultSectionV2 } from './result-section-v2';
 
+import { UnifiedResult, UnifiedRuleResultStatus } from '../../../common/types/store-data/unified-data-interface';
+import { GuidanceLink } from '../../../scanner/rule-to-links-mappings';
+import { failedInstancesSection } from './failed-instances-section.scss';
+import { ResultSectionV2, ResultSectionV2Deps } from './result-section-v2';
+
+export type FailedInstancesSectionV2Deps = ResultSectionV2Deps;
 export type FailedInstancesSectionV2Props = {
-    fixInstructionProcessor: FixInstructionProcessor;
+    deps: FailedInstancesSectionV2Deps;
     result: UnifiedStatusResults;
-    getGuidanceTagsFromGuidanceLinks: GetGuidanceTagsFromGuidanceLinks;
 };
 
 export interface UnifiedRuleResult {
@@ -26,19 +26,15 @@ export type UnifiedStatusResults = {
     [key in UnifiedRuleResultStatus]: UnifiedRuleResult[];
 };
 
-export const FailedInstancesSectionV2 = NamedSFC<FailedInstancesSectionV2Props>(
-    'FailedInstancesSectionV2',
-    ({ result, fixInstructionProcessor, getGuidanceTagsFromGuidanceLinks }) => {
-        return (
-            <ResultSectionV2
-                deps={{ getGuidanceTagsFromGuidanceLinks }}
-                fixInstructionProcessor={fixInstructionProcessor}
-                title="Failed instances"
-                results={result.fail}
-                containerClassName="failed-instances-section result-section"
-                outcomeType="fail"
-                badgeCount={result.fail.length}
-            />
-        );
-    },
-);
+export const FailedInstancesSectionV2 = NamedSFC<FailedInstancesSectionV2Props>('FailedInstancesSectionV2', ({ result, deps }) => {
+    return (
+        <ResultSectionV2
+            deps={deps}
+            title="Failed instances"
+            results={result.fail}
+            containerClassName={failedInstancesSection}
+            outcomeType="fail"
+            badgeCount={result.fail.length}
+        />
+    );
+});

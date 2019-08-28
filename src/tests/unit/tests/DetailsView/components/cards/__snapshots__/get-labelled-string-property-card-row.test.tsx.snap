@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`GetLabelledStringPropertyCardRow renders with appropriate label/propertyData 1`] = `
+<SimpleCardRow
+  content="some string as propertyData"
+  label="some label"
+  rowKey="some label-22"
+/>
+`;
