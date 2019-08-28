@@ -13,9 +13,9 @@ describe('ScanResults to UnifiedRule[] test', () => {
             incomplete: [],
         } as ScanResults;
 
-        const expectedResults: UnifiedRule[] = getSampleUnifiedRuleStubs(3);
+        const expectedResults = getSampleUnifiedRuleStubs(3);
 
-        const actualResults: UnifiedRule[] = convertScanResultsToUnifiedRules(scanResultsStub);
+        const actualResults = convertScanResultsToUnifiedRules(scanResultsStub);
 
         expect(actualResults).toEqual(expectedResults);
     });
