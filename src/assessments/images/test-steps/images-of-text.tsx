@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { ImagesOfTextPropertyBag } from 'common/types/property-bag/image-of-text';
+import { MeaningfulImagePropertyBag } from 'common/types/property-bag/meaningful-image';
 import { VisualizationType } from 'common/types/visualization-type';
 import { link } from 'content/link';
 import { productName } from 'content/strings/application';
@@ -32,7 +32,7 @@ const howToTest: JSX.Element = (
 
 const key = ImagesTestStep.imageOfText;
 
-const propertyBagConfig: PropertyBagColumnRendererConfig<ImagesOfTextPropertyBag>[] = [
+const propertyBagConfig: PropertyBagColumnRendererConfig<MeaningfulImagePropertyBag>[] = [
     {
         propertyName: 'imageType',
         displayName: 'Image type',

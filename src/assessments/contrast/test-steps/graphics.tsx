@@ -1,13 +1,14 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { MacContrastCheckerAppLink, WindowsContrastCheckerAppLink } from 'common/components/contrast-checker-app-links';
-import { ImagesOfTextPropertyBag } from 'common/types/property-bag/image-of-text';
+import { NewTabLink } from 'common/components/new-tab-link';
+import { MeaningfulImagePropertyBag } from 'common/types/property-bag/meaningful-image';
+import { VisualizationType } from 'common/types/visualization-type';
 import { link } from 'content/link';
-import * as content from 'content/test/contrast/ui-components';
+import * as content from 'content/test/contrast/graphics';
+import { AssessmentVisualizationEnabledToggle } from 'DetailsView/components/assessment-visualization-enabled-toggle';
 import * as React from 'react';
 
-import { VisualizationType } from '../../../common/types/visualization-type';
-import { AssessmentVisualizationEnabledToggle } from '../../../DetailsView/components/assessment-visualization-enabled-toggle';
 import { AnalyzerConfigurationFactory } from '../../common/analyzer-configuration-factory';
 import { AssistedTestRecordYourResults } from '../../common/assisted-test-record-your-results';
 import { NoValue, PropertyBagColumnRendererConfig } from '../../common/property-bag-column-renderer';
@@ -20,9 +21,6 @@ const description: JSX.Element = <span>Graphics must have sufficient contrast.</
 
 const howToTest: JSX.Element = (
     <div>
-        Use Accessibility Insights for Windows to verify that each necessary part has a contrast ratio of at least 3:1 against the adjacent
-        background. Exception: A lower contrast ratio is allowed for logos, photos, and other cases where a specific visual presentation is
-        essential.
         <p>The visual helper for this requirement highlights images coded as meaningful.</p>
         <ol>
             <li>
@@ -42,8 +40,8 @@ const howToTest: JSX.Element = (
                     .)
                 </p>
                 <p>
-                    Exception: A lower contrast ratio is allowed for logos, photos, and other cases where a specific visual presentation is
-                    essential.
+                    Exception: A lower contrast ratio is allowed for logos, photos, and other cases where a specific visual presentation is{' '}
+                    <NewTabLink href="https://www.w3.org/TR/WCAG21/#dfn-essential">essential</NewTabLink>.
                 </p>
             </li>
             <AssistedTestRecordYourResults />
@@ -51,7 +49,7 @@ const howToTest: JSX.Element = (
     </div>
 );
 
-const propertyBagConfig: PropertyBagColumnRendererConfig<ImagesOfTextPropertyBag>[] = [
+const propertyBagConfig: PropertyBagColumnRendererConfig<MeaningfulImagePropertyBag>[] = [
     {
         propertyName: 'imageType',
         displayName: 'Image type',
@@ -63,7 +61,7 @@ const propertyBagConfig: PropertyBagColumnRendererConfig<ImagesOfTextPropertyBag
     },
 ];
 
-export const TextAlternative: Requirement = {
+export const Graphics: Requirement = {
     key: ContrastTestStep.graphics,
     name: 'Graphics',
     description,
