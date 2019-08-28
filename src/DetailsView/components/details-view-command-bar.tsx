@@ -16,6 +16,7 @@ import { StartOverDropdown } from './start-over-dropdown';
 export type DetailsViewCommandBarDeps = ReportExportComponentDeps & {
     getCurrentDate: () => Date;
     reportGenerator: ReportGenerator;
+    assessmentsProvider: AssessmentsProvider;
 };
 
 export interface DetailsViewCommandBarProps {
@@ -24,7 +25,6 @@ export interface DetailsViewCommandBarProps {
     tabStoreData: TabStoreData;
     actionMessageCreator: DetailsViewActionMessageCreator;
     assessmentStoreData: AssessmentStoreData;
-    assessmentsProvider: AssessmentsProvider;
     renderExportAndStartOver: boolean;
     rightPanelConfiguration: DetailsRightPanelConfiguration;
 }
@@ -72,10 +72,11 @@ export class DetailsViewCommandBar extends React.Component<DetailsViewCommandBar
         if (!this.props.renderExportAndStartOver) {
             return null;
         }
-        const { deps, assessmentStoreData, assessmentsProvider, featureFlagStoreData, tabStoreData } = this.props;
+        const { deps, assessmentStoreData, featureFlagStoreData, tabStoreData } = this.props;
+        const { assessmentsProvider } = deps;
         const reportGenerator = deps.reportGenerator;
         const selectedTest = this.props.assessmentStoreData.assessmentNavState.selectedTestType;
-        const test = this.props.assessmentsProvider.forType(selectedTest);
+        const test = assessmentsProvider.forType(selectedTest);
         const htmlGenerator = reportGenerator.generateAssessmentReport.bind(
             reportGenerator,
             assessmentStoreData,

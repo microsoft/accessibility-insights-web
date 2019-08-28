@@ -7,6 +7,7 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 import { ReportGenerator } from 'reports/report-generator';
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';
+
 import { FileURLProvider } from '../../../../../common/file-url-provider';
 import { AssessmentStoreData } from '../../../../../common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from '../../../../../common/types/store-data/feature-flag-store-data';
@@ -69,6 +70,7 @@ describe('DetailsViewCommandBar', () => {
             outcomeTypeSemanticsFromTestStatus: { stub: 'outcomeTypeSemanticsFromTestStatus' } as any,
             getCurrentDate: () => theDate,
             reportGenerator: reportGeneratorMock.object,
+            assessmentsProvider: assessmentsProviderMock.object,
         };
 
         return {
@@ -77,7 +79,6 @@ describe('DetailsViewCommandBar', () => {
             actionMessageCreator: actionMessageCreatorMock.object,
             tabStoreData,
             renderExportAndStartOver,
-            assessmentsProvider: assessmentsProviderMock.object,
             assessmentStoreData,
             rightPanelConfiguration: rightPanelConfig,
         };
@@ -109,7 +110,7 @@ describe('DetailsViewCommandBar', () => {
                 .setup(rgm =>
                     rgm.generateAssessmentReport(
                         props.assessmentStoreData,
-                        props.assessmentsProvider,
+                        props.deps.assessmentsProvider,
                         props.featureFlagStoreData,
                         props.tabStoreData,
                         descriptionPlaceholder,
