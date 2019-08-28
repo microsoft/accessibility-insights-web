@@ -116,4 +116,30 @@ describe('ClientUtilsTest', () => {
         expect(result.left).toBe(elementLeft + initialScrollX);
         expect(result.top).toBe(elementTop + initialScrollY);
     });
+
+    test('getOffsetFromBoundingRect', () => {
+        const initialScrollX = 10;
+        const initialScrollY = 20;
+
+        scrollGetterMock.setup(sg => sg.scrollX).returns(() => initialScrollX);
+
+        scrollGetterMock.setup(sg => sg.scrollY).returns(() => initialScrollY);
+
+        const elementTop = 100;
+        const elementLeft = 25;
+
+        const elementRect: ClientRect = {
+            left: elementLeft,
+            top: elementTop,
+            bottom: 0,
+            right: 0,
+            width: 0,
+            height: 0,
+        };
+
+        const result = testObject.getOffsetFromBoundingRect(elementRect);
+
+        expect(result.left).toBe(elementLeft + initialScrollX);
+        expect(result.top).toBe(elementTop + initialScrollY);
+    });
 });

@@ -12,6 +12,7 @@ import { DrawerInitData } from '../../../../../injected/visualization/drawer';
 import { DrawerUtils } from '../../../../../injected/visualization/drawer-utils';
 import { DrawerConfiguration, Formatter } from '../../../../../injected/visualization/formatter';
 import { HighlightBoxDrawer } from '../../../../../injected/visualization/highlight-box-drawer';
+import { NonTextComponentFormatter } from '../../../../../injected/visualization/non-text-component-formatter';
 import { itIsFunction } from '../../../common/it-is-function';
 import { TestDocumentCreator } from '../../../common/test-document-creator';
 
@@ -174,7 +175,7 @@ describe('Drawer', () => {
             .verifiable();
 
         clientUtilsMock
-            .setup(cu => cu.getOffset(elementStub))
+            .setup(cu => cu.getOffsetFromBoundingRect(elementStub.getBoundingClientRect()))
             .returns(el => {
                 return { left: 10, top: 10 };
             });
@@ -214,6 +215,8 @@ describe('Drawer', () => {
     });
 
     test('verifyDefaultStyling: visualizations not fully visible in client view', () => {
+        const formatterMock: IMock<NonTextComponentFormatter> = Mock.ofType(NonTextComponentFormatter);
+
         const domMock: IMock<Document> = Mock.ofInstance({
             querySelectorAll: selector => {
                 return null;
@@ -261,6 +264,32 @@ describe('Drawer', () => {
                 };
             },
         } as any;
+        const boundingRect: ClientRect = {
+            left: 0,
+            right: 2003,
+            width: 2006,
+            height: 2006,
+            top: 0,
+            bottom: 2003,
+        };
+        const configStub: DrawerConfiguration = {
+            borderColor: 'rgb(255, 255, 255)',
+            textBoxConfig: {
+                fontColor: 'rgb(255, 255, 255)',
+                background: '#FFFFFF',
+                text: null,
+                boxWidth: '2em',
+            },
+            outlineStyle: 'solid',
+            showVisualization: true,
+            getBoundingRect: () => boundingRect,
+        };
+        formatterMock
+            .setup(fm => fm.getDrawerConfiguration(elementStub as HTMLElement, It.isAny()))
+            .returns(() => {
+                return configStub;
+            })
+            .verifiable(Times.once());
 
         const elementResults = createElementResults(['#id1']);
 
@@ -302,7 +331,7 @@ describe('Drawer', () => {
             .verifiable();
 
         clientUtilsMock
-            .setup(cu => cu.getOffset(elementStub))
+            .setup(cu => cu.getOffsetFromBoundingRect(boundingRect))
             .returns(_ => {
                 return { left: 0, top: 0 };
             });
@@ -331,12 +360,14 @@ describe('Drawer', () => {
             .setDomAndDrawerUtils(domMock.object)
             .setWindowUtils(windowUtilsMock.object)
             .setClientUtils(clientUtilsMock.object)
+            .setFormatter(formatterMock.object)
             .build();
 
         testSubject.initialize(createDrawerInfo(elementResults));
         testSubject.drawLayout();
 
         domMock.verifyAll();
+        formatterMock.verifyAll();
         shadowContainerMock.verifyAll();
         windowUtilsMock.verifyAll();
     });
@@ -416,7 +447,7 @@ describe('Drawer', () => {
         shadowContainerMock.setup(it => it.appendChild(It.isAny())).verifiable();
 
         clientUtilsMock
-            .setup(cu => cu.getOffset(elementStub))
+            .setup(cu => cu.getOffsetFromBoundingRect(elementStub.getBoundingClientRect()))
             .returns(_ => {
                 return { left: 10, top: 10 };
             });
@@ -545,7 +576,7 @@ describe('Drawer', () => {
             .verifiable();
 
         clientUtilsMock
-            .setup(cu => cu.getOffset(elementStub))
+            .setup(cu => cu.getOffsetFromBoundingRect(elementStub.getBoundingClientRect()))
             .returns(element => {
                 return { left: 0, top: 0 };
             });
@@ -673,7 +704,7 @@ describe('Drawer', () => {
             .verifiable();
 
         clientUtilsMock
-            .setup(cu => cu.getOffset(elementStub))
+            .setup(cu => cu.getOffsetFromBoundingRect(elementStub.getBoundingClientRect()))
             .returns(_ => {
                 return { left: 0, top: 0 };
             });

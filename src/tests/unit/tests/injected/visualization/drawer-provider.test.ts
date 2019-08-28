@@ -58,6 +58,7 @@ describe('DrawerProviderTests', () => {
         'createIssuesDrawer',
         'createHighlightBoxDrawer',
         'createCustomWidgetsDrawer',
+        'createNonTextComponentDrawer',
     ];
 
     test.each(drawerYieldingFunctionNames)('%s', funcName => {

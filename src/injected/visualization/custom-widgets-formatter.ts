@@ -13,19 +13,21 @@ export class CustomWidgetsFormatter extends HighlightBoxFormatter {
     public getDrawerConfiguration(element: HTMLElement, data: AssessmentVisualizationInstance): DrawerConfiguration {
         const drawerConfig: DrawerConfiguration = {
             ...super.getDrawerConfiguration(element, data),
-            getBoundingRect: elem => {
-                if (this.isCompositeCustomWidget(elem)) {
-                    return DrawerUtils.getBoundingClientRectIncludingChildren(elem);
-                } else {
-                    return elem.getBoundingClientRect();
-                }
-            },
+            getBoundingRect: this.getBoundingRect,
         };
 
         return drawerConfig;
     }
 
-    private isCompositeCustomWidget(element: Element): boolean {
+    protected getBoundingRect = (element: Element) => {
+        if (this.isCompositeCustomWidget(element)) {
+            return DrawerUtils.getBoundingClientRectIncludingChildren(element);
+        } else {
+            return element.getBoundingClientRect();
+        }
+    };
+
+    protected isCompositeCustomWidget(element: Element): boolean {
         const role = element.getAttribute('role');
         return (
             role === 'combobox' ||
