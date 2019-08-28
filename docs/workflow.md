@@ -12,5 +12,3 @@ You can initiate a process to automatically build the extension on any source co
     yarn watch
 
 Any time a non-test source file is changed, the build will automatically run.
-
-<!-->
