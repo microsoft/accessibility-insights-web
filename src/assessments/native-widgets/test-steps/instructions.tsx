@@ -19,7 +19,7 @@ import { Requirement } from '../../types/requirement';
 import { NativeWidgetsTestStep } from './test-steps';
 
 const description: JSX.Element = (
-    <span>If a native widget has a visible label or instructions, they must be programmatically related.</span>
+    <span>If a native widget has a visible label or instructions, they must be programmatically related to it.</span>
 );
 
 const howToTest: JSX.Element = (
