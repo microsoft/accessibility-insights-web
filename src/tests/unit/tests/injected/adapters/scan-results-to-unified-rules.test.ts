@@ -6,7 +6,7 @@ import { RuleResult, ScanResults } from '../../../../../scanner/iruleresults';
 
 describe('ScanResults to UnifiedRule[] test', () => {
     describe('convertScanResultsToUnifiedRules', () => {
-        it('returns empty UnifiedRule array when scanResults is undefined/null', () => {
+        it('returns empty UnifiedRule[] when scanResults is undefined/null', () => {
             const undefinedScanResults = undefined;
             const nullScanResults = null;
 
