@@ -1,12 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { css } from '@uifabric/utilities';
 import { NamedSFC } from 'common/react/named-sfc';
 import * as React from 'react';
 
-import { css } from '@uifabric/utilities';
-import { GetGuidanceTagsFromGuidanceLinks } from '../../../common/get-guidance-tags-from-guidance-links';
-import { ResultStatus, UnifiedResult } from '../../../common/types/store-data/unified-data-interface';
-import { FixInstructionProcessor } from '../../../injected/fix-instruction-processor';
+import { UnifiedResult, UnifiedRuleResultStatus } from '../../../common/types/store-data/unified-data-interface';
 import { failedInstancesSection, resultSection } from '../../../reports/automated-checks-report.scss';
 import { GuidanceLink } from '../../../scanner/rule-to-links-mappings';
 import { ResultSectionV2, ResultSectionV2Deps } from './result-section-v2';
@@ -24,8 +22,6 @@ export interface UnifiedRuleResult {
     url: string;
     guidance: GuidanceLink[];
 }
-
-export type UnifiedRuleResultStatus = ResultStatus | 'inapplicable';
 
 export type UnifiedStatusResults = {
     [key in UnifiedRuleResultStatus]: UnifiedRuleResult[];

@@ -22,6 +22,9 @@ export const link = {
     WCAG_1_4_4: guidanceLinkTo('WCAG 1.4.4', 'https://www.w3.org/WAI/WCAG21/Understanding/resize-text.html'),
     WCAG_1_4_5: guidanceLinkTo('WCAG 1.4.5', 'https://www.w3.org/WAI/WCAG21/Understanding/images-of-text.html'),
     WCAG_1_4_10: guidanceLinkTo('WCAG 1.4.10', 'https://www.w3.org/WAI/WCAG21/Understanding/reflow.html', [guidanceTags.WCAG_2_1]),
+    WCAG_1_4_11: guidanceLinkTo('WCAG 1.4.11', 'https://www.w3.org/WAI/WCAG21/Understanding/non-text-contrast.html', [
+        guidanceTags.WCAG_2_1,
+    ]),
     WCAG_1_4_12: guidanceLinkTo('WCAG 1.4.12', 'https://www.w3.org/WAI/WCAG21/Understanding/text-spacing.html', [guidanceTags.WCAG_2_1]),
     WCAG_1_4_13: guidanceLinkTo('WCAG 1.4.13', 'https://www.w3.org/WAI/WCAG21/Understanding/content-on-hover-or-focus.html', [
         guidanceTags.WCAG_2_1,

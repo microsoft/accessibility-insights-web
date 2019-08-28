@@ -18,7 +18,7 @@ export const infoAndExamples = create(({ Markup }) => (
             <Markup.Emphasis>
                 "I am recovering from a stroke and sometimes forget where I am at in a website or large of set of open applications. Provide
                 a page title on every document so I can quickly ascertain where I am. In situations where the document title is dynamically
-                generated, such a banking website or complex workflows, be explicit in your page title. For example: 'Account Summary for
+                generated, such as a banking website or complex workflows, be explicit in your page title. For example: 'Account Summary for
                 John Doe'."
             </Markup.Emphasis>
         </p>
