@@ -1,5 +1,45 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`AdhocIssuesTestView should return flagged component for cards and issues views 1`] = `"<FlaggedComponent disableJSXElement={{...}} enableJSXElement={{...}} featureFlag=\\"universalCardsUI\\" featureFlagStoreData={[undefined]} />"`;
+exports[`AdhocIssuesTestView should return DetailsListIssuesView 1`] = `
+<DetailsListIssuesView
+  clickHandlerFactory={
+    proxy {
+      "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+      "actionCreator": undefined,
+      "telemetryFactory": undefined,
+    }
+  }
+  configuration={
+    Object {
+      "displayableData": Object {
+        "title": "test title",
+      },
+      "getStoreData": [Function],
+    }
+  }
+  selectedTest={-1}
+  tabStoreData={
+    Object {
+      "isChanged": false,
+    }
+  }
+  visualizationStoreData={
+    Object {
+      "scanning": "test-scanning",
+      "tests": Object {},
+    }
+  }
+/>
+`;
 
-exports[`AdhocIssuesTestView should return target page changed view as tab is changed 1`] = `"<TargetPageChangedView displayableData={{...}} visualizationType={-1} toggleClickHandler={[Function: clickHandlerStub]} />"`;
+exports[`AdhocIssuesTestView should return target page changed view as tab is changed 1`] = `
+<TargetPageChangedView
+  displayableData={
+    Object {
+      "title": "test title",
+    }
+  }
+  toggleClickHandler={[Function]}
+  visualizationType={-1}
+/>
+`;

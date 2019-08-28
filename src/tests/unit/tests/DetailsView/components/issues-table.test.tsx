@@ -5,6 +5,7 @@ import { ISelection, Selection } from 'office-ui-fabric-react/lib/DetailsList';
 import * as React from 'react';
 import { ReportGenerator } from 'reports/report-generator';
 import { IMock, Mock } from 'typemoq';
+
 import { VisualizationConfigurationFactory } from '../../../../../common/configs/visualization-configuration-factory';
 import { DateProvider } from '../../../../../common/date-provider';
 import { UserConfigurationStoreData } from '../../../../../common/types/store-data/user-configuration-store';
@@ -19,7 +20,7 @@ describe('IssuesTableTest', () => {
     let reportGeneratorMock: IMock<ReportGenerator>;
 
     beforeEach(() => {
-        reportGeneratorMock = Mock.ofType<ReportGenerator>();
+        reportGeneratorMock = Mock.ofType(ReportGenerator);
         deps = {
             getDateFromTimestamp: DateProvider.getDateFromTimestamp,
             reportGenerator: reportGeneratorMock.object,
@@ -89,8 +90,8 @@ describe('IssuesTableTest', () => {
             }
 
             const issuesEnabled = true;
-            const issuesTableHandlerMock = Mock.ofType<IssuesTableHandler>(IssuesTableHandler);
-            const selectionMock = Mock.ofType<ISelection>(Selection);
+            const issuesTableHandlerMock = Mock.ofType(IssuesTableHandler);
+            const selectionMock = Mock.ofType(Selection);
             const toggleClickHandlerMock = Mock.ofInstance(event => {});
 
             const props = new TestPropsBuilder()
@@ -104,7 +105,7 @@ describe('IssuesTableTest', () => {
 
             const wrapped = shallow(<IssuesTable {...props} />);
 
-            expect(wrapped.debug()).toMatchSnapshot();
+            expect(wrapped.getElement()).toMatchSnapshot();
         });
     });
 

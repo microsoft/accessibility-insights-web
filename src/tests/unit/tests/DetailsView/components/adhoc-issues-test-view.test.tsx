@@ -30,8 +30,7 @@ describe('AdhocIssuesTestView', () => {
         displayableData: displayableDataStub,
     } as VisualizationConfiguration;
 
-    const clickHandlerFactoryMock = Mock.ofType(DetailsViewToggleClickHandlerFactory, MockBehavior.Strict);
-
+    const clickHandlerFactoryMock = Mock.ofType(DetailsViewToggleClickHandlerFactory);
     const selectedTest: VisualizationType = -1;
 
     const props = {
@@ -49,16 +48,7 @@ describe('AdhocIssuesTestView', () => {
 
     beforeEach(() => {
         getStoreDataMock.reset();
-        getStoreDataMock
-            .setup(gsdm => gsdm(visualizationStoreDataStub.tests))
-            .returns(() => scanDataStub)
-            .verifiable();
-
         clickHandlerFactoryMock.reset();
-        clickHandlerFactoryMock
-            .setup(chfm => chfm.createClickHandler(selectedTest, !scanDataStub.enabled))
-            .returns(() => clickHandlerStub)
-            .verifiable();
     });
 
     it('should return target page changed view as tab is changed', () => {
@@ -66,19 +56,29 @@ describe('AdhocIssuesTestView', () => {
             isChanged: true,
         } as TabStoreData;
 
+        getStoreDataMock
+            .setup(gsdm => gsdm(visualizationStoreDataStub.tests))
+            .returns(() => scanDataStub)
+            .verifiable();
+
+        clickHandlerFactoryMock
+            .setup(chfm => chfm.createClickHandler(selectedTest, !scanDataStub.enabled))
+            .returns(() => clickHandlerStub)
+            .verifiable();
+
         const actual = shallow(<AdhocIssuesTestView {...props} />);
-        expect(actual.debug()).toMatchSnapshot();
+
+        expect(actual.getElement()).toMatchSnapshot();
         verifyAll();
     });
 
-    it('should return flagged component for cards and issues views', () => {
+    it('should return DetailsListIssuesView', () => {
         props.tabStoreData = {
             isChanged: false,
         } as TabStoreData;
 
         const actual = shallow(<AdhocIssuesTestView {...props} />);
-        expect(actual.debug()).toMatchSnapshot();
-        // verifyAll();
+        expect(actual.getElement()).toMatchSnapshot();
     });
 
     function verifyAll(): void {
