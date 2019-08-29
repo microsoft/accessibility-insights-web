@@ -7,11 +7,11 @@ ul.instance-details-list {
     margin-block-start: unset;
     margin-block-end: unset;
 
-    li {
+    > li {
         margin-bottom: 16px;
     }
 
-    li:last-child {
+    > li:last-child {
         margin-bottom: unset;
     }
 }
