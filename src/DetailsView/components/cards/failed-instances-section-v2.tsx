@@ -26,6 +26,9 @@ export type UnifiedStatusResults = {
 };
 
 export const FailedInstancesSectionV2 = NamedSFC<FailedInstancesSectionV2Props>('FailedInstancesSectionV2', ({ result, deps }) => {
+    const count = result.fail.reduce((total, rule) => {
+        return total + rule.nodes.length;
+    }, 0);
     return (
         <ResultSectionV2
             deps={deps}
@@ -33,7 +36,7 @@ export const FailedInstancesSectionV2 = NamedSFC<FailedInstancesSectionV2Props>(
             results={result.fail}
             containerClassName={null}
             outcomeType="fail"
-            badgeCount={result.fail.length}
+            badgeCount={count}
         />
     );
 });
