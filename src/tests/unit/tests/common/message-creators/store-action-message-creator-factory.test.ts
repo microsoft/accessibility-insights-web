@@ -1,10 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { Mock, MockBehavior } from 'typemoq';
+
 import { ActionMessageDispatcher } from '../../../../../common/message-creators/action-message-dispatcher';
 import { StoreActionMessageCreator } from '../../../../../common/message-creators/store-action-message-creator';
 import { StoreActionMessageCreatorFactory } from '../../../../../common/message-creators/store-action-message-creator-factory';
-import { getStoreStateMessage, Messages } from '../../../../../common/messages';
+import { getStoreStateMessage } from '../../../../../common/messages';
 import { StoreNames } from '../../../../../common/stores/store-names';
 
 describe('StoreActionMessageCreatorFactoryTest', () => {
@@ -50,7 +51,7 @@ describe('StoreActionMessageCreatorFactoryTest', () => {
             getStoreStateMessage(StoreNames.InspectStore),
             getStoreStateMessage(StoreNames.VisualizationScanResultStore),
             getStoreStateMessage(StoreNames.FeatureFlagStore),
-            Messages.DevTools.Get,
+            getStoreStateMessage(StoreNames.DevToolsStore),
             getStoreStateMessage(StoreNames.AssessmentStore),
             getStoreStateMessage(StoreNames.TabStore),
             getStoreStateMessage(StoreNames.UserConfigurationStore),

@@ -36,7 +36,6 @@ export interface DevToolsMessages {
     DevtoolStatus: string;
     InspectElement: string;
     InspectFrameUrl: string;
-    Get: string;
 }
 
 export interface VisualizationMessages {
@@ -85,7 +84,6 @@ export class Messages {
         DevtoolStatus: `${messagePrefix}/devtools/status`,
         InspectElement: `${messagePrefix}/devtools/inspect`,
         InspectFrameUrl: `${messagePrefix}/devtools/inspectFrameUrl`,
-        Get: `${messagePrefix}/devtools/get`,
     };
 
     public static readonly Telemetry = {

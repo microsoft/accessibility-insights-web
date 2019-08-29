@@ -6,9 +6,11 @@ import { DevToolActions } from 'background/actions/dev-tools-actions';
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
 import * as _ from 'lodash';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
+
 import { Action } from '../../../../../common/flux/action';
 import { RegisterTypeToPayloadCallback } from '../../../../../common/message';
-import { Messages } from '../../../../../common/messages';
+import { getStoreStateMessage, Messages } from '../../../../../common/messages';
+import { StoreNames } from '../../../../../common/stores/store-names';
 import * as TelemetryEvents from '../../../../../common/telemetry-events';
 
 describe('DevToolsActionCreatorTest', () => {
@@ -52,7 +54,7 @@ describe('DevToolsActionCreatorTest', () => {
 
         setupDevToolsActionsMock('getCurrentState', getCurrentStateAction);
 
-        setupRegisterTypeToPayloadCallbackMock(Messages.DevTools.Get, null, tabId);
+        setupRegisterTypeToPayloadCallbackMock(getStoreStateMessage(StoreNames.DevToolsStore), null, tabId);
 
         testObject.registerCallbacks();
 

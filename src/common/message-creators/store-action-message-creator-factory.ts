@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { getStoreStateMessage, Messages } from '../messages';
+import { getStoreStateMessage } from '../messages';
 import { StoreNames } from '../stores/store-names';
 import { ActionMessageDispatcher } from './action-message-dispatcher';
 import { StoreActionMessageCreator } from './store-action-message-creator';
@@ -51,7 +51,7 @@ export class StoreActionMessageCreatorFactory {
             getStoreStateMessage(StoreNames.InspectStore),
             getStoreStateMessage(StoreNames.VisualizationScanResultStore),
             getStoreStateMessage(StoreNames.FeatureFlagStore),
-            Messages.DevTools.Get,
+            getStoreStateMessage(StoreNames.DevToolsStore),
             getStoreStateMessage(StoreNames.AssessmentStore),
             getStoreStateMessage(StoreNames.TabStore),
             getStoreStateMessage(StoreNames.UserConfigurationStore),
