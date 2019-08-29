@@ -18668,25 +18668,38 @@ exports[`A11Y for content pages High Contrast mode test/nativeWidgets/autocomple
               <div
                 class="insights-code"
               >
-                &lt;form ...&gt;
                 <br />
-                                &lt;div&gt;
+                            &lt;form method="post" action="step2"&gt;
                 <br />
-                                    &lt;label for="username"&gt;Username&lt;/label&gt;
+                            &lt;div&gt;
                 <br />
-                                    &lt;input id="username" type="text" autocomplete="username" ... &gt;
+                                &lt;label for="username"&gt;Username&lt;/label&gt;
                 <br />
-                                &lt;/div&gt;
+                                &lt;input id="username" type="text" 
+                <span
+                  class="highlight"
+                >
+                  autocomplete="username"
+                </span>
+                 ... &gt;
                 <br />
-                                &lt;div&gt;
+                            &lt;/div&gt;
                 <br />
-                                    &lt;label for="password"&gt;Password&lt;/label&gt;
+                            &lt;div&gt;
                 <br />
-                                    &lt;input id="password" type="text" autocomplete="password" ... &gt;
+                                &lt;label for="password"&gt;Password&lt;/label&gt;
                 <br />
-                                &lt;/div&gt;
+                                &lt;input id="password" type="password" 
+                <span
+                  class="highlight"
+                >
+                  autocomplete="password"
+                </span>
+                 ... &gt;
                 <br />
-                                &lt;/form&gt;
+                            &lt;/div&gt;
+                <br />
+                            &lt;/form&gt;
                 <br />
                             
               </div>
@@ -18751,7 +18764,13 @@ exports[`A11Y for content pages High Contrast mode test/nativeWidgets/autocomple
                 <br />
                                 &lt;label for="username"&gt;Username&lt;/label&gt;
                 <br />
-                                &lt;input id="username" type="text" autocomplete="username" ... &gt;
+                                &lt;input id="username" type="text" 
+                <span
+                  class="highlight"
+                >
+                  autocomplete="username"
+                </span>
+                 ... &gt;
                 <br />
                             &lt;/div&gt;
                 <br />
@@ -18759,7 +18778,13 @@ exports[`A11Y for content pages High Contrast mode test/nativeWidgets/autocomple
                 <br />
                                 &lt;label for="password"&gt;Password&lt;/label&gt;
                 <br />
-                                &lt;input id="password" type="text" autocomplete="current-password" ... &gt;
+                                &lt;input id="password" type="password" 
+                <span
+                  class="highlight"
+                >
+                  autocomplete="current-password"
+                </span>
+                 ... &gt;
                 <br />
                             &lt;/div&gt;
                 <br />
@@ -51327,25 +51352,38 @@ exports[`A11Y for content pages Normal mode test/nativeWidgets/autocomplete/info
               <div
                 class="insights-code"
               >
-                &lt;form ...&gt;
                 <br />
-                                &lt;div&gt;
+                            &lt;form method="post" action="step2"&gt;
                 <br />
-                                    &lt;label for="username"&gt;Username&lt;/label&gt;
+                            &lt;div&gt;
                 <br />
-                                    &lt;input id="username" type="text" autocomplete="username" ... &gt;
+                                &lt;label for="username"&gt;Username&lt;/label&gt;
                 <br />
-                                &lt;/div&gt;
+                                &lt;input id="username" type="text" 
+                <span
+                  class="highlight"
+                >
+                  autocomplete="username"
+                </span>
+                 ... &gt;
                 <br />
-                                &lt;div&gt;
+                            &lt;/div&gt;
                 <br />
-                                    &lt;label for="password"&gt;Password&lt;/label&gt;
+                            &lt;div&gt;
                 <br />
-                                    &lt;input id="password" type="text" autocomplete="password" ... &gt;
+                                &lt;label for="password"&gt;Password&lt;/label&gt;
                 <br />
-                                &lt;/div&gt;
+                                &lt;input id="password" type="password" 
+                <span
+                  class="highlight"
+                >
+                  autocomplete="password"
+                </span>
+                 ... &gt;
                 <br />
-                                &lt;/form&gt;
+                            &lt;/div&gt;
+                <br />
+                            &lt;/form&gt;
                 <br />
                             
               </div>
@@ -51410,7 +51448,13 @@ exports[`A11Y for content pages Normal mode test/nativeWidgets/autocomplete/info
                 <br />
                                 &lt;label for="username"&gt;Username&lt;/label&gt;
                 <br />
-                                &lt;input id="username" type="text" autocomplete="username" ... &gt;
+                                &lt;input id="username" type="text" 
+                <span
+                  class="highlight"
+                >
+                  autocomplete="username"
+                </span>
+                 ... &gt;
                 <br />
                             &lt;/div&gt;
                 <br />
@@ -51418,7 +51462,13 @@ exports[`A11Y for content pages Normal mode test/nativeWidgets/autocomplete/info
                 <br />
                                 &lt;label for="password"&gt;Password&lt;/label&gt;
                 <br />
-                                &lt;input id="password" type="text" autocomplete="current-password" ... &gt;
+                                &lt;input id="password" type="password" 
+                <span
+                  class="highlight"
+                >
+                  autocomplete="current-password"
+                </span>
+                 ... &gt;
                 <br />
                             &lt;/div&gt;
                 <br />
