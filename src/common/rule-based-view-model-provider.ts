@@ -9,11 +9,15 @@ export const getUnifiedRuleResults: GetUnifiedRuleResultsDelegate = function(
     rules: UnifiedRule[],
     results: UnifiedResult[],
 ): UnifiedStatusResults {
+    if (results == null || rules == null) {
+        return null;
+    }
+
     const statusResults = getEmptyStatusResults();
     const ruleIdsWithResultNodes: Set<string> = new Set();
 
-    const resultList = results || [];
-    const ruleList = rules || [];
+    const resultList = results;
+    const ruleList = rules;
 
     for (const result of resultList) {
         const ruleResults = statusResults[result.status];
