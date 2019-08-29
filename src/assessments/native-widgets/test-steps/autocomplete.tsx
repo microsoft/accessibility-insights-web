@@ -30,7 +30,7 @@ const howToTest: JSX.Element = (
         <ol>
             <li>
                 In the target page, examine each highlighted text field to determine whether it serves an{' '}
-                <NewTabLink href="https://aka.ms/keros/inputpurpose">identified input purpose</NewTabLink>.
+                <NewTabLink href="https://www.w3.org/TR/WCAG21/#input-purposes">identified input purpose</NewTabLink>.
             </li>
 
             <li>
