@@ -32,7 +32,7 @@ export class StoreActionMessageCreatorFactory {
             getStoreStateMessage(StoreNames.ScopingPanelStateStore),
             getStoreStateMessage(StoreNames.UserConfigurationStore),
             getStoreStateMessage(StoreNames.PathSnippetStore),
-            Messages.UnifiedScan.GetCurrentState,
+            getStoreStateMessage(StoreNames.UnifiedScanResultStore),
         ];
 
         return new StoreActionMessageCreatorImpl(getStateMessages, this.dispatcher);

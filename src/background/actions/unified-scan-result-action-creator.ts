@@ -1,7 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { RegisterTypeToPayloadCallback } from '../../common/message';
-import { Messages } from '../../common/messages';
+import { getStoreStateMessage, Messages } from '../../common/messages';
+import { StoreNames } from '../../common/stores/store-names';
 import { UnifiedScanCompletedPayload } from './action-payloads';
 import { UnifiedScanResultActions } from './unified-scan-result-actions';
 
@@ -13,7 +14,7 @@ export class UnifiedScanResultActionCreator {
 
     public registerCallbacks(): void {
         this.registerTypeToPayloadCallback(Messages.UnifiedScan.ScanCompleted, this.onScanCompleted);
-        this.registerTypeToPayloadCallback(Messages.UnifiedScan.GetCurrentState, this.onGetScanCurrentState);
+        this.registerTypeToPayloadCallback(getStoreStateMessage(StoreNames.UnifiedScanResultStore), this.onGetScanCurrentState);
     }
 
     private onScanCompleted = (payload: UnifiedScanCompletedPayload): void => {

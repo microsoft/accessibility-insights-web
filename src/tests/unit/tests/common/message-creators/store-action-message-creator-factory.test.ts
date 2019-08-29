@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { Mock } from 'typemoq';
+import { Mock, MockBehavior } from 'typemoq';
 import { ActionMessageDispatcher } from '../../../../../common/message-creators/action-message-dispatcher';
 import { StoreActionMessageCreator } from '../../../../../common/message-creators/store-action-message-creator';
 import { StoreActionMessageCreatorFactory } from '../../../../../common/message-creators/store-action-message-creator-factory';
@@ -8,7 +8,7 @@ import { getStoreStateMessage, Messages } from '../../../../../common/messages';
 import { StoreNames } from '../../../../../common/stores/store-names';
 
 describe('StoreActionMessageCreatorFactoryTest', () => {
-    const dispatcherMock = Mock.ofType<ActionMessageDispatcher>();
+    const dispatcherMock = Mock.ofType<ActionMessageDispatcher>(undefined, MockBehavior.Strict);
 
     beforeEach(() => {
         dispatcherMock.reset();
@@ -37,6 +37,7 @@ describe('StoreActionMessageCreatorFactoryTest', () => {
             getStoreStateMessage(StoreNames.ScopingPanelStateStore),
             getStoreStateMessage(StoreNames.UserConfigurationStore),
             getStoreStateMessage(StoreNames.PathSnippetStore),
+            getStoreStateMessage(StoreNames.UnifiedScanResultStore),
         ];
 
         testWithExpectedMessages(messages, testObject => testObject.forDetailsView());
