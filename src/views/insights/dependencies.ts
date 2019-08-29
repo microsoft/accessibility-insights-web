@@ -34,7 +34,7 @@ export const rendererDependencies: () => RendererDeps = () => {
     const store = new StoreProxy<UserConfigurationStoreData>(StoreNames[StoreNames.UserConfigurationStore], browserAdapter);
     const storesHub = new BaseClientStoresHub<any>([store]);
     const storeActionMessageCreatorFactory = new StoreActionMessageCreatorFactory(actionMessageDispatcher);
-    const storeActionMessageCreator = storeActionMessageCreatorFactory.forContent();
+    const storeActionMessageCreator = storeActionMessageCreatorFactory.fromStores(storesHub.stores);
 
     return {
         dom: document,

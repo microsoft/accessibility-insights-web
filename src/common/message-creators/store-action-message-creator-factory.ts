@@ -10,12 +10,6 @@ import { StoreActionMessageCreatorImpl } from './store-action-message-creator-im
 export class StoreActionMessageCreatorFactory {
     constructor(private readonly dispatcher: ActionMessageDispatcher) {}
 
-    public forContent(): StoreActionMessageCreator {
-        const getStateMessages: string[] = [getStoreStateMessage(StoreNames.UserConfigurationStore)];
-
-        return new StoreActionMessageCreatorImpl(getStateMessages, this.dispatcher);
-    }
-
     public fromStores(stores: BaseStore<any>[]): StoreActionMessageCreator {
         const messages = stores.map(store => getStoreStateMessage(StoreNames[store.getId()]));
 

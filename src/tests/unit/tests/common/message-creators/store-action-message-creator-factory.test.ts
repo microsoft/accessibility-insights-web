@@ -17,12 +17,6 @@ describe('StoreActionMessageCreatorFactoryTest', () => {
         dispatcherMock.reset();
     });
 
-    it('dispatches message types for forContent', () => {
-        const messages: string[] = [getStoreStateMessage(StoreNames.UserConfigurationStore)];
-
-        testWithExpectedMessages(messages, testObject => testObject.forContent());
-    });
-
     it('dispatches messages for fromStores', () => {
         const createStoreMock = (storeName: StoreNames) => {
             const mock = Mock.ofType<BaseStore<any>>(undefined, MockBehavior.Strict);
