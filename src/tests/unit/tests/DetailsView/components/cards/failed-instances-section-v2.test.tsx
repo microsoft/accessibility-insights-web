@@ -16,7 +16,7 @@ describe('FailedInstancesSectionV2', () => {
             deps: {} as FailedInstancesSectionV2Deps,
             result: {
                 pass: [],
-                fail: [exampleUnifiedRuleResult],
+                fail: [exampleUnifiedRuleResult, exampleUnifiedRuleResult],
                 inapplicable: [],
                 unknown: [],
             },
