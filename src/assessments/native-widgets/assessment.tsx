@@ -7,6 +7,7 @@ import { test as content } from 'content/test';
 import { AssessmentBuilder } from '../assessment-builder';
 import * as Markup from '../markup';
 import { Assessment } from '../types/iassessment';
+import { Autocomplete } from './test-steps/autocomplete';
 import { Cues } from './test-steps/cues';
 import { ExpectedInput } from './test-steps/expected-input';
 import { Instructions } from './test-steps/instructions';
@@ -41,6 +42,6 @@ export const NativeWidgetsAssessment: Assessment = AssessmentBuilder.Assisted({
     title,
     gettingStarted,
     guidance,
-    requirements: [WidgetFunction, Instructions, ExpectedInput, Cues],
+    requirements: [WidgetFunction, Instructions, ExpectedInput, Cues, Autocomplete],
     storeDataKey: 'nativeWidgetsAssessment',
 });
