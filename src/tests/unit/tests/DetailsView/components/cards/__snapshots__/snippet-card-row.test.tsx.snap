@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SnippetCardRow renders 1`] = `
+<SimpleCardRow
+  content="some snippet"
+  contentClassName="contentSnipppet"
+  label="Snippet"
+  rowKey="Snippet--1"
+/>
+`;

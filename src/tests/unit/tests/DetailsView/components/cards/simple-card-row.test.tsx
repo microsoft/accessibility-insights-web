@@ -27,8 +27,8 @@ describe('SimpleCardRow', () => {
         expect(testSubject.getElement()).toMatchSnapshot();
     });
 
-    it('renders with correct styling when extra class name is needed', () => {
-        props.needsExtraClassname = true;
+    it('renders with correct styling with extra class name', () => {
+        props.contentClassName = 'test class name';
         const testSubject = shallow(<SimpleCardRow {...props} />);
         expect(testSubject.getElement()).toMatchSnapshot();
     });

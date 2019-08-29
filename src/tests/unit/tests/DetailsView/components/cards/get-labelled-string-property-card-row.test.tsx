@@ -6,8 +6,19 @@ import { CardRowDeps, CardRowProps } from '../../../../../../common/configs/unif
 import { GetLabelledStringPropertyCardRow } from '../../../../../../DetailsView/components/cards/get-labelled-string-property-card-row';
 
 describe('GetLabelledStringPropertyCardRow', () => {
-    it('renders with appropriate label/propertyData', () => {
+    it('renders with appropriate label/propertyData without contentClassName', () => {
         const TestSubject = GetLabelledStringPropertyCardRow('some label');
+        const props: CardRowProps = {
+            deps: {} as CardRowDeps,
+            propertyData: 'some string as propertyData',
+            index: 22,
+        };
+        const wrapper = shallow(<TestSubject {...props} />);
+        expect(wrapper.getElement()).toMatchSnapshot();
+    });
+
+    it('renders with appropriate label/propertyData and contentClassName', () => {
+        const TestSubject = GetLabelledStringPropertyCardRow('some label', 'test class name');
         const props: CardRowProps = {
             deps: {} as CardRowDeps,
             propertyData: 'some string as propertyData',
