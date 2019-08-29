@@ -19,7 +19,7 @@ exports[`CollapsibleComponentCardsTest render with buttonAriaLabel set to: some 
     </span>
   </CustomizedActionButton>
   <div
-    className="collapsibleContent"
+    className="content"
   >
     <div>
       Some content
@@ -46,7 +46,7 @@ exports[`CollapsibleComponentCardsTest render with buttonAriaLabel set to: undef
     </span>
   </CustomizedActionButton>
   <div
-    className="collapsibleContent"
+    className="content"
   >
     <div>
       Some content
@@ -73,7 +73,7 @@ exports[`CollapsibleComponentCardsTest render with containerClassName set to: a-
     </span>
   </CustomizedActionButton>
   <div
-    className="collapsibleContent"
+    className="content"
   >
     <div>
       Some content
@@ -100,7 +100,7 @@ exports[`CollapsibleComponentCardsTest render with containerClassName set to: un
     </span>
   </CustomizedActionButton>
   <div
-    className="collapsibleContent"
+    className="content"
   >
     <div>
       Some content
@@ -127,7 +127,7 @@ exports[`CollapsibleComponentCardsTest render with contentClassName set to: cont
     </span>
   </CustomizedActionButton>
   <div
-    className="content-class-name-a collapsibleContent"
+    className="content-class-name-a content"
   >
     <div>
       Some content
@@ -154,7 +154,7 @@ exports[`CollapsibleComponentCardsTest render with contentClassName set to: unde
     </span>
   </CustomizedActionButton>
   <div
-    className="collapsibleContent"
+    className="content"
   >
     <div>
       Some content
@@ -201,7 +201,7 @@ exports[`CollapsibleComponentCardsTest toggle from expanded to collapsed: expand
     </span>
   </CustomizedActionButton>
   <div
-    className="collapsibleContent"
+    className="content"
   >
     <div>
       Some content
