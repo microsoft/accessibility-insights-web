@@ -36,7 +36,7 @@ describe('StoreActionMessageCreatorFactoryTest', () => {
             getStoreStateMessage(StoreNames.AssessmentStore),
             getStoreStateMessage(StoreNames.ScopingPanelStateStore),
             getStoreStateMessage(StoreNames.UserConfigurationStore),
-            Messages.PathSnippet.GetCurrentState,
+            getStoreStateMessage(StoreNames.PathSnippetStore),
         ];
 
         testWithExpectedMessages(messages, testObject => testObject.forDetailsView());

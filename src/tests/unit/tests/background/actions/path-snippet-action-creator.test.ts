@@ -7,7 +7,8 @@ import { PathSnippetActionCreator } from 'background/actions/path-snippet-action
 import { PathSnippetActions } from 'background/actions/path-snippet-actions';
 import { Action } from '../../../../../common/flux/action';
 import { RegisterTypeToPayloadCallback } from '../../../../../common/message';
-import { Messages } from '../../../../../common/messages';
+import { getStoreStateMessage, Messages } from '../../../../../common/messages';
+import { StoreNames } from '../../../../../common/stores/store-names';
 
 describe('PathSnippetActionCreatorTest', () => {
     let pathSnippetActionsMock: IMock<PathSnippetActions>;
@@ -56,7 +57,7 @@ describe('PathSnippetActionCreatorTest', () => {
         const getPathSnippetCurrentStateMock = createActionMock(null);
 
         setupPathSnippetActionMock(actionName, getPathSnippetCurrentStateMock);
-        setupRegisterTypeToPayloadCallbackMock(Messages.PathSnippet.GetCurrentState, null);
+        setupRegisterTypeToPayloadCallbackMock(getStoreStateMessage(StoreNames.PathSnippetStore), null);
 
         testObject.registerCallbacks();
         getPathSnippetCurrentStateMock.verifyAll();

@@ -31,7 +31,7 @@ export class StoreActionMessageCreatorFactory {
             getStoreStateMessage(StoreNames.AssessmentStore),
             getStoreStateMessage(StoreNames.ScopingPanelStateStore),
             getStoreStateMessage(StoreNames.UserConfigurationStore),
-            Messages.PathSnippet.GetCurrentState,
+            getStoreStateMessage(StoreNames.PathSnippetStore),
             Messages.UnifiedScan.GetCurrentState,
         ];
 
