@@ -35,7 +35,7 @@ export const infoAndExamples = create(({ Markup }) => (
                 </div>
                 <div>
                     <label for="password">Password</label>
-                    <input id="password" type="text" autocomplete="password" ... >
+                    <input id="password" type="password" autocomplete="password" ... >
                 </div>
                 </form>
             `}
@@ -48,7 +48,7 @@ export const infoAndExamples = create(({ Markup }) => (
             </div>
             <div>
                 <label for="password">Password</label>
-                <input id="password" type="text" autocomplete="current-password" ... >
+                <input id="password" type="password" autocomplete="current-password" ... >
             </div>
             </form>
             `}
