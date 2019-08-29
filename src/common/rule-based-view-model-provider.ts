@@ -16,17 +16,14 @@ export const getUnifiedRuleResults: GetUnifiedRuleResultsDelegate = function(
     const statusResults = getEmptyStatusResults();
     const ruleIdsWithResultNodes: Set<string> = new Set();
 
-    const resultList = results;
-    const ruleList = rules;
-
-    for (const result of resultList) {
+    for (const result of results) {
         const ruleResults = statusResults[result.status];
         const ruleResultIndex: number = getRuleResultIndex(result, ruleResults);
 
         if (ruleResultIndex !== -1) {
             ruleResults[ruleResultIndex].nodes.push(result);
         } else {
-            const unifiedRule: UnifiedRule = getUnifiedRule(result.ruleId, ruleList);
+            const unifiedRule: UnifiedRule = getUnifiedRule(result.ruleId, rules);
             if (unifiedRule) {
                 ruleResults.push(createUnifiedRuleResult(result, unifiedRule));
             }
@@ -35,7 +32,7 @@ export const getUnifiedRuleResults: GetUnifiedRuleResultsDelegate = function(
         ruleIdsWithResultNodes.add(result.ruleId);
     }
 
-    for (const rule of ruleList) {
+    for (const rule of rules) {
         if (!ruleIdsWithResultNodes.has(rule.id)) {
             statusResults.inapplicable.push(createRuleResultWithoutNodes('inapplicable', rule));
         }
