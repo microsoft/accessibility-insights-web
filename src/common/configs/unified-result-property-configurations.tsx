@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { GetLabelledStringPropertyCardRow } from '../../DetailsView/components/cards/get-labelled-string-property-card-row';
 import { HowToFixWebCardRow } from '../../DetailsView/components/cards/how-to-fix-card-row';
 import { PathCardRow } from '../../DetailsView/components/cards/path-card-row';
 import { SnippetCardRow } from '../../DetailsView/components/cards/snippet-card-row';

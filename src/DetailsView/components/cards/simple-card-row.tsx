@@ -1,11 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as classNames from 'classnames';
+import { css } from '@uifabric/utilities';
 import * as React from 'react';
 
-import { css } from '@uifabric/utilities';
 import { NamedSFC } from '../../../common/react/named-sfc';
-import { contentSnipppet, instanceListRowContent, label, row } from '../../../reports/components/instance-details.scss';
+import { instanceListRowContent, label, row } from '../../../reports/components/instance-details.scss';
 
 export interface SimpleCardRowProps {
     label: string;
