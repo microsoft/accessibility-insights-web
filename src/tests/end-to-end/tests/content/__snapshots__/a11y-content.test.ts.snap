@@ -18675,13 +18675,7 @@ exports[`A11Y for content pages High Contrast mode test/nativeWidgets/autocomple
                 <br />
                                 &lt;label for="username"&gt;Username&lt;/label&gt;
                 <br />
-                                &lt;input id="username" type="text" 
-                <span
-                  class="highlight"
-                >
-                  autocomplete="username"
-                </span>
-                 ... &gt;
+                                &lt;input id="username" type="text" autocomplete="username"&gt;
                 <br />
                             &lt;/div&gt;
                 <br />
@@ -18695,7 +18689,7 @@ exports[`A11Y for content pages High Contrast mode test/nativeWidgets/autocomple
                 >
                   autocomplete="password"
                 </span>
-                 ... &gt;
+                &gt;
                 <br />
                             &lt;/div&gt;
                 <br />
@@ -18764,13 +18758,7 @@ exports[`A11Y for content pages High Contrast mode test/nativeWidgets/autocomple
                 <br />
                                 &lt;label for="username"&gt;Username&lt;/label&gt;
                 <br />
-                                &lt;input id="username" type="text" 
-                <span
-                  class="highlight"
-                >
-                  autocomplete="username"
-                </span>
-                 ... &gt;
+                                &lt;input id="username" type="text" autocomplete="username"&gt;
                 <br />
                             &lt;/div&gt;
                 <br />
@@ -18784,7 +18772,7 @@ exports[`A11Y for content pages High Contrast mode test/nativeWidgets/autocomple
                 >
                   autocomplete="current-password"
                 </span>
-                 ... &gt;
+                &gt;
                 <br />
                             &lt;/div&gt;
                 <br />
@@ -51359,13 +51347,7 @@ exports[`A11Y for content pages Normal mode test/nativeWidgets/autocomplete/info
                 <br />
                                 &lt;label for="username"&gt;Username&lt;/label&gt;
                 <br />
-                                &lt;input id="username" type="text" 
-                <span
-                  class="highlight"
-                >
-                  autocomplete="username"
-                </span>
-                 ... &gt;
+                                &lt;input id="username" type="text" autocomplete="username"&gt;
                 <br />
                             &lt;/div&gt;
                 <br />
@@ -51379,7 +51361,7 @@ exports[`A11Y for content pages Normal mode test/nativeWidgets/autocomplete/info
                 >
                   autocomplete="password"
                 </span>
-                 ... &gt;
+                &gt;
                 <br />
                             &lt;/div&gt;
                 <br />
@@ -51448,13 +51430,7 @@ exports[`A11Y for content pages Normal mode test/nativeWidgets/autocomplete/info
                 <br />
                                 &lt;label for="username"&gt;Username&lt;/label&gt;
                 <br />
-                                &lt;input id="username" type="text" 
-                <span
-                  class="highlight"
-                >
-                  autocomplete="username"
-                </span>
-                 ... &gt;
+                                &lt;input id="username" type="text" autocomplete="username"&gt;
                 <br />
                             &lt;/div&gt;
                 <br />
@@ -51468,7 +51444,7 @@ exports[`A11Y for content pages Normal mode test/nativeWidgets/autocomplete/info
                 >
                   autocomplete="current-password"
                 </span>
-                 ... &gt;
+                &gt;
                 <br />
                             &lt;/div&gt;
                 <br />
