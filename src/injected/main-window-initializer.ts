@@ -100,7 +100,18 @@ export class MainWindowInitializer extends WindowInitializer {
 
         const storeActionMessageCreatorFactory = new StoreActionMessageCreatorFactory(actionMessageDispatcher);
 
-        const storeActionMessageCreator = storeActionMessageCreatorFactory.forInjected();
+        const storeActionMessageCreator = storeActionMessageCreatorFactory.fromStores([
+            this.visualizationStoreProxy,
+            this.scopingStoreProxy,
+            this.featureFlagStoreProxy,
+            this.userConfigStoreProxy,
+            this.visualizationScanResultStoreProxy,
+            this.assessmentStoreProxy,
+            this.tabStoreProxy,
+            this.devToolStoreProxy,
+            this.inspectStoreProxy,
+            this.pathSnippetStoreProxy,
+        ]);
         storeActionMessageCreator.getAllStates();
 
         const telemetryDataFactory = new TelemetryDataFactory();

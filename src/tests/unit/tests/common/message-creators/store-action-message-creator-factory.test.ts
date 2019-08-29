@@ -17,22 +17,6 @@ describe('StoreActionMessageCreatorFactoryTest', () => {
         dispatcherMock.reset();
     });
 
-    it('dispatches message types for forInjected', () => {
-        const messages: string[] = [
-            getStoreStateMessage(StoreNames.VisualizationStore),
-            getStoreStateMessage(StoreNames.ScopingPanelStateStore),
-            getStoreStateMessage(StoreNames.InspectStore),
-            getStoreStateMessage(StoreNames.VisualizationScanResultStore),
-            getStoreStateMessage(StoreNames.FeatureFlagStore),
-            getStoreStateMessage(StoreNames.DevToolsStore),
-            getStoreStateMessage(StoreNames.AssessmentStore),
-            getStoreStateMessage(StoreNames.TabStore),
-            getStoreStateMessage(StoreNames.UserConfigurationStore),
-        ];
-
-        testWithExpectedMessages(messages, testObject => testObject.forInjected());
-    });
-
     it('dispatches message types for forContent', () => {
         const messages: string[] = [getStoreStateMessage(StoreNames.UserConfigurationStore)];
 

@@ -16,22 +16,6 @@ export class StoreActionMessageCreatorFactory {
         return new StoreActionMessageCreatorImpl(getStateMessages, this.dispatcher);
     }
 
-    public forInjected(): StoreActionMessageCreator {
-        const getStateMessages: string[] = [
-            getStoreStateMessage(StoreNames.VisualizationStore),
-            getStoreStateMessage(StoreNames.ScopingPanelStateStore),
-            getStoreStateMessage(StoreNames.InspectStore),
-            getStoreStateMessage(StoreNames.VisualizationScanResultStore),
-            getStoreStateMessage(StoreNames.FeatureFlagStore),
-            getStoreStateMessage(StoreNames.DevToolsStore),
-            getStoreStateMessage(StoreNames.AssessmentStore),
-            getStoreStateMessage(StoreNames.TabStore),
-            getStoreStateMessage(StoreNames.UserConfigurationStore),
-        ];
-
-        return new StoreActionMessageCreatorImpl(getStateMessages, this.dispatcher);
-    }
-
     public fromStores(stores: BaseStore<any>[]): StoreActionMessageCreator {
         const messages = stores.map(store => getStoreStateMessage(StoreNames[store.getId()]));
 
