@@ -17,18 +17,6 @@ describe('StoreActionMessageCreatorFactoryTest', () => {
         dispatcherMock.reset();
     });
 
-    it('dispatches message types for forPopup', () => {
-        const messages: string[] = [
-            getStoreStateMessage(StoreNames.VisualizationStore),
-            getStoreStateMessage(StoreNames.CommandStore),
-            getStoreStateMessage(StoreNames.FeatureFlagStore),
-            getStoreStateMessage(StoreNames.LaunchPanelStateStore),
-            getStoreStateMessage(StoreNames.UserConfigurationStore),
-        ];
-
-        testWithExpectedMessages(messages, testObject => testObject.forPopup());
-    });
-
     it('dispatches message types for forDetailsView', () => {
         const messages: string[] = [
             getStoreStateMessage(StoreNames.DetailsViewStore),
