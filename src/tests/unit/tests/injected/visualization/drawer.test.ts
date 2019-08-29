@@ -921,7 +921,7 @@ describe('Drawer', () => {
         // invoke scroll listener
         let timeOutCallback: Function;
         const timeOutId = 10;
-        const registerTimeOutHandlerFunc: typeof window.setTimeout = (handler, timeout, ...args): number => {
+        const registerTimeOutHandlerFunc = (handler, timeout, ...args): number => {
             timeOutCallback = handler as Function;
             return timeout;
         };
