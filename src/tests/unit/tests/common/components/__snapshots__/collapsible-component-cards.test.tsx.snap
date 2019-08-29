@@ -1,34 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`CollapsibleComponentCardsTest headingLevel is 0 1`] = `
-<div
-  className="collapsibleContainer"
->
-  <div>
-    <CustomizedActionButton
-      aria-expanded={true}
-      className="collapsibleControl"
-      onClick={[Function]}
-    >
-      <span
-        className="collapsibleTitle"
-      >
-        <div>
-          Some header
-        </div>
-      </span>
-    </CustomizedActionButton>
-  </div>
-  <div
-    className="collapsibleContent"
-  >
-    <div>
-      Some content
-    </div>
-  </div>
-</div>
-`;
-
 exports[`CollapsibleComponentCardsTest render with buttonAriaLabel set to: some button label 1`] = `
 <div
   className="collapsibleContainer"
