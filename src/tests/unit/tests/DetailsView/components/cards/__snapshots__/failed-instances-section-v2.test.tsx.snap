@@ -73,3 +73,5 @@ exports[`FailedInstancesSectionV2 renders 1`] = `
   title="Failed instances"
 />
 `;
+
+exports[`FailedInstancesSectionV2 renders null when result is null 1`] = `null`;

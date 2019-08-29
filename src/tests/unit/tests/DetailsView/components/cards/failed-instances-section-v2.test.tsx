@@ -26,4 +26,15 @@ describe('FailedInstancesSectionV2', () => {
 
         expect(wrapper.getElement()).toMatchSnapshot();
     });
+
+    it('renders null when result is null', () => {
+        const props: FailedInstancesSectionV2Props = {
+            deps: {} as FailedInstancesSectionV2Deps,
+            result: null,
+        };
+
+        const wrapper = shallow(<FailedInstancesSectionV2 {...props} />);
+
+        expect(wrapper.getElement()).toMatchSnapshot();
+    });
 });
