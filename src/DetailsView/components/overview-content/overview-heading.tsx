@@ -12,7 +12,7 @@ export const OverviewHeading = NamedSFC('OverviewHeading', () => {
                 <h1>Overview</h1>
                 <div className="overview-heading-content">
                     This page contains a summary that indicates the progress of your assessment. An assessment is a manual experience in
-                    which you navigate through a set of tests that cover all WCAG 2.0 AA success criteria. Each test has one or more
+                    which you navigate through a set of tests that cover all WCAG 2.1 AA success criteria. Each test has one or more
                     requirements that can be:
                     <ul>
                         <li>Automated</li>
