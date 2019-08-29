@@ -17,7 +17,8 @@ import { VisualizationType } from '../../common/types/visualization-type';
 import { DecoratedAxeNodeResult } from '../../injected/scanner-utils';
 import { RuleResult, ScanResults } from '../../scanner/iruleresults';
 import { DictionaryStringTo } from '../../types/common-types';
-import { CardsView } from './cards-view';
+import { CardsView, CardsViewDeps } from './cards-view';
+import { UnifiedStatusResults } from './cards/failed-instances-section-v2';
 import { ExportDialogDeps } from './export-dialog';
 import { IssuesDetailsList } from './issues-details-list';
 import { IssuesDetailsPane, IssuesDetailsPaneDeps } from './Issues-details-pane';
@@ -25,6 +26,7 @@ import { IssuesTableHandler } from './issues-table-handler';
 import { ReportExportComponent } from './report-export-component';
 
 export type IssuesTableDeps = IssuesDetailsPaneDeps &
+    CardsViewDeps &
     ExportDialogDeps & {
         getDateFromTimestamp: (timestamp: string) => Date;
         reportGenerator: ReportGenerator;
@@ -47,6 +49,7 @@ export interface IssuesTableProps {
     featureFlags: FeatureFlagStoreData;
     scanResult: ScanResults;
     userConfigurationStoreData: UserConfigurationStoreData;
+    ruleResultsByStatus: UnifiedStatusResults;
 }
 
 export class IssuesTable extends React.Component<IssuesTableProps> {
@@ -148,7 +151,7 @@ export class IssuesTable extends React.Component<IssuesTableProps> {
         return (
             <FlaggedComponent
                 disableJSXElement={this.renderDetails()}
-                enableJSXElement={<CardsView />}
+                enableJSXElement={<CardsView deps={this.props.deps} ruleResultsByStatus={this.props.ruleResultsByStatus} />}
                 featureFlag={FeatureFlags.universalCardsUI}
                 featureFlagStoreData={this.props.featureFlags}
             />

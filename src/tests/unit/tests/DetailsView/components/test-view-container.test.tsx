@@ -7,6 +7,7 @@ import { It, Mock, MockBehavior } from 'typemoq';
 import { VisualizationConfiguration } from '../../../../../common/configs/visualization-configuration';
 import { VisualizationConfigurationFactory } from '../../../../../common/configs/visualization-configuration-factory';
 import { TestViewContainer, TestViewContainerProps } from '../../../../../DetailsView/components/test-view-container';
+import { exampleUnifiedStatusResults } from './cards/sample-view-model-data';
 
 describe('TestViewContainerTest', () => {
     it('should not return the target page closed view', () => {
@@ -24,6 +25,7 @@ describe('TestViewContainerTest', () => {
             },
             selectedTest: -1,
             visualizationConfigurationFactory: configFactoryMock.object,
+            ruleResultsByStatus: exampleUnifiedStatusResults,
         } as TestViewContainerProps;
 
         const expectedProps = {

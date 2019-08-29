@@ -200,6 +200,7 @@ export class DetailsViewContainer extends React.Component<DetailsViewContainerPr
                 rightPanelConfiguration={selectedDetailsRightPanelConfiguration}
                 switcherNavConfiguration={selectedDetailsViewSwitcherNavConfiguration}
                 userConfigurationStoreData={storeState.userConfigurationStoreData}
+                ruleResultsByStatus={ruleResults}
             />
         );
     }

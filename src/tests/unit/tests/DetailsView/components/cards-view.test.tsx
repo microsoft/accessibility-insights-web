@@ -3,11 +3,16 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-import { CardsView } from '../../../../../DetailsView/components/cards-view';
+import { CardsView, CardsViewDeps, CardsViewProps } from '../../../../../DetailsView/components/cards-view';
+import { exampleUnifiedStatusResults } from './cards/sample-view-model-data';
 
 describe('CardsView', () => {
     it('should return cards view', () => {
-        const actual = shallow(<CardsView />);
+        const props: CardsViewProps = {
+            deps: {} as CardsViewDeps,
+            ruleResultsByStatus: exampleUnifiedStatusResults,
+        };
+        const actual = shallow(<CardsView {...props} />);
         expect(actual.debug()).toMatchSnapshot();
     });
 });

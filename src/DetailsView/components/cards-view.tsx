@@ -3,14 +3,19 @@
 import * as React from 'react';
 
 import { NamedSFC } from '../../common/react/named-sfc';
+import { FailedInstancesSectionV2, FailedInstancesSectionV2Deps, UnifiedStatusResults } from './cards/failed-instances-section-v2';
 
-export interface CardsViewProps {}
+export type CardsViewDeps = FailedInstancesSectionV2Deps;
+
+export interface CardsViewProps {
+    deps: CardsViewDeps;
+    ruleResultsByStatus: UnifiedStatusResults;
+}
 
 export const CardsView = NamedSFC<CardsViewProps>('CardsView', props => {
     return (
         <>
-            <h2>Cards view</h2>
-            <p>Hello, World!</p>
+            <FailedInstancesSectionV2 deps={props.deps} result={props.ruleResultsByStatus} />
         </>
     );
 });

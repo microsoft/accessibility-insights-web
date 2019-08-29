@@ -2,11 +2,6 @@
 
 exports[`CardsView should return cards view 1`] = `
 "<Fragment>
-  <h2>
-    Cards view
-  </h2>
-  <p>
-    Hello, World!
-  </p>
+  <FailedInstancesSectionV2 deps={{...}} result={{...}} />
 </Fragment>"
 `;

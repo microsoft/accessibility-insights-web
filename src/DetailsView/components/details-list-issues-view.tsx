@@ -13,6 +13,7 @@ import { VisualizationScanResultData } from '../../common/types/store-data/visua
 import { VisualizationStoreData } from '../../common/types/store-data/visualization-store-data';
 import { VisualizationType } from '../../common/types/visualization-type';
 import { DetailsViewToggleClickHandlerFactory } from '../handlers/details-view-toggle-click-handler-factory';
+import { UnifiedStatusResults } from './cards/failed-instances-section-v2';
 import { IssuesTable, IssuesTableDeps } from './issues-table';
 import { IssuesTableHandler } from './issues-table-handler';
 
@@ -31,6 +32,7 @@ export interface DetailsListIssuesViewProps {
     issuesTableHandler: IssuesTableHandler;
     configuration: VisualizationConfiguration;
     userConfigurationStoreData: UserConfigurationStoreData;
+    ruleResultsByStatus: UnifiedStatusResults;
 }
 
 export const DetailsListIssuesView = NamedSFC<DetailsListIssuesViewProps>('DetailsListIssuesView', ({ children, ...props }) => {
@@ -61,6 +63,7 @@ export const DetailsListIssuesView = NamedSFC<DetailsListIssuesViewProps>('Detai
             featureFlags={props.featureFlagStoreData}
             scanResult={scanResult}
             userConfigurationStoreData={props.userConfigurationStoreData}
+            ruleResultsByStatus={props.ruleResultsByStatus}
         />
     );
 });

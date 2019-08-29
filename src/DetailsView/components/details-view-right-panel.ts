@@ -7,12 +7,17 @@ import { DetailsViewRightContentPanelType } from './left-nav/details-view-right-
 import { GetLeftNavSelectedKeyProps, getOverviewKey, getTestViewKey } from './left-nav/get-left-nav-selected-key';
 import { OverviewContainer, OverviewContainerDeps, OverviewContainerProps } from './overview-content/overview-content-container';
 import { TargetChangeDialogDeps } from './target-change-dialog';
-import { TestViewContainer, TestViewContainerDeps } from './test-view-container';
+import { TestViewContainer, TestViewContainerDeps, TestViewContainerProps } from './test-view-container';
 
 export type DetailsViewContentDeps = OverviewContainerDeps & TestViewContainerDeps & TargetChangeDialogDeps;
 
+export type RightPanelProps = Omit<TestViewContainerProps, 'deps'> &
+    Omit<OverviewContainerProps, 'deps'> & {
+        deps: OverviewContainerDeps | TestViewContainerDeps;
+    };
+
 export type DetailsRightPanelConfiguration = Readonly<{
-    RightPanel: ReactSFCWithDisplayName<OverviewContainerProps>;
+    RightPanel: ReactSFCWithDisplayName<RightPanelProps>;
     GetTitle: (props: GetTestViewTitleProps) => string;
     GetLeftNavSelectedKey: (props: GetLeftNavSelectedKeyProps) => string;
     GetStartOverContextualMenuItemKeys: () => string[];
