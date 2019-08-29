@@ -289,6 +289,7 @@ describe('DetailsViewContainer', () => {
                 rightPanelConfiguration={rightPanelConfiguration}
                 switcherNavConfiguration={switcherNavConfiguration}
                 userConfigurationStoreData={storeMocks.userConfigurationStoreData}
+                ruleResultsByStatus={ruleResults}
             />
         );
     }

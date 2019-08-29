@@ -3,7 +3,7 @@
 exports[`FailedInstancesSectionV2 renders 1`] = `
 <ResultSectionV2
   badgeCount={1}
-  containerClassName="failedInstancesSection"
+  containerClassName={null}
   deps={Object {}}
   outcomeType="fail"
   results={

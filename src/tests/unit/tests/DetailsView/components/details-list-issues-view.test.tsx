@@ -5,16 +5,22 @@ import { ISelection } from 'office-ui-fabric-react/lib/DetailsList';
 import * as React from 'react';
 import { IMock, Mock, MockBehavior } from 'typemoq';
 
+import { VisualizationConfiguration } from '../../../../../common/configs/visualization-configuration';
 import { DisplayableVisualizationTypeData } from '../../../../../common/configs/visualization-configuration-factory';
 import { TabStoreData } from '../../../../../common/types/store-data/tab-store-data';
 import { VisualizationScanResultData } from '../../../../../common/types/store-data/visualization-scan-result-data';
 import { ScanData, TestsEnabledState, VisualizationStoreData } from '../../../../../common/types/store-data/visualization-store-data';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
-import { DetailsListIssuesView, DetailsListIssuesViewProps } from '../../../../../DetailsView/components/details-list-issues-view';
+import {
+    DetailsListIssuesView,
+    DetailsListIssuesViewDeps,
+    DetailsListIssuesViewProps,
+} from '../../../../../DetailsView/components/details-list-issues-view';
 import { IssuesTableHandler } from '../../../../../DetailsView/components/issues-table-handler';
 import { DetailsViewToggleClickHandlerFactory } from '../../../../../DetailsView/handlers/details-view-toggle-click-handler-factory';
 import { VisualizationScanResultStoreDataBuilder } from '../../../common/visualization-scan-result-store-data-builder';
+import { exampleUnifiedStatusResults } from './cards/sample-view-model-data';
 
 describe('DetailsListIssuesView', () => {
     let props: DetailsListIssuesViewProps;
@@ -58,19 +64,19 @@ describe('DetailsListIssuesView', () => {
         props = {
             deps: {
                 detailsViewActionMessageCreator: actionMessageCreatorStub,
-            },
+            } as DetailsListIssuesViewDeps,
             configuration: {
                 getStoreData: getStoreDataMock.object,
                 displayableData: displayableDataStub,
-                detailsViewStaticContent: contentStub,
-            },
+            } as VisualizationConfiguration,
             clickHandlerFactory: clickHandlerFactoryMock.object,
             visualizationStoreData: visualizationStoreDataStub,
             selectedTest,
             issuesSelection: issuesSelectionStub,
             issuesTableHandler: issuesTableHandlerStub,
             visualizationScanResultData: visualizationScanResultStoreDataStub,
-        } as any;
+            ruleResultsByStatus: exampleUnifiedStatusResults,
+        } as DetailsListIssuesViewProps;
 
         getStoreDataMock
             .setup(gsdm => gsdm(visualizationStoreDataStub.tests))

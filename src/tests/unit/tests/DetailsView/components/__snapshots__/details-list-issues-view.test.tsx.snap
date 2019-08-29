@@ -10,6 +10,45 @@ exports[`DetailsListIssuesView should return  issues table with violations to nu
   issuesEnabled={true}
   issuesSelection={Object {}}
   issuesTableHandler={Object {}}
+  ruleResultsByStatus={
+    Object {
+      "fail": Array [
+        Object {
+          "description": "sample-description",
+          "guidance": Array [],
+          "id": "some-rule",
+          "nodes": Array [
+            Object {
+              "descriptors": Object {
+                "snippet": "this is a sample snippet",
+              },
+              "identifiers": Object {
+                "css-selector": "body img",
+              },
+              "resolution": Object {
+                "how-to-fix-web": Object {
+                  "all": Array [],
+                  "any": Array [
+                    "Element does not have an alt attribute",
+                    "aria-label attribute does not exist or is empty",
+                    "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                  ],
+                  "none": Array [],
+                },
+              },
+              "ruleId": "image-alt",
+              "status": "fail",
+              "uid": "some-guid-here",
+            },
+          ],
+          "url": "sample-url",
+        },
+      ],
+      "inapplicable": Array [],
+      "pass": Array [],
+      "unknown": Array [],
+    }
+  }
   scanResult={null}
   scanning={true}
   selectedIdToRuleResultMap={null}
@@ -24,4 +63,4 @@ exports[`DetailsListIssuesView should return  issues table with violations to nu
 />
 `;
 
-exports[`DetailsListIssuesView should return issues table with scanning to false 1`] = `"<IssuesTable deps={{...}} title=\\"test title\\" subtitle={{...}} issuesTableHandler={{...}} issuesEnabled={true} violations={{...}} issuesSelection={{...}} selectedIdToRuleResultMap={{...}} pageTitle={[undefined]} pageUrl={[undefined]} scanning={false} toggleClickHandler={[Function: clickHandlerStub]} visualizationConfigurationFactory={[undefined]} featureFlags={[undefined]} scanResult={{...}} userConfigurationStoreData={[undefined]} />"`;
+exports[`DetailsListIssuesView should return issues table with scanning to false 1`] = `"<IssuesTable deps={{...}} title=\\"test title\\" subtitle={{...}} issuesTableHandler={{...}} issuesEnabled={true} violations={{...}} issuesSelection={{...}} selectedIdToRuleResultMap={{...}} pageTitle={[undefined]} pageUrl={[undefined]} scanning={false} toggleClickHandler={[Function: clickHandlerStub]} visualizationConfigurationFactory={[undefined]} featureFlags={[undefined]} scanResult={{...}} userConfigurationStoreData={[undefined]} ruleResultsByStatus={{...}} />"`;

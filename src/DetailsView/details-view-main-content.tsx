@@ -47,6 +47,7 @@ export interface DetailsViewMainContentProps {
     rightPanelConfiguration: DetailsRightPanelConfiguration;
     switcherNavConfiguration: DetailsViewSwitcherNavConfiguration;
     userConfigurationStoreData: UserConfigurationStoreData;
+    ruleResultsByStatus: UnifiedStatusResults;
 }
 
 export class DetailsViewMainContent extends React.Component<DetailsViewMainContentProps> {

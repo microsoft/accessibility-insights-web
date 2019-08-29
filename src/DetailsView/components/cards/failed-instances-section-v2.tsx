@@ -5,7 +5,6 @@ import * as React from 'react';
 
 import { UnifiedResult, UnifiedRuleResultStatus } from '../../../common/types/store-data/unified-data-interface';
 import { GuidanceLink } from '../../../scanner/rule-to-links-mappings';
-import { failedInstancesSection } from './failed-instances-section.scss';
 import { ResultSectionV2, ResultSectionV2Deps } from './result-section-v2';
 
 export type FailedInstancesSectionV2Deps = ResultSectionV2Deps;
@@ -32,7 +31,7 @@ export const FailedInstancesSectionV2 = NamedSFC<FailedInstancesSectionV2Props>(
             deps={deps}
             title="Failed instances"
             results={result.fail}
-            containerClassName={failedInstancesSection}
+            containerClassName={null}
             outcomeType="fail"
             badgeCount={result.fail.length}
         />
