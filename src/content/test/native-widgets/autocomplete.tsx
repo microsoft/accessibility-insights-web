@@ -28,7 +28,7 @@ export const infoAndExamples = create(({ Markup }) => (
                     field's autocomplete attribute is invalid.
                 </p>
             }
-            failExample={`<form ...>
+            failExample={`<form>
                 <div>
                     <label for="username">Username</label>
                     <input id="username" type="text" autocomplete="username" ... >
