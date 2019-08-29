@@ -239,6 +239,7 @@ if (isNaN(tabId) === false) {
             assessmentStore.setTabId(tab.id);
             scopingStore.setTabId(tab.id);
             inspectStore.setTabId(tab.id);
+            unifiedScanResultStore.setTabId(tab.id);
 
             const actionInitiators = {
                 ...contentActionMessageCreator.initiators,
