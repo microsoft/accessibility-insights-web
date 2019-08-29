@@ -1890,8 +1890,177 @@ exports[`A11Y for content pages High Contrast mode test/contrast/graphics/infoAn
         Graphics
       </h1>
       <p>
-        TODO
+        Meaningful graphics must have sufficient contrast.
       </p>
+      <h2>
+        Why it matters
+      </h2>
+      <p>
+        For a graphic to visually communicate meaningful content, users must be able perceive the elements of the graphic that convey meaning. People with mild visual disabilities, low vision, limited color perception, or 
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://en.wikipedia.org/wiki/Presbyopia"
+          target="_blank"
+        >
+          presbyopia
+        </a>
+         might find it difficult or impossible to perceive a graphical element that has insufficient contrast against the background.
+      </p>
+      <h2>
+        How to fix
+      </h2>
+      <p>
+        Make sure the meaningful elements in a graphic have a contrast ratio ≥ 3:1.
+      </p>
+      <h2>
+        Example
+      </h2>
+      <div
+        class="pass-fail-grid"
+      >
+        <div
+          class="fail-section"
+        >
+          <div
+            class="fail-header"
+          >
+            <span
+              class="check-container"
+            >
+              <svg
+                fill="none"
+                height="16"
+                viewBox="0 0 16 16"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="8"
+                  cy="8"
+                  fill="#E81123"
+                  r="8"
+                />
+                <path
+                  d="M10.9837 6.27639C11.3352 5.92491 11.3352 5.35507 10.9837 5.00359C10.6322 4.65212 10.0624 4.65212 9.7109 5.00359L7.99722 6.71728L6.28375 5.00381C5.93227 4.65234 5.36242 4.65234 5.01095 5.00381C4.65948 5.35528 4.65948 5.92513 5.01095 6.2766L6.72443 7.99007L4.9837 9.7308C4.63222 10.0823 4.63222 10.6521 4.9837 11.0036C5.33517 11.3551 5.90502 11.3551 6.25649 11.0036L7.99722 9.26287L9.73816 11.0038C10.0896 11.3553 10.6595 11.3553 11.011 11.0038C11.3624 10.6523 11.3624 10.0825 11.011 9.73101L9.27001 7.99007L10.9837 6.27639Z"
+                  fill="white"
+                />
+              </svg>
+            </span>
+             
+            <h3>
+              Fail
+            </h3>
+          </div>
+          <p>
+            A graphic of a thermometer is used in a weather website to communicate the daily expected high temperature. The portions of the graphic that communicate meaning are: The boundary of the graphic (#777777) communicates that it is a thermometer. Tick marks and text (#333333) indicate the thermometer's range and scale. The portion of the thermometer that's filled (#ff7878) indicates the expected high temperature. The graphic has a white background (#ffffff). The color used to indicate the high temperature has an insufficient color contrast against the background (2.557:1).
+          </p>
+        </div>
+        <div
+          class="pass-section"
+        >
+          <div
+            class="pass-header"
+          >
+            <span
+              class="check-container"
+            >
+              <svg
+                fill="none"
+                height="16"
+                viewBox="0 0 16 16"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="8"
+                  cy="8"
+                  fill="#228722"
+                  r="8"
+                />
+                <path
+                  clip-rule="evenodd"
+                  d="M6.05904 11.1417L6.0616 11.1442C6.10737 11.19 6.15668 11.23 6.20867 11.2643C6.57256 11.5046 7.06707 11.4646 7.38742 11.1442C7.38861 11.143 7.38982 11.1418 7.391 11.1406L11.9312 6.60041C12.2974 6.23427 12.2974 5.64071 11.9312 5.27457C11.5651 4.90848 10.9715 4.90848 10.6054 5.27457L6.72452 9.15545L5.60041 8.03134C5.2343 7.66524 4.64071 7.66524 4.27459 8.03134C3.90847 8.39747 3.90847 8.99104 4.27459 9.35718L6.05904 11.1417Z"
+                  fill="white"
+                  fill-rule="evenodd"
+                />
+              </svg>
+            </span>
+             
+            <h3>
+              Pass
+            </h3>
+          </div>
+          <p>
+            The fill color is #ff0000, which has a sufficient contrast against the background (3.998:1).
+          </p>
+        </div>
+      </div>
+      <h2>
+        More examples
+      </h2>
+      <h3>
+        WCAG success criteria
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Understanding/non-text-contrast.html"
+          target="_blank"
+        >
+          Understanding Success Criterion 1.4.11 Non-text Contrast
+        </a>
+      </div>
+      <h3>
+        Sufficient techniques
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/general/G207"
+          target="_blank"
+        >
+          Ensuring that a contrast ratio of 3:1 is provided for icons
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/general/G209"
+          target="_blank"
+        >
+          Provide sufficient contrast at the boundaries between adjoining colors
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/general/G18"
+          target="_blank"
+        >
+          Ensuring that a contrast ratio of at least 4.5:1 exists between text (and images of text) and background behind the text
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/general/G145"
+          target="_blank"
+        >
+          Ensuring that a contrast ratio of at least 3:1 exists between text (and images of text) and background behind the text
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/general/G174"
+          target="_blank"
+        >
+          Providing a control with a sufficient contrast ratio that allows users to switch to a presentation that uses sufficient contrast
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/GL/wiki/Using_sufficient_contrast_for_images_that_convey_information"
+          target="_blank"
+        >
+          Using sufficient contrast for images that convey information
+        </a>
+      </div>
     </div>
     <div
       class="content-right"
@@ -1914,9 +2083,304 @@ exports[`A11Y for content pages High Contrast mode test/contrast/guidance 1`] = 
       <h1>
         Contrast
       </h1>
+      <h2>
+        Why it matters
+      </h2>
       <p>
-        TODO
+        Higher contrast makes it easier to read text and graphics, especially for people with low vision, limited color perception, or 
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://en.wikipedia.org/wiki/Presbyopia"
+          target="_blank"
+        >
+          presbyopia
+        </a>
+        .
       </p>
+      <div
+        class="columns"
+      >
+        <div
+          class="column"
+        >
+          <div
+            class="do-header"
+          >
+            <h2>
+              Do
+            </h2>
+            <span
+              class="check-container"
+            >
+              <svg
+                fill="none"
+                height="16"
+                viewBox="0 0 16 16"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="8"
+                  cy="8"
+                  fill="#228722"
+                  r="8"
+                />
+                <path
+                  clip-rule="evenodd"
+                  d="M6.05904 11.1417L6.0616 11.1442C6.10737 11.19 6.15668 11.23 6.20867 11.2643C6.57256 11.5046 7.06707 11.4646 7.38742 11.1442C7.38861 11.143 7.38982 11.1418 7.391 11.1406L11.9312 6.60041C12.2974 6.23427 12.2974 5.64071 11.9312 5.27457C11.5651 4.90848 10.9715 4.90848 10.6054 5.27457L6.72452 9.15545L5.60041 8.03134C5.2343 7.66524 4.64071 7.66524 4.27459 8.03134C3.90847 8.39747 3.90847 8.99104 4.27459 9.35718L6.05904 11.1417Z"
+                  fill="white"
+                  fill-rule="evenodd"
+                />
+              </svg>
+            </span>
+          </div>
+          <div
+            class="do-section"
+          >
+            <h3>
+              Provide sufficient contrast for visual information that helps users detect and operate active controls. (
+              <a
+                class="ms-Link insights-link root-000"
+                href="https://www.w3.org/WAI/WCAG21/Understanding/non-text-contrast.html"
+                target="_blank"
+              >
+                WCAG 1.4.11
+              </a>
+              )
+            </h3>
+            <ul>
+              <li>
+                Any visual boundary that indicates the component's clickable area must have a contrast ratio ≥ 3:1.
+              </li>
+              <li>
+                Any visual effect that indicates the component's state must have a contrast ratio ≥ 3:1.
+              </li>
+            </ul>
+            <h3>
+              Provide sufficient contrast for controls' state changes. (
+              <a
+                class="ms-Link insights-link root-000"
+                href="https://www.w3.org/WAI/WCAG21/Understanding/non-text-contrast.html"
+                target="_blank"
+              >
+                WCAG 1.4.11
+              </a>
+              )
+            </h3>
+            <ul>
+              <li>
+                Good: Ensure colors used to indicate different states have a contrast ratio ≥ 3:1.
+              </li>
+              <li>
+                Better: Indicate state changes by changing both color and another visual characteristic, such as shape or size.
+              </li>
+            </ul>
+            <h3>
+              Provide sufficient contrast for graphics. (
+              <a
+                class="ms-Link insights-link root-000"
+                href="https://www.w3.org/WAI/WCAG21/Understanding/non-text-contrast.html"
+                target="_blank"
+              >
+                WCAG 1.4.11
+              </a>
+              )
+            </h3>
+            <ul>
+              <li>
+                Elements in a graphic that communicate meaning must have a contrast ratio ≥ 3:1.
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div
+          class="column"
+        >
+          <div
+            class="dont-header"
+          >
+            <h2>
+              Don't
+            </h2>
+            <span
+              class="check-container"
+            >
+              <svg
+                fill="none"
+                height="16"
+                viewBox="0 0 16 16"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="8"
+                  cy="8"
+                  fill="#E81123"
+                  r="8"
+                />
+                <path
+                  d="M10.9837 6.27639C11.3352 5.92491 11.3352 5.35507 10.9837 5.00359C10.6322 4.65212 10.0624 4.65212 9.7109 5.00359L7.99722 6.71728L6.28375 5.00381C5.93227 4.65234 5.36242 4.65234 5.01095 5.00381C4.65948 5.35528 4.65948 5.92513 5.01095 6.2766L6.72443 7.99007L4.9837 9.7308C4.63222 10.0823 4.63222 10.6521 4.9837 11.0036C5.33517 11.3551 5.90502 11.3551 6.25649 11.0036L7.99722 9.26287L9.73816 11.0038C10.0896 11.3553 10.6595 11.3553 11.011 11.0038C11.3624 10.6523 11.3624 10.0825 11.011 9.73101L9.27001 7.99007L10.9837 6.27639Z"
+                  fill="white"
+                />
+              </svg>
+            </span>
+          </div>
+          <div
+            class="dont-section"
+          >
+            <h3>
+              Don't style controls in a way that interferes with their visual focus indicator. (
+              <a
+                class="ms-Link insights-link root-000"
+                href="https://www.w3.org/WAI/WCAG21/Understanding/non-text-contrast.html"
+                target="_blank"
+              >
+                WCAG 1.4.11
+              </a>
+              )
+            </h3>
+            <ul>
+              <li>
+                Don't use CSS styling to turn off the default focus indicator.
+              </li>
+              <li>
+                Don't style a control's borders in a way looks like a focus indicator.
+              </li>
+              <li>
+                Don't style a control's borders in a way that occludes the focus indicator.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <h2>
+        Learn more
+      </h2>
+      <h3>
+        Sufficient contrast for controls' boundaries, states, and state changes
+      </h3>
+      <h4>
+        WCAG success criteria
+      </h4>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Understanding/non-text-contrast.html"
+          target="_blank"
+        >
+          Understanding Success Criterion 1.4.11: Non-text Contrast
+        </a>
+      </div>
+      <h4>
+        Sufficient techniques
+      </h4>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/general/G195"
+          target="_blank"
+        >
+          Using an author-supplied, highly visible focus indicator
+        </a>
+      </div>
+      <h4>
+        Common failures
+      </h4>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/failures/F78"
+          target="_blank"
+        >
+          Failure of Success Criterion 2.4.7 due to styling element outlines and borders in a way that removes or renders non-visible the visual focus indicator
+        </a>
+      </div>
+      <h4>
+        Additional guidance
+      </h4>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/general/G183"
+          target="_blank"
+        >
+          Using a contrast ratio of 3:1 with surrounding text and providing additional visual cues on focus for links or controls where color alone is used to identify them
+        </a>
+      </div>
+      <h3>
+        Sufficient contrast for graphics
+      </h3>
+      <h4>
+        WCAG success criteria
+      </h4>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Understanding/non-text-contrast.html"
+          target="_blank"
+        >
+          Understanding Success Criterion 1.4.11 Non-text Contrast
+        </a>
+      </div>
+      <h4>
+        Sufficient techniques
+      </h4>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/general/G207"
+          target="_blank"
+        >
+          Ensuring that a contrast ratio of 3:1 is provided for icons
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/general/G209"
+          target="_blank"
+        >
+          Provide sufficient contrast at the boundaries between adjoining colors
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/general/G18"
+          target="_blank"
+        >
+          Ensuring that a contrast ratio of at least 4.5:1 exists between text (and images of text) and background behind the text
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/general/G145"
+          target="_blank"
+        >
+          Ensuring that a contrast ratio of at least 3:1 exists between text (and images of text) and background behind the text
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/general/G174"
+          target="_blank"
+        >
+          Providing a control with a sufficient contrast ratio that allows users to switch to a presentation that uses sufficient contrast
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/GL/wiki/Using_sufficient_contrast_for_images_that_convey_information"
+          target="_blank"
+        >
+          Using sufficient contrast for images that convey information 
+        </a>
+      </div>
     </div>
     <div
       class="content-right"
@@ -29130,7 +29594,7 @@ exports[`A11Y for content pages High Contrast mode test/textLegibility/guidance 
            Content that appears on hover or focus is easier to read when it is dismissible, hoverable, and persistent.
         </li>
         <li>
-          People with low vision, limited color perception or
+          People with low vision, limited color perception or 
           <a
             class="ms-Link insights-link root-000"
             href="https://en.wikipedia.org/wiki/Presbyopia"
@@ -29138,7 +29602,7 @@ exports[`A11Y for content pages High Contrast mode test/textLegibility/guidance 
           >
             presbyopia
           </a>
-          are especially likely to find text unreadable when the contrast is too low.
+           are especially likely to find text unreadable when the contrast is too low.
         </li>
       </ul>
       <p>
@@ -29385,7 +29849,7 @@ exports[`A11Y for content pages High Contrast mode test/textLegibility/guidance 
             </h3>
             <ul>
               <li>
-                 Allow content to adjust automatically to the user's screen orientation.
+                Allow content to adjust automatically to the user's screen orientation.
               </li>
             </ul>
           </div>
@@ -34340,8 +34804,177 @@ exports[`A11Y for content pages Normal mode test/contrast/graphics/infoAndExampl
         Graphics
       </h1>
       <p>
-        TODO
+        Meaningful graphics must have sufficient contrast.
       </p>
+      <h2>
+        Why it matters
+      </h2>
+      <p>
+        For a graphic to visually communicate meaningful content, users must be able perceive the elements of the graphic that convey meaning. People with mild visual disabilities, low vision, limited color perception, or 
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://en.wikipedia.org/wiki/Presbyopia"
+          target="_blank"
+        >
+          presbyopia
+        </a>
+         might find it difficult or impossible to perceive a graphical element that has insufficient contrast against the background.
+      </p>
+      <h2>
+        How to fix
+      </h2>
+      <p>
+        Make sure the meaningful elements in a graphic have a contrast ratio ≥ 3:1.
+      </p>
+      <h2>
+        Example
+      </h2>
+      <div
+        class="pass-fail-grid"
+      >
+        <div
+          class="fail-section"
+        >
+          <div
+            class="fail-header"
+          >
+            <span
+              class="check-container"
+            >
+              <svg
+                fill="none"
+                height="16"
+                viewBox="0 0 16 16"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="8"
+                  cy="8"
+                  fill="#E81123"
+                  r="8"
+                />
+                <path
+                  d="M10.9837 6.27639C11.3352 5.92491 11.3352 5.35507 10.9837 5.00359C10.6322 4.65212 10.0624 4.65212 9.7109 5.00359L7.99722 6.71728L6.28375 5.00381C5.93227 4.65234 5.36242 4.65234 5.01095 5.00381C4.65948 5.35528 4.65948 5.92513 5.01095 6.2766L6.72443 7.99007L4.9837 9.7308C4.63222 10.0823 4.63222 10.6521 4.9837 11.0036C5.33517 11.3551 5.90502 11.3551 6.25649 11.0036L7.99722 9.26287L9.73816 11.0038C10.0896 11.3553 10.6595 11.3553 11.011 11.0038C11.3624 10.6523 11.3624 10.0825 11.011 9.73101L9.27001 7.99007L10.9837 6.27639Z"
+                  fill="white"
+                />
+              </svg>
+            </span>
+             
+            <h3>
+              Fail
+            </h3>
+          </div>
+          <p>
+            A graphic of a thermometer is used in a weather website to communicate the daily expected high temperature. The portions of the graphic that communicate meaning are: The boundary of the graphic (#777777) communicates that it is a thermometer. Tick marks and text (#333333) indicate the thermometer's range and scale. The portion of the thermometer that's filled (#ff7878) indicates the expected high temperature. The graphic has a white background (#ffffff). The color used to indicate the high temperature has an insufficient color contrast against the background (2.557:1).
+          </p>
+        </div>
+        <div
+          class="pass-section"
+        >
+          <div
+            class="pass-header"
+          >
+            <span
+              class="check-container"
+            >
+              <svg
+                fill="none"
+                height="16"
+                viewBox="0 0 16 16"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="8"
+                  cy="8"
+                  fill="#228722"
+                  r="8"
+                />
+                <path
+                  clip-rule="evenodd"
+                  d="M6.05904 11.1417L6.0616 11.1442C6.10737 11.19 6.15668 11.23 6.20867 11.2643C6.57256 11.5046 7.06707 11.4646 7.38742 11.1442C7.38861 11.143 7.38982 11.1418 7.391 11.1406L11.9312 6.60041C12.2974 6.23427 12.2974 5.64071 11.9312 5.27457C11.5651 4.90848 10.9715 4.90848 10.6054 5.27457L6.72452 9.15545L5.60041 8.03134C5.2343 7.66524 4.64071 7.66524 4.27459 8.03134C3.90847 8.39747 3.90847 8.99104 4.27459 9.35718L6.05904 11.1417Z"
+                  fill="white"
+                  fill-rule="evenodd"
+                />
+              </svg>
+            </span>
+             
+            <h3>
+              Pass
+            </h3>
+          </div>
+          <p>
+            The fill color is #ff0000, which has a sufficient contrast against the background (3.998:1).
+          </p>
+        </div>
+      </div>
+      <h2>
+        More examples
+      </h2>
+      <h3>
+        WCAG success criteria
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Understanding/non-text-contrast.html"
+          target="_blank"
+        >
+          Understanding Success Criterion 1.4.11 Non-text Contrast
+        </a>
+      </div>
+      <h3>
+        Sufficient techniques
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/general/G207"
+          target="_blank"
+        >
+          Ensuring that a contrast ratio of 3:1 is provided for icons
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/general/G209"
+          target="_blank"
+        >
+          Provide sufficient contrast at the boundaries between adjoining colors
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/general/G18"
+          target="_blank"
+        >
+          Ensuring that a contrast ratio of at least 4.5:1 exists between text (and images of text) and background behind the text
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/general/G145"
+          target="_blank"
+        >
+          Ensuring that a contrast ratio of at least 3:1 exists between text (and images of text) and background behind the text
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/general/G174"
+          target="_blank"
+        >
+          Providing a control with a sufficient contrast ratio that allows users to switch to a presentation that uses sufficient contrast
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/GL/wiki/Using_sufficient_contrast_for_images_that_convey_information"
+          target="_blank"
+        >
+          Using sufficient contrast for images that convey information
+        </a>
+      </div>
     </div>
     <div
       class="content-right"
@@ -34364,9 +34997,304 @@ exports[`A11Y for content pages Normal mode test/contrast/guidance 1`] = `
       <h1>
         Contrast
       </h1>
+      <h2>
+        Why it matters
+      </h2>
       <p>
-        TODO
+        Higher contrast makes it easier to read text and graphics, especially for people with low vision, limited color perception, or 
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://en.wikipedia.org/wiki/Presbyopia"
+          target="_blank"
+        >
+          presbyopia
+        </a>
+        .
       </p>
+      <div
+        class="columns"
+      >
+        <div
+          class="column"
+        >
+          <div
+            class="do-header"
+          >
+            <h2>
+              Do
+            </h2>
+            <span
+              class="check-container"
+            >
+              <svg
+                fill="none"
+                height="16"
+                viewBox="0 0 16 16"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="8"
+                  cy="8"
+                  fill="#228722"
+                  r="8"
+                />
+                <path
+                  clip-rule="evenodd"
+                  d="M6.05904 11.1417L6.0616 11.1442C6.10737 11.19 6.15668 11.23 6.20867 11.2643C6.57256 11.5046 7.06707 11.4646 7.38742 11.1442C7.38861 11.143 7.38982 11.1418 7.391 11.1406L11.9312 6.60041C12.2974 6.23427 12.2974 5.64071 11.9312 5.27457C11.5651 4.90848 10.9715 4.90848 10.6054 5.27457L6.72452 9.15545L5.60041 8.03134C5.2343 7.66524 4.64071 7.66524 4.27459 8.03134C3.90847 8.39747 3.90847 8.99104 4.27459 9.35718L6.05904 11.1417Z"
+                  fill="white"
+                  fill-rule="evenodd"
+                />
+              </svg>
+            </span>
+          </div>
+          <div
+            class="do-section"
+          >
+            <h3>
+              Provide sufficient contrast for visual information that helps users detect and operate active controls. (
+              <a
+                class="ms-Link insights-link root-000"
+                href="https://www.w3.org/WAI/WCAG21/Understanding/non-text-contrast.html"
+                target="_blank"
+              >
+                WCAG 1.4.11
+              </a>
+              )
+            </h3>
+            <ul>
+              <li>
+                Any visual boundary that indicates the component's clickable area must have a contrast ratio ≥ 3:1.
+              </li>
+              <li>
+                Any visual effect that indicates the component's state must have a contrast ratio ≥ 3:1.
+              </li>
+            </ul>
+            <h3>
+              Provide sufficient contrast for controls' state changes. (
+              <a
+                class="ms-Link insights-link root-000"
+                href="https://www.w3.org/WAI/WCAG21/Understanding/non-text-contrast.html"
+                target="_blank"
+              >
+                WCAG 1.4.11
+              </a>
+              )
+            </h3>
+            <ul>
+              <li>
+                Good: Ensure colors used to indicate different states have a contrast ratio ≥ 3:1.
+              </li>
+              <li>
+                Better: Indicate state changes by changing both color and another visual characteristic, such as shape or size.
+              </li>
+            </ul>
+            <h3>
+              Provide sufficient contrast for graphics. (
+              <a
+                class="ms-Link insights-link root-000"
+                href="https://www.w3.org/WAI/WCAG21/Understanding/non-text-contrast.html"
+                target="_blank"
+              >
+                WCAG 1.4.11
+              </a>
+              )
+            </h3>
+            <ul>
+              <li>
+                Elements in a graphic that communicate meaning must have a contrast ratio ≥ 3:1.
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div
+          class="column"
+        >
+          <div
+            class="dont-header"
+          >
+            <h2>
+              Don't
+            </h2>
+            <span
+              class="check-container"
+            >
+              <svg
+                fill="none"
+                height="16"
+                viewBox="0 0 16 16"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="8"
+                  cy="8"
+                  fill="#E81123"
+                  r="8"
+                />
+                <path
+                  d="M10.9837 6.27639C11.3352 5.92491 11.3352 5.35507 10.9837 5.00359C10.6322 4.65212 10.0624 4.65212 9.7109 5.00359L7.99722 6.71728L6.28375 5.00381C5.93227 4.65234 5.36242 4.65234 5.01095 5.00381C4.65948 5.35528 4.65948 5.92513 5.01095 6.2766L6.72443 7.99007L4.9837 9.7308C4.63222 10.0823 4.63222 10.6521 4.9837 11.0036C5.33517 11.3551 5.90502 11.3551 6.25649 11.0036L7.99722 9.26287L9.73816 11.0038C10.0896 11.3553 10.6595 11.3553 11.011 11.0038C11.3624 10.6523 11.3624 10.0825 11.011 9.73101L9.27001 7.99007L10.9837 6.27639Z"
+                  fill="white"
+                />
+              </svg>
+            </span>
+          </div>
+          <div
+            class="dont-section"
+          >
+            <h3>
+              Don't style controls in a way that interferes with their visual focus indicator. (
+              <a
+                class="ms-Link insights-link root-000"
+                href="https://www.w3.org/WAI/WCAG21/Understanding/non-text-contrast.html"
+                target="_blank"
+              >
+                WCAG 1.4.11
+              </a>
+              )
+            </h3>
+            <ul>
+              <li>
+                Don't use CSS styling to turn off the default focus indicator.
+              </li>
+              <li>
+                Don't style a control's borders in a way looks like a focus indicator.
+              </li>
+              <li>
+                Don't style a control's borders in a way that occludes the focus indicator.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <h2>
+        Learn more
+      </h2>
+      <h3>
+        Sufficient contrast for controls' boundaries, states, and state changes
+      </h3>
+      <h4>
+        WCAG success criteria
+      </h4>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Understanding/non-text-contrast.html"
+          target="_blank"
+        >
+          Understanding Success Criterion 1.4.11: Non-text Contrast
+        </a>
+      </div>
+      <h4>
+        Sufficient techniques
+      </h4>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/general/G195"
+          target="_blank"
+        >
+          Using an author-supplied, highly visible focus indicator
+        </a>
+      </div>
+      <h4>
+        Common failures
+      </h4>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/failures/F78"
+          target="_blank"
+        >
+          Failure of Success Criterion 2.4.7 due to styling element outlines and borders in a way that removes or renders non-visible the visual focus indicator
+        </a>
+      </div>
+      <h4>
+        Additional guidance
+      </h4>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/general/G183"
+          target="_blank"
+        >
+          Using a contrast ratio of 3:1 with surrounding text and providing additional visual cues on focus for links or controls where color alone is used to identify them
+        </a>
+      </div>
+      <h3>
+        Sufficient contrast for graphics
+      </h3>
+      <h4>
+        WCAG success criteria
+      </h4>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Understanding/non-text-contrast.html"
+          target="_blank"
+        >
+          Understanding Success Criterion 1.4.11 Non-text Contrast
+        </a>
+      </div>
+      <h4>
+        Sufficient techniques
+      </h4>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/general/G207"
+          target="_blank"
+        >
+          Ensuring that a contrast ratio of 3:1 is provided for icons
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/general/G209"
+          target="_blank"
+        >
+          Provide sufficient contrast at the boundaries between adjoining colors
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/general/G18"
+          target="_blank"
+        >
+          Ensuring that a contrast ratio of at least 4.5:1 exists between text (and images of text) and background behind the text
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/general/G145"
+          target="_blank"
+        >
+          Ensuring that a contrast ratio of at least 3:1 exists between text (and images of text) and background behind the text
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/general/G174"
+          target="_blank"
+        >
+          Providing a control with a sufficient contrast ratio that allows users to switch to a presentation that uses sufficient contrast
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/GL/wiki/Using_sufficient_contrast_for_images_that_convey_information"
+          target="_blank"
+        >
+          Using sufficient contrast for images that convey information 
+        </a>
+      </div>
     </div>
     <div
       class="content-right"
@@ -61580,7 +62508,7 @@ exports[`A11Y for content pages Normal mode test/textLegibility/guidance 1`] = `
            Content that appears on hover or focus is easier to read when it is dismissible, hoverable, and persistent.
         </li>
         <li>
-          People with low vision, limited color perception or
+          People with low vision, limited color perception or 
           <a
             class="ms-Link insights-link root-000"
             href="https://en.wikipedia.org/wiki/Presbyopia"
@@ -61588,7 +62516,7 @@ exports[`A11Y for content pages Normal mode test/textLegibility/guidance 1`] = `
           >
             presbyopia
           </a>
-          are especially likely to find text unreadable when the contrast is too low.
+           are especially likely to find text unreadable when the contrast is too low.
         </li>
       </ul>
       <p>
@@ -61835,7 +62763,7 @@ exports[`A11Y for content pages Normal mode test/textLegibility/guidance 1`] = `
             </h3>
             <ul>
               <li>
-                 Allow content to adjust automatically to the user's screen orientation.
+                Allow content to adjust automatically to the user's screen orientation.
               </li>
             </ul>
           </div>

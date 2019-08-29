@@ -23,14 +23,12 @@ export const guidance = create(({ Markup, Link }) => (
             </li>
             <li> Content that appears on hover or focus is easier to read when it is dismissible, hoverable, and persistent.</li>
             <li>
-                People with low vision, limited color perception or
-                <Markup.HyperLink href="https://en.wikipedia.org/wiki/Presbyopia">presbyopia</Markup.HyperLink>
-                are especially likely to find text unreadable when the contrast is too low.
+                People with low vision, limited color perception or <Link.Presbyopia /> are especially likely to find text unreadable when
+                the contrast is too low.
             </li>
         </ul>
         <p>
-            People with <Markup.HyperLink href="https://en.wikipedia.org/wiki/Presbyopia">presbyopia</Markup.HyperLink> also struggle to
-            read small or low-contrast text. A{' '}
+            People with <Link.Presbyopia /> also struggle to read small or low-contrast text. A{' '}
             <Markup.HyperLink href="https://www.sciencedirect.com/science/article/pii/S0161642017337971">2018 study</Markup.HyperLink> found
             that 1.8 billion people worldwide have presbyopia. (All people are affected by presbyopia to some degree as they age.)
         </p>
@@ -106,7 +104,7 @@ export const guidance = create(({ Markup, Link }) => (
                     Don't lock content to any particular screen orientation (<Link.WCAG_1_3_4 />)
                 </h3>
                 <ul>
-                    <li> Allow content to adjust automatically to the user's screen orientation.</li>
+                    <li>Allow content to adjust automatically to the user's screen orientation.</li>
                 </ul>
             </Markup.Dont>
         </Markup.Columns>

@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { create, React } from '../../common';
 
-export const infoAndExamples = create(({ Markup }) => (
+export const infoAndExamples = create(({ Markup, Link }) => (
     <>
         <h1>UI Components</h1>
         <p>Visual information used to indicate states and boundaries of active UI Components must have sufficient contrast.</p>
@@ -10,9 +10,8 @@ export const infoAndExamples = create(({ Markup }) => (
         <h2>Why it matters</h2>
         <p>
             Most people find it easier to see and use UI Components when they have sufficient contrast against the background. People with
-            low vision, limited color perception, or{' '}
-            <Markup.HyperLink href="https://en.wikipedia.org/wiki/Presbyopia">presbyopia</Markup.HyperLink> are especially likely to
-            struggle with controls when contrast is too low.
+            low vision, limited color perception, or <Link.Presbyopia /> are especially likely to struggle with controls when contrast is
+            too low.
         </p>
 
         <h2>How to fix</h2>
