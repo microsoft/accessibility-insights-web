@@ -184,8 +184,8 @@ export class Page {
     }
 
     public async clickSelector(selector: string): Promise<void> {
-        const element = await this.waitForSelector(selector);
         await this.screenshotOnError(async () => {
+            const element = await this.waitForSelector(selector);
             await element.click();
         });
     }
