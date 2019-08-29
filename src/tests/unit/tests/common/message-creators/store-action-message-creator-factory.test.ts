@@ -17,23 +17,6 @@ describe('StoreActionMessageCreatorFactoryTest', () => {
         dispatcherMock.reset();
     });
 
-    it('dispatches message types for forDetailsView', () => {
-        const messages: string[] = [
-            getStoreStateMessage(StoreNames.DetailsViewStore),
-            getStoreStateMessage(StoreNames.VisualizationScanResultStore),
-            getStoreStateMessage(StoreNames.VisualizationStore),
-            getStoreStateMessage(StoreNames.TabStore),
-            getStoreStateMessage(StoreNames.FeatureFlagStore),
-            getStoreStateMessage(StoreNames.AssessmentStore),
-            getStoreStateMessage(StoreNames.ScopingPanelStateStore),
-            getStoreStateMessage(StoreNames.UserConfigurationStore),
-            getStoreStateMessage(StoreNames.PathSnippetStore),
-            getStoreStateMessage(StoreNames.UnifiedScanResultStore),
-        ];
-
-        testWithExpectedMessages(messages, testObject => testObject.forDetailsView());
-    });
-
     it('dispatches message types for forInjected', () => {
         const messages: string[] = [
             getStoreStateMessage(StoreNames.VisualizationStore),

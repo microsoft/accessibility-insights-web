@@ -10,23 +10,6 @@ import { StoreActionMessageCreatorImpl } from './store-action-message-creator-im
 export class StoreActionMessageCreatorFactory {
     constructor(private readonly dispatcher: ActionMessageDispatcher) {}
 
-    public forDetailsView(): StoreActionMessageCreator {
-        const getStateMessages: string[] = [
-            getStoreStateMessage(StoreNames.DetailsViewStore),
-            getStoreStateMessage(StoreNames.VisualizationScanResultStore),
-            getStoreStateMessage(StoreNames.VisualizationStore),
-            getStoreStateMessage(StoreNames.TabStore),
-            getStoreStateMessage(StoreNames.FeatureFlagStore),
-            getStoreStateMessage(StoreNames.AssessmentStore),
-            getStoreStateMessage(StoreNames.ScopingPanelStateStore),
-            getStoreStateMessage(StoreNames.UserConfigurationStore),
-            getStoreStateMessage(StoreNames.PathSnippetStore),
-            getStoreStateMessage(StoreNames.UnifiedScanResultStore),
-        ];
-
-        return new StoreActionMessageCreatorImpl(getStateMessages, this.dispatcher);
-    }
-
     public forContent(): StoreActionMessageCreator {
         const getStateMessages: string[] = [getStoreStateMessage(StoreNames.UserConfigurationStore)];
 
