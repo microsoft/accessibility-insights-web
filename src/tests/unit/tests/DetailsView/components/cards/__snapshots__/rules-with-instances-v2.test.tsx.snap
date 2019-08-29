@@ -92,8 +92,8 @@ exports[`RulesWithInstancesV2 renders 1`] = `
         }
       />
     }
+    headingLevel={3}
     id="some-rule"
-    titleHeadingLevel={3}
   />
 </div>
 `;
