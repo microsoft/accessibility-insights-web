@@ -9,7 +9,7 @@ import { collapsibleContainer, collapsibleContent, collapsibleControl, collapsib
 export interface CollapsibleComponentCardsProps {
     header: JSX.Element;
     content: JSX.Element;
-    headingLevel: number;
+    headingLevel?: number;
     contentClassName?: string;
     containerClassName?: string;
     buttonAriaLabel?: string;
@@ -32,7 +32,7 @@ export class CollapsibleComponentCards extends React.Component<CollapsibleCompon
 
     public render(): JSX.Element {
         const showContent = this.state.showContent;
-        const titleContainerProps = this.props.headingLevel ? { role: 'heading', 'aria-level': this.props.headingLevel } : undefined;
+        const containerProps = { role: 'heading', 'aria-level': this.props.headingLevel };
         let content = null;
         let collapsedCSSClassName = 'collapsed';
 
@@ -43,7 +43,7 @@ export class CollapsibleComponentCards extends React.Component<CollapsibleCompon
 
         return (
             <div className={css(this.props.containerClassName, collapsibleContainer, collapsedCSSClassName)}>
-                <div {...titleContainerProps}>
+                <div {...containerProps}>
                     <ActionButton
                         className={collapsibleControl}
                         onClick={this.onClick}

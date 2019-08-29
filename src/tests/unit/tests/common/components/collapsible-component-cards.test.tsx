@@ -44,14 +44,4 @@ describe('CollapsibleComponentCardsTest', () => {
         button.simulate('click');
         expect(result.getElement()).toMatchSnapshot('collapsed');
     });
-
-    test('headingLevel is 0', () => {
-        const props: CollapsibleComponentCardsProps = {
-            header: <div>Some header</div>,
-            content: <div>Some content</div>,
-            headingLevel: 0,
-        };
-        const result = shallow(<CollapsibleComponentCards {...props} />);
-        expect(result.getElement()).toMatchSnapshot();
-    });
 });
