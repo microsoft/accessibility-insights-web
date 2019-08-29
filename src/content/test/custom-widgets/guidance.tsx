@@ -110,9 +110,7 @@ export const guidance = create(({ Markup, Link }) => (
         </Markup.Links>
         <h4>Additional guidance</h4>
         <Markup.Links>
-            <Markup.HyperLink href="https://www.w3.org/TR/wai-aria-practices-1.1/">
-                WAI-ARIA Authoring Practices 1.1: Design Patterns and Widgets
-            </Markup.HyperLink>
+            <Link.WAIARIAAuthoringPractices />
         </Markup.Links>
 
         <h3>Make sure labels and instructions are programmatically related</h3>
@@ -235,9 +233,7 @@ export const guidance = create(({ Markup, Link }) => (
         </Markup.Links>
         <h4>Additional guidance</h4>
         <Markup.Links>
-            <Markup.HyperLink href="https://www.w3.org/TR/wai-aria-practices-1.1/">
-                WAI-ARIA Authoring Practices 1.1: Design Patterns and Widgets
-            </Markup.HyperLink>
+            <Link.WAIARIAAuthoringPractices />
         </Markup.Links>
 
         <h3>Provide appropriate cues</h3>
@@ -300,9 +296,7 @@ export const guidance = create(({ Markup, Link }) => (
         </Markup.Links>
         <h4>Additional guidance</h4>
         <Markup.Links>
-            <Markup.HyperLink href="https://www.w3.org/TR/wai-aria-practices-1.1/">
-                WAI-ARIA Authoring Practices 1.1: Design Patterns and Widgets
-            </Markup.HyperLink>
+            <Link.WAIARIAAuthoringPractices />
         </Markup.Links>
     </>
 ));
