@@ -16,18 +16,12 @@ const textSpacingDescription: JSX.Element = (
 
 const textSpacingHowToTest: JSX.Element = (
     <div>
-        This test uses the{' '}
-        <NewTabLink href="https://www.w3.org/TR/WCAG21/#dfn-https://www.html5accessibility.com/tests/tsbookmarklet.html">
-            Text spacing
-        </NewTabLink>{' '}
+        This test uses the <NewTabLink href="https://www.html5accessibility.com/tests/tsbookmarklet.html">Text spacing</NewTabLink>{' '}
         bookmarklet to adjust text spacing in the target page.
         <ol>
             <li>
-                Add the{' '}
-                <NewTabLink href="https://www.w3.org/TR/WCAG21/#dfn-https://www.html5accessibility.com/tests/tsbookmarklet.html">
-                    Text spacing
-                </NewTabLink>{' '}
-                bookmarklet to your browser's bookmarks. (Mouse users can simply drag the link into the bookmarks bar.)
+                Add the <NewTabLink href="https://www.html5accessibility.com/tests/tsbookmarklet.html">Text spacing</NewTabLink> bookmarklet
+                to your browser's bookmarks. (Mouse users can simply drag the link into the bookmarks bar.)
             </li>
             <li>Use your browser's settings to set the target page's zoom to 400%.</li>
             <li>
