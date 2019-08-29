@@ -28,7 +28,7 @@ export class StoreActionMessageCreatorFactory {
             getStoreStateMessage(StoreNames.VisualizationStore),
             getStoreStateMessage(StoreNames.TabStore),
             getStoreStateMessage(StoreNames.FeatureFlagStore),
-            Messages.Assessment.GetCurrentState,
+            getStoreStateMessage(StoreNames.AssessmentStore),
             Messages.Scoping.GetCurrentState,
             getStoreStateMessage(StoreNames.UserConfigurationStore),
             Messages.PathSnippet.GetCurrentState,
@@ -52,7 +52,7 @@ export class StoreActionMessageCreatorFactory {
             getStoreStateMessage(StoreNames.VisualizationScanResultStore),
             getStoreStateMessage(StoreNames.FeatureFlagStore),
             Messages.DevTools.Get,
-            Messages.Assessment.GetCurrentState,
+            getStoreStateMessage(StoreNames.AssessmentStore),
             getStoreStateMessage(StoreNames.TabStore),
             getStoreStateMessage(StoreNames.UserConfigurationStore),
         ];

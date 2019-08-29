@@ -109,7 +109,6 @@ export class Messages {
     };
 
     public static readonly Assessment = {
-        GetCurrentState: `${messagePrefix}/assessment/getCurrentState`,
         SelectTestRequirement: `${messagePrefix}/details-view/requirement/select`,
         AssessmentScanCompleted: `${messagePrefix}/assessment/scanComplete`,
         TabbedElementAdded: `${messagePrefix}/assessment/tab-stops/element-added`,

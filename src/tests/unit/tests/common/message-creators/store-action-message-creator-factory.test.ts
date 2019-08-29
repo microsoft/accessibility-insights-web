@@ -33,7 +33,7 @@ describe('StoreActionMessageCreatorFactoryTest', () => {
             getStoreStateMessage(StoreNames.VisualizationStore),
             getStoreStateMessage(StoreNames.TabStore),
             getStoreStateMessage(StoreNames.FeatureFlagStore),
-            Messages.Assessment.GetCurrentState,
+            getStoreStateMessage(StoreNames.AssessmentStore),
             Messages.Scoping.GetCurrentState,
             getStoreStateMessage(StoreNames.UserConfigurationStore),
             Messages.PathSnippet.GetCurrentState,
@@ -50,7 +50,7 @@ describe('StoreActionMessageCreatorFactoryTest', () => {
             getStoreStateMessage(StoreNames.VisualizationScanResultStore),
             getStoreStateMessage(StoreNames.FeatureFlagStore),
             Messages.DevTools.Get,
-            Messages.Assessment.GetCurrentState,
+            getStoreStateMessage(StoreNames.AssessmentStore),
             getStoreStateMessage(StoreNames.TabStore),
             getStoreStateMessage(StoreNames.UserConfigurationStore),
         ];

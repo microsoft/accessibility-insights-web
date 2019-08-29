@@ -8,7 +8,8 @@ import { isFunction } from 'lodash';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { Action } from '../../../../../common/flux/action';
 import { RegisterTypeToPayloadCallback } from '../../../../../common/message';
-import { Messages } from '../../../../../common/messages';
+import { getStoreStateMessage, Messages } from '../../../../../common/messages';
+import { StoreNames } from '../../../../../common/stores/store-names';
 import * as TelemetryEvents from '../../../../../common/telemetry-events';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
 
@@ -282,7 +283,7 @@ describe('AssessmentActionCreatorTest', () => {
     test('onGetAssessmentCurrentState', () => {
         const actionMock = createActionMock(null);
         setupAssessmentActionsMock('getCurrentState', actionMock);
-        setupRegisterTypeToPayloadCallbackMock(AssessmentMessages.GetCurrentState, null, testTabId);
+        setupRegisterTypeToPayloadCallbackMock(getStoreStateMessage(StoreNames.AssessmentStore), null, testTabId);
 
         testObject.registerCallbacks();
 
