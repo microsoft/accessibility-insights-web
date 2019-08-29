@@ -22,6 +22,7 @@ describe('CollapsibleComponentCardsTest', () => {
                 const props: CollapsibleComponentCardsProps = {
                     header: <div>Some header</div>,
                     content: <div>Some content</div>,
+                    headingLevel: 5,
                     [propertyName]: value,
                 };
 
@@ -35,6 +36,7 @@ describe('CollapsibleComponentCardsTest', () => {
         const props: CollapsibleComponentCardsProps = {
             header: <div>Some header</div>,
             content: <div>Some content</div>,
+            headingLevel: 5,
         };
         const result = shallow(<CollapsibleComponentCards {...props} />);
         expect(result.getElement()).toMatchSnapshot('expanded');

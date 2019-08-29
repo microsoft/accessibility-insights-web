@@ -4,20 +4,25 @@ exports[`CollapsibleComponentCardsTest render with buttonAriaLabel set to: some 
 <div
   className="collapsibleContainer"
 >
-  <CustomizedActionButton
-    aria-expanded={true}
-    ariaLabel="some button label"
-    className="collapsibleControl"
-    onClick={[Function]}
+  <div
+    aria-level={5}
+    role="heading"
   >
-    <span
-      className="collapsibleTitle"
+    <CustomizedActionButton
+      aria-expanded={true}
+      ariaLabel="some button label"
+      className="collapsibleControl"
+      onClick={[Function]}
     >
-      <div>
-        Some header
-      </div>
-    </span>
-  </CustomizedActionButton>
+      <span
+        className="collapsibleTitle"
+      >
+        <div>
+          Some header
+        </div>
+      </span>
+    </CustomizedActionButton>
+  </div>
   <div
     className="collapsibleContent"
   >
@@ -32,19 +37,24 @@ exports[`CollapsibleComponentCardsTest render with buttonAriaLabel set to: undef
 <div
   className="collapsibleContainer"
 >
-  <CustomizedActionButton
-    aria-expanded={true}
-    className="collapsibleControl"
-    onClick={[Function]}
+  <div
+    aria-level={5}
+    role="heading"
   >
-    <span
-      className="collapsibleTitle"
+    <CustomizedActionButton
+      aria-expanded={true}
+      className="collapsibleControl"
+      onClick={[Function]}
     >
-      <div>
-        Some header
-      </div>
-    </span>
-  </CustomizedActionButton>
+      <span
+        className="collapsibleTitle"
+      >
+        <div>
+          Some header
+        </div>
+      </span>
+    </CustomizedActionButton>
+  </div>
   <div
     className="collapsibleContent"
   >
@@ -59,19 +69,24 @@ exports[`CollapsibleComponentCardsTest render with containerClassName set to: a-
 <div
   className="a-container collapsibleContainer"
 >
-  <CustomizedActionButton
-    aria-expanded={true}
-    className="collapsibleControl"
-    onClick={[Function]}
+  <div
+    aria-level={5}
+    role="heading"
   >
-    <span
-      className="collapsibleTitle"
+    <CustomizedActionButton
+      aria-expanded={true}
+      className="collapsibleControl"
+      onClick={[Function]}
     >
-      <div>
-        Some header
-      </div>
-    </span>
-  </CustomizedActionButton>
+      <span
+        className="collapsibleTitle"
+      >
+        <div>
+          Some header
+        </div>
+      </span>
+    </CustomizedActionButton>
+  </div>
   <div
     className="collapsibleContent"
   >
@@ -86,19 +101,24 @@ exports[`CollapsibleComponentCardsTest render with containerClassName set to: un
 <div
   className="collapsibleContainer"
 >
-  <CustomizedActionButton
-    aria-expanded={true}
-    className="collapsibleControl"
-    onClick={[Function]}
+  <div
+    aria-level={5}
+    role="heading"
   >
-    <span
-      className="collapsibleTitle"
+    <CustomizedActionButton
+      aria-expanded={true}
+      className="collapsibleControl"
+      onClick={[Function]}
     >
-      <div>
-        Some header
-      </div>
-    </span>
-  </CustomizedActionButton>
+      <span
+        className="collapsibleTitle"
+      >
+        <div>
+          Some header
+        </div>
+      </span>
+    </CustomizedActionButton>
+  </div>
   <div
     className="collapsibleContent"
   >
@@ -113,19 +133,24 @@ exports[`CollapsibleComponentCardsTest render with contentClassName set to: cont
 <div
   className="collapsibleContainer"
 >
-  <CustomizedActionButton
-    aria-expanded={true}
-    className="collapsibleControl"
-    onClick={[Function]}
+  <div
+    aria-level={5}
+    role="heading"
   >
-    <span
-      className="collapsibleTitle"
+    <CustomizedActionButton
+      aria-expanded={true}
+      className="collapsibleControl"
+      onClick={[Function]}
     >
-      <div>
-        Some header
-      </div>
-    </span>
-  </CustomizedActionButton>
+      <span
+        className="collapsibleTitle"
+      >
+        <div>
+          Some header
+        </div>
+      </span>
+    </CustomizedActionButton>
+  </div>
   <div
     className="content-class-name-a collapsibleContent"
   >
@@ -140,19 +165,24 @@ exports[`CollapsibleComponentCardsTest render with contentClassName set to: unde
 <div
   className="collapsibleContainer"
 >
-  <CustomizedActionButton
-    aria-expanded={true}
-    className="collapsibleControl"
-    onClick={[Function]}
+  <div
+    aria-level={5}
+    role="heading"
   >
-    <span
-      className="collapsibleTitle"
+    <CustomizedActionButton
+      aria-expanded={true}
+      className="collapsibleControl"
+      onClick={[Function]}
     >
-      <div>
-        Some header
-      </div>
-    </span>
-  </CustomizedActionButton>
+      <span
+        className="collapsibleTitle"
+      >
+        <div>
+          Some header
+        </div>
+      </span>
+    </CustomizedActionButton>
+  </div>
   <div
     className="collapsibleContent"
   >
@@ -167,19 +197,24 @@ exports[`CollapsibleComponentCardsTest toggle from expanded to collapsed: collap
 <div
   className="collapsibleContainer collapsed"
 >
-  <CustomizedActionButton
-    aria-expanded={false}
-    className="collapsibleControl"
-    onClick={[Function]}
+  <div
+    aria-level={5}
+    role="heading"
   >
-    <span
-      className="collapsibleTitle"
+    <CustomizedActionButton
+      aria-expanded={false}
+      className="collapsibleControl"
+      onClick={[Function]}
     >
-      <div>
-        Some header
-      </div>
-    </span>
-  </CustomizedActionButton>
+      <span
+        className="collapsibleTitle"
+      >
+        <div>
+          Some header
+        </div>
+      </span>
+    </CustomizedActionButton>
+  </div>
 </div>
 `;
 
@@ -187,19 +222,24 @@ exports[`CollapsibleComponentCardsTest toggle from expanded to collapsed: expand
 <div
   className="collapsibleContainer"
 >
-  <CustomizedActionButton
-    aria-expanded={true}
-    className="collapsibleControl"
-    onClick={[Function]}
+  <div
+    aria-level={5}
+    role="heading"
   >
-    <span
-      className="collapsibleTitle"
+    <CustomizedActionButton
+      aria-expanded={true}
+      className="collapsibleControl"
+      onClick={[Function]}
     >
-      <div>
-        Some header
-      </div>
-    </span>
-  </CustomizedActionButton>
+      <span
+        className="collapsibleTitle"
+      >
+        <div>
+          Some header
+        </div>
+      </span>
+    </CustomizedActionButton>
+  </div>
   <div
     className="collapsibleContent"
   >

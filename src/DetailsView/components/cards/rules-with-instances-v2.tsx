@@ -45,7 +45,7 @@ export const RulesWithInstancesV2 = NamedSFC<RulesWithInstancesV2Props>(
                             }
                             containerClassName={css(collapsibleRuleDetailsGroup)}
                             buttonAriaLabel={buttonAriaLabel}
-                            titleHeadingLevel={3}
+                            headingLevel={3}
                         />
                     );
                 })}
