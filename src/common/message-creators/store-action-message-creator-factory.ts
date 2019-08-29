@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { BaseStore } from '../base-store';
 import { getStoreStateMessage } from '../messages';
 import { StoreNames } from '../stores/store-names';
 import { ActionMessageDispatcher } from './action-message-dispatcher';
@@ -58,5 +59,11 @@ export class StoreActionMessageCreatorFactory {
         ];
 
         return new StoreActionMessageCreatorImpl(getStateMessages, this.dispatcher);
+    }
+
+    public fromStores(stores: BaseStore<any>[]): StoreActionMessageCreator {
+        const messages = stores.map(store => getStoreStateMessage(StoreNames[store.getId()]));
+
+        return new StoreActionMessageCreatorImpl(messages, this.dispatcher);
     }
 }

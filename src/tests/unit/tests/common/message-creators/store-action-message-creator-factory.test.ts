@@ -2,6 +2,8 @@
 // Licensed under the MIT License.
 import { Mock, MockBehavior } from 'typemoq';
 
+import { BaseStore } from '../../../../../common/base-store';
+import { EnumHelper } from '../../../../../common/enum-helper';
 import { ActionMessageDispatcher } from '../../../../../common/message-creators/action-message-dispatcher';
 import { StoreActionMessageCreator } from '../../../../../common/message-creators/store-action-message-creator';
 import { StoreActionMessageCreatorFactory } from '../../../../../common/message-creators/store-action-message-creator-factory';
@@ -64,6 +66,22 @@ describe('StoreActionMessageCreatorFactoryTest', () => {
         const messages: string[] = [getStoreStateMessage(StoreNames.UserConfigurationStore)];
 
         testWithExpectedMessages(messages, testObject => testObject.forContent());
+    });
+
+    it('dispatches messages for fromStores', () => {
+        const createStoreMock = (storeName: StoreNames) => {
+            const mock = Mock.ofType<BaseStore<any>>(undefined, MockBehavior.Strict);
+            mock.setup(store => store.getId()).returns(() => StoreNames[storeName]);
+            return mock;
+        };
+
+        const storeNames = EnumHelper.getNumericValues<StoreNames>(StoreNames);
+
+        const storeMocks = storeNames.map(createStoreMock).map(mock => mock.object);
+
+        const expectedMessages = storeNames.map(name => getStoreStateMessage(name));
+
+        testWithExpectedMessages(expectedMessages, testObject => testObject.fromStores(storeMocks));
     });
 
     function testWithExpectedMessages(
