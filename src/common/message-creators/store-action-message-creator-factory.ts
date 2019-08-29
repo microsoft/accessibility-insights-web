@@ -48,7 +48,7 @@ export class StoreActionMessageCreatorFactory {
         const getStateMessages: string[] = [
             getStoreStateMessage(StoreNames.VisualizationStore),
             getStoreStateMessage(StoreNames.ScopingPanelStateStore),
-            Messages.Inspect.GetCurrentState,
+            getStoreStateMessage(StoreNames.InspectStore),
             getStoreStateMessage(StoreNames.VisualizationScanResultStore),
             getStoreStateMessage(StoreNames.FeatureFlagStore),
             Messages.DevTools.Get,

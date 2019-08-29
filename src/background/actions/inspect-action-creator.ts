@@ -2,7 +2,8 @@
 // Licensed under the MIT License.
 import { BrowserAdapter } from '../../common/browser-adapters/browser-adapter';
 import { RegisterTypeToPayloadCallback } from '../../common/message';
-import { Messages } from '../../common/messages';
+import { getStoreStateMessage, Messages } from '../../common/messages';
+import { StoreNames } from '../../common/stores/store-names';
 import * as TelemetryEvents from '../../common/telemetry-events';
 import { TelemetryEventHandler } from '../telemetry/telemetry-event-handler';
 import { InspectActions, InspectPayload } from './inspect-actions';
@@ -29,7 +30,7 @@ export class InspectActionCreator {
         this.registerTypeToPayloadCallback(Messages.Inspect.ChangeInspectMode, (payload: InspectPayload, tabId: number) =>
             this.onChangeInspectMode(payload, tabId),
         );
-        this.registerTypeToPayloadCallback(Messages.Inspect.GetCurrentState, () => this.onGetInspectCurrentState());
+        this.registerTypeToPayloadCallback(getStoreStateMessage(StoreNames.InspectStore), () => this.onGetInspectCurrentState());
     }
 
     private onChangeInspectMode(payload: InspectPayload, tabId: number): void {

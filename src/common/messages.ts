@@ -174,7 +174,6 @@ export class Messages {
 
     public static readonly Inspect = {
         ChangeInspectMode: `${messagePrefix}/inspect/changeInspectMode`,
-        GetCurrentState: `${messagePrefix}/inspect/get`,
         SetHoveredOverSelector: `${messagePrefix}/inspect/setHoveredOverSelector`,
     };
 
