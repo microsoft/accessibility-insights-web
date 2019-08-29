@@ -27,7 +27,6 @@ describe('DetailsListIssuesView', () => {
     let getStoreDataMock: IMock<(data: TestsEnabledState) => ScanData>;
     let clickHandlerFactoryMock: IMock<DetailsViewToggleClickHandlerFactory>;
     let displayableDataStub: DisplayableVisualizationTypeData;
-    let contentStub: JSX.Element;
     let scanDataStub: ScanData;
     let clickHandlerStub: (event: any) => void;
     let visualizationStoreDataStub: VisualizationStoreData;
@@ -41,13 +40,11 @@ describe('DetailsListIssuesView', () => {
         getStoreDataMock = Mock.ofInstance(() => null, MockBehavior.Strict);
         clickHandlerFactoryMock = Mock.ofType(DetailsViewToggleClickHandlerFactory, MockBehavior.Strict);
         visualizationScanResultStoreDataStub = new VisualizationScanResultStoreDataBuilder().build();
-        contentStub = {} as JSX.Element;
         displayableDataStub = {
             title: 'test title',
             subtitle: <>test subtitle</>,
             toggleLabel: 'test toggle label',
         } as DisplayableVisualizationTypeData;
-        contentStub = {} as JSX.Element;
         scanDataStub = {
             enabled: true,
         };
