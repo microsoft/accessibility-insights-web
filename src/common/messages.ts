@@ -168,7 +168,6 @@ export class Messages {
     public static readonly Scoping = {
         ClosePanel: `${messagePrefix}/scoping/closePanel`,
         OpenPanel: `${messagePrefix}/scoping/openPanel`,
-        GetCurrentState: `${messagePrefix}/scoping/get`,
         AddSelector: `${messagePrefix}/scoping/addSelector`,
         DeleteSelector: `${messagePrefix}/scoping/deleteSelector`,
     };

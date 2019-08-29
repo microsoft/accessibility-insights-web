@@ -7,7 +7,8 @@ import { ScopingActions, ScopingPayload } from 'background/actions/scoping-actio
 import { ScopingActionCreator } from 'background/global-action-creators/scoping-action-creator';
 import { Interpreter } from 'background/interpreter';
 import { Action } from '../../../../../common/flux/action';
-import { Messages } from '../../../../../common/messages';
+import { getStoreStateMessage, Messages } from '../../../../../common/messages';
+import { StoreNames } from '../../../../../common/stores/store-names';
 
 describe('ScopingActionCreator', () => {
     let interpreterMock: IMock<Interpreter>;
@@ -23,7 +24,7 @@ describe('ScopingActionCreator', () => {
     });
 
     it('handles GetCurrentState', () => {
-        const expectedMessage = Messages.Scoping.GetCurrentState;
+        const expectedMessage = getStoreStateMessage(StoreNames.ScopingPanelStateStore);
 
         setupInterpreterMock(expectedMessage);
 

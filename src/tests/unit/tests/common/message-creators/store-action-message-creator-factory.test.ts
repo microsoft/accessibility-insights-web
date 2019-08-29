@@ -34,7 +34,7 @@ describe('StoreActionMessageCreatorFactoryTest', () => {
             getStoreStateMessage(StoreNames.TabStore),
             getStoreStateMessage(StoreNames.FeatureFlagStore),
             getStoreStateMessage(StoreNames.AssessmentStore),
-            Messages.Scoping.GetCurrentState,
+            getStoreStateMessage(StoreNames.ScopingPanelStateStore),
             getStoreStateMessage(StoreNames.UserConfigurationStore),
             Messages.PathSnippet.GetCurrentState,
         ];
@@ -45,7 +45,7 @@ describe('StoreActionMessageCreatorFactoryTest', () => {
     it('dispatches message types for forInjected', () => {
         const messages: string[] = [
             getStoreStateMessage(StoreNames.VisualizationStore),
-            Messages.Scoping.GetCurrentState,
+            getStoreStateMessage(StoreNames.ScopingPanelStateStore),
             Messages.Inspect.GetCurrentState,
             getStoreStateMessage(StoreNames.VisualizationScanResultStore),
             getStoreStateMessage(StoreNames.FeatureFlagStore),
