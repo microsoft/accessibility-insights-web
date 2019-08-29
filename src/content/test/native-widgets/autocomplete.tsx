@@ -28,27 +28,28 @@ export const infoAndExamples = create(({ Markup }) => (
                     field's autocomplete attribute is invalid.
                 </p>
             }
-            failExample={`<form>
-                <div>
-                    <label for="username">Username</label>
-                    <input id="username" type="text" autocomplete="username" ... >
-                </div>
-                <div>
-                    <label for="password">Password</label>
-                    <input id="password" type="password" autocomplete="password" ... >
-                </div>
-                </form>
+            failExample={`
+            <form method="post" action="step2">
+            <div>
+                <label for="username">Username</label>
+                <input id="username" type="text" [autocomplete="username"] ... >
+            </div>
+            <div>
+                <label for="password">Password</label>
+                <input id="password" type="password" [autocomplete="password"] ... >
+            </div>
+            </form>
             `}
             passText={<p>The password field field has the correct autocomplete attribute.</p>}
             passExample={`
             <form method="post" action="step2">
             <div>
                 <label for="username">Username</label>
-                <input id="username" type="text" autocomplete="username" ... >
+                <input id="username" type="text" [autocomplete="username"] ... >
             </div>
             <div>
                 <label for="password">Password</label>
-                <input id="password" type="password" autocomplete="current-password" ... >
+                <input id="password" type="password" [autocomplete="current-password"] ... >
             </div>
             </form>
             `}
