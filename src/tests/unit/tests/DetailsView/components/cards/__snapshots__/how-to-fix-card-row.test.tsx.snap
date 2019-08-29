@@ -4,7 +4,7 @@ exports[`HowToFixWebCardRow renders 1`] = `
 <SimpleCardRow
   content={
     <div
-      className="how-to-fix-content"
+      className="howToFixContent"
     >
       <FixInstructionPanel
         checkType={0}

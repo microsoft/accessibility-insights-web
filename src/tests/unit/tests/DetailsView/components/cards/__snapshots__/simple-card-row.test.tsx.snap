@@ -10,14 +10,14 @@ exports[`SimpleCardRow renders 1`] = `
     test label
   </th>
   <td
-    className="instance-list-row-content"
+    className="instanceListRowContent"
   >
     test content
   </td>
 </tr>
 `;
 
-exports[`SimpleCardRow renders with correct styling when extra class name is needed 1`] = `
+exports[`SimpleCardRow renders with correct styling with extra class name 1`] = `
 <tr
   className="row"
 >
@@ -27,7 +27,7 @@ exports[`SimpleCardRow renders with correct styling when extra class name is nee
     test label
   </th>
   <td
-    className="instance-list-row-content content-snipppet"
+    className="instanceListRowContent test class name"
   >
     test content
   </td>

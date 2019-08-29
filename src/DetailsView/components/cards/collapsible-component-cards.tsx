@@ -4,7 +4,7 @@ import { css } from '@uifabric/utilities';
 import { ActionButton } from 'office-ui-fabric-react/lib/Button';
 import * as React from 'react';
 
-import { collapsibleContainer, collapsibleContent, collapsibleControl, collapsibleTitle } from './collapsible-component-cards.scss';
+import { collapsibleContainer, collapsibleControl, collapsibleTitle, content } from './collapsible-component-cards.scss';
 
 export interface CollapsibleComponentCardsProps {
     header: JSX.Element;
@@ -33,11 +33,11 @@ export class CollapsibleComponentCards extends React.Component<CollapsibleCompon
     public render(): JSX.Element {
         const showContent = this.state.showContent;
         const containerProps = { role: 'heading', 'aria-level': this.props.headingLevel };
-        let content = null;
+        let collapsibleContainerContent = null;
         let collapsedCSSClassName = 'collapsed';
 
         if (showContent) {
-            content = <div className={css(this.props.contentClassName, collapsibleContent)}>{this.props.content}</div>;
+            collapsibleContainerContent = <div className={css(this.props.contentClassName, content)}>{this.props.content}</div>;
             collapsedCSSClassName = null;
         }
 
@@ -53,7 +53,7 @@ export class CollapsibleComponentCards extends React.Component<CollapsibleCompon
                         <span className={collapsibleTitle}>{this.props.header}</span>
                     </ActionButton>
                 </div>
-                {content}
+                {collapsibleContainerContent}
             </div>
         );
     }

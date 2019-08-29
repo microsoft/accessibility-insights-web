@@ -9,8 +9,15 @@ export interface StringPropertyCardRowProps extends CardRowProps {
     propertyData: string;
 }
 
-export const GetLabelledStringPropertyCardRow = (label: string) => {
+export const GetLabelledStringPropertyCardRow = (label: string, contentClassName?: string) => {
     return NamedSFC<StringPropertyCardRowProps>('StringPropertyCardRowProps', props => {
-        return <SimpleCardRow label={label} content={props.propertyData} rowKey={`${label}-${props.index}`} />;
+        return (
+            <SimpleCardRow
+                label={label}
+                content={props.propertyData}
+                rowKey={`${label}-${props.index}`}
+                contentClassName={contentClassName}
+            />
+        );
     });
 };
