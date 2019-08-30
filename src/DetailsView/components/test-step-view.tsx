@@ -79,7 +79,6 @@ export class TestStepView extends React.Component<TestStepViewProps> {
                     assessmentInstanceTableHandler={this.props.assessmentInstanceTableHandler}
                     assessmentsProvider={this.props.assessmentsProvider}
                     storeData={this.props.storeData}
-                    featureFlagStoreData={this.props.featureFlagStoreData}
                     pathSnippetStoreData={this.props.pathSnippetStoreData}
                 />
             );

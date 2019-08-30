@@ -1,11 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as Enzyme from 'enzyme';
+import { AssessmentsProviderImpl } from 'assessments/assessments-provider';
+import { Requirement } from 'assessments/types/requirement';
+import { shallow, ShallowWrapper } from 'enzyme';
 import * as React from 'react';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
-import { AssessmentsProviderImpl } from 'assessments/assessments-provider';
-import { Requirement } from 'assessments/types/requirement';
 import { CollapsibleComponent } from '../../../../../common/components/collapsible-component';
 import { ManualTestStatus } from '../../../../../common/types/manual-test-status';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
@@ -33,7 +33,7 @@ describe('TestStepViewTest', () => {
     test('render, check fixed parts', () => {
         const props = TestStepViewPropsBuilder.defaultProps(getVisualHelperToggleMock.object).build();
 
-        const wrapper = Enzyme.shallow(<TestStepView {...props} />);
+        const wrapper = shallow(<TestStepView {...props} />);
 
         const mainDiv = wrapper.find('.test-step-view');
 
@@ -57,7 +57,7 @@ describe('TestStepViewTest', () => {
             .withScanning(true)
             .build();
 
-        const wrapper = Enzyme.shallow(<TestStepView {...props} />);
+        const wrapper = shallow(<TestStepView {...props} />);
         const spinner = wrapper.find('.details-view-spinner');
 
         expect(spinner.exists()).toBeTruthy();
@@ -69,7 +69,7 @@ describe('TestStepViewTest', () => {
             .withIsManual(true)
             .build();
 
-        const wrapper = Enzyme.shallow(<TestStepView {...props} />);
+        const wrapper = shallow(<TestStepView {...props} />);
         validateManualTestStepView(wrapper, props);
     });
 
@@ -78,7 +78,7 @@ describe('TestStepViewTest', () => {
             .withIsManual(false)
             .build();
 
-        const wrapper = Enzyme.shallow(<TestStepView {...props} />);
+        const wrapper = shallow(<TestStepView {...props} />);
 
         const title = wrapper.find('h3.test-step-instances-header');
 
@@ -100,7 +100,7 @@ describe('TestStepViewTest', () => {
             .withIsManual(true)
             .build();
 
-        const wrapper = Enzyme.shallow(<TestStepView {...props} />);
+        const wrapper = shallow(<TestStepView {...props} />);
         validateManualTestStepView(wrapper, props);
     });
 
@@ -111,7 +111,7 @@ describe('TestStepViewTest', () => {
 
         getVisualHelperToggleMock.setup(g => g(It.isAny(), It.isAny())).verifiable(Times.never());
 
-        const wrapper = Enzyme.shallow(<TestStepView {...props} />);
+        const wrapper = shallow(<TestStepView {...props} />);
 
         const visualHelper = wrapper.find(AssessmentVisualizationEnabledToggle);
 
@@ -125,11 +125,11 @@ describe('TestStepViewTest', () => {
             .withStepScanComplete(true)
             .build();
 
-        const wrapper = Enzyme.shallow(<TestStepView {...props} />);
+        const wrapper = shallow(<TestStepView {...props} />);
         expect(wrapper.debug()).toMatchSnapshot();
     });
 
-    function validateManualTestStepView(wrapper: Enzyme.ShallowWrapper, props: TestStepViewProps): void {
+    function validateManualTestStepView(wrapper: ShallowWrapper, props: TestStepViewProps): void {
         const view = wrapper.find(ManualTestStepView);
         expect(view.exists()).toBe(true);
         expect(props.assessmentNavState.selectedTestStep).toEqual(view.prop('step'));

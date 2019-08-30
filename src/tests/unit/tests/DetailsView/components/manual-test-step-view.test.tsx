@@ -32,7 +32,6 @@ describe('ManualTestStepView', () => {
                 } as ManualTestStepResult,
             },
             assessmentsProvider: CreateTestAssessmentProvider(),
-            featureFlagStoreData: featureFlagStoreData,
             storeData: {
                 featureFlagStoreData,
             },
@@ -92,7 +91,6 @@ describe('ManualTestStepView', () => {
             storeData: {
                 featureFlagStoreData,
             },
-            featureFlagStoreData,
             pathSnippetStoreData,
         };
         assessmentInstanceTableHandlerMock.setup(a => a.getColumnConfigsForCapturedInstance()).returns(() => cols);
@@ -125,7 +123,7 @@ describe('ManualTestStepView', () => {
                             addPathForValidation={props.assessmentInstanceTableHandler.addPathForValidation}
                             clearPathSnippetData={props.assessmentInstanceTableHandler.clearPathSnippetData}
                             assessmentsProvider={props.assessmentsProvider}
-                            storeData={{ featureFlagStoreData: featureFlagStoreData }}
+                            storeData={{ featureFlagStoreData }}
                             failureInstance={failureInstance}
                         />
                         <DetailsList

@@ -1,12 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { CheckboxVisibility, ConstrainMode, DetailsList } from 'office-ui-fabric-react/lib/DetailsList';
 import * as React from 'react';
 
-import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { ManualTestStatus } from '../../common/types/manual-test-status';
 import { ManualTestStepResult } from '../../common/types/store-data/assessment-result-data';
-import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { PathSnippetStoreData } from '../../common/types/store-data/path-snippet-store-data';
 import { VisualizationType } from '../../common/types/visualization-type';
 import { DictionaryStringTo } from '../../types/common-types';
@@ -28,7 +27,6 @@ export interface ManualTestStepViewProps {
     assessmentInstanceTableHandler: AssessmentInstanceTableHandler;
     manualTestStepResultMap: DictionaryStringTo<ManualTestStepResult>;
     assessmentsProvider: AssessmentsProvider;
-    featureFlagStoreData: FeatureFlagStoreData;
     pathSnippetStoreData: PathSnippetStoreData;
 }
 
@@ -62,7 +60,7 @@ export class ManualTestStepView extends React.Component<ManualTestStepViewProps>
             this.props.manualTestStepResultMap[this.props.step].instances,
             this.props.test,
             this.props.step,
-            this.props.featureFlagStoreData,
+            this.props.storeData.featureFlagStoreData,
             this.props.pathSnippetStoreData,
         );
         const instance: FailureInstanceData = {
