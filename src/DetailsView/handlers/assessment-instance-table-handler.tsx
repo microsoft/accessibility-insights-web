@@ -183,7 +183,6 @@ export class AssessmentInstanceTableHandler {
                 onClearPathSnippetData={this.actionMessageCreator.clearPathSnippetData}
                 onAddPath={this.actionMessageCreator.addPathForValidation}
                 assessmentsProvider={this.assessmentsProvider}
-                featureFlagStoreData={featureFlagStoreData}
                 storeData={{
                     featureFlagStoreData: featureFlagStoreData,
                 }}

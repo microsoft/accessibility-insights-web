@@ -151,7 +151,6 @@ describe('AssessmentInstanceTableHandlerTest', () => {
                 onAddPath={actionMessageCreatorMock.object.addPathForValidation}
                 onClearPathSnippetData={actionMessageCreatorMock.object.clearPathSnippetData}
                 assessmentsProvider={assessmentsProvider}
-                featureFlagStoreData={featureFlagStoreData}
                 storeData={{
                     featureFlagStoreData: featureFlagStoreData,
                 }}
@@ -208,7 +207,6 @@ describe('AssessmentInstanceTableHandlerTest', () => {
                 onAddPath={actionMessageCreatorMock.object.addPathForValidation}
                 onClearPathSnippetData={actionMessageCreatorMock.object.clearPathSnippetData}
                 assessmentsProvider={assessmentsProvider}
-                featureFlagStoreData={featureFlagStoreData}
                 storeData={{
                     featureFlagStoreData: featureFlagStoreData,
                 }}

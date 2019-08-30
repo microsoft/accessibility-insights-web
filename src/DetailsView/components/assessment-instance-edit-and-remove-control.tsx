@@ -27,7 +27,6 @@ export interface AssessmentInstanceEditAndRemoveControlProps {
     onEdit: (instanceData, test, step, id) => void;
     onClearPathSnippetData: () => void;
     assessmentsProvider: AssessmentsProvider;
-    featureFlagStoreData: FeatureFlagStoreData;
 }
 
 export class AssessmentInstanceEditAndRemoveControl extends React.Component<AssessmentInstanceEditAndRemoveControlProps> {
