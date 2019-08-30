@@ -15,10 +15,13 @@ import { VisualizationType } from '../../common/types/visualization-type';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 import { AssessmentInstanceTableHandler } from '../handlers/assessment-instance-table-handler';
 import { DetailsViewToggleClickHandlerFactory } from '../handlers/details-view-toggle-click-handler-factory';
+import { AssessmentTestViewStoreData } from './assessment-test-view';
 import { UnifiedStatusResults } from './cards/failed-instances-section-v2';
 import { IssuesTableHandler } from './issues-table-handler';
 import { OverviewContainerDeps } from './overview-content/overview-content-container';
 import { TestViewDeps } from './test-view';
+
+export type TestViewContainerStoreData = AssessmentTestViewStoreData;
 
 export type TestViewContainerDeps = {
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
@@ -27,6 +30,7 @@ export type TestViewContainerDeps = {
 
 export interface TestViewContainerProps {
     deps: TestViewContainerDeps;
+    storeData: TestViewContainerStoreData;
     tabStoreData: TabStoreData;
     assessmentStoreData: AssessmentStoreData;
     featureFlagStoreData: FeatureFlagStoreData;
@@ -45,6 +49,6 @@ export interface TestViewContainerProps {
 
 export const TestViewContainer = NamedSFC<TestViewContainerProps>('TestViewContainer', props => {
     const configuration = props.visualizationConfigurationFactory.getConfiguration(props.selectedTest);
-    const testViewProps = { configuration, ...props, storeData: { featureFlagStoreData: props.featureFlagStoreData } };
+    const testViewProps = { configuration, ...props };
     return configuration.getTestView(testViewProps);
 });

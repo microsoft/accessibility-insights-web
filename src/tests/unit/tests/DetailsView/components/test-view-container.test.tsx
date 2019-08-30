@@ -33,9 +33,6 @@ describe('TestViewContainerTest', () => {
         const expectedProps = {
             configuration: configStub,
             ...props,
-            storeData: {
-                featureFlagStoreData: { 'test-flag': true },
-            },
         };
 
         configFactoryMock.setup(factory => factory.getConfiguration(props.selectedTest)).returns(() => configStub);

@@ -127,6 +127,13 @@ describe('DetailsViewMainContentTest', () => {
 
             props.tabStoreData = tabStoreData;
 
+            const rightPanelExpectedProps = {
+                ...props,
+                storeData: {
+                    featureFlagStoreData: props.featureFlagStoreData,
+                },
+            };
+
             const expected = (
                 <>
                     {buildCommandBar(props)}
@@ -135,7 +142,7 @@ describe('DetailsViewMainContentTest', () => {
                         <div className="details-content table column-layout">
                             {null}
                             <div className="view" role="main">
-                                <rightPanelConfig.RightPanel {...props} />
+                                <rightPanelConfig.RightPanel {...rightPanelExpectedProps} />
                             </div>
                         </div>
                     </div>
@@ -150,6 +157,13 @@ describe('DetailsViewMainContentTest', () => {
             setupClickHandlerFactoryMock(clickHandlerFactoryMock, selectedTest, !scanDataStub.enabled);
             setupConfigFactoryMock(configFactoryMock, getStoreDataMock, configStub, scanDataStub, props);
 
+            const rightPanelExpectedProps = {
+                ...props,
+                storeData: {
+                    featureFlagStoreData: props.featureFlagStoreData,
+                },
+            };
+
             const expected = (
                 <>
                     {buildCommandBar(props)}
@@ -158,7 +172,7 @@ describe('DetailsViewMainContentTest', () => {
                         <div className="details-content table column-layout">
                             {buildTabInfo(props)}
                             <div className="view" role="main">
-                                <rightPanelConfig.RightPanel {...props} />
+                                <rightPanelConfig.RightPanel {...rightPanelExpectedProps} />
                             </div>
                         </div>
                     </div>

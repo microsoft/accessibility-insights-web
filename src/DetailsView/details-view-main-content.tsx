@@ -52,6 +52,13 @@ export interface DetailsViewMainContentProps {
 
 export class DetailsViewMainContent extends React.Component<DetailsViewMainContentProps> {
     public render(): JSX.Element {
+        const rightPanelProps = {
+            ...this.props,
+            storeData: {
+                featureFlagStoreData: this.props.featureFlagStoreData,
+            },
+        };
+
         return (
             <>
                 {this.renderCommandBar()}
@@ -60,7 +67,7 @@ export class DetailsViewMainContent extends React.Component<DetailsViewMainConte
                     <div className="details-content table column-layout">
                         {this.getTabInfo(this.props.tabStoreData.isClosed)}
                         <div className="view" role="main">
-                            <this.props.rightPanelConfiguration.RightPanel {...this.props} />
+                            <this.props.rightPanelConfiguration.RightPanel {...rightPanelProps} />
                         </div>
                     </div>
                 </div>
