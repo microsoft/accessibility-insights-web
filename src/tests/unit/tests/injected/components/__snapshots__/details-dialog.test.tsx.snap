@@ -1,9 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`DetailsDialog renders with: { isDevToolsOpen: false,
-  shadowDialog: false,
-  helpUrl: 'help-relative',
-  expectedHelpUrl: 'http://extension/help-relative' } 1`] = `
+exports[`DetailsDialog renders with: {"expectedHelpUrl": "http://extension/help-relative", "helpUrl": "help-relative", "isDevToolsOpen": false, "shadowDialog": false} 1`] = `
 <StyledWithResponsiveMode
   dialogContentProps={
     Object {
@@ -549,15 +546,9 @@ exports[`DetailsDialog renders with: { isDevToolsOpen: false,
 </StyledWithResponsiveMode>
 `;
 
-exports[`DetailsDialog renders with: { isDevToolsOpen: false,
-  shadowDialog: false,
-  helpUrl: 'help-relative',
-  expectedHelpUrl: 'http://extension/help-relative' }: verify close button for non shadow dom 1`] = `<CancelIcon />`;
+exports[`DetailsDialog renders with: {"expectedHelpUrl": "http://extension/help-relative", "helpUrl": "help-relative", "isDevToolsOpen": false, "shadowDialog": false}: verify close button for non shadow dom 1`] = `<CancelIcon />`;
 
-exports[`DetailsDialog renders with: { isDevToolsOpen: false,
-  shadowDialog: false,
-  helpUrl: 'help-relative',
-  expectedHelpUrl: 'http://extension/help-relative' }: verify initial state 1`] = `
+exports[`DetailsDialog renders with: {"expectedHelpUrl": "http://extension/help-relative", "helpUrl": "help-relative", "isDevToolsOpen": false, "shadowDialog": false}: verify initial state 1`] = `
 Object {
   "canInspect": true,
   "currentRuleIndex": 0,
@@ -567,7 +558,7 @@ Object {
 }
 `;
 
-exports[`DetailsDialog renders with: { isDevToolsOpen: false, shadowDialog: false } 1`] = `
+exports[`DetailsDialog renders with: {"isDevToolsOpen": false, "shadowDialog": false} 1`] = `
 <StyledWithResponsiveMode
   dialogContentProps={
     Object {
@@ -1113,9 +1104,9 @@ exports[`DetailsDialog renders with: { isDevToolsOpen: false, shadowDialog: fals
 </StyledWithResponsiveMode>
 `;
 
-exports[`DetailsDialog renders with: { isDevToolsOpen: false, shadowDialog: false }: verify close button for non shadow dom 1`] = `<CancelIcon />`;
+exports[`DetailsDialog renders with: {"isDevToolsOpen": false, "shadowDialog": false}: verify close button for non shadow dom 1`] = `<CancelIcon />`;
 
-exports[`DetailsDialog renders with: { isDevToolsOpen: false, shadowDialog: false }: verify initial state 1`] = `
+exports[`DetailsDialog renders with: {"isDevToolsOpen": false, "shadowDialog": false}: verify initial state 1`] = `
 Object {
   "canInspect": true,
   "currentRuleIndex": 0,
@@ -1125,7 +1116,7 @@ Object {
 }
 `;
 
-exports[`DetailsDialog renders with: { isDevToolsOpen: false, shadowDialog: true } 1`] = `
+exports[`DetailsDialog renders with: {"isDevToolsOpen": false, "shadowDialog": true} 1`] = `
 <div
   className="insights-dialog-main-override-shadow"
   style={
@@ -1683,7 +1674,7 @@ exports[`DetailsDialog renders with: { isDevToolsOpen: false, shadowDialog: true
 </div>
 `;
 
-exports[`DetailsDialog renders with: { isDevToolsOpen: false, shadowDialog: true }: verify initial state 1`] = `
+exports[`DetailsDialog renders with: {"isDevToolsOpen": false, "shadowDialog": true}: verify initial state 1`] = `
 Object {
   "canInspect": true,
   "currentRuleIndex": 0,
@@ -1693,7 +1684,7 @@ Object {
 }
 `;
 
-exports[`DetailsDialog renders with: { isDevToolsOpen: true, shadowDialog: false } 1`] = `
+exports[`DetailsDialog renders with: {"isDevToolsOpen": true, "shadowDialog": false} 1`] = `
 <StyledWithResponsiveMode
   dialogContentProps={
     Object {
@@ -2239,9 +2230,9 @@ exports[`DetailsDialog renders with: { isDevToolsOpen: true, shadowDialog: false
 </StyledWithResponsiveMode>
 `;
 
-exports[`DetailsDialog renders with: { isDevToolsOpen: true, shadowDialog: false }: verify close button for non shadow dom 1`] = `<CancelIcon />`;
+exports[`DetailsDialog renders with: {"isDevToolsOpen": true, "shadowDialog": false}: verify close button for non shadow dom 1`] = `<CancelIcon />`;
 
-exports[`DetailsDialog renders with: { isDevToolsOpen: true, shadowDialog: false }: verify initial state 1`] = `
+exports[`DetailsDialog renders with: {"isDevToolsOpen": true, "shadowDialog": false}: verify initial state 1`] = `
 Object {
   "canInspect": true,
   "currentRuleIndex": 0,
@@ -2251,7 +2242,7 @@ Object {
 }
 `;
 
-exports[`DetailsDialog renders with: { isDevToolsOpen: true, shadowDialog: true } 1`] = `
+exports[`DetailsDialog renders with: {"isDevToolsOpen": true, "shadowDialog": true} 1`] = `
 <div
   className="insights-dialog-main-override-shadow"
   style={
@@ -2809,7 +2800,7 @@ exports[`DetailsDialog renders with: { isDevToolsOpen: true, shadowDialog: true 
 </div>
 `;
 
-exports[`DetailsDialog renders with: { isDevToolsOpen: true, shadowDialog: true }: verify initial state 1`] = `
+exports[`DetailsDialog renders with: {"isDevToolsOpen": true, "shadowDialog": true}: verify initial state 1`] = `
 Object {
   "canInspect": true,
   "currentRuleIndex": 0,
