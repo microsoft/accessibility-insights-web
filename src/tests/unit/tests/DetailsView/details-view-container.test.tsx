@@ -262,22 +262,22 @@ describe('DetailsViewContainer', () => {
     function buildDetailsViewMainContent(
         storeMocks: StoreMocks,
         props: DetailsViewContainerProps,
-        selectedDetailsView: VisualizationType,
+        selectedDetailsViewType: VisualizationType,
         rightPanelConfiguration: DetailsRightPanelConfiguration,
         switcherNavConfiguration: DetailsViewSwitcherNavConfiguration,
         ruleResults: UnifiedStatusResults,
+        state: DetailsViewContainerState,
     ): JSX.Element {
+        const { selectedDetailsView, selectedDetailsRightPanelConfiguration, ...rest } = state;
         return (
             <DetailsViewMainContent
                 deps={deps}
-                storeData={{
-                    featureFlagStoreData: storeMocks.featureFlagStoreData,
-                }}
+                storeData={rest}
                 tabStoreData={storeMocks.tabStoreData}
                 assessmentStoreData={storeMocks.assessmentStoreData}
                 pathSnippetStoreData={storeMocks.pathSnippetStoreData}
                 featureFlagStoreData={storeMocks.featureFlagStoreData}
-                selectedTest={selectedDetailsView}
+                selectedTest={selectedDetailsViewType}
                 detailsViewStoreData={storeMocks.detailsViewStoreData}
                 visualizationStoreData={storeMocks.visualizationStoreData}
                 visualizationScanResultData={storeMocks.visualizationScanResultsStoreData}
@@ -432,8 +432,8 @@ describe('DetailsViewContainer', () => {
         testObject.state = state;
 
         getSelectedDetailsViewMock
-            .setup(gsdvm =>
-                gsdvm(
+            .setup(getter =>
+                getter(
                     It.isObjectWith({
                         assessmentStoreData: state.assessmentStoreData,
                         visualizationStoreData: state.visualizationStoreData,
@@ -458,7 +458,15 @@ describe('DetailsViewContainer', () => {
                     tabClosed={storeMocks.tabStoreData.isClosed}
                 />
                 <div className="table column-layout details-view-body">
-                    {buildDetailsViewMainContent(storeMocks, props, viewType, rightContentPanelConfig, switcherNavConfig, ruleResults)}
+                    {buildDetailsViewMainContent(
+                        storeMocks,
+                        props,
+                        viewType,
+                        rightContentPanelConfig,
+                        switcherNavConfig,
+                        ruleResults,
+                        state,
+                    )}
                 </div>
                 {buildOverlay(storeMocks, props)}
             </div>
