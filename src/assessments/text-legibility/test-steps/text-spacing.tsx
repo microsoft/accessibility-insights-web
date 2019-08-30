@@ -20,8 +20,12 @@ const textSpacingHowToTest: JSX.Element = (
         bookmarklet to adjust text spacing in the target page.
         <ol>
             <li>
-                Add the <NewTabLink href="https://www.html5accessibility.com/tests/tsbookmarklet.html">Text spacing</NewTabLink> bookmarklet
-                to your browser's bookmarks. (Mouse users can simply drag the link into the bookmarks bar.)
+                Open <NewTabLink href="https://www.html5accessibility.com/tests/tsbookmarklet.html">Text spacing</NewTabLink> in a new
+                browser window.
+            </li>
+            <li>
+                Add the "Bookmarklet: Text Spacing" link from that page to your browser's bookmarks. (Mouse users can simply drag the link
+                into the bookmarks bar.)
             </li>
             <li>Use your browser's settings to set the target page's zoom to 400%.</li>
             <li>
