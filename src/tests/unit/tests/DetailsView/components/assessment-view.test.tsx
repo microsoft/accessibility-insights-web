@@ -268,6 +268,9 @@ class AssessmentViewPropsBuilder {
             assessmentData,
             assessmentDefaultMessageGenerator: this.assessmentGeneratorInstance,
             assessmentTestResult: new AssessmentTestResult(this.provider, assessment.visualizationType, assessmentData),
+            storeData: {
+                featureFlagStoreData,
+            },
             featureFlagStoreData,
             pathSnippetStoreData,
         };

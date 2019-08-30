@@ -18,13 +18,15 @@ import { DetailsViewActionMessageCreator } from '../actions/details-view-action-
 import { detailsViewExtensionPoint } from '../extensions/details-view-extension-point';
 import { AssessmentInstanceTableHandler } from '../handlers/assessment-instance-table-handler';
 import { TargetChangeDialog, TargetChangeDialogDeps } from './target-change-dialog';
-import { TestStepView, TestStepViewDeps } from './test-step-view';
+import { TestStepView, TestStepViewDeps, TestStepViewStoreData } from './test-step-view';
 import { TestStepNavDeps, TestStepsNav } from './test-steps-nav';
 
 export type WithAssessmentTestResult = { assessmentTestResult: AssessmentTestResult };
 export const AssessmentViewMainContentExtensionPoint = reactExtensionPoint<WithAssessmentTestResult>(
     'AssessmentViewMainContentExtensionPoint',
 );
+
+export type AssessmentViewStoreData = TestStepViewStoreData;
 
 export type AssessmentViewDeps = ContentLinkDeps &
     TestStepViewDeps &
@@ -36,6 +38,7 @@ export type AssessmentViewDeps = ContentLinkDeps &
 
 export interface AssessmentViewProps {
     deps: AssessmentViewDeps;
+    storeData: AssessmentViewStoreData;
     isScanning: boolean;
     isEnabled: boolean;
     assessmentNavState: AssessmentNavState;
@@ -200,9 +203,7 @@ export class AssessmentView extends React.Component<AssessmentViewProps> {
                         isStepEnabled={this.props.isEnabled}
                         isStepScanned={isStepScanned}
                         assessmentDefaultMessageGenerator={this.props.assessmentDefaultMessageGenerator}
-                        storeData={{
-                            featureFlagStoreData: this.props.featureFlagStoreData,
-                        }}
+                        storeData={this.props.storeData}
                         featureFlagStoreData={this.props.featureFlagStoreData}
                         pathSnippetStoreData={this.props.pathSnippetStoreData}
                     />
