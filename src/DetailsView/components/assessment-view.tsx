@@ -1,9 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as React from 'react';
-
 import { AssessmentDefaultMessageGenerator } from 'assessments/assessment-default-message-generator';
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
+import * as React from 'react';
 import { ContentLink, ContentLinkDeps } from 'views/content/content-link';
 import { ContentPageComponent } from 'views/content/content-page';
 import { AssessmentTestResult } from '../../common/assessment/assessment-test-result';
@@ -11,7 +10,6 @@ import { CollapsibleComponent } from '../../common/components/collapsible-compon
 import { reactExtensionPoint } from '../../common/extensibility/react-extension-point';
 import { Tab } from '../../common/itab';
 import { AssessmentData, AssessmentNavState, PersistedTabInfo } from '../../common/types/store-data/assessment-result-data';
-import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { PathSnippetStoreData } from '../../common/types/store-data/path-snippet-store-data';
 import { VisualizationType } from '../../common/types/visualization-type';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
@@ -203,7 +201,6 @@ export class AssessmentView extends React.Component<AssessmentViewProps> {
                         isStepScanned={isStepScanned}
                         assessmentDefaultMessageGenerator={this.props.assessmentDefaultMessageGenerator}
                         storeData={this.props.storeData}
-                        featureFlagStoreData={this.props.storeData.featureFlagStoreData}
                         pathSnippetStoreData={this.props.pathSnippetStoreData}
                     />
                 </div>

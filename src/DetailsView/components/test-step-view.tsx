@@ -41,7 +41,6 @@ export interface TestStepViewProps {
     actionMessageCreator: DetailsViewActionMessageCreator;
     assessmentsProvider: AssessmentsProvider;
     assessmentDefaultMessageGenerator: AssessmentDefaultMessageGenerator;
-    featureFlagStoreData: FeatureFlagStoreData;
     pathSnippetStoreData: PathSnippetStoreData;
 }
 
