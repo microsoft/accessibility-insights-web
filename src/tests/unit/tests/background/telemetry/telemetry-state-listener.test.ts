@@ -64,7 +64,7 @@ describe('TelemetryStateListenerTest', () => {
             },
         ];
 
-        test.each(disableCases)('disable telemetry: %o', (testCase: TestCase) => {
+        test.each(disableCases)('disable telemetry: %p', (testCase: TestCase) => {
             userConfigState = testCase.userConfigState;
 
             setupDisableTelemetry();

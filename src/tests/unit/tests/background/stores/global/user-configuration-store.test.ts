@@ -140,7 +140,7 @@ describe('UserConfigurationStoreTest', () => {
         { enableTelemetry: true, isFirstTime: false, enableHighContrastMode: false } as SetUserConfigTestCase,
         { enableTelemetry: false, isFirstTime: false, enableHighContrastMode: false } as SetUserConfigTestCase,
         { enableTelemetry: false, isFirstTime: true, enableHighContrastMode: false } as SetUserConfigTestCase,
-    ])('setTelemetryConfig action: %o', (testCase: SetUserConfigTestCase) => {
+    ])('setTelemetryConfig action: %p', (testCase: SetUserConfigTestCase) => {
         const storeTester = createStoreToTestAction('setTelemetryState');
         initialStoreData = {
             enableTelemetry: testCase.enableTelemetry,
@@ -173,7 +173,7 @@ describe('UserConfigurationStoreTest', () => {
     test.each([
         { enableTelemetry: false, isFirstTime: false, enableHighContrastMode: true } as SetUserConfigTestCase,
         { enableTelemetry: false, isFirstTime: false, enableHighContrastMode: false } as SetUserConfigTestCase,
-    ])('setHighContrast action: %o', (testCase: SetUserConfigTestCase) => {
+    ])('setHighContrast action: %p', (testCase: SetUserConfigTestCase) => {
         const storeTester = createStoreToTestAction('setHighContrastMode');
         initialStoreData = {
             enableTelemetry: false,
@@ -236,7 +236,7 @@ describe('UserConfigurationStoreTest', () => {
     );
 
     test.each([undefined, null, {}, { 'test-service': {} }, { 'test-service': { 'test-name': 'test-value' } }])(
-        'setIssueFilingServiceProperty with initial map state %o',
+        'setIssueFilingServiceProperty with initial map state %p',
         (initialMapState: IssueFilingServicePropertiesMap) => {
             const storeTester = createStoreToTestAction('setIssueFilingServiceProperty');
             initialStoreData = {

@@ -4,7 +4,7 @@ import { GetGuidanceTagsFromGuidanceLinks } from '../../../../common/get-guidanc
 import { GuidanceLink } from '../../../../scanner/rule-to-links-mappings';
 
 describe('GetGuidanceTagsFromGuidanceLinks', () => {
-    it.each([null, [], [undefined]])('handles invalid arg %o', (links: GuidanceLink[]) => {
+    it.each([null, [], [undefined]])('handles invalid arg %p', (links: GuidanceLink[]) => {
         expect(GetGuidanceTagsFromGuidanceLinks(links)).toEqual([]);
     });
 

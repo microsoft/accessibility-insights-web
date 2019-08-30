@@ -63,7 +63,7 @@ describe('verify matches', () => {
         { pseudoSelectorContent: 'none', testExpectation: false },
         { pseudoSelectorContent: 'non-none', testExpectation: true },
     ];
-    test.each(contentSwitchParameters)('element isVisible but pseudo selector content is toggled: %o', testCaseParameters => {
+    test.each(contentSwitchParameters)('element isVisible but pseudo selector content is toggled: %p', testCaseParameters => {
         axeVisibilityMock
             .setup(isVisible => isVisible(headingElementFixture))
             .returns(() => true)

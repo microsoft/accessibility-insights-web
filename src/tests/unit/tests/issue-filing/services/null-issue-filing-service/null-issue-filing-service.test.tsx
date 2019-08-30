@@ -27,7 +27,7 @@ describe('NullIssueFilingService', () => {
     });
 
     describe('check settings', () => {
-        it.each(testSettings)('with %o', settings => {
+        it.each(testSettings)('with %p', settings => {
             expect(NullIssueFilingService.isSettingsValid(settings)).toBe(false);
         });
     });

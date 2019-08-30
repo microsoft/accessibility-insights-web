@@ -35,7 +35,7 @@ describe('HTTPQueryBuilder', () => {
             { name: 'name?', value: 'value"' },
         ];
 
-        it.each(testCases)('%o', param => {
+        it.each(testCases)('%p', param => {
             const result = testSubject
                 .withBaseUrl(testUrl)
                 .withParam(param.name, param.value)

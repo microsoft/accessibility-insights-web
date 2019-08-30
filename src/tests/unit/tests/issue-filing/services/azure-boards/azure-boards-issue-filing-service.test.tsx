@@ -49,7 +49,7 @@ describe('AzureBoardsIssueFilingServiceTest', () => {
             { projectURL: '', issueDetailsField: 'some issue details location' as AzureBoardsIssueDetailField },
         ];
 
-        it.each(invalidTestSettings)('handles invalid settings: %o', settings => {
+        it.each(invalidTestSettings)('handles invalid settings: %p', settings => {
             expect(AzureBoardsIssueFilingService.isSettingsValid(settings)).toBe(false);
         });
 

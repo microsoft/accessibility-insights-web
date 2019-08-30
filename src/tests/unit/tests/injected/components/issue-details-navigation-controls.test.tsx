@@ -51,7 +51,7 @@ describe('IssueDetailsNavigationControls', () => {
             },
         ];
 
-        it.each(testCases)('handles button states: %o', testCase => {
+        it.each(testCases)('handles button states: %p', testCase => {
             navigationHandlerMock
                 .setup(handler => handler.isBackButtonDisabled(controlProps.container))
                 .returns(() => testCase.backButtonDisabled);

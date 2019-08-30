@@ -61,7 +61,7 @@ describe('TargetTabFinderTest', () => {
         },
     ];
 
-    test.each(testCases)('get target tab info - %o', async (testCase: TestCase) => {
+    test.each(testCases)('get target tab info - %p', async (testCase: TestCase) => {
         if (testCase.hasTabIdInUrl) {
             setupGetTabIdParamFromUrl(tabId);
             setupGetTabCall();
