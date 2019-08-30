@@ -87,7 +87,7 @@ describe('DetailsDialog', () => {
             },
         ];
 
-        test.each(testCases)('with: %o', (testCase: DetailsDialogTestCase) => {
+        test.each(testCases)('with: %p', (testCase: DetailsDialogTestCase) => {
             const {
                 isDevToolsOpen,
                 shadowDialog,

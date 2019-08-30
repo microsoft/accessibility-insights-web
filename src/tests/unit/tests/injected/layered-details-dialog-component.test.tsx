@@ -29,7 +29,7 @@ describe('LayeredDetailsDialogComponent', () => {
         expect(wrapper.getElement()).toMatchSnapshot();
     });
 
-    test.each([true, false])('render component when shadow dom is enabled - isRTL - %o', isRTL => {
+    test.each([true, false])('render component when shadow dom is enabled - isRTL - %p', isRTL => {
         featureFlagStoreData[FeatureFlags.shadowDialog] = true;
 
         getRTLMock.setup(g => g()).returns(() => isRTL);

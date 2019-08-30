@@ -13,6 +13,6 @@ exports[`GuidanceTags renders tags 1`] = `
 </span>
 `;
 
-exports[`GuidanceTags tags is: [ [length]: 0 ] 1`] = `null`;
+exports[`GuidanceTags tags is: [] 1`] = `null`;
 
 exports[`GuidanceTags tags is: null 1`] = `null`;

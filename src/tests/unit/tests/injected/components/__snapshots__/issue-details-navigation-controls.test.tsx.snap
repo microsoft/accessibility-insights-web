@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`IssueDetailsNavigationControls render handles button states: { backButtonDisabled: false, nextButtonDisabled: false } 1`] = `
+exports[`IssueDetailsNavigationControls render handles button states: {"backButtonDisabled": false, "nextButtonDisabled": false} 1`] = `
 <div
   className="ms-Grid insights-dialog-next-and-back-container"
 >
@@ -34,7 +34,7 @@ exports[`IssueDetailsNavigationControls render handles button states: { backButt
 </div>
 `;
 
-exports[`IssueDetailsNavigationControls render handles button states: { backButtonDisabled: false, nextButtonDisabled: true } 1`] = `
+exports[`IssueDetailsNavigationControls render handles button states: {"backButtonDisabled": false, "nextButtonDisabled": true} 1`] = `
 <div
   className="ms-Grid insights-dialog-next-and-back-container"
 >
@@ -62,7 +62,7 @@ exports[`IssueDetailsNavigationControls render handles button states: { backButt
 </div>
 `;
 
-exports[`IssueDetailsNavigationControls render handles button states: { backButtonDisabled: true, nextButtonDisabled: false } 1`] = `
+exports[`IssueDetailsNavigationControls render handles button states: {"backButtonDisabled": true, "nextButtonDisabled": false} 1`] = `
 <div
   className="ms-Grid insights-dialog-next-and-back-container"
 >
@@ -90,7 +90,7 @@ exports[`IssueDetailsNavigationControls render handles button states: { backButt
 </div>
 `;
 
-exports[`IssueDetailsNavigationControls render handles button states: { backButtonDisabled: true, nextButtonDisabled: true } 1`] = `
+exports[`IssueDetailsNavigationControls render handles button states: {"backButtonDisabled": true, "nextButtonDisabled": true} 1`] = `
 <div
   className="ms-Grid insights-dialog-next-and-back-container"
 >

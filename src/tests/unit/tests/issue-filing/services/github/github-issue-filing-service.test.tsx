@@ -57,7 +57,7 @@ describe('GithubIssueFilingServiceTest', () => {
     });
 
     describe('isSettingsValid', () => {
-        it.each(invalidTestSettings)('invalid settings with %o', (settings: GitHubIssueFilingSettings) => {
+        it.each(invalidTestSettings)('invalid settings with %p', (settings: GitHubIssueFilingSettings) => {
             expect(GitHubIssueFilingService.isSettingsValid(settings)).toBe(false);
         });
 

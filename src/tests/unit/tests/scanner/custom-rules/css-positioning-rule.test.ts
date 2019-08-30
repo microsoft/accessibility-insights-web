@@ -74,7 +74,7 @@ describe('verify evaluate', () => {
         },
     ];
 
-    it.each(testFixture)('check for different combinations of nodeStyleStub and visibility %o', testStub => {
+    it.each(testFixture)('check for different combinations of nodeStyleStub and visibility %p', testStub => {
         testMeaningfulSequence(testStub.nodeStyleStub, testStub.isVisible, testStub.expectedResult);
     });
 
