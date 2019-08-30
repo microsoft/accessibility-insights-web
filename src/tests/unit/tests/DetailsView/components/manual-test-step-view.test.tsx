@@ -33,6 +33,9 @@ describe('ManualTestStepView', () => {
             },
             assessmentsProvider: CreateTestAssessmentProvider(),
             featureFlagStoreData: featureFlagStoreData,
+            storeData: {
+                featureFlagStoreData,
+            },
             pathSnippetStoreData: null,
         };
         const testObject = new ManualTestStepView(props);
@@ -86,6 +89,9 @@ describe('ManualTestStepView', () => {
                 },
             },
             assessmentsProvider: CreateTestAssessmentProvider(),
+            storeData: {
+                featureFlagStoreData,
+            },
             featureFlagStoreData,
             pathSnippetStoreData,
         };

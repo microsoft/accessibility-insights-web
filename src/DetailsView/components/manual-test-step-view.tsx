@@ -11,10 +11,18 @@ import { PathSnippetStoreData } from '../../common/types/store-data/path-snippet
 import { VisualizationType } from '../../common/types/visualization-type';
 import { DictionaryStringTo } from '../../types/common-types';
 import { AssessmentInstanceTableHandler } from '../handlers/assessment-instance-table-handler';
-import { CapturedInstanceActionType, FailureInstanceData, FailureInstancePanelControl } from './failure-instance-panel-control';
+import {
+    CapturedInstanceActionType,
+    FailureInstanceData,
+    FailureInstancePanelControl,
+    FailureInstancePanelControlStoreData,
+} from './failure-instance-panel-control';
 import { TestStatusChoiceGroup } from './test-status-choice-group';
 
+export type ManualTestStepViewStoreData = FailureInstancePanelControlStoreData;
+
 export interface ManualTestStepViewProps {
+    storeData: ManualTestStepViewStoreData;
     step: string;
     test: VisualizationType;
     assessmentInstanceTableHandler: AssessmentInstanceTableHandler;
@@ -72,9 +80,7 @@ export class ManualTestStepView extends React.Component<ManualTestStepViewProps>
                     clearPathSnippetData={this.props.assessmentInstanceTableHandler.clearPathSnippetData}
                     actionType={CapturedInstanceActionType.CREATE}
                     assessmentsProvider={this.props.assessmentsProvider}
-                    storeData={{
-                        featureFlagStoreData: this.props.featureFlagStoreData,
-                    }}
+                    storeData={this.props.storeData}
                     failureInstance={instance}
                 />
                 <DetailsList
