@@ -2,7 +2,8 @@
 // Licensed under the MIT License.
 import { capitalize } from 'lodash';
 import { RegisterTypeToPayloadCallback } from '../../common/message';
-import { Messages } from '../../common/messages';
+import { getStoreStateMessage, Messages } from '../../common/messages';
+import { StoreNames } from '../../common/stores/store-names';
 import * as TelemetryEvents from '../../common/telemetry-events';
 import { ScanBasePayload, ScanCompletedPayload, ScanUpdatePayload } from '../../injected/analyzers/analyzer';
 import { TelemetryEventHandler } from '../telemetry/telemetry-event-handler';
@@ -41,7 +42,7 @@ export class AssessmentActionCreator {
 
     public registerCallbacks(): void {
         this.registerTypeToPayloadCallback(AssessmentMessages.SelectTestRequirement, this.onSelectTestStep);
-        this.registerTypeToPayloadCallback(AssessmentMessages.GetCurrentState, this.onGetAssessmentCurrentState);
+        this.registerTypeToPayloadCallback(getStoreStateMessage(StoreNames.AssessmentStore), this.onGetAssessmentCurrentState);
         this.registerTypeToPayloadCallback(AssessmentMessages.AssessmentScanCompleted, this.onAssessmentScanCompleted);
         this.registerTypeToPayloadCallback(AssessmentMessages.StartOver, this.onStartOverAssessment);
         this.registerTypeToPayloadCallback(AssessmentMessages.StartOverAllAssessments, this.onStartOverAllAssessments);

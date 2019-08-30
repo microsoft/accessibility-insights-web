@@ -1,7 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { RegisterTypeToPayloadCallback } from '../../common/message';
-import { Messages } from '../../common/messages';
+import { getStoreStateMessage, Messages } from '../../common/messages';
+import { StoreNames } from '../../common/stores/store-names';
 import * as TelemetryEvents from '../../common/telemetry-events';
 import { TelemetryEventHandler } from '../telemetry/telemetry-event-handler';
 import { InspectElementPayload, InspectFrameUrlPayload, OnDevToolOpenPayload } from './action-payloads';
@@ -29,7 +30,7 @@ export class DevToolsActionCreator {
 
         this.registerTypeToPayloadCallback(Messages.DevTools.InspectFrameUrl, payload => this.onDevToolInspectFrameUrl(payload));
 
-        this.registerTypeToPayloadCallback(Messages.DevTools.Get, () => this.onDevToolGetCurrentState());
+        this.registerTypeToPayloadCallback(getStoreStateMessage(StoreNames.DevToolsStore), () => this.onDevToolGetCurrentState());
     }
 
     private onDevToolOpened(payload: OnDevToolOpenPayload): void {

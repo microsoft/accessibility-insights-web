@@ -20,7 +20,7 @@ import { UnifiedScanResultStore } from '../../../../background/stores/unified-sc
 import { BrowserAdapter } from '../../../../common/browser-adapters/browser-adapter';
 import { VisualizationConfiguration } from '../../../../common/configs/visualization-configuration';
 import { VisualizationConfigurationFactory } from '../../../../common/configs/visualization-configuration-factory';
-import { Messages } from '../../../../common/messages';
+import { getStoreStateMessage } from '../../../../common/messages';
 import { PromiseFactory } from '../../../../common/promises/promise-factory';
 import { StoreNames } from '../../../../common/stores/store-names';
 import { StoreUpdateMessage } from '../../../../common/types/store-update-message';
@@ -100,7 +100,7 @@ describe('TabContextFactoryTest', () => {
             .verifiable(Times.once());
 
         tabContext.interpreter.interpret({
-            messageType: Messages.Visualizations.State.GetCurrentVisualizationResultState,
+            messageType: getStoreStateMessage(StoreNames.VisualizationScanResultStore),
             tabId: null,
         });
 

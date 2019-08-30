@@ -14,7 +14,8 @@ import { Interpreter } from 'background/interpreter';
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
 import { CommandsAdapter } from '../../../../../common/browser-adapters/commands-adapter';
 import { Action } from '../../../../../common/flux/action';
-import { Messages } from '../../../../../common/messages';
+import { getStoreStateMessage, Messages } from '../../../../../common/messages';
+import { StoreNames } from '../../../../../common/stores/store-names';
 import { LaunchPanelType } from '../../../../../popup/components/popup-view';
 import { DictionaryStringTo } from '../../../../../types/common-types';
 
@@ -26,8 +27,9 @@ describe('GlobalActionCreatorTest', () => {
                 name: 'test command',
             },
         ];
+        const getCommandStoreState = getStoreStateMessage(StoreNames.CommandStore);
         const payload = {
-            type: Messages.Command.GetCommands,
+            type: getCommandStoreState,
             tabId: tabId,
         };
         const invokeParameter = {
@@ -39,7 +41,7 @@ describe('GlobalActionCreatorTest', () => {
         const args = [payload, tabId];
         const builder = new GlobalActionCreatorValidator()
             .setupGetCommandsFromAdapter(commands)
-            .setupRegistrationCallback(Messages.Command.GetCommands, args)
+            .setupRegistrationCallback(getCommandStoreState, args)
             .setupCommandActionWithInvokeParameter(actionName, invokeParameter)
             .setupActionOnCommandActions(actionName);
 
@@ -52,7 +54,7 @@ describe('GlobalActionCreatorTest', () => {
     test('registerCallback for on get launch panel state', () => {
         const actionName = 'getCurrentState';
         const validator = new GlobalActionCreatorValidator()
-            .setupRegistrationCallback(Messages.LaunchPanel.Get)
+            .setupRegistrationCallback(getStoreStateMessage(StoreNames.LaunchPanelStateStore))
             .setupActionOnLaunchPanelActions(actionName)
             .setupLaunchPanelActionWithInvokeParameter(actionName, null);
 

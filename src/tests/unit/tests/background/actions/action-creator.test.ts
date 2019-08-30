@@ -27,8 +27,10 @@ import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-hand
 import { VisualizationConfigurationFactory } from '../../../../../common/configs/visualization-configuration-factory';
 import { Action } from '../../../../../common/flux/action';
 import { PayloadCallback } from '../../../../../common/message';
-import { Messages } from '../../../../../common/messages';
+import { getStoreStateMessage, Messages } from '../../../../../common/messages';
 import { NotificationCreator } from '../../../../../common/notification-creator';
+import { StoreNames } from '../../../../../common/stores/store-names';
+import * as TelemetryEvents from '../../../../../common/telemetry-events';
 import {
     BaseTelemetryData,
     DetailsViewOpenTelemetryData,
@@ -37,7 +39,6 @@ import {
     ToggleTelemetryData,
     TriggeredBy,
 } from '../../../../../common/telemetry-events';
-import * as TelemetryEvents from '../../../../../common/telemetry-events';
 import { DetailsViewPivotType } from '../../../../../common/types/details-view-pivot-type';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
 import { ScanCompletedPayload } from '../../../../../injected/analyzers/analyzer';
@@ -550,7 +551,7 @@ describe('ActionCreatorTest', () => {
         const args = [];
         const actionName = 'getCurrentState';
         const builder = new ActionCreatorValidator()
-            .setupRegistrationCallback(Messages.Visualizations.State.GetCurrentVisualizationToggleState, args)
+            .setupRegistrationCallback(getStoreStateMessage(StoreNames.VisualizationStore), args)
             .setupActionOnVisualizationActions(actionName)
             .setupVisualizationActionWithInvokeParameter(actionName, null);
 
@@ -565,7 +566,7 @@ describe('ActionCreatorTest', () => {
         const args = [];
         const actionName = 'getCurrentState';
         const builder = new ActionCreatorValidator()
-            .setupRegistrationCallback(Messages.Visualizations.State.GetCurrentVisualizationResultState, args)
+            .setupRegistrationCallback(getStoreStateMessage(StoreNames.VisualizationScanResultStore), args)
             .setupActionOnVisualizationScanResultActions(actionName)
             .setupVisualizationScanResultActionWithInvokeParameter(actionName, null);
 

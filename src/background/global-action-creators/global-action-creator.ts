@@ -1,7 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { CommandsAdapter } from '../../common/browser-adapters/commands-adapter';
-import { Messages } from '../../common/messages';
+import { getStoreStateMessage, Messages } from '../../common/messages';
+import { StoreNames } from '../../common/stores/store-names';
 import { PayloadWithEventName, SetLaunchPanelState } from '../actions/action-payloads';
 import { CommandActions, GetCommandsPayload } from '../actions/command-actions';
 import { GlobalActionHub } from '../actions/global-action-hub';
@@ -31,9 +32,9 @@ export class GlobalActionCreator {
     }
 
     public registerCallbacks(): void {
-        this.interpreter.registerTypeToPayloadCallback(Messages.Command.GetCommands, this.onGetCommands);
+        this.interpreter.registerTypeToPayloadCallback(getStoreStateMessage(StoreNames.CommandStore), this.onGetCommands);
 
-        this.interpreter.registerTypeToPayloadCallback(Messages.LaunchPanel.Get, this.onGetLaunchPanelState);
+        this.interpreter.registerTypeToPayloadCallback(getStoreStateMessage(StoreNames.LaunchPanelStateStore), this.onGetLaunchPanelState);
         this.interpreter.registerTypeToPayloadCallback(Messages.LaunchPanel.Set, this.onSetLaunchPanelState);
 
         this.interpreter.registerTypeToPayloadCallback(Messages.Telemetry.Send, this.onSendTelemetry);

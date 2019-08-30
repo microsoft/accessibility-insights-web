@@ -7,7 +7,8 @@ import { UnifiedScanResultActionCreator } from '../../../../../background/action
 import { UnifiedScanResultActions } from '../../../../../background/actions/unified-scan-result-actions';
 import { Action } from '../../../../../common/flux/action';
 import { RegisterTypeToPayloadCallback } from '../../../../../common/message';
-import { Messages } from '../../../../../common/messages';
+import { getStoreStateMessage, Messages } from '../../../../../common/messages';
+import { StoreNames } from '../../../../../common/stores/store-names';
 
 describe('UnifiedScanResultActionCreator', () => {
     let scanResultActionsMock: IMock<UnifiedScanResultActions>;
@@ -39,7 +40,7 @@ describe('UnifiedScanResultActionCreator', () => {
 
         const getCurrentStateMock = createActionMock(payload);
         setupScanResultActionsMock('getCurrentState', getCurrentStateMock);
-        setupRegisterTypeToPayloadCallbackMock(Messages.UnifiedScan.GetCurrentState, payload);
+        setupRegisterTypeToPayloadCallbackMock(getStoreStateMessage(StoreNames.UnifiedScanResultStore), payload);
 
         testSubject.registerCallbacks();
 

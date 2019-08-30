@@ -3,8 +3,9 @@
 import { TestMode } from '../../common/configs/test-mode';
 import { VisualizationConfigurationFactory } from '../../common/configs/visualization-configuration-factory';
 import { RegisterTypeToPayloadCallback } from '../../common/message';
-import { Messages } from '../../common/messages';
+import { getStoreStateMessage, Messages } from '../../common/messages';
 import { NotificationCreator } from '../../common/notification-creator';
+import { StoreNames } from '../../common/stores/store-names';
 import * as TelemetryEvents from '../../common/telemetry-events';
 import { VisualizationType } from '../../common/types/visualization-type';
 import { ScanCompletedPayload } from '../../injected/analyzers/analyzer';
@@ -78,11 +79,8 @@ export class ActionCreator {
 
         this.registerTypeToPayloadCallback(visualizationMessages.State.InjectionCompleted, this.injectionCompleted);
         this.registerTypeToPayloadCallback(visualizationMessages.State.InjectionStarted, this.injectionStarted);
-        this.registerTypeToPayloadCallback(
-            visualizationMessages.State.GetCurrentVisualizationToggleState,
-            this.getVisualizationToggleCurrentState,
-        );
-        this.registerTypeToPayloadCallback(visualizationMessages.State.GetCurrentVisualizationResultState, this.getScanResultsCurrentState);
+        this.registerTypeToPayloadCallback(getStoreStateMessage(StoreNames.VisualizationStore), this.getVisualizationToggleCurrentState);
+        this.registerTypeToPayloadCallback(getStoreStateMessage(StoreNames.VisualizationScanResultStore), this.getScanResultsCurrentState);
 
         this.registerTypeToPayloadCallback(visualizationMessages.TabStops.TabbedElementAdded, this.onTabbedElementAdded);
         this.registerTypeToPayloadCallback(visualizationMessages.TabStops.RecordingCompleted, this.onRecordingCompleted);

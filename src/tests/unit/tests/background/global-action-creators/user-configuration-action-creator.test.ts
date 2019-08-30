@@ -12,8 +12,10 @@ import { UserConfigurationActionCreator } from 'background/global-action-creator
 import { Interpreter } from 'background/interpreter';
 import { isFunction } from 'lodash';
 import { IMock, It, Mock, Times } from 'typemoq';
+
 import { Action } from '../../../../../common/flux/action';
-import { Messages } from '../../../../../common/messages';
+import { getStoreStateMessage, Messages } from '../../../../../common/messages';
+import { StoreNames } from '../../../../../common/stores/store-names';
 import { TelemetryEventSource, TriggeredBy } from '../../../../../common/telemetry-events';
 
 describe('UserConfigurationActionCreator', () => {
@@ -21,7 +23,7 @@ describe('UserConfigurationActionCreator', () => {
         const payload = null;
         const getCurrentStateMock = createActionMock<null>(payload);
         const actionsMock = createActionsMock('getCurrentState', getCurrentStateMock.object);
-        const interpreterMock = createInterpreterMock(Messages.UserConfig.GetCurrentState, payload);
+        const interpreterMock = createInterpreterMock(getStoreStateMessage(StoreNames.UserConfigurationStore), payload);
         const testSubject = new UserConfigurationActionCreator(interpreterMock.object, actionsMock.object);
 
         testSubject.registerCallback();

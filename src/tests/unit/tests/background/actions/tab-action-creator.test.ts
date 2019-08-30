@@ -11,7 +11,8 @@ import { BrowserAdapter } from '../../../../../common/browser-adapters/browser-a
 import { Action } from '../../../../../common/flux/action';
 import { Tab } from '../../../../../common/itab';
 import { RegisterTypeToPayloadCallback } from '../../../../../common/message';
-import { Messages } from '../../../../../common/messages';
+import { getStoreStateMessage, Messages } from '../../../../../common/messages';
+import { StoreNames } from '../../../../../common/stores/store-names';
 import { SWITCH_BACK_TO_TARGET, TelemetryEventSource, TriggeredBy } from '../../../../../common/telemetry-events';
 
 describe('TestActionCreatorTest', () => {
@@ -53,7 +54,7 @@ describe('TestActionCreatorTest', () => {
     test('on Tab.GetCurrent', () => {
         const actionMock = createActionMock(null);
         setupTabActionsMock('getCurrentState', actionMock);
-        setupRegisterTypeToPayloadCallbackMock(Messages.Tab.GetCurrent, null, tabId);
+        setupRegisterTypeToPayloadCallbackMock(getStoreStateMessage(StoreNames.TabStore), null, tabId);
 
         testObject.registerCallbacks();
         actionMock.verifyAll();

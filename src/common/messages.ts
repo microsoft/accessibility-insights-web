@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { StoreNames } from './stores/store-names';
+
 export interface StateMessages {
-    GetCurrentVisualizationToggleState: string;
-    GetCurrentVisualizationResultState: string;
     InjectionCompleted: string;
     InjectionStarted: string;
 }
@@ -13,7 +13,6 @@ export interface DetailsViewMessages {
     PivotSelect: string;
     Close: string;
     SetDetailsViewRightContentPanel: string;
-    GetState: string;
 }
 
 export interface IssuesMessages {
@@ -37,7 +36,6 @@ export interface DevToolsMessages {
     DevtoolStatus: string;
     InspectElement: string;
     InspectFrameUrl: string;
-    Get: string;
 }
 
 export interface VisualizationMessages {
@@ -49,6 +47,9 @@ export interface VisualizationMessages {
 }
 
 const messagePrefix = 'insights';
+export const getStoreStateMessage = (storeName: StoreNames): string => {
+    return `${messagePrefix}/${StoreNames[storeName]}/state/current`;
+};
 
 export class Messages {
     public static readonly Visualizations: VisualizationMessages = {
@@ -67,8 +68,6 @@ export class Messages {
             UpdateFocusedInstance: `${messagePrefix}/visualization/issues/targets/focused/update`,
         },
         State: {
-            GetCurrentVisualizationToggleState: `${messagePrefix}/toggles/state/current`,
-            GetCurrentVisualizationResultState: `${messagePrefix}/results/state/current`,
             InjectionCompleted: `${messagePrefix}/visualization/state/injectionCompleted`,
             InjectionStarted: `${messagePrefix}/visualization/state/InjectionStarted`,
         },
@@ -78,7 +77,6 @@ export class Messages {
             PivotSelect: `${messagePrefix}/details-view/pivot/select`,
             Close: `${messagePrefix}/details-view/closed`,
             SetDetailsViewRightContentPanel: `${messagePrefix}/details-view/setRightContentPanel`,
-            GetState: `${messagePrefix}/details-view/state/current`,
         },
     };
 
@@ -86,7 +84,6 @@ export class Messages {
         DevtoolStatus: `${messagePrefix}/devtools/status`,
         InspectElement: `${messagePrefix}/devtools/inspect`,
         InspectFrameUrl: `${messagePrefix}/devtools/inspectFrameUrl`,
-        Get: `${messagePrefix}/devtools/get`,
     };
 
     public static readonly Telemetry = {
@@ -94,7 +91,6 @@ export class Messages {
     };
 
     public static readonly UserConfig = {
-        GetCurrentState: `${messagePrefix}/userConfig/getCurrentState`,
         SetTelemetryConfig: `${messagePrefix}/userConfig/setTelemetryConfig`,
         SetHighContrastConfig: `${messagePrefix}/userConfig/setHighContrastConfig`,
         SetIssueFilingService: `${messagePrefix}/userConfig/setIssueFilingService`,
@@ -104,19 +100,13 @@ export class Messages {
 
     public static readonly Tab = {
         Update: `${messagePrefix}/tab/update`,
-        GetCurrent: `${messagePrefix}/tab/current`,
         Remove: `${messagePrefix}/tab/remove`,
         Change: `${messagePrefix}/targetTab/changed`,
         Switch: `${messagePrefix}/targetTab/switch`,
         VisibilityChange: `${messagePrefix}/targetTab/visibilitychange`,
     };
 
-    public static readonly Command = {
-        GetCommands: `${messagePrefix}/command/get`,
-    };
-
     public static readonly Assessment = {
-        GetCurrentState: `${messagePrefix}/assessment/getCurrentState`,
         SelectTestRequirement: `${messagePrefix}/details-view/requirement/select`,
         AssessmentScanCompleted: `${messagePrefix}/assessment/scanComplete`,
         TabbedElementAdded: `${messagePrefix}/assessment/tab-stops/element-added`,
@@ -146,7 +136,6 @@ export class Messages {
     };
 
     public static readonly FeatureFlags = {
-        GetFeatureFlags: `${messagePrefix}/featureFlags/get`,
         SetFeatureFlag: `${messagePrefix}/featureFlags/set`,
         ResetFeatureFlag: `${messagePrefix}/featureFlags/reset`,
     };
@@ -156,7 +145,6 @@ export class Messages {
     };
 
     public static readonly LaunchPanel = {
-        Get: `${messagePrefix}/launchpanel/get`,
         Set: `${messagePrefix}/launchpanel/set`,
     };
 
@@ -178,14 +166,12 @@ export class Messages {
     public static readonly Scoping = {
         ClosePanel: `${messagePrefix}/scoping/closePanel`,
         OpenPanel: `${messagePrefix}/scoping/openPanel`,
-        GetCurrentState: `${messagePrefix}/scoping/get`,
         AddSelector: `${messagePrefix}/scoping/addSelector`,
         DeleteSelector: `${messagePrefix}/scoping/deleteSelector`,
     };
 
     public static readonly Inspect = {
         ChangeInspectMode: `${messagePrefix}/inspect/changeInspectMode`,
-        GetCurrentState: `${messagePrefix}/inspect/get`,
         SetHoveredOverSelector: `${messagePrefix}/inspect/setHoveredOverSelector`,
     };
 
@@ -194,7 +180,6 @@ export class Messages {
     };
 
     public static readonly PathSnippet = {
-        GetCurrentState: `${messagePrefix}/pathSnippet/getCurrentState`,
         AddPathForValidation: `${messagePrefix}/pathSnippet/addPathForValidation`,
         AddCorrespondingSnippet: `${messagePrefix}/pathSnippet/addCorrespondingSnippet`,
         ClearPathSnippetData: `${messagePrefix}/pathSnippet/clearPathSnippetData`,
@@ -202,6 +187,5 @@ export class Messages {
 
     public static readonly UnifiedScan = {
         ScanCompleted: `${messagePrefix}/unifiedScan/scanCompleted`,
-        GetCurrentState: `${messagePrefix}/unifiedScan/getCurrentState`,
     };
 }

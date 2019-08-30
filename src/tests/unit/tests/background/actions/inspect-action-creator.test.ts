@@ -10,7 +10,8 @@ import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-hand
 import { BrowserAdapter } from '../../../../../common/browser-adapters/browser-adapter';
 import { Action } from '../../../../../common/flux/action';
 import { RegisterTypeToPayloadCallback } from '../../../../../common/message';
-import { Messages } from '../../../../../common/messages';
+import { getStoreStateMessage, Messages } from '../../../../../common/messages';
+import { StoreNames } from '../../../../../common/stores/store-names';
 import * as TelemetryEvents from '../../../../../common/telemetry-events';
 
 describe('InspectActionCreatorTest', () => {
@@ -41,7 +42,7 @@ describe('InspectActionCreatorTest', () => {
 
         setupInspectActionMock('getCurrentState', getCurrentStateMock);
 
-        setupRegisterTypeToPayloadCallbackMock(Messages.Inspect.GetCurrentState, null, tabId);
+        setupRegisterTypeToPayloadCallbackMock(getStoreStateMessage(StoreNames.InspectStore), null, tabId);
 
         testObject.registerCallbacks();
         getCurrentStateMock.verifyAll();

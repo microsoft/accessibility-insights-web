@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { Messages } from '../../common/messages';
+import { getStoreStateMessage, Messages } from '../../common/messages';
+import { StoreNames } from '../../common/stores/store-names';
 import {
     SaveIssueFilingSettingsPayload,
     SetHighContrastModePayload,
@@ -15,7 +16,7 @@ export class UserConfigurationActionCreator {
     constructor(private readonly interpreter: Interpreter, private readonly userConfigActions: UserConfigurationActions) {}
 
     public registerCallback(): void {
-        this.interpreter.registerTypeToPayloadCallback(Messages.UserConfig.GetCurrentState, this.onGetUserConfigState);
+        this.interpreter.registerTypeToPayloadCallback(getStoreStateMessage(StoreNames.UserConfigurationStore), this.onGetUserConfigState);
         this.interpreter.registerTypeToPayloadCallback(Messages.UserConfig.SetTelemetryConfig, this.onSetTelemetryConfiguration);
         this.interpreter.registerTypeToPayloadCallback(Messages.UserConfig.SetHighContrastConfig, this.onSetHighContrastMode);
         this.interpreter.registerTypeToPayloadCallback(Messages.UserConfig.SetIssueFilingService, this.onSetBugService);

@@ -174,7 +174,7 @@ if (isNaN(tabId) === false) {
             );
 
             const userConfigMessageCreator = new UserConfigMessageCreator(actionMessageDispatcher);
-            const storeActionMessageCreator = storeActionMessageCreatorFactory.forDetailsView();
+            const storeActionMessageCreator = storeActionMessageCreatorFactory.fromStores(storesHub.stores);
 
             const visualizationActionCreator = new VisualizationActionMessageCreator(actionMessageDispatcher);
 

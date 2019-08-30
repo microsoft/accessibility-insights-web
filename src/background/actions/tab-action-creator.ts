@@ -2,7 +2,8 @@
 // Licensed under the MIT License.
 import { BrowserAdapter } from '../../common/browser-adapters/browser-adapter';
 import { RegisterTypeToPayloadCallback } from '../../common/message';
-import { Messages } from '../../common/messages';
+import { getStoreStateMessage, Messages } from '../../common/messages';
+import { StoreNames } from '../../common/stores/store-names';
 import { SWITCH_BACK_TO_TARGET } from '../../common/telemetry-events';
 import { TelemetryEventHandler } from '../telemetry/telemetry-event-handler';
 import { SwitchToTargetTabPayload } from './action-payloads';
@@ -28,7 +29,7 @@ export class TabActionCreator {
 
     public registerCallbacks(): void {
         this.registerTypeToPayloadCallback(Messages.Tab.Update, payload => this.tabActions.tabUpdate.invoke(payload));
-        this.registerTypeToPayloadCallback(Messages.Tab.GetCurrent, () => this.tabActions.getCurrentState.invoke(null));
+        this.registerTypeToPayloadCallback(getStoreStateMessage(StoreNames.TabStore), () => this.tabActions.getCurrentState.invoke(null));
         this.registerTypeToPayloadCallback(Messages.Tab.Remove, () => this.tabActions.tabRemove.invoke(null));
         this.registerTypeToPayloadCallback(Messages.Tab.Change, payload => this.tabActions.tabChange.invoke(payload));
         this.registerTypeToPayloadCallback(Messages.Tab.Switch, (payload, tabId) => this.onSwitchToTargetTab(payload, tabId));

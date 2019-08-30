@@ -92,10 +92,6 @@ export class PopupInitializer {
 
         const userConfigMessageCreator = new UserConfigMessageCreator(actionMessageDispatcher);
 
-        const storeActionMessageCreatorFactory = new StoreActionMessageCreatorFactory(actionMessageDispatcher);
-
-        const storeActionMessageCreator = storeActionMessageCreatorFactory.forPopup();
-
         const contentActionMessageCreator = new ContentActionMessageCreator(
             telemetryFactory,
             TelemetryEventSource.DetailsView,
@@ -115,6 +111,16 @@ export class PopupInitializer {
         const commandStore = new StoreProxy<CommandStoreData>(commandStoreName, this.browserAdapter);
         const featureFlagStore = new StoreProxy<FeatureFlagStoreData>(featureFlagStoreName, this.browserAdapter);
         const userConfigurationStore = new StoreProxy<UserConfigurationStoreData>(userConfigurationStoreName, this.browserAdapter);
+
+        const storeActionMessageCreatorFactory = new StoreActionMessageCreatorFactory(actionMessageDispatcher);
+
+        const storeActionMessageCreator = storeActionMessageCreatorFactory.fromStores([
+            visualizationStore,
+            launchPanelStateStore,
+            commandStore,
+            featureFlagStore,
+            userConfigurationStore,
+        ]);
 
         visualizationStore.setTabId(this.targetTabInfo.tab.id);
         commandStore.setTabId(this.targetTabInfo.tab.id);
