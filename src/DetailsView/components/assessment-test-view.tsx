@@ -13,7 +13,9 @@ import { PathSnippetStoreData } from '../../common/types/store-data/path-snippet
 import { TabStoreData } from '../../common/types/store-data/tab-store-data';
 import { VisualizationStoreData } from '../../common/types/store-data/visualization-store-data';
 import { AssessmentInstanceTableHandler } from '../handlers/assessment-instance-table-handler';
-import { AssessmentView, AssessmentViewDeps } from './assessment-view';
+import { AssessmentView, AssessmentViewDeps, AssessmentViewStoreData } from './assessment-view';
+
+export type AssessmentTestViewStoreData = AssessmentViewStoreData;
 
 export type AssessmentTestViewDeps = AssessmentViewDeps & {
     assessmentsProvider: AssessmentsProvider;
@@ -22,6 +24,7 @@ export type AssessmentTestViewDeps = AssessmentViewDeps & {
 
 export interface AssessmentTestViewProps {
     deps: AssessmentTestViewDeps;
+    storeData: AssessmentTestViewStoreData;
     tabStoreData: TabStoreData;
     assessmentStoreData: AssessmentStoreData;
     pathSnippetStoreData: PathSnippetStoreData;
@@ -59,9 +62,7 @@ export const AssessmentTestView = NamedSFC<AssessmentTestViewProps>('AssessmentT
             prevTarget={prevTarget}
             assessmentDefaultMessageGenerator={deps.assessmentDefaultMessageGenerator}
             assessmentTestResult={assessmentTestResult}
-            storeData={{
-                featureFlagStoreData: props.featureFlagStoreData,
-            }}
+            storeData={props.storeData}
             featureFlagStoreData={props.featureFlagStoreData}
             pathSnippetStoreData={props.pathSnippetStoreData}
         />

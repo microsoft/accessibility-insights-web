@@ -6,6 +6,7 @@ import { It, Mock, MockBehavior } from 'typemoq';
 
 import { VisualizationConfiguration } from '../../../../../common/configs/visualization-configuration';
 import { VisualizationConfigurationFactory } from '../../../../../common/configs/visualization-configuration-factory';
+import { FeatureFlagStoreData } from '../../../../../common/types/store-data/feature-flag-store-data';
 import { TestViewContainer, TestViewContainerProps } from '../../../../../DetailsView/components/test-view-container';
 import { exampleUnifiedStatusResults } from './cards/sample-view-model-data';
 
@@ -26,16 +27,20 @@ describe('TestViewContainerTest', () => {
             selectedTest: -1,
             visualizationConfigurationFactory: configFactoryMock.object,
             ruleResultsByStatus: exampleUnifiedStatusResults,
+            featureFlagStoreData: { 'test-flag': true } as FeatureFlagStoreData,
         } as TestViewContainerProps;
 
         const expectedProps = {
             configuration: configStub,
             ...props,
+            storeData: {
+                featureFlagStoreData: { 'test-flag': true },
+            },
         };
 
-        configFactoryMock.setup(cfm => cfm.getConfiguration(props.selectedTest)).returns(() => configStub);
+        configFactoryMock.setup(factory => factory.getConfiguration(props.selectedTest)).returns(() => configStub);
 
-        getTestViewMock.setup(gtvm => gtvm(It.isValue(expectedProps))).returns(() => expectedTestView);
+        getTestViewMock.setup(getter => getter(It.isValue(expectedProps))).returns(() => expectedTestView);
 
         const rendered = shallow(<TestViewContainer {...props} />);
         expect(rendered.getElement()).toMatchObject(expectedTestView);

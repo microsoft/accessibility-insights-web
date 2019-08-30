@@ -45,6 +45,6 @@ export interface TestViewContainerProps {
 
 export const TestViewContainer = NamedSFC<TestViewContainerProps>('TestViewContainer', props => {
     const configuration = props.visualizationConfigurationFactory.getConfiguration(props.selectedTest);
-    const testViewProps = { configuration, ...props };
+    const testViewProps = { configuration, ...props, storeData: { featureFlagStoreData: props.featureFlagStoreData } };
     return configuration.getTestView(testViewProps);
 });
