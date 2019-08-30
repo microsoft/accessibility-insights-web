@@ -27,7 +27,6 @@ const textSpacingHowToTest: JSX.Element = (
                 Add the "Bookmarklet: Text Spacing" link from that page to your browser's bookmarks. (Mouse users can simply drag the link
                 into the bookmarks bar.)
             </li>
-            <li>Use your browser's settings to set the target page's zoom to 400%.</li>
             <li>
                 Run the bookmarklet in the browser tab containing your target page. Text styling will automatically be adjusted as follows:
                 <ol>
