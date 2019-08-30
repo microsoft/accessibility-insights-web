@@ -58,7 +58,9 @@ describe('AssessmentInstanceRemoveButton', () => {
                     addPathForValidation={props.onAddPath}
                     clearPathSnippetData={null}
                     assessmentsProvider={props.assessmentsProvider}
-                    featureFlagStoreData={featureFlagStoreData}
+                    storeData={{
+                        featureFlagStoreData: featureFlagStoreData,
+                    }}
                 />
                 <Link className="remove-button" onClick={testSubject.getOnRemoveButtonClicked()}>
                     <Icon iconName="delete" ariaLabel={'delete instance'} />

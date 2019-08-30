@@ -119,7 +119,7 @@ describe('ManualTestStepView', () => {
                             addPathForValidation={props.assessmentInstanceTableHandler.addPathForValidation}
                             clearPathSnippetData={props.assessmentInstanceTableHandler.clearPathSnippetData}
                             assessmentsProvider={props.assessmentsProvider}
-                            featureFlagStoreData={featureFlagStoreData}
+                            storeData={{ featureFlagStoreData: featureFlagStoreData }}
                             failureInstance={failureInstance}
                         />
                         <DetailsList

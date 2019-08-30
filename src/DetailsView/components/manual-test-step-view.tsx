@@ -72,7 +72,9 @@ export class ManualTestStepView extends React.Component<ManualTestStepViewProps>
                     clearPathSnippetData={this.props.assessmentInstanceTableHandler.clearPathSnippetData}
                     actionType={CapturedInstanceActionType.CREATE}
                     assessmentsProvider={this.props.assessmentsProvider}
-                    featureFlagStoreData={this.props.featureFlagStoreData}
+                    storeData={{
+                        featureFlagStoreData: this.props.featureFlagStoreData,
+                    }}
                     failureInstance={instance}
                 />
                 <DetailsList

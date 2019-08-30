@@ -17,7 +17,12 @@ import { ActionAndCancelButtonsComponent } from './action-and-cancel-buttons-com
 import { FailureInstancePanelDetails } from './failure-instance-panel-details';
 import { GenericPanel, GenericPanelProps } from './generic-panel';
 
+export type FailureInstancePanelControlStoreData = {
+    featureFlagStoreData: FeatureFlagStoreData;
+};
+
 export interface FailureInstancePanelControlProps {
+    storeData: FailureInstancePanelControlStoreData;
     step: string;
     test: VisualizationType;
     addPathForValidation: (path) => void;
@@ -28,7 +33,6 @@ export interface FailureInstancePanelControlProps {
     failureInstance: FailureInstanceData;
     instanceId?: string;
     assessmentsProvider: AssessmentsProvider;
-    featureFlagStoreData: FeatureFlagStoreData;
 }
 
 export type FailureInstanceData = {
@@ -131,7 +135,7 @@ export class FailureInstancePanelControl extends React.Component<FailureInstance
                 <FlaggedComponent
                     enableJSXElement={this.getFailureInstancePanelDetails()}
                     featureFlag={FeatureFlags[FeatureFlags.manualInstanceDetails]}
-                    featureFlagStoreData={this.props.featureFlagStoreData}
+                    featureFlagStoreData={this.props.storeData.featureFlagStoreData}
                 />
                 <TextField
                     className="observed-failure-textfield"

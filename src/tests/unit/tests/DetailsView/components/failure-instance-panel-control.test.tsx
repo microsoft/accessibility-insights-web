@@ -40,6 +40,9 @@ describe('FailureInstancePanelControlTest', () => {
 
     test('render FailureInstancePanelControl: partial original instance', () => {
         const props = {
+            storeData: {
+                featureFlagStoreData: null,
+            },
             step: 'missingHeadings',
             test: VisualizationType.HeadingsAssessment,
             addFailureInstance: addInstanceMock.object,
@@ -47,7 +50,6 @@ describe('FailureInstancePanelControlTest', () => {
             clearPathSnippetData: clearPathSnippetDataMock.object,
             actionType: CapturedInstanceActionType.CREATE,
             assessmentsProvider: Assessments,
-            featureFlagStoreData: null,
             failureInstance: { failureDescription: 'original text' },
         };
         const rendered = shallow<FailureInstancePanelControl>(<FailureInstancePanelControl {...props} />);
@@ -275,6 +277,9 @@ describe('FailureInstancePanelControlTest', () => {
         };
 
         return {
+            storeData: {
+                featureFlagStoreData: featureData,
+            },
             step: 'missingHeadings',
             test: VisualizationType.HeadingsAssessment,
             addFailureInstance: addInstanceMock.object,
@@ -282,7 +287,6 @@ describe('FailureInstancePanelControlTest', () => {
             clearPathSnippetData: clearPathSnippetDataMock.object,
             actionType: actionType,
             assessmentsProvider: Assessments,
-            featureFlagStoreData: featureData,
             failureInstance: emptyFailureInstance,
         };
     }

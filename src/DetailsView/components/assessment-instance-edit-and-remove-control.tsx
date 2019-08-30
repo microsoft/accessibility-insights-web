@@ -27,6 +27,9 @@ export class AssessmentInstanceEditAndRemoveControl extends React.Component<Asse
         return (
             <div>
                 <FailureInstancePanelControl
+                    storeData={{
+                        featureFlagStoreData: this.props.featureFlagStoreData,
+                    }}
                     step={this.props.step}
                     test={this.props.test}
                     actionType={CapturedInstanceActionType.EDIT}
@@ -36,7 +39,6 @@ export class AssessmentInstanceEditAndRemoveControl extends React.Component<Asse
                     addPathForValidation={this.props.onAddPath}
                     clearPathSnippetData={this.props.onClearPathSnippetData}
                     assessmentsProvider={this.props.assessmentsProvider}
-                    featureFlagStoreData={this.props.featureFlagStoreData}
                 />
                 <Link className="remove-button" onClick={this.onRemoveButtonClicked}>
                     <Icon iconName="delete" ariaLabel={'delete instance'} />
