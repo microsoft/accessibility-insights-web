@@ -209,7 +209,6 @@ exports[`IssuesTableTest table with 0 issues 1`] = `
                   },
                 }
               }
-              featureFlagData={Object {}}
               pageTitle="pageTitle"
               pageUrl="http://pageUrl"
               selectedIdToRuleResultMap={Object {}}
@@ -425,7 +424,6 @@ exports[`IssuesTableTest table with 1 issues 1`] = `
                   },
                 }
               }
-              featureFlagData={Object {}}
               pageTitle="pageTitle"
               pageUrl="http://pageUrl"
               selectedIdToRuleResultMap={Object {}}
@@ -650,7 +648,6 @@ exports[`IssuesTableTest table with 2 issues 1`] = `
                   },
                 }
               }
-              featureFlagData={Object {}}
               pageTitle="pageTitle"
               pageUrl="http://pageUrl"
               selectedIdToRuleResultMap={Object {}}

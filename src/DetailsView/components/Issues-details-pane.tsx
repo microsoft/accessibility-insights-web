@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { IssueDetailsTextGenerator } from 'background/issue-details-text-generator';
 import * as React from 'react';
 
-import { IssueDetailsTextGenerator } from 'background/issue-details-text-generator';
 import { CopyIssueDetailsButton } from '../../common/components/copy-issue-details-button';
 import { GuidanceLinks } from '../../common/components/guidance-links';
 import { GuidanceTags, GuidanceTagsDeps } from '../../common/components/guidance-tags';
@@ -10,7 +10,6 @@ import { IssueFilingButton, IssueFilingButtonDeps } from '../../common/component
 import { NewTabLink } from '../../common/components/new-tab-link';
 import { ToastDeps } from '../../common/components/toast';
 import { CreateIssueDetailsTextData } from '../../common/types/create-issue-details-text-data';
-import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { UserConfigurationStoreData } from '../../common/types/store-data/user-configuration-store';
 import { CheckType } from '../../injected/components/details-dialog';
 import { FixInstructionPanel, FixInstructionPanelDeps } from '../../injected/components/fix-instruction-panel';
@@ -32,7 +31,6 @@ export interface IssuesDetailsPaneProps {
     selectedIdToRuleResultMap: DictionaryStringTo<DecoratedAxeNodeResult>;
     pageTitle: string;
     pageUrl: string;
-    featureFlagData: FeatureFlagStoreData;
     userConfigurationStoreData: UserConfigurationStoreData;
 }
 
