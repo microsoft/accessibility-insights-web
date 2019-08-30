@@ -20,12 +20,15 @@ import { DictionaryStringTo } from '../../types/common-types';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 import { AssessmentInstanceTableHandler } from '../handlers/assessment-instance-table-handler';
 import { AssessmentInstanceTable } from './assessment-instance-table';
-import { ManualTestStepView } from './manual-test-step-view';
+import { ManualTestStepView, ManualTestStepViewStoreData } from './manual-test-step-view';
+
+export type TestStepViewStoreData = ManualTestStepViewStoreData;
 
 export type TestStepViewDeps = ContentPanelButtonDeps & GuidanceTagsDeps;
 
 export interface TestStepViewProps {
     deps: TestStepViewDeps;
+    storeData: TestStepViewStoreData;
     isStepEnabled: boolean;
     isStepScanned: boolean;
     isScanning: boolean;
@@ -75,9 +78,7 @@ export class TestStepView extends React.Component<TestStepViewProps> {
                     manualTestStepResultMap={this.props.manualTestStepResultMap}
                     assessmentInstanceTableHandler={this.props.assessmentInstanceTableHandler}
                     assessmentsProvider={this.props.assessmentsProvider}
-                    storeData={{
-                        featureFlagStoreData: this.props.featureFlagStoreData,
-                    }}
+                    storeData={this.props.storeData}
                     featureFlagStoreData={this.props.featureFlagStoreData}
                     pathSnippetStoreData={this.props.pathSnippetStoreData}
                 />

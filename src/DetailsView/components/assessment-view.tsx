@@ -200,6 +200,9 @@ export class AssessmentView extends React.Component<AssessmentViewProps> {
                         isStepEnabled={this.props.isEnabled}
                         isStepScanned={isStepScanned}
                         assessmentDefaultMessageGenerator={this.props.assessmentDefaultMessageGenerator}
+                        storeData={{
+                            featureFlagStoreData: this.props.featureFlagStoreData,
+                        }}
                         featureFlagStoreData={this.props.featureFlagStoreData}
                         pathSnippetStoreData={this.props.pathSnippetStoreData}
                     />
