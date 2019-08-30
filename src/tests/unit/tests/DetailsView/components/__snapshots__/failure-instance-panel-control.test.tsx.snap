@@ -39,6 +39,7 @@ exports[`FailureInstancePanelControlTest render FailureInstancePanelControl: cre
       label="Comment"
       multiline={true}
       onChange={[Function]}
+      placeholder="Comment"
       resizable={false}
       rows={8}
       styles={[Function]}
@@ -95,6 +96,7 @@ exports[`FailureInstancePanelControlTest render FailureInstancePanelControl: edi
       label="Comment"
       multiline={true}
       onChange={[Function]}
+      placeholder="Comment"
       resizable={false}
       rows={8}
       styles={[Function]}
@@ -154,6 +156,7 @@ exports[`FailureInstancePanelControlTest render FailureInstancePanelControl: par
       label="Comment"
       multiline={true}
       onChange={[Function]}
+      placeholder="Comment"
       resizable={false}
       rows={8}
       styles={[Function]}

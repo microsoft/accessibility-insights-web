@@ -142,6 +142,7 @@ export class FailureInstancePanelControl extends React.Component<FailureInstance
                     value={this.state.currentInstance.failureDescription}
                     onChange={this.onFailureDescriptionChange}
                     resizable={false}
+                    placeholder="Comment"
                 />
                 {this.getActionCancelButtons()}
             </GenericPanel>
