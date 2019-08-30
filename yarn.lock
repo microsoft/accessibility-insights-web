@@ -7710,6 +7710,11 @@ slash@^2.0.0:
   resolved "https://registry.yarnpkg.com/slash/-/slash-2.0.0.tgz#de552851a1759df3a8f206535442f5ec4ddeab44"
   integrity sha512-ZYKh3Wh2z1PpEXWr0MpSBZ0V6mZHAQfYevttO11c51CaWjGTaadiKZ+wVt1PbMlDV5qhMFslpZCemhwOK7C89A==
 
+slash@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/slash/-/slash-3.0.0.tgz#6539be870c165adbd5240220dbe361f1bc4d4634"
+  integrity sha512-g9Q1haeby36OSStwb4ntCGGGaKsaVSjQ68fBxoQcutl5fS1vuY18H3wSt3jFyFtrkx+Kz0V1G85A4MyAdDMi2Q==
+
 snapdragon-node@^2.0.1:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/snapdragon-node/-/snapdragon-node-2.1.1.tgz#6c175f86ff14bdb0724563e8f3c1b021a286853b"
@@ -8530,10 +8535,10 @@ type-is@~1.6.17, type-is@~1.6.18:
     media-typer "0.3.0"
     mime-types "~2.1.24"
 
-typed-scss-modules@^0.0.11:
-  version "0.0.11"
-  resolved "https://registry.yarnpkg.com/typed-scss-modules/-/typed-scss-modules-0.0.11.tgz#9d63ebc4a7bc1add8dff80030a2406a930170215"
-  integrity sha512-cuH5f1SST2gzFu6zDgiaxZNEbO3Z3jmTOnJCqg2D6FQLtby+cQICkr1ec3u9Pe6NJUcAkguU3vCDSNZz2piebA==
+typed-scss-modules@^0.0.12:
+  version "0.0.12"
+  resolved "https://registry.yarnpkg.com/typed-scss-modules/-/typed-scss-modules-0.0.12.tgz#baa957a0dd1ce2f5f646775f4e1fce2a03ef018d"
+  integrity sha512-8ZWdtWOc3u4nTr2AlC1LZsQm/MCKFFL3xumGQR56sjFVz0NXH1+5c340PXMLWUHfvSpG2TQW4A8IJf6FCTibZA==
   dependencies:
     "@types/reserved-words" "^0.1.0"
     camelcase "^5.0.0"
@@ -8544,6 +8549,7 @@ typed-scss-modules@^0.0.11:
     param-case "^2.1.1"
     path "^0.12.7"
     reserved-words "^0.1.2"
+    slash "^3.0.0"
     yargs "^12.0.5"
 
 typedarray@^0.0.6:
