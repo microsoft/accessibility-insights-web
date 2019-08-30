@@ -717,6 +717,7 @@ div.insights-file-issue-details-dialog-container {
             padding-left: calc(0.5vw + 13px); // 13px is Chevron width.
         }
         .left-nav {
+            width: 200px;
             border-right: 1px solid $neutral-8;
             .dark-gray {
                 color: $neutral-60;
@@ -756,7 +757,6 @@ div.insights-file-issue-details-dialog-container {
         }
         .left-nav,
         .test-step-nav {
-            width: 200px;
             z-index: 100;
             background-color: $neutral-0;
             .index-circle {
