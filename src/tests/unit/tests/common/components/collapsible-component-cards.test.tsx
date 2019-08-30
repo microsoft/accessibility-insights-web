@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { shallow } from 'enzyme';
+import { forOwn } from 'lodash';
 import * as React from 'react';
 
-import { forOwn } from 'lodash';
 import {
     CollapsibleComponentCards,
     CollapsibleComponentCardsProps,
@@ -27,6 +27,7 @@ describe('CollapsibleComponentCardsTest', () => {
                 };
 
                 const result = shallow(<CollapsibleComponentCards {...props} />);
+
                 expect(result.getElement()).toMatchSnapshot();
             });
         });

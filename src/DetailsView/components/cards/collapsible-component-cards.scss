@@ -55,7 +55,7 @@
         @include transform(rotate(45deg));
     }
 
-    .content {
+    .collapsible-container-content {
         &[aria-hidden='true'] {
             display: none;
         }
