@@ -4,8 +4,9 @@ import { css } from '@uifabric/utilities';
 import { NamedSFC } from 'common/react/named-sfc';
 import * as React from 'react';
 
-import { ResultSectionTitle, ResultSectionTitleProps } from '../../../reports/components/report-sections/result-section-title';
+import { ResultSectionTitleProps } from '../../../reports/components/report-sections/result-section-title';
 import { ResultSectionContentV2, ResultSectionContentV2Deps, ResultSectionContentV2Props } from './result-section-content-v2';
+import { ResultSectionTitleV2 } from './result-section-title-v2';
 import { resultSection } from './result-section.scss';
 
 export type ResultSectionV2Deps = ResultSectionContentV2Deps;
@@ -22,7 +23,7 @@ export const ResultSectionV2 = NamedSFC<ResultSectionV2Props>('ResultSectionV2',
     return (
         <div className={css(containerClassName, resultSection)}>
             <h2>
-                <ResultSectionTitle {...props} />
+                <ResultSectionTitleV2 {...props} />
             </h2>
             <ResultSectionContentV2 {...props} />
         </div>

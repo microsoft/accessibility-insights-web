@@ -756,6 +756,7 @@ div.insights-file-issue-details-dialog-container {
         }
         .left-nav,
         .test-step-nav {
+            width: 200px;
             z-index: 100;
             background-color: $neutral-0;
             .index-circle {
@@ -888,16 +889,13 @@ div.insights-file-issue-details-dialog-container {
                 }
                 .issues-table {
                     height: 100%;
-                    width: 100%;
+                    width: calc(100% - 48px);
                     display: flex;
                     flex-direction: column;
                     margin-top: 24px;
-                    > h1,
-                    .issues-table-subtitle,
-                    .details-view-toggle,
-                    .details-disabled-message {
-                        margin-left: 24px;
-                    }
+
+                    margin-left: 24px;
+                    margin-right: 24px;
                     .issues-table-subtitle {
                         color: $secondary-text;
                         max-width: 570px;
@@ -962,7 +960,6 @@ div.insights-file-issue-details-dialog-container {
                     min-height: 0;
                 }
                 .issues-details-list {
-                    margin-left: 24px;
                     display: flex;
                     flex-direction: column;
                     height: 60%;
@@ -1074,13 +1071,14 @@ div.insights-file-issue-details-dialog-container {
                     }
                 }
                 .details-view-command-bar {
-                    margin-left: 24px;
-                    margin-bottom: 0px;
+                    margin-bottom: 12px;
                     margin-top: 12px;
                     height: $detailsViewCommandBarHeight;
                     background-color: $neutral-4;
                     display: -webkit-inline-box;
                     .automated-checks-details-view-toggle {
+                        margin-bottom: unset;
+
                         .ms-Toggle-label {
                             float: left;
                             margin: 5px 8px 5px 8px;
@@ -1275,9 +1273,9 @@ div.insights-file-issue-details-dialog-container {
                     height: 40%;
                     min-height: 150px;
                     background-color: $neutral-2;
-                    padding-left: 24px;
                     > div {
                         border-top: 1px solid $neutral-8;
+                        padding-left: 24px;
                     }
                     h2 {
                         padding-top: 12px;
