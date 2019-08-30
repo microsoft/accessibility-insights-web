@@ -4,8 +4,8 @@ import { create, React } from '../../common';
 
 export const infoAndExamples = create(({ Markup, Link }) => (
     <>
-        <h1>Label</h1>
-        <p>A native widget must have a label and/or instructions that identify the expected input.</p>
+        <h1>Expected input</h1>
+        <p>A custom widget must have a label and/or instructions that identify the expected input.</p>
 
         <h2>Why it matters</h2>
         <p>When a widget clearly communicates its expected input, all users are likely to make fewer input mistakes.</p>
@@ -29,19 +29,25 @@ export const infoAndExamples = create(({ Markup, Link }) => (
         <Markup.PassFail
             failText={
                 <p>
-                    An online form has fields for entering first and last names, but both fields share the same accessible name. Users are
-                    expected to infer from the placeholder text that the first field is for the first name, and the second field is for the
-                    last name.
+                    The label for this combo box does not clearly communicate that users are expected to enter an abbreviation for their
+                    state.
                 </p>
             }
-            failExample={`<div id="name">Name</div>
-            <input type="text" name="firstname" [placeholder="Mickey" aria-labelledby="name"]>
-            <input type="text" name="lastname" [placeholder="Mouse" aria-labelledby="name"]>`}
-            passText={<p>Each text field has its own label indicating which name is expected.</p>}
-            passExample={`[<label for="firstname">First name</label>]
-            <input type="text" name="firstname" [id="firstname"]>
-            [<label for="lastname">Last name</label>]
-            <input type="text" name="lastname" [id="lastname"]>`}
+            failExample={`<label for="where-input" id="where-label" class="combobox-label">[Location]</label>
+            <div role="combobox" aria-expanded="false" aria-owns="where-listbox" aria-haspopup="listbox" id="where-combobox">
+            <input type="text" aria-autocomplete="list" aria-controls="where-listbox" id="where-input">
+            </div>`}
+            passText={
+                <p>
+                    An accessible description has been created using <Markup.Code>aria-describedby</Markup.Code>. The description clarifies
+                    the expected input.
+                </p>
+            }
+            passExample={`<label for="where-input" id="where-label" class="combobox-label">[Location]</label>
+            [<p id="where-desc">Enter the 2-letter abbreviation for your state.</p>]
+            <div role="combobox" aria-expanded="false" aria-owns="where-listbox" aria-haspopup="listbox" id="where-combobox">
+            <input type="text" aria-autocomplete="list" aria-controls="ex1-listbox" id="where-input" [aria-describedby="where-desc"]>
+            </div>`}
         />
 
         <h2>More examples</h2>
