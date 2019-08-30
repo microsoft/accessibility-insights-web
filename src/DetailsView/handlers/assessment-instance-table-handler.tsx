@@ -184,6 +184,9 @@ export class AssessmentInstanceTableHandler {
                 onAddPath={this.actionMessageCreator.addPathForValidation}
                 assessmentsProvider={this.assessmentsProvider}
                 featureFlagStoreData={featureFlagStoreData}
+                storeData={{
+                    featureFlagStoreData: featureFlagStoreData,
+                }}
             />
         );
     };

@@ -152,6 +152,9 @@ describe('AssessmentInstanceTableHandlerTest', () => {
                 onClearPathSnippetData={actionMessageCreatorMock.object.clearPathSnippetData}
                 assessmentsProvider={assessmentsProvider}
                 featureFlagStoreData={featureFlagStoreData}
+                storeData={{
+                    featureFlagStoreData: featureFlagStoreData,
+                }}
             />
         );
         const expectedRows: CapturedInstanceRowData[] = [
@@ -206,6 +209,9 @@ describe('AssessmentInstanceTableHandlerTest', () => {
                 onClearPathSnippetData={actionMessageCreatorMock.object.clearPathSnippetData}
                 assessmentsProvider={assessmentsProvider}
                 featureFlagStoreData={featureFlagStoreData}
+                storeData={{
+                    featureFlagStoreData: featureFlagStoreData,
+                }}
             />
         );
         const expectedRows: CapturedInstanceRowData[] = [

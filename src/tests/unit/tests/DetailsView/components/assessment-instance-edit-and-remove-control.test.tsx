@@ -41,6 +41,9 @@ describe('AssessmentInstanceRemoveButton', () => {
             onAddPath: null,
             onClearPathSnippetData: null,
             assessmentsProvider: CreateTestAssessmentProvider(),
+            storeData: {
+                featureFlagStoreData: featureFlagStoreData,
+            },
             featureFlagStoreData: featureFlagStoreData,
         };
         onRemoveMock.setup(r => r(props.test, props.step, props.id)).verifiable(Times.once());
