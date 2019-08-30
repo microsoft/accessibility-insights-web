@@ -270,6 +270,9 @@ describe('DetailsViewContainer', () => {
         return (
             <DetailsViewMainContent
                 deps={deps}
+                storeData={{
+                    featureFlagStoreData: storeMocks.featureFlagStoreData,
+                }}
                 tabStoreData={storeMocks.tabStoreData}
                 assessmentStoreData={storeMocks.assessmentStoreData}
                 pathSnippetStoreData={storeMocks.pathSnippetStoreData}

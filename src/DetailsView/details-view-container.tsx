@@ -181,6 +181,7 @@ export class DetailsViewContainer extends React.Component<DetailsViewContainerPr
         return (
             <DetailsViewMainContent
                 deps={deps}
+                storeData={storeState}
                 tabStoreData={storeState.tabStoreData}
                 assessmentStoreData={storeState.assessmentStoreData}
                 pathSnippetStoreData={storeState.pathSnippetStoreData}

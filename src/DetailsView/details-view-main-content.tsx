@@ -21,13 +21,17 @@ import { DetailsViewSwitcherNavConfiguration } from './components/details-view-s
 import { IssuesTableHandler } from './components/issues-table-handler';
 import { DetailsViewLeftNav, DetailsViewLeftNavDeps } from './components/left-nav/details-view-left-nav';
 import { TabInfo } from './components/tab-info';
+import { TestViewContainerStoreData } from './components/test-view-container';
 import { AssessmentInstanceTableHandler } from './handlers/assessment-instance-table-handler';
 import { DetailsViewToggleClickHandlerFactory } from './handlers/details-view-toggle-click-handler-factory';
+
+export type DetailsViewMainContentStoreData = TestViewContainerStoreData;
 
 export type DetailsViewMainContentDeps = DetailsViewContentDeps & DetailsViewLeftNavDeps & DetailsViewCommandBarDeps;
 
 export interface DetailsViewMainContentProps {
     deps: DetailsViewMainContentDeps;
+    storeData: DetailsViewMainContentStoreData;
     tabStoreData: TabStoreData;
     assessmentStoreData: AssessmentStoreData;
     pathSnippetStoreData: PathSnippetStoreData;
@@ -52,13 +56,6 @@ export interface DetailsViewMainContentProps {
 
 export class DetailsViewMainContent extends React.Component<DetailsViewMainContentProps> {
     public render(): JSX.Element {
-        const rightPanelProps = {
-            ...this.props,
-            storeData: {
-                featureFlagStoreData: this.props.featureFlagStoreData,
-            },
-        };
-
         return (
             <>
                 {this.renderCommandBar()}
@@ -67,7 +64,7 @@ export class DetailsViewMainContent extends React.Component<DetailsViewMainConte
                     <div className="details-content table column-layout">
                         {this.getTabInfo(this.props.tabStoreData.isClosed)}
                         <div className="view" role="main">
-                            <this.props.rightPanelConfiguration.RightPanel {...rightPanelProps} />
+                            <this.props.rightPanelConfiguration.RightPanel {...this.props} />
                         </div>
                     </div>
                 </div>
