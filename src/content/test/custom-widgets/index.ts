@@ -2,17 +2,17 @@
 // Licensed under the MIT License.
 import * as cues from './cues';
 import * as designPattern from './design-pattern';
+import * as expectedInput from './expected-input';
 import { guidance } from './guidance';
 import * as instructions from './instructions';
 import * as keyboardInteraction from './keyboard-interaction';
-import * as label from './label';
 import * as roleStateProperty from './role-state-property';
 
 export const customWidgets = {
     guidance,
     designPattern,
     instructions,
-    label,
+    expectedInput,
     roleStateProperty,
     cues,
     keyboardInteraction,

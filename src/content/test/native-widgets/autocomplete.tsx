@@ -31,11 +31,15 @@ export const infoAndExamples = create(({ Markup }) => (
             failExample={`
             <form method="post" action="step2">
             <div>
-                <label for="username">Username</label>
+                <label for="username">
+                    Username
+                </label>
                 <input id="username" type="text" autocomplete="username">
             </div>
             <div>
-                <label for="password">Password</label>
+                <label for="password">
+                    Password
+                </label>
                 <input id="password" type="password" [autocomplete="password"]>
             </div>
             </form>
@@ -44,11 +48,15 @@ export const infoAndExamples = create(({ Markup }) => (
             passExample={`
             <form method="post" action="step2">
             <div>
-                <label for="username">Username</label>
+                <label for="username">
+                    Username
+                </label>
                 <input id="username" type="text" autocomplete="username">
             </div>
             <div>
-                <label for="password">Password</label>
+                <label for="password">
+                    Password
+                </label>
                 <input id="password" type="password" [autocomplete="current-password"]>
             </div>
             </form>

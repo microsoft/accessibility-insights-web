@@ -34,8 +34,8 @@ const howToTest: JSX.Element = (
             </li>
 
             <li>
-                If a text field does serve an identified input purpose, verify that it has an <Markup.Term>autocomplete</Markup.Term>{' '}
-                attribute with the correct value.
+                If a text field <Markup.Emphasis>does</Markup.Emphasis> serve an identified input purpose, verify that it has an{' '}
+                <Markup.Term>autocomplete</Markup.Term> attribute with the correct value.
             </li>
 
             <AssistedTestRecordYourResults />

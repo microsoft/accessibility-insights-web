@@ -6,7 +6,7 @@ import { DefaultWidgetPropertyBag } from 'common/types/property-bag/default-widg
 import { VisualizationType } from 'common/types/visualization-type';
 import { link } from 'content/link';
 import { productName } from 'content/strings/application';
-import * as content from 'content/test/native-widgets/label';
+import * as content from 'content/test/native-widgets/expected-input';
 import { AssessmentVisualizationEnabledToggle } from 'DetailsView/components/assessment-visualization-enabled-toggle';
 import { ScannerUtils } from 'injected/scanner-utils';
 import { AnalyzerConfigurationFactory } from '../../common/analyzer-configuration-factory';
