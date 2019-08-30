@@ -3373,6 +3373,298 @@ exports[`A11Y for content pages High Contrast mode test/customWidgets/designPatt
 </DocumentFragment>
 `;
 
+exports[`A11Y for content pages High Contrast mode test/customWidgets/expectedInput/infoAndExamples 1`] = `
+<DocumentFragment>
+  <div
+    class="content-container"
+  >
+    <div
+      class="content-left"
+    />
+    <div
+      class="content"
+    >
+      <h1>
+        Expected input
+      </h1>
+      <p>
+        A custom widget must have a label and/or instructions that identify the expected input.
+      </p>
+      <h2>
+        Why it matters
+      </h2>
+      <p>
+        When a widget clearly communicates its expected input, all users are likely to make fewer input mistakes.
+      </p>
+      <h3>
+        From a user's perspective
+      </h3>
+      <p>
+        <em>
+          "I do not rely on visual cues for reading, I use a screen reader. For any required input you need from me, provide me with general instructions on what is being asked, what is required and, examples of valid input so I can provide the requested information."
+        </em>
+      </p>
+      <h2>
+        How to fix
+      </h2>
+      <p>
+        Make sure the widget's accessible name and/or accessible description communicates the expected input. For example, a button should indicate what action it will initiate. A text field should indicate what type of data is expected and whether a specific format is required.
+      </p>
+      <h2>
+        Example
+      </h2>
+      <div
+        class="pass-fail-grid"
+      >
+        <div
+          class="fail-section"
+        >
+          <div
+            class="fail-header"
+          >
+            <span
+              class="check-container"
+            >
+              <svg
+                fill="none"
+                height="16"
+                viewBox="0 0 16 16"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="8"
+                  cy="8"
+                  fill="#E81123"
+                  r="8"
+                />
+                <path
+                  d="M10.9837 6.27639C11.3352 5.92491 11.3352 5.35507 10.9837 5.00359C10.6322 4.65212 10.0624 4.65212 9.7109 5.00359L7.99722 6.71728L6.28375 5.00381C5.93227 4.65234 5.36242 4.65234 5.01095 5.00381C4.65948 5.35528 4.65948 5.92513 5.01095 6.2766L6.72443 7.99007L4.9837 9.7308C4.63222 10.0823 4.63222 10.6521 4.9837 11.0036C5.33517 11.3551 5.90502 11.3551 6.25649 11.0036L7.99722 9.26287L9.73816 11.0038C10.0896 11.3553 10.6595 11.3553 11.011 11.0038C11.3624 10.6523 11.3624 10.0825 11.011 9.73101L9.27001 7.99007L10.9837 6.27639Z"
+                  fill="white"
+                />
+              </svg>
+            </span>
+             
+            <h3>
+              Fail
+            </h3>
+          </div>
+          <p>
+            The label for this combo box does not clearly communicate that users are expected to enter an abbreviation for their state.
+          </p>
+        </div>
+        <div
+          class="fail-example"
+        >
+          <div
+            class="code-example"
+          >
+            <div
+              class="code-example-code"
+            >
+              <div
+                class="insights-code"
+              >
+                &lt;label for="where-input" id="where-label" class="combobox-label"&gt;
+                <span
+                  class="highlight"
+                >
+                  Location
+                </span>
+                &lt;/label&gt;
+                <br />
+                            &lt;div role="combobox" aria-expanded="false" aria-owns="where-listbox" aria-haspopup="listbox" id="where-combobox"&gt;
+                <br />
+                            &lt;input type="text" aria-autocomplete="list" aria-controls="where-listbox" id="where-input"&gt;
+                <br />
+                            &lt;/div&gt;
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="pass-section"
+        >
+          <div
+            class="pass-header"
+          >
+            <span
+              class="check-container"
+            >
+              <svg
+                fill="none"
+                height="16"
+                viewBox="0 0 16 16"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="8"
+                  cy="8"
+                  fill="#228722"
+                  r="8"
+                />
+                <path
+                  clip-rule="evenodd"
+                  d="M6.05904 11.1417L6.0616 11.1442C6.10737 11.19 6.15668 11.23 6.20867 11.2643C6.57256 11.5046 7.06707 11.4646 7.38742 11.1442C7.38861 11.143 7.38982 11.1418 7.391 11.1406L11.9312 6.60041C12.2974 6.23427 12.2974 5.64071 11.9312 5.27457C11.5651 4.90848 10.9715 4.90848 10.6054 5.27457L6.72452 9.15545L5.60041 8.03134C5.2343 7.66524 4.64071 7.66524 4.27459 8.03134C3.90847 8.39747 3.90847 8.99104 4.27459 9.35718L6.05904 11.1417Z"
+                  fill="white"
+                  fill-rule="evenodd"
+                />
+              </svg>
+            </span>
+             
+            <h3>
+              Pass
+            </h3>
+          </div>
+          <p>
+            An accessible description has been created using 
+            <span
+              class="insights-code"
+            >
+              aria-describedby
+            </span>
+            . The description clarifies the expected input.
+          </p>
+        </div>
+        <div
+          class="pass-example"
+        >
+          <div
+            class="code-example"
+          >
+            <div
+              class="code-example-code"
+            >
+              <div
+                class="insights-code"
+              >
+                &lt;label for="where-input" id="where-label" class="combobox-label"&gt;
+                <span
+                  class="highlight"
+                >
+                  Location
+                </span>
+                &lt;/label&gt;
+                <br />
+                            
+                <span
+                  class="highlight"
+                >
+                  &lt;p id="where-desc"&gt;Enter the 2-letter abbreviation for your state.&lt;/p&gt;
+                </span>
+                <br />
+                            &lt;div role="combobox" aria-expanded="false" aria-owns="where-listbox" aria-haspopup="listbox" id="where-combobox"&gt;
+                <br />
+                            &lt;input type="text" aria-autocomplete="list" aria-controls="ex1-listbox" id="where-input" 
+                <span
+                  class="highlight"
+                >
+                  aria-describedby="where-desc"
+                </span>
+                &gt;
+                <br />
+                            &lt;/div&gt;
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h2>
+        More examples
+      </h2>
+      <h3>
+        WCAG success criteria
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Understanding/labels-or-instructions.html"
+          target="_blank"
+        >
+          Understanding Success Criterion 3.3.2: Labels or Instructions
+        </a>
+      </div>
+      <h4>
+        Sufficient techniques
+      </h4>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/general/G131"
+          target="_blank"
+        >
+          Providing descriptive labels
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/aria/ARIA1"
+          target="_blank"
+        >
+          Using the aria-describedby property to provide a descriptive label for user interface controls
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/aria/ARIA9"
+          target="_blank"
+        >
+          Using aria-labelledby to concatenate a label from several text nodes
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/aria/ARIA17"
+          target="_blank"
+        >
+          Using grouping roles to identify related form controls
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/general/G89"
+          target="_blank"
+        >
+          Providing expected data format and example
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/general/G184"
+          target="_blank"
+        >
+          Providing text instructions at the beginning of a form or set of fields that describes the necessary input
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/general/G162"
+          target="_blank"
+        >
+          Positioning labels to maximize predictability of relationships
+        </a>
+      </div>
+      <h3>
+        Common failures
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/failures/F82"
+          target="_blank"
+        >
+          Failure of Success Criterion 3.3.2 by visually formatting a set of phone number fields but not including a text label
+        </a>
+      </div>
+    </div>
+    <div
+      class="content-right"
+    />
+  </div>
+</DocumentFragment>
+`;
+
 exports[`A11Y for content pages High Contrast mode test/customWidgets/guidance 1`] = `
 <DocumentFragment>
   <div
@@ -4650,298 +4942,6 @@ exports[`A11Y for content pages High Contrast mode test/customWidgets/keyboardIn
           target="_blank"
         >
           WAI-ARIA Authoring Practices 1.1: Design Patterns and Widgets
-        </a>
-      </div>
-    </div>
-    <div
-      class="content-right"
-    />
-  </div>
-</DocumentFragment>
-`;
-
-exports[`A11Y for content pages High Contrast mode test/customWidgets/label/infoAndExamples 1`] = `
-<DocumentFragment>
-  <div
-    class="content-container"
-  >
-    <div
-      class="content-left"
-    />
-    <div
-      class="content"
-    >
-      <h1>
-        Label
-      </h1>
-      <p>
-        A custom widget must have a label and/or instructions that identify the expected input.
-      </p>
-      <h2>
-        Why it matters
-      </h2>
-      <p>
-        When a widget clearly communicates its expected input, all users are likely to make fewer input mistakes.
-      </p>
-      <h3>
-        From a user's perspective
-      </h3>
-      <p>
-        <em>
-          "I do not rely on visual cues for reading, I use a screen reader. For any required input you need from me, provide me with general instructions on what is being asked, what is required and, examples of valid input so I can provide the requested information."
-        </em>
-      </p>
-      <h2>
-        How to fix
-      </h2>
-      <p>
-        Make sure the widget's accessible name and/or accessible description communicates the expected input. For example, a button should indicate what action it will initiate. A text field should indicate what type of data is expected and whether a specific format is required.
-      </p>
-      <h2>
-        Example
-      </h2>
-      <div
-        class="pass-fail-grid"
-      >
-        <div
-          class="fail-section"
-        >
-          <div
-            class="fail-header"
-          >
-            <span
-              class="check-container"
-            >
-              <svg
-                fill="none"
-                height="16"
-                viewBox="0 0 16 16"
-                width="16"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <circle
-                  cx="8"
-                  cy="8"
-                  fill="#E81123"
-                  r="8"
-                />
-                <path
-                  d="M10.9837 6.27639C11.3352 5.92491 11.3352 5.35507 10.9837 5.00359C10.6322 4.65212 10.0624 4.65212 9.7109 5.00359L7.99722 6.71728L6.28375 5.00381C5.93227 4.65234 5.36242 4.65234 5.01095 5.00381C4.65948 5.35528 4.65948 5.92513 5.01095 6.2766L6.72443 7.99007L4.9837 9.7308C4.63222 10.0823 4.63222 10.6521 4.9837 11.0036C5.33517 11.3551 5.90502 11.3551 6.25649 11.0036L7.99722 9.26287L9.73816 11.0038C10.0896 11.3553 10.6595 11.3553 11.011 11.0038C11.3624 10.6523 11.3624 10.0825 11.011 9.73101L9.27001 7.99007L10.9837 6.27639Z"
-                  fill="white"
-                />
-              </svg>
-            </span>
-             
-            <h3>
-              Fail
-            </h3>
-          </div>
-          <p>
-            The label for this combo box does not clearly communicate that users are expected to enter an abbreviation for their state.
-          </p>
-        </div>
-        <div
-          class="fail-example"
-        >
-          <div
-            class="code-example"
-          >
-            <div
-              class="code-example-code"
-            >
-              <div
-                class="insights-code"
-              >
-                &lt;label for="where-input" id="where-label" class="combobox-label"&gt;
-                <span
-                  class="highlight"
-                >
-                  Location
-                </span>
-                &lt;/label&gt;
-                <br />
-                            &lt;div role="combobox" aria-expanded="false" aria-owns="where-listbox" aria-haspopup="listbox" id="where-combobox"&gt;
-                <br />
-                            &lt;input type="text" aria-autocomplete="list" aria-controls="where-listbox" id="where-input"&gt;
-                <br />
-                            &lt;/div&gt;
-              </div>
-            </div>
-          </div>
-        </div>
-        <div
-          class="pass-section"
-        >
-          <div
-            class="pass-header"
-          >
-            <span
-              class="check-container"
-            >
-              <svg
-                fill="none"
-                height="16"
-                viewBox="0 0 16 16"
-                width="16"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <circle
-                  cx="8"
-                  cy="8"
-                  fill="#228722"
-                  r="8"
-                />
-                <path
-                  clip-rule="evenodd"
-                  d="M6.05904 11.1417L6.0616 11.1442C6.10737 11.19 6.15668 11.23 6.20867 11.2643C6.57256 11.5046 7.06707 11.4646 7.38742 11.1442C7.38861 11.143 7.38982 11.1418 7.391 11.1406L11.9312 6.60041C12.2974 6.23427 12.2974 5.64071 11.9312 5.27457C11.5651 4.90848 10.9715 4.90848 10.6054 5.27457L6.72452 9.15545L5.60041 8.03134C5.2343 7.66524 4.64071 7.66524 4.27459 8.03134C3.90847 8.39747 3.90847 8.99104 4.27459 9.35718L6.05904 11.1417Z"
-                  fill="white"
-                  fill-rule="evenodd"
-                />
-              </svg>
-            </span>
-             
-            <h3>
-              Pass
-            </h3>
-          </div>
-          <p>
-            An accessible description has been created using 
-            <span
-              class="insights-code"
-            >
-              aria-describedby
-            </span>
-            . The description clarifies the expected input.
-          </p>
-        </div>
-        <div
-          class="pass-example"
-        >
-          <div
-            class="code-example"
-          >
-            <div
-              class="code-example-code"
-            >
-              <div
-                class="insights-code"
-              >
-                &lt;label for="where-input" id="where-label" class="combobox-label"&gt;
-                <span
-                  class="highlight"
-                >
-                  Location
-                </span>
-                &lt;/label&gt;
-                <br />
-                            
-                <span
-                  class="highlight"
-                >
-                  &lt;p id="where-desc"&gt;Enter the 2-letter abbreviation for your state.&lt;/p&gt;
-                </span>
-                <br />
-                            &lt;div role="combobox" aria-expanded="false" aria-owns="where-listbox" aria-haspopup="listbox" id="where-combobox"&gt;
-                <br />
-                            &lt;input type="text" aria-autocomplete="list" aria-controls="ex1-listbox" id="where-input" 
-                <span
-                  class="highlight"
-                >
-                  aria-describedby="where-desc"
-                </span>
-                &gt;
-                <br />
-                            &lt;/div&gt;
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <h2>
-        More examples
-      </h2>
-      <h3>
-        WCAG success criteria
-      </h3>
-      <div
-        class="content-hyperlinks"
-      >
-        <a
-          class="ms-Link insights-link root-000"
-          href="https://www.w3.org/WAI/WCAG21/Understanding/labels-or-instructions.html"
-          target="_blank"
-        >
-          Understanding Success Criterion 3.3.2: Labels or Instructions
-        </a>
-      </div>
-      <h4>
-        Sufficient techniques
-      </h4>
-      <div
-        class="content-hyperlinks"
-      >
-        <a
-          class="ms-Link insights-link root-000"
-          href="https://www.w3.org/WAI/WCAG21/Techniques/general/G131"
-          target="_blank"
-        >
-          Providing descriptive labels
-        </a>
-        <a
-          class="ms-Link insights-link root-000"
-          href="https://www.w3.org/WAI/WCAG21/Techniques/aria/ARIA1"
-          target="_blank"
-        >
-          Using the aria-describedby property to provide a descriptive label for user interface controls
-        </a>
-        <a
-          class="ms-Link insights-link root-000"
-          href="https://www.w3.org/WAI/WCAG21/Techniques/aria/ARIA9"
-          target="_blank"
-        >
-          Using aria-labelledby to concatenate a label from several text nodes
-        </a>
-        <a
-          class="ms-Link insights-link root-000"
-          href="https://www.w3.org/WAI/WCAG21/Techniques/aria/ARIA17"
-          target="_blank"
-        >
-          Using grouping roles to identify related form controls
-        </a>
-        <a
-          class="ms-Link insights-link root-000"
-          href="https://www.w3.org/WAI/WCAG21/Techniques/general/G89"
-          target="_blank"
-        >
-          Providing expected data format and example
-        </a>
-        <a
-          class="ms-Link insights-link root-000"
-          href="https://www.w3.org/WAI/WCAG21/Techniques/general/G184"
-          target="_blank"
-        >
-          Providing text instructions at the beginning of a form or set of fields that describes the necessary input
-        </a>
-        <a
-          class="ms-Link insights-link root-000"
-          href="https://www.w3.org/WAI/WCAG21/Techniques/general/G162"
-          target="_blank"
-        >
-          Positioning labels to maximize predictability of relationships
-        </a>
-      </div>
-      <h3>
-        Common failures
-      </h3>
-      <div
-        class="content-hyperlinks"
-      >
-        <a
-          class="ms-Link insights-link root-000"
-          href="https://www.w3.org/WAI/WCAG21/Techniques/failures/F82"
-          target="_blank"
-        >
-          Failure of Success Criterion 3.3.2 by visually formatting a set of phone number fields but not including a text label
         </a>
       </div>
     </div>
@@ -19411,7 +19411,11 @@ exports[`A11Y for content pages High Contrast mode test/nativeWidgets/autocomple
                 <br />
                             &lt;div&gt;
                 <br />
-                                &lt;label for="username"&gt;Username&lt;/label&gt;
+                                &lt;label for="username"&gt;
+                <br />
+                                    Username
+                <br />
+                                &lt;/label&gt;
                 <br />
                                 &lt;input id="username" type="text" autocomplete="username"&gt;
                 <br />
@@ -19419,7 +19423,11 @@ exports[`A11Y for content pages High Contrast mode test/nativeWidgets/autocomple
                 <br />
                             &lt;div&gt;
                 <br />
-                                &lt;label for="password"&gt;Password&lt;/label&gt;
+                                &lt;label for="password"&gt;
+                <br />
+                                    Password
+                <br />
+                                &lt;/label&gt;
                 <br />
                                 &lt;input id="password" type="password" 
                 <span
@@ -19494,7 +19502,11 @@ exports[`A11Y for content pages High Contrast mode test/nativeWidgets/autocomple
                 <br />
                             &lt;div&gt;
                 <br />
-                                &lt;label for="username"&gt;Username&lt;/label&gt;
+                                &lt;label for="username"&gt;
+                <br />
+                                    Username
+                <br />
+                                &lt;/label&gt;
                 <br />
                                 &lt;input id="username" type="text" autocomplete="username"&gt;
                 <br />
@@ -19502,7 +19514,11 @@ exports[`A11Y for content pages High Contrast mode test/nativeWidgets/autocomple
                 <br />
                             &lt;div&gt;
                 <br />
-                                &lt;label for="password"&gt;Password&lt;/label&gt;
+                                &lt;label for="password"&gt;
+                <br />
+                                    Password
+                <br />
+                                &lt;/label&gt;
                 <br />
                                 &lt;input id="password" type="password" 
                 <span
@@ -19841,6 +19857,298 @@ exports[`A11Y for content pages High Contrast mode test/nativeWidgets/cues/infoA
           target="_blank"
         >
           Using semantic markup whenever color cues are used
+        </a>
+      </div>
+    </div>
+    <div
+      class="content-right"
+    />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`A11Y for content pages High Contrast mode test/nativeWidgets/expectedInput/infoAndExamples 1`] = `
+<DocumentFragment>
+  <div
+    class="content-container"
+  >
+    <div
+      class="content-left"
+    />
+    <div
+      class="content"
+    >
+      <h1>
+        Expected input
+      </h1>
+      <p>
+        A native widget must have a label and/or instructions that identify the expected input.
+      </p>
+      <h2>
+        Why it matters
+      </h2>
+      <p>
+        When a widget clearly communicates its expected input, all users are likely to make fewer input mistakes.
+      </p>
+      <h3>
+        From a user's perspective
+      </h3>
+      <p>
+        <em>
+          "I do not rely on visual cues for reading, I use a screen reader. For any required input you need from me, provide me with general instructions on what is being asked, what is required and, examples of valid input so I can provide the requested information."
+        </em>
+      </p>
+      <h2>
+        How to fix
+      </h2>
+      <p>
+        Make sure the widget's accessible name and/or accessible description communicates the expected input. For example, a button should indicate what action it will initiate. A text field should indicate what type of data is expected and whether a specific format is required.
+      </p>
+      <h2>
+        Example
+      </h2>
+      <div
+        class="pass-fail-grid"
+      >
+        <div
+          class="fail-section"
+        >
+          <div
+            class="fail-header"
+          >
+            <span
+              class="check-container"
+            >
+              <svg
+                fill="none"
+                height="16"
+                viewBox="0 0 16 16"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="8"
+                  cy="8"
+                  fill="#E81123"
+                  r="8"
+                />
+                <path
+                  d="M10.9837 6.27639C11.3352 5.92491 11.3352 5.35507 10.9837 5.00359C10.6322 4.65212 10.0624 4.65212 9.7109 5.00359L7.99722 6.71728L6.28375 5.00381C5.93227 4.65234 5.36242 4.65234 5.01095 5.00381C4.65948 5.35528 4.65948 5.92513 5.01095 6.2766L6.72443 7.99007L4.9837 9.7308C4.63222 10.0823 4.63222 10.6521 4.9837 11.0036C5.33517 11.3551 5.90502 11.3551 6.25649 11.0036L7.99722 9.26287L9.73816 11.0038C10.0896 11.3553 10.6595 11.3553 11.011 11.0038C11.3624 10.6523 11.3624 10.0825 11.011 9.73101L9.27001 7.99007L10.9837 6.27639Z"
+                  fill="white"
+                />
+              </svg>
+            </span>
+             
+            <h3>
+              Fail
+            </h3>
+          </div>
+          <p>
+            An online form has fields for entering first and last names, but both fields share the same accessible name. Users are expected to infer from the placeholder text that the first field is for the first name, and the second field is for the last name.
+          </p>
+        </div>
+        <div
+          class="fail-example"
+        >
+          <div
+            class="code-example"
+          >
+            <div
+              class="code-example-code"
+            >
+              <div
+                class="insights-code"
+              >
+                &lt;div id="name"&gt;Name&lt;/div&gt;
+                <br />
+                            &lt;input type="text" name="firstname" 
+                <span
+                  class="highlight"
+                >
+                  placeholder="Mickey" aria-labelledby="name"
+                </span>
+                &gt;
+                <br />
+                            &lt;input type="text" name="lastname" 
+                <span
+                  class="highlight"
+                >
+                  placeholder="Mouse" aria-labelledby="name"
+                </span>
+                &gt;
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="pass-section"
+        >
+          <div
+            class="pass-header"
+          >
+            <span
+              class="check-container"
+            >
+              <svg
+                fill="none"
+                height="16"
+                viewBox="0 0 16 16"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="8"
+                  cy="8"
+                  fill="#228722"
+                  r="8"
+                />
+                <path
+                  clip-rule="evenodd"
+                  d="M6.05904 11.1417L6.0616 11.1442C6.10737 11.19 6.15668 11.23 6.20867 11.2643C6.57256 11.5046 7.06707 11.4646 7.38742 11.1442C7.38861 11.143 7.38982 11.1418 7.391 11.1406L11.9312 6.60041C12.2974 6.23427 12.2974 5.64071 11.9312 5.27457C11.5651 4.90848 10.9715 4.90848 10.6054 5.27457L6.72452 9.15545L5.60041 8.03134C5.2343 7.66524 4.64071 7.66524 4.27459 8.03134C3.90847 8.39747 3.90847 8.99104 4.27459 9.35718L6.05904 11.1417Z"
+                  fill="white"
+                  fill-rule="evenodd"
+                />
+              </svg>
+            </span>
+             
+            <h3>
+              Pass
+            </h3>
+          </div>
+          <p>
+            Each text field has its own label indicating which name is expected.
+          </p>
+        </div>
+        <div
+          class="pass-example"
+        >
+          <div
+            class="code-example"
+          >
+            <div
+              class="code-example-code"
+            >
+              <div
+                class="insights-code"
+              >
+                <span
+                  class="highlight"
+                >
+                  &lt;label for="firstname"&gt;First name&lt;/label&gt;
+                </span>
+                <br />
+                            &lt;input type="text" name="firstname" 
+                <span
+                  class="highlight"
+                >
+                  id="firstname"
+                </span>
+                &gt;
+                <br />
+                            
+                <span
+                  class="highlight"
+                >
+                  &lt;label for="lastname"&gt;Last name&lt;/label&gt;
+                </span>
+                <br />
+                            &lt;input type="text" name="lastname" 
+                <span
+                  class="highlight"
+                >
+                  id="lastname"
+                </span>
+                &gt;
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h2>
+        More examples
+      </h2>
+      <h3>
+        WCAG success criteria
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Understanding/labels-or-instructions.html"
+          target="_blank"
+        >
+          Understanding Success Criterion 3.3.2: Labels or Instructions
+        </a>
+      </div>
+      <h4>
+        Sufficient techniques
+      </h4>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/general/G131"
+          target="_blank"
+        >
+          Providing descriptive labels
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/aria/ARIA1"
+          target="_blank"
+        >
+          Using the aria-describedby property to provide a descriptive label for user interface controls
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/aria/ARIA9"
+          target="_blank"
+        >
+          Using aria-labelledby to concatenate a label from several text nodes
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/aria/ARIA17"
+          target="_blank"
+        >
+          Using grouping roles to identify related form controls
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/general/G89"
+          target="_blank"
+        >
+          Providing expected data format and example
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/general/G184"
+          target="_blank"
+        >
+          Providing text instructions at the beginning of a form or set of fields that describes the necessary input
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/general/G162"
+          target="_blank"
+        >
+          Positioning labels to maximize predictability of relationships
+        </a>
+      </div>
+      <h3>
+        Common failures
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/failures/F82"
+          target="_blank"
+        >
+          Failure of Success Criterion 3.3.2 by visually formatting a set of phone number fields but not including a text label
         </a>
       </div>
     </div>
@@ -20729,298 +21037,6 @@ exports[`A11Y for content pages High Contrast mode test/nativeWidgets/instructio
           target="_blank"
         >
           Using the aria-describedby property to provide a descriptive label for user interface controls
-        </a>
-      </div>
-    </div>
-    <div
-      class="content-right"
-    />
-  </div>
-</DocumentFragment>
-`;
-
-exports[`A11Y for content pages High Contrast mode test/nativeWidgets/label/infoAndExamples 1`] = `
-<DocumentFragment>
-  <div
-    class="content-container"
-  >
-    <div
-      class="content-left"
-    />
-    <div
-      class="content"
-    >
-      <h1>
-        Label
-      </h1>
-      <p>
-        A native widget must have a label and/or instructions that identify the expected input.
-      </p>
-      <h2>
-        Why it matters
-      </h2>
-      <p>
-        When a widget clearly communicates its expected input, all users are likely to make fewer input mistakes.
-      </p>
-      <h3>
-        From a user's perspective
-      </h3>
-      <p>
-        <em>
-          "I do not rely on visual cues for reading, I use a screen reader. For any required input you need from me, provide me with general instructions on what is being asked, what is required and, examples of valid input so I can provide the requested information."
-        </em>
-      </p>
-      <h2>
-        How to fix
-      </h2>
-      <p>
-        Make sure the widget's accessible name and/or accessible description communicates the expected input. For example, a button should indicate what action it will initiate. A text field should indicate what type of data is expected and whether a specific format is required.
-      </p>
-      <h2>
-        Example
-      </h2>
-      <div
-        class="pass-fail-grid"
-      >
-        <div
-          class="fail-section"
-        >
-          <div
-            class="fail-header"
-          >
-            <span
-              class="check-container"
-            >
-              <svg
-                fill="none"
-                height="16"
-                viewBox="0 0 16 16"
-                width="16"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <circle
-                  cx="8"
-                  cy="8"
-                  fill="#E81123"
-                  r="8"
-                />
-                <path
-                  d="M10.9837 6.27639C11.3352 5.92491 11.3352 5.35507 10.9837 5.00359C10.6322 4.65212 10.0624 4.65212 9.7109 5.00359L7.99722 6.71728L6.28375 5.00381C5.93227 4.65234 5.36242 4.65234 5.01095 5.00381C4.65948 5.35528 4.65948 5.92513 5.01095 6.2766L6.72443 7.99007L4.9837 9.7308C4.63222 10.0823 4.63222 10.6521 4.9837 11.0036C5.33517 11.3551 5.90502 11.3551 6.25649 11.0036L7.99722 9.26287L9.73816 11.0038C10.0896 11.3553 10.6595 11.3553 11.011 11.0038C11.3624 10.6523 11.3624 10.0825 11.011 9.73101L9.27001 7.99007L10.9837 6.27639Z"
-                  fill="white"
-                />
-              </svg>
-            </span>
-             
-            <h3>
-              Fail
-            </h3>
-          </div>
-          <p>
-            An online form has fields for entering first and last names, but both fields share the same accessible name. Users are expected to infer from the placeholder text that the first field is for the first name, and the second field is for the last name.
-          </p>
-        </div>
-        <div
-          class="fail-example"
-        >
-          <div
-            class="code-example"
-          >
-            <div
-              class="code-example-code"
-            >
-              <div
-                class="insights-code"
-              >
-                &lt;div id="name"&gt;Name&lt;/div&gt;
-                <br />
-                            &lt;input type="text" name="firstname" 
-                <span
-                  class="highlight"
-                >
-                  placeholder="Mickey" aria-labelledby="name"
-                </span>
-                &gt;
-                <br />
-                            &lt;input type="text" name="lastname" 
-                <span
-                  class="highlight"
-                >
-                  placeholder="Mouse" aria-labelledby="name"
-                </span>
-                &gt;
-              </div>
-            </div>
-          </div>
-        </div>
-        <div
-          class="pass-section"
-        >
-          <div
-            class="pass-header"
-          >
-            <span
-              class="check-container"
-            >
-              <svg
-                fill="none"
-                height="16"
-                viewBox="0 0 16 16"
-                width="16"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <circle
-                  cx="8"
-                  cy="8"
-                  fill="#228722"
-                  r="8"
-                />
-                <path
-                  clip-rule="evenodd"
-                  d="M6.05904 11.1417L6.0616 11.1442C6.10737 11.19 6.15668 11.23 6.20867 11.2643C6.57256 11.5046 7.06707 11.4646 7.38742 11.1442C7.38861 11.143 7.38982 11.1418 7.391 11.1406L11.9312 6.60041C12.2974 6.23427 12.2974 5.64071 11.9312 5.27457C11.5651 4.90848 10.9715 4.90848 10.6054 5.27457L6.72452 9.15545L5.60041 8.03134C5.2343 7.66524 4.64071 7.66524 4.27459 8.03134C3.90847 8.39747 3.90847 8.99104 4.27459 9.35718L6.05904 11.1417Z"
-                  fill="white"
-                  fill-rule="evenodd"
-                />
-              </svg>
-            </span>
-             
-            <h3>
-              Pass
-            </h3>
-          </div>
-          <p>
-            Each text field has its own label indicating which name is expected.
-          </p>
-        </div>
-        <div
-          class="pass-example"
-        >
-          <div
-            class="code-example"
-          >
-            <div
-              class="code-example-code"
-            >
-              <div
-                class="insights-code"
-              >
-                <span
-                  class="highlight"
-                >
-                  &lt;label for="firstname"&gt;First name&lt;/label&gt;
-                </span>
-                <br />
-                            &lt;input type="text" name="firstname" 
-                <span
-                  class="highlight"
-                >
-                  id="firstname"
-                </span>
-                &gt;
-                <br />
-                            
-                <span
-                  class="highlight"
-                >
-                  &lt;label for="lastname"&gt;Last name&lt;/label&gt;
-                </span>
-                <br />
-                            &lt;input type="text" name="lastname" 
-                <span
-                  class="highlight"
-                >
-                  id="lastname"
-                </span>
-                &gt;
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <h2>
-        More examples
-      </h2>
-      <h3>
-        WCAG success criteria
-      </h3>
-      <div
-        class="content-hyperlinks"
-      >
-        <a
-          class="ms-Link insights-link root-000"
-          href="https://www.w3.org/WAI/WCAG21/Understanding/labels-or-instructions.html"
-          target="_blank"
-        >
-          Understanding Success Criterion 3.3.2: Labels or Instructions
-        </a>
-      </div>
-      <h4>
-        Sufficient techniques
-      </h4>
-      <div
-        class="content-hyperlinks"
-      >
-        <a
-          class="ms-Link insights-link root-000"
-          href="https://www.w3.org/WAI/WCAG21/Techniques/general/G131"
-          target="_blank"
-        >
-          Providing descriptive labels
-        </a>
-        <a
-          class="ms-Link insights-link root-000"
-          href="https://www.w3.org/WAI/WCAG21/Techniques/aria/ARIA1"
-          target="_blank"
-        >
-          Using the aria-describedby property to provide a descriptive label for user interface controls
-        </a>
-        <a
-          class="ms-Link insights-link root-000"
-          href="https://www.w3.org/WAI/WCAG21/Techniques/aria/ARIA9"
-          target="_blank"
-        >
-          Using aria-labelledby to concatenate a label from several text nodes
-        </a>
-        <a
-          class="ms-Link insights-link root-000"
-          href="https://www.w3.org/WAI/WCAG21/Techniques/aria/ARIA17"
-          target="_blank"
-        >
-          Using grouping roles to identify related form controls
-        </a>
-        <a
-          class="ms-Link insights-link root-000"
-          href="https://www.w3.org/WAI/WCAG21/Techniques/general/G89"
-          target="_blank"
-        >
-          Providing expected data format and example
-        </a>
-        <a
-          class="ms-Link insights-link root-000"
-          href="https://www.w3.org/WAI/WCAG21/Techniques/general/G184"
-          target="_blank"
-        >
-          Providing text instructions at the beginning of a form or set of fields that describes the necessary input
-        </a>
-        <a
-          class="ms-Link insights-link root-000"
-          href="https://www.w3.org/WAI/WCAG21/Techniques/general/G162"
-          target="_blank"
-        >
-          Positioning labels to maximize predictability of relationships
-        </a>
-      </div>
-      <h3>
-        Common failures
-      </h3>
-      <div
-        class="content-hyperlinks"
-      >
-        <a
-          class="ms-Link insights-link root-000"
-          href="https://www.w3.org/WAI/WCAG21/Techniques/failures/F82"
-          target="_blank"
-        >
-          Failure of Success Criterion 3.3.2 by visually formatting a set of phone number fields but not including a text label
         </a>
       </div>
     </div>
@@ -36908,6 +36924,298 @@ exports[`A11Y for content pages Normal mode test/customWidgets/designPattern/inf
 </DocumentFragment>
 `;
 
+exports[`A11Y for content pages Normal mode test/customWidgets/expectedInput/infoAndExamples 1`] = `
+<DocumentFragment>
+  <div
+    class="content-container"
+  >
+    <div
+      class="content-left"
+    />
+    <div
+      class="content"
+    >
+      <h1>
+        Expected input
+      </h1>
+      <p>
+        A custom widget must have a label and/or instructions that identify the expected input.
+      </p>
+      <h2>
+        Why it matters
+      </h2>
+      <p>
+        When a widget clearly communicates its expected input, all users are likely to make fewer input mistakes.
+      </p>
+      <h3>
+        From a user's perspective
+      </h3>
+      <p>
+        <em>
+          "I do not rely on visual cues for reading, I use a screen reader. For any required input you need from me, provide me with general instructions on what is being asked, what is required and, examples of valid input so I can provide the requested information."
+        </em>
+      </p>
+      <h2>
+        How to fix
+      </h2>
+      <p>
+        Make sure the widget's accessible name and/or accessible description communicates the expected input. For example, a button should indicate what action it will initiate. A text field should indicate what type of data is expected and whether a specific format is required.
+      </p>
+      <h2>
+        Example
+      </h2>
+      <div
+        class="pass-fail-grid"
+      >
+        <div
+          class="fail-section"
+        >
+          <div
+            class="fail-header"
+          >
+            <span
+              class="check-container"
+            >
+              <svg
+                fill="none"
+                height="16"
+                viewBox="0 0 16 16"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="8"
+                  cy="8"
+                  fill="#E81123"
+                  r="8"
+                />
+                <path
+                  d="M10.9837 6.27639C11.3352 5.92491 11.3352 5.35507 10.9837 5.00359C10.6322 4.65212 10.0624 4.65212 9.7109 5.00359L7.99722 6.71728L6.28375 5.00381C5.93227 4.65234 5.36242 4.65234 5.01095 5.00381C4.65948 5.35528 4.65948 5.92513 5.01095 6.2766L6.72443 7.99007L4.9837 9.7308C4.63222 10.0823 4.63222 10.6521 4.9837 11.0036C5.33517 11.3551 5.90502 11.3551 6.25649 11.0036L7.99722 9.26287L9.73816 11.0038C10.0896 11.3553 10.6595 11.3553 11.011 11.0038C11.3624 10.6523 11.3624 10.0825 11.011 9.73101L9.27001 7.99007L10.9837 6.27639Z"
+                  fill="white"
+                />
+              </svg>
+            </span>
+             
+            <h3>
+              Fail
+            </h3>
+          </div>
+          <p>
+            The label for this combo box does not clearly communicate that users are expected to enter an abbreviation for their state.
+          </p>
+        </div>
+        <div
+          class="fail-example"
+        >
+          <div
+            class="code-example"
+          >
+            <div
+              class="code-example-code"
+            >
+              <div
+                class="insights-code"
+              >
+                &lt;label for="where-input" id="where-label" class="combobox-label"&gt;
+                <span
+                  class="highlight"
+                >
+                  Location
+                </span>
+                &lt;/label&gt;
+                <br />
+                            &lt;div role="combobox" aria-expanded="false" aria-owns="where-listbox" aria-haspopup="listbox" id="where-combobox"&gt;
+                <br />
+                            &lt;input type="text" aria-autocomplete="list" aria-controls="where-listbox" id="where-input"&gt;
+                <br />
+                            &lt;/div&gt;
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="pass-section"
+        >
+          <div
+            class="pass-header"
+          >
+            <span
+              class="check-container"
+            >
+              <svg
+                fill="none"
+                height="16"
+                viewBox="0 0 16 16"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="8"
+                  cy="8"
+                  fill="#228722"
+                  r="8"
+                />
+                <path
+                  clip-rule="evenodd"
+                  d="M6.05904 11.1417L6.0616 11.1442C6.10737 11.19 6.15668 11.23 6.20867 11.2643C6.57256 11.5046 7.06707 11.4646 7.38742 11.1442C7.38861 11.143 7.38982 11.1418 7.391 11.1406L11.9312 6.60041C12.2974 6.23427 12.2974 5.64071 11.9312 5.27457C11.5651 4.90848 10.9715 4.90848 10.6054 5.27457L6.72452 9.15545L5.60041 8.03134C5.2343 7.66524 4.64071 7.66524 4.27459 8.03134C3.90847 8.39747 3.90847 8.99104 4.27459 9.35718L6.05904 11.1417Z"
+                  fill="white"
+                  fill-rule="evenodd"
+                />
+              </svg>
+            </span>
+             
+            <h3>
+              Pass
+            </h3>
+          </div>
+          <p>
+            An accessible description has been created using 
+            <span
+              class="insights-code"
+            >
+              aria-describedby
+            </span>
+            . The description clarifies the expected input.
+          </p>
+        </div>
+        <div
+          class="pass-example"
+        >
+          <div
+            class="code-example"
+          >
+            <div
+              class="code-example-code"
+            >
+              <div
+                class="insights-code"
+              >
+                &lt;label for="where-input" id="where-label" class="combobox-label"&gt;
+                <span
+                  class="highlight"
+                >
+                  Location
+                </span>
+                &lt;/label&gt;
+                <br />
+                            
+                <span
+                  class="highlight"
+                >
+                  &lt;p id="where-desc"&gt;Enter the 2-letter abbreviation for your state.&lt;/p&gt;
+                </span>
+                <br />
+                            &lt;div role="combobox" aria-expanded="false" aria-owns="where-listbox" aria-haspopup="listbox" id="where-combobox"&gt;
+                <br />
+                            &lt;input type="text" aria-autocomplete="list" aria-controls="ex1-listbox" id="where-input" 
+                <span
+                  class="highlight"
+                >
+                  aria-describedby="where-desc"
+                </span>
+                &gt;
+                <br />
+                            &lt;/div&gt;
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h2>
+        More examples
+      </h2>
+      <h3>
+        WCAG success criteria
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Understanding/labels-or-instructions.html"
+          target="_blank"
+        >
+          Understanding Success Criterion 3.3.2: Labels or Instructions
+        </a>
+      </div>
+      <h4>
+        Sufficient techniques
+      </h4>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/general/G131"
+          target="_blank"
+        >
+          Providing descriptive labels
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/aria/ARIA1"
+          target="_blank"
+        >
+          Using the aria-describedby property to provide a descriptive label for user interface controls
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/aria/ARIA9"
+          target="_blank"
+        >
+          Using aria-labelledby to concatenate a label from several text nodes
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/aria/ARIA17"
+          target="_blank"
+        >
+          Using grouping roles to identify related form controls
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/general/G89"
+          target="_blank"
+        >
+          Providing expected data format and example
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/general/G184"
+          target="_blank"
+        >
+          Providing text instructions at the beginning of a form or set of fields that describes the necessary input
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/general/G162"
+          target="_blank"
+        >
+          Positioning labels to maximize predictability of relationships
+        </a>
+      </div>
+      <h3>
+        Common failures
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/failures/F82"
+          target="_blank"
+        >
+          Failure of Success Criterion 3.3.2 by visually formatting a set of phone number fields but not including a text label
+        </a>
+      </div>
+    </div>
+    <div
+      class="content-right"
+    />
+  </div>
+</DocumentFragment>
+`;
+
 exports[`A11Y for content pages Normal mode test/customWidgets/guidance 1`] = `
 <DocumentFragment>
   <div
@@ -38185,298 +38493,6 @@ exports[`A11Y for content pages Normal mode test/customWidgets/keyboardInteracti
           target="_blank"
         >
           WAI-ARIA Authoring Practices 1.1: Design Patterns and Widgets
-        </a>
-      </div>
-    </div>
-    <div
-      class="content-right"
-    />
-  </div>
-</DocumentFragment>
-`;
-
-exports[`A11Y for content pages Normal mode test/customWidgets/label/infoAndExamples 1`] = `
-<DocumentFragment>
-  <div
-    class="content-container"
-  >
-    <div
-      class="content-left"
-    />
-    <div
-      class="content"
-    >
-      <h1>
-        Label
-      </h1>
-      <p>
-        A custom widget must have a label and/or instructions that identify the expected input.
-      </p>
-      <h2>
-        Why it matters
-      </h2>
-      <p>
-        When a widget clearly communicates its expected input, all users are likely to make fewer input mistakes.
-      </p>
-      <h3>
-        From a user's perspective
-      </h3>
-      <p>
-        <em>
-          "I do not rely on visual cues for reading, I use a screen reader. For any required input you need from me, provide me with general instructions on what is being asked, what is required and, examples of valid input so I can provide the requested information."
-        </em>
-      </p>
-      <h2>
-        How to fix
-      </h2>
-      <p>
-        Make sure the widget's accessible name and/or accessible description communicates the expected input. For example, a button should indicate what action it will initiate. A text field should indicate what type of data is expected and whether a specific format is required.
-      </p>
-      <h2>
-        Example
-      </h2>
-      <div
-        class="pass-fail-grid"
-      >
-        <div
-          class="fail-section"
-        >
-          <div
-            class="fail-header"
-          >
-            <span
-              class="check-container"
-            >
-              <svg
-                fill="none"
-                height="16"
-                viewBox="0 0 16 16"
-                width="16"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <circle
-                  cx="8"
-                  cy="8"
-                  fill="#E81123"
-                  r="8"
-                />
-                <path
-                  d="M10.9837 6.27639C11.3352 5.92491 11.3352 5.35507 10.9837 5.00359C10.6322 4.65212 10.0624 4.65212 9.7109 5.00359L7.99722 6.71728L6.28375 5.00381C5.93227 4.65234 5.36242 4.65234 5.01095 5.00381C4.65948 5.35528 4.65948 5.92513 5.01095 6.2766L6.72443 7.99007L4.9837 9.7308C4.63222 10.0823 4.63222 10.6521 4.9837 11.0036C5.33517 11.3551 5.90502 11.3551 6.25649 11.0036L7.99722 9.26287L9.73816 11.0038C10.0896 11.3553 10.6595 11.3553 11.011 11.0038C11.3624 10.6523 11.3624 10.0825 11.011 9.73101L9.27001 7.99007L10.9837 6.27639Z"
-                  fill="white"
-                />
-              </svg>
-            </span>
-             
-            <h3>
-              Fail
-            </h3>
-          </div>
-          <p>
-            The label for this combo box does not clearly communicate that users are expected to enter an abbreviation for their state.
-          </p>
-        </div>
-        <div
-          class="fail-example"
-        >
-          <div
-            class="code-example"
-          >
-            <div
-              class="code-example-code"
-            >
-              <div
-                class="insights-code"
-              >
-                &lt;label for="where-input" id="where-label" class="combobox-label"&gt;
-                <span
-                  class="highlight"
-                >
-                  Location
-                </span>
-                &lt;/label&gt;
-                <br />
-                            &lt;div role="combobox" aria-expanded="false" aria-owns="where-listbox" aria-haspopup="listbox" id="where-combobox"&gt;
-                <br />
-                            &lt;input type="text" aria-autocomplete="list" aria-controls="where-listbox" id="where-input"&gt;
-                <br />
-                            &lt;/div&gt;
-              </div>
-            </div>
-          </div>
-        </div>
-        <div
-          class="pass-section"
-        >
-          <div
-            class="pass-header"
-          >
-            <span
-              class="check-container"
-            >
-              <svg
-                fill="none"
-                height="16"
-                viewBox="0 0 16 16"
-                width="16"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <circle
-                  cx="8"
-                  cy="8"
-                  fill="#228722"
-                  r="8"
-                />
-                <path
-                  clip-rule="evenodd"
-                  d="M6.05904 11.1417L6.0616 11.1442C6.10737 11.19 6.15668 11.23 6.20867 11.2643C6.57256 11.5046 7.06707 11.4646 7.38742 11.1442C7.38861 11.143 7.38982 11.1418 7.391 11.1406L11.9312 6.60041C12.2974 6.23427 12.2974 5.64071 11.9312 5.27457C11.5651 4.90848 10.9715 4.90848 10.6054 5.27457L6.72452 9.15545L5.60041 8.03134C5.2343 7.66524 4.64071 7.66524 4.27459 8.03134C3.90847 8.39747 3.90847 8.99104 4.27459 9.35718L6.05904 11.1417Z"
-                  fill="white"
-                  fill-rule="evenodd"
-                />
-              </svg>
-            </span>
-             
-            <h3>
-              Pass
-            </h3>
-          </div>
-          <p>
-            An accessible description has been created using 
-            <span
-              class="insights-code"
-            >
-              aria-describedby
-            </span>
-            . The description clarifies the expected input.
-          </p>
-        </div>
-        <div
-          class="pass-example"
-        >
-          <div
-            class="code-example"
-          >
-            <div
-              class="code-example-code"
-            >
-              <div
-                class="insights-code"
-              >
-                &lt;label for="where-input" id="where-label" class="combobox-label"&gt;
-                <span
-                  class="highlight"
-                >
-                  Location
-                </span>
-                &lt;/label&gt;
-                <br />
-                            
-                <span
-                  class="highlight"
-                >
-                  &lt;p id="where-desc"&gt;Enter the 2-letter abbreviation for your state.&lt;/p&gt;
-                </span>
-                <br />
-                            &lt;div role="combobox" aria-expanded="false" aria-owns="where-listbox" aria-haspopup="listbox" id="where-combobox"&gt;
-                <br />
-                            &lt;input type="text" aria-autocomplete="list" aria-controls="ex1-listbox" id="where-input" 
-                <span
-                  class="highlight"
-                >
-                  aria-describedby="where-desc"
-                </span>
-                &gt;
-                <br />
-                            &lt;/div&gt;
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <h2>
-        More examples
-      </h2>
-      <h3>
-        WCAG success criteria
-      </h3>
-      <div
-        class="content-hyperlinks"
-      >
-        <a
-          class="ms-Link insights-link root-000"
-          href="https://www.w3.org/WAI/WCAG21/Understanding/labels-or-instructions.html"
-          target="_blank"
-        >
-          Understanding Success Criterion 3.3.2: Labels or Instructions
-        </a>
-      </div>
-      <h4>
-        Sufficient techniques
-      </h4>
-      <div
-        class="content-hyperlinks"
-      >
-        <a
-          class="ms-Link insights-link root-000"
-          href="https://www.w3.org/WAI/WCAG21/Techniques/general/G131"
-          target="_blank"
-        >
-          Providing descriptive labels
-        </a>
-        <a
-          class="ms-Link insights-link root-000"
-          href="https://www.w3.org/WAI/WCAG21/Techniques/aria/ARIA1"
-          target="_blank"
-        >
-          Using the aria-describedby property to provide a descriptive label for user interface controls
-        </a>
-        <a
-          class="ms-Link insights-link root-000"
-          href="https://www.w3.org/WAI/WCAG21/Techniques/aria/ARIA9"
-          target="_blank"
-        >
-          Using aria-labelledby to concatenate a label from several text nodes
-        </a>
-        <a
-          class="ms-Link insights-link root-000"
-          href="https://www.w3.org/WAI/WCAG21/Techniques/aria/ARIA17"
-          target="_blank"
-        >
-          Using grouping roles to identify related form controls
-        </a>
-        <a
-          class="ms-Link insights-link root-000"
-          href="https://www.w3.org/WAI/WCAG21/Techniques/general/G89"
-          target="_blank"
-        >
-          Providing expected data format and example
-        </a>
-        <a
-          class="ms-Link insights-link root-000"
-          href="https://www.w3.org/WAI/WCAG21/Techniques/general/G184"
-          target="_blank"
-        >
-          Providing text instructions at the beginning of a form or set of fields that describes the necessary input
-        </a>
-        <a
-          class="ms-Link insights-link root-000"
-          href="https://www.w3.org/WAI/WCAG21/Techniques/general/G162"
-          target="_blank"
-        >
-          Positioning labels to maximize predictability of relationships
-        </a>
-      </div>
-      <h3>
-        Common failures
-      </h3>
-      <div
-        class="content-hyperlinks"
-      >
-        <a
-          class="ms-Link insights-link root-000"
-          href="https://www.w3.org/WAI/WCAG21/Techniques/failures/F82"
-          target="_blank"
-        >
-          Failure of Success Criterion 3.3.2 by visually formatting a set of phone number fields but not including a text label
         </a>
       </div>
     </div>
@@ -52946,7 +52962,11 @@ exports[`A11Y for content pages Normal mode test/nativeWidgets/autocomplete/info
                 <br />
                             &lt;div&gt;
                 <br />
-                                &lt;label for="username"&gt;Username&lt;/label&gt;
+                                &lt;label for="username"&gt;
+                <br />
+                                    Username
+                <br />
+                                &lt;/label&gt;
                 <br />
                                 &lt;input id="username" type="text" autocomplete="username"&gt;
                 <br />
@@ -52954,7 +52974,11 @@ exports[`A11Y for content pages Normal mode test/nativeWidgets/autocomplete/info
                 <br />
                             &lt;div&gt;
                 <br />
-                                &lt;label for="password"&gt;Password&lt;/label&gt;
+                                &lt;label for="password"&gt;
+                <br />
+                                    Password
+                <br />
+                                &lt;/label&gt;
                 <br />
                                 &lt;input id="password" type="password" 
                 <span
@@ -53029,7 +53053,11 @@ exports[`A11Y for content pages Normal mode test/nativeWidgets/autocomplete/info
                 <br />
                             &lt;div&gt;
                 <br />
-                                &lt;label for="username"&gt;Username&lt;/label&gt;
+                                &lt;label for="username"&gt;
+                <br />
+                                    Username
+                <br />
+                                &lt;/label&gt;
                 <br />
                                 &lt;input id="username" type="text" autocomplete="username"&gt;
                 <br />
@@ -53037,7 +53065,11 @@ exports[`A11Y for content pages Normal mode test/nativeWidgets/autocomplete/info
                 <br />
                             &lt;div&gt;
                 <br />
-                                &lt;label for="password"&gt;Password&lt;/label&gt;
+                                &lt;label for="password"&gt;
+                <br />
+                                    Password
+                <br />
+                                &lt;/label&gt;
                 <br />
                                 &lt;input id="password" type="password" 
                 <span
@@ -53376,6 +53408,298 @@ exports[`A11Y for content pages Normal mode test/nativeWidgets/cues/infoAndExamp
           target="_blank"
         >
           Using semantic markup whenever color cues are used
+        </a>
+      </div>
+    </div>
+    <div
+      class="content-right"
+    />
+  </div>
+</DocumentFragment>
+`;
+
+exports[`A11Y for content pages Normal mode test/nativeWidgets/expectedInput/infoAndExamples 1`] = `
+<DocumentFragment>
+  <div
+    class="content-container"
+  >
+    <div
+      class="content-left"
+    />
+    <div
+      class="content"
+    >
+      <h1>
+        Expected input
+      </h1>
+      <p>
+        A native widget must have a label and/or instructions that identify the expected input.
+      </p>
+      <h2>
+        Why it matters
+      </h2>
+      <p>
+        When a widget clearly communicates its expected input, all users are likely to make fewer input mistakes.
+      </p>
+      <h3>
+        From a user's perspective
+      </h3>
+      <p>
+        <em>
+          "I do not rely on visual cues for reading, I use a screen reader. For any required input you need from me, provide me with general instructions on what is being asked, what is required and, examples of valid input so I can provide the requested information."
+        </em>
+      </p>
+      <h2>
+        How to fix
+      </h2>
+      <p>
+        Make sure the widget's accessible name and/or accessible description communicates the expected input. For example, a button should indicate what action it will initiate. A text field should indicate what type of data is expected and whether a specific format is required.
+      </p>
+      <h2>
+        Example
+      </h2>
+      <div
+        class="pass-fail-grid"
+      >
+        <div
+          class="fail-section"
+        >
+          <div
+            class="fail-header"
+          >
+            <span
+              class="check-container"
+            >
+              <svg
+                fill="none"
+                height="16"
+                viewBox="0 0 16 16"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="8"
+                  cy="8"
+                  fill="#E81123"
+                  r="8"
+                />
+                <path
+                  d="M10.9837 6.27639C11.3352 5.92491 11.3352 5.35507 10.9837 5.00359C10.6322 4.65212 10.0624 4.65212 9.7109 5.00359L7.99722 6.71728L6.28375 5.00381C5.93227 4.65234 5.36242 4.65234 5.01095 5.00381C4.65948 5.35528 4.65948 5.92513 5.01095 6.2766L6.72443 7.99007L4.9837 9.7308C4.63222 10.0823 4.63222 10.6521 4.9837 11.0036C5.33517 11.3551 5.90502 11.3551 6.25649 11.0036L7.99722 9.26287L9.73816 11.0038C10.0896 11.3553 10.6595 11.3553 11.011 11.0038C11.3624 10.6523 11.3624 10.0825 11.011 9.73101L9.27001 7.99007L10.9837 6.27639Z"
+                  fill="white"
+                />
+              </svg>
+            </span>
+             
+            <h3>
+              Fail
+            </h3>
+          </div>
+          <p>
+            An online form has fields for entering first and last names, but both fields share the same accessible name. Users are expected to infer from the placeholder text that the first field is for the first name, and the second field is for the last name.
+          </p>
+        </div>
+        <div
+          class="fail-example"
+        >
+          <div
+            class="code-example"
+          >
+            <div
+              class="code-example-code"
+            >
+              <div
+                class="insights-code"
+              >
+                &lt;div id="name"&gt;Name&lt;/div&gt;
+                <br />
+                            &lt;input type="text" name="firstname" 
+                <span
+                  class="highlight"
+                >
+                  placeholder="Mickey" aria-labelledby="name"
+                </span>
+                &gt;
+                <br />
+                            &lt;input type="text" name="lastname" 
+                <span
+                  class="highlight"
+                >
+                  placeholder="Mouse" aria-labelledby="name"
+                </span>
+                &gt;
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="pass-section"
+        >
+          <div
+            class="pass-header"
+          >
+            <span
+              class="check-container"
+            >
+              <svg
+                fill="none"
+                height="16"
+                viewBox="0 0 16 16"
+                width="16"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <circle
+                  cx="8"
+                  cy="8"
+                  fill="#228722"
+                  r="8"
+                />
+                <path
+                  clip-rule="evenodd"
+                  d="M6.05904 11.1417L6.0616 11.1442C6.10737 11.19 6.15668 11.23 6.20867 11.2643C6.57256 11.5046 7.06707 11.4646 7.38742 11.1442C7.38861 11.143 7.38982 11.1418 7.391 11.1406L11.9312 6.60041C12.2974 6.23427 12.2974 5.64071 11.9312 5.27457C11.5651 4.90848 10.9715 4.90848 10.6054 5.27457L6.72452 9.15545L5.60041 8.03134C5.2343 7.66524 4.64071 7.66524 4.27459 8.03134C3.90847 8.39747 3.90847 8.99104 4.27459 9.35718L6.05904 11.1417Z"
+                  fill="white"
+                  fill-rule="evenodd"
+                />
+              </svg>
+            </span>
+             
+            <h3>
+              Pass
+            </h3>
+          </div>
+          <p>
+            Each text field has its own label indicating which name is expected.
+          </p>
+        </div>
+        <div
+          class="pass-example"
+        >
+          <div
+            class="code-example"
+          >
+            <div
+              class="code-example-code"
+            >
+              <div
+                class="insights-code"
+              >
+                <span
+                  class="highlight"
+                >
+                  &lt;label for="firstname"&gt;First name&lt;/label&gt;
+                </span>
+                <br />
+                            &lt;input type="text" name="firstname" 
+                <span
+                  class="highlight"
+                >
+                  id="firstname"
+                </span>
+                &gt;
+                <br />
+                            
+                <span
+                  class="highlight"
+                >
+                  &lt;label for="lastname"&gt;Last name&lt;/label&gt;
+                </span>
+                <br />
+                            &lt;input type="text" name="lastname" 
+                <span
+                  class="highlight"
+                >
+                  id="lastname"
+                </span>
+                &gt;
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <h2>
+        More examples
+      </h2>
+      <h3>
+        WCAG success criteria
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Understanding/labels-or-instructions.html"
+          target="_blank"
+        >
+          Understanding Success Criterion 3.3.2: Labels or Instructions
+        </a>
+      </div>
+      <h4>
+        Sufficient techniques
+      </h4>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/general/G131"
+          target="_blank"
+        >
+          Providing descriptive labels
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/aria/ARIA1"
+          target="_blank"
+        >
+          Using the aria-describedby property to provide a descriptive label for user interface controls
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/aria/ARIA9"
+          target="_blank"
+        >
+          Using aria-labelledby to concatenate a label from several text nodes
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/aria/ARIA17"
+          target="_blank"
+        >
+          Using grouping roles to identify related form controls
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/general/G89"
+          target="_blank"
+        >
+          Providing expected data format and example
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/general/G184"
+          target="_blank"
+        >
+          Providing text instructions at the beginning of a form or set of fields that describes the necessary input
+        </a>
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/general/G162"
+          target="_blank"
+        >
+          Positioning labels to maximize predictability of relationships
+        </a>
+      </div>
+      <h3>
+        Common failures
+      </h3>
+      <div
+        class="content-hyperlinks"
+      >
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Techniques/failures/F82"
+          target="_blank"
+        >
+          Failure of Success Criterion 3.3.2 by visually formatting a set of phone number fields but not including a text label
         </a>
       </div>
     </div>
@@ -54264,298 +54588,6 @@ exports[`A11Y for content pages Normal mode test/nativeWidgets/instructions/info
           target="_blank"
         >
           Using the aria-describedby property to provide a descriptive label for user interface controls
-        </a>
-      </div>
-    </div>
-    <div
-      class="content-right"
-    />
-  </div>
-</DocumentFragment>
-`;
-
-exports[`A11Y for content pages Normal mode test/nativeWidgets/label/infoAndExamples 1`] = `
-<DocumentFragment>
-  <div
-    class="content-container"
-  >
-    <div
-      class="content-left"
-    />
-    <div
-      class="content"
-    >
-      <h1>
-        Label
-      </h1>
-      <p>
-        A native widget must have a label and/or instructions that identify the expected input.
-      </p>
-      <h2>
-        Why it matters
-      </h2>
-      <p>
-        When a widget clearly communicates its expected input, all users are likely to make fewer input mistakes.
-      </p>
-      <h3>
-        From a user's perspective
-      </h3>
-      <p>
-        <em>
-          "I do not rely on visual cues for reading, I use a screen reader. For any required input you need from me, provide me with general instructions on what is being asked, what is required and, examples of valid input so I can provide the requested information."
-        </em>
-      </p>
-      <h2>
-        How to fix
-      </h2>
-      <p>
-        Make sure the widget's accessible name and/or accessible description communicates the expected input. For example, a button should indicate what action it will initiate. A text field should indicate what type of data is expected and whether a specific format is required.
-      </p>
-      <h2>
-        Example
-      </h2>
-      <div
-        class="pass-fail-grid"
-      >
-        <div
-          class="fail-section"
-        >
-          <div
-            class="fail-header"
-          >
-            <span
-              class="check-container"
-            >
-              <svg
-                fill="none"
-                height="16"
-                viewBox="0 0 16 16"
-                width="16"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <circle
-                  cx="8"
-                  cy="8"
-                  fill="#E81123"
-                  r="8"
-                />
-                <path
-                  d="M10.9837 6.27639C11.3352 5.92491 11.3352 5.35507 10.9837 5.00359C10.6322 4.65212 10.0624 4.65212 9.7109 5.00359L7.99722 6.71728L6.28375 5.00381C5.93227 4.65234 5.36242 4.65234 5.01095 5.00381C4.65948 5.35528 4.65948 5.92513 5.01095 6.2766L6.72443 7.99007L4.9837 9.7308C4.63222 10.0823 4.63222 10.6521 4.9837 11.0036C5.33517 11.3551 5.90502 11.3551 6.25649 11.0036L7.99722 9.26287L9.73816 11.0038C10.0896 11.3553 10.6595 11.3553 11.011 11.0038C11.3624 10.6523 11.3624 10.0825 11.011 9.73101L9.27001 7.99007L10.9837 6.27639Z"
-                  fill="white"
-                />
-              </svg>
-            </span>
-             
-            <h3>
-              Fail
-            </h3>
-          </div>
-          <p>
-            An online form has fields for entering first and last names, but both fields share the same accessible name. Users are expected to infer from the placeholder text that the first field is for the first name, and the second field is for the last name.
-          </p>
-        </div>
-        <div
-          class="fail-example"
-        >
-          <div
-            class="code-example"
-          >
-            <div
-              class="code-example-code"
-            >
-              <div
-                class="insights-code"
-              >
-                &lt;div id="name"&gt;Name&lt;/div&gt;
-                <br />
-                            &lt;input type="text" name="firstname" 
-                <span
-                  class="highlight"
-                >
-                  placeholder="Mickey" aria-labelledby="name"
-                </span>
-                &gt;
-                <br />
-                            &lt;input type="text" name="lastname" 
-                <span
-                  class="highlight"
-                >
-                  placeholder="Mouse" aria-labelledby="name"
-                </span>
-                &gt;
-              </div>
-            </div>
-          </div>
-        </div>
-        <div
-          class="pass-section"
-        >
-          <div
-            class="pass-header"
-          >
-            <span
-              class="check-container"
-            >
-              <svg
-                fill="none"
-                height="16"
-                viewBox="0 0 16 16"
-                width="16"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <circle
-                  cx="8"
-                  cy="8"
-                  fill="#228722"
-                  r="8"
-                />
-                <path
-                  clip-rule="evenodd"
-                  d="M6.05904 11.1417L6.0616 11.1442C6.10737 11.19 6.15668 11.23 6.20867 11.2643C6.57256 11.5046 7.06707 11.4646 7.38742 11.1442C7.38861 11.143 7.38982 11.1418 7.391 11.1406L11.9312 6.60041C12.2974 6.23427 12.2974 5.64071 11.9312 5.27457C11.5651 4.90848 10.9715 4.90848 10.6054 5.27457L6.72452 9.15545L5.60041 8.03134C5.2343 7.66524 4.64071 7.66524 4.27459 8.03134C3.90847 8.39747 3.90847 8.99104 4.27459 9.35718L6.05904 11.1417Z"
-                  fill="white"
-                  fill-rule="evenodd"
-                />
-              </svg>
-            </span>
-             
-            <h3>
-              Pass
-            </h3>
-          </div>
-          <p>
-            Each text field has its own label indicating which name is expected.
-          </p>
-        </div>
-        <div
-          class="pass-example"
-        >
-          <div
-            class="code-example"
-          >
-            <div
-              class="code-example-code"
-            >
-              <div
-                class="insights-code"
-              >
-                <span
-                  class="highlight"
-                >
-                  &lt;label for="firstname"&gt;First name&lt;/label&gt;
-                </span>
-                <br />
-                            &lt;input type="text" name="firstname" 
-                <span
-                  class="highlight"
-                >
-                  id="firstname"
-                </span>
-                &gt;
-                <br />
-                            
-                <span
-                  class="highlight"
-                >
-                  &lt;label for="lastname"&gt;Last name&lt;/label&gt;
-                </span>
-                <br />
-                            &lt;input type="text" name="lastname" 
-                <span
-                  class="highlight"
-                >
-                  id="lastname"
-                </span>
-                &gt;
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <h2>
-        More examples
-      </h2>
-      <h3>
-        WCAG success criteria
-      </h3>
-      <div
-        class="content-hyperlinks"
-      >
-        <a
-          class="ms-Link insights-link root-000"
-          href="https://www.w3.org/WAI/WCAG21/Understanding/labels-or-instructions.html"
-          target="_blank"
-        >
-          Understanding Success Criterion 3.3.2: Labels or Instructions
-        </a>
-      </div>
-      <h4>
-        Sufficient techniques
-      </h4>
-      <div
-        class="content-hyperlinks"
-      >
-        <a
-          class="ms-Link insights-link root-000"
-          href="https://www.w3.org/WAI/WCAG21/Techniques/general/G131"
-          target="_blank"
-        >
-          Providing descriptive labels
-        </a>
-        <a
-          class="ms-Link insights-link root-000"
-          href="https://www.w3.org/WAI/WCAG21/Techniques/aria/ARIA1"
-          target="_blank"
-        >
-          Using the aria-describedby property to provide a descriptive label for user interface controls
-        </a>
-        <a
-          class="ms-Link insights-link root-000"
-          href="https://www.w3.org/WAI/WCAG21/Techniques/aria/ARIA9"
-          target="_blank"
-        >
-          Using aria-labelledby to concatenate a label from several text nodes
-        </a>
-        <a
-          class="ms-Link insights-link root-000"
-          href="https://www.w3.org/WAI/WCAG21/Techniques/aria/ARIA17"
-          target="_blank"
-        >
-          Using grouping roles to identify related form controls
-        </a>
-        <a
-          class="ms-Link insights-link root-000"
-          href="https://www.w3.org/WAI/WCAG21/Techniques/general/G89"
-          target="_blank"
-        >
-          Providing expected data format and example
-        </a>
-        <a
-          class="ms-Link insights-link root-000"
-          href="https://www.w3.org/WAI/WCAG21/Techniques/general/G184"
-          target="_blank"
-        >
-          Providing text instructions at the beginning of a form or set of fields that describes the necessary input
-        </a>
-        <a
-          class="ms-Link insights-link root-000"
-          href="https://www.w3.org/WAI/WCAG21/Techniques/general/G162"
-          target="_blank"
-        >
-          Positioning labels to maximize predictability of relationships
-        </a>
-      </div>
-      <h3>
-        Common failures
-      </h3>
-      <div
-        class="content-hyperlinks"
-      >
-        <a
-          class="ms-Link insights-link root-000"
-          href="https://www.w3.org/WAI/WCAG21/Techniques/failures/F82"
-          target="_blank"
-        >
-          Failure of Success Criterion 3.3.2 by visually formatting a set of phone number fields but not including a text label
         </a>
       </div>
     </div>
