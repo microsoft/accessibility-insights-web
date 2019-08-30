@@ -63,7 +63,6 @@ export const AssessmentTestView = NamedSFC<AssessmentTestViewProps>('AssessmentT
             assessmentDefaultMessageGenerator={deps.assessmentDefaultMessageGenerator}
             assessmentTestResult={assessmentTestResult}
             storeData={props.storeData}
-            featureFlagStoreData={props.featureFlagStoreData}
             pathSnippetStoreData={props.pathSnippetStoreData}
         />
     );

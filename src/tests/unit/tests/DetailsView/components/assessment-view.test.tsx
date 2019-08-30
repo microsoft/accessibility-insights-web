@@ -271,7 +271,6 @@ class AssessmentViewPropsBuilder {
             storeData: {
                 featureFlagStoreData,
             },
-            featureFlagStoreData,
             pathSnippetStoreData,
         };
 

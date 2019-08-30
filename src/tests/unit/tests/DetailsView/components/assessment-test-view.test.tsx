@@ -6,7 +6,6 @@ import { IMock, Mock, MockBehavior } from 'typemoq';
 
 import { VisualizationConfiguration } from '../../../../../common/configs/visualization-configuration';
 import { AssessmentData, AssessmentStoreData } from '../../../../../common/types/store-data/assessment-result-data';
-import { FeatureFlagStoreData } from '../../../../../common/types/store-data/feature-flag-store-data';
 import { PathSnippetStoreData } from '../../../../../common/types/store-data/path-snippet-store-data';
 import { ScanData, TestsEnabledState, VisualizationStoreData } from '../../../../../common/types/store-data/visualization-store-data';
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
@@ -27,7 +26,6 @@ describe('AssessmentTestView', () => {
     let actionMessageCreatorStub: DetailsViewActionMessageCreator;
     let assessmentInstanceHandlerStub: AssessmentInstanceTableHandler;
     let configuration: VisualizationConfiguration;
-    let featureFlagStoreDataStub: FeatureFlagStoreData;
     let assessmentStoreDataStub: AssessmentStoreData;
     let assessmentDataStub: AssessmentData;
     let pathSnippetStoreDataStub: PathSnippetStoreData;
@@ -57,7 +55,6 @@ describe('AssessmentTestView', () => {
                 selectedTestStep: selectedTestStep,
             },
         } as AssessmentStoreData;
-        featureFlagStoreDataStub = {} as FeatureFlagStoreData;
         actionMessageCreatorStub = {} as DetailsViewActionMessageCreator;
         assessmentInstanceHandlerStub = {} as AssessmentInstanceTableHandler;
         assessmentDataStub = {} as AssessmentData;
@@ -76,7 +73,6 @@ describe('AssessmentTestView', () => {
             },
             assessmentStoreData: assessmentStoreDataStub,
             assessmentInstanceTableHandler: assessmentInstanceHandlerStub,
-            featureFlagStoreData: featureFlagStoreDataStub,
             pathSnippetStoreData: pathSnippetStoreDataStub,
         } as AssessmentTestViewProps;
 

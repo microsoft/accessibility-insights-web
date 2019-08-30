@@ -48,7 +48,6 @@ export interface AssessmentViewProps {
     prevTarget: PersistedTabInfo;
     assessmentDefaultMessageGenerator: AssessmentDefaultMessageGenerator;
     assessmentTestResult: AssessmentTestResult;
-    featureFlagStoreData: FeatureFlagStoreData;
     pathSnippetStoreData: PathSnippetStoreData;
 }
 
@@ -204,7 +203,7 @@ export class AssessmentView extends React.Component<AssessmentViewProps> {
                         isStepScanned={isStepScanned}
                         assessmentDefaultMessageGenerator={this.props.assessmentDefaultMessageGenerator}
                         storeData={this.props.storeData}
-                        featureFlagStoreData={this.props.featureFlagStoreData}
+                        featureFlagStoreData={this.props.storeData.featureFlagStoreData}
                         pathSnippetStoreData={this.props.pathSnippetStoreData}
                     />
                 </div>
