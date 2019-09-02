@@ -117,7 +117,7 @@
         "classnames": "^2.2.6",
         "lodash": "^4.17.15",
         "moment": "^2.24.0",
-        "office-ui-fabric-react": "6.200.1",
+        "office-ui-fabric-react": "7.29.0",
         "q": "1.5.1",
         "react": "^16.9.0",
         "react-copy-to-clipboard": "^5.0.1",
