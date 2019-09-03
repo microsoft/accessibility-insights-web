@@ -867,7 +867,10 @@ div.insights-file-issue-details-dialog-container {
                 min-height: 0;
                 .target-page-changed,
                 .static-content-details-view {
-                    margin: $fastPassRightPanelMarginTop $fastPassRightPanelMarginLeft auto $fastPassRightPanelMarginRight;
+                    margin-top: $fastPassRightPanelMarginTop;
+                    margin-right: $fastPassRightPanelMarginRight;
+                    margin-left: $fastPassRightPanelMarginLeft;
+                    margin-bottom: auto;
                     ol {
                         -webkit-padding-start: 16px;
                         li ul li {
@@ -892,7 +895,10 @@ div.insights-file-issue-details-dialog-container {
                     width: calc(100% - #{$fastPassRightPanelMarginRight} - #{$fastPassRightPanelMarginLeft});
                     display: flex;
                     flex-direction: column;
-                    margin: $fastPassRightPanelMarginTop $fastPassRightPanelMarginLeft auto $fastPassRightPanelMarginRight;
+                    margin-top: $fastPassRightPanelMarginTop;
+                    margin-right: $fastPassRightPanelMarginRight;
+                    margin-left: $fastPassRightPanelMarginLeft;
+                    margin-bottom: auto;
 
                     .issues-table-subtitle {
                         color: $secondary-text;
