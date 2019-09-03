@@ -892,10 +892,7 @@ div.insights-file-issue-details-dialog-container {
                     width: calc(100% - 48px);
                     display: flex;
                     flex-direction: column;
-                    margin-top: 24px;
-
-                    margin-left: 24px;
-                    margin-right: 24px;
+                    margin: 24px 24px auto 24px;
                     .issues-table-subtitle {
                         color: $secondary-text;
                         max-width: 570px;
