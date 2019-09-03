@@ -90,7 +90,7 @@ describe('HeadingFormatterTests', () => {
 
     test('verifyStylingForValidArialLevel', () => {
         const headingElement = createHeadingWithInnerText(`<div aria-level='3'>HEADING</div>`);
-        headingElement.attributes['aria-level'] = 3;
+        headingElement.setAttribute('aria-level', '3');
         const config = testSubject.getDrawerConfiguration(headingElement, null);
 
         const headingStyle = getHeadingStyle('3');
