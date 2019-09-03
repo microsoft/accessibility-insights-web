@@ -14,7 +14,7 @@ Object {
 }
 `;
 
-exports[`DeviceConnectPortEntryTest render 1`] = `
+exports[`DeviceConnectPortEntryTest renders with needsValidation = false 1`] = `
 <div
   className="device-connect-port-entry"
 >
@@ -40,6 +40,40 @@ exports[`DeviceConnectPortEntryTest render 1`] = `
     className="button-validate-port"
     disabled={true}
     onClick={[Function]}
+    primary={false}
+  >
+    Validate port number
+  </Button>
+</div>
+`;
+
+exports[`DeviceConnectPortEntryTest renders with needsValidation = true 1`] = `
+<div
+  className="device-connect-port-entry"
+>
+  <h3>
+    Android device port number
+  </h3>
+  <MaskedTextField
+    ariaLabel="Port number"
+    className="port-number-field"
+    mask="99999"
+    maskChar=""
+    maskFormat={
+      Object {
+        "*": /\\[a-zA-Z0-9\\]/,
+        "9": /\\[0-9\\]/,
+        "a": /\\[a-zA-Z\\]/,
+      }
+    }
+    onChange={[Function]}
+    placeholder="12345"
+  />
+  <Button
+    className="button-validate-port"
+    disabled={true}
+    onClick={[Function]}
+    primary={true}
   >
     Validate port number
   </Button>
