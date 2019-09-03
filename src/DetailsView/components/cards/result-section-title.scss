@@ -1,0 +1,28 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+.result-section-title {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 8px;
+    margin-bottom: 8px;
+
+    :global(.outcome-chip) {
+        &:global(.outcome-chip-fail) {
+            .count {
+                line-height: 11px;
+            }
+
+            svg {
+                margin-bottom: 3px;
+            }
+        }
+    }
+
+    .title {
+        font-size: 17px;
+        line-height: 24px;
+        font-weight: 700;
+    }
+}

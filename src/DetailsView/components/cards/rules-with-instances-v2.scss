@@ -12,12 +12,12 @@
         display: flex;
         align-items: center;
 
-        .outcome-chip {
+        :global(.outcome-chip) {
             vertical-align: middle;
             margin-bottom: 2px;
         }
 
-        .rule-details-id {
+        :global(.rule-details-id) {
             font-family: $semiBoldFontFamily;
             color: $primary-text;
 
@@ -27,11 +27,11 @@
             }
         }
 
-        .rule-detail-description {
+        :global(.rule-detail-description) {
             color: $secondary-text !important;
         }
 
-        .guidance-links {
+        :global(.guidance-links) {
             a {
                 color: $secondary-text !important;
             }
@@ -42,13 +42,11 @@
 .collapsible-rule-details-group {
     box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.08);
 
-    global {
-        .rule-detail {
-            box-shadow: unset;
-        }
+    :global(.rule-detail) {
+        box-shadow: unset;
+    }
 
-        &:not(.collapsed) {
-            box-shadow: unset;
-        }
+    &:global(:not(.collapsed)) {
+        box-shadow: unset;
     }
 }

@@ -5,7 +5,7 @@ exports[`ResultSectionV2 renders 1`] = `
   className="result-section-class-name resultSection"
 >
   <h2>
-    <ResultSectionTitle
+    <ResultSectionTitleV2
       containerClassName="result-section-class-name"
       deps={Object {}}
     />
