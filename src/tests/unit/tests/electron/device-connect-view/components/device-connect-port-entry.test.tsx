@@ -36,22 +36,28 @@ describe('DeviceConnectPortEntryTest', () => {
         });
     });
 
-    test('onChange updates state', () => {
-        const fetch: FetchScanResultsType = _ => Promise.reject({} as ScanResults);
-        const props = SetupPropsMocks(fetch, DeviceConnectState.Default, undefined);
-        const rendered = shallow(<DeviceConnectPortEntry {...props} />);
+    describe('user interaction', () => {
+        describe('port input', () => {
+            const portNumberCases = [testPortNumber.toString(), '', null];
 
-        expect(rendered.state()).toMatchSnapshot();
+            it.each(portNumberCases)('handles port text = "%s"', portNumberText => {
+                updateStateCallbackMock.setup(callback => callback(DeviceConnectState.Default, undefined));
 
-        const onChangeHandler = rendered.find('.port-number-field').prop('onChange') as (
-            event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>,
-            newValue?: string,
-        ) => void;
+                const props = {
+                    updateStateCallback: updateStateCallbackMock.object,
+                } as DeviceConnectPortEntryProps;
 
-        onChangeHandler(null, testPortNumber.toString());
+                const rendered = shallow(<DeviceConnectPortEntry {...props} />);
 
-        updateStateCallbackMock.verifyAll();
-        expect(rendered.state()).toMatchSnapshot();
+                expect(rendered.state()).toMatchSnapshot();
+
+                rendered.find('.port-number-field').simulate('change', null, portNumberText);
+
+                updateStateCallbackMock.verifyAll();
+
+                expect(rendered.state()).toMatchSnapshot();
+            });
+        });
     });
 
     test('validate click fetch succeeds', () => {

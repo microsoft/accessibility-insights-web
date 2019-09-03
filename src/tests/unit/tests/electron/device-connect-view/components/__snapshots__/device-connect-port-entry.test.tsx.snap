@@ -1,19 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`DeviceConnectPortEntryTest onChange updates state 1`] = `
-Object {
-  "isValidateButtonDisabled": true,
-  "port": "",
-}
-`;
-
-exports[`DeviceConnectPortEntryTest onChange updates state 2`] = `
-Object {
-  "isValidateButtonDisabled": false,
-  "port": "111",
-}
-`;
-
 exports[`DeviceConnectPortEntryTest renders with needsValidation = false 1`] = `
 <div
   className="device-connect-port-entry"
@@ -78,4 +64,46 @@ exports[`DeviceConnectPortEntryTest renders with needsValidation = true 1`] = `
     Validate port number
   </Button>
 </div>
+`;
+
+exports[`DeviceConnectPortEntryTest user interaction port input handles port text = "" 1`] = `
+Object {
+  "isValidateButtonDisabled": true,
+  "port": "",
+}
+`;
+
+exports[`DeviceConnectPortEntryTest user interaction port input handles port text = "" 2`] = `
+Object {
+  "isValidateButtonDisabled": true,
+  "port": "",
+}
+`;
+
+exports[`DeviceConnectPortEntryTest user interaction port input handles port text = "111" 1`] = `
+Object {
+  "isValidateButtonDisabled": true,
+  "port": "",
+}
+`;
+
+exports[`DeviceConnectPortEntryTest user interaction port input handles port text = "111" 2`] = `
+Object {
+  "isValidateButtonDisabled": false,
+  "port": "111",
+}
+`;
+
+exports[`DeviceConnectPortEntryTest user interaction port input handles port text = "null" 1`] = `
+Object {
+  "isValidateButtonDisabled": true,
+  "port": "",
+}
+`;
+
+exports[`DeviceConnectPortEntryTest user interaction port input handles port text = "null" 2`] = `
+Object {
+  "isValidateButtonDisabled": true,
+  "port": null,
+}
 `;
