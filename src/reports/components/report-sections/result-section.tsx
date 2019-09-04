@@ -3,14 +3,13 @@
 import { NamedSFC } from 'common/react/named-sfc';
 import * as React from 'react';
 
-import { ResultSectionTitleV2 } from '../../../DetailsView/components/cards/result-section-title-v2';
+import { ResultSectionTitleV2, ResultSectionTitleV2Props } from '../../../DetailsView/components/cards/result-section-title-v2';
 import { ResultSectionContent, ResultSectionContentDeps, ResultSectionContentProps } from './result-section-content';
-import { ResultSectionTitleProps } from './result-section-title';
 
 export type ResultSectionDeps = ResultSectionContentDeps;
 
 export type ResultSectionProps = ResultSectionContentProps &
-    ResultSectionTitleProps & {
+    ResultSectionTitleV2Props & {
         containerClassName: string;
         deps: ResultSectionDeps;
     };
