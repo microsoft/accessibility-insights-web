@@ -7,13 +7,13 @@ import { InstanceOutcomeType } from '../../../reports/components/instance-outcom
 import { OutcomeChip } from '../../../reports/components/outcome-chip';
 import { outcomeChipContainer, resultSectionTitle, title } from './result-section-title.scss';
 
-export type ResultSectionTitleV2Props = {
+export type ResultSectionTitleProps = {
     title: string;
     badgeCount: number;
     outcomeType: InstanceOutcomeType;
 };
 
-export const ResultSectionTitleV2 = NamedSFC<ResultSectionTitleV2Props>('ResultSectionTitleV2', props => {
+export const ResultSectionTitle = NamedSFC<ResultSectionTitleProps>('ResultSectionTitle', props => {
     return (
         <span className={resultSectionTitle}>
             <span className="screen-reader-only">
