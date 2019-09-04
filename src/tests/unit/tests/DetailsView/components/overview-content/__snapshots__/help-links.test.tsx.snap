@@ -3,7 +3,7 @@
 exports[`HelpLinks linkInformation is shown properly 1`] = `
 <React.Fragment>
   <div
-    className="help-link"
+    className="helpLink"
   >
     <ExternalLink
       deps={Object {}}
@@ -13,7 +13,7 @@ exports[`HelpLinks linkInformation is shown properly 1`] = `
     </ExternalLink>
   </div>
   <div
-    className="help-link"
+    className="helpLink"
   >
     <ExternalLink
       deps={Object {}}
@@ -23,7 +23,7 @@ exports[`HelpLinks linkInformation is shown properly 1`] = `
     </ExternalLink>
   </div>
   <div
-    className="help-link"
+    className="helpLink"
   >
     <ExternalLink
       deps={Object {}}
