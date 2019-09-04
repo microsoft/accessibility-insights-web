@@ -3,17 +3,17 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-import { ResultSectionTitleV2, ResultSectionTitleV2Props } from '../../../../../../DetailsView/components/cards/result-section-title-v2';
+import { ResultSectionTitle, ResultSectionTitleProps } from '../../../../../../DetailsView/components/cards/result-section-title';
 
-describe('ResultSectionTitleV2', () => {
+describe('ResultSectionTitle', () => {
     it('renders', () => {
-        const props: ResultSectionTitleV2Props = {
+        const props: ResultSectionTitleProps = {
             title: 'test title',
             badgeCount: 10,
             outcomeType: 'pass',
         };
 
-        const wrapped = shallow(<ResultSectionTitleV2 {...props} />);
+        const wrapped = shallow(<ResultSectionTitle {...props} />);
         expect(wrapped.getElement()).toMatchSnapshot();
     });
 });

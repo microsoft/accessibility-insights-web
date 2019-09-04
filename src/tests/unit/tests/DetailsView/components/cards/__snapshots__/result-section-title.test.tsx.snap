@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ResultSectionTitleV2 renders 1`] = `
+exports[`ResultSectionTitle renders 1`] = `
 <span
   className="resultSectionTitle"
 >

@@ -3,13 +3,13 @@
 import { NamedSFC } from 'common/react/named-sfc';
 import * as React from 'react';
 
-import { ResultSectionTitleV2, ResultSectionTitleV2Props } from '../../../DetailsView/components/cards/result-section-title-v2';
+import { ResultSectionTitle, ResultSectionTitleProps } from '../../../DetailsView/components/cards/result-section-title';
 import { ResultSectionContent, ResultSectionContentDeps, ResultSectionContentProps } from './result-section-content';
 
 export type ResultSectionDeps = ResultSectionContentDeps;
 
 export type ResultSectionProps = ResultSectionContentProps &
-    ResultSectionTitleV2Props & {
+    ResultSectionTitleProps & {
         containerClassName: string;
         deps: ResultSectionDeps;
     };
@@ -20,7 +20,7 @@ export const ResultSection = NamedSFC<ResultSectionProps>('ResultSection', props
     return (
         <div className={containerClassName}>
             <h2>
-                <ResultSectionTitleV2 {...props} />
+                <ResultSectionTitle {...props} />
             </h2>
             <ResultSectionContent {...props} />
         </div>
