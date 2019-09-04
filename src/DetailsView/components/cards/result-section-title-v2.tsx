@@ -5,7 +5,7 @@ import * as React from 'react';
 
 import { InstanceOutcomeType } from '../../../reports/components/instance-outcome-type';
 import { OutcomeChip } from '../../../reports/components/outcome-chip';
-import { resultSectionTitle, title } from './result-section-title.scss';
+import { outcomeChipContainer, resultSectionTitle, title } from './result-section-title.scss';
 
 export type ResultSectionTitleV2Props = {
     title: string;
@@ -22,7 +22,7 @@ export const ResultSectionTitleV2 = NamedSFC<ResultSectionTitleV2Props>('ResultS
             <span className={title} aria-hidden="true">
                 {props.title}
             </span>
-            <span aria-hidden="true">
+            <span className={outcomeChipContainer} aria-hidden="true">
                 <OutcomeChip outcomeType={props.outcomeType} count={props.badgeCount} />
             </span>
         </span>

@@ -13,7 +13,14 @@ exports[`ReportHead renders 1`] = `
   <style
     dangerouslySetInnerHTML={
       Object {
-        "__html": "<<CSS:reports/automated-checks-report.css>>",
+        "__html": "<<CSS:../reports/automated-checks-report.css>>",
+      }
+    }
+  />
+  <style
+    dangerouslySetInnerHTML={
+      Object {
+        "__html": "<<CSS:detailsView.css>>",
       }
     }
   />

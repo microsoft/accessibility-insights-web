@@ -9,9 +9,13 @@
     margin-bottom: 8px;
 
     :global(.outcome-chip) {
+        :global(.count) {
+            line-height: 11px;
+        }
+
         &:global(.outcome-chip-fail) {
-            .count {
-                line-height: 11px;
+            :global(.count) {
+                line-height: 13px;
             }
 
             svg {
@@ -24,5 +28,9 @@
         font-size: 17px;
         line-height: 24px;
         font-weight: 700;
+    }
+
+    .outcome-chip-container {
+        display: flex;
     }
 }

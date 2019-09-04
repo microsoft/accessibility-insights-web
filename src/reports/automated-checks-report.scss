@@ -38,37 +38,6 @@ $outcome-not-applicable-summary-color: $neutral-outcome;
     margin-bottom: 24px;
 }
 
-.result-section-title {
-    display: flex;
-    flex-wrap: nowrap;
-    justify-content: flex-start;
-    align-items: center;
-    margin-top: 8px;
-    margin-bottom: 8px;
-
-    .outcome-chip {
-        margin-top: 5px;
-
-        &.outcome-chip-fail {
-            margin-top: 10px;
-
-            .count {
-                line-height: 11px;
-            }
-
-            svg {
-                margin-bottom: 3px;
-            }
-        }
-    }
-
-    .title {
-        font-size: 17px;
-        line-height: 24px;
-        font-weight: 700;
-    }
-}
-
 .failed-instances-section {
     .how-to-fix-content {
         margin-bottom: 16px;
@@ -114,6 +83,7 @@ $outcome-not-applicable-summary-color: $neutral-outcome;
         .collapsible-control::before {
             position: relative;
             bottom: 2px;
+            margin-right: 14px;
         }
     }
 }
@@ -203,10 +173,6 @@ $outcome-not-applicable-summary-color: $neutral-outcome;
         align-items: baseline;
 
         width: 100%;
-
-        .result-section-title {
-            padding-left: 14px;
-        }
 
         &:hover {
             background-color: $neutral-alpha-4;

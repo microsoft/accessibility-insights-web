@@ -14,7 +14,7 @@ exports[`CollapsibleResultSection renders 1`] = `
     id="container-id"
     titleHeadingLevel={2}
     visibleHeadingContent={
-      <ResultSectionTitle
+      <ResultSectionTitleV2
         containerClassName="result-section-class-name"
         containerId="container-id"
       />

@@ -8,6 +8,7 @@ import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store
 import { TabStoreData } from 'common/types/store-data/tab-store-data';
 import * as React from 'react';
 
+import * as bundledStyles from '../DetailsView/bundled-details-view-styles';
 import { AssessmentReportModelBuilderFactory } from './assessment-report-model-builder-factory';
 import * as reportStyles from './assessment-report.styles';
 import { AssessmentReport, AssessmentReportDeps } from './components/assessment-report';
@@ -51,6 +52,7 @@ export class AssessmentReportHtmlGenerator {
                 <head>
                     <title>Assessment report</title>
                     <style dangerouslySetInnerHTML={{ __html: reportStyles.styleSheet }} />
+                    <style dangerouslySetInnerHTML={{ __html: bundledStyles.styleSheet }} />
                 </head>
                 <body>
                     <AssessmentReport

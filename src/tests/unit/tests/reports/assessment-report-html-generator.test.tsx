@@ -5,8 +5,6 @@ import { AssessmentStoreData } from 'common/types/store-data/assessment-result-d
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { TabStoreData } from 'common/types/store-data/tab-store-data';
 import * as React from 'react';
-import { It, Mock, MockBehavior } from 'typemoq';
-
 import { AssessmentReportHtmlGenerator, AssessmentReportHtmlGeneratorDeps } from 'reports/assessment-report-html-generator';
 import { ReportModel } from 'reports/assessment-report-model';
 import { AssessmentReportModelBuilder } from 'reports/assessment-report-model-builder';
@@ -14,6 +12,9 @@ import { AssessmentReportModelBuilderFactory } from 'reports/assessment-report-m
 import * as reportStyles from 'reports/assessment-report.styles';
 import { AssessmentReport } from 'reports/components/assessment-report';
 import { ReactStaticRenderer } from 'reports/react-static-renderer';
+import { It, Mock, MockBehavior } from 'typemoq';
+
+import * as detailsViewBundledCSS from '../../../../DetailsView/bundled-details-view-styles';
 import { CreateTestAssessmentProviderWithFeatureFlag } from '../../common/test-assessment-provider';
 
 describe('AssessmentReportHtmlGenerator', () => {
@@ -42,6 +43,7 @@ describe('AssessmentReportHtmlGenerator', () => {
                 <head>
                     <title>Assessment report</title>
                     <style dangerouslySetInnerHTML={{ __html: reportStyles.styleSheet }} />
+                    <style dangerouslySetInnerHTML={{ __html: detailsViewBundledCSS.styleSheet }} />
                 </head>
                 <body>
                     <AssessmentReport
