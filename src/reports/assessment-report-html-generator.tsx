@@ -10,6 +10,8 @@ import * as React from 'react';
 
 import { AssessmentReportModelBuilderFactory } from './assessment-report-model-builder-factory';
 import * as reportStyles from './assessment-report.styles';
+import * as bundledStyles from '../DetailsView/bundled-details-view-styles';
+
 import { AssessmentReport, AssessmentReportDeps } from './components/assessment-report';
 import { ReactStaticRenderer } from './react-static-renderer';
 
@@ -51,6 +53,7 @@ export class AssessmentReportHtmlGenerator {
                 <head>
                     <title>Assessment report</title>
                     <style dangerouslySetInnerHTML={{ __html: reportStyles.styleSheet }} />
+                    <style dangerouslySetInnerHTML={{ __html: bundledStyles.styleSheet }} />
                 </head>
                 <body>
                     <AssessmentReport

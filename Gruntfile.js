@@ -100,6 +100,12 @@ module.exports = function(grunt) {
                         expand: true,
                     },
                     {
+                        cwd: './dist/src/reports',
+                        src: '*.css',
+                        dest: path.join(extensionPath, 'reports'),
+                        expand: true,
+                    },
+                    {
                         cwd: './dist/src/views',
                         src: '**/*.css',
                         dest: path.join(extensionPath, 'views'),
@@ -179,12 +185,12 @@ module.exports = function(grunt) {
             },
             scss: {
                 files: ['src/**/*.scss'],
-                tasks: ['sass', 'copy:styles', 'embed-styles:code', 'drop:dev'],
+                tasks: ['sass', 'copy:styles', 'embed-styles:dev', 'drop:dev'],
             },
             // We assume webpack --watch is running separately (usually via 'yarn watch')
             'webpack-output': {
                 files: ['extension/devBundle/**/*.*'],
-                tasks: ['embed-styles:code', 'drop:dev'],
+                tasks: ['embed-styles:dev', 'drop:dev'],
             },
         },
     });
@@ -220,6 +226,14 @@ module.exports = function(grunt) {
             clean: {
                 [targetName]: dropPath,
                 scss: path.join('src', '**/*.scss.d.ts'),
+            },
+            'embed-styles': {
+                [targetName]: {
+                    cwd: path.resolve(extensionPath, bundleFolder),
+                    src: '**/*bundle.js',
+                    dest: path.resolve(extensionPath, bundleFolder),
+                    expand: true,
+                },
             },
             copy: {
                 [targetName]: {
@@ -272,6 +286,8 @@ module.exports = function(grunt) {
     });
 
     grunt.registerMultiTask('embed-styles', function() {
+        const targetName = this.target;
+        const { bundleFolder } = targets[targetName];
         this.files.forEach(file => {
             const {
                 src: [src],
@@ -282,7 +298,8 @@ module.exports = function(grunt) {
             const input = grunt.file.read(src, fileOptions);
             const rex = /\<\<CSS:([a-zA-Z\-\.\/]+)\>\>/g;
             const output = input.replace(rex, (_, cssName) => {
-                const cssFile = path.resolve('dist/src', cssName);
+                const bundledFolderPath = path.resolve(extensionPath, bundleFolder);
+                const cssFile = path.resolve(bundledFolderPath, cssName);
                 grunt.log.writeln(`    embedding from ${cssFile}`);
                 const styles = grunt.file.read(cssFile, fileOptions);
                 return styles.replace(/\n/g, '\\\n');
@@ -330,6 +347,7 @@ module.exports = function(grunt) {
 
         mustExist(mustExistPath, 'Have you run webpack?');
 
+        grunt.task.run('embed-styles:' + targetName);
         grunt.task.run('clean:' + targetName);
         grunt.task.run('copy:' + targetName);
         grunt.task.run('configure:' + targetName);
@@ -343,7 +361,7 @@ module.exports = function(grunt) {
         });
     });
 
-    grunt.registerTask('build-assets', ['sass', 'copy:code', 'copy:styles', 'embed-styles:code', 'copy:images']);
+    grunt.registerTask('build-assets', ['sass', 'copy:code', 'copy:styles', 'copy:images']);
 
     // Main entry points for npm scripts:
     grunt.registerTask('build-dev', ['clean:intermediates', 'exec:generate-scss-typings', 'exec:webpack-dev', 'build-assets', 'drop:dev']);
