@@ -35,10 +35,6 @@
         width: 100%;
         height: fit-content;
 
-        .result-section-title {
-            padding-left: 14px;
-        }
-
         &:hover {
             background-color: $neutral-alpha-4;
             color: unset;
@@ -55,7 +51,7 @@
         @include transform(rotate(45deg));
     }
 
-    .content {
+    .collapsible-container-content {
         &[aria-hidden='true'] {
             display: none;
         }

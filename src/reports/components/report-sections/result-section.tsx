@@ -2,8 +2,10 @@
 // Licensed under the MIT License.
 import { NamedSFC } from 'common/react/named-sfc';
 import * as React from 'react';
+
+import { ResultSectionTitleV2 } from '../../../DetailsView/components/cards/result-section-title-v2';
 import { ResultSectionContent, ResultSectionContentDeps, ResultSectionContentProps } from './result-section-content';
-import { ResultSectionTitle, ResultSectionTitleProps } from './result-section-title';
+import { ResultSectionTitleProps } from './result-section-title';
 
 export type ResultSectionDeps = ResultSectionContentDeps;
 
@@ -19,7 +21,7 @@ export const ResultSection = NamedSFC<ResultSectionProps>('ResultSection', props
     return (
         <div className={containerClassName}>
             <h2>
-                <ResultSectionTitle {...props} />
+                <ResultSectionTitleV2 {...props} />
             </h2>
             <ResultSectionContent {...props} />
         </div>

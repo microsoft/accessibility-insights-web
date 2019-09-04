@@ -5,10 +5,18 @@ import * as fakeIndexedDB from 'fake-indexeddb';
 import { IndexedDBUtil } from '../../../../../common/indexedDB/indexedDB';
 
 describe('IndexedDBUtil test cases', () => {
+    const defaultDBName = 'default-db';
+    const defaultStoreName = 'default-store';
     let idbInstance;
+    let store;
     beforeAll(() => {
+        const request = fakeIndexedDB.open(defaultDBName, 3);
+        request.onupgradeneeded = function(): void {
+            const db = request.result;
+            store = db.createObjectStore(defaultStoreName);
+        };
         global['indexedDB'] = fakeIndexedDB;
-        idbInstance = new IndexedDBUtil();
+        idbInstance = new IndexedDBUtil(store);
     });
 
     test('setting key-value pair works properly', async () => {
@@ -50,16 +58,5 @@ describe('IndexedDBUtil test cases', () => {
         expect(currentValue).toBe('override');
 
         expect(await idbInstance.getSize()).toBe(1);
-    });
-
-    test('throws exception if indexedDB is not defined', () => {
-        global['indexedDB'] = undefined;
-        try {
-            const newInstance = new IndexedDBUtil();
-            expect(newInstance).toBeUndefined();
-            expect(new IndexedDBUtil()).toThrowError();
-        } catch (error) {
-            expect(error).toBe('IndexedDB is not available');
-        }
     });
 });
