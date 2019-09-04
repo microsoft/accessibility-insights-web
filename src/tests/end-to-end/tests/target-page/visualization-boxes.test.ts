@@ -6,7 +6,6 @@ import { TargetPageInjectedComponentSelectors } from '../../common/element-ident
 import { PopupPage } from '../../common/page-controllers/popup-page';
 import { TargetPage } from '../../common/page-controllers/target-page';
 import { scanForAccessibilityIssues } from '../../common/scan-for-accessibility-issues';
-import { DEFAULT_E2E_TEST_TIMEOUT_MS } from '../../common/timeouts';
 
 describe('Target Page visualization boxes', () => {
     let browser: Browser;
@@ -20,11 +19,6 @@ describe('Target Page visualization boxes', () => {
         await popupPage.gotoAdhocPanel();
     });
 
-    beforeEach(async () => {
-        await popupPage.disableAllToggles();
-        await targetPage.waitForVisualizationBoxesToDisappear();
-    });
-
     afterAll(async () => {
         if (browser) {
             await browser.close();
@@ -35,6 +29,8 @@ describe('Target Page visualization boxes', () => {
     const adhocTools = ['Automated checks', 'Headings'];
 
     it.each(adhocTools)('for adhoc tool "%s" should pass accessibility validation', async adhocTool => {
+        await popupPage.disableAllToggles();
+        await targetPage.waitForVisualizationBoxesToDisappear();
         await popupPage.enableToggleByAriaLabel(adhocTool);
 
         const shadowRoot = await targetPage.getShadowRoot();
