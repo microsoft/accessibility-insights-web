@@ -19,6 +19,7 @@ exports[`ResultSectionTitleV2 renders 1`] = `
   </span>
   <span
     aria-hidden="true"
+    className="outcomeChipContainer"
   >
     <OutcomeChip
       count={10}
