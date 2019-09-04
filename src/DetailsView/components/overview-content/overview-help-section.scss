@@ -1,0 +1,21 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+@import '../../../common/styles/colors.scss';
+
+.overview-help-container {
+    padding-top: 20px;
+    padding-left: 24px;
+    padding-bottom: 24px;
+    border-radius: 4px;
+    background-color: $help-links-section-background;
+    border: 1px solid $help-links-section-border;
+    box-sizing: border-box;
+}
+
+.help-heading {
+    font-size: 17px;
+    padding: 0px;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}

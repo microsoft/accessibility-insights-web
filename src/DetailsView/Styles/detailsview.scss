@@ -1371,23 +1371,6 @@ div.insights-file-issue-details-dialog-container {
                         align-items: flex-start;
                         width: 90%;
                         margin-right: 32px;
-                        .overview-heading {
-                            h1 {
-                                font-weight: bold;
-                                line-height: 40px;
-                                font-size: 28px;
-                                letter-spacing: -0.04em;
-                                color: $primary-text;
-                                padding-bottom: 16px;
-                                padding-top: 24px;
-                            }
-                            .overview-heading-content {
-                                color: $secondary-text;
-                                font-weight: normal;
-                                line-height: 20px;
-                                font-size: 15px;
-                            }
-                        }
                         .assessment-report-summary {
                             margin-top: 40px;
                             width: 100%;
@@ -1420,35 +1403,6 @@ div.insights-file-issue-details-dialog-container {
                                 font-size: 17px;
                                 color: $primary-text;
                             }
-                        }
-                    }
-                    .overview-help-section {
-                        width: 308px;
-                        height: 168px;
-                        padding-top: 24px;
-                        margin-right: 32px;
-                        .help-heading {
-                            font-size: 17px;
-                            padding: 0px;
-                            margin-block-end: 1em;
-                            margin-inline-start: 0px;
-                            margin-inline-end: 0px;
-                        }
-                        .overview-help-container {
-                            padding-top: 20px;
-                            padding-left: 24px;
-                            padding-bottom: 24px;
-                            border-radius: 4px;
-                            background-color: $help-links-section-background;
-                            border: 1px solid $help-links-section-border;
-                            box-sizing: border-box;
-                        }
-                        .help-link {
-                            padding: 5px 0px 5px 0px;
-                            font-family: $fontFamily;
-                            line-height: 20px;
-                            font-size: 15px;
-                            color: $communication-primary;
                         }
                     }
                 }

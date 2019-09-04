@@ -36,7 +36,7 @@ exports[`OverviewContainer component is defined and matches snapshot 1`] = `
     <AssessmentReportSummary />
   </section>
   <section
-    className="overview-help-section"
+    className="overviewHelpSection"
   >
     <OverviewHelpSection
       deps={
