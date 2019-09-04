@@ -49,14 +49,9 @@ export interface IndexedDBAPI {
  */
 export class IndexedDBUtil implements IndexedDBAPI {
     private store;
-    private readonly dbName: string = 'default-db';
-    private readonly storeName: string = 'default-store';
 
-    constructor() {
-        if (!window.indexedDB) {
-            throw 'IndexedDB is not available';
-        }
-        this.store = new Store(this.dbName, this.storeName);
+    constructor(store: Store) {
+        this.store = store;
     }
 
     public async getItem(key: string): Promise<any> {
