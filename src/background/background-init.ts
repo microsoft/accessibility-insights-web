@@ -1,8 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { AppInsights } from 'applicationinsights-js';
-
 import { Assessments } from 'assessments/assessments';
+import { Store } from 'idb-keyval';
+
 import { AxeInfo } from '../common/axe-info';
 import { ChromeAdapter } from '../common/browser-adapters/chrome-adapter';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
@@ -37,11 +38,15 @@ import { TelemetryStateListener } from './telemetry/telemetry-state-listener';
 import { UserStoredDataCleaner } from './user-stored-data-cleaner';
 
 declare var window: Window & InsightsFeatureFlags;
+
+const defaultIndexedDBName: string = 'default-db';
+const defaultIndexedDBStoreName: string = 'default-store';
+
 const browserAdapter = new ChromeAdapter();
 const urlValidator = new UrlValidator(browserAdapter);
 const backgroundInitCleaner = new UserStoredDataCleaner(browserAdapter);
-
-const indexedDBInstance: IndexedDBAPI = new IndexedDBUtil();
+const store = new Store(defaultIndexedDBName, defaultIndexedDBStoreName);
+const indexedDBInstance: IndexedDBAPI = new IndexedDBUtil(store);
 
 backgroundInitCleaner.cleanUserData(deprecatedStorageDataKeys);
 
