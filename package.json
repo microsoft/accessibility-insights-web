@@ -115,6 +115,7 @@
         "axe-core": "3.2.2",
         "axios": "^0.19.0",
         "classnames": "^2.2.6",
+        "idb-keyval": "^3.2.0",
         "lodash": "^4.17.15",
         "moment": "^2.24.0",
         "office-ui-fabric-react": "6.200.1",
