@@ -2,9 +2,10 @@
 // Licensed under the MIT License.
 import { NamedSFC } from 'common/react/named-sfc';
 import * as React from 'react';
+
+import { ResultSectionTitleV2 } from '../../../DetailsView/components/cards/result-section-title-v2';
 import { CollapsibleContainer } from './collapsible-container';
 import { ResultSectionProps } from './result-section';
-import { ResultSectionTitle } from './result-section-title';
 import { RulesOnly, RulesOnlyProps } from './rules-only';
 
 export type CollapsibleResultSectionProps = RulesOnlyProps &
@@ -19,7 +20,7 @@ export const CollapsibleResultSection = NamedSFC<CollapsibleResultSectionProps>(
         <div className={containerClassName}>
             <CollapsibleContainer
                 id={containerId}
-                visibleHeadingContent={<ResultSectionTitle {...props} />}
+                visibleHeadingContent={<ResultSectionTitleV2 {...props} />}
                 collapsibleContent={<RulesOnly {...props} />}
                 titleHeadingLevel={2}
             />

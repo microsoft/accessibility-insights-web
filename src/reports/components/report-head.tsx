@@ -4,8 +4,8 @@ import { NamedSFC } from 'common/react/named-sfc';
 import { title } from 'content/strings/application';
 import * as React from 'react';
 
-import * as reportStyles from '../automated-checks-report.styles';
 import * as bundledStyles from '../../DetailsView/bundled-details-view-styles';
+import * as reportStyles from '../automated-checks-report.styles';
 
 export const ReportHead = NamedSFC('ReportHead', () => {
     return (

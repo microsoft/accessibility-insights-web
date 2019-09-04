@@ -144,14 +144,6 @@ module.exports = function(grunt) {
                 ],
             },
         },
-        'embed-styles': {
-            code: {
-                cwd: extensionPath,
-                src: '**/*bundle.js',
-                dest: extensionPath,
-                expand: true,
-            },
-        },
         exec: {
             'webpack-dev': `${path.resolve('./node_modules/.bin/webpack')} --config-name dev`,
             'webpack-prod': `${path.resolve('./node_modules/.bin/webpack')} --config-name prod`,
@@ -185,12 +177,12 @@ module.exports = function(grunt) {
             },
             scss: {
                 files: ['src/**/*.scss'],
-                tasks: ['sass', 'copy:styles', 'embed-styles:dev', 'drop:dev'],
+                tasks: ['sass', 'copy:styles', 'drop:dev'],
             },
             // We assume webpack --watch is running separately (usually via 'yarn watch')
             'webpack-output': {
                 files: ['extension/devBundle/**/*.*'],
-                tasks: ['embed-styles:dev', 'drop:dev'],
+                tasks: ['drop:dev'],
             },
         },
     });
