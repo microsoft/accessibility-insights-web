@@ -40,7 +40,6 @@ describe('Target Page visualization boxes', () => {
         const shadowRoot = await targetPage.getShadowRoot();
         await targetPage.waitForDescendentSelector(shadowRoot, TargetPageInjectedComponentSelectors.insightsVisualizationBox, {
             visible: true,
-            timeout: DEFAULT_E2E_TEST_TIMEOUT_MS,
         });
 
         const results = await scanForAccessibilityIssues(targetPage, TargetPageInjectedComponentSelectors.insightsRootContainer);
