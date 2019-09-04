@@ -6,6 +6,7 @@ import { TargetPageInjectedComponentSelectors } from '../../common/element-ident
 import { PopupPage } from '../../common/page-controllers/popup-page';
 import { TargetPage } from '../../common/page-controllers/target-page';
 import { scanForAccessibilityIssues } from '../../common/scan-for-accessibility-issues';
+import { DEFAULT_E2E_TEST_TIMEOUT_MS } from '../../common/timeouts';
 
 describe('Target Page visualization boxes', () => {
     let browser: Browser;
@@ -39,6 +40,7 @@ describe('Target Page visualization boxes', () => {
         const shadowRoot = await targetPage.getShadowRoot();
         await targetPage.waitForDescendentSelector(shadowRoot, TargetPageInjectedComponentSelectors.insightsVisualizationBox, {
             visible: true,
+            timeout: DEFAULT_E2E_TEST_TIMEOUT_MS,
         });
 
         const results = await scanForAccessibilityIssues(targetPage, TargetPageInjectedComponentSelectors.insightsRootContainer);
