@@ -12,6 +12,8 @@ import {
 } from './collapsible-component-cards.scss';
 
 export interface CollapsibleComponentCardsProps {
+    key?: string;
+    id?: string;
     header: JSX.Element;
     content: JSX.Element;
     headingLevel: number;
@@ -63,3 +65,7 @@ export class CollapsibleComponentCards extends React.Component<CollapsibleCompon
         );
     }
 }
+
+export const CardsCollapsibleControl = (collapsibleControlProps: CollapsibleComponentCardsProps) => (
+    <CollapsibleComponentCards {...collapsibleControlProps} />
+);

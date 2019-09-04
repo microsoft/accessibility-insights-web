@@ -15,7 +15,7 @@ export interface CardsViewProps {
 export const CardsView = NamedSFC<CardsViewProps>('CardsView', props => {
     return (
         <>
-            <FailedInstancesSectionV2 deps={props.deps} result={props.ruleResultsByStatus} />
+            <FailedInstancesSectionV2 deps={props.deps} ruleResultsByStatus={props.ruleResultsByStatus} />
         </>
     );
 });

@@ -6,6 +6,7 @@ import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store
 import { TabStoreData } from 'common/types/store-data/tab-store-data';
 import { ScanResults } from 'scanner/iruleresults';
 
+import { UnifiedStatusResults } from '../DetailsView/components/cards/failed-instances-section-v2';
 import { AssessmentReportHtmlGenerator } from './assessment-report-html-generator';
 import { ReportHtmlGenerator } from './report-html-generator';
 import { ReportNameGenerator } from './report-name-generator';
@@ -26,9 +27,10 @@ export class ReportGenerator {
         scanDate: Date,
         pageTitle: string,
         pageUrl: string,
+        ruleResultsByStatus: UnifiedStatusResults,
         description: string,
     ): string {
-        return this.reportHtmlGenerator.generateHtml(scanResult, scanDate, pageTitle, pageUrl, description);
+        return this.reportHtmlGenerator.generateHtml(scanResult, scanDate, pageTitle, pageUrl, description, ruleResultsByStatus);
     }
 
     public generateAssessmentReport(

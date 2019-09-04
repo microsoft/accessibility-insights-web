@@ -37,12 +37,13 @@ describe('ReportGenerator', () => {
                     It.isValue(title),
                     It.isValue(url),
                     It.isValue(description),
+                    It.isAny(),
                 ),
             )
             .returns(() => 'returned-data');
 
         const testObject = new ReportGenerator(nameBuilderMock.object, dataBuilderMock.object, assessmentReportHtmlGeneratorMock.object);
-        const actual = testObject.generateFastPassAutomateChecksReport(scanResult, date, title, url, description);
+        const actual = testObject.generateFastPassAutomateChecksReport(scanResult, date, title, url, null, description);
 
         expect(actual).toMatchSnapshot();
     });

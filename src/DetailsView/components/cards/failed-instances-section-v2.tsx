@@ -10,7 +10,7 @@ import { ResultSectionV2, ResultSectionV2Deps } from './result-section-v2';
 export type FailedInstancesSectionV2Deps = ResultSectionV2Deps;
 export type FailedInstancesSectionV2Props = {
     deps: FailedInstancesSectionV2Deps;
-    result: UnifiedStatusResults;
+    ruleResultsByStatus: UnifiedStatusResults;
 };
 
 export interface UnifiedRuleResult {
@@ -25,23 +25,26 @@ export type UnifiedStatusResults = {
     [key in UnifiedRuleResultStatus]: UnifiedRuleResult[];
 };
 
-export const FailedInstancesSectionV2 = NamedSFC<FailedInstancesSectionV2Props>('FailedInstancesSectionV2', ({ result, deps }) => {
-    if (result == null) {
-        return null;
-    }
+export const FailedInstancesSectionV2 = NamedSFC<FailedInstancesSectionV2Props>(
+    'FailedInstancesSectionV2',
+    ({ ruleResultsByStatus: result, deps }) => {
+        if (result == null) {
+            return null;
+        }
 
-    const count = result.fail.reduce((total, rule) => {
-        return total + rule.nodes.length;
-    }, 0);
+        const count = result.fail.reduce((total, rule) => {
+            return total + rule.nodes.length;
+        }, 0);
 
-    return (
-        <ResultSectionV2
-            deps={deps}
-            title="Failed instances"
-            results={result.fail}
-            containerClassName={null}
-            outcomeType="fail"
-            badgeCount={count}
-        />
-    );
-});
+        return (
+            <ResultSectionV2
+                deps={deps}
+                title="Failed instances"
+                results={result.fail}
+                containerClassName={null}
+                outcomeType="fail"
+                badgeCount={count}
+            />
+        );
+    },
+);

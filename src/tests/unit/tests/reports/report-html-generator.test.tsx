@@ -38,6 +38,7 @@ describe('ReportHtmlGenerator', () => {
         const getScriptMock = Mock.ofInstance(() => '');
 
         const sectionProps: ReportBodyProps = {
+            deps: null,
             fixInstructionProcessor: fixInstructionProcessorMock.object,
             sectionFactory: sectionFactoryMock.object,
             pageTitle,
@@ -49,6 +50,7 @@ describe('ReportHtmlGenerator', () => {
             toUtcString: getUTCStringFromDateStub,
             getCollapsibleScript: getScriptMock.object,
             getGuidanceTagsFromGuidanceLinks: getGuidanceTagsStub,
+            ruleResultsByStatus: null,
         };
 
         const headElement: JSX.Element = <ReportHead />;
@@ -72,9 +74,10 @@ describe('ReportHtmlGenerator', () => {
             getUTCStringFromDateStub,
             getGuidanceTagsStub,
             fixInstructionProcessorMock.object,
+            null,
         );
 
-        const actual = testObject.generateHtml(scanResult, scanDate, pageTitle, pageUrl, description);
+        const actual = testObject.generateHtml(scanResult, scanDate, pageTitle, pageUrl, description, null);
 
         expect(actual).toMatchSnapshot();
     });

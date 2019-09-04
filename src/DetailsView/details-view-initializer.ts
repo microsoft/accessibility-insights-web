@@ -23,6 +23,7 @@ import { ReactStaticRenderer } from 'reports/react-static-renderer';
 import { ReportGenerator } from 'reports/report-generator';
 import { ReportHtmlGenerator } from 'reports/report-html-generator';
 import { ReportNameGenerator } from 'reports/report-name-generator';
+
 import { A11YSelfValidator } from '../common/a11y-self-validator';
 import { AxeInfo } from '../common/axe-info';
 import { provideBlob } from '../common/blob-provider';
@@ -81,6 +82,7 @@ import { IssueFilingServiceProviderImpl } from './../issue-filing/issue-filing-s
 import { DetailsViewActionMessageCreator } from './actions/details-view-action-message-creator';
 import { IssuesSelectionFactory } from './actions/issues-selection-factory';
 import { AssessmentTableColumnConfigHandler } from './components/assessment-table-column-config-handler';
+import { CardsCollapsibleControl } from './components/cards/collapsible-component-cards';
 import { GetDetailsRightPanelConfiguration } from './components/details-view-right-panel';
 import { GetDetailsSwitcherNavConfiguration } from './components/details-view-switcher-nav';
 import { IssuesTableHandler } from './components/issues-table-handler';
@@ -95,6 +97,7 @@ import { AssessmentInstanceTableHandler } from './handlers/assessment-instance-t
 import { DetailsViewToggleClickHandlerFactory } from './handlers/details-view-toggle-click-handler-factory';
 import { MasterCheckBoxConfigProvider } from './handlers/master-checkbox-config-provider';
 import { PreviewFeatureFlagsHandler } from './handlers/preview-feature-flags-handler';
+
 declare const window: AutoChecker & Window;
 
 const browserAdapter = new ChromeAdapter();
@@ -215,6 +218,7 @@ if (isNaN(tabId) === false) {
                 DateProvider.getUTCStringFromDate,
                 GetGuidanceTagsFromGuidanceLinks,
                 fixInstructionProcessor,
+                getPropertyConfiguration,
             );
 
             const assessmentReportHtmlGeneratorDeps = {
@@ -309,6 +313,7 @@ if (isNaN(tabId) === false) {
                 reportGenerator,
                 getUnifiedRuleResults,
                 getPropertyConfigById: getPropertyConfiguration,
+                collapsibleControl: CardsCollapsibleControl,
             };
 
             const renderer = new DetailsViewRenderer(

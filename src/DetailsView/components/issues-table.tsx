@@ -125,6 +125,7 @@ export class IssuesTable extends React.Component<IssuesTableProps> {
                         scanDate,
                         pageTitle,
                         pageUrl,
+                        this.props.ruleResultsByStatus,
                     )}
                     updatePersistedDescription={this.nullUpdatePersistedDescription}
                     getExportDescription={this.getEmptyExportDescription}
