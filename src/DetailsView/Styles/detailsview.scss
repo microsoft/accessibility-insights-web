@@ -436,14 +436,6 @@ div.insights-file-issue-details-dialog-container {
         padding-right: 0px;
         flex-grow: 1;
         min-height: 0;
-        .details-view-nav-pivots {
-            > :first-child {
-                height: $detailsViewNavPivotsHeight;
-            }
-            .details-view-test-nav-area {
-                max-height: calc(100vh - #{detailsViewNavPivotsHeight} - #{$detailsViewHeaderBarHeight} - #{$detailsViewCommandBarHeight});
-            }
-        }
         .details-view-test-nav-area {
             max-height: calc(100vh - #{$detailsViewHeaderBarHeight} - #{$detailsViewCommandBarHeight} - 12px);
             .ms-Nav-groupContent,
@@ -472,24 +464,6 @@ div.insights-file-issue-details-dialog-container {
             .ms-Nav-groupContent,
             .ms-Nav-navItems {
                 margin-bottom: 0px;
-            }
-            .req-description {
-                line-height: initial;
-                text-align: left;
-                white-space: initial;
-                font-size: 14px;
-                width: 100%;
-                .req-index,
-                .req-name {
-                    font-weight: bolder;
-                    font-size: 14px;
-                }
-                .req-index {
-                    margin-right: 8px;
-                }
-                .req-name {
-                    margin-right: 3px;
-                }
             }
             .button-flex-container .status-icon {
                 margin-left: 24px;
