@@ -18,7 +18,8 @@ const useOfColorHowToTest: JSX.Element = (
             <li>
                 Examine the target page to identify any instances where color is used to communicate meaning, such as:
                 <ol>
-                    <li>Communicating status</li>
+                    <li>Communicating the status of a task or process</li>
+                    <li>Indicating the state of a UI component (such as selected or focused)</li>
                     <li>Prompting a response</li>
                     <li>Identifying an error</li>
                 </ol>
