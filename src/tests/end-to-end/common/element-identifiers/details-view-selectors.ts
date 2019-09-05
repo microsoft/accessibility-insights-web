@@ -14,7 +14,6 @@ export const detailsViewSelectors = {
     settingsButton: 'button[name="Settings"]',
     settingsPanel: '.settings-panel',
     highContrastToggle: 'button#enable-high-contrast-mode',
-    highContrastToggleCheckedStateSelector: 'button#enable-high-contrast-mode[aria-checked="true"]',
 };
 
 export const overviewSelectors = {
