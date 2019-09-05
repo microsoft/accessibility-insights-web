@@ -26,7 +26,6 @@ describe('Launch Pad', () => {
         afterAll(async () => {
             if (browser) {
                 await browser.close();
-                browser = undefined;
             }
         });
 
