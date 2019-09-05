@@ -47,6 +47,7 @@ export class DetailsViewPage extends Page {
         await this.openSettingsPanel();
 
         await this.clickSelector(detailsViewSelectors.highContrastToggle);
+        await this.waitForSelector(detailsViewSelectors.highContrastToggleCheckedStateSelector);
         await this.waitForSelector(CommonSelectors.highContrastThemeSelector);
 
         await this.closeSettingsPanel();
