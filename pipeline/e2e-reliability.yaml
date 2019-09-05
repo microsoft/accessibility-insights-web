@@ -17,3 +17,9 @@ jobs:
 
     - template: ./e2e-job-per-environment.yaml
       parameters: { jobNameSuffix: _3 }
+
+    - template: ./e2e-job-per-environment.yaml
+      parameters: { jobNameSuffix: _4 }
+
+    - template: ./e2e-job-per-environment.yaml
+      parameters: { jobNameSuffix: _5 }
