@@ -2,7 +2,7 @@
 
 exports[`ResultSectionTitle renders 1`] = `
 <span
-  className="result-section-title"
+  className="resultSectionTitle"
 >
   <span
     className="screen-reader-only"
@@ -19,6 +19,7 @@ exports[`ResultSectionTitle renders 1`] = `
   </span>
   <span
     aria-hidden="true"
+    className="outcomeChipContainer"
   >
     <OutcomeChip
       count={10}
