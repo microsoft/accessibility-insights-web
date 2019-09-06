@@ -1,0 +1,20 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+.req-description {
+    line-height: initial;
+    text-align: left;
+    white-space: initial;
+    font-size: 14px;
+    width: 100%;
+    .req-index,
+    .req-name {
+        font-weight: bolder;
+        font-size: 14px;
+    }
+    .req-index {
+        margin-right: 8px;
+    }
+    .req-name {
+        margin-right: 3px;
+    }
+}

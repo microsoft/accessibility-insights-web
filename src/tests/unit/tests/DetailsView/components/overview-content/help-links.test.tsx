@@ -2,12 +2,11 @@
 // Licensed under the MIT License.
 import { shallow } from 'enzyme';
 import * as React from 'react';
-import { Mock } from 'typemoq';
 
 import { HelpLinks, HelpLinksDeps, HelpLinksProps } from '../../../../../../DetailsView/components/overview-content/help-links';
 
 describe('HelpLinks', () => {
-    const deps = Mock.ofType<HelpLinksDeps>().object;
+    const deps = {} as HelpLinksDeps;
 
     test('linkInformation is shown properly', () => {
         const props: HelpLinksProps = {
@@ -29,11 +28,6 @@ describe('HelpLinks', () => {
         };
 
         const helpLinkSection = shallow(<HelpLinks {...props} />);
-
-        expect(helpLinkSection.exists()).toBe(true);
-
-        const helpLinkDivs = helpLinkSection.find('.help-link');
-        expect(helpLinkDivs.exists()).toBe(true);
-        expect(helpLinkDivs.length).toBe(props.linkInformation.length);
+        expect(helpLinkSection.getElement()).toMatchSnapshot();
     });
 });

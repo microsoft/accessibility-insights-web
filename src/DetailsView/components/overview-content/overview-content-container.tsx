@@ -1,18 +1,19 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as React from 'react';
-
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
+import * as React from 'react';
 import { OverviewSummaryReportModel } from 'reports/assessment-report-model';
 import { AssessmentReportSummary } from 'reports/components/assessment-report-summary';
 import { GetAssessmentSummaryModelFromProviderAndStoreData } from 'reports/get-assessment-summary-model';
 import { HyperlinkDefinition } from 'views/content/content-page';
+
 import { NamedSFC } from '../../../common/react/named-sfc';
 import { AssessmentStoreData } from '../../../common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from '../../../common/types/store-data/feature-flag-store-data';
 import { TabStoreData } from '../../../common/types/store-data/tab-store-data';
 import { DetailsViewActionMessageCreator } from '../../actions/details-view-action-message-creator';
 import { TargetChangeDialog, TargetChangeDialogDeps } from '../target-change-dialog';
+import { overviewHelpSection } from './overview-content-container.scss';
 import { OverviewHeading } from './overview-heading';
 import { OverviewHelpSection, OverviewHelpSectionDeps } from './overview-help-section';
 
@@ -78,7 +79,7 @@ export const OverviewContainer = NamedSFC<OverviewContainerProps>('OverviewConta
                 <OverviewHeading />
                 <AssessmentReportSummary summary={summaryData} />
             </section>
-            <section className="overview-help-section">
+            <section className={overviewHelpSection}>
                 <OverviewHelpSection linkDataSource={linkDataSource} deps={deps} />
             </section>
         </div>
