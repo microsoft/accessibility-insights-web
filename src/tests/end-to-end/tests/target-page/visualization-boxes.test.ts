@@ -19,13 +19,13 @@ describe('Target Page visualization boxes', () => {
         await popupPage.gotoAdhocPanel();
     });
 
-    // beforeEach(async () => {
-    //     await popupPage.disableAllToggles();
-    //     await targetPage.waitForVisualizationBoxesToDisappear();
-    // });
+    beforeEach(async () => {
+        await popupPage.disableAllToggles();
+        // await targetPage.waitForVisualizationBoxesToDisappear();
+    });
 
     afterEach(async () => {
-        await popupPage.disableAllToggles();
+        // await popupPage.disableAllToggles();
         await targetPage.waitForVisualizationBoxesToDisappear();
     });
 
