@@ -8,7 +8,7 @@ import { formatPageElementForSnapshot } from '../../common/element-snapshot-form
 import { TargetPage } from '../../common/page-controllers/target-page';
 import { scanForAccessibilityIssues } from '../../common/scan-for-accessibility-issues';
 
-describe('A11Y for content pages', () => {
+describe.skip('A11Y for content pages', () => {
     const contentPaths = contentPages.allPaths();
 
     describe('Normal mode', () => {
