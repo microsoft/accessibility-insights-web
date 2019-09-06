@@ -108,7 +108,7 @@
         "typescript": "^3.6.2",
         "webdriverio": "^4.13.0",
         "webpack": "^4.39.3",
-        "webpack-cli": "^3.3.7"
+        "webpack-cli": "^3.3.8"
     },
     "dependencies": {
         "applicationinsights-js": "^1.0.20",
