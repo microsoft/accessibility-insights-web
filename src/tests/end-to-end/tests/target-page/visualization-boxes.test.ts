@@ -21,11 +21,6 @@ describe('Target Page visualization boxes', () => {
 
     beforeEach(async () => {
         await popupPage.disableAllToggles();
-        // await targetPage.waitForVisualizationBoxesToDisappear();
-    });
-
-    afterEach(async () => {
-        // await popupPage.disableAllToggles();
         await targetPage.waitForVisualizationBoxesToDisappear();
     });
 
@@ -36,7 +31,7 @@ describe('Target Page visualization boxes', () => {
         }
     });
 
-    const adhocTools = ['Landmarks', 'Headings', 'Automated checks'];
+    const adhocTools = ['Landmarks', 'Automated checks'];
 
     it.each(adhocTools)('for adhoc tool "%s" should pass accessibility validation', async adhocTool => {
         await popupPage.enableToggleByAriaLabel(adhocTool);

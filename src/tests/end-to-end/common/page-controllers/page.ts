@@ -170,7 +170,7 @@ export class Page {
         options?: Puppeteer.WaitForSelectorOptions,
     ): Promise<Puppeteer.JSHandle> {
         options = {
-            timeout: DEFAULT_TARGET_PAGE_SCAN_TIMEOUT_MS,
+            timeout: DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS,
             ...options,
         };
         return await this.screenshotOnError(async () => {
