@@ -35,7 +35,7 @@ const howToTest: JSX.Element = (
                 Identify any visual (non-text) indicators that communicate:
                 <ol>
                     <li>The boundary of the component's clickable area (such as a border or background color)</li>
-                    <li>The component's current state (such as a different background color or a check mark)</li>
+                    <li>The component's current state (such as a different background color or a checkmark)</li>
                 </ol>
             </li>
             <li>
