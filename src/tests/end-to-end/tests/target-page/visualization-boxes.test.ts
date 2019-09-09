@@ -12,36 +12,36 @@ describe('Target Page visualization boxes', () => {
     let targetPage: TargetPage;
     let popupPage: PopupPage;
 
-    beforeAll(async () => {
+    beforeEach(async () => {
         browser = await launchBrowser({ suppressFirstTimeDialog: true });
         targetPage = await browser.newTargetPage();
         popupPage = await browser.newPopupPage(targetPage);
         await popupPage.gotoAdhocPanel();
     });
 
-    beforeEach(async () => {
-        await popupPage.disableAllToggles();
-        await targetPage.waitForVisualizationBoxesToDisappear();
-    });
-
-    afterAll(async () => {
+    afterEach(async () => {
         if (browser) {
             await browser.close();
             browser = undefined;
         }
     });
 
-    const adhocTools = ['Landmarks', 'Automated checks'];
+    const adhocTools = ['Landmarks', 'Headings', 'Automated checks'];
 
     it.each(adhocTools)('for adhoc tool "%s" should pass accessibility validation', async adhocTool => {
         await popupPage.enableToggleByAriaLabel(adhocTool);
 
-        const shadowRoot = await targetPage.getShadowRoot();
+        const results = await getShadowRootAndScanPage(targetPage);
+        expect(results).toHaveLength(0);
+    });
+
+    const getShadowRootAndScanPage = async scannedPage => {
+        const shadowRoot = await scannedPage.getShadowRoot();
         await targetPage.waitForDescendentSelector(shadowRoot, TargetPageInjectedComponentSelectors.insightsVisualizationBox, {
             visible: true,
         });
 
-        const results = await scanForAccessibilityIssues(targetPage, TargetPageInjectedComponentSelectors.insightsRootContainer);
-        expect(results).toHaveLength(0);
-    });
+        const results = await scanForAccessibilityIssues(scannedPage, TargetPageInjectedComponentSelectors.insightsRootContainer);
+        return results;
+    };
 });
