@@ -12,7 +12,7 @@ describe('ElectronExternalLinkTest', () => {
     test('render', () => {
         const props: ElectronExternalLinkProps = {
             href: 'www.bing.com',
-            text: 'Bing',
+            children: 'Bing',
             shell: null,
         };
 
@@ -29,7 +29,7 @@ describe('ElectronExternalLinkTest', () => {
 
         const props: ElectronExternalLinkProps = {
             href: href,
-            text: 'Bing',
+            children: 'Bing',
             shell: renderMock.object,
         };
 

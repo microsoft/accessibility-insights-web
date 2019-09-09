@@ -7,11 +7,11 @@ import { NamedSFC } from '../../../common/react/named-sfc';
 
 export interface ElectronExternalLinkProps {
     href: string;
-    text: string;
     shell: Shell;
+    children: React.ReactNode;
 }
 
 export const ElectronExternalLink = NamedSFC<ElectronExternalLinkProps>('ElectronExternalLink', (props: ElectronExternalLinkProps) => {
     const onClick = () => props.shell.openExternal(props.href);
-    return <Link onClick={onClick}>{props.text}</Link>;
+    return <Link onClick={onClick} {...props.children}></Link>;
 });

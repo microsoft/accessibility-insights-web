@@ -9,11 +9,9 @@ export const DeviceConnectHeader = NamedSFC('DeviceConnectHeader', () => {
     return (
         <header className="device-connect-header">
             <h2>Connect to your android device</h2>
-            <ElectronExternalLink
-                href="https://go.microsoft.com/fwlink/?linkid=2101252"
-                text="How do I connect to my device?"
-                shell={shell}
-            />
+            <ElectronExternalLink href="https://go.microsoft.com/fwlink/?linkid=2101252" shell={shell}>
+                How do I connect to my device?
+            </ElectronExternalLink>
         </header>
     );
 });
