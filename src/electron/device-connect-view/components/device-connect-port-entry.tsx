@@ -24,17 +24,12 @@ export class DeviceConnectPortEntry extends React.Component<DeviceConnectPortEnt
     }
 
     public render(): JSX.Element {
-        const onPortTextChanged = (event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>, newValue?: string) => {
-            this.setState({ isValidateButtonDisabled: !newValue || newValue === '', port: newValue });
-            this.props.updateStateCallback(DeviceConnectState.Default);
-        };
-
         return (
             <div className="device-connect-port-entry">
                 <h3>Android device port number</h3>
                 <MaskedTextField
                     ariaLabel="Port number"
-                    onChange={onPortTextChanged}
+                    onChange={this.onPortTextChanged}
                     placeholder="12345"
                     className="port-number-field"
                     maskChar=""
@@ -51,6 +46,11 @@ export class DeviceConnectPortEntry extends React.Component<DeviceConnectPortEnt
             </div>
         );
     }
+
+    private onPortTextChanged = (event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>, newValue?: string) => {
+        this.setState({ isValidateButtonDisabled: !newValue || newValue === '', port: newValue });
+        this.props.updateStateCallback(DeviceConnectState.Default);
+    };
 
     private onValidateClick = async (event: React.MouseEvent<HTMLButtonElement>): Promise<void> => {
         this.setState({ isValidateButtonDisabled: true });
