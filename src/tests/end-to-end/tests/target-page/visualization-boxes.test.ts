@@ -12,36 +12,24 @@ describe('Target Page visualization boxes', () => {
     let targetPage: TargetPage;
     let popupPage: PopupPage;
 
-    beforeAll(async () => {
+    beforeEach(async () => {
         browser = await launchBrowser({ suppressFirstTimeDialog: true });
         targetPage = await browser.newTargetPage();
         popupPage = await browser.newPopupPage(targetPage);
         await popupPage.gotoAdhocPanel();
     });
 
-    beforeEach(async () => {
-        await popupPage.disableAllToggles();
-        await targetPage.waitForVisualizationBoxesToDisappear();
-    });
-
-    afterAll(async () => {
+    afterEach(async () => {
         if (browser) {
             await browser.close();
             browser = undefined;
         }
     });
 
-    const adhocTools = ['Landmarks', 'Automated checks'];
+    const adhocTools = ['Landmarks', 'Headings', 'Automated checks'];
 
     it.each(adhocTools)('for adhoc tool "%s" should pass accessibility validation', async adhocTool => {
         await popupPage.enableToggleByAriaLabel(adhocTool);
-
-        const results = await getShadowRootAndScanPage(targetPage);
-        expect(results).toHaveLength(0);
-    });
-
-    test('for adhoc tool Headings, it should pass accessibility validation on the target page', async () => {
-        await popupPage.enableToggleByAriaLabel('Headings');
 
         const results = await getShadowRootAndScanPage(targetPage);
         expect(results).toHaveLength(0);
