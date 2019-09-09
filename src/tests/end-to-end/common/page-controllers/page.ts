@@ -164,25 +164,6 @@ export class Page {
         );
     }
 
-    public async waitForDescendentSelectorToDisappear(
-        parentElement: Puppeteer.ElementHandle<Element>,
-        descendentSelector: string,
-        options?: Puppeteer.WaitForSelectorOptions,
-    ): Promise<Puppeteer.JSHandle> {
-        options = {
-            timeout: DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS,
-            ...options,
-        };
-        return await this.screenshotOnError(async () => {
-            return await this.underlyingPage.waitForFunction(
-                (parent, selector) => !parent.querySelector(selector),
-                options,
-                parentElement,
-                descendentSelector,
-            );
-        });
-    }
-
     public async clickSelector(selector: string): Promise<void> {
         const element = await this.waitForSelector(selector);
         await this.screenshotOnError(async () => {

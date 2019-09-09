@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { ElementHandle } from 'puppeteer';
 import * as Puppeteer from 'puppeteer';
-import { TargetPageInjectedComponentSelectors } from '../element-identifiers/target-page-selectors';
+
 import { formatChildElementForSnapshot } from '../element-snapshot-formatter';
 import { getTestResourceUrl } from '../test-resources';
 import { Page, PageOptions } from './page';
