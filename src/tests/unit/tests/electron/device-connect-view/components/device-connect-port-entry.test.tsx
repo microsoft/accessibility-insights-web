@@ -62,6 +62,28 @@ describe('DeviceConnectPortEntryTest', () => {
         describe('validate port number', () => {
             let props: DeviceConnectPortEntryProps;
 
+            type ValidatePortTestCase = {
+                fetch: FetchScanResultsType;
+                connectState: DeviceConnectState;
+                deviceName: string;
+                description: string;
+            };
+
+            const testCases: ValidatePortTestCase[] = [
+                {
+                    fetch: () => Promise.resolve({ deviceName: 'dev', appIdentifier: 'app' } as ScanResults),
+                    connectState: DeviceConnectState.Connected,
+                    deviceName: 'dev - app',
+                    description: 'fetch succeed',
+                },
+                {
+                    fetch: () => Promise.reject({} as ScanResults),
+                    connectState: DeviceConnectState.Error,
+                    deviceName: undefined,
+                    description: 'fetch fail',
+                },
+            ];
+
             beforeEach(() => {
                 updateStateCallbackMock.setup(r => r(DeviceConnectState.Connecting)).verifiable(Times.once());
 
@@ -71,31 +93,9 @@ describe('DeviceConnectPortEntryTest', () => {
                 } as DeviceConnectPortEntryProps;
             });
 
-            test('fetch succeeds', async () => {
-                const fetch: FetchScanResultsType = () => Promise.resolve({ deviceName: 'dev', appIdentifier: 'app' } as ScanResults);
-
+            test.each(testCases)('%p', async ({ fetch, connectState, deviceName }) => {
                 setupFetchScanResultsMock(fetch);
-                setupUpdateStateCallbackMock(DeviceConnectState.Connected, 'dev - app');
-
-                const rendered = shallow(<DeviceConnectPortEntry {...props} />);
-                rendered.setState({ isValidateButtonDisabled: false, port: testPortNumber });
-                const button = rendered.find('.button-validate-port');
-
-                button.simulate('click', eventStub);
-
-                fetchScanResultsMock.verifyAll();
-
-                await tick();
-
-                expect(rendered.state()).toEqual({ isValidateButtonDisabled: false, port: testPortNumber });
-                updateStateCallbackMock.verifyAll();
-            });
-
-            test('fetch fails', async () => {
-                const fetch: FetchScanResultsType = () => Promise.reject({} as ScanResults);
-
-                setupFetchScanResultsMock(fetch);
-                setupUpdateStateCallbackMock(DeviceConnectState.Error, undefined);
+                setupUpdateStateCallbackMock(connectState, deviceName);
 
                 const rendered = shallow(<DeviceConnectPortEntry {...props} />);
                 rendered.setState({ isValidateButtonDisabled: false, port: testPortNumber });
