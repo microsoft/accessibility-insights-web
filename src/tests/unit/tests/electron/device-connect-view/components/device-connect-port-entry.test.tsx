@@ -62,27 +62,8 @@ describe('DeviceConnectPortEntryTest', () => {
         describe('validate port number', () => {
             let props: DeviceConnectPortEntryProps;
 
-            type ValidatePortTestCase = {
-                fetch: FetchScanResultsType;
-                connectState: DeviceConnectState;
-                deviceName: string;
-                description: string;
-            };
-
-            const testCases: ValidatePortTestCase[] = [
-                {
-                    fetch: () => Promise.resolve({ deviceName: 'dev', appIdentifier: 'app' } as ScanResults),
-                    connectState: DeviceConnectState.Connected,
-                    deviceName: 'dev - app',
-                    description: 'fetch succeed',
-                },
-                {
-                    fetch: () => Promise.reject({} as ScanResults),
-                    connectState: DeviceConnectState.Error,
-                    deviceName: undefined,
-                    description: 'fetch fail',
-                },
-            ];
+            const fetchResultResolved = () => Promise.resolve({ deviceName: 'dev', appIdentifier: 'app' } as ScanResults);
+            const fetchResultRejected = () => Promise.reject({} as ScanResults);
 
             beforeEach(() => {
                 updateStateCallbackMock.setup(r => r(DeviceConnectState.Connecting)).verifiable(Times.once());
@@ -93,7 +74,11 @@ describe('DeviceConnectPortEntryTest', () => {
                 } as DeviceConnectPortEntryProps;
             });
 
-            test.each(testCases)('%p', async ({ fetch, connectState, deviceName }) => {
+            test.each`
+                description        | fetch                  | connectState                    | deviceName
+                ${'fetch success'} | ${fetchResultResolved} | ${DeviceConnectState.Connected} | ${'dev - app'}
+                ${'fetch fail'}    | ${fetchResultRejected} | ${DeviceConnectState.Error}     | ${undefined}
+            `('$description', async ({ fetch, connectState, deviceName }) => {
                 setupFetchScanResultsMock(fetch);
                 setupUpdateStateCallbackMock(connectState, deviceName);
 
