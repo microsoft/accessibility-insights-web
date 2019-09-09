@@ -39,12 +39,4 @@ export class TargetPage extends Page {
         const shadowRoot = await this.getShadowRoot();
         return await formatChildElementForSnapshot(shadowRoot, '#insights-shadow-container');
     }
-
-    public async waitForVisualizationBoxesToDisappear(): Promise<void> {
-        const insightsRootContainer = await this.getSelectorElement(TargetPageInjectedComponentSelectors.insightsRootContainer);
-        if (insightsRootContainer) {
-            const shadowRoot = await this.getShadowRoot();
-            await this.waitForDescendentSelectorToDisappear(shadowRoot, TargetPageInjectedComponentSelectors.insightsVisualizationBox);
-        }
-    }
 }
