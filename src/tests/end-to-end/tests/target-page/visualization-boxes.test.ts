@@ -36,12 +36,24 @@ describe('Target Page visualization boxes', () => {
     it.each(adhocTools)('for adhoc tool "%s" should pass accessibility validation', async adhocTool => {
         await popupPage.enableToggleByAriaLabel(adhocTool);
 
-        const shadowRoot = await targetPage.getShadowRoot();
+        const results = await getShadowRootAndScanPage(targetPage);
+        expect(results).toHaveLength(0);
+    });
+
+    test('for adhoc tool Headings, it should pass accessibility validation on the target page', async () => {
+        await popupPage.enableToggleByAriaLabel('Headings');
+
+        const results = await getShadowRootAndScanPage(targetPage);
+        expect(results).toHaveLength(0);
+    });
+
+    const getShadowRootAndScanPage = async scannedPage => {
+        const shadowRoot = await scannedPage.getShadowRoot();
         await targetPage.waitForDescendentSelector(shadowRoot, TargetPageInjectedComponentSelectors.insightsVisualizationBox, {
             visible: true,
         });
 
-        const results = await scanForAccessibilityIssues(targetPage, TargetPageInjectedComponentSelectors.insightsRootContainer);
-        expect(results).toHaveLength(0);
-    });
+        const results = await scanForAccessibilityIssues(scannedPage, TargetPageInjectedComponentSelectors.insightsRootContainer);
+        return results;
+    };
 });
