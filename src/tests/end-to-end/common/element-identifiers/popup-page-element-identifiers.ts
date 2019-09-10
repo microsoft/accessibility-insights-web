@@ -5,7 +5,7 @@ export const popupPageElementIdentifiers = {
     startUsingProductButton: 'button.start-using-product-button',
     launchPad: '#new-launch-pad',
     launchPadItemTitle: '.launch-pad-item-title',
-    adhocPanel: '.ad-hoc-tools-panel',
+    adhocPanel: '#popup-container',
     adhocLaunchPadLinkXPath: "//button[text()='Ad hoc tools']",
     backToLaunchPadLink: '#back-to-launchpad-link',
     hamburgerMenuButton: '#feedback-collapse-menu-button',
