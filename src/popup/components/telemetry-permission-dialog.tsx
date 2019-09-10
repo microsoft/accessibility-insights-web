@@ -1,9 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import {
+    LinkComponentDeps,
     privacyStatementPopupText,
+    TelemetryNotice,
     telemetryPopupCheckboxTitle,
-    telemetryPopupNotice,
     telemetryPopupTitle,
 } from 'content/settings/improve-accessibility-insights';
 import { PrimaryButton } from 'office-ui-fabric-react/lib/Button';
@@ -23,7 +24,7 @@ export interface TelemetryPermissionDialogProps {
 
 export type TelemetryPermissionDialogDeps = {
     userConfigMessageCreator: UserConfigMessageCreator;
-};
+} & LinkComponentDeps;
 
 export class TelemetryPermissionDialog extends React.Component<TelemetryPermissionDialogProps, TelemetryPermissionDialogState> {
     constructor(props) {
@@ -51,7 +52,9 @@ export class TelemetryPermissionDialog extends React.Component<TelemetryPermissi
                     containerClassName: 'insights-dialog-main-override telemetry-permission-dialog',
                 }}
             >
-                <div className="telemetry-permission-details">{telemetryPopupNotice}</div>
+                <div className="telemetry-permission-details">
+                    <TelemetryNotice LinkComponent={this.props.deps.LinkComponent}></TelemetryNotice>
+                </div>
                 <div className="telemetry-checkbox-section">
                     <Checkbox
                         label={telemetryPopupCheckboxTitle}
