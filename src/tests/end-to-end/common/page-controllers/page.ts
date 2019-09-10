@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { includes } from 'lodash';
 import * as Puppeteer from 'puppeteer';
 
-import { includes } from 'lodash';
 import { forceTestFailure } from '../force-test-failure';
 import { takeScreenshot } from '../generate-screenshot';
 import { DEFAULT_NEW_PAGE_WAIT_TIMEOUT_MS, DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS } from '../timeouts';
@@ -162,25 +162,6 @@ export class Page {
                     selector,
                 ),
         );
-    }
-
-    public async waitForDescendentSelectorToDisappear(
-        parentElement: Puppeteer.ElementHandle<Element>,
-        descendentSelector: string,
-        options?: Puppeteer.WaitForSelectorOptions,
-    ): Promise<Puppeteer.JSHandle> {
-        options = {
-            timeout: DEFAULT_PAGE_ELEMENT_WAIT_TIMEOUT_MS,
-            ...options,
-        };
-        return await this.screenshotOnError(async () => {
-            return await this.underlyingPage.waitForFunction(
-                (parent, selector) => !parent.querySelector(selector),
-                options,
-                parentElement,
-                descendentSelector,
-            );
-        });
     }
 
     public async clickSelector(selector: string): Promise<void> {
