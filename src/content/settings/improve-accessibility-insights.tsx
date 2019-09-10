@@ -43,6 +43,4 @@ export const enableTelemetrySettingDescription = (
     </>
 );
 
-export const telemetryPopupNotice = <>{TelemetryNotice}</>;
-
 export const enableTelemetrySettingsPanelTitle = `Help improve ${title}`;
