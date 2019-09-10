@@ -2,10 +2,10 @@
 // Licensed under the MIT License.
 import { loadTheme } from 'office-ui-fabric-react';
 import * as ReactDOM from 'react-dom';
-
 import { A11YSelfValidator } from '../common/a11y-self-validator';
 import { AxeInfo } from '../common/axe-info';
 import { BrowserAdapter } from '../common/browser-adapters/browser-adapter';
+import { NewTabLink } from '../common/components/new-tab-link';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
 import { DropdownClickHandler } from '../common/dropdown-click-handler';
 import { EnumHelper } from '../common/enum-helper';
@@ -177,6 +177,7 @@ export class PopupInitializer {
             axeInfo,
             launchPanelHeaderClickHandler,
             browserAdapter: this.browserAdapter,
+            LinkComponent: NewTabLink,
         };
 
         const diagnosticViewToggleFactory = new DiagnosticViewToggleFactory(
