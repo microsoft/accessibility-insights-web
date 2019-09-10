@@ -15,7 +15,7 @@ describe('ElectronExternalLinkTest', () => {
     test('render', () => {
         const props: ElectronExternalLinkProps = {
             href: testHref,
-            text: testText,
+            children: testText,
             shell: null,
         };
 
@@ -31,7 +31,7 @@ describe('ElectronExternalLinkTest', () => {
 
         const props: ElectronExternalLinkProps = {
             href: testHref,
-            text: testText,
+            children: testText,
             shell: shellMock.object,
         };
 
