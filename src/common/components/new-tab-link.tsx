@@ -1,15 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { BaseComponent, css } from '@uifabric/utilities';
-import { omit } from 'lodash';
+import { css } from '@uifabric/utilities';
 import { ILinkProps, Link } from 'office-ui-fabric-react/lib/Link';
 import * as React from 'react';
 
-export class NewTabLink extends BaseComponent<ILinkProps> {
-    public render(): JSX.Element {
-        const classNames = ['insights-link', this.props.className];
-        const allPropsExceptClassName = omit(this.props, 'className');
+import { NamedSFC } from '../react/named-sfc';
 
-        return <Link className={css(...classNames)} {...allPropsExceptClassName} target="_blank" />;
-    }
-}
+export const NewTabLink = NamedSFC<ILinkProps>('NewTabLink', ({ className, ...props }) => {
+    const classNames = ['insights-link', className];
+
+    return <Link className={css(...classNames)} {...props} target="_blank" />;
+});
