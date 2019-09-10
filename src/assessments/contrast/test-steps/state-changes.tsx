@@ -39,15 +39,17 @@ const howToTest: JSX.Element = (
                 </ol>
             </li>
             <li>
-                Use <WindowsContrastCheckerAppLink /> (or if you are testing on a Mac, the <MacContrastCheckerAppLink />) to verify that the
-                visual indicator has a contrast ratio of at least 3:1 against the adjacent background.
-            </li>
-            <li>
-                Exception: A lower contrast ratio is allowed if either of the following is true:
-                <ol>
-                    <li>The component is inactive/disabled.</li>
-                    <li>The component's appearance is determined solely by the browser.</li>
-                </ol>
+                <p>
+                    Use <WindowsContrastCheckerAppLink /> (or if you are testing on a Mac, the <MacContrastCheckerAppLink />) to verify that
+                    the visual indicator has a contrast ratio of at least 3:1 against the adjacent background.
+                </p>
+                <p>
+                    Exception: A lower contrast ratio is allowed if either of the following is true:
+                    <ol>
+                        <li>The component is inactive/disabled.</li>
+                        <li>The component's appearance is determined solely by the browser.</li>
+                    </ol>
+                </p>
             </li>
             <AssistedTestRecordYourResults />
         </ol>
