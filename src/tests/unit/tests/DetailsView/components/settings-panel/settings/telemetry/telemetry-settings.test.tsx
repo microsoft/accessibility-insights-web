@@ -4,8 +4,11 @@ import { shallow } from 'enzyme';
 import { Toggle } from 'office-ui-fabric-react/lib/Toggle';
 import * as React from 'react';
 import { Mock, Times } from 'typemoq';
+import { NewTabLink } from '../../../../../../../../common/components/new-tab-link';
 import { UserConfigMessageCreator } from '../../../../../../../../common/message-creators/user-config-message-creator';
 import { UserConfigurationStoreData } from '../../../../../../../../common/types/store-data/user-configuration-store';
+import { EnableTelemetrySettingDescription } from '../../../../../../../../content/settings/improve-accessibility-insights';
+import { GenericToggle } from '../../../../../../../../DetailsView/components/generic-toggle';
 import {
     TelemetrySettings,
     TelemetrySettingsProps,
@@ -17,7 +20,9 @@ describe('TelemetrySettings', () => {
     describe('renders', () => {
         it.each(enableStates)('with enabled = %s', enabled => {
             const props: TelemetrySettingsProps = {
-                deps: Mock.ofType<TelemetrySettingsProps['deps']>().object,
+                deps: {
+                    LinkComponent: NewTabLink,
+                } as TelemetrySettingsProps['deps'],
                 userConfigurationStoreState: {
                     enableTelemetry: enabled,
                 } as UserConfigurationStoreData,
@@ -25,8 +30,13 @@ describe('TelemetrySettings', () => {
             };
 
             const wrapper = shallow(<TelemetrySettings {...props} />);
+            const enableTelemetrySettingDescription = wrapper
+                .find(GenericToggle)
+                .dive()
+                .find(EnableTelemetrySettingDescription);
 
             expect(wrapper.getElement()).toMatchSnapshot();
+            expect(enableTelemetrySettingDescription.prop('LinkComponent')).toBe(props.deps.LinkComponent);
         });
     });
 
