@@ -17,28 +17,39 @@ import { ReportInstanceField } from '../../types/report-instance-field';
 import { Requirement } from '../../types/requirement';
 import { ContrastTestStep } from './test-steps';
 
-const description: JSX.Element = (
-    <span>If state changes are indicated solely by changes in color, the different states must have sufficient contrast.</span>
-);
+const description: JSX.Element = <span>Any visual effect that indicates a component's state must have sufficient contrast.</span>;
 
 const howToTest: JSX.Element = (
     <div>
         <p>The visual helper for this requirement highlights links, native widgets, and custom widgets in the target page.</p>
         <ol>
             <li>
-                In the target page, examine each highlighted element in each of the following states:
+                In the target page, examine each highlighted element to determine whether it can adopt any of the following states:
                 <ol>
-                    <li>Normal</li>
                     <li>Focused</li>
                     <li>Mouseover</li>
-                    <li>Selected (if applicable)</li>
+                    <li>Selected</li>
                 </ol>
             </li>
             <li>
-                If any component indicates state changes solely by a change of color, use <WindowsContrastCheckerAppLink /> to verify that
-                the contrast ratio between different states is at least 3:1. (If you are testing on a Mac, you can use the{' '}
-                <MacContrastCheckerAppLink />
-                .)
+                Identify any visual (non-text) indicators that communicate:
+                <ol>
+                    <li>The boundary of the component's clickable area (such as a border or background color)</li>
+                    <li>The component's current state (such as a different background color or a checkmark)</li>
+                </ol>
+            </li>
+            <li>
+                <p>
+                    Use <WindowsContrastCheckerAppLink /> (or if you are testing on a Mac, the <MacContrastCheckerAppLink />) to verify that
+                    the visual indicator has a contrast ratio of at least 3:1 against the adjacent background.
+                </p>
+                <p>
+                    Exception: A lower contrast ratio is allowed if either of the following is true:
+                    <ol>
+                        <li>The component is inactive/disabled.</li>
+                        <li>The component's appearance is determined solely by the browser.</li>
+                    </ol>
+                </p>
             </li>
             <AssistedTestRecordYourResults />
         </ol>

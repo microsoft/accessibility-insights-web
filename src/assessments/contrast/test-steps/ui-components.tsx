@@ -26,21 +26,15 @@ const howToTest: JSX.Element = (
         <p>The visual helper for this requirement highlights links, native widgets, and custom widgets in the target page.</p>
         <ol>
             <li>
-                In the target page, examine each highlighted element in each of the following states:
-                <ol>
-                    <li>Normal</li>
-                    <li>Focused</li>
-                    <li>Mouseover</li>
-                    <li>Selected (if applicable)</li>
-                </ol>
+                In the target page, examine each highlighted element in its normal state (not disabled or selected, no mouseover or input
+                focus).
             </li>
             <li>
-                In each state, use <WindowsContrastCheckerAppLink /> (or if you are testing on a Mac, the <MacContrastCheckerAppLink />) to
-                verify that the following visual presentations (if implemented) have a contrast ratio of at least 3:1 against the adjacent
-                background:
+                Use <WindowsContrastCheckerAppLink /> (or if you are testing on a Mac, the <MacContrastCheckerAppLink />) to verify that the
+                following visual presentations (if implemented) have a contrast ratio of at least 3:1 against the adjacent background:
                 <ol>
-                    <li>Any visual effect that indicates state</li>
                     <li>Any visual boundary that indicates the component's clickable area</li>
+                    <li>Any visual effect that indicates the component is in its normal state</li>
                 </ol>
                 Exception: A lower contrast ratio is allowed if either of the following is true:
                 <ol>
