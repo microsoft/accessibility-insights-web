@@ -3,7 +3,7 @@
 import * as React from 'react';
 
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
-import { NamedFC } from '../../../common/react/named-sfc';
+import { NamedFC } from '../../../common/react/named-fc';
 import { ManualTestStatus, ManualTestStatusData } from '../../../common/types/manual-test-status';
 import { DictionaryStringTo } from '../../../types/common-types';
 import { BaseLeftNav, BaseLeftNavLink } from '../base-left-nav';

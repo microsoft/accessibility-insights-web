@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { HashRouter, Route, Switch } from 'react-router-dom';
 
-import { NamedFC } from '../../common/react/named-sfc';
+import { NamedFC } from '../../common/react/named-fc';
 import { Content, ContentDeps } from '../content/content';
 
 export type RouterDeps = ContentDeps;

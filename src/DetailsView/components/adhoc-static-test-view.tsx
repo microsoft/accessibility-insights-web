@@ -4,7 +4,7 @@ import * as React from 'react';
 
 import { ContentReference } from 'views/content/content-page';
 import { VisualizationConfiguration } from '../../common/configs/visualization-configuration';
-import { NamedFC } from '../../common/react/named-sfc';
+import { NamedFC } from '../../common/react/named-fc';
 import { TabStoreData } from '../../common/types/store-data/tab-store-data';
 import { VisualizationStoreData } from '../../common/types/store-data/visualization-store-data';
 import { VisualizationType } from '../../common/types/visualization-type';

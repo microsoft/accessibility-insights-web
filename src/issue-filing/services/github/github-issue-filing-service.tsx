@@ -4,7 +4,7 @@ import { isEmpty, isString } from 'lodash';
 import { TextField } from 'office-ui-fabric-react/lib/TextField';
 import * as React from 'react';
 
-import { NamedFC } from '../../../common/react/named-sfc';
+import { NamedFC } from '../../../common/react/named-fc';
 import { createFileIssueHandler } from '../../common/create-file-issue-handler';
 import { createSettingsGetter } from '../../common/create-settings-getter';
 import { IssueFilingService } from '../../types/issue-filing-service';

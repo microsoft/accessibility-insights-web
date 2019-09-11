@@ -9,7 +9,7 @@ import {
     CardRowProps,
     PropertyConfiguration,
 } from '../../../../../../common/configs/unified-result-property-configurations';
-import { NamedFC, ReactFCWithDisplayName } from '../../../../../../common/react/named-sfc';
+import { NamedFC, ReactFCWithDisplayName } from '../../../../../../common/react/named-fc';
 import { UnifiedResult } from '../../../../../../common/types/store-data/unified-data-interface';
 import {
     InstanceDetailsV2,

@@ -3,7 +3,7 @@
 import * as React from 'react';
 
 import * as Markup from 'assessments/markup';
-import { NamedFC } from '../../../common/react/named-sfc';
+import { NamedFC } from '../../../common/react/named-fc';
 
 export const TestAutomaticallyPassedNotice = NamedFC('TestAutomaticallyPassedNotice', () => {
     return (

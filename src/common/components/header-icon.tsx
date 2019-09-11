@@ -4,7 +4,7 @@ import * as React from 'react';
 
 import { BrandBlue } from '../../icons/brand/blue/brand-blue';
 import { BrandWhite } from '../../icons/brand/white/brand-white';
-import { NamedFC } from '../react/named-sfc';
+import { NamedFC } from '../react/named-fc';
 import { ThemeInnerState } from './theme';
 import { withStoreSubscription, WithStoreSubscriptionDeps, WithStoreSubscriptionProps } from './with-store-subscription';
 

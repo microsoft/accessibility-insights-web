@@ -4,7 +4,7 @@ import { ActionButton } from 'office-ui-fabric-react/lib/Button';
 import * as React from 'react';
 
 import { ContentActionMessageCreator } from '../../common/message-creators/content-action-message-creator';
-import { NamedFC } from '../../common/react/named-sfc';
+import { NamedFC } from '../../common/react/named-fc';
 import { ContentProvider, ContentReference } from './content-page';
 
 export type ContentPanelButtonDeps = {

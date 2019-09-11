@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { DefaultButton, PrimaryButton } from 'office-ui-fabric-react/lib/Button';
 import * as React from 'react';
-import { NamedFC } from '../../../common/react/named-sfc';
+import { NamedFC } from '../../../common/react/named-fc';
 
 export interface DeviceConnectFooterProps {
     cancelClick: () => void;

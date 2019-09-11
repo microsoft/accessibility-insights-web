@@ -7,7 +7,7 @@ import { NewTabLink } from 'common/components/new-tab-link';
 import { CommentIcon } from 'common/icons/comment-icon';
 import { DateIcon } from 'common/icons/date-icon';
 import { UrlIcon } from 'common/icons/url-icon';
-import { NamedFC } from 'common/react/named-sfc';
+import { NamedFC } from 'common/react/named-fc';
 import { SectionProps } from './report-section-factory';
 
 export type DetailsSectionProps = Pick<SectionProps, 'pageTitle' | 'pageUrl' | 'description' | 'scanDate' | 'toUtcString'>;

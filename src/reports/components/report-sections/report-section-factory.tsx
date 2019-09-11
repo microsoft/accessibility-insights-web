@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { EnvironmentInfo } from 'common/environment-info-provider';
 import { GetGuidanceTagsFromGuidanceLinks } from 'common/get-guidance-tags-from-guidance-links';
-import { ReactFCWithDisplayName } from 'common/react/named-sfc';
+import { ReactFCWithDisplayName } from 'common/react/named-fc';
 import { FixInstructionProcessor } from 'injected/fix-instruction-processor';
 import { ScanResults } from 'scanner/iruleresults';
 

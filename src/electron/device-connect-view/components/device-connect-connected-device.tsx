@@ -3,7 +3,7 @@
 import { Icon } from 'office-ui-fabric-react/lib/Icon';
 import { Spinner, SpinnerSize } from 'office-ui-fabric-react/lib/Spinner';
 import * as React from 'react';
-import { NamedFC } from '../../../common/react/named-sfc';
+import { NamedFC } from '../../../common/react/named-fc';
 
 export interface DeviceConnectConnectedDeviceProps {
     isConnecting: boolean;

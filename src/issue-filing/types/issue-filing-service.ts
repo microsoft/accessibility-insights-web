@@ -3,7 +3,7 @@
 import { BrowserAdapter } from '../../common/browser-adapters/browser-adapter';
 import { IssueFilingServicePropertiesMap } from '../../common/types/store-data/user-configuration-store';
 import { EnvironmentInfo } from './../../common/environment-info-provider';
-import { ReactFCWithDisplayName } from './../../common/react/named-sfc';
+import { ReactFCWithDisplayName } from '../../common/react/named-fc';
 import { CreateIssueDetailsTextData } from './../../common/types/create-issue-details-text-data';
 import { SettingsFormProps } from './settings-form-props';
 

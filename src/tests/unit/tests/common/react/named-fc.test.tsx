@@ -3,7 +3,7 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-import { NamedFC } from '../../../../../common/react/named-sfc';
+import { NamedFC } from '../../../../../common/react/named-fc';
 
 describe('NamedFC', () => {
     const MySFC = NamedFC('MyFC', () => <span>TEXT</span>);

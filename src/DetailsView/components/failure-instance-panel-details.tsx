@@ -5,7 +5,7 @@ import { Icon } from 'office-ui-fabric-react/lib/Icon';
 import { ILabelStyles } from 'office-ui-fabric-react/lib/Label';
 import { ITextFieldStyles, TextField } from 'office-ui-fabric-react/lib/TextField';
 import * as React from 'react';
-import { NamedFC } from '../../common/react/named-sfc';
+import { NamedFC } from '../../common/react/named-fc';
 
 export type FailureInstancePanelDetailsProps = {
     path: string;

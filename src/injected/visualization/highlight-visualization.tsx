@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import { NamedFC } from '../../common/react/named-sfc';
+import { NamedFC } from '../../common/react/named-fc';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { WindowUtils } from '../../common/window-utils';
 import { RenderDialog } from '../dialog-renderer';

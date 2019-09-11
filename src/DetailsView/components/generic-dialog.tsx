@@ -4,7 +4,7 @@ import { DefaultButton, PrimaryButton } from 'office-ui-fabric-react/lib/Button'
 import { Dialog, DialogFooter, DialogType } from 'office-ui-fabric-react/lib/Dialog';
 import * as React from 'react';
 
-import { NamedFC } from '../../common/react/named-sfc';
+import { NamedFC } from '../../common/react/named-fc';
 
 export type GenericDialogProps = {
     onPrimaryButtonClick: (event: React.MouseEvent<any>) => void;

@@ -5,7 +5,7 @@ import { Dialog, DialogFooter, DialogType } from 'office-ui-fabric-react/lib/Dia
 import { TextField } from 'office-ui-fabric-react/lib/TextField';
 import * as React from 'react';
 import { FileURLProvider } from '../../common/file-url-provider';
-import { NamedFC } from '../../common/react/named-sfc';
+import { NamedFC } from '../../common/react/named-fc';
 import { ExportResultType } from '../../common/telemetry-events';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 

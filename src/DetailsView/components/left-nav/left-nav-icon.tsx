@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { INavLink } from 'office-ui-fabric-react/lib/Nav';
 import * as React from 'react';
-import { NamedFC } from '../../../common/react/named-sfc';
+import { NamedFC } from '../../../common/react/named-fc';
 import { StatusIcon } from '../status-icon';
 
 export type LeftNavIconProps = {

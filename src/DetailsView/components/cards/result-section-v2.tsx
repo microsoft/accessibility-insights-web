@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { css } from '@uifabric/utilities';
-import { NamedFC } from 'common/react/named-sfc';
+import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
 
 import { ResultSectionContentV2, ResultSectionContentV2Deps, ResultSectionContentV2Props } from './result-section-content-v2';

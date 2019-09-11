@@ -5,7 +5,7 @@ import * as React from 'react';
 
 import { VisualizationConfiguration } from '../../common/configs/visualization-configuration';
 import { VisualizationConfigurationFactory } from '../../common/configs/visualization-configuration-factory';
-import { NamedFC } from '../../common/react/named-sfc';
+import { NamedFC } from '../../common/react/named-fc';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { TabStoreData } from '../../common/types/store-data/tab-store-data';
 import { UserConfigurationStoreData } from '../../common/types/store-data/user-configuration-store';

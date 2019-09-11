@@ -3,7 +3,7 @@
 import * as React from 'react';
 
 import { VisualizationConfigurationFactory } from '../../../common/configs/visualization-configuration-factory';
-import { NamedFC } from '../../../common/react/named-sfc';
+import { NamedFC } from '../../../common/react/named-fc';
 import { VisualizationType } from '../../../common/types/visualization-type';
 import { BaseLeftNav, onBaseLeftNavItemClick } from '../base-left-nav';
 import { LeftNavIndexIcon } from './left-nav-icon';

@@ -3,7 +3,7 @@
 import { Toggle } from 'office-ui-fabric-react/lib/Toggle';
 import * as React from 'react';
 
-import { NamedFC } from '../../common/react/named-sfc';
+import { NamedFC } from '../../common/react/named-fc';
 
 export interface GenericToggleProps {
     enabled: boolean;

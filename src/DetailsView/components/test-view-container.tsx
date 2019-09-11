@@ -3,7 +3,7 @@
 import { ISelection } from 'office-ui-fabric-react/lib/DetailsList';
 
 import { VisualizationConfigurationFactory } from '../../common/configs/visualization-configuration-factory';
-import { NamedFC } from '../../common/react/named-sfc';
+import { NamedFC } from '../../common/react/named-fc';
 import { AssessmentStoreData } from '../../common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { PathSnippetStoreData } from '../../common/types/store-data/path-snippet-store-data';

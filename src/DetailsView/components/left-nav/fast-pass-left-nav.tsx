@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import { NamedFC } from '../../../common/react/named-sfc';
+import { NamedFC } from '../../../common/react/named-fc';
 import { VisualizationType } from '../../../common/types/visualization-type';
 import { NavLinkHandler } from './nav-link-handler';
 import { VisualizationBasedLeftNav, VisualizationBasedLeftNavDeps } from './visualization-based-left-nav';

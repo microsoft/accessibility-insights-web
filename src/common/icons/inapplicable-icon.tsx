@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import { NamedFC } from '../react/named-sfc';
+import { NamedFC } from '../react/named-fc';
 
 export const InapplicableIcon = NamedFC('InapplicableIcon', () => (
     <span className="check-container">

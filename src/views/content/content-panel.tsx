@@ -4,7 +4,7 @@ import { Panel, PanelType } from 'office-ui-fabric-react/lib/Panel';
 import * as React from 'react';
 
 import { ContentActionMessageCreator } from '../../common/message-creators/content-action-message-creator';
-import { NamedFC } from '../../common/react/named-sfc';
+import { NamedFC } from '../../common/react/named-fc';
 import { ContentPageDeps, ContentProvider, ContentReference } from './content-page';
 
 export type ContentPanelDeps = {

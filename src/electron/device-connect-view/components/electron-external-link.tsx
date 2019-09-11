@@ -3,7 +3,7 @@
 import { Shell } from 'electron';
 import { Link } from 'office-ui-fabric-react/lib/Link';
 import * as React from 'react';
-import { NamedFC } from '../../../common/react/named-sfc';
+import { NamedFC } from '../../../common/react/named-fc';
 
 export interface ElectronExternalLinkProps {
     href: string;

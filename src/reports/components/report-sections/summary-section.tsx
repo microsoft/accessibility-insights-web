@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import { NamedFC } from 'common/react/named-sfc';
+import { NamedFC } from 'common/react/named-fc';
 import { allInstanceOutcomeTypes, InstanceOutcomeType } from '../instance-outcome-type';
 import { OutcomeSummaryBar } from '../outcome-summary-bar';
 import { SectionProps } from './report-section-factory';

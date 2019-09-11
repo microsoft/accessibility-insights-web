@@ -6,7 +6,7 @@ import { IMock, Mock, MockBehavior } from 'typemoq';
 import { FeatureFlagStore } from 'background/stores/global/feature-flag-store';
 import { VisualizationConfiguration } from '../../../../common/configs/visualization-configuration';
 import { VisualizationConfigurationFactory } from '../../../../common/configs/visualization-configuration-factory';
-import { NamedFC, ReactFCWithDisplayName } from '../../../../common/react/named-sfc';
+import { NamedFC, ReactFCWithDisplayName } from '../../../../common/react/named-fc';
 import { ManualTestStatus } from '../../../../common/types/manual-test-status';
 import {
     AssessmentData,

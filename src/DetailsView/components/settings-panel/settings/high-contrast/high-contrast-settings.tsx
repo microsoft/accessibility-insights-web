@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { enableHighContrastSettingsTitle, highContrastSettingsDescription } from 'content/settings/high-contrast-mode';
 import * as React from 'react';
-import { NamedFC } from '../../../../../common/react/named-sfc';
+import { NamedFC } from '../../../../../common/react/named-fc';
 import { GenericToggle } from '../../../generic-toggle';
 import { SettingsProps } from '../settings-props';
 

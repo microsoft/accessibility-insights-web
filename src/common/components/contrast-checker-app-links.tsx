@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { windowsProductName } from 'content/strings/application';
 import * as React from 'react';
-import { NamedFC } from '../react/named-sfc';
+import { NamedFC } from '../react/named-fc';
 import { NewTabLink } from './new-tab-link';
 
 export const WindowsContrastCheckerAppLink = NamedFC('WindowsContrastCheckerAppLink', () => (

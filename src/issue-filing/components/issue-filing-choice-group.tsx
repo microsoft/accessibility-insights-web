@@ -3,7 +3,7 @@
 import { ChoiceGroup, IChoiceGroupOption } from 'office-ui-fabric-react/lib/ChoiceGroup';
 import * as React from 'react';
 
-import { NamedFC } from '../../common/react/named-sfc';
+import { NamedFC } from '../../common/react/named-fc';
 import { IssueFilingService } from '../types/issue-filing-service';
 import { OnSelectedServiceChange } from './issue-filing-settings-container';
 

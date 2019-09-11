@@ -4,7 +4,7 @@ import { DefaultButton } from 'office-ui-fabric-react/lib/Button';
 import * as React from 'react';
 
 import { FeatureFlags } from '../../common/feature-flags';
-import { NamedFC } from '../../common/react/named-sfc';
+import { NamedFC } from '../../common/react/named-fc';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { DetailsDialog } from './details-dialog';
 

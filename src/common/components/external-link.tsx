@@ -4,7 +4,7 @@ import { Link } from 'office-ui-fabric-react/lib/Link';
 import * as React from 'react';
 
 import { ActionInitiators } from '../action/action-initiator';
-import { NamedFC } from '../react/named-sfc';
+import { NamedFC } from '../react/named-fc';
 
 export type ExternalLinkDeps = {
     actionInitiators: Pick<ActionInitiators, 'openExternalLink'>;

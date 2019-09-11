@@ -4,7 +4,7 @@ import { flatten, forEach, toPairs } from 'lodash';
 import * as React from 'react';
 
 import { GuidanceTag } from 'content/guidance-tags';
-import { NamedFC } from '../../common/react/named-sfc';
+import { NamedFC } from '../../common/react/named-fc';
 import { GuidanceLink } from '../../scanner/rule-to-links-mappings';
 import { createMarkup, Markup, MarkupDeps } from './markup';
 

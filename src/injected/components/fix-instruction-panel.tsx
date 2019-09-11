@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import { NamedFC } from '../../common/react/named-sfc';
+import { NamedFC } from '../../common/react/named-fc';
 import { FixInstructionProcessor } from '../fix-instruction-processor';
 import { CheckType } from './details-dialog';
 

@@ -5,7 +5,7 @@ import * as React from 'react';
 import { BrowserAdapter } from '../../common/browser-adapters/browser-adapter';
 import { NewTabLink } from '../../common/components/new-tab-link';
 import { DisplayableStrings } from '../../common/constants/displayable-strings';
-import { NamedFC } from '../../common/react/named-sfc';
+import { NamedFC } from '../../common/react/named-fc';
 
 export type FileUrlUnsupportedMessagePanelDeps = {
     browserAdapter: BrowserAdapter;

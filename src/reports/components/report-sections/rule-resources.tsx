@@ -5,7 +5,7 @@ import * as React from 'react';
 import { GuidanceLinks } from 'common/components/guidance-links';
 import { GuidanceTags, GuidanceTagsDeps } from 'common/components/guidance-tags';
 import { NewTabLink } from 'common/components/new-tab-link';
-import { NamedFC } from 'common/react/named-sfc';
+import { NamedFC } from 'common/react/named-fc';
 import { RuleResult } from 'scanner/iruleresults';
 
 export type RuleResourcesDeps = GuidanceTagsDeps;

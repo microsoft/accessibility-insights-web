@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { HyperlinkDefinition } from 'views/content/content-page';
 
-import { NamedFC } from '../../../common/react/named-sfc';
+import { NamedFC } from '../../../common/react/named-fc';
 import { HelpLinks, HelpLinksDeps } from './help-links';
 import { helpHeading, overviewHelpContainer } from './overview-help-section.scss';
 

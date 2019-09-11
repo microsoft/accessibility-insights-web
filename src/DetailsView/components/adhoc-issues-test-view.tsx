@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import { NamedFC } from '../../common/react/named-sfc';
+import { NamedFC } from '../../common/react/named-fc';
 import { DetailsListIssuesView, DetailsListIssuesViewDeps, DetailsListIssuesViewProps } from './details-list-issues-view';
 import { TargetPageChangedView } from './target-page-changed-view';
 

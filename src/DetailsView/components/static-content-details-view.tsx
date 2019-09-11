@@ -6,7 +6,7 @@ import { ContentInclude, ContentIncludeDeps } from 'views/content/content-includ
 import { ContentLink, ContentLinkDeps } from 'views/content/content-link';
 import { ContentReference } from 'views/content/content-page';
 import { VisualizationToggle } from '../../common/components/visualization-toggle';
-import { NamedFC } from '../../common/react/named-sfc';
+import { NamedFC } from '../../common/react/named-fc';
 
 export type StaticContentDetailsViewDeps = ContentIncludeDeps & ContentLinkDeps;
 

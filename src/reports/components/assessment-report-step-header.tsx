@@ -3,7 +3,7 @@
 import { DefaultMessageInterface } from 'assessments/assessment-default-message-generator';
 import { GuidanceLinks } from 'common/components/guidance-links';
 import { GuidanceTags, GuidanceTagsDeps } from 'common/components/guidance-tags';
-import { NamedFC } from 'common/react/named-sfc';
+import { NamedFC } from 'common/react/named-fc';
 import { ManualTestStatus } from 'common/types/manual-test-status';
 import * as React from 'react';
 

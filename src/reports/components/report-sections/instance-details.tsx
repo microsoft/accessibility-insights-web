@@ -3,7 +3,7 @@
 import * as classNames from 'classnames';
 import * as React from 'react';
 
-import { NamedFC } from 'common/react/named-sfc';
+import { NamedFC } from 'common/react/named-fc';
 import { CheckType } from 'injected/components/details-dialog';
 import { FixInstructionPanel } from 'injected/components/fix-instruction-panel';
 import { FixInstructionProcessor } from 'injected/fix-instruction-processor';

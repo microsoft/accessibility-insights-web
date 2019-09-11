@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import { NamedFC } from '../react/named-sfc';
+import { NamedFC } from '../react/named-fc';
 
 const d =
     'M8.82353 0C9.5579 0 10.2662 0.0963542 10.9485 0.289062C11.6308 0.476562 12.2688 0.744792 12.8626 1.09375C13.4563 1.4375 ' +

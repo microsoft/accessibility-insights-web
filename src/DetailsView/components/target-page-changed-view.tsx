@@ -4,7 +4,7 @@ import { Toggle } from 'office-ui-fabric-react/lib/Toggle';
 import * as React from 'react';
 
 import { DisplayableVisualizationTypeData } from '../../common/configs/visualization-configuration-factory';
-import { NamedFC } from '../../common/react/named-sfc';
+import { NamedFC } from '../../common/react/named-fc';
 import { VisualizationType } from '../../common/types/visualization-type';
 
 export interface TargetPageChangedViewProps {

@@ -4,7 +4,7 @@ import { css } from '@uifabric/utilities';
 import { CSSProperties } from 'react';
 import * as React from 'react';
 
-import { NamedFC } from '../../common/react/named-sfc';
+import { NamedFC } from '../../common/react/named-fc';
 import { BoxConfig, SimpleHighlightDrawerConfiguration } from './formatter';
 
 export interface HightlightBoxDeps {}

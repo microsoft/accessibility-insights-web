@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import { NamedFC } from '../../../common/react/named-sfc';
+import { NamedFC } from '../../../common/react/named-fc';
 
 export const BrandBlue = NamedFC('BrandBlue', () => (
     <svg role="img" aria-hidden="true" className="header-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">

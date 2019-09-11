@@ -4,7 +4,7 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 
 import { UserConfigMessageCreator } from '../../../../../../common/message-creators/user-config-message-creator';
-import { NamedFC } from '../../../../../../common/react/named-sfc';
+import { NamedFC } from '../../../../../../common/react/named-fc';
 import { UserConfigurationStoreData } from '../../../../../../common/types/store-data/user-configuration-store';
 import { DetailsViewActionMessageCreator } from '../../../../../../DetailsView/actions/details-view-action-message-creator';
 import {

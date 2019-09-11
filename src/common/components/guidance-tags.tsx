@@ -5,7 +5,7 @@ import * as React from 'react';
 
 import { GuidanceLink } from '../../scanner/rule-to-links-mappings';
 import { GetGuidanceTagsFromGuidanceLinks } from '../get-guidance-tags-from-guidance-links';
-import { NamedFC } from '../react/named-sfc';
+import { NamedFC } from '../react/named-fc';
 
 export interface GuidanceTagsDeps {
     getGuidanceTagsFromGuidanceLinks: GetGuidanceTagsFromGuidanceLinks;

@@ -4,7 +4,7 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 import { Mock } from 'typemoq';
 
-import { NamedFC } from 'common/react/named-sfc';
+import { NamedFC } from 'common/react/named-fc';
 import { FixInstructionProcessor } from 'injected/fix-instruction-processor';
 import { ReportBody, ReportBodyProps } from 'reports/components/report-sections/report-body';
 import { ReportSectionFactory, SectionProps } from 'reports/components/report-sections/report-section-factory';

@@ -4,7 +4,7 @@ import { HowToFixWebCardRow } from '../../DetailsView/components/cards/how-to-fi
 import { PathCardRow } from '../../DetailsView/components/cards/path-card-row';
 import { SnippetCardRow } from '../../DetailsView/components/cards/snippet-card-row';
 import { FixInstructionProcessor } from '../../injected/fix-instruction-processor';
-import { ReactFCWithDisplayName } from '../react/named-sfc';
+import { ReactFCWithDisplayName } from '../react/named-fc';
 
 export type PropertyType = 'css-selector' | 'how-to-fix-web' | 'snippet';
 export const AllPropertyTypes: PropertyType[] = ['css-selector', 'how-to-fix-web', 'snippet'];

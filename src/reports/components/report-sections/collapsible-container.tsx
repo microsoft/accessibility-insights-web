@@ -3,7 +3,7 @@
 import { css } from '@uifabric/utilities';
 import * as React from 'react';
 
-import { NamedFC } from 'common/react/named-sfc';
+import { NamedFC } from 'common/react/named-fc';
 
 export type CollapsibleContainerProps = {
     id: string;
