@@ -1,0 +1,57 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DetailsViewDropDownTest renders with isContextMenuVisible = false 1`] = `
+<div
+  className="details-view-dropdown"
+>
+  <StyledLinkBase
+    className="gear-button"
+    onClick={[Function]}
+  >
+    <StyledIconBase
+      ariaLabel="Manage Settings"
+      className="gear-options-icon"
+      iconName="Gear"
+    />
+  </StyledLinkBase>
+</div>
+`;
+
+exports[`DetailsViewDropDownTest renders with isContextMenuVisible = true 1`] = `
+<div
+  className="details-view-dropdown"
+>
+  <StyledLinkBase
+    className="gear-button"
+    onClick={[Function]}
+  >
+    <StyledIconBase
+      ariaLabel="Manage Settings"
+      className="gear-options-icon"
+      iconName="Gear"
+    />
+  </StyledLinkBase>
+  <StyledWithResponsiveMode
+    directionalHint={6}
+    directionalHintForRTL={4}
+    doNotLayer={false}
+    gapSpace={12}
+    id="settings-dropdown-menu"
+    items={
+      Array [
+        Object {
+          "iconProps": Object {
+            "iconName": "contactCard",
+          },
+          "key": "my-test-item",
+          "name": "My test item",
+          "onClick": null,
+        },
+      ]
+    }
+    onDismiss={[Function]}
+    shouldFocusOnMount={true}
+    target={null}
+  />
+</div>
+`;
