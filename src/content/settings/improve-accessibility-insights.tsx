@@ -36,11 +36,11 @@ const privacyStatementText = (
 
 export const privacyStatementPopupText = <>You can change this choice anytime in settings. {privacyStatementText}</>;
 
-export const enableTelemetrySettingDescription = (
+export const EnableTelemetrySettingDescription = NamedSFC<LinkComponentDeps>('EnableTelemetrySettingDescription', ({ LinkComponent }) => (
     <>
-        {TelemetryNotice}
+        <TelemetryNotice LinkComponent={LinkComponent} />
         {privacyStatementText}
     </>
-);
+));
 
 export const enableTelemetrySettingsPanelTitle = `Help improve ${title}`;

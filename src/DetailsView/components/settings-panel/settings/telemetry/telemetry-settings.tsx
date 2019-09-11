@@ -1,21 +1,29 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { enableTelemetrySettingDescription, enableTelemetrySettingsPanelTitle } from 'content/settings/improve-accessibility-insights';
+import {
+    EnableTelemetrySettingDescription,
+    enableTelemetrySettingsPanelTitle,
+    LinkComponentDeps,
+} from 'content/settings/improve-accessibility-insights';
 import * as React from 'react';
 import { NamedSFC } from '../../../../../common/react/named-sfc';
 import { GenericToggle } from '../../../generic-toggle';
 import { SettingsProps } from '../settings-props';
 
-export const TelemetrySettings = NamedSFC<SettingsProps>('TelemetrySettings', props => {
+export type TelemetrySettingsProps = SettingsProps & {
+    deps: LinkComponentDeps;
+};
+
+export const TelemetrySettings = NamedSFC<TelemetrySettingsProps>('TelemetrySettings', props => {
     const { deps } = props;
-    const { userConfigMessageCreator } = deps;
+    const { userConfigMessageCreator, LinkComponent } = deps;
 
     return (
         <GenericToggle
             enabled={props.userConfigurationStoreState.enableTelemetry}
             id="enable-telemetry"
             name={enableTelemetrySettingsPanelTitle}
-            description={enableTelemetrySettingDescription}
+            description={<EnableTelemetrySettingDescription LinkComponent={LinkComponent} />}
             onClick={(id, state) => userConfigMessageCreator.setTelemetryState(state)}
         />
     );
