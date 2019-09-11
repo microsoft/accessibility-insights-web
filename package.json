@@ -56,7 +56,7 @@
         "@types/react": "^16.9.2",
         "@types/react-copy-to-clipboard": "^4.2.6",
         "@types/react-dom": "^16.9.0",
-        "@types/react-helmet": "^5.0.9",
+        "@types/react-helmet": "^5.0.10",
         "@types/react-router-dom": "^4.3.5",
         "@types/serve-static": "^1.13.3",
         "@types/ua-parser-js": "^0.7.33",
