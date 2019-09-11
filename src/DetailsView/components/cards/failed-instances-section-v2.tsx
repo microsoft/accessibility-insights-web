@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { NamedSFC } from 'common/react/named-sfc';
+import { NamedFC } from 'common/react/named-sfc';
 import * as React from 'react';
 
 import { UnifiedResult, UnifiedRuleResultStatus } from '../../../common/types/store-data/unified-data-interface';
@@ -25,7 +25,7 @@ export type UnifiedStatusResults = {
     [key in UnifiedRuleResultStatus]: UnifiedRuleResult[];
 };
 
-export const FailedInstancesSectionV2 = NamedSFC<FailedInstancesSectionV2Props>('FailedInstancesSectionV2', ({ result, deps }) => {
+export const FailedInstancesSectionV2 = NamedFC<FailedInstancesSectionV2Props>('FailedInstancesSectionV2', ({ result, deps }) => {
     if (result == null) {
         return null;
     }

@@ -6,7 +6,7 @@ import { IMock, Mock, MockBehavior } from 'typemoq';
 import { FeatureFlagStore } from 'background/stores/global/feature-flag-store';
 import { VisualizationConfiguration } from '../../../../common/configs/visualization-configuration';
 import { VisualizationConfigurationFactory } from '../../../../common/configs/visualization-configuration-factory';
-import { NamedSFC, ReactFCWithDisplayName } from '../../../../common/react/named-sfc';
+import { NamedFC, ReactFCWithDisplayName } from '../../../../common/react/named-sfc';
 import { ManualTestStatus } from '../../../../common/types/manual-test-status';
 import {
     AssessmentData,
@@ -44,15 +44,15 @@ describe('DetailsViewMainContentTest', () => {
     describe('render', () => {
         beforeEach(() => {
             selectedTest = -1;
-            const RightPanelStub: Readonly<ReactFCWithDisplayName<DetailsViewMainContentProps>> = NamedSFC<DetailsViewMainContentProps>(
+            const RightPanelStub: Readonly<ReactFCWithDisplayName<DetailsViewMainContentProps>> = NamedFC<DetailsViewMainContentProps>(
                 'test',
                 _ => null,
             );
-            const CommandBarStub: Readonly<ReactFCWithDisplayName<DetailsViewMainContentProps>> = NamedSFC<DetailsViewMainContentProps>(
+            const CommandBarStub: Readonly<ReactFCWithDisplayName<DetailsViewMainContentProps>> = NamedFC<DetailsViewMainContentProps>(
                 'test',
                 _ => null,
             );
-            const LeftNavStub: Readonly<ReactFCWithDisplayName<DetailsViewMainContentProps>> = NamedSFC<DetailsViewMainContentProps>(
+            const LeftNavStub: Readonly<ReactFCWithDisplayName<DetailsViewMainContentProps>> = NamedFC<DetailsViewMainContentProps>(
                 'test',
                 _ => null,
             );

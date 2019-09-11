@@ -3,7 +3,7 @@
 import { ISelection } from 'office-ui-fabric-react/lib/DetailsList';
 
 import { VisualizationConfigurationFactory } from '../../common/configs/visualization-configuration-factory';
-import { NamedSFC } from '../../common/react/named-sfc';
+import { NamedFC } from '../../common/react/named-sfc';
 import { AssessmentStoreData } from '../../common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { PathSnippetStoreData } from '../../common/types/store-data/path-snippet-store-data';
@@ -43,7 +43,7 @@ export interface TestViewContainerProps {
     ruleResultsByStatus: UnifiedStatusResults;
 }
 
-export const TestViewContainer = NamedSFC<TestViewContainerProps>('TestViewContainer', props => {
+export const TestViewContainer = NamedFC<TestViewContainerProps>('TestViewContainer', props => {
     const configuration = props.visualizationConfigurationFactory.getConfiguration(props.selectedTest);
     const testViewProps = { configuration, ...props };
     return configuration.getTestView(testViewProps);

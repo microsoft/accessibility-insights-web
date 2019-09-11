@@ -3,10 +3,10 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-import { NamedSFC } from '../../../../../common/react/named-sfc';
+import { NamedFC } from '../../../../../common/react/named-sfc';
 
 describe('NamedSFC', () => {
-    const MySFC = NamedSFC('MySFC', () => <span>TEXT</span>);
+    const MySFC = NamedFC('MySFC', () => <span>TEXT</span>);
 
     it('applies correct displayName', () => {
         expect(MySFC.displayName).toEqual('MySFC');

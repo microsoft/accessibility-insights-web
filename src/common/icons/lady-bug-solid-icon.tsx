@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import { NamedSFC } from '../react/named-sfc';
+import { NamedFC } from '../react/named-sfc';
 
 const d =
     'M6 4.5C6.53125 4.5 7.04167 4.57031 7.53125 4.71094C8.02083 4.84635 8.47656 5.03906 8.89844 5.28906C9.32552 5.53385 9.71354 5.83333 ' +
@@ -44,7 +44,7 @@ const d =
     '3.375 5.15885 3.41927 4.74219 3.50781C4.33073 3.59635 3.92969 3.72396 3.53906 3.89062C3.52865 3.82812 3.51823 3.76562 3.50781 ' +
     '3.70312C3.5026 3.63542 3.5 3.56771 3.5 3.5Z';
 
-export const LadyBugSolidIcon = NamedSFC('LadyBugSolidIcon', () => (
+export const LadyBugSolidIcon = NamedFC('LadyBugSolidIcon', () => (
     <svg width="12" height="16" viewBox="0 0 12 16" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
         <path d={d} />
     </svg>

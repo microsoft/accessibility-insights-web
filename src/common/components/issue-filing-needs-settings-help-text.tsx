@@ -2,13 +2,13 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import { NamedSFC } from '../react/named-sfc';
+import { NamedFC } from '../react/named-sfc';
 
 export type IssueFilingNeedsSettingsHelpTextProps = {
     isOpen: boolean;
 };
 
-export const IssueFilingNeedsSettingsHelpText = NamedSFC<IssueFilingNeedsSettingsHelpTextProps>(
+export const IssueFilingNeedsSettingsHelpText = NamedFC<IssueFilingNeedsSettingsHelpTextProps>(
     'IssueFilingNeedsSettingsHelpText',
     props => {
         if (props.isOpen) {

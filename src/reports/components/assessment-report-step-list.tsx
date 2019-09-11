@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { NamedSFC } from 'common/react/named-sfc';
+import { NamedFC } from 'common/react/named-sfc';
 import { ManualTestStatus } from 'common/types/manual-test-status';
 import * as React from 'react';
 
@@ -16,7 +16,7 @@ export interface AssessmentReportStepListProps {
     steps: RequirementReportModel[];
 }
 
-export const AssessmentReportStepList = NamedSFC<AssessmentReportStepListProps>('AssessmentReportStepList', props => {
+export const AssessmentReportStepList = NamedFC<AssessmentReportStepListProps>('AssessmentReportStepList', props => {
     const { deps, status, steps } = props;
 
     return <div>{renderSteps()}</div>;

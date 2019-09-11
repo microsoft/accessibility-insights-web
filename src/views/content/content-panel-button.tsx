@@ -4,7 +4,7 @@ import { ActionButton } from 'office-ui-fabric-react/lib/Button';
 import * as React from 'react';
 
 import { ContentActionMessageCreator } from '../../common/message-creators/content-action-message-creator';
-import { NamedSFC } from '../../common/react/named-sfc';
+import { NamedFC } from '../../common/react/named-sfc';
 import { ContentProvider, ContentReference } from './content-page';
 
 export type ContentPanelButtonDeps = {
@@ -18,7 +18,7 @@ export type ContentPanelButtonProps = {
     iconName: string;
 };
 
-export const ContentPanelButton = NamedSFC<ContentPanelButtonProps>('ContentPanelButton', ({ deps, reference, children, iconName }) => {
+export const ContentPanelButton = NamedFC<ContentPanelButtonProps>('ContentPanelButton', ({ deps, reference, children, iconName }) => {
     const { contentProvider, contentActionMessageCreator } = deps;
 
     if (!reference) {

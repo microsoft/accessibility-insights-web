@@ -3,9 +3,9 @@
 import * as React from 'react';
 
 import * as Markup from 'assessments/markup';
-import { NamedSFC } from '../../../common/react/named-sfc';
+import { NamedFC } from '../../../common/react/named-sfc';
 
-export const TestAutomaticallyPassedNotice = NamedSFC('TestAutomaticallyPassedNotice', () => {
+export const TestAutomaticallyPassedNotice = NamedFC('TestAutomaticallyPassedNotice', () => {
     return (
         <p>
             <Markup.Emphasis>

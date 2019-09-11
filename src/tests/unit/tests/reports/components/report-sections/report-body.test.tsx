@@ -4,7 +4,7 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 import { Mock } from 'typemoq';
 
-import { NamedSFC } from 'common/react/named-sfc';
+import { NamedFC } from 'common/react/named-sfc';
 import { FixInstructionProcessor } from 'injected/fix-instruction-processor';
 import { ReportBody, ReportBodyProps } from 'reports/components/report-sections/report-body';
 import { ReportSectionFactory, SectionProps } from 'reports/components/report-sections/report-section-factory';
@@ -54,7 +54,7 @@ describe('ReportBody', () => {
 
     const createSectionFactoryStub = () => {
         const createBasicComponent = (name: string) => {
-            return NamedSFC(name, () => {
+            return NamedFC(name, () => {
                 return <div />;
             });
         };

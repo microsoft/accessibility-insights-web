@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as React from 'react';
-import { NamedSFC } from '../../../common/react/named-sfc';
+import { NamedFC } from '../../../common/react/named-sfc';
 import { FeatureFlagStoreData } from '../../../common/types/store-data/feature-flag-store-data';
 import { UserConfigurationStoreData } from '../../../common/types/store-data/user-configuration-store';
 import { DetailsViewActionMessageCreator } from '../../actions/details-view-action-message-creator';
@@ -21,7 +21,7 @@ export interface SettingsPanelProps {
     featureFlagData: FeatureFlagStoreData;
 }
 
-export const SettingsPanel = NamedSFC<SettingsPanelProps>('SettingsPanel', props => {
+export const SettingsPanel = NamedFC<SettingsPanelProps>('SettingsPanel', props => {
     const { deps, userConfigStoreState, featureFlagData, isOpen } = props;
     const { detailsViewActionMessageCreator, settingsProvider } = deps;
 

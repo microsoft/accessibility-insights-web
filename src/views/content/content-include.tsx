@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import { NamedSFC } from '../../common/react/named-sfc';
+import { NamedFC } from '../../common/react/named-sfc';
 import { ContentPageDeps, ContentProvider, ContentReference } from './content-page';
 
 export type ContentIncludeDeps = {
@@ -14,7 +14,7 @@ export type ContentIncludeProps = {
     content: ContentReference;
 };
 
-export const ContentInclude = NamedSFC<ContentIncludeProps>('ContentInclude', ({ deps, content }) => {
+export const ContentInclude = NamedFC<ContentIncludeProps>('ContentInclude', ({ deps, content }) => {
     const { contentProvider } = deps;
 
     if (!content) {

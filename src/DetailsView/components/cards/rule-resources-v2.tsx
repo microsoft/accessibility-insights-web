@@ -3,7 +3,7 @@
 import { GuidanceLinks } from 'common/components/guidance-links';
 import { GuidanceTags, GuidanceTagsDeps } from 'common/components/guidance-tags';
 import { NewTabLink } from 'common/components/new-tab-link';
-import { NamedSFC } from 'common/react/named-sfc';
+import { NamedFC } from 'common/react/named-sfc';
 import * as React from 'react';
 
 import { UnifiedRule } from '../../../common/types/store-data/unified-data-interface';
@@ -16,7 +16,7 @@ export type RuleResourcesV2Props = {
     rule: UnifiedRule;
 };
 
-export const RuleResourcesV2 = NamedSFC<RuleResourcesV2Props>('RuleResourcesV2', ({ deps, rule }) => {
+export const RuleResourcesV2 = NamedFC<RuleResourcesV2Props>('RuleResourcesV2', ({ deps, rule }) => {
     const renderTitle = () => <div className={moreResourcesTitle}>Resources for this rule</div>;
 
     const renderRuleLink = () => {

@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { NamedSFC } from 'common/react/named-sfc';
+import { NamedFC } from 'common/react/named-sfc';
 import { FixInstructionProcessor } from 'injected/fix-instruction-processor';
 import * as React from 'react';
 
@@ -18,7 +18,7 @@ export type ResultSectionContentV2Props = {
     fixInstructionProcessor?: FixInstructionProcessor;
 };
 
-export const ResultSectionContentV2 = NamedSFC<ResultSectionContentV2Props>(
+export const ResultSectionContentV2 = NamedFC<ResultSectionContentV2Props>(
     'ResultSectionContentV2',
     ({ results, outcomeType, fixInstructionProcessor, deps }) => {
         if (results.length === 0) {

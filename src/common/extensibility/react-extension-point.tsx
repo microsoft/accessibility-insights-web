@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as React from 'react';
-import { NamedSFC } from '../react/named-sfc';
+import { NamedFC } from '../react/named-sfc';
 import { AnyExtension } from './extension-point';
 
 export type Extension<C> = {
@@ -35,7 +35,7 @@ function isReactExtension(extension: Extension<any>): extension is ReactExtensio
 }
 
 export function reactExtensionPoint<P extends {}>(extensionPointKey: string): ReactExtensionPoint<P> {
-    const component = NamedSFC<P & { extensions: Extension<any>[] }>(extensionPointKey, props => {
+    const component = NamedFC<P & { extensions: Extension<any>[] }>(extensionPointKey, props => {
         const { children, extensions } = props;
 
         let result = <>{children}</>;
@@ -55,7 +55,7 @@ export function reactExtensionPoint<P extends {}>(extensionPointKey: string): Re
 
     function create(extensionComponent: React.FC<P>): ReactExtension<P> {
         const Wrap = extensionComponent;
-        const wrapComponent = NamedSFC<P>(extensionPointKey, props => <Wrap {...props} />);
+        const wrapComponent = NamedFC<P>(extensionPointKey, props => <Wrap {...props} />);
         wrapComponent.displayName = extensionPointKey;
 
         return {

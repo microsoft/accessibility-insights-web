@@ -2,13 +2,13 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import { NamedSFC } from 'common/react/named-sfc';
+import { NamedFC } from 'common/react/named-sfc';
 import { CollapsibleResultSection } from './collapsible-result-section';
 import { SectionProps } from './report-section-factory';
 
 export type PassedChecksSectionProps = Pick<SectionProps, 'scanResult' | 'getGuidanceTagsFromGuidanceLinks'>;
 
-export const PassedChecksSection = NamedSFC<PassedChecksSectionProps>(
+export const PassedChecksSection = NamedFC<PassedChecksSectionProps>(
     'PassedChecksSection',
     ({ scanResult, getGuidanceTagsFromGuidanceLinks }) => {
         const rules = scanResult.passes;

@@ -5,7 +5,7 @@ import * as React from 'react';
 import { IMock, Mock } from 'typemoq';
 
 import { UserConfigMessageCreator } from '../../../../../../../../common/message-creators/user-config-message-creator';
-import { NamedSFC } from '../../../../../../../../common/react/named-sfc';
+import { NamedFC } from '../../../../../../../../common/react/named-sfc';
 import { UserConfigurationStoreData } from '../../../../../../../../common/types/store-data/user-configuration-store';
 import { IssueFilingSettings } from '../../../../../../../../DetailsView/components/settings-panel/settings/issue-filing/issue-filing-settings';
 import { SettingsDeps, SettingsProps } from '../../../../../../../../DetailsView/components/settings-panel/settings/settings-props';
@@ -32,7 +32,7 @@ describe('IssueFilingSettings', () => {
         testIssueFilingServiceStub = {
             key: testKey,
             displayName: 'TEST',
-            settingsForm: NamedSFC('testForm', () => <>Hello World</>),
+            settingsForm: NamedFC('testForm', () => <>Hello World</>),
             isSettingsValid: () => true,
             buildStoreData: testField => {
                 return { testField };

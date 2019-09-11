@@ -6,7 +6,7 @@ import { AssessmentDefaultMessageGenerator } from 'assessments/assessment-defaul
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { AssessmentTestResult } from '../../common/assessment/assessment-test-result';
 import { VisualizationConfiguration } from '../../common/configs/visualization-configuration';
-import { NamedSFC } from '../../common/react/named-sfc';
+import { NamedFC } from '../../common/react/named-sfc';
 import { AssessmentStoreData } from '../../common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { PathSnippetStoreData } from '../../common/types/store-data/path-snippet-store-data';
@@ -31,7 +31,7 @@ export interface AssessmentTestViewProps {
     featureFlagStoreData: FeatureFlagStoreData;
 }
 
-export const AssessmentTestView = NamedSFC<AssessmentTestViewProps>('AssessmentTestView', ({ deps, ...props }) => {
+export const AssessmentTestView = NamedFC<AssessmentTestViewProps>('AssessmentTestView', ({ deps, ...props }) => {
     const isScanning: boolean = props.visualizationStoreData.scanning !== null;
     const scanData = props.configuration.getStoreData(props.visualizationStoreData.tests);
     const assessmentData = props.configuration.getAssessmentData(props.assessmentStoreData);

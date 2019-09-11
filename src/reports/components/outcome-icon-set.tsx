@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { NamedSFC } from 'common/react/named-sfc';
+import { NamedFC } from 'common/react/named-sfc';
 import { join, times } from 'lodash';
 import * as React from 'react';
 
@@ -17,7 +17,7 @@ function getText(stats: RequirementOutcomeStats): string {
     return join(allRequirementOutcomeTypes.map(textForOutcome), ', ');
 }
 
-export const OutcomeIconSet = NamedSFC<RequirementOutcomeStats>('OutcomeIconSet', props => {
+export const OutcomeIconSet = NamedFC<RequirementOutcomeStats>('OutcomeIconSet', props => {
     const text = getText(props);
 
     return (

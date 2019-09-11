@@ -2,6 +2,6 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import { NamedSFC } from '../react/named-sfc';
+import { NamedFC } from '../react/named-sfc';
 
-export const CircleIcon = NamedSFC('CircleIcon', () => <span className="check-container" />);
+export const CircleIcon = NamedFC('CircleIcon', () => <span className="check-container" />);

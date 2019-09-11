@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { NamedSFC } from 'common/react/named-sfc';
+import { NamedFC } from 'common/react/named-sfc';
 import * as React from 'react';
 
 import { ResultSectionTitle, ResultSectionTitleProps } from '../../../DetailsView/components/cards/result-section-title';
@@ -14,7 +14,7 @@ export type ResultSectionProps = ResultSectionContentProps &
         deps: ResultSectionDeps;
     };
 
-export const ResultSection = NamedSFC<ResultSectionProps>('ResultSection', props => {
+export const ResultSection = NamedFC<ResultSectionProps>('ResultSection', props => {
     const { containerClassName } = props;
 
     return (

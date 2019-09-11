@@ -7,7 +7,7 @@ import { GuidanceLinks } from 'common/components/guidance-links';
 import { GuidanceTags } from 'common/components/guidance-tags';
 import { NewTabLink } from 'common/components/new-tab-link';
 import { GetGuidanceTagsFromGuidanceLinks } from 'common/get-guidance-tags-from-guidance-links';
-import { NamedSFC } from 'common/react/named-sfc';
+import { NamedFC } from 'common/react/named-sfc';
 import { RuleResult } from 'scanner/iruleresults';
 import { InstanceOutcomeType } from '../instance-outcome-type';
 import { OutcomeChip } from '../outcome-chip';
@@ -23,7 +23,7 @@ export type FullRuleHeaderProps = {
     outcomeType: InstanceOutcomeType;
 };
 
-export const FullRuleHeader = NamedSFC<FullRuleHeaderProps>('FullRuleHeader', props => {
+export const FullRuleHeader = NamedFC<FullRuleHeaderProps>('FullRuleHeader', props => {
     const { rule, outcomeType, deps } = props;
 
     const outcomeText = outcomeTypeSemantics[props.outcomeType].pastTense;

@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import { NamedSFC } from 'common/react/named-sfc';
+import { NamedFC } from 'common/react/named-sfc';
 import { InstanceDetailsGroup, InstanceDetailsGroupDeps, InstanceDetailsGroupProps } from './instance-details-group';
 import { RuleResources, RuleResourcesDeps, RuleResourcesProps } from './rule-resources';
 
@@ -15,7 +15,7 @@ export type RuleContentProps = Omit<InstanceDetailsGroupProps, 'deps'> &
         deps: RuleContentDeps;
     };
 
-export const RuleContent = NamedSFC<RuleContentProps>('RuleContent', props => {
+export const RuleContent = NamedFC<RuleContentProps>('RuleContent', props => {
     return (
         <>
             <RuleResources {...props} />

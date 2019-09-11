@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { NamedSFC } from 'common/react/named-sfc';
+import { NamedFC } from 'common/react/named-sfc';
 import * as React from 'react';
 
-export const BodySection = NamedSFC('BodySection', ({ children }) => {
+export const BodySection = NamedFC('BodySection', ({ children }) => {
     return <body>{children}</body>;
 });

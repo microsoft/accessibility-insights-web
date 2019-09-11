@@ -5,7 +5,7 @@ import * as React from 'react';
 import { GuidanceLinks } from 'common/components/guidance-links';
 import { GuidanceTags, GuidanceTagsDeps } from 'common/components/guidance-tags';
 import { NewTabLink } from 'common/components/new-tab-link';
-import { NamedSFC } from 'common/react/named-sfc';
+import { NamedFC } from 'common/react/named-sfc';
 import { RuleResult } from 'scanner/iruleresults';
 
 export type RuleResourcesDeps = GuidanceTagsDeps;
@@ -15,7 +15,7 @@ export type RuleResourcesProps = {
     rule: RuleResult;
 };
 
-export const RuleResources = NamedSFC<RuleResourcesProps>('RuleResources', ({ deps, rule }) => {
+export const RuleResources = NamedFC<RuleResourcesProps>('RuleResources', ({ deps, rule }) => {
     const renderTitle = () => <div className="more-resources-title">Resources for this rule</div>;
 
     const renderRuleLink = () => {

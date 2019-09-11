@@ -3,7 +3,7 @@
 import { ChoiceGroup, IChoiceGroupOption } from 'office-ui-fabric-react/lib/ChoiceGroup';
 import * as React from 'react';
 
-import { NamedSFC } from '../../common/react/named-sfc';
+import { NamedFC } from '../../common/react/named-sfc';
 import { IssueFilingService } from '../types/issue-filing-service';
 import { OnSelectedServiceChange } from './issue-filing-settings-container';
 
@@ -13,7 +13,7 @@ export type IssueFilingChoiceGroupProps = {
     onSelectedServiceChange: OnSelectedServiceChange;
 };
 
-export const IssueFilingChoiceGroup = NamedSFC<IssueFilingChoiceGroupProps>('IssueFilingChoiceGroup', props => {
+export const IssueFilingChoiceGroup = NamedFC<IssueFilingChoiceGroupProps>('IssueFilingChoiceGroup', props => {
     const getOptions: () => IChoiceGroupOption[] = () => {
         return props.issueFilingServices.map(service => {
             return {

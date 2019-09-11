@@ -4,7 +4,7 @@ import { mapValues } from 'lodash';
 import * as React from 'react';
 
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
-import { NamedSFC } from '../../../common/react/named-sfc';
+import { NamedFC } from '../../../common/react/named-sfc';
 import { AssessmentStoreData } from '../../../common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from '../../../common/types/store-data/feature-flag-store-data';
 import { VisualizationType } from '../../../common/types/visualization-type';
@@ -25,7 +25,7 @@ export type DetailsViewLeftNavProps = {
     assessmentStoreData: AssessmentStoreData;
 };
 
-export const DetailsViewLeftNav = NamedSFC<DetailsViewLeftNavProps>('DetailsViewLeftNav', props => {
+export const DetailsViewLeftNav = NamedFC<DetailsViewLeftNavProps>('DetailsViewLeftNav', props => {
     const { deps, selectedTest, switcherNavConfiguration, rightPanelConfiguration, featureFlagStoreData, assessmentStoreData } = props;
 
     const { assessmentsProvider, assessmentsProviderWithFeaturesEnabled } = deps;

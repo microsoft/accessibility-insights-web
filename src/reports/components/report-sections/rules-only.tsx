@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { NamedSFC } from 'common/react/named-sfc';
+import { NamedFC } from 'common/react/named-sfc';
 import * as React from 'react';
 import { RuleResult } from 'scanner/iruleresults';
 import { InstanceOutcomeType } from '../instance-outcome-type';
@@ -14,7 +14,7 @@ export type RulesOnlyProps = {
     outcomeType: InstanceOutcomeType;
 };
 
-export const RulesOnly = NamedSFC<RulesOnlyProps>('RulesOnly', ({ rules, outcomeType, deps }) => {
+export const RulesOnly = NamedFC<RulesOnlyProps>('RulesOnly', ({ rules, outcomeType, deps }) => {
     return (
         <div className="rule-details-group">
             {rules.map(rule => {

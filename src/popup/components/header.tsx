@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { css } from '@uifabric/utilities';
 import * as React from 'react';
-import { NamedSFC } from '../../common/react/named-sfc';
+import { NamedFC } from '../../common/react/named-sfc';
 
 export interface HeaderProps {
     title: string;
@@ -11,7 +11,7 @@ export interface HeaderProps {
     children?: JSX.Element;
 }
 
-export const Header = NamedSFC<HeaderProps>('Header', props => {
+export const Header = NamedFC<HeaderProps>('Header', props => {
     return (
         <header className="ms-Grid launch-panel-header">
             <div className={css('ms-Grid-row', props.rowExtraClassName)}>

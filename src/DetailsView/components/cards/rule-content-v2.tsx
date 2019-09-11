@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { NamedSFC } from 'common/react/named-sfc';
+import { NamedFC } from 'common/react/named-sfc';
 import * as React from 'react';
 
 import { InstanceDetailsGroupV2, InstanceDetailsGroupV2Deps, InstanceDetailsGroupV2Props } from './instance-details-group-v2';
@@ -15,7 +15,7 @@ export type RuleContentV2Props = Omit<InstanceDetailsGroupV2Props, 'deps'> &
         deps: RuleContentV2Deps;
     };
 
-export const RuleContentV2 = NamedSFC<RuleContentV2Props>('RuleContentV2', props => {
+export const RuleContentV2 = NamedFC<RuleContentV2Props>('RuleContentV2', props => {
     return (
         <>
             <RuleResourcesV2 {...props} />

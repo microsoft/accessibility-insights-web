@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import { NamedSFC } from '../react/named-sfc';
+import { NamedFC } from '../react/named-sfc';
 
 const d =
     'M8.82353 0C9.5579 0 10.2662 0.0963542 10.9485 0.289062C11.6308 0.476562 12.2688 0.744792 12.8626 1.09375C13.4563 1.4375 ' +
@@ -45,7 +45,7 @@ const d =
     '11.9453C12.2402 12.263 12.1386 12.5781 12.0188 12.8906C11.9043 13.1979 11.7714 13.4974 11.6204 13.7891C11.4694 14.0807 11.3001 ' +
     '14.3568 11.1126 14.6172Z';
 
-export const UrlIcon = NamedSFC('UrlIcon', () => (
+export const UrlIcon = NamedFC('UrlIcon', () => (
     <svg width="17" height="16" viewBox="0 0 17 16" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d={d} fill="#737373" />
     </svg>

@@ -9,7 +9,7 @@ import {
     CardRowProps,
     PropertyConfiguration,
 } from '../../../../../../common/configs/unified-result-property-configurations';
-import { NamedSFC, ReactFCWithDisplayName } from '../../../../../../common/react/named-sfc';
+import { NamedFC, ReactFCWithDisplayName } from '../../../../../../common/react/named-sfc';
 import { UnifiedResult } from '../../../../../../common/types/store-data/unified-data-interface';
 import {
     InstanceDetailsV2,
@@ -52,6 +52,6 @@ describe('InstanceDetailsV2', () => {
     });
 
     function getCardRowStub(name: string): ReactFCWithDisplayName<CardRowProps> {
-        return NamedSFC<CardRowProps>(name, _ => null);
+        return NamedFC<CardRowProps>(name, _ => null);
     }
 });

@@ -4,7 +4,7 @@ import { isEmpty, isString } from 'lodash';
 import { TextField } from 'office-ui-fabric-react/lib/TextField';
 import * as React from 'react';
 
-import { NamedSFC } from '../../../common/react/named-sfc';
+import { NamedFC } from '../../../common/react/named-sfc';
 import { createFileIssueHandler } from '../../common/create-file-issue-handler';
 import { createSettingsGetter } from '../../common/create-settings-getter';
 import { IssueFilingService } from '../../types/issue-filing-service';
@@ -24,7 +24,7 @@ function isSettingsValid(data: GitHubIssueFilingSettings): boolean {
     return !isEmpty(data) && !isEmpty(data.repository) && isString(data.repository) && !isEmpty(data.repository.trim());
 }
 
-const settingsForm = NamedSFC<SettingsFormProps<GitHubIssueFilingSettings>>('IssueFilingSettings', props => {
+const settingsForm = NamedFC<SettingsFormProps<GitHubIssueFilingSettings>>('IssueFilingSettings', props => {
     const onGitHubRepositoryChange = (event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>, newValue?: string) => {
         const propertyName: keyof GitHubIssueFilingSettings = 'repository';
         props.onPropertyUpdateCallback(GitHubIssueFilingServiceKey, propertyName, newValue);

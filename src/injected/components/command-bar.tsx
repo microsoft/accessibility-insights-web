@@ -7,7 +7,7 @@ import { CopyIssueDetailsButton, CopyIssueDetailsButtonDeps } from '../../common
 import { IssueFilingButton, IssueFilingButtonDeps } from '../../common/components/issue-filing-button';
 import { IssueFilingNeedsSettingsHelpText } from '../../common/components/issue-filing-needs-settings-help-text';
 import { FileHTMLIcon } from '../../common/icons/file-html-icon';
-import { NamedSFC } from '../../common/react/named-sfc';
+import { NamedFC } from '../../common/react/named-sfc';
 import { CreateIssueDetailsTextData } from '../../common/types/create-issue-details-text-data';
 import { UserConfigurationStoreData } from '../../common/types/store-data/user-configuration-store';
 import { DictionaryStringTo } from '../../types/common-types';
@@ -28,7 +28,7 @@ export type CommandBarProps = {
     devToolsShortcut: string;
 };
 
-export const CommandBar = NamedSFC<CommandBarProps>('CommandBar', props => {
+export const CommandBar = NamedFC<CommandBarProps>('CommandBar', props => {
     const renderInspectButton = (): JSX.Element => {
         return (
             <DefaultButton className="insights-dialog-button-inspect" onClick={props.onClickInspectButton}>

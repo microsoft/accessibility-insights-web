@@ -4,7 +4,7 @@ import * as React from 'react';
 import { HyperlinkDefinition } from 'views/content/content-page';
 
 import { ExternalLink, ExternalLinkDeps } from '../../../common/components/external-link';
-import { NamedSFC } from '../../../common/react/named-sfc';
+import { NamedFC } from '../../../common/react/named-sfc';
 import { helpLink } from './help-links.scss';
 
 export type HelpLinksDeps = ExternalLinkDeps;
@@ -14,7 +14,7 @@ export interface HelpLinksProps {
     linkInformation: HyperlinkDefinition[];
 }
 
-export const HelpLinks = NamedSFC('HelpLinks', (props: HelpLinksProps) => {
+export const HelpLinks = NamedFC('HelpLinks', (props: HelpLinksProps) => {
     const { linkInformation } = props;
     return (
         <>

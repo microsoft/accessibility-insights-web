@@ -4,7 +4,7 @@ import { flatten, forEach, toPairs } from 'lodash';
 import * as React from 'react';
 
 import { GuidanceTag } from 'content/guidance-tags';
-import { NamedSFC } from '../../common/react/named-sfc';
+import { NamedFC } from '../../common/react/named-sfc';
 import { GuidanceLink } from '../../scanner/rule-to-links-mappings';
 import { createMarkup, Markup, MarkupDeps } from './markup';
 
@@ -44,7 +44,7 @@ export function ContentCreator<M extends HyperlinkDefinitionMap>(
     }
 
     function create(fn: (props: CreateProps<M>) => JSX.Element): ContentPageComponent {
-        return NamedSFC<ContentPageProps>('ContentPageComponent', props => {
+        return NamedFC<ContentPageProps>('ContentPageComponent', props => {
             const { deps, options } = props;
             const markup = createMarkup(deps, options);
             return fn({ Markup: markup, Link: mapLinks(markup) });

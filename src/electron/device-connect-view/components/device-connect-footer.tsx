@@ -2,14 +2,14 @@
 // Licensed under the MIT License.
 import { DefaultButton, PrimaryButton } from 'office-ui-fabric-react/lib/Button';
 import * as React from 'react';
-import { NamedSFC } from '../../../common/react/named-sfc';
+import { NamedFC } from '../../../common/react/named-sfc';
 
 export interface DeviceConnectFooterProps {
     cancelClick: () => void;
     canStartTesting: boolean;
 }
 
-export const DeviceConnectFooter = NamedSFC<DeviceConnectFooterProps>('DeviceConnectFooter', (props: DeviceConnectFooterProps) => {
+export const DeviceConnectFooter = NamedFC<DeviceConnectFooterProps>('DeviceConnectFooter', (props: DeviceConnectFooterProps) => {
     const onCancelClick = () => props.cancelClick();
     return (
         <footer className="device-connect-footer">

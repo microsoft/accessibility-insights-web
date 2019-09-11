@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { NamedSFC } from 'common/react/named-sfc';
+import { NamedFC } from 'common/react/named-sfc';
 import { forOwn } from 'lodash';
 import * as React from 'react';
 import { reportInstanceTable } from 'reports/components/instance-details.scss';
@@ -17,7 +17,7 @@ export type InstanceDetailsV2Props = {
     index: number;
 };
 
-export const InstanceDetailsV2 = NamedSFC<InstanceDetailsV2Props>('InstanceDetailsV2', props => {
+export const InstanceDetailsV2 = NamedFC<InstanceDetailsV2Props>('InstanceDetailsV2', props => {
     const { result, index, deps } = props;
 
     const renderCardRowsForPropertyBag = (propertyBag: StoredInstancePropertyBag) => {
