@@ -5,11 +5,11 @@ import * as React from 'react';
 
 import { NamedFC } from '../../../../../common/react/named-sfc';
 
-describe('NamedSFC', () => {
-    const MySFC = NamedFC('MySFC', () => <span>TEXT</span>);
+describe('NamedFC', () => {
+    const MySFC = NamedFC('MyFC', () => <span>TEXT</span>);
 
     it('applies correct displayName', () => {
-        expect(MySFC.displayName).toEqual('MySFC');
+        expect(MySFC.displayName).toEqual('MyFC');
     });
 
     it('renders as expected', () => {
@@ -23,6 +23,6 @@ describe('NamedSFC', () => {
 
         const rendered = shallow(<Outside />);
 
-        expect(rendered.debug()).toEqual('<MySFC />');
+        expect(rendered.debug()).toEqual('<MyFC />');
     });
 });
