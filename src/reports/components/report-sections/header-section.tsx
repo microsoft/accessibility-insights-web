@@ -3,7 +3,7 @@
 import * as React from 'react';
 
 import { NewTabLink } from 'common/components/new-tab-link';
-import { NamedSFC } from 'common/react/named-sfc';
+import { NamedFC } from 'common/react/named-fc';
 import { productName } from 'content/strings/application';
 import { BrandWhite } from 'icons/brand/white/brand-white';
 
@@ -12,7 +12,7 @@ export interface HeaderSectionProps {
     pageUrl: string;
 }
 
-export const HeaderSection = NamedSFC<HeaderSectionProps>('HeaderSection', ({ pageTitle, pageUrl }) => {
+export const HeaderSection = NamedFC<HeaderSectionProps>('HeaderSection', ({ pageTitle, pageUrl }) => {
     return (
         <header>
             <div className="report-header-bar">

@@ -3,12 +3,12 @@
 import * as React from 'react';
 
 import { NewTabLink } from 'common/components/new-tab-link';
-import { NamedSFC } from 'common/react/named-sfc';
+import { NamedFC } from 'common/react/named-fc';
 import { toolName } from 'content/strings/application';
 
 import { reportFooter, reportFooterContainer } from './footer-section.scss';
 
-export const FooterSection = NamedSFC('FooterSection', () => {
+export const FooterSection = NamedFC('FooterSection', () => {
     return (
         <div className={reportFooterContainer}>
             <div className={reportFooter} role="contentinfo">

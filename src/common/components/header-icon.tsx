@@ -4,7 +4,7 @@ import * as React from 'react';
 
 import { BrandBlue } from '../../icons/brand/blue/brand-blue';
 import { BrandWhite } from '../../icons/brand/white/brand-white';
-import { NamedSFC } from '../react/named-sfc';
+import { NamedFC } from '../react/named-fc';
 import { ThemeInnerState } from './theme';
 import { withStoreSubscription, WithStoreSubscriptionDeps, WithStoreSubscriptionProps } from './with-store-subscription';
 
@@ -14,7 +14,7 @@ export type HeaderIconProps = WithStoreSubscriptionProps<HeaderIconState>;
 
 export type HeaderIconState = ThemeInnerState;
 
-export const HeaderIconComponent = NamedSFC<HeaderIconProps>('HeaderIconComponent', (props: HeaderIconProps) => {
+export const HeaderIconComponent = NamedFC<HeaderIconProps>('HeaderIconComponent', (props: HeaderIconProps) => {
     const state = props.storeState.userConfigurationStoreData;
     const enableHighContrast = state && state.enableHighContrast;
 

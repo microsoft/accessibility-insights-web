@@ -3,7 +3,7 @@
 import { css } from '@uifabric/utilities';
 import * as React from 'react';
 
-import { NamedSFC } from '../../../common/react/named-sfc';
+import { NamedFC } from '../../../common/react/named-fc';
 import { instanceListRowContent, label, row } from '../../../reports/components/instance-details.scss';
 
 export interface SimpleCardRowProps {
@@ -13,7 +13,7 @@ export interface SimpleCardRowProps {
     contentClassName?: string;
 }
 
-export const SimpleCardRow = NamedSFC<SimpleCardRowProps>('SimpleCardRow', ({ label: givenLabel, content, rowKey, contentClassName }) => {
+export const SimpleCardRow = NamedFC<SimpleCardRowProps>('SimpleCardRow', ({ label: givenLabel, content, rowKey, contentClassName }) => {
     const contentStyling = css(instanceListRowContent, contentClassName);
 
     return (

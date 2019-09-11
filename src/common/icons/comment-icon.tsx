@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import { NamedSFC } from '../react/named-sfc';
+import { NamedFC } from '../react/named-fc';
 
 const d =
     'M16 11.2891V0.289062H-7.62939e-06V11.2891H1.99999V15L5.71093 11.2891H16ZM1 1.28906H15L15 10.2891H5.28906L3 ' +
@@ -12,7 +12,7 @@ const d =
     '7.08594 6.70702 6.99609C6.79817 6.90625 6.86978 6.80078 6.92187 6.67969C6.97395 6.55859 6.99999 6.42969 6.99999 ' +
     '6.28906V4.28906H4.99999V6.28906Z';
 
-export const CommentIcon = NamedSFC('CommentIcon', () => (
+export const CommentIcon = NamedFC('CommentIcon', () => (
     <svg width="17" height="16" viewBox="0 0 16 15" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path fillRule="evenodd" clipRule="evenodd" d={d} fill="#737373" />
     </svg>

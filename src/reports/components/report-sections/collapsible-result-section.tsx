@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { NamedSFC } from 'common/react/named-sfc';
+import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
 
 import { ResultSectionTitle } from '../../../DetailsView/components/cards/result-section-title';
@@ -13,7 +13,7 @@ export type CollapsibleResultSectionProps = RulesOnlyProps &
         containerId: string;
     };
 
-export const CollapsibleResultSection = NamedSFC<CollapsibleResultSectionProps>('CollapsibleResultSection', props => {
+export const CollapsibleResultSection = NamedFC<CollapsibleResultSectionProps>('CollapsibleResultSection', props => {
     const { containerClassName, containerId } = props;
 
     return (

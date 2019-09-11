@@ -4,7 +4,7 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 
 import { UserConfigMessageCreator } from '../../../../../../common/message-creators/user-config-message-creator';
-import { NamedSFC } from '../../../../../../common/react/named-sfc';
+import { NamedFC } from '../../../../../../common/react/named-fc';
 import { UserConfigurationStoreData } from '../../../../../../common/types/store-data/user-configuration-store';
 import { DetailsViewActionMessageCreator } from '../../../../../../DetailsView/actions/details-view-action-message-creator';
 import {
@@ -46,7 +46,7 @@ describe('SettingsPanelTest', () => {
 });
 
 const createTestSettings = (name: string) => {
-    return NamedSFC<SettingsProps>('TestSettings', props => {
+    return NamedFC<SettingsProps>('TestSettings', props => {
         return (
             <div className="test-settings">
                 <div>{name}</div>

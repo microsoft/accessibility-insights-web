@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { css } from '@uifabric/utilities';
-import { NamedSFC } from 'common/react/named-sfc';
+import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
 
 import { ResultSectionContentV2, ResultSectionContentV2Deps, ResultSectionContentV2Props } from './result-section-content-v2';
@@ -16,7 +16,7 @@ export type ResultSectionV2Props = ResultSectionContentV2Props &
         deps: ResultSectionV2Deps;
     };
 
-export const ResultSectionV2 = NamedSFC<ResultSectionV2Props>('ResultSectionV2', props => {
+export const ResultSectionV2 = NamedFC<ResultSectionV2Props>('ResultSectionV2', props => {
     const { containerClassName } = props;
 
     return (

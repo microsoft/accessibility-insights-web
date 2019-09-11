@@ -5,7 +5,7 @@ import * as React from 'react';
 
 import { NewTabLink } from '../../common/components/new-tab-link';
 import { ContentActionMessageCreator } from '../../common/message-creators/content-action-message-creator';
-import { NamedSFC } from '../../common/react/named-sfc';
+import { NamedFC } from '../../common/react/named-fc';
 import { ContentProvider, ContentReference } from './content-page';
 
 export type ContentLinkDeps = {
@@ -20,7 +20,7 @@ export type ContentLinkProps = {
     iconName?: string;
 };
 
-export const ContentLink = NamedSFC<ContentLinkProps>('ContentLink', ({ deps, reference, iconName, linkText }) => {
+export const ContentLink = NamedFC<ContentLinkProps>('ContentLink', ({ deps, reference, iconName, linkText }) => {
     const { contentProvider, contentActionMessageCreator } = deps;
     const { openContentPage } = contentActionMessageCreator;
 

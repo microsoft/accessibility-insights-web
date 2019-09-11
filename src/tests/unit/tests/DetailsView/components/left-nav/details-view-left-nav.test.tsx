@@ -1,11 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import { It, Mock, MockBehavior } from 'typemoq';
 
-import { AssessmentsProvider } from 'assessments/types/assessments-provider';
-import { NamedSFC, ReactSFCWithDisplayName } from '../../../../../../common/react/named-sfc';
+import { NamedFC, ReactFCWithDisplayName } from '../../../../../../common/react/named-fc';
 import { AssessmentData, AssessmentStoreData } from '../../../../../../common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from '../../../../../../common/types/store-data/feature-flag-store-data';
 import { VisualizationType } from '../../../../../../common/types/visualization-type';
@@ -27,10 +27,7 @@ describe('DetailsViewLeftNav', () => {
         const assessmentProviderStub = {} as AssessmentsProvider;
         const filteredProviderStub = {} as AssessmentsProvider;
         const GetLeftNavSelectedKeyMock = Mock.ofInstance((theProps: GetLeftNavSelectedKeyProps) => null, MockBehavior.Strict);
-        const LeftNavStub: Readonly<ReactSFCWithDisplayName<DetailsViewLeftNavProps>> = NamedSFC<DetailsViewLeftNavProps>(
-            'test',
-            _ => null,
-        );
+        const LeftNavStub: Readonly<ReactFCWithDisplayName<DetailsViewLeftNavProps>> = NamedFC<DetailsViewLeftNavProps>('test', _ => null);
         const assessmentDataStub: { [key: string]: AssessmentData } = { x: { testStepStatus: {} } as AssessmentData };
         const assessmentStoreDataStub = {
             assessments: assessmentDataStub,
@@ -58,7 +55,9 @@ describe('DetailsViewLeftNav', () => {
             assessmentStoreData: assessmentStoreDataStub,
         } as DetailsViewLeftNavProps;
 
-        GetLeftNavSelectedKeyMock.setup(glnsm => glnsm(It.isValue({ visualizationType: selectedTestStub }))).returns(() => selectedKeyStub);
+        GetLeftNavSelectedKeyMock.setup(getter => getter(It.isValue({ visualizationType: selectedTestStub }))).returns(
+            () => selectedKeyStub,
+        );
 
         assessmentsProviderWithFeaturesEnabledMock
             .setup(ap => ap(assessmentProviderStub, featureFlagDataStub))

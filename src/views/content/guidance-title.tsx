@@ -3,13 +3,13 @@
 import { productName } from 'content/strings/application';
 import * as React from 'react';
 import Helmet from 'react-helmet';
-import { NamedSFC } from '../../common/react/named-sfc';
+import { NamedFC } from '../../common/react/named-fc';
 
 export type GuidanceTitleProps = {
     name: string;
 };
 
-export const GuidanceTitle = NamedSFC<GuidanceTitleProps>('GuidanceTitle', ({ name }) => (
+export const GuidanceTitle = NamedFC<GuidanceTitleProps>('GuidanceTitle', ({ name }) => (
     <>
         <Helmet>
             <title>

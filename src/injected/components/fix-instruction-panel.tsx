@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import { NamedSFC } from '../../common/react/named-sfc';
+import { NamedFC } from '../../common/react/named-fc';
 import { FixInstructionProcessor } from '../fix-instruction-processor';
 import { CheckType } from './details-dialog';
 
@@ -17,7 +17,7 @@ export interface FixInstructionPanelProps {
     renderTitleElement: (titleText: string, className: string) => JSX.Element;
 }
 
-export const FixInstructionPanel = NamedSFC<FixInstructionPanelProps>('FixInstructionPanel', props => {
+export const FixInstructionPanel = NamedFC<FixInstructionPanelProps>('FixInstructionPanel', props => {
     const { fixInstructionProcessor } = props.deps;
 
     const getPanelTitle = (checkType: CheckType, checkCount: number): string => {

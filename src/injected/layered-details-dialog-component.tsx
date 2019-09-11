@@ -7,7 +7,7 @@ import * as React from 'react';
 import { BaseStore } from '../common/base-store';
 import { FeatureFlags } from '../common/feature-flags';
 import { DevToolActionMessageCreator } from '../common/message-creators/dev-tool-action-message-creator';
-import { NamedSFC } from '../common/react/named-sfc';
+import { NamedFC } from '../common/react/named-fc';
 import { DevToolState } from '../common/types/store-data/idev-tool-state';
 import { UserConfigurationStoreData } from '../common/types/store-data/user-configuration-store';
 import { DictionaryStringTo } from '../types/common-types';
@@ -32,7 +32,7 @@ export interface LayeredDetailsDialogProps {
     devToolsShortcut: string;
 }
 
-export const LayeredDetailsDialogComponent = NamedSFC<LayeredDetailsDialogProps>('LayeredDetailsDialogComponent', props => {
+export const LayeredDetailsDialogComponent = NamedFC<LayeredDetailsDialogProps>('LayeredDetailsDialogComponent', props => {
     const isShadowDOMDialogEnabled = (): boolean => {
         return props.featureFlagStoreData[FeatureFlags.shadowDialog];
     };

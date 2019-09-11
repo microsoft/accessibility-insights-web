@@ -4,7 +4,7 @@ import { DefaultButton } from 'office-ui-fabric-react/lib/Button';
 import * as React from 'react';
 
 import { FeatureFlags } from '../../common/feature-flags';
-import { NamedSFC } from '../../common/react/named-sfc';
+import { NamedFC } from '../../common/react/named-fc';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { DetailsDialog } from './details-dialog';
 
@@ -23,7 +23,7 @@ export type IssueDetailsNavigationControlsProps = {
     failuresCount: number;
 };
 
-export const IssueDetailsNavigationControls = NamedSFC<IssueDetailsNavigationControlsProps>('IssueDetailsNavigationControls', props => {
+export const IssueDetailsNavigationControls = NamedFC<IssueDetailsNavigationControlsProps>('IssueDetailsNavigationControls', props => {
     const onClickNextButton = event => props.dialogHandler.nextButtonClickHandler(props.container);
     const onClickBackButton = event => props.dialogHandler.backButtonClickHandler(props.container);
 

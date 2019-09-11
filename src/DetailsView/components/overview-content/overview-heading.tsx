@@ -3,10 +3,10 @@
 import { productName } from 'content/strings/application';
 import * as React from 'react';
 
-import { NamedSFC } from '../../../common/react/named-sfc';
+import { NamedFC } from '../../../common/react/named-fc';
 import { overviewHeading, overviewHeadingContent } from './overview-heading.scss';
 
-export const OverviewHeading = NamedSFC('OverviewHeading', () => {
+export const OverviewHeading = NamedFC('OverviewHeading', () => {
     return (
         <>
             <div className={overviewHeading}>
