@@ -3,7 +3,7 @@
 import { ILinkProps } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { NewTabLink } from '../../common/components/new-tab-link';
-import { NamedSFC } from '../../common/react/named-sfc';
+import { NamedFC } from '../../common/react/named-fc';
 import { title } from '../strings/application';
 
 export const telemetryPopupTitle = `We need your help`;
@@ -14,7 +14,7 @@ export type LinkComponentDeps = {
     LinkComponent: React.FC<ILinkProps>;
 };
 
-export const TelemetryNotice = NamedSFC<LinkComponentDeps>('TelemetryNotice', ({ LinkComponent }) => (
+export const TelemetryNotice = NamedFC<LinkComponentDeps>('TelemetryNotice', ({ LinkComponent }) => (
     <>
         <p>
             By opting into telemetry, you{' '}
@@ -36,7 +36,7 @@ const privacyStatementText = (
 
 export const privacyStatementPopupText = <>You can change this choice anytime in settings. {privacyStatementText}</>;
 
-export const EnableTelemetrySettingDescription = NamedSFC<LinkComponentDeps>('EnableTelemetrySettingDescription', ({ LinkComponent }) => (
+export const EnableTelemetrySettingDescription = NamedFC<LinkComponentDeps>('EnableTelemetrySettingDescription', ({ LinkComponent }) => (
     <>
         <TelemetryNotice LinkComponent={LinkComponent} />
         {privacyStatementText}
