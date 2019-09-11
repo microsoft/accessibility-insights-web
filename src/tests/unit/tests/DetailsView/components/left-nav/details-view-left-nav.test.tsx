@@ -27,10 +27,7 @@ describe('DetailsViewLeftNav', () => {
         const assessmentProviderStub = {} as AssessmentsProvider;
         const filteredProviderStub = {} as AssessmentsProvider;
         const GetLeftNavSelectedKeyMock = Mock.ofInstance((theProps: GetLeftNavSelectedKeyProps) => null, MockBehavior.Strict);
-        const LeftNavStub: Readonly<ReactFCWithDisplayName<DetailsViewLeftNavProps>> = NamedSFC<DetailsViewLeftNavProps>(
-            'test',
-            _ => null,
-        );
+        const LeftNavStub: Readonly<ReactFCWithDisplayName<DetailsViewLeftNavProps>> = NamedSFC<DetailsViewLeftNavProps>('test', _ => null);
         const assessmentDataStub: { [key: string]: AssessmentData } = { x: { testStepStatus: {} } as AssessmentData };
         const assessmentStoreDataStub = {
             assessments: assessmentDataStub,
