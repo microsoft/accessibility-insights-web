@@ -5,7 +5,7 @@ import * as React from 'react';
 import { It, Mock, MockBehavior } from 'typemoq';
 
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
-import { NamedSFC, ReactSFCWithDisplayName } from '../../../../../../common/react/named-sfc';
+import { NamedSFC, ReactFCWithDisplayName } from '../../../../../../common/react/named-sfc';
 import { AssessmentData, AssessmentStoreData } from '../../../../../../common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from '../../../../../../common/types/store-data/feature-flag-store-data';
 import { VisualizationType } from '../../../../../../common/types/visualization-type';
@@ -27,7 +27,7 @@ describe('DetailsViewLeftNav', () => {
         const assessmentProviderStub = {} as AssessmentsProvider;
         const filteredProviderStub = {} as AssessmentsProvider;
         const GetLeftNavSelectedKeyMock = Mock.ofInstance((theProps: GetLeftNavSelectedKeyProps) => null, MockBehavior.Strict);
-        const LeftNavStub: Readonly<ReactSFCWithDisplayName<DetailsViewLeftNavProps>> = NamedSFC<DetailsViewLeftNavProps>(
+        const LeftNavStub: Readonly<ReactFCWithDisplayName<DetailsViewLeftNavProps>> = NamedSFC<DetailsViewLeftNavProps>(
             'test',
             _ => null,
         );

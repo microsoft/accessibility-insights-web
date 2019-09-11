@@ -20,14 +20,14 @@ type ExtensionPoint<C> = {
     apply: (component: C) => Extension<C>;
 };
 
-type ReactExtension<P> = Extension<React.SFC<P>> & {
+type ReactExtension<P> = Extension<React.FC<P>> & {
     extensionType: 'reactComponent';
 };
 
-type ReactExtensionPoint<P extends {}> = ExtensionPoint<React.SFC<P>> & {
+type ReactExtensionPoint<P extends {}> = ExtensionPoint<React.FC<P>> & {
     extensionType: 'reactComponent';
-    create: (component: React.SFC<P>) => ReactExtension<P>;
-    component: React.SFC<P & { extensions: AnyExtension[] }>;
+    create: (component: React.FC<P>) => ReactExtension<P>;
+    component: React.FC<P & { extensions: AnyExtension[] }>;
 };
 
 function isReactExtension(extension: Extension<any>): extension is ReactExtension<any> {
@@ -53,7 +53,7 @@ export function reactExtensionPoint<P extends {}>(extensionPointKey: string): Re
         return result;
     });
 
-    function create(extensionComponent: React.SFC<P>): ReactExtension<P> {
+    function create(extensionComponent: React.FC<P>): ReactExtension<P> {
         const Wrap = extensionComponent;
         const wrapComponent = NamedSFC<P>(extensionPointKey, props => <Wrap {...props} />);
         wrapComponent.displayName = extensionPointKey;

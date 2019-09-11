@@ -20,27 +20,27 @@ type PassFailProps = {
 };
 
 export type Markup = {
-    Tag: React.SFC;
-    Code: React.SFC;
-    Term: React.SFC;
-    Emphasis: React.SFC;
-    Do: React.SFC;
-    Dont: React.SFC;
-    Pass: React.SFC;
-    Fail: React.SFC;
-    PassFail: React.SFC<PassFailProps>;
-    Columns: React.SFC;
-    Column: React.SFC;
-    Inline: React.SFC;
-    HyperLink: React.SFC<{ href: string }>;
-    Title: React.SFC<{ children: string }>;
-    Highlight: React.SFC;
-    CodeExample: React.SFC<CodeExampleProps>;
-    Links: React.SFC;
-    Table: React.SFC;
-    LandmarkLegend: React.SFC<{ role: string }>;
-    ProblemList: React.SFC;
-    Include: React.SFC<{ content: ContentPageComponent }>;
+    Tag: React.FC;
+    Code: React.FC;
+    Term: React.FC;
+    Emphasis: React.FC;
+    Do: React.FC;
+    Dont: React.FC;
+    Pass: React.FC;
+    Fail: React.FC;
+    PassFail: React.FC<PassFailProps>;
+    Columns: React.FC;
+    Column: React.FC;
+    Inline: React.FC;
+    HyperLink: React.FC<{ href: string }>;
+    Title: React.FC<{ children: string }>;
+    Highlight: React.FC;
+    CodeExample: React.FC<CodeExampleProps>;
+    Links: React.FC;
+    Table: React.FC;
+    LandmarkLegend: React.FC<{ role: string }>;
+    ProblemList: React.FC;
+    Include: React.FC<{ content: ContentPageComponent }>;
 };
 
 export type MarkupDeps = { contentActionMessageCreator: ContentActionMessageCreator };
