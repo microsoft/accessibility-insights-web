@@ -6,20 +6,20 @@ import * as React from 'react';
 import { NamedFC } from '../../../../../common/react/named-fc';
 
 describe('NamedFC', () => {
-    const MySFC = NamedFC('MyFC', () => <span>TEXT</span>);
+    const MyFC = NamedFC('MyFC', () => <span>TEXT</span>);
 
     it('applies correct displayName', () => {
-        expect(MySFC.displayName).toEqual('MyFC');
+        expect(MyFC.displayName).toEqual('MyFC');
     });
 
     it('renders as expected', () => {
-        const rendered = shallow(<MySFC />);
+        const rendered = shallow(<MyFC />);
 
         expect(rendered.debug()).toEqual('<span>\n  TEXT\n</span>');
     });
 
     it('shallow renders with correct displayName', () => {
-        const Outside = () => <MySFC />;
+        const Outside = () => <MyFC />;
 
         const rendered = shallow(<Outside />);
 
