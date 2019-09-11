@@ -3,13 +3,13 @@
 import * as React from 'react';
 
 import { NewTabLink } from 'common/components/new-tab-link';
-import { NamedSFC } from 'common/react/named-sfc';
+import { NamedFC } from 'common/react/named-fc';
 import { toolName } from 'content/strings/application';
 import { SectionProps } from './report-section-factory';
 
 export type ReportFooterProps = Pick<SectionProps, 'environmentInfo'>;
 
-export const ReportFooter = NamedSFC<ReportFooterProps>('ReportFooter', ({ environmentInfo }) => {
+export const ReportFooter = NamedFC<ReportFooterProps>('ReportFooter', ({ environmentInfo }) => {
     const { extensionVersion, browserSpec, axeCoreVersion } = environmentInfo;
     return (
         <div className="report-footer-container">

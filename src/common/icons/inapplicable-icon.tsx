@@ -2,9 +2,9 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import { NamedSFC } from '../react/named-sfc';
+import { NamedFC } from '../react/named-fc';
 
-export const InapplicableIcon = NamedSFC('InapplicableIcon', () => (
+export const InapplicableIcon = NamedFC('InapplicableIcon', () => (
     <span className="check-container">
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
             <circle cx="8" cy="8" r="8" fill="#737373" />
@@ -13,7 +13,7 @@ export const InapplicableIcon = NamedSFC('InapplicableIcon', () => (
     </span>
 ));
 
-export const InapplicableIconInverted = NamedSFC('InapplicableIconInverted', () => (
+export const InapplicableIconInverted = NamedFC('InapplicableIconInverted', () => (
     <span className="check-container">
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
             <circle cx="8" cy="8" r="8" fill="white" />

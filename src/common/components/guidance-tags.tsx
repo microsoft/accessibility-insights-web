@@ -5,7 +5,7 @@ import * as React from 'react';
 
 import { GuidanceLink } from '../../scanner/rule-to-links-mappings';
 import { GetGuidanceTagsFromGuidanceLinks } from '../get-guidance-tags-from-guidance-links';
-import { NamedSFC } from '../react/named-sfc';
+import { NamedFC } from '../react/named-fc';
 
 export interface GuidanceTagsDeps {
     getGuidanceTagsFromGuidanceLinks: GetGuidanceTagsFromGuidanceLinks;
@@ -15,7 +15,7 @@ export interface GuidanceTagsProps {
     links: GuidanceLink[];
 }
 
-export const GuidanceTags = NamedSFC<GuidanceTagsProps>('GuidanceTags', props => {
+export const GuidanceTags = NamedFC<GuidanceTagsProps>('GuidanceTags', props => {
     const { links, deps } = props;
 
     if (isEmpty(links)) {

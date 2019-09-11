@@ -4,10 +4,10 @@ import { css } from '@uifabric/utilities';
 import { Icon } from 'office-ui-fabric-react/lib/Icon';
 import * as React from 'react';
 
-import { NamedSFC } from '../../../common/react/named-sfc';
+import { NamedFC } from '../../../common/react/named-fc';
 import { BaseLeftNavLinkProps } from '../base-left-nav';
 
-export const OverviewLeftNavLink = NamedSFC<BaseLeftNavLinkProps>('OverviewLeftNavLink', ({ link }) => {
+export const OverviewLeftNavLink = NamedFC<BaseLeftNavLinkProps>('OverviewLeftNavLink', ({ link }) => {
     return (
         <div className={'button-flex-container'} aria-hidden="true">
             <div>

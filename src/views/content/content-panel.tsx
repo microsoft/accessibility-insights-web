@@ -4,7 +4,7 @@ import { Panel, PanelType } from 'office-ui-fabric-react/lib/Panel';
 import * as React from 'react';
 
 import { ContentActionMessageCreator } from '../../common/message-creators/content-action-message-creator';
-import { NamedSFC } from '../../common/react/named-sfc';
+import { NamedFC } from '../../common/react/named-fc';
 import { ContentPageDeps, ContentProvider, ContentReference } from './content-page';
 
 export type ContentPanelDeps = {
@@ -18,7 +18,7 @@ export type ContentPanelProps = {
     isOpen: boolean;
 };
 
-export const ContentPanel = NamedSFC<ContentPanelProps>('ContentPanel', ({ deps, content, isOpen }) => {
+export const ContentPanel = NamedFC<ContentPanelProps>('ContentPanel', ({ deps, content, isOpen }) => {
     const { contentProvider, contentActionMessageCreator } = deps;
 
     if (!content) {

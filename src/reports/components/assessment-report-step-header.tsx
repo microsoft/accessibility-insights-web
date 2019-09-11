@@ -3,7 +3,7 @@
 import { DefaultMessageInterface } from 'assessments/assessment-default-message-generator';
 import { GuidanceLinks } from 'common/components/guidance-links';
 import { GuidanceTags, GuidanceTagsDeps } from 'common/components/guidance-tags';
-import { NamedSFC } from 'common/react/named-sfc';
+import { NamedFC } from 'common/react/named-fc';
 import { ManualTestStatus } from 'common/types/manual-test-status';
 import * as React from 'react';
 
@@ -24,7 +24,7 @@ export interface AssessmentReportStepHeaderProps {
     defaultMessageComponent: DefaultMessageInterface;
 }
 
-export const AssessmentReportStepHeader = NamedSFC<AssessmentReportStepHeaderProps>('AssessmentReportStepHeader', props => {
+export const AssessmentReportStepHeader = NamedFC<AssessmentReportStepHeaderProps>('AssessmentReportStepHeader', props => {
     const { deps, header, instanceCount, status, defaultMessageComponent } = props;
     const { outcomeTypeSemanticsFromTestStatus } = deps;
 

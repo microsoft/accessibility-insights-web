@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 import { CardRowProps } from '../../../common/configs/unified-result-property-configurations';
-import { NamedSFC } from '../../../common/react/named-sfc';
+import { NamedFC } from '../../../common/react/named-fc';
 import { SimpleCardRow } from './simple-card-row';
 
 export interface StringPropertyCardRowProps extends CardRowProps {
@@ -10,7 +10,7 @@ export interface StringPropertyCardRowProps extends CardRowProps {
 }
 
 export const GetLabelledStringPropertyCardRow = (label: string, contentClassName?: string) => {
-    return NamedSFC<StringPropertyCardRowProps>('StringPropertyCardRowProps', props => {
+    return NamedFC<StringPropertyCardRowProps>('StringPropertyCardRowProps', props => {
         return (
             <SimpleCardRow
                 label={label}

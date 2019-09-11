@@ -2,10 +2,10 @@
 // Licensed under the MIT License.
 import { shell } from 'electron';
 import * as React from 'react';
-import { NamedSFC } from '../../../common/react/named-sfc';
+import { NamedFC } from '../../../common/react/named-fc';
 import { ElectronExternalLink } from './electron-external-link';
 
-export const DeviceConnectHeader = NamedSFC('DeviceConnectHeader', () => {
+export const DeviceConnectHeader = NamedFC('DeviceConnectHeader', () => {
     return (
         <header className="device-connect-header">
             <h2>Connect to your android device</h2>

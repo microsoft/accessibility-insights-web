@@ -3,7 +3,7 @@
 import { Toggle } from 'office-ui-fabric-react/lib/Toggle';
 import * as React from 'react';
 
-import { NamedSFC } from '../../common/react/named-sfc';
+import { NamedFC } from '../../common/react/named-fc';
 
 export interface GenericToggleProps {
     enabled: boolean;
@@ -13,7 +13,7 @@ export interface GenericToggleProps {
     onClick: (id: string, enabled: boolean, event: React.MouseEvent<HTMLElement>) => void;
 }
 
-export const GenericToggle = NamedSFC<GenericToggleProps>('GenericToggle', props => {
+export const GenericToggle = NamedFC<GenericToggleProps>('GenericToggle', props => {
     const onClick = (event: React.MouseEvent<HTMLElement>): void => {
         props.onClick(props.id, !props.enabled, event);
     };

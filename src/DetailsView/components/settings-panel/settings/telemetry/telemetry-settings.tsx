@@ -6,7 +6,7 @@ import {
     LinkComponentDeps,
 } from 'content/settings/improve-accessibility-insights';
 import * as React from 'react';
-import { NamedSFC } from '../../../../../common/react/named-sfc';
+import { NamedFC } from '../../../../../common/react/named-fc';
 import { GenericToggle } from '../../../generic-toggle';
 import { SettingsProps } from '../settings-props';
 
@@ -14,7 +14,7 @@ export type TelemetrySettingsProps = SettingsProps & {
     deps: LinkComponentDeps;
 };
 
-export const TelemetrySettings = NamedSFC<TelemetrySettingsProps>('TelemetrySettings', props => {
+export const TelemetrySettings = NamedFC<TelemetrySettingsProps>('TelemetrySettings', props => {
     const { deps } = props;
     const { userConfigMessageCreator, LinkComponent } = deps;
 

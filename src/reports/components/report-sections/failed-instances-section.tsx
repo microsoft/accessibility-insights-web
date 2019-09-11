@@ -2,13 +2,13 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import { NamedSFC } from 'common/react/named-sfc';
+import { NamedFC } from 'common/react/named-fc';
 import { SectionProps } from './report-section-factory';
 import { ResultSection } from './result-section';
 
 export type FailedInstancesSectionProps = Pick<SectionProps, 'scanResult' | 'fixInstructionProcessor' | 'getGuidanceTagsFromGuidanceLinks'>;
 
-export const FailedInstancesSection = NamedSFC<FailedInstancesSectionProps>(
+export const FailedInstancesSection = NamedFC<FailedInstancesSectionProps>(
     'FailedInstancesSection',
     ({ scanResult, fixInstructionProcessor, getGuidanceTagsFromGuidanceLinks }) => {
         const rules = scanResult.violations;

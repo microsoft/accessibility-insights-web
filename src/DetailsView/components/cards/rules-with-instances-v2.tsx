@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { css } from '@uifabric/utilities';
-import { NamedSFC } from 'common/react/named-sfc';
+import { NamedFC } from 'common/react/named-fc';
 import { FixInstructionProcessor } from 'injected/fix-instruction-processor';
 import * as React from 'react';
 
@@ -22,7 +22,7 @@ export type RulesWithInstancesV2Props = {
     outcomeType: InstanceOutcomeType;
 };
 
-export const RulesWithInstancesV2 = NamedSFC<RulesWithInstancesV2Props>(
+export const RulesWithInstancesV2 = NamedFC<RulesWithInstancesV2Props>(
     'RulesWithInstancesV2',
     ({ rules, outcomeType, fixInstructionProcessor, deps }) => {
         return (

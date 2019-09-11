@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { NamedSFC } from 'common/react/named-sfc';
+import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
 
 import { OutcomeIcon } from './outcome-icon';
@@ -11,7 +11,7 @@ interface OutcomeChipProps {
     count: number;
 }
 
-export const OutcomeChip = NamedSFC<OutcomeChipProps>('OutcomeChip', props => {
+export const OutcomeChip = NamedFC<OutcomeChipProps>('OutcomeChip', props => {
     const { outcomeType, count } = props;
     const { pastTense } = outcomeTypeSemantics[outcomeType];
 

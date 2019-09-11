@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { ReactSFCWithDisplayName } from '../../common/react/named-sfc';
+import { ReactFCWithDisplayName } from '../../common/react/named-fc';
 import { DetailsViewPivotType } from '../../common/types/details-view-pivot-type';
 import { getOverviewTitle, getTestViewTitle, GetTestViewTitleProps } from '../handlers/get-document-title';
 import { DetailsViewRightContentPanelType } from './left-nav/details-view-right-content-panel-type';
@@ -17,7 +17,7 @@ export type RightPanelProps = Omit<TestViewContainerProps, 'deps'> &
     };
 
 export type DetailsRightPanelConfiguration = Readonly<{
-    RightPanel: ReactSFCWithDisplayName<RightPanelProps>;
+    RightPanel: ReactFCWithDisplayName<RightPanelProps>;
     GetTitle: (props: GetTestViewTitleProps) => string;
     GetLeftNavSelectedKey: (props: GetLeftNavSelectedKeyProps) => string;
     GetStartOverContextualMenuItemKeys: () => string[];

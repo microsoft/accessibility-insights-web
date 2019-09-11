@@ -3,26 +3,26 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-import { NamedSFC } from '../../../../../common/react/named-sfc';
+import { NamedFC } from '../../../../../common/react/named-fc';
 
-describe('NamedSFC', () => {
-    const MySFC = NamedSFC('MySFC', () => <span>TEXT</span>);
+describe('NamedFC', () => {
+    const MyFC = NamedFC('MyFC', () => <span>TEXT</span>);
 
     it('applies correct displayName', () => {
-        expect(MySFC.displayName).toEqual('MySFC');
+        expect(MyFC.displayName).toEqual('MyFC');
     });
 
     it('renders as expected', () => {
-        const rendered = shallow(<MySFC />);
+        const rendered = shallow(<MyFC />);
 
         expect(rendered.debug()).toEqual('<span>\n  TEXT\n</span>');
     });
 
     it('shallow renders with correct displayName', () => {
-        const Outside = () => <MySFC />;
+        const Outside = () => <MyFC />;
 
         const rendered = shallow(<Outside />);
 
-        expect(rendered.debug()).toEqual('<MySFC />');
+        expect(rendered.debug()).toEqual('<MyFC />');
     });
 });

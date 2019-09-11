@@ -3,7 +3,7 @@
 import { css } from '@uifabric/utilities';
 import * as React from 'react';
 
-import { NamedSFC } from 'common/react/named-sfc';
+import { NamedFC } from 'common/react/named-fc';
 
 export type CollapsibleContainerProps = {
     id: string;
@@ -14,7 +14,7 @@ export type CollapsibleContainerProps = {
     containerClassName?: string;
 };
 
-export const CollapsibleContainer = NamedSFC<CollapsibleContainerProps>('CollapsibleContainer', props => {
+export const CollapsibleContainer = NamedFC<CollapsibleContainerProps>('CollapsibleContainer', props => {
     const { id, visibleHeadingContent, titleHeadingLevel, collapsibleContent, containerClassName, buttonAriaLabel } = props;
 
     const contentId = `content-container-${id}`;

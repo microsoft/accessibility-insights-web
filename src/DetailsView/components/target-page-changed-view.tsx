@@ -4,7 +4,7 @@ import { Toggle } from 'office-ui-fabric-react/lib/Toggle';
 import * as React from 'react';
 
 import { DisplayableVisualizationTypeData } from '../../common/configs/visualization-configuration-factory';
-import { NamedSFC } from '../../common/react/named-sfc';
+import { NamedFC } from '../../common/react/named-fc';
 import { VisualizationType } from '../../common/types/visualization-type';
 
 export interface TargetPageChangedViewProps {
@@ -13,7 +13,7 @@ export interface TargetPageChangedViewProps {
     toggleClickHandler: (event) => void;
 }
 
-export const TargetPageChangedView = NamedSFC<TargetPageChangedViewProps>('TargetPageChangedView', props => {
+export const TargetPageChangedView = NamedFC<TargetPageChangedViewProps>('TargetPageChangedView', props => {
     const { title = '', toggleLabel = '', subtitle } = props.displayableData;
 
     return (

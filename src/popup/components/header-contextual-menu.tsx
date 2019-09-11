@@ -3,7 +3,7 @@
 import { getRTL } from '@uifabric/utilities';
 import { ContextualMenu, ContextualMenuItemType, DirectionalHint, IContextualMenuItem } from 'office-ui-fabric-react/lib/ContextualMenu';
 import * as React from 'react';
-import { NamedSFC } from '../../common/react/named-sfc';
+import { NamedFC } from '../../common/react/named-fc';
 import { TelemetryEventSource } from '../../common/telemetry-events';
 import { DetailsViewPivotType } from '../../common/types/details-view-pivot-type';
 import { VisualizationType } from '../../common/types/visualization-type';
@@ -26,7 +26,7 @@ export type HeaderContextualMenuProps = {
 
 const telemetryEventSource = TelemetryEventSource.HamburgerMenu;
 
-export const HeaderContextualMenu = NamedSFC<HeaderContextualMenuProps>('HeaderContextualMenu', props => {
+export const HeaderContextualMenu = NamedFC<HeaderContextualMenuProps>('HeaderContextualMenu', props => {
     const { deps, header, popupWindow } = props;
     const { popupActionMessageCreator, launchPanelHeaderClickHandler } = deps;
 

@@ -3,7 +3,7 @@
 import * as React from 'react';
 import { HyperlinkDefinition } from 'views/content/content-page';
 
-import { NamedSFC } from '../../../common/react/named-sfc';
+import { NamedFC } from '../../../common/react/named-fc';
 import { HelpLinks, HelpLinksDeps } from './help-links';
 import { helpHeading, overviewHelpContainer } from './overview-help-section.scss';
 
@@ -14,7 +14,7 @@ export interface OverviewHelpSectionProps {
     linkDataSource: HyperlinkDefinition[];
 }
 
-export const OverviewHelpSection = NamedSFC('OverviewHelpSection', (props: OverviewHelpSectionProps) => {
+export const OverviewHelpSection = NamedFC('OverviewHelpSection', (props: OverviewHelpSectionProps) => {
     return (
         <section className={overviewHelpContainer}>
             <h3 className={helpHeading}>Help</h3>

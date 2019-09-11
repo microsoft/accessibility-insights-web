@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { EnvironmentInfo } from 'common/environment-info-provider';
 import { GetGuidanceTagsFromGuidanceLinks } from 'common/get-guidance-tags-from-guidance-links';
-import { ReactSFCWithDisplayName } from 'common/react/named-sfc';
+import { ReactFCWithDisplayName } from 'common/react/named-fc';
 import { FixInstructionProcessor } from 'injected/fix-instruction-processor';
 import { ScanResults } from 'scanner/iruleresults';
 
@@ -20,15 +20,15 @@ export type SectionProps = {
 };
 
 export type ReportSectionFactory = {
-    BodySection: ReactSFCWithDisplayName;
-    ContentContainer: ReactSFCWithDisplayName;
-    HeaderSection: ReactSFCWithDisplayName<SectionProps>;
-    TitleSection: ReactSFCWithDisplayName;
-    SummarySection: ReactSFCWithDisplayName<SectionProps>;
-    DetailsSection: ReactSFCWithDisplayName<SectionProps>;
-    ResultsContainer: ReactSFCWithDisplayName<SectionProps>;
-    FailedInstancesSection: ReactSFCWithDisplayName<SectionProps>;
-    PassedChecksSection: ReactSFCWithDisplayName<SectionProps>;
-    NotApplicableChecksSection: ReactSFCWithDisplayName<SectionProps>;
-    FooterSection: ReactSFCWithDisplayName<SectionProps>;
+    BodySection: ReactFCWithDisplayName;
+    ContentContainer: ReactFCWithDisplayName;
+    HeaderSection: ReactFCWithDisplayName<SectionProps>;
+    TitleSection: ReactFCWithDisplayName;
+    SummarySection: ReactFCWithDisplayName<SectionProps>;
+    DetailsSection: ReactFCWithDisplayName<SectionProps>;
+    ResultsContainer: ReactFCWithDisplayName<SectionProps>;
+    FailedInstancesSection: ReactFCWithDisplayName<SectionProps>;
+    PassedChecksSection: ReactFCWithDisplayName<SectionProps>;
+    NotApplicableChecksSection: ReactFCWithDisplayName<SectionProps>;
+    FooterSection: ReactFCWithDisplayName<SectionProps>;
 };

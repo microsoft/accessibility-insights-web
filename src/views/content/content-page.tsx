@@ -4,13 +4,13 @@ import { flatten, forEach, toPairs } from 'lodash';
 import * as React from 'react';
 
 import { GuidanceTag } from 'content/guidance-tags';
-import { NamedSFC } from '../../common/react/named-sfc';
+import { NamedFC } from '../../common/react/named-fc';
 import { GuidanceLink } from '../../scanner/rule-to-links-mappings';
 import { createMarkup, Markup, MarkupDeps } from './markup';
 
 export type HyperlinkDefinition = { href: string; text: string };
 type HyperlinkDefinitionMap = { [KEY in string]: { href: string; text: string } };
-type HyperlinkComponentMap<M extends HyperlinkDefinitionMap> = { [KEY in keyof M]: React.SFC };
+type HyperlinkComponentMap<M extends HyperlinkDefinitionMap> = { [KEY in keyof M]: React.FC };
 export function linkTo(text: string, href: string): HyperlinkDefinition {
     return { text, href };
 }
@@ -24,7 +24,7 @@ export interface ContentPageOptions {
     setPageTitle?: boolean;
 }
 export type ContentPageProps = { deps: ContentPageDeps; options?: ContentPageOptions };
-export type ContentPageComponent = React.SFC<ContentPageProps> & { displayName: 'ContentPageComponent' };
+export type ContentPageComponent = React.FC<ContentPageProps> & { displayName: 'ContentPageComponent' };
 export type ContentReference = string | ContentPageComponent;
 type CreateProps<M extends HyperlinkDefinitionMap> = {
     Markup: Markup;
@@ -44,7 +44,7 @@ export function ContentCreator<M extends HyperlinkDefinitionMap>(
     }
 
     function create(fn: (props: CreateProps<M>) => JSX.Element): ContentPageComponent {
-        return NamedSFC<ContentPageProps>('ContentPageComponent', props => {
+        return NamedFC<ContentPageProps>('ContentPageComponent', props => {
             const { deps, options } = props;
             const markup = createMarkup(deps, options);
             return fn({ Markup: markup, Link: mapLinks(markup) });

@@ -3,7 +3,7 @@
 import { CSSProperties } from 'react';
 import * as React from 'react';
 
-import { NamedSFC } from '../../common/react/named-sfc';
+import { NamedFC } from '../../common/react/named-fc';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { ClientUtils } from '../client-utils';
 import { RenderDialog } from '../dialog-renderer';
@@ -29,7 +29,7 @@ export interface ElementHighlightProps {
     getBoundingRect: GetBoundingRect;
 }
 
-export const ElementHighlight = NamedSFC<ElementHighlightProps>('ElementHighlight', props => {
+export const ElementHighlight = NamedFC<ElementHighlightProps>('ElementHighlight', props => {
     const { deps, drawerConfig, featureFlagStoreData, dialogRender, element, elementResult, bodyStyle, docStyle, getBoundingRect } = props;
     const { clientUtils, drawerUtils } = deps;
 

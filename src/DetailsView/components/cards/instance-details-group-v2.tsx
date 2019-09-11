@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { GetGuidanceTagsFromGuidanceLinks } from 'common/get-guidance-tags-from-guidance-links';
-import { NamedSFC } from 'common/react/named-sfc';
+import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
 
 import { getPropertyConfiguration } from '../../../common/configs/unified-result-property-configurations';
@@ -18,7 +18,7 @@ export type InstanceDetailsGroupV2Props = {
     rule: UnifiedRuleResult;
 };
 
-export const InstanceDetailsGroupV2 = NamedSFC<InstanceDetailsGroupV2Props>('InstanceDetailsGroupV2', props => {
+export const InstanceDetailsGroupV2 = NamedFC<InstanceDetailsGroupV2Props>('InstanceDetailsGroupV2', props => {
     const { deps, rule } = props;
     const { nodes } = rule;
 

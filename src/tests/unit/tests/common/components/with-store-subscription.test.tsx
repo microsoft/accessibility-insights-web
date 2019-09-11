@@ -9,7 +9,7 @@ import { ClientStoresHub } from '../../../../../common/stores/client-stores-hub'
 
 describe('withStoreSubscription', () => {
     type testProps = WithStoreSubscriptionProps<{ message: string }>;
-    const testComp: React.SFC<testProps> = props => <h1>{props.storeState.message}</h1>;
+    const testComp: React.FC<testProps> = props => <h1>{props.storeState.message}</h1>;
     let storeActionCreatorMock: IMock<StoreActionMessageCreatorImpl>;
 
     beforeEach(() => {
