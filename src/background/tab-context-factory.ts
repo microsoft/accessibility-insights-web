@@ -89,10 +89,10 @@ export class TabContextFactory {
         );
 
         const inspectActionsCreator = new InspectActionCreator(
+            interpreter,
             actionsHub.inspectActions,
             this.telemetryEventHandler,
             browserAdapter,
-            interpreter.registerTypeToPayloadCallback,
         );
 
         const pathSnippetActionCreator = new PathSnippetActionCreator(interpreter, actionsHub.pathSnippetActions);
