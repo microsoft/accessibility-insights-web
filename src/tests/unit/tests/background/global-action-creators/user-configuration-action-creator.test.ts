@@ -11,20 +11,17 @@ import { UserConfigurationActions } from 'background/actions/user-configuration-
 import { UserConfigurationActionCreator } from 'background/global-action-creators/user-configuration-action-creator';
 import { IMock, Mock } from 'typemoq';
 
-import { getStoreStateMessage, Messages } from '../../../../../common/messages';
-import { StoreNames } from '../../../../../common/stores/store-names';
 import { TelemetryEventSource, TriggeredBy } from '../../../../../common/telemetry-events';
-import { createActionMock, createInterpreterMock } from './action-creator-test-helpers';
+import { createActionMock } from './action-creator-test-helpers';
 
 describe('UserConfigurationActionCreator', () => {
     it('handles GetCurrentState message', () => {
         const payload = null;
         const getCurrentStateMock = createActionMock<null>(payload);
         const actionsMock = createActionsMock('getCurrentState', getCurrentStateMock.object);
-        const interpreterMock = createInterpreterMock(getStoreStateMessage(StoreNames.UserConfigurationStore), payload);
-        const testSubject = new UserConfigurationActionCreator(interpreterMock.object, actionsMock.object);
+        const testSubject = new UserConfigurationActionCreator(actionsMock.object);
 
-        testSubject.registerCallback();
+        testSubject.getUserConfigurationState();
 
         getCurrentStateMock.verifyAll();
     });
@@ -39,10 +36,9 @@ describe('UserConfigurationActionCreator', () => {
         };
         const setTelemetryStateMock = createActionMock(payload);
         const actionsMock = createActionsMock('setTelemetryState', setTelemetryStateMock.object);
-        const interpreterMock = createInterpreterMock(Messages.UserConfig.SetTelemetryConfig, payload);
-        const testSubject = new UserConfigurationActionCreator(interpreterMock.object, actionsMock.object);
+        const testSubject = new UserConfigurationActionCreator(actionsMock.object);
 
-        testSubject.registerCallback();
+        testSubject.setTelemetryState(payload);
 
         setTelemetryStateMock.verifyAll();
     });
@@ -53,10 +49,9 @@ describe('UserConfigurationActionCreator', () => {
         };
         const setHighContrastConfigMock = createActionMock(payload);
         const actionsMock = createActionsMock('setHighContrastMode', setHighContrastConfigMock.object);
-        const interpreterMock = createInterpreterMock(Messages.UserConfig.SetHighContrastConfig, payload);
-        const testSubject = new UserConfigurationActionCreator(interpreterMock.object, actionsMock.object);
+        const testSubject = new UserConfigurationActionCreator(actionsMock.object);
 
-        testSubject.registerCallback();
+        testSubject.setHighContrastMode(payload);
 
         setHighContrastConfigMock.verifyAll();
     });
@@ -67,10 +62,9 @@ describe('UserConfigurationActionCreator', () => {
         };
         const setBugServiceMock = createActionMock(payload);
         const actionsMock = createActionsMock('setIssueFilingService', setBugServiceMock.object);
-        const interpreterMock = createInterpreterMock(Messages.UserConfig.SetIssueFilingService, payload);
-        const testSubject = new UserConfigurationActionCreator(interpreterMock.object, actionsMock.object);
+        const testSubject = new UserConfigurationActionCreator(actionsMock.object);
 
-        testSubject.registerCallback();
+        testSubject.setIssueFilingService(payload);
 
         setBugServiceMock.verifyAll();
     });
@@ -83,10 +77,9 @@ describe('UserConfigurationActionCreator', () => {
         };
         const setIssueFilingServicePropertyMock = createActionMock(payload);
         const actionsMock = createActionsMock('setIssueFilingServiceProperty', setIssueFilingServicePropertyMock.object);
-        const interpreterMock = createInterpreterMock(Messages.UserConfig.SetIssueFilingServiceProperty, payload);
-        const testSubject = new UserConfigurationActionCreator(interpreterMock.object, actionsMock.object);
+        const testSubject = new UserConfigurationActionCreator(actionsMock.object);
 
-        testSubject.registerCallback();
+        testSubject.setIssueFilingServiceProperty(payload);
 
         setIssueFilingServicePropertyMock.verifyAll();
     });
@@ -98,10 +91,9 @@ describe('UserConfigurationActionCreator', () => {
         };
         const setIssueFilingSettings = createActionMock(payload);
         const actionsMock = createActionsMock('saveIssueFilingSettings', setIssueFilingSettings.object);
-        const interpreterMock = createInterpreterMock(Messages.UserConfig.SaveIssueFilingSettings, payload);
-        const testSubject = new UserConfigurationActionCreator(interpreterMock.object, actionsMock.object);
+        const testSubject = new UserConfigurationActionCreator(actionsMock.object);
 
-        testSubject.registerCallback();
+        testSubject.saveIssueFilingSettings(payload);
 
         setIssueFilingSettings.verifyAll();
     });
