@@ -1,7 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { getStoreStateMessage, Messages } from '../../common/messages';
-import { StoreNames } from '../../common/stores/store-names';
+import { getStoreStateMessage, Messages } from 'common/messages';
+import { StoreNames } from 'common/stores/store-names';
+
 import { Interpreter } from '../interpreter';
 import { UnifiedScanCompletedPayload } from './action-payloads';
 import { UnifiedScanResultActions } from './unified-scan-result-actions';

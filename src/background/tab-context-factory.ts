@@ -1,12 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
-import { BrowserAdapter } from '../common/browser-adapters/browser-adapter';
-import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
-import { NotificationCreator } from '../common/notification-creator';
-import { PromiseFactory } from '../common/promises/promise-factory';
-import { StateDispatcher } from '../common/state-dispatcher';
-import { WindowUtils } from '../common/window-utils';
+import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
+import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
+import { NotificationCreator } from 'common/notification-creator';
+import { PromiseFactory } from 'common/promises/promise-factory';
+import { StateDispatcher } from 'common/state-dispatcher';
+import { WindowUtils } from 'common/window-utils';
+
 import { ActionCreator } from './actions/action-creator';
 import { ActionHub } from './actions/action-hub';
 import { ContentActionCreator } from './actions/content-action-creator';
@@ -102,9 +103,9 @@ export class TabContextFactory {
         const scanResultActionCreator = new UnifiedScanResultActionCreator(interpreter, actionsHub.scanResultActions);
 
         const scopingPanelActionCreator = new ScopingPanelActionCreator(
+            interpreter,
             actionsHub.scopingActions,
             this.telemetryEventHandler,
-            interpreter.registerTypeToPayloadCallback,
             detailsViewController,
         );
 

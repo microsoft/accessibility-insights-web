@@ -1,12 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { UnifiedScanCompletedPayload } from 'background/actions/action-payloads';
+import { UnifiedScanResultActionCreator } from 'background/actions/unified-scan-result-action-creator';
+import { UnifiedScanResultActions } from 'background/actions/unified-scan-result-actions';
+import { getStoreStateMessage, Messages } from 'common/messages';
+import { StoreNames } from 'common/stores/store-names';
 import { IMock, Mock } from 'typemoq';
 
-import { UnifiedScanResultActionCreator } from '../../../../../background/actions/unified-scan-result-action-creator';
-import { UnifiedScanResultActions } from '../../../../../background/actions/unified-scan-result-actions';
-import { getStoreStateMessage, Messages } from '../../../../../common/messages';
-import { StoreNames } from '../../../../../common/stores/store-names';
 import { createActionMock, createInterpreterMock } from '../global-action-creators/action-creator-test-helpers';
 
 describe('UnifiedScanResultActionCreator', () => {
