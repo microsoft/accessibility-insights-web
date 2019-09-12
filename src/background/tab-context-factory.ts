@@ -99,10 +99,7 @@ export class TabContextFactory {
             interpreter.registerTypeToPayloadCallback,
         );
 
-        const scanResultActionCreator = new UnifiedScanResultActionCreator(
-            actionsHub.scanResultActions,
-            interpreter.registerTypeToPayloadCallback,
-        );
+        const scanResultActionCreator = new UnifiedScanResultActionCreator(interpreter, actionsHub.scanResultActions);
 
         const scopingPanelActionCreator = new ScopingPanelActionCreator(
             actionsHub.scopingActions,
