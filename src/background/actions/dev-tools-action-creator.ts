@@ -1,52 +1,49 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { RegisterTypeToPayloadCallback } from '../../common/message';
-import { getStoreStateMessage, Messages } from '../../common/messages';
-import { StoreNames } from '../../common/stores/store-names';
-import * as TelemetryEvents from '../../common/telemetry-events';
+import { getStoreStateMessage, Messages } from 'common/messages';
+import { StoreNames } from 'common/stores/store-names';
+import * as TelemetryEvents from 'common/telemetry-events';
+
+import { Interpreter } from '../interpreter';
 import { TelemetryEventHandler } from '../telemetry/telemetry-event-handler';
 import { InspectElementPayload, InspectFrameUrlPayload, OnDevToolOpenPayload } from './action-payloads';
 import { DevToolActions } from './dev-tools-actions';
 
 export class DevToolsActionCreator {
-    private devtoolActions: DevToolActions;
-    private telemetryEventHandler: TelemetryEventHandler;
-    private registerTypeToPayloadCallback: RegisterTypeToPayloadCallback;
-
     constructor(
-        devToolsAction: DevToolActions,
-        telemetryEventHandler: TelemetryEventHandler,
-        registerTypeToPayloadCallback: RegisterTypeToPayloadCallback,
-    ) {
-        this.devtoolActions = devToolsAction;
-        this.telemetryEventHandler = telemetryEventHandler;
-        this.registerTypeToPayloadCallback = registerTypeToPayloadCallback;
-    }
+        private readonly interpreter: Interpreter,
+        private readonly devToolActions: DevToolActions,
+        private readonly telemetryEventHandler: TelemetryEventHandler,
+    ) {}
 
     public registerCallbacks(): void {
-        this.registerTypeToPayloadCallback(Messages.DevTools.DevtoolStatus, payload => this.onDevToolOpened(payload));
+        this.interpreter.registerTypeToPayloadCallback(Messages.DevTools.DevtoolStatus, payload => this.onDevToolOpened(payload));
 
-        this.registerTypeToPayloadCallback(Messages.DevTools.InspectElement, payload => this.onDevToolInspectElement(payload));
+        this.interpreter.registerTypeToPayloadCallback(Messages.DevTools.InspectElement, payload => this.onDevToolInspectElement(payload));
 
-        this.registerTypeToPayloadCallback(Messages.DevTools.InspectFrameUrl, payload => this.onDevToolInspectFrameUrl(payload));
+        this.interpreter.registerTypeToPayloadCallback(Messages.DevTools.InspectFrameUrl, payload =>
+            this.onDevToolInspectFrameUrl(payload),
+        );
 
-        this.registerTypeToPayloadCallback(getStoreStateMessage(StoreNames.DevToolsStore), () => this.onDevToolGetCurrentState());
+        this.interpreter.registerTypeToPayloadCallback(getStoreStateMessage(StoreNames.DevToolsStore), () =>
+            this.onDevToolGetCurrentState(),
+        );
     }
 
     private onDevToolOpened(payload: OnDevToolOpenPayload): void {
-        this.devtoolActions.setDevToolState.invoke(payload.status);
+        this.devToolActions.setDevToolState.invoke(payload.status);
     }
 
     private onDevToolInspectElement(payload: InspectElementPayload): void {
-        this.devtoolActions.setInspectElement.invoke(payload.target);
+        this.devToolActions.setInspectElement.invoke(payload.target);
         this.telemetryEventHandler.publishTelemetry(TelemetryEvents.INSPECT_OPEN, payload);
     }
 
     private onDevToolInspectFrameUrl(payload: InspectFrameUrlPayload): void {
-        this.devtoolActions.setFrameUrl.invoke(payload.frameUrl);
+        this.devToolActions.setFrameUrl.invoke(payload.frameUrl);
     }
 
     private onDevToolGetCurrentState(): void {
-        this.devtoolActions.getCurrentState.invoke(null);
+        this.devToolActions.getCurrentState.invoke(null);
     }
 }

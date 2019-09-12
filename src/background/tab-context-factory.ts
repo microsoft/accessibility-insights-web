@@ -82,11 +82,7 @@ export class TabContextFactory {
             actionsHub.tabActions,
         );
 
-        const devToolsActionCreator = new DevToolsActionCreator(
-            actionsHub.devToolActions,
-            this.telemetryEventHandler,
-            interpreter.registerTypeToPayloadCallback,
-        );
+        const devToolsActionCreator = new DevToolsActionCreator(interpreter, actionsHub.devToolActions, this.telemetryEventHandler);
 
         const inspectActionsCreator = new InspectActionCreator(
             interpreter,
