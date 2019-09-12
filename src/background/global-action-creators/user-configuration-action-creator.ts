@@ -16,35 +16,41 @@ export class UserConfigurationActionCreator {
     constructor(private readonly interpreter: Interpreter, private readonly userConfigActions: UserConfigurationActions) {}
 
     public registerCallback(): void {
-        this.interpreter.registerTypeToPayloadCallback(getStoreStateMessage(StoreNames.UserConfigurationStore), this.onGetUserConfigState);
-        this.interpreter.registerTypeToPayloadCallback(Messages.UserConfig.SetTelemetryConfig, this.onSetTelemetryConfiguration);
-        this.interpreter.registerTypeToPayloadCallback(Messages.UserConfig.SetHighContrastConfig, this.onSetHighContrastMode);
-        this.interpreter.registerTypeToPayloadCallback(Messages.UserConfig.SetIssueFilingService, this.onSetBugService);
-        this.interpreter.registerTypeToPayloadCallback(Messages.UserConfig.SetIssueFilingServiceProperty, this.onSetBugServiceProperty);
-        this.interpreter.registerTypeToPayloadCallback(Messages.UserConfig.SaveIssueFilingSettings, this.onSaveIssueFilingSettings);
+        this.interpreter.registerTypeToPayloadCallback(
+            getStoreStateMessage(StoreNames.UserConfigurationStore),
+            this.getUserConfigurationState,
+        );
+        this.interpreter.registerTypeToPayloadCallback(Messages.UserConfig.SetTelemetryConfig, this.setTelemetryState);
+        this.interpreter.registerTypeToPayloadCallback(Messages.UserConfig.SetHighContrastConfig, this.setHighContrastMode);
+        this.interpreter.registerTypeToPayloadCallback(Messages.UserConfig.SetIssueFilingService, this.setIssueFilingService);
+        this.interpreter.registerTypeToPayloadCallback(
+            Messages.UserConfig.SetIssueFilingServiceProperty,
+            this.setIssueFilingServiceProperty,
+        );
+        this.interpreter.registerTypeToPayloadCallback(Messages.UserConfig.SaveIssueFilingSettings, this.saveIssueFilingSettings);
     }
 
-    private onGetUserConfigState = (): void => {
+    private getUserConfigurationState = (): void => {
         this.userConfigActions.getCurrentState.invoke(null);
     };
 
-    private onSetTelemetryConfiguration = (payload: SetTelemetryStatePayload): void => {
+    private setTelemetryState = (payload: SetTelemetryStatePayload): void => {
         this.userConfigActions.setTelemetryState.invoke(payload);
     };
 
-    private onSetHighContrastMode = (payload: SetHighContrastModePayload): void => {
+    private setHighContrastMode = (payload: SetHighContrastModePayload): void => {
         this.userConfigActions.setHighContrastMode.invoke(payload);
     };
 
-    private onSetBugService = (payload: SetIssueFilingServicePayload): void => {
+    private setIssueFilingService = (payload: SetIssueFilingServicePayload): void => {
         this.userConfigActions.setIssueFilingService.invoke(payload);
     };
 
-    private onSetBugServiceProperty = (payload: SetIssueFilingServicePropertyPayload): void => {
+    private setIssueFilingServiceProperty = (payload: SetIssueFilingServicePropertyPayload): void => {
         this.userConfigActions.setIssueFilingServiceProperty.invoke(payload);
     };
 
-    private onSaveIssueFilingSettings = (payload: SaveIssueFilingSettingsPayload): void => {
+    private saveIssueFilingSettings = (payload: SaveIssueFilingSettingsPayload): void => {
         this.userConfigActions.saveIssueFilingSettings.invoke(payload);
     };
 }
