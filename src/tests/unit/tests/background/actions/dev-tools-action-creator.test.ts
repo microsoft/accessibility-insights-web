@@ -12,6 +12,7 @@ import { RegisterTypeToPayloadCallback } from '../../../../../common/message';
 import { getStoreStateMessage, Messages } from '../../../../../common/messages';
 import { StoreNames } from '../../../../../common/stores/store-names';
 import * as TelemetryEvents from '../../../../../common/telemetry-events';
+import { createActionMock } from '../global-action-creators/action-creator-test-helpers';
 
 describe('DevToolsActionCreatorTest', () => {
     const tabId: number = -1;
@@ -100,14 +101,6 @@ describe('DevToolsActionCreatorTest', () => {
 
     function setupDevToolsActionsMock(actionName: keyof DevToolActions, actionMock: IMock<Action<any>>): void {
         devtoolActionsMock.setup(actions => actions[actionName]).returns(() => actionMock.object);
-    }
-
-    function createActionMock<TPayload>(actionPayload: TPayload): IMock<Action<TPayload>> {
-        const getCurrentStateAction = Mock.ofType<Action<TPayload>>(Action, MockBehavior.Strict);
-
-        getCurrentStateAction.setup(action => action.invoke(actionPayload)).verifiable(Times.once());
-
-        return getCurrentStateAction;
     }
 
     function setupRegisterTypeToPayloadCallbackMock(message: string, payload: any, listeningTabId: number): void {

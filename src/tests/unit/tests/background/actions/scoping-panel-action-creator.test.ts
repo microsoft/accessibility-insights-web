@@ -7,10 +7,12 @@ import { DetailsViewController } from 'background/details-view-controller';
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
 import * as _ from 'lodash';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
+
 import { Action } from '../../../../../common/flux/action';
 import { RegisterTypeToPayloadCallback } from '../../../../../common/message';
 import { Messages } from '../../../../../common/messages';
 import { SCOPING_CLOSE, SCOPING_OPEN } from '../../../../../common/telemetry-events';
+import { createActionMock } from '../global-action-creators/action-creator-test-helpers';
 
 describe('ScopingPanelActionCreatorTest', () => {
     let registerTypeToPayloadCallbackMock: IMock<RegisterTypeToPayloadCallback>;
@@ -66,13 +68,6 @@ describe('ScopingPanelActionCreatorTest', () => {
 
         telemetryEventHandlerMock.verifyAll();
     });
-
-    function createActionMock<T>(actionPayload: T): IMock<Action<T>> {
-        const actionMock = Mock.ofType<Action<T>>(Action);
-        actionMock.setup(action => action.invoke(actionPayload)).verifiable(Times.once());
-
-        return actionMock;
-    }
 
     function setupScopingActionsMock(actionName: keyof ScopingActions, actionMock: IMock<Action<any>>): void {
         scopingActionsMock.setup(actions => actions[actionName]).returns(() => actionMock.object);

@@ -1,14 +1,15 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as _ from 'lodash';
-import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
-
 import { PathSnippetActionCreator } from 'background/actions/path-snippet-action-creator';
 import { PathSnippetActions } from 'background/actions/path-snippet-actions';
+import * as _ from 'lodash';
+import { IMock, It, Mock, MockBehavior } from 'typemoq';
+
 import { Action } from '../../../../../common/flux/action';
 import { RegisterTypeToPayloadCallback } from '../../../../../common/message';
 import { getStoreStateMessage, Messages } from '../../../../../common/messages';
 import { StoreNames } from '../../../../../common/stores/store-names';
+import { createActionMock } from '../global-action-creators/action-creator-test-helpers';
 
 describe('PathSnippetActionCreatorTest', () => {
     let pathSnippetActionsMock: IMock<PathSnippetActions>;
@@ -74,13 +75,6 @@ describe('PathSnippetActionCreatorTest', () => {
         testObject.registerCallbacks();
         clearPathSnippetDataMock.verifyAll();
     });
-
-    function createActionMock<TPayload>(actionPayload: TPayload): IMock<Action<TPayload>> {
-        const getCurrentStateMock = Mock.ofType<Action<TPayload>>(Action, MockBehavior.Strict);
-        getCurrentStateMock.setup(action => action.invoke(actionPayload)).verifiable(Times.once());
-
-        return getCurrentStateMock;
-    }
 
     function setupPathSnippetActionMock(actionName: keyof PathSnippetActions, actionMock: IMock<Action<any>>): void {
         pathSnippetActionsMock.setup(actions => actions[actionName]).returns(() => actionMock.object);

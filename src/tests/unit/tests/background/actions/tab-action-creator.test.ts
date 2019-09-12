@@ -1,12 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as _ from 'lodash';
-import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
-
 import { PageVisibilityChangeTabPayload, SwitchToTargetTabPayload } from 'background/actions/action-payloads';
 import { TabActionCreator } from 'background/actions/tab-action-creator';
 import { TabActions } from 'background/actions/tab-actions';
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
+import * as _ from 'lodash';
+import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
+
 import { BrowserAdapter } from '../../../../../common/browser-adapters/browser-adapter';
 import { Action } from '../../../../../common/flux/action';
 import { Tab } from '../../../../../common/itab';
@@ -14,6 +14,7 @@ import { RegisterTypeToPayloadCallback } from '../../../../../common/message';
 import { getStoreStateMessage, Messages } from '../../../../../common/messages';
 import { StoreNames } from '../../../../../common/stores/store-names';
 import { SWITCH_BACK_TO_TARGET, TelemetryEventSource, TriggeredBy } from '../../../../../common/telemetry-events';
+import { createActionMock } from '../global-action-creators/action-creator-test-helpers';
 
 describe('TestActionCreatorTest', () => {
     let tabActionsMock: IMock<TabActions>;
@@ -110,13 +111,6 @@ describe('TestActionCreatorTest', () => {
         testObject.registerCallbacks();
         actionMock.verifyAll();
     });
-
-    function createActionMock<T>(actionPayload: T): IMock<Action<T>> {
-        const actionMock = Mock.ofType<Action<T>>(Action);
-        actionMock.setup(action => action.invoke(actionPayload)).verifiable(Times.once());
-
-        return actionMock;
-    }
 
     function setupTabActionsMock(actionName: keyof TabActions, actionMock: IMock<Action<any>>): void {
         tabActionsMock.setup(actions => actions[actionName]).returns(() => actionMock.object);

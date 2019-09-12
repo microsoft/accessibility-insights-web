@@ -6,12 +6,14 @@ import { AssessmentActions } from 'background/actions/assessment-actions';
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
 import { isFunction } from 'lodash';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
+
 import { Action } from '../../../../../common/flux/action';
 import { RegisterTypeToPayloadCallback } from '../../../../../common/message';
 import { getStoreStateMessage, Messages } from '../../../../../common/messages';
 import { StoreNames } from '../../../../../common/stores/store-names';
 import * as TelemetryEvents from '../../../../../common/telemetry-events';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
+import { createActionMock } from '../global-action-creators/action-creator-test-helpers';
 
 describe('AssessmentActionCreatorTest', () => {
     let registerTypeToPayloadCallbackMock: IMock<RegisterTypeToPayloadCallback>;
@@ -350,13 +352,6 @@ describe('AssessmentActionCreatorTest', () => {
 
         actionMock.verifyAll();
     });
-
-    function createActionMock<T>(actionPayload: T): IMock<Action<T>> {
-        const actionMock = Mock.ofType<Action<T>>(Action);
-        actionMock.setup(action => action.invoke(actionPayload)).verifiable(Times.once());
-
-        return actionMock;
-    }
 
     function setupAssessmentActionsMock(actionName: keyof AssessmentActions, actionMock: IMock<Action<any>>): void {
         assessmentActionsMock.setup(actions => actions[actionName]).returns(() => actionMock.object);

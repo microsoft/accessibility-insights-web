@@ -1,18 +1,19 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as _ from 'lodash';
-import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
-
 import { InspectActionCreator } from 'background/actions/inspect-action-creator';
 import { InspectActions, InspectPayload } from 'background/actions/inspect-actions';
 import { InspectMode } from 'background/inspect-modes';
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
+import * as _ from 'lodash';
+import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
+
 import { BrowserAdapter } from '../../../../../common/browser-adapters/browser-adapter';
 import { Action } from '../../../../../common/flux/action';
 import { RegisterTypeToPayloadCallback } from '../../../../../common/message';
 import { getStoreStateMessage, Messages } from '../../../../../common/messages';
 import { StoreNames } from '../../../../../common/stores/store-names';
 import * as TelemetryEvents from '../../../../../common/telemetry-events';
+import { createActionMock } from '../global-action-creators/action-creator-test-helpers';
 
 describe('InspectActionCreatorTest', () => {
     const tabId: number = -1;
@@ -68,13 +69,6 @@ describe('InspectActionCreatorTest', () => {
         testObject.registerCallbacks();
         changeInspectModeMock.verifyAll();
     });
-
-    function createActionMock<TPayload>(actionPayload: TPayload): IMock<Action<TPayload>> {
-        const getCurrentStateMock = Mock.ofType<Action<TPayload>>(Action, MockBehavior.Strict);
-        getCurrentStateMock.setup(action => action.invoke(actionPayload)).verifiable(Times.once());
-
-        return getCurrentStateMock;
-    }
 
     function setupInspectActionMock(actionName: keyof InspectActions, actionMock: IMock<Action<any>>): void {
         inspectActionsMock.setup(actions => actions[actionName]).returns(() => actionMock.object);
