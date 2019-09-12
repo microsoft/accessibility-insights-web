@@ -95,10 +95,7 @@ export class TabContextFactory {
             interpreter.registerTypeToPayloadCallback,
         );
 
-        const pathSnippetActionCreator = new PathSnippetActionCreator(
-            actionsHub.pathSnippetActions,
-            interpreter.registerTypeToPayloadCallback,
-        );
+        const pathSnippetActionCreator = new PathSnippetActionCreator(interpreter, actionsHub.pathSnippetActions);
 
         const scanResultActionCreator = new UnifiedScanResultActionCreator(interpreter, actionsHub.scanResultActions);
 
