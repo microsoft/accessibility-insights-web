@@ -1,9 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import {
-    LinkComponentDeps,
     privacyStatementPopupText,
-    TelemetryNotice,
     telemetryPopupCheckboxTitle,
     telemetryPopupTitle,
 } from 'content/settings/improve-accessibility-insights';
@@ -12,6 +10,7 @@ import { Checkbox } from 'office-ui-fabric-react/lib/Checkbox';
 import { Dialog, DialogFooter, DialogType } from 'office-ui-fabric-react/lib/Dialog';
 import * as React from 'react';
 import { UserConfigMessageCreator } from '../message-creators/user-config-message-creator';
+import { LinkComponentDeps, TelemetryNotice } from './telemetry-notice';
 
 export interface TelemetryPermissionDialogState {
     isEnableTelemetryChecked: boolean;

@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EnableTelemetrySettingDescription renders with LinkComponentDeps 1`] = `
+<React.Fragment>
+  <TelemetryNotice
+    LinkComponent={[Function]}
+  />
+  <React.Fragment>
+    Read our 
+    <NewTabLink
+      href="http://go.microsoft.com/fwlink/?LinkId=521839"
+    >
+       privacy statement
+    </NewTabLink>
+     to learn more.
+  </React.Fragment>
+</React.Fragment>
+`;

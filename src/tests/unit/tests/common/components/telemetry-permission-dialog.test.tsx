@@ -5,13 +5,13 @@ import { PrimaryButton } from 'office-ui-fabric-react/lib/Button';
 import { Checkbox } from 'office-ui-fabric-react/lib/Checkbox';
 import * as React from 'react';
 import { NewTabLink } from '../../../../../common/components/new-tab-link';
+import { TelemetryNotice } from '../../../../../common/components/telemetry-notice';
 import {
     TelemetryPermissionDialog,
     TelemetryPermissionDialogDeps,
     TelemetryPermissionDialogProps,
 } from '../../../../../common/components/telemetry-permission-dialog';
 import { UserConfigMessageCreator } from '../../../../../common/message-creators/user-config-message-creator';
-import { TelemetryNotice } from '../../../../../content/settings/improve-accessibility-insights';
 
 describe('TelemetryPermissionDialogTest', () => {
     let userConfigMessageCreatorStub: UserConfigMessageCreator;

@@ -3,11 +3,7 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import { NewTabLink } from '../../../../../common/components/new-tab-link';
-import {
-    EnableTelemetrySettingDescription,
-    LinkComponentDeps,
-    TelemetryNotice,
-} from '../../../../../content/settings/improve-accessibility-insights';
+import { LinkComponentDeps, TelemetryNotice } from '../../../../../common/components/telemetry-notice';
 
 describe('TelemetryNotice', () => {
     it('renders with LinkComponentDeps', () => {
@@ -16,18 +12,6 @@ describe('TelemetryNotice', () => {
         };
 
         const wrapper = shallow(<TelemetryNotice {...deps} />);
-
-        expect(wrapper.getElement()).toMatchSnapshot();
-    });
-});
-
-describe('EnableTelemetrySettingDescription', () => {
-    it('renders with LinkComponentDeps', () => {
-        const deps: LinkComponentDeps = {
-            LinkComponent: NewTabLink,
-        };
-
-        const wrapper = shallow(<EnableTelemetrySettingDescription {...deps} />);
 
         expect(wrapper.getElement()).toMatchSnapshot();
     });
