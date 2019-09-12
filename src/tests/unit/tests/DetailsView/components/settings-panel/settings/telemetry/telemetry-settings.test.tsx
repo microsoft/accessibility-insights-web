@@ -4,18 +4,25 @@ import { shallow } from 'enzyme';
 import { Toggle } from 'office-ui-fabric-react/lib/Toggle';
 import * as React from 'react';
 import { Mock, Times } from 'typemoq';
+import { NewTabLink } from '../../../../../../../../common/components/new-tab-link';
 import { UserConfigMessageCreator } from '../../../../../../../../common/message-creators/user-config-message-creator';
 import { UserConfigurationStoreData } from '../../../../../../../../common/types/store-data/user-configuration-store';
-import { SettingsDeps, SettingsProps } from '../../../../../../../../DetailsView/components/settings-panel/settings/settings-props';
-import { TelemetrySettings } from '../../../../../../../../DetailsView/components/settings-panel/settings/telemetry/telemetry-settings';
+import { EnableTelemetrySettingDescription } from '../../../../../../../../content/settings/improve-accessibility-insights';
+import { GenericToggle } from '../../../../../../../../DetailsView/components/generic-toggle';
+import {
+    TelemetrySettings,
+    TelemetrySettingsProps,
+} from '../../../../../../../../DetailsView/components/settings-panel/settings/telemetry/telemetry-settings';
 
 describe('TelemetrySettings', () => {
     const enableStates = [true, false];
 
     describe('renders', () => {
         it.each(enableStates)('with enabled = %s', enabled => {
-            const props: SettingsProps = {
-                deps: Mock.ofType<SettingsDeps>().object,
+            const props: TelemetrySettingsProps = {
+                deps: {
+                    LinkComponent: NewTabLink,
+                } as TelemetrySettingsProps['deps'],
                 userConfigurationStoreState: {
                     enableTelemetry: enabled,
                 } as UserConfigurationStoreData,
@@ -23,8 +30,13 @@ describe('TelemetrySettings', () => {
             };
 
             const wrapper = shallow(<TelemetrySettings {...props} />);
+            const enableTelemetrySettingDescription = wrapper
+                .find(GenericToggle)
+                .dive()
+                .find(EnableTelemetrySettingDescription);
 
             expect(wrapper.getElement()).toMatchSnapshot();
+            expect(enableTelemetrySettingDescription.prop('LinkComponent')).toBe(props.deps.LinkComponent);
         });
     });
 
@@ -33,8 +45,8 @@ describe('TelemetrySettings', () => {
             const userConfigMessageCreatorMock = Mock.ofType<UserConfigMessageCreator>();
             const deps = {
                 userConfigMessageCreator: userConfigMessageCreatorMock.object,
-            } as SettingsDeps;
-            const props: SettingsProps = {
+            } as TelemetrySettingsProps['deps'];
+            const props: TelemetrySettingsProps = {
                 deps,
                 userConfigurationStoreState: {
                     enableTelemetry: enabled,

@@ -27,6 +27,7 @@ import { A11YSelfValidator } from '../common/a11y-self-validator';
 import { AxeInfo } from '../common/axe-info';
 import { provideBlob } from '../common/blob-provider';
 import { ChromeAdapter } from '../common/browser-adapters/chrome-adapter';
+import { NewTabLink } from '../common/components/new-tab-link';
 import { getPropertyConfiguration } from '../common/configs/unified-result-property-configurations';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
 import { DateProvider } from '../common/date-provider';
@@ -303,6 +304,7 @@ if (isNaN(tabId) === false) {
                 getDateFromTimestamp: DateProvider.getDateFromTimestamp,
                 getCurrentDate: DateProvider.getCurrentDate,
                 settingsProvider: SettingsProviderImpl,
+                LinkComponent: NewTabLink,
                 environmentInfoProvider,
                 issueFilingServiceProvider: IssueFilingServiceProviderImpl,
                 getGuidanceTagsFromGuidanceLinks: GetGuidanceTagsFromGuidanceLinks,

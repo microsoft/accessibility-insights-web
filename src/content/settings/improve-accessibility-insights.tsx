@@ -1,18 +1,24 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { ILinkProps } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { NewTabLink } from '../../common/components/new-tab-link';
+import { NamedFC } from '../../common/react/named-fc';
 import { title } from '../strings/application';
 
 export const telemetryPopupTitle = `We need your help`;
 
 export const telemetryPopupCheckboxTitle = `I agree to enable telemetry`;
 
-export const telemetryNotice = (
+export type LinkComponentDeps = {
+    LinkComponent: React.FC<ILinkProps>;
+};
+
+export const TelemetryNotice = NamedFC<LinkComponentDeps>('TelemetryNotice', ({ LinkComponent }) => (
     <>
         <p>
             By opting into telemetry, you{' '}
-            <NewTabLink href="https://accessibilityinsights.io/docs/en/telemetry">help the community</NewTabLink> develop inclusive
+            <LinkComponent href="https://accessibilityinsights.io/docs/en/telemetry">help the community</LinkComponent> develop inclusive
             software.
         </p>
         <p>
@@ -20,7 +26,7 @@ export const telemetryNotice = (
             tools and standards community to improve guidelines, rules engines, and features.
         </p>
     </>
-);
+));
 
 const privacyStatementText = (
     <>
@@ -30,13 +36,11 @@ const privacyStatementText = (
 
 export const privacyStatementPopupText = <>You can change this choice anytime in settings. {privacyStatementText}</>;
 
-export const enableTelemetrySettingDescription = (
+export const EnableTelemetrySettingDescription = NamedFC<LinkComponentDeps>('EnableTelemetrySettingDescription', ({ LinkComponent }) => (
     <>
-        {telemetryNotice}
+        <TelemetryNotice LinkComponent={LinkComponent} />
         {privacyStatementText}
     </>
-);
-
-export const telemetryPopupNotice = <>{telemetryNotice}</>;
+));
 
 export const enableTelemetrySettingsPanelTitle = `Help improve ${title}`;

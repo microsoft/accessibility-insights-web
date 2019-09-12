@@ -3,12 +3,13 @@
 import { UserConfigMessageCreator } from '../../../../common/message-creators/user-config-message-creator';
 import { FeatureFlagStoreData } from '../../../../common/types/store-data/feature-flag-store-data';
 import { UserConfigurationStoreData } from '../../../../common/types/store-data/user-configuration-store';
+import { LinkComponentDeps } from '../../../../content/settings/improve-accessibility-insights';
 import { IssueFilingServiceProvider } from './../../../../issue-filing/issue-filing-service-provider';
 
 export type SettingsDeps = {
     userConfigMessageCreator: UserConfigMessageCreator;
     issueFilingServiceProvider: IssueFilingServiceProvider;
-};
+} & LinkComponentDeps;
 
 export type SettingsProps = {
     deps: SettingsDeps;

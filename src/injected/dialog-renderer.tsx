@@ -1,11 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { getRTL } from '@uifabric/utilities';
+import { IssueDetailsTextGenerator } from 'background/issue-details-text-generator';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-
-import { IssueDetailsTextGenerator } from 'background/issue-details-text-generator';
 import { BrowserAdapter } from '../common/browser-adapters/browser-adapter';
+import { NewTabLink } from '../common/components/new-tab-link';
 import { FeatureFlags } from '../common/feature-flags';
 import { HTMLElementUtils } from '../common/html-element-utils';
 import { getPlatform } from '../common/platform';
@@ -83,6 +83,7 @@ export class DialogRenderer {
                 environmentInfoProvider: mainWindowContext.getEnvironmentInfoProvider(),
                 issueFilingServiceProvider: mainWindowContext.getIssueFilingServiceProvider(),
                 userConfigMessageCreator: mainWindowContext.getUserConfigMessageCreator(),
+                LinkComponent: NewTabLink,
             };
 
             this.renderer(

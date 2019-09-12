@@ -4,9 +4,14 @@ import * as Enzyme from 'enzyme';
 import { PrimaryButton } from 'office-ui-fabric-react/lib/Button';
 import { Checkbox } from 'office-ui-fabric-react/lib/Checkbox';
 import * as React from 'react';
+import { NewTabLink } from '../../../../../common/components/new-tab-link';
 import { UserConfigMessageCreator } from '../../../../../common/message-creators/user-config-message-creator';
-import { FeatureFlagStoreData } from '../../../../../common/types/store-data/feature-flag-store-data';
-import { TelemetryPermissionDialog, TelemetryPermissionDialogProps } from '../../../../../popup/components/telemetry-permission-dialog';
+import { TelemetryNotice } from '../../../../../content/settings/improve-accessibility-insights';
+import {
+    TelemetryPermissionDialog,
+    TelemetryPermissionDialogDeps,
+    TelemetryPermissionDialogProps,
+} from '../../../../../popup/components/telemetry-permission-dialog';
 
 describe('TelemetryPermissionDialogTest', () => {
     let userConfigMessageCreatorStub: UserConfigMessageCreator;
@@ -19,14 +24,9 @@ describe('TelemetryPermissionDialogTest', () => {
     });
 
     test('render null if not first time', () => {
-        const featureFlagStoreData = {} as FeatureFlagStoreData;
         const props: TelemetryPermissionDialogProps = {
-            deps: {
-                userConfigMessageCreator: userConfigMessageCreatorStub,
-            },
-            featureFlagStoreData: featureFlagStoreData,
             isFirstTime: false,
-        };
+        } as TelemetryPermissionDialogProps;
 
         const component = new TelemetryPermissionDialog(props);
         expect(component.render()).toBe(null);
@@ -36,6 +36,7 @@ describe('TelemetryPermissionDialogTest', () => {
         const props: TelemetryPermissionDialogProps = {
             deps: {
                 userConfigMessageCreator: userConfigMessageCreatorStub,
+                LinkComponent: NewTabLink,
             },
             isFirstTime: true,
         };
@@ -44,13 +45,13 @@ describe('TelemetryPermissionDialogTest', () => {
 
         expect(wrapper.getElement()).toMatchSnapshot();
         expect(wrapper.state()).toMatchObject({ isEnableTelemetryChecked: true });
+        const telemetryNotice = wrapper.find(TelemetryNotice);
+        expect(telemetryNotice.prop('LinkComponent')).toBe(props.deps.LinkComponent);
     });
 
     test('toggle check box', () => {
         const props: TelemetryPermissionDialogProps = {
-            deps: {
-                userConfigMessageCreator: userConfigMessageCreatorStub,
-            },
+            deps: {} as TelemetryPermissionDialogDeps,
             isFirstTime: true,
         };
 
@@ -67,7 +68,7 @@ describe('TelemetryPermissionDialogTest', () => {
         const props: TelemetryPermissionDialogProps = {
             deps: {
                 userConfigMessageCreator: userConfigMessageCreatorStub,
-            },
+            } as TelemetryPermissionDialogDeps,
             isFirstTime: true,
         };
 
