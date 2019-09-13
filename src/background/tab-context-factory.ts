@@ -103,9 +103,9 @@ export class TabContextFactory {
         );
 
         const contentActionCreator = new ContentActionCreator(
+            interpreter,
             actionsHub.contentActions,
             this.telemetryEventHandler,
-            interpreter.registerTypeToPayloadCallback,
             detailsViewController,
         );
 
