@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { Interpreter } from 'background/interpreter';
 import { Action } from 'common/flux/action';
 import { isFunction } from 'lodash';
 import { IMock, It, Mock, Times } from 'typemoq';
-import { Interpreter } from '../../../../../background/interpreter';
 
 export const createActionMock = <Payload>(payload: Payload): IMock<Action<Payload>> => {
     const actionMock = Mock.ofType<Action<Payload>>(Action);
