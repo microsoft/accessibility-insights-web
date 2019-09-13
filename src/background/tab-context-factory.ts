@@ -69,7 +69,7 @@ export class TabContextFactory {
         );
 
         const detailsViewActionCreator = new DetailsViewActionCreator(
-            interpreter.registerTypeToPayloadCallback,
+            interpreter,
             actionsHub.detailsViewActions,
             detailsViewController,
             this.telemetryEventHandler,
