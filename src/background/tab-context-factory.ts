@@ -75,12 +75,7 @@ export class TabContextFactory {
             this.telemetryEventHandler,
         );
 
-        const tabActionCreator = new TabActionCreator(
-            interpreter.registerTypeToPayloadCallback,
-            browserAdapter,
-            this.telemetryEventHandler,
-            actionsHub.tabActions,
-        );
+        const tabActionCreator = new TabActionCreator(interpreter, actionsHub.tabActions, browserAdapter, this.telemetryEventHandler);
 
         const devToolsActionCreator = new DevToolsActionCreator(interpreter, actionsHub.devToolActions, this.telemetryEventHandler);
 
