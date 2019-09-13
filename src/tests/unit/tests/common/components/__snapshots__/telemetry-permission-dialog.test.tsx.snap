@@ -22,7 +22,11 @@ exports[`TelemetryPermissionDialogTest render dialog 1`] = `
     className="telemetry-permission-details"
   >
     <TelemetryNotice
-      LinkComponent={[Function]}
+      deps={
+        Object {
+          "LinkComponent": [Function],
+        }
+      }
     />
   </div>
   <div

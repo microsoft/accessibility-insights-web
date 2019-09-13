@@ -4,7 +4,11 @@ exports[`TelemetrySettings renders with enabled = false 1`] = `
 <GenericToggle
   description={
     <EnableTelemetrySettingDescription
-      LinkComponent={[Function]}
+      deps={
+        Object {
+          "LinkComponent": [Function],
+        }
+      }
     />
   }
   enabled={false}
@@ -18,7 +22,11 @@ exports[`TelemetrySettings renders with enabled = true 1`] = `
 <GenericToggle
   description={
     <EnableTelemetrySettingDescription
-      LinkComponent={[Function]}
+      deps={
+        Object {
+          "LinkComponent": [Function],
+        }
+      }
     />
   }
   enabled={true}

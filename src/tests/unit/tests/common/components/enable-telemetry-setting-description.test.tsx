@@ -2,17 +2,19 @@
 // Licensed under the MIT License.
 import { shallow } from 'enzyme';
 import * as React from 'react';
-import { EnableTelemetrySettingDescription } from '../../../../../common/components/enable-telemetry-setting-description';
+import {
+    EnableTelemetrySettingDescription,
+    EnableTelemetrySettingDescriptionDeps,
+} from '../../../../../common/components/enable-telemetry-setting-description';
 import { NewTabLink } from '../../../../../common/components/new-tab-link';
-import { LinkComponentDeps } from '../../../../../common/components/telemetry-notice';
 
 describe('EnableTelemetrySettingDescription', () => {
-    it('renders with LinkComponentDeps', () => {
-        const deps: LinkComponentDeps = {
+    it('renders', () => {
+        const deps: EnableTelemetrySettingDescriptionDeps = {
             LinkComponent: NewTabLink,
         };
 
-        const wrapper = shallow(<EnableTelemetrySettingDescription {...deps} />);
+        const wrapper = shallow(<EnableTelemetrySettingDescription deps={deps} />);
 
         expect(wrapper.getElement()).toMatchSnapshot();
     });

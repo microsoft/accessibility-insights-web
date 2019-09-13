@@ -10,7 +10,7 @@ import { Checkbox } from 'office-ui-fabric-react/lib/Checkbox';
 import { Dialog, DialogFooter, DialogType } from 'office-ui-fabric-react/lib/Dialog';
 import * as React from 'react';
 import { UserConfigMessageCreator } from '../message-creators/user-config-message-creator';
-import { LinkComponentDeps, TelemetryNotice } from './telemetry-notice';
+import { TelemetryNotice, TelemetryNoticeDeps } from './telemetry-notice';
 
 export interface TelemetryPermissionDialogState {
     isEnableTelemetryChecked: boolean;
@@ -23,7 +23,7 @@ export interface TelemetryPermissionDialogProps {
 
 export type TelemetryPermissionDialogDeps = {
     userConfigMessageCreator: UserConfigMessageCreator;
-} & LinkComponentDeps;
+} & TelemetryNoticeDeps;
 
 export class TelemetryPermissionDialog extends React.Component<TelemetryPermissionDialogProps, TelemetryPermissionDialogState> {
     constructor(props) {
@@ -52,7 +52,7 @@ export class TelemetryPermissionDialog extends React.Component<TelemetryPermissi
                 }}
             >
                 <div className="telemetry-permission-details">
-                    <TelemetryNotice LinkComponent={this.props.deps.LinkComponent}></TelemetryNotice>
+                    <TelemetryNotice deps={this.props.deps}></TelemetryNotice>
                 </div>
                 <div className="telemetry-checkbox-section">
                     <Checkbox

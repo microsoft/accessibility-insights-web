@@ -35,9 +35,8 @@ describe('TelemetryPermissionDialogTest', () => {
     test('render dialog', () => {
         const props: TelemetryPermissionDialogProps = {
             deps: {
-                userConfigMessageCreator: userConfigMessageCreatorStub,
                 LinkComponent: NewTabLink,
-            },
+            } as TelemetryPermissionDialogDeps,
             isFirstTime: true,
         };
 
@@ -46,7 +45,7 @@ describe('TelemetryPermissionDialogTest', () => {
         expect(wrapper.getElement()).toMatchSnapshot();
         expect(wrapper.state()).toMatchObject({ isEnableTelemetryChecked: true });
         const telemetryNotice = wrapper.find(TelemetryNotice);
-        expect(telemetryNotice.prop('LinkComponent')).toBe(props.deps.LinkComponent);
+        expect(telemetryNotice.prop('deps').LinkComponent).toBe(props.deps.LinkComponent);
     });
 
     test('toggle check box', () => {

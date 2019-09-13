@@ -1,9 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`EnableTelemetrySettingDescription renders with LinkComponentDeps 1`] = `
+exports[`EnableTelemetrySettingDescription renders 1`] = `
 <React.Fragment>
   <TelemetryNotice
-    LinkComponent={[Function]}
+    deps={
+      Object {
+        "LinkComponent": [Function],
+      }
+    }
   />
   <React.Fragment>
     Read our 

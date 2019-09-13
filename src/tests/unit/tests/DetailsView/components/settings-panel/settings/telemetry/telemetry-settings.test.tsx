@@ -36,7 +36,7 @@ describe('TelemetrySettings', () => {
                 .find(EnableTelemetrySettingDescription);
 
             expect(wrapper.getElement()).toMatchSnapshot();
-            expect(enableTelemetrySettingDescription.prop('LinkComponent')).toBe(props.deps.LinkComponent);
+            expect(enableTelemetrySettingDescription.prop('deps').LinkComponent).toBe(props.deps.LinkComponent);
         });
     });
 
