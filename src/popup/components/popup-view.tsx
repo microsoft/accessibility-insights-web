@@ -4,6 +4,7 @@ import { Spinner, SpinnerSize } from 'office-ui-fabric-react/lib/Spinner';
 import * as React from 'react';
 import { BrowserAdapter } from '../../common/browser-adapters/browser-adapter';
 import { NewTabLink } from '../../common/components/new-tab-link';
+import { TelemetryPermissionDialog, TelemetryPermissionDialogDeps } from '../../common/components/telemetry-permission-dialog';
 import { withStoreSubscription, WithStoreSubscriptionDeps } from '../../common/components/with-store-subscription';
 import { DisplayableStrings } from '../../common/constants/displayable-strings';
 import { DropdownClickHandler } from '../../common/dropdown-click-handler';
@@ -24,7 +25,6 @@ import {
 import { Header } from './header';
 import { LaunchPad, LaunchPadDeps, LaunchPadRowConfiguration } from './launch-pad';
 import { LaunchPanelHeader, LaunchPanelHeaderDeps } from './launch-panel-header';
-import { TelemetryPermissionDialog, TelemetryPermissionDialogDeps } from './telemetry-permission-dialog';
 
 export interface PopupViewProps {
     deps: PopupViewControllerDeps;

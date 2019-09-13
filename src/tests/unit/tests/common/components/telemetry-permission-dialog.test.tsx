@@ -5,13 +5,13 @@ import { PrimaryButton } from 'office-ui-fabric-react/lib/Button';
 import { Checkbox } from 'office-ui-fabric-react/lib/Checkbox';
 import * as React from 'react';
 import { NewTabLink } from '../../../../../common/components/new-tab-link';
-import { UserConfigMessageCreator } from '../../../../../common/message-creators/user-config-message-creator';
-import { TelemetryNotice } from '../../../../../content/settings/improve-accessibility-insights';
+import { TelemetryNotice } from '../../../../../common/components/telemetry-notice';
 import {
     TelemetryPermissionDialog,
     TelemetryPermissionDialogDeps,
     TelemetryPermissionDialogProps,
-} from '../../../../../popup/components/telemetry-permission-dialog';
+} from '../../../../../common/components/telemetry-permission-dialog';
+import { UserConfigMessageCreator } from '../../../../../common/message-creators/user-config-message-creator';
 
 describe('TelemetryPermissionDialogTest', () => {
     let userConfigMessageCreatorStub: UserConfigMessageCreator;
@@ -35,9 +35,8 @@ describe('TelemetryPermissionDialogTest', () => {
     test('render dialog', () => {
         const props: TelemetryPermissionDialogProps = {
             deps: {
-                userConfigMessageCreator: userConfigMessageCreatorStub,
                 LinkComponent: NewTabLink,
-            },
+            } as TelemetryPermissionDialogDeps,
             isFirstTime: true,
         };
 
@@ -46,7 +45,7 @@ describe('TelemetryPermissionDialogTest', () => {
         expect(wrapper.getElement()).toMatchSnapshot();
         expect(wrapper.state()).toMatchObject({ isEnableTelemetryChecked: true });
         const telemetryNotice = wrapper.find(TelemetryNotice);
-        expect(telemetryNotice.prop('LinkComponent')).toBe(props.deps.LinkComponent);
+        expect(telemetryNotice.prop('deps').LinkComponent).toBe(props.deps.LinkComponent);
     });
 
     test('toggle check box', () => {
