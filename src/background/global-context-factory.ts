@@ -68,11 +68,7 @@ export class GlobalContextFactory {
         const scopingActionCreator = new ScopingActionCreator(interpreter, globalActionsHub.scopingActions);
         const issueFilingActionCreator = new IssueFilingActionCreator(interpreter, telemetryEventHandler, issueFilingController);
         const actionCreator = new GlobalActionCreator(globalActionsHub, interpreter, commandsAdapter, telemetryEventHandler);
-        const assessmentActionCreator = new AssessmentActionCreator(
-            globalActionsHub.assessmentActions,
-            telemetryEventHandler,
-            interpreter.registerTypeToPayloadCallback,
-        );
+        const assessmentActionCreator = new AssessmentActionCreator(interpreter, globalActionsHub.assessmentActions, telemetryEventHandler);
         const userConfigurationActionCreator = new UserConfigurationActionCreator(interpreter, globalActionsHub.userConfigurationActions);
         const featureFlagsActionCreator = new FeatureFlagsActionCreator(
             interpreter,
