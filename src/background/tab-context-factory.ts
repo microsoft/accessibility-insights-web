@@ -59,8 +59,8 @@ export class TabContextFactory {
         const shortcutsPageActionCreator = new ShortcutsPageActionCreator(interpreter, shortcutsPageController, this.telemetryEventHandler);
 
         const actionCreator = new ActionCreator(
+            interpreter,
             actionsHub,
-            interpreter.registerTypeToPayloadCallback,
             detailsViewController,
             this.telemetryEventHandler,
             notificationCreator,
