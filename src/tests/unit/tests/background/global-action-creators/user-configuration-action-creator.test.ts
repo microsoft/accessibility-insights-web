@@ -9,14 +9,12 @@ import {
 } from 'background/actions/action-payloads';
 import { UserConfigurationActions } from 'background/actions/user-configuration-actions';
 import { UserConfigurationActionCreator } from 'background/global-action-creators/user-configuration-action-creator';
-import { Interpreter } from 'background/interpreter';
-import { isFunction } from 'lodash';
-import { IMock, It, Mock, Times } from 'typemoq';
+import { IMock, Mock } from 'typemoq';
 
-import { Action } from '../../../../../common/flux/action';
 import { getStoreStateMessage, Messages } from '../../../../../common/messages';
 import { StoreNames } from '../../../../../common/stores/store-names';
 import { TelemetryEventSource, TriggeredBy } from '../../../../../common/telemetry-events';
+import { createActionMock, createInterpreterMock } from './action-creator-test-helpers';
 
 describe('UserConfigurationActionCreator', () => {
     it('handles GetCurrentState message', () => {
@@ -83,14 +81,14 @@ describe('UserConfigurationActionCreator', () => {
             propertyName: 'property-name',
             propertyValue: 'property-value',
         };
-        const setIssuFilingServicePropertyMock = createActionMock(payload);
-        const actionsMock = createActionsMock('setIssueFilingServiceProperty', setIssuFilingServicePropertyMock.object);
+        const setIssueFilingServicePropertyMock = createActionMock(payload);
+        const actionsMock = createActionsMock('setIssueFilingServiceProperty', setIssueFilingServicePropertyMock.object);
         const interpreterMock = createInterpreterMock(Messages.UserConfig.SetIssueFilingServiceProperty, payload);
         const testSubject = new UserConfigurationActionCreator(interpreterMock.object, actionsMock.object);
 
         testSubject.registerCallback();
 
-        setIssuFilingServicePropertyMock.verifyAll();
+        setIssueFilingServicePropertyMock.verifyAll();
     });
 
     it('should SaveIssueFilingSettings message', () => {
@@ -108,12 +106,6 @@ describe('UserConfigurationActionCreator', () => {
         setIssueFilingSettings.verifyAll();
     });
 
-    function createActionMock<Payload>(payload: Payload): IMock<Action<Payload>> {
-        const actionMock = Mock.ofType<Action<Payload>>();
-        actionMock.setup(action => action.invoke(payload)).verifiable(Times.once());
-        return actionMock;
-    }
-
     function createActionsMock<ActionName extends keyof UserConfigurationActions>(
         actionName: ActionName,
         action: UserConfigurationActions[ActionName],
@@ -121,13 +113,5 @@ describe('UserConfigurationActionCreator', () => {
         const actionsMock = Mock.ofType<UserConfigurationActions>();
         actionsMock.setup(actions => actions[actionName]).returns(() => action);
         return actionsMock;
-    }
-
-    function createInterpreterMock<Payload>(message: string, payload: Payload): IMock<Interpreter> {
-        const interpreterMock = Mock.ofType<Interpreter>();
-        interpreterMock
-            .setup(interpreter => interpreter.registerTypeToPayloadCallback(message, It.is(isFunction)))
-            .callback((_, handler) => handler(payload));
-        return interpreterMock;
     }
 });
