@@ -145,10 +145,10 @@ module.exports = function(grunt) {
             },
         },
         exec: {
-            'webpack-dev': `${path.resolve('./node_modules/.bin/webpack')} --config-name dev`,
-            'webpack-prod': `${path.resolve('./node_modules/.bin/webpack')} --config-name prod`,
-            'webpack-electron': `${path.resolve('./node_modules/.bin/webpack')} --config-name electron`,
-            'generate-scss-typings': `${path.resolve('./node_modules/.bin/tsm')} src`,
+            'webpack-dev': `"${path.resolve('./node_modules/.bin/webpack')}" --config-name dev`,
+            'webpack-prod': `"${path.resolve('./node_modules/.bin/webpack')}" --config-name prod`,
+            'webpack-electron': `"${path.resolve('./node_modules/.bin/webpack')}" --config-name electron`,
+            'generate-scss-typings': `"${path.resolve('./node_modules/.bin/tsm')}" src`,
         },
         sass: {
             options: {
