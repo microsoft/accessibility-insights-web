@@ -48,11 +48,7 @@ export interface IndexedDBAPI {
  * Read more on IndexedDB: https://developers.google.com/web/ilt/pwa/working-with-indexeddb
  */
 export class IndexedDBUtil implements IndexedDBAPI {
-    private store;
-
-    constructor(store: Store) {
-        this.store = store;
-    }
+    constructor(private readonly store: Store) {}
 
     public async getItem(key: string): Promise<any> {
         try {

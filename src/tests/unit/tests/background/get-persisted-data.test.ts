@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IMock, Mock } from 'typemoq';
-
 import { getPersistedData, PersistedData } from 'background/get-persisted-data';
 import { IndexedDBDataKeys } from 'background/IndexedDBDataKeys';
+import { IMock, Mock } from 'typemoq';
+
 import { IndexedDBAPI } from '../../../../common/indexedDB/indexedDB';
 import { AssessmentStoreData, PersistedTabInfo } from '../../../../common/types/store-data/assessment-result-data';
 import { UserConfigurationStoreData } from '../../../../common/types/store-data/user-configuration-store';
@@ -31,14 +31,27 @@ describe('GetPersistedDataTest', () => {
     });
 
     it('propagates the results of IndexedDBAPI.getItem for the appropriate keys', async () => {
+        const indexedDataKeysToFetch = [IndexedDBDataKeys.assessmentStore, IndexedDBDataKeys.userConfiguration];
+
         indexedDBInstanceStrictMock.setup(i => i.getItem(IndexedDBDataKeys.assessmentStore)).returns(async () => assessmentStoreData);
         indexedDBInstanceStrictMock.setup(i => i.getItem(IndexedDBDataKeys.userConfiguration)).returns(async () => userConfigurationData);
 
-        const data = await getPersistedData(indexedDBInstanceStrictMock.object);
+        const data = await getPersistedData(indexedDBInstanceStrictMock.object, indexedDataKeysToFetch);
 
         expect(data).toEqual({
             assessmentStoreData: assessmentStoreData,
             userConfigurationData: userConfigurationData,
         } as PersistedData);
+    });
+
+    it('gets only the userconfigData when its called for', async () => {
+        const indexedDataKeysToFetch = [IndexedDBDataKeys.userConfiguration];
+
+        indexedDBInstanceStrictMock.setup(i => i.getItem(IndexedDBDataKeys.userConfiguration)).returns(async () => userConfigurationData);
+        const data = await getPersistedData(indexedDBInstanceStrictMock.object, indexedDataKeysToFetch);
+
+        expect(data).toEqual({
+            userConfigurationData: userConfigurationData,
+        } as Partial<PersistedData>);
     });
 });
