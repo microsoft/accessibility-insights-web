@@ -6,7 +6,6 @@ import {
     SetHighContrastModePayload,
     SetIssueFilingServicePayload,
     SetIssueFilingServicePropertyPayload,
-    SetTelemetryStatePayload,
 } from './action-payloads';
 
 export class UserConfigurationActions {
