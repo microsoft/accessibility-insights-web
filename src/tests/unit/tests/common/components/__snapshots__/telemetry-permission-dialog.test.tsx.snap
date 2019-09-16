@@ -38,18 +38,13 @@ exports[`TelemetryPermissionDialogTest render dialog 1`] = `
       label="I agree to enable telemetry"
       onChange={[Function]}
     />
-    <React.Fragment>
-      You can change this choice anytime in settings. 
-      <React.Fragment>
-        Read our 
-        <NewTabLink
-          href="http://go.microsoft.com/fwlink/?LinkId=521839"
-        >
-           privacy statement
-        </NewTabLink>
-         to learn more.
-      </React.Fragment>
-    </React.Fragment>
+    <PrivacyStatementPopupText
+      deps={
+        Object {
+          "LinkComponent": [Function],
+        }
+      }
+    />
   </div>
   <StyledDialogFooterBase>
     <CustomizedPrimaryButton
