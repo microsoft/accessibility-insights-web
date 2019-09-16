@@ -20,6 +20,7 @@ const userConfigActions = new UserConfigurationActions();
 
 // tslint:disable-next-line:no-floating-promises - top-level entry points are intentionally floating promises
 getPersistedUserConfigData(indexedDBInstance).then((persistedData: Partial<PersistedData>) => {
+    // tslint:disable-next-line:no-unused-variable
     const userConfigurationStore = new UserConfigurationStore(persistedData.userConfigurationData, userConfigActions, indexedDBInstance);
 
     const dom = document;
