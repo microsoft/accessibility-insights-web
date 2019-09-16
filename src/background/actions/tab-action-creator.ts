@@ -7,7 +7,7 @@ import { SWITCH_BACK_TO_TARGET } from 'common/telemetry-events';
 
 import { Interpreter } from '../interpreter';
 import { TelemetryEventHandler } from '../telemetry/telemetry-event-handler';
-import { SwitchToTargetTabPayload } from './action-payloads';
+import { PageVisibilityChangeTabPayload, SwitchToTargetTabPayload } from './action-payloads';
 import { TabActions } from './tab-actions';
 
 export class TabActionCreator {
@@ -25,14 +25,14 @@ export class TabActionCreator {
         );
         this.interpreter.registerTypeToPayloadCallback(Messages.Tab.Remove, () => this.tabActions.tabRemove.invoke(null));
         this.interpreter.registerTypeToPayloadCallback(Messages.Tab.Change, payload => this.tabActions.tabChange.invoke(payload));
-        this.interpreter.registerTypeToPayloadCallback(Messages.Tab.Switch, (payload, tabId) => this.onSwitchToTargetTab(payload, tabId));
-        this.interpreter.registerTypeToPayloadCallback(Messages.Tab.VisibilityChange, payload =>
+        this.interpreter.registerTypeToPayloadCallback(Messages.Tab.Switch, this.onSwitchToTargetTab);
+        this.interpreter.registerTypeToPayloadCallback(Messages.Tab.VisibilityChange, (payload: PageVisibilityChangeTabPayload) =>
             this.tabActions.tabVisibilityChange.invoke(payload.hidden),
         );
     }
 
-    private onSwitchToTargetTab(payload: SwitchToTargetTabPayload, tabId: number): void {
+    private onSwitchToTargetTab = (payload: SwitchToTargetTabPayload, tabId: number): void => {
         this.browserAdapter.switchToTab(tabId);
         this.telemetryEventHandler.publishTelemetry(SWITCH_BACK_TO_TARGET, payload);
-    }
+    };
 }
