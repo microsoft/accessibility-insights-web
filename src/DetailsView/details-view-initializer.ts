@@ -197,11 +197,7 @@ if (isNaN(tabId) === false) {
             const axeVersion = getVersion();
             const browserSpec = new NavigatorUtils(window.navigator).getBrowserSpec();
 
-            const environmentInfoProvider = new EnvironmentInfoProvider(
-                browserAdapter.extensionVersion,
-                browserSpec,
-                AxeInfo.Default.version,
-            );
+            const environmentInfoProvider = new EnvironmentInfoProvider(browserAdapter.getVersion(), browserSpec, AxeInfo.Default.version);
 
             const reactStaticRenderer = new ReactStaticRenderer();
             const reportNameGenerator = new ReportNameGenerator();
