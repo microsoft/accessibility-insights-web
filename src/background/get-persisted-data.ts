@@ -9,29 +9,14 @@ export interface PersistedData {
     assessmentStoreData: AssessmentStoreData;
     userConfigurationData: UserConfigurationStoreData;
 }
-export function getPersistedData(indexedDBInstance: IndexedDBAPI): Promise<PersistedData> {
+export function getPersistedData(indexedDBInstance: IndexedDBAPI, dataKeysToFetch: string[]): Promise<PersistedData> {
     const persistedData = {} as PersistedData;
 
-    const promises: Array<Promise<any>> = [];
-
-    promises.push(
-        indexedDBInstance.getItem(IndexedDBDataKeys.assessmentStore).then(assessmentData => {
+    const promises: Array<Promise<any>> = dataKeysToFetch.map(key => {
+        return indexedDBInstance.getItem(key).then(assessmentData => {
             persistedData.assessmentStoreData = assessmentData;
-        }),
-    );
-    promises.push(
-        indexedDBInstance.getItem(IndexedDBDataKeys.userConfiguration).then(userConfig => {
-            persistedData.userConfigurationData = userConfig;
-        }),
-    );
+        });
+    });
 
     return Promise.all(promises).then(() => persistedData);
-}
-
-export async function getPersistedUserConfigData(indexedDBInstance: IndexedDBAPI): Promise<Partial<PersistedData>> {
-    const persistedData = {} as Partial<PersistedData>;
-    await indexedDBInstance.getItem(IndexedDBDataKeys.userConfiguration).then(userConfig => {
-        persistedData.userConfigurationData = userConfig;
-    });
-    return persistedData;
 }

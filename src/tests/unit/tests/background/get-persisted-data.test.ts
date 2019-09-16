@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { getPersistedData, getPersistedUserConfigData, PersistedData } from 'background/get-persisted-data';
+import { getPersistedData, PersistedData } from 'background/get-persisted-data';
 import { IndexedDBDataKeys } from 'background/IndexedDBDataKeys';
 import { IMock, Mock } from 'typemoq';
 
@@ -31,10 +31,12 @@ describe('GetPersistedDataTest', () => {
     });
 
     it('propagates the results of IndexedDBAPI.getItem for the appropriate keys', async () => {
+        const indexedDataKeysToFetch = [IndexedDBDataKeys.assessmentStore, IndexedDBDataKeys.userConfiguration];
+
         indexedDBInstanceStrictMock.setup(i => i.getItem(IndexedDBDataKeys.assessmentStore)).returns(async () => assessmentStoreData);
         indexedDBInstanceStrictMock.setup(i => i.getItem(IndexedDBDataKeys.userConfiguration)).returns(async () => userConfigurationData);
 
-        const data = await getPersistedData(indexedDBInstanceStrictMock.object);
+        const data = await getPersistedData(indexedDBInstanceStrictMock.object, indexedDataKeysToFetch);
 
         expect(data).toEqual({
             assessmentStoreData: assessmentStoreData,
@@ -43,8 +45,10 @@ describe('GetPersistedDataTest', () => {
     });
 
     it('gets only the userconfigData when its called for', async () => {
+        const indexedDataKeysToFetch = [IndexedDBDataKeys.userConfiguration];
+
         indexedDBInstanceStrictMock.setup(i => i.getItem(IndexedDBDataKeys.userConfiguration)).returns(async () => userConfigurationData);
-        const data = await getPersistedUserConfigData(indexedDBInstanceStrictMock.object);
+        const data = await getPersistedData(indexedDBInstanceStrictMock.object, indexedDataKeysToFetch);
 
         expect(data).toEqual({
             userConfigurationData: userConfigurationData,

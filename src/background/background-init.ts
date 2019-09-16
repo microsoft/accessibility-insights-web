@@ -24,6 +24,7 @@ import { DetailsViewController } from './details-view-controller';
 import { DevToolsListener } from './dev-tools-listener';
 import { getPersistedData, PersistedData } from './get-persisted-data';
 import { GlobalContextFactory } from './global-context-factory';
+import { IndexedDBDataKeys } from './IndexedDBDataKeys';
 import { deprecatedStorageDataKeys, storageDataKeys } from './local-storage-data-keys';
 import { MessageDistributor } from './message-distributor';
 import { LocalStorageData } from './storage-data';
@@ -45,11 +46,12 @@ const urlValidator = new UrlValidator(browserAdapter);
 const backgroundInitCleaner = new UserStoredDataCleaner(browserAdapter);
 const store = new Store(COMMON_CONSTANTS.defaultIndexedDBName, COMMON_CONSTANTS.defaultIndexedDBStoreName);
 const indexedDBInstance: IndexedDBAPI = new IndexedDBUtil(store);
+const indexedDBDataKeysToFetch = [IndexedDBDataKeys.assessmentStore, IndexedDBDataKeys.userConfiguration];
 
 backgroundInitCleaner.cleanUserData(deprecatedStorageDataKeys);
 
 // tslint:disable-next-line:no-floating-promises - top-level entry points are intentionally floating promises
-getPersistedData(indexedDBInstance).then((persistedData: PersistedData) => {
+getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then((persistedData: PersistedData) => {
     browserAdapter.getUserData(storageDataKeys, (userData: LocalStorageData) => {
         const assessmentsProvider = Assessments;
         const windowUtils = new WindowUtils();

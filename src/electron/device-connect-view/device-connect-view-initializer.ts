@@ -5,7 +5,8 @@ import { Store as IndexedDBStore } from 'idb-keyval';
 import * as ReactDOM from 'react-dom';
 
 import { UserConfigurationActions } from '../../background/actions/user-configuration-actions';
-import { getPersistedUserConfigData, PersistedData } from '../../background/get-persisted-data';
+import { getPersistedData, PersistedData } from '../../background/get-persisted-data';
+import { IndexedDBDataKeys } from '../../background/IndexedDBDataKeys';
 import { UserConfigurationStore } from '../../background/stores/global/user-configuration-store';
 import { COMMON_CONSTANTS } from '../../common/constants';
 import { initializeFabricIcons } from '../../common/fabric-icons';
@@ -18,8 +19,10 @@ const indexedDBStore = new IndexedDBStore(COMMON_CONSTANTS.defaultIndexedDBName,
 const indexedDBInstance: IndexedDBAPI = new IndexedDBUtil(indexedDBStore);
 const userConfigActions = new UserConfigurationActions();
 
+const indexedDBDataKeysToFetch = [IndexedDBDataKeys.userConfiguration];
+
 // tslint:disable-next-line:no-floating-promises - top-level entry points are intentionally floating promises
-getPersistedUserConfigData(indexedDBInstance).then((persistedData: Partial<PersistedData>) => {
+getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then((persistedData: Partial<PersistedData>) => {
     // tslint:disable-next-line:no-unused-variable
     const userConfigurationStore = new UserConfigurationStore(persistedData.userConfigurationData, userConfigActions, indexedDBInstance);
 
