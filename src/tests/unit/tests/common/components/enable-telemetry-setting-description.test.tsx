@@ -7,6 +7,8 @@ import {
     EnableTelemetrySettingDescriptionDeps,
 } from '../../../../../common/components/enable-telemetry-setting-description';
 import { NewTabLink } from '../../../../../common/components/new-tab-link';
+import { PrivacyStatementText } from '../../../../../common/components/privacy-statement-text';
+import { TelemetryNotice } from '../../../../../common/components/telemetry-notice';
 
 describe('EnableTelemetrySettingDescription', () => {
     it('renders', () => {
@@ -15,7 +17,11 @@ describe('EnableTelemetrySettingDescription', () => {
         };
 
         const wrapper = shallow(<EnableTelemetrySettingDescription deps={deps} />);
+        const telemetryNotice = wrapper.find(TelemetryNotice);
+        const privacyStatementText = wrapper.find(PrivacyStatementText);
 
         expect(wrapper.getElement()).toMatchSnapshot();
+        expect(telemetryNotice.prop('deps').LinkComponent).toBe(deps.LinkComponent);
+        expect(privacyStatementText.prop('deps').LinkComponent).toBe(deps.LinkComponent);
     });
 });
