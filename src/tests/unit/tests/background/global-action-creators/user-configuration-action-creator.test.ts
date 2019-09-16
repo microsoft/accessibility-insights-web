@@ -5,13 +5,11 @@ import {
     SetHighContrastModePayload,
     SetIssueFilingServicePayload,
     SetIssueFilingServicePropertyPayload,
-    SetTelemetryStatePayload,
 } from 'background/actions/action-payloads';
 import { UserConfigurationActions } from 'background/actions/user-configuration-actions';
 import { UserConfigurationActionCreator } from 'background/global-action-creators/user-configuration-action-creator';
 import { IMock, Mock } from 'typemoq';
 
-import { TelemetryEventSource, TriggeredBy } from '../../../../../common/telemetry-events';
 import { createActionMock } from './action-creator-test-helpers';
 
 describe('UserConfigurationActionCreator', () => {
@@ -27,18 +25,13 @@ describe('UserConfigurationActionCreator', () => {
     });
 
     it('should SetTelemetryConfig message', () => {
-        const payload: SetTelemetryStatePayload = {
-            enableTelemetry: true,
-            telemetry: {
-                triggeredBy: 'test' as TriggeredBy,
-                source: -1 as TelemetryEventSource,
-            },
-        };
-        const setTelemetryStateMock = createActionMock(payload);
+        const setTelemetryState = true;
+
+        const setTelemetryStateMock = createActionMock(setTelemetryState);
         const actionsMock = createActionsMock('setTelemetryState', setTelemetryStateMock.object);
         const testSubject = new UserConfigurationActionCreator(actionsMock.object);
 
-        testSubject.setTelemetryState(payload);
+        testSubject.setTelemetryState(setTelemetryState);
 
         setTelemetryStateMock.verifyAll();
     });

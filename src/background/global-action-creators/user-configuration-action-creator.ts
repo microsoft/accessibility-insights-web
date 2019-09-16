@@ -14,7 +14,7 @@ export class UserConfigurationActionCreator {
 
     public getUserConfigurationState = () => this.userConfigActions.getCurrentState.invoke(null);
 
-    public setTelemetryState = (payload: SetTelemetryStatePayload) => this.userConfigActions.setTelemetryState.invoke(payload);
+    public setTelemetryState = (enableTelemetry: boolean) => this.userConfigActions.setTelemetryState.invoke(enableTelemetry);
 
     public setHighContrastMode = (payload: SetHighContrastModePayload) => this.userConfigActions.setHighContrastMode.invoke(payload);
 

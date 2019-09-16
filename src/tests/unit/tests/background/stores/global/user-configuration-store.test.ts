@@ -150,10 +150,6 @@ describe('UserConfigurationStoreTest', () => {
             bugServicePropertiesMap: {},
         };
 
-        const setTelemetryStateData: SetTelemetryStatePayload = {
-            enableTelemetry: testCase.enableTelemetry,
-        };
-
         const expectedState: UserConfigurationStoreData = {
             enableTelemetry: testCase.enableTelemetry,
             isFirstTime: false,
@@ -165,7 +161,7 @@ describe('UserConfigurationStoreTest', () => {
         indexDbStrictMock.setup(i => i.setItem(IndexedDBDataKeys.userConfiguration, It.isValue(expectedState))).verifiable(Times.once());
 
         storeTester
-            .withActionParam(setTelemetryStateData)
+            .withActionParam(testCase.enableTelemetry)
             .withPostListenerMock(indexDbStrictMock)
             .testListenerToBeCalledOnce(cloneDeep(initialStoreData), expectedState);
     });

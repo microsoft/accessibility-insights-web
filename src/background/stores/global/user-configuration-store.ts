@@ -51,9 +51,9 @@ export class UserConfigurationStore extends BaseStoreImpl<UserConfigurationStore
         this.userConfigActions.saveIssueFilingSettings.addListener(this.onSaveIssueSettings);
     }
 
-    private onSetTelemetryState = (payload: SetTelemetryStatePayload): void => {
+    private onSetTelemetryState = (enableTelemetry: boolean): void => {
         this.state.isFirstTime = false;
-        this.state.enableTelemetry = payload.enableTelemetry;
+        this.state.enableTelemetry = enableTelemetry;
         this.saveAndEmitChanged();
     };
 
