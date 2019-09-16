@@ -9,7 +9,7 @@ import { PrimaryButton } from 'office-ui-fabric-react/lib/Button';
 import { Checkbox } from 'office-ui-fabric-react/lib/Checkbox';
 import { Dialog, DialogFooter, DialogType } from 'office-ui-fabric-react/lib/Dialog';
 import * as React from 'react';
-import { UserConfigMessageCreator } from '../message-creators/user-config-message-creator';
+
 import { TelemetryNotice, TelemetryNoticeDeps } from './telemetry-notice';
 
 export interface TelemetryPermissionDialogState {
@@ -21,8 +21,12 @@ export interface TelemetryPermissionDialogProps {
     isFirstTime: boolean;
 }
 
+export type SetTelemetryStateMessageCreator = {
+    setTelemetryState: (enableTelemetry: boolean) => void;
+};
+
 export type TelemetryPermissionDialogDeps = {
-    userConfigMessageCreator: UserConfigMessageCreator;
+    userConfigMessageCreator: SetTelemetryStateMessageCreator;
 } & TelemetryNoticeDeps;
 
 export class TelemetryPermissionDialog extends React.Component<TelemetryPermissionDialogProps, TelemetryPermissionDialogState> {
