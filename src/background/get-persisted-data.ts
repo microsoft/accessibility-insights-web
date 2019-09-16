@@ -9,12 +9,17 @@ export interface PersistedData {
     assessmentStoreData: AssessmentStoreData;
     userConfigurationData: UserConfigurationStoreData;
 }
+
+const keyToPersistedDataMapping = {
+    [IndexedDBDataKeys.assessmentStore]: 'assessmentStoreData',
+    [IndexedDBDataKeys.userConfiguration]: 'userConfigurationData',
+};
 export function getPersistedData(indexedDBInstance: IndexedDBAPI, dataKeysToFetch: string[]): Promise<PersistedData> {
     const persistedData = {} as PersistedData;
 
     const promises: Array<Promise<any>> = dataKeysToFetch.map(key => {
         return indexedDBInstance.getItem(key).then(assessmentData => {
-            persistedData.assessmentStoreData = assessmentData;
+            persistedData[keyToPersistedDataMapping[key]] = assessmentData;
         });
     });
 
