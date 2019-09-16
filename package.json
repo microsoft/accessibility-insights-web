@@ -98,7 +98,7 @@
         "serve-static": "^1.13.2",
         "source-map-loader": "^0.2.4",
         "spectron": "^8.0.0",
-        "terser-webpack-plugin": "^2.0.1",
+        "terser-webpack-plugin": "^2.1.0",
         "ts-jest": "^24.1.0",
         "ts-loader": "^6.1.0",
         "tslint": "^5.20.0",
