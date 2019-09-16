@@ -17,33 +17,24 @@ export class DevToolsActionCreator {
     ) {}
 
     public registerCallbacks(): void {
-        this.interpreter.registerTypeToPayloadCallback(Messages.DevTools.DevtoolStatus, payload => this.onDevToolOpened(payload));
-
-        this.interpreter.registerTypeToPayloadCallback(Messages.DevTools.InspectElement, payload => this.onDevToolInspectElement(payload));
-
-        this.interpreter.registerTypeToPayloadCallback(Messages.DevTools.InspectFrameUrl, payload =>
-            this.onDevToolInspectFrameUrl(payload),
-        );
-
-        this.interpreter.registerTypeToPayloadCallback(getStoreStateMessage(StoreNames.DevToolsStore), () =>
-            this.onDevToolGetCurrentState(),
-        );
+        this.interpreter.registerTypeToPayloadCallback(Messages.DevTools.DevtoolStatus, this.onDevToolOpened);
+        this.interpreter.registerTypeToPayloadCallback(Messages.DevTools.InspectElement, this.onDevToolInspectElement);
+        this.interpreter.registerTypeToPayloadCallback(Messages.DevTools.InspectFrameUrl, this.onDevToolInspectFrameUrl);
+        this.interpreter.registerTypeToPayloadCallback(getStoreStateMessage(StoreNames.DevToolsStore), this.onDevToolGetCurrentState);
     }
 
-    private onDevToolOpened(payload: OnDevToolOpenPayload): void {
+    private onDevToolOpened = (payload: OnDevToolOpenPayload): void => {
         this.devToolActions.setDevToolState.invoke(payload.status);
-    }
+    };
 
-    private onDevToolInspectElement(payload: InspectElementPayload): void {
+    private onDevToolInspectElement = (payload: InspectElementPayload): void => {
         this.devToolActions.setInspectElement.invoke(payload.target);
         this.telemetryEventHandler.publishTelemetry(TelemetryEvents.INSPECT_OPEN, payload);
-    }
+    };
 
-    private onDevToolInspectFrameUrl(payload: InspectFrameUrlPayload): void {
+    private onDevToolInspectFrameUrl = (payload: InspectFrameUrlPayload): void => {
         this.devToolActions.setFrameUrl.invoke(payload.frameUrl);
-    }
+    };
 
-    private onDevToolGetCurrentState(): void {
-        this.devToolActions.getCurrentState.invoke(null);
-    }
+    private onDevToolGetCurrentState = (): void => this.devToolActions.getCurrentState.invoke(null);
 }
