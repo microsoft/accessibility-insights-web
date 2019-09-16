@@ -14,12 +14,13 @@ const keyToPersistedDataMapping = {
     [IndexedDBDataKeys.assessmentStore]: 'assessmentStoreData',
     [IndexedDBDataKeys.userConfiguration]: 'userConfigurationData',
 };
+
 export function getPersistedData(indexedDBInstance: IndexedDBAPI, dataKeysToFetch: string[]): Promise<PersistedData> {
     const persistedData = {} as PersistedData;
 
     const promises: Array<Promise<any>> = dataKeysToFetch.map(key => {
-        return indexedDBInstance.getItem(key).then(assessmentData => {
-            persistedData[keyToPersistedDataMapping[key]] = assessmentData;
+        return indexedDBInstance.getItem(key).then(data => {
+            persistedData[keyToPersistedDataMapping[key]] = data;
         });
     });
 
