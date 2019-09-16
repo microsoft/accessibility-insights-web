@@ -7,6 +7,7 @@ import { Store } from 'idb-keyval';
 import { AxeInfo } from '../common/axe-info';
 import { ChromeAdapter } from '../common/browser-adapters/chrome-adapter';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
+import { COMMON_CONSTANTS } from '../common/constants';
 import { EnvironmentInfoProvider } from '../common/environment-info-provider';
 import { IndexedDBAPI, IndexedDBUtil } from '../common/indexedDB/indexedDB';
 import { InsightsFeatureFlags } from '../common/insights-feature-flags';
@@ -39,13 +40,10 @@ import { UserStoredDataCleaner } from './user-stored-data-cleaner';
 
 declare var window: Window & InsightsFeatureFlags;
 
-const defaultIndexedDBName: string = 'default-db';
-const defaultIndexedDBStoreName: string = 'default-store';
-
 const browserAdapter = new ChromeAdapter();
 const urlValidator = new UrlValidator(browserAdapter);
 const backgroundInitCleaner = new UserStoredDataCleaner(browserAdapter);
-const store = new Store(defaultIndexedDBName, defaultIndexedDBStoreName);
+const store = new Store(COMMON_CONSTANTS.defaultIndexedDBName, COMMON_CONSTANTS.defaultIndexedDBStoreName);
 const indexedDBInstance: IndexedDBAPI = new IndexedDBUtil(store);
 
 backgroundInitCleaner.cleanUserData(deprecatedStorageDataKeys);

@@ -27,3 +27,11 @@ export function getPersistedData(indexedDBInstance: IndexedDBAPI): Promise<Persi
 
     return Promise.all(promises).then(() => persistedData);
 }
+
+export async function getPersistedUserConfigData(indexedDBInstance: IndexedDBAPI): Promise<Partial<PersistedData>> {
+    const persistedData = {} as Partial<PersistedData>;
+    await indexedDBInstance.getItem(IndexedDBDataKeys.userConfiguration).then(userConfig => {
+        persistedData.userConfigurationData = userConfig;
+    });
+    return persistedData;
+}

@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { getPersistedData, getPersistedUserConfigData, PersistedData } from 'background/get-persisted-data';
+import { IndexedDBDataKeys } from 'background/IndexedDBDataKeys';
 import { IMock, Mock } from 'typemoq';
 
-import { getPersistedData, PersistedData } from 'background/get-persisted-data';
-import { IndexedDBDataKeys } from 'background/IndexedDBDataKeys';
 import { IndexedDBAPI } from '../../../../common/indexedDB/indexedDB';
 import { AssessmentStoreData, PersistedTabInfo } from '../../../../common/types/store-data/assessment-result-data';
 import { UserConfigurationStoreData } from '../../../../common/types/store-data/user-configuration-store';
@@ -40,5 +40,14 @@ describe('GetPersistedDataTest', () => {
             assessmentStoreData: assessmentStoreData,
             userConfigurationData: userConfigurationData,
         } as PersistedData);
+    });
+
+    it('gets only the userconfigData when its called for', async () => {
+        indexedDBInstanceStrictMock.setup(i => i.getItem(IndexedDBDataKeys.userConfiguration)).returns(async () => userConfigurationData);
+        const data = await getPersistedUserConfigData(indexedDBInstanceStrictMock.object);
+
+        expect(data).toEqual({
+            userConfigurationData: userConfigurationData,
+        } as Partial<PersistedData>);
     });
 });
