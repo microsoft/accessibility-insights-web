@@ -3,10 +3,7 @@
 import { BrowserWindow } from 'electron';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { brand } from '../../content/strings/application';
-import { BrandBlue } from '../../icons/brand/blue/brand-blue';
-import { DeviceConnectBody } from './components/device-connect-body';
-import { WindowTitle } from './components/window-title';
+import { DeviceConnectViewContainer } from './components/device-connect-view-container';
 
 export class DeviceConnectViewRenderer {
     constructor(
@@ -17,14 +14,11 @@ export class DeviceConnectViewRenderer {
 
     public render(): void {
         const deviceConnectViewContainer = this.dom.querySelector('#device-connect-view-container');
-        this.renderer(
-            <>
-                <WindowTitle title={brand}>
-                    <BrandBlue />
-                </WindowTitle>
-                <DeviceConnectBody currentWindow={this.CurrentWindow} />
-            </>,
-            deviceConnectViewContainer,
-        );
+        const props = {
+            deps: {
+                currentWindow: this.CurrentWindow,
+            },
+        };
+        this.renderer(<DeviceConnectViewContainer {...props} />, deviceConnectViewContainer);
     }
 }
