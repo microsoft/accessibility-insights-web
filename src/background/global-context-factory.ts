@@ -18,6 +18,7 @@ import { PersistedData } from './get-persisted-data';
 import { FeatureFlagsActionCreator } from './global-action-creators/feature-flags-action-creator';
 import { GlobalActionCreator } from './global-action-creators/global-action-creator';
 import { IssueFilingActionCreator } from './global-action-creators/issue-filing-action-creator';
+import { registerUserConfigurationMessageCallback } from './global-action-creators/registrar/register-user-configuration-message-callbacks';
 import { ScopingActionCreator } from './global-action-creators/scoping-action-creator';
 import { UserConfigurationActionCreator } from './global-action-creators/user-configuration-action-creator';
 import { GlobalContext } from './global-context';
@@ -68,12 +69,8 @@ export class GlobalContextFactory {
         const scopingActionCreator = new ScopingActionCreator(interpreter, globalActionsHub.scopingActions);
         const issueFilingActionCreator = new IssueFilingActionCreator(interpreter, telemetryEventHandler, issueFilingController);
         const actionCreator = new GlobalActionCreator(globalActionsHub, interpreter, commandsAdapter, telemetryEventHandler);
-        const assessmentActionCreator = new AssessmentActionCreator(
-            globalActionsHub.assessmentActions,
-            telemetryEventHandler,
-            interpreter.registerTypeToPayloadCallback,
-        );
-        const userConfigurationActionCreator = new UserConfigurationActionCreator(interpreter, globalActionsHub.userConfigurationActions);
+        const assessmentActionCreator = new AssessmentActionCreator(interpreter, globalActionsHub.assessmentActions, telemetryEventHandler);
+        const userConfigurationActionCreator = new UserConfigurationActionCreator(globalActionsHub.userConfigurationActions);
         const featureFlagsActionCreator = new FeatureFlagsActionCreator(
             interpreter,
             globalActionsHub.featureFlagActions,
@@ -83,7 +80,7 @@ export class GlobalContextFactory {
         issueFilingActionCreator.registerCallbacks();
         actionCreator.registerCallbacks();
         assessmentActionCreator.registerCallbacks();
-        userConfigurationActionCreator.registerCallback();
+        registerUserConfigurationMessageCallback(interpreter, userConfigurationActionCreator);
         scopingActionCreator.registerCallback();
         featureFlagsActionCreator.registerCallbacks();
 

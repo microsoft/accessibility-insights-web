@@ -8,6 +8,7 @@ import { NewTabLink } from '../../../../../common/components/new-tab-link';
 import { PrivacyStatementPopupText } from '../../../../../common/components/privacy-statement-text';
 import { TelemetryNotice } from '../../../../../common/components/telemetry-notice';
 import {
+    SetTelemetryStateMessageCreator,
     TelemetryPermissionDialog,
     TelemetryPermissionDialogDeps,
     TelemetryPermissionDialogProps,
@@ -15,7 +16,7 @@ import {
 import { UserConfigMessageCreator } from '../../../../../common/message-creators/user-config-message-creator';
 
 describe('TelemetryPermissionDialogTest', () => {
-    let userConfigMessageCreatorStub: UserConfigMessageCreator;
+    let userConfigMessageCreatorStub: SetTelemetryStateMessageCreator;
     let setTelemetryStateMock: () => null;
 
     beforeEach(() => {

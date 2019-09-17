@@ -1,86 +1,88 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as _ from 'lodash';
-import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
-
 import { PageVisibilityChangeTabPayload, SwitchToTargetTabPayload } from 'background/actions/action-payloads';
 import { TabActionCreator } from 'background/actions/tab-action-creator';
 import { TabActions } from 'background/actions/tab-actions';
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
-import { BrowserAdapter } from '../../../../../common/browser-adapters/browser-adapter';
-import { Action } from '../../../../../common/flux/action';
-import { Tab } from '../../../../../common/itab';
-import { RegisterTypeToPayloadCallback } from '../../../../../common/message';
-import { getStoreStateMessage, Messages } from '../../../../../common/messages';
-import { StoreNames } from '../../../../../common/stores/store-names';
-import { SWITCH_BACK_TO_TARGET, TelemetryEventSource, TriggeredBy } from '../../../../../common/telemetry-events';
+import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
+import { Tab } from 'common/itab';
+import { getStoreStateMessage, Messages } from 'common/messages';
+import { StoreNames } from 'common/stores/store-names';
+import { SWITCH_BACK_TO_TARGET, TelemetryEventSource, TriggeredBy } from 'common/telemetry-events';
+import { IMock, Mock, Times } from 'typemoq';
+
+import { createActionMock, createInterpreterMock } from '../global-action-creators/action-creator-test-helpers';
 
 describe('TestActionCreatorTest', () => {
-    let tabActionsMock: IMock<TabActions>;
     let browserAdapterMock: IMock<BrowserAdapter>;
     let telemetryEventHandlerMock: IMock<TelemetryEventHandler>;
-    let registerTypeToPayloadCallbackMock: IMock<RegisterTypeToPayloadCallback>;
-    let testObject: TabActionCreator;
-    const tabId: number = -1;
-    const iTabPayload: Tab = {
-        id: -1,
-        url: 'url',
-        title: 'title',
-    };
 
     beforeEach(() => {
-        tabActionsMock = Mock.ofType(TabActions, MockBehavior.Strict);
-        browserAdapterMock = Mock.ofType<BrowserAdapter>(undefined, MockBehavior.Strict);
-        telemetryEventHandlerMock = Mock.ofType(TelemetryEventHandler, MockBehavior.Strict);
-        registerTypeToPayloadCallbackMock = Mock.ofInstance((theType, callback) => {});
-
-        testObject = new TabActionCreator(
-            registerTypeToPayloadCallbackMock.object,
-            browserAdapterMock.object,
-            telemetryEventHandlerMock.object,
-            tabActionsMock.object,
-        );
+        browserAdapterMock = Mock.ofType<BrowserAdapter>();
+        telemetryEventHandlerMock = Mock.ofType<TelemetryEventHandler>();
     });
 
-    test('on Tab.Update', () => {
-        const actionMock = createActionMock(iTabPayload);
-        setupTabActionsMock('tabUpdate', actionMock);
-        setupRegisterTypeToPayloadCallbackMock(Messages.Tab.Update, iTabPayload, tabId);
+    it('handles Tab.Update message', () => {
+        const payload: Tab = {
+            id: -1,
+            title: 'test tab title',
+            url: 'test url',
+        };
 
-        testObject.registerCallbacks();
-        actionMock.verifyAll();
+        const tabUpdateMock = createActionMock(payload);
+        const actionsMock = createActionsMock('tabUpdate', tabUpdateMock.object);
+        const interpreterMock = createInterpreterMock(Messages.Tab.Update, payload);
+
+        const testSubject = new TabActionCreator(interpreterMock.object, actionsMock.object, null, null);
+
+        testSubject.registerCallbacks();
+
+        tabUpdateMock.verifyAll();
     });
 
-    test('on Tab.GetCurrent', () => {
-        const actionMock = createActionMock(null);
-        setupTabActionsMock('getCurrentState', actionMock);
-        setupRegisterTypeToPayloadCallbackMock(getStoreStateMessage(StoreNames.TabStore), null, tabId);
+    it('handles Tab.GetCurrent message', () => {
+        const getCurrentStateMock = createActionMock<void>(null);
+        const actionsMock = createActionsMock('getCurrentState', getCurrentStateMock.object);
+        const interpreterMock = createInterpreterMock(getStoreStateMessage(StoreNames.TabStore), null);
 
-        testObject.registerCallbacks();
-        actionMock.verifyAll();
+        const testSubject = new TabActionCreator(interpreterMock.object, actionsMock.object, null, null);
+
+        testSubject.registerCallbacks();
+
+        getCurrentStateMock.verifyAll();
     });
 
-    test('on Tab.Remove', () => {
-        const actionMock = createActionMock(null);
-        setupTabActionsMock('tabRemove', actionMock);
-        setupRegisterTypeToPayloadCallbackMock(Messages.Tab.Remove, null, tabId);
+    it('handles Tab.Remove message', () => {
+        const tabRemoveMock = createActionMock<void>(null);
+        const actionsMock = createActionsMock('tabRemove', tabRemoveMock.object);
+        const interpreterMock = createInterpreterMock(Messages.Tab.Remove, null);
 
-        testObject.registerCallbacks();
-        actionMock.verifyAll();
+        const testSubject = new TabActionCreator(interpreterMock.object, actionsMock.object, null, null);
+
+        testSubject.registerCallbacks();
+
+        tabRemoveMock.verifyAll();
     });
 
-    test('on Tab.Change', () => {
-        const actionMock = createActionMock(iTabPayload);
-        setupTabActionsMock('tabChange', actionMock);
-        setupRegisterTypeToPayloadCallbackMock(Messages.Tab.Change, iTabPayload, tabId);
+    it('handles Tab.Change message', () => {
+        const payload: Tab = {
+            id: -1,
+            title: 'test tab title',
+            url: 'test url',
+        };
 
-        testObject.registerCallbacks();
-        actionMock.verifyAll();
+        const tabChangeMock = createActionMock(payload);
+        const actionsMock = createActionsMock('tabChange', tabChangeMock.object);
+        const interpreterMock = createInterpreterMock(Messages.Tab.Change, payload);
+
+        const testSubject = new TabActionCreator(interpreterMock.object, actionsMock.object, null, null);
+
+        testSubject.registerCallbacks();
+
+        tabChangeMock.verifyAll();
     });
 
-    test('on Tab.Switch', () => {
-        browserAdapterMock.setup(ba => ba.switchToTab(tabId)).verifiable(Times.once());
-
+    it('handles Tab.Switch message', () => {
         const payload: SwitchToTargetTabPayload = {
             telemetry: {
                 triggeredBy: 'test' as TriggeredBy,
@@ -88,43 +90,40 @@ describe('TestActionCreatorTest', () => {
             },
         };
 
-        telemetryEventHandlerMock.setup(tp => tp.publishTelemetry(SWITCH_BACK_TO_TARGET, payload)).verifiable(Times.once());
+        const tabId: number = -1;
 
-        setupRegisterTypeToPayloadCallbackMock(Messages.Tab.Switch, payload, tabId);
+        const interpreterMock = createInterpreterMock(Messages.Tab.Switch, payload, tabId);
 
-        testObject.registerCallbacks();
+        const testSubject = new TabActionCreator(interpreterMock.object, null, browserAdapterMock.object, telemetryEventHandlerMock.object);
 
-        telemetryEventHandlerMock.verifyAll();
-        browserAdapterMock.verifyAll();
+        testSubject.registerCallbacks();
+
+        browserAdapterMock.verify(ba => ba.switchToTab(tabId), Times.once());
+        telemetryEventHandlerMock.verify(tp => tp.publishTelemetry(SWITCH_BACK_TO_TARGET, payload), Times.once());
     });
 
-    test('on Tab.VisibilityChange', () => {
+    it('handles Tab.VisibilityChange message', () => {
         const payload: PageVisibilityChangeTabPayload = {
             hidden: true,
         };
 
-        const actionMock = createActionMock(payload.hidden);
-        setupTabActionsMock('tabVisibilityChange', actionMock);
-        setupRegisterTypeToPayloadCallbackMock(Messages.Tab.VisibilityChange, payload, tabId);
+        const tabVisibilityChangeMock = createActionMock(payload.hidden);
+        const actionsMock = createActionsMock('tabVisibilityChange', tabVisibilityChangeMock.object);
+        const interpreterMock = createInterpreterMock(Messages.Tab.VisibilityChange, payload);
 
-        testObject.registerCallbacks();
-        actionMock.verifyAll();
+        const testSubject = new TabActionCreator(interpreterMock.object, actionsMock.object, null, null);
+
+        testSubject.registerCallbacks();
+
+        tabVisibilityChangeMock.verifyAll();
     });
 
-    function createActionMock<T>(actionPayload: T): IMock<Action<T>> {
-        const actionMock = Mock.ofType<Action<T>>(Action);
-        actionMock.setup(action => action.invoke(actionPayload)).verifiable(Times.once());
-
-        return actionMock;
-    }
-
-    function setupTabActionsMock(actionName: keyof TabActions, actionMock: IMock<Action<any>>): void {
-        tabActionsMock.setup(actions => actions[actionName]).returns(() => actionMock.object);
-    }
-
-    function setupRegisterTypeToPayloadCallbackMock(message: string, actionPayload: any, listeningTabId: number): void {
-        registerTypeToPayloadCallbackMock
-            .setup(regitrar => regitrar(message, It.is(param => _.isFunction(param))))
-            .callback((passedMessage, handler) => handler(actionPayload, listeningTabId));
+    function createActionsMock<ActionName extends keyof TabActions>(
+        actionName: ActionName,
+        action: TabActions[ActionName],
+    ): IMock<TabActions> {
+        const actionsMock = Mock.ofType<TabActions>();
+        actionsMock.setup(actions => actions[actionName]).returns(() => action);
+        return actionsMock;
     }
 });

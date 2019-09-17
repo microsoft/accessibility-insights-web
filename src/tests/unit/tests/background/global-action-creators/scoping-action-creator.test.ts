@@ -1,14 +1,14 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { isFunction } from 'lodash';
-import { IMock, It, Mock, Times } from 'typemoq';
-
 import { ScopingActions, ScopingPayload } from 'background/actions/scoping-actions';
 import { ScopingActionCreator } from 'background/global-action-creators/scoping-action-creator';
 import { Interpreter } from 'background/interpreter';
-import { Action } from '../../../../../common/flux/action';
+import { isFunction } from 'lodash';
+import { IMock, It, Mock } from 'typemoq';
+
 import { getStoreStateMessage, Messages } from '../../../../../common/messages';
 import { StoreNames } from '../../../../../common/stores/store-names';
+import { createActionMock } from './action-creator-test-helpers';
 
 describe('ScopingActionCreator', () => {
     let interpreterMock: IMock<Interpreter>;
@@ -28,7 +28,7 @@ describe('ScopingActionCreator', () => {
 
         setupInterpreterMock(expectedMessage);
 
-        const getCurrentStateMock = createActionMock();
+        const getCurrentStateMock = createActionMock(null);
 
         setupActionsMock('getCurrentState', getCurrentStateMock.object);
 
@@ -85,14 +85,6 @@ describe('ScopingActionCreator', () => {
                     handler();
                 }
             });
-    };
-
-    const createActionMock = <Payload = void>(payload: Payload = null): IMock<Action<Payload>> => {
-        const actionMock = Mock.ofType<Action<Payload>>();
-
-        actionMock.setup(action => action.invoke(payload)).verifiable(Times.once());
-
-        return actionMock;
     };
 
     const setupActionsMock = <ActionName extends keyof ScopingActions>(actionName: ActionName, action: ScopingActions[ActionName]) => {

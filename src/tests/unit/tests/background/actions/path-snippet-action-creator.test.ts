@@ -1,94 +1,72 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as _ from 'lodash';
-import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
-
 import { PathSnippetActionCreator } from 'background/actions/path-snippet-action-creator';
 import { PathSnippetActions } from 'background/actions/path-snippet-actions';
-import { Action } from '../../../../../common/flux/action';
-import { RegisterTypeToPayloadCallback } from '../../../../../common/message';
+import { IMock, Mock } from 'typemoq';
+
 import { getStoreStateMessage, Messages } from '../../../../../common/messages';
 import { StoreNames } from '../../../../../common/stores/store-names';
+import { createActionMock, createInterpreterMock } from '../global-action-creators/action-creator-test-helpers';
 
 describe('PathSnippetActionCreatorTest', () => {
-    let pathSnippetActionsMock: IMock<PathSnippetActions>;
-    let registerTypeToPayloadCallbackMock: IMock<RegisterTypeToPayloadCallback>;
+    it('handles AddPathForValidation message', () => {
+        const payload = 'test path';
 
-    let testObject: PathSnippetActionCreator;
+        const onAddPathMock = createActionMock(payload);
+        const actionsMock = createActionsMock('onAddPath', onAddPathMock.object);
+        const interpreterMock = createInterpreterMock(Messages.PathSnippet.AddPathForValidation, payload);
 
-    beforeAll(() => {
-        pathSnippetActionsMock = Mock.ofType(PathSnippetActions, MockBehavior.Strict);
-        registerTypeToPayloadCallbackMock = Mock.ofInstance((payloadType, callback) => {});
+        const newTestObject = new PathSnippetActionCreator(interpreterMock.object, actionsMock.object);
 
-        testObject = new PathSnippetActionCreator(pathSnippetActionsMock.object, registerTypeToPayloadCallbackMock.object);
+        newTestObject.registerCallbacks();
+
+        onAddPathMock.verifyAll();
     });
 
-    test('registerCallbacks for onAddPathForValidation', () => {
-        const path = 'test path';
-        const actionName = 'onAddPath';
+    it('handles AddCorrespondingSnippet message', () => {
+        const payload = 'test snippet';
 
-        const payload = path;
-        const addPathForValidationMock = createActionMock(payload);
+        const onAddSnippetMock = createActionMock(payload);
+        const actionsMock = createActionsMock('onAddSnippet', onAddSnippetMock.object);
+        const interpreterMock = createInterpreterMock(Messages.PathSnippet.AddCorrespondingSnippet, payload);
 
-        setupPathSnippetActionMock(actionName, addPathForValidationMock);
-        setupRegisterTypeToPayloadCallbackMock(Messages.PathSnippet.AddPathForValidation, payload);
+        const newTestObject = new PathSnippetActionCreator(interpreterMock.object, actionsMock.object);
 
-        testObject.registerCallbacks();
-        addPathForValidationMock.verifyAll();
+        newTestObject.registerCallbacks();
+
+        onAddSnippetMock.verifyAll();
     });
 
-    test('registerCallbacks for onAddCorrespondingSnippet', () => {
-        const snippet = 'test corresponding snippet';
-        const actionName = 'onAddSnippet';
+    it('handles GetPathSnippetCurrentState message', () => {
+        const getCurrentStateMock = createActionMock(null);
+        const actionsMock = createActionsMock('getCurrentState', getCurrentStateMock.object);
+        const interpreterMock = createInterpreterMock(getStoreStateMessage(StoreNames.PathSnippetStore), null);
 
-        const payload = snippet;
-        const addCorrespondingSnippetMock = createActionMock(payload);
+        const newTestObject = new PathSnippetActionCreator(interpreterMock.object, actionsMock.object);
 
-        setupPathSnippetActionMock(actionName, addCorrespondingSnippetMock);
-        setupRegisterTypeToPayloadCallbackMock(Messages.PathSnippet.AddCorrespondingSnippet, payload);
+        newTestObject.registerCallbacks();
 
-        testObject.registerCallbacks();
-        addCorrespondingSnippetMock.verifyAll();
+        getCurrentStateMock.verifyAll();
     });
 
-    test('registerCallbacks for onGetPathSnippetCurrentState', () => {
-        const actionName = 'getCurrentState';
+    it('handles ClearPathSnippetData message', () => {
+        const onClearDataMock = createActionMock(null);
+        const actionsMock = createActionsMock('onClearData', onClearDataMock.object);
+        const interpreterMock = createInterpreterMock(Messages.PathSnippet.ClearPathSnippetData, null);
 
-        const getPathSnippetCurrentStateMock = createActionMock(null);
+        const newTestObject = new PathSnippetActionCreator(interpreterMock.object, actionsMock.object);
 
-        setupPathSnippetActionMock(actionName, getPathSnippetCurrentStateMock);
-        setupRegisterTypeToPayloadCallbackMock(getStoreStateMessage(StoreNames.PathSnippetStore), null);
+        newTestObject.registerCallbacks();
 
-        testObject.registerCallbacks();
-        getPathSnippetCurrentStateMock.verifyAll();
+        onClearDataMock.verifyAll();
     });
 
-    test('registerCallbacks for onClearPathSnippetData', () => {
-        const actionName = 'onClearData';
-
-        const clearPathSnippetDataMock = createActionMock(null);
-
-        setupPathSnippetActionMock(actionName, clearPathSnippetDataMock);
-        setupRegisterTypeToPayloadCallbackMock(Messages.PathSnippet.ClearPathSnippetData, null);
-
-        testObject.registerCallbacks();
-        clearPathSnippetDataMock.verifyAll();
-    });
-
-    function createActionMock<TPayload>(actionPayload: TPayload): IMock<Action<TPayload>> {
-        const getCurrentStateMock = Mock.ofType<Action<TPayload>>(Action, MockBehavior.Strict);
-        getCurrentStateMock.setup(action => action.invoke(actionPayload)).verifiable(Times.once());
-
-        return getCurrentStateMock;
-    }
-
-    function setupPathSnippetActionMock(actionName: keyof PathSnippetActions, actionMock: IMock<Action<any>>): void {
-        pathSnippetActionsMock.setup(actions => actions[actionName]).returns(() => actionMock.object);
-    }
-
-    function setupRegisterTypeToPayloadCallbackMock(message: string, payload: any): void {
-        registerTypeToPayloadCallbackMock
-            .setup(registrar => registrar(message, It.is(_.isFunction)))
-            .callback((passedMessage, listener) => listener(payload));
+    function createActionsMock<ActionName extends keyof PathSnippetActions>(
+        actionName: ActionName,
+        action: PathSnippetActions[ActionName],
+    ): IMock<PathSnippetActions> {
+        const actionsMock = Mock.ofType<PathSnippetActions>();
+        actionsMock.setup(actions => actions[actionName]).returns(() => action);
+        return actionsMock;
     }
 });

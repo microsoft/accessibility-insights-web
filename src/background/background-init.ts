@@ -2,12 +2,12 @@
 // Licensed under the MIT License.
 import { AppInsights } from 'applicationinsights-js';
 import { Assessments } from 'assessments/assessments';
-import { Store } from 'idb-keyval';
 
 import { AxeInfo } from '../common/axe-info';
 import { ChromeAdapter } from '../common/browser-adapters/chrome-adapter';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
 import { EnvironmentInfoProvider } from '../common/environment-info-provider';
+import { getIndexedDBStore } from '../common/indexedDB/get-indexeddb-store';
 import { IndexedDBAPI, IndexedDBUtil } from '../common/indexedDB/indexedDB';
 import { InsightsFeatureFlags } from '../common/insights-feature-flags';
 import { createDefaultLogger } from '../common/logging/default-logger';
@@ -23,6 +23,7 @@ import { DetailsViewController } from './details-view-controller';
 import { DevToolsListener } from './dev-tools-listener';
 import { getPersistedData, PersistedData } from './get-persisted-data';
 import { GlobalContextFactory } from './global-context-factory';
+import { IndexedDBDataKeys } from './IndexedDBDataKeys';
 import { deprecatedStorageDataKeys, storageDataKeys } from './local-storage-data-keys';
 import { MessageDistributor } from './message-distributor';
 import { LocalStorageData } from './storage-data';
@@ -39,19 +40,16 @@ import { UserStoredDataCleaner } from './user-stored-data-cleaner';
 
 declare var window: Window & InsightsFeatureFlags;
 
-const defaultIndexedDBName: string = 'default-db';
-const defaultIndexedDBStoreName: string = 'default-store';
-
 const browserAdapter = new ChromeAdapter();
 const urlValidator = new UrlValidator(browserAdapter);
 const backgroundInitCleaner = new UserStoredDataCleaner(browserAdapter);
-const store = new Store(defaultIndexedDBName, defaultIndexedDBStoreName);
-const indexedDBInstance: IndexedDBAPI = new IndexedDBUtil(store);
+const indexedDBInstance: IndexedDBAPI = new IndexedDBUtil(getIndexedDBStore());
+const indexedDBDataKeysToFetch = [IndexedDBDataKeys.assessmentStore, IndexedDBDataKeys.userConfiguration];
 
 backgroundInitCleaner.cleanUserData(deprecatedStorageDataKeys);
 
 // tslint:disable-next-line:no-floating-promises - top-level entry points are intentionally floating promises
-getPersistedData(indexedDBInstance).then((persistedData: PersistedData) => {
+getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then((persistedData: PersistedData) => {
     browserAdapter.getUserData(storageDataKeys, (userData: LocalStorageData) => {
         const assessmentsProvider = Assessments;
         const windowUtils = new WindowUtils();

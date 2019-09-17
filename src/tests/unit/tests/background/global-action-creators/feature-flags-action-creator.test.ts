@@ -1,15 +1,15 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { isFunction } from 'lodash';
-import { IMock, It, Mock, Times } from 'typemoq';
-
 import { FeatureFlagActions, FeatureFlagPayload } from 'background/actions/feature-flag-actions';
 import { FeatureFlagsActionCreator } from 'background/global-action-creators/feature-flags-action-creator';
 import { Interpreter } from 'background/interpreter';
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
-import { Action } from '../../../../../common/flux/action';
+import { isFunction } from 'lodash';
+import { IMock, It, Mock } from 'typemoq';
+
 import { getStoreStateMessage, Messages } from '../../../../../common/messages';
 import { StoreNames } from '../../../../../common/stores/store-names';
+import { createActionMock } from './action-creator-test-helpers';
 
 describe('FeatureFlagsActionCreator', () => {
     let interpreterMock: IMock<Interpreter>;
@@ -31,7 +31,7 @@ describe('FeatureFlagsActionCreator', () => {
 
         setupInterpreterMock(expectedMessage);
 
-        const getCurrentStateMock = createActionMock();
+        const getCurrentStateMock = createActionMock(null);
 
         setupActionsMock('getCurrentState', getCurrentStateMock.object);
 
@@ -64,7 +64,7 @@ describe('FeatureFlagsActionCreator', () => {
 
         setupInterpreterMock(expectedMessage);
 
-        const resetFeatureFlagMock = createActionMock();
+        const resetFeatureFlagMock = createActionMock(null);
 
         setupActionsMock('resetFeatureFlags', resetFeatureFlagMock.object);
 
@@ -83,14 +83,6 @@ describe('FeatureFlagsActionCreator', () => {
                     handler();
                 }
             });
-    };
-
-    const createActionMock = <Payload = void>(payload: Payload = null): IMock<Action<Payload>> => {
-        const actionMock = Mock.ofType<Action<Payload>>();
-
-        actionMock.setup(action => action.invoke(payload)).verifiable(Times.once());
-
-        return actionMock;
     };
 
     const setupActionsMock = <ActionName extends keyof FeatureFlagActions>(
