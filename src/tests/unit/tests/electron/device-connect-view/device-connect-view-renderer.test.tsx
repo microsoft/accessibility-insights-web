@@ -5,7 +5,10 @@ import { DeviceConnectViewRenderer } from 'electron/device-connect-view/device-c
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { IMock, It, Mock } from 'typemoq';
-import { DeviceConnectViewContainer } from '../../../../../electron/device-connect-view/components/device-connect-view-container';
+import {
+    DeviceConnectViewContainer,
+    DeviceConnectViewContainerProps,
+} from '../../../../../electron/device-connect-view/components/device-connect-view-container';
 
 describe('DeviceConnectViewRendererTest', () => {
     test('render', () => {
@@ -26,7 +29,7 @@ describe('DeviceConnectViewRendererTest', () => {
             deps: {
                 currentWindow: browserWindow,
             },
-        };
+        } as DeviceConnectViewContainerProps;
 
         const expectedComponent = <DeviceConnectViewContainer {...props} />;
 

@@ -1,5 +1,23 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`DeviceConnectViewContainer listen to user configuration store: state from constructor 1`] = `
+Object {
+  "userConfigurationStoreData": Object {
+    "enableTelemetry": false,
+    "isFirstTime": true,
+  },
+}
+`;
+
+exports[`DeviceConnectViewContainer listen to user configuration store: updated state 1`] = `
+Object {
+  "userConfigurationStoreData": Object {
+    "enableTelemetry": true,
+    "isFirstTime": false,
+  },
+}
+`;
+
 exports[`DeviceConnectViewContainer renders 1`] = `
 <React.Fragment>
   <WindowTitle

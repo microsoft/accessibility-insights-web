@@ -28,6 +28,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then((persistedDat
     const props = {
         deps: {
             currentWindow: remote.getCurrentWindow(),
+            userConfigurationStore,
         },
     };
 
