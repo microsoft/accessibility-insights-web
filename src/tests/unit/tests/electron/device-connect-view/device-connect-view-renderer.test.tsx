@@ -1,21 +1,17 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { brand } from 'content/strings/application';
 import { BrowserWindow } from 'electron';
-import { DeviceConnectBody } from 'electron/device-connect-view/components/device-connect-body';
-import { WindowTitle } from 'electron/device-connect-view/components/window-title';
 import { DeviceConnectViewRenderer } from 'electron/device-connect-view/device-connect-view-renderer';
-import { BrandBlue } from 'icons/brand/blue/brand-blue';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { IMock, It, Mock } from 'typemoq';
+import { DeviceConnectViewContainer } from '../../../../../electron/device-connect-view/components/device-connect-view-container';
 
 describe('DeviceConnectViewRendererTest', () => {
     test('render', () => {
         const dom = document.createElement('div');
-        const deviceConnectViewContainer = document.createElement('div');
+        const containerDiv = document.createElement('div');
         const renderMock: IMock<typeof ReactDOM.render> = Mock.ofInstance(() => null);
-        const expectedTitle = brand;
 
         const browserWindow: BrowserWindow = {
             close: () => {
@@ -23,21 +19,20 @@ describe('DeviceConnectViewRendererTest', () => {
             },
         } as BrowserWindow;
 
-        deviceConnectViewContainer.setAttribute('id', 'device-connect-view-container');
-        dom.appendChild(deviceConnectViewContainer);
+        containerDiv.setAttribute('id', 'device-connect-view-container');
+        dom.appendChild(containerDiv);
 
-        const expectedComponent = (
-            <>
-                <WindowTitle title={expectedTitle}>
-                    <BrandBlue />
-                </WindowTitle>
-                <DeviceConnectBody currentWindow={browserWindow} />
-            </>
-        );
+        const props = {
+            deps: {
+                currentWindow: browserWindow,
+            },
+        };
 
-        renderMock.setup(r => r(It.isValue(expectedComponent), deviceConnectViewContainer)).verifiable();
+        const expectedComponent = <DeviceConnectViewContainer {...props} />;
 
-        const renderer = new DeviceConnectViewRenderer(renderMock.object, dom, browserWindow);
+        renderMock.setup(r => r(It.isValue(expectedComponent), containerDiv)).verifiable();
+
+        const renderer = new DeviceConnectViewRenderer(renderMock.object, dom, props);
 
         renderer.render();
 

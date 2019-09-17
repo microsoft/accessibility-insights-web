@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DeviceConnectViewContainer renders 1`] = `
+<React.Fragment>
+  <WindowTitle
+    title="Accessibility Insights"
+  >
+    <BrandBlue />
+  </WindowTitle>
+  <DeviceConnectBody
+    currentWindow={
+      Object {
+        "close": [Function],
+      }
+    }
+  />
+</React.Fragment>
+`;

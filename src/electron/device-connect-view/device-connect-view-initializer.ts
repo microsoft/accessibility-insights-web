@@ -25,6 +25,12 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then((persistedDat
     const userConfigurationStore = new UserConfigurationStore(persistedData.userConfigurationData, userConfigActions, indexedDBInstance);
 
     const dom = document;
-    const renderer = new DeviceConnectViewRenderer(ReactDOM.render, dom, remote.getCurrentWindow());
+    const props = {
+        deps: {
+            currentWindow: remote.getCurrentWindow(),
+        },
+    };
+
+    const renderer = new DeviceConnectViewRenderer(ReactDOM.render, dom, props);
     renderer.render();
 });
