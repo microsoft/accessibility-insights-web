@@ -22,17 +22,17 @@ describe('DeviceConnectViewRendererTest', () => {
         containerDiv.setAttribute('id', 'device-connect-view-container');
         dom.appendChild(containerDiv);
 
-        const expectedProps = {
+        const props = {
             deps: {
                 currentWindow: browserWindow,
             },
         };
 
-        const expectedComponent = <DeviceConnectViewContainer {...expectedProps} />;
+        const expectedComponent = <DeviceConnectViewContainer {...props} />;
 
         renderMock.setup(r => r(It.isValue(expectedComponent), containerDiv)).verifiable();
 
-        const renderer = new DeviceConnectViewRenderer(renderMock.object, dom, browserWindow);
+        const renderer = new DeviceConnectViewRenderer(renderMock.object, dom, props);
 
         renderer.render();
 

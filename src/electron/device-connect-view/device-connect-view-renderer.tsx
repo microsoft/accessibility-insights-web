@@ -3,22 +3,17 @@
 import { BrowserWindow } from 'electron';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { DeviceConnectViewContainer } from './components/device-connect-view-container';
+import { DeviceConnectViewContainer, DeviceConnectViewContainerProps } from './components/device-connect-view-container';
 
 export class DeviceConnectViewRenderer {
     constructor(
         private readonly renderer: typeof ReactDOM.render,
         private readonly dom: ParentNode,
-        private readonly CurrentWindow: BrowserWindow,
+        private readonly props: DeviceConnectViewContainerProps,
     ) {}
 
     public render(): void {
         const deviceConnectViewContainer = this.dom.querySelector('#device-connect-view-container');
-        const props = {
-            deps: {
-                currentWindow: this.CurrentWindow,
-            },
-        };
-        this.renderer(<DeviceConnectViewContainer {...props} />, deviceConnectViewContainer);
+        this.renderer(<DeviceConnectViewContainer {...this.props} />, deviceConnectViewContainer);
     }
 }
