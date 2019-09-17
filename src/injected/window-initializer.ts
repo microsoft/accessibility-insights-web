@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { getRTL } from '@uifabric/utilities';
 import * as Q from 'q';
-
+import { AppDataAdapter } from '../common/browser-adapters/app-data-adapter';
 import { BrowserAdapter } from '../common/browser-adapters/browser-adapter';
 import { ChromeAdapter } from '../common/browser-adapters/chrome-adapter';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
@@ -38,6 +38,7 @@ import { RootContainerCreator } from './visualization/root-container-creator';
 export class WindowInitializer {
     public shadowInitializer: any;
     protected browserAdapter: BrowserAdapter;
+    protected appDataAdapter: AppDataAdapter;
     protected windowUtils: WindowUtils;
     protected frameCommunicator: FrameCommunicator;
     protected drawingController: DrawingController;
@@ -53,8 +54,10 @@ export class WindowInitializer {
 
     public async initialize(): Promise<void> {
         const asyncInitializationSteps: Promise<void>[] = [];
+        const chromeAdapter = new ChromeAdapter();
 
-        this.browserAdapter = new ChromeAdapter();
+        this.browserAdapter = chromeAdapter;
+        this.appDataAdapter = chromeAdapter;
         this.windowUtils = new WindowUtils();
         const htmlElementUtils = new HTMLElementUtils();
         this.clientUtils = new ClientUtils(window);

@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { BrowserAdapter } from '../../common/browser-adapters/browser-adapter';
+import { AppDataAdapter } from '../../common/browser-adapters/app-data-adapter';
 import { StorageAdapter } from '../../common/browser-adapters/storage-adapter';
 import { config } from '../../common/configuration';
 import { DateProvider } from '../../common/date-provider';
@@ -16,7 +16,7 @@ import { TelemetryLogger } from './telemetry-logger';
 
 export const getTelemetryClient = (
     userData: LocalStorageData,
-    browserAdapter: BrowserAdapter,
+    appDataAdapter: AppDataAdapter,
     logger: TelemetryLogger,
     appInsights: Microsoft.ApplicationInsights.IAppInsights,
     storageAdapter: StorageAdapter,
@@ -34,7 +34,7 @@ export const getTelemetryClient = (
         storageAdapter,
     );
     const applicationBuildGenerator = new ApplicationBuildGenerator();
-    const coreTelemetryDataFactory = new ApplicationTelemetryDataFactory(browserAdapter, applicationBuildGenerator, installDataGenerator);
+    const coreTelemetryDataFactory = new ApplicationTelemetryDataFactory(appDataAdapter, applicationBuildGenerator, installDataGenerator);
 
     return new AppInsightsTelemetryClient(appInsights, coreTelemetryDataFactory, logger);
 };

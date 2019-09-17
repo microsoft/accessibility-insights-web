@@ -186,7 +186,7 @@ export class ChromeAdapter implements BrowserAdapter, StorageAdapter, CommandsAd
         return chrome.runtime.getManifest();
     }
 
-    public get extensionVersion(): string {
+    public getVersion(): string {
         return this.getManifest().version;
     }
 

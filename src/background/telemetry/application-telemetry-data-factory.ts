@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { BrowserAdapter } from '../../common/browser-adapters/browser-adapter';
+import { AppDataAdapter } from '../../common/browser-adapters/app-data-adapter';
 import { ApplicationBuildGenerator } from '../application-build-generator';
 import { InstallDataGenerator } from '../install-data-generator';
 import { title } from './../../content/strings/application';
@@ -17,12 +17,11 @@ export class ApplicationTelemetryDataFactory {
     private readonly build: string;
 
     constructor(
-        browserAdapter: BrowserAdapter,
+        appDataAdapter: AppDataAdapter,
         buildGenerator: ApplicationBuildGenerator,
         private readonly installDataGenerator: InstallDataGenerator,
     ) {
-        const manifest = browserAdapter.getManifest();
-        this.version = manifest.version;
+        this.version = appDataAdapter.getVersion();
         this.build = buildGenerator.getBuild();
     }
 

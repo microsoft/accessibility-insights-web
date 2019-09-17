@@ -128,11 +128,7 @@ export class MainWindowInitializer extends WindowInitializer {
 
         const browserSpec = new NavigatorUtils(window.navigator).getBrowserSpec();
 
-        const environmentInfoProvider = new EnvironmentInfoProvider(
-            this.browserAdapter.extensionVersion,
-            browserSpec,
-            AxeInfo.Default.version,
-        );
+        const environmentInfoProvider = new EnvironmentInfoProvider(this.appDataAdapter.getVersion(), browserSpec, AxeInfo.Default.version);
 
         MainWindowContext.initialize(
             this.devToolStoreProxy,

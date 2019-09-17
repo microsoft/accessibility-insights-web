@@ -1,13 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { Mock } from 'typemoq';
-
 import { LocalStorageData } from 'background/storage-data';
 import { AppInsightsTelemetryClient } from 'background/telemetry/app-insights-telemetry-client';
 import { NullTelemetryClient } from 'background/telemetry/null-telemetry-client';
 import { getTelemetryClient } from 'background/telemetry/telemetry-client-provider';
 import { TelemetryLogger } from 'background/telemetry/telemetry-logger';
-import { BrowserAdapter } from '../../../../../common/browser-adapters/browser-adapter';
+import { Mock } from 'typemoq';
+import { AppDataAdapter } from '../../../../../common/browser-adapters/app-data-adapter';
 import { StorageAdapter } from '../../../../../common/browser-adapters/storage-adapter';
 import { configMutator } from '../../../../../common/configuration';
 
@@ -18,17 +17,13 @@ describe('TelemetryClientProvider', () => {
     test('with instrumentation key', () => {
         configMutator.setOption('appInsightsInstrumentationKey', 'test-key');
 
-        const browserAdapterMock = Mock.ofType<BrowserAdapter>();
+        const appAdapterMock = Mock.ofType<AppDataAdapter>();
 
-        const manifestStub = {
-            version: 'test',
-        } as chrome.runtime.Manifest;
-
-        browserAdapterMock.setup(adapter => adapter.getManifest()).returns(() => manifestStub);
+        appAdapterMock.setup(adapter => adapter.getVersion()).returns(() => 'test');
 
         const result = getTelemetryClient(
             {} as LocalStorageData,
-            browserAdapterMock.object,
+            appAdapterMock.object,
             Mock.ofType<TelemetryLogger>().object,
             Mock.ofType<Microsoft.ApplicationInsights.IAppInsights>().object,
             Mock.ofType<StorageAdapter>().object,
@@ -42,7 +37,7 @@ describe('TelemetryClientProvider', () => {
 
         const result = getTelemetryClient(
             {} as LocalStorageData,
-            Mock.ofType<BrowserAdapter>().object,
+            Mock.ofType<AppDataAdapter>().object,
             Mock.ofType<TelemetryLogger>().object,
             Mock.ofType<Microsoft.ApplicationInsights.IAppInsights>().object,
             Mock.ofType<StorageAdapter>().object,

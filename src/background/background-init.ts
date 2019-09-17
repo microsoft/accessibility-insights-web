@@ -61,7 +61,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then((persistedDat
         const telemetryEventHandler = new TelemetryEventHandler(telemetryClient);
 
         const browserSpec = new NavigatorUtils(window.navigator).getBrowserSpec();
-        const environmentInfoProvider = new EnvironmentInfoProvider(browserAdapter.extensionVersion, browserSpec, AxeInfo.Default.version);
+        const environmentInfoProvider = new EnvironmentInfoProvider(browserAdapter.getVersion(), browserSpec, AxeInfo.Default.version);
 
         const globalContext = GlobalContextFactory.createContext(
             browserAdapter,
