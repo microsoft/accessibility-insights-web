@@ -1,15 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import {
-    privacyStatementPopupText,
-    telemetryPopupCheckboxTitle,
-    telemetryPopupTitle,
-} from 'content/settings/improve-accessibility-insights';
+import { telemetryPopupCheckboxTitle, telemetryPopupTitle } from 'content/settings/improve-accessibility-insights';
 import { PrimaryButton } from 'office-ui-fabric-react/lib/Button';
 import { Checkbox } from 'office-ui-fabric-react/lib/Checkbox';
 import { Dialog, DialogFooter, DialogType } from 'office-ui-fabric-react/lib/Dialog';
 import * as React from 'react';
-
+import { PrivacyStatementPopupText, PrivacyStatementTextDeps } from './privacy-statement-text';
 import { TelemetryNotice, TelemetryNoticeDeps } from './telemetry-notice';
 
 export interface TelemetryPermissionDialogState {
@@ -27,7 +23,8 @@ export type SetTelemetryStateMessageCreator = {
 
 export type TelemetryPermissionDialogDeps = {
     userConfigMessageCreator: SetTelemetryStateMessageCreator;
-} & TelemetryNoticeDeps;
+} & TelemetryNoticeDeps &
+    PrivacyStatementTextDeps;
 
 export class TelemetryPermissionDialog extends React.Component<TelemetryPermissionDialogProps, TelemetryPermissionDialogState> {
     constructor(props) {
@@ -65,7 +62,7 @@ export class TelemetryPermissionDialog extends React.Component<TelemetryPermissi
                         checked={this.state.isEnableTelemetryChecked}
                         className="telemetry-agree-checkbox"
                     />
-                    {privacyStatementPopupText}
+                    <PrivacyStatementPopupText deps={this.props.deps}></PrivacyStatementPopupText>
                 </div>
                 <DialogFooter>
                     <PrimaryButton

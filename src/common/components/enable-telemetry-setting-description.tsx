@@ -1,14 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as React from 'react';
-import { privacyStatementText } from '../../content/settings/improve-accessibility-insights';
 import { NamedFC } from '../react/named-fc';
-import { LinkComponentType } from '../types/link-component-type';
-import { TelemetryNotice } from './telemetry-notice';
+import { PrivacyStatementText, PrivacyStatementTextDeps } from './privacy-statement-text';
+import { TelemetryNotice, TelemetryNoticeDeps } from './telemetry-notice';
 
-export type EnableTelemetrySettingDescriptionDeps = {
-    LinkComponent: LinkComponentType;
-};
+export type EnableTelemetrySettingDescriptionDeps = TelemetryNoticeDeps & PrivacyStatementTextDeps;
 
 export type EnableTelemetrySettingDescriptionProps = {
     deps: EnableTelemetrySettingDescriptionDeps;
@@ -19,7 +16,7 @@ export const EnableTelemetrySettingDescription = NamedFC<EnableTelemetrySettingD
     props => (
         <>
             <TelemetryNotice deps={props.deps} />
-            {privacyStatementText}
+            <PrivacyStatementText deps={props.deps} />
         </>
     ),
 );

@@ -5,6 +5,7 @@ import { PrimaryButton } from 'office-ui-fabric-react/lib/Button';
 import { Checkbox } from 'office-ui-fabric-react/lib/Checkbox';
 import * as React from 'react';
 import { NewTabLink } from '../../../../../common/components/new-tab-link';
+import { PrivacyStatementPopupText } from '../../../../../common/components/privacy-statement-text';
 import { TelemetryNotice } from '../../../../../common/components/telemetry-notice';
 import {
     SetTelemetryStateMessageCreator,
@@ -45,8 +46,12 @@ describe('TelemetryPermissionDialogTest', () => {
 
         expect(wrapper.getElement()).toMatchSnapshot();
         expect(wrapper.state()).toMatchObject({ isEnableTelemetryChecked: true });
+
         const telemetryNotice = wrapper.find(TelemetryNotice);
         expect(telemetryNotice.prop('deps').LinkComponent).toBe(props.deps.LinkComponent);
+
+        const privacyStatementPopupText = wrapper.find(PrivacyStatementPopupText);
+        expect(privacyStatementPopupText.prop('deps').LinkComponent).toBe(props.deps.LinkComponent);
     });
 
     test('toggle check box', () => {
