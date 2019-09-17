@@ -5,7 +5,8 @@ import { BrowserWindow } from 'electron';
 import { shallow } from 'enzyme';
 import { isFunction } from 'lodash';
 import * as React from 'react';
-import { It, Mock, Times } from 'typemoq';
+import { It, Mock } from 'typemoq';
+import { UserConfigurationStore } from '../../../../../../background/stores/global/user-configuration-store';
 import { BaseStore } from '../../../../../../common/base-store';
 import { UserConfigurationStoreData } from '../../../../../../common/types/store-data/user-configuration-store';
 import {
@@ -22,10 +23,20 @@ describe('DeviceConnectViewContainer', () => {
     } as BrowserWindow;
 
     it('renders', () => {
+        const userConfigurationStoreMock = Mock.ofType<BaseStore<UserConfigurationStoreData>>(UserConfigurationStore);
+
+        userConfigurationStoreMock
+            .setup(store => store.getState())
+            .returns(() => {
+                return {
+                    isFirstTime: true,
+                } as UserConfigurationStoreData;
+            });
+
         const deps: DeviceConnectViewContainerDeps = {
             currentWindow: currentWindowStub,
-            userConfigurationStore: Mock.ofType<BaseStore<UserConfigurationStoreData>>().object,
-        };
+            userConfigurationStore: userConfigurationStoreMock.object,
+        } as DeviceConnectViewContainerDeps;
 
         const props: DeviceConnectViewContainerProps = { deps };
 
@@ -64,9 +75,8 @@ describe('DeviceConnectViewContainer', () => {
             });
 
         const deps: DeviceConnectViewContainerDeps = {
-            currentWindow: currentWindowStub,
             userConfigurationStore: userConfigurationStoreMock.object,
-        };
+        } as DeviceConnectViewContainerDeps;
 
         const props: DeviceConnectViewContainerProps = { deps };
 

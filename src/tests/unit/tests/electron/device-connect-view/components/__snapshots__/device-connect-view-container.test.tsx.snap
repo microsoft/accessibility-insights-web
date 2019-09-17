@@ -32,5 +32,31 @@ exports[`DeviceConnectViewContainer renders 1`] = `
       }
     }
   />
+  <TelemetryPermissionDialog
+    deps={
+      Object {
+        "currentWindow": Object {
+          "close": [Function],
+        },
+        "userConfigurationStore": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "changedHandlers": EventHandlerList {
+            "handlers": Array [],
+          },
+          "indexDbApi": undefined,
+          "onGetCurrentState": [Function],
+          "onSaveIssueSettings": [Function],
+          "onSetHighContrastMode": [Function],
+          "onSetIssueFilingService": [Function],
+          "onSetIssueFilingServiceProperty": [Function],
+          "onSetTelemetryState": [Function],
+          "persistedState": undefined,
+          "storeName": 11,
+          "userConfigActions": undefined,
+        },
+      }
+    }
+    isFirstTime={true}
+  />
 </React.Fragment>
 `;
