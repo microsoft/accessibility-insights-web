@@ -7,7 +7,7 @@ import { DateProvider } from '../../common/date-provider';
 import { generateUID } from '../../common/uid-generator';
 import { ApplicationBuildGenerator } from '../application-build-generator';
 import { InstallDataGenerator } from '../install-data-generator';
-import { LocalStorageData } from '../storage-data';
+import { InstallationData } from '../installation-data';
 import { AppInsightsTelemetryClient } from './app-insights-telemetry-client';
 import { ApplicationTelemetryDataFactory } from './application-telemetry-data-factory';
 import { NullTelemetryClient } from './null-telemetry-client';
@@ -15,7 +15,7 @@ import { TelemetryClient } from './telemetry-client';
 import { TelemetryLogger } from './telemetry-logger';
 
 export const getTelemetryClient = (
-    userData: LocalStorageData,
+    installationData: InstallationData,
     appDataAdapter: AppDataAdapter,
     logger: TelemetryLogger,
     appInsights: Microsoft.ApplicationInsights.IAppInsights,
@@ -27,12 +27,7 @@ export const getTelemetryClient = (
         return new NullTelemetryClient(logger);
     }
 
-    const installDataGenerator = new InstallDataGenerator(
-        userData.installationData,
-        generateUID,
-        DateProvider.getCurrentDate,
-        storageAdapter,
-    );
+    const installDataGenerator = new InstallDataGenerator(installationData, generateUID, DateProvider.getCurrentDate, storageAdapter);
     const applicationBuildGenerator = new ApplicationBuildGenerator();
     const coreTelemetryDataFactory = new ApplicationTelemetryDataFactory(appDataAdapter, applicationBuildGenerator, installDataGenerator);
 

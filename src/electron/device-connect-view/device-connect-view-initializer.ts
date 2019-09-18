@@ -9,6 +9,7 @@ import { getPersistedData, PersistedData } from '../../background/get-persisted-
 import { IndexedDBDataKeys } from '../../background/IndexedDBDataKeys';
 import { InstallationData } from '../../background/installation-data';
 import { UserConfigurationStore } from '../../background/stores/global/user-configuration-store';
+import { getTelemetryClient } from '../../background/telemetry/telemetry-client-provider';
 import { TelemetryEventHandler } from '../../background/telemetry/telemetry-event-handler';
 import { TelemetryLogger } from '../../background/telemetry/telemetry-logger';
 import { TelemetryStateListener } from '../../background/telemetry/telemetry-state-listener';
@@ -17,7 +18,6 @@ import { getIndexedDBStore } from '../../common/indexedDB/get-indexeddb-store';
 import { IndexedDBAPI, IndexedDBUtil } from '../../common/indexedDB/indexedDB';
 import { ElectronAppDataAdapter } from '../adapters/electron-app-data-adapter';
 import { ElectronStorageAdapter } from '../adapters/electron-storage-adapter';
-import { getTelemetryClientWrapper } from '../telemetry/telemetry-client-provider-wrapper';
 import { DeviceConnectViewRenderer } from './device-connect-view-renderer';
 
 initializeFabricIcons();
@@ -35,7 +35,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then((persistedDat
 
     // wireup telemetry
     const telemetryLogger = new TelemetryLogger();
-    const telemetryClient = getTelemetryClientWrapper(installationData, appDataAdapter, telemetryLogger, AppInsights, storageAdapter);
+    const telemetryClient = getTelemetryClient(installationData, appDataAdapter, telemetryLogger, AppInsights, storageAdapter);
     const telemetryEventHandler = new TelemetryEventHandler(telemetryClient);
 
     const userConfigurationStore = new UserConfigurationStore(persistedData.userConfigurationData, userConfigActions, indexedDBInstance);
