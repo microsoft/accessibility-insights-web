@@ -5,17 +5,22 @@ import { NullTelemetryClient } from 'background/telemetry/null-telemetry-client'
 import { getTelemetryClient } from 'background/telemetry/telemetry-client-provider';
 import { TelemetryLogger } from 'background/telemetry/telemetry-logger';
 import { Mock } from 'typemoq';
-
 import { InstallationData } from '../../../../../background/installation-data';
 import { AppDataAdapter } from '../../../../../common/browser-adapters/app-data-adapter';
 import { StorageAdapter } from '../../../../../common/browser-adapters/storage-adapter';
 import { configMutator } from '../../../../../common/configuration';
 
 describe('TelemetryClientProvider', () => {
+    const installationData: InstallationData = {
+        id: 'test-id',
+        month: 9,
+        year: 2019,
+    };
+
     beforeEach(() => configMutator.reset());
     afterAll(() => configMutator.reset());
 
-    test('with instrumentation key', () => {
+    it('builds a telemetry client using the instrumentation key', () => {
         configMutator.setOption('appInsightsInstrumentationKey', 'test-key');
 
         const appAdapterMock = Mock.ofType<AppDataAdapter>();
@@ -23,7 +28,7 @@ describe('TelemetryClientProvider', () => {
         appAdapterMock.setup(adapter => adapter.getVersion()).returns(() => 'test');
 
         const result = getTelemetryClient(
-            {} as InstallationData,
+            installationData,
             appAdapterMock.object,
             Mock.ofType<TelemetryLogger>().object,
             Mock.ofType<Microsoft.ApplicationInsights.IAppInsights>().object,
@@ -33,11 +38,11 @@ describe('TelemetryClientProvider', () => {
         expect(result).toBeInstanceOf(AppInsightsTelemetryClient);
     });
 
-    test('without instrumentation key', () => {
+    it('builds a telemetry client when there is no instrumentation key', () => {
         configMutator.setOption('appInsightsInstrumentationKey', null);
 
         const result = getTelemetryClient(
-            {} as InstallationData,
+            installationData,
             Mock.ofType<AppDataAdapter>().object,
             Mock.ofType<TelemetryLogger>().object,
             Mock.ofType<Microsoft.ApplicationInsights.IAppInsights>().object,
