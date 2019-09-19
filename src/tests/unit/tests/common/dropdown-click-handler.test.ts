@@ -3,8 +3,8 @@
 import { IMock, Mock, Times } from 'typemoq';
 
 import { DropdownClickHandler } from '../../../../common/dropdown-click-handler';
-import { DropdownActionMessageCreator } from '../../../../common/message-creators/dropdown-action-message-creator';
 import { TelemetryEventSource } from '../../../../common/extension-telemetry-events';
+import { DropdownActionMessageCreator } from '../../../../common/message-creators/dropdown-action-message-creator';
 import { EventStubFactory } from '../../common/event-stub-factory';
 
 describe('DropdownClickHandlerTest', () => {

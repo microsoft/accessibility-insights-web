@@ -4,6 +4,7 @@ import { loadTheme } from 'office-ui-fabric-react';
 import * as ReactDOM from 'react-dom';
 
 import { ChromeAdapter } from '../../common/browser-adapters/chrome-adapter';
+import { TelemetryEventSource } from '../../common/extension-telemetry-events';
 import { initializeFabricIcons } from '../../common/fabric-icons';
 import { ActionMessageDispatcher } from '../../common/message-creators/action-message-dispatcher';
 import { ContentActionMessageCreator } from '../../common/message-creators/content-action-message-creator';
@@ -12,7 +13,6 @@ import { StoreProxy } from '../../common/store-proxy';
 import { BaseClientStoresHub } from '../../common/stores/base-client-stores-hub';
 import { StoreNames } from '../../common/stores/store-names';
 import { TelemetryDataFactory } from '../../common/telemetry-data-factory';
-import { TelemetryEventSource } from '../../common/extension-telemetry-events';
 import { UserConfigurationStoreData } from '../../common/types/store-data/user-configuration-store';
 import { contentPages } from '../../content';
 import { RendererDeps } from './renderer';

@@ -2,9 +2,9 @@
 // Licensed under the MIT License.
 import { It, Mock, Times } from 'typemoq';
 
+import { TelemetryEventSource, ToggleTelemetryData } from '../../../../../common/extension-telemetry-events';
 import { VisualizationActionMessageCreator } from '../../../../../common/message-creators/visualization-action-message-creator';
 import { TelemetryDataFactory } from '../../../../../common/telemetry-data-factory';
-import { TelemetryEventSource, ToggleTelemetryData } from '../../../../../common/extension-telemetry-events';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
 import { DetailsViewToggleClickHandlerFactory } from '../../../../../DetailsView/handlers/details-view-toggle-click-handler-factory';
 import { EventStubFactory } from '../../../common/event-stub-factory';

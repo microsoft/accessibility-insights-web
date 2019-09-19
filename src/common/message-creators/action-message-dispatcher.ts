@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { PayloadWithEventName } from 'background/actions/action-payloads';
+import { TelemetryData } from '../extension-telemetry-events';
 import { InterpreterMessage, Message } from '../message';
 import { Messages } from '../messages';
-import { TelemetryData } from '../extension-telemetry-events';
 
 export class ActionMessageDispatcher {
     constructor(private postMessageDelegate: (message: InterpreterMessage) => void, private tabId: number) {}

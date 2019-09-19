@@ -1,12 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { IMock, Mock, Times } from 'typemoq';
+import { SettingsOpenSourceItem, TelemetryEventSource } from '../../../../../common/extension-telemetry-events';
 import { Message } from '../../../../../common/message';
 import { ActionMessageDispatcher } from '../../../../../common/message-creators/action-message-dispatcher';
 import { DropdownActionMessageCreator } from '../../../../../common/message-creators/dropdown-action-message-creator';
 import { Messages } from '../../../../../common/messages';
 import { TelemetryDataFactory } from '../../../../../common/telemetry-data-factory';
-import { SettingsOpenSourceItem, TelemetryEventSource } from '../../../../../common/extension-telemetry-events';
 import { EventStubFactory } from './../../../common/event-stub-factory';
 
 describe('DropdownActionMessageCreatorTest', () => {

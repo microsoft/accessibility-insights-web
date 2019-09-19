@@ -2,10 +2,10 @@
 // Licensed under the MIT License.
 import { InspectMode } from 'background/inspect-modes';
 import * as React from 'react';
+import { TelemetryEventSource } from '../extension-telemetry-events';
 import { Messages } from '../messages';
 import { TelemetryDataFactory } from '../telemetry-data-factory';
 import { InspectPayload } from './../../background/actions/inspect-actions';
-import { TelemetryEventSource } from '../extension-telemetry-events';
 import { ActionMessageDispatcher } from './action-message-dispatcher';
 
 export class InspectActionMessageCreator {

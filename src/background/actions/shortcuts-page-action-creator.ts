@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { Messages } from '../../common/messages';
 import { SHORTCUT_CONFIGURE_OPEN } from '../../common/extension-telemetry-events';
+import { Messages } from '../../common/messages';
 import { Interpreter } from '../interpreter';
 import { ShortcutsPageController } from '../shortcuts-page-controller';
 import { TelemetryEventHandler } from '../telemetry/telemetry-event-handler';

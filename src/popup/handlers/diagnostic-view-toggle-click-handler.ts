@@ -2,9 +2,9 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 import { VisualizationConfigurationFactory } from '../../common/configs/visualization-configuration-factory';
+import { TelemetryEventSource } from '../../common/extension-telemetry-events';
 import { VisualizationActionMessageCreator } from '../../common/message-creators/visualization-action-message-creator';
 import { TelemetryDataFactory } from '../../common/telemetry-data-factory';
-import { TelemetryEventSource } from '../../common/extension-telemetry-events';
 import { VisualizationStoreData } from '../../common/types/store-data/visualization-store-data';
 import { VisualizationType } from '../../common/types/visualization-type';
 

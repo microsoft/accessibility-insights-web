@@ -5,10 +5,10 @@ import { TabActionCreator } from 'background/actions/tab-action-creator';
 import { TabActions } from 'background/actions/tab-actions';
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
+import { SWITCH_BACK_TO_TARGET, TelemetryEventSource, TriggeredBy } from 'common/extension-telemetry-events';
 import { Tab } from 'common/itab';
 import { getStoreStateMessage, Messages } from 'common/messages';
 import { StoreNames } from 'common/stores/store-names';
-import { SWITCH_BACK_TO_TARGET, TelemetryEventSource, TriggeredBy } from 'common/extension-telemetry-events';
 import { IMock, Mock, Times } from 'typemoq';
 
 import { createActionMock, createInterpreterMock } from '../global-action-creators/action-creator-test-helpers';

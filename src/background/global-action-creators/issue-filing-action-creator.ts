@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { Messages } from '../../common/messages';
 import { FILE_ISSUE_CLICK } from '../../common/extension-telemetry-events';
+import { Messages } from '../../common/messages';
 import { IssueFilingController } from '../../issue-filing/common/issue-filing-controller-impl';
 import { FileIssuePayload } from '../actions/action-payloads';
 import { Interpreter } from '../interpreter';

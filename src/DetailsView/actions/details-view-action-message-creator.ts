@@ -19,11 +19,11 @@ import {
 } from 'background/actions/action-payloads';
 import { FeatureFlagPayload } from 'background/actions/feature-flag-actions';
 import * as React from 'react';
+import { ExportResultType } from '../../common/extension-telemetry-events';
+import * as TelemetryEvents from '../../common/extension-telemetry-events';
 import { Message } from '../../common/message';
 import { DevToolActionMessageCreator } from '../../common/message-creators/dev-tool-action-message-creator';
 import { Messages } from '../../common/messages';
-import * as TelemetryEvents from '../../common/extension-telemetry-events';
-import { ExportResultType } from '../../common/extension-telemetry-events';
 import { DetailsViewPivotType } from '../../common/types/details-view-pivot-type';
 import { ManualTestStatus } from '../../common/types/manual-test-status';
 import { VisualizationType } from '../../common/types/visualization-type';

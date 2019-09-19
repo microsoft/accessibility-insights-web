@@ -4,10 +4,6 @@ import { IMock, It, Mock, Times } from 'typemoq';
 
 import { HeadingsTestStep } from 'assessments/headings/test-steps/test-steps';
 import { OnDetailsViewPivotSelected } from 'background/actions/action-payloads';
-import { Message } from '../../../../../common/message';
-import { ActionMessageDispatcher } from '../../../../../common/message-creators/action-message-dispatcher';
-import { Messages } from '../../../../../common/messages';
-import { TelemetryDataFactory } from '../../../../../common/telemetry-data-factory';
 import {
     AssessmentTelemetryData,
     BaseTelemetryData,
@@ -23,6 +19,10 @@ import {
     TelemetryEventSource,
     TriggeredByNotApplicable,
 } from '../../../../../common/extension-telemetry-events';
+import { Message } from '../../../../../common/message';
+import { ActionMessageDispatcher } from '../../../../../common/message-creators/action-message-dispatcher';
+import { Messages } from '../../../../../common/messages';
+import { TelemetryDataFactory } from '../../../../../common/telemetry-data-factory';
 import { DetailsViewPivotType } from '../../../../../common/types/details-view-pivot-type';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
