@@ -4,7 +4,7 @@ import * as Axe from 'axe-core';
 
 export interface AxeOptions {
     runOnly?: Axe.RunOnly;
-    restoreScroll?: Boolean; // missing from axe options.
+    restoreScroll?: boolean;
 }
 export type AxeScanContext = string | Document | IncludeExcludeOptions | NodeList;
 export interface IncludeExcludeOptions {

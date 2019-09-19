@@ -17,6 +17,13 @@ const BestPractice: HyperlinkDefinition = {
 };
 
 export const ruleToLinkConfiguration: DictionaryStringTo<HyperlinkDefinition[]> = {
+    'aria-input-field-name': [link.WCAG_4_1_2],
+    'aria-toggle-field-name': [link.WCAG_4_1_2],
+    'avoid-inline-spacing': [link.WCAG_1_4_12],
+    'input-button-name': [link.WCAG_4_1_2],
+    'landmark-unique': [BestPractice],
+    'role-img-alt': [link.WCAG_1_1_1],
+    'scrollable-region-focusable': [BestPractice],
     'area-alt': [link.WCAG_1_1_1],
     'image-alt': [link.WCAG_1_1_1],
     'image-redundant-alt': [BestPractice],
@@ -94,7 +101,7 @@ export const ruleToLinkConfiguration: DictionaryStringTo<HyperlinkDefinition[]> 
     'aria-allowed-role': [BestPractice],
     'autocomplete-valid': [link.WCAG_1_3_5],
     'css-orientation-lock': [BestPractice],
-    'aria-hidden-focus': [link.WCAG_4_1_2],
+    'aria-hidden-focus': [link.WCAG_4_1_2, link.WCAG_1_3_1],
     'form-field-multiple-labels': [BestPractice],
     'label-content-name-mismatch': [BestPractice],
     'landmark-complementary-is-top-level': [link.WCAG_1_3_1, BestPractice],
