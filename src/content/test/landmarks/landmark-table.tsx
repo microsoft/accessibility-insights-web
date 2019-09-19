@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { Markup } from 'views/content/markup';
-import { NamedSFC } from '../../../common/react/named-sfc';
+import { NamedFC } from '../../../common/react/named-fc';
 import { React } from '../../common';
 
 type LandmarkRoleProps = {
@@ -11,7 +11,7 @@ type LandmarkRoleProps = {
     description: string;
 };
 
-export const LandmarkRole = NamedSFC<LandmarkRoleProps>('LandmarkRole', ({ markup, role, element, description }) => (
+export const LandmarkRole = NamedFC<LandmarkRoleProps>('LandmarkRole', ({ markup, role, element, description }) => (
     <tr>
         <td className={`landmark-role ${role}-landmark`}>{role}</td>
         <td>
@@ -25,7 +25,7 @@ type LandmarkTableProps = {
     markup: Markup;
 };
 
-export const LandmarkTable = NamedSFC<LandmarkTableProps>('LandmarkTable', ({ markup }) => (
+export const LandmarkTable = NamedFC<LandmarkTableProps>('LandmarkTable', ({ markup }) => (
     <table className="landmark-table">
         <tr>
             <th>Role</th>

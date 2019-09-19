@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { ElementHandle } from 'puppeteer';
 import * as Puppeteer from 'puppeteer';
-import { TargetPageInjectedComponentSelectors } from '../element-identifiers/target-page-selectors';
+
 import { formatChildElementForSnapshot } from '../element-snapshot-formatter';
 import { getTestResourceUrl } from '../test-resources';
 import { Page, PageOptions } from './page';
@@ -38,13 +38,5 @@ export class TargetPage extends Page {
     public async getShadowRootHtmlSnapshot(): Promise<Node> {
         const shadowRoot = await this.getShadowRoot();
         return await formatChildElementForSnapshot(shadowRoot, '#insights-shadow-container');
-    }
-
-    public async waitForVisualizationBoxesToDisappear(): Promise<void> {
-        const insightsRootContainer = await this.getSelectorElement(TargetPageInjectedComponentSelectors.insightsRootContainer);
-        if (insightsRootContainer) {
-            const shadowRoot = await this.getShadowRoot();
-            await this.waitForDescendentSelectorToDisappear(shadowRoot, TargetPageInjectedComponentSelectors.insightsVisualizationBox);
-        }
     }
 }

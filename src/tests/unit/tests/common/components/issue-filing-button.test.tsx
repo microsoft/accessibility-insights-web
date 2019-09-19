@@ -8,7 +8,7 @@ import { IMock, Mock, Times } from 'typemoq';
 import { IssueFilingButton, IssueFilingButtonDeps, IssueFilingButtonProps } from '../../../../../common/components/issue-filing-button';
 import { EnvironmentInfoProvider } from '../../../../../common/environment-info-provider';
 import { IssueFilingActionMessageCreator } from '../../../../../common/message-creators/issue-filing-action-message-creator';
-import { NamedSFC } from '../../../../../common/react/named-sfc';
+import { NamedFC } from '../../../../../common/react/named-fc';
 import { IssueFilingNeedsSettingsContentRenderer } from '../../../../../common/types/issue-filing-needs-setting-content';
 import { UserConfigurationStoreData } from '../../../../../common/types/store-data/user-configuration-store';
 import { IssueFilingServiceProvider } from '../../../../../issue-filing/issue-filing-service-provider';
@@ -29,7 +29,7 @@ describe('IssueFilingButtonTest', () => {
         testIssueFilingServiceStub = {
             key: testKey,
             displayName: 'TEST',
-            settingsForm: NamedSFC('testForm', props => <>Hello World</>),
+            settingsForm: NamedFC('testForm', props => <>Hello World</>),
             isSettingsValid: () => true,
             buildStoreData: testField => {
                 return { testField };
@@ -60,7 +60,7 @@ describe('IssueFilingButtonTest', () => {
             .setup(bp => bp.forKey(testKey))
             .returns(() => testIssueFilingServiceStub)
             .verifiable();
-        needsSettingsContentRenderer = NamedSFC('testRenderer', () => <>needs settings</>);
+        needsSettingsContentRenderer = NamedFC('testRenderer', () => <>needs settings</>);
     });
 
     test.each([true, false])('render: isSettingsValid: %s', isSettingsValid => {

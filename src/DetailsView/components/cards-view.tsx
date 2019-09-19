@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import { NamedSFC } from '../../common/react/named-sfc';
+import { NamedFC } from '../../common/react/named-fc';
 import { FailedInstancesSectionV2, FailedInstancesSectionV2Deps, UnifiedStatusResults } from './cards/failed-instances-section-v2';
 
 export type CardsViewDeps = FailedInstancesSectionV2Deps;
@@ -12,7 +12,7 @@ export interface CardsViewProps {
     ruleResultsByStatus: UnifiedStatusResults;
 }
 
-export const CardsView = NamedSFC<CardsViewProps>('CardsView', props => {
+export const CardsView = NamedFC<CardsViewProps>('CardsView', props => {
     return (
         <>
             <FailedInstancesSectionV2 deps={props.deps} ruleResultsByStatus={props.ruleResultsByStatus} />

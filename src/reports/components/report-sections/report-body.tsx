@@ -2,14 +2,14 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import { NamedSFC } from 'common/react/named-sfc';
+import { NamedFC } from 'common/react/named-fc';
 import { ReportSectionFactory, SectionProps } from './report-section-factory';
 
 export type ReportBodyProps = {
     sectionFactory: ReportSectionFactory;
 } & SectionProps;
 
-export const ReportBody = NamedSFC<ReportBodyProps>('ReportBody', props => {
+export const ReportBody = NamedFC<ReportBodyProps>('ReportBody', props => {
     const { sectionFactory, ...sectionProps } = props;
     const {
         BodySection,

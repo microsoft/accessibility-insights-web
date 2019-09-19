@@ -1,0 +1,21 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+@import '../../../common/styles/colors.scss';
+.overview-heading-content {
+    color: $secondary-text;
+    font-weight: normal;
+    line-height: 20px;
+    font-size: 15px;
+}
+
+.overview-heading {
+    h1 {
+        font-weight: bold !important;
+        line-height: 40px;
+        font-size: 28px !important;
+        letter-spacing: -0.04em;
+        color: $primary-text !important;
+        padding-bottom: 16px;
+        padding-top: 24px;
+    }
+}

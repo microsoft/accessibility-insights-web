@@ -36,7 +36,6 @@ export interface BrowserAdapter {
     ): void;
     connect(connectionInfo?: chrome.runtime.ConnectInfo): chrome.runtime.Port;
     getManifest(): chrome.runtime.Manifest;
-    extensionVersion: string;
 
     getUrl(urlPart: string): string;
 }

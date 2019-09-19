@@ -7,10 +7,10 @@ export interface Message {
 
 export type InterpreterMessage = Message & { tabId?: number };
 
-export interface PayloadCallback {
-    (payload: any, tabId): void;
+export interface PayloadCallback<Payload> {
+    (payload: Payload, tabId: number): void;
 }
 
-export interface RegisterTypeToPayloadCallback {
-    (messageType: string, callback: PayloadCallback): void;
+export interface RegisterTypeToPayloadCallback<Payload> {
+    (messageType: string, callback: PayloadCallback<Payload>): void;
 }

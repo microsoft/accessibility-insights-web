@@ -1,12 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
-import { BrowserAdapter } from '../common/browser-adapters/browser-adapter';
-import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
-import { NotificationCreator } from '../common/notification-creator';
-import { PromiseFactory } from '../common/promises/promise-factory';
-import { StateDispatcher } from '../common/state-dispatcher';
-import { WindowUtils } from '../common/window-utils';
+import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
+import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
+import { NotificationCreator } from 'common/notification-creator';
+import { PromiseFactory } from 'common/promises/promise-factory';
+import { StateDispatcher } from 'common/state-dispatcher';
+import { WindowUtils } from 'common/window-utils';
+
 import { ActionCreator } from './actions/action-creator';
 import { ActionHub } from './actions/action-hub';
 import { ContentActionCreator } from './actions/content-action-creator';
@@ -58,8 +59,8 @@ export class TabContextFactory {
         const shortcutsPageActionCreator = new ShortcutsPageActionCreator(interpreter, shortcutsPageController, this.telemetryEventHandler);
 
         const actionCreator = new ActionCreator(
+            interpreter,
             actionsHub,
-            interpreter.registerTypeToPayloadCallback,
             detailsViewController,
             this.telemetryEventHandler,
             notificationCreator,
@@ -68,53 +69,38 @@ export class TabContextFactory {
         );
 
         const detailsViewActionCreator = new DetailsViewActionCreator(
-            interpreter.registerTypeToPayloadCallback,
+            interpreter,
             actionsHub.detailsViewActions,
             detailsViewController,
             this.telemetryEventHandler,
         );
 
-        const tabActionCreator = new TabActionCreator(
-            interpreter.registerTypeToPayloadCallback,
-            browserAdapter,
-            this.telemetryEventHandler,
-            actionsHub.tabActions,
-        );
+        const tabActionCreator = new TabActionCreator(interpreter, actionsHub.tabActions, browserAdapter, this.telemetryEventHandler);
 
-        const devToolsActionCreator = new DevToolsActionCreator(
-            actionsHub.devToolActions,
-            this.telemetryEventHandler,
-            interpreter.registerTypeToPayloadCallback,
-        );
+        const devToolsActionCreator = new DevToolsActionCreator(interpreter, actionsHub.devToolActions, this.telemetryEventHandler);
 
         const inspectActionsCreator = new InspectActionCreator(
+            interpreter,
             actionsHub.inspectActions,
             this.telemetryEventHandler,
             browserAdapter,
-            interpreter.registerTypeToPayloadCallback,
         );
 
-        const pathSnippetActionCreator = new PathSnippetActionCreator(
-            actionsHub.pathSnippetActions,
-            interpreter.registerTypeToPayloadCallback,
-        );
+        const pathSnippetActionCreator = new PathSnippetActionCreator(interpreter, actionsHub.pathSnippetActions);
 
-        const scanResultActionCreator = new UnifiedScanResultActionCreator(
-            actionsHub.scanResultActions,
-            interpreter.registerTypeToPayloadCallback,
-        );
+        const scanResultActionCreator = new UnifiedScanResultActionCreator(interpreter, actionsHub.scanResultActions);
 
         const scopingPanelActionCreator = new ScopingPanelActionCreator(
+            interpreter,
             actionsHub.scopingActions,
             this.telemetryEventHandler,
-            interpreter.registerTypeToPayloadCallback,
             detailsViewController,
         );
 
         const contentActionCreator = new ContentActionCreator(
+            interpreter,
             actionsHub.contentActions,
             this.telemetryEventHandler,
-            interpreter.registerTypeToPayloadCallback,
             detailsViewController,
         );
 

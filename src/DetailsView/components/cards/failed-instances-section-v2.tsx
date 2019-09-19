@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { NamedSFC } from 'common/react/named-sfc';
+import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
 
 import { UnifiedResult, UnifiedRuleResultStatus } from '../../../common/types/store-data/unified-data-interface';
@@ -25,14 +25,12 @@ export type UnifiedStatusResults = {
     [key in UnifiedRuleResultStatus]: UnifiedRuleResult[];
 };
 
-export const FailedInstancesSectionV2 = NamedSFC<FailedInstancesSectionV2Props>(
-    'FailedInstancesSectionV2',
-    ({ ruleResultsByStatus: result, deps }) => {
-        if (result == null) {
-            return null;
-        }
+export const FailedInstancesSectionV2 = NamedFC<FailedInstancesSectionV2Props>('FailedInstancesSectionV2', ({ ruleResultsByStatus, deps }) => {
+    if (ruleResultsByStatus == null) {
+        return null;
+    }
 
-        const count = result.fail.reduce((total, rule) => {
+        const count = ruleResultsByStatus.fail.reduce((total, rule) => {
             return total + rule.nodes.length;
         }, 0);
 
@@ -40,7 +38,7 @@ export const FailedInstancesSectionV2 = NamedSFC<FailedInstancesSectionV2Props>(
             <ResultSectionV2
                 deps={deps}
                 title="Failed instances"
-                results={result.fail}
+                results={ruleResultsByStatus.fail}
                 containerClassName={null}
                 outcomeType="fail"
                 badgeCount={count}

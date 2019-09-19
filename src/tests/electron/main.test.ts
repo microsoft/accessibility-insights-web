@@ -3,6 +3,7 @@
 import * as Electron from 'electron';
 import { Application } from 'spectron';
 import * as WebdriverIO from 'webdriverio';
+import { popupPageElementIdentifiers } from '../end-to-end/common/element-identifiers/popup-page-element-identifiers';
 import { CommonSelectors } from './common/element-identifiers/common-selectors';
 import { DEFAULT_ELECTRON_TEST_TIMEOUT_MS } from './setup/timeouts';
 
@@ -23,12 +24,27 @@ describe('Electron E2E', () => {
     // so tslint thinks some of the methods do not return promises.
     // tslint:disable: await-promise
 
-    // tslint:disable-next-line:typedef
-    async function ensureAppIsInDeviceConnectionDialog() {
+    async function dismissTelemetryOptInDialog(): Promise<void> {
+        const webDriverClient: WebdriverIO.Client<void> = app.client;
+        await webDriverClient.waitForVisible(popupPageElementIdentifiers.telemetryDialog, DEFAULT_ELECTRON_TEST_TIMEOUT_MS);
+        await webDriverClient.click(popupPageElementIdentifiers.startUsingProductButton);
+    }
+
+    async function ensureAppIsInDeviceConnectionDialog(): Promise<void> {
         const webDriverClient: WebdriverIO.Client<void> = app.client;
         await webDriverClient.waitForVisible(CommonSelectors.deviceViewContainer, DEFAULT_ELECTRON_TEST_TIMEOUT_MS);
         expect(await app.webContents.getTitle()).toBe('Accessibility Insights for Mobile');
     }
+
+    beforeEach(async () => {
+        await dismissTelemetryOptInDialog();
+    });
+
+    afterEach(async () => {
+        if (app && app.isRunning()) {
+            await app.stop();
+        }
+    });
 
     test('test that app opened & set initial state', async () => {
         await ensureAppIsInDeviceConnectionDialog();
@@ -58,13 +74,5 @@ describe('Electron E2E', () => {
         await webDriverClient.element(CommonSelectors.portNumber).keys('999');
         expect(await webDriverClient.isEnabled(CommonSelectors.validateButton)).toBe(true);
         expect(await webDriverClient.isEnabled(CommonSelectors.startButton)).toBe(false);
-    });
-
-    // tslint:enable: await-promise
-
-    afterEach(() => {
-        if (app && app.isRunning()) {
-            return app.stop();
-        }
     });
 });

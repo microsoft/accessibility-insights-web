@@ -4,9 +4,9 @@ import { InterpreterMessage, PayloadCallback } from '../common/message';
 import { DictionaryStringTo } from '../types/common-types';
 
 export class Interpreter {
-    protected messageToActionMapping: DictionaryStringTo<PayloadCallback> = {};
+    protected messageToActionMapping: DictionaryStringTo<PayloadCallback<any>> = {};
 
-    public registerTypeToPayloadCallback = (messageType: string, callback: PayloadCallback): void => {
+    public registerTypeToPayloadCallback = <Payload>(messageType: string, callback: PayloadCallback<Payload>): void => {
         this.messageToActionMapping[messageType] = callback;
     };
 

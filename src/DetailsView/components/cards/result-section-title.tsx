@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { NamedSFC } from 'common/react/named-sfc';
+import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
 
 import { InstanceOutcomeType } from '../../../reports/components/instance-outcome-type';
@@ -13,7 +13,7 @@ export type ResultSectionTitleProps = {
     outcomeType: InstanceOutcomeType;
 };
 
-export const ResultSectionTitle = NamedSFC<ResultSectionTitleProps>('ResultSectionTitle', props => {
+export const ResultSectionTitle = NamedFC<ResultSectionTitleProps>('ResultSectionTitle', props => {
     return (
         <span className={resultSectionTitle}>
             <span className="screen-reader-only">

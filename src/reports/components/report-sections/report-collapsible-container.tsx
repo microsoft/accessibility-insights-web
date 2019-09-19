@@ -1,12 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { css } from '@uifabric/utilities';
-import { NamedSFC } from 'common/react/named-sfc';
+import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
 
 import { CollapsibleComponentCardsProps } from '../../../DetailsView/components/cards/collapsible-component-cards';
 
-export const ReportCollapsibleContainer = NamedSFC<CollapsibleComponentCardsProps>('ReportCollapsibleContainer', props => {
+export const ReportCollapsibleContainer = NamedFC<CollapsibleComponentCardsProps>('ReportCollapsibleContainer', props => {
     const { id, header, headingLevel, content, containerClassName, buttonAriaLabel } = props;
 
     const contentId = `content-container-${id}`;

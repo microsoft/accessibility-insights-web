@@ -1,14 +1,14 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as React from 'react';
-import { NamedSFC } from '../../../common/react/named-sfc';
+import { NamedFC } from '../../../common/react/named-fc';
 
 export interface WindowTitleProps {
     title: string;
     children?: JSX.Element;
 }
 
-export const WindowTitle = NamedSFC<WindowTitleProps>('WindowTitle', (props: WindowTitleProps) => {
+export const WindowTitle = NamedFC<WindowTitleProps>('WindowTitle', (props: WindowTitleProps) => {
     return (
         <header className="window-title">
             <div>

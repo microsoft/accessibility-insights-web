@@ -2,9 +2,9 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import { NamedSFC } from '../react/named-sfc';
+import { NamedFC } from '../react/named-fc';
 
-export const CheckIcon = NamedSFC('CheckIcon', () => (
+export const CheckIcon = NamedFC('CheckIcon', () => (
     <span className="check-container">
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
             <circle cx="8" cy="8" r="8" fill="#228722" />
@@ -18,7 +18,7 @@ export const CheckIcon = NamedSFC('CheckIcon', () => (
     </span>
 ));
 
-export const CheckIconInverted = NamedSFC('CheckIconInverted', () => (
+export const CheckIconInverted = NamedFC('CheckIconInverted', () => (
     <span className="check-container">
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path

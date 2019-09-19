@@ -3,7 +3,7 @@
 import { flatten, toPairs } from 'lodash';
 import * as React from 'react';
 
-import { NamedSFC } from 'common/react/named-sfc';
+import { NamedFC } from 'common/react/named-fc';
 import { BagOf, isScalarColumnValue, ScalarColumnValue } from 'common/types/property-bag/column-value-bag';
 import { InstanceReportModel } from '../assessment-report-model';
 
@@ -11,7 +11,7 @@ export interface AssessmentReportInstanceListProps {
     instances: InstanceReportModel[];
 }
 
-export const AssessmentReportInstanceList = NamedSFC<AssessmentReportInstanceListProps>('AssessmentReportInstanceList', props => {
+export const AssessmentReportInstanceList = NamedFC<AssessmentReportInstanceListProps>('AssessmentReportInstanceList', props => {
     type Index = number | string;
     type Row = React.DetailedHTMLProps<React.HTMLAttributes<HTMLTableRowElement>, HTMLTableRowElement>;
     type Cell = React.DetailedHTMLProps<React.HTMLAttributes<HTMLTableCellElement>, HTMLTableCellElement>;

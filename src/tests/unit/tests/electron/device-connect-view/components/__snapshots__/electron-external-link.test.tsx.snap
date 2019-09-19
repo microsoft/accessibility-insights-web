@@ -4,6 +4,6 @@ exports[`ElectronExternalLinkTest render 1`] = `
 <StyledLinkBase
   onClick={[Function]}
 >
-  Bing
+  test-text
 </StyledLinkBase>
 `;

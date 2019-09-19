@@ -23,13 +23,6 @@ export const guidance = create(({ Markup, Link }) => (
                     <li>Any visual effect that indicates the component's state must have a contrast ratio ≥ 3:1.</li>
                 </ul>
                 <h3>
-                    Provide sufficient contrast for controls' state changes. (<Link.WCAG_1_4_11 />)
-                </h3>
-                <ul>
-                    <li>Good: Ensure colors used to indicate different states have a contrast ratio ≥ 3:1.</li>
-                    <li>Better: Indicate state changes by changing both color and another visual characteristic, such as shape or size.</li>
-                </ul>
-                <h3>
                     Provide sufficient contrast for graphics. (<Link.WCAG_1_4_11 />)
                 </h3>
                 <ul>

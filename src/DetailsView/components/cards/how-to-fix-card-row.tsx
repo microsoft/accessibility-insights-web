@@ -3,7 +3,7 @@
 import * as React from 'react';
 
 import { CardRowProps } from '../../../common/configs/unified-result-property-configurations';
-import { NamedSFC } from '../../../common/react/named-sfc';
+import { NamedFC } from '../../../common/react/named-fc';
 import { CheckType } from '../../../injected/components/details-dialog';
 import { FixInstructionPanel } from '../../../injected/components/fix-instruction-panel';
 import { howToFixContent } from './how-to-fix-card-row.scss';
@@ -20,7 +20,7 @@ export interface HowToFixWebCardRowProps extends CardRowProps {
     propertyData: HowToFixWebPropertyData;
 }
 
-export const HowToFixWebCardRow = NamedSFC<HowToFixWebCardRowProps>('HowToFixWebCardRow', ({ deps, ...props }) => {
+export const HowToFixWebCardRow = NamedFC<HowToFixWebCardRowProps>('HowToFixWebCardRow', ({ deps, ...props }) => {
     const { any: anyOf, all, none } = props.propertyData;
 
     const renderFixInstructionsContent = () => {
