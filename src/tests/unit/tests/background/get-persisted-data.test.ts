@@ -51,7 +51,7 @@ describe('GetPersistedDataTest', () => {
         } as PersistedData);
     });
 
-    it('gets electron specific data keys when passed with those keys', async () => {
+    it('uses specified data keys to read persisted data', async () => {
         const indexedDataKeysToFetch = [IndexedDBDataKeys.userConfiguration, IndexedDBDataKeys.installation];
 
         indexedDBInstanceStrictMock.setup(i => i.getItem(IndexedDBDataKeys.userConfiguration)).returns(async () => userConfigurationData);
