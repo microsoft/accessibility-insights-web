@@ -3,9 +3,9 @@
 import { AppInsights } from 'applicationinsights-js';
 import { remote } from 'electron';
 import * as ReactDOM from 'react-dom';
-
 import { UserConfigurationActions } from '../../background/actions/user-configuration-actions';
 import { getPersistedData, PersistedData } from '../../background/get-persisted-data';
+import { UserConfigurationActionCreator } from '../../background/global-action-creators/user-configuration-action-creator';
 import { IndexedDBDataKeys } from '../../background/IndexedDBDataKeys';
 import { InstallationData } from '../../background/installation-data';
 import { UserConfigurationStore } from '../../background/stores/global/user-configuration-store';
@@ -18,6 +18,7 @@ import { getIndexedDBStore } from '../../common/indexedDB/get-indexeddb-store';
 import { IndexedDBAPI, IndexedDBUtil } from '../../common/indexedDB/indexedDB';
 import { ElectronAppDataAdapter } from '../adapters/electron-app-data-adapter';
 import { ElectronStorageAdapter } from '../adapters/electron-storage-adapter';
+import { ElectronLink } from './components/electron-link';
 import { DeviceConnectViewRenderer } from './device-connect-view-renderer';
 
 initializeFabricIcons();
@@ -43,10 +44,15 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then((persistedDat
     const telemetryStateListener = new TelemetryStateListener(userConfigurationStore, telemetryEventHandler);
     telemetryStateListener.initialize();
 
+    const userConfigMessageCreator = new UserConfigurationActionCreator(userConfigActions);
+
     const dom = document;
     const props = {
         deps: {
             currentWindow: remote.getCurrentWindow(),
+            userConfigurationStore,
+            userConfigMessageCreator,
+            LinkComponent: ElectronLink,
         },
     };
 
