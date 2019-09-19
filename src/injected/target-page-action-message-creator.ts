@@ -6,8 +6,8 @@ import { Message } from '../common/message';
 import { ActionMessageDispatcher } from '../common/message-creators/action-message-dispatcher';
 import { Messages } from '../common/messages';
 import { TelemetryDataFactory } from '../common/telemetry-data-factory';
-import * as TelemetryEvents from '../common/telemetry-events';
-import { TelemetryData, TelemetryEventSource } from '../common/telemetry-events';
+import * as TelemetryEvents from '../common/extension-telemetry-events';
+import { TelemetryData, TelemetryEventSource } from '../common/extension-telemetry-events';
 
 export class TargetPageActionMessageCreator {
     constructor(private readonly telemetryFactory: TelemetryDataFactory, private readonly dispatcher: ActionMessageDispatcher) {}

@@ -4,7 +4,7 @@ import { getRTL } from '@uifabric/utilities';
 import { ContextualMenu, ContextualMenuItemType, DirectionalHint, IContextualMenuItem } from 'office-ui-fabric-react/lib/ContextualMenu';
 import * as React from 'react';
 import { NamedFC } from '../../common/react/named-fc';
-import { TelemetryEventSource } from '../../common/telemetry-events';
+import { TelemetryEventSource } from '../../common/extension-telemetry-events';
 import { DetailsViewPivotType } from '../../common/types/details-view-pivot-type';
 import { VisualizationType } from '../../common/types/visualization-type';
 import { DictionaryStringTo } from '../../types/common-types';

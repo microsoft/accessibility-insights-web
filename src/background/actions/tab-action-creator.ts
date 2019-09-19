@@ -3,7 +3,7 @@
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
 import { getStoreStateMessage, Messages } from 'common/messages';
 import { StoreNames } from 'common/stores/store-names';
-import { SWITCH_BACK_TO_TARGET } from 'common/telemetry-events';
+import { SWITCH_BACK_TO_TARGET } from 'common/extension-telemetry-events';
 
 import { Interpreter } from '../interpreter';
 import { TelemetryEventHandler } from '../telemetry/telemetry-event-handler';

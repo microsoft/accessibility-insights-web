@@ -8,7 +8,7 @@ import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
 import { Tab } from 'common/itab';
 import { getStoreStateMessage, Messages } from 'common/messages';
 import { StoreNames } from 'common/stores/store-names';
-import { SWITCH_BACK_TO_TARGET, TelemetryEventSource, TriggeredBy } from 'common/telemetry-events';
+import { SWITCH_BACK_TO_TARGET, TelemetryEventSource, TriggeredBy } from 'common/extension-telemetry-events';
 import { IMock, Mock, Times } from 'typemoq';
 
 import { createActionMock, createInterpreterMock } from '../global-action-creators/action-creator-test-helpers';

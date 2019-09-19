@@ -24,7 +24,7 @@ import { StoreProxy } from '../common/store-proxy';
 import { BaseClientStoresHub } from '../common/stores/base-client-stores-hub';
 import { StoreNames } from '../common/stores/store-names';
 import { TelemetryDataFactory } from '../common/telemetry-data-factory';
-import { TelemetryEventSource } from '../common/telemetry-events';
+import { TelemetryEventSource } from '../common/extension-telemetry-events';
 import { CommandStoreData } from '../common/types/store-data/command-store-data';
 import { FeatureFlagStoreData } from '../common/types/store-data/feature-flag-store-data';
 import { LaunchPanelStoreData } from '../common/types/store-data/launch-panel-store-data';

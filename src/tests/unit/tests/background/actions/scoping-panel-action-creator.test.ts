@@ -6,7 +6,7 @@ import { ScopingPanelActionCreator } from 'background/actions/scoping-panel-acti
 import { DetailsViewController } from 'background/details-view-controller';
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
 import { Messages } from 'common/messages';
-import { SCOPING_CLOSE, SCOPING_OPEN } from 'common/telemetry-events';
+import { SCOPING_CLOSE, SCOPING_OPEN } from 'common/extension-telemetry-events';
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';
 
 import { createActionMock, createInterpreterMock } from '../global-action-creators/action-creator-test-helpers';

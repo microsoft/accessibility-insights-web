@@ -3,7 +3,7 @@
 import * as React from 'react';
 
 import { DropdownActionMessageCreator } from './message-creators/dropdown-action-message-creator';
-import { TelemetryEventSource } from './telemetry-events';
+import { TelemetryEventSource } from './extension-telemetry-events';
 
 export class DropdownClickHandler {
     private dropdownActionMessageCreator: DropdownActionMessageCreator;

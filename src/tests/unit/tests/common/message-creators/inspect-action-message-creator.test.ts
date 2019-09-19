@@ -7,7 +7,7 @@ import { ActionMessageDispatcher } from '../../../../../common/message-creators/
 import { InspectActionMessageCreator } from '../../../../../common/message-creators/inspect-action-message-creator';
 import { Messages } from '../../../../../common/messages';
 import { TelemetryDataFactory } from '../../../../../common/telemetry-data-factory';
-import { BaseTelemetryData, TelemetryEventSource } from '../../../../../common/telemetry-events';
+import { BaseTelemetryData, TelemetryEventSource } from '../../../../../common/extension-telemetry-events';
 import { EventStubFactory } from './../../../common/event-stub-factory';
 
 describe('InspectActionMessageCreatorTest', () => {

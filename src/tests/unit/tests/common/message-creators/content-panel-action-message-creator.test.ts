@@ -12,7 +12,7 @@ import {
     CONTENT_PAGE_OPENED,
     TelemetryEventSource,
     TriggeredBy,
-} from '../../../../../common/telemetry-events';
+} from '../../../../../common/extension-telemetry-events';
 
 describe('ContentPanelActionMessageCreator', () => {
     const event = Mock.ofType<MouseEvent>().object;

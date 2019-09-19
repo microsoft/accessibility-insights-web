@@ -13,7 +13,7 @@ import {
     RequirementStatusTelemetryData,
     TelemetryEventSource,
     TriggeredByNotApplicable,
-} from '../../../../common/telemetry-events';
+} from '../../../../common/extension-telemetry-events';
 import { ManualTestStatus } from '../../../../common/types/manual-test-status';
 import { AssessmentData, AssessmentStoreData } from '../../../../common/types/store-data/assessment-result-data';
 import { TabStoreData } from '../../../../common/types/store-data/tab-store-data';

@@ -12,7 +12,7 @@ import {
     SettingsOpenSourceItem,
     TelemetryEventSource,
     TriggeredBy,
-} from '../../../../../common/telemetry-events';
+} from '../../../../../common/extension-telemetry-events';
 import { CreateIssueDetailsTextData } from '../../../../../common/types/create-issue-details-text-data';
 import { DecoratedAxeNodeResult } from '../../../../../injected/scanner-utils';
 import { EventStubFactory } from '../../../common/event-stub-factory';

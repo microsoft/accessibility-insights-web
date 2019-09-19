@@ -6,7 +6,7 @@ import { DevToolActions } from 'background/actions/dev-tools-actions';
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
 import { getStoreStateMessage, Messages } from 'common/messages';
 import { StoreNames } from 'common/stores/store-names';
-import * as TelemetryEvents from 'common/telemetry-events';
+import * as TelemetryEvents from 'common/extension-telemetry-events';
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';
 
 import { createActionMock, createInterpreterMock } from '../global-action-creators/action-creator-test-helpers';

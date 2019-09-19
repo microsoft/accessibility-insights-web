@@ -6,7 +6,7 @@ import * as React from 'react';
 import { ActionInitiators } from '../action/action-initiator';
 import { Messages } from '../messages';
 import { TelemetryDataFactory } from '../telemetry-data-factory';
-import { CONTENT_HYPERLINK_OPENED, CONTENT_PAGE_OPENED, TelemetryEventSource } from '../telemetry-events';
+import { CONTENT_HYPERLINK_OPENED, CONTENT_PAGE_OPENED, TelemetryEventSource } from '../extension-telemetry-events';
 import { ActionMessageDispatcher } from './action-message-dispatcher';
 
 export class ContentActionMessageCreator {

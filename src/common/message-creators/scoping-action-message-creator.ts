@@ -4,7 +4,7 @@ import * as React from 'react';
 import { Messages } from '../messages';
 import { TelemetryDataFactory } from '../telemetry-data-factory';
 import { ScopingPayload } from './../../background/actions/scoping-actions';
-import { TelemetryEventSource } from './../telemetry-events';
+import { TelemetryEventSource } from '../extension-telemetry-events';
 import { ActionMessageDispatcher } from './action-message-dispatcher';
 
 export class ScopingActionMessageCreator {

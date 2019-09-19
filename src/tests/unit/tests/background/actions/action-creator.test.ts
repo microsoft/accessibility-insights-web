@@ -36,8 +36,8 @@ import {
     TelemetryEventSource,
     ToggleTelemetryData,
     TriggeredBy,
-} from 'common/telemetry-events';
-import * as TelemetryEvents from 'common/telemetry-events';
+} from 'common/extension-telemetry-events';
+import * as TelemetryEvents from 'common/extension-telemetry-events';
 import { DetailsViewPivotType } from 'common/types/details-view-pivot-type';
 import { VisualizationType } from 'common/types/visualization-type';
 import { ScanCompletedPayload } from 'injected/analyzers/analyzer';

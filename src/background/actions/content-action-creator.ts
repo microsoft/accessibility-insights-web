@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { Messages } from 'common/messages';
-import { CONTENT_PANEL_CLOSED, CONTENT_PANEL_OPENED } from 'common/telemetry-events';
+import { CONTENT_PANEL_CLOSED, CONTENT_PANEL_OPENED } from 'common/extension-telemetry-events';
 
 import { DetailsViewController } from '../details-view-controller';
 import { Interpreter } from '../interpreter';

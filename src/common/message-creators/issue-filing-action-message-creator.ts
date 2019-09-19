@@ -4,7 +4,7 @@ import { BaseActionPayload, FileIssuePayload } from 'background/actions/action-p
 import { Message } from '../message';
 import { Messages } from '../messages';
 import { TelemetryDataFactory } from '../telemetry-data-factory';
-import { FILE_ISSUE_CLICK, TelemetryEventSource } from '../telemetry-events';
+import { FILE_ISSUE_CLICK, TelemetryEventSource } from '../extension-telemetry-events';
 import { CreateIssueDetailsTextData } from '../types/create-issue-details-text-data';
 import { ActionMessageDispatcher } from './action-message-dispatcher';
 

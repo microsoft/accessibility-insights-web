@@ -9,7 +9,7 @@ import { Interpreter } from 'background/interpreter';
 import { ShortcutsPageController } from 'background/shortcuts-page-controller';
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
 import { Messages } from '../../../../../common/messages';
-import { SHORTCUT_CONFIGURE_OPEN } from '../../../../../common/telemetry-events';
+import { SHORTCUT_CONFIGURE_OPEN } from '../../../../../common/extension-telemetry-events';
 
 describe('ShortcutsPageActionCreator', () => {
     let interpreterMock: IMock<Interpreter>;

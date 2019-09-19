@@ -17,7 +17,7 @@ import { NavigatorUtils } from '../common/navigator-utils';
 import { StoreProxy } from '../common/store-proxy';
 import { StoreNames } from '../common/stores/store-names';
 import { TelemetryDataFactory } from '../common/telemetry-data-factory';
-import { TelemetryEventSource } from '../common/telemetry-events';
+import { TelemetryEventSource } from '../common/extension-telemetry-events';
 import { AssessmentStoreData } from '../common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from '../common/types/store-data/feature-flag-store-data';
 import { DevToolState } from '../common/types/store-data/idev-tool-state';

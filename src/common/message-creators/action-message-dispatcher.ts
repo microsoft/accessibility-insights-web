@@ -3,7 +3,7 @@
 import { PayloadWithEventName } from 'background/actions/action-payloads';
 import { InterpreterMessage, Message } from '../message';
 import { Messages } from '../messages';
-import { TelemetryData } from '../telemetry-events';
+import { TelemetryData } from '../extension-telemetry-events';
 
 export class ActionMessageDispatcher {
     constructor(private postMessageDelegate: (message: InterpreterMessage) => void, private tabId: number) {}

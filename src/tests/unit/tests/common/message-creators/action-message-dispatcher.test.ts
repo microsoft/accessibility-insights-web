@@ -4,7 +4,7 @@ import { IMock, It, Mock, Times } from 'typemoq';
 import { Message } from '../../../../../common/message';
 import { ActionMessageDispatcher } from '../../../../../common/message-creators/action-message-dispatcher';
 import { Messages } from '../../../../../common/messages';
-import { BaseTelemetryData, TelemetryEventSource } from '../../../../../common/telemetry-events';
+import { BaseTelemetryData, TelemetryEventSource } from '../../../../../common/extension-telemetry-events';
 
 describe('ActionMessageDispatcher', () => {
     let postMessageMock: IMock<(message: Message) => void>;

@@ -4,7 +4,7 @@ import * as React from 'react';
 
 import { VisualizationActionMessageCreator } from '../../common/message-creators/visualization-action-message-creator';
 import { TelemetryDataFactory } from '../../common/telemetry-data-factory';
-import { TelemetryEventSource } from '../../common/telemetry-events';
+import { TelemetryEventSource } from '../../common/extension-telemetry-events';
 import { VisualizationType } from '../../common/types/visualization-type';
 
 export class DetailsViewToggleClickHandlerFactory {

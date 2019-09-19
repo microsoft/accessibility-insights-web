@@ -6,7 +6,7 @@ import { CommandActions, GetCommandsPayload } from 'background/actions/command-a
 import { CommandStore } from 'background/stores/global/command-store';
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
 import { StoreNames } from '../../../../../../common/stores/store-names';
-import { ModifiedCommandsTelemetryData, SHORTCUT_MODIFIED } from '../../../../../../common/telemetry-events';
+import { ModifiedCommandsTelemetryData, SHORTCUT_MODIFIED } from '../../../../../../common/extension-telemetry-events';
 import { CommandStoreData } from '../../../../../../common/types/store-data/command-store-data';
 import { createStoreWithNullParams, StoreTester } from '../../../../common/store-tester';
 

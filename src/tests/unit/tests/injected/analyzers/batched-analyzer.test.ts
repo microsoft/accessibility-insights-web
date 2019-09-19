@@ -8,7 +8,7 @@ import { VisualizationConfiguration } from '../../../../../common/configs/visual
 import { VisualizationConfigurationFactory } from '../../../../../common/configs/visualization-configuration-factory';
 import { Message } from '../../../../../common/message';
 import { TelemetryDataFactory } from '../../../../../common/telemetry-data-factory';
-import { RuleAnalyzerScanTelemetryData } from '../../../../../common/telemetry-events';
+import { RuleAnalyzerScanTelemetryData } from '../../../../../common/extension-telemetry-events';
 import { ScopingStoreData } from '../../../../../common/types/store-data/scoping-store-data';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
 import { RuleAnalyzerConfiguration } from '../../../../../injected/analyzers/analyzer';

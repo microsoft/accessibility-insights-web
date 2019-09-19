@@ -6,7 +6,7 @@ import { ActionMessageDispatcher } from '../../../../../common/message-creators/
 import { DropdownActionMessageCreator } from '../../../../../common/message-creators/dropdown-action-message-creator';
 import { Messages } from '../../../../../common/messages';
 import { TelemetryDataFactory } from '../../../../../common/telemetry-data-factory';
-import { SettingsOpenSourceItem, TelemetryEventSource } from '../../../../../common/telemetry-events';
+import { SettingsOpenSourceItem, TelemetryEventSource } from '../../../../../common/extension-telemetry-events';
 import { EventStubFactory } from './../../../common/event-stub-factory';
 
 describe('DropdownActionMessageCreatorTest', () => {

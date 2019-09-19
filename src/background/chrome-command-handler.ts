@@ -9,7 +9,7 @@ import { Logger } from '../common/logging/logger';
 import { Messages } from '../common/messages';
 import { NotificationCreator } from '../common/notification-creator';
 import { TelemetryDataFactory } from '../common/telemetry-data-factory';
-import { ToggleTelemetryData } from '../common/telemetry-events';
+import { ToggleTelemetryData } from '../common/extension-telemetry-events';
 import { ScanData, VisualizationStoreData } from '../common/types/store-data/visualization-store-data';
 import { VisualizationType } from '../common/types/visualization-type';
 import { UrlValidator } from '../common/url-validator';

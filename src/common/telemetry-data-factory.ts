@@ -27,7 +27,7 @@ import {
     ToggleTelemetryData,
     TriggeredBy,
     TriggeredByNotApplicable,
-} from './telemetry-events';
+} from './extension-telemetry-events';
 import { ForIssuesAnalyzerScanCallback, ForRuleAnalyzerScanCallback } from './types/analyzer-telemetry-callbacks';
 import { DetailsViewPivotType } from './types/details-view-pivot-type';
 import { VisualizationType } from './types/visualization-type';

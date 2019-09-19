@@ -6,7 +6,7 @@ import { ActionMessageDispatcher } from '../../../../../common/message-creators/
 import { ScopingActionMessageCreator } from '../../../../../common/message-creators/scoping-action-message-creator';
 import { Messages } from '../../../../../common/messages';
 import { TelemetryDataFactory } from '../../../../../common/telemetry-data-factory';
-import { ScopingTelemetryData, TelemetryEventSource } from '../../../../../common/telemetry-events';
+import { ScopingTelemetryData, TelemetryEventSource } from '../../../../../common/extension-telemetry-events';
 import { EventStubFactory } from './../../../common/event-stub-factory';
 
 describe('ScopingActionMessageCreatorTest', () => {

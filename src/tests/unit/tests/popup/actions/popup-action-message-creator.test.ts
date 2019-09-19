@@ -13,7 +13,7 @@ import {
     TelemetryData,
     TelemetryEventSource,
     TUTORIAL_OPEN,
-} from '../../../../../common/telemetry-events';
+} from '../../../../../common/extension-telemetry-events';
 import { DetailsViewPivotType } from '../../../../../common/types/details-view-pivot-type';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
 import { WindowUtils } from '../../../../../common/window-utils';

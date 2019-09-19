@@ -12,7 +12,7 @@ import { StoreProxy } from '../../common/store-proxy';
 import { BaseClientStoresHub } from '../../common/stores/base-client-stores-hub';
 import { StoreNames } from '../../common/stores/store-names';
 import { TelemetryDataFactory } from '../../common/telemetry-data-factory';
-import { TelemetryEventSource } from '../../common/telemetry-events';
+import { TelemetryEventSource } from '../../common/extension-telemetry-events';
 import { UserConfigurationStoreData } from '../../common/types/store-data/user-configuration-store';
 import { contentPages } from '../../content';
 import { RendererDeps } from './renderer';

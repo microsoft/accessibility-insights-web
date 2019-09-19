@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { getStoreStateMessage, Messages } from '../../common/messages';
 import { StoreNames } from '../../common/stores/store-names';
-import { PREVIEW_FEATURES_TOGGLE } from '../../common/telemetry-events';
+import { PREVIEW_FEATURES_TOGGLE } from '../../common/extension-telemetry-events';
 import { FeatureFlagActions, FeatureFlagPayload } from '../actions/feature-flag-actions';
 import { Interpreter } from '../interpreter';
 import { TelemetryEventHandler } from '../telemetry/telemetry-event-handler';

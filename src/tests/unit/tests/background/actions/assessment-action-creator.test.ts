@@ -20,8 +20,8 @@ import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-hand
 import { Action } from 'common/flux/action';
 import { getStoreStateMessage, Messages } from 'common/messages';
 import { StoreNames } from 'common/stores/store-names';
-import * as TelemetryEvents from 'common/telemetry-events';
-import { TelemetryEventSource } from 'common/telemetry-events';
+import * as TelemetryEvents from 'common/extension-telemetry-events';
+import { TelemetryEventSource } from 'common/extension-telemetry-events';
 import { DetailsViewPivotType } from 'common/types/details-view-pivot-type';
 import { VisualizationType } from 'common/types/visualization-type';
 import { ScanBasePayload, ScanCompletedPayload, ScanUpdatePayload } from 'injected/analyzers/analyzer';

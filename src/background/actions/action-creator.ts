@@ -5,7 +5,7 @@ import { VisualizationConfigurationFactory } from '../../common/configs/visualiz
 import { getStoreStateMessage, Messages } from '../../common/messages';
 import { NotificationCreator } from '../../common/notification-creator';
 import { StoreNames } from '../../common/stores/store-names';
-import * as TelemetryEvents from '../../common/telemetry-events';
+import * as TelemetryEvents from '../../common/extension-telemetry-events';
 import { VisualizationType } from '../../common/types/visualization-type';
 import { ScanCompletedPayload } from '../../injected/analyzers/analyzer';
 import { DictionaryNumberTo } from '../../types/common-types';

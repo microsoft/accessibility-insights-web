@@ -7,7 +7,7 @@ import { DetailsViewController } from 'background/details-view-controller';
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
 import { getStoreStateMessage, Messages } from 'common/messages';
 import { StoreNames } from 'common/stores/store-names';
-import { SETTINGS_PANEL_CLOSE, SETTINGS_PANEL_OPEN, TelemetryEventSource, TriggeredBy } from 'common/telemetry-events';
+import { SETTINGS_PANEL_CLOSE, SETTINGS_PANEL_OPEN, TelemetryEventSource, TriggeredBy } from 'common/extension-telemetry-events';
 import { DetailsViewRightContentPanelType } from 'DetailsView/components/left-nav/details-view-right-content-panel-type';
 import { IMock, Mock, Times } from 'typemoq';
 

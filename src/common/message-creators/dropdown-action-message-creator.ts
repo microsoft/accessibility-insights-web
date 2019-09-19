@@ -4,7 +4,7 @@ import { BaseActionPayload } from 'background/actions/action-payloads';
 import { Message } from '../message';
 import { Messages } from '../messages';
 import { TelemetryDataFactory } from '../telemetry-data-factory';
-import { TelemetryEventSource } from '../telemetry-events';
+import { TelemetryEventSource } from '../extension-telemetry-events';
 import { ActionMessageDispatcher } from './action-message-dispatcher';
 
 export class DropdownActionMessageCreator {

@@ -57,7 +57,7 @@ import { StoreProxy } from '../common/store-proxy';
 import { BaseClientStoresHub } from '../common/stores/base-client-stores-hub';
 import { StoreNames } from '../common/stores/store-names';
 import { TelemetryDataFactory } from '../common/telemetry-data-factory';
-import { TelemetryEventSource } from '../common/telemetry-events';
+import { TelemetryEventSource } from '../common/extension-telemetry-events';
 import { AssessmentStoreData } from '../common/types/store-data/assessment-result-data';
 import { DetailsViewData } from '../common/types/store-data/details-view-data';
 import { InspectStoreData } from '../common/types/store-data/inspect-store-data';

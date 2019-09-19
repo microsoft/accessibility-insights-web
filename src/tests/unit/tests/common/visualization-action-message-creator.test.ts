@@ -6,7 +6,7 @@ import { Message } from '../../../../common/message';
 import { ActionMessageDispatcher } from '../../../../common/message-creators/action-message-dispatcher';
 import { VisualizationActionMessageCreator } from '../../../../common/message-creators/visualization-action-message-creator';
 import { Messages } from '../../../../common/messages';
-import { TelemetryEventSource, ToggleTelemetryData, TriggeredBy } from '../../../../common/telemetry-events';
+import { TelemetryEventSource, ToggleTelemetryData, TriggeredBy } from '../../../../common/extension-telemetry-events';
 import { VisualizationType } from '../../../../common/types/visualization-type';
 
 describe('VisualizationActionMessageCreatorTest', () => {

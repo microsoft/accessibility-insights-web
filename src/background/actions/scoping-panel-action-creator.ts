@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { Messages } from 'common/messages';
-import { SCOPING_CLOSE, SCOPING_OPEN } from 'common/telemetry-events';
+import { SCOPING_CLOSE, SCOPING_OPEN } from 'common/extension-telemetry-events';
 import { DetailsViewController } from '../details-view-controller';
 import { Interpreter } from '../interpreter';
 import { TelemetryEventHandler } from '../telemetry/telemetry-event-handler';
