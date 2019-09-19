@@ -10,7 +10,7 @@ import { UserConfigurationStore } from '../../background/stores/global/user-conf
 import { initializeFabricIcons } from '../../common/fabric-icons';
 import { getIndexedDBStore } from '../../common/indexedDB/get-indexeddb-store';
 import { IndexedDBAPI, IndexedDBUtil } from '../../common/indexedDB/indexedDB';
-import { ElectronExternalLink } from './components/electron-external-link';
+import { ElectronLink } from './components/electron-link';
 import { DeviceConnectViewRenderer } from './device-connect-view-renderer';
 
 initializeFabricIcons();
@@ -33,7 +33,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then((persistedDat
             currentWindow: remote.getCurrentWindow(),
             userConfigurationStore,
             userConfigMessageCreator,
-            LinkComponent: ElectronExternalLink,
+            LinkComponent: ElectronLink,
         },
     };
 
