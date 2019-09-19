@@ -10,7 +10,7 @@ import { PropertyConfiguration } from '../common/configs/unified-result-property
 import { UnifiedStatusResults } from '../DetailsView/components/cards/failed-instances-section-v2';
 import { ReportHead } from './components/report-head';
 import { ReportBody, ReportBodyProps } from './components/report-sections/report-body';
-import { ReportCollapsibleContainer } from './components/report-sections/report-collapsible-container';
+import { ReportCollapsibleContainerControl } from './components/report-sections/report-collapsible-container';
 import { ReportSectionFactory, SectionProps } from './components/report-sections/report-section-factory';
 import { ReactStaticRenderer } from './react-static-renderer';
 
@@ -45,9 +45,9 @@ export class ReportHtmlGenerator {
             scanResult,
             deps: {
                 fixInstructionProcessor: this.fixInstructionProcessor,
-                collapsibleControl: collapsibleControlProps => <ReportCollapsibleContainer {...collapsibleControlProps} />,
+                collapsibleControl: ReportCollapsibleContainerControl,
                 getGuidanceTagsFromGuidanceLinks: this.getGuidanceTagsFromGuidanceLinks,
-                getPropertyConfigById: this.getPropertyConfiguration, // we should get this through constructor
+                getPropertyConfigById: this.getPropertyConfiguration,
             },
             ruleResultsByStatus: ruleResultsByStatus,
             environmentInfo: this.environmentInfo,

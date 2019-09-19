@@ -25,10 +25,12 @@ export type UnifiedStatusResults = {
     [key in UnifiedRuleResultStatus]: UnifiedRuleResult[];
 };
 
-export const FailedInstancesSectionV2 = NamedFC<FailedInstancesSectionV2Props>('FailedInstancesSectionV2', ({ ruleResultsByStatus, deps }) => {
-    if (ruleResultsByStatus == null) {
-        return null;
-    }
+export const FailedInstancesSectionV2 = NamedFC<FailedInstancesSectionV2Props>(
+    'FailedInstancesSectionV2',
+    ({ ruleResultsByStatus, deps }) => {
+        if (ruleResultsByStatus == null) {
+            return null;
+        }
 
         const count = ruleResultsByStatus.fail.reduce((total, rule) => {
             return total + rule.nodes.length;

@@ -6,14 +6,14 @@ import * as React from 'react';
 
 import { CollapsibleComponentCardsProps } from '../../../DetailsView/components/cards/collapsible-component-cards';
 
-export const ReportCollapsibleContainer = NamedFC<CollapsibleComponentCardsProps>('ReportCollapsibleContainer', props => {
+const ReportCollapsibleContainer = NamedFC<CollapsibleComponentCardsProps>('ReportCollapsibleContainer', props => {
     const { id, header, headingLevel, content, containerClassName, buttonAriaLabel } = props;
 
     const contentId = `content-container-${id}`;
 
     const outerDivClassName = css('collapsible-container', containerClassName);
 
-    const titleContainerProps = headingLevel ? { role: 'heading', 'aria-level': headingLevel } : undefined;
+    const titleContainerProps = { role: 'heading', 'aria-level': headingLevel };
 
     return (
         <div className={outerDivClassName}>
@@ -28,3 +28,7 @@ export const ReportCollapsibleContainer = NamedFC<CollapsibleComponentCardsProps
         </div>
     );
 });
+
+export const ReportCollapsibleContainerControl = (collapsibleControlProps: CollapsibleComponentCardsProps) => (
+    <ReportCollapsibleContainer {...collapsibleControlProps} />
+);

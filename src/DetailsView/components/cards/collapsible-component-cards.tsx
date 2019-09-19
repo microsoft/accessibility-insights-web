@@ -12,21 +12,20 @@ import {
 } from './collapsible-component-cards.scss';
 
 export interface CollapsibleComponentCardsProps {
-    key?: string;
-    id?: string;
     header: JSX.Element;
     content: JSX.Element;
     headingLevel: number;
     contentClassName?: string;
     containerClassName?: string;
     buttonAriaLabel?: string;
+    id?: string;
 }
 
 interface CollapsibleComponentCardsState {
     showContent: boolean;
 }
 
-export class CollapsibleComponentCards extends React.Component<CollapsibleComponentCardsProps, CollapsibleComponentCardsState> {
+class CollapsibleComponentCards extends React.Component<CollapsibleComponentCardsProps, CollapsibleComponentCardsState> {
     constructor(props: CollapsibleComponentCardsProps) {
         super(props);
         this.state = { showContent: true };

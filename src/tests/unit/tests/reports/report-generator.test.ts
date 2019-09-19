@@ -10,6 +10,7 @@ import { ReportHtmlGenerator } from 'reports/report-html-generator';
 import { ReportNameGenerator } from 'reports/report-name-generator';
 import { ScanResults } from 'scanner/iruleresults';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
+import { exampleUnifiedStatusResults } from '../DetailsView/components/cards/sample-view-model-data';
 
 describe('ReportGenerator', () => {
     const scanResult: ScanResults = {} as any;
@@ -17,6 +18,7 @@ describe('ReportGenerator', () => {
     const title = 'title';
     const url = 'http://url/';
     const description = 'description';
+    const ruleResultsByStatusStub = exampleUnifiedStatusResults;
 
     let dataBuilderMock: IMock<ReportHtmlGenerator>;
     let nameBuilderMock: IMock<ReportNameGenerator>;
@@ -37,13 +39,13 @@ describe('ReportGenerator', () => {
                     It.isValue(title),
                     It.isValue(url),
                     It.isValue(description),
-                    It.isAny(),
+                    It.isValue(ruleResultsByStatusStub),
                 ),
             )
             .returns(() => 'returned-data');
 
         const testObject = new ReportGenerator(nameBuilderMock.object, dataBuilderMock.object, assessmentReportHtmlGeneratorMock.object);
-        const actual = testObject.generateFastPassAutomateChecksReport(scanResult, date, title, url, null, description);
+        const actual = testObject.generateFastPassAutomateChecksReport(scanResult, date, title, url, ruleResultsByStatusStub, description);
 
         expect(actual).toMatchSnapshot();
     });

@@ -13,6 +13,6 @@ describe('CardsView', () => {
             ruleResultsByStatus: exampleUnifiedStatusResults,
         };
         const actual = shallow(<CardsView {...props} />);
-        expect(actual.debug()).toMatchSnapshot();
+        expect(actual.getElement()).toMatchSnapshot();
     });
 });
