@@ -6,7 +6,6 @@ import { ReactFCWithDisplayName } from 'common/react/named-fc';
 import { FixInstructionProcessor } from 'injected/fix-instruction-processor';
 import { ScanResults } from 'scanner/iruleresults';
 
-import { CollapsibleComponentCardsProps } from '../../../DetailsView/components/cards/collapsible-component-cards';
 import { FailedInstancesSectionV2Deps, UnifiedStatusResults } from '../../../DetailsView/components/cards/failed-instances-section-v2';
 
 export type SectionProps = {

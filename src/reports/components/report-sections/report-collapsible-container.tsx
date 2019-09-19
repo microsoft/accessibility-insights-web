@@ -11,7 +11,7 @@ const ReportCollapsibleContainer = NamedFC<CollapsibleComponentCardsProps>('Repo
 
     const contentId = `content-container-${id}`;
 
-    const outerDivClassName = css('collapsible-container', containerClassName);
+    const outerDivClassName = css('collapsible-container', containerClassName, 'collapsed');
 
     const titleContainerProps = { role: 'heading', 'aria-level': headingLevel };
 
