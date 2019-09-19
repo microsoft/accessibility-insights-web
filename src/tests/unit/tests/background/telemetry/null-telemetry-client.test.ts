@@ -5,12 +5,15 @@ import { NullTelemetryClient } from 'background/telemetry/null-telemetry-client'
 import { TelemetryBaseData } from 'background/telemetry/telemetry-base-data';
 import { TelemetryLogger } from 'background/telemetry/telemetry-logger';
 import { IMock, Mock, Times } from 'typemoq';
+import { ApplicationTelemetryDataFactory } from '../../../../../background/telemetry/application-telemetry-data-factory';
 
 describe('Null telemetry client', () => {
     let loggerMock: IMock<TelemetryLogger>;
+    let telemetryDataFactoryMock: IMock<ApplicationTelemetryDataFactory>;
 
     beforeEach(() => {
         loggerMock = Mock.ofType<TelemetryLogger>();
+        telemetryDataFactoryMock = Mock.ofType<ApplicationTelemetryDataFactory>();
     });
 
     describe('no op, no side effects', () => {
@@ -46,6 +49,6 @@ describe('Null telemetry client', () => {
     });
 
     function createDefaultTestObject(): NullTelemetryClient {
-        return new NullTelemetryClient(loggerMock.object);
+        return new NullTelemetryClient(telemetryDataFactoryMock.object, loggerMock.object);
     }
 });
