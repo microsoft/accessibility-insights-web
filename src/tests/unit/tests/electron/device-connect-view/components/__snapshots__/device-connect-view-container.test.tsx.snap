@@ -1,5 +1,23 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`DeviceConnectViewContainer listen to user configuration store: state from constructor 1`] = `
+Object {
+  "userConfigurationStoreData": Object {
+    "enableTelemetry": false,
+    "isFirstTime": true,
+  },
+}
+`;
+
+exports[`DeviceConnectViewContainer listen to user configuration store: updated state 1`] = `
+Object {
+  "userConfigurationStoreData": Object {
+    "enableTelemetry": true,
+    "isFirstTime": false,
+  },
+}
+`;
+
 exports[`DeviceConnectViewContainer renders 1`] = `
 <React.Fragment>
   <WindowTitle
@@ -13,6 +31,32 @@ exports[`DeviceConnectViewContainer renders 1`] = `
         "close": [Function],
       }
     }
+  />
+  <TelemetryPermissionDialog
+    deps={
+      Object {
+        "currentWindow": Object {
+          "close": [Function],
+        },
+        "userConfigurationStore": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "changedHandlers": EventHandlerList {
+            "handlers": Array [],
+          },
+          "indexDbApi": undefined,
+          "onGetCurrentState": [Function],
+          "onSaveIssueSettings": [Function],
+          "onSetHighContrastMode": [Function],
+          "onSetIssueFilingService": [Function],
+          "onSetIssueFilingServiceProperty": [Function],
+          "onSetTelemetryState": [Function],
+          "persistedState": undefined,
+          "storeName": 11,
+          "userConfigActions": undefined,
+        },
+      }
+    }
+    isFirstTime={true}
   />
 </React.Fragment>
 `;

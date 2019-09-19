@@ -2,14 +2,15 @@
 // Licensed under the MIT License.
 import { remote } from 'electron';
 import * as ReactDOM from 'react-dom';
-
 import { UserConfigurationActions } from '../../background/actions/user-configuration-actions';
 import { getPersistedData, PersistedData } from '../../background/get-persisted-data';
+import { UserConfigurationActionCreator } from '../../background/global-action-creators/user-configuration-action-creator';
 import { IndexedDBDataKeys } from '../../background/IndexedDBDataKeys';
 import { UserConfigurationStore } from '../../background/stores/global/user-configuration-store';
 import { initializeFabricIcons } from '../../common/fabric-icons';
 import { getIndexedDBStore } from '../../common/indexedDB/get-indexeddb-store';
 import { IndexedDBAPI, IndexedDBUtil } from '../../common/indexedDB/indexedDB';
+import { ElectronLink } from './components/electron-link';
 import { DeviceConnectViewRenderer } from './device-connect-view-renderer';
 
 initializeFabricIcons();
@@ -21,13 +22,18 @@ const indexedDBDataKeysToFetch = [IndexedDBDataKeys.userConfiguration];
 
 // tslint:disable-next-line:no-floating-promises - top-level entry points are intentionally floating promises
 getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then((persistedData: Partial<PersistedData>) => {
-    // tslint:disable-next-line:no-unused-variable
     const userConfigurationStore = new UserConfigurationStore(persistedData.userConfigurationData, userConfigActions, indexedDBInstance);
+    userConfigurationStore.initialize();
+
+    const userConfigMessageCreator = new UserConfigurationActionCreator(userConfigActions);
 
     const dom = document;
     const props = {
         deps: {
             currentWindow: remote.getCurrentWindow(),
+            userConfigurationStore,
+            userConfigMessageCreator,
+            LinkComponent: ElectronLink,
         },
     };
 
