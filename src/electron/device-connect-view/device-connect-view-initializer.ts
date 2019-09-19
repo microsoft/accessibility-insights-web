@@ -18,6 +18,7 @@ import { getIndexedDBStore } from '../../common/indexedDB/get-indexeddb-store';
 import { IndexedDBAPI, IndexedDBUtil } from '../../common/indexedDB/indexedDB';
 import { ElectronAppDataAdapter } from '../adapters/electron-app-data-adapter';
 import { ElectronStorageAdapter } from '../adapters/electron-storage-adapter';
+import { RiggedFeatureFlagChecker } from '../common/rigged-feature-flag-checker';
 import { ElectronLink } from './components/electron-link';
 import { DeviceConnectViewRenderer } from './device-connect-view-renderer';
 
@@ -35,6 +36,8 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then((persistedDat
     const installationData: InstallationData = persistedData.installationData;
 
     const telemetryLogger = new TelemetryLogger();
+    telemetryLogger.initialize(new RiggedFeatureFlagChecker());
+
     const telemetryClient = getTelemetryClient(installationData, appDataAdapter, telemetryLogger, AppInsights, storageAdapter);
     const telemetryEventHandler = new TelemetryEventHandler(telemetryClient);
 
