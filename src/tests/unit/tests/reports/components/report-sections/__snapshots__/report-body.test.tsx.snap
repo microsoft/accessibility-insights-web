@@ -3,6 +3,7 @@
 exports[`ReportBody renders 1`] = `
 <body-section>
   <header-section
+    deps={Object {}}
     description="test description"
     environmentInfo={
       Object {
@@ -26,6 +27,45 @@ exports[`ReportBody renders 1`] = `
     getGuidanceTagsFromGuidanceLinks={[Function]}
     pageTitle="page-title"
     pageUrl="url:target-page"
+    ruleResultsByStatus={
+      Object {
+        "fail": Array [
+          Object {
+            "description": "sample-description",
+            "guidance": Array [],
+            "id": "some-rule",
+            "nodes": Array [
+              Object {
+                "descriptors": Object {
+                  "snippet": "this is a sample snippet",
+                },
+                "identifiers": Object {
+                  "css-selector": "body img",
+                },
+                "resolution": Object {
+                  "how-to-fix-web": Object {
+                    "all": Array [],
+                    "any": Array [
+                      "Element does not have an alt attribute",
+                      "aria-label attribute does not exist or is empty",
+                      "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                    ],
+                    "none": Array [],
+                  },
+                },
+                "ruleId": "image-alt",
+                "status": "fail",
+                "uid": "some-guid-here",
+              },
+            ],
+            "url": "sample-url",
+          },
+        ],
+        "inapplicable": Array [],
+        "pass": Array [],
+        "unknown": Array [],
+      }
+    }
     scanDate={2019-05-29T19:12:16.804Z}
     scanResult={
       Object {
@@ -43,6 +83,7 @@ exports[`ReportBody renders 1`] = `
   <content-container>
     <title-section />
     <summary-section
+      deps={Object {}}
       description="test description"
       environmentInfo={
         Object {
@@ -66,6 +107,45 @@ exports[`ReportBody renders 1`] = `
       getGuidanceTagsFromGuidanceLinks={[Function]}
       pageTitle="page-title"
       pageUrl="url:target-page"
+      ruleResultsByStatus={
+        Object {
+          "fail": Array [
+            Object {
+              "description": "sample-description",
+              "guidance": Array [],
+              "id": "some-rule",
+              "nodes": Array [
+                Object {
+                  "descriptors": Object {
+                    "snippet": "this is a sample snippet",
+                  },
+                  "identifiers": Object {
+                    "css-selector": "body img",
+                  },
+                  "resolution": Object {
+                    "how-to-fix-web": Object {
+                      "all": Array [],
+                      "any": Array [
+                        "Element does not have an alt attribute",
+                        "aria-label attribute does not exist or is empty",
+                        "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                      ],
+                      "none": Array [],
+                    },
+                  },
+                  "ruleId": "image-alt",
+                  "status": "fail",
+                  "uid": "some-guid-here",
+                },
+              ],
+              "url": "sample-url",
+            },
+          ],
+          "inapplicable": Array [],
+          "pass": Array [],
+          "unknown": Array [],
+        }
+      }
       scanDate={2019-05-29T19:12:16.804Z}
       scanResult={
         Object {
@@ -81,6 +161,7 @@ exports[`ReportBody renders 1`] = `
       toUtcString={[Function]}
     />
     <details-section
+      deps={Object {}}
       description="test description"
       environmentInfo={
         Object {
@@ -104,6 +185,45 @@ exports[`ReportBody renders 1`] = `
       getGuidanceTagsFromGuidanceLinks={[Function]}
       pageTitle="page-title"
       pageUrl="url:target-page"
+      ruleResultsByStatus={
+        Object {
+          "fail": Array [
+            Object {
+              "description": "sample-description",
+              "guidance": Array [],
+              "id": "some-rule",
+              "nodes": Array [
+                Object {
+                  "descriptors": Object {
+                    "snippet": "this is a sample snippet",
+                  },
+                  "identifiers": Object {
+                    "css-selector": "body img",
+                  },
+                  "resolution": Object {
+                    "how-to-fix-web": Object {
+                      "all": Array [],
+                      "any": Array [
+                        "Element does not have an alt attribute",
+                        "aria-label attribute does not exist or is empty",
+                        "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                      ],
+                      "none": Array [],
+                    },
+                  },
+                  "ruleId": "image-alt",
+                  "status": "fail",
+                  "uid": "some-guid-here",
+                },
+              ],
+              "url": "sample-url",
+            },
+          ],
+          "inapplicable": Array [],
+          "pass": Array [],
+          "unknown": Array [],
+        }
+      }
       scanDate={2019-05-29T19:12:16.804Z}
       scanResult={
         Object {
@@ -119,6 +239,7 @@ exports[`ReportBody renders 1`] = `
       toUtcString={[Function]}
     />
     <result-section
+      deps={Object {}}
       description="test description"
       environmentInfo={
         Object {
@@ -142,6 +263,45 @@ exports[`ReportBody renders 1`] = `
       getGuidanceTagsFromGuidanceLinks={[Function]}
       pageTitle="page-title"
       pageUrl="url:target-page"
+      ruleResultsByStatus={
+        Object {
+          "fail": Array [
+            Object {
+              "description": "sample-description",
+              "guidance": Array [],
+              "id": "some-rule",
+              "nodes": Array [
+                Object {
+                  "descriptors": Object {
+                    "snippet": "this is a sample snippet",
+                  },
+                  "identifiers": Object {
+                    "css-selector": "body img",
+                  },
+                  "resolution": Object {
+                    "how-to-fix-web": Object {
+                      "all": Array [],
+                      "any": Array [
+                        "Element does not have an alt attribute",
+                        "aria-label attribute does not exist or is empty",
+                        "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                      ],
+                      "none": Array [],
+                    },
+                  },
+                  "ruleId": "image-alt",
+                  "status": "fail",
+                  "uid": "some-guid-here",
+                },
+              ],
+              "url": "sample-url",
+            },
+          ],
+          "inapplicable": Array [],
+          "pass": Array [],
+          "unknown": Array [],
+        }
+      }
       scanDate={2019-05-29T19:12:16.804Z}
       scanResult={
         Object {
@@ -157,6 +317,7 @@ exports[`ReportBody renders 1`] = `
       toUtcString={[Function]}
     >
       <failed-instances-section
+        deps={Object {}}
         description="test description"
         environmentInfo={
           Object {
@@ -180,6 +341,45 @@ exports[`ReportBody renders 1`] = `
         getGuidanceTagsFromGuidanceLinks={[Function]}
         pageTitle="page-title"
         pageUrl="url:target-page"
+        ruleResultsByStatus={
+          Object {
+            "fail": Array [
+              Object {
+                "description": "sample-description",
+                "guidance": Array [],
+                "id": "some-rule",
+                "nodes": Array [
+                  Object {
+                    "descriptors": Object {
+                      "snippet": "this is a sample snippet",
+                    },
+                    "identifiers": Object {
+                      "css-selector": "body img",
+                    },
+                    "resolution": Object {
+                      "how-to-fix-web": Object {
+                        "all": Array [],
+                        "any": Array [
+                          "Element does not have an alt attribute",
+                          "aria-label attribute does not exist or is empty",
+                          "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                        ],
+                        "none": Array [],
+                      },
+                    },
+                    "ruleId": "image-alt",
+                    "status": "fail",
+                    "uid": "some-guid-here",
+                  },
+                ],
+                "url": "sample-url",
+              },
+            ],
+            "inapplicable": Array [],
+            "pass": Array [],
+            "unknown": Array [],
+          }
+        }
         scanDate={2019-05-29T19:12:16.804Z}
         scanResult={
           Object {
@@ -195,6 +395,7 @@ exports[`ReportBody renders 1`] = `
         toUtcString={[Function]}
       />
       <passed-checks-section
+        deps={Object {}}
         description="test description"
         environmentInfo={
           Object {
@@ -218,6 +419,45 @@ exports[`ReportBody renders 1`] = `
         getGuidanceTagsFromGuidanceLinks={[Function]}
         pageTitle="page-title"
         pageUrl="url:target-page"
+        ruleResultsByStatus={
+          Object {
+            "fail": Array [
+              Object {
+                "description": "sample-description",
+                "guidance": Array [],
+                "id": "some-rule",
+                "nodes": Array [
+                  Object {
+                    "descriptors": Object {
+                      "snippet": "this is a sample snippet",
+                    },
+                    "identifiers": Object {
+                      "css-selector": "body img",
+                    },
+                    "resolution": Object {
+                      "how-to-fix-web": Object {
+                        "all": Array [],
+                        "any": Array [
+                          "Element does not have an alt attribute",
+                          "aria-label attribute does not exist or is empty",
+                          "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                        ],
+                        "none": Array [],
+                      },
+                    },
+                    "ruleId": "image-alt",
+                    "status": "fail",
+                    "uid": "some-guid-here",
+                  },
+                ],
+                "url": "sample-url",
+              },
+            ],
+            "inapplicable": Array [],
+            "pass": Array [],
+            "unknown": Array [],
+          }
+        }
         scanDate={2019-05-29T19:12:16.804Z}
         scanResult={
           Object {
@@ -233,6 +473,7 @@ exports[`ReportBody renders 1`] = `
         toUtcString={[Function]}
       />
       <not-applicable-checks-section
+        deps={Object {}}
         description="test description"
         environmentInfo={
           Object {
@@ -256,6 +497,45 @@ exports[`ReportBody renders 1`] = `
         getGuidanceTagsFromGuidanceLinks={[Function]}
         pageTitle="page-title"
         pageUrl="url:target-page"
+        ruleResultsByStatus={
+          Object {
+            "fail": Array [
+              Object {
+                "description": "sample-description",
+                "guidance": Array [],
+                "id": "some-rule",
+                "nodes": Array [
+                  Object {
+                    "descriptors": Object {
+                      "snippet": "this is a sample snippet",
+                    },
+                    "identifiers": Object {
+                      "css-selector": "body img",
+                    },
+                    "resolution": Object {
+                      "how-to-fix-web": Object {
+                        "all": Array [],
+                        "any": Array [
+                          "Element does not have an alt attribute",
+                          "aria-label attribute does not exist or is empty",
+                          "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                        ],
+                        "none": Array [],
+                      },
+                    },
+                    "ruleId": "image-alt",
+                    "status": "fail",
+                    "uid": "some-guid-here",
+                  },
+                ],
+                "url": "sample-url",
+              },
+            ],
+            "inapplicable": Array [],
+            "pass": Array [],
+            "unknown": Array [],
+          }
+        }
         scanDate={2019-05-29T19:12:16.804Z}
         scanResult={
           Object {
@@ -273,6 +553,7 @@ exports[`ReportBody renders 1`] = `
     </result-section>
   </content-container>
   <footer-section
+    deps={Object {}}
     description="test description"
     environmentInfo={
       Object {
@@ -296,6 +577,45 @@ exports[`ReportBody renders 1`] = `
     getGuidanceTagsFromGuidanceLinks={[Function]}
     pageTitle="page-title"
     pageUrl="url:target-page"
+    ruleResultsByStatus={
+      Object {
+        "fail": Array [
+          Object {
+            "description": "sample-description",
+            "guidance": Array [],
+            "id": "some-rule",
+            "nodes": Array [
+              Object {
+                "descriptors": Object {
+                  "snippet": "this is a sample snippet",
+                },
+                "identifiers": Object {
+                  "css-selector": "body img",
+                },
+                "resolution": Object {
+                  "how-to-fix-web": Object {
+                    "all": Array [],
+                    "any": Array [
+                      "Element does not have an alt attribute",
+                      "aria-label attribute does not exist or is empty",
+                      "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+                    ],
+                    "none": Array [],
+                  },
+                },
+                "ruleId": "image-alt",
+                "status": "fail",
+                "uid": "some-guid-here",
+              },
+            ],
+            "url": "sample-url",
+          },
+        ],
+        "inapplicable": Array [],
+        "pass": Array [],
+        "unknown": Array [],
+      }
+    }
     scanDate={2019-05-29T19:12:16.804Z}
     scanResult={
       Object {

@@ -9,6 +9,7 @@ import { ReportSectionFactory, SectionProps } from 'reports/components/report-se
 import { Mock } from 'typemoq';
 
 import { FailedInstancesSectionV2Deps } from '../../../../../../DetailsView/components/cards/failed-instances-section-v2';
+import { exampleUnifiedStatusResults } from '../../../DetailsView/components/cards/sample-view-model-data';
 
 describe('ReportBody', () => {
     it('renders', () => {
@@ -42,7 +43,7 @@ describe('ReportBody', () => {
             toUtcString: () => '',
             getCollapsibleScript: getScriptStub,
             getGuidanceTagsFromGuidanceLinks: getGuidanceTagsStub,
-            ruleResultsByStatus: null,
+            ruleResultsByStatus: exampleUnifiedStatusResults,
         };
 
         const props: ReportBodyProps = {
