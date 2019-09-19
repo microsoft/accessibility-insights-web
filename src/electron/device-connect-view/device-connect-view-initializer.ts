@@ -33,7 +33,6 @@ const indexedDBDataKeysToFetch = [IndexedDBDataKeys.userConfiguration, IndexedDB
 getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then((persistedData: Partial<PersistedData>) => {
     const installationData: InstallationData = persistedData.installationData;
 
-    // wireup telemetry
     const telemetryLogger = new TelemetryLogger();
     const telemetryClient = getTelemetryClient(installationData, appDataAdapter, telemetryLogger, AppInsights, storageAdapter);
     const telemetryEventHandler = new TelemetryEventHandler(telemetryClient);
