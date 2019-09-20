@@ -39,12 +39,14 @@ describe('Null telemetry client', () => {
             };
 
             loggerMock.setup(logger => logger.log(expected)).verifiable(Times.once());
+            telemetryDataFactoryMock.setup(factory => factory.getData()).verifiable(Times.once());
 
             const testObject = createDefaultTestObject();
 
             testObject.trackEvent(name, properties);
 
             loggerMock.verifyAll();
+            telemetryDataFactoryMock.verifyAll();
         });
     });
 
