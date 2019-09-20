@@ -5,12 +5,18 @@ import { NullTelemetryClient } from 'background/telemetry/null-telemetry-client'
 import { TelemetryBaseData } from 'background/telemetry/telemetry-base-data';
 import { TelemetryLogger } from 'background/telemetry/telemetry-logger';
 import { IMock, Mock, Times } from 'typemoq';
+import {
+    ApplicationTelemetryData,
+    ApplicationTelemetryDataFactory,
+} from '../../../../../background/telemetry/application-telemetry-data-factory';
 
 describe('Null telemetry client', () => {
     let loggerMock: IMock<TelemetryLogger>;
+    let telemetryDataFactoryMock: IMock<ApplicationTelemetryDataFactory>;
 
     beforeEach(() => {
         loggerMock = Mock.ofType<TelemetryLogger>();
+        telemetryDataFactoryMock = Mock.ofType<ApplicationTelemetryDataFactory>();
     });
 
     describe('no op, no side effects', () => {
@@ -28,24 +34,37 @@ describe('Null telemetry client', () => {
     describe('trackEvent', () => {
         it('should log telemetry', () => {
             const name = 'test-event-name';
-            const properties = {};
+            const appDataStub = {
+                applicationVersion: 'test version',
+            } as ApplicationTelemetryData;
 
-            const expected: TelemetryBaseData = {
+            const properties = {
+                testProperty: 'test property',
+                ...appDataStub,
+            };
+
+            const expectedLogData: TelemetryBaseData = {
                 name,
                 properties,
             };
 
-            loggerMock.setup(logger => logger.log(expected)).verifiable(Times.once());
+            telemetryDataFactoryMock
+                .setup(factory => factory.getData())
+                .returns(() => appDataStub)
+                .verifiable(Times.once());
+
+            loggerMock.setup(logger => logger.log(expectedLogData)).verifiable(Times.once());
 
             const testObject = createDefaultTestObject();
 
             testObject.trackEvent(name, properties);
 
+            telemetryDataFactoryMock.verifyAll();
             loggerMock.verifyAll();
         });
     });
 
     function createDefaultTestObject(): NullTelemetryClient {
-        return new NullTelemetryClient(loggerMock.object);
+        return new NullTelemetryClient(telemetryDataFactoryMock.object, loggerMock.object);
     }
 });
