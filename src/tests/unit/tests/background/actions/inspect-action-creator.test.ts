@@ -5,9 +5,9 @@ import { InspectActions, InspectPayload } from 'background/actions/inspect-actio
 import { InspectMode } from 'background/inspect-modes';
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
+import * as TelemetryEvents from 'common/extension-telemetry-events';
 import { getStoreStateMessage, Messages } from 'common/messages';
 import { StoreNames } from 'common/stores/store-names';
-import * as TelemetryEvents from 'common/telemetry-events';
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';
 
 import { createActionMock, createInterpreterMock } from '../global-action-creators/action-creator-test-helpers';

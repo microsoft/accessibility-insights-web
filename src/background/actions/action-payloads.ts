@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as TelemetryEvents from '../../common/telemetry-events';
-import { BaseTelemetryData, TelemetryData, ToggleTelemetryData } from '../../common/telemetry-events';
+import * as TelemetryEvents from '../../common/extension-telemetry-events';
+import { BaseTelemetryData, TelemetryData, ToggleTelemetryData } from '../../common/extension-telemetry-events';
 import { CreateIssueDetailsTextData } from '../../common/types/create-issue-details-text-data';
 import { DetailsViewPivotType } from '../../common/types/details-view-pivot-type';
 import { ManualTestStatus } from '../../common/types/manual-test-status';

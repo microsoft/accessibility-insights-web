@@ -5,15 +5,15 @@ import { Interpreter } from 'background/interpreter';
 import { AssessmentStore } from 'background/stores/assessment-store';
 import { TabStore } from 'background/stores/tab-store';
 import { It, Mock, MockBehavior, Times } from 'typemoq';
-import { Message } from '../../../../common/message';
-import { Messages } from '../../../../common/messages';
-import { TelemetryDataFactory } from '../../../../common/telemetry-data-factory';
 import {
     CHANGE_OVERALL_REQUIREMENT_STATUS,
     RequirementStatusTelemetryData,
     TelemetryEventSource,
     TriggeredByNotApplicable,
-} from '../../../../common/telemetry-events';
+} from '../../../../common/extension-telemetry-events';
+import { Message } from '../../../../common/message';
+import { Messages } from '../../../../common/messages';
+import { TelemetryDataFactory } from '../../../../common/telemetry-data-factory';
 import { ManualTestStatus } from '../../../../common/types/manual-test-status';
 import { AssessmentData, AssessmentStoreData } from '../../../../common/types/store-data/assessment-result-data';
 import { TabStoreData } from '../../../../common/types/store-data/tab-store-data';

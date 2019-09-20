@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { ModifiedCommandsTelemetryData, SHORTCUT_MODIFIED } from '../../../common/extension-telemetry-events';
 import { StoreNames } from '../../../common/stores/store-names';
-import { ModifiedCommandsTelemetryData, SHORTCUT_MODIFIED } from '../../../common/telemetry-events';
 import { CommandStoreData } from '../../../common/types/store-data/command-store-data';
 import { CommandActions, GetCommandsPayload } from '../../actions/command-actions';
 import { TelemetryEventHandler } from '../../telemetry/telemetry-event-handler';

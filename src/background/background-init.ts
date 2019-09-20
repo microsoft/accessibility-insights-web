@@ -17,6 +17,7 @@ import { createDefaultPromiseFactory } from '../common/promises/promise-factory'
 import { TelemetryDataFactory } from '../common/telemetry-data-factory';
 import { UrlValidator } from '../common/url-validator';
 import { WindowUtils } from '../common/window-utils';
+import { title } from '../content/strings/application';
 import { IssueFilingServiceProviderImpl } from '../issue-filing/issue-filing-service-provider-impl';
 import { ChromeCommandHandler } from './chrome-command-handler';
 import { DetailsViewController } from './details-view-controller';
@@ -57,7 +58,14 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then((persistedDat
         const telemetryLogger = new TelemetryLogger();
 
         const { installationData } = userData;
-        const telemetryClient = getTelemetryClient(installationData, browserAdapter, telemetryLogger, AppInsights, browserAdapter);
+        const telemetryClient = getTelemetryClient(
+            title,
+            installationData,
+            browserAdapter,
+            telemetryLogger,
+            AppInsights,
+            browserAdapter,
+        );
 
         const telemetryEventHandler = new TelemetryEventHandler(telemetryClient);
 
