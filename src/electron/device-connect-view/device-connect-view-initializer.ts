@@ -3,6 +3,7 @@
 import { AppInsights } from 'applicationinsights-js';
 import { remote } from 'electron';
 import * as ReactDOM from 'react-dom';
+
 import { UserConfigurationActions } from '../../background/actions/user-configuration-actions';
 import { getPersistedData, PersistedData } from '../../background/get-persisted-data';
 import { UserConfigurationActionCreator } from '../../background/global-action-creators/user-configuration-action-creator';
@@ -16,6 +17,7 @@ import { TelemetryStateListener } from '../../background/telemetry/telemetry-sta
 import { initializeFabricIcons } from '../../common/fabric-icons';
 import { getIndexedDBStore } from '../../common/indexedDB/get-indexeddb-store';
 import { IndexedDBAPI, IndexedDBUtil } from '../../common/indexedDB/indexedDB';
+import { telemetryAppTitle } from '../../content/strings/application';
 import { ElectronAppDataAdapter } from '../adapters/electron-app-data-adapter';
 import { ElectronStorageAdapter } from '../adapters/electron-storage-adapter';
 import { RiggedFeatureFlagChecker } from '../common/rigged-feature-flag-checker';
@@ -38,7 +40,14 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then((persistedDat
     const telemetryLogger = new TelemetryLogger();
     telemetryLogger.initialize(new RiggedFeatureFlagChecker());
 
-    const telemetryClient = getTelemetryClient(installationData, appDataAdapter, telemetryLogger, AppInsights, storageAdapter);
+    const telemetryClient = getTelemetryClient(
+        telemetryAppTitle,
+        installationData,
+        appDataAdapter,
+        telemetryLogger,
+        AppInsights,
+        storageAdapter,
+    );
     const telemetryEventHandler = new TelemetryEventHandler(telemetryClient);
 
     const userConfigurationStore = new UserConfigurationStore(persistedData.userConfigurationData, userConfigActions, indexedDBInstance);
