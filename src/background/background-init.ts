@@ -37,6 +37,7 @@ import { TelemetryEventHandler } from './telemetry/telemetry-event-handler';
 import { TelemetryLogger } from './telemetry/telemetry-logger';
 import { TelemetryStateListener } from './telemetry/telemetry-state-listener';
 import { UserStoredDataCleaner } from './user-stored-data-cleaner';
+import { title } from '../content/strings/application';
 
 declare var window: Window & InsightsFeatureFlags;
 
@@ -56,7 +57,14 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then((persistedDat
         const telemetryDataFactory = new TelemetryDataFactory();
         const telemetryLogger = new TelemetryLogger();
 
-        const telemetryClient = getTelemetryClient(userData.installationData, browserAdapter, telemetryLogger, AppInsights, browserAdapter);
+        const telemetryClient = getTelemetryClient(
+            title,
+            userData.installationData,
+            browserAdapter,
+            telemetryLogger,
+            AppInsights,
+            browserAdapter,
+        );
 
         const telemetryEventHandler = new TelemetryEventHandler(telemetryClient);
 

@@ -15,6 +15,7 @@ import { TelemetryClient } from './telemetry-client';
 import { TelemetryLogger } from './telemetry-logger';
 
 export const getTelemetryClient = (
+    applicationName: string,
     installationData: InstallationData,
     appDataAdapter: AppDataAdapter,
     logger: TelemetryLogger,
@@ -25,6 +26,7 @@ export const getTelemetryClient = (
     const applicationBuildGenerator = new ApplicationBuildGenerator();
     const coreTelemetryDataFactory = new ApplicationTelemetryDataFactory(
         appDataAdapter.getVersion(),
+        applicationName,
         applicationBuildGenerator.getBuild(),
         installDataGenerator,
     );

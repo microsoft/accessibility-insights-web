@@ -2,12 +2,13 @@
 // Licensed under the MIT License.
 import { InstallDataGenerator } from 'background/install-data-generator';
 import { ApplicationTelemetryData, ApplicationTelemetryDataFactory } from 'background/telemetry/application-telemetry-data-factory';
-import { title } from 'content/strings/application';
 import { IMock, Mock } from 'typemoq';
 
 describe('ApplicationTelemetryDataFactoryTest', () => {
-    const applicationBuildStub: string = 'application build id';
-    const installationId: string = 'some id';
+    const applicationBuild: string = 'application build id';
+    const applicationVersion: string = 'application version';
+    const applicationName: string = 'application name';
+    const installationId: string = 'installation id';
 
     let installDataGeneratorMock: IMock<InstallDataGenerator>;
 
@@ -20,15 +21,20 @@ describe('ApplicationTelemetryDataFactoryTest', () => {
             .returns(() => installationId)
             .verifiable();
 
-        testSubject = new ApplicationTelemetryDataFactory('2', applicationBuildStub, installDataGeneratorMock.object);
+        testSubject = new ApplicationTelemetryDataFactory(
+            applicationVersion,
+            applicationName,
+            applicationBuild,
+            installDataGeneratorMock.object,
+        );
     });
 
     test('verifyCoreData', () => {
         const expectedData: ApplicationTelemetryData = {
-            installationId: installationId,
-            applicationBuild: applicationBuildStub,
-            applicationName: title,
-            applicationVersion: '2',
+            installationId,
+            applicationBuild,
+            applicationName,
+            applicationVersion,
         };
         expect(testSubject.getData()).toEqual(expectedData);
     });
