@@ -12,7 +12,7 @@ export const addEventListenerForCollapsibleSection = (doc: Document) => {
             const isExpandedAfter = !wasExpandedBefore;
 
             button.setAttribute('aria-expanded', isExpandedAfter + '');
-            content.setAttribute('aria-hidden', wasExpandedBefore + '');
+            content.setAttribute('aria-hidden', !isExpandedAfter + '');
 
             if (isExpandedAfter) {
                 self.classList.remove('collapsed');
