@@ -23,7 +23,11 @@ export const getTelemetryClient = (
 ): TelemetryClient => {
     const installDataGenerator = new InstallDataGenerator(installationData, generateUID, DateProvider.getCurrentDate, storageAdapter);
     const applicationBuildGenerator = new ApplicationBuildGenerator();
-    const coreTelemetryDataFactory = new ApplicationTelemetryDataFactory(appDataAdapter, applicationBuildGenerator, installDataGenerator);
+    const coreTelemetryDataFactory = new ApplicationTelemetryDataFactory(
+        appDataAdapter.getVersion(),
+        applicationBuildGenerator.getBuild(),
+        installDataGenerator,
+    );
 
     const appInsightsInstrumentationKey = config.getOption('appInsightsInstrumentationKey');
 
