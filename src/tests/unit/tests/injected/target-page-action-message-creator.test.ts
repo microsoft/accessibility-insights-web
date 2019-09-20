@@ -2,12 +2,12 @@
 // Licensed under the MIT License.
 import { BaseActionPayload } from 'background/actions/action-payloads';
 import { Mock, Times } from 'typemoq';
+import * as TelemetryEvents from '../../../../common/extension-telemetry-events';
+import { SettingsOpenTelemetryData, TelemetryEventSource } from '../../../../common/extension-telemetry-events';
 import { Message } from '../../../../common/message';
 import { ActionMessageDispatcher } from '../../../../common/message-creators/action-message-dispatcher';
 import { Messages } from '../../../../common/messages';
 import { TelemetryDataFactory } from '../../../../common/telemetry-data-factory';
-import * as TelemetryEvents from '../../../../common/telemetry-events';
-import { SettingsOpenTelemetryData, TelemetryEventSource } from '../../../../common/telemetry-events';
 import { TargetPageActionMessageCreator } from '../../../../injected/target-page-action-message-creator';
 import { EventStubFactory } from '../../common/event-stub-factory';
 

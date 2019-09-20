@@ -2,17 +2,17 @@
 // Licensed under the MIT License.
 import { IMock, It, Mock, Times } from 'typemoq';
 
-import { ActionMessageDispatcher } from '../../../../../common/message-creators/action-message-dispatcher';
-import { IssueFilingActionMessageCreator } from '../../../../../common/message-creators/issue-filing-action-message-creator';
-import { Messages } from '../../../../../common/messages';
-import { TelemetryDataFactory } from '../../../../../common/telemetry-data-factory';
 import {
     BaseTelemetryData,
     FILE_ISSUE_CLICK,
     SettingsOpenSourceItem,
     TelemetryEventSource,
     TriggeredBy,
-} from '../../../../../common/telemetry-events';
+} from '../../../../../common/extension-telemetry-events';
+import { ActionMessageDispatcher } from '../../../../../common/message-creators/action-message-dispatcher';
+import { IssueFilingActionMessageCreator } from '../../../../../common/message-creators/issue-filing-action-message-creator';
+import { Messages } from '../../../../../common/messages';
+import { TelemetryDataFactory } from '../../../../../common/telemetry-data-factory';
 import { CreateIssueDetailsTextData } from '../../../../../common/types/create-issue-details-text-data';
 import { DecoratedAxeNodeResult } from '../../../../../injected/scanner-utils';
 import { EventStubFactory } from '../../../common/event-stub-factory';

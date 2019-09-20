@@ -13,11 +13,11 @@ import { BrowserAdapter } from '../../../../common/browser-adapters/browser-adap
 import { CommandsAdapter } from '../../../../common/browser-adapters/commands-adapter';
 import { VisualizationConfigurationFactory } from '../../../../common/configs/visualization-configuration-factory';
 import { DisplayableStrings } from '../../../../common/constants/displayable-strings';
+import { TelemetryEventSource } from '../../../../common/extension-telemetry-events';
 import { Message } from '../../../../common/message';
 import { Messages } from '../../../../common/messages';
 import { NotificationCreator } from '../../../../common/notification-creator';
 import { TelemetryDataFactory } from '../../../../common/telemetry-data-factory';
-import { TelemetryEventSource } from '../../../../common/telemetry-events';
 import { VisualizationStoreData } from '../../../../common/types/store-data/visualization-store-data';
 import { VisualizationType } from '../../../../common/types/visualization-type';
 import { UrlValidator } from '../../../../common/url-validator';

@@ -2,9 +2,6 @@
 // Licensed under the MIT License.
 import { OnDetailsViewOpenPayload, SetLaunchPanelState } from 'background/actions/action-payloads';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
-import { ActionMessageDispatcher } from '../../../../../common/message-creators/action-message-dispatcher';
-import { Messages } from '../../../../../common/messages';
-import { TelemetryDataFactory } from '../../../../../common/telemetry-data-factory';
 import {
     BaseTelemetryData,
     DetailsViewOpenTelemetryData,
@@ -13,7 +10,10 @@ import {
     TelemetryData,
     TelemetryEventSource,
     TUTORIAL_OPEN,
-} from '../../../../../common/telemetry-events';
+} from '../../../../../common/extension-telemetry-events';
+import { ActionMessageDispatcher } from '../../../../../common/message-creators/action-message-dispatcher';
+import { Messages } from '../../../../../common/messages';
+import { TelemetryDataFactory } from '../../../../../common/telemetry-data-factory';
 import { DetailsViewPivotType } from '../../../../../common/types/details-view-pivot-type';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
 import { WindowUtils } from '../../../../../common/window-utils';

@@ -8,8 +8,8 @@ import { ShortcutsPageActionCreator } from 'background/actions/shortcuts-page-ac
 import { Interpreter } from 'background/interpreter';
 import { ShortcutsPageController } from 'background/shortcuts-page-controller';
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
+import { SHORTCUT_CONFIGURE_OPEN } from '../../../../../common/extension-telemetry-events';
 import { Messages } from '../../../../../common/messages';
-import { SHORTCUT_CONFIGURE_OPEN } from '../../../../../common/telemetry-events';
 
 describe('ShortcutsPageActionCreator', () => {
     let interpreterMock: IMock<Interpreter>;

@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { TelemetryDataFactory } from '../../../../common/telemetry-data-factory';
 import {
     AssessmentTelemetryData,
     BaseTelemetryData,
@@ -19,7 +18,8 @@ import {
     TelemetryEventSource,
     ToggleTelemetryData,
     TriggeredByNotApplicable,
-} from '../../../../common/telemetry-events';
+} from '../../../../common/extension-telemetry-events';
+import { TelemetryDataFactory } from '../../../../common/telemetry-data-factory';
 import { DetailsViewPivotType } from '../../../../common/types/details-view-pivot-type';
 import { VisualizationType } from '../../../../common/types/visualization-type';
 import { AxeAnalyzerResult } from '../../../../injected/analyzers/analyzer';

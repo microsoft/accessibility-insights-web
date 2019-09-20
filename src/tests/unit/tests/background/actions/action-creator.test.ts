@@ -25,10 +25,7 @@ import { Interpreter } from 'background/interpreter';
 import { TargetTabController } from 'background/target-tab-controller';
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
 import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
-import { Action } from 'common/flux/action';
-import { getStoreStateMessage, Messages } from 'common/messages';
-import { NotificationCreator } from 'common/notification-creator';
-import { StoreNames } from 'common/stores/store-names';
+import * as TelemetryEvents from 'common/extension-telemetry-events';
 import {
     BaseTelemetryData,
     DetailsViewOpenTelemetryData,
@@ -36,8 +33,11 @@ import {
     TelemetryEventSource,
     ToggleTelemetryData,
     TriggeredBy,
-} from 'common/telemetry-events';
-import * as TelemetryEvents from 'common/telemetry-events';
+} from 'common/extension-telemetry-events';
+import { Action } from 'common/flux/action';
+import { getStoreStateMessage, Messages } from 'common/messages';
+import { NotificationCreator } from 'common/notification-creator';
+import { StoreNames } from 'common/stores/store-names';
 import { DetailsViewPivotType } from 'common/types/details-view-pivot-type';
 import { VisualizationType } from 'common/types/visualization-type';
 import { ScanCompletedPayload } from 'injected/analyzers/analyzer';

@@ -2,8 +2,8 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
+import { TelemetryEventSource } from './extension-telemetry-events';
 import { DropdownActionMessageCreator } from './message-creators/dropdown-action-message-creator';
-import { TelemetryEventSource } from './telemetry-events';
 
 export class DropdownClickHandler {
     private dropdownActionMessageCreator: DropdownActionMessageCreator;
