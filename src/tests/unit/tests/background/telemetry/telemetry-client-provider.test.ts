@@ -17,6 +17,8 @@ describe('TelemetryClientProvider', () => {
         year: 2019,
     };
 
+    const applicationName = 'test application name';
+
     beforeEach(() => configMutator.reset());
     afterAll(() => configMutator.reset());
 
@@ -28,6 +30,7 @@ describe('TelemetryClientProvider', () => {
         appAdapterMock.setup(adapter => adapter.getVersion()).returns(() => 'test');
 
         const result = getTelemetryClient(
+            applicationName,
             installationData,
             appAdapterMock.object,
             Mock.ofType<TelemetryLogger>().object,
@@ -42,6 +45,7 @@ describe('TelemetryClientProvider', () => {
         configMutator.setOption('appInsightsInstrumentationKey', null);
 
         const result = getTelemetryClient(
+            applicationName,
             installationData,
             Mock.ofType<AppDataAdapter>().object,
             Mock.ofType<TelemetryLogger>().object,

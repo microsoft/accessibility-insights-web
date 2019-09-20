@@ -15,6 +15,7 @@ import { TelemetryClient } from './telemetry-client';
 import { TelemetryLogger } from './telemetry-logger';
 
 export const getTelemetryClient = (
+    applicationName: string,
     installationData: InstallationData,
     appDataAdapter: AppDataAdapter,
     logger: TelemetryLogger,
@@ -23,7 +24,12 @@ export const getTelemetryClient = (
 ): TelemetryClient => {
     const installDataGenerator = new InstallDataGenerator(installationData, generateUID, DateProvider.getCurrentDate, storageAdapter);
     const applicationBuildGenerator = new ApplicationBuildGenerator();
-    const coreTelemetryDataFactory = new ApplicationTelemetryDataFactory(appDataAdapter, applicationBuildGenerator, installDataGenerator);
+    const coreTelemetryDataFactory = new ApplicationTelemetryDataFactory(
+        appDataAdapter.getVersion(),
+        applicationName,
+        applicationBuildGenerator.getBuild(),
+        installDataGenerator,
+    );
 
     const appInsightsInstrumentationKey = config.getOption('appInsightsInstrumentationKey');
 
