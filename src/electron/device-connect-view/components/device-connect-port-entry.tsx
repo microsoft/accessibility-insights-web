@@ -12,10 +12,8 @@ export type DeviceConnectPortEntryDeps = {
 };
 
 export interface DeviceConnectPortEntryProps {
-    deps?: DeviceConnectPortEntryDeps;
+    deps: DeviceConnectPortEntryDeps;
     needsValidation: boolean;
-    updateStateCallback: UpdateStateCallback;
-    fetchScanResults: FetchScanResultsType;
 }
 
 export interface DeviceConnectPortEntryState {

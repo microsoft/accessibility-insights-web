@@ -48,9 +48,11 @@ export class DeviceConnectBody extends React.Component<DeviceConnectBodyProps, D
             <div className="device-connect-body">
                 <DeviceConnectHeader />
                 <DeviceConnectPortEntry
+                    deps={{
+                        updateStateCallback: this.OnConnectedCallback,
+                        fetchScanResults: fetchScanResults,
+                    }}
                     needsValidation={needsValidation}
-                    updateStateCallback={this.OnConnectedCallback}
-                    fetchScanResults={fetchScanResults}
                 />
                 <DeviceConnectConnectedDevice
                     isConnecting={isConnecting}
