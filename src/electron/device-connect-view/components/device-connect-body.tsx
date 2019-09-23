@@ -16,8 +16,13 @@ export enum DeviceConnectState {
     Connected,
     Error,
 }
-export interface DeviceConnectBodyProps {
+
+export type DeviceConnectBodyDeps = {
     currentWindow: BrowserWindow;
+};
+
+export interface DeviceConnectBodyProps {
+    deps: DeviceConnectBodyDeps;
 }
 
 export interface DeviceConnectBodyState {
@@ -52,7 +57,10 @@ export class DeviceConnectBody extends React.Component<DeviceConnectBodyProps, D
                     connectedDevice={this.state.connectedDevice}
                     hasFailed={hasFailedConnecting}
                 />
-                <DeviceConnectFooter cancelClick={this.props.currentWindow.close} canStartTesting={canStartTesting}></DeviceConnectFooter>
+                <DeviceConnectFooter
+                    cancelClick={this.props.deps.currentWindow.close}
+                    canStartTesting={canStartTesting}
+                ></DeviceConnectFooter>
             </div>
         );
     }

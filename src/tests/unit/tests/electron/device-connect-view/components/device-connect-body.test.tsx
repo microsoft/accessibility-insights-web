@@ -13,11 +13,13 @@ import * as React from 'react';
 
 describe('DeviceConnectBodyTest', () => {
     const props: DeviceConnectBodyProps = {
-        currentWindow: {
-            close: () => {
-                return;
-            },
-        } as BrowserWindow,
+        deps: {
+            currentWindow: {
+                close: () => {
+                    return;
+                },
+            } as BrowserWindow,
+        },
     };
 
     const expectedBeforeState: DeviceConnectBodyState = {
