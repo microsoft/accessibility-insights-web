@@ -12,7 +12,6 @@ import { UserConfigurationStore } from '../../background/stores/global/user-conf
 import { initializeFabricIcons } from '../../common/fabric-icons';
 import { getIndexedDBStore } from '../../common/indexedDB/get-indexeddb-store';
 import { IndexedDBAPI, IndexedDBUtil } from '../../common/indexedDB/indexedDB';
-import { DeviceConnectBodyProps } from './components/device-connect-body';
 import { ElectronLink } from './components/electron-link';
 import { DeviceConnectViewRenderer } from './device-connect-view-renderer';
 

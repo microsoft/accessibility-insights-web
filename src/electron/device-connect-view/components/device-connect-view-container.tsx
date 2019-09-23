@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { BrowserWindow } from 'electron';
 import * as React from 'react';
 import { BaseStore } from '../../../common/base-store';
 import { TelemetryPermissionDialog, TelemetryPermissionDialogDeps } from '../../../common/components/telemetry-permission-dialog';
