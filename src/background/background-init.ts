@@ -58,14 +58,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then((persistedDat
         const telemetryLogger = new TelemetryLogger();
 
         const { installationData } = userData;
-        const telemetryClient = getTelemetryClient(
-            title,
-            installationData,
-            browserAdapter,
-            telemetryLogger,
-            AppInsights,
-            browserAdapter,
-        );
+        const telemetryClient = getTelemetryClient(title, installationData, browserAdapter, telemetryLogger, AppInsights, browserAdapter);
 
         const telemetryEventHandler = new TelemetryEventHandler(telemetryClient);
 
