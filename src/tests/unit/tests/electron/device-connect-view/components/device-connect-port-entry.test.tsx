@@ -44,7 +44,9 @@ describe('DeviceConnectPortEntryTest', () => {
                 updateStateCallbackMock.setup(callback => callback(DeviceConnectState.Default, undefined));
 
                 const props = {
-                    updateStateCallback: updateStateCallbackMock.object,
+                    deps: {
+                        updateStateCallback: updateStateCallbackMock.object,
+                    },
                 } as DeviceConnectPortEntryProps;
 
                 const rendered = shallow(<DeviceConnectPortEntry {...props} />);
@@ -69,8 +71,10 @@ describe('DeviceConnectPortEntryTest', () => {
                 updateStateCallbackMock.setup(r => r(DeviceConnectState.Connecting)).verifiable(Times.once());
 
                 props = {
-                    fetchScanResults: fetchScanResultsMock.object,
-                    updateStateCallback: updateStateCallbackMock.object,
+                    deps: {
+                        fetchScanResults: fetchScanResultsMock.object,
+                        updateStateCallback: updateStateCallbackMock.object,
+                    },
                 } as DeviceConnectPortEntryProps;
             });
 
