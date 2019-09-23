@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { create, GuidanceTitle, React } from '../../common';
 
-export const guidance = create(({ Markup }) => (
+export const guidance = create(({ Markup, Link }) => (
     <React.Fragment>
         <GuidanceTitle name={'Color'} />
 
@@ -13,6 +13,9 @@ export const guidance = create(({ Markup }) => (
             response, or distinguishing a visible element), that meaning is not available to people who are blind or colorblind. To ensure
             that meaning conveyed through color is available to everyone, it must also be conveyed through other visual aspects. (It must
             also be communicated textually to assistive technology, but that's beyond the scope of this test.)
+        </p>
+        <p>
+            To learn more, see <Link.WCAG21UnderstandingUseOfColor />.
         </p>
 
         <h2>About the Color visualization</h2>
