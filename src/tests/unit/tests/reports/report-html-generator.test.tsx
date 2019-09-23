@@ -12,6 +12,9 @@ import { ReactStaticRenderer } from 'reports/react-static-renderer';
 import { ReportHtmlGenerator } from 'reports/report-html-generator';
 import { ScanResults } from 'scanner/iruleresults';
 import { It, Mock, MockBehavior, Times } from 'typemoq';
+import { RulesWithInstancesV2Deps } from '../../../../DetailsView/components/cards/rules-with-instances-v2';
+import { ReportCollapsibleContainerControl } from '../../../../reports/components/report-sections/report-collapsible-container';
+import { exampleUnifiedStatusResults } from '../DetailsView/components/cards/sample-view-model-data';
 
 describe('ReportHtmlGenerator', () => {
     test('generateHtml', () => {
@@ -24,6 +27,7 @@ describe('ReportHtmlGenerator', () => {
         const pageUrl: string = 'https://page-url/';
         const description: string = 'description';
         const fixInstructionProcessorMock = Mock.ofType(FixInstructionProcessor);
+        const getPropertyConfigurationStub = (id: string) => null;
 
         const getUTCStringFromDateStub: typeof DateProvider.getUTCStringFromDate = () => '';
         const getGuidanceTagsStub: GetGuidanceTagsFromGuidanceLinks = () => [];
@@ -38,6 +42,12 @@ describe('ReportHtmlGenerator', () => {
         const getScriptMock = Mock.ofInstance(() => '');
 
         const sectionProps: ReportBodyProps = {
+            deps: {
+                fixInstructionProcessor: fixInstructionProcessorMock.object,
+                getGuidanceTagsFromGuidanceLinks: getGuidanceTagsStub,
+                getPropertyConfigById: getPropertyConfigurationStub,
+                collapsibleControl: ReportCollapsibleContainerControl,
+            } as RulesWithInstancesV2Deps,
             fixInstructionProcessor: fixInstructionProcessorMock.object,
             sectionFactory: sectionFactoryMock.object,
             pageTitle,
@@ -49,6 +59,7 @@ describe('ReportHtmlGenerator', () => {
             toUtcString: getUTCStringFromDateStub,
             getCollapsibleScript: getScriptMock.object,
             getGuidanceTagsFromGuidanceLinks: getGuidanceTagsStub,
+            ruleResultsByStatus: exampleUnifiedStatusResults,
         };
 
         const headElement: JSX.Element = <ReportHead />;
@@ -72,9 +83,10 @@ describe('ReportHtmlGenerator', () => {
             getUTCStringFromDateStub,
             getGuidanceTagsStub,
             fixInstructionProcessorMock.object,
+            getPropertyConfigurationStub,
         );
 
-        const actual = testObject.generateHtml(scanResult, scanDate, pageTitle, pageUrl, description);
+        const actual = testObject.generateHtml(scanResult, scanDate, pageTitle, pageUrl, description, exampleUnifiedStatusResults);
 
         expect(actual).toMatchSnapshot();
     });

@@ -4,12 +4,16 @@ exports[`RulesWithInstancesV2 renders 1`] = `
 <div
   className="ruleDetailsGroup"
 >
-  <CollapsibleComponentCards
+  <CollapsibleControlStub
     buttonAriaLabel="some-rule 1 Passed sample-description"
     containerClassName="collapsibleRuleDetailsGroup"
     content={
       <RuleContentV2
-        deps={Object {}}
+        deps={
+          Object {
+            "collapsibleControl": [Function],
+          }
+        }
         fixInstructionProcessor={
           proxy {
             "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",

@@ -1,13 +1,15 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { shallow } from 'enzyme';
-import * as React from 'react';
-import { Mock } from 'typemoq';
-
 import { NamedFC } from 'common/react/named-fc';
+import { shallow } from 'enzyme';
 import { FixInstructionProcessor } from 'injected/fix-instruction-processor';
+import * as React from 'react';
 import { ReportBody, ReportBodyProps } from 'reports/components/report-sections/report-body';
 import { ReportSectionFactory, SectionProps } from 'reports/components/report-sections/report-section-factory';
+import { Mock } from 'typemoq';
+
+import { FailedInstancesSectionV2Deps } from '../../../../../../DetailsView/components/cards/failed-instances-section-v2';
+import { exampleUnifiedStatusResults } from '../../../DetailsView/components/cards/sample-view-model-data';
 
 describe('ReportBody', () => {
     it('renders', () => {
@@ -18,6 +20,7 @@ describe('ReportBody', () => {
         const fixInstructionProcessorMock = Mock.ofType(FixInstructionProcessor);
 
         const detailsProps: SectionProps = {
+            deps: {} as FailedInstancesSectionV2Deps,
             fixInstructionProcessor: fixInstructionProcessorMock.object,
             pageTitle,
             pageUrl,
@@ -40,6 +43,7 @@ describe('ReportBody', () => {
             toUtcString: () => '',
             getCollapsibleScript: getScriptStub,
             getGuidanceTagsFromGuidanceLinks: getGuidanceTagsStub,
+            ruleResultsByStatus: exampleUnifiedStatusResults,
         };
 
         const props: ReportBodyProps = {

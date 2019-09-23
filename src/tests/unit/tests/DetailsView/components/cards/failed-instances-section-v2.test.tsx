@@ -14,7 +14,7 @@ describe('FailedInstancesSectionV2', () => {
     it('renders', () => {
         const props: FailedInstancesSectionV2Props = {
             deps: {} as FailedInstancesSectionV2Deps,
-            result: {
+            ruleResultsByStatus: {
                 pass: [],
                 fail: [exampleUnifiedRuleResult, exampleUnifiedRuleResult],
                 inapplicable: [],
@@ -30,7 +30,7 @@ describe('FailedInstancesSectionV2', () => {
     it('renders null when result is null', () => {
         const props: FailedInstancesSectionV2Props = {
             deps: {} as FailedInstancesSectionV2Deps,
-            result: null,
+            ruleResultsByStatus: null,
         };
 
         const wrapper = shallow(<FailedInstancesSectionV2 {...props} />);

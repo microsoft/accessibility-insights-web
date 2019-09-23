@@ -18,13 +18,14 @@ export interface CollapsibleComponentCardsProps {
     contentClassName?: string;
     containerClassName?: string;
     buttonAriaLabel?: string;
+    id?: string;
 }
 
 interface CollapsibleComponentCardsState {
     showContent: boolean;
 }
 
-export class CollapsibleComponentCards extends React.Component<CollapsibleComponentCardsProps, CollapsibleComponentCardsState> {
+class CollapsibleComponentCards extends React.Component<CollapsibleComponentCardsProps, CollapsibleComponentCardsState> {
     constructor(props: CollapsibleComponentCardsProps) {
         super(props);
         this.state = { showContent: true };
@@ -63,3 +64,7 @@ export class CollapsibleComponentCards extends React.Component<CollapsibleCompon
         );
     }
 }
+
+export const CardsCollapsibleControl = (collapsibleControlProps: CollapsibleComponentCardsProps) => (
+    <CollapsibleComponentCards {...collapsibleControlProps} />
+);
