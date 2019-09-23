@@ -2,11 +2,10 @@
 // Licensed under the MIT License.
 import { BrowserWindow } from 'electron';
 import * as React from 'react';
-import { fetchScanResults } from '../../platform/android/fetch-scan-results';
 import { DeviceConnectConnectedDevice } from './device-connect-connected-device';
 import { DeviceConnectFooter } from './device-connect-footer';
 import { DeviceConnectHeader } from './device-connect-header';
-import { DeviceConnectPortEntry } from './device-connect-port-entry';
+import { DeviceConnectPortEntry, DeviceConnectPortEntryDeps } from './device-connect-port-entry';
 
 export type UpdateStateCallback = (newState: DeviceConnectState, deviceName?: string) => void;
 
@@ -19,7 +18,7 @@ export enum DeviceConnectState {
 
 export type DeviceConnectBodyDeps = {
     currentWindow: BrowserWindow;
-};
+} & DeviceConnectPortEntryDeps;
 
 export interface DeviceConnectBodyProps {
     deps: DeviceConnectBodyDeps;
@@ -48,11 +47,9 @@ export class DeviceConnectBody extends React.Component<DeviceConnectBodyProps, D
             <div className="device-connect-body">
                 <DeviceConnectHeader />
                 <DeviceConnectPortEntry
-                    deps={{
-                        updateStateCallback: this.OnConnectedCallback,
-                        fetchScanResults: fetchScanResults,
-                    }}
+                    deps={this.props.deps}
                     needsValidation={needsValidation}
+                    updateStateCallback={this.OnConnectedCallback}
                 />
                 <DeviceConnectConnectedDevice
                     isConnecting={isConnecting}

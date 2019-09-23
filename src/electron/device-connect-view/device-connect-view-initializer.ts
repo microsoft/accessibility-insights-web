@@ -1,7 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { remote } from 'electron';
+import { fetchScanResults } from 'electron/platform/android/fetch-scan-results';
 import * as ReactDOM from 'react-dom';
+
 import { UserConfigurationActions } from '../../background/actions/user-configuration-actions';
 import { getPersistedData, PersistedData } from '../../background/get-persisted-data';
 import { UserConfigurationActionCreator } from '../../background/global-action-creators/user-configuration-action-creator';
@@ -10,6 +12,7 @@ import { UserConfigurationStore } from '../../background/stores/global/user-conf
 import { initializeFabricIcons } from '../../common/fabric-icons';
 import { getIndexedDBStore } from '../../common/indexedDB/get-indexeddb-store';
 import { IndexedDBAPI, IndexedDBUtil } from '../../common/indexedDB/indexedDB';
+import { DeviceConnectBodyProps } from './components/device-connect-body';
 import { ElectronLink } from './components/electron-link';
 import { DeviceConnectViewRenderer } from './device-connect-view-renderer';
 
@@ -34,6 +37,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then((persistedDat
             userConfigurationStore,
             userConfigMessageCreator,
             LinkComponent: ElectronLink,
+            fetchScanResults,
         },
     };
 

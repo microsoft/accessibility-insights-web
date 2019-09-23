@@ -8,11 +8,13 @@ exports[`DeviceConnectBodyTest render 1`] = `
   <DeviceConnectPortEntry
     deps={
       Object {
-        "fetchScanResults": [Function],
-        "updateStateCallback": [Function],
+        "currentWindow": Object {
+          "close": [Function],
+        },
       }
     }
     needsValidation={true}
+    updateStateCallback={[Function]}
   />
   <DeviceConnectConnectedDevice
     hasFailed={false}

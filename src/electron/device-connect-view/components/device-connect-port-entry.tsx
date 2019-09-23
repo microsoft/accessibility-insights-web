@@ -7,13 +7,13 @@ import { FetchScanResultsType } from '../../platform/android/fetch-scan-results'
 import { DeviceConnectState, UpdateStateCallback } from './device-connect-body';
 
 export type DeviceConnectPortEntryDeps = {
-    updateStateCallback: UpdateStateCallback;
     fetchScanResults: FetchScanResultsType;
 };
 
 export interface DeviceConnectPortEntryProps {
     deps: DeviceConnectPortEntryDeps;
     needsValidation: boolean;
+    updateStateCallback: UpdateStateCallback;
 }
 
 export interface DeviceConnectPortEntryState {
@@ -53,19 +53,19 @@ export class DeviceConnectPortEntry extends React.Component<DeviceConnectPortEnt
 
     private onPortTextChanged = (event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>, newValue?: string) => {
         this.setState({ isValidateButtonDisabled: !newValue || newValue === '', port: newValue });
-        this.props.deps.updateStateCallback(DeviceConnectState.Default);
+        this.props.updateStateCallback(DeviceConnectState.Default);
     };
 
     private onValidateClick = async (event: React.MouseEvent<HTMLButtonElement>): Promise<void> => {
         this.setState({ isValidateButtonDisabled: true });
-        this.props.deps.updateStateCallback(DeviceConnectState.Connecting);
+        this.props.updateStateCallback(DeviceConnectState.Connecting);
 
         await this.props.deps
             .fetchScanResults(parseInt(this.state.port, 10))
             .then(data => {
-                this.props.deps.updateStateCallback(DeviceConnectState.Connected, `${data.deviceName} - ${data.appIdentifier}`);
+                this.props.updateStateCallback(DeviceConnectState.Connected, `${data.deviceName} - ${data.appIdentifier}`);
             })
-            .catch(err => this.props.deps.updateStateCallback(DeviceConnectState.Error));
+            .catch(err => this.props.updateStateCallback(DeviceConnectState.Error));
 
         this.setState({ isValidateButtonDisabled: false });
     };
