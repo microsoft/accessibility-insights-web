@@ -13,11 +13,9 @@ const ReportCollapsibleContainer = NamedFC<CollapsibleComponentCardsProps>('Repo
 
     const outerDivClassName = css('collapsible-container', containerClassName, 'collapsed');
 
-    const titleContainerProps = { role: 'heading', 'aria-level': headingLevel };
-
     return (
         <div className={outerDivClassName}>
-            <div className="title-container" {...titleContainerProps}>
+            <div className="title-container" role="heading" aria-level={headingLevel}>
                 <button className="collapsible-control" aria-expanded="false" aria-controls={contentId} aria-label={buttonAriaLabel}>
                     {header}
                 </button>
