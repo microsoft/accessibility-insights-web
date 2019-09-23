@@ -14,7 +14,7 @@ export class ElectronStorageAdapter implements StorageAdapter {
             .setItem(IndexedDBDataKeys.installation, items)
             .then(() => callback)
             .catch(error => {
-                this.logger.error('Error occured when trying to set user data:', error);
+                this.logger.error('Error occurred when trying to set user data:', error);
             });
     }
 
@@ -23,13 +23,13 @@ export class ElectronStorageAdapter implements StorageAdapter {
             .getItem(IndexedDBDataKeys.installation)
             .then(data => callback(data))
             .catch(error => {
-                this.logger.error('Error occured when trying to get user data:', error);
+                this.logger.error('Error occurred when trying to get user data:', error);
             });
     }
 
     public removeUserData(key: string): void {
         this.indexedDBInstance
             .removeItem(IndexedDBDataKeys.installation)
-            .catch(error => this.logger.error('Error removing user data', error));
+            .catch(error => this.logger.error('Error occurred when trying to remove user data', error));
     }
 }
