@@ -10,77 +10,50 @@ import { ElectronStorageAdapter } from '../../../../electron/adapters/electron-s
 describe('ElectronStorageAdapter', () => {
     let electronStorageAdapter: ElectronStorageAdapter;
     let indexedDBInstanceMock: IMock<IndexedDBAPI>;
-    let loggerInstanceMock: IMock<Logger>;
 
-    indexedDBInstanceMock = Mock.ofType<IndexedDBAPI>();
-    loggerInstanceMock = Mock.ofType<Logger>();
-
-    afterEach(() => {
-        indexedDBInstanceMock.reset();
-        loggerInstanceMock.reset();
+    beforeEach(() => {
+        indexedDBInstanceMock = Mock.ofType<IndexedDBAPI>();
+        electronStorageAdapter = new ElectronStorageAdapter(indexedDBInstanceMock.object);
     });
 
-    // it('sets user data with input items', () => {
-    //     const expectedData = {
-    //         testKey1: 'test-value-1',
-    //         testKey2: 'test-value-2',
-    //     };
-
-    //     function someCallBack(): string {
-    //         return 'someFunc was called';
-    //     }
-
-    //     indexedDBInstanceMock
-    //         .setup(async indexedDB => await indexedDB.setItem(IndexedDBDataKeys.installation, It.isValue(expectedData)))
-    //         .returns(() => Promise.resolve(true))
-    //         .verifiable(Times.once());
-
-    //     loggerInstanceMock.verify(logger => logger.error(It.isAny()), Times.never());
-
-    //     electronStorageAdapter.setUserData(expectedData);
-
-    //     indexedDBInstanceMock.verifyAll();
-    //     loggerInstanceMock.verifyAll();
-    // });
-
-    it('throws and catches error when an error has occurred', async () => {
+    it('sets user data with input items', () => {
         const expectedData = {
             testKey1: 'test-value-1',
             testKey2: 'test-value-2',
         };
 
         indexedDBInstanceMock
-            .setup(indexedDB => indexedDB.setItem(IndexedDBDataKeys.installation, It.isValue(expectedData)))
-            .returns(() => new Promise((re, rj) => rj('test-error')))
+            .setup(async indexedDB => await indexedDB.setItem(IndexedDBDataKeys.installation, It.isValue(expectedData)))
+            .returns(() => Promise.resolve(true))
             .verifiable(Times.once());
 
-        loggerInstanceMock.setup(logger => logger.error(It.isAny())).verifiable(Times.once());
-
-        electronStorageAdapter = new ElectronStorageAdapter(indexedDBInstanceMock.object, loggerInstanceMock.object);
-
         electronStorageAdapter.setUserData(expectedData);
-
         indexedDBInstanceMock.verifyAll();
-        loggerInstanceMock.verifyAll();
     });
 
-    // describe('getUserData', () => {
-    //     it('gets user data using input keys', () => {
-    //         // TODO
-    //     });
+    it('gets user data using input keys', () => {
+        const expectedData = {
+            testKey1: 'test-value-1',
+            testKey2: 'test-value-2',
+        };
+        indexedDBInstanceMock
+            .setup(indexedDB => indexedDB.getItem(IndexedDBDataKeys.installation))
+            .returns(() => Promise.resolve(expectedData))
+            .verifiable(Times.once());
 
-    //     it('throws and catches error when an error has occurred', () => {
-    //         // TODO
-    //     });
-    // });
+        electronStorageAdapter.getUserData(undefined, data => {
+            expect(data).toBe(expectedData);
+        });
+        indexedDBInstanceMock.verifyAll();
+    });
 
-    // describe('removeUserData', () => {
-    //     it('removes user data based on input key', () => {
-    //         // TODO
-    //     });
+    it('removes user data based on input key', () => {
+        indexedDBInstanceMock
+            .setup(indexedDB => indexedDB.removeItem(IndexedDBDataKeys.installation))
+            .returns(() => Promise.resolve(true))
+            .verifiable(Times.once());
 
-    //     it('throws and catches error when an error has occurred', () => {
-    //         // TODO
-    //     });
-    // });
+        electronStorageAdapter.removeUserData(IndexedDBDataKeys.installation);
+        indexedDBInstanceMock.verifyAll();
+    });
 });
