@@ -1,9 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
+import { TelemetryEventSource } from 'common/extension-telemetry-events';
+import { VALIDATE_PORT } from 'electron/common/electron-telemetry-events';
 import { DeviceConnectActionCreator } from 'electron/flux/action-creator/device-connect-action-creator';
 import { IMock, It, Mock, Times } from 'typemoq';
-import { VALIDATE_PORT } from '../../../../../../electron/common/electron-telemetry-events';
 
 describe('DeviceConnectActionCreator', () => {
     let telemetryEventHandlerMock: IMock<TelemetryEventHandler>;
@@ -22,6 +23,7 @@ describe('DeviceConnectActionCreator', () => {
         const expectedTelemetry = {
             telemetry: {
                 port,
+                source: TelemetryEventSource.ElectronDeviceConnect,
             },
         };
 
