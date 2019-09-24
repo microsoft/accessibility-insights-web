@@ -1,7 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { remote } from 'electron';
+import { fetchScanResults } from 'electron/platform/android/fetch-scan-results';
 import * as ReactDOM from 'react-dom';
+
 import { UserConfigurationActions } from '../../background/actions/user-configuration-actions';
 import { getPersistedData, PersistedData } from '../../background/get-persisted-data';
 import { UserConfigurationActionCreator } from '../../background/global-action-creators/user-configuration-action-creator';
@@ -34,6 +36,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then((persistedDat
             userConfigurationStore,
             userConfigMessageCreator,
             LinkComponent: ElectronLink,
+            fetchScanResults,
         },
     };
 

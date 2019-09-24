@@ -6,10 +6,14 @@ import * as React from 'react';
 import { FetchScanResultsType } from '../../platform/android/fetch-scan-results';
 import { DeviceConnectState, UpdateStateCallback } from './device-connect-body';
 
+export type DeviceConnectPortEntryDeps = {
+    fetchScanResults: FetchScanResultsType;
+};
+
 export interface DeviceConnectPortEntryProps {
+    deps: DeviceConnectPortEntryDeps;
     needsValidation: boolean;
     updateStateCallback: UpdateStateCallback;
-    fetchScanResults: FetchScanResultsType;
 }
 
 export interface DeviceConnectPortEntryState {
@@ -56,7 +60,7 @@ export class DeviceConnectPortEntry extends React.Component<DeviceConnectPortEnt
         this.setState({ isValidateButtonDisabled: true });
         this.props.updateStateCallback(DeviceConnectState.Connecting);
 
-        await this.props
+        await this.props.deps
             .fetchScanResults(parseInt(this.state.port, 10))
             .then(data => {
                 this.props.updateStateCallback(DeviceConnectState.Connected, `${data.deviceName} - ${data.appIdentifier}`);

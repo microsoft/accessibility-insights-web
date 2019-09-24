@@ -1,19 +1,18 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { BrowserWindow } from 'electron';
 import * as React from 'react';
 import { BaseStore } from '../../../common/base-store';
 import { TelemetryPermissionDialog, TelemetryPermissionDialogDeps } from '../../../common/components/telemetry-permission-dialog';
 import { UserConfigurationStoreData } from '../../../common/types/store-data/user-configuration-store';
 import { brand } from '../../../content/strings/application';
 import { BrandBlue } from '../../../icons/brand/blue/brand-blue';
-import { DeviceConnectBody } from './device-connect-body';
+import { DeviceConnectBody, DeviceConnectBodyDeps } from './device-connect-body';
 import { WindowTitle } from './window-title';
 
 export type DeviceConnectViewContainerDeps = {
-    currentWindow: BrowserWindow;
     userConfigurationStore: BaseStore<UserConfigurationStoreData>;
-} & TelemetryPermissionDialogDeps;
+} & TelemetryPermissionDialogDeps &
+    DeviceConnectBodyDeps;
 
 export type DeviceConnectViewContainerProps = {
     deps: DeviceConnectViewContainerDeps;
@@ -37,7 +36,7 @@ export class DeviceConnectViewContainer extends React.Component<DeviceConnectVie
                 <WindowTitle title={brand}>
                     <BrandBlue />
                 </WindowTitle>
-                <DeviceConnectBody currentWindow={this.props.deps.currentWindow} />
+                <DeviceConnectBody deps={this.props.deps} />
                 <TelemetryPermissionDialog deps={this.props.deps} isFirstTime={this.state.userConfigurationStoreData.isFirstTime} />
             </>
         );

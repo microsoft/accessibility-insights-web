@@ -3,6 +3,7 @@
 import { BrowserWindow } from 'electron';
 import {
     DeviceConnectBody,
+    DeviceConnectBodyDeps,
     DeviceConnectBodyProps,
     DeviceConnectBodyState,
     DeviceConnectState,
@@ -13,11 +14,13 @@ import * as React from 'react';
 
 describe('DeviceConnectBodyTest', () => {
     const props: DeviceConnectBodyProps = {
-        currentWindow: {
-            close: () => {
-                return;
-            },
-        } as BrowserWindow,
+        deps: {
+            currentWindow: {
+                close: () => {
+                    return;
+                },
+            } as BrowserWindow,
+        } as DeviceConnectBodyDeps,
     };
 
     const expectedBeforeState: DeviceConnectBodyState = {

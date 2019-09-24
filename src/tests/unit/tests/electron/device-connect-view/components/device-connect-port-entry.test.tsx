@@ -69,7 +69,9 @@ describe('DeviceConnectPortEntryTest', () => {
                 updateStateCallbackMock.setup(r => r(DeviceConnectState.Connecting)).verifiable(Times.once());
 
                 props = {
-                    fetchScanResults: fetchScanResultsMock.object,
+                    deps: {
+                        fetchScanResults: fetchScanResultsMock.object,
+                    },
                     updateStateCallback: updateStateCallbackMock.object,
                 } as DeviceConnectPortEntryProps;
             });
