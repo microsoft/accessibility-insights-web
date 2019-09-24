@@ -84,7 +84,7 @@
         "jest": "^24.9.0",
         "jest-circus": "^24.9.0",
         "jest-junit": "^8.0.0",
-        "license-check-and-add": "2.3.6",
+        "license-check-and-add": "3.0.1",
         "make-dir": "^3.0.0",
         "mini-css-extract-plugin": "0.8.0",
         "node-sass": "^4.12.0",
