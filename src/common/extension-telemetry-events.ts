@@ -75,7 +75,6 @@ export enum TelemetryEventSource {
     NewBugButton,
     TargetPage,
     ContentPage,
-    ElectronAppInitialized,
     ElectronDeviceConnect,
 }
 

@@ -77,6 +77,5 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then((persistedDat
     const renderer = new DeviceConnectViewRenderer(ReactDOM.render, document, props);
     renderer.render();
 
-    // send app initialized telemetry - depending on user consent
     sendAppInitializedTelemetryEvent(telemetryEventHandler);
 });

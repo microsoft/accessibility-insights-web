@@ -8,7 +8,7 @@ export const sendAppInitializedTelemetryEvent = (telemetryEventHandler: Telemetr
     telemetryEventHandler.publishTelemetry(APP_INITIALIZED, {
         telemetry: {
             triggeredBy: TriggeredByNotApplicable,
-            source: TelemetryEventSource.ElectronAppInitialized,
+            source: TelemetryEventSource.ElectronDeviceConnect,
         },
     });
 };

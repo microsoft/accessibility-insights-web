@@ -24,7 +24,7 @@ describe('sendAppInitializedTelemetry', () => {
 
         const expectedTelemetry: BaseActionPayload = {
             telemetry: {
-                source: TelemetryEventSource.ElectronAppInitialized,
+                source: TelemetryEventSource.ElectronDeviceConnect,
                 triggeredBy: TriggeredByNotApplicable,
             },
         };
