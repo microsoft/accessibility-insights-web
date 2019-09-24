@@ -5,11 +5,7 @@ exports[`NotApplicableChecksSection renders 1`] = `
   badgeCount={3}
   containerClassName="result-section"
   containerId="not-applicable-checks-section"
-  deps={
-    Object {
-      "getGuidanceTagsFromGuidanceLinks": [Function],
-    }
-  }
+  deps={Object {}}
   outcomeType="inapplicable"
   rules={
     Array [

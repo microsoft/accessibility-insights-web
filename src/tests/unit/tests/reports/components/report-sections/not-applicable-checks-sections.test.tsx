@@ -2,19 +2,18 @@
 // Licensed under the MIT License.
 import { shallow } from 'enzyme';
 import * as React from 'react';
-
-import { GetGuidanceTagsFromGuidanceLinks } from 'common/get-guidance-tags-from-guidance-links';
 import {
     NotApplicableChecksSection,
     NotApplicableChecksSectionProps,
 } from 'reports/components/report-sections/not-applicable-checks-section';
 import { RuleResult } from 'scanner/iruleresults';
 
+import { SectionDeps } from '../../../../../../reports/components/report-sections/report-section-factory';
+
 describe('NotApplicableChecksSection', () => {
     it('renders', () => {
-        const getGuidanceTagsStub: GetGuidanceTagsFromGuidanceLinks = () => [];
         const props: NotApplicableChecksSectionProps = {
-            getGuidanceTagsFromGuidanceLinks: getGuidanceTagsStub,
+            deps: {} as SectionDeps,
             scanResult: {
                 inapplicable: [{} as RuleResult, {} as RuleResult, {} as RuleResult],
                 violations: [],

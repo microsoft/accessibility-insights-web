@@ -3,17 +3,16 @@
 import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
 
-import { InstanceDetailsGroupV2, InstanceDetailsGroupV2Deps, InstanceDetailsGroupV2Props } from './instance-details-group-v2';
-import { RuleResourcesV2, RuleResourcesV2Deps, RuleResourcesV2Props } from './rule-resources-v2';
+import { UnifiedRuleResult } from './failed-instances-section-v2';
+import { InstanceDetailsGroupV2, InstanceDetailsGroupV2Deps } from './instance-details-group-v2';
+import { RuleResourcesV2, RuleResourcesV2Deps } from './rule-resources-v2';
 
 export type RuleContentV2Deps = InstanceDetailsGroupV2Deps & RuleResourcesV2Deps;
 
-type Omit<T, K> = Pick<T, Exclude<keyof T, K>>;
-
-export type RuleContentV2Props = Omit<InstanceDetailsGroupV2Props, 'deps'> &
-    RuleResourcesV2Props & {
-        deps: RuleContentV2Deps;
-    };
+export type RuleContentV2Props = {
+    deps: RuleContentV2Deps;
+    rule: UnifiedRuleResult;
+};
 
 export const RuleContentV2 = NamedFC<RuleContentV2Props>('RuleContentV2', props => {
     return (
