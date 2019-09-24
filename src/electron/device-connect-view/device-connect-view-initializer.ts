@@ -4,6 +4,7 @@ import { AppInsights } from 'applicationinsights-js';
 import { remote } from 'electron';
 import { fetchScanResults } from 'electron/platform/android/fetch-scan-results';
 import * as ReactDOM from 'react-dom';
+
 import { UserConfigurationActions } from '../../background/actions/user-configuration-actions';
 import { getPersistedData, PersistedData } from '../../background/get-persisted-data';
 import { UserConfigurationActionCreator } from '../../background/global-action-creators/user-configuration-action-creator';
@@ -24,6 +25,7 @@ import { RiggedFeatureFlagChecker } from '../common/rigged-feature-flag-checker'
 import { DeviceConnectActionCreator } from '../flux/action-creator/device-connect-action-creator';
 import { ElectronLink } from './components/electron-link';
 import { DeviceConnectViewRenderer } from './device-connect-view-renderer';
+import { sendAppInitializedTelemetryEvent } from './send-app-initialized-telemetry';
 
 initializeFabricIcons();
 
@@ -74,4 +76,6 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then((persistedDat
 
     const renderer = new DeviceConnectViewRenderer(ReactDOM.render, document, props);
     renderer.render();
+
+    sendAppInitializedTelemetryEvent(telemetryEventHandler);
 });
