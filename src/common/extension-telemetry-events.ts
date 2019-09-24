@@ -76,6 +76,7 @@ export enum TelemetryEventSource {
     TargetPage,
     ContentPage,
     ElectronAppInitialized,
+    ElectronDeviceConnect,
 }
 
 export type BaseTelemetryData = {
@@ -166,6 +167,10 @@ export type IssuesAnalyzerScanTelemetryData = {
     failedRuleResults: string;
 } & RuleAnalyzerScanTelemetryData;
 
+export type ValidatePortTelemetryData = {
+    port: number;
+};
+
 export type TelemetryData =
     | BaseTelemetryData
     | ToggleTelemetryData
@@ -185,4 +190,5 @@ export type TelemetryData =
     | RuleAnalyzerScanTelemetryData
     | IssuesAnalyzerScanTelemetryData
     | AssessmentRequirementScanTelemetryData
-    | RequirementStatusTelemetryData;
+    | RequirementStatusTelemetryData
+    | ValidatePortTelemetryData;

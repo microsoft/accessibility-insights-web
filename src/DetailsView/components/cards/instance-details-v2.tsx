@@ -9,7 +9,7 @@ import { CardRowDeps, PropertyConfiguration } from '../../../common/configs/unif
 import { StoredInstancePropertyBag, UnifiedResult } from '../../../common/types/store-data/unified-data-interface';
 
 export type InstanceDetailsV2Deps = {
-    getPropertyConfigById?: (id: string) => PropertyConfiguration;
+    getPropertyConfigById: (id: string) => PropertyConfiguration;
 } & CardRowDeps;
 export type InstanceDetailsV2Props = {
     deps: InstanceDetailsV2Deps;

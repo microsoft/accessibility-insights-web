@@ -2,16 +2,15 @@
 // Licensed under the MIT License.
 import { shallow } from 'enzyme';
 import * as React from 'react';
-
-import { GetGuidanceTagsFromGuidanceLinks } from 'common/get-guidance-tags-from-guidance-links';
 import { PassedChecksSection, PassedChecksSectionProps } from 'reports/components/report-sections/passed-checks-section';
 import { RuleResult } from 'scanner/iruleresults';
 
+import { SectionDeps } from '../../../../../../reports/components/report-sections/report-section-factory';
+
 describe('PassedChecksSection', () => {
     it('renders', () => {
-        const getGuidanceTagsStub: GetGuidanceTagsFromGuidanceLinks = () => [];
         const props: PassedChecksSectionProps = {
-            getGuidanceTagsFromGuidanceLinks: getGuidanceTagsStub,
+            deps: {} as SectionDeps,
             scanResult: {
                 passes: [{} as RuleResult, {} as RuleResult, {} as RuleResult],
                 violations: [],

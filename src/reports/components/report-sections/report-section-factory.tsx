@@ -7,9 +7,13 @@ import { FixInstructionProcessor } from 'injected/fix-instruction-processor';
 import { ScanResults } from 'scanner/iruleresults';
 
 import { FailedInstancesSectionV2Deps, UnifiedStatusResults } from '../../../DetailsView/components/cards/failed-instances-section-v2';
+import { NotApplicableChecksSectionDeps } from './not-applicable-checks-section';
+import { PassedChecksSectionDeps } from './passed-checks-section';
+
+export type SectionDeps = NotApplicableChecksSectionDeps & FailedInstancesSectionV2Deps & PassedChecksSectionDeps;
 
 export type SectionProps = {
-    deps: FailedInstancesSectionV2Deps;
+    deps: SectionDeps;
     fixInstructionProcessor: FixInstructionProcessor;
     pageTitle: string;
     pageUrl: string;
