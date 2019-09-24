@@ -3,11 +3,13 @@
 import { Button } from 'office-ui-fabric-react/lib/Button';
 import { MaskedTextField } from 'office-ui-fabric-react/lib/TextField';
 import * as React from 'react';
+import { DeviceConnectActionCreator } from '../../flux/action-creator/device-connect-action-creator';
 import { FetchScanResultsType } from '../../platform/android/fetch-scan-results';
 import { DeviceConnectState, UpdateStateCallback } from './device-connect-body';
 
 export type DeviceConnectPortEntryDeps = {
     fetchScanResults: FetchScanResultsType;
+    deviceConnectActionCreator: DeviceConnectActionCreator;
 };
 
 export interface DeviceConnectPortEntryProps {
@@ -58,10 +60,14 @@ export class DeviceConnectPortEntry extends React.Component<DeviceConnectPortEnt
 
     private onValidateClick = async (event: React.MouseEvent<HTMLButtonElement>): Promise<void> => {
         this.setState({ isValidateButtonDisabled: true });
+
+        const port = parseInt(this.state.port, 10);
+
+        this.props.deps.deviceConnectActionCreator.validatePort(port);
         this.props.updateStateCallback(DeviceConnectState.Connecting);
 
         await this.props.deps
-            .fetchScanResults(parseInt(this.state.port, 10))
+            .fetchScanResults(port)
             .then(data => {
                 this.props.updateStateCallback(DeviceConnectState.Connected, `${data.deviceName} - ${data.appIdentifier}`);
             })
