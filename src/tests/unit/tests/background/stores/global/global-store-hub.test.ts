@@ -46,7 +46,7 @@ describe('GlobalStoreHubTest', () => {
                 bugService: 'none',
                 bugServicePropertiesMap: {},
             },
-        };
+        } as PersistedData;
     });
 
     it('verify getAllStores', () => {
