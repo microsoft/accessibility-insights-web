@@ -14,7 +14,7 @@ export class ElectronStorageAdapter implements StorageAdapter {
     public setUserData(items: Object, callback?: () => void): void {
         this.indexedDBInstance
             .setItem(IndexedDBDataKeys.installation, items)
-            .then(() => callback)
+            .then(() => callback())
             .catch(error => {
                 this.logger.error('Error occurred when trying to set user data: ', error);
             });

@@ -38,6 +38,23 @@ describe('ElectronStorageAdapter', () => {
             loggerMock.verifyAll();
         });
 
+        it('sets user data and then fires the callback properly', async () => {
+            const mockCallback = jest.fn(() => {
+                // do nothing
+            });
+            indexedDBInstanceMock
+                .setup(async indexedDB => await indexedDB.setItem(IndexedDBDataKeys.installation, It.isValue(expectedData)))
+                .returns(() => Promise.resolve(true))
+                .verifiable(Times.once());
+
+            loggerMock.setup(logger => logger.error(It.isAny())).verifiable(Times.never());
+
+            electronStorageAdapter.setUserData(expectedData, mockCallback);
+
+            await tick();
+            expect(mockCallback).toHaveBeenCalled();
+        });
+
         it('fails when trying to set user item  and logger is called with error message', async () => {
             indexedDBInstanceMock
                 .setup(async indexedDB => await indexedDB.setItem(IndexedDBDataKeys.installation, It.isValue(expectedData)))
