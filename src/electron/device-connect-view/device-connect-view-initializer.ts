@@ -4,7 +4,6 @@ import { AppInsights } from 'applicationinsights-js';
 import { remote } from 'electron';
 import { fetchScanResults } from 'electron/platform/android/fetch-scan-results';
 import * as ReactDOM from 'react-dom';
-
 import { UserConfigurationActions } from '../../background/actions/user-configuration-actions';
 import { getPersistedData, PersistedData } from '../../background/get-persisted-data';
 import { UserConfigurationActionCreator } from '../../background/global-action-creators/user-configuration-action-creator';
@@ -22,6 +21,7 @@ import { telemetryAppTitle } from '../../content/strings/application';
 import { ElectronAppDataAdapter } from '../adapters/electron-app-data-adapter';
 import { ElectronStorageAdapter } from '../adapters/electron-storage-adapter';
 import { RiggedFeatureFlagChecker } from '../common/rigged-feature-flag-checker';
+import { DeviceConnectActionCreator } from '../flux/action-creator/device-connect-action-creator';
 import { ElectronLink } from './components/electron-link';
 import { DeviceConnectViewRenderer } from './device-connect-view-renderer';
 
@@ -59,7 +59,8 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then((persistedDat
 
     const userConfigMessageCreator = new UserConfigurationActionCreator(userConfigActions);
 
-    const dom = document;
+    const deviceConnectActionCreator = new DeviceConnectActionCreator(telemetryEventHandler);
+
     const props = {
         deps: {
             currentWindow: remote.getCurrentWindow(),
@@ -67,9 +68,10 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then((persistedDat
             userConfigMessageCreator,
             LinkComponent: ElectronLink,
             fetchScanResults,
+            deviceConnectActionCreator,
         },
     };
 
-    const renderer = new DeviceConnectViewRenderer(ReactDOM.render, dom, props);
+    const renderer = new DeviceConnectViewRenderer(ReactDOM.render, document, props);
     renderer.render();
 });

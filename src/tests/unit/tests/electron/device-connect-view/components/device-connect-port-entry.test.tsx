@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { DeviceConnectState, UpdateStateCallback } from 'electron/device-connect-view/components/device-connect-body';
 import { DeviceConnectPortEntry, DeviceConnectPortEntryProps } from 'electron/device-connect-view/components/device-connect-port-entry';
+import { DeviceConnectActionCreator } from 'electron/flux/action-creator/device-connect-action-creator';
 import { FetchScanResultsType } from 'electron/platform/android/fetch-scan-results';
 import { ScanResults } from 'electron/platform/android/scan-results';
 import { shallow } from 'enzyme';
@@ -9,7 +10,6 @@ import { Button } from 'office-ui-fabric-react/lib/Button';
 import * as React from 'react';
 import { EventStubFactory } from 'tests/unit/common/event-stub-factory';
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';
-
 import { tick } from '../../common/tick';
 
 describe('DeviceConnectPortEntryTest', () => {
@@ -18,10 +18,12 @@ describe('DeviceConnectPortEntryTest', () => {
 
     let fetchScanResultsMock: IMock<FetchScanResultsType>;
     let updateStateCallbackMock: IMock<UpdateStateCallback>;
+    let deviceConnectActionCreatorMock: IMock<DeviceConnectActionCreator>;
 
     beforeEach(() => {
         fetchScanResultsMock = Mock.ofType<FetchScanResultsType>(undefined, MockBehavior.Strict);
         updateStateCallbackMock = Mock.ofType<UpdateStateCallback>(undefined, MockBehavior.Strict);
+        deviceConnectActionCreatorMock = Mock.ofType<DeviceConnectActionCreator>(undefined, MockBehavior.Strict);
     });
 
     describe('renders', () => {
@@ -69,10 +71,12 @@ describe('DeviceConnectPortEntryTest', () => {
 
             beforeEach(() => {
                 updateStateCallbackMock.setup(r => r(DeviceConnectState.Connecting)).verifiable(Times.once());
+                deviceConnectActionCreatorMock.setup(creator => creator.validatePort(testPortNumber)).verifiable(Times.once());
 
                 props = {
                     deps: {
                         fetchScanResults: fetchScanResultsMock.object,
+                        deviceConnectActionCreator: deviceConnectActionCreatorMock.object,
                     },
                     updateStateCallback: updateStateCallbackMock.object,
                 } as DeviceConnectPortEntryProps;
@@ -97,7 +101,9 @@ describe('DeviceConnectPortEntryTest', () => {
                 await tick();
 
                 expect(rendered.state()).toEqual({ isValidateButtonDisabled: false, port: testPortNumber });
+
                 updateStateCallbackMock.verifyAll();
+                deviceConnectActionCreatorMock.verifyAll();
             });
 
             const setupFetchScanResultsMock = (fetch: FetchScanResultsType) => {
