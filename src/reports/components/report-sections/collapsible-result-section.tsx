@@ -3,27 +3,29 @@
 import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
 
+import { CollapsibleComponentCardsProps } from '../../../DetailsView/components/cards/collapsible-component-cards';
 import { ResultSectionTitle } from '../../../DetailsView/components/cards/result-section-title';
-import { CollapsibleContainer } from './collapsible-container';
 import { ResultSectionProps } from './result-section';
-import { RulesOnly, RulesOnlyProps } from './rules-only';
+import { RulesOnly, RulesOnlyDeps, RulesOnlyProps } from './rules-only';
+
+export type CollapsibleResultSectionDeps = {
+    collapsibleControl: (props: CollapsibleComponentCardsProps) => JSX.Element;
+} & RulesOnlyDeps;
 
 export type CollapsibleResultSectionProps = RulesOnlyProps &
     ResultSectionProps & {
+        deps: CollapsibleResultSectionDeps;
         containerId: string;
     };
 
 export const CollapsibleResultSection = NamedFC<CollapsibleResultSectionProps>('CollapsibleResultSection', props => {
-    const { containerClassName, containerId } = props;
+    const { containerClassName, containerId, deps } = props;
+    const CollapsibleContent = deps.collapsibleControl({
+        id: containerId,
+        header: <ResultSectionTitle {...props} />,
+        content: <RulesOnly {...props} />,
+        headingLevel: 2,
+    });
 
-    return (
-        <div className={containerClassName}>
-            <CollapsibleContainer
-                id={containerId}
-                visibleHeadingContent={<ResultSectionTitle {...props} />}
-                collapsibleContent={<RulesOnly {...props} />}
-                titleHeadingLevel={2}
-            />
-        </div>
-    );
+    return <div className={containerClassName}>{CollapsibleContent}</div>;
 });

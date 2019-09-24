@@ -3,26 +3,25 @@
 import * as React from 'react';
 
 import { NamedFC } from 'common/react/named-fc';
-import { CollapsibleResultSection } from './collapsible-result-section';
+import { CollapsibleResultSection, CollapsibleResultSectionDeps } from './collapsible-result-section';
 import { SectionProps } from './report-section-factory';
 
-export type NotApplicableChecksSectionProps = Pick<SectionProps, 'scanResult' | 'getGuidanceTagsFromGuidanceLinks'>;
+export type NotApplicableChecksSectionDeps = CollapsibleResultSectionDeps;
 
-export const NotApplicableChecksSection = NamedFC<NotApplicableChecksSectionProps>(
-    'NotApplicableChecksSection',
-    ({ scanResult, getGuidanceTagsFromGuidanceLinks }) => {
-        const rules = scanResult.inapplicable;
+export type NotApplicableChecksSectionProps = Pick<SectionProps, 'scanResult' | 'deps'>;
 
-        return (
-            <CollapsibleResultSection
-                deps={{ getGuidanceTagsFromGuidanceLinks }}
-                title="Not applicable checks"
-                rules={rules}
-                containerClassName="result-section"
-                outcomeType="inapplicable"
-                badgeCount={rules.length}
-                containerId="not-applicable-checks-section"
-            />
-        );
-    },
-);
+export const NotApplicableChecksSection = NamedFC<NotApplicableChecksSectionProps>('NotApplicableChecksSection', ({ scanResult, deps }) => {
+    const rules = scanResult.inapplicable;
+
+    return (
+        <CollapsibleResultSection
+            deps={deps}
+            title="Not applicable checks"
+            rules={rules}
+            containerClassName="result-section"
+            outcomeType="inapplicable"
+            badgeCount={rules.length}
+            containerId="not-applicable-checks-section"
+        />
+    );
+});
