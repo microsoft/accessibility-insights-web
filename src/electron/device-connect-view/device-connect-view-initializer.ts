@@ -22,6 +22,7 @@ import { telemetryAppTitle } from '../../content/strings/application';
 import { ElectronAppDataAdapter } from '../adapters/electron-app-data-adapter';
 import { ElectronStorageAdapter } from '../adapters/electron-storage-adapter';
 import { RiggedFeatureFlagChecker } from '../common/rigged-feature-flag-checker';
+import { sendAppInitializedTelemetryEvent } from '../common/send-app-initialized-telemetry';
 import { ElectronLink } from './components/electron-link';
 import { DeviceConnectViewRenderer } from './device-connect-view-renderer';
 
@@ -72,4 +73,6 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then((persistedDat
 
     const renderer = new DeviceConnectViewRenderer(ReactDOM.render, dom, props);
     renderer.render();
+
+    sendAppInitializedTelemetryEvent(telemetryEventHandler);
 });
