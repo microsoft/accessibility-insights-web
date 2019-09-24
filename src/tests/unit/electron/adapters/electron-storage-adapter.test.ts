@@ -6,7 +6,7 @@ import { IndexedDBDataKeys } from '../../../../background/IndexedDBDataKeys';
 import { IndexedDBAPI } from '../../../../common/indexedDB/indexedDB';
 import { Logger } from '../../../../common/logging/logger';
 import { ElectronStorageAdapter } from '../../../../electron/adapters/electron-storage-adapter';
-import { tick } from '../../tests/electron/device-connect-view/components/device-connect-port-entry.test';
+import { tick } from '../../tests/electron/common/tick';
 
 describe('ElectronStorageAdapter', () => {
     const expectedData = {
@@ -53,6 +53,7 @@ describe('ElectronStorageAdapter', () => {
 
             await tick();
             expect(mockCallback).toHaveBeenCalled();
+            indexedDBInstanceMock.verifyAll();
         });
 
         it('fails when trying to set user item  and logger is called with error message', async () => {
