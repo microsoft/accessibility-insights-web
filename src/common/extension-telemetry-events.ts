@@ -75,6 +75,7 @@ export enum TelemetryEventSource {
     NewBugButton,
     TargetPage,
     ContentPage,
+    ElectronDeviceConnect,
 }
 
 export type BaseTelemetryData = {
