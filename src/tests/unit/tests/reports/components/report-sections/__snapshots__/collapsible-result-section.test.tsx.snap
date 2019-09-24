@@ -3,22 +3,5 @@
 exports[`CollapsibleResultSection renders 1`] = `
 <div
   className="result-section-class-name"
->
-  <CollapsibleContainer
-    collapsibleContent={
-      <RulesOnly
-        containerClassName="result-section-class-name"
-        containerId="container-id"
-      />
-    }
-    id="container-id"
-    titleHeadingLevel={2}
-    visibleHeadingContent={
-      <ResultSectionTitle
-        containerClassName="result-section-class-name"
-        containerId="container-id"
-      />
-    }
-  />
-</div>
+/>
 `;
