@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
+import { IMock, It, Mock, Times } from 'typemoq';
 
 import { IndexedDBDataKeys } from '../../../../background/IndexedDBDataKeys';
 import { IndexedDBAPI } from '../../../../common/indexedDB/indexedDB';
