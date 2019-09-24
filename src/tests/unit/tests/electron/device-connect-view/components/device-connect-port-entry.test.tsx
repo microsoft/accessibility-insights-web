@@ -106,15 +106,15 @@ describe('DeviceConnectPortEntryTest', () => {
             const setupUpdateStateCallbackMock = (connectState: DeviceConnectState, deviceName: string) => {
                 updateStateCallbackMock.setup(callback => callback(connectState, deviceName)).verifiable();
             };
-
-            // Helper function returns a promise that resolves after all other promise mocks,
-            // even if they are chained like Promise.resolve().then(...)
-            // Technically: this is designed to resolve on the next macro-task
-            const tick = (): Promise<void> => {
-                return new Promise((resolve: () => void) => {
-                    setTimeout(resolve, 0);
-                });
-            };
         });
     });
 });
+
+// Helper function returns a promise that resolves after all other promise mocks,
+// even if they are chained like Promise.resolve().then(...)
+// Technically: this is designed to resolve on the next macro-task
+export const tick = (): Promise<void> => {
+    return new Promise((resolve: () => void) => {
+        setTimeout(resolve, 0);
+    });
+};
