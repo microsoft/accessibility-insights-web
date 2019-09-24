@@ -79,6 +79,10 @@ export const link = {
         'WAI-ARIA Authoring Practices 1.1: Design Patterns and Widgets',
         'https://www.w3.org/TR/wai-aria-practices-1.1/',
     ),
+    WCAG21UnderstandingUseOfColor: linkTo(
+        'Understanding Success Criterion 1.4.1: Use of Color',
+        'https://www.w3.org/WAI/WCAG21/Understanding/use-of-color.html',
+    ),
     WCAG21UnderstandingAudioOnlyViewOnlyPrerecorded: linkTo(
         'Understanding Success Criterion 1.2.1: Audio-only and Video-only (Prerecorded)',
         'https://www.w3.org/WAI/WCAG21/Understanding/audio-only-and-video-only-prerecorded.html',

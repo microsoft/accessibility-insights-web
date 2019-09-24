@@ -20,6 +20,17 @@ exports[`A11Y for content pages High Contrast mode adhoc/color/guidance 1`] = `
       <p>
         When color is the only visual means of conveying meaning (such as communicating information, indicating an action, prompting a response, or distinguishing a visible element), that meaning is not available to people who are blind or colorblind. To ensure that meaning conveyed through color is available to everyone, it must also be conveyed through other visual aspects. (It must also be communicated textually to assistive technology, but that's beyond the scope of this test.)
       </p>
+      <p>
+        To learn more, see 
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Understanding/use-of-color.html"
+          target="_blank"
+        >
+          Understanding Success Criterion 1.4.1: Use of Color
+        </a>
+        .
+      </p>
       <h2>
         About the Color visualization
       </h2>
@@ -33352,6 +33363,17 @@ exports[`A11Y for content pages Normal mode adhoc/color/guidance 1`] = `
       </h2>
       <p>
         When color is the only visual means of conveying meaning (such as communicating information, indicating an action, prompting a response, or distinguishing a visible element), that meaning is not available to people who are blind or colorblind. To ensure that meaning conveyed through color is available to everyone, it must also be conveyed through other visual aspects. (It must also be communicated textually to assistive technology, but that's beyond the scope of this test.)
+      </p>
+      <p>
+        To learn more, see 
+        <a
+          class="ms-Link insights-link root-000"
+          href="https://www.w3.org/WAI/WCAG21/Understanding/use-of-color.html"
+          target="_blank"
+        >
+          Understanding Success Criterion 1.4.1: Use of Color
+        </a>
+        .
       </p>
       <h2>
         About the Color visualization

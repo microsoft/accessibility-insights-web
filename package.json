@@ -112,7 +112,7 @@
     },
     "dependencies": {
         "applicationinsights-js": "^1.0.20",
-        "axe-core": "3.2.2",
+        "axe-core": "3.3.2",
         "axios": "^0.19.0",
         "classnames": "^2.2.6",
         "idb-keyval": "^3.2.0",
