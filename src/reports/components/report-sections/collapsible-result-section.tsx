@@ -4,8 +4,7 @@ import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
 
 import { CollapsibleComponentCardsProps } from '../../../DetailsView/components/cards/collapsible-component-cards';
-import { ResultSectionTitle } from '../../../DetailsView/components/cards/result-section-title';
-import { ResultSectionProps } from './result-section';
+import { ResultSectionTitle, ResultSectionTitleProps } from '../../../DetailsView/components/cards/result-section-title';
 import { RulesOnly, RulesOnlyDeps, RulesOnlyProps } from './rules-only';
 
 export type CollapsibleResultSectionDeps = {
@@ -13,9 +12,10 @@ export type CollapsibleResultSectionDeps = {
 } & RulesOnlyDeps;
 
 export type CollapsibleResultSectionProps = RulesOnlyProps &
-    ResultSectionProps & {
+    ResultSectionTitleProps & {
         deps: CollapsibleResultSectionDeps;
         containerId: string;
+        containerClassName: string;
     };
 
 export const CollapsibleResultSection = NamedFC<CollapsibleResultSectionProps>('CollapsibleResultSection', props => {
