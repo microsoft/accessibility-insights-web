@@ -13,8 +13,9 @@ export class ElectronStorageAdapter implements StorageAdapter {
         await this.indexedDBInstance.setItem(IndexedDBDataKeys.installation, items);
     }
 
-    public getUserData(keys: string[]): Promise<{ [key: string]: any }> {
-        return this.indexedDBInstance.getItem(IndexedDBDataKeys.installation).then(data => pick(data, keys));
+    public async getUserData(keys: string[]): Promise<{ [key: string]: any }> {
+        const data = await this.indexedDBInstance.getItem(IndexedDBDataKeys.installation);
+        return pick(data, keys);
     }
 
     public async removeUserData(key: string): Promise<void> {
