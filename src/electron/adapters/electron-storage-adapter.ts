@@ -18,14 +18,13 @@ export class ElectronStorageAdapter implements StorageAdapter {
     }
 
     public async removeUserData(key: string): Promise<void> {
-        await this.indexedDBInstance.getItem(IndexedDBDataKeys.installation).then(data => {
-            const filtered = Object.keys(data)
-                .filter(internalKey => internalKey !== key)
-                .reduce((obj, k) => {
-                    obj[k] = data[k];
-                    return obj;
-                }, {});
-            return this.indexedDBInstance.setItem(IndexedDBDataKeys.installation, filtered);
-        });
+        const data = await this.indexedDBInstance.getItem(IndexedDBDataKeys.installation);
+        const filtered = Object.keys(data)
+            .filter(internalKey => internalKey !== key)
+            .reduce((obj, k) => {
+                obj[k] = data[k];
+                return obj;
+            }, {});
+        await this.indexedDBInstance.setItem(IndexedDBDataKeys.installation, filtered);
     }
 }
