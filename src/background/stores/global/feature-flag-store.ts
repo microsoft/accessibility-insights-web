@@ -57,7 +57,7 @@ export class FeatureFlagStore extends BaseStoreImpl<FeatureFlagStoreData> {
 
     private onSetFeatureFlags = (payload: FeatureFlagPayload): void => {
         this.state[payload.feature] = payload.enabled;
-        this.storageAdapter.setUserDataP({ [LocalStorageDataKeys.featureFlags]: this.state }).catch(console.log);
+        this.storageAdapter.setUserData({ [LocalStorageDataKeys.featureFlags]: this.state }).catch(console.log);
         this.emitChanged();
     };
 

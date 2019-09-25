@@ -32,7 +32,7 @@ describe('ElectronStorageAdapter', () => {
                 .returns(() => Promise.resolve(true))
                 .verifiable(Times.once());
 
-            await testSubject.setUserDataP(expectedData);
+            await testSubject.setUserData(expectedData);
 
             indexedDBInstanceMock.verifyAll();
             loggerMock.verify(logger => logger.error(It.isAny()), Times.never());
@@ -45,58 +45,7 @@ describe('ElectronStorageAdapter', () => {
                 .setup(indexedDB => indexedDB.setItem(IndexedDBDataKeys.installation, It.isValue(expectedData)))
                 .returns(() => Promise.reject(reason));
 
-            await expect(testSubject.setUserDataP(expectedData)).rejects.toMatch(reason);
-        });
-    });
-
-    describe('setUserData', () => {
-        it('with input items', async () => {
-            indexedDBInstanceMock
-                .setup(async indexedDB => await indexedDB.setItem(IndexedDBDataKeys.installation, It.isValue(expectedData)))
-                .returns(() => Promise.resolve(true))
-                .verifiable(Times.once());
-
-            loggerMock.setup(logger => logger.error(It.isAny())).verifiable(Times.never());
-
-            testSubject.setUserData(expectedData);
-            await tick();
-            indexedDBInstanceMock.verifyAll();
-            loggerMock.verifyAll();
-        });
-
-        it('fires the callback properly', async () => {
-            const mockCallback = jest.fn(() => {
-                // do nothing
-            });
-            indexedDBInstanceMock
-                .setup(async indexedDB => await indexedDB.setItem(IndexedDBDataKeys.installation, It.isValue(expectedData)))
-                .returns(() => Promise.resolve(true))
-                .verifiable(Times.once());
-
-            loggerMock.setup(logger => logger.error(It.isAny())).verifiable(Times.never());
-
-            testSubject.setUserData(expectedData, mockCallback);
-
-            await tick();
-            expect(mockCallback).toHaveBeenCalled();
-            indexedDBInstanceMock.verifyAll();
-        });
-
-        it('fails when trying to set user item  and logger is called with error message', async () => {
-            indexedDBInstanceMock
-                .setup(async indexedDB => await indexedDB.setItem(IndexedDBDataKeys.installation, It.isValue(expectedData)))
-                .returns(() => Promise.reject('test-error'))
-                .verifiable(Times.once());
-
-            loggerMock
-                .setup(logger => logger.error('Error occurred when trying to set user data: ', 'test-error'))
-                .verifiable(Times.once());
-
-            testSubject.setUserData(expectedData);
-
-            await tick();
-            indexedDBInstanceMock.verifyAll();
-            loggerMock.verifyAll();
+            await expect(testSubject.setUserData(expectedData)).rejects.toMatch(reason);
         });
     });
 

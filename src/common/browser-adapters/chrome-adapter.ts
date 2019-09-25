@@ -126,11 +126,7 @@ export class ChromeAdapter implements BrowserAdapter, StorageAdapter, CommandsAd
         chrome.runtime.sendMessage(message);
     }
 
-    public setUserData(items: Object, callback?: () => void): void {
-        chrome.storage.local.set(items, callback);
-    }
-
-    public setUserDataP(items: Object): Promise<void> {
+    public setUserData(items: Object): Promise<void> {
         return window.browser.storage.local.set(items);
     }
 

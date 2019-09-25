@@ -60,7 +60,7 @@ describe('LaunchPanelStateStoreTest', () => {
             [LocalStorageDataKeys.launchPanelSetting]: payload,
         };
 
-        storageAdapterMock.setup(adapter => adapter.setUserDataP(It.isValue(expectedSetUserData))).returns(() => Promise.resolve());
+        storageAdapterMock.setup(adapter => adapter.setUserData(It.isValue(expectedSetUserData))).returns(() => Promise.resolve());
 
         createStoreForLaunchPanelStateActions('setLaunchPanelType')
             .withActionParam(payload)

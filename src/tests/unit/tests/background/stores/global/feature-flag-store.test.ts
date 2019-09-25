@@ -101,7 +101,7 @@ describe('FeatureFlagStoreTest', () => {
         };
 
         storageAdapterMock
-            .setup(ba => ba.setUserDataP(It.isValue({ [LocalStorageDataKeys.featureFlags]: finalState })))
+            .setup(ba => ba.setUserData(It.isValue({ [LocalStorageDataKeys.featureFlags]: finalState })))
             .returns(() => Promise.resolve());
 
         createStoreTesterForFeatureFlagActions('setFeatureFlag', userDataStub)

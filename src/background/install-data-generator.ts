@@ -40,7 +40,7 @@ export class InstallDataGenerator {
             year: currentDate.getUTCFullYear(),
         };
 
-        this.storageAdapter.setUserDataP({ [LocalStorageDataKeys.installationData]: this.installationData }).catch(console.log);
+        this.storageAdapter.setUserData({ [LocalStorageDataKeys.installationData]: this.installationData }).catch(console.log);
         return this.installationData.id;
     }
 }

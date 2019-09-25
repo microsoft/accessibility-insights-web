@@ -11,16 +11,7 @@ import { Logger } from '../../common/logging/logger';
 export class ElectronStorageAdapter implements StorageAdapter {
     constructor(private readonly indexedDBInstance: IndexedDBAPI, private logger: Logger = createDefaultLogger()) {}
 
-    public setUserData(items: Object, callback?: () => void): void {
-        this.indexedDBInstance
-            .setItem(IndexedDBDataKeys.installation, items)
-            .then(() => callback && callback())
-            .catch(error => {
-                this.logger.error('Error occurred when trying to set user data: ', error);
-            });
-    }
-
-    public setUserDataP(items: Object): Promise<void> {
+    public setUserData(items: Object): Promise<void> {
         return new Promise((resolve, reject) => {
             this.indexedDBInstance
                 .setItem(IndexedDBDataKeys.installation, items)

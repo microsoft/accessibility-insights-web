@@ -66,7 +66,7 @@ describe('InstallDataGeneratorTest', () => {
             .verifiable();
 
         storageAdapterMock
-            .setup(bam => bam.setUserDataP(It.isValue({ [LocalStorageDataKeys.installationData]: installationDataStub })))
+            .setup(bam => bam.setUserData(It.isValue({ [LocalStorageDataKeys.installationData]: installationDataStub })))
             .returns(() => Promise.resolve());
 
         expect(testSubject.getInstallationId()).toEqual(guidStub);
@@ -112,7 +112,7 @@ describe('InstallDataGeneratorTest', () => {
             .verifiable();
 
         storageAdapterMock
-            .setup(bam => bam.setUserDataP(It.isValue({ [LocalStorageDataKeys.installationData]: installationDataStub })))
+            .setup(bam => bam.setUserData(It.isValue({ [LocalStorageDataKeys.installationData]: installationDataStub })))
             .returns(() => Promise.resolve());
 
         expect(testSubject.getInstallationId()).toEqual(guidStub);
@@ -158,7 +158,7 @@ describe('InstallDataGeneratorTest', () => {
             .verifiable();
 
         storageAdapterMock
-            .setup(bam => bam.setUserDataP(It.isValue({ [LocalStorageDataKeys.installationData]: installationDataStub })))
+            .setup(bam => bam.setUserData(It.isValue({ [LocalStorageDataKeys.installationData]: installationDataStub })))
             .returns(() => Promise.resolve());
 
         expect(testSubject.getInstallationId()).toEqual(guidStub);
