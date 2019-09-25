@@ -20,6 +20,15 @@ export class ElectronStorageAdapter implements StorageAdapter {
             });
     }
 
+    public setUserDataP(items: Object): Promise<void> {
+        return new Promise((resolve, reject) => {
+            this.indexedDBInstance
+                .setItem(IndexedDBDataKeys.installation, items)
+                .then(() => resolve())
+                .catch(reason => reject(reason));
+        });
+    }
+
     public getUserData(keys: string[], callback: (items: { [key: string]: any }) => void): void {
         this.indexedDBInstance
             .getItem(IndexedDBDataKeys.installation)
