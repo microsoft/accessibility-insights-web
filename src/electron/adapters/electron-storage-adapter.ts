@@ -22,7 +22,7 @@ export class ElectronStorageAdapter implements StorageAdapter {
             const filtered = Object.keys(data)
                 .filter(internalKey => internalKey !== key)
                 .reduce((obj, k) => {
-                    obj[key] = data[k];
+                    obj[k] = data[k];
                     return obj;
                 }, {});
             return this.indexedDBInstance.setItem(IndexedDBDataKeys.installation, filtered);

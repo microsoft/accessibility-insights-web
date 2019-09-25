@@ -81,17 +81,26 @@ describe('ElectronStorageAdapter', () => {
 
     describe('removeUserData', () => {
         it('removes based on input key', async () => {
+            const keys = Object.keys(testData);
+
+            const keyToRemove = keys[0];
+            const keyToKeep = keys[1];
+
             indexedDBInstanceMock
                 .setup(indexedDB => indexedDB.getItem(IndexedDBDataKeys.installation))
                 .returns(() => Promise.resolve(testData))
                 .verifiable(Times.once());
 
+            const expectedDataToSet = {
+                [keyToKeep]: testData[keyToKeep],
+            };
+
             indexedDBInstanceMock
-                .setup(indexedDB => indexedDB.setItem(IndexedDBDataKeys.installation, It.isAny()))
+                .setup(indexedDB => indexedDB.setItem(IndexedDBDataKeys.installation, It.isValue(expectedDataToSet)))
                 .returns(() => Promise.resolve(true))
                 .verifiable(Times.once());
 
-            await testSubject.removeUserData(IndexedDBDataKeys.installation);
+            await testSubject.removeUserData(keyToRemove);
 
             indexedDBInstanceMock.verifyAll();
         });
@@ -122,5 +131,3 @@ describe('ElectronStorageAdapter', () => {
         });
     });
 });
-
-//
