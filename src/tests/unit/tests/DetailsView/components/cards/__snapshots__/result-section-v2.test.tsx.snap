@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ResultSectionV2 renders 1`] = `
+exports[`ResultSection renders 1`] = `
 <div
   className="result-section-class-name resultSection"
 >
@@ -10,7 +10,7 @@ exports[`ResultSectionV2 renders 1`] = `
       deps={Object {}}
     />
   </h2>
-  <ResultSectionContentV2
+  <ResultSectionContent
     containerClassName="result-section-class-name"
     deps={Object {}}
   />

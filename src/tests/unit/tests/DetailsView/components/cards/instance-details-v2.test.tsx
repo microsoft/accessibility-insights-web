@@ -12,15 +12,15 @@ import {
 import { NamedFC, ReactFCWithDisplayName } from '../../../../../../common/react/named-fc';
 import { UnifiedResult } from '../../../../../../common/types/store-data/unified-data-interface';
 import {
-    InstanceDetailsV2,
-    InstanceDetailsV2Deps,
-    InstanceDetailsV2Props,
+    InstanceDetails,
+    InstanceDetailsDeps,
+    InstanceDetailsProps,
 } from '../../../../../../DetailsView/components/cards/instance-details-v2';
 import { exampleUnifiedResult } from './sample-view-model-data';
 
-describe('InstanceDetailsV2', () => {
-    let props: InstanceDetailsV2Props;
-    let deps: InstanceDetailsV2Deps;
+describe('InstanceDetails', () => {
+    let props: InstanceDetailsProps;
+    let deps: InstanceDetailsDeps;
     let getPropertyConfigByIdMock: IMock<(id: string) => PropertyConfiguration>;
     let resultStub: UnifiedResult;
     let indexStub: number;
@@ -31,7 +31,7 @@ describe('InstanceDetailsV2', () => {
         indexStub = 22;
         deps = {
             getPropertyConfigById: getPropertyConfigByIdMock.object,
-        } as InstanceDetailsV2Deps;
+        } as InstanceDetailsDeps;
         props = {
             deps,
             result: resultStub,
@@ -47,7 +47,7 @@ describe('InstanceDetailsV2', () => {
             getPropertyConfigByIdMock.setup(mock => mock(propertyType)).returns(() => propertyConfigurationStub);
         });
 
-        const testSubject = shallow(<InstanceDetailsV2 {...props} />);
+        const testSubject = shallow(<InstanceDetails {...props} />);
         expect(testSubject.getElement()).toMatchSnapshot();
     });
 

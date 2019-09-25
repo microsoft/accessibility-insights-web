@@ -7,18 +7,18 @@ import * as React from 'react';
 import { getPropertyConfiguration } from '../../../common/configs/unified-result-property-configurations';
 import { UnifiedRuleResult } from './failed-instances-section-v2';
 import { instanceDetailsList } from './instance-details-group.scss';
-import { InstanceDetailsV2, InstanceDetailsV2Deps } from './instance-details-v2';
+import { InstanceDetails, InstanceDetailsDeps } from './instance-details-v2';
 
-export type InstanceDetailsGroupV2Deps = {
+export type InstanceDetailsGroupDeps = {
     getGuidanceTagsFromGuidanceLinks: GetGuidanceTagsFromGuidanceLinks;
-} & InstanceDetailsV2Deps;
+} & InstanceDetailsDeps;
 
-export type InstanceDetailsGroupV2Props = {
-    deps: InstanceDetailsGroupV2Deps;
+export type InstanceDetailsGroupProps = {
+    deps: InstanceDetailsGroupDeps;
     rule: UnifiedRuleResult;
 };
 
-export const InstanceDetailsGroupV2 = NamedFC<InstanceDetailsGroupV2Props>('InstanceDetailsGroupV2', props => {
+export const InstanceDetailsGroup = NamedFC<InstanceDetailsGroupProps>('InstanceDetailsGroup', props => {
     const { deps, rule } = props;
     const { nodes } = rule;
 
@@ -26,7 +26,7 @@ export const InstanceDetailsGroupV2 = NamedFC<InstanceDetailsGroupV2Props>('Inst
         <ul className={instanceDetailsList} aria-label="failed instances with path, snippet and how to fix information">
             {nodes.map((node, index) => (
                 <li key={`instance-details-${index}`}>
-                    <InstanceDetailsV2 {...{ index }} deps={deps} result={node} getPropertyConfigById={getPropertyConfiguration} />
+                    <InstanceDetails {...{ index }} deps={deps} result={node} getPropertyConfigById={getPropertyConfiguration} />
                 </li>
             ))}
         </ul>

@@ -10,22 +10,22 @@ import { outcomeTypeSemantics } from '../../../reports/components/outcome-type';
 import { MinimalRuleHeader } from '../../../reports/components/report-sections/minimal-rule-header';
 import { CollapsibleComponentCardsProps } from './collapsible-component-cards';
 import { UnifiedRuleResult } from './failed-instances-section-v2';
-import { RuleContentV2, RuleContentV2Deps } from './rule-content-v2';
+import { RuleContent, RuleContentDeps } from './rule-content-v2';
 import { collapsibleRuleDetailsGroup, ruleDetailsGroup } from './rules-with-instances-v2.scss';
 
-export type RulesWithInstancesV2Deps = RuleContentV2Deps & {
+export type RulesWithInstancesDeps = RuleContentDeps & {
     collapsibleControl: (props: CollapsibleComponentCardsProps) => JSX.Element;
 };
 
-export type RulesWithInstancesV2Props = {
-    deps: RulesWithInstancesV2Deps;
+export type RulesWithInstancesProps = {
+    deps: RulesWithInstancesDeps;
     fixInstructionProcessor: FixInstructionProcessor;
     rules: UnifiedRuleResult[];
     outcomeType: InstanceOutcomeType;
 };
 
-export const RulesWithInstancesV2 = NamedFC<RulesWithInstancesV2Props>(
-    'RulesWithInstancesV2',
+export const RulesWithInstances = NamedFC<RulesWithInstancesProps>(
+    'RulesWithInstances',
     ({ rules, outcomeType, fixInstructionProcessor, deps }) => {
         const getCollapsibleComponentProps = (rule: UnifiedRuleResult, idx: number, buttonAriaLabel: string) => {
             return {
@@ -33,12 +33,7 @@ export const RulesWithInstancesV2 = NamedFC<RulesWithInstancesV2Props>(
                 key: `summary-details-${idx + 1}`,
                 header: <MinimalRuleHeader key={rule.id} rule={rule} outcomeType={outcomeType} />,
                 content: (
-                    <RuleContentV2
-                        key={`${rule.id}-rule-group`}
-                        deps={deps}
-                        rule={rule}
-                        fixInstructionProcessor={fixInstructionProcessor}
-                    />
+                    <RuleContent key={`${rule.id}-rule-group`} deps={deps} rule={rule} fixInstructionProcessor={fixInstructionProcessor} />
                 ),
                 containerClassName: css(collapsibleRuleDetailsGroup),
                 buttonAriaLabel: buttonAriaLabel,

@@ -2,17 +2,17 @@
 // Licensed under the MIT License.
 import { shallow } from 'enzyme';
 import * as React from 'react';
-import { RuleContentV2, RuleContentV2Props } from '../../../../../../DetailsView/components/cards/rule-content-v2';
+import { RuleContent, RuleContentProps } from '../../../../../../DetailsView/components/cards/rule-content-v2';
 
-describe('RuleContentV2', () => {
+describe('RuleContent', () => {
     it('renders', () => {
         const props = {
             rule: {
                 id: 'test-id',
             },
-        } as RuleContentV2Props;
+        } as RuleContentProps;
 
-        const wrapper = shallow(<RuleContentV2 {...props} />);
+        const wrapper = shallow(<RuleContent {...props} />);
 
         expect(wrapper.getElement()).toMatchSnapshot();
     });

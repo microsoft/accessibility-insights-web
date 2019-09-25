@@ -3,9 +3,9 @@
 import * as React from 'react';
 
 import { NamedFC } from '../../common/react/named-fc';
-import { FailedInstancesSectionV2, FailedInstancesSectionV2Deps, UnifiedStatusResults } from './cards/failed-instances-section-v2';
+import { FailedInstancesSection, FailedInstancesSectionDeps, UnifiedStatusResults } from './cards/failed-instances-section-v2';
 
-export type CardsViewDeps = FailedInstancesSectionV2Deps;
+export type CardsViewDeps = FailedInstancesSectionDeps;
 
 export interface CardsViewProps {
     deps: CardsViewDeps;
@@ -15,7 +15,7 @@ export interface CardsViewProps {
 export const CardsView = NamedFC<CardsViewProps>('CardsView', props => {
     return (
         <>
-            <FailedInstancesSectionV2 deps={props.deps} ruleResultsByStatus={props.ruleResultsByStatus} />
+            <FailedInstancesSection deps={props.deps} ruleResultsByStatus={props.ruleResultsByStatus} />
         </>
     );
 });

@@ -9,14 +9,14 @@ import * as React from 'react';
 import { UnifiedRule } from '../../../common/types/store-data/unified-data-interface';
 import { moreResourcesTitle, ruleDetailsId, ruleMoreResources } from './rule-resources.scss';
 
-export type RuleResourcesV2Deps = GuidanceTagsDeps;
+export type RuleResourcesDeps = GuidanceTagsDeps;
 
-export type RuleResourcesV2Props = {
-    deps: RuleResourcesV2Deps;
+export type RuleResourcesProps = {
+    deps: RuleResourcesDeps;
     rule: UnifiedRule;
 };
 
-export const RuleResourcesV2 = NamedFC<RuleResourcesV2Props>('RuleResourcesV2', ({ deps, rule }) => {
+export const RuleResources = NamedFC<RuleResourcesProps>('RuleResources', ({ deps, rule }) => {
     const renderTitle = () => <div className={moreResourcesTitle}>Resources for this rule</div>;
 
     const renderRuleLink = () => {

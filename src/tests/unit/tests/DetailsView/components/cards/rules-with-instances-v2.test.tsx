@@ -7,10 +7,10 @@ import { IMock, Mock } from 'typemoq';
 
 import { NamedFC, ReactFCWithDisplayName } from '../../../../../../common/react/named-fc';
 import { CollapsibleComponentCardsProps } from '../../../../../../DetailsView/components/cards/collapsible-component-cards';
-import { RulesWithInstancesV2, RulesWithInstancesV2Deps } from '../../../../../../DetailsView/components/cards/rules-with-instances-v2';
+import { RulesWithInstances, RulesWithInstancesDeps } from '../../../../../../DetailsView/components/cards/rules-with-instances-v2';
 import { exampleUnifiedRuleResult } from './sample-view-model-data';
 
-describe('RulesWithInstancesV2', () => {
+describe('RulesWithInstances', () => {
     let fixInstructionProcessorMock: IMock<FixInstructionProcessor>;
 
     beforeEach(() => {
@@ -22,10 +22,10 @@ describe('RulesWithInstancesV2', () => {
         const CollapsibleControlStub = getCollapsibleControlStub();
         const depsStub = {
             collapsibleControl: (props: CollapsibleComponentCardsProps) => <CollapsibleControlStub {...props} />,
-        } as RulesWithInstancesV2Deps;
+        } as RulesWithInstancesDeps;
 
         const wrapped = shallow(
-            <RulesWithInstancesV2
+            <RulesWithInstances
                 deps={depsStub}
                 fixInstructionProcessor={fixInstructionProcessorMock.object}
                 outcomeType={'pass'}

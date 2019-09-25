@@ -8,7 +8,7 @@ import { ReportBody, ReportBodyProps } from 'reports/components/report-sections/
 import { ReportSectionFactory, SectionProps } from 'reports/components/report-sections/report-section-factory';
 import { Mock } from 'typemoq';
 
-import { FailedInstancesSectionV2Deps } from '../../../../../../DetailsView/components/cards/failed-instances-section-v2';
+import { FailedInstancesSectionDeps } from '../../../../../../DetailsView/components/cards/failed-instances-section-v2';
 import { exampleUnifiedStatusResults } from '../../../DetailsView/components/cards/sample-view-model-data';
 
 describe('ReportBody', () => {
@@ -20,7 +20,7 @@ describe('ReportBody', () => {
         const fixInstructionProcessorMock = Mock.ofType(FixInstructionProcessor);
 
         const detailsProps: SectionProps = {
-            deps: {} as FailedInstancesSectionV2Deps,
+            deps: {} as FailedInstancesSectionDeps,
             fixInstructionProcessor: fixInstructionProcessorMock.object,
             pageTitle,
             pageUrl,

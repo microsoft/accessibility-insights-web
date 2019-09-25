@@ -4,16 +4,16 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 
 import {
-    FailedInstancesSectionV2,
-    FailedInstancesSectionV2Deps,
-    FailedInstancesSectionV2Props,
+    FailedInstancesSection,
+    FailedInstancesSectionDeps,
+    FailedInstancesSectionProps,
 } from '../../../../../../DetailsView/components/cards/failed-instances-section-v2';
 import { exampleUnifiedRuleResult } from './sample-view-model-data';
 
-describe('FailedInstancesSectionV2', () => {
+describe('FailedInstancesSection', () => {
     it('renders', () => {
-        const props: FailedInstancesSectionV2Props = {
-            deps: {} as FailedInstancesSectionV2Deps,
+        const props: FailedInstancesSectionProps = {
+            deps: {} as FailedInstancesSectionDeps,
             ruleResultsByStatus: {
                 pass: [],
                 fail: [exampleUnifiedRuleResult, exampleUnifiedRuleResult],
@@ -22,18 +22,18 @@ describe('FailedInstancesSectionV2', () => {
             },
         };
 
-        const wrapper = shallow(<FailedInstancesSectionV2 {...props} />);
+        const wrapper = shallow(<FailedInstancesSection {...props} />);
 
         expect(wrapper.getElement()).toMatchSnapshot();
     });
 
     it('renders null when result is null', () => {
-        const props: FailedInstancesSectionV2Props = {
-            deps: {} as FailedInstancesSectionV2Deps,
+        const props: FailedInstancesSectionProps = {
+            deps: {} as FailedInstancesSectionDeps,
             ruleResultsByStatus: null,
         };
 
-        const wrapper = shallow(<FailedInstancesSectionV2 {...props} />);
+        const wrapper = shallow(<FailedInstancesSection {...props} />);
 
         expect(wrapper.getElement()).toMatchSnapshot();
     });

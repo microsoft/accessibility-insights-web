@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { FailedInstancesSectionV2 } from '../../../DetailsView/components/cards/failed-instances-section-v2';
+import { FailedInstancesSection } from '../../../DetailsView/components/cards/failed-instances-section-v2';
 import { BodySection } from './body-section';
 import { ContentContainer } from './content-container';
 import { DetailsSection } from './details-section';
@@ -21,7 +21,7 @@ export const AutomatedChecksReportSectionFactory: ReportSectionFactory = {
     SummarySection,
     DetailsSection,
     ResultsContainer,
-    FailedInstancesSection: FailedInstancesSectionV2,
+    FailedInstancesSection: FailedInstancesSection,
     PassedChecksSection,
     NotApplicableChecksSection,
     FooterSection: ReportFooter,

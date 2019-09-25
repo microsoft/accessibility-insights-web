@@ -2,7 +2,7 @@
 
 exports[`CardsView should return cards view 1`] = `
 <React.Fragment>
-  <FailedInstancesSectionV2
+  <FailedInstancesSection
     deps={Object {}}
     ruleResultsByStatus={
       Object {

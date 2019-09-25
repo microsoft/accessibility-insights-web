@@ -3,23 +3,19 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-import {
-    RuleResourcesV2,
-    RuleResourcesV2Deps,
-    RuleResourcesV2Props,
-} from '../../../../../../DetailsView/components/cards/rule-resources-v2';
+import { RuleResources, RuleResourcesDeps, RuleResourcesProps } from '../../../../../../DetailsView/components/cards/rule-resources-v2';
 import { exampleUnifiedRuleResult } from './sample-view-model-data';
 
-describe('RuleResourcesV2', () => {
+describe('RuleResources', () => {
     it('renders', () => {
         const rule = exampleUnifiedRuleResult;
 
-        const props: RuleResourcesV2Props = {
+        const props: RuleResourcesProps = {
             rule,
-            deps: {} as RuleResourcesV2Deps,
+            deps: {} as RuleResourcesDeps,
         };
 
-        const wrapper = shallow(<RuleResourcesV2 {...props} />);
+        const wrapper = shallow(<RuleResources {...props} />);
 
         expect(wrapper.getElement()).toMatchSnapshot();
     });

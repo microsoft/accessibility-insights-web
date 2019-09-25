@@ -2,20 +2,16 @@
 // Licensed under the MIT License.
 import { shallow } from 'enzyme';
 import * as React from 'react';
-import {
-    ResultSectionV2,
-    ResultSectionV2Deps,
-    ResultSectionV2Props,
-} from '../../../../../../DetailsView/components/cards/result-section-v2';
+import { ResultSection, ResultSectionDeps, ResultSectionProps } from '../../../../../../DetailsView/components/cards/result-section-v2';
 
-describe('ResultSectionV2', () => {
+describe('ResultSection', () => {
     it('renders', () => {
-        const props: ResultSectionV2Props = {
+        const props: ResultSectionProps = {
             containerClassName: 'result-section-class-name',
-            deps: {} as ResultSectionV2Deps,
-        } as ResultSectionV2Props;
+            deps: {} as ResultSectionDeps,
+        } as ResultSectionProps;
 
-        const wrapper = shallow(<ResultSectionV2 {...props} />);
+        const wrapper = shallow(<ResultSection {...props} />);
         expect(wrapper.getElement()).toMatchSnapshot();
     });
 });

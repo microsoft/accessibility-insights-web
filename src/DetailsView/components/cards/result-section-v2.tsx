@@ -4,19 +4,19 @@ import { css } from '@uifabric/utilities';
 import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
 
-import { ResultSectionContentV2, ResultSectionContentV2Deps, ResultSectionContentV2Props } from './result-section-content-v2';
+import { ResultSectionContent, ResultSectionContentDeps, ResultSectionContentProps } from './result-section-content-v2';
 import { ResultSectionTitle, ResultSectionTitleProps } from './result-section-title';
 import { resultSection } from './result-section.scss';
 
-export type ResultSectionV2Deps = ResultSectionContentV2Deps;
+export type ResultSectionDeps = ResultSectionContentDeps;
 
-export type ResultSectionV2Props = ResultSectionContentV2Props &
+export type ResultSectionProps = ResultSectionContentProps &
     ResultSectionTitleProps & {
         containerClassName: string;
-        deps: ResultSectionV2Deps;
+        deps: ResultSectionDeps;
     };
 
-export const ResultSectionV2 = NamedFC<ResultSectionV2Props>('ResultSectionV2', props => {
+export const ResultSection = NamedFC<ResultSectionProps>('ResultSection', props => {
     const { containerClassName } = props;
 
     return (
@@ -24,7 +24,7 @@ export const ResultSectionV2 = NamedFC<ResultSectionV2Props>('ResultSectionV2', 
             <h2>
                 <ResultSectionTitle {...props} />
             </h2>
-            <ResultSectionContentV2 {...props} />
+            <ResultSectionContent {...props} />
         </div>
     );
 });
