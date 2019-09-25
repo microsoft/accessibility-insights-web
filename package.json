@@ -46,6 +46,7 @@
         "@types/chrome": "0.0.89",
         "@types/enzyme": "^3.10.3",
         "@types/enzyme-adapter-react-16": "^1.0.5",
+        "@types/firefox-webext-browser": "^67.0.2",
         "@types/jest": "^24.0.18",
         "@types/jsdom": "^12.2.4",
         "@types/lodash": "^4.14.139",
@@ -126,6 +127,7 @@
         "react-helmet": "^5.2.0",
         "react-router-dom": "^5.1.0",
         "ua-parser-js": "^0.7.20",
-        "uuid": "^3.3.3"
+        "uuid": "^3.3.3",
+        "webextension-polyfill": "^0.4.0"
     }
 }
