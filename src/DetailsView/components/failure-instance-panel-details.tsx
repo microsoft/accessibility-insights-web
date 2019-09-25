@@ -5,7 +5,17 @@ import { Icon } from 'office-ui-fabric-react/lib/Icon';
 import { ILabelStyles } from 'office-ui-fabric-react/lib/Label';
 import { ITextFieldStyles, TextField } from 'office-ui-fabric-react/lib/TextField';
 import * as React from 'react';
+
 import { NamedFC } from '../../common/react/named-fc';
+import {
+    failureInstanceSelectorNote,
+    failureInstanceSnippetEmptyBody,
+    failureInstanceSnippetError,
+    failureInstanceSnippetErrorIcon,
+    failureInstanceSnippetFilledBody,
+    failureInstanceSnippetTitle,
+    learnMore,
+} from './failure-instance-panel.scss';
 
 export type FailureInstancePanelDetailsProps = {
     path: string;
@@ -17,23 +27,21 @@ export type FailureInstancePanelDetailsProps = {
 export const FailureInstancePanelDetails = NamedFC<FailureInstancePanelDetailsProps>('FailureInstancePanelDetails', props => {
     const getSnippetInfo = (): JSX.Element => {
         if (!props.snippet) {
-            return (
-                <div className="failure-instance-snippet-empty-body">Code snippet will auto-populate based on the CSS selector input.</div>
-            );
+            return <div className={failureInstanceSnippetEmptyBody}>Code snippet will auto-populate based on the CSS selector input.</div>;
         } else if (props.snippet.startsWith('No code snippet is map')) {
             return (
-                <div className="failure-instance-snippet-error">
-                    <Icon iconName="statusErrorFull" className="failure-instance-snippet-error-icon" />
+                <div className={failureInstanceSnippetError}>
+                    <Icon iconName="statusErrorFull" className={failureInstanceSnippetErrorIcon} />
                     <div>{props.snippet}</div>
                 </div>
             );
         } else {
-            return <div className="failure-instance-snippet-filled-body">{props.snippet}</div>;
+            return <div className={failureInstanceSnippetFilledBody}>{props.snippet}</div>;
         }
     };
     return (
         <div>
-            <a href="#" className="learn-more">
+            <a href="#" className={learnMore}>
                 Learn more about adding failure instances
             </a>
             <TextField
@@ -46,14 +54,14 @@ export const FailureInstancePanelDetails = NamedFC<FailureInstancePanelDetailsPr
                 resizable={false}
                 placeholder="CSS Selector"
             />
-            <div className="failure-instance-selector-note">
+            <div className={failureInstanceSelectorNote}>
                 Note: If the CSS selector maps to multiple snippets, the first will be selected
             </div>
             <div>
                 <DefaultButton text="Validate CSS selector" onClick={props.onValidateSelector} disabled={props.path === null} />
             </div>
             <div aria-live="polite" aria-atomic="true">
-                <div className="failure-instance-snippet-title">Code Snippet</div>
+                <div className={failureInstanceSnippetTitle}>Code Snippet</div>
                 {getSnippetInfo()}
             </div>
         </div>
