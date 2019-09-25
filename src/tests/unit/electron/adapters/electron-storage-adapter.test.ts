@@ -38,7 +38,7 @@ describe('ElectronStorageAdapter', () => {
             loggerMock.verify(logger => logger.error(It.isAny()), Times.never());
         });
 
-        it('throws', async () => {
+        it('propagates exceptions from indexedDB as-is', async () => {
             const reason = 'test-error-reason';
 
             indexedDBInstanceMock
