@@ -15,7 +15,7 @@ exports[`FailureInstancePanelControlTest render FailureInstancePanelControl: cre
     Add a failure instance
   </CustomizedActionButton>
   <GenericPanel
-    className="failure-instance-panel"
+    className="failureInstancePanel"
     closeButtonAriaLabel="Close failure instance panel"
     hasCloseButton={true}
     isOpen={false}
@@ -35,7 +35,7 @@ exports[`FailureInstancePanelControlTest render FailureInstancePanelControl: cre
       featureFlagStoreData={Object {}}
     />
     <StyledTextFieldBase
-      className="observed-failure-textfield"
+      className="observedFailureTextfield"
       label="Comment"
       multiline={true}
       onChange={[Function]}
@@ -45,9 +45,7 @@ exports[`FailureInstancePanelControlTest render FailureInstancePanelControl: cre
       styles={[Function]}
       value={null}
     />
-    <div
-      className="footer"
-    >
+    <div>
       <ActionAndCancelButtonsComponent
         cancelButtonOnClick={[Function]}
         isHidden={false}
@@ -63,7 +61,7 @@ exports[`FailureInstancePanelControlTest render FailureInstancePanelControl: cre
 exports[`FailureInstancePanelControlTest render FailureInstancePanelControl: edit without instance 1`] = `
 <React.Fragment>
   <StyledLinkBase
-    className="edit-button"
+    className="editButton"
     onClick={[Function]}
   >
     <StyledIconBase
@@ -72,7 +70,7 @@ exports[`FailureInstancePanelControlTest render FailureInstancePanelControl: edi
     />
   </StyledLinkBase>
   <GenericPanel
-    className="failure-instance-panel"
+    className="failureInstancePanel"
     closeButtonAriaLabel="Close failure instance panel"
     hasCloseButton={true}
     isOpen={false}
@@ -92,7 +90,7 @@ exports[`FailureInstancePanelControlTest render FailureInstancePanelControl: edi
       featureFlagStoreData={Object {}}
     />
     <StyledTextFieldBase
-      className="observed-failure-textfield"
+      className="observedFailureTextfield"
       label="Comment"
       multiline={true}
       onChange={[Function]}
@@ -102,9 +100,7 @@ exports[`FailureInstancePanelControlTest render FailureInstancePanelControl: edi
       styles={[Function]}
       value={null}
     />
-    <div
-      className="footer"
-    >
+    <div>
       <ActionAndCancelButtonsComponent
         cancelButtonOnClick={[Function]}
         isHidden={false}
@@ -132,7 +128,7 @@ exports[`FailureInstancePanelControlTest render FailureInstancePanelControl: par
     Add a failure instance
   </CustomizedActionButton>
   <GenericPanel
-    className="failure-instance-panel"
+    className="failureInstancePanel"
     closeButtonAriaLabel="Close failure instance panel"
     hasCloseButton={true}
     isOpen={false}
@@ -152,7 +148,7 @@ exports[`FailureInstancePanelControlTest render FailureInstancePanelControl: par
       featureFlagStoreData={null}
     />
     <StyledTextFieldBase
-      className="observed-failure-textfield"
+      className="observedFailureTextfield"
       label="Comment"
       multiline={true}
       onChange={[Function]}
@@ -162,9 +158,7 @@ exports[`FailureInstancePanelControlTest render FailureInstancePanelControl: par
       styles={[Function]}
       value="original text"
     />
-    <div
-      className="footer"
-    >
+    <div>
       <ActionAndCancelButtonsComponent
         cancelButtonOnClick={[Function]}
         isHidden={false}

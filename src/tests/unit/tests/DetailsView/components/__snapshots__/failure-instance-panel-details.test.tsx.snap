@@ -3,7 +3,7 @@
 exports[`FailureInstancePanelDetailsTest renders 1`] = `
 <div>
   <a
-    className="learn-more"
+    className="learnMore"
     href="#"
   >
     Learn more about adding failure instances
@@ -19,7 +19,7 @@ exports[`FailureInstancePanelDetailsTest renders 1`] = `
     value="Given Path"
   />
   <div
-    className="failure-instance-selector-note"
+    className="failureInstanceSelectorNote"
   >
     Note: If the CSS selector maps to multiple snippets, the first will be selected
   </div>
@@ -35,12 +35,12 @@ exports[`FailureInstancePanelDetailsTest renders 1`] = `
     aria-live="polite"
   >
     <div
-      className="failure-instance-snippet-title"
+      className="failureInstanceSnippetTitle"
     >
       Code Snippet
     </div>
     <div
-      className="failure-instance-snippet-filled-body"
+      className="failureInstanceSnippetFilledBody"
     >
       Snippet for Given Path
     </div>
