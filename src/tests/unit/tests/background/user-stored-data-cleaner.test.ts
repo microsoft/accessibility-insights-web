@@ -1,30 +1,28 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { isFunction } from 'lodash';
-import { IMock, It, Mock, Times } from 'typemoq';
+import { cleanKeysFromStorage } from 'background/user-stored-data-cleaner';
+import { IMock, Mock, Times } from 'typemoq';
 
-import { UserStoredDataCleaner } from 'background/user-stored-data-cleaner';
 import { StorageAdapter } from '../../../../common/browser-adapters/storage-adapter';
 
-describe('UserStoredDataCleanerTest', () => {
+describe('cleanKeysFromStorage', () => {
     let storageAdapterMock: IMock<StorageAdapter>;
-    let testObject: UserStoredDataCleaner;
+    const testObject = cleanKeysFromStorage;
 
     beforeEach(() => {
         storageAdapterMock = Mock.ofType<StorageAdapter>();
-        testObject = new UserStoredDataCleaner(storageAdapterMock.object);
     });
 
-    test('remove alias when it exists', async done => {
-        const userData: string[] = ['alias'];
-        const userDataRes = { alias: 'userAlias' };
+    it('removes keys properly', async () => {
+        const keys = ['exist', 'does-not-exist'];
+        const data = {
+            exist: 'yes it does',
+        };
 
-        storageAdapterMock.setup(adapter => adapter.getUserData(userData, It.is(isFunction))).callback((data, cb) => cb(userDataRes));
+        storageAdapterMock.setup(storage => storage.getUserDataP(keys)).returns(() => Promise.resolve(data));
 
-        testObject.cleanUserData(userData, () => {
-            storageAdapterMock.verify(adapter => adapter.removeUserData('alias'), Times.once());
+        await testObject(storageAdapterMock.object, keys);
 
-            done();
-        });
+        storageAdapterMock.verify(storage => storage.removeUserData('exist'), Times.once());
     });
 });

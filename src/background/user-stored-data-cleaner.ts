@@ -4,18 +4,10 @@ import { each } from 'lodash';
 
 import { StorageAdapter } from '../common/browser-adapters/storage-adapter';
 
-export class UserStoredDataCleaner {
-    constructor(private readonly storageAdapter: StorageAdapter) {}
-
-    public cleanUserData(userDataKeys: string[], callback?: () => void): void {
-        this.storageAdapter.getUserData(userDataKeys, userDataKeysMap => {
-            each(userDataKeysMap, (value, key) => {
-                this.storageAdapter.removeUserData(key);
-            });
-
-            if (callback) {
-                callback();
-            }
+export const cleanKeysFromStorage = (storageAdapter: StorageAdapter, userDataKeys: string[]): Promise<void> => {
+    return storageAdapter.getUserDataP(userDataKeys).then(userDataKeysMap => {
+        each(userDataKeysMap, (value, key) => {
+            storageAdapter.removeUserData(key);
         });
-    }
-}
+    });
+};

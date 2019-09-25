@@ -22,12 +22,11 @@ import { IssueFilingServiceProviderImpl } from '../issue-filing/issue-filing-ser
 import { ChromeCommandHandler } from './chrome-command-handler';
 import { DetailsViewController } from './details-view-controller';
 import { DevToolsListener } from './dev-tools-listener';
-import { getPersistedData, PersistedData } from './get-persisted-data';
+import { getPersistedData } from './get-persisted-data';
 import { GlobalContextFactory } from './global-context-factory';
 import { IndexedDBDataKeys } from './IndexedDBDataKeys';
 import { deprecatedStorageDataKeys, storageDataKeys } from './local-storage-data-keys';
 import { MessageDistributor } from './message-distributor';
-import { LocalStorageData } from './storage-data';
 import { TabToContextMap } from './tab-context';
 import { TabContextBroadcaster } from './tab-context-broadcaster';
 import { TabContextFactory } from './tab-context-factory';
@@ -37,21 +36,22 @@ import { getTelemetryClient } from './telemetry/telemetry-client-provider';
 import { TelemetryEventHandler } from './telemetry/telemetry-event-handler';
 import { TelemetryLogger } from './telemetry/telemetry-logger';
 import { TelemetryStateListener } from './telemetry/telemetry-state-listener';
-import { UserStoredDataCleaner } from './user-stored-data-cleaner';
+import { cleanKeysFromStorage } from './user-stored-data-cleaner';
 
 declare var window: Window & InsightsFeatureFlags;
 
 const browserAdapter = new ChromeAdapter();
 const urlValidator = new UrlValidator(browserAdapter);
-const backgroundInitCleaner = new UserStoredDataCleaner(browserAdapter);
 const indexedDBInstance: IndexedDBAPI = new IndexedDBUtil(getIndexedDBStore());
 const indexedDBDataKeysToFetch = [IndexedDBDataKeys.assessmentStore, IndexedDBDataKeys.userConfiguration];
 
-backgroundInitCleaner.cleanUserData(deprecatedStorageDataKeys);
+cleanKeysFromStorage(browserAdapter, deprecatedStorageDataKeys).catch(reason => console.error('error while cleaning user data: ', reason));
 
-// tslint:disable-next-line:no-floating-promises - top-level entry points are intentionally floating promises
-getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then((persistedData: PersistedData) => {
-    browserAdapter.getUserData(storageDataKeys, (userData: LocalStorageData) => {
+const persistedDataPromise = getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch);
+const userDataPromise = browserAdapter.getUserDataP(storageDataKeys);
+
+Promise.all([persistedDataPromise, userDataPromise])
+    .then(([persistedData, userData]) => {
         const assessmentsProvider = Assessments;
         const windowUtils = new WindowUtils();
         const telemetryDataFactory = new TelemetryDataFactory();
@@ -135,5 +135,5 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then((persistedDat
         devToolsBackgroundListener.initialize();
 
         window.insightsFeatureFlags = globalContext.featureFlagsController;
-    });
-});
+    })
+    .catch(console.error);
