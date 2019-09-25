@@ -4,12 +4,12 @@ import { FeatureFlagActions, FeatureFlagPayload } from 'background/actions/featu
 import { LocalStorageDataKeys } from 'background/local-storage-data-keys';
 import { LocalStorageData } from 'background/storage-data';
 import { FeatureFlagStore } from 'background/stores/global/feature-flag-store';
-import { IMock, It, Mock, Times } from 'typemoq';
-import { StorageAdapter } from '../../../../../../common/browser-adapters/storage-adapter';
-import { getDefaultFeatureFlagValues } from '../../../../../../common/feature-flags';
-import { StoreNames } from '../../../../../../common/stores/store-names';
-import { FeatureFlagStoreData } from '../../../../../../common/types/store-data/feature-flag-store-data';
-import { DictionaryStringTo } from '../../../../../../types/common-types';
+import { StorageAdapter } from 'common/browser-adapters/storage-adapter';
+import { getDefaultFeatureFlagValues } from 'common/feature-flags';
+import { StoreNames } from 'common/stores/store-names';
+import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
+import { IMock, It, Mock } from 'typemoq';
+import { DictionaryStringTo } from 'types/common-types';
 import { createStoreWithNullParams, StoreTester } from '../../../../common/store-tester';
 
 describe('FeatureFlagStoreTest', () => {
@@ -101,14 +101,12 @@ describe('FeatureFlagStoreTest', () => {
         };
 
         storageAdapterMock
-            .setup(ba => ba.setUserData(It.isValue({ [LocalStorageDataKeys.featureFlags]: finalState })))
-            .verifiable(Times.once());
+            .setup(ba => ba.setUserDataP(It.isValue({ [LocalStorageDataKeys.featureFlags]: finalState })))
+            .returns(() => Promise.resolve());
 
         createStoreTesterForFeatureFlagActions('setFeatureFlag', userDataStub)
             .withActionParam(payload)
             .testListenerToBeCalledOnce(initialState, finalState);
-
-        storageAdapterMock.verifyAll();
     });
 
     test('onResetFeatureFlags', () => {
