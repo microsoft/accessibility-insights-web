@@ -16,7 +16,7 @@ export class ElectronStorageAdapter implements StorageAdapter {
             this.indexedDBInstance
                 .setItem(IndexedDBDataKeys.installation, items)
                 .then(() => resolve())
-                .catch(reason => reject(reason));
+                .catch(reject);
         });
     }
 
