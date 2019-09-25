@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`InstanceDetailsV2 renders 1`] = `
+exports[`InstanceDetails renders 1`] = `
 <table
   className="reportInstanceTable"
 >

@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`FailedInstancesSectionV2 renders 1`] = `
-<ResultSectionV2
+exports[`FailedInstancesSection renders 1`] = `
+<ResultSection
   badgeCount={2}
   containerClassName={null}
   deps={Object {}}
@@ -74,4 +74,4 @@ exports[`FailedInstancesSectionV2 renders 1`] = `
 />
 `;
 
-exports[`FailedInstancesSectionV2 renders null when result is null 1`] = `null`;
+exports[`FailedInstancesSection renders null when result is null 1`] = `null`;

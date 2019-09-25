@@ -15,7 +15,7 @@ import { UnifiedResult, UnifiedRule, UnifiedScanResultStoreData } from '../../..
 import { UserConfigurationStoreData } from '../../../../common/types/store-data/user-configuration-store';
 import { VisualizationType } from '../../../../common/types/visualization-type';
 import { DetailsViewActionMessageCreator } from '../../../../DetailsView/actions/details-view-action-message-creator';
-import { UnifiedStatusResults } from '../../../../DetailsView/components/cards/failed-instances-section-v2';
+import { UnifiedStatusResults } from '../../../../DetailsView/components/cards/failed-instances-section';
 import { DetailsViewOverlay } from '../../../../DetailsView/components/details-view-overlay';
 import {
     DetailsRightPanelConfiguration,

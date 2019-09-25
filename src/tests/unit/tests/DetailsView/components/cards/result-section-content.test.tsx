@@ -3,40 +3,40 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-import { UnifiedRuleResult } from '../../../../../../DetailsView/components/cards/failed-instances-section-v2';
+import { UnifiedRuleResult } from '../../../../../../DetailsView/components/cards/failed-instances-section';
 import {
-    ResultSectionContentV2,
-    ResultSectionContentV2Deps,
-    ResultSectionContentV2Props,
-} from '../../../../../../DetailsView/components/cards/result-section-content-v2';
+    ResultSectionContent,
+    ResultSectionContentDeps,
+    ResultSectionContentProps,
+} from '../../../../../../DetailsView/components/cards/result-section-content';
 import { exampleUnifiedRuleResult } from './sample-view-model-data';
 
-describe('ResultSectionContentV2', () => {
+describe('ResultSectionContent', () => {
     const emptyRules: UnifiedRuleResult[] = [];
     const someRules: UnifiedRuleResult[] = [exampleUnifiedRuleResult];
-    const depsStub = {} as ResultSectionContentV2Deps;
+    const depsStub = {} as ResultSectionContentDeps;
 
     it('renders, with some rules', () => {
-        const props: ResultSectionContentV2Props = {
+        const props: ResultSectionContentProps = {
             deps: depsStub,
             results: someRules,
             outcomeType: 'pass',
         };
 
-        const wrapper = shallow(<ResultSectionContentV2 {...props} />);
+        const wrapper = shallow(<ResultSectionContent {...props} />);
 
         expect(wrapper.getElement()).toMatchSnapshot();
     });
 
     it('renders, no rules', () => {
-        const props: ResultSectionContentV2Props = {
+        const props: ResultSectionContentProps = {
             deps: depsStub,
             results: emptyRules,
             outcomeType: 'pass',
             showCongratsIfNotInstances: true,
         };
 
-        const wrapper = shallow(<ResultSectionContentV2 {...props} />);
+        const wrapper = shallow(<ResultSectionContent {...props} />);
 
         expect(wrapper.getElement()).toMatchSnapshot();
     });

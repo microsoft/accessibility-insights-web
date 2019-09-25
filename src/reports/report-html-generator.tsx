@@ -7,7 +7,7 @@ import * as React from 'react';
 import { ScanResults } from 'scanner/iruleresults';
 
 import { PropertyConfiguration } from '../common/configs/unified-result-property-configurations';
-import { UnifiedStatusResults } from '../DetailsView/components/cards/failed-instances-section-v2';
+import { UnifiedStatusResults } from '../DetailsView/components/cards/failed-instances-section';
 import { ReportHead } from './components/report-head';
 import { ReportBody, ReportBodyProps } from './components/report-sections/report-body';
 import { ReportCollapsibleContainerControl } from './components/report-sections/report-collapsible-container';

@@ -6,27 +6,27 @@ import * as React from 'react';
 
 import { InstanceOutcomeType } from '../../../reports/components/instance-outcome-type';
 import { NoFailedInstancesCongrats } from '../../../reports/components/report-sections/no-failed-instances-congrats';
-import { UnifiedRuleResult } from './failed-instances-section-v2';
-import { RulesWithInstancesV2, RulesWithInstancesV2Deps } from './rules-with-instances-v2';
+import { UnifiedRuleResult } from './failed-instances-section';
+import { RulesWithInstances, RulesWithInstancesDeps } from './rules-with-instances';
 
-export type ResultSectionContentV2Deps = RulesWithInstancesV2Deps;
+export type ResultSectionContentDeps = RulesWithInstancesDeps;
 
-export type ResultSectionContentV2Props = {
-    deps: ResultSectionContentV2Deps;
+export type ResultSectionContentProps = {
+    deps: ResultSectionContentDeps;
     results: UnifiedRuleResult[];
     outcomeType: InstanceOutcomeType;
     fixInstructionProcessor?: FixInstructionProcessor;
 };
 
-export const ResultSectionContentV2 = NamedFC<ResultSectionContentV2Props>(
-    'ResultSectionContentV2',
+export const ResultSectionContent = NamedFC<ResultSectionContentProps>(
+    'ResultSectionContent',
     ({ results, outcomeType, fixInstructionProcessor, deps }) => {
         if (results.length === 0) {
             return <NoFailedInstancesCongrats />;
         }
 
         return (
-            <RulesWithInstancesV2 deps={deps} rules={results} outcomeType={outcomeType} fixInstructionProcessor={fixInstructionProcessor} />
+            <RulesWithInstances deps={deps} rules={results} outcomeType={outcomeType} fixInstructionProcessor={fixInstructionProcessor} />
         );
     },
 );

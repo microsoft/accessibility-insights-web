@@ -18,7 +18,7 @@ import { DecoratedAxeNodeResult } from '../../injected/scanner-utils';
 import { RuleResult, ScanResults } from '../../scanner/iruleresults';
 import { DictionaryStringTo } from '../../types/common-types';
 import { CardsView, CardsViewDeps } from './cards-view';
-import { UnifiedStatusResults } from './cards/failed-instances-section-v2';
+import { UnifiedStatusResults } from './cards/failed-instances-section';
 import { ExportDialogDeps } from './export-dialog';
 import { IssuesDetailsList } from './issues-details-list';
 import { IssuesDetailsPane, IssuesDetailsPaneDeps } from './Issues-details-pane';

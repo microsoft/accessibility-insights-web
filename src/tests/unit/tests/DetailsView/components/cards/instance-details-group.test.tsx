@@ -5,27 +5,27 @@ import { FixInstructionProcessor } from 'injected/fix-instruction-processor';
 import * as React from 'react';
 import { Mock } from 'typemoq';
 
-import { UnifiedRuleResult } from '../../../../../../DetailsView/components/cards/failed-instances-section-v2';
+import { UnifiedRuleResult } from '../../../../../../DetailsView/components/cards/failed-instances-section';
 import {
-    InstanceDetailsGroupV2,
-    InstanceDetailsGroupV2Deps,
-    InstanceDetailsGroupV2Props,
-} from '../../../../../../DetailsView/components/cards/instance-details-group-v2';
+    InstanceDetailsGroup,
+    InstanceDetailsGroupDeps,
+    InstanceDetailsGroupProps,
+} from '../../../../../../DetailsView/components/cards/instance-details-group';
 import { exampleUnifiedRuleResult } from './sample-view-model-data';
 
-describe('InstanceDetailsGroupV2', () => {
+describe('InstanceDetailsGroup', () => {
     it('renders', () => {
         const fixInstructionProcessorMock = Mock.ofType(FixInstructionProcessor);
         const rule: UnifiedRuleResult = exampleUnifiedRuleResult;
-        const depsStub: InstanceDetailsGroupV2Deps = {} as InstanceDetailsGroupV2Deps;
+        const depsStub: InstanceDetailsGroupDeps = {} as InstanceDetailsGroupDeps;
 
-        const props: InstanceDetailsGroupV2Props = {
+        const props: InstanceDetailsGroupProps = {
             deps: depsStub,
             fixInstructionProcessor: fixInstructionProcessorMock.object,
             rule,
         };
 
-        const wrapper = shallow(<InstanceDetailsGroupV2 {...props} />);
+        const wrapper = shallow(<InstanceDetailsGroup {...props} />);
 
         expect(wrapper.getElement()).toMatchSnapshot();
     });

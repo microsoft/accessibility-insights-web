@@ -1,15 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`RuleContentV2 renders 1`] = `
+exports[`RuleContent renders 1`] = `
 <React.Fragment>
-  <RuleResourcesV2
+  <RuleResources
     rule={
       Object {
         "id": "test-id",
       }
     }
   />
-  <InstanceDetailsGroupV2
+  <InstanceDetailsGroup
     rule={
       Object {
         "id": "test-id",

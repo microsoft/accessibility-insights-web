@@ -8,16 +8,16 @@ import { reportInstanceTable } from 'reports/components/instance-details.scss';
 import { CardRowDeps, PropertyConfiguration } from '../../../common/configs/unified-result-property-configurations';
 import { StoredInstancePropertyBag, UnifiedResult } from '../../../common/types/store-data/unified-data-interface';
 
-export type InstanceDetailsV2Deps = {
+export type InstanceDetailsDeps = {
     getPropertyConfigById: (id: string) => PropertyConfiguration;
 } & CardRowDeps;
-export type InstanceDetailsV2Props = {
-    deps: InstanceDetailsV2Deps;
+export type InstanceDetailsProps = {
+    deps: InstanceDetailsDeps;
     result: UnifiedResult;
     index: number;
 };
 
-export const InstanceDetailsV2 = NamedFC<InstanceDetailsV2Props>('InstanceDetailsV2', props => {
+export const InstanceDetails = NamedFC<InstanceDetailsProps>('InstanceDetails', props => {
     const { result, index, deps } = props;
 
     const renderCardRowsForPropertyBag = (propertyBag: StoredInstancePropertyBag) => {

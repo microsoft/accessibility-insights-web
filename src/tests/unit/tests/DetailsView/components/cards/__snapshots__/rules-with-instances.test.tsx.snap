@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`RulesWithInstancesV2 renders 1`] = `
+exports[`RulesWithInstances renders 1`] = `
 <div
   className="ruleDetailsGroup"
 >
@@ -8,7 +8,7 @@ exports[`RulesWithInstancesV2 renders 1`] = `
     buttonAriaLabel="some-rule 1 Passed sample-description"
     containerClassName="collapsibleRuleDetailsGroup"
     content={
-      <RuleContentV2
+      <RuleContent
         deps={
           Object {
             "collapsibleControl": [Function],
