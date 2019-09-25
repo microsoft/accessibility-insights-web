@@ -122,3 +122,5 @@ describe('ElectronStorageAdapter', () => {
         });
     });
 });
+
+//
