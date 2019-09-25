@@ -25,7 +25,7 @@ describe('ElectronStorageAdapter', () => {
         testSubject = new ElectronStorageAdapter(indexedDBInstanceMock.object, loggerMock.object);
     });
 
-    describe('setUserDataP', () => {
+    describe('setUserData', () => {
         it('succeed', async () => {
             indexedDBInstanceMock
                 .setup(indexedDB => indexedDB.setItem(IndexedDBDataKeys.installation, It.isValue(expectedData)))
