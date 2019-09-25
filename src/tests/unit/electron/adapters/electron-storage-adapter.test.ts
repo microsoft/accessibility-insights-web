@@ -49,6 +49,41 @@ describe('ElectronStorageAdapter', () => {
         });
     });
 
+    describe('getUserDataP', () => {
+        it('gets data, one key', async () => {
+            const key = Object.keys(expectedData)[0];
+            const keys = [key];
+
+            indexedDBInstanceMock.setup(db => db.getItem(IndexedDBDataKeys.installation)).returns(() => Promise.resolve(expectedData));
+
+            const result = await testSubject.getUserDataP(keys);
+
+            const expected = {
+                [key]: expectedData[key],
+            };
+
+            expect(result).toEqual(expected);
+        });
+
+        it('gets data, two keys', async () => {
+            const keys = Object.keys(expectedData);
+
+            indexedDBInstanceMock.setup(db => db.getItem(IndexedDBDataKeys.installation)).returns(() => Promise.resolve(expectedData));
+
+            const result = await testSubject.getUserDataP(keys);
+
+            expect(result).toEqual(expectedData);
+        });
+
+        it('propagates exceptions from indexedDB as-is', async () => {
+            const reason = 'test-error-reason';
+
+            indexedDBInstanceMock.setup(db => db.getItem(IndexedDBDataKeys.installation)).returns(() => Promise.reject(reason));
+
+            await expect(testSubject.getUserDataP([])).rejects.toMatch(reason);
+        });
+    });
+
     describe('getUserData', () => {
         it('using input keys', () => {
             indexedDBInstanceMock
