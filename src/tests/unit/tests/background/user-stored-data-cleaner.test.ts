@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { cleanKeysFromStorage } from 'background/user-stored-data-cleaner';
-import { IMock, Mock, Times } from 'typemoq';
+import { IMock, Mock, MockBehavior } from 'typemoq';
 
 import { StorageAdapter } from '../../../../common/browser-adapters/storage-adapter';
 
@@ -10,7 +10,7 @@ describe('cleanKeysFromStorage', () => {
     const testObject = cleanKeysFromStorage;
 
     beforeEach(() => {
-        storageAdapterMock = Mock.ofType<StorageAdapter>();
+        storageAdapterMock = Mock.ofType<StorageAdapter>(undefined, MockBehavior.Strict);
     });
 
     it('removes keys properly', async () => {
@@ -20,9 +20,8 @@ describe('cleanKeysFromStorage', () => {
         };
 
         storageAdapterMock.setup(storage => storage.getUserData(keys)).returns(() => Promise.resolve(data));
+        storageAdapterMock.setup(storage => storage.removeUserData('exist')).returns(() => Promise.resolve());
 
         await testObject(storageAdapterMock.object, keys);
-
-        storageAdapterMock.verify(storage => storage.removeUserData('exist'), Times.once());
     });
 });

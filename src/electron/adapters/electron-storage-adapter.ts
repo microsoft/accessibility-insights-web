@@ -24,18 +24,22 @@ export class ElectronStorageAdapter implements StorageAdapter {
         return this.indexedDBInstance.getItem(IndexedDBDataKeys.installation).then(data => pick(data, keys));
     }
 
-    public removeUserData(key: string): void {
-        this.indexedDBInstance
-            .getItem(IndexedDBDataKeys.installation)
-            .then(data => {
-                const filtered = Object.keys(data)
-                    .filter(internalKey => internalKey !== key)
-                    .reduce((obj, k) => {
-                        obj[key] = data[k];
-                        return obj;
-                    }, {});
-                this.indexedDBInstance.setItem(IndexedDBDataKeys.installation, filtered).catch(e => this.logger.error(e));
-            })
-            .catch(error => this.logger.error('Error occurred when trying to remove user data: ', error));
+    public removeUserData(key: string): Promise<void> {
+        return (
+            this.indexedDBInstance
+                .getItem(IndexedDBDataKeys.installation)
+                .then(data => {
+                    const filtered = Object.keys(data)
+                        .filter(internalKey => internalKey !== key)
+                        .reduce((obj, k) => {
+                            obj[key] = data[k];
+                            return obj;
+                        }, {});
+                    return this.indexedDBInstance.setItem(IndexedDBDataKeys.installation, filtered);
+                })
+                // next line convert Promise<boolean> (from setItem) to Promise<void>
+                // we're not catching so the caller needs to handler errors on getItem and setItem alike
+                .then(() => null)
+        );
     }
 }

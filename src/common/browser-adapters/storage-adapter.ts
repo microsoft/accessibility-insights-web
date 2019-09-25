@@ -3,5 +3,5 @@
 export type StorageAdapter = {
     setUserData(items: Object): Promise<void>;
     getUserData(keys: string[]): Promise<{ [key: string]: any }>;
-    removeUserData(key: string): void;
+    removeUserData(key: string): Promise<void>;
 };

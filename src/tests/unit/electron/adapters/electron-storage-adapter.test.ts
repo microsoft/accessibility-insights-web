@@ -4,75 +4,70 @@ import { IMock, It, Mock, Times } from 'typemoq';
 
 import { IndexedDBDataKeys } from '../../../../background/IndexedDBDataKeys';
 import { IndexedDBAPI } from '../../../../common/indexedDB/indexedDB';
-import { Logger } from '../../../../common/logging/logger';
 import { ElectronStorageAdapter } from '../../../../electron/adapters/electron-storage-adapter';
-import { tick } from '../../tests/electron/common/tick';
 
 describe('ElectronStorageAdapter', () => {
-    const expectedData = {
+    const testData = {
         testKey1: 'test-value-1',
         testKey2: 'test-value-2',
     };
 
     let indexedDBInstanceMock: IMock<IndexedDBAPI>;
-    let loggerMock: IMock<Logger>;
 
     let testSubject: ElectronStorageAdapter;
 
     beforeEach(() => {
         indexedDBInstanceMock = Mock.ofType<IndexedDBAPI>();
-        loggerMock = Mock.ofType<Logger>();
-        testSubject = new ElectronStorageAdapter(indexedDBInstanceMock.object, loggerMock.object);
+        testSubject = new ElectronStorageAdapter(indexedDBInstanceMock.object);
     });
 
     describe('setUserData', () => {
         it('succeed', async () => {
             indexedDBInstanceMock
-                .setup(indexedDB => indexedDB.setItem(IndexedDBDataKeys.installation, It.isValue(expectedData)))
+                .setup(indexedDB => indexedDB.setItem(IndexedDBDataKeys.installation, It.isValue(testData)))
                 .returns(() => Promise.resolve(true))
                 .verifiable(Times.once());
 
-            await testSubject.setUserData(expectedData);
+            await testSubject.setUserData(testData);
 
             indexedDBInstanceMock.verifyAll();
-            loggerMock.verify(logger => logger.error(It.isAny()), Times.never());
         });
 
         it('propagates exceptions from indexedDB as-is', async () => {
             const reason = 'test-error-reason';
 
             indexedDBInstanceMock
-                .setup(indexedDB => indexedDB.setItem(IndexedDBDataKeys.installation, It.isValue(expectedData)))
+                .setup(indexedDB => indexedDB.setItem(IndexedDBDataKeys.installation, It.isValue(testData)))
                 .returns(() => Promise.reject(reason));
 
-            await expect(testSubject.setUserData(expectedData)).rejects.toMatch(reason);
+            await expect(testSubject.setUserData(testData)).rejects.toMatch(reason);
         });
     });
 
     describe('getUserData', () => {
         it('gets data, one key', async () => {
-            const key = Object.keys(expectedData)[0];
+            const key = Object.keys(testData)[0];
             const keys = [key];
 
-            indexedDBInstanceMock.setup(db => db.getItem(IndexedDBDataKeys.installation)).returns(() => Promise.resolve(expectedData));
+            indexedDBInstanceMock.setup(db => db.getItem(IndexedDBDataKeys.installation)).returns(() => Promise.resolve(testData));
 
             const result = await testSubject.getUserData(keys);
 
             const expected = {
-                [key]: expectedData[key],
+                [key]: testData[key],
             };
 
             expect(result).toEqual(expected);
         });
 
         it('gets data, two keys', async () => {
-            const keys = Object.keys(expectedData);
+            const keys = Object.keys(testData);
 
-            indexedDBInstanceMock.setup(db => db.getItem(IndexedDBDataKeys.installation)).returns(() => Promise.resolve(expectedData));
+            indexedDBInstanceMock.setup(db => db.getItem(IndexedDBDataKeys.installation)).returns(() => Promise.resolve(testData));
 
             const result = await testSubject.getUserData(keys);
 
-            expect(result).toEqual(expectedData);
+            expect(result).toEqual(testData);
         });
 
         it('propagates exceptions from indexedDB as-is', async () => {
@@ -88,7 +83,7 @@ describe('ElectronStorageAdapter', () => {
         it('removes based on input key', async () => {
             indexedDBInstanceMock
                 .setup(indexedDB => indexedDB.getItem(IndexedDBDataKeys.installation))
-                .returns(() => Promise.resolve(expectedData))
+                .returns(() => Promise.resolve(testData))
                 .verifiable(Times.once());
 
             indexedDBInstanceMock
@@ -96,9 +91,8 @@ describe('ElectronStorageAdapter', () => {
                 .returns(() => Promise.resolve(true))
                 .verifiable(Times.once());
 
-            testSubject.removeUserData(IndexedDBDataKeys.installation);
+            await testSubject.removeUserData(IndexedDBDataKeys.installation);
 
-            await tick();
             indexedDBInstanceMock.verifyAll();
         });
 
@@ -110,38 +104,21 @@ describe('ElectronStorageAdapter', () => {
 
             indexedDBInstanceMock
                 .setup(indexedDB => indexedDB.setItem(IndexedDBDataKeys.installation, It.isAny()))
-                .returns(() => Promise.resolve(true))
                 .verifiable(Times.never());
 
-            loggerMock
-                .setup(logger => logger.error('Error occurred when trying to remove user data: ', 'remove-error'))
-                .verifiable(Times.once());
+            await expect(testSubject.removeUserData(IndexedDBDataKeys.installation)).rejects.toMatch('remove-error');
 
-            testSubject.removeUserData(IndexedDBDataKeys.installation);
-
-            await tick();
             indexedDBInstanceMock.verifyAll();
-            loggerMock.verifyAll();
         });
 
         it('fails during setItem when trying to remove data', async () => {
-            indexedDBInstanceMock
-                .setup(indexedDB => indexedDB.getItem(IndexedDBDataKeys.installation))
-                .returns(() => Promise.resolve({}))
-                .verifiable(Times.once());
+            indexedDBInstanceMock.setup(indexedDB => indexedDB.getItem(IndexedDBDataKeys.installation)).returns(() => Promise.resolve({}));
 
             indexedDBInstanceMock
                 .setup(indexedDB => indexedDB.setItem(IndexedDBDataKeys.installation, It.isAny()))
-                .returns(() => Promise.reject('fail-set-item'))
-                .verifiable(Times.once());
+                .returns(() => Promise.reject('fail-set-item'));
 
-            loggerMock.setup(logger => logger.error('fail-set-item')).verifiable(Times.once());
-
-            testSubject.removeUserData(IndexedDBDataKeys.installation);
-
-            await tick();
-            indexedDBInstanceMock.verifyAll();
-            loggerMock.verifyAll();
+            await expect(testSubject.removeUserData(IndexedDBDataKeys.installation)).rejects.toMatch('fail-set-item');
         });
     });
 });

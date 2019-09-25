@@ -134,8 +134,8 @@ export class ChromeAdapter implements BrowserAdapter, StorageAdapter, CommandsAd
         return window.browser.storage.local.get(keys);
     }
 
-    public removeUserData(key: string): void {
-        chrome.storage.local.remove(key);
+    public removeUserData(key: string): Promise<void> {
+        return window.browser.storage.local.remove(key);
     }
 
     public getRuntimeLastError(): chrome.runtime.LastError {
