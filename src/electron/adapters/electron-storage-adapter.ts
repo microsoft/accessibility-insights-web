@@ -5,11 +5,9 @@ import { pick } from 'lodash';
 import { IndexedDBDataKeys } from '../../background/IndexedDBDataKeys';
 import { StorageAdapter } from '../../common/browser-adapters/storage-adapter';
 import { IndexedDBAPI } from '../../common/indexedDB/indexedDB';
-import { createDefaultLogger } from '../../common/logging/default-logger';
-import { Logger } from '../../common/logging/logger';
 
 export class ElectronStorageAdapter implements StorageAdapter {
-    constructor(private readonly indexedDBInstance: IndexedDBAPI, private logger: Logger = createDefaultLogger()) {}
+    constructor(private readonly indexedDBInstance: IndexedDBAPI) {}
 
     public async setUserData(items: Object): Promise<void> {
         await this.indexedDBInstance.setItem(IndexedDBDataKeys.installation, items);
