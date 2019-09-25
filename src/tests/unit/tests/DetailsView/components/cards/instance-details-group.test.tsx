@@ -5,12 +5,12 @@ import { FixInstructionProcessor } from 'injected/fix-instruction-processor';
 import * as React from 'react';
 import { Mock } from 'typemoq';
 
-import { UnifiedRuleResult } from '../../../../../../DetailsView/components/cards/failed-instances-section-v2';
+import { UnifiedRuleResult } from '../../../../../../DetailsView/components/cards/failed-instances-section';
 import {
     InstanceDetailsGroup,
     InstanceDetailsGroupDeps,
     InstanceDetailsGroupProps,
-} from '../../../../../../DetailsView/components/cards/instance-details-group-v2';
+} from '../../../../../../DetailsView/components/cards/instance-details-group';
 import { exampleUnifiedRuleResult } from './sample-view-model-data';
 
 describe('InstanceDetailsGroup', () => {

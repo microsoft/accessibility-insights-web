@@ -3,7 +3,7 @@
 import * as React from 'react';
 
 import { NamedFC } from '../../common/react/named-fc';
-import { FailedInstancesSection, FailedInstancesSectionDeps, UnifiedStatusResults } from './cards/failed-instances-section-v2';
+import { FailedInstancesSection, FailedInstancesSectionDeps, UnifiedStatusResults } from './cards/failed-instances-section';
 
 export type CardsViewDeps = FailedInstancesSectionDeps;
 

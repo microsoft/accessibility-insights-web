@@ -5,9 +5,9 @@ import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
 
 import { getPropertyConfiguration } from '../../../common/configs/unified-result-property-configurations';
-import { UnifiedRuleResult } from './failed-instances-section-v2';
+import { UnifiedRuleResult } from './failed-instances-section';
+import { InstanceDetails, InstanceDetailsDeps } from './instance-details';
 import { instanceDetailsList } from './instance-details-group.scss';
-import { InstanceDetails, InstanceDetailsDeps } from './instance-details-v2';
 
 export type InstanceDetailsGroupDeps = {
     getGuidanceTagsFromGuidanceLinks: GetGuidanceTagsFromGuidanceLinks;

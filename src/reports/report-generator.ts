@@ -6,7 +6,7 @@ import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store
 import { TabStoreData } from 'common/types/store-data/tab-store-data';
 import { ScanResults } from 'scanner/iruleresults';
 
-import { UnifiedStatusResults } from '../DetailsView/components/cards/failed-instances-section-v2';
+import { UnifiedStatusResults } from '../DetailsView/components/cards/failed-instances-section';
 import { AssessmentReportHtmlGenerator } from './assessment-report-html-generator';
 import { ReportHtmlGenerator } from './report-html-generator';
 import { ReportNameGenerator } from './report-name-generator';

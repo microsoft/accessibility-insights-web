@@ -14,7 +14,7 @@ import { UserConfigurationStoreData } from '../common/types/store-data/user-conf
 import { VisualizationScanResultData } from '../common/types/store-data/visualization-scan-result-data';
 import { VisualizationStoreData } from '../common/types/store-data/visualization-store-data';
 import { VisualizationType } from '../common/types/visualization-type';
-import { UnifiedStatusResults } from './components/cards/failed-instances-section-v2';
+import { UnifiedStatusResults } from './components/cards/failed-instances-section';
 import { DetailsViewCommandBarDeps } from './components/details-view-command-bar';
 import { DetailsRightPanelConfiguration, DetailsViewContentDeps } from './components/details-view-right-panel';
 import { DetailsViewSwitcherNavConfiguration } from './components/details-view-switcher-nav';

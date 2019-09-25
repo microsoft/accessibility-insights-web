@@ -6,7 +6,7 @@ import { ReactFCWithDisplayName } from 'common/react/named-fc';
 import { FixInstructionProcessor } from 'injected/fix-instruction-processor';
 import { ScanResults } from 'scanner/iruleresults';
 
-import { FailedInstancesSectionDeps, UnifiedStatusResults } from '../../../DetailsView/components/cards/failed-instances-section-v2';
+import { FailedInstancesSectionDeps, UnifiedStatusResults } from '../../../DetailsView/components/cards/failed-instances-section';
 import { NotApplicableChecksSectionDeps } from './not-applicable-checks-section';
 import { PassedChecksSectionDeps } from './passed-checks-section';
 

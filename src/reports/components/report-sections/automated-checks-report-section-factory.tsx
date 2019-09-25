@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { FailedInstancesSection } from '../../../DetailsView/components/cards/failed-instances-section-v2';
+import { FailedInstancesSection } from '../../../DetailsView/components/cards/failed-instances-section';
 import { BodySection } from './body-section';
 import { ContentContainer } from './content-container';
 import { DetailsSection } from './details-section';

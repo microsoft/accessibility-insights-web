@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { shallow } from 'enzyme';
 import * as React from 'react';
-import { ResultSection, ResultSectionDeps, ResultSectionProps } from '../../../../../../DetailsView/components/cards/result-section-v2';
+import { ResultSection, ResultSectionDeps, ResultSectionProps } from '../../../../../../DetailsView/components/cards/result-section';
 
 describe('ResultSection', () => {
     it('renders', () => {

@@ -3,12 +3,12 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-import { UnifiedRuleResult } from '../../../../../../DetailsView/components/cards/failed-instances-section-v2';
+import { UnifiedRuleResult } from '../../../../../../DetailsView/components/cards/failed-instances-section';
 import {
     ResultSectionContent,
     ResultSectionContentDeps,
     ResultSectionContentProps,
-} from '../../../../../../DetailsView/components/cards/result-section-content-v2';
+} from '../../../../../../DetailsView/components/cards/result-section-content';
 import { exampleUnifiedRuleResult } from './sample-view-model-data';
 
 describe('ResultSectionContent', () => {

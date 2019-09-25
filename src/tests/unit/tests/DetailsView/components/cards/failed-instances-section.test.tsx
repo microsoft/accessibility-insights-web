@@ -7,7 +7,7 @@ import {
     FailedInstancesSection,
     FailedInstancesSectionDeps,
     FailedInstancesSectionProps,
-} from '../../../../../../DetailsView/components/cards/failed-instances-section-v2';
+} from '../../../../../../DetailsView/components/cards/failed-instances-section';
 import { exampleUnifiedRuleResult } from './sample-view-model-data';
 
 describe('FailedInstancesSection', () => {

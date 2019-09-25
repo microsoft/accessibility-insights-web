@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { getUnifiedRuleResults } from '../../../common/rule-based-view-model-provider';
 import { InstanceResultStatus, UnifiedResult, UnifiedRule } from '../../../common/types/store-data/unified-data-interface';
-import { UnifiedRuleResult, UnifiedStatusResults } from '../../../DetailsView/components/cards/failed-instances-section-v2';
+import { UnifiedRuleResult, UnifiedStatusResults } from '../../../DetailsView/components/cards/failed-instances-section';
 
 describe('RuleBasedViewModelProvider', () => {
     test('getUnifiedRuleResults with null rules and results', () => {

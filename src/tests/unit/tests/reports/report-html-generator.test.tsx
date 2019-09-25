@@ -12,7 +12,7 @@ import { ReactStaticRenderer } from 'reports/react-static-renderer';
 import { ReportHtmlGenerator } from 'reports/report-html-generator';
 import { ScanResults } from 'scanner/iruleresults';
 import { It, Mock, MockBehavior, Times } from 'typemoq';
-import { RulesWithInstancesDeps } from '../../../../DetailsView/components/cards/rules-with-instances-v2';
+import { RulesWithInstancesDeps } from '../../../../DetailsView/components/cards/rules-with-instances';
 import { ReportCollapsibleContainerControl } from '../../../../reports/components/report-sections/report-collapsible-container';
 import { exampleUnifiedStatusResults } from '../DetailsView/components/cards/sample-view-model-data';
 

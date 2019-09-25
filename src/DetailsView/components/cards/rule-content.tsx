@@ -3,9 +3,9 @@
 import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
 
-import { UnifiedRuleResult } from './failed-instances-section-v2';
-import { InstanceDetailsGroup, InstanceDetailsGroupDeps } from './instance-details-group-v2';
-import { RuleResources, RuleResourcesDeps } from './rule-resources-v2';
+import { UnifiedRuleResult } from './failed-instances-section';
+import { InstanceDetailsGroup, InstanceDetailsGroupDeps } from './instance-details-group';
+import { RuleResources, RuleResourcesDeps } from './rule-resources';
 
 export type RuleContentDeps = InstanceDetailsGroupDeps & RuleResourcesDeps;
 

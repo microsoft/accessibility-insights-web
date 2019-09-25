@@ -3,7 +3,7 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-import { RuleResources, RuleResourcesDeps, RuleResourcesProps } from '../../../../../../DetailsView/components/cards/rule-resources-v2';
+import { RuleResources, RuleResourcesDeps, RuleResourcesProps } from '../../../../../../DetailsView/components/cards/rule-resources';
 import { exampleUnifiedRuleResult } from './sample-view-model-data';
 
 describe('RuleResources', () => {

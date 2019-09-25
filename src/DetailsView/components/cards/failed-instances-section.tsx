@@ -5,7 +5,7 @@ import * as React from 'react';
 
 import { UnifiedResult, UnifiedRuleResultStatus } from '../../../common/types/store-data/unified-data-interface';
 import { GuidanceLink } from '../../../scanner/rule-to-links-mappings';
-import { ResultSection, ResultSectionDeps } from './result-section-v2';
+import { ResultSection, ResultSectionDeps } from './result-section';
 
 export type FailedInstancesSectionDeps = ResultSectionDeps;
 export type FailedInstancesSectionProps = {

@@ -6,8 +6,8 @@ import * as React from 'react';
 
 import { InstanceOutcomeType } from '../../../reports/components/instance-outcome-type';
 import { NoFailedInstancesCongrats } from '../../../reports/components/report-sections/no-failed-instances-congrats';
-import { UnifiedRuleResult } from './failed-instances-section-v2';
-import { RulesWithInstances, RulesWithInstancesDeps } from './rules-with-instances-v2';
+import { UnifiedRuleResult } from './failed-instances-section';
+import { RulesWithInstances, RulesWithInstancesDeps } from './rules-with-instances';
 
 export type ResultSectionContentDeps = RulesWithInstancesDeps;
 

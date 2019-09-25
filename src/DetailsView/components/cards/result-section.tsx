@@ -4,7 +4,7 @@ import { css } from '@uifabric/utilities';
 import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
 
-import { ResultSectionContent, ResultSectionContentDeps, ResultSectionContentProps } from './result-section-content-v2';
+import { ResultSectionContent, ResultSectionContentDeps, ResultSectionContentProps } from './result-section-content';
 import { ResultSectionTitle, ResultSectionTitleProps } from './result-section-title';
 import { resultSection } from './result-section.scss';
 

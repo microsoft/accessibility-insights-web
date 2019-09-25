@@ -9,9 +9,9 @@ import { InstanceOutcomeType } from '../../../reports/components/instance-outcom
 import { outcomeTypeSemantics } from '../../../reports/components/outcome-type';
 import { MinimalRuleHeader } from '../../../reports/components/report-sections/minimal-rule-header';
 import { CollapsibleComponentCardsProps } from './collapsible-component-cards';
-import { UnifiedRuleResult } from './failed-instances-section-v2';
-import { RuleContent, RuleContentDeps } from './rule-content-v2';
-import { collapsibleRuleDetailsGroup, ruleDetailsGroup } from './rules-with-instances-v2.scss';
+import { UnifiedRuleResult } from './failed-instances-section';
+import { RuleContent, RuleContentDeps } from './rule-content';
+import { collapsibleRuleDetailsGroup, ruleDetailsGroup } from './rules-with-instances.scss';
 
 export type RulesWithInstancesDeps = RuleContentDeps & {
     collapsibleControl: (props: CollapsibleComponentCardsProps) => JSX.Element;

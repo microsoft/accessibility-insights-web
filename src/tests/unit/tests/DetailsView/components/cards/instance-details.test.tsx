@@ -15,7 +15,7 @@ import {
     InstanceDetails,
     InstanceDetailsDeps,
     InstanceDetailsProps,
-} from '../../../../../../DetailsView/components/cards/instance-details-v2';
+} from '../../../../../../DetailsView/components/cards/instance-details';
 import { exampleUnifiedResult } from './sample-view-model-data';
 
 describe('InstanceDetails', () => {
