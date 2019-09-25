@@ -48,7 +48,7 @@ const indexedDBDataKeysToFetch = [IndexedDBDataKeys.assessmentStore, IndexedDBDa
 cleanKeysFromStorage(browserAdapter, deprecatedStorageDataKeys).catch(reason => console.error('error while cleaning user data: ', reason));
 
 const persistedDataPromise = getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch);
-const userDataPromise = browserAdapter.getUserDataP(storageDataKeys);
+const userDataPromise = browserAdapter.getUserData(storageDataKeys);
 
 Promise.all([persistedDataPromise, userDataPromise])
     .then(([persistedData, userData]) => {

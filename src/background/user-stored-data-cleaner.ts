@@ -5,7 +5,7 @@ import { each } from 'lodash';
 import { StorageAdapter } from '../common/browser-adapters/storage-adapter';
 
 export const cleanKeysFromStorage = (storageAdapter: StorageAdapter, userDataKeys: string[]): Promise<void> => {
-    return storageAdapter.getUserDataP(userDataKeys).then(userDataKeysMap => {
+    return storageAdapter.getUserData(userDataKeys).then(userDataKeysMap => {
         each(userDataKeysMap, (value, key) => {
             storageAdapter.removeUserData(key);
         });

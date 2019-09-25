@@ -49,14 +49,14 @@ describe('ElectronStorageAdapter', () => {
         });
     });
 
-    describe('getUserDataP', () => {
+    describe('getUserData', () => {
         it('gets data, one key', async () => {
             const key = Object.keys(expectedData)[0];
             const keys = [key];
 
             indexedDBInstanceMock.setup(db => db.getItem(IndexedDBDataKeys.installation)).returns(() => Promise.resolve(expectedData));
 
-            const result = await testSubject.getUserDataP(keys);
+            const result = await testSubject.getUserData(keys);
 
             const expected = {
                 [key]: expectedData[key],
@@ -70,7 +70,7 @@ describe('ElectronStorageAdapter', () => {
 
             indexedDBInstanceMock.setup(db => db.getItem(IndexedDBDataKeys.installation)).returns(() => Promise.resolve(expectedData));
 
-            const result = await testSubject.getUserDataP(keys);
+            const result = await testSubject.getUserData(keys);
 
             expect(result).toEqual(expectedData);
         });
@@ -80,40 +80,7 @@ describe('ElectronStorageAdapter', () => {
 
             indexedDBInstanceMock.setup(db => db.getItem(IndexedDBDataKeys.installation)).returns(() => Promise.reject(reason));
 
-            await expect(testSubject.getUserDataP([])).rejects.toMatch(reason);
-        });
-    });
-
-    describe('getUserData', () => {
-        it('using input keys', () => {
-            indexedDBInstanceMock
-                .setup(indexedDB => indexedDB.getItem(IndexedDBDataKeys.installation))
-                .returns(() => Promise.resolve(expectedData))
-                .verifiable(Times.once());
-
-            testSubject.getUserData(['testKey1'], async data => {
-                await tick();
-                expect(data).toEqual({ testKey1: 'test-value-1' });
-            });
-
-            indexedDBInstanceMock.verifyAll();
-        });
-
-        it('fails when trying to get user data', async () => {
-            indexedDBInstanceMock
-                .setup(indexedDB => indexedDB.getItem(IndexedDBDataKeys.installation))
-                .returns(() => Promise.reject('get-error'))
-                .verifiable(Times.once());
-
-            loggerMock.setup(logger => logger.error('Error occurred when trying to get user data: ', 'get-error')).verifiable(Times.once());
-
-            testSubject.getUserData(['testKey1'], data => {
-                expect(data).toEqual(expectedData);
-            });
-
-            await tick();
-            indexedDBInstanceMock.verifyAll();
-            loggerMock.verifyAll();
+            await expect(testSubject.getUserData([])).rejects.toMatch(reason);
         });
     });
 
