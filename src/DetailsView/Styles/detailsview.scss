@@ -746,36 +746,11 @@ div.insights-file-issue-details-dialog-container {
                 min-width: 600px;
                 height: auto;
             }
-            .info-message-bar {
-                background-color: $communication-tint-40;
-                .ms-MessageBar-icon {
-                    color: $communication-primary;
-                }
-                .ms-link {
-                    font-weight: 700;
-                    padding: 0 !important;
-                }
-            }
             .ms-MessageBar {
                 padding-left: 24px;
             }
             .ms-MessageBar-icon i {
                 color: $secondary-text;
-            }
-            .target-tab-info {
-                font-size: 14px;
-                color: $secondary-text;
-                padding-top: 24px;
-                padding-left: 24px;
-                padding-right: 24px;
-                word-break: break-all;
-                font-weight: 600;
-                .ms-Link {
-                    color: $communication-primary;
-                }
-                .target-page-link {
-                    font-family: $fontFamily;
-                }
             }
             .view {
                 flex-grow: 1;
@@ -921,29 +896,9 @@ div.insights-file-issue-details-dialog-container {
                         color: $communication-primary;
                     }
                 }
-                .landmark-roles-table {
-                    list-style: none;
-                    margin-top: 12px;
-                    display: table;
-                    border-collapse: separate;
-                    border-spacing: 5px;
-                    padding-left: 18px;
-                }
-                .insights-list {
-                    padding-left: 18px;
-                    margin-top: 0px;
-                }
-                .insights-list li {
-                    margin-top: 4px;
-                    font-size: 14px;
-                }
                 .tab-stops-accessibility-problems-list {
                     background: $neutral-6;
                     list-style-type: disc;
-                }
-                .landmark-roles-table li {
-                    margin-top: 4px;
-                    display: table-row;
                 }
                 .landmarks-legend-description {
                     padding-left: 12px;
@@ -1038,12 +993,6 @@ div.insights-file-issue-details-dialog-container {
                     margin-top: 5px;
                     margin-bottom: 5px;
                     font-size: $fontSizeM;
-                }
-                .bugs-details-view .file-issue-button {
-                    margin-right: 7px;
-                    font-size: 16px;
-                    float: left;
-                    margin-top: 1px;
                 }
                 .details-list {
                     min-width: 100%;

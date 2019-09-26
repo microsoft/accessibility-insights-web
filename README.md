@@ -31,7 +31,7 @@ Please ensure that you have at least the **minimum** recommended versions
 -   Node - 10.16.3 (Check by running `node --version`) - This is the version being enforced on our builds
 -   Yarn - Version >= v1.17.3 (Check by running `yarn --version`)
 
-> In case you don't have yarn, please install from: [Yarn](https://yarnpkg.com/en/)
+> In case you don't have yarn, please install from: [Yarn](https://yarnpkg.com/en/docs/install)
 
 #### 1. Fork and clone the repository
 
