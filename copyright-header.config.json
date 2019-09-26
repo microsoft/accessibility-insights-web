@@ -14,10 +14,7 @@
         "./test-results",
         ".gitattribute",
         ".gitattributes",
-        ".prettierignore",
-        ".yarnrc",
         "**/.DS_Store",
-        "**/*.gitignore",
         "**/*.scss.d.ts",
         "**/*.snap",
         "**/*.svg",
@@ -25,7 +22,7 @@
         "yarn.lock"
     ],
     "licenseFormats": {
-        "yaml|npmrc|yml|ps1": {
+        "yaml|npmrc|yml|ps1|gitignore|dockerignore|prettierignore|yarnrc": {
             "eachLine": {
                 "prepend": "# "
             }
