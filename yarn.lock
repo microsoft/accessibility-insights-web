@@ -8939,6 +8939,13 @@ webdriverio@^4.13.0:
     wdio-dot-reporter "~0.0.8"
     wgxpath "~1.0.0"
 
+webextension-polyfill-ts@^0.10.0:
+  version "0.10.0"
+  resolved "https://registry.yarnpkg.com/webextension-polyfill-ts/-/webextension-polyfill-ts-0.10.0.tgz#d1488273a48c254c44f13237f745d8c5ce60423d"
+  integrity sha512-nNM+NRLU74shte+UZpgJdsgBzcp7pGJRY1u+79Ij1mBtWCk8LCzU8dhI7QHSF1wIGKtWpcRYw+UEjQmBdzt9eQ==
+  dependencies:
+    webextension-polyfill "^0.4.0"
+
 webextension-polyfill@^0.4.0:
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/webextension-polyfill/-/webextension-polyfill-0.4.0.tgz#9cc5a60f0f2bf907a6b349fdd7e61701f54956f9"

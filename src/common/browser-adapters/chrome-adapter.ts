@@ -1,11 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as browser from 'webextension-polyfill';
+import { browser } from 'webextension-polyfill-ts';
 import { BrowserAdapter } from './browser-adapter';
 import { CommandsAdapter } from './commands-adapter';
 import { StorageAdapter } from './storage-adapter';
-
-declare var browser: typeof window.browser;
 
 export class ChromeAdapter implements BrowserAdapter, StorageAdapter, CommandsAdapter {
     public getManageExtensionUrl(): string {
