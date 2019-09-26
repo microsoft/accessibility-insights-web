@@ -1,0 +1,48 @@
+{
+    "license": "copyright-header.txt",
+    "ignore": [
+        "**/*.svg",
+        "**/*.scss.d.ts",
+        "**/.DS_Store",
+        "**/*.gitignore",
+        ".gitattribute",
+        "yarn.lock",
+        ".prettierignore",
+        ".yarnrc",
+        ".gitattributes",
+        "Dockerfile",
+        "**/*.snap",
+        "./.vscode",
+        "./.git",
+        "./.github",
+        "./dist",
+        "./drop",
+        "./extension",
+        "./node_modules",
+        "./copyright-header.txt",
+        "./src/assessments/color/test-steps/flashing-text-example.html",
+        "./test-results",
+        "./docs/NOTICE.html",
+        "./docs/LICENSE.txt"
+    ],
+    "licenseFormats": {
+        "yaml|npmrc|yml|ps1": {
+            "eachLine": {
+                "prepend": "# "
+            }
+        },
+        "md": {
+            "prepend": "<!--",
+            "append": "-->"
+        },
+        "snap|ts|tsx|d.ts|js|scss|css": {
+            "eachLine": {
+                "prepend": "// "
+            }
+        }
+    },
+    "defaultFormat": {
+        "prepend": "/*",
+        "append": "*/"
+    }
+}
