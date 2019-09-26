@@ -3,7 +3,7 @@
 import { loadTheme } from 'office-ui-fabric-react';
 import * as ReactDOM from 'react-dom';
 
-import { ChromeAdapter } from '../../common/browser-adapters/chrome-adapter';
+import { BrowserAdapter } from '../../common/browser-adapters/browser-adapter';
 import { TelemetryEventSource } from '../../common/extension-telemetry-events';
 import { initializeFabricIcons } from '../../common/fabric-icons';
 import { ActionMessageDispatcher } from '../../common/message-creators/action-message-dispatcher';
@@ -17,8 +17,7 @@ import { UserConfigurationStoreData } from '../../common/types/store-data/user-c
 import { contentPages } from '../../content';
 import { RendererDeps } from './renderer';
 
-export const rendererDependencies: () => RendererDeps = () => {
-    const browserAdapter = new ChromeAdapter();
+export const rendererDependencies: (browserAdapter: BrowserAdapter) => RendererDeps = browserAdapter => {
     const url = new URL(window.location.href);
     const tabId = parseInt(url.searchParams.get('tabId'), 10);
     const actionMessageDispatcher = new ActionMessageDispatcher(browserAdapter.sendMessageToFrames, tabId);

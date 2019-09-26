@@ -6,7 +6,6 @@ const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const TerserWebpackPlugin = require('terser-webpack-plugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const getCSSModulesLoadersConfig = isDevMode => {
     return {
@@ -45,14 +44,6 @@ const commonPlugins = [
         chunkFilename: '[id].css',
     }),
 ];
-
-const browserExtensionPlugins = commonPlugins.concat([
-    new CopyWebpackPlugin([
-        {
-            from: 'node_modules/webextension-polyfill/dist/browser-polyfill.js',
-        },
-    ]),
-]);
 
 const commonEntryFiles = {
     injected: [path.resolve(__dirname, 'src/injected/stylesheet-init.ts'), path.resolve(__dirname, 'src/injected/client-init.ts')],
@@ -135,7 +126,6 @@ const electronConfig = {
 
 const devConfig = {
     ...commonConfig,
-    plugins: browserExtensionPlugins,
     module: devModules,
     name: 'dev',
     mode: 'development',
@@ -151,7 +141,6 @@ const devConfig = {
 
 const prodConfig = {
     ...commonConfig,
-    plugins: browserExtensionPlugins,
     module: prodModules,
     name: 'prod',
     mode: 'production',
