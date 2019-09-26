@@ -169,22 +169,6 @@
         margin-top: 3px !important;
     }
 
-    .insights-dialog-main-override .insights-dialog-rule-link,
-    .insights-dialog-main-override-shadow .insights-dialog-rule-link {
-        margin-top: 5px !important;
-        margin-bottom: 6px !important;
-        padding: 0 !important;
-
-        .ms-Link {
-            color: $communication-primary;
-        }
-    }
-
-    .insights-dialog-main-override .insights-dialog-rule-container,
-    .insights-dialog-main-override-shadow .insights-dialog-rule-container {
-        margin-bottom: 12px !important;
-    }
-
     .insights-dialog-main-override-shadow .insights-dialog-container {
         margin-bottom: 12px !important;
         position: relative;
@@ -223,7 +207,6 @@
                 }
 
                 display: inline;
-                float: right;
 
                 i {
                     font-style: normal;
@@ -280,9 +263,6 @@
             float: right;
             text-align: right;
         }
-    }
-
-    .insights-dialog-main-override .insights-dialog-target-button-container {
     }
 
     .insights-dialog-main-override-shadow .insights-dialog-target-button-container {
