@@ -4,48 +4,9 @@ const sass = require('node-sass');
 const path = require('path');
 const targets = require('./targets.config');
 const merge = require('lodash/merge');
-const { run: copyrightCheckAndAdd } = require('license-check-and-add');
 
 module.exports = function(grunt) {
     const extensionPath = 'extension';
-    const copyrightCheckAndAddConfig = {
-        folder: './',
-        license: 'copyright-header.txt',
-        exact_paths_method: 'EXCLUDE',
-        exact_paths: [
-            './.vscode',
-            './.git',
-            './.github',
-            './dist',
-            './drop',
-            './extension',
-            './node_modules',
-            './copyright-header.txt',
-            './src/assessments/color/test-steps/flashing-text-example.html',
-            './test-results',
-            './docs/NOTICE.html',
-            './docs/LICENSE.txt',
-        ],
-        file_type_method: 'INCLUDE',
-        file_types: ['.ts', '.tsx', '.d.ts', '.js', '.html', '.css', '.scss', '.yaml', '.md', '.txt', '.xml'],
-        insert_license: false,
-        license_formats: {
-            'yaml|npmrc': {
-                eachLine: {
-                    prepend: '# ',
-                },
-            },
-            md: {
-                prepend: '<!--',
-                append: '-->',
-            },
-            'snap|ts|tsx|d.ts|js|scss|css': {
-                eachLine: {
-                    prepend: '// ',
-                },
-            },
-        },
-    };
 
     function mustExist(file, reason) {
         const normalizedFile = path.normalize(file);
@@ -267,15 +228,6 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-exec');
     grunt.loadNpmTasks('grunt-sass');
-
-    grunt.registerTask('copyright-check', 'grunt task to check copyright header', function() {
-        copyrightCheckAndAdd(copyrightCheckAndAddConfig);
-    });
-
-    grunt.registerTask('copyright-add', 'grunt task to add copyright header', function() {
-        copyrightCheckAndAddConfig.insert_license = true;
-        copyrightCheckAndAdd(copyrightCheckAndAddConfig);
-    });
 
     grunt.registerMultiTask('embed-styles', function() {
         const targetName = this.target;

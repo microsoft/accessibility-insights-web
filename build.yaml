@@ -15,7 +15,7 @@ jobs:
           - script: yarn format-check
             displayName: check formatting errors
 
-          - script: yarn copyrightheaders
+          - script: yarn copyright-header-check
             displayName: check copyrightheaders
 
           - script: yarn generate-scss-typings

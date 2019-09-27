@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { RuleResources, RuleResourcesDeps, RuleResourcesProps } from 'common/components/cards/rule-resources';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-import { RuleResources, RuleResourcesDeps, RuleResourcesProps } from '../../../../../../DetailsView/components/cards/rule-resources';
 import { exampleUnifiedRuleResult } from './sample-view-model-data';
 
 describe('RuleResources', () => {

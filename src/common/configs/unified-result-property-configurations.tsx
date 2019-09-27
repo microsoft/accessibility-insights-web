@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { HowToFixWebCardRow } from '../../DetailsView/components/cards/how-to-fix-card-row';
-import { PathCardRow } from '../../DetailsView/components/cards/path-card-row';
-import { SnippetCardRow } from '../../DetailsView/components/cards/snippet-card-row';
 import { FixInstructionProcessor } from '../../injected/fix-instruction-processor';
+import { HowToFixWebCardRow } from '../components/cards/how-to-fix-card-row';
+import { PathCardRow } from '../components/cards/path-card-row';
+import { SnippetCardRow } from '../components/cards/snippet-card-row';
 import { ReactFCWithDisplayName } from '../react/named-fc';
 
 export type PropertyType = 'css-selector' | 'how-to-fix-web' | 'snippet';

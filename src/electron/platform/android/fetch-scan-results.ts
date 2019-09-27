@@ -5,15 +5,11 @@ import { ScanResults } from './scan-results';
 
 export type FetchScanResultsType = (port: number) => Promise<ScanResults>;
 
-export function fetchScanResults(port: number): Promise<ScanResults> {
-    return new Promise<any>((resolve, reject) => {
-        axios
-            .get(`http://localhost:${port}/axe/result`)
-            .then(response => {
-                resolve(new ScanResults(response.data));
-            })
-            .catch(error => {
-                reject(error);
-            });
-    });
-}
+export type HttpGet = typeof axios.get;
+
+export const createFetchScanResults = (httpGet: HttpGet): FetchScanResultsType => {
+    return async (port: number) => {
+        const response = await httpGet(`http://localhost:${port}/axe/result`);
+        return new ScanResults(response.data);
+    };
+};

@@ -1,20 +1,20 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { shallow } from 'enzyme';
 import * as React from 'react';
 
+import { StringPropertyCardRowProps } from 'common/components/cards/get-labelled-string-property-card-row';
+import { PathCardRow } from 'common/components/cards/path-card-row';
+import { shallow } from 'enzyme';
 import { CardRowDeps } from '../../../../../../common/configs/unified-result-property-configurations';
-import { StringPropertyCardRowProps } from '../../../../../../DetailsView/components/cards/get-labelled-string-property-card-row';
-import { SnippetCardRow } from '../../../../../../DetailsView/components/cards/snippet-card-row';
 
-describe('SnippetCardRow', () => {
+describe('PathCardRow', () => {
     it('renders', () => {
         const props: StringPropertyCardRowProps = {
-            propertyData: 'some snippet',
+            propertyData: 'some path',
             deps: {} as CardRowDeps,
             index: -1,
         };
-        const testSubject = shallow(<SnippetCardRow {...props} />);
+        const testSubject = shallow(<PathCardRow {...props} />);
         expect(testSubject.getElement()).toMatchSnapshot();
     });
 });

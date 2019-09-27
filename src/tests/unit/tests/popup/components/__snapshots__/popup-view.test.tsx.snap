@@ -73,8 +73,8 @@ exports[`PopupView renderFailureMsgPanelForFileUrl 1`] = `
 <FileUrlUnsupportedMessagePanel
   deps={
     Object {
-      "browserAdapter": proxy {
-        "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+      "browserAdapter": Object {
+        "getManifest": [Function],
       },
       "storesHub": proxy {
         "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",

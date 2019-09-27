@@ -10,7 +10,7 @@ import { ReportHtmlGenerator } from 'reports/report-html-generator';
 import { ReportNameGenerator } from 'reports/report-name-generator';
 import { ScanResults } from 'scanner/iruleresults';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
-import { exampleUnifiedStatusResults } from '../DetailsView/components/cards/sample-view-model-data';
+import { exampleUnifiedStatusResults } from '../common/components/cards/sample-view-model-data';
 
 describe('ReportGenerator', () => {
     const scanResult: ScanResults = {} as any;

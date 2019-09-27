@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { RulesWithInstancesDeps } from 'common/components/cards/rules-with-instances';
 import { DateProvider } from 'common/date-provider';
 import { EnvironmentInfo } from 'common/environment-info-provider';
 import { GetGuidanceTagsFromGuidanceLinks } from 'common/get-guidance-tags-from-guidance-links';
@@ -12,9 +13,9 @@ import { ReactStaticRenderer } from 'reports/react-static-renderer';
 import { ReportHtmlGenerator } from 'reports/report-html-generator';
 import { ScanResults } from 'scanner/iruleresults';
 import { It, Mock, MockBehavior, Times } from 'typemoq';
-import { RulesWithInstancesDeps } from '../../../../DetailsView/components/cards/rules-with-instances';
+
 import { ReportCollapsibleContainerControl } from '../../../../reports/components/report-sections/report-collapsible-container';
-import { exampleUnifiedStatusResults } from '../DetailsView/components/cards/sample-view-model-data';
+import { exampleUnifiedStatusResults } from '../common/components/cards/sample-view-model-data';
 
 describe('ReportHtmlGenerator', () => {
     test('generateHtml', () => {
