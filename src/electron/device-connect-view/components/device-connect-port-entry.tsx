@@ -3,20 +3,16 @@
 import { Button } from 'office-ui-fabric-react/lib/Button';
 import { MaskedTextField } from 'office-ui-fabric-react/lib/TextField';
 import * as React from 'react';
+
 import { DeviceConnectActionCreator } from '../../flux/action-creator/device-connect-action-creator';
-import { FetchScanResultsType } from '../../platform/android/fetch-scan-results';
-import { UpdateStateCallback } from './device-connect-body';
-import { DeviceConnectState } from './device-connect-state';
 
 export type DeviceConnectPortEntryDeps = {
-    fetchScanResults: FetchScanResultsType;
     deviceConnectActionCreator: DeviceConnectActionCreator;
 };
 
 export interface DeviceConnectPortEntryProps {
     deps: DeviceConnectPortEntryDeps;
     needsValidation: boolean;
-    updateStateCallback: UpdateStateCallback;
 }
 
 export interface DeviceConnectPortEntryState {
@@ -56,24 +52,10 @@ export class DeviceConnectPortEntry extends React.Component<DeviceConnectPortEnt
 
     private onPortTextChanged = (event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>, newValue?: string) => {
         this.setState({ isValidateButtonDisabled: !newValue || newValue === '', port: newValue });
-        this.props.updateStateCallback(DeviceConnectState.Default);
     };
 
-    private onValidateClick = async (event: React.MouseEvent<HTMLButtonElement>): Promise<void> => {
-        this.setState({ isValidateButtonDisabled: true });
-
+    private onValidateClick = (event: React.MouseEvent<HTMLButtonElement>): void => {
         const port = parseInt(this.state.port, 10);
-
         this.props.deps.deviceConnectActionCreator.validatePort(port);
-        this.props.updateStateCallback(DeviceConnectState.Connecting);
-
-        await this.props.deps
-            .fetchScanResults(port)
-            .then(data => {
-                this.props.updateStateCallback(DeviceConnectState.Connected, `${data.deviceName} - ${data.appIdentifier}`);
-            })
-            .catch(err => this.props.updateStateCallback(DeviceConnectState.Error));
-
-        this.setState({ isValidateButtonDisabled: false });
     };
 }
