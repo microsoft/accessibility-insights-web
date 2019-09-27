@@ -6,15 +6,9 @@ import { DeviceConnectConnectedDevice } from './device-connect-connected-device'
 import { DeviceConnectFooter } from './device-connect-footer';
 import { DeviceConnectHeader } from './device-connect-header';
 import { DeviceConnectPortEntry, DeviceConnectPortEntryDeps } from './device-connect-port-entry';
+import { DeviceConnectState } from './device-connect-state';
 
 export type UpdateStateCallback = (newState: DeviceConnectState, deviceName?: string) => void;
-
-export enum DeviceConnectState {
-    Default,
-    Connecting,
-    Connected,
-    Error,
-}
 
 export type DeviceConnectBodyDeps = {
     currentWindow: BrowserWindow;

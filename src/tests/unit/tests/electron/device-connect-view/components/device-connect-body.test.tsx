@@ -6,9 +6,9 @@ import {
     DeviceConnectBodyDeps,
     DeviceConnectBodyProps,
     DeviceConnectBodyState,
-    DeviceConnectState,
 } from 'electron/device-connect-view/components/device-connect-body';
 import { DeviceConnectPortEntryProps } from 'electron/device-connect-view/components/device-connect-port-entry';
+import { DeviceConnectState } from 'electron/device-connect-view/components/device-connect-state';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 

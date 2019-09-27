@@ -5,7 +5,8 @@ import { MaskedTextField } from 'office-ui-fabric-react/lib/TextField';
 import * as React from 'react';
 import { DeviceConnectActionCreator } from '../../flux/action-creator/device-connect-action-creator';
 import { FetchScanResultsType } from '../../platform/android/fetch-scan-results';
-import { DeviceConnectState, UpdateStateCallback } from './device-connect-body';
+import { UpdateStateCallback } from './device-connect-body';
+import { DeviceConnectState } from './device-connect-state';
 
 export type DeviceConnectPortEntryDeps = {
     fetchScanResults: FetchScanResultsType;

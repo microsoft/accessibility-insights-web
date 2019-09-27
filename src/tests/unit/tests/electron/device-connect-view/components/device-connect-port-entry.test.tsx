@@ -1,7 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { DeviceConnectState, UpdateStateCallback } from 'electron/device-connect-view/components/device-connect-body';
+import { UpdateStateCallback } from 'electron/device-connect-view/components/device-connect-body';
 import { DeviceConnectPortEntry, DeviceConnectPortEntryProps } from 'electron/device-connect-view/components/device-connect-port-entry';
+import { DeviceConnectState } from 'electron/device-connect-view/components/device-connect-state';
 import { DeviceConnectActionCreator } from 'electron/flux/action-creator/device-connect-action-creator';
 import { FetchScanResultsType } from 'electron/platform/android/fetch-scan-results';
 import { ScanResults } from 'electron/platform/android/scan-results';
