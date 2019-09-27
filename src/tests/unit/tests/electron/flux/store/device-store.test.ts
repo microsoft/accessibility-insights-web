@@ -5,7 +5,7 @@ import { DeviceStore } from 'electron/flux/store/device-store';
 import { DeviceStoreData } from 'electron/flux/types/device-store-data';
 
 import { DeviceConnectState } from '../../../../../../electron/device-connect-view/components/device-connect-body';
-import { UpdateDevicePayload } from '../../../../../../electron/flux/action/update-device-payload';
+import { UpdateDevicePayload } from '../../../../../../electron/flux/action/device-action-payloads';
 import { createStoreWithNullParams, StoreTester } from '../../../../common/store-tester';
 
 describe('DeviceStore', () => {

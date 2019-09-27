@@ -4,8 +4,8 @@ import { BaseStoreImpl } from 'background/stores/base-store-impl';
 import { StoreNames } from 'common/stores/store-names';
 
 import { DeviceConnectState } from '../../device-connect-view/components/device-connect-body';
+import { UpdateDevicePayload } from '../action/device-action-payloads';
 import { DeviceActions } from '../action/device-actions';
-import { UpdateDevicePayload } from '../action/update-device-payload';
 import { DeviceStoreData } from '../types/device-store-data';
 
 export class DeviceStore extends BaseStoreImpl<DeviceStoreData> {
