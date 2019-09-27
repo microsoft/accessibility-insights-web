@@ -33,12 +33,13 @@
         "test:electron": "jest --projects src/tests/electron --runInBand",
         "tslint": "tslint -c ./tslint.json -p ./tsconfig.json",
         "tslint:fix": "tslint --fix -c ./tslint.json -p ./tsconfig.json",
-        "watch": "npm-run-all --parallel --race --print-label watch:scss watch:grunt watch:test watch:webpack",
-        "watch:build": "npm-run-all --parallel --race --print-label watch:scss watch:grunt watch:webpack",
+        "watch": "npm-run-all --parallel --race --print-label watch:scss watch:grunt watch:test watch:webpack watch:webpack-electron",
+        "watch:build": "npm-run-all --parallel --race --print-label watch:scss watch:grunt watch:webpack watch:webpack-electron",
         "watch:scss": "tsm src/**/*.scss --watch",
         "watch:grunt": "grunt watch",
         "watch:test": "jest --watch --coverage false --colors",
-        "watch:webpack": "webpack --watch --config-name dev --colors --progress"
+        "watch:webpack": "webpack --watch --config-name dev --colors --progress",
+        "watch:webpack-electron": "webpack --watch --config-name electron --colors --progress"
     },
     "devDependencies": {
         "@types/applicationinsights-js": "^1.0.7",
