@@ -19,7 +19,7 @@ export type InstanceDetailsFooterProps = {
 };
 
 export const InstanceDetailsFooter = NamedFC<InstanceDetailsFooterProps>('InstanceDetailsFooter', props => {
-    const { result, highlightState, deps } = props;
+    const { highlightState, deps } = props;
     const { cardInteractionSupport } = deps;
 
     const anyInteractionSupport = some(values(cardInteractionSupport));
