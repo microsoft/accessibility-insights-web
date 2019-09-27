@@ -1,12 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { DeviceConnectState } from 'electron/device-connect-view/components/device-connect-body';
+import { ConnectingPayload, ConnectionSucceedPayload, UpdateDevicePayload } from 'electron/flux/action/device-action-payloads';
 import { DeviceActions } from 'electron/flux/action/device-actions';
 import { DeviceStore } from 'electron/flux/store/device-store';
 import { DeviceStoreData } from 'electron/flux/types/device-store-data';
 
-import { Times } from 'typemoq';
-import { DeviceConnectState } from '../../../../../../electron/device-connect-view/components/device-connect-body';
-import { ConnectionSucceedPayload, UpdateDevicePayload } from '../../../../../../electron/flux/action/device-action-payloads';
 import { createStoreWithNullParams, StoreTester } from '../../../../common/store-tester';
 
 describe('DeviceStore', () => {
@@ -20,6 +19,61 @@ describe('DeviceStore', () => {
         it('has no side effects', () => {
             const testObject = createStoreWithNullParams(DeviceStore);
             expect(testObject).toBeDefined();
+        });
+    });
+
+    describe('on connecting', () => {
+        const testPort = 10101;
+        it('updates the port and status to CONNECTING ', () => {
+            const payload: ConnectingPayload = {
+                port: testPort,
+            };
+
+            const expectedState: DeviceStoreData = {
+                ...initialState,
+                port: payload.port,
+                deviceConnectState: DeviceConnectState.Connecting,
+            };
+
+            createStoreTesterForDeviceActions('connecting')
+                .withActionParam(payload)
+                .testListenerToBeCalledOnce(initialState, expectedState);
+        });
+
+        it('updates the port and status to CONNECTING when port is different', () => {
+            initialState.port = testPort;
+            initialState.deviceConnectState = DeviceConnectState.Connecting;
+
+            const payload: ConnectingPayload = {
+                port: testPort + 1,
+            };
+
+            const expectedState: DeviceStoreData = {
+                ...initialState,
+                port: payload.port,
+            };
+
+            createStoreTesterForDeviceActions('connecting')
+                .withActionParam(payload)
+                .testListenerToBeCalledOnce(initialState, expectedState);
+        });
+
+        it('does not update if already CONNECTING to the same port', () => {
+            initialState.port = testPort;
+            initialState.deviceConnectState = DeviceConnectState.Connecting;
+
+            const payload: ConnectingPayload = {
+                port: testPort,
+            };
+
+            const expectedState: DeviceStoreData = {
+                ...initialState,
+                port: payload.port,
+            };
+
+            createStoreTesterForDeviceActions('connecting')
+                .withActionParam(payload)
+                .testListenerToNeverBeCalled(initialState, expectedState);
         });
     });
 

@@ -4,7 +4,7 @@ import { BaseStoreImpl } from 'background/stores/base-store-impl';
 import { StoreNames } from 'common/stores/store-names';
 
 import { DeviceConnectState } from '../../device-connect-view/components/device-connect-body';
-import { ConnectionSucceedPayload, UpdateDevicePayload } from '../action/device-action-payloads';
+import { ConnectingPayload, ConnectionSucceedPayload, UpdateDevicePayload } from '../action/device-action-payloads';
 import { DeviceActions } from '../action/device-actions';
 import { DeviceStoreData } from '../types/device-store-data';
 
@@ -17,6 +17,7 @@ export class DeviceStore extends BaseStoreImpl<DeviceStoreData> {
         return {
             deviceConnectState: DeviceConnectState.Default,
             connectedDevice: null,
+            port: null,
         };
     }
 
@@ -24,7 +25,19 @@ export class DeviceStore extends BaseStoreImpl<DeviceStoreData> {
         this.deviceActions.updateDevice.addListener(this.onUpdateDevice);
         this.deviceActions.connectionFailed.addListener(this.onConnectionFailed);
         this.deviceActions.connectionSucceed.addListener(this.onConnectionSucceed);
+        this.deviceActions.connecting.addListener(this.onConnecting);
     }
+
+    private onConnecting = (payload: ConnectingPayload) => {
+        if (this.state.deviceConnectState === DeviceConnectState.Connecting && this.state.port === payload.port) {
+            return;
+        }
+
+        this.state.deviceConnectState = DeviceConnectState.Connecting;
+        this.state.port = payload.port;
+
+        this.emitChanged();
+    };
 
     private onConnectionSucceed = (payload: ConnectionSucceedPayload) => {
         if (this.state.deviceConnectState === DeviceConnectState.Connected) {

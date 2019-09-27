@@ -5,4 +5,5 @@ import { DeviceConnectState } from '../../device-connect-view/components/device-
 export interface DeviceStoreData {
     deviceConnectState: DeviceConnectState;
     connectedDevice: string;
+    port: number;
 }
