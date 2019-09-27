@@ -22,7 +22,18 @@ export class DeviceStore extends BaseStoreImpl<DeviceStoreData> {
 
     protected addActionListeners(): void {
         this.deviceActions.updateDevice.addListener(this.onUpdateDevice);
+        this.deviceActions.connectionFailed.addListener(this.onConnectionFailed);
     }
+
+    private onConnectionFailed = () => {
+        if (this.state.deviceConnectState === DeviceConnectState.Error) {
+            return;
+        }
+
+        this.state.deviceConnectState = DeviceConnectState.Error;
+
+        this.emitChanged();
+    };
 
     private onUpdateDevice = (payload: UpdateDevicePayload) => {
         let updated = false;

@@ -9,6 +9,12 @@ import { UpdateDevicePayload } from '../../../../../../electron/flux/action/devi
 import { createStoreWithNullParams, StoreTester } from '../../../../common/store-tester';
 
 describe('DeviceStore', () => {
+    let initialState: DeviceStoreData;
+
+    beforeEach(() => {
+        initialState = createStoreWithNullParams(DeviceStore).getDefaultState();
+    });
+
     describe('constructor', () => {
         it('has no side effects', () => {
             const testObject = createStoreWithNullParams(DeviceStore);
@@ -16,13 +22,28 @@ describe('DeviceStore', () => {
         });
     });
 
-    describe('onUpdateDevice', () => {
-        let initialState: DeviceStoreData;
+    describe('on connection failed', () => {
+        it('updates connection status to Error', () => {
+            const expectedState: DeviceStoreData = {
+                ...initialState,
+                deviceConnectState: DeviceConnectState.Error,
+            };
 
-        beforeEach(() => {
-            initialState = createStoreWithNullParams(DeviceStore).getDefaultState();
+            createStoreTesterForDeviceActions('connectionFailed').testListenerToBeCalledOnce(initialState, expectedState);
         });
 
+        it('does not updates if state is already Error', () => {
+            initialState.deviceConnectState = DeviceConnectState.Error;
+
+            const expectedState: DeviceStoreData = {
+                ...initialState,
+            };
+
+            createStoreTesterForDeviceActions('connectionFailed').testListenerToNeverBeCalled(initialState, expectedState);
+        });
+    });
+
+    describe('onUpdateDevice', () => {
         it('updates when connect state is different', () => {
             const payload: UpdateDevicePayload = {
                 deviceConnectState: DeviceConnectState.Connected,
@@ -33,7 +54,7 @@ describe('DeviceStore', () => {
                 ...payload,
             };
 
-            creatorStoreTesterForDeviceActions('updateDevice')
+            createStoreTesterForDeviceActions('updateDevice')
                 .withActionParam(payload)
                 .testListenerToBeCalledOnce(initialState, expectedState);
         });
@@ -49,7 +70,7 @@ describe('DeviceStore', () => {
                 ...payload,
             };
 
-            creatorStoreTesterForDeviceActions('updateDevice')
+            createStoreTesterForDeviceActions('updateDevice')
                 .withActionParam(payload)
                 .testListenerToBeCalledOnce(initialState, expectedState);
         });
@@ -65,7 +86,7 @@ describe('DeviceStore', () => {
                 ...payload,
             };
 
-            creatorStoreTesterForDeviceActions('updateDevice')
+            createStoreTesterForDeviceActions('updateDevice')
                 .withActionParam(payload)
                 .testListenerToBeCalledOnce(initialState, expectedState);
         });
@@ -80,13 +101,13 @@ describe('DeviceStore', () => {
                 ...payload,
             };
 
-            creatorStoreTesterForDeviceActions('updateDevice')
+            createStoreTesterForDeviceActions('updateDevice')
                 .withActionParam(payload)
                 .testListenerToNeverBeCalled(initialState, expectedState);
         });
     });
 
-    function creatorStoreTesterForDeviceActions(actionName: keyof DeviceActions): StoreTester<DeviceStoreData, DeviceActions> {
+    function createStoreTesterForDeviceActions(actionName: keyof DeviceActions): StoreTester<DeviceStoreData, DeviceActions> {
         const factory = (actions: DeviceActions) => new DeviceStore(actions);
 
         return new StoreTester(DeviceActions, actionName, factory);
