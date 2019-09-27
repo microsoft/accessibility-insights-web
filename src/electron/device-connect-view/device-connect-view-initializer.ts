@@ -1,8 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { AppInsights } from 'applicationinsights-js';
+import axios from 'axios';
 import { remote } from 'electron';
-import { fetchScanResults } from 'electron/platform/android/fetch-scan-results';
+import { createFetchScanResults } from 'electron/platform/android/fetch-scan-results';
 import * as ReactDOM from 'react-dom';
 
 import { UserConfigurationActions } from '../../background/actions/user-configuration-actions';
@@ -62,6 +63,8 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then((persistedDat
     const userConfigMessageCreator = new UserConfigurationActionCreator(userConfigActions);
 
     const deviceConnectActionCreator = new DeviceConnectActionCreator(telemetryEventHandler);
+
+    const fetchScanResults = createFetchScanResults(axios.get);
 
     const props = {
         deps: {
