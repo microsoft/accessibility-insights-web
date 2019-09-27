@@ -24,6 +24,8 @@ import { ElectronAppDataAdapter } from '../adapters/electron-app-data-adapter';
 import { ElectronStorageAdapter } from '../adapters/electron-storage-adapter';
 import { RiggedFeatureFlagChecker } from '../common/rigged-feature-flag-checker';
 import { DeviceConnectActionCreator } from '../flux/action-creator/device-connect-action-creator';
+import { DeviceActions } from '../flux/action/device-actions';
+import { DeviceStore } from '../flux/store/device-store';
 import { ElectronLink } from './components/electron-link';
 import { DeviceConnectViewRenderer } from './device-connect-view-renderer';
 import { sendAppInitializedTelemetryEvent } from './send-app-initialized-telemetry';
@@ -32,6 +34,7 @@ initializeFabricIcons();
 
 const indexedDBInstance: IndexedDBAPI = new IndexedDBUtil(getIndexedDBStore());
 const userConfigActions = new UserConfigurationActions();
+const deviceActions = new DeviceActions();
 const storageAdapter = new ElectronStorageAdapter(indexedDBInstance);
 const appDataAdapter = new ElectronAppDataAdapter();
 
@@ -57,6 +60,9 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then((persistedDat
     const userConfigurationStore = new UserConfigurationStore(persistedData.userConfigurationData, userConfigActions, indexedDBInstance);
     userConfigurationStore.initialize();
 
+    const deviceStore = new DeviceStore(deviceActions);
+    deviceStore.initialize();
+
     const telemetryStateListener = new TelemetryStateListener(userConfigurationStore, telemetryEventHandler);
     telemetryStateListener.initialize();
 
@@ -70,6 +76,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then((persistedDat
         deps: {
             currentWindow: remote.getCurrentWindow(),
             userConfigurationStore,
+            deviceStore,
             userConfigMessageCreator,
             LinkComponent: ElectronLink,
             fetchScanResults,

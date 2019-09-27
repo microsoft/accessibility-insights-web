@@ -1,7 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`DeviceConnectViewContainer listen to user configuration store: state from constructor 1`] = `
+exports[`DeviceConnectViewContainer listens to device store: state from constructor 1`] = `
 Object {
+  "deviceStoreData": Object {
+    "deviceConnectState": 0,
+  },
   "userConfigurationStoreData": Object {
     "enableTelemetry": false,
     "isFirstTime": true,
@@ -9,8 +12,35 @@ Object {
 }
 `;
 
-exports[`DeviceConnectViewContainer listen to user configuration store: updated state 1`] = `
+exports[`DeviceConnectViewContainer listens to device store: updated state 1`] = `
 Object {
+  "deviceStoreData": Object {
+    "deviceConnectState": 1,
+  },
+  "userConfigurationStoreData": Object {
+    "enableTelemetry": false,
+    "isFirstTime": true,
+  },
+}
+`;
+
+exports[`DeviceConnectViewContainer listens to user configuration store: state from constructor 1`] = `
+Object {
+  "deviceStoreData": Object {
+    "deviceConnectState": 0,
+  },
+  "userConfigurationStoreData": Object {
+    "enableTelemetry": false,
+    "isFirstTime": true,
+  },
+}
+`;
+
+exports[`DeviceConnectViewContainer listens to user configuration store: updated state 1`] = `
+Object {
+  "deviceStoreData": Object {
+    "deviceConnectState": 0,
+  },
   "userConfigurationStoreData": Object {
     "enableTelemetry": true,
     "isFirstTime": false,
@@ -30,6 +60,18 @@ exports[`DeviceConnectViewContainer renders 1`] = `
       Object {
         "currentWindow": Object {
           "close": [Function],
+        },
+        "deviceStore": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "changedHandlers": EventHandlerList {
+            "handlers": Array [],
+          },
+          "deviceActions": undefined,
+          "onConnecting": [Function],
+          "onConnectionFailed": [Function],
+          "onConnectionSucceed": [Function],
+          "onGetCurrentState": [Function],
+          "storeName": 14,
         },
         "userConfigurationStore": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
@@ -55,6 +97,18 @@ exports[`DeviceConnectViewContainer renders 1`] = `
       Object {
         "currentWindow": Object {
           "close": [Function],
+        },
+        "deviceStore": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "changedHandlers": EventHandlerList {
+            "handlers": Array [],
+          },
+          "deviceActions": undefined,
+          "onConnecting": [Function],
+          "onConnectionFailed": [Function],
+          "onConnectionSucceed": [Function],
+          "onGetCurrentState": [Function],
+          "storeName": 14,
         },
         "userConfigurationStore": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
