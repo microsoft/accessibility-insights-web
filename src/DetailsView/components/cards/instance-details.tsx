@@ -1,13 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { CardRowDeps, PropertyConfiguration } from 'common/configs/unified-result-property-configurations';
 import { NamedFC } from 'common/react/named-fc';
-import { StoredInstancePropertyBag, UnifiedResult } from 'common/types/store-data/unified-data-interface';
 import { forOwn } from 'lodash';
 import * as React from 'react';
 import { reportInstanceTable } from 'reports/components/instance-details.scss';
 
-import { HighlightState, InstanceDetailsFooter, InstanceDetailsFooterDeps } from './instance-details-footer';
+import { CardRowDeps, PropertyConfiguration } from '../../../common/configs/unified-result-property-configurations';
+import { StoredInstancePropertyBag, UnifiedResult } from '../../../common/types/store-data/unified-data-interface';
+import { HighlightState, InstanceDetailsFooter, InstanceDetailsFooterDeps } from '../../../common/components/cards/instance-details-footer';
 
 export type InstanceDetailsDeps = {
     getPropertyConfigById: (id: string) => PropertyConfiguration;
@@ -18,10 +18,11 @@ export type InstanceDetailsProps = {
     deps: InstanceDetailsDeps;
     result: UnifiedResult;
     index: number;
+    isInteractive: boolean;
 };
 
 export const InstanceDetails = NamedFC<InstanceDetailsProps>('InstanceDetails', props => {
-    const { result, index, deps } = props;
+    const { result, index, isInteractive, deps } = props;
 
     // This should be updated once selection is implemented to sync highlight state with selection.
     const highlightState: HighlightState = 'off';
@@ -37,6 +38,14 @@ export const InstanceDetails = NamedFC<InstanceDetailsProps>('InstanceDetails', 
         return <>{cardRows}</>;
     };
 
+    const renderOptionalFooter = () => {
+        if (!isInteractive) {
+            return null;
+        }
+
+        return <InstanceDetailsFooter deps={deps} result={result} highlightState={highlightState} />;
+    };
+
     return (
         <>
             <table className={reportInstanceTable}>
@@ -46,7 +55,7 @@ export const InstanceDetails = NamedFC<InstanceDetailsProps>('InstanceDetails', 
                     {renderCardRowsForPropertyBag(result.resolution)}
                 </tbody>
             </table>
-            <InstanceDetailsFooter deps={deps} result={result} highlightState={highlightState} />
+            {renderOptionalFooter()}
         </>
     );
 });

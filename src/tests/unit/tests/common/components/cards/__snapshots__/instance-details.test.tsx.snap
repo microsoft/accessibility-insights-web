@@ -1,42 +1,73 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`InstanceDetails renders 1`] = `
-<table
-  className="reportInstanceTable"
->
-  <tbody>
-    <React.Fragment>
-      <css-selector
-        deps={
-          Object {
-            "getPropertyConfigById": [Function],
+<React.Fragment>
+  <table
+    className="reportInstanceTable"
+  >
+    <tbody>
+      <React.Fragment>
+        <css-selector
+          deps={
+            Object {
+              "getPropertyConfigById": [Function],
+            }
           }
-        }
-        index={22}
-        propertyData="body img"
-      />
-    </React.Fragment>
-    <React.Fragment>
-      <snippet
-        deps={
-          Object {
-            "getPropertyConfigById": [Function],
+          index={22}
+          propertyData="body img"
+        />
+      </React.Fragment>
+      <React.Fragment>
+        <snippet
+          deps={
+            Object {
+              "getPropertyConfigById": [Function],
+            }
           }
-        }
-        index={22}
-        propertyData="this is a sample snippet"
-      />
-    </React.Fragment>
-    <React.Fragment>
-      <how-to-fix-web
-        deps={
-          Object {
-            "getPropertyConfigById": [Function],
+          index={22}
+          propertyData="this is a sample snippet"
+        />
+      </React.Fragment>
+      <React.Fragment>
+        <how-to-fix-web
+          deps={
+            Object {
+              "getPropertyConfigById": [Function],
+            }
           }
-        }
-        index={22}
-        propertyData={
-          Object {
+          index={22}
+          propertyData={
+            Object {
+              "all": Array [],
+              "any": Array [
+                "Element does not have an alt attribute",
+                "aria-label attribute does not exist or is empty",
+                "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+              ],
+              "none": Array [],
+            }
+          }
+        />
+      </React.Fragment>
+    </tbody>
+  </table>
+  <InstanceDetailsFooter
+    deps={
+      Object {
+        "getPropertyConfigById": [Function],
+      }
+    }
+    highlightState="off"
+    result={
+      Object {
+        "descriptors": Object {
+          "snippet": "this is a sample snippet",
+        },
+        "identifiers": Object {
+          "css-selector": "body img",
+        },
+        "resolution": Object {
+          "how-to-fix-web": Object {
             "all": Array [],
             "any": Array [
               "Element does not have an alt attribute",
@@ -44,10 +75,13 @@ exports[`InstanceDetails renders 1`] = `
               "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
             ],
             "none": Array [],
-          }
-        }
-      />
-    </React.Fragment>
-  </tbody>
-</table>
+          },
+        },
+        "ruleId": "image-alt",
+        "status": "fail",
+        "uid": "some-guid-here",
+      }
+    }
+  />
+</React.Fragment>
 `;
