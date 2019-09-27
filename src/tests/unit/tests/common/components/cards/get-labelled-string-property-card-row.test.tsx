@@ -1,9 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { GetLabelledStringPropertyCardRow } from 'common/components/cards/get-labelled-string-property-card-row';
 import { shallow } from 'enzyme';
 import * as React from 'react';
+
 import { CardRowDeps, CardRowProps } from '../../../../../../common/configs/unified-result-property-configurations';
-import { GetLabelledStringPropertyCardRow } from '../../../../../../DetailsView/components/cards/get-labelled-string-property-card-row';
 
 describe('GetLabelledStringPropertyCardRow', () => {
     it('renders with appropriate label/propertyData without contentClassName', () => {

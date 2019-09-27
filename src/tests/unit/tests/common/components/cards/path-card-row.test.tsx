@@ -2,10 +2,10 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
+import { StringPropertyCardRowProps } from 'common/components/cards/get-labelled-string-property-card-row';
+import { PathCardRow } from 'common/components/cards/path-card-row';
 import { shallow } from 'enzyme';
 import { CardRowDeps } from '../../../../../../common/configs/unified-result-property-configurations';
-import { StringPropertyCardRowProps } from '../../../../../../DetailsView/components/cards/get-labelled-string-property-card-row';
-import { PathCardRow } from '../../../../../../DetailsView/components/cards/path-card-row';
 
 describe('PathCardRow', () => {
     it('renders', () => {
