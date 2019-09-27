@@ -14,7 +14,7 @@ import { ScanResults } from 'scanner/iruleresults';
 import { It, Mock, MockBehavior, Times } from 'typemoq';
 import { RulesWithInstancesDeps } from '../../../../DetailsView/components/cards/rules-with-instances';
 import { ReportCollapsibleContainerControl } from '../../../../reports/components/report-sections/report-collapsible-container';
-import { exampleUnifiedStatusResults } from '../DetailsView/components/cards/sample-view-model-data';
+import { exampleUnifiedStatusResults } from '../common/components/cards/sample-view-model-data';
 
 describe('ReportHtmlGenerator', () => {
     test('generateHtml', () => {
