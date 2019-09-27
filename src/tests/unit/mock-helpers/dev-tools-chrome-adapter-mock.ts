@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { DevToolsChromeAdapter } from 'background/dev-tools-chrome-adapter';
+import { PortWithTabId } from 'background/dev-tools-listener';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
-import { DevToolsChromeAdapter, DevToolsChromeAdapterImpl } from 'background/dev-tools-chrome-adapter';
-import { PortWithTabId } from 'background/dev-tools-listener';
 import { PortDisconnectStub, PortOnMessageStub } from '../stubs/chrome-adapter-stub';
 import { PortStub } from '../stubs/port-stub';
 
@@ -19,7 +19,7 @@ export class PortWithTabTabIdStub extends PortStub implements PortWithTabId {
 }
 
 export class DevToolsChromeAdapterMock {
-    private underlyingMock: IMock<DevToolsChromeAdapter> = Mock.ofType(DevToolsChromeAdapterImpl, MockBehavior.Strict);
+    private underlyingMock: IMock<DevToolsChromeAdapter> = Mock.ofType<DevToolsChromeAdapter>(undefined, MockBehavior.Strict);
 
     public setUpAddListenerOnConnect(
         callback?: (onListenerConnect: (port: PortWithTabTabIdStub) => void) => void,
