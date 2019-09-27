@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { DeviceConnectState } from 'electron/device-connect-view/components/device-connect-state';
-import { ConnectingPayload, ConnectionSucceedPayload, UpdateDevicePayload } from 'electron/flux/action/device-action-payloads';
+import { ConnectingPayload, ConnectionSucceedPayload } from 'electron/flux/action/device-action-payloads';
 import { DeviceActions } from 'electron/flux/action/device-actions';
 import { DeviceStore } from 'electron/flux/store/device-store';
 import { DeviceStoreData } from 'electron/flux/types/device-store-data';
@@ -128,70 +128,6 @@ describe('DeviceStore', () => {
             };
 
             createStoreTesterForDeviceActions('connectionFailed').testListenerToNeverBeCalled(initialState, expectedState);
-        });
-    });
-
-    describe('onUpdateDevice', () => {
-        it('updates when connect state is different', () => {
-            const payload: UpdateDevicePayload = {
-                deviceConnectState: DeviceConnectState.Connected,
-            };
-
-            const expectedState: DeviceStoreData = {
-                ...initialState,
-                ...payload,
-            };
-
-            createStoreTesterForDeviceActions('updateDevice')
-                .withActionParam(payload)
-                .testListenerToBeCalledOnce(initialState, expectedState);
-        });
-
-        it('updates when device name is different', () => {
-            const payload: UpdateDevicePayload = {
-                ...initialState,
-                connectedDevice: 'test device',
-            };
-
-            const expectedState: DeviceStoreData = {
-                ...initialState,
-                ...payload,
-            };
-
-            createStoreTesterForDeviceActions('updateDevice')
-                .withActionParam(payload)
-                .testListenerToBeCalledOnce(initialState, expectedState);
-        });
-
-        it('updates when connect state and device name are different', () => {
-            const payload: UpdateDevicePayload = {
-                connectedDevice: 'test device',
-                deviceConnectState: DeviceConnectState.Error,
-            };
-
-            const expectedState: DeviceStoreData = {
-                ...initialState,
-                ...payload,
-            };
-
-            createStoreTesterForDeviceActions('updateDevice')
-                .withActionParam(payload)
-                .testListenerToBeCalledOnce(initialState, expectedState);
-        });
-
-        it('does not update if there are no changes', () => {
-            const payload: UpdateDevicePayload = {
-                ...initialState,
-            };
-
-            const expectedState: DeviceStoreData = {
-                ...initialState,
-                ...payload,
-            };
-
-            createStoreTesterForDeviceActions('updateDevice')
-                .withActionParam(payload)
-                .testListenerToNeverBeCalled(initialState, expectedState);
         });
     });
 
