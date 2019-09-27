@@ -1,9 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as React from 'react';
-
+import { SimpleCardRow, SimpleCardRowProps } from 'common/components/cards/simple-card-row';
 import { shallow } from 'enzyme';
-import { SimpleCardRow, SimpleCardRowProps } from '../../../../../../DetailsView/components/cards/simple-card-row';
+import * as React from 'react';
 
 describe('SimpleCardRow', () => {
     let label: string;

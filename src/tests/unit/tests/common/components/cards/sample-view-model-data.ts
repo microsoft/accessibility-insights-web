@@ -1,7 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { UnifiedRuleResult, UnifiedStatusResults } from 'common/components/cards/failed-instances-section';
+
 import { UnifiedResult } from '../../../../../../common/types/store-data/unified-data-interface';
-import { UnifiedRuleResult, UnifiedStatusResults } from '../../../../../../DetailsView/components/cards/failed-instances-section';
 
 export const exampleUnifiedResult: UnifiedResult = {
     uid: 'some-guid-here',

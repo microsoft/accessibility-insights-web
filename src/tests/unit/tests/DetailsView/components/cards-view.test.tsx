@@ -4,7 +4,7 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 
 import { CardsView, CardsViewDeps, CardsViewProps } from '../../../../../DetailsView/components/cards-view';
-import { exampleUnifiedStatusResults } from './cards/sample-view-model-data';
+import { exampleUnifiedStatusResults } from '../../common/components/cards/sample-view-model-data';
 
 describe('CardsView', () => {
     it('should return cards view', () => {

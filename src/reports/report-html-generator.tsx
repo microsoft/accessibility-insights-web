@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { UnifiedStatusResults } from 'common/components/cards/failed-instances-section';
 import { EnvironmentInfo } from 'common/environment-info-provider';
 import { GetGuidanceTagsFromGuidanceLinks } from 'common/get-guidance-tags-from-guidance-links';
 import { FixInstructionProcessor } from 'injected/fix-instruction-processor';
@@ -7,7 +8,6 @@ import * as React from 'react';
 import { ScanResults } from 'scanner/iruleresults';
 
 import { PropertyConfiguration } from '../common/configs/unified-result-property-configurations';
-import { UnifiedStatusResults } from '../DetailsView/components/cards/failed-instances-section';
 import { ReportHead } from './components/report-head';
 import { ReportBody, ReportBodyProps } from './components/report-sections/report-body';
 import { ReportCollapsibleContainerControl } from './components/report-sections/report-collapsible-container';

@@ -27,7 +27,7 @@ import { DetailsViewToggleClickHandlerFactory } from '../../../../DetailsView/ha
 import { TabStoreDataBuilder } from '../../common/tab-store-data-builder';
 import { VisualizationScanResultStoreDataBuilder } from '../../common/visualization-scan-result-store-data-builder';
 import { VisualizationStoreDataBuilder } from '../../common/visualization-store-data-builder';
-import { exampleUnifiedStatusResults } from './components/cards/sample-view-model-data';
+import { exampleUnifiedStatusResults } from '../common/components/cards/sample-view-model-data';
 
 describe('DetailsViewMainContentTest', () => {
     let selectedTest: VisualizationType;
