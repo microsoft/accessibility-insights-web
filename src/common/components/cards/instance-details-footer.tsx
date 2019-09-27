@@ -6,7 +6,7 @@ import { some, values } from 'lodash';
 import * as React from 'react';
 import { CardInteractionSupport } from './card-interaction-support';
 
-export type HighlightState = 'visible' | 'off' | 'unavailable';
+export type HighlightState = 'visible' | 'hidden' | 'unavailable';
 
 export type InstanceDetailsFooterDeps = {
     cardInteractionSupport: CardInteractionSupport;

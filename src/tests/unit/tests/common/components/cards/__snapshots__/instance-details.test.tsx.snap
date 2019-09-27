@@ -57,7 +57,7 @@ exports[`InstanceDetails renders 1`] = `
         "getPropertyConfigById": [Function],
       }
     }
-    highlightState="off"
+    highlightState="unavailable"
     result={
       Object {
         "descriptors": Object {
