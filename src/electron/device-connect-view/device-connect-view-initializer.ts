@@ -66,11 +66,11 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then((persistedDat
     const telemetryStateListener = new TelemetryStateListener(userConfigurationStore, telemetryEventHandler);
     telemetryStateListener.initialize();
 
+    const fetchScanResults = createFetchScanResults(axios.get);
+
     const userConfigMessageCreator = new UserConfigurationActionCreator(userConfigActions);
 
-    const deviceConnectActionCreator = new DeviceConnectActionCreator(telemetryEventHandler);
-
-    const fetchScanResults = createFetchScanResults(axios.get);
+    const deviceConnectActionCreator = new DeviceConnectActionCreator(deviceActions, fetchScanResults, telemetryEventHandler);
 
     const props = {
         deps: {
