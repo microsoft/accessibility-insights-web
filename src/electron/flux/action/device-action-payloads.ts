@@ -10,3 +10,7 @@ export interface UpdateDevicePayload {
 export interface ConnectingPayload {
     port: number;
 }
+
+export interface ConnectionSucceedPayload {
+    connectedDevice: string;
+}

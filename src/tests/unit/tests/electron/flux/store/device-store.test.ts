@@ -4,8 +4,9 @@ import { DeviceActions } from 'electron/flux/action/device-actions';
 import { DeviceStore } from 'electron/flux/store/device-store';
 import { DeviceStoreData } from 'electron/flux/types/device-store-data';
 
+import { Times } from 'typemoq';
 import { DeviceConnectState } from '../../../../../../electron/device-connect-view/components/device-connect-body';
-import { UpdateDevicePayload } from '../../../../../../electron/flux/action/device-action-payloads';
+import { ConnectionSucceedPayload, UpdateDevicePayload } from '../../../../../../electron/flux/action/device-action-payloads';
 import { createStoreWithNullParams, StoreTester } from '../../../../common/store-tester';
 
 describe('DeviceStore', () => {
@@ -19,6 +20,39 @@ describe('DeviceStore', () => {
         it('has no side effects', () => {
             const testObject = createStoreWithNullParams(DeviceStore);
             expect(testObject).toBeDefined();
+        });
+    });
+
+    describe('on connection succeed', () => {
+        it('updates connection status and device name', () => {
+            const payload: ConnectionSucceedPayload = {
+                connectedDevice: 'test connected device',
+            };
+            const expectedState: DeviceStoreData = {
+                ...initialState,
+                connectedDevice: payload.connectedDevice,
+                deviceConnectState: DeviceConnectState.Connected,
+            };
+
+            createStoreTesterForDeviceActions('connectionSucceed')
+                .withActionParam(payload)
+                .testListenerToBeCalledOnce(initialState, expectedState);
+        });
+
+        it('does not updates if status is already CONNECTED', () => {
+            initialState.deviceConnectState = DeviceConnectState.Connected;
+
+            const payload: ConnectionSucceedPayload = {
+                connectedDevice: 'test connected device',
+            };
+
+            const expectedState: DeviceStoreData = {
+                ...initialState,
+            };
+
+            createStoreTesterForDeviceActions('connectionSucceed')
+                .withActionParam(payload)
+                .testListenerToNeverBeCalled(initialState, expectedState);
         });
     });
 
