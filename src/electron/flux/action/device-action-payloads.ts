@@ -6,3 +6,7 @@ export interface UpdateDevicePayload {
     deviceConnectState: DeviceConnectState;
     connectedDevice?: string;
 }
+
+export interface ConnectingPayload {
+    port: number;
+}
