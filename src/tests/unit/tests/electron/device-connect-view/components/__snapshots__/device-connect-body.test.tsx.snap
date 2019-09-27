@@ -1,6 +1,33 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`DeviceConnectBodyTest render 1`] = `
+exports[`DeviceConnectBodyTest renders, with device connect state = Connected 1`] = `
+<div
+  className="device-connect-body"
+>
+  <DeviceConnectHeader />
+  <DeviceConnectPortEntry
+    deps={
+      Object {
+        "currentWindow": Object {
+          "close": [Function],
+        },
+      }
+    }
+    needsValidation={false}
+    updateStateCallback={[Function]}
+  />
+  <DeviceConnectConnectedDevice
+    hasFailed={false}
+    isConnecting={false}
+  />
+  <DeviceConnectFooter
+    canStartTesting={true}
+    cancelClick={[Function]}
+  />
+</div>
+`;
+
+exports[`DeviceConnectBodyTest renders, with device connect state = Connecting 1`] = `
 <div
   className="device-connect-body"
 >
@@ -18,6 +45,60 @@ exports[`DeviceConnectBodyTest render 1`] = `
   />
   <DeviceConnectConnectedDevice
     hasFailed={false}
+    isConnecting={true}
+  />
+  <DeviceConnectFooter
+    canStartTesting={false}
+    cancelClick={[Function]}
+  />
+</div>
+`;
+
+exports[`DeviceConnectBodyTest renders, with device connect state = Default 1`] = `
+<div
+  className="device-connect-body"
+>
+  <DeviceConnectHeader />
+  <DeviceConnectPortEntry
+    deps={
+      Object {
+        "currentWindow": Object {
+          "close": [Function],
+        },
+      }
+    }
+    needsValidation={true}
+    updateStateCallback={[Function]}
+  />
+  <DeviceConnectConnectedDevice
+    hasFailed={false}
+    isConnecting={false}
+  />
+  <DeviceConnectFooter
+    canStartTesting={false}
+    cancelClick={[Function]}
+  />
+</div>
+`;
+
+exports[`DeviceConnectBodyTest renders, with device connect state = Error 1`] = `
+<div
+  className="device-connect-body"
+>
+  <DeviceConnectHeader />
+  <DeviceConnectPortEntry
+    deps={
+      Object {
+        "currentWindow": Object {
+          "close": [Function],
+        },
+      }
+    }
+    needsValidation={true}
+    updateStateCallback={[Function]}
+  />
+  <DeviceConnectConnectedDevice
+    hasFailed={true}
     isConnecting={false}
   />
   <DeviceConnectFooter

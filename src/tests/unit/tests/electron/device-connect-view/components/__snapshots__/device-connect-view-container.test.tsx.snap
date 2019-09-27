@@ -91,6 +91,12 @@ exports[`DeviceConnectViewContainer renders 1`] = `
         },
       }
     }
+    viewState={
+      Object {
+        "connectedDevice": undefined,
+        "deviceConnectState": 0,
+      }
+    }
   />
   <TelemetryPermissionDialog
     deps={

@@ -42,7 +42,13 @@ export class DeviceConnectViewContainer extends React.Component<DeviceConnectVie
                 <WindowTitle title={brand}>
                     <BrandBlue />
                 </WindowTitle>
-                <DeviceConnectBody deps={this.props.deps} />
+                <DeviceConnectBody
+                    deps={this.props.deps}
+                    viewState={{
+                        deviceConnectState: this.state.deviceStoreData.deviceConnectState,
+                        connectedDevice: this.state.deviceStoreData.connectedDevice,
+                    }}
+                />
                 <TelemetryPermissionDialog deps={this.props.deps} isFirstTime={this.state.userConfigurationStoreData.isFirstTime} />
             </>
         );
