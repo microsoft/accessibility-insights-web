@@ -1,13 +1,14 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { noCardInteractionsSupported } from 'common/components/cards/card-interaction-support';
 import { UnifiedStatusResults } from 'common/components/cards/failed-instances-section';
+import { PropertyConfiguration } from 'common/configs/unified-result-property-configurations';
 import { EnvironmentInfo } from 'common/environment-info-provider';
 import { GetGuidanceTagsFromGuidanceLinks } from 'common/get-guidance-tags-from-guidance-links';
 import { FixInstructionProcessor } from 'injected/fix-instruction-processor';
 import * as React from 'react';
 import { ScanResults } from 'scanner/iruleresults';
 
-import { PropertyConfiguration } from '../common/configs/unified-result-property-configurations';
 import { ReportHead } from './components/report-head';
 import { ReportBody, ReportBodyProps } from './components/report-sections/report-body';
 import { ReportCollapsibleContainerControl } from './components/report-sections/report-collapsible-container';
@@ -48,6 +49,7 @@ export class ReportHtmlGenerator {
                 collapsibleControl: ReportCollapsibleContainerControl,
                 getGuidanceTagsFromGuidanceLinks: this.getGuidanceTagsFromGuidanceLinks,
                 getPropertyConfigById: this.getPropertyConfiguration,
+                cardInteractionSupport: noCardInteractionsSupported,
             },
             ruleResultsByStatus: ruleResultsByStatus,
             environmentInfo: this.environmentInfo,
