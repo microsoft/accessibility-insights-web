@@ -7,6 +7,8 @@ import { Button } from 'office-ui-fabric-react/lib/Button';
 import * as React from 'react';
 import { EventStubFactory } from 'tests/unit/common/event-stub-factory';
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';
+import { EnumHelper } from '../../../../../../common/enum-helper';
+import { DeviceConnectState } from '../../../../../../electron/device-connect-view/components/device-connect-state';
 
 describe('DeviceConnectPortEntryTest', () => {
     const testPortNumber = 111;
@@ -19,11 +21,27 @@ describe('DeviceConnectPortEntryTest', () => {
     });
 
     describe('renders', () => {
-        const needsValidationCases = [true, false];
+        type TestCase = {
+            needsValidation: boolean;
+            deviceConnectState: DeviceConnectState;
+        };
 
-        it.each(needsValidationCases)('with needsValidation = %s', needsValidation => {
-            const props = {
-                needsValidation,
+        const testScenarios: TestCase[] = EnumHelper.getNumericValues<DeviceConnectState>(DeviceConnectState)
+            .map(state => {
+                return { needsValidation: true, deviceConnectState: state };
+            })
+            .concat(
+                EnumHelper.getNumericValues<DeviceConnectState>(DeviceConnectState).map(state => {
+                    return { needsValidation: false, deviceConnectState: state };
+                }),
+            );
+
+        it.each(testScenarios)('with %p', testScenario => {
+            const props: DeviceConnectPortEntryProps = {
+                needsValidation: testScenario.needsValidation,
+                viewState: {
+                    deviceConnectState: testScenario.deviceConnectState,
+                },
             } as DeviceConnectPortEntryProps;
 
             const rendered = shallow(<DeviceConnectPortEntry {...props} />);
@@ -37,7 +55,11 @@ describe('DeviceConnectPortEntryTest', () => {
             const portNumberCases = [testPortNumber.toString(), '', null];
 
             it.each(portNumberCases)('handles port text = "%s"', portNumberText => {
-                const props = {} as DeviceConnectPortEntryProps;
+                const props = {
+                    viewState: {
+                        deviceConnectState: DeviceConnectState.Default,
+                    },
+                } as DeviceConnectPortEntryProps;
 
                 const rendered = shallow(<DeviceConnectPortEntry {...props} />);
 
@@ -55,6 +77,9 @@ describe('DeviceConnectPortEntryTest', () => {
             const props = {
                 deps: {
                     deviceConnectActionCreator: deviceConnectActionCreatorMock.object,
+                },
+                viewState: {
+                    deviceConnectState: DeviceConnectState.Default,
                 },
             } as DeviceConnectPortEntryProps;
             const rendered = shallow(<DeviceConnectPortEntry {...props} />);

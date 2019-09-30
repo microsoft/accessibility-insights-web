@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`DeviceConnectPortEntryTest renders with needsValidation = false 1`] = `
+exports[`DeviceConnectPortEntryTest renders with {"deviceConnectState": 0, "needsValidation": false} 1`] = `
 <div
   className="device-connect-port-entry"
 >
@@ -33,7 +33,205 @@ exports[`DeviceConnectPortEntryTest renders with needsValidation = false 1`] = `
 </div>
 `;
 
-exports[`DeviceConnectPortEntryTest renders with needsValidation = true 1`] = `
+exports[`DeviceConnectPortEntryTest renders with {"deviceConnectState": 0, "needsValidation": true} 1`] = `
+<div
+  className="device-connect-port-entry"
+>
+  <h3>
+    Android device port number
+  </h3>
+  <MaskedTextField
+    ariaLabel="Port number"
+    className="port-number-field"
+    mask="99999"
+    maskChar=""
+    maskFormat={
+      Object {
+        "*": /\\[a-zA-Z0-9\\]/,
+        "9": /\\[0-9\\]/,
+        "a": /\\[a-zA-Z\\]/,
+      }
+    }
+    onChange={[Function]}
+    placeholder="12345"
+  />
+  <Button
+    className="button-validate-port"
+    disabled={true}
+    onClick={[Function]}
+    primary={true}
+  >
+    Validate port number
+  </Button>
+</div>
+`;
+
+exports[`DeviceConnectPortEntryTest renders with {"deviceConnectState": 1, "needsValidation": false} 1`] = `
+<div
+  className="device-connect-port-entry"
+>
+  <h3>
+    Android device port number
+  </h3>
+  <MaskedTextField
+    ariaLabel="Port number"
+    className="port-number-field"
+    mask="99999"
+    maskChar=""
+    maskFormat={
+      Object {
+        "*": /\\[a-zA-Z0-9\\]/,
+        "9": /\\[0-9\\]/,
+        "a": /\\[a-zA-Z\\]/,
+      }
+    }
+    onChange={[Function]}
+    placeholder="12345"
+  />
+  <Button
+    className="button-validate-port"
+    disabled={true}
+    onClick={[Function]}
+    primary={false}
+  >
+    Validate port number
+  </Button>
+</div>
+`;
+
+exports[`DeviceConnectPortEntryTest renders with {"deviceConnectState": 1, "needsValidation": true} 1`] = `
+<div
+  className="device-connect-port-entry"
+>
+  <h3>
+    Android device port number
+  </h3>
+  <MaskedTextField
+    ariaLabel="Port number"
+    className="port-number-field"
+    mask="99999"
+    maskChar=""
+    maskFormat={
+      Object {
+        "*": /\\[a-zA-Z0-9\\]/,
+        "9": /\\[0-9\\]/,
+        "a": /\\[a-zA-Z\\]/,
+      }
+    }
+    onChange={[Function]}
+    placeholder="12345"
+  />
+  <Button
+    className="button-validate-port"
+    disabled={true}
+    onClick={[Function]}
+    primary={true}
+  >
+    Validate port number
+  </Button>
+</div>
+`;
+
+exports[`DeviceConnectPortEntryTest renders with {"deviceConnectState": 2, "needsValidation": false} 1`] = `
+<div
+  className="device-connect-port-entry"
+>
+  <h3>
+    Android device port number
+  </h3>
+  <MaskedTextField
+    ariaLabel="Port number"
+    className="port-number-field"
+    mask="99999"
+    maskChar=""
+    maskFormat={
+      Object {
+        "*": /\\[a-zA-Z0-9\\]/,
+        "9": /\\[0-9\\]/,
+        "a": /\\[a-zA-Z\\]/,
+      }
+    }
+    onChange={[Function]}
+    placeholder="12345"
+  />
+  <Button
+    className="button-validate-port"
+    disabled={true}
+    onClick={[Function]}
+    primary={false}
+  >
+    Validate port number
+  </Button>
+</div>
+`;
+
+exports[`DeviceConnectPortEntryTest renders with {"deviceConnectState": 2, "needsValidation": true} 1`] = `
+<div
+  className="device-connect-port-entry"
+>
+  <h3>
+    Android device port number
+  </h3>
+  <MaskedTextField
+    ariaLabel="Port number"
+    className="port-number-field"
+    mask="99999"
+    maskChar=""
+    maskFormat={
+      Object {
+        "*": /\\[a-zA-Z0-9\\]/,
+        "9": /\\[0-9\\]/,
+        "a": /\\[a-zA-Z\\]/,
+      }
+    }
+    onChange={[Function]}
+    placeholder="12345"
+  />
+  <Button
+    className="button-validate-port"
+    disabled={true}
+    onClick={[Function]}
+    primary={true}
+  >
+    Validate port number
+  </Button>
+</div>
+`;
+
+exports[`DeviceConnectPortEntryTest renders with {"deviceConnectState": 3, "needsValidation": false} 1`] = `
+<div
+  className="device-connect-port-entry"
+>
+  <h3>
+    Android device port number
+  </h3>
+  <MaskedTextField
+    ariaLabel="Port number"
+    className="port-number-field"
+    mask="99999"
+    maskChar=""
+    maskFormat={
+      Object {
+        "*": /\\[a-zA-Z0-9\\]/,
+        "9": /\\[0-9\\]/,
+        "a": /\\[a-zA-Z\\]/,
+      }
+    }
+    onChange={[Function]}
+    placeholder="12345"
+  />
+  <Button
+    className="button-validate-port"
+    disabled={true}
+    onClick={[Function]}
+    primary={false}
+  >
+    Validate port number
+  </Button>
+</div>
+`;
+
+exports[`DeviceConnectPortEntryTest renders with {"deviceConnectState": 3, "needsValidation": true} 1`] = `
 <div
   className="device-connect-port-entry"
 >

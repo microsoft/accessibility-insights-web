@@ -14,7 +14,11 @@ exports[`DeviceConnectBodyTest renders, with device connect state = Connected 1`
       }
     }
     needsValidation={false}
-    updateStateCallback={[Function]}
+    viewState={
+      Object {
+        "deviceConnectState": 2,
+      }
+    }
   />
   <DeviceConnectConnectedDevice
     hasFailed={false}
@@ -41,7 +45,11 @@ exports[`DeviceConnectBodyTest renders, with device connect state = Connecting 1
       }
     }
     needsValidation={true}
-    updateStateCallback={[Function]}
+    viewState={
+      Object {
+        "deviceConnectState": 1,
+      }
+    }
   />
   <DeviceConnectConnectedDevice
     hasFailed={false}
@@ -68,7 +76,11 @@ exports[`DeviceConnectBodyTest renders, with device connect state = Default 1`] 
       }
     }
     needsValidation={true}
-    updateStateCallback={[Function]}
+    viewState={
+      Object {
+        "deviceConnectState": 0,
+      }
+    }
   />
   <DeviceConnectConnectedDevice
     hasFailed={false}
@@ -95,7 +107,11 @@ exports[`DeviceConnectBodyTest renders, with device connect state = Error 1`] = 
       }
     }
     needsValidation={true}
-    updateStateCallback={[Function]}
+    viewState={
+      Object {
+        "deviceConnectState": 3,
+      }
+    }
   />
   <DeviceConnectConnectedDevice
     hasFailed={true}

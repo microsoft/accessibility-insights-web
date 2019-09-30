@@ -35,7 +35,11 @@ export const DeviceConnectBody = NamedFC<DeviceConnectBodyProps>('DeviceConnectB
     return (
         <div className="device-connect-body">
             <DeviceConnectHeader />
-            <DeviceConnectPortEntry deps={props.deps} needsValidation={needsValidation} />
+            <DeviceConnectPortEntry
+                deps={props.deps}
+                needsValidation={needsValidation}
+                viewState={{ deviceConnectState: props.viewState.deviceConnectState }}
+            />
             <DeviceConnectConnectedDevice
                 isConnecting={isConnecting}
                 connectedDevice={props.viewState.connectedDevice}

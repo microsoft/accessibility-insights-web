@@ -5,6 +5,11 @@ import { MaskedTextField } from 'office-ui-fabric-react/lib/TextField';
 import * as React from 'react';
 
 import { DeviceConnectActionCreator } from '../../flux/action-creator/device-connect-action-creator';
+import { DeviceConnectState } from './device-connect-state';
+
+export type DeviceConnectPortEntryViewState = {
+    deviceConnectState: DeviceConnectState;
+};
 
 export type DeviceConnectPortEntryDeps = {
     deviceConnectActionCreator: DeviceConnectActionCreator;
@@ -13,6 +18,7 @@ export type DeviceConnectPortEntryDeps = {
 export interface DeviceConnectPortEntryProps {
     deps: DeviceConnectPortEntryDeps;
     needsValidation: boolean;
+    viewState: DeviceConnectPortEntryViewState;
 }
 
 export interface DeviceConnectPortEntryState {
@@ -39,7 +45,7 @@ export class DeviceConnectPortEntry extends React.Component<DeviceConnectPortEnt
                 />
                 <Button
                     primary={this.props.needsValidation}
-                    disabled={this.isValidateButtonDisabled(this.state.port)}
+                    disabled={this.isValidateButtonDisabled()}
                     className="button-validate-port"
                     onClick={this.onValidateClick}
                 >
@@ -49,8 +55,8 @@ export class DeviceConnectPortEntry extends React.Component<DeviceConnectPortEnt
         );
     }
 
-    private isValidateButtonDisabled(port: string): boolean {
-        return !port || port === '';
+    private isValidateButtonDisabled(): boolean {
+        return !this.state.port || this.state.port === '' || this.props.viewState.deviceConnectState === DeviceConnectState.Connecting;
     }
 
     private onPortTextChanged = (event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>, newValue?: string) => {
