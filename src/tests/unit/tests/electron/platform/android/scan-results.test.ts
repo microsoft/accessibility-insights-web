@@ -2,53 +2,40 @@
 // Licensed under the MIT License.
 
 import { ScanResults } from 'electron/platform/android/scan-results';
-
-function buildTestObject(deviceName: string = null, appIdentifier: string = null): ScanResults {
-    const scanResults = {};
-    const axeContext = {};
-    let addContext = false;
-
-    if (deviceName != null) {
-        const axeDevice = {};
-        axeDevice['name'] = deviceName;
-        axeContext['axeDevice'] = axeDevice;
-        addContext = true;
-    }
-
-    if (appIdentifier != null) {
-        const axeMetaData = {};
-        axeMetaData['appIdentifier'] = appIdentifier;
-        axeContext['axeMetaData'] = axeMetaData;
-        addContext = true;
-    }
-
-    if (addContext) {
-        scanResults['axeContext'] = axeContext;
-    }
-
-    return new ScanResults(scanResults);
-}
+import { buildRuleResultObject, buildScanResultsObject } from './scan-results-helpers';
 
 describe('ScanResultsTest', () => {
     test('deviceName is null if missing from input', () => {
-        const scanResults = buildTestObject();
+        const scanResults = buildScanResultsObject();
         expect(scanResults.deviceName).toBeNull();
     });
 
     test('deviceName is correct if specified in input', () => {
         const expectedDeviceName = 'Super WhizBang Gadget';
-        const scanResults = buildTestObject(expectedDeviceName, null);
+        const scanResults = buildScanResultsObject(expectedDeviceName, null);
         expect(scanResults.deviceName).toEqual(expectedDeviceName);
     });
 
     test('appIdentifier is null if missing from input', () => {
-        const scanResults = buildTestObject();
+        const scanResults = buildScanResultsObject();
         expect(scanResults.appIdentifier).toBeNull();
     });
 
     test('appIdentifier is correct if specified in input', () => {
         const expectedAppIdentifier = 'My Absolutely Amazing Application';
-        const scanResults = buildTestObject(null, expectedAppIdentifier);
+        const scanResults = buildScanResultsObject(null, expectedAppIdentifier);
         expect(scanResults.appIdentifier).toEqual(expectedAppIdentifier);
+    });
+
+    test('ruleResults is empty array if missing from input', () => {
+        const scanResults = buildScanResultsObject();
+        expect(scanResults.ruleResults).toHaveLength(0);
+    });
+
+    test('ruleResults is correct if specified in input', () => {
+        const resultsArray = [buildRuleResultObject('Rule1', 'PASS'), buildRuleResultObject('Rule2', 'FAIL')];
+        const scanResults = buildScanResultsObject(null, null, resultsArray);
+        expect(scanResults.ruleResults).toHaveLength(2);
+        expect(scanResults.ruleResults).toEqual(resultsArray);
     });
 });

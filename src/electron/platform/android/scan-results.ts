@@ -1,5 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+
+export interface RuleResultsData {
+    ruleId: string;
+    status: string;
+    props: any;
+}
+
 export class ScanResults {
     private rawData: any;
 
@@ -20,6 +27,15 @@ export class ScanResults {
             return this.rawData.axeContext.axeMetaData.appIdentifier;
         } catch {
             return null;
+        }
+    }
+
+    public get ruleResults(): RuleResultsData[] {
+        try {
+            const results = this.rawData.axeRuleResults;
+            return results ? results : [];
+        } catch {
+            return [];
         }
     }
 }
