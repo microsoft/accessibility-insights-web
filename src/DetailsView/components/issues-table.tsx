@@ -6,6 +6,7 @@ import { Spinner, SpinnerSize } from 'office-ui-fabric-react/lib/Spinner';
 import * as React from 'react';
 import { ReportGenerator } from 'reports/report-generator';
 
+import { UnifiedStatusResults } from '../../common/components/cards/failed-instances-section';
 import { FlaggedComponent } from '../../common/components/flagged-component';
 import { VisualizationToggle } from '../../common/components/visualization-toggle';
 import { VisualizationConfiguration } from '../../common/configs/visualization-configuration';
@@ -18,7 +19,6 @@ import { DecoratedAxeNodeResult } from '../../injected/scanner-utils';
 import { RuleResult, ScanResults } from '../../scanner/iruleresults';
 import { DictionaryStringTo } from '../../types/common-types';
 import { CardsView, CardsViewDeps } from './cards-view';
-import { UnifiedStatusResults } from './cards/failed-instances-section';
 import { ExportDialogDeps } from './export-dialog';
 import { IssuesDetailsList } from './issues-details-list';
 import { IssuesDetailsPane, IssuesDetailsPaneDeps } from './Issues-details-pane';

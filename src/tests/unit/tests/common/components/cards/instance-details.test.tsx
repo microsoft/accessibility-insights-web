@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { InstanceDetails, InstanceDetailsDeps, InstanceDetailsProps } from 'common/components/cards/instance-details';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import { IMock, Mock } from 'typemoq';
@@ -11,11 +12,6 @@ import {
 } from '../../../../../../common/configs/unified-result-property-configurations';
 import { NamedFC, ReactFCWithDisplayName } from '../../../../../../common/react/named-fc';
 import { UnifiedResult } from '../../../../../../common/types/store-data/unified-data-interface';
-import {
-    InstanceDetails,
-    InstanceDetailsDeps,
-    InstanceDetailsProps,
-} from '../../../../../../DetailsView/components/cards/instance-details';
 import { exampleUnifiedResult } from './sample-view-model-data';
 
 describe('InstanceDetails', () => {

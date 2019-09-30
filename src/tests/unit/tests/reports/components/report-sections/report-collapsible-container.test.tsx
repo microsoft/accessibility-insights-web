@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { CollapsibleComponentCardsProps } from 'common/components/cards/collapsible-component-cards';
 import { shallow } from 'enzyme';
 import { forOwn } from 'lodash';
 import * as React from 'react';
 
-import { CollapsibleComponentCardsProps } from '../../../../../../DetailsView/components/cards/collapsible-component-cards';
 import { ReportCollapsibleContainerControl } from '../../../../../../reports/components/report-sections/report-collapsible-container';
 
 describe('ReportCollapsibleContainerControl', () => {

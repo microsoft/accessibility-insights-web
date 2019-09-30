@@ -20,7 +20,7 @@ import {
 import { IssuesTableHandler } from '../../../../../DetailsView/components/issues-table-handler';
 import { DetailsViewToggleClickHandlerFactory } from '../../../../../DetailsView/handlers/details-view-toggle-click-handler-factory';
 import { VisualizationScanResultStoreDataBuilder } from '../../../common/visualization-scan-result-store-data-builder';
-import { exampleUnifiedStatusResults } from './cards/sample-view-model-data';
+import { exampleUnifiedStatusResults } from '../../common/components/cards/sample-view-model-data';
 
 describe('DetailsListIssuesView', () => {
     let props: DetailsListIssuesViewProps;

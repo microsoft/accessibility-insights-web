@@ -28,6 +28,8 @@ import { A11YSelfValidator } from '../common/a11y-self-validator';
 import { AxeInfo } from '../common/axe-info';
 import { provideBlob } from '../common/blob-provider';
 import { ChromeAdapter } from '../common/browser-adapters/chrome-adapter';
+import { allCardInteractionsSupported } from '../common/components/cards/card-interaction-support';
+import { CardsCollapsibleControl } from '../common/components/cards/collapsible-component-cards';
 import { NewTabLink } from '../common/components/new-tab-link';
 import { getPropertyConfiguration } from '../common/configs/unified-result-property-configurations';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
@@ -83,7 +85,6 @@ import { IssueFilingServiceProviderImpl } from './../issue-filing/issue-filing-s
 import { DetailsViewActionMessageCreator } from './actions/details-view-action-message-creator';
 import { IssuesSelectionFactory } from './actions/issues-selection-factory';
 import { AssessmentTableColumnConfigHandler } from './components/assessment-table-column-config-handler';
-import { CardsCollapsibleControl } from './components/cards/collapsible-component-cards';
 import { GetDetailsRightPanelConfiguration } from './components/details-view-right-panel';
 import { GetDetailsSwitcherNavConfiguration } from './components/details-view-switcher-nav';
 import { IssuesTableHandler } from './components/issues-table-handler';
@@ -312,6 +313,7 @@ if (isNaN(tabId) === false) {
                 getUnifiedRuleResults,
                 getPropertyConfigById: getPropertyConfiguration,
                 collapsibleControl: CardsCollapsibleControl,
+                cardInteractionSupport: allCardInteractionsSupported,
             };
 
             const renderer = new DetailsViewRenderer(

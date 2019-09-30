@@ -14,7 +14,7 @@ import { DetailsRowData, IssuesTableHandler } from '../../../../../DetailsView/c
 import { DecoratedAxeNodeResult } from '../../../../../injected/scanner-utils';
 import { RuleResult } from '../../../../../scanner/iruleresults';
 import { DictionaryStringTo } from '../../../../../types/common-types';
-import { exampleUnifiedStatusResults } from './cards/sample-view-model-data';
+import { exampleUnifiedStatusResults } from '../../common/components/cards/sample-view-model-data';
 
 describe('IssuesTableTest', () => {
     let deps: IssuesTableDeps;

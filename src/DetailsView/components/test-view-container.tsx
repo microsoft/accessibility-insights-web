@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { ISelection } from 'office-ui-fabric-react/lib/DetailsList';
 
+import { UnifiedStatusResults } from '../../common/components/cards/failed-instances-section';
 import { VisualizationConfigurationFactory } from '../../common/configs/visualization-configuration-factory';
 import { NamedFC } from '../../common/react/named-fc';
 import { AssessmentStoreData } from '../../common/types/store-data/assessment-result-data';
@@ -15,7 +16,6 @@ import { VisualizationType } from '../../common/types/visualization-type';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 import { AssessmentInstanceTableHandler } from '../handlers/assessment-instance-table-handler';
 import { DetailsViewToggleClickHandlerFactory } from '../handlers/details-view-toggle-click-handler-factory';
-import { UnifiedStatusResults } from './cards/failed-instances-section';
 import { IssuesTableHandler } from './issues-table-handler';
 import { OverviewContainerDeps } from './overview-content/overview-content-container';
 import { TestViewDeps } from './test-view';

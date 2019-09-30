@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { FailedInstancesSectionDeps } from 'common/components/cards/failed-instances-section';
 import { NamedFC } from 'common/react/named-fc';
 import { shallow } from 'enzyme';
 import { FixInstructionProcessor } from 'injected/fix-instruction-processor';
@@ -8,8 +9,7 @@ import { ReportBody, ReportBodyProps } from 'reports/components/report-sections/
 import { ReportSectionFactory, SectionProps } from 'reports/components/report-sections/report-section-factory';
 import { Mock } from 'typemoq';
 
-import { FailedInstancesSectionDeps } from '../../../../../../DetailsView/components/cards/failed-instances-section';
-import { exampleUnifiedStatusResults } from '../../../DetailsView/components/cards/sample-view-model-data';
+import { exampleUnifiedStatusResults } from '../../../common/components/cards/sample-view-model-data';
 
 describe('ReportBody', () => {
     it('renders', () => {

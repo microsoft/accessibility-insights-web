@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { browser } from 'webextension-polyfill-ts';
 import { BrowserAdapter } from './browser-adapter';
 import { CommandsAdapter } from './commands-adapter';
 import { StorageAdapter } from './storage-adapter';
@@ -126,16 +127,16 @@ export class ChromeAdapter implements BrowserAdapter, StorageAdapter, CommandsAd
         chrome.runtime.sendMessage(message);
     }
 
-    public setUserData(items: Object, callback?: () => void): void {
-        chrome.storage.local.set(items, callback);
+    public setUserData(items: Object): Promise<void> {
+        return browser.storage.local.set(items);
     }
 
-    public getUserData(keys: string | string[] | Object, callback: (items: { [key: string]: any }) => void): void {
-        chrome.storage.local.get(keys, callback);
+    public getUserData(keys: string[]): Promise<{ [key: string]: any }> {
+        return browser.storage.local.get(keys);
     }
 
-    public removeUserData(key: string): void {
-        chrome.storage.local.remove(key);
+    public removeUserData(key: string): Promise<void> {
+        return browser.storage.local.remove(key);
     }
 
     public getRuntimeLastError(): chrome.runtime.LastError {
