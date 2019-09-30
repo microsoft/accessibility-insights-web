@@ -6,7 +6,9 @@ import * as React from 'react';
 
 describe('DeviceDisconnectedPopup', () => {
     it('renders', () => {
-        const props = {} as DeviceDisconnectedPopupProps;
+        const props = {
+            deviceName: 'test device name',
+        } as DeviceDisconnectedPopupProps;
         const wrapper = shallow(<DeviceDisconnectedPopup {...props} />);
 
         expect(wrapper.getElement()).toMatchSnapshot();

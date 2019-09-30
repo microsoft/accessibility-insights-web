@@ -6,6 +6,7 @@ exports[`DeviceDisconnectedPopup renders 1`] = `
     Object {
       "showCloseButton": false,
       "title": <span>
+        <StatusCautionIcon />
         Device disconnected
       </span>,
       "type": 0,
@@ -21,7 +22,9 @@ exports[`DeviceDisconnectedPopup renders 1`] = `
 >
   <div>
     <p>
-      Uh-oh! It seems the [insert device name] device has disconnected before the snapshot completed its analysis.
+      Uh-oh! It seems the 
+      test device name
+       device has disconnected before the snapshot completed its analysis.
     </p>
     <p>
       Make sure your device is properly connected, and try rescanning or connecting a different device.

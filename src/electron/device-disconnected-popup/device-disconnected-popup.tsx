@@ -5,15 +5,23 @@ import { DefaultButton } from 'office-ui-fabric-react/lib/Button';
 import { Dialog, DialogFooter, DialogType } from 'office-ui-fabric-react/lib/Dialog';
 import * as React from 'react';
 
+import { StatusCautionIcon } from './status-caution-icon';
+
 export type DeviceDisconnectedPopupProps = {
     onConnectNewDevice: () => void;
     onRescanDevice: () => void;
+    deviceName: string;
 };
 
 export const DeviceDisconnectedPopup = NamedFC<DeviceDisconnectedPopupProps>(
     'DeviceDisconnectedPopup',
-    ({ onConnectNewDevice, onRescanDevice }) => {
-        const title: JSX.Element = <span>Device disconnected</span>;
+    ({ deviceName, onConnectNewDevice, onRescanDevice }) => {
+        const title: JSX.Element = (
+            <span>
+                <StatusCautionIcon />
+                Device disconnected
+            </span>
+        );
 
         return (
             <Dialog
@@ -29,7 +37,7 @@ export const DeviceDisconnectedPopup = NamedFC<DeviceDisconnectedPopupProps>(
                 minWidth={416}
             >
                 <div>
-                    <p>Uh-oh! It seems the [insert device name] device has disconnected before the snapshot completed its analysis.</p>
+                    <p>Uh-oh! It seems the {deviceName} device has disconnected before the snapshot completed its analysis.</p>
                     <p>Make sure your device is properly connected, and try rescanning or connecting a different device.</p>
                 </div>
                 <DialogFooter>
