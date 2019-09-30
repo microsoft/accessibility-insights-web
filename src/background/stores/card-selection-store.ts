@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { StoreNames } from '../../common/stores/store-names';
 import { CardSelectionStoreData } from '../../common/types/store-data/card-selection-store-data';
-import { UnifiedScanCompletedPayload } from '../actions/action-payloads';
+import { CardSelectionPayload, UnifiedScanCompletedPayload } from '../actions/action-payloads';
 import { CardSelectionActions } from '../actions/card-selection-actions';
 import { UnifiedScanResultActions } from '../actions/unified-scan-result-actions';
 import { BaseStoreImpl } from './base-store-impl';
@@ -30,9 +30,9 @@ export class CardSelectionStore extends BaseStoreImpl<CardSelectionStoreData> {
         return defaultValue;
     }
 
-    public toggleRuleExpandCollapse(): void {}
+    public toggleRuleExpandCollapse(payload: CardSelectionPayload): void {}
 
-    public toggleCardSelection(): void {}
+    public toggleCardSelection(payload: CardSelectionPayload): void {}
 
     public CollapseAllRules(): void {}
 
