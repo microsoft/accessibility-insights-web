@@ -2,7 +2,7 @@
 
 exports[`StartOverDropdownTest render 1`] = `
 "<div>
-  <CustomizedActionButton iconProps={{...}} text=\\"Start over\\" onClick={[Function]} />
+  <CustomizedActionButton iconProps={{...}} text=\\"Start over\\" onClick={[Function]} menuIconProps={{...}} />
 </div>"
 `;
 
@@ -12,6 +12,11 @@ exports[`StartOverDropdownTest render ContextualMenu 1`] = `
     iconProps={
       Object {
         "iconName": "Refresh",
+      }
+    }
+    menuIconProps={
+      Object {
+        "iconName": "ChevronDown",
       }
     }
     onClick={[Function]}
@@ -46,6 +51,11 @@ exports[`StartOverDropdownTest render ContextualMenu with only one option 1`] = 
         "iconName": "Refresh",
       }
     }
+    menuIconProps={
+      Object {
+        "iconName": "ChevronDown",
+      }
+    }
     onClick={[Function]}
     text="Start over"
   />
@@ -67,7 +77,7 @@ exports[`StartOverDropdownTest render ContextualMenu with only one option 1`] = 
 
 exports[`StartOverDropdownTest render GenericDialog for start over a test 1`] = `
 "<div>
-  <CustomizedActionButton iconProps={{...}} text=\\"Start over\\" onClick={[Function]} />
+  <CustomizedActionButton iconProps={{...}} text=\\"Start over\\" onClick={[Function]} menuIconProps={{...}} />
   <StyledWithResponsiveMode onDismiss={[Function: onDismiss]} target=\\"test target\\" items={{...}} />
   <GenericDialog title=\\"Start over\\" messageText=\\"Starting over will clear all existing results from the test name test. Are you sure you want to start over?\\" onCancelButtonClick={[Function]} onPrimaryButtonClick={[Function]} primaryButtonText=\\"Start over\\" />
 </div>"
@@ -75,7 +85,7 @@ exports[`StartOverDropdownTest render GenericDialog for start over a test 1`] = 
 
 exports[`StartOverDropdownTest render GenericDialog for start over the whole assessment 1`] = `
 "<div>
-  <CustomizedActionButton iconProps={{...}} text=\\"Start over\\" onClick={[Function]} />
+  <CustomizedActionButton iconProps={{...}} text=\\"Start over\\" onClick={[Function]} menuIconProps={{...}} />
   <StyledWithResponsiveMode onDismiss={[Function: onDismiss]} target=\\"test target\\" items={{...}} />
   <GenericDialog title=\\"Start over\\" messageText=\\"Starting over will clear all existing results from the Assessment. This will clear results and progress of all tests and requirements. Are you sure you want to start over?\\" onCancelButtonClick={[Function]} onPrimaryButtonClick={[Function]} primaryButtonText=\\"Start over\\" />
 </div>"
