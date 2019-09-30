@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { StoreNames } from '../../common/stores/store-names';
-import { CardSelectionData, CardSelectionStoreData, RuleExpandCollapseData } from '../../common/types/store-data/card-selection-store-data';
+import { CardSelectionStoreData } from '../../common/types/store-data/card-selection-store-data';
 import { UnifiedScanCompletedPayload } from '../actions/action-payloads';
 import { CardSelectionActions } from '../actions/card-selection-actions';
 import { UnifiedScanResultActions } from '../actions/unified-scan-result-actions';
