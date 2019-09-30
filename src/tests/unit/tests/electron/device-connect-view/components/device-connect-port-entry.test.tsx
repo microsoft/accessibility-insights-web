@@ -1,16 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import {
-    DeviceConnectPortEntry,
-    DeviceConnectPortEntryProps,
-    DeviceConnectPortEntryViewState,
-} from 'electron/device-connect-view/components/device-connect-port-entry';
+import { DeviceConnectPortEntry, DeviceConnectPortEntryProps } from 'electron/device-connect-view/components/device-connect-port-entry';
 import { DeviceConnectActionCreator } from 'electron/flux/action-creator/device-connect-action-creator';
 import { shallow } from 'enzyme';
 import { Button } from 'office-ui-fabric-react/lib/Button';
 import * as React from 'react';
 import { EventStubFactory } from 'tests/unit/common/event-stub-factory';
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';
+
 import { EnumHelper } from '../../../../../../common/enum-helper';
 import { DeviceConnectState } from '../../../../../../electron/device-connect-view/components/device-connect-state';
 
