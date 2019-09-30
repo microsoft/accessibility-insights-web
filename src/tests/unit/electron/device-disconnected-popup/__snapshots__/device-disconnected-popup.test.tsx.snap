@@ -5,10 +5,16 @@ exports[`DeviceDisconnectedPopup renders 1`] = `
   dialogContentProps={
     Object {
       "showCloseButton": false,
-      "title": <span>
+      "title": <div
+        className="title-container"
+      >
         <StatusCautionIcon />
-        Device disconnected
-      </span>,
+        <span
+          className="title-text"
+        >
+          Device disconnected
+        </span>
+      </div>,
       "type": 0,
     }
   }

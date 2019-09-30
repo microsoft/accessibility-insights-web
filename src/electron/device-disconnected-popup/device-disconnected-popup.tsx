@@ -17,10 +17,10 @@ export const DeviceDisconnectedPopup = NamedFC<DeviceDisconnectedPopupProps>(
     'DeviceDisconnectedPopup',
     ({ deviceName, onConnectNewDevice, onRescanDevice }) => {
         const title: JSX.Element = (
-            <span>
+            <div className="title-container">
                 <StatusCautionIcon />
-                Device disconnected
-            </span>
+                <span className="title-text">Device disconnected</span>
+            </div>
         );
 
         return (
