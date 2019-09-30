@@ -7,15 +7,14 @@ import * as React from 'react';
 import { DeviceConnectConnectedDevice } from './device-connect-connected-device';
 import { DeviceConnectFooter } from './device-connect-footer';
 import { DeviceConnectHeader } from './device-connect-header';
-import { DeviceConnectPortEntry, DeviceConnectPortEntryDeps } from './device-connect-port-entry';
+import { DeviceConnectPortEntry, DeviceConnectPortEntryDeps, DeviceConnectPortEntryViewState } from './device-connect-port-entry';
 import { DeviceConnectState } from './device-connect-state';
 
 export type UpdateStateCallback = (newState: DeviceConnectState, deviceName?: string) => void;
 
-export interface DeviceConnectBodyState {
-    deviceConnectState: DeviceConnectState;
+export type DeviceConnectBodyState = DeviceConnectPortEntryViewState & {
     connectedDevice?: string;
-}
+};
 
 export type DeviceConnectBodyDeps = {
     currentWindow: BrowserWindow;
