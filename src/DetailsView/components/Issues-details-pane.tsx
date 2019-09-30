@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { IssueDetailsTextGenerator } from 'background/issue-details-text-generator';
 import * as React from 'react';
 
-import { IssueDetailsTextGenerator } from 'background/issue-details-text-generator';
 import { CopyIssueDetailsButton } from '../../common/components/copy-issue-details-button';
 import { GuidanceLinks } from '../../common/components/guidance-links';
 import { GuidanceTags, GuidanceTagsDeps } from '../../common/components/guidance-tags';
@@ -17,6 +17,7 @@ import { FixInstructionPanel, FixInstructionPanelDeps } from '../../injected/com
 import { DecoratedAxeNodeResult } from '../../injected/scanner-utils';
 import { DictionaryStringTo } from '../../types/common-types';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
+import { UnifiedRuleResult } from './cards/failed-instances-section';
 import { IssueFilingDialog } from './issue-filing-dialog';
 
 export type IssuesDetailsPaneDeps = ToastDeps &
@@ -34,6 +35,7 @@ export interface IssuesDetailsPaneProps {
     pageUrl: string;
     featureFlagData: FeatureFlagStoreData;
     userConfigurationStoreData: UserConfigurationStoreData;
+    unifiedRuleResults: UnifiedRuleResult[];
 }
 
 interface IssueDetailsState {

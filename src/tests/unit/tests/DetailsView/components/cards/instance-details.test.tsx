@@ -36,6 +36,7 @@ describe('InstanceDetails', () => {
             deps,
             result: resultStub,
             index: indexStub,
+            rule: null,
         };
     });
 

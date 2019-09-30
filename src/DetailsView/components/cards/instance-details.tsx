@@ -6,7 +6,7 @@ import * as React from 'react';
 import { reportInstanceTable } from 'reports/components/instance-details.scss';
 
 import { CardRowDeps, PropertyConfiguration } from '../../../common/configs/unified-result-property-configurations';
-import { StoredInstancePropertyBag, UnifiedResult } from '../../../common/types/store-data/unified-data-interface';
+import { StoredInstancePropertyBag, UnifiedResult, UnifiedRule } from '../../../common/types/store-data/unified-data-interface';
 
 export type InstanceDetailsDeps = {
     getPropertyConfigById: (id: string) => PropertyConfiguration;
@@ -15,6 +15,7 @@ export type InstanceDetailsProps = {
     deps: InstanceDetailsDeps;
     result: UnifiedResult;
     index: number;
+    rule: UnifiedRule;
 };
 
 export const InstanceDetails = NamedFC<InstanceDetailsProps>('InstanceDetails', props => {

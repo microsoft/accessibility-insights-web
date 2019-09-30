@@ -126,6 +126,7 @@ describe('IssuesDetailsPaneTest', () => {
             pageUrl: samplePageUrl,
             featureFlagData: {},
             userConfigurationStoreData: {} as UserConfigurationStoreData,
+            unifiedRuleResults: [],
         };
 
         return props;

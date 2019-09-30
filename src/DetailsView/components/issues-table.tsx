@@ -206,6 +206,7 @@ export class IssuesTable extends React.Component<IssuesTableProps> {
                 pageUrl={this.props.pageUrl}
                 featureFlagData={this.props.featureFlags}
                 userConfigurationStoreData={this.props.userConfigurationStoreData}
+                unifiedRuleResults={this.props.ruleResultsByStatus.fail}
             />
         );
     }
