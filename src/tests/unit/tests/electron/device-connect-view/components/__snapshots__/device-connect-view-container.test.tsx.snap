@@ -71,7 +71,7 @@ exports[`DeviceConnectViewContainer renders 1`] = `
           "onConnectionFailed": [Function],
           "onConnectionSucceed": [Function],
           "onGetCurrentState": [Function],
-          "storeName": 14,
+          "storeName": 15,
         },
         "userConfigurationStore": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
@@ -114,7 +114,7 @@ exports[`DeviceConnectViewContainer renders 1`] = `
           "onConnectionFailed": [Function],
           "onConnectionSucceed": [Function],
           "onGetCurrentState": [Function],
-          "storeName": 14,
+          "storeName": 15,
         },
         "userConfigurationStore": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
