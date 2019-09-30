@@ -2,11 +2,11 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import { NamedSFC } from '../../../../../common/react/named-sfc';
+import { NamedFC } from '../../../../../common/react/named-fc';
 import { IssueFilingSettingsContainer } from '../../../../../issue-filing/components/issue-filing-settings-container';
 import { SettingsProps } from '../settings-props';
 
-export const IssueFilingSettings = NamedSFC<SettingsProps>('IssueFilingSettings', props => {
+export const IssueFilingSettings = NamedFC<SettingsProps>('IssueFilingSettings', props => {
     const { deps, userConfigurationStoreState } = props;
     const { issueFilingServiceProvider, userConfigMessageCreator } = deps;
     const selectedIssueFilingService = issueFilingServiceProvider.forKey(userConfigurationStoreState.bugService);

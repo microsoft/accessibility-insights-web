@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { audioVideoOnly } from './audio-video-only';
 import { automatedChecks } from './automated-checks';
+import { contrast } from './contrast';
 import { customWidgets } from './custom-widgets';
 import { errors } from './errors';
 import { focus } from './focus';
@@ -16,8 +17,11 @@ import { multimedia } from './multimedia';
 import { nativeWidgets } from './native-widgets';
 import { page } from './page';
 import { parsing } from './parsing';
+import { pointerMotion } from './pointer-motion';
 import { repetitiveContent } from './repetitive-content';
+import { semantics } from './semantics';
 import { sensory } from './sensory';
+import { sequence } from './sequence';
 import { textLegibility } from './text-legibility';
 import { timedEvents } from './timed-events';
 
@@ -36,10 +40,14 @@ export const test = {
     parsing,
     repetitiveContent,
     sensory,
+    semantics,
+    sequence,
     textLegibility,
     timedEvents,
     nativeWidgets,
     customWidgets,
     focus,
     automatedChecks,
+    pointerMotion,
+    contrast,
 };

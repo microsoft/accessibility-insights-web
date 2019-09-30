@@ -14,9 +14,13 @@ export async function takeScreenshot(pageInstance: Puppeteer.Page): Promise<Buff
     await makeDir(screenshotsPath);
     const screenshotName = generateUID();
     const filePath = path.join(screenshotsPath, toFilename(`${screenshotName}.png`));
-    console.log(`Screenshot file is located at: ${filePath}`);
-    return await pageInstance.screenshot({
+    const screenshotBuffer = await pageInstance.screenshot({
         path: filePath,
         fullPage: true,
     });
+
+    // We don't log this until after screenshot() succeeds to avoid misleading logs if it throws
+    console.log(`Screenshot file is located at: ${filePath}`);
+
+    return screenshotBuffer;
 }

@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { ContentPage } from '../views/content/content-page';
+import { ContentPage } from 'views/content/content-page';
 import { adhoc } from './adhoc';
 import { rules } from './rules';
 import * as strings from './strings';

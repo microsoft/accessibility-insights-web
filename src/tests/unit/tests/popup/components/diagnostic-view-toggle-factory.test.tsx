@@ -3,21 +3,19 @@
 import * as React from 'react';
 import { Mock, MockBehavior } from 'typemoq';
 
-import { CommandStore } from '../../../../../background/stores/global/command-store';
-import { FeatureFlagStore } from '../../../../../background/stores/global/feature-flag-store';
-import { VisualizationStore } from '../../../../../background/stores/visualization-store';
+import { CommandStore } from 'background/stores/global/command-store';
+import { FeatureFlagStore } from 'background/stores/global/feature-flag-store';
+import { VisualizationStore } from 'background/stores/visualization-store';
+import { ContentLinkDeps } from 'views/content/content-link';
 import { TestMode } from '../../../../../common/configs/test-mode';
-import {
-    VisualizationConfiguration,
-    VisualizationConfigurationFactory,
-} from '../../../../../common/configs/visualization-configuration-factory';
-import { TelemetryEventSource } from '../../../../../common/telemetry-events';
+import { VisualizationConfiguration } from '../../../../../common/configs/visualization-configuration';
+import { VisualizationConfigurationFactory } from '../../../../../common/configs/visualization-configuration-factory';
+import { TelemetryEventSource } from '../../../../../common/extension-telemetry-events';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
 import { PopupActionMessageCreator } from '../../../../../popup/actions/popup-action-message-creator';
 import { DiagnosticViewToggle } from '../../../../../popup/components/diagnostic-view-toggle';
 import { DiagnosticViewToggleFactory } from '../../../../../popup/components/diagnostic-view-toggle-factory';
 import { DiagnosticViewClickHandler } from '../../../../../popup/handlers/diagnostic-view-toggle-click-handler';
-import { ContentLinkDeps } from '../../../../../views/content/content-link';
 import { ShortcutCommandsTestData } from '../../../common/sample-test-data';
 import { VisualizationStoreDataBuilder } from '../../../common/visualization-store-data-builder';
 

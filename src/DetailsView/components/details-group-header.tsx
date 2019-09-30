@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { autobind } from '@uifabric/utilities';
 import { GroupHeader } from 'office-ui-fabric-react/lib/components/GroupedList/GroupHeader';
 import { IGroupDividerProps } from 'office-ui-fabric-react/lib/DetailsList';
 import * as React from 'react';
@@ -22,8 +21,7 @@ export class DetailsGroupHeader extends React.Component<DetailsGroupHeaderProps>
         return <GroupHeader onRenderTitle={this.onRenderTitle} selectAllButtonProps={selectAllButtonProps} {...this.props} />;
     }
 
-    @autobind
-    private onRenderTitle(): JSX.Element {
+    private onRenderTitle = (): JSX.Element => {
         return (
             <div className="details-group-header-title">
                 {this.renderRuleLink(this.props.group)}
@@ -31,7 +29,7 @@ export class DetailsGroupHeader extends React.Component<DetailsGroupHeaderProps>
                 {this.renderRuleDescription(this.props.group)} {this.renderCount(this.props)} {this.renderGuidanceLinks(this.props.group)}
             </div>
         );
-    }
+    };
 
     private renderRuleDescription(group: DetailsGroup): JSX.Element {
         return <span id={`${group.key}-rule-description`}>{group.name}</span>;
@@ -63,8 +61,7 @@ export class DetailsGroupHeader extends React.Component<DetailsGroupHeaderProps>
         return <GuidanceLinks links={group.guidanceLinks} />;
     }
 
-    @autobind
-    private onRuleLinkClick(event: React.MouseEvent<HTMLElement>): void {
+    private onRuleLinkClick = (event: React.MouseEvent<HTMLElement>): void => {
         event.stopPropagation();
-    }
+    };
 }

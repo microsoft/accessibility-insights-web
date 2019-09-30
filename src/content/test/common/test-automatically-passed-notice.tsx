@@ -2,10 +2,10 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import * as Markup from '../../../assessments/markup';
-import { NamedSFC } from '../../../common/react/named-sfc';
+import * as Markup from 'assessments/markup';
+import { NamedFC } from '../../../common/react/named-fc';
 
-export const TestAutomaticallyPassedNotice = NamedSFC('TestAutomaticallyPassedNotice', () => {
+export const TestAutomaticallyPassedNotice = NamedFC('TestAutomaticallyPassedNotice', () => {
     return (
         <p>
             <Markup.Emphasis>

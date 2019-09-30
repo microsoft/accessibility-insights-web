@@ -1,17 +1,17 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { GlobalActionHub } from 'background/actions/global-action-hub';
+import { PersistedData } from 'background/get-persisted-data';
+import { LocalStorageData } from 'background/storage-data';
+import { AssessmentStore } from 'background/stores/assessment-store';
+import { BaseStoreImpl } from 'background/stores/base-store-impl';
+import { FeatureFlagStore } from 'background/stores/global/feature-flag-store';
+import { GlobalStoreHub } from 'background/stores/global/global-store-hub';
+import { LaunchPanelStore } from 'background/stores/global/launch-panel-store';
+import { ScopingStore } from 'background/stores/global/scoping-store';
+import { UserConfigurationStore } from 'background/stores/global/user-configuration-store';
 import { cloneDeep } from 'lodash';
 import { IMock, Mock, Times } from 'typemoq';
-import { GlobalActionHub } from '../../../../../../background/actions/global-action-hub';
-import { PersistedData } from '../../../../../../background/get-persisted-data';
-import { LocalStorageData } from '../../../../../../background/storage-data';
-import { AssessmentStore } from '../../../../../../background/stores/assessment-store';
-import { BaseStoreImpl } from '../../../../../../background/stores/base-store-impl';
-import { FeatureFlagStore } from '../../../../../../background/stores/global/feature-flag-store';
-import { GlobalStoreHub } from '../../../../../../background/stores/global/global-store-hub';
-import { LaunchPanelStore } from '../../../../../../background/stores/global/launch-panel-store';
-import { ScopingStore } from '../../../../../../background/stores/global/scoping-store';
-import { UserConfigurationStore } from '../../../../../../background/stores/global/user-configuration-store';
 import { BaseStore } from '../../../../../../common/base-store';
 import { IndexedDBAPI } from '../../../../../../common/indexedDB/indexedDB';
 import { PersistedTabInfo } from '../../../../../../common/types/store-data/assessment-result-data';
@@ -37,6 +37,7 @@ describe('GlobalStoreHubTest', () => {
                 persistedTabInfo: {} as PersistedTabInfo,
                 assessmentNavState: null,
                 assessments: null,
+                resultDescription: '',
             },
             userConfigurationData: {
                 enableTelemetry: true,
@@ -45,7 +46,7 @@ describe('GlobalStoreHubTest', () => {
                 bugService: 'none',
                 bugServicePropertiesMap: {},
             },
-        };
+        } as PersistedData;
     });
 
     it('verify getAllStores', () => {

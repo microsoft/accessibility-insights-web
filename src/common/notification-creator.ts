@@ -2,24 +2,25 @@
 // Licensed under the MIT License.
 import * as _ from 'lodash';
 
-import { BrowserAdapter } from '../background/browser-adapter';
 import { VisualizationType } from '../common/types/visualization-type';
 import { DictionaryStringTo } from '../types/common-types';
+import { BrowserAdapter } from './browser-adapters/browser-adapter';
 import { VisualizationConfigurationFactory } from './configs/visualization-configuration-factory';
 
 export class NotificationCreator {
-    private chromeAdapter: BrowserAdapter;
+    private browserAdapter: BrowserAdapter;
     private visualizationConfigurationFactory: VisualizationConfigurationFactory;
 
-    constructor(chromeAdapter: BrowserAdapter, visualizationConfigurationFactory: VisualizationConfigurationFactory) {
-        this.chromeAdapter = chromeAdapter;
+    constructor(browserAdapter: BrowserAdapter, visualizationConfigurationFactory: VisualizationConfigurationFactory) {
+        this.browserAdapter = browserAdapter;
         this.visualizationConfigurationFactory = visualizationConfigurationFactory;
     }
 
     public createNotification(message: string): void {
         if (message) {
-            const manifest = this.chromeAdapter.getManifest();
-            this.chromeAdapter.createNotification({
+            const manifest = this.browserAdapter.getManifest();
+            this.browserAdapter.createNotification({
+                type: 'basic',
                 message: message,
                 title: manifest.name,
                 iconUrl: '../' + manifest.icons[128],

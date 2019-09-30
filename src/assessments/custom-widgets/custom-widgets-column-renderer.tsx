@@ -2,10 +2,10 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import { NewTabLink } from '../../common/components/new-tab-link';
-import { ColumnValueBag } from '../../common/types/property-bag/column-value-bag';
-import { AssessmentInstanceRowData } from '../../DetailsView/components/assessment-instance-table';
-import { DictionaryStringTo } from '../../types/common-types';
+import { NewTabLink } from 'common/components/new-tab-link';
+import { ColumnValueBag } from 'common/types/property-bag/column-value-bag';
+import { AssessmentInstanceRowData } from 'DetailsView/components/assessment-instance-table';
+import { DictionaryStringTo } from 'types/common-types';
 import { PropertyBagColumnRendererConfig } from '../common/property-bag-column-renderer';
 import { PropertyBagColumnRendererFactory } from '../common/property-bag-column-renderer-factory';
 
@@ -16,7 +16,7 @@ export function customWidgetsColumnRenderer<TPropertyBag extends ColumnValueBag>
 ): JSX.Element {
     const mapDesignPatterns = (pattern: DesignPattern) => {
         return (
-            <div className="expanded-property-div">
+            <div key={`pattern-${pattern.designPattern}`} className="expanded-property-div">
                 {includeLink ? renderDesignPatternWithLink(pattern) : renderDesignPatternWithoutLink(pattern)}
             </div>
         );
@@ -58,12 +58,12 @@ const roleToDesignPatternsMapping: DictionaryStringTo<DesignPattern[]> = {
     button: [
         { designPattern: 'Accordion', URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#accordion' },
         { designPattern: 'Button', URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#button' },
-        { designPattern: 'Dislosure (Show/Hide)', URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#disclosure' },
+        { designPattern: 'Disclosure (Show/Hide)', URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#disclosure' },
         { designPattern: 'Menu Button', URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#menubutton' },
     ],
     checkbox: [{ designPattern: 'Checkbox', URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#checkbox' }],
     combobox: [{ designPattern: 'Combo Box', URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#combobox' }],
-    dialog: [{ designPattern: 'Dialog (Model)', URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#dialog_modal' }],
+    dialog: [{ designPattern: 'Dialog (Modal)', URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#dialog_modal' }],
     feed: [{ designPattern: 'Feed', URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#feed' }],
     grid: [{ designPattern: 'Grid', URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#grid' }],
     link: [{ designPattern: 'Link', URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#link' }],

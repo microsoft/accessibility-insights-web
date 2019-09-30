@@ -4,10 +4,10 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { IMock, It, Mock } from 'typemoq';
 
-import { BrowserAdapter, ChromeAdapter } from '../../../../background/browser-adapter';
+import { title } from 'content/strings/application';
+import { BrowserAdapter } from '../../../../common/browser-adapters/browser-adapter';
 import { Theme } from '../../../../common/components/theme';
 import { DropdownClickHandler } from '../../../../common/dropdown-click-handler';
-import { title } from '../../../../content/strings/application';
 import { DiagnosticViewToggleFactory } from '../../../../popup/components/diagnostic-view-toggle-factory';
 import { PopupViewWithStoreSubscription } from '../../../../popup/components/popup-view';
 import { DiagnosticViewClickHandler } from '../../../../popup/handlers/diagnostic-view-toggle-click-handler';
@@ -16,15 +16,13 @@ import { PopupViewControllerHandler } from '../../../../popup/handlers/popup-vie
 import { LaunchPadRowConfigurationFactory } from '../../../../popup/launch-pad-row-configuration-factory';
 import { MainRenderer, MainRendererDeps } from '../../../../popup/main-renderer';
 import { SupportLinkHandler } from '../../../../popup/support-link-handler';
+import { TestDocumentCreator } from '../../common/test-document-creator';
 
 describe('MainRenderer', () => {
     const expectedTitle = title;
 
     test('render', () => {
-        const dom = document.createElement('div');
-        const container = document.createElement('div');
-        container.setAttribute('id', 'popup-container');
-        dom.appendChild(container);
+        const fakeDocument = TestDocumentCreator.createTestDocument('<div id="popup-container"></div>');
 
         const diagnosticViewClickHandlerMock = Mock.ofType(DiagnosticViewClickHandler);
         const gettingStartedDialogHandlerMock = Mock.ofType(PopupViewControllerHandler);
@@ -37,7 +35,7 @@ describe('MainRenderer', () => {
         const renderMock: IMock<typeof ReactDOM.render> = Mock.ofInstance(() => null);
 
         const popupWindowMock = Mock.ofInstance(window);
-        const browserAdapterMock = Mock.ofType<BrowserAdapter>(ChromeAdapter);
+        const browserAdapterMock = Mock.ofType<BrowserAdapter>();
         const hasAccess = true;
         const targetTabUrl = 'url';
 
@@ -57,9 +55,9 @@ describe('MainRenderer', () => {
                                     popupViewControllerHandler: gettingStartedDialogHandlerMock.object,
                                     launchPanelHeaderClickHandler: feedbackMenuClickhandlerMock.object,
                                     supportLinkHandler: supportLinkHandlerMock.object,
+                                    browserAdapter: browserAdapterMock.object,
                                 }}
                                 popupWindow={popupWindowMock.object}
-                                browserAdapter={browserAdapterMock.object}
                                 targetTabUrl={targetTabUrl}
                                 hasAccess={hasAccess}
                                 launchPadRowConfigurationFactory={launchPadRowConfigurationFactoryMock.object}
@@ -68,7 +66,7 @@ describe('MainRenderer', () => {
                             />
                         </>,
                     ),
-                    container,
+                    fakeDocument.getElementById('popup-container'),
                 ),
             )
             .verifiable();
@@ -80,11 +78,11 @@ describe('MainRenderer', () => {
                 popupViewControllerHandler: gettingStartedDialogHandlerMock.object,
                 launchPanelHeaderClickHandler: feedbackMenuClickhandlerMock.object,
                 supportLinkHandler: supportLinkHandlerMock.object,
+                browserAdapter: browserAdapterMock.object,
             },
             renderMock.object,
-            dom,
+            fakeDocument,
             popupWindowMock.object,
-            browserAdapterMock.object,
             targetTabUrl,
             hasAccess,
             launchPadRowConfigurationFactoryMock.object,

@@ -11,6 +11,8 @@ export class FeatureFlags {
     public static readonly showAllFeatureFlags = 'showAllFeatureFlags';
     public static readonly scoping = 'scoping';
     public static readonly showInstanceVisibility = 'showInstanceVisibility';
+    public static readonly manualInstanceDetails = 'manualInstanceDetails';
+    public static readonly universalCardsUI = 'universalCardsUI';
 }
 
 export interface FeatureFlagDetail {
@@ -73,6 +75,24 @@ export function getAllFeatureFlagDetails(): FeatureFlagDetail[] {
             displayableDescription:
                 'Shows visibility of instances in assessment requirement lists. May impact performance. ' +
                 "(You'll need to go to a different requirement and come back for it to take effect.)",
+            isPreviewFeature: false,
+            forceDefault: false,
+        },
+        {
+            id: FeatureFlags.manualInstanceDetails,
+            defaultValue: false,
+            displayableName: 'Enable manual instance details',
+            displayableDescription:
+                'Allow addition of path (CSS selector) which automatically ' +
+                'populates the corresponding code snippet when adding manual failure instance.',
+            isPreviewFeature: false,
+            forceDefault: false,
+        },
+        {
+            id: FeatureFlags.universalCardsUI,
+            defaultValue: false,
+            displayableName: 'Enable universal cards UI',
+            displayableDescription: 'Show results in cards using the universal cards UI.',
             isPreviewFeature: false,
             forceDefault: false,
         },

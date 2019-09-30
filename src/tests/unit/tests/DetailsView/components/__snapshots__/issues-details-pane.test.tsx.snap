@@ -73,7 +73,7 @@ exports[`IssuesDetailsPaneTest render with single selection, test copy to clipbo
       Failure details
     </h2>
     <CopyIssueDetailsButton deps={{...}} issueDetailsData={{...}} onClick={[Function: copyIssueDetailsClicked]} />
-    <IssueFilingButton deps={{...}} issueDetailsData={{...}} userConfigurationStoreData={{...}} needsSettingsContentRenderer={[Function: IssueFilingDialog]} />
+    <IssueFilingButton deps={{...}} issueDetailsData={{...}} userConfigurationStoreData={{...}} needsSettingsContentRenderer={[function]} />
     <table className=\\"issue-detail-table\\">
       <tbody>
         <tr>
@@ -87,6 +87,7 @@ exports[`IssuesDetailsPaneTest render with single selection, test copy to clipbo
             : rule-help
               
             <GuidanceLinks links={{...}} />
+            <GuidanceTags deps={{...}} links={{...}} />
           </td>
         </tr>
         <tr>
@@ -94,8 +95,8 @@ exports[`IssuesDetailsPaneTest render with single selection, test copy to clipbo
             How to fix
           </td>
           <td className=\\"fix-content\\">
-            <FixInstructionPanel checkType={0} checks={{...}} renderTitleElement={[Function]} />
-            <FixInstructionPanel checkType={1} checks={{...}} renderTitleElement={[Function]} />
+            <FixInstructionPanel deps={{...}} checkType={0} checks={{...}} renderTitleElement={[Function: renderFixInstructionsTitleElement]} />
+            <FixInstructionPanel deps={{...}} checkType={1} checks={{...}} renderTitleElement={[Function: renderFixInstructionsTitleElement]} />
           </td>
         </tr>
         <tr>

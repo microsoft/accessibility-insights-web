@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { BrowserAdapter } from '../common/browser-adapters/browser-adapter';
 import { ConnectionNames } from '../common/constants/connection-names';
 import { Messages } from '../common/messages';
 import { DevToolsOpenMessage } from '../common/types/dev-tools-open-message';
 import { OnDevToolOpenPayload } from './actions/action-payloads';
-import { BrowserAdapter } from './browser-adapter';
 import { TabToContextMap } from './tab-context';
 
 export interface PortWithTabId extends chrome.runtime.Port {
@@ -12,16 +12,16 @@ export interface PortWithTabId extends chrome.runtime.Port {
 }
 
 export class DevToolsListener {
-    private _tabIdToContextMap: TabToContextMap;
-    private _chromeAdapter: BrowserAdapter;
+    private tabIdToContextMap: TabToContextMap;
+    private browserAdapter: BrowserAdapter;
 
-    constructor(tabIdToContextMap: TabToContextMap, chromeAdapter: BrowserAdapter) {
-        this._tabIdToContextMap = tabIdToContextMap;
-        this._chromeAdapter = chromeAdapter;
+    constructor(tabIdToContextMap: TabToContextMap, browserAdapter: BrowserAdapter) {
+        this.tabIdToContextMap = tabIdToContextMap;
+        this.browserAdapter = browserAdapter;
     }
 
     public initialize(): void {
-        this._chromeAdapter.addListenerOnConnect((devToolsConnection: PortWithTabId) => {
+        this.browserAdapter.addListenerOnConnect((devToolsConnection: PortWithTabId) => {
             if (devToolsConnection.name === ConnectionNames.devTools) {
                 const devToolsListener = (message: DevToolsOpenMessage, port: chrome.runtime.Port) => {
                     devToolsConnection.targetPageTabId = message.tabId;
@@ -41,7 +41,7 @@ export class DevToolsListener {
 
     private sendDevToolStatus(devToolsConnection: PortWithTabId, status: boolean): void {
         const tabId = devToolsConnection.targetPageTabId;
-        const tabContext = this._tabIdToContextMap[tabId];
+        const tabContext = this.tabIdToContextMap[tabId];
 
         if (tabContext) {
             tabContext.interpreter.interpret({

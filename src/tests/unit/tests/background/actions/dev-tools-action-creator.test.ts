@@ -1,81 +1,69 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as _ from 'lodash';
-import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
-import { InspectElementPayload, InspectFrameUrlPayload, OnDevToolOpenPayload } from '../../../../../background/actions/action-payloads';
-import { DevToolsActionCreator } from '../../../../../background/actions/dev-tools-action-creator';
-import { DevToolActions } from '../../../../../background/actions/dev-tools-actions';
-import { TelemetryEventHandler } from '../../../../../background/telemetry/telemetry-event-handler';
-import { Action } from '../../../../../common/flux/action';
-import { RegisterTypeToPayloadCallback } from '../../../../../common/message';
-import { Messages } from '../../../../../common/messages';
-import * as TelemetryEvents from '../../../../../common/telemetry-events';
+import { InspectElementPayload, InspectFrameUrlPayload, OnDevToolOpenPayload } from 'background/actions/action-payloads';
+import { DevToolsActionCreator } from 'background/actions/dev-tools-action-creator';
+import { DevToolActions } from 'background/actions/dev-tools-actions';
+import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
+import * as TelemetryEvents from 'common/extension-telemetry-events';
+import { getStoreStateMessage, Messages } from 'common/messages';
+import { StoreNames } from 'common/stores/store-names';
+import { IMock, Mock, MockBehavior, Times } from 'typemoq';
+
+import { createActionMock, createInterpreterMock } from '../global-action-creators/action-creator-test-helpers';
 
 describe('DevToolsActionCreatorTest', () => {
     const tabId: number = -1;
-    let devtoolActionsMock: IMock<DevToolActions>;
     let telemetryEventHandlerMock: IMock<TelemetryEventHandler>;
-    let registerTypeToPayloadCallback: IMock<RegisterTypeToPayloadCallback>;
-
-    let testObject: DevToolsActionCreator;
 
     beforeEach(() => {
-        devtoolActionsMock = Mock.ofType(DevToolActions, MockBehavior.Strict);
         telemetryEventHandlerMock = Mock.ofType(TelemetryEventHandler, MockBehavior.Strict);
-        registerTypeToPayloadCallback = Mock.ofInstance((_type, _callback) => {});
-
-        testObject = new DevToolsActionCreator(
-            devtoolActionsMock.object,
-            telemetryEventHandlerMock.object,
-            registerTypeToPayloadCallback.object,
-        );
     });
 
-    test('on DevtoolStatus', () => {
+    it('handles DevToolStatus message', () => {
         const payload: OnDevToolOpenPayload = {
             status: true,
         };
 
-        const setDevToolsStateAction = createActionMock(payload.status);
+        const setDevToolsStateMock = createActionMock(payload.status);
+        const actionsMock = createActionsMock('setDevToolState', setDevToolsStateMock.object);
+        const interpreterMock = createInterpreterMock(Messages.DevTools.DevtoolStatus, payload, tabId);
 
-        setupDevToolsActionsMock('setDevToolState', setDevToolsStateAction);
+        const newTestObject = new DevToolsActionCreator(interpreterMock.object, actionsMock.object, telemetryEventHandlerMock.object);
 
-        setupRegisterTypeToPayloadCallbackMock(Messages.DevTools.DevtoolStatus, payload, tabId);
+        newTestObject.registerCallbacks();
 
-        testObject.registerCallbacks();
-
-        setDevToolsStateAction.verifyAll();
+        setDevToolsStateMock.verifyAll();
     });
 
-    test('on Get', () => {
-        const getCurrentStateAction = createActionMock(null);
+    it('handles GetState message', () => {
+        const getCurrentStateMock = createActionMock(null);
+        const actionsMock = createActionsMock('getCurrentState', getCurrentStateMock.object);
+        const interpreterMock = createInterpreterMock(getStoreStateMessage(StoreNames.DevToolsStore), null, tabId);
 
-        setupDevToolsActionsMock('getCurrentState', getCurrentStateAction);
+        const newTestObject = new DevToolsActionCreator(interpreterMock.object, actionsMock.object, telemetryEventHandlerMock.object);
 
-        setupRegisterTypeToPayloadCallbackMock(Messages.DevTools.Get, null, tabId);
+        newTestObject.registerCallbacks();
 
-        testObject.registerCallbacks();
-
-        getCurrentStateAction.verifyAll();
+        getCurrentStateMock.verifyAll();
     });
 
-    test('on InspectFrameUrl', () => {
+    it('handles InspectFrameUrl message', () => {
         const payload: InspectFrameUrlPayload = {
             frameUrl: 'frame-url',
         };
 
-        const setFrameUrlAction = createActionMock(payload.frameUrl);
+        const setFrameUrlMock = createActionMock(payload.frameUrl);
+        const actionsMock = createActionsMock('setFrameUrl', setFrameUrlMock.object);
+        const interpreterMock = createInterpreterMock(Messages.DevTools.InspectFrameUrl, payload, tabId);
 
-        setupDevToolsActionsMock('setFrameUrl', setFrameUrlAction);
+        const newTestObject = new DevToolsActionCreator(interpreterMock.object, actionsMock.object, telemetryEventHandlerMock.object);
 
-        setupRegisterTypeToPayloadCallbackMock(Messages.DevTools.InspectFrameUrl, payload, tabId);
+        newTestObject.registerCallbacks();
 
-        testObject.registerCallbacks();
-
-        setFrameUrlAction.verifyAll();
+        setFrameUrlMock.verifyAll();
     });
 
-    test('InspectElement', () => {
+    it('handles InspectElement message', () => {
         const payload: InspectElementPayload = {
             target: ['target'],
         };
@@ -84,33 +72,24 @@ describe('DevToolsActionCreatorTest', () => {
             .setup(publisher => publisher.publishTelemetry(TelemetryEvents.INSPECT_OPEN, payload))
             .verifiable(Times.once());
 
-        const setInspectElementAction = createActionMock(payload.target);
+        const setInspectElementMock = createActionMock(payload.target);
+        const actionsMock = createActionsMock('setInspectElement', setInspectElementMock.object);
+        const interpreterMock = createInterpreterMock(Messages.DevTools.InspectElement, payload, tabId);
 
-        setupDevToolsActionsMock('setInspectElement', setInspectElementAction);
+        const newTestObject = new DevToolsActionCreator(interpreterMock.object, actionsMock.object, telemetryEventHandlerMock.object);
 
-        setupRegisterTypeToPayloadCallbackMock(Messages.DevTools.InspectElement, payload, tabId);
+        newTestObject.registerCallbacks();
 
-        testObject.registerCallbacks();
-
-        setInspectElementAction.verifyAll();
+        setInspectElementMock.verifyAll();
         telemetryEventHandlerMock.verifyAll();
     });
 
-    function setupDevToolsActionsMock(actionName: keyof DevToolActions, actionMock: IMock<Action<any>>): void {
-        devtoolActionsMock.setup(actions => actions[actionName]).returns(() => actionMock.object);
-    }
-
-    function createActionMock<TPayload>(actionPayload: TPayload): IMock<Action<TPayload>> {
-        const getCurrentStateAction = Mock.ofType<Action<TPayload>>(Action, MockBehavior.Strict);
-
-        getCurrentStateAction.setup(action => action.invoke(actionPayload)).verifiable(Times.once());
-
-        return getCurrentStateAction;
-    }
-
-    function setupRegisterTypeToPayloadCallbackMock(message: string, payload: any, _tabId: number): void {
-        registerTypeToPayloadCallback
-            .setup(registrar => registrar(message, It.is(_.isFunction)))
-            .callback((_message, listener) => listener(payload, _tabId));
+    function createActionsMock<ActionName extends keyof DevToolActions>(
+        actionName: ActionName,
+        action: DevToolActions[ActionName],
+    ): IMock<DevToolActions> {
+        const actionsMock = Mock.ofType<DevToolActions>();
+        actionsMock.setup(actions => actions[actionName]).returns(() => action);
+        return actionsMock;
     }
 });

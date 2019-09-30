@@ -1,7 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { autobind } from '@uifabric/utilities';
-
 import { WindowUtils } from '../../common/window-utils';
 import { DictionaryStringTo } from '../../types/common-types';
 import { ErrorMessageContent } from './error-message-content';
@@ -16,80 +14,80 @@ export type FrameMessageResponseCallback = (
 ) => void;
 
 export class WindowMessageHandler {
-    private _windowUtils: WindowUtils;
-    private _initialized: boolean;
-    private _windowMessageParser: WindowMessageMarshaller;
-    private _callbacksForMessagesSentFromCurrentFrame: { [messageId: string]: FrameMessageResponseCallback } = {};
+    private windowUtils: WindowUtils;
+    private initialized: boolean;
+    private windowMessageParser: WindowMessageMarshaller;
+    private callbacksForMessagesSentFromCurrentFrame: { [messageId: string]: FrameMessageResponseCallback } = {};
 
-    private _messageSubscribers: DictionaryStringTo<FrameMessageResponseCallback>;
+    private messageSubscribers: DictionaryStringTo<FrameMessageResponseCallback>;
 
     constructor(windowUtils: WindowUtils, windowMessageParser: WindowMessageMarshaller) {
-        this._windowUtils = windowUtils;
-        this._windowMessageParser = windowMessageParser;
-        this._messageSubscribers = {};
+        this.windowUtils = windowUtils;
+        this.windowMessageParser = windowMessageParser;
+        this.messageSubscribers = {};
     }
 
     public addSubscriber(command: string, callback: FrameMessageResponseCallback): void {
-        if (!this._messageSubscribers[command]) {
-            this._messageSubscribers[command] = callback;
+        if (!this.messageSubscribers[command]) {
+            this.messageSubscribers[command] = callback;
         }
     }
 
     public removeSubscriber(command): void {
-        delete this._messageSubscribers[command];
+        delete this.messageSubscribers[command];
     }
 
     public initialize(): void {
-        if (!this._initialized) {
-            this._initialized = true;
-            this._windowUtils.addEventListener(window, 'message', this.windowMessageHandler, false);
+        if (!this.initialized) {
+            this.initialized = true;
+            this.windowUtils.addEventListener(window, 'message', this.windowMessageHandler, false);
         }
     }
 
     public dispose(): void {
-        this._windowUtils.removeEventListener(window, 'message', this.windowMessageHandler, false);
+        this.windowUtils.removeEventListener(window, 'message', this.windowMessageHandler, false);
     }
 
     public post(win: Window, command: string, message: any, callback?: FrameMessageResponseCallback, responseId?: string): void {
-        const data = this._windowMessageParser.createMessage(command, message, responseId);
+        const data = this.windowMessageParser.createMessage(command, message, responseId);
 
         this.updateResponseCallbackMap(data.messageId, callback);
 
-        this._windowUtils.postMessage(win, data, '*');
+        this.windowUtils.postMessage(win, data, '*');
     }
 
-    @autobind
-    private windowMessageHandler(e: MessageEvent): void {
-        const data: WindowMessage = this._windowMessageParser.parseMessage(e.data);
+    private windowMessageHandler = (e: MessageEvent): void => {
+        const sourceWindow = e.source as Window;
+        const data: WindowMessage = this.windowMessageParser.parseMessage(e.data);
         if (data == null) {
             return;
         }
         const messageId = data.messageId;
-        const callback = this._callbacksForMessagesSentFromCurrentFrame[messageId];
+        const callback = this.callbacksForMessagesSentFromCurrentFrame[messageId];
 
         try {
             if (callback) {
-                this.processResponseFromPreviousRequest(e.source, data, callback);
+                this.processResponseFromPreviousRequest(sourceWindow, data, callback);
             } else {
-                this.processNewMessage(e.source, data);
+                this.processNewMessage(sourceWindow, data);
             }
         } catch (err) {
-            this.post(e.source, data.command, err, null, messageId);
+            this.post(sourceWindow, data.command, err, null, messageId);
         }
-    }
+    };
 
     private updateResponseCallbackMap(messageId, callback): void {
         if (callback) {
-            this._callbacksForMessagesSentFromCurrentFrame[messageId] = callback;
+            this.callbacksForMessagesSentFromCurrentFrame[messageId] = callback;
         } else {
-            delete this._callbacksForMessagesSentFromCurrentFrame[messageId];
+            delete this.callbacksForMessagesSentFromCurrentFrame[messageId];
         }
     }
 
     private processResponseFromPreviousRequest(source: Window, data: WindowMessage, callback: FrameMessageResponseCallback): void {
         const responderCallback = this.createFrameResponderCallback(source, data.command, data.messageId);
         callback(data.message, data.error, source, responderCallback);
-        delete this._callbacksForMessagesSentFromCurrentFrame[data.messageId];
+        delete this.callbacksForMessagesSentFromCurrentFrame[data.messageId];
     }
 
     private processNewMessage(source: Window, data: WindowMessage): void {
@@ -103,7 +101,7 @@ export class WindowMessageHandler {
     }
 
     private notifySubscriber(target: Window, data: WindowMessage): void {
-        const subscriber = this._messageSubscribers[data.command];
+        const subscriber = this.messageSubscribers[data.command];
         if (subscriber) {
             subscriber(data.message, data.error, target, this.createFrameResponderCallback(target, data.command, data.messageId));
         }

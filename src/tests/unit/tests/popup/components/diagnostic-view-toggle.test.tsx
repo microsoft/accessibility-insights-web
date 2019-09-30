@@ -6,12 +6,12 @@ import * as React from 'react';
 import * as TestUtils from 'react-dom/test-utils';
 import { IMock, It, Mock, Times } from 'typemoq';
 
+import { ContentLinkDeps } from 'views/content/content-link';
+import { ContentProvider } from 'views/content/content-page';
 import { VisualizationToggle } from '../../../../../common/components/visualization-toggle';
-import {
-    VisualizationConfiguration,
-    VisualizationConfigurationFactory,
-} from '../../../../../common/configs/visualization-configuration-factory';
-import { TelemetryEventSource } from '../../../../../common/telemetry-events';
+import { VisualizationConfiguration } from '../../../../../common/configs/visualization-configuration';
+import { VisualizationConfigurationFactory } from '../../../../../common/configs/visualization-configuration-factory';
+import { TelemetryEventSource } from '../../../../../common/extension-telemetry-events';
 import { DetailsViewPivotType } from '../../../../../common/types/details-view-pivot-type';
 import { VisualizationStoreData } from '../../../../../common/types/store-data/visualization-store-data';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
@@ -19,8 +19,6 @@ import { PopupActionMessageCreator } from '../../../../../popup/actions/popup-ac
 import { DiagnosticViewToggle, DiagnosticViewToggleProps } from '../../../../../popup/components/diagnostic-view-toggle';
 import { DiagnosticViewClickHandler } from '../../../../../popup/handlers/diagnostic-view-toggle-click-handler';
 import { DictionaryStringTo } from '../../../../../types/common-types';
-import { ContentLinkDeps } from '../../../../../views/content/content-link';
-import { ContentProvider } from '../../../../../views/content/content-page';
 import { EventStubFactory } from '../../../common/event-stub-factory';
 import { ShortcutCommandsTestData } from '../../../common/sample-test-data';
 import { VisualizationStoreDataBuilder } from '../../../common/visualization-store-data-builder';
@@ -282,7 +280,7 @@ describe('DiagnosticViewToggleTest', () => {
         const addUserEventListenerFunction = (testObject as any).addUserEventListener;
         addUserEventListenerFunction();
 
-        expect((testObject as any)._userEventListenerAdded).toBe(true);
+        expect((testObject as any).userEventListenerAdded).toBe(true);
         propsBuilder.addUserListenerVerifyAll();
     });
 

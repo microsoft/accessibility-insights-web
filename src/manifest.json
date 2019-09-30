@@ -21,8 +21,8 @@
         "page": "background/background.html",
         "persistent": true
     },
-    "devtools_page": "devtools/devtools.html",
-    "web_accessible_resources": ["insights.html", "assessments/*", "injected/*", "background/*", "common/*", "DetailsView/*"],
+    "devtools_page": "Devtools/devtools.html",
+    "web_accessible_resources": ["insights.html", "assessments/*", "injected/*", "background/*", "common/*", "DetailsView/*", "bundle/*"],
     "permissions": ["storage", "webNavigation", "tabs", "notifications", "https://*/*", "http://*/*", "file://*/*"],
     "commands": {
         "_execute_browser_action": {

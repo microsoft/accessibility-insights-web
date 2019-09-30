@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { Assessment } from 'assessments/types/iassessment';
 import { isEmpty, pick } from 'lodash';
-import { Assessment } from '../assessments/types/iassessment';
 import { ManualTestStatus, ManualTestStatusData, TestStepData } from '../common/types/manual-test-status';
 import {
     AssessmentData,

@@ -2,12 +2,12 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
+import { title } from 'content/strings/application';
 import { GearOptionsButtonComponent } from '../../common/components/gear-options-button-component';
 import { HeaderIcon, HeaderIconDeps } from '../../common/components/header-icon';
 import { DropdownClickHandler } from '../../common/dropdown-click-handler';
 import { DetailsViewPivotType } from '../../common/types/details-view-pivot-type';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
-import { title } from '../../content/strings/application';
 import { Switcher, SwitcherDeps } from '../components/switcher';
 
 export type HeaderDeps = SwitcherDeps & HeaderIconDeps;

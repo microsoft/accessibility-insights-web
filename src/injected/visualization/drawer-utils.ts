@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { ClientRectOffset } from '../client-utils';
 export class DrawerUtils {
-    private dom: NodeSelector & Node;
+    private dom: Document;
     public clientWindowOffsetThreshold: number = 5;
 
     constructor(dom) {
@@ -18,7 +18,7 @@ export class DrawerUtils {
     }
 
     public getDocumentElement(): Document {
-        return this.dom.ownerDocument || (this.dom as Document);
+        return this.dom.ownerDocument || this.dom;
     }
 
     public getContainerWidth(

@@ -1,0 +1,174 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+@import '../common/components/guidance-tags.scss';
+@import '../common/icons/icon.scss';
+@import '../common/styles/colors.scss';
+@import '../common/styles/common.scss';
+@import '../common/styles/fonts.scss';
+@import './components/instance-details.scss';
+@import './components/outcome.scss';
+@import './components/report-sections/body-section.scss';
+@import './components/report-sections/common-mixins.scss';
+@import './components/report-sections/content-container.scss';
+@import './components/report-sections/details-section.scss';
+@import './components/report-sections/footer-section.scss';
+@import './components/report-sections/header-section.scss';
+@import './components/report-sections/no-failed-instances-congrats.scss';
+@import './components/report-sections/title-section.scss';
+@import './components/report-sections/results-container.scss';
+
+$outcome-pass-summary-color: $positive-outcome;
+$outcome-fail-summary-color: $negative-outcome;
+$outcome-incomplete-summary-consistent-foreground: $always-white;
+$outcome-incomplete-summary-background: $neutral-outcome;
+$outcome-incomplete-border-color: $incomplete-color;
+$outcome-not-applicable-summary-color: $neutral-outcome;
+
+@media screen and (max-width: 640px) {
+    .outcome-past-tense {
+        display: none;
+    }
+}
+
+.summary-section {
+    @include boxShadow();
+
+    background-color: $neutral-0;
+    padding: 20px;
+    margin-bottom: 24px;
+}
+
+.result-section {
+    padding-bottom: 58px;
+
+    .title-container[aria-level='2'] {
+        .collapsible-control::before {
+            position: relative;
+            bottom: 2px;
+            margin-right: 14px;
+        }
+    }
+}
+
+.rule-details-group {
+    .rule-detail {
+        box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.08);
+        font-size: 14px;
+
+        padding: 16px 8px;
+
+        display: flex;
+        align-items: center;
+
+        .outcome-chip {
+            vertical-align: middle;
+            margin-bottom: 2px;
+        }
+
+        .rule-details-id {
+            font-family: $semiBoldFontFamily;
+            color: $primary-text;
+
+            a {
+                font-family: $semiBoldFontFamily;
+                color: $primary-text !important;
+            }
+        }
+
+        .rule-detail-description {
+            color: $secondary-text !important;
+        }
+
+        .guidance-links {
+            a {
+                color: $secondary-text !important;
+            }
+        }
+    }
+}
+
+.collapsible-rule-details-group {
+    box-shadow: 0px 1px 0px rgba(0, 0, 0, 0.08);
+
+    .rule-detail {
+        box-shadow: unset;
+    }
+}
+
+.collapsible-container {
+    @mixin transform($property) {
+        -webkit-transform: $property;
+        -ms-transform: $property;
+        transform: $property;
+    }
+
+    &:not(.collapsible-rule-details-group) {
+        .collapsible-control {
+            padding-left: 2px;
+            padding-right: 16px;
+
+            position: relative;
+        }
+    }
+
+    %common-control-chevron {
+        display: inline-block;
+        border-right: 1px solid $secondary-text;
+        border-bottom: 1px solid $secondary-text;
+        min-width: 7px;
+        width: 7px;
+        height: 7px;
+        content: '';
+        transform-origin: 50% 50%;
+        transition: transform 0.1s linear 0s;
+    }
+
+    .collapsible-control {
+        font-family: 'Segoe UI Web (West European)', 'Segoe UI', '-apple-system', BlinkMacSystemFont, Roboto, 'Helvetica Neue', Helvetica,
+            Ubuntu, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+        background-color: transparent;
+        cursor: pointer;
+        border: none;
+
+        display: flex;
+        align-items: baseline;
+
+        width: 100%;
+
+        &:hover {
+            background-color: $neutral-alpha-4;
+        }
+    }
+
+    .collapsible-control[aria-expanded='false']:before {
+        @extend %common-control-chevron;
+        @include transform(rotate(-45deg));
+    }
+
+    .collapsible-control[aria-expanded='true']:before {
+        @extend %common-control-chevron;
+        @include transform(rotate(45deg));
+    }
+
+    .collapsible-content {
+        &[aria-hidden='true'] {
+            display: none;
+        }
+    }
+}
+
+ul.instance-details-list {
+    list-style-type: none;
+
+    padding-inline-start: unset;
+    margin-block-start: unset;
+    margin-block-end: unset;
+
+    li {
+        margin-bottom: 16px;
+    }
+
+    li:last-child {
+        margin-bottom: unset;
+    }
+}

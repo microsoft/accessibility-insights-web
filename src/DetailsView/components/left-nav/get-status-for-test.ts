@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { RequirementOutcomeStats } from 'reports/components/requirement-outcome-type';
 import { ManualTestStatus } from '../../../common/types/manual-test-status';
-import { OutcomeStats } from '../../reports/components/outcome-type';
 
-export const getStatusForTest = (stats: OutcomeStats): ManualTestStatus => {
+export const getStatusForTest = (stats: RequirementOutcomeStats): ManualTestStatus => {
     if (stats.incomplete > 0) {
         return ManualTestStatus.UNKNOWN;
     } else if (stats.fail > 0) {

@@ -1,19 +1,19 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IMock, It, Mock, MockBehavior } from 'typemoq';
+import { IMock, It, Mock } from 'typemoq';
 
-import { BrowserAdapter, ChromeAdapter } from '../../../../background/browser-adapter';
-import { CommandsAdapter } from '../../../../background/browser-adapters/commands-adapter';
-import { StorageAdapter } from '../../../../background/browser-adapters/storage-adapter';
-import { PersistedData } from '../../../../background/get-persisted-data';
-import { GlobalContext } from '../../../../background/global-context';
-import { GlobalContextFactory } from '../../../../background/global-context-factory';
-import { Interpreter } from '../../../../background/interpreter';
-import { LocalStorageData } from '../../../../background/storage-data';
-import { CommandStore } from '../../../../background/stores/global/command-store';
-import { FeatureFlagStore } from '../../../../background/stores/global/feature-flag-store';
-import { LaunchPanelStore } from '../../../../background/stores/global/launch-panel-store';
-import { TelemetryEventHandler } from '../../../../background/telemetry/telemetry-event-handler';
+import { PersistedData } from 'background/get-persisted-data';
+import { GlobalContext } from 'background/global-context';
+import { GlobalContextFactory } from 'background/global-context-factory';
+import { Interpreter } from 'background/interpreter';
+import { LocalStorageData } from 'background/storage-data';
+import { CommandStore } from 'background/stores/global/command-store';
+import { FeatureFlagStore } from 'background/stores/global/feature-flag-store';
+import { LaunchPanelStore } from 'background/stores/global/launch-panel-store';
+import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
+import { BrowserAdapter } from '../../../../common/browser-adapters/browser-adapter';
+import { CommandsAdapter } from '../../../../common/browser-adapters/commands-adapter';
+import { StorageAdapter } from '../../../../common/browser-adapters/storage-adapter';
 import { EnvironmentInfo } from '../../../../common/environment-info-provider';
 import { IndexedDBAPI } from '../../../../common/indexedDB/indexedDB';
 import { TelemetryDataFactory } from '../../../../common/telemetry-data-factory';
@@ -21,25 +21,25 @@ import { IssueFilingServiceProvider } from '../../../../issue-filing/issue-filin
 import { CreateTestAssessmentProvider } from '../../common/test-assessment-provider';
 
 describe('GlobalContextFactoryTest', () => {
-    let _mockChromeAdapter: IMock<BrowserAdapter>;
-    let _mockCommandsAdapter: IMock<CommandsAdapter>;
-    let _mockStorageAdapter: IMock<StorageAdapter>;
-    let _mocktelemetryEventHandler: IMock<TelemetryEventHandler>;
-    let _mockTelemetryDataFactory: IMock<TelemetryDataFactory>;
-    let _mockIssueFilingServiceProvider: IMock<IssueFilingServiceProvider>;
+    let browserAdapterMock: IMock<BrowserAdapter>;
+    let commandsAdapterMock: IMock<CommandsAdapter>;
+    let storageAdapterMock: IMock<StorageAdapter>;
+    let telemetryEventHandlerMock: IMock<TelemetryEventHandler>;
+    let telemetryDataFactoryMock: IMock<TelemetryDataFactory>;
+    let issueFilingServiceProviderMock: IMock<IssueFilingServiceProvider>;
     let environmentInfoStub: EnvironmentInfo;
     let userDataStub: LocalStorageData;
     let idbInstance: IndexedDBAPI;
     let persistedDataStub: PersistedData;
 
     beforeAll(() => {
-        _mockStorageAdapter = Mock.ofType<StorageAdapter>();
-        _mockChromeAdapter = Mock.ofType(ChromeAdapter, MockBehavior.Loose);
-        _mockCommandsAdapter = Mock.ofType<CommandsAdapter>();
-        _mockChromeAdapter.setup(adapter => adapter.sendMessageToAllFramesAndTabs(It.isAny()));
-        _mocktelemetryEventHandler = Mock.ofType(TelemetryEventHandler);
-        _mockTelemetryDataFactory = Mock.ofType(TelemetryDataFactory);
-        _mockIssueFilingServiceProvider = Mock.ofType(IssueFilingServiceProvider);
+        storageAdapterMock = Mock.ofType<StorageAdapter>();
+        browserAdapterMock = Mock.ofType<BrowserAdapter>();
+        commandsAdapterMock = Mock.ofType<CommandsAdapter>();
+        browserAdapterMock.setup(adapter => adapter.sendMessageToAllFramesAndTabs(It.isAny()));
+        telemetryEventHandlerMock = Mock.ofType(TelemetryEventHandler);
+        telemetryDataFactoryMock = Mock.ofType(TelemetryDataFactory);
+        issueFilingServiceProviderMock = Mock.ofType(IssueFilingServiceProvider);
 
         userDataStub = {};
         environmentInfoStub = {} as EnvironmentInfo;
@@ -49,17 +49,17 @@ describe('GlobalContextFactoryTest', () => {
 
     it('createContext', () => {
         const globalContext = GlobalContextFactory.createContext(
-            _mockChromeAdapter.object,
-            _mocktelemetryEventHandler.object,
+            browserAdapterMock.object,
+            telemetryEventHandlerMock.object,
             userDataStub,
             CreateTestAssessmentProvider(),
-            _mockTelemetryDataFactory.object,
+            telemetryDataFactoryMock.object,
             idbInstance,
             persistedDataStub,
-            _mockIssueFilingServiceProvider.object,
+            issueFilingServiceProviderMock.object,
             environmentInfoStub,
-            _mockStorageAdapter.object,
-            _mockCommandsAdapter.object,
+            storageAdapterMock.object,
+            commandsAdapterMock.object,
         );
 
         expect(globalContext).toBeInstanceOf(GlobalContext);

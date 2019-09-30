@@ -1,19 +1,17 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { cloneDeep } from 'lodash';
-import { IMock, It, Mock, Times } from 'typemoq';
-
 import {
     SaveIssueFilingSettingsPayload,
     SetHighContrastModePayload,
     SetIssueFilingServicePayload,
     SetIssueFilingServicePropertyPayload,
-    SetIssueTrackerPathPayload,
-    SetTelemetryStatePayload,
-} from '../../../../../../background/actions/action-payloads';
-import { UserConfigurationActions } from '../../../../../../background/actions/user-configuration-actions';
-import { IndexedDBDataKeys } from '../../../../../../background/IndexedDBDataKeys';
-import { UserConfigurationStore } from '../../../../../../background/stores/global/user-configuration-store';
+} from 'background/actions/action-payloads';
+import { UserConfigurationActions } from 'background/actions/user-configuration-actions';
+import { IndexedDBDataKeys } from 'background/IndexedDBDataKeys';
+import { UserConfigurationStore } from 'background/stores/global/user-configuration-store';
+import { cloneDeep } from 'lodash';
+import { IMock, It, Mock, Times } from 'typemoq';
+
 import { IndexedDBAPI } from '../../../../../../common/indexedDB/indexedDB';
 import { StoreNames } from '../../../../../../common/stores/store-names';
 import {
@@ -136,14 +134,13 @@ describe('UserConfigurationStoreTest', () => {
         isFirstTime: boolean;
         enableTelemetry: boolean;
         enableHighContrastMode: boolean;
-        issueTrackerPath?: string;
     };
     test.each([
         { enableTelemetry: true, isFirstTime: true, enableHighContrastMode: false } as SetUserConfigTestCase,
         { enableTelemetry: true, isFirstTime: false, enableHighContrastMode: false } as SetUserConfigTestCase,
         { enableTelemetry: false, isFirstTime: false, enableHighContrastMode: false } as SetUserConfigTestCase,
         { enableTelemetry: false, isFirstTime: true, enableHighContrastMode: false } as SetUserConfigTestCase,
-    ])('setTelemetryConfig action: %o', (testCase: SetUserConfigTestCase) => {
+    ])('setTelemetryConfig action: %p', (testCase: SetUserConfigTestCase) => {
         const storeTester = createStoreToTestAction('setTelemetryState');
         initialStoreData = {
             enableTelemetry: testCase.enableTelemetry,
@@ -151,10 +148,6 @@ describe('UserConfigurationStoreTest', () => {
             enableHighContrast: false,
             bugService: 'none',
             bugServicePropertiesMap: {},
-        };
-
-        const setTelemetryStateData: SetTelemetryStatePayload = {
-            enableTelemetry: testCase.enableTelemetry,
         };
 
         const expectedState: UserConfigurationStoreData = {
@@ -168,7 +161,7 @@ describe('UserConfigurationStoreTest', () => {
         indexDbStrictMock.setup(i => i.setItem(IndexedDBDataKeys.userConfiguration, It.isValue(expectedState))).verifiable(Times.once());
 
         storeTester
-            .withActionParam(setTelemetryStateData)
+            .withActionParam(testCase.enableTelemetry)
             .withPostListenerMock(indexDbStrictMock)
             .testListenerToBeCalledOnce(cloneDeep(initialStoreData), expectedState);
     });
@@ -176,7 +169,7 @@ describe('UserConfigurationStoreTest', () => {
     test.each([
         { enableTelemetry: false, isFirstTime: false, enableHighContrastMode: true } as SetUserConfigTestCase,
         { enableTelemetry: false, isFirstTime: false, enableHighContrastMode: false } as SetUserConfigTestCase,
-    ])('setHighContrast action: %o', (testCase: SetUserConfigTestCase) => {
+    ])('setHighContrast action: %p', (testCase: SetUserConfigTestCase) => {
         const storeTester = createStoreToTestAction('setHighContrastMode');
         initialStoreData = {
             enableTelemetry: false,
@@ -238,43 +231,8 @@ describe('UserConfigurationStoreTest', () => {
         },
     );
 
-    test.each([
-        { enableTelemetry: false, isFirstTime: false, enableHighContrastMode: false } as SetUserConfigTestCase,
-        { enableTelemetry: false, isFirstTime: false, enableHighContrastMode: false, issueTrackerPath: 'example' } as SetUserConfigTestCase,
-    ])('setIssueTrackerPath action: %o', (testCase: SetUserConfigTestCase) => {
-        const storeTester = createStoreToTestAction('setIssueTrackerPath');
-        initialStoreData = {
-            enableTelemetry: false,
-            isFirstTime: false,
-            enableHighContrast: false,
-            issueTrackerPath: testCase.issueTrackerPath,
-            bugService: 'none',
-            bugServicePropertiesMap: {},
-        };
-
-        const setIssueTrackerPathData: SetIssueTrackerPathPayload = {
-            issueTrackerPath: testCase.issueTrackerPath,
-        };
-
-        const expectedState: UserConfigurationStoreData = {
-            enableTelemetry: false,
-            isFirstTime: false,
-            enableHighContrast: false,
-            issueTrackerPath: testCase.issueTrackerPath,
-            bugService: 'none',
-            bugServicePropertiesMap: {},
-        };
-
-        indexDbStrictMock.setup(i => i.setItem(IndexedDBDataKeys.userConfiguration, It.isValue(expectedState))).verifiable(Times.once());
-
-        storeTester
-            .withActionParam(setIssueTrackerPathData)
-            .withPostListenerMock(indexDbStrictMock)
-            .testListenerToBeCalledOnce(cloneDeep(initialStoreData), expectedState);
-    });
-
     test.each([undefined, null, {}, { 'test-service': {} }, { 'test-service': { 'test-name': 'test-value' } }])(
-        'setIssueFilingServiceProperty with initial map state %o',
+        'setIssueFilingServiceProperty with initial map state %p',
         (initialMapState: IssueFilingServicePropertiesMap) => {
             const storeTester = createStoreToTestAction('setIssueFilingServiceProperty');
             initialStoreData = {

@@ -1,8 +1,14 @@
+# Copyright (c) Microsoft Corporation. All rights reserved.
+# Licensed under the MIT License.
+
 # Output of build/deploy tasks
 /dist/
 /ref/
 /extension/
 /test-results/
 /drop/
+*.scss.d.ts
 # Dependency directories
 node_modules/
+.DS_STORE
+yarn-error.log

@@ -2,16 +2,14 @@
 // Licensed under the MIT License.
 import { IMock, Mock, Times } from 'typemoq';
 
-import { ChromeAdapter } from '../../../../background/browser-adapter';
-import { TargetTabController } from '../../../../background/target-tab-controller';
-import {
-    VisualizationConfiguration,
-    VisualizationConfigurationFactory,
-} from '../../../../common/configs/visualization-configuration-factory';
+import { TargetTabController } from 'background/target-tab-controller';
+import { BrowserAdapter } from '../../../../common/browser-adapters/browser-adapter';
+import { VisualizationConfiguration } from '../../../../common/configs/visualization-configuration';
+import { VisualizationConfigurationFactory } from '../../../../common/configs/visualization-configuration-factory';
 import { VisualizationType } from '../../../../common/types/visualization-type';
 
 describe('TargetTabControllerTest', () => {
-    let browserAdapterMock: IMock<ChromeAdapter>;
+    let browserAdapterMock: IMock<BrowserAdapter>;
     let configurationFactoryMock: IMock<VisualizationConfigurationFactory>;
     let testSubject: TargetTabController;
     let configStub: VisualizationConfiguration;
@@ -21,7 +19,7 @@ describe('TargetTabControllerTest', () => {
     let step: string;
 
     beforeEach(() => {
-        browserAdapterMock = Mock.ofType(ChromeAdapter);
+        browserAdapterMock = Mock.ofType<BrowserAdapter>();
         getSwitchToTargetTabCallbackMock = Mock.ofInstance(() => null);
         configurationFactoryMock = Mock.ofType(VisualizationConfigurationFactory);
         configStub = {

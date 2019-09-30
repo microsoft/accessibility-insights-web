@@ -1,55 +1,49 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as _ from 'lodash';
-import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
-import { InspectActionCreator } from '../../../../../background/actions/inspect-action-creator';
-import { InspectActions, InspectPayload } from '../../../../../background/actions/inspect-actions';
-import { BrowserAdapter, ChromeAdapter } from '../../../../../background/browser-adapter';
-import { InspectMode } from '../../../../../background/inspect-modes';
-import { TelemetryEventHandler } from '../../../../../background/telemetry/telemetry-event-handler';
-import { Action } from '../../../../../common/flux/action';
-import { RegisterTypeToPayloadCallback } from '../../../../../common/message';
-import { Messages } from '../../../../../common/messages';
-import * as TelemetryEvents from '../../../../../common/telemetry-events';
+import { InspectActionCreator } from 'background/actions/inspect-action-creator';
+import { InspectActions, InspectPayload } from 'background/actions/inspect-actions';
+import { InspectMode } from 'background/inspect-modes';
+import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
+import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
+import * as TelemetryEvents from 'common/extension-telemetry-events';
+import { getStoreStateMessage, Messages } from 'common/messages';
+import { StoreNames } from 'common/stores/store-names';
+import { IMock, Mock, MockBehavior, Times } from 'typemoq';
 
-describe('InspectActionCreatorTest', () => {
-    const tabId: number = -1;
-    let inspectActionsMock: IMock<InspectActions>;
+import { createActionMock, createInterpreterMock } from '../global-action-creators/action-creator-test-helpers';
+
+describe('InspectActionCreator', () => {
     let telemetryEventHandlerMock: IMock<TelemetryEventHandler>;
-    let registerTypeToPayloadCallbackMock: IMock<RegisterTypeToPayloadCallback>;
     let browserAdapterMock: IMock<BrowserAdapter>;
 
-    let testObject: InspectActionCreator;
-
-    beforeAll(() => {
-        inspectActionsMock = Mock.ofType(InspectActions, MockBehavior.Strict);
+    beforeEach(() => {
         telemetryEventHandlerMock = Mock.ofType(TelemetryEventHandler, MockBehavior.Strict);
-        browserAdapterMock = Mock.ofType(ChromeAdapter, MockBehavior.Strict);
-        registerTypeToPayloadCallbackMock = Mock.ofInstance((_type, _callback) => {});
-
-        testObject = new InspectActionCreator(
-            inspectActionsMock.object,
-            telemetryEventHandlerMock.object,
-            browserAdapterMock.object,
-            registerTypeToPayloadCallbackMock.object,
-        );
+        browserAdapterMock = Mock.ofType<BrowserAdapter>(undefined, MockBehavior.Strict);
     });
 
-    test('onGetInspectCurrentState', () => {
+    it('handles GetState message', () => {
         const getCurrentStateMock = createActionMock(null);
+        const actionsMock = createActionsMock('getCurrentState', getCurrentStateMock.object);
+        const interpreterMock = createInterpreterMock(getStoreStateMessage(StoreNames.InspectStore), null);
 
-        setupInspectActionMock('getCurrentState', getCurrentStateMock);
+        const testSubject = new InspectActionCreator(
+            interpreterMock.object,
+            actionsMock.object,
+            telemetryEventHandlerMock.object,
+            browserAdapterMock.object,
+        );
 
-        setupRegisterTypeToPayloadCallbackMock(Messages.Inspect.GetCurrentState, null, tabId);
+        testSubject.registerCallbacks();
 
-        testObject.registerCallbacks();
         getCurrentStateMock.verifyAll();
     });
 
-    test('onChangeInspectMode', () => {
+    it('handles ChangeInspectMode message', () => {
         const payload: InspectPayload = {
             inspectMode: InspectMode.scopingAddInclude,
         };
+
+        const tabId: number = -1;
 
         telemetryEventHandlerMock
             .setup(publisher => publisher.publishTelemetry(TelemetryEvents.CHANGE_INSPECT_MODE, payload))
@@ -58,29 +52,27 @@ describe('InspectActionCreatorTest', () => {
         browserAdapterMock.setup(ba => ba.switchToTab(tabId)).verifiable(Times.once());
 
         const changeInspectModeMock = createActionMock(payload);
+        const actionsMock = createActionsMock('changeInspectMode', changeInspectModeMock.object);
+        const interpreterMock = createInterpreterMock(Messages.Inspect.ChangeInspectMode, payload, tabId);
 
-        setupInspectActionMock('changeInspectMode', changeInspectModeMock);
+        const testSubject = new InspectActionCreator(
+            interpreterMock.object,
+            actionsMock.object,
+            telemetryEventHandlerMock.object,
+            browserAdapterMock.object,
+        );
 
-        setupRegisterTypeToPayloadCallbackMock(Messages.Inspect.ChangeInspectMode, payload, tabId);
+        testSubject.registerCallbacks();
 
-        testObject.registerCallbacks();
         changeInspectModeMock.verifyAll();
     });
 
-    function createActionMock<TPayload>(actionPayload: TPayload): IMock<Action<TPayload>> {
-        const getCurrentStateMock = Mock.ofType<Action<TPayload>>(Action, MockBehavior.Strict);
-        getCurrentStateMock.setup(action => action.invoke(actionPayload)).verifiable(Times.once());
-
-        return getCurrentStateMock;
-    }
-
-    function setupInspectActionMock(actionName: keyof InspectActions, actionMock: IMock<Action<any>>): void {
-        inspectActionsMock.setup(actions => actions[actionName]).returns(() => actionMock.object);
-    }
-
-    function setupRegisterTypeToPayloadCallbackMock(message: string, payload: any, _tabId: number): void {
-        registerTypeToPayloadCallbackMock
-            .setup(registrar => registrar(message, It.is(_.isFunction)))
-            .callback((_message, listener) => listener(payload, _tabId));
+    function createActionsMock<ActionName extends keyof InspectActions>(
+        actionName: ActionName,
+        action: InspectActions[ActionName],
+    ): IMock<InspectActions> {
+        const actionsMock = Mock.ofType<InspectActions>();
+        actionsMock.setup(actions => actions[actionName]).returns(() => action);
+        return actionsMock;
     }
 });

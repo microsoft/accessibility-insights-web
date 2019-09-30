@@ -1,7 +1,7 @@
 {
     "rules": {
         "arrow-parens": [true, "ban-single-arg-parens"],
-        "await-promise": true,
+        "await-promise": [true, "PromiseLike"],
         "class-name": true,
         "comment-format": [
             true,
@@ -59,6 +59,7 @@
         "no-trailing-whitespace": true,
         "no-unused-expression": true,
         "no-unused-variable": true,
+        "no-useless-files": true,
         "no-var-keyword": true,
         "no-var-requires": true,
         "one-line": [true, "check-open-brace", "check-whitespace"],
@@ -72,6 +73,14 @@
         ],
         "quotemark": [true, "single", "avoid-escape", "jsx-double"],
         "radix": true,
+        "react-a11y-aria-unsupported-elements": true,
+        "react-a11y-img-has-alt": true,
+        "react-a11y-input-elements": true,
+        "react-a11y-lang": true,
+        "react-a11y-props": true,
+        "react-a11y-role": true,
+        "react-a11y-role-has-required-aria-props": true,
+        "react-a11y-role-supports-aria-props": true,
         "semicolon": [true, "always", "ignore-bound-class-methods"],
         "switch-default": true,
         "trailing-comma": [
@@ -102,14 +111,7 @@
         ],
         "use-isnan": true,
         "use-strict": [false, "check-module", "check-function"],
-        "variable-name": [
-            true,
-            "ban-keywords",
-            "check-format",
-            "allow-leading-underscore",
-            "allow-trailing-underscore",
-            "allow-pascal-case"
-        ],
+        "variable-name": [true, "ban-keywords", "check-format", "allow-trailing-underscore", "allow-pascal-case"],
         "whitespace": [true, "check-branch", "check-decl", "check-operator", "check-separator", "check-type", "check-type-operator"]
     },
     "rulesDirectory": ["tslint-microsoft-contrib"]

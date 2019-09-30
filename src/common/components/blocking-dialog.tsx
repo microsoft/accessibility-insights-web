@@ -3,11 +3,11 @@
 import { Dialog, IDialogProps } from 'office-ui-fabric-react/lib/Dialog';
 import * as React from 'react';
 
-import { NamedSFC } from '../react/named-sfc';
+import { NamedFC } from '../react/named-fc';
 
 export type BlockingDialogProps = IDialogProps;
 
-export const BlockingDialog = NamedSFC<BlockingDialogProps>('BlockingDialog', props => {
+export const BlockingDialog = NamedFC<BlockingDialogProps>('BlockingDialog', props => {
     return (
         // As of writing, NVDA has an issue where it doesn't announce new elements with role=alertdialog,
         // which Office Fabric applies implicitly whenever isBlocking: true is set. As a workaround, our

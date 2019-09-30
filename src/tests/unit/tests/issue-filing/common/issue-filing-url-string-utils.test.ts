@@ -13,7 +13,16 @@ describe('IssueFilingUrlStringUtilsTest', () => {
             pageUrl: 'pageUrl',
             ruleResult: {
                 failureSummary: 'RR-failureSummary',
-                guidanceLinks: [{ text: 'WCAG-1.4.1' }, { text: 'wcag-2.8.2' }],
+                guidanceLinks: [
+                    {
+                        text: 'WCAG-1.4.1',
+                        tags: [
+                            { id: 'some-id', displayText: 'some displayText' },
+                            { id: 'some-other-id', displayText: 'some other displayText' },
+                        ],
+                    },
+                    { text: 'wcag-2.8.2' },
+                ],
                 help: 'RR-help',
                 html: 'RR-html',
                 ruleId: 'RR-rule-id',
@@ -31,17 +40,26 @@ describe('IssueFilingUrlStringUtilsTest', () => {
 
         test('without tags', () => {
             sampleIssueDetailsData.ruleResult.guidanceLinks = [];
+
             expect(IssueFilingUrlStringUtils.getTitle(sampleIssueDetailsData)).toMatchSnapshot();
         });
     });
 
-    test('getSelectorLastPart', () => {
-        expect(IssueFilingUrlStringUtils.getSelectorLastPart('hello world')).toEqual('hello world');
-        expect(IssueFilingUrlStringUtils.getSelectorLastPart('hello > world')).toEqual('world');
+    describe('getSelectorLastPart', () => {
+        const testCases = [
+            ['hello world', 'hello world'],
+            ['hello > world', 'world'],
+            ['iframe[name="image-text"];html', 'html'],
+            ['iframe[name="image-text"];a > img:nth-child(2)', 'img:nth-child(2)'],
+        ];
+
+        it.each(testCases)('find the selector last part for "%s"', (input, expected) => {
+            expect(IssueFilingUrlStringUtils.getSelectorLastPart(input)).toEqual(expected);
+        });
     });
 
     test('standardizeTags', () => {
-        const expected = ['WCAG-1.4.1', 'WCAG-2.8.2'];
+        const expected = ['WCAG-1.4.1', 'WCAG-2.8.2', 'some displayText', 'some other displayText'];
         expect(IssueFilingUrlStringUtils.standardizeTags(sampleIssueDetailsData)).toEqual(expected);
     });
 });

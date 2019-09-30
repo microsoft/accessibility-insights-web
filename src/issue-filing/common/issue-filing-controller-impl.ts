@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { BrowserAdapter } from '../../background/browser-adapter';
 import { BaseStore } from '../../common/base-store';
+import { BrowserAdapter } from '../../common/browser-adapters/browser-adapter';
 import { EnvironmentInfo } from '../../common/environment-info-provider';
 import { CreateIssueDetailsTextData } from '../../common/types/create-issue-details-text-data';
-import { IssueFilingServiceProperties, UserConfigurationStoreData } from '../../common/types/store-data/user-configuration-store';
+import { UserConfigurationStoreData } from '../../common/types/store-data/user-configuration-store';
 import { IssueFilingServiceProvider } from '../issue-filing-service-provider';
 
 export type IssueFilingController = {
@@ -23,11 +23,6 @@ export class IssueFilingControllerImpl implements IssueFilingController {
         const service = this.provider.forKey(serviceKey);
         const userConfigurationStoreData = this.userConfigurationStore.getState();
 
-        const serviceConfig: IssueFilingServiceProperties = service.getSettingsFromStoreData(
-            userConfigurationStoreData.bugServicePropertiesMap,
-        );
-
-        const url = service.issueFilingUrlProvider(serviceConfig, issueData, this.environmentInfo);
-        this.browserAdapter.createTab(url);
+        service.fileIssue(this.browserAdapter, userConfigurationStoreData.bugServicePropertiesMap, issueData, this.environmentInfo);
     };
 }

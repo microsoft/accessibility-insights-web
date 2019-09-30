@@ -6,16 +6,13 @@ import {
     SetHighContrastModePayload,
     SetIssueFilingServicePayload,
     SetIssueFilingServicePropertyPayload,
-    SetIssueTrackerPathPayload,
-    SetTelemetryStatePayload,
 } from './action-payloads';
 
 export class UserConfigurationActions {
-    public readonly setTelemetryState = new Action<SetTelemetryStatePayload>();
+    public readonly setTelemetryState = new Action<boolean>();
     public readonly getCurrentState = new Action<void>();
     public readonly setHighContrastMode = new Action<SetHighContrastModePayload>();
     public readonly setIssueFilingService = new Action<SetIssueFilingServicePayload>();
     public readonly setIssueFilingServiceProperty = new Action<SetIssueFilingServicePropertyPayload>();
-    public readonly setIssueTrackerPath = new Action<SetIssueTrackerPathPayload>();
     public readonly saveIssueFilingSettings = new Action<SaveIssueFilingSettingsPayload>();
 }

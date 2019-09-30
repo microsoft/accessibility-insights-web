@@ -1,0 +1,27 @@
+# Copyright (c) Microsoft Corporation. All rights reserved.
+# Licensed under the MIT License.
+trigger:
+    - build-reliability/*
+pr:
+    paths:
+        include:
+            - Gruntfile.js
+            - targets.config.js
+            - tsconfig.json
+            - webpack.config.js
+
+jobs:
+    - template: ./build-all-job-per-environment.yaml
+      parameters: { jobNameSuffix: _1 }
+
+    - template: ./build-all-job-per-environment.yaml
+      parameters: { jobNameSuffix: _2 }
+
+    - template: ./build-all-job-per-environment.yaml
+      parameters: { jobNameSuffix: _3 }
+
+    - template: ./build-all-job-per-environment.yaml
+      parameters: { jobNameSuffix: _4 }
+
+    - template: ./build-all-job-per-environment.yaml
+      parameters: { jobNameSuffix: _5 }

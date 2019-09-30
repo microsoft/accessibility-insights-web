@@ -1,11 +1,14 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { isFunction } from 'lodash';
-import { It, Mock } from 'typemoq';
-import { ChromeAdapter } from '../../../../background/browser-adapter';
+import { IMock, It, Mock } from 'typemoq';
+
+import { BrowserAdapter } from '../../../../common/browser-adapters/browser-adapter';
 import { UrlValidator } from '../../../../common/url-validator';
 
 describe('UrlValidatorTest', () => {
+    let browserAdapterMock: IMock<BrowserAdapter>;
+
     let testSubject: UrlValidator;
 
     const supportedUrlCases = [
@@ -21,16 +24,19 @@ describe('UrlValidatorTest', () => {
         ['oops_http://example.com', false],
     ];
 
+    beforeEach(() => {
+        browserAdapterMock = Mock.ofType<BrowserAdapter>();
+
+        testSubject = new UrlValidator(browserAdapterMock.object);
+    });
+
     test.each(supportedUrlCases)('isSupportedUrl: %s should be %s', async (url: string, expected: boolean) => {
-        testSubject = new UrlValidator();
-        const isSupported = await testSubject.isSupportedUrl(url, It.isAny());
+        const isSupported = await testSubject.isSupportedUrl(url);
         expect(isSupported).toBe(expected);
     });
 
     test('isSupportedUrl: file', async () => {
         const url: string = 'file://test';
-        testSubject = new UrlValidator();
-        const browserAdapterMock = Mock.ofType(ChromeAdapter);
         browserAdapterMock
             .setup(b => b.isAllowedFileSchemeAccess(It.is(isFunction)))
             .callback(callback => {
@@ -38,7 +44,7 @@ describe('UrlValidatorTest', () => {
             })
             .verifiable();
 
-        const isSupported = await testSubject.isSupportedUrl(url, browserAdapterMock.object);
+        const isSupported = await testSubject.isSupportedUrl(url);
         expect(isSupported).toBe(true);
 
         browserAdapterMock.verifyAll();
@@ -46,8 +52,6 @@ describe('UrlValidatorTest', () => {
 
     test('isFileUrl, but have no access, so isNotSupportedUrl', async () => {
         const url: string = 'file://yes/I/am!';
-        testSubject = new UrlValidator();
-        const browserAdapterMock = Mock.ofType(ChromeAdapter);
         browserAdapterMock
             .setup(b => b.isAllowedFileSchemeAccess(It.is(isFunction)))
             .callback(callback => {
@@ -55,7 +59,7 @@ describe('UrlValidatorTest', () => {
             })
             .verifiable();
 
-        const isSupported = await testSubject.isSupportedUrl(url, browserAdapterMock.object);
+        const isSupported = await testSubject.isSupportedUrl(url);
         expect(isSupported).toBe(false);
 
         browserAdapterMock.verifyAll();

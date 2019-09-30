@@ -1,12 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { BaseStore } from '../../../common/base-store';
+import { BrowserAdapter } from '../../../common/browser-adapters/browser-adapter';
+import { StorageAdapter } from '../../../common/browser-adapters/storage-adapter';
 import { IndexedDBAPI } from '../../../common/indexedDB/indexedDB';
 import { StoreType } from '../../../common/types/store-type';
 import { generateUID } from '../../../common/uid-generator';
 import { GlobalActionHub } from '../../actions/global-action-hub';
-import { BrowserAdapter } from '../../browser-adapter';
-import { StorageAdapter } from '../../browser-adapters/storage-adapter';
 import { PersistedData } from '../../get-persisted-data';
 import { LocalStorageData } from '../../storage-data';
 import { TelemetryEventHandler } from '../../telemetry/telemetry-event-handler';

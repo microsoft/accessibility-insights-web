@@ -1,15 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { Mock, Times } from 'typemoq';
-
 import {
     SaveIssueFilingSettingsPayload,
     SetHighContrastModePayload,
     SetIssueFilingServicePayload,
     SetIssueFilingServicePropertyPayload,
-    SetIssueTrackerPathPayload,
     SetTelemetryStatePayload,
-} from '../../../../../background/actions/action-payloads';
+} from 'background/actions/action-payloads';
+import { Mock, Times } from 'typemoq';
 import { Message } from '../../../../../common/message';
 import { ActionMessageDispatcher } from '../../../../../common/message-creators/action-message-dispatcher';
 import { UserConfigMessageCreator } from '../../../../../common/message-creators/user-config-message-creator';
@@ -51,21 +49,6 @@ describe('UserConfigMessageCreator', () => {
         };
 
         testSubject.setHighContrastMode(enableHighContrast);
-
-        dispatcherMock.verify(dispatcher => dispatcher.dispatchMessage(expectedMessage), Times.once());
-    });
-
-    it('dispatches message for setIssueTrackerPath', () => {
-        const issueTrackerPath = 'example';
-        const payload: SetIssueTrackerPathPayload = {
-            issueTrackerPath,
-        };
-        const expectedMessage: Message = {
-            messageType: Messages.UserConfig.SetIssueTrackerPath,
-            payload,
-        };
-
-        testSubject.setIssueTrackerPath(issueTrackerPath);
 
         dispatcherMock.verify(dispatcher => dispatcher.dispatchMessage(expectedMessage), Times.once());
     });

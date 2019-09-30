@@ -1,12 +1,14 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { getRTL } from '@uifabric/utilities';
-import { ClientBrowserAdapter } from '../../common/client-browser-adapter';
+
+import { BrowserAdapter } from '../../common/browser-adapters/browser-adapter';
 import { HTMLElementUtils } from '../../common/html-element-utils';
 import { TabbableElementsHelper } from '../../common/tabbable-elements-helper';
 import { DeepPartial } from '../../common/types/deep-partial';
 import { WindowUtils } from '../../common/window-utils';
 import { ClientUtils } from '../client-utils';
+import { DetailsDialogHandler } from '../details-dialog-handler';
 import { FrameCommunicator } from '../frameCommunicators/frame-communicator';
 import { ShadowUtils } from '../shadow-utils';
 import { CenterPositionCalculator } from './center-position-calculator';
@@ -20,10 +22,11 @@ import { HighlightBoxDrawer } from './highlight-box-drawer';
 import { HighlightBoxFormatter } from './highlight-box-formatter';
 import { IssuesFormatter } from './issues-formatter';
 import { LandmarkFormatter } from './landmark-formatter';
+import { NonTextComponentFormatter } from './non-text-component-formatter';
 import { NullDrawer } from './null-drawer';
 import { SingleTargetDrawer } from './single-target-drawer';
 import { SingleTargetFormatter } from './single-target-formatter';
-import { SVGDrawerV2 } from './svg-drawer-v2';
+import { SVGDrawer } from './svg-drawer';
 import { SVGShapeFactory } from './svg-shape-factory';
 import { SVGSolidShadowFilterFactory } from './svg-solid-shadow-filter-factory';
 import { TabStopsFormatter } from './tab-stops-formatter';
@@ -39,8 +42,9 @@ export class DrawerProvider {
         private readonly clientUtils: ClientUtils,
         private readonly dom: Document,
         private readonly frameCommunicator: FrameCommunicator,
-        private readonly clientBrowserAdapter: ClientBrowserAdapter,
+        private readonly browserAdapter: BrowserAdapter,
         private readonly getRTLFunc: typeof getRTL,
+        private readonly detailsDialogHandler: DetailsDialogHandler,
     ) {}
 
     public createNullDrawer(): Drawer {
@@ -60,7 +64,7 @@ export class DrawerProvider {
             this.clientUtils,
         );
         const containerClass = 'insights-tab-stops';
-        return new SVGDrawerV2(
+        return new SVGDrawer(
             this.dom,
             containerClass,
             this.windowUtils,
@@ -94,8 +98,9 @@ export class DrawerProvider {
             this.htmlElementUtils,
             this.windowUtils,
             this.shadowUtils,
-            this.clientBrowserAdapter,
+            this.browserAdapter,
             this.getRTLFunc,
+            this.detailsDialogHandler,
         );
         return this.createDrawer('insights-issues', formatter);
     }
@@ -108,6 +113,11 @@ export class DrawerProvider {
     public createCustomWidgetsDrawer(): Drawer {
         const formatter = new CustomWidgetsFormatter();
         return this.createDrawer('insights-custom-widgets', formatter);
+    }
+
+    public createNonTextComponentDrawer(): Drawer {
+        const formatter = new NonTextComponentFormatter();
+        return this.createDrawer('non-text-component', formatter);
     }
 
     private createDrawer(containerClass: string, formatter: Formatter): Drawer {

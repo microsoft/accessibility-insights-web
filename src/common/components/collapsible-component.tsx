@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { autobind, css } from '@uifabric/utilities';
+import { css } from '@uifabric/utilities';
 import { ActionButton } from 'office-ui-fabric-react/lib/Button';
 import * as React from 'react';
 
@@ -24,11 +24,10 @@ export class CollapsibleComponent extends React.Component<CollapsibleComponentPr
         this.state = { showContent: true };
     }
 
-    @autobind
-    private onClick(): void {
+    private onClick = (): void => {
         const newState = !this.state.showContent;
         this.setState({ showContent: newState });
-    }
+    };
 
     public render(): JSX.Element {
         const showContent = this.state.showContent;

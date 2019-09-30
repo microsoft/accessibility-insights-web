@@ -100,7 +100,7 @@ exports[`ContentPage .Markup <Inline> renders 1`] = `
 
 exports[`ContentPage .Markup <LandmarkLegend> renders 1`] = `
 <span
-  className="landmarks-legend test-landmark"
+  className="landmarks-legend main-landmark"
 >
   TEST
 </span>

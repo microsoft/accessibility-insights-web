@@ -2,16 +2,14 @@
 // Licensed under the MIT License.
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
-import { ChromeAdapter } from '../../../../background/browser-adapter';
-import {
-    VisualizationConfiguration,
-    VisualizationConfigurationFactory,
-} from '../../../../common/configs/visualization-configuration-factory';
+import { BrowserAdapter } from '../../../../common/browser-adapters/browser-adapter';
+import { VisualizationConfiguration } from '../../../../common/configs/visualization-configuration';
+import { VisualizationConfigurationFactory } from '../../../../common/configs/visualization-configuration-factory';
 import { NotificationCreator } from '../../../../common/notification-creator';
 import { VisualizationType } from '../../../../common/types/visualization-type';
 
 describe('NotificationCreator', () => {
-    let browserAdapterMock: IMock<ChromeAdapter>;
+    let browserAdapterMock: IMock<BrowserAdapter>;
     let configFactoryMock: IMock<VisualizationConfigurationFactory>;
     let getNotificationMessageMock: IMock<(selectorMap, key) => string>;
     let testObject: NotificationCreator;
@@ -19,7 +17,7 @@ describe('NotificationCreator', () => {
     const visualizationType: VisualizationType = -1;
 
     beforeEach(() => {
-        browserAdapterMock = Mock.ofType(ChromeAdapter, MockBehavior.Strict);
+        browserAdapterMock = Mock.ofType<BrowserAdapter>(undefined, MockBehavior.Strict);
         configFactoryMock = Mock.ofType(VisualizationConfigurationFactory, MockBehavior.Strict);
         getNotificationMessageMock = Mock.ofInstance(selector => null);
         testObject = new NotificationCreator(browserAdapterMock.object, configFactoryMock.object);
@@ -44,6 +42,7 @@ describe('NotificationCreator', () => {
             .setup(x => x.createNotification(It.isAny()))
             .returns(message => {
                 const expectedMessage = {
+                    type: 'basic',
                     message: notificationMessage,
                     title: 'testname',
                     iconUrl: '../iconUrl',
@@ -70,6 +69,7 @@ describe('NotificationCreator', () => {
             .setup(x => x.createNotification(It.isAny()))
             .returns(message => {
                 const expectedMessage = {
+                    type: 'basic',
                     message: notificationMessage,
                     title: 'testname',
                     iconUrl: '../iconUrl',

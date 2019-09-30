@@ -1,0 +1,144 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AssessmentSummaryDetails render Correct composition 1`] = `
+<div
+  className="assessment-summary-details"
+  role="table"
+>
+  <div
+    className="assessment-summary-details-body"
+    role="rowgroup"
+  >
+    <div
+      className="assessment-summary-details-row"
+      role="row"
+    >
+      <div
+        className="test-summary"
+      >
+        <div
+          className="test-summary-display-name"
+          role="cell"
+        >
+          Assessment1
+        </div>
+        <div
+          className="test-summary-status"
+          role="cell"
+        >
+          <OutcomeIconSet
+            displayName="Assessment1"
+            fail={2}
+            incomplete={1}
+            pass={1}
+          />
+        </div>
+      </div>
+    </div>
+    <div
+      className="assessment-summary-details-row"
+      role="row"
+    >
+      <div
+        className="test-summary"
+      >
+        <div
+          className="test-summary-display-name"
+          role="cell"
+        >
+          Assessment2
+        </div>
+        <div
+          className="test-summary-status"
+          role="cell"
+        >
+          <OutcomeIconSet
+            displayName="Assessment2"
+            fail={1}
+            incomplete={1}
+            pass={0}
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`AssessmentSummaryDetails render Renders an OutcomeChipSet for 8 items 1`] = `
+<div
+  className="assessment-summary-details"
+  role="table"
+>
+  <div
+    className="assessment-summary-details-body"
+    role="rowgroup"
+  >
+    <div
+      className="assessment-summary-details-row"
+      role="row"
+    >
+      <div
+        className="test-summary"
+      >
+        <div
+          className="test-summary-display-name"
+          role="cell"
+        >
+          test
+        </div>
+        <div
+          className="test-summary-status"
+          role="cell"
+        >
+          <OutcomeChipSet
+            displayName="test"
+            fail={0}
+            incomplete={8}
+            pass={0}
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`AssessmentSummaryDetails render Renders an OutcomeIconSet for 7 items 1`] = `
+<div
+  className="assessment-summary-details"
+  role="table"
+>
+  <div
+    className="assessment-summary-details-body"
+    role="rowgroup"
+  >
+    <div
+      className="assessment-summary-details-row"
+      role="row"
+    >
+      <div
+        className="test-summary"
+      >
+        <div
+          className="test-summary-display-name"
+          role="cell"
+        >
+          test
+        </div>
+        <div
+          className="test-summary-status"
+          role="cell"
+        >
+          <OutcomeIconSet
+            displayName="test"
+            fail={0}
+            incomplete={7}
+            pass={0}
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

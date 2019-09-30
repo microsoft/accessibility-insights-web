@@ -22,14 +22,14 @@
     --disabled-text-invert: rgba(255, 255, 255, 0.32);
 
     // UI colors
-    --communication-primary: #0078d4;
+    --communication-primary: #106ebe;
     --communication-tint-40: #eff6fc;
     --communication-tint-30: #deecf9;
     --communication-tint-20: #c7e0f4;
     --communication-tint-10: #2b88d8;
-    --communication-shade-10: #106ebe;
-    --communication-shade-20: #005a9e;
-    --communication-shade-30: #004578;
+    --communication-shade-10: #005a9e;
+    --communication-shade-20: #004578;
+    --communication-shade-30: #003358;
     // Base
     --neutral-0: var(--white);
     --neutral-100: var(--black);
@@ -55,8 +55,9 @@
     --neutral-alpha-60: rgba(0, 0, 0, 0.6);
     --neutral-alpha-70: rgba(0, 0, 0, 0.7);
     --neutral-alpha-80: rgba(0, 0, 0, 0.8);
+    --neutral-alpha-90: rgba(0, 0, 0, 0.9);
     // Outcome colors
-    --positive-outcome: #107c10;
+    --positive-outcome: #228722;
     --negative-outcome: #e81123;
     --neutral-outcome: var(--neutral-60);
     --incomplete-color: var(--neutral-60);
@@ -64,20 +65,22 @@
     --accent2-dark: rgb(16, 124, 16);
     --communication-alpha-5: rgba(0, 120, 212, 0.05);
     --overview-percent-selected: var(--neutral-55);
-    --index-circle-background: var(--communication-shade-10);
+    --index-circle-background: var(--communication-primary);
     --check-box-border: var(--neutral-30);
     --check-box-tick: var(--neutral-100);
     --check-box-background: var(--neutral-8);
     --row-selected-background: var(--communication-tint-40);
     --group-selected-background: var(--communication-tint-40);
     --row-hover-background: var(--neutral-4);
-    --link: var(--communication-shade-10);
-    --link-hover: var(--communication-shade-30);
+    --link: var(--communication-primary);
+    --link-hover: var(--communication-shade-20);
     --switcher-border: var(--ada-brand-variant);
     --switcher-focus-border: var(--neutral-0);
     --help-links-section-background: var(--neutral-4);
     --help-links-section-border: var(--neutral-4);
     --highlighted-text: var(--black);
+    --pill: var(--primary-text);
+    --pill-background: var(--neutral-alpha-8);
     --spinner-text: var(--communication-primary);
 
     // Landmark colors
@@ -106,6 +109,7 @@
         --neutral-80: var(--white);
         --neutral-100: var(--white);
         --neutral-alpha-8: var(--white);
+        --neutral-alpha-90: var(--white);
         --secondary-text: var(--white);
         --primary-text: var(--white);
 
@@ -137,6 +141,8 @@
         --help-links-section-background: transparent;
         --help-links-section-border: var(--white);
         --highlighted-text: var(--black);
+        --pill: var(--black);
+        --pill-background: var(--white);
         --spinner-text: var(--communication-tint-40);
     }
 }
@@ -175,6 +181,7 @@ $neutral-55: var(--neutral-55);
 $neutral-60: var(--neutral-60);
 $neutral-70: var(--neutral-70);
 $neutral-80: var(--neutral-80);
+$neutral-90: var(--neutral-90);
 $neutral-alpha-2: var(--neutral-alpha-2);
 $neutral-alpha-4: var(--neutral-alpha-4);
 $neutral-alpha-6: var(--neutral-alpha-6);
@@ -218,6 +225,8 @@ $switcher-focus-border: var(--switcher-focus-border);
 $help-links-section-background: var(--help-links-section-background);
 $help-links-section-border: var(--help-links-section-border);
 $highlighted-text: var(--highlighted-text);
+$pill: var(--pill);
+$pill-background: var(--pill-background);
 $spinner-text: var(--spinner-text);
 
 // consistent colors

@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { Mock, Times } from 'typemoq';
 
-import { TelemetryEventSource } from '../../../../common/telemetry-events';
+import { TelemetryEventSource } from '../../../../common/extension-telemetry-events';
 import { DetailsViewPivotType } from '../../../../common/types/details-view-pivot-type';
 import { VisualizationType } from '../../../../common/types/visualization-type';
 import { PopupActionMessageCreator } from '../../../../popup/actions/popup-action-message-creator';

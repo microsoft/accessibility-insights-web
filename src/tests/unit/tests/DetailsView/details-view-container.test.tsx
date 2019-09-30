@@ -4,13 +4,15 @@ import { shallow } from 'enzyme';
 import { ISelection, Selection } from 'office-ui-fabric-react/lib/DetailsList';
 import * as React from 'react';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
-
+import { UnifiedStatusResults } from '../../../../common/components/cards/failed-instances-section';
 import { DropdownClickHandler } from '../../../../common/dropdown-click-handler';
 import { StoreActionMessageCreator } from '../../../../common/message-creators/store-action-message-creator';
 import { StoreActionMessageCreatorImpl } from '../../../../common/message-creators/store-action-message-creator-impl';
+import { GetUnifiedRuleResultsDelegate } from '../../../../common/rule-based-view-model-provider';
 import { BaseClientStoresHub } from '../../../../common/stores/base-client-stores-hub';
 import { DetailsViewPivotType } from '../../../../common/types/details-view-pivot-type';
 import { TabStoreData } from '../../../../common/types/store-data/tab-store-data';
+import { UnifiedResult, UnifiedRule, UnifiedScanResultStoreData } from '../../../../common/types/store-data/unified-data-interface';
 import { UserConfigurationStoreData } from '../../../../common/types/store-data/user-configuration-store';
 import { VisualizationType } from '../../../../common/types/visualization-type';
 import { DetailsViewActionMessageCreator } from '../../../../DetailsView/actions/details-view-action-message-creator';
@@ -37,7 +39,6 @@ import {
 import { DetailsViewMainContent } from '../../../../DetailsView/details-view-main-content';
 import { DetailsViewToggleClickHandlerFactory } from '../../../../DetailsView/handlers/details-view-toggle-click-handler-factory';
 import { PreviewFeatureFlagsHandler } from '../../../../DetailsView/handlers/preview-feature-flags-handler';
-import { GitHubIssueFilingSettings } from '../../../../issue-filing/services/github/github-issue-filing-service';
 import { DetailsViewStoreDataBuilder } from '../../common/details-view-store-data-builder';
 import { TabStoreDataBuilder } from '../../common/tab-store-data-builder';
 import { CreateTestAssessmentProviderWithFeatureFlag } from '../../common/test-assessment-provider';
@@ -50,15 +51,18 @@ describe('DetailsViewContainer', () => {
     let deps: DetailsViewContainerDeps;
     let getDetailsRightPanelConfiguration: IMock<GetDetailsRightPanelConfiguration>;
     let getDetailsSwitcherNavConfiguration: IMock<GetDetailsSwitcherNavConfiguration>;
+    let getUnifiedRuleResultsMock: IMock<GetUnifiedRuleResultsDelegate>;
 
     beforeEach(() => {
         detailsViewActionMessageCreator = Mock.ofType<DetailsViewActionMessageCreator>();
         getDetailsRightPanelConfiguration = Mock.ofInstance((props: GetDetailsRightPanelConfigurationProps) => null, MockBehavior.Strict);
         getDetailsSwitcherNavConfiguration = Mock.ofInstance((props: GetDetailsSwitcherNavConfigurationProps) => null, MockBehavior.Strict);
+        getUnifiedRuleResultsMock = Mock.ofInstance((rules: UnifiedRule[], results: UnifiedResult[]) => null, MockBehavior.Strict);
         deps = {
             detailsViewActionMessageCreator: detailsViewActionMessageCreator.object,
             getDetailsRightPanelConfiguration: getDetailsRightPanelConfiguration.object,
             getDetailsSwitcherNavConfiguration: getDetailsSwitcherNavConfiguration.object,
+            getUnifiedRuleResults: getUnifiedRuleResultsMock.object,
         } as DetailsViewContainerDeps;
     });
 
@@ -149,10 +153,16 @@ describe('DetailsViewContainer', () => {
             setupGetSwitcherNavConfiguration(visualizationStoreData.selectedDetailsViewPivot, switcherNavConfig);
             setupActionMessageCreatorMock(detailsViewActionMessageCreator, visualizationStoreData.selectedDetailsViewPivot, 1);
 
+            const unifiedScanResultStoreData: UnifiedScanResultStoreData = {
+                results: [],
+                rules: [],
+            };
+
             const storeMocks = new StoreMocks()
                 .setVisualizationStoreData(visualizationStoreData)
                 .setTabStoreData(tabStoreData)
-                .setDetailsViewStoreData(detailsViewState);
+                .setDetailsViewStoreData(detailsViewState)
+                .setUnifiedScanResultStoreData(unifiedScanResultStoreData);
 
             const props = new DetailsViewContainerPropsBuilder(deps)
                 .setStoreMocks(storeMocks)
@@ -171,10 +181,16 @@ describe('DetailsViewContainer', () => {
                         It.isObjectWith({
                             assessmentStoreData: state.assessmentStoreData,
                             visualizationStoreData: state.visualizationStoreData,
+                            pathSnippetStoreData: state.pathSnippetStoreData,
                         }),
                     ),
                 )
                 .returns(() => viewType);
+
+            const ruleResults: UnifiedStatusResults = {} as any;
+            getUnifiedRuleResultsMock
+                .setup(m => m(state.unifiedScanResultStoreData.rules, state.unifiedScanResultStoreData.results))
+                .returns(() => ruleResults);
 
             testObject.render();
 
@@ -233,8 +249,10 @@ describe('DetailsViewContainer', () => {
                         featureFlagStoreData: storeMocks.featureFlagStoreData,
                         detailsViewStoreData: storeMocks.detailsViewStoreData,
                         assessmentStoreData: storeMocks.assessmentStoreData,
+                        pathSnippetStoreData: storeMocks.pathSnippetStoreData,
                         scopingPanelStateStoreData: storeMocks.scopingStoreData,
                         userConfigurationStoreData: storeMocks.userConfigurationStoreData,
+                        unifiedScanResultStoreData: storeMocks.unifiedScanResultStoreData,
                     }
                 );
             });
@@ -247,31 +265,31 @@ describe('DetailsViewContainer', () => {
         selectedDetailsView: VisualizationType,
         rightPanelConfiguration: DetailsRightPanelConfiguration,
         switcherNavConfiguration: DetailsViewSwitcherNavConfiguration,
+        ruleResults: UnifiedStatusResults,
     ): JSX.Element {
-        const issueTrackerPath = (storeMocks.userConfigurationStoreData.bugServicePropertiesMap.gitHub as GitHubIssueFilingSettings)
-            .repository;
         return (
             <DetailsViewMainContent
                 deps={deps}
                 tabStoreData={storeMocks.tabStoreData}
                 assessmentStoreData={storeMocks.assessmentStoreData}
+                pathSnippetStoreData={storeMocks.pathSnippetStoreData}
                 featureFlagStoreData={storeMocks.featureFlagStoreData}
                 selectedTest={selectedDetailsView}
                 detailsViewStoreData={storeMocks.detailsViewStoreData}
                 visualizationStoreData={storeMocks.visualizationStoreData}
                 visualizationScanResultData={storeMocks.visualizationScanResultsStoreData}
+                unifiedResults={ruleResults}
                 visualizationConfigurationFactory={props.visualizationConfigurationFactory}
                 assessmentsProvider={props.assessmentsProvider}
                 dropdownClickHandler={props.dropdownClickHandler}
                 clickHandlerFactory={props.clickHandlerFactory}
                 assessmentInstanceTableHandler={props.assessmentInstanceTableHandler}
                 issuesSelection={props.issuesSelection}
-                reportGenerator={props.reportGenerator}
                 issuesTableHandler={props.issuesTableHandler}
-                issueTrackerPath={issueTrackerPath}
                 rightPanelConfiguration={rightPanelConfiguration}
                 switcherNavConfiguration={switcherNavConfiguration}
                 userConfigurationStoreData={storeMocks.userConfigurationStoreData}
+                ruleResultsByStatus={ruleResults}
             />
         );
     }
@@ -333,9 +351,11 @@ describe('DetailsViewContainer', () => {
             featureFlagStoreData: storeMocks.featureFlagStoreData,
             detailsViewStoreData: storeMocks.detailsViewStoreData,
             assessmentStoreData: storeMocks.assessmentStoreData,
+            pathSnippetStoreData: storeMocks.pathSnippetStoreData,
             userConfigurationStoreData: storeMocks.userConfigurationStoreData,
             visualizationScanResultStoreData: storeMocks.visualizationScanResultsStoreData,
             scopingPanelStateStoreData: storeMocks.scopingSelectorsData,
+            unifiedScanResultStoreData: storeMocks.unifiedScanResultStoreData,
             selectedDetailsView: viewType,
             selectedDetailsRightPanelConfiguration: rightPanel,
         };
@@ -381,10 +401,16 @@ describe('DetailsViewContainer', () => {
             bugServicePropertiesMap: { gitHub: { repository: 'gitHub-repository' } },
         };
 
+        const unifiedScanResultStoreData: UnifiedScanResultStoreData = {
+            results: [],
+            rules: [],
+        };
+
         const storeMocks = new StoreMocks()
             .setVisualizationStoreData(visualizationStoreData)
             .setDetailsViewStoreData(detailsViewState)
-            .setUserConfigurationStoreData(userConfigurationStoreData);
+            .setUserConfigurationStoreData(userConfigurationStoreData)
+            .setUnifiedScanResultStoreData(unifiedScanResultStoreData);
 
         const storesHubMock = createStoresHubMock(storeMocks);
 
@@ -408,10 +434,16 @@ describe('DetailsViewContainer', () => {
                     It.isObjectWith({
                         assessmentStoreData: state.assessmentStoreData,
                         visualizationStoreData: state.visualizationStoreData,
+                        pathSnippetStoreData: state.pathSnippetStoreData,
                     }),
                 ),
             )
             .returns(() => viewType);
+
+        const ruleResults: UnifiedStatusResults = {} as any;
+        getUnifiedRuleResultsMock
+            .setup(m => m(state.unifiedScanResultStoreData.rules, state.unifiedScanResultStoreData.results))
+            .returns(() => ruleResults);
 
         const expected: JSX.Element = (
             <div className="table column-layout main-wrapper">
@@ -423,7 +455,7 @@ describe('DetailsViewContainer', () => {
                     tabClosed={storeMocks.tabStoreData.isClosed}
                 />
                 <div className="table column-layout details-view-body">
-                    {buildDetailsViewMainContent(storeMocks, props, viewType, rightContentPanelConfig, switcherNavConfig)}
+                    {buildDetailsViewMainContent(storeMocks, props, viewType, rightContentPanelConfig, switcherNavConfig, ruleResults)}
                 </div>
                 {buildOverlay(storeMocks, props)}
             </div>

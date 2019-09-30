@@ -6,15 +6,15 @@ exports[`RequirementLink renders with index 1`] = `
   className="button-flex-container"
 >
   <div
-    className="ms-Button-label req-description"
+    className="ms-Button-label reqDescription"
   >
     <span
-      className="req-index"
+      className="reqIndex"
     >
       5
     </span>
     <span
-      className="req-name"
+      className="reqName"
     >
       Link with index name
       .
@@ -36,10 +36,10 @@ exports[`RequirementLink renders without index 1`] = `
   className="button-flex-container"
 >
   <div
-    className="ms-Button-label req-description"
+    className="ms-Button-label reqDescription"
   >
     <span
-      className="req-name"
+      className="reqName"
     >
       Link without index name
       .

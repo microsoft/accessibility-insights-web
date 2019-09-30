@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { UpdateInstanceVisibilityPayload } from '../background/actions/action-payloads';
+import { UpdateInstanceVisibilityPayload } from 'background/actions/action-payloads';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
 import { HTMLElementUtils } from '../common/html-element-utils';
 import { Message } from '../common/message';
@@ -12,9 +12,9 @@ import { AssessmentVisualizationInstance } from './frameCommunicators/html-eleme
 
 export class InstanceVisibilityChecker {
     private sendMessage: (message) => void;
-    private _windowUtils: WindowUtils;
-    private _htmlElementUtils: HTMLElementUtils;
-    public static recalculationTimeInterval = 1500;
+    private windowUtils: WindowUtils;
+    private htmlElementUtils: HTMLElementUtils;
+    public static recalculationTimeInterval: number = 1500;
     private identifierToIntervalMap: DictionaryNumberTo<string> = {};
     private configurationFactory: VisualizationConfigurationFactory;
 
@@ -25,8 +25,8 @@ export class InstanceVisibilityChecker {
         configurationFactory: VisualizationConfigurationFactory,
     ) {
         this.sendMessage = sendMessage;
-        this._windowUtils = windowUtils;
-        this._htmlElementUtils = htmlElementUtils;
+        this.windowUtils = windowUtils;
+        this.htmlElementUtils = htmlElementUtils;
         this.configurationFactory = configurationFactory;
     }
 
@@ -42,7 +42,7 @@ export class InstanceVisibilityChecker {
 
         this.clearVisibilityCheck(drawerIdentifier, visualizationType);
         const checkVisibilityFunction = this.generateCheckVisibilityFunction(drawerIdentifier, visualizationType, currentFrameResults);
-        this.identifierToIntervalMap[drawerIdentifier] = this._windowUtils.setInterval(
+        this.identifierToIntervalMap[drawerIdentifier] = this.windowUtils.setInterval(
             checkVisibilityFunction,
             InstanceVisibilityChecker.recalculationTimeInterval,
         );
@@ -51,7 +51,7 @@ export class InstanceVisibilityChecker {
     public clearVisibilityCheck(drawerIdentifier: string, test: VisualizationType): void {
         const intervalId = this.identifierToIntervalMap[drawerIdentifier];
         if (intervalId != null) {
-            this._windowUtils.clearInterval(intervalId);
+            this.windowUtils.clearInterval(intervalId);
             this.identifierToIntervalMap[drawerIdentifier] = null;
         }
     }
@@ -63,7 +63,7 @@ export class InstanceVisibilityChecker {
     ): Function {
         return () => {
             const payloadBatch: UpdateInstanceVisibilityPayload[] = currentFrameResults.map(elementResult => {
-                const element = this._htmlElementUtils.querySelector(elementResult.target[elementResult.targetIndex]) as HTMLElement;
+                const element = this.htmlElementUtils.querySelector(elementResult.target[elementResult.targetIndex]) as HTMLElement;
                 const elementFoundMatchesStoredInstance =
                     this.elementIsVisible(element) && this.identifiersMatch(visualizationType, drawerIdentifier, elementResult, element);
 

@@ -1,0 +1,16 @@
+# Copyright (c) Microsoft Corporation. All rights reserved.
+# Licensed under the MIT License.
+steps:
+    - task: NodeTool@0
+      inputs:
+          versionSpec: '10.16.3'
+      displayName: use node 10.16.3
+
+    - script: npm install -g npm@6.11.1
+      displayName: install npm 6.11.1
+
+    - script: npm install yarn@1.17.3 -g
+      displayName: install yarn as a global dependency
+
+    - script: yarn install --frozen-lockfile
+      displayName: install packages and dependencies

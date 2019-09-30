@@ -8,7 +8,7 @@ import { DrawerUtils } from './drawer-utils';
 import { Formatter } from './formatter';
 
 export abstract class BaseDrawer implements Drawer {
-    protected dom: NodeSelector & Node;
+    protected dom: Document;
     protected formatter: Formatter;
     protected isEnabled = false;
     protected containerClass: string;
@@ -20,10 +20,10 @@ export abstract class BaseDrawer implements Drawer {
     protected containerElement: HTMLElement;
     protected drawerUtils: DrawerUtils;
 
-    private _shadowUtils: ShadowUtils;
+    private shadowUtils: ShadowUtils;
 
     constructor(
-        dom: NodeSelector & Node,
+        dom: Document,
         containerClass: string,
         windowUtils: WindowUtils,
         shadowUtils: ShadowUtils,
@@ -34,7 +34,7 @@ export abstract class BaseDrawer implements Drawer {
         this.containerClass = containerClass;
         this.formatter = formatter;
         this.windowUtils = windowUtils;
-        this._shadowUtils = shadowUtils;
+        this.shadowUtils = shadowUtils;
         this.changeHandlerBind = this.onPositionChangeHandler.bind(this);
         this.drawerUtils = drawerUtils;
     }
@@ -114,6 +114,6 @@ export abstract class BaseDrawer implements Drawer {
     }
 
     private attachContainerToDom(): void {
-        this._shadowUtils.getShadowContainer().appendChild(this.containerElement);
+        this.shadowUtils.getShadowContainer().appendChild(this.containerElement);
     }
 }

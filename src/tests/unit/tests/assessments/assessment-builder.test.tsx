@@ -4,12 +4,12 @@ import * as _ from 'lodash';
 import * as React from 'react';
 import { It, Mock, MockBehavior, Times } from 'typemoq';
 
-import { AssessmentBuilder } from '../../../../assessments/assessment-builder';
-import { AssistedAssessment, ManualAssessment } from '../../../../assessments/types/iassessment';
-import { ReportInstanceField } from '../../../../assessments/types/report-instance-field';
-import { Requirement } from '../../../../assessments/types/requirement';
-import { createInitialAssessmentTestData } from '../../../../background/create-initial-assessment-test-data';
-import { InstanceIdentifierGenerator } from '../../../../background/instance-identifier-generator';
+import { AssessmentBuilder } from 'assessments/assessment-builder';
+import { AssistedAssessment, ManualAssessment } from 'assessments/types/iassessment';
+import { ReportInstanceField } from 'assessments/types/report-instance-field';
+import { Requirement } from 'assessments/types/requirement';
+import { createInitialAssessmentTestData } from 'background/create-initial-assessment-test-data';
+import { InstanceIdentifierGenerator } from 'background/instance-identifier-generator';
 import { RequirementComparer } from '../../../../common/assessment/requirement-comparer';
 import { Messages } from '../../../../common/messages';
 import { TelemetryDataFactory } from '../../../../common/telemetry-data-factory';
@@ -96,15 +96,14 @@ describe('AssessmentBuilderTest', () => {
             expect(nonDefaultManual[assessmentKey]).toEqual(nonDefaultAssessment[assessmentKey]);
         });
 
-        const { comment } = ReportInstanceField.common;
-        expect(requirement.reportInstanceFields).toEqual([comment]);
+        const { comment, manualPath, manualSnippet } = ReportInstanceField.common;
+        expect(requirement.reportInstanceFields).toEqual([comment, manualPath, manualSnippet]);
 
         const config = manual.getVisualizationConfiguration();
         const scanData = { enabled: true, stepStatus: { key: true } } as AssessmentScanData;
         const vizStoreData = { assessments: { manualAssessmentKeyAssessment: scanData } } as any;
         expect(config.getStoreData(vizStoreData)).toEqual(scanData);
 
-        expect(config.analyzerMessageType).toEqual(Messages.Assessment.AssessmentScanCompleted);
         expect(config.getIdentifier(selectedRequirementKey)).toBe(requirement.key);
         expect(config.visualizationInstanceProcessor()).toBe(VisualizationInstanceProcessor.nullProcessor);
         expect(config.getInstanceIdentiferGenerator(selectedRequirementKey)).toBe(getInstanceIdentifierMock.object);
@@ -216,9 +215,7 @@ describe('AssessmentBuilderTest', () => {
             gettingStarted: <span>getting started</span>,
             requirements: [requirement1, requirement2, requirement3, requirement4, requirement5, requirement6],
             storeDataKey: 'headingsAssessment',
-            visualizationConfiguration: {
-                analyzerMessageType: Messages.Assessment.AssessmentScanCompleted,
-            },
+            visualizationConfiguration: {},
             requirementOrder: RequirementComparer.byOutcomeAndName,
         };
 
@@ -234,12 +231,12 @@ describe('AssessmentBuilderTest', () => {
         expect(assisted.requirementOrder).toBe(RequirementComparer.byOutcomeAndName);
         expect(nonDefaultAssisted.requirementOrder).toBe(RequirementComparer.byOutcomeAndName);
 
-        const { comment, snippet, path } = ReportInstanceField.common;
+        const { comment, snippet, path, manualSnippet, manualPath } = ReportInstanceField.common;
         const manualRequirement = [requirement1, requirement2, requirement3, requirement3];
         manualRequirement.forEach(requirement => {
-            expect(requirement.reportInstanceFields).toEqual([comment]);
+            expect(requirement.reportInstanceFields).toEqual([comment, manualPath, manualSnippet]);
         });
-        expect(requirement4.reportInstanceFields).toEqual([comment, extraField]);
+        expect(requirement4.reportInstanceFields).toEqual([comment, manualPath, manualSnippet, extraField]);
         expect(requirement5.reportInstanceFields).toEqual([path, snippet]);
 
         Object.keys(assistedAssessment).forEach(assessmentKey => {
@@ -268,7 +265,6 @@ describe('AssessmentBuilderTest', () => {
         config.getDrawer(drawerProviderMock.object, requirement5.key);
 
         expect(config.getStoreData(vizStoreData)).toEqual(scanData);
-        expect(config.analyzerMessageType).toEqual(Messages.Assessment.AssessmentScanCompleted);
         expect(config.resultProcessor(scannerStub as ScannerUtils)).toEqual(scannerStub.getAllCompletedInstances);
         expect(config.telemetryProcessor(telemetryFactoryStub as TelemetryDataFactory)).toEqual(
             telemetryFactoryStub.forAssessmentRequirementScan,

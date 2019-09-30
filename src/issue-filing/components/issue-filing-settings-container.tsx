@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import { NamedSFC } from '../../common/react/named-sfc';
+import { NamedFC } from '../../common/react/named-fc';
 import { IssueFilingServiceProperties } from '../../common/types/store-data/user-configuration-store';
 import { SettingsDeps } from '../../DetailsView/components/settings-panel/settings/settings-props';
 import { IssueFilingServiceProvider } from '../issue-filing-service-provider';
@@ -24,7 +24,7 @@ export type IssueFilingSettingsContainerDeps = {
     issueFilingServiceProvider: IssueFilingServiceProvider;
 } & SettingsDeps;
 
-export const IssueFilingSettingsContainer = NamedSFC<IssueFilingSettingsContainerProps>('IssueFilingSettingsContainer', props => {
+export const IssueFilingSettingsContainer = NamedFC<IssueFilingSettingsContainerProps>('IssueFilingSettingsContainer', props => {
     const { deps, selectedIssueFilingService, selectedIssueFilingServiceData } = props;
     const SettingsForm = selectedIssueFilingService.settingsForm;
     const issueFilingServices = deps.issueFilingServiceProvider.allVisible();

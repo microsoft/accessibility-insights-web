@@ -3,7 +3,7 @@
 import * as Enzyme from 'enzyme';
 import * as React from 'react';
 
-import { ManualTestRecordYourResults } from '../../../../assessments/common/manual-test-record-your-results';
+import { ManualTestRecordYourResults } from 'assessments/common/manual-test-record-your-results';
 
 describe('ManualTestRecordYourResultsTest', () => {
     const multiple = [false, true];

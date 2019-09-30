@@ -41,7 +41,7 @@ export const infoAndExamples = create(({ Markup }) => (
                     </li>
                     <li>
                         If it's an icon font, <Markup.Code>{'<svg>'}</Markup.Code> image, or CSS background image, add{' '}
-                        <Markup.Code>role="image"</Markup.Code>.
+                        <Markup.Code>role="img"</Markup.Code>.
                     </li>
                 </ul>
             </li>
@@ -54,7 +54,7 @@ export const infoAndExamples = create(({ Markup }) => (
                         <Markup.Code>alt</Markup.Code> attribute (<Markup.Code>alt</Markup.Code> or <Markup.Code>alt=""</Markup.Code>).
                     </li>
                     <li>
-                        And it's an icon font or <Markup.Code>{'<svg>'}</Markup.Code> image, add <Markup.Code>role="image"</Markup.Code> and{' '}
+                        And it's an icon font or <Markup.Code>{'<svg>'}</Markup.Code> image, add <Markup.Code>role="img"</Markup.Code> and{' '}
                         <Markup.Code>aria-hidden="true"</Markup.Code>.
                     </li>
                     <li>And it's a CSS background image, no additional markup is needed.</li>

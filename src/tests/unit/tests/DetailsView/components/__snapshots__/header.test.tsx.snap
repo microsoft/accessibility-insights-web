@@ -2,7 +2,7 @@
 
 exports[`HeaderTest render: no feature flag store data 1`] = `
 "<header className=\\"header-bar\\">
-  <class_1 deps={{...}} />
+  <Component deps={{...}} />
   <div className=\\"ms-font-m header-text\\">
     Accessibility Insights for Web
   </div>
@@ -13,7 +13,7 @@ exports[`HeaderTest render: tabClosed is false 1`] = `
 <header
   className="header-bar"
 >
-  <class_1
+  <Component
     deps={null}
   />
   <div
@@ -30,9 +30,9 @@ exports[`HeaderTest render: tabClosed is false 1`] = `
       proxy {
         "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
         "dropdownActionMessageCreator": undefined,
-        "openPreviewFeaturesPanelHandler": undefined,
-        "openScopingPanelHandler": undefined,
-        "openSettingsPanelHandler": undefined,
+        "openPreviewFeaturesPanelHandler": [Function],
+        "openScopingPanelHandler": [Function],
+        "openSettingsPanelHandler": [Function],
         "source": undefined,
       }
     }
@@ -49,7 +49,7 @@ exports[`HeaderTest render: tabClosed is true 1`] = `
 <header
   className="header-bar"
 >
-  <class_1
+  <Component
     deps={null}
   />
   <div

@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { autobind } from '@uifabric/utilities';
 import * as _ from 'lodash';
 import { BaseStore } from '../common/base-store';
 import { TestMode } from '../common/configs/test-mode';
-import { VisualizationConfiguration, VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
+import { VisualizationConfiguration } from '../common/configs/visualization-configuration';
+import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
 import { EnumHelper } from '../common/enum-helper';
 import { AssessmentStoreData } from '../common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from '../common/types/store-data/feature-flag-store-data';
@@ -81,8 +81,7 @@ export class ClientViewController {
         this.previousVisualizationStates = {};
     }
 
-    @autobind
-    public onChangedState(): void {
+    public onChangedState = (): void => {
         const oldVisualizationState = this.currentVisualizationState;
 
         this.currentVisualizationState = this.visualizationStore.getState();
@@ -100,7 +99,7 @@ export class ClientViewController {
             this.executeUpdates();
             this.handleFocusChanges(oldVisualizationState);
         }
-    }
+    };
 
     private handleFocusChanges(oldVisualizationState: VisualizationStoreData): void {
         if (

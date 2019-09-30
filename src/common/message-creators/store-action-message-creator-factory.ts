@@ -1,6 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { Messages } from '../messages';
+import { BaseStore } from '../base-store';
+import { getStoreStateMessage } from '../messages';
+import { StoreNames } from '../stores/store-names';
 import { ActionMessageDispatcher } from './action-message-dispatcher';
 import { StoreActionMessageCreator } from './store-action-message-creator';
 import { StoreActionMessageCreatorImpl } from './store-action-message-creator-impl';
@@ -8,52 +10,9 @@ import { StoreActionMessageCreatorImpl } from './store-action-message-creator-im
 export class StoreActionMessageCreatorFactory {
     constructor(private readonly dispatcher: ActionMessageDispatcher) {}
 
-    public forPopup(): StoreActionMessageCreator {
-        const getStateMessages: string[] = [
-            Messages.Visualizations.State.GetCurrentVisualizationToggleState,
-            Messages.Command.GetCommands,
-            Messages.FeatureFlags.GetFeatureFlags,
-            Messages.LaunchPanel.Get,
-            Messages.UserConfig.GetCurrentState,
-        ];
+    public fromStores(stores: BaseStore<any>[]): StoreActionMessageCreator {
+        const messages = stores.map(store => getStoreStateMessage(StoreNames[store.getId()]));
 
-        return new StoreActionMessageCreatorImpl(getStateMessages, this.dispatcher);
-    }
-
-    public forDetailsView(): StoreActionMessageCreator {
-        const getStateMessages: string[] = [
-            Messages.Visualizations.DetailsView.GetState,
-            Messages.Visualizations.State.GetCurrentVisualizationResultState,
-            Messages.Visualizations.State.GetCurrentVisualizationToggleState,
-            Messages.Tab.GetCurrent,
-            Messages.FeatureFlags.GetFeatureFlags,
-            Messages.Assessment.GetCurrentState,
-            Messages.Scoping.GetCurrentState,
-            Messages.UserConfig.GetCurrentState,
-        ];
-
-        return new StoreActionMessageCreatorImpl(getStateMessages, this.dispatcher);
-    }
-
-    public forContent(): StoreActionMessageCreator {
-        const getStateMessages: string[] = [Messages.UserConfig.GetCurrentState];
-
-        return new StoreActionMessageCreatorImpl(getStateMessages, this.dispatcher);
-    }
-
-    public forInjected(): StoreActionMessageCreator {
-        const getStateMessages: string[] = [
-            Messages.Visualizations.State.GetCurrentVisualizationToggleState,
-            Messages.Scoping.GetCurrentState,
-            Messages.Inspect.GetCurrentState,
-            Messages.Visualizations.State.GetCurrentVisualizationResultState,
-            Messages.FeatureFlags.GetFeatureFlags,
-            Messages.DevTools.Get,
-            Messages.Assessment.GetCurrentState,
-            Messages.Tab.GetCurrent,
-            Messages.UserConfig.GetCurrentState,
-        ];
-
-        return new StoreActionMessageCreatorImpl(getStateMessages, this.dispatcher);
+        return new StoreActionMessageCreatorImpl(messages, this.dispatcher);
     }
 }

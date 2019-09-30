@@ -1,9 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { autobind } from '@uifabric/utilities';
-
 import { TestMode } from '../../common/configs/test-mode';
-import { VisualizationConfiguration, VisualizationConfigurationFactory } from '../../common/configs/visualization-configuration-factory';
+import { VisualizationConfiguration } from '../../common/configs/visualization-configuration';
+import { VisualizationConfigurationFactory } from '../../common/configs/visualization-configuration-factory';
 import { EnumHelper } from '../../common/enum-helper';
 import { Tab } from '../../common/itab';
 import { StoreNames } from '../../common/stores/store-names';
@@ -90,12 +89,11 @@ export class VisualizationStore extends BaseStoreImpl<VisualizationStoreData> {
         return defaultValues;
     }
 
-    @autobind
-    private onDisableVisualization(test: VisualizationType): void {
+    private onDisableVisualization = (test: VisualizationType): void => {
         if (this.toggleTestOff(test)) {
             this.emitChanged();
         }
-    }
+    };
 
     private toggleTestOff(test: VisualizationType): boolean {
         let isStateChanged = false;
@@ -125,8 +123,7 @@ export class VisualizationStore extends BaseStoreImpl<VisualizationStoreData> {
         return isStateChanged;
     }
 
-    @autobind
-    private onTabChange(payload: Tab): void {
+    private onTabChange = (payload: Tab): void => {
         this.state = {
             ...this.getDefaultState(),
             selectedFastPassDetailsView: this.state.selectedFastPassDetailsView,
@@ -134,7 +131,7 @@ export class VisualizationStore extends BaseStoreImpl<VisualizationStoreData> {
             selectedDetailsViewPivot: this.state.selectedDetailsViewPivot,
         };
         this.emitChanged();
-    }
+    };
 
     private disableAssessmentVisualizationsWithoutEmitting(): void {
         EnumHelper.getNumericValues(VisualizationType).forEach((test: number) => {
@@ -146,21 +143,18 @@ export class VisualizationStore extends BaseStoreImpl<VisualizationStoreData> {
         });
     }
 
-    @autobind
-    private onDisableAssessmentVisualizations(): void {
+    private onDisableAssessmentVisualizations = (): void => {
         this.disableAssessmentVisualizationsWithoutEmitting();
         this.emitChanged();
-    }
+    };
 
-    @autobind
-    private onEnableVisualization(payload: ToggleActionPayload): void {
+    private onEnableVisualization = (payload: ToggleActionPayload): void => {
         this.enableTest(payload, false);
-    }
+    };
 
-    @autobind
-    private onEnableVisualizationWithoutScan(payload: ToggleActionPayload): void {
+    private onEnableVisualizationWithoutScan = (payload: ToggleActionPayload): void => {
         this.enableTest(payload, true);
-    }
+    };
 
     private enableTest(payload: ToggleActionPayload, skipScanning: boolean): void {
         if (this.state.scanning != null) {
@@ -189,8 +183,7 @@ export class VisualizationStore extends BaseStoreImpl<VisualizationStoreData> {
         return config.testMode === TestMode.Assessments;
     }
 
-    @autobind
-    private onUpdateSelectedPivot(payload: UpdateSelectedPivot): void {
+    private onUpdateSelectedPivot = (payload: UpdateSelectedPivot): void => {
         const pivot = payload.pivotKey;
 
         if (this.state.selectedDetailsViewPivot !== pivot) {
@@ -198,7 +191,7 @@ export class VisualizationStore extends BaseStoreImpl<VisualizationStoreData> {
             this.disableAllTests();
             this.emitChanged();
         }
-    }
+    };
 
     private disableAllTests(): void {
         EnumHelper.getNumericValues(VisualizationType).forEach((test: VisualizationType) => {
@@ -206,8 +199,7 @@ export class VisualizationStore extends BaseStoreImpl<VisualizationStoreData> {
         });
     }
 
-    @autobind
-    private onUpdateSelectedPivotChild(payload: UpdateSelectedDetailsViewPayload): void {
+    private onUpdateSelectedPivotChild = (payload: UpdateSelectedDetailsViewPayload): void => {
         const pivot = payload.pivotType;
         const pivotChildUpdated = this.updateSelectedPivotChildUnderPivot(payload);
         const pivotUpdated = this.updateSelectedPivot(pivot);
@@ -215,35 +207,30 @@ export class VisualizationStore extends BaseStoreImpl<VisualizationStoreData> {
             this.disableAllTests();
             this.emitChanged();
         }
-    }
+    };
 
-    @autobind
-    private onScanCompleted(): void {
+    private onScanCompleted = (): void => {
         this.state.scanning = null;
         this.emitChanged();
-    }
+    };
 
-    @autobind
-    private onScrollRequested(): void {
+    private onScrollRequested = (): void => {
         this.state.focusedTarget = null;
         this.emitChanged();
-    }
+    };
 
-    @autobind
-    private onUpdateFocusedInstance(focusedInstanceTarget: string[]): void {
+    private onUpdateFocusedInstance = (focusedInstanceTarget: string[]): void => {
         this.state.focusedTarget = focusedInstanceTarget;
         this.emitChanged();
-    }
+    };
 
-    @autobind
-    private injectionCompleted(): void {
+    private injectionCompleted = (): void => {
         this.state.injectingInProgress = false;
         this.state.injectingStarted = false;
         this.emitChanged();
-    }
+    };
 
-    @autobind
-    private injectionStarted(): void {
+    private injectionStarted = (): void => {
         if (this.state.injectingStarted) {
             return;
         }
@@ -251,7 +238,7 @@ export class VisualizationStore extends BaseStoreImpl<VisualizationStoreData> {
         this.state.injectingInProgress = true;
         this.state.injectingStarted = true;
         this.emitChanged();
-    }
+    };
 
     private updateSelectedPivotChildUnderPivot(payload: UpdateSelectedDetailsViewPayload): boolean {
         let updated = false;

@@ -1,20 +1,21 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import * as React from 'react';
+import { OverviewSummaryReportModel } from 'reports/assessment-report-model';
+import { AssessmentReportSummary } from 'reports/components/assessment-report-summary';
+import { GetAssessmentSummaryModelFromProviderAndStoreData } from 'reports/get-assessment-summary-model';
+import { HyperlinkDefinition } from 'views/content/content-page';
 
-import { AssessmentsProvider } from '../../../assessments/types/assessments-provider';
-import { NamedSFC } from '../../../common/react/named-sfc';
+import { NamedFC } from '../../../common/react/named-fc';
 import { AssessmentStoreData } from '../../../common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from '../../../common/types/store-data/feature-flag-store-data';
 import { TabStoreData } from '../../../common/types/store-data/tab-store-data';
-import { HyperlinkDefinition } from '../../../views/content/content-page';
 import { DetailsViewActionMessageCreator } from '../../actions/details-view-action-message-creator';
-import { OverviewSummaryReportModel } from '../../reports/assessment-report-model';
-import { AssessmentReportSummary } from '../../reports/components/assessment-report-summary';
-import { GetAssessmentSummaryModelFromProviderAndStoreData } from '../../reports/get-assessment-summary-model';
 import { TargetChangeDialog, TargetChangeDialogDeps } from '../target-change-dialog';
+import { overviewHelpSection } from './overview-content-container.scss';
 import { OverviewHeading } from './overview-heading';
-import { HelpLinkDeps, OverviewHelpSection } from './overview-help-section';
+import { OverviewHelpSection, OverviewHelpSectionDeps } from './overview-help-section';
 
 const linkDataSource: HyperlinkDefinition[] = [
     {
@@ -29,6 +30,10 @@ const linkDataSource: HyperlinkDefinition[] = [
         href: 'https://go.microsoft.com/fwlink/?linkid=2077941',
         text: 'Ask a question',
     },
+    {
+        href: 'https://www.w3.org/WAI/standards-guidelines/wcag/new-in-21/',
+        text: 'New WCAG 2.1 success criteria',
+    },
 ];
 
 export type OverviewContainerDeps = {
@@ -36,7 +41,7 @@ export type OverviewContainerDeps = {
     getAssessmentSummaryModelFromProviderAndStoreData: GetAssessmentSummaryModelFromProviderAndStoreData;
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
     assessmentsProviderWithFeaturesEnabled: (assessmentProvider: AssessmentsProvider, flags: FeatureFlagStoreData) => AssessmentsProvider;
-} & HelpLinkDeps &
+} & OverviewHelpSectionDeps &
     TargetChangeDialogDeps;
 
 export interface OverviewContainerProps {
@@ -46,7 +51,7 @@ export interface OverviewContainerProps {
     featureFlagStoreData: FeatureFlagStoreData;
 }
 
-export const OverviewContainer = NamedSFC<OverviewContainerProps>('OverviewContainer', props => {
+export const OverviewContainer = NamedFC<OverviewContainerProps>('OverviewContainer', props => {
     const { deps, assessmentStoreData, tabStoreData, featureFlagStoreData } = props;
     const { assessmentsProvider, getAssessmentSummaryModelFromProviderAndStoreData, assessmentsProviderWithFeaturesEnabled } = deps;
     const prevTarget = assessmentStoreData.persistedTabInfo;
@@ -74,7 +79,7 @@ export const OverviewContainer = NamedSFC<OverviewContainerProps>('OverviewConta
                 <OverviewHeading />
                 <AssessmentReportSummary summary={summaryData} />
             </section>
-            <section className="overview-help-section">
+            <section className={overviewHelpSection}>
                 <OverviewHelpSection linkDataSource={linkDataSource} deps={deps} />
             </section>
         </div>

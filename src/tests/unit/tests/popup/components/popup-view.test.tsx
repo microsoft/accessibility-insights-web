@@ -3,7 +3,8 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
-import { ChromeAdapter } from '../../../../../background/browser-adapter';
+
+import { BrowserAdapter } from '../../../../../common/browser-adapters/browser-adapter';
 import { NewTabLink } from '../../../../../common/components/new-tab-link';
 import { DropdownClickHandler } from '../../../../../common/dropdown-click-handler';
 import { StoreActionMessageCreatorImpl } from '../../../../../common/message-creators/store-action-message-creator-impl';
@@ -27,24 +28,17 @@ import { BaseDataBuilder } from '../../../common/base-data-builder';
 import { IsSameObject } from '../../../common/typemoq-helper';
 
 describe('PopupView', () => {
-    const browserAdapterMock = Mock.ofType(ChromeAdapter);
+    const browserAdapterStub = {
+        getManifest: getManifestStub,
+    } as BrowserAdapter;
+
     const launchPanelStateStoreState: LaunchPanelStoreData = {
         launchPanelType: LaunchPanelType.LaunchPad,
     };
     const featureFlagStoreData = {};
 
-    afterEach(() => {
-        browserAdapterMock.reset();
-    });
-
     test('constructor', () => {
-        const manifestStub = getManifestStub();
         const storesHubMock = createDefaultStoresHubMock(false);
-
-        browserAdapterMock
-            .setup(ba => ba.getManifest())
-            .returns(() => manifestStub)
-            .verifiable(Times.once());
 
         const props = createDefaultPropsBuilder(storesHubMock.object)
             .with('popupHandlers', {} as any)
@@ -56,14 +50,7 @@ describe('PopupView', () => {
     });
 
     test('render spinner', () => {
-        const manifestStub = getManifestStub();
-
         const storesHubMock = createDefaultStoresHubMock(false, false);
-
-        browserAdapterMock
-            .setup(ba => ba.getManifest())
-            .returns(() => manifestStub)
-            .verifiable(Times.once());
 
         const props = createDefaultPropsBuilder(storesHubMock.object)
             .with('popupHandlers', {} as any)
@@ -83,7 +70,6 @@ describe('PopupView', () => {
         let clickHandlerMock: IMock<DiagnosticViewClickHandler>;
         let storeState: PopupViewControllerState;
         let deps: PopupViewControllerDeps;
-        const manifestStub = getManifestStub();
         const rowConfigStub = {};
         const shortcutModifyHandlerStub = {};
         const launchPadRowConfigurationFactoryMock = Mock.ofType(LaunchPadRowConfigurationFactory);
@@ -102,10 +88,6 @@ describe('PopupView', () => {
             handlerMock = Mock.ofType(PopupViewControllerHandler);
             clickHandlerMock = Mock.ofType(DiagnosticViewClickHandler);
             storesHubMock = createDefaultStoresHubMock();
-            browserAdapterMock
-                .setup(ba => ba.getManifest())
-                .returns(() => manifestStub)
-                .verifiable();
             launchPadRowConfigurationFactoryMock
                 .setup(l =>
                     l.createRowConfigs(It.isAny(), IsSameObject(actionMessageCreatorStrictMock.object), IsSameObject(handlerMock.object)),
@@ -122,6 +104,7 @@ describe('PopupView', () => {
             deps = {
                 popupActionMessageCreator: actionMessageCreatorStrictMock.object,
                 dropdownClickHandler: dropdownClickHandlerMock.object,
+                browserAdapter: browserAdapterStub,
             } as PopupViewControllerDeps;
         });
 
@@ -225,10 +208,6 @@ describe('PopupView', () => {
     });
 
     test('renderFailureMsgPanelForChromeUrl', () => {
-        const manifestStub = getManifestStub();
-
-        browserAdapterMock.setup(ba => ba.getManifest()).returns(() => manifestStub);
-
         const storesHubMock = createDefaultStoresHubMock();
 
         const props = createDefaultPropsBuilder(storesHubMock.object)
@@ -247,9 +226,6 @@ describe('PopupView', () => {
     });
 
     test('renderFailureMsgPanelForFileUrl', () => {
-        const manifestStub = getManifestStub();
-
-        browserAdapterMock.setup(ba => ba.getManifest()).returns(() => manifestStub);
         const storesHubMock = createDefaultStoresHubMock();
 
         const props = createDefaultPropsBuilder(storesHubMock.object)
@@ -267,7 +243,7 @@ describe('PopupView', () => {
     });
 
     function createDefaultPropsBuilder(storeHub: BaseClientStoresHub<any>): PopupViewPropsBuilder {
-        return new PopupViewPropsBuilder().withStoresHub(storeHub).with('browserAdapter', browserAdapterMock.object);
+        return new PopupViewPropsBuilder().withStoresHub(storeHub).withBrowserAdapter(browserAdapterStub);
     }
 
     function createDefaultStoresHubMock(hasStores = true, hasStoreData = true): IMock<BaseClientStoresHub<any>> {
@@ -292,11 +268,20 @@ class PopupViewPropsBuilder extends BaseDataBuilder<PopupViewProps> {
         return this;
     }
     public withStoresHub(storesHub: BaseClientStoresHub<any>): PopupViewPropsBuilder {
-        this.data = {
-            deps: {
-                storesHub,
-            },
-        } as PopupViewProps;
+        this.data.deps = {
+            ...this.data.deps,
+            storesHub,
+        };
+
+        return this;
+    }
+
+    public withBrowserAdapter(browserAdapter: BrowserAdapter): PopupViewPropsBuilder {
+        this.data.deps = {
+            ...this.data.deps,
+            browserAdapter,
+        };
+
         return this;
     }
 }

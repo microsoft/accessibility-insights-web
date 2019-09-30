@@ -1,0 +1,86 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ScanResults to Unified Results Test conversion works fine when there is no data in scanresults 1`] = `Array []`;
+
+exports[`ScanResults to Unified Results Test conversion works with filled up passes and failures value in scan results 1`] = `
+Array [
+  Object {
+    "descriptors": Object {
+      "snippet": "html1",
+    },
+    "identifiers": Object {
+      "css-selector": "target1;id1",
+    },
+    "resolution": Object {
+      "how-to-fix-web": Object {
+        "all": Array [],
+        "any": Array [
+          "any-test-message",
+        ],
+        "none": Array [],
+      },
+    },
+    "ruleId": "id1",
+    "status": "fail",
+    "uid": "gguid-mock-stub",
+  },
+  Object {
+    "descriptors": Object {
+      "snippet": "html2",
+    },
+    "identifiers": Object {
+      "css-selector": "target2;id2",
+    },
+    "resolution": Object {
+      "how-to-fix-web": Object {
+        "all": Array [],
+        "any": Array [],
+        "none": Array [
+          "none-test-message",
+        ],
+      },
+    },
+    "ruleId": "id1",
+    "status": "fail",
+    "uid": "gguid-mock-stub",
+  },
+  Object {
+    "descriptors": Object {
+      "snippet": "html3",
+    },
+    "identifiers": Object {
+      "css-selector": "target3;id3",
+    },
+    "resolution": Object {
+      "how-to-fix-web": Object {
+        "all": Array [
+          "all-test-message",
+        ],
+        "any": Array [],
+        "none": Array [],
+      },
+    },
+    "ruleId": "id2",
+    "status": "fail",
+    "uid": "gguid-mock-stub",
+  },
+  Object {
+    "descriptors": Object {
+      "snippet": "html-pass",
+    },
+    "identifiers": Object {
+      "css-selector": "passTarget1;passTarget2",
+    },
+    "resolution": Object {
+      "how-to-fix-web": Object {
+        "all": Array [],
+        "any": Array [],
+        "none": Array [],
+      },
+    },
+    "ruleId": "test",
+    "status": "pass",
+    "uid": "gguid-mock-stub",
+  },
+]
+`;

@@ -2,14 +2,14 @@
 // Licensed under the MIT License.
 import { IMock, Mock } from 'typemoq';
 
-import { ClientBrowserAdapter } from '../../../../../common/client-browser-adapter';
+import { BrowserAdapter } from '../../../../../common/browser-adapters/browser-adapter';
 import { WindowMessage } from '../../../../../injected/frameCommunicators/window-message';
 import { MESSAGE_STABLE_SIGNATURE, WindowMessageMarshaller } from '../../../../../injected/frameCommunicators/window-message-marshaller';
 
 describe('WindowMessageMarshallerTests', () => {
     let testSubject: WindowMessageMarshaller;
     let messageIdToBeReturned: string;
-    let browserAdapter: IMock<ClientBrowserAdapter>;
+    let browserAdapter: IMock<BrowserAdapter>;
     const messageSourceId = 'app id';
     const messageVersion = 'app version';
     let manifest: chrome.runtime.Manifest;
@@ -22,7 +22,7 @@ describe('WindowMessageMarshallerTests', () => {
             version: messageVersion,
         } as chrome.runtime.Manifest;
 
-        browserAdapter = Mock.ofType<ClientBrowserAdapter>();
+        browserAdapter = Mock.ofType<BrowserAdapter>();
         browserAdapter.setup(b => b.getManifest()).returns(() => manifest);
 
         testSubject = new WindowMessageMarshaller(browserAdapter.object, () => {

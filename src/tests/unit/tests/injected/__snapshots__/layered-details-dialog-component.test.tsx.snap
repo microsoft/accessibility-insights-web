@@ -12,7 +12,11 @@ exports[`LayeredDetailsDialogComponent render component when shadow dom is disab
       }
     }
     devToolActionMessageCreator="devToolActionMessageCreator"
-    featureFlagStoreData={Object {}}
+    featureFlagStoreData={
+      Object {
+        "shadowDialog": false,
+      }
+    }
   />
 </LayerHost>
 `;

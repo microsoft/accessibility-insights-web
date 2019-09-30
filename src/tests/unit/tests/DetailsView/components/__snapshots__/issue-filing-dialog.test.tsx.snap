@@ -28,33 +28,23 @@ exports[`IssueFilingDialog componentDidUpdate dialog is not open & props have ch
           "axeVersion": undefined,
           "browserSpec": undefined,
           "extensionVersion": undefined,
-          "getEnvironmentInfo": [Function],
         },
         "issueFilingActionMessageCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "dispatcher": undefined,
-          "fileIssue": [Function],
-          "openSettingsPanel": [Function],
           "source": undefined,
           "telemetryFactory": undefined,
-          "trackFileIssueClick": [Function],
         },
         "issueFilingServiceProvider": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "all": [Function],
-          "allVisible": [Function],
-          "forKey": [Function],
           "services": undefined,
         },
         "userConfigMessageCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "dispatcher": undefined,
           "saveIssueFilingSettings": [Function],
-          "setHighContrastMode": [Function],
           "setIssueFilingService": [Function],
           "setIssueFilingServiceProperty": [Function],
-          "setIssueTrackerPath": [Function],
-          "setTelemetryState": [Function],
         },
       }
     }
@@ -64,7 +54,6 @@ exports[`IssueFilingDialog componentDidUpdate dialog is not open & props have ch
       Object {
         "getSettingsFromStoreData": [Function],
         "isSettingsValid": [Function],
-        "issueFilingUrlProvider": [Function],
         "key": "gitHub",
       }
     }
@@ -114,33 +103,23 @@ exports[`IssueFilingDialog componentDidUpdate dialog is not open & props have no
           "axeVersion": undefined,
           "browserSpec": undefined,
           "extensionVersion": undefined,
-          "getEnvironmentInfo": [Function],
         },
         "issueFilingActionMessageCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "dispatcher": undefined,
-          "fileIssue": [Function],
-          "openSettingsPanel": [Function],
           "source": undefined,
           "telemetryFactory": undefined,
-          "trackFileIssueClick": [Function],
         },
         "issueFilingServiceProvider": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "all": [Function],
-          "allVisible": [Function],
-          "forKey": [Function],
           "services": undefined,
         },
         "userConfigMessageCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "dispatcher": undefined,
           "saveIssueFilingSettings": [Function],
-          "setHighContrastMode": [Function],
           "setIssueFilingService": [Function],
           "setIssueFilingServiceProperty": [Function],
-          "setIssueTrackerPath": [Function],
-          "setTelemetryState": [Function],
         },
       }
     }
@@ -150,7 +129,6 @@ exports[`IssueFilingDialog componentDidUpdate dialog is not open & props have no
       Object {
         "getSettingsFromStoreData": [Function],
         "isSettingsValid": [Function],
-        "issueFilingUrlProvider": [Function],
         "key": "gitHub",
       }
     }
@@ -200,33 +178,23 @@ exports[`IssueFilingDialog componentDidUpdate dialog is open & props have change
           "axeVersion": undefined,
           "browserSpec": undefined,
           "extensionVersion": undefined,
-          "getEnvironmentInfo": [Function],
         },
         "issueFilingActionMessageCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "dispatcher": undefined,
-          "fileIssue": [Function],
-          "openSettingsPanel": [Function],
           "source": undefined,
           "telemetryFactory": undefined,
-          "trackFileIssueClick": [Function],
         },
         "issueFilingServiceProvider": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "all": [Function],
-          "allVisible": [Function],
-          "forKey": [Function],
           "services": undefined,
         },
         "userConfigMessageCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "dispatcher": undefined,
           "saveIssueFilingSettings": [Function],
-          "setHighContrastMode": [Function],
           "setIssueFilingService": [Function],
           "setIssueFilingServiceProperty": [Function],
-          "setIssueTrackerPath": [Function],
-          "setTelemetryState": [Function],
         },
       }
     }
@@ -236,7 +204,6 @@ exports[`IssueFilingDialog componentDidUpdate dialog is open & props have change
       Object {
         "getSettingsFromStoreData": [Function],
         "isSettingsValid": [Function],
-        "issueFilingUrlProvider": [Function],
         "key": "gitHub",
       }
     }
@@ -286,33 +253,23 @@ exports[`IssueFilingDialog componentDidUpdate dialog is open & props have not ch
           "axeVersion": undefined,
           "browserSpec": undefined,
           "extensionVersion": undefined,
-          "getEnvironmentInfo": [Function],
         },
         "issueFilingActionMessageCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "dispatcher": undefined,
-          "fileIssue": [Function],
-          "openSettingsPanel": [Function],
           "source": undefined,
           "telemetryFactory": undefined,
-          "trackFileIssueClick": [Function],
         },
         "issueFilingServiceProvider": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "all": [Function],
-          "allVisible": [Function],
-          "forKey": [Function],
           "services": undefined,
         },
         "userConfigMessageCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "dispatcher": undefined,
           "saveIssueFilingSettings": [Function],
-          "setHighContrastMode": [Function],
           "setIssueFilingService": [Function],
           "setIssueFilingServiceProperty": [Function],
-          "setIssueTrackerPath": [Function],
-          "setTelemetryState": [Function],
         },
       }
     }
@@ -322,7 +279,6 @@ exports[`IssueFilingDialog componentDidUpdate dialog is open & props have not ch
       Object {
         "getSettingsFromStoreData": [Function],
         "isSettingsValid": [Function],
-        "issueFilingUrlProvider": [Function],
         "key": "gitHub",
       }
     }
@@ -372,33 +328,23 @@ exports[`IssueFilingDialog render with isSettingsValid: false 1`] = `
           "axeVersion": undefined,
           "browserSpec": undefined,
           "extensionVersion": undefined,
-          "getEnvironmentInfo": [Function],
         },
         "issueFilingActionMessageCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "dispatcher": undefined,
-          "fileIssue": [Function],
-          "openSettingsPanel": [Function],
           "source": undefined,
           "telemetryFactory": undefined,
-          "trackFileIssueClick": [Function],
         },
         "issueFilingServiceProvider": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "all": [Function],
-          "allVisible": [Function],
-          "forKey": [Function],
           "services": undefined,
         },
         "userConfigMessageCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "dispatcher": undefined,
           "saveIssueFilingSettings": [Function],
-          "setHighContrastMode": [Function],
           "setIssueFilingService": [Function],
           "setIssueFilingServiceProperty": [Function],
-          "setIssueTrackerPath": [Function],
-          "setTelemetryState": [Function],
         },
       }
     }
@@ -408,7 +354,6 @@ exports[`IssueFilingDialog render with isSettingsValid: false 1`] = `
       Object {
         "getSettingsFromStoreData": [Function],
         "isSettingsValid": [Function],
-        "issueFilingUrlProvider": [Function],
         "key": "gitHub",
       }
     }
@@ -458,33 +403,23 @@ exports[`IssueFilingDialog render with isSettingsValid: true 1`] = `
           "axeVersion": undefined,
           "browserSpec": undefined,
           "extensionVersion": undefined,
-          "getEnvironmentInfo": [Function],
         },
         "issueFilingActionMessageCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "dispatcher": undefined,
-          "fileIssue": [Function],
-          "openSettingsPanel": [Function],
           "source": undefined,
           "telemetryFactory": undefined,
-          "trackFileIssueClick": [Function],
         },
         "issueFilingServiceProvider": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "all": [Function],
-          "allVisible": [Function],
-          "forKey": [Function],
           "services": undefined,
         },
         "userConfigMessageCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "dispatcher": undefined,
           "saveIssueFilingSettings": [Function],
-          "setHighContrastMode": [Function],
           "setIssueFilingService": [Function],
           "setIssueFilingServiceProperty": [Function],
-          "setIssueTrackerPath": [Function],
-          "setTelemetryState": [Function],
         },
       }
     }
@@ -494,7 +429,6 @@ exports[`IssueFilingDialog render with isSettingsValid: true 1`] = `
       Object {
         "getSettingsFromStoreData": [Function],
         "isSettingsValid": [Function],
-        "issueFilingUrlProvider": [Function],
         "key": "gitHub",
       }
     }
@@ -544,33 +478,23 @@ exports[`IssueFilingDialog render: validate callback (onPropertyUpdateCallback) 
           "axeVersion": undefined,
           "browserSpec": undefined,
           "extensionVersion": undefined,
-          "getEnvironmentInfo": [Function],
         },
         "issueFilingActionMessageCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "dispatcher": undefined,
-          "fileIssue": [Function],
-          "openSettingsPanel": [Function],
           "source": undefined,
           "telemetryFactory": undefined,
-          "trackFileIssueClick": [Function],
         },
         "issueFilingServiceProvider": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "all": [Function],
-          "allVisible": [Function],
-          "forKey": [Function],
           "services": undefined,
         },
         "userConfigMessageCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "dispatcher": undefined,
           "saveIssueFilingSettings": [Function],
-          "setHighContrastMode": [Function],
           "setIssueFilingService": [Function],
           "setIssueFilingServiceProperty": [Function],
-          "setIssueTrackerPath": [Function],
-          "setTelemetryState": [Function],
         },
       }
     }
@@ -580,7 +504,6 @@ exports[`IssueFilingDialog render: validate callback (onPropertyUpdateCallback) 
       Object {
         "getSettingsFromStoreData": [Function],
         "isSettingsValid": [Function],
-        "issueFilingUrlProvider": [Function],
         "key": "gitHub",
       }
     }
@@ -631,33 +554,23 @@ exports[`IssueFilingDialog render: validate callback (onPropertyUpdateCallback) 
           "axeVersion": undefined,
           "browserSpec": undefined,
           "extensionVersion": undefined,
-          "getEnvironmentInfo": [Function],
         },
         "issueFilingActionMessageCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "dispatcher": undefined,
-          "fileIssue": [Function],
-          "openSettingsPanel": [Function],
           "source": undefined,
           "telemetryFactory": undefined,
-          "trackFileIssueClick": [Function],
         },
         "issueFilingServiceProvider": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "all": [Function],
-          "allVisible": [Function],
-          "forKey": [Function],
           "services": undefined,
         },
         "userConfigMessageCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "dispatcher": undefined,
           "saveIssueFilingSettings": [Function],
-          "setHighContrastMode": [Function],
           "setIssueFilingService": [Function],
           "setIssueFilingServiceProperty": [Function],
-          "setIssueTrackerPath": [Function],
-          "setTelemetryState": [Function],
         },
       }
     }
@@ -667,7 +580,6 @@ exports[`IssueFilingDialog render: validate callback (onPropertyUpdateCallback) 
       Object {
         "getSettingsFromStoreData": [Function],
         "isSettingsValid": [Function],
-        "issueFilingUrlProvider": [Function],
         "key": "gitHub",
       }
     }
@@ -717,33 +629,23 @@ exports[`IssueFilingDialog render: validate callback (onSelectedServiceChange) s
           "axeVersion": undefined,
           "browserSpec": undefined,
           "extensionVersion": undefined,
-          "getEnvironmentInfo": [Function],
         },
         "issueFilingActionMessageCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "dispatcher": undefined,
-          "fileIssue": [Function],
-          "openSettingsPanel": [Function],
           "source": undefined,
           "telemetryFactory": undefined,
-          "trackFileIssueClick": [Function],
         },
         "issueFilingServiceProvider": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "all": [Function],
-          "allVisible": [Function],
-          "forKey": [Function],
           "services": undefined,
         },
         "userConfigMessageCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "dispatcher": undefined,
           "saveIssueFilingSettings": [Function],
-          "setHighContrastMode": [Function],
           "setIssueFilingService": [Function],
           "setIssueFilingServiceProperty": [Function],
-          "setIssueTrackerPath": [Function],
-          "setTelemetryState": [Function],
         },
       }
     }
@@ -753,7 +655,6 @@ exports[`IssueFilingDialog render: validate callback (onSelectedServiceChange) s
       Object {
         "getSettingsFromStoreData": [Function],
         "isSettingsValid": [Function],
-        "issueFilingUrlProvider": [Function],
         "key": "different_service",
       }
     }

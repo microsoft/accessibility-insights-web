@@ -4,8 +4,9 @@ import { PrimaryButton } from 'office-ui-fabric-react/lib/Button';
 import { Dialog, DialogFooter, DialogType } from 'office-ui-fabric-react/lib/Dialog';
 import { TextField } from 'office-ui-fabric-react/lib/TextField';
 import * as React from 'react';
-import { NamedSFC } from '../../common/react/named-sfc';
-import { ExportResultType } from '../../common/telemetry-events';
+import { ExportResultType } from '../../common/extension-telemetry-events';
+import { FileURLProvider } from '../../common/file-url-provider';
+import { NamedFC } from '../../common/react/named-fc';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 
 export interface ExportDialogProps {
@@ -17,20 +18,24 @@ export interface ExportDialogProps {
     onClose: () => void;
     onDescriptionChange: (value: string) => void;
     exportResultsType: ExportResultType;
+    onExportClick: () => void;
 }
 
 export interface ExportDialogDeps {
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
+    fileURLProvider: FileURLProvider;
 }
 
-export const ExportDialog = NamedSFC<ExportDialogProps>('ExportDialog', props => {
+export const ExportDialog = NamedFC<ExportDialogProps>('ExportDialog', props => {
     const onDismiss = (): void => {
         props.onClose();
     };
 
     const onExportLinkClick = (event: React.MouseEvent<HTMLDivElement>): void => {
         const { detailsViewActionMessageCreator } = props.deps;
+        props.onDescriptionChange(props.description);
         detailsViewActionMessageCreator.exportResultsClicked(props.exportResultsType, props.html, event);
+        props.onExportClick();
         props.onClose();
     };
 
@@ -38,7 +43,7 @@ export const ExportDialog = NamedSFC<ExportDialogProps>('ExportDialog', props =>
         props.onDescriptionChange(value);
     };
 
-    const encodedHtml = encodeURIComponent(props.html);
+    const fileURL = props.deps.fileURLProvider.provideURL([props.html], 'text/html');
 
     return (
         <Dialog
@@ -64,7 +69,7 @@ export const ExportDialog = NamedSFC<ExportDialogProps>('ExportDialog', props =>
                 ariaLabel="Provide result description"
             />
             <DialogFooter>
-                <PrimaryButton onClick={onExportLinkClick} download={props.fileName} href={'data:text/html,' + encodedHtml}>
+                <PrimaryButton onClick={onExportLinkClick} download={props.fileName} href={fileURL}>
                     Export
                 </PrimaryButton>
             </DialogFooter>

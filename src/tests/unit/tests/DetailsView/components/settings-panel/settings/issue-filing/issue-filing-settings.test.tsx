@@ -5,7 +5,7 @@ import * as React from 'react';
 import { IMock, Mock } from 'typemoq';
 
 import { UserConfigMessageCreator } from '../../../../../../../../common/message-creators/user-config-message-creator';
-import { NamedSFC } from '../../../../../../../../common/react/named-sfc';
+import { NamedFC } from '../../../../../../../../common/react/named-fc';
 import { UserConfigurationStoreData } from '../../../../../../../../common/types/store-data/user-configuration-store';
 import { IssueFilingSettings } from '../../../../../../../../DetailsView/components/settings-panel/settings/issue-filing/issue-filing-settings';
 import { SettingsDeps, SettingsProps } from '../../../../../../../../DetailsView/components/settings-panel/settings/settings-props';
@@ -15,7 +15,7 @@ import { IssueFilingService } from '../../../../../../../../issue-filing/types/i
 describe('IssueFilingSettings', () => {
     let userData: UserConfigurationStoreData;
     let issueFilingServiceProviderMock: IMock<IssueFilingServiceProvider>;
-    let testIssueFilingService: IssueFilingService;
+    let testIssueFilingServiceStub: IssueFilingService;
     const testKey: string = 'test';
     let userConfigMessageCreatorMock: IMock<UserConfigMessageCreator>;
 
@@ -29,19 +29,19 @@ describe('IssueFilingSettings', () => {
             bugService: 'gitHub',
             bugServicePropertiesMap: { gitHub: { repository: 'test-repository' } },
         };
-        testIssueFilingService = {
+        testIssueFilingServiceStub = {
             key: testKey,
             displayName: 'TEST',
-            settingsForm: NamedSFC('testForm', () => <>Hello World</>),
+            settingsForm: NamedFC('testForm', () => <>Hello World</>),
             isSettingsValid: () => true,
             buildStoreData: testField => {
                 return { testField };
             },
             getSettingsFromStoreData: data => data[testKey],
-            issueFilingUrlProvider: () => 'test url',
+            fileIssue: () => {},
         };
 
-        issueFilingServiceProviderMock.setup(provider => provider.forKey(userData.bugService)).returns(() => testIssueFilingService);
+        issueFilingServiceProviderMock.setup(provider => provider.forKey(userData.bugService)).returns(() => testIssueFilingServiceStub);
     });
 
     it('renders', () => {

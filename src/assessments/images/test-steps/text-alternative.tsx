@@ -2,13 +2,13 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import { TextAlternativePropertyBag } from '../../../common/types/property-bag/itext-alternative';
-import { VisualizationType } from '../../../common/types/visualization-type';
-import { link } from '../../../content/link';
-import { productName } from '../../../content/strings/application';
-import { TestAutomaticallyPassedNotice } from '../../../content/test/common/test-automatically-passed-notice';
-import * as content from '../../../content/test/images/text-alternative';
-import { AssessmentVisualizationEnabledToggle } from '../../../DetailsView/components/assessment-visualization-enabled-toggle';
+import { TextAlternativePropertyBag } from 'common/types/property-bag/itext-alternative';
+import { VisualizationType } from 'common/types/visualization-type';
+import { link } from 'content/link';
+import { productName } from 'content/strings/application';
+import { TestAutomaticallyPassedNotice } from 'content/test/common/test-automatically-passed-notice';
+import * as content from 'content/test/images/text-alternative';
+import { AssessmentVisualizationEnabledToggle } from 'DetailsView/components/assessment-visualization-enabled-toggle';
 import { AnalyzerConfigurationFactory } from '../../common/analyzer-configuration-factory';
 import { AssistedTestRecordYourResults } from '../../common/assisted-test-record-your-results';
 import { NoValue, PropertyBagColumnRendererConfig } from '../../common/property-bag-column-renderer';

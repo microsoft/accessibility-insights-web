@@ -2,10 +2,10 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
+import { renderer, RendererDeps } from 'views/insights/renderer';
+import { Router } from 'views/insights/router';
 import { Theme } from '../../../../../common/components/theme';
 import { configMutator } from '../../../../../common/configuration';
-import { renderer, RendererDeps } from '../../../../../views/insights/renderer';
-import { Router } from '../../../../../views/insights/router';
 
 describe('insights renderer', () => {
     const deps = ({

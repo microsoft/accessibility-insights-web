@@ -1,0 +1,57 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AssessmentScanDetails render Correct composition 1`] = `
+<div
+  className="assessment-scan-details"
+>
+  <h3>
+    Scan details
+  </h3>
+  <table>
+    <tbody>
+      <tr>
+        <td
+          aria-hidden="true"
+          className="icon"
+        >
+          <UrlIcon />
+        </td>
+        <td>
+          <NewTabLink
+            href="https://test-url/path/"
+            title="Navigate to target page"
+          >
+            https://test-url/path/
+          </NewTabLink>
+        </td>
+      </tr>
+      <tr>
+        <td
+          aria-hidden="true"
+          className="icon"
+        >
+          <DateIcon />
+        </td>
+        <td>
+          <FormattedDate
+            date={2018-10-22T12:29:00.000Z}
+          />
+        </td>
+      </tr>
+      <tr>
+        <td
+          aria-hidden="true"
+          className="icon"
+        >
+          <CommentIcon />
+        </td>
+        <td
+          className="assessment-scan-details-description"
+        >
+          test-description
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+`;

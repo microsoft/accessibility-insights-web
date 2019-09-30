@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { ISelection } from 'office-ui-fabric-react/lib/DetailsList';
-import { AssessmentsProvider } from '../../../../assessments/types/assessments-provider';
 import { BaseStore } from '../../../../common/base-store';
 import { VisualizationConfigurationFactory } from '../../../../common/configs/visualization-configuration-factory';
 import { DropdownClickHandler } from '../../../../common/dropdown-click-handler';
@@ -13,6 +13,7 @@ import { AssessmentStoreData } from '../../../../common/types/store-data/assessm
 import { DetailsViewData } from '../../../../common/types/store-data/details-view-data';
 import { ScopingStoreData } from '../../../../common/types/store-data/scoping-store-data';
 import { TabStoreData } from '../../../../common/types/store-data/tab-store-data';
+import { UnifiedScanResultStoreData } from '../../../../common/types/store-data/unified-data-interface';
 import { VisualizationScanResultData } from '../../../../common/types/store-data/visualization-scan-result-data';
 import { VisualizationStoreData } from '../../../../common/types/store-data/visualization-store-data';
 import { IssuesTableHandler } from '../../../../DetailsView/components/issues-table-handler';
@@ -27,6 +28,7 @@ export class DetailsViewContainerPropsBuilder {
     private visualizationStore: BaseStore<VisualizationStoreData>;
     private assessmentStore: BaseStore<AssessmentStoreData>;
     private visualizationScanResultStore: BaseStore<VisualizationScanResultData>;
+    private unifiedScanResultStore: BaseStore<UnifiedScanResultStoreData>;
     private tabStore: BaseStore<TabStoreData>;
     private featureFlagStore: BaseStore<DictionaryStringTo<boolean>>;
     private scopingStateStore: BaseStore<ScopingStoreData>;
@@ -116,6 +118,7 @@ export class DetailsViewContainerPropsBuilder {
 
     public setStoreMocks(storeMocks: StoreMocks): DetailsViewContainerPropsBuilder {
         this.visualizationScanResultStore = storeMocks.visualizationScanResultStoreMock.object;
+        this.unifiedScanResultStore = storeMocks.unifiedScanResultStoreMock.object;
         this.visualizationStore = storeMocks.visualizationStoreMock.object;
         this.tabStore = storeMocks.tabStoreMock.object;
         this.detailsViewStore = storeMocks.detailsViewStoreMock.object;
@@ -133,6 +136,7 @@ export class DetailsViewContainerPropsBuilder {
                 this.featureFlagStore,
                 this.tabStore,
                 this.visualizationScanResultStore,
+                this.unifiedScanResultStore,
                 this.visualizationStore,
                 this.assessmentStore,
                 this.scopingStateStore,
@@ -151,7 +155,6 @@ export class DetailsViewContainerPropsBuilder {
             clickHandlerFactory: this.clickHandlerFactory,
             visualizationConfigurationFactory: this.configFactory,
             issuesTableHandler: this.issuesTableHandler,
-            reportGenerator: null,
             previewFeatureFlagsHandler: this.previewFeatureFlagsHandler,
             scopingFlagsHandler: this.scopingFlagsHandler,
             dropdownClickHandler: this.dropdownClickHandler,

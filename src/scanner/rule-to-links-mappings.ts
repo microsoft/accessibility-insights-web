@@ -1,8 +1,15 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { link } from '../content/link';
+import { GuidanceTag } from 'content/guidance-tags';
+import { link } from 'content/link';
+import { HyperlinkDefinition } from 'views/content/content-page';
 import { DictionaryStringTo } from '../types/common-types';
-import { HyperlinkDefinition } from '../views/content/content-page';
+
+export interface GuidanceLink {
+    href: string;
+    text: string;
+    tags?: GuidanceTag[];
+}
 
 const BestPractice: HyperlinkDefinition = {
     text: 'Best Practice',
@@ -10,6 +17,13 @@ const BestPractice: HyperlinkDefinition = {
 };
 
 export const ruleToLinkConfiguration: DictionaryStringTo<HyperlinkDefinition[]> = {
+    'aria-input-field-name': [link.WCAG_4_1_2],
+    'aria-toggle-field-name': [link.WCAG_4_1_2],
+    'avoid-inline-spacing': [link.WCAG_1_4_12],
+    'input-button-name': [link.WCAG_4_1_2],
+    'landmark-unique': [BestPractice],
+    'role-img-alt': [link.WCAG_1_1_1],
+    'scrollable-region-focusable': [link.WCAG_2_1_1, BestPractice],
     'area-alt': [link.WCAG_1_1_1],
     'image-alt': [link.WCAG_1_1_1],
     'image-redundant-alt': [BestPractice],
@@ -85,9 +99,9 @@ export const ruleToLinkConfiguration: DictionaryStringTo<HyperlinkDefinition[]> 
     'get-frame-title': [link.WCAG_4_1_2],
     'page-title': [link.WCAG_2_4_2],
     'aria-allowed-role': [BestPractice],
-    'autocomplete-valid': [BestPractice],
+    'autocomplete-valid': [link.WCAG_1_3_5],
     'css-orientation-lock': [BestPractice],
-    'aria-hidden-focus': [link.WCAG_4_1_2],
+    'aria-hidden-focus': [link.WCAG_4_1_2, link.WCAG_1_3_1],
     'form-field-multiple-labels': [BestPractice],
     'label-content-name-mismatch': [BestPractice],
     'landmark-complementary-is-top-level': [link.WCAG_1_3_1, BestPractice],

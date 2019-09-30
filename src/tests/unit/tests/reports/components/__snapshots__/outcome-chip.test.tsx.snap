@@ -1,0 +1,109 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`OutcomeChip render fail 1`] = `
+<span
+  className="outcome-chip outcome-chip-fail"
+  title="4 Failed"
+>
+  <span
+    className="icon"
+  >
+    <OutcomeIcon
+      outcomeType="fail"
+    />
+  </span>
+  <span
+    aria-hidden="true"
+    className="count"
+  >
+     
+    4
+  </span>
+  <span
+    className="screen-reader-only"
+  >
+    4 Failed
+  </span>
+</span>
+`;
+
+exports[`OutcomeChip render inapplicable 1`] = `
+<span
+  className="outcome-chip outcome-chip-inapplicable"
+  title="4 Not applicable"
+>
+  <span
+    className="icon"
+  >
+    <OutcomeIcon
+      outcomeType="inapplicable"
+    />
+  </span>
+  <span
+    aria-hidden="true"
+    className="count"
+  >
+     
+    4
+  </span>
+  <span
+    className="screen-reader-only"
+  >
+    4 Not applicable
+  </span>
+</span>
+`;
+
+exports[`OutcomeChip render incomplete 1`] = `
+<span
+  className="outcome-chip outcome-chip-incomplete"
+  title="2 Incomplete"
+>
+  <span
+    className="icon"
+  >
+    <OutcomeIcon
+      outcomeType="incomplete"
+    />
+  </span>
+  <span
+    aria-hidden="true"
+    className="count"
+  >
+     
+    2
+  </span>
+  <span
+    className="screen-reader-only"
+  >
+    2 Incomplete
+  </span>
+</span>
+`;
+
+exports[`OutcomeChip render pass 1`] = `
+<span
+  className="outcome-chip outcome-chip-pass"
+  title="3 Passed"
+>
+  <span
+    className="icon"
+  >
+    <OutcomeIcon
+      outcomeType="pass"
+    />
+  </span>
+  <span
+    aria-hidden="true"
+    className="count"
+  >
+     
+    3
+  </span>
+  <span
+    className="screen-reader-only"
+  >
+    3 Passed
+  </span>
+</span>
+`;

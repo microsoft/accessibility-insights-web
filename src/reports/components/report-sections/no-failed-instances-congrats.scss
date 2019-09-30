@@ -1,0 +1,36 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+@import '../../../common/styles/colors.scss';
+
+.report-congrats {
+    position: relative;
+}
+
+.report-congrats-screen {
+    top: 181px;
+    position: absolute;
+    width: 488px;
+    left: 105px;
+    height: 295px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.report-congrats-message {
+    width: 364px;
+    text-align: center;
+}
+
+.report-congrats-head {
+    font-size: 48px;
+    font-weight: 600;
+    color: $primary-text;
+    padding: 10px 0 10px 0;
+}
+
+.report-congrats-info {
+    font-size: 40px;
+    color: $secondary-text;
+    padding: 10px 0 10px 0;
+}

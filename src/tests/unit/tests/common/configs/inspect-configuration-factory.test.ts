@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { InspectMode } from 'background/inspect-modes';
+import { ScopingInputTypes } from 'background/scoping-input-types';
 import { Mock, Times } from 'typemoq';
-import { InspectMode } from '../../../../../background/inspect-modes';
-import { ScopingInputTypes } from '../../../../../background/scoping-input-types';
 import { ConfigurationKey, InspectConfigurationFactory } from '../../../../../common/configs/inspect-configuration-factory';
 import { ScopingActionMessageCreator } from '../../../../../common/message-creators/scoping-action-message-creator';
 import { EventStubFactory } from '../../../common/event-stub-factory';

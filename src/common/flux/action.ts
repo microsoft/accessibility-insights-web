@@ -9,26 +9,26 @@ export class Action<TPayload> {
      */
     private static executingScopes: DictionaryStringTo<boolean> = {};
 
-    private _listeners: ((payload: TPayload) => void)[] = [];
-    private _scope: string = 'DEFAULT_SCOPE';
+    private listeners: ((payload: TPayload) => void)[] = [];
+    private scope: string = 'DEFAULT_SCOPE';
 
     public invoke(payload: TPayload): void {
-        if (Action.executingScopes[this._scope]) {
-            throw new Error(`Cannot invoke an action with scope ${this._scope} from inside another action with the same scope`);
+        if (Action.executingScopes[this.scope]) {
+            throw new Error(`Cannot invoke an action with scope ${this.scope} from inside another action with the same scope`);
         }
 
-        Action.executingScopes[this._scope] = true;
+        Action.executingScopes[this.scope] = true;
 
         try {
-            this._listeners.forEach((listener: (payload: TPayload) => void) => {
+            this.listeners.forEach((listener: (payload: TPayload) => void) => {
                 listener(payload);
             });
         } finally {
-            delete Action.executingScopes[this._scope];
+            delete Action.executingScopes[this.scope];
         }
     }
 
     public addListener(listener: (payload: TPayload) => void): void {
-        this._listeners.push(listener);
+        this.listeners.push(listener);
     }
 }

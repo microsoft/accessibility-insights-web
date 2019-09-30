@@ -1,18 +1,20 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { autobind } from '@uifabric/utilities';
+import { ScopingInputTypes } from 'background/scoping-input-types';
 import * as Q from 'q';
-import { ScopingInputTypes } from '../../background/scoping-input-types';
 import { BaseStore } from '../../common/base-store';
 import { VisualizationConfigurationFactory } from '../../common/configs/visualization-configuration-factory';
 import { TelemetryDataFactory } from '../../common/telemetry-data-factory';
 import { ForRuleAnalyzerScanCallback } from '../../common/types/analyzer-telemetry-callbacks';
 import { ScopingStoreData } from '../../common/types/store-data/scoping-store-data';
-import { ScanOptions } from '../../scanner/exposed-apis';
 import { ScanResults } from '../../scanner/iruleresults';
+import { ScanOptions } from '../../scanner/scan-options';
 import { ScannerUtils } from '../scanner-utils';
 import { AxeAnalyzerResult, RuleAnalyzerConfiguration } from './analyzer';
 import { BaseAnalyzer } from './base-analyzer';
+
+export type MessageDelegate = (message: any) => void;
+export type PostResolveCallback = (results: AxeAnalyzerResult) => void;
 
 export class RuleAnalyzer extends BaseAnalyzer {
     private startTime: number;
@@ -26,11 +28,12 @@ export class RuleAnalyzer extends BaseAnalyzer {
         protected dateGetter: () => Date,
         protected telemetryFactory: TelemetryDataFactory,
         protected readonly visualizationConfigFactory: VisualizationConfigurationFactory,
+        private postOnResolve: PostResolveCallback,
     ) {
         super(config, sendMessageDelegate);
     }
 
-    protected getResults(): Q.Promise<AxeAnalyzerResult> {
+    protected getResults = (): Q.Promise<AxeAnalyzerResult> => {
         const deferred = Q.defer<AxeAnalyzerResult>();
         const scopingState = this.scopingStore.getState().selectors;
         const include = scopingState[ScopingInputTypes.include];
@@ -58,16 +61,16 @@ export class RuleAnalyzer extends BaseAnalyzer {
         this.scanner.scan(scanOptions, scanCallback);
 
         return deferred.promise;
-    }
+    };
 
     protected getRulesToRun(): string[] {
         return this.config.rules;
     }
 
-    @autobind
-    protected onResolve(analyzerResult: AxeAnalyzerResult): void {
+    protected onResolve = (analyzerResult: AxeAnalyzerResult): void => {
         this.sendScanCompleteResolveMessage(analyzerResult, this.config);
-    }
+        this.postOnResolve(analyzerResult);
+    };
 
     protected sendScanCompleteResolveMessage(analyzerResult: AxeAnalyzerResult, config: RuleAnalyzerConfiguration): void {
         const endTime = this.dateGetter().getTime();

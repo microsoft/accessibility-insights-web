@@ -2,12 +2,12 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import { VisualizationConfiguration } from '../../common/configs/visualization-configuration-factory';
-import { NamedSFC } from '../../common/react/named-sfc';
+import { ContentReference } from 'views/content/content-page';
+import { VisualizationConfiguration } from '../../common/configs/visualization-configuration';
+import { NamedFC } from '../../common/react/named-fc';
 import { TabStoreData } from '../../common/types/store-data/tab-store-data';
 import { VisualizationStoreData } from '../../common/types/store-data/visualization-store-data';
 import { VisualizationType } from '../../common/types/visualization-type';
-import { ContentReference } from '../../views/content/content-page';
 import { DetailsViewToggleClickHandlerFactory } from '../handlers/details-view-toggle-click-handler-factory';
 import { StaticContentDetailsView, StaticContentDetailsViewDeps, StaticContentDetailsViewProps } from './static-content-details-view';
 import { TargetPageChangedView } from './target-page-changed-view';
@@ -25,7 +25,7 @@ export interface AdhocStaticTestViewProps {
     guidance?: ContentReference;
 }
 
-export const AdhocStaticTestView = NamedSFC<AdhocStaticTestViewProps>('AdhocStaticTestView', ({ children, ...props }) => {
+export const AdhocStaticTestView = NamedFC<AdhocStaticTestViewProps>('AdhocStaticTestView', ({ children, ...props }) => {
     const selectedTest = props.selectedTest;
     const scanData = props.configuration.getStoreData(props.visualizationStoreData.tests);
     const clickHandler = props.clickHandlerFactory.createClickHandler(selectedTest, !scanData.enabled);

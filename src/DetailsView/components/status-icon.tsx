@@ -4,8 +4,8 @@ import { css } from '@uifabric/utilities';
 import { Icon } from 'office-ui-fabric-react/lib/Icon';
 import * as React from 'react';
 
+import { outcomeTypeSemanticsFromTestStatus } from 'reports/components/requirement-outcome-type';
 import { ManualTestStatus } from '../../common/types/manual-test-status';
-import { outcomeTypeSemanticsFromTestStatus } from '../reports/components/outcome-type';
 
 export interface StatusIconProps {
     status: ManualTestStatus;

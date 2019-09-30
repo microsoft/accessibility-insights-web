@@ -1,17 +1,17 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { NewTabLink } from 'common/components/new-tab-link';
+import { VisualizationType } from 'common/types/visualization-type';
+import { test as content } from 'content/test';
 import * as React from 'react';
-import { NewTabLink } from '../../common/components/new-tab-link';
-import { VisualizationType } from '../../common/types/visualization-type';
-import { test as content } from '../../content/test';
 import { AssessmentBuilder } from '../assessment-builder';
 import * as Markup from '../markup';
 import { Assessment } from '../types/iassessment';
 import { Cues } from './test-steps/cues';
 import { DesignPattern } from './test-steps/design-pattern';
+import { ExpectedInput } from './test-steps/expected-input';
 import { Instructions } from './test-steps/instructions';
 import { KeyboardInteraction } from './test-steps/keyboard-interaction';
-import { Label } from './test-steps/label';
 import { RoleStateProperty } from './test-steps/role-state-property';
 
 const key = 'customWidgets';
@@ -41,6 +41,6 @@ export const CustomWidgets: Assessment = AssessmentBuilder.Assisted({
     title,
     gettingStarted,
     guidance,
-    requirements: [DesignPattern, Instructions, Label, RoleStateProperty, Cues, KeyboardInteraction],
+    requirements: [DesignPattern, Instructions, ExpectedInput, RoleStateProperty, Cues, KeyboardInteraction],
     storeDataKey: 'customWidgetsAssessment',
 });

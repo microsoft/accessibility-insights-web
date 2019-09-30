@@ -3,13 +3,14 @@
 import { map } from 'lodash';
 import * as React from 'react';
 
-import { AssessmentsProvider } from '../../../assessments/types/assessments-provider';
-import { VisualizationConfiguration } from '../../../common/configs/visualization-configuration-factory';
+import { AssessmentsProvider } from 'assessments/types/assessments-provider';
+import { OutcomeTypeSemantic } from 'reports/components/outcome-type';
+import { RequirementOutcomeStats } from 'reports/components/requirement-outcome-type';
+import { GetAssessmentSummaryModelFromProviderAndStatusData } from 'reports/get-assessment-summary-model';
+import { VisualizationConfiguration } from '../../../common/configs/visualization-configuration';
 import { ManualTestStatus, ManualTestStatusData } from '../../../common/types/manual-test-status';
 import { VisualizationType } from '../../../common/types/visualization-type';
 import { DictionaryStringTo } from '../../../types/common-types';
-import { OutcomeStats, OutcomeTypeSemantic } from '../../reports/components/outcome-type';
-import { GetAssessmentSummaryModelFromProviderAndStatusData } from '../../reports/get-assessment-summary-model';
 import { BaseLeftNavLink, onBaseLeftNavItemClick, onBaseLeftNavItemRender } from '../base-left-nav';
 import { OverviewLeftNavLink } from './overview-left-nav-link';
 import { TestViewLeftNavLink } from './test-view-left-nav-link';
@@ -21,9 +22,9 @@ export type OverviewLinkBuilderDeps = {
 };
 
 export type AssessmentLinkBuilderDeps = {
-    getStatusForTest: (stats: OutcomeStats) => ManualTestStatus;
+    getStatusForTest: (stats: RequirementOutcomeStats) => ManualTestStatus;
     outcomeTypeSemanticsFromTestStatus: (testStatus: ManualTestStatus) => OutcomeTypeSemantic;
-    outcomeStatsFromManualTestStatus: (testStepStatus: ManualTestStatusData) => OutcomeStats;
+    outcomeStatsFromManualTestStatus: (testStepStatus: ManualTestStatusData) => RequirementOutcomeStats;
 };
 
 export type VisualizationConfigurationLinkBuilderDeps = {};

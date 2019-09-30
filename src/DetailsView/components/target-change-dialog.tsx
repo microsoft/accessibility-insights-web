@@ -8,7 +8,7 @@ import { TooltipHost } from 'office-ui-fabric-react/lib/Tooltip';
 import * as React from 'react';
 
 import { css } from '@uifabric/utilities';
-import * as Markup from '../../assessments/markup';
+import * as Markup from 'assessments/markup';
 import { BlockingDialog } from '../../common/components/blocking-dialog';
 import { NewTabLink } from '../../common/components/new-tab-link';
 import { Tab } from '../../common/itab';
@@ -113,7 +113,7 @@ export class TargetChangeDialog extends React.Component<TargetChangeDialogProps>
         }
 
         const { urlParser } = this.props.deps;
-        const urlChanged = prevTab.url && urlParser.areURLHostNamesEqual(prevTab.url, newTab.url) === false;
+        const urlChanged = prevTab.url && urlParser.areURLsEqual(prevTab.url, newTab.url) === false;
 
         return this.didTargetTabChanged(prevTab, newTab) || urlChanged === true;
     }

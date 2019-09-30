@@ -1,17 +1,17 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
+import { initializeFabricIcons } from 'common/fabric-icons';
+import { ContentActionMessageCreator } from 'common/message-creators/content-action-message-creator';
 import * as ReactDOM from 'react-dom';
-
-import { initializeFabricIcons } from '../../../../../common/fabric-icons';
-import { ContentActionMessageCreator } from '../../../../../common/message-creators/content-action-message-creator';
-import { rendererDependencies } from '../../../../../views/insights/dependencies';
-import { RendererDeps } from './../../../../../views/insights/renderer';
+import { Mock } from 'typemoq';
+import { rendererDependencies } from 'views/insights/dependencies';
+import { RendererDeps } from 'views/insights/renderer';
 
 describe('rendererDependencies', () => {
     let subject: RendererDeps;
     beforeAll(() => {
-        mockChromeObject();
-        subject = rendererDependencies();
+        subject = rendererDependencies(Mock.ofType<BrowserAdapter>().object);
     });
 
     it('includes dom', () => {
@@ -41,14 +41,4 @@ describe('rendererDependencies', () => {
     it('includes storeActionCreator', () => {
         expect(subject.storeActionMessageCreator).toBeDefined();
     });
-
-    function mockChromeObject(): void {
-        (global as any).chrome = {
-            runtime: {
-                onMessage: {
-                    addListener: () => {},
-                },
-            },
-        };
-    }
 });

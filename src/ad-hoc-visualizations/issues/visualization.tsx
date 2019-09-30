@@ -1,18 +1,18 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { NewTabLink } from 'common/components/new-tab-link';
+import { AdHocTestkeys } from 'common/configs/adhoc-test-keys';
+import { TestMode } from 'common/configs/test-mode';
+import { VisualizationConfiguration } from 'common/configs/visualization-configuration';
+import { Messages } from 'common/messages';
+import { TelemetryDataFactory } from 'common/telemetry-data-factory';
+import { VisualizationType } from 'common/types/visualization-type';
+import { generateUID } from 'common/uid-generator';
+import { AdhocIssuesTestView } from 'DetailsView/components/adhoc-issues-test-view';
+import { ScannerUtils } from 'injected/scanner-utils';
+import { VisualizationInstanceProcessor } from 'injected/visualization-instance-processor';
 import { isEmpty } from 'lodash';
 import * as React from 'react';
-import { NewTabLink } from '../../common/components/new-tab-link';
-import { AdHocTestkeys } from '../../common/configs/adhoc-test-keys';
-import { TestMode } from '../../common/configs/test-mode';
-import { VisualizationConfiguration } from '../../common/configs/visualization-configuration-factory';
-import { Messages } from '../../common/messages';
-import { TelemetryDataFactory } from '../../common/telemetry-data-factory';
-import { VisualizationType } from '../../common/types/visualization-type';
-import { generateUID } from '../../common/uid-generator';
-import { AdhocIssuesTestView } from '../../DetailsView/components/adhoc-issues-test-view';
-import { ScannerUtils } from '../../injected/scanner-utils';
-import { VisualizationInstanceProcessor } from '../../injected/visualization-instance-processor';
 
 export const IssuesAdHocVisualization: VisualizationConfiguration = {
     key: AdHocTestkeys.Issues,
@@ -27,8 +27,8 @@ export const IssuesAdHocVisualization: VisualizationConfiguration = {
         subtitle: (
             <>
                 Automated checks can detect some common accessibility problems such as missing or invalid properties. But most accessibility
-                problems can only be discovered through manual testing. The best way to evaluate web accessibility is to complete an{' '}
-                <NewTabLink href="https://accessibilityinsights.io/docs/en/web/getstarted/assessment">assessment</NewTabLink>.
+                problems can only be discovered through manual testing. The best way to evaluate web accessibility compliance is to complete
+                an <NewTabLink href="https://accessibilityinsights.io/docs/en/web/getstarted/assessment">assessment</NewTabLink>.
             </>
         ),
         enableMessage: 'Running automated checks...',
@@ -38,10 +38,9 @@ export const IssuesAdHocVisualization: VisualizationConfiguration = {
     chromeCommand: '01_toggle-issues',
     launchPanelDisplayOrder: 1,
     adhocToolsPanelDisplayOrder: 1,
-    analyzerMessageType: Messages.Visualizations.Common.ScanCompleted,
     resultProcessor: (scanner: ScannerUtils) => scanner.getFailingInstances,
     getAnalyzer: provider =>
-        provider.createRuleAnalyzer({
+        provider.createRuleAnalyzerUnifiedScan({
             rules: null,
             resultProcessor: (scanner: ScannerUtils) => scanner.getFailingInstances,
             telemetryProcessor: (telemetryFactory: TelemetryDataFactory) => telemetryFactory.forIssuesAnalyzerScan,

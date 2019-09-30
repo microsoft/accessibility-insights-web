@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { ColumnActionsMode, IColumn } from 'office-ui-fabric-react/lib/DetailsList';
 import * as React from 'react';
-import { AssessmentsProvider } from '../../assessments/types/assessments-provider';
 import { AssessmentNavState } from '../../common/types/store-data/assessment-result-data';
 import { MasterCheckBoxConfigProvider } from '../handlers/master-checkbox-config-provider';
 import { AssessmentInstanceDetailsColumn } from './assessment-instance-details-column';
@@ -108,11 +108,13 @@ export class AssessmentTableColumnConfigHandler {
     }
 
     private onRenderCapturedInstanceDetailsColumn(item: CapturedInstanceRowData): JSX.Element {
+        const headerText = item.instance.description ? 'Comment:' : 'Path:';
+        const textContent = item.instance.description ? item.instance.description : item.instance.selector;
         return (
             <AssessmentInstanceDetailsColumn
                 background={'#767676'}
-                labelText={'N/A'}
-                textContent={item.instance.description}
+                textContent={textContent}
+                headerText={headerText}
                 tooltipId={item.instance.id}
                 customClassName="not-applicable"
             />

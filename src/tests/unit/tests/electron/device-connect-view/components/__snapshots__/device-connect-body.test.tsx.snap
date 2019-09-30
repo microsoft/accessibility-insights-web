@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DeviceConnectBodyTest render 1`] = `
+<div
+  className="device-connect-body"
+>
+  <DeviceConnectHeader />
+  <DeviceConnectPortEntry
+    deps={
+      Object {
+        "currentWindow": Object {
+          "close": [Function],
+        },
+      }
+    }
+    needsValidation={true}
+    updateStateCallback={[Function]}
+  />
+  <DeviceConnectConnectedDevice
+    hasFailed={false}
+    isConnecting={false}
+  />
+  <DeviceConnectFooter
+    canStartTesting={false}
+    cancelClick={[Function]}
+  />
+</div>
+`;

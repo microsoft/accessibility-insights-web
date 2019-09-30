@@ -5,7 +5,7 @@ import { flatMap } from 'lodash';
 import {
     createAutomatedChecksInitialAssessmentTestData,
     createInitialAssessmentTestData,
-} from '../../../../background/create-initial-assessment-test-data';
+} from 'background/create-initial-assessment-test-data';
 import { ManualTestStatus, TestStepData } from '../../../../common/types/manual-test-status';
 import { GeneratedAssessmentInstance, ManualTestStepResult } from '../../../../common/types/store-data/assessment-result-data';
 import { CreateTestAssessmentProvider } from '../../common/test-assessment-provider';

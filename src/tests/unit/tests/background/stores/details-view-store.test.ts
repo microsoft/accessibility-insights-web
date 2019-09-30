@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { ContentActions } from '../../../../../background/actions/content-actions';
-import { DetailsViewActions } from '../../../../../background/actions/details-view-actions';
-import { PreviewFeaturesActions } from '../../../../../background/actions/preview-features-actions';
-import { ScopingActions } from '../../../../../background/actions/scoping-actions';
-import { DetailsViewStore } from '../../../../../background/stores/details-view-store';
+import { ContentActions } from 'background/actions/content-actions';
+import { DetailsViewActions } from 'background/actions/details-view-actions';
+import { PreviewFeaturesActions } from 'background/actions/preview-features-actions';
+import { ScopingActions } from 'background/actions/scoping-actions';
+import { DetailsViewStore } from 'background/stores/details-view-store';
 import { StoreNames } from '../../../../../common/stores/store-names';
 import { DetailsViewData } from '../../../../../common/types/store-data/details-view-data';
 import { DetailsViewStoreDataBuilder } from '../../../common/details-view-store-data-builder';

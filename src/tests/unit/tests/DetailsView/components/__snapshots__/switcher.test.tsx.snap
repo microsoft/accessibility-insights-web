@@ -1,5 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Switcher render 1`] = `"<StyledWithResponsiveMode ariaLabel=\\"select workflow\\" responsiveMode={2} selectedKey={0} onRenderOption={[Function]} onRenderTitle={[Function]} onChange={[Function]} options={{...}} />"`;
+exports[`Switcher render 1`] = `"<StyledWithResponsiveMode ariaLabel=\\"select activity\\" responsiveMode={2} selectedKey={0} onRenderOption={[Function]} onRenderTitle={[Function]} onChange={[Function]} options={{...}} />"`;
 
-exports[`Switcher render options 1`] = `"<StyledWithResponsiveMode ariaLabel=\\"select workflow\\" responsiveMode={2} selectedKey={0} onRenderOption={[Function]} onRenderTitle={[Function]} onChange={[Function]} options={{...}} />"`;
+exports[`Switcher render options 1`] = `"<StyledWithResponsiveMode ariaLabel=\\"select activity\\" responsiveMode={2} selectedKey={0} onRenderOption={[Function]} onRenderTitle={[Function]} onChange={[Function]} options={{...}} />"`;

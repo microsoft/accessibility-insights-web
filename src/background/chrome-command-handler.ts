@@ -1,22 +1,20 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { autobind } from '@uifabric/utilities';
-
+import { BrowserAdapter } from '../common/browser-adapters/browser-adapter';
+import { CommandsAdapter } from '../common/browser-adapters/commands-adapter';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
 import { DisplayableStrings } from '../common/constants/displayable-strings';
+import { ToggleTelemetryData } from '../common/extension-telemetry-events';
 import { createDefaultLogger } from '../common/logging/default-logger';
 import { Logger } from '../common/logging/logger';
 import { Messages } from '../common/messages';
 import { NotificationCreator } from '../common/notification-creator';
 import { TelemetryDataFactory } from '../common/telemetry-data-factory';
-import { ToggleTelemetryData } from '../common/telemetry-events';
 import { ScanData, VisualizationStoreData } from '../common/types/store-data/visualization-store-data';
 import { VisualizationType } from '../common/types/visualization-type';
 import { UrlValidator } from '../common/url-validator';
 import { DictionaryStringTo } from '../types/common-types';
 import { VisualizationTogglePayload } from './actions/action-payloads';
-import { BrowserAdapter } from './browser-adapter';
-import { CommandsAdapter } from './browser-adapters/commands-adapter';
 import { UserConfigurationStore } from './stores/global/user-configuration-store';
 import { TabToContextMap } from './tab-context';
 
@@ -43,8 +41,7 @@ export class ChromeCommandHandler {
         this.commandsAdapter.addCommandListener(this.onCommand);
     }
 
-    @autobind
-    private async onCommand(commandId: string): Promise<void> {
+    private onCommand = async (commandId: string): Promise<void> => {
         try {
             if (this.userConfigurationStore.getState().isFirstTime) {
                 // Avoid launching functionality until a user has decided whether to allow telemetry
@@ -92,10 +89,10 @@ export class ChromeCommandHandler {
         } catch (err) {
             this.logger.error('Error occurred at chrome command handler:', err);
         }
-    }
+    };
 
     private async checkAccessUrl(): Promise<boolean> {
-        return await this.urlValidator.isSupportedUrl(this.targetTabUrl, this.browserAdapter);
+        return await this.urlValidator.isSupportedUrl(this.targetTabUrl);
     }
 
     private queryTabs(tabQueryParams: chrome.tabs.QueryInfo): Promise<chrome.tabs.Tab[]> {

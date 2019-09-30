@@ -2,8 +2,8 @@
 // Licensed under the MIT License.
 import { IObjectWithKey } from 'office-ui-fabric-react/lib/DetailsList';
 import { IGroup } from 'office-ui-fabric-react/lib/GroupedList';
+import { HyperlinkDefinition } from 'views/content/content-page';
 import { RuleResult } from '../../scanner/iruleresults';
-import { HyperlinkDefinition } from '../../views/content/content-page';
 
 export interface DetailsRowData extends IObjectWithKey, AxeNodeResult {
     selector: string;

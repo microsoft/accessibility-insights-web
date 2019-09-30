@@ -5,11 +5,10 @@ exports[`Settings Dropdown Normal mode content should match snapshot 1`] = `
   <div
     class="ms-ContextualMenu-container container-000"
     id="settings-dropdown-menu"
-    role="menu"
     tabindex="-1"
   >
     <div
-      class="ms-FocusZone ms-ContextualMenu is-open root-000"
+      class="ms-FocusZone css-000 ms-ContextualMenu is-open root-000"
       data-focuszone-id="FocusZone000"
       role="presentation"
     >
@@ -34,6 +33,7 @@ exports[`Settings Dropdown Normal mode content should match snapshot 1`] = `
               class="ms-ContextualMenu-linkContent linkContent-000"
             >
               <i
+                aria-hidden="true"
                 class="ms-ContextualMenu-icon icon-000"
                 data-icon-name="gear"
                 role="presentation"
@@ -65,6 +65,7 @@ exports[`Settings Dropdown Normal mode content should match snapshot 1`] = `
               class="ms-ContextualMenu-linkContent linkContent-000"
             >
               <i
+                aria-hidden="true"
                 class="ms-ContextualMenu-icon icon-000"
                 data-icon-name="giftboxOpen"
                 role="presentation"

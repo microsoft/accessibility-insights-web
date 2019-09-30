@@ -1,23 +1,23 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as React from 'react';
+import { HyperlinkDefinition } from 'views/content/content-page';
 
-import { ExternalLinkDeps } from '../../../common/components/external-link';
-import { NamedSFC } from '../../../common/react/named-sfc';
-import { HyperlinkDefinition } from '../../../views/content/content-page';
-import { HelpLinks } from './overview-help-links';
+import { NamedFC } from '../../../common/react/named-fc';
+import { HelpLinks, HelpLinksDeps } from './help-links';
+import { helpHeading, overviewHelpContainer } from './overview-help-section.scss';
 
-export type HelpLinkDeps = ExternalLinkDeps;
+export type OverviewHelpSectionDeps = HelpLinksDeps;
 
-export interface OverviewHelpProps {
-    deps: HelpLinkDeps;
+export interface OverviewHelpSectionProps {
+    deps: OverviewHelpSectionDeps;
     linkDataSource: HyperlinkDefinition[];
 }
 
-export const OverviewHelpSection = NamedSFC('OverviewHelpSection', (props: OverviewHelpProps) => {
+export const OverviewHelpSection = NamedFC('OverviewHelpSection', (props: OverviewHelpSectionProps) => {
     return (
-        <section className="overview-help-container">
-            <h3 className="help-heading">Help</h3>
+        <section className={overviewHelpContainer}>
+            <h3 className={helpHeading}>Help</h3>
             <HelpLinks linkInformation={props.linkDataSource} deps={props.deps} />
         </section>
     );

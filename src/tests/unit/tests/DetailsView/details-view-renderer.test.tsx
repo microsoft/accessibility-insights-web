@@ -18,8 +18,8 @@ import { DetailsViewRenderer } from '../../../../DetailsView/details-view-render
 import { AssessmentInstanceTableHandler } from '../../../../DetailsView/handlers/assessment-instance-table-handler';
 import { DetailsViewToggleClickHandlerFactory } from '../../../../DetailsView/handlers/details-view-toggle-click-handler-factory';
 import { PreviewFeatureFlagsHandler } from '../../../../DetailsView/handlers/preview-feature-flags-handler';
-import { ReportGenerator } from '../../../../DetailsView/reports/report-generator';
 import { CreateTestAssessmentProvider } from '../../common/test-assessment-provider';
+import { TestDocumentCreator } from '../../common/test-document-creator';
 
 describe('DetailsViewRendererTest', () => {
     test('render', () => {
@@ -28,8 +28,7 @@ describe('DetailsViewRendererTest', () => {
         const scopingActionMessageCreatorStrictMock = Mock.ofType<ScopingActionMessageCreator>(null, MockBehavior.Strict);
         const inspectActionMessageCreatorStrictMock = Mock.ofType<InspectActionMessageCreator>(null, MockBehavior.Strict);
 
-        const dom = document.createElement('div');
-        const detailsViewContainer = document.createElement('div');
+        const fakeDocument = TestDocumentCreator.createTestDocument('<div id="details-container"></div>');
 
         const renderMock: IMock<typeof ReactDOM.render> = Mock.ofInstance(() => null);
         const selectionMock = Mock.ofType<ISelection>(Selection);
@@ -40,16 +39,12 @@ describe('DetailsViewRendererTest', () => {
         const scopingFlagsHandlerMock = Mock.ofType(PreviewFeatureFlagsHandler);
         const dropdownClickHandlerMock = Mock.ofType(DropdownClickHandler);
         const assessmentInstanceTableHandlerMock = Mock.ofType(AssessmentInstanceTableHandler);
-        const reportGeneratorMock = Mock.ofType(ReportGenerator);
         const assessmentsProviderMock = Mock.ofInstance(CreateTestAssessmentProvider());
 
         const expectedIcon16 = 'icon128.png';
         configMutator.setOption('icon128', expectedIcon16);
         const documentManipulatorMock = Mock.ofType(DocumentManipulator);
         documentManipulatorMock.setup(des => des.setShortcutIcon('../' + expectedIcon16)).verifiable();
-
-        detailsViewContainer.setAttribute('id', 'details-container');
-        dom.appendChild(detailsViewContainer);
 
         renderMock
             .setup(r =>
@@ -61,7 +56,6 @@ describe('DetailsViewRendererTest', () => {
                                 deps={deps}
                                 scopingActionMessageCreator={scopingActionMessageCreatorStrictMock.object}
                                 inspectActionMessageCreator={inspectActionMessageCreatorStrictMock.object}
-                                document={dom as any}
                                 issuesSelection={selectionMock.object}
                                 clickHandlerFactory={clickHandlerFactoryMock.object}
                                 visualizationConfigurationFactory={visualizationConfigurationFactoryMock.object}
@@ -69,20 +63,19 @@ describe('DetailsViewRendererTest', () => {
                                 assessmentInstanceTableHandler={assessmentInstanceTableHandlerMock.object}
                                 previewFeatureFlagsHandler={previewFeatureFlagsHandlerMock.object}
                                 scopingFlagsHandler={scopingFlagsHandlerMock.object}
-                                reportGenerator={reportGeneratorMock.object}
                                 dropdownClickHandler={dropdownClickHandlerMock.object}
                                 assessmentsProvider={assessmentsProviderMock.object}
                             />
                         </>,
                     ),
-                    detailsViewContainer,
+                    fakeDocument.getElementById('details-container'),
                 ),
             )
             .verifiable();
 
         const renderer = new DetailsViewRenderer(
             deps,
-            dom,
+            fakeDocument,
             renderMock.object,
             scopingActionMessageCreatorStrictMock.object,
             inspectActionMessageCreatorStrictMock.object,
@@ -91,7 +84,6 @@ describe('DetailsViewRendererTest', () => {
             visualizationConfigurationFactoryMock.object,
             issuesTableHandlerMock.object,
             assessmentInstanceTableHandlerMock.object,
-            reportGeneratorMock.object,
             previewFeatureFlagsHandlerMock.object,
             scopingFlagsHandlerMock.object,
             dropdownClickHandlerMock.object,

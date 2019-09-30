@@ -1,19 +1,19 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { autobind } from '@uifabric/utilities';
 import { Link } from 'office-ui-fabric-react/lib/Link';
 import { Spinner, SpinnerSize } from 'office-ui-fabric-react/lib/Spinner';
 import { IToggle } from 'office-ui-fabric-react/lib/Toggle';
 import * as React from 'react';
+import { ContentLink, ContentLinkDeps } from 'views/content/content-link';
 import { VisualizationToggle } from '../../common/components/visualization-toggle';
-import { VisualizationConfiguration, VisualizationConfigurationFactory } from '../../common/configs/visualization-configuration-factory';
+import { VisualizationConfiguration } from '../../common/configs/visualization-configuration';
+import { VisualizationConfigurationFactory } from '../../common/configs/visualization-configuration-factory';
 import { KeyCodeConstants } from '../../common/constants/keycode-constants';
-import { TelemetryEventSource } from '../../common/telemetry-events';
+import { TelemetryEventSource } from '../../common/extension-telemetry-events';
 import { DetailsViewPivotType } from '../../common/types/details-view-pivot-type';
 import { VisualizationStoreData } from '../../common/types/store-data/visualization-store-data';
 import { VisualizationType } from '../../common/types/visualization-type';
 import { DictionaryStringTo } from '../../types/common-types';
-import { ContentLink, ContentLinkDeps } from '../../views/content/content-link';
 import { PopupActionMessageCreator } from '../actions/popup-action-message-creator';
 import { DiagnosticViewClickHandler } from '../handlers/diagnostic-view-toggle-click-handler';
 
@@ -27,7 +27,7 @@ export interface DiagnosticViewToggleProps {
     clickHandler: DiagnosticViewClickHandler;
     shortcutCommands: chrome.commands.Command[];
     telemetrySource: TelemetryEventSource;
-    dom: NodeSelector & Node;
+    dom: Document;
 }
 
 export type DiagnosticViewToggleDeps = ContentLinkDeps;
@@ -38,17 +38,20 @@ export interface DiagnosticViewToggleState {
 
 export class DiagnosticViewToggle extends React.Component<DiagnosticViewToggleProps, DiagnosticViewToggleState> {
     private configuration: VisualizationConfiguration;
-    private _toggle: React.RefObject<IToggle> = React.createRef<IToggle>();
-    private dom: NodeSelector & Node;
+    private toggle: React.RefObject<IToggle> = React.createRef<IToggle>();
+    private dom: Document;
+    private userEventListenerAdded: boolean;
+
+    // Must be consistent with internal react naming for same property to work
+    // tslint:disable-next-line: variable-name
     private _isMounted: boolean;
-    private _userEventListenerAdded: boolean;
 
     constructor(props: DiagnosticViewToggleProps) {
         super(props);
         this.configuration = this.props.visualizationConfigurationFactory.getConfiguration(this.props.visualizationType);
         this.dom = this.props.dom;
         this._isMounted = false;
-        this._userEventListenerAdded = false;
+        this.userEventListenerAdded = false;
         this.state = {
             isFocused: false,
         };
@@ -78,23 +81,23 @@ export class DiagnosticViewToggle extends React.Component<DiagnosticViewTogglePr
     }
 
     private renderToggleOrSpinner(): JSX.Element {
-        const _scanning = this.props.visualizationStoreData.scanning;
+        const scanning = this.props.visualizationStoreData.scanning;
         const id = this.configuration.getIdentifier();
-        const _scanData = this.configuration.getStoreData(this.props.visualizationStoreData.tests);
+        const scanData = this.configuration.getStoreData(this.props.visualizationStoreData.tests);
 
-        if (_scanning === id) {
+        if (scanning === id) {
             return <Spinner size={SpinnerSize.small} componentRef={this.addUserEventListener} />;
         } else {
-            const disabled = _scanning != null;
+            const disabled = scanning != null;
             return (
                 <VisualizationToggle
-                    checked={_scanData.enabled}
+                    checked={scanData.enabled}
                     disabled={disabled}
                     onClick={ev =>
                         this.props.clickHandler.toggleVisualization(this.props.visualizationStoreData, this.props.visualizationType, ev)
                     }
                     visualizationName={this.configuration.displayableData.title}
-                    componentRef={this._toggle}
+                    componentRef={this.toggle}
                     onFocus={this.onFocusHandler}
                     onBlur={this.onBlurHandler}
                 />
@@ -112,32 +115,29 @@ export class DiagnosticViewToggle extends React.Component<DiagnosticViewTogglePr
     }
 
     private setFocus(): void {
-        if (this._isMounted && this.state.isFocused && this._toggle.current) {
-            this._toggle.current.focus();
+        if (this._isMounted && this.state.isFocused && this.toggle.current) {
+            this.toggle.current.focus();
         }
     }
 
-    @autobind
-    private onFocusHandler(): void {
+    private onFocusHandler = (): void => {
         if (this._isMounted) {
             this.setState({
                 isFocused: true,
             });
         }
-    }
+    };
 
-    @autobind
-    private onBlurHandler(): void {
+    private onBlurHandler = (): void => {
         if (this._isMounted) {
             this.setState({
                 isFocused: false,
             });
         }
-    }
+    };
 
-    @autobind
-    private addUserEventListener(): void {
-        if (!this._userEventListenerAdded) {
+    private addUserEventListener = (): void => {
+        if (!this.userEventListenerAdded) {
             this.dom.addEventListener('keydown', (event: any) => {
                 if (event.keyCode === KeyCodeConstants.TAB) {
                     this.onBlurHandler();
@@ -151,9 +151,9 @@ export class DiagnosticViewToggle extends React.Component<DiagnosticViewTogglePr
                 });
             }
 
-            this._userEventListenerAdded = true;
+            this.userEventListenerAdded = true;
         }
-    }
+    };
 
     private renderLink(linkText: string): JSX.Element {
         if (this.configuration.guidance) {

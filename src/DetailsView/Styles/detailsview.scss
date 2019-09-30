@@ -2,17 +2,19 @@
 // Licensed under the MIT License.
 @import '../../common/styles/common.scss';
 @import '../../views/content/content.scss';
-@import '../../DetailsView/reports/components/outcome.scss';
-@import '../../DetailsView/reports/components/assessment-report-header.scss';
-@import '../../DetailsView/reports/components/assessment-report-summary.scss';
-@import '../../DetailsView/reports/components/assessment-summary-details.scss';
+@import '../../reports/components/outcome.scss';
+@import '../../reports/components/assessment-report-header.scss';
+@import '../../reports/components/assessment-report-summary.scss';
+@import '../../reports/components/assessment-summary-details.scss';
 @import '../../common/components/toast.scss';
+@import '../../common/components//guidance-tags.scss';
 
 body {
     margin: 0;
     background: $neutral-0;
     color: $neutral-100;
     font-family: $fontFamily;
+    font-size: 14px;
 }
 
 .target-change-dialog-modal {
@@ -214,29 +216,6 @@ div.insights-file-issue-details-dialog-container {
     }
 }
 
-.failure-instance-panel {
-    .action-and-cancel-buttons-component {
-        padding-top: 12px;
-    }
-    .add-failure-instruction {
-        font-weight: 500;
-        margin-bottom: 20px;
-        margin-top: 20px;
-    }
-    .header-text {
-        margin-top: 30px;
-        font-size: 21px;
-    }
-}
-
-.action-and-cancel-buttons-component {
-    display: flex;
-    justify-content: flex-end;
-    .action-cancel-button-col + .action-cancel-button-col {
-        margin-left: 8px;
-    }
-}
-
 .preview-features-panel {
     .preview-feature-toggle-list {
         margin-top: 2vh;
@@ -321,8 +300,9 @@ div.insights-file-issue-details-dialog-container {
         align-items: center;
         background-color: $neutral-0;
         font-size: 14px;
-        font-weight: 600;
+        font-weight: normal;
         border-bottom: 1px solid $neutral-alpha-8;
+
         .details-view-target-page {
             margin-left: 12px;
             padding: 13px 8px;
@@ -330,9 +310,10 @@ div.insights-file-issue-details-dialog-container {
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
+            color: $primary-text;
             width: 50%;
             .ms-Link {
-                color: $communication-shade-10;
+                color: $communication-primary;
             }
         }
         .details-view-command-buttons {
@@ -405,14 +386,6 @@ div.insights-file-issue-details-dialog-container {
         padding-right: 0px;
         flex-grow: 1;
         min-height: 0;
-        .details-view-nav-pivots {
-            > :first-child {
-                height: $detailsViewNavPivotsHeight;
-            }
-            .details-view-test-nav-area {
-                max-height: calc(100vh - #{detailsViewNavPivotsHeight} - #{$detailsViewHeaderBarHeight} - #{$detailsViewCommandBarHeight});
-            }
-        }
         .details-view-test-nav-area {
             max-height: calc(100vh - #{$detailsViewHeaderBarHeight} - #{$detailsViewCommandBarHeight} - 12px);
             .ms-Nav-groupContent,
@@ -441,24 +414,6 @@ div.insights-file-issue-details-dialog-container {
             .ms-Nav-groupContent,
             .ms-Nav-navItems {
                 margin-bottom: 0px;
-            }
-            .req-description {
-                line-height: initial;
-                text-align: left;
-                white-space: initial;
-                font-size: 14px;
-                width: 100%;
-                .req-index,
-                .req-name {
-                    font-weight: bolder;
-                    font-size: 14px;
-                }
-                .req-index {
-                    margin-right: 8px;
-                }
-                .req-name {
-                    margin-right: 3px;
-                }
             }
             .button-flex-container .status-icon {
                 margin-left: 24px;
@@ -628,65 +583,28 @@ div.insights-file-issue-details-dialog-container {
             .assessment-instance-label.not-applicable {
                 font-size: 10px;
             }
-            .assessment-instance-textContent {
+            .all-content {
+                display: flex;
+                flex-direction: row;
+                vertical-align: center;
                 font-size: 14px;
                 line-height: 24px;
+            }
+            .instance-header {
+                color: $primary-text;
+                white-space: pre;
+            }
+            .assessment-instance-textContent {
                 overflow: hidden;
                 white-space: nowrap;
                 text-overflow: ellipsis;
                 color: $secondary-text;
-            }
-            .radio-button-group {
-                float: left;
-                line-height: 24px;
-                .ms-ChoiceField {
-                    float: left;
-                    margin-top: 0px !important;
-                }
-                .ms-Label {
-                    font-size: 14px;
-                    padding: 0 0 0 26px;
-                    display: inline-block;
-                }
-                .ms-ChoiceField:nth-of-type(1) {
-                    margin-right: 8px;
-                }
-                .ms-ChoiceField-input {
-                    position: absolute;
-                }
-                .PASS {
-                    .ms-ChoiceField:nth-of-type(1) {
-                        .ms-ChoiceField-field::before,
-                        .ms-ChoiceField-field::after {
-                            border-color: $positive-outcome;
-                        }
-                    }
-                }
-                .FAIL {
-                    .ms-ChoiceField:nth-of-type(2) {
-                        .ms-ChoiceField-field::before,
-                        .ms-ChoiceField-field::after {
-                            border-color: $negative-outcome;
-                        }
-                    }
-                }
-            }
-            .undo-button {
-                margin-left: 8px;
-                font-size: 16px;
-                line-height: 24px;
-                color: $neutral-100;
             }
             .remove-button {
                 margin-left: 12px;
                 font-size: 16px;
                 line-height: 24px;
                 color: $negative-outcome;
-            }
-            .edit-button {
-                font-size: 16px;
-                line-height: 24px;
-                color: $neutral-100;
             }
         }
         .assessment-getting-started-container {
@@ -718,6 +636,7 @@ div.insights-file-issue-details-dialog-container {
             padding-left: calc(0.5vw + 13px); // 13px is Chevron width.
         }
         .left-nav {
+            width: 200px;
             border-right: 1px solid $neutral-8;
             .dark-gray {
                 color: $neutral-60;
@@ -827,36 +746,11 @@ div.insights-file-issue-details-dialog-container {
                 min-width: 600px;
                 height: auto;
             }
-            .info-message-bar {
-                background-color: $communication-tint-40;
-                .ms-MessageBar-icon {
-                    color: $communication-shade-10;
-                }
-                .ms-link {
-                    font-weight: 700;
-                    padding: 0 !important;
-                }
-            }
             .ms-MessageBar {
                 padding-left: 24px;
             }
-            .ms-MessageBar-icon {
+            .ms-MessageBar-icon i {
                 color: $secondary-text;
-            }
-            .target-tab-info {
-                font-size: 14px;
-                color: $secondary-text;
-                padding-top: 24px;
-                padding-left: 24px;
-                padding-right: 24px;
-                word-break: break-all;
-                font-weight: 600;
-                .ms-Link {
-                    color: $communication-shade-10;
-                }
-                .target-page-link {
-                    font-family: $fontFamily;
-                }
             }
             .view {
                 flex-grow: 1;
@@ -867,7 +761,10 @@ div.insights-file-issue-details-dialog-container {
                 min-height: 0;
                 .target-page-changed,
                 .static-content-details-view {
-                    margin: 24px 24px 0px 24px;
+                    margin-top: $fastPassRightPanelMarginTop;
+                    margin-right: $fastPassRightPanelMarginRight;
+                    margin-left: $fastPassRightPanelMarginLeft;
+                    margin-bottom: auto;
                     ol {
                         -webkit-padding-start: 16px;
                         li ul li {
@@ -878,21 +775,28 @@ div.insights-file-issue-details-dialog-container {
                         font-size: 16px;
                     }
                 }
+                .target-page-changed {
+                    .target-page-changed-subtitle {
+                        color: $secondary-text;
+                        max-width: 570px;
+                        font-size: 14px;
+                        margin-top: 4px;
+                        margin-bottom: 16px;
+                    }
+                }
                 .issues-table {
                     height: 100%;
-                    width: 100%;
+                    width: calc(100% - #{$fastPassRightPanelMarginRight} - #{$fastPassRightPanelMarginLeft});
                     display: flex;
                     flex-direction: column;
-                    margin-top: 24px;
-                    > h1,
-                    .issues-table-subtitle,
-                    .details-view-toggle,
-                    .details-disabled-message {
-                        margin-left: 24px;
-                    }
+                    margin-top: $fastPassRightPanelMarginTop;
+                    margin-right: $fastPassRightPanelMarginRight;
+                    margin-left: $fastPassRightPanelMarginLeft;
+                    margin-bottom: auto;
+
                     .issues-table-subtitle {
                         color: $secondary-text;
-                        max-width: 561px;
+                        max-width: 570px;
                         font-size: 14px;
                         margin-top: 4px;
                         margin-bottom: 16px;
@@ -924,10 +828,6 @@ div.insights-file-issue-details-dialog-container {
                                 font-size: 16px;
                             }
                         }
-                        .start-over-button {
-                            margin-right: 24px;
-                            height: fit-content;
-                        }
                     }
                     .details-view-assessment-content {
                         flex-grow: 1;
@@ -954,7 +854,6 @@ div.insights-file-issue-details-dialog-container {
                     min-height: 0;
                 }
                 .issues-details-list {
-                    margin-left: 24px;
                     display: flex;
                     flex-direction: column;
                     height: 60%;
@@ -964,10 +863,6 @@ div.insights-file-issue-details-dialog-container {
                         height: 100%;
                         width: 100%;
                     }
-                }
-                .target-page-closed {
-                    position: absolute;
-                    left: 24px;
                 }
                 h1 {
                     margin: 0px;
@@ -998,32 +893,12 @@ div.insights-file-issue-details-dialog-container {
                 .more-info {
                     font-size: 14px;
                     .ms-Link {
-                        color: $communication-shade-10;
+                        color: $communication-primary;
                     }
-                }
-                .landmark-roles-table {
-                    list-style: none;
-                    margin-top: 12px;
-                    display: table;
-                    border-collapse: separate;
-                    border-spacing: 5px;
-                    padding-left: 18px;
-                }
-                .insights-list {
-                    padding-left: 18px;
-                    margin-top: 0px;
-                }
-                .insights-list li {
-                    margin-top: 4px;
-                    font-size: 14px;
                 }
                 .tab-stops-accessibility-problems-list {
                     background: $neutral-6;
                     list-style-type: disc;
-                }
-                .landmark-roles-table li {
-                    margin-top: 4px;
-                    display: table-row;
                 }
                 .landmarks-legend-description {
                     padding-left: 12px;
@@ -1066,13 +941,14 @@ div.insights-file-issue-details-dialog-container {
                     }
                 }
                 .details-view-command-bar {
-                    margin-left: 24px;
-                    margin-bottom: 0px;
+                    margin-bottom: 12px;
                     margin-top: 12px;
                     height: $detailsViewCommandBarHeight;
                     background-color: $neutral-4;
                     display: -webkit-inline-box;
                     .automated-checks-details-view-toggle {
+                        margin-bottom: unset;
+
                         .ms-Toggle-label {
                             float: left;
                             margin: 5px 8px 5px 8px;
@@ -1117,12 +993,6 @@ div.insights-file-issue-details-dialog-container {
                     margin-top: 5px;
                     margin-bottom: 5px;
                     font-size: $fontSizeM;
-                }
-                .bugs-details-view .file-issue-button {
-                    margin-right: 7px;
-                    font-size: 16px;
-                    float: left;
-                    margin-top: 1px;
                 }
                 .details-list {
                     min-width: 100%;
@@ -1267,9 +1137,9 @@ div.insights-file-issue-details-dialog-container {
                     height: 40%;
                     min-height: 150px;
                     background-color: $neutral-2;
-                    padding-left: 24px;
                     > div {
                         border-top: 1px solid $neutral-8;
+                        padding-left: 24px;
                     }
                     h2 {
                         padding-top: 12px;
@@ -1356,6 +1226,28 @@ div.insights-file-issue-details-dialog-container {
                             margin: 0px;
                             -webkit-padding-start: 20px;
                         }
+                        .fix-content {
+                            .insights-fix-instruction-list {
+                                li {
+                                    span.fix-instruction-color-box {
+                                        width: 14px;
+                                        height: 14px;
+                                        display: inline-block;
+                                        vertical-align: -15%;
+                                        margin: 0px 2px;
+                                        border: 1px solid $always-black;
+                                    }
+                                }
+                                .screen-reader-only {
+                                    position: absolute;
+                                    left: -10000px;
+                                    top: auto;
+                                    width: 1px;
+                                    height: 1px;
+                                    overflow: hidden;
+                                }
+                            }
+                        }
                     }
                     .issue-detail-select-message {
                         padding-top: 10px;
@@ -1373,23 +1265,6 @@ div.insights-file-issue-details-dialog-container {
                         align-items: flex-start;
                         width: 90%;
                         margin-right: 32px;
-                        .overview-heading {
-                            h1 {
-                                font-weight: bold;
-                                line-height: 40px;
-                                font-size: 28px;
-                                letter-spacing: -0.04em;
-                                color: $primary-text;
-                                padding-bottom: 16px;
-                                padding-top: 24px;
-                            }
-                            .overview-heading-content {
-                                color: $secondary-text;
-                                font-weight: normal;
-                                line-height: 20px;
-                                font-size: 15px;
-                            }
-                        }
                         .assessment-report-summary {
                             margin-top: 40px;
                             width: 100%;
@@ -1399,11 +1274,10 @@ div.insights-file-issue-details-dialog-container {
                                 font-size: 21px;
                                 letter-spacing: -0.02em;
                                 color: $primary-text;
-                                padding-bottom: 16px;
                                 margin: 0px;
                             }
                             h3 {
-                                margin: 0px 0px 21px 0px;
+                                margin: 16px 0px 21px 0px;
                                 padding: 0;
                             }
                             .assessment-summary-details {
@@ -1423,35 +1297,6 @@ div.insights-file-issue-details-dialog-container {
                                 font-size: 17px;
                                 color: $primary-text;
                             }
-                        }
-                    }
-                    .overview-help-section {
-                        width: 308px;
-                        height: 168px;
-                        padding-top: 24px;
-                        margin-right: 32px;
-                        .help-heading {
-                            font-size: 17px;
-                            padding: 0px;
-                            margin-block-end: 1em;
-                            margin-inline-start: 0px;
-                            margin-inline-end: 0px;
-                        }
-                        .overview-help-container {
-                            padding-top: 20px;
-                            padding-left: 24px;
-                            padding-bottom: 24px;
-                            border-radius: 4px;
-                            background-color: $help-links-section-background;
-                            border: 1px solid $help-links-section-border;
-                            box-sizing: border-box;
-                        }
-                        .help-link {
-                            padding: 5px 0px 5px 0px;
-                            font-family: $fontFamily;
-                            line-height: 20px;
-                            font-size: 15px;
-                            color: $communication-primary;
                         }
                     }
                 }

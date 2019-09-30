@@ -2,16 +2,18 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import { AssessmentDefaultMessageGenerator } from '../../assessments/assessment-default-message-generator';
-import { AssessmentsProvider } from '../../assessments/types/assessments-provider';
+import { AssessmentDefaultMessageGenerator } from 'assessments/assessment-default-message-generator';
+import { AssessmentsProvider } from 'assessments/types/assessments-provider';
+import { ContentLink, ContentLinkDeps } from 'views/content/content-link';
+import { ContentPageComponent } from 'views/content/content-page';
 import { AssessmentTestResult } from '../../common/assessment/assessment-test-result';
 import { CollapsibleComponent } from '../../common/components/collapsible-component';
 import { reactExtensionPoint } from '../../common/extensibility/react-extension-point';
 import { Tab } from '../../common/itab';
 import { AssessmentData, AssessmentNavState, PersistedTabInfo } from '../../common/types/store-data/assessment-result-data';
+import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
+import { PathSnippetStoreData } from '../../common/types/store-data/path-snippet-store-data';
 import { VisualizationType } from '../../common/types/visualization-type';
-import { ContentLink, ContentLinkDeps } from '../../views/content/content-link';
-import { ContentPageComponent } from '../../views/content/content-page';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 import { detailsViewExtensionPoint } from '../extensions/details-view-extension-point';
 import { AssessmentInstanceTableHandler } from '../handlers/assessment-instance-table-handler';
@@ -43,6 +45,8 @@ export interface AssessmentViewProps {
     prevTarget: PersistedTabInfo;
     assessmentDefaultMessageGenerator: AssessmentDefaultMessageGenerator;
     assessmentTestResult: AssessmentTestResult;
+    featureFlagStoreData: FeatureFlagStoreData;
+    pathSnippetStoreData: PathSnippetStoreData;
 }
 
 export class AssessmentView extends React.Component<AssessmentViewProps> {
@@ -196,6 +200,8 @@ export class AssessmentView extends React.Component<AssessmentViewProps> {
                         isStepEnabled={this.props.isEnabled}
                         isStepScanned={isStepScanned}
                         assessmentDefaultMessageGenerator={this.props.assessmentDefaultMessageGenerator}
+                        featureFlagStoreData={this.props.featureFlagStoreData}
+                        pathSnippetStoreData={this.props.pathSnippetStoreData}
                     />
                 </div>
             </div>

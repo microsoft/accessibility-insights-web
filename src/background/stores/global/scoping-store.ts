@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { autobind } from '@uifabric/utilities';
 import * as _ from 'lodash/index';
 
 import { StoreNames } from '../../../common/stores/store-names';
@@ -39,8 +38,7 @@ export class ScopingStore extends BaseStoreImpl<ScopingStoreData> {
         this.scopingActions.deleteSelector.addListener(this.onDeleteSelector);
     }
 
-    @autobind
-    private onAddSelector(payload: ScopingPayload): void {
+    private onAddSelector = (payload: ScopingPayload): void => {
         let shouldUpdate: boolean = true;
         _.forEach(Object.keys(this.state.selectors[payload.inputType]), key => {
             if (_.isEqual(this.state.selectors[payload.inputType][key], payload.selector)) {
@@ -52,15 +50,14 @@ export class ScopingStore extends BaseStoreImpl<ScopingStoreData> {
             this.state.selectors[payload.inputType].push(payload.selector);
             this.emitChanged();
         }
-    }
+    };
 
-    @autobind
-    private onDeleteSelector(payload: ScopingPayload): void {
+    private onDeleteSelector = (payload: ScopingPayload): void => {
         _.forEach(Object.keys(this.state.selectors[payload.inputType]), key => {
             if (_.isEqual(this.state.selectors[payload.inputType][key], payload.selector)) {
                 this.state.selectors[payload.inputType].splice(key, 1);
                 this.emitChanged();
             }
         });
-    }
+    };
 }

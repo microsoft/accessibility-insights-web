@@ -1,14 +1,14 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { autobind } from '@uifabric/utilities';
+import { isEqual } from 'lodash';
 import { ChoiceGroup, IChoiceGroup, IChoiceGroupOption } from 'office-ui-fabric-react/lib/ChoiceGroup';
 import { Icon } from 'office-ui-fabric-react/lib/Icon';
 import { Link } from 'office-ui-fabric-react/lib/Link';
 import * as React from 'react';
 
-import { isEqual } from 'lodash';
 import { ManualTestStatus } from '../../common/types/manual-test-status';
 import { VisualizationType } from '../../common/types/visualization-type';
+import { radioButtonGroup, radioLabel, undoButton, undoButtonIcon } from './test-status-choice-group.scss';
 
 export interface TestStatusChoiceGroupProps {
     test: VisualizationType;
@@ -26,7 +26,7 @@ interface ChoiceGroupState {
 }
 
 export class TestStatusChoiceGroup extends React.Component<TestStatusChoiceGroupProps, ChoiceGroupState> {
-    protected _choiceGroup: IChoiceGroup;
+    protected choiceGroup: IChoiceGroup;
 
     constructor(props) {
         super(props);
@@ -42,7 +42,7 @@ export class TestStatusChoiceGroup extends React.Component<TestStatusChoiceGroup
     public render(): JSX.Element {
         return (
             <div>
-                <div className="radio-button-group">
+                <div className={radioButtonGroup}>
                     <ChoiceGroup
                         className={ManualTestStatus[this.props.status]}
                         onChange={this.onChange}
@@ -60,14 +60,13 @@ export class TestStatusChoiceGroup extends React.Component<TestStatusChoiceGroup
         );
     }
 
-    @autobind
-    private onRenderLabel(option: IChoiceGroupOption): JSX.Element {
+    private onRenderLabel = (option: IChoiceGroupOption): JSX.Element => {
         return (
-            <span id={option.labelId} className="ms-Label" aria-label={option.text}>
+            <span id={option.labelId} className={radioLabel} aria-label={option.text}>
                 {this.props.isLabelVisible ? option.text : ''}
             </span>
         );
-    }
+    };
 
     private renderUndoButton(): JSX.Element {
         if (this.props.originalStatus == null) {
@@ -75,27 +74,24 @@ export class TestStatusChoiceGroup extends React.Component<TestStatusChoiceGroup
         }
 
         return (
-            <Link className="undo-button" onClick={this.onUndoClicked}>
-                <Icon iconName="undo" ariaLabel={'undo'} />
+            <Link className={undoButton} onClick={this.onUndoClicked}>
+                <Icon className={undoButtonIcon} iconName="undo" ariaLabel={'undo'} />
             </Link>
         );
     }
 
-    @autobind
-    protected compomentRef(component: IChoiceGroup): void {
-        this._choiceGroup = component;
-    }
+    protected compomentRef = (component: IChoiceGroup): void => {
+        this.choiceGroup = component;
+    };
 
-    @autobind
-    protected onChange(ev: React.FocusEvent<HTMLElement>, option: IChoiceGroupOption): void {
+    protected onChange = (ev: React.FocusEvent<HTMLElement>, option: IChoiceGroupOption): void => {
         this.setState({ selectedKey: option.key });
         this.props.onGroupChoiceChange(ManualTestStatus[option.key], this.props.test, this.props.step, this.props.selector);
-    }
+    };
 
-    @autobind
-    protected onUndoClicked(): void {
+    protected onUndoClicked = (): void => {
         this.setState({ selectedKey: ManualTestStatus[ManualTestStatus.UNKNOWN] });
-        this._choiceGroup.focus();
+        this.choiceGroup.focus();
         this.props.onUndoClicked(this.props.test, this.props.step, this.props.selector);
-    }
+    };
 }

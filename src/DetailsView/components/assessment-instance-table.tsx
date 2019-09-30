@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { autobind, IRenderFunction } from '@uifabric/utilities';
+import { IRenderFunction } from '@uifabric/utilities';
 import { has } from 'lodash';
 import { ActionButton } from 'office-ui-fabric-react/lib/Button';
 import {
@@ -14,7 +14,7 @@ import {
 import { Spinner, SpinnerSize } from 'office-ui-fabric-react/lib/Spinner';
 import * as React from 'react';
 
-import { AssessmentDefaultMessageGenerator } from '../../assessments/assessment-default-message-generator';
+import { AssessmentDefaultMessageGenerator } from 'assessments/assessment-default-message-generator';
 import { ManualTestStatus } from '../../common/types/manual-test-status';
 import {
     AssessmentNavState,
@@ -86,20 +86,17 @@ export class AssessmentInstanceTable extends React.Component<AssessmentInstanceT
         );
     }
 
-    @autobind
-    public onItemInvoked(item: AssessmentInstanceRowData): void {
+    public onItemInvoked = (item: AssessmentInstanceRowData): void => {
         this.updateFocusedTarget(item);
-    }
+    };
 
-    @autobind
-    public renderRow(props: IDetailsRowProps, defaultRender: IRenderFunction<IDetailsRowProps>): JSX.Element {
+    public renderRow = (props: IDetailsRowProps, defaultRender: IRenderFunction<IDetailsRowProps>): JSX.Element => {
         return <div onClick={() => this.updateFocusedTarget(props.item)}>{defaultRender(props)}</div>;
-    }
+    };
 
-    @autobind
-    public updateFocusedTarget(item: AssessmentInstanceRowData): void {
+    public updateFocusedTarget = (item: AssessmentInstanceRowData): void => {
         this.props.assessmentInstanceTableHandler.updateFocusedTarget(item.instance.target);
-    }
+    };
 
     public renderDefaultInstanceTableHeader(items: AssessmentInstanceRowData[]): JSX.Element {
         const disabled = !this.isAnyInstanceStatusUnknown(items, this.props.assessmentNavState.selectedTestStep);
@@ -117,11 +114,10 @@ export class AssessmentInstanceTable extends React.Component<AssessmentInstanceT
         );
     }
 
-    @autobind
-    protected onPassUnmarkedInstances(): void {
+    protected onPassUnmarkedInstances = (): void => {
         this.props.assessmentInstanceTableHandler.passUnmarkedInstances(
             this.props.assessmentNavState.selectedTestType,
             this.props.assessmentNavState.selectedTestStep,
         );
-    }
+    };
 }

@@ -5,18 +5,8 @@ import { create, GuidanceTitle, React } from '../../common';
 export const guidance = create(({ Markup, Link }) => (
     <>
         <GuidanceTitle name={'Errors'} />
-        <p>If an input error is automatically detected, the item in error must be identified, and the error described, in text.</p>
 
         <h2>Why it matters</h2>
-        <p>
-            An "input error" occurs when:
-            <ul>
-                <li> The user omits information that's expected by a web page, or </li>
-                <li> The user provides information outside the allowed values, or </li>
-                <li> The user provides information in an unexpected format. </li>
-            </ul>
-        </p>
-
         <p>
             <Markup.Term>Identifying and describing input errors</Markup.Term> in text allows people who use assistive technologies to learn
             what went wrong. It also helps people with certain cognitive disabilities who have difficulty understanding the meaning of icons
@@ -31,13 +21,11 @@ export const guidance = create(({ Markup, Link }) => (
 
         <p>
             <Markup.Term>Error prevention</Markup.Term> benefits everyone, especially people with reading or motor disabilities that make
-            them more likely to make mistakes. Error prevention is critical when using a web page can:
-            <ul>
-                <li>Result in legal commitments</li>
-                <li>Initiate financial transactions </li>
-                <li>Modify or delete user data</li>
-                <li>Submit test responses</li>
-            </ul>
+            them more likely to make mistakes.
+        </p>
+        <p>
+            <Markup.Term>Making status messages</Markup.Term> programmatically determinable allows people who use assistive technologies to
+            receive important information.
         </p>
 
         <Markup.Columns>
@@ -63,6 +51,40 @@ export const guidance = create(({ Markup, Link }) => (
                     <li>Make submissions reversible, and/or</li>
                     <li>Check user input for errors, and give users an opportunity to make corrections, and/or</li>
                     <li>Allow users to review, correct, and confirm their input before finalizing a submission.</li>
+                </ul>
+                <h3>
+                    Make status messages programmatically determinable by using the appropriate ARIA role. (<Link.WCAG_4_1_3 />)
+                </h3>
+                <ul>
+                    <li>
+                        If the status message contains important, time-sensitive information that should be communicated to users
+                        immediately (potentially clearing the speech queue of previous updates), use
+                        <Markup.HyperLink href="https://www.w3.org/TR/wai-aria-1.2/#alert">role="alert"</Markup.HyperLink>, which has an
+                        implicit
+                        <Markup.HyperLink href="https://www.w3.org/TR/wai-aria-1.2/#aria-live">aria-live</Markup.HyperLink>
+                        value of <Markup.Emphasis>assertive</Markup.Emphasis>.
+                    </li>
+                    <li>
+                        Otherwise, use a role with an implicit aria-live value of <Markup.Emphasis>polite</Markup.Emphasis>:
+                        <ul>
+                            <li>
+                                Use <Markup.HyperLink href="https://www.w3.org/TR/wai-aria-1.2/#status">role="status"</Markup.HyperLink> for
+                                a simple status message that's not urgent enough to justify interrupting the current task.
+                            </li>
+                            <li>
+                                Use <Markup.HyperLink href="https://www.w3.org/TR/wai-aria-1.2/#log">role="log"</Markup.HyperLink> if new
+                                information is added to the status message in meaningful order, and old information might disappear (such as
+                                a chat log, game log, error log, or messaging history).
+                            </li>
+                            <li>
+                                Use{' '}
+                                <Markup.HyperLink href="https://www.w3.org/TR/wai-aria-1.2/#progressbar">
+                                    role="progressbar"
+                                </Markup.HyperLink>
+                                if the message conveys the status of a long-running process.
+                            </li>
+                        </ul>
+                    </li>
                 </ul>
             </Markup.Do>
             <Markup.Dont>

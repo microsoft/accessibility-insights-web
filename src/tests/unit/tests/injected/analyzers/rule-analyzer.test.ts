@@ -1,23 +1,21 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { ScopingInputTypes } from 'background/scoping-input-types';
+import { ScopingStore } from 'background/stores/global/scoping-store';
 import { isFunction } from 'lodash';
 import { IMock, It, Mock, Times } from 'typemoq';
-import { ScopingInputTypes } from '../../../../../background/scoping-input-types';
-import { ScopingStore } from '../../../../../background/stores/global/scoping-store';
-import {
-    VisualizationConfiguration,
-    VisualizationConfigurationFactory,
-} from '../../../../../common/configs/visualization-configuration-factory';
+import { VisualizationConfiguration } from '../../../../../common/configs/visualization-configuration';
+import { VisualizationConfigurationFactory } from '../../../../../common/configs/visualization-configuration-factory';
+import { RuleAnalyzerScanTelemetryData } from '../../../../../common/extension-telemetry-events';
 import { Message } from '../../../../../common/message';
 import { TelemetryDataFactory } from '../../../../../common/telemetry-data-factory';
-import { RuleAnalyzerScanTelemetryData } from '../../../../../common/telemetry-events';
 import { ScopingStoreData } from '../../../../../common/types/store-data/scoping-store-data';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
-import { RuleAnalyzerConfiguration } from '../../../../../injected/analyzers/analyzer';
-import { RuleAnalyzer } from '../../../../../injected/analyzers/rule-analyzer';
+import { AxeAnalyzerResult, RuleAnalyzerConfiguration } from '../../../../../injected/analyzers/analyzer';
+import { PostResolveCallback, RuleAnalyzer } from '../../../../../injected/analyzers/rule-analyzer';
 import { HtmlElementAxeResults, ScannerUtils } from '../../../../../injected/scanner-utils';
-import { ScanOptions } from '../../../../../scanner/exposed-apis';
 import { ScanResults } from '../../../../../scanner/iruleresults';
+import { ScanOptions } from '../../../../../scanner/scan-options';
 import { DictionaryStringTo } from '../../../../../types/common-types';
 
 describe('RuleAnalyzer', () => {
@@ -28,7 +26,7 @@ describe('RuleAnalyzer', () => {
     let scopingStoreMock: IMock<ScopingStore>;
     let scopingState: ScopingStoreData;
     let visualizationConfigurationFactoryMock: IMock<VisualizationConfigurationFactory>;
-    const mockAllInstances: DictionaryStringTo<any> = {
+    const allInstancesMock: DictionaryStringTo<any> = {
         test: 'test-result-value',
     };
     let sendMessageMock: IMock<(message) => void>;
@@ -37,6 +35,7 @@ describe('RuleAnalyzer', () => {
     const name = 'test-name';
     let configStub: RuleAnalyzerConfiguration;
     let scanCallback: (results: ScanResults) => void;
+    let postResolveCallbackMock: IMock<PostResolveCallback>;
 
     beforeEach(() => {
         typeStub = -1 as VisualizationType;
@@ -46,6 +45,8 @@ describe('RuleAnalyzer', () => {
         scopingStoreMock = Mock.ofType(ScopingStore);
         telemetryDataFactoryMock = Mock.ofType(TelemetryDataFactory);
         visualizationConfigurationFactoryMock = Mock.ofType(VisualizationConfigurationFactory);
+        postResolveCallbackMock = Mock.ofInstance(results => null);
+
         const dateStub = {
             getTime: () => {
                 return null;
@@ -117,6 +118,7 @@ describe('RuleAnalyzer', () => {
             dateGetterMock.object,
             telemetryDataFactoryMock.object,
             visualizationConfigurationFactoryMock.object,
+            postResolveCallbackMock.object,
         );
 
         const scanResults = createTestResults();
@@ -125,20 +127,33 @@ describe('RuleAnalyzer', () => {
             messageType: configStub.analyzerMessageType,
             payload: {
                 key: configStub.key,
-                selectorMap: mockAllInstances,
+                selectorMap: allInstancesMock,
                 scanResult: scanResults,
                 testType: typeStub,
                 telemetry: expectedTelemetryStub,
             },
         };
 
-        resultProcessorMock.setup(processor => processor(scanResults)).returns(() => mockAllInstances);
+        resultProcessorMock.setup(processor => processor(scanResults)).returns(() => allInstancesMock);
+        const axeAnalyzerResults: AxeAnalyzerResult = {
+            results: allInstancesMock,
+            include: scopingState.selectors.include,
+            exclude: scopingState.selectors.exclude,
+            originalResult: scanResults,
+        };
+
+        postResolveCallbackMock
+            .setup(m => m(axeAnalyzerResults))
+            .callback(() => {
+                postResolveCallbackMock.verifyAll();
+                done();
+            })
+            .verifiable(Times.exactly(1));
 
         sendMessageMock
             .setup(sm => sm(It.isValue(expectedMessage)))
             .returns(() => {
                 sendMessageMock.verifyAll();
-                done();
             })
             .verifiable();
 

@@ -1,16 +1,16 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { Interpreter } from 'background/interpreter';
 import { Mock, Times } from 'typemoq';
-import { Interpreter } from '../../../../background/interpreter';
 import { PayloadCallback } from '../../../../common/message';
 import { DictionaryStringTo } from '../../../../types/common-types';
 
 class TestableInterpreter extends Interpreter {
-    public getMessageToActionMapping(): DictionaryStringTo<PayloadCallback> {
+    public getMessageToActionMapping(): DictionaryStringTo<PayloadCallback<any>> {
         return this.messageToActionMapping;
     }
 
-    public setMessageToActionMapping(messageToActionMapping: DictionaryStringTo<PayloadCallback>): void {
+    public setMessageToActionMapping(messageToActionMapping: DictionaryStringTo<PayloadCallback<any>>): void {
         this.messageToActionMapping = messageToActionMapping;
     }
 }

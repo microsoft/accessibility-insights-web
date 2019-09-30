@@ -1,8 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { autobind } from '@uifabric/utilities';
-import { InspectMode } from '../../background/inspect-modes';
-import { ScopingInputTypes } from '../../background/scoping-input-types';
+import { InspectMode } from 'background/inspect-modes';
+import { ScopingInputTypes } from 'background/scoping-input-types';
 import { DictionaryStringTo } from '../../types/common-types';
 import { ScopingActionMessageCreator } from '../message-creators/scoping-action-message-creator';
 import { SingleElementSelector } from '../types/store-data/scoping-store-data';
@@ -17,6 +16,14 @@ export class InspectConfigurationFactory {
         this.scopingActionMessageCreator = scopingActionMessageCreator;
     }
 
+    private addIncludeSelector = (event: MouseEvent, selector: string[]): void => {
+        this.scopingActionMessageCreator.addSelector(event, ScopingInputTypes.include, selector);
+    };
+
+    private addExcludeSelector = (event: MouseEvent, selector: string[]): void => {
+        this.scopingActionMessageCreator.addSelector(event, ScopingInputTypes.exclude, selector);
+    };
+
     private configurationByType: DictionaryStringTo<IInspectCallback> = {
         [InspectMode.scopingAddInclude]: this.addIncludeSelector,
         [InspectMode.scopingAddExclude]: this.addExcludeSelector,
@@ -30,15 +37,5 @@ export class InspectConfigurationFactory {
         }
 
         return configuration;
-    }
-
-    @autobind
-    private addIncludeSelector(event: MouseEvent, selector: string[]): void {
-        this.scopingActionMessageCreator.addSelector(event, ScopingInputTypes.include, selector);
-    }
-
-    @autobind
-    private addExcludeSelector(event: MouseEvent, selector: string[]): void {
-        this.scopingActionMessageCreator.addSelector(event, ScopingInputTypes.exclude, selector);
     }
 }

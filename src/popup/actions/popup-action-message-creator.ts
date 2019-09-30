@@ -1,12 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { BaseActionPayload, OnDetailsViewOpenPayload, SetLaunchPanelState } from 'background/actions/action-payloads';
 import * as React from 'react';
-import { BaseActionPayload, OnDetailsViewOpenPayload, SetLaunchPanelState } from '../../background/actions/action-payloads';
+import { TelemetryEventSource } from '../../common/extension-telemetry-events';
+import * as TelemetryEvents from '../../common/extension-telemetry-events';
 import { ActionMessageDispatcher } from '../../common/message-creators/action-message-dispatcher';
 import { Messages } from '../../common/messages';
 import { SupportedMouseEvent, TelemetryDataFactory } from '../../common/telemetry-data-factory';
-import * as TelemetryEvents from '../../common/telemetry-events';
-import { TelemetryEventSource } from '../../common/telemetry-events';
 import { DetailsViewPivotType } from '../../common/types/details-view-pivot-type';
 import { VisualizationType } from '../../common/types/visualization-type';
 import { WindowUtils } from '../../common/window-utils';
@@ -66,7 +66,7 @@ export class PopupActionMessageCreator {
             telemetry,
         };
         this.dispatcher.dispatchMessage({
-            messageType: Messages.ChromeFeature.configureCommand,
+            messageType: Messages.Shortcuts.ConfigureShortcuts,
             payload,
         });
     }

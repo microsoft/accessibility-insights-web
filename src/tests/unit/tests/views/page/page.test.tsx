@@ -2,10 +2,8 @@
 // Licensed under the MIT License.
 import { shallow } from 'enzyme';
 import * as React from 'react';
-import { configMutator } from '../../../../../common/configuration';
-import { Page, PageDeps } from '../../../../../views/page/page';
 
-configMutator.setOption('extensionFullName', 'EXTENSION_NAME');
+import { Page, PageDeps } from 'views/page/page';
 
 describe('page view', () => {
     it('renders', () => {

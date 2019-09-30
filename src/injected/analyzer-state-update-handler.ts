@@ -1,9 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { TestMode } from '../common/configs/test-mode';
-import { VisualizationConfiguration, VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
+import { VisualizationConfiguration } from '../common/configs/visualization-configuration';
+import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
 import { EnumHelper } from '../common/enum-helper';
-import { AssessmentScanData, ScanData, VisualizationStoreData } from '../common/types/store-data/visualization-store-data';
+import { AssessmentScanData, VisualizationStoreData } from '../common/types/store-data/visualization-store-data';
 import { VisualizationType } from '../common/types/visualization-type';
 
 export class AnalyzerStateUpdateHandler {

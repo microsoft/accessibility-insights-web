@@ -5,48 +5,48 @@ import { IMock, It, Mock } from 'typemoq';
 import { ConnectionNames } from '../../../../common/constants/connection-names';
 import { DevToolState } from '../../../../common/types/store-data/idev-tool-state';
 import { InspectHandler } from '../../../../Devtools/inspect-handler';
-import { ChromeAdapterMock } from '../../mock-helpers/chrome-adapter-mock';
+import { DevToolsChromeAdapterMock } from '../../mock-helpers/dev-tools-chrome-adapter-mock';
 import { StoreMock } from '../../mock-helpers/store-mock';
 import { PortStub } from '../../stubs/port-stub';
 
 describe('InspectHandlerTests', () => {
     let testObjec: InspectHandler;
-    let chromeAdapterMock: ChromeAdapterMock;
+    let devToolsChromeAdapterMock: DevToolsChromeAdapterMock;
     let devtoolsStoreProxyMock: StoreMock<DevToolState>;
     let backgrountConnectionMock: IMock<chrome.runtime.Port>;
     const inspectedWindowId = 12;
 
     beforeEach(() => {
-        chromeAdapterMock = new ChromeAdapterMock();
+        devToolsChromeAdapterMock = new DevToolsChromeAdapterMock();
         devtoolsStoreProxyMock = new StoreMock<DevToolState>();
         backgrountConnectionMock = Mock.ofType(PortStub);
-        testObjec = new InspectHandler(devtoolsStoreProxyMock.getObject(), chromeAdapterMock.getObject());
+        testObjec = new InspectHandler(devtoolsStoreProxyMock.getObject(), devToolsChromeAdapterMock.getObject());
 
-        chromeAdapterMock.setUpConnect(ConnectionNames.devTools, backgrountConnectionMock.object);
+        devToolsChromeAdapterMock.setUpConnect(ConnectionNames.devTools, backgrountConnectionMock.object);
     });
 
     test('initialize - send about dev tools open message to background ', () => {
         devtoolsStoreProxyMock.setupAddChangedListener();
         backgrountConnectionMock.setup(x => x.postMessage(It.isObjectWith({ tabId: inspectedWindowId }))).verifiable();
-        chromeAdapterMock.setupGetInspectedWindowTabId(inspectedWindowId);
+        devToolsChromeAdapterMock.setupGetInspectedWindowTabId(inspectedWindowId);
 
         testObjec.initialize();
 
         devtoolsStoreProxyMock.verifyAll();
-        chromeAdapterMock.verifyAll();
+        devToolsChromeAdapterMock.verifyAll();
         backgrountConnectionMock.verifyAll();
     });
 
     test('initialize - do not throw when state is null', () => {
         devtoolsStoreProxyMock.setupAddChangedListener();
         devtoolsStoreProxyMock.setupGetState(null);
-        chromeAdapterMock.setupGetInspectedWindowTabId(inspectedWindowId);
+        devToolsChromeAdapterMock.setupGetInspectedWindowTabId(inspectedWindowId);
         testObjec.initialize();
 
         devtoolsStoreProxyMock.invokeChangeListener();
 
         devtoolsStoreProxyMock.verifyAll();
-        chromeAdapterMock.verifyAll();
+        devToolsChromeAdapterMock.verifyAll();
     });
 
     test('initialize - do not throw when inspectElement is not set', () => {
@@ -56,13 +56,13 @@ describe('InspectHandlerTests', () => {
 
         devtoolsStoreProxyMock.setupAddChangedListener();
         devtoolsStoreProxyMock.setupGetState(state);
-        chromeAdapterMock.setupGetInspectedWindowTabId(inspectedWindowId);
+        devToolsChromeAdapterMock.setupGetInspectedWindowTabId(inspectedWindowId);
         testObjec.initialize();
 
         devtoolsStoreProxyMock.invokeChangeListener();
 
         devtoolsStoreProxyMock.verifyAll();
-        chromeAdapterMock.verifyAll();
+        devToolsChromeAdapterMock.verifyAll();
     });
 
     test('initialize - inspect on state change: target at parent level', () => {
@@ -72,15 +72,15 @@ describe('InspectHandlerTests', () => {
         } as DevToolState;
         devtoolsStoreProxyMock.setupAddChangedListener();
         devtoolsStoreProxyMock.setupGetState(state);
-        chromeAdapterMock.setupGetInspectedWindowTabId(inspectedWindowId);
+        devToolsChromeAdapterMock.setupGetInspectedWindowTabId(inspectedWindowId);
 
-        chromeAdapterMock.setupExecuteScriptInInspectedWindow("inspect(document.querySelector('#testElement'))", null);
+        devToolsChromeAdapterMock.setupExecuteScriptInInspectedWindow("inspect(document.querySelector('#testElement'))", null);
         testObjec.initialize();
 
         devtoolsStoreProxyMock.invokeChangeListener();
 
         devtoolsStoreProxyMock.verifyAll();
-        chromeAdapterMock.verifyAll();
+        devToolsChromeAdapterMock.verifyAll();
     });
 
     test('initialize - inspect on state change: target not at parent level with frame url provided', () => {
@@ -90,15 +90,15 @@ describe('InspectHandlerTests', () => {
         } as DevToolState;
         devtoolsStoreProxyMock.setupAddChangedListener();
         devtoolsStoreProxyMock.setupGetState(state);
-        chromeAdapterMock.setupGetInspectedWindowTabId(inspectedWindowId);
+        devToolsChromeAdapterMock.setupGetInspectedWindowTabId(inspectedWindowId);
 
-        chromeAdapterMock.setupExecuteScriptInInspectedWindow("inspect(document.querySelector('test'))", 'testUrl');
+        devToolsChromeAdapterMock.setupExecuteScriptInInspectedWindow("inspect(document.querySelector('test'))", 'testUrl');
         testObjec.initialize();
 
         devtoolsStoreProxyMock.invokeChangeListener();
 
         devtoolsStoreProxyMock.verifyAll();
-        chromeAdapterMock.verifyAll();
+        devToolsChromeAdapterMock.verifyAll();
     });
 
     test("initialize - don't inspect if inspect element length > 1 and frame Url not set", () => {
@@ -108,12 +108,12 @@ describe('InspectHandlerTests', () => {
         } as DevToolState;
         devtoolsStoreProxyMock.setupAddChangedListener();
         devtoolsStoreProxyMock.setupGetState(state);
-        chromeAdapterMock.setupGetInspectedWindowTabId(inspectedWindowId);
+        devToolsChromeAdapterMock.setupGetInspectedWindowTabId(inspectedWindowId);
 
         testObjec.initialize();
         devtoolsStoreProxyMock.invokeChangeListener();
 
         devtoolsStoreProxyMock.verifyAll();
-        chromeAdapterMock.verifyAll();
+        devToolsChromeAdapterMock.verifyAll();
     });
 });

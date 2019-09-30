@@ -1,25 +1,172 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`FailureInstancePanelControlTest render FailureInstancePanelControl: add instance 1`] = `
-"<Fragment>
-  <CustomizedActionButton ariaLabel=\\"Add a failure instance\\" ariaDescription=\\"Open add a failure instance panel\\" iconProps={{...}} onClick={[Function: bound ]}>
+exports[`FailureInstancePanelControlTest render FailureInstancePanelControl: create without instance 1`] = `
+<React.Fragment>
+  <CustomizedActionButton
+    ariaDescription="Open add a failure instance panel"
+    ariaLabel="Add a failure instance"
+    iconProps={
+      Object {
+        "iconName": "Add",
+      }
+    }
+    onClick={[Function]}
+  >
     Add a failure instance
   </CustomizedActionButton>
-  <GenericPanel isOpen={false} className=\\"failure-instance-panel\\" onDismiss={[Function: bound ]} title=\\"Add a failure instance\\" hasCloseButton={false} closeButtonAriaLabel={{...}}>
-    <StyledTextFieldBase label=\\"Observed failure\\" multiline={true} rows={8} value=\\"\\" onChange={[Function: bound ]} resizable={false} />
-    <ActionAndCancelButtonsComponent isHidden={false} primaryButtonDisabled={true} primaryButtonText=\\"Add\\" primaryButtonOnClick={[Function: bound ]} cancelButtonOnClick={[Function: bound ]} />
+  <GenericPanel
+    className="failureInstancePanel"
+    closeButtonAriaLabel="Close failure instance panel"
+    hasCloseButton={true}
+    isOpen={false}
+    onDismiss={[Function]}
+    title="Add a failure instance"
+  >
+    <FlaggedComponent
+      enableJSXElement={
+        <FailureInstancePanelDetails
+          onSelectorChange={[Function]}
+          onValidateSelector={[Function]}
+          path={null}
+          snippet={null}
+        />
+      }
+      featureFlag="manualInstanceDetails"
+      featureFlagStoreData={Object {}}
+    />
+    <StyledTextFieldBase
+      className="observedFailureTextfield"
+      label="Comment"
+      multiline={true}
+      onChange={[Function]}
+      placeholder="Comment"
+      resizable={false}
+      rows={8}
+      styles={[Function]}
+      value={null}
+    />
+    <div>
+      <ActionAndCancelButtonsComponent
+        cancelButtonOnClick={[Function]}
+        isHidden={false}
+        primaryButtonDisabled={true}
+        primaryButtonOnClick={[Function]}
+        primaryButtonText="Add failed instance"
+      />
+    </div>
   </GenericPanel>
-</Fragment>"
+</React.Fragment>
 `;
 
-exports[`FailureInstancePanelControlTest render FailureInstancePanelControl: edit instance 1`] = `
-"<Fragment>
-  <StyledLinkBase className=\\"edit-button\\" onClick={[Function: bound ]}>
-    <StyledIconBase iconName=\\"edit\\" ariaLabel=\\"edit instance\\" />
+exports[`FailureInstancePanelControlTest render FailureInstancePanelControl: edit without instance 1`] = `
+<React.Fragment>
+  <StyledLinkBase
+    className="editButton"
+    onClick={[Function]}
+  >
+    <StyledIconBase
+      ariaLabel="edit instance"
+      iconName="edit"
+    />
   </StyledLinkBase>
-  <GenericPanel isOpen={false} className=\\"failure-instance-panel\\" onDismiss={[Function: bound ]} title=\\"Edit failure instance\\" hasCloseButton={false} closeButtonAriaLabel={{...}}>
-    <StyledTextFieldBase label=\\"Observed failure\\" multiline={true} rows={8} value=\\"\\" onChange={[Function: bound ]} resizable={false} />
-    <ActionAndCancelButtonsComponent isHidden={false} primaryButtonDisabled={true} primaryButtonText=\\"Save\\" primaryButtonOnClick={[Function: bound ]} cancelButtonOnClick={[Function: bound ]} />
+  <GenericPanel
+    className="failureInstancePanel"
+    closeButtonAriaLabel="Close failure instance panel"
+    hasCloseButton={true}
+    isOpen={false}
+    onDismiss={[Function]}
+    title="Edit failure instance"
+  >
+    <FlaggedComponent
+      enableJSXElement={
+        <FailureInstancePanelDetails
+          onSelectorChange={[Function]}
+          onValidateSelector={[Function]}
+          path={null}
+          snippet={null}
+        />
+      }
+      featureFlag="manualInstanceDetails"
+      featureFlagStoreData={Object {}}
+    />
+    <StyledTextFieldBase
+      className="observedFailureTextfield"
+      label="Comment"
+      multiline={true}
+      onChange={[Function]}
+      placeholder="Comment"
+      resizable={false}
+      rows={8}
+      styles={[Function]}
+      value={null}
+    />
+    <div>
+      <ActionAndCancelButtonsComponent
+        cancelButtonOnClick={[Function]}
+        isHidden={false}
+        primaryButtonDisabled={true}
+        primaryButtonOnClick={[Function]}
+        primaryButtonText="Save"
+      />
+    </div>
   </GenericPanel>
-</Fragment>"
+</React.Fragment>
+`;
+
+exports[`FailureInstancePanelControlTest render FailureInstancePanelControl: partial original instance 1`] = `
+<React.Fragment>
+  <CustomizedActionButton
+    ariaDescription="Open add a failure instance panel"
+    ariaLabel="Add a failure instance"
+    iconProps={
+      Object {
+        "iconName": "Add",
+      }
+    }
+    onClick={[Function]}
+  >
+    Add a failure instance
+  </CustomizedActionButton>
+  <GenericPanel
+    className="failureInstancePanel"
+    closeButtonAriaLabel="Close failure instance panel"
+    hasCloseButton={true}
+    isOpen={false}
+    onDismiss={[Function]}
+    title="Add a failure instance"
+  >
+    <FlaggedComponent
+      enableJSXElement={
+        <FailureInstancePanelDetails
+          onSelectorChange={[Function]}
+          onValidateSelector={[Function]}
+          path={null}
+          snippet={null}
+        />
+      }
+      featureFlag="manualInstanceDetails"
+      featureFlagStoreData={null}
+    />
+    <StyledTextFieldBase
+      className="observedFailureTextfield"
+      label="Comment"
+      multiline={true}
+      onChange={[Function]}
+      placeholder="Comment"
+      resizable={false}
+      rows={8}
+      styles={[Function]}
+      value="original text"
+    />
+    <div>
+      <ActionAndCancelButtonsComponent
+        cancelButtonOnClick={[Function]}
+        isHidden={false}
+        primaryButtonDisabled={false}
+        primaryButtonOnClick={[Function]}
+        primaryButtonText="Add failed instance"
+      />
+    </div>
+  </GenericPanel>
+</React.Fragment>
 `;

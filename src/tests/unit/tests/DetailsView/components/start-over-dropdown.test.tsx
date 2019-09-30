@@ -40,7 +40,7 @@ describe('StartOverDropdownTest', () => {
     });
 
     it('render ContextualMenu', () => {
-        const rendered = shallow(<StartOverDropdown {...defaultProps} />);
+        const rendered = shallow<StartOverDropdown>(<StartOverDropdown {...defaultProps} />);
         rendered.find(ActionButton).simulate('click', event);
         expect(rendered.getElement()).toMatchSnapshot();
         expect(rendered.state().target).toBe(event.currentTarget);
@@ -50,7 +50,7 @@ describe('StartOverDropdownTest', () => {
         defaultProps.rightPanelConfiguration = {
             GetStartOverContextualMenuItemKeys: () => ['assessment'],
         } as DetailsRightPanelConfiguration;
-        const rendered = shallow(<StartOverDropdown {...defaultProps} />);
+        const rendered = shallow<StartOverDropdown>(<StartOverDropdown {...defaultProps} />);
         rendered.find(ActionButton).simulate('click', event);
         expect(rendered.getElement()).toMatchSnapshot();
         expect(rendered.state().target).toBe(event.currentTarget);
@@ -83,7 +83,7 @@ describe('StartOverDropdownTest', () => {
             .setup(creator => creator.cancelStartOver(event, defaultProps.test, defaultProps.requirementKey))
             .verifiable(Times.once());
 
-        const rendered = shallow(<StartOverDropdown {...defaultProps} />);
+        const rendered = shallow<StartOverDropdown>(<StartOverDropdown {...defaultProps} />);
         rendered.find(ActionButton).simulate('click', event);
         rendered
             .find(ContextualMenu)
@@ -99,7 +99,7 @@ describe('StartOverDropdownTest', () => {
     it('should dismiss the start assessment over dialog', () => {
         actionCreatorMock.setup(creator => creator.cancelStartOverAllAssessments(event)).verifiable(Times.once());
 
-        const rendered = shallow(<StartOverDropdown {...defaultProps} />);
+        const rendered = shallow<StartOverDropdown>(<StartOverDropdown {...defaultProps} />);
         rendered.find(ActionButton).simulate('click', event);
         rendered
             .find(ContextualMenu)
@@ -117,7 +117,7 @@ describe('StartOverDropdownTest', () => {
             .setup(creator => creator.startOverAssessment(event, defaultProps.test, defaultProps.requirementKey))
             .verifiable(Times.once());
 
-        const rendered = shallow(<StartOverDropdown {...defaultProps} />);
+        const rendered = shallow<StartOverDropdown>(<StartOverDropdown {...defaultProps} />);
         rendered.find(ActionButton).simulate('click', event);
         rendered
             .find(ContextualMenu)
@@ -133,7 +133,7 @@ describe('StartOverDropdownTest', () => {
     it('should start over the whole assessment', () => {
         actionCreatorMock.setup(creator => creator.startOverAllAssessments(event)).verifiable(Times.once());
 
-        const rendered = shallow(<StartOverDropdown {...defaultProps} />);
+        const rendered = shallow<StartOverDropdown>(<StartOverDropdown {...defaultProps} />);
         rendered.find(ActionButton).simulate('click', event);
         rendered
             .find(ContextualMenu)
@@ -147,7 +147,7 @@ describe('StartOverDropdownTest', () => {
     });
 
     it('should dismiss the contextMenu', () => {
-        const rendered = shallow(<StartOverDropdown {...defaultProps} />);
+        const rendered = shallow<StartOverDropdown>(<StartOverDropdown {...defaultProps} />);
         rendered.find(ActionButton).simulate('click', event);
         rendered.find(ContextualMenu).prop('onDismiss')();
 

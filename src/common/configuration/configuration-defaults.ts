@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { productName } from '../../content/strings/application';
+import { productName } from 'content/strings/application';
 
 export const defaults = {
     options: {

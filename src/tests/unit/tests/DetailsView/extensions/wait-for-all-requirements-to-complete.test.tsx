@@ -45,7 +45,7 @@ describe('WaitForAllRequirementsToComplete', () => {
     it('renders children when oneHundredPercent', () => {
         const rendered = shallow(<Extension {...oneHundredPercent}>INSIDE</Extension>);
         const spinner = rendered.find(Spinner);
-        expect(spinner.isEmpty()).toEqual(true);
+        expect(spinner.exists()).toEqual(false);
         expect(rendered.text()).toEqual('INSIDE');
         expect(rendered.debug()).toMatchSnapshot();
     });

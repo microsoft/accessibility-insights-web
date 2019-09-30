@@ -43,6 +43,18 @@
             "sourceMapPathOverrides": {
                 "webpack:///./*": "${workspaceFolder}/*"
             }
+        },
+        {
+            "name": "Debug electron app",
+            "type": "node",
+            "request": "launch",
+            "cwd": "${workspaceRoot}",
+            "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/electron",
+            "windows": {
+                "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/electron.cmd"
+            },
+            "args": ["drop/electron/extension/bundle/main.bundle.js"],
+            "outputCapture": "std"
         }
     ],
     "inputs": [

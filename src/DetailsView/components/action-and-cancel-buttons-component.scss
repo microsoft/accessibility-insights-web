@@ -1,0 +1,9 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+.action-and-cancel-buttons-component {
+    display: flex;
+    justify-content: flex-end;
+    .action-cancel-button-col + .action-cancel-button-col {
+        margin-left: 8px;
+    }
+}

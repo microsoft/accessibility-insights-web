@@ -2,10 +2,10 @@
 // Licensed under the MIT License.
 import { IMock, It, Mock, Times } from 'typemoq';
 
-import { FeatureFlagPayload } from '../../../../background/actions/feature-flag-actions';
-import { FeatureFlagsController } from '../../../../background/feature-flags-controller';
-import { Interpreter } from '../../../../background/interpreter';
-import { FeatureFlagStore } from '../../../../background/stores/global/feature-flag-store';
+import { FeatureFlagPayload } from 'background/actions/feature-flag-actions';
+import { FeatureFlagsController } from 'background/feature-flags-controller';
+import { Interpreter } from 'background/interpreter';
+import { FeatureFlagStore } from 'background/stores/global/feature-flag-store';
 import { FeatureFlags } from '../../../../common/feature-flags';
 import { Message } from '../../../../common/message';
 import { Messages } from '../../../../common/messages';

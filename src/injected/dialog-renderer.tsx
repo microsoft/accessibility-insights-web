@@ -1,21 +1,23 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { autobind, getRTL } from '@uifabric/utilities';
+import { getRTL } from '@uifabric/utilities';
+import { IssueDetailsTextGenerator } from 'background/issue-details-text-generator';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-
-import { IssueDetailsTextGenerator } from '../background/issue-details-text-generator';
-import { AxeInfo } from '../common/axe-info';
-import { ClientBrowserAdapter } from '../common/client-browser-adapter';
+import { BrowserAdapter } from '../common/browser-adapters/browser-adapter';
+import { NewTabLink } from '../common/components/new-tab-link';
 import { FeatureFlags } from '../common/feature-flags';
 import { HTMLElementUtils } from '../common/html-element-utils';
-import { NavigatorUtils } from '../common/navigator-utils';
 import { getPlatform } from '../common/platform';
 import { FeatureFlagStoreData } from '../common/types/store-data/feature-flag-store-data';
 import { WindowUtils } from '../common/window-utils';
+import { createIssueDetailsBuilder } from '../issue-filing/common/create-issue-details-builder';
+import { IssueFilingUrlStringUtils } from '../issue-filing/common/issue-filing-url-string-utils';
+import { PlainTextFormatter } from '../issue-filing/common/markup/plain-text-formatter';
 import { DictionaryStringTo } from '../types/common-types';
 import { rootContainerId } from './constants';
 import { DetailsDialogHandler } from './details-dialog-handler';
+import { FixInstructionProcessor } from './fix-instruction-processor';
 import { ErrorMessageContent } from './frameCommunicators/error-message-content';
 import { FrameCommunicator, MessageRequest } from './frameCommunicators/frame-communicator';
 import { FrameMessageResponseCallback } from './frameCommunicators/window-message-handler';
@@ -29,6 +31,8 @@ export interface DetailsDialogWindowMessage {
     featureFlagStoreData: FeatureFlagStoreData;
 }
 
+export type RenderDialog = (data: HtmlElementAxeResults, featureFlagStoreData: FeatureFlagStoreData) => void;
+
 export class DialogRenderer {
     private static readonly renderDetailsDialogCommand = 'insights.detailsDialog';
 
@@ -39,15 +43,16 @@ export class DialogRenderer {
         private readonly htmlElementUtils: HTMLElementUtils,
         private readonly windowUtils: WindowUtils,
         private readonly shadowUtils: ShadowUtils,
-        private readonly clientBrowserAdapter: ClientBrowserAdapter,
+        private readonly browserAdapter: BrowserAdapter,
         private readonly getRTLFunc: typeof getRTL,
+        private readonly detailsDialogHandler: DetailsDialogHandler,
     ) {
         if (this.isInMainWindow()) {
             this.frameCommunicator.subscribe(DialogRenderer.renderDetailsDialogCommand, this.processRequest);
         }
     }
 
-    public render(data: HtmlElementAxeResults, featureFlagStoreData: FeatureFlagStoreData): void {
+    public render: RenderDialog = (data: HtmlElementAxeResults, featureFlagStoreData: FeatureFlagStoreData) => {
         if (this.isInMainWindow()) {
             const mainWindowContext = MainWindowContext.getMainWindowContext();
             mainWindowContext.getTargetPageActionMessageCreator().openIssuesDialog();
@@ -59,23 +64,26 @@ export class DialogRenderer {
                 ? this.initializeDialogContainerInShadowDom()
                 : this.appendDialogContainer();
 
-            const browserSpec = new NavigatorUtils(window.navigator).getBrowserSpec();
             const issueDetailsTextGenerator = new IssueDetailsTextGenerator(
-                this.clientBrowserAdapter.extensionVersion,
-                browserSpec,
-                AxeInfo.Default.version,
+                IssueFilingUrlStringUtils,
+                mainWindowContext.getEnvironmentInfoProvider(),
+                createIssueDetailsBuilder(PlainTextFormatter),
             );
 
+            const fixInstructionProcessor = new FixInstructionProcessor();
+
             const deps: LayeredDetailsDialogDeps = {
+                fixInstructionProcessor,
                 issueDetailsTextGenerator,
                 windowUtils: this.windowUtils,
                 targetPageActionMessageCreator: mainWindowContext.getTargetPageActionMessageCreator(),
                 issueFilingActionMessageCreator: mainWindowContext.getIssueFilingActionMessageCreator(),
-                clientBrowserAdapter: this.clientBrowserAdapter,
+                browserAdapter: this.browserAdapter,
                 getRTL: this.getRTLFunc,
                 environmentInfoProvider: mainWindowContext.getEnvironmentInfoProvider(),
                 issueFilingServiceProvider: mainWindowContext.getIssueFilingServiceProvider(),
                 userConfigMessageCreator: mainWindowContext.getUserConfigMessageCreator(),
+                LinkComponent: NewTabLink,
             };
 
             this.renderer(
@@ -84,7 +92,7 @@ export class DialogRenderer {
                     failedRules={failedRules}
                     elementSelector={elementSelector}
                     target={target}
-                    dialogHandler={new DetailsDialogHandler(this.htmlElementUtils)}
+                    dialogHandler={this.detailsDialogHandler}
                     devToolStore={mainWindowContext.getDevToolStore()}
                     userConfigStore={mainWindowContext.getUserConfigStore()}
                     devToolsShortcut={getPlatform(this.windowUtils).devToolsShortcut}
@@ -101,17 +109,16 @@ export class DialogRenderer {
             };
             this.frameCommunicator.sendMessage(windowMessageRequest);
         }
-    }
+    };
 
-    @autobind
-    private processRequest(
+    private processRequest = (
         message: DetailsDialogWindowMessage,
         error: ErrorMessageContent,
         sourceWin: Window,
         responder?: FrameMessageResponseCallback,
-    ): void {
+    ): void => {
         this.render(message.data, message.featureFlagStoreData);
-    }
+    };
 
     private initializeDialogContainerInShadowDom(): HTMLDivElement {
         const shadowContainer = this.shadowUtils.getShadowContainer();

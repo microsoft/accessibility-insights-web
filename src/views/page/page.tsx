@@ -2,9 +2,9 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
+import { title } from 'content/strings/application';
 import { HeaderIcon, HeaderIconDeps } from '../../common/components/header-icon';
-import { config } from '../../common/configuration';
-import { NamedSFC } from '../../common/react/named-sfc';
+import { NamedFC } from '../../common/react/named-fc';
 
 export type PageProps = {
     deps: PageDeps;
@@ -12,14 +12,12 @@ export type PageProps = {
 
 export type PageDeps = HeaderIconDeps;
 
-export const Page = NamedSFC<PageProps>('Page', ({ deps, children }) => {
-    const extensionFullName = config.getOption('extensionFullName');
-
+export const Page = NamedFC<PageProps>('Page', ({ deps, children }) => {
     return (
         <>
             <header className="header-bar">
                 <HeaderIcon deps={deps} />
-                <div className="ms-font-m header-text">{extensionFullName}</div>
+                <div className="ms-font-m header-text">{title}</div>
             </header>
             <main>{children}</main>
         </>

@@ -5,7 +5,7 @@ import * as React from 'react';
 import { BaseStore } from '../../common/base-store';
 import { TestMode } from '../../common/configs/test-mode';
 import { VisualizationConfigurationFactory } from '../../common/configs/visualization-configuration-factory';
-import { TelemetryEventSource } from '../../common/telemetry-events';
+import { TelemetryEventSource } from '../../common/extension-telemetry-events';
 import { CommandStoreData } from '../../common/types/store-data/command-store-data';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { VisualizationStoreData } from '../../common/types/store-data/visualization-store-data';
@@ -22,11 +22,11 @@ export class DiagnosticViewToggleFactory {
     private commandStore: BaseStore<CommandStoreData>;
     private actionMessageCreator: PopupActionMessageCreator;
     private clickHandler: DiagnosticViewClickHandler;
-    private dom: NodeSelector & Node;
+    private dom: Document;
 
     constructor(
         private readonly deps: DiagnosticViewToggleDeps,
-        dom: NodeSelector & Node,
+        dom: Document,
         visualizationTypes: VisualizationType[],
         visualizationConfigurationFactory: VisualizationConfigurationFactory,
         visualizationStore: BaseStore<VisualizationStoreData>,

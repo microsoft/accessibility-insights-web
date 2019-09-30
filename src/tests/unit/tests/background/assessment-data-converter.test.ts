@@ -2,8 +2,8 @@
 // Licensed under the MIT License.
 import { IMock, It, Mock } from 'typemoq';
 
-import { AssessmentDataConverter } from '../../../../background/assessment-data-converter';
-import { UniquelyIdentifiableInstances } from '../../../../background/instance-identifier-generator';
+import { AssessmentDataConverter } from 'background/assessment-data-converter';
+import { UniquelyIdentifiableInstances } from 'background/instance-identifier-generator';
 import { ManualTestStatus } from '../../../../common/types/manual-test-status';
 import { AssessmentInstancesMap, TestStepResult } from '../../../../common/types/store-data/assessment-result-data';
 import { DecoratedAxeNodeResult, HtmlElementAxeResults } from '../../../../injected/scanner-utils';
@@ -447,14 +447,32 @@ describe('AssessmentDataConverterTest', () => {
         expect(actual).toEqual(expectedGeneratedInstance);
     });
 
-    test('generateFailureInstance', () => {
+    test('generateFailureInstance with description', () => {
         const description = 'description';
+        const path = null;
+        const snippet = null;
+        const expectedResult = {
+            id: uid,
+            html: snippet,
+            description: description,
+            selector: path,
+        };
+
+        expect(testSubject.generateFailureInstance(description, path, snippet)).toEqual(expectedResult);
+    });
+
+    test('generateFailureInstance with description and path', () => {
+        const description = 'description';
+        const path = 'path';
+        const snippet = 'snippet';
         const expectedResult = {
             id: uid,
             description: description,
+            selector: path,
+            html: snippet,
         };
 
-        expect(testSubject.generateFailureInstance(description)).toEqual(expectedResult);
+        expect(testSubject.generateFailureInstance(description, path, snippet)).toEqual(expectedResult);
     });
 
     function setupGenerateInstanceIdentifierMock(instance: UniquelyIdentifiableInstances, identifier: string): void {

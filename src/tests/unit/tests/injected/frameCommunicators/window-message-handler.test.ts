@@ -58,8 +58,8 @@ describe('WindowMessageHandlerTests', () => {
         const targetWindow = {} as Window;
         const sampleMessage = getSampleMessageWithResponseId();
 
-        const mockCreateFrameResponderCallback = Mock.ofInstance(testSubject.createFrameResponderCallback);
-        (testSubject.createFrameResponderCallback as any) = mockCreateFrameResponderCallback.object;
+        const createFrameResponderCallbackMock = Mock.ofInstance(testSubject.createFrameResponderCallback);
+        (testSubject.createFrameResponderCallback as any) = createFrameResponderCallbackMock.object;
 
         mockMessageMarshaller
             .setup(x => x.createMessage(sampleMessage.command, sampleMessage.message, sampleMessage.messageId))
@@ -68,7 +68,7 @@ describe('WindowMessageHandlerTests', () => {
 
         mockWindowUtils.setup(x => x.postMessage(targetWindow, sampleMessage, '*')).verifiable(Times.once());
 
-        mockCreateFrameResponderCallback
+        createFrameResponderCallbackMock
             .setup(x => x(targetWindow, sampleMessage.command, sampleMessage.messageId))
             .returns(() => () => {});
 
@@ -77,7 +77,7 @@ describe('WindowMessageHandlerTests', () => {
 
         mockWindowUtils.verifyAll();
         mockMessageMarshaller.verifyAll();
-        mockCreateFrameResponderCallback.verifyAll();
+        createFrameResponderCallbackMock.verifyAll();
     });
 
     test('shouldNotInvokeResponseCallBackForAnotherMessage', () => {
@@ -269,7 +269,7 @@ describe('WindowMessageHandlerTests', () => {
             .setup(x => x.createMessage(responseMessage.command, sampleError, responseMessage.messageId))
             .returns(() => responseMessage)
             .verifiable();
-        mockWindowUtils.setup(x => x.postMessage(responseEvent.source, responseMessage, '*')).verifiable(Times.once());
+        mockWindowUtils.setup(x => x.postMessage(responseEvent.source as Window, responseMessage, '*')).verifiable(Times.once());
 
         messageCallback(responseEvent);
 

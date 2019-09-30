@@ -2,9 +2,10 @@
 // Licensed under the MIT License.
 import { IMock, Mock } from 'typemoq';
 
-import { ClientBrowserAdapter } from '../../../../../common/client-browser-adapter';
+import { BrowserAdapter } from '../../../../../common/browser-adapters/browser-adapter';
 import { HTMLElementUtils } from '../../../../../common/html-element-utils';
 import { WindowUtils } from '../../../../../common/window-utils';
+import { DetailsDialogHandler } from '../../../../../injected/details-dialog-handler';
 import { FrameCommunicator } from '../../../../../injected/frameCommunicators/frame-communicator';
 import { HtmlElementAxeResults } from '../../../../../injected/scanner-utils';
 import { ShadowUtils } from '../../../../../injected/shadow-utils';
@@ -22,15 +23,17 @@ describe('IssuesFormatterTests', () => {
         htmlElementUtilsMock = Mock.ofType(HTMLElementUtils);
         const windowUtils: IMock<WindowUtils> = Mock.ofType(WindowUtils);
         const shadowUtils: IMock<ShadowUtils> = Mock.ofType(ShadowUtils);
-        const clientBrowserAdapter = Mock.ofType<ClientBrowserAdapter>();
+        const browserAdapter = Mock.ofType<BrowserAdapter>();
         const getRTLMock = Mock.ofInstance(() => null);
+        const detailsDialogHandlerMock = Mock.ofType<DetailsDialogHandler>();
         testSubject = new IssuesFormatter(
             frameCommunicator.object,
             htmlElementUtilsMock.object,
             windowUtils.object,
             shadowUtils.object,
-            clientBrowserAdapter.object,
+            browserAdapter.object,
             getRTLMock.object,
+            detailsDialogHandlerMock.object,
         );
     });
 

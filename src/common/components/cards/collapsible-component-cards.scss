@@ -1,0 +1,63 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+
+@import '../../../common/styles/colors.scss';
+
+.collapsible-container {
+    @mixin transform($property) {
+        -webkit-transform: $property;
+        -ms-transform: $property;
+        transform: $property;
+    }
+
+    %common-control-chevron {
+        display: inline-block;
+        border-right: 1px solid $secondary-text;
+        border-bottom: 1px solid $secondary-text;
+        min-width: 7px;
+        width: 7px;
+        height: 7px;
+        content: '';
+        transform-origin: 50% 50%;
+        transition: transform 0.1s linear 0s;
+    }
+
+    .collapsible-control {
+        font-family: 'Segoe UI Web (West European)', 'Segoe UI', '-apple-system', BlinkMacSystemFont, Roboto, 'Helvetica Neue', Helvetica,
+            Ubuntu, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+        background-color: transparent;
+        cursor: pointer;
+        border: none;
+
+        display: flex;
+        align-items: baseline;
+
+        width: 100%;
+        height: fit-content;
+
+        &:hover {
+            background-color: $neutral-alpha-4;
+            color: unset;
+        }
+    }
+
+    .collapsible-control[aria-expanded='false']:before {
+        @extend %common-control-chevron;
+        @include transform(rotate(-45deg));
+    }
+
+    .collapsible-control[aria-expanded='true']:before {
+        @extend %common-control-chevron;
+        @include transform(rotate(45deg));
+    }
+
+    .collapsible-container-content {
+        &[aria-hidden='true'] {
+            display: none;
+        }
+    }
+}
+
+.collapsible-title {
+    padding-left: 0.5vw;
+}

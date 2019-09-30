@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { AssessmentsProvider } from 'assessments/types/assessments-provider';
+import { AssessmentStore } from 'background/stores/assessment-store';
+import { VisualizationScanResultStore } from 'background/stores/visualization-scan-result-store';
 import { IMock, Mock, MockBehavior } from 'typemoq';
-import { AssessmentsProvider } from '../../../../assessments/types/assessments-provider';
-import { AssessmentStore } from '../../../../background/stores/assessment-store';
-import { VisualizationScanResultStore } from '../../../../background/stores/visualization-scan-result-store';
 import { BaseStore } from '../../../../common/base-store';
 import { ManualTestStatus } from '../../../../common/types/manual-test-status';
 import { AssessmentStoreData, TestStepResult } from '../../../../common/types/store-data/assessment-result-data';

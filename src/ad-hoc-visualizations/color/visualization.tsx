@@ -1,18 +1,17 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { AdHocTestkeys } from 'common/configs/adhoc-test-keys';
+import { TestMode } from 'common/configs/test-mode';
+import { VisualizationConfiguration } from 'common/configs/visualization-configuration';
+import { Messages } from 'common/messages';
+import { TelemetryDataFactory } from 'common/telemetry-data-factory';
+import { VisualizationType } from 'common/types/visualization-type';
+import { generateUID } from 'common/uid-generator';
+import { adhoc as content } from 'content/adhoc';
+import { AdhocStaticTestView } from 'DetailsView/components/adhoc-static-test-view';
+import { ScannerUtils } from 'injected/scanner-utils';
+import { VisualizationInstanceProcessor } from 'injected/visualization-instance-processor';
 import * as React from 'react';
-
-import { AdHocTestkeys } from '../../common/configs/adhoc-test-keys';
-import { TestMode } from '../../common/configs/test-mode';
-import { VisualizationConfiguration } from '../../common/configs/visualization-configuration-factory';
-import { Messages } from '../../common/messages';
-import { TelemetryDataFactory } from '../../common/telemetry-data-factory';
-import { VisualizationType } from '../../common/types/visualization-type';
-import { generateUID } from '../../common/uid-generator';
-import { adhoc as content } from '../../content/adhoc';
-import { AdhocStaticTestView } from '../../DetailsView/components/adhoc-static-test-view';
-import { ScannerUtils } from '../../injected/scanner-utils';
-import { VisualizationInstanceProcessor } from '../../injected/visualization-instance-processor';
 
 const { guidance } = content.color;
 
@@ -33,7 +32,6 @@ export const ColorAdHocVisualization: VisualizationConfiguration = {
     chromeCommand: '05_toggle-color',
     launchPanelDisplayOrder: 5,
     adhocToolsPanelDisplayOrder: 2,
-    analyzerMessageType: Messages.Visualizations.Common.ScanCompleted,
     resultProcessor: (scanner: ScannerUtils) => scanner.getAllCompletedInstances,
     getAnalyzer: provider =>
         provider.createRuleAnalyzer({

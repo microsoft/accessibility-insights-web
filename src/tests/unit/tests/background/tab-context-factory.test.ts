@@ -1,26 +1,27 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
-import { AssessmentsProviderImpl } from '../../../../assessments/assessments-provider';
-import { ChromeAdapter } from '../../../../background/browser-adapter';
-import { DetailsViewController } from '../../../../background/details-view-controller';
-import { Interpreter } from '../../../../background/interpreter';
-import { AssessmentStore } from '../../../../background/stores/assessment-store';
-import { DetailsViewStore } from '../../../../background/stores/details-view-store';
-import { DevToolStore } from '../../../../background/stores/dev-tools-store';
-import { InspectStore } from '../../../../background/stores/inspect-store';
-import { TabStore } from '../../../../background/stores/tab-store';
-import { VisualizationScanResultStore } from '../../../../background/stores/visualization-scan-result-store';
-import { VisualizationStore } from '../../../../background/stores/visualization-store';
-import { TabContext } from '../../../../background/tab-context';
-import { TabContextFactory } from '../../../../background/tab-context-factory';
-import { TargetTabController } from '../../../../background/target-tab-controller';
-import { TelemetryEventHandler } from '../../../../background/telemetry/telemetry-event-handler';
-import {
-    VisualizationConfiguration,
-    VisualizationConfigurationFactory,
-} from '../../../../common/configs/visualization-configuration-factory';
-import { Messages } from '../../../../common/messages';
+
+import { AssessmentsProviderImpl } from 'assessments/assessments-provider';
+import { DetailsViewController } from 'background/details-view-controller';
+import { Interpreter } from 'background/interpreter';
+import { AssessmentStore } from 'background/stores/assessment-store';
+import { DetailsViewStore } from 'background/stores/details-view-store';
+import { DevToolStore } from 'background/stores/dev-tools-store';
+import { InspectStore } from 'background/stores/inspect-store';
+import { TabStore } from 'background/stores/tab-store';
+import { VisualizationScanResultStore } from 'background/stores/visualization-scan-result-store';
+import { VisualizationStore } from 'background/stores/visualization-store';
+import { TabContext } from 'background/tab-context';
+import { TabContextFactory } from 'background/tab-context-factory';
+import { TargetTabController } from 'background/target-tab-controller';
+import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
+import { UnifiedScanResultStore } from '../../../../background/stores/unified-scan-result-store';
+import { BrowserAdapter } from '../../../../common/browser-adapters/browser-adapter';
+import { VisualizationConfiguration } from '../../../../common/configs/visualization-configuration';
+import { VisualizationConfigurationFactory } from '../../../../common/configs/visualization-configuration-factory';
+import { getStoreStateMessage } from '../../../../common/messages';
+import { PromiseFactory } from '../../../../common/promises/promise-factory';
 import { StoreNames } from '../../../../common/stores/store-names';
 import { StoreUpdateMessage } from '../../../../common/types/store-update-message';
 import { VisualizationType } from '../../../../common/types/visualization-type';
@@ -32,10 +33,10 @@ function getConfigs(visualizationType: VisualizationType): VisualizationConfigur
 
 describe('TabContextFactoryTest', () => {
     let mockDetailsViewController: IMock<DetailsViewController>;
-    let mockBrowserAdapter: IMock<ChromeAdapter>;
+    let mockBrowserAdapter: IMock<BrowserAdapter>;
 
     beforeAll(() => {
-        mockBrowserAdapter = Mock.ofType(ChromeAdapter);
+        mockBrowserAdapter = Mock.ofType<BrowserAdapter>();
 
         mockDetailsViewController = Mock.ofType<DetailsViewController>();
         mockBrowserAdapter.reset();
@@ -57,6 +58,8 @@ describe('TabContextFactoryTest', () => {
             StoreNames.DevToolsStore,
             StoreNames.DetailsViewStore,
             StoreNames.InspectStore,
+            StoreNames.PathSnippetStore,
+            StoreNames.UnifiedScanResultStore,
         ];
 
         storeNames.forEach(storeName => {
@@ -71,6 +74,7 @@ describe('TabContextFactoryTest', () => {
         const visualizationConfigurationFactoryMock = Mock.ofType(VisualizationConfigurationFactory);
         visualizationConfigurationFactoryMock.setup(vcfm => vcfm.getConfiguration(It.isAny())).returns(theType => getConfigs(theType));
 
+        const promiseFactoryMock = Mock.ofType<PromiseFactory>();
         const testObject = new TabContextFactory(
             visualizationConfigurationFactoryMock.object,
             telemetryEventHandlerMock.object,
@@ -78,6 +82,7 @@ describe('TabContextFactoryTest', () => {
             targetTabControllerMock.object,
             assessmentStore.object,
             assessmentProvider.object,
+            promiseFactoryMock.object,
         );
 
         const tabContext = testObject.createTabContext(
@@ -95,7 +100,7 @@ describe('TabContextFactoryTest', () => {
             .verifiable(Times.once());
 
         tabContext.interpreter.interpret({
-            messageType: Messages.Visualizations.State.GetCurrentVisualizationResultState,
+            messageType: getStoreStateMessage(StoreNames.VisualizationScanResultStore),
             tabId: null,
         });
 
@@ -108,6 +113,7 @@ describe('TabContextFactoryTest', () => {
         expect(tabContext.stores.devToolStore).toBeInstanceOf(DevToolStore);
         expect(tabContext.stores.detailsViewStore).toBeInstanceOf(DetailsViewStore);
         expect(tabContext.stores.inspectStore).toBeInstanceOf(InspectStore);
+        expect(tabContext.stores.unifiedScanResultStore).toBeInstanceOf(UnifiedScanResultStore);
 
         broadcastMock.verifyAll();
     });

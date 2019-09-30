@@ -3,8 +3,8 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
+import { toolName } from 'content/strings/application';
 import { ExternalLink } from '../../../../../common/components/external-link';
-import { toolName } from '../../../../../content/strings/application';
 import { LaunchPad, LaunchPadDeps, LaunchPadProps, LaunchPadRowConfiguration } from '../../../../../popup/components/launch-pad';
 import { LaunchPadItemRow } from '../../../../../popup/components/launch-pad-item-row';
 

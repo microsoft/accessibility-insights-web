@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ContentContainer renders 1`] = `
+<main
+  className="outer-container"
+>
+  <div
+    className="content-container"
+  >
+    <div>
+      1
+    </div>
+    <div
+      id="2"
+    >
+      2
+    </div>
+  </div>
+</main>
+`;

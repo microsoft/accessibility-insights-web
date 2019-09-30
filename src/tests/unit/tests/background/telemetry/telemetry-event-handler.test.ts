@@ -1,11 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { BaseActionPayload } from 'background/actions/action-payloads';
+import { TelemetryClient } from 'background/telemetry/telemetry-client';
+import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
 import * as _ from 'lodash';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
-import { BaseActionPayload } from '../../../../../background/actions/action-payloads';
-import { TelemetryClient } from '../../../../../background/telemetry/telemetry-client';
-import { TelemetryEventHandler } from '../../../../../background/telemetry/telemetry-event-handler';
-import { TelemetryEventSource, TriggeredBy } from '../../../../../common/telemetry-events';
+import { TelemetryEventSource, TriggeredBy } from '../../../../../common/extension-telemetry-events';
 import { DictionaryStringTo } from '../../../../../types/common-types';
 
 describe('TelemetryEventHandlerTest', () => {

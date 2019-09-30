@@ -1,10 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { ISelection } from 'office-ui-fabric-react/lib/DetailsList';
+
+import { UnifiedStatusResults } from '../../common/components/cards/failed-instances-section';
 import { VisualizationConfigurationFactory } from '../../common/configs/visualization-configuration-factory';
-import { NamedSFC } from '../../common/react/named-sfc';
+import { NamedFC } from '../../common/react/named-fc';
 import { AssessmentStoreData } from '../../common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
+import { PathSnippetStoreData } from '../../common/types/store-data/path-snippet-store-data';
 import { TabStoreData } from '../../common/types/store-data/tab-store-data';
 import { UserConfigurationStoreData } from '../../common/types/store-data/user-configuration-store';
 import { VisualizationScanResultData } from '../../common/types/store-data/visualization-scan-result-data';
@@ -13,7 +16,6 @@ import { VisualizationType } from '../../common/types/visualization-type';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 import { AssessmentInstanceTableHandler } from '../handlers/assessment-instance-table-handler';
 import { DetailsViewToggleClickHandlerFactory } from '../handlers/details-view-toggle-click-handler-factory';
-import { ReportGenerator } from '../reports/report-generator';
 import { IssuesTableHandler } from './issues-table-handler';
 import { OverviewContainerDeps } from './overview-content/overview-content-container';
 import { TestViewDeps } from './test-view';
@@ -28,6 +30,7 @@ export interface TestViewContainerProps {
     tabStoreData: TabStoreData;
     assessmentStoreData: AssessmentStoreData;
     featureFlagStoreData: FeatureFlagStoreData;
+    pathSnippetStoreData: PathSnippetStoreData;
     selectedTest: VisualizationType;
     visualizationStoreData: VisualizationStoreData;
     visualizationScanResultData: VisualizationScanResultData;
@@ -35,13 +38,12 @@ export interface TestViewContainerProps {
     clickHandlerFactory: DetailsViewToggleClickHandlerFactory;
     assessmentInstanceTableHandler: AssessmentInstanceTableHandler;
     issuesSelection: ISelection;
-    reportGenerator: ReportGenerator;
     issuesTableHandler: IssuesTableHandler;
-    issueTrackerPath: string;
     userConfigurationStoreData: UserConfigurationStoreData;
+    ruleResultsByStatus: UnifiedStatusResults;
 }
 
-export const TestViewContainer = NamedSFC<TestViewContainerProps>('TestViewContainer', props => {
+export const TestViewContainer = NamedFC<TestViewContainerProps>('TestViewContainer', props => {
     const configuration = props.visualizationConfigurationFactory.getConfiguration(props.selectedTest);
     const testViewProps = { configuration, ...props };
     return configuration.getTestView(testViewProps);

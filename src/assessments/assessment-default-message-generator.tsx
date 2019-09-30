@@ -3,8 +3,8 @@
 import { isEmpty, size } from 'lodash';
 import * as React from 'react';
 
-import { ManualTestStatus } from '../common/types/manual-test-status';
-import { AssessmentInstancesMap, InstanceIdToInstanceDataMap, TestStepResult } from '../common/types/store-data/assessment-result-data';
+import { ManualTestStatus } from 'common/types/manual-test-status';
+import { AssessmentInstancesMap, InstanceIdToInstanceDataMap, TestStepResult } from 'common/types/store-data/assessment-result-data';
 
 export type IMessageGenerator = (instancesMap: AssessmentInstancesMap, selectedTestStep: string) => DefaultMessageInterface;
 export type IGetMessageGenerator = (generator: AssessmentDefaultMessageGenerator) => IMessageGenerator;

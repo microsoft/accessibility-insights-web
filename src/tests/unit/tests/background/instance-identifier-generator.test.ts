@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { InstanceIdentifierGenerator } from '../../../../background/instance-identifier-generator';
+import { InstanceIdentifierGenerator } from 'background/instance-identifier-generator';
 
 describe('InstanceIdentifierGeneratorTest', () => {
     it('generateSelectorIdentifier', () => {

@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { autobind } from '@uifabric/utilities';
 import { SingleElementSelector } from '../common/types/store-data/scoping-store-data';
 import { WindowUtils } from '../common/window-utils';
 import { ElementFinderByPosition } from './element-finder-by-position';
@@ -68,8 +67,7 @@ export class ScopingListener {
         shadowContainer.appendChild(scopeLayout);
     }
 
-    @autobind
-    protected onClick(event: MouseEvent): void {
+    protected onClick = (event: MouseEvent): void => {
         if (this.onClickCurrentTimeoutId != null) {
             this.windowUtils.clearTimeout(this.onClickCurrentTimeoutId);
             this.onClickCurrentTimeoutId = null;
@@ -80,10 +78,9 @@ export class ScopingListener {
                 this.onInspectClick(event, path);
             });
         }, ScopingListener.onClickTimeout);
-    }
+    };
 
-    @autobind
-    protected onHover(event: MouseEvent): void {
+    protected onHover = (event: MouseEvent): void => {
         if (this.onHoverCurrentTimeoutId != null) {
             this.windowUtils.clearTimeout(this.onHoverCurrentTimeoutId);
             this.onHoverCurrentTimeoutId = null;
@@ -94,12 +91,12 @@ export class ScopingListener {
                 this.onInspectHover(path);
             });
         }, ScopingListener.onHoverTimeout);
-    }
+    };
 
-    private processRequestForEvent(event: MouseEvent): PromiseLike<SingleElementSelector> {
+    private processRequestForEvent = (event: MouseEvent): PromiseLike<SingleElementSelector> => {
         return this.elementFinderByPosition.processRequest({
             x: event.clientX,
             y: event.clientY,
         });
-    }
+    };
 }

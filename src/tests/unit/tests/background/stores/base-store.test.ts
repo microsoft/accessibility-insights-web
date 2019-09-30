@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { It, Mock, MockBehavior, Times } from 'typemoq';
 
-import { BaseStoreImpl } from '../../../../../background/stores/base-store-impl';
+import { BaseStoreImpl } from 'background/stores/base-store-impl';
 import { StoreNames } from '../../../../../common/stores/store-names';
 import { IsSameObject } from '../../../common/typemoq-helper';
 
@@ -46,7 +46,7 @@ describe('BaseStoreTest', () => {
     });
 
     test('onGetCurrentState', () => {
-        const changedListener = Mock.ofInstance((_testObject: TestStore, _args: any) => {}, MockBehavior.Strict);
+        const changedListener = Mock.ofInstance((testStore: TestStore, args: any) => {}, MockBehavior.Strict);
 
         const listenerAdder = function(): void {
             // hack to access onGetCurrentState from the BaseStore class

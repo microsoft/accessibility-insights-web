@@ -1,40 +1,37 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { autobind } from '@uifabric/utilities';
-
+import { BrowserAdapter } from '../common/browser-adapters/browser-adapter';
 import { DictionaryStringTo } from '../types/common-types';
-import { BrowserAdapter } from './browser-adapter';
 
 export class DetailsViewController {
-    private _tabIdToDetailsViewMap: DictionaryStringTo<number> = {};
-    private _browserAdapter: BrowserAdapter;
-    private _detailsViewRemovedHandler: (tabId: number) => void;
+    private tabIdToDetailsViewMap: DictionaryStringTo<number> = {};
+    private browserAdapter: BrowserAdapter;
+    private detailsViewRemovedHandler: (tabId: number) => void;
 
     constructor(adapter: BrowserAdapter) {
-        this._browserAdapter = adapter;
-        this._browserAdapter.addListenerToTabsOnRemoved(this.onRemoveTab);
-        this._browserAdapter.addListenerToTabsOnUpdated(this.onUpdateTab);
+        this.browserAdapter = adapter;
+        this.browserAdapter.addListenerToTabsOnRemoved(this.onRemoveTab);
+        this.browserAdapter.addListenerToTabsOnUpdated(this.onUpdateTab);
     }
 
     public setupDetailsViewTabRemovedHandler(handler: (tabId: number) => void): void {
-        this._detailsViewRemovedHandler = handler;
+        this.detailsViewRemovedHandler = handler;
     }
 
     public showDetailsView(targetTabId: number): void {
-        const detailsViewTabId = this._tabIdToDetailsViewMap[targetTabId];
+        const detailsViewTabId = this.tabIdToDetailsViewMap[targetTabId];
 
         if (detailsViewTabId != null) {
-            this._browserAdapter.switchToTab(detailsViewTabId);
+            this.browserAdapter.switchToTab(detailsViewTabId);
             return;
         }
 
-        this._browserAdapter.createTabInNewWindow(this.getDetailsUrl(targetTabId), (tab: chrome.tabs.Tab) => {
-            this._tabIdToDetailsViewMap[targetTabId] = tab.id;
+        this.browserAdapter.createTabInNewWindow(this.getDetailsUrl(targetTabId), (tab: chrome.tabs.Tab) => {
+            this.tabIdToDetailsViewMap[targetTabId] = tab.id;
         });
     }
 
-    @autobind
-    private onUpdateTab(tabId: number, changeInfo: chrome.tabs.TabChangeInfo, tab: chrome.tabs.Tab): void {
+    private onUpdateTab = (tabId: number, changeInfo: chrome.tabs.TabChangeInfo, tab: chrome.tabs.Tab): void => {
         const targetTabId = this.getTargetTabIdForDetailsTabId(tabId);
 
         if (targetTabId == null) {
@@ -42,12 +39,12 @@ export class DetailsViewController {
         }
 
         if (this.hasUrlChange(changeInfo, targetTabId)) {
-            delete this._tabIdToDetailsViewMap[targetTabId];
-            if (this._detailsViewRemovedHandler != null) {
-                this._detailsViewRemovedHandler(targetTabId);
+            delete this.tabIdToDetailsViewMap[targetTabId];
+            if (this.detailsViewRemovedHandler != null) {
+                this.detailsViewRemovedHandler(targetTabId);
             }
         }
-    }
+    };
 
     private hasUrlChange(changeInfo: chrome.tabs.TabChangeInfo, targetTabId): boolean {
         return (
@@ -65,13 +62,13 @@ export class DetailsViewController {
     }
 
     private getDetailsUrlWithExtensionId(tabId: number): string {
-        return `${this._browserAdapter.getRunTimeId()}/${this.getDetailsUrl(tabId)}`;
+        return `${this.browserAdapter.getRunTimeId()}/${this.getDetailsUrl(tabId)}`;
     }
 
     private getTargetTabIdForDetailsTabId(detailsTabId: number): number {
         if (detailsTabId != null) {
-            for (const tabId in this._tabIdToDetailsViewMap) {
-                if (this._tabIdToDetailsViewMap[tabId] === detailsTabId) {
+            for (const tabId in this.tabIdToDetailsViewMap) {
+                if (this.tabIdToDetailsViewMap[tabId] === detailsTabId) {
                     return parseInt(tabId, 10);
                 }
             }
@@ -79,18 +76,17 @@ export class DetailsViewController {
         return null;
     }
 
-    @autobind
-    private onRemoveTab(tabId: number, removeInfo: chrome.tabs.TabRemoveInfo): void {
-        if (this._tabIdToDetailsViewMap[tabId]) {
-            delete this._tabIdToDetailsViewMap[tabId];
+    private onRemoveTab = (tabId: number, removeInfo: chrome.tabs.TabRemoveInfo): void => {
+        if (this.tabIdToDetailsViewMap[tabId]) {
+            delete this.tabIdToDetailsViewMap[tabId];
         } else {
             const targetTabId = this.getTargetTabIdForDetailsTabId(tabId);
             if (targetTabId) {
-                delete this._tabIdToDetailsViewMap[targetTabId];
-                if (this._detailsViewRemovedHandler != null) {
-                    this._detailsViewRemovedHandler(targetTabId);
+                delete this.tabIdToDetailsViewMap[targetTabId];
+                if (this.detailsViewRemovedHandler != null) {
+                    this.detailsViewRemovedHandler(targetTabId);
                 }
             }
         }
-    }
+    };
 }

@@ -1,65 +1,36 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { Mock } from 'typemoq';
+import { Mock, MockBehavior } from 'typemoq';
+
+import { BaseStore } from '../../../../../common/base-store';
+import { EnumHelper } from '../../../../../common/enum-helper';
 import { ActionMessageDispatcher } from '../../../../../common/message-creators/action-message-dispatcher';
 import { StoreActionMessageCreator } from '../../../../../common/message-creators/store-action-message-creator';
 import { StoreActionMessageCreatorFactory } from '../../../../../common/message-creators/store-action-message-creator-factory';
-import { Messages } from '../../../../../common/messages';
+import { getStoreStateMessage } from '../../../../../common/messages';
+import { StoreNames } from '../../../../../common/stores/store-names';
 
 describe('StoreActionMessageCreatorFactoryTest', () => {
-    const dispatcherMock = Mock.ofType<ActionMessageDispatcher>();
+    const dispatcherMock = Mock.ofType<ActionMessageDispatcher>(undefined, MockBehavior.Strict);
 
     beforeEach(() => {
         dispatcherMock.reset();
     });
 
-    it('dispatches message types for forPopup', () => {
-        const messages: string[] = [
-            Messages.Visualizations.State.GetCurrentVisualizationToggleState,
-            Messages.Command.GetCommands,
-            Messages.FeatureFlags.GetFeatureFlags,
-            Messages.LaunchPanel.Get,
-            Messages.UserConfig.GetCurrentState,
-        ];
+    it('dispatches messages for fromStores', () => {
+        const createStoreMock = (storeName: StoreNames) => {
+            const mock = Mock.ofType<BaseStore<any>>(undefined, MockBehavior.Strict);
+            mock.setup(store => store.getId()).returns(() => StoreNames[storeName]);
+            return mock;
+        };
 
-        testWithExpectedMessages(messages, testObject => testObject.forPopup());
-    });
+        const storeNames = EnumHelper.getNumericValues<StoreNames>(StoreNames);
 
-    it('dispatches message types for forDetailsView', () => {
-        const messages: string[] = [
-            Messages.Visualizations.DetailsView.GetState,
-            Messages.Visualizations.State.GetCurrentVisualizationResultState,
-            Messages.Visualizations.State.GetCurrentVisualizationToggleState,
-            Messages.Tab.GetCurrent,
-            Messages.FeatureFlags.GetFeatureFlags,
-            Messages.Assessment.GetCurrentState,
-            Messages.Scoping.GetCurrentState,
-            Messages.UserConfig.GetCurrentState,
-        ];
+        const storeMocks = storeNames.map(createStoreMock).map(mock => mock.object);
 
-        testWithExpectedMessages(messages, testObject => testObject.forDetailsView());
-    });
+        const expectedMessages = storeNames.map(name => getStoreStateMessage(name));
 
-    it('dispatches message types for forInjected', () => {
-        const messages: string[] = [
-            Messages.Visualizations.State.GetCurrentVisualizationToggleState,
-            Messages.Scoping.GetCurrentState,
-            Messages.Inspect.GetCurrentState,
-            Messages.Visualizations.State.GetCurrentVisualizationResultState,
-            Messages.FeatureFlags.GetFeatureFlags,
-            Messages.DevTools.Get,
-            Messages.Assessment.GetCurrentState,
-            Messages.Tab.GetCurrent,
-            Messages.UserConfig.GetCurrentState,
-        ];
-
-        testWithExpectedMessages(messages, testObject => testObject.forInjected());
-    });
-
-    it('dispatches message types for forContent', () => {
-        const messages: string[] = [Messages.UserConfig.GetCurrentState];
-
-        testWithExpectedMessages(messages, testObject => testObject.forContent());
+        testWithExpectedMessages(expectedMessages, testObject => testObject.fromStores(storeMocks));
     });
 
     function testWithExpectedMessages(

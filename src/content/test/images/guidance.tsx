@@ -50,8 +50,8 @@ export const guidance = create(({ Markup, Link }) => (
                                 For {'<img>'} elements, add a non-empty <Markup.Code>alt</Markup.Code> attribute.
                             </li>
                             <li>
-                                For icon fonts, {'<svg>'} images, and CSS background images, add <Markup.Code>role="image"</Markup.Code> and
-                                a non-empty <Markup.Code>aria-label</Markup.Code> or <Markup.Code>aria-labelledby</Markup.Code> attribute.
+                                For icon fonts, {'<svg>'} images, and CSS background images, add <Markup.Code>role="img"</Markup.Code> and a
+                                non-empty <Markup.Code>aria-label</Markup.Code> or <Markup.Code>aria-labelledby</Markup.Code> attribute.
                             </li>
                         </ul>
                     </li>
@@ -64,7 +64,7 @@ export const guidance = create(({ Markup, Link }) => (
                                 <Markup.Code>alt</Markup.Code> or <Markup.Code>alt=""</Markup.Code>).
                             </li>
                             <li>
-                                For icon fonts and <Markup.Code>{`<svg>`}</Markup.Code> images, add <Markup.Code>role="image"</Markup.Code>{' '}
+                                For icon fonts and <Markup.Code>{`<svg>`}</Markup.Code> images, add <Markup.Code>role="img"</Markup.Code>{' '}
                                 and <Markup.Code>aria-hidden="true"</Markup.Code>.
                             </li>
                             <li>For CSS background images, no additional markup is needed.</li>

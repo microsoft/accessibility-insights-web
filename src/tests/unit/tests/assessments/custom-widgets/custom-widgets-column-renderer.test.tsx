@@ -3,8 +3,8 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-import { PropertyBagColumnRendererConfig } from '../../../../../assessments/common/property-bag-column-renderer';
-import { customWidgetsColumnRenderer } from '../../../../../assessments/custom-widgets/custom-widgets-column-renderer';
+import { PropertyBagColumnRendererConfig } from 'assessments/common/property-bag-column-renderer';
+import { customWidgetsColumnRenderer } from 'assessments/custom-widgets/custom-widgets-column-renderer';
 import { ColumnValueBag } from '../../../../../common/types/property-bag/column-value-bag';
 import { AssessmentInstanceRowData } from '../../../../../DetailsView/components/assessment-instance-table';
 import { RendererWrapper } from '../common/renderer-wrapper';
@@ -59,7 +59,7 @@ describe('CustomWidgetsColumnRenderer', () => {
         const expectedValues = [
             { designPattern: 'Accordion', URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#accordion' },
             { designPattern: 'Button', URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#button' },
-            { designPattern: 'Dislosure (Show/Hide)', URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#disclosure' },
+            { designPattern: 'Disclosure (Show/Hide)', URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#disclosure' },
             { designPattern: 'Menu Button', URL: 'https://www.w3.org/TR/wai-aria-practices-1.1/#menubutton' },
         ];
         item.instance.propertyBag.role = 'button';

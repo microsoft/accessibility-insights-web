@@ -1,9 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { autobind } from '@uifabric/utilities';
-
+import { ModifiedCommandsTelemetryData, SHORTCUT_MODIFIED } from '../../../common/extension-telemetry-events';
 import { StoreNames } from '../../../common/stores/store-names';
-import { ModifiedCommandsTelemetryData, SHORTCUT_MODIFIED } from '../../../common/telemetry-events';
 import { CommandStoreData } from '../../../common/types/store-data/command-store-data';
 import { CommandActions, GetCommandsPayload } from '../../actions/command-actions';
 import { TelemetryEventHandler } from '../../telemetry/telemetry-event-handler';
@@ -32,8 +30,7 @@ export class CommandStore extends BaseStoreImpl<CommandStoreData> {
         this.commandActions.getCommands.addListener(this.onGetCommands);
     }
 
-    @autobind
-    private onGetCommands(payload: GetCommandsPayload): void {
+    private onGetCommands = (payload: GetCommandsPayload): void => {
         const modifiedCommands: chrome.commands.Command[] = this.getModifiedCommands(payload.commands);
         if (modifiedCommands.length > 0) {
             const telemetry: ModifiedCommandsTelemetryData = {
@@ -47,7 +44,7 @@ export class CommandStore extends BaseStoreImpl<CommandStoreData> {
 
         this.state.commands = payload.commands;
         this.emitChanged();
-    }
+    };
 
     private getModifiedCommands(currentCommands: chrome.commands.Command[]): chrome.commands.Command[] {
         if (currentCommands.length !== this.state.commands.length) {

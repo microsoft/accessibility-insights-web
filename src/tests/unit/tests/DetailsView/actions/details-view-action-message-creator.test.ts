@@ -2,12 +2,8 @@
 // Licensed under the MIT License.
 import { IMock, It, Mock, Times } from 'typemoq';
 
-import { HeadingsTestStep } from '../../../../../assessments/headings/test-steps/test-steps';
-import { OnDetailsViewPivotSelected } from '../../../../../background/actions/action-payloads';
-import { Message } from '../../../../../common/message';
-import { ActionMessageDispatcher } from '../../../../../common/message-creators/action-message-dispatcher';
-import { Messages } from '../../../../../common/messages';
-import { TelemetryDataFactory } from '../../../../../common/telemetry-data-factory';
+import { HeadingsTestStep } from 'assessments/headings/test-steps/test-steps';
+import { OnDetailsViewPivotSelected } from 'background/actions/action-payloads';
 import {
     AssessmentTelemetryData,
     BaseTelemetryData,
@@ -22,7 +18,11 @@ import {
     RequirementSelectTelemetryData,
     TelemetryEventSource,
     TriggeredByNotApplicable,
-} from '../../../../../common/telemetry-events';
+} from '../../../../../common/extension-telemetry-events';
+import { Message } from '../../../../../common/message';
+import { ActionMessageDispatcher } from '../../../../../common/message-creators/action-message-dispatcher';
+import { Messages } from '../../../../../common/messages';
+import { TelemetryDataFactory } from '../../../../../common/telemetry-data-factory';
 import { DetailsViewPivotType } from '../../../../../common/types/details-view-pivot-type';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
@@ -587,6 +587,40 @@ describe('DetailsViewActionMessageCreatorTest', () => {
         dispatcherMock.verify(dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage)), Times.once());
     });
 
+    test('addResultDescription', () => {
+        const persistedDescription = 'persisted description';
+        const expectedMessage = {
+            messageType: Messages.Assessment.AddResultDescription,
+            payload: {
+                description: persistedDescription,
+            },
+        };
+
+        testSubject.addResultDescription(persistedDescription);
+
+        dispatcherMock.verify(dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage)), Times.once());
+    });
+
+    test('addPathForValidation', () => {
+        const path = 'test path';
+        const expectedMessage = {
+            messageType: Messages.PathSnippet.AddPathForValidation,
+            payload: path,
+        };
+
+        testSubject.addPathForValidation(path);
+        dispatcherMock.verify(dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage)), Times.once());
+    });
+
+    test('clearPathSnippetData', () => {
+        const expectedMessage = {
+            messageType: Messages.PathSnippet.ClearPathSnippetData,
+        };
+
+        testSubject.clearPathSnippetData();
+        dispatcherMock.verify(dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage)), Times.once());
+    });
+
     test('addFailureInstance', () => {
         const telemetry = {
             source: TelemetryEventSource.DetailsView,
@@ -595,18 +629,24 @@ describe('DetailsViewActionMessageCreatorTest', () => {
             selectedTest: 'test',
         };
 
+        const instanceData = {
+            failureDescription: 'description',
+            path: 'path',
+            snippet: 'snippet',
+        };
+
         const expectedMessage = {
             messageType: Messages.Assessment.AddFailureInstance,
             payload: {
                 test: 1,
                 requirement: 'requirement',
-                description: 'description',
+                instanceData: instanceData,
                 telemetry: telemetry,
             },
         };
         telemetryFactoryMock.setup(tf => tf.forRequirementFromDetailsView(1, 'requirement')).returns(() => telemetry);
 
-        testSubject.addFailureInstance('description', 1, 'requirement');
+        testSubject.addFailureInstance(instanceData, 1, 'requirement');
 
         dispatcherMock.verify(dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage)), Times.once());
     });
@@ -641,21 +681,26 @@ describe('DetailsViewActionMessageCreatorTest', () => {
             source: TelemetryEventSource.DetailsView,
             triggeredBy: TriggeredByNotApplicable,
         };
-        const description = 'des';
+
+        const instanceData = {
+            failureDescription: 'des',
+            path: 'path',
+            snippet: 'snippet',
+        };
         const expectedMessage = {
             messageType: Messages.Assessment.EditFailureInstance,
             payload: {
                 test: 1,
                 requirement: 'requirement',
                 id: '1',
-                description: description,
+                instanceData: instanceData,
                 telemetry: telemetry,
             },
         };
 
         setupTelemetryFactory('fromDetailsViewNoTriggeredBy', telemetry);
 
-        testSubject.editFailureInstance(description, 1, 'requirement', '1');
+        testSubject.editFailureInstance(instanceData, 1, 'requirement', '1');
 
         dispatcherMock.verify(dispatcher => dispatcher.dispatchMessage(It.isValue(expectedMessage)), Times.once());
     });

@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`GuidanceTags renders tags 1`] = `
+<span
+  className="guidance-tags"
+>
+  <span>
+    some display text
+  </span>
+  <span>
+    some other text
+  </span>
+</span>
+`;
+
+exports[`GuidanceTags tags is: [] 1`] = `null`;
+
+exports[`GuidanceTags tags is: null 1`] = `null`;

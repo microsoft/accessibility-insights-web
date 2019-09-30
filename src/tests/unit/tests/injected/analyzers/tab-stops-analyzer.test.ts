@@ -67,7 +67,7 @@ describe('TabStopsAnalyzerTests', () => {
         setupSendMessageMock(expectedBaseMessage);
         setupSendMessageMock(expectedOnProgressMessage, () => {
             verifyAll();
-            expect((testSubject as any)._onTabbedTimeoutId).toBeNull();
+            expect((testSubject as any).onTabbedTimeoutId).toBeNull();
             completeSignal();
         });
 
@@ -109,15 +109,15 @@ describe('TabStopsAnalyzerTests', () => {
             },
         };
 
-        (testSubject as any)._onTabbedTimeoutId = onTabbedTimoutIdStub;
-        (testSubject as any)._pendingTabbedElements = [tabEventStub1];
+        (testSubject as any).onTabbedTimeoutId = onTabbedTimoutIdStub;
+        (testSubject as any).pendingTabbedElements = [tabEventStub1];
 
         setupTabStopsListenerForStartTabStops();
         setupWindowUtils();
         setupSendMessageMock(expectedBaseMessage);
         setupSendMessageMock(expectedOnProgressMessage, () => {
             verifyAll();
-            expect((testSubject as any)._onTabbedTimeoutId).toBeNull();
+            expect((testSubject as any).onTabbedTimeoutId).toBeNull();
             completeSignal();
         });
 

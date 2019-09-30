@@ -5,10 +5,9 @@ export const CommonSelectors = {
     settingsDropdownMenu: '#settings-dropdown-menu',
     previewFeaturesDropdownButton: '.preview-features-drop-down-button',
     highContrastThemeSelector: 'body.high-contrast-theme',
+    anyModalDialog: '[role~="dialog"][aria-modal="true"]', // ~="dialog" catches "alertdialog" too
 };
 
-export const DetailsViewCommonSelectors = {
-    gearButton: '.gear-options-icon',
-    settingsButton: 'button[name="Settings"]',
-    highContrastToggle: 'button#enable-high-contrast-mode',
+export const GuidanceContentSelectors = {
+    mainContentContainer: '.content-container',
 };

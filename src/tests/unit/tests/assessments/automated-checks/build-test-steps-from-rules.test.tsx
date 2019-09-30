@@ -1,12 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { buildTestStepsFromRules } from 'assessments/automated-checks/build-test-steps-from-rules';
+import { InstanceTableColumn } from 'assessments/types/instance-table-column';
+import { Requirement } from 'assessments/types/requirement';
+import { InstanceIdentifierGenerator } from 'background/instance-identifier-generator';
 import { isMatch } from 'lodash';
 import * as React from 'react';
 import { It, Mock, MockBehavior, Times } from 'typemoq';
-import { buildTestStepsFromRules } from '../../../../../assessments/automated-checks/build-test-steps-from-rules';
-import { InstanceTableColumn } from '../../../../../assessments/types/instance-table-column';
-import { Requirement } from '../../../../../assessments/types/requirement';
-import { InstanceIdentifierGenerator } from '../../../../../background/instance-identifier-generator';
+import { HyperlinkDefinition } from 'views/content/content-page';
 import { NewTabLink } from '../../../../../common/components/new-tab-link';
 import { Messages } from '../../../../../common/messages';
 import { TelemetryDataFactory } from '../../../../../common/telemetry-data-factory';
@@ -19,7 +20,6 @@ import { AnalyzerProvider } from '../../../../../injected/analyzers/analyzer-pro
 import { DecoratedAxeNodeResult, ScannerUtils } from '../../../../../injected/scanner-utils';
 import { DrawerProvider } from '../../../../../injected/visualization/drawer-provider';
 import { ScannerRuleInfo } from '../../../../../scanner/scanner-rule-info';
-import { HyperlinkDefinition } from '../../../../../views/content/content-page';
 
 describe('buildTestStepsFromRules', () => {
     it('should exist', () => {
@@ -39,7 +39,7 @@ describe('buildTestStepsFromRules', () => {
         const expectedHowToTest = (
             <React.Fragment>
                 {expectedDescription}{' '}
-                <NewTabLink href={rule.url} aria-label={`See more info about ${rule.id} rule`}>
+                <NewTabLink href={rule.url} aria-label={`See more info here about ${rule.id} rule`}>
                     See more info here.
                 </NewTabLink>
             </React.Fragment>
@@ -152,6 +152,6 @@ describe('buildTestStepsFromRules', () => {
     }
 
     function expectResultToContainBase(result: Object, base: Object): void {
-        expect(isMatch(result, base)).toBeTruthy();
+        expect(isMatch(result, base)).toBe(true);
     }
 });

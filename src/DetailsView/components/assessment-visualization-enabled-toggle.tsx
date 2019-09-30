@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { autobind } from '@uifabric/utilities';
 import * as _ from 'lodash';
 import { GeneratedAssessmentInstance } from '../../common/types/store-data/assessment-result-data';
 import { BaseVisualHelperToggle } from './base-visual-helper-toggle';
@@ -14,14 +13,13 @@ export class AssessmentVisualizationEnabledToggle extends BaseVisualHelperToggle
         return this.isAnyInstanceVisible(instances);
     }
 
-    @autobind
-    protected onClick(event): void {
+    protected onClick = (event): void => {
         this.props.actionMessageCreator.changeAssessmentVisualizationStateForAll(
             !this.isAnyInstanceVisible(this.filterInstancesByTestStep(this.props.assessmentNavState, this.props.instancesMap)),
             this.props.assessmentNavState.selectedTestType,
             this.props.assessmentNavState.selectedTestStep,
         );
-    }
+    };
 
     private isAnyInstanceVisible(instances: GeneratedAssessmentInstance<{}, {}>[]): boolean {
         return instances.some(instance => instance.testStepResults[this.props.assessmentNavState.selectedTestStep].isVisualizationEnabled);

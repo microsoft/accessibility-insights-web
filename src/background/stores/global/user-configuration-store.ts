@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { autobind } from '@uifabric/utilities';
 import { cloneDeep, isPlainObject } from 'lodash';
 
 import { IndexedDBAPI } from '../../../common/indexedDB/indexedDB';
@@ -11,8 +10,6 @@ import {
     SetHighContrastModePayload,
     SetIssueFilingServicePayload,
     SetIssueFilingServicePropertyPayload,
-    SetIssueTrackerPathPayload,
-    SetTelemetryStatePayload,
 } from '../../actions/action-payloads';
 import { UserConfigurationActions } from '../../actions/user-configuration-actions';
 import { IndexedDBDataKeys } from '../../IndexedDBDataKeys';
@@ -51,31 +48,26 @@ export class UserConfigurationStore extends BaseStoreImpl<UserConfigurationStore
         this.userConfigActions.setHighContrastMode.addListener(this.onSetHighContrastMode);
         this.userConfigActions.setIssueFilingService.addListener(this.onSetIssueFilingService);
         this.userConfigActions.setIssueFilingServiceProperty.addListener(this.onSetIssueFilingServiceProperty);
-        this.userConfigActions.setIssueTrackerPath.addListener(this.onSetIssueTrackerPath);
         this.userConfigActions.saveIssueFilingSettings.addListener(this.onSaveIssueSettings);
     }
 
-    @autobind
-    private onSetTelemetryState(payload: SetTelemetryStatePayload): void {
+    private onSetTelemetryState = (enableTelemetry: boolean): void => {
         this.state.isFirstTime = false;
-        this.state.enableTelemetry = payload.enableTelemetry;
+        this.state.enableTelemetry = enableTelemetry;
         this.saveAndEmitChanged();
-    }
+    };
 
-    @autobind
-    private onSetHighContrastMode(payload: SetHighContrastModePayload): void {
+    private onSetHighContrastMode = (payload: SetHighContrastModePayload): void => {
         this.state.enableHighContrast = payload.enableHighContrast;
         this.saveAndEmitChanged();
-    }
+    };
 
-    @autobind
-    private onSetIssueFilingService(payload: SetIssueFilingServicePayload): void {
+    private onSetIssueFilingService = (payload: SetIssueFilingServicePayload): void => {
         this.state.bugService = payload.issueFilingServiceName;
         this.saveAndEmitChanged();
-    }
+    };
 
-    @autobind
-    private onSetIssueFilingServiceProperty(payload: SetIssueFilingServicePropertyPayload): void {
+    private onSetIssueFilingServiceProperty = (payload: SetIssueFilingServicePropertyPayload): void => {
         if (!isPlainObject(this.state.bugServicePropertiesMap)) {
             this.state.bugServicePropertiesMap = {};
         }
@@ -86,21 +78,14 @@ export class UserConfigurationStore extends BaseStoreImpl<UserConfigurationStore
         this.state.bugServicePropertiesMap[payload.issueFilingServiceName][payload.propertyName] = payload.propertyValue;
 
         this.saveAndEmitChanged();
-    }
+    };
 
-    @autobind
-    private onSetIssueTrackerPath(payload: SetIssueTrackerPathPayload): void {
-        this.state.issueTrackerPath = payload.issueTrackerPath;
-        this.saveAndEmitChanged();
-    }
-
-    @autobind
-    private onSaveIssueSettings(payload: SaveIssueFilingSettingsPayload): void {
+    private onSaveIssueSettings = (payload: SaveIssueFilingSettingsPayload): void => {
         const bugService = payload.issueFilingServiceName;
         this.state.bugService = bugService;
         this.state.bugServicePropertiesMap[bugService] = payload.issueFilingSettings;
         this.saveAndEmitChanged();
-    }
+    };
 
     private saveAndEmitChanged(): void {
         // tslint:disable-next-line:no-floating-promises - grandfathered-in pre-existing violation

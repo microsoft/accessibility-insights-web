@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
-import { ScanUnscannedRequirement } from '../../../../background/scan-unscanned-requirement';
+import { ScanUnscannedRequirement } from 'background/scan-unscanned-requirement';
 import { AssessmentData } from '../../../../common/types/store-data/assessment-result-data';
 
 describe('ScanUnscannedRequirement', () => {

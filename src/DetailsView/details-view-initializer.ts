@@ -1,22 +1,47 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { AssessmentDefaultMessageGenerator } from 'assessments/assessment-default-message-generator';
+import { Assessments } from 'assessments/assessments';
+import { assessmentsProviderWithFeaturesEnabled } from 'assessments/assessments-feature-flag-filter';
+import { IssueDetailsTextGenerator } from 'background/issue-details-text-generator';
 import { loadTheme } from 'office-ui-fabric-react';
 import * as ReactDOM from 'react-dom';
+import { AssessmentReportHtmlGenerator } from 'reports/assessment-report-html-generator';
+import { AssessmentReportModelBuilderFactory } from 'reports/assessment-report-model-builder-factory';
+import { AutomatedChecksReportSectionFactory } from 'reports/components/report-sections/automated-checks-report-section-factory';
+import { getDefaultAddListenerForCollapsibleSection } from 'reports/components/report-sections/collapsible-script-provider';
+import {
+    outcomeStatsFromManualTestStatus,
+    outcomeTypeFromTestStatus,
+    outcomeTypeSemanticsFromTestStatus,
+} from 'reports/components/requirement-outcome-type';
+import {
+    getAssessmentSummaryModelFromProviderAndStatusData,
+    getAssessmentSummaryModelFromProviderAndStoreData,
+} from 'reports/get-assessment-summary-model';
+import { ReactStaticRenderer } from 'reports/react-static-renderer';
+import { ReportGenerator } from 'reports/report-generator';
+import { ReportHtmlGenerator } from 'reports/report-html-generator';
+import { ReportNameGenerator } from 'reports/report-name-generator';
 
-import { AssessmentDefaultMessageGenerator } from '../assessments/assessment-default-message-generator';
-import { Assessments } from '../assessments/assessments';
-import { assessmentsProviderWithFeaturesEnabled } from '../assessments/assessments-feature-flag-filter';
-import { ChromeAdapter } from '../background/browser-adapter';
-import { IssueDetailsTextGenerator } from '../background/issue-details-text-generator';
 import { A11YSelfValidator } from '../common/a11y-self-validator';
 import { AxeInfo } from '../common/axe-info';
+import { provideBlob } from '../common/blob-provider';
+import { ChromeAdapter } from '../common/browser-adapters/chrome-adapter';
+import { allCardInteractionsSupported } from '../common/components/cards/card-interaction-support';
+import { CardsCollapsibleControl } from '../common/components/cards/collapsible-component-cards';
+import { NewTabLink } from '../common/components/new-tab-link';
+import { getPropertyConfiguration } from '../common/configs/unified-result-property-configurations';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
 import { DateProvider } from '../common/date-provider';
 import { DocumentManipulator } from '../common/document-manipulator';
 import { DropdownClickHandler } from '../common/dropdown-click-handler';
 import { EnvironmentInfoProvider } from '../common/environment-info-provider';
+import { TelemetryEventSource } from '../common/extension-telemetry-events';
 import { initializeFabricIcons } from '../common/fabric-icons';
 import { getAllFeatureFlagDetails } from '../common/feature-flags';
+import { FileURLProvider } from '../common/file-url-provider';
+import { GetGuidanceTagsFromGuidanceLinks } from '../common/get-guidance-tags-from-guidance-links';
 import { getInnerTextFromJsxElement } from '../common/get-inner-text-from-jsx-element';
 import { HTMLElementUtils } from '../common/html-element-utils';
 import { Tab } from '../common/itab';
@@ -30,24 +55,30 @@ import { StoreActionMessageCreatorFactory } from '../common/message-creators/sto
 import { UserConfigMessageCreator } from '../common/message-creators/user-config-message-creator';
 import { VisualizationActionMessageCreator } from '../common/message-creators/visualization-action-message-creator';
 import { NavigatorUtils } from '../common/navigator-utils';
+import { getUnifiedRuleResults } from '../common/rule-based-view-model-provider';
 import { AutoChecker } from '../common/self-validator';
 import { StoreProxy } from '../common/store-proxy';
 import { BaseClientStoresHub } from '../common/stores/base-client-stores-hub';
 import { StoreNames } from '../common/stores/store-names';
 import { TelemetryDataFactory } from '../common/telemetry-data-factory';
-import { TelemetryEventSource } from '../common/telemetry-events';
 import { AssessmentStoreData } from '../common/types/store-data/assessment-result-data';
 import { DetailsViewData } from '../common/types/store-data/details-view-data';
 import { InspectStoreData } from '../common/types/store-data/inspect-store-data';
+import { PathSnippetStoreData } from '../common/types/store-data/path-snippet-store-data';
 import { ScopingStoreData } from '../common/types/store-data/scoping-store-data';
 import { TabStoreData } from '../common/types/store-data/tab-store-data';
+import { UnifiedScanResultStoreData } from '../common/types/store-data/unified-data-interface';
 import { UserConfigurationStoreData } from '../common/types/store-data/user-configuration-store';
 import { VisualizationScanResultData } from '../common/types/store-data/visualization-scan-result-data';
 import { VisualizationStoreData } from '../common/types/store-data/visualization-store-data';
 import { UrlParser } from '../common/url-parser';
 import { WindowUtils } from '../common/window-utils';
 import { contentPages } from '../content';
+import { FixInstructionProcessor } from '../injected/fix-instruction-processor';
 import { ScannerUtils } from '../injected/scanner-utils';
+import { createIssueDetailsBuilder } from '../issue-filing/common/create-issue-details-builder';
+import { IssueFilingUrlStringUtils } from '../issue-filing/common/issue-filing-url-string-utils';
+import { PlainTextFormatter } from '../issue-filing/common/markup/plain-text-formatter';
 import { getVersion, scan } from '../scanner/exposed-apis';
 import { DictionaryStringTo } from '../types/common-types';
 import { IssueFilingServiceProviderImpl } from './../issue-filing/issue-filing-service-provider-impl';
@@ -68,25 +99,10 @@ import { AssessmentInstanceTableHandler } from './handlers/assessment-instance-t
 import { DetailsViewToggleClickHandlerFactory } from './handlers/details-view-toggle-click-handler-factory';
 import { MasterCheckBoxConfigProvider } from './handlers/master-checkbox-config-provider';
 import { PreviewFeatureFlagsHandler } from './handlers/preview-feature-flags-handler';
-import { AssessmentReportHtmlGenerator } from './reports/assessment-report-html-generator';
-import { AssessmentReportModelBuilderFactory } from './reports/assessment-report-model-builder-factory';
-import {
-    outcomeStatsFromManualTestStatus,
-    outcomeTypeFromTestStatus,
-    outcomeTypeSemanticsFromTestStatus,
-} from './reports/components/outcome-type';
-import {
-    getAssessmentSummaryModelFromProviderAndStatusData,
-    getAssessmentSummaryModelFromProviderAndStoreData,
-} from './reports/get-assessment-summary-model';
-import { ReactStaticRenderer } from './reports/react-static-renderer';
-import { ReportGenerator } from './reports/report-generator';
-import { ReportHtmlGenerator } from './reports/report-html-generator';
-import { ReportNameGenerator } from './reports/report-name-generator';
 
 declare const window: AutoChecker & Window;
 
-const chromeAdapter = new ChromeAdapter();
+const browserAdapter = new ChromeAdapter();
 const urlParser = new UrlParser();
 const tabId = urlParser.getIntParam(window.location.href, 'tabId');
 const dom = document;
@@ -95,38 +111,45 @@ const documentElementSetter = new DocumentManipulator(dom);
 initializeFabricIcons();
 
 if (isNaN(tabId) === false) {
-    chromeAdapter.getTab(
+    browserAdapter.getTab(
         tabId,
         (tab: Tab): void => {
             const telemetryFactory = new TelemetryDataFactory();
 
-            const visualizationStore = new StoreProxy<VisualizationStoreData>(StoreNames[StoreNames.VisualizationStore], chromeAdapter);
-            const tabStore = new StoreProxy<TabStoreData>(StoreNames[StoreNames.TabStore], chromeAdapter);
+            const visualizationStore = new StoreProxy<VisualizationStoreData>(StoreNames[StoreNames.VisualizationStore], browserAdapter);
+            const tabStore = new StoreProxy<TabStoreData>(StoreNames[StoreNames.TabStore], browserAdapter);
             const visualizationScanResultStore = new StoreProxy<VisualizationScanResultData>(
                 StoreNames[StoreNames.VisualizationScanResultStore],
-                chromeAdapter,
+                browserAdapter,
             );
-            const detailsViewStore = new StoreProxy<DetailsViewData>(StoreNames[StoreNames.DetailsViewStore], chromeAdapter);
-            const assessmentStore = new StoreProxy<AssessmentStoreData>(StoreNames[StoreNames.AssessmentStore], chromeAdapter);
-            const featureFlagStore = new StoreProxy<DictionaryStringTo<boolean>>(StoreNames[StoreNames.FeatureFlagStore], chromeAdapter);
-            const scopingStore = new StoreProxy<ScopingStoreData>(StoreNames[StoreNames.ScopingPanelStateStore], chromeAdapter);
-            const inspectStore = new StoreProxy<InspectStoreData>(StoreNames[StoreNames.InspectStore], chromeAdapter);
+            const unifiedScanResultStore = new StoreProxy<UnifiedScanResultStoreData>(
+                StoreNames[StoreNames.UnifiedScanResultStore],
+                browserAdapter,
+            );
+            const pathSnippetStore = new StoreProxy<PathSnippetStoreData>(StoreNames[StoreNames.PathSnippetStore], browserAdapter);
+            const detailsViewStore = new StoreProxy<DetailsViewData>(StoreNames[StoreNames.DetailsViewStore], browserAdapter);
+            const assessmentStore = new StoreProxy<AssessmentStoreData>(StoreNames[StoreNames.AssessmentStore], browserAdapter);
+            const featureFlagStore = new StoreProxy<DictionaryStringTo<boolean>>(StoreNames[StoreNames.FeatureFlagStore], browserAdapter);
+            const scopingStore = new StoreProxy<ScopingStoreData>(StoreNames[StoreNames.ScopingPanelStateStore], browserAdapter);
+            const inspectStore = new StoreProxy<InspectStoreData>(StoreNames[StoreNames.InspectStore], browserAdapter);
             const userConfigStore = new StoreProxy<UserConfigurationStoreData>(
                 StoreNames[StoreNames.UserConfigurationStore],
-                chromeAdapter,
+                browserAdapter,
             );
             const storesHub = new BaseClientStoresHub<DetailsViewContainerState>([
                 detailsViewStore,
                 featureFlagStore,
                 tabStore,
                 visualizationScanResultStore,
+                unifiedScanResultStore,
                 visualizationStore,
                 assessmentStore,
+                pathSnippetStore,
                 scopingStore,
                 userConfigStore,
             ]);
 
-            const actionMessageDispatcher = new ActionMessageDispatcher(chromeAdapter.sendMessageToFrames, tab.id);
+            const actionMessageDispatcher = new ActionMessageDispatcher(browserAdapter.sendMessageToFrames, tab.id);
 
             const actionMessageCreator = new DetailsViewActionMessageCreator(telemetryFactory, actionMessageDispatcher);
             const scopingActionMessageCreator = new ScopingActionMessageCreator(
@@ -156,7 +179,7 @@ if (isNaN(tabId) === false) {
             );
 
             const userConfigMessageCreator = new UserConfigMessageCreator(actionMessageDispatcher);
-            const storeActionMessageCreator = storeActionMessageCreatorFactory.forDetailsView();
+            const storeActionMessageCreator = storeActionMessageCreatorFactory.fromStores(storesHub.stores);
 
             const visualizationActionCreator = new VisualizationActionMessageCreator(actionMessageDispatcher);
 
@@ -174,28 +197,42 @@ if (isNaN(tabId) === false) {
             const scopingFlagsHandler = new PreviewFeatureFlagsHandler(getAllFeatureFlagDetails());
             const dropdownClickHandler = new DropdownClickHandler(dropdownActionMessageCreator, TelemetryEventSource.DetailsView);
 
-            const extensionVersion = chromeAdapter.getManifest().version;
+            const extensionVersion = browserAdapter.getManifest().version;
             const axeVersion = getVersion();
+            const browserSpec = new NavigatorUtils(window.navigator).getBrowserSpec();
+
+            const environmentInfoProvider = new EnvironmentInfoProvider(browserAdapter.getVersion(), browserSpec, AxeInfo.Default.version);
+
             const reactStaticRenderer = new ReactStaticRenderer();
             const reportNameGenerator = new ReportNameGenerator();
+
+            const fixInstructionProcessor = new FixInstructionProcessor();
+
             const reportHtmlGenerator = new ReportHtmlGenerator(
+                AutomatedChecksReportSectionFactory,
                 reactStaticRenderer,
-                new NavigatorUtils(window.navigator).getBrowserSpec(),
-                extensionVersion,
-                axeVersion,
+                environmentInfoProvider.getEnvironmentInfo(),
+                getDefaultAddListenerForCollapsibleSection,
+                DateProvider.getUTCStringFromDate,
+                GetGuidanceTagsFromGuidanceLinks,
+                fixInstructionProcessor,
+                getPropertyConfiguration,
             );
-            const assessmentReportHtmlGeneratorDeps = { outcomeTypeSemanticsFromTestStatus };
+
+            const assessmentReportHtmlGeneratorDeps = {
+                outcomeTypeSemanticsFromTestStatus,
+                getGuidanceTagsFromGuidanceLinks: GetGuidanceTagsFromGuidanceLinks,
+            };
             const assessmentReportHtmlGenerator = new AssessmentReportHtmlGenerator(
                 assessmentReportHtmlGeneratorDeps,
                 reactStaticRenderer,
                 new AssessmentReportModelBuilderFactory(),
-                DateProvider.getDate,
+                DateProvider.getCurrentDate,
                 extensionVersion,
                 axeVersion,
                 new NavigatorUtils(window.navigator).getBrowserSpec(),
                 assessmentDefaultMessageGenerator,
             );
-            const reportGenerator = new ReportGenerator(reportNameGenerator, reportHtmlGenerator, assessmentReportHtmlGenerator);
 
             visualizationStore.setTabId(tab.id);
             tabStore.setTabId(tab.id);
@@ -204,6 +241,7 @@ if (isNaN(tabId) === false) {
             assessmentStore.setTabId(tab.id);
             scopingStore.setTabId(tab.id);
             inspectStore.setTabId(tab.id);
+            unifiedScanResultStore.setTabId(tab.id);
 
             const actionInitiators = {
                 ...contentActionMessageCreator.initiators,
@@ -221,20 +259,20 @@ if (isNaN(tabId) === false) {
             );
             documentTitleUpdater.initialize();
 
-            const browserSpec = new NavigatorUtils(window.navigator).getBrowserSpec();
             const issueDetailsTextGenerator = new IssueDetailsTextGenerator(
-                chromeAdapter.extensionVersion,
-                browserSpec,
-                AxeInfo.Default.version,
+                IssueFilingUrlStringUtils,
+                environmentInfoProvider,
+                createIssueDetailsBuilder(PlainTextFormatter),
             );
 
-            const environmentInfoProvider = new EnvironmentInfoProvider(
-                chromeAdapter.extensionVersion,
-                browserSpec,
-                AxeInfo.Default.version,
-            );
+            const windowUtils = new WindowUtils();
+
+            const fileURLProvider = new FileURLProvider(windowUtils, provideBlob);
+
+            const reportGenerator = new ReportGenerator(reportNameGenerator, reportHtmlGenerator, assessmentReportHtmlGenerator);
 
             const deps: DetailsViewContainerDeps = {
+                fixInstructionProcessor,
                 dropdownClickHandler,
                 issueFilingActionMessageCreator,
                 contentProvider: contentPages,
@@ -244,7 +282,8 @@ if (isNaN(tabId) === false) {
                 actionInitiators,
                 assessmentDefaultMessageGenerator: assessmentDefaultMessageGenerator,
                 issueDetailsTextGenerator,
-                windowUtils: new WindowUtils(),
+                windowUtils,
+                fileURLProvider,
                 getAssessmentSummaryModelFromProviderAndStoreData: getAssessmentSummaryModelFromProviderAndStoreData,
                 getAssessmentSummaryModelFromProviderAndStatusData: getAssessmentSummaryModelFromProviderAndStatusData,
                 visualizationConfigurationFactory,
@@ -263,10 +302,18 @@ if (isNaN(tabId) === false) {
                 storesHub,
                 loadTheme,
                 urlParser,
-                dateProvider: DateProvider.getDate,
+                getDateFromTimestamp: DateProvider.getDateFromTimestamp,
+                getCurrentDate: DateProvider.getCurrentDate,
                 settingsProvider: SettingsProviderImpl,
+                LinkComponent: NewTabLink,
                 environmentInfoProvider,
                 issueFilingServiceProvider: IssueFilingServiceProviderImpl,
+                getGuidanceTagsFromGuidanceLinks: GetGuidanceTagsFromGuidanceLinks,
+                reportGenerator,
+                getUnifiedRuleResults,
+                getPropertyConfigById: getPropertyConfiguration,
+                collapsibleControl: CardsCollapsibleControl,
+                cardInteractionSupport: allCardInteractionsSupported,
             };
 
             const renderer = new DetailsViewRenderer(
@@ -280,7 +327,6 @@ if (isNaN(tabId) === false) {
                 visualizationConfigurationFactory,
                 issuesTableHandler,
                 assessmentInstanceTableHandler,
-                reportGenerator,
                 previewFeatureFlagsHandler,
                 scopingFlagsHandler,
                 dropdownClickHandler,
@@ -304,7 +350,6 @@ function createNullifiedRenderer(doc, render): DetailsViewRenderer {
         null,
         doc,
         render,
-        null,
         null,
         null,
         null,

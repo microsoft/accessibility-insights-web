@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { assign } from 'lodash';
 import { DialogRenderer } from '../dialog-renderer';
 import { HtmlElementAxeResults } from '../scanner-utils';
 import { IPartialSVGDrawerConfiguration } from './drawer-provider';
@@ -62,10 +63,7 @@ export class TabStopsFormatter implements Formatter {
 
         Object.keys(this.givenConfiguration).forEach((svgPartConfigKey: keyof SVGDrawerConfiguration) => {
             const configAdditions = this.givenConfiguration[svgPartConfigKey];
-            config[svgPartConfigKey] = {
-                ...config[svgPartConfigKey],
-                ...configAdditions,
-            };
+            assign(config[svgPartConfigKey], configAdditions);
         });
 
         return config;

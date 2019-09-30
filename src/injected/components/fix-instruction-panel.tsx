@@ -1,30 +1,26 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as React from 'react';
+
+import { NamedFC } from '../../common/react/named-fc';
+import { FixInstructionProcessor } from '../fix-instruction-processor';
 import { CheckType } from './details-dialog';
 
+export interface FixInstructionPanelDeps {
+    fixInstructionProcessor: FixInstructionProcessor;
+}
+
 export interface FixInstructionPanelProps {
+    deps: FixInstructionPanelDeps;
     checkType: CheckType;
-    checks: FormattedCheckResult[];
+    checks: { message: string }[];
     renderTitleElement: (titleText: string, className: string) => JSX.Element;
 }
 
-export class FixInstructionPanel extends React.Component<FixInstructionPanelProps, any> {
-    public render(): JSX.Element {
-        if (this.props.checks.length === 0) {
-            return null;
-        }
-        const title: string = this.getPanelTitle(this.props.checkType, this.props.checks.length);
+export const FixInstructionPanel = NamedFC<FixInstructionPanelProps>('FixInstructionPanel', props => {
+    const { fixInstructionProcessor } = props.deps;
 
-        return (
-            <div>
-                {this.props.renderTitleElement(title, 'insights-fix-instruction-title')}
-                <ul className="insights-fix-instruction-list">{this.renderInstructions(this.props.checkType)}</ul>
-            </div>
-        );
-    }
-
-    private getPanelTitle(checkType: CheckType, checkCount: number): string {
+    const getPanelTitle = (checkType: CheckType, checkCount: number): string => {
         if (checkCount === 1) {
             return 'Fix the following:';
         }
@@ -33,12 +29,26 @@ export class FixInstructionPanel extends React.Component<FixInstructionPanelProp
         } else {
             return 'Fix ALL of the following:';
         }
+    };
+
+    const renderInstructions = (checkType: CheckType): JSX.Element[] => {
+        const instructionList = props.checks.map((check, checkIndex) => {
+            return <li key={`instruction-${CheckType[checkType]}-${checkIndex + 1}`}>{fixInstructionProcessor.process(check.message)}</li>;
+        });
+
+        return instructionList;
+    };
+
+    if (props.checks.length === 0) {
+        return null;
     }
 
-    private renderInstructions(checkType: CheckType): JSX.Element[] {
-        const instructionList = this.props.checks.map((check, checkIndex) => {
-            return <li key={`instruction-${CheckType[checkType]}-${checkIndex + 1}`}>{check.message}</li>;
-        });
-        return instructionList;
-    }
-}
+    const title: string = getPanelTitle(props.checkType, props.checks.length);
+
+    return (
+        <div>
+            {props.renderTitleElement(title, 'insights-fix-instruction-title')}
+            <ul className="insights-fix-instruction-list">{renderInstructions(props.checkType)}</ul>
+        </div>
+    );
+});

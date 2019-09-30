@@ -1,0 +1,25 @@
+# Copyright (c) Microsoft Corporation. All rights reserved.
+# Licensed under the MIT License.
+trigger:
+    - master
+    - e2e-reliability/*
+pr:
+    paths:
+        include:
+            - src/tests/end-to-end/
+
+jobs:
+    - template: ./e2e-job-per-environment.yaml
+      parameters: { jobNameSuffix: _1 }
+
+    - template: ./e2e-job-per-environment.yaml
+      parameters: { jobNameSuffix: _2 }
+
+    - template: ./e2e-job-per-environment.yaml
+      parameters: { jobNameSuffix: _3 }
+
+    - template: ./e2e-job-per-environment.yaml
+      parameters: { jobNameSuffix: _4 }
+
+    - template: ./e2e-job-per-environment.yaml
+      parameters: { jobNameSuffix: _5 }

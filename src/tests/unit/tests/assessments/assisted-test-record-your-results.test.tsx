@@ -3,7 +3,7 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-import { AssistedTestRecordYourResults } from '../../../../assessments/common/assisted-test-record-your-results';
+import { AssistedTestRecordYourResults } from 'assessments/common/assisted-test-record-your-results';
 
 describe('AssistedTestRecordYourResults', () => {
     it('renders', () => {

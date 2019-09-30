@@ -4,9 +4,9 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 import { IMock, It, Mock, Times } from 'typemoq';
 
+import { ContentReference } from 'views/content/content-page';
 import { VisualizationToggle } from '../../../../../common/components/visualization-toggle';
 import { StaticContentDetailsView, StaticContentDetailsViewProps } from '../../../../../DetailsView/components/static-content-details-view';
-import { ContentReference } from '../../../../../views/content/content-page';
 import { BaseDataBuilder } from '../../../common/base-data-builder';
 import { EventStubFactory, NativeEventStub } from '../../../common/event-stub-factory';
 

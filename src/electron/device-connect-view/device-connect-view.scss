@@ -1,0 +1,22 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+@import './components/window-title.scss';
+@import './components/device-connect-body.scss';
+@import './components/device-connect-connected-device.scss';
+@import './components/device-connect-footer.scss';
+@import './components/device-connect-header.scss';
+@import './components/device-connect-port-entry.scss';
+@import './components/telemetry-permission-dialog.scss';
+
+body {
+    -webkit-app-region: drag;
+    margin: 0px;
+}
+
+button {
+    -webkit-app-region: no-drag;
+}
+
+input {
+    -webkit-app-region: no-drag;
+}

@@ -2,12 +2,12 @@
 // Licensed under the MIT License.
 import { IMock, Mock } from 'typemoq';
 
+import { title } from 'content/strings/application';
 import { EnvironmentInfo } from '../../../../../../common/environment-info-provider';
-import { title } from '../../../../../../content/strings/application';
 import { HTTPQueryBuilder } from '../../../../../../issue-filing/common/http-query-builder';
 import { IssueDetailsBuilder } from '../../../../../../issue-filing/common/issue-details-builder';
 import { IssueUrlCreationUtils } from '../../../../../../issue-filing/common/issue-filing-url-string-utils';
-import { AzureBoardsIssueFilingSettings } from '../../../../../../issue-filing/services/azure-boards/azure-boards-issue-filing-service';
+import { AzureBoardsIssueFilingSettings } from '../../../../../../issue-filing/services/azure-boards/azure-boards-issue-filing-settings';
 import { createAzureBoardsIssueFilingUrlProvider } from '../../../../../../issue-filing/services/azure-boards/create-azure-boards-issue-filing-url';
 import { IssueFilingUrlProvider } from '../../../../../../issue-filing/types/issue-filing-service';
 
@@ -60,10 +60,6 @@ describe('createAzureBoardsIssueFilingUrl', () => {
 
         queryBuilderMock = Mock.ofType<HTTPQueryBuilder>();
 
-        queryBuilderMock
-            .setup(builder => builder.withBaseUrl(`${settingsData.projectURL}/_workitems/create/Bug`))
-            .returns(() => queryBuilderMock.object);
-
         queryBuilderMock.setup(builder => builder.withParam('fullScreen', 'true')).returns(() => queryBuilderMock.object);
         queryBuilderMock.setup(builder => builder.withParam('[System.Title]', testTitle)).returns(() => queryBuilderMock.object);
 
@@ -80,6 +76,9 @@ describe('createAzureBoardsIssueFilingUrl', () => {
         it('uses description field, without tags', () => {
             stringUtilsMock.setup(utils => utils.standardizeTags(sampleIssueDetailsData)).returns(() => []);
 
+            queryBuilderMock
+                .setup(builder => builder.withBaseUrl(`${settingsData.projectURL}/_workitems/create/Issue`))
+                .returns(() => queryBuilderMock.object);
             queryBuilderMock.setup(builder => builder.withParam('[System.Tags]', baseTags)).returns(() => queryBuilderMock.object);
 
             queryBuilderMock
@@ -93,6 +92,10 @@ describe('createAzureBoardsIssueFilingUrl', () => {
 
         it('uses description field, with tags', () => {
             stringUtilsMock.setup(utils => utils.standardizeTags(sampleIssueDetailsData)).returns(() => ['TAG1', 'TAG2']);
+
+            queryBuilderMock
+                .setup(builder => builder.withBaseUrl(`${settingsData.projectURL}/_workitems/create/Issue`))
+                .returns(() => queryBuilderMock.object);
 
             const expectedTags = `${baseTags}; TAG1; TAG2`;
             queryBuilderMock.setup(builder => builder.withParam('[System.Tags]', expectedTags)).returns(() => queryBuilderMock.object);
@@ -109,6 +112,10 @@ describe('createAzureBoardsIssueFilingUrl', () => {
             settingsData.issueDetailsField = 'reproSteps';
             stringUtilsMock.setup(utils => utils.standardizeTags(sampleIssueDetailsData)).returns(() => []);
 
+            queryBuilderMock
+                .setup(builder => builder.withBaseUrl(`${settingsData.projectURL}/_workitems/create/Bug`))
+                .returns(() => queryBuilderMock.object);
+
             queryBuilderMock.setup(builder => builder.withParam('[System.Tags]', baseTags)).returns(() => queryBuilderMock.object);
             queryBuilderMock
                 .setup(builder => builder.withParam('[Microsoft.VSTS.TCM.ReproSteps]', testIssueDetails))
@@ -122,6 +129,10 @@ describe('createAzureBoardsIssueFilingUrl', () => {
         it('uses repro steps field, with tags', () => {
             settingsData.issueDetailsField = 'reproSteps';
             stringUtilsMock.setup(utils => utils.standardizeTags(sampleIssueDetailsData)).returns(() => ['TAG1', 'TAG2']);
+
+            queryBuilderMock
+                .setup(builder => builder.withBaseUrl(`${settingsData.projectURL}/_workitems/create/Bug`))
+                .returns(() => queryBuilderMock.object);
 
             const expectedTags = `${baseTags}; TAG1; TAG2`;
             queryBuilderMock.setup(builder => builder.withParam('[System.Tags]', expectedTags)).returns(() => queryBuilderMock.object);

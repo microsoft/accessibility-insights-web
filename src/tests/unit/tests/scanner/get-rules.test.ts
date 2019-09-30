@@ -3,10 +3,10 @@
 import * as Axe from 'axe-core';
 import { IMock, It, Mock, MockBehavior } from 'typemoq';
 
+import { HyperlinkDefinition } from 'views/content/content-page';
 import { getRules } from '../../../../scanner/get-rules';
 import { RuleSifter, RuleWithA11YCriteria } from '../../../../scanner/rule-sifter';
 import { ScannerRuleInfo } from '../../../../scanner/scanner-rule-info';
-import { HyperlinkDefinition } from '../../../../views/content/content-page';
 
 describe('getDefaultRules', () => {
     let getHelpUrlMock: IMock<(rule: string, axeHelpUrl: string) => string>;

@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { It, Mock, Times } from 'typemoq';
+import { Mock, Times } from 'typemoq';
 
-import { BrowserAdapter } from '../../../../../background/browser-adapter';
 import { BaseStore } from '../../../../../common/base-store';
+import { BrowserAdapter } from '../../../../../common/browser-adapters/browser-adapter';
 import { EnvironmentInfo } from '../../../../../common/environment-info-provider';
 import { CreateIssueDetailsTextData } from '../../../../../common/types/create-issue-details-text-data';
 import {
@@ -45,19 +45,14 @@ describe('IssueFilingControllerImpl', () => {
         };
         const serviceConfig = { bugServicePropertiesMap: map } as UserConfigurationStoreData;
 
+        const browserAdapterMock = Mock.ofType<BrowserAdapter>();
         const issueFilingServiceMock = Mock.ofType<IssueFilingService>();
         issueFilingServiceMock
-            .setup(service => service.getSettingsFromStoreData(serviceConfig.bugServicePropertiesMap))
-            .returns(() => serviceConfig);
-        issueFilingServiceMock
-            .setup(service => service.issueFilingUrlProvider(It.isValue(serviceConfig), issueData, environmentInfoStub))
-            .returns(() => testUrl);
+            .setup(service => service.fileIssue(browserAdapterMock.object, map, issueData, environmentInfoStub))
+            .verifiable(Times.once());
 
         const providerMock = Mock.ofType<IssueFilingServiceProvider>();
         providerMock.setup(provider => provider.forKey(serviceKey)).returns(() => issueFilingServiceMock.object);
-
-        const browserAdapterMock = Mock.ofType<BrowserAdapter>();
-        browserAdapterMock.setup(adapter => adapter.createTab(testUrl)).verifiable(Times.once());
 
         const storeMock = Mock.ofType<BaseStore<UserConfigurationStoreData>>();
         storeMock.setup(store => store.getState()).returns(() => serviceConfig);

@@ -1,5 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`IssueFilingUrlStringUtilsTest getTitle with tags 1`] = `"WCAG-1.4.1,WCAG-2.8.2: RR-help (RR-selector<x>)"`;
+exports[`IssueFilingUrlStringUtilsTest getTitle with tags 1`] = `"WCAG-1.4.1,WCAG-2.8.2,some displayText,some other displayText: RR-help (RR-selector<x>)"`;
 
 exports[`IssueFilingUrlStringUtilsTest getTitle without tags 1`] = `"RR-help (RR-selector<x>)"`;

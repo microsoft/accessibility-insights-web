@@ -23,10 +23,10 @@ button::after {
 }
 
 .ms-Button.ms-Button--primary:not(.is-disabled) {
-    background: $communication-shade-10;
+    background: $communication-primary;
 
     &:hover {
-        background: $communication-shade-20;
+        background: $communication-shade-10;
     }
 }
 
@@ -71,8 +71,11 @@ button::after {
 .insights-link {
     // marking important to override office fabric style
     color: $link !important;
+    text-decoration: none;
+
     &:hover {
         color: $link-hover !important;
+        text-decoration: underline;
     }
 }
 
@@ -95,6 +98,10 @@ $detailsViewNavPivotsHeight: 41px !default;
 $detailsViewCommandBarHeight: 40px !default;
 
 $detailsViewManNavWidth: 185px !default;
+
+$fastPassRightPanelMarginRight: 24px !default;
+$fastPassRightPanelMarginLeft: 24px !default;
+$fastPassRightPanelMarginTop: 24px !default;
 
 .header-bar,
 .report-header-bar {

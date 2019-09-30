@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BodySection renders 1`] = `
+<body>
+  <div>
+    1
+  </div>
+  <div
+    id="2"
+  >
+    2
+  </div>
+</body>
+`;

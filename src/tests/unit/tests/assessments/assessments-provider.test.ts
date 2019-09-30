@@ -2,10 +2,10 @@
 // Licensed under the MIT License.
 import * as _ from 'lodash';
 
-import { AssessmentsProviderImpl } from '../../../../assessments/assessments-provider';
-import { AssessmentsProvider } from '../../../../assessments/types/assessments-provider';
-import { Assessment } from '../../../../assessments/types/iassessment';
-import { Requirement } from '../../../../assessments/types/requirement';
+import { AssessmentsProviderImpl } from 'assessments/assessments-provider';
+import { AssessmentsProvider } from 'assessments/types/assessments-provider';
+import { Assessment } from 'assessments/types/iassessment';
+import { Requirement } from 'assessments/types/requirement';
 
 describe('AssessmentsProviderTest', () => {
     const firstType = 45;

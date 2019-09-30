@@ -2,7 +2,8 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import { link } from '../../../content/link';
+import { link } from 'content/link';
+import * as content from 'content/test/semantics/lists';
 import { ManualTestRecordYourResults } from '../../common/manual-test-record-your-results';
 import * as Markup from '../../markup';
 import { Requirement } from '../../types/requirement';
@@ -51,6 +52,7 @@ export const SemanticsLists: Requirement = {
     description: listsDescription,
     howToTest: listsHowToTest,
     isManual: true,
+    ...content,
     guidanceLinks: [link.WCAG_1_3_1],
     updateVisibility: false,
 };

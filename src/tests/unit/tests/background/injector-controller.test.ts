@@ -3,13 +3,13 @@
 import * as Q from 'q';
 import { It, Mock, MockBehavior, Times } from 'typemoq';
 
-import { InjectorController } from '../../../../background/injector-controller';
-import { ContentScriptInjector } from '../../../../background/injector/content-script-injector';
-import { InspectMode } from '../../../../background/inspect-modes';
-import { Interpreter } from '../../../../background/interpreter';
-import { InspectStore } from '../../../../background/stores/inspect-store';
-import { TabStore } from '../../../../background/stores/tab-store';
-import { VisualizationStore } from '../../../../background/stores/visualization-store';
+import { InjectorController } from 'background/injector-controller';
+import { ContentScriptInjector } from 'background/injector/content-script-injector';
+import { InspectMode } from 'background/inspect-modes';
+import { Interpreter } from 'background/interpreter';
+import { InspectStore } from 'background/stores/inspect-store';
+import { TabStore } from 'background/stores/tab-store';
+import { VisualizationStore } from 'background/stores/visualization-store';
 import { Messages } from '../../../../common/messages';
 import { VisualizationStoreData } from '../../../../common/types/store-data/visualization-store-data';
 import { WindowUtils } from '../../../../common/window-utils';

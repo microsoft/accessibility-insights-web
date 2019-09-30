@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { IMock, It, Mock } from 'typemoq';
 
-import { BrowserAdapter } from '../../../../background/browser-adapter';
+import { BrowserAdapter } from '../../../../common/browser-adapters/browser-adapter';
 import { Tab } from '../../../../common/itab';
 import { UrlParser } from '../../../../common/url-parser';
 import { UrlValidator } from '../../../../common/url-validator';
@@ -61,7 +61,7 @@ describe('TargetTabFinderTest', () => {
         },
     ];
 
-    test.each(testCases)('get target tab info - %o', async (testCase: TestCase) => {
+    test.each(testCases)('get target tab info - %p', async (testCase: TestCase) => {
         if (testCase.hasTabIdInUrl) {
             setupGetTabIdParamFromUrl(tabId);
             setupGetTabCall();
@@ -119,6 +119,6 @@ describe('TargetTabFinderTest', () => {
     }
 
     function setupIsSupportedCall(isSupported: boolean): void {
-        urlValidatorMock.setup(v => v.isSupportedUrl(tabStub.url, browserAdapterMock.object)).returns(() => Promise.resolve(isSupported));
+        urlValidatorMock.setup(v => v.isSupportedUrl(tabStub.url)).returns(() => Promise.resolve(isSupported));
     }
 });

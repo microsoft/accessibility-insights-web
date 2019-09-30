@@ -3,12 +3,10 @@
 import * as React from 'react';
 import { IMock, Mock, MockBehavior } from 'typemoq';
 
-import { FeatureFlagStore } from '../../../../background/stores/global/feature-flag-store';
-import {
-    VisualizationConfiguration,
-    VisualizationConfigurationFactory,
-} from '../../../../common/configs/visualization-configuration-factory';
-import { NamedSFC, ReactSFCWithDisplayName } from '../../../../common/react/named-sfc';
+import { FeatureFlagStore } from 'background/stores/global/feature-flag-store';
+import { VisualizationConfiguration } from '../../../../common/configs/visualization-configuration';
+import { VisualizationConfigurationFactory } from '../../../../common/configs/visualization-configuration-factory';
+import { NamedFC, ReactFCWithDisplayName } from '../../../../common/react/named-fc';
 import { ManualTestStatus } from '../../../../common/types/manual-test-status';
 import {
     AssessmentData,
@@ -29,6 +27,7 @@ import { DetailsViewToggleClickHandlerFactory } from '../../../../DetailsView/ha
 import { TabStoreDataBuilder } from '../../common/tab-store-data-builder';
 import { VisualizationScanResultStoreDataBuilder } from '../../common/visualization-scan-result-store-data-builder';
 import { VisualizationStoreDataBuilder } from '../../common/visualization-store-data-builder';
+import { exampleUnifiedStatusResults } from '../common/components/cards/sample-view-model-data';
 
 describe('DetailsViewMainContentTest', () => {
     let selectedTest: VisualizationType;
@@ -45,15 +44,15 @@ describe('DetailsViewMainContentTest', () => {
     describe('render', () => {
         beforeEach(() => {
             selectedTest = -1;
-            const RightPanelStub: Readonly<ReactSFCWithDisplayName<DetailsViewMainContentProps>> = NamedSFC<DetailsViewMainContentProps>(
+            const RightPanelStub: Readonly<ReactFCWithDisplayName<DetailsViewMainContentProps>> = NamedFC<DetailsViewMainContentProps>(
                 'test',
                 _ => null,
             );
-            const CommandBarStub: Readonly<ReactSFCWithDisplayName<DetailsViewMainContentProps>> = NamedSFC<DetailsViewMainContentProps>(
+            const CommandBarStub: Readonly<ReactFCWithDisplayName<DetailsViewMainContentProps>> = NamedFC<DetailsViewMainContentProps>(
                 'test',
                 _ => null,
             );
-            const LeftNavStub: Readonly<ReactSFCWithDisplayName<DetailsViewMainContentProps>> = NamedSFC<DetailsViewMainContentProps>(
+            const LeftNavStub: Readonly<ReactFCWithDisplayName<DetailsViewMainContentProps>> = NamedFC<DetailsViewMainContentProps>(
                 'test',
                 _ => null,
             );
@@ -97,6 +96,7 @@ describe('DetailsViewMainContentTest', () => {
                     } as AssessmentData,
                 },
                 persistedTabInfo: {} as PersistedTabInfo,
+                resultDescription: '',
             } as AssessmentStoreData;
 
             props = {
@@ -116,6 +116,7 @@ describe('DetailsViewMainContentTest', () => {
                 },
                 rightPanelConfiguration: rightPanelConfig,
                 switcherNavConfiguration: switcherNavConfig,
+                ruleResultsByStatus: exampleUnifiedStatusResults,
             } as DetailsViewMainContentProps;
         });
 

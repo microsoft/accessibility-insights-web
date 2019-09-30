@@ -2,7 +2,8 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import { VisualizationType } from '../../common/types/visualization-type';
+import { VisualizationType } from 'common/types/visualization-type';
+import { test as content } from 'content/test';
 import { AssessmentBuilder } from '../assessment-builder';
 import * as Markup from '../markup';
 import { CssContent } from './test-steps/css-content';
@@ -14,7 +15,7 @@ import { SemanticsQuotes } from './test-steps/quotes';
 
 const key = 'semanticsAssessment';
 const title = 'Semantics';
-
+const { guidance } = content.semantics;
 const gettingStarted: JSX.Element = (
     <React.Fragment>
         <p>
@@ -35,6 +36,7 @@ export const SemanticsAssessment = AssessmentBuilder.Assisted({
     key,
     title,
     gettingStarted,
+    guidance,
     visualizationType: VisualizationType.SemanticsAssessment,
     requirements: [CssContent, DataTables, SemanticsLists, SemanticsEmphasis, SemanticsQuotes, SemanticsLetterSpacing],
     storeDataKey: 'semanticsAssessment',

@@ -1,13 +1,10 @@
 {
     "compilerOptions": {
         "allowSyntheticDefaultImports": true,
-        "extendedDiagnostics": true,
-        "target": "es5",
+        "target": "es2017",
         "module": "amd",
-        "lib": ["es5", "es6", "es2015.promise", "dom", "scripthost"],
+        "lib": ["es2017", "dom", "scripthost"],
         "jsx": "react",
-        "declaration": true,
-        "declarationDir": "./ref/",
         "sourceMap": true,
         "outDir": "./dist/",
         "rootDir": "./",
@@ -15,8 +12,8 @@
         "noEmitOnError": true,
         "skipLibCheck": true,
         "suppressExcessPropertyErrors": true,
-        "alwaysStrict": false,
-        "noImplicitUseStrict": true,
+        "alwaysStrict": true,
+        "noImplicitUseStrict": false,
         "moduleResolution": "node",
         "inlineSources": true,
         "experimentalDecorators": true,
@@ -26,14 +23,13 @@
         "noStrictGenericChecks": false,
         "allowJs": false,
         "typeRoots": ["node_modules/@types"],
-        "plugins": [{ "name": "tslint-language-service" }],
-        "baseUrl": ".",
-        "paths": {
-            "*": ["*"],
-            "typemoq": ["typemoq/typemoq"]
-        },
+        "plugins": [
+            {
+                "name": "tslint-language-service"
+            }
+        ],
+        "baseUrl": "./src",
         "forceConsistentCasingInFileNames": true
     },
-    "include": ["src/**/*.ts", "src/**/*.tsx", "references.ts"],
-    "exclude": ["src/common/references.ts", "src/webpack.config.js"]
+    "include": ["src/**/*.ts", "src/**/*.tsx"]
 }

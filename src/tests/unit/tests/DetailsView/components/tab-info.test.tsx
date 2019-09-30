@@ -77,10 +77,7 @@ describe('TabInfo', () => {
                 const component = React.createElement(TabInfo, testProps);
                 const testObject = TestUtils.renderIntoDocument(component);
 
-                const warningMessageBar = null;
-                const expectedComponent = getExpectedComponentRendered(warningMessageBar);
-
-                expect(testObject.render()).toEqual(expectedComponent);
+                expect(testObject.render()).toEqual(null);
             });
         });
     });

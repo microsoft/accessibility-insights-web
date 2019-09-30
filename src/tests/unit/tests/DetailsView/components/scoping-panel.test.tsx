@@ -4,7 +4,7 @@ import { DefaultButton } from 'office-ui-fabric-react/lib/Button';
 import * as React from 'react';
 import { Mock } from 'typemoq';
 
-import { ScopingInputTypes } from '../../../../../background/scoping-input-types';
+import { ScopingInputTypes } from 'background/scoping-input-types';
 import { InspectActionMessageCreator } from '../../../../../common/message-creators/inspect-action-message-creator';
 import { ScopingActionMessageCreator } from '../../../../../common/message-creators/scoping-action-message-creator';
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';

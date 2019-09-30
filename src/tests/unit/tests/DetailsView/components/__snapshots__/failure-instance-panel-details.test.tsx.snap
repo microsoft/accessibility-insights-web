@@ -1,0 +1,49 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FailureInstancePanelDetailsTest renders 1`] = `
+<div>
+  <a
+    className="learnMore"
+    href="#"
+  >
+    Learn more about adding failure instances
+  </a>
+  <StyledTextFieldBase
+    label="CSS Selector"
+    multiline={true}
+    onChange={[Function]}
+    placeholder="CSS Selector"
+    resizable={false}
+    rows={4}
+    styles={[Function]}
+    value="Given Path"
+  />
+  <div
+    className="failureInstanceSelectorNote"
+  >
+    Note: If the CSS selector maps to multiple snippets, the first will be selected
+  </div>
+  <div>
+    <CustomizedDefaultButton
+      disabled={false}
+      onClick={[Function]}
+      text="Validate CSS selector"
+    />
+  </div>
+  <div
+    aria-atomic="true"
+    aria-live="polite"
+  >
+    <div
+      className="failureInstanceSnippetTitle"
+    >
+      Code Snippet
+    </div>
+    <div
+      className="failureInstanceSnippetFilledBody"
+    >
+      Snippet for Given Path
+    </div>
+  </div>
+</div>
+`;

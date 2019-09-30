@@ -1,9 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { shallow, ShallowWrapper } from 'enzyme';
-import { IContextualMenuItem } from 'office-ui-fabric-react/lib/ContextualMenu';
+import { shallow } from 'enzyme';
 import * as React from 'react';
-import { IMock, Mock } from 'typemoq';
+import { It, Mock, Times } from 'typemoq';
 
 import {
     GearOptionsButtonComponent,
@@ -12,113 +11,118 @@ import {
 import { DropdownClickHandler } from '../../../../../common/dropdown-click-handler';
 import { FeatureFlags } from '../../../../../common/feature-flags';
 import { DetailsViewDropDown } from '../../../../../DetailsView/components/details-view-dropdown';
-import { DictionaryStringTo } from '../../../../../types/common-types';
 
-describe('gear-options-button-component.test', () => {
-    let dropdownClickHandlerMock: IMock<DropdownClickHandler>;
-    const openScopingPanelClickHandler: (event: any) => void = 'open scoping handler' as any;
-    const openPreviewFeaturesClickHandler: (event: any) => void = 'open preview features handler' as any;
-    const openSettingsPanelClickHandler: (event: any) => void = 'open settings panel handler' as any;
-
-    beforeEach(() => {
-        dropdownClickHandlerMock = Mock.ofType(DropdownClickHandler);
-
-        dropdownClickHandlerMock.setup(acm => acm.openPreviewFeaturesPanelHandler).returns(event => openPreviewFeaturesClickHandler);
-
-        dropdownClickHandlerMock.setup(acm => acm.openScopingPanelHandler).returns(event => openScopingPanelClickHandler);
-
-        dropdownClickHandlerMock.setup(acm => acm.openSettingsPanelHandler).returns(event => openSettingsPanelClickHandler);
-    });
-
-    test('constructor', () => {
-        const testSubject = new GearOptionsButtonComponent(null);
-        expect(testSubject).toEqual(expect.anything());
-    });
-
-    type TestCase = {
-        featureFlags: DictionaryStringTo<boolean>;
-        expectedMenuItems: IContextualMenuItem[];
-    };
-    test.each([
-        {
-            featureFlags: {
-                [FeatureFlags[FeatureFlags.scoping]]: true,
-            },
-            expectedMenuItems: [getSettingsFeatureMenuItem(), getPreviewFeatureMenuItem(), getScopingFeatureMenuItem()],
-        },
-        {
-            featureFlags: {
-                [FeatureFlags[FeatureFlags.scoping]]: false,
-            },
-            expectedMenuItems: [getSettingsFeatureMenuItem(), getPreviewFeatureMenuItem()],
-        },
-        {
-            featureFlags: {
-                [FeatureFlags[FeatureFlags.scoping]]: false,
-            },
-            expectedMenuItems: [getSettingsFeatureMenuItem(), getPreviewFeatureMenuItem()],
-        },
-        {
-            featureFlags: {
-                [FeatureFlags[FeatureFlags.scoping]]: true,
-            },
-            expectedMenuItems: [getSettingsFeatureMenuItem(), getPreviewFeatureMenuItem(), getScopingFeatureMenuItem()],
-        },
-    ] as TestCase[])('verify rendering with menu items: %#', (testCase: TestCase) => {
-        verifyRendering(testCase.featureFlags, testCase.expectedMenuItems);
-    });
-
-    function verifyRendering(featureFlags: DictionaryStringTo<boolean>, menuItems: IContextualMenuItem[]): void {
+describe('GearOptionsButtonComponent', () => {
+    it('renders like snapshot', () => {
         const props: GearOptionsButtonComponentProps = {
-            dropdownClickHandler: dropdownClickHandlerMock.object,
-            featureFlags: featureFlags,
+            dropdownClickHandler: Mock.ofType(DropdownClickHandler).object,
+            featureFlags: { [FeatureFlags[FeatureFlags.scoping]]: false },
         };
 
-        const dropDownProps = {
-            menuItems: menuItems,
-        };
-        const wrapper = shallow(<GearOptionsButtonComponent {...props} />);
-        const div = wrapper.find('.gear-options-button-component');
-        expect(div.exists()).toBe(true);
-        const dropDown = div.find(dropDownProps);
-        makeDropdownAssertions(dropDown, DetailsViewDropDown);
-    }
+        const testSubject = shallow(<GearOptionsButtonComponent {...props} />);
+        expect(testSubject.debug()).toMatchInlineSnapshot(`
+            "<div className=\\"gear-options-button-component\\">
+              <DetailsViewDropDown menuItems={{...}} />
+            </div>"
+        `);
+    });
 
-    function getScopingFeatureMenuItem(): IContextualMenuItem {
-        return {
-            key: 'scoping-feature',
-            iconProps: {
-                iconName: 'scopeTemplate',
-            },
-            onClick: openScopingPanelClickHandler,
-            name: 'Scoping',
+    it('renders its contained dropdown with the appropriate menu items (including scoping) with scoping flag enabled', () => {
+        const props: GearOptionsButtonComponentProps = {
+            dropdownClickHandler: Mock.ofType(DropdownClickHandler).object,
+            featureFlags: { [FeatureFlags[FeatureFlags.scoping]]: true },
         };
-    }
 
-    function getPreviewFeatureMenuItem(): IContextualMenuItem {
-        return {
-            key: 'preview-features',
-            iconProps: {
-                iconName: 'giftboxOpen',
-            },
-            onClick: openPreviewFeaturesClickHandler,
-            name: 'Preview features',
+        const testSubject = shallow(<GearOptionsButtonComponent {...props} />);
+        const dropdownProps = testSubject.find(DetailsViewDropDown).props();
+        expect(dropdownProps).toMatchInlineSnapshot(`
+            Object {
+              "menuItems": Array [
+                Object {
+                  "iconProps": Object {
+                    "iconName": "gear",
+                  },
+                  "key": "settings",
+                  "name": "Settings",
+                  "onClick": [Function],
+                },
+                Object {
+                  "className": "preview-features-drop-down-button",
+                  "iconProps": Object {
+                    "iconName": "giftboxOpen",
+                  },
+                  "key": "preview-features",
+                  "name": "Preview features",
+                  "onClick": [Function],
+                },
+                Object {
+                  "iconProps": Object {
+                    "iconName": "scopeTemplate",
+                  },
+                  "key": "scoping-feature",
+                  "name": "Scoping",
+                  "onClick": [Function],
+                },
+              ],
+            }
+        `);
+    });
+
+    it('renders its contained dropdown with the appropriate menu items (excluding scoping) with scoping flag disabled', () => {
+        const props: GearOptionsButtonComponentProps = {
+            dropdownClickHandler: Mock.ofType(DropdownClickHandler).object,
+            featureFlags: { [FeatureFlags[FeatureFlags.scoping]]: false },
         };
-    }
 
-    function getSettingsFeatureMenuItem(): IContextualMenuItem {
-        return {
-            key: 'settings',
-            iconProps: {
-                iconName: 'gear',
-            },
-            onClick: openSettingsPanelClickHandler,
-            name: 'Settings',
+        const testSubject = shallow(<GearOptionsButtonComponent {...props} />);
+        const dropdownProps = testSubject.find(DetailsViewDropDown).props();
+        expect(dropdownProps).toMatchInlineSnapshot(`
+            Object {
+              "menuItems": Array [
+                Object {
+                  "iconProps": Object {
+                    "iconName": "gear",
+                  },
+                  "key": "settings",
+                  "name": "Settings",
+                  "onClick": [Function],
+                },
+                Object {
+                  "className": "preview-features-drop-down-button",
+                  "iconProps": Object {
+                    "iconName": "giftboxOpen",
+                  },
+                  "key": "preview-features",
+                  "name": "Preview features",
+                  "onClick": [Function],
+                },
+              ],
+            }
+        `);
+    });
+
+    it('delegates menu item onClick calls to the appropriate clickHandler methods', () => {
+        const stubClickEvent = {};
+        const mockDropdownClickHandler = Mock.ofType(DropdownClickHandler);
+
+        const props: GearOptionsButtonComponentProps = {
+            dropdownClickHandler: mockDropdownClickHandler.object,
+            featureFlags: { [FeatureFlags[FeatureFlags.scoping]]: true },
         };
-    }
 
-    function makeDropdownAssertions(dropDownWrapper: ShallowWrapper<any, any>, expectedDropdown): void {
-        expect(dropDownWrapper.exists()).toBe(true);
-        expect(dropDownWrapper.type()).toEqual(expectedDropdown);
-    }
+        const testSubject = shallow(<GearOptionsButtonComponent {...props} />);
+        const dropdownProps = testSubject.find(DetailsViewDropDown).props();
+
+        mockDropdownClickHandler.verify(h => h.openSettingsPanelHandler(It.isAny()), Times.never());
+        dropdownProps.menuItems.filter(item => item.key === 'settings')[0].onClick(stubClickEvent);
+        mockDropdownClickHandler.verify(h => h.openSettingsPanelHandler(It.isAny()), Times.once());
+
+        mockDropdownClickHandler.verify(h => h.openScopingPanelHandler(It.isAny()), Times.never());
+        dropdownProps.menuItems.filter(item => item.key === 'scoping-feature')[0].onClick(stubClickEvent);
+        mockDropdownClickHandler.verify(h => h.openScopingPanelHandler(It.isAny()), Times.once());
+
+        mockDropdownClickHandler.verify(h => h.openPreviewFeaturesPanelHandler(It.isAny()), Times.never());
+        dropdownProps.menuItems.filter(item => item.key === 'preview-features')[0].onClick(stubClickEvent);
+        mockDropdownClickHandler.verify(h => h.openPreviewFeaturesPanelHandler(It.isAny()), Times.once());
+    });
 });

@@ -1,11 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { autobind } from '@uifabric/utilities';
+import { BrowserAdapter } from '../common/browser-adapters/browser-adapter';
 import { createDefaultLogger } from '../common/logging/default-logger';
 import { Logger } from '../common/logging/logger';
 import { InterpreterMessage } from '../common/message';
 import { Tab } from './../common/itab.d';
-import { BrowserAdapter } from './browser-adapter';
 import { GlobalContext } from './global-context';
 import { TabToContextMap } from './tab-context';
 
@@ -25,8 +24,7 @@ export class MessageDistributor {
         this.browserAdapter.addListenerOnMessage(this.distributeMessage);
     }
 
-    @autobind
-    private distributeMessage(message: InterpreterMessage, sender?: Sender): void {
+    private distributeMessage = (message: InterpreterMessage, sender?: Sender): void => {
         message.tabId = this.getTabId(message, sender);
 
         const isInterpretedUsingGlobalContext = this.globalContext.interpreter.interpret(message);
@@ -35,7 +33,7 @@ export class MessageDistributor {
         if (!isInterpretedUsingGlobalContext && !isInterpretedUsingTabContext) {
             this.logger.log('Unable to interpret message - ', message);
         }
-    }
+    };
 
     private getTabId(message: InterpreterMessage, sender?: Sender): number {
         if (message != null && message.tabId != null) {

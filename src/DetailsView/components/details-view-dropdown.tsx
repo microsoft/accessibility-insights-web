@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { autobind, IPoint } from '@uifabric/utilities';
+import { IPoint } from '@uifabric/utilities';
 import { DirectionalHint } from 'office-ui-fabric-react/lib/Callout';
 import { ContextualMenu, IContextualMenuItem } from 'office-ui-fabric-react/lib/ContextualMenu';
 import { Icon } from 'office-ui-fabric-react/lib/Icon';
@@ -55,13 +55,11 @@ export class DetailsViewDropDown extends React.Component<DetailsViewDropDownProp
         );
     }
 
-    @autobind
-    protected openDropdown(target: React.MouseEvent<HTMLElement>): void {
+    protected openDropdown = (target: React.MouseEvent<HTMLElement>): void => {
         this.setState({ target: target.currentTarget, isContextMenuVisible: true });
-    }
+    };
 
-    @autobind
-    protected dismissDropdown(): void {
+    protected dismissDropdown = (): void => {
         this.setState({ target: null, isContextMenuVisible: false });
-    }
+    };
 }

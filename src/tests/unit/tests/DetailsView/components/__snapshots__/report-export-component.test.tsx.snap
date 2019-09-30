@@ -1,0 +1,103 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ReportExportComponentTest render 1`] = `
+<React.Fragment>
+  <CustomizedActionButton
+    iconProps={
+      Object {
+        "iconName": "Export",
+      }
+    }
+    onClick={[Function]}
+  >
+    Export result
+  </CustomizedActionButton>
+  <ExportDialog
+    deps={Object {}}
+    description=""
+    exportResultsType="Assessment"
+    fileName=""
+    html=""
+    isOpen={false}
+    onClose={[Function]}
+    onDescriptionChange={[Function]}
+    onExportClick={[Function]}
+  />
+</React.Fragment>
+`;
+
+exports[`ReportExportComponentTest user interactions click export button: dialog should show 1`] = `
+<React.Fragment>
+  <CustomizedActionButton
+    iconProps={
+      Object {
+        "iconName": "Export",
+      }
+    }
+    onClick={[Function]}
+  >
+    Export result
+  </CustomizedActionButton>
+  <ExportDialog
+    deps={Object {}}
+    description="persisted description"
+    exportResultsType="Assessment"
+    html=""
+    isOpen={true}
+    onClose={[Function]}
+    onDescriptionChange={[Function]}
+    onExportClick={[Function]}
+  />
+</React.Fragment>
+`;
+
+exports[`ReportExportComponentTest user interactions dismiss dialog: dialog should be dismissed 1`] = `
+<React.Fragment>
+  <CustomizedActionButton
+    iconProps={
+      Object {
+        "iconName": "Export",
+      }
+    }
+    onClick={[Function]}
+  >
+    Export result
+  </CustomizedActionButton>
+  <ExportDialog
+    deps={Object {}}
+    description=""
+    exportResultsType="Assessment"
+    html=""
+    isOpen={false}
+    onClose={[Function]}
+    onDescriptionChange={[Function]}
+    onExportClick={[Function]}
+  />
+</React.Fragment>
+`;
+
+exports[`ReportExportComponentTest user interactions edit text field: user input new description 1`] = `
+<React.Fragment>
+  <CustomizedActionButton
+    iconProps={
+      Object {
+        "iconName": "Export",
+      }
+    }
+    onClick={[Function]}
+  >
+    Export result
+  </CustomizedActionButton>
+  <ExportDialog
+    deps={Object {}}
+    description="new description"
+    exportResultsType="Assessment"
+    fileName=""
+    html=""
+    isOpen={false}
+    onClose={[Function]}
+    onDescriptionChange={[Function]}
+    onExportClick={[Function]}
+  />
+</React.Fragment>
+`;

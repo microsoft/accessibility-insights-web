@@ -7,7 +7,7 @@ import { HTTPQueryBuilder } from '../../common/http-query-builder';
 import { IssueDetailsBuilder } from '../../common/issue-details-builder';
 import { IssueFilingUrlStringUtils, IssueUrlCreationUtils } from '../../common/issue-filing-url-string-utils';
 import { MarkdownFormatter } from '../../common/markup/markdown-formatter';
-import { GitHubIssueFilingSettings } from './github-issue-filing-service';
+import { GitHubIssueFilingSettings } from './github-issue-filing-settings';
 import { rectify, UrlRectifier } from './github-url-rectifier';
 
 export const createGitHubIssueFilingUrlProvider = (

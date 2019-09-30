@@ -3,5 +3,21 @@
 export const detailsViewSelectors = {
     previewFeaturesPanel: '.preview-features-panel',
     previewFeaturesPanelToggleList: '.preview-feature-toggle-list',
-    noPreviewFeaturesMessage: '.no-preview-feature-message',
+
+    testNavArea: 'nav',
+    testNavLink: (testName: string): string => `nav [name=${testName}] a`,
+
+    mainContent: '[role=main]',
+    instanceTableTextContent: '.assessment-instance-textContent',
+
+    gearButton: '.gear-options-icon',
+    settingsButton: 'button[name="Settings"]',
+    settingsPanel: '.settings-panel',
+    highContrastToggle: 'button#enable-high-contrast-mode',
+    highContrastToggleCheckedStateSelector: 'button#enable-high-contrast-mode[aria-checked="true"]',
+};
+
+export const overviewSelectors = {
+    overview: '.overview',
+    overviewHeading: '.overview-heading',
 };

@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { RequirementReportModel } from '../../../../..//DetailsView/reports/assessment-report-model';
+import { RequirementReportModel } from 'reports/assessment-report-model';
 import { excludePassingInstancesFromAssessmentReport } from '../../../../../DetailsView/extensions/exclude-passing-instances-from-assessment-report';
 
 describe('excludePassingInstancesFromAssessmentReport', () => {

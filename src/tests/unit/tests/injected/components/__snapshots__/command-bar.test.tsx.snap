@@ -1,0 +1,202 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CommandBar renders renders, shows inspect button message: false 1`] = `
+<div
+  className="insights-dialog-target-button-container"
+>
+  <CustomizedDefaultButton
+    className="insights-dialog-button-inspect"
+  >
+    <FileHTMLIcon />
+    <div
+      className="ms-Button-label"
+    >
+      Inspect HTML
+    </div>
+  </CustomizedDefaultButton>
+  <React.Fragment>
+    <CopyIssueDetailsButton
+      deps={Object {}}
+      issueDetailsData={
+        Object {
+          "pageTitle": "",
+          "pageUrl": "http://localhost/",
+          "ruleResult": Object {
+            "failureSummary": "RR-failureSummary",
+            "guidanceLinks": Array [
+              Object {
+                "tags": Array [
+                  Object {
+                    "displayText": "some displayText",
+                    "id": "some-id",
+                  },
+                  Object {
+                    "displayText": "some other displayText",
+                    "id": "some-other-id",
+                  },
+                ],
+                "text": "WCAG-1.4.1",
+              },
+              Object {
+                "text": "wcag-2.8.2",
+              },
+            ],
+            "help": "RR-help",
+            "helpUrl": "RR-help-url",
+            "html": "RR-html",
+            "ruleId": "RR-rule-id",
+            "selector": "RR-selector<x>",
+            "snippet": "RR-snippet   space",
+          },
+        }
+      }
+    />
+    <IssueFilingButton
+      deps={Object {}}
+      issueDetailsData={
+        Object {
+          "pageTitle": "",
+          "pageUrl": "http://localhost/",
+          "ruleResult": Object {
+            "failureSummary": "RR-failureSummary",
+            "guidanceLinks": Array [
+              Object {
+                "tags": Array [
+                  Object {
+                    "displayText": "some displayText",
+                    "id": "some-id",
+                  },
+                  Object {
+                    "displayText": "some other displayText",
+                    "id": "some-other-id",
+                  },
+                ],
+                "text": "WCAG-1.4.1",
+              },
+              Object {
+                "text": "wcag-2.8.2",
+              },
+            ],
+            "help": "RR-help",
+            "helpUrl": "RR-help-url",
+            "html": "RR-html",
+            "ruleId": "RR-rule-id",
+            "selector": "RR-selector<x>",
+            "snippet": "RR-snippet   space",
+          },
+        }
+      }
+      needsSettingsContentRenderer={[Function]}
+      userConfigurationStoreData={
+        Object {
+          "bugService": "None",
+          "isFirstTime": false,
+        }
+      }
+    />
+  </React.Fragment>
+</div>
+`;
+
+exports[`CommandBar renders renders, shows inspect button message: true 1`] = `
+<div
+  className="insights-dialog-target-button-container"
+>
+  <CustomizedDefaultButton
+    className="insights-dialog-button-inspect"
+  >
+    <FileHTMLIcon />
+    <div
+      className="ms-Button-label"
+    >
+      Inspect HTML
+    </div>
+  </CustomizedDefaultButton>
+  <React.Fragment>
+    <CopyIssueDetailsButton
+      deps={Object {}}
+      issueDetailsData={
+        Object {
+          "pageTitle": "",
+          "pageUrl": "http://localhost/",
+          "ruleResult": Object {
+            "failureSummary": "RR-failureSummary",
+            "guidanceLinks": Array [
+              Object {
+                "tags": Array [
+                  Object {
+                    "displayText": "some displayText",
+                    "id": "some-id",
+                  },
+                  Object {
+                    "displayText": "some other displayText",
+                    "id": "some-other-id",
+                  },
+                ],
+                "text": "WCAG-1.4.1",
+              },
+              Object {
+                "text": "wcag-2.8.2",
+              },
+            ],
+            "help": "RR-help",
+            "helpUrl": "RR-help-url",
+            "html": "RR-html",
+            "ruleId": "RR-rule-id",
+            "selector": "RR-selector<x>",
+            "snippet": "RR-snippet   space",
+          },
+        }
+      }
+    />
+    <IssueFilingButton
+      deps={Object {}}
+      issueDetailsData={
+        Object {
+          "pageTitle": "",
+          "pageUrl": "http://localhost/",
+          "ruleResult": Object {
+            "failureSummary": "RR-failureSummary",
+            "guidanceLinks": Array [
+              Object {
+                "tags": Array [
+                  Object {
+                    "displayText": "some displayText",
+                    "id": "some-id",
+                  },
+                  Object {
+                    "displayText": "some other displayText",
+                    "id": "some-other-id",
+                  },
+                ],
+                "text": "WCAG-1.4.1",
+              },
+              Object {
+                "text": "wcag-2.8.2",
+              },
+            ],
+            "help": "RR-help",
+            "helpUrl": "RR-help-url",
+            "html": "RR-html",
+            "ruleId": "RR-rule-id",
+            "selector": "RR-selector<x>",
+            "snippet": "RR-snippet   space",
+          },
+        }
+      }
+      needsSettingsContentRenderer={[Function]}
+      userConfigurationStoreData={
+        Object {
+          "bugService": "None",
+          "isFirstTime": false,
+        }
+      }
+    />
+  </React.Fragment>
+  <div
+    className="insights-dialog-inspect-disabled"
+  >
+    To use the Inspect HTML button, first open the developer tools (dev-tools-shortcut).
+  </div>
+</div>
+`;

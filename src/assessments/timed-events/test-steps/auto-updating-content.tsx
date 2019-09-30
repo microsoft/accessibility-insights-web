@@ -2,8 +2,8 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import { link } from '../../../content/link';
-import * as content from '../../../content/test/timed-events/auto-updating-content';
+import { link } from 'content/link';
+import * as content from 'content/test/timed-events/auto-updating-content';
 import { ManualTestRecordYourResults } from '../../common/manual-test-record-your-results';
 import { Requirement } from '../../types/requirement';
 import { TimedEventsTestStep } from './test-steps';

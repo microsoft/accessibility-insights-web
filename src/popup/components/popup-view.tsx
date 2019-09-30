@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { autobind } from '@uifabric/utilities';
 import { Spinner, SpinnerSize } from 'office-ui-fabric-react/lib/Spinner';
 import * as React from 'react';
-import { BrowserAdapter } from '../../background/browser-adapter';
+import { BrowserAdapter } from '../../common/browser-adapters/browser-adapter';
 import { NewTabLink } from '../../common/components/new-tab-link';
+import { TelemetryPermissionDialog, TelemetryPermissionDialogDeps } from '../../common/components/telemetry-permission-dialog';
 import { withStoreSubscription, WithStoreSubscriptionDeps } from '../../common/components/with-store-subscription';
 import { DisplayableStrings } from '../../common/constants/displayable-strings';
 import { DropdownClickHandler } from '../../common/dropdown-click-handler';
@@ -17,17 +17,20 @@ import { PopupViewControllerHandler } from '../handlers/popup-view-controller-ha
 import { LaunchPadRowConfigurationFactory } from '../launch-pad-row-configuration-factory';
 import { AdHocToolsPanel } from './ad-hoc-tools-panel';
 import { DiagnosticViewToggleFactory } from './diagnostic-view-toggle-factory';
+import {
+    FileUrlUnsupportedMessagePanel,
+    FileUrlUnsupportedMessagePanelDeps,
+    FileUrlUnsupportedMessagePanelProps,
+} from './file-url-unsupported-message-panel';
 import { Header } from './header';
 import { LaunchPad, LaunchPadDeps, LaunchPadRowConfiguration } from './launch-pad';
 import { LaunchPanelHeader, LaunchPanelHeaderDeps } from './launch-panel-header';
-import { TelemetryPermissionDialog, TelemetryPermissionDialogDeps } from './telemetry-permission-dialog';
 
 export interface PopupViewProps {
     deps: PopupViewControllerDeps;
     title: string;
     popupHandlers: IPopupHandlers;
     popupWindow: Window;
-    browserAdapter: BrowserAdapter;
     targetTabUrl: string;
     hasAccess: boolean;
     launchPadRowConfigurationFactory: LaunchPadRowConfigurationFactory;
@@ -39,7 +42,10 @@ export interface PopupViewProps {
 export type PopupViewControllerDeps = LaunchPadDeps &
     LaunchPanelHeaderDeps &
     TelemetryPermissionDialogDeps &
-    WithStoreSubscriptionDeps<PopupViewControllerState>;
+    FileUrlUnsupportedMessagePanelDeps &
+    WithStoreSubscriptionDeps<PopupViewControllerState> & {
+        browserAdapter: BrowserAdapter;
+    };
 
 export enum LaunchPanelType {
     AdhocToolsPanel,
@@ -62,7 +68,7 @@ export class PopupView extends React.Component<PopupViewProps> {
     constructor(props: PopupViewProps) {
         super(props);
         this.handler = props.popupHandlers.popupViewControllerHandler;
-        this.versionNumber = props.browserAdapter.getManifest().version;
+        this.versionNumber = props.deps.browserAdapter.getManifest().version;
         this.openTogglesView = () => {
             this.handler.openLaunchPad(this);
         };
@@ -185,42 +191,23 @@ export class PopupView extends React.Component<PopupViewProps> {
     }
 
     private renderUnsupportedMsgPanelForFileUrl(): JSX.Element {
-        return (
-            <div className="ms-Fabric unsupported-url-info-panel">
-                {this.renderDefaultHeader()}
-                <div className="ms-Grid main-section">
-                    <div className="launch-panel-general-container">{DisplayableStrings.fileUrlDoesNotHaveAccess}</div>
-                    <div>
-                        <div>To allow this extension to run on file URLs:</div>
-                        <div>
-                            {'1. Open '}
-                            <NewTabLink
-                                onClick={this.props.browserAdapter.openManageExtensionPage}
-                                aria-label={`open ${this.props.title} extension page`}
-                            >
-                                {`${this.props.title} extension page`}
-                            </NewTabLink>
-                            {'.'}
-                        </div>
-                        <div>
-                            {'2. Enable '}
-                            <span className="ms-fontWeight-semibold">Allow Access to file URLs</span>.
-                        </div>
-                    </div>
-                </div>
-            </div>
-        );
+        const props: FileUrlUnsupportedMessagePanelProps = {
+            title: this.props.title,
+            header: this.renderDefaultHeader(),
+            deps: this.props.deps,
+        };
+
+        return <FileUrlUnsupportedMessagePanel {...props} />;
     }
 
     private renderDefaultHeader(): JSX.Element {
         return <Header title={this.props.title} />;
     }
 
-    @autobind
-    public setlaunchPanelType(launchPanelType: LaunchPanelType): void {
+    public setlaunchPanelType = (launchPanelType: LaunchPanelType): void => {
         const { popupActionMessageCreator } = this.props.deps;
         popupActionMessageCreator.setLaunchPanelType(launchPanelType);
-    }
+    };
 }
 
 export const PopupViewWithStoreSubscription = withStoreSubscription<PopupViewProps, PopupViewControllerState>(PopupView);

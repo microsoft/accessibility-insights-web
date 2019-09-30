@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { autobind } from '@uifabric/utilities';
 import { DefaultButton } from 'office-ui-fabric-react/lib/Button';
 import * as React from 'react';
 
@@ -69,17 +68,15 @@ export class IssueFilingButton extends React.Component<IssueFilingButtonProps, I
         );
     }
 
-    @autobind
-    private closeNeedsSettingsContent(): void {
+    private closeNeedsSettingsContent = (): void => {
         this.setState({ showNeedsSettingsContent: false });
-    }
+    };
 
     private openNeedsSettingsContent(): void {
         this.setState({ showNeedsSettingsContent: true });
     }
 
-    @autobind
-    private onClickFileIssueButton(event: React.MouseEvent<any>): void {
+    private onClickFileIssueButton = (event: React.MouseEvent<any>): void => {
         const { issueDetailsData, userConfigurationStoreData, deps } = this.props;
         const { issueFilingServiceProvider, issueFilingActionMessageCreator } = deps;
 
@@ -95,5 +92,5 @@ export class IssueFilingButton extends React.Component<IssueFilingButtonProps, I
         } else {
             this.openNeedsSettingsContent();
         }
-    }
+    };
 }

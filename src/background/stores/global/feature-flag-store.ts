@@ -1,12 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { autobind } from '@uifabric/utilities';
-
-import { FeatureFlags, getDefaultFeatureFlagValues, getForceDefaultFlags } from '../../../common/feature-flags';
-import { StoreNames } from '../../../common/stores/store-names';
-import { FeatureFlagStoreData } from '../../../common/types/store-data/feature-flag-store-data';
+import { StorageAdapter } from 'common/browser-adapters/storage-adapter';
+import { FeatureFlags, getDefaultFeatureFlagValues, getForceDefaultFlags } from 'common/feature-flags';
+import { StoreNames } from 'common/stores/store-names';
+import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { FeatureFlagActions, FeatureFlagPayload } from '../../actions/feature-flag-actions';
-import { StorageAdapter } from '../../browser-adapters/storage-adapter';
 import { LocalStorageDataKeys } from '../../local-storage-data-keys';
 import { LocalStorageData } from '../../storage-data';
 import { BaseStoreImpl } from '../base-store-impl';
@@ -57,16 +55,14 @@ export class FeatureFlagStore extends BaseStoreImpl<FeatureFlagStoreData> {
         return initialState;
     }
 
-    @autobind
-    private onSetFeatureFlags(payload: FeatureFlagPayload): void {
+    private onSetFeatureFlags = (payload: FeatureFlagPayload): void => {
         this.state[payload.feature] = payload.enabled;
-        this.storageAdapter.setUserData({ [LocalStorageDataKeys.featureFlags]: this.state });
+        this.storageAdapter.setUserData({ [LocalStorageDataKeys.featureFlags]: this.state }).catch(console.error);
         this.emitChanged();
-    }
+    };
 
-    @autobind
-    private onResetFeatureFlags(): void {
+    private onResetFeatureFlags = (): void => {
         this.state = this.getDefaultState();
         this.emitChanged();
-    }
+    };
 }

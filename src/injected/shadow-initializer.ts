@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { ClientBrowserAdapter } from '../common/client-browser-adapter';
-import { FileRequestHelper } from '../common/file-request-helper';
+import { BrowserAdapter } from '../common/browser-adapters/browser-adapter';
 import { createDefaultLogger } from '../common/logging/default-logger';
 import { Logger } from '../common/logging/logger';
 import { HTMLElementUtils } from './../common/html-element-utils';
@@ -9,27 +8,29 @@ import { rootContainerId } from './constants';
 
 export class ShadowInitializer {
     public static readonly injectedCssPath: string = 'injected/styles/default/injected.css';
+    public static readonly generatedBundleInjectedCssPath: string = 'bundle/injected.css';
 
     constructor(
-        private chromeAdapter: ClientBrowserAdapter,
+        private browserAdapter: BrowserAdapter,
         private htmlElementUtils: HTMLElementUtils,
-        private fileRequestHelper: FileRequestHelper,
         private logger: Logger = createDefaultLogger(),
     ) {}
 
     public async initialize(): Promise<void> {
         try {
             const shadowContainer = this.createShadowContainer();
-            const injectedCssContent = await this.getFileContentByPath(ShadowInitializer.injectedCssPath);
-            this.addStyleElement(injectedCssContent, shadowContainer);
+            this.addLinkElement(ShadowInitializer.injectedCssPath, shadowContainer);
+            this.addLinkElement(ShadowInitializer.generatedBundleInjectedCssPath, shadowContainer);
         } catch (err) {
             this.logger.log('unable to insert styles under shadow', err);
         }
     }
 
-    private addStyleElement(styleContent: string, container: HTMLElement): void {
-        const styleElement = document.createElement('style');
-        styleElement.innerHTML = styleContent;
+    private addLinkElement(relativeCssPath: string, container: HTMLElement): void {
+        const styleElement = document.createElement('link');
+        styleElement.rel = 'stylesheet';
+        styleElement.href = this.browserAdapter.getUrl(relativeCssPath);
+        styleElement.type = 'text/css';
         container.appendChild(styleElement);
     }
 
@@ -64,11 +65,5 @@ export class ShadowInitializer {
 
         div.id = id;
         return div;
-    }
-
-    private async getFileContentByPath(filePath: string): Promise<string> {
-        const fileUrl = this.chromeAdapter.getUrl(filePath);
-
-        return await this.fileRequestHelper.getFileContent(fileUrl);
     }
 }

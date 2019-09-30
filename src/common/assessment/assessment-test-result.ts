@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { AssessmentsProvider } from '../../assessments/types/assessments-provider';
-import { Assessment } from '../../assessments/types/iassessment';
-import { OutcomeStats, outcomeStatsFromManualTestStatus } from '../../DetailsView/reports/components/outcome-type';
+import { AssessmentsProvider } from 'assessments/types/assessments-provider';
+import { Assessment } from 'assessments/types/iassessment';
+import { outcomeStatsFromManualTestStatus, RequirementOutcomeStats } from 'reports/components/requirement-outcome-type';
 import { ManualTestStatusData } from '../types/manual-test-status';
 import { AssessmentData } from '../types/store-data/assessment-result-data';
 import { VisualizationType } from '../types/visualization-type';
@@ -11,7 +11,7 @@ import { getRequirementsResults, RequirementResult } from './requirement';
 export type AssessmentTestDefinition = Assessment;
 
 export type AssessmentTestProviderDeps = {
-    outcomeStatsFromManualTestStatus: (testStepStatus: ManualTestStatusData) => OutcomeStats;
+    outcomeStatsFromManualTestStatus: (testStepStatus: ManualTestStatusData) => RequirementOutcomeStats;
     getRequirementsResults: (
         provider: AssessmentsProvider,
         visualizationType: VisualizationType,
@@ -40,7 +40,7 @@ export class AssessmentTestResult {
         return this.deps.getRequirementsResults(this.assessmentProvider, this.visualizationType, this.data.testStepStatus);
     }
 
-    public getOutcomeStats(): OutcomeStats {
+    public getOutcomeStats(): RequirementOutcomeStats {
         return this.deps.outcomeStatsFromManualTestStatus(this.data.testStepStatus);
     }
 

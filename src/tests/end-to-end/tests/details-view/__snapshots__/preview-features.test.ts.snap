@@ -5,7 +5,6 @@ exports[`Preview Features Panel Normal mode should match content in snapshot 1`]
   <div
     aria-hidden="false"
     class="ms-Panel is-open ms-Panel--hasCloseButton ms-Panel--custom generic-panel preview-features-panel root-000"
-    type="7"
   >
     <div
       class="ms-Overlay overlay-000"
@@ -14,6 +13,11 @@ exports[`Preview Features Panel Normal mode should match content in snapshot 1`]
       class="ms-Panel-main main-000"
       style="width: 550px;"
     >
+      <div
+        data-is-visible="true"
+        style="pointer-events: none; position: fixed;"
+        tabindex="0"
+      />
       <div
         class="ms-Panel-commands commands-000"
         data-is-visible="true"
@@ -26,12 +30,14 @@ exports[`Preview Features Panel Normal mode should match content in snapshot 1`]
             class="ms-Button ms-Button--icon ms-Panel-closeButton ms-PanelAction-close closeButton-000"
             data-is-focusable="true"
             data-is-visible="true"
+            title="Close preview features panel"
             type="button"
           >
             <div
               class="ms-Button-flexContainer flexContainer-000"
             >
               <i
+                aria-hidden="true"
                 class="ms-Button-icon icon-000"
                 data-icon-name="Cancel"
                 role="presentation"
@@ -66,12 +72,18 @@ exports[`Preview Features Panel Normal mode should match content in snapshot 1`]
           >
             <div
               class="no-preview-feature-message"
+              id="no-displayable-feature-flag-message"
             >
               No preview features are currently available to manage. Follow this page for future cool features.
             </div>
           </div>
         </div>
       </div>
+      <div
+        data-is-visible="true"
+        style="pointer-events: none; position: fixed;"
+        tabindex="0"
+      />
     </div>
   </div>
 </DocumentFragment>

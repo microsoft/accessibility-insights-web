@@ -3,8 +3,8 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-import { Content, ContentDeps } from '../../../../../views/content/content';
-import { ContentProvider } from '../../../../../views/content/content-page';
+import { Content, ContentDeps } from 'views/content/content';
+import { ContentProvider } from 'views/content/content-page';
 
 describe('content view', () => {
     it('renders', () => {

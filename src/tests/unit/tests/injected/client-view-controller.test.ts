@@ -2,12 +2,12 @@
 // Licensed under the MIT License.
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
-import { AssessmentsProviderImpl } from '../../../../assessments/assessments-provider';
-import { AssessmentDataConverter } from '../../../../background/assessment-data-converter';
-import { FeatureFlagStore } from '../../../../background/stores/global/feature-flag-store';
-import { TabStore } from '../../../../background/stores/tab-store';
-import { VisualizationScanResultStore } from '../../../../background/stores/visualization-scan-result-store';
-import { VisualizationStore } from '../../../../background/stores/visualization-store';
+import { AssessmentsProviderImpl } from 'assessments/assessments-provider';
+import { AssessmentDataConverter } from 'background/assessment-data-converter';
+import { FeatureFlagStore } from 'background/stores/global/feature-flag-store';
+import { TabStore } from 'background/stores/tab-store';
+import { VisualizationScanResultStore } from 'background/stores/visualization-scan-result-store';
+import { VisualizationStore } from 'background/stores/visualization-store';
 import { BaseStore } from '../../../../common/base-store';
 import { TestMode } from '../../../../common/configs/test-mode';
 import { VisualizationConfigurationFactory } from '../../../../common/configs/visualization-configuration-factory';
@@ -370,108 +370,108 @@ class TestableClientViewController extends ClientViewController {
 }
 
 class MocksAndTestSubjectBuilder {
-    private _fromVisualizationStoreState: VisualizationStoreData;
-    private _toVisualizationStoreState: VisualizationStoreData;
-    private _fromVisualizationScanStoreState: VisualizationScanResultData;
-    private _toVisualizationScanStoreState: VisualizationScanResultData;
-    private _fromAssessmentStoreState: AssessmentStoreData;
-    private _toAssessmentStoreState: AssessmentStoreData;
-    private _fromTabStoreState: TabStoreData;
-    private _toTabStoreState: TabStoreData;
-    private _fromUserConfigurationStoreState: UserConfigurationStoreData;
-    private _toUserConfigurationStoreState: UserConfigurationStoreData;
-    private _fromTargetTabId: number;
-    private _toTargetTabId: number;
+    private fromVisualizationStoreState: VisualizationStoreData;
+    private toVisualizationStoreState: VisualizationStoreData;
+    private fromVisualizationScanStoreState: VisualizationScanResultData;
+    private toVisualizationScanStoreState: VisualizationScanResultData;
+    private fromAssessmentStoreState: AssessmentStoreData;
+    private toAssessmentStoreState: AssessmentStoreData;
+    private fromTabStoreState: TabStoreData;
+    private toTabStoreState: TabStoreData;
+    private fromUserConfigurationStoreState: UserConfigurationStoreData;
+    private toUserConfigurationStoreState: UserConfigurationStoreData;
+    private fromTargetTabId: number;
+    private toTargetTabId: number;
 
-    private _fromFeatureFlagStoreState: FeatureFlagStoreData = getDefaultFeatureFlagValues();
-    private _toFeatureFlagStoreState: FeatureFlagStoreData = getDefaultFeatureFlagValues();
-    private _visualizationStore: IMock<BaseStore<VisualizationStoreData>>;
-    private _assessmentStoreMock: IMock<BaseStore<AssessmentStoreData>>;
-    private _tabStoreMock: IMock<BaseStore<TabStoreData>>;
-    private _userConfigStoreMock: IMock<BaseStore<UserConfigurationStoreData>>;
-    private _selectorMapHelperMock: IMock<SelectorMapHelper>;
-    private _visualizationScanResultStoreMock: IMock<BaseStore<VisualizationScanResultData>>;
-    private _featureFlagStoreMock: IMock<BaseStore<DictionaryStringTo<boolean>>>;
-    private _drawingInitiatorMock: IMock<DrawingInitiator>;
-    private _scrollingControllerMock: IMock<ScrollingController>;
-    private _dataBuilderForFromVisualizationStoreState: VisualizationStoreDataBuilder = new VisualizationStoreDataBuilder();
-    private _dataBuilderForToVisualizationStoreState: VisualizationStoreDataBuilder = new VisualizationStoreDataBuilder();
-    private _dataBuilderForFromVisualizationScanStoreState = new VisualizationScanResultStoreDataBuilder();
-    private _dataBuilderForToVisualizationScanStoreState = new VisualizationScanResultStoreDataBuilder();
-    private IsScrollingInitiatorSetup: boolean = false;
-    private _initializedVisualizationState: DictionaryStringTo<boolean> = {};
-    private _initializedVisualizationSelectorMapState: DictionaryNumberTo<DictionaryStringTo<AssessmentVisualizationInstance>> = {};
-    private _selectorMap: DictionaryStringTo<AssessmentVisualizationInstance>;
-    private _visualizationConfigurationFactoryMock: IMock<VisualizationConfigurationFactory>;
-    private _actualVisualizationConfigurationFactory: VisualizationConfigurationFactory;
-    private _visualizationInstanceProcessorStub: VisualizationInstanceProcessorCallback<PropertyBags, PropertyBags>;
-    private _getVisualizationInstanceProcessorMock: IMock<
+    private fromFeatureFlagStoreState: FeatureFlagStoreData = getDefaultFeatureFlagValues();
+    private toFeatureFlagStoreState: FeatureFlagStoreData = getDefaultFeatureFlagValues();
+    private visualizationStore: IMock<BaseStore<VisualizationStoreData>>;
+    private assessmentStoreMock: IMock<BaseStore<AssessmentStoreData>>;
+    private tabStoreMock: IMock<BaseStore<TabStoreData>>;
+    private userConfigStoreMock: IMock<BaseStore<UserConfigurationStoreData>>;
+    private selectorMapHelperMock: IMock<SelectorMapHelper>;
+    private visualizationScanResultStoreMock: IMock<BaseStore<VisualizationScanResultData>>;
+    private featureFlagStoreMock: IMock<BaseStore<DictionaryStringTo<boolean>>>;
+    private drawingInitiatorMock: IMock<DrawingInitiator>;
+    private scrollingControllerMock: IMock<ScrollingController>;
+    private dataBuilderForFromVisualizationStoreState: VisualizationStoreDataBuilder = new VisualizationStoreDataBuilder();
+    private dataBuilderForToVisualizationStoreState: VisualizationStoreDataBuilder = new VisualizationStoreDataBuilder();
+    private dataBuilderForFromVisualizationScanStoreState = new VisualizationScanResultStoreDataBuilder();
+    private dataBuilderForToVisualizationScanStoreState = new VisualizationScanResultStoreDataBuilder();
+    private isScrollingInitiatorSetup: boolean = false;
+    private initializedVisualizationState: DictionaryStringTo<boolean> = {};
+    private initializedVisualizationSelectorMapState: DictionaryNumberTo<DictionaryStringTo<AssessmentVisualizationInstance>> = {};
+    private selectorMap: DictionaryStringTo<AssessmentVisualizationInstance>;
+    private visualizationConfigurationFactoryMock: IMock<VisualizationConfigurationFactory>;
+    private actualVisualizationConfigurationFactory: VisualizationConfigurationFactory;
+    private visualizationInstanceProcessorStub: VisualizationInstanceProcessorCallback<PropertyBags, PropertyBags>;
+    private getVisualizationInstanceProcessorMock: IMock<
         (testStep?: string) => VisualizationInstanceProcessorCallback<PropertyBags, PropertyBags>
     >;
-    private _targetPageActionMessageCreatorMock: IMock<TargetPageActionMessageCreator>;
+    private targetPageActionMessageCreatorMock: IMock<TargetPageActionMessageCreator>;
 
     public setScanning(id: string): MocksAndTestSubjectBuilder {
-        this._dataBuilderForToVisualizationStoreState.with('scanning', id);
+        this.dataBuilderForToVisualizationStoreState.with('scanning', id);
         return this;
     }
 
     public toDisabled(visualizationType: VisualizationType): MocksAndTestSubjectBuilder {
-        this._dataBuilderForToVisualizationStoreState.withDisable(visualizationType);
+        this.dataBuilderForToVisualizationStoreState.withDisable(visualizationType);
         return this;
     }
 
     public toEnabled(visualizationType: VisualizationType): MocksAndTestSubjectBuilder {
-        this._dataBuilderForToVisualizationStoreState.withEnable(visualizationType);
+        this.dataBuilderForToVisualizationStoreState.withEnable(visualizationType);
         return this;
     }
 
     public fromDisabled(visualizationType: VisualizationType): MocksAndTestSubjectBuilder {
-        this._dataBuilderForFromVisualizationStoreState.withDisable(visualizationType);
+        this.dataBuilderForFromVisualizationStoreState.withDisable(visualizationType);
         return this;
     }
 
     public fromEnabled(visualizationType: VisualizationType): MocksAndTestSubjectBuilder {
-        this._dataBuilderForFromVisualizationStoreState.withEnable(visualizationType);
+        this.dataBuilderForFromVisualizationStoreState.withEnable(visualizationType);
         return this;
     }
 
     public fromAssessmentTarget(id: number): MocksAndTestSubjectBuilder {
-        this._fromTargetTabId = id;
+        this.fromTargetTabId = id;
         return this;
     }
 
     public toAssessmentTarget(id: number): MocksAndTestSubjectBuilder {
-        this._toTargetTabId = id;
+        this.toTargetTabId = id;
         return this;
     }
 
     public fromFocusedTarget(target: string[]): MocksAndTestSubjectBuilder {
-        this._dataBuilderForFromVisualizationStoreState.withFocusedTarget(target);
+        this.dataBuilderForFromVisualizationStoreState.withFocusedTarget(target);
         return this;
     }
 
     public ToFocusedTarget(target: string[]): MocksAndTestSubjectBuilder {
-        this._dataBuilderForToVisualizationStoreState.withFocusedTarget(target);
+        this.dataBuilderForToVisualizationStoreState.withFocusedTarget(target);
         return this;
     }
 
     public setFullIdToRuleResultMap(map): MocksAndTestSubjectBuilder {
-        this._dataBuilderForToVisualizationScanStoreState.withFullIdToRuleResultMapForIssues(map);
+        this.dataBuilderForToVisualizationScanStoreState.withFullIdToRuleResultMapForIssues(map);
         return this;
     }
 
     public fromFeatureFlagState(state: FeatureFlagStoreData): MocksAndTestSubjectBuilder {
-        this._fromFeatureFlagStoreState = state;
+        this.fromFeatureFlagStoreState = state;
         return this;
     }
 
     public setupScrolling(times: Times, message: ScrollingWindowMessage): MocksAndTestSubjectBuilder {
-        this._scrollingControllerMock = Mock.ofType(ScrollingController);
-        this._scrollingControllerMock.setup(s => s.processRequest(It.isValue(message))).verifiable(times);
-        this.IsScrollingInitiatorSetup = true;
+        this.scrollingControllerMock = Mock.ofType(ScrollingController);
+        this.scrollingControllerMock.setup(s => s.processRequest(It.isValue(message))).verifiable(times);
+        this.isScrollingInitiatorSetup = true;
 
-        this._targetPageActionMessageCreatorMock = Mock.ofType(TargetPageActionMessageCreator);
-        this._targetPageActionMessageCreatorMock.setup(m => m.scrollRequested()).verifiable(times);
+        this.targetPageActionMessageCreatorMock = Mock.ofType(TargetPageActionMessageCreator);
+        this.targetPageActionMessageCreatorMock.setup(m => m.scrollRequested()).verifiable(times);
 
         return this;
     }
@@ -486,44 +486,44 @@ class MocksAndTestSubjectBuilder {
         this.buildPreviousSelectorMapStatesStub();
 
         const controller = new TestableClientViewController(
-            this._visualizationStore.object,
-            this._visualizationScanResultStoreMock.object,
-            this._drawingInitiatorMock.object,
-            this._scrollingControllerMock.object,
-            this._visualizationConfigurationFactoryMock.object,
-            this._featureFlagStoreMock.object,
-            this._assessmentStoreMock.object,
-            this._tabStoreMock.object,
-            this._userConfigStoreMock.object,
-            this._selectorMapHelperMock.object,
-            this._targetPageActionMessageCreatorMock.object,
+            this.visualizationStore.object,
+            this.visualizationScanResultStoreMock.object,
+            this.drawingInitiatorMock.object,
+            this.scrollingControllerMock.object,
+            this.visualizationConfigurationFactoryMock.object,
+            this.featureFlagStoreMock.object,
+            this.assessmentStoreMock.object,
+            this.tabStoreMock.object,
+            this.userConfigStoreMock.object,
+            this.selectorMapHelperMock.object,
+            this.targetPageActionMessageCreatorMock.object,
         );
 
-        (controller as any).currentVisualizationState = this._visualizationStore.object.getState();
-        (controller as any).currentScanResultState = this._visualizationScanResultStoreMock.object.getState();
-        (controller as any).currentAssessmentState = this._assessmentStoreMock.object.getState();
-        (controller as any).currentTabState = this._tabStoreMock.object.getState();
-        (controller as any).currentUserConfigStoreState = this._userConfigStoreMock.object.getState();
+        (controller as any).currentVisualizationState = this.visualizationStore.object.getState();
+        (controller as any).currentScanResultState = this.visualizationScanResultStoreMock.object.getState();
+        (controller as any).currentAssessmentState = this.assessmentStoreMock.object.getState();
+        (controller as any).currentTabState = this.tabStoreMock.object.getState();
+        (controller as any).currentUserConfigStoreState = this.userConfigStoreMock.object.getState();
 
-        controller.setPreviousVisualizationStatesStub(this._initializedVisualizationState);
-        controller.setPreviousVisualizationSelectorMapStatesStub(this._initializedVisualizationSelectorMapState);
-        this._actualVisualizationConfigurationFactory = new VisualizationConfigurationFactory();
+        controller.setPreviousVisualizationStatesStub(this.initializedVisualizationState);
+        controller.setPreviousVisualizationSelectorMapStatesStub(this.initializedVisualizationSelectorMapState);
+        this.actualVisualizationConfigurationFactory = new VisualizationConfigurationFactory();
 
         return controller;
     }
 
     public verifyAll(): void {
-        this._drawingInitiatorMock.verifyAll();
-        this._visualizationStore.verifyAll();
-        if (this.IsScrollingInitiatorSetup) {
-            this._scrollingControllerMock.verifyAll();
-            this._targetPageActionMessageCreatorMock.verifyAll();
+        this.drawingInitiatorMock.verifyAll();
+        this.visualizationStore.verifyAll();
+        if (this.isScrollingInitiatorSetup) {
+            this.scrollingControllerMock.verifyAll();
+            this.targetPageActionMessageCreatorMock.verifyAll();
         }
     }
 
     private setupDrawingControllerAndSelectorMapMock(): void {
-        this._drawingInitiatorMock = Mock.ofType(DrawingInitiator);
-        this._selectorMapHelperMock = Mock.ofType(SelectorMapHelper);
+        this.drawingInitiatorMock = Mock.ofType(DrawingInitiator);
+        this.selectorMapHelperMock = Mock.ofType(SelectorMapHelper);
         this.setupVisualizationMocks();
     }
 
@@ -534,7 +534,7 @@ class MocksAndTestSubjectBuilder {
             const config = factory.getConfiguration(visualizationType);
             if (config.testMode === TestMode.Adhoc) {
                 const id = config.getIdentifier();
-                this._initializedVisualizationState[id] = this.getFromStateForType(visualizationType)
+                this.initializedVisualizationState[id] = this.getFromStateForType(visualizationType)
                     ? this.getFromStateForType(visualizationType).enabled
                     : false;
             }
@@ -543,15 +543,15 @@ class MocksAndTestSubjectBuilder {
 
     private buildPreviousSelectorMapStatesStub(): void {
         const types = EnumHelper.getNumericValues<VisualizationType>(VisualizationType);
-        types.forEach(visualizationType => (this._initializedVisualizationSelectorMapState[visualizationType] = this._selectorMap));
+        types.forEach(visualizationType => (this.initializedVisualizationSelectorMapState[visualizationType] = this.selectorMap));
     }
 
     private setupScrollingControllerMock(): void {
-        this._scrollingControllerMock = this._scrollingControllerMock || Mock.ofType(ScrollingController);
+        this.scrollingControllerMock = this.scrollingControllerMock || Mock.ofType(ScrollingController);
     }
 
     private setupTargetActionCreatorMock(): void {
-        this._targetPageActionMessageCreatorMock = this._targetPageActionMessageCreatorMock || Mock.ofType(TargetPageActionMessageCreator);
+        this.targetPageActionMessageCreatorMock = this.targetPageActionMessageCreatorMock || Mock.ofType(TargetPageActionMessageCreator);
     }
 
     private setupVisualizationMocks(): void {
@@ -565,22 +565,22 @@ class MocksAndTestSubjectBuilder {
         assessmentsProviderMock.setup(ap => ap.all()).returns(() => []);
         const assessmentDataConverterMock = Mock.ofType(AssessmentDataConverter);
         assessmentDataConverterMock.setup(acdm => acdm.getNewManualTestStepResult(It.isAny())).returns(() => null);
-        this._fromVisualizationStoreState = this._dataBuilderForFromVisualizationStoreState.build();
-        this._toVisualizationStoreState = this._dataBuilderForToVisualizationStoreState.build();
-        this._fromVisualizationScanStoreState = this._dataBuilderForFromVisualizationScanStoreState.build();
-        this._toVisualizationScanStoreState = this._dataBuilderForToVisualizationScanStoreState.build();
-        this._fromAssessmentStoreState = new AssessmentsStoreDataBuilder(assessmentsProviderMock.object, assessmentDataConverterMock.object)
-            .withTargetTab(this._fromTargetTabId, null, null, false)
+        this.fromVisualizationStoreState = this.dataBuilderForFromVisualizationStoreState.build();
+        this.toVisualizationStoreState = this.dataBuilderForToVisualizationStoreState.build();
+        this.fromVisualizationScanStoreState = this.dataBuilderForFromVisualizationScanStoreState.build();
+        this.toVisualizationScanStoreState = this.dataBuilderForToVisualizationScanStoreState.build();
+        this.fromAssessmentStoreState = new AssessmentsStoreDataBuilder(assessmentsProviderMock.object, assessmentDataConverterMock.object)
+            .withTargetTab(this.fromTargetTabId, null, null, false)
             .build();
-        this._toAssessmentStoreState = new AssessmentsStoreDataBuilder(assessmentsProviderMock.object, assessmentDataConverterMock.object)
-            .withTargetTab(this._toTargetTabId, null, null, false)
+        this.toAssessmentStoreState = new AssessmentsStoreDataBuilder(assessmentsProviderMock.object, assessmentDataConverterMock.object)
+            .withTargetTab(this.toTargetTabId, null, null, false)
             .build();
-        this._fromTabStoreState = { id: 1 } as TabStoreData;
-        this._toTabStoreState = { id: 1 } as TabStoreData;
-        this._fromUserConfigurationStoreState = {} as UserConfigurationStoreData;
-        this._toUserConfigurationStoreState = {} as UserConfigurationStoreData;
+        this.fromTabStoreState = { id: 1 } as TabStoreData;
+        this.toTabStoreState = { id: 1 } as TabStoreData;
+        this.fromUserConfigurationStoreState = {} as UserConfigurationStoreData;
+        this.toUserConfigurationStoreState = {} as UserConfigurationStoreData;
 
-        this._selectorMap = {
+        this.selectorMap = {
             key1: {
                 target: ['element1'],
                 html: 'test',
@@ -603,39 +603,39 @@ class MocksAndTestSubjectBuilder {
     }
 
     private setupGetStateMock(): void {
-        this._visualizationStore = Mock.ofType(VisualizationStore);
-        this._assessmentStoreMock = Mock.ofType<BaseStore<AssessmentStoreData>>();
-        this._tabStoreMock = Mock.ofType<BaseStore<TabStoreData>>(TabStore);
-        this._userConfigStoreMock = Mock.ofType<BaseStore<UserConfigurationStoreData>>(UserConfigurationStore);
-        this._visualizationScanResultStoreMock = Mock.ofType(VisualizationScanResultStore);
-        this._featureFlagStoreMock = Mock.ofType(FeatureFlagStore);
+        this.visualizationStore = Mock.ofType(VisualizationStore);
+        this.assessmentStoreMock = Mock.ofType<BaseStore<AssessmentStoreData>>();
+        this.tabStoreMock = Mock.ofType<BaseStore<TabStoreData>>(TabStore);
+        this.userConfigStoreMock = Mock.ofType<BaseStore<UserConfigurationStoreData>>(UserConfigurationStore);
+        this.visualizationScanResultStoreMock = Mock.ofType(VisualizationScanResultStore);
+        this.featureFlagStoreMock = Mock.ofType(FeatureFlagStore);
 
-        this._visualizationStore.setup(sm => sm.getState()).returns(() => this._fromVisualizationStoreState);
+        this.visualizationStore.setup(sm => sm.getState()).returns(() => this.fromVisualizationStoreState);
 
-        this._visualizationStore.setup(sm => sm.getState()).returns(() => this._toVisualizationStoreState);
+        this.visualizationStore.setup(sm => sm.getState()).returns(() => this.toVisualizationStoreState);
 
-        this._visualizationScanResultStoreMock.setup(sm => sm.getState()).returns(() => this._fromVisualizationScanStoreState);
+        this.visualizationScanResultStoreMock.setup(sm => sm.getState()).returns(() => this.fromVisualizationScanStoreState);
 
-        this._visualizationScanResultStoreMock.setup(sm => sm.getState()).returns(() => this._toVisualizationScanStoreState);
+        this.visualizationScanResultStoreMock.setup(sm => sm.getState()).returns(() => this.toVisualizationScanStoreState);
 
-        this._assessmentStoreMock.setup(sm => sm.getState()).returns(() => this._fromAssessmentStoreState);
+        this.assessmentStoreMock.setup(sm => sm.getState()).returns(() => this.fromAssessmentStoreState);
 
-        this._assessmentStoreMock.setup(sm => sm.getState()).returns(() => this._toAssessmentStoreState);
+        this.assessmentStoreMock.setup(sm => sm.getState()).returns(() => this.toAssessmentStoreState);
 
-        this._tabStoreMock
+        this.tabStoreMock
             .setup(sm => sm.getState())
-            .returns(() => this._fromTabStoreState)
+            .returns(() => this.fromTabStoreState)
             .verifiable();
 
-        this._userConfigStoreMock.setup(sm => sm.getState()).returns(() => this._fromUserConfigurationStoreState);
+        this.userConfigStoreMock.setup(sm => sm.getState()).returns(() => this.fromUserConfigurationStoreState);
 
-        this._userConfigStoreMock.setup(sm => sm.getState()).returns(() => this._toUserConfigurationStoreState);
+        this.userConfigStoreMock.setup(sm => sm.getState()).returns(() => this.toUserConfigurationStoreState);
 
-        this._tabStoreMock.setup(sm => sm.getState()).returns(() => this._toTabStoreState);
+        this.tabStoreMock.setup(sm => sm.getState()).returns(() => this.toTabStoreState);
 
-        this._featureFlagStoreMock.setup(sm => sm.getState()).returns(() => this._fromFeatureFlagStoreState);
+        this.featureFlagStoreMock.setup(sm => sm.getState()).returns(() => this.fromFeatureFlagStoreState);
 
-        this._featureFlagStoreMock.setup(sm => sm.getState()).returns(() => this._toFeatureFlagStoreState);
+        this.featureFlagStoreMock.setup(sm => sm.getState()).returns(() => this.toFeatureFlagStoreState);
     }
 
     private setupEnableDisableVisualizationMock(visualizationType: VisualizationType): void {
@@ -656,56 +656,56 @@ class MocksAndTestSubjectBuilder {
             disableTimes = Times.once();
         }
 
-        if (this._toVisualizationStoreState.scanning != null || this._fromFeatureFlagStoreState == null) {
+        if (this.toVisualizationStoreState.scanning != null || this.fromFeatureFlagStoreState == null) {
             enableTimes = Times.never();
             disableTimes = Times.never();
         }
 
-        this._visualizationInstanceProcessorStub = null;
-        this._getVisualizationInstanceProcessorMock = Mock.ofInstance(step => null);
-        this._getVisualizationInstanceProcessorMock
+        this.visualizationInstanceProcessorStub = null;
+        this.getVisualizationInstanceProcessorMock = Mock.ofInstance(step => null);
+        this.getVisualizationInstanceProcessorMock
             .setup(vimpcm => vimpcm(It.isAny()))
-            .returns(() => this._visualizationInstanceProcessorStub);
+            .returns(() => this.visualizationInstanceProcessorStub);
 
-        this._visualizationConfigurationFactoryMock = Mock.ofType(VisualizationConfigurationFactory);
-        this._visualizationConfigurationFactoryMock
+        this.visualizationConfigurationFactoryMock = Mock.ofType(VisualizationConfigurationFactory);
+        this.visualizationConfigurationFactoryMock
             .setup(vcfm => vcfm.getConfiguration(It.isAny()))
             .returns(theVisualizationType => {
-                const config = this._actualVisualizationConfigurationFactory.getConfiguration(theVisualizationType);
-                config.visualizationInstanceProcessor = this._getVisualizationInstanceProcessorMock.object;
+                const config = this.actualVisualizationConfigurationFactory.getConfiguration(theVisualizationType);
+                config.visualizationInstanceProcessor = this.getVisualizationInstanceProcessorMock.object;
                 return config;
             });
 
-        this._drawingInitiatorMock
+        this.drawingInitiatorMock
             .setup(dw =>
                 dw.enableVisualization(
                     visualizationType,
-                    this._fromFeatureFlagStoreState,
-                    this._selectorMap,
+                    this.fromFeatureFlagStoreState,
+                    this.selectorMap,
                     It.isAny(),
-                    this._visualizationInstanceProcessorStub,
+                    this.visualizationInstanceProcessorStub,
                 ),
             )
             .verifiable(enableTimes);
 
-        this._drawingInitiatorMock
-            .setup(dw => dw.disableVisualization(visualizationType, this._fromFeatureFlagStoreState, It.isAny()))
+        this.drawingInitiatorMock
+            .setup(dw => dw.disableVisualization(visualizationType, this.fromFeatureFlagStoreState, It.isAny()))
             .verifiable(disableTimes);
 
-        this._selectorMapHelperMock
+        this.selectorMapHelperMock
             .setup(sm => sm.getSelectorMap(visualizationType))
-            .returns(() => this._selectorMap)
+            .returns(() => this.selectorMap)
             .verifiable(Times.once());
     }
 
     private getToStateForType(visualizationType: VisualizationType): any {
         switch (visualizationType) {
             case VisualizationType.Headings:
-                return this._toVisualizationStoreState.tests.adhoc.headings;
+                return this.toVisualizationStoreState.tests.adhoc.headings;
             case VisualizationType.Issues:
-                return this._toVisualizationStoreState.tests.adhoc.issues;
+                return this.toVisualizationStoreState.tests.adhoc.issues;
             case VisualizationType.Landmarks:
-                return this._toVisualizationStoreState.tests.adhoc.landmarks;
+                return this.toVisualizationStoreState.tests.adhoc.landmarks;
             default:
                 return null;
         }
@@ -714,11 +714,11 @@ class MocksAndTestSubjectBuilder {
     private getFromStateForType(visualizationType: VisualizationType): ScanData {
         switch (visualizationType) {
             case VisualizationType.Headings:
-                return this._fromVisualizationStoreState.tests.adhoc.headings;
+                return this.fromVisualizationStoreState.tests.adhoc.headings;
             case VisualizationType.Issues:
-                return this._fromVisualizationStoreState.tests.adhoc.issues;
+                return this.fromVisualizationStoreState.tests.adhoc.issues;
             case VisualizationType.Landmarks:
-                return this._fromVisualizationStoreState.tests.adhoc.landmarks;
+                return this.fromVisualizationStoreState.tests.adhoc.landmarks;
             default:
                 return null;
         }

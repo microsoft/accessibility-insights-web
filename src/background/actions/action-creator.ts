@@ -1,20 +1,18 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { autobind } from '@uifabric/utilities';
-
 import { TestMode } from '../../common/configs/test-mode';
 import { VisualizationConfigurationFactory } from '../../common/configs/visualization-configuration-factory';
-import { RegisterTypeToPayloadCallback } from '../../common/message';
-import { Messages } from '../../common/messages';
+import * as TelemetryEvents from '../../common/extension-telemetry-events';
+import { getStoreStateMessage, Messages } from '../../common/messages';
 import { NotificationCreator } from '../../common/notification-creator';
-import * as TelemetryEvents from '../../common/telemetry-events';
+import { StoreNames } from '../../common/stores/store-names';
 import { VisualizationType } from '../../common/types/visualization-type';
 import { ScanCompletedPayload } from '../../injected/analyzers/analyzer';
 import { DictionaryNumberTo } from '../../types/common-types';
 import { VisualizationActions } from '../actions/visualization-actions';
 import { VisualizationScanResultActions } from '../actions/visualization-scan-result-actions';
-import { ChromeFeatureController } from '../chrome-feature-controller';
 import { DetailsViewController } from '../details-view-controller';
+import { Interpreter } from '../interpreter';
 import { TargetTabController } from '../target-tab-controller';
 import { TelemetryEventHandler } from '../telemetry/telemetry-event-handler';
 import { ActionHub } from './action-hub';
@@ -35,14 +33,7 @@ export class ActionCreator {
     private visualizationActions: VisualizationActions;
     private visualizationScanResultActions: VisualizationScanResultActions;
     private previewFeaturesActions: PreviewFeaturesActions;
-    private registerTypeToPayloadCallback: RegisterTypeToPayloadCallback;
-    private detailsViewController: DetailsViewController;
-    private chromeFeatureController: ChromeFeatureController;
-    private telemetryEventHandler: TelemetryEventHandler;
-    private notificationCreator: NotificationCreator;
-    private visualizationConfigurationFactory: VisualizationConfigurationFactory;
-    private targetTabController: TargetTabController;
-    private adhocTestTypeToTelemetryEvent: DictionaryNumberTo<string> = {
+    private adHocTestTypeToTelemetryEvent: DictionaryNumberTo<string> = {
         [VisualizationType.Color]: TelemetryEvents.COLOR_TOGGLE,
         [VisualizationType.Headings]: TelemetryEvents.HEADINGS_TOGGLE,
         [VisualizationType.Issues]: TelemetryEvents.AUTOMATED_CHECKS_TOGGLE,
@@ -52,200 +43,176 @@ export class ActionCreator {
     private inspectActions: InspectActions;
 
     constructor(
-        actionHub: ActionHub,
-        registerTypeToPayloadCallback: RegisterTypeToPayloadCallback,
-        detailsViewController: DetailsViewController,
-        chromeFeatureController: ChromeFeatureController,
-        telemetryEventHandler: TelemetryEventHandler,
-        notificationCreator: NotificationCreator,
-        visualizationConfigurationFactory: VisualizationConfigurationFactory,
-        targetTabController: TargetTabController,
+        private readonly interpreter: Interpreter,
+        readonly actionHub: ActionHub,
+        private readonly detailsViewController: DetailsViewController,
+        private readonly telemetryEventHandler: TelemetryEventHandler,
+        private readonly notificationCreator: NotificationCreator,
+        private readonly visualizationConfigurationFactory: VisualizationConfigurationFactory,
+        private readonly targetTabController: TargetTabController,
     ) {
         this.visualizationActions = actionHub.visualizationActions;
         this.previewFeaturesActions = actionHub.previewFeaturesActions;
         this.visualizationScanResultActions = actionHub.visualizationScanResultActions;
         this.inspectActions = actionHub.inspectActions;
-        this.registerTypeToPayloadCallback = registerTypeToPayloadCallback;
-        this.detailsViewController = detailsViewController;
-        this.chromeFeatureController = chromeFeatureController;
-        this.telemetryEventHandler = telemetryEventHandler;
-        this.notificationCreator = notificationCreator;
-        this.visualizationConfigurationFactory = visualizationConfigurationFactory;
-        this.targetTabController = targetTabController;
     }
 
     public registerCallbacks(): void {
-        this.registerTypeToPayloadCallback(visualizationMessages.Common.Toggle, this.onVisualizationToggle);
-        this.registerTypeToPayloadCallback(visualizationMessages.Common.ScanCompleted, this.onScanCompleted);
-        this.registerTypeToPayloadCallback(visualizationMessages.Common.ScrollRequested, this.onScrollRequested);
+        this.interpreter.registerTypeToPayloadCallback(visualizationMessages.Common.Toggle, this.onVisualizationToggle);
+        this.interpreter.registerTypeToPayloadCallback(visualizationMessages.Common.ScanCompleted, this.onScanCompleted);
+        this.interpreter.registerTypeToPayloadCallback(visualizationMessages.Common.ScrollRequested, this.onScrollRequested);
 
-        this.registerTypeToPayloadCallback(visualizationMessages.Issues.UpdateSelectedTargets, this.onUpdateIssuesSelectedTargets);
-        this.registerTypeToPayloadCallback(visualizationMessages.Issues.UpdateFocusedInstance, this.onUpdateFocusedInstance);
+        this.interpreter.registerTypeToPayloadCallback(
+            visualizationMessages.Issues.UpdateSelectedTargets,
+            this.onUpdateIssuesSelectedTargets,
+        );
+        this.interpreter.registerTypeToPayloadCallback(visualizationMessages.Issues.UpdateFocusedInstance, this.onUpdateFocusedInstance);
 
-        this.registerTypeToPayloadCallback(visualizationMessages.State.InjectionCompleted, this.injectionCompleted);
-        this.registerTypeToPayloadCallback(visualizationMessages.State.InjectionStarted, this.injectionStarted);
-        this.registerTypeToPayloadCallback(
-            visualizationMessages.State.GetCurrentVisualizationToggleState,
+        this.interpreter.registerTypeToPayloadCallback(visualizationMessages.State.InjectionCompleted, this.injectionCompleted);
+        this.interpreter.registerTypeToPayloadCallback(visualizationMessages.State.InjectionStarted, this.injectionStarted);
+        this.interpreter.registerTypeToPayloadCallback(
+            getStoreStateMessage(StoreNames.VisualizationStore),
             this.getVisualizationToggleCurrentState,
         );
-        this.registerTypeToPayloadCallback(visualizationMessages.State.GetCurrentVisualizationResultState, this.getScanResultsCurrentState);
+        this.interpreter.registerTypeToPayloadCallback(
+            getStoreStateMessage(StoreNames.VisualizationScanResultStore),
+            this.getScanResultsCurrentState,
+        );
 
-        this.registerTypeToPayloadCallback(visualizationMessages.TabStops.TabbedElementAdded, this.onTabbedElementAdded);
-        this.registerTypeToPayloadCallback(visualizationMessages.TabStops.RecordingCompleted, this.onRecordingCompleted);
-        this.registerTypeToPayloadCallback(visualizationMessages.TabStops.TerminateScan, this.onRecordingTerminated);
+        this.interpreter.registerTypeToPayloadCallback(visualizationMessages.TabStops.TabbedElementAdded, this.onTabbedElementAdded);
+        this.interpreter.registerTypeToPayloadCallback(visualizationMessages.TabStops.RecordingCompleted, this.onRecordingCompleted);
+        this.interpreter.registerTypeToPayloadCallback(visualizationMessages.TabStops.TerminateScan, this.onRecordingTerminated);
 
-        this.registerTypeToPayloadCallback(visualizationMessages.DetailsView.Open, this.onDetailsViewOpen);
-        this.registerTypeToPayloadCallback(visualizationMessages.DetailsView.Select, this.onPivotChildSelected);
-        this.registerTypeToPayloadCallback(visualizationMessages.DetailsView.PivotSelect, this.onDetailsViewPivotSelected);
-        this.registerTypeToPayloadCallback(visualizationMessages.DetailsView.Close, this.onDetailsViewClosed);
+        this.interpreter.registerTypeToPayloadCallback(visualizationMessages.DetailsView.Open, this.onDetailsViewOpen);
+        this.interpreter.registerTypeToPayloadCallback(visualizationMessages.DetailsView.Select, this.onPivotChildSelected);
+        this.interpreter.registerTypeToPayloadCallback(visualizationMessages.DetailsView.PivotSelect, this.onDetailsViewPivotSelected);
+        this.interpreter.registerTypeToPayloadCallback(visualizationMessages.DetailsView.Close, this.onDetailsViewClosed);
 
-        this.registerTypeToPayloadCallback(Messages.ChromeFeature.configureCommand, this.onOpenConfigureCommandTab);
+        this.interpreter.registerTypeToPayloadCallback(Messages.PreviewFeatures.OpenPanel, this.onOpenPreviewFeaturesPanel);
+        this.interpreter.registerTypeToPayloadCallback(Messages.PreviewFeatures.ClosePanel, this.onClosePreviewFeaturesPanel);
 
-        this.registerTypeToPayloadCallback(Messages.PreviewFeatures.OpenPanel, this.onOpenPreviewFeaturesPanel);
-        this.registerTypeToPayloadCallback(Messages.PreviewFeatures.ClosePanel, this.onClosePreviewFeaturesPanel);
+        this.interpreter.registerTypeToPayloadCallback(Messages.Assessment.AssessmentScanCompleted, this.onAssessmentScanCompleted);
+        this.interpreter.registerTypeToPayloadCallback(Messages.Assessment.StartOver, this.onStartOver);
+        this.interpreter.registerTypeToPayloadCallback(Messages.Assessment.CancelStartOver, this.onCancelStartOver);
+        this.interpreter.registerTypeToPayloadCallback(Messages.Assessment.StartOverAllAssessments, this.onStartOverAllAssessments);
+        this.interpreter.registerTypeToPayloadCallback(
+            Messages.Assessment.CancelStartOverAllAssessments,
+            this.onCancelStartOverAllAssessments,
+        );
+        this.interpreter.registerTypeToPayloadCallback(Messages.Assessment.EnableVisualHelper, this.onEnableVisualHelper);
+        this.interpreter.registerTypeToPayloadCallback(Messages.Assessment.DisableVisualHelperForTest, this.onDisableVisualHelpersForTest);
+        this.interpreter.registerTypeToPayloadCallback(Messages.Assessment.DisableVisualHelper, this.onDisableVisualHelper);
+        this.interpreter.registerTypeToPayloadCallback(
+            Messages.Assessment.EnableVisualHelperWithoutScan,
+            this.onEnableVisualHelperWithoutScan,
+        );
 
-        this.registerTypeToPayloadCallback(Messages.Assessment.AssessmentScanCompleted, this.onAssessmentScanCompleted);
-        this.registerTypeToPayloadCallback(Messages.Assessment.StartOver, this.onStartOver);
-        this.registerTypeToPayloadCallback(Messages.Assessment.CancelStartOver, this.onCancelStartOver);
-        this.registerTypeToPayloadCallback(Messages.Assessment.StartOverAllAssessments, this.onStartOverAllAssessments);
-        this.registerTypeToPayloadCallback(Messages.Assessment.CancelStartOverAllAssessments, this.onCancelStartOverAllAssessments);
-        this.registerTypeToPayloadCallback(Messages.Assessment.EnableVisualHelper, this.onEnableVisualHelper);
-        this.registerTypeToPayloadCallback(Messages.Assessment.DisableVisualHelperForTest, this.onDisableVisualHelpersForTest);
-        this.registerTypeToPayloadCallback(Messages.Assessment.DisableVisualHelper, this.onDisableVisualHelper);
-        this.registerTypeToPayloadCallback(Messages.Assessment.EnableVisualHelperWithoutScan, this.onEnableVisualHelperWithoutScan);
-
-        this.registerTypeToPayloadCallback(Messages.Inspect.SetHoveredOverSelector, this.onSetHoveredOverSelector);
+        this.interpreter.registerTypeToPayloadCallback(Messages.Inspect.SetHoveredOverSelector, this.onSetHoveredOverSelector);
     }
 
-    @autobind
-    private onEnableVisualHelperWithoutScan(payload: ToggleActionPayload): void {
+    private onEnableVisualHelperWithoutScan = (payload: ToggleActionPayload): void => {
         this.visualizationActions.enableVisualizationWithoutScan.invoke(payload);
-    }
+    };
 
-    @autobind
-    private onEnableVisualHelper(payload: ToggleActionPayload): void {
+    private onEnableVisualHelper = (payload: ToggleActionPayload): void => {
         this.visualizationActions.enableVisualization.invoke(payload);
-    }
+    };
 
-    @autobind
-    private onDisableVisualHelpersForTest(payload: ToggleActionPayload): void {
+    private onDisableVisualHelpersForTest = (payload: ToggleActionPayload): void => {
         this.visualizationActions.disableVisualization.invoke(payload.test);
-    }
+    };
 
-    @autobind
-    private onDisableVisualHelper(payload: ToggleActionPayload): void {
+    private onDisableVisualHelper = (payload: ToggleActionPayload): void => {
         const eventName = TelemetryEvents.DISABLE_VISUAL_HELPER;
         this.telemetryEventHandler.publishTelemetry(eventName, payload);
         this.visualizationActions.disableVisualization.invoke(payload.test);
-    }
+    };
 
-    @autobind
-    private onStartOver(payload: ToggleActionPayload): void {
+    private onStartOver = (payload: ToggleActionPayload): void => {
         const eventName = TelemetryEvents.START_OVER_TEST;
         this.telemetryEventHandler.publishTelemetry(eventName, payload);
         this.visualizationActions.disableVisualization.invoke(payload.test);
-    }
+    };
 
-    @autobind
-    private onCancelStartOver(payload: BaseActionPayload): void {
+    private onCancelStartOver = (payload: BaseActionPayload): void => {
         const eventName = TelemetryEvents.CANCEL_START_OVER_TEST;
         this.telemetryEventHandler.publishTelemetry(eventName, payload);
-    }
+    };
 
-    @autobind
-    private onStartOverAllAssessments(payload: ToggleActionPayload): void {
+    private onStartOverAllAssessments = (payload: ToggleActionPayload): void => {
         const eventName = TelemetryEvents.START_OVER_ASSESSMENT;
         this.telemetryEventHandler.publishTelemetry(eventName, payload);
         this.visualizationActions.disableAssessmentVisualizations.invoke(null);
-    }
+    };
 
-    @autobind
-    private onCancelStartOverAllAssessments(payload: BaseActionPayload): void {
+    private onCancelStartOverAllAssessments = (payload: BaseActionPayload): void => {
         const eventName = TelemetryEvents.CANCEL_START_OVER_ASSESSMENT;
         this.telemetryEventHandler.publishTelemetry(eventName, payload);
-    }
+    };
 
-    @autobind
-    private onDetailsViewClosed(): void {
+    private onDetailsViewClosed = (): void => {
         this.visualizationActions.disableAssessmentVisualizations.invoke(null);
-    }
+    };
 
-    @autobind
-    private onAssessmentScanCompleted(payload: ScanCompletedPayload<any>, tabId: number): void {
+    private onAssessmentScanCompleted = (payload: ScanCompletedPayload<any>, tabId: number): void => {
         const eventName = TelemetryEvents.ASSESSMENT_SCAN_COMPLETED;
         this.telemetryEventHandler.publishTelemetry(eventName, payload);
         this.visualizationActions.scanCompleted.invoke(null);
         this.notificationCreator.createNotificationByVisualizationKey(payload.selectorMap, payload.key, payload.testType);
         this.targetTabController.showTargetTab(tabId, payload.testType, payload.key);
-    }
+    };
 
-    @autobind
-    private onOpenPreviewFeaturesPanel(payload: BaseActionPayload, tabId: number): void {
+    private onOpenPreviewFeaturesPanel = (payload: BaseActionPayload, tabId: number): void => {
         this.previewFeaturesActions.openPreviewFeatures.invoke(null);
         this.showDetailsView(tabId);
         this.telemetryEventHandler.publishTelemetry(TelemetryEvents.PREVIEW_FEATURES_OPEN, payload);
-    }
+    };
 
-    @autobind
-    private onClosePreviewFeaturesPanel(payload: BaseActionPayload): void {
+    private onClosePreviewFeaturesPanel = (payload: BaseActionPayload): void => {
         this.previewFeaturesActions.closePreviewFeatures.invoke(null);
         this.telemetryEventHandler.publishTelemetry(TelemetryEvents.PREVIEW_FEATURES_CLOSE, payload);
-    }
+    };
 
-    @autobind
-    private onTabbedElementAdded(payload: AddTabbedElementPayload): void {
+    private onTabbedElementAdded = (payload: AddTabbedElementPayload): void => {
         this.visualizationScanResultActions.addTabbedElement.invoke(payload);
-    }
+    };
 
-    @autobind
-    private onRecordingCompleted(payload: BaseActionPayload): void {
+    private onRecordingCompleted = (payload: BaseActionPayload): void => {
         this.telemetryEventHandler.publishTelemetry(TelemetryEvents.TABSTOPS_RECORDING_COMPLETE, payload);
-    }
+    };
 
-    @autobind
-    private onRecordingTerminated(payload: BaseActionPayload): void {
+    private onRecordingTerminated = (payload: BaseActionPayload): void => {
         this.visualizationScanResultActions.disableTabStop.invoke(payload);
-    }
+    };
 
-    @autobind
-    private onOpenConfigureCommandTab(payload: BaseActionPayload): void {
-        this.chromeFeatureController.openCommandConfigureTab();
-        this.telemetryEventHandler.publishTelemetry(TelemetryEvents.SHORTCUT_CONFIGURE_OPEN, payload);
-    }
-
-    @autobind
-    private onUpdateIssuesSelectedTargets(payload: string[]): void {
+    private onUpdateIssuesSelectedTargets = (payload: string[]): void => {
         this.visualizationScanResultActions.updateIssuesSelectedTargets.invoke(payload);
-    }
+    };
 
-    @autobind
-    private onUpdateFocusedInstance(payload: string[]): void {
+    private onUpdateFocusedInstance = (payload: string[]): void => {
         this.visualizationActions.updateFocusedInstance.invoke(payload);
-    }
+    };
 
-    @autobind
-    private onScanCompleted(payload: ScanCompletedPayload<any>, tabId: number): void {
+    private onScanCompleted = (payload: ScanCompletedPayload<any>, tabId: number): void => {
         const telemetryEventName = TelemetryEvents.ADHOC_SCAN_COMPLETED;
         this.telemetryEventHandler.publishTelemetry(telemetryEventName, payload);
         this.visualizationScanResultActions.scanCompleted.invoke(payload);
         this.visualizationActions.scanCompleted.invoke(null);
         this.notificationCreator.createNotificationByVisualizationKey(payload.selectorMap, payload.key, payload.testType);
         this.targetTabController.showTargetTab(tabId, payload.testType, payload.key);
-    }
+    };
 
-    @autobind
-    private onScrollRequested(payload: BaseActionPayload): void {
+    private onScrollRequested = (payload: BaseActionPayload): void => {
         this.visualizationActions.scrollRequested.invoke(null);
-    }
+    };
 
-    @autobind
-    private onDetailsViewOpen(payload: OnDetailsViewOpenPayload, tabId: number): void {
+    private onDetailsViewOpen = (payload: OnDetailsViewOpenPayload, tabId: number): void => {
         if (this.shouldEnableToggleOnDetailsViewOpen(payload.detailsViewType)) {
             this.enableToggleOnDetailsViewOpen(payload.detailsViewType, tabId);
         }
 
         this.onPivotChildSelected(payload, tabId);
-    }
+    };
 
     private shouldEnableToggleOnDetailsViewOpen(visualizationType: VisualizationType): boolean {
         return (
@@ -268,28 +235,24 @@ export class ActionCreator {
         };
     }
 
-    @autobind
-    private onPivotChildSelected(payload: OnDetailsViewOpenPayload, tabId: number): void {
+    private onPivotChildSelected = (payload: OnDetailsViewOpenPayload, tabId: number): void => {
         this.previewFeaturesActions.closePreviewFeatures.invoke(null);
         this.visualizationActions.updateSelectedPivotChild.invoke(payload);
         this.showDetailsView(tabId);
         this.telemetryEventHandler.publishTelemetry(TelemetryEvents.PIVOT_CHILD_SELECTED, payload);
-    }
+    };
 
-    @autobind
-    private onDetailsViewPivotSelected(payload: OnDetailsViewPivotSelected): void {
+    private onDetailsViewPivotSelected = (payload: OnDetailsViewPivotSelected): void => {
         this.visualizationActions.updateSelectedPivot.invoke(payload);
         this.telemetryEventHandler.publishTelemetry(TelemetryEvents.DETAILS_VIEW_PIVOT_ACTIVATED, payload);
-    }
+    };
 
-    @autobind
-    private showDetailsView(tabId: number): void {
+    private showDetailsView = (tabId: number): void => {
         this.detailsViewController.showDetailsView(tabId);
-    }
+    };
 
-    @autobind
-    private onVisualizationToggle(payload: VisualizationTogglePayload): void {
-        const telemetryEvent = this.adhocTestTypeToTelemetryEvent[payload.test];
+    private onVisualizationToggle = (payload: VisualizationTogglePayload): void => {
+        const telemetryEvent = this.adHocTestTypeToTelemetryEvent[payload.test];
         this.telemetryEventHandler.publishTelemetry(telemetryEvent, payload);
 
         if (payload.enabled) {
@@ -297,30 +260,25 @@ export class ActionCreator {
         } else {
             this.visualizationActions.disableVisualization.invoke(payload.test);
         }
-    }
+    };
 
-    @autobind
-    private injectionCompleted(): void {
+    private injectionCompleted = (): void => {
         this.visualizationActions.injectionCompleted.invoke(null);
-    }
+    };
 
-    @autobind
-    private injectionStarted(): void {
+    private injectionStarted = (): void => {
         this.visualizationActions.injectionStarted.invoke(null);
-    }
+    };
 
-    @autobind
-    private getVisualizationToggleCurrentState(): void {
+    private getVisualizationToggleCurrentState = (): void => {
         this.visualizationActions.getCurrentState.invoke(null);
-    }
+    };
 
-    @autobind
-    private getScanResultsCurrentState(): void {
+    private getScanResultsCurrentState = (): void => {
         this.visualizationScanResultActions.getCurrentState.invoke(null);
-    }
+    };
 
-    @autobind
-    private onSetHoveredOverSelector(payload: string[]): void {
+    private onSetHoveredOverSelector = (payload: string[]): void => {
         this.inspectActions.setHoveredOverSelector.invoke(payload);
-    }
+    };
 }

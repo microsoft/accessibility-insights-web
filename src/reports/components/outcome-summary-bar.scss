@@ -1,0 +1,91 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+@import '../../common/styles/colors.scss';
+@import '../../common/icons/icon.scss';
+@import '../../common/styles/fonts.scss';
+
+$outcome-pass-color: $positive-outcome;
+$outcome-incomplete-border-color: $incomplete-color;
+$outcome-incomplete-summary-background: $neutral-outcome;
+$outcome-incomplete-summary-consistent-foreground: $always-white;
+$outcome-fail-color: $negative-outcome;
+$outcome-inapplicable-color: $neutral-outcome;
+$outcome-count-border-size: 1.5px;
+$standard-icon-size: 16px;
+$outcome-not-applicable-color: $neutral-outcome;
+
+.outcome-summary-bar {
+    $outcome-summary-icon-size: 16px;
+    flex: 0 0 100%;
+    display: flex;
+    align-items: center;
+    height: 32px;
+    margin-top: 16px;
+    margin-bottom: 0px;
+    line-height: 24px;
+    font-size: 17px;
+    font-weight: 600;
+    white-space: pre-wrap;
+    .block {
+        font-family: $fontFamily;
+        line-height: 20px;
+        font-size: 16px;
+        color: $neutral-0;
+        padding: 8px 8px 10px 10px;
+        height: 16px;
+        display: flex;
+        align-items: center;
+    }
+    .count {
+        font-weight: 600;
+    }
+    .fail {
+        @extend .block;
+        @include cross-icon-styles($outcome-summary-icon-size, 0px, $outcome-fail-color);
+        border-radius: 2px 0 0 2px;
+        .check-container {
+            bottom: -1px;
+            margin-right: 8px;
+        }
+        margin-right: 4px;
+        background-color: $outcome-fail-color;
+    }
+    .pass {
+        @extend .block;
+        @include check-icon-styles($outcome-summary-icon-size, 0px, $outcome-pass-color);
+        .check-container {
+            bottom: -1px;
+            margin-right: 8px;
+            margin-left: 4px;
+        }
+        background-color: $outcome-pass-color;
+        margin-left: 4px;
+        margin-right: 4px;
+        border-top-left-radius: 2px;
+        border-bottom-left-radius: 2px;
+    }
+    .inapplicable {
+        @extend .block;
+        @include inapplicable-icon-styles($outcome-summary-icon-size, 0px, $outcome-not-applicable-color);
+        border-radius: 0 2px 2px 0;
+        .check-container {
+            bottom: -1px;
+            margin-right: 8px;
+            margin-left: 4px;
+        }
+        background-color: $outcome-not-applicable-color;
+    }
+    .incomplete {
+        @extend .block;
+        @include incomplete-icon-styles(14px, 3px);
+        .check-container {
+            margin-right: 6px;
+            border-color: $outcome-incomplete-summary-consistent-foreground;
+        }
+        background-color: $outcome-incomplete-summary-background;
+        color: $outcome-incomplete-summary-consistent-foreground;
+        margin-right: 5px;
+        border: 2px $outcome-incomplete-border-color solid;
+        height: 12px;
+    }
+}

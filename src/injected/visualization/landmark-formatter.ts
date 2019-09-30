@@ -16,35 +16,35 @@ export class LandmarkFormatter extends FailureInstanceFormatter {
     private static readonly landmarkStyles: { [role: string]: HeadingStyleConfiguration } = {
         banner: {
             borderColor: '#d08311',
-            fontColor: '#000000',
+            fontColor: '#ffffff',
         },
         complementary: {
             borderColor: '#6b9d1a',
-            fontColor: '#000000',
+            fontColor: '#ffffff',
         },
         contentinfo: {
             borderColor: '#00a88c',
-            fontColor: '#000000',
+            fontColor: '#ffffff',
         },
         form: {
             borderColor: '#0298c7',
-            fontColor: '#000000',
+            fontColor: '#ffffff',
         },
         main: {
             borderColor: '#cb2e6d',
-            fontColor: '#000000',
+            fontColor: '#ffffff',
         },
         navigation: {
             borderColor: '#9b38e6',
-            fontColor: '#000000',
+            fontColor: '#ffffff',
         },
         region: {
             borderColor: '#2560e0',
-            fontColor: '#000000',
+            fontColor: '#ffffff',
         },
         search: {
             borderColor: '#d363d8',
-            fontColor: '#000000',
+            fontColor: '#ffffff',
         },
     };
 
@@ -72,9 +72,13 @@ export class LandmarkFormatter extends FailureInstanceFormatter {
                 fontColor: style.fontColor,
                 background: style.borderColor,
                 text: elemData.label,
+                fontSize: '14pt !important',
+                fontWeight: '600',
+                outline: `3px dashed ${style.borderColor}`,
             },
             borderColor: style.borderColor,
             outlineStyle: 'dashed',
+            outlineWidth: '3px',
             showVisualization: true,
         };
 

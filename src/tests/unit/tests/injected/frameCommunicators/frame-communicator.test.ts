@@ -8,7 +8,7 @@ import { Logger } from '../../../../../common/logging/logger';
 import { WindowUtils } from '../../../../../common/window-utils';
 import { FrameCommunicator, MessageRequest } from '../../../../../injected/frameCommunicators/frame-communicator';
 import { FrameMessageResponseCallback, WindowMessageHandler } from '../../../../../injected/frameCommunicators/window-message-handler';
-import { NodeListBuilder } from '../../../common/node-list-builder';
+import { HTMLCollectionOfBuilder } from '../../../common/html-collection-of-builder';
 import { IsSameObject } from '../../../common/typemoq-helper';
 import { QStub } from '../../../stubs/q-stub';
 
@@ -56,7 +56,7 @@ describe('FrameCommunicatorTests', () => {
         mockHtmlElementUtils
             .setup(x => x.getAllElementsByTagName('iframe'))
             .returns(() =>
-                NodeListBuilder.createNodeList([
+                HTMLCollectionOfBuilder.create([
                     childFrame1Info.frameElement,
                     childFrame2Info.frameElement,
                     childFrameWithoutWindowInfo.frameElement,
@@ -138,7 +138,7 @@ describe('FrameCommunicatorTests', () => {
         mockHtmlElementUtils
             .setup(x => x.getAllElementsByTagName('iframe'))
             .returns(() =>
-                NodeListBuilder.createNodeList([
+                HTMLCollectionOfBuilder.create([
                     childFrame1Info.frameElement,
                     childFrame2Info.frameElement,
                     childFrameWithoutWindowInfo.frameElement,

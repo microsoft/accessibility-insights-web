@@ -3,8 +3,8 @@
 import { mount, shallow } from 'enzyme';
 import * as React from 'react';
 import { Mock } from 'typemoq';
+import { ContentCreator, ContentPage, ContentPageDeps, linkTo } from 'views/content/content-page';
 import { NewTabLink } from '../../../../../common/components/new-tab-link';
-import { ContentCreator, ContentPage, ContentPageDeps, linkTo } from '../../../../../views/content/content-page';
 
 describe('ContentPage', () => {
     const deps = Mock.ofType<ContentPageDeps>().object;

@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { uniqueId } from 'lodash';
+import { kebabCase, uniqueId } from 'lodash';
 import { Icon } from 'office-ui-fabric-react/lib/Icon';
 import { Link } from 'office-ui-fabric-react/lib/Link';
 import * as React from 'react';
@@ -28,6 +28,7 @@ export class LaunchPadItemRow extends React.Component<LaunchPadItemRowProps, und
                             <Link
                                 role="link"
                                 className="insights-link"
+                                id={kebabCase(this.props.title)}
                                 onClick={this.props.onClickTitle}
                                 aria-describedby={this.descriptionId}
                             >

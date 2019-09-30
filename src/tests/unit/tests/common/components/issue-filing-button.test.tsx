@@ -8,7 +8,7 @@ import { IMock, Mock, Times } from 'typemoq';
 import { IssueFilingButton, IssueFilingButtonDeps, IssueFilingButtonProps } from '../../../../../common/components/issue-filing-button';
 import { EnvironmentInfoProvider } from '../../../../../common/environment-info-provider';
 import { IssueFilingActionMessageCreator } from '../../../../../common/message-creators/issue-filing-action-message-creator';
-import { NamedSFC } from '../../../../../common/react/named-sfc';
+import { NamedFC } from '../../../../../common/react/named-fc';
 import { IssueFilingNeedsSettingsContentRenderer } from '../../../../../common/types/issue-filing-needs-setting-content';
 import { UserConfigurationStoreData } from '../../../../../common/types/store-data/user-configuration-store';
 import { IssueFilingServiceProvider } from '../../../../../issue-filing/issue-filing-service-provider';
@@ -22,20 +22,20 @@ describe('IssueFilingButtonTest', () => {
     let issueFilingServiceProviderMock: IMock<IssueFilingServiceProvider>;
     let issueFilingActionMessageCreatorMock: IMock<IssueFilingActionMessageCreator>;
     let userConfigurationStoreData: UserConfigurationStoreData;
-    let testIssueFilingService: IssueFilingService;
+    let testIssueFilingServiceStub: IssueFilingService;
     let needsSettingsContentRenderer: IssueFilingNeedsSettingsContentRenderer;
 
     beforeEach(() => {
-        testIssueFilingService = {
+        testIssueFilingServiceStub = {
             key: testKey,
             displayName: 'TEST',
-            settingsForm: NamedSFC('testForm', props => <>Hello World</>),
+            settingsForm: NamedFC('testForm', props => <>Hello World</>),
             isSettingsValid: () => true,
             buildStoreData: testField => {
                 return { testField };
             },
             getSettingsFromStoreData: data => data[testKey],
-            issueFilingUrlProvider: () => 'test url',
+            fileIssue: () => {},
         };
         userConfigurationStoreData = {
             bugService: testKey,
@@ -58,13 +58,13 @@ describe('IssueFilingButtonTest', () => {
             .verifiable();
         issueFilingServiceProviderMock
             .setup(bp => bp.forKey(testKey))
-            .returns(() => testIssueFilingService)
+            .returns(() => testIssueFilingServiceStub)
             .verifiable();
-        needsSettingsContentRenderer = NamedSFC('testRenderer', () => <>needs settings</>);
+        needsSettingsContentRenderer = NamedFC('testRenderer', () => <>needs settings</>);
     });
 
     test.each([true, false])('render: isSettingsValid: %s', isSettingsValid => {
-        testIssueFilingService.isSettingsValid = () => isSettingsValid;
+        testIssueFilingServiceStub.isSettingsValid = () => isSettingsValid;
         const props: IssueFilingButtonProps = {
             deps: {
                 issueFilingActionMessageCreator: issueFilingActionMessageCreatorMock.object,
@@ -103,7 +103,7 @@ describe('IssueFilingButtonTest', () => {
         issueFilingActionMessageCreatorMock
             .setup(creator => creator.fileIssue(eventStub, testKey, props.issueDetailsData))
             .verifiable(Times.once());
-        const wrapper = shallow(<IssueFilingButton {...props} />);
+        const wrapper = shallow<IssueFilingButton>(<IssueFilingButton {...props} />);
 
         wrapper.find(DefaultButton).simulate('click', eventStub);
 
@@ -113,7 +113,7 @@ describe('IssueFilingButtonTest', () => {
     });
 
     test('onclick: invalid settings, %s', () => {
-        testIssueFilingService.isSettingsValid = () => false;
+        testIssueFilingServiceStub.isSettingsValid = () => false;
         issueFilingActionMessageCreatorMock
             .setup(messageCreator => messageCreator.trackFileIssueClick(eventStub as any, testKey as any))
             .verifiable(Times.never());
@@ -131,7 +131,7 @@ describe('IssueFilingButtonTest', () => {
             userConfigurationStoreData: userConfigurationStoreData,
             needsSettingsContentRenderer,
         };
-        const wrapper = shallow(<IssueFilingButton {...props} />);
+        const wrapper = shallow<IssueFilingButton>(<IssueFilingButton {...props} />);
         expect(wrapper.state().showNeedsSettingsContent).toBe(false);
 
         wrapper.find(DefaultButton).simulate('click', eventStub);

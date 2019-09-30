@@ -47,6 +47,7 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
       >
         <StyledLinkBase
           className="insights-link target-page-link"
+          onClick={[Function]}
           role="link"
         >
           test title 2
@@ -72,6 +73,7 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
         className="button ms-Grid-col  action-cancel-button-col restart-button"
       >
         <CustomizedDefaultButton
+          onClick={[Function]}
           text="Start new"
         />
       </div>
@@ -80,6 +82,7 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
       >
         <CustomizedDefaultButton
           autoFocus={true}
+          onClick={[Function]}
           text="Continue previous"
         />
       </div>
@@ -139,6 +142,7 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
       >
         <StyledLinkBase
           className="insights-link target-page-link"
+          onClick={[Function]}
           role="link"
         >
           test title 2
@@ -164,6 +168,7 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
         className="button ms-Grid-col  action-cancel-button-col restart-button"
       >
         <CustomizedDefaultButton
+          onClick={[Function]}
           text="Start new"
         />
       </div>
@@ -172,6 +177,7 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
       >
         <CustomizedDefaultButton
           autoFocus={true}
+          onClick={[Function]}
           text="Continue previous"
         />
       </div>
@@ -231,6 +237,7 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
       >
         <StyledLinkBase
           className="insights-link target-page-link"
+          onClick={[Function]}
           role="link"
         >
           test title 2
@@ -256,6 +263,7 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
         className="button ms-Grid-col  action-cancel-button-col restart-button"
       >
         <CustomizedDefaultButton
+          onClick={[Function]}
           text="Start new"
         />
       </div>
@@ -264,6 +272,7 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
       >
         <CustomizedDefaultButton
           autoFocus={true}
+          onClick={[Function]}
           text="Continue previous"
         />
       </div>
@@ -323,6 +332,7 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
       >
         <StyledLinkBase
           className="insights-link target-page-link"
+          onClick={[Function]}
           role="link"
         >
           test title 2
@@ -348,6 +358,7 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
         className="button ms-Grid-col  action-cancel-button-col restart-button"
       >
         <CustomizedDefaultButton
+          onClick={[Function]}
           text="Start new"
         />
       </div>
@@ -356,6 +367,7 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
       >
         <CustomizedDefaultButton
           autoFocus={true}
+          onClick={[Function]}
           text="Continue previous"
         />
       </div>
@@ -415,6 +427,7 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
       >
         <StyledLinkBase
           className="insights-link target-page-link"
+          onClick={[Function]}
           role="link"
         >
           test title 2
@@ -440,6 +453,7 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
         className="button ms-Grid-col  action-cancel-button-col restart-button"
       >
         <CustomizedDefaultButton
+          onClick={[Function]}
           text="Start new"
         />
       </div>
@@ -448,6 +462,7 @@ exports[`TargetChangeDialog test sets for same prev tab and newTab values snapsh
       >
         <CustomizedDefaultButton
           autoFocus={true}
+          onClick={[Function]}
           text="Continue previous"
         />
       </div>

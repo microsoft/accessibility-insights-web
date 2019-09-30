@@ -2,11 +2,11 @@
 // Licensed under the MIT License.
 import { IMock, It, Mock, MockBehavior } from 'typemoq';
 
-import { AssessmentsProviderImpl } from '../../../../assessments/assessments-provider';
-import { Assessment } from '../../../../assessments/types/iassessment';
-import { AssessmentScanPolicyRunner, IIsAnAssessmentSelected, IScheduleScan } from '../../../../background/assessment-scan-policy-runner';
-import { AssessmentStore } from '../../../../background/stores/assessment-store';
-import { VisualizationStore } from '../../../../background/stores/visualization-store';
+import { AssessmentsProviderImpl } from 'assessments/assessments-provider';
+import { Assessment } from 'assessments/types/iassessment';
+import { AssessmentScanPolicyRunner, IIsAnAssessmentSelected, IScheduleScan } from 'background/assessment-scan-policy-runner';
+import { AssessmentStore } from 'background/stores/assessment-store';
+import { VisualizationStore } from 'background/stores/visualization-store';
 import { BaseStore } from '../../../../common/base-store';
 import { AssessmentData, AssessmentStoreData } from '../../../../common/types/store-data/assessment-result-data';
 import { TestsEnabledState, VisualizationStoreData } from '../../../../common/types/store-data/visualization-store-data';

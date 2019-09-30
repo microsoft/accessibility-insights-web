@@ -4,6 +4,7 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 import { IMock, Mock, MockBehavior } from 'typemoq';
 
+import { ContentReference } from 'views/content/content-page';
 import { DisplayableVisualizationTypeData } from '../../../../../common/configs/visualization-configuration-factory';
 import { ScanData, TestsEnabledState, VisualizationStoreData } from '../../../../../common/types/store-data/visualization-store-data';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
@@ -13,7 +14,6 @@ import {
     AdhocStaticTestViewProps,
 } from '../../../../../DetailsView/components/adhoc-static-test-view';
 import { DetailsViewToggleClickHandlerFactory } from '../../../../../DetailsView/handlers/details-view-toggle-click-handler-factory';
-import { ContentReference } from '../../../../../views/content/content-page';
 
 describe('AdhocStaticTestView', () => {
     let props: AdhocStaticTestViewProps;

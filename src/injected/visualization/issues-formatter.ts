@@ -2,9 +2,11 @@
 // Licensed under the MIT License.
 import { getRTL } from '@uifabric/utilities';
 import * as ReactDOM from 'react-dom';
-import { ClientBrowserAdapter } from '../../common/client-browser-adapter';
+
+import { BrowserAdapter } from '../../common/browser-adapters/browser-adapter';
 import { HTMLElementUtils } from '../../common/html-element-utils';
 import { WindowUtils } from '../../common/window-utils';
+import { DetailsDialogHandler } from '../details-dialog-handler';
 import { DialogRenderer } from '../dialog-renderer';
 import { FrameCommunicator } from '../frameCommunicators/frame-communicator';
 import { HtmlElementAxeResults } from '../scanner-utils';
@@ -20,8 +22,9 @@ export class IssuesFormatter implements Formatter {
         htmlElementUtils: HTMLElementUtils,
         windowUtils: WindowUtils,
         shadowUtils: ShadowUtils,
-        clientBrowserAdapter: ClientBrowserAdapter,
+        browserAdapter: BrowserAdapter,
         getRTLFunc: typeof getRTL,
+        detailsDialogHandler: DetailsDialogHandler,
     ) {
         this.dialogRenderer = new DialogRenderer(
             document,
@@ -30,8 +33,9 @@ export class IssuesFormatter implements Formatter {
             htmlElementUtils,
             windowUtils,
             shadowUtils,
-            clientBrowserAdapter,
+            browserAdapter,
             getRTLFunc,
+            detailsDialogHandler,
         );
     }
 

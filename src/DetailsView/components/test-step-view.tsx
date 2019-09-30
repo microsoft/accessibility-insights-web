@@ -3,23 +3,26 @@
 import { Spinner, SpinnerSize } from 'office-ui-fabric-react/lib/Spinner';
 import * as React from 'react';
 
-import { AssessmentDefaultMessageGenerator } from '../../assessments/assessment-default-message-generator';
-import { AssessmentsProvider } from '../../assessments/types/assessments-provider';
-import { Requirement, VisualHelperToggleConfig } from '../../assessments/types/requirement';
+import { AssessmentDefaultMessageGenerator } from 'assessments/assessment-default-message-generator';
+import { AssessmentsProvider } from 'assessments/types/assessments-provider';
+import { Requirement, VisualHelperToggleConfig } from 'assessments/types/requirement';
+import { ContentPanelButton, ContentPanelButtonDeps } from 'views/content/content-panel-button';
 import { CollapsibleComponent } from '../../common/components/collapsible-component';
+import { GuidanceTags, GuidanceTagsDeps } from '../../common/components/guidance-tags';
 import {
     AssessmentNavState,
     GeneratedAssessmentInstance,
     ManualTestStepResult,
 } from '../../common/types/store-data/assessment-result-data';
+import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
+import { PathSnippetStoreData } from '../../common/types/store-data/path-snippet-store-data';
 import { DictionaryStringTo } from '../../types/common-types';
-import { ContentPanelButton, ContentPanelButtonDeps } from '../../views/content/content-panel-button';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 import { AssessmentInstanceTableHandler } from '../handlers/assessment-instance-table-handler';
 import { AssessmentInstanceTable } from './assessment-instance-table';
 import { ManualTestStepView } from './manual-test-step-view';
 
-export type TestStepViewDeps = ContentPanelButtonDeps;
+export type TestStepViewDeps = ContentPanelButtonDeps & GuidanceTagsDeps;
 
 export interface TestStepViewProps {
     deps: TestStepViewDeps;
@@ -35,6 +38,8 @@ export interface TestStepViewProps {
     actionMessageCreator: DetailsViewActionMessageCreator;
     assessmentsProvider: AssessmentsProvider;
     assessmentDefaultMessageGenerator: AssessmentDefaultMessageGenerator;
+    featureFlagStoreData: FeatureFlagStoreData;
+    pathSnippetStoreData: PathSnippetStoreData;
 }
 
 export class TestStepView extends React.Component<TestStepViewProps> {
@@ -42,7 +47,10 @@ export class TestStepView extends React.Component<TestStepViewProps> {
         return (
             <div className="test-step-view">
                 <div className="test-step-title-container">
-                    <h3 className="test-step-view-title">{this.props.testStep.name}</h3>
+                    <h3 className="test-step-view-title">
+                        {this.props.testStep.name}
+                        <GuidanceTags deps={this.props.deps} links={this.props.testStep.guidanceLinks} />
+                    </h3>
                     <ContentPanelButton deps={this.props.deps} reference={this.props.testStep.infoAndExamples} iconName="info">
                         Info &amp; examples
                     </ContentPanelButton>
@@ -67,6 +75,8 @@ export class TestStepView extends React.Component<TestStepViewProps> {
                     manualTestStepResultMap={this.props.manualTestStepResultMap}
                     assessmentInstanceTableHandler={this.props.assessmentInstanceTableHandler}
                     assessmentsProvider={this.props.assessmentsProvider}
+                    featureFlagStoreData={this.props.featureFlagStoreData}
+                    pathSnippetStoreData={this.props.pathSnippetStoreData}
                 />
             );
         }

@@ -3,19 +3,19 @@
 import * as React from 'react';
 import { HashRouter, Route, Switch } from 'react-router-dom';
 
-import { NamedSFC } from '../../common/react/named-sfc';
+import { NamedFC } from '../../common/react/named-fc';
 import { Content, ContentDeps } from '../content/content';
 
 export type RouterDeps = ContentDeps;
 export type RouterProps = { deps: RouterDeps };
 
-export const RouterSwitch = NamedSFC<RouterProps>('RouterSwitch', ({ deps }) => (
+export const RouterSwitch = NamedFC<RouterProps>('RouterSwitch', ({ deps }) => (
     <Switch>
-        <Route path="/content/:path+" render={p => <Content deps={deps} reference={p.match.params.path} />} />
+        <Route path="/content/*" render={p => <Content deps={deps} reference={p.match.params[0]} />} />
     </Switch>
 ));
 
-export const Router = NamedSFC<RouterProps>('Router', ({ deps }) => (
+export const Router = NamedFC<RouterProps>('Router', ({ deps }) => (
     <HashRouter>
         <RouterSwitch deps={deps} />
     </HashRouter>

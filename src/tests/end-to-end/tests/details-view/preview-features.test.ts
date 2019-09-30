@@ -1,23 +1,26 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { componentId } from '../../../../DetailsView/components/no-displayable-preview-features-message';
 import { Browser } from '../../common/browser';
 import { launchBrowser } from '../../common/browser-factory';
 import { CommonSelectors } from '../../common/element-identifiers/common-selectors';
 import { detailsViewSelectors } from '../../common/element-identifiers/details-view-selectors';
-import { enableHighContrast } from '../../common/enable-high-contrast';
-import { Page } from '../../common/page';
+import { formatPageElementForSnapshot } from '../../common/element-snapshot-formatter';
+import { DetailsViewPage } from '../../common/page-controllers/details-view-page';
+import { PopupPage } from '../../common/page-controllers/popup-page';
+import { TargetPage } from '../../common/page-controllers/target-page';
 import { scanForAccessibilityIssues } from '../../common/scan-for-accessibility-issues';
 
 describe('Preview Features Panel', () => {
     describe('Normal mode', () => {
         let browser: Browser;
-        let targetTabId: number;
-        let detailsViewPage: Page;
+        let targetPage: TargetPage;
+        let detailsViewPage: DetailsViewPage;
 
         beforeAll(async () => {
             browser = await launchBrowser({ suppressFirstTimeDialog: true });
-            targetTabId = (await browser.setupNewTargetPage()).tabId;
-            detailsViewPage = await openPreviewFeaturesPanel(browser, targetTabId);
+            targetPage = await browser.newTargetPage();
+            detailsViewPage = await openPreviewFeaturesPanel(browser, targetPage);
         });
 
         afterAll(async () => {
@@ -28,7 +31,7 @@ describe('Preview Features Panel', () => {
         });
 
         it('should match content in snapshot', async () => {
-            const previewFeaturesPanel = await detailsViewPage.getPrintableHtmlElement(detailsViewSelectors.previewFeaturesPanel);
+            const previewFeaturesPanel = await formatPageElementForSnapshot(detailsViewPage, detailsViewSelectors.previewFeaturesPanel);
             expect(previewFeaturesPanel).toMatchSnapshot();
         });
 
@@ -39,21 +42,22 @@ describe('Preview Features Panel', () => {
     });
     describe('High contrast mode', () => {
         let browser: Browser;
-        let targetTabId: number;
-        let detailsViewPage: Page;
+        let targetPage: TargetPage;
+        let detailsViewPage: DetailsViewPage;
 
         beforeAll(async () => {
             browser = await launchBrowser({ suppressFirstTimeDialog: true });
+            targetPage = await browser.newTargetPage();
 
-            targetTabId = (await browser.setupNewTargetPage()).tabId;
             await setupHighContrastMode();
 
-            detailsViewPage = await openPreviewFeaturesPanel(browser, targetTabId);
+            detailsViewPage = await openPreviewFeaturesPanel(browser, targetPage);
         });
 
         afterAll(async () => {
             if (browser) {
                 await browser.close();
+                browser = undefined;
             }
         });
 
@@ -63,29 +67,33 @@ describe('Preview Features Panel', () => {
         });
 
         async function setupHighContrastMode(): Promise<void> {
-            const tempDetailsViewPage = await browser.newExtensionDetailsViewPage(targetTabId);
-            await enableHighContrast(tempDetailsViewPage);
+            const tempDetailsViewPage = await browser.newDetailsViewPage(targetPage);
+            await tempDetailsViewPage.enableHighContrast();
             await tempDetailsViewPage.close();
         }
     });
 
-    async function openPreviewFeaturesPanel(browser: Browser, targetTabId: number): Promise<Page> {
-        const popupPage = await browser.newExtensionPopupPage(targetTabId);
+    async function openPreviewFeaturesPanel(browser: Browser, targetPage: TargetPage): Promise<DetailsViewPage> {
+        const popupPage = await browser.newPopupPage(targetPage);
 
         await popupPage.clickSelector(CommonSelectors.settingsGearButton);
 
-        const detailsViewPage = await waitForDetailsViewWithPreviewFeaturesPanel(browser, popupPage, targetTabId);
+        const detailsViewPage = await waitForDetailsViewWithPreviewFeaturesPanel(browser, popupPage, targetPage);
 
-        await detailsViewPage.waitForSelector(detailsViewSelectors.noPreviewFeaturesMessage);
+        await detailsViewPage.waitForId(componentId);
 
         return detailsViewPage;
     }
 
-    async function waitForDetailsViewWithPreviewFeaturesPanel(browser: Browser, popupPage: Page, targetTabId: number): Promise<Page> {
-        let detailsViewPage: Page;
+    async function waitForDetailsViewWithPreviewFeaturesPanel(
+        browser: Browser,
+        popupPage: PopupPage,
+        targetPage: TargetPage,
+    ): Promise<DetailsViewPage> {
+        let detailsViewPage: DetailsViewPage;
 
         await Promise.all([
-            browser.waitForPageMatchingUrl(await browser.getDetailsViewPageUrl(targetTabId)).then(page => (detailsViewPage = page)),
+            browser.waitForDetailsViewPage(targetPage).then(page => (detailsViewPage = page)),
             popupPage.clickSelector(CommonSelectors.previewFeaturesDropdownButton),
         ]);
 

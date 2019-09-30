@@ -8,11 +8,8 @@ import { IMock, Mock, Times } from 'typemoq';
 import { IssueFilingServicePropertiesMap } from '../../../../../../common/types/store-data/user-configuration-store';
 import { SettingsDeps } from '../../../../../../DetailsView/components/settings-panel/settings/settings-props';
 import { OnPropertyUpdateCallback } from '../../../../../../issue-filing/components/issue-filing-settings-container';
-import { gitHubIssueFilingUrlProvider } from '../../../../../../issue-filing/services/github/create-github-issue-filing-url';
-import {
-    GitHubIssueFilingService,
-    GitHubIssueFilingSettings,
-} from '../../../../../../issue-filing/services/github/github-issue-filing-service';
+import { GitHubIssueFilingService } from '../../../../../../issue-filing/services/github/github-issue-filing-service';
+import { GitHubIssueFilingSettings } from '../../../../../../issue-filing/services/github/github-issue-filing-settings';
 import { SettingsFormProps } from '../../../../../../issue-filing/types/settings-form-props';
 
 describe('GithubIssueFilingServiceTest', () => {
@@ -59,47 +56,45 @@ describe('GithubIssueFilingServiceTest', () => {
         expect(GitHubIssueFilingService.getSettingsFromStoreData(givenData)).toEqual(expectedStoreData);
     });
 
-    describe('check for invalid settings', () => {
-        it.each(invalidTestSettings)('with %o', (settings: GitHubIssueFilingSettings) => {
+    describe('isSettingsValid', () => {
+        it.each(invalidTestSettings)('invalid settings with %p', (settings: GitHubIssueFilingSettings) => {
             expect(GitHubIssueFilingService.isSettingsValid(settings)).toBe(false);
+        });
+
+        it('valid settings', () => {
+            const validSettings: GitHubIssueFilingSettings = {
+                repository: 'repository',
+            };
+
+            expect(GitHubIssueFilingService.isSettingsValid(validSettings)).toBe(true);
         });
     });
 
-    it('isSettingsValid - valid case', () => {
-        const validSettings: GitHubIssueFilingSettings = {
-            repository: 'repository',
-        };
+    describe('settingsForm', () => {
+        it('renders', () => {
+            const Component = GitHubIssueFilingService.settingsForm;
+            const wrapper = shallow(<Component {...props} />);
+            expect(wrapper.getElement()).toMatchSnapshot();
+        });
 
-        expect(GitHubIssueFilingService.isSettingsValid(validSettings)).toBe(true);
-    });
+        it('renders with no valid settings object', () => {
+            const Component = GitHubIssueFilingService.settingsForm;
+            props.settings = null;
+            const wrapper = shallow(<Component {...props} />);
+            const textField = wrapper.find(TextField);
+            expect(textField.exists()).toBe(true);
+            expect(textField.props().value).toEqual('');
+        });
 
-    it('renderSettingsForm', () => {
-        const Component = GitHubIssueFilingService.settingsForm;
-        const wrapper = shallow(<Component {...props} />);
-        expect(wrapper.getElement()).toMatchSnapshot();
-    });
-
-    it('renderSettingsForm: no valid settings object', () => {
-        const Component = GitHubIssueFilingService.settingsForm;
-        props.settings = null;
-        const wrapper = shallow(<Component {...props} />);
-        const textField = wrapper.find(TextField);
-        expect(textField.exists()).toBe(true);
-        expect(textField.props().value).toEqual('');
-    });
-
-    it('renderSettingsForm: onChange', () => {
-        const Component = GitHubIssueFilingService.settingsForm;
-        const wrapper = shallow(<Component {...props} />);
-        onPropertyUpdateCallbackMock.setup(mock => mock('gitHub', 'repository', 'new value')).verifiable(Times.once());
-        wrapper
-            .find(TextField)
-            .props()
-            .onChange(null, 'new value');
-        onPropertyUpdateCallbackMock.verifyAll();
-    });
-
-    describe('create bug filing url', () => {
-        expect(GitHubIssueFilingService.issueFilingUrlProvider).toEqual(gitHubIssueFilingUrlProvider);
+        it('onChange', () => {
+            const Component = GitHubIssueFilingService.settingsForm;
+            const wrapper = shallow(<Component {...props} />);
+            onPropertyUpdateCallbackMock.setup(mock => mock('gitHub', 'repository', 'new value')).verifiable(Times.once());
+            wrapper
+                .find(TextField)
+                .props()
+                .onChange(null, 'new value');
+            onPropertyUpdateCallbackMock.verifyAll();
+        });
     });
 });

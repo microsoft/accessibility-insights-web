@@ -5,9 +5,8 @@ import {
     SetHighContrastModePayload,
     SetIssueFilingServicePayload,
     SetIssueFilingServicePropertyPayload,
-    SetIssueTrackerPathPayload,
     SetTelemetryStatePayload,
-} from '../../background/actions/action-payloads';
+} from 'background/actions/action-payloads';
 import { Messages } from '../messages';
 import { IssueFilingServiceProperties } from '../types/store-data/user-configuration-store';
 import { ActionMessageDispatcher } from './action-message-dispatcher';
@@ -56,17 +55,6 @@ export class UserConfigMessageCreator {
 
         this.dispatcher.dispatchMessage({
             messageType: Messages.UserConfig.SetIssueFilingServiceProperty,
-            payload,
-        });
-    };
-
-    public setIssueTrackerPath = (issueTrackerPath: string) => {
-        const payload: SetIssueTrackerPathPayload = {
-            issueTrackerPath,
-        };
-
-        this.dispatcher.dispatchMessage({
-            messageType: Messages.UserConfig.SetIssueTrackerPath,
             payload,
         });
     };

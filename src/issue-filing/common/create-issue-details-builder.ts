@@ -1,8 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { title } from 'content/strings/application';
+import { compact } from 'lodash';
 import { EnvironmentInfo } from '../../common/environment-info-provider';
 import { CreateIssueDetailsTextData } from '../../common/types/create-issue-details-text-data';
-import { title } from '../../content/strings/application';
 import { IssueDetailsBuilder } from './issue-details-builder';
 import { MarkupFormatter } from './markup/markup-formatter';
 
@@ -10,32 +11,48 @@ export const createIssueDetailsBuilder = (markup: MarkupFormatter): IssueDetails
     const getter = (environmentInfo: EnvironmentInfo, data: CreateIssueDetailsTextData): string => {
         const result = data.ruleResult;
 
-        const text = [
-            markup.sectionHeader('Issue'),
-            `${markup.snippet(result.help)} (${markup.link(result.helpUrl, result.ruleId)})`,
+        const { howToFixSection, link, sectionHeader, snippet, sectionHeaderSeparator, footerSeparator, sectionSeparator } = markup;
 
-            markup.sectionHeader('Target application'),
-            markup.link(data.pageUrl, data.pageTitle),
+        const lines = [
+            sectionHeader('Issue'),
+            sectionHeaderSeparator(),
+            `${snippet(result.help)} (${link(result.helpUrl, result.ruleId)})`,
+            sectionSeparator(),
 
-            markup.sectionHeader('Element path'),
+            sectionHeader('Target application'),
+            sectionHeaderSeparator(),
+            link(data.pageUrl, data.pageTitle),
+            sectionSeparator(),
+
+            sectionHeader('Element path'),
+            sectionHeaderSeparator(),
             data.ruleResult.selector,
+            sectionSeparator(),
 
-            markup.sectionHeader('Snippet'),
-            markup.snippet(result.snippet),
+            sectionHeader('Snippet'),
+            sectionHeaderSeparator(),
+            snippet(result.snippet),
+            sectionSeparator(),
 
-            markup.sectionHeader('How to fix'),
-            markup.howToFixSection(result.failureSummary),
+            sectionHeader('How to fix'),
+            sectionHeaderSeparator(),
+            howToFixSection(result.failureSummary),
+            sectionSeparator(),
 
-            markup.sectionHeader('Environment'),
+            sectionHeader('Environment'),
+            sectionHeaderSeparator(),
             environmentInfo.browserSpec,
+            sectionSeparator(),
+
+            footerSeparator(),
 
             `This accessibility issue was found using ${title} ` +
                 `${environmentInfo.extensionVersion} (axe-core ${environmentInfo.axeCoreVersion}), ` +
                 'a tool that helps find and fix accessibility issues. Get more information & download ' +
-                `this tool at ${markup.link('http://aka.ms/AccessibilityInsights')}.`,
-        ].join('\n');
+                `this tool at ${link('http://aka.ms/AccessibilityInsights')}.`,
+        ];
 
-        return text;
+        return compact(lines).join('');
     };
 
     return getter;

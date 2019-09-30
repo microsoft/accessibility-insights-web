@@ -1,21 +1,16 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { autobind } from '@uifabric/utilities';
-
+import { BrowserAdapter } from '../common/browser-adapters/browser-adapter';
 import { StoreUpdateMessage } from '../common/types/store-update-message';
 
 export class TabContextBroadcaster {
-    private _sendMessageToFramesAndTab: (tabId: number, message: any) => void;
+    constructor(private readonly browserAdapter: BrowserAdapter) {}
 
-    constructor(sendMessageToFramesAndTabDelegate: (tabId: number, message: any) => void) {
-        this._sendMessageToFramesAndTab = sendMessageToFramesAndTabDelegate;
-    }
-
-    @autobind
-    public getBroadcastMessageDelegate(tabId): (message: StoreUpdateMessage<any>) => void {
+    public getBroadcastMessageDelegate = (tabId): ((message: StoreUpdateMessage<any>) => void) => {
         return message => {
             message.tabId = tabId;
-            this._sendMessageToFramesAndTab(tabId, message);
+            this.browserAdapter.sendMessageToFrames(message);
+            this.browserAdapter.sendMessageToTab(tabId, message);
         };
-    }
+    };
 }

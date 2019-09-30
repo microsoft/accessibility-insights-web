@@ -11,7 +11,7 @@ import { PropertyBags, VisualizationInstanceProcessorCallback } from '../../../.
 import { DictionaryStringTo } from '../../../../types/common-types';
 
 class DrawingControllerStub extends DrawingController {
-    public processRequest(message: VisualizationWindowMessage): void {}
+    public processRequest = (message: VisualizationWindowMessage): void => {};
 }
 
 describe('DrawingInitiatorTest', () => {

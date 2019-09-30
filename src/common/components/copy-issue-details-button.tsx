@@ -1,10 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { autobind } from '@uifabric/utilities';
+import { IssueDetailsTextGenerator } from 'background/issue-details-text-generator';
 import { DefaultButton } from 'office-ui-fabric-react/lib/Button';
 import * as React from 'react';
 import * as CopyToClipboard from 'react-copy-to-clipboard';
-import { IssueDetailsTextGenerator } from '../../background/issue-details-text-generator';
 import { CopyIcon } from '../../common/icons/copy-icon';
 import { DecoratedAxeNodeResult } from '../../injected/scanner-utils';
 import { CreateIssueDetailsTextData } from '../types/create-issue-details-text-data';
@@ -41,13 +40,12 @@ export class CopyIssueDetailsButton extends React.Component<CopyIssueDetailsButt
         return this.props.deps.issueDetailsTextGenerator.buildText(data);
     }
 
-    @autobind
-    private copyButtonClicked(event: React.MouseEvent<any>): void {
+    private copyButtonClicked = (event: React.MouseEvent<any>): void => {
         if (this.props.onClick) {
             this.props.onClick(event);
         }
         this.setState({ showingCopyToast: true });
-    }
+    };
 
     public render(): JSX.Element {
         return (

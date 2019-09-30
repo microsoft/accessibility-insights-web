@@ -3,9 +3,9 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
+import { ContentPage } from 'views/content/content-page';
+import { ContentPanel } from 'views/content/content-panel';
 import { ContentActionMessageCreator } from '../../../../../common/message-creators/content-action-message-creator';
-import { ContentPage } from '../../../../../views/content/content-page';
-import { ContentPanel } from '../../../../../views/content/content-panel';
 
 describe('ContentPanel', () => {
     const content = {

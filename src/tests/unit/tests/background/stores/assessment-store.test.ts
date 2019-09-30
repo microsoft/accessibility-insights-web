@@ -2,9 +2,10 @@
 // Licensed under the MIT License.
 import * as _ from 'lodash';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
-import { AssessmentsProviderImpl } from '../../../../../assessments/assessments-provider';
-import { AssessmentsProvider } from '../../../../../assessments/types/assessments-provider';
-import { Assessment } from '../../../../../assessments/types/iassessment';
+
+import { AssessmentsProviderImpl } from 'assessments/assessments-provider';
+import { AssessmentsProvider } from 'assessments/types/assessments-provider';
+import { Assessment } from 'assessments/types/iassessment';
 import {
     AddFailureInstancePayload,
     ChangeInstanceSelectionPayload,
@@ -16,14 +17,14 @@ import {
     ToggleActionPayload,
     UpdateSelectedDetailsViewPayload,
     UpdateVisibilityPayload,
-} from '../../../../../background/actions/action-payloads';
-import { AssessmentActions } from '../../../../../background/actions/assessment-actions';
-import { AssessmentDataConverter } from '../../../../../background/assessment-data-converter';
-import { AssessmentDataRemover } from '../../../../../background/assessment-data-remover';
-import { ChromeAdapter } from '../../../../../background/browser-adapter';
-import { InitialAssessmentStoreDataGenerator } from '../../../../../background/initial-assessment-store-data-generator';
-import { AssessmentStore } from '../../../../../background/stores/assessment-store';
-import { AssesssmentVisualizationConfiguration } from '../../../../../common/configs/visualization-configuration-factory';
+} from 'background/actions/action-payloads';
+import { AssessmentActions } from 'background/actions/assessment-actions';
+import { AssessmentDataConverter } from 'background/assessment-data-converter';
+import { AssessmentDataRemover } from 'background/assessment-data-remover';
+import { InitialAssessmentStoreDataGenerator } from 'background/initial-assessment-store-data-generator';
+import { AssessmentStore } from 'background/stores/assessment-store';
+import { BrowserAdapter } from '../../../../../common/browser-adapters/browser-adapter';
+import { AssesssmentVisualizationConfiguration } from '../../../../../common/configs/assesssment-visualization-configuration';
 import { IndexedDBAPI } from '../../../../../common/indexedDB/indexedDB';
 import { Tab } from '../../../../../common/itab';
 import { StoreNames } from '../../../../../common/stores/store-names';
@@ -53,7 +54,7 @@ const requirementKey: string = 'assessment-1-step-1';
 const assessmentType = -1 as VisualizationType;
 
 describe('AssessmentStoreTest', () => {
-    let browserMock: IMock<ChromeAdapter>;
+    let browserMock: IMock<BrowserAdapter>;
     let assessmentDataConverterMock: IMock<AssessmentDataConverter>;
     let assessmentDataRemoverMock: IMock<AssessmentDataRemover>;
     let assessmentsProvider: AssessmentsProvider;
@@ -67,7 +68,7 @@ describe('AssessmentStoreTest', () => {
 
     beforeEach(() => {
         instanceIdentifierGeneratorStub = () => null;
-        browserMock = Mock.ofType(ChromeAdapter);
+        browserMock = Mock.ofType<BrowserAdapter>();
         assessmentDataConverterMock = Mock.ofType(AssessmentDataConverter);
         assessmentDataRemoverMock = Mock.ofType(AssessmentDataRemover);
         getInstanceIdentiferGeneratorMock = Mock.ofInstance(step => null);
@@ -163,6 +164,7 @@ describe('AssessmentStoreTest', () => {
                 selectedTestType: expectedTestType,
                 selectedTestStep: expectedTestStep,
             },
+            resultDescription: '',
         };
 
         const defaultValues: Partial<AssessmentData> = {
@@ -178,6 +180,7 @@ describe('AssessmentStoreTest', () => {
                 selectedTestType: expectedTestType,
                 selectedTestStep: expectedTestStep,
             },
+            resultDescription: '',
         };
 
         assessments.forEach(assessment => {
@@ -1114,19 +1117,29 @@ describe('AssessmentStoreTest', () => {
         const payload: AddFailureInstancePayload = {
             test: assessmentType,
             requirement: requirementKey,
-            description: 'description',
+            instanceData: {
+                failureDescription: 'description',
+                path: 'path',
+                snippet: 'snippet',
+            },
         };
 
         const failureInstance = {
             id: '1',
             description: 'description',
+            selector: 'path',
+            html: 'snippet',
         };
 
         assessmentsProviderMock.setup(apm => apm.forType(payload.test)).returns(() => assessmentMock.object);
 
         assessmentMock.setup(am => am.getVisualizationConfiguration()).returns(() => configStub);
 
-        assessmentDataConverterMock.setup(a => a.generateFailureInstance(payload.description)).returns(description => failureInstance);
+        assessmentDataConverterMock
+            .setup(a =>
+                a.generateFailureInstance(payload.instanceData.failureDescription, payload.instanceData.path, payload.instanceData.snippet),
+            )
+            .returns(description => failureInstance);
 
         const expectedAssessment = new AssessmentDataBuilder()
             .with('manualTestStepResultMap', {
@@ -1196,9 +1209,15 @@ describe('AssessmentStoreTest', () => {
     test('on editFailureInstance', () => {
         const oldDescription = 'old';
         const newDescription = 'new';
+        const oldPath = 'old path';
+        const newPath = 'new path';
+        const oldSnippet = 'old snippet';
+        const newSnippet = 'new snippet';
         const failureInstance = {
             id: '1',
             description: oldDescription,
+            selector: oldPath,
+            html: oldSnippet,
         };
 
         const assessmentData = new AssessmentDataBuilder()
@@ -1217,7 +1236,11 @@ describe('AssessmentStoreTest', () => {
             test: assessmentType,
             requirement: requirementKey,
             id: '1',
-            description: newDescription,
+            instanceData: {
+                failureDescription: newDescription,
+                path: newPath,
+                snippet: newSnippet,
+            },
         };
 
         assessmentsProviderMock.setup(apm => apm.forType(payload.test)).returns(() => assessmentMock.object);
@@ -1233,6 +1256,8 @@ describe('AssessmentStoreTest', () => {
                         {
                             id: '1',
                             description: newDescription,
+                            selector: newPath,
+                            html: newSnippet,
                         },
                     ],
                 },

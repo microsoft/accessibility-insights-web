@@ -1,0 +1,15 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+@import '../styles/colors.scss';
+
+.guidance-tags {
+    span {
+        font-size: 12px;
+        font-weight: normal;
+        margin-left: 8px;
+        padding: 2px 12px;
+        color: $pill;
+        background-color: $pill-background;
+        border-radius: 120px;
+    }
+}

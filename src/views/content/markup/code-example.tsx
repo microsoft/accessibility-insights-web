@@ -3,7 +3,7 @@
 import { flatten } from 'lodash';
 import * as React from 'react';
 
-import { CodeBlock } from '../../../assessments/markup';
+import { CodeBlock } from 'assessments/markup';
 
 export type CodeExampleProps = {
     title?: React.ReactNode;

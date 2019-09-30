@@ -1,7 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { autobind } from '@uifabric/utilities';
-
 import { HTMLElementUtils } from '../common/html-element-utils';
 import { WindowUtils } from '../common/window-utils';
 import { FrameCommunicator, MessageRequest } from './frameCommunicators/frame-communicator';
@@ -32,8 +30,7 @@ export class FrameUrlFinder {
         this.frameCommunicator.subscribe(FrameUrlFinder.GetTargetFrameUrlCommand, this.processRequest);
     }
 
-    @autobind
-    public processRequest(message: TargetMessage): void {
+    public processRequest = (message: TargetMessage): void => {
         const target = message.target;
 
         if (target.length === 1) {
@@ -53,5 +50,5 @@ export class FrameUrlFinder {
                 },
             } as MessageRequest<TargetMessage>);
         }
-    }
+    };
 }

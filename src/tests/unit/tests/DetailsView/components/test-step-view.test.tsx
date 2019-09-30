@@ -4,8 +4,8 @@ import * as Enzyme from 'enzyme';
 import * as React from 'react';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
-import { AssessmentsProviderImpl } from '../../../../../assessments/assessments-provider';
-import { Requirement } from '../../../../../assessments/types/requirement';
+import { AssessmentsProviderImpl } from 'assessments/assessments-provider';
+import { Requirement } from 'assessments/types/requirement';
 import { CollapsibleComponent } from '../../../../../common/components/collapsible-component';
 import { ManualTestStatus } from '../../../../../common/types/manual-test-status';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
@@ -42,7 +42,7 @@ describe('TestStepViewTest', () => {
         const title = mainDiv.find('h3.test-step-view-title');
 
         expect(title.exists()).toBeTruthy();
-        expect(props.testStep.name).toBe(title.text());
+        expect(title.text().startsWith(props.testStep.name)).toBe(true);
 
         const testInstructions = wrapper.find(CollapsibleComponent);
 

@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { autobind } from '@uifabric/utilities';
 import {
     ConstrainMode,
     DetailsList,
@@ -18,12 +17,12 @@ import { FailureDetails } from './failure-details';
 import { DetailsGroup, DetailsRowData, IssuesTableHandler } from './issues-table-handler';
 
 export interface IssuesDetailsListProps {
-    violations: (RuleResult)[];
+    violations: RuleResult[];
     issuesTableHandler: IssuesTableHandler;
     issuesSelection: ISelection;
 }
 
-export class IssuesDetailsList extends React.Component<IssuesDetailsListProps, {}> {
+export class IssuesDetailsList extends React.Component<IssuesDetailsListProps> {
     private items: DetailsRowData[];
     private groups: DetailsGroup[];
 
@@ -96,13 +95,12 @@ export class IssuesDetailsList extends React.Component<IssuesDetailsListProps, {
         );
     }
 
-    @autobind
-    private onRenderGroupHeader(props?: DetailsGroupHeaderProps): JSX.Element {
+    private onRenderGroupHeader = (props?: DetailsGroupHeaderProps): JSX.Element => {
         const groupHeaderProps: DetailsGroupHeaderProps = {
             ...props,
             countIcon: <Icon iconName="statusErrorFull" className="details-icon-error" />,
         };
 
         return <DetailsGroupHeader {...groupHeaderProps} />;
-    }
+    };
 }

@@ -1,15 +1,16 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
-import { BrowserAdapter, ChromeAdapter } from '../../../../background/browser-adapter';
-import { DetailsViewController } from '../../../../background/details-view-controller';
-import { Interpreter } from '../../../../background/interpreter';
-import { FeatureFlagStore } from '../../../../background/stores/global/feature-flag-store';
-import { TabToContextMap } from '../../../../background/tab-context';
-import { TabContextBroadcaster } from '../../../../background/tab-context-broadcaster';
-import { TabContextFactory } from '../../../../background/tab-context-factory';
-import { TabController } from '../../../../background/tab-controller';
-import { TelemetryEventHandler } from '../../../../background/telemetry/telemetry-event-handler';
+
+import { DetailsViewController } from 'background/details-view-controller';
+import { Interpreter } from 'background/interpreter';
+import { FeatureFlagStore } from 'background/stores/global/feature-flag-store';
+import { TabToContextMap } from 'background/tab-context';
+import { TabContextBroadcaster } from 'background/tab-context-broadcaster';
+import { TabContextFactory } from 'background/tab-context-factory';
+import { TabController } from 'background/tab-controller';
+import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
+import { BrowserAdapter } from '../../../../common/browser-adapters/browser-adapter';
 import { Message } from '../../../../common/message';
 import { Messages } from '../../../../common/messages';
 import { DictionaryStringTo } from '../../../../types/common-types';
@@ -54,8 +55,8 @@ describe('TabControllerTest', () => {
     beforeEach(() => {
         logMock = Mock.ofInstance((msg: string) => {});
         LoggerStub.log = logMock.object;
-        mockBroadcasterStrictMock = Mock.ofType<TabContextBroadcaster>(null, MockBehavior.Strict);
-        mockChromeAdapter = Mock.ofType(ChromeAdapter);
+        mockBroadcasterStrictMock = Mock.ofType<TabContextBroadcaster>(undefined, MockBehavior.Strict);
+        mockChromeAdapter = Mock.ofType<BrowserAdapter>();
         mockDetailsViewController = Mock.ofType<DetailsViewController>();
         featureFlagStoreMock = Mock.ofType(FeatureFlagStore);
         telemetryEventHandlerMock = Mock.ofType(TelemetryEventHandler);
@@ -284,7 +285,7 @@ describe('TabControllerTest', () => {
     test('createTabContextAndTriggerTabUpdateForExistingTabs', () => {
         const openTabIds = [1, 5];
         const tabIdToTabContextStub = {};
-        const mockInterpreters = [];
+        const interpreterMocks = [];
         const getTabCallbackMap: DictionaryStringTo<(tab: chrome.tabs.Tab) => void> = {};
 
         let tabsQueryCallback: (tabs: chrome.tabs.Tab[]) => void = null;
@@ -315,7 +316,7 @@ describe('TabControllerTest', () => {
 
             setupCreateTabContextMock(broadCastDelegate, tabIdToTabContextStub[tabId], tabId);
 
-            mockInterpreters.push(interpreterMock);
+            interpreterMocks.push(interpreterMock);
             mockChromeAdapter
                 .setup(mca => mca.getTab(It.isValue(tabId), It.isAny(), It.isAny()))
                 .returns((id, cb) => {
@@ -343,7 +344,7 @@ describe('TabControllerTest', () => {
         openTabIds.forEach(tabId => {
             expect(tabInterpreterMap[tabId]).toEqual(tabIdToTabContextStub[tabId]);
         });
-        mockInterpreters.forEach(interpreterMock => {
+        interpreterMocks.forEach(interpreterMock => {
             interpreterMock.verifyAll();
         });
     });
@@ -450,16 +451,16 @@ describe('TabControllerTest', () => {
             .verifiable(Times.once());
 
         mockChromeAdapter
-            .setup(ca => ca.getSelectedTabInWindow(windowStub1.id, It.isAny()))
+            .setup(ca => ca.tabsQuery({ windowId: windowStub1.id, active: true }, It.isAny()))
             .callback((id, getSelectedTabInWindowCallback) => {
-                getSelectedTabInWindowCallback(tabStub1 as chrome.tabs.Tab);
+                getSelectedTabInWindowCallback([tabStub1 as chrome.tabs.Tab]);
             })
             .verifiable(Times.once());
 
         mockChromeAdapter
-            .setup(ca => ca.getSelectedTabInWindow(windowStub2.id, It.isAny()))
+            .setup(ca => ca.tabsQuery({ windowId: windowStub2.id, active: true }, It.isAny()))
             .callback((id, getSelectedTabInWindowCallback) => {
-                getSelectedTabInWindowCallback(tabStub2 as chrome.tabs.Tab);
+                getSelectedTabInWindowCallback([tabStub2 as chrome.tabs.Tab]);
             })
             .verifiable(Times.once());
 
@@ -541,16 +542,16 @@ describe('TabControllerTest', () => {
             .verifiable(Times.once());
 
         mockChromeAdapter
-            .setup(ca => ca.getSelectedTabInWindow(windowStub1.id, It.isAny()))
+            .setup(ca => ca.tabsQuery({ windowId: windowStub1.id, active: true }, It.isAny()))
             .callback((id, getSelectedTabInWindowCallback) => {
-                getSelectedTabInWindowCallback(tabStub1 as chrome.tabs.Tab);
+                getSelectedTabInWindowCallback([tabStub1 as chrome.tabs.Tab]);
             })
             .verifiable(Times.once());
 
         mockChromeAdapter
-            .setup(ca => ca.getSelectedTabInWindow(windowStub2.id, It.isAny()))
+            .setup(ca => ca.tabsQuery({ windowId: windowStub2.id, active: true }, It.isAny()))
             .callback((id, getSelectedTabInWindowCallback) => {
-                getSelectedTabInWindowCallback(tabStub2 as chrome.tabs.Tab);
+                getSelectedTabInWindowCallback([tabStub2 as chrome.tabs.Tab]);
             })
             .verifiable(Times.once());
 

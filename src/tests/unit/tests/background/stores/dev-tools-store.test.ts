@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { DevToolActions } from '../../../../../background/actions/dev-tools-actions';
-import { DevToolStore } from '../../../../../background/stores/dev-tools-store';
+import { DevToolActions } from 'background/actions/dev-tools-actions';
+import { DevToolStore } from 'background/stores/dev-tools-store';
 import { StoreNames } from '../../../../../common/stores/store-names';
 import { DevToolState } from '../../../../../common/types/store-data/idev-tool-state';
 import { createStoreWithNullParams, StoreTester } from '../../../common/store-tester';
@@ -54,13 +54,14 @@ describe('DevToolsStoreTest', () => {
 
         const payload = ['#frame1', '#elem1'];
 
-        const exepctedState = getDefaultState();
-        exepctedState.inspectElement = payload;
-        exepctedState.frameUrl = null;
+        const expectedState = getDefaultState();
+        expectedState.inspectElement = payload;
+        expectedState.frameUrl = null;
+        expectedState.inspectElementRequestId = 1;
 
         createStoreTesterForDevToolsActions('setInspectElement')
             .withActionParam(payload)
-            .testListenerToBeCalledOnce(initialState, exepctedState);
+            .testListenerToBeCalledOnce(initialState, expectedState);
     });
 
     test('on setFrameUrl', () => {

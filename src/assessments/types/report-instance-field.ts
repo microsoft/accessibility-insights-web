@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { ColumnValue, ColumnValueBag, isScalarColumnValue } from '../../common/types/property-bag/column-value-bag';
-import { TestStepInstance } from '../../common/types/store-data/assessment-result-data';
+import { ColumnValue, ColumnValueBag, isScalarColumnValue } from 'common/types/property-bag/column-value-bag';
+import { TestStepInstance } from 'common/types/store-data/assessment-result-data';
 import { PropertyBagColumnRendererConfig } from '../common/property-bag-column-renderer';
 
 export type ReportInstanceField = {
@@ -47,6 +47,8 @@ const common: ReportInstanceFieldMap = {
     comment: { key: 'comment', label: 'Comment', getValue: i => i.description },
     snippet: { key: 'snippet', label: 'Snippet', getValue: i => i.html },
     path: { key: 'path', label: 'Path', getValue: i => i.target && i.target.join(', ') },
+    manualSnippet: { key: 'manualSnippet', label: 'Code Snippet', getValue: i => i.html },
+    manualPath: { key: 'manualPath', label: 'CSS Selector', getValue: i => i.selector },
 };
 
 function isValid(value: ColumnValue): ColumnValue {

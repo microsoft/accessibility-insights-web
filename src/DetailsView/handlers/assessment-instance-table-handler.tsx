@@ -1,16 +1,17 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { autobind } from '@uifabric/utilities';
 import { IColumn } from 'office-ui-fabric-react/lib/DetailsList';
 import * as React from 'react';
 
-import { AssessmentsProvider } from '../../assessments/types/assessments-provider';
+import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { ManualTestStatus } from '../../common/types/manual-test-status';
 import {
     AssessmentNavState,
     GeneratedAssessmentInstance,
     UserCapturedInstance,
 } from '../../common/types/store-data/assessment-result-data';
+import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
+import { PathSnippetStoreData } from '../../common/types/store-data/path-snippet-store-data';
 import { VisualizationType } from '../../common/types/visualization-type';
 import { DictionaryStringTo } from '../../types/common-types';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
@@ -18,6 +19,7 @@ import { AssessmentInstanceEditAndRemoveControl } from '../components/assessment
 import { AssessmentInstanceSelectedButton } from '../components/assessment-instance-selected-button';
 import { AssessmentInstanceRowData, CapturedInstanceRowData } from '../components/assessment-instance-table';
 import { AssessmentTableColumnConfigHandler } from '../components/assessment-table-column-config-handler';
+import { FailureInstanceData } from '../components/failure-instance-panel-control';
 import { TestStatusChoiceGroup } from '../components/test-status-choice-group';
 
 export class AssessmentInstanceTableHandler {
@@ -35,20 +37,25 @@ export class AssessmentInstanceTableHandler {
         this.assessmentsProvider = assessmentsProvider;
     }
 
-    @autobind
-    public changeRequirementStatus(status: ManualTestStatus, test: VisualizationType, step: string): void {
+    public changeRequirementStatus = (status: ManualTestStatus, test: VisualizationType, step: string): void => {
         this.actionMessageCreator.changeManualRequirementStatus(status, test, step);
-    }
+    };
 
-    @autobind
-    public undoRequirementStatusChange(test: VisualizationType, step: string): void {
+    public undoRequirementStatusChange = (test: VisualizationType, step: string): void => {
         this.actionMessageCreator.undoManualRequirementStatusChange(test, step);
-    }
+    };
 
-    @autobind
-    public addFailureInstance(description: string, test: VisualizationType, step: string): void {
-        this.actionMessageCreator.addFailureInstance(description, test, step);
-    }
+    public addFailureInstance = (instanceData: FailureInstanceData, test: VisualizationType, step: string): void => {
+        this.actionMessageCreator.addFailureInstance(instanceData, test, step);
+    };
+
+    public addPathForValidation = (path: string): void => {
+        this.actionMessageCreator.addPathForValidation(path);
+    };
+
+    public clearPathSnippetData = (): void => {
+        this.actionMessageCreator.clearPathSnippetData();
+    };
 
     public passUnmarkedInstances(test: VisualizationType, step: string): void {
         this.actionMessageCreator.passUnmarkedInstances(test, step);
@@ -98,11 +105,13 @@ export class AssessmentInstanceTableHandler {
         instances: UserCapturedInstance[],
         test: VisualizationType,
         step: string,
+        featureFlagStoreData: FeatureFlagStoreData,
+        pathSnippetStoreData: PathSnippetStoreData,
     ): CapturedInstanceRowData[] {
         return instances.map((instance: UserCapturedInstance) => {
             return {
                 instance: instance,
-                instanceActionButtons: this.renderInstanceActionButtons(instance, test, step),
+                instanceActionButtons: this.renderInstanceActionButtons(instance, test, step, featureFlagStoreData, pathSnippetStoreData),
             };
         });
     }
@@ -111,8 +120,11 @@ export class AssessmentInstanceTableHandler {
         return this.assessmentTableColumnConfigHandler.getColumnConfigsForCapturedInstances();
     }
 
-    @autobind
-    private renderChoiceGroup(instance: GeneratedAssessmentInstance, key: string, assessmentNavState: AssessmentNavState): JSX.Element {
+    private renderChoiceGroup = (
+        instance: GeneratedAssessmentInstance,
+        key: string,
+        assessmentNavState: AssessmentNavState,
+    ): JSX.Element => {
         const step = assessmentNavState.selectedTestStep;
         const test = assessmentNavState.selectedTestType;
         return (
@@ -126,10 +138,13 @@ export class AssessmentInstanceTableHandler {
                 onUndoClicked={this.actionMessageCreator.undoManualTestStatusChange}
             />
         );
-    }
+    };
 
-    @autobind
-    private renderSelectedButton(instance: GeneratedAssessmentInstance, key: string, assessmentNavState: AssessmentNavState): JSX.Element {
+    private renderSelectedButton = (
+        instance: GeneratedAssessmentInstance,
+        key: string,
+        assessmentNavState: AssessmentNavState,
+    ): JSX.Element => {
         const step = assessmentNavState.selectedTestStep;
         const test = assessmentNavState.selectedTestType;
 
@@ -143,22 +158,35 @@ export class AssessmentInstanceTableHandler {
                 onSelected={this.actionMessageCreator.changeAssessmentVisualizationState}
             />
         );
-    }
+    };
 
-    @autobind
-    private renderInstanceActionButtons(instance: UserCapturedInstance, test: VisualizationType, step: string): JSX.Element {
+    private renderInstanceActionButtons = (
+        instance: UserCapturedInstance,
+        test: VisualizationType,
+        step: string,
+        featureFlagStoreData: FeatureFlagStoreData,
+        pathSnippetStoreData: PathSnippetStoreData,
+    ): JSX.Element => {
+        const currentInstance = {
+            failureDescription: instance.description,
+            path: pathSnippetStoreData.path || instance.selector,
+            snippet: pathSnippetStoreData.snippet || instance.html,
+        };
         return (
             <AssessmentInstanceEditAndRemoveControl
                 test={test}
                 step={step}
                 id={instance.id}
-                description={instance.description}
+                currentInstance={currentInstance}
                 onRemove={this.actionMessageCreator.removeFailureInstance}
                 onEdit={this.actionMessageCreator.editFailureInstance}
+                onClearPathSnippetData={this.actionMessageCreator.clearPathSnippetData}
+                onAddPath={this.actionMessageCreator.addPathForValidation}
                 assessmentsProvider={this.assessmentsProvider}
+                featureFlagStoreData={featureFlagStoreData}
             />
         );
-    }
+    };
 
     private getInstanceKeys(
         instancesMap: DictionaryStringTo<GeneratedAssessmentInstance>,

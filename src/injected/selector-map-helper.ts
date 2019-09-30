@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import * as _ from 'lodash';
 
-import { AssessmentsProvider } from '../assessments/types/assessments-provider';
+import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { BaseStore } from '../common/base-store';
 import { ManualTestStatus } from '../common/types/manual-test-status';
 import { AssessmentStoreData, GeneratedAssessmentInstance } from '../common/types/store-data/assessment-result-data';

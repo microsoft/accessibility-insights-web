@@ -70,44 +70,23 @@ exports[`PopupView renderFailureMsgPanelForChromeUrl 1`] = `
 `;
 
 exports[`PopupView renderFailureMsgPanelForFileUrl 1`] = `
-<div
-  className="ms-Fabric unsupported-url-info-panel"
->
-  <Header
-    title="test title"
-  />
-  <div
-    className="ms-Grid main-section"
-  >
-    <div
-      className="launch-panel-general-container"
-    >
-      Your browser settings don't allow Accessibility Insights for Web to run on file URLs.
-    </div>
-    <div>
-      <div>
-        To allow this extension to run on file URLs:
-      </div>
-      <div>
-        1. Open 
-        <NewTabLink
-          aria-label="open test title extension page"
-          onClick={[Function]}
-        >
-          test title extension page
-        </NewTabLink>
-        .
-      </div>
-      <div>
-        2. Enable 
-        <span
-          className="ms-fontWeight-semibold"
-        >
-          Allow Access to file URLs
-        </span>
-        .
-      </div>
-    </div>
-  </div>
-</div>
+<FileUrlUnsupportedMessagePanel
+  deps={
+    Object {
+      "browserAdapter": Object {
+        "getManifest": [Function],
+      },
+      "storesHub": proxy {
+        "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+        "stores": undefined,
+      },
+    }
+  }
+  header={
+    <Header
+      title="test title"
+    />
+  }
+  title="test title"
+/>
 `;

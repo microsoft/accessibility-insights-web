@@ -1,13 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { autobind } from '@uifabric/utilities';
-
 import { createDefaultLogger } from '../common/logging/default-logger';
 import { Logger } from '../common/logging/logger';
-import { scan as scanRunner, ScanOptions } from '../scanner/exposed-apis';
+import { scan as scanRunner } from '../scanner/exposed-apis';
 import { RuleResult, ScanResults } from '../scanner/iruleresults';
+import { GuidanceLink } from '../scanner/rule-to-links-mappings';
+import { ScanOptions } from '../scanner/scan-options';
 import { DictionaryStringTo } from '../types/common-types';
-import { HyperlinkDefinition } from '../views/content/content-page';
 
 declare var axe: any;
 
@@ -23,7 +22,7 @@ export interface DecoratedAxeNodeResult {
     html: string;
     help: string;
     id: string;
-    guidanceLinks: HyperlinkDefinition[];
+    guidanceLinks: GuidanceLink[];
     helpUrl: string;
     fingerprint: string;
     snippet: string;
@@ -65,44 +64,39 @@ export class ScannerUtils {
         return selector;
     }
 
-    @autobind
-    public getIncompleteInstances(results: ScanResults): DictionaryStringTo<HtmlElementAxeResults> {
+    public getIncompleteInstances = (results: ScanResults): DictionaryStringTo<HtmlElementAxeResults> => {
         const resultsMap: DictionaryStringTo<HtmlElementAxeResults> = {};
         this.addIncompletesToDictionary(resultsMap, results.incomplete);
         return resultsMap;
-    }
+    };
 
-    @autobind
-    public getFailingInstances(results: ScanResults): DictionaryStringTo<HtmlElementAxeResults> {
+    public getFailingInstances = (results: ScanResults): DictionaryStringTo<HtmlElementAxeResults> => {
         const resultsMap: DictionaryStringTo<HtmlElementAxeResults> = {};
         this.addFailuresToDictionary(resultsMap, results.violations);
         return resultsMap;
-    }
+    };
 
-    @autobind
-    public getPassingInstances(results: ScanResults): DictionaryStringTo<HtmlElementAxeResults> {
+    public getPassingInstances = (results: ScanResults): DictionaryStringTo<HtmlElementAxeResults> => {
         const resultsMap: DictionaryStringTo<HtmlElementAxeResults> = {};
         this.addPassesToDictionary(resultsMap, results.passes);
         return resultsMap;
-    }
+    };
 
-    @autobind
-    public getAllCompletedInstances(results: ScanResults): DictionaryStringTo<HtmlElementAxeResults> {
+    public getAllCompletedInstances = (results: ScanResults): DictionaryStringTo<HtmlElementAxeResults> => {
         const resultsMap: DictionaryStringTo<HtmlElementAxeResults> = {};
         this.addPassesToDictionary(resultsMap, results.passes);
         this.addFailuresToDictionary(resultsMap, results.violations);
         return resultsMap;
-    }
+    };
 
-    @autobind
-    public getFailingOrPassingInstances(results: ScanResults): DictionaryStringTo<HtmlElementAxeResults> {
+    public getFailingOrPassingInstances = (results: ScanResults): DictionaryStringTo<HtmlElementAxeResults> => {
         const resultsMap: DictionaryStringTo<HtmlElementAxeResults> = {};
         this.addFailuresToDictionary(resultsMap, results.violations);
         if (Object.keys(resultsMap).length === 0) {
             this.addPassesToDictionary(resultsMap, results.passes);
         }
         return resultsMap;
-    }
+    };
 
     private addPassesToDictionary(dictionary: DictionaryStringTo<HtmlElementAxeResults>, axeRules: RuleResult[]): void {
         this.addResultstoDictionary(dictionary, axeRules, true);

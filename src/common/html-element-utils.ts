@@ -14,7 +14,7 @@ export class HTMLElementUtils {
         element.scrollIntoView();
     }
 
-    public getAllElementsByTagName(tagName: string): NodeListOf<Element> {
+    public getAllElementsByTagName(tagName: string): HTMLCollectionOf<Element> {
         return this.dom.getElementsByTagName(tagName);
     }
 

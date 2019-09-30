@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { AssessmentDataRemover } from '../../../../background/assessment-data-remover';
+import { AssessmentDataRemover } from 'background/assessment-data-remover';
 import { GeneratedAssessmentInstance, TestStepResult } from '../../../../common/types/store-data/assessment-result-data';
 import { DictionaryStringTo } from '../../../../types/common-types';
 

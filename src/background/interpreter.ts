@@ -1,16 +1,14 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { autobind } from '@uifabric/utilities';
 import { InterpreterMessage, PayloadCallback } from '../common/message';
 import { DictionaryStringTo } from '../types/common-types';
 
 export class Interpreter {
-    protected messageToActionMapping: DictionaryStringTo<PayloadCallback> = {};
+    protected messageToActionMapping: DictionaryStringTo<PayloadCallback<any>> = {};
 
-    @autobind
-    public registerTypeToPayloadCallback(messageType: string, callback: PayloadCallback): void {
+    public registerTypeToPayloadCallback = <Payload>(messageType: string, callback: PayloadCallback<Payload>): void => {
         this.messageToActionMapping[messageType] = callback;
-    }
+    };
 
     public interpret(message: InterpreterMessage): boolean {
         if (this.messageToActionMapping[message.messageType]) {

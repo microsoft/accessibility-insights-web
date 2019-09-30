@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { autobind } from '@uifabric/utilities';
-import { InspectMode } from '../background/inspect-modes';
+import { InspectMode } from 'background/inspect-modes';
 import { BaseStore } from '../common/base-store';
 import { ConfigurationKey, InspectConfigurationFactory } from '../common/configs/inspect-configuration-factory';
 import { InspectStoreData } from '../common/types/store-data/inspect-store-data';
@@ -23,8 +22,7 @@ export class InspectController {
         this.onChangedState();
     }
 
-    @autobind
-    private onChangedState(): void {
+    private onChangedState = (): void => {
         if (this.inspectStore.getState() == null) {
             return;
         }
@@ -35,12 +33,11 @@ export class InspectController {
         if (newInspectStoreState != null && this.currentMode !== InspectMode.off) {
             this.scopingListener.start(this.onInspectClick, this.onHover);
         }
-    }
+    };
 
-    @autobind
-    private onInspectClick(event: MouseEvent, selector: string[]): void {
+    private onInspectClick = (event: MouseEvent, selector: string[]): void => {
         this.scopingListener.stop();
         this.inspectConfigurationFactory.getConfigurationByKey(this.currentMode as ConfigurationKey)(event, selector);
         this.changeInspectMode(event, InspectMode.off);
-    }
+    };
 }

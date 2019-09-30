@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { StoreHub } from 'background/stores/store-hub';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
-import { StoreHub } from '../../../../background/stores/store-hub';
 import { BaseStore } from '../../../../common/base-store';
 import { GenericStoreMessageTypes } from '../../../../common/constants/generic-store-messages-types';
 import { StateDispatcher } from '../../../../common/state-dispatcher';

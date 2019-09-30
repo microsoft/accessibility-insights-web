@@ -1,50 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Launch Pad High contrast mode should pass accessibility validation 1`] = `
-Array [
-  Object {
-    "id": "color-contrast",
-    "nodes": Array [
-      Object {
-        "failureSummary": "Fix any of the following:
-  Element has insufficient color contrast of 1.07 (foreground color: #ffff00, background color: #ffffff, font size: 8.3pt, font weight: bold). Expected contrast ratio of 4.5:1",
-        "selector": Array [
-          "a[aria-label=\\"demo\\\\ video\\"]",
-        ],
-      },
-      Object {
-        "failureSummary": "Fix any of the following:
-  Element has insufficient color contrast of 1.07 (foreground color: #ffff00, background color: #ffffff, font size: 10.5pt, font weight: bold). Expected contrast ratio of 4.5:1",
-        "selector": Array [
-          "button[aria-describedby=\\"launch-pad-item-description-1\\"]",
-        ],
-      },
-      Object {
-        "failureSummary": "Fix any of the following:
-  Element has insufficient color contrast of 1.07 (foreground color: #ffff00, background color: #ffffff, font size: 10.5pt, font weight: bold). Expected contrast ratio of 4.5:1",
-        "selector": Array [
-          "button[aria-describedby=\\"launch-pad-item-description-2\\"]",
-        ],
-      },
-      Object {
-        "failureSummary": "Fix any of the following:
-  Element has insufficient color contrast of 1.07 (foreground color: #ffff00, background color: #ffffff, font size: 10.5pt, font weight: bold). Expected contrast ratio of 4.5:1",
-        "selector": Array [
-          "button[aria-describedby=\\"launch-pad-item-description-3\\"]",
-        ],
-      },
-      Object {
-        "failureSummary": "Fix any of the following:
-  Element has insufficient color contrast of 1.07 (foreground color: #ffff00, background color: #ffffff, font size: 8.3pt, font weight: bold). Expected contrast ratio of 4.5:1",
-        "selector": Array [
-          "a[title=\\"Navigate\\\\ to\\\\ axe-core\\\\ npm\\\\ page\\"]",
-        ],
-      },
-    ],
-  },
-]
-`;
-
 exports[`Launch Pad Normal mode content should match snapshot 1`] = `
 <DocumentFragment>
   <div
@@ -98,6 +53,7 @@ exports[`Launch Pad Normal mode content should match snapshot 1`] = `
               class="ms-Button-flexContainer flexContainer-000"
             >
               <i
+                aria-hidden="true"
                 class="ms-Button-icon icon-000"
                 data-icon-name="GlobalNavButton"
                 role="presentation"
@@ -152,6 +108,7 @@ exports[`Launch Pad Normal mode content should match snapshot 1`] = `
                   class="ms-Grid-col ms-sm3 popup-start-dialog-icon-circle"
                 >
                   <i
+                    aria-hidden="true"
                     class="popup-start-dialog-icon root-000"
                     data-icon-name="Rocket"
                     role="presentation"
@@ -168,6 +125,7 @@ exports[`Launch Pad Normal mode content should match snapshot 1`] = `
                     <button
                       aria-describedby="launch-pad-item-description-1"
                       class="ms-Link insights-link root-000"
+                      id="fast-pass"
                       role="link"
                       type="button"
                     >
@@ -199,6 +157,7 @@ exports[`Launch Pad Normal mode content should match snapshot 1`] = `
                   class="ms-Grid-col ms-sm3 popup-start-dialog-icon-circle"
                 >
                   <i
+                    aria-hidden="true"
                     class="popup-start-dialog-icon root-000"
                     data-icon-name="testBeaker"
                     role="presentation"
@@ -215,6 +174,7 @@ exports[`Launch Pad Normal mode content should match snapshot 1`] = `
                     <button
                       aria-describedby="launch-pad-item-description-2"
                       class="ms-Link insights-link root-000"
+                      id="assessment"
                       role="link"
                       type="button"
                     >
@@ -246,6 +206,7 @@ exports[`Launch Pad Normal mode content should match snapshot 1`] = `
                   class="ms-Grid-col ms-sm3 popup-start-dialog-icon-circle"
                 >
                   <i
+                    aria-hidden="true"
                     class="popup-start-dialog-icon root-000"
                     data-icon-name="Medical"
                     role="presentation"
@@ -262,6 +223,7 @@ exports[`Launch Pad Normal mode content should match snapshot 1`] = `
                     <button
                       aria-describedby="launch-pad-item-description-3"
                       class="ms-Link insights-link root-000"
+                      id="ad-hoc-tools"
                       role="link"
                       type="button"
                     >
@@ -297,7 +259,7 @@ exports[`Launch Pad Normal mode content should match snapshot 1`] = `
           >
             axe-core
           </a>
-           3.2.2
+           3.3.2
         </div>
       </div>
     </div>

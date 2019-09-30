@@ -3,7 +3,7 @@
 exports[`TestStatusChoiceGroup render 1`] = `
 <div>
   <div
-    className="radio-button-group"
+    className="radioButtonGroup"
   >
     <StyledChoiceGroupBase
       className="PASS"
@@ -33,7 +33,7 @@ exports[`TestStatusChoiceGroup render 1`] = `
 exports[`TestStatusChoiceGroup render: selectedKey is not set to undefined as status is PASS 1`] = `
 <div>
   <div
-    className="radio-button-group"
+    className="radioButtonGroup"
   >
     <StyledChoiceGroupBase
       className="PASS"
@@ -63,7 +63,7 @@ exports[`TestStatusChoiceGroup render: selectedKey is not set to undefined as st
 exports[`TestStatusChoiceGroup render: selectedKey is set to UNKNOWN as status is UNKNOWN 1`] = `
 <div>
   <div
-    className="radio-button-group"
+    className="radioButtonGroup"
   >
     <StyledChoiceGroupBase
       className="UNKNOWN"

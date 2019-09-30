@@ -1,7 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { autobind } from '@uifabric/utilities';
-
 import { ScannerUtils } from '../injected/scanner-utils';
 import { ScanResults } from '../scanner/iruleresults';
 import { HTMLElementUtils } from './html-element-utils';
@@ -30,8 +28,7 @@ export class A11YSelfValidator {
         this.scannerUtils.scan(null, this.logAxeResults);
     }
 
-    @autobind
-    private logAxeResults(axeResults: ScanResults): void {
+    private logAxeResults = (axeResults: ScanResults): void => {
         const violations = axeResults.violations;
         const loggedViolations: LoggedRule[] = [];
 
@@ -54,5 +51,5 @@ export class A11YSelfValidator {
         }
 
         this.logger.log(loggedViolations);
-    }
+    };
 }

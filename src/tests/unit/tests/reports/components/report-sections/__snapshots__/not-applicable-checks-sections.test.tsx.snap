@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NotApplicableChecksSection renders 1`] = `
+<CollapsibleResultSection
+  badgeCount={3}
+  containerClassName="result-section"
+  containerId="not-applicable-checks-section"
+  deps={Object {}}
+  outcomeType="inapplicable"
+  rules={
+    Array [
+      Object {},
+      Object {},
+      Object {},
+    ]
+  }
+  title="Not applicable checks"
+/>
+`;

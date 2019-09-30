@@ -1,7 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { autobind } from '@uifabric/utilities';
-
 import { Tab } from '../../common/itab.d';
 import { StoreNames } from '../../common/stores/store-names';
 import { TabStoreData } from '../../common/types/store-data/tab-store-data';
@@ -46,42 +44,37 @@ export class TabStore extends BaseStoreImpl<TabStoreData> {
         this.visualizationActions.updateSelectedPivot.addListener(this.resetTabChange);
     }
 
-    @autobind
-    private onVisibilityChange(hidden: boolean): void {
+    private onVisibilityChange = (hidden: boolean): void => {
         if (this.state.isPageHidden === hidden) {
             return;
         }
         this.state.isPageHidden = hidden;
         this.emitChanged();
-    }
+    };
 
-    @autobind
-    private onTabUpdate(payload: Tab): void {
+    private onTabUpdate = (payload: Tab): void => {
         this.state.id = payload.id;
         this.state.title = payload.title;
         this.state.url = payload.url;
         this.emitChanged();
-    }
+    };
 
-    @autobind
-    private onTabRemove(): void {
+    private onTabRemove = (): void => {
         this.state.isClosed = true;
         this.emitChanged();
-    }
+    };
 
-    @autobind
-    private onTabChange(payload: Tab): void {
+    private onTabChange = (payload: Tab): void => {
         this.state.title = payload.title;
         this.state.url = payload.url;
         this.state.isChanged = true;
         this.emitChanged();
-    }
+    };
 
-    @autobind
-    private resetTabChange(): void {
+    private resetTabChange = (): void => {
         if (this.state.isChanged) {
             this.state.isChanged = false;
             this.emitChanged();
         }
-    }
+    };
 }

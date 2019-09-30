@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { assessmentsProviderWithFeaturesEnabled } from '../../../../assessments/assessments-feature-flag-filter';
-import { AssessmentsProviderImpl } from '../../../../assessments/assessments-provider';
-import { Assessment } from '../../../../assessments/types/iassessment';
+import { assessmentsProviderWithFeaturesEnabled } from 'assessments/assessments-feature-flag-filter';
+import { AssessmentsProviderImpl } from 'assessments/assessments-provider';
+import { Assessment } from 'assessments/types/iassessment';
 
 describe('filter by feature flag', () => {
     const assessments: Assessment[] = [

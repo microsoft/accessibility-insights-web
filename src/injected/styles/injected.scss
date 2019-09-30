@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-@import '../../../node_modules/office-ui-fabric-react/dist/sass/Icon.Definitions';
 @import '../../common/styles/colors.scss';
 
 #accessibility-insights-root-container {
@@ -43,8 +42,6 @@
     height: 100% !important;
 
     .insights-dialog-container {
-        @import '../../../node_modules/office-ui-fabric-react/dist/sass/Fabric.scss';
-
         @include max-z-index();
     }
 
@@ -110,7 +107,7 @@
     }
 
     .insights-dialog-main-override .insights-dialog-button-inspect svg path {
-        fill: $communication-shade-10 !important;
+        fill: $primary-text !important;
     }
 
     .insights-dialog-main-override .insights-dialog-button-inspect.is-disabled svg path {
@@ -118,7 +115,7 @@
     }
 
     .insights-dialog-main-override-shadow .insights-dialog-button-inspect svg path {
-        fill: $communication-shade-10 !important;
+        fill: $communication-primary !important;
     }
 
     .insights-dialog-main-override-shadow .insights-dialog-button-inspect.is-disabled svg path {
@@ -172,22 +169,6 @@
         margin-top: 3px !important;
     }
 
-    .insights-dialog-main-override .insights-dialog-rule-link,
-    .insights-dialog-main-override-shadow .insights-dialog-rule-link {
-        margin-top: 5px !important;
-        margin-bottom: 6px !important;
-        padding: 0 !important;
-
-        .ms-Link {
-            color: $communication-shade-10;
-        }
-    }
-
-    .insights-dialog-main-override .insights-dialog-rule-container,
-    .insights-dialog-main-override-shadow .insights-dialog-rule-container {
-        margin-bottom: 12px !important;
-    }
-
     .insights-dialog-main-override-shadow .insights-dialog-container {
         margin-bottom: 12px !important;
         position: relative;
@@ -221,11 +202,10 @@
                     cursor: pointer;
 
                     &:hover {
-                        color: $communication-shade-30;
+                        color: $communication-shade-20;
                     }
                 }
 
-                display: inline;
                 float: right;
 
                 i {
@@ -285,9 +265,6 @@
         }
     }
 
-    .insights-dialog-main-override .insights-dialog-target-button-container {
-    }
-
     .insights-dialog-main-override-shadow .insights-dialog-target-button-container {
         margin-top: 4px;
 
@@ -342,6 +319,8 @@
     .insights-dialog-main-override .insights-dialog-inspect-disabled {
         margin-top: 4px !important;
         font-size: 12px !important;
+        color: $negative-outcome !important;
+        font-weight: $fontWeightSemiBold !important;
     }
 
     .insights-dialog-main-override .file-issue-button-help {
@@ -378,6 +357,27 @@
             ul {
                 margin: 8px 8px 0px 8px !important;
                 padding-left: 8px !important;
+            }
+
+            .insights-fix-instruction-list {
+                li {
+                    span.fix-instruction-color-box {
+                        width: 14px;
+                        height: 14px;
+                        display: inline-block;
+                        vertical-align: -5%;
+                        margin: 0px 2px;
+                        border: 1px solid $always-black;
+                    }
+                }
+                .screen-reader-only {
+                    position: absolute;
+                    left: -10000px;
+                    top: auto;
+                    width: 1px;
+                    height: 1px;
+                    overflow: hidden;
+                }
             }
         }
 

@@ -2,22 +2,22 @@
 // Licensed under the MIT License.
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
-import { BrowserAdapter, ChromeAdapter } from '../../../../background/browser-adapter';
-import { CommandsAdapter } from '../../../../background/browser-adapters/commands-adapter';
-import { ChromeCommandHandler } from '../../../../background/chrome-command-handler';
-import { Interpreter } from '../../../../background/interpreter';
-import { UserConfigurationStore } from '../../../../background/stores/global/user-configuration-store';
-import { TabContextStoreHub } from '../../../../background/stores/tab-context-store-hub';
-import { VisualizationStore } from '../../../../background/stores/visualization-store';
-import { TabContext, TabToContextMap } from '../../../../background/tab-context';
+import { ChromeCommandHandler } from 'background/chrome-command-handler';
+import { Interpreter } from 'background/interpreter';
+import { UserConfigurationStore } from 'background/stores/global/user-configuration-store';
+import { TabContextStoreHub } from 'background/stores/tab-context-store-hub';
+import { VisualizationStore } from 'background/stores/visualization-store';
+import { TabContext, TabToContextMap } from 'background/tab-context';
 import { BaseStore } from '../../../../common/base-store';
+import { BrowserAdapter } from '../../../../common/browser-adapters/browser-adapter';
+import { CommandsAdapter } from '../../../../common/browser-adapters/commands-adapter';
 import { VisualizationConfigurationFactory } from '../../../../common/configs/visualization-configuration-factory';
 import { DisplayableStrings } from '../../../../common/constants/displayable-strings';
+import { TelemetryEventSource } from '../../../../common/extension-telemetry-events';
 import { Message } from '../../../../common/message';
 import { Messages } from '../../../../common/messages';
 import { NotificationCreator } from '../../../../common/notification-creator';
 import { TelemetryDataFactory } from '../../../../common/telemetry-data-factory';
-import { TelemetryEventSource } from '../../../../common/telemetry-events';
 import { VisualizationStoreData } from '../../../../common/types/store-data/visualization-store-data';
 import { VisualizationType } from '../../../../common/types/visualization-type';
 import { UrlValidator } from '../../../../common/url-validator';
@@ -56,7 +56,7 @@ describe('ChromeCommandHandlerTest', () => {
             visualizationStore: visualizationStoreMock.object,
         } as TabContextStoreHub);
 
-        browserAdapterMock = Mock.ofType(ChromeAdapter);
+        browserAdapterMock = Mock.ofType<BrowserAdapter>();
         browserAdapterMock
             .setup(ca => ca.tabsQuery(It.isValue({ active: true, currentWindow: true }), It.isAny()))
             .returns((_, callback) => {
@@ -74,7 +74,7 @@ describe('ChromeCommandHandlerTest', () => {
 
         urlValidatorMock = Mock.ofType(UrlValidator);
         urlValidatorMock
-            .setup(uV => uV.isSupportedUrl(It.isAny(), browserAdapterMock.object))
+            .setup(uV => uV.isSupportedUrl(It.isAny()))
             .returns(async () => simulatedIsSupportedUrlResponse)
             .verifiable();
 

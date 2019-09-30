@@ -5,6 +5,7 @@ exports[`TestStepViewTest render snapshot matches with manual false and scanning
   <div className=\\"test-step-title-container\\">
     <h3 className=\\"test-step-view-title\\">
       Test Step Test Name
+      <GuidanceTags deps={[undefined]} links={{...}} />
     </h3>
     <ContentPanelButton deps={[undefined]} reference={[undefined]} iconName=\\"info\\">
       Info &amp; examples
@@ -24,6 +25,7 @@ exports[`TestStepViewTest render, variable part for assisted test 1`] = `
   <div className=\\"test-step-title-container\\">
     <h3 className=\\"test-step-view-title\\">
       Test Step Test Name
+      <GuidanceTags deps={[undefined]} links={{...}} />
     </h3>
     <ContentPanelButton deps={[undefined]} reference={[undefined]} iconName=\\"info\\">
       Info &amp; examples

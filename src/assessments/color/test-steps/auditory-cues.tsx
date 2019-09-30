@@ -2,8 +2,8 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import { link } from '../../../content/link';
-import * as content from '../../../content/test/sensory/auditory-cues';
+import { link } from 'content/link';
+import * as content from 'content/test/sensory/auditory-cues';
 import { ManualTestRecordYourResults } from '../../common/manual-test-record-your-results';
 import * as Markup from '../../markup';
 import { Requirement } from '../../types/requirement';

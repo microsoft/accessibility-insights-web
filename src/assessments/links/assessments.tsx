@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { VisualizationType } from 'common/types/visualization-type';
+import { test as content } from 'content/test';
 import * as React from 'react';
-import { VisualizationType } from '../../common/types/visualization-type';
-import { test as content } from '../../content/test';
 import { AssessmentBuilder } from '../assessment-builder';
 import * as Markup from '../markup';
 import { LinkFunction } from './test-steps/link-function';

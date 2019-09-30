@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { ContentProvider } from 'views/content/content-page';
 import { ContentActionMessageCreator } from '../../../../../common/message-creators/content-action-message-creator';
 import { InspectActionMessageCreator } from '../../../../../common/message-creators/inspect-action-message-creator';
 import { ScopingActionMessageCreator } from '../../../../../common/message-creators/scoping-action-message-creator';
@@ -15,7 +16,6 @@ import {
 } from '../../../../../DetailsView/components/details-view-overlay';
 import { SettingsProvider } from '../../../../../DetailsView/components/settings-panel/settings/settings-provider';
 import { PreviewFeatureFlagsHandler } from '../../../../../DetailsView/handlers/preview-feature-flags-handler';
-import { ContentProvider } from '../../../../../views/content/content-page';
 
 describe('DetailsViewOverlay', () => {
     const actionMessageCreatorStub = {

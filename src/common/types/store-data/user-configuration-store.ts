@@ -4,7 +4,6 @@ export interface UserConfigurationStoreData {
     isFirstTime: boolean;
     enableTelemetry: boolean;
     enableHighContrast: boolean;
-    issueTrackerPath?: string;
     bugService: string;
     bugServicePropertiesMap: IssueFilingServicePropertiesMap;
 }

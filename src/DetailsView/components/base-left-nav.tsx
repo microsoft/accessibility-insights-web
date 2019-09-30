@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { autobind } from '@uifabric/utilities';
 import { INavLink, Nav } from 'office-ui-fabric-react/lib/Nav';
 import * as React from 'react';
 
@@ -44,15 +43,13 @@ export class BaseLeftNav extends React.Component<BaseLeftNavProps> {
         );
     }
 
-    @autobind
-    protected onNavLinkClick(event: React.MouseEvent<HTMLElement>, item: BaseLeftNavLink): void {
+    protected onNavLinkClick = (event: React.MouseEvent<HTMLElement>, item: BaseLeftNavLink): void => {
         if (item) {
             item.onClickNavLink(event, item);
         }
-    }
+    };
 
-    @autobind
-    protected onRenderLink(link: BaseLeftNavLink): JSX.Element {
+    protected onRenderLink = (link: BaseLeftNavLink): JSX.Element => {
         return link.onRenderNavLink(link, this.props.renderIcon);
-    }
+    };
 }

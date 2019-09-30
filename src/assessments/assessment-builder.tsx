@@ -4,36 +4,36 @@ import * as _ from 'lodash';
 import { IColumn } from 'office-ui-fabric-react/lib/DetailsList';
 import * as React from 'react';
 
-import { AssessmentToggleActionPayload } from '../background/actions/action-payloads';
-import { createInitialAssessmentTestData } from '../background/create-initial-assessment-test-data';
-import { InstanceIdentifierGenerator, UniquelyIdentifiableInstances } from '../background/instance-identifier-generator';
-import { RequirementComparer } from '../common/assessment/requirement-comparer';
-import { AssesssmentVisualizationConfiguration } from '../common/configs/visualization-configuration-factory';
-import { Messages } from '../common/messages';
-import { ManualTestStatus } from '../common/types/manual-test-status';
-import { FeatureFlagStoreData } from '../common/types/store-data/feature-flag-store-data';
-import { AssessmentScanData, ScanData } from '../common/types/store-data/visualization-store-data';
-import { AssessmentInstanceRowData, AssessmentInstanceTable } from '../DetailsView/components/assessment-instance-table';
-import { AssessmentTestView } from '../DetailsView/components/assessment-test-view';
-import { RequirementLink } from '../DetailsView/components/requirement-link';
-import { AnalyzerProvider } from '../injected/analyzers/analyzer-provider';
-import { DecoratedAxeNodeResult, ScannerUtils } from '../injected/scanner-utils';
+import { AssessmentToggleActionPayload } from 'background/actions/action-payloads';
+import { createInitialAssessmentTestData } from 'background/create-initial-assessment-test-data';
+import { InstanceIdentifierGenerator, UniquelyIdentifiableInstances } from 'background/instance-identifier-generator';
+import { RequirementComparer } from 'common/assessment/requirement-comparer';
+import { AssesssmentVisualizationConfiguration } from 'common/configs/assesssment-visualization-configuration';
+import { Messages } from 'common/messages';
+import { ManualTestStatus } from 'common/types/manual-test-status';
+import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
+import { AssessmentScanData, ScanData } from 'common/types/store-data/visualization-store-data';
+import { AssessmentInstanceRowData, AssessmentInstanceTable } from 'DetailsView/components/assessment-instance-table';
+import { AssessmentTestView } from 'DetailsView/components/assessment-test-view';
+import { RequirementLink } from 'DetailsView/components/requirement-link';
+import { AnalyzerProvider } from 'injected/analyzers/analyzer-provider';
+import { DecoratedAxeNodeResult, ScannerUtils } from 'injected/scanner-utils';
 import {
     PropertyBags,
     VisualizationInstanceProcessor,
     VisualizationInstanceProcessorCallback,
-} from '../injected/visualization-instance-processor';
-import { DrawerProvider } from '../injected/visualization/drawer-provider';
-import { DictionaryStringTo } from '../types/common-types';
+} from 'injected/visualization-instance-processor';
+import { DrawerProvider } from 'injected/visualization/drawer-provider';
+import { DictionaryStringTo } from 'types/common-types';
 import { Assessment, AssistedAssessment, ManualAssessment } from './types/iassessment';
 import { ReportInstanceField } from './types/report-instance-field';
 import { Requirement } from './types/requirement';
 
 export class AssessmentBuilder {
     private static applyDefaultReportFieldMap(requirement: Requirement): void {
-        const { comment, snippet, path } = ReportInstanceField.common;
+        const { comment, snippet, path, manualSnippet, manualPath } = ReportInstanceField.common;
 
-        const defaults = requirement.isManual ? [comment] : [path, snippet];
+        const defaults = requirement.isManual ? [comment, manualPath, manualSnippet] : [path, snippet];
         const specified = requirement.reportInstanceFields || [];
 
         requirement.reportInstanceFields = [...defaults, ...specified];
@@ -143,7 +143,6 @@ export class AssessmentBuilder {
             disableTest: AssessmentBuilder.disableTest,
             getTestStatus: AssessmentBuilder.getTestStatus,
             getAssessmentData: data => data.assessments[key],
-            analyzerMessageType: Messages.Assessment.AssessmentScanCompleted,
             key: `${key}Assessment`,
             getAnalyzer: getAnalyzer,
             getIdentifier: getIdentifier,

@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { VisualHelperToggleConfig } from 'assessments/types/requirement';
 import * as _ from 'lodash';
 import * as React from 'react';
-import { VisualHelperToggleConfig } from '../../assessments/types/requirement';
 import { VisualizationToggle } from '../../common/components/visualization-toggle';
 import { GeneratedAssessmentInstance } from '../../common/types/store-data/assessment-result-data';
 import { DictionaryStringTo } from '../../types/common-types';
@@ -60,5 +60,5 @@ export abstract class BaseVisualHelperToggle extends React.Component<VisualHelpe
         return null;
     }
 
-    protected abstract onClick(event): void;
+    protected abstract onClick: (event: any) => void;
 }

@@ -1,12 +1,14 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as TelemetryEvents from '../../common/telemetry-events';
-import { BaseTelemetryData, TelemetryData, ToggleTelemetryData } from '../../common/telemetry-events';
+import * as TelemetryEvents from '../../common/extension-telemetry-events';
+import { BaseTelemetryData, TelemetryData, ToggleTelemetryData } from '../../common/extension-telemetry-events';
 import { CreateIssueDetailsTextData } from '../../common/types/create-issue-details-text-data';
 import { DetailsViewPivotType } from '../../common/types/details-view-pivot-type';
 import { ManualTestStatus } from '../../common/types/manual-test-status';
+import { UnifiedResult, UnifiedRule } from '../../common/types/store-data/unified-data-interface';
 import { IssueFilingServiceProperties } from '../../common/types/store-data/user-configuration-store';
 import { VisualizationType } from '../../common/types/visualization-type';
+import { FailureInstanceData } from '../../DetailsView/components/failure-instance-panel-control';
 import { TabStopEvent } from '../../injected/tab-stops-listener';
 import { LaunchPanelType } from '../../popup/components/popup-view';
 
@@ -41,6 +43,10 @@ export interface ChangeRequirementStatusPayload extends AssessmentToggleActionPa
 }
 
 export interface AddFailureInstancePayload extends AssessmentToggleActionPayload {
+    instanceData: FailureInstanceData;
+}
+
+export interface AddResultDescriptionPayload extends BaseActionPayload {
     description: string;
 }
 
@@ -140,11 +146,12 @@ export interface SetIssueFilingServicePropertyPayload extends BaseActionPayload 
     propertyValue: string;
 }
 
-export interface SetIssueTrackerPathPayload extends BaseActionPayload {
-    issueTrackerPath: string;
-}
-
 export interface FileIssuePayload extends BaseActionPayload {
     issueData: CreateIssueDetailsTextData;
     service: string;
+}
+
+export interface UnifiedScanCompletedPayload extends BaseActionPayload {
+    scanResult: UnifiedResult[];
+    rules: UnifiedRule[];
 }

@@ -1,9 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { forOwn } from 'lodash';
-import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
-import { ActionCreator } from '../../../../../background/actions/action-creator';
-import { ActionHub } from '../../../../../background/actions/action-hub';
+import { ActionCreator } from 'background/actions/action-creator';
+import { ActionHub } from 'background/actions/action-hub';
 import {
     AddTabbedElementPayload,
     BaseActionPayload,
@@ -12,24 +10,22 @@ import {
     OnDetailsViewPivotSelected,
     ToggleActionPayload,
     VisualizationTogglePayload,
-} from '../../../../../background/actions/action-payloads';
-import { DetailsViewActions } from '../../../../../background/actions/details-view-actions';
-import { DevToolActions } from '../../../../../background/actions/dev-tools-actions';
-import { InspectActions } from '../../../../../background/actions/inspect-actions';
-import { ScopingActions } from '../../../../../background/actions/scoping-actions';
-import { VisualizationActions } from '../../../../../background/actions/visualization-actions';
-import { VisualizationScanResultActions } from '../../../../../background/actions/visualization-scan-result-actions';
-import { ChromeFeatureController } from '../../../../../background/chrome-feature-controller';
-import { DetailsViewController } from '../../../../../background/details-view-controller';
-import { ContentScriptInjector } from '../../../../../background/injector/content-script-injector';
-import { TargetTabController } from '../../../../../background/target-tab-controller';
-import { TelemetryEventHandler } from '../../../../../background/telemetry/telemetry-event-handler';
-import { VisualizationConfigurationFactory } from '../../../../../common/configs/visualization-configuration-factory';
-import { Action } from '../../../../../common/flux/action';
-import { PayloadCallback } from '../../../../../common/message';
-import { Messages } from '../../../../../common/messages';
-import { NotificationCreator } from '../../../../../common/notification-creator';
-import * as TelemetryEvents from '../../../../../common/telemetry-events';
+} from 'background/actions/action-payloads';
+import { AssessmentActions } from 'background/actions/assessment-actions';
+import { DetailsViewActions } from 'background/actions/details-view-actions';
+import { DevToolActions } from 'background/actions/dev-tools-actions';
+import { InspectActions } from 'background/actions/inspect-actions';
+import { PreviewFeaturesActions } from 'background/actions/preview-features-actions';
+import { ScopingActions } from 'background/actions/scoping-actions';
+import { VisualizationActions } from 'background/actions/visualization-actions';
+import { VisualizationScanResultActions } from 'background/actions/visualization-scan-result-actions';
+import { DetailsViewController } from 'background/details-view-controller';
+import { ContentScriptInjector } from 'background/injector/content-script-injector';
+import { Interpreter } from 'background/interpreter';
+import { TargetTabController } from 'background/target-tab-controller';
+import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
+import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
+import * as TelemetryEvents from 'common/extension-telemetry-events';
 import {
     BaseTelemetryData,
     DetailsViewOpenTelemetryData,
@@ -37,13 +33,17 @@ import {
     TelemetryEventSource,
     ToggleTelemetryData,
     TriggeredBy,
-} from '../../../../../common/telemetry-events';
-import { DetailsViewPivotType } from '../../../../../common/types/details-view-pivot-type';
-import { VisualizationType } from '../../../../../common/types/visualization-type';
-import { ScanCompletedPayload } from '../../../../../injected/analyzers/analyzer';
-import { DictionaryStringTo } from '../../../../../types/common-types';
-import { AssessmentActions } from './../../../../../background/actions/assessment-actions';
-import { PreviewFeaturesActions } from './../../../../../background/actions/preview-features-actions';
+} from 'common/extension-telemetry-events';
+import { Action } from 'common/flux/action';
+import { getStoreStateMessage, Messages } from 'common/messages';
+import { NotificationCreator } from 'common/notification-creator';
+import { StoreNames } from 'common/stores/store-names';
+import { DetailsViewPivotType } from 'common/types/details-view-pivot-type';
+import { VisualizationType } from 'common/types/visualization-type';
+import { ScanCompletedPayload } from 'injected/analyzers/analyzer';
+import { forOwn } from 'lodash';
+import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
+import { DictionaryStringTo } from 'types/common-types';
 
 const VisualizationMessage = Messages.Visualizations;
 const PreviewFeaturesMessage = Messages.PreviewFeatures;
@@ -74,7 +74,7 @@ describe('ActionCreatorTest', () => {
         const validator = new ActionCreatorValidator()
             .setupActionOnVisualizationActions(actionName)
             .setupVisualizationActionWithInvokeParameter(actionName, payload)
-            .setupSwithToTab(tabId)
+            .setupSwitchToTab(tabId)
             .setupRegistrationCallback(VisualizationMessage.Common.Toggle, args)
             .setupTelemetrySend(TelemetryEvents.TABSTOPS_TOGGLE, payload, tabId);
 
@@ -550,7 +550,7 @@ describe('ActionCreatorTest', () => {
         const args = [];
         const actionName = 'getCurrentState';
         const builder = new ActionCreatorValidator()
-            .setupRegistrationCallback(Messages.Visualizations.State.GetCurrentVisualizationToggleState, args)
+            .setupRegistrationCallback(getStoreStateMessage(StoreNames.VisualizationStore), args)
             .setupActionOnVisualizationActions(actionName)
             .setupVisualizationActionWithInvokeParameter(actionName, null);
 
@@ -565,27 +565,12 @@ describe('ActionCreatorTest', () => {
         const args = [];
         const actionName = 'getCurrentState';
         const builder = new ActionCreatorValidator()
-            .setupRegistrationCallback(Messages.Visualizations.State.GetCurrentVisualizationResultState, args)
+            .setupRegistrationCallback(getStoreStateMessage(StoreNames.VisualizationScanResultStore), args)
             .setupActionOnVisualizationScanResultActions(actionName)
             .setupVisualizationScanResultActionWithInvokeParameter(actionName, null);
 
         const actionCreator = builder.buildActionCreator();
 
-        actionCreator.registerCallbacks();
-
-        builder.verifyAll();
-    });
-
-    test('test for open configureCommand tab', () => {
-        const tabId: number = 1;
-        const payload = { eventName: TelemetryEvents.SHORTCUT_CONFIGURE_OPEN, telemetry: {} };
-        const args = [payload, tabId];
-        const builder = new ActionCreatorValidator()
-            .setupRegistrationCallback(Messages.ChromeFeature.configureCommand, args)
-            .setupTelemetrySend(TelemetryEvents.SHORTCUT_CONFIGURE_OPEN, payload, tabId)
-            .setupChromeFeatureController();
-
-        const actionCreator = builder.buildActionCreator();
         actionCreator.registerCallbacks();
 
         builder.verifyAll();
@@ -967,7 +952,7 @@ class ActionCreatorValidator {
     private devToolActionsContainerMock = Mock.ofType(DevToolActions);
 
     private contentScriptInjectorStrictMock = Mock.ofType<ContentScriptInjector>(null, MockBehavior.Strict);
-    private registerCallbackMock = Mock.ofInstance((messageType: string, callback: PayloadCallback) => {});
+    private interpreterMock = Mock.ofType<Interpreter>();
     private getManifestMock = Mock.ofInstance(() => {
         return null;
     });
@@ -985,18 +970,16 @@ class ActionCreatorValidator {
         inspectActions: this.inspectActionsContainerMock.object,
         contentActions: null,
         detailsViewActions: this.detailsViewActionsContainerMock.object,
+        pathSnippetActions: null,
+        scanResultActions: null,
     };
 
     private telemetryEventHandlerStrictMock = Mock.ofType<TelemetryEventHandler>(null, MockBehavior.Strict);
     private notificationCreatorStrictMock = Mock.ofType<NotificationCreator>(null, MockBehavior.Strict);
     private targetTabControllerStrictMock = Mock.ofType<TargetTabController>(null, MockBehavior.Strict);
     private detailsViewControllerStrictMock: IMock<DetailsViewController> = Mock.ofType<DetailsViewController>(null, MockBehavior.Strict);
-    private chromeFeatureControllerStrictMock: IMock<ChromeFeatureController> = Mock.ofType<ChromeFeatureController>(
-        null,
-        MockBehavior.Strict,
-    );
 
-    public setupSwithToTab(tabId: number): ActionCreatorValidator {
+    public setupSwitchToTab(tabId: number): ActionCreatorValidator {
         this.switchToTabMock.setup(stt => stt(tabId)).verifiable(Times.once());
 
         return this;
@@ -1035,11 +1018,6 @@ class ActionCreatorValidator {
         return this;
     }
 
-    public setupScopingActionWithInvokeParameter(actionName: string, expectedInvokeParam: any): ActionCreatorValidator {
-        this.setupActionWithInvokeParameter(actionName, expectedInvokeParam, this.scopingActionMocks);
-        return this;
-    }
-
     public setupVisualizationScanResultActionWithInvokeParameter(
         actionName: keyof VisualizationScanResultActions,
         expectedInvokeParam: any,
@@ -1048,21 +1026,8 @@ class ActionCreatorValidator {
         return this;
     }
 
-    public setupDevToolsActionWithInvokeParameter(actionName: keyof DevToolActions, expectedInvokeParam: any): ActionCreatorValidator {
-        this.setupActionWithInvokeParameter(actionName, expectedInvokeParam, this.devToolsActionMocks);
-        return this;
-    }
-
     public setupInspectActionWithInvokeParameter(actionName: keyof InspectActions, expectedInvokeParam: any): ActionCreatorValidator {
         this.setupActionWithInvokeParameter(actionName, expectedInvokeParam, this.inspectActionsMock);
-        return this;
-    }
-
-    public setupDetailsViewActionWithInvokeParameter(
-        actionName: keyof DetailsViewActions,
-        expectedInvokeParam: any,
-    ): ActionCreatorValidator {
-        this.setupActionWithInvokeParameter(actionName, expectedInvokeParam, this.detailsViewActionsMocks);
         return this;
     }
 
@@ -1078,14 +1043,8 @@ class ActionCreatorValidator {
         return this;
     }
 
-    public setupCreateNotification(message: string): ActionCreatorValidator {
-        this.notificationCreatorStrictMock.setup(x => x.createNotification(message)).verifiable();
-
-        return this;
-    }
-
     public setupShowTargetTab(tabId: number, testType: VisualizationType, step: string): ActionCreatorValidator {
-        this.targetTabControllerStrictMock.setup(ttcm => ttcm.showTargetTab(tabId, testType, step)).verifiable();
+        this.targetTabControllerStrictMock.setup(controller => controller.showTargetTab(tabId, testType, step)).verifiable();
 
         return this;
     }
@@ -1121,11 +1080,6 @@ class ActionCreatorValidator {
         return this;
     }
 
-    public setupActionOnDevToolsActions(actionName: keyof DevToolActions): ActionCreatorValidator {
-        this.setupAction(actionName, this.devToolsActionMocks, this.devToolActionsContainerMock);
-        return this;
-    }
-
     public setupActionOnVisualizationActions(actionName: keyof VisualizationActions): ActionCreatorValidator {
         this.setupAction(actionName, this.visualizationActionMocks, this.visualizationActionsContainerMock);
         return this;
@@ -1133,16 +1087,6 @@ class ActionCreatorValidator {
 
     public setupActionOnPreviewFeaturesActions(actionName: keyof PreviewFeaturesActions): ActionCreatorValidator {
         this.setupAction(actionName, this.previewFeaturesActionMocks, this.previewFeaturesActionsContainerMock);
-        return this;
-    }
-
-    public setupActionsOnScopingActions(actionName: keyof ScopingActions): ActionCreatorValidator {
-        this.setupAction(actionName, this.scopingActionMocks, this.scopingActionsContainerMock);
-        return this;
-    }
-
-    public setupActionOnDetailsViewActions(actionName: keyof DetailsViewActions): ActionCreatorValidator {
-        this.setupAction(actionName, this.detailsViewActionsMocks, this.detailsViewActionsContainerMock);
         return this;
     }
 
@@ -1157,8 +1101,8 @@ class ActionCreatorValidator {
     }
 
     public setupRegistrationCallback(expectedType: string, callbackParams?: any[]): ActionCreatorValidator {
-        this.registerCallbackMock
-            .setup(rc => rc(It.isValue(expectedType), It.isAny()))
+        this.interpreterMock
+            .setup(interpreter => interpreter.registerTypeToPayloadCallback(It.isValue(expectedType), It.isAny()))
             .callback((messageType, callback) => {
                 if (callbackParams) {
                     callback.apply(null, callbackParams);
@@ -1179,10 +1123,9 @@ class ActionCreatorValidator {
 
     public buildActionCreator(): ActionCreator {
         return new ActionCreator(
+            this.interpreterMock.object,
             this.actionHubMock,
-            this.registerCallbackMock.object,
             this.detailsViewControllerStrictMock.object,
-            this.chromeFeatureControllerStrictMock.object,
             this.telemetryEventHandlerStrictMock.object,
             this.notificationCreatorStrictMock.object,
             new VisualizationConfigurationFactory(),
@@ -1198,17 +1141,10 @@ class ActionCreatorValidator {
         this.visualizationScanResultActionsContainerMock.verifyAll();
 
         this.notificationCreatorStrictMock.verifyAll();
-        this.registerCallbackMock.verifyAll();
+        this.interpreterMock.verifyAll();
         this.detailsViewControllerStrictMock.verifyAll();
         this.contentScriptInjectorStrictMock.verifyAll();
-        this.chromeFeatureControllerStrictMock.verifyAll();
         this.targetTabControllerStrictMock.verifyAll();
-    }
-
-    public setupChromeFeatureController(): ActionCreatorValidator {
-        this.chromeFeatureControllerStrictMock.setup(cfc => cfc.openCommandConfigureTab()).verifiable();
-
-        return this;
     }
 
     private verifyAllActionMocks(): void {

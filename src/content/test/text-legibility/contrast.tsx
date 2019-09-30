@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { create, React } from '../../common';
 
-export const infoAndExamples = create(({ Markup }) => (
+export const infoAndExamples = create(({ Markup, Link }) => (
     <>
         <h1>Contrast</h1>
         <p>Text elements must have sufficient contrast.</p>
@@ -13,8 +13,7 @@ export const infoAndExamples = create(({ Markup }) => (
             disabilities, low vision, or limited color perception are likely to find text unreadable when contrast is too low.
         </p>
         <p>
-            People with <Markup.HyperLink href="https://en.wikipedia.org/wiki/Presbyopia">presbyopia</Markup.HyperLink> also struggle to
-            read small or low-contrast text. A{' '}
+            People with <Link.Presbyopia /> also struggle to read small or low-contrast text. A{' '}
             <Markup.HyperLink href="https://www.sciencedirect.com/science/article/pii/S0161642017337971">2018 study</Markup.HyperLink> found
             that 1.8 billion people worldwide have presbyopia. (All people are affected by presbyopia to some degree as they age.)
         </p>

@@ -1,10 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { ISelection } from 'office-ui-fabric-react/lib/DetailsList';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-
-import { AssessmentsProvider } from '../assessments/types/assessments-provider';
 import { Theme } from '../common/components/theme';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
 import { config } from '../common/configuration';
@@ -17,11 +16,10 @@ import { DetailsView, DetailsViewContainerDeps } from './details-view-container'
 import { AssessmentInstanceTableHandler } from './handlers/assessment-instance-table-handler';
 import { DetailsViewToggleClickHandlerFactory } from './handlers/details-view-toggle-click-handler-factory';
 import { PreviewFeatureFlagsHandler } from './handlers/preview-feature-flags-handler';
-import { ReportGenerator } from './reports/report-generator';
 
 export class DetailsViewRenderer {
     private renderer: typeof ReactDOM.render;
-    private dom: NodeSelector & Node;
+    private dom: Document;
     private scopingActionMessageCreator: ScopingActionMessageCreator;
     private inspectActionMessageCreator: InspectActionMessageCreator;
     private issuesSelection: ISelection;
@@ -29,7 +27,6 @@ export class DetailsViewRenderer {
     private visualizationConfigurationFactory: VisualizationConfigurationFactory;
     private issuesTableHandler: IssuesTableHandler;
     private assessmentInstanceTableHandler: AssessmentInstanceTableHandler;
-    private reportGenerator: ReportGenerator;
     private previewFeatureFlagsHandler: PreviewFeatureFlagsHandler;
     private scopingFlagsHandler: PreviewFeatureFlagsHandler;
     private dropdownClickHandler: DropdownClickHandler;
@@ -37,7 +34,7 @@ export class DetailsViewRenderer {
 
     constructor(
         private readonly deps: DetailsViewContainerDeps,
-        dom: NodeSelector & Node,
+        dom: Document,
         renderer: typeof ReactDOM.render,
         scopingActionMessageCreator: ScopingActionMessageCreator,
         inspectActionMessageCreator: InspectActionMessageCreator,
@@ -46,7 +43,6 @@ export class DetailsViewRenderer {
         visualizationConfigurationFactory: VisualizationConfigurationFactory,
         issuesTableHandler: IssuesTableHandler,
         assessmentInstanceTableHandler: AssessmentInstanceTableHandler,
-        reportGenerator: ReportGenerator,
         previewFeatureFlagsHandler: PreviewFeatureFlagsHandler,
         scopingFlagsHandler: PreviewFeatureFlagsHandler,
         dropdownClickHandler: DropdownClickHandler,
@@ -64,7 +60,6 @@ export class DetailsViewRenderer {
 
         this.issuesTableHandler = issuesTableHandler;
         this.assessmentInstanceTableHandler = assessmentInstanceTableHandler;
-        this.reportGenerator = reportGenerator;
         this.previewFeatureFlagsHandler = previewFeatureFlagsHandler;
         this.scopingFlagsHandler = scopingFlagsHandler;
         this.dropdownClickHandler = dropdownClickHandler;
@@ -80,13 +75,11 @@ export class DetailsViewRenderer {
                 <Theme deps={this.deps} />
                 <DetailsView
                     deps={this.deps}
-                    document={this.dom as Document}
                     issuesSelection={this.issuesSelection}
                     clickHandlerFactory={this.clickHandlerFactory}
                     visualizationConfigurationFactory={this.visualizationConfigurationFactory}
                     issuesTableHandler={this.issuesTableHandler}
                     assessmentInstanceTableHandler={this.assessmentInstanceTableHandler}
-                    reportGenerator={this.reportGenerator}
                     previewFeatureFlagsHandler={this.previewFeatureFlagsHandler}
                     scopingFlagsHandler={this.scopingFlagsHandler}
                     dropdownClickHandler={this.dropdownClickHandler}

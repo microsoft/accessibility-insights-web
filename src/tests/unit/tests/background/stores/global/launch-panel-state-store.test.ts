@@ -1,14 +1,14 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IMock, It, Mock, Times } from 'typemoq';
-import { LaunchPanelStateActions } from '../../../../../../background/actions/launch-panel-state-action';
-import { StorageAdapter } from '../../../../../../background/browser-adapters/storage-adapter';
-import { LocalStorageDataKeys } from '../../../../../../background/local-storage-data-keys';
-import { LocalStorageData } from '../../../../../../background/storage-data';
-import { LaunchPanelStore } from '../../../../../../background/stores/global/launch-panel-store';
-import { StoreNames } from '../../../../../../common/stores/store-names';
-import { LaunchPanelStoreData } from '../../../../../../common/types/store-data/launch-panel-store-data';
-import { LaunchPanelType } from '../../../../../../popup/components/popup-view';
+import { LaunchPanelStateActions } from 'background/actions/launch-panel-state-action';
+import { LocalStorageDataKeys } from 'background/local-storage-data-keys';
+import { LocalStorageData } from 'background/storage-data';
+import { LaunchPanelStore } from 'background/stores/global/launch-panel-store';
+import { StorageAdapter } from 'common/browser-adapters/storage-adapter';
+import { StoreNames } from 'common/stores/store-names';
+import { LaunchPanelStoreData } from 'common/types/store-data/launch-panel-store-data';
+import { LaunchPanelType } from 'popup/components/popup-view';
+import { IMock, It, Mock } from 'typemoq';
 import { createStoreWithNullParams, StoreTester } from '../../../../common/store-tester';
 
 describe('LaunchPanelStateStoreTest', () => {
@@ -56,11 +56,11 @@ describe('LaunchPanelStateStoreTest', () => {
         const expectedState = getDefaultState();
         expectedState.launchPanelType = payload;
 
-        const expecetedSetUserData = {
+        const expectedSetUserData = {
             [LocalStorageDataKeys.launchPanelSetting]: payload,
         };
 
-        storageAdapterMock.setup(adapter => adapter.setUserData(It.isValue(expecetedSetUserData))).verifiable(Times.once());
+        storageAdapterMock.setup(adapter => adapter.setUserData(It.isValue(expectedSetUserData))).returns(() => Promise.resolve());
 
         createStoreForLaunchPanelStateActions('setLaunchPanelType')
             .withActionParam(payload)

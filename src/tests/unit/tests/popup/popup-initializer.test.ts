@@ -2,15 +2,17 @@
 // Licensed under the MIT License.
 import { IMock, It, Mock, Times } from 'typemoq';
 
-import { ChromeAdapter } from '../../../../background/browser-adapter';
+import { BrowserAdapter } from '../../../../common/browser-adapters/browser-adapter';
+import { IsSupportedBrowser } from '../../../../common/is-supported-browser';
 import { Logger } from '../../../../common/logging/logger';
 import { PopupInitializer } from '../../../../popup/popup-initializer';
 import { TargetTabFinder, TargetTabInfo } from '../../../../popup/target-tab-finder';
 
 describe('PopupInitializerTests', () => {
     let targetTabStub: TargetTabInfo;
-    let browserAdapterMock: IMock<ChromeAdapter>;
+    let browserAdapterMock: IMock<BrowserAdapter>;
     let targetTabFinderMock: IMock<TargetTabFinder>;
+    let isSupportedBrowserMock: IMock<IsSupportedBrowser>;
     let loggerMock: IMock<Logger>;
 
     beforeEach(() => {
@@ -22,27 +24,26 @@ describe('PopupInitializerTests', () => {
             hasAccess: true,
         };
 
-        browserAdapterMock = Mock.ofType(ChromeAdapter);
+        browserAdapterMock = Mock.ofType<BrowserAdapter>();
         targetTabFinderMock = Mock.ofType(TargetTabFinder);
         loggerMock = Mock.ofType<Logger>();
+        isSupportedBrowserMock = Mock.ofType<IsSupportedBrowser>();
     });
 
     test('initializePopup: valid browser', async () => {
         const initializePopupMock = Mock.ofInstance(result => {});
-        const validUserAgent: IUAParser.IBrowser = {
-            name: 'Chrome',
-        } as IUAParser.IBrowser;
+        isSupportedBrowserMock.setup(isValid => isValid()).returns(() => true);
 
         targetTabFinderMock
-            .setup(b => b.getTargetTab())
+            .setup(finder => finder.getTargetTab())
             .returns(() => Promise.resolve(targetTabStub))
             .verifiable();
 
-        initializePopupMock.setup(i => i(It.isAny())).verifiable();
+        initializePopupMock.setup(init => init(It.isAny())).verifiable();
         const testSubject: PopupInitializer = new PopupInitializer(
             browserAdapterMock.object,
             targetTabFinderMock.object,
-            validUserAgent,
+            isSupportedBrowserMock.object,
             loggerMock.object,
         );
         (testSubject as any).initializePopup = initializePopupMock.object;
@@ -56,20 +57,18 @@ describe('PopupInitializerTests', () => {
 
     test('initializePopup: invalid browser', async () => {
         const useIncompatibleBrowserRendererMock = Mock.ofInstance(result => {});
-        const invalidUserAgent: IUAParser.IBrowser = {
-            name: 'Edge',
-        } as IUAParser.IBrowser;
+        isSupportedBrowserMock.setup(isValid => isValid()).returns(() => false);
 
         targetTabFinderMock
-            .setup(b => b.getTargetTab())
+            .setup(finder => finder.getTargetTab())
             .returns(() => Promise.resolve(targetTabStub))
             .verifiable(Times.never());
 
-        useIncompatibleBrowserRendererMock.setup(i => i(It.isAny())).verifiable();
+        useIncompatibleBrowserRendererMock.setup(renderer => renderer(It.isAny())).verifiable();
         const testSubject: PopupInitializer = new PopupInitializer(
             browserAdapterMock.object,
             targetTabFinderMock.object,
-            invalidUserAgent,
+            isSupportedBrowserMock.object,
             loggerMock.object,
         );
         (testSubject as any).useIncompatibleBrowserRenderer = useIncompatibleBrowserRendererMock.object;

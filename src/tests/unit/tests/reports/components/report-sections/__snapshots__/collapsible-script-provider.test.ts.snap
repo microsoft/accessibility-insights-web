@@ -1,0 +1,3 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CollapsibleScriptProvider match content 1`] = `"(this is test code)(document)"`;

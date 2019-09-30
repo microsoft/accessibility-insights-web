@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`OverviewHelpSection help text is shown properly 1`] = `
+<section
+  className="overviewHelpContainer"
+>
+  <h3
+    className="helpHeading"
+  >
+    Help
+  </h3>
+  <HelpLinks
+    deps={Object {}}
+    linkInformation={Array []}
+  />
+</section>
+`;

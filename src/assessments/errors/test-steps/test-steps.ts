@@ -4,4 +4,5 @@ export enum ErrorsTestStep {
     errorIdentification = 'errorIdentification',
     errorSuggestion = 'errorSuggestion',
     errorPrevention = 'errorPrevention',
+    statusMessages = 'statusMessages',
 }

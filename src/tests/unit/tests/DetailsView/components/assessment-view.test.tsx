@@ -4,19 +4,22 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 import { IMock, It, Mock, Times } from 'typemoq';
 
-import { AssessmentDefaultMessageGenerator } from '../../../../../assessments/assessment-default-message-generator';
-import { AssessmentsProvider } from '../../../../../assessments/types/assessments-provider';
+import { AssessmentDefaultMessageGenerator } from 'assessments/assessment-default-message-generator';
+import { AssessmentsProvider } from 'assessments/types/assessments-provider';
+import { outcomeTypeFromTestStatus, outcomeTypeSemanticsFromTestStatus } from 'reports/components/requirement-outcome-type';
 import { AssessmentTestResult } from '../../../../../common/assessment/assessment-test-result';
+import { GetGuidanceTagsFromGuidanceLinks } from '../../../../../common/get-guidance-tags-from-guidance-links';
 import { getInnerTextFromJsxElement } from '../../../../../common/get-inner-text-from-jsx-element';
 import { ContentActionMessageCreator } from '../../../../../common/message-creators/content-action-message-creator';
 import { ManualTestStatus } from '../../../../../common/types/manual-test-status';
 import { AssessmentData } from '../../../../../common/types/store-data/assessment-result-data';
+import { FeatureFlagStoreData } from '../../../../../common/types/store-data/feature-flag-store-data';
+import { PathSnippetStoreData } from '../../../../../common/types/store-data/path-snippet-store-data';
 import { VisualizationType } from '../../../../../common/types/visualization-type';
 import { UrlParser } from '../../../../../common/url-parser';
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
 import { AssessmentView, AssessmentViewDeps, AssessmentViewProps } from '../../../../../DetailsView/components/assessment-view';
 import { AssessmentInstanceTableHandler } from '../../../../../DetailsView/handlers/assessment-instance-table-handler';
-import { outcomeTypeFromTestStatus, outcomeTypeSemanticsFromTestStatus } from '../../../../../DetailsView/reports/components/outcome-type';
 import { contentProvider, CreateTestAssessmentProvider } from '../../../common/test-assessment-provider';
 
 describe('AssessmentViewTest', () => {
@@ -218,6 +221,7 @@ class AssessmentViewPropsBuilder {
             getInnerTextFromJsxElement: Mock.ofInstance(getInnerTextFromJsxElement).object,
             outcomeTypeSemanticsFromTestStatus: Mock.ofInstance(outcomeTypeSemanticsFromTestStatus).object,
             urlParser: Mock.ofType(UrlParser).object,
+            getGuidanceTagsFromGuidanceLinks: Mock.ofType<GetGuidanceTagsFromGuidanceLinks>().object,
         };
         const assessment = this.provider.all()[0];
         const firstStep = assessment.requirements[0];
@@ -247,6 +251,9 @@ class AssessmentViewPropsBuilder {
             manualTestStepResultMap: {},
         } as AssessmentData;
 
+        const featureFlagStoreData = {} as FeatureFlagStoreData;
+        const pathSnippetStoreData = {} as PathSnippetStoreData;
+
         const props: AssessmentViewProps = {
             deps,
             prevTarget,
@@ -261,6 +268,8 @@ class AssessmentViewPropsBuilder {
             assessmentData,
             assessmentDefaultMessageGenerator: this.assessmentGeneratorInstance,
             assessmentTestResult: new AssessmentTestResult(this.provider, assessment.visualizationType, assessmentData),
+            featureFlagStoreData,
+            pathSnippetStoreData,
         };
 
         return props;

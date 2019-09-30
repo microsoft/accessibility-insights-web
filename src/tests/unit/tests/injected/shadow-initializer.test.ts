@@ -1,26 +1,24 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IMock, It, Mock, Times } from 'typemoq';
-import { ClientBrowserAdapter, ClientChromeAdapter } from '../../../../common/client-browser-adapter';
-import { FileRequestHelper } from '../../../../common/file-request-helper';
+import { IMock, It, Mock } from 'typemoq';
+import { BrowserAdapter } from '../../../../common/browser-adapters/browser-adapter';
 import { HTMLElementUtils } from '../../../../common/html-element-utils';
 import { Logger } from '../../../../common/logging/logger';
 import { rootContainerId } from '../../../../injected/constants';
 import { ShadowInitializer } from '../../../../injected/shadow-initializer';
 
 describe('ShadowInitializerTests', () => {
-    const cssFileUrl: string = 'cssFileUrl';
+    const injectedCssPathFileUrl: string = 'injectedCssPathFileUrl';
+    const generatedBundleInjectedCssPathFileUrl: string = 'generatedBundleInjectedCssPathFileUrl';
     let testSubject: ShadowInitializer;
-    let chromeAdapter: IMock<ClientBrowserAdapter>;
+    let browserAdapter: IMock<BrowserAdapter>;
     let htmlElementUtilsMock: IMock<HTMLElementUtils>;
-    let fileRequestHelperMock: IMock<FileRequestHelper>;
     let shadowRoot: ShadowRoot;
     let rootContainer: HTMLElement;
 
     beforeEach(() => {
-        chromeAdapter = Mock.ofType(ClientChromeAdapter);
+        browserAdapter = Mock.ofType<BrowserAdapter>();
         htmlElementUtilsMock = Mock.ofType(HTMLElementUtils);
-        fileRequestHelperMock = Mock.ofType(FileRequestHelper);
         rootContainer = document.createElement('div');
         shadowRoot = document.createElement('div') as any;
 
@@ -40,18 +38,17 @@ describe('ShadowInitializerTests', () => {
             .returns(() => shadowRoot)
             .verifiable();
 
-        chromeAdapter
+        browserAdapter
             .setup(x => x.getUrl(ShadowInitializer.injectedCssPath))
-            .returns(() => cssFileUrl)
+            .returns(() => injectedCssPathFileUrl)
             .verifiable();
 
+        browserAdapter
+            .setup(x => x.getUrl(ShadowInitializer.generatedBundleInjectedCssPath))
+            .returns(() => generatedBundleInjectedCssPathFileUrl);
+
         const loggerMock = Mock.ofType<Logger>();
-        testSubject = new ShadowInitializer(
-            chromeAdapter.object,
-            htmlElementUtilsMock.object,
-            fileRequestHelperMock.object,
-            loggerMock.object,
-        );
+        testSubject = new ShadowInitializer(browserAdapter.object, htmlElementUtilsMock.object, loggerMock.object);
     });
 
     afterEach(() => {
@@ -61,39 +58,23 @@ describe('ShadowInitializerTests', () => {
     test('remove existing & create new shadow container on initialize', async () => {
         htmlElementUtilsMock.setup(x => x.deleteAllElements('#insights-shadow-host')).verifiable();
 
-        fileRequestHelperMock
-            .setup(x => x.getFileContent(cssFileUrl))
-            .returns(async () => 'new style content')
-            .verifiable(Times.once());
-
         await testSubject.initialize();
 
-        expect(rootContainer.querySelectorAll('#insights-shadow-host').length).toEqual(1);
-        expect(shadowRoot.querySelectorAll('div#insights-shadow-container').length).toEqual(1);
-        expect(shadowRoot.querySelectorAll('div#insights-shadow-container *').length).toEqual(1);
+        expect(rootContainer).toMatchSnapshot();
+        expect(shadowRoot).toMatchSnapshot();
 
         htmlElementUtilsMock.verifyAll();
-        fileRequestHelperMock.verifyAll();
-        chromeAdapter.verifyAll();
+        browserAdapter.verifyAll();
     });
 
     test('add style data to shadow container', async () => {
-        const styleContent = 'style content';
-
-        fileRequestHelperMock
-            .setup(x => x.getFileContent(cssFileUrl))
-            .returns(async () => styleContent)
-            .verifiable(Times.once());
-
         expect(shadowRoot.querySelectorAll('div#insights-shadow-container style').length).toEqual(0);
 
         await testSubject.initialize();
 
-        expect(shadowRoot.querySelectorAll('div#insights-shadow-container style').length).toEqual(1);
-        const styleElement = shadowRoot.querySelector('div#insights-shadow-container style');
-        expect(styleElement.innerHTML).toEqual(styleContent);
+        expect(rootContainer).toMatchSnapshot();
+        expect(shadowRoot).toMatchSnapshot();
 
-        fileRequestHelperMock.verifyAll();
-        chromeAdapter.verifyAll();
+        browserAdapter.verifyAll();
     });
 });

@@ -125,7 +125,7 @@ describe('AssessmentTableColumnConfigHandlerTest', () => {
         const expected = (
             <AssessmentInstanceDetailsColumn
                 background={'#767676'}
-                labelText={'N/A'}
+                headerText={'Comment:'}
                 textContent={item.instance.description}
                 tooltipId={item.instance.id}
                 customClassName="not-applicable"

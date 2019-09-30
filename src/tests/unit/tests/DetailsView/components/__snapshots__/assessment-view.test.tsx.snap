@@ -22,7 +22,7 @@ exports[`AssessmentViewTest render 1`] = `
         <TestStepsNav deps={{...}} ariaLabel=\\"Requirements\\" selectedTest={-1} selectedTestStep=\\"assessment-1-step-1\\" stepStatus={{...}} />
       </div>
       <div className=\\"test-step-view-container\\">
-        <TestStepView deps={{...}} isScanning={false} testStep={{...}} renderStaticContent={[undefined]} instancesMap={{...}} assessmentNavState={{...}} assessmentInstanceTableHandler={{...}} manualTestStepResultMap={{...}} actionMessageCreator={{...}} assessmentsProvider={{...}} isStepEnabled={false} isStepScanned={false} assessmentDefaultMessageGenerator={{...}} />
+        <TestStepView deps={{...}} isScanning={false} testStep={{...}} renderStaticContent={[undefined]} instancesMap={{...}} assessmentNavState={{...}} assessmentInstanceTableHandler={{...}} manualTestStepResultMap={{...}} actionMessageCreator={{...}} assessmentsProvider={{...}} isStepEnabled={false} isStepScanned={false} assessmentDefaultMessageGenerator={{...}} featureFlagStoreData={{...}} pathSnippetStoreData={{...}} />
       </div>
     </div>
   </AssessmentViewMainContentExtensionPoint>

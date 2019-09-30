@@ -3,10 +3,10 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
+import { ContentLink } from 'views/content/content-link';
+import { ContentPage } from 'views/content/content-page';
 import { NewTabLink } from '../../../../../common/components/new-tab-link';
 import { ContentActionMessageCreator } from '../../../../../common/message-creators/content-action-message-creator';
-import { ContentLink } from '../../../../../views/content/content-link';
-import { ContentPage } from '../../../../../views/content/content-page';
 
 describe('ContentLink', () => {
     const contentPath = 'for/testing';

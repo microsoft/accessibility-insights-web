@@ -4,9 +4,9 @@ import { getRTL } from '@uifabric/utilities';
 import * as ReactDOM from 'react-dom';
 import { GlobalMock, GlobalScope, IGlobalMock, IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
-import { DevToolStore } from '../../../../background/stores/dev-tools-store';
-import { UserConfigurationStore } from '../../../../background/stores/global/user-configuration-store';
-import { ClientBrowserAdapter } from '../../../../common/client-browser-adapter';
+import { DevToolStore } from 'background/stores/dev-tools-store';
+import { UserConfigurationStore } from 'background/stores/global/user-configuration-store';
+import { BrowserAdapter } from '../../../../common/browser-adapters/browser-adapter';
 import { EnvironmentInfoProvider } from '../../../../common/environment-info-provider';
 import { FeatureFlags, getDefaultFeatureFlagValues } from '../../../../common/feature-flags';
 import { HTMLElementUtils } from '../../../../common/html-element-utils';
@@ -16,6 +16,7 @@ import { UserConfigMessageCreator } from '../../../../common/message-creators/us
 import { FeatureFlagStoreData } from '../../../../common/types/store-data/feature-flag-store-data';
 import { WindowUtils } from '../../../../common/window-utils';
 import { rootContainerId } from '../../../../injected/constants';
+import { DetailsDialogHandler } from '../../../../injected/details-dialog-handler';
 import { DetailsDialogWindowMessage, DialogRenderer } from '../../../../injected/dialog-renderer';
 import { ErrorMessageContent } from '../../../../injected/frameCommunicators/error-message-content';
 import { FrameCommunicator, MessageRequest } from '../../../../injected/frameCommunicators/frame-communicator';
@@ -34,12 +35,14 @@ describe('DialogRendererTests', () => {
     let frameCommunicator: IMock<FrameCommunicator>;
     let mainWindowContext: MainWindowContext;
     let shadowUtilMock: IMock<ShadowUtils>;
-    let clientBrowserAdapter: IMock<ClientBrowserAdapter>;
+    let browserAdapter: IMock<BrowserAdapter>;
     let shadowContainerMock: IMock<HTMLElement>;
     let domMock: IMock<Document>;
     let shadowRootMock: IMock<Element>;
     let getRTLMock: IMock<typeof getRTL>;
     let renderMock: IMock<typeof ReactDOM.render>;
+    let detailsDialogHandlerMock: IMock<DetailsDialogHandler>;
+
     let subscribeCallback: (
         message: DetailsDialogWindowMessage,
         error: ErrorMessageContent,
@@ -52,7 +55,8 @@ describe('DialogRendererTests', () => {
         htmlElementUtilsMock = Mock.ofType(HTMLElementUtils);
         windowUtilsMock = Mock.ofType(WindowUtils);
         shadowUtilMock = Mock.ofType(ShadowUtils);
-        clientBrowserAdapter = Mock.ofType<ClientBrowserAdapter>();
+        browserAdapter = Mock.ofType<BrowserAdapter>();
+        detailsDialogHandlerMock = Mock.ofType<DetailsDialogHandler>();
 
         getMainWindoContextMock = GlobalMock.ofInstance(MainWindowContext.getMainWindowContext, 'getMainWindowContext', MainWindowContext);
         frameCommunicator = Mock.ofType(FrameCommunicator);
@@ -546,8 +550,9 @@ describe('DialogRendererTests', () => {
             htmlElementUtilsMock.object,
             windowUtilsMock.object,
             shadowUtilMock.object,
-            clientBrowserAdapter.object,
+            browserAdapter.object,
             getRTLMock.object,
+            detailsDialogHandlerMock.object,
         );
     }
 });

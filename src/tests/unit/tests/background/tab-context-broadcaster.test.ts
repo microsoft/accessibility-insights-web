@@ -1,8 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { Mock } from 'typemoq';
+import { Mock, MockBehavior, Times } from 'typemoq';
 
-import { TabContextBroadcaster } from '../../../../background/tab-context-broadcaster';
+import { TabContextBroadcaster } from 'background/tab-context-broadcaster';
+import { BrowserAdapter } from '../../../../common/browser-adapters/browser-adapter';
 import { StoreUpdateMessage } from '../../../../common/types/store-update-message';
 
 describe('TabContextBroadcasterTest', () => {
@@ -11,13 +12,14 @@ describe('TabContextBroadcasterTest', () => {
         const testMessage = { someData: 1 } as any;
         const expectedMessage = { tabId: testTabId, ...testMessage } as StoreUpdateMessage<any>;
 
-        const mockSendMessageToFramesAndTab = Mock.ofInstance((tabId, message) => {});
+        const browserAdapterMock = Mock.ofType<BrowserAdapter>(null, MockBehavior.Strict);
+        browserAdapterMock.setup(ba => ba.sendMessageToFrames(expectedMessage)).verifiable(Times.once());
+        browserAdapterMock.setup(ba => ba.sendMessageToTab(testTabId, expectedMessage)).verifiable(Times.once());
 
-        mockSendMessageToFramesAndTab.setup(send => send(testTabId, expectedMessage)).verifiable();
+        const testSubject = new TabContextBroadcaster(browserAdapterMock.object);
 
-        const testSubject = new TabContextBroadcaster(mockSendMessageToFramesAndTab.object);
         testSubject.getBroadcastMessageDelegate(1)(testMessage);
 
-        mockSendMessageToFramesAndTab.verifyAll();
+        browserAdapterMock.verifyAll();
     });
 });

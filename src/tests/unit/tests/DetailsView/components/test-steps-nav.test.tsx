@@ -5,13 +5,14 @@ import * as React from 'react';
 import * as TestUtils from 'react-dom/test-utils';
 import { Mock, Times } from 'typemoq';
 
-import { AssessmentsProvider } from '../../../../../assessments/types/assessments-provider';
-import { Requirement } from '../../../../../assessments/types/requirement';
+import { AssessmentsProvider } from 'assessments/types/assessments-provider';
+import { Requirement } from 'assessments/types/requirement';
+import { OutcomeTypeSemantic } from 'reports/components/outcome-type';
+import { outcomeTypeSemanticsFromTestStatus } from 'reports/components/requirement-outcome-type';
 import { getInnerTextFromJsxElement } from '../../../../../common/get-inner-text-from-jsx-element';
 import { ManualTestStatus } from '../../../../../common/types/manual-test-status';
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
 import { TestStepNavProps, TestStepsNav } from '../../../../../DetailsView/components/test-steps-nav';
-import { OutcomeTypeSemantic, outcomeTypeSemanticsFromTestStatus } from '../../../../../DetailsView/reports/components/outcome-type';
 import { EventStubFactory } from '../../../common/event-stub-factory';
 import { CreateTestAssessmentProvider, CreateTestAssessmentProviderAutomated } from '../../../common/test-assessment-provider';
 

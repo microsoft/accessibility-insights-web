@@ -3,14 +3,14 @@
 import { IMock, It, Times } from 'typemoq';
 
 export class ChromeEventMock {
-    protected _eventMock: IMock<chrome.events.Event<any>>;
+    protected eventMock: IMock<chrome.events.Event<any>>;
 
     constructor(eventMock: IMock<chrome.events.Event<any>>) {
-        this._eventMock = eventMock;
+        this.eventMock = eventMock;
     }
 
     public setupAddListenerMock(callback?: (onAddListener: Function) => void): ChromeEventMock {
-        this._eventMock
+        this.eventMock
             .setup(x => x.addListener(It.isAny()))
             .returns(cb => {
                 if (callback) {
@@ -22,16 +22,16 @@ export class ChromeEventMock {
     }
 
     public setupRemoveListener(): ChromeEventMock {
-        this._eventMock.setup(x => x.removeListener(It.isAny())).verifiable(Times.once());
+        this.eventMock.setup(x => x.removeListener(It.isAny())).verifiable(Times.once());
 
         return this;
     }
 
     public verify(): void {
-        this._eventMock.verifyAll();
+        this.eventMock.verifyAll();
     }
 
     public getObject(): chrome.events.Event<any> {
-        return this._eventMock.object;
+        return this.eventMock.object;
     }
 }

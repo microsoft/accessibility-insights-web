@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { mount, shallow } from 'enzyme';
+import { shallow } from 'enzyme';
 import { Dropdown, IDropdownOption } from 'office-ui-fabric-react/lib/Dropdown';
 import * as React from 'react';
 import { IMock, Mock, Times } from 'typemoq';
@@ -40,7 +40,7 @@ describe('Switcher', () => {
         actionCreatorMock
             .setup(creator => creator.sendPivotItemClicked(DetailsViewPivotType[DetailsViewPivotType.assessment]))
             .verifiable(Times.once());
-        const wrapper = mount(<Switcher {...defaultProps} />);
+        const wrapper = shallow<Switcher>(<Switcher {...defaultProps} />);
         const dropdown = wrapper.find(Dropdown);
 
         expect(wrapper.state().selectedKey).toBe(DetailsViewPivotType.fastPass);
@@ -51,5 +51,21 @@ describe('Switcher', () => {
 
         expect(wrapper.state().selectedKey).toBe(DetailsViewPivotType.assessment);
         actionCreatorMock.verifyAll();
+    });
+
+    test('componentDidUpdate: pivotKey has changed', () => {
+        const newProps = {
+            ...defaultProps,
+            pivotKey: DetailsViewPivotType.assessment,
+        };
+        const component = shallow(<Switcher {...newProps} />).instance() as Switcher;
+        component.componentDidUpdate(defaultProps);
+        expect(component.state).toMatchObject({ selectedKey: DetailsViewPivotType.assessment });
+    });
+
+    test('componentDidUpdate: pivotKey has not changed', () => {
+        const component = shallow(<Switcher {...defaultProps} />).instance() as Switcher;
+        component.componentDidUpdate(defaultProps);
+        expect(component.state).toMatchObject({ selectedKey: DetailsViewPivotType.fastPass });
     });
 });

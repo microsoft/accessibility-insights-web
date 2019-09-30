@@ -1,0 +1,72 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MinimalRuleHeader renders, outcomeType = fail 1`] = `
+<span
+  className="rule-detail"
+>
+  <span>
+    <span
+      aria-hidden="true"
+    >
+      <OutcomeChip
+        count={1}
+        outcomeType="fail"
+      />
+    </span>
+     
+    <span
+      className="rule-details-id"
+    >
+      rule id
+    </span>
+    : 
+    <span
+      className="rule-details-description"
+    >
+      rule description
+    </span>
+  </span>
+</span>
+`;
+
+exports[`MinimalRuleHeader renders, outcomeType = inapplicable 1`] = `
+<span
+  className="rule-detail"
+>
+  <span>
+     
+    <span
+      className="rule-details-id"
+    >
+      rule id
+    </span>
+    : 
+    <span
+      className="rule-details-description"
+    >
+      rule description
+    </span>
+  </span>
+</span>
+`;
+
+exports[`MinimalRuleHeader renders, outcomeType = pass 1`] = `
+<span
+  className="rule-detail"
+>
+  <span>
+     
+    <span
+      className="rule-details-id"
+    >
+      rule id
+    </span>
+    : 
+    <span
+      className="rule-details-description"
+    >
+      rule description
+    </span>
+  </span>
+</span>
+`;

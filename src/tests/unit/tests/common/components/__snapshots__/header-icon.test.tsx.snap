@@ -1,17 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`HeaderIconComponent is high contrast mode enabled: false 1`] = `
-<img
-  alt=""
-  className="header-icon"
-  src="../../icons/brand/white/brand-white-48px.png"
-/>
-`;
+exports[`HeaderIconComponent is high contrast mode enabled: false 1`] = `<BrandWhite />`;
 
-exports[`HeaderIconComponent is high contrast mode enabled: true 1`] = `
-<img
-  alt=""
-  className="header-icon"
-  src="../../icons/brand/blue/brand-blue-48px.png"
-/>
-`;
+exports[`HeaderIconComponent is high contrast mode enabled: true 1`] = `<BrandBlue />`;

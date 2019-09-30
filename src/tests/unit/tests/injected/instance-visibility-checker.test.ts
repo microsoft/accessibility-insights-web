@@ -1,11 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { UniquelyIdentifiableInstances } from 'background/instance-identifier-generator';
 import { IMock, It, Mock, Times } from 'typemoq';
-import { UniquelyIdentifiableInstances } from '../../../../background/instance-identifier-generator';
-import {
-    VisualizationConfiguration,
-    VisualizationConfigurationFactory,
-} from '../../../../common/configs/visualization-configuration-factory';
+import { VisualizationConfiguration } from '../../../../common/configs/visualization-configuration';
+import { VisualizationConfigurationFactory } from '../../../../common/configs/visualization-configuration-factory';
 import { HTMLElementUtils } from '../../../../common/html-element-utils';
 import { Message } from '../../../../common/message';
 import { Messages } from '../../../../common/messages';
@@ -106,7 +104,7 @@ describe('InstanceVisibilityCheckerTest', () => {
 
         windowUtilsMock
             .setup(wU => wU.setInterval(itIsFunction, InstanceVisibilityChecker.recalculationTimeInterval))
-            .callback((cb, timeout) => {
+            .callback((cb: Function) => {
                 cb();
             })
             .verifiable(Times.once());
@@ -175,7 +173,7 @@ describe('InstanceVisibilityCheckerTest', () => {
 
         windowUtilsMock
             .setup(wU => wU.setInterval(itIsFunction, InstanceVisibilityChecker.recalculationTimeInterval))
-            .callback((cb, timeout) => {
+            .callback((cb: Function) => {
                 cb();
             })
             .verifiable(Times.once());
@@ -222,7 +220,7 @@ describe('InstanceVisibilityCheckerTest', () => {
 
         windowUtilsMock
             .setup(wU => wU.setInterval(It.isAny(), InstanceVisibilityChecker.recalculationTimeInterval))
-            .callback((cb, timeout) => {
+            .callback((cb: Function) => {
                 cb();
             })
             .verifiable(Times.once());

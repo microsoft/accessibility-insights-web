@@ -31,7 +31,7 @@ export class HighlightBoxDrawer extends BaseDrawer {
     };
 
     constructor(
-        dom: NodeSelector & Node,
+        dom: Document,
         containerClass: string,
         windowUtils: WindowUtils,
         shadowUtils: ShadowUtils,
@@ -64,7 +64,6 @@ export class HighlightBoxDrawer extends BaseDrawer {
 
     protected createHighlightElement(element: Element, data: HtmlElementAxeResults): HTMLElement {
         const currentDom = this.drawerUtils.getDocumentElement();
-        const offset = this.clientUtils.getOffset(element);
         const body = currentDom.querySelector('body');
         const bodyStyle = this.windowUtils.getComputedStyle(body);
 
@@ -77,6 +76,8 @@ export class HighlightBoxDrawer extends BaseDrawer {
         if (drawerConfig.getBoundingRect) {
             elementBoundingClientRect = drawerConfig.getBoundingRect(element);
         }
+
+        const offset = this.clientUtils.getOffsetFromBoundingRect(elementBoundingClientRect);
 
         const docStyle = this.windowUtils.getComputedStyle(currentDom.documentElement);
         if (this.drawerUtils.isOutsideOfDocument(elementBoundingClientRect, currentDom, bodyStyle, docStyle)) {
@@ -91,6 +92,7 @@ export class HighlightBoxDrawer extends BaseDrawer {
         wrapper.setAttribute('class', 'insights-highlight-box');
         wrapper.style.outlineStyle = drawerConfig.outlineStyle;
         wrapper.style.outlineColor = drawerConfig.borderColor;
+        wrapper.style.outlineWidth = drawerConfig.outlineWidth;
         wrapper.style.top = this.drawerUtils.getContainerTopOffset(offset).toString() + 'px';
         wrapper.style.left = this.drawerUtils.getContainerLeftOffset(offset).toString() + 'px';
         wrapper.style.minWidth =
@@ -132,6 +134,9 @@ export class HighlightBoxDrawer extends BaseDrawer {
         box.innerText = boxConfig.text || '';
         box.style.background = boxConfig.background;
         box.style.color = boxConfig.fontColor;
+        box.style.fontSize = boxConfig.fontSize;
+        box.style.fontWeight = boxConfig.fontWeight;
+        box.style.outline = boxConfig.outline;
         box.style.setProperty('width', boxConfig.boxWidth, 'important');
         box.style.setProperty('cursor', drawerConfig.cursor, 'important');
         box.style.setProperty('text-align', drawerConfig.textAlign, 'important');

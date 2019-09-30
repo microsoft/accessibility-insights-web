@@ -4,10 +4,10 @@ jobs:
     - job: 'unit_tests_and_lints'
 
       pool:
-          vmImage: 'macOS-10.13'
+          vmImage: 'macOS-10.14'
 
       steps:
-          - template: pipeline/prerequisites.yaml
+          - template: pipeline/install-node-prerequisites.yaml
 
           - script: yarn tslint
             displayName: check lint errors
@@ -15,8 +15,11 @@ jobs:
           - script: yarn format-check
             displayName: check formatting errors
 
-          - script: yarn copyrightheaders
+          - script: yarn copyright-header-check
             displayName: check copyrightheaders
+
+          - script: yarn generate-scss-typings
+            displayName: generate typings for scss files
 
           - script: yarn test --ci
             displayName: run unit tests
@@ -24,7 +27,7 @@ jobs:
           - task: PublishTestResults@2
             inputs:
                 testResultsFiles: $(System.DefaultWorkingDirectory)/test-results/unit/junit.xml
-                testRunTitle: accessibility-insights-web
+                testRunTitle: $(Agent.JobName)
             condition: always()
             displayName: publish test results
 
@@ -46,32 +49,63 @@ jobs:
             inputs:
                 verbosity: Normal
 
-    - job: 'e2e_tests_and_publish_drop'
-
+    - job: 'publish_build_drops'
       pool:
-          vmImage: 'macOS-10.13'
-
+          vmImage: 'ubuntu-16.04'
       steps:
-          - template: pipeline/prerequisites.yaml
-          - template: pipeline/e2e-test.yaml
+          - template: pipeline/install-node-prerequisites.yaml
 
-          - task: PublishTestResults@2
-            inputs:
-                testResultsFiles: test-results/e2e/junit-e2e.xml
-                testRunTitle: accessibility-insights-web e2e
-            condition: always()
-            displayName: publish e2e test results
-
-          - task: PublishBuildArtifacts@1
-            inputs:
-                pathtoPublish: '$(System.DefaultWorkingDirectory)/test-results/e2e'
-                artifactName: 'e2e-failure-screenshots'
-            condition: always()
-            continueOnError: true
-            displayName: publish e2e-failure-screenshots
+          - script: yarn build:all
+            displayName: build:all
 
           - task: PublishBuildArtifacts@1
             inputs:
                 pathtoPublish: '$(System.DefaultWorkingDirectory)/drop'
                 artifactName: 'drop'
             displayName: publish drop
+
+    # CI build only
+    - job: 'publish_electron_windows_linux'
+      condition: and(always(), in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI'))
+      pool:
+          vmImage: 'windows-latest'
+      steps:
+          - template: pipeline/electron/distribute-electron.yaml
+            parameters:
+                platforms: -wl
+
+    # CI build only
+    - job: 'publish_electron_mac'
+      condition: and(always(), in(variables['Build.Reason'], 'IndividualCI', 'BatchedCI'))
+      pool:
+          vmImage: 'macOS-10.14'
+      steps:
+          - template: pipeline/electron/distribute-electron.yaml
+            parameters:
+                platforms: -m
+
+    - job: 'e2e_mac_web_electron'
+      pool:
+          vmImage: macOS-10.14
+      steps:
+          - template: pipeline/install-node-prerequisites.yaml
+          - template: pipeline/e2e-test-from-agent.yaml
+          - template: pipeline/e2e-test-publish-results.yaml
+          - template: pipeline/electron/electron-e2e-test-interactive.yaml
+          - template: pipeline/electron/electron-e2e-publish-results.yaml
+
+    - job: 'e2e_linux_electron'
+      pool:
+          vmImage: ubuntu-16.04
+      steps:
+          - template: pipeline/install-node-prerequisites.yaml
+          - template: pipeline/electron/electron-e2e-test-linux.yaml
+          - template: pipeline/electron/electron-e2e-publish-results.yaml
+
+    - job: 'e2e_windows_electron'
+      pool:
+          vmImage: windows-latest
+      steps:
+          - template: pipeline/install-node-prerequisites.yaml
+          - template: pipeline/electron/electron-e2e-test-interactive.yaml
+          - template: pipeline/electron/electron-e2e-publish-results.yaml

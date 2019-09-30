@@ -4,48 +4,9 @@ const sass = require('node-sass');
 const path = require('path');
 const targets = require('./targets.config');
 const merge = require('lodash/merge');
-const { run: copyrightCheckAndAdd } = require('license-check-and-add');
 
 module.exports = function(grunt) {
     const extensionPath = 'extension';
-    const copyrightCheckAndAddConfig = {
-        folder: './',
-        license: 'copyright-header.txt',
-        exact_paths_method: 'EXCLUDE',
-        exact_paths: [
-            './.vscode',
-            './.git',
-            './.github',
-            './dist',
-            './drop',
-            './extension',
-            './node_modules',
-            './copyright-header.txt',
-            './src/assessments/color/test-steps/flashing-text-example.html',
-            './test-results',
-            './docs/NOTICE.html',
-            './docs/LICENSE.txt',
-        ],
-        file_type_method: 'INCLUDE',
-        file_types: ['.ts', '.tsx', '.d.ts', '.js', '.html', '.css', '.scss', '.yaml', '.md', '.txt', '.xml'],
-        insert_license: false,
-        license_formats: {
-            'yaml|npmrc': {
-                eachLine: {
-                    prepend: '# ',
-                },
-            },
-            md: {
-                prepend: '<!--',
-                append: '-->',
-            },
-            'snap|ts|tsx|d.ts|js|scss|css': {
-                eachLine: {
-                    prepend: '// ',
-                },
-            },
-        },
-    };
 
     function mustExist(file, reason) {
         const normalizedFile = path.normalize(file);
@@ -60,6 +21,9 @@ module.exports = function(grunt) {
         },
         clean: {
             intermediates: ['dist', extensionPath],
+        },
+        concurrent: {
+            'webpack-all': ['exec:webpack-dev', 'exec:webpack-electron', 'exec:webpack-prod'],
         },
         copy: {
             code: {
@@ -97,6 +61,12 @@ module.exports = function(grunt) {
                         expand: true,
                     },
                     {
+                        cwd: './dist/src/reports',
+                        src: '*.css',
+                        dest: path.join(extensionPath, 'reports'),
+                        expand: true,
+                    },
+                    {
                         cwd: './dist/src/views',
                         src: '**/*.css',
                         dest: path.join(extensionPath, 'views'),
@@ -106,6 +76,12 @@ module.exports = function(grunt) {
                         cwd: './dist/src/DetailsView/Styles',
                         src: '*.css',
                         dest: path.join(extensionPath, 'DetailsView/styles/default'),
+                        expand: true,
+                    },
+                    {
+                        cwd: './dist/src/electron/device-connect-view',
+                        src: '*.css',
+                        dest: path.join(extensionPath, 'electron/device-connect-view/styles/default'),
                         expand: true,
                     },
                     {
@@ -129,18 +105,11 @@ module.exports = function(grunt) {
                 ],
             },
         },
-        'embed-styles': {
-            code: {
-                cwd: extensionPath,
-                src: '**/*bundle.js',
-                dest: extensionPath,
-                expand: true,
-            },
-        },
         exec: {
-            'webpack-dev': `${path.resolve('./node_modules/.bin/webpack')} --config-name dev`,
-            'webpack-prod': `${path.resolve('./node_modules/.bin/webpack')} --config-name prod`,
-            'webpack-all': `${path.resolve('./node_modules/.bin/webpack')}`,
+            'webpack-dev': `"${path.resolve('./node_modules/.bin/webpack')}" --config-name dev`,
+            'webpack-prod': `"${path.resolve('./node_modules/.bin/webpack')}" --config-name prod`,
+            'webpack-electron': `"${path.resolve('./node_modules/.bin/webpack')}" --config-name electron`,
+            'generate-scss-typings': `"${path.resolve('./node_modules/.bin/tsm')}" src`,
         },
         sass: {
             options: {
@@ -161,20 +130,24 @@ module.exports = function(grunt) {
         watch: {
             images: {
                 files: ['src/**/*.png'],
-                tasks: ['copy:images', 'drop:dev'],
+                tasks: ['copy:images', 'drop:dev', 'drop:electron'],
             },
             'non-webpack-code': {
                 files: ['src/**/*.html', 'src/manifest.json'],
-                tasks: ['copy:code', 'drop:dev'],
+                tasks: ['copy:code', 'drop:dev', 'drop:electron'],
             },
             scss: {
                 files: ['src/**/*.scss'],
-                tasks: ['sass', 'copy:styles', 'embed-styles:code', 'drop:dev'],
+                tasks: ['sass', 'copy:styles', 'drop:dev', 'drop:electron'],
             },
             // We assume webpack --watch is running separately (usually via 'yarn watch')
-            'webpack-output': {
+            'webpack-dev-output': {
                 files: ['extension/devBundle/**/*.*'],
-                tasks: ['embed-styles:code', 'drop:dev'],
+                tasks: ['drop:dev'],
+            },
+            'webpack-electron-output': {
+                files: ['extension/electronBundle/**/*.*'],
+                tasks: ['drop:electron'],
             },
         },
     });
@@ -185,13 +158,12 @@ module.exports = function(grunt) {
         const dropPath = path.join('drop', targetName);
         const dropExtensionPath = path.join(dropPath, 'extension');
 
-        const { config } = targets[targetName];
-        const debug = config.options.debug;
+        const { config, bundleFolder } = targets[targetName];
 
         grunt.config.merge({
             drop: {
                 [targetName]: {
-                    debug,
+                    // empty on purpose
                 },
             },
             configure: {
@@ -208,12 +180,24 @@ module.exports = function(grunt) {
                     config,
                 },
             },
+            clean: {
+                [targetName]: dropPath,
+                scss: path.join('src', '**/*.scss.d.ts'),
+            },
+            'embed-styles': {
+                [targetName]: {
+                    cwd: path.resolve(extensionPath, bundleFolder),
+                    src: '**/*bundle.js',
+                    dest: path.resolve(extensionPath, bundleFolder),
+                    expand: true,
+                },
+            },
             copy: {
                 [targetName]: {
                     files: [
                         {
-                            cwd: debug ? path.resolve(extensionPath, 'devBundle') : path.resolve(extensionPath, 'prodBundle'),
-                            src: ['*.js', '*.js.map'],
+                            cwd: path.resolve(extensionPath, bundleFolder),
+                            src: ['*.js', '*.js.map', '*.css'],
                             dest: path.resolve(dropExtensionPath, 'bundle'),
                             expand: true,
                         },
@@ -238,29 +222,20 @@ module.exports = function(grunt) {
                     ],
                 },
             },
-            clean: {
-                [targetName]: dropPath,
-            },
         });
     });
 
     grunt.loadNpmTasks('grunt-bom-removal');
+    grunt.loadNpmTasks('grunt-concurrent');
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-exec');
     grunt.loadNpmTasks('grunt-sass');
 
-    grunt.registerTask('copyright-check', 'grunt task to check copyright header', function() {
-        copyrightCheckAndAdd(copyrightCheckAndAddConfig);
-    });
-
-    grunt.registerTask('copyright-add', 'grunt task to add copyright header', function() {
-        copyrightCheckAndAddConfig.insert_license = true;
-        copyrightCheckAndAdd(copyrightCheckAndAddConfig);
-    });
-
     grunt.registerMultiTask('embed-styles', function() {
+        const targetName = this.target;
+        const { bundleFolder } = targets[targetName];
         this.files.forEach(file => {
             const {
                 src: [src],
@@ -271,7 +246,8 @@ module.exports = function(grunt) {
             const input = grunt.file.read(src, fileOptions);
             const rex = /\<\<CSS:([a-zA-Z\-\.\/]+)\>\>/g;
             const output = input.replace(rex, (_, cssName) => {
-                const cssFile = path.resolve('dist/src', cssName);
+                const bundledFolderPath = path.resolve(extensionPath, bundleFolder);
+                const cssFile = path.resolve(bundledFolderPath, cssName);
                 grunt.log.writeln(`    embedding from ${cssFile}`);
                 const styles = grunt.file.read(cssFile, fileOptions);
                 return styles.replace(/\n/g, '\\\n');
@@ -312,13 +288,14 @@ module.exports = function(grunt) {
     });
 
     grunt.registerMultiTask('drop', function() {
-        const debug = this.data.debug;
-        if (debug) {
-            mustExist('extension/devBundle/background.bundle.js', 'Have you run webpack?');
-        } else {
-            mustExist('extension/prodBundle/background.bundle.js', 'Have you run webpack?');
-        }
         const targetName = this.target;
+        const { bundleFolder, mustExistFile } = targets[targetName];
+
+        const mustExistPath = path.join(extensionPath, bundleFolder, mustExistFile);
+
+        mustExist(mustExistPath, 'Have you run webpack?');
+
+        grunt.task.run('embed-styles:' + targetName);
         grunt.task.run('clean:' + targetName);
         grunt.task.run('copy:' + targetName);
         grunt.task.run('configure:' + targetName);
@@ -332,12 +309,33 @@ module.exports = function(grunt) {
         });
     });
 
-    grunt.registerTask('build-assets', ['sass', 'copy:code', 'copy:styles', 'embed-styles:code', 'copy:images']);
+    grunt.registerTask('build-assets', ['sass', 'copy:code', 'copy:styles', 'copy:images']);
 
     // Main entry points for npm scripts:
-    grunt.registerTask('build-dev', ['clean:intermediates', 'exec:webpack-dev', 'build-assets', 'drop:dev']);
-    grunt.registerTask('build-prod', ['clean:intermediates', 'exec:webpack-prod', 'build-assets', 'release-drops']);
-    grunt.registerTask('build-all', ['clean:intermediates', 'exec:webpack-all', 'build-assets', 'drop:dev', 'release-drops']);
+    grunt.registerTask('build-dev', ['clean:intermediates', 'exec:generate-scss-typings', 'exec:webpack-dev', 'build-assets', 'drop:dev']);
+    grunt.registerTask('build-prod', [
+        'clean:intermediates',
+        'exec:generate-scss-typings',
+        'exec:webpack-prod',
+        'build-assets',
+        'drop:production',
+    ]);
+    grunt.registerTask('build-electron', [
+        'clean:intermediates',
+        'exec:generate-scss-typings',
+        'exec:webpack-electron',
+        'build-assets',
+        'drop:electron',
+    ]);
+    grunt.registerTask('build-all', [
+        'clean:intermediates',
+        'exec:generate-scss-typings',
+        'concurrent:webpack-all',
+        'build-assets',
+        'drop:dev',
+        'drop:electron',
+        'release-drops',
+    ]);
 
     grunt.registerTask('default', ['build-dev']);
 };

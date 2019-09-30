@@ -1,7 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { link } from 'content/link';
+import * as content from 'content/test/semantics/letter-spacing';
 import * as React from 'react';
-import { link } from '../../../content/link';
 import { ManualTestRecordYourResults } from '../../common/manual-test-record-your-results';
 import { Requirement } from '../../types/requirement';
 import { SemanticsTestStep } from './test-steps';
@@ -30,6 +31,7 @@ export const SemanticsLetterSpacing: Requirement = {
     description: letterSpacingDescription,
     howToTest: letterSpacingHowToTest,
     isManual: true,
+    ...content,
     guidanceLinks: [link.WCAG_1_3_1],
     updateVisibility: false,
 };

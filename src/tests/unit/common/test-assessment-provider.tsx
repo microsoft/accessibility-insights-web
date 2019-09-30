@@ -3,16 +3,16 @@
 import { IColumn } from 'office-ui-fabric-react/lib/DetailsList';
 import * as React from 'react';
 
-import { AssessmentsProviderImpl } from '../../../assessments/assessments-provider';
-import { Assessment } from '../../../assessments/types/iassessment';
+import { AssessmentsProviderImpl } from 'assessments/assessments-provider';
+import { Assessment } from 'assessments/types/iassessment';
+import { ContentPage } from 'views/content/content-page';
 import { RequirementComparer } from '../../../common/assessment/requirement-comparer';
-import { AssesssmentVisualizationConfiguration } from '../../../common/configs/visualization-configuration-factory';
+import { AssesssmentVisualizationConfiguration } from '../../../common/configs/assesssment-visualization-configuration';
 import { FeatureFlags } from '../../../common/feature-flags';
 import { ManualTestStatus } from '../../../common/types/manual-test-status';
 import { AssessmentData } from '../../../common/types/store-data/assessment-result-data';
 import { VisualizationType } from '../../../common/types/visualization-type';
 import { RequirementLink } from '../../../DetailsView/components/requirement-link';
-import { ContentPage } from '../../../views/content/content-page';
 
 const content = {
     assessment1: {

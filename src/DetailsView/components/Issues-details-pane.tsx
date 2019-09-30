@@ -2,9 +2,10 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import { IssueDetailsTextGenerator } from '../../background/issue-details-text-generator';
+import { IssueDetailsTextGenerator } from 'background/issue-details-text-generator';
 import { CopyIssueDetailsButton } from '../../common/components/copy-issue-details-button';
 import { GuidanceLinks } from '../../common/components/guidance-links';
+import { GuidanceTags, GuidanceTagsDeps } from '../../common/components/guidance-tags';
 import { IssueFilingButton, IssueFilingButtonDeps } from '../../common/components/issue-filing-button';
 import { NewTabLink } from '../../common/components/new-tab-link';
 import { ToastDeps } from '../../common/components/toast';
@@ -12,14 +13,16 @@ import { CreateIssueDetailsTextData } from '../../common/types/create-issue-deta
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { UserConfigurationStoreData } from '../../common/types/store-data/user-configuration-store';
 import { CheckType } from '../../injected/components/details-dialog';
-import { FixInstructionPanel } from '../../injected/components/fix-instruction-panel';
+import { FixInstructionPanel, FixInstructionPanelDeps } from '../../injected/components/fix-instruction-panel';
 import { DecoratedAxeNodeResult } from '../../injected/scanner-utils';
 import { DictionaryStringTo } from '../../types/common-types';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 import { IssueFilingDialog } from './issue-filing-dialog';
 
 export type IssuesDetailsPaneDeps = ToastDeps &
-    IssueFilingButtonDeps & {
+    IssueFilingButtonDeps &
+    FixInstructionPanelDeps &
+    GuidanceTagsDeps & {
         issueDetailsTextGenerator: IssueDetailsTextGenerator;
         detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
     };
@@ -29,7 +32,6 @@ export interface IssuesDetailsPaneProps {
     selectedIdToRuleResultMap: DictionaryStringTo<DecoratedAxeNodeResult>;
     pageTitle: string;
     pageUrl: string;
-    issueTrackerPath: string;
     featureFlagData: FeatureFlagStoreData;
     userConfigurationStoreData: UserConfigurationStoreData;
 }
@@ -108,17 +110,20 @@ export class IssuesDetailsPane extends React.Component<IssuesDetailsPaneProps, I
                                 {`: ${result.help}`}
                                 &nbsp;&nbsp;
                                 <GuidanceLinks links={result.guidanceLinks} />
+                                <GuidanceTags deps={this.props.deps} links={result.guidanceLinks} />
                             </td>
                         </tr>
                         <tr>
                             <td>How to fix</td>
                             <td className="fix-content">
                                 <FixInstructionPanel
+                                    deps={this.props.deps}
                                     checkType={CheckType.All}
                                     checks={result.all.concat(result.none)}
                                     renderTitleElement={this.renderFixInstructionsTitleElement}
                                 />
                                 <FixInstructionPanel
+                                    deps={this.props.deps}
                                     checkType={CheckType.Any}
                                     checks={result.any}
                                     renderTitleElement={this.renderFixInstructionsTitleElement}

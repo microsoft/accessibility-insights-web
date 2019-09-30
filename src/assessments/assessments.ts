@@ -4,6 +4,7 @@ import { AssessmentsProviderImpl } from './assessments-provider';
 import { AudioVideoOnlyAssessment } from './audio-video-only/assessment';
 import { AutomatedChecks } from './automated-checks/assessment';
 import { ColorSensoryAssessment } from './color/assessment';
+import { ContrastAssessment } from './contrast/assessment';
 import { CustomWidgets } from './custom-widgets/assessment';
 import { ErrorsAssessment } from './errors/assessment';
 import { HeadingsAssessment } from './headings/assessment';
@@ -16,6 +17,7 @@ import { LiveMultimediaAssessment } from './live-multimedia/assessment';
 import { NativeWidgetsAssessment } from './native-widgets/assessment';
 import { PageAssessment } from './page/assessment';
 import { ParsingAssessment } from './parsing/assessment';
+import { PointerMotionAssessment } from './pointer-motion/assessment';
 import { PrerecordedMultimediaAssessment } from './prerecorded-multimedia/assessment';
 import { RepetitiveContentAssessment } from './repetitive-content/assessment';
 import { SemanticsAssessment } from './semantics/assessment';
@@ -48,4 +50,6 @@ export const Assessments: AssessmentsProvider = AssessmentsProviderImpl.Create([
     LiveMultimediaAssessment,
     SequenceAssessment,
     SemanticsAssessment,
+    PointerMotionAssessment,
+    ContrastAssessment,
 ]);

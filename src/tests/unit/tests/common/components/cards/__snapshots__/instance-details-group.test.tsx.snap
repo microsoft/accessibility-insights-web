@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`InstanceDetailsGroup renders 1`] = `
+<ul
+  aria-label="failed instances with path, snippet and how to fix information"
+  className="instanceDetailsList"
+>
+  <li>
+    <InstanceDetails
+      deps={Object {}}
+      getPropertyConfigById={[Function]}
+      index={0}
+      result={
+        Object {
+          "descriptors": Object {
+            "snippet": "this is a sample snippet",
+          },
+          "identifiers": Object {
+            "css-selector": "body img",
+          },
+          "resolution": Object {
+            "how-to-fix-web": Object {
+              "all": Array [],
+              "any": Array [
+                "Element does not have an alt attribute",
+                "aria-label attribute does not exist or is empty",
+                "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty",
+              ],
+              "none": Array [],
+            },
+          },
+          "ruleId": "image-alt",
+          "status": "fail",
+          "uid": "some-guid-here",
+        }
+      }
+    />
+  </li>
+</ul>
+`;

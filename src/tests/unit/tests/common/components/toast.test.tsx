@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as Enzyme from 'enzyme';
+import { mount, shallow } from 'enzyme';
 import * as React from 'react';
 import { IMock, It, Mock, Times } from 'typemoq';
 
@@ -26,7 +26,7 @@ describe('ToastTest', () => {
     });
 
     test('render', () => {
-        const result = Enzyme.shallow(<Toast {...props}>Hello</Toast>);
+        const result = shallow(<Toast {...props}>Hello</Toast>);
         expect(result.getElement()).toMatchSnapshot();
     });
 
@@ -46,23 +46,20 @@ describe('ToastTest', () => {
 
     test('when timeout ends, callback is called & render is null', () => {
         const timeoutId = 1;
-        let callback;
         windowUtilsMock
             .setup(m => m.setTimeout(itIsFunction, 2000))
-            .callback((func, _) => (callback = func))
+            .callback((func, _) => func())
             .returns(() => timeoutId)
             .verifiable(Times.once());
 
         onTimeoutMock.setup(m => m()).verifiable(Times.once());
 
-        const subject = new Toast(props);
-        subject.componentDidMount();
-        callback();
+        const wrapper = mount(<Toast {...props} />);
 
         windowUtilsMock.verifyAll();
         onTimeoutMock.verifyAll();
 
-        expect(subject.render()).toBe(null);
+        expect(wrapper.instance().render()).toBe(null);
     });
 
     test('clearTimeout upon componentWillUnmount', () => {

@@ -3,9 +3,9 @@
 import { flatMap } from 'lodash';
 import { IMock, Mock, MockBehavior } from 'typemoq';
 
-import { Assessment } from '../../../../assessments/types/iassessment';
-import { InitialDataCreator } from '../../../../background/create-initial-assessment-test-data';
-import { InitialAssessmentStoreDataGenerator } from '../../../../background/initial-assessment-store-data-generator';
+import { Assessment } from 'assessments/types/iassessment';
+import { InitialDataCreator } from 'background/create-initial-assessment-test-data';
+import { InitialAssessmentStoreDataGenerator } from 'background/initial-assessment-store-data-generator';
 import { AssessmentData, AssessmentStoreData } from '../../../../common/types/store-data/assessment-result-data';
 import { VisualizationType } from '../../../../common/types/visualization-type';
 import { DictionaryStringTo } from '../../../../types/common-types';
@@ -66,6 +66,16 @@ describe('InitialAssessmentStoreDataGenerator.generateInitialState', () => {
         expect(generatedState.assessments).toEqual(defaultState.assessments);
     });
 
+    it('passes persisted result description data to initial data creator if persistedData.resultDescription exists', () => {
+        const persistedDescription = 'persistent description';
+
+        const generatedState = generator.generateInitialState({
+            resultDescription: persistedDescription,
+        } as AssessmentStoreData);
+
+        expect(generatedState.resultDescription).toEqual(persistedDescription);
+    });
+
     it.each([[undefined], [null]])('propagates unspecified persistedTabInfo values as-is', persistedTabInfo => {
         const generatedState = generator.generateInitialState({
             persistedTabInfo,
@@ -81,6 +91,7 @@ describe('InitialAssessmentStoreDataGenerator.generateInitialState', () => {
                 persistedTabInfo: { ...validTargetTab, appRefreshed: persistedAppRefreshed },
                 assessmentNavState: null,
                 assessments: null,
+                resultDescription: '',
             });
 
             expect(generatedState.persistedTabInfo.appRefreshed).toBe(true);
@@ -92,6 +103,7 @@ describe('InitialAssessmentStoreDataGenerator.generateInitialState', () => {
             persistedTabInfo: validTargetTab,
             assessmentNavState: null,
             assessments: null,
+            resultDescription: '',
         });
 
         const { appRefreshed, ...tabInfoPropertiesThatShouldPropagate } = validTargetTab;

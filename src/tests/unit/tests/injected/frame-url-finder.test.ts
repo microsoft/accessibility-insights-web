@@ -13,28 +13,28 @@ describe('frameUrlFinderTest', () => {
     });
 
     test('initialize', () => {
-        const mockFrameCommunicator = Mock.ofType(FrameCommunicator, MockBehavior.Strict);
-        const testSubject = new FrameUrlFinder(mockFrameCommunicator.object, null, null);
+        const frameCommunicatorMock = Mock.ofType(FrameCommunicator, MockBehavior.Strict);
+        const testSubject = new FrameUrlFinder(frameCommunicatorMock.object, null, null);
 
-        mockFrameCommunicator.setup(mfc => mfc.subscribe(FrameUrlFinder.GetTargetFrameUrlCommand, testSubject.processRequest)).verifiable();
+        frameCommunicatorMock.setup(mfc => mfc.subscribe(FrameUrlFinder.GetTargetFrameUrlCommand, testSubject.processRequest)).verifiable();
 
         testSubject.initialize();
 
-        mockFrameCommunicator.verifyAll();
+        frameCommunicatorMock.verifyAll();
     });
 
     test('processRequest: at target level', () => {
-        const mockFrameCommunicator = Mock.ofType(FrameCommunicator, MockBehavior.Strict);
-        const mockWindowUtils = Mock.ofType(WindowUtils, MockBehavior.Strict);
+        const frameCommunicatorMock = Mock.ofType(FrameCommunicator, MockBehavior.Strict);
+        const windowUtilsMock = Mock.ofType(WindowUtils, MockBehavior.Strict);
         const topWindowStub: any = {};
         const currentWindowStub: any = {
             location: { href: 'testURL' },
         };
 
-        const mockProcessRequestMessage: TargetMessage = {
+        const processRequestMessageStub: TargetMessage = {
             target: ['abc'],
         };
-        const mockSentMessage: MessageRequest<FrameUrlMessage> = {
+        const sentMessageStub: MessageRequest<FrameUrlMessage> = {
             command: FrameUrlFinder.SetFrameUrlCommand,
             win: topWindowStub,
             message: {
@@ -42,38 +42,38 @@ describe('frameUrlFinderTest', () => {
             },
         };
 
-        mockFrameCommunicator.setup(mfc => mfc.sendMessage(It.isValue(mockSentMessage))).verifiable();
+        frameCommunicatorMock.setup(mfc => mfc.sendMessage(It.isValue(sentMessageStub))).verifiable();
 
-        mockWindowUtils
+        windowUtilsMock
             .setup(mwu => mwu.getTopWindow())
             .returns(() => {
                 return topWindowStub;
             })
             .verifiable();
 
-        mockWindowUtils
+        windowUtilsMock
             .setup(mwu => mwu.getWindow())
             .returns(() => {
                 return currentWindowStub;
             })
             .verifiable();
 
-        const testSubject = new FrameUrlFinder(mockFrameCommunicator.object, mockWindowUtils.object, null);
-        testSubject.processRequest(mockProcessRequestMessage);
+        const testSubject = new FrameUrlFinder(frameCommunicatorMock.object, windowUtilsMock.object, null);
+        testSubject.processRequest(processRequestMessageStub);
 
-        mockWindowUtils.verifyAll();
-        mockFrameCommunicator.verifyAll();
+        windowUtilsMock.verifyAll();
+        frameCommunicatorMock.verifyAll();
     });
 
     test('processRequest: not at target level', () => {
-        const mockFrameCommunicator = Mock.ofType(FrameCommunicator, MockBehavior.Strict);
-        const mockHtmlUtils = Mock.ofType(HTMLElementUtils, MockBehavior.Strict);
+        const frameCommunicatorMock = Mock.ofType(FrameCommunicator, MockBehavior.Strict);
+        const htmlUtilsMock = Mock.ofType(HTMLElementUtils, MockBehavior.Strict);
         const frameStub = {} as any;
 
-        const mockProcessRequestMessage: TargetMessage = {
+        const processRequestMessageMock: TargetMessage = {
             target: ['abc', 'def'],
         };
-        const mockSentMessage: MessageRequest<TargetMessage> = {
+        const sentMessageMock: MessageRequest<TargetMessage> = {
             command: FrameUrlFinder.GetTargetFrameUrlCommand,
             frame: frameStub,
             message: {
@@ -81,19 +81,19 @@ describe('frameUrlFinderTest', () => {
             },
         };
 
-        mockFrameCommunicator.setup(mfc => mfc.sendMessage(It.isValue(mockSentMessage))).verifiable();
+        frameCommunicatorMock.setup(mfc => mfc.sendMessage(It.isValue(sentMessageMock))).verifiable();
 
-        mockHtmlUtils
+        htmlUtilsMock
             .setup(mhu => mhu.querySelector('abc'))
             .returns(() => {
                 return frameStub;
             })
             .verifiable();
 
-        const testSubject = new FrameUrlFinder(mockFrameCommunicator.object, null, mockHtmlUtils.object);
-        testSubject.processRequest(mockProcessRequestMessage);
+        const testSubject = new FrameUrlFinder(frameCommunicatorMock.object, null, htmlUtilsMock.object);
+        testSubject.processRequest(processRequestMessageMock);
 
-        mockHtmlUtils.verifyAll();
-        mockFrameCommunicator.verifyAll();
+        htmlUtilsMock.verifyAll();
+        frameCommunicatorMock.verifyAll();
     });
 });

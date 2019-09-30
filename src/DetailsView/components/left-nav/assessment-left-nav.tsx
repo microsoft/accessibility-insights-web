@@ -2,8 +2,8 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import { AssessmentsProvider } from '../../../assessments/types/assessments-provider';
-import { NamedSFC } from '../../../common/react/named-sfc';
+import { AssessmentsProvider } from 'assessments/types/assessments-provider';
+import { NamedFC } from '../../../common/react/named-fc';
 import { ManualTestStatus, ManualTestStatusData } from '../../../common/types/manual-test-status';
 import { DictionaryStringTo } from '../../../types/common-types';
 import { BaseLeftNav, BaseLeftNavLink } from '../base-left-nav';
@@ -28,7 +28,7 @@ export type AssessmentLeftNavLink = {
     status: ManualTestStatus;
 } & BaseLeftNavLink;
 
-export const AssessmentLeftNav = NamedSFC<AssessmentLeftNavProps>('AssessmentLeftNav', props => {
+export const AssessmentLeftNav = NamedFC<AssessmentLeftNavProps>('AssessmentLeftNav', props => {
     const { deps, selectedKey, assessmentsProvider, assessmentsData } = props;
 
     const { navLinkHandler, leftNavLinkBuilder } = deps;

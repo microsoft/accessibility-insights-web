@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { autobind } from '@uifabric/utilities';
 import { forOwn } from 'lodash';
 import * as _ from 'lodash';
 import { StoreNames } from '../../common/stores/store-names';
@@ -58,14 +57,12 @@ export class VisualizationScanResultStore extends BaseStoreImpl<VisualizationSca
         this.tabActions.tabChange.addListener(this.onTabChange);
     }
 
-    @autobind
-    private onTabStopsDisabled(): void {
+    private onTabStopsDisabled = (): void => {
         this.state.tabStops.tabbedElements = null;
         this.emitChanged();
-    }
+    };
 
-    @autobind
-    private onAddTabbedElement(payload: AddTabbedElementPayload): void {
+    private onAddTabbedElement = (payload: AddTabbedElementPayload): void => {
         if (!this.state.tabStops.tabbedElements) {
             this.state.tabStops.tabbedElements = [];
         }
@@ -91,10 +88,9 @@ export class VisualizationScanResultStore extends BaseStoreImpl<VisualizationSca
         });
 
         this.emitChanged();
-    }
+    };
 
-    @autobind
-    private onScanCompleted(payload: ScanCompletedPayload<any>): void {
+    private onScanCompleted = (payload: ScanCompletedPayload<any>): void => {
         const selectorMap = payload.selectorMap;
         const result = payload.scanResult;
         const selectedRows = this.getRowToRuleResultMap(selectorMap);
@@ -106,10 +102,9 @@ export class VisualizationScanResultStore extends BaseStoreImpl<VisualizationSca
         this.state[payload.key].scanResult = result;
 
         this.emitChanged();
-    }
+    };
 
-    @autobind
-    private onUpdateIssuesSelectedTargets(selected: string[]): void {
+    private onUpdateIssuesSelectedTargets = (selected: string[]): void => {
         const newSelectedRows: DictionaryStringTo<DecoratedAxeNodeResult> = {};
 
         selected.forEach(uid => {
@@ -123,19 +118,17 @@ export class VisualizationScanResultStore extends BaseStoreImpl<VisualizationSca
         this.state.issues.selectedAxeResultsMap = this.getSelectorMap(newSelectedRows);
         this.state.issues.selectedIdToRuleResultMap = newSelectedRows;
         this.emitChanged();
-    }
+    };
 
-    @autobind
-    private onIssuesDisabled(): void {
+    private onIssuesDisabled = (): void => {
         this.state.issues.scanResult = null;
         this.emitChanged();
-    }
+    };
 
-    @autobind
-    private onTabChange(): void {
+    private onTabChange = (): void => {
         this.state = this.getDefaultState();
         this.emitChanged();
-    }
+    };
 
     private getRowToRuleResultMap(selectorMap: DictionaryStringTo<HtmlElementAxeResults>): DictionaryStringTo<DecoratedAxeNodeResult> {
         const selectedRows: DictionaryStringTo<DecoratedAxeNodeResult> = {};

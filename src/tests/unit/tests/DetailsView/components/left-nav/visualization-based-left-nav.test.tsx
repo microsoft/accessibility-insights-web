@@ -4,10 +4,8 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 import { IMock, Mock, MockBehavior } from 'typemoq';
 
-import {
-    VisualizationConfiguration,
-    VisualizationConfigurationFactory,
-} from '../../../../../../common/configs/visualization-configuration-factory';
+import { VisualizationConfiguration } from '../../../../../../common/configs/visualization-configuration';
+import { VisualizationConfigurationFactory } from '../../../../../../common/configs/visualization-configuration-factory';
 import { VisualizationType } from '../../../../../../common/types/visualization-type';
 import { BaseLeftNavLink, onBaseLeftNavItemClick } from '../../../../../../DetailsView/components/base-left-nav';
 import { LeftNavLinkBuilder } from '../../../../../../DetailsView/components/left-nav/left-nav-link-builder';

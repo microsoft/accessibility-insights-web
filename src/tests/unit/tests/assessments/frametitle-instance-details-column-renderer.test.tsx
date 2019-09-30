@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import { frameTitleInstanceDetailsColumnRenderer } from '../../../../assessments/page/frametitle-instance-details-column-renderer';
+import { frameTitleInstanceDetailsColumnRenderer } from 'assessments/page/frametitle-instance-details-column-renderer';
 import { FrameAssessmentProperties } from '../../../../common/types/store-data/assessment-result-data';
 import { AssessmentInstanceDetailsColumn } from '../../../../DetailsView/components/assessment-instance-details-column';
 import { AssessmentInstanceRowData } from '../../../../DetailsView/components/assessment-instance-table';

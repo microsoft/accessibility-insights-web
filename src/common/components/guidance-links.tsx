@@ -2,8 +2,8 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import { HyperlinkDefinition } from '../../views/content/content-page';
-import { NamedSFC } from '../react/named-sfc';
+import { HyperlinkDefinition } from 'views/content/content-page';
+import { NamedFC } from '../react/named-fc';
 import { NewTabLink } from './new-tab-link';
 
 export interface GuidanceLinksProps {
@@ -11,7 +11,7 @@ export interface GuidanceLinksProps {
     classNameForDiv?: string;
 }
 
-export const GuidanceLinks = NamedSFC('GuidanceLinks', (props: GuidanceLinksProps) => {
+export const GuidanceLinks = NamedFC('GuidanceLinks', (props: GuidanceLinksProps) => {
     const { links, classNameForDiv } = props;
 
     if (links == null || links.length === 0) {

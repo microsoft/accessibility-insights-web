@@ -1,16 +1,14 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { AssessmentsProviderImpl } from 'assessments/assessments-provider';
+import { AssessmentsProvider } from 'assessments/types/assessments-provider';
+import { FeatureFlagStore } from 'background/stores/global/feature-flag-store';
+import { ScopingStore } from 'background/stores/global/scoping-store';
+import { VisualizationStore } from 'background/stores/visualization-store';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
-import { AssessmentsProviderImpl } from '../../../../assessments/assessments-provider';
-import { AssessmentsProvider } from '../../../../assessments/types/assessments-provider';
-import { FeatureFlagStore } from '../../../../background/stores/global/feature-flag-store';
-import { ScopingStore } from '../../../../background/stores/global/scoping-store';
-import { VisualizationStore } from '../../../../background/stores/visualization-store';
 import { BaseStore } from '../../../../common/base-store';
-import {
-    VisualizationConfiguration,
-    VisualizationConfigurationFactory,
-} from '../../../../common/configs/visualization-configuration-factory';
+import { VisualizationConfiguration } from '../../../../common/configs/visualization-configuration';
+import { VisualizationConfigurationFactory } from '../../../../common/configs/visualization-configuration-factory';
 import { EnumHelper } from '../../../../common/enum-helper';
 import { FeatureFlagStoreData } from '../../../../common/types/store-data/feature-flag-store-data';
 import { ScopingStoreData } from '../../../../common/types/store-data/scoping-store-data';

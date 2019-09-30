@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { AddTabbedElementPayload } from '../../../../../background/actions/action-payloads';
-import { TabActions } from '../../../../../background/actions/tab-actions';
-import { VisualizationScanResultActions } from '../../../../../background/actions/visualization-scan-result-actions';
-import { VisualizationScanResultStore } from '../../../../../background/stores/visualization-scan-result-store';
+import { AddTabbedElementPayload } from 'background/actions/action-payloads';
+import { TabActions } from 'background/actions/tab-actions';
+import { VisualizationScanResultActions } from 'background/actions/visualization-scan-result-actions';
+import { VisualizationScanResultStore } from 'background/stores/visualization-scan-result-store';
 import { StoreNames } from '../../../../../common/stores/store-names';
 import { TabbedElementData, VisualizationScanResultData } from '../../../../../common/types/store-data/visualization-scan-result-data';
 import { VisualizationType } from '../../../../../common/types/visualization-type';

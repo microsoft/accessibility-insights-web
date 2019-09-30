@@ -1,12 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { NamedSFC } from '../../../common/react/named-sfc';
+import { NamedFC } from '../../../common/react/named-fc';
 import { IssueFilingService } from '../../types/issue-filing-service';
 import { SettingsFormProps } from '../../types/settings-form-props';
 
 const nullServiceKey = 'none';
 
-const settingsForm = NamedSFC<SettingsFormProps<{}>>('NullIssueFilingService', () => null);
+const settingsForm = NamedFC<SettingsFormProps<{}>>('NullIssueFilingService', () => null);
 
 export type NullIssueFilingServiceSettings = null;
 
@@ -19,5 +19,5 @@ export const NullIssueFilingService: IssueFilingService = {
     buildStoreData: () => null,
     isSettingsValid: () => false,
     getSettingsFromStoreData: () => null,
-    issueFilingUrlProvider: () => null,
+    fileIssue: () => {},
 };

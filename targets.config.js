@@ -40,11 +40,12 @@ module.exports = {
             options: {
                 ...internalOptions,
                 ...icons.dev,
-                debug: true,
                 extensionFullName: 'Accessibility Insights for Web - Dev',
                 telemetryBuildName: 'Dev',
             },
         },
+        bundleFolder: 'devBundle',
+        mustExistFile: 'background.bundle.js',
     },
     playground: {
         release: true,
@@ -52,11 +53,12 @@ module.exports = {
             options: {
                 ...publicOptions,
                 ...icons.playground,
-                debug: true,
                 extensionFullName: 'Accessibility Insights for Web - Playground',
                 telemetryBuildName: 'Playground',
             },
         },
+        bundleFolder: 'devBundle',
+        mustExistFile: 'background.bundle.js',
     },
     canary: {
         release: true,
@@ -64,11 +66,12 @@ module.exports = {
             options: {
                 ...internalOptions,
                 ...icons.canary,
-                debug: true,
                 extensionFullName: 'Accessibility Insights for Web - Canary',
                 telemetryBuildName: 'Canary',
             },
         },
+        bundleFolder: 'devBundle',
+        mustExistFile: 'background.bundle.js',
     },
     insider: {
         release: true,
@@ -80,6 +83,8 @@ module.exports = {
                 telemetryBuildName: 'Insider',
             },
         },
+        bundleFolder: 'prodBundle',
+        mustExistFile: 'background.bundle.js',
     },
     production: {
         release: true,
@@ -90,6 +95,8 @@ module.exports = {
                 telemetryBuildName: 'Production',
             },
         },
+        bundleFolder: 'prodBundle',
+        mustExistFile: 'background.bundle.js',
     },
     preview: {
         release: true,
@@ -101,5 +108,19 @@ module.exports = {
                 telemetryBuildName: 'Preview',
             },
         },
+        bundleFolder: 'prodBundle',
+        mustExistFile: 'background.bundle.js',
+    },
+    electron: {
+        config: {
+            options: {
+                ...internalOptions,
+                ...icons.dev,
+                extensionFullName: 'Accessibility Insights for Web - Dev',
+                telemetryBuildName: 'Electron',
+            },
+        },
+        bundleFolder: 'electronBundle',
+        mustExistFile: 'main.bundle.js',
     },
 };

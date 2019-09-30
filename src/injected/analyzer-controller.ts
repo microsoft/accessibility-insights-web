@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { autobind } from '@uifabric/utilities';
-import { AssessmentsProvider } from '../assessments/types/assessments-provider';
+import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { BaseStore } from '../common/base-store';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
 import { EnumHelper } from '../common/enum-helper';
@@ -52,26 +51,23 @@ export class AnalyzerController {
         this.onChangedState();
     }
 
-    @autobind
-    private onChangedState(): void {
+    private onChangedState = (): void => {
         if (this.hasInitializedStores() === false) {
             return;
         }
 
         this.analyzerStateUpdateHandler.handleUpdate(this.visualizationstore.getState());
-    }
+    };
 
-    @autobind
-    protected teardown(id: string): void {
+    protected teardown = (id: string): void => {
         const analyzer = this.getAnalyzerByIdentifier(id);
         analyzer.teardown();
-    }
+    };
 
-    @autobind
-    protected startScan(id: string): void {
+    protected startScan = (id: string): void => {
         const analyzer = this.getAnalyzerByIdentifier(id);
         analyzer.analyze();
-    }
+    };
 
     private initializeAnalyzers(): void {
         EnumHelper.getNumericValues(VisualizationType).forEach((test: VisualizationType) => {
