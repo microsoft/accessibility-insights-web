@@ -36,9 +36,5 @@ export class CardSelectionStore extends BaseStoreImpl<CardSelectionStoreData> {
 
     public CollapseAllRules(): void {}
 
-    private onScanCompleted = (payload: UnifiedScanCompletedPayload): void => {
-        // this.state.results = payload.scanResult;
-        // this.state.rules = payload.rules;
-        this.emitChanged();
-    };
+    private onScanCompleted = (payload: UnifiedScanCompletedPayload): void => {};
 }
