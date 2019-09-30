@@ -58,7 +58,7 @@ describe('DeviceConnectPortEntryTest', () => {
                 },
             } as DeviceConnectPortEntryProps;
             const rendered = shallow(<DeviceConnectPortEntry {...props} />);
-            rendered.setState({ isValidateButtonDisabled: false, port: testPortNumber });
+            rendered.setState({ port: testPortNumber });
             const button = rendered.find('.button-validate-port');
 
             button.simulate('click', eventStub);

@@ -16,14 +16,13 @@ export interface DeviceConnectPortEntryProps {
 }
 
 export interface DeviceConnectPortEntryState {
-    isValidateButtonDisabled: boolean;
     port: string;
 }
 
 export class DeviceConnectPortEntry extends React.Component<DeviceConnectPortEntryProps, DeviceConnectPortEntryState> {
     constructor(props: DeviceConnectPortEntryProps) {
         super(props);
-        this.state = { isValidateButtonDisabled: true, port: '' };
+        this.state = { port: '' };
     }
 
     public render(): JSX.Element {
@@ -40,7 +39,7 @@ export class DeviceConnectPortEntry extends React.Component<DeviceConnectPortEnt
                 />
                 <Button
                     primary={this.props.needsValidation}
-                    disabled={this.state.isValidateButtonDisabled}
+                    disabled={this.isValidateButtonDisabled(this.state.port)}
                     className="button-validate-port"
                     onClick={this.onValidateClick}
                 >
@@ -50,8 +49,12 @@ export class DeviceConnectPortEntry extends React.Component<DeviceConnectPortEnt
         );
     }
 
+    private isValidateButtonDisabled(port: string): boolean {
+        return !port || port === '';
+    }
+
     private onPortTextChanged = (event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>, newValue?: string) => {
-        this.setState({ isValidateButtonDisabled: !newValue || newValue === '', port: newValue });
+        this.setState({ port: newValue });
     };
 
     private onValidateClick = (event: React.MouseEvent<HTMLButtonElement>): void => {
