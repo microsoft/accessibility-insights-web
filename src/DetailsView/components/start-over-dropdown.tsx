@@ -45,6 +45,9 @@ export class StartOverDropdown extends React.Component<StartOverProps, StartOver
                     }}
                     text="Start over"
                     onClick={this.openDropdown}
+                    menuIconProps={{
+                        iconName: 'ChevronDown',
+                    }}
                 />
                 {this.renderContextMenu()}
                 {this.renderStartOverDialog()}
