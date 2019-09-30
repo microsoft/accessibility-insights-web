@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DeviceDisconnectedPopup renders 1`] = `
+<StyledWithResponsiveMode
+  dialogContentProps={
+    Object {
+      "showCloseButton": false,
+      "title": <span>
+        Device disconnected
+      </span>,
+      "type": 0,
+    }
+  }
+  modalProps={
+    Object {
+      "isBlocking": true,
+    }
+  }
+>
+  <div>
+    <p>
+      Uh-oh! It seems the [insert device name] device has disconnected before the snapshot completed its analysis.
+    </p>
+    <p>
+      Make sure your device is properly connected, and try rescanning or connecting a different device.
+    </p>
+  </div>
+  <StyledDialogFooterBase>
+    <CustomizedDefaultButton
+      text="Connect a new device"
+    />
+    <CustomizedDefaultButton
+      text="Rescan device"
+    />
+  </StyledDialogFooterBase>
+</StyledWithResponsiveMode>
+`;
