@@ -1,6 +1,7 @@
 {
     "license": "copyright-header.txt",
     "ignore": [
+        "./.dependabot",
         "./.git",
         "./.github",
         "./.vscode",
