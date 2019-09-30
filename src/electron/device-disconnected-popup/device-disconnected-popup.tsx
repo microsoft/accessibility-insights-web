@@ -25,6 +25,8 @@ export const DeviceDisconnectedPopup = NamedFC<DeviceDisconnectedPopupProps>(
                 modalProps={{
                     isBlocking: true,
                 }}
+                hidden={false}
+                minWidth={416}
             >
                 <div>
                     <p>Uh-oh! It seems the [insert device name] device has disconnected before the snapshot completed its analysis.</p>

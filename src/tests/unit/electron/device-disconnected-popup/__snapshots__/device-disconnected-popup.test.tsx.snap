@@ -11,6 +11,8 @@ exports[`DeviceDisconnectedPopup renders 1`] = `
       "type": 0,
     }
   }
+  hidden={false}
+  minWidth={416}
   modalProps={
     Object {
       "isBlocking": true,
