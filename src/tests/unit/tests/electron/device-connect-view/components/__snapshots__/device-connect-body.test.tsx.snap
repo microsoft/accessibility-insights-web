@@ -13,7 +13,6 @@ exports[`DeviceConnectBodyTest renders, with device connect state = Connected 1`
         },
       }
     }
-    needsValidation={false}
     viewState={
       Object {
         "deviceConnectState": 2,
@@ -44,7 +43,6 @@ exports[`DeviceConnectBodyTest renders, with device connect state = Connecting 1
         },
       }
     }
-    needsValidation={true}
     viewState={
       Object {
         "deviceConnectState": 1,
@@ -75,7 +73,6 @@ exports[`DeviceConnectBodyTest renders, with device connect state = Default 1`] 
         },
       }
     }
-    needsValidation={true}
     viewState={
       Object {
         "deviceConnectState": 0,
@@ -106,7 +103,6 @@ exports[`DeviceConnectBodyTest renders, with device connect state = Error 1`] = 
         },
       }
     }
-    needsValidation={true}
     viewState={
       Object {
         "deviceConnectState": 3,

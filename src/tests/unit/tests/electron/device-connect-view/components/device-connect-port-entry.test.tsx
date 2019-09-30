@@ -1,6 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { DeviceConnectPortEntry, DeviceConnectPortEntryProps } from 'electron/device-connect-view/components/device-connect-port-entry';
+import {
+    DeviceConnectPortEntry,
+    DeviceConnectPortEntryProps,
+    DeviceConnectPortEntryViewState,
+} from 'electron/device-connect-view/components/device-connect-port-entry';
 import { DeviceConnectActionCreator } from 'electron/flux/action-creator/device-connect-action-creator';
 import { shallow } from 'enzyme';
 import { Button } from 'office-ui-fabric-react/lib/Button';
@@ -21,30 +25,31 @@ describe('DeviceConnectPortEntryTest', () => {
     });
 
     describe('renders', () => {
-        type TestCase = {
-            needsValidation: boolean;
-            deviceConnectState: DeviceConnectState;
-        };
+        const deviceConnectStates = EnumHelper.getNumericValues<DeviceConnectState>(DeviceConnectState).map(
+            state => DeviceConnectState[state],
+        );
 
-        const testScenarios: TestCase[] = EnumHelper.getNumericValues<DeviceConnectState>(DeviceConnectState)
-            .map(state => {
-                return { needsValidation: true, deviceConnectState: state };
-            })
-            .concat(
-                EnumHelper.getNumericValues<DeviceConnectState>(DeviceConnectState).map(state => {
-                    return { needsValidation: false, deviceConnectState: state };
-                }),
-            );
-
-        it.each(testScenarios)('with %p', testScenario => {
+        it.each(deviceConnectStates)('with %p', deviceConnectStateName => {
             const props: DeviceConnectPortEntryProps = {
-                needsValidation: testScenario.needsValidation,
                 viewState: {
-                    deviceConnectState: testScenario.deviceConnectState,
+                    deviceConnectState: DeviceConnectState[deviceConnectStateName],
                 },
             } as DeviceConnectPortEntryProps;
 
             const rendered = shallow(<DeviceConnectPortEntry {...props} />);
+
+            expect(rendered.getElement()).toMatchSnapshot();
+        });
+
+        it.each(deviceConnectStates)('with %p and some text in the port text field', deviceConnectStateName => {
+            const props: DeviceConnectPortEntryProps = {
+                viewState: {
+                    deviceConnectState: DeviceConnectState[deviceConnectStateName],
+                },
+            } as DeviceConnectPortEntryProps;
+
+            const rendered = shallow(<DeviceConnectPortEntry {...props} />);
+            rendered.setState({ port: '1234' });
 
             expect(rendered.getElement()).toMatchSnapshot();
         });
@@ -63,11 +68,11 @@ describe('DeviceConnectPortEntryTest', () => {
 
                 const rendered = shallow(<DeviceConnectPortEntry {...props} />);
 
-                expect(rendered.state()).toMatchSnapshot();
+                expect(rendered.state()).toMatchSnapshot('before');
 
                 rendered.find('.port-number-field').simulate('change', null, portNumberText);
 
-                expect(rendered.state()).toMatchSnapshot();
+                expect(rendered.state()).toMatchSnapshot('after');
             });
         });
 
@@ -92,3 +97,5 @@ describe('DeviceConnectPortEntryTest', () => {
         });
     });
 });
+
+//

@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { Button } from 'office-ui-fabric-react/lib/Button';
+import { DefaultButton, PrimaryButton } from 'office-ui-fabric-react/lib/Button';
 import { MaskedTextField } from 'office-ui-fabric-react/lib/TextField';
 import * as React from 'react';
 
@@ -17,7 +17,6 @@ export type DeviceConnectPortEntryDeps = {
 
 export interface DeviceConnectPortEntryProps {
     deps: DeviceConnectPortEntryDeps;
-    needsValidation: boolean;
     viewState: DeviceConnectPortEntryViewState;
 }
 
@@ -43,16 +42,23 @@ export class DeviceConnectPortEntry extends React.Component<DeviceConnectPortEnt
                     maskChar=""
                     mask="99999"
                 />
-                <Button
-                    primary={this.props.needsValidation}
-                    disabled={this.isValidateButtonDisabled()}
-                    className="button-validate-port"
-                    onClick={this.onValidateClick}
-                >
-                    Validate port number
-                </Button>
+                {this.renderValidationPortButton()}
             </div>
         );
+    }
+
+    private renderValidationPortButton(): JSX.Element {
+        const props = {
+            disabled: this.isValidateButtonDisabled(),
+            className: 'button-validate-port',
+            onClick: this.onValidateClick,
+        };
+
+        if (this.props.viewState.deviceConnectState !== DeviceConnectState.Connected) {
+            return <PrimaryButton {...props}>Validate port number</PrimaryButton>;
+        }
+
+        return <DefaultButton {...props}>Validate port number</DefaultButton>;
     }
 
     private isValidateButtonDisabled(): boolean {
