@@ -15,6 +15,11 @@ body {
     color: $neutral-100;
     font-family: $fontFamily;
     font-size: 14px;
+    height: 100vh;
+    max-height: 100vh;
+    width: 100vw;
+    min-width: 100vw;
+    overflow: hidden;
 }
 
 .target-change-dialog-modal {
@@ -288,10 +293,6 @@ div.insights-file-issue-details-dialog-container {
             }
         }
     }
-    .main-wrapper {
-        height: 100%;
-        width: 100%;
-    }
     .details-view-command-bar {
         height: $detailsViewCommandBarHeight;
         width: 100%;
@@ -386,7 +387,7 @@ div.insights-file-issue-details-dialog-container {
         padding-left: 0px;
         padding-right: 0px;
         display: grid;
-        grid-template-columns: 230px 1fr;
+        grid-template-columns: $detailsViewLeftNavWidth 1fr;
         grid-template-rows: 1fr;
         width: 100%;
         min-height: 0;
@@ -642,7 +643,10 @@ div.insights-file-issue-details-dialog-container {
             padding-left: calc(0.5vw + 13px); // 13px is Chevron width.
         }
         .left-nav {
-            width: 200px;
+            max-height: calc(100vh - (#{$detailsViewTotalHeaderHeight}));
+            height: calc(100vh - (#{$detailsViewTotalHeaderHeight}));
+            overflow-y: auto;
+            width: calc($detailsViewLeftNavWidth - 1px); // border
             border-right: 1px solid $neutral-8;
             .dark-gray {
                 color: $neutral-60;
@@ -650,7 +654,7 @@ div.insights-file-issue-details-dialog-container {
             .button-flex-container {
                 padding-left: 5%;
                 padding-right: 8%;
-                width: 200px;
+                width: $detailsViewLeftNavWidth;
                 .status-icon {
                     font-size: 24px;
                 }
