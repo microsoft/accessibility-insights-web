@@ -8,11 +8,7 @@ export interface RuleResultsData {
 }
 
 export class ScanResults {
-    private rawData: any;
-
-    constructor(rawData: any) {
-        this.rawData = rawData;
-    }
+    constructor(readonly rawData: any) {}
 
     public get deviceName(): string {
         try {
