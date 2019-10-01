@@ -6,11 +6,11 @@ exports[`DeviceDisconnectedPopup renders 1`] = `
     Object {
       "showCloseButton": false,
       "title": <div
-        className="titleContainer"
+        className="title-container"
       >
         <StatusCautionIcon />
         <span
-          className="titleText"
+          className="title-text"
         >
           Device disconnected
         </span>
@@ -22,7 +22,7 @@ exports[`DeviceDisconnectedPopup renders 1`] = `
   minWidth={416}
   modalProps={
     Object {
-      "className": "deviceDisconnectedPopup",
+      "className": "device-disconnected-popup",
       "isBlocking": true,
     }
   }
