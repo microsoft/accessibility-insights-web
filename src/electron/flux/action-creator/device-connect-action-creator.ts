@@ -25,4 +25,8 @@ export class DeviceConnectActionCreator {
             .then(data => this.deviceActions.connectionSucceeded.invoke({ connectedDevice: `${data.deviceName} - ${data.appIdentifier}` }))
             .catch(() => this.deviceActions.connectionFailed.invoke());
     }
+
+    public resetConnection(): void {
+        this.deviceActions.resetConnection.invoke(null);
+    }
 }

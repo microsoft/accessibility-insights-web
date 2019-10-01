@@ -88,4 +88,14 @@ describe('DeviceConnectActionCreator', () => {
         connectingMock.verify(connecting => connecting.invoke({ port }), Times.once());
         connectionFailedMock.verify(succeed => succeed.invoke(), Times.once());
     });
+
+    it('resets to default', () => {
+        const resetConnectionMock = Mock.ofType<Action<void>>();
+
+        deviceActionsMock.setup(actions => actions.resetConnection).returns(() => resetConnectionMock.object);
+
+        testSubject.resetConnection();
+
+        resetConnectionMock.verify(resetConnection => resetConnection.invoke(null), Times.once());
+    });
 });
