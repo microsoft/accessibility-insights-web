@@ -6,15 +6,7 @@ import { RuleResultsData } from './scan-results';
 export type HowToFixDelegate = (ruleResultsData: RuleResultsData) => string;
 
 export class RuleInformation {
-    constructor(readonly RuleId: string, readonly RuleDescription: string, readonly howToFixDelegate: HowToFixDelegate) {}
-
-    public get ruleId(): string {
-        return this.RuleId;
-    }
-
-    public get ruleDescription(): string {
-        return this.RuleDescription;
-    }
+    constructor(readonly ruleId: string, readonly ruleDescription: string, readonly howToFixDelegate: HowToFixDelegate) {}
 
     public howToFix(ruleResultsData: RuleResultsData): string {
         return this.howToFixDelegate(ruleResultsData);
