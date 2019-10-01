@@ -1,48 +1,44 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+import { DictionaryStringTo } from '../../../types/common-types';
 import { RuleInformation } from './rule-information';
 import { RuleResultsData } from './scan-results';
 
 export class RuleInformationProvider {
-    private supportedRules: RuleInformation[];
+    private supportedRules: DictionaryStringTo<RuleInformation>;
 
     constructor() {
-        this.supportedRules = [];
-        this.supportedRules.push(
-            new RuleInformation(
+        this.supportedRules = {
+            ColorContrast: new RuleInformation(
                 'ColorContrast',
                 'Text elements must have sufficient contrast against the background.',
                 this.getColorContrastHowToFix,
             ),
-        );
-        this.supportedRules.push(
-            new RuleInformation('TouchSizeWcag', 'Touch inputs must have a sufficient target size.', this.getTouchSizeHowToFix),
-        );
-        this.supportedRules.push(
-            new RuleInformation(
+            TouchSizeWcag: new RuleInformation(
+                'TouchSizeWcag',
+                'Touch inputs must have a sufficient target size.',
+                this.getTouchSizeHowToFix,
+            ),
+            ActiveViewName: new RuleInformation(
                 'ActiveViewName',
                 "Active views must have a name that's available to assistive technologies.",
                 () =>
                     'The view is active but has no name available to assistive technologies. Provide a name for the view using its contentDescription, hint, labelFor, or text attribute (depending on the view type)',
             ),
-        );
-        this.supportedRules.push(
-            new RuleInformation(
+            ImageViewName: new RuleInformation(
                 'ImageViewName',
                 'Meaningful images must have alternate text.',
                 () =>
                     'The image has no alternate text and is not identified as decorative. If the image conveys meaningful content, provide alternate text using the contentDescription attribute. If the image is decorative, give it an empty contentDescription, or set its isImportantForAccessibility attribute to false.',
             ),
-        );
-        this.supportedRules.push(
-            new RuleInformation(
+            EditTextValue: new RuleInformation(
                 'EditTextValue',
                 'EditText elements must expose their entered text value to assistive technologies',
                 () =>
                     "The element's contentDescription overrides the text value required by assistive technologies. Remove the element’s contentDescription attribute.",
             ),
-        );
+        };
     }
 
     private getColorContrastHowToFix(ruleResultsData: RuleResultsData): string {
@@ -64,12 +60,7 @@ export class RuleInformationProvider {
     }
 
     public getRuleInformation(ruleId: string): RuleInformation {
-        for (const ruleInformation of this.supportedRules) {
-            if (ruleId === ruleInformation.ruleId) {
-                return ruleInformation;
-            }
-        }
-
-        return null;
+        const ruleInfo = this.supportedRules[ruleId];
+        return ruleInfo ? ruleInfo : null;
     }
 }
