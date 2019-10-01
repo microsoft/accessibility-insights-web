@@ -9,8 +9,10 @@
     border-radius: 4px;
     box-shadow: 0px 0.6px 1.8px rgba(0, 0, 0, 0.108), 0px 3.2px 7.2px rgba(0, 0, 0, 0.132);
     display: table;
-    width: -moz-available; /* WebKit-based browsers will ignore this. */
-    width: -webkit-fill-available; /* Mozilla-based browsers will ignore this. */
+    width: -moz-available;
+    /* WebKit-based browsers will ignore this. */
+    width: -webkit-fill-available;
+    /* Mozilla-based browsers will ignore this. */
     width: fill-available;
     margin-left: 24px;
     table-layout: fixed;
@@ -28,6 +30,45 @@
 
     .row:last-child {
         border-bottom: none;
+    }
+
+}
+
+.foot {
+    justify-content: space-between;
+    display: flex;
+    background-color: #F8F8F8;
+    box-shadow: 0px -1px 0px rgba(0, 0, 0, 0.08);
+    border-radius: 4px;
+    margin-left: 24px;
+    height: 50px;
+
+    .highlight-button {
+        background: transparent;
+        color: $secondary-text;
+        font-family: $fontFamily;
+        font-size: 14px;
+        line-height: 20px;
+        margin-left: 12px;
+
+        i {
+            color: $primary-text;
+            font-size: 20px;
+            border: 1.25px;
+        }
+    }
+
+    .kebab-menu-button {
+        background: transparent;
+        width: 34px;
+        height: 32px;
+        top: calc(50% - 32px/2);
+
+        i {
+            font-size: 20px;
+            border: 1.25px;
+            color: $primary-text;
+        }
     }
 }
 
@@ -61,6 +102,7 @@
                 border: 1px solid $always-black;
             }
         }
+
         .screen-reader-only {
             position: absolute;
             left: -10000px;
@@ -92,9 +134,11 @@ table.report-instance-table {
 
     .report-instance-table td {
         display: block;
+
         .label {
             text-align: left;
         }
+
         .instance-list-row-content {
             text-align: right;
         }

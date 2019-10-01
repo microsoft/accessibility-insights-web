@@ -61,6 +61,8 @@ export function initializeFabricIcons(): void {
             undo: '\uE7A7',
             unknown: '\uE9CE',
             view: '\uE890',
+            redEye: '\uE7b3',
+            moreVertical: '\uF2BC',
         },
     });
 }
