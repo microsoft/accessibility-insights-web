@@ -8,4 +8,5 @@ export class DeviceActions {
     public readonly connectionSucceeded = new Action<ConnectionSucceedPayload>();
     public readonly connectionFailed = new Action<void>();
     public readonly connecting = new Action<ConnectingPayload>();
+    public readonly defaulting = new Action<void>();
 }
