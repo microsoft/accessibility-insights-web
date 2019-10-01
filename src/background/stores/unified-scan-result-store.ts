@@ -15,6 +15,7 @@ export class UnifiedScanResultStore extends BaseStoreImpl<UnifiedScanResultStore
         const defaultValue: UnifiedScanResultStoreData = {
             results: null,
             rules: null,
+            toolInfo: null,
         };
 
         return defaultValue;
@@ -28,6 +29,7 @@ export class UnifiedScanResultStore extends BaseStoreImpl<UnifiedScanResultStore
     private onScanCompleted = (payload: UnifiedScanCompletedPayload): void => {
         this.state.results = payload.scanResult;
         this.state.rules = payload.rules;
+        this.state.toolInfo = payload.toolInfo;
         this.emitChanged();
     };
 }
