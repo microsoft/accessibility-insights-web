@@ -1,17 +1,15 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { UserConfigurationStore } from 'background/stores/global/user-configuration-store';
-import { BaseStore } from 'common/base-store';
-import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
+import { BaseClientStoresHub } from 'common/stores/base-client-stores-hub';
+import { ClientStoresHub } from 'common/stores/client-stores-hub';
 import { BrowserWindow } from 'electron';
 import { DeviceConnectState } from 'electron/device-connect-view/components/device-connect-state';
 import {
     DeviceConnectViewContainer,
     DeviceConnectViewContainerDeps,
     DeviceConnectViewContainerProps,
+    DeviceConnectViewContainerState,
 } from 'electron/device-connect-view/components/device-connect-view-container';
-import { DeviceStore } from 'electron/flux/store/device-store';
-import { DeviceStoreData } from 'electron/flux/types/device-store-data';
 import { shallow } from 'enzyme';
 import { isFunction } from 'lodash';
 import * as React from 'react';
@@ -25,30 +23,23 @@ describe('DeviceConnectViewContainer', () => {
     } as BrowserWindow;
 
     it('renders', () => {
-        const userConfigurationStoreMock = Mock.ofType<BaseStore<UserConfigurationStoreData>>(UserConfigurationStore);
-
-        userConfigurationStoreMock
-            .setup(store => store.getState())
+        const storeHubMock = Mock.ofType<ClientStoresHub<DeviceConnectViewContainerState>>(BaseClientStoresHub);
+        storeHubMock
+            .setup(hub => hub.getAllStoreData())
             .returns(() => {
                 return {
-                    isFirstTime: true,
-                } as UserConfigurationStoreData;
-            });
-
-        const deviceStoreMock = Mock.ofType<BaseStore<DeviceStoreData>>(DeviceStore);
-
-        deviceStoreMock
-            .setup(store => store.getState())
-            .returns(() => {
-                return {
-                    deviceConnectState: DeviceConnectState.Default,
-                } as DeviceStoreData;
+                    userConfigurationStoreData: {
+                        isFirstTime: true,
+                    },
+                    deviceStoreData: {
+                        deviceConnectState: DeviceConnectState.Default,
+                    },
+                } as DeviceConnectViewContainerState;
             });
 
         const deps: DeviceConnectViewContainerDeps = {
             currentWindow: currentWindowStub,
-            userConfigurationStore: userConfigurationStoreMock.object,
-            deviceStore: deviceStoreMock.object,
+            storeHub: storeHubMock.object,
         } as DeviceConnectViewContainerDeps;
 
         const props: DeviceConnectViewContainerProps = { deps };
@@ -58,102 +49,43 @@ describe('DeviceConnectViewContainer', () => {
         expect(wrapped.getElement()).toMatchSnapshot();
     });
 
-    it('listens to user configuration store', () => {
-        const userConfigurationStoreMock = Mock.ofType<BaseStore<UserConfigurationStoreData>>();
+    it('listens to store changes through the stores hub', () => {
+        const storeHubMock = Mock.ofType<ClientStoresHub<DeviceConnectViewContainerState>>(BaseClientStoresHub);
 
-        userConfigurationStoreMock
-            .setup(store => store.getState())
+        storeHubMock
+            .setup(hub => hub.getAllStoreData())
             .returns(() => {
                 return {
-                    isFirstTime: true,
-                    enableTelemetry: false,
-                } as UserConfigurationStoreData;
+                    userConfigurationStoreData: {
+                        isFirstTime: true,
+                        enableTelemetry: false,
+                    },
+                    deviceStoreData: {
+                        deviceConnectState: DeviceConnectState.Default,
+                    },
+                } as DeviceConnectViewContainerState;
             });
 
-        userConfigurationStoreMock
-            .setup(store => store.getState())
+        storeHubMock
+            .setup(hub => hub.getAllStoreData())
             .returns(() => {
                 return {
-                    isFirstTime: false,
-                    enableTelemetry: true,
-                } as UserConfigurationStoreData;
-            });
-
-        const deviceStoreMock = Mock.ofType<BaseStore<DeviceStoreData>>();
-
-        deviceStoreMock
-            .setup(store => store.getState())
-            .returns(() => {
-                return {
-                    deviceConnectState: DeviceConnectState.Default,
-                } as DeviceStoreData;
+                    userConfigurationStoreData: {
+                        isFirstTime: false,
+                        enableTelemetry: true,
+                    },
+                    deviceStoreData: {
+                        deviceConnectState: DeviceConnectState.Default,
+                    },
+                } as DeviceConnectViewContainerState;
             });
 
         let storeListener: Function;
 
-        userConfigurationStoreMock
-            .setup(store => store.addChangedListener(It.is(isFunction)))
-            .callback(listener => {
-                storeListener = listener;
-            });
+        storeHubMock.setup(hub => hub.addChangedListenerToAllStores(It.is(isFunction))).callback(listener => (storeListener = listener));
 
         const deps: DeviceConnectViewContainerDeps = {
-            userConfigurationStore: userConfigurationStoreMock.object,
-            deviceStore: deviceStoreMock.object,
-        } as DeviceConnectViewContainerDeps;
-
-        const props: DeviceConnectViewContainerProps = { deps };
-
-        const wrapped = shallow(<DeviceConnectViewContainer {...props} />);
-
-        expect(wrapped.instance().state).toMatchSnapshot('state from constructor');
-
-        storeListener();
-
-        expect(wrapped.instance().state).toMatchSnapshot('updated state');
-    });
-
-    it('listens to device store', () => {
-        const userConfigurationStoreMock = Mock.ofType<BaseStore<UserConfigurationStoreData>>();
-
-        userConfigurationStoreMock
-            .setup(store => store.getState())
-            .returns(() => {
-                return {
-                    isFirstTime: true,
-                    enableTelemetry: false,
-                } as UserConfigurationStoreData;
-            });
-
-        const deviceStoreMock = Mock.ofType<BaseStore<DeviceStoreData>>(DeviceStore);
-
-        deviceStoreMock
-            .setup(store => store.getState())
-            .returns(() => {
-                return {
-                    deviceConnectState: DeviceConnectState.Default,
-                } as DeviceStoreData;
-            });
-
-        deviceStoreMock
-            .setup(store => store.getState())
-            .returns(() => {
-                return {
-                    deviceConnectState: DeviceConnectState.Connecting,
-                } as DeviceStoreData;
-            });
-
-        let storeListener: Function;
-
-        deviceStoreMock
-            .setup(store => store.addChangedListener(It.is(isFunction)))
-            .callback(listener => {
-                storeListener = listener;
-            });
-
-        const deps: DeviceConnectViewContainerDeps = {
-            userConfigurationStore: userConfigurationStoreMock.object,
-            deviceStore: deviceStoreMock.object,
+            storeHub: storeHubMock.object,
         } as DeviceConnectViewContainerDeps;
 
         const props: DeviceConnectViewContainerProps = { deps };

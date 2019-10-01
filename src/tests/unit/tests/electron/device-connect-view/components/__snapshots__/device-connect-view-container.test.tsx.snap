@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`DeviceConnectViewContainer listens to device store: state from constructor 1`] = `
+exports[`DeviceConnectViewContainer listens to store changes through the stores hub: state from constructor 1`] = `
 Object {
   "deviceStoreData": Object {
     "deviceConnectState": 0,
@@ -12,31 +12,7 @@ Object {
 }
 `;
 
-exports[`DeviceConnectViewContainer listens to device store: updated state 1`] = `
-Object {
-  "deviceStoreData": Object {
-    "deviceConnectState": 1,
-  },
-  "userConfigurationStoreData": Object {
-    "enableTelemetry": false,
-    "isFirstTime": true,
-  },
-}
-`;
-
-exports[`DeviceConnectViewContainer listens to user configuration store: state from constructor 1`] = `
-Object {
-  "deviceStoreData": Object {
-    "deviceConnectState": 0,
-  },
-  "userConfigurationStoreData": Object {
-    "enableTelemetry": false,
-    "isFirstTime": true,
-  },
-}
-`;
-
-exports[`DeviceConnectViewContainer listens to user configuration store: updated state 1`] = `
+exports[`DeviceConnectViewContainer listens to store changes through the stores hub: updated state 1`] = `
 Object {
   "deviceStoreData": Object {
     "deviceConnectState": 0,
@@ -61,33 +37,9 @@ exports[`DeviceConnectViewContainer renders 1`] = `
         "currentWindow": Object {
           "close": [Function],
         },
-        "deviceStore": proxy {
+        "storeHub": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "changedHandlers": EventHandlerList {
-            "handlers": Array [],
-          },
-          "deviceActions": undefined,
-          "onConnecting": [Function],
-          "onConnectionFailed": [Function],
-          "onConnectionSucceeded": [Function],
-          "onGetCurrentState": [Function],
-          "storeName": 15,
-        },
-        "userConfigurationStore": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "changedHandlers": EventHandlerList {
-            "handlers": Array [],
-          },
-          "indexDbApi": undefined,
-          "onGetCurrentState": [Function],
-          "onSaveIssueSettings": [Function],
-          "onSetHighContrastMode": [Function],
-          "onSetIssueFilingService": [Function],
-          "onSetIssueFilingServiceProperty": [Function],
-          "onSetTelemetryState": [Function],
-          "persistedState": undefined,
-          "storeName": 11,
-          "userConfigActions": undefined,
+          "stores": undefined,
         },
       }
     }
@@ -104,33 +56,9 @@ exports[`DeviceConnectViewContainer renders 1`] = `
         "currentWindow": Object {
           "close": [Function],
         },
-        "deviceStore": proxy {
+        "storeHub": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "changedHandlers": EventHandlerList {
-            "handlers": Array [],
-          },
-          "deviceActions": undefined,
-          "onConnecting": [Function],
-          "onConnectionFailed": [Function],
-          "onConnectionSucceeded": [Function],
-          "onGetCurrentState": [Function],
-          "storeName": 15,
-        },
-        "userConfigurationStore": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "changedHandlers": EventHandlerList {
-            "handlers": Array [],
-          },
-          "indexDbApi": undefined,
-          "onGetCurrentState": [Function],
-          "onSaveIssueSettings": [Function],
-          "onSetHighContrastMode": [Function],
-          "onSetIssueFilingService": [Function],
-          "onSetIssueFilingServiceProperty": [Function],
-          "onSetTelemetryState": [Function],
-          "persistedState": undefined,
-          "storeName": 11,
-          "userConfigActions": undefined,
+          "stores": undefined,
         },
       }
     }

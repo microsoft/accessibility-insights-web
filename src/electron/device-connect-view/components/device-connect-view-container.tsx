@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { BaseStore } from 'common/base-store';
 import { TelemetryPermissionDialog, TelemetryPermissionDialogDeps } from 'common/components/telemetry-permission-dialog';
+import { ClientStoresHub } from 'common/stores/client-stores-hub';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import { brand } from 'content/strings/application';
 import { BrandBlue } from 'icons/brand/blue/brand-blue';
@@ -11,12 +11,10 @@ import { DeviceStoreData } from '../../flux/types/device-store-data';
 import { DeviceConnectBody, DeviceConnectBodyDeps } from './device-connect-body';
 import { WindowTitle } from './window-title';
 
-type DeviceConnectViewContainerStoreDeps = {
-    userConfigurationStore: BaseStore<UserConfigurationStoreData>;
-    deviceStore: BaseStore<DeviceStoreData>;
-};
-
-export type DeviceConnectViewContainerDeps = DeviceConnectViewContainerStoreDeps & TelemetryPermissionDialogDeps & DeviceConnectBodyDeps;
+export type DeviceConnectViewContainerDeps = TelemetryPermissionDialogDeps &
+    DeviceConnectBodyDeps & {
+        storeHub: ClientStoresHub<DeviceConnectViewContainerState>;
+    };
 
 export type DeviceConnectViewContainerProps = {
     deps: DeviceConnectViewContainerDeps;
@@ -30,10 +28,7 @@ export type DeviceConnectViewContainerState = {
 export class DeviceConnectViewContainer extends React.Component<DeviceConnectViewContainerProps, DeviceConnectViewContainerState> {
     constructor(props: DeviceConnectViewContainerProps) {
         super(props);
-        this.state = {
-            userConfigurationStoreData: props.deps.userConfigurationStore.getState(),
-            deviceStoreData: props.deps.deviceStore.getState(),
-        };
+        this.state = props.deps.storeHub.getAllStoreData();
     }
 
     public render(): JSX.Element {
@@ -55,17 +50,10 @@ export class DeviceConnectViewContainer extends React.Component<DeviceConnectVie
     }
 
     public componentDidMount(): void {
-        this.addChangeListener('deviceStore');
-        this.addChangeListener('userConfigurationStore');
+        this.props.deps.storeHub.addChangedListenerToAllStores(this.onStoresChange);
     }
 
-    private addChangeListener(storeName: keyof DeviceConnectViewContainerStoreDeps): void {
-        this.props.deps[storeName].addChangedListener(() => {
-            const dataName = `${storeName}Data` as keyof DeviceConnectViewContainerState;
-            const newState = {
-                [dataName]: this.props.deps[storeName].getState(),
-            } as DeviceConnectViewContainerState;
-            this.setState(newState);
-        });
-    }
+    private onStoresChange = () => {
+        this.setState(() => this.props.deps.storeHub.getAllStoreData());
+    };
 }
