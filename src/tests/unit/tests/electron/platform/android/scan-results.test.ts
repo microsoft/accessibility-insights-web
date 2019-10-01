@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { ScanResults } from 'electron/platform/android/scan-results';
 import { buildRuleResultObject, buildScanResultsObject } from './scan-results-helpers';
 
 describe('ScanResultsTest', () => {

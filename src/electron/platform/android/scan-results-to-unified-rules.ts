@@ -9,7 +9,7 @@ import { ScanResults } from './scan-results';
 
 export type ConvertScanResultsToUnifiedRulesDelegate = (scanResults: ScanResults, uuidGenerator: UUIDGeneratorType) => UnifiedRule[];
 
-export function ConvertScanResultsToUnifiedRules(scanResults: ScanResults, uuidGenerator: UUIDGeneratorType): UnifiedRule[] {
+export function convertScanResultsToUnifiedRules(scanResults: ScanResults, uuidGenerator: UUIDGeneratorType): UnifiedRule[] {
     if (!scanResults) {
         return [];
     }
