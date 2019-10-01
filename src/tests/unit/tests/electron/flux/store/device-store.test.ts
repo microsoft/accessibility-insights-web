@@ -131,6 +131,29 @@ describe('DeviceStore', () => {
         });
     });
 
+    describe('on reset connection', () => {
+        it('updates state to DEFAULT', () => {
+            initialState.deviceConnectState = DeviceConnectState.Connected;
+
+            const expectedState: DeviceStoreData = {
+                ...initialState,
+                deviceConnectState: DeviceConnectState.Default,
+            };
+
+            createStoreTesterForDeviceActions('resetConnection').testListenerToBeCalledOnce(initialState, expectedState);
+        });
+
+        it('does not updated if status is already DEFAULT', () => {
+            initialState.deviceConnectState = DeviceConnectState.Default;
+
+            const expectedState: DeviceStoreData = {
+                ...initialState,
+            };
+
+            createStoreTesterForDeviceActions('resetConnection').testListenerToNeverBeCalled(initialState, expectedState);
+        });
+    });
+
     function createStoreTesterForDeviceActions(actionName: keyof DeviceActions): StoreTester<DeviceStoreData, DeviceActions> {
         const factory = (actions: DeviceActions) => new DeviceStore(actions);
 

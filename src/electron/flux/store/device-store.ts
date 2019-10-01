@@ -25,7 +25,18 @@ export class DeviceStore extends BaseStoreImpl<DeviceStoreData> {
         this.deviceActions.connectionFailed.addListener(this.onConnectionFailed);
         this.deviceActions.connectionSucceeded.addListener(this.onConnectionSucceeded);
         this.deviceActions.connecting.addListener(this.onConnecting);
+        this.deviceActions.resetConnection.addListener(this.onResetConnection);
     }
+
+    private onResetConnection = () => {
+        if (this.state.deviceConnectState === DeviceConnectState.Default) {
+            return;
+        }
+
+        this.state.deviceConnectState = DeviceConnectState.Default;
+
+        this.emitChanged();
+    };
 
     private onConnecting = (payload: ConnectingPayload) => {
         if (this.state.deviceConnectState === DeviceConnectState.Connecting && this.state.port === payload.port) {
