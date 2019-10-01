@@ -646,7 +646,6 @@ div.insights-file-issue-details-dialog-container {
             max-height: calc(100vh - (#{$detailsViewTotalHeaderHeight}));
             height: calc(100vh - (#{$detailsViewTotalHeaderHeight}));
             overflow-y: auto;
-            width: calc($detailsViewLeftNavWidth - 1px); // border
             border-right: 1px solid $neutral-8;
             .dark-gray {
                 color: $neutral-60;
