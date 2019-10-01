@@ -42,6 +42,7 @@ describe('ScanResultsToUnifiedResults', () => {
             buildTouchSizeWcagRuleResultObject('PASS', 1.0, 48, 48),
             buildRuleResultObject('unsupprted Rule #2', 'FAIL'),
             buildColorContastRuleResultObject('PASS', 21.0, 'ffffffff', 'ff000000'),
+            buildTouchSizeWcagRuleResultObject('UNKNOWN', 1.0, 0, 0), // Force "unknown" case
         ];
 
         const scanResults: ScanResults = buildScanResultsObject('Some device', 'Some app', ruleResults);

@@ -46,5 +46,15 @@ Array [
     "status": "pass",
     "uid": "gguid-mock-stub",
   },
+  Object {
+    "descriptors": null,
+    "identifiers": null,
+    "resolution": Object {
+      "how-to-fix": "The element has an insufficient target size (width: 0dp, height: 0dp). Set the element's minWidth and minHeight attributes to at least 48dp.",
+    },
+    "ruleId": "TouchSizeWcag",
+    "status": "unknown",
+    "uid": "gguid-mock-stub",
+  },
 ]
 `;
