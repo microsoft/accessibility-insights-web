@@ -22,7 +22,7 @@ export class DeviceConnectActionCreator {
         this.deviceActions.connecting.invoke({ port });
 
         this.fetchScanResults(port)
-            .then(data => this.deviceActions.connectionSucceed.invoke({ connectedDevice: `${data.deviceName} - ${data.appIdentifier}` }))
+            .then(data => this.deviceActions.connectionSucceeded.invoke({ connectedDevice: `${data.deviceName} - ${data.appIdentifier}` }))
             .catch(() => this.deviceActions.connectionFailed.invoke());
     }
 }

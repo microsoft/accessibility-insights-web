@@ -46,7 +46,7 @@ describe('DeviceConnectActionCreator', () => {
 
         const connectionSucceedMock = Mock.ofType<Action<ConnectionSucceedPayload>>();
 
-        deviceActionsMock.setup(actions => actions.connectionSucceed).returns(() => connectionSucceedMock.object);
+        deviceActionsMock.setup(actions => actions.connectionSucceeded).returns(() => connectionSucceedMock.object);
 
         testSubject.validatePort(port);
 

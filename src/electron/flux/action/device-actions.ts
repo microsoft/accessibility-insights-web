@@ -5,7 +5,7 @@ import { Action } from 'common/flux/action';
 import { ConnectingPayload, ConnectionSucceedPayload } from './device-action-payloads';
 
 export class DeviceActions {
-    public readonly connectionSucceed = new Action<ConnectionSucceedPayload>();
+    public readonly connectionSucceeded = new Action<ConnectionSucceedPayload>();
     public readonly connectionFailed = new Action<void>();
     public readonly connecting = new Action<ConnectingPayload>();
 }

@@ -23,7 +23,7 @@ export class DeviceStore extends BaseStoreImpl<DeviceStoreData> {
 
     protected addActionListeners(): void {
         this.deviceActions.connectionFailed.addListener(this.onConnectionFailed);
-        this.deviceActions.connectionSucceed.addListener(this.onConnectionSucceed);
+        this.deviceActions.connectionSucceeded.addListener(this.onConnectionSucceeded);
         this.deviceActions.connecting.addListener(this.onConnecting);
     }
 
@@ -38,7 +38,7 @@ export class DeviceStore extends BaseStoreImpl<DeviceStoreData> {
         this.emitChanged();
     };
 
-    private onConnectionSucceed = (payload: ConnectionSucceedPayload) => {
+    private onConnectionSucceeded = (payload: ConnectionSucceedPayload) => {
         if (this.state.deviceConnectState === DeviceConnectState.Connected) {
             return;
         }

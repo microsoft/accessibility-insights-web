@@ -88,7 +88,7 @@ describe('DeviceStore', () => {
                 deviceConnectState: DeviceConnectState.Connected,
             };
 
-            createStoreTesterForDeviceActions('connectionSucceed')
+            createStoreTesterForDeviceActions('connectionSucceeded')
                 .withActionParam(payload)
                 .testListenerToBeCalledOnce(initialState, expectedState);
         });
@@ -104,7 +104,7 @@ describe('DeviceStore', () => {
                 ...initialState,
             };
 
-            createStoreTesterForDeviceActions('connectionSucceed')
+            createStoreTesterForDeviceActions('connectionSucceeded')
                 .withActionParam(payload)
                 .testListenerToNeverBeCalled(initialState, expectedState);
         });
