@@ -4,26 +4,25 @@
 import { RuleInformation } from '../../../../../../electron/platform/android/rule-information';
 
 describe('RuleInformation', () => {
+    const testInputs = ['abc', 'xyz', 'this should work'];
+
     test('RuleId works correctly', () => {
-        const ruleIds = ['abc', 'xyz', 'this should work'];
-        for (const ruleId of ruleIds) {
-            const ruleInformation = new RuleInformation(ruleId, 'b', () => 'c');
+        for (const ruleId of testInputs) {
+            const ruleInformation = new RuleInformation(ruleId, null, null);
             expect(ruleId === ruleInformation.ruleId);
         }
     });
 
     test('RuleDescription works correctly', () => {
-        const ruleDescriptions = ['abc', 'xyz', 'this should work'];
-        for (const ruleDescription of ruleDescriptions) {
-            const ruleInformation = new RuleInformation('a', ruleDescription, () => 'c');
+        for (const ruleDescription of testInputs) {
+            const ruleInformation = new RuleInformation(null, ruleDescription, null);
             expect(ruleDescription === ruleInformation.ruleDescription);
         }
     });
 
     test('HowToFix works correctly', () => {
-        const howToFixStrings = ['abc', 'xyz', 'this should work'];
-        for (const howToFixString of howToFixStrings) {
-            const ruleInformation = new RuleInformation('a', 'b', () => howToFixString);
+        for (const howToFixString of testInputs) {
+            const ruleInformation = new RuleInformation(null, null, () => howToFixString);
             expect(howToFixString === ruleInformation.howToFix(null));
         }
     });
