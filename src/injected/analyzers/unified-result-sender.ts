@@ -4,7 +4,7 @@ import { UnifiedScanCompletedPayload } from '../../background/actions/action-pay
 import { EnvironmentInfoProvider } from '../../common/environment-info-provider';
 import { Messages } from '../../common/messages';
 import { UUIDGeneratorType } from '../../common/uid-generator';
-import { title } from '../../content/strings/application';
+import { toolName } from '../../content/strings/application';
 import { ConvertScanResultsToUnifiedResultsDelegate } from '../adapters/scan-results-to-unified-results';
 import { ConvertScanResultsToUnifiedRulesDelegate } from '../adapters/scan-results-to-unified-rules';
 import { AxeAnalyzerResult } from './analyzer';
@@ -25,7 +25,7 @@ export class UnifiedResultSender {
             rules: this.convertScanResultsToUnifiedRules(axeResults.originalResult),
             toolInfo: {
                 scanEngineProperties: {
-                    name: title,
+                    name: toolName,
                     version: this.environmentInfoProvider.getEnvironmentInfo().extensionVersion,
                 },
             },
