@@ -11,13 +11,14 @@ import {
     PropertyConfiguration,
 } from '../../../../../../common/configs/unified-result-property-configurations';
 import { NamedFC, ReactFCWithDisplayName } from '../../../../../../common/react/named-fc';
+import { DeepPartial } from '../../../../../../common/types/deep-partial';
 import { UnifiedResult } from '../../../../../../common/types/store-data/unified-data-interface';
 import { exampleUnifiedResult } from './sample-view-model-data';
 
 describe('InstanceDetails', () => {
     let props: InstanceDetailsProps;
     let deps: InstanceDetailsDeps;
-    let getPropertyConfigByIdMock: IMock<(id: string) => PropertyConfiguration>;
+    let getPropertyConfigByIdMock: IMock<(id: string) => DeepPartial<PropertyConfiguration>>;
     let resultStub: UnifiedResult;
     let indexStub: number;
 
@@ -37,7 +38,7 @@ describe('InstanceDetails', () => {
 
     it('renders', () => {
         AllPropertyTypes.forEach(propertyType => {
-            const propertyConfigurationStub: PropertyConfiguration = {
+            const propertyConfigurationStub: DeepPartial<PropertyConfiguration> = {
                 cardRow: getCardRowStub(propertyType),
             };
             getPropertyConfigByIdMock.setup(mock => mock(propertyType)).returns(() => propertyConfigurationStub);
