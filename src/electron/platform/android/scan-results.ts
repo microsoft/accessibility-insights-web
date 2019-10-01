@@ -29,7 +29,7 @@ export class ScanResults {
     public get ruleResults(): RuleResultsData[] {
         try {
             const results = this.rawData.axeRuleResults;
-            return results ? results : [];
+            return results || [];
         } catch {
             return [];
         }

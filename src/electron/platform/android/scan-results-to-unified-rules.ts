@@ -23,7 +23,7 @@ export function convertScanResultsToUnifiedRules(scanResults: ScanResults, uuidG
         if (!ruleIds.has(ruleId)) {
             const ruleInformation = supportedRuleInformation.getRuleInformation(ruleId);
 
-            if (ruleInformation != null) {
+            if (ruleInformation) {
                 unifiedRules.push(createUnifiedRuleFromRuleResult(ruleInformation, uuidGenerator));
                 ruleIds.add(ruleId);
             }

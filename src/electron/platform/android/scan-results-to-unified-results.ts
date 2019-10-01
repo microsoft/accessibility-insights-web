@@ -10,7 +10,7 @@ import { RuleResultsData, ScanResults } from './scan-results';
 export type ConvertScanResultsToUnifiedResultsDelegate = (scanResults: ScanResults, uuidGenerator: UUIDGeneratorType) => UnifiedResult[];
 
 export function convertScanResultsToUnifiedResults(scanResults: ScanResults, uuidGenerator: UUIDGeneratorType): UnifiedResult[] {
-    if (scanResults == null || scanResults.ruleResults == null) {
+    if (!scanResults || !scanResults.ruleResults) {
         return [];
     }
 
@@ -25,7 +25,7 @@ function createUnifiedResultsFromScanResults(ruleResults: RuleResultsData[], uui
     for (const ruleResult of ruleResults) {
         const ruleInformation: RuleInformation = ruleInformationProvider.getRuleInformation(ruleResult.ruleId);
 
-        if (ruleInformation != null) {
+        if (ruleInformation) {
             unifiedResults.push(createUnifiedResult(ruleInformation, ruleResult, uuidGenerator));
         }
     }

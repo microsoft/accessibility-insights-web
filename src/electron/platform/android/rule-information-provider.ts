@@ -61,6 +61,6 @@ export class RuleInformationProvider {
 
     public getRuleInformation(ruleId: string): RuleInformation {
         const ruleInfo = this.supportedRules[ruleId];
-        return ruleInfo ? ruleInfo : null;
+        return ruleInfo || null;
     }
 }

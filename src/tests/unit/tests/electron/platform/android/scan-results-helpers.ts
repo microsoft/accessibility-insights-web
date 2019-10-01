@@ -8,21 +8,21 @@ export function buildScanResultsObject(deviceName: string = null, appIdentifier:
     const axeContext = {};
     let addContext = false;
 
-    if (deviceName != null) {
+    if (deviceName) {
         const axeDevice = {};
         axeDevice['name'] = deviceName;
         axeContext['axeDevice'] = axeDevice;
         addContext = true;
     }
 
-    if (appIdentifier != null) {
+    if (appIdentifier) {
         const axeMetaData = {};
         axeMetaData['appIdentifier'] = appIdentifier;
         axeContext['axeMetaData'] = axeMetaData;
         addContext = true;
     }
 
-    if (resultsArray != null) {
+    if (resultsArray) {
         scanResults['axeRuleResults'] = resultsArray;
     }
 
@@ -37,7 +37,7 @@ export function buildRuleResultObject(ruleId: string, status: string, props: any
     const result = {};
     result['ruleId'] = ruleId;
     result['status'] = status;
-    if (props != null) {
+    if (props) {
         result['props'] = props;
     }
 
