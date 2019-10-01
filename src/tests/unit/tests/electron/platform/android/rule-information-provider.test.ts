@@ -4,7 +4,7 @@
 import { RuleInformation } from '../../../../../../electron/platform/android/rule-information';
 import { RuleInformationProvider } from '../../../../../../electron/platform/android/rule-information-provider';
 import { RuleResultsData } from '../../../../../../electron/platform/android/scan-results';
-import { buildColorContastRuleResultObject, buildTouchSizeWcagRuleResultObject } from './scan-results-helpers';
+import { buildColorContrastRuleResultObject, buildTouchSizeWcagRuleResultObject } from './scan-results-helpers';
 
 describe('RuleInformationProvider', () => {
     let provider: RuleInformationProvider;
@@ -31,7 +31,7 @@ describe('RuleInformationProvider', () => {
 
     test('getRuleInformation returns correct data for ColorContrast rule', () => {
         const testRuleId: string = 'ColorContrast';
-        const ruleResult: RuleResultsData = buildColorContastRuleResultObject('FAIL', 2.798498811425733, 'ff979797', 'fffafafa');
+        const ruleResult: RuleResultsData = buildColorContrastRuleResultObject('FAIL', 2.798498811425733, 'ff979797', 'fffafafa');
         const howToFix: string = validateHowToFix(testRuleId, ruleResult);
         expect(howToFix).toMatchSnapshot();
     });

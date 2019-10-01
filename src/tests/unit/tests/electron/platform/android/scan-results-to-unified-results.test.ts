@@ -8,7 +8,7 @@ import { generateUID } from 'common/uid-generator';
 import { RuleResultsData, ScanResults } from '../../../../../../electron/platform/android/scan-results';
 import { convertScanResultsToUnifiedResults } from '../../../../../../electron/platform/android/scan-results-to-unified-results';
 import {
-    buildColorContastRuleResultObject,
+    buildColorContrastRuleResultObject,
     buildRuleResultObject,
     buildScanResultsObject,
     buildTouchSizeWcagRuleResultObject,
@@ -36,12 +36,12 @@ describe('ScanResultsToUnifiedResults', () => {
 
     test('ScanResults with passes, failures, and excluded results', () => {
         const ruleResults: RuleResultsData[] = [
-            buildColorContastRuleResultObject('FAIL', 1.0, 'ffffffff', 'ffffffff'),
+            buildColorContrastRuleResultObject('FAIL', 1.0, 'ffffffff', 'ffffffff'),
             buildRuleResultObject('unsupprted Rule #1', 'PASS'),
             buildTouchSizeWcagRuleResultObject('FAIL', 1.5, 48, 48),
             buildTouchSizeWcagRuleResultObject('PASS', 1.0, 48, 48),
             buildRuleResultObject('unsupprted Rule #2', 'FAIL'),
-            buildColorContastRuleResultObject('PASS', 21.0, 'ffffffff', 'ff000000'),
+            buildColorContrastRuleResultObject('PASS', 21.0, 'ffffffff', 'ff000000'),
             buildTouchSizeWcagRuleResultObject('UNKNOWN', 1.0, 0, 0), // Force "unknown" case
         ];
 

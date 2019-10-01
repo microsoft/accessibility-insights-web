@@ -8,7 +8,7 @@ import { generateUID } from 'common/uid-generator';
 import { RuleResultsData, ScanResults } from '../../../../../../electron/platform/android/scan-results';
 import { convertScanResultsToUnifiedRules } from '../../../../../../electron/platform/android/scan-results-to-unified-rules';
 import {
-    buildColorContastRuleResultObject,
+    buildColorContrastRuleResultObject,
     buildRuleResultObject,
     buildScanResultsObject,
     buildTouchSizeWcagRuleResultObject,
@@ -49,7 +49,7 @@ describe('ScanResultsToUnifiedResults', () => {
     });
 
     test('ScanResults with 1 supported rule', () => {
-        const ruleResults: RuleResultsData[] = [buildColorContastRuleResultObject('FAIL', 1.0, 'ffffffff', 'ffffffff')];
+        const ruleResults: RuleResultsData[] = [buildColorContrastRuleResultObject('FAIL', 1.0, 'ffffffff', 'ffffffff')];
 
         const scanResults: ScanResults = buildScanResultsObject(deviceName, appIdentifier, ruleResults);
         const results: UnifiedRule[] = convertScanResultsToUnifiedRules(scanResults, generateGuidMock.object);
@@ -58,9 +58,9 @@ describe('ScanResultsToUnifiedResults', () => {
 
     test('ScanResults with 1 supported rule that repeats', () => {
         const ruleResults: RuleResultsData[] = [
-            buildColorContastRuleResultObject('FAIL', 1.0, 'ffffffff', 'ffffffff'),
-            buildColorContastRuleResultObject('PASS', 1.0, 'ff000000', 'ffffffff'),
-            buildColorContastRuleResultObject('FAIL', 1.0, 'ffffffff', 'ffffffff'),
+            buildColorContrastRuleResultObject('FAIL', 1.0, 'ffffffff', 'ffffffff'),
+            buildColorContrastRuleResultObject('PASS', 1.0, 'ff000000', 'ffffffff'),
+            buildColorContrastRuleResultObject('FAIL', 1.0, 'ffffffff', 'ffffffff'),
         ];
 
         const scanResults: ScanResults = buildScanResultsObject(deviceName, appIdentifier, ruleResults);
@@ -70,10 +70,10 @@ describe('ScanResultsToUnifiedResults', () => {
 
     test('ScanResults with a mix of supported and unsupported rules', () => {
         const ruleResults: RuleResultsData[] = [
-            buildColorContastRuleResultObject('FAIL', 1.0, 'ffffffff', 'ffffffff'),
-            buildColorContastRuleResultObject('PASS', 1.0, 'ff000000', 'ffffffff'),
+            buildColorContrastRuleResultObject('FAIL', 1.0, 'ffffffff', 'ffffffff'),
+            buildColorContrastRuleResultObject('PASS', 1.0, 'ff000000', 'ffffffff'),
             buildTouchSizeWcagRuleResultObject('PASS', 1.0, 50, 100),
-            buildColorContastRuleResultObject('FAIL', 1.0, 'ffffffff', 'ffffffff'),
+            buildColorContrastRuleResultObject('FAIL', 1.0, 'ffffffff', 'ffffffff'),
             buildRuleResultObject('not supported', 'PASS'),
             buildRuleResultObject('ImageViewName', 'FAIL'),
             buildRuleResultObject('sorry', 'FAIL'),

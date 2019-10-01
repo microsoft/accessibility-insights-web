@@ -54,7 +54,7 @@ export function buildTouchSizeWcagRuleResultObject(status: string, dpi: number, 
     return buildRuleResultObject('TouchSizeWcag', status, props);
 }
 
-export function buildColorContastRuleResultObject(status: string, ratio: number, foreground: string, background: string): RuleResultsData {
+export function buildColorContrastRuleResultObject(status: string, ratio: number, foreground: string, background: string): RuleResultsData {
     const props = {};
     // This is based on the output of the Android service
     props['Color Contrast Ratio'] = ratio;
