@@ -166,10 +166,11 @@ export class MainWindowInitializer extends WindowInitializer {
 
         this.frameUrlSearchInitiator.listenToStore();
 
-        const unifedResultSender = new UnifiedResultSender(
+        const unifiedResultSender = new UnifiedResultSender(
             this.browserAdapter.sendMessageToFrames,
             convertScanResultsToUnifiedResults,
             convertScanResultsToUnifiedRules,
+            environmentInfoProvider,
             generateUID,
         );
 
@@ -182,7 +183,7 @@ export class MainWindowInitializer extends WindowInitializer {
             DateProvider.getCurrentDate,
             this.visualizationConfigurationFactory,
             filterResultsByRules,
-            unifedResultSender.sendResults,
+            unifiedResultSender.sendResults,
         );
 
         const analyzerStateUpdateHandler = new AnalyzerStateUpdateHandler(this.visualizationConfigurationFactory);
