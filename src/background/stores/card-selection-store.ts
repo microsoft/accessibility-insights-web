@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { StoreNames } from '../../common/stores/store-names';
-import { CardSelectionStoreData } from '../../common/types/store-data/card-selection-store-data';
-import { CardSelectionPayload, RuleExpandCollapsePayload, UnifiedScanCompletedPayload } from '../actions/action-payloads';
+import { CardSelectionStoreData, RuleExpandCollapseData } from '../../common/types/store-data/card-selection-store-data';
+import { RuleExpandCollapsePayload, UnifiedScanCompletedPayload } from '../actions/action-payloads';
 import { CardSelectionActions } from '../actions/card-selection-actions';
 import { UnifiedScanResultActions } from '../actions/unified-scan-result-actions';
 import { BaseStoreImpl } from './base-store-impl';
@@ -24,17 +24,72 @@ export class CardSelectionStore extends BaseStoreImpl<CardSelectionStoreData> {
 
     public getDefaultState(): CardSelectionStoreData {
         const defaultValue: CardSelectionStoreData = {
-            rules: null,
+            rules: {},
         };
 
         return defaultValue;
     }
 
-    public toggleRuleExpandCollapse(payload: RuleExpandCollapsePayload): void {}
+    private deselectAllCardsInRule = (rule: RuleExpandCollapseData): void => {
+        if (!rule) {
+            return;
+        }
 
-    public toggleCardSelection(payload: CardSelectionPayload): void {}
+        for (const resultInstanceUid of Object.keys(rule.cards)) {
+            rule.cards[resultInstanceUid] = false;
+        }
+    };
 
-    public CollapseAllRules(): void {}
+    public toggleRuleExpandCollapse = (payload: RuleExpandCollapsePayload): void => {
+        if (!payload || !payload.ruleId || !this.state.rules || !this.state.rules[payload.ruleId]) {
+            return;
+        }
 
-    private onScanCompleted = (payload: UnifiedScanCompletedPayload): void => {};
+        const rule = this.state.rules[payload.ruleId];
+
+        rule.isExpanded = !rule.isExpanded;
+
+        if (!rule.isExpanded) {
+            this.deselectAllCardsInRule(rule);
+        }
+
+        super.emitChanged();
+    };
+
+    public toggleCardSelection = (): void => {};
+
+    public CollapseAllRules = (): void => {
+        for (const ruleId of Object.keys(this.state.rules)) {
+            const rule = this.state.rules[ruleId];
+            rule.isExpanded = false;
+            this.deselectAllCardsInRule(rule);
+        }
+
+        super.emitChanged();
+    };
+
+    private onScanCompleted = (payload: UnifiedScanCompletedPayload): void => {
+        this.state = this.getDefaultState();
+
+        if (!payload) {
+            return;
+        }
+
+        payload.scanResult.forEach(result => {
+            if (result.status !== 'fail') {
+                return;
+            }
+
+            if (this.state[result.ruleId] === undefined) {
+                this.state.rules[result.ruleId] = {
+                    isExpanded: false,
+                    cards: {},
+                };
+            }
+
+            this.state.rules[result.ruleId].cards[result.uid] = false;
+        });
+
+        super.emitChanged();
+    };
 }
