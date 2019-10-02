@@ -28,6 +28,7 @@ import { A11YSelfValidator } from '../common/a11y-self-validator';
 import { AxeInfo } from '../common/axe-info';
 import { provideBlob } from '../common/blob-provider';
 import { ChromeAdapter } from '../common/browser-adapters/chrome-adapter';
+import { allCardInteractionsSupported } from '../common/components/cards/card-interaction-support';
 import { CardsCollapsibleControl } from '../common/components/cards/collapsible-component-cards';
 import { NewTabLink } from '../common/components/new-tab-link';
 import { getPropertyConfiguration } from '../common/configs/unified-result-property-configurations';
@@ -312,6 +313,7 @@ if (isNaN(tabId) === false) {
                 getUnifiedRuleResults,
                 getPropertyConfigById: getPropertyConfiguration,
                 collapsibleControl: CardsCollapsibleControl,
+                cardInteractionSupport: allCardInteractionsSupported,
             };
 
             const renderer = new DetailsViewRenderer(

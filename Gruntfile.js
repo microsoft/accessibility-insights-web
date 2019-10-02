@@ -130,20 +130,24 @@ module.exports = function(grunt) {
         watch: {
             images: {
                 files: ['src/**/*.png'],
-                tasks: ['copy:images', 'drop:dev'],
+                tasks: ['copy:images', 'drop:dev', 'drop:electron'],
             },
             'non-webpack-code': {
                 files: ['src/**/*.html', 'src/manifest.json'],
-                tasks: ['copy:code', 'drop:dev'],
+                tasks: ['copy:code', 'drop:dev', 'drop:electron'],
             },
             scss: {
                 files: ['src/**/*.scss'],
-                tasks: ['sass', 'copy:styles', 'drop:dev'],
+                tasks: ['sass', 'copy:styles', 'drop:dev', 'drop:electron'],
             },
             // We assume webpack --watch is running separately (usually via 'yarn watch')
-            'webpack-output': {
+            'webpack-dev-output': {
                 files: ['extension/devBundle/**/*.*'],
                 tasks: ['drop:dev'],
+            },
+            'webpack-electron-output': {
+                files: ['extension/electronBundle/**/*.*'],
+                tasks: ['drop:electron'],
             },
         },
     });

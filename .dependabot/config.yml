@@ -1,0 +1,19 @@
+version: 1
+update_configs:
+  - package_manager: "javascript"
+    directory: "/"
+    update_schedule: "daily"
+    version_requirement_updates: "increase_versions"
+    default_labels:
+      - "category: engineering"
+      - "dependencies"
+    commit_message:
+      prefix: "chore"
+      include_scope: true
+    ignored_updates:
+      - match:
+          # Major Office Fabric updates require enough extra validation
+          # that we schedule them as feature work, rather than having
+          # dependabot auto-update them like other deps.
+          dependency_name: "office-ui-fabric-react"
+          version_requirement: ">=7.0.0"

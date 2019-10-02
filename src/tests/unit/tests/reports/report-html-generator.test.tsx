@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { RulesWithInstancesDeps } from 'common/components/cards/rules-with-instances';
 import { DateProvider } from 'common/date-provider';
 import { EnvironmentInfo } from 'common/environment-info-provider';
 import { GetGuidanceTagsFromGuidanceLinks } from 'common/get-guidance-tags-from-guidance-links';
@@ -14,6 +13,7 @@ import { ReportHtmlGenerator } from 'reports/report-html-generator';
 import { ScanResults } from 'scanner/iruleresults';
 import { It, Mock, MockBehavior, Times } from 'typemoq';
 
+import { noCardInteractionsSupported } from '../../../../common/components/cards/card-interaction-support';
 import { ReportCollapsibleContainerControl } from '../../../../reports/components/report-sections/report-collapsible-container';
 import { exampleUnifiedStatusResults } from '../common/components/cards/sample-view-model-data';
 
@@ -29,6 +29,7 @@ describe('ReportHtmlGenerator', () => {
         const description: string = 'description';
         const fixInstructionProcessorMock = Mock.ofType(FixInstructionProcessor);
         const getPropertyConfigurationStub = (id: string) => null;
+        const cardInteractionSupport = noCardInteractionsSupported;
 
         const getUTCStringFromDateStub: typeof DateProvider.getUTCStringFromDate = () => '';
         const getGuidanceTagsStub: GetGuidanceTagsFromGuidanceLinks = () => [];
@@ -48,7 +49,8 @@ describe('ReportHtmlGenerator', () => {
                 getGuidanceTagsFromGuidanceLinks: getGuidanceTagsStub,
                 getPropertyConfigById: getPropertyConfigurationStub,
                 collapsibleControl: ReportCollapsibleContainerControl,
-            } as RulesWithInstancesDeps,
+                cardInteractionSupport: cardInteractionSupport,
+            },
             fixInstructionProcessor: fixInstructionProcessorMock.object,
             sectionFactory: sectionFactoryMock.object,
             pageTitle,
