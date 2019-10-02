@@ -2,7 +2,7 @@
 
 exports[`DeviceConnectBodyTest renders, with device connect state = Connected 1`] = `
 <div
-  className="device-connect-body"
+  className="deviceConnectBody"
 >
   <DeviceConnectHeader />
   <DeviceConnectPortEntry
@@ -32,7 +32,7 @@ exports[`DeviceConnectBodyTest renders, with device connect state = Connected 1`
 
 exports[`DeviceConnectBodyTest renders, with device connect state = Connecting 1`] = `
 <div
-  className="device-connect-body"
+  className="deviceConnectBody"
 >
   <DeviceConnectHeader />
   <DeviceConnectPortEntry
@@ -62,7 +62,7 @@ exports[`DeviceConnectBodyTest renders, with device connect state = Connecting 1
 
 exports[`DeviceConnectBodyTest renders, with device connect state = Default 1`] = `
 <div
-  className="device-connect-body"
+  className="deviceConnectBody"
 >
   <DeviceConnectHeader />
   <DeviceConnectPortEntry
@@ -92,7 +92,7 @@ exports[`DeviceConnectBodyTest renders, with device connect state = Default 1`] 
 
 exports[`DeviceConnectBodyTest renders, with device connect state = Error 1`] = `
 <div
-  className="device-connect-body"
+  className="deviceConnectBody"
 >
   <DeviceConnectHeader />
   <DeviceConnectPortEntry

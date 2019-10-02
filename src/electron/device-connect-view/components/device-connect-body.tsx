@@ -4,6 +4,7 @@ import { NamedFC } from 'common/react/named-fc';
 import { BrowserWindow } from 'electron';
 import * as React from 'react';
 
+import { deviceConnectBody } from './device-connect-body.scss';
 import { DeviceConnectConnectedDevice } from './device-connect-connected-device';
 import { DeviceConnectFooter } from './device-connect-footer';
 import { DeviceConnectHeader } from './device-connect-header';
@@ -29,7 +30,7 @@ export const DeviceConnectBody = NamedFC<DeviceConnectBodyProps>('DeviceConnectB
     const canStartTesting = props.viewState.deviceConnectState === DeviceConnectState.Connected;
 
     return (
-        <div className="device-connect-body">
+        <div className={deviceConnectBody}>
             <DeviceConnectHeader />
             <DeviceConnectPortEntry deps={props.deps} viewState={{ deviceConnectState: props.viewState.deviceConnectState }} />
             <DeviceConnectConnectedDevice

@@ -2,7 +2,7 @@
 
 exports[`DeviceConnectConnectedDeviceTest render connection failure: connection failure 1`] = `
 <div
-  className="device-connect-connected-device"
+  className="deviceConnectConnectedDevice"
 >
   <h3>
     Connected device
@@ -10,11 +10,11 @@ exports[`DeviceConnectConnectedDeviceTest render connection failure: connection 
   <React.Fragment>
     <StyledIconBase
       ariaLabel="Connection failed"
-      className="connection-error-icon"
+      className="connectionErrorIcon"
       iconName="statusErrorFull"
     />
     <span
-      className="scanned-text"
+      className="scannedText"
     >
       No active applications were found at the provided local host.
     </span>
@@ -24,13 +24,13 @@ exports[`DeviceConnectConnectedDeviceTest render connection failure: connection 
 
 exports[`DeviceConnectConnectedDeviceTest render connection success: connection success 1`] = `
 <div
-  className="device-connect-connected-device"
+  className="deviceConnectConnectedDevice"
 >
   <h3>
     Connected device
   </h3>
   <span
-    className="scanned-text"
+    className="scannedText"
   >
     A Test Device!
   </span>
@@ -39,7 +39,7 @@ exports[`DeviceConnectConnectedDeviceTest render connection success: connection 
 
 exports[`DeviceConnectConnectedDeviceTest render no content: no content 1`] = `
 <div
-  className="device-connect-connected-device"
+  className="deviceConnectConnectedDevice"
 >
   <h3>
     Connected device
@@ -49,13 +49,13 @@ exports[`DeviceConnectConnectedDeviceTest render no content: no content 1`] = `
 
 exports[`DeviceConnectConnectedDeviceTest render scanning spinner: scanning spinner 1`] = `
 <div
-  className="device-connect-connected-device"
+  className="deviceConnectConnectedDevice"
 >
   <h3>
     Connected device
   </h3>
   <StyledSpinnerBase
-    className="device-connect-spinner"
+    className="deviceConnectSpinner"
     label="Connecting to mobile device"
     labelPosition="right"
     size={0}
@@ -65,7 +65,7 @@ exports[`DeviceConnectConnectedDeviceTest render scanning spinner: scanning spin
 
 exports[`DeviceConnectConnectedDeviceTest render user change the port number: user change the port number 1`] = `
 <div
-  className="device-connect-connected-device"
+  className="deviceConnectConnectedDevice"
 >
   <h3>
     Connected device
