@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 import { IMock, It, Mock, Times } from 'typemoq';
 
-import { VisualizationStoreData } from '../../../../common/types/store-data/visualization-store-data';
 import { TargetPageStoreData } from '../../../../injected/client-store-listener';
 import { FocusChangeHandler } from '../../../../injected/focus-change-handler';
 import { ScrollingController, ScrollingWindowMessage } from '../../../../injected/frameCommunicators/scrolling-controller';
@@ -30,7 +29,7 @@ describe('FocusChangeHandler', () => {
         const storeData: TargetPageStoreData = {
             visualizationStoreData: {
                 focusedTarget: null,
-            } as VisualizationStoreData,
+            },
         } as TargetPageStoreData;
 
         targetPageActionMessageCreatorMock.setup(acm => acm.scrollRequested()).verifiable(Times.never());
@@ -46,7 +45,7 @@ describe('FocusChangeHandler', () => {
         const storeData: TargetPageStoreData = {
             visualizationStoreData: {
                 focusedTarget: sampleTarget,
-            } as VisualizationStoreData,
+            },
         } as TargetPageStoreData;
 
         targetPageActionMessageCreatorMock.setup(acm => acm.scrollRequested()).verifiable(Times.once());
@@ -62,7 +61,7 @@ describe('FocusChangeHandler', () => {
         const storeData: TargetPageStoreData = {
             visualizationStoreData: {
                 focusedTarget: sampleTarget,
-            } as VisualizationStoreData,
+            },
         } as TargetPageStoreData;
 
         targetPageActionMessageCreatorMock.setup(acm => acm.scrollRequested()).verifiable(Times.once());

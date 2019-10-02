@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { BaseClientStoresHub } from 'common/stores/base-client-stores-hub';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
-import { BaseClientStoresHub } from '../../../../common/stores/base-client-stores-hub';
 import { ClientStoreListener, TargetPageStoreData } from '../../../../injected/client-store-listener';
 
 describe('ClientStoreListener', () => {
