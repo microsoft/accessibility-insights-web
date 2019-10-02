@@ -50,7 +50,7 @@ export class CardKebabMenuButton extends React.Component<CardKebabMenuButtonProp
                 key: 'fileissue',
                 name: 'File issue',
                 iconProps: {
-                    iconName: 'copy',
+                    iconName: 'ladybugSolid',
                 },
                 onClick: this.fileIssue,
             },
@@ -58,7 +58,7 @@ export class CardKebabMenuButton extends React.Component<CardKebabMenuButtonProp
                 key: 'copyfailuredetails',
                 name: `Copy failure details`,
                 iconProps: {
-                    iconName: 'ladybugSolid',
+                    iconName: 'copy',
                 },
                 onClick: this.copyFailureDetails,
             },
@@ -69,12 +69,10 @@ export class CardKebabMenuButton extends React.Component<CardKebabMenuButtonProp
 
     private fileIssue = (): void => {
         // todo
-        alert('File issue');
     };
 
     private copyFailureDetails = (): void => {
         // todo
-        alert('Copy failure details');
     };
 
     private openDropdown = (event): void => {

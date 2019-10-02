@@ -5,7 +5,7 @@ exports[`InstanceDetailsFooter renders per snapshot when all card interactions a
   className="foot"
 >
   <div
-    className="highlightButton"
+    className="highlightDiv"
   >
     <StyledIconBase
       ariaLabel="HighLight Buttons hidden"
@@ -24,7 +24,7 @@ exports[`InstanceDetailsFooter renders per snapshot when only UserConfig-agnosti
   className="foot"
 >
   <div
-    className="highlightButton"
+    className="highlightDiv"
   >
     <StyledIconBase
       ariaLabel="HighLight Buttons hidden"
@@ -43,7 +43,7 @@ exports[`InstanceDetailsFooter renders per snapshot with highlightState="hidden"
   className="foot"
 >
   <div
-    className="highlightButton"
+    className="highlightDiv"
   >
     <StyledIconBase
       ariaLabel="HighLight Buttons hidden"
@@ -62,7 +62,7 @@ exports[`InstanceDetailsFooter renders per snapshot with highlightState="unavail
   className="foot"
 >
   <div
-    className="highlightButton"
+    className="highlightDiv"
   >
     <StyledIconBase
       ariaLabel="HighLight Buttons unavailable"
@@ -81,7 +81,7 @@ exports[`InstanceDetailsFooter renders per snapshot with highlightState="visible
   className="foot"
 >
   <div
-    className="highlightButton"
+    className="highlightDiv"
   >
     <StyledIconBase
       ariaLabel="HighLight Buttons visible"

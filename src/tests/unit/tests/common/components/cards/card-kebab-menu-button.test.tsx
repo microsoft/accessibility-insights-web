@@ -14,6 +14,6 @@ describe('CardKebabMenuButtonTest', () => {
     it('render', () => {
         const rendered = shallow(<CardKebabMenuButton {...defaultProps} />);
 
-        expect(rendered.debug()).toMatchSnapshot();
+        expect(rendered.getElement()).toMatchSnapshot();
     });
 });

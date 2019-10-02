@@ -1,7 +1,16 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`CardKebabMenuButtonTest render 1`] = `
-"<div className=\\"kebabMenuButton\\">
-  <CustomizedActionButton iconProps={{...}} onClick={[Function]} />
-</div>"
+<div
+  className="kebabMenuButton"
+>
+  <CustomizedActionButton
+    iconProps={
+      Object {
+        "iconName": "moreVertical",
+      }
+    }
+    onClick={[Function]}
+  />
+</div>
 `;
