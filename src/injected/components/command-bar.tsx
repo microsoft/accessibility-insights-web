@@ -54,7 +54,7 @@ export const CommandBar = NamedFC<CommandBarProps>('CommandBar', props => {
             },
             element: {
                 id: result.id,
-                idDisplayName: 'Element path',
+                identifierName: 'Element path',
                 shortId: 'last selector',
             },
             howToFixSummary: result.failureSummary,

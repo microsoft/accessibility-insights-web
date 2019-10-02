@@ -98,7 +98,7 @@ export class IssuesDetailsPane extends React.Component<IssuesDetailsPaneProps, I
             },
             element: {
                 id: result.id,
-                idDisplayName: 'Element path',
+                identifierName: 'Element path',
                 shortId: 'last selector',
             },
             howToFixSummary: result.failureSummary,

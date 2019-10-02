@@ -26,7 +26,7 @@ export const createIssueDetailsBuilder = (markup: MarkupFormatter): IssueDetails
             link(data.targetApp.url, data.targetApp.name), // need to make link optional
             sectionSeparator(),
 
-            sectionHeader(data.element.idDisplayName),
+            sectionHeader(data.element.identifierName),
             sectionHeaderSeparator(),
             data.element.id,
             sectionSeparator(),

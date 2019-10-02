@@ -14,7 +14,7 @@ export interface CreateIssueDetailsTextData {
     // computed from the unified result
     element: {
         id: string;
-        idDisplayName: string;
+        identifierName: string;
         shortId: string;
     };
     howToFixSummary: string;

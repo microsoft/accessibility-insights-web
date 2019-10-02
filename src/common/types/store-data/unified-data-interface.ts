@@ -52,10 +52,20 @@ export interface UnifiedResult {
     uid: string;
     status: InstanceResultStatus;
     ruleId: string;
-    identifiers: StoredInstancePropertyBag;
+    identifiers: UnifiedIdentifiers;
     descriptors: StoredInstancePropertyBag;
-    resolution: StoredInstancePropertyBag;
+    resolution: UnifiedResolution;
 }
+
+export type UnifiedIdentifiers = {
+    id: string;
+    shortId: string;
+    identifierName: string;
+} & InstancePropertyBag;
+
+export type UnifiedResolution = {
+    howToFixSummary: string;
+} & InstancePropertyBag;
 
 export type InstanceResultStatus = 'pass' | 'fail' | 'unknown';
 
