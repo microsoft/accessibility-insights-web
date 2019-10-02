@@ -1,9 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { Assessments } from 'assessments/assessments';
+
 import { AxeInfo } from '../common/axe-info';
 import { InspectConfigurationFactory } from '../common/configs/inspect-configuration-factory';
 import { DateProvider } from '../common/date-provider';
+import { EnumHelper } from '../common/enum-helper';
 import { EnvironmentInfoProvider } from '../common/environment-info-provider';
 import { TelemetryEventSource } from '../common/extension-telemetry-events';
 import { HTMLElementUtils } from '../common/html-element-utils';
@@ -28,6 +30,7 @@ import { TabStoreData } from '../common/types/store-data/tab-store-data';
 import { UserConfigurationStoreData } from '../common/types/store-data/user-configuration-store';
 import { VisualizationScanResultData } from '../common/types/store-data/visualization-scan-result-data';
 import { VisualizationStoreData } from '../common/types/store-data/visualization-store-data';
+import { VisualizationType } from '../common/types/visualization-type';
 import { generateUID } from '../common/uid-generator';
 import { IssueFilingServiceProviderImpl } from '../issue-filing/issue-filing-service-provider-impl';
 import { scan } from '../scanner/exposed-apis';
@@ -74,6 +77,7 @@ export class MainWindowInitializer extends WindowInitializer {
 
     public async initialize(): Promise<void> {
         const asyncInitializationSteps: Promise<void>[] = [];
+        const allVisualizationTypes = EnumHelper.getNumericValues<VisualizationType>(VisualizationType);
         asyncInitializationSteps.push(super.initialize());
 
         this.visualizationStoreProxy = new StoreProxy<VisualizationStoreData>(
@@ -142,7 +146,7 @@ export class MainWindowInitializer extends WindowInitializer {
         );
 
         const drawingInitiator = new DrawingInitiator(this.drawingController);
-        const selectorMapHelper = new SelectorMapHelper(this.visualizationScanResultStoreProxy, this.assessmentStoreProxy, Assessments);
+        const selectorMapHelper = new SelectorMapHelper(Assessments);
         const frameUrlMessageDispatcher = new FrameUrlMessageDispatcher(devToolActionMessageCreator, this.frameCommunicator);
         frameUrlMessageDispatcher.initialize();
 
