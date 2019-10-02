@@ -2,10 +2,11 @@
 // Licensed under the MIT License.
 import { BaseStoreImpl } from 'background/stores/base-store-impl';
 import { StoreNames } from 'common/stores/store-names';
+import { WindowStateActions } from '../action/window-state-actions';
 import { ElectronWindowStateStoreData } from '../types/electron-window-state-store-data';
 
 export class ElectronWindowStateStore extends BaseStoreImpl<ElectronWindowStateStoreData> {
-    constructor() {
+    constructor(private readonly windowStateActions: WindowStateActions) {
         super(StoreNames.ElectronWindowStateStore);
     }
 
@@ -13,7 +14,10 @@ export class ElectronWindowStateStore extends BaseStoreImpl<ElectronWindowStateS
         return this.getDeviceConnectWindowState();
     }
 
-    protected addActionListeners(): void {}
+    protected addActionListeners(): void {
+        this.windowStateActions.setDeviceConnectRoute.addListener(this.onSetDeviceConnectRoute);
+        this.windowStateActions.setResultsViewRoute.addListener(this.onSetResultsViewRoute);
+    }
 
     private getDeviceConnectWindowState(): ElectronWindowStateStoreData {
         return {
@@ -22,4 +26,20 @@ export class ElectronWindowStateStore extends BaseStoreImpl<ElectronWindowStateS
             windowHeight: 391,
         };
     }
+
+    private getResultViewWindowState(): ElectronWindowStateStoreData {
+        return {
+            routeId: 'resultsView',
+            windowWidth: 1366,
+            windowHeight: 768,
+        };
+    }
+
+    private onSetDeviceConnectRoute = () => {
+        this.state = this.getDeviceConnectWindowState();
+    };
+
+    private onSetResultsViewRoute = () => {
+        this.state = this.getResultViewWindowState();
+    };
 }
