@@ -8,11 +8,11 @@ exports[`InstanceDetailsFooter renders per snapshot when all card interactions a
     className="highlightDiv"
   >
     <StyledIconBase
-      ariaLabel="HighLight Buttons hidden"
+      ariaLabel="HighLight hidden"
       iconName="redEye"
     />
     <StyledLabelBase>
-      HighLight Buttons hidden
+      HighLight hidden
     </StyledLabelBase>
   </div>
   <CardKebabMenuButton />
@@ -27,11 +27,11 @@ exports[`InstanceDetailsFooter renders per snapshot when only UserConfig-agnosti
     className="highlightDiv"
   >
     <StyledIconBase
-      ariaLabel="HighLight Buttons hidden"
+      ariaLabel="HighLight hidden"
       iconName="redEye"
     />
     <StyledLabelBase>
-      HighLight Buttons hidden
+      HighLight hidden
     </StyledLabelBase>
   </div>
   <CardKebabMenuButton />
@@ -46,11 +46,11 @@ exports[`InstanceDetailsFooter renders per snapshot with highlightState="hidden"
     className="highlightDiv"
   >
     <StyledIconBase
-      ariaLabel="HighLight Buttons hidden"
+      ariaLabel="HighLight hidden"
       iconName="redEye"
     />
     <StyledLabelBase>
-      HighLight Buttons hidden
+      HighLight hidden
     </StyledLabelBase>
   </div>
   <CardKebabMenuButton />
@@ -65,11 +65,11 @@ exports[`InstanceDetailsFooter renders per snapshot with highlightState="unavail
     className="highlightDiv"
   >
     <StyledIconBase
-      ariaLabel="HighLight Buttons unavailable"
+      ariaLabel="HighLight unavailable"
       iconName="redEye"
     />
     <StyledLabelBase>
-      HighLight Buttons unavailable
+      HighLight unavailable
     </StyledLabelBase>
   </div>
   <CardKebabMenuButton />
@@ -84,11 +84,11 @@ exports[`InstanceDetailsFooter renders per snapshot with highlightState="visible
     className="highlightDiv"
   >
     <StyledIconBase
-      ariaLabel="HighLight Buttons visible"
+      ariaLabel="HighLight visible"
       iconName="redEye"
     />
     <StyledLabelBase>
-      HighLight Buttons visible
+      HighLight visible
     </StyledLabelBase>
   </div>
   <CardKebabMenuButton />
