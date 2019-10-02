@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`buildHowToFixInstructions build instructions 1`] = `""`;
+
+exports[`buildHowToFixInstructions build instructions 2`] = `"Fix the following: all; "`;
+
+exports[`buildHowToFixInstructions build instructions 3`] = `"Fix ALL of the following: all; none; "`;
+
+exports[`buildHowToFixInstructions build instructions 4`] = `"Fix the following: none; "`;
+
+exports[`buildHowToFixInstructions build instructions 5`] = `"Fix the following: any; "`;
+
+exports[`buildHowToFixInstructions build instructions 6`] = `"Fix the following: all; Fix the following: any; "`;
+
+exports[`buildHowToFixInstructions build instructions 7`] = `"Fix ALL of the following: all; none; Fix the following: any; "`;
+
+exports[`buildHowToFixInstructions build instructions 8`] = `"Fix the following: none; Fix the following: any; "`;
+
+exports[`buildHowToFixInstructions build instructions 9`] = `"Fix ALL of the following: all-1; all-2; none-1; none-2; Fix ONE of the following: any-1; any-2; "`;

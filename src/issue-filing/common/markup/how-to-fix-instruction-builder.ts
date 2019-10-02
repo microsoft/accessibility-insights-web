@@ -11,7 +11,7 @@ export const buildHowToFixInstructions = (instructions: HowToFixInstructions, li
             return '';
         }
 
-        const displayTitle = checks.length === 1 ? 'Fix the following:' : title;
+        const displayTitle = checks.length === 1 ? 'Fix the following: ' : title;
         return listBuilder(displayTitle, checks);
     };
 
