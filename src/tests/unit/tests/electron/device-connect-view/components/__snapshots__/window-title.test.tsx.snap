@@ -2,14 +2,14 @@
 
 exports[`WindowTitleTest render 1`] = `
 <header
-  className="window-title"
+  className="windowTitle"
 >
   <div>
     <span>
       test
     </span>
     <h1
-      className="header-text"
+      className="headerText"
     >
       Test
     </h1>
