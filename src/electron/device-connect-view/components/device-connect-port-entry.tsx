@@ -5,6 +5,7 @@ import { MaskedTextField } from 'office-ui-fabric-react/lib/TextField';
 import * as React from 'react';
 
 import { DeviceConnectActionCreator } from '../../flux/action-creator/device-connect-action-creator';
+import { deviceConnectPortEntry, portNumberField } from './device-connect-port-entry.scss';
 import { DeviceConnectState } from './device-connect-state';
 
 export type DeviceConnectPortEntryViewState = {
@@ -32,13 +33,13 @@ export class DeviceConnectPortEntry extends React.Component<DeviceConnectPortEnt
 
     public render(): JSX.Element {
         return (
-            <div className="device-connect-port-entry">
+            <div className={deviceConnectPortEntry}>
                 <h3>Android device port number</h3>
                 <MaskedTextField
                     ariaLabel="Port number"
                     onChange={this.onPortTextChanged}
                     placeholder="12345"
-                    className="port-number-field"
+                    className={portNumberField}
                     maskChar=""
                     mask="99999"
                 />
