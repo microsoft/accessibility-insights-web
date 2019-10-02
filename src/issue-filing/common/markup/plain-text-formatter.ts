@@ -1,8 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { HowToFixInstructions } from '../../../injected/adapters/scan-results-to-unified-results';
+import { buildHowToFixInstructions, InstructionListBuilder } from './how-to-fix-instruction-builder';
 import { MarkupFormatter } from './markup-formatter';
 
-const createFormmatter = (): MarkupFormatter => {
+const createFormatter = (
+    howToFixInstructionBuilder: (instructions: HowToFixInstructions, listBuilder: InstructionListBuilder) => string,
+): MarkupFormatter => {
     const snippet = (text: string): string => text.replace(/\s+/g, ' ').trim();
 
     const link = (href: string, text?: string): string => {
@@ -16,6 +20,10 @@ const createFormmatter = (): MarkupFormatter => {
     const sectionHeader = (text: string): string => text;
 
     const howToFixSection = (failureSummary: string): string => `\n${failureSummary}`;
+
+    const howToFix = (instructions: HowToFixInstructions) => {
+        return howToFixInstructionBuilder(instructions, (title, checks) => `\n${title}${checks.map(check => `    ${check}`).join()}`);
+    };
 
     const sectionHeaderSeparator = () => ': ';
 
@@ -34,4 +42,4 @@ const createFormmatter = (): MarkupFormatter => {
     };
 };
 
-export const PlainTextFormatter = createFormmatter();
+export const PlainTextFormatter = createFormatter(buildHowToFixInstructions);

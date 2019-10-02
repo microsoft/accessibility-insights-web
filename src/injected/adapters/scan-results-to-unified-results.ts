@@ -12,14 +12,16 @@ interface RuleResultData {
     ruleID: string;
 }
 
+export interface HowToFixInstructions {
+    oneOf: string[];
+    none: string[];
+    all: string[];
+}
+
 interface CreationData extends RuleResultData {
     cssSelector: string;
     snippet: string;
-    howToFix: {
-        oneOf: string[];
-        none: string[];
-        all: string[];
-    };
+    howToFix: HowToFixInstructions;
 }
 
 export const convertScanResultsToUnifiedResults = (scanResults: ScanResults, uuidGenerator: UUIDGeneratorType): UnifiedResult[] => {

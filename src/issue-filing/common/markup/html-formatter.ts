@@ -1,10 +1,16 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
-// Licensed under the MIT License.
-import { escape } from 'lodash';
+// Licensed under the MIT License.import { escape, isEmpty } from 'lodash';
+import { isEmpty } from 'lodash';
+
+import { HowToFixInstructions } from '../../../injected/adapters/scan-results-to-unified-results';
+import { buildHowToFixInstructions, InstructionListBuilder } from './how-to-fix-instruction-builder';
 import { MarkupFormatter } from './markup-formatter';
 import { truncateSnippet as truncate } from './truncate-snippet';
 
-export const createFormatter = (truncateSnippet: (text: string) => string): MarkupFormatter => {
+export const createFormatter = (
+    truncateSnippet: (text: string) => string,
+    howToFixInstructionBuilder: (instructions: HowToFixInstructions, listBuilder: InstructionListBuilder) => string,
+): MarkupFormatter => {
     const snippet = (text: string): string => {
         const truncated = truncateSnippet(text);
 
@@ -26,6 +32,17 @@ export const createFormatter = (truncateSnippet: (text: string) => string): Mark
             .replace(/\n/g, '<br>');
     };
 
+    const howToFix = (instructions: HowToFixInstructions) => {
+        return howToFixInstructionBuilder(
+            instructions,
+            (title, checks) => `<div class="insights-fix-instruction-title">${title}</div>
+                                    <ul class="insights-fix-instruction-list">
+                                        ${checks.map(check => `<li>${check}</li>`).join()}
+                                    </ul>
+                                `,
+        );
+    };
+
     const sectionHeaderSeparator = () => null;
 
     const footerSeparator = () => null;
@@ -43,4 +60,4 @@ export const createFormatter = (truncateSnippet: (text: string) => string): Mark
     };
 };
 
-export const HTMLFormatter = createFormatter(truncate);
+export const HTMLFormatter = createFormatter(truncate, buildHowToFixInstructions);
