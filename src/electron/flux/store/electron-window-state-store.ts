@@ -22,24 +22,22 @@ export class ElectronWindowStateStore extends BaseStoreImpl<ElectronWindowStateS
     private getDeviceConnectWindowState(): ElectronWindowStateStoreData {
         return {
             routeId: 'deviceConnectView',
-            windowWidth: 600,
-            windowHeight: 391,
         };
     }
 
     private getResultViewWindowState(): ElectronWindowStateStoreData {
         return {
             routeId: 'resultsView',
-            windowWidth: 1366,
-            windowHeight: 768,
         };
     }
 
     private onSetDeviceConnectRoute = () => {
         this.state = this.getDeviceConnectWindowState();
+        this.emitChanged();
     };
 
     private onSetResultsViewRoute = () => {
         this.state = this.getResultViewWindowState();
+        this.emitChanged();
     };
 }

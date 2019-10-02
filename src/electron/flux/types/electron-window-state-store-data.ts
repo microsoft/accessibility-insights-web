@@ -5,6 +5,4 @@ export type electronRoutes = 'deviceConnectView' | 'resultsView';
 
 export interface ElectronWindowStateStoreData {
     routeId: electronRoutes;
-    windowWidth: number;
-    windowHeight: number;
 }

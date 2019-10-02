@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+import { WindowStateActions } from '../../../../../../electron/flux/action/window-state-actions';
 import { ElectronWindowStateStore } from '../../../../../../electron/flux/store/electron-window-state-store';
 import { ElectronWindowStateStoreData } from '../../../../../../electron/flux/types/electron-window-state-store-data';
 import { createStoreWithNullParams, StoreTester } from '../../../../common/store-tester';
@@ -14,7 +15,7 @@ describe('ElectronWindowStateStore', () => {
     });
 
     it('returns device connect as the default state', () => {
-        const testSubject = createStoreWithNullParams(ElectronWindowStateStore);
+        const testSubject = new ElectronWindowStateStore(new WindowStateActions());
         testSubject.initialize();
 
         expect(testSubject.getState()).toEqual(testSubject.getDefaultState());
@@ -22,6 +23,24 @@ describe('ElectronWindowStateStore', () => {
     });
 
     function getDeviceConnectViewState(): ElectronWindowStateStoreData {
-        return { routeId: 'deviceConnectView', windowHeight: 391, windowWidth: 600 };
+        return { routeId: 'deviceConnectView' };
+    }
+
+    it('changes route id from default to resultsView', () => {
+        const expectedState: ElectronWindowStateStoreData = {
+            routeId: 'resultsView',
+        };
+
+        const initialState = createStoreWithNullParams(ElectronWindowStateStore).getDefaultState();
+
+        createStoreTesterForWindowStateActions('setResultsViewRoute').testListenerToBeCalledOnce(initialState, expectedState);
+    });
+
+    function createStoreTesterForWindowStateActions(
+        actionName: keyof WindowStateActions,
+    ): StoreTester<ElectronWindowStateStoreData, WindowStateActions> {
+        const factory = (actions: WindowStateActions) => new ElectronWindowStateStore(actions);
+
+        return new StoreTester(WindowStateActions, actionName, factory);
     }
 });
