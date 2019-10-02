@@ -22,6 +22,13 @@ const createWindow = () => {
     mainWindow.on('ready-to-show', () => {
         mainWindow.setMenu(null);
         mainWindow.show();
+        enableDevMode(mainWindow);
+    });
+};
+
+const enableDevMode = (window: BrowserWindow) => {
+    window.webContents.openDevTools({
+        mode: 'detach',
     });
 };
 

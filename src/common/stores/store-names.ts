@@ -15,4 +15,6 @@ export enum StoreNames {
     UserConfigurationStore,
     PathSnippetStore,
     UnifiedScanResultStore,
+    CardSelectionStore,
+    DeviceStore,
 }

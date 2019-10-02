@@ -10,6 +10,7 @@
 **/Dockerfile
 
 .DS_Store
+.dependabot/
 .github/
 .prettierignore
 .yarnrc

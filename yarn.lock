@@ -622,10 +622,10 @@
     "@types/history" "*"
     "@types/react" "*"
 
-"@types/react@*", "@types/react@^16.9.3":
-  version "16.9.3"
-  resolved "https://registry.yarnpkg.com/@types/react/-/react-16.9.3.tgz#6d13251e441a3e67fb60d719d1fc8785b984a2ec"
-  integrity sha512-Ogb2nSn+2qQv5opoCv7Ls5yFxtyrdUYxp5G+SWTrlGk7dmFKw331GiezCgEZj9U7QeXJi1CDtws9pdXU1zUL4g==
+"@types/react@*", "@types/react@^16.9.4":
+  version "16.9.4"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-16.9.4.tgz#de8cf5e5e2838659fb78fa93181078469eeb19fc"
+  integrity sha512-ItGNmJvQ0IvWt8rbk5PLdpdQhvBVxAaXI9hDlx7UMd8Ie1iMIuwMNiKeTfmVN517CdplpyXvA22X4zm4jGGZnw==
   dependencies:
     "@types/prop-types" "*"
     csstype "^2.2.0"
@@ -2252,6 +2252,13 @@ create-hmac@^1.1.0, create-hmac@^1.1.2, create-hmac@^1.1.4:
     safe-buffer "^5.0.1"
     sha.js "^2.4.8"
 
+cross-env@^6.0.3:
+  version "6.0.3"
+  resolved "https://registry.yarnpkg.com/cross-env/-/cross-env-6.0.3.tgz#4256b71e49b3a40637a0ce70768a6ef5c72ae941"
+  integrity sha512-+KqxF6LCvfhWvADcDPqo64yVIB31gv/jQulX2NGzKS/g3GEVz6/pt4wjHFtFWsHMddebWD/sDthJemzM4MaAag==
+  dependencies:
+    cross-spawn "^7.0.0"
+
 cross-spawn@6.0.5, cross-spawn@^6.0.0, cross-spawn@^6.0.5:
   version "6.0.5"
   resolved "https://registry.yarnpkg.com/cross-spawn/-/cross-spawn-6.0.5.tgz#4a5ec7c64dfae22c3a14124dbacdee846d80cbc4"
@@ -2277,6 +2284,15 @@ cross-spawn@^5.0.1:
   integrity sha1-6L0O/uWPz/b4+UUQoKVUu/ojVEk=
   dependencies:
     lru-cache "^4.0.1"
+    shebang-command "^1.2.0"
+    which "^1.2.9"
+
+cross-spawn@^7.0.0:
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/cross-spawn/-/cross-spawn-7.0.0.tgz#21ef9470443262f33dba80b2705a91db959b2e03"
+  integrity sha512-6U/8SMK2FBNnB21oQ4+6Nsodxanw1gTkntYA2zBdkFYFu3ZDx65P2ONEXGSvob/QS6REjVHQ9zxzdOafwFdstw==
+  dependencies:
+    path-key "^3.1.0"
     shebang-command "^1.2.0"
     which "^1.2.9"
 
@@ -2790,10 +2806,10 @@ electron-publish@21.2.0:
     lazy-val "^1.0.4"
     mime "^2.4.4"
 
-electron@^6.0.10:
-  version "6.0.10"
-  resolved "https://registry.yarnpkg.com/electron/-/electron-6.0.10.tgz#3468547640c98ed46060711ca70f43d0b2e40818"
-  integrity sha512-eTFm6uTn7NKZE1OtSZSOxNuOrCXXeUR0U3vdF3R00byB7mrNe5AOaXEDDMwtzRGGY1jMuUX9Z7RvgXaCXRYSmw==
+electron@^6.0.11:
+  version "6.0.11"
+  resolved "https://registry.yarnpkg.com/electron/-/electron-6.0.11.tgz#64effa71397045779a1ddbf51312a41ccf26f491"
+  integrity sha512-mi1oHmeFIQrg+CDQ6lbugZAloOxuWPm/ecEKYe1230PGlDoWND7SYStiWQ2eI4YXAEOL/NvuY88ogemu1qhdBg==
   dependencies:
     "@types/node" "^10.12.18"
     electron-download "^4.1.0"
@@ -6650,6 +6666,11 @@ path-key@^2.0.0, path-key@^2.0.1:
   resolved "https://registry.yarnpkg.com/path-key/-/path-key-2.0.1.tgz#411cadb574c5a140d3a4b1910d40d80cc9f40b40"
   integrity sha1-QRyttXTFoUDTpLGRDUDYDMn0C0A=
 
+path-key@^3.1.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/path-key/-/path-key-3.1.0.tgz#99a10d870a803bdd5ee6f0470e58dfcd2f9a54d3"
+  integrity sha512-8cChqz0RP6SHJkMt48FW0A7+qUOn+OsnOsVtzI59tZ8m+5bCSk7hzwET0pulwOM2YMn9J1efb07KB9l9f30SGg==
+
 path-parse@^1.0.6:
   version "1.0.6"
   resolved "https://registry.yarnpkg.com/path-parse/-/path-parse-1.0.6.tgz#d62dbb5679405d72c4737ec58600e9ddcf06d24c"
@@ -7214,15 +7235,15 @@ react-copy-to-clipboard@^5.0.1:
     copy-to-clipboard "^3"
     prop-types "^15.5.8"
 
-react-dom@^16.9.0:
-  version "16.9.0"
-  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.9.0.tgz#5e65527a5e26f22ae3701131bcccaee9fb0d3962"
-  integrity sha512-YFT2rxO9hM70ewk9jq0y6sQk8cL02xm4+IzYBz75CQGlClQQ1Bxq0nhHF6OtSbit+AIahujJgb/CPRibFkMNJQ==
+react-dom@^16.10.1:
+  version "16.10.1"
+  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.10.1.tgz#479a6511ba34a429273c213cbc2a9ac4d296dac1"
+  integrity sha512-SmM4ZW0uug0rn95U8uqr52I7UdNf6wdGLeXDmNLfg3y5q5H9eAbdjF5ubQc3bjDyRrvdAB2IKG7X0GzSpnn5Mg==
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
     prop-types "^15.6.2"
-    scheduler "^0.15.0"
+    scheduler "^0.16.1"
 
 react-fast-compare@^2.0.2:
   version "2.0.4"
@@ -7244,23 +7265,23 @@ react-is@^16.6.0, react-is@^16.7.0, react-is@^16.8.1, react-is@^16.8.4, react-is
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.8.6.tgz#5bbc1e2d29141c9fbdfed456343fe2bc430a6a16"
   integrity sha512-aUk3bHfZ2bRSVFFbbeVS4i+lNPZr3/WM5jT2J5omUVV1zzcs1nAaf3l51ctA5FFvCRbhrH0bdAsRRQddFJZPtA==
 
-react-router-dom@^5.1.0:
-  version "5.1.0"
-  resolved "https://registry.yarnpkg.com/react-router-dom/-/react-router-dom-5.1.0.tgz#48ad018d71fb7835212587e4c90bd2e3d2417e31"
-  integrity sha512-OkxKbMKjO7IkYqnoaZNX19MnwgjhxwZE871cPUTq0YU2wpIw7QwGxSnSoNRMOa7wO1TwvJJMFpgiEB4C/gVhTw==
+react-router-dom@^5.1.2:
+  version "5.1.2"
+  resolved "https://registry.yarnpkg.com/react-router-dom/-/react-router-dom-5.1.2.tgz#06701b834352f44d37fbb6311f870f84c76b9c18"
+  integrity sha512-7BPHAaIwWpZS074UKaw1FjVdZBSVWEk8IuDXdB+OkLb8vd/WRQIpA4ag9WQk61aEfQs47wHyjWUoUGGZxpQXew==
   dependencies:
     "@babel/runtime" "^7.1.2"
     history "^4.9.0"
     loose-envify "^1.3.1"
     prop-types "^15.6.2"
-    react-router "5.1.0"
+    react-router "5.1.2"
     tiny-invariant "^1.0.2"
     tiny-warning "^1.0.0"
 
-react-router@5.1.0:
-  version "5.1.0"
-  resolved "https://registry.yarnpkg.com/react-router/-/react-router-5.1.0.tgz#739d0f3a57476363374e20d6e33e97f5ce2e00a3"
-  integrity sha512-n9HXxaL/6yRlig9XPfGyagI8+bUNdqcu7FUAx0/Z+Us22Z8iHsbkyJ21Inebn9HOxI5Nxlfc8GNabkNSeXfhqw==
+react-router@5.1.2:
+  version "5.1.2"
+  resolved "https://registry.yarnpkg.com/react-router/-/react-router-5.1.2.tgz#6ea51d789cb36a6be1ba5f7c0d48dd9e817d3418"
+  integrity sha512-yjEuMFy1ONK246B+rsa0cUam5OeAQ8pyclRDgpxuSCrAlJ1qN9uZ5IgyKC7gQg0w8OM50NXHEegPh/ks9YuR2A==
   dependencies:
     "@babel/runtime" "^7.1.2"
     history "^4.9.0"
@@ -7291,10 +7312,10 @@ react-test-renderer@^16.0.0-0:
     react-is "^16.8.6"
     scheduler "^0.13.6"
 
-react@^16.9.0:
-  version "16.9.0"
-  resolved "https://registry.yarnpkg.com/react/-/react-16.9.0.tgz#40ba2f9af13bc1a38d75dbf2f4359a5185c4f7aa"
-  integrity sha512-+7LQnFBwkiw+BobzOF6N//BdoNw0ouwmSJTEm9cglOOmsg/TMiFHZLe2sEoN5M7LgJTj9oHH0gxklfnQe66S1w==
+react@^16.10.1:
+  version "16.10.1"
+  resolved "https://registry.yarnpkg.com/react/-/react-16.10.1.tgz#967c1e71a2767dfa699e6ba702a00483e3b0573f"
+  integrity sha512-2bisHwMhxQ3XQz4LiJJwG3360pY965pTl/MRrZYxIBKVj4fOHoDs5aZAkYXGxDRO1Li+SyjTAilQEbOmtQJHzA==
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
@@ -7783,10 +7804,10 @@ scheduler@^0.13.6:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
 
-scheduler@^0.15.0:
-  version "0.15.0"
-  resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.15.0.tgz#6bfcf80ff850b280fed4aeecc6513bc0b4f17f8e"
-  integrity sha512-xAefmSfN6jqAa7Kuq7LIJY0bwAPG3xlCj0HMEBQk1lxYiDKZscY2xJ5U/61ZTrYbmNQbXa+gc7czPkVo11tnCg==
+scheduler@^0.16.1:
+  version "0.16.1"
+  resolved "https://registry.yarnpkg.com/scheduler/-/scheduler-0.16.1.tgz#a6fb6ddec12dc2119176e6eb54ecfe69a9eba8df"
+  integrity sha512-MIuie7SgsqMYOdCXVFZa8SKoNorJZUWHW8dPgto7uEHn1lX3fg2Gu0TzgK8USj76uxV7vB5eRMnZs/cdEHg+cg==
   dependencies:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
@@ -8498,10 +8519,10 @@ terser-webpack-plugin@^1.4.1:
     webpack-sources "^1.4.0"
     worker-farm "^1.7.0"
 
-terser-webpack-plugin@^2.1.1:
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/terser-webpack-plugin/-/terser-webpack-plugin-2.1.1.tgz#ce84a39124bff59b56895642dd803e73bfca007f"
-  integrity sha512-JhKx1aWtb0woicUwG7VJgunyNigRDKgeriOgh1bAZVSwu3raBuP/jTF9zpFWwoLzuTaoj0TwxcK/nA/PauEe+A==
+terser-webpack-plugin@^2.1.2:
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/terser-webpack-plugin/-/terser-webpack-plugin-2.1.2.tgz#2b9b8147a6f18918348200800cf9560c50f701bb"
+  integrity sha512-MF/C4KABwqYOfRDi87f7gG07GP7Wj/kyiX938UxIGIO6l5mkh8XJL7xtS0hX/CRdVQaZI7ThGUPZbznrCjsGpg==
   dependencies:
     cacache "^13.0.0"
     find-cache-dir "^3.0.0"
@@ -8509,13 +8530,13 @@ terser-webpack-plugin@^2.1.1:
     schema-utils "^2.4.1"
     serialize-javascript "^2.1.0"
     source-map "^0.6.1"
-    terser "^4.3.3"
+    terser "^4.3.4"
     webpack-sources "^1.4.3"
 
-terser@^4.1.2, terser@^4.3.3:
-  version "4.3.3"
-  resolved "https://registry.yarnpkg.com/terser/-/terser-4.3.3.tgz#f626c6779cadd60a3018e072fedeceabe4769db1"
-  integrity sha512-Nzr7dpRjSzMEUS+z2UYQBtzE0LDm5k0Yy8RgLRPy85QUo1TjU5lIOBwzS5/FVAMaVyHZ3WTTU2BuQcMn8KXnNQ==
+terser@^4.1.2, terser@^4.3.4:
+  version "4.3.4"
+  resolved "https://registry.yarnpkg.com/terser/-/terser-4.3.4.tgz#ad91bade95619e3434685d69efa621a5af5f877d"
+  integrity sha512-Kcrn3RiW8NtHBP0ssOAzwa2MsIRQ8lJWiBG/K7JgqPlomA3mtb2DEmp4/hrUA+Jujx+WZ02zqd7GYD+QRBB/2Q==
   dependencies:
     commander "^2.20.0"
     source-map "~0.6.1"
@@ -8728,10 +8749,10 @@ ts-jest@^24.1.0:
     semver "^5.5"
     yargs-parser "10.x"
 
-ts-loader@^6.1.2:
-  version "6.1.2"
-  resolved "https://registry.yarnpkg.com/ts-loader/-/ts-loader-6.1.2.tgz#ff6bc767334970226438949fbde2e211147a1325"
-  integrity sha512-dudxFKm0Ellrg/gLNlu+97/UgwvoMK0SdUVImPUSzq3IcRUVtShylZvcMX+CgvCQL1BEKb913NL0gAP1GA/OFw==
+ts-loader@^6.2.0:
+  version "6.2.0"
+  resolved "https://registry.yarnpkg.com/ts-loader/-/ts-loader-6.2.0.tgz#52d3993ecbc5474c1513242388e1049da0fce880"
+  integrity sha512-Da8h3fD+HiZ9GvZJydqzk3mTC9nuOKYlJcpuk+Zv6Y1DPaMvBL+56GRzZFypx2cWrZFMsQr869+Ua2slGoLxvQ==
   dependencies:
     chalk "^2.3.0"
     enhanced-resolve "^4.0.0"

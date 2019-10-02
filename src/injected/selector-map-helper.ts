@@ -1,9 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import * as _ from 'lodash';
 
-import { AssessmentsProvider } from 'assessments/types/assessments-provider';
-import { BaseStore } from '../common/base-store';
 import { ManualTestStatus } from '../common/types/manual-test-status';
 import { AssessmentStoreData, GeneratedAssessmentInstance } from '../common/types/store-data/assessment-result-data';
 import { VisualizationScanResultData } from '../common/types/store-data/visualization-scan-result-data';
@@ -12,30 +11,25 @@ import { DictionaryStringTo } from '../types/common-types';
 import { AssessmentVisualizationInstance } from './frameCommunicators/html-element-axe-results-helper';
 
 export class SelectorMapHelper {
-    private scanResultStore: BaseStore<VisualizationScanResultData>;
-    private assessmentStore: BaseStore<AssessmentStoreData>;
     private assessmentsProvider: AssessmentsProvider;
 
-    constructor(
-        scanResultStore: BaseStore<VisualizationScanResultData>,
-        assessmentStore: BaseStore<AssessmentStoreData>,
-        assessmentsProvider: AssessmentsProvider,
-    ) {
-        this.scanResultStore = scanResultStore;
-        this.assessmentStore = assessmentStore;
+    constructor(assessmentsProvider: AssessmentsProvider) {
         this.assessmentsProvider = assessmentsProvider;
     }
 
-    public getSelectorMap(visualizationType: VisualizationType): DictionaryStringTo<AssessmentVisualizationInstance> {
+    public getSelectorMap(
+        visualizationType: VisualizationType,
+        visualizationScanResultData: VisualizationScanResultData,
+        assessmentState: AssessmentStoreData,
+    ): DictionaryStringTo<AssessmentVisualizationInstance> {
         let selectorMap = {};
 
         if (this.isAdHocVisualization(visualizationType)) {
-            selectorMap = this.getAdHocVisualizationSelectorMap(visualizationType);
+            selectorMap = this.getAdHocVisualizationSelectorMap(visualizationType, visualizationScanResultData);
         }
 
         if (this.assessmentsProvider.isValidType(visualizationType)) {
             const key = this.assessmentsProvider.forType(visualizationType).key;
-            const assessmentState = this.assessmentStore.getState();
             selectorMap = this.getFilteredSelectorMap(
                 assessmentState.assessments[key].generatedAssessmentInstancesMap,
                 assessmentState.assessmentNavState.selectedTestStep,
@@ -58,25 +52,27 @@ export class SelectorMapHelper {
         );
     }
 
-    private getAdHocVisualizationSelectorMap(visualizationType: VisualizationType): DictionaryStringTo<AssessmentVisualizationInstance> {
+    private getAdHocVisualizationSelectorMap(
+        visualizationType: VisualizationType,
+        visualizationScanResultData: VisualizationScanResultData,
+    ): DictionaryStringTo<AssessmentVisualizationInstance> {
         let selectorMap = {};
-        const visulizaitonScanResultState = this.scanResultStore.getState();
 
         switch (visualizationType) {
             case VisualizationType.Issues:
-                selectorMap = visulizaitonScanResultState.issues.selectedAxeResultsMap;
+                selectorMap = visualizationScanResultData.issues.selectedAxeResultsMap;
                 break;
             case VisualizationType.Headings:
-                selectorMap = visulizaitonScanResultState.headings.fullAxeResultsMap;
+                selectorMap = visualizationScanResultData.headings.fullAxeResultsMap;
                 break;
             case VisualizationType.Landmarks:
-                selectorMap = visulizaitonScanResultState.landmarks.fullAxeResultsMap;
+                selectorMap = visualizationScanResultData.landmarks.fullAxeResultsMap;
                 break;
             case VisualizationType.TabStops:
-                selectorMap = visulizaitonScanResultState.tabStops.tabbedElements;
+                selectorMap = visualizationScanResultData.tabStops.tabbedElements;
                 break;
             default:
-                selectorMap = visulizaitonScanResultState.color.fullAxeResultsMap;
+                selectorMap = visualizationScanResultData.color.fullAxeResultsMap;
                 break;
         }
 

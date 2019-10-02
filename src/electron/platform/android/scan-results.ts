@@ -1,11 +1,14 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-export class ScanResults {
-    private rawData: any;
 
-    constructor(rawData: any) {
-        this.rawData = rawData;
-    }
+export interface RuleResultsData {
+    ruleId: string;
+    status: string;
+    props: any;
+}
+
+export class ScanResults {
+    constructor(readonly rawData: any) {}
 
     public get deviceName(): string {
         try {
@@ -20,6 +23,15 @@ export class ScanResults {
             return this.rawData.axeContext.axeMetaData.appIdentifier;
         } catch {
             return null;
+        }
+    }
+
+    public get ruleResults(): RuleResultsData[] {
+        try {
+            const results = this.rawData.axeRuleResults;
+            return results || [];
+        } catch {
+            return [];
         }
     }
 }

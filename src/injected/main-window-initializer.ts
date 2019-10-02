@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { Assessments } from 'assessments/assessments';
+
 import { AxeInfo } from '../common/axe-info';
 import { InspectConfigurationFactory } from '../common/configs/inspect-configuration-factory';
 import { DateProvider } from '../common/date-provider';
@@ -142,7 +143,7 @@ export class MainWindowInitializer extends WindowInitializer {
         );
 
         const drawingInitiator = new DrawingInitiator(this.drawingController);
-        const selectorMapHelper = new SelectorMapHelper(this.visualizationScanResultStoreProxy, this.assessmentStoreProxy, Assessments);
+        const selectorMapHelper = new SelectorMapHelper(Assessments);
         const frameUrlMessageDispatcher = new FrameUrlMessageDispatcher(devToolActionMessageCreator, this.frameCommunicator);
         frameUrlMessageDispatcher.initialize();
 

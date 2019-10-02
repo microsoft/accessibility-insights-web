@@ -1,0 +1,71 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ScanResultsToUnifiedResults Null ScanResults input returns empty output 1`] = `Array []`;
+
+exports[`ScanResultsToUnifiedResults ScanResults with 1 supported rule 1`] = `
+Array [
+  Object {
+    "description": "Text elements must have sufficient contrast against the background.",
+    "guidance": Array [],
+    "id": "ColorContrast",
+    "uid": "gguid-mock-stub",
+    "url": null,
+  },
+]
+`;
+
+exports[`ScanResultsToUnifiedResults ScanResults with 1 supported rule that repeats 1`] = `
+Array [
+  Object {
+    "description": "Text elements must have sufficient contrast against the background.",
+    "guidance": Array [],
+    "id": "ColorContrast",
+    "uid": "gguid-mock-stub",
+    "url": null,
+  },
+]
+`;
+
+exports[`ScanResultsToUnifiedResults ScanResults with a mix of supported and unsupported rules 1`] = `
+Array [
+  Object {
+    "description": "Text elements must have sufficient contrast against the background.",
+    "guidance": Array [],
+    "id": "ColorContrast",
+    "uid": "gguid-mock-stub",
+    "url": null,
+  },
+  Object {
+    "description": "Touch inputs must have a sufficient target size.",
+    "guidance": Array [],
+    "id": "TouchSizeWcag",
+    "uid": "gguid-mock-stub",
+    "url": null,
+  },
+  Object {
+    "description": "Meaningful images must have alternate text.",
+    "guidance": Array [],
+    "id": "ImageViewName",
+    "uid": "gguid-mock-stub",
+    "url": null,
+  },
+  Object {
+    "description": "EditText elements must expose their entered text value to assistive technologies",
+    "guidance": Array [],
+    "id": "EditTextValue",
+    "uid": "gguid-mock-stub",
+    "url": null,
+  },
+  Object {
+    "description": "Active views must have a name that's available to assistive technologies.",
+    "guidance": Array [],
+    "id": "ActiveViewName",
+    "uid": "gguid-mock-stub",
+    "url": null,
+  },
+]
+`;
+
+exports[`ScanResultsToUnifiedResults ScanResults with no RuleResults returns empty output 1`] = `Array []`;
+
+exports[`ScanResultsToUnifiedResults ScanResults with only unsupported rules 1`] = `Array []`;

@@ -1,97 +1,47 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
-import { AssessmentStore } from 'background/stores/assessment-store';
-import { VisualizationScanResultStore } from 'background/stores/visualization-scan-result-store';
-import { IMock, Mock, MockBehavior } from 'typemoq';
-import { BaseStore } from '../../../../common/base-store';
+
 import { ManualTestStatus } from '../../../../common/types/manual-test-status';
-import { AssessmentStoreData, TestStepResult } from '../../../../common/types/store-data/assessment-result-data';
-import { VisualizationScanResultData } from '../../../../common/types/store-data/visualization-scan-result-data';
+import {
+    AssessmentStoreData,
+    GeneratedAssessmentInstance,
+    InstanceIdToInstanceDataMap,
+    TestStepResult,
+} from '../../../../common/types/store-data/assessment-result-data';
 import { VisualizationType } from '../../../../common/types/visualization-type';
 import { SelectorMapHelper } from '../../../../injected/selector-map-helper';
 import { CreateTestAssessmentProvider } from '../../common/test-assessment-provider';
 import { VisualizationScanResultStoreDataBuilder } from '../../common/visualization-scan-result-store-data-builder';
 
 describe('SelectorMapHelperTest', () => {
-    let scanResultStoreMock: IMock<BaseStore<VisualizationScanResultData>>;
-    let assessmentStoreMock: IMock<BaseStore<AssessmentStoreData>>;
     let assessmentsProvider: AssessmentsProvider;
     let testSubject: SelectorMapHelper;
-
+    const adHocVisualizationTypes = [VisualizationType.Headings, VisualizationType.Landmarks, VisualizationType.Color];
     beforeEach(() => {
-        scanResultStoreMock = Mock.ofType(VisualizationScanResultStore, MockBehavior.Strict);
-        assessmentStoreMock = Mock.ofType(AssessmentStore, MockBehavior.Strict);
         assessmentsProvider = CreateTestAssessmentProvider();
 
-        testSubject = new SelectorMapHelper(scanResultStoreMock.object, assessmentStoreMock.object, assessmentsProvider);
+        testSubject = new SelectorMapHelper(assessmentsProvider);
     });
 
     test('constructor', () => {
-        expect(new SelectorMapHelper(null, null, null)).toBeDefined();
+        expect(new SelectorMapHelper(null)).toBeDefined();
+    });
+
+    adHocVisualizationTypes.forEach(visualizationType => {
+        test(`getSelectorMap: ${VisualizationType[visualizationType]}`, () => {
+            const selectorMap = { key1: { target: ['element1'] } };
+            const state = new VisualizationScanResultStoreDataBuilder().withSelectorMap(visualizationType, selectorMap).build();
+
+            expect(testSubject.getSelectorMap(visualizationType, state, null)).toEqual(selectorMap);
+        });
     });
 
     test('getState: issues', () => {
         const selectorMap = { key1: { target: ['element1'] } };
         const state = new VisualizationScanResultStoreDataBuilder().withIssuesSelectedTargets(selectorMap as any).build();
 
-        scanResultStoreMock
-            .setup(ss => ss.getState())
-            .returns(() => state)
-            .verifiable();
-        setAssessmentStore();
-
-        testSubject.getSelectorMap(VisualizationType.Issues);
-
-        scanResultStoreMock.verifyAll();
-    });
-
-    test('getState: headings', () => {
-        const visualizationType = VisualizationType.Headings;
-        const selectorMap = { key1: { target: ['element1'] } };
-        const state = new VisualizationScanResultStoreDataBuilder().withSelectorMap(visualizationType, selectorMap).build();
-
-        scanResultStoreMock
-            .setup(ss => ss.getState())
-            .returns(() => state)
-            .verifiable();
-        setAssessmentStore();
-
-        testSubject.getSelectorMap(visualizationType);
-
-        scanResultStoreMock.verifyAll();
-    });
-
-    test('getState: landmarks', () => {
-        const visualizationType = VisualizationType.Landmarks;
-        const selectorMap = { key1: { target: ['element1'] } };
-        const state = new VisualizationScanResultStoreDataBuilder().withSelectorMap(visualizationType, selectorMap).build();
-
-        scanResultStoreMock
-            .setup(ss => ss.getState())
-            .returns(() => state)
-            .verifiable();
-        setAssessmentStore();
-
-        testSubject.getSelectorMap(visualizationType);
-
-        scanResultStoreMock.verifyAll();
-    });
-
-    test('getState: color', () => {
-        const visualizationType = VisualizationType.Color;
-        const selectorMap = { key1: { target: ['element1'] } };
-        const state = new VisualizationScanResultStoreDataBuilder().withSelectorMap(visualizationType, selectorMap).build();
-
-        scanResultStoreMock
-            .setup(ss => ss.getState())
-            .returns(() => state)
-            .verifiable();
-        setAssessmentStore();
-
-        testSubject.getSelectorMap(visualizationType);
-
-        scanResultStoreMock.verifyAll();
+        expect(testSubject.getSelectorMap(VisualizationType.Issues, state, null)).toEqual(selectorMap);
     });
 
     test('getState: tabStops', () => {
@@ -100,15 +50,7 @@ describe('SelectorMapHelperTest', () => {
 
         state.tabStops.tabbedElements = [];
 
-        scanResultStoreMock
-            .setup(ss => ss.getState())
-            .returns(() => state)
-            .verifiable();
-        setAssessmentStore();
-
-        testSubject.getSelectorMap(visualizationType);
-
-        scanResultStoreMock.verifyAll();
+        expect(testSubject.getSelectorMap(visualizationType, state, null)).toEqual([]);
     });
 
     test('getState for assessment, selector map is not null', () => {
@@ -116,7 +58,7 @@ describe('SelectorMapHelperTest', () => {
         const visualizationType = assessment.visualizationType;
         const firstStep = assessment.requirements[0];
 
-        const selectorMap = {
+        const selectorMap: InstanceIdToInstanceDataMap = {
             key1: {
                 target: ['element1'],
                 testStepResults: {
@@ -128,7 +70,7 @@ describe('SelectorMapHelperTest', () => {
                 },
                 ruleResults: null,
                 html: null,
-            },
+            } as GeneratedAssessmentInstance,
             [assessment.key]: {
                 target: ['element2'],
                 testStepResults: {
@@ -140,7 +82,7 @@ describe('SelectorMapHelperTest', () => {
                 },
                 html: 'html',
                 propertyBag: {},
-            },
+            } as GeneratedAssessmentInstance,
         };
 
         const state = {
@@ -152,16 +94,10 @@ describe('SelectorMapHelperTest', () => {
             assessmentNavState: {
                 selectedTestStep: firstStep.key,
             },
-        };
+        } as AssessmentStoreData;
 
-        assessmentStoreMock
-            .setup(ss => ss.getState())
-            .returns(() => state as any)
-            .verifiable();
+        const result = testSubject.getSelectorMap(visualizationType, null, state);
 
-        const result = testSubject.getSelectorMap(visualizationType);
-
-        assessmentStoreMock.verifyAll();
         const expectedSelectedMap = {
             [assessment.key]: {
                 html: 'html',
@@ -176,7 +112,6 @@ describe('SelectorMapHelperTest', () => {
         };
 
         expect(result).toEqual(expectedSelectedMap);
-        assessmentStoreMock.verifyAll();
     });
 
     test('getState for assessment: selectorMap null', () => {
@@ -194,21 +129,10 @@ describe('SelectorMapHelperTest', () => {
             assessmentNavState: {
                 selectedTestStep: firstStep.key,
             },
-        };
+        } as AssessmentStoreData;
 
-        assessmentStoreMock
-            .setup(ss => ss.getState())
-            .returns(() => state as any)
-            .verifiable();
-
-        const result = testSubject.getSelectorMap(visualizationType);
-
-        assessmentStoreMock.verifyAll();
+        const result = testSubject.getSelectorMap(visualizationType, null, state);
 
         expect(result).toBeNull();
     });
-
-    function setAssessmentStore(): void {
-        assessmentStoreMock.setup(a => a.getState()).verifiable();
-    }
 });

@@ -1,36 +1,96 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`InstanceDetailsFooter renders per snapshot when all card interactions are supported (ie, web) 1`] = `
-<div>
-  Highlight 
-  hidden
+<div
+  className="foot"
+>
+  <div
+    className="highlightDiv"
+  >
+    <StyledIconBase
+      ariaLabel="HighLight hidden"
+      iconName="redEye"
+    />
+    <StyledLabelBase>
+      HighLight hidden
+    </StyledLabelBase>
+  </div>
+  <CardKebabMenuButton />
 </div>
 `;
 
 exports[`InstanceDetailsFooter renders per snapshot when only UserConfig-agnostic card interactions are supported (ie, electron) 1`] = `
-<div>
-  Highlight 
-  hidden
+<div
+  className="foot"
+>
+  <div
+    className="highlightDiv"
+  >
+    <StyledIconBase
+      ariaLabel="HighLight hidden"
+      iconName="redEye"
+    />
+    <StyledLabelBase>
+      HighLight hidden
+    </StyledLabelBase>
+  </div>
+  <CardKebabMenuButton />
 </div>
 `;
 
 exports[`InstanceDetailsFooter renders per snapshot with highlightState="hidden" 1`] = `
-<div>
-  Highlight 
-  hidden
+<div
+  className="foot"
+>
+  <div
+    className="highlightDiv"
+  >
+    <StyledIconBase
+      ariaLabel="HighLight hidden"
+      iconName="redEye"
+    />
+    <StyledLabelBase>
+      HighLight hidden
+    </StyledLabelBase>
+  </div>
+  <CardKebabMenuButton />
 </div>
 `;
 
 exports[`InstanceDetailsFooter renders per snapshot with highlightState="unavailable" 1`] = `
-<div>
-  Highlight 
-  unavailable
+<div
+  className="foot"
+>
+  <div
+    className="highlightDiv"
+  >
+    <StyledIconBase
+      ariaLabel="HighLight unavailable"
+      iconName="redEye"
+    />
+    <StyledLabelBase>
+      HighLight unavailable
+    </StyledLabelBase>
+  </div>
+  <CardKebabMenuButton />
 </div>
 `;
 
 exports[`InstanceDetailsFooter renders per snapshot with highlightState="visible" 1`] = `
-<div>
-  Highlight 
-  visible
+<div
+  className="foot"
+>
+  <div
+    className="highlightDiv"
+  >
+    <StyledIconBase
+      ariaLabel="HighLight visible"
+      iconName="redEye"
+    />
+    <StyledLabelBase>
+      HighLight visible
+    </StyledLabelBase>
+  </div>
+  <CardKebabMenuButton />
 </div>
 `;

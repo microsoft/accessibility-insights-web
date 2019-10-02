@@ -693,7 +693,7 @@ class MocksAndTestSubjectBuilder {
             .verifiable(disableTimes);
 
         this.selectorMapHelperMock
-            .setup(sm => sm.getSelectorMap(visualizationType))
+            .setup(sm => sm.getSelectorMap(visualizationType, this.toVisualizationScanStoreState, this.toAssessmentStoreState))
             .returns(() => this.selectorMap)
             .verifiable(Times.once());
     }

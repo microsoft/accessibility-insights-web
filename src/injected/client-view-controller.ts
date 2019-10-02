@@ -135,7 +135,11 @@ export class ClientViewController {
             } else {
                 this.executeUpdate(visualizationType, null);
             }
-            const selectorMap = this.selectorMapHelper.getSelectorMap(visualizationType);
+            const selectorMap = this.selectorMapHelper.getSelectorMap(
+                visualizationType,
+                this.currentScanResultState,
+                this.currentAssessmentState,
+            );
             this.previousVisualizationSelectorMapStates[visualizationType] = selectorMap;
         });
     }
@@ -155,7 +159,11 @@ export class ClientViewController {
     private executeUpdate(visualizationType: VisualizationType, step: string): void {
         const configuration = this.visualizationConfigurationFactory.getConfiguration(visualizationType);
         const visualizationState = configuration.getStoreData(this.currentVisualizationState.tests);
-        const selectorMap = this.selectorMapHelper.getSelectorMap(visualizationType);
+        const selectorMap = this.selectorMapHelper.getSelectorMap(
+            visualizationType,
+            this.currentScanResultState,
+            this.currentAssessmentState,
+        );
         const id = configuration.getIdentifier(step);
         const enabled = configuration.getTestStatus(visualizationState, step) && this.isAssessmentDataForCurrentPage(configuration);
 

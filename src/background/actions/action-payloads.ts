@@ -155,3 +155,11 @@ export interface UnifiedScanCompletedPayload extends BaseActionPayload {
     scanResult: UnifiedResult[];
     rules: UnifiedRule[];
 }
+
+export interface RuleExpandCollapsePayload extends BaseActionPayload {
+    ruleId: string;
+}
+
+export interface CardSelectionPayload extends BaseActionPayload {
+    resultInstanceUid: string;
+}
