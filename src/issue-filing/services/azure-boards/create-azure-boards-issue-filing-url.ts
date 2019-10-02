@@ -11,7 +11,7 @@ import { HTMLFormatter } from '../../common/markup/html-formatter';
 import { AzureBoardsIssueFilingSettings, AzureBoardsWorkItemType } from './azure-boards-issue-filing-settings';
 
 const buildTags = (createIssueData: CreateIssueDetailsTextData, standardTags: string[]): string => {
-    const tags = ['Accessibility', title, `rule: ${createIssueData.ruleResult.ruleId}`, ...standardTags];
+    const tags = ['Accessibility', title, `rule: ${createIssueData.rule.id}`, ...standardTags];
     return tags.join('; ');
 };
 

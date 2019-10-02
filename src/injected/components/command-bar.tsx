@@ -41,13 +41,25 @@ export const CommandBar = NamedFC<CommandBarProps>('CommandBar', props => {
     const renderIssueButtons = (): JSX.Element => {
         const failedRuleIds: string[] = Object.keys(props.failedRules);
         const ruleName: string = failedRuleIds[props.currentRuleIndex];
-        const ruleResult: DecoratedAxeNodeResult = props.failedRules[ruleName];
+        const result: DecoratedAxeNodeResult = props.failedRules[ruleName];
         const issueData: CreateIssueDetailsTextData = {
-            pageTitle: document.title,
-            pageUrl: document.URL,
-            ruleResult,
+            rule: {
+                description: result.help,
+                id: result.ruleId,
+                url: result.helpUrl,
+                guidance: result.guidanceLinks,
+            },
+            targetApp: {
+                name: 'name',
+            },
+            element: {
+                id: result.id,
+                idDisplayName: 'Element path',
+                shortId: 'last selector',
+            },
+            howToFixSummary: result.failureSummary,
+            snippet: result.snippet,
         };
-
         return (
             <>
                 <CopyIssueDetailsButton deps={props.deps} issueDetailsData={issueData} onClick={props.onClickCopyIssueDetailsButton} />

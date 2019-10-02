@@ -87,9 +87,22 @@ export class IssuesDetailsPane extends React.Component<IssuesDetailsPaneProps, I
 
     private renderSingleIssue(result: DecoratedAxeNodeResult): JSX.Element {
         const issueData: CreateIssueDetailsTextData = {
-            pageTitle: this.props.pageTitle,
-            pageUrl: this.props.pageUrl,
-            ruleResult: result,
+            rule: {
+                description: result.help,
+                id: result.ruleId,
+                url: result.helpUrl,
+                guidance: result.guidanceLinks,
+            },
+            targetApp: {
+                name: 'name',
+            },
+            element: {
+                id: result.id,
+                idDisplayName: 'Element path',
+                shortId: 'last selector',
+            },
+            howToFixSummary: result.failureSummary,
+            snippet: result.snippet,
         };
 
         return (
