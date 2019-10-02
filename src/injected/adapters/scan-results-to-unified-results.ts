@@ -1,8 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { flatMap } from 'lodash';
+
 import { InstanceResultStatus, UnifiedResult } from '../../common/types/store-data/unified-data-interface';
 import { UUIDGeneratorType } from '../../common/uid-generator';
+import { IssueFilingUrlStringUtils } from '../../issue-filing/common/issue-filing-url-string-utils';
 import { AxeNodeResult, RuleResult, ScanResults } from '../../scanner/iruleresults';
 
 export type ConvertScanResultsToUnifiedResultsDelegate = (scanResults: ScanResults, uuidGenerator: UUIDGeneratorType) => UnifiedResult[];
@@ -90,6 +92,7 @@ const createUnifiedResult = (data: CreationData, uuidGenerator: UUIDGeneratorTyp
         ruleId: data.ruleID,
         identifiers: {
             'css-selector': data.cssSelector,
+            shortName: IssueFilingUrlStringUtils.getSelectorLastPart(data.cssSelector),
         },
         descriptors: {
             snippet: data.snippet,
