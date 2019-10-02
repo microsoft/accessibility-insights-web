@@ -1,23 +1,23 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { CreateIssueDetailsTextData } from './../../common/types/create-issue-details-text-data';
+import { UnifiedResult, UnifiedRule } from 'common/types/store-data/unified-data-interface';
 
 export type IssueUrlCreationUtils = {
-    getTitle: (data: CreateIssueDetailsTextData) => string;
+    getTitle: (result: UnifiedResult, rule: UnifiedRule) => string;
     getSelectorLastPart: (selector: string) => string;
-    standardizeTags: (data: CreateIssueDetailsTextData) => string[];
+    standardizeTags: (rule: UnifiedRule) => string[];
 };
 
-const getTitle = (data: CreateIssueDetailsTextData): string => {
-    const standardTags = standardizeTags(data);
+const getTitle = (result: UnifiedResult, rule: UnifiedRule): string => {
+    const standardTags = standardizeTags(rule);
     let prefix = standardTags.join(',');
     if (prefix.length > 0) {
         prefix = prefix + ': ';
     }
 
-    const selectorLastPart = getSelectorLastPart(data.ruleResult.selector);
+    const shortName = result.identifiers.shortName;
 
-    return `${prefix}${data.ruleResult.help} (${selectorLastPart})`;
+    return `${prefix}${rule.description} (${shortName})`;
 };
 
 const getSelectorLastPart = (selector: string): string => {
@@ -33,10 +33,10 @@ const getSelectorLastPart = (selector: string): string => {
     return selectorLastPart;
 };
 
-const standardizeTags = (data: CreateIssueDetailsTextData): string[] => {
-    const guidanceLinkTextTags = data.ruleResult.guidanceLinks.map(link => link.text.toUpperCase());
+const standardizeTags = (rule: UnifiedRule): string[] => {
+    const guidanceLinkTextTags = rule.guidance.map(link => link.text.toUpperCase());
     const tagsFromGuidanceLinkTags = [];
-    data.ruleResult.guidanceLinks.map(link => (link.tags ? link.tags.map(tag => tagsFromGuidanceLinkTags.push(tag.displayText)) : []));
+    rule.guidance.map(link => (link.tags ? link.tags.map(tag => tagsFromGuidanceLinkTags.push(tag.displayText)) : []));
     return guidanceLinkTextTags.concat(tagsFromGuidanceLinkTags);
 };
 

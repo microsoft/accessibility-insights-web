@@ -21,18 +21,22 @@ export interface CardRowProps {
 
 export interface PropertyConfiguration {
     cardRow: ReactFCWithDisplayName<CardRowProps>;
+    displayName: string;
 }
 
 export const howToFixConfiguration: PropertyConfiguration = {
     cardRow: HowToFixWebCardRow,
+    displayName: 'How to fix',
 };
 
 export const cssSelectorConfiguration: PropertyConfiguration = {
     cardRow: PathCardRow,
+    displayName: 'Path',
 };
 
 export const snippetConfiguration: PropertyConfiguration = {
     cardRow: SnippetCardRow,
+    displayName: 'Snippet',
 };
 
 type PropertyIdToConfigurationMap = {

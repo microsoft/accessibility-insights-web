@@ -48,11 +48,15 @@ export interface InstancePropertyBag {
 
 export type StoredInstancePropertyBag = InstancePropertyBag;
 
+export type IdentifiersStoredInstancePropertyBag = {
+    shortName: string;
+} & StoredInstancePropertyBag;
+
 export interface UnifiedResult {
     uid: string;
     status: InstanceResultStatus;
     ruleId: string;
-    identifiers: StoredInstancePropertyBag;
+    identifiers: IdentifiersStoredInstancePropertyBag;
     descriptors: StoredInstancePropertyBag;
     resolution: StoredInstancePropertyBag;
 }
