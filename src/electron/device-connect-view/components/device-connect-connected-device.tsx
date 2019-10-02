@@ -4,10 +4,10 @@ import { Icon } from 'office-ui-fabric-react/lib/Icon';
 import { Spinner, SpinnerSize } from 'office-ui-fabric-react/lib/Spinner';
 import * as React from 'react';
 import { NamedFC } from '../../../common/react/named-fc';
+import { DeviceConnectState } from './device-connect-state';
 
 export interface DeviceConnectConnectedDeviceProps {
-    isConnecting: boolean;
-    hasFailed: boolean;
+    deviceConnectState: DeviceConnectState;
     connectedDevice?: string;
 }
 
@@ -15,7 +15,7 @@ export const DeviceConnectConnectedDevice = NamedFC<DeviceConnectConnectedDevice
     'DeviceConnectConnectedDevice',
     (props: DeviceConnectConnectedDeviceProps) => {
         const renderContents = (): JSX.Element => {
-            if (props.isConnecting) {
+            if (props.deviceConnectState === DeviceConnectState.Connecting) {
                 return (
                     <Spinner
                         className="device-connect-spinner"
@@ -26,7 +26,7 @@ export const DeviceConnectConnectedDevice = NamedFC<DeviceConnectConnectedDevice
                 );
             }
 
-            if (props.hasFailed) {
+            if (props.deviceConnectState === DeviceConnectState.Error) {
                 return (
                     <>
                         <Icon iconName="statusErrorFull" className="connection-error-icon" ariaLabel="Connection failed"></Icon>
@@ -34,6 +34,11 @@ export const DeviceConnectConnectedDevice = NamedFC<DeviceConnectConnectedDevice
                     </>
                 );
             }
+
+            if (props.deviceConnectState === DeviceConnectState.Default) {
+                return null;
+            }
+
             if (props.connectedDevice) {
                 return <span className="scanned-text">{props.connectedDevice}</span>;
             }

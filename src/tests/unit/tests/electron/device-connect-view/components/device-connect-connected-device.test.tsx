@@ -4,6 +4,7 @@ import {
     DeviceConnectConnectedDevice,
     DeviceConnectConnectedDeviceProps,
 } from 'electron/device-connect-view/components/device-connect-connected-device';
+import { DeviceConnectState } from 'electron/device-connect-view/components/device-connect-state';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
@@ -12,41 +13,40 @@ describe('DeviceConnectConnectedDeviceTest', () => {
         [
             'no content',
             {
-                isConnecting: false,
-                hasFailed: false,
+                deviceConnectState: DeviceConnectState.Default,
+            },
+        ],
+        [
+            'user change the port number',
+            {
+                connectedDevice: 'A Test Device!',
+                deviceConnectState: DeviceConnectState.Default,
             },
         ],
         [
             'scanning spinner',
             {
-                isConnecting: true,
-                hasFailed: false,
+                deviceConnectState: DeviceConnectState.Connecting,
             },
         ],
         [
             'connection success',
             {
-                isConnecting: false,
-                hasFailed: false,
                 connectedDevice: 'A Test Device!',
+                deviceConnectState: DeviceConnectState.Connected,
             },
         ],
         [
             'connection failure',
             {
-                isConnecting: false,
-                hasFailed: true,
+                deviceConnectState: DeviceConnectState.Error,
             },
         ],
     ];
 
-    test.each(testProps)('render %s', (testName: string, props: DeviceConnectConnectedDeviceProps) =>
-        validateRenderWithProps(testName, props),
-    );
-
-    function validateRenderWithProps(testname: string, props: DeviceConnectConnectedDeviceProps): void {
+    test.each(testProps)('render %s', (testName: string, props: DeviceConnectConnectedDeviceProps) => {
         const rendered = shallow(<DeviceConnectConnectedDevice {...props} />);
 
-        expect(rendered.getElement()).toMatchSnapshot(testname);
-    }
+        expect(rendered.getElement()).toMatchSnapshot(testName);
+    });
 });

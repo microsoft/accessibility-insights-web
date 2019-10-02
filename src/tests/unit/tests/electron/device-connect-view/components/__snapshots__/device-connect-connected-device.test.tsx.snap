@@ -62,3 +62,13 @@ exports[`DeviceConnectConnectedDeviceTest render scanning spinner: scanning spin
   />
 </div>
 `;
+
+exports[`DeviceConnectConnectedDeviceTest render user change the port number: user change the port number 1`] = `
+<div
+  className="device-connect-connected-device"
+>
+  <h3>
+    Connected device
+  </h3>
+</div>
+`;

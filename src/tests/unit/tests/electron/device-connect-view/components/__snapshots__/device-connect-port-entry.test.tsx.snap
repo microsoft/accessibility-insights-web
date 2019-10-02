@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`DeviceConnectPortEntryTest renders with needsValidation = false 1`] = `
+exports[`DeviceConnectPortEntryTest renders with "Connected" 1`] = `
 <div
   className="device-connect-port-entry"
 >
@@ -22,18 +22,17 @@ exports[`DeviceConnectPortEntryTest renders with needsValidation = false 1`] = `
     onChange={[Function]}
     placeholder="12345"
   />
-  <Button
+  <CustomizedDefaultButton
     className="button-validate-port"
     disabled={true}
     onClick={[Function]}
-    primary={false}
   >
     Validate port number
-  </Button>
+  </CustomizedDefaultButton>
 </div>
 `;
 
-exports[`DeviceConnectPortEntryTest renders with needsValidation = true 1`] = `
+exports[`DeviceConnectPortEntryTest renders with "Connected" and some text in the port text field 1`] = `
 <div
   className="device-connect-port-entry"
 >
@@ -55,55 +54,240 @@ exports[`DeviceConnectPortEntryTest renders with needsValidation = true 1`] = `
     onChange={[Function]}
     placeholder="12345"
   />
-  <Button
+  <CustomizedDefaultButton
     className="button-validate-port"
-    disabled={true}
+    disabled={false}
     onClick={[Function]}
-    primary={true}
   >
     Validate port number
-  </Button>
+  </CustomizedDefaultButton>
 </div>
 `;
 
-exports[`DeviceConnectPortEntryTest user interaction change port number handles port text = "" 1`] = `
+exports[`DeviceConnectPortEntryTest renders with "Connecting" 1`] = `
+<div
+  className="device-connect-port-entry"
+>
+  <h3>
+    Android device port number
+  </h3>
+  <MaskedTextField
+    ariaLabel="Port number"
+    className="port-number-field"
+    mask="99999"
+    maskChar=""
+    maskFormat={
+      Object {
+        "*": /\\[a-zA-Z0-9\\]/,
+        "9": /\\[0-9\\]/,
+        "a": /\\[a-zA-Z\\]/,
+      }
+    }
+    onChange={[Function]}
+    placeholder="12345"
+  />
+  <CustomizedPrimaryButton
+    className="button-validate-port"
+    disabled={true}
+    onClick={[Function]}
+  >
+    Validate port number
+  </CustomizedPrimaryButton>
+</div>
+`;
+
+exports[`DeviceConnectPortEntryTest renders with "Connecting" and some text in the port text field 1`] = `
+<div
+  className="device-connect-port-entry"
+>
+  <h3>
+    Android device port number
+  </h3>
+  <MaskedTextField
+    ariaLabel="Port number"
+    className="port-number-field"
+    mask="99999"
+    maskChar=""
+    maskFormat={
+      Object {
+        "*": /\\[a-zA-Z0-9\\]/,
+        "9": /\\[0-9\\]/,
+        "a": /\\[a-zA-Z\\]/,
+      }
+    }
+    onChange={[Function]}
+    placeholder="12345"
+  />
+  <CustomizedPrimaryButton
+    className="button-validate-port"
+    disabled={true}
+    onClick={[Function]}
+  >
+    Validate port number
+  </CustomizedPrimaryButton>
+</div>
+`;
+
+exports[`DeviceConnectPortEntryTest renders with "Default" 1`] = `
+<div
+  className="device-connect-port-entry"
+>
+  <h3>
+    Android device port number
+  </h3>
+  <MaskedTextField
+    ariaLabel="Port number"
+    className="port-number-field"
+    mask="99999"
+    maskChar=""
+    maskFormat={
+      Object {
+        "*": /\\[a-zA-Z0-9\\]/,
+        "9": /\\[0-9\\]/,
+        "a": /\\[a-zA-Z\\]/,
+      }
+    }
+    onChange={[Function]}
+    placeholder="12345"
+  />
+  <CustomizedPrimaryButton
+    className="button-validate-port"
+    disabled={true}
+    onClick={[Function]}
+  >
+    Validate port number
+  </CustomizedPrimaryButton>
+</div>
+`;
+
+exports[`DeviceConnectPortEntryTest renders with "Default" and some text in the port text field 1`] = `
+<div
+  className="device-connect-port-entry"
+>
+  <h3>
+    Android device port number
+  </h3>
+  <MaskedTextField
+    ariaLabel="Port number"
+    className="port-number-field"
+    mask="99999"
+    maskChar=""
+    maskFormat={
+      Object {
+        "*": /\\[a-zA-Z0-9\\]/,
+        "9": /\\[0-9\\]/,
+        "a": /\\[a-zA-Z\\]/,
+      }
+    }
+    onChange={[Function]}
+    placeholder="12345"
+  />
+  <CustomizedPrimaryButton
+    className="button-validate-port"
+    disabled={false}
+    onClick={[Function]}
+  >
+    Validate port number
+  </CustomizedPrimaryButton>
+</div>
+`;
+
+exports[`DeviceConnectPortEntryTest renders with "Error" 1`] = `
+<div
+  className="device-connect-port-entry"
+>
+  <h3>
+    Android device port number
+  </h3>
+  <MaskedTextField
+    ariaLabel="Port number"
+    className="port-number-field"
+    mask="99999"
+    maskChar=""
+    maskFormat={
+      Object {
+        "*": /\\[a-zA-Z0-9\\]/,
+        "9": /\\[0-9\\]/,
+        "a": /\\[a-zA-Z\\]/,
+      }
+    }
+    onChange={[Function]}
+    placeholder="12345"
+  />
+  <CustomizedPrimaryButton
+    className="button-validate-port"
+    disabled={true}
+    onClick={[Function]}
+  >
+    Validate port number
+  </CustomizedPrimaryButton>
+</div>
+`;
+
+exports[`DeviceConnectPortEntryTest renders with "Error" and some text in the port text field 1`] = `
+<div
+  className="device-connect-port-entry"
+>
+  <h3>
+    Android device port number
+  </h3>
+  <MaskedTextField
+    ariaLabel="Port number"
+    className="port-number-field"
+    mask="99999"
+    maskChar=""
+    maskFormat={
+      Object {
+        "*": /\\[a-zA-Z0-9\\]/,
+        "9": /\\[0-9\\]/,
+        "a": /\\[a-zA-Z\\]/,
+      }
+    }
+    onChange={[Function]}
+    placeholder="12345"
+  />
+  <CustomizedPrimaryButton
+    className="button-validate-port"
+    disabled={false}
+    onClick={[Function]}
+  >
+    Validate port number
+  </CustomizedPrimaryButton>
+</div>
+`;
+
+exports[`DeviceConnectPortEntryTest user interaction change port number handles port text = "": after 1`] = `
 Object {
-  "isValidateButtonDisabled": true,
   "port": "",
 }
 `;
 
-exports[`DeviceConnectPortEntryTest user interaction change port number handles port text = "" 2`] = `
+exports[`DeviceConnectPortEntryTest user interaction change port number handles port text = "": before 1`] = `
 Object {
-  "isValidateButtonDisabled": true,
   "port": "",
 }
 `;
 
-exports[`DeviceConnectPortEntryTest user interaction change port number handles port text = "111" 1`] = `
+exports[`DeviceConnectPortEntryTest user interaction change port number handles port text = "111": after 1`] = `
 Object {
-  "isValidateButtonDisabled": true,
-  "port": "",
-}
-`;
-
-exports[`DeviceConnectPortEntryTest user interaction change port number handles port text = "111" 2`] = `
-Object {
-  "isValidateButtonDisabled": false,
   "port": "111",
 }
 `;
 
-exports[`DeviceConnectPortEntryTest user interaction change port number handles port text = "null" 1`] = `
+exports[`DeviceConnectPortEntryTest user interaction change port number handles port text = "111": before 1`] = `
 Object {
-  "isValidateButtonDisabled": true,
   "port": "",
 }
 `;
 
-exports[`DeviceConnectPortEntryTest user interaction change port number handles port text = "null" 2`] = `
+exports[`DeviceConnectPortEntryTest user interaction change port number handles port text = "null": after 1`] = `
 Object {
-  "isValidateButtonDisabled": true,
   "port": null,
+}
+`;
+
+exports[`DeviceConnectPortEntryTest user interaction change port number handles port text = "null": before 1`] = `
+Object {
+  "port": "",
 }
 `;
