@@ -1,13 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { BaseClientStoresHub } from '../common/stores/base-client-stores-hub';
-import { AssessmentStoreData } from '../common/types/store-data/assessment-result-data';
-import { FeatureFlagStoreData } from '../common/types/store-data/feature-flag-store-data';
-import { TabStoreData } from '../common/types/store-data/tab-store-data';
-import { UnifiedScanResultStoreData } from '../common/types/store-data/unified-data-interface';
-import { UserConfigurationStoreData } from '../common/types/store-data/user-configuration-store';
-import { VisualizationScanResultData } from '../common/types/store-data/visualization-scan-result-data';
-import { VisualizationStoreData } from '../common/types/store-data/visualization-store-data';
+import { BaseClientStoresHub } from 'common/stores/base-client-stores-hub';
+import { AssessmentStoreData } from 'common/types/store-data/assessment-result-data';
+import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
+import { TabStoreData } from 'common/types/store-data/tab-store-data';
+import { UnifiedScanResultStoreData } from 'common/types/store-data/unified-data-interface';
+import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
+import { VisualizationScanResultData } from 'common/types/store-data/visualization-scan-result-data';
+import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
 
 export interface TargetPageStoreData {
     visualizationStoreData: VisualizationStoreData;
