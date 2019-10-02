@@ -31,45 +31,6 @@
     .row:last-child {
         border-bottom: none;
     }
-
-}
-
-.foot {
-    justify-content: space-between;
-    display: flex;
-    background-color: #F8F8F8;
-    box-shadow: 0px -1px 0px rgba(0, 0, 0, 0.08);
-    border-radius: 4px;
-    margin-left: 24px;
-    height: 50px;
-
-    .highlight-button {
-        background: transparent;
-        color: $secondary-text;
-        font-family: $fontFamily;
-        font-size: 14px;
-        line-height: 20px;
-        margin-left: 12px;
-
-        i {
-            color: $primary-text;
-            font-size: 20px;
-            border: 1.25px;
-        }
-    }
-
-    .kebab-menu-button {
-        background: transparent;
-        width: 34px;
-        height: 32px;
-        top: calc(50% - 32px/2);
-
-        i {
-            font-size: 20px;
-            border: 1.25px;
-            color: $primary-text;
-        }
-    }
 }
 
 .report-instance-table .label {
