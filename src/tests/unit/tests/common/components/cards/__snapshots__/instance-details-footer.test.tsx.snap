@@ -4,28 +4,18 @@ exports[`InstanceDetailsFooter renders per snapshot when all card interactions a
 <div
   className="foot"
 >
-  <CustomizedCommandBarButton
-    checked={false}
+  <div
     className="highlightButton"
-    disabled={false}
-    iconProps={
-      Object {
-        "iconName": "redEye",
-      }
-    }
-    text="HighLight Buttons hidden"
-  />
-  <CustomizedCommandBarButton
-    checked={false}
-    className="kebabMenuButton"
-    disabled={false}
-    iconProps={
-      Object {
-        "iconName": "moreVertical",
-      }
-    }
-    text=""
-  />
+  >
+    <StyledIconBase
+      ariaLabel="HighLight Buttons hidden"
+      iconName="redEye"
+    />
+    <StyledLabelBase>
+      HighLight Buttons hidden
+    </StyledLabelBase>
+  </div>
+  <CardKebabMenuButton />
 </div>
 `;
 
@@ -33,28 +23,18 @@ exports[`InstanceDetailsFooter renders per snapshot when only UserConfig-agnosti
 <div
   className="foot"
 >
-  <CustomizedCommandBarButton
-    checked={false}
+  <div
     className="highlightButton"
-    disabled={false}
-    iconProps={
-      Object {
-        "iconName": "redEye",
-      }
-    }
-    text="HighLight Buttons hidden"
-  />
-  <CustomizedCommandBarButton
-    checked={false}
-    className="kebabMenuButton"
-    disabled={false}
-    iconProps={
-      Object {
-        "iconName": "moreVertical",
-      }
-    }
-    text=""
-  />
+  >
+    <StyledIconBase
+      ariaLabel="HighLight Buttons hidden"
+      iconName="redEye"
+    />
+    <StyledLabelBase>
+      HighLight Buttons hidden
+    </StyledLabelBase>
+  </div>
+  <CardKebabMenuButton />
 </div>
 `;
 
@@ -62,28 +42,18 @@ exports[`InstanceDetailsFooter renders per snapshot with highlightState="hidden"
 <div
   className="foot"
 >
-  <CustomizedCommandBarButton
-    checked={false}
+  <div
     className="highlightButton"
-    disabled={false}
-    iconProps={
-      Object {
-        "iconName": "redEye",
-      }
-    }
-    text="HighLight Buttons hidden"
-  />
-  <CustomizedCommandBarButton
-    checked={false}
-    className="kebabMenuButton"
-    disabled={false}
-    iconProps={
-      Object {
-        "iconName": "moreVertical",
-      }
-    }
-    text=""
-  />
+  >
+    <StyledIconBase
+      ariaLabel="HighLight Buttons hidden"
+      iconName="redEye"
+    />
+    <StyledLabelBase>
+      HighLight Buttons hidden
+    </StyledLabelBase>
+  </div>
+  <CardKebabMenuButton />
 </div>
 `;
 
@@ -91,28 +61,18 @@ exports[`InstanceDetailsFooter renders per snapshot with highlightState="unavail
 <div
   className="foot"
 >
-  <CustomizedCommandBarButton
-    checked={false}
+  <div
     className="highlightButton"
-    disabled={false}
-    iconProps={
-      Object {
-        "iconName": "redEye",
-      }
-    }
-    text="HighLight Buttons unavailable"
-  />
-  <CustomizedCommandBarButton
-    checked={false}
-    className="kebabMenuButton"
-    disabled={false}
-    iconProps={
-      Object {
-        "iconName": "moreVertical",
-      }
-    }
-    text=""
-  />
+  >
+    <StyledIconBase
+      ariaLabel="HighLight Buttons unavailable"
+      iconName="redEye"
+    />
+    <StyledLabelBase>
+      HighLight Buttons unavailable
+    </StyledLabelBase>
+  </div>
+  <CardKebabMenuButton />
 </div>
 `;
 
@@ -120,27 +80,17 @@ exports[`InstanceDetailsFooter renders per snapshot with highlightState="visible
 <div
   className="foot"
 >
-  <CustomizedCommandBarButton
-    checked={false}
+  <div
     className="highlightButton"
-    disabled={false}
-    iconProps={
-      Object {
-        "iconName": "redEye",
-      }
-    }
-    text="HighLight Buttons visible"
-  />
-  <CustomizedCommandBarButton
-    checked={false}
-    className="kebabMenuButton"
-    disabled={false}
-    iconProps={
-      Object {
-        "iconName": "moreVertical",
-      }
-    }
-    text=""
-  />
+  >
+    <StyledIconBase
+      ariaLabel="HighLight Buttons visible"
+      iconName="redEye"
+    />
+    <StyledLabelBase>
+      HighLight Buttons visible
+    </StyledLabelBase>
+  </div>
+  <CardKebabMenuButton />
 </div>
 `;

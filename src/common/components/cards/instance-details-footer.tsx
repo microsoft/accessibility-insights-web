@@ -3,12 +3,12 @@
 import { NamedFC } from 'common/react/named-fc';
 import { UnifiedResult } from 'common/types/store-data/unified-data-interface';
 import { some, values } from 'lodash';
-import { CommandBarButton, DefaultButton, IconButton, Label, ActionButton } from 'office-ui-fabric-react';
-import { Icon, IIconProps } from 'office-ui-fabric-react/lib/Icon';
+import { Icon, Label } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { foot, highlightButton, kebabMenuButton } from './card-footer.scss';
 
 import { CardInteractionSupport } from './card-interaction-support';
+import { CardKebabMenuButton } from './card-kebab-menu-button';
 
 export type HighlightState = 'visible' | 'hidden' | 'unavailable';
 
@@ -32,16 +32,7 @@ export const InstanceDetailsFooter = NamedFC<InstanceDetailsFooterProps>('Instan
     }
 
     const kebabMenuIcon = () => {
-        return (
-            <div className={kebabMenuButton}>
-                <ActionButton
-                    iconProps={{
-                        iconName: 'moreVertical',
-                    }}
-                    text=""
-                />
-            </div>
-        );
+        return <CardKebabMenuButton />;
     };
 
     const HighlightButton = () => {
