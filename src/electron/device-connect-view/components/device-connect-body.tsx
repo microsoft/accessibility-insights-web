@@ -26,8 +26,6 @@ export interface DeviceConnectBodyProps {
 }
 
 export const DeviceConnectBody = NamedFC<DeviceConnectBodyProps>('DeviceConnectBody', props => {
-    const isConnecting = props.viewState.deviceConnectState === DeviceConnectState.Connecting;
-    const hasFailedConnecting = props.viewState.deviceConnectState === DeviceConnectState.Error;
     const canStartTesting = props.viewState.deviceConnectState === DeviceConnectState.Connected;
 
     return (
@@ -35,9 +33,8 @@ export const DeviceConnectBody = NamedFC<DeviceConnectBodyProps>('DeviceConnectB
             <DeviceConnectHeader />
             <DeviceConnectPortEntry deps={props.deps} viewState={{ deviceConnectState: props.viewState.deviceConnectState }} />
             <DeviceConnectConnectedDevice
-                isConnecting={isConnecting}
                 connectedDevice={props.viewState.connectedDevice}
-                hasFailed={hasFailedConnecting}
+                deviceConnectState={props.viewState.deviceConnectState}
             />
             <DeviceConnectFooter cancelClick={props.deps.currentWindow.close} canStartTesting={canStartTesting}></DeviceConnectFooter>
         </div>

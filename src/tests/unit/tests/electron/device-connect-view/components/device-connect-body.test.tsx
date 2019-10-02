@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { EnumHelper } from 'common/enum-helper';
 import { BrowserWindow } from 'electron';
 import {
     DeviceConnectBody,
@@ -11,12 +12,7 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 
 describe('DeviceConnectBodyTest', () => {
-    const deviceConnectStates = [
-        DeviceConnectState[DeviceConnectState.Connected],
-        DeviceConnectState[DeviceConnectState.Connecting],
-        DeviceConnectState[DeviceConnectState.Default],
-        DeviceConnectState[DeviceConnectState.Error],
-    ];
+    const deviceConnectStates = EnumHelper.getNumericValues<DeviceConnectState>(DeviceConnectState).map(state => DeviceConnectState[state]);
 
     it.each(deviceConnectStates)(`renders, with device connect state = %s`, stateName => {
         const props: DeviceConnectBodyProps = {
@@ -28,6 +24,7 @@ describe('DeviceConnectBodyTest', () => {
                 } as BrowserWindow,
             } as DeviceConnectBodyDeps,
             viewState: {
+                connectedDevice: 'Test Device',
                 deviceConnectState: DeviceConnectState[stateName],
             },
         } as DeviceConnectBodyProps;

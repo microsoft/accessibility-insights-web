@@ -20,8 +20,8 @@ exports[`DeviceConnectBodyTest renders, with device connect state = Connected 1`
     }
   />
   <DeviceConnectConnectedDevice
-    hasFailed={false}
-    isConnecting={false}
+    connectedDevice="Test Device"
+    deviceConnectState={2}
   />
   <DeviceConnectFooter
     canStartTesting={true}
@@ -50,8 +50,8 @@ exports[`DeviceConnectBodyTest renders, with device connect state = Connecting 1
     }
   />
   <DeviceConnectConnectedDevice
-    hasFailed={false}
-    isConnecting={true}
+    connectedDevice="Test Device"
+    deviceConnectState={1}
   />
   <DeviceConnectFooter
     canStartTesting={false}
@@ -80,8 +80,8 @@ exports[`DeviceConnectBodyTest renders, with device connect state = Default 1`] 
     }
   />
   <DeviceConnectConnectedDevice
-    hasFailed={false}
-    isConnecting={false}
+    connectedDevice="Test Device"
+    deviceConnectState={0}
   />
   <DeviceConnectFooter
     canStartTesting={false}
@@ -110,8 +110,8 @@ exports[`DeviceConnectBodyTest renders, with device connect state = Error 1`] = 
     }
   />
   <DeviceConnectConnectedDevice
-    hasFailed={true}
-    isConnecting={false}
+    connectedDevice="Test Device"
+    deviceConnectState={3}
   />
   <DeviceConnectFooter
     canStartTesting={false}
