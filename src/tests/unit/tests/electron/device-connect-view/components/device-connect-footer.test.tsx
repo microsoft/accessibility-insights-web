@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 
 import { DeviceConnectFooter, DeviceConnectFooterProps } from 'electron/device-connect-view/components/device-connect-footer';
+import { footerButtonCancel } from 'electron/device-connect-view/components/device-connect-footer.scss';
 import { shallow } from 'enzyme';
 import { Button } from 'office-ui-fabric-react/lib/Button';
 import * as React from 'react';
@@ -32,7 +33,7 @@ describe('DeviceConnectFooterTest', () => {
         };
 
         const rendered = shallow(<DeviceConnectFooter {...props} />);
-        const button = rendered.find('.footer-button-cancel');
+        const button = rendered.find(`.${footerButtonCancel}`);
         button.simulate('click', eventStub);
 
         onClickMock.verify(onClick => onClick(), Times.once());

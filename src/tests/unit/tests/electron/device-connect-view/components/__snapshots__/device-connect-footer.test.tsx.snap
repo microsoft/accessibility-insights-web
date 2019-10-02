@@ -2,15 +2,15 @@
 
 exports[`DeviceConnectFooterTest render 1`] = `
 <footer
-  className="device-connect-footer"
+  className="deviceConnectFooter"
 >
   <CustomizedDefaultButton
-    className="footer-button-cancel"
+    className="footerButtonCancel"
     onClick={[Function]}
     text="Cancel"
   />
   <CustomizedPrimaryButton
-    className="footer-button-start"
+    className="footerButtonStart"
     disabled={true}
     text="Start testing"
   />
