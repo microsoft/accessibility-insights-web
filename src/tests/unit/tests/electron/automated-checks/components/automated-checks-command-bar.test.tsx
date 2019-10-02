@@ -33,7 +33,7 @@ describe('AutomatedChecksCommandBar', () => {
         } as AutomatedChecksCommandBarProps;
 
         const rendered = shallow(<AutomatedChecksCommandBar {...props} />);
-        const button = rendered.find('.button-rescan');
+        const button = rendered.find('[text="Rescan"]');
 
         button.simulate('click', eventStub);
 

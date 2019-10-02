@@ -5,7 +5,6 @@ exports[`AutomatedChecksCommandBar render 1`] = `
   className="automatedChecksCommandBar"
 >
   <CustomizedActionButton
-    className="button-rescan"
     iconProps={
       Object {
         "iconName": "Refresh",

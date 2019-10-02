@@ -22,7 +22,6 @@ export const AutomatedChecksCommandBar = NamedFC<AutomatedChecksCommandBarProps>
         return (
             <div className={automatedChecksCommandBar}>
                 <ActionButton
-                    className="button-rescan"
                     iconProps={{
                         iconName: 'Refresh',
                     }}
