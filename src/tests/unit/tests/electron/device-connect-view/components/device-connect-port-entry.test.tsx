@@ -57,9 +57,14 @@ describe('DeviceConnectPortEntryTest', () => {
             const portNumberCases = [testPortNumber.toString(), '', null];
 
             it.each(portNumberCases)('handles port text = "%s"', portNumberText => {
+                deviceConnectActionCreatorMock.setup(creator => creator.resetConnection()).verifiable(Times.once());
+
                 const props = {
                     viewState: {
                         deviceConnectState: DeviceConnectState.Default,
+                    },
+                    deps: {
+                        deviceConnectActionCreator: deviceConnectActionCreatorMock.object,
                     },
                 } as DeviceConnectPortEntryProps;
 
@@ -70,6 +75,7 @@ describe('DeviceConnectPortEntryTest', () => {
                 rendered.find('.port-number-field').simulate('change', null, portNumberText);
 
                 expect(rendered.state()).toMatchSnapshot('after');
+                deviceConnectActionCreatorMock.verifyAll();
             });
         });
 

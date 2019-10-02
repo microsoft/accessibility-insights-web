@@ -66,6 +66,7 @@ export class DeviceConnectPortEntry extends React.Component<DeviceConnectPortEnt
     }
 
     private onPortTextChanged = (event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>, newValue?: string) => {
+        this.props.deps.deviceConnectActionCreator.resetConnection();
         this.setState({ port: newValue });
     };
 
