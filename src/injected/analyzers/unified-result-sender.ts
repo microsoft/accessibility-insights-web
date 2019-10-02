@@ -25,6 +25,10 @@ export class UnifiedResultSender {
             rules: this.convertScanResultsToUnifiedRules(axeResults.originalResult),
             toolInfo: {
                 scanEngineProperties: {
+                    name: 'axe-core',
+                    version: this.environmentInfoProvider.getEnvironmentInfo().axeCoreVersion,
+                },
+                applicationProperties: {
                     name: toolName,
                     version: this.environmentInfoProvider.getEnvironmentInfo().extensionVersion,
                 },

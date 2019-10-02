@@ -8,6 +8,11 @@ export interface ScanEngineProperties {
     version: string;
 }
 
+export interface ApplicationProperties {
+    name: string;
+    version: string;
+}
+
 export interface OSProperties {
     name: string;
     version: string;
@@ -26,6 +31,7 @@ export interface PlatformData {
 
 export interface ToolData {
     scanEngineProperties: ScanEngineProperties;
+    applicationProperties: ApplicationProperties;
 }
 
 export interface UnifiedRule {
