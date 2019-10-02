@@ -5,7 +5,7 @@ import { UnifiedResult } from 'common/types/store-data/unified-data-interface';
 import { some, values } from 'lodash';
 import { Icon, Label } from 'office-ui-fabric-react';
 import * as React from 'react';
-import { foot, highlightButton, kebabMenuButton } from './card-footer.scss';
+import { foot, highlightButton } from './card-footer.scss';
 
 import { CardInteractionSupport } from './card-interaction-support';
 import { CardKebabMenuButton } from './card-kebab-menu-button';
