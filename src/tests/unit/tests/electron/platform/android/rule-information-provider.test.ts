@@ -5,6 +5,7 @@ import { RuleInformation } from '../../../../../../electron/platform/android/rul
 import { RuleInformationProvider } from '../../../../../../electron/platform/android/rule-information-provider';
 import { RuleResultsData } from '../../../../../../electron/platform/android/scan-results';
 import { buildColorContrastRuleResultObject, buildTouchSizeWcagRuleResultObject } from './scan-results-helpers';
+import { InstancePropertyBag } from '../../../../../../common/types/store-data/unified-data-interface';
 
 describe('RuleInformationProvider', () => {
     let provider: RuleInformationProvider;
@@ -17,14 +18,14 @@ describe('RuleInformationProvider', () => {
         expect(provider.getRuleInformation('unknown rule')).toBeNull();
     });
 
-    function validateHowToFix(ruleId: string, ruleResult: RuleResultsData): string {
+    function validateHowToFix(ruleId: string, ruleResult: RuleResultsData): InstancePropertyBag {
         const ruleInformation: RuleInformation = provider.getRuleInformation(ruleId);
-        const howToFix: string = ruleInformation.howToFix(ruleResult);
+        const howToFix = ruleInformation.howToFix(ruleResult);
 
         expect(ruleInformation).toBeTruthy();
         expect(ruleInformation.ruleId).toEqual(ruleId);
         expect(ruleInformation.ruleDescription.length).toBeGreaterThan(0);
-        expect(howToFix.length).toBeGreaterThan(0);
+        expect(howToFix).toBeTruthy();
 
         return howToFix;
     }
@@ -32,29 +33,29 @@ describe('RuleInformationProvider', () => {
     test('getRuleInformation returns correct data for ColorContrast rule', () => {
         const testRuleId: string = 'ColorContrast';
         const ruleResult: RuleResultsData = buildColorContrastRuleResultObject('FAIL', 2.798498811425733, 'ff979797', 'fffafafa');
-        const howToFix: string = validateHowToFix(testRuleId, ruleResult);
+        const howToFix: InstancePropertyBag = validateHowToFix(testRuleId, ruleResult);
         expect(howToFix).toMatchSnapshot();
     });
 
     test('getRuleInformation returns correct data for TouchSizeWcag rule', () => {
         const testRuleId: string = 'TouchSizeWcag';
         const ruleResult: RuleResultsData = buildTouchSizeWcagRuleResultObject('FAIL', 2.25, 86, 95);
-        const howToFix: string = validateHowToFix(testRuleId, ruleResult);
+        const howToFix: InstancePropertyBag = validateHowToFix(testRuleId, ruleResult);
         expect(howToFix).toMatchSnapshot();
     });
 
     test('getRuleInformation returns correct data for ActiveViewName rule', () => {
-        const howToFix: string = validateHowToFix('ActiveViewName', null);
+        const howToFix: InstancePropertyBag = validateHowToFix('ActiveViewName', null);
         expect(howToFix).toMatchSnapshot();
     });
 
     test('getRuleInformation returns correct data for EditTextValue rule', () => {
-        const howToFix: string = validateHowToFix('EditTextValue', null);
+        const howToFix: InstancePropertyBag = validateHowToFix('EditTextValue', null);
         expect(howToFix).toMatchSnapshot();
     });
 
     test('getRuleInformation returns correct data for ImageViewName rule', () => {
-        const howToFix: string = validateHowToFix('ImageViewName', null);
+        const howToFix: InstancePropertyBag = validateHowToFix('ImageViewName', null);
         expect(howToFix).toMatchSnapshot();
     });
 });
