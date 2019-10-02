@@ -15,7 +15,7 @@
         margin: 0px;
     }
 
-    .header-icon {
+    :global(.header-icon) {
         float: left;
         padding: 0px 3px;
         height: 17px;

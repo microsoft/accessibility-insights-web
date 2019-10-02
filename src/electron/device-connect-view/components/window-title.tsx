@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 import { NamedFC } from '../../../common/react/named-fc';
+import { headerText, windowTitle } from './window-title.scss';
 
 export interface WindowTitleProps {
     title: string;
@@ -10,10 +11,10 @@ export interface WindowTitleProps {
 
 export const WindowTitle = NamedFC<WindowTitleProps>('WindowTitle', (props: WindowTitleProps) => {
     return (
-        <header className="window-title">
+        <header className={windowTitle}>
             <div>
                 {props.children}
-                <h1 className="header-text">{props.title}</h1>
+                <h1 className={headerText}>{props.title}</h1>
             </div>
         </header>
     );
