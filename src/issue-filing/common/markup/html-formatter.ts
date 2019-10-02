@@ -57,6 +57,7 @@ export const createFormatter = (
         sectionHeaderSeparator,
         footerSeparator,
         sectionSeparator,
+        howToFix,
     };
 };
 

@@ -39,6 +39,7 @@ const createFormatter = (
         sectionHeaderSeparator,
         footerSeparator,
         sectionSeparator: newLine,
+        howToFix,
     };
 };
 

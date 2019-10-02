@@ -14,8 +14,12 @@ describe('PlainTextFormatter', () => {
         expect(testSubject.sectionHeader('test-section-header')).toEqual('test-section-header');
     });
 
-    it('returns how to fix section', () => {
+    it('returns how to fix section from string', () => {
         expect(testSubject.howToFixSection('test-failure-summary')).toEqual('\ntest-failure-summary');
+    });
+
+    it('returns how to fix section from how to fix object', () => {
+        expect(testSubject.howToFix({ all: ['fix this'], oneOf: [], none: [] })).toEqual('\nFix the following:    fix this');
     });
 
     it('returns section header separator', () => {

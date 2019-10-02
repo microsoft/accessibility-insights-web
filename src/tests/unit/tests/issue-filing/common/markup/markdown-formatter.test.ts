@@ -2,8 +2,10 @@
 // Licensed under the MIT License.
 import { IMock, It, Mock, MockBehavior } from 'typemoq';
 
+import { buildHowToFixInstructions } from '../../../../../../issue-filing/common/markup/how-to-fix-instruction-builder';
 import { createFormatter } from '../../../../../../issue-filing/common/markup/markdown-formatter';
 import { MarkupFormatter } from '../../../../../../issue-filing/common/markup/markup-formatter';
+import { HowToFixInstructions } from '../../../../../../injected/adapters/scan-results-to-unified-results';
 
 describe('MarkdownFormatter', () => {
     let truncateMock: IMock<(text: string) => string>;
@@ -11,19 +13,31 @@ describe('MarkdownFormatter', () => {
 
     beforeEach(() => {
         truncateMock = Mock.ofInstance((text: string) => text, MockBehavior.Strict);
-        testSubject = createFormatter(truncateMock.object);
+        testSubject = createFormatter(truncateMock.object, buildHowToFixInstructions);
     });
 
     it('returns section header', () => {
         expect(testSubject.sectionHeader('test-header')).toEqual('#### test-header');
     });
 
-    it('returns how to fix section', () => {
+    it('returns how to fix section from string', () => {
         const failureSummary = 'fix\n1\n2\n3\n4';
 
         const result = testSubject.howToFixSection(failureSummary);
 
         expect(result).toEqual('    fix\n    1\n    2\n    3\n    4');
+    });
+
+    it('returns how to fix section from how to fix object', () => {
+        const failureSummary: HowToFixInstructions = {
+            all: ['1'],
+            oneOf: [],
+            none: ['2'],
+        };
+
+        const result = testSubject.howToFix(failureSummary);
+
+        expect(result).toEqual('Fix ALL of the following: \n    1\n    2\n');
     });
 
     it('returns section header separator', () => {

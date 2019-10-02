@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HTMLFormatter returns how to fix section from HowToFixInstructions object 1`] = `
+"<div class=\\"insights-fix-instruction-title\\">Fix ALL of the following: </div>
+                                    <ul class=\\"insights-fix-instruction-list\\">
+                                        <li>3</li>,<li>2</li>
+                                    </ul>
+                                <div class=\\"insights-fix-instruction-title\\">Fix the following:</div>
+                                    <ul class=\\"insights-fix-instruction-list\\">
+                                        <li>1</li>
+                                    </ul>
+                                "
+`;

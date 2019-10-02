@@ -8,7 +8,7 @@ export type InstructionListBuilder = (title: string, checks: string[]) => string
 export const buildHowToFixInstructions = (instructions: HowToFixInstructions, listBuilder: InstructionListBuilder) => {
     const getInstructionList = (checks: string[], title: string) => {
         if (isEmpty(checks)) {
-            return null;
+            return '';
         }
 
         const displayTitle = checks.length === 1 ? 'Fix the following:' : title;
