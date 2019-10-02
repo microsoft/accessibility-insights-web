@@ -8,6 +8,7 @@ import * as React from 'react';
 import { EventStubFactory } from 'tests/unit/common/event-stub-factory';
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';
 
+import { portNumberField } from 'electron/device-connect-view/components/device-connect-port-entry.scss';
 import { EnumHelper } from '../../../../../../common/enum-helper';
 import { DeviceConnectState } from '../../../../../../electron/device-connect-view/components/device-connect-state';
 
@@ -72,7 +73,7 @@ describe('DeviceConnectPortEntryTest', () => {
 
                 expect(rendered.state()).toMatchSnapshot('before');
 
-                rendered.find('.port-number-field').simulate('change', null, portNumberText);
+                rendered.find(`.${portNumberField}`).simulate('change', null, portNumberText);
 
                 expect(rendered.state()).toMatchSnapshot('after');
                 deviceConnectActionCreatorMock.verifyAll();
@@ -100,5 +101,3 @@ describe('DeviceConnectPortEntryTest', () => {
         });
     });
 });
-
-//

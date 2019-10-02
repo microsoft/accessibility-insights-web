@@ -2,14 +2,14 @@
 
 exports[`DeviceConnectPortEntryTest renders with "Connected" 1`] = `
 <div
-  className="device-connect-port-entry"
+  className="deviceConnectPortEntry"
 >
   <h3>
     Android device port number
   </h3>
   <MaskedTextField
     ariaLabel="Port number"
-    className="port-number-field"
+    className="portNumberField"
     mask="99999"
     maskChar=""
     maskFormat={
@@ -34,14 +34,14 @@ exports[`DeviceConnectPortEntryTest renders with "Connected" 1`] = `
 
 exports[`DeviceConnectPortEntryTest renders with "Connected" and some text in the port text field 1`] = `
 <div
-  className="device-connect-port-entry"
+  className="deviceConnectPortEntry"
 >
   <h3>
     Android device port number
   </h3>
   <MaskedTextField
     ariaLabel="Port number"
-    className="port-number-field"
+    className="portNumberField"
     mask="99999"
     maskChar=""
     maskFormat={
@@ -66,14 +66,14 @@ exports[`DeviceConnectPortEntryTest renders with "Connected" and some text in th
 
 exports[`DeviceConnectPortEntryTest renders with "Connecting" 1`] = `
 <div
-  className="device-connect-port-entry"
+  className="deviceConnectPortEntry"
 >
   <h3>
     Android device port number
   </h3>
   <MaskedTextField
     ariaLabel="Port number"
-    className="port-number-field"
+    className="portNumberField"
     mask="99999"
     maskChar=""
     maskFormat={
@@ -98,14 +98,14 @@ exports[`DeviceConnectPortEntryTest renders with "Connecting" 1`] = `
 
 exports[`DeviceConnectPortEntryTest renders with "Connecting" and some text in the port text field 1`] = `
 <div
-  className="device-connect-port-entry"
+  className="deviceConnectPortEntry"
 >
   <h3>
     Android device port number
   </h3>
   <MaskedTextField
     ariaLabel="Port number"
-    className="port-number-field"
+    className="portNumberField"
     mask="99999"
     maskChar=""
     maskFormat={
@@ -130,14 +130,14 @@ exports[`DeviceConnectPortEntryTest renders with "Connecting" and some text in t
 
 exports[`DeviceConnectPortEntryTest renders with "Default" 1`] = `
 <div
-  className="device-connect-port-entry"
+  className="deviceConnectPortEntry"
 >
   <h3>
     Android device port number
   </h3>
   <MaskedTextField
     ariaLabel="Port number"
-    className="port-number-field"
+    className="portNumberField"
     mask="99999"
     maskChar=""
     maskFormat={
@@ -162,14 +162,14 @@ exports[`DeviceConnectPortEntryTest renders with "Default" 1`] = `
 
 exports[`DeviceConnectPortEntryTest renders with "Default" and some text in the port text field 1`] = `
 <div
-  className="device-connect-port-entry"
+  className="deviceConnectPortEntry"
 >
   <h3>
     Android device port number
   </h3>
   <MaskedTextField
     ariaLabel="Port number"
-    className="port-number-field"
+    className="portNumberField"
     mask="99999"
     maskChar=""
     maskFormat={
@@ -194,14 +194,14 @@ exports[`DeviceConnectPortEntryTest renders with "Default" and some text in the 
 
 exports[`DeviceConnectPortEntryTest renders with "Error" 1`] = `
 <div
-  className="device-connect-port-entry"
+  className="deviceConnectPortEntry"
 >
   <h3>
     Android device port number
   </h3>
   <MaskedTextField
     ariaLabel="Port number"
-    className="port-number-field"
+    className="portNumberField"
     mask="99999"
     maskChar=""
     maskFormat={
@@ -226,14 +226,14 @@ exports[`DeviceConnectPortEntryTest renders with "Error" 1`] = `
 
 exports[`DeviceConnectPortEntryTest renders with "Error" and some text in the port text field 1`] = `
 <div
-  className="device-connect-port-entry"
+  className="deviceConnectPortEntry"
 >
   <h3>
     Android device port number
   </h3>
   <MaskedTextField
     ariaLabel="Port number"
-    className="port-number-field"
+    className="portNumberField"
     mask="99999"
     maskChar=""
     maskFormat={
