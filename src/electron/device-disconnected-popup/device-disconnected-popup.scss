@@ -11,7 +11,7 @@
         }
     }
 
-    .ms-Dialog-header {
+    :global(.ms-Dialog-header) {
         height: 50px;
     }
 
