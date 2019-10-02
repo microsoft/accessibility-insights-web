@@ -1,9 +1,14 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { RuleResultsData, ScanResults } from 'electron/platform/android/scan-results';
+import { RuleResultsData, ScanResults, ViewElementData } from 'electron/platform/android/scan-results';
 
-export function buildScanResultsObject(deviceName: string = null, appIdentifier: string = null, resultsArray: any = null): ScanResults {
+export function buildScanResultsObject(
+    deviceName: string = null,
+    appIdentifier: string = null,
+    resultsArray: RuleResultsData[] = null,
+    axeView: ViewElementData = null,
+): ScanResults {
     const scanResults = {};
     const axeContext = {};
     let addContext = false;
@@ -22,6 +27,11 @@ export function buildScanResultsObject(deviceName: string = null, appIdentifier:
         addContext = true;
     }
 
+    if (axeView) {
+        axeContext['axeView'] = axeView;
+        addContext = true;
+    }
+
     if (resultsArray) {
         scanResults['axeRuleResults'] = resultsArray;
     }
@@ -33,10 +43,13 @@ export function buildScanResultsObject(deviceName: string = null, appIdentifier:
     return new ScanResults(scanResults);
 }
 
-export function buildRuleResultObject(ruleId: string, status: string, props: any = null): RuleResultsData {
+export function buildRuleResultObject(ruleId: string, status: string, axeViewId: string = null, props: any = null): RuleResultsData {
     const result = {};
     result['ruleId'] = ruleId;
     result['status'] = status;
+    if (axeViewId) {
+        result['axeViewId'] = axeViewId;
+    }
     if (props) {
         result['props'] = props;
     }
@@ -44,22 +57,54 @@ export function buildRuleResultObject(ruleId: string, status: string, props: any
     return result as RuleResultsData;
 }
 
-export function buildTouchSizeWcagRuleResultObject(status: string, dpi: number, height: number, width: number): RuleResultsData {
+export function buildTouchSizeWcagRuleResultObject(
+    status: string,
+    dpi: number,
+    height: number,
+    width: number,
+    axeViewId: string = null,
+): RuleResultsData {
     const props = {};
     // This is based on the output of the Android service
     props['Screen Dots Per Inch'] = dpi;
     props['height'] = height;
     props['width'] = width;
 
-    return buildRuleResultObject('TouchSizeWcag', status, props);
+    return buildRuleResultObject('TouchSizeWcag', status, axeViewId, props);
 }
 
-export function buildColorContrastRuleResultObject(status: string, ratio: number, foreground: string, background: string): RuleResultsData {
+export function buildColorContrastRuleResultObject(
+    status: string,
+    ratio: number,
+    foreground: string,
+    background: string,
+    axeViewId: string = null,
+): RuleResultsData {
     const props = {};
     // This is based on the output of the Android service
     props['Color Contrast Ratio'] = ratio;
     props['Foreground Color'] = foreground;
     props['Background Color'] = background;
 
-    return buildRuleResultObject('ColorContrast', status, props);
+    return buildRuleResultObject('ColorContrast', status, axeViewId, props);
+}
+
+export function buildViewElement(
+    axeViewId: string,
+    boundsInScreen: any,
+    className: string,
+    contentDescription: string,
+    text: string,
+    children: ViewElementData[],
+): ViewElementData {
+    const viewElement = {
+        axeViewId: axeViewId,
+        boundsInScreen: boundsInScreen,
+        className: className,
+        contentDescription: contentDescription,
+        text: text,
+        children: children,
+    };
+
+    return viewElement as ViewElementData;
 }
