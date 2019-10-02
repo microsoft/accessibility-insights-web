@@ -2,9 +2,10 @@
 // Licensed under the MIT License.
 import { IMock, Mock, Times } from 'typemoq';
 import { UnifiedScanCompletedPayload } from '../../../../../background/actions/action-payloads';
+import { EnvironmentInfoProvider } from '../../../../../common/environment-info-provider';
 import { Message } from '../../../../../common/message';
 import { Messages } from '../../../../../common/messages';
-import { UnifiedResult, UnifiedRule } from '../../../../../common/types/store-data/unified-data-interface';
+import { ToolData, UnifiedResult, UnifiedRule } from '../../../../../common/types/store-data/unified-data-interface';
 import { ConvertScanResultsToUnifiedResultsDelegate } from '../../../../../injected/adapters/scan-results-to-unified-results';
 import { ConvertScanResultsToUnifiedRulesDelegate } from '../../../../../injected/adapters/scan-results-to-unified-rules';
 import { MessageDelegate } from '../../../../../injected/analyzers/rule-analyzer';
@@ -20,17 +21,20 @@ describe('sendConvertedResults', () => {
         const convertToUnifiedRulesMock: IMock<ConvertScanResultsToUnifiedRulesDelegate> = Mock.ofInstance(
             (scanResults: ScanResults) => null,
         );
+        const environmentInfoProviderMock: IMock<EnvironmentInfoProvider> = Mock.ofType(EnvironmentInfoProvider);
         const uuidGeneratorStub = () => null;
         const testSubject = new UnifiedResultSender(
             sendDelegate.object,
             convertToUnifiedMock.object,
             convertToUnifiedRulesMock.object,
+            environmentInfoProviderMock.object,
             uuidGeneratorStub,
         );
 
         const axeInputResults = {} as any;
         const unifiedResults: UnifiedResult[] = [];
         const unifiedRules: UnifiedRule[] = [];
+        const toolInfo = {} as ToolData;
         convertToUnifiedMock.setup(m => m(axeInputResults, uuidGeneratorStub)).returns(val => unifiedResults);
         convertToUnifiedRulesMock.setup(m => m(axeInputResults)).returns(val => unifiedRules);
         testSubject.sendResults({
@@ -42,6 +46,7 @@ describe('sendConvertedResults', () => {
         const expectedPayload: UnifiedScanCompletedPayload = {
             scanResult: unifiedResults,
             rules: unifiedRules,
+            toolInfo: toolInfo,
         };
         const expectedMessage: Message = {
             messageType: Messages.UnifiedScan.ScanCompleted,
