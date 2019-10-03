@@ -15,7 +15,7 @@ export type CardKebabMenuButtonDeps = {
     windowUtils: WindowUtils;
     issueDetailsTextGenerator: IssueDetailsTextGenerator;
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
-    navigator: NavigatorUtils;
+    navigatorUtils: NavigatorUtils;
 };
 
 export interface CardKebabMenuButtonState {
@@ -58,7 +58,6 @@ export class CardKebabMenuButton extends React.Component<CardKebabMenuButtonProp
     public renderToast(): JSX.Element {
         return (
             <>
-                {' '}
                 {this.state.showingCopyToast ? (
                     <Toast onTimeout={() => this.setState({ showingCopyToast: false })} deps={this.props.deps}>
                         Failure details copied.
@@ -109,8 +108,9 @@ export class CardKebabMenuButton extends React.Component<CardKebabMenuButtonProp
             onClick(event);
         }
         // tslint:disable-next-line: no-floating-promises
-        this.props.deps.navigator.copyToClipboard('The quick brown fox jumps over the lazy dog'); // to be changed when we finish the new data format and builder
-        this.setState({ showingCopyToast: true });
+        this.props.deps.navigatorUtils.copyToClipboard('The quick brown fox jumps over the lazy dog').then(() => {
+            this.setState({ showingCopyToast: true });
+        }); // to be changed when we finish the new data format and builder
     };
 
     private openDropdown = (event): void => {

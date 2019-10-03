@@ -31,8 +31,7 @@ export class NavigatorUtils {
         return userAgent.substring(versionOffset + versionPrefix.length + 1).split(' ')[0];
     }
 
-    public copyToClipboard(data: string): void {
-        // tslint:disable-next-line: no-floating-promises
-        this.navigatorInfo.clipboard.writeText(data);
+    public async copyToClipboard(data: string): Promise<void> {
+        await this.navigatorInfo.clipboard.writeText(data);
     }
 }

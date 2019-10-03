@@ -53,7 +53,7 @@ describe('ReportHtmlGenerator', () => {
                 windowUtils: null,
                 issueDetailsTextGenerator: null,
                 detailsViewActionMessageCreator: null,
-                navigator: null,
+                navigatorUtils: null,
             },
             fixInstructionProcessor: fixInstructionProcessorMock.object,
             sectionFactory: sectionFactoryMock.object,

@@ -12,9 +12,7 @@ exports[`CardKebabMenuButtonTest render 1`] = `
     }
     onClick={[Function]}
   />
-  <React.Fragment>
-     
-  </React.Fragment>
+  <React.Fragment />
 </div>
 `;
 
@@ -54,8 +52,6 @@ exports[`CardKebabMenuButtonTest render ContextualMenu 1`] = `
     onDismiss={[Function]}
     target="Card View"
   />
-  <React.Fragment>
-     
-  </React.Fragment>
+  <React.Fragment />
 </div>
 `;

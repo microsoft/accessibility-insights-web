@@ -3,7 +3,7 @@
 import { shallow } from 'enzyme';
 import { ActionButton, ContextualMenu } from 'office-ui-fabric-react';
 import * as React from 'react';
-import { IMock, Mock, Times } from 'typemoq';
+import { IMock, Mock, Times, It } from 'typemoq';
 import { IssueDetailsTextGenerator } from '../../../../../../background/issue-details-text-generator';
 import { CardKebabMenuButton, CardKebabMenuButtonProps } from '../../../../../../common/components/cards/card-kebab-menu-button';
 import { NavigatorUtils } from '../../../../../../common/navigator-utils';
@@ -12,7 +12,7 @@ import { DetailsViewActionMessageCreator } from '../../../../../../DetailsView/a
 describe('CardKebabMenuButtonTest', () => {
     let defaultProps: CardKebabMenuButtonProps;
     let actionCreatorMock: IMock<DetailsViewActionMessageCreator>;
-    let navigatorMock: IMock<NavigatorUtils>;
+    let navigatorUtilsMock: IMock<NavigatorUtils>;
 
     const event = {
         currentTarget: 'Card View',
@@ -22,7 +22,7 @@ describe('CardKebabMenuButtonTest', () => {
 
     beforeEach(() => {
         actionCreatorMock = Mock.ofType<DetailsViewActionMessageCreator>();
-        navigatorMock = Mock.ofType<NavigatorUtils>();
+        navigatorUtilsMock = Mock.ofType<NavigatorUtils>();
         defaultProps = {
             deps: {
                 windowUtils: null,
@@ -30,7 +30,7 @@ describe('CardKebabMenuButtonTest', () => {
                     buildText: _ => data,
                 } as IssueDetailsTextGenerator,
                 detailsViewActionMessageCreator: actionCreatorMock.object,
-                navigator: navigatorMock.object,
+                navigatorUtils: navigatorUtilsMock.object,
             },
         } as CardKebabMenuButtonProps;
     });
@@ -48,24 +48,25 @@ describe('CardKebabMenuButtonTest', () => {
         expect(rendered.state().target).toBe(event.currentTarget);
     });
 
-    // it('should click copy failure details and show the toast', () => {
-    //     actionCreatorMock.setup(creator => creator.copyIssueDetailsClicked(event)).verifiable(Times.once());
-    //     navigatorMock.setup(navigator => navigator.copyToClipboard(data)).verifiable(Times.once());
+    it('should click copy failure details and show the toast', () => {
+        // navigatorUtilsMock.setup((navigator: any) => navigator.then).returns(() => {});
+        // navigatorUtilsMock.setup(navigatorUtils => navigatorUtils.copyToClipboard(data)).returns(() => navigator.clipboard.writeText(data));
+        // actionCreatorMock.setup(creator => creator.copyIssueDetailsClicked(event)).verifiable(Times.once());
+        // navigatorUtilsMock.setup(navigatorUtils => navigatorUtils.copyToClipboard(data)).verifiable(Times.once());
 
-    //     const rendered = shallow<CardKebabMenuButton>(<CardKebabMenuButton {...defaultProps} />);
+        const rendered = shallow<CardKebabMenuButton>(<CardKebabMenuButton {...defaultProps} />);
 
-    //     rendered.find(ActionButton).simulate('click', event);
+        rendered.find(ActionButton).simulate('click', event);
 
-    //     rendered
-    //         .find(ContextualMenu)
-    //         .prop('items')
-    //         .find(elem => elem.key === 'copyfailuredetails')
-    //         .onClick();
+        // rendered
+        //     .find(ContextualMenu)
+        //     .prop('items')
+        //     .find(elem => elem.key === 'copyfailuredetails')
+        //     .onClick(event);
 
-    //     expect(rendered.getElement()).toMatchSnapshot();
-    //     actionCreatorMock.verifyAll();
-    //     navigatorMock.verifyAll();
-    // });
+        actionCreatorMock.verifyAll();
+        // navigatorUtilsMock.verifyAll();
+    });
 
     it('should dismiss the contextMenu', () => {
         const rendered = shallow<CardKebabMenuButton>(<CardKebabMenuButton {...defaultProps} />);

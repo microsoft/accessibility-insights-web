@@ -53,7 +53,7 @@ export class ReportHtmlGenerator {
                 windowUtils: null,
                 issueDetailsTextGenerator: null,
                 detailsViewActionMessageCreator: null,
-                navigator: null,
+                navigatorUtils: null,
             },
             ruleResultsByStatus: ruleResultsByStatus,
             environmentInfo: this.environmentInfo,
