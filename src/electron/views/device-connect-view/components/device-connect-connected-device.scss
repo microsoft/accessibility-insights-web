@@ -1,0 +1,27 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+@import '../../../../common/styles/colors.scss';
+@import '../../../../common/styles/fonts.scss';
+
+.device-connect-connected-device {
+    .device-connect-spinner {
+        font-family: $fontFamily;
+        font-size: 12px;
+        line-height: 16px;
+        float: left;
+    }
+
+    .scanned-text {
+        font-family: $fontFamily;
+        font-size: 14px;
+        line-height: 19px;
+    }
+
+    .connection-error-icon {
+        color: $negative-outcome;
+        height: 16px;
+        margin-right: 4px;
+        vertical-align: text-bottom;
+        width: 16px;
+    }
+}
