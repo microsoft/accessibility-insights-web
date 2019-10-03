@@ -314,6 +314,7 @@ if (isNaN(tabId) === false) {
                 getPropertyConfigById: getPropertyConfiguration,
                 collapsibleControl: CardsCollapsibleControl,
                 cardInteractionSupport: allCardInteractionsSupported,
+                navigator: new NavigatorUtils(window.navigator),
             };
 
             const renderer = new DetailsViewRenderer(

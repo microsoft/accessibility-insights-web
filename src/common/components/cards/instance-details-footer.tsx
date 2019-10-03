@@ -8,13 +8,13 @@ import * as React from 'react';
 import { foot, highlightDiv } from './card-footer.scss';
 
 import { CardInteractionSupport } from './card-interaction-support';
-import { CardKebabMenuButton } from './card-kebab-menu-button';
+import { CardKebabMenuButton, CardKebabMenuButtonDeps } from './card-kebab-menu-button';
 
 export type HighlightState = 'visible' | 'hidden' | 'unavailable';
 
 export type InstanceDetailsFooterDeps = {
     cardInteractionSupport: CardInteractionSupport;
-};
+} & CardKebabMenuButtonDeps;
 
 export type InstanceDetailsFooterProps = {
     deps: InstanceDetailsFooterDeps;
@@ -32,7 +32,7 @@ export const InstanceDetailsFooter = NamedFC<InstanceDetailsFooterProps>('Instan
     }
 
     const kebabMenuIcon = () => {
-        return <CardKebabMenuButton />;
+        return <CardKebabMenuButton deps={deps} />;
     };
 
     const HighlightButton = () => {

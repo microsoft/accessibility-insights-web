@@ -4,14 +4,30 @@ import { IPoint } from '@uifabric/utilities';
 import { ActionButton } from 'office-ui-fabric-react/lib/Button';
 import { ContextualMenu, IContextualMenuItem } from 'office-ui-fabric-react/lib/ContextualMenu';
 import * as React from 'react';
+import { IssueDetailsTextGenerator } from '../../../background/issue-details-text-generator';
+import { DetailsViewActionMessageCreator } from '../../../DetailsView/actions/details-view-action-message-creator';
+import { NavigatorUtils } from '../../navigator-utils';
+import { WindowUtils } from '../../window-utils';
+import { Toast } from '../toast';
 import { kebabMenuButton } from './card-footer.scss';
+
+export type CardKebabMenuButtonDeps = {
+    windowUtils: WindowUtils;
+    issueDetailsTextGenerator: IssueDetailsTextGenerator;
+    detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
+    navigator: NavigatorUtils;
+};
 
 export interface CardKebabMenuButtonState {
     isContextMenuVisible: boolean;
     target?: HTMLElement | string | MouseEvent | IPoint | null;
+    showingCopyToast: boolean;
+    showNeedsSettingsContent: boolean;
 }
 
-export interface CardKebabMenuButtonProps {}
+export interface CardKebabMenuButtonProps {
+    deps: CardKebabMenuButtonDeps;
+}
 
 export class CardKebabMenuButton extends React.Component<CardKebabMenuButtonProps, CardKebabMenuButtonState> {
     constructor(props: CardKebabMenuButtonProps) {
@@ -19,6 +35,8 @@ export class CardKebabMenuButton extends React.Component<CardKebabMenuButtonProp
 
         this.state = {
             isContextMenuVisible: false,
+            showingCopyToast: false,
+            showNeedsSettingsContent: false,
         };
     }
 
@@ -32,7 +50,21 @@ export class CardKebabMenuButton extends React.Component<CardKebabMenuButtonProp
                     onClick={this.openDropdown}
                 />
                 {this.renderContextMenu()}
+                {this.renderToast()}
             </div>
+        );
+    }
+
+    public renderToast(): JSX.Element {
+        return (
+            <>
+                {' '}
+                {this.state.showingCopyToast ? (
+                    <Toast onTimeout={() => this.setState({ showingCopyToast: false })} deps={this.props.deps}>
+                        Failure details copied.
+                    </Toast>
+                ) : null}
+            </>
         );
     }
 
@@ -71,8 +103,14 @@ export class CardKebabMenuButton extends React.Component<CardKebabMenuButtonProp
         // todo
     };
 
-    private copyFailureDetails = (): void => {
-        // todo
+    private copyFailureDetails = (event: React.MouseEvent<any>): void => {
+        const onClick = this.props.deps.detailsViewActionMessageCreator.copyIssueDetailsClicked;
+        if (onClick) {
+            onClick(event);
+        }
+        // tslint:disable-next-line: no-floating-promises
+        this.props.deps.navigator.copyToClipboard('The quick brown fox jumps over the lazy dog'); // to be changed when we finish the new data format and builder
+        this.setState({ showingCopyToast: true });
     };
 
     private openDropdown = (event): void => {
