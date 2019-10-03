@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { Shell } from 'electron';
-import { ElectronExternalLink, ElectronExternalLinkProps } from 'electron/device-connect-view/components/electron-external-link';
+import { ElectronExternalLink, ElectronExternalLinkProps } from 'electron/views/device-connect-view/components/electron-external-link';
 import { shallow } from 'enzyme';
 import { Button } from 'office-ui-fabric-react/lib/Button';
 import * as React from 'react';

@@ -8,7 +8,7 @@ import { IMock, It, Mock, Times } from 'typemoq';
 import { BaseActionPayload } from '../../../../background/actions/action-payloads';
 import { TelemetryEventSource, TriggeredByNotApplicable } from '../../../../common/extension-telemetry-events';
 import { APP_INITIALIZED } from '../../../../electron/common/electron-telemetry-events';
-import { sendAppInitializedTelemetryEvent } from '../../../../electron/device-connect-view/send-app-initialized-telemetry';
+import { sendAppInitializedTelemetryEvent } from '../../../../electron/views/device-connect-view/send-app-initialized-telemetry';
 
 describe('sendAppInitializedTelemetry', () => {
     let telemetryEventHandlerMock: IMock<TelemetryEventHandler>;

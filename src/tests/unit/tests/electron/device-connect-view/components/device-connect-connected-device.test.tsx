@@ -3,8 +3,8 @@
 import {
     DeviceConnectConnectedDevice,
     DeviceConnectConnectedDeviceProps,
-} from 'electron/device-connect-view/components/device-connect-connected-device';
-import { DeviceConnectState } from 'electron/device-connect-view/components/device-connect-state';
+} from 'electron/views/device-connect-view/components/device-connect-connected-device';
+import { DeviceConnectState } from 'electron/views/device-connect-view/components/device-connect-state';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 

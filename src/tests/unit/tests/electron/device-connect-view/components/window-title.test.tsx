@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { WindowTitle, WindowTitleProps } from 'electron/device-connect-view/components/window-title';
+import { WindowTitle, WindowTitleProps } from 'electron/views/device-connect-view/components/window-title';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 

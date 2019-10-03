@@ -7,7 +7,7 @@ import { brand } from 'content/strings/application';
 import { BrandBlue } from 'icons/brand/blue/brand-blue';
 import * as React from 'react';
 
-import { DeviceStoreData } from '../../flux/types/device-store-data';
+import { DeviceStoreData } from '../../../flux/types/device-store-data';
 import { DeviceConnectBody, DeviceConnectBodyDeps } from './device-connect-body';
 import { WindowTitle } from './window-title';
 

@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { DeviceConnectState } from 'electron/device-connect-view/components/device-connect-state';
+import { DeviceConnectState } from 'electron/views/device-connect-view/components/device-connect-state';
 import { ConnectingPayload, ConnectionSucceedPayload } from 'electron/flux/action/device-action-payloads';
 import { DeviceActions } from 'electron/flux/action/device-actions';
 import { DeviceStore } from 'electron/flux/store/device-store';

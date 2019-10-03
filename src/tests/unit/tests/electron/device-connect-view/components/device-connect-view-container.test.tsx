@@ -3,13 +3,13 @@
 import { BaseClientStoresHub } from 'common/stores/base-client-stores-hub';
 import { ClientStoresHub } from 'common/stores/client-stores-hub';
 import { BrowserWindow } from 'electron';
-import { DeviceConnectState } from 'electron/device-connect-view/components/device-connect-state';
+import { DeviceConnectState } from 'electron/views/device-connect-view/components/device-connect-state';
 import {
     DeviceConnectViewContainer,
     DeviceConnectViewContainerDeps,
     DeviceConnectViewContainerProps,
     DeviceConnectViewContainerState,
-} from 'electron/device-connect-view/components/device-connect-view-container';
+} from 'electron/views/device-connect-view/components/device-connect-view-container';
 import { shallow } from 'enzyme';
 import { isFunction } from 'lodash';
 import * as React from 'react';

@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
-import { NamedFC } from '../../../common/react/named-fc';
+import { NamedFC } from '../../../../common/react/named-fc';
 import { deviceConnectHeader } from './device-connect-header.scss';
 import { ElectronLink } from './electron-link';
 

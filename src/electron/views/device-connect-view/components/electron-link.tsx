@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { shell } from 'electron';
 import * as React from 'react';
-import { NamedFC } from '../../../common/react/named-fc';
+import { NamedFC } from '../../../../common/react/named-fc';
 import { ElectronExternalLink } from './electron-external-link';
 
 export type ElectronLinkProps = {

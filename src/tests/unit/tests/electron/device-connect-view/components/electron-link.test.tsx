@@ -3,8 +3,8 @@
 import { shell } from 'electron';
 import { shallow } from 'enzyme';
 import * as React from 'react';
-import { ElectronExternalLink } from '../../../../../../electron/device-connect-view/components/electron-external-link';
-import { ElectronLink } from '../../../../../../electron/device-connect-view/components/electron-link';
+import { ElectronExternalLink } from '../../../../../../electron/views/device-connect-view/components/electron-external-link';
+import { ElectronLink } from '../../../../../../electron/views/device-connect-view/components/electron-link';
 
 describe('ElectronLink', () => {
     it('renders and uses electron shell', () => {
