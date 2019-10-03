@@ -1,16 +1,19 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { DeviceConnectPortEntry, DeviceConnectPortEntryProps } from 'electron/views/device-connect-view/components/device-connect-port-entry';
 import { DeviceConnectActionCreator } from 'electron/flux/action-creator/device-connect-action-creator';
+import {
+    DeviceConnectPortEntry,
+    DeviceConnectPortEntryProps,
+} from 'electron/views/device-connect-view/components/device-connect-port-entry';
 import { shallow } from 'enzyme';
 import { Button } from 'office-ui-fabric-react/lib/Button';
 import * as React from 'react';
 import { EventStubFactory } from 'tests/unit/common/event-stub-factory';
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';
 
+import { EnumHelper } from 'common/enum-helper';
 import { portNumberField } from 'electron/views/device-connect-view/components/device-connect-port-entry.scss';
-import { EnumHelper } from '../../../../../../common/enum-helper';
-import { DeviceConnectState } from '../../../../../../electron/views/device-connect-view/components/device-connect-state';
+import { DeviceConnectState } from 'electron/views/device-connect-view/components/device-connect-state';
 
 describe('DeviceConnectPortEntryTest', () => {
     const testPortNumber = 111;

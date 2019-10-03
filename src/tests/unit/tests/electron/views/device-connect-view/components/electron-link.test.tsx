@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { shell } from 'electron';
+import { ElectronExternalLink } from 'electron/views/device-connect-view/components/electron-external-link';
+import { ElectronLink } from 'electron/views/device-connect-view/components/electron-link';
 import { shallow } from 'enzyme';
 import * as React from 'react';
-import { ElectronExternalLink } from '../../../../../../electron/views/device-connect-view/components/electron-external-link';
-import { ElectronLink } from '../../../../../../electron/views/device-connect-view/components/electron-link';
 
 describe('ElectronLink', () => {
     it('renders and uses electron shell', () => {

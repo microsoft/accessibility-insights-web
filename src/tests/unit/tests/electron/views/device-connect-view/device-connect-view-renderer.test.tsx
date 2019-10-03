@@ -1,14 +1,14 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { BrowserWindow } from 'electron';
+import {
+    DeviceConnectViewContainer,
+    DeviceConnectViewContainerProps,
+} from 'electron/views/device-connect-view/components/device-connect-view-container';
 import { DeviceConnectViewRenderer } from 'electron/views/device-connect-view/device-connect-view-renderer';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { IMock, It, Mock } from 'typemoq';
-import {
-    DeviceConnectViewContainer,
-    DeviceConnectViewContainerProps,
-} from '../../../../../electron/views/device-connect-view/components/device-connect-view-container';
 
 describe('DeviceConnectViewRendererTest', () => {
     test('render', () => {
