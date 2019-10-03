@@ -6,10 +6,12 @@ import { ContextualMenu, IContextualMenuItem } from 'office-ui-fabric-react/lib/
 import * as React from 'react';
 import { IssueDetailsTextGenerator } from '../../../background/issue-details-text-generator';
 import { DetailsViewActionMessageCreator } from '../../../DetailsView/actions/details-view-action-message-creator';
+import { Logger } from '../../logging/logger';
 import { NavigatorUtils } from '../../navigator-utils';
 import { WindowUtils } from '../../window-utils';
 import { Toast } from '../toast';
 import { kebabMenuButton } from './card-footer.scss';
+import { createDefaultLogger } from '../../logging/default-logger';
 
 export type CardKebabMenuButtonDeps = {
     windowUtils: WindowUtils;
@@ -30,6 +32,8 @@ export interface CardKebabMenuButtonProps {
 }
 
 export class CardKebabMenuButton extends React.Component<CardKebabMenuButtonProps, CardKebabMenuButtonState> {
+    private logger: Logger = createDefaultLogger();
+
     constructor(props: CardKebabMenuButtonProps) {
         super(props);
 
@@ -113,7 +117,9 @@ export class CardKebabMenuButton extends React.Component<CardKebabMenuButtonProp
             .then(() => {
                 this.setState({ showingCopyToast: true });
             })
-            .catch();
+            .catch(() => {
+                this.logger.log("Couldn't copy failure details!");
+            });
     };
 
     private openDropdown = (event): void => {
@@ -121,6 +127,6 @@ export class CardKebabMenuButton extends React.Component<CardKebabMenuButtonProp
     };
 
     private dismissDropdown(): void {
-        this.setState({ target: null, isContextMenuVisible: false });
+        this.setState({ target: null, isContextMenuVisible: false, showingCopyToast: false });
     }
 }
