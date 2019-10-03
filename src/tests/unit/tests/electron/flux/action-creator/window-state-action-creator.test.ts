@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-// Copyright (c) Microsoft Corporation. All rights reserved.
-// Licensed under the MIT License.
+
 import { Action } from 'common/flux/action';
 import { WindowStateActionCreator } from 'electron/flux/action-creator/window-state-action-creator';
 import { RoutePayload } from 'electron/flux/action/route-payloads';
