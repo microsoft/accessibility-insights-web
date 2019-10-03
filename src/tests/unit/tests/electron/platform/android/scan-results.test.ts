@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { buildRuleResultObject, buildScanResultsObject } from './scan-results-helpers';
+import { buildRuleResultObject, buildScanResultsObject, buildViewElement } from './scan-results-helpers';
 
-describe('ScanResultsTest', () => {
+describe('ScanResults', () => {
     test('deviceName is null if missing from input', () => {
         const scanResults = buildScanResultsObject();
         expect(scanResults.deviceName).toBeNull();
@@ -36,5 +36,22 @@ describe('ScanResultsTest', () => {
         const scanResults = buildScanResultsObject(null, null, resultsArray);
         expect(scanResults.ruleResults).toHaveLength(2);
         expect(scanResults.ruleResults).toEqual(resultsArray);
+    });
+
+    test('viewElementTree is null if missing from input', () => {
+        const scanResults = buildScanResultsObject();
+        expect(scanResults.viewElementTree).toBeNull();
+    });
+
+    test('viewElementTree is correct if specifiecd in input', () => {
+        const viewElementTree = buildViewElement(
+            'id1',
+            { top: 0, left: 10, bottom: 800, right: 600 },
+            'myClass1',
+            'myDescription1',
+            'myText1',
+            [buildViewElement('id2', null, null, null, null, null), buildViewElement('id3', null, null, null, null, null)],
+        );
+        expect(viewElementTree).toMatchSnapshot();
     });
 });
