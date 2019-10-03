@@ -6,12 +6,12 @@ import { ContextualMenu, IContextualMenuItem } from 'office-ui-fabric-react/lib/
 import * as React from 'react';
 import { IssueDetailsTextGenerator } from '../../../background/issue-details-text-generator';
 import { DetailsViewActionMessageCreator } from '../../../DetailsView/actions/details-view-action-message-creator';
+import { createDefaultLogger } from '../../logging/default-logger';
 import { Logger } from '../../logging/logger';
 import { NavigatorUtils } from '../../navigator-utils';
 import { WindowUtils } from '../../window-utils';
 import { Toast } from '../toast';
 import { kebabMenuButton } from './card-footer.scss';
-import { createDefaultLogger } from '../../logging/default-logger';
 
 export type CardKebabMenuButtonDeps = {
     windowUtils: WindowUtils;
