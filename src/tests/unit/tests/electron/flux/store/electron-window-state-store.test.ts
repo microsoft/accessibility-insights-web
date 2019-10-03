@@ -18,7 +18,7 @@ describe('ElectronWindowStateStore', () => {
         const testSubject = new ElectronWindowStateStore(new WindowStateActions());
         testSubject.initialize();
 
-        expect(testSubject.getState()).toEqual(testSubject.getDefaultState());
+        expect(testSubject.getDefaultState()).toEqual(getDeviceConnectViewState());
         expect(testSubject.getState()).toEqual(getDeviceConnectViewState());
     });
 

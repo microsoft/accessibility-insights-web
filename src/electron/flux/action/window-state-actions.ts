@@ -2,8 +2,9 @@
 // Licensed under the MIT License.
 
 import { Action } from 'common/flux/action';
+import { RoutePayload } from './route-payloads';
 
 export class WindowStateActions {
-    public readonly setDeviceConnectRoute = new Action<void>();
-    public readonly setResultsViewRoute = new Action<void>();
+    public readonly setDeviceConnectRoute = new Action<RoutePayload>();
+    public readonly setResultsViewRoute = new Action<RoutePayload>();
 }
