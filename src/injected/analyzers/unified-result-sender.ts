@@ -4,7 +4,6 @@ import { UnifiedScanCompletedPayload } from '../../background/actions/action-pay
 import { EnvironmentInfoProvider } from '../../common/environment-info-provider';
 import { Messages } from '../../common/messages';
 import { UUIDGeneratorType } from '../../common/uid-generator';
-import { toolName } from '../../content/strings/application';
 import { ConvertScanResultsToUnifiedResultsDelegate } from '../adapters/scan-results-to-unified-results';
 import { ConvertScanResultsToUnifiedRulesDelegate } from '../adapters/scan-results-to-unified-rules';
 import { AxeAnalyzerResult } from './analyzer';
@@ -23,16 +22,7 @@ export class UnifiedResultSender {
         const payload: UnifiedScanCompletedPayload = {
             scanResult: this.convertScanResultsToUnifiedResults(axeResults.originalResult, this.generateUID),
             rules: this.convertScanResultsToUnifiedRules(axeResults.originalResult),
-            toolInfo: {
-                scanEngineProperties: {
-                    name: 'axe-core',
-                    version: this.environmentInfoProvider.getEnvironmentInfo().axeCoreVersion,
-                },
-                applicationProperties: {
-                    name: toolName,
-                    version: this.environmentInfoProvider.getEnvironmentInfo().extensionVersion,
-                },
-            },
+            toolInfo: this.environmentInfoProvider.getToolData(),
         };
 
         this.sendMessage({

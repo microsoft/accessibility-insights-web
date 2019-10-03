@@ -13,7 +13,14 @@ import { UnifiedResultSender } from '../../../../../injected/analyzers/unified-r
 import { ScanResults } from '../../../../../scanner/iruleresults';
 
 describe('sendConvertedResults', () => {
-    it('should send a message', () => {
+    it('should send a message with expected results', () => {
+        const axeInputResults = {} as any;
+        const unifiedResults: UnifiedResult[] = [];
+        const unifiedRules: UnifiedRule[] = [];
+        const toolInfo = {} as ToolData;
+
+        const uuidGeneratorStub = () => null;
+
         const sendDelegate: IMock<MessageDelegate> = Mock.ofInstance(message => null);
         const convertToUnifiedMock: IMock<ConvertScanResultsToUnifiedResultsDelegate> = Mock.ofInstance(
             (scanResults, uuidGenerator) => null,
@@ -22,7 +29,11 @@ describe('sendConvertedResults', () => {
             (scanResults: ScanResults) => null,
         );
         const environmentInfoProviderMock: IMock<EnvironmentInfoProvider> = Mock.ofType(EnvironmentInfoProvider);
-        const uuidGeneratorStub = () => null;
+
+        convertToUnifiedMock.setup(m => m(axeInputResults, uuidGeneratorStub)).returns(val => unifiedResults);
+        convertToUnifiedRulesMock.setup(m => m(axeInputResults)).returns(val => unifiedRules);
+        environmentInfoProviderMock.setup(provider => provider.getToolData()).returns(() => toolInfo);
+
         const testSubject = new UnifiedResultSender(
             sendDelegate.object,
             convertToUnifiedMock.object,
@@ -31,18 +42,15 @@ describe('sendConvertedResults', () => {
             uuidGeneratorStub,
         );
 
-        const axeInputResults = {} as any;
-        const unifiedResults: UnifiedResult[] = [];
-        const unifiedRules: UnifiedRule[] = [];
-        const toolInfo = {} as ToolData;
-        convertToUnifiedMock.setup(m => m(axeInputResults, uuidGeneratorStub)).returns(val => unifiedResults);
-        convertToUnifiedRulesMock.setup(m => m(axeInputResults)).returns(val => unifiedRules);
         testSubject.sendResults({
             results: null,
             originalResult: axeInputResults,
         });
+
         convertToUnifiedMock.verifyAll();
         convertToUnifiedRulesMock.verifyAll();
+        environmentInfoProviderMock.verifyAll();
+
         const expectedPayload: UnifiedScanCompletedPayload = {
             scanResult: unifiedResults,
             rules: unifiedRules,
@@ -52,6 +60,7 @@ describe('sendConvertedResults', () => {
             messageType: Messages.UnifiedScan.ScanCompleted,
             payload: expectedPayload,
         };
+
         sendDelegate.verify(m => m(expectedMessage), Times.once());
     });
 });
