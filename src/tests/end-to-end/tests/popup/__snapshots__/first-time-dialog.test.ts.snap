@@ -69,6 +69,7 @@ exports[`First time Dialog content should match snapshot 1`] = `
                   class="ms-Checkbox is-checked is-enabled telemetry-agree-checkbox root-000"
                 >
                   <input
+                    aria-label="I agree to enable telemetry"
                     checked=""
                     class="input-000"
                     id="checkbox-000"
@@ -91,6 +92,7 @@ exports[`First time Dialog content should match snapshot 1`] = `
                       </i>
                     </div>
                     <span
+                      aria-hidden="true"
                       class="ms-Checkbox-text text-000"
                     >
                       I agree to enable telemetry
