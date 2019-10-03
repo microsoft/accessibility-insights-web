@@ -25,7 +25,6 @@ describe('RuleInformationProvider', () => {
         expect(ruleInformation).toBeTruthy();
         expect(ruleInformation.ruleId).toEqual(ruleId);
         expect(ruleInformation.ruleDescription.length).toBeGreaterThan(0);
-        expect(howToFix).toBeTruthy();
 
         return howToFix;
     }

@@ -33,9 +33,9 @@ describe('RuleInformation', () => {
 
         for (const howToFixString of testInputs) {
             const expectedPropertyBag = { someLabel: howToFixString };
-            const mock = Mock.ofType<HowToFixDelegate>();
-            mock.setup(func => func(testData)).returns(() => expectedPropertyBag);
-            const ruleInformation = new RuleInformation(null, null, mock.object);
+            const howToFixDelegateMock = Mock.ofType<HowToFixDelegate>();
+            howToFixDelegateMock.setup(func => func(testData)).returns(() => expectedPropertyBag);
+            const ruleInformation = new RuleInformation(null, null, howToFixDelegateMock.object);
             const actualPropertyBag = ruleInformation.howToFix(testData);
             expect(actualPropertyBag).toBe(expectedPropertyBag);
         }
