@@ -5,16 +5,17 @@ import { UnifiedResult } from 'common/types/store-data/unified-data-interface';
 import { some, values } from 'lodash';
 import { Icon, Label } from 'office-ui-fabric-react';
 import * as React from 'react';
+import { CreateIssueDetailsTextData } from '../../types/create-issue-details-text-data';
+import { UserConfigurationStoreData } from '../../types/store-data/user-configuration-store';
 import { foot, highlightDiv } from './card-footer.scss';
-
 import { CardInteractionSupport } from './card-interaction-support';
-import { CardKebabMenuButton } from './card-kebab-menu-button';
+import { CardKebabMenuButton, CardKebabMenuButtonDeps } from './card-kebab-menu-button';
 
 export type HighlightState = 'visible' | 'hidden' | 'unavailable';
 
 export type InstanceDetailsFooterDeps = {
     cardInteractionSupport: CardInteractionSupport;
-};
+} & CardKebabMenuButtonDeps;
 
 export type InstanceDetailsFooterProps = {
     deps: InstanceDetailsFooterDeps;
@@ -31,8 +32,26 @@ export const InstanceDetailsFooter = NamedFC<InstanceDetailsFooterProps>('Instan
         return null;
     }
 
+    const issueDetailsData: CreateIssueDetailsTextData = {
+        pageTitle: 'pageTitle',
+        pageUrl: 'http://pageUrl',
+        ruleResult: null,
+    };
+
+    const userConfigurationStoreData: UserConfigurationStoreData = {
+        isFirstTime: true,
+        enableTelemetry: true,
+        enableHighContrast: true,
+        bugService: 'none',
+        bugServicePropertiesMap: {
+            ['none']: {},
+        },
+    };
+
     const kebabMenuIcon = () => {
-        return <CardKebabMenuButton />;
+        return (
+            <CardKebabMenuButton deps={deps} userConfigurationStoreData={userConfigurationStoreData} issueDetailsData={issueDetailsData} />
+        );
     };
 
     const HighlightButton = () => {

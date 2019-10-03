@@ -7,7 +7,7 @@ import { FixInstructionProcessor } from 'injected/fix-instruction-processor';
 import * as React from 'react';
 import { ReportHead } from 'reports/components/report-head';
 import { ReportBody, ReportBodyProps } from 'reports/components/report-sections/report-body';
-import { ReportSectionFactory } from 'reports/components/report-sections/report-section-factory';
+import { ReportSectionFactory, SectionDeps } from 'reports/components/report-sections/report-section-factory';
 import { ReactStaticRenderer } from 'reports/react-static-renderer';
 import { ReportHtmlGenerator } from 'reports/report-html-generator';
 import { ScanResults } from 'scanner/iruleresults';
@@ -50,7 +50,7 @@ describe('ReportHtmlGenerator', () => {
                 getPropertyConfigById: getPropertyConfigurationStub,
                 collapsibleControl: ReportCollapsibleContainerControl,
                 cardInteractionSupport: cardInteractionSupport,
-            },
+            } as SectionDeps,
             fixInstructionProcessor: fixInstructionProcessorMock.object,
             sectionFactory: sectionFactoryMock.object,
             pageTitle,
