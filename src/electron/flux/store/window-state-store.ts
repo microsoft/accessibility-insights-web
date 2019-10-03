@@ -3,14 +3,14 @@
 import { BaseStoreImpl } from 'background/stores/base-store-impl';
 import { StoreNames } from 'common/stores/store-names';
 import { WindowStateActions } from '../action/window-state-actions';
-import { ElectronWindowStateStoreData } from '../types/electron-window-state-store-data';
+import { WindowStateStoreData } from '../types/window-state-store-data';
 
-export class ElectronWindowStateStore extends BaseStoreImpl<ElectronWindowStateStoreData> {
+export class WindowStateStore extends BaseStoreImpl<WindowStateStoreData> {
     constructor(private readonly windowStateActions: WindowStateActions) {
-        super(StoreNames.ElectronWindowStateStore);
+        super(StoreNames.WindowStateStore);
     }
 
-    public getDefaultState(): ElectronWindowStateStoreData {
+    public getDefaultState(): WindowStateStoreData {
         return this.getDeviceConnectWindowState();
     }
 
@@ -19,13 +19,13 @@ export class ElectronWindowStateStore extends BaseStoreImpl<ElectronWindowStateS
         this.windowStateActions.setResultsViewRoute.addListener(this.onSetResultsViewRoute);
     }
 
-    private getDeviceConnectWindowState(): ElectronWindowStateStoreData {
+    private getDeviceConnectWindowState(): WindowStateStoreData {
         return {
             routeId: 'deviceConnectView',
         };
     }
 
-    private getResultViewWindowState(): ElectronWindowStateStoreData {
+    private getResultViewWindowState(): WindowStateStoreData {
         return {
             routeId: 'resultsView',
         };
