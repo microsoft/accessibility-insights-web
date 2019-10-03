@@ -31,7 +31,7 @@ export class NavigatorUtils {
         return userAgent.substring(versionOffset + versionPrefix.length + 1).split(' ')[0];
     }
 
-    public async copyToClipboard(data: string): Promise<void> {
-        await this.navigatorInfo.clipboard.writeText(data);
+    public copyToClipboard(data: string): Promise<void> {
+        return this.navigatorInfo.clipboard.writeText(data);
     }
 }

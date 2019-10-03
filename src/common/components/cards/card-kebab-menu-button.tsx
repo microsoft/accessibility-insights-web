@@ -107,10 +107,13 @@ export class CardKebabMenuButton extends React.Component<CardKebabMenuButtonProp
         if (onClick) {
             onClick(event);
         }
-        // tslint:disable-next-line: no-floating-promises
-        this.props.deps.navigatorUtils.copyToClipboard('The quick brown fox jumps over the lazy dog').then(() => {
-            this.setState({ showingCopyToast: true });
-        }); // to be changed when we finish the new data format and builder
+
+        this.props.deps.navigatorUtils
+            .copyToClipboard('The quick brown fox jumps over the lazy dog') // to be changed when we finish the new data format and builder
+            .then(() => {
+                this.setState({ showingCopyToast: true });
+            })
+            .catch();
     };
 
     private openDropdown = (event): void => {

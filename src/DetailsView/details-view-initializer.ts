@@ -231,7 +231,7 @@ if (isNaN(tabId) === false) {
                 DateProvider.getCurrentDate,
                 extensionVersion,
                 axeVersion,
-                navigatorUtils.getBrowserSpec(),
+                browserSpec,
                 assessmentDefaultMessageGenerator,
             );
 
