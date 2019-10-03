@@ -2,9 +2,9 @@
 // Licensed under the MIT License.
 import { IMock, It, Mock, Times } from 'typemoq';
 
-import { IndexedDBDataKeys } from '../../../../background/IndexedDBDataKeys';
-import { IndexedDBAPI } from '../../../../common/indexedDB/indexedDB';
-import { ElectronStorageAdapter } from '../../../../electron/adapters/electron-storage-adapter';
+import { IndexedDBDataKeys } from 'background/IndexedDBDataKeys';
+import { IndexedDBAPI } from 'common/indexedDB/indexedDB';
+import { ElectronStorageAdapter } from 'electron/adapters/electron-storage-adapter';
 
 describe('ElectronStorageAdapter', () => {
     const testData = {
