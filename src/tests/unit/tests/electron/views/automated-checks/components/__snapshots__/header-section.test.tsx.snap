@@ -2,10 +2,14 @@
 
 exports[`HeaderSection renders 1`] = `
 <React.Fragment>
-  <h1>
+  <h1
+    className="h1"
+  >
     Automated checks
   </h1>
-  <span>
+  <span
+    className="text"
+  >
     Automated checks can detect some common accessibility problems such as missing or invalid properties. But most accessibility problems can only be discovered through manual testing.
   </span>
 </React.Fragment>
