@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { BaseStoreImpl } from 'background/stores/base-store-impl';
 import { StoreNames } from 'common/stores/store-names';
+import { RoutePayload } from '../action/route-payloads';
 import { WindowStateActions } from '../action/window-state-actions';
 import { WindowStateStoreData } from '../types/window-state-store-data';
 
@@ -11,33 +12,20 @@ export class WindowStateStore extends BaseStoreImpl<WindowStateStoreData> {
     }
 
     public getDefaultState(): WindowStateStoreData {
-        return this.getDeviceConnectWindowState();
-    }
-
-    protected addActionListeners(): void {
-        this.windowStateActions.setDeviceConnectRoute.addListener(this.onSetDeviceConnectRoute);
-        this.windowStateActions.setResultsViewRoute.addListener(this.onSetResultsViewRoute);
-    }
-
-    private getDeviceConnectWindowState(): WindowStateStoreData {
         return {
             routeId: 'deviceConnectView',
         };
     }
 
-    private getResultViewWindowState(): WindowStateStoreData {
-        return {
-            routeId: 'resultsView',
-        };
+    protected addActionListeners(): void {
+        this.windowStateActions.changeDeviceRoute.addListener(this.onChangeDeviceRoute);
     }
 
-    private onSetDeviceConnectRoute = () => {
-        this.state = this.getDeviceConnectWindowState();
-        this.emitChanged();
-    };
-
-    private onSetResultsViewRoute = () => {
-        this.state = this.getResultViewWindowState();
+    private onChangeDeviceRoute = (payload: RoutePayload) => {
+        if (this.state.routeId === payload.routeId) {
+            return;
+        }
+        this.state.routeId = payload.routeId;
         this.emitChanged();
     };
 }

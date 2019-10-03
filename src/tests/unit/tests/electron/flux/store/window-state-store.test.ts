@@ -5,6 +5,7 @@ import { WindowStateActions } from '../../../../../../electron/flux/action/windo
 import { WindowStateStore } from '../../../../../../electron/flux/store/window-state-store';
 import { WindowStateStoreData } from '../../../../../../electron/flux/types/window-state-store-data';
 import { createStoreWithNullParams, StoreTester } from '../../../../common/store-tester';
+import { RoutePayload } from '../../../../../../electron/flux/action/route-payloads';
 
 describe('WindowStateStore', () => {
     describe('constructor', () => {
@@ -22,13 +23,18 @@ describe('WindowStateStore', () => {
     });
 
     it('changes route id from default to resultsView', () => {
-        const expectedState: WindowStateStoreData = {
+        const payload: RoutePayload = {
             routeId: 'resultsView',
+        };
+        const expectedState: WindowStateStoreData = {
+            routeId: payload.routeId,
         };
 
         const initialState = createStoreWithNullParams(WindowStateStore).getDefaultState();
 
-        createStoreTesterForWindowStateActions('setResultsViewRoute').testListenerToBeCalledOnce(initialState, expectedState);
+        createStoreTesterForWindowStateActions('changeDeviceRoute')
+            .withActionParam(payload)
+            .testListenerToBeCalledOnce(initialState, expectedState);
     });
 
     function createStoreTesterForWindowStateActions(
