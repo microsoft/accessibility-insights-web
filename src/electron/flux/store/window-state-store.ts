@@ -18,10 +18,10 @@ export class WindowStateStore extends BaseStoreImpl<WindowStateStoreData> {
     }
 
     protected addActionListeners(): void {
-        this.windowStateActions.changeDeviceRoute.addListener(this.onChangeDeviceRoute);
+        this.windowStateActions.setRoute.addListener(this.onSetRoute);
     }
 
-    private onChangeDeviceRoute = (payload: RoutePayload) => {
+    private onSetRoute = (payload: RoutePayload) => {
         if (this.state.routeId === payload.routeId) {
             return;
         }

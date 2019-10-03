@@ -5,5 +5,5 @@ import { Action } from 'common/flux/action';
 import { RoutePayload } from './route-payloads';
 
 export class WindowStateActions {
-    public readonly changeDeviceRoute = new Action<RoutePayload>();
+    public readonly setRoute = new Action<RoutePayload>();
 }
