@@ -6,9 +6,7 @@ import * as React from 'react';
 import { ClientStoresHub } from 'common/stores/client-stores-hub';
 import { WindowStateStore } from 'electron/flux/store/window-state-store';
 
-export type ResultsViewContainerDeps = {
-    storeHub: ClientStoresHub<WindowStateStore>;
-};
+export type ResultsViewContainerDeps = {};
 
 export type ResultsViewContainerProps = {
     deps: ResultsViewContainerDeps;

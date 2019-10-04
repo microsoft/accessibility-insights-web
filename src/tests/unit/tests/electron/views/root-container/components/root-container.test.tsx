@@ -43,7 +43,7 @@ describe(RootContainer, () => {
                 storeListener = cb;
             });
 
-        deps = { storeHub: storeHubMock.object } as RootContainerDeps;
+        deps = { storeHub: storeHubMock.object } as any;
     });
 
     it('renders device connect view container when route is deviceConnectView', async () => {
