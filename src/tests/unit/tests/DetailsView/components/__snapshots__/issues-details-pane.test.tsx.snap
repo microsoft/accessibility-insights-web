@@ -4,6 +4,9 @@ exports[`IssuesDetailsPaneTest render with single selection, issue filing button
 <IssueFilingButton
   deps={
     Object {
+      "axeResultToIssueFilingDataConverter": Object {
+        "convert": [Function],
+      },
       "detailsViewActionMessageCreator": Object {
         "copyIssueDetailsClicked": [Function],
       },
@@ -14,50 +17,8 @@ exports[`IssuesDetailsPaneTest render with single selection, issue filing button
   }
   issueDetailsData={
     Object {
-      "pageTitle": "pageTitle",
-      "pageUrl": "pageUrl",
-      "ruleResult": Object {
-        "all": Array [
-          Object {
-            "data": "check-result-data",
-            "id": "check-result-id",
-            "message": "check-result-message",
-          },
-        ],
-        "any": Array [
-          Object {
-            "data": "check-result-data",
-            "id": "check-result-id",
-            "message": "check-result-message",
-          },
-        ],
-        "failureSummary": null,
-        "fingerprint": "id1",
-        "guidanceLinks": Array [
-          Object {
-            "href": "aka.ms/guidance-url-X.1.1",
-            "text": "guidance X.1.1",
-          },
-          Object {
-            "href": "aka.ms/guidance-url-X.2.2",
-            "text": "guidance X.2.2",
-          },
-        ],
-        "help": "rule-help",
-        "helpUrl": "http://help-url/",
-        "html": null,
-        "id": "id1",
-        "none": Array [
-          Object {
-            "data": "check-result-data",
-            "id": "check-result-id",
-            "message": "check-result-message",
-          },
-        ],
-        "ruleId": "rule-id",
-        "selector": null,
-        "snippet": null,
-        "status": false,
+      "targetApp": Object {
+        "name": "name",
       },
     }
   }
