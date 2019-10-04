@@ -15,6 +15,13 @@ exports[`IssuesDetailsPaneTest render with single selection, issue filing button
       "windowUtils": null,
     }
   }
+  issueDetailsData={
+    Object {
+      "targetApp": Object {
+        "name": "name",
+      },
+    }
+  }
   needsSettingsContentRenderer={[Function]}
   userConfigurationStoreData={Object {}}
 />
@@ -26,8 +33,8 @@ exports[`IssuesDetailsPaneTest render with single selection, test copy to clipbo
     <h2>
       Failure details
     </h2>
-    <CopyIssueDetailsButton deps={{...}} issueDetailsData={[undefined]} onClick={[Function: copyIssueDetailsClicked]} />
-    <IssueFilingButton deps={{...}} issueDetailsData={[undefined]} userConfigurationStoreData={{...}} needsSettingsContentRenderer={[function]} />
+    <CopyIssueDetailsButton deps={{...}} issueDetailsData={{...}} onClick={[Function: copyIssueDetailsClicked]} />
+    <IssueFilingButton deps={{...}} issueDetailsData={{...}} userConfigurationStoreData={{...}} needsSettingsContentRenderer={[function]} />
     <table className=\\"issue-detail-table\\">
       <tbody>
         <tr>

@@ -5,6 +5,7 @@ import * as React from 'react';
 
 import { HyperlinkDefinition } from 'views/content/content-page';
 import { IssueFilingButton } from '../../../../../common/components/issue-filing-button';
+import { CreateIssueDetailsTextData } from '../../../../../common/types/create-issue-details-text-data';
 import { UserConfigurationStoreData } from '../../../../../common/types/store-data/user-configuration-store';
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
 import {
@@ -111,9 +112,14 @@ describe('IssuesDetailsPaneTest', () => {
             };
         }
 
+        const fakeIssueData = {
+            targetApp: {
+                name: 'name',
+            },
+        } as CreateIssueDetailsTextData;
         const deps: IssuesDetailsPaneDeps = {
             axeResultToIssueFilingDataConverter: {
-                convert: (res, title, url) => {},
+                convert: (res, title, url) => fakeIssueData,
             } as AxeResultToIssueFilingDataConverter,
             issueDetailsTextGenerator: null,
             detailsViewActionMessageCreator: {
