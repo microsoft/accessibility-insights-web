@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { TestMode } from '../common/configs/test-mode';
-import { VisualizationConfiguration } from '../common/configs/visualization-configuration';
-import { AssessmentStoreData } from '../common/types/store-data/assessment-result-data';
-import { TabStoreData } from '../common/types/store-data/tab-store-data';
-import { VisualizationStoreData } from '../common/types/store-data/visualization-store-data';
+import { TestMode } from 'common/configs/test-mode';
+import { VisualizationConfiguration } from 'common/configs/visualization-configuration';
+import { AssessmentStoreData } from 'common/types/store-data/assessment-result-data';
+import { TabStoreData } from 'common/types/store-data/tab-store-data';
+import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
 
 export type IsVisualizationEnabledCallback = (
     config: VisualizationConfiguration,

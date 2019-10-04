@@ -1,12 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { TestMode } from 'common/configs/test-mode';
+import { VisualizationConfiguration } from 'common/configs/visualization-configuration';
+import { AssessmentStoreData } from 'common/types/store-data/assessment-result-data';
+import { TabStoreData } from 'common/types/store-data/tab-store-data';
+import { ScanData, VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
 import { IMock, Mock } from 'typemoq';
 
-import { TestMode } from '../../../../common/configs/test-mode';
-import { VisualizationConfiguration } from '../../../../common/configs/visualization-configuration';
-import { AssessmentStoreData } from '../../../../common/types/store-data/assessment-result-data';
-import { TabStoreData } from '../../../../common/types/store-data/tab-store-data';
-import { ScanData, VisualizationStoreData } from '../../../../common/types/store-data/visualization-store-data';
 import { isVisualizationEnabled, IsVisualizationEnabledCallback } from '../../../../injected/is-visualization-enabled';
 
 describe('isVisualizationEnabled', () => {
