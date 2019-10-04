@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { TargetAppInfoPayload, UnifiedScanCompletedPayload } from '../../../../../background/actions/action-payloads';
+import { UnifiedScanCompletedPayload } from '../../../../../background/actions/action-payloads';
 import { UnifiedScanResultActions } from '../../../../../background/actions/unified-scan-result-actions';
 import { UnifiedScanResultStore } from '../../../../../background/stores/unified-scan-result-store';
 import { StoreNames } from '../../../../../common/stores/store-names';
@@ -43,7 +43,7 @@ describe('UnifiedScanResultStore Test', () => {
 
     test('onScanCompleted', () => {
         const initialState = getDefaultState();
-
+        const targetAppInfo: TargetAppData = { name: 'app name' };
         const payload: UnifiedScanCompletedPayload = {
             scanResult: [
                 {
@@ -60,6 +60,7 @@ describe('UnifiedScanResultStore Test', () => {
                     name: 'test-scan-engine-name',
                 } as ScanEngineProperties,
             } as ToolData,
+            targetAppInfo,
         };
 
         const expectedState: UnifiedScanResultStoreData = {
@@ -70,26 +71,6 @@ describe('UnifiedScanResultStore Test', () => {
         };
 
         createStoreForUnifiedScanResultActions('scanCompleted')
-            .withActionParam(payload)
-            .testListenerToBeCalledOnce(initialState, expectedState);
-    });
-
-    test('updateTargetAppInfo', () => {
-        const initialState = getDefaultState();
-        const targetAppInfo: TargetAppData = { name: 'app name' };
-
-        const payload: TargetAppInfoPayload = {
-            targetAppInfo,
-        };
-
-        const expectedState: UnifiedScanResultStoreData = {
-            results: null,
-            rules: null,
-            toolInfo: null,
-            targetAppInfo,
-        };
-
-        createStoreForUnifiedScanResultActions('updateTargetAppInfo')
             .withActionParam(payload)
             .testListenerToBeCalledOnce(initialState, expectedState);
     });

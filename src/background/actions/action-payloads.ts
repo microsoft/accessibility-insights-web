@@ -155,9 +155,6 @@ export interface UnifiedScanCompletedPayload extends BaseActionPayload {
     scanResult: UnifiedResult[];
     rules: UnifiedRule[];
     toolInfo: ToolData;
-}
-
-export interface TargetAppInfoPayload extends BaseActionPayload {
     targetAppInfo: TargetAppData;
 }
 

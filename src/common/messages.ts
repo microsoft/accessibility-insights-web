@@ -188,8 +188,4 @@ export class Messages {
     public static readonly UnifiedScan = {
         ScanCompleted: `${messagePrefix}/unifiedScan/scanCompleted`,
     };
-
-    public static readonly TargetAppInfo = {
-        Update: `${messagePrefix}/targetAppInfo/update`,
-    };
 }

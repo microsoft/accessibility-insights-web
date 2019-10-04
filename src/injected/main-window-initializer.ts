@@ -52,7 +52,6 @@ import { ScannerUtils } from './scanner-utils';
 import { ScopingListener } from './scoping-listener';
 import { SelectorMapHelper } from './selector-map-helper';
 import { ShadowUtils } from './shadow-utils';
-import { TargetAppInfoSender } from './target-app-info-sender';
 import { TargetPageActionMessageCreator } from './target-page-action-message-creator';
 import { WindowInitializer } from './window-initializer';
 
@@ -175,9 +174,6 @@ export class MainWindowInitializer extends WindowInitializer {
             environmentInfoProvider,
             generateUID,
         );
-
-        const targetAppInfoSender = new TargetAppInfoSender(this.browserAdapter.sendMessageToFrames, document);
-        targetAppInfoSender.send();
 
         const analyzerProvider = new AnalyzerProvider(
             this.tabStopsListener,
