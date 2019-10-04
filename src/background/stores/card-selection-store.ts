@@ -42,7 +42,7 @@ export class CardSelectionStore extends BaseStoreImpl<CardSelectionStoreData> {
     };
 
     private toggleRuleExpandCollapse = (payload: RuleExpandCollapsePayload): void => {
-        if (!payload || !payload.ruleId || !this.state.rules || !this.state.rules[payload.ruleId]) {
+        if (!payload || !payload.ruleId || !this.state.rules[payload.ruleId]) {
             return;
         }
 
