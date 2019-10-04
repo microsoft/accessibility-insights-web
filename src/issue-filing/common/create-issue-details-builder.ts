@@ -26,7 +26,7 @@ export const createIssueDetailsBuilder = (markup: MarkupFormatter): IssueDetails
             link(data.targetApp.url, data.targetApp.name),
             sectionSeparator(),
 
-            sectionHeader('Element'),
+            sectionHeader('Element path'),
             sectionHeaderSeparator(),
             data.element.identifier,
             sectionSeparator(),
