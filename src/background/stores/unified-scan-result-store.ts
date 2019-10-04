@@ -16,6 +16,7 @@ export class UnifiedScanResultStore extends BaseStoreImpl<UnifiedScanResultStore
             results: null,
             rules: null,
             toolInfo: null,
+            targetAppInfo: null,
         };
 
         return defaultValue;
@@ -30,6 +31,7 @@ export class UnifiedScanResultStore extends BaseStoreImpl<UnifiedScanResultStore
         this.state.results = payload.scanResult;
         this.state.rules = payload.rules;
         this.state.toolInfo = payload.toolInfo;
+        this.state.targetAppInfo = payload.targetAppInfo;
         this.emitChanged();
     };
 }
