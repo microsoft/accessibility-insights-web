@@ -2,16 +2,16 @@
 // Licensed under the MIT License.
 import { shallow } from 'enzyme';
 import * as React from 'react';
-import { Mock, Times, It } from 'typemoq';
+import { It, Mock, Times } from 'typemoq';
 
 import { BaseButton, Button } from '../../../../../../node_modules/office-ui-fabric-react';
 import { CopyIssueDetailsButton } from '../../../../../common/components/copy-issue-details-button';
+import { CreateIssueDetailsTextData } from '../../../../../common/types/create-issue-details-text-data';
 import { UserConfigurationStoreData } from '../../../../../common/types/store-data/user-configuration-store';
 import { CommandBar, CommandBarDeps, CommandBarProps } from '../../../../../injected/components/command-bar';
 import { DecoratedAxeNodeResult } from '../../../../../injected/scanner-utils';
-import { EventStubFactory } from '../../../common/event-stub-factory';
-import { CreateIssueDetailsTextData } from '../../../../../common/types/create-issue-details-text-data';
 import { AxeResultToIssueFilingDataConverter } from '../../../../../issue-filing/rule-result-to-issue-filing-data';
+import { EventStubFactory } from '../../../common/event-stub-factory';
 
 describe('CommandBar', () => {
     const ruleResult = {

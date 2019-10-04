@@ -15,10 +15,10 @@ import { UserConfigurationStoreData } from '../../common/types/store-data/user-c
 import { CheckType } from '../../injected/components/details-dialog';
 import { FixInstructionPanel, FixInstructionPanelDeps } from '../../injected/components/fix-instruction-panel';
 import { DecoratedAxeNodeResult } from '../../injected/scanner-utils';
+import { AxeResultToIssueFilingDataConverter } from '../../issue-filing/rule-result-to-issue-filing-data';
 import { DictionaryStringTo } from '../../types/common-types';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 import { IssueFilingDialog } from './issue-filing-dialog';
-import { AxeResultToIssueFilingDataConverter } from '../../issue-filing/rule-result-to-issue-filing-data';
 
 export type IssuesDetailsPaneDeps = ToastDeps &
     IssueFilingButtonDeps &

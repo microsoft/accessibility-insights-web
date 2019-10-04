@@ -9,12 +9,12 @@ import { IssueFilingButton, IssueFilingButtonDeps, IssueFilingButtonProps } from
 import { EnvironmentInfoProvider } from '../../../../../common/environment-info-provider';
 import { IssueFilingActionMessageCreator } from '../../../../../common/message-creators/issue-filing-action-message-creator';
 import { NamedFC } from '../../../../../common/react/named-fc';
+import { CreateIssueDetailsTextData } from '../../../../../common/types/create-issue-details-text-data';
 import { IssueFilingNeedsSettingsContentRenderer } from '../../../../../common/types/issue-filing-needs-setting-content';
 import { UserConfigurationStoreData } from '../../../../../common/types/store-data/user-configuration-store';
 import { IssueFilingServiceProvider } from '../../../../../issue-filing/issue-filing-service-provider';
 import { IssueFilingService } from '../../../../../issue-filing/types/issue-filing-service';
 import { EventStubFactory } from '../../../common/event-stub-factory';
-import { CreateIssueDetailsTextData } from '../../../../../common/types/create-issue-details-text-data';
 
 describe('IssueFilingButtonTest', () => {
     const testKey: string = 'test';

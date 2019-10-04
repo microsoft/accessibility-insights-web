@@ -6,7 +6,6 @@ import { BrowserAdapter } from '../../../../../common/browser-adapters/browser-a
 import { EnvironmentInfo } from '../../../../../common/environment-info-provider';
 import { CreateIssueDetailsTextData } from '../../../../../common/types/create-issue-details-text-data';
 import { IssueFilingServicePropertiesMap } from '../../../../../common/types/store-data/user-configuration-store';
-import { DecoratedAxeNodeResult } from '../../../../../injected/scanner-utils';
 import { createFileIssueHandler } from '../../../../../issue-filing/common/create-file-issue-handler';
 import { IssueFilingUrlProvider } from '../../../../../issue-filing/types/issue-filing-service';
 

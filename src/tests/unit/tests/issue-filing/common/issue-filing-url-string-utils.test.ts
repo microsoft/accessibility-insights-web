@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { CreateIssueDetailsTextData } from '../../../../../common/types/create-issue-details-text-data';
-import { DecoratedAxeNodeResult } from '../../../../../injected/scanner-utils';
 import { IssueFilingUrlStringUtils } from './../../../../../issue-filing/common/issue-filing-url-string-utils';
 
 describe('IssueFilingUrlStringUtilsTest', () => {

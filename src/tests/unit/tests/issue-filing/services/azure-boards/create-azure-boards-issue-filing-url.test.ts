@@ -4,13 +4,13 @@ import { IMock, Mock } from 'typemoq';
 
 import { title } from 'content/strings/application';
 import { EnvironmentInfo } from '../../../../../../common/environment-info-provider';
+import { CreateIssueDetailsTextData } from '../../../../../../common/types/create-issue-details-text-data';
 import { HTTPQueryBuilder } from '../../../../../../issue-filing/common/http-query-builder';
 import { IssueDetailsBuilder } from '../../../../../../issue-filing/common/issue-details-builder';
 import { IssueUrlCreationUtils } from '../../../../../../issue-filing/common/issue-filing-url-string-utils';
 import { AzureBoardsIssueFilingSettings } from '../../../../../../issue-filing/services/azure-boards/azure-boards-issue-filing-settings';
 import { createAzureBoardsIssueFilingUrlProvider } from '../../../../../../issue-filing/services/azure-boards/create-azure-boards-issue-filing-url';
 import { IssueFilingUrlProvider } from '../../../../../../issue-filing/types/issue-filing-service';
-import { CreateIssueDetailsTextData } from '../../../../../../common/types/create-issue-details-text-data';
 
 describe('createAzureBoardsIssueFilingUrl', () => {
     const testIssueDetails = 'html issue details';

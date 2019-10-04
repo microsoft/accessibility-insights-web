@@ -14,8 +14,8 @@ import {
 } from '../../../../../DetailsView/components/Issues-details-pane';
 import { FixInstructionPanel } from '../../../../../injected/components/fix-instruction-panel';
 import { DecoratedAxeNodeResult } from '../../../../../injected/scanner-utils';
-import { DictionaryStringTo } from '../../../../../types/common-types';
 import { AxeResultToIssueFilingDataConverter } from '../../../../../issue-filing/rule-result-to-issue-filing-data';
+import { DictionaryStringTo } from '../../../../../types/common-types';
 
 describe('IssuesDetailsPaneTest', () => {
     const samplePageTitle = 'pageTitle';

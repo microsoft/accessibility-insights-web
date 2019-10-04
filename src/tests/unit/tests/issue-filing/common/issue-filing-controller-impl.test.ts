@@ -10,7 +10,6 @@ import {
     IssueFilingServicePropertiesMap,
     UserConfigurationStoreData,
 } from '../../../../../common/types/store-data/user-configuration-store';
-import { DecoratedAxeNodeResult } from '../../../../../injected/scanner-utils';
 import { IssueFilingControllerImpl } from '../../../../../issue-filing/common/issue-filing-controller-impl';
 import { IssueFilingServiceProvider } from '../../../../../issue-filing/issue-filing-service-provider';
 import { IssueFilingService } from '../../../../../issue-filing/types/issue-filing-service';

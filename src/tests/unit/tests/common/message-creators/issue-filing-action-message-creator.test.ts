@@ -14,7 +14,6 @@ import { IssueFilingActionMessageCreator } from '../../../../../common/message-c
 import { Messages } from '../../../../../common/messages';
 import { TelemetryDataFactory } from '../../../../../common/telemetry-data-factory';
 import { CreateIssueDetailsTextData } from '../../../../../common/types/create-issue-details-text-data';
-import { DecoratedAxeNodeResult } from '../../../../../injected/scanner-utils';
 import { EventStubFactory } from '../../../common/event-stub-factory';
 
 describe('IssueFilingActionMessageCreator', () => {
