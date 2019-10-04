@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RootContainer renders default view from default route: default view 1`] = `
+<DeviceConnectViewContainer
+  deps={
+    Object {
+      "storeHub": proxy {
+        "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+        "stores": undefined,
+      },
+    }
+  }
+/>
+`;
+
+exports[`RootContainer renders device connect view container when route is deviceConnectView: device connect view 1`] = `
+<DeviceConnectViewContainer
+  deps={
+    Object {
+      "storeHub": proxy {
+        "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+        "stores": undefined,
+      },
+    }
+  }
+/>
+`;
+
+exports[`RootContainer renders results view container when route is resultsView: results view 1`] = `
+<ResultsViewContainer
+  deps={
+    Object {
+      "storeHub": proxy {
+        "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+        "stores": undefined,
+      },
+    }
+  }
+/>
+`;

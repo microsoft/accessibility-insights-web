@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import React from 'react';
+import * as React from 'react';
 
 import { TelemetryPermissionDialogDeps } from 'common/components/telemetry-permission-dialog';
 import { ClientStoresHub } from 'common/stores/client-stores-hub';

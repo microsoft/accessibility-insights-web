@@ -3,10 +3,8 @@
 
 import * as React from 'react';
 
-import { BaseStore } from 'common/base-store';
 import { BaseClientStoresHub } from 'common/stores/base-client-stores-hub';
 import { ClientStoresHub } from 'common/stores/client-stores-hub';
-import { StoreNames } from 'common/stores/store-names';
 import { WindowStateStore } from 'electron/flux/store/window-state-store';
 import { WindowStateStoreData } from 'electron/flux/types/window-state-store-data';
 import { DeviceConnectViewContainerState } from 'electron/views/device-connect-view/components/device-connect-view-container';
@@ -17,7 +15,7 @@ import {
     RootContainerState,
 } from 'electron/views/root-container/components/root-container';
 import { shallow } from 'enzyme';
-import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
+import { It, Mock } from 'typemoq';
 
 describe(RootContainer, () => {
     let storeListener: () => Promise<void>;
@@ -46,20 +44,35 @@ describe(RootContainer, () => {
         deps = { storeHub: storeHubMock.object } as any;
     });
 
+    it('renders default view from default route', async () => {
+        const props: RootContainerProps = { deps };
+        const wrapped = shallow(<RootContainer {...props} />);
+
+        wrapped.instance();
+        windowStateStoreData.routeId = 'deviceConnectView';
+
+        expect(wrapped.getElement()).toMatchSnapshot('default view');
+    });
+
     it('renders device connect view container when route is deviceConnectView', async () => {
         const props: RootContainerProps = { deps };
-        const wrapped = <RootContainer {...props} />;
+        const wrapped = shallow(<RootContainer {...props} />);
+
+        wrapped.instance();
         windowStateStoreData.routeId = 'deviceConnectView';
         await storeListener();
 
-        expect(shallow(wrapped)).toMatchSnapshot();
+        expect(wrapped.getElement()).toMatchSnapshot('device connect view');
     });
-    it('renders result view container when route is resultView', async () => {
+
+    it('renders results view container when route is resultsView', async () => {
         const props: RootContainerProps = { deps };
-        const wrapped = <RootContainer {...props} />;
+        const wrapped = shallow(<RootContainer {...props} />);
+
+        wrapped.instance();
         windowStateStoreData.routeId = 'resultsView';
         await storeListener();
 
-        expect(shallow(wrapped)).toMatchSnapshot();
+        expect(wrapped.getElement()).toMatchSnapshot('results view');
     });
 });
