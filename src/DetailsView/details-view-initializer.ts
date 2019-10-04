@@ -99,6 +99,7 @@ import { AssessmentInstanceTableHandler } from './handlers/assessment-instance-t
 import { DetailsViewToggleClickHandlerFactory } from './handlers/details-view-toggle-click-handler-factory';
 import { MasterCheckBoxConfigProvider } from './handlers/master-checkbox-config-provider';
 import { PreviewFeatureFlagsHandler } from './handlers/preview-feature-flags-handler';
+import { AxeResultToIssueFilingDataConverter } from '../issue-filing/rule-result-to-issue-filing-data';
 
 declare const window: AutoChecker & Window;
 
@@ -271,8 +272,13 @@ if (isNaN(tabId) === false) {
 
             const reportGenerator = new ReportGenerator(reportNameGenerator, reportHtmlGenerator, assessmentReportHtmlGenerator);
 
+            const axeResultToIssueFilingDataConverter = new AxeResultToIssueFilingDataConverter(
+                IssueFilingUrlStringUtils.getSelectorLastPart,
+            );
+
             const deps: DetailsViewContainerDeps = {
                 fixInstructionProcessor,
+                axeResultToIssueFilingDataConverter,
                 dropdownClickHandler,
                 issueFilingActionMessageCreator,
                 contentProvider: contentPages,

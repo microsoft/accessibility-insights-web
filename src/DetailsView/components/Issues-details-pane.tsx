@@ -18,6 +18,7 @@ import { DecoratedAxeNodeResult } from '../../injected/scanner-utils';
 import { DictionaryStringTo } from '../../types/common-types';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 import { IssueFilingDialog } from './issue-filing-dialog';
+import { AxeResultToIssueFilingDataConverter } from '../../issue-filing/rule-result-to-issue-filing-data';
 
 export type IssuesDetailsPaneDeps = ToastDeps &
     IssueFilingButtonDeps &
@@ -25,6 +26,7 @@ export type IssuesDetailsPaneDeps = ToastDeps &
     GuidanceTagsDeps & {
         issueDetailsTextGenerator: IssueDetailsTextGenerator;
         detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
+        axeResultToIssueFilingDataConverter: AxeResultToIssueFilingDataConverter;
     };
 
 export interface IssuesDetailsPaneProps {
@@ -86,11 +88,7 @@ export class IssuesDetailsPane extends React.Component<IssuesDetailsPaneProps, I
     }
 
     private renderSingleIssue(result: DecoratedAxeNodeResult): JSX.Element {
-        const issueData: CreateIssueDetailsTextData = {
-            pageTitle: this.props.pageTitle,
-            pageUrl: this.props.pageUrl,
-            ruleResult: result,
-        };
+        const issueData = this.props.deps.axeResultToIssueFilingDataConverter.convert(result, this.props.pageTitle, this.props.pageUrl);
 
         return (
             <div>

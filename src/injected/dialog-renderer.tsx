@@ -25,6 +25,7 @@ import { LayeredDetailsDialogComponent, LayeredDetailsDialogDeps } from './layer
 import { MainWindowContext } from './main-window-context';
 import { DecoratedAxeNodeResult, HtmlElementAxeResults } from './scanner-utils';
 import { ShadowUtils } from './shadow-utils';
+import { AxeResultToIssueFilingDataConverter } from '../issue-filing/rule-result-to-issue-filing-data';
 
 export interface DetailsDialogWindowMessage {
     data: HtmlElementAxeResults;
@@ -72,7 +73,12 @@ export class DialogRenderer {
 
             const fixInstructionProcessor = new FixInstructionProcessor();
 
+            const axeResultToIssueFilingDataConverter = new AxeResultToIssueFilingDataConverter(
+                IssueFilingUrlStringUtils.getSelectorLastPart,
+            );
+
             const deps: LayeredDetailsDialogDeps = {
+                axeResultToIssueFilingDataConverter,
                 fixInstructionProcessor,
                 issueDetailsTextGenerator,
                 windowUtils: this.windowUtils,

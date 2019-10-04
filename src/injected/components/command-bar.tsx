@@ -12,8 +12,12 @@ import { CreateIssueDetailsTextData } from '../../common/types/create-issue-deta
 import { UserConfigurationStoreData } from '../../common/types/store-data/user-configuration-store';
 import { DictionaryStringTo } from '../../types/common-types';
 import { DecoratedAxeNodeResult } from '../scanner-utils';
+import { AxeResultToIssueFilingDataConverter } from '../../issue-filing/rule-result-to-issue-filing-data';
 
-export type CommandBarDeps = CopyIssueDetailsButtonDeps & IssueFilingButtonDeps;
+export type CommandBarDeps = CopyIssueDetailsButtonDeps &
+    IssueFilingButtonDeps & {
+        axeResultToIssueFilingDataConverter: AxeResultToIssueFilingDataConverter;
+    };
 
 export type CommandBarProps = {
     deps: CommandBarDeps;
@@ -42,11 +46,8 @@ export const CommandBar = NamedFC<CommandBarProps>('CommandBar', props => {
         const failedRuleIds: string[] = Object.keys(props.failedRules);
         const ruleName: string = failedRuleIds[props.currentRuleIndex];
         const ruleResult: DecoratedAxeNodeResult = props.failedRules[ruleName];
-        const issueData: CreateIssueDetailsTextData = {
-            pageTitle: document.title,
-            pageUrl: document.URL,
-            ruleResult,
-        };
+
+        const issueData = this.props.deps.axeToIssueFilingConverter.convert(document.title, document.URL, ruleResult);
 
         return (
             <>
