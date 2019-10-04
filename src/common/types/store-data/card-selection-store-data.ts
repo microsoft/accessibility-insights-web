@@ -1,11 +1,19 @@
+import { CardSelectionPayload } from '../../../background/actions/action-payloads';
+
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+export type CardSelectionData = { [resultInstanceUid: string]: boolean };
+
 export interface RuleExpandCollapseData {
     isExpanded: boolean;
-    cards: { [resultInstanceUid: string]: boolean };
+    cards: CardSelectionData;
+}
+
+export interface RuleExpandCollapseDataDictionary {
+    [ruleId: string]: RuleExpandCollapseData;
 }
 
 export interface CardSelectionStoreData {
-    rules: { [ruleId: string]: RuleExpandCollapseData };
+    rules: RuleExpandCollapseDataDictionary;
 }
