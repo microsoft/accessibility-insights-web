@@ -15,7 +15,24 @@ exports[`InstanceDetailsFooter renders per snapshot when all card interactions a
       HighLight hidden
     </StyledLabelBase>
   </div>
-  <CardKebabMenuButton />
+  <CardKebabMenuButton
+    deps={
+      Object {
+        "cardInteractionSupport": Object {
+          "supportsCopyFailureDetails": true,
+          "supportsHighlighting": true,
+          "supportsIssueFiling": true,
+        },
+      }
+    }
+    issueDetailsData={
+      Object {
+        "pageTitle": "pageTitle",
+        "pageUrl": "http://pageUrl",
+        "ruleResult": null,
+      }
+    }
+  />
 </div>
 `;
 
@@ -34,7 +51,24 @@ exports[`InstanceDetailsFooter renders per snapshot when only UserConfig-agnosti
       HighLight hidden
     </StyledLabelBase>
   </div>
-  <CardKebabMenuButton />
+  <CardKebabMenuButton
+    deps={
+      Object {
+        "cardInteractionSupport": Object {
+          "supportsCopyFailureDetails": true,
+          "supportsHighlighting": true,
+          "supportsIssueFiling": false,
+        },
+      }
+    }
+    issueDetailsData={
+      Object {
+        "pageTitle": "pageTitle",
+        "pageUrl": "http://pageUrl",
+        "ruleResult": null,
+      }
+    }
+  />
 </div>
 `;
 
@@ -53,7 +87,24 @@ exports[`InstanceDetailsFooter renders per snapshot with highlightState="hidden"
       HighLight hidden
     </StyledLabelBase>
   </div>
-  <CardKebabMenuButton />
+  <CardKebabMenuButton
+    deps={
+      Object {
+        "cardInteractionSupport": Object {
+          "supportsCopyFailureDetails": true,
+          "supportsHighlighting": true,
+          "supportsIssueFiling": true,
+        },
+      }
+    }
+    issueDetailsData={
+      Object {
+        "pageTitle": "pageTitle",
+        "pageUrl": "http://pageUrl",
+        "ruleResult": null,
+      }
+    }
+  />
 </div>
 `;
 
@@ -72,7 +123,24 @@ exports[`InstanceDetailsFooter renders per snapshot with highlightState="unavail
       HighLight unavailable
     </StyledLabelBase>
   </div>
-  <CardKebabMenuButton />
+  <CardKebabMenuButton
+    deps={
+      Object {
+        "cardInteractionSupport": Object {
+          "supportsCopyFailureDetails": true,
+          "supportsHighlighting": true,
+          "supportsIssueFiling": true,
+        },
+      }
+    }
+    issueDetailsData={
+      Object {
+        "pageTitle": "pageTitle",
+        "pageUrl": "http://pageUrl",
+        "ruleResult": null,
+      }
+    }
+  />
 </div>
 `;
 
@@ -91,6 +159,23 @@ exports[`InstanceDetailsFooter renders per snapshot with highlightState="visible
       HighLight visible
     </StyledLabelBase>
   </div>
-  <CardKebabMenuButton />
+  <CardKebabMenuButton
+    deps={
+      Object {
+        "cardInteractionSupport": Object {
+          "supportsCopyFailureDetails": true,
+          "supportsHighlighting": true,
+          "supportsIssueFiling": true,
+        },
+      }
+    }
+    issueDetailsData={
+      Object {
+        "pageTitle": "pageTitle",
+        "pageUrl": "http://pageUrl",
+        "ruleResult": null,
+      }
+    }
+  />
 </div>
 `;

@@ -63,7 +63,7 @@ describe('ReportHtmlGenerator', () => {
             getCollapsibleScript: getScriptMock.object,
             getGuidanceTagsFromGuidanceLinks: getGuidanceTagsStub,
             ruleResultsByStatus: exampleUnifiedStatusResults,
-        };
+        } as ReportBodyProps;
 
         const headElement: JSX.Element = <ReportHead />;
         const bodyElement: JSX.Element = <ReportBody {...sectionProps} />;

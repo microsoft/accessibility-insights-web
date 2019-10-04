@@ -34,6 +34,7 @@ exports[`InstanceDetailsGroup renders 1`] = `
           "uid": "some-guid-here",
         }
       }
+      userConfigurationStoreData={null}
     />
   </li>
 </ul>

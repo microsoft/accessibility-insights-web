@@ -57,7 +57,7 @@ export class ReportHtmlGenerator {
             getCollapsibleScript: this.getCollpasibleScript,
             getGuidanceTagsFromGuidanceLinks: this.getGuidanceTagsFromGuidanceLinks,
             fixInstructionProcessor: this.fixInstructionProcessor,
-        };
+        } as SectionProps;
 
         const props: ReportBodyProps = {
             sectionFactory: this.sectionFactory,

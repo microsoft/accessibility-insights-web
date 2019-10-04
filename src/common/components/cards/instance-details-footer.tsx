@@ -10,6 +10,7 @@ import { UserConfigurationStoreData } from '../../types/store-data/user-configur
 import { foot, highlightDiv } from './card-footer.scss';
 import { CardInteractionSupport } from './card-interaction-support';
 import { CardKebabMenuButton, CardKebabMenuButtonDeps } from './card-kebab-menu-button';
+import { guidanceTags } from '../../../content/guidance-tags';
 
 export type HighlightState = 'visible' | 'hidden' | 'unavailable';
 
@@ -21,10 +22,11 @@ export type InstanceDetailsFooterProps = {
     deps: InstanceDetailsFooterDeps;
     result: UnifiedResult;
     highlightState: HighlightState;
+    userConfigurationStoreData: UserConfigurationStoreData;
 };
 
 export const InstanceDetailsFooter = NamedFC<InstanceDetailsFooterProps>('InstanceDetailsFooter', props => {
-    const { highlightState, deps } = props;
+    const { highlightState, deps, userConfigurationStoreData } = props;
     const { cardInteractionSupport } = deps;
 
     const anyInteractionSupport = some(values(cardInteractionSupport));
@@ -35,16 +37,27 @@ export const InstanceDetailsFooter = NamedFC<InstanceDetailsFooterProps>('Instan
     const issueDetailsData: CreateIssueDetailsTextData = {
         pageTitle: 'pageTitle',
         pageUrl: 'http://pageUrl',
-        ruleResult: null,
-    };
-
-    const userConfigurationStoreData: UserConfigurationStoreData = {
-        isFirstTime: true,
-        enableTelemetry: true,
-        enableHighContrast: true,
-        bugService: 'none',
-        bugServicePropertiesMap: {
-            ['none']: {},
+        ruleResult: {
+            any: [],
+            none: [],
+            all: [],
+            status: true,
+            ruleId: 'ruleId',
+            failureSummary: 'failureSummary',
+            selector: 'selector',
+            html: 'html',
+            help: 'help',
+            id: 'id',
+            guidanceLinks: [
+                {
+                    href: 'www.test.com',
+                    text: 'text',
+                    tags: [guidanceTags.WCAG_2_1],
+                },
+            ],
+            helpUrl: 'helpUrl',
+            fingerprint: 'fingerprint',
+            snippet: 'snippet',
         },
     };
 
