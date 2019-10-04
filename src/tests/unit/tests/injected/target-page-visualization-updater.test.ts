@@ -50,7 +50,15 @@ describe('TargetPageVisualizationUpdater', () => {
 
         newVisualizationEnabledStateStub = true;
 
-        selectorMapHelperMock.setup(smhm => smhm.getSelectorMap(visualizationTypeStub)).returns(() => selectorMapStub);
+        selectorMapHelperMock
+            .setup(smhm =>
+                smhm.getSelectorMap(
+                    visualizationTypeStub,
+                    storeDataStub.visualizationScanResultStoreData,
+                    storeDataStub.assessmentStoreData,
+                ),
+            )
+            .returns(() => selectorMapStub);
         visualizationConfigurationFactoryMock.setup(vcfm => vcfm.getConfiguration(visualizationTypeStub)).returns(() => configMock.object);
         configMock.setup(cm => cm.getIdentifier(stepKeyStub)).returns(() => configIdStub);
         isVisualizationEnabledMock

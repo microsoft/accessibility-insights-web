@@ -31,7 +31,11 @@ export class TargetPageVisualizationUpdater {
         stepKey: string,
         storeData: TargetPageStoreData,
     ) => {
-        const selectorMap = this.selectorMapHelper.getSelectorMap(visualizationType);
+        const selectorMap = this.selectorMapHelper.getSelectorMap(
+            visualizationType,
+            storeData.visualizationScanResultStoreData,
+            storeData.assessmentStoreData,
+        );
         this.executeUpdate(visualizationType, stepKey, storeData, selectorMap);
         this.previousVisualizationSelectorMapStates[visualizationType] = selectorMap;
     };
