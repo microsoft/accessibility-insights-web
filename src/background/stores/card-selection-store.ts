@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { forOwn } from 'lodash';
 import { StoreNames } from '../../common/stores/store-names';
 import { CardSelectionStoreData, RuleExpandCollapseData } from '../../common/types/store-data/card-selection-store-data';
 import { RuleExpandCollapsePayload, UnifiedScanCompletedPayload } from '../actions/action-payloads';
@@ -35,9 +36,9 @@ export class CardSelectionStore extends BaseStoreImpl<CardSelectionStoreData> {
             return;
         }
 
-        for (const resultInstanceUid of Object.keys(rule.cards)) {
-            rule.cards[resultInstanceUid] = false;
-        }
+        forOwn(rule.cards, (isSelected, resultInstanceUid, cards) => {
+            cards[resultInstanceUid] = false;
+        });
     };
 
     private toggleRuleExpandCollapse = (payload: RuleExpandCollapsePayload): void => {
@@ -59,11 +60,10 @@ export class CardSelectionStore extends BaseStoreImpl<CardSelectionStoreData> {
     private toggleCardSelection = (): void => {};
 
     private collapseAllRules = (): void => {
-        for (const ruleId of Object.keys(this.state.rules)) {
-            const rule = this.state.rules[ruleId];
+        forOwn(this.state.rules, (rule, ruleId) => {
             rule.isExpanded = false;
             this.deselectAllCardsInRule(rule);
-        }
+        });
 
         this.emitChanged();
     };
