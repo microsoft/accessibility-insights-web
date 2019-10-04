@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { It, Mock } from 'typemoq';
+import { It, Mock, Times } from 'typemoq';
 import { CreateIssueDetailsTextData } from '../../../../common/types/create-issue-details-text-data';
 import { DecoratedAxeNodeResult } from '../../../../injected/scanner-utils';
 import { AxeResultToIssueFilingDataConverter } from '../../../../issue-filing/rule-result-to-issue-filing-data';
@@ -55,9 +55,13 @@ describe('AxeResultToIssueFilingDataConverter', () => {
         };
 
         const shortenSelector = Mock.ofInstance(str => '');
-        shortenSelector.setup(m => m(It.isAnyString())).returns(_ => 'short');
+        shortenSelector
+            .setup(m => m(It.isAnyString()))
+            .returns(_ => 'short')
+            .verifiable(Times.once());
         const converter = new AxeResultToIssueFilingDataConverter(shortenSelector.object);
         const textData = converter.convert(result, fakePageTitle, fakePageUrl);
         expect(textData).toEqual(expected);
+        shortenSelector.verifyAll();
     });
 });
