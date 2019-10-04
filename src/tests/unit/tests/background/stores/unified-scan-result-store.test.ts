@@ -67,7 +67,7 @@ describe('UnifiedScanResultStore Test', () => {
             rules: payload.rules,
             results: payload.scanResult,
             toolInfo: payload.toolInfo,
-            targetAppInfo: null,
+            targetAppInfo,
         };
 
         createStoreForUnifiedScanResultActions('scanCompleted')
