@@ -13,6 +13,8 @@ export const createIssueDetailsBuilder = (markup: MarkupFormatter): IssueDetails
 
         const { howToFixSection, link, sectionHeader, snippet, sectionHeaderSeparator, footerSeparator, sectionSeparator } = markup;
 
+        const targetAppText = data.pageUrl ? link(data.pageUrl, data.pageTitle) : data.pageTitle;
+
         const lines = [
             sectionHeader('Issue'),
             sectionHeaderSeparator(),
@@ -21,7 +23,7 @@ export const createIssueDetailsBuilder = (markup: MarkupFormatter): IssueDetails
 
             sectionHeader('Target application'),
             sectionHeaderSeparator(),
-            link(data.pageUrl, data.pageTitle),
+            targetAppText,
             sectionSeparator(),
 
             sectionHeader('Element path'),
