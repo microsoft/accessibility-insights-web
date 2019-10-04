@@ -14,19 +14,10 @@ describe('createFileIssueHandler', () => {
     it('properly files an issue', () => {
         const serviceMap: IssueFilingServicePropertiesMap = {};
         const issueData: CreateIssueDetailsTextData = {
-            pageTitle: 'pageTitle<x>',
-            pageUrl: 'pageUrl',
-            ruleResult: {
-                failureSummary: 'RR-failureSummary',
-                guidanceLinks: [{ text: 'WCAG-1.4.1' }, { text: 'wcag-2.8.2' }],
-                help: 'RR-help',
-                html: 'RR-html',
-                ruleId: 'RR-rule-id',
-                helpUrl: 'RR-help-url',
-                selector: 'RR-selector<x>',
-                snippet: 'RR-snippet   space',
-            } as DecoratedAxeNodeResult,
-        };
+            targetApp: {
+                name: 'pageTitle<x>',
+            },
+        } as any;
         const environmentInfoStub: EnvironmentInfo = {
             axeCoreVersion: 'test axe version',
             browserSpec: 'test browser spec',

@@ -47,7 +47,7 @@ export const CommandBar = NamedFC<CommandBarProps>('CommandBar', props => {
         const ruleName: string = failedRuleIds[props.currentRuleIndex];
         const ruleResult: DecoratedAxeNodeResult = props.failedRules[ruleName];
 
-        const issueData = this.props.deps.axeToIssueFilingConverter.convert(document.title, document.URL, ruleResult);
+        const issueData = props.deps.axeResultToIssueFilingDataConverter.convert(ruleResult, document.title, document.URL);
 
         return (
             <>

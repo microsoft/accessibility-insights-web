@@ -15,6 +15,7 @@ import {
 import { FixInstructionPanel } from '../../../../../injected/components/fix-instruction-panel';
 import { DecoratedAxeNodeResult } from '../../../../../injected/scanner-utils';
 import { DictionaryStringTo } from '../../../../../types/common-types';
+import { AxeResultToIssueFilingDataConverter } from '../../../../../issue-filing/rule-result-to-issue-filing-data';
 
 describe('IssuesDetailsPaneTest', () => {
     const samplePageTitle = 'pageTitle';
@@ -111,6 +112,9 @@ describe('IssuesDetailsPaneTest', () => {
         }
 
         const deps: IssuesDetailsPaneDeps = {
+            axeResultToIssueFilingDataConverter: {
+                convert: (res, title, url) => {},
+            } as AxeResultToIssueFilingDataConverter,
             issueDetailsTextGenerator: null,
             detailsViewActionMessageCreator: {
                 copyIssueDetailsClicked: _ => {},

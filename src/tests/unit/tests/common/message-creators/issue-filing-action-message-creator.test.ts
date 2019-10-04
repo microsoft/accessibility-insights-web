@@ -77,36 +77,23 @@ describe('IssueFilingActionMessageCreator', () => {
         const telemetry = { ...telemetryStub, service: testService };
 
         telemetryFactoryMock.setup(factory => factory.forFileIssueClick(eventStub, source, testService)).returns(() => telemetry);
-        const issueDetailsData: CreateIssueDetailsTextData = {
-            pageTitle: 'pageTitle<x>',
-            pageUrl: 'pageUrl',
-            ruleResult: {
-                failureSummary: 'RR-failureSummary',
-                guidanceLinks: [{ text: 'WCAG-1.4.1' }, { text: 'wcag-2.8.2' }],
-                help: 'RR-help',
-                html: 'RR-html',
-                ruleId: 'RR-rule-id',
-                helpUrl: 'RR-help-url',
-                selector: 'RR-selector<x>',
-                snippet: 'RR-snippet   space',
-            } as DecoratedAxeNodeResult,
-        };
-
-        dispatcherMock.setup(dispatcher =>
-            dispatcher.dispatchMessage(
-                It.isValue({
-                    messageType: Messages.IssueFiling.FileIssue,
-                    payload: {
-                        service: testService,
-                        issueData: issueDetailsData,
-                        telemetry,
-                    },
-                }),
-            ),
-        );
+        const issueDetailsData: CreateIssueDetailsTextData = {} as any;
 
         testSubject.fileIssue(eventStub, testService, issueDetailsData);
 
-        dispatcherMock.verifyAll();
+        dispatcherMock.verify(
+            dispatcher =>
+                dispatcher.dispatchMessage(
+                    It.isValue({
+                        messageType: Messages.IssueFiling.FileIssue,
+                        payload: {
+                            service: testService,
+                            issueData: issueDetailsData,
+                            telemetry,
+                        },
+                    }),
+                ),
+            Times.once(),
+        );
     });
 });

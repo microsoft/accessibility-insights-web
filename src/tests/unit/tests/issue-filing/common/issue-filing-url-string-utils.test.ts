@@ -9,11 +9,11 @@ describe('IssueFilingUrlStringUtilsTest', () => {
 
     beforeEach(() => {
         sampleIssueDetailsData = {
-            pageTitle: 'pageTitle<x>',
-            pageUrl: 'pageUrl',
-            ruleResult: {
-                failureSummary: 'RR-failureSummary',
-                guidanceLinks: [
+            rule: {
+                description: 'RR-help',
+                id: 'RR-rule-id',
+                url: 'RR-help-url',
+                guidance: [
                     {
                         text: 'WCAG-1.4.1',
                         tags: [
@@ -23,13 +23,17 @@ describe('IssueFilingUrlStringUtilsTest', () => {
                     },
                     { text: 'wcag-2.8.2' },
                 ],
-                help: 'RR-help',
-                html: 'RR-html',
-                ruleId: 'RR-rule-id',
-                helpUrl: 'RR-help-url',
-                selector: 'RR-selector<x>',
-                snippet: 'RR-snippet   space',
-            } as DecoratedAxeNodeResult,
+            } as any,
+            targetApp: {
+                name: 'pageTitle<x>',
+                url: 'pageUrl',
+            },
+            element: {
+                identifier: 'RR-selector<x>',
+                conciseName: 'RR-selector<x>',
+            },
+            howToFixSummary: 'RR-failureSummary',
+            snippet: 'RR-snippet   space',
         };
     });
 
@@ -39,7 +43,7 @@ describe('IssueFilingUrlStringUtilsTest', () => {
         });
 
         test('without tags', () => {
-            sampleIssueDetailsData.ruleResult.guidanceLinks = [];
+            sampleIssueDetailsData.rule.guidance = [];
 
             expect(IssueFilingUrlStringUtils.getTitle(sampleIssueDetailsData)).toMatchSnapshot();
         });

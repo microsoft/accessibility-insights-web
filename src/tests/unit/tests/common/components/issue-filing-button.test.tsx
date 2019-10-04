@@ -14,6 +14,7 @@ import { UserConfigurationStoreData } from '../../../../../common/types/store-da
 import { IssueFilingServiceProvider } from '../../../../../issue-filing/issue-filing-service-provider';
 import { IssueFilingService } from '../../../../../issue-filing/types/issue-filing-service';
 import { EventStubFactory } from '../../../common/event-stub-factory';
+import { CreateIssueDetailsTextData } from '../../../../../common/types/create-issue-details-text-data';
 
 describe('IssueFilingButtonTest', () => {
     const testKey: string = 'test';
@@ -71,11 +72,7 @@ describe('IssueFilingButtonTest', () => {
                 environmentInfoProvider: environmentInfoProviderMock.object,
                 issueFilingServiceProvider: issueFilingServiceProviderMock.object,
             } as IssueFilingButtonDeps,
-            issueDetailsData: {
-                pageTitle: 'pageTitle',
-                pageUrl: 'http://pageUrl',
-                ruleResult: null,
-            },
+            issueDetailsData: {} as CreateIssueDetailsTextData,
             userConfigurationStoreData: userConfigurationStoreData,
             needsSettingsContentRenderer,
         };
@@ -92,11 +89,7 @@ describe('IssueFilingButtonTest', () => {
                 environmentInfoProvider: environmentInfoProviderMock.object,
                 issueFilingServiceProvider: issueFilingServiceProviderMock.object,
             } as IssueFilingButtonDeps,
-            issueDetailsData: {
-                pageTitle: 'pageTitle',
-                pageUrl: 'http://pageUrl',
-                ruleResult: null,
-            },
+            issueDetailsData: {} as CreateIssueDetailsTextData,
             userConfigurationStoreData: userConfigurationStoreData,
             needsSettingsContentRenderer,
         };
@@ -123,11 +116,7 @@ describe('IssueFilingButtonTest', () => {
                 environmentInfoProvider: environmentInfoProviderMock.object,
                 issueFilingServiceProvider: issueFilingServiceProviderMock.object,
             } as IssueFilingButtonDeps,
-            issueDetailsData: {
-                pageTitle: 'pageTitle',
-                pageUrl: 'http://pageUrl',
-                ruleResult: null,
-            },
+            issueDetailsData: {} as CreateIssueDetailsTextData,
             userConfigurationStoreData: userConfigurationStoreData,
             needsSettingsContentRenderer,
         };
