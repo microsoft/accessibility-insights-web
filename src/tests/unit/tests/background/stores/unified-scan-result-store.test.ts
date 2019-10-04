@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { UnifiedScanCompletedPayload } from '../../../../../background/actions/action-payloads';
+import { TargetAppInfoPayload, UnifiedScanCompletedPayload } from '../../../../../background/actions/action-payloads';
 import { UnifiedScanResultActions } from '../../../../../background/actions/unified-scan-result-actions';
 import { UnifiedScanResultStore } from '../../../../../background/stores/unified-scan-result-store';
 import { StoreNames } from '../../../../../common/stores/store-names';
@@ -12,6 +12,7 @@ import {
     UnifiedScanResultStoreData,
 } from '../../../../../common/types/store-data/unified-data-interface';
 import { createStoreWithNullParams, StoreTester } from '../../../common/store-tester';
+import { TargetAppData } from './../../../../../common/types/store-data/unified-data-interface';
 
 describe('UnifiedScanResultStore Test', () => {
     test('constructor has no side effects', () => {
@@ -65,9 +66,30 @@ describe('UnifiedScanResultStore Test', () => {
             rules: payload.rules,
             results: payload.scanResult,
             toolInfo: payload.toolInfo,
+            targetAppInfo: null,
         };
 
         createStoreForUnifiedScanResultActions('scanCompleted')
+            .withActionParam(payload)
+            .testListenerToBeCalledOnce(initialState, expectedState);
+    });
+
+    test('updateTargetAppInfo', () => {
+        const initialState = getDefaultState();
+        const targetAppInfo: TargetAppData = { name: 'app name' };
+
+        const payload: TargetAppInfoPayload = {
+            targetAppInfo,
+        };
+
+        const expectedState: UnifiedScanResultStoreData = {
+            results: null,
+            rules: null,
+            toolInfo: null,
+            targetAppInfo,
+        };
+
+        createStoreForUnifiedScanResultActions('updateTargetAppInfo')
             .withActionParam(payload)
             .testListenerToBeCalledOnce(initialState, expectedState);
     });

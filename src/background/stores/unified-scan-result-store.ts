@@ -37,7 +37,6 @@ export class UnifiedScanResultStore extends BaseStoreImpl<UnifiedScanResultStore
 
     private updateTargetAppInfo = (payload: TargetAppInfoPayload): void => {
         this.state.targetAppInfo = payload.targetAppInfo;
-        console.log(this.state);
         this.emitChanged();
     };
 }

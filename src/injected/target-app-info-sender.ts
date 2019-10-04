@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { TargetAppInfoPayload } from 'background/actions/action-payloads';
-import { Messages } from 'common/messages';
-import { MessageDelegate } from 'injected/analyzers/rule-analyzer';
+import { Messages } from '../common/messages';
+import { TargetAppInfoPayload } from './../background/actions/action-payloads';
+import { MessageDelegate } from './analyzers/rule-analyzer';
 
 export class TargetAppInfoSender {
     constructor(private readonly sendMessage: MessageDelegate, private readonly dom: Document) {}
