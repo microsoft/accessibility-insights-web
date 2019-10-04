@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { StoreNames } from '../../common/stores/store-names';
 import { UnifiedScanResultStoreData } from '../../common/types/store-data/unified-data-interface';
-import { UnifiedScanCompletedPayload } from '../actions/action-payloads';
+import { TargetAppInfoPayload, UnifiedScanCompletedPayload } from '../actions/action-payloads';
 import { UnifiedScanResultActions } from '../actions/unified-scan-result-actions';
 import { BaseStoreImpl } from './base-store-impl';
 
@@ -16,6 +16,7 @@ export class UnifiedScanResultStore extends BaseStoreImpl<UnifiedScanResultStore
             results: null,
             rules: null,
             toolInfo: null,
+            targetAppInfo: null,
         };
 
         return defaultValue;
@@ -24,12 +25,19 @@ export class UnifiedScanResultStore extends BaseStoreImpl<UnifiedScanResultStore
     protected addActionListeners(): void {
         this.unifiedScanResultActions.getCurrentState.addListener(this.onGetCurrentState);
         this.unifiedScanResultActions.scanCompleted.addListener(this.onScanCompleted);
+        this.unifiedScanResultActions.updateTargetAppInfo.addListener(this.updateTargetAppInfo);
     }
 
     private onScanCompleted = (payload: UnifiedScanCompletedPayload): void => {
         this.state.results = payload.scanResult;
         this.state.rules = payload.rules;
         this.state.toolInfo = payload.toolInfo;
+        this.emitChanged();
+    };
+
+    private updateTargetAppInfo = (payload: TargetAppInfoPayload): void => {
+        this.state.targetAppInfo = payload.targetAppInfo;
+        console.log(this.state);
         this.emitChanged();
     };
 }
