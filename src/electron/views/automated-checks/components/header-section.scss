@@ -1,0 +1,15 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+@import '../../../../common/styles/colors.scss';
+
+.h1 {
+    font-size: 21px;
+    line-height: 25px;
+    letter-spacing: -0.02em;
+}
+
+.text {
+    font-size: 14px;
+    line-height: 16px;
+    color: $secondary-text;
+}

@@ -197,9 +197,10 @@ if (isNaN(tabId) === false) {
             const scopingFlagsHandler = new PreviewFeatureFlagsHandler(getAllFeatureFlagDetails());
             const dropdownClickHandler = new DropdownClickHandler(dropdownActionMessageCreator, TelemetryEventSource.DetailsView);
 
+            const navigatorUtils = new NavigatorUtils(window.navigator);
             const extensionVersion = browserAdapter.getManifest().version;
             const axeVersion = getVersion();
-            const browserSpec = new NavigatorUtils(window.navigator).getBrowserSpec();
+            const browserSpec = navigatorUtils.getBrowserSpec();
 
             const environmentInfoProvider = new EnvironmentInfoProvider(browserAdapter.getVersion(), browserSpec, AxeInfo.Default.version);
 
@@ -230,7 +231,7 @@ if (isNaN(tabId) === false) {
                 DateProvider.getCurrentDate,
                 extensionVersion,
                 axeVersion,
-                new NavigatorUtils(window.navigator).getBrowserSpec(),
+                browserSpec,
                 assessmentDefaultMessageGenerator,
             );
 
@@ -314,6 +315,7 @@ if (isNaN(tabId) === false) {
                 getPropertyConfigById: getPropertyConfiguration,
                 collapsibleControl: CardsCollapsibleControl,
                 cardInteractionSupport: allCardInteractionsSupported,
+                navigatorUtils: navigatorUtils,
             };
 
             const renderer = new DetailsViewRenderer(

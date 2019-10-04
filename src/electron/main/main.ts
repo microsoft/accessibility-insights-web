@@ -15,7 +15,7 @@ const createWindow = () => {
     });
 
     mainWindow
-        .loadFile(path.resolve(__dirname, '../electron/device-connect-view/deviceConnectView.html'))
+        .loadFile(path.resolve(__dirname, '../electron/views/device-connect-view/deviceConnectView.html'))
         .then(() => console.log('url loaded'))
         .catch(console.log);
 

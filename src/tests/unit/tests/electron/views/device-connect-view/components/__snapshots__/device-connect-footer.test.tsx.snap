@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DeviceConnectFooterTest render 1`] = `
+<footer
+  className="deviceConnectFooter"
+>
+  <CustomizedDefaultButton
+    className="footerButtonCancel"
+    onClick={[Function]}
+    text="Cancel"
+  />
+  <CustomizedPrimaryButton
+    className="footerButtonStart"
+    disabled={true}
+    text="Start testing"
+  />
+</footer>
+`;

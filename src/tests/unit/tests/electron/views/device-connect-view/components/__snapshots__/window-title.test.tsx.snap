@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`WindowTitleTest render 1`] = `
+<header
+  className="windowTitle"
+>
+  <div>
+    <span>
+      test
+    </span>
+    <h1
+      className="headerText"
+    >
+      Test
+    </h1>
+  </div>
+</header>
+`;
