@@ -29,7 +29,33 @@ exports[`InstanceDetailsFooter renders per snapshot when all card interactions a
       Object {
         "pageTitle": "pageTitle",
         "pageUrl": "http://pageUrl",
-        "ruleResult": null,
+        "ruleResult": Object {
+          "all": Array [],
+          "any": Array [],
+          "failureSummary": "failureSummary",
+          "fingerprint": "fingerprint",
+          "guidanceLinks": Array [
+            Object {
+              "href": "www.test.com",
+              "tags": Array [
+                Object {
+                  "displayText": "New for WCAG 2.1",
+                  "id": "WCAG_2_1",
+                },
+              ],
+              "text": "text",
+            },
+          ],
+          "help": "help",
+          "helpUrl": "helpUrl",
+          "html": "html",
+          "id": "id",
+          "none": Array [],
+          "ruleId": "ruleId",
+          "selector": "selector",
+          "snippet": "snippet",
+          "status": true,
+        },
       }
     }
   />
@@ -65,7 +91,33 @@ exports[`InstanceDetailsFooter renders per snapshot when only UserConfig-agnosti
       Object {
         "pageTitle": "pageTitle",
         "pageUrl": "http://pageUrl",
-        "ruleResult": null,
+        "ruleResult": Object {
+          "all": Array [],
+          "any": Array [],
+          "failureSummary": "failureSummary",
+          "fingerprint": "fingerprint",
+          "guidanceLinks": Array [
+            Object {
+              "href": "www.test.com",
+              "tags": Array [
+                Object {
+                  "displayText": "New for WCAG 2.1",
+                  "id": "WCAG_2_1",
+                },
+              ],
+              "text": "text",
+            },
+          ],
+          "help": "help",
+          "helpUrl": "helpUrl",
+          "html": "html",
+          "id": "id",
+          "none": Array [],
+          "ruleId": "ruleId",
+          "selector": "selector",
+          "snippet": "snippet",
+          "status": true,
+        },
       }
     }
   />
@@ -101,7 +153,33 @@ exports[`InstanceDetailsFooter renders per snapshot with highlightState="hidden"
       Object {
         "pageTitle": "pageTitle",
         "pageUrl": "http://pageUrl",
-        "ruleResult": null,
+        "ruleResult": Object {
+          "all": Array [],
+          "any": Array [],
+          "failureSummary": "failureSummary",
+          "fingerprint": "fingerprint",
+          "guidanceLinks": Array [
+            Object {
+              "href": "www.test.com",
+              "tags": Array [
+                Object {
+                  "displayText": "New for WCAG 2.1",
+                  "id": "WCAG_2_1",
+                },
+              ],
+              "text": "text",
+            },
+          ],
+          "help": "help",
+          "helpUrl": "helpUrl",
+          "html": "html",
+          "id": "id",
+          "none": Array [],
+          "ruleId": "ruleId",
+          "selector": "selector",
+          "snippet": "snippet",
+          "status": true,
+        },
       }
     }
   />
@@ -137,7 +215,33 @@ exports[`InstanceDetailsFooter renders per snapshot with highlightState="unavail
       Object {
         "pageTitle": "pageTitle",
         "pageUrl": "http://pageUrl",
-        "ruleResult": null,
+        "ruleResult": Object {
+          "all": Array [],
+          "any": Array [],
+          "failureSummary": "failureSummary",
+          "fingerprint": "fingerprint",
+          "guidanceLinks": Array [
+            Object {
+              "href": "www.test.com",
+              "tags": Array [
+                Object {
+                  "displayText": "New for WCAG 2.1",
+                  "id": "WCAG_2_1",
+                },
+              ],
+              "text": "text",
+            },
+          ],
+          "help": "help",
+          "helpUrl": "helpUrl",
+          "html": "html",
+          "id": "id",
+          "none": Array [],
+          "ruleId": "ruleId",
+          "selector": "selector",
+          "snippet": "snippet",
+          "status": true,
+        },
       }
     }
   />
@@ -173,7 +277,33 @@ exports[`InstanceDetailsFooter renders per snapshot with highlightState="visible
       Object {
         "pageTitle": "pageTitle",
         "pageUrl": "http://pageUrl",
-        "ruleResult": null,
+        "ruleResult": Object {
+          "all": Array [],
+          "any": Array [],
+          "failureSummary": "failureSummary",
+          "fingerprint": "fingerprint",
+          "guidanceLinks": Array [
+            Object {
+              "href": "www.test.com",
+              "tags": Array [
+                Object {
+                  "displayText": "New for WCAG 2.1",
+                  "id": "WCAG_2_1",
+                },
+              ],
+              "text": "text",
+            },
+          ],
+          "help": "help",
+          "helpUrl": "helpUrl",
+          "html": "html",
+          "id": "id",
+          "none": Array [],
+          "ruleId": "ruleId",
+          "selector": "selector",
+          "snippet": "snippet",
+          "status": true,
+        },
       }
     }
   />

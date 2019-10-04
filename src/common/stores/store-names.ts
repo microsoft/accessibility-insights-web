@@ -17,4 +17,5 @@ export enum StoreNames {
     UnifiedScanResultStore,
     CardSelectionStore,
     DeviceStore,
+    WindowStateStore,
 }

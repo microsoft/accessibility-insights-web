@@ -8,6 +8,11 @@ export interface ScanEngineProperties {
     version: string;
 }
 
+export interface ApplicationProperties {
+    name: string;
+    version: string;
+}
+
 export interface OSProperties {
     name: string;
     version: string;
@@ -24,8 +29,14 @@ export interface PlatformData {
     viewPortInfo: ViewPortProperties;
 }
 
+export interface TargetAppData {
+    name: string;
+    url?: string;
+}
+
 export interface ToolData {
     scanEngineProperties: ScanEngineProperties;
+    applicationProperties: ApplicationProperties;
 }
 
 export interface UnifiedRule {
@@ -40,6 +51,7 @@ export interface UnifiedScanResultStoreData {
     rules: UnifiedRule[];
     platformInfo?: PlatformData;
     toolInfo?: ToolData;
+    targetAppInfo?: TargetAppData;
 }
 
 export interface InstancePropertyBag {

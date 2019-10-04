@@ -5,12 +5,12 @@ import { UnifiedResult } from 'common/types/store-data/unified-data-interface';
 import { some, values } from 'lodash';
 import { Icon, Label } from 'office-ui-fabric-react';
 import * as React from 'react';
+import { guidanceTags } from '../../../content/guidance-tags';
 import { CreateIssueDetailsTextData } from '../../types/create-issue-details-text-data';
 import { UserConfigurationStoreData } from '../../types/store-data/user-configuration-store';
 import { foot, highlightDiv } from './card-footer.scss';
 import { CardInteractionSupport } from './card-interaction-support';
 import { CardKebabMenuButton, CardKebabMenuButtonDeps } from './card-kebab-menu-button';
-import { guidanceTags } from '../../../content/guidance-tags';
 
 export type HighlightState = 'visible' | 'hidden' | 'unavailable';
 

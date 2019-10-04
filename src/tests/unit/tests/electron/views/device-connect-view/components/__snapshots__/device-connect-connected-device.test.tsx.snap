@@ -1,0 +1,74 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DeviceConnectConnectedDeviceTest render connection failure: connection failure 1`] = `
+<div
+  className="deviceConnectConnectedDevice"
+>
+  <h3>
+    Connected device
+  </h3>
+  <React.Fragment>
+    <StyledIconBase
+      ariaLabel="Connection failed"
+      className="connectionErrorIcon"
+      iconName="statusErrorFull"
+    />
+    <span
+      className="scannedText"
+    >
+      No active applications were found at the provided local host.
+    </span>
+  </React.Fragment>
+</div>
+`;
+
+exports[`DeviceConnectConnectedDeviceTest render connection success: connection success 1`] = `
+<div
+  className="deviceConnectConnectedDevice"
+>
+  <h3>
+    Connected device
+  </h3>
+  <span
+    className="scannedText"
+  >
+    A Test Device!
+  </span>
+</div>
+`;
+
+exports[`DeviceConnectConnectedDeviceTest render no content: no content 1`] = `
+<div
+  className="deviceConnectConnectedDevice"
+>
+  <h3>
+    Connected device
+  </h3>
+</div>
+`;
+
+exports[`DeviceConnectConnectedDeviceTest render scanning spinner: scanning spinner 1`] = `
+<div
+  className="deviceConnectConnectedDevice"
+>
+  <h3>
+    Connected device
+  </h3>
+  <StyledSpinnerBase
+    className="deviceConnectSpinner"
+    label="Connecting to mobile device"
+    labelPosition="right"
+    size={0}
+  />
+</div>
+`;
+
+exports[`DeviceConnectConnectedDeviceTest render user change the port number: user change the port number 1`] = `
+<div
+  className="deviceConnectConnectedDevice"
+>
+  <h3>
+    Connected device
+  </h3>
+</div>
+`;

@@ -12,5 +12,56 @@ exports[`CardKebabMenuButtonTest render 1`] = `
     }
     onClick={[Function]}
   />
+  <React.Fragment />
 </div>
+`;
+
+exports[`CardKebabMenuButtonTest render ContextualMenu 1`] = `
+<div
+  className="kebabMenuButton"
+>
+  <CustomizedActionButton
+    iconProps={
+      Object {
+        "iconName": "moreVertical",
+      }
+    }
+    onClick={[Function]}
+  />
+  <StyledWithResponsiveMode
+    items={
+      Array [
+        Object {
+          "iconProps": Object {
+            "iconName": "ladybugSolid",
+          },
+          "key": "fileissue",
+          "name": "File issue",
+          "onClick": [Function],
+        },
+        Object {
+          "iconProps": Object {
+            "iconName": "copy",
+          },
+          "key": "copyfailuredetails",
+          "name": "Copy failure details",
+          "onClick": [Function],
+        },
+      ]
+    }
+    onDismiss={[Function]}
+    target="Card View"
+  />
+  <React.Fragment />
+</div>
+`;
+
+exports[`CardKebabMenuButtonTest should click copy failure details and show the toast 1`] = `
+"<div className=\\"kebabMenuButton\\">
+  <CustomizedActionButton iconProps={{...}} onClick={[Function]} />
+  <StyledWithResponsiveMode onDismiss={[Function: onDismiss]} target=\\"Card View\\" items={{...}} />
+  <Toast onTimeout={[Function: onTimeout]} deps={{...}} timeoutLength={1000}>
+    Failure details copied.
+  </Toast>
+</div>"
 `;

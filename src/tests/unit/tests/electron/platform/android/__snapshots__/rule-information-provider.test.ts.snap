@@ -1,11 +1,49 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`RuleInformationProvider getRuleInformation returns correct data for ActiveViewName rule 1`] = `"The view is active but has no name available to assistive technologies. Provide a name for the view using its contentDescription, hint, labelFor, or text attribute (depending on the view type)"`;
+exports[`RuleInformationProvider getRuleInformation returns correct data for ActiveViewName rule 1`] = `
+Object {
+  "formatAsCode": Array [
+    "contentDescription",
+    "hint",
+    "labelFor",
+    "text",
+  ],
+  "unformattedText": "The view is active but has no name available to assistive technologies. Provide a name for the view using its contentDescription, hint, labelFor, or text attribute (depending on the view type)",
+}
+`;
 
-exports[`RuleInformationProvider getRuleInformation returns correct data for ColorContrast rule 1`] = `"The text element has insufficient contrast of 2.798498811425733. Foreground color: #979797, background color: #fafafa). Modify the text foreground and/or background colors to provide a contrast ratio of at least 4.5:1 for regular text, or 3:1 for large text (at least 18pt, or 14pt+bold)."`;
+exports[`RuleInformationProvider getRuleInformation returns correct data for ColorContrast rule 1`] = `
+Object {
+  "formatAsCode": null,
+  "unformattedText": "The text element has insufficient contrast of 2.798498811425733. Foreground color: #979797, background color: #fafafa). Modify the text foreground and/or background colors to provide a contrast ratio of at least 4.5:1 for regular text, or 3:1 for large text (at least 18pt, or 14pt+bold).",
+}
+`;
 
-exports[`RuleInformationProvider getRuleInformation returns correct data for EditTextValue rule 1`] = `"The element's contentDescription overrides the text value required by assistive technologies. Remove the element’s contentDescription attribute."`;
+exports[`RuleInformationProvider getRuleInformation returns correct data for EditTextValue rule 1`] = `
+Object {
+  "formatAsCode": Array [
+    "contentDescription",
+  ],
+  "unformattedText": "The element's contentDescription overrides the text value required by assistive technologies. Remove the element’s contentDescription attribute.",
+}
+`;
 
-exports[`RuleInformationProvider getRuleInformation returns correct data for ImageViewName rule 1`] = `"The image has no alternate text and is not identified as decorative. If the image conveys meaningful content, provide alternate text using the contentDescription attribute. If the image is decorative, give it an empty contentDescription, or set its isImportantForAccessibility attribute to false."`;
+exports[`RuleInformationProvider getRuleInformation returns correct data for ImageViewName rule 1`] = `
+Object {
+  "formatAsCode": Array [
+    "contentDescription",
+    "isImportantForAccessibility",
+  ],
+  "unformattedText": "The image has no alternate text and is not identified as decorative. If the image conveys meaningful content, provide alternate text using the contentDescription attribute. If the image is decorative, give it an empty contentDescription, or set its isImportantForAccessibility attribute to false.",
+}
+`;
 
-exports[`RuleInformationProvider getRuleInformation returns correct data for TouchSizeWcag rule 1`] = `"The element has an insufficient target size (width: 42.22222222222222dp, height: 38.22222222222222dp). Set the element's minWidth and minHeight attributes to at least 48dp."`;
+exports[`RuleInformationProvider getRuleInformation returns correct data for TouchSizeWcag rule 1`] = `
+Object {
+  "formatAsCode": Array [
+    "minWidth",
+    "minHeight",
+  ],
+  "unformattedText": "The element has an insufficient target size (width: 42.22222222222222dp, height: 38.22222222222222dp). Set the element's minWidth and minHeight attributes to at least 48dp.",
+}
+`;

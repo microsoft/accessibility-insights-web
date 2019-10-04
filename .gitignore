@@ -1,6 +1,11 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
 
+# Visual Studio working files
+.vs/
+*.suo
+*.user
+
 # Output of build/deploy tasks
 /dist/
 /ref/

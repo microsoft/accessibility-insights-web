@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DeviceConnectHeaderTest render 1`] = `
+<header
+  className="deviceConnectHeader"
+>
+  <h2>
+    Connect to your android device
+  </h2>
+  <ElectronLink
+    href="https://go.microsoft.com/fwlink/?linkid=2101252"
+  >
+    How do I connect to my device?
+  </ElectronLink>
+</header>
+`;

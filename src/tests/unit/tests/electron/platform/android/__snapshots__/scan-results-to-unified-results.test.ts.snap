@@ -4,35 +4,98 @@ exports[`ScanResultsToUnifiedResults Null ScanResults input returns empty output
 
 exports[`ScanResultsToUnifiedResults ScanResults with no RuleResults returns empty output 1`] = `Array []`;
 
-exports[`ScanResultsToUnifiedResults ScanResults with passes, failures, and excluded results 1`] = `
+exports[`ScanResultsToUnifiedResults ScanResults with passes, failures, view IDs, and excluded results 1`] = `
 Array [
   Object {
-    "descriptors": null,
+    "descriptors": Object {
+      "boundingRectangle": Object {
+        "bottom": 800,
+        "left": 10,
+        "right": 600,
+        "top": 0,
+      },
+      "className": "myClass1",
+      "contentDescription": "myDescription1",
+      "text": "myText1",
+    },
     "identifiers": null,
     "resolution": Object {
-      "how-to-fix": "The text element has insufficient contrast of 1. Foreground color: #ffffff, background color: #ffffff). Modify the text foreground and/or background colors to provide a contrast ratio of at least 4.5:1 for regular text, or 3:1 for large text (at least 18pt, or 14pt+bold).",
+      "how-to-fix": Object {
+        "formatAsCode": null,
+        "unformattedText": "The text element has insufficient contrast of 1. Foreground color: #ffffff, background color: #ffffff). Modify the text foreground and/or background colors to provide a contrast ratio of at least 4.5:1 for regular text, or 3:1 for large text (at least 18pt, or 14pt+bold).",
+      },
     },
     "ruleId": "ColorContrast",
     "status": "fail",
     "uid": "gguid-mock-stub",
   },
   Object {
-    "descriptors": null,
+    "descriptors": Object {
+      "boundingRectangle": null,
+      "className": "myClass3",
+      "contentDescription": null,
+      "text": null,
+    },
     "identifiers": null,
     "resolution": Object {
-      "how-to-fix": "The element has an insufficient target size (width: 32dp, height: 32dp). Set the element's minWidth and minHeight attributes to at least 48dp.",
+      "how-to-fix": Object {
+        "formatAsCode": Array [
+          "minWidth",
+          "minHeight",
+        ],
+        "unformattedText": "The element has an insufficient target size (width: 32dp, height: 32dp). Set the element's minWidth and minHeight attributes to at least 48dp.",
+      },
     },
     "ruleId": "TouchSizeWcag",
     "status": "fail",
     "uid": "gguid-mock-stub",
   },
   Object {
-    "descriptors": null,
+    "descriptors": Object {
+      "boundingRectangle": Object {
+        "bottom": 300,
+        "left": 10,
+        "right": 500,
+        "top": 50,
+      },
+      "className": "myClass4",
+      "contentDescription": "myDescription4",
+      "text": "myText4",
+    },
     "identifiers": null,
     "resolution": Object {
-      "how-to-fix": "The element has an insufficient target size (width: 48dp, height: 48dp). Set the element's minWidth and minHeight attributes to at least 48dp.",
+      "how-to-fix": Object {
+        "formatAsCode": Array [
+          "minWidth",
+          "minHeight",
+        ],
+        "unformattedText": "The element has an insufficient target size (width: 48dp, height: 48dp). Set the element's minWidth and minHeight attributes to at least 48dp.",
+      },
     },
     "ruleId": "TouchSizeWcag",
+    "status": "pass",
+    "uid": "gguid-mock-stub",
+  },
+  Object {
+    "descriptors": Object {
+      "boundingRectangle": Object {
+        "bottom": 50,
+        "left": 20,
+        "right": 35,
+        "top": 10,
+      },
+      "className": "myClass2",
+      "contentDescription": null,
+      "text": null,
+    },
+    "identifiers": null,
+    "resolution": Object {
+      "how-to-fix": Object {
+        "formatAsCode": null,
+        "unformattedText": "The text element has insufficient contrast of 21. Foreground color: #ffffff, background color: #000000). Modify the text foreground and/or background colors to provide a contrast ratio of at least 4.5:1 for regular text, or 3:1 for large text (at least 18pt, or 14pt+bold).",
+      },
+    },
+    "ruleId": "ColorContrast",
     "status": "pass",
     "uid": "gguid-mock-stub",
   },
@@ -40,17 +103,13 @@ Array [
     "descriptors": null,
     "identifiers": null,
     "resolution": Object {
-      "how-to-fix": "The text element has insufficient contrast of 21. Foreground color: #ffffff, background color: #000000). Modify the text foreground and/or background colors to provide a contrast ratio of at least 4.5:1 for regular text, or 3:1 for large text (at least 18pt, or 14pt+bold).",
-    },
-    "ruleId": "ColorContrast",
-    "status": "pass",
-    "uid": "gguid-mock-stub",
-  },
-  Object {
-    "descriptors": null,
-    "identifiers": null,
-    "resolution": Object {
-      "how-to-fix": "The element has an insufficient target size (width: 0dp, height: 0dp). Set the element's minWidth and minHeight attributes to at least 48dp.",
+      "how-to-fix": Object {
+        "formatAsCode": Array [
+          "minWidth",
+          "minHeight",
+        ],
+        "unformattedText": "The element has an insufficient target size (width: 0dp, height: 0dp). Set the element's minWidth and minHeight attributes to at least 48dp.",
+      },
     },
     "ruleId": "TouchSizeWcag",
     "status": "unknown",

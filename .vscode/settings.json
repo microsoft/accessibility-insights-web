@@ -1,7 +1,7 @@
 {
     "tslint.configFile": "tslint.json",
     "typescript.reportStyleChecksAsWarnings": true,
-    "typescript.preferences.importModuleSpecifier": "relative",
+    "typescript.preferences.importModuleSpecifier": "non-relative",
 
     "psi-header.changes-tracking": {
         "autoHeader": "autoSave",
