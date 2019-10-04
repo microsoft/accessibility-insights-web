@@ -18,7 +18,7 @@ export class CardSelectionStore extends BaseStoreImpl<CardSelectionStoreData> {
     protected addActionListeners(): void {
         this.cardSelectionActions.toggleRuleExpandCollapse.addListener(this.toggleRuleExpandCollapse);
         this.cardSelectionActions.toggleCardSelection.addListener(this.toggleCardSelection);
-        this.cardSelectionActions.collapseAllRules.addListener(this.CollapseAllRules);
+        this.cardSelectionActions.collapseAllRules.addListener(this.collapseAllRules);
         this.unifiedScanResultActions.scanCompleted.addListener(this.onScanCompleted);
     }
 
@@ -40,7 +40,7 @@ export class CardSelectionStore extends BaseStoreImpl<CardSelectionStoreData> {
         }
     };
 
-    public toggleRuleExpandCollapse = (payload: RuleExpandCollapsePayload): void => {
+    private toggleRuleExpandCollapse = (payload: RuleExpandCollapsePayload): void => {
         if (!payload || !payload.ruleId || !this.state.rules || !this.state.rules[payload.ruleId]) {
             return;
         }
@@ -53,19 +53,19 @@ export class CardSelectionStore extends BaseStoreImpl<CardSelectionStoreData> {
             this.deselectAllCardsInRule(rule);
         }
 
-        super.emitChanged();
+        this.emitChanged();
     };
 
-    public toggleCardSelection = (): void => {};
+    private toggleCardSelection = (): void => {};
 
-    public CollapseAllRules = (): void => {
+    private collapseAllRules = (): void => {
         for (const ruleId of Object.keys(this.state.rules)) {
             const rule = this.state.rules[ruleId];
             rule.isExpanded = false;
             this.deselectAllCardsInRule(rule);
         }
 
-        super.emitChanged();
+        this.emitChanged();
     };
 
     private onScanCompleted = (payload: UnifiedScanCompletedPayload): void => {
@@ -90,6 +90,6 @@ export class CardSelectionStore extends BaseStoreImpl<CardSelectionStoreData> {
             this.state.rules[result.ruleId].cards[result.uid] = false;
         });
 
-        super.emitChanged();
+        this.emitChanged();
     };
 }
