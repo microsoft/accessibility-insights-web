@@ -17,6 +17,7 @@ describe('visualizationNeedsUpdate', () => {
         visualizationType = -1;
         id = 'some id';
         previousVisualizationStates = {};
+        previousVisualizationSelectorMapData = {};
     });
 
     [true, false].forEach(newVisualizationEnabledState => {
@@ -50,5 +51,47 @@ describe('visualizationNeedsUpdate', () => {
                 previousVisualizationSelectorMapData,
             ),
         ).toEqual(true);
+    });
+
+    test('previous visualization state for given config id is the same as the new visualization state but selector map has changed', () => {
+        const newVisualizationEnabledState = true;
+        previousVisualizationStates = {
+            [id]: newVisualizationEnabledState,
+        };
+
+        newSelectorMapState = {};
+        previousVisualizationSelectorMapData[visualizationType] = null;
+
+        expect(
+            visualizationNeedsUpdate(
+                visualizationType,
+                id,
+                newVisualizationEnabledState,
+                newSelectorMapState,
+                previousVisualizationStates,
+                previousVisualizationSelectorMapData,
+            ),
+        ).toEqual(true);
+    });
+
+    test('previous visualization state for given config id is equivalent to new visualization state and selector map has not changed', () => {
+        const newVisualizationEnabledState = true;
+        previousVisualizationStates = {
+            [id]: newVisualizationEnabledState,
+        };
+
+        newSelectorMapState = {};
+        previousVisualizationSelectorMapData[visualizationType] = newSelectorMapState;
+
+        expect(
+            visualizationNeedsUpdate(
+                visualizationType,
+                id,
+                newVisualizationEnabledState,
+                newSelectorMapState,
+                previousVisualizationStates,
+                previousVisualizationSelectorMapData,
+            ),
+        ).toEqual(false);
     });
 });

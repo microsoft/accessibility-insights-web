@@ -13,16 +13,16 @@ export class VisualizationStateChangeHandler {
         private assessmentProvider: AssessmentsProvider,
     ) {}
 
-    public updateVisualizationsWithStoreData(storeData: TargetPageStoreData): void {
+    public updateVisualizationsWithStoreData = (storeData: TargetPageStoreData) => {
         this.visualizations.forEach(visualizationType => {
             if (this.assessmentProvider.isValidType(visualizationType)) {
                 const stepMap = this.assessmentProvider.getStepMap(visualizationType);
                 Object.values(stepMap).forEach(step => {
-                    this.visualizationUpdater(visualizationType, step.name, storeData);
+                    this.visualizationUpdater(visualizationType, step.key, storeData);
                 });
             } else {
                 this.visualizationUpdater(visualizationType, null, storeData);
             }
         });
-    }
+    };
 }

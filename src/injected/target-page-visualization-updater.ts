@@ -22,37 +22,46 @@ export class TargetPageVisualizationUpdater {
         private visualizationConfigurationFactory: VisualizationConfigurationFactory,
         private selectorMapHelper: SelectorMapHelper,
         private drawingInitiator: DrawingInitiator,
-        private getVisualizationState: IsVisualizationEnabledCallback,
-        private visualizationNeedsToBeUpdated: VisualizationNeedsUpdateCallback,
+        private isVisualizationEnabled: IsVisualizationEnabledCallback,
+        private visualizationNeedsUpdate: VisualizationNeedsUpdateCallback,
     ) {}
 
     public updateVisualization: UpdateVisualization = (
         visualizationType: VisualizationType,
-        step: string,
+        stepKey: string,
         storeData: TargetPageStoreData,
     ) => {
         const selectorMap = this.selectorMapHelper.getSelectorMap(visualizationType);
-        this.executeUpdate(visualizationType, step, storeData, selectorMap);
+        this.executeUpdate(visualizationType, stepKey, storeData, selectorMap);
         this.previousVisualizationSelectorMapStates[visualizationType] = selectorMap;
     };
 
     private executeUpdate = (
         visualizationType: VisualizationType,
-        step: string,
+        stepKey: string,
         storeData: TargetPageStoreData,
         selectorMap: DictionaryStringTo<AssessmentVisualizationInstance>,
     ) => {
         const configuration = this.visualizationConfigurationFactory.getConfiguration(visualizationType);
-        const id = configuration.getIdentifier(step);
-        const newVisualizationEnabledState = this.getVisualizationState(
+        const id = configuration.getIdentifier(stepKey);
+        const newVisualizationEnabledState = this.isVisualizationEnabled(
             configuration,
-            step,
+            stepKey,
             storeData.visualizationStoreData,
             storeData.assessmentStoreData,
             storeData.tabStoreData,
         );
 
-        if (this.visualizationNeedsToBeUpdated(visualizationType, id, newVisualizationEnabledState, selectorMap, null, null) === false) {
+        if (
+            this.visualizationNeedsUpdate(
+                visualizationType,
+                id,
+                newVisualizationEnabledState,
+                selectorMap,
+                this.previousVisualizationStates,
+                this.previousVisualizationSelectorMapStates,
+            ) === false
+        ) {
             return;
         }
 
@@ -64,7 +73,7 @@ export class TargetPageVisualizationUpdater {
                 storeData.featureFlagStoreData,
                 cloneDeep(selectorMap),
                 id,
-                configuration.visualizationInstanceProcessor(step),
+                configuration.visualizationInstanceProcessor(stepKey),
             );
         } else {
             this.drawingInitiator.disableVisualization(visualizationType, storeData.featureFlagStoreData, id);
