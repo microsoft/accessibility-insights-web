@@ -27,11 +27,13 @@ export class RuleInformationProvider {
                 () =>
                     this.buildHowtoFixPropertyBag(
                         'The view is active but has no name available to assistive technologies. Provide a name for the view using its contentDescription, hint, labelFor, or text attribute (depending on the view type)',
+                        ['contentDescription', 'hint', 'labelFor', 'text'],
                     ),
             ),
             ImageViewName: new RuleInformation('ImageViewName', 'Meaningful images must have alternate text.', () =>
                 this.buildHowtoFixPropertyBag(
                     'The image has no alternate text and is not identified as decorative. If the image conveys meaningful content, provide alternate text using the contentDescription attribute. If the image is decorative, give it an empty contentDescription, or set its isImportantForAccessibility attribute to false.',
+                    ['contentDescription', 'isImportantForAccessibility'],
                 ),
             ),
             EditTextValue: new RuleInformation(
@@ -40,6 +42,7 @@ export class RuleInformationProvider {
                 () =>
                     this.buildHowtoFixPropertyBag(
                         "The element's contentDescription overrides the text value required by assistive technologies. Remove the element’s contentDescription attribute.",
+                        ['contentDescription'],
                     ),
             ),
         };
@@ -64,11 +67,12 @@ export class RuleInformationProvider {
 
         return this.buildHowtoFixPropertyBag(
             `The element has an insufficient target size (width: ${logicalWidth}dp, height: ${logicalHeight}dp). Set the element's minWidth and minHeight attributes to at least 48dp.`,
+            ['minWidth', 'minHeight'],
         );
     };
 
-    private buildHowtoFixPropertyBag(unformattedText: string): InstancePropertyBag {
-        return { unformattedText: unformattedText };
+    private buildHowtoFixPropertyBag(unformattedText: string, codeStrings: string[] = null): InstancePropertyBag {
+        return { unformattedText: unformattedText, formatAsCode: codeStrings };
     }
 
     public getRuleInformation(ruleId: string): RuleInformation {

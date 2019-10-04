@@ -12,6 +12,7 @@ import {
     UnifiedScanResultStoreData,
 } from '../../../../../common/types/store-data/unified-data-interface';
 import { createStoreWithNullParams, StoreTester } from '../../../common/store-tester';
+import { TargetAppData } from './../../../../../common/types/store-data/unified-data-interface';
 
 describe('UnifiedScanResultStore Test', () => {
     test('constructor has no side effects', () => {
@@ -42,7 +43,7 @@ describe('UnifiedScanResultStore Test', () => {
 
     test('onScanCompleted', () => {
         const initialState = getDefaultState();
-
+        const targetAppInfo: TargetAppData = { name: 'app name' };
         const payload: UnifiedScanCompletedPayload = {
             scanResult: [
                 {
@@ -59,12 +60,14 @@ describe('UnifiedScanResultStore Test', () => {
                     name: 'test-scan-engine-name',
                 } as ScanEngineProperties,
             } as ToolData,
+            targetAppInfo,
         };
 
         const expectedState: UnifiedScanResultStoreData = {
             rules: payload.rules,
             results: payload.scanResult,
             toolInfo: payload.toolInfo,
+            targetAppInfo,
         };
 
         createStoreForUnifiedScanResultActions('scanCompleted')

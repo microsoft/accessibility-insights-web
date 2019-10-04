@@ -6,6 +6,7 @@ import { UnifiedScanResultActions } from 'background/actions/unified-scan-result
 import { getStoreStateMessage, Messages } from 'common/messages';
 import { StoreNames } from 'common/stores/store-names';
 import { IMock, Mock } from 'typemoq';
+
 import { ToolData } from '../../../../../common/types/store-data/unified-data-interface';
 import { createActionMock, createInterpreterMock } from '../global-action-creators/action-creator-test-helpers';
 
@@ -15,6 +16,7 @@ describe('UnifiedScanResultActionCreator', () => {
             scanResult: [],
             rules: [],
             toolInfo: {} as ToolData,
+            targetAppInfo: { name: 'app name' },
         };
 
         const scanCompletedMock = createActionMock(payload);

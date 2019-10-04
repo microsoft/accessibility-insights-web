@@ -29,6 +29,11 @@ export interface PlatformData {
     viewPortInfo: ViewPortProperties;
 }
 
+export interface TargetAppData {
+    name: string;
+    url?: string;
+}
+
 export interface ToolData {
     scanEngineProperties: ScanEngineProperties;
     applicationProperties: ApplicationProperties;
@@ -46,6 +51,7 @@ export interface UnifiedScanResultStoreData {
     rules: UnifiedRule[];
     platformInfo?: PlatformData;
     toolInfo?: ToolData;
+    targetAppInfo?: TargetAppData;
 }
 
 export interface InstancePropertyBag {
