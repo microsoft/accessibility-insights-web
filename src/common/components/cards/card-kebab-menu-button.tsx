@@ -24,7 +24,6 @@ export interface CardKebabMenuButtonState {
     isContextMenuVisible: boolean;
     target?: HTMLElement | string | MouseEvent | IPoint | null;
     showingCopyToast: boolean;
-    showNeedsSettingsContent: boolean;
 }
 
 export interface CardKebabMenuButtonProps {
@@ -40,7 +39,6 @@ export class CardKebabMenuButton extends React.Component<CardKebabMenuButtonProp
         this.state = {
             isContextMenuVisible: false,
             showingCopyToast: false,
-            showNeedsSettingsContent: false,
         };
     }
 
@@ -107,18 +105,15 @@ export class CardKebabMenuButton extends React.Component<CardKebabMenuButtonProp
     };
 
     private copyFailureDetails = (event: React.MouseEvent<any>): void => {
-        const onClick = this.props.deps.detailsViewActionMessageCreator.copyIssueDetailsClicked;
-        if (onClick) {
-            onClick(event);
-        }
+        this.props.deps.detailsViewActionMessageCreator.copyIssueDetailsClicked(event);
 
         this.props.deps.navigatorUtils
             .copyToClipboard('The quick brown fox jumps over the lazy dog') // to be changed when we finish the new data format and builder
             .then(() => {
                 this.setState({ showingCopyToast: true });
             })
-            .catch(() => {
-                this.logger.log("Couldn't copy failure details!");
+            .catch(error => {
+                this.logger.error("Couldn't copy failure details!", error);
             });
     };
 

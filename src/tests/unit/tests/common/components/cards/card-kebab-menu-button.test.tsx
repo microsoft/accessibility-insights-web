@@ -66,6 +66,8 @@ describe('CardKebabMenuButtonTest', () => {
 
         await copyToClipboardPromise;
 
+        expect(rendered.debug()).toMatchSnapshot();
+
         expect(rendered.state().showingCopyToast).toBe(true);
 
         actionCreatorMock.verifyAll();

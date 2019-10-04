@@ -55,3 +55,13 @@ exports[`CardKebabMenuButtonTest render ContextualMenu 1`] = `
   <React.Fragment />
 </div>
 `;
+
+exports[`CardKebabMenuButtonTest should click copy failure details and show the toast 1`] = `
+"<div className=\\"kebabMenuButton\\">
+  <CustomizedActionButton iconProps={{...}} onClick={[Function]} />
+  <StyledWithResponsiveMode onDismiss={[Function: onDismiss]} target=\\"Card View\\" items={{...}} />
+  <Toast onTimeout={[Function: onTimeout]} deps={{...}} timeoutLength={1000}>
+    Failure details copied.
+  </Toast>
+</div>"
+`;
