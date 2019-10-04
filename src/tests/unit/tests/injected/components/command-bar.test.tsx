@@ -47,15 +47,17 @@ describe('CommandBar', () => {
         },
     };
 
+    beforeAll(() => {
+        axeConverterMock
+            .setup(m => m.convert(ruleResult, It.isAnyString(), It.isAnyString()))
+            .returns(_ => issueData)
+            .verifiable(Times.atLeastOnce());
+    });
+
     describe('renders', () => {
         const showInspectButtonMessage = [true, false];
 
         it.each(showInspectButtonMessage)('renders, shows inspect button message: %s', show => {
-            axeConverterMock
-                .setup(m => m.convert(ruleResult, It.isAnyString(), It.isAnyString()))
-                .returns(_ => issueData)
-                .verifiable(Times.atLeastOnce());
-
             const props = {
                 ...defaultCommandBarProps,
 
@@ -89,6 +91,7 @@ describe('CommandBar', () => {
             button.simulate('click', eventStub);
 
             onClickMock.verify(onClick => onClick(eventStub), Times.once());
+            axeConverterMock.verifyAll();
         });
 
         test('for copy issue details button', () => {
@@ -106,6 +109,7 @@ describe('CommandBar', () => {
             button.prop('onClick')(eventStub);
 
             onClickMock.verify(onClick => onClick(eventStub), Times.once());
+            axeConverterMock.verifyAll();
         });
     });
 });
