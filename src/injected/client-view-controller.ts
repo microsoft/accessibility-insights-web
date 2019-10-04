@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { cloneDeep, isEqual } from 'lodash';
+import * as _ from 'lodash';
 
 import { BaseStore } from '../common/base-store';
 import { TestMode } from '../common/configs/test-mode';
@@ -168,39 +168,37 @@ export class ClientViewController {
         const id = configuration.getIdentifier(step);
         const enabled = configuration.getTestStatus(visualizationState, step) && this.isAssessmentDataForCurrentPage(configuration);
 
-        if (this.needToUpdateVisualization(visualizationType, enabled, selectorMap, id) === false) {
+        if (this.isVisualizationStateUnchanged(visualizationType, enabled, selectorMap, id)) {
             return;
         }
         this.previousVisualizationStates[id] = enabled;
 
         if (enabled) {
-            console.log('about to enable', id);
             this.drawingInitiator.enableVisualization(
                 visualizationType,
                 this.currentFeatureFlagState,
-                cloneDeep(selectorMap),
+                selectorMap,
                 id,
                 configuration.visualizationInstanceProcessor(step),
             );
         } else {
-            console.log('about to disable', id);
             this.drawingInitiator.disableVisualization(visualizationType, this.currentFeatureFlagState, id);
         }
     }
 
-    private needToUpdateVisualization(
+    private isVisualizationStateUnchanged(
         visualizationType: VisualizationType,
         newVisualizationEnabledState: boolean,
         newSelectorMapState: DictionaryStringTo<AssessmentVisualizationInstance>,
         id: string,
     ): boolean {
-        if (id in this.previousVisualizationStates === false) {
-            return newVisualizationEnabledState;
+        if (id in this.previousVisualizationStates === false && newVisualizationEnabledState === false) {
+            this.previousVisualizationStates[id] = false;
         }
-
         return (
-            this.previousVisualizationStates[id] !== newVisualizationEnabledState ||
-            !isEqual(newSelectorMapState, this.previousVisualizationSelectorMapStates[visualizationType])
+            id in this.previousVisualizationStates &&
+            this.previousVisualizationStates[id] === newVisualizationEnabledState &&
+            _.isEqual(this.previousVisualizationSelectorMapStates[visualizationType], newSelectorMapState)
         );
     }
 
