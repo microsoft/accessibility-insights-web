@@ -19,7 +19,7 @@ export class AxeResultToIssueFilingDataConverter {
                 url: pageUrl,
             },
             element: {
-                identifier: result.id,
+                identifier: result.selector,
                 conciseName: this.shortenSelector(result.selector),
             },
             howToFixSummary: result.failureSummary,
