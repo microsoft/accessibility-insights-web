@@ -15,9 +15,7 @@ const getTitle = (data: CreateIssueDetailsTextData): string => {
         prefix = prefix + ': ';
     }
 
-    const selectorLastPart = getSelectorLastPart(data.ruleResult.selector);
-
-    return `${prefix}${data.ruleResult.help} (${selectorLastPart})`;
+    return `${prefix}${data.rule.description} (${data.element.conciseName})`;
 };
 
 const getSelectorLastPart = (selector: string): string => {
@@ -34,9 +32,9 @@ const getSelectorLastPart = (selector: string): string => {
 };
 
 const standardizeTags = (data: CreateIssueDetailsTextData): string[] => {
-    const guidanceLinkTextTags = data.ruleResult.guidanceLinks.map(link => link.text.toUpperCase());
+    const guidanceLinkTextTags = data.rule.guidance.map(link => link.text.toUpperCase());
     const tagsFromGuidanceLinkTags = [];
-    data.ruleResult.guidanceLinks.map(link => (link.tags ? link.tags.map(tag => tagsFromGuidanceLinkTags.push(tag.displayText)) : []));
+    data.rule.guidance.map(link => (link.tags ? link.tags.map(tag => tagsFromGuidanceLinkTags.push(tag.displayText)) : []));
     return guidanceLinkTextTags.concat(tagsFromGuidanceLinkTags);
 };
 

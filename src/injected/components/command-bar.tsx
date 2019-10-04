@@ -10,10 +10,14 @@ import { FileHTMLIcon } from '../../common/icons/file-html-icon';
 import { NamedFC } from '../../common/react/named-fc';
 import { CreateIssueDetailsTextData } from '../../common/types/create-issue-details-text-data';
 import { UserConfigurationStoreData } from '../../common/types/store-data/user-configuration-store';
+import { AxeResultToIssueFilingDataConverter } from '../../issue-filing/rule-result-to-issue-filing-data';
 import { DictionaryStringTo } from '../../types/common-types';
 import { DecoratedAxeNodeResult } from '../scanner-utils';
 
-export type CommandBarDeps = CopyIssueDetailsButtonDeps & IssueFilingButtonDeps;
+export type CommandBarDeps = CopyIssueDetailsButtonDeps &
+    IssueFilingButtonDeps & {
+        axeResultToIssueFilingDataConverter: AxeResultToIssueFilingDataConverter;
+    };
 
 export type CommandBarProps = {
     deps: CommandBarDeps;
@@ -42,11 +46,8 @@ export const CommandBar = NamedFC<CommandBarProps>('CommandBar', props => {
         const failedRuleIds: string[] = Object.keys(props.failedRules);
         const ruleName: string = failedRuleIds[props.currentRuleIndex];
         const ruleResult: DecoratedAxeNodeResult = props.failedRules[ruleName];
-        const issueData: CreateIssueDetailsTextData = {
-            pageTitle: document.title,
-            pageUrl: document.URL,
-            ruleResult,
-        };
+
+        const issueData = props.deps.axeResultToIssueFilingDataConverter.convert(ruleResult, document.title, document.URL);
 
         return (
             <>

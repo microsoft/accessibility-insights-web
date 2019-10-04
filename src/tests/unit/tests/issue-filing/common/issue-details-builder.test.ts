@@ -7,18 +7,22 @@ import { MarkupFormatter } from '../../../../../issue-filing/common/markup/marku
 
 describe('Name of the group', () => {
     const sampleIssueDetailsData = {
-        pageTitle: 'pageTitle<x>',
-        pageUrl: 'pageUrl',
-        ruleResult: {
-            failureSummary: 'RR-failureSummary',
-            guidanceLinks: [{ text: 'WCAG-1.4.1' }, { text: 'wcag-2.8.2' }],
-            help: 'RR-help',
-            html: 'RR-html',
-            ruleId: 'RR-rule-id',
-            helpUrl: 'RR-help-url',
-            selector: 'RR-selector<x>',
-            snippet: 'RR-snippet   space',
+        rule: {
+            description: 'RR-help',
+            id: 'RR-rule-id',
+            url: 'RR-help-url',
+            guidance: [{ text: 'WCAG-1.4.1' }, { text: 'wcag-2.8.2' }],
         } as any,
+        targetApp: {
+            name: 'pageTitle<x>',
+            url: 'pageUrl',
+        },
+        element: {
+            identifier: 'RR-selector<x>',
+            conciseName: 'RR-selector<x>',
+        },
+        howToFixSummary: 'RR-failureSummary',
+        snippet: 'RR-snippet   space',
     };
     const environmentInfo: EnvironmentInfo = {
         extensionVersion: '1.1.1',

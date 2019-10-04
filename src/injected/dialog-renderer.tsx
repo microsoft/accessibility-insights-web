@@ -14,6 +14,7 @@ import { WindowUtils } from '../common/window-utils';
 import { createIssueDetailsBuilder } from '../issue-filing/common/create-issue-details-builder';
 import { IssueFilingUrlStringUtils } from '../issue-filing/common/issue-filing-url-string-utils';
 import { PlainTextFormatter } from '../issue-filing/common/markup/plain-text-formatter';
+import { AxeResultToIssueFilingDataConverter } from '../issue-filing/rule-result-to-issue-filing-data';
 import { DictionaryStringTo } from '../types/common-types';
 import { rootContainerId } from './constants';
 import { DetailsDialogHandler } from './details-dialog-handler';
@@ -72,7 +73,12 @@ export class DialogRenderer {
 
             const fixInstructionProcessor = new FixInstructionProcessor();
 
+            const axeResultToIssueFilingDataConverter = new AxeResultToIssueFilingDataConverter(
+                IssueFilingUrlStringUtils.getSelectorLastPart,
+            );
+
             const deps: LayeredDetailsDialogDeps = {
+                axeResultToIssueFilingDataConverter,
                 fixInstructionProcessor,
                 issueDetailsTextGenerator,
                 windowUtils: this.windowUtils,

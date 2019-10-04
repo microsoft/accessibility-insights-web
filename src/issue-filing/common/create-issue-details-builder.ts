@@ -9,34 +9,33 @@ import { MarkupFormatter } from './markup/markup-formatter';
 
 export const createIssueDetailsBuilder = (markup: MarkupFormatter): IssueDetailsBuilder => {
     const getter = (environmentInfo: EnvironmentInfo, data: CreateIssueDetailsTextData): string => {
-        const result = data.ruleResult;
-
         const { howToFixSection, link, sectionHeader, snippet, sectionHeaderSeparator, footerSeparator, sectionSeparator } = markup;
+
+        const snippetSection = data.snippet
+            ? [sectionHeader('Snippet'), sectionHeaderSeparator(), snippet(data.snippet), sectionSeparator()]
+            : null;
 
         const lines = [
             sectionHeader('Issue'),
             sectionHeaderSeparator(),
-            `${snippet(result.help)} (${link(result.helpUrl, result.ruleId)})`,
+            `${snippet(data.rule.description)} (${link(data.rule.url, data.rule.id)})`,
             sectionSeparator(),
 
             sectionHeader('Target application'),
             sectionHeaderSeparator(),
-            link(data.pageUrl, data.pageTitle),
+            link(data.targetApp.url, data.targetApp.name),
             sectionSeparator(),
 
             sectionHeader('Element path'),
             sectionHeaderSeparator(),
-            data.ruleResult.selector,
+            data.element.identifier,
             sectionSeparator(),
 
-            sectionHeader('Snippet'),
-            sectionHeaderSeparator(),
-            snippet(result.snippet),
-            sectionSeparator(),
+            ...snippetSection,
 
             sectionHeader('How to fix'),
             sectionHeaderSeparator(),
-            howToFixSection(result.failureSummary),
+            howToFixSection(data.howToFixSummary),
             sectionSeparator(),
 
             sectionHeader('Environment'),
