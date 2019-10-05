@@ -1,67 +1,43 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`CardKebabMenuButtonTest render 1`] = `
-<div
-  className="kebabMenuButton"
->
-  <CustomizedActionButton
-    iconProps={
-      Object {
-        "iconName": "moreVertical",
-      }
-    }
-    onClick={[Function]}
-  />
-  <React.Fragment />
-</div>
+"<div className=\\"kebabMenuButton\\">
+  <CustomizedActionButton iconProps={{...}} onClick={[Function]} />
+  <IssueFilingDialog deps={{...}} isOpen={false} selectedIssueFilingService={{...}} selectedIssueData={{...}} selectedIssueFilingServiceData={{...}} onClose={[Function]} issueFilingServicePropertiesMap={{...}} />
+</div>"
 `;
 
 exports[`CardKebabMenuButtonTest render ContextualMenu 1`] = `
-<div
-  className="kebabMenuButton"
->
-  <CustomizedActionButton
-    iconProps={
-      Object {
-        "iconName": "moreVertical",
-      }
-    }
-    onClick={[Function]}
-  />
-  <StyledWithResponsiveMode
-    items={
-      Array [
-        Object {
-          "iconProps": Object {
-            "iconName": "ladybugSolid",
-          },
-          "key": "fileissue",
-          "name": "File issue",
-          "onClick": [Function],
-        },
-        Object {
-          "iconProps": Object {
-            "iconName": "copy",
-          },
-          "key": "copyfailuredetails",
-          "name": "Copy failure details",
-          "onClick": [Function],
-        },
-      ]
-    }
-    onDismiss={[Function]}
-    target="Card View"
-  />
-  <React.Fragment />
-</div>
+"<div className=\\"kebabMenuButton\\">
+  <CustomizedActionButton iconProps={{...}} onClick={[Function]} />
+  <StyledWithResponsiveMode onDismiss={[Function: onDismiss]} target=\\"Card View\\" items={{...}} />
+  <IssueFilingDialog deps={{...}} isOpen={false} selectedIssueFilingService={{...}} selectedIssueData={{...}} selectedIssueFilingServiceData={{...}} onClose={[Function]} issueFilingServicePropertiesMap={{...}} />
+</div>"
 `;
 
 exports[`CardKebabMenuButtonTest should click copy failure details and show the toast 1`] = `
 "<div className=\\"kebabMenuButton\\">
   <CustomizedActionButton iconProps={{...}} onClick={[Function]} />
   <StyledWithResponsiveMode onDismiss={[Function: onDismiss]} target=\\"Card View\\" items={{...}} />
+  <IssueFilingDialog deps={{...}} isOpen={false} selectedIssueFilingService={{...}} selectedIssueData={{...}} selectedIssueFilingServiceData={{...}} onClose={[Function]} issueFilingServicePropertiesMap={{...}} />
   <Toast onTimeout={[Function: onTimeout]} deps={{...}} timeoutLength={1000}>
     Failure details copied.
   </Toast>
+</div>"
+`;
+
+exports[`CardKebabMenuButtonTest should click file issue, invalid settings 1`] = `
+"<div className=\\"kebabMenuButton\\">
+  <CustomizedActionButton iconProps={{...}} onClick={[Function]} />
+  <StyledWithResponsiveMode onDismiss={[Function: onDismiss]} target=\\"Card View\\" items={{...}} />
+  <IssueFilingDialog deps={{...}} isOpen={true} selectedIssueFilingService={{...}} selectedIssueData={{...}} selectedIssueFilingServiceData={{...}} onClose={[Function]} issueFilingServicePropertiesMap={{...}} />
+</div>"
+`;
+
+exports[`CardKebabMenuButtonTest should click file issue, valid settings 1`] = `
+"<div className=\\"kebabMenuButton\\">
+  <CustomizedActionButton iconProps={{...}} onClick={[Function]} />
+  <StyledWithResponsiveMode onDismiss={[Function: onDismiss]} target=\\"Card View\\" items={{...}} />
+  <IssueFilingDialog deps={{...}} isOpen={false} selectedIssueFilingService={{...}} selectedIssueData={{...}} selectedIssueFilingServiceData={{...}} onClose={[Function]} issueFilingServicePropertiesMap={{...}} />
 </div>"
 `;
