@@ -11,19 +11,19 @@ import { WindowStateStoreData } from 'electron/flux/types/window-state-store-dat
 import { DeviceConnectBodyDeps } from 'electron/views/device-connect-view/components/device-connect-body';
 import { DeviceConnectViewContainer } from 'electron/views/device-connect-view/components/device-connect-view-container';
 import {
-    ResultsViewContainer,
-    ResultsViewContainerDeps,
-    ResultsViewContainerProps,
-} from 'electron/views/results-view/components/results-view-container';
+    AutomatedChecksView,
+    AutomatedChecksViewDeps,
+    AutomatedChecksViewProps,
+} from 'electron/views/results-view/components/automated-checks-view';
 
 // root container deps should only depend on ResultsViewContainerDeps and DeviceConnectBodyDeps. This will be addresed in a later PR
-export type RootContainerDeps = ResultsViewContainerDeps &
+export type RootContainerDeps = AutomatedChecksViewDeps &
     TelemetryPermissionDialogDeps &
     DeviceConnectBodyDeps & {
         storeHub: ClientStoresHub<RootContainerState>;
     };
 
-export type RootContainerProps = ResultsViewContainerProps & {
+export type RootContainerProps = AutomatedChecksViewProps & {
     deps: RootContainerDeps;
 };
 
@@ -42,7 +42,7 @@ export class RootContainer extends React.Component<RootContainerProps, RootConta
 
     public render(): JSX.Element {
         if (this.state.windowStateStoreData.routeId === 'resultsView') {
-            return <ResultsViewContainer {...this.props}></ResultsViewContainer>;
+            return <AutomatedChecksView {...this.props}></AutomatedChecksView>;
         }
         return <DeviceConnectViewContainer {...this.props}></DeviceConnectViewContainer>;
     }
