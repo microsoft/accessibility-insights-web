@@ -1,17 +1,17 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-export interface CardSelectionData {
-    resultInstanceUid: string;
-    isSelected: boolean;
-}
+export type CardSelectionData = { [resultInstanceUid: string]: boolean };
 
 export interface RuleExpandCollapseData {
-    ruleId: string;
     isExpanded: boolean;
-    cards: CardSelectionData[];
+    cards: CardSelectionData;
+}
+
+export interface RuleExpandCollapseDataDictionary {
+    [ruleId: string]: RuleExpandCollapseData;
 }
 
 export interface CardSelectionStoreData {
-    rules: RuleExpandCollapseData[];
+    rules: RuleExpandCollapseDataDictionary;
 }

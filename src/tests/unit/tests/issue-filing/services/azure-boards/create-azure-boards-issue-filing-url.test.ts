@@ -4,6 +4,7 @@ import { IMock, Mock } from 'typemoq';
 
 import { title } from 'content/strings/application';
 import { EnvironmentInfo } from '../../../../../../common/environment-info-provider';
+import { CreateIssueDetailsTextData } from '../../../../../../common/types/create-issue-details-text-data';
 import { HTTPQueryBuilder } from '../../../../../../issue-filing/common/http-query-builder';
 import { IssueDetailsBuilder } from '../../../../../../issue-filing/common/issue-details-builder';
 import { IssueUrlCreationUtils } from '../../../../../../issue-filing/common/issue-filing-url-string-utils';
@@ -16,7 +17,7 @@ describe('createAzureBoardsIssueFilingUrl', () => {
     let baseTags: string;
 
     let environmentInfo: EnvironmentInfo;
-    let sampleIssueDetailsData;
+    let sampleIssueDetailsData: CreateIssueDetailsTextData;
     let settingsData: AzureBoardsIssueFilingSettings;
     let stringUtilsMock: IMock<IssueUrlCreationUtils>;
     let issueDetailsGetterMock: IMock<IssueDetailsBuilder>;
@@ -31,25 +32,29 @@ describe('createAzureBoardsIssueFilingUrl', () => {
             browserSpec: 'test spec',
         };
         sampleIssueDetailsData = {
-            pageTitle: 'pageTitle<x>',
-            pageUrl: 'pageUrl',
-            ruleResult: {
-                failureSummary: 'RR-failureSummary',
-                guidanceLinks: [{ text: 'WCAG-1.4.1' }, { text: 'wcag-2.8.2' }],
-                help: 'RR-help',
-                html: 'RR-html',
-                ruleId: 'RR-rule-id',
-                helpUrl: 'RR-help-url',
-                selector: 'RR-selector<x>',
-                snippet: 'RR-snippet   space',
+            rule: {
+                description: 'RR-help',
+                id: 'RR-rule-id',
+                url: 'RR-help-url',
+                guidance: [{ text: 'WCAG-1.4.1' }, { text: 'wcag-2.8.2' }],
             } as any,
+            targetApp: {
+                name: 'pageTitle<x>',
+                url: 'pageUrl',
+            },
+            element: {
+                identifier: 'RR-selector<x>',
+                conciseName: 'RR-selector<x>',
+            },
+            howToFixSummary: 'RR-failureSummary',
+            snippet: 'RR-snippet   space',
         };
         settingsData = {
             projectURL: 'https://test-project-url',
             issueDetailsField: 'description',
         };
 
-        baseTags = `Accessibility; ${title}; rule: ${sampleIssueDetailsData.ruleResult.ruleId}`;
+        baseTags = `Accessibility; ${title}; rule: ${sampleIssueDetailsData.rule.id}`;
 
         stringUtilsMock = Mock.ofType<IssueUrlCreationUtils>();
         const testTitle = 'test title';

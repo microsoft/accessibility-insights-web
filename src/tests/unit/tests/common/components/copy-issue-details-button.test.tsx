@@ -21,11 +21,7 @@ describe('CopyIssueDetailsButtonTest', () => {
                     buildText: _ => 'sample text',
                 } as IssueDetailsTextGenerator,
             },
-            issueDetailsData: {
-                pageTitle: 'title',
-                pageUrl: 'url',
-                ruleResult: {},
-            } as CreateIssueDetailsTextData,
+            issueDetailsData: {} as CreateIssueDetailsTextData,
             onClick: onClickMock.object,
         };
     });
