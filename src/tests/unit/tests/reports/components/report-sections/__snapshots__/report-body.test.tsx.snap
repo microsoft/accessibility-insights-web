@@ -78,6 +78,11 @@ exports[`ReportBody renders 1`] = `
         "violations": Array [],
       }
     }
+    targetAppInfo={
+      Object {
+        "name": "app",
+      }
+    }
     toUtcString={[Function]}
     userConfigurationStoreData={null}
   />
@@ -159,6 +164,11 @@ exports[`ReportBody renders 1`] = `
           "violations": Array [],
         }
       }
+      targetAppInfo={
+        Object {
+          "name": "app",
+        }
+      }
       toUtcString={[Function]}
       userConfigurationStoreData={null}
     />
@@ -236,6 +246,11 @@ exports[`ReportBody renders 1`] = `
           "targetPageUrl": "url:target-page",
           "timestamp": "today",
           "violations": Array [],
+        }
+      }
+      targetAppInfo={
+        Object {
+          "name": "app",
         }
       }
       toUtcString={[Function]}
@@ -317,6 +332,11 @@ exports[`ReportBody renders 1`] = `
           "violations": Array [],
         }
       }
+      targetAppInfo={
+        Object {
+          "name": "app",
+        }
+      }
       toUtcString={[Function]}
       userConfigurationStoreData={null}
     >
@@ -394,6 +414,11 @@ exports[`ReportBody renders 1`] = `
             "targetPageUrl": "url:target-page",
             "timestamp": "today",
             "violations": Array [],
+          }
+        }
+        targetAppInfo={
+          Object {
+            "name": "app",
           }
         }
         toUtcString={[Function]}
@@ -475,6 +500,11 @@ exports[`ReportBody renders 1`] = `
             "violations": Array [],
           }
         }
+        targetAppInfo={
+          Object {
+            "name": "app",
+          }
+        }
         toUtcString={[Function]}
         userConfigurationStoreData={null}
       />
@@ -552,6 +582,11 @@ exports[`ReportBody renders 1`] = `
             "targetPageUrl": "url:target-page",
             "timestamp": "today",
             "violations": Array [],
+          }
+        }
+        targetAppInfo={
+          Object {
+            "name": "app",
           }
         }
         toUtcString={[Function]}
@@ -633,6 +668,11 @@ exports[`ReportBody renders 1`] = `
         "targetPageUrl": "url:target-page",
         "timestamp": "today",
         "violations": Array [],
+      }
+    }
+    targetAppInfo={
+      Object {
+        "name": "app",
       }
     }
     toUtcString={[Function]}

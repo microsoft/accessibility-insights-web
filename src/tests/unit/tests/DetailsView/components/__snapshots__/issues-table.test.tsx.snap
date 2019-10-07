@@ -274,6 +274,11 @@ exports[`IssuesTableTest table with 0 issues 1`] = `
               "unknown": Array [],
             }
           }
+          targetAppInfo={
+            Object {
+              "name": "app",
+            }
+          }
           userConfigurationStoreData={
             Object {
               "bugService": "gitHub",
@@ -493,6 +498,11 @@ exports[`IssuesTableTest table with 1 issues 1`] = `
               "inapplicable": Array [],
               "pass": Array [],
               "unknown": Array [],
+            }
+          }
+          targetAppInfo={
+            Object {
+              "name": "app",
             }
           }
           userConfigurationStoreData={
@@ -723,6 +733,11 @@ exports[`IssuesTableTest table with 2 issues 1`] = `
               "inapplicable": Array [],
               "pass": Array [],
               "unknown": Array [],
+            }
+          }
+          targetAppInfo={
+            Object {
+              "name": "app",
             }
           }
           userConfigurationStoreData={

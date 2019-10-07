@@ -57,6 +57,11 @@ exports[`RulesWithInstances renders 1`] = `
             "url": "sample-url",
           }
         }
+        targetAppInfo={
+          Object {
+            "name": "app",
+          }
+        }
         userConfigurationStoreData={null}
       />
     }

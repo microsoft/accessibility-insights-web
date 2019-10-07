@@ -45,6 +45,7 @@ describe('ReportBody', () => {
             getGuidanceTagsFromGuidanceLinks: getGuidanceTagsStub,
             ruleResultsByStatus: exampleUnifiedStatusResults,
             userConfigurationStoreData: null,
+            targetAppInfo: { name: 'app' },
         };
 
         const props: ReportBodyProps = {
