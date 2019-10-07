@@ -35,8 +35,6 @@
     "files.insertFinalNewline": true,
     "prettier.requireConfig": true,
     "editor.formatOnSave": true,
-    "editor.rulers": [
-        140
-    ],
-    "typescript.tsdk": "node_modules/typescript/lib"
+    "editor.rulers": [140],
+    "typescript.tsdk": "node_modules\\typescript\\lib"
 }
