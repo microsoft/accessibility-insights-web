@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { RoutePayload } from 'electron/flux/action/route-payloads';
+import { WindowStateActions } from 'electron/flux/action/window-state-actions';
+import { WindowStateStore } from 'electron/flux/store/window-state-store';
+import { WindowStateStoreData } from 'electron/flux/types/window-state-store-data';
 
-import { RoutePayload } from '../../../../../../electron/flux/action/route-payloads';
-import { WindowStateActions } from '../../../../../../electron/flux/action/window-state-actions';
-import { WindowStateStore } from '../../../../../../electron/flux/store/window-state-store';
-import { WindowStateStoreData } from '../../../../../../electron/flux/types/window-state-store-data';
 import { createStoreWithNullParams, StoreTester } from '../../../../common/store-tester';
 
 describe('WindowStateStore', () => {

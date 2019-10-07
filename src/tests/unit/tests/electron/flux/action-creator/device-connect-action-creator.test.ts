@@ -11,7 +11,7 @@ import { FetchScanResultsType } from 'electron/platform/android/fetch-scan-resul
 import { ScanResults } from 'electron/platform/android/scan-results';
 import { IMock, It, Mock, Times } from 'typemoq';
 
-import { tick } from '../../common/tick';
+import { tick } from '../../../../common/tick';
 
 describe('DeviceConnectActionCreator', () => {
     const port = 1111;
