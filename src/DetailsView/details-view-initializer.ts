@@ -1,3 +1,4 @@
+import { UnifiedResultToIssueFilingDataConverter } from './../issue-filing/unified-result-to-issue-filing-data';
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { AssessmentDefaultMessageGenerator } from 'assessments/assessment-default-message-generator';
@@ -277,9 +278,12 @@ if (isNaN(tabId) === false) {
                 IssueFilingUrlStringUtils.getSelectorLastPart,
             );
 
+            const unifiedResultToIssueFilingDataConverter = new UnifiedResultToIssueFilingDataConverter();
+
             const deps: DetailsViewContainerDeps = {
                 fixInstructionProcessor,
                 axeResultToIssueFilingDataConverter,
+                unifiedResultToIssueFilingDataConverter,
                 dropdownClickHandler,
                 issueFilingActionMessageCreator,
                 contentProvider: contentPages,

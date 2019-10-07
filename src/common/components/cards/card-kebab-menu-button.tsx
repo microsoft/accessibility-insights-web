@@ -4,19 +4,19 @@ import { IPoint } from '@uifabric/utilities';
 import { ActionButton } from 'office-ui-fabric-react/lib/Button';
 import { ContextualMenu, IContextualMenuItem } from 'office-ui-fabric-react/lib/ContextualMenu';
 import * as React from 'react';
-import { IssueFilingDialog } from '../../../DetailsView/components/issue-filing-dialog';
-import { IssueFilingService } from '../../../issue-filing/types/issue-filing-service';
-import { CreateIssueDetailsTextData } from '../../types/create-issue-details-text-data';
-import { IssueFilingNeedsSettingsContentProps } from '../../types/issue-filing-needs-setting-content';
-import { IssueFilingServiceProperties, UserConfigurationStoreData } from '../../types/store-data/user-configuration-store';
-import { IssueFilingButtonDeps } from '../issue-filing-button';
 
 import { IssueDetailsTextGenerator } from '../../../background/issue-details-text-generator';
 import { DetailsViewActionMessageCreator } from '../../../DetailsView/actions/details-view-action-message-creator';
+import { IssueFilingDialog } from '../../../DetailsView/components/issue-filing-dialog';
+import { IssueFilingService } from '../../../issue-filing/types/issue-filing-service';
 import { createDefaultLogger } from '../../logging/default-logger';
 import { Logger } from '../../logging/logger';
 import { NavigatorUtils } from '../../navigator-utils';
+import { CreateIssueDetailsTextData } from '../../types/create-issue-details-text-data';
+import { IssueFilingNeedsSettingsContentProps } from '../../types/issue-filing-needs-setting-content';
+import { IssueFilingServiceProperties, UserConfigurationStoreData } from '../../types/store-data/user-configuration-store';
 import { WindowUtils } from '../../window-utils';
+import { IssueFilingButtonDeps } from '../issue-filing-button';
 import { Toast } from '../toast';
 import { kebabMenuButton } from './card-footer.scss';
 

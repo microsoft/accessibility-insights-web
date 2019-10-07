@@ -4,6 +4,7 @@ import { NamedFC } from 'common/react/named-fc';
 import { FixInstructionProcessor } from 'injected/fix-instruction-processor';
 import * as React from 'react';
 
+import { TargetAppData } from '../../../common/types/store-data/unified-data-interface';
 import { InstanceOutcomeType } from '../../../reports/components/instance-outcome-type';
 import { NoFailedInstancesCongrats } from '../../../reports/components/report-sections/no-failed-instances-congrats';
 import { UserConfigurationStoreData } from '../../types/store-data/user-configuration-store';
@@ -18,11 +19,12 @@ export type ResultSectionContentProps = {
     outcomeType: InstanceOutcomeType;
     fixInstructionProcessor?: FixInstructionProcessor;
     userConfigurationStoreData: UserConfigurationStoreData;
+    targetAppInfo: TargetAppData;
 };
 
 export const ResultSectionContent = NamedFC<ResultSectionContentProps>(
     'ResultSectionContent',
-    ({ results, outcomeType, fixInstructionProcessor, deps, userConfigurationStoreData }) => {
+    ({ results, outcomeType, fixInstructionProcessor, deps, userConfigurationStoreData, targetAppInfo }) => {
         if (results.length === 0) {
             return <NoFailedInstancesCongrats />;
         }
@@ -34,6 +36,7 @@ export const ResultSectionContent = NamedFC<ResultSectionContentProps>(
                 outcomeType={outcomeType}
                 fixInstructionProcessor={fixInstructionProcessor}
                 userConfigurationStoreData={userConfigurationStoreData}
+                targetAppInfo={targetAppInfo}
             />
         );
     },

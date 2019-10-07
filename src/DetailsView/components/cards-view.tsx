@@ -3,6 +3,8 @@
 import { FailedInstancesSection, FailedInstancesSectionDeps, UnifiedStatusResults } from 'common/components/cards/failed-instances-section';
 import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
+
+import { TargetAppData } from '../../common/types/store-data/unified-data-interface';
 import { UserConfigurationStoreData } from '../../common/types/store-data/user-configuration-store';
 
 export type CardsViewDeps = FailedInstancesSectionDeps;
@@ -11,6 +13,7 @@ export interface CardsViewProps {
     deps: CardsViewDeps;
     ruleResultsByStatus: UnifiedStatusResults;
     userConfigurationStoreData: UserConfigurationStoreData;
+    targetAppInfo: TargetAppData;
 }
 
 export const CardsView = NamedFC<CardsViewProps>('CardsView', props => {
@@ -20,6 +23,7 @@ export const CardsView = NamedFC<CardsViewProps>('CardsView', props => {
                 deps={props.deps}
                 ruleResultsByStatus={props.ruleResultsByStatus}
                 userConfigurationStoreData={props.userConfigurationStoreData}
+                targetAppInfo={props.targetAppInfo}
             />
         </>
     );
