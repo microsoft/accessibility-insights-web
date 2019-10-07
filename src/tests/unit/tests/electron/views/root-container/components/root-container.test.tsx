@@ -27,9 +27,9 @@ describe(RootContainer, () => {
             routeId: 'deviceConnectView',
         };
 
-        const storeHubMock = Mock.ofType<
-            ClientStoresHub<DeviceConnectViewContainerState> & ClientStoresHub<WindowStateStore> & ClientStoresHub<RootContainerState>
-        >(BaseClientStoresHub as any);
+        const storeHubMock = Mock.ofType<ClientStoresHub<DeviceConnectViewContainerState> & ClientStoresHub<RootContainerState>>(
+            BaseClientStoresHub as any,
+        );
         storeHubMock
             .setup(hub => hub.getAllStoreData())
             .returns(() => {
