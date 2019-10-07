@@ -27,12 +27,14 @@ exports[`InstanceDetailsFooter renders per snapshot when all card interactions a
     }
     issueDetailsData={
       Object {
-        "pageTitle": "pageTitle",
-        "pageUrl": "http://pageUrl",
-        "ruleResult": Object {
-          "failureSummary": "failureSummary",
-          "fingerprint": "fingerprint",
-          "guidanceLinks": Array [
+        "element": Object {
+          "conciseName": "conciseName",
+          "identifier": "identifier",
+        },
+        "howToFixSummary": "howToFixSummary",
+        "rule": Object {
+          "description": "description",
+          "guidance": Array [
             Object {
               "href": "www.test.com",
               "tags": Array [
@@ -44,14 +46,13 @@ exports[`InstanceDetailsFooter renders per snapshot when all card interactions a
               "text": "text",
             },
           ],
-          "help": "help",
-          "helpUrl": "helpUrl",
-          "html": "html",
           "id": "id",
-          "ruleId": "ruleId",
-          "selector": "selector",
-          "snippet": "snippet",
-          "status": true,
+          "url": "url",
+        },
+        "snippet": "snippet",
+        "targetApp": Object {
+          "name": "name",
+          "url": "url",
         },
       }
     }
@@ -86,12 +87,14 @@ exports[`InstanceDetailsFooter renders per snapshot when only UserConfig-agnosti
     }
     issueDetailsData={
       Object {
-        "pageTitle": "pageTitle",
-        "pageUrl": "http://pageUrl",
-        "ruleResult": Object {
-          "failureSummary": "failureSummary",
-          "fingerprint": "fingerprint",
-          "guidanceLinks": Array [
+        "element": Object {
+          "conciseName": "conciseName",
+          "identifier": "identifier",
+        },
+        "howToFixSummary": "howToFixSummary",
+        "rule": Object {
+          "description": "description",
+          "guidance": Array [
             Object {
               "href": "www.test.com",
               "tags": Array [
@@ -103,14 +106,13 @@ exports[`InstanceDetailsFooter renders per snapshot when only UserConfig-agnosti
               "text": "text",
             },
           ],
-          "help": "help",
-          "helpUrl": "helpUrl",
-          "html": "html",
           "id": "id",
-          "ruleId": "ruleId",
-          "selector": "selector",
-          "snippet": "snippet",
-          "status": true,
+          "url": "url",
+        },
+        "snippet": "snippet",
+        "targetApp": Object {
+          "name": "name",
+          "url": "url",
         },
       }
     }
@@ -145,12 +147,14 @@ exports[`InstanceDetailsFooter renders per snapshot with highlightState="hidden"
     }
     issueDetailsData={
       Object {
-        "pageTitle": "pageTitle",
-        "pageUrl": "http://pageUrl",
-        "ruleResult": Object {
-          "failureSummary": "failureSummary",
-          "fingerprint": "fingerprint",
-          "guidanceLinks": Array [
+        "element": Object {
+          "conciseName": "conciseName",
+          "identifier": "identifier",
+        },
+        "howToFixSummary": "howToFixSummary",
+        "rule": Object {
+          "description": "description",
+          "guidance": Array [
             Object {
               "href": "www.test.com",
               "tags": Array [
@@ -162,14 +166,13 @@ exports[`InstanceDetailsFooter renders per snapshot with highlightState="hidden"
               "text": "text",
             },
           ],
-          "help": "help",
-          "helpUrl": "helpUrl",
-          "html": "html",
           "id": "id",
-          "ruleId": "ruleId",
-          "selector": "selector",
-          "snippet": "snippet",
-          "status": true,
+          "url": "url",
+        },
+        "snippet": "snippet",
+        "targetApp": Object {
+          "name": "name",
+          "url": "url",
         },
       }
     }
@@ -204,12 +207,14 @@ exports[`InstanceDetailsFooter renders per snapshot with highlightState="unavail
     }
     issueDetailsData={
       Object {
-        "pageTitle": "pageTitle",
-        "pageUrl": "http://pageUrl",
-        "ruleResult": Object {
-          "failureSummary": "failureSummary",
-          "fingerprint": "fingerprint",
-          "guidanceLinks": Array [
+        "element": Object {
+          "conciseName": "conciseName",
+          "identifier": "identifier",
+        },
+        "howToFixSummary": "howToFixSummary",
+        "rule": Object {
+          "description": "description",
+          "guidance": Array [
             Object {
               "href": "www.test.com",
               "tags": Array [
@@ -221,14 +226,13 @@ exports[`InstanceDetailsFooter renders per snapshot with highlightState="unavail
               "text": "text",
             },
           ],
-          "help": "help",
-          "helpUrl": "helpUrl",
-          "html": "html",
           "id": "id",
-          "ruleId": "ruleId",
-          "selector": "selector",
-          "snippet": "snippet",
-          "status": true,
+          "url": "url",
+        },
+        "snippet": "snippet",
+        "targetApp": Object {
+          "name": "name",
+          "url": "url",
         },
       }
     }
@@ -263,12 +267,14 @@ exports[`InstanceDetailsFooter renders per snapshot with highlightState="visible
     }
     issueDetailsData={
       Object {
-        "pageTitle": "pageTitle",
-        "pageUrl": "http://pageUrl",
-        "ruleResult": Object {
-          "failureSummary": "failureSummary",
-          "fingerprint": "fingerprint",
-          "guidanceLinks": Array [
+        "element": Object {
+          "conciseName": "conciseName",
+          "identifier": "identifier",
+        },
+        "howToFixSummary": "howToFixSummary",
+        "rule": Object {
+          "description": "description",
+          "guidance": Array [
             Object {
               "href": "www.test.com",
               "tags": Array [
@@ -280,14 +286,13 @@ exports[`InstanceDetailsFooter renders per snapshot with highlightState="visible
               "text": "text",
             },
           ],
-          "help": "help",
-          "helpUrl": "helpUrl",
-          "html": "html",
           "id": "id",
-          "ruleId": "ruleId",
-          "selector": "selector",
-          "snippet": "snippet",
-          "status": true,
+          "url": "url",
+        },
+        "snippet": "snippet",
+        "targetApp": Object {
+          "name": "name",
+          "url": "url",
         },
       }
     }

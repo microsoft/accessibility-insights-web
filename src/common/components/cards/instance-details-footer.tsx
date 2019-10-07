@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 import { NamedFC } from 'common/react/named-fc';
 import { UnifiedResult } from 'common/types/store-data/unified-data-interface';
-import { DecoratedAxeNodeResult } from 'injected/scanner-utils';
 import { some, values } from 'lodash';
 import { Icon, Label } from 'office-ui-fabric-react';
 import * as React from 'react';
@@ -36,27 +35,28 @@ export const InstanceDetailsFooter = NamedFC<InstanceDetailsFooterProps>('Instan
     }
 
     const issueDetailsData: CreateIssueDetailsTextData = {
-        pageTitle: 'pageTitle',
-        pageUrl: 'http://pageUrl',
-        ruleResult: {
-            status: true,
-            ruleId: 'ruleId',
-            failureSummary: 'failureSummary',
-            selector: 'selector',
-            html: 'html',
-            help: 'help',
+        rule: {
             id: 'id',
-            guidanceLinks: [
+            description: 'description',
+            url: 'url',
+            guidance: [
                 {
                     href: 'www.test.com',
                     text: 'text',
                     tags: [guidanceTags.WCAG_2_1],
                 },
             ],
-            helpUrl: 'helpUrl',
-            fingerprint: 'fingerprint',
-            snippet: 'snippet',
-        } as DecoratedAxeNodeResult,
+        },
+        targetApp: {
+            name: 'name',
+            url: 'url',
+        },
+        element: {
+            identifier: 'identifier',
+            conciseName: 'conciseName',
+        },
+        howToFixSummary: 'howToFixSummary',
+        snippet: 'snippet',
     };
 
     const kebabMenuIcon = () => {

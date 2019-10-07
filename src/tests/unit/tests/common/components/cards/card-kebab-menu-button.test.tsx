@@ -2,19 +2,15 @@
 // Licensed under the MIT License.
 import { IssueFilingActionMessageCreator } from 'common/message-creators/issue-filing-action-message-creator';
 import { NamedFC } from 'common/react/named-fc';
-import { CreateIssueDetailsTextData } from 'common/types/create-issue-details-text-data';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
+import { guidanceTags } from 'content/guidance-tags';
 import { shallow } from 'enzyme';
 import { IssueFilingServiceProvider } from 'issue-filing/issue-filing-service-provider';
 import { IssueFilingService } from 'issue-filing/types/issue-filing-service';
 import { ActionButton, ContextualMenu } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { IMock, Mock, Times } from 'typemoq';
-import {
-    CardKebabMenuButton,
-    CardKebabMenuButtonDeps,
-    CardKebabMenuButtonProps,
-} from '../../../../../../common/components/cards/card-kebab-menu-button';
+import { CardKebabMenuButton, CardKebabMenuButtonProps } from '../../../../../../common/components/cards/card-kebab-menu-button';
 import { NavigatorUtils } from '../../../../../../common/navigator-utils';
 import { DetailsViewActionMessageCreator } from '../../../../../../DetailsView/actions/details-view-action-message-creator';
 
@@ -72,12 +68,32 @@ describe('CardKebabMenuButtonTest', () => {
                 navigatorUtils: navigatorUtilsMock.object,
                 issueFilingServiceProvider: issueFilingServiceProviderMock.object,
                 issueFilingActionMessageCreator: issueFilingActionMessageCreatorMock.object,
-            } as CardKebabMenuButtonDeps,
+            },
             userConfigurationStoreData,
             issueDetailsData: {
-                pageTitle: 'pageTitle',
-                pageUrl: 'http://pageUrl',
-            } as CreateIssueDetailsTextData,
+                rule: {
+                    id: 'id',
+                    description: 'description',
+                    url: 'url',
+                    guidance: [
+                        {
+                            href: 'www.test.com',
+                            text: 'text',
+                            tags: [guidanceTags.WCAG_2_1],
+                        },
+                    ],
+                },
+                targetApp: {
+                    name: 'name',
+                    url: 'url',
+                },
+                element: {
+                    identifier: 'identifier',
+                    conciseName: 'conciseName',
+                },
+                howToFixSummary: 'howToFixSummary',
+                snippet: 'snippet',
+            },
         } as CardKebabMenuButtonProps;
     });
 
