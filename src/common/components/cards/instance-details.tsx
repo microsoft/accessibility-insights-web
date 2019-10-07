@@ -36,16 +36,12 @@ export const InstanceDetails = NamedFC<InstanceDetailsProps>('InstanceDetails', 
             ++propertyIndex;
             cardRows.push(<CardRow deps={deps} propertyData={propertyData} index={index} key={`${propertyName}-${propertyIndex}`} />);
         });
-        return (
-            <>
-                <div onClick={() => deps.cardSelectionMessageCreator.toggleCardSelection('test')}>{cardRows}</div>
-            </>
-        );
+        return <>{cardRows}</>;
     };
 
     return (
         <>
-            <table className={reportInstanceTable}>
+            <table className={reportInstanceTable} onClick={() => deps.cardSelectionMessageCreator.toggleCardSelection(result.uid)}>
                 <tbody>
                     {renderCardRowsForPropertyBag(result.identifiers)}
                     {renderCardRowsForPropertyBag(result.descriptors)}
