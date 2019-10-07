@@ -8,13 +8,13 @@ import { ClientStoresHub } from 'common/stores/client-stores-hub';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import { DeviceStoreData } from 'electron/flux/types/device-store-data';
 import { WindowStateStoreData } from 'electron/flux/types/window-state-store-data';
-import { DeviceConnectBodyDeps } from 'electron/views/device-connect-view/components/device-connect-body';
-import { DeviceConnectViewContainer } from 'electron/views/device-connect-view/components/device-connect-view-container';
 import {
     AutomatedChecksView,
     AutomatedChecksViewDeps,
     AutomatedChecksViewProps,
-} from 'electron/views/results-view/components/automated-checks-view';
+} from 'electron/views/automated-checks/components/automated-checks-view';
+import { DeviceConnectBodyDeps } from 'electron/views/device-connect-view/components/device-connect-body';
+import { DeviceConnectViewContainer } from 'electron/views/device-connect-view/components/device-connect-view-container';
 
 // root container deps should only depend on ResultsViewContainerDeps and DeviceConnectBodyDeps. This will be addresed in a later PR
 export type RootContainerDeps = AutomatedChecksViewDeps &
