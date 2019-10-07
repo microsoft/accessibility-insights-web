@@ -1,6 +1,15 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { Assessments } from 'assessments/assessments';
+import { EnumHelper } from 'common/enum-helper';
+import { BaseClientStoresHub } from 'common/stores/base-client-stores-hub';
+import { VisualizationType } from 'common/types/visualization-type';
+import { ClientStoreListener, TargetPageStoreData } from 'injected/client-store-listener';
+import { FocusChangeHandler } from 'injected/focus-change-handler';
+import { isVisualizationEnabled } from 'injected/is-visualization-enabled';
+import { TargetPageVisualizationUpdater } from 'injected/target-page-visualization-updater';
+import { visualizationNeedsUpdate } from 'injected/visualization-needs-update';
+import { VisualizationStateChangeHandler } from 'injected/visualization-state-change-handler';
 
 import { AxeInfo } from '../common/axe-info';
 import { InspectConfigurationFactory } from '../common/configs/inspect-configuration-factory';
@@ -40,7 +49,6 @@ import { AnalyzerStateUpdateHandler } from './analyzer-state-update-handler';
 import { AnalyzerProvider } from './analyzers/analyzer-provider';
 import { filterResultsByRules } from './analyzers/filter-results-by-rules';
 import { UnifiedResultSender } from './analyzers/unified-result-sender';
-import { ClientViewController } from './client-view-controller';
 import { DrawingInitiator } from './drawing-initiator';
 import { FrameUrlMessageDispatcher } from './frame-url-message-dispatcher';
 import { FrameUrlSearchInitiator } from './frame-url-search-initiator';
@@ -57,7 +65,6 @@ import { WindowInitializer } from './window-initializer';
 
 export class MainWindowInitializer extends WindowInitializer {
     protected frameCommunicator: FrameCommunicator;
-    private clientViewController: ClientViewController;
     private frameUrlSearchInitiator: FrameUrlSearchInitiator;
     private analyzerController: AnalyzerController;
     private inspectController: InspectController;
@@ -147,21 +154,37 @@ export class MainWindowInitializer extends WindowInitializer {
         const frameUrlMessageDispatcher = new FrameUrlMessageDispatcher(devToolActionMessageCreator, this.frameCommunicator);
         frameUrlMessageDispatcher.initialize();
 
-        this.clientViewController = new ClientViewController(
+        const storeHub = new BaseClientStoresHub<TargetPageStoreData>([
             this.visualizationStoreProxy,
+            this.tabStoreProxy,
             this.visualizationScanResultStoreProxy,
-            drawingInitiator,
-            this.scrollingController,
-            this.visualizationConfigurationFactory,
             this.featureFlagStoreProxy,
             this.assessmentStoreProxy,
-            this.tabStoreProxy,
             this.userConfigStoreProxy,
+        ]);
+
+        const clientStoreListener = new ClientStoreListener(storeHub);
+
+        const focusChangeHandler = new FocusChangeHandler(targetPageActionMessageCreator, this.scrollingController);
+
+        const targetPageVisualizationUpdater = new TargetPageVisualizationUpdater(
+            this.visualizationConfigurationFactory,
             selectorMapHelper,
-            targetPageActionMessageCreator,
+            drawingInitiator,
+            isVisualizationEnabled,
+            visualizationNeedsUpdate,
         );
 
-        this.clientViewController.initialize();
+        const visualizationStateChangeHandler = new VisualizationStateChangeHandler(
+            EnumHelper.getNumericValues(VisualizationType),
+            targetPageVisualizationUpdater.updateVisualization,
+            Assessments,
+        );
+
+        clientStoreListener.registerOnReadyToExecuteVisualizationCallback(focusChangeHandler.handleFocusChangeWithStoreData);
+        clientStoreListener.registerOnReadyToExecuteVisualizationCallback(
+            visualizationStateChangeHandler.updateVisualizationsWithStoreData,
+        );
 
         this.frameUrlSearchInitiator = new FrameUrlSearchInitiator(this.devToolStoreProxy, this.frameUrlFinder);
 
