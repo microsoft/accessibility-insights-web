@@ -57,7 +57,9 @@ describe('IssueFilingDialog', () => {
         envInfoProviderMock.setup(p => p.getEnvironmentInfo()).returns(() => envInfo);
 
         selectedIssueDataStub = {
-            pageTitle: 'some pageTitle',
+            targetApp: {
+                name: 'some pageTitle',
+            },
         } as CreateIssueDetailsTextData;
         selectedServiceData = {
             someServiceData: null,

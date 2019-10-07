@@ -1,9 +1,22 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { DecoratedAxeNodeResult } from '../../injected/scanner-utils';
+import { GuidanceLink } from '../../scanner/rule-to-links-mappings';
 
 export interface CreateIssueDetailsTextData {
-    pageTitle: string;
-    pageUrl: string;
-    ruleResult: DecoratedAxeNodeResult;
+    rule: {
+        id: string;
+        description: string;
+        url: string;
+        guidance: GuidanceLink[];
+    };
+    targetApp: {
+        name: string;
+        url?: string;
+    };
+    element: {
+        identifier: string;
+        conciseName: string;
+    };
+    howToFixSummary: string;
+    snippet?: string;
 }

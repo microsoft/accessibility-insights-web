@@ -23,6 +23,10 @@ export class UnifiedResultSender {
             scanResult: this.convertScanResultsToUnifiedResults(axeResults.originalResult, this.generateUID),
             rules: this.convertScanResultsToUnifiedRules(axeResults.originalResult),
             toolInfo: this.environmentInfoProvider.getToolData(),
+            targetAppInfo: {
+                name: axeResults.originalResult.targetPageTitle,
+                url: axeResults.originalResult.targetPageUrl,
+            },
         };
 
         this.sendMessage({

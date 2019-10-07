@@ -79,6 +79,7 @@ import { ScannerUtils } from '../injected/scanner-utils';
 import { createIssueDetailsBuilder } from '../issue-filing/common/create-issue-details-builder';
 import { IssueFilingUrlStringUtils } from '../issue-filing/common/issue-filing-url-string-utils';
 import { PlainTextFormatter } from '../issue-filing/common/markup/plain-text-formatter';
+import { AxeResultToIssueFilingDataConverter } from '../issue-filing/rule-result-to-issue-filing-data';
 import { getVersion, scan } from '../scanner/exposed-apis';
 import { DictionaryStringTo } from '../types/common-types';
 import { IssueFilingServiceProviderImpl } from './../issue-filing/issue-filing-service-provider-impl';
@@ -197,9 +198,10 @@ if (isNaN(tabId) === false) {
             const scopingFlagsHandler = new PreviewFeatureFlagsHandler(getAllFeatureFlagDetails());
             const dropdownClickHandler = new DropdownClickHandler(dropdownActionMessageCreator, TelemetryEventSource.DetailsView);
 
+            const navigatorUtils = new NavigatorUtils(window.navigator);
             const extensionVersion = browserAdapter.getManifest().version;
             const axeVersion = getVersion();
-            const browserSpec = new NavigatorUtils(window.navigator).getBrowserSpec();
+            const browserSpec = navigatorUtils.getBrowserSpec();
 
             const environmentInfoProvider = new EnvironmentInfoProvider(browserAdapter.getVersion(), browserSpec, AxeInfo.Default.version);
 
@@ -230,7 +232,7 @@ if (isNaN(tabId) === false) {
                 DateProvider.getCurrentDate,
                 extensionVersion,
                 axeVersion,
-                new NavigatorUtils(window.navigator).getBrowserSpec(),
+                browserSpec,
                 assessmentDefaultMessageGenerator,
             );
 
@@ -271,8 +273,13 @@ if (isNaN(tabId) === false) {
 
             const reportGenerator = new ReportGenerator(reportNameGenerator, reportHtmlGenerator, assessmentReportHtmlGenerator);
 
+            const axeResultToIssueFilingDataConverter = new AxeResultToIssueFilingDataConverter(
+                IssueFilingUrlStringUtils.getSelectorLastPart,
+            );
+
             const deps: DetailsViewContainerDeps = {
                 fixInstructionProcessor,
+                axeResultToIssueFilingDataConverter,
                 dropdownClickHandler,
                 issueFilingActionMessageCreator,
                 contentProvider: contentPages,
@@ -314,6 +321,7 @@ if (isNaN(tabId) === false) {
                 getPropertyConfigById: getPropertyConfiguration,
                 collapsibleControl: CardsCollapsibleControl,
                 cardInteractionSupport: allCardInteractionsSupported,
+                navigatorUtils: navigatorUtils,
             };
 
             const renderer = new DetailsViewRenderer(

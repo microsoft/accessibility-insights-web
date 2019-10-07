@@ -5,7 +5,6 @@ import { DefaultButton } from 'office-ui-fabric-react/lib/Button';
 import * as React from 'react';
 import * as CopyToClipboard from 'react-copy-to-clipboard';
 import { CopyIcon } from '../../common/icons/copy-icon';
-import { DecoratedAxeNodeResult } from '../../injected/scanner-utils';
 import { CreateIssueDetailsTextData } from '../types/create-issue-details-text-data';
 import { WindowUtils } from '../window-utils';
 import { Toast } from './toast';
@@ -31,13 +30,8 @@ export class CopyIssueDetailsButton extends React.Component<CopyIssueDetailsButt
         this.state = { showingCopyToast: false };
     }
 
-    private getIssueDetailsText(result: DecoratedAxeNodeResult): string {
-        const data: CreateIssueDetailsTextData = {
-            pageTitle: this.props.issueDetailsData.pageTitle,
-            pageUrl: this.props.issueDetailsData.pageUrl,
-            ruleResult: result,
-        };
-        return this.props.deps.issueDetailsTextGenerator.buildText(data);
+    private getIssueDetailsText(issueData: CreateIssueDetailsTextData): string {
+        return this.props.deps.issueDetailsTextGenerator.buildText(issueData);
     }
 
     private copyButtonClicked = (event: React.MouseEvent<any>): void => {
@@ -55,7 +49,7 @@ export class CopyIssueDetailsButton extends React.Component<CopyIssueDetailsButt
                         Failure details copied.
                     </Toast>
                 ) : null}
-                <CopyToClipboard text={this.getIssueDetailsText(this.props.issueDetailsData.ruleResult)}>
+                <CopyToClipboard text={this.getIssueDetailsText(this.props.issueDetailsData)}>
                     <DefaultButton className={'copy-issue-details-button'} onClick={this.copyButtonClicked}>
                         <CopyIcon />
                         <div className="ms-Button-label">Copy failure details</div>

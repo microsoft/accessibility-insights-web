@@ -14,7 +14,10 @@ import { ScanResults } from '../../../../../scanner/iruleresults';
 
 describe('sendConvertedResults', () => {
     it('should send a message with expected results', () => {
-        const axeInputResults = {} as any;
+        const axeInputResults = {
+            targetPageTitle: 'title',
+            targetPageUrl: 'url',
+        } as any;
         const unifiedResults: UnifiedResult[] = [];
         const unifiedRules: UnifiedRule[] = [];
         const toolInfo = {} as ToolData;
@@ -55,6 +58,10 @@ describe('sendConvertedResults', () => {
             scanResult: unifiedResults,
             rules: unifiedRules,
             toolInfo: toolInfo,
+            targetAppInfo: {
+                name: 'title',
+                url: 'url',
+            },
         };
         const expectedMessage: Message = {
             messageType: Messages.UnifiedScan.ScanCompleted,

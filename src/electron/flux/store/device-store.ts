@@ -3,7 +3,7 @@
 import { BaseStoreImpl } from 'background/stores/base-store-impl';
 import { StoreNames } from 'common/stores/store-names';
 
-import { DeviceConnectState } from '../../device-connect-view/components/device-connect-state';
+import { DeviceConnectState } from '../../views/device-connect-view/components/device-connect-state';
 import { ConnectingPayload, ConnectionSucceedPayload } from '../action/device-action-payloads';
 import { DeviceActions } from '../action/device-actions';
 import { DeviceStoreData } from '../types/device-store-data';

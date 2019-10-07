@@ -16,76 +16,26 @@ exports[`CommandBar renders renders, shows inspect button message: false 1`] = `
   </CustomizedDefaultButton>
   <React.Fragment>
     <CopyIssueDetailsButton
-      deps={Object {}}
-      issueDetailsData={
+      deps={
         Object {
-          "pageTitle": "",
-          "pageUrl": "http://localhost/",
-          "ruleResult": Object {
-            "failureSummary": "RR-failureSummary",
-            "guidanceLinks": Array [
-              Object {
-                "tags": Array [
-                  Object {
-                    "displayText": "some displayText",
-                    "id": "some-id",
-                  },
-                  Object {
-                    "displayText": "some other displayText",
-                    "id": "some-other-id",
-                  },
-                ],
-                "text": "WCAG-1.4.1",
-              },
-              Object {
-                "text": "wcag-2.8.2",
-              },
-            ],
-            "help": "RR-help",
-            "helpUrl": "RR-help-url",
-            "html": "RR-html",
-            "ruleId": "RR-rule-id",
-            "selector": "RR-selector<x>",
-            "snippet": "RR-snippet   space",
+          "axeResultToIssueFilingDataConverter": proxy {
+            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+            "shortenSelector": undefined,
           },
         }
       }
+      issueDetailsData={Object {}}
     />
     <IssueFilingButton
-      deps={Object {}}
-      issueDetailsData={
+      deps={
         Object {
-          "pageTitle": "",
-          "pageUrl": "http://localhost/",
-          "ruleResult": Object {
-            "failureSummary": "RR-failureSummary",
-            "guidanceLinks": Array [
-              Object {
-                "tags": Array [
-                  Object {
-                    "displayText": "some displayText",
-                    "id": "some-id",
-                  },
-                  Object {
-                    "displayText": "some other displayText",
-                    "id": "some-other-id",
-                  },
-                ],
-                "text": "WCAG-1.4.1",
-              },
-              Object {
-                "text": "wcag-2.8.2",
-              },
-            ],
-            "help": "RR-help",
-            "helpUrl": "RR-help-url",
-            "html": "RR-html",
-            "ruleId": "RR-rule-id",
-            "selector": "RR-selector<x>",
-            "snippet": "RR-snippet   space",
+          "axeResultToIssueFilingDataConverter": proxy {
+            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+            "shortenSelector": undefined,
           },
         }
       }
+      issueDetailsData={Object {}}
       needsSettingsContentRenderer={[Function]}
       userConfigurationStoreData={
         Object {
@@ -114,76 +64,26 @@ exports[`CommandBar renders renders, shows inspect button message: true 1`] = `
   </CustomizedDefaultButton>
   <React.Fragment>
     <CopyIssueDetailsButton
-      deps={Object {}}
-      issueDetailsData={
+      deps={
         Object {
-          "pageTitle": "",
-          "pageUrl": "http://localhost/",
-          "ruleResult": Object {
-            "failureSummary": "RR-failureSummary",
-            "guidanceLinks": Array [
-              Object {
-                "tags": Array [
-                  Object {
-                    "displayText": "some displayText",
-                    "id": "some-id",
-                  },
-                  Object {
-                    "displayText": "some other displayText",
-                    "id": "some-other-id",
-                  },
-                ],
-                "text": "WCAG-1.4.1",
-              },
-              Object {
-                "text": "wcag-2.8.2",
-              },
-            ],
-            "help": "RR-help",
-            "helpUrl": "RR-help-url",
-            "html": "RR-html",
-            "ruleId": "RR-rule-id",
-            "selector": "RR-selector<x>",
-            "snippet": "RR-snippet   space",
+          "axeResultToIssueFilingDataConverter": proxy {
+            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+            "shortenSelector": undefined,
           },
         }
       }
+      issueDetailsData={Object {}}
     />
     <IssueFilingButton
-      deps={Object {}}
-      issueDetailsData={
+      deps={
         Object {
-          "pageTitle": "",
-          "pageUrl": "http://localhost/",
-          "ruleResult": Object {
-            "failureSummary": "RR-failureSummary",
-            "guidanceLinks": Array [
-              Object {
-                "tags": Array [
-                  Object {
-                    "displayText": "some displayText",
-                    "id": "some-id",
-                  },
-                  Object {
-                    "displayText": "some other displayText",
-                    "id": "some-other-id",
-                  },
-                ],
-                "text": "WCAG-1.4.1",
-              },
-              Object {
-                "text": "wcag-2.8.2",
-              },
-            ],
-            "help": "RR-help",
-            "helpUrl": "RR-help-url",
-            "html": "RR-html",
-            "ruleId": "RR-rule-id",
-            "selector": "RR-selector<x>",
-            "snippet": "RR-snippet   space",
+          "axeResultToIssueFilingDataConverter": proxy {
+            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+            "shortenSelector": undefined,
           },
         }
       }
+      issueDetailsData={Object {}}
       needsSettingsContentRenderer={[Function]}
       userConfigurationStoreData={
         Object {
