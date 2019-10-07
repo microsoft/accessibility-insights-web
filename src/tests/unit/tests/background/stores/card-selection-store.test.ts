@@ -1,11 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { cloneDeep, forOwn } from 'lodash';
 import { RuleExpandCollapsePayload, UnifiedScanCompletedPayload } from '../../../../../background/actions/action-payloads';
 import { CardSelectionActions } from '../../../../../background/actions/card-selection-actions';
 import { UnifiedScanResultActions } from '../../../../../background/actions/unified-scan-result-actions';
 import { CardSelectionStore } from '../../../../../background/stores/card-selection-store';
 import { StoreNames } from '../../../../../common/stores/store-names';
-import { CardSelectionStoreData } from '../../../../../common/types/store-data/card-selection-store-data';
+import { CardSelectionStoreData, RuleExpandCollapseData } from '../../../../../common/types/store-data/card-selection-store-data';
 import { UnifiedResult } from '../../../../../common/types/store-data/unified-data-interface';
 import { createStoreWithNullParams, StoreTester } from '../../../common/store-tester';
 
@@ -57,177 +58,6 @@ describe('CardSelectionStore Test', () => {
             .testListenerToBeCalledOnce(initialState, expectedState);
     });
 
-    test('ToggleRuleExpandCollapse expanded', () => {
-        const initialState: CardSelectionStoreData = {
-            rules: {
-                sampleRuleId: {
-                    isExpanded: false,
-                    cards: {
-                        sampleUid: false,
-                    },
-                },
-            },
-        };
-
-        const expectedState: CardSelectionStoreData = {
-            rules: {
-                sampleRuleId: {
-                    isExpanded: true,
-                    cards: {
-                        sampleUid: false,
-                    },
-                },
-            },
-        };
-
-        const payload: RuleExpandCollapsePayload = {
-            ruleId: 'sampleRuleId',
-        };
-
-        createStoreForCardSelectionActions('toggleRuleExpandCollapse')
-            .withActionParam(payload)
-            .testListenerToBeCalledOnce(initialState, expectedState);
-    });
-
-    test('ToggleRuleExpandCollapse collapsed', () => {
-        const initialState: CardSelectionStoreData = {
-            rules: {
-                sampleRuleId: {
-                    isExpanded: true,
-                    cards: {
-                        sampleUid: true,
-                    },
-                },
-            },
-        };
-
-        const expectedState: CardSelectionStoreData = {
-            rules: {
-                sampleRuleId: {
-                    isExpanded: false,
-                    cards: {
-                        sampleUid: false,
-                    },
-                },
-            },
-        };
-
-        const payload: RuleExpandCollapsePayload = {
-            ruleId: 'sampleRuleId',
-        };
-
-        createStoreForCardSelectionActions('toggleRuleExpandCollapse')
-            .withActionParam(payload)
-            .testListenerToBeCalledOnce(initialState, expectedState);
-    });
-
-    test('ToggleRuleExpandCollapse invalid rule', () => {
-        const initialState: CardSelectionStoreData = {
-            rules: {
-                sampleRuleId: {
-                    isExpanded: true,
-                    cards: {
-                        sampleUid: true,
-                    },
-                },
-            },
-        };
-
-        const expectedState = initialState;
-
-        const payload: RuleExpandCollapsePayload = {
-            ruleId: 'invalid-rule-id',
-        };
-
-        createStoreForCardSelectionActions('toggleRuleExpandCollapse')
-            .withActionParam(payload)
-            .testListenerToNeverBeCalled(initialState, expectedState);
-    });
-
-    test('ToggleRuleExpandCollapse no payload', () => {
-        const initialState: CardSelectionStoreData = {
-            rules: {
-                sampleRuleId: {
-                    isExpanded: true,
-                    cards: {
-                        sampleUid: true,
-                    },
-                },
-            },
-        };
-
-        const expectedState = initialState;
-
-        createStoreForCardSelectionActions('toggleRuleExpandCollapse')
-            .withActionParam(null)
-            .testListenerToNeverBeCalled(initialState, expectedState);
-    });
-
-    test('ToggleRuleExpandCollapse invalid payload', () => {
-        const initialState: CardSelectionStoreData = {
-            rules: {
-                sampleRuleId: {
-                    isExpanded: true,
-                    cards: {
-                        sampleUid: true,
-                    },
-                },
-            },
-        };
-
-        const expectedState = initialState;
-
-        const payload: RuleExpandCollapsePayload = {
-            ruleId: null,
-        };
-
-        createStoreForCardSelectionActions('toggleRuleExpandCollapse')
-            .withActionParam(payload)
-            .testListenerToNeverBeCalled(initialState, expectedState);
-    });
-
-    test('CollapseAllRules', () => {
-        const initialState: CardSelectionStoreData = {
-            rules: {
-                sampleRuleId1: {
-                    isExpanded: true,
-                    cards: {
-                        sampleUid1: true,
-                        sampleUid2: true,
-                    },
-                },
-                sampleRuleId2: {
-                    isExpanded: true,
-                    cards: {
-                        sampleUid1: true,
-                        sampleUid2: true,
-                    },
-                },
-            },
-        };
-
-        const expectedState: CardSelectionStoreData = {
-            rules: {
-                sampleRuleId1: {
-                    isExpanded: false,
-                    cards: {
-                        sampleUid1: false,
-                        sampleUid2: false,
-                    },
-                },
-                sampleRuleId2: {
-                    isExpanded: false,
-                    cards: {
-                        sampleUid1: false,
-                        sampleUid2: false,
-                    },
-                },
-            },
-        };
-
-        createStoreForCardSelectionActions('collapseAllRules').testListenerToBeCalledOnce(initialState, expectedState);
-    });
-
     function getDefaultState(): CardSelectionStoreData {
         return createStoreWithNullParams(CardSelectionStore).getDefaultState();
     }
@@ -238,6 +68,101 @@ describe('CardSelectionStore Test', () => {
         const factory = (actions: UnifiedScanResultActions) => new CardSelectionStore(new CardSelectionActions(), actions);
 
         return new StoreTester(UnifiedScanResultActions, actionName, factory);
+    }
+});
+
+describe('CardSelectionStore Test', () => {
+    let initialState: CardSelectionStoreData = null;
+    let expectedState: CardSelectionStoreData = null;
+
+    beforeEach(() => {
+        const defaultState: CardSelectionStoreData = {
+            rules: {
+                sampleRuleId1: {
+                    isExpanded: false,
+                    cards: {
+                        sampleUid1: false,
+                        sampleUid2: false,
+                    },
+                },
+                sampleRuleId2: {
+                    isExpanded: false,
+                    cards: {
+                        sampleUid1: false,
+                        sampleUid2: false,
+                    },
+                },
+            },
+        };
+
+        initialState = cloneDeep(defaultState);
+        expectedState = cloneDeep(defaultState);
+    });
+
+    test('ToggleRuleExpandCollapse expanded', () => {
+        const payload: RuleExpandCollapsePayload = {
+            ruleId: 'sampleRuleId1',
+        };
+
+        expectedState.rules['sampleRuleId1'].isExpanded = true;
+
+        createStoreForCardSelectionActions('toggleRuleExpandCollapse')
+            .withActionParam(payload)
+            .testListenerToBeCalledOnce(initialState, expectedState);
+    });
+
+    test('ToggleRuleExpandCollapse collapsed', () => {
+        const payload: RuleExpandCollapsePayload = {
+            ruleId: 'sampleRuleId1',
+        };
+
+        initialState.rules['sampleRuleId1'].isExpanded = true;
+        initialState.rules['sampleRuleId1'].cards['sampleUid1'] = true;
+
+        createStoreForCardSelectionActions('toggleRuleExpandCollapse')
+            .withActionParam(payload)
+            .testListenerToBeCalledOnce(initialState, expectedState);
+    });
+
+    test('ToggleRuleExpandCollapse invalid rule', () => {
+        const payload: RuleExpandCollapsePayload = {
+            ruleId: 'invalid-rule-id',
+        };
+
+        createStoreForCardSelectionActions('toggleRuleExpandCollapse')
+            .withActionParam(payload)
+            .testListenerToNeverBeCalled(initialState, expectedState);
+    });
+
+    test('ToggleRuleExpandCollapse no payload', () => {
+        createStoreForCardSelectionActions('toggleRuleExpandCollapse')
+            .withActionParam(null)
+            .testListenerToNeverBeCalled(initialState, expectedState);
+    });
+
+    test('ToggleRuleExpandCollapse invalid payload', () => {
+        const payload: RuleExpandCollapsePayload = {
+            ruleId: null,
+        };
+
+        createStoreForCardSelectionActions('toggleRuleExpandCollapse')
+            .withActionParam(payload)
+            .testListenerToNeverBeCalled(initialState, expectedState);
+    });
+
+    test('CollapseAllRules', () => {
+        expandRuleSelectCards(initialState.rules['sampleRuleId1']);
+        expandRuleSelectCards(initialState.rules['sampleRuleId2']);
+
+        createStoreForCardSelectionActions('collapseAllRules').testListenerToBeCalledOnce(initialState, expectedState);
+    });
+
+    function expandRuleSelectCards(rule: RuleExpandCollapseData): void {
+        rule.isExpanded = true;
+
+        forOwn(rule.cards, (value, card, cards) => {
+            cards[card] = true;
+        });
     }
 
     function createStoreForCardSelectionActions(

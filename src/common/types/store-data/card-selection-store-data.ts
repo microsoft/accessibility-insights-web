@@ -1,5 +1,3 @@
-import { CardSelectionPayload } from '../../../background/actions/action-payloads';
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
