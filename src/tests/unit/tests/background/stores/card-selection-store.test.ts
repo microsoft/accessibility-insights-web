@@ -1,7 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { cloneDeep, forOwn } from 'lodash';
-import { RuleExpandCollapsePayload, UnifiedScanCompletedPayload } from '../../../../../background/actions/action-payloads';
+import {
+    CardSelectionPayload,
+    RuleExpandCollapsePayload,
+    UnifiedScanCompletedPayload,
+} from '../../../../../background/actions/action-payloads';
 import { CardSelectionActions } from '../../../../../background/actions/card-selection-actions';
 import { UnifiedScanResultActions } from '../../../../../background/actions/unified-scan-result-actions';
 import { CardSelectionStore } from '../../../../../background/stores/card-selection-store';
@@ -146,6 +150,68 @@ describe('CardSelectionStore Test', () => {
         };
 
         createStoreForCardSelectionActions('toggleRuleExpandCollapse')
+            .withActionParam(payload)
+            .testListenerToNeverBeCalled(initialState, expectedState);
+    });
+
+    test('toggleCardSelection selected', () => {
+        const payload: CardSelectionPayload = {
+            ruleId: 'sampleRuleId1',
+            resultInstanceUid: 'sampleUid1',
+        };
+
+        expectedState.rules['sampleRuleId1'].cards['sampleUid1'] = true;
+
+        createStoreForCardSelectionActions('toggleCardSelection')
+            .withActionParam(payload)
+            .testListenerToBeCalledOnce(initialState, expectedState);
+    });
+
+    test('toggleCardSelection unselected', () => {
+        const payload: CardSelectionPayload = {
+            ruleId: 'sampleRuleId1',
+            resultInstanceUid: 'sampleUid1',
+        };
+
+        initialState.rules['sampleRuleId1'].cards['sampleUid1'] = true;
+
+        createStoreForCardSelectionActions('toggleCardSelection')
+            .withActionParam(payload)
+            .testListenerToBeCalledOnce(initialState, expectedState);
+    });
+
+    test('toggleCardSelection invalid rule', () => {
+        const payload: CardSelectionPayload = {
+            ruleId: 'invalid-rule-id',
+            resultInstanceUid: 'sampleUid1',
+        };
+
+        createStoreForCardSelectionActions('toggleCardSelection')
+            .withActionParam(payload)
+            .testListenerToNeverBeCalled(initialState, expectedState);
+    });
+
+    test('toggleCardSelection invalid card', () => {
+        const payload: CardSelectionPayload = {
+            ruleId: 'sampleRuleId1',
+            resultInstanceUid: 'invalid-uid',
+        };
+
+        createStoreForCardSelectionActions('toggleCardSelection')
+            .withActionParam(payload)
+            .testListenerToNeverBeCalled(initialState, expectedState);
+    });
+
+    test('toggleCardSelection  no payload', () => {
+        createStoreForCardSelectionActions('toggleCardSelection')
+            .withActionParam(null)
+            .testListenerToNeverBeCalled(initialState, expectedState);
+    });
+
+    test('ToggleRuleExpandCollapse invalid payload', () => {
+        const payload: CardSelectionPayload = {} as CardSelectionPayload;
+
+        createStoreForCardSelectionActions('toggleCardSelection')
             .withActionParam(payload)
             .testListenerToNeverBeCalled(initialState, expectedState);
     });
