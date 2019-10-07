@@ -3,8 +3,8 @@
 
 import { Mock } from 'typemoq';
 
-import { HowToFixDelegate, RuleInformation } from '../../../../../../electron/platform/android/rule-information';
-import { RuleResultsData } from '../../../../../../electron/platform/android/scan-results';
+import { HowToFixDelegate, RuleInformation } from 'electron/platform/android/rule-information';
+import { RuleResultsData } from 'electron/platform/android/scan-results';
 
 describe('RuleInformation', () => {
     const testInputs = ['abc', 'xyz', 'this should work'];
