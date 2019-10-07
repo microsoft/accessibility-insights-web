@@ -48,6 +48,7 @@ export class MessageDistributor {
     private tryInterpretUsingTabContext(message: InterpreterMessage): boolean {
         let hasInterpreted: boolean;
         const tabContext = this.tabToContextMap[message.tabId];
+
         if (tabContext != null) {
             hasInterpreted = tabContext.interpreter.interpret(message);
         }

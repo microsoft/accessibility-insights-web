@@ -4,21 +4,18 @@ export type CardInteractionSupport = {
     supportsHighlighting: boolean;
     supportsIssueFiling: boolean;
     supportsCopyFailureDetails: boolean;
-    supportsSelectionBehavior: boolean;
 };
 
 export const allCardInteractionsSupported: CardInteractionSupport = {
     supportsHighlighting: true,
     supportsIssueFiling: true,
     supportsCopyFailureDetails: true,
-    supportsSelectionBehavior: true,
 };
 
 export const noCardInteractionsSupported: CardInteractionSupport = {
     supportsHighlighting: false,
     supportsIssueFiling: false,
     supportsCopyFailureDetails: false,
-    supportsSelectionBehavior: false,
 };
 
 export const onlyUserConfigAgnosticCardInteractionsSupported: CardInteractionSupport = {
