@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TitleBar renders 1`] = `
+<div
+  className="titleBar"
+>
+  <BrandWhite />
+  <CustomizedActionButton
+    iconProps={
+      Object {
+        "iconName": "Cancel",
+      }
+    }
+    id="close-button"
+    onClick={[Function]}
+  />
+  <CustomizedActionButton
+    iconProps={
+      Object {
+        "iconName": "Stop",
+      }
+    }
+    id="maximize-button"
+    onClick={[Function]}
+  />
+  <CustomizedActionButton
+    iconProps={
+      Object {
+        "iconName": "ChromeMinimize",
+      }
+    }
+    id="minimize-button"
+    onClick={[Function]}
+  />
+</div>
+`;

@@ -18,8 +18,8 @@ export interface TitleBarProps {
 
 export const TitleBar = NamedFC<TitleBarProps>('TitleBar', (props: TitleBarProps) => {
     const currrentWindow = props.deps.currentWindow;
-    const min = () => currrentWindow.minimize();
-    const max = () => (currrentWindow.isMaximized() ? currrentWindow.restore() : currrentWindow.maximize());
+    const minimize = () => currrentWindow.minimize();
+    const maximize = () => (currrentWindow.isMaximized() ? currrentWindow.restore() : currrentWindow.maximize());
     const close = () => currrentWindow.close();
 
     return (
@@ -29,19 +29,22 @@ export const TitleBar = NamedFC<TitleBarProps>('TitleBar', (props: TitleBarProps
                 iconProps={{
                     iconName: 'Cancel',
                 }}
+                id="close-button"
                 onClick={close}
             />
             <ActionButton
                 iconProps={{
                     iconName: 'Stop',
                 }}
-                onClick={max}
+                id="maximize-button"
+                onClick={maximize}
             />
             <ActionButton
                 iconProps={{
                     iconName: 'ChromeMinimize',
                 }}
-                onClick={min}
+                id="minimize-button"
+                onClick={minimize}
             />
         </div>
     );
