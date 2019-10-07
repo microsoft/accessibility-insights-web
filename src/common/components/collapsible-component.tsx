@@ -4,8 +4,6 @@ import { css } from '@uifabric/utilities';
 import { ActionButton } from 'office-ui-fabric-react/lib/Button';
 import * as React from 'react';
 
-import { collapsible, collapsibleTitle } from './cards/collapsible-component-cards.scss';
-
 export interface CollapsibleComponentProps {
     header: JSX.Element;
     content: JSX.Element;
@@ -44,12 +42,12 @@ export class CollapsibleComponent extends React.Component<CollapsibleComponentPr
         return (
             <div className={css(this.props.containerClassName, 'collapsible-component')}>
                 <ActionButton
-                    className={collapsible}
+                    className="collapsible"
                     iconProps={{ iconName: iconName, class: 'collapsible-icon' }}
                     onClick={this.onClick}
                     aria-expanded={showContent}
                 >
-                    <span className={collapsibleTitle}>{this.props.header}</span>
+                    <span className="collapsible-title">{this.props.header}</span>
                 </ActionButton>
                 {content}
             </div>

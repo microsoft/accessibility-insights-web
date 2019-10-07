@@ -59,26 +59,6 @@
     }
 }
 
-.collapsible {
-    padding: 0;
-    cursor: pointer;
-    width: 100%;
-    border: none;
-    outline: none;
-    line-height: 0.25px;
-    background-color: $neutral-0;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    h2 {
-        font-weight: $normalTitleFontWeight;
-    }
-}
-
 .collapsible-title {
-    padding-left: 0.5vw;
-}
-
-span.collapsible-title {
     padding-left: 0.5vw;
 }
