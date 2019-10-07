@@ -27,7 +27,7 @@ exports[`RootContainer renders device connect view container when route is devic
 `;
 
 exports[`RootContainer renders results view container when route is resultsView: results view 1`] = `
-<ResultsViewContainer
+<AutomatedChecksView
   deps={
     Object {
       "storeHub": proxy {
