@@ -2,6 +2,6 @@
 
 exports[`AutomatedChecksView renders the automated checks view: automated checks view 1`] = `
 <React.Fragment>
-  automated checks
+  <HeaderSection />
 </React.Fragment>
 `;

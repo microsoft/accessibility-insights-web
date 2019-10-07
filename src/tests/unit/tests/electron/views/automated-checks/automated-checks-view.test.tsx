@@ -7,6 +7,7 @@ import * as React from 'react';
 describe(AutomatedChecksView, () => {
     it('renders the automated checks view', () => {
         const wrapped = shallow(<AutomatedChecksView />);
+
         expect(wrapped.getElement()).toMatchSnapshot('automated checks view');
     });
 });
