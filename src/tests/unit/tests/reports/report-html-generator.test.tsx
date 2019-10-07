@@ -54,6 +54,7 @@ describe('ReportHtmlGenerator', () => {
                 issueDetailsTextGenerator: null,
                 detailsViewActionMessageCreator: null,
                 navigatorUtils: null,
+                cardSelectionMessageCreator: null,
             },
             fixInstructionProcessor: fixInstructionProcessorMock.object,
             sectionFactory: sectionFactoryMock.object,

@@ -32,7 +32,7 @@ export class CardSelectionStore extends BaseStoreImpl<CardSelectionStoreData> {
 
     public toggleRuleExpandCollapse(payload: RuleExpandCollapsePayload): void {}
 
-    public toggleCardSelection(payload: CardSelectionPayload): void {}
+    public toggleCardSelection = (payload: CardSelectionPayload): void => {};
 
     public CollapseAllRules(): void {}
 

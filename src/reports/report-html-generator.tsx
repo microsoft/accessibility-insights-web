@@ -54,6 +54,7 @@ export class ReportHtmlGenerator {
                 issueDetailsTextGenerator: null,
                 detailsViewActionMessageCreator: null,
                 navigatorUtils: null,
+                cardSelectionMessageCreator: null,
             },
             ruleResultsByStatus: ruleResultsByStatus,
             environmentInfo: this.environmentInfo,

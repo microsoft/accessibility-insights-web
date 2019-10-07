@@ -1,5 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { CardSelectionActions } from 'background/actions/card-selection-actions';
+
 import { TabActions } from '../actions/tab-actions';
 import { VisualizationActions } from '../actions/visualization-actions';
 import { VisualizationScanResultActions } from '../actions/visualization-scan-result-actions';
@@ -26,6 +28,7 @@ export class ActionHub {
     public detailsViewActions: DetailsViewActions;
     public pathSnippetActions: PathSnippetActions;
     public scanResultActions: UnifiedScanResultActions;
+    public cardSelectionActions: CardSelectionActions;
 
     constructor() {
         this.visualizationActions = new VisualizationActions();
@@ -40,5 +43,6 @@ export class ActionHub {
         this.detailsViewActions = new DetailsViewActions();
         this.pathSnippetActions = new PathSnippetActions();
         this.scanResultActions = new UnifiedScanResultActions();
+        this.cardSelectionActions = new CardSelectionActions();
     }
 }
