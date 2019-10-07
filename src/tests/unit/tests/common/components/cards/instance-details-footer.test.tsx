@@ -11,15 +11,15 @@ import {
     InstanceDetailsFooterDeps,
     InstanceDetailsFooterProps,
 } from 'common/components/cards/instance-details-footer';
-import { TargetAppData, UnifiedResult, UnifiedRule } from 'common/types/store-data/unified-data-interface';
+import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import { IMock, Mock, Times } from 'typemoq';
 
 import { CreateIssueDetailsTextData } from '../../../../../../common/types/create-issue-details-text-data';
+import { TargetAppData, UnifiedResult, UnifiedRule } from '../../../../../../common/types/store-data/unified-data-interface';
 import { UnifiedResultToIssueFilingDataConverter } from '../../../../../../issue-filing/unified-result-to-issue-filing-data';
 import { exampleUnifiedResult, exampleUnifiedRuleResult } from './sample-view-model-data';
-import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 
 describe('InstanceDetailsFooter', () => {
     let resultStub: UnifiedResult;
