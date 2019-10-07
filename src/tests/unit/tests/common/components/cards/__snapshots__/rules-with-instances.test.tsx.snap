@@ -57,6 +57,7 @@ exports[`RulesWithInstances renders 1`] = `
             "url": "sample-url",
           }
         }
+        userConfigurationStoreData={null}
       />
     }
     header={

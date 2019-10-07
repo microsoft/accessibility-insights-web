@@ -25,6 +25,37 @@ exports[`InstanceDetailsFooter renders per snapshot when all card interactions a
         },
       }
     }
+    issueDetailsData={
+      Object {
+        "element": Object {
+          "conciseName": "conciseName",
+          "identifier": "identifier",
+        },
+        "howToFixSummary": "howToFixSummary",
+        "rule": Object {
+          "description": "description",
+          "guidance": Array [
+            Object {
+              "href": "www.test.com",
+              "tags": Array [
+                Object {
+                  "displayText": "New for WCAG 2.1",
+                  "id": "WCAG_2_1",
+                },
+              ],
+              "text": "text",
+            },
+          ],
+          "id": "id",
+          "url": "url",
+        },
+        "snippet": "snippet",
+        "targetApp": Object {
+          "name": "name",
+          "url": "url",
+        },
+      }
+    }
   />
 </div>
 `;
@@ -51,6 +82,37 @@ exports[`InstanceDetailsFooter renders per snapshot when only UserConfig-agnosti
           "supportsCopyFailureDetails": true,
           "supportsHighlighting": true,
           "supportsIssueFiling": false,
+        },
+      }
+    }
+    issueDetailsData={
+      Object {
+        "element": Object {
+          "conciseName": "conciseName",
+          "identifier": "identifier",
+        },
+        "howToFixSummary": "howToFixSummary",
+        "rule": Object {
+          "description": "description",
+          "guidance": Array [
+            Object {
+              "href": "www.test.com",
+              "tags": Array [
+                Object {
+                  "displayText": "New for WCAG 2.1",
+                  "id": "WCAG_2_1",
+                },
+              ],
+              "text": "text",
+            },
+          ],
+          "id": "id",
+          "url": "url",
+        },
+        "snippet": "snippet",
+        "targetApp": Object {
+          "name": "name",
+          "url": "url",
         },
       }
     }
@@ -83,6 +145,37 @@ exports[`InstanceDetailsFooter renders per snapshot with highlightState="hidden"
         },
       }
     }
+    issueDetailsData={
+      Object {
+        "element": Object {
+          "conciseName": "conciseName",
+          "identifier": "identifier",
+        },
+        "howToFixSummary": "howToFixSummary",
+        "rule": Object {
+          "description": "description",
+          "guidance": Array [
+            Object {
+              "href": "www.test.com",
+              "tags": Array [
+                Object {
+                  "displayText": "New for WCAG 2.1",
+                  "id": "WCAG_2_1",
+                },
+              ],
+              "text": "text",
+            },
+          ],
+          "id": "id",
+          "url": "url",
+        },
+        "snippet": "snippet",
+        "targetApp": Object {
+          "name": "name",
+          "url": "url",
+        },
+      }
+    }
   />
 </div>
 `;
@@ -112,6 +205,37 @@ exports[`InstanceDetailsFooter renders per snapshot with highlightState="unavail
         },
       }
     }
+    issueDetailsData={
+      Object {
+        "element": Object {
+          "conciseName": "conciseName",
+          "identifier": "identifier",
+        },
+        "howToFixSummary": "howToFixSummary",
+        "rule": Object {
+          "description": "description",
+          "guidance": Array [
+            Object {
+              "href": "www.test.com",
+              "tags": Array [
+                Object {
+                  "displayText": "New for WCAG 2.1",
+                  "id": "WCAG_2_1",
+                },
+              ],
+              "text": "text",
+            },
+          ],
+          "id": "id",
+          "url": "url",
+        },
+        "snippet": "snippet",
+        "targetApp": Object {
+          "name": "name",
+          "url": "url",
+        },
+      }
+    }
   />
 </div>
 `;
@@ -138,6 +262,37 @@ exports[`InstanceDetailsFooter renders per snapshot with highlightState="visible
           "supportsCopyFailureDetails": true,
           "supportsHighlighting": true,
           "supportsIssueFiling": true,
+        },
+      }
+    }
+    issueDetailsData={
+      Object {
+        "element": Object {
+          "conciseName": "conciseName",
+          "identifier": "identifier",
+        },
+        "howToFixSummary": "howToFixSummary",
+        "rule": Object {
+          "description": "description",
+          "guidance": Array [
+            Object {
+              "href": "www.test.com",
+              "tags": Array [
+                Object {
+                  "displayText": "New for WCAG 2.1",
+                  "id": "WCAG_2_1",
+                },
+              ],
+              "text": "text",
+            },
+          ],
+          "id": "id",
+          "url": "url",
+        },
+        "snippet": "snippet",
+        "targetApp": Object {
+          "name": "name",
+          "url": "url",
         },
       }
     }

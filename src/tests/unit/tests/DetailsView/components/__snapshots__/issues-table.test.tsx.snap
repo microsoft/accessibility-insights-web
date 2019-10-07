@@ -274,6 +274,11 @@ exports[`IssuesTableTest table with 0 issues 1`] = `
               "unknown": Array [],
             }
           }
+          userConfigurationStoreData={
+            Object {
+              "bugService": "gitHub",
+            }
+          }
         />
       }
       featureFlag="universalCardsUI"
@@ -488,6 +493,11 @@ exports[`IssuesTableTest table with 1 issues 1`] = `
               "inapplicable": Array [],
               "pass": Array [],
               "unknown": Array [],
+            }
+          }
+          userConfigurationStoreData={
+            Object {
+              "bugService": "gitHub",
             }
           }
         />
@@ -713,6 +723,11 @@ exports[`IssuesTableTest table with 2 issues 1`] = `
               "inapplicable": Array [],
               "pass": Array [],
               "unknown": Array [],
+            }
+          }
+          userConfigurationStoreData={
+            Object {
+              "bugService": "gitHub",
             }
           }
         />
