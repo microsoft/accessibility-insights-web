@@ -30,8 +30,6 @@ exports[`InstanceDetailsFooter renders per snapshot when all card interactions a
         "pageTitle": "pageTitle",
         "pageUrl": "http://pageUrl",
         "ruleResult": Object {
-          "all": Array [],
-          "any": Array [],
           "failureSummary": "failureSummary",
           "fingerprint": "fingerprint",
           "guidanceLinks": Array [
@@ -50,7 +48,6 @@ exports[`InstanceDetailsFooter renders per snapshot when all card interactions a
           "helpUrl": "helpUrl",
           "html": "html",
           "id": "id",
-          "none": Array [],
           "ruleId": "ruleId",
           "selector": "selector",
           "snippet": "snippet",
@@ -92,8 +89,6 @@ exports[`InstanceDetailsFooter renders per snapshot when only UserConfig-agnosti
         "pageTitle": "pageTitle",
         "pageUrl": "http://pageUrl",
         "ruleResult": Object {
-          "all": Array [],
-          "any": Array [],
           "failureSummary": "failureSummary",
           "fingerprint": "fingerprint",
           "guidanceLinks": Array [
@@ -112,7 +107,6 @@ exports[`InstanceDetailsFooter renders per snapshot when only UserConfig-agnosti
           "helpUrl": "helpUrl",
           "html": "html",
           "id": "id",
-          "none": Array [],
           "ruleId": "ruleId",
           "selector": "selector",
           "snippet": "snippet",
@@ -154,8 +148,6 @@ exports[`InstanceDetailsFooter renders per snapshot with highlightState="hidden"
         "pageTitle": "pageTitle",
         "pageUrl": "http://pageUrl",
         "ruleResult": Object {
-          "all": Array [],
-          "any": Array [],
           "failureSummary": "failureSummary",
           "fingerprint": "fingerprint",
           "guidanceLinks": Array [
@@ -174,7 +166,6 @@ exports[`InstanceDetailsFooter renders per snapshot with highlightState="hidden"
           "helpUrl": "helpUrl",
           "html": "html",
           "id": "id",
-          "none": Array [],
           "ruleId": "ruleId",
           "selector": "selector",
           "snippet": "snippet",
@@ -216,8 +207,6 @@ exports[`InstanceDetailsFooter renders per snapshot with highlightState="unavail
         "pageTitle": "pageTitle",
         "pageUrl": "http://pageUrl",
         "ruleResult": Object {
-          "all": Array [],
-          "any": Array [],
           "failureSummary": "failureSummary",
           "fingerprint": "fingerprint",
           "guidanceLinks": Array [
@@ -236,7 +225,6 @@ exports[`InstanceDetailsFooter renders per snapshot with highlightState="unavail
           "helpUrl": "helpUrl",
           "html": "html",
           "id": "id",
-          "none": Array [],
           "ruleId": "ruleId",
           "selector": "selector",
           "snippet": "snippet",
@@ -278,8 +266,6 @@ exports[`InstanceDetailsFooter renders per snapshot with highlightState="visible
         "pageTitle": "pageTitle",
         "pageUrl": "http://pageUrl",
         "ruleResult": Object {
-          "all": Array [],
-          "any": Array [],
           "failureSummary": "failureSummary",
           "fingerprint": "fingerprint",
           "guidanceLinks": Array [
@@ -298,7 +284,6 @@ exports[`InstanceDetailsFooter renders per snapshot with highlightState="visible
           "helpUrl": "helpUrl",
           "html": "html",
           "id": "id",
-          "none": Array [],
           "ruleId": "ruleId",
           "selector": "selector",
           "snippet": "snippet",
