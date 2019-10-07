@@ -32,7 +32,7 @@ describe('InstanceDetails', () => {
             deps,
             result: resultStub,
             index: indexStub,
-        };
+        } as InstanceDetailsProps;
     });
 
     it('renders', () => {

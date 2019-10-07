@@ -56,6 +56,7 @@ describe('ScanResults to Unified Results Test', () => {
         instanceId: 'id1',
         html: 'html1',
         target: ['target1', 'id1'],
+        failureSummary: 'how to fix 1',
     };
 
     const node2: AxeNodeResult = {
@@ -71,6 +72,7 @@ describe('ScanResults to Unified Results Test', () => {
         instanceId: 'id2',
         snippet: 'html2',
         target: ['target2', 'id2'],
+        failureSummary: 'how to fix 2',
     } as AxeNodeResult;
 
     const node3: AxeNodeResult = {
@@ -86,6 +88,7 @@ describe('ScanResults to Unified Results Test', () => {
         instanceId: 'id3',
         html: 'html3',
         target: ['target3', 'id3'],
+        failureSummary: 'how to fix 3',
     };
 
     const passingNode: AxeNodeResult = {

@@ -1,9 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { flatMap } from 'lodash';
+
 import { InstanceResultStatus, UnifiedResult } from '../../common/types/store-data/unified-data-interface';
 import { UUIDGeneratorType } from '../../common/uid-generator';
 import { AxeNodeResult, RuleResult, ScanResults } from '../../scanner/iruleresults';
+import { IssueFilingUrlStringUtils } from './../../issue-filing/common/issue-filing-url-string-utils';
 
 export type ConvertScanResultsToUnifiedResultsDelegate = (scanResults: ScanResults, uuidGenerator: UUIDGeneratorType) => UnifiedResult[];
 
@@ -14,6 +16,7 @@ interface RuleResultData {
 
 interface CreationData extends RuleResultData {
     cssSelector: string;
+    failureSummary: string;
     snippet: string;
     howToFix: {
         oneOf: string[];
@@ -78,6 +81,7 @@ const createUnifiedResultFromNode = (
                 none: nodeResult.none.map(checkResult => checkResult.message),
                 all: nodeResult.all.map(checkResult => checkResult.message),
             },
+            failureSummary: nodeResult.failureSummary,
         },
         uuidGenerator,
     );
@@ -89,12 +93,15 @@ const createUnifiedResult = (data: CreationData, uuidGenerator: UUIDGeneratorTyp
         status: data.status,
         ruleId: data.ruleID,
         identifiers: {
+            identifier: data.cssSelector,
+            conciseName: IssueFilingUrlStringUtils.getSelectorLastPart(data.cssSelector),
             'css-selector': data.cssSelector,
         },
         descriptors: {
             snippet: data.snippet,
         },
         resolution: {
+            howToFixSummary: data.failureSummary,
             'how-to-fix-web': {
                 any: data.howToFix.oneOf,
                 none: data.howToFix.none,

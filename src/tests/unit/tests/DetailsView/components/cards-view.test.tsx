@@ -8,10 +8,10 @@ import { exampleUnifiedStatusResults } from '../../common/components/cards/sampl
 
 describe('CardsView', () => {
     it('should return cards view', () => {
-        const props: CardsViewProps = {
+        const props = {
             deps: {} as CardsViewDeps,
             ruleResultsByStatus: exampleUnifiedStatusResults,
-        };
+        } as CardsViewProps;
         const actual = shallow(<CardsView {...props} />);
         expect(actual.getElement()).toMatchSnapshot();
     });

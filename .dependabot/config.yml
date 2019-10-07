@@ -17,3 +17,12 @@ update_configs:
           # dependabot auto-update them like other deps.
           dependency_name: "office-ui-fabric-react"
           version_requirement: ">=7.0.0"
+      - match:
+          # We use webdriverio only indirectly via spectron; our direct
+          # dependency on the package is only for the sake of typings, so
+          # we stick to the major version of webdriverio used by spectron.
+          #
+          # The spectron issue tracking their update to v5 is
+          # https://github.com/electron-userland/spectron/issues/349
+          dependency_name: "webdriverio"
+          version_requirement: ">=5.0.0"

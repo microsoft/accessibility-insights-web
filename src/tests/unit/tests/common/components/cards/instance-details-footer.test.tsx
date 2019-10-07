@@ -31,7 +31,7 @@ describe('InstanceDetailsFooter', () => {
             deps,
             result: resultStub,
             highlightState: 'hidden',
-        };
+        } as InstanceDetailsFooterProps;
     });
 
     it('renders as null when no card interactions are supported', () => {

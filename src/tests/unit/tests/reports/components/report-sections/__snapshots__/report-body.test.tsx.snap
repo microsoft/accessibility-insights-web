@@ -79,6 +79,7 @@ exports[`ReportBody renders 1`] = `
       }
     }
     toUtcString={[Function]}
+    userConfigurationStoreData={null}
   />
   <content-container>
     <title-section />
@@ -159,6 +160,7 @@ exports[`ReportBody renders 1`] = `
         }
       }
       toUtcString={[Function]}
+      userConfigurationStoreData={null}
     />
     <details-section
       deps={Object {}}
@@ -237,6 +239,7 @@ exports[`ReportBody renders 1`] = `
         }
       }
       toUtcString={[Function]}
+      userConfigurationStoreData={null}
     />
     <result-section
       deps={Object {}}
@@ -315,6 +318,7 @@ exports[`ReportBody renders 1`] = `
         }
       }
       toUtcString={[Function]}
+      userConfigurationStoreData={null}
     >
       <failed-instances-section
         deps={Object {}}
@@ -393,6 +397,7 @@ exports[`ReportBody renders 1`] = `
           }
         }
         toUtcString={[Function]}
+        userConfigurationStoreData={null}
       />
       <passed-checks-section
         deps={Object {}}
@@ -471,6 +476,7 @@ exports[`ReportBody renders 1`] = `
           }
         }
         toUtcString={[Function]}
+        userConfigurationStoreData={null}
       />
       <not-applicable-checks-section
         deps={Object {}}
@@ -549,6 +555,7 @@ exports[`ReportBody renders 1`] = `
           }
         }
         toUtcString={[Function]}
+        userConfigurationStoreData={null}
       />
     </result-section>
   </content-container>
@@ -629,6 +636,7 @@ exports[`ReportBody renders 1`] = `
       }
     }
     toUtcString={[Function]}
+    userConfigurationStoreData={null}
   />
 </body-section>
 `;
