@@ -10,7 +10,6 @@ import {
     IssueFilingServicePropertiesMap,
     UserConfigurationStoreData,
 } from '../../../../../common/types/store-data/user-configuration-store';
-import { DecoratedAxeNodeResult } from '../../../../../injected/scanner-utils';
 import { IssueFilingControllerImpl } from '../../../../../issue-filing/common/issue-filing-controller-impl';
 import { IssueFilingServiceProvider } from '../../../../../issue-filing/issue-filing-service-provider';
 import { IssueFilingService } from '../../../../../issue-filing/types/issue-filing-service';
@@ -18,20 +17,9 @@ import { IssueFilingService } from '../../../../../issue-filing/types/issue-fili
 describe('IssueFilingControllerImpl', () => {
     it('fileUssue', () => {
         const serviceKey = 'test-service';
-        const issueData: CreateIssueDetailsTextData = {
-            pageTitle: 'pageTitle<x>',
-            pageUrl: 'pageUrl',
-            ruleResult: {
-                failureSummary: 'RR-failureSummary',
-                guidanceLinks: [{ text: 'WCAG-1.4.1' }, { text: 'wcag-2.8.2' }],
-                help: 'RR-help',
-                html: 'RR-html',
-                ruleId: 'RR-rule-id',
-                helpUrl: 'RR-help-url',
-                selector: 'RR-selector<x>',
-                snippet: 'RR-snippet   space',
-            } as DecoratedAxeNodeResult,
-        };
+        const issueData = {
+            targetApp: {},
+        } as CreateIssueDetailsTextData;
         const environmentInfoStub: EnvironmentInfo = {
             axeCoreVersion: 'test axe version',
             browserSpec: 'test browser spec',

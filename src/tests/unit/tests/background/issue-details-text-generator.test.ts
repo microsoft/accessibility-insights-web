@@ -20,19 +20,23 @@ describe('Issue details text builder', () => {
 
     beforeEach(() => {
         sampleIssueDetailsData = {
-            pageTitle: 'pageTitle<x>',
-            pageUrl: 'pageUrl',
-            ruleResult: {
-                failureSummary: 'RR-failureSummary',
-                guidanceLinks: [{ text: wcagTags[0] }, { text: wcagTags[1] }],
-                help: 'RR-help',
-                html: 'RR-html',
-                ruleId: 'RR-rule-id',
-                helpUrl: 'RR-help-url',
-                selector,
-                snippet: 'RR-snippet   space',
-            } as any,
-        };
+            rule: {
+                description: 'RR-help',
+                id: 'RR-rule-id',
+                url: 'RR-help-url',
+                guidance: [{ text: wcagTags[0] }, { text: wcagTags[1] }],
+            },
+            targetApp: {
+                name: 'pageTitle<x>',
+                url: 'pageUrl',
+            },
+            element: {
+                identifier: selector,
+                conciseName: selector,
+            },
+            howToFixSummary: 'RR-failureSummary',
+            snippet: 'RR-snippet   space',
+        } as any;
 
         issueUrlCreationUtilsMock = Mock.ofType<IssueUrlCreationUtils>(undefined, MockBehavior.Strict);
         issueUrlCreationUtilsMock.setup(utils => utils.getSelectorLastPart(selector)).returns(() => selector);

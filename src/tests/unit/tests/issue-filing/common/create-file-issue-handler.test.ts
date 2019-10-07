@@ -6,7 +6,6 @@ import { BrowserAdapter } from '../../../../../common/browser-adapters/browser-a
 import { EnvironmentInfo } from '../../../../../common/environment-info-provider';
 import { CreateIssueDetailsTextData } from '../../../../../common/types/create-issue-details-text-data';
 import { IssueFilingServicePropertiesMap } from '../../../../../common/types/store-data/user-configuration-store';
-import { DecoratedAxeNodeResult } from '../../../../../injected/scanner-utils';
 import { createFileIssueHandler } from '../../../../../issue-filing/common/create-file-issue-handler';
 import { IssueFilingUrlProvider } from '../../../../../issue-filing/types/issue-filing-service';
 
@@ -14,19 +13,10 @@ describe('createFileIssueHandler', () => {
     it('properly files an issue', () => {
         const serviceMap: IssueFilingServicePropertiesMap = {};
         const issueData: CreateIssueDetailsTextData = {
-            pageTitle: 'pageTitle<x>',
-            pageUrl: 'pageUrl',
-            ruleResult: {
-                failureSummary: 'RR-failureSummary',
-                guidanceLinks: [{ text: 'WCAG-1.4.1' }, { text: 'wcag-2.8.2' }],
-                help: 'RR-help',
-                html: 'RR-html',
-                ruleId: 'RR-rule-id',
-                helpUrl: 'RR-help-url',
-                selector: 'RR-selector<x>',
-                snippet: 'RR-snippet   space',
-            } as DecoratedAxeNodeResult,
-        };
+            targetApp: {
+                name: 'pageTitle<x>',
+            },
+        } as any;
         const environmentInfoStub: EnvironmentInfo = {
             axeCoreVersion: 'test axe version',
             browserSpec: 'test browser spec',
