@@ -9,7 +9,9 @@ Array [
       "snippet": "html1",
     },
     "identifiers": Object {
+      "conciseName": "id1",
       "css-selector": "target1;id1",
+      "identifier": "target1;id1",
     },
     "resolution": Object {
       "how-to-fix-web": Object {
@@ -19,6 +21,7 @@ Array [
         ],
         "none": Array [],
       },
+      "howToFixSummary": "how to fix 1",
     },
     "ruleId": "id1",
     "status": "fail",
@@ -29,7 +32,9 @@ Array [
       "snippet": "html2",
     },
     "identifiers": Object {
+      "conciseName": "id2",
       "css-selector": "target2;id2",
+      "identifier": "target2;id2",
     },
     "resolution": Object {
       "how-to-fix-web": Object {
@@ -39,6 +44,7 @@ Array [
           "none-test-message",
         ],
       },
+      "howToFixSummary": "how to fix 2",
     },
     "ruleId": "id1",
     "status": "fail",
@@ -49,7 +55,9 @@ Array [
       "snippet": "html3",
     },
     "identifiers": Object {
+      "conciseName": "id3",
       "css-selector": "target3;id3",
+      "identifier": "target3;id3",
     },
     "resolution": Object {
       "how-to-fix-web": Object {
@@ -59,6 +67,7 @@ Array [
         "any": Array [],
         "none": Array [],
       },
+      "howToFixSummary": "how to fix 3",
     },
     "ruleId": "id2",
     "status": "fail",
@@ -69,7 +78,9 @@ Array [
       "snippet": "html-pass",
     },
     "identifiers": Object {
+      "conciseName": "passTarget2",
       "css-selector": "passTarget1;passTarget2",
+      "identifier": "passTarget1;passTarget2",
     },
     "resolution": Object {
       "how-to-fix-web": Object {
@@ -77,6 +88,7 @@ Array [
         "any": Array [],
         "none": Array [],
       },
+      "howToFixSummary": undefined,
     },
     "ruleId": "test",
     "status": "pass",
