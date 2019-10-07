@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { NamedFC } from 'common/react/named-fc';
-import { forOwn } from 'lodash';
+import { forOwn, isEmpty } from 'lodash';
 import * as React from 'react';
 
 import { CardRowDeps, PropertyConfiguration } from '../../../common/configs/unified-result-property-configurations';
@@ -39,7 +39,11 @@ export const InstanceDetails = NamedFC<InstanceDetailsProps>('InstanceDetails', 
         let propertyIndex = 0;
         const cardRows = [];
         forOwn(propertyBag, (propertyData, propertyName) => {
-            const CardRow = deps.getPropertyConfigById(propertyName).cardRow;
+            const propertyConfig = deps.getPropertyConfigById(propertyName);
+            if (isEmpty(propertyConfig)) {
+                return;
+            }
+            const CardRow = propertyConfig.cardRow;
             ++propertyIndex;
             cardRows.push(<CardRow deps={deps} propertyData={propertyData} index={index} key={`${propertyName}-${propertyIndex}`} />);
         });
