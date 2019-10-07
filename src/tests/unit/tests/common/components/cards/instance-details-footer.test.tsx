@@ -11,56 +11,95 @@ import {
     InstanceDetailsFooterDeps,
     InstanceDetailsFooterProps,
 } from 'common/components/cards/instance-details-footer';
-import { UnifiedResult } from 'common/types/store-data/unified-data-interface';
+import { TargetAppData, UnifiedResult, UnifiedRule } from 'common/types/store-data/unified-data-interface';
 import { shallow } from 'enzyme';
 import * as React from 'react';
+import { IMock, Mock, Times } from 'typemoq';
 
-import { exampleUnifiedResult } from './sample-view-model-data';
+import { CreateIssueDetailsTextData } from '../../../../../../common/types/create-issue-details-text-data';
+import { UnifiedResultToIssueFilingDataConverter } from '../../../../../../issue-filing/unified-result-to-issue-filing-data';
+import { exampleUnifiedResult, exampleUnifiedRuleResult } from './sample-view-model-data';
+import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 
 describe('InstanceDetailsFooter', () => {
     let resultStub: UnifiedResult;
     let props: InstanceDetailsFooterProps;
     let deps: InstanceDetailsFooterDeps;
+    let ruleStub: UnifiedRule;
+    let converterMock: IMock<UnifiedResultToIssueFilingDataConverter>;
+    let targetAppInfo: TargetAppData;
+    let issueDetailsData: CreateIssueDetailsTextData;
+
+    const setupConverterToBeCalled = (times: Times) => {
+        converterMock
+            .setup(converter => converter.convert(resultStub, ruleStub, targetAppInfo))
+            .returns(() => issueDetailsData)
+            .verifiable(times);
+    };
+
+    const setupConverterToBeCalledOnce = () => {
+        setupConverterToBeCalled(Times.once());
+    };
+
+    const setupConverterToNeverBeCalled = () => {
+        setupConverterToBeCalled(Times.never());
+    };
 
     beforeEach(() => {
         resultStub = exampleUnifiedResult;
+        ruleStub = exampleUnifiedRuleResult;
+        issueDetailsData = {} as CreateIssueDetailsTextData;
+        targetAppInfo = { name: 'app' };
+        converterMock = Mock.ofType(UnifiedResultToIssueFilingDataConverter);
         deps = {
             cardInteractionSupport: allCardInteractionsSupported,
+            unifiedResultToIssueFilingDataConverter: converterMock.object,
         } as InstanceDetailsFooterDeps;
         props = {
             deps,
             result: resultStub,
+            rule: ruleStub,
+            targetAppInfo: targetAppInfo,
             highlightState: 'hidden',
-        } as InstanceDetailsFooterProps;
+            userConfigurationStoreData: {} as UserConfigurationStoreData,
+        };
     });
 
     it('renders as null when no card interactions are supported', () => {
+        setupConverterToNeverBeCalled();
         deps.cardInteractionSupport = noCardInteractionsSupported;
         const testSubject = shallow(<InstanceDetailsFooter {...props} />);
 
         expect(testSubject.getElement()).toBeNull();
+        converterMock.verifyAll();
     });
 
     it('renders per snapshot when all card interactions are supported (ie, web)', () => {
+        setupConverterToBeCalledOnce();
         deps.cardInteractionSupport = allCardInteractionsSupported;
         const testSubject = shallow(<InstanceDetailsFooter {...props} />);
 
         expect(testSubject.getElement()).toMatchSnapshot();
+        converterMock.verifyAll();
     });
 
     it('renders per snapshot when only UserConfig-agnostic card interactions are supported (ie, electron)', () => {
+        setupConverterToBeCalledOnce();
         deps.cardInteractionSupport = onlyUserConfigAgnosticCardInteractionsSupported;
         const testSubject = shallow(<InstanceDetailsFooter {...props} />);
 
         expect(testSubject.getElement()).toMatchSnapshot();
+        converterMock.verifyAll();
     });
 
     const allHighlightStates: HighlightState[] = ['visible', 'hidden', 'unavailable'];
 
     it.each(allHighlightStates)('renders per snapshot with highlightState="%s"', (highlightState: HighlightState) => {
+        setupConverterToBeCalledOnce();
         props.highlightState = highlightState;
         const testSubject = shallow(<InstanceDetailsFooter {...props} />);
 
         expect(testSubject.getElement()).toMatchSnapshot();
+        converterMock.verifyAll();
     });
 });
