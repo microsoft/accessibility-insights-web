@@ -3,13 +3,7 @@
 
 import * as React from 'react';
 
-export type AutomatedChecksViewDeps = {};
-
-export type AutomatedChecksViewProps = {
-    deps: AutomatedChecksViewDeps;
-};
-
-export class AutomatedChecksView extends React.Component<AutomatedChecksViewProps> {
+export class AutomatedChecksView extends React.Component {
     public render(): JSX.Element {
         return <>automated checks</>;
     }

@@ -1,43 +1,32 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-
+import { ClientStoresHub } from 'common/stores/client-stores-hub';
+import { WindowStateStoreData } from 'electron/flux/types/window-state-store-data';
+import { AutomatedChecksView } from 'electron/views/automated-checks/components/automated-checks-view';
+import {
+    DeviceConnectViewContainer,
+    DeviceConnectViewContainerDeps,
+    DeviceConnectViewContainerProps,
+} from 'electron/views/device-connect-view/components/device-connect-view-container';
 import * as React from 'react';
 
-import { TelemetryPermissionDialogDeps } from 'common/components/telemetry-permission-dialog';
-import { ClientStoresHub } from 'common/stores/client-stores-hub';
-import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
-import { DeviceStoreData } from 'electron/flux/types/device-store-data';
-import { WindowStateStoreData } from 'electron/flux/types/window-state-store-data';
-import {
-    AutomatedChecksView,
-    AutomatedChecksViewDeps,
-    AutomatedChecksViewProps,
-} from 'electron/views/automated-checks/components/automated-checks-view';
-import { DeviceConnectBodyDeps } from 'electron/views/device-connect-view/components/device-connect-body';
-import { DeviceConnectViewContainer } from 'electron/views/device-connect-view/components/device-connect-view-container';
+export type RootContainerDeps = DeviceConnectViewContainerDeps & {
+    storeHub: ClientStoresHub<RootContainerState>;
+};
 
-// root container deps should only depend on ResultsViewContainerDeps and DeviceConnectBodyDeps. This will be addresed in a later PR
-export type RootContainerDeps = AutomatedChecksViewDeps &
-    TelemetryPermissionDialogDeps &
-    DeviceConnectBodyDeps & {
-        storeHub: ClientStoresHub<RootContainerState>;
-    };
-
-export type RootContainerProps = AutomatedChecksViewProps & {
+export type RootContainerProps = DeviceConnectViewContainerProps & {
     deps: RootContainerDeps;
 };
 
 export type RootContainerState = {
     windowStateStoreData: WindowStateStoreData;
-    userConfigurationStoreData: UserConfigurationStoreData;
-    deviceStoreData: DeviceStoreData;
 };
 
 export class RootContainer extends React.Component<RootContainerProps, RootContainerState> {
     constructor(props: RootContainerProps) {
         super(props);
 
-        this.state = props.deps.storeHub.getAllStoreData();
+        this.state = (props.deps.storeHub as ClientStoresHub<RootContainerState>).getAllStoreData();
     }
 
     public render(): JSX.Element {
@@ -52,6 +41,6 @@ export class RootContainer extends React.Component<RootContainerProps, RootConta
     }
 
     private onStoresChange = () => {
-        this.setState(() => this.props.deps.storeHub.getAllStoreData());
+        this.setState(() => (this.props.deps.storeHub as ClientStoresHub<RootContainerState>).getAllStoreData());
     };
 }
