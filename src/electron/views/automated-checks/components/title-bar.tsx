@@ -26,25 +26,31 @@ export const TitleBar = NamedFC<TitleBarProps>('TitleBar', (props: TitleBarProps
         <div className={titleBar}>
             <BrandWhite />
             <ActionButton
+                ariaHidden={true}
                 iconProps={{
                     iconName: 'Cancel',
                 }}
                 id="close-button"
                 onClick={close}
+                tabIndex={-1}
             />
             <ActionButton
+                ariaHidden={true}
                 iconProps={{
                     iconName: 'Stop',
                 }}
                 id="maximize-button"
                 onClick={maximize}
+                tabIndex={-1}
             />
             <ActionButton
+                ariaHidden={true}
                 iconProps={{
                     iconName: 'ChromeMinimize',
                 }}
                 id="minimize-button"
                 onClick={minimize}
+                tabIndex={-1}
             />
         </div>
     );

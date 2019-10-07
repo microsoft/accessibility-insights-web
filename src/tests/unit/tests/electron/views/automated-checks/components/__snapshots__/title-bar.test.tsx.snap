@@ -6,6 +6,7 @@ exports[`TitleBar renders 1`] = `
 >
   <BrandWhite />
   <CustomizedActionButton
+    ariaHidden={true}
     iconProps={
       Object {
         "iconName": "Cancel",
@@ -13,8 +14,10 @@ exports[`TitleBar renders 1`] = `
     }
     id="close-button"
     onClick={[Function]}
+    tabIndex={-1}
   />
   <CustomizedActionButton
+    ariaHidden={true}
     iconProps={
       Object {
         "iconName": "Stop",
@@ -22,8 +25,10 @@ exports[`TitleBar renders 1`] = `
     }
     id="maximize-button"
     onClick={[Function]}
+    tabIndex={-1}
   />
   <CustomizedActionButton
+    ariaHidden={true}
     iconProps={
       Object {
         "iconName": "ChromeMinimize",
@@ -31,6 +36,7 @@ exports[`TitleBar renders 1`] = `
     }
     id="minimize-button"
     onClick={[Function]}
+    tabIndex={-1}
   />
 </div>
 `;
