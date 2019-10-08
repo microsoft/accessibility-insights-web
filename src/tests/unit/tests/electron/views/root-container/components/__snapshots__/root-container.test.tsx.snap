@@ -29,6 +29,7 @@ exports[`RootContainer renders results view container when route is resultsView 
 exports[`RootContainer store listening uses the store to update the state: initial state 1`] = `
 Object {
   "windowStateStoreData": Object {
+    "currentWindowState": "restoredOrMaximized",
     "routeId": "deviceConnectView",
   },
 }
@@ -37,6 +38,7 @@ Object {
 exports[`RootContainer store listening uses the store to update the state: updated state 1`] = `
 Object {
   "windowStateStoreData": Object {
+    "currentWindowState": "restoredOrMaximized",
     "routeId": "resultsView",
   },
 }

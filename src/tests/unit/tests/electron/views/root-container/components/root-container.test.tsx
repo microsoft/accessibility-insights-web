@@ -28,7 +28,7 @@ describe(RootContainer, () => {
             storeHubMock
                 .setup(hub => hub.getAllStoreData())
                 .returns(() => {
-                    return { windowStateStoreData: { routeId: 'deviceConnectView' } };
+                    return { windowStateStoreData: { routeId: 'deviceConnectView', currentWindowState: 'restoredOrMaximized' } };
                 });
 
             const props: RootContainerProps = { deps };
@@ -41,7 +41,7 @@ describe(RootContainer, () => {
             storeHubMock
                 .setup(hub => hub.getAllStoreData())
                 .returns(() => {
-                    return { windowStateStoreData: { routeId: 'resultsView' } };
+                    return { windowStateStoreData: { routeId: 'resultsView', currentWindowState: 'restoredOrMaximized' } };
                 });
 
             const props: RootContainerProps = { deps };
@@ -56,12 +56,12 @@ describe(RootContainer, () => {
             storeHubMock
                 .setup(hub => hub.getAllStoreData())
                 .returns(() => {
-                    return { windowStateStoreData: { routeId: 'deviceConnectView' } };
+                    return { windowStateStoreData: { routeId: 'deviceConnectView', currentWindowState: 'restoredOrMaximized' } };
                 });
             storeHubMock
                 .setup(hub => hub.getAllStoreData())
                 .returns(() => {
-                    return { windowStateStoreData: { routeId: 'resultsView' } };
+                    return { windowStateStoreData: { routeId: 'resultsView', currentWindowState: 'restoredOrMaximized' } };
                 });
             let storeListener: Function;
             storeHubMock
