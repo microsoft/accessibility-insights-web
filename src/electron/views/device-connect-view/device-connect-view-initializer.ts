@@ -3,10 +3,11 @@
 import { AppInsights } from 'applicationinsights-js';
 import axios from 'axios';
 import { remote } from 'electron';
+import { WindowStateActionCreator } from 'electron/flux/action-creator/window-state-action-creator';
 import { WindowStateActions } from 'electron/flux/action/window-state-actions';
 import { WindowStateStore } from 'electron/flux/store/window-state-store';
 import { createFetchScanResults } from 'electron/platform/android/fetch-scan-results';
-import { RootContainerState } from 'electron/views/root-container/components/root-container';
+import { RootContainerProps, RootContainerState } from 'electron/views/root-container/components/root-container';
 import * as ReactDOM from 'react-dom';
 import { UserConfigurationActions } from '../../../background/actions/user-configuration-actions';
 import { getPersistedData, PersistedData } from '../../../background/get-persisted-data';
@@ -80,13 +81,15 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then((persistedDat
     const userConfigMessageCreator = new UserConfigurationActionCreator(userConfigActions);
 
     const deviceConnectActionCreator = new DeviceConnectActionCreator(deviceActions, fetchScanResults, telemetryEventHandler);
+    const windowStateActionCreator = new WindowStateActionCreator(windowStateActions);
 
-    const props = {
+    const props: RootContainerProps = {
         deps: {
             currentWindow: remote.getCurrentWindow(),
             userConfigurationStore,
             deviceStore,
             userConfigMessageCreator,
+            windowStateActionCreator,
             LinkComponent: ElectronLink,
             fetchScanResults,
             deviceConnectActionCreator,
