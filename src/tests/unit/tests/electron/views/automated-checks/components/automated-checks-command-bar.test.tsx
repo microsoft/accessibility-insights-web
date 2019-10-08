@@ -6,16 +6,13 @@ import * as React from 'react';
 import { Mock, MockBehavior, Times } from 'typemoq';
 
 import { DeviceConnectActionCreator } from 'electron/flux/action-creator/device-connect-action-creator';
-import {
-    AutomatedChecksCommandBar,
-    AutomatedChecksCommandBarProps,
-} from 'electron/views/automated-checks/components/automated-checks-command-bar';
+import { CommandBar, CommandBarProps } from 'electron/views/automated-checks/components/automated-checks-command-bar';
 import { EventStubFactory } from 'tests/unit/common/event-stub-factory';
 
-describe('AutomatedChecksCommandBar', () => {
+describe('CommandBar', () => {
     test('render', () => {
-        const props: AutomatedChecksCommandBarProps = { deps: { deviceConnectActionCreator: null } };
-        const rendered = shallow(<AutomatedChecksCommandBar {...props} />);
+        const props: CommandBarProps = { deps: { deviceConnectActionCreator: null } };
+        const rendered = shallow(<CommandBar {...props} />);
 
         expect(rendered.getElement()).toMatchSnapshot();
     });
@@ -30,9 +27,9 @@ describe('AutomatedChecksCommandBar', () => {
             deps: {
                 deviceConnectActionCreator: deviceConnectActionCreatorMock.object,
             },
-        } as AutomatedChecksCommandBarProps;
+        } as CommandBarProps;
 
-        const rendered = shallow(<AutomatedChecksCommandBar {...props} />);
+        const rendered = shallow(<CommandBar {...props} />);
         const button = rendered.find('[text="Rescan"]');
 
         button.simulate('click', eventStub);

@@ -1,34 +1,31 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { NamedFC } from 'common/react/named-fc';
+import { DeviceConnectActionCreator } from 'electron/flux/action-creator/device-connect-action-creator';
 import { ActionButton } from 'office-ui-fabric-react/lib/Button';
 import * as React from 'react';
 
-import { NamedFC } from 'common/react/named-fc';
-import { DeviceConnectActionCreator } from 'electron/flux/action-creator/device-connect-action-creator';
-import { automatedChecksCommandBar } from './automated-checks-command-bar.scss';
+import { commandBar } from './automated-checks-command-bar.scss';
 
-export type AutomatedChecksCommandBarDeps = {
+export type CommandBarDeps = {
     deviceConnectActionCreator: DeviceConnectActionCreator;
 };
 
-export interface AutomatedChecksCommandBarProps {
-    deps: AutomatedChecksCommandBarDeps;
+export interface CommandBarProps {
+    deps: CommandBarDeps;
 }
 
-export const AutomatedChecksCommandBar = NamedFC<AutomatedChecksCommandBarProps>(
-    'AutomatedChecksCommandBar',
-    (props: AutomatedChecksCommandBarProps) => {
-        const onClick = () => props.deps.deviceConnectActionCreator.resetConnection();
-        return (
-            <div className={automatedChecksCommandBar}>
-                <ActionButton
-                    iconProps={{
-                        iconName: 'Refresh',
-                    }}
-                    onClick={onClick}
-                    text="Rescan"
-                />
-            </div>
-        );
-    },
-);
+export const CommandBar = NamedFC<CommandBarProps>('CommandBar', (props: CommandBarProps) => {
+    const onClick = () => props.deps.deviceConnectActionCreator.resetConnection();
+    return (
+        <div className={commandBar}>
+            <ActionButton
+                iconProps={{
+                    iconName: 'Refresh',
+                }}
+                onClick={onClick}
+                text="Rescan"
+            />
+        </div>
+    );
+});
