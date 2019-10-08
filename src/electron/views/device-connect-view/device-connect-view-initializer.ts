@@ -4,6 +4,7 @@ import { AppInsights } from 'applicationinsights-js';
 import axios from 'axios';
 import { remote } from 'electron';
 import { createFetchScanResults } from 'electron/platform/android/fetch-scan-results';
+import { RootContainerState } from 'electron/views/root-container/components/root-container';
 import * as ReactDOM from 'react-dom';
 import { UserConfigurationActions } from '../../../background/actions/user-configuration-actions';
 import { getPersistedData, PersistedData } from '../../../background/get-persisted-data';
@@ -26,9 +27,8 @@ import { RiggedFeatureFlagChecker } from '../../common/rigged-feature-flag-check
 import { DeviceConnectActionCreator } from '../../flux/action-creator/device-connect-action-creator';
 import { DeviceActions } from '../../flux/action/device-actions';
 import { DeviceStore } from '../../flux/store/device-store';
-import { DeviceConnectViewContainerState } from './components/device-connect-view-container';
 import { ElectronLink } from './components/electron-link';
-import { DeviceConnectViewRenderer } from './device-connect-view-renderer';
+import { RootContainerRenderer } from './device-connect-view-renderer';
 import { sendAppInitializedTelemetryEvent } from './send-app-initialized-telemetry';
 
 initializeFabricIcons();
@@ -64,7 +64,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then((persistedDat
     const deviceStore = new DeviceStore(deviceActions);
     deviceStore.initialize();
 
-    const storeHub = new BaseClientStoresHub<DeviceConnectViewContainerState>([userConfigurationStore, deviceStore]);
+    const storeHub = new BaseClientStoresHub<RootContainerState>([userConfigurationStore, deviceStore]);
 
     const telemetryStateListener = new TelemetryStateListener(userConfigurationStore, telemetryEventHandler);
     telemetryStateListener.initialize();
@@ -88,7 +88,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then((persistedDat
         },
     };
 
-    const renderer = new DeviceConnectViewRenderer(ReactDOM.render, document, props);
+    const renderer = new RootContainerRenderer(ReactDOM.render, document, props);
     renderer.render();
 
     sendAppInitializedTelemetryEvent(telemetryEventHandler);

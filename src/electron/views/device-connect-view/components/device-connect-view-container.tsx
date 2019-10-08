@@ -11,26 +11,15 @@ import { DeviceStoreData } from '../../../flux/types/device-store-data';
 import { DeviceConnectBody, DeviceConnectBodyDeps } from './device-connect-body';
 import { WindowTitle } from './window-title';
 
-export type DeviceConnectViewContainerDeps = TelemetryPermissionDialogDeps &
-    DeviceConnectBodyDeps & {
-        storeHub: ClientStoresHub<DeviceConnectViewContainerState>;
-    };
+export type DeviceConnectViewContainerDeps = TelemetryPermissionDialogDeps & DeviceConnectBodyDeps;
 
 export type DeviceConnectViewContainerProps = {
     deps: DeviceConnectViewContainerDeps;
-};
-
-export type DeviceConnectViewContainerState = {
     userConfigurationStoreData: UserConfigurationStoreData;
     deviceStoreData: DeviceStoreData;
 };
 
-export class DeviceConnectViewContainer extends React.Component<DeviceConnectViewContainerProps, DeviceConnectViewContainerState> {
-    constructor(props: DeviceConnectViewContainerProps) {
-        super(props);
-        this.state = props.deps.storeHub.getAllStoreData();
-    }
-
+export class DeviceConnectViewContainer extends React.Component<DeviceConnectViewContainerProps> {
     public render(): JSX.Element {
         return (
             <>
@@ -40,20 +29,12 @@ export class DeviceConnectViewContainer extends React.Component<DeviceConnectVie
                 <DeviceConnectBody
                     deps={this.props.deps}
                     viewState={{
-                        deviceConnectState: this.state.deviceStoreData.deviceConnectState,
-                        connectedDevice: this.state.deviceStoreData.connectedDevice,
+                        deviceConnectState: this.props.deviceStoreData.deviceConnectState,
+                        connectedDevice: this.props.deviceStoreData.connectedDevice,
                     }}
                 />
-                <TelemetryPermissionDialog deps={this.props.deps} isFirstTime={this.state.userConfigurationStoreData.isFirstTime} />
+                <TelemetryPermissionDialog deps={this.props.deps} isFirstTime={this.props.userConfigurationStoreData.isFirstTime} />
             </>
         );
     }
-
-    public componentDidMount(): void {
-        this.props.deps.storeHub.addChangedListenerToAllStores(this.onStoresChange);
-    }
-
-    private onStoresChange = () => {
-        this.setState(() => this.props.deps.storeHub.getAllStoreData());
-    };
 }
