@@ -14,8 +14,8 @@ import { IMock, Mock, Times } from 'typemoq';
 import { IssueDetailsTextGenerator } from '../../../../../../background/issue-details-text-generator';
 import { CardKebabMenuButton, CardKebabMenuButtonProps } from '../../../../../../common/components/cards/card-kebab-menu-button';
 import { NavigatorUtils } from '../../../../../../common/navigator-utils';
-import { DetailsViewActionMessageCreator } from '../../../../../../DetailsView/actions/details-view-action-message-creator';
 import { CreateIssueDetailsTextData } from '../../../../../../common/types/create-issue-details-text-data';
+import { DetailsViewActionMessageCreator } from '../../../../../../DetailsView/actions/details-view-action-message-creator';
 
 describe('CardKebabMenuButtonTest', () => {
     let defaultProps: CardKebabMenuButtonProps;
