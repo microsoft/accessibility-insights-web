@@ -5,7 +5,7 @@ import { DeviceConnectActionCreator } from 'electron/flux/action-creator/device-
 import { ActionButton } from 'office-ui-fabric-react/lib/Button';
 import * as React from 'react';
 
-import { commandBar } from './automated-checks-command-bar.scss';
+import { commandBar } from './command-bar.scss';
 
 export type CommandBarDeps = {
     deviceConnectActionCreator: DeviceConnectActionCreator;

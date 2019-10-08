@@ -6,7 +6,7 @@ import * as React from 'react';
 import { Mock, MockBehavior, Times } from 'typemoq';
 
 import { DeviceConnectActionCreator } from 'electron/flux/action-creator/device-connect-action-creator';
-import { CommandBar, CommandBarProps } from 'electron/views/automated-checks/components/automated-checks-command-bar';
+import { CommandBar, CommandBarProps } from 'electron/views/automated-checks/components/command-bar';
 import { EventStubFactory } from 'tests/unit/common/event-stub-factory';
 
 describe('CommandBar', () => {
@@ -27,7 +27,7 @@ describe('CommandBar', () => {
             deps: {
                 deviceConnectActionCreator: deviceConnectActionCreatorMock.object,
             },
-        } as CommandBarProps;
+        };
 
         const rendered = shallow(<CommandBar {...props} />);
         const button = rendered.find('[text="Rescan"]');
