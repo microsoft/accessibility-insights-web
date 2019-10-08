@@ -35,6 +35,7 @@ exports[`DetailsListIssuesView should return  issues table with violations to nu
                   ],
                   "none": Array [],
                 },
+                "howToFixSummary": "sample how to fix summary",
               },
               "ruleId": "image-alt",
               "status": "fail",
@@ -63,4 +64,4 @@ exports[`DetailsListIssuesView should return  issues table with violations to nu
 />
 `;
 
-exports[`DetailsListIssuesView should return issues table with scanning to false 1`] = `"<IssuesTable deps={{...}} title=\\"test title\\" subtitle={{...}} issuesTableHandler={{...}} issuesEnabled={true} violations={{...}} issuesSelection={{...}} selectedIdToRuleResultMap={{...}} pageTitle={[undefined]} pageUrl={[undefined]} scanning={false} toggleClickHandler={[Function: clickHandlerStub]} visualizationConfigurationFactory={[undefined]} featureFlags={[undefined]} scanResult={{...}} userConfigurationStoreData={[undefined]} ruleResultsByStatus={{...}} />"`;
+exports[`DetailsListIssuesView should return issues table with scanning to false 1`] = `"<IssuesTable deps={{...}} title=\\"test title\\" subtitle={{...}} issuesTableHandler={{...}} issuesEnabled={true} violations={{...}} issuesSelection={{...}} selectedIdToRuleResultMap={{...}} pageTitle={[undefined]} pageUrl={[undefined]} scanning={false} toggleClickHandler={[Function: clickHandlerStub]} visualizationConfigurationFactory={[undefined]} featureFlags={[undefined]} scanResult={{...}} userConfigurationStoreData={[undefined]} ruleResultsByStatus={{...}} targetAppInfo={[undefined]} />"`;

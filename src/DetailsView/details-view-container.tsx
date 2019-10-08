@@ -201,6 +201,7 @@ export class DetailsViewContainer extends React.Component<DetailsViewContainerPr
                 switcherNavConfiguration={selectedDetailsViewSwitcherNavConfiguration}
                 userConfigurationStoreData={storeState.userConfigurationStoreData}
                 ruleResultsByStatus={ruleResults}
+                targetAppInfo={storeState.unifiedScanResultStoreData.targetAppInfo}
             />
         );
     }

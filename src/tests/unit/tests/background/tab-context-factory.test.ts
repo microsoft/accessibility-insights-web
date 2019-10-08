@@ -6,6 +6,7 @@ import { AssessmentsProviderImpl } from 'assessments/assessments-provider';
 import { DetailsViewController } from 'background/details-view-controller';
 import { Interpreter } from 'background/interpreter';
 import { AssessmentStore } from 'background/stores/assessment-store';
+import { CardSelectionStore } from 'background/stores/card-selection-store';
 import { DetailsViewStore } from 'background/stores/details-view-store';
 import { DevToolStore } from 'background/stores/dev-tools-store';
 import { InspectStore } from 'background/stores/inspect-store';
@@ -60,6 +61,7 @@ describe('TabContextFactoryTest', () => {
             StoreNames.InspectStore,
             StoreNames.PathSnippetStore,
             StoreNames.UnifiedScanResultStore,
+            StoreNames.CardSelectionStore,
         ];
 
         storeNames.forEach(storeName => {
@@ -114,6 +116,7 @@ describe('TabContextFactoryTest', () => {
         expect(tabContext.stores.detailsViewStore).toBeInstanceOf(DetailsViewStore);
         expect(tabContext.stores.inspectStore).toBeInstanceOf(InspectStore);
         expect(tabContext.stores.unifiedScanResultStore).toBeInstanceOf(UnifiedScanResultStore);
+        expect(tabContext.stores.cardSelectionStore).toBeInstanceOf(CardSelectionStore);
 
         broadcastMock.verifyAll();
     });

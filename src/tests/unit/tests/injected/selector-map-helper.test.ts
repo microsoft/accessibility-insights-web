@@ -65,7 +65,6 @@ describe('SelectorMapHelperTest', () => {
                     step1: {
                         status: ManualTestStatus.FAIL,
                         isVisualizationEnabled: true,
-                        isVisible: true,
                     } as TestStepResult,
                 },
                 ruleResults: null,
@@ -77,7 +76,6 @@ describe('SelectorMapHelperTest', () => {
                     [firstStep.key]: {
                         status: ManualTestStatus.FAIL,
                         isVisualizationEnabled: true,
-                        isVisible: true,
                     } as TestStepResult,
                 },
                 html: 'html',
@@ -102,7 +100,6 @@ describe('SelectorMapHelperTest', () => {
             [assessment.key]: {
                 html: 'html',
                 isFailure: true,
-                isVisible: true,
                 isVisualizationEnabled: true,
                 propertyBag: {},
                 target: ['element2'],

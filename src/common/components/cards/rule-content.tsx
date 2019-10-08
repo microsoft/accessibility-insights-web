@@ -3,6 +3,7 @@
 import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
 
+import { TargetAppData } from '../../../common/types/store-data/unified-data-interface';
 import { UserConfigurationStoreData } from '../../types/store-data/user-configuration-store';
 import { UnifiedRuleResult } from './failed-instances-section';
 import { InstanceDetailsGroup, InstanceDetailsGroupDeps } from './instance-details-group';
@@ -14,6 +15,7 @@ export type RuleContentProps = {
     deps: RuleContentDeps;
     rule: UnifiedRuleResult;
     userConfigurationStoreData: UserConfigurationStoreData;
+    targetAppInfo: TargetAppData;
 };
 
 export const RuleContent = NamedFC<RuleContentProps>('RuleContent', props => {

@@ -24,13 +24,11 @@ export interface DecoratedAxeNodeResult {
     id: string;
     guidanceLinks: GuidanceLink[];
     helpUrl: string;
-    fingerprint: string;
     snippet: string;
 }
 
 export interface HtmlElementAxeResults {
     ruleResults: DictionaryStringTo<DecoratedAxeNodeResult>;
-    isVisible: boolean;
     propertyBag?: any;
     target: string[];
 }
@@ -119,7 +117,6 @@ export class ScannerUtils {
                 const elementResult = dictionary[selectorKey] || {
                     target: node.target,
                     ruleResults: {},
-                    isVisible: true,
                 };
 
                 dictionary[selectorKey] = elementResult;
@@ -136,7 +133,6 @@ export class ScannerUtils {
                     id: node.instanceId,
                     guidanceLinks: ruleResult.guidanceLinks,
                     helpUrl: ruleResult.helpUrl,
-                    fingerprint: ScannerUtils.getFingerprint(node, ruleResult),
                     snippet: node.snippet || node.html,
                 };
             });

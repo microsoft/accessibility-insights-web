@@ -87,7 +87,6 @@ describe('VisualizationScanResultStoreTest', () => {
         const selectorMap: DictionaryStringTo<HtmlElementAxeResults> = {
             target1: {
                 target: ['target1'],
-                isVisible: true,
                 ruleResults: {
                     'test id': {
                         any: [],
@@ -102,14 +101,12 @@ describe('VisualizationScanResultStoreTest', () => {
                         id: 'id1',
                         guidanceLinks: [],
                         helpUrl: 'help1',
-                        fingerprint: 'fp1',
                         snippet: 'html',
                     },
                 },
             },
             target2: {
                 target: ['target2'],
-                isVisible: true,
                 ruleResults: {
                     'test id': {
                         any: [],
@@ -124,7 +121,6 @@ describe('VisualizationScanResultStoreTest', () => {
                         id: 'id2',
                         guidanceLinks: [],
                         helpUrl: 'help2',
-                        fingerprint: 'fp2',
                         snippet: 'html',
                     },
                 },
@@ -214,7 +210,6 @@ describe('VisualizationScanResultStoreTest', () => {
                 id: 'id1',
                 guidanceLinks: [],
                 helpUrl: 'help1',
-                fingerprint: 'fp1',
                 snippet: 'html',
             },
             id2: {
@@ -230,7 +225,6 @@ describe('VisualizationScanResultStoreTest', () => {
                 id: 'id2',
                 guidanceLinks: [],
                 helpUrl: 'help2',
-                fingerprint: 'fp2',
                 snippet: 'html',
             },
         };
@@ -238,7 +232,6 @@ describe('VisualizationScanResultStoreTest', () => {
         const selectorMap: DictionaryStringTo<HtmlElementAxeResults> = {
             target1: {
                 target: ['target1'],
-                isVisible: true,
                 ruleResults: {
                     'test id': {
                         any: [],
@@ -253,14 +246,12 @@ describe('VisualizationScanResultStoreTest', () => {
                         id: 'id1',
                         guidanceLinks: [],
                         helpUrl: 'help1',
-                        fingerprint: 'fp1',
                         snippet: 'html',
                     },
                 },
             },
             target2: {
                 target: ['target2'],
-                isVisible: true,
                 ruleResults: {
                     'test id': {
                         any: [],
@@ -275,7 +266,6 @@ describe('VisualizationScanResultStoreTest', () => {
                         id: 'id2',
                         guidanceLinks: [],
                         helpUrl: 'help2',
-                        fingerprint: 'fp2',
                         snippet: 'html',
                     },
                 },
@@ -325,12 +315,10 @@ describe('VisualizationScanResultStoreTest', () => {
                         id: 'id1',
                         guidanceLinks: [],
                         helpUrl: 'help1',
-                        fingerprint: 'fp1',
                         snippet: 'html',
                     },
                 },
                 target: ['#heading-1'],
-                isVisible: true,
             },
             '#heading-2': {
                 ruleResults: {
@@ -347,12 +335,10 @@ describe('VisualizationScanResultStoreTest', () => {
                         id: 'id2',
                         guidanceLinks: [],
                         helpUrl: 'help2',
-                        fingerprint: 'fp2',
                         snippet: 'html',
                     },
                 },
                 target: ['#heading-2'],
-                isVisible: true,
             },
         };
 
@@ -370,7 +356,6 @@ describe('VisualizationScanResultStoreTest', () => {
                 id: 'id1',
                 guidanceLinks: [],
                 helpUrl: 'help1',
-                fingerprint: 'fp1',
                 snippet: 'html',
             },
             id2: {
@@ -386,7 +371,6 @@ describe('VisualizationScanResultStoreTest', () => {
                 id: 'id2',
                 guidanceLinks: [],
                 helpUrl: 'help2',
-                fingerprint: 'fp2',
                 snippet: 'html',
             },
         };
@@ -414,12 +398,10 @@ describe('VisualizationScanResultStoreTest', () => {
                         help: 'help1',
                         guidanceLinks: [],
                         helpUrl: 'help1',
-                        fingerprint: 'fp1',
                         snippet: 'html',
                     },
                 },
                 target: ['#heading-1'],
-                isVisible: null,
             },
         };
 
@@ -437,7 +419,6 @@ describe('VisualizationScanResultStoreTest', () => {
                 id: 'id1',
                 guidanceLinks: [],
                 helpUrl: 'help1',
-                fingerprint: 'fp1',
                 snippet: 'html',
             },
         };

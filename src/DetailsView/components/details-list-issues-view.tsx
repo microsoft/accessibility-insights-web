@@ -9,6 +9,7 @@ import { VisualizationConfigurationFactory } from '../../common/configs/visualiz
 import { NamedFC } from '../../common/react/named-fc';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { TabStoreData } from '../../common/types/store-data/tab-store-data';
+import { TargetAppData } from '../../common/types/store-data/unified-data-interface';
 import { UserConfigurationStoreData } from '../../common/types/store-data/user-configuration-store';
 import { VisualizationScanResultData } from '../../common/types/store-data/visualization-scan-result-data';
 import { VisualizationStoreData } from '../../common/types/store-data/visualization-store-data';
@@ -33,6 +34,7 @@ export interface DetailsListIssuesViewProps {
     configuration: VisualizationConfiguration;
     userConfigurationStoreData: UserConfigurationStoreData;
     ruleResultsByStatus: UnifiedStatusResults;
+    targetAppInfo: TargetAppData;
 }
 
 export const DetailsListIssuesView = NamedFC<DetailsListIssuesViewProps>('DetailsListIssuesView', ({ children, ...props }) => {
@@ -64,6 +66,7 @@ export const DetailsListIssuesView = NamedFC<DetailsListIssuesViewProps>('Detail
             scanResult={scanResult}
             userConfigurationStoreData={props.userConfigurationStoreData}
             ruleResultsByStatus={props.ruleResultsByStatus}
+            targetAppInfo={props.targetAppInfo}
         />
     );
 });

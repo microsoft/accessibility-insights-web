@@ -4,12 +4,17 @@ exports[`InstanceDetails renders 1`] = `
 <React.Fragment>
   <table
     className="reportInstanceTable"
+    onClick={[Function]}
   >
     <tbody>
       <React.Fragment>
         <css-selector
           deps={
             Object {
+              "cardSelectionMessageCreator": proxy {
+                "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                "dispatcher": undefined,
+              },
               "getPropertyConfigById": [Function],
             }
           }
@@ -21,6 +26,10 @@ exports[`InstanceDetails renders 1`] = `
         <snippet
           deps={
             Object {
+              "cardSelectionMessageCreator": proxy {
+                "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                "dispatcher": undefined,
+              },
               "getPropertyConfigById": [Function],
             }
           }
@@ -32,6 +41,10 @@ exports[`InstanceDetails renders 1`] = `
         <how-to-fix-web
           deps={
             Object {
+              "cardSelectionMessageCreator": proxy {
+                "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+                "dispatcher": undefined,
+              },
               "getPropertyConfigById": [Function],
             }
           }
@@ -54,6 +67,10 @@ exports[`InstanceDetails renders 1`] = `
   <InstanceDetailsFooter
     deps={
       Object {
+        "cardSelectionMessageCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "dispatcher": undefined,
+        },
         "getPropertyConfigById": [Function],
       }
     }
@@ -76,6 +93,7 @@ exports[`InstanceDetails renders 1`] = `
             ],
             "none": Array [],
           },
+          "howToFixSummary": "sample how to fix summary",
         },
         "ruleId": "image-alt",
         "status": "fail",
@@ -90,6 +108,7 @@ exports[`InstanceDetails renders nothing when there is no card row config for th
 <React.Fragment>
   <table
     className="reportInstanceTable"
+    onClick={[Function]}
   >
     <tbody>
       <React.Fragment />
@@ -100,6 +119,10 @@ exports[`InstanceDetails renders nothing when there is no card row config for th
   <InstanceDetailsFooter
     deps={
       Object {
+        "cardSelectionMessageCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "dispatcher": undefined,
+        },
         "getPropertyConfigById": [Function],
       }
     }

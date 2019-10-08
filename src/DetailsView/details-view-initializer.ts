@@ -4,6 +4,7 @@ import { AssessmentDefaultMessageGenerator } from 'assessments/assessment-defaul
 import { Assessments } from 'assessments/assessments';
 import { assessmentsProviderWithFeaturesEnabled } from 'assessments/assessments-feature-flag-filter';
 import { IssueDetailsTextGenerator } from 'background/issue-details-text-generator';
+import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
 import { loadTheme } from 'office-ui-fabric-react';
 import * as ReactDOM from 'react-dom';
 import { AssessmentReportHtmlGenerator } from 'reports/assessment-report-html-generator';
@@ -83,6 +84,7 @@ import { AxeResultToIssueFilingDataConverter } from '../issue-filing/rule-result
 import { getVersion, scan } from '../scanner/exposed-apis';
 import { DictionaryStringTo } from '../types/common-types';
 import { IssueFilingServiceProviderImpl } from './../issue-filing/issue-filing-service-provider-impl';
+import { UnifiedResultToIssueFilingDataConverter } from './../issue-filing/unified-result-to-issue-filing-data';
 import { DetailsViewActionMessageCreator } from './actions/details-view-action-message-creator';
 import { IssuesSelectionFactory } from './actions/issues-selection-factory';
 import { AssessmentTableColumnConfigHandler } from './components/assessment-table-column-config-handler';
@@ -267,6 +269,7 @@ if (isNaN(tabId) === false) {
                 createIssueDetailsBuilder(PlainTextFormatter),
             );
 
+            const cardSelectionMessageCreator = new CardSelectionMessageCreator(actionMessageDispatcher);
             const windowUtils = new WindowUtils();
 
             const fileURLProvider = new FileURLProvider(windowUtils, provideBlob);
@@ -277,9 +280,12 @@ if (isNaN(tabId) === false) {
                 IssueFilingUrlStringUtils.getSelectorLastPart,
             );
 
+            const unifiedResultToIssueFilingDataConverter = new UnifiedResultToIssueFilingDataConverter();
+
             const deps: DetailsViewContainerDeps = {
                 fixInstructionProcessor,
                 axeResultToIssueFilingDataConverter,
+                unifiedResultToIssueFilingDataConverter,
                 dropdownClickHandler,
                 issueFilingActionMessageCreator,
                 contentProvider: contentPages,
@@ -322,6 +328,7 @@ if (isNaN(tabId) === false) {
                 collapsibleControl: CardsCollapsibleControl,
                 cardInteractionSupport: allCardInteractionsSupported,
                 navigatorUtils: navigatorUtils,
+                cardSelectionMessageCreator,
             };
 
             const renderer = new DetailsViewRenderer(
