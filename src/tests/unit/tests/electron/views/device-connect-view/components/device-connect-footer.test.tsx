@@ -1,14 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { footerButtonStart } from 'electron/device-connect-view/components/device-connect-footer.scss';
 import { WindowStateActionCreator } from 'electron/flux/action-creator/window-state-action-creator';
 import {
     DeviceConnectFooter,
     DeviceConnectFooterDeps,
     DeviceConnectFooterProps,
 } from 'electron/views/device-connect-view/components/device-connect-footer';
-import { footerButtonCancel } from 'electron/views/device-connect-view/components/device-connect-footer.scss';
+import { footerButtonCancel, footerButtonStart } from 'electron/views/device-connect-view/components/device-connect-footer.scss';
 import { shallow } from 'enzyme';
 import { Button } from 'office-ui-fabric-react/lib/Button';
 import * as React from 'react';
