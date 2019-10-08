@@ -18,4 +18,5 @@ export enum StoreNames {
     CardSelectionStore,
     DeviceStore,
     WindowStateStore,
+    ScanStore,
 }
