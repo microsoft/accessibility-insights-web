@@ -40,12 +40,11 @@ export const InstanceDetails = NamedFC<InstanceDetailsProps>('InstanceDetails', 
         const cardRows = [];
         forOwn(propertyBag, (propertyData, propertyName) => {
             const propertyConfig = deps.getPropertyConfigById(propertyName);
-            if (isEmpty(propertyConfig)) {
-                return;
+            if (!isEmpty(propertyConfig)) {
+                const CardRow = propertyConfig.cardRow;
+                ++propertyIndex;
+                cardRows.push(<CardRow deps={deps} propertyData={propertyData} index={index} key={`${propertyName}-${propertyIndex}`} />);
             }
-            const CardRow = propertyConfig.cardRow;
-            ++propertyIndex;
-            cardRows.push(<CardRow deps={deps} propertyData={propertyData} index={index} key={`${propertyName}-${propertyIndex}`} />);
         });
         return <>{cardRows}</>;
     };
