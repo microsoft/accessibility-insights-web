@@ -10,9 +10,12 @@ import { IssueFilingService } from 'issue-filing/types/issue-filing-service';
 import { ActionButton, ContextualMenu } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { IMock, Mock, Times } from 'typemoq';
+
+import { IssueDetailsTextGenerator } from '../../../../../../background/issue-details-text-generator';
 import { CardKebabMenuButton, CardKebabMenuButtonProps } from '../../../../../../common/components/cards/card-kebab-menu-button';
 import { NavigatorUtils } from '../../../../../../common/navigator-utils';
 import { DetailsViewActionMessageCreator } from '../../../../../../DetailsView/actions/details-view-action-message-creator';
+import { CreateIssueDetailsTextData } from '../../../../../../common/types/create-issue-details-text-data';
 
 describe('CardKebabMenuButtonTest', () => {
     let defaultProps: CardKebabMenuButtonProps;
@@ -22,13 +25,15 @@ describe('CardKebabMenuButtonTest', () => {
     let issueFilingServiceProviderMock: IMock<IssueFilingServiceProvider>;
     let issueFilingActionMessageCreatorMock: IMock<IssueFilingActionMessageCreator>;
     let testIssueFilingServiceStub: IssueFilingService;
+    let textGeneratorMpck: IMock<IssueDetailsTextGenerator>;
+    let issueDetailsData: CreateIssueDetailsTextData;
     const testKey: string = 'test';
 
     const event = {
         currentTarget: 'Card View',
     } as React.MouseEvent<any>;
 
-    const issueDetailsText = 'The quick brown fox jumps over the lazy dog';
+    const issueDetailsText = 'placeholder text';
 
     beforeEach(() => {
         testIssueFilingServiceStub = {
@@ -42,6 +47,31 @@ describe('CardKebabMenuButtonTest', () => {
             getSettingsFromStoreData: data => data[testKey],
             fileIssue: () => {},
         };
+        issueDetailsData = {
+            rule: {
+                id: 'id',
+                description: 'description',
+                url: 'url',
+                guidance: [
+                    {
+                        href: 'www.test.com',
+                        text: 'text',
+                        tags: [guidanceTags.WCAG_2_1],
+                    },
+                ],
+            },
+            targetApp: {
+                name: 'name',
+                url: 'url',
+            },
+            element: {
+                identifier: 'identifier',
+                conciseName: 'conciseName',
+            },
+            howToFixSummary: 'howToFixSummary',
+            snippet: 'snippet',
+        };
+        textGeneratorMpck = Mock.ofType<IssueDetailsTextGenerator>();
         actionCreatorMock = Mock.ofType<DetailsViewActionMessageCreator>();
         navigatorUtilsMock = Mock.ofType<NavigatorUtils>();
         issueFilingServiceProviderMock = Mock.ofType(IssueFilingServiceProvider);
@@ -62,38 +92,21 @@ describe('CardKebabMenuButtonTest', () => {
             .returns(() => testIssueFilingServiceStub)
             .verifiable();
 
+        textGeneratorMpck
+            .setup(tg => tg.buildText(issueDetailsData))
+            .returns(() => issueDetailsText)
+            .verifiable();
+
         defaultProps = {
             deps: {
                 detailsViewActionMessageCreator: actionCreatorMock.object,
                 navigatorUtils: navigatorUtilsMock.object,
                 issueFilingServiceProvider: issueFilingServiceProviderMock.object,
                 issueFilingActionMessageCreator: issueFilingActionMessageCreatorMock.object,
+                issueDetailsTextGenerator: textGeneratorMpck.object,
             },
             userConfigurationStoreData,
-            issueDetailsData: {
-                rule: {
-                    id: 'id',
-                    description: 'description',
-                    url: 'url',
-                    guidance: [
-                        {
-                            href: 'www.test.com',
-                            text: 'text',
-                            tags: [guidanceTags.WCAG_2_1],
-                        },
-                    ],
-                },
-                targetApp: {
-                    name: 'name',
-                    url: 'url',
-                },
-                element: {
-                    identifier: 'identifier',
-                    conciseName: 'conciseName',
-                },
-                howToFixSummary: 'howToFixSummary',
-                snippet: 'snippet',
-            },
+            issueDetailsData,
         } as CardKebabMenuButtonProps;
     });
 
@@ -112,11 +125,12 @@ describe('CardKebabMenuButtonTest', () => {
 
     it('should click copy failure details and show the toast', async () => {
         actionCreatorMock.setup(creator => creator.copyIssueDetailsClicked(event)).verifiable(Times.once());
-        const copyToClipboardPromise = Promise.resolve();
 
         navigatorUtilsMock
             .setup(navigatorUtils => navigatorUtils.copyToClipboard(issueDetailsText))
-            .returns(async () => copyToClipboardPromise)
+            .returns(async () => {
+                return Promise.resolve();
+            })
             .verifiable(Times.once());
 
         const rendered = shallow<CardKebabMenuButton>(<CardKebabMenuButton {...defaultProps} />);
@@ -126,15 +140,15 @@ describe('CardKebabMenuButtonTest', () => {
         expect(rendered.state().isContextMenuVisible).toBe(true);
         expect(rendered.state().showingCopyToast).toBe(false);
 
-        rendered
+        const copyFailureDetails = rendered
             .find(ContextualMenu)
             .prop('items')
-            .find(elem => elem.key === 'copyfailuredetails')
-            .onClick(event);
+            .find(elem => elem.key === 'copyfailuredetails').onClick;
+
+        // tslint:disable-next-line: await-promise
+        await copyFailureDetails(event);
 
         rendered.find(ContextualMenu).prop('onDismiss')();
-
-        await copyToClipboardPromise;
 
         expect(rendered.debug()).toMatchSnapshot();
 
@@ -143,6 +157,7 @@ describe('CardKebabMenuButtonTest', () => {
 
         actionCreatorMock.verifyAll();
         navigatorUtilsMock.verifyAll();
+        textGeneratorMpck.verifyAll();
     });
 
     it('should click file issue, valid settings', () => {
