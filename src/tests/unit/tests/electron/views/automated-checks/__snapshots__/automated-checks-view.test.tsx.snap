@@ -2,6 +2,13 @@
 
 exports[`AutomatedChecksView renders the automated checks view: automated checks view 1`] = `
 <React.Fragment>
+  <CommandBar
+    deps={
+      Object {
+        "deviceConnectActionCreator": null,
+      }
+    }
+  />
   <HeaderSection />
 </React.Fragment>
 `;
