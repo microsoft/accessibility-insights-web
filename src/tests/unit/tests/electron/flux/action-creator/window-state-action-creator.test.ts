@@ -5,6 +5,7 @@ import { Action } from 'common/flux/action';
 import { WindowStateActionCreator } from 'electron/flux/action-creator/window-state-action-creator';
 import { RoutePayload } from 'electron/flux/action/route-payloads';
 import { WindowStateActions } from 'electron/flux/action/window-state-actions';
+import { WindowStatePayload } from 'electron/flux/action/window-state-payload';
 import { IMock, Mock, Times } from 'typemoq';
 
 describe(WindowStateActionCreator, () => {
@@ -27,5 +28,18 @@ describe(WindowStateActionCreator, () => {
         testSubject.setRoute(testPayload);
 
         setRouteActionMock.verifyAll();
+    });
+
+    it('calling setRoute invokes setWindowState action with given payload', () => {
+        const setWindowStateActionMock = Mock.ofType<Action<WindowStatePayload>>();
+        const testPayload: WindowStatePayload = {
+            currentWindowState: 'minimized',
+        };
+        windowStateActionsMock.setup(actions => actions.setWindowState).returns(() => setWindowStateActionMock.object);
+        setWindowStateActionMock.setup(s => s.invoke(testPayload)).verifiable(Times.once());
+
+        testSubject.setWindowState(testPayload);
+
+        setWindowStateActionMock.verifyAll();
     });
 });
