@@ -4,6 +4,7 @@ import { AssessmentDefaultMessageGenerator } from 'assessments/assessment-defaul
 import { Assessments } from 'assessments/assessments';
 import { assessmentsProviderWithFeaturesEnabled } from 'assessments/assessments-feature-flag-filter';
 import { IssueDetailsTextGenerator } from 'background/issue-details-text-generator';
+import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
 import { loadTheme } from 'office-ui-fabric-react';
 import * as ReactDOM from 'react-dom';
 import { AssessmentReportHtmlGenerator } from 'reports/assessment-report-html-generator';
@@ -267,6 +268,7 @@ if (isNaN(tabId) === false) {
                 createIssueDetailsBuilder(PlainTextFormatter),
             );
 
+            const cardSelectionMessageCreator = new CardSelectionMessageCreator(actionMessageDispatcher);
             const windowUtils = new WindowUtils();
 
             const fileURLProvider = new FileURLProvider(windowUtils, provideBlob);
@@ -322,6 +324,7 @@ if (isNaN(tabId) === false) {
                 collapsibleControl: CardsCollapsibleControl,
                 cardInteractionSupport: allCardInteractionsSupported,
                 navigatorUtils: navigatorUtils,
+                cardSelectionMessageCreator,
             };
 
             const renderer = new DetailsViewRenderer(

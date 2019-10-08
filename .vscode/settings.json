@@ -36,5 +36,5 @@
     "prettier.requireConfig": true,
     "editor.formatOnSave": true,
     "editor.rulers": [140],
-    "typescript.tsdk": "node_modules\\typescript\\lib"
+    "typescript.tsdk": "node_modules/typescript/lib"
 }
