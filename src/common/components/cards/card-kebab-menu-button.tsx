@@ -9,8 +9,6 @@ import { IssueDetailsTextGenerator } from '../../../background/issue-details-tex
 import { DetailsViewActionMessageCreator } from '../../../DetailsView/actions/details-view-action-message-creator';
 import { IssueFilingDialog } from '../../../DetailsView/components/issue-filing-dialog';
 import { IssueFilingService } from '../../../issue-filing/types/issue-filing-service';
-import { createDefaultLogger } from '../../logging/default-logger';
-import { Logger } from '../../logging/logger';
 import { NavigatorUtils } from '../../navigator-utils';
 import { CreateIssueDetailsTextData } from '../../types/create-issue-details-text-data';
 import { IssueFilingNeedsSettingsContentProps } from '../../types/issue-filing-needs-setting-content';
@@ -41,8 +39,6 @@ export interface CardKebabMenuButtonProps {
 }
 
 export class CardKebabMenuButton extends React.Component<CardKebabMenuButtonProps, CardKebabMenuButtonState> {
-    private logger: Logger = createDefaultLogger();
-
     constructor(props: CardKebabMenuButtonProps) {
         super(props);
 
@@ -130,17 +126,13 @@ export class CardKebabMenuButton extends React.Component<CardKebabMenuButtonProp
         }
     };
 
-    private copyFailureDetails = (event: React.MouseEvent<any>): void => {
+    private copyFailureDetails = async (event: React.MouseEvent<any>): Promise<void> => {
+        const text = this.props.deps.issueDetailsTextGenerator.buildText(this.props.issueDetailsData);
         this.props.deps.detailsViewActionMessageCreator.copyIssueDetailsClicked(event);
 
-        this.props.deps.navigatorUtils
-            .copyToClipboard('The quick brown fox jumps over the lazy dog') // to be changed when we finish the new data format and builder
-            .then(() => {
-                this.setState({ showingCopyToast: true });
-            })
-            .catch(error => {
-                this.logger.error("Couldn't copy failure details!", error);
-            });
+        await this.props.deps.navigatorUtils.copyToClipboard(text);
+
+        this.setState({ showingCopyToast: true });
     };
 
     public renderIssueFilingSettingContent(): JSX.Element {
