@@ -12,7 +12,7 @@ import { exampleUnifiedRuleResult } from './sample-view-model-data';
 
 describe('FailedInstancesSection', () => {
     it('renders', () => {
-        const props: FailedInstancesSectionProps = {
+        const props = {
             deps: {} as FailedInstancesSectionDeps,
             ruleResultsByStatus: {
                 pass: [],
@@ -20,7 +20,7 @@ describe('FailedInstancesSection', () => {
                 inapplicable: [],
                 unknown: [],
             },
-        };
+        } as FailedInstancesSectionProps;
 
         const wrapper = shallow(<FailedInstancesSection {...props} />);
 
@@ -28,10 +28,9 @@ describe('FailedInstancesSection', () => {
     });
 
     it('renders null when result is null', () => {
-        const props: FailedInstancesSectionProps = {
+        const props = {
             deps: {} as FailedInstancesSectionDeps,
-            ruleResultsByStatus: null,
-        };
+        } as FailedInstancesSectionProps;
 
         const wrapper = shallow(<FailedInstancesSection {...props} />);
 

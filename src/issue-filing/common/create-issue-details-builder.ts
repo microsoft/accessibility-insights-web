@@ -11,6 +11,8 @@ export const createIssueDetailsBuilder = (markup: MarkupFormatter): IssueDetails
     const getter = (environmentInfo: EnvironmentInfo, data: CreateIssueDetailsTextData): string => {
         const { howToFixSection, link, sectionHeader, snippet, sectionHeaderSeparator, footerSeparator, sectionSeparator } = markup;
 
+        const targetAppText = data.targetApp.url ? link(data.targetApp.url, data.targetApp.name) : data.targetApp.name;
+
         const snippetSection = data.snippet
             ? [sectionHeader('Snippet'), sectionHeaderSeparator(), snippet(data.snippet), sectionSeparator()]
             : null;
@@ -23,7 +25,7 @@ export const createIssueDetailsBuilder = (markup: MarkupFormatter): IssueDetails
 
             sectionHeader('Target application'),
             sectionHeaderSeparator(),
-            link(data.targetApp.url, data.targetApp.name),
+            targetAppText,
             sectionSeparator(),
 
             sectionHeader('Element path'),

@@ -152,7 +152,13 @@ export class IssuesTable extends React.Component<IssuesTableProps> {
         return (
             <FlaggedComponent
                 disableJSXElement={this.renderDetails()}
-                enableJSXElement={<CardsView deps={this.props.deps} ruleResultsByStatus={this.props.ruleResultsByStatus} />}
+                enableJSXElement={
+                    <CardsView
+                        deps={this.props.deps}
+                        ruleResultsByStatus={this.props.ruleResultsByStatus}
+                        userConfigurationStoreData={this.props.userConfigurationStoreData}
+                    />
+                }
                 featureFlag={FeatureFlags.universalCardsUI}
                 featureFlagStoreData={this.props.featureFlags}
             />

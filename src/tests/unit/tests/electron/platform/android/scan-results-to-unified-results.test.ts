@@ -5,8 +5,8 @@ import { IMock, Mock, MockBehavior } from 'typemoq';
 
 import { UnifiedResult } from 'common/types/store-data/unified-data-interface';
 import { generateUID } from 'common/uid-generator';
-import { RuleResultsData, ScanResults } from '../../../../../../electron/platform/android/scan-results';
-import { convertScanResultsToUnifiedResults } from '../../../../../../electron/platform/android/scan-results-to-unified-results';
+import { RuleResultsData, ScanResults } from 'electron/platform/android/scan-results';
+import { convertScanResultsToUnifiedResults } from 'electron/platform/android/scan-results-to-unified-results';
 import {
     buildColorContrastRuleResultObject,
     buildRuleResultObject,

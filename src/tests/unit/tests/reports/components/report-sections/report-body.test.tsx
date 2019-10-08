@@ -44,6 +44,7 @@ describe('ReportBody', () => {
             getCollapsibleScript: getScriptStub,
             getGuidanceTagsFromGuidanceLinks: getGuidanceTagsStub,
             ruleResultsByStatus: exampleUnifiedStatusResults,
+            userConfigurationStoreData: null,
         };
 
         const props: ReportBodyProps = {

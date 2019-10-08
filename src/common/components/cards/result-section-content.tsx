@@ -6,6 +6,7 @@ import * as React from 'react';
 
 import { InstanceOutcomeType } from '../../../reports/components/instance-outcome-type';
 import { NoFailedInstancesCongrats } from '../../../reports/components/report-sections/no-failed-instances-congrats';
+import { UserConfigurationStoreData } from '../../types/store-data/user-configuration-store';
 import { UnifiedRuleResult } from './failed-instances-section';
 import { RulesWithInstances, RulesWithInstancesDeps } from './rules-with-instances';
 
@@ -16,17 +17,24 @@ export type ResultSectionContentProps = {
     results: UnifiedRuleResult[];
     outcomeType: InstanceOutcomeType;
     fixInstructionProcessor?: FixInstructionProcessor;
+    userConfigurationStoreData: UserConfigurationStoreData;
 };
 
 export const ResultSectionContent = NamedFC<ResultSectionContentProps>(
     'ResultSectionContent',
-    ({ results, outcomeType, fixInstructionProcessor, deps }) => {
+    ({ results, outcomeType, fixInstructionProcessor, deps, userConfigurationStoreData }) => {
         if (results.length === 0) {
             return <NoFailedInstancesCongrats />;
         }
 
         return (
-            <RulesWithInstances deps={deps} rules={results} outcomeType={outcomeType} fixInstructionProcessor={fixInstructionProcessor} />
+            <RulesWithInstances
+                deps={deps}
+                rules={results}
+                outcomeType={outcomeType}
+                fixInstructionProcessor={fixInstructionProcessor}
+                userConfigurationStoreData={userConfigurationStoreData}
+            />
         );
     },
 );

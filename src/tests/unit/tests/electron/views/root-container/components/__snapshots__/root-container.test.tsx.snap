@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RootContainer renders device connect view container when route is deviceConnectView 1`] = `
+<DeviceConnectViewContainer
+  deps={
+    Object {
+      "storeHub": proxy {
+        "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+        "stores": undefined,
+      },
+    }
+  }
+/>
+`;
+
+exports[`RootContainer renders results view container when route is resultsView 1`] = `
+<AutomatedChecksView
+  deps={
+    Object {
+      "storeHub": proxy {
+        "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+        "stores": undefined,
+      },
+    }
+  }
+/>
+`;
+
+exports[`RootContainer store listening uses the store to update the state: initial state 1`] = `
+Object {
+  "windowStateStoreData": Object {
+    "routeId": "deviceConnectView",
+  },
+}
+`;
+
+exports[`RootContainer store listening uses the store to update the state: updated state 1`] = `
+Object {
+  "windowStateStoreData": Object {
+    "routeId": "resultsView",
+  },
+}
+`;

@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { InstancePropertyBag } from '../../../../../../common/types/store-data/unified-data-interface';
-import { RuleInformation } from '../../../../../../electron/platform/android/rule-information';
-import { RuleInformationProvider } from '../../../../../../electron/platform/android/rule-information-provider';
-import { RuleResultsData } from '../../../../../../electron/platform/android/scan-results';
+import { InstancePropertyBag } from 'common/types/store-data/unified-data-interface';
+import { RuleInformation } from 'electron/platform/android/rule-information';
+import { RuleInformationProvider } from 'electron/platform/android/rule-information-provider';
+import { RuleResultsData } from 'electron/platform/android/scan-results';
 import { buildColorContrastRuleResultObject, buildTouchSizeWcagRuleResultObject } from './scan-results-helpers';
 
 describe('RuleInformationProvider', () => {

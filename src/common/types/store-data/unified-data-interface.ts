@@ -60,13 +60,26 @@ export interface InstancePropertyBag {
 
 export type StoredInstancePropertyBag = InstancePropertyBag;
 
+export type UnifiedIdentifiers = {
+    identifier?: string;
+    conciseName?: string;
+} & InstancePropertyBag;
+
+export type UnifiedDescriptors = {
+    snippet?: string;
+} & InstancePropertyBag;
+
+export type UnifiedResolution = {
+    howToFixSummary?: string;
+} & InstancePropertyBag;
+
 export interface UnifiedResult {
     uid: string;
     status: InstanceResultStatus;
     ruleId: string;
-    identifiers: StoredInstancePropertyBag;
-    descriptors: StoredInstancePropertyBag;
-    resolution: StoredInstancePropertyBag;
+    identifiers: UnifiedIdentifiers;
+    descriptors: UnifiedDescriptors;
+    resolution: UnifiedResolution;
 }
 
 export type InstanceResultStatus = 'pass' | 'fail' | 'unknown';
