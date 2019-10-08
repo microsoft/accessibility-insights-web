@@ -28,6 +28,7 @@ exports[`InstanceDetailsGroup renders 1`] = `
               ],
               "none": Array [],
             },
+            "howToFixSummary": "sample how to fix summary",
           },
           "ruleId": "image-alt",
           "status": "fail",

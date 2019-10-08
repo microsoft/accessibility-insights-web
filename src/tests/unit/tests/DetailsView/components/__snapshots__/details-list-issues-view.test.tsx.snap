@@ -35,6 +35,7 @@ exports[`DetailsListIssuesView should return  issues table with violations to nu
                   ],
                   "none": Array [],
                 },
+                "howToFixSummary": "sample how to fix summary",
               },
               "ruleId": "image-alt",
               "status": "fail",
