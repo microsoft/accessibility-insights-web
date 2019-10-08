@@ -9,6 +9,8 @@ export const exampleUnifiedResult: UnifiedResult = {
     status: 'fail',
     ruleId: 'image-alt',
     identifiers: {
+        identifier: 'body img',
+        conciseName: 'body img',
         'css-selector': 'body img',
     },
     descriptors: {

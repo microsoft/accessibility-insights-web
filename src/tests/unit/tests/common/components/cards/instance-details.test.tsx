@@ -5,7 +5,6 @@ import { CardSelectionMessageCreator } from 'common/message-creators/card-select
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import { IMock, It, Mock, Times } from 'typemoq';
-
 import {
     AllPropertyTypes,
     CardRowProps,
@@ -63,7 +62,11 @@ describe('InstanceDetails', () => {
     });
 
     it('renders nothing when there is no card row config for the property / no property', () => {
-        props.result.identifiers = { 'this-property-does-not-have-config': 'some value' };
+        props.result.identifiers = {
+            identifier: 'test-id',
+            conciseName: 'test-concise-name',
+            'this-property-does-not-have-config': 'some value',
+        };
         props.result.descriptors = {};
         props.result.resolution = {} as UnifiedResolution;
 
