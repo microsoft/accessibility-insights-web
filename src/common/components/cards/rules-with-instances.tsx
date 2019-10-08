@@ -5,6 +5,7 @@ import { NamedFC } from 'common/react/named-fc';
 import { FixInstructionProcessor } from 'injected/fix-instruction-processor';
 import * as React from 'react';
 
+import { TargetAppData } from '../../../common/types/store-data/unified-data-interface';
 import { InstanceOutcomeType } from '../../../reports/components/instance-outcome-type';
 import { outcomeTypeSemantics } from '../../../reports/components/outcome-type';
 import { MinimalRuleHeader } from '../../../reports/components/report-sections/minimal-rule-header';
@@ -24,11 +25,12 @@ export type RulesWithInstancesProps = {
     rules: UnifiedRuleResult[];
     outcomeType: InstanceOutcomeType;
     userConfigurationStoreData: UserConfigurationStoreData;
+    targetAppInfo: TargetAppData;
 };
 
 export const RulesWithInstances = NamedFC<RulesWithInstancesProps>(
     'RulesWithInstances',
-    ({ rules, outcomeType, fixInstructionProcessor, deps, userConfigurationStoreData }) => {
+    ({ rules, outcomeType, fixInstructionProcessor, deps, userConfigurationStoreData, targetAppInfo }) => {
         const getCollapsibleComponentProps = (rule: UnifiedRuleResult, idx: number, buttonAriaLabel: string) => {
             return {
                 id: rule.id,
@@ -41,6 +43,7 @@ export const RulesWithInstances = NamedFC<RulesWithInstancesProps>(
                         rule={rule}
                         fixInstructionProcessor={fixInstructionProcessor}
                         userConfigurationStoreData={userConfigurationStoreData}
+                        targetAppInfo={targetAppInfo}
                     />
                 ),
                 containerClassName: css(collapsibleRuleDetailsGroup),

@@ -20,6 +20,7 @@ describe('InstanceDetailsGroup', () => {
             fixInstructionProcessor: fixInstructionProcessorMock.object,
             rule: rule,
             userConfigurationStoreData: null,
+            targetAppInfo: { name: 'app' },
         };
 
         const wrapper = shallow(<InstanceDetailsGroup {...props} />);
