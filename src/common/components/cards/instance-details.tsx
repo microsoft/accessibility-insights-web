@@ -3,7 +3,7 @@
 import { CardRowDeps, PropertyConfiguration } from 'common/configs/unified-result-property-configurations';
 import { NamedFC } from 'common/react/named-fc';
 import { StoredInstancePropertyBag, UnifiedResult } from 'common/types/store-data/unified-data-interface';
-import { forOwn } from 'lodash';
+import { forOwn, isEmpty } from 'lodash';
 import * as React from 'react';
 import { reportInstanceTable } from 'reports/components/instance-details.scss';
 import { UserConfigurationStoreData } from '../../types/store-data/user-configuration-store';
@@ -31,7 +31,11 @@ export const InstanceDetails = NamedFC<InstanceDetailsProps>('InstanceDetails', 
         let propertyIndex = 0;
         const cardRows = [];
         forOwn(propertyBag, (propertyData, propertyName) => {
-            const CardRow = deps.getPropertyConfigById(propertyName).cardRow;
+            const propertyConfig = deps.getPropertyConfigById(propertyName);
+            if (isEmpty(propertyConfig)) {
+                return;
+            }
+            const CardRow = propertyConfig.cardRow;
             ++propertyIndex;
             cardRows.push(<CardRow deps={deps} propertyData={propertyData} index={index} key={`${propertyName}-${propertyIndex}`} />);
         });
