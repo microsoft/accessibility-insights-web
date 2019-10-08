@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-
 import { WindowStatePayload } from 'electron/flux/action/window-state-payload';
 import { RoutePayload } from '../../../../../../electron/flux/action/route-payloads';
 import { WindowStateActions } from '../../../../../../electron/flux/action/window-state-actions';

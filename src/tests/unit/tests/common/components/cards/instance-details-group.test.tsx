@@ -18,7 +18,8 @@ describe('InstanceDetailsGroup', () => {
         const props: InstanceDetailsGroupProps = {
             deps: depsStub,
             fixInstructionProcessor: fixInstructionProcessorMock.object,
-            rule,
+            rule: rule,
+            userConfigurationStoreData: null,
         };
 
         const wrapper = shallow(<InstanceDetailsGroup {...props} />);

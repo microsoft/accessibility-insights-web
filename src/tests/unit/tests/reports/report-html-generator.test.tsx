@@ -7,12 +7,11 @@ import { FixInstructionProcessor } from 'injected/fix-instruction-processor';
 import * as React from 'react';
 import { ReportHead } from 'reports/components/report-head';
 import { ReportBody, ReportBodyProps } from 'reports/components/report-sections/report-body';
-import { ReportSectionFactory } from 'reports/components/report-sections/report-section-factory';
+import { ReportSectionFactory, SectionDeps } from 'reports/components/report-sections/report-section-factory';
 import { ReactStaticRenderer } from 'reports/react-static-renderer';
 import { ReportHtmlGenerator } from 'reports/report-html-generator';
 import { ScanResults } from 'scanner/iruleresults';
 import { It, Mock, MockBehavior, Times } from 'typemoq';
-
 import { noCardInteractionsSupported } from '../../../../common/components/cards/card-interaction-support';
 import { ReportCollapsibleContainerControl } from '../../../../reports/components/report-sections/report-collapsible-container';
 import { exampleUnifiedStatusResults } from '../common/components/cards/sample-view-model-data';
@@ -50,11 +49,7 @@ describe('ReportHtmlGenerator', () => {
                 getPropertyConfigById: getPropertyConfigurationStub,
                 collapsibleControl: ReportCollapsibleContainerControl,
                 cardInteractionSupport: cardInteractionSupport,
-                windowUtils: null,
-                issueDetailsTextGenerator: null,
-                detailsViewActionMessageCreator: null,
-                navigatorUtils: null,
-            },
+            } as SectionDeps,
             fixInstructionProcessor: fixInstructionProcessorMock.object,
             sectionFactory: sectionFactoryMock.object,
             pageTitle,
@@ -67,7 +62,7 @@ describe('ReportHtmlGenerator', () => {
             getCollapsibleScript: getScriptMock.object,
             getGuidanceTagsFromGuidanceLinks: getGuidanceTagsStub,
             ruleResultsByStatus: exampleUnifiedStatusResults,
-        };
+        } as ReportBodyProps;
 
         const headElement: JSX.Element = <ReportHead />;
         const bodyElement: JSX.Element = <ReportBody {...sectionProps} />;

@@ -7,6 +7,7 @@ import { ReactFCWithDisplayName } from 'common/react/named-fc';
 import { FixInstructionProcessor } from 'injected/fix-instruction-processor';
 import { ScanResults } from 'scanner/iruleresults';
 
+import { UserConfigurationStoreData } from '../../../common/types/store-data/user-configuration-store';
 import { NotApplicableChecksSectionDeps } from './not-applicable-checks-section';
 import { PassedChecksSectionDeps } from './passed-checks-section';
 
@@ -25,6 +26,7 @@ export type SectionProps = {
     getCollapsibleScript: () => string;
     getGuidanceTagsFromGuidanceLinks: GetGuidanceTagsFromGuidanceLinks;
     ruleResultsByStatus: UnifiedStatusResults;
+    userConfigurationStoreData: UserConfigurationStoreData;
 };
 
 export type ReportSectionFactory = {

@@ -45,7 +45,8 @@ describe('Name of the group', () => {
         markupMock.setup(factory => factory.sectionSeparator()).returns(() => '\n');
     });
 
-    it('build issue details', () => {
+    it.each(['pageUrl', null])('build issue details when targetApp.url is %s', targetAppUrl => {
+        sampleIssueDetailsData.targetApp.url = targetAppUrl;
         const testSubject = createIssueDetailsBuilder(markupMock.object);
 
         const result = testSubject(environmentInfo, sampleIssueDetailsData);

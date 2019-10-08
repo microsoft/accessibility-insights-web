@@ -30,6 +30,7 @@ describe('RulesWithInstances', () => {
                 fixInstructionProcessor={fixInstructionProcessorMock.object}
                 outcomeType={'pass'}
                 rules={rules}
+                userConfigurationStoreData={null}
             />,
         );
 

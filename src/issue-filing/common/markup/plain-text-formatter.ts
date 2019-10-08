@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { MarkupFormatter } from './markup-formatter';
 
-const createFormmatter = (): MarkupFormatter => {
+const createFormatter = (): MarkupFormatter => {
     const snippet = (text: string): string => text.replace(/\s+/g, ' ').trim();
 
     const link = (href: string, text?: string): string => {
@@ -34,4 +34,4 @@ const createFormmatter = (): MarkupFormatter => {
     };
 };
 
-export const PlainTextFormatter = createFormmatter();
+export const PlainTextFormatter = createFormatter();

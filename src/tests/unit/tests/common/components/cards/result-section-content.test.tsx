@@ -13,11 +13,11 @@ describe('ResultSectionContent', () => {
     const depsStub = {} as ResultSectionContentDeps;
 
     it('renders, with some rules', () => {
-        const props: ResultSectionContentProps = {
+        const props = {
             deps: depsStub,
             results: someRules,
             outcomeType: 'pass',
-        };
+        } as ResultSectionContentProps;
 
         const wrapper = shallow(<ResultSectionContent {...props} />);
 
@@ -30,6 +30,7 @@ describe('ResultSectionContent', () => {
             results: emptyRules,
             outcomeType: 'pass',
             showCongratsIfNotInstances: true,
+            userConfigurationStoreData: null,
         };
 
         const wrapper = shallow(<ResultSectionContent {...props} />);

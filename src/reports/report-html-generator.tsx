@@ -8,11 +8,10 @@ import { GetGuidanceTagsFromGuidanceLinks } from 'common/get-guidance-tags-from-
 import { FixInstructionProcessor } from 'injected/fix-instruction-processor';
 import * as React from 'react';
 import { ScanResults } from 'scanner/iruleresults';
-
 import { ReportHead } from './components/report-head';
 import { ReportBody, ReportBodyProps } from './components/report-sections/report-body';
 import { ReportCollapsibleContainerControl } from './components/report-sections/report-collapsible-container';
-import { ReportSectionFactory, SectionProps } from './components/report-sections/report-section-factory';
+import { ReportSectionFactory, SectionDeps, SectionProps } from './components/report-sections/report-section-factory';
 import { ReactStaticRenderer } from './react-static-renderer';
 
 export class ReportHtmlGenerator {
@@ -50,18 +49,14 @@ export class ReportHtmlGenerator {
                 getGuidanceTagsFromGuidanceLinks: this.getGuidanceTagsFromGuidanceLinks,
                 getPropertyConfigById: this.getPropertyConfiguration,
                 cardInteractionSupport: noCardInteractionsSupported,
-                windowUtils: null,
-                issueDetailsTextGenerator: null,
-                detailsViewActionMessageCreator: null,
-                navigatorUtils: null,
-            },
+            } as SectionDeps,
             ruleResultsByStatus: ruleResultsByStatus,
             environmentInfo: this.environmentInfo,
             toUtcString: this.utcDateConverter,
             getCollapsibleScript: this.getCollpasibleScript,
             getGuidanceTagsFromGuidanceLinks: this.getGuidanceTagsFromGuidanceLinks,
             fixInstructionProcessor: this.fixInstructionProcessor,
-        };
+        } as SectionProps;
 
         const props: ReportBodyProps = {
             sectionFactory: this.sectionFactory,
