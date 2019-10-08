@@ -1223,7 +1223,6 @@ describe('Drawer', () => {
                 ruleResults: {},
                 target: [id],
                 targetIndex: 0,
-                isVisible: true,
             };
         });
     }

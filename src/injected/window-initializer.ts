@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { getRTL } from '@uifabric/utilities';
 import * as Q from 'q';
+
 import { AppDataAdapter } from '../common/browser-adapters/app-data-adapter';
 import { BrowserAdapter } from '../common/browser-adapters/browser-adapter';
 import { ChromeAdapter } from '../common/browser-adapters/chrome-adapter';
@@ -25,7 +26,6 @@ import { HtmlElementAxeResultsHelper } from './frameCommunicators/html-element-a
 import { ScrollingController } from './frameCommunicators/scrolling-controller';
 import { WindowMessageHandler } from './frameCommunicators/window-message-handler';
 import { WindowMessageMarshaller } from './frameCommunicators/window-message-marshaller';
-import { InstanceVisibilityChecker } from './instance-visibility-checker';
 import { ScannerUtils } from './scanner-utils';
 import { ShadowInitializer } from './shadow-initializer';
 import { ShadowUtils } from './shadow-utils';
@@ -45,7 +45,6 @@ export class WindowInitializer {
     protected scrollingController: ScrollingController;
     protected tabStopsListener: TabStopsListener;
     protected frameUrlFinder: FrameUrlFinder;
-    protected instanceVisibilityChecker: InstanceVisibilityChecker;
     protected elementFinderByPosition: ElementFinderByPosition;
     protected elementFinderByPath: ElementFinderByPath;
     protected clientUtils: ClientUtils;
@@ -76,12 +75,6 @@ export class WindowInitializer {
         );
         this.frameCommunicator = new FrameCommunicator(windowMessageHandler, htmlElementUtils, this.windowUtils, Q);
         this.tabStopsListener = new TabStopsListener(this.frameCommunicator, this.windowUtils, htmlElementUtils, this.scannerUtils);
-        this.instanceVisibilityChecker = new InstanceVisibilityChecker(
-            this.browserAdapter.sendMessageToFrames,
-            this.windowUtils,
-            htmlElementUtils,
-            this.visualizationConfigurationFactory,
-        );
         const drawerProvider = new DrawerProvider(
             htmlElementUtils,
             this.windowUtils,

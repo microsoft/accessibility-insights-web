@@ -43,13 +43,11 @@ describe('HtmlElementAxeResultsHelperTest', () => {
             ruleResults: {},
             target: ['#id1'],
             targetIndex: 0,
-            isVisible: true,
         };
         const currentFrameResultInstance2: AxeResultsWithFrameLevel = {
             ruleResults: 'something' as any,
             target: ['#id2'],
             targetIndex: 0,
-            isVisible: true,
         };
 
         mockDocumentElementUtils
@@ -71,14 +69,12 @@ describe('HtmlElementAxeResultsHelperTest', () => {
             ruleResults: {},
             target: ['#frame1', '#elementID'],
             targetIndex: undefined,
-            isVisible: true,
         };
 
         const expectedFrameResult: AxeResultsWithFrameLevel = {
             ruleResults: {},
             target: ['#frame1', '#elementID'],
             targetIndex: 1,
-            isVisible: true,
         };
 
         mockDocumentElementUtils
@@ -104,7 +100,6 @@ describe('HtmlElementAxeResultsHelperTest', () => {
         const frameResult: AxeResultsWithFrameLevel = {
             ruleResults: {},
             target: [],
-            isVisible: true,
         };
 
         mockDocumentElementUtils
@@ -126,7 +121,6 @@ describe('HtmlElementAxeResultsHelperTest', () => {
         const frameResult: AxeResultsWithFrameLevel = {
             ruleResults: {},
             target: ['#frame1', '#elementID'],
-            isVisible: true,
         };
 
         mockDocumentElementUtils
@@ -152,7 +146,6 @@ describe('HtmlElementAxeResultsHelperTest', () => {
             ruleResults: {},
             target: [],
             targetIndex: 5,
-            isVisible: true,
         };
 
         mockDocumentElementUtils.setup(x => x.getAllElementsByTagName('iframe')).returns(() => framesInWindow);

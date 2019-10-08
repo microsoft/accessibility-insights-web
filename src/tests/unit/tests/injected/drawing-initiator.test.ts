@@ -36,7 +36,6 @@ describe('DrawingInitiatorTest', () => {
         const selectorMap: DictionaryStringTo<AssessmentVisualizationInstance> = {
             key1: {
                 target: ['element1'],
-                isVisible: true,
                 isFailure: false,
                 isVisualizationEnabled: false,
                 html: 'test',
@@ -45,7 +44,6 @@ describe('DrawingInitiatorTest', () => {
             },
             key2: {
                 target: ['element2'],
-                isVisible: true,
                 isFailure: false,
                 isVisualizationEnabled: false,
                 html: 'test',
@@ -59,7 +57,6 @@ describe('DrawingInitiatorTest', () => {
             isEnabled: true,
             elementResults: [
                 {
-                    isVisible: true,
                     isFailure: false,
                     isVisualizationEnabled: false,
                     html: 'test',
@@ -69,7 +66,6 @@ describe('DrawingInitiatorTest', () => {
                     identifier: 'some id',
                 },
                 {
-                    isVisible: true,
                     isFailure: false,
                     isVisualizationEnabled: false,
                     html: 'test',

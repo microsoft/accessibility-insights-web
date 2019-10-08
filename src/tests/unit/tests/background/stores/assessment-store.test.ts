@@ -1,8 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as _ from 'lodash';
-import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
-
 import { AssessmentsProviderImpl } from 'assessments/assessments-provider';
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { Assessment } from 'assessments/types/iassessment';
@@ -16,13 +13,15 @@ import {
     SelectRequirementPayload,
     ToggleActionPayload,
     UpdateSelectedDetailsViewPayload,
-    UpdateVisibilityPayload,
 } from 'background/actions/action-payloads';
 import { AssessmentActions } from 'background/actions/assessment-actions';
 import { AssessmentDataConverter } from 'background/assessment-data-converter';
 import { AssessmentDataRemover } from 'background/assessment-data-remover';
 import { InitialAssessmentStoreDataGenerator } from 'background/initial-assessment-store-data-generator';
 import { AssessmentStore } from 'background/stores/assessment-store';
+import * as _ from 'lodash';
+import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
+
 import { BrowserAdapter } from '../../../../../common/browser-adapters/browser-adapter';
 import { AssesssmentVisualizationConfiguration } from '../../../../../common/configs/assesssment-visualization-configuration';
 import { IndexedDBAPI } from '../../../../../common/indexedDB/indexedDB';
@@ -847,60 +846,6 @@ describe('AssessmentStoreTest', () => {
         const finalState = getStateWithAssessment(expectedAssessment);
 
         createStoreTesterForAssessmentActions('changeAssessmentVisualizationState')
-            .withActionParam(payload)
-            .testListenerToBeCalledOnce(initialState, finalState);
-    });
-
-    test('on updateInstanceVisibility', () => {
-        const generatedAssessmentInstancesMap: DictionaryStringTo<GeneratedAssessmentInstance> = {
-            selector: {
-                testStepResults: {
-                    [requirementKey]: {
-                        isVisualizationEnabled: true,
-                        isVisible: true,
-                    },
-                    ['assessment-1-step-2']: {
-                        isVisualizationEnabled: true,
-                        isVisible: true,
-                    },
-                },
-            } as any,
-        };
-
-        const assessmentData = new AssessmentDataBuilder()
-            .with('generatedAssessmentInstancesMap', _.cloneDeep(generatedAssessmentInstancesMap))
-            .build();
-
-        const initialState = new AssessmentsStoreDataBuilder(assessmentsProvider, assessmentDataConverterMock.object)
-            .withAssessment(assessmentKey, assessmentData)
-            .withSelectedTestStep(requirementKey)
-            .build();
-
-        const payload: UpdateVisibilityPayload = {
-            payloadBatch: [
-                {
-                    test: assessmentType,
-                    selector: 'selector',
-                    isVisible: false,
-                },
-            ],
-        };
-
-        assessmentsProviderMock.setup(apm => apm.forType(assessmentType)).returns(() => assessmentMock.object);
-
-        assessmentMock.setup(am => am.getVisualizationConfiguration()).returns(() => configStub);
-
-        const expectedInstancesMap = _.cloneDeep(generatedAssessmentInstancesMap);
-        expectedInstancesMap.selector.testStepResults[requirementKey].isVisible = false;
-
-        const expectedAssessment = new AssessmentDataBuilder().with('generatedAssessmentInstancesMap', expectedInstancesMap).build();
-
-        const finalState = new AssessmentsStoreDataBuilder(assessmentsProvider, assessmentDataConverterMock.object)
-            .withAssessment(assessmentKey, expectedAssessment)
-            .withSelectedTestStep(requirementKey)
-            .build();
-
-        createStoreTesterForAssessmentActions('updateInstanceVisibility')
             .withActionParam(payload)
             .testListenerToBeCalledOnce(initialState, finalState);
     });
