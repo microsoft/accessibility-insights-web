@@ -33,17 +33,17 @@ describe('InstanceDetails', () => {
             result: resultStub,
             index: indexStub,
         } as InstanceDetailsProps;
-    });
-
-    it('renders', () => {
         AllPropertyTypes.forEach(propertyType => {
             const propertyConfigurationStub: PropertyConfiguration = {
                 cardRow: getCardRowStub(propertyType),
             };
             getPropertyConfigByIdMock.setup(mock => mock(propertyType)).returns(() => propertyConfigurationStub);
         });
+    });
 
+    it('renders', () => {
         const testSubject = shallow(<InstanceDetails {...props} />);
+
         expect(testSubject.getElement()).toMatchSnapshot();
     });
 
@@ -51,12 +51,6 @@ describe('InstanceDetails', () => {
         props.result.identifiers = { 'this-property-does-not-have-config': 'some value' };
         props.result.descriptors = {};
         props.result.resolution = {};
-        AllPropertyTypes.forEach(propertyType => {
-            const propertyConfigurationStub: PropertyConfiguration = {
-                cardRow: getCardRowStub(propertyType),
-            };
-            getPropertyConfigByIdMock.setup(mock => mock(propertyType)).returns(() => propertyConfigurationStub);
-        });
 
         const testSubject = shallow(<InstanceDetails {...props} />);
         expect(testSubject.getElement()).toMatchSnapshot();
@@ -65,19 +59,4 @@ describe('InstanceDetails', () => {
     function getCardRowStub(name: string): ReactFCWithDisplayName<CardRowProps> {
         return NamedFC<CardRowProps>(name, _ => null);
     }
-
-    it('renders nothing when there is no card row config for the property / no property', () => {
-        props.result.identifiers = { 'this-property-does-not-have-config': 'some value' };
-        props.result.descriptors = {};
-        props.result.resolution = {};
-        AllPropertyTypes.forEach(propertyType => {
-            const propertyConfigurationStub: PropertyConfiguration = {
-                cardRow: getCardRowStub(propertyType),
-            };
-            getPropertyConfigByIdMock.setup(mock => mock(propertyType)).returns(() => propertyConfigurationStub);
-        });
-
-        const testSubject = shallow(<InstanceDetails {...props} />);
-        expect(testSubject.getElement()).toMatchSnapshot();
-    });
 });
