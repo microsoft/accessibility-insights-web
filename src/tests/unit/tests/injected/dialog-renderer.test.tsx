@@ -117,7 +117,6 @@ describe('DialogRendererTests', () => {
             id: 'id1',
             guidanceLinks: [],
             helpUrl: 'help',
-            fingerprint: 'fp1',
             snippet: 'html',
         };
         const expectedFailedRules: DictionaryStringTo<DecoratedAxeNodeResult> = {};
@@ -125,7 +124,6 @@ describe('DialogRendererTests', () => {
         const testData: HtmlElementAxeResults = {
             ruleResults: expectedFailedRules,
             target: [ruleId],
-            isVisible: true,
         };
 
         setupDomMockForMainWindow(true);
@@ -161,7 +159,6 @@ describe('DialogRendererTests', () => {
             id: 'id',
             guidanceLinks: [],
             helpUrl: 'help',
-            fingerprint: 'fp1',
             snippet: 'html',
         };
         const expectedFailedRules: DictionaryStringTo<DecoratedAxeNodeResult> = {};
@@ -169,7 +166,6 @@ describe('DialogRendererTests', () => {
         const testData: HtmlElementAxeResults = {
             ruleResults: expectedFailedRules,
             target: [ruleId],
-            isVisible: true,
         };
 
         setupDomMockForMainWindow(false);
@@ -203,7 +199,6 @@ describe('DialogRendererTests', () => {
             id: 'id',
             guidanceLinks: [],
             helpUrl: 'help',
-            fingerprint: 'fp',
             snippet: 'html',
         };
         const expectedFailedRules: DictionaryStringTo<DecoratedAxeNodeResult> = {};
@@ -211,7 +206,6 @@ describe('DialogRendererTests', () => {
         const testData: HtmlElementAxeResults = {
             ruleResults: expectedFailedRules,
             target: [ruleId],
-            isVisible: true,
         };
 
         attachShadowToDom(true);
@@ -247,7 +241,6 @@ describe('DialogRendererTests', () => {
             id: 'id1',
             guidanceLinks: [],
             helpUrl: 'help',
-            fingerprint: 'fp1',
             snippet: 'html',
         };
         const expectedFailedRules: DictionaryStringTo<DecoratedAxeNodeResult> = {};
@@ -255,7 +248,6 @@ describe('DialogRendererTests', () => {
         const testData: HtmlElementAxeResults = {
             ruleResults: expectedFailedRules,
             target: [ruleId],
-            isVisible: true,
         };
 
         setupDomMockForMainWindow(false);
@@ -279,7 +271,6 @@ describe('DialogRendererTests', () => {
         const testData: HtmlElementAxeResults = {
             ruleResults: null,
             target: [],
-            isVisible: true,
         };
         const windowMessageRequest: MessageRequest<DetailsDialogWindowMessage> = {
             win: 'this is main window' as any,
@@ -307,7 +298,6 @@ describe('DialogRendererTests', () => {
         const testData: HtmlElementAxeResults = {
             ruleResults: null,
             target: [],
-            isVisible: true,
         };
         const windowMessageRequest: MessageRequest<DetailsDialogWindowMessage> = {
             win: 'this is main window' as any,
@@ -334,7 +324,6 @@ describe('DialogRendererTests', () => {
         const testData: HtmlElementAxeResults = {
             ruleResults: null,
             target: ['test string'],
-            isVisible: true,
         };
         const message: DetailsDialogWindowMessage = { data: testData, featureFlagStoreData: getDefaultFeatureFlagValuesWithShadowOn() };
 
@@ -361,7 +350,6 @@ describe('DialogRendererTests', () => {
         const testData: HtmlElementAxeResults = {
             ruleResults: null,
             target: ['test string'],
-            isVisible: true,
         };
         const message: DetailsDialogWindowMessage = { data: testData, featureFlagStoreData: getDefaultFeatureFlagValues() };
 

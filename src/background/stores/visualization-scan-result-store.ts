@@ -149,13 +149,11 @@ export class VisualizationScanResultStore extends BaseStoreImpl<VisualizationSca
         forOwn(selectedRows, (selectedRow: DecoratedAxeNodeResult) => {
             const ruleResult = selectedRow;
             const ruleResults = selectorMap[ruleResult.selector] ? selectorMap[ruleResult.selector].ruleResults : {};
-            const isVisible = selectorMap[ruleResult.selector] ? selectorMap[ruleResult.selector].isVisible : null;
 
             ruleResults[ruleResult.ruleId] = ruleResult;
             selectorMap[ruleResult.selector] = {
                 ruleResults: ruleResults,
                 target: ruleResult.selector.split(';'),
-                isVisible: isVisible,
             };
         });
 

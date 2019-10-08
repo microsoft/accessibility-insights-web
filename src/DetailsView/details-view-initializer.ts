@@ -84,6 +84,7 @@ import { AxeResultToIssueFilingDataConverter } from '../issue-filing/rule-result
 import { getVersion, scan } from '../scanner/exposed-apis';
 import { DictionaryStringTo } from '../types/common-types';
 import { IssueFilingServiceProviderImpl } from './../issue-filing/issue-filing-service-provider-impl';
+import { UnifiedResultToIssueFilingDataConverter } from './../issue-filing/unified-result-to-issue-filing-data';
 import { DetailsViewActionMessageCreator } from './actions/details-view-action-message-creator';
 import { IssuesSelectionFactory } from './actions/issues-selection-factory';
 import { AssessmentTableColumnConfigHandler } from './components/assessment-table-column-config-handler';
@@ -279,9 +280,12 @@ if (isNaN(tabId) === false) {
                 IssueFilingUrlStringUtils.getSelectorLastPart,
             );
 
+            const unifiedResultToIssueFilingDataConverter = new UnifiedResultToIssueFilingDataConverter();
+
             const deps: DetailsViewContainerDeps = {
                 fixInstructionProcessor,
                 axeResultToIssueFilingDataConverter,
+                unifiedResultToIssueFilingDataConverter,
                 dropdownClickHandler,
                 issueFilingActionMessageCreator,
                 contentProvider: contentPages,

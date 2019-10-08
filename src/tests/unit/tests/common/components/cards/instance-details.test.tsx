@@ -44,6 +44,7 @@ describe('InstanceDetails', () => {
         cardSelectionMessageCreatorMock.setup(mock => mock.toggleCardSelection(It.isAnyString())).verifiable(Times.never());
 
         const testSubject = shallow(<InstanceDetails {...props} />);
+
         expect(testSubject.getElement()).toMatchSnapshot();
         cardSelectionMessageCreatorMock.verifyAll();
     });
@@ -76,6 +77,7 @@ describe('InstanceDetails', () => {
     function getCardRowStub(name: string): ReactFCWithDisplayName<CardRowProps> {
         return NamedFC<CardRowProps>(name, _ => null);
     }
+
     function setupGetPropertyConfigByIdMock(): void {
         AllPropertyTypes.forEach(propertyType => {
             const propertyConfigurationStub: PropertyConfiguration = {

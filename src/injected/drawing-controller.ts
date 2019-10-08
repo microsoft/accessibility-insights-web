@@ -171,7 +171,7 @@ export class DrawingController {
         }
 
         return currentFrameResults.filter(result => {
-            return result.isVisible !== false && result.isVisualizationEnabled !== false;
+            return result.isVisualizationEnabled !== false;
         });
     }
 

@@ -31,6 +31,7 @@ describe('RulesWithInstances', () => {
                 outcomeType={'pass'}
                 rules={rules}
                 userConfigurationStoreData={null}
+                targetAppInfo={{ name: 'app' }}
             />,
         );
 

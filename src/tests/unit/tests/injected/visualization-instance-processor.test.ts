@@ -53,7 +53,6 @@ describe('VisualizationInstanceProcessorTest', () => {
             isVisualizationEnabled: false,
             html: null,
             ruleResults: null,
-            isVisible: false,
             target: null,
             identifier: 'some id',
         };

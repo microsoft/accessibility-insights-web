@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { forEach, isEmpty } from 'lodash';
-
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { IndexedDBDataKeys } from 'background/IndexedDBDataKeys';
+import { forEach, isEmpty } from 'lodash';
+
 import { BrowserAdapter } from '../../common/browser-adapters/browser-adapter';
 import { IndexedDBAPI } from '../../common/indexedDB/indexedDB';
 import { StoreNames } from '../../common/stores/store-names';
@@ -18,7 +18,7 @@ import {
 } from '../../common/types/store-data/assessment-result-data';
 import { ScanBasePayload, ScanCompletedPayload, ScanUpdatePayload } from '../../injected/analyzers/analyzer';
 import { DictionaryStringTo } from '../../types/common-types';
-import { AddResultDescriptionPayload, SelectRequirementPayload, UpdateVisibilityPayload } from '../actions/action-payloads';
+import { AddResultDescriptionPayload, SelectRequirementPayload } from '../actions/action-payloads';
 import { AssessmentDataConverter } from '../assessment-data-converter';
 import { InitialAssessmentStoreDataGenerator } from '../initial-assessment-store-data-generator';
 import { VisualizationType } from './../../common/types/visualization-type';
@@ -109,7 +109,6 @@ export class AssessmentStore extends BaseStoreImpl<AssessmentStoreData> {
         this.assessmentActions.removeFailureInstance.addListener(this.onRemoveFailureInstance);
         this.assessmentActions.editFailureInstance.addListener(this.onEditFailureInstance);
         this.assessmentActions.changeAssessmentVisualizationStateForAll.addListener(this.onChangeAssessmentVisualizationStateForAll);
-        this.assessmentActions.updateInstanceVisibility.addListener(this.onUpdateInstanceVisibility);
         this.assessmentActions.passUnmarkedInstance.addListener(this.onPassUnmarkedInstances);
         this.assessmentActions.trackingCompleted.addListener(this.onTrackingCompleted);
         this.assessmentActions.updateSelectedPivotChild.addListener(this.onUpdateSelectedTest);
@@ -270,22 +269,6 @@ export class AssessmentStore extends BaseStoreImpl<AssessmentStoreData> {
         const stepResult: TestStepResult =
             assessmentData.generatedAssessmentInstancesMap[payload.selector].testStepResults[payload.requirement];
         stepResult.isVisualizationEnabled = payload.isVisualizationEnabled;
-
-        this.emitChanged();
-    };
-
-    private onUpdateInstanceVisibility = (payload: UpdateVisibilityPayload): void => {
-        const step = this.state.assessmentNavState.selectedTestStep;
-        payload.payloadBatch.forEach(updateInstanceVisibilityPayload => {
-            const config = this.assessmentsProvider.forType(updateInstanceVisibilityPayload.test).getVisualizationConfiguration();
-            const assessmentData = config.getAssessmentData(this.state);
-            if (assessmentData.generatedAssessmentInstancesMap == null) {
-                return;
-            }
-            const testStepResult: TestStepResult =
-                assessmentData.generatedAssessmentInstancesMap[updateInstanceVisibilityPayload.selector].testStepResults[step];
-            testStepResult.isVisible = updateInstanceVisibilityPayload.isVisible;
-        });
 
         this.emitChanged();
     };

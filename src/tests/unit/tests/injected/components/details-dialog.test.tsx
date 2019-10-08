@@ -21,7 +21,6 @@ type DetailsDialogTestCase = {
 };
 
 describe('DetailsDialog', () => {
-    const fingerprint: string = '12345678-9ABC-1234-1234-123456789ABC';
     const ruleId: string = 'ruleId';
     const help: string = 'help';
 
@@ -35,7 +34,6 @@ describe('DetailsDialog', () => {
         selector: 'selector',
         html: 'html',
         failureSummary: 'failureSummary',
-        fingerprint: fingerprint,
         id: 'id1',
         guidanceLinks: [{ text: 'Guidance Link', href: 'http://example.com' }],
         snippet: 'html',

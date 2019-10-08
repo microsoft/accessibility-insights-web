@@ -35,6 +35,19 @@ exports[`InstanceDetailsGroup renders 1`] = `
           "uid": "some-guid-here",
         }
       }
+      rule={
+        Object {
+          "description": "sample-description",
+          "guidance": Array [],
+          "id": "some-rule",
+          "url": "sample-url",
+        }
+      }
+      targetAppInfo={
+        Object {
+          "name": "app",
+        }
+      }
       userConfigurationStoreData={null}
     />
   </li>

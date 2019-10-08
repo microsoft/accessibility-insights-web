@@ -96,7 +96,6 @@ export class SelectorMapHelper {
                     target: instance.target,
                     isFailure: stepResult.status === ManualTestStatus.FAIL,
                     isVisualizationEnabled: stepResult.isVisualizationEnabled,
-                    isVisible: stepResult.isVisible,
                     html: instance.html,
                     propertyBag: instance.propertyBag,
                     identifier: identifier,

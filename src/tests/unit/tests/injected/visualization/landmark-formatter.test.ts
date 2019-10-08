@@ -54,7 +54,6 @@ describe('LandmarkFormatterTests', () => {
             isVisualizationEnabled: true,
             html: 'html',
             target: ['html'],
-            isVisible: true,
             identifier: 'some id',
             ruleResults: {
                 'unique-landmark': {
@@ -79,7 +78,6 @@ describe('LandmarkFormatterTests', () => {
                     id: 'id1',
                     guidanceLinks: [],
                     helpUrl: 'help1',
-                    fingerprint: 'fp1',
                     snippet: 'html',
                 },
                 rule2: {
@@ -95,7 +93,6 @@ describe('LandmarkFormatterTests', () => {
                     id: 'id2',
                     guidanceLinks: [],
                     helpUrl: 'help2',
-                    fingerprint: 'fp2',
                     snippet: 'html',
                 },
             },
