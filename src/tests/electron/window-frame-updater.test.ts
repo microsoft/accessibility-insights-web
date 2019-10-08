@@ -10,7 +10,7 @@ describe(WindowFrameUpdater, () => {
     let windowStateStoreMock: IMock<WindowStateStore>;
     let testSubject: WindowFrameUpdater;
     let browserWindowMock: IMock<BrowserWindow>;
-    let changeListeners: ((store: WindowStateStore) => Promise<void>)[];
+    let changeListeners: ((store: WindowStateStore) => void)[];
     beforeEach(() => {
         changeListeners = [];
         windowStateStoreMock = Mock.ofType(WindowStateStore);
@@ -26,9 +26,11 @@ describe(WindowFrameUpdater, () => {
         testSubject.initialize();
     });
 
-    it('sets window state to deviceConnectView', async () => {
+    it('sets window state to deviceConnectView', () => {
         browserWindowMock.setup(b => b.setSize(600, 391)).verifiable(Times.once());
         browserWindowMock.setup(b => b.isMaximized()).verifiable(Times.exactly(2));
+        browserWindowMock.setup(b => b.maximize()).verifiable(Times.once());
+
         windowStateStoreMock
             .setup(store => store.getState())
             .returns(() => {
@@ -41,8 +43,9 @@ describe(WindowFrameUpdater, () => {
         browserWindowMock.verifyAll();
     });
 
-    it('sets window state to results view', async () => {
-        browserWindowMock.setup(b => b.maximize()).verifiable(Times.once());
+    it('sets window state to results view', () => {
+        browserWindowMock.setup(b => b.isMaximized()).verifiable(Times.once());
+        browserWindowMock.setup(b => b.maximize()).verifiable(Times.exactly(2));
 
         windowStateStoreMock
             .setup(store => store.getState())
@@ -56,10 +59,17 @@ describe(WindowFrameUpdater, () => {
         browserWindowMock.verifyAll();
     });
 
-    it('minimizes the window', async () => {
+    it('minimizes the window', () => {
+        browserWindowMock.setup(b => b.minimize()).verifiable(Times.once());
+
         browserWindowMock
             .setup(b => b.isMaximized())
             .returns(() => true)
+            .verifiable(Times.once());
+
+        browserWindowMock
+            .setup(b => b.isMinimized())
+            .returns(() => false)
             .verifiable(Times.once());
 
         windowStateStoreMock
@@ -69,12 +79,12 @@ describe(WindowFrameUpdater, () => {
             })
             .verifiable(Times.once());
 
-        changeListeners.forEach(fn => fn(windowStateStoreMock.object));
+        changeListeners.forEach(fn => fn(windowStateStoreMock.target));
 
         browserWindowMock.verifyAll();
     });
 
-    it('maximizes the window', async () => {
+    it('maximizes the window', () => {
         browserWindowMock.setup(b => b.setSize(600, 391)).verifiable(Times.once());
         browserWindowMock.setup(b => b.maximize()).verifiable(Times.once());
         browserWindowMock.setup(b => b.isMaximized()).verifiable(Times.exactly(2));
@@ -91,7 +101,7 @@ describe(WindowFrameUpdater, () => {
         browserWindowMock.verifyAll();
     });
 
-    it('unmaximizes the window', async () => {
+    it('unmaximizes the window', () => {
         browserWindowMock.setup(b => b.unmaximize()).verifiable(Times.once());
 
         browserWindowMock
