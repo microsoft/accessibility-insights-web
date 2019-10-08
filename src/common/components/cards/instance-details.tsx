@@ -44,9 +44,10 @@ export const InstanceDetails = NamedFC<InstanceDetailsProps>('InstanceDetails', 
         return <>{cardRows}</>;
     };
 
+    const cardClickHandler = () => deps.cardSelectionMessageCreator.toggleCardSelection(result.uid);
     return (
         <>
-            <table className={reportInstanceTable} onClick={() => deps.cardSelectionMessageCreator.toggleCardSelection(result.uid)}>
+            <table className={reportInstanceTable} onClick={cardClickHandler}>
                 <tbody>
                     {renderCardRowsForPropertyBag(result.identifiers)}
                     {renderCardRowsForPropertyBag(result.descriptors)}
