@@ -123,6 +123,7 @@ describe('CardKebabMenuButtonTest', () => {
 
         rendered.find(ActionButton).simulate('click', event);
 
+        expect(rendered.state().isContextMenuVisible).toBe(true);
         expect(rendered.state().showingCopyToast).toBe(false);
 
         rendered
@@ -131,10 +132,13 @@ describe('CardKebabMenuButtonTest', () => {
             .find(elem => elem.key === 'copyfailuredetails')
             .onClick(event);
 
+        rendered.find(ContextualMenu).prop('onDismiss')();
+
         await copyToClipboardPromise;
 
         expect(rendered.debug()).toMatchSnapshot();
 
+        expect(rendered.state().isContextMenuVisible).toBe(false);
         expect(rendered.state().showingCopyToast).toBe(true);
 
         actionCreatorMock.verifyAll();
@@ -150,14 +154,20 @@ describe('CardKebabMenuButtonTest', () => {
 
         rendered.find(ActionButton).simulate('click', event);
 
+        expect(rendered.state().isContextMenuVisible).toBe(true);
+        expect(rendered.state().showNeedsSettingsContent).toBe(false);
+
         rendered
             .find(ContextualMenu)
             .prop('items')
             .find(elem => elem.key === 'fileissue')
             .onClick(event);
 
+        rendered.find(ContextualMenu).prop('onDismiss')();
+
         expect(rendered.debug()).toMatchSnapshot();
 
+        expect(rendered.state().isContextMenuVisible).toBe(false);
         expect(rendered.state().showNeedsSettingsContent).toBe(false);
 
         issueFilingActionMessageCreatorMock.verifyAll();
@@ -175,16 +185,23 @@ describe('CardKebabMenuButtonTest', () => {
 
         rendered.find(ActionButton).simulate('click', event);
 
+        expect(rendered.state().isContextMenuVisible).toBe(true);
+        expect(rendered.state().showNeedsSettingsContent).toBe(false);
+
         rendered
             .find(ContextualMenu)
             .prop('items')
             .find(elem => elem.key === 'fileissue')
             .onClick(event);
 
+        rendered.find(ContextualMenu).prop('onDismiss')();
+
         expect(rendered.debug()).toMatchSnapshot();
 
-        issueFilingActionMessageCreatorMock.verifyAll();
+        expect(rendered.state().isContextMenuVisible).toBe(false);
         expect(rendered.state().showNeedsSettingsContent).toBe(true);
+
+        issueFilingActionMessageCreatorMock.verifyAll();
     });
 
     it('should dismiss the contextMenu', () => {
