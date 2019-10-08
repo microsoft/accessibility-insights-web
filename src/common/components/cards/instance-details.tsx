@@ -6,6 +6,7 @@ import { StoredInstancePropertyBag, UnifiedResult } from 'common/types/store-dat
 import { forOwn, isEmpty } from 'lodash';
 import * as React from 'react';
 import { reportInstanceTable } from 'reports/components/instance-details.scss';
+
 import { UserConfigurationStoreData } from '../../types/store-data/user-configuration-store';
 import { HighlightState, InstanceDetailsFooter, InstanceDetailsFooterDeps } from './instance-details-footer';
 
@@ -32,12 +33,11 @@ export const InstanceDetails = NamedFC<InstanceDetailsProps>('InstanceDetails', 
         const cardRows = [];
         forOwn(propertyBag, (propertyData, propertyName) => {
             const propertyConfig = deps.getPropertyConfigById(propertyName);
-            if (isEmpty(propertyConfig)) {
-                return;
+            if (!isEmpty(propertyConfig)) {
+                const CardRow = propertyConfig.cardRow;
+                ++propertyIndex;
+                cardRows.push(<CardRow deps={deps} propertyData={propertyData} index={index} key={`${propertyName}-${propertyIndex}`} />);
             }
-            const CardRow = propertyConfig.cardRow;
-            ++propertyIndex;
-            cardRows.push(<CardRow deps={deps} propertyData={propertyData} index={index} key={`${propertyName}-${propertyIndex}`} />);
         });
         return <>{cardRows}</>;
     };
