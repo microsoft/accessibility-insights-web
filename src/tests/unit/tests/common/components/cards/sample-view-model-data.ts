@@ -15,6 +15,7 @@ export const exampleUnifiedResult: UnifiedResult = {
         snippet: 'this is a sample snippet',
     },
     resolution: {
+        howToFixSummary: 'sample how to fix summary',
         'how-to-fix-web': {
             any: [
                 'Element does not have an alt attribute',
