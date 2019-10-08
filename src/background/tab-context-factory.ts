@@ -10,6 +10,7 @@ import { WindowUtils } from 'common/window-utils';
 
 import { ActionCreator } from './actions/action-creator';
 import { ActionHub } from './actions/action-hub';
+import { CardSelectionActionCreator } from './actions/card-selection-action-creator';
 import { ContentActionCreator } from './actions/content-action-creator';
 import { DetailsViewActionCreator } from './actions/details-view-action-creator';
 import { DevToolsActionCreator } from './actions/dev-tools-action-creator';
@@ -104,6 +105,12 @@ export class TabContextFactory {
             detailsViewController,
         );
 
+        const cardSelectionActionCreator = new CardSelectionActionCreator(
+            interpreter,
+            actionsHub.cardSelectionActions,
+            this.telemetryEventHandler,
+        );
+
         const injectorController = new InjectorController(
             new ContentScriptInjector(browserAdapter, this.promiseFactory),
             storeHub.visualizationStore,
@@ -133,6 +140,7 @@ export class TabContextFactory {
         scopingPanelActionCreator.registerCallbacks();
         contentActionCreator.registerCallbacks();
         scanResultActionCreator.registerCallbacks();
+        cardSelectionActionCreator.registerCallbacks();
 
         injectorController.initialize();
         const dispatcher = new StateDispatcher(broadcastMessage, storeHub);

@@ -188,4 +188,8 @@ export class Messages {
     public static readonly UnifiedScan = {
         ScanCompleted: `${messagePrefix}/unifiedScan/scanCompleted`,
     };
+
+    public static readonly CardSelection = {
+        CardSelectionToggled: `${messagePrefix}/cardSelection/cardSelectionToggled`,
+    };
 }
