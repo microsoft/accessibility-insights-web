@@ -4,4 +4,5 @@ export enum ScanStatus {
     Default,
     Scanning,
     Completed,
+    Failed,
 }

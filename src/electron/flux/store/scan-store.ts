@@ -21,17 +21,29 @@ export class ScanStore extends BaseStoreImpl<ScanStoreData> {
     protected addActionListeners(): void {
         this.scanActions.scanStarted.addListener(this.onScanStarted);
         this.scanActions.scanCompleted.addListener(this.onScanCompleted);
+        this.scanActions.scanFailed.addListener(this.onScanFailed);
     }
 
-    private onScanStarted = () => this.updateToStatus(ScanStatus.Scanning);
-    private onScanCompleted = () => this.updateToStatus(ScanStatus.Completed);
-
-    private updateToStatus(newStatus: ScanStatus): void {
-        if (this.state.status === newStatus) {
+    private onScanStarted = () => {
+        if (this.state.status === ScanStatus.Scanning) {
             return;
         }
 
-        this.state.status = newStatus;
+        this.state.status = ScanStatus.Scanning;
+
+        this.emitChanged();
+    };
+
+    private onScanCompleted = () => this.onScanFinished(ScanStatus.Completed);
+
+    private onScanFailed = () => this.onScanFinished(ScanStatus.Failed);
+
+    private onScanFinished(finalStatus: ScanStatus): void {
+        if (this.state.status !== ScanStatus.Scanning) {
+            return;
+        }
+
+        this.state.status = finalStatus;
 
         this.emitChanged();
     }

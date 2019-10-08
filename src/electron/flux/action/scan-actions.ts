@@ -5,4 +5,5 @@ import { Action } from 'common/flux/action';
 export class ScanActions {
     public readonly scanStarted = new Action<void>();
     public readonly scanCompleted = new Action<void>();
+    public readonly scanFailed = new Action<void>();
 }

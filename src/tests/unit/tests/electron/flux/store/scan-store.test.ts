@@ -28,7 +28,7 @@ describe('ScanStore', () => {
 
     describe('on scan started', () => {
         describe('updates to scanning', () => {
-            const initialStatuses = [ScanStatus[ScanStatus.Default], ScanStatus[ScanStatus.Completed]];
+            const initialStatuses = [ScanStatus[ScanStatus.Default], ScanStatus[ScanStatus.Completed], ScanStatus[ScanStatus.Failed]];
 
             it.each(initialStatuses)('from initial state <%s>', initialStatus => {
                 initialState.status = ScanStatus[initialStatus];
@@ -51,26 +51,50 @@ describe('ScanStore', () => {
     });
 
     describe('on scan completed', () => {
-        describe('updates to completed', () => {
-            const initialStatuses = [ScanStatus[ScanStatus.Default], ScanStatus[ScanStatus.Scanning]];
+        it('updates to completed', () => {
+            initialState.status = ScanStatus.Scanning;
 
-            it.each(initialStatuses)('from initial state <%s>', initialStatus => {
-                initialState.status = ScanStatus[initialStatus];
+            const expectedState: ScanStoreData = {
+                status: ScanStatus.Completed,
+            };
 
-                const expectedState: ScanStoreData = {
-                    status: ScanStatus.Completed,
-                };
-
-                createStoreTesterForScanActions('scanCompleted').testListenerToBeCalledOnce(initialState, expectedState);
-            });
+            createStoreTesterForScanActions('scanCompleted').testListenerToBeCalledOnce(initialState, expectedState);
         });
 
-        it('does not updated if already completed', () => {
-            initialState.status = ScanStatus.Completed;
+        describe('does not update if previous state is not scanning', () => {
+            const initialStatuses = [ScanStatus[ScanStatus.Default], ScanStatus[ScanStatus.Failed], ScanStatus[ScanStatus.Completed]];
 
-            const expectedState: ScanStoreData = { ...initialState };
+            it.each(initialStatuses)('with initial status <%s>', initialStatus => {
+                initialState.status = ScanStatus[initialStatus];
 
-            createStoreTesterForScanActions('scanCompleted').testListenerToNeverBeCalled(initialState, expectedState);
+                const expectedState: ScanStoreData = { ...initialState };
+
+                createStoreTesterForScanActions('scanCompleted').testListenerToNeverBeCalled(initialState, expectedState);
+            });
+        });
+    });
+
+    describe('on scan failed', () => {
+        it('updates to failed', () => {
+            initialState.status = ScanStatus.Scanning;
+
+            const expectedState: ScanStoreData = {
+                status: ScanStatus.Failed,
+            };
+
+            createStoreTesterForScanActions('scanFailed').testListenerToBeCalledOnce(initialState, expectedState);
+        });
+
+        describe('does not update if previous state is not scanning', () => {
+            const initialStatuses = [ScanStatus[ScanStatus.Default], ScanStatus[ScanStatus.Failed], ScanStatus[ScanStatus.Completed]];
+
+            it.each(initialStatuses)('with initial status <%s>', initialStatus => {
+                initialState.status = ScanStatus[initialStatus];
+
+                const expectedState: ScanStoreData = { ...initialState };
+
+                createStoreTesterForScanActions('scanFailed').testListenerToNeverBeCalled(initialState, expectedState);
+            });
         });
     });
 
