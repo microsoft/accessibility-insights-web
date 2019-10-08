@@ -6,6 +6,7 @@ import { WindowStateActions } from '../../../../../../electron/flux/action/windo
 import { WindowStateStore } from '../../../../../../electron/flux/store/window-state-store';
 import { WindowStateStoreData } from '../../../../../../electron/flux/types/window-state-store-data';
 import { createStoreWithNullParams, StoreTester } from '../../../../common/store-tester';
+import { WindowStatePayload } from 'electron/flux/action/window-state-payload';
 
 describe('WindowStateStore', () => {
     describe('constructor', () => {
@@ -28,6 +29,7 @@ describe('WindowStateStore', () => {
         };
         const expectedState: WindowStateStoreData = {
             routeId: payload.routeId,
+            currentWindowState: 'restoredOrMaximized',
         };
 
         const initialState = createStoreWithNullParams(WindowStateStore).getDefaultState();
@@ -43,6 +45,7 @@ describe('WindowStateStore', () => {
         };
         const expectedState: WindowStateStoreData = {
             routeId: payload.routeId,
+            currentWindowState: 'restoredOrMaximized',
         };
 
         const initialState = createStoreWithNullParams(WindowStateStore).getDefaultState();
@@ -50,6 +53,22 @@ describe('WindowStateStore', () => {
         createStoreTesterForWindowStateActions('setRoute')
             .withActionParam(payload)
             .testListenerToNeverBeCalled(initialState, expectedState);
+    });
+
+    it('changes currentWindowState from default to minimized', () => {
+        const payload: WindowStatePayload = {
+            currentWindowState: 'minimized',
+        };
+        const expectedState: WindowStateStoreData = {
+            routeId: 'deviceConnectView',
+            currentWindowState: payload.currentWindowState,
+        };
+
+        const initialState = createStoreWithNullParams(WindowStateStore).getDefaultState();
+
+        createStoreTesterForWindowStateActions('setWindowState')
+            .withActionParam(payload)
+            .testListenerToBeCalledOnce(initialState, expectedState);
     });
 
     function createStoreTesterForWindowStateActions(

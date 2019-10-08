@@ -2,20 +2,42 @@
 // Licensed under the MIT License.
 import { BrowserWindow } from 'electron';
 import { WindowStateStore } from './flux/store/window-state-store';
-import { WindowStateStoreData } from './flux/types/window-state-store-data';
 
 export class WindowFrameUpdater {
     constructor(private readonly windowStateStore: WindowStateStore, private readonly browserWindow: BrowserWindow) {}
 
     public initialize(): void {
+        this.windowStateStore.addChangedListener(this.onWindowStateChange);
         this.windowStateStore.addChangedListener(this.onRouteChange);
     }
 
-    private onRouteChange = async (state: WindowStateStoreData) => {
-        if (state.routeId === 'deviceConnectView') {
+    private onRouteChange = async (store: WindowStateStore) => {
+        if (store.getState().routeId === 'deviceConnectView') {
+            if (this.browserWindow.isMaximized()) {
+                return;
+            }
             this.browserWindow.setSize(600, 391);
         } else {
             this.browserWindow.maximize();
+        }
+    };
+
+    private onWindowStateChange = async (store: WindowStateStore) => {
+        switch (store.getState().currentWindowState) {
+            case 'restoredOrMaximized':
+                if (this.browserWindow.isMaximized()) {
+                    this.browserWindow.unmaximize();
+                } else {
+                    this.browserWindow.maximize();
+                }
+                break;
+            case 'minimized':
+                if (!this.browserWindow.isMinimized()) {
+                    this.browserWindow.minimize();
+                }
+                break;
+            default:
+                break;
         }
     };
 }

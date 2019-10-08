@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { BaseStoreImpl } from 'background/stores/base-store-impl';
 import { StoreNames } from 'common/stores/store-names';
+import { WindowStatePayload } from 'electron/flux/action/window-state-payload';
 import { RoutePayload } from '../action/route-payloads';
 import { WindowStateActions } from '../action/window-state-actions';
 import { WindowStateStoreData } from '../types/window-state-store-data';
@@ -14,11 +15,13 @@ export class WindowStateStore extends BaseStoreImpl<WindowStateStoreData> {
     public getDefaultState(): WindowStateStoreData {
         return {
             routeId: 'deviceConnectView',
+            currentWindowState: 'restoredOrMaximized',
         };
     }
 
     protected addActionListeners(): void {
         this.windowStateActions.setRoute.addListener(this.onSetRoute);
+        this.windowStateActions.setWindowState.addListener(this.onSetWindowState);
     }
 
     private onSetRoute = (payload: RoutePayload) => {
@@ -26,6 +29,11 @@ export class WindowStateStore extends BaseStoreImpl<WindowStateStoreData> {
             return;
         }
         this.state.routeId = payload.routeId;
+        this.emitChanged();
+    };
+
+    private onSetWindowState = (payload: WindowStatePayload) => {
+        this.state.currentWindowState = payload.currentWindowState;
         this.emitChanged();
     };
 }

@@ -5,11 +5,13 @@ import { ActionButton } from 'office-ui-fabric-react/lib/Button';
 import * as React from 'react';
 
 import { NamedFC } from 'common/react/named-fc';
+import { WindowStateActionCreator } from 'electron/flux/action-creator/window-state-action-creator';
 import { BrandWhite } from 'icons/brand/white/brand-white';
 import { titleBar } from './title-bar.scss';
 
 export type TitleBarDeps = {
     currentWindow: BrowserWindow;
+    windowStateActionCreator: WindowStateActionCreator;
 };
 
 export interface TitleBarProps {
@@ -17,10 +19,9 @@ export interface TitleBarProps {
 }
 
 export const TitleBar = NamedFC<TitleBarProps>('TitleBar', (props: TitleBarProps) => {
-    const currrentWindow = props.deps.currentWindow;
-    const minimize = () => currrentWindow.minimize();
-    const maximize = () => (currrentWindow.isMaximized() ? currrentWindow.restore() : currrentWindow.maximize());
-    const close = () => currrentWindow.close();
+    const minimize = () => props.deps.windowStateActionCreator.setWindowState({ currentWindowState: 'minimized' });
+    const maximize = () => props.deps.windowStateActionCreator.setWindowState({ currentWindowState: 'restoredOrMaximized' });
+    const close = () => props.deps.currentWindow.close();
 
     return (
         <div className={titleBar}>
