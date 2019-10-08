@@ -40,7 +40,6 @@ describe('IssuesFormatterTests', () => {
     test('tooltip for the failed rules from the axe result', () => {
         const axeData: HtmlElementAxeResults = {
             target: ['html'],
-            isVisible: true,
             ruleResults: {
                 rule1: {
                     any: [],
@@ -55,7 +54,6 @@ describe('IssuesFormatterTests', () => {
                     id: 'id1',
                     guidanceLinks: [],
                     helpUrl: 'help1',
-                    fingerprint: 'fp1',
                     snippet: 'html',
                 },
                 rule2: {
@@ -71,7 +69,6 @@ describe('IssuesFormatterTests', () => {
                     id: 'id2',
                     guidanceLinks: [],
                     helpUrl: 'help2',
-                    fingerprint: 'fp2',
                     snippet: 'html',
                 },
             },
