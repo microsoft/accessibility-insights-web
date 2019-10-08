@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { BaseClientStoresHub } from 'common/stores/base-client-stores-hub';
 import { ClientStoresHub } from 'common/stores/client-stores-hub';
+import { DeviceConnectState } from 'electron/views/device-connect-view/components/device-connect-state';
 import {
     RootContainer,
     RootContainerDeps,
@@ -16,11 +17,15 @@ import { IMock, It, Mock } from 'typemoq';
 describe(RootContainer, () => {
     let deps: RootContainerDeps;
     let storeHubMock: IMock<ClientStoresHub<RootContainerState>>;
+    let props: RootContainerProps;
 
     beforeEach(() => {
         storeHubMock = Mock.ofType<ClientStoresHub<RootContainerState>>(BaseClientStoresHub);
 
         deps = { storeHub: storeHubMock.object } as RootContainerDeps;
+        props = {
+            deps,
+        } as RootContainerProps;
     });
 
     describe('renders', () => {
@@ -28,10 +33,13 @@ describe(RootContainer, () => {
             storeHubMock
                 .setup(hub => hub.getAllStoreData())
                 .returns(() => {
-                    return { windowStateStoreData: { routeId: 'deviceConnectView' } };
+                    return {
+                        windowStateStoreData: { routeId: 'deviceConnectView' },
+                        userConfigurationStoreData: { isFirstTime: true },
+                        deviceStoreData: { deviceConnectState: DeviceConnectState.Connected },
+                    } as RootContainerState;
                 });
 
-            const props: RootContainerProps = { deps };
             const wrapped = shallow(<RootContainer {...props} />);
 
             expect(wrapped.getElement()).toMatchSnapshot();
@@ -41,10 +49,13 @@ describe(RootContainer, () => {
             storeHubMock
                 .setup(hub => hub.getAllStoreData())
                 .returns(() => {
-                    return { windowStateStoreData: { routeId: 'resultsView' } };
+                    return {
+                        windowStateStoreData: { routeId: 'resultsView' },
+                        userConfigurationStoreData: { isFirstTime: true },
+                        deviceStoreData: { deviceConnectState: DeviceConnectState.Connected },
+                    } as RootContainerState;
                 });
 
-            const props: RootContainerProps = { deps };
             const wrapped = shallow(<RootContainer {...props} />);
 
             expect(wrapped.getElement()).toMatchSnapshot();
@@ -56,12 +67,20 @@ describe(RootContainer, () => {
             storeHubMock
                 .setup(hub => hub.getAllStoreData())
                 .returns(() => {
-                    return { windowStateStoreData: { routeId: 'deviceConnectView' } };
+                    return {
+                        windowStateStoreData: { routeId: 'deviceConnectView' },
+                        userConfigurationStoreData: { isFirstTime: true },
+                        deviceStoreData: { deviceConnectState: DeviceConnectState.Connected },
+                    } as RootContainerState;
                 });
             storeHubMock
                 .setup(hub => hub.getAllStoreData())
                 .returns(() => {
-                    return { windowStateStoreData: { routeId: 'resultsView' } };
+                    return {
+                        windowStateStoreData: { routeId: 'resultsView' },
+                        userConfigurationStoreData: { isFirstTime: true },
+                        deviceStoreData: { deviceConnectState: DeviceConnectState.Connected },
+                    } as RootContainerState;
                 });
             let storeListener: Function;
             storeHubMock
@@ -70,7 +89,6 @@ describe(RootContainer, () => {
                     storeListener = cb;
                 });
 
-            const props: RootContainerProps = { deps };
             const wrapped = shallow(<RootContainer {...props} />);
             expect(wrapped.state()).toMatchSnapshot('initial state');
 
