@@ -3,6 +3,8 @@
 import { AppInsights } from 'applicationinsights-js';
 import axios from 'axios';
 import { remote } from 'electron';
+import { WindowStateActions } from 'electron/flux/action/window-state-actions';
+import { WindowStateStore } from 'electron/flux/store/window-state-store';
 import { createFetchScanResults } from 'electron/platform/android/fetch-scan-results';
 import { RootContainerState } from 'electron/views/root-container/components/root-container';
 import * as ReactDOM from 'react-dom';
@@ -36,6 +38,7 @@ initializeFabricIcons();
 const indexedDBInstance: IndexedDBAPI = new IndexedDBUtil(getIndexedDBStore());
 const userConfigActions = new UserConfigurationActions();
 const deviceActions = new DeviceActions();
+const windowStateActions = new WindowStateActions();
 const storageAdapter = new ElectronStorageAdapter(indexedDBInstance);
 const appDataAdapter = new ElectronAppDataAdapter();
 
@@ -64,7 +67,10 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then((persistedDat
     const deviceStore = new DeviceStore(deviceActions);
     deviceStore.initialize();
 
-    const storeHub = new BaseClientStoresHub<RootContainerState>([userConfigurationStore, deviceStore]);
+    const windowStateStore = new WindowStateStore(windowStateActions);
+    windowStateStore.initialize();
+
+    const storeHub = new BaseClientStoresHub<RootContainerState>([userConfigurationStore, deviceStore, windowStateStore]);
 
     const telemetryStateListener = new TelemetryStateListener(userConfigurationStore, telemetryEventHandler);
     telemetryStateListener.initialize();

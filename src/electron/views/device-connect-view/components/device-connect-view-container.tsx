@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { TelemetryPermissionDialog, TelemetryPermissionDialogDeps } from 'common/components/telemetry-permission-dialog';
-import { ClientStoresHub } from 'common/stores/client-stores-hub';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import { brand } from 'content/strings/application';
 import { BrandBlue } from 'icons/brand/blue/brand-blue';

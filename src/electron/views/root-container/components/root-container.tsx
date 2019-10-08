@@ -29,7 +29,7 @@ export class RootContainer extends React.Component<RootContainerProps, RootConta
     constructor(props: RootContainerProps) {
         super(props);
 
-        this.state = (props.deps.storeHub as ClientStoresHub<RootContainerState>).getAllStoreData();
+        this.state = props.deps.storeHub.getAllStoreData();
     }
 
     public render(): JSX.Element {
