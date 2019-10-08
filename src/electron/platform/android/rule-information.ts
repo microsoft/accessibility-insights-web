@@ -12,4 +12,8 @@ export class RuleInformation {
     public howToFix(ruleResultsData: RuleResultsData): InstancePropertyBag {
         return this.howToFixDelegate(ruleResultsData);
     }
+
+    public howToFixString(ruleResultsData: RuleResultsData): string {
+        return this.howToFixDelegate(ruleResultsData).unformattedText;
+    }
 }

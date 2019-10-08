@@ -70,7 +70,7 @@ export type UnifiedDescriptors = {
 } & InstancePropertyBag;
 
 export type UnifiedResolution = {
-    howToFixSummary?: string;
+    howToFixSummary: string;
 } & InstancePropertyBag;
 
 export interface UnifiedResult {

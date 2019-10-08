@@ -4,14 +4,13 @@ import { InstanceDetails, InstanceDetailsDeps, InstanceDetailsProps } from 'comm
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import { IMock, Mock } from 'typemoq';
-
 import {
     AllPropertyTypes,
     CardRowProps,
     PropertyConfiguration,
 } from '../../../../../../common/configs/unified-result-property-configurations';
 import { NamedFC, ReactFCWithDisplayName } from '../../../../../../common/react/named-fc';
-import { UnifiedResult } from '../../../../../../common/types/store-data/unified-data-interface';
+import { UnifiedResolution, UnifiedResult } from '../../../../../../common/types/store-data/unified-data-interface';
 import { exampleUnifiedResult } from './sample-view-model-data';
 
 describe('InstanceDetails', () => {
@@ -54,7 +53,7 @@ describe('InstanceDetails', () => {
     it('renders nothing when there is no card row config for the property / no property', () => {
         props.result.identifiers = { 'this-property-does-not-have-config': 'some value' };
         props.result.descriptors = {};
-        props.result.resolution = {};
+        props.result.resolution = {} as UnifiedResolution;
         AllPropertyTypes.forEach(propertyType => {
             const propertyConfigurationStub: PropertyConfiguration = {
                 cardRow: getCardRowStub(propertyType),
