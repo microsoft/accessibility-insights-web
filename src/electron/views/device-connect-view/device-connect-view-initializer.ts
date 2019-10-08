@@ -8,6 +8,7 @@ import { WindowStateActions } from 'electron/flux/action/window-state-actions';
 import { WindowStateStore } from 'electron/flux/store/window-state-store';
 import { createFetchScanResults } from 'electron/platform/android/fetch-scan-results';
 import { RootContainerProps, RootContainerState } from 'electron/views/root-container/components/root-container';
+import { WindowFrameUpdater } from 'electron/window-frame-updater';
 import * as ReactDOM from 'react-dom';
 import { UserConfigurationActions } from '../../../background/actions/user-configuration-actions';
 import { getPersistedData, PersistedData } from '../../../background/get-persisted-data';
@@ -71,6 +72,10 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then((persistedDat
     const windowStateStore = new WindowStateStore(windowStateActions);
     windowStateStore.initialize();
 
+    const currentWindow = remote.getCurrentWindow();
+    const windowFrameUpdater = new WindowFrameUpdater(windowStateStore, currentWindow);
+    windowFrameUpdater.initialize();
+
     const storeHub = new BaseClientStoresHub<RootContainerState>([userConfigurationStore, deviceStore, windowStateStore]);
 
     const telemetryStateListener = new TelemetryStateListener(userConfigurationStore, telemetryEventHandler);
@@ -85,7 +90,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then((persistedDat
 
     const props: RootContainerProps = {
         deps: {
-            currentWindow: remote.getCurrentWindow(),
+            currentWindow,
             userConfigurationStore,
             deviceStore,
             userConfigMessageCreator,

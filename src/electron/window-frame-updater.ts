@@ -7,15 +7,19 @@ import { WindowStateStoreData } from './flux/types/window-state-store-data';
 export class WindowFrameUpdater {
     constructor(private readonly windowStateStore: WindowStateStore, private readonly browserWindow: BrowserWindow) {}
 
-    public initialize(): void {
+    public async initialize(): Promise<void> {
+        await this.onRouteChange(this.windowStateStore.getState());
+
         this.windowStateStore.addChangedListener(this.onRouteChange);
     }
 
     private onRouteChange = async (state: WindowStateStoreData) => {
+        console.log('on route change');
         if (state.routeId === 'deviceConnectView') {
             this.browserWindow.setSize(600, 391);
         } else {
             this.browserWindow.maximize();
+            console.log('Maximized');
         }
     };
 }

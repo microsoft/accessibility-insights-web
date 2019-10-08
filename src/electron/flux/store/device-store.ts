@@ -61,12 +61,13 @@ export class DeviceStore extends BaseStoreImpl<DeviceStoreData> {
     };
 
     private onConnectionFailed = () => {
-        if (this.state.deviceConnectState === DeviceConnectState.Error) {
-            return;
-        }
+        // if (this.state.deviceConnectState === DeviceConnectState.Error) {
+        //     return;
+        // }
 
-        this.state.deviceConnectState = DeviceConnectState.Error;
+        // this.state.deviceConnectState = DeviceConnectState.Error;
 
-        this.emitChanged();
+        // this.emitChanged();
+        this.onConnectionSucceeded({ connectedDevice: 'hi' });
     };
 }
