@@ -93,7 +93,42 @@ exports[`InstanceDetails renders 1`] = `
             ],
             "none": Array [],
           },
+          "howToFixSummary": "sample how to fix summary",
         },
+        "ruleId": "image-alt",
+        "status": "fail",
+        "uid": "some-guid-here",
+      }
+    }
+  />
+</React.Fragment>
+`;
+
+exports[`InstanceDetails renders nothing when there is no card row config for the property / no property 1`] = `
+<React.Fragment>
+  <table
+    className="reportInstanceTable"
+  >
+    <tbody>
+      <React.Fragment />
+      <React.Fragment />
+      <React.Fragment />
+    </tbody>
+  </table>
+  <InstanceDetailsFooter
+    deps={
+      Object {
+        "getPropertyConfigById": [Function],
+      }
+    }
+    highlightState="unavailable"
+    result={
+      Object {
+        "descriptors": Object {},
+        "identifiers": Object {
+          "this-property-does-not-have-config": "some value",
+        },
+        "resolution": Object {},
         "ruleId": "image-alt",
         "status": "fail",
         "uid": "some-guid-here",

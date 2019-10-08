@@ -1,18 +1,18 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { InstanceDetails, InstanceDetailsDeps, InstanceDetailsProps } from 'common/components/cards/instance-details';
+import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import { IMock, It, Mock, Times } from 'typemoq';
 
-import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
 import {
     AllPropertyTypes,
     CardRowProps,
     PropertyConfiguration,
 } from '../../../../../../common/configs/unified-result-property-configurations';
 import { NamedFC, ReactFCWithDisplayName } from '../../../../../../common/react/named-fc';
-import { UnifiedResult } from '../../../../../../common/types/store-data/unified-data-interface';
+import { UnifiedResolution, UnifiedResult } from '../../../../../../common/types/store-data/unified-data-interface';
 import { exampleUnifiedResult } from './sample-view-model-data';
 
 describe('InstanceDetails', () => {
@@ -62,10 +62,20 @@ describe('InstanceDetails', () => {
         cardSelectionMessageCreatorMock.verifyAll();
     });
 
+    it('renders nothing when there is no card row config for the property / no property', () => {
+        props.result.identifiers = { 'this-property-does-not-have-config': 'some value' };
+        props.result.descriptors = {};
+        props.result.resolution = {} as UnifiedResolution;
+
+        setupGetPropertyConfigByIdMock();
+
+        const testSubject = shallow(<InstanceDetails {...props} />);
+        expect(testSubject.getElement()).toMatchSnapshot();
+    });
+
     function getCardRowStub(name: string): ReactFCWithDisplayName<CardRowProps> {
         return NamedFC<CardRowProps>(name, _ => null);
     }
-
     function setupGetPropertyConfigByIdMock(): void {
         AllPropertyTypes.forEach(propertyType => {
             const propertyConfigurationStub: PropertyConfiguration = {
