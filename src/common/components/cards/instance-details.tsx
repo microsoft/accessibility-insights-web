@@ -5,6 +5,7 @@ import { forOwn, isEmpty } from 'lodash';
 import * as React from 'react';
 
 import { CardRowDeps, PropertyConfiguration } from '../../../common/configs/unified-result-property-configurations';
+import { CardSelectionMessageCreator } from '../../../common/message-creators/card-selection-message-creator';
 import {
     StoredInstancePropertyBag,
     TargetAppData,
@@ -17,6 +18,7 @@ import { HighlightState, InstanceDetailsFooter, InstanceDetailsFooterDeps } from
 
 export type InstanceDetailsDeps = {
     getPropertyConfigById: (id: string) => PropertyConfiguration;
+    cardSelectionMessageCreator: CardSelectionMessageCreator;
 } & CardRowDeps &
     InstanceDetailsFooterDeps;
 
@@ -49,9 +51,10 @@ export const InstanceDetails = NamedFC<InstanceDetailsProps>('InstanceDetails', 
         return <>{cardRows}</>;
     };
 
+    const cardClickHandler = () => deps.cardSelectionMessageCreator.toggleCardSelection(result.uid);
     return (
         <>
-            <table className={reportInstanceTable}>
+            <table className={reportInstanceTable} onClick={cardClickHandler}>
                 <tbody>
                     {renderCardRowsForPropertyBag(result.identifiers)}
                     {renderCardRowsForPropertyBag(result.descriptors)}
