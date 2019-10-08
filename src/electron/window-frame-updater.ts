@@ -11,7 +11,7 @@ export class WindowFrameUpdater {
         this.windowStateStore.addChangedListener(this.onRouteChange);
     }
 
-    private onRouteChange = async (store: WindowStateStore) => {
+    private onRouteChange = (store: WindowStateStore) => {
         if (store.getState().routeId === 'deviceConnectView') {
             if (this.browserWindow.isMaximized()) {
                 return;
@@ -22,7 +22,7 @@ export class WindowFrameUpdater {
         }
     };
 
-    private onWindowStateChange = async (store: WindowStateStore) => {
+    private onWindowStateChange = (store: WindowStateStore) => {
         switch (store.getState().currentWindowState) {
             case 'restoredOrMaximized':
                 if (this.browserWindow.isMaximized()) {

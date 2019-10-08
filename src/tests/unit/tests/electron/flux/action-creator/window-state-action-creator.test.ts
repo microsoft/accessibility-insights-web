@@ -30,7 +30,7 @@ describe(WindowStateActionCreator, () => {
         setRouteActionMock.verifyAll();
     });
 
-    it('calling setRoute invokes setWindowState action with given payload', () => {
+    it('calling setWindowState invokes setWindowState action with given payload', () => {
         const setWindowStateActionMock = Mock.ofType<Action<WindowStatePayload>>();
         const testPayload: WindowStatePayload = {
             currentWindowState: 'minimized',
