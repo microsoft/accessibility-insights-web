@@ -2,14 +2,13 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
+import { NamedFC } from 'common/react/named-fc';
 import { HeaderSection } from './header-section';
 
-export class AutomatedChecksView extends React.Component {
-    public render(): JSX.Element {
-        return (
-            <>
-                <HeaderSection />
-            </>
-        );
-    }
-}
+export const AutomatedChecksView = NamedFC('AutomatedChecksView', () => {
+    return (
+        <>
+            <HeaderSection />
+        </>
+    );
+});

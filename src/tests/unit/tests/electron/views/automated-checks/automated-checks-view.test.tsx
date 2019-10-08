@@ -4,7 +4,7 @@ import { AutomatedChecksView } from 'electron/views/automated-checks/components/
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
-describe(AutomatedChecksView, () => {
+describe('AutomatedChecksView', () => {
     it('renders the automated checks view', () => {
         const wrapped = shallow(<AutomatedChecksView />);
 
