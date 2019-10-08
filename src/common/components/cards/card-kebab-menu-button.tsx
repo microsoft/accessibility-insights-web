@@ -168,6 +168,6 @@ export class CardKebabMenuButton extends React.Component<CardKebabMenuButtonProp
     };
 
     private dismissDropdown(): void {
-        this.setState({ target: null, isContextMenuVisible: false, showingCopyToast: false, showNeedsSettingsContent: false });
+        this.setState({ target: null, isContextMenuVisible: false });
     }
 }
