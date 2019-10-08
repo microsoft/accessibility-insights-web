@@ -10,6 +10,7 @@ import { createFetchScanResults } from 'electron/platform/android/fetch-scan-res
 import { RootContainerProps, RootContainerState } from 'electron/views/root-container/components/root-container';
 import { WindowFrameUpdater } from 'electron/window-frame-updater';
 import * as ReactDOM from 'react-dom';
+
 import { UserConfigurationActions } from '../../../background/actions/user-configuration-actions';
 import { getPersistedData, PersistedData } from '../../../background/get-persisted-data';
 import { UserConfigurationActionCreator } from '../../../background/global-action-creators/user-configuration-action-creator';

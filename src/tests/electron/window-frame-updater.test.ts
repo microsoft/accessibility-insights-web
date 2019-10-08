@@ -11,9 +11,9 @@ describe(WindowFrameUpdater, () => {
     let windowStateStoreMock: IMock<WindowStateStore>;
     let testSubject: WindowFrameUpdater;
     let browserWindowMock: IMock<BrowserWindow>;
-    let changeListener: (state: WindowStateStoreData) => Promise<void>;
+    let changeListener: (state: WindowStateStoreData) => void;
 
-    beforeEach(async () => {
+    beforeEach(() => {
         windowStateStoreMock = Mock.ofType(WindowStateStore);
         browserWindowMock = Mock.ofType(BrowserWindow, MockBehavior.Strict);
 
@@ -27,12 +27,13 @@ describe(WindowFrameUpdater, () => {
     });
 
     describe('initialize', () => {
-        test.each(['deviceConnectView', 'resultsView'] as ViewRoutes[])('updates window based on initial state', async routeId => {
+        test.each(['deviceConnectView', 'resultsView'] as ViewRoutes[])('updates window based on initial state', routeId => {
             if (routeId === 'resultsView') {
                 setupVerifiableCallsForResultsView();
             } else if (routeId === 'deviceConnectView') {
                 setupVerifiableCallsForDeviceConnectRoute();
             }
+
             const windowStoreState: WindowStateStoreData = {
                 routeId,
             };
@@ -42,7 +43,7 @@ describe(WindowFrameUpdater, () => {
                 .returns(() => windowStoreState)
                 .verifiable(Times.once());
 
-            await testSubject.initialize();
+            testSubject.initialize();
 
             windowStateStoreMock.verifyAll();
             browserWindowMock.verifyAll();
@@ -51,7 +52,8 @@ describe(WindowFrameUpdater, () => {
 
     describe('verify change listener', () => {
         let windowStoreState: WindowStateStoreData;
-        beforeEach(async () => {
+
+        beforeEach(() => {
             windowStoreState = {
                 routeId: 'deviceConnectView',
             };
@@ -63,21 +65,21 @@ describe(WindowFrameUpdater, () => {
 
             browserWindowMock.setup(b => b.setSize(It.isAny(), It.isAny()));
 
-            await testSubject.initialize();
+            testSubject.initialize();
             browserWindowMock.reset();
         });
 
-        it('sets window state to deviceConnectView', async () => {
+        it('sets window state to deviceConnectView', () => {
             setupVerifiableCallsForDeviceConnectRoute();
 
-            await changeListener({ routeId: 'deviceConnectView' });
+            changeListener({ routeId: 'deviceConnectView' });
 
             browserWindowMock.verifyAll();
         });
 
-        it('sets window state to results view', async () => {
+        it('sets window state to results view', () => {
             setupVerifiableCallsForResultsView();
-            await changeListener({ routeId: 'resultsView' });
+            changeListener({ routeId: 'resultsView' });
 
             browserWindowMock.verifyAll();
         });
