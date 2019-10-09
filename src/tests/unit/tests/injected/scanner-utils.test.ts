@@ -377,7 +377,6 @@ describe('ScannerUtilsTest', () => {
             id: axeNodeResult.instanceId,
             guidanceLinks: [],
             helpUrl: 'help',
-            fingerprint: 'fingerprint',
             snippet: axeNodeResult.snippet || axeNodeResult.html,
         };
     }

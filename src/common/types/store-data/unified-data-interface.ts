@@ -61,8 +61,8 @@ export interface InstancePropertyBag {
 export type StoredInstancePropertyBag = InstancePropertyBag;
 
 export type UnifiedIdentifiers = {
-    identifier?: string;
-    conciseName?: string;
+    identifier: string;
+    conciseName: string;
 } & InstancePropertyBag;
 
 export type UnifiedDescriptors = {
@@ -70,7 +70,7 @@ export type UnifiedDescriptors = {
 } & InstancePropertyBag;
 
 export type UnifiedResolution = {
-    howToFixSummary?: string;
+    howToFixSummary: string;
 } & InstancePropertyBag;
 
 export interface UnifiedResult {

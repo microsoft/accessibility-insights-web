@@ -18,7 +18,9 @@ exports[`ResultSectionContent renders, with some rules 1`] = `
               "snippet": "this is a sample snippet",
             },
             "identifiers": Object {
+              "conciseName": "body img",
               "css-selector": "body img",
+              "identifier": "body img",
             },
             "resolution": Object {
               "how-to-fix-web": Object {
@@ -30,6 +32,7 @@ exports[`ResultSectionContent renders, with some rules 1`] = `
                 ],
                 "none": Array [],
               },
+              "howToFixSummary": "sample how to fix summary",
             },
             "ruleId": "image-alt",
             "status": "fail",

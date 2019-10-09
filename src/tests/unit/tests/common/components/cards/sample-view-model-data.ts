@@ -9,12 +9,15 @@ export const exampleUnifiedResult: UnifiedResult = {
     status: 'fail',
     ruleId: 'image-alt',
     identifiers: {
+        identifier: 'body img',
+        conciseName: 'body img',
         'css-selector': 'body img',
     },
     descriptors: {
         snippet: 'this is a sample snippet',
     },
     resolution: {
+        howToFixSummary: 'sample how to fix summary',
         'how-to-fix-web': {
             any: [
                 'Element does not have an alt attribute',

@@ -100,7 +100,6 @@ exports[`DetailsDialog renders with: {"expectedHelpUrl": "http://extension/help-
             "all": Array [],
             "any": Array [],
             "failureSummary": "failureSummary",
-            "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
             "guidanceLinks": Array [
               Object {
                 "href": "http://example.com",
@@ -207,7 +206,6 @@ exports[`DetailsDialog renders with: {"expectedHelpUrl": "http://extension/help-
                 "all": Array [],
                 "any": Array [],
                 "failureSummary": "failureSummary",
-                "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
                 "guidanceLinks": Array [
                   Object {
                     "href": "http://example.com",
@@ -295,7 +293,6 @@ exports[`DetailsDialog renders with: {"expectedHelpUrl": "http://extension/help-
                       "all": Array [],
                       "any": Array [],
                       "failureSummary": "failureSummary",
-                      "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
                       "guidanceLinks": Array [
                         Object {
                           "href": "http://example.com",
@@ -432,7 +429,6 @@ exports[`DetailsDialog renders with: {"expectedHelpUrl": "http://extension/help-
                           "all": Array [],
                           "any": Array [],
                           "failureSummary": "failureSummary",
-                          "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
                           "guidanceLinks": Array [
                             Object {
                               "href": "http://example.com",
@@ -658,7 +654,6 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": false, "shadowDialog": f
             "all": Array [],
             "any": Array [],
             "failureSummary": "failureSummary",
-            "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
             "guidanceLinks": Array [
               Object {
                 "href": "http://example.com",
@@ -765,7 +760,6 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": false, "shadowDialog": f
                 "all": Array [],
                 "any": Array [],
                 "failureSummary": "failureSummary",
-                "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
                 "guidanceLinks": Array [
                   Object {
                     "href": "http://example.com",
@@ -853,7 +847,6 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": false, "shadowDialog": f
                       "all": Array [],
                       "any": Array [],
                       "failureSummary": "failureSummary",
-                      "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
                       "guidanceLinks": Array [
                         Object {
                           "href": "http://example.com",
@@ -990,7 +983,6 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": false, "shadowDialog": f
                           "all": Array [],
                           "any": Array [],
                           "failureSummary": "failureSummary",
-                          "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
                           "guidanceLinks": Array [
                             Object {
                               "href": "http://example.com",
@@ -1221,7 +1213,6 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": false, "shadowDialog": t
               "all": Array [],
               "any": Array [],
               "failureSummary": "failureSummary",
-              "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
               "guidanceLinks": Array [
                 Object {
                   "href": "http://example.com",
@@ -1328,7 +1319,6 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": false, "shadowDialog": t
                   "all": Array [],
                   "any": Array [],
                   "failureSummary": "failureSummary",
-                  "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
                   "guidanceLinks": Array [
                     Object {
                       "href": "http://example.com",
@@ -1416,7 +1406,6 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": false, "shadowDialog": t
                         "all": Array [],
                         "any": Array [],
                         "failureSummary": "failureSummary",
-                        "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
                         "guidanceLinks": Array [
                           Object {
                             "href": "http://example.com",
@@ -1558,7 +1547,6 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": false, "shadowDialog": t
                               "all": Array [],
                               "any": Array [],
                               "failureSummary": "failureSummary",
-                              "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
                               "guidanceLinks": Array [
                                 Object {
                                   "href": "http://example.com",
@@ -1784,7 +1772,6 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": true, "shadowDialog": fa
             "all": Array [],
             "any": Array [],
             "failureSummary": "failureSummary",
-            "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
             "guidanceLinks": Array [
               Object {
                 "href": "http://example.com",
@@ -1891,7 +1878,6 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": true, "shadowDialog": fa
                 "all": Array [],
                 "any": Array [],
                 "failureSummary": "failureSummary",
-                "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
                 "guidanceLinks": Array [
                   Object {
                     "href": "http://example.com",
@@ -1979,7 +1965,6 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": true, "shadowDialog": fa
                       "all": Array [],
                       "any": Array [],
                       "failureSummary": "failureSummary",
-                      "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
                       "guidanceLinks": Array [
                         Object {
                           "href": "http://example.com",
@@ -2116,7 +2101,6 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": true, "shadowDialog": fa
                           "all": Array [],
                           "any": Array [],
                           "failureSummary": "failureSummary",
-                          "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
                           "guidanceLinks": Array [
                             Object {
                               "href": "http://example.com",
@@ -2347,7 +2331,6 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": true, "shadowDialog": tr
               "all": Array [],
               "any": Array [],
               "failureSummary": "failureSummary",
-              "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
               "guidanceLinks": Array [
                 Object {
                   "href": "http://example.com",
@@ -2454,7 +2437,6 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": true, "shadowDialog": tr
                   "all": Array [],
                   "any": Array [],
                   "failureSummary": "failureSummary",
-                  "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
                   "guidanceLinks": Array [
                     Object {
                       "href": "http://example.com",
@@ -2542,7 +2524,6 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": true, "shadowDialog": tr
                         "all": Array [],
                         "any": Array [],
                         "failureSummary": "failureSummary",
-                        "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
                         "guidanceLinks": Array [
                           Object {
                             "href": "http://example.com",
@@ -2684,7 +2665,6 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": true, "shadowDialog": tr
                               "all": Array [],
                               "any": Array [],
                               "failureSummary": "failureSummary",
-                              "fingerprint": "12345678-9ABC-1234-1234-123456789ABC",
                               "guidanceLinks": Array [
                                 Object {
                                   "href": "http://example.com",

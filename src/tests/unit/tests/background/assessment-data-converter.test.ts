@@ -57,7 +57,6 @@ describe('AssessmentDataConverterTest', () => {
                     } as DecoratedAxeNodeResult,
                 },
                 target: [selectorStub],
-                isVisible: true,
             },
         };
 
@@ -91,7 +90,6 @@ describe('AssessmentDataConverterTest', () => {
                     } as DecoratedAxeNodeResult,
                 },
                 target: [selectorStub],
-                isVisible: true,
             },
         };
         const expectedResult = {
@@ -130,7 +128,6 @@ describe('AssessmentDataConverterTest', () => {
             [selectorStub]: {
                 ruleResults: {},
                 target: [selectorStub],
-                isVisible: true,
             },
         };
         const expectedResult = {};
@@ -145,7 +142,6 @@ describe('AssessmentDataConverterTest', () => {
             [selectorStub]: {
                 ruleResults: {},
                 target: [selectorStub],
-                isVisible: true,
             },
         };
         const previouslyGeneratedInstances = {};
@@ -172,7 +168,6 @@ describe('AssessmentDataConverterTest', () => {
                     } as DecoratedAxeNodeResult,
                 },
                 target: [selectorStub],
-                isVisible: true,
             },
         };
         const expectedResult = {
@@ -215,7 +210,6 @@ describe('AssessmentDataConverterTest', () => {
                     } as DecoratedAxeNodeResult,
                 },
                 target: [selectorStub],
-                isVisible: true,
             },
         };
         const expectedResult = {
@@ -265,7 +259,6 @@ describe('AssessmentDataConverterTest', () => {
                     } as DecoratedAxeNodeResult,
                 },
                 target: [selectorStub],
-                isVisible: true,
             },
         };
         const previouslyGeneratedInstances: AssessmentInstancesMap = {

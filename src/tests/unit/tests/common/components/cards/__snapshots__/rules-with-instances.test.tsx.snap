@@ -36,7 +36,9 @@ exports[`RulesWithInstances renders 1`] = `
                   "snippet": "this is a sample snippet",
                 },
                 "identifiers": Object {
+                  "conciseName": "body img",
                   "css-selector": "body img",
+                  "identifier": "body img",
                 },
                 "resolution": Object {
                   "how-to-fix-web": Object {
@@ -48,6 +50,7 @@ exports[`RulesWithInstances renders 1`] = `
                     ],
                     "none": Array [],
                   },
+                  "howToFixSummary": "sample how to fix summary",
                 },
                 "ruleId": "image-alt",
                 "status": "fail",
@@ -55,6 +58,11 @@ exports[`RulesWithInstances renders 1`] = `
               },
             ],
             "url": "sample-url",
+          }
+        }
+        targetAppInfo={
+          Object {
+            "name": "app",
           }
         }
         userConfigurationStoreData={null}
@@ -74,7 +82,9 @@ exports[`RulesWithInstances renders 1`] = `
                   "snippet": "this is a sample snippet",
                 },
                 "identifiers": Object {
+                  "conciseName": "body img",
                   "css-selector": "body img",
+                  "identifier": "body img",
                 },
                 "resolution": Object {
                   "how-to-fix-web": Object {
@@ -86,6 +96,7 @@ exports[`RulesWithInstances renders 1`] = `
                     ],
                     "none": Array [],
                   },
+                  "howToFixSummary": "sample how to fix summary",
                 },
                 "ruleId": "image-alt",
                 "status": "fail",

@@ -167,7 +167,7 @@ export class AssessmentDataConverter {
             isCapturedByUser: false,
             failureSummary: ruleResult.failureSummary,
             isVisualizationEnabled: false,
-            isVisible: elementAxeResult.isVisible,
+            isVisible: true,
         };
     }
 

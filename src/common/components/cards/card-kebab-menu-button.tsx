@@ -4,21 +4,19 @@ import { IPoint } from '@uifabric/utilities';
 import { ActionButton } from 'office-ui-fabric-react/lib/Button';
 import { ContextualMenu, IContextualMenuItem } from 'office-ui-fabric-react/lib/ContextualMenu';
 import * as React from 'react';
-import { IssueFilingDialog } from '../../../DetailsView/components/issue-filing-dialog';
-import { IssueFilingService } from '../../../issue-filing/types/issue-filing-service';
-import { CreateIssueDetailsTextData } from '../../types/create-issue-details-text-data';
-import { IssueFilingNeedsSettingsContentProps } from '../../types/issue-filing-needs-setting-content';
-import { IssueFilingServiceProperties, UserConfigurationStoreData } from '../../types/store-data/user-configuration-store';
-import { IssueFilingButtonDeps } from '../issue-filing-button';
 
 import { IssueDetailsTextGenerator } from '../../../background/issue-details-text-generator';
 import { DetailsViewActionMessageCreator } from '../../../DetailsView/actions/details-view-action-message-creator';
-import { createDefaultLogger } from '../../logging/default-logger';
-import { Logger } from '../../logging/logger';
+import { IssueFilingDialog } from '../../../DetailsView/components/issue-filing-dialog';
+import { IssueFilingService } from '../../../issue-filing/types/issue-filing-service';
 import { NavigatorUtils } from '../../navigator-utils';
+import { CreateIssueDetailsTextData } from '../../types/create-issue-details-text-data';
+import { IssueFilingNeedsSettingsContentProps } from '../../types/issue-filing-needs-setting-content';
+import { IssueFilingServiceProperties, UserConfigurationStoreData } from '../../types/store-data/user-configuration-store';
 import { WindowUtils } from '../../window-utils';
+import { IssueFilingButtonDeps } from '../issue-filing-button';
 import { Toast } from '../toast';
-import { kebabMenuButton } from './card-footer.scss';
+import { kebabMenu, kebabMenuButton } from './card-kebab-menu-button.scss';
 
 export type CardKebabMenuButtonDeps = {
     windowUtils: WindowUtils;
@@ -41,8 +39,6 @@ export interface CardKebabMenuButtonProps {
 }
 
 export class CardKebabMenuButton extends React.Component<CardKebabMenuButtonProps, CardKebabMenuButtonState> {
-    private logger: Logger = createDefaultLogger();
-
     constructor(props: CardKebabMenuButtonProps) {
         super(props);
 
@@ -86,7 +82,14 @@ export class CardKebabMenuButton extends React.Component<CardKebabMenuButtonProp
             return null;
         }
 
-        return <ContextualMenu onDismiss={() => this.dismissDropdown()} target={this.state.target} items={this.getMenuItems()} />;
+        return (
+            <ContextualMenu
+                className={kebabMenu}
+                onDismiss={() => this.dismissDropdown()}
+                target={this.state.target}
+                items={this.getMenuItems()}
+            />
+        );
     }
 
     private getMenuItems(): IContextualMenuItem[] {
@@ -130,17 +133,13 @@ export class CardKebabMenuButton extends React.Component<CardKebabMenuButtonProp
         }
     };
 
-    private copyFailureDetails = (event: React.MouseEvent<any>): void => {
+    private copyFailureDetails = async (event: React.MouseEvent<any>): Promise<void> => {
+        const text = this.props.deps.issueDetailsTextGenerator.buildText(this.props.issueDetailsData);
         this.props.deps.detailsViewActionMessageCreator.copyIssueDetailsClicked(event);
 
-        this.props.deps.navigatorUtils
-            .copyToClipboard('The quick brown fox jumps over the lazy dog') // to be changed when we finish the new data format and builder
-            .then(() => {
-                this.setState({ showingCopyToast: true });
-            })
-            .catch(error => {
-                this.logger.error("Couldn't copy failure details!", error);
-            });
+        await this.props.deps.navigatorUtils.copyToClipboard(text);
+
+        this.setState({ showingCopyToast: true });
     };
 
     public renderIssueFilingSettingContent(): JSX.Element {
@@ -176,6 +175,6 @@ export class CardKebabMenuButton extends React.Component<CardKebabMenuButtonProp
     };
 
     private dismissDropdown(): void {
-        this.setState({ target: null, isContextMenuVisible: false, showingCopyToast: false, showNeedsSettingsContent: false });
+        this.setState({ target: null, isContextMenuVisible: false });
     }
 }

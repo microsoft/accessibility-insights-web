@@ -10,7 +10,7 @@ exports[`CardKebabMenuButtonTest render 1`] = `
 exports[`CardKebabMenuButtonTest render ContextualMenu 1`] = `
 "<div className=\\"kebabMenuButton\\">
   <CustomizedActionButton iconProps={{...}} onClick={[Function]} />
-  <StyledWithResponsiveMode onDismiss={[Function: onDismiss]} target=\\"Card View\\" items={{...}} />
+  <StyledWithResponsiveMode className=\\"kebabMenu\\" onDismiss={[Function: onDismiss]} target=\\"Card View\\" items={{...}} />
   <IssueFilingDialog deps={{...}} isOpen={false} selectedIssueFilingService={{...}} selectedIssueData={{...}} selectedIssueFilingServiceData={{...}} onClose={[Function]} issueFilingServicePropertiesMap={{...}} />
 </div>"
 `;
@@ -18,7 +18,6 @@ exports[`CardKebabMenuButtonTest render ContextualMenu 1`] = `
 exports[`CardKebabMenuButtonTest should click copy failure details and show the toast 1`] = `
 "<div className=\\"kebabMenuButton\\">
   <CustomizedActionButton iconProps={{...}} onClick={[Function]} />
-  <StyledWithResponsiveMode onDismiss={[Function: onDismiss]} target=\\"Card View\\" items={{...}} />
   <IssueFilingDialog deps={{...}} isOpen={false} selectedIssueFilingService={{...}} selectedIssueData={{...}} selectedIssueFilingServiceData={{...}} onClose={[Function]} issueFilingServicePropertiesMap={{...}} />
   <Toast onTimeout={[Function: onTimeout]} deps={{...}} timeoutLength={1000}>
     Failure details copied.
@@ -29,7 +28,6 @@ exports[`CardKebabMenuButtonTest should click copy failure details and show the 
 exports[`CardKebabMenuButtonTest should click file issue, invalid settings 1`] = `
 "<div className=\\"kebabMenuButton\\">
   <CustomizedActionButton iconProps={{...}} onClick={[Function]} />
-  <StyledWithResponsiveMode onDismiss={[Function: onDismiss]} target=\\"Card View\\" items={{...}} />
   <IssueFilingDialog deps={{...}} isOpen={true} selectedIssueFilingService={{...}} selectedIssueData={{...}} selectedIssueFilingServiceData={{...}} onClose={[Function]} issueFilingServicePropertiesMap={{...}} />
 </div>"
 `;
@@ -37,7 +35,6 @@ exports[`CardKebabMenuButtonTest should click file issue, invalid settings 1`] =
 exports[`CardKebabMenuButtonTest should click file issue, valid settings 1`] = `
 "<div className=\\"kebabMenuButton\\">
   <CustomizedActionButton iconProps={{...}} onClick={[Function]} />
-  <StyledWithResponsiveMode onDismiss={[Function: onDismiss]} target=\\"Card View\\" items={{...}} />
   <IssueFilingDialog deps={{...}} isOpen={false} selectedIssueFilingService={{...}} selectedIssueData={{...}} selectedIssueFilingServiceData={{...}} onClose={[Function]} issueFilingServicePropertiesMap={{...}} />
 </div>"
 `;

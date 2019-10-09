@@ -1,5 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { CardSelectionStore } from 'background/stores/card-selection-store';
+
 import { BaseStore } from '../../common/base-store';
 import { VisualizationConfigurationFactory } from '../../common/configs/visualization-configuration-factory';
 import { StoreType } from '../../common/types/store-type';
@@ -23,6 +25,7 @@ export class TabContextStoreHub implements StoreHub {
     public inspectStore: InspectStore;
     public pathSnippetStore: PathSnippetStore;
     public unifiedScanResultStore: UnifiedScanResultStore;
+    public cardSelectionStore: CardSelectionStore;
 
     constructor(actionHub: ActionHub, visualizationConfigurationFactory: VisualizationConfigurationFactory) {
         this.visualizationStore = new VisualizationStore(
@@ -60,6 +63,9 @@ export class TabContextStoreHub implements StoreHub {
 
         this.unifiedScanResultStore = new UnifiedScanResultStore(actionHub.scanResultActions);
         this.unifiedScanResultStore.initialize();
+
+        this.cardSelectionStore = new CardSelectionStore(actionHub.cardSelectionActions, actionHub.scanResultActions);
+        this.cardSelectionStore.initialize();
     }
 
     public getAllStores(): BaseStore<any>[] {
@@ -72,6 +78,7 @@ export class TabContextStoreHub implements StoreHub {
             this.inspectStore,
             this.pathSnippetStore,
             this.unifiedScanResultStore,
+            this.cardSelectionStore,
         ].filter(store => store != null);
     }
 

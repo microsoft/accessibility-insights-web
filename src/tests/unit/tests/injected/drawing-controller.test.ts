@@ -123,12 +123,11 @@ describe('DrawingControllerTest', () => {
         const iframeResults = ['iframeContent'];
         const iframeElement = 'iframeElement';
         const visibleResultStub = {} as HtmlElementAxeResults;
-        const notVisibleResultStub = { isVisible: false } as HtmlElementAxeResults;
         const disabledResultStub = { isVisualizationEnabled: false } as AssessmentVisualizationInstance;
         const resultsByFrames = [
             {
                 frame: null,
-                elementResults: [visibleResultStub, notVisibleResultStub, disabledResultStub],
+                elementResults: [visibleResultStub, disabledResultStub],
             },
             {
                 frame: iframeElement,

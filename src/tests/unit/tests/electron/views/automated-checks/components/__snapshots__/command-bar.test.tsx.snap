@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`AutomatedChecksCommandBar render 1`] = `
+exports[`CommandBar render 1`] = `
 <div
-  className="automatedChecksCommandBar"
+  className="commandBar"
 >
   <CustomizedActionButton
     iconProps={

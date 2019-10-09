@@ -40,7 +40,9 @@ exports[`ReportBody renders 1`] = `
                   "snippet": "this is a sample snippet",
                 },
                 "identifiers": Object {
+                  "conciseName": "body img",
                   "css-selector": "body img",
+                  "identifier": "body img",
                 },
                 "resolution": Object {
                   "how-to-fix-web": Object {
@@ -52,6 +54,7 @@ exports[`ReportBody renders 1`] = `
                     ],
                     "none": Array [],
                   },
+                  "howToFixSummary": "sample how to fix summary",
                 },
                 "ruleId": "image-alt",
                 "status": "fail",
@@ -76,6 +79,11 @@ exports[`ReportBody renders 1`] = `
         "targetPageUrl": "url:target-page",
         "timestamp": "today",
         "violations": Array [],
+      }
+    }
+    targetAppInfo={
+      Object {
+        "name": "app",
       }
     }
     toUtcString={[Function]}
@@ -121,7 +129,9 @@ exports[`ReportBody renders 1`] = `
                     "snippet": "this is a sample snippet",
                   },
                   "identifiers": Object {
+                    "conciseName": "body img",
                     "css-selector": "body img",
+                    "identifier": "body img",
                   },
                   "resolution": Object {
                     "how-to-fix-web": Object {
@@ -133,6 +143,7 @@ exports[`ReportBody renders 1`] = `
                       ],
                       "none": Array [],
                     },
+                    "howToFixSummary": "sample how to fix summary",
                   },
                   "ruleId": "image-alt",
                   "status": "fail",
@@ -157,6 +168,11 @@ exports[`ReportBody renders 1`] = `
           "targetPageUrl": "url:target-page",
           "timestamp": "today",
           "violations": Array [],
+        }
+      }
+      targetAppInfo={
+        Object {
+          "name": "app",
         }
       }
       toUtcString={[Function]}
@@ -200,7 +216,9 @@ exports[`ReportBody renders 1`] = `
                     "snippet": "this is a sample snippet",
                   },
                   "identifiers": Object {
+                    "conciseName": "body img",
                     "css-selector": "body img",
+                    "identifier": "body img",
                   },
                   "resolution": Object {
                     "how-to-fix-web": Object {
@@ -212,6 +230,7 @@ exports[`ReportBody renders 1`] = `
                       ],
                       "none": Array [],
                     },
+                    "howToFixSummary": "sample how to fix summary",
                   },
                   "ruleId": "image-alt",
                   "status": "fail",
@@ -236,6 +255,11 @@ exports[`ReportBody renders 1`] = `
           "targetPageUrl": "url:target-page",
           "timestamp": "today",
           "violations": Array [],
+        }
+      }
+      targetAppInfo={
+        Object {
+          "name": "app",
         }
       }
       toUtcString={[Function]}
@@ -279,7 +303,9 @@ exports[`ReportBody renders 1`] = `
                     "snippet": "this is a sample snippet",
                   },
                   "identifiers": Object {
+                    "conciseName": "body img",
                     "css-selector": "body img",
+                    "identifier": "body img",
                   },
                   "resolution": Object {
                     "how-to-fix-web": Object {
@@ -291,6 +317,7 @@ exports[`ReportBody renders 1`] = `
                       ],
                       "none": Array [],
                     },
+                    "howToFixSummary": "sample how to fix summary",
                   },
                   "ruleId": "image-alt",
                   "status": "fail",
@@ -315,6 +342,11 @@ exports[`ReportBody renders 1`] = `
           "targetPageUrl": "url:target-page",
           "timestamp": "today",
           "violations": Array [],
+        }
+      }
+      targetAppInfo={
+        Object {
+          "name": "app",
         }
       }
       toUtcString={[Function]}
@@ -358,7 +390,9 @@ exports[`ReportBody renders 1`] = `
                       "snippet": "this is a sample snippet",
                     },
                     "identifiers": Object {
+                      "conciseName": "body img",
                       "css-selector": "body img",
+                      "identifier": "body img",
                     },
                     "resolution": Object {
                       "how-to-fix-web": Object {
@@ -370,6 +404,7 @@ exports[`ReportBody renders 1`] = `
                         ],
                         "none": Array [],
                       },
+                      "howToFixSummary": "sample how to fix summary",
                     },
                     "ruleId": "image-alt",
                     "status": "fail",
@@ -394,6 +429,11 @@ exports[`ReportBody renders 1`] = `
             "targetPageUrl": "url:target-page",
             "timestamp": "today",
             "violations": Array [],
+          }
+        }
+        targetAppInfo={
+          Object {
+            "name": "app",
           }
         }
         toUtcString={[Function]}
@@ -437,7 +477,9 @@ exports[`ReportBody renders 1`] = `
                       "snippet": "this is a sample snippet",
                     },
                     "identifiers": Object {
+                      "conciseName": "body img",
                       "css-selector": "body img",
+                      "identifier": "body img",
                     },
                     "resolution": Object {
                       "how-to-fix-web": Object {
@@ -449,6 +491,7 @@ exports[`ReportBody renders 1`] = `
                         ],
                         "none": Array [],
                       },
+                      "howToFixSummary": "sample how to fix summary",
                     },
                     "ruleId": "image-alt",
                     "status": "fail",
@@ -473,6 +516,11 @@ exports[`ReportBody renders 1`] = `
             "targetPageUrl": "url:target-page",
             "timestamp": "today",
             "violations": Array [],
+          }
+        }
+        targetAppInfo={
+          Object {
+            "name": "app",
           }
         }
         toUtcString={[Function]}
@@ -516,7 +564,9 @@ exports[`ReportBody renders 1`] = `
                       "snippet": "this is a sample snippet",
                     },
                     "identifiers": Object {
+                      "conciseName": "body img",
                       "css-selector": "body img",
+                      "identifier": "body img",
                     },
                     "resolution": Object {
                       "how-to-fix-web": Object {
@@ -528,6 +578,7 @@ exports[`ReportBody renders 1`] = `
                         ],
                         "none": Array [],
                       },
+                      "howToFixSummary": "sample how to fix summary",
                     },
                     "ruleId": "image-alt",
                     "status": "fail",
@@ -552,6 +603,11 @@ exports[`ReportBody renders 1`] = `
             "targetPageUrl": "url:target-page",
             "timestamp": "today",
             "violations": Array [],
+          }
+        }
+        targetAppInfo={
+          Object {
+            "name": "app",
           }
         }
         toUtcString={[Function]}
@@ -597,7 +653,9 @@ exports[`ReportBody renders 1`] = `
                   "snippet": "this is a sample snippet",
                 },
                 "identifiers": Object {
+                  "conciseName": "body img",
                   "css-selector": "body img",
+                  "identifier": "body img",
                 },
                 "resolution": Object {
                   "how-to-fix-web": Object {
@@ -609,6 +667,7 @@ exports[`ReportBody renders 1`] = `
                     ],
                     "none": Array [],
                   },
+                  "howToFixSummary": "sample how to fix summary",
                 },
                 "ruleId": "image-alt",
                 "status": "fail",
@@ -633,6 +692,11 @@ exports[`ReportBody renders 1`] = `
         "targetPageUrl": "url:target-page",
         "timestamp": "today",
         "violations": Array [],
+      }
+    }
+    targetAppInfo={
+      Object {
+        "name": "app",
       }
     }
     toUtcString={[Function]}

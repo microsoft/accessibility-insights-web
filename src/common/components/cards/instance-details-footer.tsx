@@ -1,21 +1,23 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { NamedFC } from 'common/react/named-fc';
-import { UnifiedResult } from 'common/types/store-data/unified-data-interface';
 import { some, values } from 'lodash';
 import { Icon, Label } from 'office-ui-fabric-react';
 import * as React from 'react';
-import { guidanceTags } from '../../../content/guidance-tags';
+
+import { TargetAppData, UnifiedResult, UnifiedRule } from '../../../common/types/store-data/unified-data-interface';
+import { UnifiedResultToIssueFilingDataConverter } from '../../../issue-filing/unified-result-to-issue-filing-data';
 import { CreateIssueDetailsTextData } from '../../types/create-issue-details-text-data';
 import { UserConfigurationStoreData } from '../../types/store-data/user-configuration-store';
-import { foot, highlightDiv } from './card-footer.scss';
 import { CardInteractionSupport } from './card-interaction-support';
 import { CardKebabMenuButton, CardKebabMenuButtonDeps } from './card-kebab-menu-button';
+import { foot, highlightDiv } from './instance-details-footer.scss';
 
 export type HighlightState = 'visible' | 'hidden' | 'unavailable';
 
 export type InstanceDetailsFooterDeps = {
     cardInteractionSupport: CardInteractionSupport;
+    unifiedResultToIssueFilingDataConverter: UnifiedResultToIssueFilingDataConverter;
 } & CardKebabMenuButtonDeps;
 
 export type InstanceDetailsFooterProps = {
@@ -23,10 +25,12 @@ export type InstanceDetailsFooterProps = {
     result: UnifiedResult;
     highlightState: HighlightState;
     userConfigurationStoreData: UserConfigurationStoreData;
+    targetAppInfo: TargetAppData;
+    rule: UnifiedRule;
 };
 
 export const InstanceDetailsFooter = NamedFC<InstanceDetailsFooterProps>('InstanceDetailsFooter', props => {
-    const { highlightState, deps, userConfigurationStoreData } = props;
+    const { highlightState, deps, userConfigurationStoreData, result, rule, targetAppInfo } = props;
     const { cardInteractionSupport } = deps;
 
     const anyInteractionSupport = some(values(cardInteractionSupport));
@@ -34,30 +38,7 @@ export const InstanceDetailsFooter = NamedFC<InstanceDetailsFooterProps>('Instan
         return null;
     }
 
-    const issueDetailsData: CreateIssueDetailsTextData = {
-        rule: {
-            id: 'id',
-            description: 'description',
-            url: 'url',
-            guidance: [
-                {
-                    href: 'www.test.com',
-                    text: 'text',
-                    tags: [guidanceTags.WCAG_2_1],
-                },
-            ],
-        },
-        targetApp: {
-            name: 'name',
-            url: 'url',
-        },
-        element: {
-            identifier: 'identifier',
-            conciseName: 'conciseName',
-        },
-        howToFixSummary: 'howToFixSummary',
-        snippet: 'snippet',
-    };
+    const issueDetailsData: CreateIssueDetailsTextData = deps.unifiedResultToIssueFilingDataConverter.convert(result, rule, targetAppInfo);
 
     const kebabMenuIcon = () => {
         return (
