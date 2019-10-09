@@ -1,6 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 export const axeRuleResultExample = {
+    axeContext: {
+        axeMetaData: {
+            appIdentifier: 'com.test.scan-result',
+            axeVersion: 'axe-android-test-version',
+        },
+    },
     axeRuleResults: [
         {
             axeViewId: 1467971545,
