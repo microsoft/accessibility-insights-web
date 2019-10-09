@@ -27,9 +27,11 @@ const createWindow = () => {
 };
 
 const enableDevMode = (window: BrowserWindow) => {
-    window.webContents.openDevTools({
-        mode: 'detach',
-    });
+    if (process.env.DEV_MODE === 'true') {
+        window.webContents.openDevTools({
+            mode: 'detach',
+        });
+    }
 };
 
 app.on('ready', createWindow);

@@ -25,7 +25,7 @@ describe('CardKebabMenuButtonTest', () => {
     let issueFilingServiceProviderMock: IMock<IssueFilingServiceProvider>;
     let issueFilingActionMessageCreatorMock: IMock<IssueFilingActionMessageCreator>;
     let testIssueFilingServiceStub: IssueFilingService;
-    let textGeneratorMpck: IMock<IssueDetailsTextGenerator>;
+    let textGeneratorMock: IMock<IssueDetailsTextGenerator>;
     let issueDetailsData: CreateIssueDetailsTextData;
     const testKey: string = 'test';
 
@@ -71,7 +71,7 @@ describe('CardKebabMenuButtonTest', () => {
             howToFixSummary: 'howToFixSummary',
             snippet: 'snippet',
         };
-        textGeneratorMpck = Mock.ofType<IssueDetailsTextGenerator>();
+        textGeneratorMock = Mock.ofType<IssueDetailsTextGenerator>();
         actionCreatorMock = Mock.ofType<DetailsViewActionMessageCreator>();
         navigatorUtilsMock = Mock.ofType<NavigatorUtils>();
         issueFilingServiceProviderMock = Mock.ofType(IssueFilingServiceProvider);
@@ -92,7 +92,7 @@ describe('CardKebabMenuButtonTest', () => {
             .returns(() => testIssueFilingServiceStub)
             .verifiable();
 
-        textGeneratorMpck
+        textGeneratorMock
             .setup(tg => tg.buildText(issueDetailsData))
             .returns(() => issueDetailsText)
             .verifiable();
@@ -103,7 +103,7 @@ describe('CardKebabMenuButtonTest', () => {
                 navigatorUtils: navigatorUtilsMock.object,
                 issueFilingServiceProvider: issueFilingServiceProviderMock.object,
                 issueFilingActionMessageCreator: issueFilingActionMessageCreatorMock.object,
-                issueDetailsTextGenerator: textGeneratorMpck.object,
+                issueDetailsTextGenerator: textGeneratorMock.object,
             },
             userConfigurationStoreData,
             issueDetailsData,
@@ -157,7 +157,7 @@ describe('CardKebabMenuButtonTest', () => {
 
         actionCreatorMock.verifyAll();
         navigatorUtilsMock.verifyAll();
-        textGeneratorMpck.verifyAll();
+        textGeneratorMock.verifyAll();
     });
 
     it('should click file issue, valid settings', () => {

@@ -8,6 +8,7 @@ export class WindowFrameUpdater {
     constructor(private readonly windowStateStore: WindowStateStore, private readonly browserWindow: BrowserWindow) {}
 
     public initialize(): void {
+        this.onWindowStateChange();
         this.windowStateStore.addChangedListener(this.onWindowStateChange);
     }
 

@@ -1,0 +1,20 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+@import '../../styles/colors.scss';
+
+.kebab-menu {
+    i {
+        color: $primary-text;
+    }
+}
+
+.kebab-menu-button {
+    background: transparent;
+    top: calc(50% - 4px / 2);
+
+    i {
+        font-size: 20px;
+        border: 1.25px;
+        color: $primary-text;
+    }
+}

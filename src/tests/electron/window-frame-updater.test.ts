@@ -5,119 +5,90 @@ import { BrowserWindow } from 'electron';
 import { WindowFrameUpdater } from 'electron/window-frame-updater';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { WindowStateStore } from '../../electron/flux/store/window-state-store';
+import { ViewRoutes, WindowStateStoreData } from '../../electron/flux/types/window-state-store-data';
 
 describe(WindowFrameUpdater, () => {
     let windowStateStoreMock: IMock<WindowStateStore>;
     let testSubject: WindowFrameUpdater;
     let browserWindowMock: IMock<BrowserWindow>;
-    let changeListeners: ((store: WindowStateStore) => void)[];
+    let changeListener: () => void;
+    let windowStoreStateData: WindowStateStoreData;
+
     beforeEach(() => {
-        changeListeners = [];
         windowStateStoreMock = Mock.ofType(WindowStateStore);
         browserWindowMock = Mock.ofType(BrowserWindow, MockBehavior.Strict);
+        windowStoreStateData = {
+            currentWindowState: undefined,
+            routeId: 'deviceConnectView',
+        };
 
         windowStateStoreMock
             .setup(w => w.addChangedListener(It.isAny()))
             .callback(cb => {
-                changeListeners.push(cb);
+                changeListener = cb;
             });
 
+        windowStateStoreMock.setup(w => w.getState()).returns(() => windowStoreStateData);
+
         testSubject = new WindowFrameUpdater(windowStateStoreMock.object, browserWindowMock.object);
-        testSubject.initialize();
     });
 
-    it('sets window state to deviceConnectView', () => {
+    describe('initialize', () => {
+        test.each(['deviceConnectView', 'resultsView'] as ViewRoutes[])('updates window based on initial state', routeId => {
+            if (routeId === 'resultsView') {
+                setupVerifiableCallsForResultsView();
+            } else if (routeId === 'deviceConnectView') {
+                setupVerifiableCallsForDeviceConnectRoute();
+            }
+
+            windowStoreStateData.routeId = routeId;
+
+            testSubject.initialize();
+
+            windowStateStoreMock.verifyAll();
+            browserWindowMock.verifyAll();
+        });
+    });
+
+    describe('verify change listener', () => {
+        beforeEach(() => {
+            windowStoreStateData = {
+                routeId: 'deviceConnectView',
+                currentWindowState: undefined,
+            };
+
+            browserWindowMock.setup(b => b.setSize(It.isAny(), It.isAny()));
+
+            testSubject.initialize();
+            browserWindowMock.reset();
+        });
+
+        it('sets window state to deviceConnectView', () => {
+            setupVerifiableCallsForDeviceConnectRoute();
+
+            changeListener();
+
+            browserWindowMock.verifyAll();
+        });
+
+        it('sets window state to results view', () => {
+            windowStoreStateData = {
+                routeId: 'resultsView',
+                currentWindowState: undefined,
+            };
+
+            setupVerifiableCallsForResultsView();
+            changeListener();
+
+            browserWindowMock.verifyAll();
+        });
+    });
+
+    function setupVerifiableCallsForDeviceConnectRoute(): void {
         browserWindowMock.setup(b => b.setSize(600, 391)).verifiable(Times.once());
-        browserWindowMock.setup(b => b.isMaximized()).verifiable(Times.exactly(2));
+    }
+
+    function setupVerifiableCallsForResultsView(): void {
         browserWindowMock.setup(b => b.maximize()).verifiable(Times.once());
-
-        windowStateStoreMock
-            .setup(store => store.getState())
-            .returns(() => {
-                return { routeId: 'deviceConnectView', currentWindowState: 'restoredOrMaximized' };
-            })
-            .verifiable(Times.once());
-
-        changeListeners.forEach(fn => fn(windowStateStoreMock.object));
-
-        browserWindowMock.verifyAll();
-    });
-
-    it('sets window state to results view', () => {
-        browserWindowMock.setup(b => b.isMaximized()).verifiable(Times.once());
-        browserWindowMock.setup(b => b.maximize()).verifiable(Times.exactly(2));
-
-        windowStateStoreMock
-            .setup(store => store.getState())
-            .returns(() => {
-                return { routeId: 'resultsView', currentWindowState: 'restoredOrMaximized' };
-            })
-            .verifiable(Times.once());
-
-        changeListeners.forEach(fn => fn(windowStateStoreMock.object));
-
-        browserWindowMock.verifyAll();
-    });
-
-    it('minimizes the window', () => {
-        browserWindowMock.setup(b => b.minimize()).verifiable(Times.once());
-
-        browserWindowMock
-            .setup(b => b.isMaximized())
-            .returns(() => true)
-            .verifiable(Times.once());
-
-        browserWindowMock
-            .setup(b => b.isMinimized())
-            .returns(() => false)
-            .verifiable(Times.once());
-
-        windowStateStoreMock
-            .setup(store => store.getState())
-            .returns(() => {
-                return { routeId: 'deviceConnectView', currentWindowState: 'minimized' };
-            })
-            .verifiable(Times.once());
-
-        changeListeners.forEach(fn => fn(windowStateStoreMock.target));
-
-        browserWindowMock.verifyAll();
-    });
-
-    it('maximizes the window', () => {
-        browserWindowMock.setup(b => b.setSize(600, 391)).verifiable(Times.once());
-        browserWindowMock.setup(b => b.maximize()).verifiable(Times.once());
-        browserWindowMock.setup(b => b.isMaximized()).verifiable(Times.exactly(2));
-
-        windowStateStoreMock
-            .setup(store => store.getState())
-            .returns(() => {
-                return { routeId: 'deviceConnectView', currentWindowState: 'restoredOrMaximized' };
-            })
-            .verifiable(Times.once());
-
-        changeListeners.forEach(fn => fn(windowStateStoreMock.object));
-
-        browserWindowMock.verifyAll();
-    });
-
-    it('unmaximizes the window', () => {
-        browserWindowMock.setup(b => b.unmaximize()).verifiable(Times.once());
-
-        browserWindowMock
-            .setup(b => b.isMaximized())
-            .returns(() => true)
-            .verifiable(Times.exactly(2));
-
-        windowStateStoreMock
-            .setup(store => store.getState())
-            .returns(() => {
-                return { routeId: 'deviceConnectView', currentWindowState: 'restoredOrMaximized' };
-            })
-            .verifiable(Times.once());
-
-        changeListeners.forEach(fn => fn(windowStateStoreMock.object));
-
-        browserWindowMock.verifyAll();
-    });
+    }
 });

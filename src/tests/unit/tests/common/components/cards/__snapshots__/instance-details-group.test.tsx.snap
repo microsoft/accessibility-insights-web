@@ -16,7 +16,9 @@ exports[`InstanceDetailsGroup renders 1`] = `
             "snippet": "this is a sample snippet",
           },
           "identifiers": Object {
+            "conciseName": "body img",
             "css-selector": "body img",
+            "identifier": "body img",
           },
           "resolution": Object {
             "how-to-fix-web": Object {

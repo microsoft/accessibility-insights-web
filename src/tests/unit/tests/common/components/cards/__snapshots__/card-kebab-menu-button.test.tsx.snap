@@ -10,7 +10,7 @@ exports[`CardKebabMenuButtonTest render 1`] = `
 exports[`CardKebabMenuButtonTest render ContextualMenu 1`] = `
 "<div className=\\"kebabMenuButton\\">
   <CustomizedActionButton iconProps={{...}} onClick={[Function]} />
-  <StyledWithResponsiveMode onDismiss={[Function: onDismiss]} target=\\"Card View\\" items={{...}} />
+  <StyledWithResponsiveMode className=\\"kebabMenu\\" onDismiss={[Function: onDismiss]} target=\\"Card View\\" items={{...}} />
   <IssueFilingDialog deps={{...}} isOpen={false} selectedIssueFilingService={{...}} selectedIssueData={{...}} selectedIssueFilingServiceData={{...}} onClose={[Function]} issueFilingServicePropertiesMap={{...}} />
 </div>"
 `;
