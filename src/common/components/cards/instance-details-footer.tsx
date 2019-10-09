@@ -9,9 +9,9 @@ import { TargetAppData, UnifiedResult, UnifiedRule } from '../../../common/types
 import { UnifiedResultToIssueFilingDataConverter } from '../../../issue-filing/unified-result-to-issue-filing-data';
 import { CreateIssueDetailsTextData } from '../../types/create-issue-details-text-data';
 import { UserConfigurationStoreData } from '../../types/store-data/user-configuration-store';
-import { foot, highlightDiv } from './card-footer.scss';
 import { CardInteractionSupport } from './card-interaction-support';
 import { CardKebabMenuButton, CardKebabMenuButtonDeps } from './card-kebab-menu-button';
+import { foot, highlightDiv } from './instance-details-footer.scss';
 
 export type HighlightState = 'visible' | 'hidden' | 'unavailable';
 

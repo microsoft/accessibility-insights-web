@@ -16,7 +16,7 @@ import { IssueFilingServiceProperties, UserConfigurationStoreData } from '../../
 import { WindowUtils } from '../../window-utils';
 import { IssueFilingButtonDeps } from '../issue-filing-button';
 import { Toast } from '../toast';
-import { kebabMenuButton } from './card-footer.scss';
+import { kebabMenu, kebabMenuButton } from './card-kebab-menu-button.scss';
 
 export type CardKebabMenuButtonDeps = {
     windowUtils: WindowUtils;
@@ -82,7 +82,14 @@ export class CardKebabMenuButton extends React.Component<CardKebabMenuButtonProp
             return null;
         }
 
-        return <ContextualMenu onDismiss={() => this.dismissDropdown()} target={this.state.target} items={this.getMenuItems()} />;
+        return (
+            <ContextualMenu
+                className={kebabMenu}
+                onDismiss={() => this.dismissDropdown()}
+                target={this.state.target}
+                items={this.getMenuItems()}
+            />
+        );
     }
 
     private getMenuItems(): IContextualMenuItem[] {
