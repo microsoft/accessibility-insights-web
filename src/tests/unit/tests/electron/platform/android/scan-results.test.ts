@@ -4,6 +4,17 @@
 import { buildRuleResultObject, buildScanResultsObject, buildViewElement } from './scan-results-helpers';
 
 describe('ScanResults', () => {
+    test('axeVersion is "no-version" if missing from input', () => {
+        const scanResults = buildScanResultsObject();
+        expect(scanResults.axeVersion).toBeNull();
+    });
+
+    test('axeVersion is correct if specified in input', () => {
+        const axeVersion = 'test-axe-version';
+        const scanResults = buildScanResultsObject(null, null, null, null, axeVersion);
+        expect(scanResults.axeVersion).toEqual(axeVersion);
+    });
+
     test('deviceName is null if missing from input', () => {
         const scanResults = buildScanResultsObject();
         expect(scanResults.deviceName).toBeNull();
