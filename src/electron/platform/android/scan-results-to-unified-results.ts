@@ -5,21 +5,32 @@ import { InstancePropertyBag, InstanceResultStatus, UnifiedResult } from 'common
 import { UUIDGeneratorType } from 'common/uid-generator';
 import { DictionaryStringTo } from '../../../types/common-types';
 import { RuleInformation } from './rule-information';
-import { RuleInformationProvider } from './rule-information-provider';
+import { RuleInformationProviderType } from './rule-information-provider-type';
 import { RuleResultsData, ScanResults, ViewElementData } from './scan-results';
 
-export type ConvertScanResultsToUnifiedResultsDelegate = (scanResults: ScanResults, uuidGenerator: UUIDGeneratorType) => UnifiedResult[];
+export type ConvertScanResultsToUnifiedResultsDelegate = (
+    scanResults: ScanResults,
+    ruleInformationProvider: RuleInformationProviderType,
+    uuidGenerator: UUIDGeneratorType,
+) => UnifiedResult[];
 
-export function convertScanResultsToUnifiedResults(scanResults: ScanResults, uuidGenerator: UUIDGeneratorType): UnifiedResult[] {
+export function convertScanResultsToUnifiedResults(
+    scanResults: ScanResults,
+    ruleInformationProvider: RuleInformationProviderType,
+    uuidGenerator: UUIDGeneratorType,
+): UnifiedResult[] {
     if (!scanResults || !scanResults.ruleResults) {
         return [];
     }
 
-    return createUnifiedResultsFromScanResults(scanResults, uuidGenerator);
+    return createUnifiedResultsFromScanResults(scanResults, ruleInformationProvider, uuidGenerator);
 }
 
-function createUnifiedResultsFromScanResults(scanResults: ScanResults, uuidGenerator: UUIDGeneratorType): UnifiedResult[] {
-    const ruleInformationProvider: RuleInformationProvider = new RuleInformationProvider();
+function createUnifiedResultsFromScanResults(
+    scanResults: ScanResults,
+    ruleInformationProvider: RuleInformationProviderType,
+    uuidGenerator: UUIDGeneratorType,
+): UnifiedResult[] {
     const viewElementLookup: DictionaryStringTo<ViewElementData> = createViewElementLookup(scanResults);
     const unifiedResults: UnifiedResult[] = [];
 
