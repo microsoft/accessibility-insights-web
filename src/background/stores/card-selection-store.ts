@@ -26,6 +26,7 @@ export class CardSelectionStore extends BaseStoreImpl<CardSelectionStoreData> {
     public getDefaultState(): CardSelectionStoreData {
         const defaultValue: CardSelectionStoreData = {
             rules: {},
+            selectedCardCount: 0,
         };
 
         return defaultValue;
@@ -37,6 +38,10 @@ export class CardSelectionStore extends BaseStoreImpl<CardSelectionStoreData> {
         }
 
         forOwn(rule.cards, (isSelected, resultInstanceUid, cards) => {
+            if (cards[resultInstanceUid]) {
+                this.state.selectedCardCount -= 1;
+            }
+
             cards[resultInstanceUid] = false;
         });
     };
@@ -70,7 +75,13 @@ export class CardSelectionStore extends BaseStoreImpl<CardSelectionStoreData> {
 
         rule.cards[payload.resultInstanceUid] = !rule.cards[payload.resultInstanceUid];
 
+        this.updateCardSelectionCount(rule.cards[payload.resultInstanceUid]);
+
         this.emitChanged();
+    };
+
+    private updateCardSelectionCount = (value: boolean): void => {
+        this.state.selectedCardCount += value ? 1 : -1;
     };
 
     private collapseAllRules = (): void => {

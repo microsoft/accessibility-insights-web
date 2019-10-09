@@ -55,6 +55,7 @@ describe('CardSelectionStore Test', () => {
                     },
                 },
             },
+            selectedCardCount: 0,
         };
 
         createStoreForUnifiedScanResultActions('scanCompleted')
@@ -97,6 +98,7 @@ describe('CardSelectionStore Test', () => {
                     },
                 },
             },
+            selectedCardCount: 0,
         };
 
         initialState = cloneDeep(defaultState);
@@ -122,6 +124,7 @@ describe('CardSelectionStore Test', () => {
 
         initialState.rules['sampleRuleId1'].isExpanded = true;
         initialState.rules['sampleRuleId1'].cards['sampleUid1'] = true;
+        initialState.selectedCardCount = 1;
 
         createStoreForCardSelectionActions('toggleRuleExpandCollapse')
             .withActionParam(payload)
@@ -161,6 +164,7 @@ describe('CardSelectionStore Test', () => {
         };
 
         expectedState.rules['sampleRuleId1'].cards['sampleUid1'] = true;
+        expectedState.selectedCardCount = 1;
 
         createStoreForCardSelectionActions('toggleCardSelection')
             .withActionParam(payload)
@@ -174,6 +178,7 @@ describe('CardSelectionStore Test', () => {
         };
 
         initialState.rules['sampleRuleId1'].cards['sampleUid1'] = true;
+        initialState.selectedCardCount = 1;
 
         createStoreForCardSelectionActions('toggleCardSelection')
             .withActionParam(payload)
@@ -219,6 +224,7 @@ describe('CardSelectionStore Test', () => {
     test('CollapseAllRules', () => {
         expandRuleSelectCards(initialState.rules['sampleRuleId1']);
         expandRuleSelectCards(initialState.rules['sampleRuleId2']);
+        initialState.selectedCardCount = 4;
 
         createStoreForCardSelectionActions('collapseAllRules').testListenerToBeCalledOnce(initialState, expectedState);
     });
