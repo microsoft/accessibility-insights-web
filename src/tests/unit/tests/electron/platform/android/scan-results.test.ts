@@ -6,7 +6,7 @@ import { buildRuleResultObject, buildScanResultsObject, buildViewElement } from 
 describe('ScanResults', () => {
     test('axeVersion is "no-version" if missing from input', () => {
         const scanResults = buildScanResultsObject();
-        expect(scanResults.axeVersion).toBeNull();
+        expect(scanResults.axeVersion).toEqual('no-version');
     });
 
     test('axeVersion is correct if specified in input', () => {
