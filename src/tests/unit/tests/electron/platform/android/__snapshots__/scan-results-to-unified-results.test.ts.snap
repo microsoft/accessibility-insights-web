@@ -20,10 +20,7 @@ Array [
     },
     "identifiers": null,
     "resolution": Object {
-      "how-to-fix": Object {
-        "formatAsCode": null,
-        "unformattedText": "The text element has insufficient contrast of 1. Foreground color: #ffffff, background color: #ffffff). Modify the text foreground and/or background colors to provide a contrast ratio of at least 4.5:1 for regular text, or 3:1 for large text (at least 18pt, or 14pt+bold).",
-      },
+      "formatAsCode": null,
       "howToFixSummary": "The text element has insufficient contrast of 1. Foreground color: #ffffff, background color: #ffffff). Modify the text foreground and/or background colors to provide a contrast ratio of at least 4.5:1 for regular text, or 3:1 for large text (at least 18pt, or 14pt+bold).",
     },
     "ruleId": "ColorContrast",
@@ -39,13 +36,10 @@ Array [
     },
     "identifiers": null,
     "resolution": Object {
-      "how-to-fix": Object {
-        "formatAsCode": Array [
-          "minWidth",
-          "minHeight",
-        ],
-        "unformattedText": "The element has an insufficient target size (width: 32dp, height: 32dp). Set the element's minWidth and minHeight attributes to at least 48dp.",
-      },
+      "formatAsCode": Array [
+        "minWidth",
+        "minHeight",
+      ],
       "howToFixSummary": "The element has an insufficient target size (width: 32dp, height: 32dp). Set the element's minWidth and minHeight attributes to at least 48dp.",
     },
     "ruleId": "TouchSizeWcag",
@@ -66,13 +60,10 @@ Array [
     },
     "identifiers": null,
     "resolution": Object {
-      "how-to-fix": Object {
-        "formatAsCode": Array [
-          "minWidth",
-          "minHeight",
-        ],
-        "unformattedText": "The element has an insufficient target size (width: 48dp, height: 48dp). Set the element's minWidth and minHeight attributes to at least 48dp.",
-      },
+      "formatAsCode": Array [
+        "minWidth",
+        "minHeight",
+      ],
       "howToFixSummary": "The element has an insufficient target size (width: 48dp, height: 48dp). Set the element's minWidth and minHeight attributes to at least 48dp.",
     },
     "ruleId": "TouchSizeWcag",
@@ -93,10 +84,7 @@ Array [
     },
     "identifiers": null,
     "resolution": Object {
-      "how-to-fix": Object {
-        "formatAsCode": null,
-        "unformattedText": "The text element has insufficient contrast of 21. Foreground color: #ffffff, background color: #000000). Modify the text foreground and/or background colors to provide a contrast ratio of at least 4.5:1 for regular text, or 3:1 for large text (at least 18pt, or 14pt+bold).",
-      },
+      "formatAsCode": null,
       "howToFixSummary": "The text element has insufficient contrast of 21. Foreground color: #ffffff, background color: #000000). Modify the text foreground and/or background colors to provide a contrast ratio of at least 4.5:1 for regular text, or 3:1 for large text (at least 18pt, or 14pt+bold).",
     },
     "ruleId": "ColorContrast",
@@ -107,13 +95,10 @@ Array [
     "descriptors": null,
     "identifiers": null,
     "resolution": Object {
-      "how-to-fix": Object {
-        "formatAsCode": Array [
-          "minWidth",
-          "minHeight",
-        ],
-        "unformattedText": "The element has an insufficient target size (width: 0dp, height: 0dp). Set the element's minWidth and minHeight attributes to at least 48dp.",
-      },
+      "formatAsCode": Array [
+        "minWidth",
+        "minHeight",
+      ],
       "howToFixSummary": "The element has an insufficient target size (width: 0dp, height: 0dp). Set the element's minWidth and minHeight attributes to at least 48dp.",
     },
     "ruleId": "TouchSizeWcag",
