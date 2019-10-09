@@ -36,7 +36,7 @@ exports[`CardKebabMenuButtonTest shows failure message if copy failed 1`] = `
   <CustomizedActionButton menuIconProps={{...}} menuProps={{...}} />
   <IssueFilingDialog deps={{...}} isOpen={false} selectedIssueFilingService={{...}} selectedIssueData={{...}} selectedIssueFilingServiceData={{...}} onClose={[Function]} issueFilingServicePropertiesMap={{...}} />
   <Toast onTimeout={[Function: onTimeout]} deps={{...}} timeoutLength={1000}>
-    Failed to copy Failure details. Please try again.
+    Failed to copy failure details. Please try again.
   </Toast>
 </div>"
 `;

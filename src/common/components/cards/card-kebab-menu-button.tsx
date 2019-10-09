@@ -170,6 +170,6 @@ export class CardKebabMenuButton extends React.Component<CardKebabMenuButtonProp
     }
 
     private showToastWithFailureMessage(): void {
-        this.setState({ showingCopyToast: true, toastText: 'Failed to copy Failure details. Please try again.' });
+        this.setState({ showingCopyToast: true, toastText: 'Failed to copy failure details. Please try again.' });
     }
 }

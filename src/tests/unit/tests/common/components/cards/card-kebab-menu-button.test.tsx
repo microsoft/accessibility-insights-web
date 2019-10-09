@@ -166,7 +166,7 @@ describe('CardKebabMenuButtonTest', () => {
 
         expect(rendered.debug()).toMatchSnapshot();
         expect(rendered.state().showingCopyToast).toBe(true);
-        expect(rendered.state().toastText).toBe('Failed to copy Failure details. Please try again.');
+        expect(rendered.state().toastText).toBe('Failed to copy failure details. Please try again.');
     });
 
     it('should file issue, valid settings', async () => {
