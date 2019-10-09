@@ -15,7 +15,7 @@ import { IssueFilingServiceProperties, UserConfigurationStoreData } from '../../
 import { WindowUtils } from '../../window-utils';
 import { IssueFilingButtonDeps } from '../issue-filing-button';
 import { Toast } from '../toast';
-import { kebabMenuButton } from './card-footer.scss';
+import { kebabMenu, kebabMenuButton } from './card-kebab-menu-button.scss';
 
 export type CardKebabMenuButtonDeps = {
     windowUtils: WindowUtils;
@@ -55,6 +55,7 @@ export class CardKebabMenuButton extends React.Component<CardKebabMenuButtonProp
                         iconName: 'moreVertical',
                     }}
                     menuProps={{
+                        className: kebabMenu,
                         directionalHint: DirectionalHint.bottomRightEdge,
                         shouldFocusOnMount: true,
                         items: this.getMenuItems(),
