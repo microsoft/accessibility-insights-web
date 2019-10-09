@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { Mock } from 'typemoq';
-
-import { HowToFixDelegate, RuleInformation } from 'electron/platform/android/rule-information';
+import { UnifiedResolution } from 'common/types/store-data/unified-data-interface';
+import { GetUnifiedResolutionDelegate, RuleInformation } from 'electron/platform/android/rule-information';
 import { RuleResultsData } from 'electron/platform/android/scan-results';
+import { Mock } from 'typemoq';
 
 describe('RuleInformation', () => {
     const testInputs = ['abc', 'xyz', 'this should work'];
@@ -23,7 +23,7 @@ describe('RuleInformation', () => {
         }
     });
 
-    test('HowToFix works correctly', () => {
+    test('GetUnifiedResolution works correctly', () => {
         const testData: RuleResultsData = {
             axeViewId: 'test',
             ruleId: 'some rule',
@@ -32,12 +32,16 @@ describe('RuleInformation', () => {
         };
 
         for (const howToFixString of testInputs) {
-            const expectedPropertyBag = { someLabel: howToFixString };
-            const howToFixDelegateMock = Mock.ofType<HowToFixDelegate>();
-            howToFixDelegateMock.setup(func => func(testData)).returns(() => expectedPropertyBag);
-            const ruleInformation = new RuleInformation(null, null, howToFixDelegateMock.object);
-            const actualPropertyBag = ruleInformation.howToFix(testData);
-            expect(actualPropertyBag).toBe(expectedPropertyBag);
+            const expectedUnifiedResolution: UnifiedResolution = { howToFixSummary: howToFixString };
+
+            const getUnifiedResolutionDelegateMock = Mock.ofType<GetUnifiedResolutionDelegate>();
+            getUnifiedResolutionDelegateMock.setup(func => func(testData)).returns(() => expectedUnifiedResolution);
+
+            const ruleInformation = new RuleInformation(null, null, getUnifiedResolutionDelegateMock.object);
+
+            const actualUnifiedResolution = ruleInformation.getUnifiedResolution(testData);
+
+            expect(actualUnifiedResolution).toBe(expectedUnifiedResolution);
         }
     });
 });

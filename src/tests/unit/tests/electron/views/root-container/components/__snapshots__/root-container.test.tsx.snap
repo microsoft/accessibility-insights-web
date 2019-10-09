@@ -45,6 +45,7 @@ Object {
     "isFirstTime": true,
   },
   "windowStateStoreData": Object {
+    "currentWindowState": "restoredOrMaximized",
     "routeId": "deviceConnectView",
   },
 }
@@ -59,6 +60,7 @@ Object {
     "isFirstTime": true,
   },
   "windowStateStoreData": Object {
+    "currentWindowState": "restoredOrMaximized",
     "routeId": "resultsView",
   },
 }

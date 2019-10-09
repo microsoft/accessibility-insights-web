@@ -15,7 +15,7 @@ const createWindow = () => {
     });
 
     mainWindow
-        .loadFile(path.resolve(__dirname, '../electron/views/device-connect-view/deviceConnectView.html'))
+        .loadFile(path.resolve(__dirname, '../electron/views/index.html'))
         .then(() => console.log('url loaded'))
         .catch(console.log);
 
@@ -27,9 +27,11 @@ const createWindow = () => {
 };
 
 const enableDevMode = (window: BrowserWindow) => {
-    window.webContents.openDevTools({
-        mode: 'detach',
-    });
+    if (process.env.DEV_MODE === 'true') {
+        window.webContents.openDevTools({
+            mode: 'detach',
+        });
+    }
 };
 
 app.on('ready', createWindow);

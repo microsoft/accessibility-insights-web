@@ -12,7 +12,7 @@ export class RootContainerRenderer {
     ) {}
 
     public render(): void {
-        const deviceConnectViewContainer = this.dom.querySelector('#device-connect-view-container');
-        this.renderer(<RootContainer {...this.props} />, deviceConnectViewContainer);
+        const rootContainer = this.dom.querySelector('#root-container');
+        this.renderer(<RootContainer {...this.props} />, rootContainer);
     }
 }

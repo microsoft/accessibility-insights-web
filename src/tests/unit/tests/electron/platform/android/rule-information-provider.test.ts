@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { InstancePropertyBag } from 'common/types/store-data/unified-data-interface';
+import { UnifiedResolution } from 'common/types/store-data/unified-data-interface';
 import { RuleInformation } from 'electron/platform/android/rule-information';
 import { RuleInformationProvider } from 'electron/platform/android/rule-information-provider';
 import { RuleResultsData } from 'electron/platform/android/scan-results';
@@ -18,43 +18,43 @@ describe('RuleInformationProvider', () => {
         expect(provider.getRuleInformation('unknown rule')).toBeNull();
     });
 
-    function validateHowToFix(ruleId: string, ruleResult: RuleResultsData): InstancePropertyBag {
+    function validateUnifiedResolution(ruleId: string, ruleResult: RuleResultsData): UnifiedResolution {
         const ruleInformation: RuleInformation = provider.getRuleInformation(ruleId);
-        const howToFix = ruleInformation.howToFix(ruleResult);
+        const unifiedResolution = ruleInformation.getUnifiedResolution(ruleResult);
 
         expect(ruleInformation).toBeTruthy();
         expect(ruleInformation.ruleId).toEqual(ruleId);
         expect(ruleInformation.ruleDescription.length).toBeGreaterThan(0);
 
-        return howToFix;
+        return unifiedResolution;
     }
 
     test('getRuleInformation returns correct data for ColorContrast rule', () => {
         const testRuleId: string = 'ColorContrast';
         const ruleResult: RuleResultsData = buildColorContrastRuleResultObject('FAIL', 2.798498811425733, 'ff979797', 'fffafafa');
-        const howToFix: InstancePropertyBag = validateHowToFix(testRuleId, ruleResult);
-        expect(howToFix).toMatchSnapshot();
+        const unifiedResolution: UnifiedResolution = validateUnifiedResolution(testRuleId, ruleResult);
+        expect(unifiedResolution).toMatchSnapshot();
     });
 
     test('getRuleInformation returns correct data for TouchSizeWcag rule', () => {
         const testRuleId: string = 'TouchSizeWcag';
         const ruleResult: RuleResultsData = buildTouchSizeWcagRuleResultObject('FAIL', 2.25, 86, 95);
-        const howToFix: InstancePropertyBag = validateHowToFix(testRuleId, ruleResult);
-        expect(howToFix).toMatchSnapshot();
+        const unifiedResolution: UnifiedResolution = validateUnifiedResolution(testRuleId, ruleResult);
+        expect(unifiedResolution).toMatchSnapshot();
     });
 
     test('getRuleInformation returns correct data for ActiveViewName rule', () => {
-        const howToFix: InstancePropertyBag = validateHowToFix('ActiveViewName', null);
-        expect(howToFix).toMatchSnapshot();
+        const unifiedResolution: UnifiedResolution = validateUnifiedResolution('ActiveViewName', null);
+        expect(unifiedResolution).toMatchSnapshot();
     });
 
     test('getRuleInformation returns correct data for EditTextValue rule', () => {
-        const howToFix: InstancePropertyBag = validateHowToFix('EditTextValue', null);
-        expect(howToFix).toMatchSnapshot();
+        const unifiedResolution: UnifiedResolution = validateUnifiedResolution('EditTextValue', null);
+        expect(unifiedResolution).toMatchSnapshot();
     });
 
     test('getRuleInformation returns correct data for ImageViewName rule', () => {
-        const howToFix: InstancePropertyBag = validateHowToFix('ImageViewName', null);
-        expect(howToFix).toMatchSnapshot();
+        const unifiedResolution: UnifiedResolution = validateUnifiedResolution('ImageViewName', null);
+        expect(unifiedResolution).toMatchSnapshot();
     });
 });

@@ -1,0 +1,26 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+@import '../../../../common/styles/colors.scss';
+
+.title-bar {
+    width: 100%;
+    background: $ada-brand-color;
+    height: 32px;
+
+    :global(.header-icon) {
+        float: left;
+        height: 20px;
+        margin: 6px;
+    }
+
+    button {
+        float: right;
+        margin: 10px;
+        height: 12px;
+
+        i {
+            color: white;
+            font-size: 10px;
+        }
+    }
+}

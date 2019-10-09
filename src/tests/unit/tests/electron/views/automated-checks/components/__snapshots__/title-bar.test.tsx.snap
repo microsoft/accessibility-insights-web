@@ -1,0 +1,42 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TitleBar renders 1`] = `
+<div
+  className="titleBar"
+>
+  <BrandWhite />
+  <CustomizedActionButton
+    ariaHidden={true}
+    iconProps={
+      Object {
+        "iconName": "Cancel",
+      }
+    }
+    id="close-button"
+    onClick={[Function]}
+    tabIndex={-1}
+  />
+  <CustomizedActionButton
+    ariaHidden={true}
+    iconProps={
+      Object {
+        "iconName": "Stop",
+      }
+    }
+    id="maximize-button"
+    onClick={[Function]}
+    tabIndex={-1}
+  />
+  <CustomizedActionButton
+    ariaHidden={true}
+    iconProps={
+      Object {
+        "iconName": "ChromeMinimize",
+      }
+    }
+    id="minimize-button"
+    onClick={[Function]}
+    tabIndex={-1}
+  />
+</div>
+`;

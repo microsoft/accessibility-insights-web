@@ -2,6 +2,7 @@
 
 exports[`WindowStateStore returns device connect as the default state 1`] = `
 Object {
+  "currentWindowState": "restoredOrMaximized",
   "routeId": "deviceConnectView",
 }
 `;
