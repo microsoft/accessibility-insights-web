@@ -88,6 +88,14 @@ table.report-instance-table {
     word-break: break-all;
 }
 
+table.report-instance-table:focus {
+    outline: 1px red solid;
+}
+
+table.report-instance-table:hover {
+    outline: 1px solid #242b3a;
+}
+
 @media screen and (max-width: 480px) {
     .report-instance-table tr {
         display: block;

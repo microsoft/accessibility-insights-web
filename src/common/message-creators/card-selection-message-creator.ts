@@ -9,6 +9,7 @@ export class CardSelectionMessageCreator {
     constructor(private readonly dispatcher: ActionMessageDispatcher) {}
 
     public toggleCardSelection(resultInstanceUid: string): void {
+        console.log('called the action message creator function');
         const payload: CardSelectionPayload = {
             resultInstanceUid,
         };
