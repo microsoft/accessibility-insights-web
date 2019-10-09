@@ -11,6 +11,7 @@ import { TargetPageVisualizationUpdater } from 'injected/target-page-visualizati
 import { visualizationNeedsUpdate } from 'injected/visualization-needs-update';
 import { VisualizationStateChangeHandler } from 'injected/visualization-state-change-handler';
 
+import { UnifiedScanResultStoreData } from 'common/types/store-data/unified-data-interface';
 import { AxeInfo } from '../common/axe-info';
 import { InspectConfigurationFactory } from '../common/configs/inspect-configuration-factory';
 import { DateProvider } from '../common/date-provider';
@@ -79,6 +80,7 @@ export class MainWindowInitializer extends WindowInitializer {
     private tabStoreProxy: StoreProxy<TabStoreData>;
     private devToolStoreProxy: StoreProxy<DevToolState>;
     private pathSnippetStoreProxy: StoreProxy<PathSnippetStoreData>;
+    private unifiedScanResultStoreProxy: StoreProxy<UnifiedScanResultStoreData>;
 
     public async initialize(): Promise<void> {
         const asyncInitializationSteps: Promise<void>[] = [];
@@ -103,7 +105,10 @@ export class MainWindowInitializer extends WindowInitializer {
         this.devToolStoreProxy = new StoreProxy<DevToolState>(StoreNames[StoreNames.DevToolsStore], this.browserAdapter);
         this.inspectStoreProxy = new StoreProxy<InspectStoreData>(StoreNames[StoreNames.InspectStore], this.browserAdapter);
         this.pathSnippetStoreProxy = new StoreProxy<PathSnippetStoreData>(StoreNames[StoreNames.PathSnippetStore], this.browserAdapter);
-
+        this.unifiedScanResultStoreProxy = new StoreProxy<UnifiedScanResultStoreData>(
+            StoreNames[StoreNames.UnifiedScanResultStore],
+            this.browserAdapter,
+        );
         const actionMessageDispatcher = new ActionMessageDispatcher(this.browserAdapter.sendMessageToFrames, null);
 
         const storeActionMessageCreatorFactory = new StoreActionMessageCreatorFactory(actionMessageDispatcher);
@@ -161,6 +166,7 @@ export class MainWindowInitializer extends WindowInitializer {
             this.featureFlagStoreProxy,
             this.assessmentStoreProxy,
             this.userConfigStoreProxy,
+            this.unifiedScanResultStoreProxy,
         ]);
 
         const clientStoreListener = new ClientStoreListener(storeHub);

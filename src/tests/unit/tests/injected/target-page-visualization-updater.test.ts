@@ -45,6 +45,7 @@ describe('TargetPageVisualizationUpdater', () => {
             assessmentStoreData: {},
             tabStoreData: {},
             featureFlagStoreData: {},
+            unifiedScanResultStoreData: {},
         } as TargetPageStoreData;
         visualizationTypeStub = -1;
 
@@ -56,6 +57,8 @@ describe('TargetPageVisualizationUpdater', () => {
                     visualizationTypeStub,
                     storeDataStub.visualizationScanResultStoreData,
                     storeDataStub.assessmentStoreData,
+                    storeDataStub.unifiedScanResultStoreData,
+                    storeDataStub.featureFlagStoreData,
                 ),
             )
             .returns(() => selectorMapStub);

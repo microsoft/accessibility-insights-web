@@ -1,5 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { CheckData } from 'injected/frameCommunicators/unified-result-to-old-instance';
+
 import { createDefaultLogger } from '../common/logging/default-logger';
 import { Logger } from '../common/logging/logger';
 import { scan as scanRunner } from '../scanner/exposed-apis';
@@ -10,11 +12,7 @@ import { DictionaryStringTo } from '../types/common-types';
 
 declare var axe: any;
 
-export interface DecoratedAxeNodeResult {
-    // tslint:disable-next-line: no-reserved-keywords
-    any: FormattedCheckResult[];
-    none: FormattedCheckResult[];
-    all: FormattedCheckResult[];
+export type DecoratedAxeNodeResult = {
     status: boolean;
     ruleId: string;
     failureSummary: string;
@@ -25,7 +23,7 @@ export interface DecoratedAxeNodeResult {
     guidanceLinks: GuidanceLink[];
     helpUrl: string;
     snippet: string;
-}
+} & CheckData;
 
 export interface HtmlElementAxeResults {
     ruleResults: DictionaryStringTo<DecoratedAxeNodeResult>;

@@ -1,8 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
+import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import * as _ from 'lodash';
 
+import { FeatureFlags } from 'common/feature-flags';
+import { UnifiedScanResultStoreData } from 'common/types/store-data/unified-data-interface';
+import { getElementBasedViewModel } from 'injected/frameCommunicators/unified-result-to-old-instance';
 import { ManualTestStatus } from '../common/types/manual-test-status';
 import { AssessmentStoreData, GeneratedAssessmentInstance } from '../common/types/store-data/assessment-result-data';
 import { VisualizationScanResultData } from '../common/types/store-data/visualization-scan-result-data';
@@ -21,11 +25,18 @@ export class SelectorMapHelper {
         visualizationType: VisualizationType,
         visualizationScanResultData: VisualizationScanResultData,
         assessmentState: AssessmentStoreData,
+        unifiedScanData: UnifiedScanResultStoreData,
+        featureFlagData: FeatureFlagStoreData,
     ): DictionaryStringTo<AssessmentVisualizationInstance> {
         let selectorMap = {};
 
         if (this.isAdHocVisualization(visualizationType)) {
-            selectorMap = this.getAdHocVisualizationSelectorMap(visualizationType, visualizationScanResultData);
+            selectorMap = this.getAdHocVisualizationSelectorMap(
+                visualizationType,
+                visualizationScanResultData,
+                unifiedScanData,
+                featureFlagData,
+            );
         }
 
         if (this.assessmentsProvider.isValidType(visualizationType)) {
@@ -55,12 +66,17 @@ export class SelectorMapHelper {
     private getAdHocVisualizationSelectorMap(
         visualizationType: VisualizationType,
         visualizationScanResultData: VisualizationScanResultData,
+        unifiedScanData: UnifiedScanResultStoreData,
+        featureFlagData: FeatureFlagStoreData,
     ): DictionaryStringTo<AssessmentVisualizationInstance> {
         let selectorMap = {};
-
         switch (visualizationType) {
             case VisualizationType.Issues:
-                selectorMap = visualizationScanResultData.issues.selectedAxeResultsMap;
+                if (featureFlagData[FeatureFlags.universalCardsUI] === true) {
+                    selectorMap = getElementBasedViewModel(unifiedScanData.rules, unifiedScanData.results, []);
+                } else {
+                    selectorMap = visualizationScanResultData.issues.selectedAxeResultsMap;
+                }
                 break;
             case VisualizationType.Headings:
                 selectorMap = visualizationScanResultData.headings.fullAxeResultsMap;

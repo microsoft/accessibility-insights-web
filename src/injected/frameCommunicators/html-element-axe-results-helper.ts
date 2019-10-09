@@ -22,7 +22,6 @@ export interface AssessmentVisualizationInstance extends AxeResultsWithFrameLeve
     isVisualizationEnabled: boolean;
     html: string;
     propertyBag?: any;
-    identifier: string;
 }
 
 export class HtmlElementAxeResultsHelper {

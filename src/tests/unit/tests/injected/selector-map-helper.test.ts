@@ -33,7 +33,7 @@ describe('SelectorMapHelperTest', () => {
             const selectorMap = { key1: { target: ['element1'] } };
             const state = new VisualizationScanResultStoreDataBuilder().withSelectorMap(visualizationType, selectorMap).build();
 
-            expect(testSubject.getSelectorMap(visualizationType, state, null)).toEqual(selectorMap);
+            expect(testSubject.getSelectorMap(visualizationType, state, null, null, null)).toEqual(selectorMap);
         });
     });
 
@@ -41,7 +41,7 @@ describe('SelectorMapHelperTest', () => {
         const selectorMap = { key1: { target: ['element1'] } };
         const state = new VisualizationScanResultStoreDataBuilder().withIssuesSelectedTargets(selectorMap as any).build();
 
-        expect(testSubject.getSelectorMap(VisualizationType.Issues, state, null)).toEqual(selectorMap);
+        expect(testSubject.getSelectorMap(VisualizationType.Issues, state, null, null, null)).toEqual(selectorMap);
     });
 
     test('getState: tabStops', () => {
@@ -50,7 +50,7 @@ describe('SelectorMapHelperTest', () => {
 
         state.tabStops.tabbedElements = [];
 
-        expect(testSubject.getSelectorMap(visualizationType, state, null)).toEqual([]);
+        expect(testSubject.getSelectorMap(visualizationType, state, null, null, null)).toEqual([]);
     });
 
     test('getState for assessment, selector map is not null', () => {
@@ -94,7 +94,7 @@ describe('SelectorMapHelperTest', () => {
             },
         } as AssessmentStoreData;
 
-        const result = testSubject.getSelectorMap(visualizationType, null, state);
+        const result = testSubject.getSelectorMap(visualizationType, null, state, null, null);
 
         const expectedSelectedMap = {
             [assessment.key]: {
@@ -128,7 +128,7 @@ describe('SelectorMapHelperTest', () => {
             },
         } as AssessmentStoreData;
 
-        const result = testSubject.getSelectorMap(visualizationType, null, state);
+        const result = testSubject.getSelectorMap(visualizationType, null, state, null, null);
 
         expect(result).toBeNull();
     });

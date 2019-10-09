@@ -35,6 +35,8 @@ export class TargetPageVisualizationUpdater {
             visualizationType,
             storeData.visualizationScanResultStoreData,
             storeData.assessmentStoreData,
+            storeData.unifiedScanResultStoreData,
+            storeData.featureFlagStoreData,
         );
         this.executeUpdate(visualizationType, stepKey, storeData, selectorMap);
         this.previousVisualizationSelectorMapStates[visualizationType] = selectorMap;
