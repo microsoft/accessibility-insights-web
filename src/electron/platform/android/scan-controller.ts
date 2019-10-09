@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
 import { InstanceCount, TelemetryEventSource } from 'common/extension-telemetry-events';
+import { createDefaultLogger } from 'common/logging/default-logger';
 import { SCAN_COMPLETED, SCAN_FAILED, SCAN_STARTED } from 'electron/common/electron-telemetry-events';
 import { PortPayload } from 'electron/flux/action/device-action-payloads';
 import { ScanActions } from 'electron/flux/action/scan-actions';
@@ -14,6 +15,7 @@ export class ScanController {
         private readonly fetchScanResults: FetchScanResultsType,
         private readonly telemetryEventHandler: TelemetryEventHandler,
         private readonly getCurrentDate: () => Date,
+        private readonly logger = createDefaultLogger(),
     ) {}
 
     public initialize(): void {
@@ -70,7 +72,9 @@ export class ScanController {
         );
     }
 
-    private scanFailed(scanStartedTime: number, port: number): void {
+    private scanFailed(scanStartedTime: number, port: number, error: Error): void {
+        this.logger.error('scan failed: ', error);
+
         const scanCompletedTime = this.getCurrentDate().getTime();
 
         const scanDuration = scanCompletedTime - scanStartedTime;

@@ -3,6 +3,7 @@
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
 import { TelemetryEventSource } from 'common/extension-telemetry-events';
 import { Action } from 'common/flux/action';
+import { Logger } from 'common/logging/logger';
 import { SCAN_COMPLETED, SCAN_FAILED, SCAN_STARTED } from 'electron/common/electron-telemetry-events';
 import { PortPayload } from 'electron/flux/action/device-action-payloads';
 import { ScanActions } from 'electron/flux/action/scan-actions';
@@ -35,6 +36,7 @@ describe('ScanController', () => {
     let scanCompletedMock: IMock<Action<void>>;
     let scanFailedMock: IMock<Action<void>>;
     let getCurrentDateMock: IMock<() => Date>;
+    let loggerMock: IMock<Logger>;
 
     let testSubject: ScanController;
 
@@ -57,11 +59,14 @@ describe('ScanController', () => {
         getCurrentDateMock.setup(getter => getter()).returns(() => new Date(2019, 10, 8, 9, 0, 0));
         getCurrentDateMock.setup(getter => getter()).returns(() => new Date(2019, 10, 8, 9, 2, 15));
 
+        loggerMock = Mock.ofType<Logger>();
+
         testSubject = new ScanController(
             scanActionsMock.object,
             fetchScanResultsMock.object,
             telemetryEventHandlerMock.object,
             getCurrentDateMock.object,
+            loggerMock.object,
         );
     });
 
@@ -105,7 +110,8 @@ describe('ScanController', () => {
     });
 
     it('scans and handle error ', async () => {
-        fetchScanResultsMock.setup(fetch => fetch(port)).returns(() => Promise.reject());
+        const errorReason = 'dummy reason';
+        fetchScanResultsMock.setup(fetch => fetch(port)).returns(() => Promise.reject(errorReason));
 
         telemetryEventHandlerMock
             .setup(handler => handler.publishTelemetry(SCAN_STARTED, It.isValue(expectedScanStartedTelemetry)))
@@ -130,6 +136,7 @@ describe('ScanController', () => {
         await tick();
 
         scanFailedMock.verify(scanCompleted => scanCompleted.invoke(null), Times.once());
+        loggerMock.verify(logger => logger.error('scan failed: ', errorReason), Times.once());
 
         telemetryEventHandlerMock.verifyAll();
     });
