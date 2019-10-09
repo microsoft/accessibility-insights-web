@@ -34,7 +34,7 @@ exports[`DetailsViewDropDownTest renders with isContextMenuVisible = true 1`] = 
   <StyledWithResponsiveMode
     calloutProps={
       Object {
-        "className": "detailsViewDropdownCallout",
+        "className": "details-view-dropdown-callout",
       }
     }
     directionalHint={6}

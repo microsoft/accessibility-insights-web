@@ -122,6 +122,10 @@ div.insights-file-issue-details-dialog-container {
     padding-left: 5px !important;
 }
 
+.details-view-dropdown-callout {
+    right: 0 !important;
+}
+
 .generic-panel {
     margin-left: auto;
     margin-right: auto;
@@ -332,7 +336,10 @@ div.insights-file-issue-details-dialog-container {
                 margin-right: 8px;
             }
         }
-
+        .details-view-dropdown {
+            height: 100%;
+            width: 100%;
+        }
         .ms-Dropdown-container {
             display: inline-flex;
             margin-left: 24px;

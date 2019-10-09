@@ -6,7 +6,6 @@ import { ContextualMenu, IContextualMenuItem } from 'office-ui-fabric-react/lib/
 import { Icon } from 'office-ui-fabric-react/lib/Icon';
 import { Link } from 'office-ui-fabric-react/lib/Link';
 import * as React from 'react';
-import { detailsViewDropdownCallout } from './details-view-dropdown.scss';
 
 export interface DetailsViewDropDownProps {
     menuItems: IContextualMenuItem[];
@@ -44,7 +43,7 @@ export class DetailsViewDropDown extends React.Component<DetailsViewDropDownProp
         return (
             <ContextualMenu
                 calloutProps={{
-                    className: detailsViewDropdownCallout,
+                    className: 'details-view-dropdown-callout',
                 }}
                 gapSpace={12}
                 shouldFocusOnMount={true}
