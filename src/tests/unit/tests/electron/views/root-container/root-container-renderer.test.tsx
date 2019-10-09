@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { BrowserWindow } from 'electron';
-import { RootContainerRenderer } from 'electron/views/device-connect-view/root-container-renderer';
 import { RootContainer, RootContainerProps } from 'electron/views/root-container/components/root-container';
+import { RootContainerRenderer } from 'electron/views/root-container/root-container-renderer';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { IMock, It, Mock } from 'typemoq';

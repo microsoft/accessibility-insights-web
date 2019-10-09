@@ -33,8 +33,8 @@ import { DeviceConnectActionCreator } from '../flux/action-creator/device-connec
 import { DeviceActions } from '../flux/action/device-actions';
 import { DeviceStore } from '../flux/store/device-store';
 import { ElectronLink } from './device-connect-view/components/electron-link';
-import { RootContainerRenderer } from './device-connect-view/root-container-renderer';
 import { sendAppInitializedTelemetryEvent } from './device-connect-view/send-app-initialized-telemetry';
+import { RootContainerRenderer } from './root-container/root-container-renderer';
 
 initializeFabricIcons();
 
