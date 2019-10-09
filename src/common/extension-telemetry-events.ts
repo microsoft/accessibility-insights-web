@@ -173,6 +173,9 @@ export type ValidatePortTelemetryData = {
 export type AndroidScanCompletedTelemetryData = {
     port: number;
     scanDuration: number;
+} & InstanceCount;
+
+export type InstanceCount = {
     PASS: {
         [ruleId: string]: number;
     };

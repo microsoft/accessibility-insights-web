@@ -1,11 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
+import { InstanceCount } from 'common/extension-telemetry-events';
 import { SCAN_COMPLETED, SCAN_FAILED } from 'electron/common/electron-telemetry-events';
 import { PortPayload } from 'electron/flux/action/device-action-payloads';
 import { ScanActions } from 'electron/flux/action/scan-actions';
 import { FetchScanResultsType } from 'electron/platform/android/fetch-scan-results';
-import { ScanResults } from 'electron/platform/android/scan-results';
+import { RuleResultsData, ScanResults } from 'electron/platform/android/scan-results';
 
 export class ScanController {
     constructor(
@@ -34,19 +35,7 @@ export class ScanController {
 
         const scanDuration = scanCompletedTime - scanStartedTime;
 
-        const instanceCount = data.ruleResults.reduce((acc, cur) => {
-            if (acc[cur.status] == null) {
-                acc[cur.status] = {};
-            }
-
-            if (acc[cur.status][cur.ruleId] == null) {
-                acc[cur.status][cur.ruleId] = 1;
-            } else {
-                acc[cur.status][cur.ruleId]++;
-            }
-
-            return acc;
-        }, {});
+        const instanceCount = this.buildInstanceCount(data.ruleResults);
 
         this.telemetryEventHandler.publishTelemetry(SCAN_COMPLETED, {
             telemetry: {
@@ -57,6 +46,21 @@ export class ScanController {
         });
 
         this.scanActions.scanCompleted.invoke(null);
+    }
+
+    private buildInstanceCount(ruleResults: RuleResultsData[]): InstanceCount {
+        return ruleResults.reduce<InstanceCount>(
+            (accumulator, currentRuleResult) => {
+                if (accumulator[currentRuleResult.status][currentRuleResult.ruleId] == null) {
+                    accumulator[currentRuleResult.status][currentRuleResult.ruleId] = 1;
+                } else {
+                    accumulator[currentRuleResult.status][currentRuleResult.ruleId]++;
+                }
+
+                return accumulator;
+            },
+            { PASS: {}, FAIL: {}, INCOMPLETE: {} },
+        );
     }
 
     private scanFailed(scanStartedTime: number, port: number): void {
