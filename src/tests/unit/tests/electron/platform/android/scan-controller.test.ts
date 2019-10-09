@@ -1,8 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
+import { TelemetryEventSource } from 'common/extension-telemetry-events';
 import { Action } from 'common/flux/action';
-import { SCAN_COMPLETED, SCAN_FAILED } from 'electron/common/electron-telemetry-events';
+import { SCAN_COMPLETED, SCAN_FAILED, SCAN_STARTED } from 'electron/common/electron-telemetry-events';
 import { PortPayload } from 'electron/flux/action/device-action-payloads';
 import { ScanActions } from 'electron/flux/action/scan-actions';
 import { FetchScanResultsType } from 'electron/platform/android/fetch-scan-results';
@@ -18,6 +19,13 @@ describe('ScanController', () => {
 
     const payload: PortPayload = {
         port,
+    };
+
+    const expectedScanStartedTelemetry = {
+        telemetry: {
+            port,
+            source: TelemetryEventSource.ElectronDeviceConnect,
+        },
     };
 
     let telemetryEventHandlerMock: IMock<TelemetryEventHandler>;
@@ -61,6 +69,10 @@ describe('ScanController', () => {
         fetchScanResultsMock.setup(fetch => fetch(port)).returns(() => Promise.resolve(new ScanResults(axeRuleResultExample)));
 
         telemetryEventHandlerMock
+            .setup(handler => handler.publishTelemetry(SCAN_STARTED, It.isValue(expectedScanStartedTelemetry)))
+            .verifiable(Times.once(), ExpectedCallType.InSequence);
+
+        telemetryEventHandlerMock
             .setup(handler =>
                 handler.publishTelemetry(
                     SCAN_COMPLETED,
@@ -94,6 +106,10 @@ describe('ScanController', () => {
 
     it('scans and handle error ', async () => {
         fetchScanResultsMock.setup(fetch => fetch(port)).returns(() => Promise.reject());
+
+        telemetryEventHandlerMock
+            .setup(handler => handler.publishTelemetry(SCAN_STARTED, It.isValue(expectedScanStartedTelemetry)))
+            .verifiable(Times.once(), ExpectedCallType.InSequence);
 
         telemetryEventHandlerMock
             .setup(handler =>

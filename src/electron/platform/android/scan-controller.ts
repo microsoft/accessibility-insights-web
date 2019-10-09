@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
-import { InstanceCount } from 'common/extension-telemetry-events';
-import { SCAN_COMPLETED, SCAN_FAILED } from 'electron/common/electron-telemetry-events';
+import { InstanceCount, TelemetryEventSource } from 'common/extension-telemetry-events';
+import { SCAN_COMPLETED, SCAN_FAILED, SCAN_STARTED } from 'electron/common/electron-telemetry-events';
 import { PortPayload } from 'electron/flux/action/device-action-payloads';
 import { ScanActions } from 'electron/flux/action/scan-actions';
 import { FetchScanResultsType } from 'electron/platform/android/fetch-scan-results';
@@ -22,6 +22,13 @@ export class ScanController {
 
     private onScanStarted = (payload: PortPayload) => {
         const port = payload.port;
+
+        this.telemetryEventHandler.publishTelemetry(SCAN_STARTED, {
+            telemetry: {
+                port,
+                source: TelemetryEventSource.ElectronDeviceConnect,
+            },
+        });
 
         const scanStartedTime = this.getCurrentDate().getTime();
 
