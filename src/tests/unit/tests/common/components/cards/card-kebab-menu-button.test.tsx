@@ -4,10 +4,10 @@ import { IssueFilingActionMessageCreator } from 'common/message-creators/issue-f
 import { NamedFC } from 'common/react/named-fc';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import { guidanceTags } from 'content/guidance-tags';
-import { shallow } from 'enzyme';
+import { shallow, ShallowWrapper } from 'enzyme';
 import { IssueFilingServiceProvider } from 'issue-filing/issue-filing-service-provider';
 import { IssueFilingService } from 'issue-filing/types/issue-filing-service';
-import { ActionButton, ContextualMenu } from 'office-ui-fabric-react';
+import { ActionButton, ContextualMenu, IContextualMenuItem } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { IMock, Mock, Times } from 'typemoq';
 
@@ -116,19 +116,12 @@ describe('CardKebabMenuButtonTest', () => {
         expect(rendered.debug()).toMatchSnapshot();
     });
 
-    it('render ContextualMenu', () => {
-        const rendered = shallow<CardKebabMenuButton>(<CardKebabMenuButton {...defaultProps} />);
-        rendered.find(ActionButton).simulate('click', event);
-        expect(rendered.debug()).toMatchSnapshot();
-        expect(rendered.state().target).toBe(event.currentTarget);
-    });
-
-    it('should click copy failure details and show the toast', async () => {
+    it('copies failure details and show the toast', async () => {
         actionCreatorMock.setup(creator => creator.copyIssueDetailsClicked(event)).verifiable(Times.once());
 
         navigatorUtilsMock
             .setup(navigatorUtils => navigatorUtils.copyToClipboard(issueDetailsText))
-            .returns(async () => {
+            .returns(() => {
                 return Promise.resolve();
             })
             .verifiable(Times.once());
@@ -137,30 +130,46 @@ describe('CardKebabMenuButtonTest', () => {
 
         rendered.find(ActionButton).simulate('click', event);
 
-        expect(rendered.state().isContextMenuVisible).toBe(true);
         expect(rendered.state().showingCopyToast).toBe(false);
+        expect(rendered.state().toastText).toBe('');
 
-        const copyFailureDetails = rendered
-            .find(ContextualMenu)
-            .prop('items')
-            .find(elem => elem.key === 'copyfailuredetails').onClick;
-
+        const copyFailureDetailsMenuItem = getMenuItemWithKey(rendered, 'copyfailuredetails');
         // tslint:disable-next-line: await-promise
-        await copyFailureDetails(event);
-
-        rendered.find(ContextualMenu).prop('onDismiss')();
+        await copyFailureDetailsMenuItem.onClick(event);
 
         expect(rendered.debug()).toMatchSnapshot();
-
-        expect(rendered.state().isContextMenuVisible).toBe(false);
         expect(rendered.state().showingCopyToast).toBe(true);
+        expect(rendered.state().toastText).toBe('Failure details copied.');
 
         actionCreatorMock.verifyAll();
         navigatorUtilsMock.verifyAll();
         textGeneratorMock.verifyAll();
     });
 
-    it('should click file issue, valid settings', () => {
+    it('shows failure message if copy failed', async () => {
+        actionCreatorMock.setup(creator => creator.copyIssueDetailsClicked(event)).verifiable(Times.once());
+
+        navigatorUtilsMock
+            .setup(navigatorUtils => navigatorUtils.copyToClipboard(issueDetailsText))
+            .returns(() => {
+                return Promise.reject();
+            })
+            .verifiable(Times.once());
+
+        const rendered = shallow<CardKebabMenuButton>(<CardKebabMenuButton {...defaultProps} />);
+
+        rendered.find(ActionButton).simulate('click', event);
+
+        const copyFailureDetailsMenuItem = getMenuItemWithKey(rendered, 'copyfailuredetails');
+        // tslint:disable-next-line: await-promise
+        await copyFailureDetailsMenuItem.onClick(event);
+
+        expect(rendered.debug()).toMatchSnapshot();
+        expect(rendered.state().showingCopyToast).toBe(true);
+        expect(rendered.state().toastText).toBe('Failed to copy Failure details. Please try again.');
+    });
+
+    it('should file issue, valid settings', async () => {
         issueFilingActionMessageCreatorMock
             .setup(creator => creator.fileIssue(event, testKey, defaultProps.issueDetailsData))
             .verifiable(Times.once());
@@ -169,20 +178,12 @@ describe('CardKebabMenuButtonTest', () => {
 
         rendered.find(ActionButton).simulate('click', event);
 
-        expect(rendered.state().isContextMenuVisible).toBe(true);
         expect(rendered.state().showNeedsSettingsContent).toBe(false);
 
-        rendered
-            .find(ContextualMenu)
-            .prop('items')
-            .find(elem => elem.key === 'fileissue')
-            .onClick(event);
-
-        rendered.find(ContextualMenu).prop('onDismiss')();
+        getMenuItemWithKey(rendered, 'fileissue').onClick(event);
 
         expect(rendered.debug()).toMatchSnapshot();
 
-        expect(rendered.state().isContextMenuVisible).toBe(false);
         expect(rendered.state().showNeedsSettingsContent).toBe(false);
 
         issueFilingActionMessageCreatorMock.verifyAll();
@@ -200,33 +201,21 @@ describe('CardKebabMenuButtonTest', () => {
 
         rendered.find(ActionButton).simulate('click', event);
 
-        expect(rendered.state().isContextMenuVisible).toBe(true);
         expect(rendered.state().showNeedsSettingsContent).toBe(false);
 
-        rendered
-            .find(ContextualMenu)
-            .prop('items')
-            .find(elem => elem.key === 'fileissue')
-            .onClick(event);
-
-        rendered.find(ContextualMenu).prop('onDismiss')();
+        getMenuItemWithKey(rendered, 'fileissue').onClick(event);
 
         expect(rendered.debug()).toMatchSnapshot();
 
-        expect(rendered.state().isContextMenuVisible).toBe(false);
         expect(rendered.state().showNeedsSettingsContent).toBe(true);
 
         issueFilingActionMessageCreatorMock.verifyAll();
     });
 
-    it('should dismiss the contextMenu', () => {
-        const rendered = shallow<CardKebabMenuButton>(<CardKebabMenuButton {...defaultProps} />);
-        rendered.find(ActionButton).simulate('click', event);
-        rendered.find(ContextualMenu).prop('onDismiss')();
-
-        expect(rendered.state().isContextMenuVisible).toBe(false);
-        expect(rendered.state().showingCopyToast).toBe(false);
-        expect(rendered.state().showNeedsSettingsContent).toBe(false);
-        expect(rendered.state().target).toBeNull();
-    });
+    function getMenuItemWithKey(rendered: ShallowWrapper, itemKey: string): IContextualMenuItem {
+        return rendered
+            .find(ActionButton)
+            .prop('menuProps')
+            .items.find(elem => elem.key === itemKey);
+    }
 });
