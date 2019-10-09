@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`InstanceDetails renders 1`] = `
-<React.Fragment>
+<div
+  className="instanceDetailsCard"
+>
   <table
     className="reportInstanceTable"
     onClick={[Function]}
@@ -103,11 +105,13 @@ exports[`InstanceDetails renders 1`] = `
       }
     }
   />
-</React.Fragment>
+</div>
 `;
 
 exports[`InstanceDetails renders nothing when there is no card row config for the property / no property 1`] = `
-<React.Fragment>
+<div
+  className="instanceDetailsCard"
+>
   <table
     className="reportInstanceTable"
     onClick={[Function]}
@@ -144,5 +148,5 @@ exports[`InstanceDetails renders nothing when there is no card row config for th
       }
     }
   />
-</React.Fragment>
+</div>
 `;
