@@ -3,14 +3,14 @@
 import { EventHandlerList } from './event-handler-list';
 
 export class Store {
-    private changedHandlers = new EventHandlerList();
+    private changedHandlers = new EventHandlerList<Store, unknown>();
 
-    public addChangedListener(handler: Function): void {
-        this.changedHandlers.subscribe(handler as any);
+    public addChangedListener(handler: (store: Store, args?: unknown) => void): void {
+        this.changedHandlers.subscribe(handler);
     }
 
-    public removeChangedListener(handler: Function): void {
-        this.changedHandlers.unsubscribe(handler as any);
+    public removeChangedListener(handler: (store: Store, args?: unknown) => void): void {
+        this.changedHandlers.unsubscribe(handler);
     }
 
     protected emitChanged(): void {
