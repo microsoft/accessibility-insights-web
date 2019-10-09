@@ -7,7 +7,7 @@ import { guidanceTags } from 'content/guidance-tags';
 import { shallow, ShallowWrapper } from 'enzyme';
 import { IssueFilingServiceProvider } from 'issue-filing/issue-filing-service-provider';
 import { IssueFilingService } from 'issue-filing/types/issue-filing-service';
-import { ActionButton, ContextualMenu, IContextualMenuItem } from 'office-ui-fabric-react';
+import { ActionButton, IContextualMenuItem } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { IMock, Mock, Times } from 'typemoq';
 
