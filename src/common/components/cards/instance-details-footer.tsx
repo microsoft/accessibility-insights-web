@@ -40,13 +40,13 @@ export const InstanceDetailsFooter = NamedFC<InstanceDetailsFooterProps>('Instan
 
     const issueDetailsData: CreateIssueDetailsTextData = deps.unifiedResultToIssueFilingDataConverter.convert(result, rule, targetAppInfo);
 
-    const kebabMenuIcon = () => {
+    const renderKebabMenu = () => {
         return (
             <CardKebabMenuButton deps={deps} userConfigurationStoreData={userConfigurationStoreData} issueDetailsData={issueDetailsData} />
         );
     };
 
-    const HighlightButton = () => {
+    const renderHighlightStatus = () => {
         const label = 'Highlight ' + highlightState;
         return (
             <div className={highlightDiv}>
@@ -58,8 +58,8 @@ export const InstanceDetailsFooter = NamedFC<InstanceDetailsFooterProps>('Instan
 
     return (
         <div className={foot}>
-            {HighlightButton()}
-            {kebabMenuIcon()}
+            {renderHighlightStatus()}
+            {renderKebabMenu()}
         </div>
     );
 });
