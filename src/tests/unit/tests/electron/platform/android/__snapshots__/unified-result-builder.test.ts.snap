@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`buildUnifiedScanCompletedPayload builds the payload 1`] = `
+Object {
+  "rules": Array [
+    Object {
+      "description": "test-rule-description",
+      "guidance": Array [],
+      "id": "test-rule-id",
+      "url": "test-url",
+    },
+  ],
+  "scanResult": Array [
+    Object {
+      "descriptors": null,
+      "identifiers": null,
+      "resolution": null,
+      "ruleId": "test-rule-id",
+      "status": "pass",
+      "uid": "test-result-uid",
+    },
+  ],
+  "targetAppInfo": Object {
+    "name": "com.test.scan-result",
+  },
+  "toolInfo": Object {
+    "applicationProperties": Object {
+      "name": "AI-Android",
+      "version": "0.0",
+    },
+    "scanEngineProperties": Object {
+      "name": "axe-android",
+      "version": "axe-android-test-version",
+    },
+  },
+}
+`;
