@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { BrowserWindow } from 'electron';
-import { WindowStates } from 'electron/flux/types/window-state-store-data';
 import { WindowStateStore } from './flux/store/window-state-store';
 
 export class WindowFrameUpdater {

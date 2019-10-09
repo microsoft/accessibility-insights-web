@@ -5,7 +5,7 @@ import { BrowserWindow } from 'electron';
 import { WindowFrameUpdater } from 'electron/window-frame-updater';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { WindowStateStore } from '../../electron/flux/store/window-state-store';
-import { ViewRoutes, WindowStateStoreData } from '../../electron/flux/types/window-state-store-data';
+import { WindowStateStoreData } from '../../electron/flux/types/window-state-store-data';
 
 describe(WindowFrameUpdater, () => {
     let windowStateStoreMock: IMock<WindowStateStore>;
