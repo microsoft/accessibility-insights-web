@@ -65,10 +65,7 @@ function createUnifiedResult(
         status: getStatus(ruleResult.status),
         descriptors: getDescriptors(viewElementLookup[ruleResult.axeViewId]),
         identifiers: null,
-        resolution: {
-            howToFixSummary: ruleInformation.howToFixString(ruleResult),
-            'how-to-fix': ruleInformation.howToFix(ruleResult),
-        },
+        resolution: ruleInformation.getUnifiedResolution(ruleResult),
     };
 }
 
