@@ -5,6 +5,7 @@ import { TelemetryEventSource } from 'common/extension-telemetry-events';
 import { Action } from 'common/flux/action';
 import { SCAN_COMPLETED, SCAN_FAILED, SCAN_STARTED } from 'electron/common/electron-telemetry-events';
 import { ScanActionCreator } from 'electron/flux/action-creator/scan-action-creator';
+import { PortPayload } from 'electron/flux/action/device-action-payloads';
 import { ScanActions } from 'electron/flux/action/scan-actions';
 import { FetchScanResultsType } from 'electron/platform/android/fetch-scan-results';
 import { ScanResults } from 'electron/platform/android/scan-results';
@@ -25,7 +26,7 @@ describe('ScanActionCreator', () => {
     let telemetryEventHandlerMock: IMock<TelemetryEventHandler>;
     let scanActionsMock: IMock<ScanActions>;
     let fetchScanResultsMock: IMock<FetchScanResultsType>;
-    let scanStartedMock: IMock<Action<void>>;
+    let scanStartedMock: IMock<Action<PortPayload>>;
     let scanCompletedMock: IMock<Action<void>>;
     let scanFailedMock: IMock<Action<void>>;
     let getCurrentDateMock: IMock<() => Date>;
@@ -37,7 +38,7 @@ describe('ScanActionCreator', () => {
         fetchScanResultsMock = Mock.ofType<FetchScanResultsType>();
         scanActionsMock = Mock.ofType<ScanActions>();
 
-        scanStartedMock = Mock.ofType<Action<void>>();
+        scanStartedMock = Mock.ofType<Action<PortPayload>>();
         scanCompletedMock = Mock.ofType<Action<void>>();
         scanFailedMock = Mock.ofType<Action<void>>();
 
