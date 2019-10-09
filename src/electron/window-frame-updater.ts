@@ -8,10 +8,12 @@ export class WindowFrameUpdater {
     constructor(private readonly windowStateStore: WindowStateStore, private readonly browserWindow: BrowserWindow) {}
 
     public initialize(): void {
+        this.onRouteChange(this.windowStateStore.getState());
+
         this.windowStateStore.addChangedListener(this.onRouteChange);
     }
 
-    private onRouteChange = async (state: WindowStateStoreData) => {
+    private onRouteChange = (state: WindowStateStoreData) => {
         if (state.routeId === 'deviceConnectView') {
             this.browserWindow.setSize(600, 391);
         } else {
