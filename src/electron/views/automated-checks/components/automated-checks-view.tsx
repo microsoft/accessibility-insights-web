@@ -3,14 +3,16 @@
 import * as React from 'react';
 
 import { NamedFC } from 'common/react/named-fc';
+import { TitleBar, TitleBarProps } from 'electron/views/automated-checks/components/title-bar';
 import { CommandBar, CommandBarProps } from './command-bar';
 import { HeaderSection } from './header-section';
 
-export type AutomatedChecksViewProps = CommandBarProps;
+export type AutomatedChecksViewProps = CommandBarProps & TitleBarProps;
 
 export const AutomatedChecksView = NamedFC<AutomatedChecksViewProps>('AutomatedChecksView', props => {
     return (
         <>
+            <TitleBar deps={props.deps}></TitleBar>
             <CommandBar {...props} />
             <HeaderSection />
         </>
