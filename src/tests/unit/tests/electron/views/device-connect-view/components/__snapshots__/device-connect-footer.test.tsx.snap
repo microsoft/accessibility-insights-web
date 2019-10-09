@@ -12,6 +12,7 @@ exports[`DeviceConnectFooterTest render 1`] = `
   <CustomizedPrimaryButton
     className="footerButtonStart"
     disabled={true}
+    onClick={[Function]}
     text="Start testing"
   />
 </footer>

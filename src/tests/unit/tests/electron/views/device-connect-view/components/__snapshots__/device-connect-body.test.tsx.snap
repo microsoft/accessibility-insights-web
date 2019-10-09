@@ -26,6 +26,13 @@ exports[`DeviceConnectBodyTest renders, with device connect state = Connected 1`
   <DeviceConnectFooter
     canStartTesting={true}
     cancelClick={[Function]}
+    deps={
+      Object {
+        "currentWindow": Object {
+          "close": [Function],
+        },
+      }
+    }
   />
 </div>
 `;
@@ -56,6 +63,13 @@ exports[`DeviceConnectBodyTest renders, with device connect state = Connecting 1
   <DeviceConnectFooter
     canStartTesting={false}
     cancelClick={[Function]}
+    deps={
+      Object {
+        "currentWindow": Object {
+          "close": [Function],
+        },
+      }
+    }
   />
 </div>
 `;
@@ -86,6 +100,13 @@ exports[`DeviceConnectBodyTest renders, with device connect state = Default 1`] 
   <DeviceConnectFooter
     canStartTesting={false}
     cancelClick={[Function]}
+    deps={
+      Object {
+        "currentWindow": Object {
+          "close": [Function],
+        },
+      }
+    }
   />
 </div>
 `;
@@ -116,6 +137,13 @@ exports[`DeviceConnectBodyTest renders, with device connect state = Error 1`] = 
   <DeviceConnectFooter
     canStartTesting={false}
     cancelClick={[Function]}
+    deps={
+      Object {
+        "currentWindow": Object {
+          "close": [Function],
+        },
+      }
+    }
   />
 </div>
 `;
