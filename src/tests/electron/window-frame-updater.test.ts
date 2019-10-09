@@ -34,14 +34,22 @@ describe(WindowFrameUpdater, () => {
     });
 
     describe('initialize', () => {
-        test.each(['deviceConnectView', 'resultsView'] as ViewRoutes[])('updates window based on initial state', routeId => {
-            if (routeId === 'resultsView') {
-                setupVerifiableCallsForResultsView();
-            } else if (routeId === 'deviceConnectView') {
-                setupVerifiableCallsForDeviceConnectRoute();
-            }
+        it('updates window based on initial state - deviceConnectView', () => {
+            setupVerifiableCallsForDeviceConnectRoute();
+            windowStoreStateData.routeId = 'deviceConnectView';
 
-            windowStoreStateData.routeId = routeId;
+            testSubject.initialize();
+
+            windowStateStoreMock.verifyAll();
+            browserWindowMock.verifyAll();
+        });
+
+        it('updates window based on initial state - resultsView', () => {
+            windowStoreStateData = {
+                currentWindowState: 'restoredOrMaximized',
+                routeId: 'resultsView',
+            };
+            setupVerifiableMaximizeWindowCall();
 
             testSubject.initialize();
 
@@ -54,10 +62,10 @@ describe(WindowFrameUpdater, () => {
         beforeEach(() => {
             windowStoreStateData = {
                 routeId: 'deviceConnectView',
-                currentWindowState: undefined,
+                currentWindowState: 'restoredOrMaximized',
             };
 
-            browserWindowMock.setup(b => b.setSize(It.isAny(), It.isAny()));
+            setupVerifiableCallsForDeviceConnectRoute();
 
             testSubject.initialize();
             browserWindowMock.reset();
@@ -74,10 +82,32 @@ describe(WindowFrameUpdater, () => {
         it('sets window state to results view', () => {
             windowStoreStateData = {
                 routeId: 'resultsView',
-                currentWindowState: undefined,
+                currentWindowState: 'restoredOrMaximized',
             };
 
-            setupVerifiableCallsForResultsView();
+            setupVerifiableMaximizeWindowCall();
+            changeListener();
+
+            browserWindowMock.verifyAll();
+        });
+
+        it('minimizes the window under results view', () => {
+            windowStoreStateData.routeId = 'resultsView';
+            windowStoreStateData.currentWindowState = 'minimized';
+
+            setupVerifiableMinimizeWindowCall();
+
+            changeListener();
+
+            browserWindowMock.verifyAll();
+        });
+
+        it('restores the window under results view', () => {
+            windowStoreStateData.routeId = 'resultsView';
+            windowStoreStateData.currentWindowState = 'restoredOrMaximized';
+
+            setupVerifiableRestoreWindowCall();
+
             changeListener();
 
             browserWindowMock.verifyAll();
@@ -86,9 +116,30 @@ describe(WindowFrameUpdater, () => {
 
     function setupVerifiableCallsForDeviceConnectRoute(): void {
         browserWindowMock.setup(b => b.setSize(600, 391)).verifiable(Times.once());
+        browserWindowMock.setup(b => b.center()).verifiable(Times.once());
     }
 
-    function setupVerifiableCallsForResultsView(): void {
+    function setupVerifiableMaximizeWindowCall(): void {
+        browserWindowMock
+            .setup(b => b.isMaximized())
+            .returns(() => false)
+            .verifiable(Times.once());
         browserWindowMock.setup(b => b.maximize()).verifiable(Times.once());
+    }
+
+    function setupVerifiableRestoreWindowCall(): void {
+        browserWindowMock
+            .setup(b => b.isMaximized())
+            .returns(() => true)
+            .verifiable(Times.once());
+        browserWindowMock.setup(b => b.restore()).verifiable(Times.once());
+    }
+
+    function setupVerifiableMinimizeWindowCall(): void {
+        browserWindowMock
+            .setup(b => b.isMinimized())
+            .returns(() => false)
+            .verifiable(Times.once());
+        browserWindowMock.setup(b => b.minimize()).verifiable(Times.once());
     }
 });

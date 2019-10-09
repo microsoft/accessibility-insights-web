@@ -15,11 +15,12 @@ export class WindowFrameUpdater {
     private onWindowStateChange = () => {
         if (this.windowStateStore.getState().routeId === 'deviceConnectView') {
             this.browserWindow.setSize(600, 391);
+            this.browserWindow.center();
         } else {
             switch (this.windowStateStore.getState().currentWindowState) {
                 case 'restoredOrMaximized':
                     if (this.browserWindow.isMaximized()) {
-                        this.browserWindow.unmaximize();
+                        this.browserWindow.restore();
                     } else {
                         this.browserWindow.maximize();
                     }
@@ -30,7 +31,6 @@ export class WindowFrameUpdater {
                     }
                     break;
                 default:
-                    this.browserWindow.maximize();
                     break;
             }
         }
