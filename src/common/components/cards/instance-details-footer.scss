@@ -10,6 +10,8 @@
     height: 48px;
 
     border-top: 0.5px solid $neutral-10;
+    border-bottom-left-radius: inherit;
+    border-bottom-right-radius: inherit;
 
     .highlight-div {
         background: transparent;
