@@ -2,11 +2,11 @@
 // Licensed under the MIT License.
 import { Action } from 'common/flux/action';
 
-import { ConnectingPayload, ConnectionSucceedPayload } from './device-action-payloads';
+import { ConnectedDevicePayload, PortPayload } from './device-action-payloads';
 
 export class DeviceActions {
-    public readonly connectionSucceeded = new Action<ConnectionSucceedPayload>();
+    public readonly connectionSucceeded = new Action<ConnectedDevicePayload>();
     public readonly connectionFailed = new Action<void>();
-    public readonly connecting = new Action<ConnectingPayload>();
+    public readonly connecting = new Action<PortPayload>();
     public readonly resetConnection = new Action<void>();
 }
