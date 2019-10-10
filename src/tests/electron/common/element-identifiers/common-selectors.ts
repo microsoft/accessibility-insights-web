@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 export const CommonSelectors = {
     cancelButton: '.footer-button-cancel',
-    deviceViewContainer: '#device-connect-view-container',
+    rootContainer: '#root-container',
     portNumber: '.port-number-field',
     startButton: '.footer-button-start',
     validateButton: '.button-validate-port',

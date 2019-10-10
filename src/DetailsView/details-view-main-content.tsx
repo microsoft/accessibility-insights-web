@@ -39,7 +39,6 @@ export interface DetailsViewMainContentProps {
     selectedTest: VisualizationType;
     visualizationStoreData: VisualizationStoreData;
     visualizationScanResultData: VisualizationScanResultData;
-    unifiedResults: UnifiedStatusResults;
     visualizationConfigurationFactory: VisualizationConfigurationFactory;
     assessmentsProvider: AssessmentsProvider;
     dropdownClickHandler: DropdownClickHandler;

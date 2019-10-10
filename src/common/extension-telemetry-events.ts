@@ -171,6 +171,28 @@ export type ValidatePortTelemetryData = {
     port: number;
 };
 
+export type AndroidScanCompletedTelemetryData = {
+    port: number;
+    scanDuration: number;
+} & InstanceCount;
+
+export type InstanceCount = {
+    PASS: {
+        [ruleId: string]: number;
+    };
+    FAIL: {
+        [ruleId: string]: number;
+    };
+    INCOMPLETE: {
+        [ruleId: string]: number;
+    };
+};
+
+export type AndroidScanFailedTelemetryData = {
+    port: number;
+    scanDuration: number;
+};
+
 export type TelemetryData =
     | BaseTelemetryData
     | ToggleTelemetryData
@@ -191,4 +213,6 @@ export type TelemetryData =
     | IssuesAnalyzerScanTelemetryData
     | AssessmentRequirementScanTelemetryData
     | RequirementStatusTelemetryData
-    | ValidatePortTelemetryData;
+    | ValidatePortTelemetryData
+    | AndroidScanCompletedTelemetryData
+    | AndroidScanFailedTelemetryData;

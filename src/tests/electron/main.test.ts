@@ -32,7 +32,7 @@ describe('Electron E2E', () => {
 
     async function ensureAppIsInDeviceConnectionDialog(): Promise<void> {
         const webDriverClient: WebdriverIO.Client<void> = app.client;
-        await webDriverClient.waitForVisible(CommonSelectors.deviceViewContainer, DEFAULT_ELECTRON_TEST_TIMEOUT_MS);
+        await webDriverClient.waitForVisible(CommonSelectors.rootContainer, DEFAULT_ELECTRON_TEST_TIMEOUT_MS);
         expect(await app.webContents.getTitle()).toBe('Accessibility Insights for Mobile');
     }
 

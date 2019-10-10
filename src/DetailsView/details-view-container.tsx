@@ -192,7 +192,6 @@ export class DetailsViewContainer extends React.Component<DetailsViewContainerPr
                 detailsViewStoreData={storeState.detailsViewStoreData}
                 visualizationStoreData={storeState.visualizationStoreData}
                 visualizationScanResultData={storeState.visualizationScanResultStoreData}
-                unifiedResults={ruleResults}
                 visualizationConfigurationFactory={this.props.visualizationConfigurationFactory}
                 assessmentsProvider={this.props.assessmentsProvider}
                 dropdownClickHandler={this.props.dropdownClickHandler}

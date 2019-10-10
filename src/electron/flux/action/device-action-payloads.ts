@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-export interface ConnectingPayload {
+export interface PortPayload {
     port: number;
 }
 
-export interface ConnectionSucceedPayload {
+export interface ConnectedDevicePayload {
     connectedDevice: string;
 }

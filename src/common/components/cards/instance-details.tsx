@@ -12,7 +12,7 @@ import {
     UnifiedResult,
     UnifiedRule,
 } from '../../../common/types/store-data/unified-data-interface';
-import { reportInstanceTable } from '../../../reports/components/instance-details.scss';
+import { instanceDetailsCard, reportInstanceTable } from '../../../reports/components/instance-details.scss';
 import { UserConfigurationStoreData } from '../../types/store-data/user-configuration-store';
 import { HighlightState, InstanceDetailsFooter, InstanceDetailsFooterDeps } from './instance-details-footer';
 
@@ -53,7 +53,7 @@ export const InstanceDetails = NamedFC<InstanceDetailsProps>('InstanceDetails', 
 
     const cardClickHandler = () => deps.cardSelectionMessageCreator.toggleCardSelection(result.uid);
     return (
-        <>
+        <div className={instanceDetailsCard}>
             <table className={reportInstanceTable} onClick={cardClickHandler}>
                 <tbody>
                     {renderCardRowsForPropertyBag(result.identifiers)}
@@ -69,6 +69,6 @@ export const InstanceDetails = NamedFC<InstanceDetailsProps>('InstanceDetails', 
                 rule={rule}
                 targetAppInfo={targetAppInfo}
             />
-        </>
+        </div>
     );
 });
