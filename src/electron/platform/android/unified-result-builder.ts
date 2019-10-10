@@ -13,6 +13,8 @@ import {
     ConvertScanResultsToUnifiedRulesDelegate,
 } from 'electron/platform/android/scan-results-to-unified-rules';
 
+export type UnifiedScanCompletedPayloadBuilder = (scanResults: ScanResults) => UnifiedScanCompletedPayload;
+
 export const createBuilder = (
     getUnifiedResults: ConvertScanResultsToUnifiedResultsDelegate,
     getUnifiedRules: ConvertScanResultsToUnifiedRulesDelegate,
