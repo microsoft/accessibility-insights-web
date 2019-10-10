@@ -25,12 +25,12 @@ Object {
   },
   "toolInfo": Object {
     "applicationProperties": Object {
-      "name": "test-app",
+      "name": "test-app-name",
       "version": "test-version",
     },
     "scanEngineProperties": Object {
-      "name": "axe-android",
-      "version": "axe-android-test-version",
+      "name": "test-scan-engine-name",
+      "version": "test-scan-engine-version",
     },
   },
 }

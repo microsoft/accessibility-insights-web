@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { UnifiedScanCompletedPayload } from 'background/actions/action-payloads';
 import { generateUID, UUIDGeneratorType } from 'common/uid-generator';
-import { ApplicationPropertiesDelegate } from 'electron/common/application-properties-provider';
+import { ToolDataDelegate } from 'electron/common/application-properties-provider';
 import { ScanResults } from 'electron/platform/android/scan-results';
 import {
     convertScanResultsToUnifiedResults,
@@ -19,18 +19,12 @@ export const createBuilder = (
     getUnifiedResults: ConvertScanResultsToUnifiedResultsDelegate,
     getUnifiedRules: ConvertScanResultsToUnifiedRulesDelegate,
     uuidGenerator: UUIDGeneratorType,
-    applicationPropertiesDelegate: ApplicationPropertiesDelegate,
+    getToolData: ToolDataDelegate,
 ) => (scanResults: ScanResults): UnifiedScanCompletedPayload => {
     const payload: UnifiedScanCompletedPayload = {
         scanResult: getUnifiedResults(scanResults, uuidGenerator),
         rules: getUnifiedRules(scanResults, uuidGenerator),
-        toolInfo: {
-            scanEngineProperties: {
-                name: 'axe-android',
-                version: scanResults.axeVersion,
-            },
-            applicationProperties: applicationPropertiesDelegate(),
-        },
+        toolInfo: getToolData(scanResults),
         targetAppInfo: {
             name: scanResults.appIdentifier,
         },
@@ -38,6 +32,6 @@ export const createBuilder = (
     return payload;
 };
 
-export const createDefaultBuilder = (applicationPropertiesDelegate: ApplicationPropertiesDelegate) => {
-    return createBuilder(convertScanResultsToUnifiedResults, convertScanResultsToUnifiedRules, generateUID, applicationPropertiesDelegate);
+export const createDefaultBuilder = (getToolData: ToolDataDelegate) => {
+    return createBuilder(convertScanResultsToUnifiedResults, convertScanResultsToUnifiedRules, generateUID, getToolData);
 };
