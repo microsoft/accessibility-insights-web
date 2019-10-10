@@ -18,8 +18,10 @@ describe('Card Selection Message Creator', () => {
 
     it('dispatches message for toggleCardSelection', () => {
         const resultInstanceUid = 'test-uid';
+        const ruleId = 'test-rule-id';
         const payload: CardSelectionPayload = {
             resultInstanceUid,
+            ruleId,
         };
 
         const expectedMessage: Message = {
@@ -27,7 +29,7 @@ describe('Card Selection Message Creator', () => {
             payload,
         };
 
-        testSubject.toggleCardSelection(resultInstanceUid);
+        testSubject.toggleCardSelection(ruleId, resultInstanceUid);
 
         dispatcherMock.verify(handler => handler.dispatchMessage(expectedMessage), Times.once());
     });

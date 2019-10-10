@@ -22,7 +22,6 @@ export type DecoratedAxeNodeResult = {
     id: string;
     guidanceLinks: GuidanceLink[];
     helpUrl: string;
-    snippet: string;
 } & CheckData;
 
 export interface HtmlElementAxeResults {
@@ -131,7 +130,6 @@ export class ScannerUtils {
                     id: node.instanceId,
                     guidanceLinks: ruleResult.guidanceLinks,
                     helpUrl: ruleResult.helpUrl,
-                    snippet: node.snippet || node.html,
                 };
             });
         });

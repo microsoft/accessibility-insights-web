@@ -1,13 +1,18 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { CardRowDeps, PropertyConfiguration } from 'common/configs/unified-result-property-configurations';
-import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
 import { NamedFC } from 'common/react/named-fc';
-import { StoredInstancePropertyBag, UnifiedResult } from 'common/types/store-data/unified-data-interface';
 import { forOwn, isEmpty } from 'lodash';
 import * as React from 'react';
-import { reportInstanceTable } from 'reports/components/instance-details.scss';
 
+import { CardRowDeps, PropertyConfiguration } from '../../../common/configs/unified-result-property-configurations';
+import { CardSelectionMessageCreator } from '../../../common/message-creators/card-selection-message-creator';
+import {
+    StoredInstancePropertyBag,
+    TargetAppData,
+    UnifiedResult,
+    UnifiedRule,
+} from '../../../common/types/store-data/unified-data-interface';
+import { instanceDetailsCard, reportInstanceTable } from '../../../reports/components/instance-details.scss';
 import { UserConfigurationStoreData } from '../../types/store-data/user-configuration-store';
 import { HighlightState, InstanceDetailsFooter, InstanceDetailsFooterDeps } from './instance-details-footer';
 
@@ -22,10 +27,12 @@ export type InstanceDetailsProps = {
     result: UnifiedResult;
     index: number;
     userConfigurationStoreData: UserConfigurationStoreData;
+    targetAppInfo: TargetAppData;
+    rule: UnifiedRule;
 };
 
 export const InstanceDetails = NamedFC<InstanceDetailsProps>('InstanceDetails', props => {
-    const { result, index, deps, userConfigurationStoreData } = props;
+    const { result, index, deps, userConfigurationStoreData, rule, targetAppInfo } = props;
 
     // This should be updated once selection is implemented to sync highlight state with selection.
     const highlightState: HighlightState = 'unavailable';
@@ -44,9 +51,9 @@ export const InstanceDetails = NamedFC<InstanceDetailsProps>('InstanceDetails', 
         return <>{cardRows}</>;
     };
 
-    const cardClickHandler = () => deps.cardSelectionMessageCreator.toggleCardSelection(result.uid);
+    const cardClickHandler = () => deps.cardSelectionMessageCreator.toggleCardSelection(result.ruleId, result.uid);
     return (
-        <>
+        <div className={instanceDetailsCard}>
             <table className={reportInstanceTable} onClick={cardClickHandler}>
                 <tbody>
                     {renderCardRowsForPropertyBag(result.identifiers)}
@@ -59,7 +66,9 @@ export const InstanceDetails = NamedFC<InstanceDetailsProps>('InstanceDetails', 
                 result={result}
                 highlightState={highlightState}
                 userConfigurationStoreData={userConfigurationStoreData}
+                rule={rule}
+                targetAppInfo={targetAppInfo}
             />
-        </>
+        </div>
     );
 });

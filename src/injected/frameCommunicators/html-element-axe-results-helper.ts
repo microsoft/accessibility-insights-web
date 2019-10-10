@@ -20,7 +20,6 @@ export interface AxeResultsWithFrameLevel extends HtmlElementAxeResults {
 export interface AssessmentVisualizationInstance extends AxeResultsWithFrameLevel {
     isFailure: boolean;
     isVisualizationEnabled: boolean;
-    html: string;
     propertyBag?: any;
 }
 

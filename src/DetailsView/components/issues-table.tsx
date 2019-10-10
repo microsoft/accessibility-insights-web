@@ -13,6 +13,7 @@ import { VisualizationConfiguration } from '../../common/configs/visualization-c
 import { VisualizationConfigurationFactory } from '../../common/configs/visualization-configuration-factory';
 import { FeatureFlags } from '../../common/feature-flags';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
+import { TargetAppData } from '../../common/types/store-data/unified-data-interface';
 import { UserConfigurationStoreData } from '../../common/types/store-data/user-configuration-store';
 import { VisualizationType } from '../../common/types/visualization-type';
 import { DecoratedAxeNodeResult } from '../../injected/scanner-utils';
@@ -50,6 +51,7 @@ export interface IssuesTableProps {
     scanResult: ScanResults;
     userConfigurationStoreData: UserConfigurationStoreData;
     ruleResultsByStatus: UnifiedStatusResults;
+    targetAppInfo: TargetAppData;
 }
 
 export class IssuesTable extends React.Component<IssuesTableProps> {
@@ -157,6 +159,7 @@ export class IssuesTable extends React.Component<IssuesTableProps> {
                         deps={this.props.deps}
                         ruleResultsByStatus={this.props.ruleResultsByStatus}
                         userConfigurationStoreData={this.props.userConfigurationStoreData}
+                        targetAppInfo={this.props.targetAppInfo}
                     />
                 }
                 featureFlag={FeatureFlags.universalCardsUI}

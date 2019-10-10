@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`InstanceDetails renders 1`] = `
-<React.Fragment>
+<div
+  className="instanceDetailsCard"
+>
   <table
     className="reportInstanceTable"
     onClick={[Function]}
@@ -81,7 +83,9 @@ exports[`InstanceDetails renders 1`] = `
           "snippet": "this is a sample snippet",
         },
         "identifiers": Object {
+          "conciseName": "body img",
           "css-selector": "body img",
+          "identifier": "body img",
         },
         "resolution": Object {
           "how-to-fix-web": Object {
@@ -101,11 +105,13 @@ exports[`InstanceDetails renders 1`] = `
       }
     }
   />
-</React.Fragment>
+</div>
 `;
 
 exports[`InstanceDetails renders nothing when there is no card row config for the property / no property 1`] = `
-<React.Fragment>
+<div
+  className="instanceDetailsCard"
+>
   <table
     className="reportInstanceTable"
     onClick={[Function]}
@@ -131,6 +137,8 @@ exports[`InstanceDetails renders nothing when there is no card row config for th
       Object {
         "descriptors": Object {},
         "identifiers": Object {
+          "conciseName": "test-concise-name",
+          "identifier": "test-id",
           "this-property-does-not-have-config": "some value",
         },
         "resolution": Object {},
@@ -140,5 +148,5 @@ exports[`InstanceDetails renders nothing when there is no card row config for th
       }
     }
   />
-</React.Fragment>
+</div>
 `;

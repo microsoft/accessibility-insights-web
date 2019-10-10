@@ -231,6 +231,7 @@ class TestPropsBuilder {
                 targetPageUrl: '',
                 targetPageTitle: '',
             },
+            targetAppInfo: { name: 'app' },
             ruleResultsByStatus: exampleUnifiedStatusResults,
             userConfigurationStoreData: {
                 bugService: 'gitHub',

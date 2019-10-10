@@ -5,14 +5,14 @@ exports[`InstanceDetailsFooter renders per snapshot when all card interactions a
   className="foot"
 >
   <div
-    className="highlightDiv"
+    className="highlightStatus"
   >
     <StyledIconBase
-      ariaLabel="HighLight hidden"
-      iconName="redEye"
+      ariaHidden="true"
+      iconName="hide"
     />
     <StyledLabelBase>
-      HighLight hidden
+      Highlight hidden
     </StyledLabelBase>
   </div>
   <CardKebabMenuButton
@@ -23,39 +23,13 @@ exports[`InstanceDetailsFooter renders per snapshot when all card interactions a
           "supportsHighlighting": true,
           "supportsIssueFiling": true,
         },
-      }
-    }
-    issueDetailsData={
-      Object {
-        "element": Object {
-          "conciseName": "conciseName",
-          "identifier": "identifier",
-        },
-        "howToFixSummary": "howToFixSummary",
-        "rule": Object {
-          "description": "description",
-          "guidance": Array [
-            Object {
-              "href": "www.test.com",
-              "tags": Array [
-                Object {
-                  "displayText": "New for WCAG 2.1",
-                  "id": "WCAG_2_1",
-                },
-              ],
-              "text": "text",
-            },
-          ],
-          "id": "id",
-          "url": "url",
-        },
-        "snippet": "snippet",
-        "targetApp": Object {
-          "name": "name",
-          "url": "url",
+        "unifiedResultToIssueFilingDataConverter": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
         },
       }
     }
+    issueDetailsData={Object {}}
+    userConfigurationStoreData={Object {}}
   />
 </div>
 `;
@@ -65,14 +39,14 @@ exports[`InstanceDetailsFooter renders per snapshot when only UserConfig-agnosti
   className="foot"
 >
   <div
-    className="highlightDiv"
+    className="highlightStatus"
   >
     <StyledIconBase
-      ariaLabel="HighLight hidden"
-      iconName="redEye"
+      ariaHidden="true"
+      iconName="hide"
     />
     <StyledLabelBase>
-      HighLight hidden
+      Highlight hidden
     </StyledLabelBase>
   </div>
   <CardKebabMenuButton
@@ -83,39 +57,13 @@ exports[`InstanceDetailsFooter renders per snapshot when only UserConfig-agnosti
           "supportsHighlighting": true,
           "supportsIssueFiling": false,
         },
-      }
-    }
-    issueDetailsData={
-      Object {
-        "element": Object {
-          "conciseName": "conciseName",
-          "identifier": "identifier",
-        },
-        "howToFixSummary": "howToFixSummary",
-        "rule": Object {
-          "description": "description",
-          "guidance": Array [
-            Object {
-              "href": "www.test.com",
-              "tags": Array [
-                Object {
-                  "displayText": "New for WCAG 2.1",
-                  "id": "WCAG_2_1",
-                },
-              ],
-              "text": "text",
-            },
-          ],
-          "id": "id",
-          "url": "url",
-        },
-        "snippet": "snippet",
-        "targetApp": Object {
-          "name": "name",
-          "url": "url",
+        "unifiedResultToIssueFilingDataConverter": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
         },
       }
     }
+    issueDetailsData={Object {}}
+    userConfigurationStoreData={Object {}}
   />
 </div>
 `;
@@ -125,14 +73,14 @@ exports[`InstanceDetailsFooter renders per snapshot with highlightState="hidden"
   className="foot"
 >
   <div
-    className="highlightDiv"
+    className="highlightStatus"
   >
     <StyledIconBase
-      ariaLabel="HighLight hidden"
-      iconName="redEye"
+      ariaHidden="true"
+      iconName="hide"
     />
     <StyledLabelBase>
-      HighLight hidden
+      Highlight hidden
     </StyledLabelBase>
   </div>
   <CardKebabMenuButton
@@ -143,39 +91,13 @@ exports[`InstanceDetailsFooter renders per snapshot with highlightState="hidden"
           "supportsHighlighting": true,
           "supportsIssueFiling": true,
         },
-      }
-    }
-    issueDetailsData={
-      Object {
-        "element": Object {
-          "conciseName": "conciseName",
-          "identifier": "identifier",
-        },
-        "howToFixSummary": "howToFixSummary",
-        "rule": Object {
-          "description": "description",
-          "guidance": Array [
-            Object {
-              "href": "www.test.com",
-              "tags": Array [
-                Object {
-                  "displayText": "New for WCAG 2.1",
-                  "id": "WCAG_2_1",
-                },
-              ],
-              "text": "text",
-            },
-          ],
-          "id": "id",
-          "url": "url",
-        },
-        "snippet": "snippet",
-        "targetApp": Object {
-          "name": "name",
-          "url": "url",
+        "unifiedResultToIssueFilingDataConverter": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
         },
       }
     }
+    issueDetailsData={Object {}}
+    userConfigurationStoreData={Object {}}
   />
 </div>
 `;
@@ -185,14 +107,14 @@ exports[`InstanceDetailsFooter renders per snapshot with highlightState="unavail
   className="foot"
 >
   <div
-    className="highlightDiv"
+    className="highlightStatus"
   >
     <StyledIconBase
-      ariaLabel="HighLight unavailable"
-      iconName="redEye"
+      ariaHidden="true"
+      iconName="hide"
     />
     <StyledLabelBase>
-      HighLight unavailable
+      Highlight unavailable
     </StyledLabelBase>
   </div>
   <CardKebabMenuButton
@@ -203,39 +125,13 @@ exports[`InstanceDetailsFooter renders per snapshot with highlightState="unavail
           "supportsHighlighting": true,
           "supportsIssueFiling": true,
         },
-      }
-    }
-    issueDetailsData={
-      Object {
-        "element": Object {
-          "conciseName": "conciseName",
-          "identifier": "identifier",
-        },
-        "howToFixSummary": "howToFixSummary",
-        "rule": Object {
-          "description": "description",
-          "guidance": Array [
-            Object {
-              "href": "www.test.com",
-              "tags": Array [
-                Object {
-                  "displayText": "New for WCAG 2.1",
-                  "id": "WCAG_2_1",
-                },
-              ],
-              "text": "text",
-            },
-          ],
-          "id": "id",
-          "url": "url",
-        },
-        "snippet": "snippet",
-        "targetApp": Object {
-          "name": "name",
-          "url": "url",
+        "unifiedResultToIssueFilingDataConverter": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
         },
       }
     }
+    issueDetailsData={Object {}}
+    userConfigurationStoreData={Object {}}
   />
 </div>
 `;
@@ -245,14 +141,14 @@ exports[`InstanceDetailsFooter renders per snapshot with highlightState="visible
   className="foot"
 >
   <div
-    className="highlightDiv"
+    className="highlightStatus"
   >
     <StyledIconBase
-      ariaLabel="HighLight visible"
+      ariaHidden="true"
       iconName="redEye"
     />
     <StyledLabelBase>
-      HighLight visible
+      Highlight visible
     </StyledLabelBase>
   </div>
   <CardKebabMenuButton
@@ -263,39 +159,13 @@ exports[`InstanceDetailsFooter renders per snapshot with highlightState="visible
           "supportsHighlighting": true,
           "supportsIssueFiling": true,
         },
-      }
-    }
-    issueDetailsData={
-      Object {
-        "element": Object {
-          "conciseName": "conciseName",
-          "identifier": "identifier",
-        },
-        "howToFixSummary": "howToFixSummary",
-        "rule": Object {
-          "description": "description",
-          "guidance": Array [
-            Object {
-              "href": "www.test.com",
-              "tags": Array [
-                Object {
-                  "displayText": "New for WCAG 2.1",
-                  "id": "WCAG_2_1",
-                },
-              ],
-              "text": "text",
-            },
-          ],
-          "id": "id",
-          "url": "url",
-        },
-        "snippet": "snippet",
-        "targetApp": Object {
-          "name": "name",
-          "url": "url",
+        "unifiedResultToIssueFilingDataConverter": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
         },
       }
     }
+    issueDetailsData={Object {}}
+    userConfigurationStoreData={Object {}}
   />
 </div>
 `;

@@ -2,24 +2,9 @@
 // Licensed under the MIT License.
 @import '../../../common/styles/colors.scss';
 
-.report-congrats {
-    position: relative;
-}
-
-.report-congrats-screen {
-    top: 181px;
-    position: absolute;
-    width: 488px;
-    left: 105px;
-    height: 295px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
 .report-congrats-message {
-    width: 364px;
-    text-align: center;
+    word-break: break-all;
+    overflow-wrap: break-word;
 }
 
 .report-congrats-head {

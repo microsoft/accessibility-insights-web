@@ -1,0 +1,36 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+@import '../../styles/colors.scss';
+
+.kebab-menu {
+    i {
+        color: $primary-text;
+    }
+}
+
+button.kebab-menu-button {
+    width: 34px;
+    height: 32px;
+    margin: 8px;
+
+    border-radius: 2px;
+    background: transparent;
+
+    &:hover {
+        background-color: $neutral-alpha-4;
+    }
+
+    &:active,
+    &[aria-expanded='true'] {
+        background-color: $neutral-alpha-8;
+    }
+
+    div.ms-Button-flexContainer {
+        justify-content: center;
+    }
+
+    i {
+        font-size: 20px;
+        color: $primary-text;
+    }
+}

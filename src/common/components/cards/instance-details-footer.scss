@@ -1,0 +1,39 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+@import '../../styles/colors.scss';
+@import '../../styles/fonts.scss';
+
+.foot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background-color: $neutral-2;
+    height: 48px;
+
+    padding-left: 20px;
+
+    border-top: 0.5px solid $neutral-10;
+    border-bottom-left-radius: inherit;
+    border-bottom-right-radius: inherit;
+
+    .highlight-status {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        background: transparent;
+
+        i {
+            color: $secondary-text;
+            font-size: 20px;
+            border: 1.25px;
+            margin-right: 8px;
+        }
+
+        label {
+            color: $secondary-text;
+            font-size: $fontSizeM;
+        }
+    }
+}

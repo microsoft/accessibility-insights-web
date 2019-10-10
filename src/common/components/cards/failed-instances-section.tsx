@@ -3,7 +3,7 @@
 import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
 
-import { UnifiedResult, UnifiedRuleResultStatus } from '../../../common/types/store-data/unified-data-interface';
+import { TargetAppData, UnifiedResult, UnifiedRuleResultStatus } from '../../../common/types/store-data/unified-data-interface';
 import { GuidanceLink } from '../../../scanner/rule-to-links-mappings';
 import { UserConfigurationStoreData } from '../../types/store-data/user-configuration-store';
 import { ResultSection, ResultSectionDeps } from './result-section';
@@ -13,6 +13,7 @@ export type FailedInstancesSectionProps = {
     deps: FailedInstancesSectionDeps;
     ruleResultsByStatus: UnifiedStatusResults;
     userConfigurationStoreData: UserConfigurationStoreData;
+    targetAppInfo: TargetAppData;
 };
 
 export interface UnifiedRuleResult {
@@ -29,7 +30,7 @@ export type UnifiedStatusResults = {
 
 export const FailedInstancesSection = NamedFC<FailedInstancesSectionProps>(
     'FailedInstancesSection',
-    ({ ruleResultsByStatus, deps, userConfigurationStoreData }) => {
+    ({ ruleResultsByStatus, deps, userConfigurationStoreData, targetAppInfo }) => {
         if (ruleResultsByStatus == null) {
             return null;
         }
@@ -47,6 +48,7 @@ export const FailedInstancesSection = NamedFC<FailedInstancesSectionProps>(
                 outcomeType="fail"
                 badgeCount={count}
                 userConfigurationStoreData={userConfigurationStoreData}
+                targetAppInfo={targetAppInfo}
             />
         );
     },

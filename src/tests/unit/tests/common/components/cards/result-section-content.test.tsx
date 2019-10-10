@@ -31,6 +31,7 @@ describe('ResultSectionContent', () => {
             outcomeType: 'pass',
             showCongratsIfNotInstances: true,
             userConfigurationStoreData: null,
+            targetAppInfo: { name: 'app' },
         };
 
         const wrapper = shallow(<ResultSectionContent {...props} />);

@@ -1,9 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
-import { UnifiedStatusResults } from 'common/components/cards/failed-instances-section';
+import { TargetAppData } from 'common/types/store-data/unified-data-interface';
 import { ISelection } from 'office-ui-fabric-react/lib/DetailsList';
 import * as React from 'react';
+
+import { UnifiedStatusResults } from '../common/components/cards/failed-instances-section';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
 import { DropdownClickHandler } from '../common/dropdown-click-handler';
 import { AssessmentStoreData } from '../common/types/store-data/assessment-result-data';
@@ -36,7 +38,6 @@ export interface DetailsViewMainContentProps {
     selectedTest: VisualizationType;
     visualizationStoreData: VisualizationStoreData;
     visualizationScanResultData: VisualizationScanResultData;
-    unifiedResults: UnifiedStatusResults;
     visualizationConfigurationFactory: VisualizationConfigurationFactory;
     assessmentsProvider: AssessmentsProvider;
     dropdownClickHandler: DropdownClickHandler;
@@ -48,6 +49,7 @@ export interface DetailsViewMainContentProps {
     switcherNavConfiguration: DetailsViewSwitcherNavConfiguration;
     userConfigurationStoreData: UserConfigurationStoreData;
     ruleResultsByStatus: UnifiedStatusResults;
+    targetAppInfo: TargetAppData;
 }
 
 export class DetailsViewMainContent extends React.Component<DetailsViewMainContentProps> {

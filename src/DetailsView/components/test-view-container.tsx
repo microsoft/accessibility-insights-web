@@ -9,6 +9,7 @@ import { AssessmentStoreData } from '../../common/types/store-data/assessment-re
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { PathSnippetStoreData } from '../../common/types/store-data/path-snippet-store-data';
 import { TabStoreData } from '../../common/types/store-data/tab-store-data';
+import { TargetAppData } from '../../common/types/store-data/unified-data-interface';
 import { UserConfigurationStoreData } from '../../common/types/store-data/user-configuration-store';
 import { VisualizationScanResultData } from '../../common/types/store-data/visualization-scan-result-data';
 import { VisualizationStoreData } from '../../common/types/store-data/visualization-store-data';
@@ -41,6 +42,7 @@ export interface TestViewContainerProps {
     issuesTableHandler: IssuesTableHandler;
     userConfigurationStoreData: UserConfigurationStoreData;
     ruleResultsByStatus: UnifiedStatusResults;
+    targetAppInfo: TargetAppData;
 }
 
 export const TestViewContainer = NamedFC<TestViewContainerProps>('TestViewContainer', props => {

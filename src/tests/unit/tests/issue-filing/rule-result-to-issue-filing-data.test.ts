@@ -30,7 +30,6 @@ describe('AxeResultToIssueFilingDataConverter', () => {
             ruleId: 'RR-rule-id',
             helpUrl: 'RR-help-url',
             selector: 'RR-selector<x>',
-            snippet: 'RR-snippet   space',
         } as any;
         const fakePageTitle = 'title';
         const fakePageUrl = 'url';
@@ -51,7 +50,7 @@ describe('AxeResultToIssueFilingDataConverter', () => {
                 conciseName: 'short',
             },
             howToFixSummary: result.failureSummary,
-            snippet: result.snippet,
+            snippet: result.html,
         };
 
         const shortenSelector = Mock.ofInstance(str => '');

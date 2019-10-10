@@ -101,7 +101,6 @@ describe('VisualizationScanResultStoreTest', () => {
                         id: 'id1',
                         guidanceLinks: [],
                         helpUrl: 'help1',
-                        snippet: 'html',
                     },
                 },
             },
@@ -121,7 +120,6 @@ describe('VisualizationScanResultStoreTest', () => {
                         id: 'id2',
                         guidanceLinks: [],
                         helpUrl: 'help2',
-                        snippet: 'html',
                     },
                 },
             },
@@ -210,7 +208,6 @@ describe('VisualizationScanResultStoreTest', () => {
                 id: 'id1',
                 guidanceLinks: [],
                 helpUrl: 'help1',
-                snippet: 'html',
             },
             id2: {
                 all: [],
@@ -225,7 +222,6 @@ describe('VisualizationScanResultStoreTest', () => {
                 id: 'id2',
                 guidanceLinks: [],
                 helpUrl: 'help2',
-                snippet: 'html',
             },
         };
 
@@ -246,7 +242,6 @@ describe('VisualizationScanResultStoreTest', () => {
                         id: 'id1',
                         guidanceLinks: [],
                         helpUrl: 'help1',
-                        snippet: 'html',
                     },
                 },
             },
@@ -266,7 +261,6 @@ describe('VisualizationScanResultStoreTest', () => {
                         id: 'id2',
                         guidanceLinks: [],
                         helpUrl: 'help2',
-                        snippet: 'html',
                     },
                 },
             },
@@ -315,7 +309,6 @@ describe('VisualizationScanResultStoreTest', () => {
                         id: 'id1',
                         guidanceLinks: [],
                         helpUrl: 'help1',
-                        snippet: 'html',
                     },
                 },
                 target: ['#heading-1'],
@@ -335,7 +328,6 @@ describe('VisualizationScanResultStoreTest', () => {
                         id: 'id2',
                         guidanceLinks: [],
                         helpUrl: 'help2',
-                        snippet: 'html',
                     },
                 },
                 target: ['#heading-2'],
@@ -356,7 +348,6 @@ describe('VisualizationScanResultStoreTest', () => {
                 id: 'id1',
                 guidanceLinks: [],
                 helpUrl: 'help1',
-                snippet: 'html',
             },
             id2: {
                 any: [],
@@ -371,7 +362,6 @@ describe('VisualizationScanResultStoreTest', () => {
                 id: 'id2',
                 guidanceLinks: [],
                 helpUrl: 'help2',
-                snippet: 'html',
             },
         };
 
@@ -398,7 +388,6 @@ describe('VisualizationScanResultStoreTest', () => {
                         help: 'help1',
                         guidanceLinks: [],
                         helpUrl: 'help1',
-                        snippet: 'html',
                     },
                 },
                 target: ['#heading-1'],
@@ -419,7 +408,6 @@ describe('VisualizationScanResultStoreTest', () => {
                 id: 'id1',
                 guidanceLinks: [],
                 helpUrl: 'help1',
-                snippet: 'html',
             },
         };
 

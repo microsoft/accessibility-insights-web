@@ -9,6 +9,8 @@ describe('AutomatedChecksView', () => {
         const props: AutomatedChecksViewProps = {
             deps: {
                 deviceConnectActionCreator: null,
+                currentWindow: null,
+                windowStateActionCreator: null,
             },
         };
 

@@ -98,12 +98,10 @@ describe('SelectorMapHelperTest', () => {
 
         const expectedSelectedMap = {
             [assessment.key]: {
-                html: 'html',
                 isFailure: true,
                 isVisualizationEnabled: true,
                 propertyBag: {},
                 target: ['element2'],
-                identifier: assessment.key,
                 ruleResults: null,
             },
         };

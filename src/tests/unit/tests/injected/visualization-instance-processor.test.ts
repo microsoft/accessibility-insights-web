@@ -51,10 +51,8 @@ describe('VisualizationInstanceProcessorTest', () => {
         return {
             isFailure: false,
             isVisualizationEnabled: false,
-            html: null,
             ruleResults: null,
             target: null,
-            identifier: 'some id',
         };
     }
 });
