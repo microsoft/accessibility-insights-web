@@ -20,10 +20,10 @@ export type UnifiedScanCompletedPayloadBuilder = (scanResults: ScanResults) => U
 export const createBuilder = (
     getUnifiedResults: ConvertScanResultsToUnifiedResultsDelegate,
     getUnifiedRules: ConvertScanResultsToUnifiedRulesDelegate,
+    ruleInformationProvider: RuleInformationProviderType,
     uuidGenerator: UUIDGeneratorType,
     getToolData: ToolDataDelegate,
 ) => (scanResults: ScanResults): UnifiedScanCompletedPayload => {
-    const ruleInformationProvider: RuleInformationProviderType = new RuleInformationProvider();
     const payload: UnifiedScanCompletedPayload = {
         scanResult: getUnifiedResults(scanResults, ruleInformationProvider, uuidGenerator),
         rules: getUnifiedRules(scanResults, ruleInformationProvider, uuidGenerator),
@@ -36,5 +36,11 @@ export const createBuilder = (
 };
 
 export const createDefaultBuilder = (getToolData: ToolDataDelegate) => {
-    return createBuilder(convertScanResultsToUnifiedResults, convertScanResultsToUnifiedRules, generateUID, getToolData);
+    return createBuilder(
+        convertScanResultsToUnifiedResults,
+        convertScanResultsToUnifiedRules,
+        new RuleInformationProvider(),
+        generateUID,
+        getToolData,
+    );
 };
