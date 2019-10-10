@@ -4,7 +4,23 @@
 @import '../../../../common/styles/fonts.scss';
 
 .window-title {
-    padding: 6px 9px;
+    width: 100%;
+    height: 32px;
+    display: flex;
+    align-items: center;
+
+    .title-container {
+        padding: 6px 9px;
+        display: flex;
+    }
+
+    .actionable-icons-container {
+        margin-left: auto;
+        display: flex;
+        > {
+            padding: 6px 9px;
+        }
+    }
 
     .header-text {
         color: $ada-brand-color;

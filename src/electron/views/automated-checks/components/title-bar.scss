@@ -3,23 +3,18 @@
 @import '../../../../common/styles/colors.scss';
 
 .title-bar {
-    width: 100%;
     background: $ada-brand-color;
-    height: 32px;
 
-    :global(.header-icon) {
-        float: left;
-        height: 20px;
-        margin: 6px;
+    :global(.header-text) {
+        color: $always-white;
     }
 
     button {
-        float: right;
         margin: 10px;
         height: 12px;
 
         i {
-            color: white;
+            color: $always-white;
             font-size: 10px;
         }
     }
