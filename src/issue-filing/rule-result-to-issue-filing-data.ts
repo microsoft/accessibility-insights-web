@@ -23,7 +23,7 @@ export class AxeResultToIssueFilingDataConverter {
                 conciseName: this.shortenSelector(result.selector),
             },
             howToFixSummary: result.failureSummary,
-            snippet: result.snippet,
+            snippet: result.html,
         };
     }
 }
