@@ -52,9 +52,7 @@ describe('LandmarkFormatterTests', () => {
         const axeData: AssessmentVisualizationInstance = {
             isFailure: isFailure,
             isVisualizationEnabled: true,
-            html: 'html',
             target: ['html'],
-            identifier: 'some id',
             ruleResults: {
                 'unique-landmark': {
                     any: [
@@ -78,7 +76,6 @@ describe('LandmarkFormatterTests', () => {
                     id: 'id1',
                     guidanceLinks: [],
                     helpUrl: 'help1',
-                    snippet: 'html',
                 },
                 rule2: {
                     any: [],
@@ -93,7 +90,6 @@ describe('LandmarkFormatterTests', () => {
                     id: 'id2',
                     guidanceLinks: [],
                     helpUrl: 'help2',
-                    snippet: 'html',
                 },
             },
         };
