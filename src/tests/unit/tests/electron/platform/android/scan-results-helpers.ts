@@ -69,38 +69,6 @@ export function buildRuleResultObject(ruleId: string, status: string, axeViewId:
     return result as RuleResultsData;
 }
 
-export function buildTouchSizeWcagRuleResultObject(
-    status: string,
-    dpi: number,
-    height: number,
-    width: number,
-    axeViewId: string = null,
-): RuleResultsData {
-    const props = {};
-    // This is based on the output of the Android service
-    props['Screen Dots Per Inch'] = dpi;
-    props['height'] = height;
-    props['width'] = width;
-
-    return buildRuleResultObject('TouchSizeWcag', status, axeViewId, props);
-}
-
-export function buildColorContrastRuleResultObject(
-    status: string,
-    ratio: number,
-    foreground: string,
-    background: string,
-    axeViewId: string = null,
-): RuleResultsData {
-    const props = {};
-    // This is based on the output of the Android service
-    props['Color Contrast Ratio'] = ratio;
-    props['Foreground Color'] = foreground;
-    props['Background Color'] = background;
-
-    return buildRuleResultObject('ColorContrast', status, axeViewId, props);
-}
-
 export function buildViewElement(
     axeViewId: string,
     boundsInScreen: any,
