@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { UUIDGeneratorType } from 'common/uid-generator';
 import { ToolDataDelegate } from 'electron/common/application-properties-provider';
+import { RuleInformationProviderType } from 'electron/platform/android/rule-information-provider-type';
 import { ScanResults } from 'electron/platform/android/scan-results';
 import { ConvertScanResultsToUnifiedResultsDelegate } from 'electron/platform/android/scan-results-to-unified-results';
 import { ConvertScanResultsToUnifiedRulesDelegate } from 'electron/platform/android/scan-results-to-unified-rules';
@@ -15,9 +16,11 @@ describe('buildUnifiedScanCompletedPayload', () => {
     it('builds the payload', () => {
         const generateUIDMock = Mock.ofType<UUIDGeneratorType>();
 
+        const ruleInformationProviderMock = Mock.ofType<RuleInformationProviderType>();
+
         const getUnifiedResultsMock = Mock.ofType<ConvertScanResultsToUnifiedResultsDelegate>();
         getUnifiedResultsMock
-            .setup(converter => converter(exampleScanResults, generateUIDMock.object))
+            .setup(converter => converter(exampleScanResults, ruleInformationProviderMock.object, generateUIDMock.object))
             .returns(() => {
                 return [
                     {
@@ -33,7 +36,7 @@ describe('buildUnifiedScanCompletedPayload', () => {
 
         const getUnifiedRulesMock = Mock.ofType<ConvertScanResultsToUnifiedRulesDelegate>(undefined, MockBehavior.Strict);
         getUnifiedRulesMock
-            .setup(converter => converter(exampleScanResults, generateUIDMock.object))
+            .setup(converter => converter(exampleScanResults, ruleInformationProviderMock.object, generateUIDMock.object))
             .returns(() => {
                 return [
                     {
@@ -64,6 +67,7 @@ describe('buildUnifiedScanCompletedPayload', () => {
         const testSubject = createBuilder(
             getUnifiedResultsMock.object,
             getUnifiedRulesMock.object,
+            ruleInformationProviderMock.object,
             generateUIDMock.object,
             getToolDataMock.object,
         );
