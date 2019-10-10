@@ -3,6 +3,8 @@
 import { UnifiedScanCompletedPayload } from 'background/actions/action-payloads';
 import { generateUID, UUIDGeneratorType } from 'common/uid-generator';
 import { ToolDataDelegate } from 'electron/common/application-properties-provider';
+import { RuleInformationProvider } from 'electron/platform/android/rule-information-provider';
+import { RuleInformationProviderType } from 'electron/platform/android/rule-information-provider-type';
 import { ScanResults } from 'electron/platform/android/scan-results';
 import {
     convertScanResultsToUnifiedResults,
@@ -21,9 +23,10 @@ export const createBuilder = (
     uuidGenerator: UUIDGeneratorType,
     getToolData: ToolDataDelegate,
 ) => (scanResults: ScanResults): UnifiedScanCompletedPayload => {
+    const ruleInformationProvider: RuleInformationProviderType = new RuleInformationProvider();
     const payload: UnifiedScanCompletedPayload = {
-        scanResult: getUnifiedResults(scanResults, uuidGenerator),
-        rules: getUnifiedRules(scanResults, uuidGenerator),
+        scanResult: getUnifiedResults(scanResults, ruleInformationProvider, uuidGenerator),
+        rules: getUnifiedRules(scanResults, ruleInformationProvider, uuidGenerator),
         toolInfo: getToolData(scanResults),
         targetAppInfo: {
             name: scanResults.appIdentifier,
