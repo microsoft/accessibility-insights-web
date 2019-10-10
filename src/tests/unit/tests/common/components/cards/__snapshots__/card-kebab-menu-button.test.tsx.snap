@@ -1,42 +1,92 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`CardKebabMenuButtonTest copies failure details and show the toast 1`] = `
-"<div className=\\"kebabMenuButton\\">
-  <CustomizedActionButton menuIconProps={{...}} menuProps={{...}} />
+"<Fragment>
+  <CustomizedActionButton className=\\"kebabMenuButton\\" ariaLabel=\\"More actions\\" menuIconProps={{...}} menuProps={{...}} />
   <IssueFilingDialog deps={{...}} isOpen={false} selectedIssueFilingService={{...}} selectedIssueData={{...}} selectedIssueFilingServiceData={{...}} onClose={[Function]} issueFilingServicePropertiesMap={{...}} />
   <Toast onTimeout={[Function: onTimeout]} deps={{...}} timeoutLength={1000}>
     Failure details copied.
   </Toast>
-</div>"
+</Fragment>"
 `;
 
-exports[`CardKebabMenuButtonTest render 1`] = `
-"<div className=\\"kebabMenuButton\\">
-  <CustomizedActionButton menuIconProps={{...}} menuProps={{...}} />
+exports[`CardKebabMenuButtonTest renders per snapshot with allCardInteractionsSupported 1`] = `
+"<Fragment>
+  <CustomizedActionButton className=\\"kebabMenuButton\\" ariaLabel=\\"More actions\\" menuIconProps={{...}} menuProps={{...}} />
   <IssueFilingDialog deps={{...}} isOpen={false} selectedIssueFilingService={{...}} selectedIssueData={{...}} selectedIssueFilingServiceData={{...}} onClose={[Function]} issueFilingServicePropertiesMap={{...}} />
-</div>"
+</Fragment>"
+`;
+
+exports[`CardKebabMenuButtonTest renders per snapshot with allCardInteractionsSupported 2`] = `
+Object {
+  "className": "kebabMenu",
+  "directionalHint": 6,
+  "items": Array [
+    Object {
+      "iconProps": Object {
+        "iconName": "ladybugSolid",
+      },
+      "key": "fileissue",
+      "name": "File issue",
+      "onClick": [Function],
+    },
+    Object {
+      "iconProps": Object {
+        "iconName": "copy",
+      },
+      "key": "copyfailuredetails",
+      "name": "Copy failure details",
+      "onClick": [Function],
+    },
+  ],
+  "shouldFocusOnMount": true,
+}
+`;
+
+exports[`CardKebabMenuButtonTest renders per snapshot with onlyUserConfigAgnosticCardInteractionsSupported 1`] = `
+"<Fragment>
+  <CustomizedActionButton className=\\"kebabMenuButton\\" ariaLabel=\\"More actions\\" menuIconProps={{...}} menuProps={{...}} />
+</Fragment>"
+`;
+
+exports[`CardKebabMenuButtonTest renders per snapshot with onlyUserConfigAgnosticCardInteractionsSupported 2`] = `
+Object {
+  "className": "kebabMenu",
+  "directionalHint": 6,
+  "items": Array [
+    Object {
+      "iconProps": Object {
+        "iconName": "copy",
+      },
+      "key": "copyfailuredetails",
+      "name": "Copy failure details",
+      "onClick": [Function],
+    },
+  ],
+  "shouldFocusOnMount": true,
+}
 `;
 
 exports[`CardKebabMenuButtonTest should click file issue, invalid settings 1`] = `
-"<div className=\\"kebabMenuButton\\">
-  <CustomizedActionButton menuIconProps={{...}} menuProps={{...}} />
+"<Fragment>
+  <CustomizedActionButton className=\\"kebabMenuButton\\" ariaLabel=\\"More actions\\" menuIconProps={{...}} menuProps={{...}} />
   <IssueFilingDialog deps={{...}} isOpen={true} selectedIssueFilingService={{...}} selectedIssueData={{...}} selectedIssueFilingServiceData={{...}} onClose={[Function]} issueFilingServicePropertiesMap={{...}} />
-</div>"
+</Fragment>"
 `;
 
 exports[`CardKebabMenuButtonTest should file issue, valid settings 1`] = `
-"<div className=\\"kebabMenuButton\\">
-  <CustomizedActionButton menuIconProps={{...}} menuProps={{...}} />
+"<Fragment>
+  <CustomizedActionButton className=\\"kebabMenuButton\\" ariaLabel=\\"More actions\\" menuIconProps={{...}} menuProps={{...}} />
   <IssueFilingDialog deps={{...}} isOpen={false} selectedIssueFilingService={{...}} selectedIssueData={{...}} selectedIssueFilingServiceData={{...}} onClose={[Function]} issueFilingServicePropertiesMap={{...}} />
-</div>"
+</Fragment>"
 `;
 
 exports[`CardKebabMenuButtonTest shows failure message if copy failed 1`] = `
-"<div className=\\"kebabMenuButton\\">
-  <CustomizedActionButton menuIconProps={{...}} menuProps={{...}} />
+"<Fragment>
+  <CustomizedActionButton className=\\"kebabMenuButton\\" ariaLabel=\\"More actions\\" menuIconProps={{...}} menuProps={{...}} />
   <IssueFilingDialog deps={{...}} isOpen={false} selectedIssueFilingService={{...}} selectedIssueData={{...}} selectedIssueFilingServiceData={{...}} onClose={[Function]} issueFilingServicePropertiesMap={{...}} />
   <Toast onTimeout={[Function: onTimeout]} deps={{...}} timeoutLength={1000}>
     Failed to copy failure details. Please try again.
   </Toast>
-</div>"
+</Fragment>"
 `;

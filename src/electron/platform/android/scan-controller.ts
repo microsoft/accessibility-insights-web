@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { UnifiedScanResultActions } from 'background/actions/unified-scan-result-actions';
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
 import { InstanceCount, TelemetryEventSource } from 'common/extension-telemetry-events';
 import { createDefaultLogger } from 'common/logging/default-logger';
@@ -8,11 +9,14 @@ import { PortPayload } from 'electron/flux/action/device-action-payloads';
 import { ScanActions } from 'electron/flux/action/scan-actions';
 import { FetchScanResultsType } from 'electron/platform/android/fetch-scan-results';
 import { RuleResultsData, ScanResults } from 'electron/platform/android/scan-results';
+import { UnifiedScanCompletedPayloadBuilder } from 'electron/platform/android/unified-result-builder';
 
 export class ScanController {
     constructor(
         private readonly scanActions: ScanActions,
+        private readonly unifiedScanResultAction: UnifiedScanResultActions,
         private readonly fetchScanResults: FetchScanResultsType,
+        private readonly unifiedResultsBuilder: UnifiedScanCompletedPayloadBuilder,
         private readonly telemetryEventHandler: TelemetryEventHandler,
         private readonly getCurrentDate: () => Date,
         private readonly logger = createDefaultLogger(),
@@ -54,6 +58,9 @@ export class ScanController {
             },
         });
 
+        const payload = this.unifiedResultsBuilder(data);
+
+        this.unifiedScanResultAction.scanCompleted.invoke(payload);
         this.scanActions.scanCompleted.invoke(null);
     }
 

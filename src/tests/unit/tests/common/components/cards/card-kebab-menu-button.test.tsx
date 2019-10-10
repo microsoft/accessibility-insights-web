@@ -11,14 +11,24 @@ import { ActionButton, IContextualMenuItem } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { IMock, Mock, Times } from 'typemoq';
 
+import {
+    allCardInteractionsSupported,
+    noCardInteractionsSupported,
+    onlyUserConfigAgnosticCardInteractionsSupported,
+} from 'common/components/cards/card-interaction-support';
 import { IssueDetailsTextGenerator } from '../../../../../../background/issue-details-text-generator';
-import { CardKebabMenuButton, CardKebabMenuButtonProps } from '../../../../../../common/components/cards/card-kebab-menu-button';
+import {
+    CardKebabMenuButton,
+    CardKebabMenuButtonDeps,
+    CardKebabMenuButtonProps,
+} from '../../../../../../common/components/cards/card-kebab-menu-button';
 import { NavigatorUtils } from '../../../../../../common/navigator-utils';
 import { CreateIssueDetailsTextData } from '../../../../../../common/types/create-issue-details-text-data';
 import { DetailsViewActionMessageCreator } from '../../../../../../DetailsView/actions/details-view-action-message-creator';
 
 describe('CardKebabMenuButtonTest', () => {
     let defaultProps: CardKebabMenuButtonProps;
+    let defaultDeps: CardKebabMenuButtonDeps;
     let actionCreatorMock: IMock<DetailsViewActionMessageCreator>;
     let navigatorUtilsMock: IMock<NavigatorUtils>;
     let userConfigurationStoreData: UserConfigurationStoreData;
@@ -97,23 +107,49 @@ describe('CardKebabMenuButtonTest', () => {
             .returns(() => issueDetailsText)
             .verifiable();
 
+        defaultDeps = {
+            detailsViewActionMessageCreator: actionCreatorMock.object,
+            navigatorUtils: navigatorUtilsMock.object,
+            issueFilingServiceProvider: issueFilingServiceProviderMock.object,
+            issueFilingActionMessageCreator: issueFilingActionMessageCreatorMock.object,
+            issueDetailsTextGenerator: textGeneratorMock.object,
+            cardInteractionSupport: allCardInteractionsSupported,
+        } as CardKebabMenuButtonDeps;
+
         defaultProps = {
-            deps: {
-                detailsViewActionMessageCreator: actionCreatorMock.object,
-                navigatorUtils: navigatorUtilsMock.object,
-                issueFilingServiceProvider: issueFilingServiceProviderMock.object,
-                issueFilingActionMessageCreator: issueFilingActionMessageCreatorMock.object,
-                issueDetailsTextGenerator: textGeneratorMock.object,
-            },
+            deps: defaultDeps,
             userConfigurationStoreData,
             issueDetailsData,
         } as CardKebabMenuButtonProps;
     });
 
-    it('render', () => {
-        const rendered = shallow(<CardKebabMenuButton {...defaultProps} />);
+    it('renders as null with noCardInteractionsSupported', () => {
+        const rendered = shallow(
+            <CardKebabMenuButton {...defaultProps} deps={{ ...defaultDeps, cardInteractionSupport: noCardInteractionsSupported }} />,
+        );
+
+        expect(rendered.getElement()).toBeNull();
+    });
+
+    it('renders per snapshot with allCardInteractionsSupported', () => {
+        const rendered = shallow(
+            <CardKebabMenuButton {...defaultProps} deps={{ ...defaultDeps, cardInteractionSupport: allCardInteractionsSupported }} />,
+        );
 
         expect(rendered.debug()).toMatchSnapshot();
+        expect(rendered.find(ActionButton).prop('menuProps')).toMatchSnapshot();
+    });
+
+    it('renders per snapshot with onlyUserConfigAgnosticCardInteractionsSupported', () => {
+        const rendered = shallow(
+            <CardKebabMenuButton
+                {...defaultProps}
+                deps={{ ...defaultDeps, cardInteractionSupport: onlyUserConfigAgnosticCardInteractionsSupported }}
+            />,
+        );
+
+        expect(rendered.debug()).toMatchSnapshot();
+        expect(rendered.find(ActionButton).prop('menuProps')).toMatchSnapshot();
     });
 
     it('copies failure details and show the toast', async () => {
