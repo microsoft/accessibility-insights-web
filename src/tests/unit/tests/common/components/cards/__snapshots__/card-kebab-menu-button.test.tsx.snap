@@ -45,7 +45,7 @@ Object {
 
 exports[`CardKebabMenuButtonTest renders per snapshot with onlyUserConfigAgnosticCardInteractionsSupported 1`] = `
 "<div className=\\"kebabMenuButton\\">
-  <CustomizedActionButton menuIconProps={{...}} menuProps={{...}} />
+  <CustomizedActionButton ariaLabel=\\"More actions\\" menuIconProps={{...}} menuProps={{...}} />
 </div>"
 `;
 
