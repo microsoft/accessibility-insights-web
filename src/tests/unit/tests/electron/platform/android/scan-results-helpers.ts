@@ -10,6 +10,7 @@ export function buildScanResultsObject(
     appIdentifier: string = null,
     resultsArray: RuleResultsData[] = null,
     axeView: ViewElementData = null,
+    axeVersion: string = null,
 ): ScanResults {
     const scanResults = {};
     const axeContext = {};
@@ -31,6 +32,15 @@ export function buildScanResultsObject(
 
     if (axeView) {
         axeContext['axeView'] = axeView;
+        addContext = true;
+    }
+
+    if (axeVersion) {
+        if (axeContext['axeMetaData'] == null) {
+            axeContext['axeMetaData'] = {};
+        }
+
+        axeContext['axeMetaData']['axeVersion'] = axeVersion;
         addContext = true;
     }
 

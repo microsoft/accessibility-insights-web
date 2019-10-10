@@ -50,7 +50,7 @@ export const InstanceDetailsFooter = NamedFC<InstanceDetailsFooterProps>('Instan
         const label = 'HighLight ' + highlightState;
         return (
             <div className={highlightDiv}>
-                <Icon iconName="redEye" ariaLabel={label} />
+                <Icon iconName="redEye" ariaHidden="true" />
                 <Label>{label}</Label>
             </div>
         );

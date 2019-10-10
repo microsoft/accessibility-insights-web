@@ -42,7 +42,9 @@ export class DetailsViewDropDown extends React.Component<DetailsViewDropDownProp
         }
         return (
             <ContextualMenu
-                doNotLayer={false}
+                calloutProps={{
+                    className: 'details-view-dropdown-callout',
+                }}
                 gapSpace={12}
                 shouldFocusOnMount={true}
                 target={this.state.target}
