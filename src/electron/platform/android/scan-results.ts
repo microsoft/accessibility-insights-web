@@ -57,4 +57,12 @@ export class ScanResults {
             return [];
         }
     }
+
+    public get axeVersion(): string {
+        try {
+            return this.rawData.axeContext.axeMetaData.axeVersion;
+        } catch {
+            return 'no-version';
+        }
+    }
 }

@@ -32,9 +32,13 @@ exports[`DetailsViewDropDownTest renders with isContextMenuVisible = true 1`] = 
     />
   </StyledLinkBase>
   <StyledWithResponsiveMode
+    calloutProps={
+      Object {
+        "className": "details-view-dropdown-callout",
+      }
+    }
     directionalHint={6}
     directionalHintForRTL={4}
-    doNotLayer={false}
     gapSpace={12}
     id="settings-dropdown-menu"
     items={

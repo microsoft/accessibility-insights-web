@@ -3,3 +3,6 @@
 
 export const APP_INITIALIZED: string = 'AppInitialized';
 export const VALIDATE_PORT: string = 'ValidatePort';
+export const SCAN_STARTED: string = 'ScanStarted';
+export const SCAN_COMPLETED: string = 'ScanCompleted';
+export const SCAN_FAILED: string = 'ScanFailed';
