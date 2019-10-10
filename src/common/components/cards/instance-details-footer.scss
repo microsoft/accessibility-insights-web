@@ -11,7 +11,7 @@
     background-color: $neutral-2;
     height: 48px;
 
-    padding-left: 20px;
+    padding-left: 12px;
 
     border-top: 0.5px solid $neutral-10;
     border-bottom-left-radius: inherit;
@@ -23,13 +23,6 @@
         align-items: center;
 
         background: transparent;
-
-        i {
-            color: $secondary-text;
-            font-size: 20px;
-            border: 1.25px;
-            margin-right: 8px;
-        }
 
         label {
             color: $secondary-text;

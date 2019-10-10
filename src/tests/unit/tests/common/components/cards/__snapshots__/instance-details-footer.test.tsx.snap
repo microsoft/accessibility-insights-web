@@ -7,10 +7,7 @@ exports[`InstanceDetailsFooter renders per snapshot when all card interactions a
   <div
     className="highlightStatus"
   >
-    <StyledIconBase
-      ariaHidden="true"
-      iconName="hide"
-    />
+    <HighlightHiddenIcon />
     <StyledLabelBase>
       Highlight hidden
     </StyledLabelBase>
@@ -41,10 +38,7 @@ exports[`InstanceDetailsFooter renders per snapshot when only UserConfig-agnosti
   <div
     className="highlightStatus"
   >
-    <StyledIconBase
-      ariaHidden="true"
-      iconName="hide"
-    />
+    <HighlightHiddenIcon />
     <StyledLabelBase>
       Highlight hidden
     </StyledLabelBase>
@@ -75,10 +69,7 @@ exports[`InstanceDetailsFooter renders per snapshot with highlightState="hidden"
   <div
     className="highlightStatus"
   >
-    <StyledIconBase
-      ariaHidden="true"
-      iconName="hide"
-    />
+    <HighlightHiddenIcon />
     <StyledLabelBase>
       Highlight hidden
     </StyledLabelBase>
@@ -109,10 +100,7 @@ exports[`InstanceDetailsFooter renders per snapshot with highlightState="unavail
   <div
     className="highlightStatus"
   >
-    <StyledIconBase
-      ariaHidden="true"
-      iconName="hide"
-    />
+    <HighlightUnavailableIcon />
     <StyledLabelBase>
       Highlight unavailable
     </StyledLabelBase>
@@ -143,10 +131,7 @@ exports[`InstanceDetailsFooter renders per snapshot with highlightState="visible
   <div
     className="highlightStatus"
   >
-    <StyledIconBase
-      ariaHidden="true"
-      iconName="redEye"
-    />
+    <HighlightVisibleIcon />
     <StyledLabelBase>
       Highlight visible
     </StyledLabelBase>

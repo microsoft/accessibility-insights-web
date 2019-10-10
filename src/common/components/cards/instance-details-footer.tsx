@@ -5,6 +5,7 @@ import { some, values } from 'lodash';
 import { Icon, Label } from 'office-ui-fabric-react';
 import * as React from 'react';
 
+import { HighlightHiddenIcon, HighlightUnavailableIcon, HighlightVisibleIcon } from 'common/icons/highlight-status-icons';
 import { TargetAppData, UnifiedResult, UnifiedRule } from '../../../common/types/store-data/unified-data-interface';
 import { UnifiedResultToIssueFilingDataConverter } from '../../../issue-filing/unified-result-to-issue-filing-data';
 import { CreateIssueDetailsTextData } from '../../types/create-issue-details-text-data';
@@ -48,15 +49,15 @@ export const InstanceDetailsFooter = NamedFC<InstanceDetailsFooterProps>('Instan
 
     const renderHighlightStatus = () => {
         const label = 'Highlight ' + highlightState;
-        const iconName = {
-            unavailable: 'hide',
-            visible: 'redEye',
-            hidden: 'hide',
+        const icon = {
+            unavailable: <HighlightUnavailableIcon />,
+            visible: <HighlightVisibleIcon />,
+            hidden: <HighlightHiddenIcon />,
         }[highlightState];
 
         return (
             <div className={highlightStatus}>
-                <Icon iconName={iconName} ariaHidden="true" />
+                {icon}
                 <Label>{label}</Label>
             </div>
         );
