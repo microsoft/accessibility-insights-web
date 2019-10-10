@@ -4,8 +4,8 @@ import * as React from 'react';
 
 import { NamedFC } from 'common/react/named-fc';
 import { TitleBar, TitleBarProps } from 'electron/views/automated-checks/components/title-bar';
-import { CommandBar, CommandBarProps } from './command-bar';
-import { HeaderSection } from './header-section';
+import { CommandBar, CommandBarProps } from './components/command-bar';
+import { HeaderSection } from './components/header-section';
 
 export type AutomatedChecksViewProps = CommandBarProps & TitleBarProps;
 

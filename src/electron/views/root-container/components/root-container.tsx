@@ -4,7 +4,7 @@ import { ClientStoresHub } from 'common/stores/client-stores-hub';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import { DeviceStoreData } from 'electron/flux/types/device-store-data';
 import { WindowStateStoreData } from 'electron/flux/types/window-state-store-data';
-import { AutomatedChecksView } from 'electron/views/automated-checks/components/automated-checks-view';
+import { AutomatedChecksView } from 'electron/views/automated-checks/automated-checks-view';
 import {
     DeviceConnectViewContainer,
     DeviceConnectViewContainerDeps,
