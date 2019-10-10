@@ -51,6 +51,7 @@ export class CardKebabMenuButton extends React.Component<CardKebabMenuButtonProp
         return (
             <div className={kebabMenuButton}>
                 <ActionButton
+                    ariaLabel="More actions"
                     menuIconProps={{
                         iconName: 'moreVertical',
                     }}
