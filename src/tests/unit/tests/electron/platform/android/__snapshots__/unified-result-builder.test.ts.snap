@@ -25,8 +25,8 @@ Object {
   },
   "toolInfo": Object {
     "applicationProperties": Object {
-      "name": "AI-Android",
-      "version": "0.0",
+      "name": "test-app",
+      "version": "test-version",
     },
     "scanEngineProperties": Object {
       "name": "axe-android",

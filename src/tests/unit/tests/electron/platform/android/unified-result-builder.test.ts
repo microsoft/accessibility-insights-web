@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { UUIDGeneratorType } from 'common/uid-generator';
+import { ApplicationPropertiesDelegate } from 'electron/common/application-properties-provider';
 import { ScanResults } from 'electron/platform/android/scan-results';
 import { ConvertScanResultsToUnifiedResultsDelegate } from 'electron/platform/android/scan-results-to-unified-results';
 import { ConvertScanResultsToUnifiedRulesDelegate } from 'electron/platform/android/scan-results-to-unified-rules';
@@ -44,7 +45,22 @@ describe('buildUnifiedScanCompletedPayload', () => {
                 ];
             });
 
-        const testSubject = createBuilder(getUnifiedResultsMock.object, getUnifiedRulesMock.object, generateUIDMock.object);
+        const applicationPropertiesDelegateMock = Mock.ofType<ApplicationPropertiesDelegate>(undefined, MockBehavior.Strict);
+        applicationPropertiesDelegateMock
+            .setup(delegate => delegate())
+            .returns(() => {
+                return {
+                    name: 'test-app',
+                    version: 'test-version',
+                };
+            });
+
+        const testSubject = createBuilder(
+            getUnifiedResultsMock.object,
+            getUnifiedRulesMock.object,
+            generateUIDMock.object,
+            applicationPropertiesDelegateMock.object,
+        );
         const result = testSubject(exampleScanResults);
 
         expect(result).toMatchSnapshot();
