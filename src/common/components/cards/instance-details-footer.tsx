@@ -11,7 +11,7 @@ import { CreateIssueDetailsTextData } from '../../types/create-issue-details-tex
 import { UserConfigurationStoreData } from '../../types/store-data/user-configuration-store';
 import { CardInteractionSupport } from './card-interaction-support';
 import { CardKebabMenuButton, CardKebabMenuButtonDeps } from './card-kebab-menu-button';
-import { foot, highlightDiv } from './instance-details-footer.scss';
+import { foot, highlightStatus } from './instance-details-footer.scss';
 
 export type HighlightState = 'visible' | 'hidden' | 'unavailable';
 
@@ -48,9 +48,15 @@ export const InstanceDetailsFooter = NamedFC<InstanceDetailsFooterProps>('Instan
 
     const renderHighlightStatus = () => {
         const label = 'Highlight ' + highlightState;
+        const iconName = {
+            unavailable: 'hide',
+            visible: 'redEye',
+            hidden: 'hide',
+        }[highlightState];
+
         return (
-            <div className={highlightDiv}>
-                <Icon iconName="redEye" ariaLabel={label} />
+            <div className={highlightStatus}>
+                <Icon iconName={iconName} ariaLabel={label} />
                 <Label>{label}</Label>
             </div>
         );
