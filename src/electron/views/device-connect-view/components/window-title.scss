@@ -11,8 +11,11 @@
     -webkit-app-region: drag;
 
     .title-container {
-        padding: 6px 10px;
         display: flex;
+
+        > * {
+            padding-left: 10px;
+        }
     }
 
     .actionable-icons-container {
@@ -35,8 +38,6 @@
     }
 
     :global(.header-icon) {
-        float: left;
-        padding: 0px 3px;
         height: 17px;
     }
 
