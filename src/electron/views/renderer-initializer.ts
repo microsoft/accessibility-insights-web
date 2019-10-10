@@ -25,7 +25,7 @@ import { initializeFabricIcons } from '../../common/fabric-icons';
 import { getIndexedDBStore } from '../../common/indexedDB/get-indexeddb-store';
 import { IndexedDBAPI, IndexedDBUtil } from '../../common/indexedDB/indexedDB';
 import { BaseClientStoresHub } from '../../common/stores/base-client-stores-hub';
-import { telemetryAppTitle } from '../../content/strings/application';
+import { androidAppTitle } from '../../content/strings/application';
 import { ElectronAppDataAdapter } from '../adapters/electron-app-data-adapter';
 import { ElectronStorageAdapter } from '../adapters/electron-storage-adapter';
 import { RiggedFeatureFlagChecker } from '../common/rigged-feature-flag-checker';
@@ -55,7 +55,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then((persistedDat
     telemetryLogger.initialize(new RiggedFeatureFlagChecker());
 
     const telemetryClient = getTelemetryClient(
-        telemetryAppTitle,
+        androidAppTitle,
         installationData,
         appDataAdapter,
         telemetryLogger,
