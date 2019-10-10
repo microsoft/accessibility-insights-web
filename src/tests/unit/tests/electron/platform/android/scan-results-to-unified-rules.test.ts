@@ -1,20 +1,15 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { IMock, Mock, MockBehavior, It, Times } from 'typemoq';
+import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
-import { UnifiedRule, InstancePropertyBag } from 'common/types/store-data/unified-data-interface';
+import { UnifiedRule } from 'common/types/store-data/unified-data-interface';
 import { generateUID } from 'common/uid-generator';
 import { RuleInformation } from 'electron/platform/android/rule-information';
 import { RuleInformationProviderType } from 'electron/platform/android/rule-information-provider-type';
 import { RuleResultsData, ScanResults } from 'electron/platform/android/scan-results';
 import { convertScanResultsToUnifiedRules } from 'electron/platform/android/scan-results-to-unified-rules';
-import {
-    buildColorContrastRuleResultObject,
-    buildRuleResultObject,
-    buildScanResultsObject,
-    buildTouchSizeWcagRuleResultObject,
-} from './scan-results-helpers';
+import { buildRuleInformation, buildRuleResultObject, buildScanResultsObject } from './scan-results-helpers';
 
 describe('ScanResultsToUnifiedResults', () => {
     let ruleInformationProviderMock: IMock<RuleInformationProviderType>;
@@ -23,31 +18,18 @@ describe('ScanResultsToUnifiedResults', () => {
     const deviceName: string = 'Super-duper device';
     const appIdentifier: string = 'Spectacular app';
 
-    function buildRuleInformation(ruleId: string, id: string): RuleInformation {
-        return {
-            ruleId: ruleId,
-            ruleDescription: 'This describes rule #' + id,
-            howToFixDelegate: r => {
-                expect(id).toBe('oops'); // Should never be hit!
-                return null;
-            },
-            howToFix: r => {
-                return { unformattedText: 'Property Bag #' + id };
-            },
-            howToFixString: r => 'Unformatted fix #' + id,
-        } as RuleInformation;
-    }
-
     function verifyMockCounts(
         expectedRule1Count: number,
         expectedRule2Count: number,
         expectedRule3Count: number,
         expectedOtherCount: number,
     ): void {
+        const totalCalls: number = expectedRule1Count + expectedRule2Count + expectedRule3Count + expectedOtherCount;
+
         ruleInformationProviderMock.verify(x => x.getRuleInformation(ruleId1), Times.exactly(expectedRule1Count));
         ruleInformationProviderMock.verify(x => x.getRuleInformation(ruleId2), Times.exactly(expectedRule2Count));
         ruleInformationProviderMock.verify(x => x.getRuleInformation(ruleId3), Times.exactly(expectedRule3Count));
-        ruleInformationProviderMock.verify(x => x.getRuleInformation(It.isAnyString()), Times.exactly(expectedOtherCount));
+        ruleInformationProviderMock.verify(x => x.getRuleInformation(It.isAnyString()), Times.exactly(totalCalls));
     }
 
     const ruleId1: string = 'Rule #1';
@@ -63,7 +45,7 @@ describe('ScanResultsToUnifiedResults', () => {
         const ruleInformation2: RuleInformation = buildRuleInformation(ruleId2, '2');
         const ruleInformation3: RuleInformation = buildRuleInformation(ruleId3, '3');
 
-        ruleInformationProviderMock = Mock.ofType<RuleInformationProviderType>(undefined, MockBehavior.Strict);
+        ruleInformationProviderMock = Mock.ofType<RuleInformationProviderType>();
         ruleInformationProviderMock.setup(x => x.getRuleInformation(ruleId1)).returns(() => ruleInformation1);
         ruleInformationProviderMock.setup(x => x.getRuleInformation(ruleId2)).returns(() => ruleInformation2);
         ruleInformationProviderMock.setup(x => x.getRuleInformation(ruleId3)).returns(() => ruleInformation3);
@@ -126,23 +108,22 @@ describe('ScanResultsToUnifiedResults', () => {
             generateGuidMock.object,
         );
         expect(results).toMatchSnapshot();
-        verifyMockCounts(3, 0, 0, 0);
+        verifyMockCounts(1, 0, 0, 0);
     });
 
     test('ScanResults with a mix of supported and unsupported rules', () => {
         const ruleResults: RuleResultsData[] = [
-            buildColorContrastRuleResultObject('FAIL', 1.0, 'ffffffff', 'ffffffff'),
-            buildColorContrastRuleResultObject('PASS', 1.0, 'ff000000', 'ffffffff'),
-            buildTouchSizeWcagRuleResultObject('PASS', 1.0, 50, 100),
-            buildColorContrastRuleResultObject('FAIL', 1.0, 'ffffffff', 'ffffffff'),
+            buildRuleResultObject(ruleId3, 'FAIL'),
             buildRuleResultObject('not supported', 'PASS'),
-            buildRuleResultObject('ImageViewName', 'FAIL'),
+            buildRuleResultObject(ruleId1, 'FAIL'),
+            buildRuleResultObject(ruleId2, 'PASS'),
+            buildRuleResultObject(ruleId1, 'FAIL'),
+            buildRuleResultObject(ruleId1, 'FAIL'),
             buildRuleResultObject('sorry', 'FAIL'),
-            buildRuleResultObject('EditTextValue', 'PASS'),
-            buildRuleResultObject('ActiveViewName', 'FAIL'),
-            buildRuleResultObject('ActiveViewName', 'PASS'),
-            buildTouchSizeWcagRuleResultObject('FAIL', 1.5, 50, 100),
-            buildRuleResultObject('EditTextValue', 'PASS'),
+            buildRuleResultObject(ruleId2, 'PASS'),
+            buildRuleResultObject(ruleId1, 'PASS'),
+            buildRuleResultObject(ruleId3, 'FAIL'),
+            buildRuleResultObject('thanks for playing', 'FAIL'),
         ];
 
         const scanResults: ScanResults = buildScanResultsObject(deviceName, appIdentifier, ruleResults);
@@ -152,5 +133,6 @@ describe('ScanResultsToUnifiedResults', () => {
             generateGuidMock.object,
         );
         expect(results).toMatchSnapshot();
+        verifyMockCounts(1, 1, 1, 3);
     });
 });

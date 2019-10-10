@@ -1,6 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+import { UnifiedResolution } from 'common/types/store-data/unified-data-interface';
+import { RuleInformation } from 'electron/platform/android/rule-information';
 import { RuleResultsData, ScanResults, ViewElementData } from 'electron/platform/android/scan-results';
 
 export function buildScanResultsObject(
@@ -107,4 +109,19 @@ export function buildViewElement(
     };
 
     return viewElement as ViewElementData;
+}
+
+export function buildRuleInformation(ruleId: string, id: string): RuleInformation {
+    return {
+        ruleId: ruleId,
+        ruleDescription: 'This describes rule #' + id,
+        getUnifiedResolutionDelegate: r => {
+            expect(id).toBe('This line should never execute');
+            return null;
+        },
+        getUnifiedResolution: r => {
+            const summary: string = 'How to fix rule ' + ruleId;
+            return ({ howtoFixSummary: summary } as unknown) as UnifiedResolution;
+        },
+    } as RuleInformation;
 }

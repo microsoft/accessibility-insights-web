@@ -5,9 +5,9 @@ exports[`ScanResultsToUnifiedResults Null ScanResults input returns empty output
 exports[`ScanResultsToUnifiedResults ScanResults with 1 supported rule 1`] = `
 Array [
   Object {
-    "description": "Text elements must have sufficient contrast against the background.",
+    "description": "This describes rule #1",
     "guidance": Array [],
-    "id": "ColorContrast",
+    "id": "Rule #1",
     "uid": "gguid-mock-stub",
     "url": null,
   },
@@ -17,9 +17,9 @@ Array [
 exports[`ScanResultsToUnifiedResults ScanResults with 1 supported rule that repeats 1`] = `
 Array [
   Object {
-    "description": "Text elements must have sufficient contrast against the background.",
+    "description": "This describes rule #1",
     "guidance": Array [],
-    "id": "ColorContrast",
+    "id": "Rule #1",
     "uid": "gguid-mock-stub",
     "url": null,
   },
@@ -29,37 +29,23 @@ Array [
 exports[`ScanResultsToUnifiedResults ScanResults with a mix of supported and unsupported rules 1`] = `
 Array [
   Object {
-    "description": "Text elements must have sufficient contrast against the background.",
+    "description": "This describes rule #3",
     "guidance": Array [],
-    "id": "ColorContrast",
+    "id": "Rule #3",
     "uid": "gguid-mock-stub",
     "url": null,
   },
   Object {
-    "description": "Touch inputs must have a sufficient target size.",
+    "description": "This describes rule #1",
     "guidance": Array [],
-    "id": "TouchSizeWcag",
+    "id": "Rule #1",
     "uid": "gguid-mock-stub",
     "url": null,
   },
   Object {
-    "description": "Meaningful images must have alternate text.",
+    "description": "This describes rule #2",
     "guidance": Array [],
-    "id": "ImageViewName",
-    "uid": "gguid-mock-stub",
-    "url": null,
-  },
-  Object {
-    "description": "EditText elements must expose their entered text value to assistive technologies",
-    "guidance": Array [],
-    "id": "EditTextValue",
-    "uid": "gguid-mock-stub",
-    "url": null,
-  },
-  Object {
-    "description": "Active views must have a name that's available to assistive technologies.",
-    "guidance": Array [],
-    "id": "ActiveViewName",
+    "id": "Rule #2",
     "uid": "gguid-mock-stub",
     "url": null,
   },
