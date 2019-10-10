@@ -40,7 +40,9 @@ describe('InstanceDetails', () => {
 
     it('renders', () => {
         setupGetPropertyConfigByIdMock();
-        cardSelectionMessageCreatorMock.setup(mock => mock.toggleCardSelection(It.isAnyString())).verifiable(Times.never());
+        cardSelectionMessageCreatorMock
+            .setup(mock => mock.toggleCardSelection(It.isAnyString(), It.isAnyString()))
+            .verifiable(Times.never());
 
         const testSubject = shallow(<InstanceDetails {...props} />);
 
@@ -51,7 +53,9 @@ describe('InstanceDetails', () => {
     it('dispatches the card selection message when card is clicked', () => {
         setupGetPropertyConfigByIdMock();
 
-        cardSelectionMessageCreatorMock.setup(mock => mock.toggleCardSelection(It.isAnyString())).verifiable(Times.once());
+        cardSelectionMessageCreatorMock
+            .setup(mock => mock.toggleCardSelection(It.isAnyString(), It.isAnyString()))
+            .verifiable(Times.once());
 
         const wrapper = shallow(<InstanceDetails {...props} />);
         const tableElem = wrapper.find('table');

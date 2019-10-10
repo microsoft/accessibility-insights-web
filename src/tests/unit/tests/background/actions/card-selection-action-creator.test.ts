@@ -21,6 +21,7 @@ describe('CardSelectionActionCreator', () => {
     it('handles card selection toggle', () => {
         const payload: CardSelectionPayload = {
             resultInstanceUid: 'test-instance-uuid',
+            ruleId: 'test-rule-id',
         };
         const toggleCardSelectionMock = createActionMock(payload);
         const actionsMock = createActionsMock('toggleCardSelection', toggleCardSelectionMock.object);

@@ -8,9 +8,10 @@ import { ActionMessageDispatcher } from './action-message-dispatcher';
 export class CardSelectionMessageCreator {
     constructor(private readonly dispatcher: ActionMessageDispatcher) {}
 
-    public toggleCardSelection(resultInstanceUid: string): void {
+    public toggleCardSelection(ruleId: string, resultInstanceUid: string): void {
         const payload: CardSelectionPayload = {
             resultInstanceUid,
+            ruleId,
         };
 
         this.dispatcher.dispatchMessage({

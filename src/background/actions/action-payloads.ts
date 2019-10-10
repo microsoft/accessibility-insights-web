@@ -163,5 +163,6 @@ export interface RuleExpandCollapsePayload extends BaseActionPayload {
 }
 
 export interface CardSelectionPayload extends BaseActionPayload {
+    ruleId: string;
     resultInstanceUid: string;
 }
