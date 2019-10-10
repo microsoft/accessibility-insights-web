@@ -523,10 +523,10 @@
     "@types/tough-cookie" "*"
     parse5 "^4.0.0"
 
-"@types/lodash@^4.14.142":
-  version "4.14.142"
-  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.142.tgz#52d5daff878e36e72e299bb9c5871fd6aee55829"
-  integrity sha512-ZhNS7c4D4WQ49Dr1FftQj7SwngRswOnPfxktmqSy5BettRCuum2q784jRwNTYfxH00r8+fEgRz6Da8j5DHNd1Q==
+"@types/lodash@^4.14.144":
+  version "4.14.144"
+  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.144.tgz#12e57fc99064bce45e5ab3c8bc4783feb75eab8e"
+  integrity sha512-ogI4g9W5qIQQUhXAclq6zhqgqNUr7UlFaqDHbch7WLSLeeM/7d3CRaw7GLajxvyFvhJqw4Rpcz5bhoaYtIx6Tg==
 
 "@types/make-dir@^2.1.0":
   version "2.1.0"
@@ -2806,10 +2806,10 @@ electron-publish@21.2.0:
     lazy-val "^1.0.4"
     mime "^2.4.4"
 
-electron@^6.0.11:
-  version "6.0.11"
-  resolved "https://registry.yarnpkg.com/electron/-/electron-6.0.11.tgz#64effa71397045779a1ddbf51312a41ccf26f491"
-  integrity sha512-mi1oHmeFIQrg+CDQ6lbugZAloOxuWPm/ecEKYe1230PGlDoWND7SYStiWQ2eI4YXAEOL/NvuY88ogemu1qhdBg==
+electron@^6.0.12:
+  version "6.0.12"
+  resolved "https://registry.yarnpkg.com/electron/-/electron-6.0.12.tgz#85bf0061e32f660256cfde95488f1cb75253bc94"
+  integrity sha512-70ODZa1RP6K0gE9IV9YLCXPSyhLjXksCuYSSPb3MljbfwfHo5uE6X0CGxzm+54YuPdE2e7EPnWZxOOsJYrS5iQ==
   dependencies:
     "@types/node" "^10.12.18"
     electron-download "^4.1.0"
