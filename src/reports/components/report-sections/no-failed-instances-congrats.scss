@@ -4,7 +4,7 @@
 
 .report-congrats-message {
     word-break: break-all;
-    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
 .report-congrats-head {
@@ -12,14 +12,10 @@
     font-weight: 600;
     color: $primary-text;
     padding: 10px 0 10px 0;
-    word-break: break-all;
-    word-wrap: break-word;
 }
 
 .report-congrats-info {
     font-size: 40px;
     color: $secondary-text;
     padding: 10px 0 10px 0;
-    word-break: break-all;
-    word-wrap: break-word;
 }
