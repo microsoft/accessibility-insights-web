@@ -49,8 +49,9 @@ export class CardKebabMenuButton extends React.Component<CardKebabMenuButtonProp
 
     public render(): JSX.Element {
         return (
-            <div className={kebabMenuButton}>
+            <>
                 <ActionButton
+                    className={kebabMenuButton}
                     menuIconProps={{
                         iconName: 'moreVertical',
                     }}
@@ -63,7 +64,7 @@ export class CardKebabMenuButton extends React.Component<CardKebabMenuButtonProp
                 />
                 {this.renderIssueFilingSettingContent()}
                 {this.renderToast()}
-            </div>
+            </>
         );
     }
 
