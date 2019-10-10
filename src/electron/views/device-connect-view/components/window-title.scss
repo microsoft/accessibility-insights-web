@@ -8,17 +8,20 @@
     height: 32px;
     display: flex;
     align-items: center;
+    -webkit-app-region: drag;
 
     .title-container {
-        padding: 6px 9px;
+        padding: 6px 10px;
         display: flex;
     }
 
     .actionable-icons-container {
         margin-left: auto;
         display: flex;
-        > {
-            padding: 6px 9px;
+        -webkit-app-region: no-drag;
+
+        > * {
+            padding: 6px 10px;
         }
     }
 
@@ -35,5 +38,14 @@
         float: left;
         padding: 0px 3px;
         height: 17px;
+    }
+
+    button {
+        padding: 10px;
+
+        i {
+            color: $always-white;
+            font-size: 12px;
+        }
     }
 }

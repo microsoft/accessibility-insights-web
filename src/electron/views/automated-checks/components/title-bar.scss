@@ -8,14 +8,4 @@
     :global(.header-text) {
         color: $always-white;
     }
-
-    button {
-        margin: 10px;
-        height: 12px;
-
-        i {
-            color: $always-white;
-            font-size: 10px;
-        }
-    }
 }
