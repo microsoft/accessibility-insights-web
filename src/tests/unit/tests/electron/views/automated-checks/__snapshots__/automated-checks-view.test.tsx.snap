@@ -7,6 +7,10 @@ exports[`AutomatedChecksView renders the automated checks view: automated checks
       Object {
         "currentWindow": null,
         "deviceConnectActionCreator": null,
+        "scanActionCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "scanActions": undefined,
+        },
         "windowStateActionCreator": null,
       }
     }
@@ -16,6 +20,10 @@ exports[`AutomatedChecksView renders the automated checks view: automated checks
       Object {
         "currentWindow": null,
         "deviceConnectActionCreator": null,
+        "scanActionCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "scanActions": undefined,
+        },
         "windowStateActionCreator": null,
       }
     }
