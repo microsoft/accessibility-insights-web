@@ -5,14 +5,14 @@ exports[`InstanceDetailsFooter renders per snapshot when all card interactions a
   className="foot"
 >
   <div
-    className="highlightDiv"
+    className="highlightStatus"
   >
     <StyledIconBase
       ariaHidden="true"
-      iconName="redEye"
+      iconName="hide"
     />
     <StyledLabelBase>
-      HighLight hidden
+      Highlight hidden
     </StyledLabelBase>
   </div>
   <CardKebabMenuButton
@@ -39,14 +39,14 @@ exports[`InstanceDetailsFooter renders per snapshot when only UserConfig-agnosti
   className="foot"
 >
   <div
-    className="highlightDiv"
+    className="highlightStatus"
   >
     <StyledIconBase
       ariaHidden="true"
-      iconName="redEye"
+      iconName="hide"
     />
     <StyledLabelBase>
-      HighLight hidden
+      Highlight hidden
     </StyledLabelBase>
   </div>
   <CardKebabMenuButton
@@ -73,14 +73,14 @@ exports[`InstanceDetailsFooter renders per snapshot with highlightState="hidden"
   className="foot"
 >
   <div
-    className="highlightDiv"
+    className="highlightStatus"
   >
     <StyledIconBase
       ariaHidden="true"
-      iconName="redEye"
+      iconName="hide"
     />
     <StyledLabelBase>
-      HighLight hidden
+      Highlight hidden
     </StyledLabelBase>
   </div>
   <CardKebabMenuButton
@@ -107,14 +107,14 @@ exports[`InstanceDetailsFooter renders per snapshot with highlightState="unavail
   className="foot"
 >
   <div
-    className="highlightDiv"
+    className="highlightStatus"
   >
     <StyledIconBase
       ariaHidden="true"
-      iconName="redEye"
+      iconName="hide"
     />
     <StyledLabelBase>
-      HighLight unavailable
+      Highlight unavailable
     </StyledLabelBase>
   </div>
   <CardKebabMenuButton
@@ -141,14 +141,14 @@ exports[`InstanceDetailsFooter renders per snapshot with highlightState="visible
   className="foot"
 >
   <div
-    className="highlightDiv"
+    className="highlightStatus"
   >
     <StyledIconBase
       ariaHidden="true"
       iconName="redEye"
     />
     <StyledLabelBase>
-      HighLight visible
+      Highlight visible
     </StyledLabelBase>
   </div>
   <CardKebabMenuButton
