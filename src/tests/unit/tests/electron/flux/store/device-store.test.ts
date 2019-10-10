@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { ConnectingPayload, ConnectionSucceedPayload } from 'electron/flux/action/device-action-payloads';
+import { ConnectedDevicePayload, PortPayload } from 'electron/flux/action/device-action-payloads';
 import { DeviceActions } from 'electron/flux/action/device-actions';
 import { DeviceStore } from 'electron/flux/store/device-store';
 import { DeviceStoreData } from 'electron/flux/types/device-store-data';
@@ -25,7 +25,7 @@ describe('DeviceStore', () => {
     describe('on connecting', () => {
         const testPort = 10101;
         it('updates the port and status to CONNECTING ', () => {
-            const payload: ConnectingPayload = {
+            const payload: PortPayload = {
                 port: testPort,
             };
 
@@ -44,7 +44,7 @@ describe('DeviceStore', () => {
             initialState.port = testPort;
             initialState.deviceConnectState = DeviceConnectState.Connecting;
 
-            const payload: ConnectingPayload = {
+            const payload: PortPayload = {
                 port: testPort + 1,
             };
 
@@ -62,7 +62,7 @@ describe('DeviceStore', () => {
             initialState.port = testPort;
             initialState.deviceConnectState = DeviceConnectState.Connecting;
 
-            const payload: ConnectingPayload = {
+            const payload: PortPayload = {
                 port: testPort,
             };
 
@@ -79,7 +79,7 @@ describe('DeviceStore', () => {
 
     describe('on connection succeed', () => {
         it('updates connection status and device name', () => {
-            const payload: ConnectionSucceedPayload = {
+            const payload: ConnectedDevicePayload = {
                 connectedDevice: 'test connected device',
             };
             const expectedState: DeviceStoreData = {
@@ -96,7 +96,7 @@ describe('DeviceStore', () => {
         it('does not updates if status is already CONNECTED', () => {
             initialState.deviceConnectState = DeviceConnectState.Connected;
 
-            const payload: ConnectionSucceedPayload = {
+            const payload: ConnectedDevicePayload = {
                 connectedDevice: 'test connected device',
             };
 
