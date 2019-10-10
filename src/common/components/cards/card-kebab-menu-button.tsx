@@ -44,7 +44,6 @@ export class CardKebabMenuButton extends React.Component<CardKebabMenuButtonProp
         this.toastRef = React.createRef();
         this.state = {
             showNeedsSettingsContent: false,
-            toastText: '',
         };
     }
 
