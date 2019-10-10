@@ -40,6 +40,7 @@ export function initializeFabricIcons(): void {
             gear: '\uE713',
             giftboxOpen: '\uF133',
             globalNavButton: '\uE700',
+            hide: '\uED1A',
             hide2: '\uEF89',
             home: '\uE80F',
             incidentTriangle: '\uE814',
@@ -47,7 +48,9 @@ export function initializeFabricIcons(): void {
             ladybugSolid: '\uF44A',
             mail: '\uE715',
             medical: '\uEAD4',
+            moreVertical: '\uF2BC',
             play: '\uE768',
+            redEye: '\uE7B3',
             refresh: '\uE72C',
             rocket: '\uF3B3',
             scopeTemplate: '\uF2B0',
@@ -63,8 +66,6 @@ export function initializeFabricIcons(): void {
             undo: '\uE7A7',
             unknown: '\uE9CE',
             view: '\uE890',
-            redEye: '\uE7b3',
-            moreVertical: '\uF2BC',
         },
     });
 }
