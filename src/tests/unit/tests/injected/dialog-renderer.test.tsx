@@ -117,7 +117,6 @@ describe('DialogRendererTests', () => {
             id: 'id1',
             guidanceLinks: [],
             helpUrl: 'help',
-            snippet: 'html',
         };
         const expectedFailedRules: DictionaryStringTo<DecoratedAxeNodeResult> = {};
         expectedFailedRules[ruleId] = nodeResult;
@@ -159,7 +158,6 @@ describe('DialogRendererTests', () => {
             id: 'id',
             guidanceLinks: [],
             helpUrl: 'help',
-            snippet: 'html',
         };
         const expectedFailedRules: DictionaryStringTo<DecoratedAxeNodeResult> = {};
         expectedFailedRules[ruleId] = nodeResult;
@@ -199,7 +197,6 @@ describe('DialogRendererTests', () => {
             id: 'id',
             guidanceLinks: [],
             helpUrl: 'help',
-            snippet: 'html',
         };
         const expectedFailedRules: DictionaryStringTo<DecoratedAxeNodeResult> = {};
         expectedFailedRules[ruleId] = nodeResult;
@@ -241,7 +238,6 @@ describe('DialogRendererTests', () => {
             id: 'id1',
             guidanceLinks: [],
             helpUrl: 'help',
-            snippet: 'html',
         };
         const expectedFailedRules: DictionaryStringTo<DecoratedAxeNodeResult> = {};
         expectedFailedRules[ruleId] = nodeResult;

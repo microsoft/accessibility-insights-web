@@ -107,7 +107,6 @@ describe('IssuesDetailsPaneTest', () => {
                 id: id,
                 guidanceLinks: guidanceLinks,
                 helpUrl: 'http://help-url/',
-                snippet: null,
             };
         }
 

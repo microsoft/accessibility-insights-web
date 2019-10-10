@@ -28,7 +28,6 @@ describe('CommandBar', () => {
         ruleId: 'RR-rule-id',
         helpUrl: 'RR-help-url',
         selector: 'RR-selector<x>',
-        snippet: 'RR-snippet   space',
     } as DecoratedAxeNodeResult;
     const axeConverterMock = Mock.ofType(AxeResultToIssueFilingDataConverter);
     const issueData = {} as CreateIssueDetailsTextData;

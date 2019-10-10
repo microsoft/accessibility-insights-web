@@ -36,7 +36,6 @@ describe('DetailsDialog', () => {
         failureSummary: 'failureSummary',
         id: 'id1',
         guidanceLinks: [{ text: 'Guidance Link', href: 'http://example.com' }],
-        snippet: 'html',
     } as DecoratedAxeNodeResult;
 
     const defaultDetailsDialogDeps: DetailsDialogDeps = {
