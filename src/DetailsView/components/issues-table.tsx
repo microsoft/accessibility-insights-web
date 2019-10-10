@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as Markup from 'assessments/markup';
+import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
 import { ISelection } from 'office-ui-fabric-react/lib/DetailsList';
 import { Spinner, SpinnerSize } from 'office-ui-fabric-react/lib/Spinner';
 import * as React from 'react';
@@ -52,6 +53,7 @@ export interface IssuesTableProps {
     userConfigurationStoreData: UserConfigurationStoreData;
     ruleResultsByStatus: UnifiedStatusResults;
     targetAppInfo: TargetAppData;
+    cardSelectionStoreData: CardSelectionStoreData;
 }
 
 export class IssuesTable extends React.Component<IssuesTableProps> {
@@ -160,6 +162,7 @@ export class IssuesTable extends React.Component<IssuesTableProps> {
                         ruleResultsByStatus={this.props.ruleResultsByStatus}
                         userConfigurationStoreData={this.props.userConfigurationStoreData}
                         targetAppInfo={this.props.targetAppInfo}
+                        cardSelectionStoreData={this.props.cardSelectionStoreData}
                     />
                 }
                 featureFlag={FeatureFlags.universalCardsUI}

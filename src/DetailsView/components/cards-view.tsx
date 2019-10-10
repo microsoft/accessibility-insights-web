@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { FailedInstancesSection, FailedInstancesSectionDeps, UnifiedStatusResults } from 'common/components/cards/failed-instances-section';
 import { NamedFC } from 'common/react/named-fc';
+import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
 import * as React from 'react';
 
 import { TargetAppData } from '../../common/types/store-data/unified-data-interface';
@@ -14,9 +15,11 @@ export interface CardsViewProps {
     ruleResultsByStatus: UnifiedStatusResults;
     userConfigurationStoreData: UserConfigurationStoreData;
     targetAppInfo: TargetAppData;
+    cardSelectionStoreData: CardSelectionStoreData;
 }
 
 export const CardsView = NamedFC<CardsViewProps>('CardsView', props => {
+    console.log('CARDS VIEW', props);
     return (
         <>
             <FailedInstancesSection

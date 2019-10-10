@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
 import { shallow } from 'enzyme';
 import { ISelection, Selection } from 'office-ui-fabric-react/lib/DetailsList';
 import * as React from 'react';
@@ -236,6 +237,7 @@ class TestPropsBuilder {
             userConfigurationStoreData: {
                 bugService: 'gitHub',
             } as UserConfigurationStoreData,
+            cardSelectionStoreData: {} as CardSelectionStoreData,
         };
     }
 }

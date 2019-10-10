@@ -25,6 +25,7 @@ import { ReportGenerator } from 'reports/report-generator';
 import { ReportHtmlGenerator } from 'reports/report-html-generator';
 import { ReportNameGenerator } from 'reports/report-name-generator';
 
+import { CardSelectionStore } from 'background/stores/card-selection-store';
 import { A11YSelfValidator } from '../common/a11y-self-validator';
 import { AxeInfo } from '../common/axe-info';
 import { provideBlob } from '../common/blob-provider';
@@ -139,6 +140,8 @@ if (isNaN(tabId) === false) {
                 StoreNames[StoreNames.UserConfigurationStore],
                 browserAdapter,
             );
+
+            const cardSelectionStore = new StoreProxy<CardSelectionStore>(StoreNames[StoreNames.CardSelectionStore], browserAdapter);
             const storesHub = new BaseClientStoresHub<DetailsViewContainerState>([
                 detailsViewStore,
                 featureFlagStore,
@@ -150,6 +153,7 @@ if (isNaN(tabId) === false) {
                 pathSnippetStore,
                 scopingStore,
                 userConfigStore,
+                cardSelectionStore,
             ]);
 
             const actionMessageDispatcher = new ActionMessageDispatcher(browserAdapter.sendMessageToFrames, tab.id);

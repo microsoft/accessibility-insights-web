@@ -1,9 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
+import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
 import { ISelection } from 'office-ui-fabric-react/lib/DetailsList';
 import { Spinner, SpinnerSize } from 'office-ui-fabric-react/lib/Spinner';
 import * as React from 'react';
+
 import { ThemeDeps } from '../common/components/theme';
 import { withStoreSubscription, WithStoreSubscriptionDeps } from '../common/components/with-store-subscription';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
@@ -76,6 +78,7 @@ export interface DetailsViewContainerState {
     userConfigurationStoreData: UserConfigurationStoreData;
     selectedDetailsView: VisualizationType;
     selectedDetailsRightPanelConfiguration: DetailsRightPanelConfiguration;
+    cardSelectionStoreData: CardSelectionStoreData;
 }
 
 export class DetailsViewContainer extends React.Component<DetailsViewContainerProps> {
@@ -132,7 +135,7 @@ export class DetailsViewContainer extends React.Component<DetailsViewContainerPr
     }
 
     private renderHeader(): JSX.Element {
-        const storeState = this.props.storeState;
+        const { storeState } = this.props;
         const visualizationStoreData = storeState ? storeState.visualizationStoreData : null;
         return (
             <Header
@@ -202,6 +205,7 @@ export class DetailsViewContainer extends React.Component<DetailsViewContainerPr
                 userConfigurationStoreData={storeState.userConfigurationStoreData}
                 ruleResultsByStatus={ruleResults}
                 targetAppInfo={storeState.unifiedScanResultStoreData.targetAppInfo}
+                cardSelectionStoreData={storeState.cardSelectionStoreData}
             />
         );
     }

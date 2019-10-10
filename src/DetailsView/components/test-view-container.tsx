@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
 import { ISelection } from 'office-ui-fabric-react/lib/DetailsList';
 
 import { UnifiedStatusResults } from '../../common/components/cards/failed-instances-section';
@@ -43,6 +44,7 @@ export interface TestViewContainerProps {
     userConfigurationStoreData: UserConfigurationStoreData;
     ruleResultsByStatus: UnifiedStatusResults;
     targetAppInfo: TargetAppData;
+    cardSelectionStoreData: CardSelectionStoreData;
 }
 
 export const TestViewContainer = NamedFC<TestViewContainerProps>('TestViewContainer', props => {

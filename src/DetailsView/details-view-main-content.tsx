@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
+import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
 import { TargetAppData } from 'common/types/store-data/unified-data-interface';
 import { ISelection } from 'office-ui-fabric-react/lib/DetailsList';
 import * as React from 'react';
@@ -51,6 +52,7 @@ export interface DetailsViewMainContentProps {
     userConfigurationStoreData: UserConfigurationStoreData;
     ruleResultsByStatus: UnifiedStatusResults;
     targetAppInfo: TargetAppData;
+    cardSelectionStoreData: CardSelectionStoreData;
 }
 
 export class DetailsViewMainContent extends React.Component<DetailsViewMainContentProps> {

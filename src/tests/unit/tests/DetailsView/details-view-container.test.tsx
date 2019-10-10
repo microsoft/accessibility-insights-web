@@ -5,6 +5,7 @@ import { ISelection, Selection } from 'office-ui-fabric-react/lib/DetailsList';
 import * as React from 'react';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
+import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
 import { UnifiedStatusResults } from '../../../../common/components/cards/failed-instances-section';
 import { DropdownClickHandler } from '../../../../common/dropdown-click-handler';
 import { StoreActionMessageCreator } from '../../../../common/message-creators/store-action-message-creator';
@@ -300,6 +301,7 @@ describe('DetailsViewContainer', () => {
                 userConfigurationStoreData={storeMocks.userConfigurationStoreData}
                 ruleResultsByStatus={ruleResults}
                 targetAppInfo={targetApp}
+                cardSelectionStoreData={null}
             />
         );
     }
@@ -368,6 +370,7 @@ describe('DetailsViewContainer', () => {
             unifiedScanResultStoreData: storeMocks.unifiedScanResultStoreData,
             selectedDetailsView: viewType,
             selectedDetailsRightPanelConfiguration: rightPanel,
+            cardSelectionStoreData: {} as CardSelectionStoreData,
         };
     }
 

@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
 import { ISelection } from 'office-ui-fabric-react/lib/DetailsList';
 import * as React from 'react';
 
@@ -35,6 +36,7 @@ export interface DetailsListIssuesViewProps {
     userConfigurationStoreData: UserConfigurationStoreData;
     ruleResultsByStatus: UnifiedStatusResults;
     targetAppInfo: TargetAppData;
+    cardSelectionStoreData: CardSelectionStoreData;
 }
 
 export const DetailsListIssuesView = NamedFC<DetailsListIssuesViewProps>('DetailsListIssuesView', ({ children, ...props }) => {
@@ -67,6 +69,7 @@ export const DetailsListIssuesView = NamedFC<DetailsListIssuesViewProps>('Detail
             userConfigurationStoreData={props.userConfigurationStoreData}
             ruleResultsByStatus={props.ruleResultsByStatus}
             targetAppInfo={props.targetAppInfo}
+            cardSelectionStoreData={props.cardSelectionStoreData}
         />
     );
 });

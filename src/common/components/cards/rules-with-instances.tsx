@@ -28,39 +28,37 @@ export type RulesWithInstancesProps = {
     targetAppInfo: TargetAppData;
 };
 
-export const RulesWithInstances = NamedFC<RulesWithInstancesProps>(
-    'RulesWithInstances',
-    ({ rules, outcomeType, fixInstructionProcessor, deps, userConfigurationStoreData, targetAppInfo }) => {
-        const getCollapsibleComponentProps = (rule: UnifiedRuleResult, idx: number, buttonAriaLabel: string) => {
-            return {
-                id: rule.id,
-                key: `summary-details-${idx + 1}`,
-                header: <MinimalRuleHeader key={rule.id} rule={rule} outcomeType={outcomeType} />,
-                content: (
-                    <RuleContent
-                        key={`${rule.id}-rule-group`}
-                        deps={deps}
-                        rule={rule}
-                        fixInstructionProcessor={fixInstructionProcessor}
-                        userConfigurationStoreData={userConfigurationStoreData}
-                        targetAppInfo={targetAppInfo}
-                    />
-                ),
-                containerClassName: css(collapsibleRuleDetailsGroup),
-                buttonAriaLabel: buttonAriaLabel,
-                headingLevel: 3,
-            };
+export const RulesWithInstances = NamedFC<RulesWithInstancesProps>('RulesWithInstances', props => {
+    const { rules, outcomeType, fixInstructionProcessor, deps, userConfigurationStoreData, targetAppInfo } = props;
+    const getCollapsibleComponentProps = (rule: UnifiedRuleResult, idx: number, buttonAriaLabel: string) => {
+        return {
+            id: rule.id,
+            key: `summary-details-${idx + 1}`,
+            header: <MinimalRuleHeader key={rule.id} rule={rule} outcomeType={outcomeType} />,
+            content: (
+                <RuleContent
+                    key={`${rule.id}-rule-group`}
+                    deps={deps}
+                    rule={rule}
+                    fixInstructionProcessor={fixInstructionProcessor}
+                    userConfigurationStoreData={userConfigurationStoreData}
+                    targetAppInfo={targetAppInfo}
+                />
+            ),
+            containerClassName: css(collapsibleRuleDetailsGroup),
+            buttonAriaLabel: buttonAriaLabel,
+            headingLevel: 3,
         };
+    };
 
-        return (
-            <div className={ruleDetailsGroup}>
-                {rules.map((rule, idx) => {
-                    const { pastTense } = outcomeTypeSemantics[outcomeType];
-                    const buttonAriaLabel = `${rule.id} ${rule.nodes.length} ${pastTense} ${rule.description}`;
-                    const CollapsibleComponent = deps.collapsibleControl(getCollapsibleComponentProps(rule, idx, buttonAriaLabel));
-                    return CollapsibleComponent;
-                })}
-            </div>
-        );
-    },
-);
+    return (
+        <div className={ruleDetailsGroup}>
+            {rules.map((rule, idx) => {
+                const { pastTense } = outcomeTypeSemantics[outcomeType];
+                const buttonAriaLabel = `${rule.id} ${rule.nodes.length} ${pastTense} ${rule.description}`;
+                const CollapsibleComponent = deps.collapsibleControl(getCollapsibleComponentProps(rule, idx, buttonAriaLabel));
+                return CollapsibleComponent;
+            })}
+        </div>
+    );
+});
