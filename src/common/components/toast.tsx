@@ -10,17 +10,23 @@ export type ToastDeps = {
 
 export type ToastProps = {
     deps: ToastDeps;
-    onTimeout?: () => void;
     timeoutLength?: number;
 };
 
-export class Toast extends React.Component<ToastProps> {
+export type ToastState = {
+    toastVisible: boolean;
+};
+
+export class Toast extends React.Component<ToastProps, ToastState> {
     private timeoutId: number;
-    private hidden: boolean;
 
     public static defaultProps = {
         timeoutLength: 1000,
     };
+
+    public show(): void {
+        this.setState({ toastVisible: true });
+    }
 
     public componentWillUnmount(): void {
         if (this.timeoutId) {
@@ -31,15 +37,12 @@ export class Toast extends React.Component<ToastProps> {
 
     public componentDidMount(): void {
         this.timeoutId = this.props.deps.windowUtils.setTimeout(() => {
-            this.hidden = true;
+            this.setState({ toastVisible: false });
             this.forceUpdate();
-            if (this.props.onTimeout) {
-                this.props.onTimeout();
-            }
         }, this.props.timeoutLength);
     }
 
     public render(): JSX.Element {
-        return this.hidden ? null : <div className={css('ms-fadeIn100', 'toast')}>{this.props.children}</div>;
+        return this.state.toastVisible ? <div className={css('ms-fadeIn100', 'toast')}>{this.props.children}</div> : null;
     }
 }
