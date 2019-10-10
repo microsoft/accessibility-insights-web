@@ -35,7 +35,7 @@ describe('AutomatedChecksView', () => {
             devicePort,
         } as AutomatedChecksViewProps;
 
-        const wrapped = shallow(<AutomatedChecksView {...props} />);
+        shallow(<AutomatedChecksView {...props} />);
 
         scanActionCreatorMock.verifyAll();
     });
