@@ -8,7 +8,7 @@ exports[`InstanceDetailsFooter renders per snapshot when all card interactions a
     className="highlightDiv"
   >
     <StyledIconBase
-      ariaLabel="HighLight hidden"
+      ariaHidden="true"
       iconName="redEye"
     />
     <StyledLabelBase>
@@ -42,7 +42,7 @@ exports[`InstanceDetailsFooter renders per snapshot when only UserConfig-agnosti
     className="highlightDiv"
   >
     <StyledIconBase
-      ariaLabel="HighLight hidden"
+      ariaHidden="true"
       iconName="redEye"
     />
     <StyledLabelBase>
@@ -76,7 +76,7 @@ exports[`InstanceDetailsFooter renders per snapshot with highlightState="hidden"
     className="highlightDiv"
   >
     <StyledIconBase
-      ariaLabel="HighLight hidden"
+      ariaHidden="true"
       iconName="redEye"
     />
     <StyledLabelBase>
@@ -110,7 +110,7 @@ exports[`InstanceDetailsFooter renders per snapshot with highlightState="unavail
     className="highlightDiv"
   >
     <StyledIconBase
-      ariaLabel="HighLight unavailable"
+      ariaHidden="true"
       iconName="redEye"
     />
     <StyledLabelBase>
@@ -144,7 +144,7 @@ exports[`InstanceDetailsFooter renders per snapshot with highlightState="visible
     className="highlightDiv"
   >
     <StyledIconBase
-      ariaLabel="HighLight visible"
+      ariaHidden="true"
       iconName="redEye"
     />
     <StyledLabelBase>
