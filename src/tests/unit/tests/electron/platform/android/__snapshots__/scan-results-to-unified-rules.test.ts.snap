@@ -5,7 +5,7 @@ exports[`ScanResultsToUnifiedResults Null ScanResults input returns empty output
 exports[`ScanResultsToUnifiedResults ScanResults with 1 supported rule 1`] = `
 Array [
   Object {
-    "description": "This describes rule #1",
+    "description": "This describes Rule #1",
     "guidance": Array [],
     "id": "Rule #1",
     "uid": "gguid-mock-stub",
@@ -17,7 +17,7 @@ Array [
 exports[`ScanResultsToUnifiedResults ScanResults with 1 supported rule that repeats 1`] = `
 Array [
   Object {
-    "description": "This describes rule #1",
+    "description": "This describes Rule #1",
     "guidance": Array [],
     "id": "Rule #1",
     "uid": "gguid-mock-stub",
@@ -29,21 +29,21 @@ Array [
 exports[`ScanResultsToUnifiedResults ScanResults with a mix of supported and unsupported rules 1`] = `
 Array [
   Object {
-    "description": "This describes rule #3",
+    "description": "This describes Rule #3",
     "guidance": Array [],
     "id": "Rule #3",
     "uid": "gguid-mock-stub",
     "url": null,
   },
   Object {
-    "description": "This describes rule #1",
+    "description": "This describes Rule #1",
     "guidance": Array [],
     "id": "Rule #1",
     "uid": "gguid-mock-stub",
     "url": null,
   },
   Object {
-    "description": "This describes rule #2",
+    "description": "This describes Rule #2",
     "guidance": Array [],
     "id": "Rule #2",
     "uid": "gguid-mock-stub",

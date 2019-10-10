@@ -41,9 +41,9 @@ describe('ScanResultsToUnifiedResults', () => {
         generateGuidMock = Mock.ofInstance(generateUID, MockBehavior.Strict);
         generateGuidMock.setup(ggm => ggm()).returns(() => guidStub);
 
-        const ruleInformation1: RuleInformation = buildRuleInformation(ruleId1, '1');
-        const ruleInformation2: RuleInformation = buildRuleInformation(ruleId2, '2');
-        const ruleInformation3: RuleInformation = buildRuleInformation(ruleId3, '3');
+        const ruleInformation1: RuleInformation = buildRuleInformation(ruleId1);
+        const ruleInformation2: RuleInformation = buildRuleInformation(ruleId2);
+        const ruleInformation3: RuleInformation = buildRuleInformation(ruleId3);
 
         ruleInformationProviderMock = Mock.ofType<RuleInformationProviderType>();
         ruleInformationProviderMock.setup(x => x.getRuleInformation(ruleId1)).returns(() => ruleInformation1);

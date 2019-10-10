@@ -111,16 +111,16 @@ export function buildViewElement(
     return viewElement as ViewElementData;
 }
 
-export function buildRuleInformation(ruleId: string, id: string): RuleInformation {
+export function buildRuleInformation(ruleId: string): RuleInformation {
     return {
         ruleId: ruleId,
-        ruleDescription: 'This describes rule #' + id,
+        ruleDescription: 'This describes ' + ruleId,
         getUnifiedResolutionDelegate: r => {
-            expect(id).toBe('This line should never execute');
+            expect('abc').toBe('This line should never execute');
             return null;
         },
         getUnifiedResolution: r => {
-            const summary: string = 'How to fix rule ' + ruleId;
+            const summary: string = 'How to fix ' + ruleId;
             return ({ howtoFixSummary: summary } as unknown) as UnifiedResolution;
         },
     } as RuleInformation;
