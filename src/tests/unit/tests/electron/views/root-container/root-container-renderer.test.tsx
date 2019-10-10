@@ -1,16 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { BrowserWindow } from 'electron';
-import {
-    DeviceConnectViewContainer,
-    DeviceConnectViewContainerProps,
-} from 'electron/views/device-connect-view/components/device-connect-view-container';
-import { DeviceConnectViewRenderer } from 'electron/views/device-connect-view/device-connect-view-renderer';
+import { RootContainer, RootContainerProps } from 'electron/views/root-container/components/root-container';
+import { RootContainerRenderer } from 'electron/views/root-container/root-container-renderer';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { IMock, It, Mock } from 'typemoq';
 
-describe('DeviceConnectViewRendererTest', () => {
+describe('RootContainerRendererTest', () => {
     test('render', () => {
         const dom = document.createElement('div');
         const containerDiv = document.createElement('div');
@@ -22,20 +19,20 @@ describe('DeviceConnectViewRendererTest', () => {
             },
         } as BrowserWindow;
 
-        containerDiv.setAttribute('id', 'device-connect-view-container');
+        containerDiv.setAttribute('id', 'root-container');
         dom.appendChild(containerDiv);
 
         const props = {
             deps: {
                 currentWindow: browserWindow,
             },
-        } as DeviceConnectViewContainerProps;
+        } as RootContainerProps;
 
-        const expectedComponent = <DeviceConnectViewContainer {...props} />;
+        const expectedComponent = <RootContainer {...props} />;
 
         renderMock.setup(r => r(It.isValue(expectedComponent), containerDiv)).verifiable();
 
-        const renderer = new DeviceConnectViewRenderer(renderMock.object, dom, props);
+        const renderer = new RootContainerRenderer(renderMock.object, dom, props);
 
         renderer.render();
 

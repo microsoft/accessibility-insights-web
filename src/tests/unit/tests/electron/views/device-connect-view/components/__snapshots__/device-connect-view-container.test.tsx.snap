@@ -1,29 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`DeviceConnectViewContainer listens to store changes through the stores hub: state from constructor 1`] = `
-Object {
-  "deviceStoreData": Object {
-    "deviceConnectState": 0,
-  },
-  "userConfigurationStoreData": Object {
-    "enableTelemetry": false,
-    "isFirstTime": true,
-  },
-}
-`;
-
-exports[`DeviceConnectViewContainer listens to store changes through the stores hub: updated state 1`] = `
-Object {
-  "deviceStoreData": Object {
-    "deviceConnectState": 0,
-  },
-  "userConfigurationStoreData": Object {
-    "enableTelemetry": true,
-    "isFirstTime": false,
-  },
-}
-`;
-
 exports[`DeviceConnectViewContainer renders 1`] = `
 <React.Fragment>
   <WindowTitle
@@ -36,10 +12,6 @@ exports[`DeviceConnectViewContainer renders 1`] = `
       Object {
         "currentWindow": Object {
           "close": [Function],
-        },
-        "storeHub": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "stores": undefined,
         },
       }
     }
@@ -55,10 +27,6 @@ exports[`DeviceConnectViewContainer renders 1`] = `
       Object {
         "currentWindow": Object {
           "close": [Function],
-        },
-        "storeHub": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "stores": undefined,
         },
       }
     }

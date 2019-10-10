@@ -4,18 +4,29 @@
 @import '../../common/styles/colors.scss';
 @import '../../common/styles/fonts.scss';
 
-.report-instance-table {
-    background: $neutral-0;
-    border-radius: 4px;
-    box-shadow: 0px 0.6px 1.8px rgba(0, 0, 0, 0.108), 0px 3.2px 7.2px rgba(0, 0, 0, 0.132);
-    display: table;
+@mixin fill-available-width {
     width: -moz-available;
     /* WebKit-based browsers will ignore this. */
     width: -webkit-fill-available;
     /* Mozilla-based browsers will ignore this. */
     width: fill-available;
+}
+
+.instance-details-card {
+    border-radius: 4px;
+    box-shadow: 0px 0.6px 1.8px rgba(0, 0, 0, 0.108), 0px 3.2px 7.2px rgba(0, 0, 0, 0.132);
     margin-left: 24px;
+    margin-bottom: 16px;
+    @include fill-available-width;
+}
+
+.report-instance-table {
+    background: $neutral-0;
+    display: table;
     table-layout: fixed;
+    @include fill-available-width;
+
+    border-radius: inherit;
 
     th {
         padding: 12px 20px;

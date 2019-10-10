@@ -1,19 +1,19 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { InstancePropertyBag } from 'common/types/store-data/unified-data-interface';
+import { UnifiedResolution } from 'common/types/store-data/unified-data-interface';
 import { RuleResultsData } from './scan-results';
 
-export type HowToFixDelegate = (ruleResultsData: RuleResultsData) => InstancePropertyBag;
+export type GetUnifiedResolutionDelegate = (ruleResultsData: RuleResultsData) => UnifiedResolution;
 
 export class RuleInformation {
-    constructor(readonly ruleId: string, readonly ruleDescription: string, readonly howToFixDelegate: HowToFixDelegate) {}
+    constructor(
+        readonly ruleId: string,
+        readonly ruleDescription: string,
+        readonly getUnifiedResolutionDelegate: GetUnifiedResolutionDelegate,
+    ) {}
 
-    public howToFix(ruleResultsData: RuleResultsData): InstancePropertyBag {
-        return this.howToFixDelegate(ruleResultsData);
-    }
-
-    public howToFixString(ruleResultsData: RuleResultsData): string {
-        return this.howToFixDelegate(ruleResultsData).unformattedText;
+    public getUnifiedResolution(ruleResultsData: RuleResultsData): UnifiedResolution {
+        return this.getUnifiedResolutionDelegate(ruleResultsData);
     }
 }

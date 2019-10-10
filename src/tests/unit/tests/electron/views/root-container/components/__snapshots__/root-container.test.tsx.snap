@@ -10,6 +10,16 @@ exports[`RootContainer renders device connect view container when route is devic
       },
     }
   }
+  deviceStoreData={
+    Object {
+      "deviceConnectState": 2,
+    }
+  }
+  userConfigurationStoreData={
+    Object {
+      "isFirstTime": true,
+    }
+  }
 />
 `;
 
@@ -28,7 +38,14 @@ exports[`RootContainer renders results view container when route is resultsView 
 
 exports[`RootContainer store listening uses the store to update the state: initial state 1`] = `
 Object {
+  "deviceStoreData": Object {
+    "deviceConnectState": 2,
+  },
+  "userConfigurationStoreData": Object {
+    "isFirstTime": true,
+  },
   "windowStateStoreData": Object {
+    "currentWindowState": "restoredOrMaximized",
     "routeId": "deviceConnectView",
   },
 }
@@ -36,7 +53,14 @@ Object {
 
 exports[`RootContainer store listening uses the store to update the state: updated state 1`] = `
 Object {
+  "deviceStoreData": Object {
+    "deviceConnectState": 2,
+  },
+  "userConfigurationStoreData": Object {
+    "isFirstTime": true,
+  },
   "windowStateStoreData": Object {
+    "currentWindowState": "restoredOrMaximized",
     "routeId": "resultsView",
   },
 }

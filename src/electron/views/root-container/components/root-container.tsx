@@ -1,12 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { ClientStoresHub } from 'common/stores/client-stores-hub';
+import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
+import { DeviceStoreData } from 'electron/flux/types/device-store-data';
 import { WindowStateStoreData } from 'electron/flux/types/window-state-store-data';
 import { AutomatedChecksView } from 'electron/views/automated-checks/components/automated-checks-view';
 import {
     DeviceConnectViewContainer,
     DeviceConnectViewContainerDeps,
-    DeviceConnectViewContainerProps,
 } from 'electron/views/device-connect-view/components/device-connect-view-container';
 import * as React from 'react';
 
@@ -14,26 +15,36 @@ export type RootContainerDeps = DeviceConnectViewContainerDeps & {
     storeHub: ClientStoresHub<RootContainerState>;
 };
 
-export type RootContainerProps = DeviceConnectViewContainerProps & {
+export type RootContainerProps = {
     deps: RootContainerDeps;
 };
 
 export type RootContainerState = {
     windowStateStoreData: WindowStateStoreData;
+    userConfigurationStoreData: UserConfigurationStoreData;
+    deviceStoreData: DeviceStoreData;
 };
 
 export class RootContainer extends React.Component<RootContainerProps, RootContainerState> {
     constructor(props: RootContainerProps) {
         super(props);
 
-        this.state = (props.deps.storeHub as ClientStoresHub<RootContainerState>).getAllStoreData();
+        this.state = props.deps.storeHub.getAllStoreData();
     }
 
     public render(): JSX.Element {
         if (this.state.windowStateStoreData.routeId === 'resultsView') {
             return <AutomatedChecksView {...this.props}></AutomatedChecksView>;
         }
-        return <DeviceConnectViewContainer {...this.props}></DeviceConnectViewContainer>;
+        return (
+            <DeviceConnectViewContainer
+                {...{
+                    userConfigurationStoreData: this.state.userConfigurationStoreData,
+                    deviceStoreData: this.state.deviceStoreData,
+                    ...this.props,
+                }}
+            ></DeviceConnectViewContainer>
+        );
     }
 
     public componentDidMount(): void {

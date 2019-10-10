@@ -16,7 +16,9 @@ exports[`InstanceDetailsGroup renders 1`] = `
             "snippet": "this is a sample snippet",
           },
           "identifiers": Object {
+            "conciseName": "body img",
             "css-selector": "body img",
+            "identifier": "body img",
           },
           "resolution": Object {
             "how-to-fix-web": Object {
@@ -33,6 +35,19 @@ exports[`InstanceDetailsGroup renders 1`] = `
           "ruleId": "image-alt",
           "status": "fail",
           "uid": "some-guid-here",
+        }
+      }
+      rule={
+        Object {
+          "description": "sample-description",
+          "guidance": Array [],
+          "id": "some-rule",
+          "url": "sample-url",
+        }
+      }
+      targetAppInfo={
+        Object {
+          "name": "app",
         }
       }
       userConfigurationStoreData={null}

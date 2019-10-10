@@ -6,7 +6,7 @@ import * as React from 'react';
 
 import { deviceConnectBody } from './device-connect-body.scss';
 import { DeviceConnectConnectedDevice } from './device-connect-connected-device';
-import { DeviceConnectFooter } from './device-connect-footer';
+import { DeviceConnectFooter, DeviceConnectFooterDeps } from './device-connect-footer';
 import { DeviceConnectHeader } from './device-connect-header';
 import { DeviceConnectPortEntry, DeviceConnectPortEntryDeps, DeviceConnectPortEntryViewState } from './device-connect-port-entry';
 import { DeviceConnectState } from './device-connect-state';
@@ -19,7 +19,8 @@ export type DeviceConnectBodyState = DeviceConnectPortEntryViewState & {
 
 export type DeviceConnectBodyDeps = {
     currentWindow: BrowserWindow;
-} & DeviceConnectPortEntryDeps;
+} & DeviceConnectPortEntryDeps &
+    DeviceConnectFooterDeps;
 
 export interface DeviceConnectBodyProps {
     deps: DeviceConnectBodyDeps;
@@ -37,7 +38,11 @@ export const DeviceConnectBody = NamedFC<DeviceConnectBodyProps>('DeviceConnectB
                 connectedDevice={props.viewState.connectedDevice}
                 deviceConnectState={props.viewState.deviceConnectState}
             />
-            <DeviceConnectFooter cancelClick={props.deps.currentWindow.close} canStartTesting={canStartTesting}></DeviceConnectFooter>
+            <DeviceConnectFooter
+                deps={props.deps}
+                cancelClick={props.deps.currentWindow.close}
+                canStartTesting={canStartTesting}
+            ></DeviceConnectFooter>
         </div>
     );
 });

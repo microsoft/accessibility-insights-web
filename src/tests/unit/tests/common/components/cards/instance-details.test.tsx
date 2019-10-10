@@ -5,7 +5,6 @@ import { CardSelectionMessageCreator } from 'common/message-creators/card-select
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import { IMock, It, Mock, Times } from 'typemoq';
-
 import {
     AllPropertyTypes,
     CardRowProps,
@@ -44,6 +43,7 @@ describe('InstanceDetails', () => {
         cardSelectionMessageCreatorMock.setup(mock => mock.toggleCardSelection(It.isAnyString())).verifiable(Times.never());
 
         const testSubject = shallow(<InstanceDetails {...props} />);
+
         expect(testSubject.getElement()).toMatchSnapshot();
         cardSelectionMessageCreatorMock.verifyAll();
     });
@@ -63,7 +63,11 @@ describe('InstanceDetails', () => {
     });
 
     it('renders nothing when there is no card row config for the property / no property', () => {
-        props.result.identifiers = { 'this-property-does-not-have-config': 'some value' };
+        props.result.identifiers = {
+            identifier: 'test-id',
+            conciseName: 'test-concise-name',
+            'this-property-does-not-have-config': 'some value',
+        };
         props.result.descriptors = {};
         props.result.resolution = {} as UnifiedResolution;
 
@@ -76,6 +80,7 @@ describe('InstanceDetails', () => {
     function getCardRowStub(name: string): ReactFCWithDisplayName<CardRowProps> {
         return NamedFC<CardRowProps>(name, _ => null);
     }
+
     function setupGetPropertyConfigByIdMock(): void {
         AllPropertyTypes.forEach(propertyType => {
             const propertyConfigurationStub: PropertyConfiguration = {
