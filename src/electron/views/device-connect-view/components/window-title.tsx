@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { isEmpty } from 'lodash';
 import * as React from 'react';
 import { NamedFC } from '../../../../common/react/named-fc';
 import { actionableIconsContainer, headerText, titleContainer, windowTitle } from './window-title.scss';
@@ -24,7 +25,7 @@ export const WindowTitle = NamedFC<WindowTitleProps>('WindowTitle', (props: Wind
 });
 
 function getIconsContainer(icons?: JSX.Element[]): JSX.Element {
-    if (icons != null && icons.length > 0) {
+    if (!isEmpty(icons)) {
         return <div className={actionableIconsContainer}>{icons}</div>;
     }
 
