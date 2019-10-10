@@ -262,6 +262,7 @@ describe('DetailsViewContainer', () => {
                         scopingPanelStateStoreData: storeMocks.scopingStoreData,
                         userConfigurationStoreData: storeMocks.userConfigurationStoreData,
                         unifiedScanResultStoreData: storeMocks.unifiedScanResultStoreData,
+                        cardSelectionStoreData: storeMocks.cardSelectionStoreData,
                     }
                 );
             });
@@ -369,7 +370,7 @@ describe('DetailsViewContainer', () => {
             unifiedScanResultStoreData: storeMocks.unifiedScanResultStoreData,
             selectedDetailsView: viewType,
             selectedDetailsRightPanelConfiguration: rightPanel,
-            cardSelectionStoreData: {} as CardSelectionStoreData,
+            cardSelectionStoreData: storeMocks.cardSelectionStoreData,
         };
     }
 
