@@ -29,6 +29,22 @@ exports[`WindowTitleTest renders with actionable icons 1`] = `
 </header>
 `;
 
+exports[`WindowTitleTest renders with custom class name 1`] = `
+<header
+  className="windowTitle custom-class-name"
+>
+  <div
+    className="titleContainer"
+  >
+    <h1
+      className="headerText"
+    >
+      title 1
+    </h1>
+  </div>
+</header>
+`;
+
 exports[`WindowTitleTest renders without actionable icons 1`] = `
 <header
   className="windowTitle"

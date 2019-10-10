@@ -37,4 +37,15 @@ describe('WindowTitleTest', () => {
 
         expect(rendered.getElement()).toMatchSnapshot();
     });
+
+    it('renders with custom class name', () => {
+        const props: WindowTitleProps = {
+            title: 'title 1',
+            className: 'custom-class-name',
+        };
+
+        const rendered = shallow(<WindowTitle {...props} />);
+
+        expect(rendered.getElement()).toMatchSnapshot();
+    });
 });
