@@ -44,9 +44,9 @@ Object {
 `;
 
 exports[`CardKebabMenuButtonTest renders per snapshot with onlyUserConfigAgnosticCardInteractionsSupported 1`] = `
-"<div className=\\"kebabMenuButton\\">
-  <CustomizedActionButton menuIconProps={{...}} menuProps={{...}} />
-</div>"
+"<Fragment>
+  <CustomizedActionButton className=\\"kebabMenuButton\\" ariaLabel=\\"More actions\\" menuIconProps={{...}} menuProps={{...}} />
+</Fragment>"
 `;
 
 exports[`CardKebabMenuButtonTest renders per snapshot with onlyUserConfigAgnosticCardInteractionsSupported 2`] = `
