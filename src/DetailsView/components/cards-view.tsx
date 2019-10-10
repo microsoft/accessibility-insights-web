@@ -19,7 +19,6 @@ export interface CardsViewProps {
 }
 
 export const CardsView = NamedFC<CardsViewProps>('CardsView', props => {
-    console.log('CARDS VIEW', props);
     return (
         <>
             <FailedInstancesSection

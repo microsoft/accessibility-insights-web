@@ -301,7 +301,7 @@ describe('DetailsViewContainer', () => {
                 userConfigurationStoreData={storeMocks.userConfigurationStoreData}
                 ruleResultsByStatus={ruleResults}
                 targetAppInfo={targetApp}
-                cardSelectionStoreData={null}
+                cardSelectionStoreData={storeMocks.cardSelectionStoreData}
             />
         );
     }
