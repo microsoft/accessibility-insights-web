@@ -287,7 +287,6 @@ describe('DetailsViewContainer', () => {
                 detailsViewStoreData={storeMocks.detailsViewStoreData}
                 visualizationStoreData={storeMocks.visualizationStoreData}
                 visualizationScanResultData={storeMocks.visualizationScanResultsStoreData}
-                unifiedResults={ruleResults}
                 visualizationConfigurationFactory={props.visualizationConfigurationFactory}
                 assessmentsProvider={props.assessmentsProvider}
                 dropdownClickHandler={props.dropdownClickHandler}
