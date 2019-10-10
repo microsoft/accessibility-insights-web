@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { NamedFC } from 'common/react/named-fc';
 import { some, values } from 'lodash';
-import { Icon, Label } from 'office-ui-fabric-react';
+import { Label } from 'office-ui-fabric-react';
 import * as React from 'react';
 
 import { HighlightHiddenIcon, HighlightUnavailableIcon, HighlightVisibleIcon } from 'common/icons/highlight-status-icons';
