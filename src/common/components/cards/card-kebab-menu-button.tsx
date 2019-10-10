@@ -28,8 +28,6 @@ export type CardKebabMenuButtonDeps = {
 
 export interface CardKebabMenuButtonState {
     showNeedsSettingsContent: boolean;
-    showingCopyToast: boolean;
-    toastText: string;
 }
 
 export interface CardKebabMenuButtonProps {
@@ -39,12 +37,12 @@ export interface CardKebabMenuButtonProps {
 }
 
 export class CardKebabMenuButton extends React.Component<CardKebabMenuButtonProps, CardKebabMenuButtonState> {
+    private toastRef: React.RefObject<Toast>;
     constructor(props: CardKebabMenuButtonProps) {
         super(props);
-
+        this.toastRef = React.createRef();
         this.state = {
             showNeedsSettingsContent: false,
-            showingCopyToast: false,
             toastText: '',
         };
     }
@@ -82,15 +80,7 @@ export class CardKebabMenuButton extends React.Component<CardKebabMenuButtonProp
             return null;
         }
 
-        return (
-            <>
-                {this.state.showingCopyToast ? (
-                    <Toast onTimeout={() => this.hideToast()} deps={this.props.deps}>
-                        {this.state.toastText}
-                    </Toast>
-                ) : null}
-            </>
-        );
+        return <Toast ref={this.toastRef} deps={this.props.deps} />;
     }
 
     private getMenuItems(): IContextualMenuItem[] {
@@ -147,11 +137,10 @@ export class CardKebabMenuButton extends React.Component<CardKebabMenuButtonProp
         try {
             await this.props.deps.navigatorUtils.copyToClipboard(text);
         } catch (error) {
-            this.showToastWithFailureMessage();
+            this.toastRef.current.show('Failed to copy failure details. Please try again.');
             return;
         }
-
-        this.showToastWithSuccessMessage();
+        this.toastRef.current.show('Failure details copied.');
     };
 
     public renderIssueFilingSettingContent(): JSX.Element {
@@ -185,17 +174,5 @@ export class CardKebabMenuButton extends React.Component<CardKebabMenuButtonProp
 
     private openNeedsSettingsContent(): void {
         this.setState({ showNeedsSettingsContent: true });
-    }
-
-    private showToastWithSuccessMessage(): void {
-        this.setState({ showingCopyToast: true, toastText: 'Failure details copied.' });
-    }
-
-    private hideToast(): void {
-        this.setState({ showingCopyToast: false, toastText: '' });
-    }
-
-    private showToastWithFailureMessage(): void {
-        this.setState({ showingCopyToast: true, toastText: 'Failed to copy failure details. Please try again.' });
     }
 }

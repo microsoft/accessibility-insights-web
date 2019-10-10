@@ -10,15 +10,12 @@ import { itIsFunction } from '../../../common/it-is-function';
 
 describe('ToastTest', () => {
     let windowUtilsMock: IMock<WindowUtils>;
-    let onTimeoutMock: IMock<() => void>;
     let props: ToastProps;
 
     beforeEach(() => {
         windowUtilsMock = Mock.ofType<WindowUtils>();
-        onTimeoutMock = Mock.ofInstance(() => {});
         props = {
             timeoutLength: 2000,
-            onTimeout: onTimeoutMock.object,
             deps: {
                 windowUtils: windowUtilsMock.object,
             },
@@ -30,36 +27,27 @@ describe('ToastTest', () => {
         expect(result.getElement()).toMatchSnapshot();
     });
 
-    test('setTimeout upon componentDidMount', () => {
+    test('show', () => {
         const timeoutId = 1;
+        let realCallback = null;
         windowUtilsMock
             .setup(m => m.setTimeout(itIsFunction, 2000))
+            .callback(func => (realCallback = func))
             .returns(() => timeoutId)
             .verifiable(Times.once());
-        onTimeoutMock.setup(m => m()).verifiable(Times.never());
         const subject = new Toast(props);
-        subject.componentDidMount();
+
+        subject.show('content');
         windowUtilsMock.verifyAll();
-        onTimeoutMock.verifyAll();
         expect(timeoutId).toEqual((subject as any).timeoutId);
-    });
 
-    test('when timeout ends, callback is called & render is null', () => {
-        const timeoutId = 1;
-        windowUtilsMock
-            .setup(m => m.setTimeout(itIsFunction, 2000))
-            .callback((func, _) => func())
-            .returns(() => timeoutId)
-            .verifiable(Times.once());
+        // expect(subject.state.toastVisible).toBeTruthy();
+        // expect(subject.state.content).toEqual('content');
 
-        onTimeoutMock.setup(m => m()).verifiable(Times.once());
+        realCallback();
 
-        const wrapper = mount(<Toast {...props} />);
-
-        windowUtilsMock.verifyAll();
-        onTimeoutMock.verifyAll();
-
-        expect(wrapper.instance().render()).toBe(null);
+        expect(subject.state.toastVisible).toBeFalsy();
+        expect(subject.state.content).toBeNull();
     });
 
     test('clearTimeout upon componentWillUnmount', () => {
