@@ -48,7 +48,6 @@ export function initializeFabricIcons(): void {
             ladybugSolid: '\uF44A',
             mail: '\uE715',
             medical: '\uEAD4',
-            moreVertical: '\uF2BC',
             play: '\uE768',
             redEye: '\uE7B3',
             refresh: '\uE72C',
