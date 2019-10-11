@@ -166,16 +166,11 @@ describe('CardKebabMenuButtonTest', () => {
 
         rendered.find(ActionButton).simulate('click', event);
 
-        expect(rendered.state().showingCopyToast).toBe(false);
-        expect(rendered.state().toastText).toBe('');
-
         const copyFailureDetailsMenuItem = getMenuItemWithKey(rendered, 'copyfailuredetails');
         // tslint:disable-next-line: await-promise
         await copyFailureDetailsMenuItem.onClick(event);
 
         expect(rendered.debug()).toMatchSnapshot();
-        expect(rendered.state().showingCopyToast).toBe(true);
-        expect(rendered.state().toastText).toBe('Failure details copied.');
 
         actionCreatorMock.verifyAll();
         navigatorUtilsMock.verifyAll();
@@ -201,8 +196,6 @@ describe('CardKebabMenuButtonTest', () => {
         await copyFailureDetailsMenuItem.onClick(event);
 
         expect(rendered.debug()).toMatchSnapshot();
-        expect(rendered.state().showingCopyToast).toBe(true);
-        expect(rendered.state().toastText).toBe('Failed to copy failure details. Please try again.');
     });
 
     it('should file issue, valid settings', async () => {

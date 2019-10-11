@@ -20,14 +20,11 @@ export type CopyIssueDetailsButtonProps = {
     onClick: (clickEvent: React.MouseEvent<any>) => void;
 };
 
-export type CopyIssueDetailsButtonState = {
-    showingCopyToast: boolean;
-};
-
-export class CopyIssueDetailsButton extends React.Component<CopyIssueDetailsButtonProps, CopyIssueDetailsButtonState> {
+export class CopyIssueDetailsButton extends React.Component<CopyIssueDetailsButtonProps> {
+    private toastRef: React.RefObject<Toast>;
     constructor(props: CopyIssueDetailsButtonProps) {
         super(props);
-        this.state = { showingCopyToast: false };
+        this.toastRef = React.createRef();
     }
 
     private getIssueDetailsText(issueData: CreateIssueDetailsTextData): string {
@@ -35,20 +32,16 @@ export class CopyIssueDetailsButton extends React.Component<CopyIssueDetailsButt
     }
 
     private copyButtonClicked = (event: React.MouseEvent<any>): void => {
+        this.toastRef.current.show('Failure details copied.');
         if (this.props.onClick) {
             this.props.onClick(event);
         }
-        this.setState({ showingCopyToast: true });
     };
 
     public render(): JSX.Element {
         return (
             <>
-                {this.state.showingCopyToast ? (
-                    <Toast onTimeout={() => this.setState({ showingCopyToast: false })} deps={this.props.deps}>
-                        Failure details copied.
-                    </Toast>
-                ) : null}
+                <Toast ref={this.toastRef} deps={this.props.deps} />
                 <CopyToClipboard text={this.getIssueDetailsText(this.props.issueDetailsData)}>
                     <DefaultButton className={'copy-issue-details-button'} onClick={this.copyButtonClicked}>
                         <CopyIcon />
