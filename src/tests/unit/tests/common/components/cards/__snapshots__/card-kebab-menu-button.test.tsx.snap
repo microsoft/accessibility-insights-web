@@ -4,7 +4,7 @@ exports[`CardKebabMenuButtonTest copies failure details and show the toast 1`] =
 "<Fragment>
   <CustomizedActionButton className=\\"kebabMenuButton\\" ariaLabel=\\"More actions\\" onRenderMenuIcon={[Function]} menuProps={{...}} />
   <IssueFilingDialog deps={{...}} isOpen={false} selectedIssueFilingService={{...}} selectedIssueData={{...}} selectedIssueFilingServiceData={{...}} onClose={[Function]} issueFilingServicePropertiesMap={{...}} />
-  <Toast onTimeout={[Function: onTimeout]} deps={{...}} timeoutLength={1000}>
+  <Toast onTimeout={[Function: onTimeout]} deps={{...}} timeoutLength={6000}>
     Failure details copied.
   </Toast>
 </Fragment>"
@@ -85,7 +85,7 @@ exports[`CardKebabMenuButtonTest shows failure message if copy failed 1`] = `
 "<Fragment>
   <CustomizedActionButton className=\\"kebabMenuButton\\" ariaLabel=\\"More actions\\" onRenderMenuIcon={[Function]} menuProps={{...}} />
   <IssueFilingDialog deps={{...}} isOpen={false} selectedIssueFilingService={{...}} selectedIssueData={{...}} selectedIssueFilingServiceData={{...}} onClose={[Function]} issueFilingServicePropertiesMap={{...}} />
-  <Toast onTimeout={[Function: onTimeout]} deps={{...}} timeoutLength={1000}>
+  <Toast onTimeout={[Function: onTimeout]} deps={{...}} timeoutLength={6000}>
     Failed to copy failure details. Please try again.
   </Toast>
 </Fragment>"
