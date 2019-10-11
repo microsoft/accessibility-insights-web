@@ -166,7 +166,7 @@ describe('CardKebabMenuButtonTest', () => {
             })
             .verifiable(Times.once());
 
-        const rendered = mount<CardKebabMenuButton>(<CardKebabMenuButton {...defaultProps} />);
+        const rendered = mount(<CardKebabMenuButton {...defaultProps} />);
 
         rendered.find(ActionButton).simulate('click', event);
 
@@ -194,7 +194,7 @@ describe('CardKebabMenuButtonTest', () => {
             })
             .verifiable(Times.once());
 
-        const rendered = mount<CardKebabMenuButton>(<CardKebabMenuButton {...defaultProps} />);
+        const rendered = mount(<CardKebabMenuButton {...defaultProps} />);
 
         rendered.find(ActionButton).simulate('click', event);
 
