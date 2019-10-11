@@ -1,6 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+import { UnifiedResolution } from 'common/types/store-data/unified-data-interface';
+import { RuleInformation } from 'electron/platform/android/rule-information';
 import { RuleResultsData, ScanResults, ViewElementData } from 'electron/platform/android/scan-results';
 
 export function buildScanResultsObject(
@@ -67,38 +69,6 @@ export function buildRuleResultObject(ruleId: string, status: string, axeViewId:
     return result as RuleResultsData;
 }
 
-export function buildTouchSizeWcagRuleResultObject(
-    status: string,
-    dpi: number,
-    height: number,
-    width: number,
-    axeViewId: string = null,
-): RuleResultsData {
-    const props = {};
-    // This is based on the output of the Android service
-    props['Screen Dots Per Inch'] = dpi;
-    props['height'] = height;
-    props['width'] = width;
-
-    return buildRuleResultObject('TouchSizeWcag', status, axeViewId, props);
-}
-
-export function buildColorContrastRuleResultObject(
-    status: string,
-    ratio: number,
-    foreground: string,
-    background: string,
-    axeViewId: string = null,
-): RuleResultsData {
-    const props = {};
-    // This is based on the output of the Android service
-    props['Color Contrast Ratio'] = ratio;
-    props['Foreground Color'] = foreground;
-    props['Background Color'] = background;
-
-    return buildRuleResultObject('ColorContrast', status, axeViewId, props);
-}
-
 export function buildViewElement(
     axeViewId: string,
     boundsInScreen: any,
@@ -117,4 +87,19 @@ export function buildViewElement(
     };
 
     return viewElement as ViewElementData;
+}
+
+export function buildRuleInformation(ruleId: string): RuleInformation {
+    return {
+        ruleId: ruleId,
+        ruleDescription: 'This describes ' + ruleId,
+        getUnifiedResolutionDelegate: r => {
+            expect('abc').toBe('This line should never execute');
+            return null;
+        },
+        getUnifiedResolution: r => {
+            const summary: string = 'How to fix ' + ruleId;
+            return ({ howtoFixSummary: summary } as unknown) as UnifiedResolution;
+        },
+    } as RuleInformation;
 }

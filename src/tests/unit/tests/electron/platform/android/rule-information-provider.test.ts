@@ -5,7 +5,7 @@ import { UnifiedResolution } from 'common/types/store-data/unified-data-interfac
 import { RuleInformation } from 'electron/platform/android/rule-information';
 import { RuleInformationProvider } from 'electron/platform/android/rule-information-provider';
 import { RuleResultsData } from 'electron/platform/android/scan-results';
-import { buildColorContrastRuleResultObject, buildTouchSizeWcagRuleResultObject } from './scan-results-helpers';
+import { buildRuleResultObject } from './scan-results-helpers';
 
 describe('RuleInformationProvider', () => {
     let provider: RuleInformationProvider;
@@ -13,6 +13,38 @@ describe('RuleInformationProvider', () => {
     beforeAll(() => {
         provider = new RuleInformationProvider();
     });
+
+    function buildTouchSizeWcagRuleResultObject(
+        status: string,
+        dpi: number,
+        height: number,
+        width: number,
+        axeViewId: string = null,
+    ): RuleResultsData {
+        const props = {};
+        // This is based on the output of the Android service
+        props['Screen Dots Per Inch'] = dpi;
+        props['height'] = height;
+        props['width'] = width;
+
+        return buildRuleResultObject('TouchSizeWcag', status, axeViewId, props);
+    }
+
+    function buildColorContrastRuleResultObject(
+        status: string,
+        ratio: number,
+        foreground: string,
+        background: string,
+        axeViewId: string = null,
+    ): RuleResultsData {
+        const props = {};
+        // This is based on the output of the Android service
+        props['Color Contrast Ratio'] = ratio;
+        props['Foreground Color'] = foreground;
+        props['Background Color'] = background;
+
+        return buildRuleResultObject('ColorContrast', status, axeViewId, props);
+    }
 
     test('getRuleInformation returns null for an unknown ruleId', () => {
         expect(provider.getRuleInformation('unknown rule')).toBeNull();
