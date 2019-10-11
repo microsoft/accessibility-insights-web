@@ -12,21 +12,24 @@ div.kebab-menu-callout {
 }
 
 .kebab-menu {
-    background: $acrylic-light;
+    background: $menu-background;
     border: 1px solid $menu-border;
-    i {
-        color: $primary-text;
-    }
     li {
-        background-color: $acrylic-light;
+        background-color: $menu-background;
     }
-
     button {
+        i {
+            color: $primary-text;
+        }
         &:hover {
-            background-color: $hover-background;
+            background-color: $menu-item-background-hover;
         }
         &:active {
-            background-color: $active-background;
+            background-color: $menu-item-background-active;
+            color: $always-black;
+            i {
+                color: $always-black;
+            }
         }
     }
 }
@@ -44,12 +47,16 @@ button.kebab-menu-button {
     }
 
     &:hover {
-        background-color: $hover-background;
+        background-color: $menu-item-background-hover;
     }
 
     &:active,
     &[aria-expanded='true'] {
-        background-color: $active-background;
+        background-color: $menu-item-background-active;
+        color: $always-black;
+        svg > circle {
+            stroke: $always-black;
+        }
     }
 
     div.ms-Button-flexContainer {
