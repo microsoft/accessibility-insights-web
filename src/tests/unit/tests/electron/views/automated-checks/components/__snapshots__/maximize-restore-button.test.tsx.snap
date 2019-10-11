@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MaximizeRestoreButton renders with maximize 1`] = `
+<CustomizedActionButton
+  ariaHidden={true}
+  iconProps={
+    Object {
+      "iconName": "Stop",
+    }
+  }
+  id="maximize-button"
+  onClick={[Function]}
+  tabIndex={-1}
+/>
+`;
+
+exports[`MaximizeRestoreButton renders with restore 1`] = `
+<CustomizedActionButton
+  ariaHidden={true}
+  iconProps={null}
+  id="maximize-button"
+  onClick={[Function]}
+  tabIndex={-1}
+>
+  <RestoreIcon />
+</CustomizedActionButton>
+`;
