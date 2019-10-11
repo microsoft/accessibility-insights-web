@@ -11,7 +11,7 @@ import { NamedFC } from 'common/react/named-fc';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import { WindowUtils } from 'common/window-utils';
 import { guidanceTags } from 'content/guidance-tags';
-import { mount, shallow } from 'enzyme';
+import { mount, ReactWrapper, shallow, ShallowWrapper } from 'enzyme';
 import { IssueFilingServiceProvider } from 'issue-filing/issue-filing-service-provider';
 import { IssueFilingService } from 'issue-filing/types/issue-filing-service';
 import { ActionButton, IContextualMenuItem } from 'office-ui-fabric-react';
@@ -254,7 +254,7 @@ describe('CardKebabMenuButtonTest', () => {
         verifyMocks([issueFilingActionMessageCreatorMock, issueFilingServiceProviderMock]);
     });
 
-    function getMenuItemWithKey(rendered: any, itemKey: string): IContextualMenuItem {
+    function getMenuItemWithKey(rendered: ReactWrapper | ShallowWrapper, itemKey: string): IContextualMenuItem {
         return rendered
             .find(ActionButton)
             .prop('menuProps')
