@@ -1,7 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { UnifiedRuleResult, UnifiedStatusResults } from './components/cards/failed-instances-section';
-import { AllRuleResultStatuses, UnifiedResult, UnifiedRule, UnifiedRuleResultStatus } from './types/store-data/unified-data-interface';
+import {
+    AllRuleResultStatuses,
+    UnifiedResult,
+    UnifiedRule,
+    UnifiedRuleResult,
+    UnifiedRuleResultStatus,
+    UnifiedStatusResults,
+} from './types/store-data/unified-data-interface';
 
 export type GetUnifiedRuleResultsDelegate = (rules: UnifiedRule[], results: UnifiedResult[]) => UnifiedStatusResults;
 

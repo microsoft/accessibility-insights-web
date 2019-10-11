@@ -6,14 +6,13 @@ import { Spinner, SpinnerSize } from 'office-ui-fabric-react/lib/Spinner';
 import * as React from 'react';
 import { ReportGenerator } from 'reports/report-generator';
 
-import { UnifiedStatusResults } from '../../common/components/cards/failed-instances-section';
 import { FlaggedComponent } from '../../common/components/flagged-component';
 import { VisualizationToggle } from '../../common/components/visualization-toggle';
 import { VisualizationConfiguration } from '../../common/configs/visualization-configuration';
 import { VisualizationConfigurationFactory } from '../../common/configs/visualization-configuration-factory';
 import { FeatureFlags } from '../../common/feature-flags';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
-import { TargetAppData } from '../../common/types/store-data/unified-data-interface';
+import { TargetAppData, UnifiedStatusResults } from '../../common/types/store-data/unified-data-interface';
 import { UserConfigurationStoreData } from '../../common/types/store-data/user-configuration-store';
 import { VisualizationType } from '../../common/types/visualization-type';
 import { DecoratedAxeNodeResult } from '../../injected/scanner-utils';

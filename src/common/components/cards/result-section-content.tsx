@@ -4,11 +4,10 @@ import { NamedFC } from 'common/react/named-fc';
 import { FixInstructionProcessor } from 'injected/fix-instruction-processor';
 import * as React from 'react';
 
-import { TargetAppData } from '../../../common/types/store-data/unified-data-interface';
+import { TargetAppData, UnifiedRuleResult } from '../../../common/types/store-data/unified-data-interface';
 import { InstanceOutcomeType } from '../../../reports/components/instance-outcome-type';
 import { NoFailedInstancesCongrats } from '../../../reports/components/report-sections/no-failed-instances-congrats';
 import { UserConfigurationStoreData } from '../../types/store-data/user-configuration-store';
-import { UnifiedRuleResult } from './failed-instances-section';
 import { RulesWithInstances, RulesWithInstancesDeps } from './rules-with-instances';
 
 export type ResultSectionContentDeps = RulesWithInstancesDeps;
