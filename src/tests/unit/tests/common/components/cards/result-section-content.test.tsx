@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { UnifiedRuleResult } from 'common/components/cards/failed-instances-section';
 import { ResultSectionContent, ResultSectionContentDeps, ResultSectionContentProps } from 'common/components/cards/result-section-content';
+import { UnifiedRuleResult } from 'common/types/store-data/unified-data-interface';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 

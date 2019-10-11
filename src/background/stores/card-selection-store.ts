@@ -3,7 +3,7 @@
 import { forOwn } from 'lodash';
 import { StoreNames } from '../../common/stores/store-names';
 import { CardSelectionStoreData, RuleExpandCollapseData } from '../../common/types/store-data/card-selection-store-data';
-import { RuleExpandCollapsePayload, UnifiedScanCompletedPayload } from '../actions/action-payloads';
+import { CardSelectionPayload, RuleExpandCollapsePayload, UnifiedScanCompletedPayload } from '../actions/action-payloads';
 import { CardSelectionActions } from '../actions/card-selection-actions';
 import { UnifiedScanResultActions } from '../actions/unified-scan-result-actions';
 import { BaseStoreImpl } from './base-store-impl';
@@ -42,7 +42,7 @@ export class CardSelectionStore extends BaseStoreImpl<CardSelectionStoreData> {
     };
 
     private toggleRuleExpandCollapse = (payload: RuleExpandCollapsePayload): void => {
-        if (!payload || !payload.ruleId || !this.state.rules[payload.ruleId]) {
+        if (!payload || !this.state.rules[payload.ruleId]) {
             return;
         }
 
@@ -57,7 +57,21 @@ export class CardSelectionStore extends BaseStoreImpl<CardSelectionStoreData> {
         this.emitChanged();
     };
 
-    private toggleCardSelection = (): void => {};
+    private toggleCardSelection = (payload: CardSelectionPayload): void => {
+        if (
+            !payload ||
+            !this.state.rules[payload.ruleId] ||
+            this.state.rules[payload.ruleId].cards[payload.resultInstanceUid] === undefined
+        ) {
+            return;
+        }
+
+        const rule = this.state.rules[payload.ruleId];
+
+        rule.cards[payload.resultInstanceUid] = !rule.cards[payload.resultInstanceUid];
+
+        this.emitChanged();
+    };
 
     private collapseAllRules = (): void => {
         forOwn(this.state.rules, (rule, ruleId) => {

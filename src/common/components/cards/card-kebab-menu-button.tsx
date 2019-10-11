@@ -4,6 +4,7 @@ import { ActionButton } from 'office-ui-fabric-react/lib/Button';
 import { DirectionalHint, IContextualMenuItem } from 'office-ui-fabric-react/lib/ContextualMenu';
 import * as React from 'react';
 
+import { MoreActionsMenuIcon } from 'common/icons/more-actions-menu-icon';
 import { IssueDetailsTextGenerator } from '../../../background/issue-details-text-generator';
 import { DetailsViewActionMessageCreator } from '../../../DetailsView/actions/details-view-action-message-creator';
 import { IssueFilingDialog } from '../../../DetailsView/components/issue-filing-dialog';
@@ -15,6 +16,7 @@ import { IssueFilingServiceProperties, UserConfigurationStoreData } from '../../
 import { WindowUtils } from '../../window-utils';
 import { IssueFilingButtonDeps } from '../issue-filing-button';
 import { Toast } from '../toast';
+import { CardInteractionSupport } from './card-interaction-support';
 import { kebabMenu, kebabMenuButton } from './card-kebab-menu-button.scss';
 
 export type CardKebabMenuButtonDeps = {
@@ -22,6 +24,7 @@ export type CardKebabMenuButtonDeps = {
     issueDetailsTextGenerator: IssueDetailsTextGenerator;
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
     navigatorUtils: NavigatorUtils;
+    cardInteractionSupport: CardInteractionSupport;
 } & IssueFilingButtonDeps;
 
 export interface CardKebabMenuButtonState {
@@ -48,12 +51,17 @@ export class CardKebabMenuButton extends React.Component<CardKebabMenuButtonProp
     }
 
     public render(): JSX.Element {
+        const menuItems = this.getMenuItems();
+        if (menuItems.length === 0) {
+            return null;
+        }
+
         return (
-            <div className={kebabMenuButton}>
+            <>
                 <ActionButton
-                    menuIconProps={{
-                        iconName: 'moreVertical',
-                    }}
+                    className={kebabMenuButton}
+                    ariaLabel="More actions"
+                    onRenderMenuIcon={MoreActionsMenuIcon}
                     menuProps={{
                         className: kebabMenu,
                         directionalHint: DirectionalHint.bottomRightEdge,
@@ -62,12 +70,18 @@ export class CardKebabMenuButton extends React.Component<CardKebabMenuButtonProp
                     }}
                 />
                 {this.renderIssueFilingSettingContent()}
-                {this.renderToast()}
-            </div>
+                {this.renderCopyFailureDetailsToast()}
+            </>
         );
     }
 
-    public renderToast(): JSX.Element {
+    public renderCopyFailureDetailsToast(): JSX.Element {
+        const { cardInteractionSupport } = this.props.deps;
+
+        if (!cardInteractionSupport.supportsCopyFailureDetails) {
+            return null;
+        }
+
         return (
             <>
                 {this.state.showingCopyToast ? (
@@ -80,24 +94,30 @@ export class CardKebabMenuButton extends React.Component<CardKebabMenuButtonProp
     }
 
     private getMenuItems(): IContextualMenuItem[] {
-        const items: IContextualMenuItem[] = [
-            {
+        const { cardInteractionSupport } = this.props.deps;
+        const items = [];
+
+        if (cardInteractionSupport.supportsIssueFiling) {
+            items.push({
                 key: 'fileissue',
                 name: 'File issue',
                 iconProps: {
                     iconName: 'ladybugSolid',
                 },
                 onClick: this.fileIssue,
-            },
-            {
+            });
+        }
+
+        if (cardInteractionSupport.supportsCopyFailureDetails) {
+            items.push({
                 key: 'copyfailuredetails',
                 name: `Copy failure details`,
                 iconProps: {
                     iconName: 'copy',
                 },
                 onClick: this.copyFailureDetails,
-            },
-        ];
+            });
+        }
 
         return items;
     }
@@ -136,7 +156,12 @@ export class CardKebabMenuButton extends React.Component<CardKebabMenuButtonProp
 
     public renderIssueFilingSettingContent(): JSX.Element {
         const { deps, userConfigurationStoreData, issueDetailsData } = this.props;
-        const { issueFilingServiceProvider } = deps;
+        const { issueFilingServiceProvider, cardInteractionSupport } = deps;
+
+        if (!cardInteractionSupport.supportsIssueFiling) {
+            return null;
+        }
+
         const selectedIssueFilingService: IssueFilingService = issueFilingServiceProvider.forKey(userConfigurationStoreData.bugService);
         const selectedIssueFilingServiceData: IssueFilingServiceProperties = selectedIssueFilingService.getSettingsFromStoreData(
             userConfigurationStoreData.bugServicePropertiesMap,

@@ -4,31 +4,29 @@
 @import '../../styles/fonts.scss';
 
 .foot {
-    justify-content: space-between;
     display: flex;
+    justify-content: space-between;
+    align-items: center;
+
     background-color: $neutral-2;
-    box-shadow: 0px -1px 0px rgba(0, 0, 0, 0.08);
-    border-radius: 4px;
-    margin: 0px 0px 18px 24px;
     height: 48px;
 
-    .highlight-div {
-        background: transparent;
-        justify-content: space-between;
-        display: flex;
+    padding-left: 12px;
 
-        i {
-            color: $primary-text;
-            font-size: 20px;
-            border: 1.25px;
-            margin: 16px 15px 19px 21px;
-        }
+    border-top: 0.5px solid $neutral-10;
+    border-bottom-left-radius: inherit;
+    border-bottom-right-radius: inherit;
+
+    .highlight-status {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        background: transparent;
 
         label {
             color: $secondary-text;
-            font-size: 14px;
-            line-height: 16px;
-            margin: 14px 0px;
+            font-size: $fontSizeM;
         }
     }
 }

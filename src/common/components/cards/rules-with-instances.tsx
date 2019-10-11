@@ -5,13 +5,12 @@ import { NamedFC } from 'common/react/named-fc';
 import { FixInstructionProcessor } from 'injected/fix-instruction-processor';
 import * as React from 'react';
 
-import { TargetAppData } from '../../../common/types/store-data/unified-data-interface';
+import { TargetAppData, UnifiedRuleResult } from '../../../common/types/store-data/unified-data-interface';
 import { InstanceOutcomeType } from '../../../reports/components/instance-outcome-type';
 import { outcomeTypeSemantics } from '../../../reports/components/outcome-type';
 import { MinimalRuleHeader } from '../../../reports/components/report-sections/minimal-rule-header';
 import { UserConfigurationStoreData } from '../../types/store-data/user-configuration-store';
 import { CollapsibleComponentCardsProps } from './collapsible-component-cards';
-import { UnifiedRuleResult } from './failed-instances-section';
 import { RuleContent, RuleContentDeps } from './rule-content';
 import { collapsibleRuleDetailsGroup, ruleDetailsGroup } from './rules-with-instances.scss';
 

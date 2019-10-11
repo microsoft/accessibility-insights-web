@@ -4,7 +4,29 @@
 @import '../../../../common/styles/fonts.scss';
 
 .window-title {
-    padding: 6px 9px;
+    width: 100%;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    -webkit-app-region: drag;
+
+    .title-container {
+        display: flex;
+
+        > * {
+            padding-left: 10px;
+        }
+    }
+
+    .actionable-icons-container {
+        margin-left: auto;
+        display: flex;
+        -webkit-app-region: no-drag;
+
+        > * {
+            padding: 6px 10px;
+        }
+    }
 
     .header-text {
         color: $ada-brand-color;
@@ -16,8 +38,15 @@
     }
 
     :global(.header-icon) {
-        float: left;
-        padding: 0px 3px;
         height: 17px;
+    }
+
+    button {
+        padding: 10px;
+
+        i {
+            color: $always-white;
+            font-size: 12px;
+        }
     }
 }

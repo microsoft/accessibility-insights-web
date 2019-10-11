@@ -5,7 +5,7 @@ import { TelemetryEventSource } from 'common/extension-telemetry-events';
 import { Action } from 'common/flux/action';
 import { VALIDATE_PORT } from 'electron/common/electron-telemetry-events';
 import { DeviceConnectActionCreator } from 'electron/flux/action-creator/device-connect-action-creator';
-import { ConnectingPayload, ConnectionSucceedPayload } from 'electron/flux/action/device-action-payloads';
+import { ConnectedDevicePayload, PortPayload } from 'electron/flux/action/device-action-payloads';
 import { DeviceActions } from 'electron/flux/action/device-actions';
 import { FetchScanResultsType } from 'electron/platform/android/fetch-scan-results';
 import { ScanResults } from 'electron/platform/android/scan-results';
@@ -19,14 +19,14 @@ describe('DeviceConnectActionCreator', () => {
     let telemetryEventHandlerMock: IMock<TelemetryEventHandler>;
     let deviceActionsMock: IMock<DeviceActions>;
     let fetchScanResultsMock: IMock<FetchScanResultsType>;
-    let connectingMock: IMock<Action<ConnectingPayload>>;
+    let connectingMock: IMock<Action<PortPayload>>;
 
     let testSubject: DeviceConnectActionCreator;
 
     beforeEach(() => {
         telemetryEventHandlerMock = Mock.ofType<TelemetryEventHandler>();
         deviceActionsMock = Mock.ofType<DeviceActions>();
-        connectingMock = Mock.ofType<Action<ConnectingPayload>>();
+        connectingMock = Mock.ofType<Action<PortPayload>>();
         fetchScanResultsMock = Mock.ofType<FetchScanResultsType>();
 
         deviceActionsMock.setup(actions => actions.connecting).returns(() => connectingMock.object);
@@ -44,7 +44,7 @@ describe('DeviceConnectActionCreator', () => {
 
         fetchScanResultsMock.setup(fetch => fetch(port)).returns(() => Promise.resolve({ deviceName, appIdentifier } as ScanResults));
 
-        const connectionSucceedMock = Mock.ofType<Action<ConnectionSucceedPayload>>();
+        const connectionSucceedMock = Mock.ofType<Action<ConnectedDevicePayload>>();
 
         deviceActionsMock.setup(actions => actions.connectionSucceeded).returns(() => connectionSucceedMock.object);
 

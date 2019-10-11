@@ -113,7 +113,6 @@ exports[`DetailsDialog renders with: {"expectedHelpUrl": "http://extension/help-
             "none": Array [],
             "ruleId": "ruleId",
             "selector": "selector",
-            "snippet": "html",
             "status": false,
           },
         }
@@ -219,7 +218,6 @@ exports[`DetailsDialog renders with: {"expectedHelpUrl": "http://extension/help-
                 "none": Array [],
                 "ruleId": "ruleId",
                 "selector": "selector",
-                "snippet": "html",
                 "status": false,
               },
             },
@@ -306,7 +304,6 @@ exports[`DetailsDialog renders with: {"expectedHelpUrl": "http://extension/help-
                       "none": Array [],
                       "ruleId": "ruleId",
                       "selector": "selector",
-                      "snippet": "html",
                       "status": false,
                     },
                   }
@@ -442,7 +439,6 @@ exports[`DetailsDialog renders with: {"expectedHelpUrl": "http://extension/help-
                           "none": Array [],
                           "ruleId": "ruleId",
                           "selector": "selector",
-                          "snippet": "html",
                           "status": false,
                         },
                       }
@@ -667,7 +663,6 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": false, "shadowDialog": f
             "none": Array [],
             "ruleId": "ruleId",
             "selector": "selector",
-            "snippet": "html",
             "status": false,
           },
         }
@@ -773,7 +768,6 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": false, "shadowDialog": f
                 "none": Array [],
                 "ruleId": "ruleId",
                 "selector": "selector",
-                "snippet": "html",
                 "status": false,
               },
             },
@@ -860,7 +854,6 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": false, "shadowDialog": f
                       "none": Array [],
                       "ruleId": "ruleId",
                       "selector": "selector",
-                      "snippet": "html",
                       "status": false,
                     },
                   }
@@ -996,7 +989,6 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": false, "shadowDialog": f
                           "none": Array [],
                           "ruleId": "ruleId",
                           "selector": "selector",
-                          "snippet": "html",
                           "status": false,
                         },
                       }
@@ -1226,7 +1218,6 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": false, "shadowDialog": t
               "none": Array [],
               "ruleId": "ruleId",
               "selector": "selector",
-              "snippet": "html",
               "status": false,
             },
           }
@@ -1332,7 +1323,6 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": false, "shadowDialog": t
                   "none": Array [],
                   "ruleId": "ruleId",
                   "selector": "selector",
-                  "snippet": "html",
                   "status": false,
                 },
               },
@@ -1419,7 +1409,6 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": false, "shadowDialog": t
                         "none": Array [],
                         "ruleId": "ruleId",
                         "selector": "selector",
-                        "snippet": "html",
                         "status": false,
                       },
                     }
@@ -1560,7 +1549,6 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": false, "shadowDialog": t
                               "none": Array [],
                               "ruleId": "ruleId",
                               "selector": "selector",
-                              "snippet": "html",
                               "status": false,
                             },
                           }
@@ -1785,7 +1773,6 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": true, "shadowDialog": fa
             "none": Array [],
             "ruleId": "ruleId",
             "selector": "selector",
-            "snippet": "html",
             "status": false,
           },
         }
@@ -1891,7 +1878,6 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": true, "shadowDialog": fa
                 "none": Array [],
                 "ruleId": "ruleId",
                 "selector": "selector",
-                "snippet": "html",
                 "status": false,
               },
             },
@@ -1978,7 +1964,6 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": true, "shadowDialog": fa
                       "none": Array [],
                       "ruleId": "ruleId",
                       "selector": "selector",
-                      "snippet": "html",
                       "status": false,
                     },
                   }
@@ -2114,7 +2099,6 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": true, "shadowDialog": fa
                           "none": Array [],
                           "ruleId": "ruleId",
                           "selector": "selector",
-                          "snippet": "html",
                           "status": false,
                         },
                       }
@@ -2344,7 +2328,6 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": true, "shadowDialog": tr
               "none": Array [],
               "ruleId": "ruleId",
               "selector": "selector",
-              "snippet": "html",
               "status": false,
             },
           }
@@ -2450,7 +2433,6 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": true, "shadowDialog": tr
                   "none": Array [],
                   "ruleId": "ruleId",
                   "selector": "selector",
-                  "snippet": "html",
                   "status": false,
                 },
               },
@@ -2537,7 +2519,6 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": true, "shadowDialog": tr
                         "none": Array [],
                         "ruleId": "ruleId",
                         "selector": "selector",
-                        "snippet": "html",
                         "status": false,
                       },
                     }
@@ -2678,7 +2659,6 @@ exports[`DetailsDialog renders with: {"isDevToolsOpen": true, "shadowDialog": tr
                               "none": Array [],
                               "ruleId": "ruleId",
                               "selector": "selector",
-                              "snippet": "html",
                               "status": false,
                             },
                           }

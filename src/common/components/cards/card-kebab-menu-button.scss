@@ -8,13 +8,24 @@
     }
 }
 
-.kebab-menu-button {
-    background: transparent;
-    top: calc(50% - 4px / 2);
+button.kebab-menu-button {
+    width: 34px;
+    height: 32px;
+    margin: 8px;
 
-    i {
-        font-size: 20px;
-        border: 1.25px;
-        color: $primary-text;
+    border-radius: 2px;
+    background: transparent;
+
+    &:hover {
+        background-color: $neutral-alpha-4;
+    }
+
+    &:active,
+    &[aria-expanded='true'] {
+        background-color: $neutral-alpha-8;
+    }
+
+    div.ms-Button-flexContainer {
+        justify-content: center;
     }
 }
