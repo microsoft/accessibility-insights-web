@@ -4,7 +4,7 @@ import { noCardInteractionsSupported } from 'common/components/cards/card-intera
 import { PropertyConfiguration } from 'common/configs/unified-result-property-configurations';
 import { EnvironmentInfo } from 'common/environment-info-provider';
 import { GetGuidanceTagsFromGuidanceLinks } from 'common/get-guidance-tags-from-guidance-links';
-import { UnifiedStatusResults } from 'common/types/store-data/unified-data-interface';
+import { CardRuleResultsByStatus } from 'common/types/store-data/card-view-model';
 import { FixInstructionProcessor } from 'injected/fix-instruction-processor';
 import * as React from 'react';
 import { ScanResults } from 'scanner/iruleresults';
@@ -33,7 +33,7 @@ export class ReportHtmlGenerator {
         pageTitle: string,
         pageUrl: string,
         description: string,
-        ruleResultsByStatus: UnifiedStatusResults,
+        ruleResultsByStatus: CardRuleResultsByStatus,
     ): string {
         const headElement: JSX.Element = <ReportHead />;
         const headMarkup: string = this.reactStaticRenderer.renderToStaticMarkup(headElement);

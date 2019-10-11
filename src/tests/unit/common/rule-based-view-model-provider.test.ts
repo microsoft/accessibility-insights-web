@@ -1,29 +1,24 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { getUnifiedRuleResults } from '../../../common/rule-based-view-model-provider';
-import {
-    InstanceResultStatus,
-    UnifiedResult,
-    UnifiedRule,
-    UnifiedRuleResult,
-    UnifiedStatusResults,
-} from '../../../common/types/store-data/unified-data-interface';
+import { CardRuleResult, CardRuleResultsByStatus } from '../../../common/types/store-data/card-view-model';
+import { InstanceResultStatus, UnifiedResult, UnifiedRule } from '../../../common/types/store-data/unified-data-interface';
 
 describe('RuleBasedViewModelProvider', () => {
     test('getUnifiedRuleResults with null rules and results', () => {
-        const actualResults: UnifiedStatusResults = getUnifiedRuleResults(null, null);
+        const actualResults: CardRuleResultsByStatus = getUnifiedRuleResults(null, null);
 
         expect(actualResults).toEqual(null);
     });
 
     test('getUnifiedRuleResults with null rules', () => {
-        const actualResults: UnifiedStatusResults = getUnifiedRuleResults(null, []);
+        const actualResults: CardRuleResultsByStatus = getUnifiedRuleResults(null, []);
 
         expect(actualResults).toEqual(null);
     });
 
     test('getUnifiedRuleResults with null results', () => {
-        const actualResults: UnifiedStatusResults = getUnifiedRuleResults([], null);
+        const actualResults: CardRuleResultsByStatus = getUnifiedRuleResults([], null);
 
         expect(actualResults).toEqual(null);
     });
@@ -38,7 +33,7 @@ describe('RuleBasedViewModelProvider', () => {
 
         const results: UnifiedResult[] = [resultStub1, resultStub2, resultStub3, resultStub4];
 
-        const expectedResults: UnifiedStatusResults = {
+        const expectedResults: CardRuleResultsByStatus = {
             pass: [
                 {
                     id: 'rule1',
@@ -97,11 +92,11 @@ describe('RuleBasedViewModelProvider', () => {
                             text: 'stub_guidance_text_rule3',
                         },
                     ],
-                } as UnifiedRuleResult,
+                } as CardRuleResult,
             ],
         };
 
-        const actualResults: UnifiedStatusResults = getUnifiedRuleResults(rules, results);
+        const actualResults: CardRuleResultsByStatus = getUnifiedRuleResults(rules, results);
 
         expect(actualResults).toEqual(expectedResults);
     });
