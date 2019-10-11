@@ -5,7 +5,7 @@ import * as React from 'react';
 import { NamedFC } from '../react/named-fc';
 
 export const HighlightVisibleIcon = NamedFC('HighlightVisibleIcon', () => (
-    <svg width="34" height="32" viewBox="0 0 34 32" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
+    <svg width="34" height="30" viewBox="0 0 34 30" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
         <path
             fillRule="evenodd"
             clipRule="evenodd"
@@ -17,7 +17,7 @@ export const HighlightVisibleIcon = NamedFC('HighlightVisibleIcon', () => (
 ));
 
 export const HighlightUnavailableIcon = NamedFC('HighlightUnavailableIcon', () => (
-    <svg width="34" height="32" viewBox="0 0 34 32" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
+    <svg width="34" height="30" viewBox="0 0 34 30" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
         <path
             fillRule="evenodd"
             clipRule="evenodd"
@@ -29,7 +29,7 @@ export const HighlightUnavailableIcon = NamedFC('HighlightUnavailableIcon', () =
 ));
 
 export const HighlightHiddenIcon = NamedFC('HighlightHiddenIcon', () => (
-    <svg width="34" height="32" viewBox="0 0 34 32" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
+    <svg width="34" height="30" viewBox="0 0 34 30" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-hidden="true">
         <path
             fillRule="evenodd"
             clipRule="evenodd"
