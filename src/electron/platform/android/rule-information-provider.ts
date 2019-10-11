@@ -63,8 +63,9 @@ export class RuleInformationProvider {
         let result = 'NO VALUE AVAILABLE';
         const value = ruleResultsData.props[propertyName] as string;
 
+        const prefixSize = 2;
         if (value) {
-            result = `#${value.substring(2)}`;
+            result = `#${value.substring(prefixSize)}`;
         }
 
         return result;
