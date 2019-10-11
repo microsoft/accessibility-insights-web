@@ -20,9 +20,10 @@ export type ToastState = {
 
 export class Toast extends React.Component<ToastProps, ToastState> {
     private timeoutId: number;
+    private hidden: boolean;
 
     public static defaultProps = {
-        timeoutLength: 1000,
+        timeoutLength: 6000,
     };
 
     constructor(props) {
@@ -45,6 +46,10 @@ export class Toast extends React.Component<ToastProps, ToastState> {
     }
 
     public render(): JSX.Element {
-        return this.state.toastVisible ? <div className={css('ms-fadeIn100', 'toast')}>{this.state.content}</div> : null;
+        return this.hidden ? null : (
+            <div role="alert" aria-live="polite" className={css('ms-fadeIn100', 'toast')}>
+                {this.props.children}
+            </div>
+        );
     }
 }

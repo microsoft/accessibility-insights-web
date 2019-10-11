@@ -121,7 +121,9 @@ exports[`CardKebabMenuButtonTest copies failure details and show the toast 1`] =
         </WithResponsiveMode>
       </StyledWithResponsiveMode>
     </IssueFilingDialog>
-    <Toast deps={{...}} timeoutLength={1000} />
+    <Toast deps={{...}} timeoutLength={6000}>
+      <div role=\\"alert\\" aria-live=\\"polite\\" className=\\"ms-fadeIn100 toast\\" />
+    </Toast>
   </div>
 </CardKebabMenuButton>"
 `;
@@ -130,7 +132,7 @@ exports[`CardKebabMenuButtonTest renders per snapshot with allCardInteractionsSu
 "<div>
   <CustomizedActionButton className=\\"kebabMenuButton\\" ariaLabel=\\"More actions\\" onRenderMenuIcon={[Function]} menuProps={{...}} />
   <IssueFilingDialog deps={{...}} isOpen={false} selectedIssueFilingService={{...}} selectedIssueData={{...}} selectedIssueFilingServiceData={{...}} onClose={[Function]} issueFilingServicePropertiesMap={{...}} />
-  <Toast deps={{...}} timeoutLength={1000} />
+  <Toast deps={{...}} timeoutLength={6000} />
 </div>"
 `;
 
@@ -166,7 +168,7 @@ Object {
 exports[`CardKebabMenuButtonTest renders per snapshot with onlyUserConfigAgnosticCardInteractionsSupported 1`] = `
 "<div>
   <CustomizedActionButton className=\\"kebabMenuButton\\" ariaLabel=\\"More actions\\" onRenderMenuIcon={[Function]} menuProps={{...}} />
-  <Toast deps={{...}} timeoutLength={1000} />
+  <Toast deps={{...}} timeoutLength={6000} />
 </div>"
 `;
 
@@ -195,7 +197,7 @@ exports[`CardKebabMenuButtonTest should click file issue, invalid settings 1`] =
 "<div>
   <CustomizedActionButton className=\\"kebabMenuButton\\" ariaLabel=\\"More actions\\" onRenderMenuIcon={[Function]} menuProps={{...}} />
   <IssueFilingDialog deps={{...}} isOpen={true} selectedIssueFilingService={{...}} selectedIssueData={{...}} selectedIssueFilingServiceData={{...}} onClose={[Function]} issueFilingServicePropertiesMap={{...}} />
-  <Toast deps={{...}} timeoutLength={1000} />
+  <Toast deps={{...}} timeoutLength={6000} />
 </div>"
 `;
 
@@ -203,7 +205,7 @@ exports[`CardKebabMenuButtonTest should file issue, valid settings 1`] = `
 "<div>
   <CustomizedActionButton className=\\"kebabMenuButton\\" ariaLabel=\\"More actions\\" onRenderMenuIcon={[Function]} menuProps={{...}} />
   <IssueFilingDialog deps={{...}} isOpen={false} selectedIssueFilingService={{...}} selectedIssueData={{...}} selectedIssueFilingServiceData={{...}} onClose={[Function]} issueFilingServicePropertiesMap={{...}} />
-  <Toast deps={{...}} timeoutLength={1000} />
+  <Toast deps={{...}} timeoutLength={6000} />
 </div>"
 `;
 
@@ -328,7 +330,9 @@ exports[`CardKebabMenuButtonTest shows failure message if copy failed 1`] = `
         </WithResponsiveMode>
       </StyledWithResponsiveMode>
     </IssueFilingDialog>
-    <Toast deps={{...}} timeoutLength={1000} />
+    <Toast deps={{...}} timeoutLength={6000}>
+      <div role=\\"alert\\" aria-live=\\"polite\\" className=\\"ms-fadeIn100 toast\\" />
+    </Toast>
   </div>
 </CardKebabMenuButton>"
 `;

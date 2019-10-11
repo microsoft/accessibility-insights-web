@@ -29,7 +29,7 @@ export function formatHtmlForSnapshot(htmlString: string): Node {
 // office fabric generates a random class & id name which changes every time.
 // We remove the random number before snapshot comparison to avoid flakiness
 function normalizeOfficeFabricGeneratedClassNames(htmlString: string): string {
-    return htmlString.replace(/(class|id)="[\w\s-]+[\d]+"/g, (subString, args) => {
+    return htmlString.replace(/(class|id)="([\w\s-]+[\d]+|Panel\d+-\w+)"/g, (subString, args) => {
         return subString.replace(/[\d]+/g, '000');
     });
 }
