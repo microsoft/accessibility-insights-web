@@ -75,6 +75,8 @@
     --row-selected-background: var(--communication-tint-40);
     --group-selected-background: var(--communication-tint-40);
     --row-hover-background: var(--neutral-4);
+    --hover-background: var(--neutral-alpha-4);
+    --active-background: var(--neutral-alpha-8);
     --link: var(--communication-primary);
     --link-hover: var(--communication-shade-20);
     --switcher-border: var(--ada-brand-variant);
@@ -85,6 +87,7 @@
     --pill: var(--primary-text);
     --pill-background: var(--neutral-alpha-8);
     --spinner-text: var(--communication-primary);
+    --menu-border: --acrylic-light;
 
     // Landmark colors
     --landmark-contentinfo: #00a88c;
@@ -147,6 +150,10 @@
         --pill: var(--black);
         --pill-background: var(--white);
         --spinner-text: var(--communication-tint-40);
+        --hover-background: var(--grey);
+        --active-background: var(--communication-tint-40);
+        --acrylic-light: var(--light-black);
+        --menu-border: var(--grey);
     }
 }
 
@@ -236,6 +243,9 @@ $highlighted-text: var(--highlighted-text);
 $pill: var(--pill);
 $pill-background: var(--pill-background);
 $spinner-text: var(--spinner-text);
+$hover-background: var(--hover-background);
+$active-background: var(--active-background);
+$menu-border: var(--menu-border);
 
 // consistent colors
 $always-white: #ffffff;
