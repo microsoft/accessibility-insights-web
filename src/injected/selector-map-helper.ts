@@ -1,12 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
+import { FeatureFlags } from 'common/feature-flags';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
+import { UnifiedScanResultStoreData } from 'common/types/store-data/unified-data-interface';
+import { GetElementBasedViewModelCallback } from 'injected/frameCommunicators/get-element-based-view-model';
 import * as _ from 'lodash';
 
-import { FeatureFlags } from 'common/feature-flags';
-import { UnifiedScanResultStoreData } from 'common/types/store-data/unified-data-interface';
-import { getElementBasedViewModel } from 'injected/frameCommunicators/unified-result-to-old-instance';
 import { ManualTestStatus } from '../common/types/manual-test-status';
 import { AssessmentStoreData, GeneratedAssessmentInstance } from '../common/types/store-data/assessment-result-data';
 import { VisualizationScanResultData } from '../common/types/store-data/visualization-scan-result-data';
@@ -15,11 +15,7 @@ import { DictionaryStringTo } from '../types/common-types';
 import { AssessmentVisualizationInstance } from './frameCommunicators/html-element-axe-results-helper';
 
 export class SelectorMapHelper {
-    private assessmentsProvider: AssessmentsProvider;
-
-    constructor(assessmentsProvider: AssessmentsProvider) {
-        this.assessmentsProvider = assessmentsProvider;
-    }
+    constructor(private assessmentsProvider: AssessmentsProvider, private getElementBasedViewModel: GetElementBasedViewModelCallback) {}
 
     public getSelectorMap(
         visualizationType: VisualizationType,
@@ -73,7 +69,7 @@ export class SelectorMapHelper {
         switch (visualizationType) {
             case VisualizationType.Issues:
                 if (featureFlagData[FeatureFlags.universalCardsUI] === true) {
-                    selectorMap = getElementBasedViewModel(unifiedScanData.rules, unifiedScanData.results, []);
+                    selectorMap = this.getElementBasedViewModel(unifiedScanData.rules, unifiedScanData.results, []);
                 } else {
                     selectorMap = visualizationScanResultData.issues.selectedAxeResultsMap;
                 }
