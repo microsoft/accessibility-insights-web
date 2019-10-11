@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { ScanActionCreator } from 'electron/flux/action-creator/scan-action-creator';
+import { WindowFrameActionCreator } from 'electron/flux/action-creator/window-frame-action-creator';
 import { WindowStateActionCreator } from 'electron/flux/action-creator/window-state-action-creator';
 import { ScanStatus } from 'electron/flux/types/scan-status';
 import { AutomatedChecksView, AutomatedChecksViewProps } from 'electron/views/automated-checks/automated-checks-view';
@@ -11,10 +12,14 @@ import { It, Mock, Times } from 'typemoq';
 
 describe('AutomatedChecksView', () => {
     describe('renders', () => {
-        it('the automated checks view', () => {
+        it('renders the automated checks view', () => {
             const props: AutomatedChecksViewProps = {
                 deps: {
+                    deviceConnectActionCreator: null,
+                    currentWindow: null,
+                    windowStateActionCreator: Mock.ofType(WindowStateActionCreator).object,
                     scanActionCreator: Mock.ofType(ScanActionCreator).object,
+                    windowFrameActionCreator: Mock.ofType(WindowFrameActionCreator).object,
                 },
                 scanStoreData: {},
                 deviceStoreData: {},
@@ -28,7 +33,11 @@ describe('AutomatedChecksView', () => {
         it('scanning spinner', () => {
             const props: AutomatedChecksViewProps = {
                 deps: {
+                    deviceConnectActionCreator: null,
+                    currentWindow: null,
+                    windowStateActionCreator: Mock.ofType(WindowStateActionCreator).object,
                     scanActionCreator: Mock.ofType(ScanActionCreator).object,
+                    windowFrameActionCreator: Mock.ofType(WindowFrameActionCreator).object,
                 },
                 scanStoreData: {
                     status: ScanStatus.Scanning,

@@ -6,6 +6,7 @@ import { Button } from 'office-ui-fabric-react/lib/Button';
 import * as React from 'react';
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';
 
+import { WindowFrameActionCreator } from 'electron/flux/action-creator/window-frame-action-creator';
 import { WindowStateActionCreator } from 'electron/flux/action-creator/window-state-action-creator';
 import { TitleBar, TitleBarProps } from 'electron/views/automated-checks/components/title-bar';
 import { EventStubFactory } from 'tests/unit/common/event-stub-factory';
@@ -14,17 +15,20 @@ describe('TitleBar', () => {
     const eventStub = new EventStubFactory().createMouseClickEvent() as React.MouseEvent<Button>;
     let browserWindowMock: IMock<BrowserWindow>;
     let windowStateActionCreator: IMock<WindowStateActionCreator>;
+    let windowFrameActionCreator: IMock<WindowFrameActionCreator>;
 
     beforeEach(() => {
         browserWindowMock = Mock.ofType<BrowserWindow>(undefined, MockBehavior.Strict);
         windowStateActionCreator = Mock.ofType<WindowStateActionCreator>(undefined, MockBehavior.Strict);
+        windowFrameActionCreator = Mock.ofType<WindowFrameActionCreator>(undefined, MockBehavior.Strict);
     });
 
     it('renders', () => {
         const props = {
             deps: {
-                currentWindow: null,
-                windowStateActionCreator: null,
+                currentWindow: Mock.ofType(BrowserWindow).object,
+                windowStateActionCreator: Mock.ofType(WindowStateActionCreator).object,
+                windowFrameActionCreator: Mock.ofType(WindowFrameActionCreator).object,
             },
         } as TitleBarProps;
 
@@ -33,24 +37,22 @@ describe('TitleBar', () => {
         expect(wrapper.getElement()).toMatchSnapshot();
     });
 
-    const setupBrowserMockForMaximizeRestore = () => {
-        windowStateActionCreator
-            .setup(creator => creator.setWindowState({ currentWindowState: 'restoredOrMaximized' }))
-            .verifiable(Times.once());
+    const setupVerifiableWindowMaximizeAction = () => {
+        windowFrameActionCreator.setup(creator => creator.maximize()).verifiable(Times.once());
     };
 
-    const setupBrowserMockForMinimize = () => {
-        windowStateActionCreator.setup(creator => creator.setWindowState({ currentWindowState: 'minimized' })).verifiable(Times.once());
+    const setupVerifiableWindowMinimizeCall = () => {
+        windowFrameActionCreator.setup(creator => creator.minimize()).verifiable(Times.once());
     };
 
-    const setupBrowserMockForClose = () => {
-        browserWindowMock.setup(creator => creator.close()).verifiable(Times.once());
+    const setupVerifiableWindowCloseActionCall = () => {
+        windowFrameActionCreator.setup(creator => creator.close()).verifiable(Times.once());
     };
 
     const buttonsAndSetups = [
-        { id: '#maximize-button', setupMock: setupBrowserMockForMaximizeRestore },
-        { id: '#minimize-button', setupMock: setupBrowserMockForMinimize },
-        { id: '#close-button', setupMock: setupBrowserMockForClose },
+        { id: '#maximize-button', setupMock: setupVerifiableWindowMaximizeAction },
+        { id: '#minimize-button', setupMock: setupVerifiableWindowMinimizeCall },
+        { id: '#close-button', setupMock: setupVerifiableWindowCloseActionCall },
     ];
 
     test.each(buttonsAndSetups)('test button %s', args => {
@@ -59,6 +61,7 @@ describe('TitleBar', () => {
             deps: {
                 currentWindow: browserWindowMock.object,
                 windowStateActionCreator: windowStateActionCreator.object,
+                windowFrameActionCreator: windowFrameActionCreator.object,
             },
         } as TitleBarProps;
 

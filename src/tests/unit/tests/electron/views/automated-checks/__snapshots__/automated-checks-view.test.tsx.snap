@@ -34,14 +34,25 @@ exports[`AutomatedChecksView renders device disconnected 1`] = `
 </React.Fragment>
 `;
 
-exports[`AutomatedChecksView renders scanning spinner 1`] = `
+exports[`AutomatedChecksView renders renders the automated checks view 1`] = `
 <React.Fragment>
   <TitleBar
     deps={
       Object {
+        "currentWindow": null,
+        "deviceConnectActionCreator": null,
         "scanActionCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "scanActions": undefined,
+        },
+        "windowFrameActionCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "windowFrameActions": undefined,
+        },
+        "windowStateActionCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "windowFrameActionCreator": undefined,
+          "windowStateActions": undefined,
         },
       }
     }
@@ -49,38 +60,20 @@ exports[`AutomatedChecksView renders scanning spinner 1`] = `
   <CommandBar
     deps={
       Object {
+        "currentWindow": null,
+        "deviceConnectActionCreator": null,
         "scanActionCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "scanActions": undefined,
         },
-      }
-    }
-  />
-  <HeaderSection />
-  <ScanningSpinner
-    isScanning={true}
-  />
-</React.Fragment>
-`;
-
-exports[`AutomatedChecksView renders the automated checks view 1`] = `
-<React.Fragment>
-  <TitleBar
-    deps={
-      Object {
-        "scanActionCreator": proxy {
+        "windowFrameActionCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "scanActions": undefined,
+          "windowFrameActions": undefined,
         },
-      }
-    }
-  />
-  <CommandBar
-    deps={
-      Object {
-        "scanActionCreator": proxy {
+        "windowStateActionCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "scanActions": undefined,
+          "windowFrameActionCreator": undefined,
+          "windowStateActions": undefined,
         },
       }
     }
@@ -88,6 +81,57 @@ exports[`AutomatedChecksView renders the automated checks view 1`] = `
   <HeaderSection />
   <ScanningSpinner
     isScanning={false}
+  />
+</React.Fragment>
+`;
+
+exports[`AutomatedChecksView renders scanning spinner 1`] = `
+<React.Fragment>
+  <TitleBar
+    deps={
+      Object {
+        "currentWindow": null,
+        "deviceConnectActionCreator": null,
+        "scanActionCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "scanActions": undefined,
+        },
+        "windowFrameActionCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "windowFrameActions": undefined,
+        },
+        "windowStateActionCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "windowFrameActionCreator": undefined,
+          "windowStateActions": undefined,
+        },
+      }
+    }
+  />
+  <CommandBar
+    deps={
+      Object {
+        "currentWindow": null,
+        "deviceConnectActionCreator": null,
+        "scanActionCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "scanActions": undefined,
+        },
+        "windowFrameActionCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "windowFrameActions": undefined,
+        },
+        "windowStateActionCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "windowFrameActionCreator": undefined,
+          "windowStateActions": undefined,
+        },
+      }
+    }
+  />
+  <HeaderSection />
+  <ScanningSpinner
+    isScanning={true}
   />
 </React.Fragment>
 `;

@@ -6,6 +6,7 @@ import * as React from 'react';
 
 import { NamedFC } from 'common/react/named-fc';
 import { brand } from 'content/strings/application';
+import { WindowFrameActionCreator } from 'electron/flux/action-creator/window-frame-action-creator';
 import { WindowStateActionCreator } from 'electron/flux/action-creator/window-state-action-creator';
 import { WindowTitle } from 'electron/views/device-connect-view/components/window-title';
 import { BrandWhite } from 'icons/brand/white/brand-white';
@@ -13,7 +14,7 @@ import { titleBar } from './title-bar.scss';
 
 export type TitleBarDeps = {
     currentWindow: BrowserWindow;
-    windowStateActionCreator: WindowStateActionCreator;
+    windowFrameActionCreator: WindowFrameActionCreator;
 };
 
 export interface TitleBarProps {
@@ -21,9 +22,9 @@ export interface TitleBarProps {
 }
 
 export const TitleBar = NamedFC<TitleBarProps>('TitleBar', (props: TitleBarProps) => {
-    const minimize = () => props.deps.windowStateActionCreator.setWindowState({ currentWindowState: 'minimized' });
-    const maximize = () => props.deps.windowStateActionCreator.setWindowState({ currentWindowState: 'restoredOrMaximized' });
-    const close = () => props.deps.currentWindow.close();
+    const minimize = () => props.deps.windowFrameActionCreator.minimize();
+    const maximizeOrRestore = () => props.deps.windowFrameActionCreator.maximize();
+    const close = () => props.deps.windowFrameActionCreator.close();
 
     const icons = [
         <ActionButton
@@ -42,7 +43,7 @@ export const TitleBar = NamedFC<TitleBarProps>('TitleBar', (props: TitleBarProps
                 iconName: 'Stop',
             }}
             id="maximize-button"
-            onClick={maximize}
+            onClick={maximizeOrRestore}
             tabIndex={-1}
             key="maximize"
         />,

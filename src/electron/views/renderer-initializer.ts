@@ -19,6 +19,8 @@ import { RootContainerProps, RootContainerState } from 'electron/views/root-cont
 import { WindowFrameUpdater } from 'electron/window-frame-updater';
 import * as ReactDOM from 'react-dom';
 
+import { WindowFrameActionCreator } from 'electron/flux/action-creator/window-frame-action-creator';
+import { WindowFrameActions } from 'electron/flux/action/window-frame-actions';
 import { ScanStore } from 'electron/flux/store/scan-store';
 import { UserConfigurationActions } from '../../background/actions/user-configuration-actions';
 import { getPersistedData, PersistedData } from '../../background/get-persisted-data';
@@ -51,6 +53,7 @@ const indexedDBInstance: IndexedDBAPI = new IndexedDBUtil(getIndexedDBStore());
 
 const userConfigActions = new UserConfigurationActions();
 const deviceActions = new DeviceActions();
+const windowFrameActions = new WindowFrameActions();
 const windowStateActions = new WindowStateActions();
 const scanActions = new ScanActions();
 const unifiedScanResultActions = new UnifiedScanResultActions();
@@ -93,7 +96,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then((persistedDat
     scanStore.initialize();
 
     const currentWindow = remote.getCurrentWindow();
-    const windowFrameUpdater = new WindowFrameUpdater(windowStateStore, currentWindow);
+    const windowFrameUpdater = new WindowFrameUpdater(windowFrameActions, currentWindow);
     windowFrameUpdater.initialize();
 
     const storeHub = new BaseClientStoresHub<RootContainerState>([userConfigurationStore, deviceStore, windowStateStore, scanStore]);
@@ -106,7 +109,8 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then((persistedDat
     const userConfigMessageCreator = new UserConfigurationActionCreator(userConfigActions);
 
     const deviceConnectActionCreator = new DeviceConnectActionCreator(deviceActions, fetchScanResults, telemetryEventHandler);
-    const windowStateActionCreator = new WindowStateActionCreator(windowStateActions);
+    const windowFrameActionCreator = new WindowFrameActionCreator(windowFrameActions);
+    const windowStateActionCreator = new WindowStateActionCreator(windowStateActions, windowFrameActionCreator);
     const scanActionCreator = new ScanActionCreator(scanActions);
 
     const getToolData = createGetToolDataDelegate(appDataAdapter);
@@ -134,6 +138,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then((persistedDat
             deviceConnectActionCreator,
             storeHub,
             scanActionCreator,
+            windowFrameActionCreator,
         },
     };
 
