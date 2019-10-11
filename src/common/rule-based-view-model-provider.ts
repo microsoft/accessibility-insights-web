@@ -1,11 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import {
-    AllRuleResultStatuses,
-    CardRuleResult,
-    CardRuleResultsByStatus,
-    CardRuleResultStatus,
-} from './types/store-data/card-view-model';
+import { AllRuleResultStatuses, CardRuleResult, CardRuleResultsByStatus, CardRuleResultStatus } from './types/store-data/card-view-model';
 import { UnifiedResult, UnifiedRule } from './types/store-data/unified-data-interface';
 
 export type GetUnifiedRuleResultsDelegate = (rules: UnifiedRule[], results: UnifiedResult[]) => CardRuleResultsByStatus;

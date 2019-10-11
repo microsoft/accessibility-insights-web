@@ -83,5 +83,3 @@ export interface UnifiedResult {
 }
 
 export type InstanceResultStatus = 'pass' | 'fail' | 'unknown';
-
-
