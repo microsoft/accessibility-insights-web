@@ -2,19 +2,18 @@
 // Licensed under the MIT License.
 import {
     AllRuleResultStatuses,
-    UnifiedResult,
-    UnifiedRule,
-    UnifiedRuleResult,
-    UnifiedRuleResultStatus,
-    UnifiedStatusResults,
-} from './types/store-data/unified-data-interface';
+    CardRuleResult,
+    CardRuleResultsByStatus,
+    CardRuleResultStatus,
+} from './types/store-data/card-view-model';
+import { UnifiedResult, UnifiedRule } from './types/store-data/unified-data-interface';
 
-export type GetUnifiedRuleResultsDelegate = (rules: UnifiedRule[], results: UnifiedResult[]) => UnifiedStatusResults;
+export type GetUnifiedRuleResultsDelegate = (rules: UnifiedRule[], results: UnifiedResult[]) => CardRuleResultsByStatus;
 
 export const getUnifiedRuleResults: GetUnifiedRuleResultsDelegate = function(
     rules: UnifiedRule[],
     results: UnifiedResult[],
-): UnifiedStatusResults {
+): CardRuleResultsByStatus {
     if (results == null || rules == null) {
         return null;
     }
@@ -47,17 +46,17 @@ export const getUnifiedRuleResults: GetUnifiedRuleResultsDelegate = function(
     return statusResults;
 };
 
-function getEmptyStatusResults(): UnifiedStatusResults {
+function getEmptyStatusResults(): CardRuleResultsByStatus {
     const statusResults = {};
 
     AllRuleResultStatuses.forEach(status => {
         statusResults[status] = [];
     });
 
-    return statusResults as UnifiedStatusResults;
+    return statusResults as CardRuleResultsByStatus;
 }
 
-function createUnifiedRuleResult(result: UnifiedResult, rule: UnifiedRule): UnifiedRuleResult {
+function createUnifiedRuleResult(result: UnifiedResult, rule: UnifiedRule): CardRuleResult {
     return {
         id: rule.id,
         status: result.status,
@@ -68,7 +67,7 @@ function createUnifiedRuleResult(result: UnifiedResult, rule: UnifiedRule): Unif
     };
 }
 
-function createRuleResultWithoutNodes(status: UnifiedRuleResultStatus, rule: UnifiedRule): UnifiedRuleResult {
+function createRuleResultWithoutNodes(status: CardRuleResultStatus, rule: UnifiedRule): CardRuleResult {
     return {
         id: rule.id,
         status: status,
@@ -83,6 +82,6 @@ function getUnifiedRule(id: string, rules: UnifiedRule[]): UnifiedRule {
     return rules.find(rule => rule.id === id);
 }
 
-function getRuleResultIndex(result: UnifiedResult, ruleResults: UnifiedRuleResult[]): number {
+function getRuleResultIndex(result: UnifiedResult, ruleResults: CardRuleResult[]): number {
     return ruleResults.findIndex(ruleResult => ruleResult.id === result.ruleId);
 }

@@ -7,7 +7,8 @@ import { ReactFCWithDisplayName } from 'common/react/named-fc';
 import { FixInstructionProcessor } from 'injected/fix-instruction-processor';
 import { ScanResults } from 'scanner/iruleresults';
 
-import { TargetAppData, UnifiedStatusResults } from '../../../common/types/store-data/unified-data-interface';
+import { CardRuleResultsByStatus } from '../../../common/types/store-data/card-view-model';
+import { TargetAppData } from '../../../common/types/store-data/unified-data-interface';
 import { UserConfigurationStoreData } from '../../../common/types/store-data/user-configuration-store';
 import { NotApplicableChecksSectionDeps } from './not-applicable-checks-section';
 import { PassedChecksSectionDeps } from './passed-checks-section';
@@ -26,7 +27,7 @@ export type SectionProps = {
     toUtcString: (date: Date) => string;
     getCollapsibleScript: () => string;
     getGuidanceTagsFromGuidanceLinks: GetGuidanceTagsFromGuidanceLinks;
-    ruleResultsByStatus: UnifiedStatusResults;
+    ruleResultsByStatus: CardRuleResultsByStatus;
     userConfigurationStoreData: UserConfigurationStoreData;
     targetAppInfo: TargetAppData;
 };

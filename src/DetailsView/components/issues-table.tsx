@@ -11,8 +11,9 @@ import { VisualizationToggle } from '../../common/components/visualization-toggl
 import { VisualizationConfiguration } from '../../common/configs/visualization-configuration';
 import { VisualizationConfigurationFactory } from '../../common/configs/visualization-configuration-factory';
 import { FeatureFlags } from '../../common/feature-flags';
+import { CardRuleResultsByStatus } from '../../common/types/store-data/card-view-model';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
-import { TargetAppData, UnifiedStatusResults } from '../../common/types/store-data/unified-data-interface';
+import { TargetAppData } from '../../common/types/store-data/unified-data-interface';
 import { UserConfigurationStoreData } from '../../common/types/store-data/user-configuration-store';
 import { VisualizationType } from '../../common/types/visualization-type';
 import { DecoratedAxeNodeResult } from '../../injected/scanner-utils';
@@ -49,7 +50,7 @@ export interface IssuesTableProps {
     featureFlags: FeatureFlagStoreData;
     scanResult: ScanResults;
     userConfigurationStoreData: UserConfigurationStoreData;
-    ruleResultsByStatus: UnifiedStatusResults;
+    ruleResultsByStatus: CardRuleResultsByStatus;
     targetAppInfo: TargetAppData;
 }
 
