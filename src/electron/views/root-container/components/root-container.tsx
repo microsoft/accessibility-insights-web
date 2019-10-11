@@ -37,9 +37,13 @@ export class RootContainer extends React.Component<RootContainerProps, RootConta
 
     public render(): JSX.Element {
         if (this.state.windowStateStoreData.routeId === 'resultsView') {
-            const devicePort = this.state.deviceStoreData.port;
-
-            return <AutomatedChecksView devicePort={devicePort} scanStoreData={this.state.scanStoreData} {...this.props} />;
+            return (
+                <AutomatedChecksView
+                    deviceStoreData={this.state.deviceStoreData}
+                    scanStoreData={this.state.scanStoreData}
+                    {...this.props}
+                />
+            );
         }
 
         return (
