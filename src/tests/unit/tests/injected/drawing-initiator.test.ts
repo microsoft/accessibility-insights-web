@@ -38,17 +38,13 @@ describe('DrawingInitiatorTest', () => {
                 target: ['element1'],
                 isFailure: false,
                 isVisualizationEnabled: false,
-                html: 'test',
                 ruleResults: null,
-                identifier: 'some id',
             },
             key2: {
                 target: ['element2'],
                 isFailure: false,
                 isVisualizationEnabled: false,
-                html: 'test',
                 ruleResults: null,
-                identifier: 'some id',
             },
         };
 
@@ -59,20 +55,16 @@ describe('DrawingInitiatorTest', () => {
                 {
                     isFailure: false,
                     isVisualizationEnabled: false,
-                    html: 'test',
                     target: ['element1'],
                     targetIndex: 0,
                     ruleResults: null,
-                    identifier: 'some id',
                 },
                 {
                     isFailure: false,
                     isVisualizationEnabled: false,
-                    html: 'test',
                     target: ['element2'],
                     targetIndex: 0,
                     ruleResults: null,
-                    identifier: 'some id',
                 },
             ],
             featureFlagStoreData: getDefaultFeatureFlagValues(),

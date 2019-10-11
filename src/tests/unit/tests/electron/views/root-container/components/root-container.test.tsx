@@ -28,6 +28,8 @@ describe(RootContainer, () => {
         } as RootContainerProps;
     });
 
+    //
+
     describe('renders', () => {
         it('device connect view container when route is deviceConnectView', () => {
             storeHubMock
@@ -52,7 +54,7 @@ describe(RootContainer, () => {
                     return {
                         windowStateStoreData: { routeId: 'resultsView', currentWindowState: 'restoredOrMaximized' },
                         userConfigurationStoreData: { isFirstTime: true },
-                        deviceStoreData: { deviceConnectState: DeviceConnectState.Connected },
+                        deviceStoreData: { deviceConnectState: DeviceConnectState.Connected, port: 11111 },
                     } as RootContainerState;
                 });
 

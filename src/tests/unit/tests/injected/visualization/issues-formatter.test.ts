@@ -54,7 +54,6 @@ describe('IssuesFormatterTests', () => {
                     id: 'id1',
                     guidanceLinks: [],
                     helpUrl: 'help1',
-                    snippet: 'html',
                 },
                 rule2: {
                     any: [],
@@ -69,7 +68,6 @@ describe('IssuesFormatterTests', () => {
                     id: 'id2',
                     guidanceLinks: [],
                     helpUrl: 'help2',
-                    snippet: 'html',
                 },
             },
         };
