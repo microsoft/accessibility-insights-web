@@ -6,7 +6,7 @@ import * as React from 'react';
 import { ScanActionCreator } from 'electron/flux/action-creator/scan-action-creator';
 import { ScanStatus } from 'electron/flux/types/scan-status';
 import { ScanStoreData } from 'electron/flux/types/scan-store-data';
-import { Scanning } from 'electron/views/automated-checks/components/scanning';
+import { ScanningSpinner } from 'electron/views/automated-checks/components/scanning-spinner';
 import { CommandBar, CommandBarDeps } from './components/command-bar';
 import { HeaderSection } from './components/header-section';
 
@@ -38,10 +38,6 @@ export class AutomatedChecksView extends React.Component<AutomatedChecksViewProp
     }
 
     private renderScanning(): JSX.Element {
-        if (this.props.scanStoreData.status !== ScanStatus.Scanning) {
-            return null;
-        }
-
-        return <Scanning />;
+        return <ScanningSpinner isScanning={this.props.scanStoreData.status === ScanStatus.Scanning} />;
     }
 }

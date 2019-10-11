@@ -29,7 +29,9 @@ exports[`AutomatedChecksView renders scanning spinner: automated checks view 1`]
     }
   />
   <HeaderSection />
-  <Scanning />
+  <ScanningSpinner
+    isScanning={true}
+  />
 </React.Fragment>
 `;
 
@@ -62,5 +64,8 @@ exports[`AutomatedChecksView renders the automated checks view: automated checks
     }
   />
   <HeaderSection />
+  <ScanningSpinner
+    isScanning={false}
+  />
 </React.Fragment>
 `;
