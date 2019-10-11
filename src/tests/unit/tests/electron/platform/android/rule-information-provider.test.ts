@@ -107,7 +107,7 @@ describe('RuleInformationProvider', () => {
     });
 
     test('ColorContrast includeThisResult returns false when confidence is not defined', () => {
-        const ruleResult: RuleResultsData = buildColorContrastRuleResultObject('FAIL', 2.798498811425733, 'ff979797', 'fffafafa', null);
+        const ruleResult: RuleResultsData = buildColorContrastRuleResultObject('PASS', null, null, null, null);
         const ruleInformation: RuleInformation = provider.getRuleInformation(ruleResult.ruleId);
         expect(ruleInformation.includeThisResult(ruleResult)).toBe(false);
     });
@@ -119,20 +119,17 @@ describe('RuleInformationProvider', () => {
     });
 
     test('ActiveViewName includeThisResult returns true', () => {
-        const ruleResult: RuleResultsData = buildRuleResultObject('ActiveViewName', 'FAIL');
-        const ruleInformation: RuleInformation = provider.getRuleInformation(ruleResult.ruleId);
+        const ruleInformation: RuleInformation = provider.getRuleInformation('ActiveViewName');
         expect(ruleInformation.includeThisResult(null)).toBe(true);
     });
 
     test('EditTextValue includeThisResult returns true', () => {
-        const ruleResult: RuleResultsData = buildRuleResultObject('EditTextValue', 'FAIL');
-        const ruleInformation: RuleInformation = provider.getRuleInformation(ruleResult.ruleId);
+        const ruleInformation: RuleInformation = provider.getRuleInformation('EditTextValue');
         expect(ruleInformation.includeThisResult(null)).toBe(true);
     });
 
-    test('EditTextValue includeThisResult returns true', () => {
-        const ruleResult: RuleResultsData = buildRuleResultObject('EditTextValue', 'FAIL');
-        const ruleInformation: RuleInformation = provider.getRuleInformation(ruleResult.ruleId);
+    test('ImageViewName includeThisResult returns true', () => {
+        const ruleInformation: RuleInformation = provider.getRuleInformation('ImageViewName');
         expect(ruleInformation.includeThisResult(null)).toBe(true);
     });
 });
