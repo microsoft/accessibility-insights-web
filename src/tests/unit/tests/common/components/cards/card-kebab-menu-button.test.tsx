@@ -1,21 +1,22 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IssueFilingActionMessageCreator } from 'common/message-creators/issue-filing-action-message-creator';
-import { NamedFC } from 'common/react/named-fc';
-import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
-import { guidanceTags } from 'content/guidance-tags';
-import { shallow, ShallowWrapper } from 'enzyme';
-import { IssueFilingServiceProvider } from 'issue-filing/issue-filing-service-provider';
-import { IssueFilingService } from 'issue-filing/types/issue-filing-service';
-import { ActionButton, IContextualMenuItem } from 'office-ui-fabric-react';
-import * as React from 'react';
-import { IMock, Mock, Times } from 'typemoq';
-
 import {
     allCardInteractionsSupported,
     noCardInteractionsSupported,
     onlyUserConfigAgnosticCardInteractionsSupported,
 } from 'common/components/cards/card-interaction-support';
+import { Toast } from 'common/components/toast';
+import { IssueFilingActionMessageCreator } from 'common/message-creators/issue-filing-action-message-creator';
+import { NamedFC } from 'common/react/named-fc';
+import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
+import { WindowUtils } from 'common/window-utils';
+import { guidanceTags } from 'content/guidance-tags';
+import { mount, shallow } from 'enzyme';
+import { IssueFilingServiceProvider } from 'issue-filing/issue-filing-service-provider';
+import { IssueFilingService } from 'issue-filing/types/issue-filing-service';
+import { ActionButton, IContextualMenuItem } from 'office-ui-fabric-react';
+import * as React from 'react';
+import { IMock, Mock, Times } from 'typemoq';
 import { IssueDetailsTextGenerator } from '../../../../../../background/issue-details-text-generator';
 import {
     CardKebabMenuButton,
@@ -31,6 +32,7 @@ describe('CardKebabMenuButtonTest', () => {
     let defaultDeps: CardKebabMenuButtonDeps;
     let actionCreatorMock: IMock<DetailsViewActionMessageCreator>;
     let navigatorUtilsMock: IMock<NavigatorUtils>;
+    let windowUtilsMock: IMock<WindowUtils>;
     let userConfigurationStoreData: UserConfigurationStoreData;
     let issueFilingServiceProviderMock: IMock<IssueFilingServiceProvider>;
     let issueFilingActionMessageCreatorMock: IMock<IssueFilingActionMessageCreator>;
@@ -84,6 +86,7 @@ describe('CardKebabMenuButtonTest', () => {
         textGeneratorMock = Mock.ofType<IssueDetailsTextGenerator>();
         actionCreatorMock = Mock.ofType<DetailsViewActionMessageCreator>();
         navigatorUtilsMock = Mock.ofType<NavigatorUtils>();
+        windowUtilsMock = Mock.ofType<WindowUtils>();
         issueFilingServiceProviderMock = Mock.ofType(IssueFilingServiceProvider);
         issueFilingActionMessageCreatorMock = Mock.ofType(IssueFilingActionMessageCreator);
 
@@ -100,7 +103,7 @@ describe('CardKebabMenuButtonTest', () => {
         issueFilingServiceProviderMock
             .setup(bp => bp.forKey('test'))
             .returns(() => testIssueFilingServiceStub)
-            .verifiable();
+            .verifiable(Times.exactly(3));
 
         textGeneratorMock
             .setup(tg => tg.buildText(issueDetailsData))
@@ -110,6 +113,7 @@ describe('CardKebabMenuButtonTest', () => {
         defaultDeps = {
             detailsViewActionMessageCreator: actionCreatorMock.object,
             navigatorUtils: navigatorUtilsMock.object,
+            windowUtils: windowUtilsMock.object,
             issueFilingServiceProvider: issueFilingServiceProviderMock.object,
             issueFilingActionMessageCreator: issueFilingActionMessageCreatorMock.object,
             issueDetailsTextGenerator: textGeneratorMock.object,
@@ -162,19 +166,22 @@ describe('CardKebabMenuButtonTest', () => {
             })
             .verifiable(Times.once());
 
-        const rendered = shallow<CardKebabMenuButton>(<CardKebabMenuButton {...defaultProps} />);
+        const rendered = mount<CardKebabMenuButton>(<CardKebabMenuButton {...defaultProps} />);
 
         rendered.find(ActionButton).simulate('click', event);
 
         const copyFailureDetailsMenuItem = getMenuItemWithKey(rendered, 'copyfailuredetails');
+
         // tslint:disable-next-line: await-promise
         await copyFailureDetailsMenuItem.onClick(event);
 
+        const toast = rendered.find(Toast);
+
+        expect(toast.state().toastVisible).toBe(true);
+        expect(toast.state().content).toBe('Failure details copied.');
         expect(rendered.debug()).toMatchSnapshot();
 
-        actionCreatorMock.verifyAll();
-        navigatorUtilsMock.verifyAll();
-        textGeneratorMock.verifyAll();
+        verifyMocks([actionCreatorMock, navigatorUtilsMock, textGeneratorMock, windowUtilsMock]);
     });
 
     it('shows failure message if copy failed', async () => {
@@ -187,7 +194,7 @@ describe('CardKebabMenuButtonTest', () => {
             })
             .verifiable(Times.once());
 
-        const rendered = shallow<CardKebabMenuButton>(<CardKebabMenuButton {...defaultProps} />);
+        const rendered = mount<CardKebabMenuButton>(<CardKebabMenuButton {...defaultProps} />);
 
         rendered.find(ActionButton).simulate('click', event);
 
@@ -195,7 +202,13 @@ describe('CardKebabMenuButtonTest', () => {
         // tslint:disable-next-line: await-promise
         await copyFailureDetailsMenuItem.onClick(event);
 
+        const toast = rendered.find(Toast);
+
+        expect(toast.state().toastVisible).toBe(true);
+        expect(toast.state().content).toBe('Failed to copy failure details. Please try again.');
         expect(rendered.debug()).toMatchSnapshot();
+
+        verifyMocks([actionCreatorMock, navigatorUtilsMock, textGeneratorMock, windowUtilsMock]);
     });
 
     it('should file issue, valid settings', async () => {
@@ -215,7 +228,7 @@ describe('CardKebabMenuButtonTest', () => {
 
         expect(rendered.state().showNeedsSettingsContent).toBe(false);
 
-        issueFilingActionMessageCreatorMock.verifyAll();
+        verifyMocks([issueFilingActionMessageCreatorMock, issueFilingServiceProviderMock]);
     });
 
     it('should click file issue, invalid settings', () => {
@@ -238,13 +251,17 @@ describe('CardKebabMenuButtonTest', () => {
 
         expect(rendered.state().showNeedsSettingsContent).toBe(true);
 
-        issueFilingActionMessageCreatorMock.verifyAll();
+        verifyMocks([issueFilingActionMessageCreatorMock, issueFilingServiceProviderMock]);
     });
 
-    function getMenuItemWithKey(rendered: ShallowWrapper, itemKey: string): IContextualMenuItem {
+    function getMenuItemWithKey(rendered: any, itemKey: string): IContextualMenuItem {
         return rendered
             .find(ActionButton)
             .prop('menuProps')
             .items.find(elem => elem.key === itemKey);
+    }
+
+    function verifyMocks(mocks: IMock<any>[]): void {
+        mocks.forEach(mock => mock.verifyAll());
     }
 });
