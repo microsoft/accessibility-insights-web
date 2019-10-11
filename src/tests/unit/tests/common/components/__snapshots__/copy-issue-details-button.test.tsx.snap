@@ -32,7 +32,7 @@ exports[`CopyIssueDetailsButtonTest render after click shows toast 1`] = `
       }
     }
     onTimeout={[Function]}
-    timeoutLength={1000}
+    timeoutLength={6000}
   >
     Failure details copied.
   </Toast>
