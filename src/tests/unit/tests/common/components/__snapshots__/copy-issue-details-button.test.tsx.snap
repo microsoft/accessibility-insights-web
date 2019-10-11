@@ -1,66 +1,43 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`CopyIssueDetailsButtonTest render 1`] = `
-<React.Fragment>
-  <Toast
-    deps={
-      Object {
-        "issueDetailsTextGenerator": Object {
-          "buildText": [Function],
-        },
-        "windowUtils": null,
-      }
-    }
-    timeoutLength={1000}
-  />
-  <CopyToClipboard
-    text="sample text"
-  >
-    <CustomizedDefaultButton
-      className="copy-issue-details-button"
-      onClick={[Function]}
-    >
-      <CopyIcon />
-      <div
-        className="ms-Button-label"
-      >
-        Copy failure details
-      </div>
-    </CustomizedDefaultButton>
-  </CopyToClipboard>
-</React.Fragment>
+"<Fragment>
+  <Toast deps={{...}} timeoutLength={1000} />
+  <CustomizedDefaultButton className=\\"copy-issue-details-button\\" onClick={[Function]}>
+    <CopyIcon />
+    <div className=\\"ms-Button-label\\">
+      Copy failure details
+    </div>
+  </CustomizedDefaultButton>
+</Fragment>"
 `;
 
 exports[`CopyIssueDetailsButtonTest render after click shows toast 1`] = `
-<React.Fragment>
-  <Toast
-    deps={
-      Object {
-        "issueDetailsTextGenerator": Object {
-          "buildText": [Function],
-        },
-        "windowUtils": null,
-      }
-    }
-    onTimeout={[Function]}
-    timeoutLength={1000}
-  >
-    Failure details copied.
+"<CopyIssueDetailsButton deps={{...}} issueDetailsData={{...}} onClick={[Function: proxy]}>
+  <Toast deps={{...}} timeoutLength={1000}>
+    <div className=\\"ms-fadeIn100 toast\\">
+      Failure details copied.
+    </div>
   </Toast>
-  <CopyToClipboard
-    text="sample text"
-  >
-    <CustomizedDefaultButton
-      className="copy-issue-details-button"
-      onClick={[Function]}
-    >
-      <CopyIcon />
-      <div
-        className="ms-Button-label"
-      >
-        Copy failure details
-      </div>
-    </CustomizedDefaultButton>
-  </CopyToClipboard>
-</React.Fragment>
+  <CustomizedDefaultButton className=\\"copy-issue-details-button\\" onClick={[Function]}>
+    <DefaultButton theme={{...}} styles={[undefined]} className=\\"copy-issue-details-button\\" onClick={[Function]}>
+      <BaseButton theme={{...}} styles={{...}} className=\\"copy-issue-details-button\\" onClick={[Function]} variantClassName=\\"ms-Button--default\\" onRenderDescription={[Function: nullRender]} baseClassName=\\"ms-Button\\" split={false}>
+        <KeytipData keytipProps={[undefined]} ariaDescribedBy={[undefined]} disabled={[undefined]}>
+          <button type=\\"button\\" className=\\"ms-Button ms-Button--default copy-issue-details-button root-40\\" onClick={[Function]} disabled={[undefined]} onKeyDown={[Function]} onKeyPress={[Function]} onKeyUp={[Function]} onMouseDown={[Function]} onMouseUp={[Function]} aria-label={[undefined]} aria-labelledby={[undefined]} aria-describedby={[undefined]} aria-disabled={[undefined]} data-is-focusable={true} aria-pressed={[undefined]}>
+            <div className=\\"ms-Button-flexContainer flexContainer-41\\">
+              <CopyIcon>
+                <svg width=\\"14\\" height=\\"16\\" viewBox=\\"0 0 14 16\\" fill=\\"none\\" xmlns=\\"http://www.w3.org/2000/svg\\" role=\\"img\\" aria-hidden=\\"true\\">
+                  <path d=\\"M14 6.28906V16H4V13H0V0H6.71094L9.71094 3H10.7109L14 6.28906ZM11 6H12.2891L11 4.71094V6ZM4 3H8.28906L6.28906 1H1V12H4V3ZM13 7H10V4H5V15H13V7Z\\" />
+                </svg>
+              </CopyIcon>
+              <div className=\\"ms-Button-label\\">
+                Copy failure details
+              </div>
+            </div>
+          </button>
+        </KeytipData>
+      </BaseButton>
+    </DefaultButton>
+  </CustomizedDefaultButton>
+</CopyIssueDetailsButton>"
 `;
