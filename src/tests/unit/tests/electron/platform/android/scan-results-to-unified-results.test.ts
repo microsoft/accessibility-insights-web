@@ -18,6 +18,7 @@ describe('ScanResultsToUnifiedResults', () => {
     const ruleId1: string = 'My Rule #1';
     const ruleId2: string = 'My Rule #2';
     const ruleId3: string = 'My Rule #3';
+    const ruleId4: string = 'My Rule #4';
 
     beforeEach(() => {
         const guidStub = 'gguid-mock-stub';
@@ -27,38 +28,42 @@ describe('ScanResultsToUnifiedResults', () => {
         const ruleInformation1: RuleInformation = buildRuleInformation(ruleId1);
         const ruleInformation2: RuleInformation = buildRuleInformation(ruleId2);
         const ruleInformation3: RuleInformation = buildRuleInformation(ruleId3);
+        const ruleInformation4: RuleInformation = buildRuleInformation(ruleId4, false);
 
         ruleInformationProviderMock = Mock.ofType<RuleInformationProviderType>();
         ruleInformationProviderMock.setup(x => x.getRuleInformation(ruleId1)).returns(() => ruleInformation1);
         ruleInformationProviderMock.setup(x => x.getRuleInformation(ruleId2)).returns(() => ruleInformation2);
         ruleInformationProviderMock.setup(x => x.getRuleInformation(ruleId3)).returns(() => ruleInformation3);
+        ruleInformationProviderMock.setup(x => x.getRuleInformation(ruleId4)).returns(() => ruleInformation4);
     });
 
     function verifyMockCounts(
         expectedRule1Count: number,
         expectedRule2Count: number,
         expectedRule3Count: number,
+        expectedRule4Count: number,
         expectedOtherCount: number,
     ): void {
-        const totalCalls: number = expectedRule1Count + expectedRule2Count + expectedRule3Count + expectedOtherCount;
+        const totalCalls: number = expectedRule1Count + expectedRule2Count + expectedRule3Count + expectedRule4Count + expectedOtherCount;
 
         ruleInformationProviderMock.verify(x => x.getRuleInformation(ruleId1), Times.exactly(expectedRule1Count));
         ruleInformationProviderMock.verify(x => x.getRuleInformation(ruleId2), Times.exactly(expectedRule2Count));
         ruleInformationProviderMock.verify(x => x.getRuleInformation(ruleId3), Times.exactly(expectedRule3Count));
+        ruleInformationProviderMock.verify(x => x.getRuleInformation(ruleId4), Times.exactly(expectedRule4Count));
         ruleInformationProviderMock.verify(x => x.getRuleInformation(It.isAnyString()), Times.exactly(totalCalls));
     }
 
     test('Null ScanResults input returns empty output', () => {
         const results: UnifiedResult[] = convertScanResultsToUnifiedResults(null, ruleInformationProviderMock.object, null);
         expect(results).toMatchSnapshot();
-        verifyMockCounts(0, 0, 0, 0);
+        verifyMockCounts(0, 0, 0, 0, 0);
     });
 
     test('ScanResults with no RuleResults returns empty output', () => {
         const scanResults: ScanResults = buildScanResultsObject();
         const results: UnifiedResult[] = convertScanResultsToUnifiedResults(scanResults, ruleInformationProviderMock.object, null);
         expect(results).toMatchSnapshot();
-        verifyMockCounts(0, 0, 0, 0);
+        verifyMockCounts(0, 0, 0, 0, 0);
     });
 
     test('ScanResults with passes, failures, view IDs, and excluded results', () => {
@@ -72,6 +77,7 @@ describe('ScanResultsToUnifiedResults', () => {
             buildRuleResultObject(ruleId2, 'FAIL', id3),
             buildRuleResultObject(ruleId2, 'PASS', id4),
             buildRuleResultObject('unsupprted Rule #2', 'FAIL', id1),
+            buildRuleResultObject(ruleId4, 'PASS', id2),
             buildRuleResultObject(ruleId3, 'PASS', id2),
             buildRuleResultObject(ruleId2, 'UNKNOWN', 'does not exist'), // Force "unknown" cases
         ];
@@ -97,6 +103,6 @@ describe('ScanResultsToUnifiedResults', () => {
             generateGuidMock.object,
         );
         expect(results).toMatchSnapshot();
-        verifyMockCounts(1, 3, 1, 2);
+        verifyMockCounts(1, 3, 1, 1, 2);
     });
 });

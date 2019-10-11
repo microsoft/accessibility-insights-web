@@ -14,20 +14,14 @@ describe('RuleInformationProvider', () => {
         provider = new RuleInformationProvider();
     });
 
-    function buildTouchSizeWcagRuleResultObject(
-        status: string,
-        dpi: number,
-        height: number,
-        width: number,
-        axeViewId: string = null,
-    ): RuleResultsData {
+    function buildTouchSizeWcagRuleResultObject(status: string, dpi: number, height: number, width: number): RuleResultsData {
         const props = {};
         // This is based on the output of the Android service
         props['Screen Dots Per Inch'] = dpi;
         props['height'] = height;
         props['width'] = width;
 
-        return buildRuleResultObject('TouchSizeWcag', status, axeViewId, props);
+        return buildRuleResultObject('TouchSizeWcag', status, null, props);
     }
 
     function buildColorContrastRuleResultObject(
@@ -35,15 +29,18 @@ describe('RuleInformationProvider', () => {
         ratio: number,
         foreground: string,
         background: string,
-        axeViewId: string = null,
+        confidence: string,
     ): RuleResultsData {
         const props = {};
         // This is based on the output of the Android service
-        props['Color Contrast Ratio'] = ratio;
+        if (ratio) {
+            props['Color Contrast Ratio'] = ratio;
+        }
         props['Foreground Color'] = foreground;
         props['Background Color'] = background;
+        props['Confidence in Color Detection'] = confidence;
 
-        return buildRuleResultObject('ColorContrast', status, axeViewId, props);
+        return buildRuleResultObject('ColorContrast', status, null, props);
     }
 
     test('getRuleInformation returns null for an unknown ruleId', () => {
@@ -63,14 +60,14 @@ describe('RuleInformationProvider', () => {
 
     test('getRuleInformation returns correct data for ColorContrast rule', () => {
         const testRuleId: string = 'ColorContrast';
-        const ruleResult: RuleResultsData = buildColorContrastRuleResultObject('FAIL', 2.798498811425733, 'ff979797', 'fffafafa');
+        const ruleResult: RuleResultsData = buildColorContrastRuleResultObject('FAIL', 2.798498811425733, 'ff979797', 'fffafafa', 'High');
         const unifiedResolution: UnifiedResolution = validateUnifiedResolution(testRuleId, ruleResult);
         expect(unifiedResolution).toMatchSnapshot();
     });
 
     test('getRuleInformation handles no foreground/background color values', () => {
         const testRuleId: string = 'ColorContrast';
-        const ruleResult: RuleResultsData = buildColorContrastRuleResultObject('FAIL', 2.798498811425733, null, null);
+        const ruleResult: RuleResultsData = buildColorContrastRuleResultObject('FAIL', null, null, null, 'None');
         const unifiedResolution: UnifiedResolution = validateUnifiedResolution(testRuleId, ruleResult);
         expect(unifiedResolution).toMatchSnapshot();
     });
@@ -95,5 +92,47 @@ describe('RuleInformationProvider', () => {
     test('getRuleInformation returns correct data for ImageViewName rule', () => {
         const unifiedResolution: UnifiedResolution = validateUnifiedResolution('ImageViewName', null);
         expect(unifiedResolution).toMatchSnapshot();
+    });
+
+    test('ColorContrast includeThisResult returns true when confidence is defined and High', () => {
+        const ruleResult: RuleResultsData = buildColorContrastRuleResultObject('FAIL', 2.798498811425733, 'ff979797', 'fffafafa', 'High');
+        const ruleInformation: RuleInformation = provider.getRuleInformation(ruleResult.ruleId);
+        expect(ruleInformation.includeThisResult(ruleResult)).toBe(true);
+    });
+
+    test('ColorContrast includeThisResult returns false when confidence is defined but not High', () => {
+        const ruleResult: RuleResultsData = buildColorContrastRuleResultObject('FAIL', 2.798498811425733, 'ff979797', 'fffafafa', 'Medium');
+        const ruleInformation: RuleInformation = provider.getRuleInformation(ruleResult.ruleId);
+        expect(ruleInformation.includeThisResult(ruleResult)).toBe(false);
+    });
+
+    test('ColorContrast includeThisResult returns false when confidence is not defined', () => {
+        const ruleResult: RuleResultsData = buildColorContrastRuleResultObject('FAIL', 2.798498811425733, 'ff979797', 'fffafafa', null);
+        const ruleInformation: RuleInformation = provider.getRuleInformation(ruleResult.ruleId);
+        expect(ruleInformation.includeThisResult(ruleResult)).toBe(false);
+    });
+
+    test('TouchSizeWcag includeThisResult returns true', () => {
+        const ruleResult: RuleResultsData = buildTouchSizeWcagRuleResultObject('FAIL', 2.25, 86, 95);
+        const ruleInformation: RuleInformation = provider.getRuleInformation(ruleResult.ruleId);
+        expect(ruleInformation.includeThisResult(null)).toBe(true);
+    });
+
+    test('ActiveViewName includeThisResult returns true', () => {
+        const ruleResult: RuleResultsData = buildRuleResultObject('ActiveViewName', 'FAIL');
+        const ruleInformation: RuleInformation = provider.getRuleInformation(ruleResult.ruleId);
+        expect(ruleInformation.includeThisResult(null)).toBe(true);
+    });
+
+    test('EditTextValue includeThisResult returns true', () => {
+        const ruleResult: RuleResultsData = buildRuleResultObject('EditTextValue', 'FAIL');
+        const ruleInformation: RuleInformation = provider.getRuleInformation(ruleResult.ruleId);
+        expect(ruleInformation.includeThisResult(null)).toBe(true);
+    });
+
+    test('EditTextValue includeThisResult returns true', () => {
+        const ruleResult: RuleResultsData = buildRuleResultObject('EditTextValue', 'FAIL');
+        const ruleInformation: RuleInformation = provider.getRuleInformation(ruleResult.ruleId);
+        expect(ruleInformation.includeThisResult(null)).toBe(true);
     });
 });

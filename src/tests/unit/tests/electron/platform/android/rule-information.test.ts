@@ -2,23 +2,28 @@
 // Licensed under the MIT License.
 
 import { UnifiedResolution } from 'common/types/store-data/unified-data-interface';
-import { GetUnifiedResolutionDelegate, RuleInformation } from 'electron/platform/android/rule-information';
+import { GetUnifiedResolutionDelegate, IncludeThisResultDelegate, RuleInformation } from 'electron/platform/android/rule-information';
 import { RuleResultsData } from 'electron/platform/android/scan-results';
 import { Mock } from 'typemoq';
 
 describe('RuleInformation', () => {
     const testInputs = ['abc', 'xyz', 'this should work'];
 
+    function failIfCalled(ruleResultData: RuleResultsData): boolean {
+        expect('method').toBe('should never be invoked');
+        return false;
+    }
+
     test('RuleId works correctly', () => {
         for (const ruleId of testInputs) {
-            const ruleInformation = new RuleInformation(ruleId, null, null);
+            const ruleInformation = new RuleInformation(ruleId, null, null, failIfCalled);
             expect(ruleId === ruleInformation.ruleId);
         }
     });
 
     test('RuleDescription works correctly', () => {
         for (const ruleDescription of testInputs) {
-            const ruleInformation = new RuleInformation(null, ruleDescription, null);
+            const ruleInformation = new RuleInformation(null, ruleDescription, null, failIfCalled);
             expect(ruleDescription === ruleInformation.ruleDescription);
         }
     });
@@ -37,11 +42,33 @@ describe('RuleInformation', () => {
             const getUnifiedResolutionDelegateMock = Mock.ofType<GetUnifiedResolutionDelegate>();
             getUnifiedResolutionDelegateMock.setup(func => func(testData)).returns(() => expectedUnifiedResolution);
 
-            const ruleInformation = new RuleInformation(null, null, getUnifiedResolutionDelegateMock.object);
+            const ruleInformation = new RuleInformation(null, null, getUnifiedResolutionDelegateMock.object, failIfCalled);
 
             const actualUnifiedResolution = ruleInformation.getUnifiedResolution(testData);
 
             expect(actualUnifiedResolution).toBe(expectedUnifiedResolution);
+        }
+    });
+
+    test('IncludeThisResult works correctly', () => {
+        const expectedResults = [true, false];
+
+        const testData: RuleResultsData = {
+            axeViewId: 'test',
+            ruleId: 'some rule',
+            status: 'pass',
+            props: null,
+        };
+
+        for (const expectedResult of expectedResults) {
+            const includeThisResultMock = Mock.ofType<IncludeThisResultDelegate>();
+            includeThisResultMock.setup(func => func(testData)).returns(() => expectedResult);
+
+            const ruleInformation = new RuleInformation(null, null, null, includeThisResultMock.object);
+
+            const actualResult = ruleInformation.includeThisResult(testData);
+
+            expect(actualResult).toBe(expectedResult);
         }
     });
 });
