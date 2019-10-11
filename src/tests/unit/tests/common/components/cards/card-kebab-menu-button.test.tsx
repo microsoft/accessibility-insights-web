@@ -11,7 +11,7 @@ import { NamedFC } from 'common/react/named-fc';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import { WindowUtils } from 'common/window-utils';
 import { guidanceTags } from 'content/guidance-tags';
-import * as Enzyme from 'enzyme';
+import { mount, shallow } from 'enzyme';
 import { IssueFilingServiceProvider } from 'issue-filing/issue-filing-service-provider';
 import { IssueFilingService } from 'issue-filing/types/issue-filing-service';
 import { ActionButton, IContextualMenuItem } from 'office-ui-fabric-react';
@@ -128,7 +128,7 @@ describe('CardKebabMenuButtonTest', () => {
     });
 
     it('renders as null with noCardInteractionsSupported', () => {
-        const rendered = Enzyme.shallow(
+        const rendered = shallow(
             <CardKebabMenuButton {...defaultProps} deps={{ ...defaultDeps, cardInteractionSupport: noCardInteractionsSupported }} />,
         );
 
@@ -136,7 +136,7 @@ describe('CardKebabMenuButtonTest', () => {
     });
 
     it('renders per snapshot with allCardInteractionsSupported', () => {
-        const rendered = Enzyme.shallow(
+        const rendered = shallow(
             <CardKebabMenuButton {...defaultProps} deps={{ ...defaultDeps, cardInteractionSupport: allCardInteractionsSupported }} />,
         );
 
@@ -145,7 +145,7 @@ describe('CardKebabMenuButtonTest', () => {
     });
 
     it('renders per snapshot with onlyUserConfigAgnosticCardInteractionsSupported', () => {
-        const rendered = Enzyme.shallow(
+        const rendered = shallow(
             <CardKebabMenuButton
                 {...defaultProps}
                 deps={{ ...defaultDeps, cardInteractionSupport: onlyUserConfigAgnosticCardInteractionsSupported }}
@@ -166,7 +166,7 @@ describe('CardKebabMenuButtonTest', () => {
             })
             .verifiable(Times.once());
 
-        const rendered = Enzyme.mount(<CardKebabMenuButton {...defaultProps} />);
+        const rendered = mount(<CardKebabMenuButton {...defaultProps} />);
 
         rendered.find(ActionButton).simulate('click', event);
 
@@ -194,7 +194,7 @@ describe('CardKebabMenuButtonTest', () => {
             })
             .verifiable(Times.once());
 
-        const rendered = Enzyme.mount(<CardKebabMenuButton {...defaultProps} />);
+        const rendered = mount(<CardKebabMenuButton {...defaultProps} />);
 
         rendered.find(ActionButton).simulate('click', event);
 
@@ -216,7 +216,7 @@ describe('CardKebabMenuButtonTest', () => {
             .setup(creator => creator.fileIssue(event, testKey, defaultProps.issueDetailsData))
             .verifiable(Times.once());
 
-        const rendered = Enzyme.shallow<CardKebabMenuButton>(<CardKebabMenuButton {...defaultProps} />);
+        const rendered = shallow<CardKebabMenuButton>(<CardKebabMenuButton {...defaultProps} />);
 
         rendered.find(ActionButton).simulate('click', event);
 
@@ -237,7 +237,7 @@ describe('CardKebabMenuButtonTest', () => {
             .setup(creator => creator.fileIssue(event, testKey, defaultProps.issueDetailsData))
             .verifiable(Times.never());
 
-        const rendered = Enzyme.shallow<CardKebabMenuButton>(<CardKebabMenuButton {...defaultProps} />);
+        const rendered = shallow<CardKebabMenuButton>(<CardKebabMenuButton {...defaultProps} />);
 
         expect(rendered.state().showNeedsSettingsContent).toBe(false);
 
