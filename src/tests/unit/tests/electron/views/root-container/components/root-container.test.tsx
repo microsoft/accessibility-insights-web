@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { BaseClientStoresHub } from 'common/stores/base-client-stores-hub';
 import { ClientStoresHub } from 'common/stores/client-stores-hub';
+import { ScanStatus } from 'electron/flux/types/scan-status';
 import { DeviceConnectState } from 'electron/views/device-connect-view/components/device-connect-state';
 import {
     RootContainer,
@@ -28,8 +29,6 @@ describe(RootContainer, () => {
         } as RootContainerProps;
     });
 
-    //
-
     describe('renders', () => {
         it('device connect view container when route is deviceConnectView', () => {
             storeHubMock
@@ -55,6 +54,7 @@ describe(RootContainer, () => {
                         windowStateStoreData: { routeId: 'resultsView', currentWindowState: 'restoredOrMaximized' },
                         userConfigurationStoreData: { isFirstTime: true },
                         deviceStoreData: { deviceConnectState: DeviceConnectState.Connected, port: 11111 },
+                        scanStoreData: { status: ScanStatus.Default },
                     } as RootContainerState;
                 });
 

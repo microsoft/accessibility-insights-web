@@ -19,6 +19,7 @@ import { RootContainerProps, RootContainerState } from 'electron/views/root-cont
 import { WindowFrameUpdater } from 'electron/window-frame-updater';
 import * as ReactDOM from 'react-dom';
 
+import { ScanStore } from 'electron/flux/store/scan-store';
 import { UserConfigurationActions } from '../../background/actions/user-configuration-actions';
 import { getPersistedData, PersistedData } from '../../background/get-persisted-data';
 import { UserConfigurationActionCreator } from '../../background/global-action-creators/user-configuration-action-creator';
@@ -88,11 +89,14 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then((persistedDat
     const unifiedStore = new UnifiedScanResultStore(unifiedScanResultActions);
     unifiedStore.initialize();
 
+    const scanStore = new ScanStore(scanActions);
+    scanStore.initialize();
+
     const currentWindow = remote.getCurrentWindow();
     const windowFrameUpdater = new WindowFrameUpdater(windowStateStore, currentWindow);
     windowFrameUpdater.initialize();
 
-    const storeHub = new BaseClientStoresHub<RootContainerState>([userConfigurationStore, deviceStore, windowStateStore]);
+    const storeHub = new BaseClientStoresHub<RootContainerState>([userConfigurationStore, deviceStore, windowStateStore, scanStore]);
 
     const telemetryStateListener = new TelemetryStateListener(userConfigurationStore, telemetryEventHandler);
     telemetryStateListener.initialize();

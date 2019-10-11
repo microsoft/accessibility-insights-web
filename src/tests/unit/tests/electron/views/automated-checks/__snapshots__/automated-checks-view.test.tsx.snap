@@ -1,33 +1,59 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`AutomatedChecksView renders the automated checks view: automated checks view 1`] = `
+exports[`AutomatedChecksView renders scanning spinner: automated checks view 1`] = `
 <React.Fragment>
   <TitleBar
     deps={
       Object {
-        "currentWindow": null,
-        "deviceConnectActionCreator": null,
         "scanActionCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "scanActions": undefined,
         },
-        "windowStateActionCreator": null,
       }
     }
   />
   <CommandBar
     deps={
       Object {
-        "currentWindow": null,
-        "deviceConnectActionCreator": null,
         "scanActionCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "scanActions": undefined,
         },
-        "windowStateActionCreator": null,
       }
     }
   />
   <HeaderSection />
+  <ScanningSpinner
+    isScanning={true}
+  />
+</React.Fragment>
+`;
+
+exports[`AutomatedChecksView renders the automated checks view: automated checks view 1`] = `
+<React.Fragment>
+  <TitleBar
+    deps={
+      Object {
+        "scanActionCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "scanActions": undefined,
+        },
+      }
+    }
+  />
+  <CommandBar
+    deps={
+      Object {
+        "scanActionCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "scanActions": undefined,
+        },
+      }
+    }
+  />
+  <HeaderSection />
+  <ScanningSpinner
+    isScanning={false}
+  />
 </React.Fragment>
 `;

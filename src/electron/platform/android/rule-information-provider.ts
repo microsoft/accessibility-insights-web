@@ -50,13 +50,26 @@ export class RuleInformationProvider {
 
     private getColorContrastUnifiedResolution = (ruleResultsData: RuleResultsData): UnifiedResolution => {
         const ratio = ruleResultsData.props['Color Contrast Ratio'] as string;
-        const foreground = (ruleResultsData.props['Foreground Color'] as string).substring(2);
-        const background = (ruleResultsData.props['Background Color'] as string).substring(2);
+
+        const foreground = this.getColorValue(ruleResultsData, 'Foreground Color');
+        const background = this.getColorValue(ruleResultsData, 'Background Color');
 
         return this.buildUnifiedResolution(
-            `The text element has insufficient contrast of ${ratio}. Foreground color: #${foreground}, background color: #${background}). Modify the text foreground and/or background colors to provide a contrast ratio of at least 4.5:1 for regular text, or 3:1 for large text (at least 18pt, or 14pt+bold).`,
+            `The text element has insufficient contrast of ${ratio}. Foreground color: ${foreground}, background color: ${background}). Modify the text foreground and/or background colors to provide a contrast ratio of at least 4.5:1 for regular text, or 3:1 for large text (at least 18pt, or 14pt+bold).`,
         );
     };
+
+    private getColorValue(ruleResultsData: RuleResultsData, propertyName: string): string {
+        let result = 'NO VALUE AVAILABLE';
+        const value = ruleResultsData.props[propertyName] as string;
+
+        const prefixSize = 2;
+        if (value) {
+            result = `#${value.substring(prefixSize)}`;
+        }
+
+        return result;
+    }
 
     private getTouchSizeUnifiedResolution = (ruleResultsData: RuleResultsData): UnifiedResolution => {
         const dpi = ruleResultsData.props['Screen Dots Per Inch'] as number;
