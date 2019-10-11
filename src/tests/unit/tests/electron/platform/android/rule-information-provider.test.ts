@@ -68,6 +68,13 @@ describe('RuleInformationProvider', () => {
         expect(unifiedResolution).toMatchSnapshot();
     });
 
+    test('getRuleInformation handles no foreground/background color values', () => {
+        const testRuleId: string = 'ColorContrast';
+        const ruleResult: RuleResultsData = buildColorContrastRuleResultObject('FAIL', 2.798498811425733, null, null);
+        const unifiedResolution: UnifiedResolution = validateUnifiedResolution(testRuleId, ruleResult);
+        expect(unifiedResolution).toMatchSnapshot();
+    });
+
     test('getRuleInformation returns correct data for TouchSizeWcag rule', () => {
         const testRuleId: string = 'TouchSizeWcag';
         const ruleResult: RuleResultsData = buildTouchSizeWcagRuleResultObject('FAIL', 2.25, 86, 95);

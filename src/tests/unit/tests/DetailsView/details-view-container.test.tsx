@@ -11,13 +11,13 @@ import { StoreActionMessageCreatorImpl } from '../../../../common/message-creato
 import { GetUnifiedRuleResultsDelegate } from '../../../../common/rule-based-view-model-provider';
 import { BaseClientStoresHub } from '../../../../common/stores/base-client-stores-hub';
 import { DetailsViewPivotType } from '../../../../common/types/details-view-pivot-type';
+import { CardRuleResultsByStatus } from '../../../../common/types/store-data/card-view-model';
 import { TabStoreData } from '../../../../common/types/store-data/tab-store-data';
 import {
     TargetAppData,
     UnifiedResult,
     UnifiedRule,
     UnifiedScanResultStoreData,
-    UnifiedStatusResults,
 } from '../../../../common/types/store-data/unified-data-interface';
 import { UserConfigurationStoreData } from '../../../../common/types/store-data/user-configuration-store';
 import { VisualizationType } from '../../../../common/types/visualization-type';
@@ -195,7 +195,7 @@ describe('DetailsViewContainer', () => {
                 )
                 .returns(() => viewType);
 
-            const ruleResults: UnifiedStatusResults = {} as any;
+            const ruleResults: CardRuleResultsByStatus = {} as any;
             getUnifiedRuleResultsMock
                 .setup(m => m(state.unifiedScanResultStoreData.rules, state.unifiedScanResultStoreData.results))
                 .returns(() => ruleResults);
@@ -273,7 +273,7 @@ describe('DetailsViewContainer', () => {
         selectedDetailsView: VisualizationType,
         rightPanelConfiguration: DetailsRightPanelConfiguration,
         switcherNavConfiguration: DetailsViewSwitcherNavConfiguration,
-        ruleResults: UnifiedStatusResults,
+        ruleResults: CardRuleResultsByStatus,
         targetApp: TargetAppData,
     ): JSX.Element {
         return (
@@ -450,7 +450,7 @@ describe('DetailsViewContainer', () => {
             )
             .returns(() => viewType);
 
-        const ruleResults: UnifiedStatusResults = {} as any;
+        const ruleResults: CardRuleResultsByStatus = {} as any;
         getUnifiedRuleResultsMock
             .setup(m => m(state.unifiedScanResultStoreData.rules, state.unifiedScanResultStoreData.results))
             .returns(() => ruleResults);

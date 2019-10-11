@@ -7,18 +7,23 @@ exports[`DeviceConnectConnectedDeviceTest render connection failure: connection 
   <h3>
     Connected device
   </h3>
-  <React.Fragment>
-    <StyledIconBase
-      ariaLabel="Connection failed"
-      className="connectionErrorIcon"
-      iconName="statusErrorFull"
-    />
-    <span
-      className="scannedText"
-    >
-      No active applications were found at the provided local host.
-    </span>
-  </React.Fragment>
+  <div
+    aria-live="assertive"
+    role="alert"
+  >
+    <React.Fragment>
+      <StyledIconBase
+        ariaLabel="Connection failed"
+        className="connectionErrorIcon"
+        iconName="statusErrorFull"
+      />
+      <span
+        className="scannedText"
+      >
+        No active applications were found at the provided local host.
+      </span>
+    </React.Fragment>
+  </div>
 </div>
 `;
 
@@ -29,11 +34,16 @@ exports[`DeviceConnectConnectedDeviceTest render connection success: connection 
   <h3>
     Connected device
   </h3>
-  <span
-    className="scannedText"
+  <div
+    aria-live="assertive"
+    role="alert"
   >
-    A Test Device!
-  </span>
+    <span
+      className="scannedText"
+    >
+      A Test Device!
+    </span>
+  </div>
 </div>
 `;
 
@@ -44,6 +54,10 @@ exports[`DeviceConnectConnectedDeviceTest render no content: no content 1`] = `
   <h3>
     Connected device
   </h3>
+  <div
+    aria-live="assertive"
+    role="alert"
+  />
 </div>
 `;
 
@@ -54,12 +68,17 @@ exports[`DeviceConnectConnectedDeviceTest render scanning spinner: scanning spin
   <h3>
     Connected device
   </h3>
-  <StyledSpinnerBase
-    className="deviceConnectSpinner"
-    label="Connecting to mobile device"
-    labelPosition="right"
-    size={0}
-  />
+  <div
+    aria-live="assertive"
+    role="alert"
+  >
+    <StyledSpinnerBase
+      className="deviceConnectSpinner"
+      label="Connecting to mobile device"
+      labelPosition="right"
+      size={0}
+    />
+  </div>
 </div>
 `;
 
@@ -70,5 +89,9 @@ exports[`DeviceConnectConnectedDeviceTest render user change the port number: us
   <h3>
     Connected device
   </h3>
+  <div
+    aria-live="assertive"
+    role="alert"
+  />
 </div>
 `;

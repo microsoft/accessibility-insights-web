@@ -17,7 +17,7 @@ import { WindowUtils } from '../../window-utils';
 import { IssueFilingButtonDeps } from '../issue-filing-button';
 import { Toast } from '../toast';
 import { CardInteractionSupport } from './card-interaction-support';
-import { kebabMenu, kebabMenuButton } from './card-kebab-menu-button.scss';
+import { kebabMenu, kebabMenuButton, kebabMenuCallout } from './card-kebab-menu-button.scss';
 
 export type CardKebabMenuButtonDeps = {
     windowUtils: WindowUtils;
@@ -54,7 +54,10 @@ export class CardKebabMenuButton extends React.Component<CardKebabMenuButtonProp
         }
 
         return (
-            <>
+            // The wrapper has to be a real element, not a <>, because we want the placeholder elements
+            // the dialog/toast involve to be considered as part of the button for the purposes of layout
+            // calculation in this component's parent.
+            <div>
                 <ActionButton
                     className={kebabMenuButton}
                     ariaLabel="More actions"
@@ -64,11 +67,14 @@ export class CardKebabMenuButton extends React.Component<CardKebabMenuButtonProp
                         directionalHint: DirectionalHint.bottomRightEdge,
                         shouldFocusOnMount: true,
                         items: this.getMenuItems(),
+                        calloutProps: {
+                            className: kebabMenuCallout,
+                        },
                     }}
                 />
                 {this.renderIssueFilingSettingContent()}
                 {this.renderCopyFailureDetailsToast()}
-            </>
+            </div>
         );
     }
 

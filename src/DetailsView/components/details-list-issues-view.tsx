@@ -6,9 +6,10 @@ import * as React from 'react';
 import { VisualizationConfiguration } from '../../common/configs/visualization-configuration';
 import { VisualizationConfigurationFactory } from '../../common/configs/visualization-configuration-factory';
 import { NamedFC } from '../../common/react/named-fc';
+import { CardRuleResultsByStatus } from '../../common/types/store-data/card-view-model';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { TabStoreData } from '../../common/types/store-data/tab-store-data';
-import { TargetAppData, UnifiedStatusResults } from '../../common/types/store-data/unified-data-interface';
+import { TargetAppData } from '../../common/types/store-data/unified-data-interface';
 import { UserConfigurationStoreData } from '../../common/types/store-data/user-configuration-store';
 import { VisualizationScanResultData } from '../../common/types/store-data/visualization-scan-result-data';
 import { VisualizationStoreData } from '../../common/types/store-data/visualization-store-data';
@@ -32,7 +33,7 @@ export interface DetailsListIssuesViewProps {
     issuesTableHandler: IssuesTableHandler;
     configuration: VisualizationConfiguration;
     userConfigurationStoreData: UserConfigurationStoreData;
-    ruleResultsByStatus: UnifiedStatusResults;
+    ruleResultsByStatus: CardRuleResultsByStatus;
     targetAppInfo: TargetAppData;
 }
 

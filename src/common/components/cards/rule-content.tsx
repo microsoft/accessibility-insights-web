@@ -3,7 +3,8 @@
 import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
 
-import { TargetAppData, UnifiedRuleResult } from '../../../common/types/store-data/unified-data-interface';
+import { TargetAppData } from '../../../common/types/store-data/unified-data-interface';
+import { CardRuleResult } from '../../types/store-data/card-view-model';
 import { UserConfigurationStoreData } from '../../types/store-data/user-configuration-store';
 import { InstanceDetailsGroup, InstanceDetailsGroupDeps } from './instance-details-group';
 import { RuleResources, RuleResourcesDeps } from './rule-resources';
@@ -12,7 +13,7 @@ export type RuleContentDeps = InstanceDetailsGroupDeps & RuleResourcesDeps;
 
 export type RuleContentProps = {
     deps: RuleContentDeps;
-    rule: UnifiedRuleResult;
+    rule: CardRuleResult;
     userConfigurationStoreData: UserConfigurationStoreData;
     targetAppInfo: TargetAppData;
 };

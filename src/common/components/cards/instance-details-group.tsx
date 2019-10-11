@@ -5,7 +5,8 @@ import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
 
 import { getPropertyConfiguration } from '../../../common/configs/unified-result-property-configurations';
-import { TargetAppData, UnifiedRule, UnifiedRuleResult } from '../../../common/types/store-data/unified-data-interface';
+import { TargetAppData, UnifiedRule } from '../../../common/types/store-data/unified-data-interface';
+import { CardRuleResult } from '../../types/store-data/card-view-model';
 import { UserConfigurationStoreData } from '../../types/store-data/user-configuration-store';
 import { InstanceDetails, InstanceDetailsDeps } from './instance-details';
 import { instanceDetailsList } from './instance-details-group.scss';
@@ -16,7 +17,7 @@ export type InstanceDetailsGroupDeps = {
 
 export type InstanceDetailsGroupProps = {
     deps: InstanceDetailsGroupDeps;
-    rule: UnifiedRuleResult;
+    rule: CardRuleResult;
     userConfigurationStoreData: UserConfigurationStoreData;
     targetAppInfo: TargetAppData;
 };

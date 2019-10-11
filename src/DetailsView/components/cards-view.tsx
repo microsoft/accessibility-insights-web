@@ -4,14 +4,15 @@ import { FailedInstancesSection, FailedInstancesSectionDeps } from 'common/compo
 import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
 
-import { TargetAppData, UnifiedStatusResults } from '../../common/types/store-data/unified-data-interface';
+import { CardRuleResultsByStatus } from '../../common/types/store-data/card-view-model';
+import { TargetAppData } from '../../common/types/store-data/unified-data-interface';
 import { UserConfigurationStoreData } from '../../common/types/store-data/user-configuration-store';
 
 export type CardsViewDeps = FailedInstancesSectionDeps;
 
 export interface CardsViewProps {
     deps: CardsViewDeps;
-    ruleResultsByStatus: UnifiedStatusResults;
+    ruleResultsByStatus: CardRuleResultsByStatus;
     userConfigurationStoreData: UserConfigurationStoreData;
     targetAppInfo: TargetAppData;
 }

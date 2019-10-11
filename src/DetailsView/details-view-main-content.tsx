@@ -1,7 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
-import { TargetAppData, UnifiedStatusResults } from 'common/types/store-data/unified-data-interface';
+import { CardRuleResultsByStatus } from 'common/types/store-data/card-view-model';
+import { TargetAppData } from 'common/types/store-data/unified-data-interface';
 import { ISelection } from 'office-ui-fabric-react/lib/DetailsList';
 import * as React from 'react';
 
@@ -47,7 +48,7 @@ export interface DetailsViewMainContentProps {
     rightPanelConfiguration: DetailsRightPanelConfiguration;
     switcherNavConfiguration: DetailsViewSwitcherNavConfiguration;
     userConfigurationStoreData: UserConfigurationStoreData;
-    ruleResultsByStatus: UnifiedStatusResults;
+    ruleResultsByStatus: CardRuleResultsByStatus;
     targetAppInfo: TargetAppData;
 }
 

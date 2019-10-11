@@ -83,19 +83,3 @@ export interface UnifiedResult {
 }
 
 export type InstanceResultStatus = 'pass' | 'fail' | 'unknown';
-
-export type UnifiedRuleResultStatus = InstanceResultStatus | 'inapplicable';
-
-export interface UnifiedRuleResult {
-    id: string;
-    nodes: UnifiedResult[];
-    description: string;
-    url: string;
-    guidance: GuidanceLink[];
-}
-
-export type UnifiedStatusResults = {
-    [key in UnifiedRuleResultStatus]: UnifiedRuleResult[];
-};
-
-export const AllRuleResultStatuses: UnifiedRuleResultStatus[] = ['pass', 'fail', 'unknown', 'inapplicable'];
