@@ -17,7 +17,7 @@ import { WindowUtils } from '../../window-utils';
 import { IssueFilingButtonDeps } from '../issue-filing-button';
 import { Toast } from '../toast';
 import { CardInteractionSupport } from './card-interaction-support';
-import { kebabMenu, kebabMenuButton } from './card-kebab-menu-button.scss';
+import { kebabMenu, kebabMenuButton, kebabMenuCallout } from './card-kebab-menu-button.scss';
 
 export type CardKebabMenuButtonDeps = {
     windowUtils: WindowUtils;
@@ -67,6 +67,9 @@ export class CardKebabMenuButton extends React.Component<CardKebabMenuButtonProp
                         directionalHint: DirectionalHint.bottomRightEdge,
                         shouldFocusOnMount: true,
                         items: this.getMenuItems(),
+                        calloutProps: {
+                            className: kebabMenuCallout,
+                        },
                     }}
                 />
                 {this.renderIssueFilingSettingContent()}

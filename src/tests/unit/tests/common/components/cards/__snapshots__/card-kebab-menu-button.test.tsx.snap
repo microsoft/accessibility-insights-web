@@ -19,6 +19,9 @@ exports[`CardKebabMenuButtonTest renders per snapshot with allCardInteractionsSu
 
 exports[`CardKebabMenuButtonTest renders per snapshot with allCardInteractionsSupported 2`] = `
 Object {
+  "calloutProps": Object {
+    "className": "kebabMenuCallout",
+  },
   "className": "kebabMenu",
   "directionalHint": 6,
   "items": Array [
@@ -51,6 +54,9 @@ exports[`CardKebabMenuButtonTest renders per snapshot with onlyUserConfigAgnosti
 
 exports[`CardKebabMenuButtonTest renders per snapshot with onlyUserConfigAgnosticCardInteractionsSupported 2`] = `
 Object {
+  "calloutProps": Object {
+    "className": "kebabMenuCallout",
+  },
   "className": "kebabMenu",
   "directionalHint": 6,
   "items": Array [
