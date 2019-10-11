@@ -8,6 +8,7 @@ import { NamedFC } from 'common/react/named-fc';
 import { brand } from 'content/strings/application';
 import { WindowFrameActionCreator } from 'electron/flux/action-creator/window-frame-action-creator';
 import { WindowStateActionCreator } from 'electron/flux/action-creator/window-state-action-creator';
+import { WindowStateStoreData } from 'electron/flux/types/window-state-store-data';
 import { WindowTitle } from 'electron/views/device-connect-view/components/window-title';
 import { BrandWhite } from 'icons/brand/white/brand-white';
 import { titleBar } from './title-bar.scss';
@@ -19,11 +20,16 @@ export type TitleBarDeps = {
 
 export interface TitleBarProps {
     deps: TitleBarDeps;
+    windowStateStoreData: WindowStateStoreData;
 }
 
 export const TitleBar = NamedFC<TitleBarProps>('TitleBar', (props: TitleBarProps) => {
     const minimize = () => props.deps.windowFrameActionCreator.minimize();
-    const maximizeOrRestore = () => props.deps.windowFrameActionCreator.maximize();
+    const maximizeOrRestore = () =>
+        props.windowStateStoreData.currentWindowState === 'maximized'
+            ? props.deps.windowFrameActionCreator.restore()
+            : props.deps.windowFrameActionCreator.maximize();
+
     const close = () => props.deps.windowFrameActionCreator.close();
 
     const icons = [

@@ -10,17 +10,20 @@ import { WindowFrameActionCreator } from 'electron/flux/action-creator/window-fr
 import { WindowStateActionCreator } from 'electron/flux/action-creator/window-state-action-creator';
 import { TitleBar, TitleBarProps } from 'electron/views/automated-checks/components/title-bar';
 import { EventStubFactory } from 'tests/unit/common/event-stub-factory';
+import { WindowStateStoreData } from 'electron/flux/types/window-state-store-data';
 
 describe('TitleBar', () => {
     const eventStub = new EventStubFactory().createMouseClickEvent() as React.MouseEvent<Button>;
     let browserWindowMock: IMock<BrowserWindow>;
     let windowStateActionCreator: IMock<WindowStateActionCreator>;
     let windowFrameActionCreator: IMock<WindowFrameActionCreator>;
+    let windowStateStoreData: WindowStateStoreData;
 
     beforeEach(() => {
         browserWindowMock = Mock.ofType<BrowserWindow>(undefined, MockBehavior.Strict);
         windowStateActionCreator = Mock.ofType<WindowStateActionCreator>(undefined, MockBehavior.Strict);
         windowFrameActionCreator = Mock.ofType<WindowFrameActionCreator>(undefined, MockBehavior.Strict);
+        windowStateStoreData = { routeId: 'resultsView', currentWindowState: 'maximized' };
     });
 
     it('renders', () => {
@@ -30,6 +33,7 @@ describe('TitleBar', () => {
                 windowStateActionCreator: Mock.ofType(WindowStateActionCreator).object,
                 windowFrameActionCreator: Mock.ofType(WindowFrameActionCreator).object,
             },
+            windowStateStoreData,
         } as TitleBarProps;
 
         const wrapper = shallow(<TitleBar {...props} />);
@@ -38,7 +42,14 @@ describe('TitleBar', () => {
     });
 
     const setupVerifiableWindowMaximizeAction = () => {
+        windowStateStoreData.currentWindowState = 'customSize';
+
         windowFrameActionCreator.setup(creator => creator.maximize()).verifiable(Times.once());
+    };
+
+    const setupVerifiableWindowRestoreAction = () => {
+        windowStateStoreData.currentWindowState = 'maximized';
+        windowFrameActionCreator.setup(creator => creator.restore()).verifiable(Times.once());
     };
 
     const setupVerifiableWindowMinimizeCall = () => {
@@ -50,7 +61,8 @@ describe('TitleBar', () => {
     };
 
     const buttonsAndSetups = [
-        { id: '#maximize-button', setupMock: setupVerifiableWindowMaximizeAction },
+        { id: '#maximize-button', setupMock: setupVerifiableWindowMaximizeAction }, // maximize validation
+        { id: '#maximize-button', setupMock: setupVerifiableWindowRestoreAction }, // restore validation
         { id: '#minimize-button', setupMock: setupVerifiableWindowMinimizeCall },
         { id: '#close-button', setupMock: setupVerifiableWindowCloseActionCall },
     ];
@@ -63,6 +75,7 @@ describe('TitleBar', () => {
                 windowStateActionCreator: windowStateActionCreator.object,
                 windowFrameActionCreator: windowFrameActionCreator.object,
             },
+            windowStateStoreData,
         } as TitleBarProps;
 
         const rendered = shallow(<TitleBar {...props} />);

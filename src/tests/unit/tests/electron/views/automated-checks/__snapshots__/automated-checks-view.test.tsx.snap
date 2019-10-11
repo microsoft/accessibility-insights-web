@@ -56,6 +56,7 @@ exports[`AutomatedChecksView renders renders the automated checks view 1`] = `
         },
       }
     }
+    windowStateStoreData="window state store data"
   />
   <CommandBar
     deps={
@@ -107,6 +108,7 @@ exports[`AutomatedChecksView renders scanning spinner 1`] = `
         },
       }
     }
+    windowStateStoreData="window state store data"
   />
   <CommandBar
     deps={

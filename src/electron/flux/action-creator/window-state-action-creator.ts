@@ -1,9 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { WindowFrameActionCreator } from 'electron/flux/action-creator/window-frame-action-creator';
 import { RoutePayload } from '../action/route-payloads';
 import { WindowStateActions } from '../action/window-state-actions';
+import { WindowStatePayload } from '../action/window-state-payload';
+import { WindowFrameActionCreator } from './window-frame-action-creator';
 
 export class WindowStateActionCreator {
     constructor(
@@ -17,5 +18,9 @@ export class WindowStateActionCreator {
         if (payload.routeId === 'deviceConnectView') {
             this.windowFrameActionCreator.setWindowSize({ width: 600, height: 391 });
         }
+    }
+
+    public setWindowState(payload: WindowStatePayload): void {
+        this.windowStateActions.setWindowState.invoke(payload);
     }
 }

@@ -23,6 +23,7 @@ describe('AutomatedChecksView', () => {
                 },
                 scanStoreData: {},
                 deviceStoreData: {},
+                windowStateStoreData: 'window state store data' as any,
             } as AutomatedChecksViewProps;
 
             const wrapped = shallow(<AutomatedChecksView {...props} />);
@@ -42,7 +43,8 @@ describe('AutomatedChecksView', () => {
                 scanStoreData: {
                     status: ScanStatus.Scanning,
                 },
-                deviceStoreData: {},
+                deviceStoreData: {} as any,
+                windowStateStoreData: 'window state store data' as any,
             } as AutomatedChecksViewProps;
 
             const wrapped = shallow(<AutomatedChecksView {...props} />);

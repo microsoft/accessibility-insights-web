@@ -35,7 +35,7 @@ describe(RootContainer, () => {
                 .setup(hub => hub.getAllStoreData())
                 .returns(() => {
                     return {
-                        windowStateStoreData: { routeId: 'deviceConnectView', currentWindowState: 'restoredOrMaximized' },
+                        windowStateStoreData: { routeId: 'deviceConnectView', currentWindowState: 'customSize' },
                         userConfigurationStoreData: { isFirstTime: true },
                         deviceStoreData: { deviceConnectState: DeviceConnectState.Connected },
                     } as RootContainerState;
@@ -51,7 +51,7 @@ describe(RootContainer, () => {
                 .setup(hub => hub.getAllStoreData())
                 .returns(() => {
                     return {
-                        windowStateStoreData: { routeId: 'resultsView', currentWindowState: 'restoredOrMaximized' },
+                        windowStateStoreData: { routeId: 'resultsView', currentWindowState: 'customSize' },
                         userConfigurationStoreData: { isFirstTime: true },
                         deviceStoreData: { deviceConnectState: DeviceConnectState.Connected, port: 11111 },
                         scanStoreData: { status: ScanStatus.Default },
@@ -70,7 +70,7 @@ describe(RootContainer, () => {
                 .setup(hub => hub.getAllStoreData())
                 .returns(() => {
                     return {
-                        windowStateStoreData: { routeId: 'deviceConnectView', currentWindowState: 'restoredOrMaximized' },
+                        windowStateStoreData: { routeId: 'deviceConnectView', currentWindowState: 'customSize' },
                         userConfigurationStoreData: { isFirstTime: true },
                         deviceStoreData: { deviceConnectState: DeviceConnectState.Connected },
                     } as RootContainerState;
@@ -79,7 +79,7 @@ describe(RootContainer, () => {
                 .setup(hub => hub.getAllStoreData())
                 .returns(() => {
                     return {
-                        windowStateStoreData: { routeId: 'resultsView', currentWindowState: 'restoredOrMaximized' },
+                        windowStateStoreData: { routeId: 'resultsView', currentWindowState: 'customSize' },
                         userConfigurationStoreData: { isFirstTime: true },
                         deviceStoreData: { deviceConnectState: DeviceConnectState.Connected },
                     } as RootContainerState;

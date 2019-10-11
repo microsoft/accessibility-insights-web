@@ -20,6 +20,12 @@ exports[`RootContainer renders device connect view container when route is devic
       "isFirstTime": true,
     }
   }
+  windowStateStoreData={
+    Object {
+      "currentWindowState": "customSize",
+      "routeId": "deviceConnectView",
+    }
+  }
 />
 `;
 
@@ -44,6 +50,12 @@ exports[`RootContainer renders results view container when route is resultsView 
       "status": 0,
     }
   }
+  windowStateStoreData={
+    Object {
+      "currentWindowState": "customSize",
+      "routeId": "resultsView",
+    }
+  }
 />
 `;
 
@@ -56,7 +68,7 @@ Object {
     "isFirstTime": true,
   },
   "windowStateStoreData": Object {
-    "currentWindowState": "restoredOrMaximized",
+    "currentWindowState": "customSize",
     "routeId": "deviceConnectView",
   },
 }
@@ -71,7 +83,7 @@ Object {
     "isFirstTime": true,
   },
   "windowStateStoreData": Object {
-    "currentWindowState": "restoredOrMaximized",
+    "currentWindowState": "customSize",
     "routeId": "resultsView",
   },
 }

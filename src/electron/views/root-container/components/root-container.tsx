@@ -41,6 +41,7 @@ export class RootContainer extends React.Component<RootContainerProps, RootConta
                 <AutomatedChecksView
                     deviceStoreData={this.state.deviceStoreData}
                     scanStoreData={this.state.scanStoreData}
+                    windowStateStoreData={this.state.windowStateStoreData}
                     {...this.props}
                 />
             );
@@ -51,6 +52,7 @@ export class RootContainer extends React.Component<RootContainerProps, RootConta
                 {...{
                     userConfigurationStoreData: this.state.userConfigurationStoreData,
                     deviceStoreData: this.state.deviceStoreData,
+                    windowStateStoreData: this.state.windowStateStoreData,
                     ...this.props,
                 }}
             />

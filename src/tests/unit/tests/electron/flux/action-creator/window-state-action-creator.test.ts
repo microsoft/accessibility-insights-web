@@ -7,6 +7,7 @@ import { WindowStateActionCreator } from 'electron/flux/action-creator/window-st
 import { RoutePayload } from 'electron/flux/action/route-payloads';
 import { WindowStateActions } from 'electron/flux/action/window-state-actions';
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';
+import { WindowStatePayload } from 'electron/flux/action/window-state-payload';
 
 describe(WindowStateActionCreator, () => {
     let windowStateActionsMock: IMock<WindowStateActions>;
@@ -47,6 +48,21 @@ describe(WindowStateActionCreator, () => {
         testSubject.setRoute(testPayload);
 
         setRouteActionMock.verifyAll();
+        windowFrameActionCreatorMock.verifyAll();
+    });
+
+    it('calling setWindowState invokes setWindowState action', () => {
+        const setWindowStatePayload = Mock.ofType<Action<WindowStatePayload>>();
+        const testPayload: WindowStatePayload = {
+            currentWindowState: 'maximized',
+        };
+
+        windowStateActionsMock.setup(actions => actions.setWindowState).returns(() => setWindowStatePayload.object);
+        setWindowStatePayload.setup(s => s.invoke(testPayload)).verifiable(Times.once());
+
+        testSubject.setWindowState(testPayload);
+
+        setWindowStatePayload.verifyAll();
         windowFrameActionCreatorMock.verifyAll();
     });
 });

@@ -26,6 +26,7 @@ describe('RootContainerRendererTest', () => {
         const props = {
             deps: {
                 currentWindow: browserWindow,
+                windowStateActionCreator: windowStateActionCreatorMock.object,
             },
         } as RootContainerProps;
         const expectedComponent = <RootContainer {...props} />;

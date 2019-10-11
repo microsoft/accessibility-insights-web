@@ -46,6 +46,7 @@ import { DeviceStore } from '../flux/store/device-store';
 import { ElectronLink } from './device-connect-view/components/electron-link';
 import { sendAppInitializedTelemetryEvent } from './device-connect-view/send-app-initialized-telemetry';
 import { RootContainerRenderer } from './root-container/root-container-renderer';
+import { WindowFrameListener } from 'electron/window-frame-listener';
 
 initializeFabricIcons();
 
@@ -112,6 +113,9 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then((persistedDat
     const windowFrameActionCreator = new WindowFrameActionCreator(windowFrameActions);
     const windowStateActionCreator = new WindowStateActionCreator(windowStateActions, windowFrameActionCreator);
     const scanActionCreator = new ScanActionCreator(scanActions);
+
+    const windowFrameListener = new WindowFrameListener(windowStateActionCreator, currentWindow);
+    windowFrameListener.initialize();
 
     const getToolData = createGetToolDataDelegate(appDataAdapter);
     const unifiedResultsBuilder = createDefaultBuilder(getToolData);
