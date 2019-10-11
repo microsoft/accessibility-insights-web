@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+import { WindowFrameActionCreator } from 'electron/flux/action-creator/window-frame-action-creator';
 import { WindowStateActionCreator } from 'electron/flux/action-creator/window-state-action-creator';
 import {
     DeviceConnectFooter,
@@ -13,7 +14,6 @@ import { Button } from 'office-ui-fabric-react/lib/Button';
 import * as React from 'react';
 import { EventStubFactory } from 'tests/unit/common/event-stub-factory';
 import { IMock, Mock, Times } from 'typemoq';
-import { WindowFrameActionCreator } from 'electron/flux/action-creator/window-frame-action-creator';
 
 describe('DeviceConnectFooterTest', () => {
     let windowStateActionCreatorMock: IMock<WindowStateActionCreator>;

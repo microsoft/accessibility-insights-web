@@ -7,7 +7,6 @@ import * as React from 'react';
 import { NamedFC } from 'common/react/named-fc';
 import { brand } from 'content/strings/application';
 import { WindowFrameActionCreator } from 'electron/flux/action-creator/window-frame-action-creator';
-import { WindowStateActionCreator } from 'electron/flux/action-creator/window-state-action-creator';
 import { WindowStateStoreData } from 'electron/flux/types/window-state-store-data';
 import { WindowTitle } from 'electron/views/device-connect-view/components/window-title';
 import { BrandWhite } from 'icons/brand/white/brand-white';

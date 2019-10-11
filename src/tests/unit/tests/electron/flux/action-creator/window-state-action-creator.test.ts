@@ -6,8 +6,8 @@ import { WindowFrameActionCreator } from 'electron/flux/action-creator/window-fr
 import { WindowStateActionCreator } from 'electron/flux/action-creator/window-state-action-creator';
 import { RoutePayload } from 'electron/flux/action/route-payloads';
 import { WindowStateActions } from 'electron/flux/action/window-state-actions';
-import { IMock, Mock, MockBehavior, Times } from 'typemoq';
 import { WindowStatePayload } from 'electron/flux/action/window-state-payload';
+import { IMock, Mock, MockBehavior, Times } from 'typemoq';
 
 describe(WindowStateActionCreator, () => {
     let windowStateActionsMock: IMock<WindowStateActions>;

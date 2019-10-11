@@ -8,9 +8,9 @@ import { IMock, Mock, MockBehavior, Times } from 'typemoq';
 
 import { WindowFrameActionCreator } from 'electron/flux/action-creator/window-frame-action-creator';
 import { WindowStateActionCreator } from 'electron/flux/action-creator/window-state-action-creator';
+import { WindowStateStoreData } from 'electron/flux/types/window-state-store-data';
 import { TitleBar, TitleBarProps } from 'electron/views/automated-checks/components/title-bar';
 import { EventStubFactory } from 'tests/unit/common/event-stub-factory';
-import { WindowStateStoreData } from 'electron/flux/types/window-state-store-data';
 
 describe('TitleBar', () => {
     const eventStub = new EventStubFactory().createMouseClickEvent() as React.MouseEvent<Button>;

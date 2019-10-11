@@ -22,6 +22,7 @@ import * as ReactDOM from 'react-dom';
 import { WindowFrameActionCreator } from 'electron/flux/action-creator/window-frame-action-creator';
 import { WindowFrameActions } from 'electron/flux/action/window-frame-actions';
 import { ScanStore } from 'electron/flux/store/scan-store';
+import { WindowFrameListener } from 'electron/window-frame-listener';
 import { UserConfigurationActions } from '../../background/actions/user-configuration-actions';
 import { getPersistedData, PersistedData } from '../../background/get-persisted-data';
 import { UserConfigurationActionCreator } from '../../background/global-action-creators/user-configuration-action-creator';
@@ -46,7 +47,6 @@ import { DeviceStore } from '../flux/store/device-store';
 import { ElectronLink } from './device-connect-view/components/electron-link';
 import { sendAppInitializedTelemetryEvent } from './device-connect-view/send-app-initialized-telemetry';
 import { RootContainerRenderer } from './root-container/root-container-renderer';
-import { WindowFrameListener } from 'electron/window-frame-listener';
 
 initializeFabricIcons();
 
