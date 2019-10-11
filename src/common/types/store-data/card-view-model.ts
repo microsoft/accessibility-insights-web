@@ -1,3 +1,5 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
 import { GuidanceLink } from '../../../scanner/rule-to-links-mappings';
 import { InstanceResultStatus, UnifiedResult } from './unified-data-interface';
 export type CardRuleResultStatus = InstanceResultStatus | 'inapplicable';
