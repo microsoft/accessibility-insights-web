@@ -17,24 +17,24 @@ export interface CheckData {
 export function getElementBasedViewModel(
     rules: UnifiedRule[],
     results: UnifiedResult[],
-    selectedIds: string[],
+    highlightedResultInstanceUids: string[],
 ): DictionaryStringTo<AssessmentVisualizationInstance> {
     const stringToResult: DictionaryStringTo<AssessmentVisualizationInstance> = {};
     results.forEach(unifiedResult => {
-        if (unifiedResult.status !== 'fail') {
+        if (unifiedResult.status !== 'fail' && !includes(highlightedResultInstanceUids, unifiedResult.uid)) {
             return;
         }
 
         const identifier = getIdentifier(unifiedResult);
         const rule = find(rules, unifiedRule => unifiedRule.id === unifiedResult.ruleId);
+        const decoratedResult = getDecoratedResult(unifiedResult, rule);
         if (identifier in stringToResult === false) {
             stringToResult[identifier] = {
                 isFailure: true,
-                isVisualizationEnabled: !includes(selectedIds, unifiedResult.uid),
-                html: getHTML(unifiedResult),
+                isVisualizationEnabled: true,
                 target: getTarget(unifiedResult),
                 ruleResults: {
-                    [rule.id]: getDecoratedResult(unifiedResult, rule),
+                    [rule.id]: decoratedResult,
                 },
             };
         } else {
@@ -65,7 +65,6 @@ function getDecoratedResult(unifiedResult: UnifiedResult, rule: UnifiedRule): De
         guidanceLinks: rule.guidance,
         help: rule.description,
         helpUrl: rule.url,
-        snippet: getHTML(unifiedResult),
         html: getHTML(unifiedResult),
         id: unifiedResult.uid,
         ...getCheckData(unifiedResult),
