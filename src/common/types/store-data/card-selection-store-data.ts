@@ -14,5 +14,4 @@ export interface RuleExpandCollapseDataDictionary {
 
 export interface CardSelectionStoreData {
     rules: RuleExpandCollapseDataDictionary;
-    selectedCardCount: number;
 }

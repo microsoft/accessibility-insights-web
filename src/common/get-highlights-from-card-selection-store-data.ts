@@ -19,11 +19,12 @@ export function getHighlightsFromCardSelectionStoreData(storeData: CardSelection
         return getAllResultUids(storeData.rules);
     }
 
-    if (storeData.selectedCardCount === 0) {
-        return getAllResultUidsFromRuleIdArray(storeData.rules, expandedRuleIds);
+    const selectedResultUids = getOnlyResultUidsFromSelectedCards(storeData.rules, expandedRuleIds);
+    if (selectedResultUids.length > 0) {
+        return selectedResultUids;
     }
 
-    return getOnlyResultUidsFromSelectedCards(storeData.rules, expandedRuleIds);
+    return getAllResultUidsFromRuleIdArray(storeData.rules, expandedRuleIds);
 }
 
 function getRuleIdsOfExpandedRules(ruleDictionary: RuleExpandCollapseDataDictionary): string[] {

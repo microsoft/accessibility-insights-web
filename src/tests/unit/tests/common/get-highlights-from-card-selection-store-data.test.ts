@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
 import { cloneDeep } from 'lodash';
 import { getHighlightsFromCardSelectionStoreData } from '../../../../common/get-highlights-from-card-selection-store-data';
+import { CardSelectionStoreData } from '../../../../common/types/store-data/card-selection-store-data';
 
 describe('getHighlightsFromCardSelectionStoreData', () => {
     let initialState: CardSelectionStoreData;
@@ -25,7 +25,6 @@ describe('getHighlightsFromCardSelectionStoreData', () => {
                     },
                 },
             },
-            selectedCardCount: 0,
         };
 
         initialState = cloneDeep(defaultState);
@@ -58,7 +57,6 @@ describe('getHighlightsFromCardSelectionStoreData', () => {
         initialState.rules['sampleRuleId1'].isExpanded = true;
         initialState.rules['sampleRuleId2'].isExpanded = true;
         initialState.rules['sampleRuleId2'].cards['sampleUid3'] = true;
-        initialState.selectedCardCount = 1;
 
         const results = getHighlightsFromCardSelectionStoreData(initialState);
 
@@ -67,7 +65,6 @@ describe('getHighlightsFromCardSelectionStoreData', () => {
 
     test('all rules collapsed, one card selected, expect all highlights', () => {
         initialState.rules['sampleRuleId2'].cards['sampleUid3'] = true;
-        initialState.selectedCardCount = 1;
 
         const results = getHighlightsFromCardSelectionStoreData(initialState);
 
