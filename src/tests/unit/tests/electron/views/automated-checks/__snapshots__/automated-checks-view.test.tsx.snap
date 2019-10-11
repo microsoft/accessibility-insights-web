@@ -29,7 +29,7 @@ exports[`AutomatedChecksView renders scanning spinner: automated checks view 1`]
     }
   />
   <HeaderSection />
-  <ScanningDialog />
+  <Scanning />
 </React.Fragment>
 `;
 

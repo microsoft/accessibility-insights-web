@@ -6,7 +6,7 @@ import * as React from 'react';
 import { ScanActionCreator } from 'electron/flux/action-creator/scan-action-creator';
 import { ScanStatus } from 'electron/flux/types/scan-status';
 import { ScanStoreData } from 'electron/flux/types/scan-store-data';
-import { ScanningDialog } from 'electron/views/automated-checks/components/scanning-dialog';
+import { Scanning } from 'electron/views/automated-checks/components/scanning';
 import { CommandBar, CommandBarDeps } from './components/command-bar';
 import { HeaderSection } from './components/header-section';
 
@@ -42,6 +42,6 @@ export class AutomatedChecksView extends React.Component<AutomatedChecksViewProp
             return null;
         }
 
-        return <ScanningDialog />;
+        return <Scanning />;
     }
 }
