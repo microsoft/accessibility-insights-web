@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ScanningSpinner renders isScanning = <false> 1`] = `null`;
+
+exports[`ScanningSpinner renders isScanning = <true> 1`] = `
+<div
+  aria-live="assertive"
+  role="alert"
+>
+  <StyledSpinnerBase
+    className="scanningSpinner"
+    label="Scanning..."
+    size={3}
+  />
+</div>
+`;

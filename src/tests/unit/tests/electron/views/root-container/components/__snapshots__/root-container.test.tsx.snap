@@ -34,6 +34,11 @@ exports[`RootContainer renders results view container when route is resultsView 
     }
   }
   devicePort={11111}
+  scanStoreData={
+    Object {
+      "status": 0,
+    }
+  }
 />
 `;
 

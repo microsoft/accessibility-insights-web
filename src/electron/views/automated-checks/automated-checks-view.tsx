@@ -4,6 +4,9 @@ import { TitleBar, TitleBarDeps } from 'electron/views/automated-checks/componen
 import * as React from 'react';
 
 import { ScanActionCreator } from 'electron/flux/action-creator/scan-action-creator';
+import { ScanStatus } from 'electron/flux/types/scan-status';
+import { ScanStoreData } from 'electron/flux/types/scan-store-data';
+import { ScanningSpinner } from 'electron/views/automated-checks/components/scanning-spinner';
 import { CommandBar, CommandBarDeps } from './components/command-bar';
 import { HeaderSection } from './components/header-section';
 
@@ -15,6 +18,7 @@ export type AutomatedChecksViewDeps = CommandBarDeps &
 export type AutomatedChecksViewProps = {
     deps: AutomatedChecksViewDeps;
     devicePort: number;
+    scanStoreData: ScanStoreData;
 };
 
 export class AutomatedChecksView extends React.Component<AutomatedChecksViewProps> {
@@ -28,7 +32,12 @@ export class AutomatedChecksView extends React.Component<AutomatedChecksViewProp
                 <TitleBar deps={this.props.deps}></TitleBar>
                 <CommandBar deps={this.props.deps} />
                 <HeaderSection />
+                {this.renderScanning()}
             </>
         );
+    }
+
+    private renderScanning(): JSX.Element {
+        return <ScanningSpinner isScanning={this.props.scanStoreData.status === ScanStatus.Scanning} />;
     }
 }

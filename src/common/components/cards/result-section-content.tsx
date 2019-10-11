@@ -4,9 +4,10 @@ import { NamedFC } from 'common/react/named-fc';
 import { FixInstructionProcessor } from 'injected/fix-instruction-processor';
 import * as React from 'react';
 
-import { TargetAppData, UnifiedRuleResult } from '../../../common/types/store-data/unified-data-interface';
+import { TargetAppData } from '../../../common/types/store-data/unified-data-interface';
 import { InstanceOutcomeType } from '../../../reports/components/instance-outcome-type';
 import { NoFailedInstancesCongrats } from '../../../reports/components/report-sections/no-failed-instances-congrats';
+import { CardRuleResult } from '../../types/store-data/card-view-model';
 import { UserConfigurationStoreData } from '../../types/store-data/user-configuration-store';
 import { RulesWithInstances, RulesWithInstancesDeps } from './rules-with-instances';
 
@@ -14,7 +15,7 @@ export type ResultSectionContentDeps = RulesWithInstancesDeps;
 
 export type ResultSectionContentProps = {
     deps: ResultSectionContentDeps;
-    results: UnifiedRuleResult[];
+    results: CardRuleResult[];
     outcomeType: InstanceOutcomeType;
     fixInstructionProcessor?: FixInstructionProcessor;
     userConfigurationStoreData: UserConfigurationStoreData;

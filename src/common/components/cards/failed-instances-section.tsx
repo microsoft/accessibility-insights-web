@@ -3,14 +3,15 @@
 import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
 
-import { TargetAppData, UnifiedStatusResults } from '../../../common/types/store-data/unified-data-interface';
+import { TargetAppData } from '../../../common/types/store-data/unified-data-interface';
+import { CardRuleResultsByStatus } from '../../types/store-data/card-view-model';
 import { UserConfigurationStoreData } from '../../types/store-data/user-configuration-store';
 import { ResultSection, ResultSectionDeps } from './result-section';
 
 export type FailedInstancesSectionDeps = ResultSectionDeps;
 export type FailedInstancesSectionProps = {
     deps: FailedInstancesSectionDeps;
-    ruleResultsByStatus: UnifiedStatusResults;
+    ruleResultsByStatus: CardRuleResultsByStatus;
     userConfigurationStoreData: UserConfigurationStoreData;
     targetAppInfo: TargetAppData;
 };
