@@ -53,7 +53,9 @@ export const DeviceConnectConnectedDevice = NamedFC<DeviceConnectConnectedDevice
         return (
             <div className={deviceConnectConnectedDevice}>
                 <h3>Connected device</h3>
-                {renderContents()}
+                <div role="alert" aria-live="assertive">
+                    {renderContents()}
+                </div>
             </div>
         );
     },
