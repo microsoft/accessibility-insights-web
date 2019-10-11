@@ -4,7 +4,7 @@ import { mount, shallow } from 'enzyme';
 import * as React from 'react';
 import { IMock, It, Mock, Times } from 'typemoq';
 
-import { Toast, ToastProps } from '../../../../../common/components/toast';
+import { Toast, ToastProps, ToastState } from '../../../../../common/components/toast';
 import { WindowUtils } from '../../../../../common/window-utils';
 import { itIsFunction } from '../../../common/it-is-function';
 
@@ -23,7 +23,7 @@ describe('ToastTest', () => {
     });
 
     test('render', () => {
-        const result = shallow(<Toast {...props}>Hello</Toast>);
+        const result = shallow(<Toast {...props}></Toast>);
         expect(result.getElement()).toMatchSnapshot();
     });
 
@@ -37,17 +37,19 @@ describe('ToastTest', () => {
             .verifiable(Times.once());
         const subject = new Toast(props);
 
+        const states = [];
+        subject.setState = jest.fn((state: ToastState) => states.push(state));
         subject.show('content');
         windowUtilsMock.verifyAll();
         expect(timeoutId).toEqual((subject as any).timeoutId);
 
-        // expect(subject.state.toastVisible).toBeTruthy();
-        // expect(subject.state.content).toEqual('content');
+        expect(states[0].toastVisible).toBeTruthy();
+        expect(states[0].content).toEqual('content');
 
         realCallback();
 
-        expect(subject.state.toastVisible).toBeFalsy();
-        expect(subject.state.content).toBeNull();
+        expect(states[1].toastVisible.toastVisible).toBeFalsy();
+        expect(states[1].content).toBeNull();
     });
 
     test('clearTimeout upon componentWillUnmount', () => {
