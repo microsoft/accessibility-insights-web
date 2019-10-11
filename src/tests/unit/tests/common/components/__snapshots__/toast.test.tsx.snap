@@ -2,7 +2,9 @@
 
 exports[`ToastTest render 1`] = `
 <div
+  aria-live="polite"
   className="ms-fadeIn100 toast"
+  role="alert"
 >
   Hello
 </div>

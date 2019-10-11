@@ -19,7 +19,7 @@ export class Toast extends React.Component<ToastProps> {
     private hidden: boolean;
 
     public static defaultProps = {
-        timeoutLength: 1000,
+        timeoutLength: 6000,
     };
 
     public componentWillUnmount(): void {
@@ -40,6 +40,10 @@ export class Toast extends React.Component<ToastProps> {
     }
 
     public render(): JSX.Element {
-        return this.hidden ? null : <div className={css('ms-fadeIn100', 'toast')}>{this.props.children}</div>;
+        return this.hidden ? null : (
+            <div role="alert" aria-live="polite" className={css('ms-fadeIn100', 'toast')}>
+                {this.props.children}
+            </div>
+        );
     }
 }
