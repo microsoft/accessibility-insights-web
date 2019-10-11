@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ScanningDialog renders 1`] = `
+<StyledWithResponsiveMode
+  dialogContentProps={
+    Object {
+      "showCloseButton": false,
+      "title": "Scanning",
+      "type": 0,
+    }
+  }
+  hidden={false}
+  modalProps={
+    Object {
+      "className": "scanning-dialog-modal",
+      "isBlocking": true,
+    }
+  }
+>
+  <StyledSpinnerBase
+    size={3}
+  />
+</StyledWithResponsiveMode>
+`;
