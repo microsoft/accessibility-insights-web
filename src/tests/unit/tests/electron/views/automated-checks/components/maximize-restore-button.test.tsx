@@ -9,14 +9,17 @@ import { MaximizeRestoreButton, MaximizeRestoreButtonProps } from 'electron/view
 import { EventStubFactory } from 'tests/unit/common/event-stub-factory';
 
 describe('MaximizeRestoreButton', () => {
-    it('renders with maximize', () => {
+    it('renders with restore', () => {
         const props: MaximizeRestoreButtonProps = { isMaximized: true, onClick: null };
+
         const rendered = shallow(<MaximizeRestoreButton {...props} />);
+        const icon = rendered.getElement().props.onRenderIcon();
 
         expect(rendered.getElement()).toMatchSnapshot();
+        expect(icon).toMatchSnapshot();
     });
 
-    it('renders with restore', () => {
+    it('renders with maximize', () => {
         const props: MaximizeRestoreButtonProps = { isMaximized: false, onClick: null };
         const rendered = shallow(<MaximizeRestoreButton {...props} />);
 

@@ -17,11 +17,11 @@ exports[`MaximizeRestoreButton renders with maximize 1`] = `
 exports[`MaximizeRestoreButton renders with restore 1`] = `
 <CustomizedActionButton
   ariaHidden={true}
-  iconProps={null}
   id="maximize-button"
   onClick={[Function]}
+  onRenderIcon={[Function]}
   tabIndex={-1}
->
-  <RestoreIcon />
-</CustomizedActionButton>
+/>
 `;
+
+exports[`MaximizeRestoreButton renders with restore 2`] = `<RestoreIcon />`;
