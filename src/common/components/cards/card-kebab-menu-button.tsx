@@ -4,6 +4,7 @@ import { ActionButton } from 'office-ui-fabric-react/lib/Button';
 import { DirectionalHint, IContextualMenuItem } from 'office-ui-fabric-react/lib/ContextualMenu';
 import * as React from 'react';
 
+import { MoreActionsMenuIcon } from 'common/icons/more-actions-menu-icon';
 import { IssueDetailsTextGenerator } from '../../../background/issue-details-text-generator';
 import { DetailsViewActionMessageCreator } from '../../../DetailsView/actions/details-view-action-message-creator';
 import { IssueFilingDialog } from '../../../DetailsView/components/issue-filing-dialog';
@@ -60,9 +61,7 @@ export class CardKebabMenuButton extends React.Component<CardKebabMenuButtonProp
                 <ActionButton
                     className={kebabMenuButton}
                     ariaLabel="More actions"
-                    menuIconProps={{
-                        iconName: 'moreVertical',
-                    }}
+                    onRenderMenuIcon={MoreActionsMenuIcon}
                     menuProps={{
                         className: kebabMenu,
                         directionalHint: DirectionalHint.bottomRightEdge,
