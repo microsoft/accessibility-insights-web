@@ -5,9 +5,8 @@ import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
 
 import { getPropertyConfiguration } from '../../../common/configs/unified-result-property-configurations';
-import { TargetAppData, UnifiedRule } from '../../../common/types/store-data/unified-data-interface';
+import { TargetAppData, UnifiedRule, UnifiedRuleResult } from '../../../common/types/store-data/unified-data-interface';
 import { UserConfigurationStoreData } from '../../types/store-data/user-configuration-store';
-import { UnifiedRuleResult } from './failed-instances-section';
 import { InstanceDetails, InstanceDetailsDeps } from './instance-details';
 import { instanceDetailsList } from './instance-details-group.scss';
 

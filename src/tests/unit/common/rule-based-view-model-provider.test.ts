@@ -1,8 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { UnifiedRuleResult, UnifiedStatusResults } from '../../../common/components/cards/failed-instances-section';
 import { getUnifiedRuleResults } from '../../../common/rule-based-view-model-provider';
-import { InstanceResultStatus, UnifiedResult, UnifiedRule } from '../../../common/types/store-data/unified-data-interface';
+import {
+    InstanceResultStatus,
+    UnifiedResult,
+    UnifiedRule,
+    UnifiedRuleResult,
+    UnifiedStatusResults,
+} from '../../../common/types/store-data/unified-data-interface';
 
 describe('RuleBasedViewModelProvider', () => {
     test('getUnifiedRuleResults with null rules and results', () => {

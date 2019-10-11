@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
-import { UnifiedStatusResults } from 'common/components/cards/failed-instances-section';
 import { AssessmentStoreData } from 'common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { TabStoreData } from 'common/types/store-data/tab-store-data';
+import { UnifiedStatusResults } from 'common/types/store-data/unified-data-interface';
 import { ScanResults } from 'scanner/iruleresults';
 
 import { AssessmentReportHtmlGenerator } from './assessment-report-html-generator';
