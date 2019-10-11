@@ -2,22 +2,23 @@
 // Licensed under the MIT License.
 import { AppInsights } from 'applicationinsights-js';
 import axios from 'axios';
+import { UnifiedScanResultActions } from 'background/actions/unified-scan-result-actions';
+import { UnifiedScanResultStore } from 'background/stores/unified-scan-result-store';
+import { DateProvider } from 'common/date-provider';
 import { remote } from 'electron';
+import { createGetToolDataDelegate } from 'electron/common/application-properties-provider';
+import { ScanActionCreator } from 'electron/flux/action-creator/scan-action-creator';
 import { WindowStateActionCreator } from 'electron/flux/action-creator/window-state-action-creator';
+import { ScanActions } from 'electron/flux/action/scan-actions';
 import { WindowStateActions } from 'electron/flux/action/window-state-actions';
 import { WindowStateStore } from 'electron/flux/store/window-state-store';
 import { createFetchScanResults } from 'electron/platform/android/fetch-scan-results';
+import { ScanController } from 'electron/platform/android/scan-controller';
+import { createDefaultBuilder } from 'electron/platform/android/unified-result-builder';
 import { RootContainerProps, RootContainerState } from 'electron/views/root-container/components/root-container';
 import { WindowFrameUpdater } from 'electron/window-frame-updater';
 import * as ReactDOM from 'react-dom';
 
-import { UnifiedScanResultActions } from 'background/actions/unified-scan-result-actions';
-import { UnifiedScanResultStore } from 'background/stores/unified-scan-result-store';
-import { DateProvider } from 'common/date-provider';
-import { createGetToolDataDelegate } from 'electron/common/application-properties-provider';
-import { ScanActions } from 'electron/flux/action/scan-actions';
-import { ScanController } from 'electron/platform/android/scan-controller';
-import { createDefaultBuilder } from 'electron/platform/android/unified-result-builder';
 import { UserConfigurationActions } from '../../background/actions/user-configuration-actions';
 import { getPersistedData, PersistedData } from '../../background/get-persisted-data';
 import { UserConfigurationActionCreator } from '../../background/global-action-creators/user-configuration-action-creator';
@@ -102,6 +103,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then((persistedDat
 
     const deviceConnectActionCreator = new DeviceConnectActionCreator(deviceActions, fetchScanResults, telemetryEventHandler);
     const windowStateActionCreator = new WindowStateActionCreator(windowStateActions);
+    const scanActionCreator = new ScanActionCreator(scanActions);
 
     const getToolData = createGetToolDataDelegate(appDataAdapter);
     const unifiedResultsBuilder = createDefaultBuilder(getToolData);
@@ -127,6 +129,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then((persistedDat
             fetchScanResults,
             deviceConnectActionCreator,
             storeHub,
+            scanActionCreator,
         },
     };
 

@@ -83,7 +83,3 @@ export interface UnifiedResult {
 }
 
 export type InstanceResultStatus = 'pass' | 'fail' | 'unknown';
-
-export type UnifiedRuleResultStatus = InstanceResultStatus | 'inapplicable';
-
-export const AllRuleResultStatuses: UnifiedRuleResultStatus[] = ['pass', 'fail', 'unknown', 'inapplicable'];

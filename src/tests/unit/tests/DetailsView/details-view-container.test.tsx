@@ -5,13 +5,13 @@ import { ISelection, Selection } from 'office-ui-fabric-react/lib/DetailsList';
 import * as React from 'react';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
-import { UnifiedStatusResults } from '../../../../common/components/cards/failed-instances-section';
 import { DropdownClickHandler } from '../../../../common/dropdown-click-handler';
 import { StoreActionMessageCreator } from '../../../../common/message-creators/store-action-message-creator';
 import { StoreActionMessageCreatorImpl } from '../../../../common/message-creators/store-action-message-creator-impl';
 import { GetUnifiedRuleResultsDelegate } from '../../../../common/rule-based-view-model-provider';
 import { BaseClientStoresHub } from '../../../../common/stores/base-client-stores-hub';
 import { DetailsViewPivotType } from '../../../../common/types/details-view-pivot-type';
+import { CardRuleResultsByStatus } from '../../../../common/types/store-data/card-view-model';
 import { TabStoreData } from '../../../../common/types/store-data/tab-store-data';
 import {
     TargetAppData,
@@ -195,7 +195,7 @@ describe('DetailsViewContainer', () => {
                 )
                 .returns(() => viewType);
 
-            const ruleResults: UnifiedStatusResults = {} as any;
+            const ruleResults: CardRuleResultsByStatus = {} as any;
             getUnifiedRuleResultsMock
                 .setup(m => m(state.unifiedScanResultStoreData.rules, state.unifiedScanResultStoreData.results))
                 .returns(() => ruleResults);
@@ -273,7 +273,7 @@ describe('DetailsViewContainer', () => {
         selectedDetailsView: VisualizationType,
         rightPanelConfiguration: DetailsRightPanelConfiguration,
         switcherNavConfiguration: DetailsViewSwitcherNavConfiguration,
-        ruleResults: UnifiedStatusResults,
+        ruleResults: CardRuleResultsByStatus,
         targetApp: TargetAppData,
     ): JSX.Element {
         return (
@@ -450,7 +450,7 @@ describe('DetailsViewContainer', () => {
             )
             .returns(() => viewType);
 
-        const ruleResults: UnifiedStatusResults = {} as any;
+        const ruleResults: CardRuleResultsByStatus = {} as any;
         getUnifiedRuleResultsMock
             .setup(m => m(state.unifiedScanResultStoreData.rules, state.unifiedScanResultStoreData.results))
             .returns(() => ruleResults);

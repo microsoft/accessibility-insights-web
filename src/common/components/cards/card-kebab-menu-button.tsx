@@ -4,6 +4,7 @@ import { ActionButton } from 'office-ui-fabric-react/lib/Button';
 import { DirectionalHint, IContextualMenuItem } from 'office-ui-fabric-react/lib/ContextualMenu';
 import * as React from 'react';
 
+import { MoreActionsMenuIcon } from 'common/icons/more-actions-menu-icon';
 import { IssueDetailsTextGenerator } from '../../../background/issue-details-text-generator';
 import { DetailsViewActionMessageCreator } from '../../../DetailsView/actions/details-view-action-message-creator';
 import { IssueFilingDialog } from '../../../DetailsView/components/issue-filing-dialog';
@@ -16,7 +17,7 @@ import { WindowUtils } from '../../window-utils';
 import { IssueFilingButtonDeps } from '../issue-filing-button';
 import { Toast } from '../toast';
 import { CardInteractionSupport } from './card-interaction-support';
-import { kebabMenu, kebabMenuButton } from './card-kebab-menu-button.scss';
+import { kebabMenu, kebabMenuButton, kebabMenuCallout } from './card-kebab-menu-button.scss';
 
 export type CardKebabMenuButtonDeps = {
     windowUtils: WindowUtils;
@@ -60,14 +61,15 @@ export class CardKebabMenuButton extends React.Component<CardKebabMenuButtonProp
                 <ActionButton
                     className={kebabMenuButton}
                     ariaLabel="More actions"
-                    menuIconProps={{
-                        iconName: 'moreVertical',
-                    }}
+                    onRenderMenuIcon={MoreActionsMenuIcon}
                     menuProps={{
                         className: kebabMenu,
                         directionalHint: DirectionalHint.bottomRightEdge,
                         shouldFocusOnMount: true,
                         items: this.getMenuItems(),
+                        calloutProps: {
+                            className: kebabMenuCallout,
+                        },
                     }}
                 />
                 {this.renderIssueFilingSettingContent()}

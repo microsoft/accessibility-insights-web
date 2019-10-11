@@ -1,13 +1,14 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { noCardInteractionsSupported } from 'common/components/cards/card-interaction-support';
-import { UnifiedStatusResults } from 'common/components/cards/failed-instances-section';
 import { PropertyConfiguration } from 'common/configs/unified-result-property-configurations';
 import { EnvironmentInfo } from 'common/environment-info-provider';
 import { GetGuidanceTagsFromGuidanceLinks } from 'common/get-guidance-tags-from-guidance-links';
+import { CardRuleResultsByStatus } from 'common/types/store-data/card-view-model';
 import { FixInstructionProcessor } from 'injected/fix-instruction-processor';
 import * as React from 'react';
 import { ScanResults } from 'scanner/iruleresults';
+
 import { ReportHead } from './components/report-head';
 import { ReportBody, ReportBodyProps } from './components/report-sections/report-body';
 import { ReportCollapsibleContainerControl } from './components/report-sections/report-collapsible-container';
@@ -32,7 +33,7 @@ export class ReportHtmlGenerator {
         pageTitle: string,
         pageUrl: string,
         description: string,
-        ruleResultsByStatus: UnifiedStatusResults,
+        ruleResultsByStatus: CardRuleResultsByStatus,
     ): string {
         const headElement: JSX.Element = <ReportHead />;
         const headMarkup: string = this.reactStaticRenderer.renderToStaticMarkup(headElement);

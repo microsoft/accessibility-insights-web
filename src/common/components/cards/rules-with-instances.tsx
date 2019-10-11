@@ -9,9 +9,9 @@ import { TargetAppData } from '../../../common/types/store-data/unified-data-int
 import { InstanceOutcomeType } from '../../../reports/components/instance-outcome-type';
 import { outcomeTypeSemantics } from '../../../reports/components/outcome-type';
 import { MinimalRuleHeader } from '../../../reports/components/report-sections/minimal-rule-header';
+import { CardRuleResult } from '../../types/store-data/card-view-model';
 import { UserConfigurationStoreData } from '../../types/store-data/user-configuration-store';
 import { CollapsibleComponentCardsProps } from './collapsible-component-cards';
-import { UnifiedRuleResult } from './failed-instances-section';
 import { RuleContent, RuleContentDeps } from './rule-content';
 import { collapsibleRuleDetailsGroup, ruleDetailsGroup } from './rules-with-instances.scss';
 
@@ -22,7 +22,7 @@ export type RulesWithInstancesDeps = RuleContentDeps & {
 export type RulesWithInstancesProps = {
     deps: RulesWithInstancesDeps;
     fixInstructionProcessor: FixInstructionProcessor;
-    rules: UnifiedRuleResult[];
+    rules: CardRuleResult[];
     outcomeType: InstanceOutcomeType;
     userConfigurationStoreData: UserConfigurationStoreData;
     targetAppInfo: TargetAppData;
@@ -31,7 +31,7 @@ export type RulesWithInstancesProps = {
 export const RulesWithInstances = NamedFC<RulesWithInstancesProps>(
     'RulesWithInstances',
     ({ rules, outcomeType, fixInstructionProcessor, deps, userConfigurationStoreData, targetAppInfo }) => {
-        const getCollapsibleComponentProps = (rule: UnifiedRuleResult, idx: number, buttonAriaLabel: string) => {
+        const getCollapsibleComponentProps = (rule: CardRuleResult, idx: number, buttonAriaLabel: string) => {
             return {
                 id: rule.id,
                 key: `summary-details-${idx + 1}`,

@@ -6,8 +6,8 @@ import * as React from 'react';
 
 import { getPropertyConfiguration } from '../../../common/configs/unified-result-property-configurations';
 import { TargetAppData, UnifiedRule } from '../../../common/types/store-data/unified-data-interface';
+import { CardRuleResult } from '../../types/store-data/card-view-model';
 import { UserConfigurationStoreData } from '../../types/store-data/user-configuration-store';
-import { UnifiedRuleResult } from './failed-instances-section';
 import { InstanceDetails, InstanceDetailsDeps } from './instance-details';
 import { instanceDetailsList } from './instance-details-group.scss';
 
@@ -17,7 +17,7 @@ export type InstanceDetailsGroupDeps = {
 
 export type InstanceDetailsGroupProps = {
     deps: InstanceDetailsGroupDeps;
-    rule: UnifiedRuleResult;
+    rule: CardRuleResult;
     userConfigurationStoreData: UserConfigurationStoreData;
     targetAppInfo: TargetAppData;
 };

@@ -63,7 +63,10 @@ describe('TitleBar', () => {
         } as TitleBarProps;
 
         const rendered = shallow(<TitleBar {...props} />);
-        const button = rendered.find(args.id);
+        const renderedElement = rendered.getElement();
+        const renderedIcons = shallow(<div>{renderedElement.props.actionableIcons}</div>);
+
+        const button = renderedIcons.find(args.id);
 
         button.simulate('click', eventStub);
 

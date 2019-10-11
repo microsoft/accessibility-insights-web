@@ -65,7 +65,6 @@ export class IssueFilingDialog extends React.Component<IssueFilingDialogProps, I
 
         return (
             <Dialog
-                className={'issue-filing-dialog'}
                 hidden={!isOpen}
                 dialogContentProps={{
                     type: DialogType.normal,
@@ -76,6 +75,7 @@ export class IssueFilingDialog extends React.Component<IssueFilingDialogProps, I
                 modalProps={{
                     isBlocking: false,
                     containerClassName: 'insights-dialog-main-override',
+                    className: 'issue-filing-dialog',
                 }}
                 onDismiss={onClose}
             >

@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { UnifiedRuleResult, UnifiedStatusResults } from 'common/components/cards/failed-instances-section';
-
+import { CardRuleResult, CardRuleResultsByStatus } from '../../../../../../common/types/store-data/card-view-model';
 import { UnifiedResult } from '../../../../../../common/types/store-data/unified-data-interface';
 
 export const exampleUnifiedResult: UnifiedResult = {
@@ -30,7 +29,7 @@ export const exampleUnifiedResult: UnifiedResult = {
     },
 };
 
-export const exampleUnifiedRuleResult: UnifiedRuleResult = {
+export const exampleUnifiedRuleResult: CardRuleResult = {
     id: 'some-rule',
     nodes: [exampleUnifiedResult],
     description: 'sample-description',
@@ -38,7 +37,7 @@ export const exampleUnifiedRuleResult: UnifiedRuleResult = {
     guidance: [],
 };
 
-export const exampleUnifiedStatusResults: UnifiedStatusResults = {
+export const exampleUnifiedStatusResults: CardRuleResultsByStatus = {
     pass: [],
     fail: [exampleUnifiedRuleResult],
     inapplicable: [],

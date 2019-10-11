@@ -1,17 +1,80 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`WindowTitleTest render 1`] = `
+exports[`WindowTitleTest renders with actionable icons 1`] = `
 <header
   className="windowTitle"
 >
-  <div>
+  <div
+    className="titleContainer"
+  >
     <span>
-      test
+      logo
     </span>
     <h1
       className="headerText"
     >
-      Test
+      title 1
+    </h1>
+  </div>
+  <div
+    className="actionableIconsContainer"
+  >
+    <div>
+      icon1
+    </div>
+    <div>
+      icon2
+    </div>
+  </div>
+</header>
+`;
+
+exports[`WindowTitleTest renders with custom class name 1`] = `
+<header
+  className="windowTitle custom-class-name"
+>
+  <div
+    className="titleContainer"
+  >
+    <h1
+      className="headerText"
+    >
+      title 1
+    </h1>
+  </div>
+</header>
+`;
+
+exports[`WindowTitleTest renders without actionable icons 1`] = `
+<header
+  className="windowTitle"
+>
+  <div
+    className="titleContainer"
+  >
+    <span>
+      logo
+    </span>
+    <h1
+      className="headerText"
+    >
+      title 1
+    </h1>
+  </div>
+</header>
+`;
+
+exports[`WindowTitleTest renders without children & actionable icon 1`] = `
+<header
+  className="windowTitle"
+>
+  <div
+    className="titleContainer"
+  >
+    <h1
+      className="headerText"
+    >
+      title 1
     </h1>
   </div>
 </header>
