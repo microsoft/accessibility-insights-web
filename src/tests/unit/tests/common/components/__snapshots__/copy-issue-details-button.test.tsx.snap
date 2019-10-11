@@ -2,6 +2,17 @@
 
 exports[`CopyIssueDetailsButtonTest render 1`] = `
 <React.Fragment>
+  <Toast
+    deps={
+      Object {
+        "issueDetailsTextGenerator": Object {
+          "buildText": [Function],
+        },
+        "windowUtils": null,
+      }
+    }
+    timeoutLength={1000}
+  />
   <CopyToClipboard
     text="sample text"
   >
