@@ -12,9 +12,6 @@ describe('AutomatedChecksView', () => {
         it('the automated checks view', () => {
             const props: AutomatedChecksViewProps = {
                 deps: {
-                    deviceConnectActionCreator: null,
-                    currentWindow: null,
-                    windowStateActionCreator: null,
                     scanActionCreator: Mock.ofType(ScanActionCreator).object,
                 },
                 scanStoreData: {},
@@ -28,9 +25,6 @@ describe('AutomatedChecksView', () => {
         it('scanning spinner', () => {
             const props: AutomatedChecksViewProps = {
                 deps: {
-                    deviceConnectActionCreator: null,
-                    currentWindow: null,
-                    windowStateActionCreator: null,
                     scanActionCreator: Mock.ofType(ScanActionCreator).object,
                 },
                 scanStoreData: {
