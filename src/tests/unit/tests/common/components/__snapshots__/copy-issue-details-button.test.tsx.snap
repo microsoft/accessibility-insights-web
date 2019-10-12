@@ -15,7 +15,9 @@ exports[`CopyIssueDetailsButtonTest render 1`] = `
 exports[`CopyIssueDetailsButtonTest render after click shows toast 1`] = `
 "<CopyIssueDetailsButton deps={{...}} issueDetailsData={{...}} onClick={[Function: proxy]}>
   <Toast deps={{...}} timeoutLength={6000}>
-    <div role=\\"alert\\" aria-live=\\"polite\\" className=\\"ms-fadeIn100 toast\\" />
+    <div className=\\"ms-fadeIn100 toast\\">
+      Failure details copied.
+    </div>
   </Toast>
   <CustomizedDefaultButton className=\\"copy-issue-details-button\\" onClick={[Function]}>
     <DefaultButton theme={{...}} styles={[undefined]} className=\\"copy-issue-details-button\\" onClick={[Function]}>

@@ -121,9 +121,7 @@ exports[`CardKebabMenuButtonTest copies failure details and show the toast 1`] =
         </WithResponsiveMode>
       </StyledWithResponsiveMode>
     </IssueFilingDialog>
-    <Toast deps={{...}} timeoutLength={6000}>
-      <div role=\\"alert\\" aria-live=\\"polite\\" className=\\"ms-fadeIn100 toast\\" />
-    </Toast>
+    <Toast deps={{...}} timeoutLength={6000} />
   </div>
 </CardKebabMenuButton>"
 `;
@@ -330,9 +328,7 @@ exports[`CardKebabMenuButtonTest shows failure message if copy failed 1`] = `
         </WithResponsiveMode>
       </StyledWithResponsiveMode>
     </IssueFilingDialog>
-    <Toast deps={{...}} timeoutLength={6000}>
-      <div role=\\"alert\\" aria-live=\\"polite\\" className=\\"ms-fadeIn100 toast\\" />
-    </Toast>
+    <Toast deps={{...}} timeoutLength={6000} />
   </div>
 </CardKebabMenuButton>"
 `;
