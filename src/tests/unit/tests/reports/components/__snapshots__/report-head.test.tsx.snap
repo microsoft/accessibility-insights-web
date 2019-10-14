@@ -3,8 +3,7 @@
 exports[`ReportHead renders 1`] = `
 <head>
   <meta
-    content="text/html;charset=utf-8"
-    httpEquiv="Content-Type"
+    charSet="UTF-8"
   />
   <title>
     Accessibility Insights for Web

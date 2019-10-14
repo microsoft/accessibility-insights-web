@@ -1,19 +1,20 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { KeyCodeConstants } from 'common/constants/keycode-constants';
+import { EnumHelper } from 'common/enum-helper';
 import { DeviceConnectActionCreator } from 'electron/flux/action-creator/device-connect-action-creator';
 import {
     DeviceConnectPortEntry,
     DeviceConnectPortEntryProps,
 } from 'electron/views/device-connect-view/components/device-connect-port-entry';
+import { portNumberField } from 'electron/views/device-connect-view/components/device-connect-port-entry.scss';
+import { DeviceConnectState } from 'electron/views/device-connect-view/components/device-connect-state';
 import { shallow } from 'enzyme';
 import { Button } from 'office-ui-fabric-react/lib/Button';
+import { MaskedTextField } from 'office-ui-fabric-react/lib/TextField';
 import * as React from 'react';
 import { EventStubFactory } from 'tests/unit/common/event-stub-factory';
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';
-
-import { EnumHelper } from 'common/enum-helper';
-import { portNumberField } from 'electron/views/device-connect-view/components/device-connect-port-entry.scss';
-import { DeviceConnectState } from 'electron/views/device-connect-view/components/device-connect-state';
 
 describe('DeviceConnectPortEntryTest', () => {
     const testPortNumber = 111;
@@ -99,6 +100,26 @@ describe('DeviceConnectPortEntryTest', () => {
             const button = rendered.find('.button-validate-port');
 
             button.simulate('click', eventStub);
+
+            deviceConnectActionCreatorMock.verifyAll();
+        });
+
+        it('validates port through enter key', () => {
+            deviceConnectActionCreatorMock.setup(creator => creator.validatePort(testPortNumber)).verifiable(Times.once());
+
+            const props = {
+                deps: {
+                    deviceConnectActionCreator: deviceConnectActionCreatorMock.object,
+                },
+                viewState: {
+                    deviceConnectState: DeviceConnectState.Default,
+                },
+            } as DeviceConnectPortEntryProps;
+            const rendered = shallow(<DeviceConnectPortEntry {...props} />);
+            rendered.setState({ port: testPortNumber });
+            const textField = rendered.find(MaskedTextField);
+
+            textField.simulate('keydown', { keyCode: KeyCodeConstants.ENTER });
 
             deviceConnectActionCreatorMock.verifyAll();
         });

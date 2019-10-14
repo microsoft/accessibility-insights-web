@@ -118,7 +118,11 @@ describe('IssueFilingDialog', () => {
     });
 
     it('render: validate correct callbacks to ActionAndCancelButtonsComponent (file issue on click and cancel)', () => {
-        userConfigMessageCreatorMock.setup(ucmcm => ucmcm.saveIssueFilingSettings(serviceKey, selectedServiceData)).verifiable();
+        const payload = {
+            issueFilingServiceName: serviceKey,
+            issueFilingSettings: selectedServiceData,
+        };
+        userConfigMessageCreatorMock.setup(creator => creator.saveIssueFilingSettings(payload)).verifiable();
         issueFilingActionMessageCreatorMock
             .setup(creator => creator.fileIssue(eventStub as any, serviceKey, It.isValue(props.selectedIssueData)))
             .verifiable(Times.once());
@@ -136,14 +140,14 @@ describe('IssueFilingDialog', () => {
 
     it('render: validate callback (onPropertyUpdateCallback) sent to settings container when service settings are null', () => {
         const propertyStub = 'some_property';
-        const propertValueStub = 'some_value';
+        const propertyValueStub = 'some_value';
         const differentServiceKey = 'some_different_key';
 
         const testSubject = shallow(<IssueFilingDialog {...props} />);
         const issueFilingSettingsContainer = testSubject.find(IssueFilingSettingsContainer);
 
         getSettingsFromStoreDataMock.setup(mock => mock(It.isValue(issueFilingServicePropertiesMapStub))).returns(() => null);
-        issueFilingServicePropertiesMapStub[differentServiceKey] = { [propertyStub]: propertValueStub };
+        issueFilingServicePropertiesMapStub[differentServiceKey] = { [propertyStub]: propertyValueStub };
         getSettingsFromStoreDataMock
             .setup(mock => mock(It.isValue(issueFilingServicePropertiesMapStub)))
             .returns(() => issueFilingServicePropertiesMapStub[differentServiceKey]);
@@ -151,24 +155,34 @@ describe('IssueFilingDialog', () => {
             .setup(isSettingsValid => isSettingsValid(issueFilingServicePropertiesMapStub[differentServiceKey]))
             .returns(() => true);
 
-        issueFilingSettingsContainer.props().onPropertyUpdateCallback(differentServiceKey, propertyStub, propertValueStub);
+        const payload = {
+            issueFilingServiceName: differentServiceKey,
+            propertyName: propertyStub,
+            propertyValue: propertyValueStub,
+        };
+        issueFilingSettingsContainer.props().onPropertyUpdateCallback(payload);
 
         expect(testSubject.getElement()).toMatchSnapshot();
     });
 
     it('render: validate callback (onPropertyUpdateCallback) sent to settings container when service settings are not null', () => {
         const propertyStub = 'some_property';
-        const propertValueStub = 'some_value';
+        const propertyValueStub = 'some_value';
         const testSubject = shallow(<IssueFilingDialog {...props} />);
         const issueFilingSettingsContainer = testSubject.find(IssueFilingSettingsContainer);
 
-        issueFilingServicePropertiesMapStub[serviceKey][propertyStub] = propertValueStub;
+        issueFilingServicePropertiesMapStub[serviceKey][propertyStub] = propertyValueStub;
         getSettingsFromStoreDataMock
             .setup(mock => mock(It.isValue(issueFilingServicePropertiesMapStub)))
             .returns(() => issueFilingServicePropertiesMapStub[serviceKey]);
         isSettingsValidMock.setup(isSettingsValid => isSettingsValid(issueFilingServicePropertiesMapStub[serviceKey])).returns(() => true);
 
-        issueFilingSettingsContainer.props().onPropertyUpdateCallback(serviceKey, propertyStub, propertValueStub);
+        const payload = {
+            issueFilingServiceName: serviceKey,
+            propertyName: propertyStub,
+            propertyValue: propertyValueStub,
+        };
+        issueFilingSettingsContainer.props().onPropertyUpdateCallback(payload);
 
         expect(testSubject.getElement()).toMatchSnapshot();
     });
@@ -194,7 +208,10 @@ describe('IssueFilingDialog', () => {
 
         const testSubject = shallow(<IssueFilingDialog {...props} />);
         const issueFilingSettingsContainer = testSubject.find(IssueFilingSettingsContainer);
-        issueFilingSettingsContainer.props().onSelectedServiceChange(differentServiceKey);
+        const payload = {
+            issueFilingServiceName: differentServiceKey,
+        };
+        issueFilingSettingsContainer.props().onSelectedServiceChange(payload);
 
         expect(testSubject.getElement()).toMatchSnapshot();
     });

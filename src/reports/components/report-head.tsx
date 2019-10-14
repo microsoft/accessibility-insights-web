@@ -10,7 +10,7 @@ import * as reportStyles from '../automated-checks-report.styles';
 export const ReportHead = NamedFC('ReportHead', () => {
     return (
         <head>
-            <meta httpEquiv="Content-Type" content="text/html;charset=utf-8" />
+            <meta charSet="UTF-8" />
             <title>{title} automated checks result</title>
             <style dangerouslySetInnerHTML={{ __html: reportStyles.styleSheet }} />
             <style dangerouslySetInnerHTML={{ __html: bundledStyles.styleSheet }} />

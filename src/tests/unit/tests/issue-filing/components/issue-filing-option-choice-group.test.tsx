@@ -5,6 +5,7 @@ import { ChoiceGroup, IChoiceGroupOption } from 'office-ui-fabric-react/lib/Choi
 import * as React from 'react';
 import { IMock, Mock, Times } from 'typemoq';
 
+import { SetIssueFilingServicePayload } from 'background/actions/action-payloads';
 import { IssueFilingChoiceGroup, IssueFilingChoiceGroupProps } from '../../../../../issue-filing/components/issue-filing-choice-group';
 import { OnSelectedServiceChange } from '../../../../../issue-filing/components/issue-filing-settings-container';
 import { IssueFilingService } from '../../../../../issue-filing/types/issue-filing-service';
@@ -45,7 +46,11 @@ describe('IssueFilingChoiceGroupTest', () => {
             onSelectedServiceChange: onServiceChangeMock.object,
         };
 
-        onServiceChangeMock.setup(u => u(testOption.key)).verifiable(Times.once());
+        const payload: SetIssueFilingServicePayload = {
+            issueFilingServiceName: testOption.key,
+        };
+
+        onServiceChangeMock.setup(u => u(payload)).verifiable(Times.once());
 
         const wrapper = shallow(<IssueFilingChoiceGroup {...props} />);
         wrapper
