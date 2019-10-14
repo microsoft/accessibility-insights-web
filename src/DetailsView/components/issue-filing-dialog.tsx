@@ -4,6 +4,7 @@ import { cloneDeep, isEqual } from 'lodash';
 import { Dialog, DialogFooter, DialogType } from 'office-ui-fabric-react/lib/Dialog';
 import * as React from 'react';
 
+import { SaveIssueFilingSettingsPayload } from 'background/actions/action-payloads';
 import { EnvironmentInfoProvider } from '../../common/environment-info-provider';
 import { IssueFilingActionMessageCreator } from '../../common/message-creators/issue-filing-action-message-creator';
 import { UserConfigMessageCreator } from '../../common/message-creators/user-config-message-creator';
@@ -102,7 +103,11 @@ export class IssueFilingDialog extends React.Component<IssueFilingDialogProps, I
     private onPrimaryButtonClick = (ev: React.SyntheticEvent<Element, Event>) => {
         const newData = this.state.selectedIssueFilingService.getSettingsFromStoreData(this.state.issueFilingServicePropertiesMap);
         const service = this.state.selectedIssueFilingService.key;
-        this.props.deps.userConfigMessageCreator.saveIssueFilingSettings(service, newData);
+        const payload = {
+            issueFilingServiceName: service,
+            issueFilingSettings: newData,
+        };
+        this.props.deps.userConfigMessageCreator.saveIssueFilingSettings(payload);
         this.props.deps.issueFilingActionMessageCreator.fileIssue(ev, service, this.props.selectedIssueData);
         this.props.onClose(ev);
     };

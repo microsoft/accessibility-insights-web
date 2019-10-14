@@ -4,7 +4,6 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
-import { SetIssueFilingServicePayload } from 'background/actions/action-payloads';
 import { EnvironmentInfo, EnvironmentInfoProvider } from '../../../../../common/environment-info-provider';
 import { IssueFilingActionMessageCreator } from '../../../../../common/message-creators/issue-filing-action-message-creator';
 import { UserConfigMessageCreator } from '../../../../../common/message-creators/user-config-message-creator';
@@ -119,7 +118,11 @@ describe('IssueFilingDialog', () => {
     });
 
     it('render: validate correct callbacks to ActionAndCancelButtonsComponent (file issue on click and cancel)', () => {
-        userConfigMessageCreatorMock.setup(ucmcm => ucmcm.saveIssueFilingSettings(serviceKey, selectedServiceData)).verifiable();
+        const payload = {
+            issueFilingServiceName: serviceKey,
+            issueFilingSettings: selectedServiceData,
+        };
+        userConfigMessageCreatorMock.setup(creator => creator.saveIssueFilingSettings(payload)).verifiable();
         issueFilingActionMessageCreatorMock
             .setup(creator => creator.fileIssue(eventStub as any, serviceKey, It.isValue(props.selectedIssueData)))
             .verifiable(Times.once());

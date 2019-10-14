@@ -49,12 +49,7 @@ export class UserConfigMessageCreator {
         });
     };
 
-    public saveIssueFilingSettings = (issueFilingServiceName: string, issueFilingSettings: IssueFilingServiceProperties) => {
-        const payload: SaveIssueFilingSettingsPayload = {
-            issueFilingServiceName,
-            issueFilingSettings,
-        };
-
+    public saveIssueFilingSettings = (payload: SaveIssueFilingSettingsPayload) => {
         this.dispatcher.dispatchMessage({
             messageType: Messages.UserConfig.SaveIssueFilingSettings,
             payload,

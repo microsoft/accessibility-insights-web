@@ -96,7 +96,7 @@ describe('UserConfigMessageCreator', () => {
             payload,
         };
 
-        testSubject.saveIssueFilingSettings(issueFilingServiceName, issueFilingSettings);
+        testSubject.saveIssueFilingSettings(payload);
 
         dispatcherMock.verify(dispatcher => dispatcher.dispatchMessage(expectedMessage), Times.once());
     });
