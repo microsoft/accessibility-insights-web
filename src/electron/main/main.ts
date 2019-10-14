@@ -16,8 +16,10 @@ const createWindow = () => {
         height: 391,
         frame: os === OSType.Mac ? true : false,
     });
-    mainWindow.setMenuBarVisibility(false);
-    mainWindow.setSheetOffset(22);
+    if (platformInfo.isMac()) {
+        // We need this so that if there are any system dialog, they will not be placed on top of the title bar.
+        mainWindow.setSheetOffset(22);
+    }
 
     mainWindow
         .loadFile(path.resolve(__dirname, '../electron/views/index.html'))
