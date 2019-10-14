@@ -58,7 +58,6 @@ describe('CopyIssueDetailsButtonTest', () => {
 
         expect(toast.state().toastVisible).toBe(true);
         expect(toast.state().content).toBe('Failure details copied.');
-        expect(result.debug()).toMatchSnapshot();
 
         verifyMocks();
     });
