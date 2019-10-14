@@ -19,7 +19,6 @@ import { IMock, Mock, MockBehavior, Times } from 'typemoq';
 describe('DeviceConnectPortEntryTest', () => {
     const testPortNumber = 111;
     const eventStub = new EventStubFactory().createMouseClickEvent() as React.MouseEvent<Button>;
-    const enterEventStub = new EventStubFactory().createKeypressEvent() as React.KeyboardEvent<HTMLInputElement>;
 
     let deviceConnectActionCreatorMock: IMock<DeviceConnectActionCreator>;
 
@@ -120,7 +119,7 @@ describe('DeviceConnectPortEntryTest', () => {
             rendered.setState({ port: testPortNumber });
             const textField = rendered.find(MaskedTextField);
 
-            textField.simulate('keydown', { keyCode: KeyCodeConstants.ENTER }, enterEventStub);
+            textField.simulate('keydown', { keyCode: KeyCodeConstants.ENTER });
 
             deviceConnectActionCreatorMock.verifyAll();
         });
