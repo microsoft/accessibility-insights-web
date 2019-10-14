@@ -89,17 +89,24 @@ export function buildViewElement(
     return viewElement as ViewElementData;
 }
 
-export function buildRuleInformation(ruleId: string): RuleInformation {
+export function buildRuleInformation(ruleId: string, includeResults: boolean = true): RuleInformation {
     return {
         ruleId: ruleId,
         ruleDescription: 'This describes ' + ruleId,
         getUnifiedResolutionDelegate: r => {
-            expect('abc').toBe('This line should never execute');
+            expect('getUnifiedResolution').toBe('This code should never execute');
             return null;
         },
         getUnifiedResolution: r => {
             const summary: string = 'How to fix ' + ruleId;
             return ({ howtoFixSummary: summary } as unknown) as UnifiedResolution;
+        },
+        includeThisResultDelegate: r => {
+            expect('includeThisResultDelegate').toBe('This code should never execute');
+            return null;
+        },
+        includeThisResult: r => {
+            return includeResults;
         },
     } as RuleInformation;
 }
