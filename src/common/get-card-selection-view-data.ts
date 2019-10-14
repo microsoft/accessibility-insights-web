@@ -7,24 +7,43 @@ import {
     RuleExpandCollapseDataDictionary,
 } from './types/store-data/card-selection-store-data';
 
-// Returns an array of result uids indicating which results should be highlighted
-export function getHighlightsFromCardSelectionStoreData(storeData: CardSelectionStoreData): string[] {
+export interface CardSelectionViewData {
+    highlightedResultUids: string[]; // page elements to highlight
+    selectedResultUids: string[]; // indicates selected cards
+    expandedRuleIds: string[];
+}
+
+export function getCardSelectionViewData(storeData: CardSelectionStoreData): CardSelectionViewData {
+    const viewData = getEmptyViewData();
+
     if (!storeData) {
-        return [];
+        return viewData;
     }
 
-    const expandedRuleIds = getRuleIdsOfExpandedRules(storeData.rules);
+    viewData.expandedRuleIds = getRuleIdsOfExpandedRules(storeData.rules);
 
-    if (expandedRuleIds.length === 0) {
-        return getAllResultUids(storeData.rules);
+    if (viewData.expandedRuleIds.length === 0) {
+        viewData.highlightedResultUids = getAllResultUids(storeData.rules);
+        return viewData;
     }
 
-    const selectedResultUids = getOnlyResultUidsFromSelectedCards(storeData.rules, expandedRuleIds);
-    if (selectedResultUids.length > 0) {
-        return selectedResultUids;
-    }
+    viewData.selectedResultUids = getOnlyResultUidsFromSelectedCards(storeData.rules, viewData.expandedRuleIds);
 
-    return getAllResultUidsFromRuleIdArray(storeData.rules, expandedRuleIds);
+    viewData.highlightedResultUids = viewData.selectedResultUids.length
+        ? viewData.selectedResultUids
+        : getAllResultUidsFromRuleIdArray(storeData.rules, viewData.expandedRuleIds);
+
+    return viewData;
+}
+
+function getEmptyViewData(): CardSelectionViewData {
+    const viewData: CardSelectionViewData = {
+        highlightedResultUids: [],
+        selectedResultUids: [],
+        expandedRuleIds: [],
+    };
+
+    return viewData;
 }
 
 function getRuleIdsOfExpandedRules(ruleDictionary: RuleExpandCollapseDataDictionary): string[] {
