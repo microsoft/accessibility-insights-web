@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
+import { WindowFrameActionCreator } from 'electron/flux/action-creator/window-frame-action-creator';
 import { WindowStateActionCreator } from 'electron/flux/action-creator/window-state-action-creator';
 import {
     DeviceConnectFooter,
@@ -16,6 +17,7 @@ import { IMock, Mock, Times } from 'typemoq';
 
 describe('DeviceConnectFooterTest', () => {
     let windowStateActionCreatorMock: IMock<WindowStateActionCreator>;
+    let windowFrameActionCreatorMock: IMock<WindowFrameActionCreator>;
     let deps: DeviceConnectFooterDeps;
 
     const onClickMock = Mock.ofInstance(() => {});
@@ -23,7 +25,11 @@ describe('DeviceConnectFooterTest', () => {
 
     beforeEach(() => {
         windowStateActionCreatorMock = Mock.ofType(WindowStateActionCreator);
-        deps = { windowStateActionCreator: windowStateActionCreatorMock.object };
+        windowFrameActionCreatorMock = Mock.ofType(WindowFrameActionCreator);
+        deps = {
+            windowStateActionCreator: windowStateActionCreatorMock.object,
+            windowFrameActionCreator: windowFrameActionCreatorMock.object,
+        };
     });
 
     test('render', () => {
@@ -53,18 +59,20 @@ describe('DeviceConnectFooterTest', () => {
         onClickMock.verify(onClick => onClick(), Times.once());
     });
 
-    test('start testing changes route', () => {
+    test('start testing changes route & maximizes window', () => {
         windowStateActionCreatorMock.setup(w => w.setRoute({ routeId: 'resultsView' })).verifiable(Times.once());
-
+        windowFrameActionCreatorMock.setup(w => w.maximize()).verifiable(Times.once());
         const props: DeviceConnectFooterProps = {
             cancelClick: onClickMock.object,
             canStartTesting: true,
             deps,
         };
-
         const rendered = shallow(<DeviceConnectFooter {...props} />);
         const button = rendered.find(`.${footerButtonStart}`);
+
         button.simulate('click', eventStub);
+
         windowStateActionCreatorMock.verifyAll();
+        windowFrameActionCreatorMock.verifyAll();
     });
 });

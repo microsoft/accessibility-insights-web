@@ -8,6 +8,7 @@ import { WindowStateActionCreator } from 'electron/flux/action-creator/window-st
 import { DeviceStoreData } from 'electron/flux/types/device-store-data';
 import { ScanStatus } from 'electron/flux/types/scan-status';
 import { ScanStoreData } from 'electron/flux/types/scan-store-data';
+import { WindowStateStoreData } from 'electron/flux/types/window-state-store-data';
 import { ScanningSpinner } from 'electron/views/automated-checks/components/scanning-spinner';
 import { DeviceDisconnectedPopup } from 'electron/views/device-disconnected-popup/device-disconnected-popup';
 import { CommandBar, CommandBarDeps } from './components/command-bar';
@@ -23,6 +24,7 @@ export type AutomatedChecksViewProps = {
     deps: AutomatedChecksViewDeps;
     scanStoreData: ScanStoreData;
     deviceStoreData: DeviceStoreData;
+    windowStateStoreData: WindowStateStoreData;
 };
 
 export class AutomatedChecksView extends React.Component<AutomatedChecksViewProps> {
@@ -33,7 +35,7 @@ export class AutomatedChecksView extends React.Component<AutomatedChecksViewProp
     public render(): JSX.Element {
         return (
             <>
-                <TitleBar deps={this.props.deps}></TitleBar>
+                <TitleBar deps={this.props.deps} windowStateStoreData={this.props.windowStateStoreData}></TitleBar>
                 <CommandBar deps={this.props.deps} />
                 <HeaderSection />
                 {this.renderScanning()}
