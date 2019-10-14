@@ -102,24 +102,29 @@ export class IssueFilingDialog extends React.Component<IssueFilingDialogProps, I
     private onPrimaryButtonClick = (ev: React.SyntheticEvent<Element, Event>) => {
         const newData = this.state.selectedIssueFilingService.getSettingsFromStoreData(this.state.issueFilingServicePropertiesMap);
         const service = this.state.selectedIssueFilingService.key;
-        this.props.deps.userConfigMessageCreator.saveIssueFilingSettings(service, newData);
+        const payload = {
+            issueFilingServiceName: service,
+            issueFilingSettings: newData,
+        };
+        this.props.deps.userConfigMessageCreator.saveIssueFilingSettings(payload);
         this.props.deps.issueFilingActionMessageCreator.fileIssue(ev, service, this.props.selectedIssueData);
         this.props.onClose(ev);
     };
 
     private onSelectedServiceChange: OnSelectedServiceChange = service => {
         this.setState(() => ({
-            selectedIssueFilingService: this.props.deps.issueFilingServiceProvider.forKey(service),
+            selectedIssueFilingService: this.props.deps.issueFilingServiceProvider.forKey(service.issueFilingServiceName),
         }));
     };
 
-    private onPropertyUpdateCallback: OnPropertyUpdateCallback = (service, propertyName, propertyValue) => {
+    private onPropertyUpdateCallback: OnPropertyUpdateCallback = payload => {
+        const { issueFilingServiceName, propertyName, propertyValue } = payload;
         const selectedServiceData =
             this.state.selectedIssueFilingService.getSettingsFromStoreData(this.state.issueFilingServicePropertiesMap) || {};
         selectedServiceData[propertyName] = propertyValue;
         const newIssueFilingServicePropertiesMap = {
             ...this.state.issueFilingServicePropertiesMap,
-            [service]: selectedServiceData,
+            [issueFilingServiceName]: selectedServiceData,
         };
         this.setState(() => ({
             issueFilingServicePropertiesMap: newIssueFilingServicePropertiesMap,

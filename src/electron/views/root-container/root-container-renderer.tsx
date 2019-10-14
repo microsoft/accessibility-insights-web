@@ -12,6 +12,8 @@ export class RootContainerRenderer {
     ) {}
 
     public render(): void {
+        this.props.deps.windowStateActionCreator.setRoute({ routeId: 'deviceConnectView' });
+
         const rootContainer = this.dom.querySelector('#root-container');
         this.renderer(<RootContainer {...this.props} />, rootContainer);
     }

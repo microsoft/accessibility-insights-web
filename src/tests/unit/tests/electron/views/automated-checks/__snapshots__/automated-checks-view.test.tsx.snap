@@ -1,35 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`AutomatedChecksView renders scanning spinner: automated checks view 1`] = `
-<React.Fragment>
-  <TitleBar
-    deps={
-      Object {
-        "scanActionCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "scanActions": undefined,
-        },
-      }
-    }
-  />
-  <CommandBar
-    deps={
-      Object {
-        "scanActionCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "scanActions": undefined,
-        },
-      }
-    }
-  />
-  <HeaderSection />
-  <ScanningSpinner
-    isScanning={true}
-  />
-</React.Fragment>
-`;
-
-exports[`AutomatedChecksView renders the automated checks view: automated checks view 1`] = `
+exports[`AutomatedChecksView renders device disconnected 1`] = `
 <React.Fragment>
   <TitleBar
     deps={
@@ -54,6 +25,115 @@ exports[`AutomatedChecksView renders the automated checks view: automated checks
   <HeaderSection />
   <ScanningSpinner
     isScanning={false}
+  />
+  <DeviceDisconnectedPopup
+    deviceName="TEST DEVICE"
+    onConnectNewDevice={[Function]}
+    onRescanDevice={[Function]}
+  />
+</React.Fragment>
+`;
+
+exports[`AutomatedChecksView renders renders the automated checks view 1`] = `
+<React.Fragment>
+  <TitleBar
+    deps={
+      Object {
+        "currentWindow": null,
+        "deviceConnectActionCreator": null,
+        "scanActionCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "scanActions": undefined,
+        },
+        "windowFrameActionCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "windowFrameActions": undefined,
+        },
+        "windowStateActionCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "windowFrameActionCreator": undefined,
+          "windowStateActions": undefined,
+        },
+      }
+    }
+    windowStateStoreData="window state store data"
+  />
+  <CommandBar
+    deps={
+      Object {
+        "currentWindow": null,
+        "deviceConnectActionCreator": null,
+        "scanActionCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "scanActions": undefined,
+        },
+        "windowFrameActionCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "windowFrameActions": undefined,
+        },
+        "windowStateActionCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "windowFrameActionCreator": undefined,
+          "windowStateActions": undefined,
+        },
+      }
+    }
+  />
+  <HeaderSection />
+  <ScanningSpinner
+    isScanning={false}
+  />
+</React.Fragment>
+`;
+
+exports[`AutomatedChecksView renders scanning spinner 1`] = `
+<React.Fragment>
+  <TitleBar
+    deps={
+      Object {
+        "currentWindow": null,
+        "deviceConnectActionCreator": null,
+        "scanActionCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "scanActions": undefined,
+        },
+        "windowFrameActionCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "windowFrameActions": undefined,
+        },
+        "windowStateActionCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "windowFrameActionCreator": undefined,
+          "windowStateActions": undefined,
+        },
+      }
+    }
+    windowStateStoreData="window state store data"
+  />
+  <CommandBar
+    deps={
+      Object {
+        "currentWindow": null,
+        "deviceConnectActionCreator": null,
+        "scanActionCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "scanActions": undefined,
+        },
+        "windowFrameActionCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "windowFrameActions": undefined,
+        },
+        "windowStateActionCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "windowFrameActionCreator": undefined,
+          "windowStateActions": undefined,
+        },
+      }
+    }
+  />
+  <HeaderSection />
+  <ScanningSpinner
+    isScanning={true}
   />
 </React.Fragment>
 `;

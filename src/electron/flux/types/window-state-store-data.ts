@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 
 export type ViewRoutes = 'deviceConnectView' | 'resultsView';
-export type WindowStates = 'restoredOrMaximized' | 'minimized';
+export type WindowStates = 'customSize' | 'maximized' | 'minimized';
 
 export interface WindowStateStoreData {
     routeId: ViewRoutes;

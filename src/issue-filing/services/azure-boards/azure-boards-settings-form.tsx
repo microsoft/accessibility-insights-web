@@ -22,12 +22,22 @@ export const AzureBoardsSettingsForm = NamedFC<SettingsFormProps<AzureBoardsIssu
 
     const onProjectURLChange = (event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>, newValue?: string) => {
         const propertyName: keyof AzureBoardsIssueFilingSettings = 'projectURL';
-        props.onPropertyUpdateCallback(AzureBoardsIssueFilingService.key, propertyName, newValue);
+        const payload = {
+            issueFilingServiceName: AzureBoardsIssueFilingService.key,
+            propertyName,
+            propertyValue: newValue,
+        };
+        props.onPropertyUpdateCallback(payload);
     };
 
     const onIssueDetailLocationChange = (event: React.FormEvent<HTMLElement>, newValue: IDropdownOption) => {
         const propertyName: keyof AzureBoardsIssueFilingSettings = 'issueDetailsField';
-        props.onPropertyUpdateCallback(AzureBoardsIssueFilingService.key, propertyName, newValue.key as AzureBoardsIssueDetailField);
+        const payload = {
+            issueFilingServiceName: AzureBoardsIssueFilingService.key,
+            propertyName,
+            propertyValue: newValue.key as AzureBoardsIssueDetailField,
+        };
+        props.onPropertyUpdateCallback(payload);
     };
 
     return (
