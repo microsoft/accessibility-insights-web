@@ -46,13 +46,7 @@ export class UserConfigMessageCreator {
         });
     };
 
-    public setIssueFilingServiceProperty = (issueFilingServiceName: string, propertyName: string, propertyValue: string) => {
-        const payload: SetIssueFilingServicePropertyPayload = {
-            issueFilingServiceName,
-            propertyName,
-            propertyValue,
-        };
-
+    public setIssueFilingServiceProperty = (payload: SetIssueFilingServicePropertyPayload) => {
         this.dispatcher.dispatchMessage({
             messageType: Messages.UserConfig.SetIssueFilingServiceProperty,
             payload,

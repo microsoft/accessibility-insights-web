@@ -3,8 +3,9 @@
 import { shallow } from 'enzyme';
 import { TextField } from 'office-ui-fabric-react/lib/TextField';
 import * as React from 'react';
-import { IMock, Mock, Times } from 'typemoq';
+import { IMock, It, Mock, Times } from 'typemoq';
 
+import { SetIssueFilingServicePropertyPayload } from 'background/actions/action-payloads';
 import { IssueFilingServicePropertiesMap } from '../../../../../../common/types/store-data/user-configuration-store';
 import { SettingsDeps } from '../../../../../../DetailsView/components/settings-panel/settings/settings-props';
 import { OnPropertyUpdateCallback } from '../../../../../../issue-filing/components/issue-filing-settings-container';
@@ -89,11 +90,17 @@ describe('GithubIssueFilingServiceTest', () => {
         it('onChange', () => {
             const Component = GitHubIssueFilingService.settingsForm;
             const wrapper = shallow(<Component {...props} />);
-            onPropertyUpdateCallbackMock.setup(mock => mock('gitHub', 'repository', 'new value')).verifiable(Times.once());
+            const newRepositoryValue = 'new repo';
+            const payload = {
+                issueFilingServiceName: GitHubIssueFilingService.key,
+                propertyName: 'repository',
+                propertyValue: newRepositoryValue,
+            };
+            onPropertyUpdateCallbackMock.setup(updateCallback => updateCallback(It.isValue(payload))).verifiable(Times.once());
             wrapper
                 .find(TextField)
                 .props()
-                .onChange(null, 'new value');
+                .onChange(null, newRepositoryValue);
             onPropertyUpdateCallbackMock.verifyAll();
         });
     });

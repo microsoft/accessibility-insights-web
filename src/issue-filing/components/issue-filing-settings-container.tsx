@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
+import { SetIssueFilingServicePropertyPayload } from 'background/actions/action-payloads';
 import { NamedFC } from '../../common/react/named-fc';
 import { IssueFilingServiceProperties } from '../../common/types/store-data/user-configuration-store';
 import { SettingsDeps } from '../../DetailsView/components/settings-panel/settings/settings-props';
@@ -9,7 +10,7 @@ import { IssueFilingServiceProvider } from '../issue-filing-service-provider';
 import { IssueFilingService } from '../types/issue-filing-service';
 import { IssueFilingChoiceGroup } from './issue-filing-choice-group';
 
-export type OnPropertyUpdateCallback = (bugService: string, propertyName: string, propertyValue: string) => void;
+export type OnPropertyUpdateCallback = (payload: SetIssueFilingServicePropertyPayload) => void;
 export type OnSelectedServiceChange = (service: string) => void;
 
 export interface IssueFilingSettingsContainerProps {

@@ -113,13 +113,14 @@ export class IssueFilingDialog extends React.Component<IssueFilingDialogProps, I
         }));
     };
 
-    private onPropertyUpdateCallback: OnPropertyUpdateCallback = (service, propertyName, propertyValue) => {
+    private onPropertyUpdateCallback: OnPropertyUpdateCallback = payload => {
+        const { issueFilingServiceName, propertyName, propertyValue } = payload;
         const selectedServiceData =
             this.state.selectedIssueFilingService.getSettingsFromStoreData(this.state.issueFilingServicePropertiesMap) || {};
         selectedServiceData[propertyName] = propertyValue;
         const newIssueFilingServicePropertiesMap = {
             ...this.state.issueFilingServicePropertiesMap,
-            [service]: selectedServiceData,
+            [issueFilingServiceName]: selectedServiceData,
         };
         this.setState(() => ({
             issueFilingServicePropertiesMap: newIssueFilingServicePropertiesMap,

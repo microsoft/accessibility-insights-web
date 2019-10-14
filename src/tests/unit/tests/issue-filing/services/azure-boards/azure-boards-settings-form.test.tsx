@@ -6,6 +6,7 @@ import { TextField } from 'office-ui-fabric-react/lib/TextField';
 import * as React from 'react';
 import { IMock, Mock, Times } from 'typemoq';
 
+import { SetIssueFilingServicePropertyPayload } from 'background/actions/action-payloads';
 import { SettingsDeps } from '../../../../../../DetailsView/components/settings-panel/settings/settings-props';
 import { OnPropertyUpdateCallback } from '../../../../../../issue-filing/components/issue-filing-settings-container';
 import { AzureBoardsIssueFilingService } from '../../../../../../issue-filing/services/azure-boards/azure-boards-issue-filing-service';
@@ -54,9 +55,12 @@ describe('AzureBoardsSettingsForm', () => {
             const newProjectUrl = 'a different project URL';
 
             const projectUrlProperty: keyof AzureBoardsIssueFilingSettings = 'projectURL';
-            onPropertyUpdateCallbackMock
-                .setup(mock => mock(AzureBoardsIssueFilingService.key, projectUrlProperty, newProjectUrl))
-                .verifiable(Times.once());
+            const payload = {
+                issueFilingServiceName: AzureBoardsIssueFilingService.key,
+                propertyName: projectUrlProperty,
+                propertyValue: newProjectUrl,
+            };
+            onPropertyUpdateCallbackMock.setup(updateCallback => updateCallback(payload)).verifiable(Times.once());
 
             const testSubject = shallow(<AzureBoardsSettingsForm {...props} />);
 
@@ -69,9 +73,12 @@ describe('AzureBoardsSettingsForm', () => {
             const newIssueDetailsFieldKey = 'a-different-field-key';
 
             const issueDetailsFieldProperty: keyof AzureBoardsIssueFilingSettings = 'issueDetailsField';
-            onPropertyUpdateCallbackMock
-                .setup(mock => mock(AzureBoardsIssueFilingService.key, issueDetailsFieldProperty, newIssueDetailsFieldKey))
-                .verifiable(Times.once());
+            const payload = {
+                issueFilingServiceName: AzureBoardsIssueFilingService.key,
+                propertyName: issueDetailsFieldProperty,
+                propertyValue: newIssueDetailsFieldKey,
+            };
+            onPropertyUpdateCallbackMock.setup(updateCallback => updateCallback(payload)).verifiable(Times.once());
 
             const testSubject = shallow(<AzureBoardsSettingsForm {...props} />);
 
