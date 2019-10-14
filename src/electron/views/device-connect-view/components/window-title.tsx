@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { css } from '@uifabric/utilities';
 import { WindowStateStoreData } from 'electron/flux/types/window-state-store-data';
 import { PlatformInfo } from 'electron/platform-info';
 import { isEmpty } from 'lodash';
@@ -24,13 +25,13 @@ export const WindowTitle = NamedFC<WindowTitleProps>('WindowTitle', (props: Wind
         return null;
     }
 
-    const windowtitleClassNames = [windowTitle, props.className].filter(c => c != null);
+    const windowTitleClassNames = [windowTitle, props.className];
 
     if (props.deps.platformInfo.isMac()) {
-        windowtitleClassNames.push(macWindowTitle);
+        windowTitleClassNames.push(macWindowTitle);
     }
     return (
-        <header className={windowtitleClassNames.join(' ')}>
+        <header className={css(...windowTitleClassNames)}>
             <div className={titleContainer}>
                 {props.children}
                 <h1 className={headerText}>{props.title}</h1>
