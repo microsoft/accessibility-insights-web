@@ -16,7 +16,6 @@ describe('AutomatedChecksView', () => {
             const props: AutomatedChecksViewProps = {
                 deps: {
                     deviceConnectActionCreator: null,
-                    currentWindow: null,
                     windowStateActionCreator: Mock.ofType(WindowStateActionCreator).object,
                     scanActionCreator: Mock.ofType(ScanActionCreator).object,
                     windowFrameActionCreator: Mock.ofType(WindowFrameActionCreator).object,
@@ -35,7 +34,6 @@ describe('AutomatedChecksView', () => {
             const props: AutomatedChecksViewProps = {
                 deps: {
                     deviceConnectActionCreator: null,
-                    currentWindow: null,
                     windowStateActionCreator: Mock.ofType(WindowStateActionCreator).object,
                     scanActionCreator: Mock.ofType(ScanActionCreator).object,
                     windowFrameActionCreator: Mock.ofType(WindowFrameActionCreator).object,

@@ -11,15 +11,9 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 
 describe('DeviceConnectViewContainer', () => {
-    const currentWindowStub = {
-        close: () => {
-            return;
-        },
-    } as BrowserWindow;
 
     it('renders', () => {
         const deps: DeviceConnectViewContainerDeps = {
-            currentWindow: currentWindowStub,
         } as DeviceConnectViewContainerDeps;
 
         const props: DeviceConnectViewContainerProps = {
@@ -30,6 +24,10 @@ describe('DeviceConnectViewContainer', () => {
             deviceStoreData: {
                 deviceConnectState: DeviceConnectState.Default,
             },
+            windowStateStoreData: {
+                currentWindowState: 'customSize',
+                routeId: 'deviceConnectView',
+            }
         } as DeviceConnectViewContainerProps;
 
         const wrapped = shallow(<DeviceConnectViewContainer {...props} />);

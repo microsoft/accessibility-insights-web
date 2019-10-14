@@ -47,6 +47,7 @@ import { DeviceStore } from '../flux/store/device-store';
 import { ElectronLink } from './device-connect-view/components/electron-link';
 import { sendAppInitializedTelemetryEvent } from './device-connect-view/send-app-initialized-telemetry';
 import { RootContainerRenderer } from './root-container/root-container-renderer';
+import { PlatformInfo } from 'electron/platform-info';
 
 initializeFabricIcons();
 
@@ -143,6 +144,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then((persistedDat
             storeHub,
             scanActionCreator,
             windowFrameActionCreator,
+            platformInfo: new PlatformInfo(process)
         },
     };
 

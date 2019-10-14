@@ -9,20 +9,22 @@ import * as React from 'react';
 import { NamedFC } from 'common/react/named-fc';
 import { DeviceStoreData } from '../../../flux/types/device-store-data';
 import { DeviceConnectBody, DeviceConnectBodyDeps } from './device-connect-body';
-import { WindowTitle } from './window-title';
+import { WindowTitle, WindowTitleDeps } from './window-title';
+import { WindowStateStoreData } from 'electron/flux/types/window-state-store-data';
 
-export type DeviceConnectViewContainerDeps = TelemetryPermissionDialogDeps & DeviceConnectBodyDeps;
+export type DeviceConnectViewContainerDeps = TelemetryPermissionDialogDeps & DeviceConnectBodyDeps & WindowTitleDeps;
 
 export type DeviceConnectViewContainerProps = {
     deps: DeviceConnectViewContainerDeps;
     userConfigurationStoreData: UserConfigurationStoreData;
     deviceStoreData: DeviceStoreData;
+    windowStateStoreData: WindowStateStoreData;
 };
 
 export const DeviceConnectViewContainer = NamedFC<DeviceConnectViewContainerProps>('DeviceConnectViewContainer', props => {
     return (
         <>
-            <WindowTitle title={brand}>
+            <WindowTitle title={brand} deps={props.deps} windowStateStoreData={props.windowStateStoreData}>
                 <BrandBlue />
             </WindowTitle>
             <DeviceConnectBody

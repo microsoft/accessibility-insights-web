@@ -39,8 +39,11 @@ exports[`AutomatedChecksView renders renders the automated checks view 1`] = `
   <TitleBar
     deps={
       Object {
-        "currentWindow": null,
         "deviceConnectActionCreator": null,
+        "platformInfo": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "currentProcess": undefined,
+        },
         "scanActionCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "scanActions": undefined,
@@ -48,11 +51,6 @@ exports[`AutomatedChecksView renders renders the automated checks view 1`] = `
         "windowFrameActionCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "windowFrameActions": undefined,
-        },
-        "windowStateActionCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "windowFrameActionCreator": undefined,
-          "windowStateActions": undefined,
         },
       }
     }
@@ -61,8 +59,11 @@ exports[`AutomatedChecksView renders renders the automated checks view 1`] = `
   <CommandBar
     deps={
       Object {
-        "currentWindow": null,
         "deviceConnectActionCreator": null,
+        "platformInfo": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "currentProcess": undefined,
+        },
         "scanActionCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "scanActions": undefined,
@@ -70,11 +71,6 @@ exports[`AutomatedChecksView renders renders the automated checks view 1`] = `
         "windowFrameActionCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "windowFrameActions": undefined,
-        },
-        "windowStateActionCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "windowFrameActionCreator": undefined,
-          "windowStateActions": undefined,
         },
       }
     }

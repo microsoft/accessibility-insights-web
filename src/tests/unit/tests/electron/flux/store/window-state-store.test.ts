@@ -70,9 +70,9 @@ describe('WindowStateStore', () => {
             .testListenerToNeverBeCalled(initialState, expectedState);
     });
 
-    it('changes currentWindowState from default to minimized', () => {
+    it('changes currentWindowState from default to maximized', () => {
         const payload: WindowStatePayload = {
-            currentWindowState: 'minimized',
+            currentWindowState: 'maximized',
         };
         const expectedState: WindowStateStoreData = {
             routeId: 'deviceConnectView',
