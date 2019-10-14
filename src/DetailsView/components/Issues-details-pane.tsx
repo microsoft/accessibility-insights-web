@@ -3,7 +3,7 @@
 import * as React from 'react';
 
 import { IssueDetailsTextGenerator } from 'background/issue-details-text-generator';
-import { CopyIssueDetailsButton } from '../../common/components/copy-issue-details-button';
+import { CopyIssueDetailsButton, CopyIssueDetailsButtonDeps } from '../../common/components/copy-issue-details-button';
 import { GuidanceLinks } from '../../common/components/guidance-links';
 import { GuidanceTags, GuidanceTagsDeps } from '../../common/components/guidance-tags';
 import { IssueFilingButton, IssueFilingButtonDeps } from '../../common/components/issue-filing-button';
@@ -23,6 +23,7 @@ import { IssueFilingDialog } from './issue-filing-dialog';
 export type IssuesDetailsPaneDeps = ToastDeps &
     IssueFilingButtonDeps &
     FixInstructionPanelDeps &
+    CopyIssueDetailsButtonDeps &
     GuidanceTagsDeps & {
         issueDetailsTextGenerator: IssueDetailsTextGenerator;
         detailsViewActionMessageCreator: DetailsViewActionMessageCreator;

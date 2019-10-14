@@ -1,55 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`CopyIssueDetailsButtonTest render 1`] = `
-<React.Fragment>
-  <CopyToClipboard
-    text="sample text"
-  >
-    <CustomizedDefaultButton
-      className="copy-issue-details-button"
-      onClick={[Function]}
-    >
-      <CopyIcon />
-      <div
-        className="ms-Button-label"
-      >
-        Copy failure details
-      </div>
-    </CustomizedDefaultButton>
-  </CopyToClipboard>
-</React.Fragment>
-`;
-
-exports[`CopyIssueDetailsButtonTest render after click shows toast 1`] = `
-<React.Fragment>
-  <Toast
-    deps={
-      Object {
-        "issueDetailsTextGenerator": Object {
-          "buildText": [Function],
-        },
-        "windowUtils": null,
-      }
-    }
-    onTimeout={[Function]}
-    timeoutLength={6000}
-  >
-    Failure details copied.
-  </Toast>
-  <CopyToClipboard
-    text="sample text"
-  >
-    <CustomizedDefaultButton
-      className="copy-issue-details-button"
-      onClick={[Function]}
-    >
-      <CopyIcon />
-      <div
-        className="ms-Button-label"
-      >
-        Copy failure details
-      </div>
-    </CustomizedDefaultButton>
-  </CopyToClipboard>
-</React.Fragment>
+"<Fragment>
+  <Toast deps={{...}} timeoutLength={6000} />
+  <CustomizedDefaultButton className=\\"copy-issue-details-button\\" onClick={[Function]}>
+    <CopyIcon />
+    <div className=\\"ms-Button-label\\">
+      Copy failure details
+    </div>
+  </CustomizedDefaultButton>
+</Fragment>"
 `;
