@@ -179,7 +179,6 @@ describe('CardKebabMenuButtonTest', () => {
 
         expect(toast.state().toastVisible).toBe(true);
         expect(toast.state().content).toBe('Failure details copied.');
-        expect(rendered.debug()).toMatchSnapshot();
 
         verifyMocks([actionCreatorMock, navigatorUtilsMock, textGeneratorMock, windowUtilsMock]);
     });
@@ -206,7 +205,6 @@ describe('CardKebabMenuButtonTest', () => {
 
         expect(toast.state().toastVisible).toBe(true);
         expect(toast.state().content).toBe('Failed to copy failure details. Please try again.');
-        expect(rendered.debug()).toMatchSnapshot();
 
         verifyMocks([actionCreatorMock, navigatorUtilsMock, textGeneratorMock, windowUtilsMock]);
     });
@@ -223,8 +221,6 @@ describe('CardKebabMenuButtonTest', () => {
         expect(rendered.state().showNeedsSettingsContent).toBe(false);
 
         getMenuItemWithKey(rendered, 'fileissue').onClick(event);
-
-        expect(rendered.debug()).toMatchSnapshot();
 
         expect(rendered.state().showNeedsSettingsContent).toBe(false);
 
@@ -246,8 +242,6 @@ describe('CardKebabMenuButtonTest', () => {
         expect(rendered.state().showNeedsSettingsContent).toBe(false);
 
         getMenuItemWithKey(rendered, 'fileissue').onClick(event);
-
-        expect(rendered.debug()).toMatchSnapshot();
 
         expect(rendered.state().showNeedsSettingsContent).toBe(true);
 
