@@ -4,9 +4,9 @@ export const addEventListenerForCollapsibleSection = (doc: Document) => {
     const collapsibles = doc.getElementsByClassName('collapsible-container');
 
     for (let index = 0; index < collapsibles.length; index++) {
-        const self = collapsibles.item(index);
-        self.addEventListener('click', () => {
-            const button = self.querySelector('.collapsible-control');
+        const container = collapsibles.item(index);
+        const button = container.querySelector('.collapsible-control');
+        button.addEventListener('click', () => {
             const content = button.parentElement.nextElementSibling as HTMLElement;
             const wasExpandedBefore = button.getAttribute('aria-expanded') === 'false' ? false : true;
             const isExpandedAfter = !wasExpandedBefore;
@@ -15,9 +15,9 @@ export const addEventListenerForCollapsibleSection = (doc: Document) => {
             content.setAttribute('aria-hidden', !isExpandedAfter + '');
 
             if (isExpandedAfter) {
-                self.classList.remove('collapsed');
+                container.classList.remove('collapsed');
             } else {
-                self.classList.add('collapsed');
+                container.classList.add('collapsed');
             }
         });
     }
