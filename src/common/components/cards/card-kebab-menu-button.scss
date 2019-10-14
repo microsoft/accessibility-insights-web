@@ -42,8 +42,8 @@ button.kebab-menu-button {
     border-radius: 2px;
     background: transparent;
 
-    svg > circle {
-        stroke: $neutral-100;
+    svg {
+        stroke: $primary-text;
     }
 
     &:hover {
