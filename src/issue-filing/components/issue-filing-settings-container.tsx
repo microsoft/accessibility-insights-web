@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { SetIssueFilingServicePayload, SetIssueFilingServicePropertyPayload } from 'background/actions/action-payloads';
 import * as React from 'react';
 
-import { SetIssueFilingServicePropertyPayload } from 'background/actions/action-payloads';
 import { NamedFC } from '../../common/react/named-fc';
 import { IssueFilingServiceProperties } from '../../common/types/store-data/user-configuration-store';
 import { SettingsDeps } from '../../DetailsView/components/settings-panel/settings/settings-props';
@@ -11,7 +11,7 @@ import { IssueFilingService } from '../types/issue-filing-service';
 import { IssueFilingChoiceGroup } from './issue-filing-choice-group';
 
 export type OnPropertyUpdateCallback = (payload: SetIssueFilingServicePropertyPayload) => void;
-export type OnSelectedServiceChange = (service: string) => void;
+export type OnSelectedServiceChange = (payload: SetIssueFilingServicePayload) => void;
 
 export interface IssueFilingSettingsContainerProps {
     deps: IssueFilingSettingsContainerDeps;

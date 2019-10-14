@@ -109,7 +109,7 @@ export class IssueFilingDialog extends React.Component<IssueFilingDialogProps, I
 
     private onSelectedServiceChange: OnSelectedServiceChange = service => {
         this.setState(() => ({
-            selectedIssueFilingService: this.props.deps.issueFilingServiceProvider.forKey(service),
+            selectedIssueFilingService: this.props.deps.issueFilingServiceProvider.forKey(service.issueFilingServiceName),
         }));
     };
 

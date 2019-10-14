@@ -4,6 +4,7 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
+import { SetIssueFilingServicePayload } from 'background/actions/action-payloads';
 import { EnvironmentInfo, EnvironmentInfoProvider } from '../../../../../common/environment-info-provider';
 import { IssueFilingActionMessageCreator } from '../../../../../common/message-creators/issue-filing-action-message-creator';
 import { UserConfigMessageCreator } from '../../../../../common/message-creators/user-config-message-creator';
@@ -204,7 +205,10 @@ describe('IssueFilingDialog', () => {
 
         const testSubject = shallow(<IssueFilingDialog {...props} />);
         const issueFilingSettingsContainer = testSubject.find(IssueFilingSettingsContainer);
-        issueFilingSettingsContainer.props().onSelectedServiceChange(differentServiceKey);
+        const payload = {
+            issueFilingServiceName: differentServiceKey,
+        };
+        issueFilingSettingsContainer.props().onSelectedServiceChange(payload);
 
         expect(testSubject.getElement()).toMatchSnapshot();
     });

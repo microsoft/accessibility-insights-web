@@ -63,7 +63,7 @@ describe('UserConfigMessageCreator', () => {
             payload,
         };
 
-        testSubject.setIssueFilingService(issueFilingServiceName);
+        testSubject.setIssueFilingService(payload);
 
         dispatcherMock.verify(dispatcher => dispatcher.dispatchMessage(expectedMessage), Times.once());
     });
