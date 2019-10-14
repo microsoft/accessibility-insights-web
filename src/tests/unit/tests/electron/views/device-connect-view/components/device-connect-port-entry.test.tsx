@@ -9,15 +9,18 @@ import { shallow } from 'enzyme';
 import { Button } from 'office-ui-fabric-react/lib/Button';
 import * as React from 'react';
 import { EventStubFactory } from 'tests/unit/common/event-stub-factory';
-import { IMock, Mock, MockBehavior, Times } from 'typemoq';
+import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
+import { KeyCodeConstants } from 'common/constants/keycode-constants';
 import { EnumHelper } from 'common/enum-helper';
 import { portNumberField } from 'electron/views/device-connect-view/components/device-connect-port-entry.scss';
 import { DeviceConnectState } from 'electron/views/device-connect-view/components/device-connect-state';
+import { MaskedTextField } from 'office-ui-fabric-react/lib/TextField';
 
 describe('DeviceConnectPortEntryTest', () => {
     const testPortNumber = 111;
     const eventStub = new EventStubFactory().createMouseClickEvent() as React.MouseEvent<Button>;
+    const enterEventStub = new EventStubFactory().createKeypressEvent() as React.KeyboardEvent<HTMLInputElement>;
 
     let deviceConnectActionCreatorMock: IMock<DeviceConnectActionCreator>;
 
@@ -99,6 +102,26 @@ describe('DeviceConnectPortEntryTest', () => {
             const button = rendered.find('.button-validate-port');
 
             button.simulate('click', eventStub);
+
+            deviceConnectActionCreatorMock.verifyAll();
+        });
+
+        it('validates port through enter key', () => {
+            deviceConnectActionCreatorMock.setup(creator => creator.validatePort(testPortNumber)).verifiable(Times.once());
+
+            const props = {
+                deps: {
+                    deviceConnectActionCreator: deviceConnectActionCreatorMock.object,
+                },
+                viewState: {
+                    deviceConnectState: DeviceConnectState.Default,
+                },
+            } as DeviceConnectPortEntryProps;
+            const rendered = shallow(<DeviceConnectPortEntry {...props} />);
+            rendered.setState({ port: testPortNumber });
+            const textField = rendered.find(MaskedTextField);
+
+            textField.simulate('keydown', { keyCode: KeyCodeConstants.ENTER }, enterEventStub);
 
             deviceConnectActionCreatorMock.verifyAll();
         });
