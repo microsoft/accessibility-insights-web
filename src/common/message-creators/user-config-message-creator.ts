@@ -8,7 +8,6 @@ import {
     SetTelemetryStatePayload,
 } from 'background/actions/action-payloads';
 import { Messages } from '../messages';
-import { IssueFilingServiceProperties } from '../types/store-data/user-configuration-store';
 import { ActionMessageDispatcher } from './action-message-dispatcher';
 
 export class UserConfigMessageCreator {

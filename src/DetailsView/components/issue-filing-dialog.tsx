@@ -4,7 +4,6 @@ import { cloneDeep, isEqual } from 'lodash';
 import { Dialog, DialogFooter, DialogType } from 'office-ui-fabric-react/lib/Dialog';
 import * as React from 'react';
 
-import { SaveIssueFilingSettingsPayload } from 'background/actions/action-payloads';
 import { EnvironmentInfoProvider } from '../../common/environment-info-provider';
 import { IssueFilingActionMessageCreator } from '../../common/message-creators/issue-filing-action-message-creator';
 import { UserConfigMessageCreator } from '../../common/message-creators/user-config-message-creator';

@@ -5,7 +5,6 @@ import { TextField } from 'office-ui-fabric-react/lib/TextField';
 import * as React from 'react';
 import { IMock, It, Mock, Times } from 'typemoq';
 
-import { SetIssueFilingServicePropertyPayload } from 'background/actions/action-payloads';
 import { IssueFilingServicePropertiesMap } from '../../../../../../common/types/store-data/user-configuration-store';
 import { SettingsDeps } from '../../../../../../DetailsView/components/settings-panel/settings/settings-props';
 import { OnPropertyUpdateCallback } from '../../../../../../issue-filing/components/issue-filing-settings-container';
