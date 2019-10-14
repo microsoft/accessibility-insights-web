@@ -101,9 +101,11 @@ describe('AutomatedChecksView', () => {
 
             const wrapped = shallow(<AutomatedChecksView {...props} />);
 
+            scanActionCreatorMock.reset(); // this mock is used on componentDidMount, which is not in the scope of this unit test
+
             wrapped.find(DeviceDisconnectedPopup).prop('onRescanDevice')();
 
-            scanActionCreatorMock.verify(creator => creator.scan(port), Times.exactly(2));
+            scanActionCreatorMock.verify(creator => creator.scan(port), Times.once());
         });
 
         it('onConnectNewDevice', () => {
