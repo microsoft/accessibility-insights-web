@@ -38,6 +38,10 @@ button.kebab-menu-button {
     border-radius: 2px;
     background: transparent;
 
+    svg {
+        stroke: $primary-text;
+    }
+
     &:hover {
         background-color: $neutral-alpha-4;
     }
