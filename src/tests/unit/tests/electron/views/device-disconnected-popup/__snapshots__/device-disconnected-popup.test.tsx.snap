@@ -30,7 +30,9 @@ exports[`DeviceDisconnectedPopup renders 1`] = `
   <div>
     <p>
       Uh-oh! It seems the 
-      test device name
+      <strong>
+        test device name
+      </strong>
        device has disconnected before the snapshot completed its analysis.
     </p>
     <p>

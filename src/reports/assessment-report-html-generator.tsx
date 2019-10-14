@@ -50,6 +50,7 @@ export class AssessmentReportHtmlGenerator {
         const reportElement = (
             <React.Fragment>
                 <head>
+                    <meta charSet="UTF-8" />
                     <title>Assessment report</title>
                     <style dangerouslySetInnerHTML={{ __html: reportStyles.styleSheet }} />
                     <style dangerouslySetInnerHTML={{ __html: bundledStyles.styleSheet }} />
@@ -69,6 +70,6 @@ export class AssessmentReportHtmlGenerator {
 
         const reportBody = this.renderer.renderToStaticMarkup(reportElement);
 
-        return `<html lang="en">${reportBody}</html>`;
+        return `<!DOCTYPE html><html lang="en">${reportBody}</html>`;
     }
 }

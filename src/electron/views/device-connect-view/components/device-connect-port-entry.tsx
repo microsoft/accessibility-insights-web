@@ -4,6 +4,7 @@ import { DefaultButton, PrimaryButton } from 'office-ui-fabric-react/lib/Button'
 import { MaskedTextField } from 'office-ui-fabric-react/lib/TextField';
 import * as React from 'react';
 
+import { KeyCodeConstants } from 'common/constants/keycode-constants';
 import { DeviceConnectActionCreator } from '../../../flux/action-creator/device-connect-action-creator';
 import { deviceConnectPortEntry, portNumberField } from './device-connect-port-entry.scss';
 import { DeviceConnectState } from './device-connect-state';
@@ -42,6 +43,7 @@ export class DeviceConnectPortEntry extends React.Component<DeviceConnectPortEnt
                     className={portNumberField}
                     maskChar=""
                     mask="99999"
+                    onKeyDown={this.onEnterKey}
                 />
                 {this.renderValidationPortButton()}
             </div>
@@ -71,8 +73,14 @@ export class DeviceConnectPortEntry extends React.Component<DeviceConnectPortEnt
         this.setState({ port: newValue });
     };
 
-    private onValidateClick = (event: React.MouseEvent<HTMLButtonElement>): void => {
+    private onValidateClick = (): void => {
         const port = parseInt(this.state.port, 10);
         this.props.deps.deviceConnectActionCreator.validatePort(port);
+    };
+
+    private onEnterKey = (event: React.KeyboardEvent<HTMLInputElement>): void => {
+        if (event.keyCode === KeyCodeConstants.ENTER) {
+            this.onValidateClick();
+        }
     };
 }

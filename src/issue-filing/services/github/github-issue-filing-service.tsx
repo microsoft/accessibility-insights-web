@@ -27,7 +27,12 @@ function isSettingsValid(data: GitHubIssueFilingSettings): boolean {
 const settingsForm = NamedFC<SettingsFormProps<GitHubIssueFilingSettings>>('IssueFilingSettings', props => {
     const onGitHubRepositoryChange = (event: React.FormEvent<HTMLInputElement | HTMLTextAreaElement>, newValue?: string) => {
         const propertyName: keyof GitHubIssueFilingSettings = 'repository';
-        props.onPropertyUpdateCallback(GitHubIssueFilingServiceKey, propertyName, newValue);
+        const payload = {
+            issueFilingServiceName: GitHubIssueFilingServiceKey,
+            propertyName,
+            propertyValue: newValue,
+        };
+        props.onPropertyUpdateCallback(payload);
     };
 
     return (
