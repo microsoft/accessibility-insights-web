@@ -49,8 +49,8 @@ export const BrandBlue = NamedFC('BrandBlue', () => (
             </g>
             <g filter="url(#filter0_d)">
                 <path
-                    fill-rule="evenodd"
-                    clip-rule="evenodd"
+                    fillRule="evenodd"
+                    clipRule="evenodd"
                     d="M34.0759 26.9786C39.5979 26.9708 44.0681 22.488 44.0603 16.966C44.0525 11.444 39.5697 6.97389 34.0477 6.98168C28.5258 6.98947 24.0556 11.4722 24.0634 16.9942C24.0665 19.2178 24.7953 21.2709 26.0254 22.9297L23.5401 25.423C23.0339 25.438 22.5322 25.6392 22.1465 26.0261L17.2291 30.9595C16.5257 31.6651 16.5275 32.8074 17.2332 33.5107L17.588 33.8644C18.2936 34.5678 19.4358 34.5659 20.1392 33.8603L25.0567 28.9269C25.4427 28.5397 25.6422 28.0369 25.6553 27.5303L28.1403 25.0373C29.8016 26.2603 31.8547 26.9817 34.0759 26.9786ZM34.0356 23.5423C37.66 23.5569 40.61 20.6306 40.6246 17.0063C40.6392 13.3819 37.713 10.4319 34.0886 10.4173C30.4642 10.4027 27.5142 13.3289 27.4996 16.9533C27.485 20.5777 30.4112 23.5276 34.0356 23.5423Z"
                     fill="white"
                 />
@@ -64,9 +64,9 @@ export const BrandBlue = NamedFC('BrandBlue', () => (
                 width="28.9702"
                 height="29.0217"
                 filterUnits="userSpaceOnUse"
-                color-interpolation-filters="sRGB"
+                colorInterpolationFilters="sRGB"
             >
-                <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                <feFlood floodOpacity="0" result="BackgroundImageFix" />
                 <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" />
                 <feOffset dy="0.725705" />
                 <feGaussianBlur stdDeviation="0.40317" />
@@ -75,16 +75,16 @@ export const BrandBlue = NamedFC('BrandBlue', () => (
                 <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape" />
             </filter>
             <linearGradient id="paint0_linear" x1="14.3166" y1="16.8744" x2="5.92409" y2="8.23504" gradientUnits="userSpaceOnUse">
-                <stop stop-color="#073A5F" stop-opacity="0.3" />
-                <stop offset="1" stop-color="#CFEBFF" stop-opacity="0" />
+                <stop stopColor="#073A5F" stopOpacity="0.3" />
+                <stop offset="1" stopColor="#CFEBFF" stopOpacity="0" />
             </linearGradient>
             <linearGradient id="paint1_linear" x1="14.3166" y1="16.8744" x2="4.4082" y2="6.85716" gradientUnits="userSpaceOnUse">
-                <stop stop-color="#00070C" stop-opacity="0.29" />
-                <stop offset="1" stop-color="#004880" stop-opacity="0" />
+                <stop stopColor="#00070C" stopOpacity="0.29" />
+                <stop offset="1" stopColor="#004880" stopOpacity="0" />
             </linearGradient>
             <linearGradient id="paint2_linear" x1="11.3179" y1="20.1024" x2="11.2867" y2="7.1103" gradientUnits="userSpaceOnUse">
-                <stop stop-color="#00070C" stop-opacity="0.29" />
-                <stop offset="1" stop-color="#003064" stop-opacity="0" />
+                <stop stopColor="#00070C" stopOpacity="0.29" />
+                <stop offset="1" stopColor="#003064" stopOpacity="0" />
             </linearGradient>
         </defs>
     </svg>
