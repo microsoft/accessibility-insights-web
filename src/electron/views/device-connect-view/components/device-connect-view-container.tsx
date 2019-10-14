@@ -7,10 +7,10 @@ import { BrandBlue } from 'icons/brand/blue/brand-blue';
 import * as React from 'react';
 
 import { NamedFC } from 'common/react/named-fc';
+import { WindowStateStoreData } from 'electron/flux/types/window-state-store-data';
 import { DeviceStoreData } from '../../../flux/types/device-store-data';
 import { DeviceConnectBody, DeviceConnectBodyDeps } from './device-connect-body';
 import { WindowTitle, WindowTitleDeps } from './window-title';
-import { WindowStateStoreData } from 'electron/flux/types/window-state-store-data';
 
 export type DeviceConnectViewContainerDeps = TelemetryPermissionDialogDeps & DeviceConnectBodyDeps & WindowTitleDeps;
 

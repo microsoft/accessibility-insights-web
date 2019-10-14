@@ -14,13 +14,13 @@
     .title-container {
         display: flex;
         align-items: center;
-        
+
         > * {
             padding-left: 10px;
         }
     }
 
-    &.mac-window-title{
+    &.mac-window-title {
         height: 22px;
 
         .title-container {

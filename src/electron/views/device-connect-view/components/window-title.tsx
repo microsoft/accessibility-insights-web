@@ -1,26 +1,26 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { WindowStateStoreData } from 'electron/flux/types/window-state-store-data';
+import { PlatformInfo } from 'electron/platform-info';
 import { isEmpty } from 'lodash';
 import * as React from 'react';
 import { NamedFC } from '../../../../common/react/named-fc';
-import { actionableIconsContainer, headerText, titleContainer, windowTitle, macWindowTitle } from './window-title.scss';
-import { PlatformInfo } from 'electron/platform-info';
-import { WindowStateStoreData } from 'electron/flux/types/window-state-store-data';
+import { actionableIconsContainer, headerText, macWindowTitle, titleContainer, windowTitle } from './window-title.scss';
 
 export interface WindowTitleDeps {
     platformInfo: PlatformInfo;
 }
 export interface WindowTitleProps {
-    deps: WindowTitleDeps,
+    deps: WindowTitleDeps;
     title: string;
     children?: JSX.Element;
     actionableIcons?: JSX.Element[];
     className?: string;
-    windowStateStoreData: WindowStateStoreData
+    windowStateStoreData: WindowStateStoreData;
 }
 
 export const WindowTitle = NamedFC<WindowTitleProps>('WindowTitle', (props: WindowTitleProps) => {
-    if (props.windowStateStoreData.currentWindowState == "fullScreen") {
+    if (props.windowStateStoreData.currentWindowState === 'fullScreen') {
         return null;
     }
 

@@ -1,11 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { app, BrowserWindow } from 'electron';
+import { OSType, PlatformInfo } from 'electron/platform-info';
 import * as path from 'path';
-import { PlatformInfo, OSType } from 'electron/platform-info';
 
 let mainWindow: BrowserWindow;
-let platformInfo = new PlatformInfo(process);
+const platformInfo = new PlatformInfo(process);
 const createWindow = () => {
     const os = platformInfo.getOs();
     mainWindow = new BrowserWindow({
@@ -14,7 +14,7 @@ const createWindow = () => {
         titleBarStyle: 'hidden',
         width: 600,
         height: 391,
-        frame: os == OSType.Mac ? true : false,
+        frame: os === OSType.Mac ? true : false,
     });
     mainWindow.setMenuBarVisibility(false);
     mainWindow.setSheetOffset(22);

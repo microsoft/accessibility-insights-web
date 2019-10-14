@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { BrowserWindow } from 'electron';
+
 import { DeviceConnectState } from 'electron/views/device-connect-view/components/device-connect-state';
 import {
     DeviceConnectViewContainer,
@@ -11,10 +11,8 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 
 describe('DeviceConnectViewContainer', () => {
-
     it('renders', () => {
-        const deps: DeviceConnectViewContainerDeps = {
-        } as DeviceConnectViewContainerDeps;
+        const deps: DeviceConnectViewContainerDeps = {} as DeviceConnectViewContainerDeps;
 
         const props: DeviceConnectViewContainerProps = {
             deps,
@@ -27,7 +25,7 @@ describe('DeviceConnectViewContainer', () => {
             windowStateStoreData: {
                 currentWindowState: 'customSize',
                 routeId: 'deviceConnectView',
-            }
+            },
         } as DeviceConnectViewContainerProps;
 
         const wrapped = shallow(<DeviceConnectViewContainer {...props} />);

@@ -47,14 +47,20 @@ describe(WindowFrameUpdater, () => {
         });
 
         it('handles restore when in full screen', () => {
-            browserWindowMock.setup(b => b.isFullScreen()).returns(() => true).verifiable(Times.once());
+            browserWindowMock
+                .setup(b => b.isFullScreen())
+                .returns(() => true)
+                .verifiable(Times.once());
             browserWindowMock.setup(b => b.setFullScreen(false)).verifiable(Times.once());
 
             windowFrameActions.restore.invoke(null);
         });
 
         it('handles restore when not in full screen', () => {
-            browserWindowMock.setup(b => b.isFullScreen()).returns(() => false).verifiable(Times.once());
+            browserWindowMock
+                .setup(b => b.isFullScreen())
+                .returns(() => false)
+                .verifiable(Times.once());
             browserWindowMock.setup(b => b.unmaximize()).verifiable(Times.once());
 
             windowFrameActions.restore.invoke(null);

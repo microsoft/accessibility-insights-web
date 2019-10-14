@@ -34,10 +34,10 @@ describe(WindowFrameListener, () => {
         let leaveFullScreenCallback: Function;
 
         beforeEach(() => {
-            setupVerifiableWindowEventCallback('maximize', (cb) => maximizeCallback = cb);
-            setupVerifiableWindowEventCallback('unmaximize', (cb) => unmaximizeCallback = cb);
-            setupVerifiableWindowEventCallback('enter-full-screen', (cb) => enterFullScreenCallback = cb);
-            setupVerifiableWindowEventCallback('leave-full-screen', (cb) => leaveFullScreenCallback = cb);
+            setupVerifiableWindowEventCallback('maximize', cb => (maximizeCallback = cb));
+            setupVerifiableWindowEventCallback('unmaximize', cb => (unmaximizeCallback = cb));
+            setupVerifiableWindowEventCallback('enter-full-screen', cb => (enterFullScreenCallback = cb));
+            setupVerifiableWindowEventCallback('leave-full-screen', cb => (leaveFullScreenCallback = cb));
 
             testSubject.initialize();
         });
@@ -74,14 +74,13 @@ describe(WindowFrameListener, () => {
             leaveFullScreenCallback();
         });
 
-
-        function setupVerifiableWindowEventCallback(eventName: string, callback: (eventCallback: Function) => void) {
+        function setupVerifiableWindowEventCallback(eventName: string, callback: (eventCallback: Function) => void): void {
             browserWindowMock
                 .setup(b => b.on(eventName as any, It.isAny()))
                 .callback((event, cb) => {
                     callback(cb);
-                }).verifiable(Times.once());
-
+                })
+                .verifiable(Times.once());
         }
     });
 });

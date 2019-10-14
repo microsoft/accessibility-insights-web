@@ -1,11 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+
+import { WindowStateStoreData } from 'electron/flux/types/window-state-store-data';
+import { PlatformInfo } from 'electron/platform-info';
 import { WindowTitle, WindowTitleProps } from 'electron/views/device-connect-view/components/window-title';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import { IMock, Mock } from 'typemoq';
-import { PlatformInfo } from 'electron/platform-info';
-import { WindowStateStoreData } from 'electron/flux/types/window-state-store-data';
 
 describe('WindowTitleTest', () => {
     let platformInfoMock: IMock<PlatformInfo>;
@@ -21,8 +22,8 @@ describe('WindowTitleTest', () => {
             deps: { platformInfo: platformInfoMock.object },
             children: <span>logo</span>,
             actionableIcons: [<div key="key1">icon1</div>, <div key="key2">icon2</div>],
-            windowStateStoreData
-        }
+            windowStateStoreData,
+        };
     });
 
     it('renders without actionable icons', () => {
@@ -35,13 +36,12 @@ describe('WindowTitleTest', () => {
     });
 
     it('renders nothing if fullscreen', () => {
-        windowStateStoreData.currentWindowState = "fullScreen";
+        windowStateStoreData.currentWindowState = 'fullScreen';
 
         const rendered = shallow(<WindowTitle {...props} />);
 
         expect(rendered.getElement()).toMatchSnapshot();
-    })
-
+    });
 
     it('renders with actionable icons', () => {
         const rendered = shallow(<WindowTitle {...props} />);
@@ -67,7 +67,7 @@ describe('WindowTitleTest', () => {
     });
 
     it('renders with custom class name', () => {
-        props.className = "custom-class-name";
+        props.className = 'custom-class-name';
 
         const rendered = shallow(<WindowTitle {...props} />);
 

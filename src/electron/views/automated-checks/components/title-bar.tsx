@@ -1,6 +1,5 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { BrowserWindow } from 'electron';
 import { ActionButton } from 'office-ui-fabric-react/lib/Button';
 import * as React from 'react';
 
@@ -24,8 +23,7 @@ export interface TitleBarProps {
 export const TitleBar = NamedFC<TitleBarProps>('TitleBar', (props: TitleBarProps) => {
     const minimize = () => props.deps.windowFrameActionCreator.minimize();
     const maximizeOrRestore = () =>
-        props.windowStateStoreData.currentWindowState === 'maximized' ||
-            props.windowStateStoreData.currentWindowState === "fullScreen"
+        props.windowStateStoreData.currentWindowState === 'maximized' || props.windowStateStoreData.currentWindowState === 'fullScreen'
             ? props.deps.windowFrameActionCreator.restore()
             : props.deps.windowFrameActionCreator.maximize();
 
@@ -65,7 +63,13 @@ export const TitleBar = NamedFC<TitleBarProps>('TitleBar', (props: TitleBarProps
     ];
 
     return (
-        <WindowTitle title={brand} actionableIcons={icons} windowStateStoreData={props.windowStateStoreData} deps={props.deps} className={titleBar}>
+        <WindowTitle
+            title={brand}
+            actionableIcons={icons}
+            windowStateStoreData={props.windowStateStoreData}
+            deps={props.deps}
+            className={titleBar}
+        >
             <BrandWhite />
         </WindowTitle>
     );

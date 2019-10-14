@@ -11,12 +11,11 @@ import {
     DeviceConnectViewContainerDeps,
 } from 'electron/views/device-connect-view/components/device-connect-view-container';
 import * as React from 'react';
-import { Helmet } from 'react-helmet';
 
 export type RootContainerDeps = DeviceConnectViewContainerDeps &
     AutomatedChecksViewDeps & {
-    storeHub: ClientStoresHub<RootContainerState>;
-};
+        storeHub: ClientStoresHub<RootContainerState>;
+    };
 
 export type RootContainerProps = {
     deps: RootContainerDeps;

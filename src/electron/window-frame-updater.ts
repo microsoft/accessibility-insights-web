@@ -5,7 +5,7 @@ import { WindowFrameActions } from 'electron/flux/action/window-frame-actions';
 import { SetSizePayload } from 'electron/flux/action/window-frame-actions-payloads';
 
 export class WindowFrameUpdater {
-    constructor(private readonly windowFrameActions: WindowFrameActions, private readonly browserWindow: BrowserWindow) { }
+    constructor(private readonly windowFrameActions: WindowFrameActions, private readonly browserWindow: BrowserWindow) {}
 
     public initialize(): void {
         this.windowFrameActions.maximize.addListener(this.onMaximize);
@@ -26,8 +26,7 @@ export class WindowFrameUpdater {
     private onRestore = (): void => {
         if (this.browserWindow.isFullScreen()) {
             this.browserWindow.setFullScreen(false);
-        }
-        else {
+        } else {
             this.browserWindow.unmaximize();
         }
     };
