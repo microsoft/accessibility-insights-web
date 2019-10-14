@@ -8,7 +8,6 @@ import {
     SetTelemetryStatePayload,
 } from 'background/actions/action-payloads';
 import { Messages } from '../messages';
-import { IssueFilingServiceProperties } from '../types/store-data/user-configuration-store';
 import { ActionMessageDispatcher } from './action-message-dispatcher';
 
 export class UserConfigMessageCreator {
@@ -35,36 +34,21 @@ export class UserConfigMessageCreator {
         });
     }
 
-    public setIssueFilingService = (issueFilingServiceName: string) => {
-        const payload: SetIssueFilingServicePayload = {
-            issueFilingServiceName,
-        };
-
+    public setIssueFilingService = (payload: SetIssueFilingServicePayload) => {
         this.dispatcher.dispatchMessage({
             messageType: Messages.UserConfig.SetIssueFilingService,
             payload,
         });
     };
 
-    public setIssueFilingServiceProperty = (issueFilingServiceName: string, propertyName: string, propertyValue: string) => {
-        const payload: SetIssueFilingServicePropertyPayload = {
-            issueFilingServiceName,
-            propertyName,
-            propertyValue,
-        };
-
+    public setIssueFilingServiceProperty = (payload: SetIssueFilingServicePropertyPayload) => {
         this.dispatcher.dispatchMessage({
             messageType: Messages.UserConfig.SetIssueFilingServiceProperty,
             payload,
         });
     };
 
-    public saveIssueFilingSettings = (issueFilingServiceName: string, issueFilingSettings: IssueFilingServiceProperties) => {
-        const payload: SaveIssueFilingSettingsPayload = {
-            issueFilingServiceName,
-            issueFilingSettings,
-        };
-
+    public saveIssueFilingSettings = (payload: SaveIssueFilingSettingsPayload) => {
         this.dispatcher.dispatchMessage({
             messageType: Messages.UserConfig.SaveIssueFilingSettings,
             payload,

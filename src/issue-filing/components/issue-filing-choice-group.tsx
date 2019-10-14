@@ -24,7 +24,10 @@ export const IssueFilingChoiceGroup = NamedFC<IssueFilingChoiceGroupProps>('Issu
     };
 
     const onChange = (ev?: React.FormEvent<HTMLElement | HTMLInputElement>, option?: IChoiceGroupOption) => {
-        props.onSelectedServiceChange(option.key);
+        const payload = {
+            issueFilingServiceName: option.key,
+        };
+        props.onSelectedServiceChange(payload);
     };
 
     return (
