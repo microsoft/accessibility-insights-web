@@ -72,7 +72,7 @@ jobs:
       steps:
           - template: pipeline/electron/distribute-electron.yaml
             parameters:
-                platforms: -wl
+                platforms: -w # linux disabled until https://github.com/electron-userland/electron-builder/issues/4318 resolved
 
     # CI build only
     - job: 'publish_electron_mac'
