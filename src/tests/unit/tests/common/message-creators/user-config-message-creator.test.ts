@@ -33,7 +33,7 @@ describe('UserConfigMessageCreator', () => {
             payload,
         };
 
-        testSubject.setTelemetryState(enableTelemetry);
+        testSubject.setTelemetryState(payload);
 
         dispatcherMock.verify(dispatcher => dispatcher.dispatchMessage(expectedMessage), Times.once());
     });
@@ -48,7 +48,7 @@ describe('UserConfigMessageCreator', () => {
             payload,
         };
 
-        testSubject.setHighContrastMode(enableHighContrast);
+        testSubject.setHighContrastMode(payload);
 
         dispatcherMock.verify(dispatcher => dispatcher.dispatchMessage(expectedMessage), Times.once());
     });

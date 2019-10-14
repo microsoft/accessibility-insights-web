@@ -16,7 +16,7 @@ export const HighContrastSettings = NamedFC<SettingsProps>('HighContrastSettings
             id="enable-high-contrast-mode"
             name={enableHighContrastSettingsTitle}
             description={highContrastSettingsDescription}
-            onClick={(id, state) => userConfigMessageCreator.setHighContrastMode(state)}
+            onClick={(id, state) => userConfigMessageCreator.setHighContrastMode({ enableHighContrast: state })}
         />
     );
 });

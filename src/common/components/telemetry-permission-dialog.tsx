@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { UserConfigurationActionCreator } from 'background/global-action-creators/types/user-configuration-action-creator';
 import { telemetryPopupCheckboxTitle, telemetryPopupTitle } from 'content/settings/improve-accessibility-insights';
 import { PrimaryButton } from 'office-ui-fabric-react/lib/Button';
 import { Checkbox } from 'office-ui-fabric-react/lib/Checkbox';
@@ -17,12 +18,8 @@ export interface TelemetryPermissionDialogProps {
     isFirstTime: boolean;
 }
 
-export type SetTelemetryStateMessageCreator = {
-    setTelemetryState: (enableTelemetry: boolean) => void;
-};
-
 export type TelemetryPermissionDialogDeps = {
-    userConfigMessageCreator: SetTelemetryStateMessageCreator;
+    userConfigMessageCreator: UserConfigurationActionCreator;
 } & TelemetryNoticeDeps &
     PrivacyStatementTextDeps;
 
@@ -68,7 +65,11 @@ export class TelemetryPermissionDialog extends React.Component<TelemetryPermissi
                     <PrimaryButton
                         className="start-using-product-button"
                         text={`OK`}
-                        onClick={() => this.props.deps.userConfigMessageCreator.setTelemetryState(this.state.isEnableTelemetryChecked)}
+                        onClick={() =>
+                            this.props.deps.userConfigMessageCreator.setTelemetryState({
+                                enableTelemetry: this.state.isEnableTelemetryChecked,
+                            })
+                        }
                     />
                 </DialogFooter>
             </Dialog>

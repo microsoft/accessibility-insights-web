@@ -45,7 +45,9 @@ describe('HighContrastSettings', () => {
 
             const wrapper = shallow(<HighContrastSettings {...props} />);
 
-            userConfigMessageCreatorMock.setup(creator => creator.setHighContrastMode(!enabled)).verifiable(Times.once());
+            userConfigMessageCreatorMock
+                .setup(creator => creator.setHighContrastMode({ enableHighContrast: !enabled }))
+                .verifiable(Times.once());
 
             wrapper
                 .dive()

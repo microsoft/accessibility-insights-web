@@ -8,25 +8,25 @@ import { DateProvider } from 'common/date-provider';
 import { remote } from 'electron';
 import { createGetToolDataDelegate } from 'electron/common/application-properties-provider';
 import { ScanActionCreator } from 'electron/flux/action-creator/scan-action-creator';
+import { WindowFrameActionCreator } from 'electron/flux/action-creator/window-frame-action-creator';
 import { WindowStateActionCreator } from 'electron/flux/action-creator/window-state-action-creator';
 import { ScanActions } from 'electron/flux/action/scan-actions';
+import { WindowFrameActions } from 'electron/flux/action/window-frame-actions';
 import { WindowStateActions } from 'electron/flux/action/window-state-actions';
+import { ScanStore } from 'electron/flux/store/scan-store';
 import { WindowStateStore } from 'electron/flux/store/window-state-store';
+import { PlatformInfo } from 'electron/platform-info';
 import { createFetchScanResults } from 'electron/platform/android/fetch-scan-results';
 import { ScanController } from 'electron/platform/android/scan-controller';
 import { createDefaultBuilder } from 'electron/platform/android/unified-result-builder';
 import { RootContainerProps, RootContainerState } from 'electron/views/root-container/components/root-container';
+import { WindowFrameListener } from 'electron/window-frame-listener';
 import { WindowFrameUpdater } from 'electron/window-frame-updater';
 import * as ReactDOM from 'react-dom';
 
-import { WindowFrameActionCreator } from 'electron/flux/action-creator/window-frame-action-creator';
-import { WindowFrameActions } from 'electron/flux/action/window-frame-actions';
-import { ScanStore } from 'electron/flux/store/scan-store';
-import { PlatformInfo } from 'electron/platform-info';
-import { WindowFrameListener } from 'electron/window-frame-listener';
 import { UserConfigurationActions } from '../../background/actions/user-configuration-actions';
 import { getPersistedData, PersistedData } from '../../background/get-persisted-data';
-import { UserConfigurationActionCreator } from '../../background/global-action-creators/user-configuration-action-creator';
+import { UserConfigurationActionCreatorImpl } from '../../background/global-action-creators/user-configuration-action-creator-impl';
 import { IndexedDBDataKeys } from '../../background/IndexedDBDataKeys';
 import { InstallationData } from '../../background/installation-data';
 import { UserConfigurationStore } from '../../background/stores/global/user-configuration-store';
@@ -108,7 +108,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then((persistedDat
 
     const fetchScanResults = createFetchScanResults(axios.get);
 
-    const userConfigMessageCreator = new UserConfigurationActionCreator(userConfigActions);
+    const userConfigMessageCreator = new UserConfigurationActionCreatorImpl(userConfigActions);
 
     const deviceConnectActionCreator = new DeviceConnectActionCreator(deviceActions, fetchScanResults, telemetryEventHandler);
     const windowFrameActionCreator = new WindowFrameActionCreator(windowFrameActions);

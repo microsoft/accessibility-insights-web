@@ -56,7 +56,9 @@ describe('TelemetrySettings', () => {
 
             const wrapper = shallow(<TelemetrySettings {...props} />);
 
-            userConfigMessageCreatorMock.setup(creator => creator.setTelemetryState(!enabled)).verifiable(Times.once());
+            userConfigMessageCreatorMock
+                .setup(creator => creator.setTelemetryState({ enableTelemetry: !enabled }))
+                .verifiable(Times.once());
 
             wrapper
                 .dive()

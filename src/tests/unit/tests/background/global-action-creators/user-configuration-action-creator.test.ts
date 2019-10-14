@@ -7,7 +7,7 @@ import {
     SetIssueFilingServicePropertyPayload,
 } from 'background/actions/action-payloads';
 import { UserConfigurationActions } from 'background/actions/user-configuration-actions';
-import { UserConfigurationActionCreator } from 'background/global-action-creators/user-configuration-action-creator';
+import { UserConfigurationActionCreatorImpl } from 'background/global-action-creators/user-configuration-action-creator-impl';
 import { IMock, Mock } from 'typemoq';
 
 import { createActionMock } from './action-creator-test-helpers';
@@ -17,7 +17,7 @@ describe('UserConfigurationActionCreator', () => {
         const payload = null;
         const getCurrentStateMock = createActionMock<null>(payload);
         const actionsMock = createActionsMock('getCurrentState', getCurrentStateMock.object);
-        const testSubject = new UserConfigurationActionCreator(actionsMock.object);
+        const testSubject = new UserConfigurationActionCreatorImpl(actionsMock.object);
 
         testSubject.getUserConfigurationState();
 
@@ -29,9 +29,9 @@ describe('UserConfigurationActionCreator', () => {
 
         const setTelemetryStateMock = createActionMock(setTelemetryState);
         const actionsMock = createActionsMock('setTelemetryState', setTelemetryStateMock.object);
-        const testSubject = new UserConfigurationActionCreator(actionsMock.object);
+        const testSubject = new UserConfigurationActionCreatorImpl(actionsMock.object);
 
-        testSubject.setTelemetryState(setTelemetryState);
+        testSubject.setTelemetryState({ enableTelemetry: setTelemetryState });
 
         setTelemetryStateMock.verifyAll();
     });
@@ -42,7 +42,7 @@ describe('UserConfigurationActionCreator', () => {
         };
         const setHighContrastConfigMock = createActionMock(payload);
         const actionsMock = createActionsMock('setHighContrastMode', setHighContrastConfigMock.object);
-        const testSubject = new UserConfigurationActionCreator(actionsMock.object);
+        const testSubject = new UserConfigurationActionCreatorImpl(actionsMock.object);
 
         testSubject.setHighContrastMode(payload);
 
@@ -55,7 +55,7 @@ describe('UserConfigurationActionCreator', () => {
         };
         const setBugServiceMock = createActionMock(payload);
         const actionsMock = createActionsMock('setIssueFilingService', setBugServiceMock.object);
-        const testSubject = new UserConfigurationActionCreator(actionsMock.object);
+        const testSubject = new UserConfigurationActionCreatorImpl(actionsMock.object);
 
         testSubject.setIssueFilingService(payload);
 
@@ -70,7 +70,7 @@ describe('UserConfigurationActionCreator', () => {
         };
         const setIssueFilingServicePropertyMock = createActionMock(payload);
         const actionsMock = createActionsMock('setIssueFilingServiceProperty', setIssueFilingServicePropertyMock.object);
-        const testSubject = new UserConfigurationActionCreator(actionsMock.object);
+        const testSubject = new UserConfigurationActionCreatorImpl(actionsMock.object);
 
         testSubject.setIssueFilingServiceProperty(payload);
 
@@ -84,7 +84,7 @@ describe('UserConfigurationActionCreator', () => {
         };
         const setIssueFilingSettings = createActionMock(payload);
         const actionsMock = createActionsMock('saveIssueFilingSettings', setIssueFilingSettings.object);
-        const testSubject = new UserConfigurationActionCreator(actionsMock.object);
+        const testSubject = new UserConfigurationActionCreatorImpl(actionsMock.object);
 
         testSubject.saveIssueFilingSettings(payload);
 

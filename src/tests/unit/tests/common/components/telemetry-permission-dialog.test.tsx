@@ -1,26 +1,25 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { UserConfigurationActionCreator } from 'background/global-action-creators/types/user-configuration-action-creator';
+import { NewTabLink } from 'common/components/new-tab-link';
+import { PrivacyStatementPopupText } from 'common/components/privacy-statement-text';
+import { TelemetryNotice } from 'common/components/telemetry-notice';
+import {
+    TelemetryPermissionDialog,
+    TelemetryPermissionDialogDeps,
+    TelemetryPermissionDialogProps,
+} from 'common/components/telemetry-permission-dialog';
 import * as Enzyme from 'enzyme';
 import { PrimaryButton } from 'office-ui-fabric-react/lib/Button';
 import { Checkbox } from 'office-ui-fabric-react/lib/Checkbox';
 import * as React from 'react';
-import { NewTabLink } from '../../../../../common/components/new-tab-link';
-import { PrivacyStatementPopupText } from '../../../../../common/components/privacy-statement-text';
-import { TelemetryNotice } from '../../../../../common/components/telemetry-notice';
-import {
-    SetTelemetryStateMessageCreator,
-    TelemetryPermissionDialog,
-    TelemetryPermissionDialogDeps,
-    TelemetryPermissionDialogProps,
-} from '../../../../../common/components/telemetry-permission-dialog';
-import { UserConfigMessageCreator } from '../../../../../common/message-creators/user-config-message-creator';
 
 describe('TelemetryPermissionDialogTest', () => {
-    let userConfigMessageCreatorStub: SetTelemetryStateMessageCreator;
+    let userConfigMessageCreatorStub: UserConfigurationActionCreator;
     let setTelemetryStateMock: () => null;
 
     beforeEach(() => {
-        userConfigMessageCreatorStub = {} as UserConfigMessageCreator;
+        userConfigMessageCreatorStub = {} as UserConfigurationActionCreator;
         setTelemetryStateMock = jest.fn();
         userConfigMessageCreatorStub.setTelemetryState = setTelemetryStateMock;
     });

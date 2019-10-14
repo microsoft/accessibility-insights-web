@@ -7,27 +7,22 @@ import {
     SetIssueFilingServicePropertyPayload,
     SetTelemetryStatePayload,
 } from 'background/actions/action-payloads';
+import { UserConfigurationActionCreator } from 'background/global-action-creators/types/user-configuration-action-creator';
+
 import { Messages } from '../messages';
 import { ActionMessageDispatcher } from './action-message-dispatcher';
 
-export class UserConfigMessageCreator {
+export class UserConfigMessageCreator implements UserConfigurationActionCreator {
     constructor(private readonly dispatcher: ActionMessageDispatcher) {}
-    public setTelemetryState(enableTelemetry: boolean): void {
-        const payload: SetTelemetryStatePayload = {
-            enableTelemetry,
-        };
 
+    public setTelemetryState(payload: SetTelemetryStatePayload): void {
         this.dispatcher.dispatchMessage({
             messageType: Messages.UserConfig.SetTelemetryConfig,
             payload,
         });
     }
 
-    public setHighContrastMode(enableHighContrast: boolean): void {
-        const payload: SetHighContrastModePayload = {
-            enableHighContrast,
-        };
-
+    public setHighContrastMode(payload: SetHighContrastModePayload): void {
         this.dispatcher.dispatchMessage({
             messageType: Messages.UserConfig.SetHighContrastConfig,
             payload,

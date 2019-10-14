@@ -20,7 +20,7 @@ import { GlobalActionCreator } from './global-action-creators/global-action-crea
 import { IssueFilingActionCreator } from './global-action-creators/issue-filing-action-creator';
 import { registerUserConfigurationMessageCallback } from './global-action-creators/registrar/register-user-configuration-message-callbacks';
 import { ScopingActionCreator } from './global-action-creators/scoping-action-creator';
-import { UserConfigurationActionCreator } from './global-action-creators/user-configuration-action-creator';
+import { UserConfigurationActionCreatorImpl } from './global-action-creators/user-configuration-action-creator-impl';
 import { GlobalContext } from './global-context';
 import { Interpreter } from './interpreter';
 import { LocalStorageData } from './storage-data';
@@ -70,7 +70,7 @@ export class GlobalContextFactory {
         const issueFilingActionCreator = new IssueFilingActionCreator(interpreter, telemetryEventHandler, issueFilingController);
         const actionCreator = new GlobalActionCreator(globalActionsHub, interpreter, commandsAdapter, telemetryEventHandler);
         const assessmentActionCreator = new AssessmentActionCreator(interpreter, globalActionsHub.assessmentActions, telemetryEventHandler);
-        const userConfigurationActionCreator = new UserConfigurationActionCreator(globalActionsHub.userConfigurationActions);
+        const userConfigurationActionCreator = new UserConfigurationActionCreatorImpl(globalActionsHub.userConfigurationActions);
         const featureFlagsActionCreator = new FeatureFlagsActionCreator(
             interpreter,
             globalActionsHub.featureFlagActions,
