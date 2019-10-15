@@ -10,6 +10,7 @@ exports[`CommandBar render 1`] = `
         "iconName": "Refresh",
       }
     }
+    id="rescanButton"
     onClick={[Function]}
     text="Rescan"
   />

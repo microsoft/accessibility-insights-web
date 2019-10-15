@@ -5,7 +5,7 @@ import { DeviceConnectActionCreator } from 'electron/flux/action-creator/device-
 import { ActionButton } from 'office-ui-fabric-react/lib/Button';
 import * as React from 'react';
 
-import { commandBar } from './command-bar.scss';
+import { commandBar, rescanButton } from './command-bar.scss';
 
 export type CommandBarDeps = {
     deviceConnectActionCreator: DeviceConnectActionCreator;
@@ -20,6 +20,7 @@ export const CommandBar = NamedFC<CommandBarProps>('CommandBar', (props: Command
     return (
         <div className={commandBar}>
             <ActionButton
+                id={rescanButton}
                 iconProps={{
                     iconName: 'Refresh',
                 }}

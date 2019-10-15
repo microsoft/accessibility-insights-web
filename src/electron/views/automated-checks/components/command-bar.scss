@@ -12,4 +12,12 @@
     font-size: 14px;
     font-weight: normal;
     border-bottom: 1px solid $neutral-alpha-8;
+    padding: 0px 16px;
+
+    #rescan-button {
+        i {
+            color: $primary-text;
+            line-height: 16px;
+        }
+    }
 }
