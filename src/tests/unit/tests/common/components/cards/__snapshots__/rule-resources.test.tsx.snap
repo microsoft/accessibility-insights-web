@@ -21,11 +21,25 @@ exports[`RuleResources renders 1`] = `
   </span>
   <span>
     <GuidanceLinks
-      links={Array []}
+      links={
+        Array [
+          Object {
+            "href": "sample-guidance-href",
+            "text": "sample-guidance-text",
+          },
+        ]
+      }
     />
     <GuidanceTags
       deps={Object {}}
-      links={Array []}
+      links={
+        Array [
+          Object {
+            "href": "sample-guidance-href",
+            "text": "sample-guidance-text",
+          },
+        ]
+      }
     />
   </span>
 </div>
