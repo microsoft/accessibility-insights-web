@@ -34,7 +34,7 @@ exports[` renders with matches 1`] = `
 />
 `;
 
-exports[` renders without matches 1`] = `
+exports[` renders without formatAsCode property 1`] = `
 <SimpleCardRow
   content={
     <React.Fragment>

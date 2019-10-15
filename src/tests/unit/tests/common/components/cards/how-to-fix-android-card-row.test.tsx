@@ -24,7 +24,7 @@ describe(HowToFixAndroidCardRow, () => {
         expect(testSubject.getElement()).toMatchSnapshot();
     });
 
-    it('renders without matches', () => {
+    it('renders without formatAsCode property', () => {
         const fixInstructionProcessorMock = Mock.ofType(FixInstructionProcessor);
         const props: HowToFixAndroidCardRowProps = {
             deps: { fixInstructionProcessor: fixInstructionProcessorMock.object },
