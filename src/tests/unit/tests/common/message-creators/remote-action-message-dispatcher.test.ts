@@ -6,7 +6,7 @@ import { Message } from '../../../../../common/message';
 import { RemoteActionMessageDispatcher } from '../../../../../common/message-creators/remote-action-message-dispatcher';
 import { Messages } from '../../../../../common/messages';
 
-describe('ActionMessageDispatcher', () => {
+describe('RemoteActionMessageDispatcher', () => {
     let postMessageMock: IMock<(message: Message) => void>;
 
     beforeEach(() => {

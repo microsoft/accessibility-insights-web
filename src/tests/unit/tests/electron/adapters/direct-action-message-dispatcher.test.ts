@@ -5,7 +5,7 @@ import { Message } from 'common/message';
 import { DirectActionMessageDispatcher } from 'electron/adapters/direct-action-message-dispatcher';
 import { Mock, Times } from 'typemoq';
 
-describe('ActionMessageDispatcherAdapter', () => {
+describe('DirectActionMessageDispatcher', () => {
     it('dispatchMessage', () => {
         const interpreterMock = Mock.ofType<Interpreter>();
 
