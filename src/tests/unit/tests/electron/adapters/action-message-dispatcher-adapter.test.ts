@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { Interpreter } from 'background/interpreter';
 import { Message } from 'common/message';
-import { ActionMessageDispatcherAdapter } from 'electron/adapters/action-message-dispatcher-adapter';
+import { DirectActionMessageDispatcher } from 'electron/adapters/action-message-dispatcher-adapter';
 import { Mock, Times } from 'typemoq';
 
 describe('ActionMessageDispatcherAdapter', () => {
@@ -11,7 +11,7 @@ describe('ActionMessageDispatcherAdapter', () => {
 
         const message = { messageType: 'test-message-type' } as Message;
 
-        const testSubject = new ActionMessageDispatcherAdapter(interpreterMock.object);
+        const testSubject = new DirectActionMessageDispatcher(interpreterMock.object);
 
         testSubject.dispatchMessage(message);
 

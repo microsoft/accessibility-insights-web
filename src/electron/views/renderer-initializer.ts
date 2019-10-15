@@ -8,7 +8,7 @@ import { UnifiedScanResultStore } from 'background/stores/unified-scan-result-st
 import { DateProvider } from 'common/date-provider';
 import { UserConfigMessageCreator } from 'common/message-creators/user-config-message-creator';
 import { remote } from 'electron';
-import { ActionMessageDispatcherAdapter } from 'electron/adapters/action-message-dispatcher-adapter';
+import { DirectActionMessageDispatcher } from 'electron/adapters/action-message-dispatcher-adapter';
 import { createGetToolDataDelegate } from 'electron/common/application-properties-provider';
 import { ScanActionCreator } from 'electron/flux/action-creator/scan-action-creator';
 import { WindowFrameActionCreator } from 'electron/flux/action-creator/window-frame-action-creator';
@@ -113,7 +113,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then((persistedDat
     const fetchScanResults = createFetchScanResults(axios.get);
 
     const interpreter = new Interpreter();
-    const dispatcher = new ActionMessageDispatcherAdapter(interpreter);
+    const dispatcher = new DirectActionMessageDispatcher(interpreter);
     const userConfigMessageCreator = new UserConfigMessageCreator(dispatcher);
     const userConfigurationActionCreator = new UserConfigurationActionCreator(userConfigActions);
 
