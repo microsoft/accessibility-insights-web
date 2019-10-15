@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { CardSelectionViewData } from 'common/get-card-selection-view-data';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
 import { UnifiedResult, UnifiedRule } from 'common/types/store-data/unified-data-interface';
 import { AssessmentVisualizationInstance } from 'injected/frameCommunicators/html-element-axe-results-helper';
@@ -20,7 +21,9 @@ export type GetElementBasedViewModelCallback = (
     cardSelectionData: CardSelectionStoreData,
 ) => DictionaryStringTo<AssessmentVisualizationInstance>;
 
-export type GetHighlightedResultInstanceIdsCallback = (cardSelectionData: CardSelectionStoreData) => string[];
+export type GetHighlightedResultInstanceIdsCallback = (
+    cardSelectionData: CardSelectionStoreData,
+) => Pick<CardSelectionViewData, 'highlightedResultUids'>;
 
 export class ElementBasedViewModelCreator {
     constructor(
@@ -34,7 +37,7 @@ export class ElementBasedViewModelCreator {
         cardSelectionData: CardSelectionStoreData,
     ) => {
         const stringToResult: DictionaryStringTo<AssessmentVisualizationInstance> = {};
-        const highlightedResultInstanceUids = this.getHighlightedResultInstanceIds(cardSelectionData);
+        const highlightedResultInstanceUids = this.getHighlightedResultInstanceIds(cardSelectionData).highlightedResultUids;
 
         results.forEach(unifiedResult => {
             if (unifiedResult.status !== 'fail' || !includes(highlightedResultInstanceUids, unifiedResult.uid)) {

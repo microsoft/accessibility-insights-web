@@ -28,7 +28,11 @@ describe('ElementBasedViewModelCreator', () => {
         const unifiedResult = exampleUnifiedResult;
 
         unifiedResult.status = 'pass';
-        getHighlightedResultInstanceIdsMock.setup(mock => mock(cardSelectionData)).returns(() => highlightedInstanceIds);
+        getHighlightedResultInstanceIdsMock
+            .setup(mock => mock(cardSelectionData))
+            .returns(() => ({
+                highlightedResultUids: highlightedInstanceIds,
+            }));
 
         const expectedResult = {};
         expect(testSubject.getElementBasedViewModel([], [unifiedResult], cardSelectionData)).toEqual(expectedResult);
@@ -39,7 +43,9 @@ describe('ElementBasedViewModelCreator', () => {
         const unifiedResult = exampleUnifiedResult;
 
         unifiedResult.status = 'fail';
-        getHighlightedResultInstanceIdsMock.setup(mock => mock(cardSelectionData)).returns(() => highlightedInstanceIds);
+        getHighlightedResultInstanceIdsMock
+            .setup(mock => mock(cardSelectionData))
+            .returns(() => ({ highlightedResultUids: highlightedInstanceIds }));
 
         const expectedResult = {};
         expect(testSubject.getElementBasedViewModel([], [unifiedResult], cardSelectionData)).toEqual(expectedResult);
@@ -54,7 +60,9 @@ describe('ElementBasedViewModelCreator', () => {
         const decoratedResultStub = {} as DecoratedAxeNodeResult;
 
         unifiedResult.status = 'fail';
-        getHighlightedResultInstanceIdsMock.setup(mock => mock(cardSelectionData)).returns(() => highlightedInstanceIds);
+        getHighlightedResultInstanceIdsMock
+            .setup(mock => mock(cardSelectionData))
+            .returns(() => ({ highlightedResultUids: highlightedInstanceIds }));
         getDecoratedAxeNodeCallbackMock.setup(mock => mock(unifiedResult, ruleStub, identifierStub)).returns(() => decoratedResultStub);
 
         const expectedResult = {
@@ -90,7 +98,9 @@ describe('ElementBasedViewModelCreator', () => {
         } as DecoratedAxeNodeResult;
 
         const highlightedInstanceIds = [unifiedResultOne.uid, unifiedResultTwo.uid];
-        getHighlightedResultInstanceIdsMock.setup(mock => mock(cardSelectionData)).returns(() => highlightedInstanceIds);
+        getHighlightedResultInstanceIdsMock
+            .setup(mock => mock(cardSelectionData))
+            .returns(() => ({ highlightedResultUids: highlightedInstanceIds }));
 
         unifiedResultOne.status = 'fail';
         unifiedResultTwo.status = 'fail';
