@@ -1,3 +1,8 @@
+<!--
+Copyright (c) Microsoft Corporation. All rights reserved.
+Licensed under the MIT License.
+-->
+
 # mock-axe-android test content
 
 This directory is for the benefit of the "yarn serve:mock-axe-android" command (see package.json).
