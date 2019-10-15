@@ -114,10 +114,6 @@ div.insights-file-issue-details-dialog-container {
     font-family: $codeFontFamily;
 }
 
-.path-list {
-    padding-left: 13px !important;
-}
-
 .column-header span:first-of-type {
     padding-left: 5px !important;
 }
@@ -224,22 +220,6 @@ div.insights-file-issue-details-dialog-container {
 .preview-features-panel {
     .preview-feature-toggle-list {
         margin-top: 2vh;
-        .preview-feature-toggle-container {
-            .pf-name-toggle {
-                margin-bottom: 1vh;
-                .pf-name {
-                    display: inline-block;
-                    font-size: 16px;
-                    font-weight: bold;
-                }
-                .pf-toggle {
-                    float: right;
-                }
-            }
-        }
-        .preview-feature-toggle-container + .preview-feature-toggle-container {
-            margin-top: 4vh;
-        }
     }
     .no-preview-feature-message {
         font-size: 20px;
@@ -896,13 +876,8 @@ div.insights-file-issue-details-dialog-container {
                 b {
                     font-weight: 600;
                 }
-                .why-vis,
-                .about-vis {
+                .why-vis {
                     padding-top: 4px;
-                }
-                .why-vis,
-                .about-vis,
-                .more-info {
                     font-size: 14px;
                     .ms-Link {
                         color: $communication-primary;
@@ -911,12 +886,6 @@ div.insights-file-issue-details-dialog-container {
                 .tab-stops-accessibility-problems-list {
                     background: $neutral-6;
                     list-style-type: disc;
-                }
-                .landmarks-legend-description {
-                    padding-left: 12px;
-                    font-size: 14px;
-                    display: table-cell;
-                    vertical-align: middle;
                 }
                 .landmarks-legend {
                     color: $neutral-100;
