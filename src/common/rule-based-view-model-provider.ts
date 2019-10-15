@@ -18,16 +18,20 @@ export const getUnifiedRuleResults: GetUnifiedRuleResultsDelegate = (
 
     for (const result of results) {
         const ruleResults = statusResults[result.status];
-        const ruleResultIndex: number = getRuleResultIndex(result, ruleResults);
 
-        if (ruleResultIndex !== -1) {
-            ruleResults[ruleResultIndex].nodes.push(result);
-        } else {
-            const unifiedRule: UnifiedRule = getUnifiedRule(result.ruleId, rules);
-            if (unifiedRule) {
-                ruleResults.push(createUnifiedRuleResult(result, unifiedRule));
+        let ruleResult = getExistingRuleFromResults(result.ruleId, ruleResults);
+
+        if (!ruleResult) {
+            const rule = getUnifiedRule(result.ruleId, rules);
+            if (!rule) {
+                continue;
             }
+
+            ruleResult = createCardRuleResult(result.status, rule);
+            ruleResults.push(ruleResult);
         }
+
+        ruleResult.nodes.push(result);
 
         ruleIdsWithResultNodes.add(result.ruleId);
     }
@@ -41,6 +45,12 @@ export const getUnifiedRuleResults: GetUnifiedRuleResultsDelegate = (
     return statusResults;
 };
 
+const getExistingRuleFromResults = (ruleId: string, ruleResults: CardRuleResult[]): CardRuleResult => {
+    const ruleResultIndex: number = getRuleResultIndex(ruleId, ruleResults);
+
+    return ruleResultIndex !== -1 ? ruleResults[ruleResultIndex] : null;
+};
+
 const getEmptyStatusResults = (): CardRuleResultsByStatus => {
     const statusResults = {};
 
@@ -51,10 +61,10 @@ const getEmptyStatusResults = (): CardRuleResultsByStatus => {
     return statusResults as CardRuleResultsByStatus;
 };
 
-const createUnifiedRuleResult = (result: UnifiedResult, rule: UnifiedRule): CardRuleResult => ({
+const createCardRuleResult = (status: string, rule: UnifiedRule): CardRuleResult => ({
     id: rule.id,
-    status: result.status,
-    nodes: [result],
+    status: status,
+    nodes: [],
     description: rule.description,
     url: rule.url,
     guidance: rule.guidance,
@@ -71,5 +81,4 @@ const createRuleResultWithoutNodes = (status: CardRuleResultStatus, rule: Unifie
 
 const getUnifiedRule = (id: string, rules: UnifiedRule[]): UnifiedRule => rules.find(rule => rule.id === id);
 
-const getRuleResultIndex = (result: UnifiedResult, ruleResults: CardRuleResult[]): number =>
-    ruleResults.findIndex(ruleResult => ruleResult.id === result.ruleId);
+const getRuleResultIndex = (ruleId: string, ruleResults: CardRuleResult[]): number => ruleResults.findIndex(result => result.id === ruleId);
