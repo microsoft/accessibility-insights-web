@@ -124,9 +124,9 @@ describe('DetailsViewBody', () => {
                     <div className="details-view-body-nav-content-layout">
                         {null}
                         <div className="details-view-body-content-pane">
-                            <main>
+                            <div className="view" role="main">
                                 <rightPanelConfig.RightPanel {...props} />
-                            </main>
+                            </div>
                         </div>
                     </div>
                 </>

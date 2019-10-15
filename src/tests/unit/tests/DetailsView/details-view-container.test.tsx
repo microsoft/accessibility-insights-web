@@ -467,17 +467,15 @@ describe('DetailsViewContainer', () => {
                     dropdownClickHandler={dropdownClickHandler.object}
                     tabClosed={storeMocks.tabStoreData.isClosed}
                 />
-                <div className="table column-layout details-view-body">
-                    {buildDetailsViewMainContent(
-                        storeMocks,
-                        props,
-                        viewType,
-                        rightContentPanelConfig,
-                        switcherNavConfig,
-                        ruleResults,
-                        targetAppInfo,
-                    )}
-                </div>
+                {buildDetailsViewMainContent(
+                    storeMocks,
+                    props,
+                    viewType,
+                    rightContentPanelConfig,
+                    switcherNavConfig,
+                    ruleResults,
+                    targetAppInfo,
+                )}
                 {buildOverlay(storeMocks, props)}
             </div>
         );
