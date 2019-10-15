@@ -6,8 +6,8 @@ import * as ReactDOM from 'react-dom';
 import { BrowserAdapter } from '../../common/browser-adapters/browser-adapter';
 import { TelemetryEventSource } from '../../common/extension-telemetry-events';
 import { initializeFabricIcons } from '../../common/fabric-icons';
-import { ActionMessageDispatcher } from '../../common/message-creators/action-message-dispatcher';
 import { ContentActionMessageCreator } from '../../common/message-creators/content-action-message-creator';
+import { RemoteActionMessageDispatcher } from '../../common/message-creators/remote-action-message-dispatcher';
 import { StoreActionMessageCreatorFactory } from '../../common/message-creators/store-action-message-creator-factory';
 import { StoreProxy } from '../../common/store-proxy';
 import { BaseClientStoresHub } from '../../common/stores/base-client-stores-hub';
@@ -20,7 +20,7 @@ import { RendererDeps } from './renderer';
 export const rendererDependencies: (browserAdapter: BrowserAdapter) => RendererDeps = browserAdapter => {
     const url = new URL(window.location.href);
     const tabId = parseInt(url.searchParams.get('tabId'), 10);
-    const actionMessageDispatcher = new ActionMessageDispatcher(browserAdapter.sendMessageToFrames, tabId);
+    const actionMessageDispatcher = new RemoteActionMessageDispatcher(browserAdapter.sendMessageToFrames, tabId);
 
     const telemetryFactory = new TelemetryDataFactory();
 
