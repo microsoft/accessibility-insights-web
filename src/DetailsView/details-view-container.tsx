@@ -87,10 +87,10 @@ export class DetailsViewContainer extends React.Component<DetailsViewContainerPr
     public render(): JSX.Element {
         if (this.isTargetPageClosed()) {
             return (
-                <div className="table column-layout main-wrapper">
+                <>
                     {this.renderHeader()}
                     <TargetPageClosedView />
-                </div>
+                </>
             );
         }
 
@@ -118,11 +118,11 @@ export class DetailsViewContainer extends React.Component<DetailsViewContainerPr
 
     private renderContent(): JSX.Element {
         return (
-            <div className="table column-layout main-wrapper">
+            <>
                 {this.renderHeader()}
                 {this.renderDetailsView()}
                 {this.renderOverlay()}
-            </div>
+            </>
         );
     }
 
