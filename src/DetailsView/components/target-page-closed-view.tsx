@@ -7,10 +7,10 @@ import { targetPageClosed } from './target-page-closed-view.scss';
 export class TargetPageClosedView extends React.Component {
     public render(): JSX.Element {
         return (
-            <div className={targetPageClosed}>
+            <main className={targetPageClosed}>
                 <h1>No content available</h1>
                 <p>The target page was closed. You can close this tab or reuse it for something else.</p>
-            </div>
+            </main>
         );
     }
 }

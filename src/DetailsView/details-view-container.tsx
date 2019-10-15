@@ -86,15 +86,7 @@ export class DetailsViewContainer extends React.Component<DetailsViewContainerPr
             return (
                 <div className="table column-layout main-wrapper">
                     {this.renderHeader()}
-                    <div className="table column-layout details-view-body">
-                        <div className="table row-layout details-view-main-content">
-                            <div className="details-content table column-layout">
-                                <div className="view" role="main">
-                                    <TargetPageClosedView />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <TargetPageClosedView />
                 </div>
             );
         }
