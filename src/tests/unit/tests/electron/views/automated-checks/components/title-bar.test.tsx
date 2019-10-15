@@ -4,13 +4,13 @@
 import { WindowFrameActionCreator } from 'electron/flux/action-creator/window-frame-action-creator';
 import { WindowStateStoreData } from 'electron/flux/types/window-state-store-data';
 import { PlatformInfo } from 'electron/platform-info';
+import { MaximizeRestoreButtonProps } from 'electron/views/automated-checks/components/maximize-restore-button';
 import { TitleBar, TitleBarProps } from 'electron/views/automated-checks/components/title-bar';
 import { shallow } from 'enzyme';
 import { Button } from 'office-ui-fabric-react/lib/Button';
 import * as React from 'react';
 import { EventStubFactory } from 'tests/unit/common/event-stub-factory';
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';
-import { MaximizeRestoreButtonProps } from 'electron/views/automated-checks/components/maximize-restore-button';
 
 describe('TitleBar', () => {
     const eventStub = new EventStubFactory().createMouseClickEvent() as React.MouseEvent<Button>;
