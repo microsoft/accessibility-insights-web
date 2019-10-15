@@ -382,7 +382,7 @@ div.insights-file-issue-details-dialog-container {
             font-size: 18px;
         }
     }
-    .details-view-main-content {
+    .details-view-body-nav-content-layout {
         padding-left: 0px;
         padding-right: 0px;
         display: grid;
@@ -746,7 +746,9 @@ div.insights-file-issue-details-dialog-container {
                 text-align: left;
             }
         }
-        .details-content {
+        .details-view-body-content-pane {
+            display: flex;
+            flex-direction: column;
             width: 100%;
             padding-bottom: 1px;
             overflow: auto;

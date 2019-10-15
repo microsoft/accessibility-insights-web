@@ -36,13 +36,13 @@ import {
 import { Header } from '../../../../DetailsView/components/header';
 import { DetailsViewRightContentPanelType } from '../../../../DetailsView/components/left-nav/details-view-right-content-panel-type';
 import { GetSelectedDetailsViewProps } from '../../../../DetailsView/components/left-nav/get-selected-details-view';
+import { DetailsViewBody } from '../../../../DetailsView/details-view-body';
 import {
     DetailsViewContainer,
     DetailsViewContainerDeps,
     DetailsViewContainerProps,
     DetailsViewContainerState,
 } from '../../../../DetailsView/details-view-container';
-import { DetailsViewMainContent } from '../../../../DetailsView/details-view-main-content';
 import { DetailsViewToggleClickHandlerFactory } from '../../../../DetailsView/handlers/details-view-toggle-click-handler-factory';
 import { PreviewFeatureFlagsHandler } from '../../../../DetailsView/handlers/preview-feature-flags-handler';
 import { DetailsViewStoreDataBuilder } from '../../common/details-view-store-data-builder';
@@ -278,7 +278,7 @@ describe('DetailsViewContainer', () => {
         targetApp: TargetAppData,
     ): JSX.Element {
         return (
-            <DetailsViewMainContent
+            <DetailsViewBody
                 deps={deps}
                 tabStoreData={storeMocks.tabStoreData}
                 assessmentStoreData={storeMocks.assessmentStoreData}

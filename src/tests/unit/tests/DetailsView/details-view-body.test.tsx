@@ -22,14 +22,14 @@ import { DetailsRightPanelConfiguration } from '../../../../DetailsView/componen
 import { DetailsViewSwitcherNavConfiguration } from '../../../../DetailsView/components/details-view-switcher-nav';
 import { DetailsViewLeftNav } from '../../../../DetailsView/components/left-nav/details-view-left-nav';
 import { TabInfo } from '../../../../DetailsView/components/tab-info';
-import { DetailsViewMainContent, DetailsViewMainContentProps } from '../../../../DetailsView/details-view-main-content';
+import { DetailsViewBody, DetailsViewBodyProps } from '../../../../DetailsView/details-view-body';
 import { DetailsViewToggleClickHandlerFactory } from '../../../../DetailsView/handlers/details-view-toggle-click-handler-factory';
 import { TabStoreDataBuilder } from '../../common/tab-store-data-builder';
 import { VisualizationScanResultStoreDataBuilder } from '../../common/visualization-scan-result-store-data-builder';
 import { VisualizationStoreDataBuilder } from '../../common/visualization-store-data-builder';
 import { exampleUnifiedStatusResults } from '../common/components/cards/sample-view-model-data';
 
-describe('DetailsViewMainContentTest', () => {
+describe('DetailsViewBody', () => {
     let selectedTest: VisualizationType;
     let configFactoryMock: IMock<VisualizationConfigurationFactory>;
     let clickHandlerFactoryMock: IMock<DetailsViewToggleClickHandlerFactory>;
@@ -37,25 +37,16 @@ describe('DetailsViewMainContentTest', () => {
     let getStoreDataMock: IMock<(data: TestsEnabledState) => ScanData>;
     let configStub: VisualizationConfiguration;
     let scanDataStub: ScanData;
-    let props: DetailsViewMainContentProps;
+    let props: DetailsViewBodyProps;
     let rightPanelConfig: DetailsRightPanelConfiguration;
     let switcherNavConfig: DetailsViewSwitcherNavConfiguration;
 
     describe('render', () => {
         beforeEach(() => {
             selectedTest = -1;
-            const RightPanelStub: Readonly<ReactFCWithDisplayName<DetailsViewMainContentProps>> = NamedFC<DetailsViewMainContentProps>(
-                'test',
-                _ => null,
-            );
-            const CommandBarStub: Readonly<ReactFCWithDisplayName<DetailsViewMainContentProps>> = NamedFC<DetailsViewMainContentProps>(
-                'test',
-                _ => null,
-            );
-            const LeftNavStub: Readonly<ReactFCWithDisplayName<DetailsViewMainContentProps>> = NamedFC<DetailsViewMainContentProps>(
-                'test',
-                _ => null,
-            );
+            const RightPanelStub: Readonly<ReactFCWithDisplayName<DetailsViewBodyProps>> = NamedFC<DetailsViewBodyProps>('test', _ => null);
+            const CommandBarStub: Readonly<ReactFCWithDisplayName<DetailsViewBodyProps>> = NamedFC<DetailsViewBodyProps>('test', _ => null);
+            const LeftNavStub: Readonly<ReactFCWithDisplayName<DetailsViewBodyProps>> = NamedFC<DetailsViewBodyProps>('test', _ => null);
             rightPanelConfig = {
                 RightPanel: RightPanelStub,
             } as DetailsRightPanelConfiguration;
@@ -117,7 +108,7 @@ describe('DetailsViewMainContentTest', () => {
                 rightPanelConfiguration: rightPanelConfig,
                 switcherNavConfiguration: switcherNavConfig,
                 ruleResultsByStatus: exampleUnifiedStatusResults,
-            } as DetailsViewMainContentProps;
+            } as DetailsViewBodyProps;
         });
 
         test('tab is closed', () => {
@@ -130,19 +121,18 @@ describe('DetailsViewMainContentTest', () => {
             const expected = (
                 <>
                     {buildCommandBar(props)}
-                    <div className="table row-layout details-view-main-content">
+                    <div className="details-view-body-nav-content-layout">
                         {null}
-                        <div className="details-content table column-layout">
-                            {null}
-                            <div className="view" role="main">
+                        <div className="details-view-body-content-pane">
+                            <main>
                                 <rightPanelConfig.RightPanel {...props} />
-                            </div>
+                            </main>
                         </div>
                     </div>
                 </>
             );
 
-            const testSubject = new DetailsViewMainContent(props);
+            const testSubject = new DetailsViewBody(props);
             expect(testSubject.render()).toEqual(expected);
         });
 
@@ -153,7 +143,7 @@ describe('DetailsViewMainContentTest', () => {
             const expected = (
                 <>
                     {buildCommandBar(props)}
-                    <div className="table row-layout details-view-main-content">
+                    <div className="table row-layout details-view-body">
                         {buildLeftNav(props)}
                         <div className="details-content table column-layout">
                             {buildTabInfo(props)}
@@ -165,7 +155,7 @@ describe('DetailsViewMainContentTest', () => {
                 </>
             );
 
-            const testSubject = new DetailsViewMainContent(props);
+            const testSubject = new DetailsViewBody(props);
             expect(testSubject.render()).toEqual(expected);
         });
     });
@@ -175,7 +165,7 @@ describe('DetailsViewMainContentTest', () => {
         givenGetStoreDataMock: IMock<(data: TestsEnabledState) => ScanData>,
         config: VisualizationConfiguration,
         scanData: ScanData,
-        givenProps: DetailsViewMainContentProps,
+        givenProps: DetailsViewBodyProps,
     ): void {
         factoryMock.setup(cfm => cfm.getConfiguration(givenProps.selectedTest)).returns(() => config);
 
@@ -190,11 +180,11 @@ describe('DetailsViewMainContentTest', () => {
         factoryMock.setup(chfm => chfm.createClickHandler(setupType, setupNewValue)).returns(() => clickHandlerStub);
     }
 
-    function buildLeftNav(givenProps: DetailsViewMainContentProps): JSX.Element {
+    function buildLeftNav(givenProps: DetailsViewBodyProps): JSX.Element {
         return <DetailsViewLeftNav {...givenProps} />;
     }
 
-    function buildTabInfo(givenProps: DetailsViewMainContentProps): JSX.Element {
+    function buildTabInfo(givenProps: DetailsViewBodyProps): JSX.Element {
         return (
             <TabInfo
                 isTargetPageHidden={givenProps.tabStoreData.isPageHidden}
@@ -207,7 +197,7 @@ describe('DetailsViewMainContentTest', () => {
         );
     }
 
-    function buildCommandBar(givenProps: DetailsViewMainContentProps): JSX.Element {
+    function buildCommandBar(givenProps: DetailsViewBodyProps): JSX.Element {
         return <switcherNavConfig.CommandBar actionMessageCreator={props.deps.detailsViewActionMessageCreator} {...props} />;
     }
 });
