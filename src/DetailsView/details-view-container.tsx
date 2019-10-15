@@ -32,7 +32,7 @@ import { Header, HeaderDeps } from './components/header';
 import { IssuesTableHandler } from './components/issues-table-handler';
 import { TargetChangeDialogDeps } from './components/target-change-dialog';
 import { TargetPageClosedView } from './components/target-page-closed-view';
-import { DetailsViewMainContent, DetailsViewMainContentDeps } from './details-view-main-content';
+import { DetailsViewBody, DetailsViewBodyDeps } from './details-view-body';
 import { AssessmentInstanceTableHandler } from './handlers/assessment-instance-table-handler';
 import { DetailsViewToggleClickHandlerFactory } from './handlers/details-view-toggle-click-handler-factory';
 import { PreviewFeatureFlagsHandler } from './handlers/preview-feature-flags-handler';
@@ -41,7 +41,7 @@ export type DetailsViewContainerDeps = {
     getDetailsRightPanelConfiguration: GetDetailsRightPanelConfiguration;
     getDetailsSwitcherNavConfiguration: GetDetailsSwitcherNavConfiguration;
     getUnifiedRuleResults: GetUnifiedRuleResultsDelegate;
-} & DetailsViewMainContentDeps &
+} & DetailsViewBodyDeps &
     DetailsViewOverlayDeps &
     DetailsViewCommandBarDeps &
     HeaderDeps &
@@ -120,7 +120,7 @@ export class DetailsViewContainer extends React.Component<DetailsViewContainerPr
         return (
             <div className="table column-layout main-wrapper">
                 {this.renderHeader()}
-                <div className="table column-layout details-view-body">{this.renderDetailsView()}</div>
+                {this.renderDetailsView()}
                 {this.renderOverlay()}
             </div>
         );
@@ -174,7 +174,7 @@ export class DetailsViewContainer extends React.Component<DetailsViewContainerPr
         );
 
         return (
-            <DetailsViewMainContent
+            <DetailsViewBody
                 deps={deps}
                 tabStoreData={storeState.tabStoreData}
                 assessmentStoreData={storeState.assessmentStoreData}
