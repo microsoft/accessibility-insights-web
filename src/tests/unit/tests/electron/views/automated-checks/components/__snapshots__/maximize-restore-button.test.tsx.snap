@@ -5,7 +5,7 @@ exports[`MaximizeRestoreButton renders with maximize 1`] = `
   ariaHidden={true}
   iconProps={
     Object {
-      "iconName": "Stop",
+      "iconName": "stop",
     }
   }
   id="maximize-button"
