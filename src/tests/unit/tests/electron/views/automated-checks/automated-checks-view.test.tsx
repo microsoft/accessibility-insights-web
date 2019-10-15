@@ -1,5 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { getUnifiedRuleResults } from 'common/rule-based-view-model-provider';
+import { CardRuleResult, CardRuleResultsByStatus } from 'common/types/store-data/card-view-model';
+import { UnifiedResult, UnifiedRule } from 'common/types/store-data/unified-data-interface';
 import { ScanActionCreator } from 'electron/flux/action-creator/scan-action-creator';
 import { WindowFrameActionCreator } from 'electron/flux/action-creator/window-frame-action-creator';
 import { WindowStateActionCreator } from 'electron/flux/action-creator/window-state-action-creator';
@@ -12,28 +15,9 @@ import { It, Mock, Times } from 'typemoq';
 
 describe('AutomatedChecksView', () => {
     describe('renders', () => {
-        it('renders the automated checks view', () => {
-            const props: AutomatedChecksViewProps = {
-                deps: {
-                    deviceConnectActionCreator: null,
-                    windowStateActionCreator: Mock.ofType(WindowStateActionCreator).object,
-                    scanActionCreator: Mock.ofType(ScanActionCreator).object,
-                    windowFrameActionCreator: Mock.ofType(WindowFrameActionCreator).object,
-                },
-                scanStoreData: {},
-                deviceStoreData: {},
-                windowStateStoreData: 'window state store data' as any,
-            } as AutomatedChecksViewProps;
-
-            const wrapped = shallow(<AutomatedChecksView {...props} />);
-
-            expect(wrapped.getElement()).toMatchSnapshot();
-        });
-
         it('scanning spinner', () => {
             const props: AutomatedChecksViewProps = {
                 deps: {
-                    deviceConnectActionCreator: null,
                     windowStateActionCreator: Mock.ofType(WindowStateActionCreator).object,
                     scanActionCreator: Mock.ofType(ScanActionCreator).object,
                     windowFrameActionCreator: Mock.ofType(WindowFrameActionCreator).object,
@@ -41,8 +25,10 @@ describe('AutomatedChecksView', () => {
                 scanStoreData: {
                     status: ScanStatus.Scanning,
                 },
-                deviceStoreData: {} as any,
-                windowStateStoreData: 'window state store data' as any,
+                deviceStoreData: {},
+                windowStateStoreData: {
+                    currentWindowState: 'customSize',
+                },
             } as AutomatedChecksViewProps;
 
             const wrapped = shallow(<AutomatedChecksView {...props} />);
@@ -60,6 +46,44 @@ describe('AutomatedChecksView', () => {
                 },
                 deviceStoreData: {
                     connectedDevice: 'TEST DEVICE',
+                },
+            } as AutomatedChecksViewProps;
+
+            const wrapped = shallow(<AutomatedChecksView {...props} />);
+
+            expect(wrapped.getElement()).toMatchSnapshot();
+        });
+
+        it('results', () => {
+            const rulesStub = [{ description: 'test-rule-description' } as UnifiedRule];
+            const resultsStub = [{ uid: 'test-uid' } as UnifiedResult];
+
+            const getUnifiedRuleResultsMock = Mock.ofInstance(getUnifiedRuleResults);
+
+            const ruleResultsByStatusStub = {
+                fail: [{ id: 'test-fail-id' } as CardRuleResult],
+            } as CardRuleResultsByStatus;
+
+            getUnifiedRuleResultsMock.setup(getter => getter(rulesStub, resultsStub)).returns(() => ruleResultsByStatusStub);
+
+            const props: AutomatedChecksViewProps = {
+                deps: {
+                    scanActionCreator: Mock.ofType(ScanActionCreator).object,
+                    getUnifiedRuleResultsDelegate: getUnifiedRuleResultsMock.object,
+                },
+                deviceStoreData: {},
+                scanStoreData: {
+                    status: ScanStatus.Completed,
+                },
+                userConfigurationStoreData: {
+                    isFirstTime: false,
+                },
+                unifiedScanResultStoreData: {
+                    targetAppInfo: {
+                        name: 'test-target-app-name',
+                    },
+                    rules: rulesStub,
+                    results: resultsStub,
                 },
             } as AutomatedChecksViewProps;
 

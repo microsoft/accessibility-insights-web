@@ -38,47 +38,28 @@ exports[`AutomatedChecksView renders device disconnected 1`] = `
 </div>
 `;
 
-exports[`AutomatedChecksView renders renders the automated checks view 1`] = `
+exports[`AutomatedChecksView renders results 1`] = `
 <div
   className="automatedChecksView"
 >
   <TitleBar
     deps={
       Object {
-        "deviceConnectActionCreator": null,
+        "getUnifiedRuleResultsDelegate": [Function],
         "scanActionCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "scanActions": undefined,
         },
-        "windowFrameActionCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "windowFrameActions": undefined,
-        },
-        "windowStateActionCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "windowFrameActionCreator": undefined,
-          "windowStateActions": undefined,
-        },
       }
     }
-    windowStateStoreData="window state store data"
   />
   <CommandBar
     deps={
       Object {
-        "deviceConnectActionCreator": null,
+        "getUnifiedRuleResultsDelegate": [Function],
         "scanActionCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "scanActions": undefined,
-        },
-        "windowFrameActionCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "windowFrameActions": undefined,
-        },
-        "windowStateActionCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "windowFrameActionCreator": undefined,
-          "windowStateActions": undefined,
         },
       }
     }
@@ -87,6 +68,36 @@ exports[`AutomatedChecksView renders renders the automated checks view 1`] = `
     <HeaderSection />
     <ScanningSpinner
       isScanning={false}
+    />
+    <CardsView
+      deps={
+        Object {
+          "getUnifiedRuleResultsDelegate": [Function],
+          "scanActionCreator": proxy {
+            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+            "scanActions": undefined,
+          },
+        }
+      }
+      ruleResultsByStatus={
+        Object {
+          "fail": Array [
+            Object {
+              "id": "test-fail-id",
+            },
+          ],
+        }
+      }
+      targetAppInfo={
+        Object {
+          "name": "test-target-app-name",
+        }
+      }
+      userConfigurationStoreData={
+        Object {
+          "isFirstTime": false,
+        }
+      }
     />
   </main>
 </div>
@@ -99,7 +110,6 @@ exports[`AutomatedChecksView renders scanning spinner 1`] = `
   <TitleBar
     deps={
       Object {
-        "deviceConnectActionCreator": null,
         "scanActionCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "scanActions": undefined,
@@ -115,12 +125,15 @@ exports[`AutomatedChecksView renders scanning spinner 1`] = `
         },
       }
     }
-    windowStateStoreData="window state store data"
+    windowStateStoreData={
+      Object {
+        "currentWindowState": "customSize",
+      }
+    }
   />
   <CommandBar
     deps={
       Object {
-        "deviceConnectActionCreator": null,
         "scanActionCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "scanActions": undefined,
