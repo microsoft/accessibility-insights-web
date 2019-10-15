@@ -14,7 +14,7 @@ import { HTMLElementUtils } from '../common/html-element-utils';
 import { IsSupportedBrowser } from '../common/is-supported-browser';
 import { createDefaultLogger } from '../common/logging/default-logger';
 import { Logger } from '../common/logging/logger';
-import { ActionMessageDispatcher } from '../common/message-creators/action-message-dispatcher';
+import { RemoteActionMessageDispatcher } from '../common/message-creators/action-message-dispatcher';
 import { ContentActionMessageCreator } from '../common/message-creators/content-action-message-creator';
 import { DropdownActionMessageCreator } from '../common/message-creators/dropdown-action-message-creator';
 import { StoreActionMessageCreatorFactory } from '../common/message-creators/store-action-message-creator-factory';
@@ -84,7 +84,7 @@ export class PopupInitializer {
 
     private initializePopup = (): void => {
         const telemetryFactory = new TelemetryDataFactory();
-        const actionMessageDispatcher = new ActionMessageDispatcher(this.browserAdapter.sendMessageToFrames, this.targetTabInfo.tab.id);
+        const actionMessageDispatcher = new RemoteActionMessageDispatcher(this.browserAdapter.sendMessageToFrames, this.targetTabInfo.tab.id);
         const visualizationActionCreator = new VisualizationActionMessageCreator(actionMessageDispatcher);
 
         const windowUtils = new WindowUtils();

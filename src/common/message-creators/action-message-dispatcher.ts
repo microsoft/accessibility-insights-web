@@ -6,7 +6,7 @@ import { InterpreterMessage, Message } from '../message';
 import { Messages } from '../messages';
 import { Dispatcher } from './types/dispatcher';
 
-export class ActionMessageDispatcher implements Dispatcher {
+export class RemoteActionMessageDispatcher implements Dispatcher {
     constructor(private postMessageDelegate: (message: InterpreterMessage) => void, private tabId: number) {}
 
     public dispatchMessage(message: Message): void {
