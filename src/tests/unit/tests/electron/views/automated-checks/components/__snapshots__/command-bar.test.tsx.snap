@@ -7,10 +7,10 @@ exports[`CommandBar render 1`] = `
   <CustomizedActionButton
     iconProps={
       Object {
+        "className": "rescanButton",
         "iconName": "Refresh",
       }
     }
-    id="rescanButton"
     onClick={[Function]}
     text="Rescan"
   />

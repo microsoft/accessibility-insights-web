@@ -20,8 +20,8 @@ export const CommandBar = NamedFC<CommandBarProps>('CommandBar', (props: Command
     return (
         <div className={commandBar}>
             <ActionButton
-                id={rescanButton}
                 iconProps={{
+                    className: rescanButton,
                     iconName: 'Refresh',
                 }}
                 onClick={onClick}
