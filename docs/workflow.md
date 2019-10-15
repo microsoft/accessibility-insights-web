@@ -24,7 +24,7 @@ yarn build:electron
 yarn start:electron:dev
 ```
 
-Most of the functionality of the Electron app relies on connecting to a running [Axe for Android]() service.
+Most of the functionality of the Electron app relies on connecting to a running [Axe for Android](https://www.deque.com/axe/axe-for-android/) service.
 
 To simulate Axe for Android (running on port 9051) for local testing of the app, use:
 
