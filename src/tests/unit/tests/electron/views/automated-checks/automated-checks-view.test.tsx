@@ -1,8 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { getUnifiedRuleResults } from 'common/rule-based-view-model-provider';
+import { CardRuleResult, CardRuleResultsByStatus } from 'common/types/store-data/card-view-model';
+import { UnifiedResult, UnifiedRule } from 'common/types/store-data/unified-data-interface';
 import { DeviceConnectActionCreator } from 'electron/flux/action-creator/device-connect-action-creator';
 import { ScanActionCreator } from 'electron/flux/action-creator/scan-action-creator';
-import { WindowFrameActionCreator } from 'electron/flux/action-creator/window-frame-action-creator';
 import { WindowStateActionCreator } from 'electron/flux/action-creator/window-state-action-creator';
 import { ScanStatus } from 'electron/flux/types/scan-status';
 import { AutomatedChecksView, AutomatedChecksViewProps } from 'electron/views/automated-checks/automated-checks-view';
@@ -11,6 +13,7 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 import { It, Mock, Times } from 'typemoq';
 
+//
 describe('AutomatedChecksView', () => {
     describe('renders', () => {
         let bareMinimumProps: AutomatedChecksViewProps;
@@ -21,7 +24,6 @@ describe('AutomatedChecksView', () => {
                     deviceConnectActionCreator: Mock.ofType(DeviceConnectActionCreator).object,
                     windowStateActionCreator: Mock.ofType(WindowStateActionCreator).object,
                     scanActionCreator: Mock.ofType(ScanActionCreator).object,
-                    windowFrameActionCreator: Mock.ofType(WindowFrameActionCreator).object,
                 },
                 scanStoreData: {},
                 deviceStoreData: {
@@ -37,6 +39,44 @@ describe('AutomatedChecksView', () => {
             bareMinimumProps.scanStoreData.status = ScanStatus[scanStatusName];
 
             const wrapped = shallow(<AutomatedChecksView {...bareMinimumProps} />);
+
+            expect(wrapped.getElement()).toMatchSnapshot();
+        });
+
+        it('results', () => {
+            const rulesStub = [{ description: 'test-rule-description' } as UnifiedRule];
+            const resultsStub = [{ uid: 'test-uid' } as UnifiedResult];
+
+            const getUnifiedRuleResultsMock = Mock.ofInstance(getUnifiedRuleResults);
+
+            const ruleResultsByStatusStub = {
+                fail: [{ id: 'test-fail-id' } as CardRuleResult],
+            } as CardRuleResultsByStatus;
+
+            getUnifiedRuleResultsMock.setup(getter => getter(rulesStub, resultsStub)).returns(() => ruleResultsByStatusStub);
+
+            const props: AutomatedChecksViewProps = {
+                deps: {
+                    scanActionCreator: Mock.ofType(ScanActionCreator).object,
+                    getUnifiedRuleResultsDelegate: getUnifiedRuleResultsMock.object,
+                },
+                deviceStoreData: {},
+                scanStoreData: {
+                    status: ScanStatus.Completed,
+                },
+                userConfigurationStoreData: {
+                    isFirstTime: false,
+                },
+                unifiedScanResultStoreData: {
+                    targetAppInfo: {
+                        name: 'test-target-app-name',
+                    },
+                    rules: rulesStub,
+                    results: resultsStub,
+                },
+            } as AutomatedChecksViewProps;
+
+            const wrapped = shallow(<AutomatedChecksView {...props} />);
 
             expect(wrapped.getElement()).toMatchSnapshot();
         });
