@@ -111,48 +111,23 @@ describe('DetailsViewBody', () => {
             } as DetailsViewBodyProps;
         });
 
-        test('tab is closed', () => {
-            const tabStoreData: TabStoreData = {
-                isClosed: true,
-            } as TabStoreData;
-
-            props.tabStoreData = tabStoreData;
-
-            const expected = (
-                <>
-                    {buildCommandBar(props)}
-                    <div className="details-view-body-nav-content-layout">
-                        {null}
-                        <div className="details-view-body-content-pane">
-                            <div className="view" role="main">
-                                <rightPanelConfig.RightPanel {...props} />
-                            </div>
-                        </div>
-                    </div>
-                </>
-            );
-
-            const testSubject = new DetailsViewBody(props);
-            expect(testSubject.render()).toEqual(expected);
-        });
-
         test('a non-assessment or non-issues view', () => {
             setupClickHandlerFactoryMock(clickHandlerFactoryMock, selectedTest, !scanDataStub.enabled);
             setupConfigFactoryMock(configFactoryMock, getStoreDataMock, configStub, scanDataStub, props);
 
             const expected = (
-                <>
+                <div className="details-view-body">
                     {buildCommandBar(props)}
-                    <div className="table row-layout details-view-body">
+                    <div className="details-view-body-nav-content-layout">
                         {buildLeftNav(props)}
-                        <div className="details-content table column-layout">
+                        <div className="details-view-body-content-pane">
                             {buildTabInfo(props)}
                             <div className="view" role="main">
                                 <rightPanelConfig.RightPanel {...props} />
                             </div>
                         </div>
                     </div>
-                </>
+                </div>
             );
 
             const testSubject = new DetailsViewBody(props);
