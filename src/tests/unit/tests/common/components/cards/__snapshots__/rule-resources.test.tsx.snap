@@ -2,7 +2,9 @@
 
 exports[`RuleResources renders no url, only guidance links 1`] = `null`;
 
-exports[`RuleResources renders only url, no guidance links 1`] = `null`;
+exports[`RuleResources renders only url, empty guidance links 1`] = `null`;
+
+exports[`RuleResources renders only url, null guidance links 1`] = `null`;
 
 exports[`RuleResources renders with rule url and guidance links 1`] = `
 <div

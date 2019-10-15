@@ -36,9 +36,23 @@ describe('RuleResources', () => {
             expect(wrapper.getElement()).toMatchSnapshot();
         });
 
-        it('only url, no guidance links', () => {
+        it('only url, empty guidance links', () => {
             const rule = cloneDeep(exampleUnifiedRuleResult);
             rule.guidance = [];
+
+            const props: RuleResourcesProps = {
+                rule,
+                deps: {} as RuleResourcesDeps,
+            };
+
+            const wrapper = shallow(<RuleResources {...props} />);
+
+            expect(wrapper.getElement()).toMatchSnapshot();
+        });
+
+        it('only url, null guidance links', () => {
+            const rule = cloneDeep(exampleUnifiedRuleResult);
+            rule.guidance = null;
 
             const props: RuleResourcesProps = {
                 rule,
