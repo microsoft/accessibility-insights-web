@@ -46,7 +46,6 @@ export class RootContainer extends React.Component<RootContainerProps, RootConta
                 />
             );
         }
-
         return (
             <DeviceConnectViewContainer
                 {...{

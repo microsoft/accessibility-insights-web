@@ -22,6 +22,7 @@ import * as ReactDOM from 'react-dom';
 import { WindowFrameActionCreator } from 'electron/flux/action-creator/window-frame-action-creator';
 import { WindowFrameActions } from 'electron/flux/action/window-frame-actions';
 import { ScanStore } from 'electron/flux/store/scan-store';
+import { PlatformInfo } from 'electron/platform-info';
 import { WindowFrameListener } from 'electron/window-frame-listener';
 import { UserConfigurationActions } from '../../background/actions/user-configuration-actions';
 import { getPersistedData, PersistedData } from '../../background/get-persisted-data';
@@ -143,6 +144,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then((persistedDat
             storeHub,
             scanActionCreator,
             windowFrameActionCreator,
+            platformInfo: new PlatformInfo(process),
         },
     };
 

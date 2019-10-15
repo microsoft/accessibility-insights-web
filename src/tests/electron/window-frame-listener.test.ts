@@ -20,75 +20,67 @@ describe(WindowFrameListener, () => {
 
     afterEach(() => {
         browserWindowMock.verifyAll();
+        windowStateActionsCreatorMock.verifyAll();
     });
 
     it('do nothing on action invocation before initialize', () => {
         browserWindowMock.setup(b => b.on(It.isAny(), It.isAny())).verifiable(Times.never());
     });
 
-    describe('initialize', () => {
-        it('registers to required window events', () => {
-            const eventCallbacks: Function[] = [];
-
-            const eventsToListen = ['minimize', 'maximize', 'unmaximize'];
-            eventsToListen.forEach(eventName => {
-                browserWindowMock
-                    .setup(b => b.on(eventName as any, It.isAny()))
-                    .callback((event, cb) => {
-                        eventCallbacks.push(cb);
-                    })
-                    .verifiable(Times.once());
-            });
-
-            testSubject.initialize();
-
-            expect(eventCallbacks.length).toBe(eventsToListen.length);
-            expect(new Set(eventCallbacks).size).toBe(1);
-        });
-    });
-
-    describe('verify action listeners', () => {
-        let eventCallback: Function = null;
+    describe('validate window listeners', () => {
+        let maximizeCallback: Function;
+        let unmaximizeCallback: Function;
+        let enterFullScreenCallback: Function;
+        let leaveFullScreenCallback: Function;
 
         beforeEach(() => {
-            const eventsToListen = ['minimize', 'maximize', 'unmaximize'];
-            eventsToListen.forEach(eventName => {
-                browserWindowMock
-                    .setup(b => b.on(eventName as any, It.isAny()))
-                    .callback((event, cb) => {
-                        eventCallback = cb;
-                    });
-            });
+            setupVerifiableWindowEventCallback('maximize', cb => (maximizeCallback = cb));
+            setupVerifiableWindowEventCallback('unmaximize', cb => (unmaximizeCallback = cb));
+            setupVerifiableWindowEventCallback('enter-full-screen', cb => (enterFullScreenCallback = cb));
+            setupVerifiableWindowEventCallback('leave-full-screen', cb => (leaveFullScreenCallback = cb));
 
             testSubject.initialize();
         });
 
-        it('invokes maximize', () => {
-            browserWindowMock.setup(b => b.isMinimized()).returns(() => false);
-
-            browserWindowMock.setup(b => b.isMaximized()).returns(() => true);
-
+        it('validate window state on maximize', () => {
             windowStateActionsCreatorMock.setup(b => b.setWindowState({ currentWindowState: 'maximized' })).verifiable(Times.once());
 
-            eventCallback();
+            maximizeCallback();
         });
 
-        it('invokes minimize', () => {
-            browserWindowMock.setup(b => b.isMinimized()).returns(() => true);
-
-            windowStateActionsCreatorMock.setup(b => b.setWindowState({ currentWindowState: 'minimized' })).verifiable(Times.once());
-
-            eventCallback();
-        });
-
-        it('invokes customSize', () => {
-            browserWindowMock.setup(b => b.isMinimized()).returns(() => false);
-
-            browserWindowMock.setup(b => b.isMaximized()).returns(() => false);
-
+        it('validate window state on unmaximize', () => {
             windowStateActionsCreatorMock.setup(b => b.setWindowState({ currentWindowState: 'customSize' })).verifiable(Times.once());
 
-            eventCallback();
+            unmaximizeCallback();
         });
+
+        it('validate window state on fullscreen', () => {
+            windowStateActionsCreatorMock.setup(b => b.setWindowState({ currentWindowState: 'fullScreen' })).verifiable(Times.once());
+
+            enterFullScreenCallback();
+        });
+
+        it('validate window state on leaving full screen to maximized state', () => {
+            browserWindowMock.setup(b => b.isMaximized()).returns(() => true);
+            windowStateActionsCreatorMock.setup(b => b.setWindowState({ currentWindowState: 'maximized' })).verifiable(Times.once());
+
+            leaveFullScreenCallback();
+        });
+
+        it('validate window state on leaving full screen to custom size', () => {
+            browserWindowMock.setup(b => b.isMaximized()).returns(() => false);
+            windowStateActionsCreatorMock.setup(b => b.setWindowState({ currentWindowState: 'customSize' })).verifiable(Times.once());
+
+            leaveFullScreenCallback();
+        });
+
+        function setupVerifiableWindowEventCallback(eventName: string, callback: (eventCallback: Function) => void): void {
+            browserWindowMock
+                .setup(b => b.on(eventName as any, It.isAny()))
+                .callback((event, cb) => {
+                    callback(cb);
+                })
+                .verifiable(Times.once());
+        }
     });
 });

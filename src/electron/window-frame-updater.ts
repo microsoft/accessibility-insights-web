@@ -24,7 +24,11 @@ export class WindowFrameUpdater {
     };
 
     private onRestore = (): void => {
-        this.browserWindow.restore();
+        if (this.browserWindow.isFullScreen()) {
+            this.browserWindow.setFullScreen(false);
+        } else {
+            this.browserWindow.unmaximize();
+        }
     };
 
     private onClose = (): void => {

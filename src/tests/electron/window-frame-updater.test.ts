@@ -24,7 +24,7 @@ describe(WindowFrameUpdater, () => {
     });
 
     it(' do nothing on action invocation before initialize', () => {
-        windowFrameActions.maximize.invoke();
+        windowFrameActions.maximize.invoke(null);
 
         browserWindowMock.setup(b => b.maximize()).verifiable(Times.never());
     });
@@ -37,25 +37,39 @@ describe(WindowFrameUpdater, () => {
         it('invokes maximize', () => {
             browserWindowMock.setup(b => b.maximize()).verifiable(Times.once());
 
-            windowFrameActions.maximize.invoke();
+            windowFrameActions.maximize.invoke(null);
         });
 
         it('invokes minimize', () => {
             browserWindowMock.setup(b => b.minimize()).verifiable(Times.once());
 
-            windowFrameActions.minimize.invoke();
+            windowFrameActions.minimize.invoke(null);
         });
 
-        it('invokes restore', () => {
-            browserWindowMock.setup(b => b.restore()).verifiable(Times.once());
+        it('handles restore when in full screen', () => {
+            browserWindowMock
+                .setup(b => b.isFullScreen())
+                .returns(() => true)
+                .verifiable(Times.once());
+            browserWindowMock.setup(b => b.setFullScreen(false)).verifiable(Times.once());
 
-            windowFrameActions.restore.invoke();
+            windowFrameActions.restore.invoke(null);
+        });
+
+        it('handles restore when not in full screen', () => {
+            browserWindowMock
+                .setup(b => b.isFullScreen())
+                .returns(() => false)
+                .verifiable(Times.once());
+            browserWindowMock.setup(b => b.unmaximize()).verifiable(Times.once());
+
+            windowFrameActions.restore.invoke(null);
         });
 
         it('invokes close', () => {
             browserWindowMock.setup(b => b.close()).verifiable(Times.once());
 
-            windowFrameActions.close.invoke();
+            windowFrameActions.close.invoke(null);
         });
 
         it('invokes setSize', () => {

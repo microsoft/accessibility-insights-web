@@ -9,12 +9,31 @@
     display: flex;
     align-items: center;
     -webkit-app-region: drag;
+    -webkit-user-select: none;
 
     .title-container {
         display: flex;
+        align-items: center;
 
         > * {
             padding-left: 10px;
+        }
+    }
+
+    &.mac-window-title {
+        height: 22px;
+
+        .title-container {
+            padding-left: 60px;
+        }
+
+        .header-text {
+            line-height: 18px;
+            font-size: 12px;
+        }
+
+        .header-icon {
+            height: 12px;
         }
     }
 
