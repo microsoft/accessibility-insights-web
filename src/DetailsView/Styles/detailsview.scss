@@ -252,6 +252,9 @@ div.insights-file-issue-details-dialog-container {
 }
 
 #details-container {
+    display: flex;
+    flex-direction: column;
+
     .details-view-body {
         margin-top: $detailsViewHeaderBarHeight;
     }
@@ -1315,18 +1318,4 @@ div.insights-file-issue-details-dialog-container {
             }
         }
     }
-}
-
-.table {
-    display: -webkit-flex;
-    display: flex;
-    flex: 7;
-}
-
-.table.row-layout {
-    flex-direction: row;
-}
-
-.table.column-layout {
-    flex-direction: column;
 }
