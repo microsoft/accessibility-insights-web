@@ -3,7 +3,7 @@
 import { TelemetryData } from 'common/extension-telemetry-events';
 import { Message } from 'common/message';
 
-export interface Dispatcher {
+export interface ActionMessageDispatcher {
     dispatchMessage(message: Message): void;
     dispatchType(messageType: string): void;
     sendTelemetry(eventName: string, eventData: TelemetryData): void;

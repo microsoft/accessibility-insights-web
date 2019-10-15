@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { VisualizationTogglePayload } from 'background/actions/action-payloads';
-import { Dispatcher } from 'common/message-creators/types/dispatcher';
+import { ActionMessageDispatcher } from 'common/message-creators/types/dispatcher';
 
 import { ToggleTelemetryData } from '../extension-telemetry-events';
 import { Message } from '../message';
@@ -9,7 +9,7 @@ import { Messages } from '../messages';
 import { VisualizationType } from '../types/visualization-type';
 
 export class VisualizationActionMessageCreator {
-    constructor(private readonly dispatcher: Dispatcher) {}
+    constructor(private readonly dispatcher: ActionMessageDispatcher) {}
 
     public setVisualizationState(test: VisualizationType, enabled: boolean, telemetry: ToggleTelemetryData): void {
         const payload: VisualizationTogglePayload = {

@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { BaseActionPayload, FileIssuePayload } from 'background/actions/action-payloads';
-import { Dispatcher } from 'common/message-creators/types/dispatcher';
+import { ActionMessageDispatcher } from 'common/message-creators/types/dispatcher';
 
 import { FILE_ISSUE_CLICK, TelemetryEventSource } from '../extension-telemetry-events';
 import { Message } from '../message';
@@ -13,7 +13,7 @@ type SupportedMouseEvent = React.MouseEvent<HTMLElement> | React.SyntheticEvent<
 
 export class IssueFilingActionMessageCreator {
     constructor(
-        private readonly dispatcher: Dispatcher,
+        private readonly dispatcher: ActionMessageDispatcher,
         private readonly telemetryFactory: TelemetryDataFactory,
         private readonly source: TelemetryEventSource,
     ) {}

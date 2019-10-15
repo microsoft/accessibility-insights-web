@@ -3,16 +3,16 @@
 import { CardSelectionPayload } from 'background/actions/action-payloads';
 import { Message } from 'common/message';
 import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
-import { Dispatcher } from 'common/message-creators/types/dispatcher';
+import { ActionMessageDispatcher } from 'common/message-creators/types/dispatcher';
 import { Messages } from 'common/messages';
 import { IMock, Mock, Times } from 'typemoq';
 
 describe('Card Selection Message Creator', () => {
-    let dispatcherMock: IMock<Dispatcher>;
+    let dispatcherMock: IMock<ActionMessageDispatcher>;
     let testSubject: CardSelectionMessageCreator;
 
     beforeEach(() => {
-        dispatcherMock = Mock.ofType<Dispatcher>();
+        dispatcherMock = Mock.ofType<ActionMessageDispatcher>();
         testSubject = new CardSelectionMessageCreator(dispatcherMock.object);
     });
 

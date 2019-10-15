@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { InspectMode } from 'background/inspect-modes';
-import { Dispatcher } from 'common/message-creators/types/dispatcher';
+import { ActionMessageDispatcher } from 'common/message-creators/types/dispatcher';
 import * as React from 'react';
 
 import { TelemetryEventSource } from '../extension-telemetry-events';
@@ -13,7 +13,7 @@ export class InspectActionMessageCreator {
     constructor(
         private readonly telemetryFactory: TelemetryDataFactory,
         private readonly source: TelemetryEventSource,
-        private readonly dispatcher: Dispatcher,
+        private readonly dispatcher: ActionMessageDispatcher,
     ) {}
 
     public changeInspectMode = (event: React.MouseEvent<HTMLElement> | MouseEvent, inspectMode: InspectMode): void => {

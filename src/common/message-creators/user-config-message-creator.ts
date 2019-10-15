@@ -7,12 +7,12 @@ import {
     SetIssueFilingServicePropertyPayload,
     SetTelemetryStatePayload,
 } from 'background/actions/action-payloads';
-import { Dispatcher } from 'common/message-creators/types/dispatcher';
+import { ActionMessageDispatcher } from 'common/message-creators/types/dispatcher';
 
 import { Messages } from '../messages';
 
 export class UserConfigMessageCreator {
-    constructor(private readonly dispatcher: Dispatcher) {}
+    constructor(private readonly dispatcher: ActionMessageDispatcher) {}
     public setTelemetryState(enableTelemetry: boolean): void {
         const payload: SetTelemetryStatePayload = {
             enableTelemetry,

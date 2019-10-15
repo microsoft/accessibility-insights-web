@@ -3,9 +3,9 @@
 import { Interpreter } from 'background/interpreter';
 import { TelemetryData } from 'common/extension-telemetry-events';
 import { Message } from 'common/message';
-import { Dispatcher } from 'common/message-creators/types/dispatcher';
+import { ActionMessageDispatcher } from 'common/message-creators/types/dispatcher';
 
-export class ActionMessageDispatcherAdapter implements Dispatcher {
+export class ActionMessageDispatcherAdapter implements ActionMessageDispatcher {
     constructor(private readonly interpreter: Interpreter) {}
 
     public dispatchMessage(message: Message): void {

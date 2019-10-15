@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { InspectElementPayload, InspectFrameUrlPayload, OnDevToolOpenPayload } from 'background/actions/action-payloads';
-import { Dispatcher } from 'common/message-creators/types/dispatcher';
+import { ActionMessageDispatcher } from 'common/message-creators/types/dispatcher';
 import { IMock, It, Mock, Times } from 'typemoq';
 
 import { DevToolActionMessageCreator } from '../../../../../common/message-creators/dev-tool-action-message-creator';
@@ -12,10 +12,10 @@ import { EventStubFactory } from '../../../common/event-stub-factory';
 describe('DevToolActionMessageCreatorTest', () => {
     let eventStubFactory: EventStubFactory;
     let testSubject: DevToolActionMessageCreator;
-    let dispatcherMock: IMock<Dispatcher>;
+    let dispatcherMock: IMock<ActionMessageDispatcher>;
 
     beforeEach(() => {
-        dispatcherMock = Mock.ofType<Dispatcher>();
+        dispatcherMock = Mock.ofType<ActionMessageDispatcher>();
         eventStubFactory = new EventStubFactory();
         testSubject = new DevToolActionMessageCreator(new TelemetryDataFactory(), dispatcherMock.object);
     });

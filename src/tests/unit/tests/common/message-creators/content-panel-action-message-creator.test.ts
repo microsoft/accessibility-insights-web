@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { Dispatcher } from 'common/message-creators/types/dispatcher';
+import { ActionMessageDispatcher } from 'common/message-creators/types/dispatcher';
 import { It, Mock, Times } from 'typemoq';
 
 import {
@@ -23,7 +23,7 @@ describe('ContentPanelActionMessageCreator', () => {
     const href = 'http://external.link';
 
     const telemetryDataFactoryMock = Mock.ofType<TelemetryDataFactory>();
-    const actionMessageDispatcherMock = Mock.ofType<Dispatcher>();
+    const actionMessageDispatcherMock = Mock.ofType<ActionMessageDispatcher>();
 
     const testSubject = new ContentActionMessageCreator(telemetryDataFactoryMock.object, source, actionMessageDispatcherMock.object);
 

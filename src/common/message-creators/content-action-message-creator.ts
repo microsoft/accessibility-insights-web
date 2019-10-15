@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { BaseActionPayload } from 'background/actions/action-payloads';
 import { ContentPayload } from 'background/actions/content-actions';
-import { Dispatcher } from 'common/message-creators/types/dispatcher';
+import { ActionMessageDispatcher } from 'common/message-creators/types/dispatcher';
 import * as React from 'react';
 
 import { ActionInitiators } from '../action/action-initiator';
@@ -14,7 +14,7 @@ export class ContentActionMessageCreator {
     constructor(
         private readonly telemetryFactory: TelemetryDataFactory,
         private readonly source: TelemetryEventSource,
-        private readonly dispatcher: Dispatcher,
+        private readonly dispatcher: ActionMessageDispatcher,
     ) {}
 
     public openContentPage = (event: React.MouseEvent<any> | MouseEvent, contentPath: string): void => {

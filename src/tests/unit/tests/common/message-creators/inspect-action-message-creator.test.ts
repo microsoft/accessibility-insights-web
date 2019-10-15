@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { InspectMode } from 'background/inspect-modes';
-import { Dispatcher } from 'common/message-creators/types/dispatcher';
+import { ActionMessageDispatcher } from 'common/message-creators/types/dispatcher';
 import { IMock, Mock, MockBehavior, Times } from 'typemoq';
 
 import { BaseTelemetryData, TelemetryEventSource } from '../../../../../common/extension-telemetry-events';
@@ -14,7 +14,7 @@ import { EventStubFactory } from './../../../common/event-stub-factory';
 describe('InspectActionMessageCreatorTest', () => {
     const eventStubFactory = new EventStubFactory();
     const testSource: TelemetryEventSource = -1 as TelemetryEventSource;
-    const dispatcherMock = Mock.ofType<Dispatcher>();
+    const dispatcherMock = Mock.ofType<ActionMessageDispatcher>();
     let telemetryFactoryMock: IMock<TelemetryDataFactory>;
     let testSubject: InspectActionMessageCreator;
 

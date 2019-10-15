@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { HeadingsTestStep } from 'assessments/headings/test-steps/test-steps';
 import { OnDetailsViewPivotSelected } from 'background/actions/action-payloads';
-import { Dispatcher } from 'common/message-creators/types/dispatcher';
+import { ActionMessageDispatcher } from 'common/message-creators/types/dispatcher';
 import { IMock, It, Mock, Times } from 'typemoq';
 
 import {
@@ -33,11 +33,11 @@ describe('DetailsViewActionMessageCreatorTest', () => {
     const eventStubFactory = new EventStubFactory();
     const testSource: TelemetryEventSource = -1 as TelemetryEventSource;
     let telemetryFactoryMock: IMock<TelemetryDataFactory>;
-    let dispatcherMock: IMock<Dispatcher>;
+    let dispatcherMock: IMock<ActionMessageDispatcher>;
     let testSubject: DetailsViewActionMessageCreator;
 
     beforeEach(() => {
-        dispatcherMock = Mock.ofType<Dispatcher>();
+        dispatcherMock = Mock.ofType<ActionMessageDispatcher>();
         telemetryFactoryMock = Mock.ofType(TelemetryDataFactory);
         testSubject = new DetailsViewActionMessageCreator(telemetryFactoryMock.object, dispatcherMock.object);
     });

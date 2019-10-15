@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { BaseActionPayload } from 'background/actions/action-payloads';
-import { Dispatcher } from 'common/message-creators/types/dispatcher';
+import { ActionMessageDispatcher } from 'common/message-creators/types/dispatcher';
 import { Mock, Times } from 'typemoq';
 import * as TelemetryEvents from '../../../../common/extension-telemetry-events';
 import { SettingsOpenTelemetryData, TelemetryEventSource } from '../../../../common/extension-telemetry-events';
@@ -13,7 +13,7 @@ import { EventStubFactory } from '../../common/event-stub-factory';
 
 describe('TargetPageActionMessageCreator', () => {
     const eventStubFactory = new EventStubFactory();
-    const dispatcherMock = Mock.ofType<Dispatcher>();
+    const dispatcherMock = Mock.ofType<ActionMessageDispatcher>();
     let testSubject: TargetPageActionMessageCreator;
 
     beforeEach(() => {
