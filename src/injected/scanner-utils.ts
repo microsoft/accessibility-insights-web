@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { CheckData } from 'injected/frameCommunicators/get-element-based-view-model';
+import { CheckData } from 'injected/element-based-view-model-creator';
 
 import { createDefaultLogger } from '../common/logging/default-logger';
 import { Logger } from '../common/logging/logger';

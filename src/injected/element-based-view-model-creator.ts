@@ -1,10 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { HowToFixWebPropertyData } from 'common/components/cards/how-to-fix-card-row';
+import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
 import { UnifiedResult, UnifiedRule } from 'common/types/store-data/unified-data-interface';
-import { GetDecoratedAxeNodeCallback } from 'injected/frameCommunicators/get-decorated-axe-node-from-unified-instance-data';
 import { AssessmentVisualizationInstance } from 'injected/frameCommunicators/html-element-axe-results-helper';
-import { DecoratedAxeNodeResult } from 'injected/scanner-utils';
+import { GetDecoratedAxeNodeCallback } from 'injected/get-decorated-axe-node';
 import { find, includes } from 'lodash';
 import { DictionaryStringTo } from 'types/common-types';
 
@@ -18,21 +17,27 @@ export interface CheckData {
 export type GetElementBasedViewModelCallback = (
     rules: UnifiedRule[],
     results: UnifiedResult[],
-    highlightedResultInstanceUids: string[],
+    cardSelectionData: CardSelectionStoreData,
 ) => DictionaryStringTo<AssessmentVisualizationInstance>;
 
-export class ElementBaseViewModelCreator {
-    constructor(private getDecoratedAxeNode: GetDecoratedAxeNodeCallback) {}
+export type GetHighlightedResultInstanceIdsCallback = (cardSelectionData: CardSelectionStoreData) => string[];
+
+export class ElementBasedViewModelCreator {
+    constructor(
+        private getDecoratedAxeNode: GetDecoratedAxeNodeCallback,
+        private getHighlightedResultInstanceIds: GetHighlightedResultInstanceIdsCallback,
+    ) {}
 
     public getElementBasedViewModel: GetElementBasedViewModelCallback = (
         rules: UnifiedRule[],
         results: UnifiedResult[],
-        highlightedResultInstanceUids: string[],
+        cardSelectionData: CardSelectionStoreData,
     ) => {
         const stringToResult: DictionaryStringTo<AssessmentVisualizationInstance> = {};
+        const highlightedResultInstanceUids = this.getHighlightedResultInstanceIds(cardSelectionData);
 
         results.forEach(unifiedResult => {
-            if (unifiedResult.status !== 'fail' && !includes(highlightedResultInstanceUids, unifiedResult.uid)) {
+            if (unifiedResult.status !== 'fail' || !includes(highlightedResultInstanceUids, unifiedResult.uid)) {
                 return;
             }
 

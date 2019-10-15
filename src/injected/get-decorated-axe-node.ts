@@ -2,12 +2,12 @@
 // Licensed under the MIT License.
 import { HowToFixWebPropertyData } from 'common/components/cards/how-to-fix-card-row';
 import { UnifiedResult, UnifiedRule } from 'common/types/store-data/unified-data-interface';
-import { CheckData } from 'injected/frameCommunicators/get-element-based-view-model';
+import { CheckData } from 'injected/element-based-view-model-creator';
 import { DecoratedAxeNodeResult } from 'injected/scanner-utils';
 
 export type GetDecoratedAxeNodeCallback = (unifiedResult: UnifiedResult, rule: UnifiedRule, selector: string) => DecoratedAxeNodeResult;
 
-export const getDecoratedResult: GetDecoratedAxeNodeCallback = (unifiedResult, rule, selector) => {
+export const getDecoratedAxeNode: GetDecoratedAxeNodeCallback = (unifiedResult, rule, selector) => {
     return {
         status: false,
         ruleId: unifiedResult.ruleId,

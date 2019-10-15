@@ -12,6 +12,8 @@ import { visualizationNeedsUpdate } from 'injected/visualization-needs-update';
 import { VisualizationStateChangeHandler } from 'injected/visualization-state-change-handler';
 
 import { UnifiedScanResultStoreData } from 'common/types/store-data/unified-data-interface';
+import { ElementBasedViewModelCreator } from 'injected/element-based-view-model-creator';
+import { getDecoratedAxeNode } from 'injected/get-decorated-axe-node';
 import { AxeInfo } from '../common/axe-info';
 import { InspectConfigurationFactory } from '../common/configs/inspect-configuration-factory';
 import { DateProvider } from '../common/date-provider';
@@ -155,7 +157,8 @@ export class MainWindowInitializer extends WindowInitializer {
         );
 
         const drawingInitiator = new DrawingInitiator(this.drawingController);
-        const selectorMapHelper = new SelectorMapHelper(Assessments);
+        const elementBasedViewModelCreator = new ElementBasedViewModelCreator(getDecoratedAxeNode, null);
+        const selectorMapHelper = new SelectorMapHelper(Assessments, elementBasedViewModelCreator.getElementBasedViewModel);
         const frameUrlMessageDispatcher = new FrameUrlMessageDispatcher(devToolActionMessageCreator, this.frameCommunicator);
         frameUrlMessageDispatcher.initialize();
 
