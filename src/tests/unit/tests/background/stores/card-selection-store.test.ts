@@ -39,7 +39,12 @@ describe('CardSelectionStore Test', () => {
             scanResult: [
                 {
                     ruleId: 'sampleRuleId',
-                    uid: 'sampleUid',
+                    uid: 'sampleUid1',
+                    status: 'fail',
+                } as UnifiedResult,
+                {
+                    ruleId: 'sampleRuleId',
+                    uid: 'sampleUid2',
                     status: 'fail',
                 } as UnifiedResult,
             ],
@@ -51,7 +56,8 @@ describe('CardSelectionStore Test', () => {
                 sampleRuleId: {
                     isExpanded: false,
                     cards: {
-                        sampleUid: false,
+                        sampleUid1: false,
+                        sampleUid2: false,
                     },
                 },
             },
