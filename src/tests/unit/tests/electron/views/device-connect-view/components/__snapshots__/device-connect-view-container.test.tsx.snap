@@ -2,27 +2,31 @@
 
 exports[`DeviceConnectViewContainer renders 1`] = `
 <React.Fragment>
-  <WindowTitle
-    deps={Object {}}
-    title="Accessibility Insights"
-    windowStateStoreData={
-      Object {
-        "currentWindowState": "customSize",
-        "routeId": "deviceConnectView",
-      }
-    }
+  <div
+    className="deviceConnectView"
   >
-    <BrandBlue />
-  </WindowTitle>
-  <DeviceConnectBody
-    deps={Object {}}
-    viewState={
-      Object {
-        "connectedDevice": undefined,
-        "deviceConnectState": 0,
+    <WindowTitle
+      deps={Object {}}
+      title="Accessibility Insights"
+      windowStateStoreData={
+        Object {
+          "currentWindowState": "customSize",
+          "routeId": "deviceConnectView",
+        }
       }
-    }
-  />
+    >
+      <BrandBlue />
+    </WindowTitle>
+    <DeviceConnectBody
+      deps={Object {}}
+      viewState={
+        Object {
+          "connectedDevice": undefined,
+          "deviceConnectState": 0,
+        }
+      }
+    />
+  </div>
   <TelemetryPermissionDialog
     deps={Object {}}
     isFirstTime={true}

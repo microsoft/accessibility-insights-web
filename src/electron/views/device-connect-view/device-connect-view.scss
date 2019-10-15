@@ -3,10 +3,14 @@
 @import './components/telemetry-permission-dialog.scss';
 
 body {
-    -webkit-app-region: drag;
     margin: 0px;
 }
 
+.device-connect-view {
+    -webkit-app-region: drag;
+    height: 100%;
+    width: 100%;
+}
 button {
     -webkit-app-region: no-drag;
 }
