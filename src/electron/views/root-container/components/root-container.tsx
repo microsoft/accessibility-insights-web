@@ -3,6 +3,7 @@
 import { ClientStoresHub } from 'common/stores/client-stores-hub';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import { DeviceStoreData } from 'electron/flux/types/device-store-data';
+import { ScanStoreData } from 'electron/flux/types/scan-store-data';
 import { WindowStateStoreData } from 'electron/flux/types/window-state-store-data';
 import { AutomatedChecksView, AutomatedChecksViewDeps } from 'electron/views/automated-checks/automated-checks-view';
 import {
@@ -24,6 +25,7 @@ export type RootContainerState = {
     windowStateStoreData: WindowStateStoreData;
     userConfigurationStoreData: UserConfigurationStoreData;
     deviceStoreData: DeviceStoreData;
+    scanStoreData: ScanStoreData;
 };
 
 export class RootContainer extends React.Component<RootContainerProps, RootContainerState> {
@@ -35,16 +37,21 @@ export class RootContainer extends React.Component<RootContainerProps, RootConta
 
     public render(): JSX.Element {
         if (this.state.windowStateStoreData.routeId === 'resultsView') {
-            const devicePort = this.state.deviceStoreData.port;
-
-            return <AutomatedChecksView devicePort={devicePort} {...this.props} />;
+            return (
+                <AutomatedChecksView
+                    deviceStoreData={this.state.deviceStoreData}
+                    scanStoreData={this.state.scanStoreData}
+                    windowStateStoreData={this.state.windowStateStoreData}
+                    {...this.props}
+                />
+            );
         }
-
         return (
             <DeviceConnectViewContainer
                 {...{
                     userConfigurationStoreData: this.state.userConfigurationStoreData,
                     deviceStoreData: this.state.deviceStoreData,
+                    windowStateStoreData: this.state.windowStateStoreData,
                     ...this.props,
                 }}
             />

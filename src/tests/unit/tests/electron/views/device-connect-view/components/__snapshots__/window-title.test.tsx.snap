@@ -1,5 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`WindowTitleTest renders nothing if fullscreen 1`] = `null`;
+
 exports[`WindowTitleTest renders with actionable icons 1`] = `
 <header
   className="windowTitle"
@@ -36,6 +38,38 @@ exports[`WindowTitleTest renders with custom class name 1`] = `
   <div
     className="titleContainer"
   >
+    <span>
+      logo
+    </span>
+    <h1
+      className="headerText"
+    >
+      title 1
+    </h1>
+  </div>
+  <div
+    className="actionableIconsContainer"
+  >
+    <div>
+      icon1
+    </div>
+    <div>
+      icon2
+    </div>
+  </div>
+</header>
+`;
+
+exports[`WindowTitleTest renders without actionable buttons for mac 1`] = `
+<header
+  className="windowTitle macWindowTitle"
+>
+  <div
+    className="titleContainer"
+  >
+    <span>
+      logo
+    </span>
     <h1
       className="headerText"
     >

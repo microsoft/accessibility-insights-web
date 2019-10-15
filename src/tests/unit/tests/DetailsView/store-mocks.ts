@@ -4,6 +4,7 @@ import { AssessmentsProviderImpl } from 'assessments/assessments-provider';
 import { AssessmentDataConverter } from 'background/assessment-data-converter';
 import { ScopingInputTypes } from 'background/scoping-input-types';
 import { AssessmentStore } from 'background/stores/assessment-store';
+import { CardSelectionStore } from 'background/stores/card-selection-store';
 import { DetailsViewStore } from 'background/stores/details-view-store';
 import { CommandStore } from 'background/stores/global/command-store';
 import { FeatureFlagStore } from 'background/stores/global/feature-flag-store';
@@ -15,7 +16,9 @@ import { PathSnippetStore } from 'background/stores/path-snippet-store';
 import { TabStore } from 'background/stores/tab-store';
 import { VisualizationScanResultStore } from 'background/stores/visualization-scan-result-store';
 import { VisualizationStore } from 'background/stores/visualization-store';
+import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
 import { It, Mock, MockBehavior } from 'typemoq';
+
 import { UnifiedScanResultStore } from '../../../../background/stores/unified-scan-result-store';
 import { FeatureFlags } from '../../../../common/feature-flags';
 import { AssessmentStoreData } from '../../../../common/types/store-data/assessment-result-data';
@@ -72,6 +75,8 @@ export class StoreMocks {
         [FeatureFlags[FeatureFlags.logTelemetryToConsole]]: false,
     };
     public assessmentStoreData: AssessmentStoreData;
+
+    public cardSelectionStoreData = new CardSelectionStore(null, null).getDefaultState();
 
     constructor() {
         this.assessmentsProviderMock.setup(ap => ap.all()).returns(() => []);
@@ -134,6 +139,11 @@ export class StoreMocks {
 
     public setUserConfigurationStoreData(data: UserConfigurationStoreData): StoreMocks {
         this.userConfigurationStoreData = data;
+        return this;
+    }
+
+    public setCardSelectionStoreData(data: CardSelectionStoreData): StoreMocks {
+        this.cardSelectionStoreData = data;
         return this;
     }
 

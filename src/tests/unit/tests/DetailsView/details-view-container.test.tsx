@@ -36,13 +36,13 @@ import {
 import { Header } from '../../../../DetailsView/components/header';
 import { DetailsViewRightContentPanelType } from '../../../../DetailsView/components/left-nav/details-view-right-content-panel-type';
 import { GetSelectedDetailsViewProps } from '../../../../DetailsView/components/left-nav/get-selected-details-view';
+import { DetailsViewBody } from '../../../../DetailsView/details-view-body';
 import {
     DetailsViewContainer,
     DetailsViewContainerDeps,
     DetailsViewContainerProps,
     DetailsViewContainerState,
 } from '../../../../DetailsView/details-view-container';
-import { DetailsViewMainContent } from '../../../../DetailsView/details-view-main-content';
 import { DetailsViewToggleClickHandlerFactory } from '../../../../DetailsView/handlers/details-view-toggle-click-handler-factory';
 import { PreviewFeatureFlagsHandler } from '../../../../DetailsView/handlers/preview-feature-flags-handler';
 import { DetailsViewStoreDataBuilder } from '../../common/details-view-store-data-builder';
@@ -261,6 +261,7 @@ describe('DetailsViewContainer', () => {
                         scopingPanelStateStoreData: storeMocks.scopingStoreData,
                         userConfigurationStoreData: storeMocks.userConfigurationStoreData,
                         unifiedScanResultStoreData: storeMocks.unifiedScanResultStoreData,
+                        cardSelectionStoreData: storeMocks.cardSelectionStoreData,
                     }
                 );
             });
@@ -277,7 +278,7 @@ describe('DetailsViewContainer', () => {
         targetApp: TargetAppData,
     ): JSX.Element {
         return (
-            <DetailsViewMainContent
+            <DetailsViewBody
                 deps={deps}
                 tabStoreData={storeMocks.tabStoreData}
                 assessmentStoreData={storeMocks.assessmentStoreData}
@@ -299,6 +300,7 @@ describe('DetailsViewContainer', () => {
                 userConfigurationStoreData={storeMocks.userConfigurationStoreData}
                 ruleResultsByStatus={ruleResults}
                 targetAppInfo={targetApp}
+                cardSelectionStoreData={storeMocks.cardSelectionStoreData}
             />
         );
     }
@@ -367,6 +369,7 @@ describe('DetailsViewContainer', () => {
             unifiedScanResultStoreData: storeMocks.unifiedScanResultStoreData,
             selectedDetailsView: viewType,
             selectedDetailsRightPanelConfiguration: rightPanel,
+            cardSelectionStoreData: storeMocks.cardSelectionStoreData,
         };
     }
 
@@ -464,17 +467,15 @@ describe('DetailsViewContainer', () => {
                     dropdownClickHandler={dropdownClickHandler.object}
                     tabClosed={storeMocks.tabStoreData.isClosed}
                 />
-                <div className="table column-layout details-view-body">
-                    {buildDetailsViewMainContent(
-                        storeMocks,
-                        props,
-                        viewType,
-                        rightContentPanelConfig,
-                        switcherNavConfig,
-                        ruleResults,
-                        targetAppInfo,
-                    )}
-                </div>
+                {buildDetailsViewMainContent(
+                    storeMocks,
+                    props,
+                    viewType,
+                    rightContentPanelConfig,
+                    switcherNavConfig,
+                    ruleResults,
+                    targetAppInfo,
+                )}
                 {buildOverlay(storeMocks, props)}
             </div>
         );

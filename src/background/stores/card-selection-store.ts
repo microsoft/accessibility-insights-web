@@ -20,6 +20,7 @@ export class CardSelectionStore extends BaseStoreImpl<CardSelectionStoreData> {
         this.cardSelectionActions.toggleRuleExpandCollapse.addListener(this.toggleRuleExpandCollapse);
         this.cardSelectionActions.toggleCardSelection.addListener(this.toggleCardSelection);
         this.cardSelectionActions.collapseAllRules.addListener(this.collapseAllRules);
+        this.cardSelectionActions.getCurrentState.addListener(this.onGetCurrentState);
         this.unifiedScanResultActions.scanCompleted.addListener(this.onScanCompleted);
     }
 

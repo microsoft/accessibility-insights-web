@@ -1,5 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`RuleInformationProvider getRuleInformation handles no foreground/background color values 1`] = `
+Object {
+  "formatAsCode": null,
+  "howToFixSummary": "The text element has insufficient contrast of undefined. Foreground color: NO VALUE AVAILABLE, background color: NO VALUE AVAILABLE). Modify the text foreground and/or background colors to provide a contrast ratio of at least 4.5:1 for regular text, or 3:1 for large text (at least 18pt, or 14pt+bold).",
+}
+`;
+
 exports[`RuleInformationProvider getRuleInformation returns correct data for ActiveViewName rule 1`] = `
 Object {
   "formatAsCode": Array [

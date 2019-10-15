@@ -1,24 +1,21 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { mount, shallow } from 'enzyme';
+import { shallow } from 'enzyme';
 import * as React from 'react';
 import { IMock, It, Mock, Times } from 'typemoq';
 
-import { Toast, ToastProps } from '../../../../../common/components/toast';
+import { Toast, ToastProps, ToastState } from '../../../../../common/components/toast';
 import { WindowUtils } from '../../../../../common/window-utils';
 import { itIsFunction } from '../../../common/it-is-function';
 
 describe('ToastTest', () => {
     let windowUtilsMock: IMock<WindowUtils>;
-    let onTimeoutMock: IMock<() => void>;
     let props: ToastProps;
 
     beforeEach(() => {
         windowUtilsMock = Mock.ofType<WindowUtils>();
-        onTimeoutMock = Mock.ofInstance(() => {});
         props = {
             timeoutLength: 2000,
-            onTimeout: onTimeoutMock.object,
             deps: {
                 windowUtils: windowUtilsMock.object,
             },
@@ -26,40 +23,33 @@ describe('ToastTest', () => {
     });
 
     test('render', () => {
-        const result = shallow(<Toast {...props}>Hello</Toast>);
+        const result = shallow(<Toast {...props}></Toast>);
         expect(result.getElement()).toMatchSnapshot();
     });
 
-    test('setTimeout upon componentDidMount', () => {
+    test('show', () => {
         const timeoutId = 1;
+        let realCallback = null;
         windowUtilsMock
             .setup(m => m.setTimeout(itIsFunction, 2000))
+            .callback(func => (realCallback = func))
             .returns(() => timeoutId)
             .verifiable(Times.once());
-        onTimeoutMock.setup(m => m()).verifiable(Times.never());
         const subject = new Toast(props);
-        subject.componentDidMount();
+
+        const states = [];
+        subject.setState = jest.fn((state: ToastState) => states.push(state));
+        subject.show('content');
         windowUtilsMock.verifyAll();
-        onTimeoutMock.verifyAll();
         expect(timeoutId).toEqual((subject as any).timeoutId);
-    });
 
-    test('when timeout ends, callback is called & render is null', () => {
-        const timeoutId = 1;
-        windowUtilsMock
-            .setup(m => m.setTimeout(itIsFunction, 2000))
-            .callback((func, _) => func())
-            .returns(() => timeoutId)
-            .verifiable(Times.once());
+        expect(states[0].toastVisible).toBeTruthy();
+        expect(states[0].content).toEqual('content');
 
-        onTimeoutMock.setup(m => m()).verifiable(Times.once());
+        realCallback();
 
-        const wrapper = mount(<Toast {...props} />);
-
-        windowUtilsMock.verifyAll();
-        onTimeoutMock.verifyAll();
-
-        expect(wrapper.instance().render()).toBe(null);
+        expect(states[1].toastVisible.toastVisible).toBeFalsy();
+        expect(states[1].content).toBeNull();
     });
 
     test('clearTimeout upon componentWillUnmount', () => {

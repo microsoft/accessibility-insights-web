@@ -1,37 +1,42 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { BrowserWindow } from 'electron';
-import { WindowStateStore } from './flux/store/window-state-store';
+import { WindowFrameActions } from 'electron/flux/action/window-frame-actions';
+import { SetSizePayload } from 'electron/flux/action/window-frame-actions-payloads';
 
 export class WindowFrameUpdater {
-    constructor(private readonly windowStateStore: WindowStateStore, private readonly browserWindow: BrowserWindow) {}
+    constructor(private readonly windowFrameActions: WindowFrameActions, private readonly browserWindow: BrowserWindow) {}
 
     public initialize(): void {
-        this.onWindowStateChange();
-        this.windowStateStore.addChangedListener(this.onWindowStateChange);
+        this.windowFrameActions.maximize.addListener(this.onMaximize);
+        this.windowFrameActions.minimize.addListener(this.onMinimize);
+        this.windowFrameActions.restore.addListener(this.onRestore);
+        this.windowFrameActions.close.addListener(this.onClose);
+        this.windowFrameActions.setWindowSize.addListener(this.onSetSize);
     }
 
-    private onWindowStateChange = () => {
-        if (this.windowStateStore.getState().routeId === 'deviceConnectView') {
-            this.browserWindow.setSize(600, 391);
-            this.browserWindow.center();
+    private onMaximize = (): void => {
+        this.browserWindow.maximize();
+    };
+
+    private onMinimize = (): void => {
+        this.browserWindow.minimize();
+    };
+
+    private onRestore = (): void => {
+        if (this.browserWindow.isFullScreen()) {
+            this.browserWindow.setFullScreen(false);
         } else {
-            switch (this.windowStateStore.getState().currentWindowState) {
-                case 'restoredOrMaximized':
-                    if (this.browserWindow.isMaximized()) {
-                        this.browserWindow.restore();
-                    } else {
-                        this.browserWindow.maximize();
-                    }
-                    break;
-                case 'minimized':
-                    if (!this.browserWindow.isMinimized()) {
-                        this.browserWindow.minimize();
-                    }
-                    break;
-                default:
-                    break;
-            }
+            this.browserWindow.unmaximize();
         }
+    };
+
+    private onClose = (): void => {
+        this.browserWindow.close();
+    };
+
+    private onSetSize = (sizePayload: SetSizePayload): void => {
+        this.browserWindow.setSize(sizePayload.width, sizePayload.height);
+        this.browserWindow.center();
     };
 }

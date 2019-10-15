@@ -20,6 +20,7 @@ exports[`DeviceConnectPortEntryTest renders with "Connected" 1`] = `
       }
     }
     onChange={[Function]}
+    onKeyDown={[Function]}
     placeholder="12345"
   />
   <CustomizedDefaultButton
@@ -52,6 +53,7 @@ exports[`DeviceConnectPortEntryTest renders with "Connected" and some text in th
       }
     }
     onChange={[Function]}
+    onKeyDown={[Function]}
     placeholder="12345"
   />
   <CustomizedDefaultButton
@@ -84,6 +86,7 @@ exports[`DeviceConnectPortEntryTest renders with "Connecting" 1`] = `
       }
     }
     onChange={[Function]}
+    onKeyDown={[Function]}
     placeholder="12345"
   />
   <CustomizedPrimaryButton
@@ -116,6 +119,7 @@ exports[`DeviceConnectPortEntryTest renders with "Connecting" and some text in t
       }
     }
     onChange={[Function]}
+    onKeyDown={[Function]}
     placeholder="12345"
   />
   <CustomizedPrimaryButton
@@ -148,6 +152,7 @@ exports[`DeviceConnectPortEntryTest renders with "Default" 1`] = `
       }
     }
     onChange={[Function]}
+    onKeyDown={[Function]}
     placeholder="12345"
   />
   <CustomizedPrimaryButton
@@ -180,6 +185,7 @@ exports[`DeviceConnectPortEntryTest renders with "Default" and some text in the 
       }
     }
     onChange={[Function]}
+    onKeyDown={[Function]}
     placeholder="12345"
   />
   <CustomizedPrimaryButton
@@ -212,6 +218,7 @@ exports[`DeviceConnectPortEntryTest renders with "Error" 1`] = `
       }
     }
     onChange={[Function]}
+    onKeyDown={[Function]}
     placeholder="12345"
   />
   <CustomizedPrimaryButton
@@ -244,6 +251,7 @@ exports[`DeviceConnectPortEntryTest renders with "Error" and some text in the po
       }
     }
     onChange={[Function]}
+    onKeyDown={[Function]}
     placeholder="12345"
   />
   <CustomizedPrimaryButton

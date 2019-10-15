@@ -15,7 +15,7 @@ export class WindowStateStore extends BaseStoreImpl<WindowStateStoreData> {
     public getDefaultState(): WindowStateStoreData {
         return {
             routeId: 'deviceConnectView',
-            currentWindowState: 'restoredOrMaximized',
+            currentWindowState: 'customSize',
         };
     }
 
@@ -33,6 +33,10 @@ export class WindowStateStore extends BaseStoreImpl<WindowStateStoreData> {
     };
 
     private onSetWindowState = (payload: WindowStatePayload) => {
+        if (payload.currentWindowState === this.state.currentWindowState) {
+            return;
+        }
+
         this.state.currentWindowState = payload.currentWindowState;
         this.emitChanged();
     };

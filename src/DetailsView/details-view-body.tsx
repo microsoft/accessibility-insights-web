@@ -26,10 +26,10 @@ import { TabInfo } from './components/tab-info';
 import { AssessmentInstanceTableHandler } from './handlers/assessment-instance-table-handler';
 import { DetailsViewToggleClickHandlerFactory } from './handlers/details-view-toggle-click-handler-factory';
 
-export type DetailsViewMainContentDeps = DetailsViewContentDeps & DetailsViewLeftNavDeps & DetailsViewCommandBarDeps;
+export type DetailsViewBodyDeps = DetailsViewContentDeps & DetailsViewLeftNavDeps & DetailsViewCommandBarDeps;
 
-export interface DetailsViewMainContentProps {
-    deps: DetailsViewMainContentDeps;
+export interface DetailsViewBodyProps {
+    deps: DetailsViewBodyDeps;
     tabStoreData: TabStoreData;
     assessmentStoreData: AssessmentStoreData;
     pathSnippetStoreData: PathSnippetStoreData;
@@ -52,21 +52,21 @@ export interface DetailsViewMainContentProps {
     targetAppInfo: TargetAppData;
 }
 
-export class DetailsViewMainContent extends React.Component<DetailsViewMainContentProps> {
+export class DetailsViewBody extends React.Component<DetailsViewBodyProps> {
     public render(): JSX.Element {
         return (
-            <>
+            <div className="details-view-body">
                 {this.renderCommandBar()}
-                <div className="table row-layout details-view-main-content">
+                <div className="details-view-body-nav-content-layout">
                     {this.renderNavBar()}
-                    <div className="details-content table column-layout">
+                    <div className="details-view-body-content-pane">
                         {this.getTabInfo(this.props.tabStoreData.isClosed)}
                         <div className="view" role="main">
                             <this.props.rightPanelConfiguration.RightPanel {...this.props} />
                         </div>
                     </div>
                 </div>
-            </>
+            </div>
         );
     }
 

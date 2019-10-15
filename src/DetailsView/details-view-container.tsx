@@ -1,9 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
+import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
 import { ISelection } from 'office-ui-fabric-react/lib/DetailsList';
 import { Spinner, SpinnerSize } from 'office-ui-fabric-react/lib/Spinner';
 import * as React from 'react';
+
 import { ThemeDeps } from '../common/components/theme';
 import { withStoreSubscription, WithStoreSubscriptionDeps } from '../common/components/with-store-subscription';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
@@ -30,7 +32,7 @@ import { Header, HeaderDeps } from './components/header';
 import { IssuesTableHandler } from './components/issues-table-handler';
 import { TargetChangeDialogDeps } from './components/target-change-dialog';
 import { TargetPageClosedView } from './components/target-page-closed-view';
-import { DetailsViewMainContent, DetailsViewMainContentDeps } from './details-view-main-content';
+import { DetailsViewBody, DetailsViewBodyDeps } from './details-view-body';
 import { AssessmentInstanceTableHandler } from './handlers/assessment-instance-table-handler';
 import { DetailsViewToggleClickHandlerFactory } from './handlers/details-view-toggle-click-handler-factory';
 import { PreviewFeatureFlagsHandler } from './handlers/preview-feature-flags-handler';
@@ -39,7 +41,7 @@ export type DetailsViewContainerDeps = {
     getDetailsRightPanelConfiguration: GetDetailsRightPanelConfiguration;
     getDetailsSwitcherNavConfiguration: GetDetailsSwitcherNavConfiguration;
     getUnifiedRuleResults: GetUnifiedRuleResultsDelegate;
-} & DetailsViewMainContentDeps &
+} & DetailsViewBodyDeps &
     DetailsViewOverlayDeps &
     DetailsViewCommandBarDeps &
     HeaderDeps &
@@ -76,6 +78,7 @@ export interface DetailsViewContainerState {
     userConfigurationStoreData: UserConfigurationStoreData;
     selectedDetailsView: VisualizationType;
     selectedDetailsRightPanelConfiguration: DetailsRightPanelConfiguration;
+    cardSelectionStoreData: CardSelectionStoreData;
 }
 
 export class DetailsViewContainer extends React.Component<DetailsViewContainerProps> {
@@ -86,15 +89,7 @@ export class DetailsViewContainer extends React.Component<DetailsViewContainerPr
             return (
                 <div className="table column-layout main-wrapper">
                     {this.renderHeader()}
-                    <div className="table column-layout details-view-body">
-                        <div className="table row-layout details-view-main-content">
-                            <div className="details-content table column-layout">
-                                <div className="view" role="main">
-                                    <TargetPageClosedView />
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <TargetPageClosedView />
                 </div>
             );
         }
@@ -125,7 +120,7 @@ export class DetailsViewContainer extends React.Component<DetailsViewContainerPr
         return (
             <div className="table column-layout main-wrapper">
                 {this.renderHeader()}
-                <div className="table column-layout details-view-body">{this.renderDetailsView()}</div>
+                {this.renderDetailsView()}
                 {this.renderOverlay()}
             </div>
         );
@@ -179,7 +174,7 @@ export class DetailsViewContainer extends React.Component<DetailsViewContainerPr
         );
 
         return (
-            <DetailsViewMainContent
+            <DetailsViewBody
                 deps={deps}
                 tabStoreData={storeState.tabStoreData}
                 assessmentStoreData={storeState.assessmentStoreData}
@@ -201,6 +196,7 @@ export class DetailsViewContainer extends React.Component<DetailsViewContainerPr
                 userConfigurationStoreData={storeState.userConfigurationStoreData}
                 ruleResultsByStatus={ruleResults}
                 targetAppInfo={storeState.unifiedScanResultStoreData.targetAppInfo}
+                cardSelectionStoreData={storeState.cardSelectionStoreData}
             />
         );
     }

@@ -2,144 +2,88 @@
 // Licensed under the MIT License.
 
 import { BrowserWindow } from 'electron';
+import { WindowFrameActions } from 'electron/flux/action/window-frame-actions';
+import { SetSizePayload } from 'electron/flux/action/window-frame-actions-payloads';
 import { WindowFrameUpdater } from 'electron/window-frame-updater';
-import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
-import { WindowStateStore } from '../../electron/flux/store/window-state-store';
-import { WindowStateStoreData } from '../../electron/flux/types/window-state-store-data';
+import { ExpectedCallType, IMock, Mock, MockBehavior, Times } from 'typemoq';
 
 describe(WindowFrameUpdater, () => {
-    let windowStateStoreMock: IMock<WindowStateStore>;
+    let windowFrameActions: WindowFrameActions;
     let testSubject: WindowFrameUpdater;
     let browserWindowMock: IMock<BrowserWindow>;
-    let changeListener: () => void;
-    let windowStoreStateData: WindowStateStoreData;
 
     beforeEach(() => {
-        windowStateStoreMock = Mock.ofType(WindowStateStore);
+        windowFrameActions = new WindowFrameActions();
         browserWindowMock = Mock.ofType(BrowserWindow, MockBehavior.Strict);
-        windowStoreStateData = {
-            currentWindowState: undefined,
-            routeId: 'deviceConnectView',
-        };
 
-        windowStateStoreMock
-            .setup(w => w.addChangedListener(It.isAny()))
-            .callback(cb => {
-                changeListener = cb;
-            });
-
-        windowStateStoreMock.setup(w => w.getState()).returns(() => windowStoreStateData);
-
-        testSubject = new WindowFrameUpdater(windowStateStoreMock.object, browserWindowMock.object);
+        testSubject = new WindowFrameUpdater(windowFrameActions, browserWindowMock.object);
     });
 
-    describe('initialize', () => {
-        it('updates window based on initial state - deviceConnectView', () => {
-            setupVerifiableCallsForDeviceConnectRoute();
-            windowStoreStateData.routeId = 'deviceConnectView';
-
-            testSubject.initialize();
-
-            windowStateStoreMock.verifyAll();
-            browserWindowMock.verifyAll();
-        });
-
-        it('updates window based on initial state - resultsView', () => {
-            windowStoreStateData = {
-                currentWindowState: 'restoredOrMaximized',
-                routeId: 'resultsView',
-            };
-            setupVerifiableMaximizeWindowCall();
-
-            testSubject.initialize();
-
-            windowStateStoreMock.verifyAll();
-            browserWindowMock.verifyAll();
-        });
+    afterEach(() => {
+        browserWindowMock.verifyAll();
     });
 
-    describe('verify change listener', () => {
+    it(' do nothing on action invocation before initialize', () => {
+        windowFrameActions.maximize.invoke(null);
+
+        browserWindowMock.setup(b => b.maximize()).verifiable(Times.never());
+    });
+
+    describe('verify action listeners', () => {
         beforeEach(() => {
-            windowStoreStateData = {
-                routeId: 'deviceConnectView',
-                currentWindowState: 'restoredOrMaximized',
-            };
-
-            setupVerifiableCallsForDeviceConnectRoute();
-
             testSubject.initialize();
-            browserWindowMock.reset();
         });
 
-        it('sets window state to deviceConnectView', () => {
-            setupVerifiableCallsForDeviceConnectRoute();
+        it('invokes maximize', () => {
+            browserWindowMock.setup(b => b.maximize()).verifiable(Times.once());
 
-            changeListener();
-
-            browserWindowMock.verifyAll();
+            windowFrameActions.maximize.invoke(null);
         });
 
-        it('sets window state to results view', () => {
-            windowStoreStateData = {
-                routeId: 'resultsView',
-                currentWindowState: 'restoredOrMaximized',
+        it('invokes minimize', () => {
+            browserWindowMock.setup(b => b.minimize()).verifiable(Times.once());
+
+            windowFrameActions.minimize.invoke(null);
+        });
+
+        it('handles restore when in full screen', () => {
+            browserWindowMock
+                .setup(b => b.isFullScreen())
+                .returns(() => true)
+                .verifiable(Times.once());
+            browserWindowMock.setup(b => b.setFullScreen(false)).verifiable(Times.once());
+
+            windowFrameActions.restore.invoke(null);
+        });
+
+        it('handles restore when not in full screen', () => {
+            browserWindowMock
+                .setup(b => b.isFullScreen())
+                .returns(() => false)
+                .verifiable(Times.once());
+            browserWindowMock.setup(b => b.unmaximize()).verifiable(Times.once());
+
+            windowFrameActions.restore.invoke(null);
+        });
+
+        it('invokes close', () => {
+            browserWindowMock.setup(b => b.close()).verifiable(Times.once());
+
+            windowFrameActions.close.invoke(null);
+        });
+
+        it('invokes setSize', () => {
+            const sizePayload: SetSizePayload = {
+                width: 12,
+                height: 34,
             };
 
-            setupVerifiableMaximizeWindowCall();
-            changeListener();
+            browserWindowMock
+                .setup(b => b.setSize(sizePayload.width, sizePayload.height))
+                .verifiable(Times.once(), ExpectedCallType.InSequence);
+            browserWindowMock.setup(b => b.center()).verifiable(Times.once(), ExpectedCallType.InSequence);
 
-            browserWindowMock.verifyAll();
-        });
-
-        it('minimizes the window under results view', () => {
-            windowStoreStateData.routeId = 'resultsView';
-            windowStoreStateData.currentWindowState = 'minimized';
-
-            setupVerifiableMinimizeWindowCall();
-
-            changeListener();
-
-            browserWindowMock.verifyAll();
-        });
-
-        it('restores the window under results view', () => {
-            windowStoreStateData.routeId = 'resultsView';
-            windowStoreStateData.currentWindowState = 'restoredOrMaximized';
-
-            setupVerifiableRestoreWindowCall();
-
-            changeListener();
-
-            browserWindowMock.verifyAll();
+            windowFrameActions.setWindowSize.invoke(sizePayload);
         });
     });
-
-    function setupVerifiableCallsForDeviceConnectRoute(): void {
-        browserWindowMock.setup(b => b.setSize(600, 391)).verifiable(Times.once());
-        browserWindowMock.setup(b => b.center()).verifiable(Times.once());
-    }
-
-    function setupVerifiableMaximizeWindowCall(): void {
-        browserWindowMock
-            .setup(b => b.isMaximized())
-            .returns(() => false)
-            .verifiable(Times.once());
-        browserWindowMock.setup(b => b.maximize()).verifiable(Times.once());
-    }
-
-    function setupVerifiableRestoreWindowCall(): void {
-        browserWindowMock
-            .setup(b => b.isMaximized())
-            .returns(() => true)
-            .verifiable(Times.once());
-        browserWindowMock.setup(b => b.restore()).verifiable(Times.once());
-    }
-
-    function setupVerifiableMinimizeWindowCall(): void {
-        browserWindowMock
-            .setup(b => b.isMinimized())
-            .returns(() => false)
-            .verifiable(Times.once());
-        browserWindowMock.setup(b => b.minimize()).verifiable(Times.once());
-    }
 });

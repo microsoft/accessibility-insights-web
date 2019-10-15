@@ -5,6 +5,7 @@ import { Assessments } from 'assessments/assessments';
 import { assessmentsProviderWithFeaturesEnabled } from 'assessments/assessments-feature-flag-filter';
 import { IssueDetailsTextGenerator } from 'background/issue-details-text-generator';
 import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
+import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
 import { loadTheme } from 'office-ui-fabric-react';
 import * as ReactDOM from 'react-dom';
 import { AssessmentReportHtmlGenerator } from 'reports/assessment-report-html-generator';
@@ -139,6 +140,8 @@ if (isNaN(tabId) === false) {
                 StoreNames[StoreNames.UserConfigurationStore],
                 browserAdapter,
             );
+            const cardSelectionStore = new StoreProxy<CardSelectionStoreData>(StoreNames[StoreNames.CardSelectionStore], browserAdapter);
+
             const storesHub = new BaseClientStoresHub<DetailsViewContainerState>([
                 detailsViewStore,
                 featureFlagStore,
@@ -150,6 +153,7 @@ if (isNaN(tabId) === false) {
                 pathSnippetStore,
                 scopingStore,
                 userConfigStore,
+                cardSelectionStore,
             ]);
 
             const actionMessageDispatcher = new ActionMessageDispatcher(browserAdapter.sendMessageToFrames, tab.id);
