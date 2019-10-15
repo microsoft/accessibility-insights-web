@@ -1,12 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { CardSelectionPayload } from 'background/actions/action-payloads';
+import { Dispatcher } from 'common/message-creators/types/dispatcher';
 import { Messages } from 'common/messages';
 
-import { ActionMessageDispatcher } from './action-message-dispatcher';
-
 export class CardSelectionMessageCreator {
-    constructor(private readonly dispatcher: ActionMessageDispatcher) {}
+    constructor(private readonly dispatcher: Dispatcher) {}
 
     public toggleCardSelection(ruleId: string, resultInstanceUid: string): void {
         const payload: CardSelectionPayload = {

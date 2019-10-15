@@ -1,17 +1,17 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { Dispatcher } from 'common/message-creators/types/dispatcher';
 import { Mock, MockBehavior } from 'typemoq';
 
 import { BaseStore } from '../../../../../common/base-store';
 import { EnumHelper } from '../../../../../common/enum-helper';
-import { ActionMessageDispatcher } from '../../../../../common/message-creators/action-message-dispatcher';
 import { StoreActionMessageCreator } from '../../../../../common/message-creators/store-action-message-creator';
 import { StoreActionMessageCreatorFactory } from '../../../../../common/message-creators/store-action-message-creator-factory';
 import { getStoreStateMessage } from '../../../../../common/messages';
 import { StoreNames } from '../../../../../common/stores/store-names';
 
 describe('StoreActionMessageCreatorFactoryTest', () => {
-    const dispatcherMock = Mock.ofType<ActionMessageDispatcher>(undefined, MockBehavior.Strict);
+    const dispatcherMock = Mock.ofType<Dispatcher>(undefined, MockBehavior.Strict);
 
     beforeEach(() => {
         dispatcherMock.reset();

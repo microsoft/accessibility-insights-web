@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { Dispatcher } from 'common/message-creators/types/dispatcher';
 import { IMock, It, Mock, Times } from 'typemoq';
 
 import {
@@ -9,7 +10,6 @@ import {
     TelemetryEventSource,
     TriggeredBy,
 } from '../../../../../common/extension-telemetry-events';
-import { ActionMessageDispatcher } from '../../../../../common/message-creators/action-message-dispatcher';
 import { IssueFilingActionMessageCreator } from '../../../../../common/message-creators/issue-filing-action-message-creator';
 import { Messages } from '../../../../../common/messages';
 import { TelemetryDataFactory } from '../../../../../common/telemetry-data-factory';
@@ -25,13 +25,13 @@ describe('IssueFilingActionMessageCreator', () => {
     };
 
     let telemetryFactoryMock: IMock<TelemetryDataFactory>;
-    let dispatcherMock: IMock<ActionMessageDispatcher>;
+    let dispatcherMock: IMock<Dispatcher>;
 
     let testSubject: IssueFilingActionMessageCreator;
 
     beforeEach(() => {
         telemetryFactoryMock = Mock.ofType<TelemetryDataFactory>();
-        dispatcherMock = Mock.ofType<ActionMessageDispatcher>();
+        dispatcherMock = Mock.ofType<Dispatcher>();
 
         testSubject = new IssueFilingActionMessageCreator(dispatcherMock.object, telemetryFactoryMock.object, source);
     });

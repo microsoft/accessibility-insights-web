@@ -1,17 +1,18 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { Dispatcher } from 'common/message-creators/types/dispatcher';
 import * as React from 'react';
+
 import { TelemetryEventSource } from '../extension-telemetry-events';
 import { Messages } from '../messages';
 import { TelemetryDataFactory } from '../telemetry-data-factory';
 import { ScopingPayload } from './../../background/actions/scoping-actions';
-import { ActionMessageDispatcher } from './action-message-dispatcher';
 
 export class ScopingActionMessageCreator {
     constructor(
         private readonly telemetryFactory: TelemetryDataFactory,
         private readonly source: TelemetryEventSource,
-        private readonly dispatcher: ActionMessageDispatcher,
+        private readonly dispatcher: Dispatcher,
     ) {}
 
     public addSelector = (event: React.MouseEvent<HTMLElement> | MouseEvent, inputType: string, selector: string[]): void => {

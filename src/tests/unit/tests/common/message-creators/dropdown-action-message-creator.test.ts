@@ -1,9 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { Dispatcher } from 'common/message-creators/types/dispatcher';
 import { IMock, Mock, Times } from 'typemoq';
+
 import { SettingsOpenSourceItem, TelemetryEventSource } from '../../../../../common/extension-telemetry-events';
 import { Message } from '../../../../../common/message';
-import { ActionMessageDispatcher } from '../../../../../common/message-creators/action-message-dispatcher';
 import { DropdownActionMessageCreator } from '../../../../../common/message-creators/dropdown-action-message-creator';
 import { Messages } from '../../../../../common/messages';
 import { TelemetryDataFactory } from '../../../../../common/telemetry-data-factory';
@@ -13,7 +14,7 @@ describe('DropdownActionMessageCreatorTest', () => {
     const eventStubFactory = new EventStubFactory();
     const testSource: TelemetryEventSource = -1 as TelemetryEventSource;
     let telemetryFactoryMock: IMock<TelemetryDataFactory>;
-    const dispatcherMock = Mock.ofType<ActionMessageDispatcher>();
+    const dispatcherMock = Mock.ofType<Dispatcher>();
     let event: any;
     let telemetryData: any;
 

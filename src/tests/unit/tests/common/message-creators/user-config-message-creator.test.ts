@@ -7,15 +7,16 @@ import {
     SetIssueFilingServicePropertyPayload,
     SetTelemetryStatePayload,
 } from 'background/actions/action-payloads';
+import { Dispatcher } from 'common/message-creators/types/dispatcher';
 import { Mock, Times } from 'typemoq';
+
 import { Message } from '../../../../../common/message';
-import { ActionMessageDispatcher } from '../../../../../common/message-creators/action-message-dispatcher';
 import { UserConfigMessageCreator } from '../../../../../common/message-creators/user-config-message-creator';
 import { Messages } from '../../../../../common/messages';
 import { IssueFilingServiceProperties } from '../../../../../common/types/store-data/user-configuration-store';
 
 describe('UserConfigMessageCreator', () => {
-    const dispatcherMock = Mock.ofType<ActionMessageDispatcher>();
+    const dispatcherMock = Mock.ofType<Dispatcher>();
     let testSubject: UserConfigMessageCreator;
 
     beforeEach(() => {

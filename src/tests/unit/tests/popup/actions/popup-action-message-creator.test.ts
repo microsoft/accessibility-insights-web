@@ -1,7 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { OnDetailsViewOpenPayload, SetLaunchPanelState } from 'background/actions/action-payloads';
+import { Dispatcher } from 'common/message-creators/types/dispatcher';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
+
 import {
     BaseTelemetryData,
     DetailsViewOpenTelemetryData,
@@ -11,7 +13,6 @@ import {
     TelemetryEventSource,
     TUTORIAL_OPEN,
 } from '../../../../../common/extension-telemetry-events';
-import { ActionMessageDispatcher } from '../../../../../common/message-creators/action-message-dispatcher';
 import { Messages } from '../../../../../common/messages';
 import { TelemetryDataFactory } from '../../../../../common/telemetry-data-factory';
 import { DetailsViewPivotType } from '../../../../../common/types/details-view-pivot-type';
@@ -28,7 +29,7 @@ describe('PopupActionMessageCreatorTest', () => {
 
     let mockWindowUtils: IMock<WindowUtils>;
     let telemetryFactoryMock: IMock<TelemetryDataFactory>;
-    let actionMessageDispatcherMock: IMock<ActionMessageDispatcher>;
+    let actionMessageDispatcherMock: IMock<Dispatcher>;
 
     let testSubject: PopupActionMessageCreator;
 
@@ -36,7 +37,7 @@ describe('PopupActionMessageCreatorTest', () => {
         mockWindowUtils = Mock.ofType(WindowUtils, MockBehavior.Strict);
 
         telemetryFactoryMock = Mock.ofType(TelemetryDataFactory, MockBehavior.Strict);
-        actionMessageDispatcherMock = Mock.ofType<ActionMessageDispatcher>();
+        actionMessageDispatcherMock = Mock.ofType<Dispatcher>();
 
         testSubject = new PopupActionMessageCreator(
             telemetryFactoryMock.object,

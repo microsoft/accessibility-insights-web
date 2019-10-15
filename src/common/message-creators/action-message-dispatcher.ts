@@ -4,8 +4,9 @@ import { PayloadWithEventName } from 'background/actions/action-payloads';
 import { TelemetryData } from '../extension-telemetry-events';
 import { InterpreterMessage, Message } from '../message';
 import { Messages } from '../messages';
+import { Dispatcher } from './types/dispatcher';
 
-export class ActionMessageDispatcher {
+export class ActionMessageDispatcher implements Dispatcher {
     constructor(private postMessageDelegate: (message: InterpreterMessage) => void, private tabId: number) {}
 
     public dispatchMessage(message: Message): void {

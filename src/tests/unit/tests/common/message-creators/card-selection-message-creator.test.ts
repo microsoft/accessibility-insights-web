@@ -2,17 +2,17 @@
 // Licensed under the MIT License.
 import { CardSelectionPayload } from 'background/actions/action-payloads';
 import { Message } from 'common/message';
-import { ActionMessageDispatcher } from 'common/message-creators/action-message-dispatcher';
 import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
+import { Dispatcher } from 'common/message-creators/types/dispatcher';
 import { Messages } from 'common/messages';
 import { IMock, Mock, Times } from 'typemoq';
 
 describe('Card Selection Message Creator', () => {
-    let dispatcherMock: IMock<ActionMessageDispatcher>;
+    let dispatcherMock: IMock<Dispatcher>;
     let testSubject: CardSelectionMessageCreator;
 
     beforeEach(() => {
-        dispatcherMock = Mock.ofType<ActionMessageDispatcher>();
+        dispatcherMock = Mock.ofType<Dispatcher>();
         testSubject = new CardSelectionMessageCreator(dispatcherMock.object);
     });
 

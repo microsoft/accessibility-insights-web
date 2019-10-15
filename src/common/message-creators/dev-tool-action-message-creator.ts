@@ -1,13 +1,14 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { InspectElementPayload, InspectFrameUrlPayload, OnDevToolOpenPayload } from 'background/actions/action-payloads';
+import { Dispatcher } from 'common/message-creators/types/dispatcher';
+
 import { Message } from '../message';
 import { Messages } from '../messages';
 import { TelemetryDataFactory } from '../telemetry-data-factory';
-import { ActionMessageDispatcher } from './action-message-dispatcher';
 
 export class DevToolActionMessageCreator {
-    constructor(protected readonly telemetryFactory: TelemetryDataFactory, protected readonly dispatcher: ActionMessageDispatcher) {}
+    constructor(protected readonly telemetryFactory: TelemetryDataFactory, protected readonly dispatcher: Dispatcher) {}
 
     public setDevToolStatus(status: boolean): void {
         const message: Message = {
