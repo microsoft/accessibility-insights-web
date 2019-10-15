@@ -1,7 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`AutomatedChecksView renders device disconnected 1`] = `
-<React.Fragment>
+<div
+  className="automatedChecksView"
+>
   <TitleBar
     deps={
       Object {
@@ -22,20 +24,24 @@ exports[`AutomatedChecksView renders device disconnected 1`] = `
       }
     }
   />
-  <HeaderSection />
-  <ScanningSpinner
-    isScanning={false}
-  />
-  <DeviceDisconnectedPopup
-    deviceName="TEST DEVICE"
-    onConnectNewDevice={[Function]}
-    onRescanDevice={[Function]}
-  />
-</React.Fragment>
+  <main>
+    <HeaderSection />
+    <ScanningSpinner
+      isScanning={false}
+    />
+    <DeviceDisconnectedPopup
+      deviceName="TEST DEVICE"
+      onConnectNewDevice={[Function]}
+      onRescanDevice={[Function]}
+    />
+  </main>
+</div>
 `;
 
 exports[`AutomatedChecksView renders renders the automated checks view 1`] = `
-<React.Fragment>
+<div
+  className="automatedChecksView"
+>
   <TitleBar
     deps={
       Object {
@@ -77,15 +83,19 @@ exports[`AutomatedChecksView renders renders the automated checks view 1`] = `
       }
     }
   />
-  <HeaderSection />
-  <ScanningSpinner
-    isScanning={false}
-  />
-</React.Fragment>
+  <main>
+    <HeaderSection />
+    <ScanningSpinner
+      isScanning={false}
+    />
+  </main>
+</div>
 `;
 
 exports[`AutomatedChecksView renders scanning spinner 1`] = `
-<React.Fragment>
+<div
+  className="automatedChecksView"
+>
   <TitleBar
     deps={
       Object {
@@ -127,9 +137,11 @@ exports[`AutomatedChecksView renders scanning spinner 1`] = `
       }
     }
   />
-  <HeaderSection />
-  <ScanningSpinner
-    isScanning={true}
-  />
-</React.Fragment>
+  <main>
+    <HeaderSection />
+    <ScanningSpinner
+      isScanning={true}
+    />
+  </main>
+</div>
 `;
