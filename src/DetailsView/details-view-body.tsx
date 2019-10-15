@@ -61,9 +61,9 @@ export class DetailsViewBody extends React.Component<DetailsViewBodyProps> {
                     {this.renderNavBar()}
                     <div className="details-view-body-content-pane">
                         {this.getTabInfo(this.props.tabStoreData.isClosed)}
-                        <main>
+                        <div className="view" role="main">
                             <this.props.rightPanelConfiguration.RightPanel {...this.props} />
-                        </main>
+                        </div>
                     </div>
                 </div>
             </div>
