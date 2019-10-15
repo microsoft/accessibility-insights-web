@@ -63,5 +63,20 @@ describe('RuleResources', () => {
 
             expect(wrapper.getElement()).toMatchSnapshot();
         });
+
+        it('no url and null guidance links', () => {
+            const rule = cloneDeep(exampleUnifiedRuleResult);
+            rule.guidance = null;
+            rule.url = null;
+
+            const props: RuleResourcesProps = {
+                rule,
+                deps: {} as RuleResourcesDeps,
+            };
+
+            const wrapper = shallow(<RuleResources {...props} />);
+
+            expect(wrapper.getElement()).toMatchSnapshot();
+        });
     });
 });

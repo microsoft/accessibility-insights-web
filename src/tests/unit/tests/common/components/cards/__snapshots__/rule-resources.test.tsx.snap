@@ -1,5 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`RuleResources renders no url and null guidance links 1`] = `null`;
+
 exports[`RuleResources renders no url, only guidance links 1`] = `null`;
 
 exports[`RuleResources renders only url, empty guidance links 1`] = `null`;
