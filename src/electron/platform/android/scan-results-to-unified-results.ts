@@ -37,7 +37,7 @@ function createUnifiedResultsFromScanResults(
     for (const ruleResult of scanResults.ruleResults) {
         const ruleInformation: RuleInformation = ruleInformationProvider.getRuleInformation(ruleResult.ruleId);
 
-        if (ruleInformation) {
+        if (ruleInformation && ruleInformation.includeThisResult(ruleResult)) {
             unifiedResults.push(createUnifiedResult(ruleInformation, ruleResult, viewElementLookup, uuidGenerator));
         }
     }

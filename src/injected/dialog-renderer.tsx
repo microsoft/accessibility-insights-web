@@ -77,7 +77,7 @@ export class DialogRenderer {
                 IssueFilingUrlStringUtils.getSelectorLastPart,
             );
 
-            const deps: LayeredDetailsDialogDeps = {
+            const deps = {
                 axeResultToIssueFilingDataConverter,
                 fixInstructionProcessor,
                 issueDetailsTextGenerator,
@@ -90,7 +90,7 @@ export class DialogRenderer {
                 issueFilingServiceProvider: mainWindowContext.getIssueFilingServiceProvider(),
                 userConfigMessageCreator: mainWindowContext.getUserConfigMessageCreator(),
                 LinkComponent: NewTabLink,
-            };
+            } as LayeredDetailsDialogDeps;
 
             this.renderer(
                 <LayeredDetailsDialogComponent

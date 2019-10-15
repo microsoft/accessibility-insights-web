@@ -63,7 +63,7 @@ describe('UserConfigMessageCreator', () => {
             payload,
         };
 
-        testSubject.setIssueFilingService(issueFilingServiceName);
+        testSubject.setIssueFilingService(payload);
 
         dispatcherMock.verify(dispatcher => dispatcher.dispatchMessage(expectedMessage), Times.once());
     });
@@ -79,7 +79,7 @@ describe('UserConfigMessageCreator', () => {
             payload,
         };
 
-        testSubject.setIssueFilingServiceProperty(payload.issueFilingServiceName, payload.propertyName, payload.propertyValue);
+        testSubject.setIssueFilingServiceProperty(payload);
 
         dispatcherMock.verify(dispatcher => dispatcher.dispatchMessage(expectedMessage), Times.once());
     });
@@ -96,7 +96,7 @@ describe('UserConfigMessageCreator', () => {
             payload,
         };
 
-        testSubject.saveIssueFilingSettings(issueFilingServiceName, issueFilingSettings);
+        testSubject.saveIssueFilingSettings(payload);
 
         dispatcherMock.verify(dispatcher => dispatcher.dispatchMessage(expectedMessage), Times.once());
     });

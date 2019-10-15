@@ -109,7 +109,7 @@
         "typemoq": "^2.1.0",
         "typescript": "^3.6.4",
         "webdriverio": "^4.13.0",
-        "webpack": "^4.41.0",
+        "webpack": "^4.41.1",
         "webpack-cli": "^3.3.9"
     },
     "dependencies": {
@@ -120,7 +120,7 @@
         "idb-keyval": "^3.2.0",
         "lodash": "^4.17.15",
         "moment": "^2.24.0",
-        "office-ui-fabric-react": "6.207.0",
+        "office-ui-fabric-react": "6.208.1",
         "q": "1.5.1",
         "react": "^16.10.2",
         "react-copy-to-clipboard": "^5.0.1",

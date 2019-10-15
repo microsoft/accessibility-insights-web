@@ -30,7 +30,7 @@ export function convertScanResultsToUnifiedRules(
         if (!ruleIds.has(ruleId)) {
             const ruleInformation = ruleInformationProvider.getRuleInformation(ruleId);
 
-            if (ruleInformation) {
+            if (ruleInformation && ruleInformation.includeThisResult(result)) {
                 unifiedRules.push(createUnifiedRuleFromRuleResult(ruleInformation, uuidGenerator));
                 ruleIds.add(ruleId);
             }

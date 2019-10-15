@@ -28,7 +28,7 @@ describe('WindowStateStore', () => {
         };
         const expectedState: WindowStateStoreData = {
             routeId: payload.routeId,
-            currentWindowState: 'restoredOrMaximized',
+            currentWindowState: 'customSize',
         };
 
         const initialState = createStoreWithNullParams(WindowStateStore).getDefaultState();
@@ -44,7 +44,7 @@ describe('WindowStateStore', () => {
         };
         const expectedState: WindowStateStoreData = {
             routeId: payload.routeId,
-            currentWindowState: 'restoredOrMaximized',
+            currentWindowState: 'customSize',
         };
 
         const initialState = createStoreWithNullParams(WindowStateStore).getDefaultState();
@@ -54,9 +54,25 @@ describe('WindowStateStore', () => {
             .testListenerToNeverBeCalled(initialState, expectedState);
     });
 
-    it('changes currentWindowState from default to minimized', () => {
+    it('does not emit a change when the window state is not changing', () => {
         const payload: WindowStatePayload = {
-            currentWindowState: 'minimized',
+            currentWindowState: 'customSize',
+        };
+        const expectedState: WindowStateStoreData = {
+            routeId: 'deviceConnectView',
+            currentWindowState: 'customSize',
+        };
+
+        const initialState = createStoreWithNullParams(WindowStateStore).getDefaultState();
+
+        createStoreTesterForWindowStateActions('setWindowState')
+            .withActionParam(payload)
+            .testListenerToNeverBeCalled(initialState, expectedState);
+    });
+
+    it('changes currentWindowState from default to maximized', () => {
+        const payload: WindowStatePayload = {
+            currentWindowState: 'maximized',
         };
         const expectedState: WindowStateStoreData = {
             routeId: 'deviceConnectView',

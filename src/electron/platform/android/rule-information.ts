@@ -6,14 +6,21 @@ import { RuleResultsData } from './scan-results';
 
 export type GetUnifiedResolutionDelegate = (ruleResultsData: RuleResultsData) => UnifiedResolution;
 
+export type IncludeThisResultDelegate = (ruleResultsData: RuleResultsData) => boolean;
+
 export class RuleInformation {
     constructor(
         readonly ruleId: string,
         readonly ruleDescription: string,
         readonly getUnifiedResolutionDelegate: GetUnifiedResolutionDelegate,
+        readonly includeThisResultDelegate: IncludeThisResultDelegate,
     ) {}
 
     public getUnifiedResolution(ruleResultsData: RuleResultsData): UnifiedResolution {
         return this.getUnifiedResolutionDelegate(ruleResultsData);
+    }
+
+    public includeThisResult(ruleResultsData: RuleResultsData): boolean {
+        return this.includeThisResultDelegate(ruleResultsData);
     }
 }

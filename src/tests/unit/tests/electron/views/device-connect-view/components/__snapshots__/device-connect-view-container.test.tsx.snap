@@ -3,18 +3,19 @@
 exports[`DeviceConnectViewContainer renders 1`] = `
 <React.Fragment>
   <WindowTitle
+    deps={Object {}}
     title="Accessibility Insights"
+    windowStateStoreData={
+      Object {
+        "currentWindowState": "customSize",
+        "routeId": "deviceConnectView",
+      }
+    }
   >
     <BrandBlue />
   </WindowTitle>
   <DeviceConnectBody
-    deps={
-      Object {
-        "currentWindow": Object {
-          "close": [Function],
-        },
-      }
-    }
+    deps={Object {}}
     viewState={
       Object {
         "connectedDevice": undefined,
@@ -23,13 +24,7 @@ exports[`DeviceConnectViewContainer renders 1`] = `
     }
   />
   <TelemetryPermissionDialog
-    deps={
-      Object {
-        "currentWindow": Object {
-          "close": [Function],
-        },
-      }
-    }
+    deps={Object {}}
     isFirstTime={true}
   />
 </React.Fragment>
