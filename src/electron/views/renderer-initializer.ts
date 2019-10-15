@@ -8,7 +8,7 @@ import { UnifiedScanResultStore } from 'background/stores/unified-scan-result-st
 import { DateProvider } from 'common/date-provider';
 import { UserConfigMessageCreator } from 'common/message-creators/user-config-message-creator';
 import { remote } from 'electron';
-import { DirectActionMessageDispatcher } from 'electron/adapters/action-message-dispatcher-adapter';
+import { DirectActionMessageDispatcher } from 'electron/adapters/direct-action-message-dispatcher';
 import { createGetToolDataDelegate } from 'electron/common/application-properties-provider';
 import { ScanActionCreator } from 'electron/flux/action-creator/scan-action-creator';
 import { WindowFrameActionCreator } from 'electron/flux/action-creator/window-frame-action-creator';

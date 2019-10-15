@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { Interpreter } from 'background/interpreter';
 import { Message } from 'common/message';
-import { DirectActionMessageDispatcher } from 'electron/adapters/action-message-dispatcher-adapter';
+import { DirectActionMessageDispatcher } from 'electron/adapters/direct-action-message-dispatcher';
 import { Mock, Times } from 'typemoq';
 
 describe('ActionMessageDispatcherAdapter', () => {
