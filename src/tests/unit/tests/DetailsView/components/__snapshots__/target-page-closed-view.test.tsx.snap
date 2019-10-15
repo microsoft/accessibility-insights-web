@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`StaleView render stale view for default 1`] = `
-<div
+<main
   className="targetPageClosed"
 >
   <h1>
@@ -10,5 +10,5 @@ exports[`StaleView render stale view for default 1`] = `
   <p>
     The target page was closed. You can close this tab or reuse it for something else.
   </p>
-</div>
+</main>
 `;
