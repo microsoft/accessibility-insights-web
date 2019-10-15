@@ -4,6 +4,7 @@
 import { WindowFrameActionCreator } from 'electron/flux/action-creator/window-frame-action-creator';
 import { WindowStateStoreData } from 'electron/flux/types/window-state-store-data';
 import { PlatformInfo } from 'electron/platform-info';
+import { MaximizeRestoreButtonProps } from 'electron/views/automated-checks/components/maximize-restore-button';
 import { TitleBar, TitleBarProps } from 'electron/views/automated-checks/components/title-bar';
 import { shallow } from 'enzyme';
 import { Button } from 'office-ui-fabric-react/lib/Button';
@@ -62,9 +63,6 @@ describe('TitleBar', () => {
     };
 
     const buttonsAndSetups = [
-        { id: '#maximize-button', setupMock: setupVerifiableWindowMaximizeAction }, // maximize validation
-        { id: '#maximize-button', setupMock: setupVerifiableWindowRestoreActionFromFullScreen }, // restore validation from full screen
-        { id: '#maximize-button', setupMock: setupVerifiableWindowRestoreActionFromMaximized }, // restore validation from maximized state
         { id: '#minimize-button', setupMock: setupVerifiableWindowMinimizeCall },
         { id: '#close-button', setupMock: setupVerifiableWindowCloseActionCall },
     ];
@@ -80,6 +78,33 @@ describe('TitleBar', () => {
             const button = renderedIcons.find(testCase.id);
 
             button.simulate('click', eventStub);
+
+            windowFrameActionCreator.verifyAll();
+        });
+    });
+
+    const maximizeButtonTestCases = [
+        { label: 'maximize when on custom size', setupMock: setupVerifiableWindowMaximizeAction, isMaximized: false }, // maximize validation
+        { label: 'restore when on full screen', setupMock: setupVerifiableWindowRestoreActionFromFullScreen, isMaximized: true }, // restore validation from full screen
+        { label: 'restore when on maximized state', setupMock: setupVerifiableWindowRestoreActionFromMaximized, isMaximized: true }, // restore validation from maximized state
+    ];
+
+    maximizeButtonTestCases.forEach(testCase => {
+        it(`maximize-restore button should ${testCase.label}`, () => {
+            testCase.setupMock();
+
+            const rendered = shallow(<TitleBar {...props} />);
+            const renderedElement = rendered.getElement();
+            const renderedIcons = shallow(<div>{renderedElement.props.actionableIcons}</div>);
+            const button = renderedIcons.findWhere(p => {
+                return p.key() === 'maximize-restore';
+            });
+
+            const buttonProps = button.getElement().props as MaximizeRestoreButtonProps;
+
+            expect(buttonProps.isMaximized).toBe(testCase.isMaximized);
+
+            buttonProps.onClick();
 
             windowFrameActionCreator.verifyAll();
         });
