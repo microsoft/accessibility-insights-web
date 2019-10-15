@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import * as classNames from 'classnames';
 import { NamedFC } from 'common/react/named-fc';
 import { forOwn, isEmpty } from 'lodash';
 import * as React from 'react';
@@ -34,6 +35,16 @@ export type InstanceDetailsProps = {
 export const InstanceDetails = NamedFC<InstanceDetailsProps>('InstanceDetails', props => {
     const { result, index, deps, userConfigurationStoreData, rule, targetAppInfo } = props;
 
+    /**
+     * Temp - need to be removed when view model starts providing data
+     * for selected ids
+     */
+    let isCardSelected = false;
+    if (result.uid === '19c46d58-7deb-4f46-b40a-dd106789efe8') {
+        console.log(result.uid);
+        isCardSelected = true;
+    }
+
     // This should be updated once selection is implemented to sync highlight state with selection.
     const highlightState: HighlightState = 'unavailable';
 
@@ -51,10 +62,18 @@ export const InstanceDetails = NamedFC<InstanceDetailsProps>('InstanceDetails', 
         return <>{cardRows}</>;
     };
 
-    const cardClickHandler = () => deps.cardSelectionMessageCreator.toggleCardSelection(result.ruleId, result.uid);
+    const cardClickHandler = (localResultInstance: UnifiedResult): void => {
+        deps.cardSelectionMessageCreator.toggleCardSelection(localResultInstance.ruleId, localResultInstance.uid);
+    };
+
+    const reportInstanceTableStyling = classNames({
+        'report-instance-table': true,
+        selected: isCardSelected,
+    });
+
     return (
         <div className={instanceDetailsCard}>
-            <table className={reportInstanceTable} onClick={cardClickHandler}>
+            <table className={reportInstanceTableStyling} onClick={() => cardClickHandler(result)}>
                 <tbody>
                     {renderCardRowsForPropertyBag(result.identifiers)}
                     {renderCardRowsForPropertyBag(result.descriptors)}

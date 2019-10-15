@@ -44,6 +44,12 @@
     }
 }
 
+.report-instance-table.selected {
+    border: 5px solid #2b88d8;
+    box-sizing: border-box;
+    border-radius: 2px;
+}
+
 .report-instance-table .label {
     font-size: 14px;
     line-height: 20px;
