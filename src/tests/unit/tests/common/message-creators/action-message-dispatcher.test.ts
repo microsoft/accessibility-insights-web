@@ -3,7 +3,7 @@
 import { IMock, It, Mock, Times } from 'typemoq';
 import { BaseTelemetryData, TelemetryEventSource } from '../../../../../common/extension-telemetry-events';
 import { Message } from '../../../../../common/message';
-import { RemoteActionMessageDispatcher } from '../../../../../common/message-creators/action-message-dispatcher';
+import { RemoteActionMessageDispatcher } from '../../../../../common/message-creators/remote-action-message-dispatcher';
 import { Messages } from '../../../../../common/messages';
 
 describe('ActionMessageDispatcher', () => {
