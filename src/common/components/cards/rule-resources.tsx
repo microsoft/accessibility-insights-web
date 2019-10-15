@@ -4,9 +4,10 @@ import { GuidanceLinks } from 'common/components/guidance-links';
 import { GuidanceTags, GuidanceTagsDeps } from 'common/components/guidance-tags';
 import { NewTabLink } from 'common/components/new-tab-link';
 import { NamedFC } from 'common/react/named-fc';
+import { UnifiedRule } from 'common/types/store-data/unified-data-interface';
+import { isEmpty } from 'lodash';
 import * as React from 'react';
 
-import { UnifiedRule } from '../../../common/types/store-data/unified-data-interface';
 import { moreResourcesTitle, ruleDetailsId, ruleMoreResources } from './rule-resources.scss';
 
 export type RuleResourcesDeps = GuidanceTagsDeps;
@@ -17,6 +18,10 @@ export type RuleResourcesProps = {
 };
 
 export const RuleResources = NamedFC<RuleResourcesProps>('RuleResources', ({ deps, rule }) => {
+    if (rule.url == null || isEmpty(rule.guidance)) {
+        return null;
+    }
+
     const renderTitle = () => <div className={moreResourcesTitle}>Resources for this rule</div>;
 
     const renderRuleLink = () => {
