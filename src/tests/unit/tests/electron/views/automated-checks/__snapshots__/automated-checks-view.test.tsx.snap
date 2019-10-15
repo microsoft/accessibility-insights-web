@@ -30,47 +30,51 @@ exports[`AutomatedChecksView renders status scan <Failed> 1`] = `
     }
     windowStateStoreData="window state store data"
   />
-  <CommandBar
-    deps={
-      Object {
-        "deviceConnectActionCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "deviceActions": undefined,
-          "fetchScanResults": undefined,
-          "telemetryEventHandler": undefined,
-        },
-        "scanActionCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "scanActions": undefined,
-        },
-        "windowFrameActionCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "windowFrameActions": undefined,
-        },
-        "windowStateActionCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "windowFrameActionCreator": undefined,
-          "windowStateActions": undefined,
-        },
+  <div
+    className="mainContentWrapper"
+  >
+    <CommandBar
+      deps={
+        Object {
+          "deviceConnectActionCreator": proxy {
+            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+            "deviceActions": undefined,
+            "fetchScanResults": undefined,
+            "telemetryEventHandler": undefined,
+          },
+          "scanActionCreator": proxy {
+            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+            "scanActions": undefined,
+          },
+          "windowFrameActionCreator": proxy {
+            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+            "windowFrameActions": undefined,
+          },
+          "windowStateActionCreator": proxy {
+            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+            "windowFrameActionCreator": undefined,
+            "windowStateActions": undefined,
+          },
+        }
       }
-    }
-    deviceStoreData={
-      Object {
-        "connectedDevice": "TEST DEVICE",
+      deviceStoreData={
+        Object {
+          "connectedDevice": "TEST DEVICE",
+        }
       }
-    }
-  />
-  <main>
-    <HeaderSection />
-    <ScanningSpinner
-      isScanning={false}
     />
-    <DeviceDisconnectedPopup
-      deviceName="TEST DEVICE"
-      onConnectNewDevice={[Function]}
-      onRescanDevice={[Function]}
-    />
-  </main>
+    <main>
+      <HeaderSection />
+      <ScanningSpinner
+        isScanning={false}
+      />
+      <DeviceDisconnectedPopup
+        deviceName="TEST DEVICE"
+        onConnectNewDevice={[Function]}
+        onRescanDevice={[Function]}
+      />
+    </main>
+  </div>
 </div>
 `;
 
@@ -104,42 +108,46 @@ exports[`AutomatedChecksView renders status scan <Scanning> 1`] = `
     }
     windowStateStoreData="window state store data"
   />
-  <CommandBar
-    deps={
-      Object {
-        "deviceConnectActionCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "deviceActions": undefined,
-          "fetchScanResults": undefined,
-          "telemetryEventHandler": undefined,
-        },
-        "scanActionCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "scanActions": undefined,
-        },
-        "windowFrameActionCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "windowFrameActions": undefined,
-        },
-        "windowStateActionCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "windowFrameActionCreator": undefined,
-          "windowStateActions": undefined,
-        },
+  <div
+    className="mainContentWrapper"
+  >
+    <CommandBar
+      deps={
+        Object {
+          "deviceConnectActionCreator": proxy {
+            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+            "deviceActions": undefined,
+            "fetchScanResults": undefined,
+            "telemetryEventHandler": undefined,
+          },
+          "scanActionCreator": proxy {
+            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+            "scanActions": undefined,
+          },
+          "windowFrameActionCreator": proxy {
+            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+            "windowFrameActions": undefined,
+          },
+          "windowStateActionCreator": proxy {
+            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+            "windowFrameActionCreator": undefined,
+            "windowStateActions": undefined,
+          },
+        }
       }
-    }
-    deviceStoreData={
-      Object {
-        "connectedDevice": "TEST DEVICE",
+      deviceStoreData={
+        Object {
+          "connectedDevice": "TEST DEVICE",
+        }
       }
-    }
-  />
-  <main>
-    <HeaderSection />
-    <ScanningSpinner
-      isScanning={true}
     />
-  </main>
+    <main>
+      <HeaderSection />
+      <ScanningSpinner
+        isScanning={true}
+      />
+    </main>
+  </div>
 </div>
 `;
 
@@ -173,41 +181,45 @@ exports[`AutomatedChecksView renders status scan <undefined> 1`] = `
     }
     windowStateStoreData="window state store data"
   />
-  <CommandBar
-    deps={
-      Object {
-        "deviceConnectActionCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "deviceActions": undefined,
-          "fetchScanResults": undefined,
-          "telemetryEventHandler": undefined,
-        },
-        "scanActionCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "scanActions": undefined,
-        },
-        "windowFrameActionCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "windowFrameActions": undefined,
-        },
-        "windowStateActionCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "windowFrameActionCreator": undefined,
-          "windowStateActions": undefined,
-        },
+  <div
+    className="mainContentWrapper"
+  >
+    <CommandBar
+      deps={
+        Object {
+          "deviceConnectActionCreator": proxy {
+            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+            "deviceActions": undefined,
+            "fetchScanResults": undefined,
+            "telemetryEventHandler": undefined,
+          },
+          "scanActionCreator": proxy {
+            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+            "scanActions": undefined,
+          },
+          "windowFrameActionCreator": proxy {
+            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+            "windowFrameActions": undefined,
+          },
+          "windowStateActionCreator": proxy {
+            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+            "windowFrameActionCreator": undefined,
+            "windowStateActions": undefined,
+          },
+        }
       }
-    }
-    deviceStoreData={
-      Object {
-        "connectedDevice": "TEST DEVICE",
+      deviceStoreData={
+        Object {
+          "connectedDevice": "TEST DEVICE",
+        }
       }
-    }
-  />
-  <main>
-    <HeaderSection />
-    <ScanningSpinner
-      isScanning={false}
     />
-  </main>
+    <main>
+      <HeaderSection />
+      <ScanningSpinner
+        isScanning={false}
+      />
+    </main>
+  </div>
 </div>
 `;
