@@ -1,0 +1,48 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[` renders when matches are not found 1`] = `
+<SimpleCardRow
+  content={
+    <React.Fragment>
+      This isn't a simple text. It has some words that will be marked as bold.
+    </React.Fragment>
+  }
+  contentClassName="how-to-fix-card-row"
+  label="How to fix"
+  rowKey="how-to-fix-row-22"
+/>
+`;
+
+exports[` renders with matches 1`] = `
+<SimpleCardRow
+  content={
+    <React.Fragment>
+      This 
+      <Term>
+        isn't
+      </Term>
+       a simple text. It has some words that will be marked as 
+      <Term>
+        bold
+      </Term>
+      .
+    </React.Fragment>
+  }
+  contentClassName="how-to-fix-card-row"
+  label="How to fix"
+  rowKey="how-to-fix-row-22"
+/>
+`;
+
+exports[` renders without matches 1`] = `
+<SimpleCardRow
+  content={
+    <React.Fragment>
+      This isn't a simple text. It has some words that will be marked as bold.
+    </React.Fragment>
+  }
+  contentClassName="how-to-fix-card-row"
+  label="How to fix"
+  rowKey="how-to-fix-row-22"
+/>
+`;
