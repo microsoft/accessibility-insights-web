@@ -28,4 +28,17 @@ describe('GetLabelledStringPropertyCardRow', () => {
         const wrapper = shallow(<TestSubject {...props} />);
         expect(wrapper.getElement()).toMatchSnapshot();
     });
+
+    const falsyPropertyData = [undefined, null, ''];
+
+    it.each(falsyPropertyData)('renders null when property data is <%s>', propertyData => {
+        const TestSubject = GetLabelledStringPropertyCardRow('some label', 'test class name');
+        const props: CardRowProps = {
+            deps: {} as CardRowDeps,
+            propertyData,
+            index: 22,
+        };
+        const wrapper = shallow(<TestSubject {...props} />);
+        expect(wrapper.getElement()).toMatchSnapshot();
+    });
 });
