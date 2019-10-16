@@ -6,6 +6,7 @@ import { ActionButton } from 'office-ui-fabric-react/lib/Button';
 import * as React from 'react';
 
 import { commandBar, rescanButton } from './command-bar.scss';
+import { DeviceStoreData } from 'electron/flux/types/device-store-data';
 
 export type CommandBarDeps = {
     deviceConnectActionCreator: DeviceConnectActionCreator;
@@ -13,10 +14,14 @@ export type CommandBarDeps = {
 
 export interface CommandBarProps {
     deps: CommandBarDeps;
+    deviceStoreData: DeviceStoreData;
 }
 
 export const CommandBar = NamedFC<CommandBarProps>('CommandBar', (props: CommandBarProps) => {
-    const onClick = () => props.deps.deviceConnectActionCreator.resetConnection();
+    const { deps, deviceStoreData } = props;
+
+    const onClick = () => deps.deviceConnectActionCreator.validatePort(deviceStoreData.port);
+
     return (
         <div className={commandBar}>
             <ActionButton
