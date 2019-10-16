@@ -2,18 +2,15 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
+import { Term } from 'assessments/markup';
+import { UnifiedFormatAsCodeResolution } from 'common/types/store-data/unified-data-interface';
 import { isEmpty, isNil } from 'lodash';
 import { CardRowProps } from '../../../common/configs/unified-result-property-configurations';
 import { NamedFC } from '../../../common/react/named-fc';
 import { SimpleCardRow } from './simple-card-row';
-import { Term } from 'assessments/markup';
 
-export interface HowToFixAndroidCardRowPropertyData {
-    howToFixSummary: string;
-    formatAsCode?: string[];
-}
 export interface HowToFixAndroidCardRowProps extends CardRowProps {
-    propertyData: HowToFixAndroidCardRowPropertyData;
+    propertyData: UnifiedFormatAsCodeResolution;
 }
 
 export const HowToFixAndroidCardRow = NamedFC<HowToFixAndroidCardRowProps>('HowToFixAndroidCardRow', props => {

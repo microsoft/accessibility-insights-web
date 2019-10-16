@@ -73,6 +73,10 @@ export type UnifiedResolution = {
     howToFixSummary: string;
 } & InstancePropertyBag;
 
+export type UnifiedFormatAsCodeResolution = {
+    formatAsCode?: string[];
+} & UnifiedResolution;
+
 export interface UnifiedResult {
     uid: string;
     status: InstanceResultStatus;
