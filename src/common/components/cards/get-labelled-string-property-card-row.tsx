@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { isEmpty } from 'lodash';
 import * as React from 'react';
 import { CardRowProps } from '../../../common/configs/unified-result-property-configurations';
 import { NamedFC } from '../../../common/react/named-fc';
@@ -11,6 +12,10 @@ export interface StringPropertyCardRowProps extends CardRowProps {
 
 export const GetLabelledStringPropertyCardRow = (label: string, contentClassName?: string) => {
     return NamedFC<StringPropertyCardRowProps>('StringPropertyCardRowProps', props => {
+        if (isEmpty(props.propertyData)) {
+            return null;
+        }
+
         return (
             <SimpleCardRow
                 label={label}
