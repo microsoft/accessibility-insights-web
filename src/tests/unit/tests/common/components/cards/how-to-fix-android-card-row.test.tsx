@@ -15,7 +15,7 @@ describe(HowToFixAndroidCardRow, () => {
             index: 22,
             propertyData: {
                 formatAsCode: ["isn't", 'notPresent', 'bold'],
-                howToFixSummary: "This isn't a simple text. It has some words that will be marked as bold.",
+                howToFix: "This isn't a simple text. It has some words that will be marked as bold.",
             },
         };
 
@@ -30,7 +30,7 @@ describe(HowToFixAndroidCardRow, () => {
             deps: { fixInstructionProcessor: fixInstructionProcessorMock.object },
             index: 22,
             propertyData: {
-                howToFixSummary: "This isn't a simple text. It has some words that will be marked as bold.",
+                howToFix: "This isn't a simple text. It has some words that will be marked as bold.",
             },
         };
 
@@ -46,7 +46,7 @@ describe(HowToFixAndroidCardRow, () => {
             index: 22,
             propertyData: {
                 formatAsCode: ["isn'T", 'notPresent', 'bold1'],
-                howToFixSummary: "This isn't a simple text. It has some words that will be marked as bold.",
+                howToFix: "This isn't a simple text. It has some words that will be marked as bold.",
             },
         };
 

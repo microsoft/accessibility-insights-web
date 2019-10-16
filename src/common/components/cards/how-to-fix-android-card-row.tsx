@@ -3,14 +3,14 @@
 import * as React from 'react';
 
 import { Term } from 'assessments/markup';
-import { UnifiedFormatAsCodeResolution } from 'common/types/store-data/unified-data-interface';
+import { FormatAsCodeResolution } from 'common/types/store-data/unified-data-interface';
 import { isEmpty, isNil } from 'lodash';
 import { CardRowProps } from '../../../common/configs/unified-result-property-configurations';
 import { NamedFC } from '../../../common/react/named-fc';
 import { SimpleCardRow } from './simple-card-row';
 
 export interface HowToFixAndroidCardRowProps extends CardRowProps {
-    propertyData: UnifiedFormatAsCodeResolution;
+    propertyData: FormatAsCodeResolution;
 }
 
 export const HowToFixAndroidCardRow = NamedFC<HowToFixAndroidCardRowProps>('HowToFixAndroidCardRow', props => {
@@ -31,7 +31,7 @@ type HowToFixSplit = {
 
 function getHowToFixContent(props: HowToFixAndroidCardRowProps): (JSX.Element | string)[] {
     const propertyData = props.propertyData;
-    let howToFixSplit: HowToFixSplit[] = [{ str: propertyData.howToFixSummary }];
+    let howToFixSplit: HowToFixSplit[] = [{ str: propertyData.howToFix }];
 
     if (!isEmpty(propertyData.formatAsCode)) {
         propertyData.formatAsCode.forEach(item => {

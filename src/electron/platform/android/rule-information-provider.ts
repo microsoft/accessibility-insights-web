@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { UnifiedResolution } from 'common/types/store-data/unified-data-interface';
+import { UnifiedFormatAsCodeResolution, UnifiedResolution } from 'common/types/store-data/unified-data-interface';
 import { DictionaryStringTo } from '../../../types/common-types';
 import { RuleInformation } from './rule-information';
 import { RuleResultsData } from './scan-results';
@@ -79,7 +79,7 @@ export class RuleInformationProvider {
         return result;
     }
 
-    private getTouchSizeUnifiedResolution = (ruleResultsData: RuleResultsData): UnifiedResolution => {
+    private getTouchSizeUnifiedResolution = (ruleResultsData: RuleResultsData): UnifiedFormatAsCodeResolution => {
         const dpi = ruleResultsData.props['Screen Dots Per Inch'] as number;
         const physicalWidth = ruleResultsData.props['width'] as number;
         const physicalHeight = ruleResultsData.props['height'] as number;
@@ -92,8 +92,8 @@ export class RuleInformationProvider {
         );
     };
 
-    private buildUnifiedResolution(unformattedText: string, codeStrings: string[] = null): UnifiedResolution {
-        return { howToFixSummary: unformattedText, formatAsCode: codeStrings };
+    private buildUnifiedResolution(unformattedText: string, codeStrings: string[] = null): UnifiedFormatAsCodeResolution {
+        return { howToFixSummary: unformattedText, howToFixFormat: { howToFix: unformattedText, formatAsCode: codeStrings } };
     }
 
     private includeColorContrastResult = (ruleResultsData: RuleResultsData): boolean => {
