@@ -45,10 +45,10 @@ export class Toast extends React.Component<ToastProps, ToastState> {
     }
 
     public render(): JSX.Element {
-        return this.state.toastVisible ? (
-            <div role="alert" aria-live="polite" className={css('ms-fadeIn100', 'toast')}>
-                {this.state.content}
+        return (
+            <div aria-live="polite">
+                {this.state.toastVisible ? <div className={css('ms-fadeIn100', 'toast')}>{this.state.content}</div> : null}
             </div>
-        ) : null;
+        );
     }
 }
