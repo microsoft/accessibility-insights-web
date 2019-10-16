@@ -93,11 +93,11 @@ export function buildRuleInformation(ruleId: string, includeResults: boolean = t
     return {
         ruleId: ruleId,
         ruleDescription: 'This describes ' + ruleId,
-        getUnifiedResolutionDelegate: r => {
+        getUnifiedFormattedResolutionDelegate: r => {
             expect('getUnifiedResolution').toBe('This code should never execute');
             return null;
         },
-        getUnifiedResolution: r => {
+        getUnifiedFormattedResolution: r => {
             const summary: string = 'How to fix ' + ruleId;
             return ({ howtoFixSummary: summary } as unknown) as UnifiedResolution;
         },

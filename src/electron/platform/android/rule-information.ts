@@ -12,12 +12,12 @@ export class RuleInformation {
     constructor(
         readonly ruleId: string,
         readonly ruleDescription: string,
-        readonly getUnifiedResolutionDelegate: GetUnifiedResolutionDelegate,
+        readonly getUnifiedFormattedResolutionDelegate: GetUnifiedResolutionDelegate,
         readonly includeThisResultDelegate: IncludeThisResultDelegate,
     ) {}
 
-    public getUnifiedResolution(ruleResultsData: RuleResultsData): UnifiedResolution {
-        return this.getUnifiedResolutionDelegate(ruleResultsData);
+    public getUnifiedFormattedResolution(ruleResultsData: RuleResultsData): UnifiedResolution {
+        return this.getUnifiedFormattedResolutionDelegate(ruleResultsData);
     }
 
     public includeThisResult(ruleResultsData: RuleResultsData): boolean {

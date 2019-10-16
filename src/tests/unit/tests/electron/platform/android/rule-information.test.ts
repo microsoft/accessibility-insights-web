@@ -44,7 +44,7 @@ describe('RuleInformation', () => {
 
             const ruleInformation = new RuleInformation(null, null, getUnifiedResolutionDelegateMock.object, failIfCalled);
 
-            const actualUnifiedResolution = ruleInformation.getUnifiedResolution(testData);
+            const actualUnifiedResolution = ruleInformation.getUnifiedFormattedResolution(testData);
 
             expect(actualUnifiedResolution).toBe(expectedUnifiedResolution);
         }

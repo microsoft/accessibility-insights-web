@@ -76,7 +76,7 @@ function createUnifiedResult(
         status: getStatus(ruleResult.status),
         descriptors: getDescriptors(viewElementLookup[ruleResult.axeViewId]),
         identifiers: null,
-        resolution: ruleInformation.getUnifiedResolution(ruleResult),
+        resolution: ruleInformation.getUnifiedFormattedResolution(ruleResult),
     };
 }
 
