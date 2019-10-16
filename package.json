@@ -24,6 +24,7 @@
         "generate-scss-typings": "tsm \"src/**/*.scss\"",
         "clean:scss-typings": "grunt clean:scss",
         "precheckin": "npm-run-all --serial clean:scss-typings format-check tslint copyright-header-check build:all test test:e2e test:electron",
+        "serve:mock-axe-android": "http-server -p 9051 -e json ./src/tests/miscellaneous/mock-axe-android",
         "start:electron": "electron drop/electron/extension/bundle/main.bundle.js",
         "start:electron:dev": "cross-env DEV_MODE=true electron drop/electron/extension/bundle/main.bundle.js",
         "test": "jest --projects src/tests/unit",
@@ -40,7 +41,8 @@
         "watch:grunt": "grunt watch",
         "watch:test": "jest --watch --coverage false --colors",
         "watch:webpack-dev-browser": "webpack --watch --config-name dev --colors --progress",
-        "watch:webpack-electron": "webpack --watch --config-name electron --colors --progress"
+        "watch:webpack-electron": "webpack --watch --config-name electron --colors --progress",
+        "with:mock-axe-android": "npm-run-all --race --parallel serve:mock-axe-android"
     },
     "devDependencies": {
         "@types/applicationinsights-js": "^1.0.7",
@@ -82,6 +84,7 @@
         "grunt-contrib-watch": "^1.1.0",
         "grunt-exec": "^3.0.0",
         "grunt-sass": "^3.1.0",
+        "http-server": "^0.11.1",
         "identity-obj-proxy": "^3.0.0",
         "jest": "^24.9.0",
         "jest-circus": "^24.9.0",

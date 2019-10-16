@@ -11,6 +11,7 @@ import { ScanStoreData } from 'electron/flux/types/scan-store-data';
 import { WindowStateStoreData } from 'electron/flux/types/window-state-store-data';
 import { ScanningSpinner } from 'electron/views/automated-checks/components/scanning-spinner';
 import { DeviceDisconnectedPopup } from 'electron/views/device-disconnected-popup/device-disconnected-popup';
+import { automatedChecksView } from './automated-checks-view.scss';
 import { CommandBar, CommandBarDeps } from './components/command-bar';
 import { HeaderSection } from './components/header-section';
 
@@ -34,13 +35,15 @@ export class AutomatedChecksView extends React.Component<AutomatedChecksViewProp
 
     public render(): JSX.Element {
         return (
-            <>
+            <div className={automatedChecksView}>
                 <TitleBar deps={this.props.deps} windowStateStoreData={this.props.windowStateStoreData}></TitleBar>
                 <CommandBar deps={this.props.deps} />
-                <HeaderSection />
-                {this.renderScanning()}
-                {this.renderDeviceDisconnected()}
-            </>
+                <main>
+                    <HeaderSection />
+                    {this.renderScanning()}
+                    {this.renderDeviceDisconnected()}
+                </main>
+            </div>
         );
     }
 

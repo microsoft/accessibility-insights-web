@@ -8,29 +8,22 @@ exports[`TitleBar renders 1`] = `
         ariaHidden={true}
         iconProps={
           Object {
-            "iconName": "ChromeMinimize",
+            "iconName": "chromeMinimize",
           }
         }
         id="minimize-button"
         onClick={[Function]}
         tabIndex={-1}
       />,
-      <CustomizedActionButton
-        ariaHidden={true}
-        iconProps={
-          Object {
-            "iconName": "Stop",
-          }
-        }
-        id="maximize-button"
+      <TitleBar
+        isMaximized={true}
         onClick={[Function]}
-        tabIndex={-1}
       />,
       <CustomizedActionButton
         ariaHidden={true}
         iconProps={
           Object {
-            "iconName": "Cancel",
+            "iconName": "cancel",
           }
         }
         id="close-button"

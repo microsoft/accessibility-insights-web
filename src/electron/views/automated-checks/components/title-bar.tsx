@@ -9,6 +9,7 @@ import { WindowFrameActionCreator } from 'electron/flux/action-creator/window-fr
 import { WindowStateStoreData } from 'electron/flux/types/window-state-store-data';
 import { WindowTitle, WindowTitleDeps } from 'electron/views/device-connect-view/components/window-title';
 import { BrandWhite } from 'icons/brand/white/brand-white';
+import { MaximizeRestoreButton } from './maximize-restore-button';
 import { titleBar } from './title-bar.scss';
 
 export type TitleBarDeps = {
@@ -23,7 +24,7 @@ export interface TitleBarProps {
 export const TitleBar = NamedFC<TitleBarProps>('TitleBar', (props: TitleBarProps) => {
     const minimize = () => props.deps.windowFrameActionCreator.minimize();
     const maximizeOrRestore = () =>
-        props.windowStateStoreData.currentWindowState === 'maximized' || props.windowStateStoreData.currentWindowState === 'fullScreen'
+        isWindowMaximized(props.windowStateStoreData)
             ? props.deps.windowFrameActionCreator.restore()
             : props.deps.windowFrameActionCreator.maximize();
 
@@ -33,27 +34,22 @@ export const TitleBar = NamedFC<TitleBarProps>('TitleBar', (props: TitleBarProps
         <ActionButton
             ariaHidden={true}
             iconProps={{
-                iconName: 'ChromeMinimize',
+                iconName: 'chromeMinimize',
             }}
             id="minimize-button"
             onClick={minimize}
             tabIndex={-1}
             key="minimize"
         />,
-        <ActionButton
-            ariaHidden={true}
-            iconProps={{
-                iconName: 'Stop',
-            }}
-            id="maximize-button"
+        <MaximizeRestoreButton
             onClick={maximizeOrRestore}
-            tabIndex={-1}
-            key="maximize"
+            isMaximized={isWindowMaximized(props.windowStateStoreData)}
+            key="maximize-restore"
         />,
         <ActionButton
             ariaHidden={true}
             iconProps={{
-                iconName: 'Cancel',
+                iconName: 'cancel',
             }}
             id="close-button"
             onClick={close}
@@ -74,3 +70,7 @@ export const TitleBar = NamedFC<TitleBarProps>('TitleBar', (props: TitleBarProps
         </WindowTitle>
     );
 });
+
+function isWindowMaximized(windowStateStoreData: WindowStateStoreData): boolean {
+    return windowStateStoreData.currentWindowState === 'maximized' || windowStateStoreData.currentWindowState === 'fullScreen';
+}

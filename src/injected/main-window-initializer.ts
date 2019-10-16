@@ -22,10 +22,10 @@ import { DateProvider } from '../common/date-provider';
 import { EnvironmentInfoProvider } from '../common/environment-info-provider';
 import { TelemetryEventSource } from '../common/extension-telemetry-events';
 import { HTMLElementUtils } from '../common/html-element-utils';
-import { ActionMessageDispatcher } from '../common/message-creators/action-message-dispatcher';
 import { DevToolActionMessageCreator } from '../common/message-creators/dev-tool-action-message-creator';
 import { InspectActionMessageCreator } from '../common/message-creators/inspect-action-message-creator';
 import { PathSnippetActionMessageCreator } from '../common/message-creators/path-snippet-action-message-creator';
+import { RemoteActionMessageDispatcher } from '../common/message-creators/remote-action-message-dispatcher';
 import { ScopingActionMessageCreator } from '../common/message-creators/scoping-action-message-creator';
 import { StoreActionMessageCreatorFactory } from '../common/message-creators/store-action-message-creator-factory';
 import { UserConfigMessageCreator } from '../common/message-creators/user-config-message-creator';
@@ -118,7 +118,8 @@ export class MainWindowInitializer extends WindowInitializer {
             StoreNames[StoreNames.CardSelectionStore],
             this.browserAdapter,
         );
-        const actionMessageDispatcher = new ActionMessageDispatcher(this.browserAdapter.sendMessageToFrames, null);
+
+        const actionMessageDispatcher = new RemoteActionMessageDispatcher(this.browserAdapter.sendMessageToFrames, null);
 
         const storeActionMessageCreatorFactory = new StoreActionMessageCreatorFactory(actionMessageDispatcher);
 

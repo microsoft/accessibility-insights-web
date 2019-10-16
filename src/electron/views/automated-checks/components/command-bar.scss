@@ -3,7 +3,6 @@
 @import '../../../../common/styles/colors.scss';
 
 .command-bar {
-    width: 100%;
     display: flex;
     justify-content: space-between;
     min-height: fit-content;
@@ -12,4 +11,12 @@
     font-size: 14px;
     font-weight: normal;
     border-bottom: 1px solid $neutral-alpha-8;
+
+    padding-left: 16px;
+    padding-right: 16px;
+
+    .rescan-button {
+        color: $primary-text;
+        line-height: 16px;
+    }
 }

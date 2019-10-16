@@ -459,7 +459,7 @@ describe('DetailsViewContainer', () => {
             .returns(() => ruleResults);
 
         const expected: JSX.Element = (
-            <div className="table column-layout main-wrapper">
+            <>
                 <Header
                     deps={props.deps}
                     selectedPivot={DetailsViewPivotType.fastPass}
@@ -477,7 +477,7 @@ describe('DetailsViewContainer', () => {
                     targetAppInfo,
                 )}
                 {buildOverlay(storeMocks, props)}
-            </div>
+            </>
         );
 
         expect(testObject.render()).toEqual(expected);

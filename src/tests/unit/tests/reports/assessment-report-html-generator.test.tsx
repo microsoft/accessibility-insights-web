@@ -59,7 +59,7 @@ describe('AssessmentReportHtmlGenerator', () => {
             </React.Fragment>
         );
         const expectedBody: string = '<head>styles</head><body>report-body</body>';
-        const expectedHtml = `<!DOCTYPE html><html lang="en">${expectedBody}</html>`;
+        const expectedHtml = `<html lang="en">${expectedBody}</html>`;
 
         const testDate = new Date(2018, 9, 19, 11, 25);
         const assessmentDefaultMessageGenerator: AssessmentDefaultMessageGenerator = new AssessmentDefaultMessageGenerator();

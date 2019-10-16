@@ -1,3 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ToastTest render 1`] = `null`;
+exports[`ToastTest render: render content 1`] = `
+<div
+  aria-live="polite"
+  class="ms-fadeIn100 toast"
+  role="alert"
+>
+  hello world
+</div>
+`;
+
+exports[`ToastTest render: render nothing before show() is called 1`] = `null`;

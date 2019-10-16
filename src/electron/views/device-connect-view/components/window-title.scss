@@ -67,5 +67,13 @@
             color: $always-white;
             font-size: 12px;
         }
+        svg {
+            width: 12px;
+            height: 12px;
+
+            path {
+                fill: $always-white;
+            }
+        }
     }
 }
