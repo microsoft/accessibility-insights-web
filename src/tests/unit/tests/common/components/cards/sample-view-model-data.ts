@@ -35,7 +35,7 @@ export const exampleUnifiedRuleResult: CardRuleResult = {
     description: 'sample-description',
     url: 'sample-url',
     guidance: [{ href: 'sample-guidance-href', text: 'sample-guidance-text' }],
-};
+} as CardRuleResult;
 
 export const exampleUnifiedStatusResults: CardRuleResultsByStatus = {
     pass: [],
