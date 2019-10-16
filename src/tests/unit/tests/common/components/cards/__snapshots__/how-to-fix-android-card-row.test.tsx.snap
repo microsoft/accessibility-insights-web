@@ -4,7 +4,9 @@ exports[` renders when matches are not found 1`] = `
 <SimpleCardRow
   content={
     <React.Fragment>
-      This isn't a simple text. It has some words that will be marked as bold.
+      <span>
+        This isn't a simple text. It has some words that will be marked as bold.
+      </span>
     </React.Fragment>
   }
   contentClassName="how-to-fix-card-row"
@@ -17,15 +19,117 @@ exports[` renders with matches 1`] = `
 <SimpleCardRow
   content={
     <React.Fragment>
-      This 
+      <span>
+        This 
+      </span>
+      <span>
+         
+      </span>
       <Term>
         isn't
       </Term>
-       a simple text. It has some words that will be marked as 
+      <span>
+         
+      </span>
+      <span>
+         a simple text. It has some words that will be marked as 
+      </span>
+      <span>
+         
+      </span>
       <Term>
         bold
       </Term>
-      .
+      <span>
+        .
+      </span>
+    </React.Fragment>
+  }
+  contentClassName="how-to-fix-card-row"
+  label="How to fix"
+  rowKey="how-to-fix-row-22"
+/>
+`;
+
+exports[` renders with whitespace - when match is on a word 1`] = `
+<SimpleCardRow
+  content={
+    <React.Fragment>
+      <span>
+        This is a 
+      </span>
+      <span>
+         
+      </span>
+      <Term>
+        sample
+      </Term>
+      <span>
+         
+      </span>
+      <span>
+         string 
+      </span>
+      <span>
+         
+      </span>
+    </React.Fragment>
+  }
+  contentClassName="how-to-fix-card-row"
+  label="How to fix"
+  rowKey="how-to-fix-row-22"
+/>
+`;
+
+exports[` renders with whitespace - when match is within a word 1`] = `
+<SimpleCardRow
+  content={
+    <React.Fragment>
+      <span>
+        This is a s
+      </span>
+      <Term>
+        amp
+      </Term>
+      <span>
+        le string 
+      </span>
+      <span>
+         
+      </span>
+    </React.Fragment>
+  }
+  contentClassName="how-to-fix-card-row"
+  label="How to fix"
+  rowKey="how-to-fix-row-22"
+/>
+`;
+
+exports[` renders with whitespace - when string ends with space 1`] = `
+<SimpleCardRow
+  content={
+    <React.Fragment>
+      <span>
+        This is a sample string 
+      </span>
+      <span>
+         
+      </span>
+    </React.Fragment>
+  }
+  contentClassName="how-to-fix-card-row"
+  label="How to fix"
+  rowKey="how-to-fix-row-22"
+/>
+`;
+
+exports[` renders with whitespace - when string starts with space 1`] = `
+<SimpleCardRow
+  content={
+    <React.Fragment>
+      <span>
+         This is a sample string
+      </span>
     </React.Fragment>
   }
   contentClassName="how-to-fix-card-row"
@@ -38,7 +142,9 @@ exports[` renders without formatAsCode property 1`] = `
 <SimpleCardRow
   content={
     <React.Fragment>
-      This isn't a simple text. It has some words that will be marked as bold.
+      <span>
+        This isn't a simple text. It has some words that will be marked as bold.
+      </span>
     </React.Fragment>
   }
   contentClassName="how-to-fix-card-row"

@@ -32,6 +32,7 @@ type HowToFixSplit = {
 function getHowToFixContent(props: HowToFixAndroidCardRowProps): (JSX.Element | string)[] {
     const propertyData = props.propertyData;
     let howToFixSplit: HowToFixSplit[] = [{ str: propertyData.howToFix }];
+    const result: (JSX.Element | string)[] = [];
 
     if (!isEmpty(propertyData.formatAsCode)) {
         propertyData.formatAsCode.forEach(item => {
@@ -39,9 +40,22 @@ function getHowToFixContent(props: HowToFixAndroidCardRowProps): (JSX.Element | 
         });
     }
 
-    return howToFixSplit.map((item, index) => {
-        return isNil(item.str) ? <Term key={`strong-how-to-fix-${props.index}-${index}`}>{item.match}</Term> : item.str;
+    howToFixSplit.forEach((item, index) => {
+        const key = `strong-how-to-fix-${props.index}-${index}`;
+        const content = isNil(item.str) ? item.match : item.str;
+
+        if (content[0] === ' ' && index !== 0) {
+            result.push(<span key={key + '-before-space'}>&nbsp;</span>);
+        }
+
+        result.push(isNil(item.str) ? <Term key={key}>{content}</Term> : <span key={key}>{content}</span>);
+
+        if (content[content.length - 1] === ' ') {
+            result.push(<span key={key + '-after-space'}>&nbsp;</span>);
+        }
     });
+
+    return result;
 }
 
 function getHowToFixSplitsForPattern(pattern: string, previousHowToFixSplit: HowToFixSplit[]): HowToFixSplit[] {
