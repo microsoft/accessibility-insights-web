@@ -4,70 +4,29 @@ import { RuleResources, RuleResourcesDeps, RuleResourcesProps } from 'common/com
 import { shallow } from 'enzyme';
 import { cloneDeep } from 'lodash';
 import * as React from 'react';
-
+import { GuidanceLink } from 'scanner/rule-to-links-mappings';
 import { exampleUnifiedRuleResult } from './sample-view-model-data';
 
 describe('RuleResources', () => {
     describe('renders', () => {
-        it('with rule url and guidance links', () => {
+        type TestCases = {
+            url: string;
+            guidanceLinks: GuidanceLink[];
+        };
+
+        const testCases: TestCases[] = [
+            { url: 'test-url', guidanceLinks: [{ href: 'test-href' } as GuidanceLink] },
+            { url: null, guidanceLinks: [{ href: 'test-href' } as GuidanceLink] },
+            { url: 'test-url', guidanceLinks: [] },
+            { url: 'test-url', guidanceLinks: null },
+            { url: null, guidanceLinks: [] },
+            { url: null, guidanceLinks: [] },
+        ];
+
+        it.each(testCases)('with %o', testCase => {
             const rule = cloneDeep(exampleUnifiedRuleResult);
-
-            const props: RuleResourcesProps = {
-                rule,
-                deps: {} as RuleResourcesDeps,
-            };
-
-            const wrapper = shallow(<RuleResources {...props} />);
-
-            expect(wrapper.getElement()).toMatchSnapshot();
-        });
-
-        it('no url, only guidance links', () => {
-            const rule = cloneDeep(exampleUnifiedRuleResult);
-            rule.url = null;
-
-            const props: RuleResourcesProps = {
-                rule,
-                deps: {} as RuleResourcesDeps,
-            };
-
-            const wrapper = shallow(<RuleResources {...props} />);
-
-            expect(wrapper.getElement()).toMatchSnapshot();
-        });
-
-        it('only url, empty guidance links', () => {
-            const rule = cloneDeep(exampleUnifiedRuleResult);
-            rule.guidance = [];
-
-            const props: RuleResourcesProps = {
-                rule,
-                deps: {} as RuleResourcesDeps,
-            };
-
-            const wrapper = shallow(<RuleResources {...props} />);
-
-            expect(wrapper.getElement()).toMatchSnapshot();
-        });
-
-        it('only url, null guidance links', () => {
-            const rule = cloneDeep(exampleUnifiedRuleResult);
-            rule.guidance = null;
-
-            const props: RuleResourcesProps = {
-                rule,
-                deps: {} as RuleResourcesDeps,
-            };
-
-            const wrapper = shallow(<RuleResources {...props} />);
-
-            expect(wrapper.getElement()).toMatchSnapshot();
-        });
-
-        it('no url and null guidance links', () => {
-            const rule = cloneDeep(exampleUnifiedRuleResult);
-            rule.guidance = null;
-            rule.url = null;
+            rule.url = testCase.url;
+            rule.guidance = testCase.guidanceLinks;
 
             const props: RuleResourcesProps = {
                 rule,

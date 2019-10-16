@@ -1,14 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`RuleResources renders no url and null guidance links 1`] = `null`;
-
-exports[`RuleResources renders no url, only guidance links 1`] = `null`;
-
-exports[`RuleResources renders only url, empty guidance links 1`] = `null`;
-
-exports[`RuleResources renders only url, null guidance links 1`] = `null`;
-
-exports[`RuleResources renders with rule url and guidance links 1`] = `
+exports[`RuleResources renders with { url: 'test-url',
+  guidanceLinks: [ { href: 'test-href' }, [length]: 1 ] } 1`] = `
 <div
   className="ruleMoreResources"
 >
@@ -21,7 +14,7 @@ exports[`RuleResources renders with rule url and guidance links 1`] = `
     className="ruleDetailsId"
   >
     <NewTabLink
-      href="sample-url"
+      href="test-url"
     >
       More information about 
       some-rule
@@ -32,8 +25,7 @@ exports[`RuleResources renders with rule url and guidance links 1`] = `
       links={
         Array [
           Object {
-            "href": "sample-guidance-href",
-            "text": "sample-guidance-text",
+            "href": "test-href",
           },
         ]
       }
@@ -43,8 +35,7 @@ exports[`RuleResources renders with rule url and guidance links 1`] = `
       links={
         Array [
           Object {
-            "href": "sample-guidance-href",
-            "text": "sample-guidance-text",
+            "href": "test-href",
           },
         ]
       }
@@ -52,3 +43,113 @@ exports[`RuleResources renders with rule url and guidance links 1`] = `
   </span>
 </div>
 `;
+
+exports[`RuleResources renders with { url: 'test-url', guidanceLinks: [ [length]: 0 ] } 1`] = `
+<div
+  className="ruleMoreResources"
+>
+  <div
+    className="moreResourcesTitle"
+  >
+    Resources for this rule
+  </div>
+  <span
+    className="ruleDetailsId"
+  >
+    <NewTabLink
+      href="test-url"
+    >
+      More information about 
+      some-rule
+    </NewTabLink>
+  </span>
+  <span>
+    <GuidanceLinks
+      links={Array []}
+    />
+    <GuidanceTags
+      deps={Object {}}
+      links={Array []}
+    />
+  </span>
+</div>
+`;
+
+exports[`RuleResources renders with { url: 'test-url', guidanceLinks: null } 1`] = `
+<div
+  className="ruleMoreResources"
+>
+  <div
+    className="moreResourcesTitle"
+  >
+    Resources for this rule
+  </div>
+  <span
+    className="ruleDetailsId"
+  >
+    <NewTabLink
+      href="test-url"
+    >
+      More information about 
+      some-rule
+    </NewTabLink>
+  </span>
+  <span>
+    <GuidanceLinks
+      links={null}
+    />
+    <GuidanceTags
+      deps={Object {}}
+      links={null}
+    />
+  </span>
+</div>
+`;
+
+exports[`RuleResources renders with { url: null,
+  guidanceLinks: [ { href: 'test-href' }, [length]: 1 ] } 1`] = `
+<div
+  className="ruleMoreResources"
+>
+  <div
+    className="moreResourcesTitle"
+  >
+    Resources for this rule
+  </div>
+  <span
+    className="ruleDetailsId"
+  >
+    <NewTabLink
+      href={null}
+    >
+      More information about 
+      some-rule
+    </NewTabLink>
+  </span>
+  <span>
+    <GuidanceLinks
+      links={
+        Array [
+          Object {
+            "href": "test-href",
+          },
+        ]
+      }
+    />
+    <GuidanceTags
+      deps={Object {}}
+      links={
+        Array [
+          Object {
+            "href": "test-href",
+          },
+        ]
+      }
+    />
+  </span>
+</div>
+`;
+
+exports[`RuleResources renders with { url: null, guidanceLinks: [ [length]: 0 ] } 1`] = `null`;
+
+exports[`RuleResources renders with { url: null, guidanceLinks: [ [length]: 0 ] } 2`] = `null`;

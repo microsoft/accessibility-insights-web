@@ -18,7 +18,7 @@ export type RuleResourcesProps = {
 };
 
 export const RuleResources = NamedFC<RuleResourcesProps>('RuleResources', ({ deps, rule }) => {
-    if (rule.url == null || isEmpty(rule.guidance)) {
+    if (rule.url == null && isEmpty(rule.guidance)) {
         return null;
     }
 
