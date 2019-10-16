@@ -4,7 +4,7 @@ import * as React from 'react';
 
 import { Term } from 'assessments/markup';
 import { FormattedResolution } from 'common/types/store-data/unified-data-interface';
-import { isEmpty, isNil } from 'lodash';
+import { isEmpty } from 'lodash';
 import { CardRowProps } from '../../../common/configs/unified-result-property-configurations';
 import { NamedFC } from '../../../common/react/named-fc';
 import { SimpleCardRow } from './simple-card-row';
@@ -31,24 +31,32 @@ type HowToFixSplit = {
 
 function getHowToFixContent(props: HowToFixAndroidCardRowProps): (JSX.Element | string)[] {
     const propertyData = props.propertyData;
+    if (isEmpty(propertyData.howToFix)) {
+        return [];
+    }
+
     let howToFixSplit: HowToFixSplit[] = [{ str: propertyData.howToFix }];
     const result: (JSX.Element | string)[] = [];
 
     if (!isEmpty(propertyData.formatAsCode)) {
         propertyData.formatAsCode.forEach(item => {
+            if (isEmpty(item)) {
+                throw 'pattern cannot be empty';
+            }
+
             howToFixSplit = getHowToFixSplitsForPattern(item, howToFixSplit);
         });
     }
 
     howToFixSplit.forEach((item, index) => {
         const key = `strong-how-to-fix-${props.index}-${index}`;
-        const content = isNil(item.str) ? item.match : item.str;
+        const content = isEmpty(item.str) ? item.match : item.str;
 
         if (content[0] === ' ' && index !== 0) {
             result.push(<span key={key + '-before-space'}>&nbsp;</span>);
         }
 
-        result.push(isNil(item.str) ? <Term key={key}>{content}</Term> : <span key={key}>{content}</span>);
+        result.push(isEmpty(item.str) ? <Term key={key}>{content}</Term> : <span key={key}>{content}</span>);
 
         if (content[content.length - 1] === ' ') {
             result.push(<span key={key + '-after-space'}>&nbsp;</span>);
@@ -62,7 +70,7 @@ function getHowToFixSplitsForPattern(pattern: string, previousHowToFixSplit: How
     const newHowToFixSplit: HowToFixSplit[] = [];
 
     previousHowToFixSplit.forEach(prop => {
-        if (!isNil(prop.str)) {
+        if (!isEmpty(prop.str)) {
             let str = prop.str;
 
             while (str.length > 0 && str.indexOf(pattern) >= 0) {
@@ -85,7 +93,7 @@ function getHowToFixSplitsForPattern(pattern: string, previousHowToFixSplit: How
                     str: str,
                 });
             }
-        } else {
+        } else if (!isEmpty(prop.match)) {
             newHowToFixSplit.push({
                 match: prop.match,
             });

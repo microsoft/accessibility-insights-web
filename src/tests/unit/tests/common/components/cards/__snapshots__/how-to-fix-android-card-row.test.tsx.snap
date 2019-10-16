@@ -1,5 +1,23 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[` renders when howToFix is empty. - null 1`] = `
+<SimpleCardRow
+  content={<React.Fragment />}
+  contentClassName="how-to-fix-card-row"
+  label="How to fix"
+  rowKey="how-to-fix-row-22"
+/>
+`;
+
+exports[` renders when howToFix is empty. - undefined 1`] = `
+<SimpleCardRow
+  content={<React.Fragment />}
+  contentClassName="how-to-fix-card-row"
+  label="How to fix"
+  rowKey="how-to-fix-row-22"
+/>
+`;
+
 exports[` renders when matches are not found 1`] = `
 <SimpleCardRow
   content={

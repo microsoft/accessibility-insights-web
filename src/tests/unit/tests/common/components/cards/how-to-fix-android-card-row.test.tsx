@@ -24,6 +24,36 @@ describe(HowToFixAndroidCardRow, () => {
         expect(testSubject.getElement()).toMatchSnapshot();
     });
 
+    test.each([null, undefined])('renders when howToFix is empty. - %o', howToFixValue => {
+        const fixInstructionProcessorMock = Mock.ofType(FixInstructionProcessor);
+        const props: HowToFixAndroidCardRowProps = {
+            deps: { fixInstructionProcessor: fixInstructionProcessorMock.object },
+            index: 22,
+            propertyData: {
+                formatAsCode: ["isn't", 'notPresent', 'bold'],
+                howToFix: howToFixValue,
+            },
+        };
+
+        const testSubject = shallow(<HowToFixAndroidCardRow {...props} />);
+
+        expect(testSubject.getElement()).toMatchSnapshot();
+    });
+
+    test.each([null, undefined])('throws when match has empty strings - %o', value => {
+        const fixInstructionProcessorMock = Mock.ofType(FixInstructionProcessor);
+        const props: HowToFixAndroidCardRowProps = {
+            deps: { fixInstructionProcessor: fixInstructionProcessorMock.object },
+            index: 22,
+            propertyData: {
+                formatAsCode: [value],
+                howToFix: "This isn't a simple text. It has some words that will be marked as bold.",
+            },
+        };
+
+        expect(() => shallow(<HowToFixAndroidCardRow {...props} />)).toThrow();
+    });
+
     type RenderWithSpaceTestCase = {
         label: string;
         formatAsCode?: string[];
