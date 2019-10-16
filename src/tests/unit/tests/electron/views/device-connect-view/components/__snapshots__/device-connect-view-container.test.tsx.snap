@@ -1,22 +1,24 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`DeviceConnectViewContainer renders 1`] = `
-<React.Fragment>
-  <div
-    className="deviceConnectView"
-  >
-    <WindowTitle
-      deps={Object {}}
-      title="Accessibility Insights"
-      windowStateStoreData={
-        Object {
-          "currentWindowState": "customSize",
-          "routeId": "deviceConnectView",
-        }
+<div
+  className="deviceConnectView"
+>
+  <WindowTitle
+    deps={Object {}}
+    title="Accessibility Insights"
+    windowStateStoreData={
+      Object {
+        "currentWindowState": "customSize",
+        "routeId": "deviceConnectView",
       }
-    >
-      <BrandBlue />
-    </WindowTitle>
+    }
+  >
+    <BrandBlue />
+  </WindowTitle>
+  <div
+    className="mainContentWrapper"
+  >
     <DeviceConnectBody
       deps={Object {}}
       viewState={
@@ -26,10 +28,10 @@ exports[`DeviceConnectViewContainer renders 1`] = `
         }
       }
     />
+    <TelemetryPermissionDialog
+      deps={Object {}}
+      isFirstTime={true}
+    />
   </div>
-  <TelemetryPermissionDialog
-    deps={Object {}}
-    isFirstTime={true}
-  />
-</React.Fragment>
+</div>
 `;
