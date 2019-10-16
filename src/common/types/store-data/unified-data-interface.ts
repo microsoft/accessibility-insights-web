@@ -73,13 +73,13 @@ export type UnifiedResolution = {
     howToFixSummary: string;
 } & InstancePropertyBag;
 
-export type FormattedResolution = {
+export type FormattableResolution = {
     howToFix: string;
     formatAsCode?: string[];
 };
 
-export type UnifiedFormattedResolution = {
-    howToFixFormat?: FormattedResolution;
+export type UnifiedFormattableResolution = {
+    howToFixFormat?: FormattableResolution;
 } & UnifiedResolution;
 
 export interface UnifiedResult {

@@ -3,14 +3,14 @@
 import * as React from 'react';
 
 import { Term } from 'assessments/markup';
-import { FormattedResolution } from 'common/types/store-data/unified-data-interface';
+import { FormattableResolution } from 'common/types/store-data/unified-data-interface';
 import { isEmpty } from 'lodash';
 import { CardRowProps } from '../../../common/configs/unified-result-property-configurations';
 import { NamedFC } from '../../../common/react/named-fc';
 import { SimpleCardRow } from './simple-card-row';
 
 export interface HowToFixAndroidCardRowProps extends CardRowProps {
-    propertyData: FormattedResolution;
+    propertyData: FormattableResolution;
 }
 
 export const HowToFixAndroidCardRow = NamedFC<HowToFixAndroidCardRowProps>('HowToFixAndroidCardRow', props => {

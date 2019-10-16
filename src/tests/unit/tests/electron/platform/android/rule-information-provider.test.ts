@@ -49,7 +49,7 @@ describe('RuleInformationProvider', () => {
 
     function validateUnifiedResolution(ruleId: string, ruleResult: RuleResultsData): UnifiedResolution {
         const ruleInformation: RuleInformation = provider.getRuleInformation(ruleId);
-        const unifiedResolution = ruleInformation.getUnifiedFormattedResolution(ruleResult);
+        const unifiedResolution = ruleInformation.getUnifiedFormattableResolution(ruleResult);
 
         expect(ruleInformation).toBeTruthy();
         expect(ruleInformation.ruleId).toEqual(ruleId);
