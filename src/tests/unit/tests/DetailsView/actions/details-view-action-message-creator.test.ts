@@ -1,9 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IMock, It, Mock, Times } from 'typemoq';
-
 import { HeadingsTestStep } from 'assessments/headings/test-steps/test-steps';
 import { OnDetailsViewPivotSelected } from 'background/actions/action-payloads';
+import { ActionMessageDispatcher } from 'common/message-creators/types/dispatcher';
+import { IMock, It, Mock, Times } from 'typemoq';
+
 import {
     AssessmentTelemetryData,
     BaseTelemetryData,
@@ -20,7 +21,6 @@ import {
     TriggeredByNotApplicable,
 } from '../../../../../common/extension-telemetry-events';
 import { Message } from '../../../../../common/message';
-import { ActionMessageDispatcher } from '../../../../../common/message-creators/action-message-dispatcher';
 import { Messages } from '../../../../../common/messages';
 import { TelemetryDataFactory } from '../../../../../common/telemetry-data-factory';
 import { DetailsViewPivotType } from '../../../../../common/types/details-view-pivot-type';

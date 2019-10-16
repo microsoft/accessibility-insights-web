@@ -95,7 +95,7 @@ export class CardSelectionStore extends BaseStoreImpl<CardSelectionStoreData> {
                 return;
             }
 
-            if (this.state[result.ruleId] === undefined) {
+            if (this.state.rules[result.ruleId] === undefined) {
                 this.state.rules[result.ruleId] = {
                     isExpanded: false,
                     cards: {},

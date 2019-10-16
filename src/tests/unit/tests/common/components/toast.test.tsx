@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { shallow } from 'enzyme';
+import { mount } from 'enzyme';
 import * as React from 'react';
 import { IMock, It, Mock, Times } from 'typemoq';
 
@@ -23,8 +23,14 @@ describe('ToastTest', () => {
     });
 
     test('render', () => {
-        const result = shallow(<Toast {...props}></Toast>);
-        expect(result.getElement()).toMatchSnapshot();
+        const toastRef: React.RefObject<Toast> = React.createRef();
+        const result = mount(<Toast ref={toastRef} {...props}></Toast>);
+
+        expect(result.getDOMNode()).toMatchSnapshot('render nothing before show() is called');
+
+        toastRef.current.show('hello world');
+
+        expect(result.getDOMNode()).toMatchSnapshot('render content');
     });
 
     test('show', () => {
