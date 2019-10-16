@@ -31,10 +31,11 @@ export const exampleUnifiedResult: UnifiedResult = {
 
 export const exampleUnifiedRuleResult: CardRuleResult = {
     id: 'some-rule',
-    nodes: [exampleUnifiedResult],
+    nodes: [{ ...exampleUnifiedResult, isSelected: false }],
     description: 'sample-description',
     url: 'sample-url',
     guidance: [],
+    isExpanded: false,
 };
 
 export const exampleUnifiedStatusResults: CardRuleResultsByStatus = {

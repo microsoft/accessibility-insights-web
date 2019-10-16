@@ -197,7 +197,7 @@ describe('DetailsViewContainer', () => {
 
             const ruleResults: CardRuleResultsByStatus = {} as any;
             getUnifiedRuleResultsMock
-                .setup(m => m(state.unifiedScanResultStoreData.rules, state.unifiedScanResultStoreData.results))
+                .setup(m => m(state.unifiedScanResultStoreData.rules, state.unifiedScanResultStoreData.results, null))
                 .returns(() => ruleResults);
 
             testObject.render();
@@ -455,7 +455,7 @@ describe('DetailsViewContainer', () => {
 
         const ruleResults: CardRuleResultsByStatus = {} as any;
         getUnifiedRuleResultsMock
-            .setup(m => m(state.unifiedScanResultStoreData.rules, state.unifiedScanResultStoreData.results))
+            .setup(m => m(state.unifiedScanResultStoreData.rules, state.unifiedScanResultStoreData.results, null))
             .returns(() => ruleResults);
 
         const expected: JSX.Element = (
