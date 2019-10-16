@@ -20,7 +20,9 @@ export interface CommandBarProps {
 export const CommandBar = NamedFC<CommandBarProps>('CommandBar', (props: CommandBarProps) => {
     const { deps, deviceStoreData } = props;
 
-    const onClick = () => deps.deviceConnectActionCreator.validatePort(deviceStoreData.port);
+    const onClick = () => {
+        deps.deviceConnectActionCreator.validatePort(deviceStoreData.port);
+    };
 
     return (
         <div className={commandBar}>
