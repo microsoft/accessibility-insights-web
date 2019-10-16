@@ -1,5 +1,75 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`AutomatedChecksView renders results 1`] = `
+<div
+  className="automatedChecksView"
+>
+  <TitleBar
+    deps={
+      Object {
+        "getUnifiedRuleResultsDelegate": [Function],
+        "scanActionCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "scanActions": undefined,
+        },
+      }
+    }
+  />
+  <div
+    className="mainContentWrapper"
+  >
+    <CommandBar
+      deps={
+        Object {
+          "getUnifiedRuleResultsDelegate": [Function],
+          "scanActionCreator": proxy {
+            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+            "scanActions": undefined,
+          },
+        }
+      }
+      deviceStoreData={Object {}}
+    />
+    <main>
+      <HeaderSection />
+      <ScanningSpinner
+        isScanning={false}
+      />
+      <CardsView
+        deps={
+          Object {
+            "getUnifiedRuleResultsDelegate": [Function],
+            "scanActionCreator": proxy {
+              "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+              "scanActions": undefined,
+            },
+          }
+        }
+        ruleResultsByStatus={
+          Object {
+            "fail": Array [
+              Object {
+                "id": "test-fail-id",
+              },
+            ],
+          }
+        }
+        targetAppInfo={
+          Object {
+            "name": "test-target-app-name",
+          }
+        }
+        userConfigurationStoreData={
+          Object {
+            "isFirstTime": false,
+          }
+        }
+      />
+    </main>
+  </div>
+</div>
+`;
+
 exports[`AutomatedChecksView renders status scan <Failed> 1`] = `
 <div
   className="automatedChecksView"
@@ -16,10 +86,6 @@ exports[`AutomatedChecksView renders status scan <Failed> 1`] = `
         "scanActionCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "scanActions": undefined,
-        },
-        "windowFrameActionCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "windowFrameActions": undefined,
         },
         "windowStateActionCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
@@ -45,10 +111,6 @@ exports[`AutomatedChecksView renders status scan <Failed> 1`] = `
           "scanActionCreator": proxy {
             "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
             "scanActions": undefined,
-          },
-          "windowFrameActionCreator": proxy {
-            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-            "windowFrameActions": undefined,
           },
           "windowStateActionCreator": proxy {
             "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
@@ -95,10 +157,6 @@ exports[`AutomatedChecksView renders status scan <Scanning> 1`] = `
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "scanActions": undefined,
         },
-        "windowFrameActionCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "windowFrameActions": undefined,
-        },
         "windowStateActionCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "windowFrameActionCreator": undefined,
@@ -123,10 +181,6 @@ exports[`AutomatedChecksView renders status scan <Scanning> 1`] = `
           "scanActionCreator": proxy {
             "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
             "scanActions": undefined,
-          },
-          "windowFrameActionCreator": proxy {
-            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-            "windowFrameActions": undefined,
           },
           "windowStateActionCreator": proxy {
             "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
@@ -168,10 +222,6 @@ exports[`AutomatedChecksView renders status scan <undefined> 1`] = `
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "scanActions": undefined,
         },
-        "windowFrameActionCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "windowFrameActions": undefined,
-        },
         "windowStateActionCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "windowFrameActionCreator": undefined,
@@ -196,10 +246,6 @@ exports[`AutomatedChecksView renders status scan <undefined> 1`] = `
           "scanActionCreator": proxy {
             "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
             "scanActions": undefined,
-          },
-          "windowFrameActionCreator": proxy {
-            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-            "windowFrameActions": undefined,
           },
           "windowStateActionCreator": proxy {
             "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",

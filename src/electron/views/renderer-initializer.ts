@@ -3,10 +3,16 @@
 import { AppInsights } from 'applicationinsights-js';
 import axios from 'axios';
 import { UnifiedScanResultActions } from 'background/actions/unified-scan-result-actions';
+import { registerUserConfigurationMessageCallback } from 'background/global-action-creators/registrar/register-user-configuration-message-callbacks';
+import { UserConfigurationActionCreator } from 'background/global-action-creators/user-configuration-action-creator';
 import { Interpreter } from 'background/interpreter';
 import { UnifiedScanResultStore } from 'background/stores/unified-scan-result-store';
+import { noCardInteractionsSupported } from 'common/components/cards/card-interaction-support';
+import { CardsCollapsibleControl } from 'common/components/cards/collapsible-component-cards';
 import { DateProvider } from 'common/date-provider';
+import { GetGuidanceTagsFromGuidanceLinks } from 'common/get-guidance-tags-from-guidance-links';
 import { UserConfigMessageCreator } from 'common/message-creators/user-config-message-creator';
+import { CardsViewDeps } from 'DetailsView/components/cards-view';
 import { remote } from 'electron';
 import { DirectActionMessageDispatcher } from 'electron/adapters/direct-action-message-dispatcher';
 import { createGetToolDataDelegate } from 'electron/common/application-properties-provider';
@@ -25,10 +31,11 @@ import { createDefaultBuilder } from 'electron/platform/android/unified-result-b
 import { RootContainerProps, RootContainerState } from 'electron/views/root-container/components/root-container';
 import { WindowFrameListener } from 'electron/window-frame-listener';
 import { WindowFrameUpdater } from 'electron/window-frame-updater';
+import { FixInstructionProcessor } from 'injected/fix-instruction-processor';
 import * as ReactDOM from 'react-dom';
 
-import { registerUserConfigurationMessageCallback } from 'background/global-action-creators/registrar/register-user-configuration-message-callbacks';
-import { UserConfigurationActionCreator } from 'background/global-action-creators/user-configuration-action-creator';
+import { getPropertyConfiguration } from 'common/configs/unified-result-property-configurations';
+import { getUnifiedRuleResults } from 'common/rule-based-view-model-provider';
 import { UserConfigurationActions } from '../../background/actions/user-configuration-actions';
 import { getPersistedData, PersistedData } from '../../background/get-persisted-data';
 import { IndexedDBDataKeys } from '../../background/IndexedDBDataKeys';
@@ -95,8 +102,8 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then((persistedDat
     const windowStateStore = new WindowStateStore(windowStateActions);
     windowStateStore.initialize();
 
-    const unifiedStore = new UnifiedScanResultStore(unifiedScanResultActions);
-    unifiedStore.initialize();
+    const unifiedScanResultStore = new UnifiedScanResultStore(unifiedScanResultActions);
+    unifiedScanResultStore.initialize();
 
     const scanStore = new ScanStore(scanActions);
     scanStore.initialize();
@@ -105,7 +112,13 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then((persistedDat
     const windowFrameUpdater = new WindowFrameUpdater(windowFrameActions, currentWindow);
     windowFrameUpdater.initialize();
 
-    const storeHub = new BaseClientStoresHub<RootContainerState>([userConfigurationStore, deviceStore, windowStateStore, scanStore]);
+    const storeHub = new BaseClientStoresHub<RootContainerState>([
+        userConfigurationStore,
+        deviceStore,
+        windowStateStore,
+        scanStore,
+        unifiedScanResultStore,
+    ]);
 
     const telemetryStateListener = new TelemetryStateListener(userConfigurationStore, telemetryEventHandler);
     telemetryStateListener.initialize();
@@ -140,6 +153,31 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then((persistedDat
 
     scanController.initialize();
 
+    const fixInstructionProcessor = new FixInstructionProcessor();
+
+    const cardsViewDeps: CardsViewDeps = {
+        LinkComponent: ElectronLink,
+
+        cardInteractionSupport: noCardInteractionsSupported, // we are supposed to have 'copy issue details' support
+        collapsibleControl: CardsCollapsibleControl,
+        fixInstructionProcessor,
+        getGuidanceTagsFromGuidanceLinks: GetGuidanceTagsFromGuidanceLinks, // I don't think we have guidance links for axe-android
+
+        userConfigMessageCreator: userConfigMessageCreator,
+        cardSelectionMessageCreator: null,
+        detailsViewActionMessageCreator: null,
+        issueFilingActionMessageCreator: null, // we don't support issue filing right now
+
+        environmentInfoProvider: null,
+        getPropertyConfigById: getPropertyConfiguration, // this seems to be axe-core specific
+
+        issueDetailsTextGenerator: null,
+        issueFilingServiceProvider: null, // we don't support issue filing right now
+        navigatorUtils: null,
+        unifiedResultToIssueFilingDataConverter: null, // we don't support issue filing right now
+        windowUtils: null,
+    };
+
     const props: RootContainerProps = {
         deps: {
             currentWindow,
@@ -154,6 +192,8 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then((persistedDat
             scanActionCreator,
             windowFrameActionCreator,
             platformInfo: new PlatformInfo(process),
+            getUnifiedRuleResultsDelegate: getUnifiedRuleResults,
+            ...cardsViewDeps,
         },
     };
 

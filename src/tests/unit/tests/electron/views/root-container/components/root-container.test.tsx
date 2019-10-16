@@ -38,6 +38,8 @@ describe(RootContainer, () => {
                         windowStateStoreData: { routeId: 'deviceConnectView', currentWindowState: 'customSize' },
                         userConfigurationStoreData: { isFirstTime: true },
                         deviceStoreData: { deviceConnectState: DeviceConnectState.Connected },
+                        unifiedScanResultStoreData: { targetAppInfo: { name: 'test-target-app-name' } },
+                        scanStoreData: { status: ScanStatus.Completed },
                     } as RootContainerState;
                 });
 
