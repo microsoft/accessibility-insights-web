@@ -9,9 +9,12 @@ export interface CardRuleResult {
     description: string;
     url: string;
     guidance: GuidanceLink[];
+    isExpanded: boolean;
 }
 export type CardRuleResultsByStatus = {
     [key in CardRuleResultStatus]: CardRuleResult[];
 };
-export interface CardResult extends UnifiedResult {}
+export interface CardResult extends UnifiedResult {
+    isSelected: boolean;
+}
 export const AllRuleResultStatuses: CardRuleResultStatus[] = ['pass', 'fail', 'unknown', 'inapplicable'];
