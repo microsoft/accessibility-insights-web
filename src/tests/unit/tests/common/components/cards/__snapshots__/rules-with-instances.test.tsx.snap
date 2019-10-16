@@ -28,7 +28,12 @@ exports[`RulesWithInstances renders 1`] = `
         rule={
           Object {
             "description": "sample-description",
-            "guidance": Array [],
+            "guidance": Array [
+              Object {
+                "href": "sample-guidance-href",
+                "text": "sample-guidance-text",
+              },
+            ],
             "id": "some-rule",
             "nodes": Array [
               Object {
@@ -74,7 +79,12 @@ exports[`RulesWithInstances renders 1`] = `
         rule={
           Object {
             "description": "sample-description",
-            "guidance": Array [],
+            "guidance": Array [
+              Object {
+                "href": "sample-guidance-href",
+                "text": "sample-guidance-text",
+              },
+            ],
             "id": "some-rule",
             "nodes": Array [
               Object {

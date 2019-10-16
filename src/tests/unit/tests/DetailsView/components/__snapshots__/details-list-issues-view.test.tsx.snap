@@ -15,7 +15,12 @@ exports[`DetailsListIssuesView should return  issues table with violations to nu
       "fail": Array [
         Object {
           "description": "sample-description",
-          "guidance": Array [],
+          "guidance": Array [
+            Object {
+              "href": "sample-guidance-href",
+              "text": "sample-guidance-text",
+            },
+          ],
           "id": "some-rule",
           "nodes": Array [
             Object {

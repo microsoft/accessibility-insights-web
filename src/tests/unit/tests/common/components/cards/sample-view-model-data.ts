@@ -34,7 +34,7 @@ export const exampleUnifiedRuleResult: CardRuleResult = {
     nodes: [exampleUnifiedResult],
     description: 'sample-description',
     url: 'sample-url',
-    guidance: [],
+    guidance: [{ href: 'sample-guidance-href', text: 'sample-guidance-text' }],
 };
 
 export const exampleUnifiedStatusResults: CardRuleResultsByStatus = {
