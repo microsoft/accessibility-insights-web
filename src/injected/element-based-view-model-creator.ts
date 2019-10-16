@@ -36,7 +36,11 @@ export class ElementBasedViewModelCreator {
         results: UnifiedResult[],
         cardSelectionData: CardSelectionStoreData,
     ) => {
-        const stringToResult: DictionaryStringTo<AssessmentVisualizationInstance> = {};
+        if (rules == null || results == null || cardSelectionData == null) {
+            return;
+        }
+
+        const resultDictionary: DictionaryStringTo<AssessmentVisualizationInstance> = {};
         const highlightedResultInstanceUids = this.getHighlightedResultInstanceIds(cardSelectionData).highlightedResultUids;
 
         results.forEach(unifiedResult => {
@@ -48,9 +52,9 @@ export class ElementBasedViewModelCreator {
 
             const identifier = this.getIdentifier(unifiedResult);
             const decoratedResult = this.getDecoratedAxeNode(unifiedResult, rule, identifier);
-            const ruleResults = stringToResult[identifier] ? stringToResult[identifier].ruleResults : {};
+            const ruleResults = resultDictionary[identifier] ? resultDictionary[identifier].ruleResults : {};
 
-            stringToResult[identifier] = {
+            resultDictionary[identifier] = {
                 isFailure: true,
                 isVisualizationEnabled: true,
                 target: this.getTarget(unifiedResult),
@@ -61,7 +65,7 @@ export class ElementBasedViewModelCreator {
             };
         });
 
-        return stringToResult;
+        return resultDictionary;
     };
 
     private getTarget(unifiedResult: UnifiedResult): string[] {

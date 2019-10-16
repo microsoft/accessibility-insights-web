@@ -23,6 +23,18 @@ describe('ElementBasedViewModelCreator', () => {
         cardSelectionData = {} as CardSelectionStoreData;
     });
 
+    test('getElementBasedViewModel: rules are null', () => {
+        expect(testSubject.getElementBasedViewModel(null, [], {} as CardSelectionStoreData)).toBeUndefined();
+    });
+
+    test('getElementBasedViewModel: results are null', () => {
+        expect(testSubject.getElementBasedViewModel([], null, {} as CardSelectionStoreData)).toBeUndefined();
+    });
+
+    test('getElementBasedViewModel: cardSelectionData are null', () => {
+        expect(testSubject.getElementBasedViewModel([], [], null)).toBeUndefined();
+    });
+
     test('getElementBasedViewModel: no failing results', () => {
         const highlightedInstanceIds = [];
         const unifiedResult = exampleUnifiedResult;

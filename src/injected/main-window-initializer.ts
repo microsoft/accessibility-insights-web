@@ -134,6 +134,8 @@ export class MainWindowInitializer extends WindowInitializer {
             this.devToolStoreProxy,
             this.inspectStoreProxy,
             this.pathSnippetStoreProxy,
+            this.unifiedScanResultStoreProxy,
+            this.cardSelectionStoreProxy,
         ]);
         storeActionMessageCreator.getAllStates();
 
