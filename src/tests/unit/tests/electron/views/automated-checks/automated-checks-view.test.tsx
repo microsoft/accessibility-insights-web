@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { DeviceConnectActionCreator } from 'electron/flux/action-creator/device-connect-action-creator';
 import { ScanActionCreator } from 'electron/flux/action-creator/scan-action-creator';
 import { WindowFrameActionCreator } from 'electron/flux/action-creator/window-frame-action-creator';
 import { WindowStateActionCreator } from 'electron/flux/action-creator/window-state-action-creator';
@@ -12,58 +13,30 @@ import { It, Mock, Times } from 'typemoq';
 
 describe('AutomatedChecksView', () => {
     describe('renders', () => {
-        it('renders the automated checks view', () => {
-            const props: AutomatedChecksViewProps = {
+        let bareMinimumProps: AutomatedChecksViewProps;
+
+        beforeEach(() => {
+            bareMinimumProps = {
                 deps: {
-                    deviceConnectActionCreator: null,
+                    deviceConnectActionCreator: Mock.ofType(DeviceConnectActionCreator).object,
                     windowStateActionCreator: Mock.ofType(WindowStateActionCreator).object,
                     scanActionCreator: Mock.ofType(ScanActionCreator).object,
                     windowFrameActionCreator: Mock.ofType(WindowFrameActionCreator).object,
                 },
                 scanStoreData: {},
-                deviceStoreData: {},
-                windowStateStoreData: 'window state store data' as any,
-            } as AutomatedChecksViewProps;
-
-            const wrapped = shallow(<AutomatedChecksView {...props} />);
-
-            expect(wrapped.getElement()).toMatchSnapshot();
-        });
-
-        it('scanning spinner', () => {
-            const props: AutomatedChecksViewProps = {
-                deps: {
-                    deviceConnectActionCreator: null,
-                    windowStateActionCreator: Mock.ofType(WindowStateActionCreator).object,
-                    scanActionCreator: Mock.ofType(ScanActionCreator).object,
-                    windowFrameActionCreator: Mock.ofType(WindowFrameActionCreator).object,
-                },
-                scanStoreData: {
-                    status: ScanStatus.Scanning,
-                },
-                deviceStoreData: {} as any,
-                windowStateStoreData: 'window state store data' as any,
-            } as AutomatedChecksViewProps;
-
-            const wrapped = shallow(<AutomatedChecksView {...props} />);
-
-            expect(wrapped.getElement()).toMatchSnapshot();
-        });
-
-        it('device disconnected', () => {
-            const props: AutomatedChecksViewProps = {
-                deps: {
-                    scanActionCreator: Mock.ofType(ScanActionCreator).object,
-                },
-                scanStoreData: {
-                    status: ScanStatus.Failed,
-                },
                 deviceStoreData: {
                     connectedDevice: 'TEST DEVICE',
                 },
+                windowStateStoreData: 'window state store data' as any,
             } as AutomatedChecksViewProps;
+        });
 
-            const wrapped = shallow(<AutomatedChecksView {...props} />);
+        const scanStatues = [undefined, ScanStatus[ScanStatus.Scanning], ScanStatus[ScanStatus.Failed]];
+
+        it.each(scanStatues)('status scan <%s>', scanStatusName => {
+            bareMinimumProps.scanStoreData.status = ScanStatus[scanStatusName];
+
+            const wrapped = shallow(<AutomatedChecksView {...bareMinimumProps} />);
 
             expect(wrapped.getElement()).toMatchSnapshot();
         });
