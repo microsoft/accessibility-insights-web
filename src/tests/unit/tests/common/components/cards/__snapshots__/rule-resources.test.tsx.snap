@@ -116,16 +116,6 @@ exports[`RuleResources renders with { url: null,
   >
     Resources for this rule
   </div>
-  <span
-    className="ruleDetailsId"
-  >
-    <NewTabLink
-      href={null}
-    >
-      More information about 
-      some-rule
-    </NewTabLink>
-  </span>
   <span>
     <GuidanceLinks
       links={
@@ -152,4 +142,4 @@ exports[`RuleResources renders with { url: null,
 
 exports[`RuleResources renders with { url: null, guidanceLinks: [ [length]: 0 ] } 1`] = `null`;
 
-exports[`RuleResources renders with { url: null, guidanceLinks: [ [length]: 0 ] } 2`] = `null`;
+exports[`RuleResources renders with { url: null, guidanceLinks: null } 1`] = `null`;

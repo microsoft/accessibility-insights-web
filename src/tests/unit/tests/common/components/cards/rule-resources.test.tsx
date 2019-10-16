@@ -20,7 +20,7 @@ describe('RuleResources', () => {
             { url: 'test-url', guidanceLinks: [] },
             { url: 'test-url', guidanceLinks: null },
             { url: null, guidanceLinks: [] },
-            { url: null, guidanceLinks: [] },
+            { url: null, guidanceLinks: null },
         ];
 
         it.each(testCases)('with %o', testCase => {
