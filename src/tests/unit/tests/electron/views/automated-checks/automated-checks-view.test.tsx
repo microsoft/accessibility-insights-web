@@ -13,7 +13,6 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 import { It, Mock, Times } from 'typemoq';
 
-//
 describe('AutomatedChecksView', () => {
     describe('renders', () => {
         let bareMinimumProps: AutomatedChecksViewProps;
