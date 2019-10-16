@@ -1,12 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
+import { GetCardSelectionViewData } from 'common/get-card-selection-view-data';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
 import { ISelection } from 'office-ui-fabric-react/lib/DetailsList';
 import { Spinner, SpinnerSize } from 'office-ui-fabric-react/lib/Spinner';
 import * as React from 'react';
 
-import { getCardSelectionViewData } from 'common/get-card-selection-view-data';
 import { ThemeDeps } from '../common/components/theme';
 import { withStoreSubscription, WithStoreSubscriptionDeps } from '../common/components/with-store-subscription';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
@@ -42,6 +42,7 @@ export type DetailsViewContainerDeps = {
     getDetailsRightPanelConfiguration: GetDetailsRightPanelConfiguration;
     getDetailsSwitcherNavConfiguration: GetDetailsSwitcherNavConfiguration;
     getUnifiedRuleResults: GetUnifiedRuleResultsDelegate;
+    getCardSelectionViewData: GetCardSelectionViewData;
 } & DetailsViewBodyDeps &
     DetailsViewOverlayDeps &
     DetailsViewCommandBarDeps &
@@ -172,7 +173,7 @@ export class DetailsViewContainer extends React.Component<DetailsViewContainerPr
         const ruleResults = this.props.deps.getUnifiedRuleResults(
             this.props.storeState.unifiedScanResultStoreData.rules,
             this.props.storeState.unifiedScanResultStoreData.results,
-            getCardSelectionViewData(this.props.storeState.cardSelectionStoreData),
+            this.props.deps.getCardSelectionViewData(this.props.storeState.cardSelectionStoreData),
         );
 
         return (

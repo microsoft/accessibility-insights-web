@@ -13,7 +13,9 @@ export interface CardSelectionViewData {
     expandedRuleIds: string[];
 }
 
-export function getCardSelectionViewData(storeData: CardSelectionStoreData): CardSelectionViewData {
+export type GetCardSelectionViewData = (storeData: CardSelectionStoreData) => CardSelectionViewData;
+
+export const getCardSelectionViewData: GetCardSelectionViewData = (storeData: CardSelectionStoreData): CardSelectionViewData => {
     const viewData = getEmptyViewData();
 
     if (!storeData) {
@@ -34,7 +36,7 @@ export function getCardSelectionViewData(storeData: CardSelectionStoreData): Car
         : getAllResultUidsFromRuleIdArray(storeData.rules, viewData.expandedRuleIds);
 
     return viewData;
-}
+};
 
 function getEmptyViewData(): CardSelectionViewData {
     const viewData: CardSelectionViewData = {
