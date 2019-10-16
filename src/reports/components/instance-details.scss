@@ -14,10 +14,24 @@
 
 .instance-details-card {
     border-radius: 4px;
+    outline-style: 'border-style';
     box-shadow: 0px 0.6px 1.8px rgba(0, 0, 0, 0.108), 0px 3.2px 7.2px rgba(0, 0, 0, 0.132);
     margin-left: 24px;
     margin-bottom: 16px;
     @include fill-available-width;
+}
+
+.instance-details-card:hover {
+    border: 2px solid rgba(0, 0, 0, 0.9);
+}
+
+.instance-details-card.selected {
+    border: 5px solid #2b88d8;
+}
+
+.instance-details-card.selected:hover {
+    border: 5px solid #2b88d8;
+    outline: 2px solid rgba(0, 0, 0, 0.9);
 }
 
 .report-instance-table {
@@ -42,12 +56,6 @@
     .row:last-child {
         border-bottom: none;
     }
-}
-
-.report-instance-table.selected {
-    border: 5px solid #2b88d8;
-    box-sizing: border-box;
-    border-radius: 2px;
 }
 
 .report-instance-table .label {

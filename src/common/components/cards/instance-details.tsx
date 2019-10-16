@@ -40,8 +40,8 @@ export const InstanceDetails = NamedFC<InstanceDetailsProps>('InstanceDetails', 
      * for selected ids
      */
     let isCardSelected = false;
-    if (result.uid === '19c46d58-7deb-4f46-b40a-dd106789efe8') {
-        console.log(result.uid);
+    console.log(result);
+    if (result.uid === 'e90b8aa2-378f-4ac0-877b-cfc198e42dbc') {
         isCardSelected = true;
     }
 
@@ -66,14 +66,14 @@ export const InstanceDetails = NamedFC<InstanceDetailsProps>('InstanceDetails', 
         deps.cardSelectionMessageCreator.toggleCardSelection(localResultInstance.ruleId, localResultInstance.uid);
     };
 
-    const reportInstanceTableStyling = classNames({
-        'report-instance-table': true,
+    const instanceDetailsCardStyling = classNames({
+        'instance-details-card': true,
         selected: isCardSelected,
     });
 
     return (
-        <div className={instanceDetailsCard}>
-            <table className={reportInstanceTableStyling} onClick={() => cardClickHandler(result)}>
+        <div className={instanceDetailsCardStyling}>
+            <table className={reportInstanceTable} onClick={() => cardClickHandler(result)}>
                 <tbody>
                     {renderCardRowsForPropertyBag(result.identifiers)}
                     {renderCardRowsForPropertyBag(result.descriptors)}
