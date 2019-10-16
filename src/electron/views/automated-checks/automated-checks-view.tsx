@@ -37,7 +37,7 @@ export class AutomatedChecksView extends React.Component<AutomatedChecksViewProp
         return (
             <div className={automatedChecksView}>
                 <TitleBar deps={this.props.deps} windowStateStoreData={this.props.windowStateStoreData}></TitleBar>
-                <CommandBar deps={this.props.deps} />
+                <CommandBar deps={this.props.deps} deviceStoreData={this.props.deviceStoreData} />
                 <main>
                     <HeaderSection />
                     {this.renderScanning()}

@@ -11,7 +11,8 @@ import { EventStubFactory } from 'tests/unit/common/event-stub-factory';
 
 describe('CommandBar', () => {
     test('render', () => {
-        const props: CommandBarProps = { deps: { deviceConnectActionCreator: null } };
+        const props = { deps: { deviceConnectActionCreator: null } } as CommandBarProps;
+
         const rendered = shallow(<CommandBar {...props} />);
 
         expect(rendered.getElement()).toMatchSnapshot();
@@ -20,14 +21,19 @@ describe('CommandBar', () => {
     test('rescan click', () => {
         const eventStub = new EventStubFactory().createMouseClickEvent() as React.MouseEvent<Button>;
 
+        const port = 111;
+
         const deviceConnectActionCreatorMock = Mock.ofType<DeviceConnectActionCreator>(undefined, MockBehavior.Strict);
-        deviceConnectActionCreatorMock.setup(creator => creator.resetConnection()).verifiable(Times.once());
+        deviceConnectActionCreatorMock.setup(creator => creator.validatePort(port)).verifiable(Times.once());
 
         const props = {
             deps: {
                 deviceConnectActionCreator: deviceConnectActionCreatorMock.object,
             },
-        };
+            deviceStoreData: {
+                port,
+            },
+        } as CommandBarProps;
 
         const rendered = shallow(<CommandBar {...props} />);
         const button = rendered.find('[text="Rescan"]');

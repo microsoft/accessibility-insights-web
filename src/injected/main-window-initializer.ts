@@ -11,6 +11,11 @@ import { TargetPageVisualizationUpdater } from 'injected/target-page-visualizati
 import { visualizationNeedsUpdate } from 'injected/visualization-needs-update';
 import { VisualizationStateChangeHandler } from 'injected/visualization-state-change-handler';
 
+import { getCardSelectionViewData } from 'common/get-card-selection-view-data';
+import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
+import { UnifiedScanResultStoreData } from 'common/types/store-data/unified-data-interface';
+import { ElementBasedViewModelCreator } from 'injected/element-based-view-model-creator';
+import { getDecoratedAxeNode } from 'injected/get-decorated-axe-node';
 import { AxeInfo } from '../common/axe-info';
 import { InspectConfigurationFactory } from '../common/configs/inspect-configuration-factory';
 import { DateProvider } from '../common/date-provider';
@@ -79,6 +84,8 @@ export class MainWindowInitializer extends WindowInitializer {
     private tabStoreProxy: StoreProxy<TabStoreData>;
     private devToolStoreProxy: StoreProxy<DevToolState>;
     private pathSnippetStoreProxy: StoreProxy<PathSnippetStoreData>;
+    private unifiedScanResultStoreProxy: StoreProxy<UnifiedScanResultStoreData>;
+    private cardSelectionStoreProxy: StoreProxy<CardSelectionStoreData>;
 
     public async initialize(): Promise<void> {
         const asyncInitializationSteps: Promise<void>[] = [];
@@ -103,6 +110,14 @@ export class MainWindowInitializer extends WindowInitializer {
         this.devToolStoreProxy = new StoreProxy<DevToolState>(StoreNames[StoreNames.DevToolsStore], this.browserAdapter);
         this.inspectStoreProxy = new StoreProxy<InspectStoreData>(StoreNames[StoreNames.InspectStore], this.browserAdapter);
         this.pathSnippetStoreProxy = new StoreProxy<PathSnippetStoreData>(StoreNames[StoreNames.PathSnippetStore], this.browserAdapter);
+        this.unifiedScanResultStoreProxy = new StoreProxy<UnifiedScanResultStoreData>(
+            StoreNames[StoreNames.UnifiedScanResultStore],
+            this.browserAdapter,
+        );
+        this.cardSelectionStoreProxy = new StoreProxy<CardSelectionStoreData>(
+            StoreNames[StoreNames.CardSelectionStore],
+            this.browserAdapter,
+        );
 
         const actionMessageDispatcher = new RemoteActionMessageDispatcher(this.browserAdapter.sendMessageToFrames, null);
 
@@ -119,6 +134,8 @@ export class MainWindowInitializer extends WindowInitializer {
             this.devToolStoreProxy,
             this.inspectStoreProxy,
             this.pathSnippetStoreProxy,
+            this.unifiedScanResultStoreProxy,
+            this.cardSelectionStoreProxy,
         ]);
         storeActionMessageCreator.getAllStates();
 
@@ -150,7 +167,8 @@ export class MainWindowInitializer extends WindowInitializer {
         );
 
         const drawingInitiator = new DrawingInitiator(this.drawingController);
-        const selectorMapHelper = new SelectorMapHelper(Assessments);
+        const elementBasedViewModelCreator = new ElementBasedViewModelCreator(getDecoratedAxeNode, getCardSelectionViewData);
+        const selectorMapHelper = new SelectorMapHelper(Assessments, elementBasedViewModelCreator.getElementBasedViewModel);
         const frameUrlMessageDispatcher = new FrameUrlMessageDispatcher(devToolActionMessageCreator, this.frameCommunicator);
         frameUrlMessageDispatcher.initialize();
 
@@ -161,6 +179,8 @@ export class MainWindowInitializer extends WindowInitializer {
             this.featureFlagStoreProxy,
             this.assessmentStoreProxy,
             this.userConfigStoreProxy,
+            this.unifiedScanResultStoreProxy,
+            this.cardSelectionStoreProxy,
         ]);
 
         const clientStoreListener = new ClientStoreListener(storeHub);

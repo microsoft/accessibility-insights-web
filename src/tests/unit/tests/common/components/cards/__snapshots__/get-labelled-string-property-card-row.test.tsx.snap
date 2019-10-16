@@ -1,5 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`GetLabelledStringPropertyCardRow renders null when property data is <> 1`] = `null`;
+
+exports[`GetLabelledStringPropertyCardRow renders null when property data is <null> 1`] = `null`;
+
+exports[`GetLabelledStringPropertyCardRow renders null when property data is <undefined> 1`] = `null`;
+
 exports[`GetLabelledStringPropertyCardRow renders with appropriate label/propertyData and contentClassName 1`] = `
 <SimpleCardRow
   content="some string as propertyData"
