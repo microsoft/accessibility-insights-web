@@ -3,9 +3,11 @@
 import { NamedFC } from 'common/react/named-fc';
 import { ScanActionCreator } from 'electron/flux/action-creator/scan-action-creator';
 import { DeviceStoreData } from 'electron/flux/types/device-store-data';
+import { ScanStoreData } from 'electron/flux/types/scan-store-data';
 import { ActionButton } from 'office-ui-fabric-react/lib/Button';
 import * as React from 'react';
 
+import { ScanStatus } from 'electron/flux/types/scan-status';
 import { commandBar, rescanButton } from './command-bar.scss';
 
 export type CommandBarDeps = {
@@ -15,6 +17,7 @@ export type CommandBarDeps = {
 export interface CommandBarProps {
     deps: CommandBarDeps;
     deviceStoreData: DeviceStoreData;
+    scanStoreData: ScanStoreData;
 }
 
 export const CommandBar = NamedFC<CommandBarProps>('CommandBar', (props: CommandBarProps) => {
@@ -31,6 +34,7 @@ export const CommandBar = NamedFC<CommandBarProps>('CommandBar', (props: Command
                 }}
                 onClick={onClick}
                 text="Rescan"
+                disabled={props.scanStoreData.status === ScanStatus.Scanning}
             />
         </div>
     );

@@ -1,10 +1,65 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`CommandBar render 1`] = `
+exports[`CommandBar renders while status is <Completed> 1`] = `
 <div
   className="commandBar"
 >
   <CustomizedActionButton
+    disabled={false}
+    iconProps={
+      Object {
+        "className": "rescanButton",
+        "iconName": "Refresh",
+      }
+    }
+    onClick={[Function]}
+    text="Rescan"
+  />
+</div>
+`;
+
+exports[`CommandBar renders while status is <Default> 1`] = `
+<div
+  className="commandBar"
+>
+  <CustomizedActionButton
+    disabled={false}
+    iconProps={
+      Object {
+        "className": "rescanButton",
+        "iconName": "Refresh",
+      }
+    }
+    onClick={[Function]}
+    text="Rescan"
+  />
+</div>
+`;
+
+exports[`CommandBar renders while status is <Failed> 1`] = `
+<div
+  className="commandBar"
+>
+  <CustomizedActionButton
+    disabled={false}
+    iconProps={
+      Object {
+        "className": "rescanButton",
+        "iconName": "Refresh",
+      }
+    }
+    onClick={[Function]}
+    text="Rescan"
+  />
+</div>
+`;
+
+exports[`CommandBar renders while status is <Scanning> 1`] = `
+<div
+  className="commandBar"
+>
+  <CustomizedActionButton
+    disabled={true}
     iconProps={
       Object {
         "className": "rescanButton",
