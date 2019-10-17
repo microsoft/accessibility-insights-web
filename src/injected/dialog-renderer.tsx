@@ -79,7 +79,7 @@ export class DialogRenderer {
                 IssueFilingUrlStringUtils.getSelectorLastPart,
             );
 
-            const deps = {
+            const deps: LayeredDetailsDialogDeps = {
                 axeResultToIssueFilingDataConverter,
                 fixInstructionProcessor,
                 issueDetailsTextGenerator,
