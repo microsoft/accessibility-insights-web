@@ -30,9 +30,9 @@ describe('AutomatedChecksView', () => {
             } as AutomatedChecksViewProps;
         });
 
-        const scanStatues = [undefined, ScanStatus[ScanStatus.Scanning], ScanStatus[ScanStatus.Failed]];
+        const scanStatuses = [undefined, ScanStatus[ScanStatus.Scanning], ScanStatus[ScanStatus.Failed]];
 
-        it.each(scanStatues)('when status scan <%s>', scanStatusName => {
+        it.each(scanStatuses)('when status scan <%s>', scanStatusName => {
             bareMinimumProps.scanStoreData.status = ScanStatus[scanStatusName];
 
             const wrapped = shallow(<AutomatedChecksView {...bareMinimumProps} />);
