@@ -33,6 +33,48 @@ exports[` renders when matches are not found 1`] = `
 />
 `;
 
+exports[` renders with colors 1`] = `
+<SimpleCardRow
+  content={
+    <React.Fragment>
+      <span>
+        <React.Fragment>
+          replaced-color
+        </React.Fragment>
+      </span>
+      <span>
+         
+      </span>
+      <Term>
+        isn't
+      </Term>
+      <span>
+         
+      </span>
+      <span>
+        <React.Fragment>
+          replaced-color
+        </React.Fragment>
+      </span>
+      <span>
+         
+      </span>
+      <Term>
+        bold
+      </Term>
+      <span>
+        <React.Fragment>
+          replaced-color
+        </React.Fragment>
+      </span>
+    </React.Fragment>
+  }
+  contentClassName="how-to-fix-card-row"
+  label="How to fix"
+  rowKey="how-to-fix-row-22"
+/>
+`;
+
 exports[` renders with matches 1`] = `
 <SimpleCardRow
   content={

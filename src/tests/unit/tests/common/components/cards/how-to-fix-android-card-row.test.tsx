@@ -2,14 +2,19 @@
 // Licensed under the MIT License.
 import { shallow } from 'enzyme';
 import * as React from 'react';
-import { Mock } from 'typemoq';
+import { Mock, IMock, It } from 'typemoq';
 
 import { HowToFixAndroidCardRow, HowToFixAndroidCardRowProps } from 'common/components/cards/how-to-fix-android-card-row';
 import { FixInstructionProcessor } from '../../../../../../injected/fix-instruction-processor';
 
 describe(HowToFixAndroidCardRow, () => {
+    let fixInstructionProcessorMock: IMock<FixInstructionProcessor>;
+    beforeEach(() => {
+        fixInstructionProcessorMock = Mock.ofType(FixInstructionProcessor);
+
+        fixInstructionProcessorMock.setup(f => f.process(It.isAnyString())).returns(str => str);
+    });
     it('renders with matches', () => {
-        const fixInstructionProcessorMock = Mock.ofType(FixInstructionProcessor);
         const props: HowToFixAndroidCardRowProps = {
             deps: { fixInstructionProcessor: fixInstructionProcessorMock.object },
             index: 22,
@@ -25,7 +30,6 @@ describe(HowToFixAndroidCardRow, () => {
     });
 
     test.each([null, undefined])('renders when howToFix is empty. - %o', howToFixValue => {
-        const fixInstructionProcessorMock = Mock.ofType(FixInstructionProcessor);
         const props: HowToFixAndroidCardRowProps = {
             deps: { fixInstructionProcessor: fixInstructionProcessorMock.object },
             index: 22,
@@ -41,7 +45,6 @@ describe(HowToFixAndroidCardRow, () => {
     });
 
     test.each([null, undefined])('throws when match has empty strings - %o', value => {
-        const fixInstructionProcessorMock = Mock.ofType(FixInstructionProcessor);
         const props: HowToFixAndroidCardRowProps = {
             deps: { fixInstructionProcessor: fixInstructionProcessorMock.object },
             index: 22,
@@ -82,7 +85,6 @@ describe(HowToFixAndroidCardRow, () => {
     ];
     renderWithSpaceTestCases.forEach(testCase => {
         it(`renders with whitespace - ${testCase.label}`, () => {
-            const fixInstructionProcessorMock = Mock.ofType(FixInstructionProcessor);
             const props: HowToFixAndroidCardRowProps = {
                 deps: { fixInstructionProcessor: fixInstructionProcessorMock.object },
                 index: 22,
@@ -99,7 +101,6 @@ describe(HowToFixAndroidCardRow, () => {
     });
 
     it('renders without formatAsCode property', () => {
-        const fixInstructionProcessorMock = Mock.ofType(FixInstructionProcessor);
         const props: HowToFixAndroidCardRowProps = {
             deps: { fixInstructionProcessor: fixInstructionProcessorMock.object },
             index: 22,
@@ -114,12 +115,29 @@ describe(HowToFixAndroidCardRow, () => {
     });
 
     it('renders when matches are not found', () => {
-        const fixInstructionProcessorMock = Mock.ofType(FixInstructionProcessor);
         const props: HowToFixAndroidCardRowProps = {
             deps: { fixInstructionProcessor: fixInstructionProcessorMock.object },
             index: 22,
             propertyData: {
                 formatAsCode: ["isn'T", 'notPresent', 'bold1'],
+                howToFix: "This isn't a simple text. It has some words that will be marked as bold.",
+            },
+        };
+
+        const testSubject = shallow(<HowToFixAndroidCardRow {...props} />);
+
+        expect(testSubject.getElement()).toMatchSnapshot();
+    });
+
+    it('renders with colors', () => {
+        fixInstructionProcessorMock.reset();
+        fixInstructionProcessorMock.setup(f => f.process(It.isAnyString())).returns(str => <>replaced-color</>);
+
+        const props: HowToFixAndroidCardRowProps = {
+            deps: { fixInstructionProcessor: fixInstructionProcessorMock.object },
+            index: 22,
+            propertyData: {
+                formatAsCode: ["isn't", 'notPresent', 'bold'],
                 howToFix: "This isn't a simple text. It has some words that will be marked as bold.",
             },
         };

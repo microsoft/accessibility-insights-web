@@ -56,7 +56,13 @@ function getHowToFixContent(props: HowToFixAndroidCardRowProps): (JSX.Element | 
             result.push(<span key={key + '-before-space'}>&nbsp;</span>);
         }
 
-        result.push(isEmpty(item.str) ? <Term key={key}>{content}</Term> : <span key={key}>{content}</span>);
+        result.push(
+            isEmpty(item.str) ? (
+                <Term key={key}>{content}</Term>
+            ) : (
+                <span key={key}>{props.deps.fixInstructionProcessor.process(content)}</span>
+            ),
+        );
 
         if (content[content.length - 1] === ' ') {
             result.push(<span key={key + '-after-space'}>&nbsp;</span>);
