@@ -57,8 +57,7 @@ export class RuleInformationProvider {
     }
 
     private getColorContrastUnifiedFormattableResolution = (ruleResultsData: RuleResultsData): UnifiedFormattableResolution => {
-        const ratio = ruleResultsData.props['Color Contrast Ratio'] as string;
-
+        const ratio = this.floorTo3Decimal(ruleResultsData.props['Color Contrast Ratio'] as number);
         const foreground = this.getColorValue(ruleResultsData, 'Foreground Color');
         const background = this.getColorValue(ruleResultsData, 'Background Color');
 
@@ -83,8 +82,8 @@ export class RuleInformationProvider {
         const dpi = ruleResultsData.props['Screen Dots Per Inch'] as number;
         const physicalWidth = ruleResultsData.props['width'] as number;
         const physicalHeight = ruleResultsData.props['height'] as number;
-        const logicalWidth = physicalWidth / dpi;
-        const logicalHeight = physicalHeight / dpi;
+        const logicalWidth = this.floorTo3Decimal(physicalWidth / dpi);
+        const logicalHeight = this.floorTo3Decimal(physicalHeight / dpi);
 
         return this.buildUnifiedFormattableResolution(
             `The element has an insufficient target size (width: ${logicalWidth}dp, height: ${logicalHeight}dp). Set the element's minWidth and minHeight attributes to at least 48dp.`,
@@ -107,5 +106,9 @@ export class RuleInformationProvider {
     public getRuleInformation(ruleId: string): RuleInformation {
         const ruleInfo = this.supportedRules[ruleId];
         return ruleInfo || null;
+    }
+
+    private floorTo3Decimal(num: number): number {
+        return Math.floor(num * 1000) / 1000;
     }
 }
