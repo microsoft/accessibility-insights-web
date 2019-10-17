@@ -14,13 +14,13 @@ export class RuleInformationProvider {
             ColorContrast: new RuleInformation(
                 'ColorContrast',
                 'Text elements must have sufficient contrast against the background.',
-                this.getColorContrastUnifiedResolution,
+                this.getColorContrastUnifiedFormattableResolution,
                 this.includeColorContrastResult,
             ),
             TouchSizeWcag: new RuleInformation(
                 'TouchSizeWcag',
                 'Touch inputs must have a sufficient target size.',
-                this.getTouchSizeUnifiedResolution,
+                this.getTouchSizeUnifiedFormattableResolution,
                 this.includeAllResults,
             ),
             ActiveViewName: new RuleInformation(
@@ -56,7 +56,7 @@ export class RuleInformationProvider {
         };
     }
 
-    private getColorContrastUnifiedResolution = (ruleResultsData: RuleResultsData): UnifiedResolution => {
+    private getColorContrastUnifiedFormattableResolution = (ruleResultsData: RuleResultsData): UnifiedFormattableResolution => {
         const ratio = ruleResultsData.props['Color Contrast Ratio'] as string;
 
         const foreground = this.getColorValue(ruleResultsData, 'Foreground Color');
@@ -79,7 +79,7 @@ export class RuleInformationProvider {
         return result;
     }
 
-    private getTouchSizeUnifiedResolution = (ruleResultsData: RuleResultsData): UnifiedFormattableResolution => {
+    private getTouchSizeUnifiedFormattableResolution = (ruleResultsData: RuleResultsData): UnifiedFormattableResolution => {
         const dpi = ruleResultsData.props['Screen Dots Per Inch'] as number;
         const physicalWidth = ruleResultsData.props['width'] as number;
         const physicalHeight = ruleResultsData.props['height'] as number;
