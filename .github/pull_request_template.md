@@ -1,6 +1,8 @@
 #### Description of changes
 
-(give an overview. Add technical description describing your changes)
+<!-- give an overview. Add technical description describing your changes -->
+
+<!-- Please use a suitable tag (feat, fix, chore, refactor) on the PR message or PR title to help in release validation and release notes -->
 
 #### Pull request checklist
 
