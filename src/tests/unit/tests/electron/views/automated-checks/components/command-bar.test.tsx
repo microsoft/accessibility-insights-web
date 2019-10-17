@@ -1,17 +1,16 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { ScanActionCreator } from 'electron/flux/action-creator/scan-action-creator';
+import { CommandBar, CommandBarProps } from 'electron/views/automated-checks/components/command-bar';
 import { shallow } from 'enzyme';
 import { Button } from 'office-ui-fabric-react/lib/Button';
 import * as React from 'react';
-import { Mock, MockBehavior, Times } from 'typemoq';
-
-import { DeviceConnectActionCreator } from 'electron/flux/action-creator/device-connect-action-creator';
-import { CommandBar, CommandBarProps } from 'electron/views/automated-checks/components/command-bar';
 import { EventStubFactory } from 'tests/unit/common/event-stub-factory';
+import { Mock, MockBehavior, Times } from 'typemoq';
 
 describe('CommandBar', () => {
     test('render', () => {
-        const props = { deps: { deviceConnectActionCreator: null } } as CommandBarProps;
+        const props = { deps: { scanActionCreator: null } } as CommandBarProps;
 
         const rendered = shallow(<CommandBar {...props} />);
 
@@ -23,12 +22,12 @@ describe('CommandBar', () => {
 
         const port = 111;
 
-        const deviceConnectActionCreatorMock = Mock.ofType<DeviceConnectActionCreator>(undefined, MockBehavior.Strict);
-        deviceConnectActionCreatorMock.setup(creator => creator.validatePort(port)).verifiable(Times.once());
+        const scanActionCreatorMock = Mock.ofType<ScanActionCreator>(undefined, MockBehavior.Strict);
+        scanActionCreatorMock.setup(creator => creator.scan(port)).verifiable(Times.once());
 
         const props = {
             deps: {
-                deviceConnectActionCreator: deviceConnectActionCreatorMock.object,
+                scanActionCreator: scanActionCreatorMock.object,
             },
             deviceStoreData: {
                 port,
@@ -40,6 +39,6 @@ describe('CommandBar', () => {
 
         button.simulate('click', eventStub);
 
-        deviceConnectActionCreatorMock.verifyAll();
+        scanActionCreatorMock.verifyAll();
     });
 });
