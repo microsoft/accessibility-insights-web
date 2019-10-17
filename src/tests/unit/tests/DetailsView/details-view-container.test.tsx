@@ -268,7 +268,7 @@ describe('DetailsViewContainer', () => {
         return storesHubMock;
     }
 
-    function buildDetailsViewMainContent(
+    function buildDetailsViewBody(
         storeMocks: StoreMocks,
         props: DetailsViewContainerProps,
         selectedDetailsView: VisualizationType,
@@ -467,7 +467,7 @@ describe('DetailsViewContainer', () => {
                     dropdownClickHandler={dropdownClickHandler.object}
                     tabClosed={storeMocks.tabStoreData.isClosed}
                 />
-                {buildDetailsViewMainContent(
+                {buildDetailsViewBody(
                     storeMocks,
                     props,
                     viewType,
