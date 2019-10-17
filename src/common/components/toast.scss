@@ -5,7 +5,11 @@
 $toast-width: 316px;
 $toast-padding: 20px;
 
-.toast {
+.toast-container {
+    display: inline-block;
+}
+
+.toast-content {
     background: $neutral-70;
     border-radius: 4px;
     color: $neutral-0;
