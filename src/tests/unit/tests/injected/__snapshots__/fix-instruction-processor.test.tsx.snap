@@ -178,3 +178,9 @@ exports[`FixInstructionProcessor we assume only one instance of fore/background 
   </span>
 </React.Fragment>
 `;
+
+exports[`FixInstructionProcessor when we have nothing to process 1`] = `
+<React.Fragment>
+  nothing to process
+</React.Fragment>
+`;
