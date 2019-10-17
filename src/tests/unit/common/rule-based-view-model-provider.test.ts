@@ -1,8 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { CardSelectionViewData } from 'common/get-card-selection-view-data';
+
 import { getUnifiedRuleResults } from '../../../common/rule-based-view-model-provider';
-import { CardResult, CardRuleResult, CardRuleResultsByStatus } from '../../../common/types/store-data/card-view-model';
+import { CardResult, CardRuleResultsByStatus } from '../../../common/types/store-data/card-view-model';
 import { InstanceResultStatus, UnifiedResult, UnifiedRule } from '../../../common/types/store-data/unified-data-interface';
 
 describe('RuleBasedViewModelProvider', () => {
