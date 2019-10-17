@@ -1,10 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { MoreActionsMenuIcon } from 'common/icons/more-actions-menu-icon';
+import { createDefaultLogger } from 'common/logging/default-logger';
+import { Logger } from 'common/logging/logger';
 import { ActionButton } from 'office-ui-fabric-react/lib/Button';
 import { DirectionalHint, IContextualMenuItem } from 'office-ui-fabric-react/lib/ContextualMenu';
 import * as React from 'react';
-
-import { MoreActionsMenuIcon } from 'common/icons/more-actions-menu-icon';
 import { IssueDetailsTextGenerator } from '../../../background/issue-details-text-generator';
 import { DetailsViewActionMessageCreator } from '../../../DetailsView/actions/details-view-action-message-creator';
 import { IssueFilingDialog } from '../../../DetailsView/components/issue-filing-dialog';
@@ -142,7 +143,6 @@ export class CardKebabMenuButton extends React.Component<CardKebabMenuButtonProp
         try {
             await this.props.deps.navigatorUtils.copyToClipboard(text);
         } catch (error) {
-            console.error(`Failed to copy failure details: ${error}`);
             this.toastRef.current.show('Failed to copy failure details. Please try again.');
             return;
         }
