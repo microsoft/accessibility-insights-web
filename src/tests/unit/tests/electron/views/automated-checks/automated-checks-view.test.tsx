@@ -3,7 +3,6 @@
 import { getUnifiedRuleResults } from 'common/rule-based-view-model-provider';
 import { CardRuleResult, CardRuleResultsByStatus } from 'common/types/store-data/card-view-model';
 import { UnifiedResult, UnifiedRule } from 'common/types/store-data/unified-data-interface';
-import { DeviceConnectActionCreator } from 'electron/flux/action-creator/device-connect-action-creator';
 import { ScanActionCreator } from 'electron/flux/action-creator/scan-action-creator';
 import { WindowStateActionCreator } from 'electron/flux/action-creator/window-state-action-creator';
 import { ScanStatus } from 'electron/flux/types/scan-status';
@@ -20,7 +19,6 @@ describe('AutomatedChecksView', () => {
         beforeEach(() => {
             bareMinimumProps = {
                 deps: {
-                    deviceConnectActionCreator: Mock.ofType(DeviceConnectActionCreator).object,
                     windowStateActionCreator: Mock.ofType(WindowStateActionCreator).object,
                     scanActionCreator: Mock.ofType(ScanActionCreator).object,
                 },

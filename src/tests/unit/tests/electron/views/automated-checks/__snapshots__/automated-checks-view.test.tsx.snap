@@ -77,12 +77,6 @@ exports[`AutomatedChecksView renders status scan <Failed> 1`] = `
   <TitleBar
     deps={
       Object {
-        "deviceConnectActionCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "deviceActions": undefined,
-          "fetchScanResults": undefined,
-          "telemetryEventHandler": undefined,
-        },
         "scanActionCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "scanActions": undefined,
@@ -102,12 +96,6 @@ exports[`AutomatedChecksView renders status scan <Failed> 1`] = `
     <CommandBar
       deps={
         Object {
-          "deviceConnectActionCreator": proxy {
-            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-            "deviceActions": undefined,
-            "fetchScanResults": undefined,
-            "telemetryEventHandler": undefined,
-          },
           "scanActionCreator": proxy {
             "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
             "scanActions": undefined,
@@ -147,12 +135,6 @@ exports[`AutomatedChecksView renders status scan <Scanning> 1`] = `
   <TitleBar
     deps={
       Object {
-        "deviceConnectActionCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "deviceActions": undefined,
-          "fetchScanResults": undefined,
-          "telemetryEventHandler": undefined,
-        },
         "scanActionCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "scanActions": undefined,
@@ -172,12 +154,6 @@ exports[`AutomatedChecksView renders status scan <Scanning> 1`] = `
     <CommandBar
       deps={
         Object {
-          "deviceConnectActionCreator": proxy {
-            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-            "deviceActions": undefined,
-            "fetchScanResults": undefined,
-            "telemetryEventHandler": undefined,
-          },
           "scanActionCreator": proxy {
             "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
             "scanActions": undefined,
@@ -212,12 +188,6 @@ exports[`AutomatedChecksView renders status scan <undefined> 1`] = `
   <TitleBar
     deps={
       Object {
-        "deviceConnectActionCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "deviceActions": undefined,
-          "fetchScanResults": undefined,
-          "telemetryEventHandler": undefined,
-        },
         "scanActionCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "scanActions": undefined,
@@ -237,12 +207,6 @@ exports[`AutomatedChecksView renders status scan <undefined> 1`] = `
     <CommandBar
       deps={
         Object {
-          "deviceConnectActionCreator": proxy {
-            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-            "deviceActions": undefined,
-            "fetchScanResults": undefined,
-            "telemetryEventHandler": undefined,
-          },
           "scanActionCreator": proxy {
             "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
             "scanActions": undefined,
