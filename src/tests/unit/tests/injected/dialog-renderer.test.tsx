@@ -6,6 +6,7 @@ import { GlobalMock, GlobalScope, IGlobalMock, IMock, It, Mock, MockBehavior, Ti
 
 import { DevToolStore } from 'background/stores/dev-tools-store';
 import { UserConfigurationStore } from 'background/stores/global/user-configuration-store';
+import { NavigatorUtils } from 'common/navigator-utils';
 import { BrowserAdapter } from '../../../../common/browser-adapters/browser-adapter';
 import { EnvironmentInfoProvider } from '../../../../common/environment-info-provider';
 import { FeatureFlags, getDefaultFeatureFlagValues } from '../../../../common/feature-flags';
@@ -32,6 +33,7 @@ import { DictionaryStringTo } from '../../../../types/common-types';
 describe('DialogRendererTests', () => {
     let htmlElementUtilsMock: IMock<HTMLElementUtils>;
     let windowUtilsMock: IMock<WindowUtils>;
+    let navigatorUtilsMock: IMock<NavigatorUtils>;
     let frameCommunicator: IMock<FrameCommunicator>;
     let mainWindowContext: MainWindowContext;
     let shadowUtilMock: IMock<ShadowUtils>;
@@ -54,6 +56,7 @@ describe('DialogRendererTests', () => {
     beforeEach(() => {
         htmlElementUtilsMock = Mock.ofType(HTMLElementUtils);
         windowUtilsMock = Mock.ofType(WindowUtils);
+        navigatorUtilsMock = Mock.ofType(NavigatorUtils);
         shadowUtilMock = Mock.ofType(ShadowUtils);
         browserAdapter = Mock.ofType<BrowserAdapter>();
         detailsDialogHandlerMock = Mock.ofType<DetailsDialogHandler>();
@@ -533,6 +536,7 @@ describe('DialogRendererTests', () => {
             frameCommunicator.object,
             htmlElementUtilsMock.object,
             windowUtilsMock.object,
+            navigatorUtilsMock.object,
             shadowUtilMock.object,
             browserAdapter.object,
             getRTLMock.object,

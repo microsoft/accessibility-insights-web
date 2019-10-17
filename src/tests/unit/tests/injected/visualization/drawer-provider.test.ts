@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { NavigatorUtils } from 'common/navigator-utils';
 import { IMock, Mock } from 'typemoq';
 import { BrowserAdapter } from '../../../../../common/browser-adapters/browser-adapter';
 import { HTMLElementUtils } from '../../../../../common/html-element-utils';
@@ -19,6 +20,7 @@ describe('DrawerProviderTests', () => {
     let testObject: DrawerProvider;
     let htmlElementUtils: IMock<HTMLElementUtils>;
     let windowUtils: IMock<WindowUtils>;
+    let navigatorUtils: IMock<NavigatorUtils>;
     let shadowUtils: IMock<ShadowUtils>;
     let drawerUtils: IMock<DrawerUtils>;
     let clientUtils: IMock<ClientUtils>;
@@ -30,6 +32,7 @@ describe('DrawerProviderTests', () => {
     beforeEach(() => {
         htmlElementUtils = Mock.ofType(HTMLElementUtils);
         windowUtils = Mock.ofType(WindowUtils);
+        navigatorUtils = Mock.ofType(NavigatorUtils);
         shadowUtils = Mock.ofType(ShadowUtils);
         drawerUtils = Mock.ofType(DrawerUtils);
         clientUtils = Mock.ofType(ClientUtils);
@@ -41,6 +44,7 @@ describe('DrawerProviderTests', () => {
         testObject = new DrawerProvider(
             htmlElementUtils.object,
             windowUtils.object,
+            navigatorUtils.object,
             shadowUtils.object,
             drawerUtils.object,
             clientUtils.object,

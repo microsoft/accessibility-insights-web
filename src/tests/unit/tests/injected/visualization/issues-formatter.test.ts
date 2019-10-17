@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { IMock, Mock } from 'typemoq';
 
+import { NavigatorUtils } from 'common/navigator-utils';
 import { BrowserAdapter } from '../../../../../common/browser-adapters/browser-adapter';
 import { HTMLElementUtils } from '../../../../../common/html-element-utils';
 import { WindowUtils } from '../../../../../common/window-utils';
@@ -22,6 +23,7 @@ describe('IssuesFormatterTests', () => {
         const frameCommunicator: IMock<FrameCommunicator> = Mock.ofType(FrameCommunicator);
         htmlElementUtilsMock = Mock.ofType(HTMLElementUtils);
         const windowUtils: IMock<WindowUtils> = Mock.ofType(WindowUtils);
+        const navigatorUtils: IMock<NavigatorUtils> = Mock.ofType(NavigatorUtils);
         const shadowUtils: IMock<ShadowUtils> = Mock.ofType(ShadowUtils);
         const browserAdapter = Mock.ofType<BrowserAdapter>();
         const getRTLMock = Mock.ofInstance(() => null);
@@ -30,6 +32,7 @@ describe('IssuesFormatterTests', () => {
             frameCommunicator.object,
             htmlElementUtilsMock.object,
             windowUtils.object,
+            navigatorUtils.object,
             shadowUtils.object,
             browserAdapter.object,
             getRTLMock.object,

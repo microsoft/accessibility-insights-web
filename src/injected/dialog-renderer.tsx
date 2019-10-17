@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { getRTL } from '@uifabric/utilities';
 import { IssueDetailsTextGenerator } from 'background/issue-details-text-generator';
+import { NavigatorUtils } from 'common/navigator-utils';
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { BrowserAdapter } from '../common/browser-adapters/browser-adapter';
@@ -43,6 +44,7 @@ export class DialogRenderer {
         private readonly frameCommunicator: FrameCommunicator,
         private readonly htmlElementUtils: HTMLElementUtils,
         private readonly windowUtils: WindowUtils,
+        private readonly navigatorUtils: NavigatorUtils,
         private readonly shadowUtils: ShadowUtils,
         private readonly browserAdapter: BrowserAdapter,
         private readonly getRTLFunc: typeof getRTL,
@@ -82,6 +84,7 @@ export class DialogRenderer {
                 fixInstructionProcessor,
                 issueDetailsTextGenerator,
                 windowUtils: this.windowUtils,
+                navigatorUtils: this.navigatorUtils,
                 targetPageActionMessageCreator: mainWindowContext.getTargetPageActionMessageCreator(),
                 issueFilingActionMessageCreator: mainWindowContext.getIssueFilingActionMessageCreator(),
                 browserAdapter: this.browserAdapter,
