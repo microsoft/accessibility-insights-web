@@ -30,9 +30,9 @@ describe('AutomatedChecksView', () => {
             } as AutomatedChecksViewProps;
         });
 
-        const scanStatues = [undefined, ScanStatus[ScanStatus.Scanning], ScanStatus[ScanStatus.Failed]];
+        const scanStatuses = [undefined, ScanStatus[ScanStatus.Scanning], ScanStatus[ScanStatus.Failed]];
 
-        it.each(scanStatues)('status scan <%s>', scanStatusName => {
+        it.each(scanStatuses)('when status scan <%s>', scanStatusName => {
             bareMinimumProps.scanStoreData.status = ScanStatus[scanStatusName];
 
             const wrapped = shallow(<AutomatedChecksView {...bareMinimumProps} />);
@@ -40,7 +40,7 @@ describe('AutomatedChecksView', () => {
             expect(wrapped.getElement()).toMatchSnapshot();
         });
 
-        it('results', () => {
+        it('when status scan <Completed>', () => {
             const rulesStub = [{ description: 'test-rule-description' } as UnifiedRule];
             const resultsStub = [{ uid: 'test-uid' } as UnifiedResult];
 

@@ -1,6 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { EnumHelper } from 'common/enum-helper';
 import { ScanActionCreator } from 'electron/flux/action-creator/scan-action-creator';
+import { ScanStatus } from 'electron/flux/types/scan-status';
 import { CommandBar, CommandBarProps } from 'electron/views/automated-checks/components/command-bar';
 import { shallow } from 'enzyme';
 import { Button } from 'office-ui-fabric-react/lib/Button';
@@ -9,12 +11,36 @@ import { EventStubFactory } from 'tests/unit/common/event-stub-factory';
 import { Mock, MockBehavior, Times } from 'typemoq';
 
 describe('CommandBar', () => {
-    test('render', () => {
-        const props = { deps: { scanActionCreator: null } } as CommandBarProps;
+    describe('renders', () => {
+        it('while status is <Scanning>', () => {
+            const props = {
+                deps: { scanActionCreator: null },
+                scanStoreData: {
+                    status: ScanStatus.Scanning,
+                },
+            } as CommandBarProps;
 
-        const rendered = shallow(<CommandBar {...props} />);
+            const rendered = shallow(<CommandBar {...props} />);
 
-        expect(rendered.getElement()).toMatchSnapshot();
+            expect(rendered.getElement()).toMatchSnapshot();
+        });
+
+        const notScanningStatuses = EnumHelper.getNumericValues<ScanStatus>(ScanStatus)
+            .filter(status => status !== ScanStatus.Scanning)
+            .map(status => ScanStatus[status]);
+
+        it.each(notScanningStatuses)('while status is <%s>', status => {
+            const props = {
+                deps: { scanActionCreator: null },
+                scanStoreData: {
+                    status: ScanStatus[status],
+                },
+            } as CommandBarProps;
+
+            const rendered = shallow(<CommandBar {...props} />);
+
+            expect(rendered.getElement()).toMatchSnapshot();
+        });
     });
 
     test('rescan click', () => {
@@ -31,6 +57,9 @@ describe('CommandBar', () => {
             },
             deviceStoreData: {
                 port,
+            },
+            scanStoreData: {
+                status: ScanStatus.Default,
             },
         } as CommandBarProps;
 
