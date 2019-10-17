@@ -93,7 +93,7 @@ export class DialogRenderer {
                 issueFilingServiceProvider: mainWindowContext.getIssueFilingServiceProvider(),
                 userConfigMessageCreator: mainWindowContext.getUserConfigMessageCreator(),
                 LinkComponent: NewTabLink,
-            } as LayeredDetailsDialogDeps;
+            };
 
             this.renderer(
                 <LayeredDetailsDialogComponent
