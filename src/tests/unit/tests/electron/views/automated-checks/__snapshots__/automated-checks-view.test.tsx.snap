@@ -7,6 +7,7 @@ exports[`AutomatedChecksView renders results 1`] = `
   <TitleBar
     deps={
       Object {
+        "getCardSelectionViewData": [Function],
         "getUnifiedRuleResultsDelegate": [Function],
         "scanActionCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
@@ -21,6 +22,7 @@ exports[`AutomatedChecksView renders results 1`] = `
     <CommandBar
       deps={
         Object {
+          "getCardSelectionViewData": [Function],
           "getUnifiedRuleResultsDelegate": [Function],
           "scanActionCreator": proxy {
             "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
@@ -38,20 +40,12 @@ exports[`AutomatedChecksView renders results 1`] = `
       <CardsView
         deps={
           Object {
+            "getCardSelectionViewData": [Function],
             "getUnifiedRuleResultsDelegate": [Function],
             "scanActionCreator": proxy {
               "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
               "scanActions": undefined,
             },
-          }
-        }
-        ruleResultsByStatus={
-          Object {
-            "fail": Array [
-              Object {
-                "id": "test-fail-id",
-              },
-            ],
           }
         }
         targetAppInfo={

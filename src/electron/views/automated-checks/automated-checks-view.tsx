@@ -1,6 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { GetCardSelectionViewData } from 'common/get-card-selection-view-data';
 import { GetUnifiedRuleResultsDelegate } from 'common/rule-based-view-model-provider';
+import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
 import { UnifiedScanResultStoreData } from 'common/types/store-data/unified-data-interface';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import { CardsView, CardsViewDeps } from 'DetailsView/components/cards-view';
@@ -26,6 +28,7 @@ export type AutomatedChecksViewDeps = CommandBarDeps &
         scanActionCreator: ScanActionCreator;
         windowStateActionCreator: WindowStateActionCreator;
         getUnifiedRuleResultsDelegate: GetUnifiedRuleResultsDelegate;
+        getCardSelectionViewData: GetCardSelectionViewData;
     };
 
 export type AutomatedChecksViewProps = {
@@ -35,6 +38,7 @@ export type AutomatedChecksViewProps = {
     windowStateStoreData: WindowStateStoreData;
     userConfigurationStoreData: UserConfigurationStoreData;
     unifiedScanResultStoreData: UnifiedScanResultStoreData;
+    cardSelectionStoreData: CardSelectionStoreData;
 };
 
 export class AutomatedChecksView extends React.Component<AutomatedChecksViewProps> {
@@ -83,7 +87,11 @@ export class AutomatedChecksView extends React.Component<AutomatedChecksViewProp
         }
 
         const { rules, results } = this.props.unifiedScanResultStoreData;
-        const ruleResultsByStatus = this.props.deps.getUnifiedRuleResultsDelegate(rules, results);
+        const ruleResultsByStatus = this.props.deps.getUnifiedRuleResultsDelegate(
+            rules,
+            results,
+            this.props.deps.getCardSelectionViewData(this.props.cardSelectionStoreData),
+        );
 
         return (
             <CardsView
