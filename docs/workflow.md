@@ -34,7 +34,7 @@ yarn with:mock-axe-android start:electron:dev
 
 ## Pull Request title tagging convention (Labelling commit messages)
 
-For every Pull Request, we prefer to add a tag in the PR title. This helps us in maintaining a good commit history as well as document better
+For every Pull Request, we prefer to add a tag in the PR title. This helps us in maintaining a good commit history as well as better documentation
 when creating Release notes.
 The convention that we follow is inspired from [SemVer](https://semver.org/) convention and is following:
 
