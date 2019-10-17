@@ -142,6 +142,7 @@ export class CardKebabMenuButton extends React.Component<CardKebabMenuButtonProp
         try {
             await this.props.deps.navigatorUtils.copyToClipboard(text);
         } catch (error) {
+            console.error(`Failed to copy failure details: ${error}`);
             this.toastRef.current.show('Failed to copy failure details. Please try again.');
             return;
         }

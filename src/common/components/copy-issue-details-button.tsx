@@ -40,6 +40,7 @@ export class CopyIssueDetailsButton extends React.Component<CopyIssueDetailsButt
         try {
             await this.props.deps.navigatorUtils.copyToClipboard(this.getIssueDetailsText(this.props.issueDetailsData));
         } catch (error) {
+            console.error(`Failed to copy failure details: ${error}`);
             this.toastRef.current.show('Failed to copy failure details. Please try again.');
             return;
         }
