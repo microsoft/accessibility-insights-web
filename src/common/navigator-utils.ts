@@ -31,12 +31,10 @@ export class NavigatorUtils {
         return userAgent.substring(versionOffset + versionPrefix.length + 1).split(' ')[0];
     }
 
-    public async copyToClipboard(data: string): Promise<void> {
-        try {
-            await this.navigatorInfo.clipboard.writeText(data);
-        } catch (error) {
+    public copyToClipboard(data: string): Promise<void> {
+        return this.navigatorInfo.clipboard.writeText(data).catch(error => {
             this.logger.error(`Error during copyToClipboard: ${error}`);
             throw error;
-        }
+        });
     }
 }
