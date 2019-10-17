@@ -15,7 +15,10 @@ Object {
       "isExpanded": true,
       "nodes": Array [
         Object {
+          "descriptors": null,
+          "identifiers": null,
           "isSelected": true,
+          "resolution": null,
           "ruleId": "rule1",
           "status": "fail",
           "uid": "stub_uid",
@@ -54,7 +57,10 @@ Object {
       "isExpanded": false,
       "nodes": Array [
         Object {
+          "descriptors": null,
+          "identifiers": null,
           "isSelected": false,
+          "resolution": null,
           "ruleId": "rule1",
           "status": "pass",
           "uid": "stub_uid",
@@ -77,13 +83,19 @@ Object {
       "isExpanded": false,
       "nodes": Array [
         Object {
+          "descriptors": null,
+          "identifiers": null,
           "isSelected": false,
+          "resolution": null,
           "ruleId": "rule2",
           "status": "unknown",
           "uid": "stub_uid",
         },
         Object {
+          "descriptors": null,
+          "identifiers": null,
           "isSelected": false,
+          "resolution": null,
           "ruleId": "rule2",
           "status": "unknown",
           "uid": "stub_uid",

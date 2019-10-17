@@ -84,6 +84,9 @@ describe('RuleBasedViewModelProvider', () => {
             status: status,
             ruleId: id,
             isSelected,
-        } as CardResult;
+            identifiers: null,
+            descriptors: null,
+            resolution: null,
+        };
     }
 });
