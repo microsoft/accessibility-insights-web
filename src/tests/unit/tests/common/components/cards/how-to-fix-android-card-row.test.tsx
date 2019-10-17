@@ -1,10 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+
 import { shallow } from 'enzyme';
 import * as React from 'react';
-import { Mock, IMock, It } from 'typemoq';
 
 import { HowToFixAndroidCardRow, HowToFixAndroidCardRowProps } from 'common/components/cards/how-to-fix-android-card-row';
+import { IMock, It, Mock } from 'typemoq';
 import { FixInstructionProcessor } from '../../../../../../injected/fix-instruction-processor';
 
 describe(HowToFixAndroidCardRow, () => {
