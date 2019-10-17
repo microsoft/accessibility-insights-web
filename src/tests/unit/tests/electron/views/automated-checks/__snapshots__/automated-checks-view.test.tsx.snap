@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`AutomatedChecksView renders results 1`] = `
+exports[`AutomatedChecksView renders when status scan <Completed> 1`] = `
 <div
   className="automatedChecksView"
 >
@@ -29,6 +29,11 @@ exports[`AutomatedChecksView renders results 1`] = `
         }
       }
       deviceStoreData={Object {}}
+      scanStoreData={
+        Object {
+          "status": 2,
+        }
+      }
     />
     <main>
       <HeaderSection />
@@ -70,7 +75,7 @@ exports[`AutomatedChecksView renders results 1`] = `
 </div>
 `;
 
-exports[`AutomatedChecksView renders status scan <Failed> 1`] = `
+exports[`AutomatedChecksView renders when status scan <Failed> 1`] = `
 <div
   className="automatedChecksView"
 >
@@ -110,6 +115,11 @@ exports[`AutomatedChecksView renders status scan <Failed> 1`] = `
       deviceStoreData={
         Object {
           "connectedDevice": "TEST DEVICE",
+        }
+      }
+      scanStoreData={
+        Object {
+          "status": 3,
         }
       }
     />
@@ -128,7 +138,7 @@ exports[`AutomatedChecksView renders status scan <Failed> 1`] = `
 </div>
 `;
 
-exports[`AutomatedChecksView renders status scan <Scanning> 1`] = `
+exports[`AutomatedChecksView renders when status scan <Scanning> 1`] = `
 <div
   className="automatedChecksView"
 >
@@ -168,6 +178,11 @@ exports[`AutomatedChecksView renders status scan <Scanning> 1`] = `
       deviceStoreData={
         Object {
           "connectedDevice": "TEST DEVICE",
+        }
+      }
+      scanStoreData={
+        Object {
+          "status": 1,
         }
       }
     />
@@ -181,7 +196,7 @@ exports[`AutomatedChecksView renders status scan <Scanning> 1`] = `
 </div>
 `;
 
-exports[`AutomatedChecksView renders status scan <undefined> 1`] = `
+exports[`AutomatedChecksView renders when status scan <undefined> 1`] = `
 <div
   className="automatedChecksView"
 >
@@ -221,6 +236,11 @@ exports[`AutomatedChecksView renders status scan <undefined> 1`] = `
       deviceStoreData={
         Object {
           "connectedDevice": "TEST DEVICE",
+        }
+      }
+      scanStoreData={
+        Object {
+          "status": undefined,
         }
       }
     />
