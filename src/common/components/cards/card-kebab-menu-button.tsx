@@ -1,8 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { MoreActionsMenuIcon } from 'common/icons/more-actions-menu-icon';
-import { createDefaultLogger } from 'common/logging/default-logger';
-import { Logger } from 'common/logging/logger';
 import { ActionButton } from 'office-ui-fabric-react/lib/Button';
 import { DirectionalHint, IContextualMenuItem } from 'office-ui-fabric-react/lib/ContextualMenu';
 import * as React from 'react';
