@@ -17,7 +17,7 @@ export const HowToFixAndroidCardRow = NamedFC<HowToFixAndroidCardRowProps>('HowT
     return (
         <SimpleCardRow
             label="How to fix"
-            content={<>{getHowToFixContent(props)}</>}
+            content={<span>{getHowToFixContent(props)}</span>}
             rowKey={`how-to-fix-row-${props.index}`}
             contentClassName="how-to-fix-card-row"
         />
