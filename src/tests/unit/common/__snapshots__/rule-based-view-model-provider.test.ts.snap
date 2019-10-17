@@ -1,0 +1,97 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RuleBasedViewModelProvider getUnifiedRuleResults 1`] = `
+Object {
+  "fail": Array [
+    Object {
+      "description": "stub_description_rule1",
+      "guidance": Array [
+        Object {
+          "href": "stub_guidance_href_rule1",
+          "text": "stub_guidance_text_rule1",
+        },
+      ],
+      "id": "rule1",
+      "isExpanded": true,
+      "nodes": Array [
+        Object {
+          "isSelected": true,
+          "ruleId": "rule1",
+          "status": "fail",
+          "uid": "stub_uid",
+        },
+      ],
+      "status": "fail",
+      "url": "stub_url_rule1",
+    },
+  ],
+  "inapplicable": Array [
+    Object {
+      "description": "stub_description_rule3",
+      "guidance": Array [
+        Object {
+          "href": "stub_guidance_href_rule3",
+          "text": "stub_guidance_text_rule3",
+        },
+      ],
+      "id": "rule3",
+      "isExpanded": false,
+      "nodes": Array [],
+      "status": "inapplicable",
+      "url": "stub_url_rule3",
+    },
+  ],
+  "pass": Array [
+    Object {
+      "description": "stub_description_rule1",
+      "guidance": Array [
+        Object {
+          "href": "stub_guidance_href_rule1",
+          "text": "stub_guidance_text_rule1",
+        },
+      ],
+      "id": "rule1",
+      "isExpanded": false,
+      "nodes": Array [
+        Object {
+          "isSelected": false,
+          "ruleId": "rule1",
+          "status": "pass",
+          "uid": "stub_uid",
+        },
+      ],
+      "status": "pass",
+      "url": "stub_url_rule1",
+    },
+  ],
+  "unknown": Array [
+    Object {
+      "description": "stub_description_rule2",
+      "guidance": Array [
+        Object {
+          "href": "stub_guidance_href_rule2",
+          "text": "stub_guidance_text_rule2",
+        },
+      ],
+      "id": "rule2",
+      "isExpanded": false,
+      "nodes": Array [
+        Object {
+          "isSelected": false,
+          "ruleId": "rule2",
+          "status": "unknown",
+          "uid": "stub_uid",
+        },
+        Object {
+          "isSelected": false,
+          "ruleId": "rule2",
+          "status": "unknown",
+          "uid": "stub_uid",
+        },
+      ],
+      "status": "unknown",
+      "url": "stub_url_rule2",
+    },
+  ],
+}
+`;

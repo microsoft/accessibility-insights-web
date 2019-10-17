@@ -48,76 +48,9 @@ describe('RuleBasedViewModelProvider', () => {
             selectedResultUids: ['stub_uid'],
         };
 
-        const expectedResults: CardRuleResultsByStatus = {
-            pass: [
-                {
-                    id: 'rule1',
-                    status: 'pass',
-                    nodes: [resultStub1],
-                    description: 'stub_description_rule1',
-                    url: 'stub_url_rule1',
-                    guidance: [
-                        {
-                            href: 'stub_guidance_href_rule1',
-                            text: 'stub_guidance_text_rule1',
-                        },
-                    ],
-                    isExpanded: false,
-                },
-            ],
-            fail: [
-                {
-                    id: 'rule1',
-                    status: 'fail',
-                    nodes: [resultStub2],
-                    description: 'stub_description_rule1',
-                    url: 'stub_url_rule1',
-                    guidance: [
-                        {
-                            href: 'stub_guidance_href_rule1',
-                            text: 'stub_guidance_text_rule1',
-                        },
-                    ],
-                    isExpanded: true,
-                },
-            ],
-            unknown: [
-                {
-                    id: 'rule2',
-                    status: 'unknown',
-                    nodes: [resultStub3, resultStub4],
-                    description: 'stub_description_rule2',
-                    url: 'stub_url_rule2',
-                    guidance: [
-                        {
-                            href: 'stub_guidance_href_rule2',
-                            text: 'stub_guidance_text_rule2',
-                        },
-                    ],
-                    isExpanded: false,
-                },
-            ],
-            inapplicable: [
-                {
-                    id: 'rule3',
-                    status: 'inapplicable',
-                    nodes: [],
-                    description: 'stub_description_rule3',
-                    url: 'stub_url_rule3',
-                    guidance: [
-                        {
-                            href: 'stub_guidance_href_rule3',
-                            text: 'stub_guidance_text_rule3',
-                        },
-                    ],
-                    isExpanded: false,
-                } as CardRuleResult,
-            ],
-        };
-
         const actualResults: CardRuleResultsByStatus = getUnifiedRuleResults(rules, results, cardSelectionViewData);
 
-        expect(actualResults).toEqual(expectedResults);
+        expect(actualResults).toMatchSnapshot();
     });
 
     function getSampleRules(): UnifiedRule[] {
