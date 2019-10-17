@@ -50,23 +50,14 @@ function getHowToFixContent(props: HowToFixAndroidCardRowProps): (JSX.Element | 
 
     howToFixSplit.forEach((item, index) => {
         const key = `strong-how-to-fix-${props.index}-${index}`;
-        const content = isEmpty(item.str) ? item.match : item.str;
-
-        if (content[0] === ' ' && index !== 0) {
-            result.push(<span key={key + '-before-space'}>&nbsp;</span>);
-        }
 
         result.push(
             isEmpty(item.str) ? (
-                <Term key={key}>{content}</Term>
+                <Term key={key}>{item.match}</Term>
             ) : (
-                <span key={key}>{props.deps.fixInstructionProcessor.process(content)}</span>
+                <span key={key}>{props.deps.fixInstructionProcessor.process(item.str)}</span>
             ),
         );
-
-        if (content[content.length - 1] === ' ') {
-            result.push(<span key={key + '-after-space'}>&nbsp;</span>);
-        }
     });
 
     return result;

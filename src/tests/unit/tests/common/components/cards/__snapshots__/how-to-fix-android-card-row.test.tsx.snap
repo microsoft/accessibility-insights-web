@@ -42,22 +42,13 @@ exports[` renders with colors 1`] = `
           replaced-color
         </React.Fragment>
       </span>
-      <span>
-         
-      </span>
       <Term>
         isn't
       </Term>
       <span>
-         
-      </span>
-      <span>
         <React.Fragment>
           replaced-color
         </React.Fragment>
-      </span>
-      <span>
-         
       </span>
       <Term>
         bold
@@ -82,20 +73,11 @@ exports[` renders with matches 1`] = `
       <span>
         This 
       </span>
-      <span>
-         
-      </span>
       <Term>
         isn't
       </Term>
       <span>
-         
-      </span>
-      <span>
          a simple text. It has some words that will be marked as 
-      </span>
-      <span>
-         
       </span>
       <Term>
         bold
@@ -118,20 +100,11 @@ exports[` renders with whitespace - when match is on a word 1`] = `
       <span>
         This is a 
       </span>
-      <span>
-         
-      </span>
       <Term>
         sample
       </Term>
       <span>
-         
-      </span>
-      <span>
          string 
-      </span>
-      <span>
-         
       </span>
     </span>
   }
@@ -154,9 +127,6 @@ exports[` renders with whitespace - when match is within a word 1`] = `
       <span>
         le string 
       </span>
-      <span>
-         
-      </span>
     </span>
   }
   contentClassName="how-to-fix-card-row"
@@ -171,9 +141,6 @@ exports[` renders with whitespace - when string ends with space 1`] = `
     <span>
       <span>
         This is a sample string 
-      </span>
-      <span>
-         
       </span>
     </span>
   }
