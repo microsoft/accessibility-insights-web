@@ -58,10 +58,11 @@ describe('InstanceDetails', () => {
             .verifiable(Times.once());
 
         const wrapper = shallow(<InstanceDetails {...props} />);
-        const tableElem = wrapper.find('table');
-        expect(tableElem.length).toBe(1);
+        const divElem = wrapper.find('.instance-details-card');
+        expect(divElem.length).toBe(1);
 
-        tableElem.simulate('click');
+        divElem.simulate('click');
+
         cardSelectionMessageCreatorMock.verifyAll();
     });
 

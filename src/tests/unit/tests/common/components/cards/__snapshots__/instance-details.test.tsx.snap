@@ -3,10 +3,12 @@
 exports[`InstanceDetails isSelected drives the styling for the card 1`] = `
 <div
   className="instance-details-card selected"
+  onClick={[Function]}
+  onKeyPress={[Function]}
+  tabIndex={0}
 >
   <table
     className="reportInstanceTable"
-    onClick={[Function]}
   >
     <tbody>
       <React.Fragment />
@@ -47,10 +49,12 @@ exports[`InstanceDetails isSelected drives the styling for the card 1`] = `
 exports[`InstanceDetails isSelected drives the styling for the card 2`] = `
 <div
   className="instance-details-card"
+  onClick={[Function]}
+  onKeyPress={[Function]}
+  tabIndex={0}
 >
   <table
     className="reportInstanceTable"
-    onClick={[Function]}
   >
     <tbody>
       <React.Fragment />
@@ -91,10 +95,12 @@ exports[`InstanceDetails isSelected drives the styling for the card 2`] = `
 exports[`InstanceDetails renders 1`] = `
 <div
   className="instance-details-card"
+  onClick={[Function]}
+  onKeyPress={[Function]}
+  tabIndex={0}
 >
   <table
     className="reportInstanceTable"
-    onClick={[Function]}
   >
     <tbody>
       <React.Fragment>
@@ -199,10 +205,12 @@ exports[`InstanceDetails renders 1`] = `
 exports[`InstanceDetails renders nothing when there is no card row config for the property / no property 1`] = `
 <div
   className="instance-details-card"
+  onClick={[Function]}
+  onKeyPress={[Function]}
+  tabIndex={0}
 >
   <table
     className="reportInstanceTable"
-    onClick={[Function]}
   >
     <tbody>
       <React.Fragment />

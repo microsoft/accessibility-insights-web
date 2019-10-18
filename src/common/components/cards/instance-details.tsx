@@ -6,6 +6,7 @@ import { CardResult } from 'common/types/store-data/card-view-model';
 import { forOwn, isEmpty } from 'lodash';
 import * as React from 'react';
 
+import { KeyCodeConstants } from 'common/constants/keycode-constants';
 import { CardRowDeps, PropertyConfiguration } from '../../../common/configs/unified-result-property-configurations';
 import { CardSelectionMessageCreator } from '../../../common/message-creators/card-selection-message-creator';
 import { StoredInstancePropertyBag, TargetAppData, UnifiedRule } from '../../../common/types/store-data/unified-data-interface';
@@ -48,7 +49,15 @@ export const InstanceDetails = NamedFC<InstanceDetailsProps>('InstanceDetails', 
         return <>{cardRows}</>;
     };
 
-    const cardClickHandler = (): void => deps.cardSelectionMessageCreator.toggleCardSelection(result.ruleId, result.uid);
+    const cardClickHandler = (): void => {
+        deps.cardSelectionMessageCreator.toggleCardSelection(result.ruleId, result.uid);
+    };
+
+    const cardKeyPressHandler = (event: React.KeyboardEvent<any>): void => {
+        if (event.keyCode === KeyCodeConstants.ENTER || event.keyCode === KeyCodeConstants.SPACEBAR) {
+            deps.cardSelectionMessageCreator.toggleCardSelection(result.ruleId, result.uid);
+        }
+    };
 
     const instanceDetailsCardStyling = classNames({
         'instance-details-card': true,
@@ -56,8 +65,8 @@ export const InstanceDetails = NamedFC<InstanceDetailsProps>('InstanceDetails', 
     });
 
     return (
-        <div className={instanceDetailsCardStyling}>
-            <table className={reportInstanceTable} onClick={cardClickHandler}>
+        <div className={instanceDetailsCardStyling} tabIndex={0} onClick={cardClickHandler} onKeyPress={cardKeyPressHandler}>
+            <table className={reportInstanceTable}>
                 <tbody>
                     {renderCardRowsForPropertyBag(result.identifiers)}
                     {renderCardRowsForPropertyBag(result.descriptors)}
