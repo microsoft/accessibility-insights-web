@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { UnifiedResolution } from 'common/types/store-data/unified-data-interface';
+import { UnifiedFormattableResolution } from 'common/types/store-data/unified-data-interface';
 import { RuleInformation } from 'electron/platform/android/rule-information';
 import { RuleInformationProvider } from 'electron/platform/android/rule-information-provider';
 import { RuleResultsData } from 'electron/platform/android/scan-results';
@@ -47,9 +47,9 @@ describe('RuleInformationProvider', () => {
         expect(provider.getRuleInformation('unknown rule')).toBeNull();
     });
 
-    function validateUnifiedResolution(ruleId: string, ruleResult: RuleResultsData): UnifiedResolution {
+    function validateUnifiedFormattableResolution(ruleId: string, ruleResult: RuleResultsData): UnifiedFormattableResolution {
         const ruleInformation: RuleInformation = provider.getRuleInformation(ruleId);
-        const unifiedResolution = ruleInformation.getUnifiedResolution(ruleResult);
+        const unifiedResolution = ruleInformation.getUnifiedFormattableResolution(ruleResult);
 
         expect(ruleInformation).toBeTruthy();
         expect(ruleInformation.ruleId).toEqual(ruleId);
@@ -61,37 +61,37 @@ describe('RuleInformationProvider', () => {
     test('getRuleInformation returns correct data for ColorContrast rule', () => {
         const testRuleId: string = 'ColorContrast';
         const ruleResult: RuleResultsData = buildColorContrastRuleResultObject('FAIL', 2.798498811425733, 'ff979797', 'fffafafa', 'High');
-        const unifiedResolution: UnifiedResolution = validateUnifiedResolution(testRuleId, ruleResult);
-        expect(unifiedResolution).toMatchSnapshot();
+        const unifiedFormattableResolution = validateUnifiedFormattableResolution(testRuleId, ruleResult);
+        expect(unifiedFormattableResolution).toMatchSnapshot();
     });
 
     test('getRuleInformation handles no foreground/background color values', () => {
         const testRuleId: string = 'ColorContrast';
         const ruleResult: RuleResultsData = buildColorContrastRuleResultObject('FAIL', null, null, null, 'None');
-        const unifiedResolution: UnifiedResolution = validateUnifiedResolution(testRuleId, ruleResult);
-        expect(unifiedResolution).toMatchSnapshot();
+        const unifiedFormattableResolution = validateUnifiedFormattableResolution(testRuleId, ruleResult);
+        expect(unifiedFormattableResolution).toMatchSnapshot();
     });
 
     test('getRuleInformation returns correct data for TouchSizeWcag rule', () => {
         const testRuleId: string = 'TouchSizeWcag';
         const ruleResult: RuleResultsData = buildTouchSizeWcagRuleResultObject('FAIL', 2.25, 86, 95);
-        const unifiedResolution: UnifiedResolution = validateUnifiedResolution(testRuleId, ruleResult);
-        expect(unifiedResolution).toMatchSnapshot();
+        const unifiedFormattableResolution = validateUnifiedFormattableResolution(testRuleId, ruleResult);
+        expect(unifiedFormattableResolution).toMatchSnapshot();
     });
 
     test('getRuleInformation returns correct data for ActiveViewName rule', () => {
-        const unifiedResolution: UnifiedResolution = validateUnifiedResolution('ActiveViewName', null);
-        expect(unifiedResolution).toMatchSnapshot();
+        const unifiedFormattableResolution = validateUnifiedFormattableResolution('ActiveViewName', null);
+        expect(unifiedFormattableResolution).toMatchSnapshot();
     });
 
     test('getRuleInformation returns correct data for EditTextValue rule', () => {
-        const unifiedResolution: UnifiedResolution = validateUnifiedResolution('EditTextValue', null);
-        expect(unifiedResolution).toMatchSnapshot();
+        const unifiedFormattableResolution = validateUnifiedFormattableResolution('EditTextValue', null);
+        expect(unifiedFormattableResolution).toMatchSnapshot();
     });
 
     test('getRuleInformation returns correct data for ImageViewName rule', () => {
-        const unifiedResolution: UnifiedResolution = validateUnifiedResolution('ImageViewName', null);
-        expect(unifiedResolution).toMatchSnapshot();
+        const unifiedFormattableResolution = validateUnifiedFormattableResolution('ImageViewName', null);
+        expect(unifiedFormattableResolution).toMatchSnapshot();
     });
 
     test('ColorContrast includeThisResult returns true when confidence is defined and High', () => {

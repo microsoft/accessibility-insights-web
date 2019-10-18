@@ -32,7 +32,12 @@ exports[`ReportBody renders 1`] = `
         "fail": Array [
           Object {
             "description": "sample-description",
-            "guidance": Array [],
+            "guidance": Array [
+              Object {
+                "href": "sample-guidance-href",
+                "text": "sample-guidance-text",
+              },
+            ],
             "id": "some-rule",
             "nodes": Array [
               Object {
@@ -121,7 +126,12 @@ exports[`ReportBody renders 1`] = `
           "fail": Array [
             Object {
               "description": "sample-description",
-              "guidance": Array [],
+              "guidance": Array [
+                Object {
+                  "href": "sample-guidance-href",
+                  "text": "sample-guidance-text",
+                },
+              ],
               "id": "some-rule",
               "nodes": Array [
                 Object {
@@ -208,7 +218,12 @@ exports[`ReportBody renders 1`] = `
           "fail": Array [
             Object {
               "description": "sample-description",
-              "guidance": Array [],
+              "guidance": Array [
+                Object {
+                  "href": "sample-guidance-href",
+                  "text": "sample-guidance-text",
+                },
+              ],
               "id": "some-rule",
               "nodes": Array [
                 Object {
@@ -295,7 +310,12 @@ exports[`ReportBody renders 1`] = `
           "fail": Array [
             Object {
               "description": "sample-description",
-              "guidance": Array [],
+              "guidance": Array [
+                Object {
+                  "href": "sample-guidance-href",
+                  "text": "sample-guidance-text",
+                },
+              ],
               "id": "some-rule",
               "nodes": Array [
                 Object {
@@ -382,7 +402,12 @@ exports[`ReportBody renders 1`] = `
             "fail": Array [
               Object {
                 "description": "sample-description",
-                "guidance": Array [],
+                "guidance": Array [
+                  Object {
+                    "href": "sample-guidance-href",
+                    "text": "sample-guidance-text",
+                  },
+                ],
                 "id": "some-rule",
                 "nodes": Array [
                   Object {
@@ -469,7 +494,12 @@ exports[`ReportBody renders 1`] = `
             "fail": Array [
               Object {
                 "description": "sample-description",
-                "guidance": Array [],
+                "guidance": Array [
+                  Object {
+                    "href": "sample-guidance-href",
+                    "text": "sample-guidance-text",
+                  },
+                ],
                 "id": "some-rule",
                 "nodes": Array [
                   Object {
@@ -556,7 +586,12 @@ exports[`ReportBody renders 1`] = `
             "fail": Array [
               Object {
                 "description": "sample-description",
-                "guidance": Array [],
+                "guidance": Array [
+                  Object {
+                    "href": "sample-guidance-href",
+                    "text": "sample-guidance-text",
+                  },
+                ],
                 "id": "some-rule",
                 "nodes": Array [
                   Object {
@@ -645,7 +680,12 @@ exports[`ReportBody renders 1`] = `
         "fail": Array [
           Object {
             "description": "sample-description",
-            "guidance": Array [],
+            "guidance": Array [
+              Object {
+                "href": "sample-guidance-href",
+                "text": "sample-guidance-text",
+              },
+            ],
             "id": "some-rule",
             "nodes": Array [
               Object {

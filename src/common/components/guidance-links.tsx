@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { isEmpty } from 'lodash';
 import * as React from 'react';
-
 import { HyperlinkDefinition } from 'views/content/content-page';
 import { NamedFC } from '../react/named-fc';
 import { NewTabLink } from './new-tab-link';
@@ -14,7 +14,7 @@ export interface GuidanceLinksProps {
 export const GuidanceLinks = NamedFC('GuidanceLinks', (props: GuidanceLinksProps) => {
     const { links, classNameForDiv } = props;
 
-    if (links == null || links.length === 0) {
+    if (isEmpty(links)) {
         return null;
     }
 

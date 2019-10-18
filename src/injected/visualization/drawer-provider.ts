@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { getRTL } from '@uifabric/utilities';
 
+import { NavigatorUtils } from 'common/navigator-utils';
 import { BrowserAdapter } from '../../common/browser-adapters/browser-adapter';
 import { HTMLElementUtils } from '../../common/html-element-utils';
 import { TabbableElementsHelper } from '../../common/tabbable-elements-helper';
@@ -37,6 +38,7 @@ export class DrawerProvider {
     constructor(
         private readonly htmlElementUtils: HTMLElementUtils,
         private readonly windowUtils: WindowUtils,
+        private readonly navigatorUtils: NavigatorUtils,
         private readonly shadowUtils: ShadowUtils,
         private readonly drawerUtils: DrawerUtils,
         private readonly clientUtils: ClientUtils,
@@ -97,6 +99,7 @@ export class DrawerProvider {
             this.frameCommunicator,
             this.htmlElementUtils,
             this.windowUtils,
+            this.navigatorUtils,
             this.shadowUtils,
             this.browserAdapter,
             this.getRTLFunc,

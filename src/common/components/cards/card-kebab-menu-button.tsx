@@ -1,10 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { MoreActionsMenuIcon } from 'common/icons/more-actions-menu-icon';
 import { ActionButton } from 'office-ui-fabric-react/lib/Button';
 import { DirectionalHint, IContextualMenuItem } from 'office-ui-fabric-react/lib/ContextualMenu';
 import * as React from 'react';
-
-import { MoreActionsMenuIcon } from 'common/icons/more-actions-menu-icon';
 import { IssueDetailsTextGenerator } from '../../../background/issue-details-text-generator';
 import { DetailsViewActionMessageCreator } from '../../../DetailsView/actions/details-view-action-message-creator';
 import { IssueFilingDialog } from '../../../DetailsView/components/issue-filing-dialog';

@@ -1,12 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`AutomatedChecksView renders device disconnected 1`] = `
+exports[`AutomatedChecksView renders when status scan <Completed> 1`] = `
 <div
   className="automatedChecksView"
 >
   <TitleBar
     deps={
       Object {
+        "getCardSelectionViewData": [Function],
+        "getUnifiedRuleResultsDelegate": [Function],
         "scanActionCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "scanActions": undefined,
@@ -14,45 +16,69 @@ exports[`AutomatedChecksView renders device disconnected 1`] = `
       }
     }
   />
-  <CommandBar
-    deps={
-      Object {
-        "scanActionCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "scanActions": undefined,
-        },
+  <div
+    className="mainContentWrapper"
+  >
+    <CommandBar
+      deps={
+        Object {
+          "getCardSelectionViewData": [Function],
+          "getUnifiedRuleResultsDelegate": [Function],
+          "scanActionCreator": proxy {
+            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+            "scanActions": undefined,
+          },
+        }
       }
-    }
-  />
-  <main>
-    <HeaderSection />
-    <ScanningSpinner
-      isScanning={false}
+      deviceStoreData={Object {}}
+      scanStoreData={
+        Object {
+          "status": 2,
+        }
+      }
     />
-    <DeviceDisconnectedPopup
-      deviceName="TEST DEVICE"
-      onConnectNewDevice={[Function]}
-      onRescanDevice={[Function]}
-    />
-  </main>
+    <main>
+      <HeaderSection />
+      <ScanningSpinner
+        isScanning={false}
+      />
+      <CardsView
+        deps={
+          Object {
+            "getCardSelectionViewData": [Function],
+            "getUnifiedRuleResultsDelegate": [Function],
+            "scanActionCreator": proxy {
+              "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+              "scanActions": undefined,
+            },
+          }
+        }
+        targetAppInfo={
+          Object {
+            "name": "test-target-app-name",
+          }
+        }
+        userConfigurationStoreData={
+          Object {
+            "isFirstTime": false,
+          }
+        }
+      />
+    </main>
+  </div>
 </div>
 `;
 
-exports[`AutomatedChecksView renders renders the automated checks view 1`] = `
+exports[`AutomatedChecksView renders when status scan <Failed> 1`] = `
 <div
   className="automatedChecksView"
 >
   <TitleBar
     deps={
       Object {
-        "deviceConnectActionCreator": null,
         "scanActionCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "scanActions": undefined,
-        },
-        "windowFrameActionCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "windowFrameActions": undefined,
         },
         "windowStateActionCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
@@ -63,50 +89,59 @@ exports[`AutomatedChecksView renders renders the automated checks view 1`] = `
     }
     windowStateStoreData="window state store data"
   />
-  <CommandBar
-    deps={
-      Object {
-        "deviceConnectActionCreator": null,
-        "scanActionCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "scanActions": undefined,
-        },
-        "windowFrameActionCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "windowFrameActions": undefined,
-        },
-        "windowStateActionCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "windowFrameActionCreator": undefined,
-          "windowStateActions": undefined,
-        },
+  <div
+    className="mainContentWrapper"
+  >
+    <CommandBar
+      deps={
+        Object {
+          "scanActionCreator": proxy {
+            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+            "scanActions": undefined,
+          },
+          "windowStateActionCreator": proxy {
+            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+            "windowFrameActionCreator": undefined,
+            "windowStateActions": undefined,
+          },
+        }
       }
-    }
-  />
-  <main>
-    <HeaderSection />
-    <ScanningSpinner
-      isScanning={false}
+      deviceStoreData={
+        Object {
+          "connectedDevice": "TEST DEVICE",
+        }
+      }
+      scanStoreData={
+        Object {
+          "status": 3,
+        }
+      }
     />
-  </main>
+    <main>
+      <HeaderSection />
+      <ScanningSpinner
+        isScanning={false}
+      />
+      <DeviceDisconnectedPopup
+        deviceName="TEST DEVICE"
+        onConnectNewDevice={[Function]}
+        onRescanDevice={[Function]}
+      />
+    </main>
+  </div>
 </div>
 `;
 
-exports[`AutomatedChecksView renders scanning spinner 1`] = `
+exports[`AutomatedChecksView renders when status scan <Scanning> 1`] = `
 <div
   className="automatedChecksView"
 >
   <TitleBar
     deps={
       Object {
-        "deviceConnectActionCreator": null,
         "scanActionCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "scanActions": undefined,
-        },
-        "windowFrameActionCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "windowFrameActions": undefined,
         },
         "windowStateActionCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
@@ -117,17 +152,54 @@ exports[`AutomatedChecksView renders scanning spinner 1`] = `
     }
     windowStateStoreData="window state store data"
   />
-  <CommandBar
+  <div
+    className="mainContentWrapper"
+  >
+    <CommandBar
+      deps={
+        Object {
+          "scanActionCreator": proxy {
+            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+            "scanActions": undefined,
+          },
+          "windowStateActionCreator": proxy {
+            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+            "windowFrameActionCreator": undefined,
+            "windowStateActions": undefined,
+          },
+        }
+      }
+      deviceStoreData={
+        Object {
+          "connectedDevice": "TEST DEVICE",
+        }
+      }
+      scanStoreData={
+        Object {
+          "status": 1,
+        }
+      }
+    />
+    <main>
+      <HeaderSection />
+      <ScanningSpinner
+        isScanning={true}
+      />
+    </main>
+  </div>
+</div>
+`;
+
+exports[`AutomatedChecksView renders when status scan <undefined> 1`] = `
+<div
+  className="automatedChecksView"
+>
+  <TitleBar
     deps={
       Object {
-        "deviceConnectActionCreator": null,
         "scanActionCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "scanActions": undefined,
-        },
-        "windowFrameActionCreator": proxy {
-          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
-          "windowFrameActions": undefined,
         },
         "windowStateActionCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
@@ -136,12 +208,42 @@ exports[`AutomatedChecksView renders scanning spinner 1`] = `
         },
       }
     }
+    windowStateStoreData="window state store data"
   />
-  <main>
-    <HeaderSection />
-    <ScanningSpinner
-      isScanning={true}
+  <div
+    className="mainContentWrapper"
+  >
+    <CommandBar
+      deps={
+        Object {
+          "scanActionCreator": proxy {
+            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+            "scanActions": undefined,
+          },
+          "windowStateActionCreator": proxy {
+            "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+            "windowFrameActionCreator": undefined,
+            "windowStateActions": undefined,
+          },
+        }
+      }
+      deviceStoreData={
+        Object {
+          "connectedDevice": "TEST DEVICE",
+        }
+      }
+      scanStoreData={
+        Object {
+          "status": undefined,
+        }
+      }
     />
-  </main>
+    <main>
+      <HeaderSection />
+      <ScanningSpinner
+        isScanning={false}
+      />
+    </main>
+  </div>
 </div>
 `;

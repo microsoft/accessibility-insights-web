@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { createDefaultLogger } from 'common/logging/default-logger';
+import { Logger } from 'common/logging/logger';
+
 export class NavigatorUtils {
-    private navigatorInfo: Navigator;
-    constructor(navigatorInfo: Navigator) {
-        this.navigatorInfo = navigatorInfo;
-    }
+    constructor(private navigatorInfo: Navigator, private logger: Logger = createDefaultLogger()) {}
 
     public getBrowserSpec(): string {
         const userAgent = this.navigatorInfo.userAgent;
@@ -32,6 +32,9 @@ export class NavigatorUtils {
     }
 
     public copyToClipboard(data: string): Promise<void> {
-        return this.navigatorInfo.clipboard.writeText(data);
+        return this.navigatorInfo.clipboard.writeText(data).catch(error => {
+            this.logger.error(`Error during copyToClipboard: ${error}`);
+            throw error;
+        });
     }
 }

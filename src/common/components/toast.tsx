@@ -3,6 +3,7 @@
 import { css } from '@uifabric/utilities';
 import * as React from 'react';
 import { WindowUtils } from '../window-utils';
+import { toastContainer, toastContent } from './toast.scss';
 
 export type ToastDeps = {
     windowUtils: WindowUtils;
@@ -45,10 +46,10 @@ export class Toast extends React.Component<ToastProps, ToastState> {
     }
 
     public render(): JSX.Element {
-        return this.state.toastVisible ? (
-            <div role="alert" aria-live="polite" className={css('ms-fadeIn100', 'toast')}>
-                {this.state.content}
+        return (
+            <div className={toastContainer} aria-live="polite">
+                {this.state.toastVisible ? <div className={css('ms-fadeIn100', toastContent)}>{this.state.content}</div> : null}
             </div>
-        ) : null;
+        );
     }
 }

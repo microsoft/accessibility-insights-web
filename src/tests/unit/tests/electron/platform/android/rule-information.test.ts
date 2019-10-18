@@ -1,8 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { UnifiedResolution } from 'common/types/store-data/unified-data-interface';
-import { GetUnifiedResolutionDelegate, IncludeThisResultDelegate, RuleInformation } from 'electron/platform/android/rule-information';
+import { UnifiedFormattableResolution } from 'common/types/store-data/unified-data-interface';
+import {
+    GetUnifiedFormattableResolutionDelegate,
+    IncludeThisResultDelegate,
+    RuleInformation,
+} from 'electron/platform/android/rule-information';
 import { RuleResultsData } from 'electron/platform/android/scan-results';
 import { Mock } from 'typemoq';
 
@@ -37,16 +41,16 @@ describe('RuleInformation', () => {
         };
 
         for (const howToFixString of testInputs) {
-            const expectedUnifiedResolution: UnifiedResolution = { howToFixSummary: howToFixString };
+            const expectedUnifiedFormattableResolution: UnifiedFormattableResolution = { howToFixSummary: howToFixString };
 
-            const getUnifiedResolutionDelegateMock = Mock.ofType<GetUnifiedResolutionDelegate>();
-            getUnifiedResolutionDelegateMock.setup(func => func(testData)).returns(() => expectedUnifiedResolution);
+            const getUnifiedFormattableResolutionDelegateMock = Mock.ofType<GetUnifiedFormattableResolutionDelegate>();
+            getUnifiedFormattableResolutionDelegateMock.setup(func => func(testData)).returns(() => expectedUnifiedFormattableResolution);
 
-            const ruleInformation = new RuleInformation(null, null, getUnifiedResolutionDelegateMock.object, failIfCalled);
+            const ruleInformation = new RuleInformation(null, null, getUnifiedFormattableResolutionDelegateMock.object, failIfCalled);
 
-            const actualUnifiedResolution = ruleInformation.getUnifiedResolution(testData);
+            const actualUnifiedResolution = ruleInformation.getUnifiedFormattableResolution(testData);
 
-            expect(actualUnifiedResolution).toBe(expectedUnifiedResolution);
+            expect(actualUnifiedResolution).toBe(expectedUnifiedFormattableResolution);
         }
     });
 

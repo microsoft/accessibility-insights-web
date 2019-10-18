@@ -59,4 +59,12 @@ describe('FixInstructionProcessor', () => {
 
         expect(result).toMatchSnapshot();
     });
+
+    test('when we have nothing to process', () => {
+        const fixInstruction = 'nothing to process';
+
+        const result = testSubject.process(fixInstruction);
+
+        expect(result).toMatchSnapshot();
+    });
 });

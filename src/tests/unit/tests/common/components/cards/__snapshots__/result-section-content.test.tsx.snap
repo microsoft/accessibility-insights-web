@@ -10,7 +10,12 @@ exports[`ResultSectionContent renders, with some rules 1`] = `
     Array [
       Object {
         "description": "sample-description",
-        "guidance": Array [],
+        "guidance": Array [
+          Object {
+            "href": "sample-guidance-href",
+            "text": "sample-guidance-text",
+          },
+        ],
         "id": "some-rule",
         "nodes": Array [
           Object {

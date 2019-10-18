@@ -1,15 +1,28 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { AllRuleResultStatuses, CardRuleResult, CardRuleResultsByStatus, CardRuleResultStatus } from './types/store-data/card-view-model';
+import { CardSelectionViewData } from 'common/get-card-selection-view-data';
+import { includes } from 'lodash';
+import {
+    AllRuleResultStatuses,
+    CardResult,
+    CardRuleResult,
+    CardRuleResultsByStatus,
+    CardRuleResultStatus,
+} from './types/store-data/card-view-model';
 import { UnifiedResult, UnifiedRule } from './types/store-data/unified-data-interface';
 
-export type GetUnifiedRuleResultsDelegate = (rules: UnifiedRule[], results: UnifiedResult[]) => CardRuleResultsByStatus;
+export type GetUnifiedRuleResultsDelegate = (
+    rules: UnifiedRule[],
+    results: UnifiedResult[],
+    cardSelectionViewData: CardSelectionViewData,
+) => CardRuleResultsByStatus;
 
 export const getUnifiedRuleResults: GetUnifiedRuleResultsDelegate = (
     rules: UnifiedRule[],
     results: UnifiedResult[],
+    cardSelectionViewData: CardSelectionViewData,
 ): CardRuleResultsByStatus => {
-    if (results == null || rules == null) {
+    if (results == null || rules == null || cardSelectionViewData == null) {
         return null;
     }
 
@@ -27,11 +40,15 @@ export const getUnifiedRuleResults: GetUnifiedRuleResultsDelegate = (
                 continue;
             }
 
-            ruleResult = createCardRuleResult(result.status, rule);
+            const isExpanded = result.status === 'fail' ? includes(cardSelectionViewData.expandedRuleIds, rule.id) : false;
+
+            ruleResult = createCardRuleResult(result.status, rule, isExpanded);
             ruleResults.push(ruleResult);
         }
 
-        ruleResult.nodes.push(result);
+        const isSelected = result.status === 'fail' ? includes(cardSelectionViewData.selectedResultUids, result.uid) : false;
+
+        ruleResult.nodes.push(createCardResult(result, isSelected));
 
         ruleIdsWithResultNodes.add(result.ruleId);
     }
@@ -61,13 +78,14 @@ const getEmptyStatusResults = (): CardRuleResultsByStatus => {
     return statusResults as CardRuleResultsByStatus;
 };
 
-const createCardRuleResult = (status: string, rule: UnifiedRule): CardRuleResult => ({
+const createCardRuleResult = (status: string, rule: UnifiedRule, isExpanded: boolean): CardRuleResult => ({
     id: rule.id,
     status: status,
     nodes: [],
     description: rule.description,
     url: rule.url,
     guidance: rule.guidance,
+    isExpanded: isExpanded,
 });
 
 const createRuleResultWithoutNodes = (status: CardRuleResultStatus, rule: UnifiedRule): CardRuleResult => ({
@@ -77,7 +95,15 @@ const createRuleResultWithoutNodes = (status: CardRuleResultStatus, rule: Unifie
     description: rule.description,
     url: rule.url,
     guidance: rule.guidance,
+    isExpanded: false,
 });
+
+const createCardResult = (unifiedResult: UnifiedResult, isSelected: boolean): CardResult => {
+    return {
+        ...unifiedResult,
+        isSelected,
+    } as CardResult;
+};
 
 const getUnifiedRule = (id: string, rules: UnifiedRule[]): UnifiedRule => rules.find(rule => rule.id === id);
 
