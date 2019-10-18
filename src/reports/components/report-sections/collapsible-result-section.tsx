@@ -25,6 +25,7 @@ export const CollapsibleResultSection = NamedFC<CollapsibleResultSectionProps>('
         header: <ResultSectionTitle {...props} />,
         content: <RulesOnly {...props} />,
         headingLevel: 2,
+        deps: null,
     });
 
     return <div className={containerClassName}>{CollapsibleContent}</div>;

@@ -195,14 +195,14 @@ exports[`CollapsibleComponentCardsTest render with contentClassName set to: unde
 
 exports[`CollapsibleComponentCardsTest toggle from expanded to collapsed: collapsed 1`] = `
 <div
-  className="collapsibleContainer collapsed"
+  className="collapsibleContainer"
 >
   <div
     aria-level={5}
     role="heading"
   >
     <CustomizedActionButton
-      aria-expanded={false}
+      aria-expanded={true}
       className="collapsibleControl"
       onClick={[Function]}
     >
@@ -214,6 +214,13 @@ exports[`CollapsibleComponentCardsTest toggle from expanded to collapsed: collap
         </div>
       </span>
     </CustomizedActionButton>
+  </div>
+  <div
+    className="collapsibleContainerContent"
+  >
+    <div>
+      Some content
+    </div>
   </div>
 </div>
 `;
