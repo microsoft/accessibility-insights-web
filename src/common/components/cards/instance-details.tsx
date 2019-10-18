@@ -50,7 +50,6 @@ export const InstanceDetails = NamedFC<InstanceDetailsProps>('InstanceDetails', 
 
     const cardClickHandler = (): void => deps.cardSelectionMessageCreator.toggleCardSelection(result.ruleId, result.uid);
 
-    console.log({ r: result.isSelected });
     const instanceDetailsCardStyling = classNames({
         'instance-details-card': true,
         selected: result.isSelected,
