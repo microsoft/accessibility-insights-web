@@ -182,7 +182,11 @@ export class IssuesTable extends React.Component<IssuesTableProps> {
     }
 
     private renderSpinner(label: string): JSX.Element {
-        return <Spinner className="details-view-spinner" size={SpinnerSize.large} label={label} />;
+        return (
+            <div role="alert">
+                <Spinner className="details-view-spinner" size={SpinnerSize.large} label={label} />
+            </div>
+        );
     }
 
     private renderDisabledMessage(): JSX.Element {
