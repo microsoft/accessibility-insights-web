@@ -23,6 +23,7 @@ describe('ReportCollapsibleContainerControl', () => {
                     content: <div>Some content</div>,
                     headingLevel: 5,
                     [propertyName]: value,
+                    deps: null,
                 };
                 const control = ReportCollapsibleContainerControl(props);
                 const result = shallow(control);

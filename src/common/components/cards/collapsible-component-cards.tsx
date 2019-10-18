@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { css } from '@uifabric/utilities';
+import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
 import { ActionButton } from 'office-ui-fabric-react/lib/Button';
 import * as React from 'react';
 
@@ -11,6 +12,10 @@ import {
     collapsibleTitle,
 } from './collapsible-component-cards.scss';
 
+export type CollapsibleComponentCardsDeps = {
+    cardSelectionMessageCreator: CardSelectionMessageCreator;
+};
+
 export interface CollapsibleComponentCardsProps {
     header: JSX.Element;
     content: JSX.Element;
@@ -19,6 +24,7 @@ export interface CollapsibleComponentCardsProps {
     containerClassName?: string;
     buttonAriaLabel?: string;
     id?: string;
+    deps: CollapsibleComponentCardsDeps;
 }
 
 interface CollapsibleComponentCardsState {
@@ -34,6 +40,7 @@ class CollapsibleComponentCards extends React.Component<CollapsibleComponentCard
     private onClick = (): void => {
         const newState = !this.state.showContent;
         this.setState({ showContent: newState });
+        this.props.deps.cardSelectionMessageCreator.toggleRuleExpandCollapse(this.props.id);
     };
 
     public render(): JSX.Element {
