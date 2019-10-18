@@ -225,31 +225,6 @@ exports[`CollapsibleComponentCardsTest toggle from expanded to collapsed: collap
 </div>
 `;
 
-exports[`CollapsibleComponentCardsTest toggle from expanded to collapsed: collapsed 2`] = `
-<div
-  className="collapsibleContainer collapsed"
->
-  <div
-    aria-level={5}
-    role="heading"
-  >
-    <CustomizedActionButton
-      aria-expanded={false}
-      className="collapsibleControl"
-      onClick={[Function]}
-    >
-      <span
-        className="collapsibleTitle"
-      >
-        <div>
-          Some header
-        </div>
-      </span>
-    </CustomizedActionButton>
-  </div>
-</div>
-`;
-
 exports[`CollapsibleComponentCardsTest toggle from expanded to collapsed: expanded 1`] = `
 <div
   className="collapsibleContainer"
@@ -278,31 +253,6 @@ exports[`CollapsibleComponentCardsTest toggle from expanded to collapsed: expand
     <div>
       Some content
     </div>
-  </div>
-</div>
-`;
-
-exports[`CollapsibleComponentCardsTest toggle from expanded to collapsed: expanded 2`] = `
-<div
-  className="collapsibleContainer collapsed"
->
-  <div
-    aria-level={5}
-    role="heading"
-  >
-    <CustomizedActionButton
-      aria-expanded={false}
-      className="collapsibleControl"
-      onClick={[Function]}
-    >
-      <span
-        className="collapsibleTitle"
-      >
-        <div>
-          Some header
-        </div>
-      </span>
-    </CustomizedActionButton>
   </div>
 </div>
 `;

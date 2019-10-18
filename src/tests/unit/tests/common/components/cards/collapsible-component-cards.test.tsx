@@ -22,9 +22,7 @@ describe('CollapsibleComponentCardsTest', () => {
     forOwn(optionalPropertiesObject, (propertyValues, propertyName) => {
         propertyValues.forEach(value => {
             test(`render with ${propertyName} set to: ${value}`, () => {
-                cardSelectionMessageCreatorMock
-                    .setup(mock => mock.toggleCardSelection(It.isAnyString(), It.isAnyString()))
-                    .verifiable(Times.never());
+                cardSelectionMessageCreatorMock.setup(mock => mock.toggleRuleExpandCollapse(It.isAnyString())).verifiable(Times.never());
 
                 const props: CollapsibleComponentCardsProps = {
                     header: <div>Some header</div>,
@@ -37,15 +35,13 @@ describe('CollapsibleComponentCardsTest', () => {
                 const control = CardsCollapsibleControl(props);
                 const result = shallow(control);
                 expect(result.getElement()).toMatchSnapshot();
+                cardSelectionMessageCreatorMock.verifyAll();
             });
         });
     });
 
-    const isExpandedParams = [true, false];
-    test.each(isExpandedParams)('toggle from expanded to collapsed', isExpanded => {
-        cardSelectionMessageCreatorMock
-            .setup(mock => mock.toggleCardSelection(It.isAnyString(), It.isAnyString()))
-            .verifiable(Times.never());
+    test('toggle from expanded to collapsed', () => {
+        cardSelectionMessageCreatorMock.setup(mock => mock.toggleRuleExpandCollapse(It.isAnyString())).verifiable(Times.once());
 
         const props: CollapsibleComponentCardsProps = {
             header: <div>Some header</div>,
@@ -54,11 +50,13 @@ describe('CollapsibleComponentCardsTest', () => {
             deps: {
                 cardSelectionMessageCreator: cardSelectionMessageCreatorMock.object,
             },
-            isExpanded,
+            isExpanded: true,
+            id: 'test-id',
         };
         const control = CardsCollapsibleControl(props);
         const result = shallow(control);
         expect(result.getElement()).toMatchSnapshot('expanded');
+
         const button = result.find('CustomizedActionButton');
         button.simulate('click');
         expect(result.getElement()).toMatchSnapshot('collapsed');
