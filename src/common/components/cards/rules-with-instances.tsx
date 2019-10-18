@@ -50,6 +50,7 @@ export const RulesWithInstances = NamedFC<RulesWithInstancesProps>(
                 buttonAriaLabel: buttonAriaLabel,
                 headingLevel: 3,
                 deps: deps,
+                isExpanded: rule.isExpanded,
             };
         };
 

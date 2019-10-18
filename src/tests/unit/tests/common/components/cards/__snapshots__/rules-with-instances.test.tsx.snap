@@ -73,6 +73,11 @@ exports[`RulesWithInstances renders 1`] = `
         userConfigurationStoreData={null}
       />
     }
+    deps={
+      Object {
+        "collapsibleControl": [Function],
+      }
+    }
     header={
       <MinimalRuleHeader
         outcomeType="pass"

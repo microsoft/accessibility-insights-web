@@ -32,6 +32,7 @@ describe('CollapsibleComponentCardsTest', () => {
                     headingLevel: 5,
                     [propertyName]: value,
                     deps: { cardSelectionMessageCreator: cardSelectionMessageCreatorMock.object },
+                    isExpanded: true,
                 };
                 const control = CardsCollapsibleControl(props);
                 const result = shallow(control);
@@ -52,6 +53,7 @@ describe('CollapsibleComponentCardsTest', () => {
             deps: {
                 cardSelectionMessageCreator: cardSelectionMessageCreatorMock.object,
             },
+            isExpanded: true,
         };
         const control = CardsCollapsibleControl(props);
         const result = shallow(control);
