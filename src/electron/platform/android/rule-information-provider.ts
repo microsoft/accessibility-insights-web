@@ -82,6 +82,7 @@ export class RuleInformationProvider {
         const dpi = ruleResultsData.props['Screen Dots Per Inch'] as number;
         const boundingRect = ruleResultsData.props['boundsInScreen'];
         const physicalWidth = (boundingRect['right'] as number) - (boundingRect['left'] as number);
+        const physicalHeight = (boundingRect['bottom'] as number) - (boundingRect['top'] as number);
         const logicalWidth = this.floorTo3Decimal(physicalWidth / dpi);
         const logicalHeight = this.floorTo3Decimal(physicalHeight / dpi);
 
