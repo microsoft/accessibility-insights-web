@@ -41,7 +41,8 @@ describe('CollapsibleComponentCardsTest', () => {
         });
     });
 
-    test('toggle from expanded to collapsed', () => {
+    const isExpandedParams = [true, false];
+    test.each(isExpandedParams)('toggle from expanded to collapsed', isExpanded => {
         cardSelectionMessageCreatorMock
             .setup(mock => mock.toggleCardSelection(It.isAnyString(), It.isAnyString()))
             .verifiable(Times.never());
@@ -53,7 +54,7 @@ describe('CollapsibleComponentCardsTest', () => {
             deps: {
                 cardSelectionMessageCreator: cardSelectionMessageCreatorMock.object,
             },
-            isExpanded: true,
+            isExpanded,
         };
         const control = CardsCollapsibleControl(props);
         const result = shallow(control);
@@ -61,6 +62,7 @@ describe('CollapsibleComponentCardsTest', () => {
         const button = result.find('CustomizedActionButton');
         button.simulate('click');
         expect(result.getElement()).toMatchSnapshot('collapsed');
+
         cardSelectionMessageCreatorMock.verifyAll();
     });
 });
