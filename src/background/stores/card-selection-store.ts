@@ -67,7 +67,6 @@ export class CardSelectionStore extends BaseStoreImpl<CardSelectionStoreData> {
             return;
         }
 
-        console.log({ payload });
         const rule = this.state.rules[payload.ruleId];
 
         rule.cards[payload.resultInstanceUid] = !rule.cards[payload.resultInstanceUid];
