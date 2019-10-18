@@ -142,28 +142,6 @@
         }
     }
 
-    .insights-dialog-main-override .insights-dialog-button-left {
-        float: left !important;
-    }
-
-    .insights-dialog-main-override .insights-dialog-button-right {
-        float: right !important;
-        text-align: right !important;
-    }
-
-    .insights-dialog-main-override .insights-dialog-footer {
-        text-align: center !important;
-        margin-top: 5px !important;
-    }
-
-    .insights-dialog-main-override-shadow .insights-dialog-footer {
-        text-align: center !important;
-        float: left !important;
-        margin-top: 5px !important;
-        width: 50%;
-        font-size: 14px;
-    }
-
     .insights-dialog-main-override ul,
     .insights-dialog-main-override-shadow ul {
         margin-top: 3px !important;
@@ -251,17 +229,6 @@
             background-color: $neutral-4;
             color: $neutral-30;
             pointer-events: none;
-        }
-
-        .ms-Grid-col.insights-dialog-button-left {
-            padding-left: 0px;
-            float: left;
-        }
-
-        .ms-Grid-col.insights-dialog-button-right {
-            padding-right: 0px;
-            float: right;
-            text-align: right;
         }
     }
 
@@ -404,6 +371,21 @@
 
         .insights-dialog-next-and-back-container {
             margin-top: 16px !important;
+            display: grid !important;
+            color: $primary-text !important;
+            font-size: $fontSizeM !important;
+            align-items: center !important;
+
+            grid-template-columns: 100px 1fr 100px !important;
+            :nth-child(1) {
+                text-align: left !important;
+            }
+            :nth-child(2) {
+                text-align: center !important;
+            }
+            :nth-child(3) {
+                text-align: right !important;
+            }
         }
     }
 
