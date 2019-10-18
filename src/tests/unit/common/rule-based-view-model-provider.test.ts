@@ -33,20 +33,26 @@ describe('RuleBasedViewModelProvider', () => {
         expect(actualResults).toEqual(null);
     });
 
-    test('getUnifiedRuleResults', () => {
+    const testStubCombinations = [
+        { isExpanded: true, isSelected: true },
+        { isExpanded: false, isSelected: false },
+        { isExpanded: true, isSelected: false },
+    ];
+
+    it.each(testStubCombinations)('getUnifiedRuleResults for combination %p', stub => {
         const rules = getSampleRules();
 
         const resultStub1 = createUnifiedResultStub('pass', 'rule1');
-        const resultStub2 = createUnifiedResultStub('fail', 'rule1', true);
+        const resultStub2 = createUnifiedResultStub('fail', 'rule1', stub.isSelected);
         const resultStub3 = createUnifiedResultStub('unknown', 'rule2');
         const resultStub4 = createUnifiedResultStub('unknown', 'rule2');
 
         const results: UnifiedResult[] = [resultStub1, resultStub2, resultStub3, resultStub4];
 
         const cardSelectionViewData: CardSelectionViewData = {
-            expandedRuleIds: ['rule1'],
+            expandedRuleIds: stub.isExpanded ? ['rule1'] : [],
             highlightedResultUids: ['stub_uid'],
-            selectedResultUids: ['stub_uid'],
+            selectedResultUids: stub.isExpanded && stub.isSelected ? ['stub_uid'] : [],
         };
 
         const actualResults: CardRuleResultsByStatus = getUnifiedRuleResults(rules, results, cardSelectionViewData);
