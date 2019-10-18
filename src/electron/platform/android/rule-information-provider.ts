@@ -81,8 +81,9 @@ export class RuleInformationProvider {
 
     private getTouchSizeUnifiedFormattableResolution = (ruleResultsData: RuleResultsData): UnifiedFormattableResolution => {
         const dpi = ruleResultsData.props['Screen Dots Per Inch'] as number;
-        const physicalWidth = ruleResultsData.props['width'] as number;
-        const physicalHeight = ruleResultsData.props['height'] as number;
+        const boundingRect = ruleResultsData.props['boundsInScreen'];
+        const physicalWidth = (boundingRect['right'] as number) - (boundingRect['left'] as number);
+        const physicalHeight = (boundingRect['bottom'] as number) - (boundingRect['top'] as number);
         const logicalWidth = physicalWidth / dpi;
         const logicalHeight = physicalHeight / dpi;
 
