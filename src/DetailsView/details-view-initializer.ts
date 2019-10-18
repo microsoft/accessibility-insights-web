@@ -4,6 +4,7 @@ import { AssessmentDefaultMessageGenerator } from 'assessments/assessment-defaul
 import { Assessments } from 'assessments/assessments';
 import { assessmentsProviderWithFeaturesEnabled } from 'assessments/assessments-feature-flag-filter';
 import { IssueDetailsTextGenerator } from 'background/issue-details-text-generator';
+import { getCardSelectionViewData } from 'common/get-card-selection-view-data';
 import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
 import { loadTheme } from 'office-ui-fabric-react';
@@ -333,6 +334,7 @@ if (isNaN(tabId) === false) {
                 cardInteractionSupport: allCardInteractionsSupported,
                 navigatorUtils: navigatorUtils,
                 cardSelectionMessageCreator,
+                getCardSelectionViewData: getCardSelectionViewData,
             };
 
             const renderer = new DetailsViewRenderer(

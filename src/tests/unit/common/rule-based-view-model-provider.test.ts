@@ -1,104 +1,63 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { CardSelectionViewData } from 'common/get-card-selection-view-data';
+
 import { getUnifiedRuleResults } from '../../../common/rule-based-view-model-provider';
-import { CardRuleResult, CardRuleResultsByStatus } from '../../../common/types/store-data/card-view-model';
+import { CardResult, CardRuleResultsByStatus } from '../../../common/types/store-data/card-view-model';
 import { InstanceResultStatus, UnifiedResult, UnifiedRule } from '../../../common/types/store-data/unified-data-interface';
 
 describe('RuleBasedViewModelProvider', () => {
+    const emptyCardSelectionViewData = {} as CardSelectionViewData;
+
     test('getUnifiedRuleResults with null rules and results', () => {
-        const actualResults: CardRuleResultsByStatus = getUnifiedRuleResults(null, null);
+        const actualResults: CardRuleResultsByStatus = getUnifiedRuleResults(null, null, null);
 
         expect(actualResults).toEqual(null);
     });
 
     test('getUnifiedRuleResults with null rules', () => {
-        const actualResults: CardRuleResultsByStatus = getUnifiedRuleResults(null, []);
+        const actualResults: CardRuleResultsByStatus = getUnifiedRuleResults(null, [], emptyCardSelectionViewData);
 
         expect(actualResults).toEqual(null);
     });
 
     test('getUnifiedRuleResults with null results', () => {
-        const actualResults: CardRuleResultsByStatus = getUnifiedRuleResults([], null);
+        const actualResults: CardRuleResultsByStatus = getUnifiedRuleResults([], null, emptyCardSelectionViewData);
 
         expect(actualResults).toEqual(null);
     });
 
-    test('getUnifiedRuleResults', () => {
+    test('getUnifiedRuleResults with null card selection view data', () => {
+        const actualResults: CardRuleResultsByStatus = getUnifiedRuleResults([], [], null);
+
+        expect(actualResults).toEqual(null);
+    });
+
+    const testStubCombinations = [
+        { isExpanded: true, isSelected: true },
+        { isExpanded: false, isSelected: false },
+        { isExpanded: true, isSelected: false },
+    ];
+
+    it.each(testStubCombinations)('getUnifiedRuleResults for combination %p', stub => {
         const rules = getSampleRules();
 
-        const resultStub1: UnifiedResult = createUnifiedResultStub('pass', 'rule1');
-        const resultStub2: UnifiedResult = createUnifiedResultStub('fail', 'rule1');
-        const resultStub3: UnifiedResult = createUnifiedResultStub('unknown', 'rule2');
-        const resultStub4: UnifiedResult = createUnifiedResultStub('unknown', 'rule2');
+        const resultStub1 = createUnifiedResultStub('pass', 'rule1');
+        const resultStub2 = createUnifiedResultStub('fail', 'rule1', stub.isSelected);
+        const resultStub3 = createUnifiedResultStub('unknown', 'rule2');
+        const resultStub4 = createUnifiedResultStub('unknown', 'rule2');
 
         const results: UnifiedResult[] = [resultStub1, resultStub2, resultStub3, resultStub4];
 
-        const expectedResults: CardRuleResultsByStatus = {
-            pass: [
-                {
-                    id: 'rule1',
-                    status: 'pass',
-                    nodes: [resultStub1],
-                    description: 'stub_description_rule1',
-                    url: 'stub_url_rule1',
-                    guidance: [
-                        {
-                            href: 'stub_guidance_href_rule1',
-                            text: 'stub_guidance_text_rule1',
-                        },
-                    ],
-                },
-            ],
-            fail: [
-                {
-                    id: 'rule1',
-                    status: 'fail',
-                    nodes: [resultStub2],
-                    description: 'stub_description_rule1',
-                    url: 'stub_url_rule1',
-                    guidance: [
-                        {
-                            href: 'stub_guidance_href_rule1',
-                            text: 'stub_guidance_text_rule1',
-                        },
-                    ],
-                },
-            ],
-            unknown: [
-                {
-                    id: 'rule2',
-                    status: 'unknown',
-                    nodes: [resultStub3, resultStub4],
-                    description: 'stub_description_rule2',
-                    url: 'stub_url_rule2',
-                    guidance: [
-                        {
-                            href: 'stub_guidance_href_rule2',
-                            text: 'stub_guidance_text_rule2',
-                        },
-                    ],
-                },
-            ],
-            inapplicable: [
-                {
-                    id: 'rule3',
-                    status: 'inapplicable',
-                    nodes: [],
-                    description: 'stub_description_rule3',
-                    url: 'stub_url_rule3',
-                    guidance: [
-                        {
-                            href: 'stub_guidance_href_rule3',
-                            text: 'stub_guidance_text_rule3',
-                        },
-                    ],
-                } as CardRuleResult,
-            ],
+        const cardSelectionViewData: CardSelectionViewData = {
+            expandedRuleIds: stub.isExpanded ? ['rule1'] : [],
+            highlightedResultUids: ['stub_uid'],
+            selectedResultUids: stub.isExpanded && stub.isSelected ? ['stub_uid'] : [],
         };
 
-        const actualResults: CardRuleResultsByStatus = getUnifiedRuleResults(rules, results);
+        const actualResults: CardRuleResultsByStatus = getUnifiedRuleResults(rules, results, cardSelectionViewData);
 
-        expect(actualResults).toEqual(expectedResults);
+        expect(actualResults).toMatchSnapshot();
     });
 
     function getSampleRules(): UnifiedRule[] {
@@ -125,11 +84,15 @@ describe('RuleBasedViewModelProvider', () => {
         };
     }
 
-    function createUnifiedResultStub(status: InstanceResultStatus, id: string): UnifiedResult {
+    function createUnifiedResultStub(status: InstanceResultStatus, id: string, isSelected: boolean = false): CardResult {
         return {
             uid: 'stub_uid',
             status: status,
             ruleId: id,
-        } as UnifiedResult;
+            isSelected,
+            identifiers: null,
+            descriptors: null,
+            resolution: null,
+        };
     }
 });

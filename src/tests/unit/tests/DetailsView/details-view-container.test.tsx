@@ -1,5 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { CardSelectionViewData, GetCardSelectionViewData } from 'common/get-card-selection-view-data';
+import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
 import { shallow } from 'enzyme';
 import { ISelection, Selection } from 'office-ui-fabric-react/lib/DetailsList';
 import * as React from 'react';
@@ -58,19 +60,25 @@ describe('DetailsViewContainer', () => {
     let getDetailsRightPanelConfiguration: IMock<GetDetailsRightPanelConfiguration>;
     let getDetailsSwitcherNavConfiguration: IMock<GetDetailsSwitcherNavConfiguration>;
     let getUnifiedRuleResultsMock: IMock<GetUnifiedRuleResultsDelegate>;
+    let getCardSelectionViewDataMock: IMock<GetCardSelectionViewData>;
     let targetAppInfo: TargetAppData;
 
     beforeEach(() => {
         detailsViewActionMessageCreator = Mock.ofType<DetailsViewActionMessageCreator>();
         getDetailsRightPanelConfiguration = Mock.ofInstance((props: GetDetailsRightPanelConfigurationProps) => null, MockBehavior.Strict);
         getDetailsSwitcherNavConfiguration = Mock.ofInstance((props: GetDetailsSwitcherNavConfigurationProps) => null, MockBehavior.Strict);
-        getUnifiedRuleResultsMock = Mock.ofInstance((rules: UnifiedRule[], results: UnifiedResult[]) => null, MockBehavior.Strict);
+        getUnifiedRuleResultsMock = Mock.ofInstance(
+            (rules: UnifiedRule[], results: UnifiedResult[], cardSelectionViewData: CardSelectionViewData) => null,
+            MockBehavior.Strict,
+        );
+        getCardSelectionViewDataMock = Mock.ofInstance((storeData: CardSelectionStoreData) => null, MockBehavior.Strict);
         targetAppInfo = { name: 'app' };
         deps = {
             detailsViewActionMessageCreator: detailsViewActionMessageCreator.object,
             getDetailsRightPanelConfiguration: getDetailsRightPanelConfiguration.object,
             getDetailsSwitcherNavConfiguration: getDetailsSwitcherNavConfiguration.object,
             getUnifiedRuleResults: getUnifiedRuleResultsMock.object,
+            getCardSelectionViewData: getCardSelectionViewDataMock.object,
         } as DetailsViewContainerDeps;
     });
 
@@ -196,8 +204,10 @@ describe('DetailsViewContainer', () => {
                 .returns(() => viewType);
 
             const ruleResults: CardRuleResultsByStatus = {} as any;
+            const cardSelectionViewData: CardSelectionViewData = {} as CardSelectionViewData;
+            getCardSelectionViewDataMock.setup(g => g(state.cardSelectionStoreData)).returns(() => cardSelectionViewData);
             getUnifiedRuleResultsMock
-                .setup(m => m(state.unifiedScanResultStoreData.rules, state.unifiedScanResultStoreData.results))
+                .setup(m => m(state.unifiedScanResultStoreData.rules, state.unifiedScanResultStoreData.results, cardSelectionViewData))
                 .returns(() => ruleResults);
 
             testObject.render();
@@ -453,9 +463,15 @@ describe('DetailsViewContainer', () => {
             )
             .returns(() => viewType);
 
+        const cardSelectionViewData: CardSelectionViewData = {} as CardSelectionViewData;
+        getCardSelectionViewDataMock
+            .setup(g => g(state.cardSelectionStoreData))
+            .returns(() => cardSelectionViewData)
+            .verifiable(Times.once());
+
         const ruleResults: CardRuleResultsByStatus = {} as any;
         getUnifiedRuleResultsMock
-            .setup(m => m(state.unifiedScanResultStoreData.rules, state.unifiedScanResultStoreData.results))
+            .setup(m => m(state.unifiedScanResultStoreData.rules, state.unifiedScanResultStoreData.results, cardSelectionViewData))
             .returns(() => ruleResults);
 
         const expected: JSX.Element = (
@@ -475,5 +491,6 @@ describe('DetailsViewContainer', () => {
         expect(testObject.render()).toEqual(expected);
 
         clickHandlerFactoryMock.verifyAll();
+        getCardSelectionViewDataMock.verifyAll();
     }
 });

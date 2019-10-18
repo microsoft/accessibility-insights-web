@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { CardSelectionViewData, getCardSelectionViewData } from 'common/get-card-selection-view-data';
 import { getUnifiedRuleResults } from 'common/rule-based-view-model-provider';
 import { CardRuleResult, CardRuleResultsByStatus } from 'common/types/store-data/card-view-model';
 import { UnifiedResult, UnifiedRule } from 'common/types/store-data/unified-data-interface';
@@ -45,17 +46,22 @@ describe('AutomatedChecksView', () => {
             const resultsStub = [{ uid: 'test-uid' } as UnifiedResult];
 
             const getUnifiedRuleResultsMock = Mock.ofInstance(getUnifiedRuleResults);
-
+            const getCardSelectionViewDataMock = Mock.ofInstance(getCardSelectionViewData);
             const ruleResultsByStatusStub = {
                 fail: [{ id: 'test-fail-id' } as CardRuleResult],
             } as CardRuleResultsByStatus;
 
-            getUnifiedRuleResultsMock.setup(getter => getter(rulesStub, resultsStub)).returns(() => ruleResultsByStatusStub);
+            const cardSelectionViewDataStub = {} as CardSelectionViewData;
+
+            getUnifiedRuleResultsMock
+                .setup(getter => getter(rulesStub, resultsStub, cardSelectionViewDataStub))
+                .returns(() => ruleResultsByStatusStub);
 
             const props: AutomatedChecksViewProps = {
                 deps: {
                     scanActionCreator: Mock.ofType(ScanActionCreator).object,
                     getUnifiedRuleResultsDelegate: getUnifiedRuleResultsMock.object,
+                    getCardSelectionViewData: getCardSelectionViewDataMock.object,
                 },
                 deviceStoreData: {},
                 scanStoreData: {

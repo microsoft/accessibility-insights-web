@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { ClientStoresHub } from 'common/stores/client-stores-hub';
+import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
 import { UnifiedScanResultStoreData } from 'common/types/store-data/unified-data-interface';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import { DeviceStoreData } from 'electron/flux/types/device-store-data';
@@ -28,6 +29,7 @@ export type RootContainerState = {
     deviceStoreData: DeviceStoreData;
     scanStoreData: ScanStoreData;
     unifiedScanResultStoreData: UnifiedScanResultStoreData;
+    cardSelectionStoreData: CardSelectionStoreData;
 };
 
 export class RootContainer extends React.Component<RootContainerProps, RootContainerState> {
@@ -46,6 +48,7 @@ export class RootContainer extends React.Component<RootContainerProps, RootConta
                     windowStateStoreData={this.state.windowStateStoreData}
                     unifiedScanResultStoreData={this.state.unifiedScanResultStoreData}
                     userConfigurationStoreData={this.state.userConfigurationStoreData}
+                    cardSelectionStoreData={this.state.cardSelectionStoreData}
                     {...this.props}
                 />
             );
