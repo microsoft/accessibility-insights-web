@@ -4,7 +4,7 @@ import { EnumHelper } from 'common/enum-helper';
 import { ScanActionCreator } from 'electron/flux/action-creator/scan-action-creator';
 import { ScanStatus } from 'electron/flux/types/scan-status';
 import { CommandBar, CommandBarProps } from 'electron/views/automated-checks/components/command-bar';
-import { shallow } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 import { Button } from 'office-ui-fabric-react/lib/Button';
 import * as React from 'react';
 import { EventStubFactory } from 'tests/unit/common/event-stub-factory';
@@ -63,8 +63,8 @@ describe('CommandBar', () => {
             },
         } as CommandBarProps;
 
-        const rendered = shallow(<CommandBar {...props} />);
-        const button = rendered.find('[text="Rescan"]');
+        const rendered = mount(<CommandBar {...props} />);
+        const button = rendered.find('button[name="Rescan"]');
 
         button.simulate('click', eventStub);
 

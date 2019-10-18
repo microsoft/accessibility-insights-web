@@ -1,73 +1,89 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`CommandBar renders while status is <Completed> 1`] = `
-<div
+<StyledCommandBarBase
   className="commandBar"
->
-  <CustomizedActionButton
-    disabled={false}
-    iconProps={
+  farItems={
+    Array [
       Object {
-        "className": "rescanButton",
-        "iconName": "Refresh",
-      }
-    }
-    onClick={[Function]}
-    text="Rescan"
-  />
-</div>
+        "className": "menuItemButton",
+        "disabled": false,
+        "iconProps": Object {
+          "className": "buttonIcon",
+          "iconName": "Refresh",
+        },
+        "key": "rescan",
+        "name": "Rescan",
+        "onClick": [Function],
+      },
+    ]
+  }
+  items={Array []}
+/>
 `;
 
 exports[`CommandBar renders while status is <Default> 1`] = `
-<div
+<StyledCommandBarBase
   className="commandBar"
->
-  <CustomizedActionButton
-    disabled={false}
-    iconProps={
+  farItems={
+    Array [
       Object {
-        "className": "rescanButton",
-        "iconName": "Refresh",
-      }
-    }
-    onClick={[Function]}
-    text="Rescan"
-  />
-</div>
+        "className": "menuItemButton",
+        "disabled": false,
+        "iconProps": Object {
+          "className": "buttonIcon",
+          "iconName": "Refresh",
+        },
+        "key": "rescan",
+        "name": "Rescan",
+        "onClick": [Function],
+      },
+    ]
+  }
+  items={Array []}
+/>
 `;
 
 exports[`CommandBar renders while status is <Failed> 1`] = `
-<div
+<StyledCommandBarBase
   className="commandBar"
->
-  <CustomizedActionButton
-    disabled={false}
-    iconProps={
+  farItems={
+    Array [
       Object {
-        "className": "rescanButton",
-        "iconName": "Refresh",
-      }
-    }
-    onClick={[Function]}
-    text="Rescan"
-  />
-</div>
+        "className": "menuItemButton",
+        "disabled": false,
+        "iconProps": Object {
+          "className": "buttonIcon",
+          "iconName": "Refresh",
+        },
+        "key": "rescan",
+        "name": "Rescan",
+        "onClick": [Function],
+      },
+    ]
+  }
+  items={Array []}
+/>
 `;
 
 exports[`CommandBar renders while status is <Scanning> 1`] = `
-<div
+<StyledCommandBarBase
   className="commandBar"
->
-  <CustomizedActionButton
-    disabled={true}
-    iconProps={
+  farItems={
+    Array [
       Object {
-        "className": "rescanButton",
-        "iconName": "Refresh",
-      }
-    }
-    onClick={[Function]}
-    text="Rescan"
-  />
-</div>
+        "className": "menuItemButton",
+        "disabled": true,
+        "iconProps": Object {
+          "className": "buttonIcon",
+          "iconName": "Refresh",
+        },
+        "key": "rescan",
+        "name": "Rescan",
+        "onClick": [Function],
+      },
+    ]
+  }
+  items={Array []}
+/>
 `;

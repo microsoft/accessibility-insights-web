@@ -3,19 +3,17 @@
 @import '../../../../common/styles/colors.scss';
 
 .command-bar {
-    display: flex;
-    justify-content: space-between;
-    min-height: fit-content;
-    align-items: center;
-    background-color: $neutral-0;
-    font-size: 14px;
-    font-weight: normal;
     border-bottom: 1px solid $neutral-alpha-8;
 
-    padding-left: 16px;
-    padding-right: 16px;
+    div[role='menubar'] {
+        background-color: $neutral-0;
+    }
 
-    .rescan-button {
+    .menu-item-button {
+        background-color: $neutral-0;
+    }
+
+    .button-icon {
         color: $primary-text;
         line-height: 16px;
     }

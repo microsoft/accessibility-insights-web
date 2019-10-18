@@ -16,10 +16,20 @@ describe('RuleInformationProvider', () => {
 
     function buildTouchSizeWcagRuleResultObject(status: string, dpi: number, height: number, width: number): RuleResultsData {
         const props = {};
-        // This is based on the output of the Android service
+        // This is based on the output of the Android service.
         props['Screen Dots Per Inch'] = dpi;
-        props['height'] = height;
-        props['width'] = width;
+
+        const left: number = 123;
+        const top: number = 345;
+        const right = left + width;
+        const bottom = top + height;
+
+        props['boundsInScreen'] = {
+            top: top,
+            left: left,
+            bottom: bottom,
+            right: right,
+        };
 
         return buildRuleResultObject('TouchSizeWcag', status, null, props);
     }

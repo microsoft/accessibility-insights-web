@@ -49,6 +49,7 @@ export const RulesWithInstances = NamedFC<RulesWithInstancesProps>(
                 containerClassName: css(collapsibleRuleDetailsGroup),
                 buttonAriaLabel: buttonAriaLabel,
                 headingLevel: 3,
+                deps: deps,
                 isExpanded: rule.isExpanded,
             };
         };
