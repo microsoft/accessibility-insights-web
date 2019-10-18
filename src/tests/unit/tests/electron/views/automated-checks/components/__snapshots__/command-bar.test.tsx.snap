@@ -6,9 +6,10 @@ exports[`CommandBar renders while status is <Completed> 1`] = `
   farItems={
     Array [
       Object {
+        "className": "menuItemButton",
         "disabled": false,
         "iconProps": Object {
-          "className": "rescanButton",
+          "className": "buttonIcon",
           "iconName": "Refresh",
         },
         "key": "rescan",
@@ -27,9 +28,10 @@ exports[`CommandBar renders while status is <Default> 1`] = `
   farItems={
     Array [
       Object {
+        "className": "menuItemButton",
         "disabled": false,
         "iconProps": Object {
-          "className": "rescanButton",
+          "className": "buttonIcon",
           "iconName": "Refresh",
         },
         "key": "rescan",
@@ -48,9 +50,10 @@ exports[`CommandBar renders while status is <Failed> 1`] = `
   farItems={
     Array [
       Object {
+        "className": "menuItemButton",
         "disabled": false,
         "iconProps": Object {
-          "className": "rescanButton",
+          "className": "buttonIcon",
           "iconName": "Refresh",
         },
         "key": "rescan",
@@ -69,9 +72,10 @@ exports[`CommandBar renders while status is <Scanning> 1`] = `
   farItems={
     Array [
       Object {
+        "className": "menuItemButton",
         "disabled": true,
         "iconProps": Object {
-          "className": "rescanButton",
+          "className": "buttonIcon",
           "iconName": "Refresh",
         },
         "key": "rescan",

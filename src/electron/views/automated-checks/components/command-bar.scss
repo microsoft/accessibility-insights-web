@@ -3,7 +3,17 @@
 @import '../../../../common/styles/colors.scss';
 
 .command-bar {
-    .rescan-button {
+    border-bottom: 1px solid $neutral-alpha-8;
+
+    div[role='menubar'] {
+        background-color: $neutral-0;
+    }
+
+    .menu-item-button {
+        background-color: $neutral-0;
+    }
+
+    .button-icon {
         color: $primary-text;
         line-height: 16px;
     }
