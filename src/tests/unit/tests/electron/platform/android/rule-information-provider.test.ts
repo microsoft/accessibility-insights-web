@@ -19,8 +19,8 @@ describe('RuleInformationProvider', () => {
         // This is based on the output of the Android service.
         props['Screen Dots Per Inch'] = dpi;
 
-        const left = 123 as number;
-        const top = 345 as number;
+        const left: number = 123;
+        const top: number = 345;
         const right = left + width;
         const bottom = top + height;
 
