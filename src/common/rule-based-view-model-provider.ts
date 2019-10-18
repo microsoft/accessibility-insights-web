@@ -95,7 +95,7 @@ const createRuleResultWithoutNodes = (status: CardRuleResultStatus, rule: Unifie
     description: rule.description,
     url: rule.url,
     guidance: rule.guidance,
-    isExpanded: true,
+    isExpanded: false,
 });
 
 const createCardResult = (unifiedResult: UnifiedResult, isSelected: boolean): CardResult => {
