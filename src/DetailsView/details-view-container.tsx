@@ -176,6 +176,7 @@ export class DetailsViewContainer extends React.Component<DetailsViewContainerPr
             this.props.deps.getCardSelectionViewData(this.props.storeState.cardSelectionStoreData),
         );
 
+        console.log({ ruleResultsFail: ruleResults.fail }, this.props.storeState.cardSelectionStoreData);
         return (
             <DetailsViewBody
                 deps={deps}

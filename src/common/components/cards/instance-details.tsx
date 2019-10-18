@@ -2,18 +2,14 @@
 // Licensed under the MIT License.
 import * as classNames from 'classnames';
 import { NamedFC } from 'common/react/named-fc';
+import { CardResult } from 'common/types/store-data/card-view-model';
 import { forOwn, isEmpty } from 'lodash';
 import * as React from 'react';
 
 import { CardRowDeps, PropertyConfiguration } from '../../../common/configs/unified-result-property-configurations';
 import { CardSelectionMessageCreator } from '../../../common/message-creators/card-selection-message-creator';
-import {
-    StoredInstancePropertyBag,
-    TargetAppData,
-    UnifiedResult,
-    UnifiedRule,
-} from '../../../common/types/store-data/unified-data-interface';
-import { instanceDetailsCard, reportInstanceTable } from '../../../reports/components/instance-details.scss';
+import { StoredInstancePropertyBag, TargetAppData, UnifiedRule } from '../../../common/types/store-data/unified-data-interface';
+import { reportInstanceTable } from '../../../reports/components/instance-details.scss';
 import { UserConfigurationStoreData } from '../../types/store-data/user-configuration-store';
 import { HighlightState, InstanceDetailsFooter, InstanceDetailsFooterDeps } from './instance-details-footer';
 
@@ -25,7 +21,7 @@ export type InstanceDetailsDeps = {
 
 export type InstanceDetailsProps = {
     deps: InstanceDetailsDeps;
-    result: UnifiedResult;
+    result: CardResult;
     index: number;
     userConfigurationStoreData: UserConfigurationStoreData;
     targetAppInfo: TargetAppData;
@@ -34,16 +30,6 @@ export type InstanceDetailsProps = {
 
 export const InstanceDetails = NamedFC<InstanceDetailsProps>('InstanceDetails', props => {
     const { result, index, deps, userConfigurationStoreData, rule, targetAppInfo } = props;
-
-    /**
-     * Temp - need to be removed when view model starts providing data
-     * for selected ids
-     */
-    let isCardSelected = false;
-    console.log(result);
-    if (result.uid === 'e90b8aa2-378f-4ac0-877b-cfc198e42dbc') {
-        isCardSelected = true;
-    }
 
     // This should be updated once selection is implemented to sync highlight state with selection.
     const highlightState: HighlightState = 'unavailable';
@@ -62,18 +48,17 @@ export const InstanceDetails = NamedFC<InstanceDetailsProps>('InstanceDetails', 
         return <>{cardRows}</>;
     };
 
-    const cardClickHandler = (localResultInstance: UnifiedResult): void => {
-        deps.cardSelectionMessageCreator.toggleCardSelection(localResultInstance.ruleId, localResultInstance.uid);
-    };
+    const cardClickHandler = (): void => deps.cardSelectionMessageCreator.toggleCardSelection(result.ruleId, result.uid);
 
+    console.log({ r: result.isSelected });
     const instanceDetailsCardStyling = classNames({
         'instance-details-card': true,
-        selected: isCardSelected,
+        selected: result.isSelected,
     });
 
     return (
         <div className={instanceDetailsCardStyling}>
-            <table className={reportInstanceTable} onClick={() => cardClickHandler(result)}>
+            <table className={reportInstanceTable} onClick={cardClickHandler}>
                 <tbody>
                     {renderCardRowsForPropertyBag(result.identifiers)}
                     {renderCardRowsForPropertyBag(result.descriptors)}
