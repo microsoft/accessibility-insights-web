@@ -3,11 +3,10 @@
 import { NamedFC } from 'common/react/named-fc';
 import { ScanActionCreator } from 'electron/flux/action-creator/scan-action-creator';
 import { DeviceStoreData } from 'electron/flux/types/device-store-data';
-import { ScanStoreData } from 'electron/flux/types/scan-store-data';
-import { ActionButton } from 'office-ui-fabric-react/lib/Button';
-import * as React from 'react';
-
 import { ScanStatus } from 'electron/flux/types/scan-status';
+import { ScanStoreData } from 'electron/flux/types/scan-store-data';
+import { CommandBar as UICommandBar, ICommandBarItemProps } from 'office-ui-fabric-react/lib/CommandBar';
+import * as React from 'react';
 import { commandBar, rescanButton } from './command-bar.scss';
 
 export type CommandBarDeps = {
@@ -23,19 +22,21 @@ export interface CommandBarProps {
 export const CommandBar = NamedFC<CommandBarProps>('CommandBar', (props: CommandBarProps) => {
     const { deps, deviceStoreData } = props;
 
-    const onClick = () => deps.scanActionCreator.scan(deviceStoreData.port);
+    const onRescanClick = () => deps.scanActionCreator.scan(deviceStoreData.port);
 
-    return (
-        <div className={commandBar}>
-            <ActionButton
-                iconProps={{
-                    className: rescanButton,
-                    iconName: 'Refresh',
-                }}
-                onClick={onClick}
-                text="Rescan"
-                disabled={props.scanStoreData.status === ScanStatus.Scanning}
-            />
-        </div>
-    );
+    const farItems: ICommandBarItemProps[] = [
+        {
+            key: 'rescan',
+            name: 'Rescan',
+            iconProps: {
+                className: rescanButton,
+                iconName: 'Refresh',
+            },
+            onClick: onRescanClick,
+            disabled: props.scanStoreData.status === ScanStatus.Scanning,
+        },
+    ];
+
+    const items: ICommandBarItemProps[] = []; // UICommandBar expects items to not be null (it does not check)
+    return <UICommandBar items={items} farItems={farItems} className={commandBar} />;
 });
