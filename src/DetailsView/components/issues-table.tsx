@@ -1,24 +1,24 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import * as Markup from 'assessments/markup';
+import { FlaggedComponent } from 'common/components/flagged-component';
+import { VisualizationToggle } from 'common/components/visualization-toggle';
+import { VisualizationConfiguration } from 'common/configs/visualization-configuration';
+import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
+import { FeatureFlags } from 'common/feature-flags';
+import { CardRuleResultsByStatus } from 'common/types/store-data/card-view-model';
+import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
+import { TargetAppData } from 'common/types/store-data/unified-data-interface';
+import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
+import { VisualizationType } from 'common/types/visualization-type';
+import { DecoratedAxeNodeResult } from 'injected/scanner-utils';
 import { ISelection } from 'office-ui-fabric-react/lib/DetailsList';
 import { Spinner, SpinnerSize } from 'office-ui-fabric-react/lib/Spinner';
 import * as React from 'react';
 import { ReportGenerator } from 'reports/report-generator';
+import { RuleResult, ScanResults } from 'scanner/iruleresults';
+import { DictionaryStringTo } from 'types/common-types';
 
-import { FlaggedComponent } from '../../common/components/flagged-component';
-import { VisualizationToggle } from '../../common/components/visualization-toggle';
-import { VisualizationConfiguration } from '../../common/configs/visualization-configuration';
-import { VisualizationConfigurationFactory } from '../../common/configs/visualization-configuration-factory';
-import { FeatureFlags } from '../../common/feature-flags';
-import { CardRuleResultsByStatus } from '../../common/types/store-data/card-view-model';
-import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
-import { TargetAppData } from '../../common/types/store-data/unified-data-interface';
-import { UserConfigurationStoreData } from '../../common/types/store-data/user-configuration-store';
-import { VisualizationType } from '../../common/types/visualization-type';
-import { DecoratedAxeNodeResult } from '../../injected/scanner-utils';
-import { RuleResult, ScanResults } from '../../scanner/iruleresults';
-import { DictionaryStringTo } from '../../types/common-types';
 import { CardsView, CardsViewDeps } from './cards-view';
 import { ExportDialogDeps } from './export-dialog';
 import { IssuesDetailsList } from './issues-details-list';
