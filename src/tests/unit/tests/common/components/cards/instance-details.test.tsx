@@ -62,7 +62,6 @@ describe('InstanceDetails', () => {
         expect(tableElem.length).toBe(1);
 
         tableElem.simulate('click');
-
         cardSelectionMessageCreatorMock.verifyAll();
     });
 
@@ -75,6 +74,14 @@ describe('InstanceDetails', () => {
         props.result.descriptors = {};
         props.result.resolution = {} as UnifiedResolution;
 
+        setupGetPropertyConfigByIdMock();
+
+        const testSubject = shallow(<InstanceDetails {...props} />);
+        expect(testSubject.getElement()).toMatchSnapshot();
+    });
+
+    it.each([true, false])('isSelected drives the styling for the card', isSelected => {
+        props.result.isSelected = isSelected;
         setupGetPropertyConfigByIdMock();
 
         const testSubject = shallow(<InstanceDetails {...props} />);
