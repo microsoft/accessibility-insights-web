@@ -3,16 +3,15 @@
 @import '../../common/styles/common.scss';
 
 body {
+    overflow: auto;
     margin: 0;
     background: $neutral-0;
     color: $neutral-100;
     font-family: $fontFamily;
+    display: flex;
+    flex-direction: column;
 }
 
 main {
-    overflow: auto;
-    position: absolute;
-    top: $detailsViewHeaderBarHeight;
-    bottom: 0;
     width: 100%;
 }
