@@ -40,23 +40,16 @@ class CollapsibleComponentCards extends React.Component<CollapsibleComponentCard
         this.state = { showContent: props.isExpanded };
     }
 
-    public componentWillReceiveProps(newProps, currentProps): void {
-        if (newProps.isExpanded !== currentProps.isExpanded) {
-            this.setState({ showContent: newProps.isExpanded });
-        }
-    }
-
     private onClick = (): void => {
         const { deps, id } = this.props;
         const isHighlightingInteractionSupported = deps.cardInteractionSupport.supportsHighlighting;
 
         if (isHighlightingInteractionSupported) {
-            console.log('here');
             deps.cardSelectionMessageCreator.toggleRuleExpandCollapse(id);
-        } else {
-            const newState = !this.state.showContent;
-            this.setState({ showContent: newState });
         }
+
+        const newState = !this.state.showContent;
+        this.setState({ showContent: newState });
     };
 
     public render(): JSX.Element {
