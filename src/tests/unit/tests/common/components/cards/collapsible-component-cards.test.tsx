@@ -68,4 +68,30 @@ describe('CollapsibleComponentCardsTest', () => {
 
         cardSelectionMessageCreatorMock.verifyAll();
     });
+
+    test('toggle from expanded to collapsed but not call the action since no highlighting interaction is supported', () => {
+        cardSelectionMessageCreatorMock.setup(mock => mock.toggleRuleExpandCollapse(It.isAnyString())).verifiable(Times.never());
+
+        const props: CollapsibleComponentCardsProps = {
+            header: <div>Some header</div>,
+            content: <div>Some content</div>,
+            headingLevel: 5,
+            deps: {
+                cardSelectionMessageCreator: cardSelectionMessageCreatorMock.object,
+                cardInteractionSupport: noCardInteractionsSupported,
+            },
+            isExpanded: true,
+            id: 'test-id',
+        };
+        const control = CardsCollapsibleControl(props);
+        const result = shallow(control);
+        expect(result.getElement()).toMatchSnapshot('expanded');
+
+        const button = result.find('CustomizedActionButton');
+        button.simulate('click');
+
+        expect(result.getElement()).toMatchSnapshot('collapsed');
+        expect(result.state()).toEqual({ showContent: false });
+        cardSelectionMessageCreatorMock.verifyAll();
+    });
 });

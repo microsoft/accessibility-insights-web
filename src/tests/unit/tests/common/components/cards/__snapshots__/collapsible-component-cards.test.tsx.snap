@@ -193,6 +193,63 @@ exports[`CollapsibleComponentCardsTest render with contentClassName set to: unde
 </div>
 `;
 
+exports[`CollapsibleComponentCardsTest toggle from expanded to collapsed but not call the action since no highlighting interaction is supported: collapsed 1`] = `
+<div
+  className="collapsibleContainer collapsed"
+>
+  <div
+    aria-level={5}
+    role="heading"
+  >
+    <CustomizedActionButton
+      aria-expanded={false}
+      className="collapsibleControl"
+      onClick={[Function]}
+    >
+      <span
+        className="collapsibleTitle"
+      >
+        <div>
+          Some header
+        </div>
+      </span>
+    </CustomizedActionButton>
+  </div>
+</div>
+`;
+
+exports[`CollapsibleComponentCardsTest toggle from expanded to collapsed but not call the action since no highlighting interaction is supported: expanded 1`] = `
+<div
+  className="collapsibleContainer"
+>
+  <div
+    aria-level={5}
+    role="heading"
+  >
+    <CustomizedActionButton
+      aria-expanded={true}
+      className="collapsibleControl"
+      onClick={[Function]}
+    >
+      <span
+        className="collapsibleTitle"
+      >
+        <div>
+          Some header
+        </div>
+      </span>
+    </CustomizedActionButton>
+  </div>
+  <div
+    className="collapsibleContainerContent"
+  >
+    <div>
+      Some content
+    </div>
+  </div>
+</div>
+`;
+
 exports[`CollapsibleComponentCardsTest toggle from expanded to collapsed: collapsed 1`] = `
 <div
   className="collapsibleContainer"
