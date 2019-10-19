@@ -11,13 +11,14 @@ import { outcomeTypeSemantics } from '../../../reports/components/outcome-type';
 import { MinimalRuleHeader } from '../../../reports/components/report-sections/minimal-rule-header';
 import { CardRuleResult } from '../../types/store-data/card-view-model';
 import { UserConfigurationStoreData } from '../../types/store-data/user-configuration-store';
-import { CollapsibleComponentCardsProps } from './collapsible-component-cards';
+import { CollapsibleComponentCardsDeps, CollapsibleComponentCardsProps } from './collapsible-component-cards';
 import { RuleContent, RuleContentDeps } from './rule-content';
 import { collapsibleRuleDetailsGroup, ruleDetailsGroup } from './rules-with-instances.scss';
 
-export type RulesWithInstancesDeps = RuleContentDeps & {
-    collapsibleControl: (props: CollapsibleComponentCardsProps) => JSX.Element;
-};
+export type RulesWithInstancesDeps = RuleContentDeps &
+    CollapsibleComponentCardsDeps & {
+        collapsibleControl: (props: CollapsibleComponentCardsProps) => JSX.Element;
+    };
 
 export type RulesWithInstancesProps = {
     deps: RulesWithInstancesDeps;

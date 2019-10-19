@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { allCardInteractionsSupported, noCardInteractionsSupported } from 'common/components/cards/card-interaction-support';
 import { CardsCollapsibleControl, CollapsibleComponentCardsProps } from 'common/components/cards/collapsible-component-cards';
 import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
 import { shallow } from 'enzyme';
@@ -29,7 +30,10 @@ describe('CollapsibleComponentCardsTest', () => {
                     content: <div>Some content</div>,
                     headingLevel: 5,
                     [propertyName]: value,
-                    deps: { cardSelectionMessageCreator: cardSelectionMessageCreatorMock.object },
+                    deps: {
+                        cardSelectionMessageCreator: cardSelectionMessageCreatorMock.object,
+                        cardInteractionSupport: noCardInteractionsSupported,
+                    },
                     isExpanded: true,
                 };
                 const control = CardsCollapsibleControl(props);
@@ -49,6 +53,7 @@ describe('CollapsibleComponentCardsTest', () => {
             headingLevel: 5,
             deps: {
                 cardSelectionMessageCreator: cardSelectionMessageCreatorMock.object,
+                cardInteractionSupport: allCardInteractionsSupported,
             },
             isExpanded: true,
             id: 'test-id',
