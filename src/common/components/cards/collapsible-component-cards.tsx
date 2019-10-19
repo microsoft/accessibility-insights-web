@@ -61,7 +61,7 @@ class CollapsibleComponentCards extends React.Component<CollapsibleComponentCard
 
     public render(): JSX.Element {
         const { showContent } = this.state;
-        const { headingLevel, contentClassName, content, isExpanded, deps, buttonAriaLabel, containerClassName, header, id } = this.props;
+        const { headingLevel, contentClassName, content, buttonAriaLabel, containerClassName, header } = this.props;
 
         const containerProps = { role: 'heading', 'aria-level': headingLevel };
         let contentWrapper = null;
