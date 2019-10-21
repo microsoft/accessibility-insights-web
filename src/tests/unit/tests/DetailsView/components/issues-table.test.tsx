@@ -1,19 +1,19 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
+import { DateProvider } from 'common/date-provider';
+import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
+import { IssuesTable, IssuesTableDeps, IssuesTableProps } from 'DetailsView/components/issues-table';
+import { DetailsRowData, IssuesTableHandler } from 'DetailsView/components/issues-table-handler';
 import { shallow } from 'enzyme';
+import { DecoratedAxeNodeResult } from 'injected/scanner-utils';
 import { ISelection, Selection } from 'office-ui-fabric-react/lib/DetailsList';
 import * as React from 'react';
 import { ReportGenerator } from 'reports/report-generator';
+import { RuleResult } from 'scanner/iruleresults';
 import { IMock, Mock } from 'typemoq';
+import { DictionaryStringTo } from 'types/common-types';
 
-import { VisualizationConfigurationFactory } from '../../../../../common/configs/visualization-configuration-factory';
-import { DateProvider } from '../../../../../common/date-provider';
-import { UserConfigurationStoreData } from '../../../../../common/types/store-data/user-configuration-store';
-import { IssuesTable, IssuesTableDeps, IssuesTableProps } from '../../../../../DetailsView/components/issues-table';
-import { DetailsRowData, IssuesTableHandler } from '../../../../../DetailsView/components/issues-table-handler';
-import { DecoratedAxeNodeResult } from '../../../../../injected/scanner-utils';
-import { RuleResult } from '../../../../../scanner/iruleresults';
-import { DictionaryStringTo } from '../../../../../types/common-types';
 import { exampleUnifiedStatusResults } from '../../common/components/cards/sample-view-model-data';
 
 describe('IssuesTableTest', () => {

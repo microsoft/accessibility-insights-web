@@ -44,7 +44,7 @@ exports[`IssuesTableTest includes subtitle if specified 1`] = `
   <div className=\\"issues-table-subtitle\\">
     test subtitle text
   </div>
-  <StyledSpinnerBase className=\\"details-view-spinner\\" size={3} label=\\"Loading...\\" />
+  <ScanningSpinner isSpinning={true} label=\\"Loading...\\" />
 </div>"
 `;
 
@@ -57,7 +57,7 @@ exports[`IssuesTableTest spinner for scanning state 1`] = `
     <div className=\\"details-view-command-bar\\">
       <VisualizationToggle label=\\"Show failures\\" checked={true} disabled={true} onClick={[Function: proxy]} className=\\"automated-checks-details-view-toggle\\" visualizationName=\\"Automated checks\\" />
     </div>
-    <StyledSpinnerBase className=\\"details-view-spinner\\" size={3} label=\\"Scanning...\\" />
+    <ScanningSpinner isSpinning={true} label=\\"Scanning...\\" />
   </div>
 </div>"
 `;
@@ -67,7 +67,7 @@ exports[`IssuesTableTest spinner, issuesEnabled == null 1`] = `
   <h1>
     test title
   </h1>
-  <StyledSpinnerBase className=\\"details-view-spinner\\" size={3} label=\\"Loading...\\" />
+  <ScanningSpinner isSpinning={true} label=\\"Loading...\\" />
 </div>"
 `;
 
@@ -81,7 +81,7 @@ exports[`IssuesTableTest spinner, issuesEnabled is an empty object 1`] = `
       <VisualizationToggle label=\\"Show failures\\" checked={{...}} disabled={false} onClick={[undefined]} className=\\"automated-checks-details-view-toggle\\" visualizationName=\\"Automated checks\\" />
       <ReportExportComponent deps={{...}} scanDate={{...}} reportGenerator={{...}} pageTitle=\\"pageTitle\\" exportResultsType=\\"AutomatedChecks\\" htmlGenerator={[Function: bound proxy]} updatePersistedDescription={[Function: nullUpdatePersistedDescription]} getExportDescription={[Function]} />
     </div>
-    <StyledSpinnerBase className=\\"details-view-spinner\\" size={3} label=\\"Loading data...\\" />
+    <ScanningSpinner isSpinning={true} label=\\"Loading data...\\" />
   </div>
 </div>"
 `;

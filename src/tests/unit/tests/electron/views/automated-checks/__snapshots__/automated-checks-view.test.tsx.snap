@@ -40,7 +40,9 @@ exports[`AutomatedChecksView renders when status scan <Completed> 1`] = `
     <main>
       <HeaderSection />
       <ScanningSpinner
-        isScanning={false}
+        aria-live="assertive"
+        isSpinning={false}
+        label="Scanning..."
       />
       <CardsView
         deps={
@@ -120,7 +122,9 @@ exports[`AutomatedChecksView renders when status scan <Failed> 1`] = `
     <main>
       <HeaderSection />
       <ScanningSpinner
-        isScanning={false}
+        aria-live="assertive"
+        isSpinning={false}
+        label="Scanning..."
       />
       <DeviceDisconnectedPopup
         deviceName="TEST DEVICE"
@@ -183,7 +187,9 @@ exports[`AutomatedChecksView renders when status scan <Scanning> 1`] = `
     <main>
       <HeaderSection />
       <ScanningSpinner
-        isScanning={true}
+        aria-live="assertive"
+        isSpinning={true}
+        label="Scanning..."
       />
     </main>
   </div>
@@ -241,7 +247,9 @@ exports[`AutomatedChecksView renders when status scan <undefined> 1`] = `
     <main>
       <HeaderSection />
       <ScanningSpinner
-        isScanning={false}
+        aria-live="assertive"
+        isSpinning={false}
+        label="Scanning..."
       />
     </main>
   </div>

@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { ScanningSpinner } from 'common/components/scanning-spinner/scanning-spinner';
 import { GetCardSelectionViewData } from 'common/get-card-selection-view-data';
 import { GetUnifiedRuleResultsDelegate } from 'common/rule-based-view-model-provider';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
@@ -12,7 +13,6 @@ import { DeviceStoreData } from 'electron/flux/types/device-store-data';
 import { ScanStatus } from 'electron/flux/types/scan-status';
 import { ScanStoreData } from 'electron/flux/types/scan-store-data';
 import { WindowStateStoreData } from 'electron/flux/types/window-state-store-data';
-import { ScanningSpinner } from 'electron/views/automated-checks/components/scanning-spinner';
 import { TitleBar, TitleBarDeps } from 'electron/views/automated-checks/components/title-bar';
 import { mainContentWrapper } from 'electron/views/device-connect-view/device-connect-view.scss';
 import { DeviceDisconnectedPopup } from 'electron/views/device-disconnected-popup/device-disconnected-popup';
@@ -82,7 +82,13 @@ export class AutomatedChecksView extends React.Component<AutomatedChecksViewProp
     }
 
     private renderScanning(): JSX.Element {
-        return <ScanningSpinner isScanning={this.props.scanStoreData.status === ScanStatus.Scanning} />;
+        return (
+            <ScanningSpinner
+                isSpinning={this.props.scanStoreData.status === ScanStatus.Scanning}
+                label="Scanning..."
+                aria-live="assertive"
+            />
+        );
     }
 
     private renderResults(): JSX.Element {
