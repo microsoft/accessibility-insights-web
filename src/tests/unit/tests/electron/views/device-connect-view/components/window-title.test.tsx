@@ -2,8 +2,8 @@
 // Licensed under the MIT License.
 
 import { WindowStateStoreData } from 'electron/flux/types/window-state-store-data';
-import { PlatformInfo } from 'electron/platform-info';
 import { WindowTitle, WindowTitleProps } from 'electron/views/device-connect-view/components/window-title';
+import { PlatformInfo } from 'electron/window-management/platform-info';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import { IMock, Mock } from 'typemoq';

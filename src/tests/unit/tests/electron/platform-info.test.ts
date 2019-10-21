@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { OSType, PlatformInfo } from 'electron/platform-info';
+import { OSType, PlatformInfo } from 'electron/window-management/platform-info';
 import { IMock, Mock } from 'typemoq';
 
 describe(PlatformInfo, () => {

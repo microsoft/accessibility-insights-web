@@ -28,7 +28,6 @@ import { WindowFrameActions } from 'electron/flux/action/window-frame-actions';
 import { WindowStateActions } from 'electron/flux/action/window-state-actions';
 import { ScanStore } from 'electron/flux/store/scan-store';
 import { WindowStateStore } from 'electron/flux/store/window-state-store';
-import { PlatformInfo } from 'electron/platform-info';
 import { createFetchScanResults } from 'electron/platform/android/fetch-scan-results';
 import { ScanController } from 'electron/platform/android/scan-controller';
 import { createDefaultBuilder } from 'electron/platform/android/unified-result-builder';
@@ -36,6 +35,7 @@ import { CollapsibleComponentCard } from 'electron/views/automated-checks/compon
 import { RootContainerProps, RootContainerState } from 'electron/views/root-container/components/root-container';
 import { WindowFrameListener } from 'electron/window-frame-listener';
 import { WindowFrameUpdater } from 'electron/window-frame-updater';
+import { PlatformInfo } from 'electron/window-management/platform-info';
 import { FixInstructionProcessor } from 'injected/fix-instruction-processor';
 import * as ReactDOM from 'react-dom';
 

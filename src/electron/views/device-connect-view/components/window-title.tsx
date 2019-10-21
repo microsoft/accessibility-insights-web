@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { css } from '@uifabric/utilities';
 import { WindowStateStoreData } from 'electron/flux/types/window-state-store-data';
-import { PlatformInfo } from 'electron/platform-info';
+import { PlatformInfo } from 'electron/window-management/platform-info';
 import { isEmpty } from 'lodash';
 import * as React from 'react';
 import { NamedFC } from '../../../../common/react/named-fc';

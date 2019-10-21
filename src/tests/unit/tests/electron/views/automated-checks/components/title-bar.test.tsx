@@ -3,9 +3,9 @@
 
 import { WindowFrameActionCreator } from 'electron/flux/action-creator/window-frame-action-creator';
 import { WindowStateStoreData } from 'electron/flux/types/window-state-store-data';
-import { PlatformInfo } from 'electron/platform-info';
 import { MaximizeRestoreButtonProps } from 'electron/views/automated-checks/components/maximize-restore-button';
 import { TitleBar, TitleBarProps } from 'electron/views/automated-checks/components/title-bar';
+import { PlatformInfo } from 'electron/window-management/platform-info';
 import { shallow } from 'enzyme';
 import { Button } from 'office-ui-fabric-react/lib/Button';
 import * as React from 'react';
