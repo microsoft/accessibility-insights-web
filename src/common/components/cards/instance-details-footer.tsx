@@ -63,8 +63,12 @@ export const InstanceDetailsFooter = NamedFC<InstanceDetailsFooterProps>('Instan
         );
     };
 
+    const handleKeyDown = (event: React.KeyboardEvent<any>) => {
+        event.stopPropagation();
+    };
+
     return (
-        <div className={foot}>
+        <div className={foot} onKeyDown={handleKeyDown}>
             {renderHighlightStatus()}
             {renderKebabMenu()}
         </div>

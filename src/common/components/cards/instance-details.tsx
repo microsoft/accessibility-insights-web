@@ -55,6 +55,7 @@ export const InstanceDetails = NamedFC<InstanceDetailsProps>('InstanceDetails', 
 
     const cardKeyPressHandler = (event: React.KeyboardEvent<any>): void => {
         if (event.keyCode === KeyCodeConstants.ENTER || event.keyCode === KeyCodeConstants.SPACEBAR) {
+            event.preventDefault();
             cardClickHandler();
         }
     };

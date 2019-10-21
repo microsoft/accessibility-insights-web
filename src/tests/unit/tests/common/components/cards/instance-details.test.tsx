@@ -69,6 +69,7 @@ describe('InstanceDetails', () => {
 
     const supportedKeyCodes = [KeyCodeConstants.ENTER, KeyCodeConstants.SPACEBAR];
     it.each(supportedKeyCodes)('dispatches the card selection message when key with keycode %s is pressed', keyCode => {
+        const preventDefaultMock = jest.fn();
         setupGetPropertyConfigByIdMock();
 
         cardSelectionMessageCreatorMock
@@ -79,9 +80,10 @@ describe('InstanceDetails', () => {
         const divElem = wrapper.find('.instance-details-card');
         expect(divElem.length).toBe(1);
 
-        divElem.simulate('keydown', { keyCode: keyCode });
+        divElem.simulate('keydown', { keyCode: keyCode, preventDefault: preventDefaultMock });
 
         cardSelectionMessageCreatorMock.verifyAll();
+        expect(preventDefaultMock).toHaveBeenCalled();
     });
 
     it('renders nothing when there is no card row config for the property / no property', () => {
