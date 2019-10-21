@@ -15,36 +15,33 @@
 .instance-details-card {
     border-radius: 4px;
     outline-style: 'border-style';
-    box-shadow: 0px 0.6px 1.8px rgba(0, 0, 0, 0.108), 0px 3.2px 7.2px rgba(0, 0, 0, 0.132);
+    box-shadow: 0px 0.6px 1.8px $box-shadow-108, 0px 3.2px 7.2px $box-shadow-132;
     margin-left: 24px;
     margin-bottom: 16px;
+    cursor: pointer;
     @include fill-available-width;
 }
 
 .instance-details-card.selected {
-    border: 5px solid #2b88d8;
+    border: 5px solid $communication-tint-10;
 }
 
 .instance-details-card:focus {
-    outline: 2px solid rgba(0, 0, 0, 0.9);
-    cursor: pointer;
+    outline: 2px solid $primary-text;
 }
 
 .instance-details-card.selected:focus {
-    border: 5px solid #2b88d8;
-    outline: 2px solid rgba(0, 0, 0, 0.9);
-    cursor: pointer;
+    border: 5px solid $communication-tint-10;
+    outline: 2px solid $primary-text;
 }
 
 .instance-details-card:hover {
-    box-shadow: 0px 8px 10px rgba(0, 0, 0, 0.108), 0px 8px 10px rgba(0, 0, 0, 0.132);
-    cursor: pointer;
+    box-shadow: 0px 8px 10px $box-shadow-108, 0px 8px 10px $box-shadow-132;
 }
 
 .instance-details-card.selected:hover {
     border: 5px solid #2b88d8;
-    box-shadow: 0px 8px 10px rgba(0, 0, 0, 0.108), 0px 8px 10px rgba(0, 0, 0, 0.132);
-    cursor: pointer;
+    box-shadow: 0px 8px 10px $box-shadow-108, 0px 8px 10px $box-shadow-132;
 }
 
 .report-instance-table {

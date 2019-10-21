@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { InstanceDetails, InstanceDetailsDeps, InstanceDetailsProps } from 'common/components/cards/instance-details';
+import { KeyCodeConstants } from 'common/constants/keycode-constants';
 import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
 import { shallow } from 'enzyme';
 import * as React from 'react';
@@ -62,6 +63,23 @@ describe('InstanceDetails', () => {
         expect(divElem.length).toBe(1);
 
         divElem.simulate('click');
+
+        cardSelectionMessageCreatorMock.verifyAll();
+    });
+
+    const supportedKeyCodes = [KeyCodeConstants.ENTER, KeyCodeConstants.SPACEBAR];
+    it.each(supportedKeyCodes)('dispatches the card selection message when key with keycode %s is pressed', keyCode => {
+        setupGetPropertyConfigByIdMock();
+
+        cardSelectionMessageCreatorMock
+            .setup(mock => mock.toggleCardSelection(It.isAnyString(), It.isAnyString()))
+            .verifiable(Times.once());
+
+        const wrapper = shallow(<InstanceDetails {...props} />);
+        const divElem = wrapper.find('.instance-details-card');
+        expect(divElem.length).toBe(1);
+
+        divElem.simulate('keydown', { keyCode: keyCode });
 
         cardSelectionMessageCreatorMock.verifyAll();
     });
