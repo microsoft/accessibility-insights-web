@@ -4,12 +4,12 @@ exports[`ScanningSpinner renders isScanning = <false> 1`] = `null`;
 
 exports[`ScanningSpinner renders isScanning = <true> 1`] = `
 <div
-  aria-live="assertive"
+  aria-live="test-aria-live"
   role="alert"
 >
   <StyledSpinnerBase
     className="scanningSpinner"
-    label="Scanning..."
+    label="test-label"
     size={3}
   />
 </div>

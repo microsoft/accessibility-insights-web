@@ -6,11 +6,13 @@ import * as React from 'react';
 
 describe('ScanningSpinner', () => {
     describe('renders', () => {
-        const isScanningValues = [true, false];
+        const isSpinningValues = [true, false];
 
-        it.each(isScanningValues)('isScanning = <%s>', isScanning => {
+        it.each(isSpinningValues)('isScanning = <%s>', isSpinning => {
             const props = {
-                isScanning,
+                isSpinning,
+                label: 'test-label',
+                ['aria-live']: 'test-aria-live' as any,
             };
             const wrapped = shallow(<ScanningSpinner {...props} />);
 

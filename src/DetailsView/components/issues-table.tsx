@@ -19,6 +19,7 @@ import { ReportGenerator } from 'reports/report-generator';
 import { RuleResult, ScanResults } from 'scanner/iruleresults';
 import { DictionaryStringTo } from 'types/common-types';
 
+import { ScanningSpinner } from 'electron/views/automated-checks/components/scanning-spinner';
 import { CardsView, CardsViewDeps } from './cards-view';
 import { ExportDialogDeps } from './export-dialog';
 import { IssuesDetailsList } from './issues-details-list';
@@ -182,11 +183,7 @@ export class IssuesTable extends React.Component<IssuesTableProps> {
     }
 
     private renderSpinner(label: string): JSX.Element {
-        return (
-            <div role="alert">
-                <Spinner className="details-view-spinner" size={SpinnerSize.large} label={label} />
-            </div>
-        );
+        return <ScanningSpinner isSpinning={true} label={label} />;
     }
 
     private renderDisabledMessage(): JSX.Element {

@@ -6,17 +6,19 @@ import * as React from 'react';
 import { scanningSpinner } from './scanning-spinner.scss';
 
 export type ScanningSpinnerProps = {
-    isScanning: boolean;
+    isSpinning: boolean;
+    label: string;
+    ['aria-live']?: 'assertive' | 'polite' | 'off';
 };
 
-export const ScanningSpinner = NamedFC<ScanningSpinnerProps>('ScanningSpinner', ({ isScanning: isVisible }) => {
-    if (!isVisible) {
+export const ScanningSpinner = NamedFC<ScanningSpinnerProps>('ScanningSpinner', props => {
+    if (!props.isSpinning) {
         return null;
     }
 
     return (
-        <div role="alert" aria-live="assertive">
-            <Spinner className={scanningSpinner} size={SpinnerSize.large} label="Scanning..." />
+        <div role="alert" aria-live={props['aria-live']}>
+            <Spinner className={scanningSpinner} size={SpinnerSize.large} label={props.label} />
         </div>
     );
 });

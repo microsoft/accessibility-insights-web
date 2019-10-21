@@ -82,7 +82,13 @@ export class AutomatedChecksView extends React.Component<AutomatedChecksViewProp
     }
 
     private renderScanning(): JSX.Element {
-        return <ScanningSpinner isScanning={this.props.scanStoreData.status === ScanStatus.Scanning} />;
+        return (
+            <ScanningSpinner
+                isSpinning={this.props.scanStoreData.status === ScanStatus.Scanning}
+                label="Scanning..."
+                aria-live="assertive"
+            />
+        );
     }
 
     private renderResults(): JSX.Element {
