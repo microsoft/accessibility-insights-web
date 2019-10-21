@@ -10,7 +10,6 @@ import { Interpreter } from 'background/interpreter';
 import { CardSelectionStore } from 'background/stores/card-selection-store';
 import { UnifiedScanResultStore } from 'background/stores/unified-scan-result-store';
 import { noCardInteractionsSupported } from 'common/components/cards/card-interaction-support';
-import { CardsCollapsibleControl } from 'common/components/cards/collapsible-component-cards';
 import { getPropertyConfiguration } from 'common/configs/unified-result-property-configurations';
 import { DateProvider } from 'common/date-provider';
 import { getCardSelectionViewData } from 'common/get-card-selection-view-data';
@@ -33,6 +32,7 @@ import { PlatformInfo } from 'electron/platform-info';
 import { createFetchScanResults } from 'electron/platform/android/fetch-scan-results';
 import { ScanController } from 'electron/platform/android/scan-controller';
 import { createDefaultBuilder } from 'electron/platform/android/unified-result-builder';
+import { CollapsibleComponentCard } from 'electron/views/automated-checks/components/collapsible-component-cards';
 import { RootContainerProps, RootContainerState } from 'electron/views/root-container/components/root-container';
 import { WindowFrameListener } from 'electron/window-frame-listener';
 import { WindowFrameUpdater } from 'electron/window-frame-updater';
@@ -167,7 +167,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then((persistedDat
         LinkComponent: ElectronLink,
 
         cardInteractionSupport: noCardInteractionsSupported, // we are supposed to have 'copy issue details' support
-        collapsibleControl: CardsCollapsibleControl,
+        collapsibleControl: CollapsibleComponentCard,
         fixInstructionProcessor,
         getGuidanceTagsFromGuidanceLinks: GetGuidanceTagsFromGuidanceLinks, // I don't think we have guidance links for axe-android
 
