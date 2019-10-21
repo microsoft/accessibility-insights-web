@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`CardKebabMenuButtonTest renders per snapshot with allCardInteractionsSupported 1`] = `
-"<div>
+"<div onKeyDown={[Function: handleKeyDown]}>
   <CustomizedActionButton className=\\"kebabMenuButton\\" ariaLabel=\\"More actions\\" onRenderMenuIcon={[Function]} menuProps={{...}} />
   <IssueFilingDialog deps={{...}} isOpen={false} selectedIssueFilingService={{...}} selectedIssueData={{...}} selectedIssueFilingServiceData={{...}} onClose={[Function]} issueFilingServicePropertiesMap={{...}} />
   <Toast deps={{...}} timeoutLength={6000} />
@@ -38,7 +38,7 @@ Object {
 `;
 
 exports[`CardKebabMenuButtonTest renders per snapshot with onlyUserConfigAgnosticCardInteractionsSupported 1`] = `
-"<div>
+"<div onKeyDown={[Function: handleKeyDown]}>
   <CustomizedActionButton className=\\"kebabMenuButton\\" ariaLabel=\\"More actions\\" onRenderMenuIcon={[Function]} menuProps={{...}} />
   <Toast deps={{...}} timeoutLength={6000} />
 </div>"

@@ -3,7 +3,6 @@
 exports[`InstanceDetailsFooter renders per snapshot when all card interactions are supported (ie, web) 1`] = `
 <div
   className="foot"
-  onKeyDown={[Function]}
 >
   <div
     className="highlightStatus"
@@ -35,7 +34,6 @@ exports[`InstanceDetailsFooter renders per snapshot when all card interactions a
 exports[`InstanceDetailsFooter renders per snapshot when only UserConfig-agnostic card interactions are supported (ie, electron) 1`] = `
 <div
   className="foot"
-  onKeyDown={[Function]}
 >
   <div
     className="highlightStatus"
@@ -67,7 +65,6 @@ exports[`InstanceDetailsFooter renders per snapshot when only UserConfig-agnosti
 exports[`InstanceDetailsFooter renders per snapshot with highlightState="hidden" 1`] = `
 <div
   className="foot"
-  onKeyDown={[Function]}
 >
   <div
     className="highlightStatus"
@@ -99,7 +96,6 @@ exports[`InstanceDetailsFooter renders per snapshot with highlightState="hidden"
 exports[`InstanceDetailsFooter renders per snapshot with highlightState="unavailable" 1`] = `
 <div
   className="foot"
-  onKeyDown={[Function]}
 >
   <div
     className="highlightStatus"
@@ -131,7 +127,6 @@ exports[`InstanceDetailsFooter renders per snapshot with highlightState="unavail
 exports[`InstanceDetailsFooter renders per snapshot with highlightState="visible" 1`] = `
 <div
   className="foot"
-  onKeyDown={[Function]}
 >
   <div
     className="highlightStatus"
