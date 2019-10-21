@@ -2,10 +2,10 @@
 // Licensed under the MIT License.
 import { css } from '@uifabric/utilities';
 import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
+import { NamedFC } from 'common/react/named-fc';
 import { ActionButton } from 'office-ui-fabric-react/lib/Button';
 import * as React from 'react';
 
-import { NamedFC } from 'common/react/named-fc';
 import {
     collapsibleContainer,
     collapsibleContainerContent,

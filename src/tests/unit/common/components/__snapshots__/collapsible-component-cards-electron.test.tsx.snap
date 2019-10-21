@@ -1,0 +1,258 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CollapsibleComponentCardsTest render with buttonAriaLabel set to: some button label 1`] = `
+<div
+  className="collapsible-component"
+>
+  <CustomizedActionButton
+    aria-expanded={true}
+    className="collapsible"
+    iconProps={
+      Object {
+        "class": "collapsible-icon",
+        "iconName": "ChevronDown",
+      }
+    }
+    onClick={[Function]}
+  >
+    <span
+      className="collapsible-title"
+    >
+      <div>
+        Some header
+      </div>
+    </span>
+  </CustomizedActionButton>
+  <div
+    className="collapsible-content"
+  >
+    <div>
+      Some content
+    </div>
+  </div>
+</div>
+`;
+
+exports[`CollapsibleComponentCardsTest render with buttonAriaLabel set to: undefined 1`] = `
+<div
+  className="collapsible-component"
+>
+  <CustomizedActionButton
+    aria-expanded={true}
+    className="collapsible"
+    iconProps={
+      Object {
+        "class": "collapsible-icon",
+        "iconName": "ChevronDown",
+      }
+    }
+    onClick={[Function]}
+  >
+    <span
+      className="collapsible-title"
+    >
+      <div>
+        Some header
+      </div>
+    </span>
+  </CustomizedActionButton>
+  <div
+    className="collapsible-content"
+  >
+    <div>
+      Some content
+    </div>
+  </div>
+</div>
+`;
+
+exports[`CollapsibleComponentCardsTest render with containerClassName set to: a-container 1`] = `
+<div
+  className="a-container collapsible-component"
+>
+  <CustomizedActionButton
+    aria-expanded={true}
+    className="collapsible"
+    iconProps={
+      Object {
+        "class": "collapsible-icon",
+        "iconName": "ChevronDown",
+      }
+    }
+    onClick={[Function]}
+  >
+    <span
+      className="collapsible-title"
+    >
+      <div>
+        Some header
+      </div>
+    </span>
+  </CustomizedActionButton>
+  <div
+    className="collapsible-content"
+  >
+    <div>
+      Some content
+    </div>
+  </div>
+</div>
+`;
+
+exports[`CollapsibleComponentCardsTest render with containerClassName set to: undefined 1`] = `
+<div
+  className="collapsible-component"
+>
+  <CustomizedActionButton
+    aria-expanded={true}
+    className="collapsible"
+    iconProps={
+      Object {
+        "class": "collapsible-icon",
+        "iconName": "ChevronDown",
+      }
+    }
+    onClick={[Function]}
+  >
+    <span
+      className="collapsible-title"
+    >
+      <div>
+        Some header
+      </div>
+    </span>
+  </CustomizedActionButton>
+  <div
+    className="collapsible-content"
+  >
+    <div>
+      Some content
+    </div>
+  </div>
+</div>
+`;
+
+exports[`CollapsibleComponentCardsTest render with contentClassName set to: content-class-name-a 1`] = `
+<div
+  className="collapsible-component"
+>
+  <CustomizedActionButton
+    aria-expanded={true}
+    className="collapsible"
+    iconProps={
+      Object {
+        "class": "collapsible-icon",
+        "iconName": "ChevronDown",
+      }
+    }
+    onClick={[Function]}
+  >
+    <span
+      className="collapsible-title"
+    >
+      <div>
+        Some header
+      </div>
+    </span>
+  </CustomizedActionButton>
+  <div
+    className="content-class-name-a collapsible-content"
+  >
+    <div>
+      Some content
+    </div>
+  </div>
+</div>
+`;
+
+exports[`CollapsibleComponentCardsTest render with contentClassName set to: undefined 1`] = `
+<div
+  className="collapsible-component"
+>
+  <CustomizedActionButton
+    aria-expanded={true}
+    className="collapsible"
+    iconProps={
+      Object {
+        "class": "collapsible-icon",
+        "iconName": "ChevronDown",
+      }
+    }
+    onClick={[Function]}
+  >
+    <span
+      className="collapsible-title"
+    >
+      <div>
+        Some header
+      </div>
+    </span>
+  </CustomizedActionButton>
+  <div
+    className="collapsible-content"
+  >
+    <div>
+      Some content
+    </div>
+  </div>
+</div>
+`;
+
+exports[`CollapsibleComponentCardsTest toggle from expanded to collapsed: collapsed 1`] = `
+<div
+  className="collapsible-component"
+>
+  <CustomizedActionButton
+    aria-expanded={false}
+    className="collapsible"
+    iconProps={
+      Object {
+        "class": "collapsible-icon",
+        "iconName": "ChevronRight",
+      }
+    }
+    onClick={[Function]}
+  >
+    <span
+      className="collapsible-title"
+    >
+      <div>
+        Some header
+      </div>
+    </span>
+  </CustomizedActionButton>
+</div>
+`;
+
+exports[`CollapsibleComponentCardsTest toggle from expanded to collapsed: expanded 1`] = `
+<div
+  className="collapsible-component"
+>
+  <CustomizedActionButton
+    aria-expanded={true}
+    className="collapsible"
+    iconProps={
+      Object {
+        "class": "collapsible-icon",
+        "iconName": "ChevronDown",
+      }
+    }
+    onClick={[Function]}
+  >
+    <span
+      className="collapsible-title"
+    >
+      <div>
+        Some header
+      </div>
+    </span>
+  </CustomizedActionButton>
+  <div
+    className="collapsible-content"
+  >
+    <div>
+      Some content
+    </div>
+  </div>
+</div>
+`;

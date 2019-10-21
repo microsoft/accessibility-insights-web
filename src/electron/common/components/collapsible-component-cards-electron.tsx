@@ -1,0 +1,61 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+import { css } from '@uifabric/utilities';
+import { CollapsibleComponentCardsProps } from 'common/components/cards/collapsible-component-cards';
+import { ActionButton } from 'office-ui-fabric-react/lib/Button';
+import * as React from 'react';
+
+export interface ElectronCollapsibleComponentProps {
+    header: JSX.Element;
+    content: JSX.Element;
+    contentClassName?: string;
+    containerClassName?: string;
+}
+
+interface CollapsibleComponentState {
+    showContent: boolean;
+}
+
+class CollapsibleComponentElectron extends React.Component<ElectronCollapsibleComponentProps, CollapsibleComponentState> {
+    private readonly iconNameDown = 'ChevronDown';
+    private readonly iconNameUp = 'ChevronRight';
+
+    constructor(props: ElectronCollapsibleComponentProps) {
+        super(props);
+        this.state = { showContent: true };
+    }
+
+    private onClick = (): void => {
+        const newState = !this.state.showContent;
+        this.setState({ showContent: newState });
+    };
+
+    public render(): JSX.Element {
+        const showContent = this.state.showContent;
+        let iconName = this.iconNameUp;
+        let content = null;
+
+        if (showContent) {
+            iconName = this.iconNameDown;
+            content = <div className={css(this.props.contentClassName, 'collapsible-content')}>{this.props.content}</div>;
+        }
+
+        return (
+            <div className={css(this.props.containerClassName, 'collapsible-component')}>
+                <ActionButton
+                    className="collapsible"
+                    iconProps={{ iconName: iconName, class: 'collapsible-icon' }}
+                    onClick={this.onClick}
+                    aria-expanded={showContent}
+                >
+                    <span className="collapsible-title">{this.props.header}</span>
+                </ActionButton>
+                {content}
+            </div>
+        );
+    }
+}
+
+export const ElectronCollapsibleComponent = (collapsibleControlProps: ElectronCollapsibleComponentProps) => (
+    <CollapsibleComponentElectron {...collapsibleControlProps} />
+);
