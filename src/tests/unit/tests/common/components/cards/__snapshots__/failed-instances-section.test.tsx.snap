@@ -1,6 +1,32 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`FailedInstancesSection renders 1`] = `
+exports[`FailedInstancesSection renders null results 1`] = `null`;
+
+exports[`FailedInstancesSection renders with alerting off 1`] = `
+<ResultSection
+  badgeCount={0}
+  containerClassName={null}
+  deps={Object {}}
+  outcomeType="fail"
+  results={Array []}
+  shouldAlertFailuresCount={false}
+  title="Failed instances"
+/>
+`;
+
+exports[`FailedInstancesSection renders with alerting on 1`] = `
+<ResultSection
+  badgeCount={0}
+  containerClassName={null}
+  deps={Object {}}
+  outcomeType="fail"
+  results={Array []}
+  shouldAlertFailuresCount={true}
+  title="Failed instances"
+/>
+`;
+
+exports[`FailedInstancesSection renders with failures 1`] = `
 <ResultSection
   badgeCount={2}
   containerClassName={null}
@@ -89,5 +115,3 @@ exports[`FailedInstancesSection renders 1`] = `
   title="Failed instances"
 />
 `;
-
-exports[`FailedInstancesSection renders null when result is null 1`] = `null`;

@@ -5,35 +5,38 @@ import {
     FailedInstancesSectionDeps,
     FailedInstancesSectionProps,
 } from 'common/components/cards/failed-instances-section';
+import { CardRuleResultsByStatus } from 'common/types/store-data/card-view-model';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
 import { exampleUnifiedRuleResult } from './sample-view-model-data';
 
 describe('FailedInstancesSection', () => {
-    it('renders', () => {
-        const props = {
-            deps: {} as FailedInstancesSectionDeps,
-            ruleResultsByStatus: {
-                pass: [],
-                fail: [exampleUnifiedRuleResult, exampleUnifiedRuleResult],
-                inapplicable: [],
-                unknown: [],
-            },
-        } as FailedInstancesSectionProps;
+    const resultsWithFailures: CardRuleResultsByStatus = {
+        fail: [exampleUnifiedRuleResult, exampleUnifiedRuleResult],
+        pass: [],
+        inapplicable: [],
+        unknown: [],
+    };
+    const nonEmptyResults: CardRuleResultsByStatus = { fail: [], pass: [], inapplicable: [], unknown: [] };
 
-        const wrapper = shallow(<FailedInstancesSection {...props} />);
+    describe('renders', () => {
+        it.each`
+            results                | shouldAlertFailuresCount | description
+            ${resultsWithFailures} | ${undefined}             | ${'with failures'}
+            ${null}                | ${undefined}             | ${'null results'}
+            ${nonEmptyResults}     | ${true}                  | ${'with alerting on'}
+            ${nonEmptyResults}     | ${false}                 | ${'with alerting off'}
+        `('$description', ({ results, shouldAlertFailuresCount }) => {
+            const props = {
+                deps: {} as FailedInstancesSectionDeps,
+                ruleResultsByStatus: results,
+                shouldAlertFailuresCount,
+            } as FailedInstancesSectionProps;
 
-        expect(wrapper.getElement()).toMatchSnapshot();
-    });
+            const wrapper = shallow(<FailedInstancesSection {...props} />);
 
-    it('renders null when result is null', () => {
-        const props = {
-            deps: {} as FailedInstancesSectionDeps,
-        } as FailedInstancesSectionProps;
-
-        const wrapper = shallow(<FailedInstancesSection {...props} />);
-
-        expect(wrapper.getElement()).toMatchSnapshot();
+            expect(wrapper.getElement()).toMatchSnapshot();
+        });
     });
 });

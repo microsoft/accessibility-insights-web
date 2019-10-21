@@ -30,6 +30,7 @@ export type SectionProps = {
     ruleResultsByStatus: CardRuleResultsByStatus;
     userConfigurationStoreData: UserConfigurationStoreData;
     targetAppInfo: TargetAppData;
+    shouldAlertFailuresCount?: boolean;
 };
 
 export type ReportSectionFactory = {

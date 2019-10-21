@@ -5,14 +5,23 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 
 describe('ResultSectionTitle', () => {
-    it('renders', () => {
-        const props: ResultSectionTitleProps = {
-            title: 'test title',
-            badgeCount: 10,
-            outcomeType: 'pass',
-        };
+    describe('renders', () => {
+        it.each`
+            badgeCount | shouldAlertFailuresCount | description
+            ${10}      | ${false}                 | ${'with no-alerting'}
+            ${15}      | ${undefined}             | ${'with no-alerting, shouldAlertFailuresCount is undefined'}
+            ${1}       | ${true}                  | ${'with alerting, badgeCount is 1'}
+            ${2}       | ${true}                  | ${'with alerting, badgeCount is greater than 1'}
+        `('$description', ({ badgeCount, shouldAlertFailuresCount }) => {
+            const props: ResultSectionTitleProps = {
+                title: 'test title',
+                badgeCount,
+                shouldAlertFailuresCount,
+                outcomeType: 'pass',
+            };
 
-        const wrapped = shallow(<ResultSectionTitle {...props} />);
-        expect(wrapped.getElement()).toMatchSnapshot();
+            const wrapped = shallow(<ResultSectionTitle {...props} />);
+            expect(wrapped.getElement()).toMatchSnapshot();
+        });
     });
 });

@@ -11,13 +11,21 @@ export type ResultSectionTitleProps = {
     title: string;
     badgeCount: number;
     outcomeType: InstanceOutcomeType;
+    shouldAlertFailuresCount?: boolean;
 };
 
 export const ResultSectionTitle = NamedFC<ResultSectionTitleProps>('ResultSectionTitle', props => {
+    const failureTerm = props.badgeCount > 1 ? 'failures were' : 'failure was';
+    const alertingFailuresCount = (
+        <span role="alert">
+            {props.badgeCount} {failureTerm} detected.
+        </span>
+    );
+
     return (
         <span className={resultSectionTitle}>
             <span className="screen-reader-only">
-                {props.title} {props.badgeCount}
+                {props.title} {props.shouldAlertFailuresCount ? alertingFailuresCount : props.badgeCount}
             </span>
             <span className={title} aria-hidden="true">
                 {props.title}

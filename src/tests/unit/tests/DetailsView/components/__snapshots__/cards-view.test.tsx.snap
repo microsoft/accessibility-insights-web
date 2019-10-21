@@ -51,6 +51,7 @@ exports[`CardsView should return cards view 1`] = `
         "unknown": Array [],
       }
     }
+    shouldAlertFailuresCount={true}
   />
 </React.Fragment>
 `;

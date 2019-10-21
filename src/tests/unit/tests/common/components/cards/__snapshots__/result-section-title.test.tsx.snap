@@ -1,6 +1,78 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ResultSectionTitle renders 1`] = `
+exports[`ResultSectionTitle renders with alerting, badgeCount is 1 1`] = `
+<span
+  className="resultSectionTitle"
+>
+  <span
+    className="screen-reader-only"
+  >
+    test title
+     
+    <span
+      role="alert"
+    >
+      1
+       
+      failure was
+       detected.
+    </span>
+  </span>
+  <span
+    aria-hidden="true"
+    className="title"
+  >
+    test title
+  </span>
+  <span
+    aria-hidden="true"
+    className="outcomeChipContainer"
+  >
+    <OutcomeChip
+      count={1}
+      outcomeType="pass"
+    />
+  </span>
+</span>
+`;
+
+exports[`ResultSectionTitle renders with alerting, badgeCount is greater than 1 1`] = `
+<span
+  className="resultSectionTitle"
+>
+  <span
+    className="screen-reader-only"
+  >
+    test title
+     
+    <span
+      role="alert"
+    >
+      2
+       
+      failures were
+       detected.
+    </span>
+  </span>
+  <span
+    aria-hidden="true"
+    className="title"
+  >
+    test title
+  </span>
+  <span
+    aria-hidden="true"
+    className="outcomeChipContainer"
+  >
+    <OutcomeChip
+      count={2}
+      outcomeType="pass"
+    />
+  </span>
+</span>
+`;
+
+exports[`ResultSectionTitle renders with no-alerting 1`] = `
 <span
   className="resultSectionTitle"
 >
@@ -23,6 +95,35 @@ exports[`ResultSectionTitle renders 1`] = `
   >
     <OutcomeChip
       count={10}
+      outcomeType="pass"
+    />
+  </span>
+</span>
+`;
+
+exports[`ResultSectionTitle renders with no-alerting, shouldAlertFailuresCount is undefined 1`] = `
+<span
+  className="resultSectionTitle"
+>
+  <span
+    className="screen-reader-only"
+  >
+    test title
+     
+    15
+  </span>
+  <span
+    aria-hidden="true"
+    className="title"
+  >
+    test title
+  </span>
+  <span
+    aria-hidden="true"
+    className="outcomeChipContainer"
+  >
+    <OutcomeChip
+      count={15}
       outcomeType="pass"
     />
   </span>
