@@ -10,6 +10,7 @@ describe('ResultSectionTitle', () => {
             badgeCount | shouldAlertFailuresCount | description
             ${10}      | ${false}                 | ${'with no-alerting'}
             ${15}      | ${undefined}             | ${'with no-alerting, shouldAlertFailuresCount is undefined'}
+            ${0}       | ${true}                  | ${'with alerting, badgeCount is 0'}
             ${1}       | ${true}                  | ${'with alerting, badgeCount is 1'}
             ${2}       | ${true}                  | ${'with alerting, badgeCount is greater than 1'}
         `('$description', ({ badgeCount, shouldAlertFailuresCount }) => {

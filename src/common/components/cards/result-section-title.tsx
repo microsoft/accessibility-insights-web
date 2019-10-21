@@ -15,7 +15,7 @@ export type ResultSectionTitleProps = {
 };
 
 export const ResultSectionTitle = NamedFC<ResultSectionTitleProps>('ResultSectionTitle', props => {
-    const failureTerm = props.badgeCount > 1 ? 'failures were' : 'failure was';
+    const failureTerm = props.badgeCount !== 1 ? 'failures were' : 'failure was';
     const alertingFailuresCount = (
         <span role="alert">
             {props.badgeCount} {failureTerm} detected.

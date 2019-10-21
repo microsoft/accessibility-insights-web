@@ -1,5 +1,41 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`ResultSectionTitle renders with alerting, badgeCount is 0 1`] = `
+<span
+  className="resultSectionTitle"
+>
+  <span
+    className="screen-reader-only"
+  >
+    test title
+     
+    <span
+      role="alert"
+    >
+      0
+       
+      failures were
+       detected.
+    </span>
+  </span>
+  <span
+    aria-hidden="true"
+    className="title"
+  >
+    test title
+  </span>
+  <span
+    aria-hidden="true"
+    className="outcomeChipContainer"
+  >
+    <OutcomeChip
+      count={0}
+      outcomeType="pass"
+    />
+  </span>
+</span>
+`;
+
 exports[`ResultSectionTitle renders with alerting, badgeCount is 1 1`] = `
 <span
   className="resultSectionTitle"
