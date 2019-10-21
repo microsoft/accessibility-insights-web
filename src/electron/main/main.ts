@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { app, BrowserWindow } from 'electron';
-import { OSType, PlatformInfo } from 'electron/platform-info';
+import { OSType, PlatformInfo } from 'electron/window-management/platform-info';
 import * as path from 'path';
 
 let mainWindow: BrowserWindow;

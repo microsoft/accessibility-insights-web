@@ -3,7 +3,7 @@
 
 import { BrowserWindow } from 'electron';
 import { WindowStateActionCreator } from 'electron/flux/action-creator/window-state-action-creator';
-import { WindowFrameListener } from 'electron/window-frame-listener';
+import { WindowFrameListener } from 'electron/window-management/window-frame-listener';
 import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 describe(WindowFrameListener, () => {
