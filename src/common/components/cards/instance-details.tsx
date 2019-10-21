@@ -65,7 +65,7 @@ export const InstanceDetails = NamedFC<InstanceDetailsProps>('InstanceDetails', 
     });
 
     return (
-        <div className={instanceDetailsCardStyling} tabIndex={0} onClick={cardClickHandler} onKeyPress={cardKeyPressHandler}>
+        <div className={instanceDetailsCardStyling} tabIndex={0} onClick={cardClickHandler} onKeyDown={cardKeyPressHandler}>
             <table className={reportInstanceTable}>
                 <tbody>
                     {renderCardRowsForPropertyBag(result.identifiers)}
