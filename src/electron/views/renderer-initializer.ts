@@ -20,7 +20,6 @@ import { CardsViewDeps } from 'DetailsView/components/cards-view';
 import { remote } from 'electron';
 import { DirectActionMessageDispatcher } from 'electron/adapters/direct-action-message-dispatcher';
 import { createGetToolDataDelegate } from 'electron/common/application-properties-provider';
-import { ElectronCollapsibleComponent } from 'electron/common/components/collapsible-component-cards-electron';
 import { ScanActionCreator } from 'electron/flux/action-creator/scan-action-creator';
 import { WindowFrameActionCreator } from 'electron/flux/action-creator/window-frame-action-creator';
 import { WindowStateActionCreator } from 'electron/flux/action-creator/window-state-action-creator';
@@ -33,6 +32,7 @@ import { PlatformInfo } from 'electron/platform-info';
 import { createFetchScanResults } from 'electron/platform/android/fetch-scan-results';
 import { ScanController } from 'electron/platform/android/scan-controller';
 import { createDefaultBuilder } from 'electron/platform/android/unified-result-builder';
+import { CollapsibleComponentCard } from 'electron/views/automated-checks/components/collapsible-component-cards';
 import { RootContainerProps, RootContainerState } from 'electron/views/root-container/components/root-container';
 import { WindowFrameListener } from 'electron/window-frame-listener';
 import { WindowFrameUpdater } from 'electron/window-frame-updater';
@@ -167,7 +167,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then((persistedDat
         LinkComponent: ElectronLink,
 
         cardInteractionSupport: noCardInteractionsSupported, // we are supposed to have 'copy issue details' support
-        collapsibleControl: ElectronCollapsibleComponent,
+        collapsibleControl: CollapsibleComponentCard,
         fixInstructionProcessor,
         getGuidanceTagsFromGuidanceLinks: GetGuidanceTagsFromGuidanceLinks, // I don't think we have guidance links for axe-android
 
