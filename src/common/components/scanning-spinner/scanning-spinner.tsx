@@ -16,9 +16,5 @@ export const ScanningSpinner = NamedFC<ScanningSpinnerProps>('ScanningSpinner', 
         return null;
     }
 
-    return (
-        <div role="alert" aria-live={props['aria-live']}>
-            <Spinner className={scanningSpinner} size={SpinnerSize.large} label={props.label} />
-        </div>
-    );
+    return <Spinner className={scanningSpinner} size={SpinnerSize.large} label={props.label} role="alert" aria-live={props['aria-live']} />;
 });

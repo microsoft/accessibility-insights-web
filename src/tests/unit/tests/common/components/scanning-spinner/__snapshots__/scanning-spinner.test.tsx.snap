@@ -3,14 +3,11 @@
 exports[`ScanningSpinner renders isScanning = <false> 1`] = `null`;
 
 exports[`ScanningSpinner renders isScanning = <true> 1`] = `
-<div
+<StyledSpinnerBase
   aria-live="test-aria-live"
+  className="scanningSpinner"
+  label="test-label"
   role="alert"
->
-  <StyledSpinnerBase
-    className="scanningSpinner"
-    label="test-label"
-    size={3}
-  />
-</div>
+  size={3}
+/>
 `;
