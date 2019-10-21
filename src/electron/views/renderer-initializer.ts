@@ -33,9 +33,9 @@ import { ScanController } from 'electron/platform/android/scan-controller';
 import { createDefaultBuilder } from 'electron/platform/android/unified-result-builder';
 import { CollapsibleComponentCard } from 'electron/views/automated-checks/components/collapsible-component-cards';
 import { RootContainerProps, RootContainerState } from 'electron/views/root-container/components/root-container';
-import { WindowFrameUpdater } from 'electron/window-frame-updater';
 import { PlatformInfo } from 'electron/window-management/platform-info';
 import { WindowFrameListener } from 'electron/window-management/window-frame-listener';
+import { WindowFrameUpdater } from 'electron/window-management/window-frame-updater';
 import { FixInstructionProcessor } from 'injected/fix-instruction-processor';
 import * as ReactDOM from 'react-dom';
 

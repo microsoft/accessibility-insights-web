@@ -4,7 +4,7 @@
 import { BrowserWindow } from 'electron';
 import { WindowFrameActions } from 'electron/flux/action/window-frame-actions';
 import { SetSizePayload } from 'electron/flux/action/window-frame-actions-payloads';
-import { WindowFrameUpdater } from 'electron/window-frame-updater';
+import { WindowFrameUpdater } from 'electron/window-management/window-frame-updater';
 import { ExpectedCallType, IMock, Mock, MockBehavior, Times } from 'typemoq';
 
 describe(WindowFrameUpdater, () => {
