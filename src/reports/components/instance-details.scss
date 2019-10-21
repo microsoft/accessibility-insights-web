@@ -37,13 +37,13 @@
 }
 
 .instance-details-card:hover {
-    outline: 2px solid rgba(0, 0, 0, 0.9);
+    box-shadow: 0px 8px 10px rgba(0, 0, 0, 0.108), 0px 8px 10px rgba(0, 0, 0, 0.132);
     cursor: pointer;
 }
 
 .instance-details-card.selected:hover {
     border: 5px solid #2b88d8;
-    outline: 2px solid rgba(0, 0, 0, 0.9);
+    box-shadow: 0px 8px 10px rgba(0, 0, 0, 0.108), 0px 8px 10px rgba(0, 0, 0, 0.132);
     cursor: pointer;
 }
 
