@@ -4,7 +4,7 @@ exports[`InstanceDetails isSelected drives the styling for the card 1`] = `
 <div
   className="instance-details-card selected"
   onClick={[Function]}
-  onKeyPress={[Function]}
+  onKeyDown={[Function]}
   tabIndex={0}
 >
   <table
@@ -50,7 +50,7 @@ exports[`InstanceDetails isSelected drives the styling for the card 2`] = `
 <div
   className="instance-details-card"
   onClick={[Function]}
-  onKeyPress={[Function]}
+  onKeyDown={[Function]}
   tabIndex={0}
 >
   <table
@@ -96,7 +96,7 @@ exports[`InstanceDetails renders 1`] = `
 <div
   className="instance-details-card"
   onClick={[Function]}
-  onKeyPress={[Function]}
+  onKeyDown={[Function]}
   tabIndex={0}
 >
   <table
@@ -206,7 +206,7 @@ exports[`InstanceDetails renders nothing when there is no card row config for th
 <div
   className="instance-details-card"
   onClick={[Function]}
-  onKeyPress={[Function]}
+  onKeyDown={[Function]}
   tabIndex={0}
 >
   <table
