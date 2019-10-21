@@ -2,113 +2,65 @@
 
 exports[`IssueDetailsNavigationControls render handles button states: {"backButtonDisabled": false, "nextButtonDisabled": false} 1`] = `
 <div
-  className="ms-Grid insights-dialog-next-and-back-container"
+  className="insights-dialog-next-and-back-container"
 >
-  <div
-    className="ms-Grid-row"
-  >
-    <div
-      className="ms-Grid-col ms-sm3 ms-md3 ms-lg3 insights-dialog-button-left"
-    >
-      <CustomizedDefaultButton
-        data-automation-id="back"
-        onClick={[Function]}
-        text="< Back"
-      />
-    </div>
-    <div
-      className="ms-Grid-col ms-sm6 ms-md6 ms-lg6 insights-dialog-footer"
-    >
-      <div />
-    </div>
-    <div
-      className="ms-Grid-col ms-sm3 ms-md3 ms-lg3 insights-dialog-button-right"
-    >
-      <CustomizedDefaultButton
-        data-automation-id="next"
-        onClick={[Function]}
-        text="Next >"
-      />
-    </div>
+  <div>
+    <CustomizedDefaultButton
+      data-automation-id="back"
+      onClick={[Function]}
+      text="< Back"
+    />
+  </div>
+  <div />
+  <div>
+    <CustomizedDefaultButton
+      data-automation-id="next"
+      onClick={[Function]}
+      text="Next >"
+    />
   </div>
 </div>
 `;
 
 exports[`IssueDetailsNavigationControls render handles button states: {"backButtonDisabled": false, "nextButtonDisabled": true} 1`] = `
 <div
-  className="ms-Grid insights-dialog-next-and-back-container"
+  className="insights-dialog-next-and-back-container"
 >
-  <div
-    className="ms-Grid-row"
-  >
-    <div
-      className="ms-Grid-col ms-sm3 ms-md3 ms-lg3 insights-dialog-button-left"
-    >
-      <CustomizedDefaultButton
-        data-automation-id="back"
-        onClick={[Function]}
-        text="< Back"
-      />
-    </div>
-    <div
-      className="ms-Grid-col ms-sm6 ms-md6 ms-lg6 insights-dialog-footer"
-    >
-      <div />
-    </div>
-    <div
-      className="ms-Grid-col ms-sm3 ms-md3 ms-lg3 insights-dialog-button-right"
+  <div>
+    <CustomizedDefaultButton
+      data-automation-id="back"
+      onClick={[Function]}
+      text="< Back"
     />
   </div>
+  <div />
+  <div />
 </div>
 `;
 
 exports[`IssueDetailsNavigationControls render handles button states: {"backButtonDisabled": true, "nextButtonDisabled": false} 1`] = `
 <div
-  className="ms-Grid insights-dialog-next-and-back-container"
+  className="insights-dialog-next-and-back-container"
 >
-  <div
-    className="ms-Grid-row"
-  >
-    <div
-      className="ms-Grid-col ms-sm3 ms-md3 ms-lg3 insights-dialog-button-left"
+  <div />
+  <div />
+  <div>
+    <CustomizedDefaultButton
+      data-automation-id="next"
+      onClick={[Function]}
+      text="Next >"
     />
-    <div
-      className="ms-Grid-col ms-sm6 ms-md6 ms-lg6 insights-dialog-footer"
-    >
-      <div />
-    </div>
-    <div
-      className="ms-Grid-col ms-sm3 ms-md3 ms-lg3 insights-dialog-button-right"
-    >
-      <CustomizedDefaultButton
-        data-automation-id="next"
-        onClick={[Function]}
-        text="Next >"
-      />
-    </div>
   </div>
 </div>
 `;
 
 exports[`IssueDetailsNavigationControls render handles button states: {"backButtonDisabled": true, "nextButtonDisabled": true} 1`] = `
 <div
-  className="ms-Grid insights-dialog-next-and-back-container"
+  className="insights-dialog-next-and-back-container"
 >
-  <div
-    className="ms-Grid-row"
-  >
-    <div
-      className="ms-Grid-col ms-sm3 ms-md3 ms-lg3 insights-dialog-button-left"
-    />
-    <div
-      className="ms-Grid-col ms-sm6 ms-md6 ms-lg6 insights-dialog-footer"
-    >
-      <div />
-    </div>
-    <div
-      className="ms-Grid-col ms-sm3 ms-md3 ms-lg3 insights-dialog-button-right"
-    />
-  </div>
+  <div />
+  <div />
+  <div />
 </div>
 `;
 
@@ -118,34 +70,22 @@ exports[`IssueDetailsNavigationControls render handles failures count 1 failure 
 
 exports[`IssueDetailsNavigationControls render handles failures count multiple failures 1`] = `
 <div
-  className="ms-Grid insights-dialog-next-and-back-container"
+  className="insights-dialog-next-and-back-container"
 >
-  <div
-    className="ms-Grid-row"
-  >
-    <div
-      className="ms-Grid-col ms-sm3 ms-md3 ms-lg3 insights-dialog-button-left"
-    >
-      <CustomizedDefaultButton
-        data-automation-id="back"
-        onClick={[Function]}
-        text="< Back"
-      />
-    </div>
-    <div
-      className="ms-Grid-col ms-sm6 ms-md6 ms-lg6 insights-dialog-footer"
-    >
-      <div />
-    </div>
-    <div
-      className="ms-Grid-col ms-sm3 ms-md3 ms-lg3 insights-dialog-button-right"
-    >
-      <CustomizedDefaultButton
-        data-automation-id="next"
-        onClick={[Function]}
-        text="Next >"
-      />
-    </div>
+  <div>
+    <CustomizedDefaultButton
+      data-automation-id="back"
+      onClick={[Function]}
+      text="< Back"
+    />
+  </div>
+  <div />
+  <div>
+    <CustomizedDefaultButton
+      data-automation-id="next"
+      onClick={[Function]}
+      text="Next >"
+    />
   </div>
 </div>
 `;

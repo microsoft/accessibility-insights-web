@@ -50,14 +50,10 @@ export const IssueDetailsNavigationControls = NamedFC<IssueDetailsNavigationCont
         );
 
     return (
-        <div className="ms-Grid insights-dialog-next-and-back-container">
-            <div className="ms-Grid-row">
-                <div className="ms-Grid-col ms-sm3 ms-md3 ms-lg3 insights-dialog-button-left">{renderBackButton()}</div>
-                <div className="ms-Grid-col ms-sm6 ms-md6 ms-lg6 insights-dialog-footer">
-                    <div>{props.dialogHandler.getFailureInfo(props.container)}</div>
-                </div>
-                <div className="ms-Grid-col ms-sm3 ms-md3 ms-lg3 insights-dialog-button-right">{renderNextButton()}</div>
-            </div>
+        <div className="insights-dialog-next-and-back-container">
+            <div>{renderBackButton()}</div>
+            <div>{props.dialogHandler.getFailureInfo(props.container)}</div>
+            <div>{renderNextButton()}</div>
         </div>
     );
 });
