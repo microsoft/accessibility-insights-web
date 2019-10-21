@@ -19,7 +19,7 @@ import { ReportGenerator } from 'reports/report-generator';
 import { RuleResult, ScanResults } from 'scanner/iruleresults';
 import { DictionaryStringTo } from 'types/common-types';
 
-import { ScanningSpinner } from 'electron/views/automated-checks/components/scanning-spinner';
+import { ScanningSpinner } from 'common/components/scanning-spinner/scanning-spinner';
 import { CardsView, CardsViewDeps } from './cards-view';
 import { ExportDialogDeps } from './export-dialog';
 import { IssuesDetailsList } from './issues-details-list';
