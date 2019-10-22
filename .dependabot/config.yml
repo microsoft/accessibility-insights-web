@@ -26,3 +26,8 @@ update_configs:
           # https://github.com/electron-userland/spectron/issues/349
           dependency_name: "webdriverio"
           version_requirement: ">=5.0.0"
+      - match:
+          # axe-core updates require enough extra validation
+          # on false positives and breaking ai-web, so avoiding
+          # dependabot auto-update for them like other deps.
+          dependency_name: "axe-core"
