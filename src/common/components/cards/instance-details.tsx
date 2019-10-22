@@ -65,8 +65,17 @@ export const InstanceDetails = NamedFC<InstanceDetailsProps>('InstanceDetails', 
         selected: result.isSelected,
     });
 
+    console.log({ result });
     return (
-        <div className={instanceDetailsCardStyling} tabIndex={0} onClick={cardClickHandler} onKeyDown={cardKeyPressHandler}>
+        <div
+            className={instanceDetailsCardStyling}
+            tabIndex={0}
+            onClick={cardClickHandler}
+            onKeyDown={cardKeyPressHandler}
+            aria-selected={result.isSelected}
+            aria-label={`${result.identifiers.identifier} card`}
+            role="row"
+        >
             <table className={reportInstanceTable}>
                 <tbody>
                     {renderCardRowsForPropertyBag(result.identifiers)}
