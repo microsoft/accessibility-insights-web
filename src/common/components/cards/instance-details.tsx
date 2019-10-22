@@ -1,18 +1,16 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import * as classNames from 'classnames';
+import { KeyCodeConstants } from 'common/constants/keycode-constants';
 import { NamedFC } from 'common/react/named-fc';
+import { CardResult } from 'common/types/store-data/card-view-model';
 import { forOwn, isEmpty } from 'lodash';
 import * as React from 'react';
+import { reportInstanceTable } from 'reports/components/instance-details.scss';
 
 import { CardRowDeps, PropertyConfiguration } from '../../../common/configs/unified-result-property-configurations';
 import { CardSelectionMessageCreator } from '../../../common/message-creators/card-selection-message-creator';
-import {
-    StoredInstancePropertyBag,
-    TargetAppData,
-    UnifiedResult,
-    UnifiedRule,
-} from '../../../common/types/store-data/unified-data-interface';
-import { instanceDetailsCard, reportInstanceTable } from '../../../reports/components/instance-details.scss';
+import { StoredInstancePropertyBag, TargetAppData, UnifiedRule } from '../../../common/types/store-data/unified-data-interface';
 import { UserConfigurationStoreData } from '../../types/store-data/user-configuration-store';
 import { HighlightState, InstanceDetailsFooter, InstanceDetailsFooterDeps } from './instance-details-footer';
 
@@ -24,7 +22,7 @@ export type InstanceDetailsDeps = {
 
 export type InstanceDetailsProps = {
     deps: InstanceDetailsDeps;
-    result: UnifiedResult;
+    result: CardResult;
     index: number;
     userConfigurationStoreData: UserConfigurationStoreData;
     targetAppInfo: TargetAppData;
@@ -51,10 +49,25 @@ export const InstanceDetails = NamedFC<InstanceDetailsProps>('InstanceDetails', 
         return <>{cardRows}</>;
     };
 
-    const cardClickHandler = () => deps.cardSelectionMessageCreator.toggleCardSelection(result.ruleId, result.uid);
+    const cardClickHandler = (): void => {
+        deps.cardSelectionMessageCreator.toggleCardSelection(result.ruleId, result.uid);
+    };
+
+    const cardKeyPressHandler = (event: React.KeyboardEvent<any>): void => {
+        if (event.keyCode === KeyCodeConstants.ENTER || event.keyCode === KeyCodeConstants.SPACEBAR) {
+            event.preventDefault();
+            cardClickHandler();
+        }
+    };
+
+    const instanceDetailsCardStyling = classNames({
+        'instance-details-card': true,
+        selected: result.isSelected,
+    });
+
     return (
-        <div className={instanceDetailsCard}>
-            <table className={reportInstanceTable} onClick={cardClickHandler}>
+        <div className={instanceDetailsCardStyling} tabIndex={0} onClick={cardClickHandler} onKeyDown={cardKeyPressHandler}>
+            <table className={reportInstanceTable}>
                 <tbody>
                     {renderCardRowsForPropertyBag(result.identifiers)}
                     {renderCardRowsForPropertyBag(result.descriptors)}

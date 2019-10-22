@@ -1,12 +1,106 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`InstanceDetails renders 1`] = `
+exports[`InstanceDetails isSelected drives the styling for the card 1`] = `
 <div
-  className="instanceDetailsCard"
+  className="instance-details-card selected"
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  tabIndex={0}
 >
   <table
     className="reportInstanceTable"
-    onClick={[Function]}
+  >
+    <tbody>
+      <React.Fragment />
+      <React.Fragment />
+      <React.Fragment />
+    </tbody>
+  </table>
+  <InstanceDetailsFooter
+    deps={
+      Object {
+        "cardSelectionMessageCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "dispatcher": undefined,
+        },
+        "getPropertyConfigById": [Function],
+      }
+    }
+    highlightState="unavailable"
+    result={
+      Object {
+        "descriptors": Object {},
+        "identifiers": Object {
+          "conciseName": "test-concise-name",
+          "identifier": "test-id",
+          "this-property-does-not-have-config": "some value",
+        },
+        "isSelected": true,
+        "resolution": Object {},
+        "ruleId": "image-alt",
+        "status": "fail",
+        "uid": "some-guid-here",
+      }
+    }
+  />
+</div>
+`;
+
+exports[`InstanceDetails isSelected drives the styling for the card 2`] = `
+<div
+  className="instance-details-card"
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  tabIndex={0}
+>
+  <table
+    className="reportInstanceTable"
+  >
+    <tbody>
+      <React.Fragment />
+      <React.Fragment />
+      <React.Fragment />
+    </tbody>
+  </table>
+  <InstanceDetailsFooter
+    deps={
+      Object {
+        "cardSelectionMessageCreator": proxy {
+          "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
+          "dispatcher": undefined,
+        },
+        "getPropertyConfigById": [Function],
+      }
+    }
+    highlightState="unavailable"
+    result={
+      Object {
+        "descriptors": Object {},
+        "identifiers": Object {
+          "conciseName": "test-concise-name",
+          "identifier": "test-id",
+          "this-property-does-not-have-config": "some value",
+        },
+        "isSelected": false,
+        "resolution": Object {},
+        "ruleId": "image-alt",
+        "status": "fail",
+        "uid": "some-guid-here",
+      }
+    }
+  />
+</div>
+`;
+
+exports[`InstanceDetails renders 1`] = `
+<div
+  className="instance-details-card"
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  tabIndex={0}
+>
+  <table
+    className="reportInstanceTable"
   >
     <tbody>
       <React.Fragment>
@@ -110,11 +204,13 @@ exports[`InstanceDetails renders 1`] = `
 
 exports[`InstanceDetails renders nothing when there is no card row config for the property / no property 1`] = `
 <div
-  className="instanceDetailsCard"
+  className="instance-details-card"
+  onClick={[Function]}
+  onKeyDown={[Function]}
+  tabIndex={0}
 >
   <table
     className="reportInstanceTable"
-    onClick={[Function]}
   >
     <tbody>
       <React.Fragment />

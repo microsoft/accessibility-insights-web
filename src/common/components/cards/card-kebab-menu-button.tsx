@@ -52,11 +52,15 @@ export class CardKebabMenuButton extends React.Component<CardKebabMenuButtonProp
             return null;
         }
 
+        const handleKeyDown = (event: React.KeyboardEvent<any>) => {
+            event.stopPropagation();
+        };
+
         return (
             // The wrapper has to be a real element, not a <>, because we want the placeholder elements
             // the dialog/toast involve to be considered as part of the button for the purposes of layout
             // calculation in this component's parent.
-            <div>
+            <div onKeyDown={handleKeyDown}>
                 <ActionButton
                     className={kebabMenuButton}
                     ariaLabel="More actions"
