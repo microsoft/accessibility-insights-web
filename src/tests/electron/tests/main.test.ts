@@ -2,8 +2,9 @@
 // Licensed under the MIT License.
 import * as Electron from 'electron';
 import { Application } from 'spectron';
+import { dismissTelemetryOptInDialog } from 'tests/electron/common/dismiss-telemetry-opt-in-dialog';
 import * as WebdriverIO from 'webdriverio';
-import { popupPageElementIdentifiers } from '../../end-to-end/common/element-identifiers/popup-page-element-identifiers';
+
 import { CommonSelectors } from '../common/element-identifiers/common-selectors';
 import { DEFAULT_ELECTRON_TEST_TIMEOUT_MS } from '../setup/timeouts';
 
@@ -24,12 +25,6 @@ describe('Electron E2E', () => {
     // so tslint thinks some of the methods do not return promises.
     // tslint:disable: await-promise
 
-    async function dismissTelemetryOptInDialog(): Promise<void> {
-        const webDriverClient: WebdriverIO.Client<void> = app.client;
-        await webDriverClient.waitForVisible(popupPageElementIdentifiers.telemetryDialog, DEFAULT_ELECTRON_TEST_TIMEOUT_MS);
-        await webDriverClient.click(popupPageElementIdentifiers.startUsingProductButton);
-    }
-
     async function ensureAppIsInDeviceConnectionDialog(): Promise<void> {
         const webDriverClient: WebdriverIO.Client<void> = app.client;
         await webDriverClient.waitForVisible(CommonSelectors.rootContainer, DEFAULT_ELECTRON_TEST_TIMEOUT_MS);
@@ -37,7 +32,7 @@ describe('Electron E2E', () => {
     }
 
     beforeEach(async () => {
-        await dismissTelemetryOptInDialog();
+        await dismissTelemetryOptInDialog(app);
     });
 
     afterEach(async () => {
