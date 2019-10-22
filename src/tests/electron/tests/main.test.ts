@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as Electron from 'electron';
 import { Application } from 'spectron';
+import { createApplication } from 'tests/electron/common/create-application';
 import { dismissTelemetryOptInDialog } from 'tests/electron/common/dismiss-telemetry-opt-in-dialog';
 import * as WebdriverIO from 'webdriverio';
 
@@ -11,14 +11,8 @@ import { DEFAULT_ELECTRON_TEST_TIMEOUT_MS } from '../setup/timeouts';
 describe('Electron E2E', () => {
     let app: Application;
 
-    beforeEach(() => {
-        const electronPath = `${(global as any).rootDir}/drop/electron/extension/bundle/main.bundle.js`;
-        app = new Application({
-            path: Electron as any,
-            args: [electronPath],
-        });
-
-        return app.start();
+    beforeEach(async () => {
+        app = await createApplication();
     });
 
     // spectron wraps calls to electron APIs as promises. Unfortunately, only electron typings are used,
