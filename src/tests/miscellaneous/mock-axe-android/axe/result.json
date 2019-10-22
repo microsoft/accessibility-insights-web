@@ -198,7 +198,7 @@
         ],
         "axeMetaData": {
             "analysisTimestamp": "1571774104070",
-            "appIdentifier": "jp.co.canon.ic.cameraconnect",
+            "appIdentifier": "com.test.scan-result",
             "axeVersion": "0.0"
         },
         "axeView": {
