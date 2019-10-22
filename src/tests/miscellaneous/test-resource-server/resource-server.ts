@@ -3,14 +3,17 @@
 import * as express from 'express';
 import * as path from 'path';
 import * as serveStatic from 'serve-static';
-import * as testServerConfig from './test-server-config';
+import { ResourceServerConfig } from 'tests/miscellaneous/test-resource-server/resource-server-config';
 
 let server = null;
 
-export function startServer(): void {
+export function startServer(config: ResourceServerConfig): void {
     const app = express();
-    app.use(serveStatic(path.join(__dirname, '../test-resources')));
-    server = app.listen(testServerConfig.port);
+
+    const dirPath = path.join(__dirname, config.path);
+
+    app.use(serveStatic(dirPath));
+    server = app.listen(config.port);
 }
 
 export function stopServer(): void {
