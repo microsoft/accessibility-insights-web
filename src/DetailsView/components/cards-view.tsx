@@ -25,6 +25,7 @@ export const CardsView = NamedFC<CardsViewProps>('CardsView', props => {
                 ruleResultsByStatus={props.ruleResultsByStatus}
                 userConfigurationStoreData={props.userConfigurationStoreData}
                 targetAppInfo={props.targetAppInfo}
+                shouldAlertFailuresCount={true}
             />
         </>
     );

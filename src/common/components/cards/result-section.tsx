@@ -18,6 +18,7 @@ export type ResultSectionProps = ResultSectionContentProps &
         containerClassName: string;
         deps: ResultSectionDeps;
         targetAppInfo: TargetAppData;
+        shouldAlertFailuresCount?: boolean;
     };
 
 export const ResultSection = NamedFC<ResultSectionProps>('ResultSection', props => {

@@ -22,7 +22,7 @@ export const AutomatedChecksReportSectionFactory: ReportSectionFactory = {
     SummarySection,
     DetailsSection,
     ResultsContainer,
-    FailedInstancesSection: FailedInstancesSection,
+    FailedInstancesSection,
     PassedChecksSection,
     NotApplicableChecksSection,
     FooterSection: ReportFooter,

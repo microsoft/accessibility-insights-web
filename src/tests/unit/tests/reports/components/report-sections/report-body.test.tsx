@@ -46,6 +46,7 @@ describe('ReportBody', () => {
             ruleResultsByStatus: exampleUnifiedStatusResults,
             userConfigurationStoreData: null,
             targetAppInfo: { name: 'app' },
+            shouldAlertFailuresCount: false,
         };
 
         const props: ReportBodyProps = {

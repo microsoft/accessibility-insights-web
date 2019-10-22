@@ -14,11 +14,12 @@ export type FailedInstancesSectionProps = {
     ruleResultsByStatus: CardRuleResultsByStatus;
     userConfigurationStoreData: UserConfigurationStoreData;
     targetAppInfo: TargetAppData;
+    shouldAlertFailuresCount?: boolean;
 };
 
 export const FailedInstancesSection = NamedFC<FailedInstancesSectionProps>(
     'FailedInstancesSection',
-    ({ ruleResultsByStatus, deps, userConfigurationStoreData, targetAppInfo }) => {
+    ({ ruleResultsByStatus, deps, userConfigurationStoreData, targetAppInfo, shouldAlertFailuresCount }) => {
         if (ruleResultsByStatus == null) {
             return null;
         }
@@ -37,6 +38,7 @@ export const FailedInstancesSection = NamedFC<FailedInstancesSectionProps>(
                 badgeCount={count}
                 userConfigurationStoreData={userConfigurationStoreData}
                 targetAppInfo={targetAppInfo}
+                shouldAlertFailuresCount={shouldAlertFailuresCount}
             />
         );
     },

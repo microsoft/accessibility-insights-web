@@ -5,13 +5,18 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 
 describe('ResultSection', () => {
-    it('renders', () => {
-        const props: ResultSectionProps = {
-            containerClassName: 'result-section-class-name',
-            deps: {} as ResultSectionDeps,
-        } as ResultSectionProps;
+    describe('renders', () => {
+        const shouldAlertValues = [false, true, undefined];
 
-        const wrapper = shallow(<ResultSection {...props} />);
-        expect(wrapper.getElement()).toMatchSnapshot();
+        it.each(shouldAlertValues)('with shouldAlertFailureCount = <%s>', shouldAlertFailuresCount => {
+            const props: ResultSectionProps = {
+                containerClassName: 'result-section-class-name',
+                deps: {} as ResultSectionDeps,
+                shouldAlertFailuresCount,
+            } as ResultSectionProps;
+
+            const wrapper = shallow(<ResultSection {...props} />);
+            expect(wrapper.getElement()).toMatchSnapshot();
+        });
     });
 });
