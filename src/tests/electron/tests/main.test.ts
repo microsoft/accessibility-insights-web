@@ -3,9 +3,9 @@
 import * as Electron from 'electron';
 import { Application } from 'spectron';
 import * as WebdriverIO from 'webdriverio';
-import { popupPageElementIdentifiers } from '../end-to-end/common/element-identifiers/popup-page-element-identifiers';
-import { CommonSelectors } from './common/element-identifiers/common-selectors';
-import { DEFAULT_ELECTRON_TEST_TIMEOUT_MS } from './setup/timeouts';
+import { popupPageElementIdentifiers } from '../../end-to-end/common/element-identifiers/popup-page-element-identifiers';
+import { CommonSelectors } from '../common/element-identifiers/common-selectors';
+import { DEFAULT_ELECTRON_TEST_TIMEOUT_MS } from '../setup/timeouts';
 
 describe('Electron E2E', () => {
     let app: Application;
