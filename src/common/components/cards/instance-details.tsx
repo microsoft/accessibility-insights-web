@@ -65,7 +65,7 @@ export const InstanceDetails = NamedFC<InstanceDetailsProps>('InstanceDetails', 
         selected: result.isSelected,
     });
 
-    const kebabMenuAriaLabel = `More Actions ${result.ruleId} ${result.identifiers.identifier}`;
+    const kebabMenuAriaLabel = `More Actions ${result.identifiers.identifier} ${result.ruleId}`;
     return (
         <div
             className={instanceDetailsCardStyling}
