@@ -45,7 +45,7 @@ exports[`CardKebabMenuButtonTest renders per snapshot with allCardInteractionsSu
 </div>"
 `;
 
-exports[`CardKebabMenuButtonTest renders per snapshot with allCardInteractionsSupported and test-kebabmenuarialabel aria label passed as prop 2`] = `
+exports[`CardKebabMenuButtonTest renders per snapshot with allCardInteractionsSupported and test-kebabmenuarialabel aria label passed as prop: test-kebabmenuarialabel 1`] = `
 Object {
   "calloutProps": Object {
     "className": "kebabMenuCallout",

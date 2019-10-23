@@ -156,7 +156,7 @@ describe('CardKebabMenuButtonTest', () => {
             );
 
             expect(rendered.debug()).toMatchSnapshot();
-            expect(rendered.find(ActionButton).prop('menuProps')).toMatchSnapshot();
+            expect(rendered.find(ActionButton).prop('menuProps')).toMatchSnapshot(ariaLabel);
         },
     );
 
