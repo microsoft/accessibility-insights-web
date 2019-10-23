@@ -32,9 +32,6 @@ export type InstanceDetailsProps = {
 export const InstanceDetails = NamedFC<InstanceDetailsProps>('InstanceDetails', props => {
     const { result, index, deps, userConfigurationStoreData, rule, targetAppInfo } = props;
 
-    // This should be updated once selection is implemented to sync highlight state with selection.
-    const highlightState: HighlightState = 'unavailable';
-
     const renderCardRowsForPropertyBag = (propertyBag: StoredInstancePropertyBag) => {
         let propertyIndex = 0;
         const cardRows = [];
@@ -77,7 +74,6 @@ export const InstanceDetails = NamedFC<InstanceDetailsProps>('InstanceDetails', 
             <InstanceDetailsFooter
                 deps={deps}
                 result={result}
-                highlightState={highlightState}
                 userConfigurationStoreData={userConfigurationStoreData}
                 rule={rule}
                 targetAppInfo={targetAppInfo}

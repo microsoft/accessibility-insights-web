@@ -16,13 +16,14 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 import { IMock, Mock, Times } from 'typemoq';
 
+import { CardResult } from 'common/types/store-data/card-view-model';
 import { CreateIssueDetailsTextData } from '../../../../../../common/types/create-issue-details-text-data';
 import { TargetAppData, UnifiedResult, UnifiedRule } from '../../../../../../common/types/store-data/unified-data-interface';
 import { UnifiedResultToIssueFilingDataConverter } from '../../../../../../issue-filing/unified-result-to-issue-filing-data';
 import { exampleUnifiedResult, exampleUnifiedRuleResult } from './sample-view-model-data';
 
 describe('InstanceDetailsFooter', () => {
-    let resultStub: UnifiedResult;
+    let resultStub: CardResult;
     let props: InstanceDetailsFooterProps;
     let deps: InstanceDetailsFooterDeps;
     let ruleStub: UnifiedRule;
@@ -46,7 +47,7 @@ describe('InstanceDetailsFooter', () => {
     };
 
     beforeEach(() => {
-        resultStub = exampleUnifiedResult;
+        resultStub = { ...exampleUnifiedResult, isSelected: true, highlightStatus: 'visible' };
         ruleStub = exampleUnifiedRuleResult;
         issueDetailsData = {} as CreateIssueDetailsTextData;
         targetAppInfo = { name: 'app' };
@@ -95,8 +96,8 @@ describe('InstanceDetailsFooter', () => {
     const allHighlightStates: HighlightState[] = ['visible', 'hidden', 'unavailable'];
 
     it.each(allHighlightStates)('renders per snapshot with highlightState="%s"', (highlightState: HighlightState) => {
+        resultStub.highlightStatus = highlightState;
         setupConverterToBeCalledOnce();
-        props.highlightState = highlightState;
         const testSubject = shallow(<InstanceDetailsFooter {...props} />);
 
         expect(testSubject.getElement()).toMatchSnapshot();
