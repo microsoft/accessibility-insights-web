@@ -5,7 +5,9 @@ import { KeyCodeConstants } from 'common/constants/keycode-constants';
 import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
 import { shallow } from 'enzyme';
 import * as React from 'react';
+import { instanceDetailsCard } from 'reports/components/instance-details.scss';
 import { IMock, It, Mock, Times } from 'typemoq';
+
 import {
     AllPropertyTypes,
     CardRowProps,
@@ -28,6 +30,7 @@ describe('InstanceDetails', () => {
         cardSelectionMessageCreatorMock = Mock.ofType(CardSelectionMessageCreator);
         resultStub = exampleUnifiedResult;
         indexStub = 22;
+
         deps = {
             getPropertyConfigById: getPropertyConfigByIdMock.object,
             cardSelectionMessageCreator: cardSelectionMessageCreatorMock.object,
@@ -59,7 +62,7 @@ describe('InstanceDetails', () => {
             .verifiable(Times.once());
 
         const wrapper = shallow(<InstanceDetails {...props} />);
-        const divElem = wrapper.find('.instance-details-card');
+        const divElem = wrapper.find(`.${instanceDetailsCard}`);
         expect(divElem.length).toBe(1);
 
         divElem.simulate('click');
@@ -77,7 +80,7 @@ describe('InstanceDetails', () => {
             .verifiable(Times.once());
 
         const wrapper = shallow(<InstanceDetails {...props} />);
-        const divElem = wrapper.find('.instance-details-card');
+        const divElem = wrapper.find(`.${instanceDetailsCard}`);
         expect(divElem.length).toBe(1);
 
         divElem.simulate('keydown', { keyCode: keyCode, preventDefault: preventDefaultMock });
