@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ScreenshotComponent renders 1`] = `
+<img
+  alt="test-alt-caption"
+  src="data:image/png;base64,test-image-string"
+/>
+`;
