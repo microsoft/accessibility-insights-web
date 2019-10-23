@@ -12,7 +12,7 @@ import { CardRowDeps, PropertyConfiguration } from '../../../common/configs/unif
 import { CardSelectionMessageCreator } from '../../../common/message-creators/card-selection-message-creator';
 import { StoredInstancePropertyBag, TargetAppData, UnifiedRule } from '../../../common/types/store-data/unified-data-interface';
 import { UserConfigurationStoreData } from '../../types/store-data/user-configuration-store';
-import { HighlightState, InstanceDetailsFooter, InstanceDetailsFooterDeps } from './instance-details-footer';
+import { InstanceDetailsFooter, InstanceDetailsFooterDeps } from './instance-details-footer';
 
 export type InstanceDetailsDeps = {
     getPropertyConfigById: (id: string) => PropertyConfiguration;
