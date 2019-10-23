@@ -155,8 +155,9 @@ describe('CardKebabMenuButtonTest', () => {
                 <CardKebabMenuButton {...newProps} deps={{ ...defaultDeps, cardInteractionSupport: allCardInteractionsSupported }} />,
             );
 
-            expect(rendered.debug()).toMatchSnapshot();
-            expect(rendered.find(ActionButton).prop('menuProps')).toMatchSnapshot(ariaLabel);
+            const snapshotLabel = ariaLabel ? 'with aria-label passed as prop' : 'without aria-label';
+            expect(rendered.debug()).toMatchSnapshot(snapshotLabel);
+            expect(rendered.find(ActionButton).prop('menuProps')).toMatchSnapshot(snapshotLabel);
         },
     );
 
