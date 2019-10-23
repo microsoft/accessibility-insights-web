@@ -118,7 +118,6 @@ describe('InstanceDetails', () => {
             const propertyConfigurationStub: PropertyConfiguration = {
                 cardRow: getCardRowStub(propertyType),
             };
-
             getPropertyConfigByIdMock.setup(mock => mock(propertyType)).returns(() => propertyConfigurationStub);
         });
     }
