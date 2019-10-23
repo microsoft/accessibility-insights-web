@@ -1,22 +1,22 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { css } from '@uifabric/utilities';
+import { NamedFC } from 'common/react/named-fc';
 import { CSSProperties } from 'react';
 import * as React from 'react';
 
-import { NamedFC } from '../../common/react/named-fc';
 import { BoxConfig, SimpleHighlightDrawerConfiguration } from './formatter';
 
-export interface HightlightBoxDeps {}
-export interface HightlightBoxProps {
-    deps: HightlightBoxDeps;
+export interface HighlightBoxDeps {}
+export interface HighlightBoxProps {
+    deps: HighlightBoxDeps;
     className?: string;
     drawerConfig: SimpleHighlightDrawerConfiguration;
     boxConfig: BoxConfig;
     onClickHandler?: () => void;
 }
 
-export const HightlightBox = NamedFC<HightlightBoxProps>('HighlightBox', props => {
+export const HighlightBox = NamedFC<HighlightBoxProps>('HighlightBox', props => {
     const { boxConfig, drawerConfig, className, onClickHandler } = props;
     if (boxConfig == null) {
         return null;

@@ -1,34 +1,23 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import * as Electron from 'electron';
 import { Application } from 'spectron';
+import { createApplication } from 'tests/electron/common/create-application';
+import { dismissTelemetryOptInDialog } from 'tests/electron/common/dismiss-telemetry-opt-in-dialog';
 import * as WebdriverIO from 'webdriverio';
-import { popupPageElementIdentifiers } from '../end-to-end/common/element-identifiers/popup-page-element-identifiers';
-import { CommonSelectors } from './common/element-identifiers/common-selectors';
-import { DEFAULT_ELECTRON_TEST_TIMEOUT_MS } from './setup/timeouts';
+
+import { CommonSelectors } from '../common/element-identifiers/common-selectors';
+import { DEFAULT_ELECTRON_TEST_TIMEOUT_MS } from '../setup/timeouts';
 
 describe('Electron E2E', () => {
     let app: Application;
 
-    beforeEach(() => {
-        const electronPath = `${(global as any).rootDir}/drop/electron/extension/bundle/main.bundle.js`;
-        app = new Application({
-            path: Electron as any,
-            args: [electronPath],
-        });
-
-        return app.start();
+    beforeEach(async () => {
+        app = await createApplication();
     });
 
     // spectron wraps calls to electron APIs as promises. Unfortunately, only electron typings are used,
     // so tslint thinks some of the methods do not return promises.
     // tslint:disable: await-promise
-
-    async function dismissTelemetryOptInDialog(): Promise<void> {
-        const webDriverClient: WebdriverIO.Client<void> = app.client;
-        await webDriverClient.waitForVisible(popupPageElementIdentifiers.telemetryDialog, DEFAULT_ELECTRON_TEST_TIMEOUT_MS);
-        await webDriverClient.click(popupPageElementIdentifiers.startUsingProductButton);
-    }
 
     async function ensureAppIsInDeviceConnectionDialog(): Promise<void> {
         const webDriverClient: WebdriverIO.Client<void> = app.client;
@@ -37,7 +26,7 @@ describe('Electron E2E', () => {
     }
 
     beforeEach(async () => {
-        await dismissTelemetryOptInDialog();
+        await dismissTelemetryOptInDialog(app);
     });
 
     afterEach(async () => {
