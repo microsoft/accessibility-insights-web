@@ -28,11 +28,10 @@ export type InstanceDetailsFooterProps = {
     userConfigurationStoreData: UserConfigurationStoreData;
     targetAppInfo: TargetAppData;
     rule: UnifiedRule;
-    kebabMenuAriaLabel?: string;
 };
 
 export const InstanceDetailsFooter = NamedFC<InstanceDetailsFooterProps>('InstanceDetailsFooter', props => {
-    const { highlightState, deps, userConfigurationStoreData, result, rule, targetAppInfo, kebabMenuAriaLabel } = props;
+    const { highlightState, deps, userConfigurationStoreData, result, rule, targetAppInfo } = props;
     const { cardInteractionSupport } = deps;
 
     const anyInteractionSupport = some(values(cardInteractionSupport));
@@ -43,12 +42,13 @@ export const InstanceDetailsFooter = NamedFC<InstanceDetailsFooterProps>('Instan
     const issueDetailsData: CreateIssueDetailsTextData = deps.unifiedResultToIssueFilingDataConverter.convert(result, rule, targetAppInfo);
 
     const renderKebabMenu = () => {
+        const kebabMenuArialLabel: string = `More Actions for card ${result.identifiers.identifier}in rule ${rule.id}`;
         return (
             <CardKebabMenuButton
                 deps={deps}
                 userConfigurationStoreData={userConfigurationStoreData}
                 issueDetailsData={issueDetailsData}
-                kebabMenuAriaLabel={kebabMenuAriaLabel}
+                kebabMenuAriaLabel={kebabMenuArialLabel}
             />
         );
     };

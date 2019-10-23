@@ -26,6 +26,7 @@ exports[`InstanceDetailsFooter renders per snapshot when all card interactions a
       }
     }
     issueDetailsData={Object {}}
+    kebabMenuAriaLabel="More Actions for card body imgin rule some-rule"
     userConfigurationStoreData={Object {}}
   />
 </div>
@@ -57,6 +58,7 @@ exports[`InstanceDetailsFooter renders per snapshot when only UserConfig-agnosti
       }
     }
     issueDetailsData={Object {}}
+    kebabMenuAriaLabel="More Actions for card body imgin rule some-rule"
     userConfigurationStoreData={Object {}}
   />
 </div>
@@ -88,6 +90,7 @@ exports[`InstanceDetailsFooter renders per snapshot with highlightState="hidden"
       }
     }
     issueDetailsData={Object {}}
+    kebabMenuAriaLabel="More Actions for card body imgin rule some-rule"
     userConfigurationStoreData={Object {}}
   />
 </div>
@@ -119,6 +122,7 @@ exports[`InstanceDetailsFooter renders per snapshot with highlightState="unavail
       }
     }
     issueDetailsData={Object {}}
+    kebabMenuAriaLabel="More Actions for card body imgin rule some-rule"
     userConfigurationStoreData={Object {}}
   />
 </div>
@@ -150,6 +154,7 @@ exports[`InstanceDetailsFooter renders per snapshot with highlightState="visible
       }
     }
     issueDetailsData={Object {}}
+    kebabMenuAriaLabel="More Actions for card body imgin rule some-rule"
     userConfigurationStoreData={Object {}}
   />
 </div>

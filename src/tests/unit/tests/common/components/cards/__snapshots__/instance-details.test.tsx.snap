@@ -34,7 +34,6 @@ exports[`InstanceDetails isSelected drives the styling for the card 1`] = `
         }
       }
       highlightState="unavailable"
-      kebabMenuAriaLabel="More Actions for card test-id in rule image-alt"
       result={
         Object {
           "descriptors": Object {},
@@ -89,7 +88,6 @@ exports[`InstanceDetails isSelected drives the styling for the card 2`] = `
         }
       }
       highlightState="unavailable"
-      kebabMenuAriaLabel="More Actions for card test-id in rule image-alt"
       result={
         Object {
           "descriptors": Object {},
@@ -195,7 +193,6 @@ exports[`InstanceDetails renders 1`] = `
         }
       }
       highlightState="unavailable"
-      kebabMenuAriaLabel="More Actions for card body img in rule image-alt"
       result={
         Object {
           "descriptors": Object {
@@ -261,7 +258,6 @@ exports[`InstanceDetails renders nothing when there is no card row config for th
         }
       }
       highlightState="unavailable"
-      kebabMenuAriaLabel="More Actions for card test-id in rule image-alt"
       result={
         Object {
           "descriptors": Object {},
