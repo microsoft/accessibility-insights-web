@@ -70,7 +70,12 @@ export const InstanceDetails = NamedFC<InstanceDetailsProps>('InstanceDetails', 
         [selected]: result.isSelected,
     });
 
-    const kebabMenuAriaLabel = `More Actions for card ${result.identifiers.identifier} in rule ${result.ruleId}`;
+    const getKebabMenuArialLabel = () => {
+        return `More Actions for card ${result && result.identifiers.identifier ? result.identifiers.identifier : ''} in rule ${
+            result && result.ruleId ? result.ruleId : ''
+        }`;
+    };
+
     return (
         <div className={instanceDetailsCardContainerStyling} role="table">
             <div
@@ -96,7 +101,7 @@ export const InstanceDetails = NamedFC<InstanceDetailsProps>('InstanceDetails', 
                     userConfigurationStoreData={userConfigurationStoreData}
                     rule={rule}
                     targetAppInfo={targetAppInfo}
-                    kebabMenuAriaLabel={kebabMenuAriaLabel}
+                    kebabMenuAriaLabel={getKebabMenuArialLabel()}
                 />
             </div>
         </div>
