@@ -26,6 +26,11 @@ exports[`InstanceDetails isSelected drives the styling for the card 1`] = `
     <InstanceDetailsFooter
       deps={
         Object {
+          "cardInteractionSupport": Object {
+            "supportsCopyFailureDetails": true,
+            "supportsHighlighting": true,
+            "supportsIssueFiling": true,
+          },
           "cardSelectionMessageCreator": proxy {
             "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
             "dispatcher": undefined,
@@ -80,6 +85,11 @@ exports[`InstanceDetails isSelected drives the styling for the card 2`] = `
     <InstanceDetailsFooter
       deps={
         Object {
+          "cardInteractionSupport": Object {
+            "supportsCopyFailureDetails": true,
+            "supportsHighlighting": true,
+            "supportsIssueFiling": true,
+          },
           "cardSelectionMessageCreator": proxy {
             "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
             "dispatcher": undefined,
@@ -129,6 +139,11 @@ exports[`InstanceDetails renders 1`] = `
           <css-selector
             deps={
               Object {
+                "cardInteractionSupport": Object {
+                  "supportsCopyFailureDetails": true,
+                  "supportsHighlighting": true,
+                  "supportsIssueFiling": true,
+                },
                 "cardSelectionMessageCreator": proxy {
                   "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
                   "dispatcher": undefined,
@@ -144,6 +159,11 @@ exports[`InstanceDetails renders 1`] = `
           <snippet
             deps={
               Object {
+                "cardInteractionSupport": Object {
+                  "supportsCopyFailureDetails": true,
+                  "supportsHighlighting": true,
+                  "supportsIssueFiling": true,
+                },
                 "cardSelectionMessageCreator": proxy {
                   "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
                   "dispatcher": undefined,
@@ -159,6 +179,11 @@ exports[`InstanceDetails renders 1`] = `
           <how-to-fix-web
             deps={
               Object {
+                "cardInteractionSupport": Object {
+                  "supportsCopyFailureDetails": true,
+                  "supportsHighlighting": true,
+                  "supportsIssueFiling": true,
+                },
                 "cardSelectionMessageCreator": proxy {
                   "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
                   "dispatcher": undefined,
@@ -185,6 +210,11 @@ exports[`InstanceDetails renders 1`] = `
     <InstanceDetailsFooter
       deps={
         Object {
+          "cardInteractionSupport": Object {
+            "supportsCopyFailureDetails": true,
+            "supportsHighlighting": true,
+            "supportsIssueFiling": true,
+          },
           "cardSelectionMessageCreator": proxy {
             "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
             "dispatcher": undefined,
@@ -250,6 +280,11 @@ exports[`InstanceDetails renders nothing when there is no card row config for th
     <InstanceDetailsFooter
       deps={
         Object {
+          "cardInteractionSupport": Object {
+            "supportsCopyFailureDetails": true,
+            "supportsHighlighting": true,
+            "supportsIssueFiling": true,
+          },
           "cardSelectionMessageCreator": proxy {
             "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
             "dispatcher": undefined,

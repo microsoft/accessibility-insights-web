@@ -50,7 +50,9 @@ export const InstanceDetails = NamedFC<InstanceDetailsProps>('InstanceDetails', 
     };
 
     const cardClickHandler = (): void => {
-        deps.cardSelectionMessageCreator.toggleCardSelection(result.ruleId, result.uid);
+        if (deps.cardInteractionSupport.supportsHighlighting) {
+            deps.cardSelectionMessageCreator.toggleCardSelection(result.ruleId, result.uid);
+        }
     };
 
     const cardKeyPressHandler = (event: React.KeyboardEvent<any>): void => {
@@ -62,13 +64,15 @@ export const InstanceDetails = NamedFC<InstanceDetailsProps>('InstanceDetails', 
 
     const instanceDetailsCardStyling = classNames({
         [instanceDetailsCard]: true,
-        [selected]: result.isSelected,
+        [selected]: deps.cardInteractionSupport.supportsHighlighting ? result.isSelected : false,
     });
 
     const instanceDetailsCardContainerStyling = classNames({
         [instanceDetailsCardContainer]: true,
-        [selected]: result.isSelected,
+        [selected]: deps.cardInteractionSupport.supportsHighlighting ? result.isSelected : false,
     });
+
+    const cardAriaLabel = `${result.identifiers && result.identifiers.identifier ? result.identifiers.identifier : ''} card`;
 
     return (
         <div className={instanceDetailsCardContainerStyling} role="table">
@@ -78,7 +82,7 @@ export const InstanceDetails = NamedFC<InstanceDetailsProps>('InstanceDetails', 
                 onClick={cardClickHandler}
                 onKeyDown={cardKeyPressHandler}
                 aria-selected={result.isSelected}
-                aria-label={`${result.identifiers.identifier} card`}
+                aria-label={cardAriaLabel}
                 role="row"
             >
                 <table className={reportInstanceTable}>
