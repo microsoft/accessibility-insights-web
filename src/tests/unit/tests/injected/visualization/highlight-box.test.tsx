@@ -4,15 +4,15 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 
 import { BoxConfig, SimpleHighlightDrawerConfiguration } from '../../../../../injected/visualization/formatter';
-import { HightlightBox, HightlightBoxDeps, HightlightBoxProps } from '../../../../../injected/visualization/highlight-box';
+import { HighlightBox, HighlightBoxDeps, HighlightBoxProps } from '../../../../../injected/visualization/highlight-box';
 
 describe('HighlightBox', () => {
-    let deps: HightlightBoxDeps;
+    let deps: HighlightBoxDeps;
     let classNameStub: string;
     let drawerConfiguration: SimpleHighlightDrawerConfiguration;
     let boxConfig: BoxConfig;
     let onClickHandlerStub: () => void;
-    let props: HightlightBoxProps;
+    let props: HighlightBoxProps;
 
     beforeEach(() => {
         deps = {};
@@ -42,12 +42,12 @@ describe('HighlightBox', () => {
 
     test('renders null when boxConfig is null', () => {
         props.boxConfig = null;
-        const testObject = shallow(<HightlightBox {...props} />);
+        const testObject = shallow(<HighlightBox {...props} />);
         expect(testObject.getElement()).toMatchSnapshot();
     });
 
     test('renders with appropriate styles/elements when boxConfig is set', () => {
-        const testObject = shallow(<HightlightBox {...props} />);
+        const testObject = shallow(<HighlightBox {...props} />);
         expect(testObject.getElement()).toMatchSnapshot();
     });
 });
