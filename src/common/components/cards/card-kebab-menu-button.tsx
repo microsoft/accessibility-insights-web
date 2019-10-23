@@ -34,6 +34,7 @@ export interface CardKebabMenuButtonProps {
     deps: CardKebabMenuButtonDeps;
     userConfigurationStoreData: UserConfigurationStoreData;
     issueDetailsData: CreateIssueDetailsTextData;
+    kebabMenuAriaLabel?: string;
 }
 
 export class CardKebabMenuButton extends React.Component<CardKebabMenuButtonProps, CardKebabMenuButtonState> {
@@ -63,7 +64,7 @@ export class CardKebabMenuButton extends React.Component<CardKebabMenuButtonProp
             <div onKeyDown={handleKeyDown}>
                 <ActionButton
                     className={kebabMenuButton}
-                    ariaLabel="More actions"
+                    ariaLabel={this.props.kebabMenuAriaLabel || 'More actions'}
                     onRenderMenuIcon={MoreActionsMenuIcon}
                     menuProps={{
                         className: kebabMenu,

@@ -144,6 +144,23 @@ describe('CardKebabMenuButtonTest', () => {
         expect(rendered.find(ActionButton).prop('menuProps')).toMatchSnapshot();
     });
 
+    it.each(['test-kebabmenuarialabel', undefined])(
+        'renders per snapshot with allCardInteractionsSupported and %s aria label passed as prop',
+        ariaLabel => {
+            const newProps = {
+                ...defaultProps,
+                kebabMenuAriaLabel: ariaLabel,
+            };
+            const rendered = shallow(
+                <CardKebabMenuButton {...newProps} deps={{ ...defaultDeps, cardInteractionSupport: allCardInteractionsSupported }} />,
+            );
+
+            const snapshotLabel = ariaLabel ? 'with aria-label passed as prop' : 'without aria-label';
+            expect(rendered.debug()).toMatchSnapshot(snapshotLabel);
+            expect(rendered.find(ActionButton).prop('menuProps')).toMatchSnapshot(snapshotLabel);
+        },
+    );
+
     it('renders per snapshot with onlyUserConfigAgnosticCardInteractionsSupported', () => {
         const rendered = shallow(
             <CardKebabMenuButton
