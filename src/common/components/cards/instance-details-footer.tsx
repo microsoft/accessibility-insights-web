@@ -28,10 +28,11 @@ export type InstanceDetailsFooterProps = {
     userConfigurationStoreData: UserConfigurationStoreData;
     targetAppInfo: TargetAppData;
     rule: UnifiedRule;
+    kebabMenuAriaLabel?: string;
 };
 
 export const InstanceDetailsFooter = NamedFC<InstanceDetailsFooterProps>('InstanceDetailsFooter', props => {
-    const { highlightState, deps, userConfigurationStoreData, result, rule, targetAppInfo } = props;
+    const { highlightState, deps, userConfigurationStoreData, result, rule, targetAppInfo, kebabMenuAriaLabel } = props;
     const { cardInteractionSupport } = deps;
 
     const anyInteractionSupport = some(values(cardInteractionSupport));
@@ -43,7 +44,12 @@ export const InstanceDetailsFooter = NamedFC<InstanceDetailsFooterProps>('Instan
 
     const renderKebabMenu = () => {
         return (
-            <CardKebabMenuButton deps={deps} userConfigurationStoreData={userConfigurationStoreData} issueDetailsData={issueDetailsData} />
+            <CardKebabMenuButton
+                deps={deps}
+                userConfigurationStoreData={userConfigurationStoreData}
+                issueDetailsData={issueDetailsData}
+                kebabMenuAriaLabel={kebabMenuAriaLabel}
+            />
         );
     };
 
