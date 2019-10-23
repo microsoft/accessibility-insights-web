@@ -6,7 +6,7 @@ import { dismissTelemetryOptInDialog } from 'tests/electron/common/dismiss-telem
 import { AutomatedChecksViewSelectors } from 'tests/electron/common/element-identifiers/automated-checks-view-selectors';
 import { CommonSelectors } from 'tests/electron/common/element-identifiers/common-selectors';
 import { testResourceServerConfig } from 'tests/electron/setup/test-resource-server-config';
-import { DEFAULT_ELECTRON_TEST_TIMEOUT_MS } from 'tests/electron/setup/timeouts';
+import { DEFAULT_WAIT_FOR_ELEMENT_TO_BE_VISIBLE_TIMEOUT_MS } from 'tests/electron/setup/timeouts';
 import * as WebDriverIO from 'webdriverio';
 
 // spectron wraps calls to electron APIs as promises. Unfortunately, only electron typings are used,
@@ -16,8 +16,6 @@ import * as WebDriverIO from 'webdriverio';
 describe('AutomatedChecksView', () => {
     let app: Application;
     let client: WebDriverIO.Client<void>;
-
-    const collapsibleRuleDetailsGroupSelector = '.collapsible-rule-details-group';
 
     beforeEach(async () => {
         app = await createApplication();
@@ -40,7 +38,7 @@ describe('AutomatedChecksView', () => {
         await client.click(CommonSelectors.startButton);
 
         // wait for automated checks view to be visible
-        await client.waitForVisible(AutomatedChecksViewSelectors.mainContainer, DEFAULT_ELECTRON_TEST_TIMEOUT_MS);
+        await client.waitForVisible(AutomatedChecksViewSelectors.mainContainer, DEFAULT_WAIT_FOR_ELEMENT_TO_BE_VISIBLE_TIMEOUT_MS);
     });
 
     afterEach(async () => {
@@ -50,7 +48,7 @@ describe('AutomatedChecksView', () => {
     });
 
     it('show automated checks results', async () => {
-        const ruleGroups = await client.$$(`div${collapsibleRuleDetailsGroupSelector}`);
+        const ruleGroups = await client.$$(AutomatedChecksViewSelectors.collapsibleRuleDetailsGroup);
 
         expect(ruleGroups).toHaveLength(4);
 
@@ -61,12 +59,12 @@ describe('AutomatedChecksView', () => {
     });
 
     it('collapse groups, hiding the failure details', async () => {
-        const ruleGroups = await client.$$(`div${collapsibleRuleDetailsGroupSelector}`);
+        const ruleGroups = await client.$$(AutomatedChecksViewSelectors.collapsibleRuleDetailsGroup);
 
         expect(ruleGroups).toHaveLength(4);
 
         const collapseGroup = async (position: number) => {
-            await client.click(`div${collapsibleRuleDetailsGroupSelector}:nth-of-type(${position}) button`);
+            await client.click(AutomatedChecksViewSelectors.getCollapseExpandButtonByGroupPosition(position));
         };
 
         await collapseGroup(1);
@@ -74,21 +72,21 @@ describe('AutomatedChecksView', () => {
         await collapseGroup(3);
         await collapseGroup(4);
 
-        const collapsibleContentElements = await client.$$('.collapsible-container-content');
+        const collapsibleContentElements = await client.$$(AutomatedChecksViewSelectors.collapsibleContainerContent);
 
         expect(collapsibleContentElements).toHaveLength(0);
     });
 
     async function assertExpandedRuleGroup(position: number, expectedTitle: string, expectedFailures: number): Promise<void> {
-        const title = await client.$(`div${collapsibleRuleDetailsGroupSelector}:nth-of-type(${position}) .rule-details-id`).getText();
+        const title = await client.$(AutomatedChecksViewSelectors.getRuleDetailsIdSelector(position)).getText();
         expect(title).toEqual(expectedTitle);
 
-        const failures = await client.$$(`div${collapsibleRuleDetailsGroupSelector}:nth-of-type(${position}) li`);
+        const failures = await client.$$(AutomatedChecksViewSelectors.getLiFailuresSelector(position));
         expect(failures).toHaveLength(expectedFailures);
     }
 
     async function ensureAppIsInDeviceConnectionDialog(): Promise<void> {
-        await client.waitForVisible(CommonSelectors.rootContainer, DEFAULT_ELECTRON_TEST_TIMEOUT_MS);
+        await client.waitForVisible(CommonSelectors.rootContainer, DEFAULT_WAIT_FOR_ELEMENT_TO_BE_VISIBLE_TIMEOUT_MS);
         expect(await app.webContents.getTitle()).toBe('Accessibility Insights for Mobile');
     }
 });
