@@ -52,6 +52,7 @@
     }
 
     .collapsible-container-content {
+        margin-left: 24px;
         &[aria-hidden='true'] {
             display: none;
         }

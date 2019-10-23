@@ -16,14 +16,13 @@
     border-radius: 4px;
     outline-style: 'border-style';
     box-shadow: 0px 0.6px 1.8px $box-shadow-108, 0px 3.2px 7.2px $box-shadow-132;
-    margin-left: 24px;
     margin-bottom: 16px;
     cursor: pointer;
     @include fill-available-width;
 }
 
-.instance-details-card.selected {
-    border: 5px solid $communication-tint-10;
+.instance-details-card-container.selected {
+    outline: 5px solid $communication-tint-10;
 }
 
 .instance-details-card:focus {
@@ -31,22 +30,16 @@
 }
 
 .instance-details-card.selected:focus {
-    border: 5px solid $communication-tint-10;
-    outline: 2px solid $primary-text;
-    outline-offset: 2px;
+    outline-offset: 6px;
 }
 
 .instance-details-card:hover {
     box-shadow: 0px 8px 10px $box-shadow-108, 0px 8px 10px $box-shadow-132;
 }
 
-.instance-details-card.selected:hover {
-    border: 5px solid #2b88d8;
-    box-shadow: 0px 8px 10px $box-shadow-108, 0px 8px 10px $box-shadow-132;
-}
-
 .report-instance-table {
     background: $neutral-0;
+
     display: table;
     table-layout: fixed;
     @include fill-available-width;

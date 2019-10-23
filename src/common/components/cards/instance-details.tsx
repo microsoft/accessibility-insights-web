@@ -6,7 +6,7 @@ import { NamedFC } from 'common/react/named-fc';
 import { CardResult } from 'common/types/store-data/card-view-model';
 import { forOwn, isEmpty } from 'lodash';
 import * as React from 'react';
-import { reportInstanceTable } from 'reports/components/instance-details.scss';
+import { instanceDetailsCard, instanceDetailsCardContainer, reportInstanceTable, selected } from 'reports/components/instance-details.scss';
 
 import { CardRowDeps, PropertyConfiguration } from '../../../common/configs/unified-result-property-configurations';
 import { CardSelectionMessageCreator } from '../../../common/message-creators/card-selection-message-creator';
@@ -61,13 +61,18 @@ export const InstanceDetails = NamedFC<InstanceDetailsProps>('InstanceDetails', 
     };
 
     const instanceDetailsCardStyling = classNames({
-        'instance-details-card': true,
-        selected: result.isSelected,
+        [instanceDetailsCard]: true,
+        [selected]: result.isSelected,
+    });
+
+    const instanceDetailsCardContainerStyling = classNames({
+        [instanceDetailsCardContainer]: true,
+        [selected]: result.isSelected,
     });
 
     const kebabMenuAriaLabel = `More Actions for card ${result.identifiers.identifier} in rule ${result.ruleId}`;
     return (
-        <div role="table">
+        <div className={instanceDetailsCardContainerStyling} role="table">
             <div
                 className={instanceDetailsCardStyling}
                 tabIndex={0}

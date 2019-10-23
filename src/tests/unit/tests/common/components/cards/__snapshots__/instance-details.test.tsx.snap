@@ -2,12 +2,13 @@
 
 exports[`InstanceDetails isSelected drives the styling for the card 1`] = `
 <div
+  className="instanceDetailsCardContainer selected"
   role="table"
 >
   <div
     aria-label="test-id card"
     aria-selected={true}
-    className="instance-details-card selected"
+    className="instanceDetailsCard selected"
     onClick={[Function]}
     onKeyDown={[Function]}
     role="row"
@@ -56,12 +57,13 @@ exports[`InstanceDetails isSelected drives the styling for the card 1`] = `
 
 exports[`InstanceDetails isSelected drives the styling for the card 2`] = `
 <div
+  className="instanceDetailsCardContainer"
   role="table"
 >
   <div
     aria-label="test-id card"
     aria-selected={false}
-    className="instance-details-card"
+    className="instanceDetailsCard"
     onClick={[Function]}
     onKeyDown={[Function]}
     role="row"
@@ -110,11 +112,12 @@ exports[`InstanceDetails isSelected drives the styling for the card 2`] = `
 
 exports[`InstanceDetails renders 1`] = `
 <div
+  className="instanceDetailsCardContainer"
   role="table"
 >
   <div
     aria-label="body img card"
-    className="instance-details-card"
+    className="instanceDetailsCard"
     onClick={[Function]}
     onKeyDown={[Function]}
     role="row"
@@ -227,11 +230,12 @@ exports[`InstanceDetails renders 1`] = `
 
 exports[`InstanceDetails renders nothing when there is no card row config for the property / no property 1`] = `
 <div
+  className="instanceDetailsCardContainer"
   role="table"
 >
   <div
     aria-label="test-id card"
-    className="instance-details-card"
+    className="instanceDetailsCard"
     onClick={[Function]}
     onKeyDown={[Function]}
     role="row"
