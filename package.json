@@ -125,7 +125,7 @@
         "moment": "^2.24.0",
         "office-ui-fabric-react": "6.210.0",
         "q": "1.5.1",
-        "react": "^16.10.2",
+        "react": "^16.11.0",
         "react-copy-to-clipboard": "^5.0.1",
         "react-dom": "^16.10.2",
         "react-helmet": "^5.2.0",
