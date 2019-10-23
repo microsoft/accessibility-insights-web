@@ -1,21 +1,21 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { NamedFC } from 'common/react/named-fc';
+import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { CSSProperties } from 'react';
 import * as React from 'react';
 
-import { NamedFC } from '../../common/react/named-fc';
-import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { ClientUtils } from '../client-utils';
 import { RenderDialog } from '../dialog-renderer';
 import { HtmlElementAxeResults } from '../scanner-utils';
 import { DrawerUtils } from './drawer-utils';
 import { DrawerConfiguration, GetBoundingRect } from './formatter';
-import { HightlightBox, HightlightBoxDeps } from './highlight-box';
+import { HighlightBox, HighlightBoxDeps } from './highlight-box';
 
 export type ElementHighlightDeps = {
     drawerUtils: DrawerUtils;
     clientUtils: ClientUtils;
-} & HightlightBoxDeps;
+} & HighlightBoxDeps;
 
 export interface ElementHighlightProps {
     deps: ElementHighlightDeps;
@@ -60,8 +60,8 @@ export const ElementHighlight = NamedFC<ElementHighlightProps>('ElementHighlight
 
     return (
         <div title={drawerConfig.toolTip} className={'insights-highlight-box'} style={styles}>
-            <HightlightBox deps={deps} drawerConfig={drawerConfig} boxConfig={drawerConfig.textBoxConfig} className={'text-label'} />
-            <HightlightBox
+            <HighlightBox deps={deps} drawerConfig={drawerConfig} boxConfig={drawerConfig.textBoxConfig} className={'text-label'} />
+            <HighlightBox
                 deps={deps}
                 drawerConfig={drawerConfig}
                 boxConfig={drawerConfig.failureBoxConfig}

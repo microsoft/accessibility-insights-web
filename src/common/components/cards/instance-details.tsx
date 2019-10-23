@@ -65,23 +65,35 @@ export const InstanceDetails = NamedFC<InstanceDetailsProps>('InstanceDetails', 
         selected: result.isSelected,
     });
 
+    const kebabMenuAriaLabel = `More Actions for card ${result.identifiers.identifier} in rule ${result.ruleId}`;
     return (
-        <div className={instanceDetailsCardStyling} tabIndex={0} onClick={cardClickHandler} onKeyDown={cardKeyPressHandler}>
-            <table className={reportInstanceTable}>
-                <tbody>
-                    {renderCardRowsForPropertyBag(result.identifiers)}
-                    {renderCardRowsForPropertyBag(result.descriptors)}
-                    {renderCardRowsForPropertyBag(result.resolution)}
-                </tbody>
-            </table>
-            <InstanceDetailsFooter
-                deps={deps}
-                result={result}
-                highlightState={highlightState}
-                userConfigurationStoreData={userConfigurationStoreData}
-                rule={rule}
-                targetAppInfo={targetAppInfo}
-            />
+        <div role="table">
+            <div
+                className={instanceDetailsCardStyling}
+                tabIndex={0}
+                onClick={cardClickHandler}
+                onKeyDown={cardKeyPressHandler}
+                aria-selected={result.isSelected}
+                aria-label={`${result.identifiers.identifier} card`}
+                role="row"
+            >
+                <table className={reportInstanceTable}>
+                    <tbody>
+                        {renderCardRowsForPropertyBag(result.identifiers)}
+                        {renderCardRowsForPropertyBag(result.descriptors)}
+                        {renderCardRowsForPropertyBag(result.resolution)}
+                    </tbody>
+                </table>
+                <InstanceDetailsFooter
+                    deps={deps}
+                    result={result}
+                    highlightState={highlightState}
+                    userConfigurationStoreData={userConfigurationStoreData}
+                    rule={rule}
+                    targetAppInfo={targetAppInfo}
+                    kebabMenuAriaLabel={kebabMenuAriaLabel}
+                />
+            </div>
         </div>
     );
 });
