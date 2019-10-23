@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
 
 export type ScreenshotComponentProps = {
@@ -7,8 +8,6 @@ export type ScreenshotComponentProps = {
     alt: string;
 };
 
-export class ScreenshotComponent extends React.Component<ScreenshotComponentProps> {
-    public render(): JSX.Element {
-        return <img src={'data:image/png;base64,' + this.props.image} alt={this.props.alt} />;
-    }
-}
+export const ScreenshotComponent = NamedFC<ScreenshotComponentProps>('ScreenshotComponent', props => {
+    return <img src={'data:image/png;base64,' + props.image} alt={props.alt} />;
+});
