@@ -34,6 +34,7 @@ export const InstanceDetails = NamedFC<InstanceDetailsProps>('InstanceDetails', 
 
     // This should be updated once selection is implemented to sync highlight state with selection.
     const highlightState: HighlightState = 'unavailable';
+    const isHighlightSupported: boolean = deps.cardInteractionSupport.supportsHighlighting;
 
     const renderCardRowsForPropertyBag = (propertyBag: StoredInstancePropertyBag) => {
         let propertyIndex = 0;
@@ -50,7 +51,9 @@ export const InstanceDetails = NamedFC<InstanceDetailsProps>('InstanceDetails', 
     };
 
     const cardClickHandler = (): void => {
-        deps.cardSelectionMessageCreator.toggleCardSelection(result.ruleId, result.uid);
+        if (isHighlightSupported) {
+            deps.cardSelectionMessageCreator.toggleCardSelection(result.ruleId, result.uid);
+        }
     };
 
     const cardKeyPressHandler = (event: React.KeyboardEvent<any>): void => {
@@ -62,15 +65,16 @@ export const InstanceDetails = NamedFC<InstanceDetailsProps>('InstanceDetails', 
 
     const instanceDetailsCardStyling = classNames({
         [instanceDetailsCard]: true,
-        [selected]: result.isSelected,
+        [selected]: isHighlightSupported ? result.isSelected : false,
     });
 
     const instanceDetailsCardContainerStyling = classNames({
         [instanceDetailsCardContainer]: true,
-        [selected]: result.isSelected,
+        [selected]: isHighlightSupported ? result.isSelected : false,
     });
 
-    const kebabMenuAriaLabel = `More Actions for card ${result.identifiers.identifier} in rule ${result.ruleId}`;
+    const cardAriaLabel = `${result.identifiers && result.identifiers.identifier ? result.identifiers.identifier : ''} card`;
+
     return (
         <div className={instanceDetailsCardContainerStyling} role="table">
             <div
@@ -79,7 +83,7 @@ export const InstanceDetails = NamedFC<InstanceDetailsProps>('InstanceDetails', 
                 onClick={cardClickHandler}
                 onKeyDown={cardKeyPressHandler}
                 aria-selected={result.isSelected}
-                aria-label={`${result.identifiers.identifier} card`}
+                aria-label={cardAriaLabel}
                 role="row"
             >
                 <table className={reportInstanceTable}>
@@ -96,7 +100,6 @@ export const InstanceDetails = NamedFC<InstanceDetailsProps>('InstanceDetails', 
                     userConfigurationStoreData={userConfigurationStoreData}
                     rule={rule}
                     targetAppInfo={targetAppInfo}
-                    kebabMenuAriaLabel={kebabMenuAriaLabel}
                 />
             </div>
         </div>
