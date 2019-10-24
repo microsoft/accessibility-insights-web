@@ -42,13 +42,13 @@ export const InstanceDetailsFooter = NamedFC<InstanceDetailsFooterProps>('Instan
     const issueDetailsData: CreateIssueDetailsTextData = deps.unifiedResultToIssueFilingDataConverter.convert(result, rule, targetAppInfo);
 
     const renderKebabMenu = () => {
-        const kebabMenuArialLabel: string = `More Actions for card ${result.identifiers.identifier}in rule ${rule.id}`;
+        const kebabMenuAriaLabel: string = `More Actions for card ${result.identifiers.identifier} in rule ${rule.id}`;
         return (
             <CardKebabMenuButton
                 deps={deps}
                 userConfigurationStoreData={userConfigurationStoreData}
                 issueDetailsData={issueDetailsData}
-                kebabMenuAriaLabel={kebabMenuArialLabel}
+                kebabMenuAriaLabel={kebabMenuAriaLabel}
             />
         );
     };
