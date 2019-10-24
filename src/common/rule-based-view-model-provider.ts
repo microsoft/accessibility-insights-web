@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { HighlightState } from 'common/components/cards/instance-details-footer';
 import { CardSelectionViewData } from 'common/get-card-selection-view-data';
 import { includes } from 'lodash';
 import {
@@ -31,7 +32,7 @@ export const getUnifiedRuleResults: GetUnifiedRuleResultsDelegate = (
 
     for (const result of results) {
         const ruleResults = statusResults[result.status];
-
+        const isFailedInstance = result.status === 'fail';
         let ruleResult = getExistingRuleFromResults(result.ruleId, ruleResults);
 
         if (!ruleResult) {
@@ -40,15 +41,16 @@ export const getUnifiedRuleResults: GetUnifiedRuleResultsDelegate = (
                 continue;
             }
 
-            const isExpanded = result.status === 'fail' ? includes(cardSelectionViewData.expandedRuleIds, rule.id) : false;
+            const isExpanded = isFailedInstance ? includes(cardSelectionViewData.expandedRuleIds, rule.id) : false;
 
             ruleResult = createCardRuleResult(result.status, rule, isExpanded);
             ruleResults.push(ruleResult);
         }
 
-        const isSelected = result.status === 'fail' ? includes(cardSelectionViewData.selectedResultUids, result.uid) : false;
+        const isSelected = isFailedInstance ? includes(cardSelectionViewData.selectedResultUids, result.uid) : false;
+        const highlightStatus = getHighlightStatus(isFailedInstance, cardSelectionViewData.highlightedResultUids, result.uid);
 
-        ruleResult.nodes.push(createCardResult(result, isSelected));
+        ruleResult.nodes.push(createCardResult(result, isSelected, highlightStatus));
 
         ruleIdsWithResultNodes.add(result.ruleId);
     }
@@ -78,6 +80,18 @@ const getEmptyStatusResults = (): CardRuleResultsByStatus => {
     return statusResults as CardRuleResultsByStatus;
 };
 
+const getHighlightStatus = (isFailedInstance: boolean, highlightedResultUids: string[], resultUid: string) => {
+    if (!isFailedInstance) {
+        return 'unavailable';
+    }
+
+    if (includes(highlightedResultUids, resultUid)) {
+        return 'visible';
+    }
+
+    return 'hidden';
+};
+
 const createCardRuleResult = (status: string, rule: UnifiedRule, isExpanded: boolean): CardRuleResult => ({
     id: rule.id,
     status: status,
@@ -98,11 +112,12 @@ const createRuleResultWithoutNodes = (status: CardRuleResultStatus, rule: Unifie
     isExpanded: false,
 });
 
-const createCardResult = (unifiedResult: UnifiedResult, isSelected: boolean): CardResult => {
+const createCardResult = (unifiedResult: UnifiedResult, isSelected: boolean, highlightStatus: HighlightState): CardResult => {
     return {
         ...unifiedResult,
         isSelected,
-    } as CardResult;
+        highlightStatus,
+    };
 };
 
 const getUnifiedRule = (id: string, rules: UnifiedRule[]): UnifiedRule => rules.find(rule => rule.id === id);

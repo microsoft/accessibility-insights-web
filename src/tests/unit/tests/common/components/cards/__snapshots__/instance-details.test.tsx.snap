@@ -38,7 +38,6 @@ exports[`InstanceDetails isSelected drives the styling for the card 1`] = `
           "getPropertyConfigById": [Function],
         }
       }
-      highlightState="unavailable"
       result={
         Object {
           "descriptors": Object {},
@@ -97,7 +96,6 @@ exports[`InstanceDetails isSelected drives the styling for the card 2`] = `
           "getPropertyConfigById": [Function],
         }
       }
-      highlightState="unavailable"
       result={
         Object {
           "descriptors": Object {},
@@ -222,7 +220,6 @@ exports[`InstanceDetails renders 1`] = `
           "getPropertyConfigById": [Function],
         }
       }
-      highlightState="unavailable"
       result={
         Object {
           "descriptors": Object {
@@ -292,7 +289,6 @@ exports[`InstanceDetails renders nothing when there is no card row config for th
           "getPropertyConfigById": [Function],
         }
       }
-      highlightState="unavailable"
       result={
         Object {
           "descriptors": Object {},

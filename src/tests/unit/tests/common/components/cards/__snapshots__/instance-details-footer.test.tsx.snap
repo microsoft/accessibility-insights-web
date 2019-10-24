@@ -7,9 +7,9 @@ exports[`InstanceDetailsFooter renders per snapshot when all card interactions a
   <div
     className="highlightStatus"
   >
-    <HighlightHiddenIcon />
+    <HighlightVisibleIcon />
     <StyledLabelBase>
-      Highlight hidden
+      Highlight visible
     </StyledLabelBase>
   </div>
   <CardKebabMenuButton
@@ -39,9 +39,9 @@ exports[`InstanceDetailsFooter renders per snapshot when only UserConfig-agnosti
   <div
     className="highlightStatus"
   >
-    <HighlightHiddenIcon />
+    <HighlightVisibleIcon />
     <StyledLabelBase>
-      Highlight hidden
+      Highlight visible
     </StyledLabelBase>
   </div>
   <CardKebabMenuButton

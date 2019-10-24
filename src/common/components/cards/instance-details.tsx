@@ -12,7 +12,7 @@ import { CardRowDeps, PropertyConfiguration } from '../../../common/configs/unif
 import { CardSelectionMessageCreator } from '../../../common/message-creators/card-selection-message-creator';
 import { StoredInstancePropertyBag, TargetAppData, UnifiedRule } from '../../../common/types/store-data/unified-data-interface';
 import { UserConfigurationStoreData } from '../../types/store-data/user-configuration-store';
-import { HighlightState, InstanceDetailsFooter, InstanceDetailsFooterDeps } from './instance-details-footer';
+import { InstanceDetailsFooter, InstanceDetailsFooterDeps } from './instance-details-footer';
 
 export type InstanceDetailsDeps = {
     getPropertyConfigById: (id: string) => PropertyConfiguration;
@@ -32,8 +32,6 @@ export type InstanceDetailsProps = {
 export const InstanceDetails = NamedFC<InstanceDetailsProps>('InstanceDetails', props => {
     const { result, index, deps, userConfigurationStoreData, rule, targetAppInfo } = props;
 
-    // This should be updated once selection is implemented to sync highlight state with selection.
-    const highlightState: HighlightState = 'unavailable';
     const isHighlightSupported: boolean = deps.cardInteractionSupport.supportsHighlighting;
 
     const renderCardRowsForPropertyBag = (propertyBag: StoredInstancePropertyBag) => {
@@ -96,7 +94,6 @@ export const InstanceDetails = NamedFC<InstanceDetailsProps>('InstanceDetails', 
                 <InstanceDetailsFooter
                     deps={deps}
                     result={result}
-                    highlightState={highlightState}
                     userConfigurationStoreData={userConfigurationStoreData}
                     rule={rule}
                     targetAppInfo={targetAppInfo}
