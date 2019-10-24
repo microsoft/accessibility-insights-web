@@ -48,11 +48,7 @@ export const getUnifiedRuleResults: GetUnifiedRuleResultsDelegate = (
         }
 
         const isSelected = isFailedInstance ? includes(cardSelectionViewData.selectedResultUids, result.uid) : false;
-        const highlightStatus = isFailedInstance
-            ? includes(cardSelectionViewData.highlightedResultUids, result.uid)
-                ? 'visible'
-                : 'hidden'
-            : 'unavailable';
+        const highlightStatus = getHighlightStatus(isFailedInstance, cardSelectionViewData.highlightedResultUids, result.uid);
 
         ruleResult.nodes.push(createCardResult(result, isSelected, highlightStatus));
 
@@ -82,6 +78,18 @@ const getEmptyStatusResults = (): CardRuleResultsByStatus => {
     });
 
     return statusResults as CardRuleResultsByStatus;
+};
+
+const getHighlightStatus = (isFailedInstance: boolean, highlightedResultUids: string[], resultUid: string) => {
+    if (isFailedInstance) {
+        return 'unavailable';
+    }
+
+    if (includes(highlightedResultUids, resultUid)) {
+        return 'visible';
+    }
+
+    return 'hidden';
 };
 
 const createCardRuleResult = (status: string, rule: UnifiedRule, isExpanded: boolean): CardRuleResult => ({
