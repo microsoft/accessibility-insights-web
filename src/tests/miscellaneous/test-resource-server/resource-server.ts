@@ -12,7 +12,11 @@ export function startServer(config: ResourceServerConfig): void {
 
     const dirPath = path.join(__dirname, config.path);
 
-    app.use(serveStatic(dirPath));
+    const serveStaticOptions = {
+        extensions: config.extensions,
+    };
+
+    app.use(serveStatic(dirPath, serveStaticOptions));
     server = app.listen(config.port);
 }
 

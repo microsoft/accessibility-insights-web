@@ -3,4 +3,5 @@
 export type ResourceServerConfig = {
     port: number;
     path: string;
+    extensions?: string[];
 };

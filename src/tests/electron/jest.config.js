@@ -8,6 +8,8 @@ const currentDir = '<rootDir>/src/tests/electron';
 module.exports = {
     ...common,
     displayName: 'electron tests',
+    globalSetup: `${currentDir}/setup/global-setup.ts`,
+    globalTeardown: `${currentDir}/setup/global-teardown.ts`,
     moduleFileExtensions: ['ts', 'js'],
     rootDir: rootDir,
     roots: [currentDir],
