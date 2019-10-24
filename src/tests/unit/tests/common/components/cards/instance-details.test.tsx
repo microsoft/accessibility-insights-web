@@ -1,18 +1,17 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { allCardInteractionsSupported, noCardInteractionsSupported } from 'common/components/cards/card-interaction-support';
 import { InstanceDetails, InstanceDetailsDeps, InstanceDetailsProps } from 'common/components/cards/instance-details';
+import { AllPropertyTypes, CardRowProps, PropertyConfiguration } from 'common/configs/unified-result-property-configurations';
 import { KeyCodeConstants } from 'common/constants/keycode-constants';
 import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
+import { NamedFC, ReactFCWithDisplayName } from 'common/react/named-fc';
+import { UnifiedResolution, UnifiedResult } from 'common/types/store-data/unified-data-interface';
 import { shallow } from 'enzyme';
 import * as React from 'react';
+import { instanceDetailsCard } from 'reports/components/instance-details.scss';
 import { IMock, It, Mock, Times } from 'typemoq';
-import {
-    AllPropertyTypes,
-    CardRowProps,
-    PropertyConfiguration,
-} from '../../../../../../common/configs/unified-result-property-configurations';
-import { NamedFC, ReactFCWithDisplayName } from '../../../../../../common/react/named-fc';
-import { UnifiedResolution, UnifiedResult } from '../../../../../../common/types/store-data/unified-data-interface';
+
 import { exampleUnifiedResult } from './sample-view-model-data';
 
 describe('InstanceDetails', () => {
@@ -28,9 +27,11 @@ describe('InstanceDetails', () => {
         cardSelectionMessageCreatorMock = Mock.ofType(CardSelectionMessageCreator);
         resultStub = exampleUnifiedResult;
         indexStub = 22;
+
         deps = {
             getPropertyConfigById: getPropertyConfigByIdMock.object,
             cardSelectionMessageCreator: cardSelectionMessageCreatorMock.object,
+            cardInteractionSupport: allCardInteractionsSupported,
         } as InstanceDetailsDeps;
         props = {
             deps,
@@ -59,7 +60,32 @@ describe('InstanceDetails', () => {
             .verifiable(Times.once());
 
         const wrapper = shallow(<InstanceDetails {...props} />);
-        const divElem = wrapper.find('.instance-details-card');
+        const divElem = wrapper.find(`.${instanceDetailsCard}`);
+        expect(divElem.length).toBe(1);
+
+        divElem.simulate('click');
+
+        cardSelectionMessageCreatorMock.verifyAll();
+    });
+
+    it('does not dispatch the card selection message when card is clicked if highlighting is not supported', () => {
+        deps = {
+            ...deps,
+            cardInteractionSupport: noCardInteractionsSupported,
+        };
+        props = {
+            ...props,
+            deps,
+        };
+
+        setupGetPropertyConfigByIdMock();
+
+        cardSelectionMessageCreatorMock
+            .setup(mock => mock.toggleCardSelection(It.isAnyString(), It.isAnyString()))
+            .verifiable(Times.never());
+
+        const wrapper = shallow(<InstanceDetails {...props} />);
+        const divElem = wrapper.find(`.${instanceDetailsCard}`);
         expect(divElem.length).toBe(1);
 
         divElem.simulate('click');
@@ -77,7 +103,7 @@ describe('InstanceDetails', () => {
             .verifiable(Times.once());
 
         const wrapper = shallow(<InstanceDetails {...props} />);
-        const divElem = wrapper.find('.instance-details-card');
+        const divElem = wrapper.find(`.${instanceDetailsCard}`);
         expect(divElem.length).toBe(1);
 
         divElem.simulate('keydown', { keyCode: keyCode, preventDefault: preventDefaultMock });

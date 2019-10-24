@@ -2,12 +2,13 @@
 
 exports[`InstanceDetails isSelected drives the styling for the card 1`] = `
 <div
+  className="instanceDetailsCardContainer selected"
   role="table"
 >
   <div
     aria-label="test-id card"
     aria-selected={true}
-    className="instance-details-card selected"
+    className="instanceDetailsCard selected"
     onClick={[Function]}
     onKeyDown={[Function]}
     role="row"
@@ -25,6 +26,11 @@ exports[`InstanceDetails isSelected drives the styling for the card 1`] = `
     <InstanceDetailsFooter
       deps={
         Object {
+          "cardInteractionSupport": Object {
+            "supportsCopyFailureDetails": true,
+            "supportsHighlighting": true,
+            "supportsIssueFiling": true,
+          },
           "cardSelectionMessageCreator": proxy {
             "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
             "dispatcher": undefined,
@@ -32,7 +38,6 @@ exports[`InstanceDetails isSelected drives the styling for the card 1`] = `
           "getPropertyConfigById": [Function],
         }
       }
-      kebabMenuAriaLabel="More Actions for card test-id in rule image-alt"
       result={
         Object {
           "descriptors": Object {},
@@ -55,12 +60,13 @@ exports[`InstanceDetails isSelected drives the styling for the card 1`] = `
 
 exports[`InstanceDetails isSelected drives the styling for the card 2`] = `
 <div
+  className="instanceDetailsCardContainer"
   role="table"
 >
   <div
     aria-label="test-id card"
     aria-selected={false}
-    className="instance-details-card"
+    className="instanceDetailsCard"
     onClick={[Function]}
     onKeyDown={[Function]}
     role="row"
@@ -78,6 +84,11 @@ exports[`InstanceDetails isSelected drives the styling for the card 2`] = `
     <InstanceDetailsFooter
       deps={
         Object {
+          "cardInteractionSupport": Object {
+            "supportsCopyFailureDetails": true,
+            "supportsHighlighting": true,
+            "supportsIssueFiling": true,
+          },
           "cardSelectionMessageCreator": proxy {
             "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
             "dispatcher": undefined,
@@ -85,7 +96,6 @@ exports[`InstanceDetails isSelected drives the styling for the card 2`] = `
           "getPropertyConfigById": [Function],
         }
       }
-      kebabMenuAriaLabel="More Actions for card test-id in rule image-alt"
       result={
         Object {
           "descriptors": Object {},
@@ -108,11 +118,12 @@ exports[`InstanceDetails isSelected drives the styling for the card 2`] = `
 
 exports[`InstanceDetails renders 1`] = `
 <div
+  className="instanceDetailsCardContainer"
   role="table"
 >
   <div
     aria-label="body img card"
-    className="instance-details-card"
+    className="instanceDetailsCard"
     onClick={[Function]}
     onKeyDown={[Function]}
     role="row"
@@ -126,6 +137,11 @@ exports[`InstanceDetails renders 1`] = `
           <css-selector
             deps={
               Object {
+                "cardInteractionSupport": Object {
+                  "supportsCopyFailureDetails": true,
+                  "supportsHighlighting": true,
+                  "supportsIssueFiling": true,
+                },
                 "cardSelectionMessageCreator": proxy {
                   "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
                   "dispatcher": undefined,
@@ -141,6 +157,11 @@ exports[`InstanceDetails renders 1`] = `
           <snippet
             deps={
               Object {
+                "cardInteractionSupport": Object {
+                  "supportsCopyFailureDetails": true,
+                  "supportsHighlighting": true,
+                  "supportsIssueFiling": true,
+                },
                 "cardSelectionMessageCreator": proxy {
                   "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
                   "dispatcher": undefined,
@@ -156,6 +177,11 @@ exports[`InstanceDetails renders 1`] = `
           <how-to-fix-web
             deps={
               Object {
+                "cardInteractionSupport": Object {
+                  "supportsCopyFailureDetails": true,
+                  "supportsHighlighting": true,
+                  "supportsIssueFiling": true,
+                },
                 "cardSelectionMessageCreator": proxy {
                   "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
                   "dispatcher": undefined,
@@ -182,6 +208,11 @@ exports[`InstanceDetails renders 1`] = `
     <InstanceDetailsFooter
       deps={
         Object {
+          "cardInteractionSupport": Object {
+            "supportsCopyFailureDetails": true,
+            "supportsHighlighting": true,
+            "supportsIssueFiling": true,
+          },
           "cardSelectionMessageCreator": proxy {
             "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
             "dispatcher": undefined,
@@ -189,7 +220,6 @@ exports[`InstanceDetails renders 1`] = `
           "getPropertyConfigById": [Function],
         }
       }
-      kebabMenuAriaLabel="More Actions for card body img in rule image-alt"
       result={
         Object {
           "descriptors": Object {
@@ -224,11 +254,12 @@ exports[`InstanceDetails renders 1`] = `
 
 exports[`InstanceDetails renders nothing when there is no card row config for the property / no property 1`] = `
 <div
+  className="instanceDetailsCardContainer"
   role="table"
 >
   <div
     aria-label="test-id card"
-    className="instance-details-card"
+    className="instanceDetailsCard"
     onClick={[Function]}
     onKeyDown={[Function]}
     role="row"
@@ -246,6 +277,11 @@ exports[`InstanceDetails renders nothing when there is no card row config for th
     <InstanceDetailsFooter
       deps={
         Object {
+          "cardInteractionSupport": Object {
+            "supportsCopyFailureDetails": true,
+            "supportsHighlighting": true,
+            "supportsIssueFiling": true,
+          },
           "cardSelectionMessageCreator": proxy {
             "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
             "dispatcher": undefined,
@@ -253,7 +289,6 @@ exports[`InstanceDetails renders nothing when there is no card row config for th
           "getPropertyConfigById": [Function],
         }
       }
-      kebabMenuAriaLabel="More Actions for card test-id in rule image-alt"
       result={
         Object {
           "descriptors": Object {},

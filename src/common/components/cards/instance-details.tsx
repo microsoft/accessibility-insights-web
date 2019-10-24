@@ -6,7 +6,7 @@ import { NamedFC } from 'common/react/named-fc';
 import { CardResult } from 'common/types/store-data/card-view-model';
 import { forOwn, isEmpty } from 'lodash';
 import * as React from 'react';
-import { reportInstanceTable } from 'reports/components/instance-details.scss';
+import { instanceDetailsCard, instanceDetailsCardContainer, reportInstanceTable, selected } from 'reports/components/instance-details.scss';
 
 import { CardRowDeps, PropertyConfiguration } from '../../../common/configs/unified-result-property-configurations';
 import { CardSelectionMessageCreator } from '../../../common/message-creators/card-selection-message-creator';
@@ -32,6 +32,8 @@ export type InstanceDetailsProps = {
 export const InstanceDetails = NamedFC<InstanceDetailsProps>('InstanceDetails', props => {
     const { result, index, deps, userConfigurationStoreData, rule, targetAppInfo } = props;
 
+    const isHighlightSupported: boolean = deps.cardInteractionSupport.supportsHighlighting;
+
     const renderCardRowsForPropertyBag = (propertyBag: StoredInstancePropertyBag) => {
         let propertyIndex = 0;
         const cardRows = [];
@@ -47,7 +49,9 @@ export const InstanceDetails = NamedFC<InstanceDetailsProps>('InstanceDetails', 
     };
 
     const cardClickHandler = (): void => {
-        deps.cardSelectionMessageCreator.toggleCardSelection(result.ruleId, result.uid);
+        if (isHighlightSupported) {
+            deps.cardSelectionMessageCreator.toggleCardSelection(result.ruleId, result.uid);
+        }
     };
 
     const cardKeyPressHandler = (event: React.KeyboardEvent<any>): void => {
@@ -58,20 +62,26 @@ export const InstanceDetails = NamedFC<InstanceDetailsProps>('InstanceDetails', 
     };
 
     const instanceDetailsCardStyling = classNames({
-        'instance-details-card': true,
-        selected: result.isSelected,
+        [instanceDetailsCard]: true,
+        [selected]: isHighlightSupported ? result.isSelected : false,
     });
 
-    const kebabMenuAriaLabel = `More Actions for card ${result.identifiers.identifier} in rule ${result.ruleId}`;
+    const instanceDetailsCardContainerStyling = classNames({
+        [instanceDetailsCardContainer]: true,
+        [selected]: isHighlightSupported ? result.isSelected : false,
+    });
+
+    const cardAriaLabel = `${result.identifiers && result.identifiers.identifier ? result.identifiers.identifier : ''} card`;
+
     return (
-        <div role="table">
+        <div className={instanceDetailsCardContainerStyling} role="table">
             <div
                 className={instanceDetailsCardStyling}
                 tabIndex={0}
                 onClick={cardClickHandler}
                 onKeyDown={cardKeyPressHandler}
                 aria-selected={result.isSelected}
-                aria-label={`${result.identifiers.identifier} card`}
+                aria-label={cardAriaLabel}
                 role="row"
             >
                 <table className={reportInstanceTable}>
@@ -87,7 +97,6 @@ export const InstanceDetails = NamedFC<InstanceDetailsProps>('InstanceDetails', 
                     userConfigurationStoreData={userConfigurationStoreData}
                     rule={rule}
                     targetAppInfo={targetAppInfo}
-                    kebabMenuAriaLabel={kebabMenuAriaLabel}
                 />
             </div>
         </div>
