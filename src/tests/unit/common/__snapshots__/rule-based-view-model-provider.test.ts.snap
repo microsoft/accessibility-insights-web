@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isExpanded": false, "isHighlighted": false, "isSelected": false} 1`] = `
+exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isExpanded": false, "isHighlighted": true, "isSelected": false} 1`] = `
 Object {
   "fail": Array [
     Object {
@@ -16,7 +16,7 @@ Object {
       "nodes": Array [
         Object {
           "descriptors": null,
-          "highlightStatus": "hidden",
+          "highlightStatus": "visible",
           "identifiers": null,
           "isSelected": false,
           "resolution": null,

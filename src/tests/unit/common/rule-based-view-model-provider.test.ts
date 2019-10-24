@@ -1,10 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { CardSelectionViewData } from 'common/get-card-selection-view-data';
-
-import { getUnifiedRuleResults } from '../../../common/rule-based-view-model-provider';
-import { CardRuleResultsByStatus } from '../../../common/types/store-data/card-view-model';
-import { InstanceResultStatus, UnifiedResult, UnifiedRule } from '../../../common/types/store-data/unified-data-interface';
+import { getUnifiedRuleResults } from 'common/rule-based-view-model-provider';
+import { CardRuleResultsByStatus } from 'common/types/store-data/card-view-model';
+import { InstanceResultStatus, UnifiedResult, UnifiedRule } from 'common/types/store-data/unified-data-interface';
 
 describe('RuleBasedViewModelProvider', () => {
     const emptyCardSelectionViewData = {} as CardSelectionViewData;
@@ -33,13 +32,13 @@ describe('RuleBasedViewModelProvider', () => {
         expect(actualResults).toEqual(null);
     });
 
-    const testStubCombinations = [
+    const testScenarios = [
         { isExpanded: true, isSelected: true, isHighlighted: true },
-        { isExpanded: false, isSelected: false, isHighlighted: false },
+        { isExpanded: false, isSelected: false, isHighlighted: true },
         { isExpanded: true, isSelected: false, isHighlighted: false },
     ];
 
-    it.each(testStubCombinations)('getUnifiedRuleResults for combination %p', stub => {
+    it.each(testScenarios)('getUnifiedRuleResults for combination %p', testScenario => {
         const rules = getSampleRules();
 
         const resultStub1 = createUnifiedResultStub('pass', 'rule1');
@@ -50,9 +49,9 @@ describe('RuleBasedViewModelProvider', () => {
         const results: UnifiedResult[] = [resultStub1, resultStub2, resultStub3, resultStub4];
 
         const cardSelectionViewData: CardSelectionViewData = {
-            expandedRuleIds: stub.isExpanded ? ['rule1'] : [],
-            highlightedResultUids: stub.isExpanded && stub.isHighlighted ? ['stub_uid'] : [],
-            selectedResultUids: stub.isExpanded && stub.isSelected ? ['stub_uid'] : [],
+            expandedRuleIds: testScenario.isExpanded ? ['rule1'] : [],
+            highlightedResultUids: testScenario.isHighlighted ? ['stub_uid'] : [],
+            selectedResultUids: testScenario.isExpanded && testScenario.isSelected ? ['stub_uid'] : [],
         };
 
         const actualResults: CardRuleResultsByStatus = getUnifiedRuleResults(rules, results, cardSelectionViewData);

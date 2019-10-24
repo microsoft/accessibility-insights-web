@@ -2,15 +2,15 @@
 // Licensed under the MIT License.
 import { HighlightHiddenIcon, HighlightUnavailableIcon, HighlightVisibleIcon } from 'common/icons/highlight-status-icons';
 import { NamedFC } from 'common/react/named-fc';
+import { CreateIssueDetailsTextData } from 'common/types/create-issue-details-text-data';
 import { CardResult } from 'common/types/store-data/card-view-model';
+import { TargetAppData, UnifiedRule } from 'common/types/store-data/unified-data-interface';
+import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
+import { UnifiedResultToIssueFilingDataConverter } from 'issue-filing/unified-result-to-issue-filing-data';
 import { some, values } from 'lodash';
 import { Label } from 'office-ui-fabric-react';
 import * as React from 'react';
 
-import { TargetAppData, UnifiedRule } from '../../../common/types/store-data/unified-data-interface';
-import { UnifiedResultToIssueFilingDataConverter } from '../../../issue-filing/unified-result-to-issue-filing-data';
-import { CreateIssueDetailsTextData } from '../../types/create-issue-details-text-data';
-import { UserConfigurationStoreData } from '../../types/store-data/user-configuration-store';
 import { CardInteractionSupport } from './card-interaction-support';
 import { CardKebabMenuButton, CardKebabMenuButtonDeps } from './card-kebab-menu-button';
 import { foot, highlightStatus } from './instance-details-footer.scss';

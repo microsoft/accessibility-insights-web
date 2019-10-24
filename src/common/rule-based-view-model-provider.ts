@@ -81,7 +81,7 @@ const getEmptyStatusResults = (): CardRuleResultsByStatus => {
 };
 
 const getHighlightStatus = (isFailedInstance: boolean, highlightedResultUids: string[], resultUid: string) => {
-    if (isFailedInstance) {
+    if (!isFailedInstance) {
         return 'unavailable';
     }
 
