@@ -34,6 +34,7 @@ export const InstanceDetails = NamedFC<InstanceDetailsProps>('InstanceDetails', 
 
     // This should be updated once selection is implemented to sync highlight state with selection.
     const highlightState: HighlightState = 'unavailable';
+    const isHighlightSupported: boolean = deps.cardInteractionSupport.supportsHighlighting;
 
     const renderCardRowsForPropertyBag = (propertyBag: StoredInstancePropertyBag) => {
         let propertyIndex = 0;
@@ -50,7 +51,7 @@ export const InstanceDetails = NamedFC<InstanceDetailsProps>('InstanceDetails', 
     };
 
     const cardClickHandler = (): void => {
-        if (deps.cardInteractionSupport.supportsHighlighting) {
+        if (isHighlightSupported) {
             deps.cardSelectionMessageCreator.toggleCardSelection(result.ruleId, result.uid);
         }
     };
@@ -64,12 +65,12 @@ export const InstanceDetails = NamedFC<InstanceDetailsProps>('InstanceDetails', 
 
     const instanceDetailsCardStyling = classNames({
         [instanceDetailsCard]: true,
-        [selected]: deps.cardInteractionSupport.supportsHighlighting ? result.isSelected : false,
+        [selected]: isHighlightSupported ? result.isSelected : false,
     });
 
     const instanceDetailsCardContainerStyling = classNames({
         [instanceDetailsCardContainer]: true,
-        [selected]: deps.cardInteractionSupport.supportsHighlighting ? result.isSelected : false,
+        [selected]: isHighlightSupported ? result.isSelected : false,
     });
 
     const cardAriaLabel = `${result.identifiers && result.identifiers.identifier ? result.identifiers.identifier : ''} card`;
