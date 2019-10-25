@@ -4,6 +4,7 @@ import { MoreActionsMenuIcon } from 'common/icons/more-actions-menu-icon';
 import { ActionButton } from 'office-ui-fabric-react/lib/Button';
 import { DirectionalHint, IContextualMenuItem } from 'office-ui-fabric-react/lib/ContextualMenu';
 import * as React from 'react';
+
 import { IssueDetailsTextGenerator } from '../../../background/issue-details-text-generator';
 import { DetailsViewActionMessageCreator } from '../../../DetailsView/actions/details-view-action-message-creator';
 import { IssueFilingDialog } from '../../../DetailsView/components/issue-filing-dialog';
@@ -12,19 +13,18 @@ import { NavigatorUtils } from '../../navigator-utils';
 import { CreateIssueDetailsTextData } from '../../types/create-issue-details-text-data';
 import { IssueFilingNeedsSettingsContentProps } from '../../types/issue-filing-needs-setting-content';
 import { IssueFilingServiceProperties, UserConfigurationStoreData } from '../../types/store-data/user-configuration-store';
-import { WindowUtils } from '../../window-utils';
 import { IssueFilingButtonDeps } from '../issue-filing-button';
-import { Toast } from '../toast';
+import { Toast, ToastDeps } from '../toast';
 import { CardInteractionSupport } from './card-interaction-support';
 import { kebabMenu, kebabMenuButton, kebabMenuCallout } from './card-kebab-menu-button.scss';
 
 export type CardKebabMenuButtonDeps = {
-    windowUtils: WindowUtils;
     issueDetailsTextGenerator: IssueDetailsTextGenerator;
     detailsViewActionMessageCreator: DetailsViewActionMessageCreator;
     navigatorUtils: NavigatorUtils;
     cardInteractionSupport: CardInteractionSupport;
-} & IssueFilingButtonDeps;
+} & IssueFilingButtonDeps &
+    ToastDeps;
 
 export interface CardKebabMenuButtonState {
     showNeedsSettingsContent: boolean;
