@@ -8,7 +8,7 @@ import {
     DeviceConnectPortEntryProps,
 } from 'electron/views/device-connect-view/components/device-connect-port-entry';
 import { portNumberField } from 'electron/views/device-connect-view/components/device-connect-port-entry.scss';
-import { DeviceConnectState } from 'electron/views/device-connect-view/components/device-connect-state';
+import { DeviceConnectState } from 'electron/flux/types/device-connect-state';
 import { shallow } from 'enzyme';
 import { Button } from 'office-ui-fabric-react/lib/Button';
 import { MaskedTextField } from 'office-ui-fabric-react/lib/TextField';

@@ -5,13 +5,13 @@ import { Icon } from 'office-ui-fabric-react/lib/Icon';
 import { Spinner, SpinnerSize } from 'office-ui-fabric-react/lib/Spinner';
 import * as React from 'react';
 
+import { DeviceConnectState } from '../../../flux/types/device-connect-state';
 import {
     connectionErrorIcon,
     deviceConnectConnectedDevice,
     deviceConnectSpinner,
     scannedText,
 } from './device-connect-connected-device.scss';
-import { DeviceConnectState } from './device-connect-state';
 
 export interface DeviceConnectConnectedDeviceProps {
     deviceConnectState: DeviceConnectState;
