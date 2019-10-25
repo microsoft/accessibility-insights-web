@@ -2,12 +2,12 @@
 // Licensed under the MIT License.
 import { EnumHelper } from 'common/enum-helper';
 import { BrowserWindow } from 'electron';
+import { DeviceConnectState } from 'electron/flux/types/device-connect-state';
 import {
     DeviceConnectBody,
     DeviceConnectBodyDeps,
     DeviceConnectBodyProps,
 } from 'electron/views/device-connect-view/components/device-connect-body';
-import { DeviceConnectState } from 'electron/flux/types/device-connect-state';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 

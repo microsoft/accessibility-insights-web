@@ -3,8 +3,8 @@
 import { ConnectedDevicePayload, PortPayload } from 'electron/flux/action/device-action-payloads';
 import { DeviceActions } from 'electron/flux/action/device-actions';
 import { DeviceStore } from 'electron/flux/store/device-store';
-import { DeviceStoreData } from 'electron/flux/types/device-store-data';
 import { DeviceConnectState } from 'electron/flux/types/device-connect-state';
+import { DeviceStoreData } from 'electron/flux/types/device-store-data';
 
 import { createStoreWithNullParams, StoreTester } from '../../../../common/store-tester';
 
