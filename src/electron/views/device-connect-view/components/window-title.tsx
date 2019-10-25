@@ -1,11 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { css } from '@uifabric/utilities';
+import { NamedFC } from 'common/react/named-fc';
 import { WindowStateStoreData } from 'electron/flux/types/window-state-store-data';
 import { PlatformInfo } from 'electron/window-management/platform-info';
 import { isEmpty } from 'lodash';
 import * as React from 'react';
-import { NamedFC } from '../../../../common/react/named-fc';
+
 import { actionableIconsContainer, headerText, macWindowTitle, titleContainer, windowTitle } from './window-title.scss';
 
 export interface WindowTitleDeps {
