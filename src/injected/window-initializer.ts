@@ -74,7 +74,7 @@ export class WindowInitializer {
             this.windowUtils,
             new WindowMessageMarshaller(this.browserAdapter, generateUID),
         );
-        this.frameCommunicator = new FrameCommunicator(windowMessageHandler, htmlElementUtils, this.windowUtils, Q);
+        this.frameCommunicator = new FrameCommunicator(windowMessageHandler, htmlElementUtils, Q);
         this.tabStopsListener = new TabStopsListener(this.frameCommunicator, this.windowUtils, htmlElementUtils, this.scannerUtils);
         const drawerProvider = new DrawerProvider(
             htmlElementUtils,
