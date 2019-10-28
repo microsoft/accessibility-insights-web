@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { InstancePropertyBag, InstanceResultStatus, UnifiedResult } from 'common/types/store-data/unified-data-interface';
+import { InstanceResultStatus, UnifiedDescriptors, UnifiedResult } from 'common/types/store-data/unified-data-interface';
 import { UUIDGeneratorType } from 'common/uid-generator';
 import { DictionaryStringTo } from '../../../types/common-types';
 import { RuleInformation } from './rule-information';
@@ -80,7 +80,7 @@ function createUnifiedResult(
     };
 }
 
-function getDescriptors(viewElement: ViewElementData): InstancePropertyBag {
+function getDescriptors(viewElement: ViewElementData): UnifiedDescriptors {
     if (viewElement) {
         return {
             className: viewElement.className,
