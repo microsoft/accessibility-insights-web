@@ -3,7 +3,7 @@
 
 import { InstanceResultStatus, UnifiedDescriptors, UnifiedResult } from 'common/types/store-data/unified-data-interface';
 import { UUIDGeneratorType } from 'common/uid-generator';
-import { DictionaryStringTo } from '../../../types/common-types';
+import { DictionaryStringTo } from 'types/common-types';
 import { RuleInformation } from './rule-information';
 import { RuleInformationProviderType } from './rule-information-provider-type';
 import { RuleResultsData, ScanResults, ViewElementData } from './scan-results';

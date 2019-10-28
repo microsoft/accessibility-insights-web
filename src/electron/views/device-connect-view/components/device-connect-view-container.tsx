@@ -1,13 +1,13 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { TelemetryPermissionDialog, TelemetryPermissionDialogDeps } from 'common/components/telemetry-permission-dialog';
+import { NamedFC } from 'common/react/named-fc';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import { brand } from 'content/strings/application';
+import { WindowStateStoreData } from 'electron/flux/types/window-state-store-data';
 import { BrandBlue } from 'icons/brand/blue/brand-blue';
 import * as React from 'react';
 
-import { NamedFC } from 'common/react/named-fc';
-import { WindowStateStoreData } from 'electron/flux/types/window-state-store-data';
 import { DeviceStoreData } from '../../../flux/types/device-store-data';
 import { deviceConnectView, mainContentWrapper } from '../device-connect-view.scss';
 import { DeviceConnectBody, DeviceConnectBodyDeps } from './device-connect-body';

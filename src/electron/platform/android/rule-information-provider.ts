@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-
 import { UnifiedFormattableResolution } from 'common/types/store-data/unified-data-interface';
-import { DictionaryStringTo } from '../../../types/common-types';
+import { DictionaryStringTo } from 'types/common-types';
+
 import { RuleInformation } from './rule-information';
 import { RuleResultsData } from './scan-results';
 

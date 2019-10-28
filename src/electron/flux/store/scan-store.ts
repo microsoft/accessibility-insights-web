@@ -2,8 +2,8 @@
 // Licensed under the MIT License.
 import { BaseStoreImpl } from 'background/stores/base-store-impl';
 import { StoreNames } from 'common/stores/store-names';
-
 import { ScanStatus } from 'electron/flux/types/scan-status';
+
 import { ScanActions } from '../action/scan-actions';
 import { ScanStoreData } from '../types/scan-store-data';
 

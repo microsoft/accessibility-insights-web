@@ -4,13 +4,12 @@ import { IssueDetailsTextGenerator } from 'background/issue-details-text-generat
 import { NavigatorUtils } from 'common/navigator-utils';
 import { DefaultButton } from 'office-ui-fabric-react/lib/Button';
 import * as React from 'react';
+
 import { CopyIcon } from '../../common/icons/copy-icon';
 import { CreateIssueDetailsTextData } from '../types/create-issue-details-text-data';
-import { WindowUtils } from '../window-utils';
-import { Toast } from './toast';
+import { Toast, ToastDeps } from './toast';
 
-export type CopyIssueDetailsButtonDeps = {
-    windowUtils: WindowUtils;
+export type CopyIssueDetailsButtonDeps = ToastDeps & {
     navigatorUtils: NavigatorUtils;
     issueDetailsTextGenerator: IssueDetailsTextGenerator;
 };

@@ -5,7 +5,6 @@ import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 
 import { HTMLElementUtils } from '../../../../../common/html-element-utils';
 import { Logger } from '../../../../../common/logging/logger';
-import { WindowUtils } from '../../../../../common/window-utils';
 import { FrameCommunicator, MessageRequest } from '../../../../../injected/frameCommunicators/frame-communicator';
 import { FrameMessageResponseCallback, WindowMessageHandler } from '../../../../../injected/frameCommunicators/window-message-handler';
 import { HTMLCollectionOfBuilder } from '../../../common/html-collection-of-builder';
@@ -29,14 +28,12 @@ describe('FrameCommunicatorTests', () => {
     let childFrameWithoutWindowInfo: FrameInfo;
 
     let mockHtmlElementUtils: IMock<HTMLElementUtils>;
-    let mockWindowUtils: IMock<WindowUtils>;
     let mockWindowMessageHandler: IMock<WindowMessageHandler>;
 
     let mockQ: IMock<typeof Q>;
 
     beforeEach(() => {
         mockWindowMessageHandler = Mock.ofType(WindowMessageHandler);
-        mockWindowUtils = Mock.ofType(WindowUtils, MockBehavior.Strict);
         mockHtmlElementUtils = Mock.ofType(HTMLElementUtils);
 
         childFrame1Info = createFrameInfo(true);
@@ -45,13 +42,7 @@ describe('FrameCommunicatorTests', () => {
         mockQ = Mock.ofType(QStub) as any;
         const loggerMock = Mock.ofType<Logger>();
 
-        testSubject = new FrameCommunicator(
-            mockWindowMessageHandler.object,
-            mockHtmlElementUtils.object,
-            mockWindowUtils.object,
-            mockQ.object,
-            loggerMock.object,
-        );
+        testSubject = new FrameCommunicator(mockWindowMessageHandler.object, mockHtmlElementUtils.object, mockQ.object, loggerMock.object);
 
         mockHtmlElementUtils
             .setup(x => x.getAllElementsByTagName('iframe'))
@@ -106,7 +97,6 @@ describe('FrameCommunicatorTests', () => {
         testSubject.dispose().then(data => {
             expect(framesCompletedData).toMatchObject(data);
 
-            mockWindowUtils.verifyAll();
             mockHtmlElementUtils.verifyAll();
             mockWindowMessageHandler.verifyAll();
             done();
@@ -166,7 +156,6 @@ describe('FrameCommunicatorTests', () => {
         testSubject.initialize();
         disposeCallback();
         mockWindowMessageHandler.setup(x => x.dispose()).verifiable(Times.once());
-        mockWindowUtils.verifyAll();
         mockHtmlElementUtils.verifyAll();
 
         mockWindowMessageHandler.setup(x => x.dispose()).verifiable(Times.never());
@@ -254,7 +243,6 @@ describe('FrameCommunicatorTests', () => {
 
         mockQ.verifyAll();
         sendMessageToFrameStrictMock.verifyAll();
-        mockWindowUtils.verifyAll();
     });
 
     test('SendMessageToFrame should not throw if window does not exist for frame', async done => {

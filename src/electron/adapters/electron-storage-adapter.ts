@@ -1,10 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { IndexedDBDataKeys } from 'background/IndexedDBDataKeys';
+import { StorageAdapter } from 'common/browser-adapters/storage-adapter';
+import { IndexedDBAPI } from 'common/indexedDB/indexedDB';
 import { pick } from 'lodash';
-
-import { IndexedDBDataKeys } from '../../background/IndexedDBDataKeys';
-import { StorageAdapter } from '../../common/browser-adapters/storage-adapter';
-import { IndexedDBAPI } from '../../common/indexedDB/indexedDB';
 
 export class ElectronStorageAdapter implements StorageAdapter {
     constructor(private readonly indexedDBInstance: IndexedDBAPI) {}

@@ -3,6 +3,7 @@
 import { BaseStoreImpl } from 'background/stores/base-store-impl';
 import { StoreNames } from 'common/stores/store-names';
 import { WindowStatePayload } from 'electron/flux/action/window-state-payload';
+
 import { RoutePayload } from '../action/route-payloads';
 import { WindowStateActions } from '../action/window-state-actions';
 import { WindowStateStoreData } from '../types/window-state-store-data';

@@ -2,8 +2,8 @@
 // Licensed under the MIT License.
 import { BaseClientStoresHub } from 'common/stores/base-client-stores-hub';
 import { ClientStoresHub } from 'common/stores/client-stores-hub';
+import { DeviceConnectState } from 'electron/flux/types/device-connect-state';
 import { ScanStatus } from 'electron/flux/types/scan-status';
-import { DeviceConnectState } from 'electron/views/device-connect-view/components/device-connect-state';
 import {
     RootContainer,
     RootContainerDeps,

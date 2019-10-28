@@ -5,7 +5,6 @@ import * as Q from 'q';
 import { HTMLElementUtils } from '../../common/html-element-utils';
 import { createDefaultLogger } from '../../common/logging/default-logger';
 import { Logger } from '../../common/logging/logger';
-import { WindowUtils } from '../../common/window-utils';
 import { ErrorMessageContent } from './error-message-content';
 import { FrameMessageResponseCallback, WindowMessageHandler } from './window-message-handler';
 
@@ -29,7 +28,6 @@ export class FrameCommunicator {
     constructor(
         protected windowMessageHandler: WindowMessageHandler,
         protected htmlElementUtils: HTMLElementUtils,
-        protected windowUtils: WindowUtils,
         private q: typeof Q,
         private logger: Logger = createDefaultLogger(),
     ) {
