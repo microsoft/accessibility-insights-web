@@ -8,6 +8,7 @@ import { OverviewHeading } from '../../../../../../DetailsView/components/overvi
 describe('OverviewHeading', () => {
     test('match snapshot', () => {
         const wrapper = shallow(<OverviewHeading />);
+
         expect(wrapper.getElement()).toMatchSnapshot();
     });
 });

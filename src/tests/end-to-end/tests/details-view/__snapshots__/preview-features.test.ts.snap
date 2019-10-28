@@ -71,7 +71,7 @@ exports[`Preview Features Panel Normal mode should match content in snapshot 1`]
             class="ms-Panel-content content-000"
           >
             <div
-              class="no-preview-feature-message"
+              class="no-preview-feature-message116bs"
               id="no-displayable-feature-flag-message"
             >
               No preview features are currently available to manage. Follow this page for future cool features.

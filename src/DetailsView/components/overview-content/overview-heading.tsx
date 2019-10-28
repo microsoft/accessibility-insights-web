@@ -6,10 +6,12 @@ import * as React from 'react';
 import { NamedFC } from '../../../common/react/named-fc';
 import { overviewHeading, overviewHeadingContent } from './overview-heading.scss';
 
+export const overviewHeadingAutomationId = 'overview-heading';
+
 export const OverviewHeading = NamedFC('OverviewHeading', () => {
     return (
         <>
-            <div className={overviewHeading}>
+            <div className={overviewHeading} data-automation-id={overviewHeadingAutomationId}>
                 <h1>Overview</h1>
                 <div className={overviewHeadingContent}>
                     This page contains a summary that indicates the progress of your assessment. An assessment is a manual experience in

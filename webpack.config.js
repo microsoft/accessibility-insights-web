@@ -7,7 +7,7 @@ const TerserWebpackPlugin = require('terser-webpack-plugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-const getCSSModulesLoadersConfig = isDevMode => {
+const getCSSModulesLoadersConfig = () => {
     return {
         test: /\.scss$/,
         use: [
@@ -16,7 +16,7 @@ const getCSSModulesLoadersConfig = isDevMode => {
                 loader: 'css-loader',
                 options: {
                     modules: {
-                        localIdentName: isDevMode ? '[local]' : '[local][hash:base64:5]',
+                        localIdentName: '[local][hash:base64:5]',
                     },
                     localsConvention: 'camelCaseOnly',
                 },
@@ -95,11 +95,11 @@ const commonConfig = {
 };
 
 const devModules = {
-    rules: [...commonConfig.module.rules, getCSSModulesLoadersConfig(true)],
+    rules: [...commonConfig.module.rules, getCSSModulesLoadersConfig()],
 };
 
 const prodModules = {
-    rules: [...commonConfig.module.rules, getCSSModulesLoadersConfig(false)],
+    rules: [...commonConfig.module.rules, getCSSModulesLoadersConfig()],
 };
 
 const electronConfig = {
