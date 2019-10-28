@@ -3,9 +3,9 @@
 import { BaseStoreImpl } from 'background/stores/base-store-impl';
 import { StoreNames } from 'common/stores/store-names';
 
-import { DeviceConnectState } from '../../views/device-connect-view/components/device-connect-state';
 import { ConnectedDevicePayload, PortPayload } from '../action/device-action-payloads';
 import { DeviceActions } from '../action/device-actions';
+import { DeviceConnectState } from '../types/device-connect-state';
 import { DeviceStoreData } from '../types/device-store-data';
 
 export class DeviceStore extends BaseStoreImpl<DeviceStoreData> {
