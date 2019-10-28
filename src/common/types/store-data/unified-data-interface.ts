@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { BoundingRectangle } from 'electron/platform/android/scan-results';
 import { GuidanceLink } from '../../../scanner/rule-to-links-mappings';
 
 // this is similar to `TestEngine` interface from axe-core
@@ -67,6 +68,7 @@ export type UnifiedIdentifiers = {
 
 export type UnifiedDescriptors = {
     snippet?: string;
+    boundingRectangle?: BoundingRectangle;
 } & InstancePropertyBag;
 
 export type UnifiedResolution = {
