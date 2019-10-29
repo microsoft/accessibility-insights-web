@@ -10,16 +10,18 @@ export interface RuleResultsData {
 
 export interface ViewElementData {
     axeViewId: string;
-    boundsInScreen: {
-        bottom: number;
-        left: number;
-        right: number;
-        top: number;
-    };
+    boundsInScreen: BoundingRectangle;
     className: string;
     contentDescription: string;
     text: string;
     children: ViewElementData[];
+}
+
+export interface BoundingRectangle {
+    bottom: number;
+    left: number;
+    right: number;
+    top: number;
 }
 
 export class ScanResults {
