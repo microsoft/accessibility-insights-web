@@ -6,6 +6,7 @@ import { UnifiedScanResultStore } from '../../../../../background/stores/unified
 import { StoreNames } from '../../../../../common/stores/store-names';
 import {
     ScanEngineProperties,
+    ScreenshotData,
     ToolData,
     UnifiedResult,
     UnifiedRule,
@@ -32,6 +33,7 @@ describe('UnifiedScanResultStore Test', () => {
         expect(defaultState.results).toEqual(null);
         expect(defaultState.rules).toEqual(null);
         expect(defaultState.toolInfo).toEqual(null);
+        expect(defaultState.screenshotData).toEqual(null);
     });
 
     test('onGetCurrentState', () => {
@@ -60,6 +62,9 @@ describe('UnifiedScanResultStore Test', () => {
                     name: 'test-scan-engine-name',
                 } as ScanEngineProperties,
             } as ToolData,
+            screenshotData: {
+                base64PngData: 'testScreenshotText',
+            } as ScreenshotData,
             targetAppInfo,
         };
 
@@ -68,6 +73,7 @@ describe('UnifiedScanResultStore Test', () => {
             results: payload.scanResult,
             toolInfo: payload.toolInfo,
             targetAppInfo,
+            screenshotData: payload.screenshotData,
         };
 
         createStoreForUnifiedScanResultActions('scanCompleted')
