@@ -53,6 +53,7 @@ export interface UnifiedScanResultStoreData {
     platformInfo?: PlatformData;
     toolInfo?: ToolData;
     targetAppInfo?: TargetAppData;
+    screenshotData?: ScreenshotData;
 }
 
 export interface InstancePropertyBag {
@@ -94,3 +95,7 @@ export interface UnifiedResult {
 }
 
 export type InstanceResultStatus = 'pass' | 'fail' | 'unknown';
+
+export interface ScreenshotData {
+    base64PngData: string;
+}
