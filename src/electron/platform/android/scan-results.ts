@@ -1,3 +1,5 @@
+import { ScreenshotData } from 'common/types/store-data/unified-data-interface';
+
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
@@ -65,6 +67,14 @@ export class ScanResults {
             return this.rawData.axeContext.axeMetaData.axeVersion;
         } catch {
             return 'no-version';
+        }
+    }
+
+    public get screenshotData(): ScreenshotData {
+        try {
+            return this.rawData.axeContext.screenshot;
+        } catch {
+            return null;
         }
     }
 }
