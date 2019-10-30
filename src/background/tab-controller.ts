@@ -49,7 +49,7 @@ export class TabController {
         this.browserAdapter.addListenerToTabsOnRemoved(this.onTargetTabRemoved);
         this.browserAdapter.addListenerOnWindowsFocusChanged(this.onWindowFocusChanged);
         this.browserAdapter.addListenerToTabsOnActivated(this.onTabActivated);
-        this.browserAdapter.addListenerToTabsOnUpdated(this.handleTabUpdate);
+        this.browserAdapter.addListenerToTabsOnUpdated(this.handleTabUpdateOnUrlHasChanged);
 
         this.detailsViewController.setupDetailsViewTabRemovedHandler(this.onDetailsViewTabRemoved);
     }
@@ -104,6 +104,12 @@ export class TabController {
         } else {
             this.addTabContext(tabId);
             this.sendTabUpdateAction(tabId);
+        }
+    };
+
+    private handleTabUpdateOnUrlHasChanged = (tabId: number, changeInfo: chrome.tabs.TabChangeInfo): void => {
+        if (changeInfo.url) {
+            this.handleTabUpdate(tabId);
         }
     };
 
