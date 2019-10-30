@@ -6474,10 +6474,10 @@ object.values@^1.0.4, object.values@^1.1.0:
     function-bind "^1.1.1"
     has "^1.0.3"
 
-office-ui-fabric-react@6.210.2:
-  version "6.210.2"
-  resolved "https://registry.yarnpkg.com/office-ui-fabric-react/-/office-ui-fabric-react-6.210.2.tgz#c496556a4902560a069877751787ef3ca5c435ee"
-  integrity sha512-ChRZIt7utorLa7qm/kImk4B09esW2MJscmpl/JtojJ+vzNtVimaD7D2WPu8EbWu+3jp1mLnWxRkW86KRGXjeAg==
+office-ui-fabric-react@6.210.3:
+  version "6.210.3"
+  resolved "https://registry.yarnpkg.com/office-ui-fabric-react/-/office-ui-fabric-react-6.210.3.tgz#103539f734c5d1ec79d74cb703d301794580a6d3"
+  integrity sha512-Y6Uqw56iIoHTPh7+UefarPRA2sOgHaaiME1arHYEkKzfnSSuhNVgKkl8fWUirJi5ViD60mKR++bLdHpWL7k3GA==
   dependencies:
     "@microsoft/load-themed-styles" "^1.7.13"
     "@uifabric/foundation" "^0.8.3"
