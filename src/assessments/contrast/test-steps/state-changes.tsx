@@ -36,7 +36,7 @@ const howToTest: JSX.Element = (
                 Mac) to verify that the following visual presentations (if implemented) have a contrast ratio of at least 3:1 against the
                 adjacent background:
                 <ol>
-                    <li>Any visual boundary that indicates the component's clickable area</li>
+                    <li>Any visual boundary that indicates the component's clickable area.</li>
                     <li>Any visual effect that indicates the component's current state.</li>
                 </ol>
                 Note: If an element has redundant state indicators (such as a unique background color and a unique text style), only one
