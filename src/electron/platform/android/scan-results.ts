@@ -1,7 +1,6 @@
-import { ScreenshotData } from 'common/types/store-data/unified-data-interface';
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { ScreenshotData } from 'common/types/store-data/unified-data-interface';
 
 export interface RuleResultsData {
     axeViewId: string;

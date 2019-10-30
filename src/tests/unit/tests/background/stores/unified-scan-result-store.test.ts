@@ -4,14 +4,7 @@ import { UnifiedScanCompletedPayload } from '../../../../../background/actions/a
 import { UnifiedScanResultActions } from '../../../../../background/actions/unified-scan-result-actions';
 import { UnifiedScanResultStore } from '../../../../../background/stores/unified-scan-result-store';
 import { StoreNames } from '../../../../../common/stores/store-names';
-import {
-    ScanEngineProperties,
-    ScreenshotData,
-    ToolData,
-    UnifiedResult,
-    UnifiedRule,
-    UnifiedScanResultStoreData,
-} from '../../../../../common/types/store-data/unified-data-interface';
+import { UnifiedScanResultStoreData } from '../../../../../common/types/store-data/unified-data-interface';
 import { createStoreWithNullParams, StoreTester } from '../../../common/store-tester';
 import { TargetAppData } from './../../../../../common/types/store-data/unified-data-interface';
 
@@ -50,23 +43,23 @@ describe('UnifiedScanResultStore Test', () => {
             scanResult: [
                 {
                     uid: 'test-uid',
-                } as UnifiedResult,
+                },
             ],
             rules: [
                 {
                     id: 'test-rule-id',
-                } as UnifiedRule,
+                },
             ],
             toolInfo: {
                 scanEngineProperties: {
                     name: 'test-scan-engine-name',
-                } as ScanEngineProperties,
-            } as ToolData,
+                },
+            },
             screenshotData: {
                 base64PngData: 'testScreenshotText',
-            } as ScreenshotData,
+            },
             targetAppInfo,
-        };
+        } as UnifiedScanCompletedPayload;
 
         const expectedState: UnifiedScanResultStoreData = {
             rules: payload.rules,
