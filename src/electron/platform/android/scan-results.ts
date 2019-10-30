@@ -70,7 +70,7 @@ export class ScanResults {
         }
     }
 
-    public get screenshotData(): ScreenshotData {
+    public get screenshot(): ScreenshotData {
         try {
             return this.rawData.axeContext.screenshot;
         } catch {
