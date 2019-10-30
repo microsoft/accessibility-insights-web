@@ -1,18 +1,19 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { MacContrastCheckerAppLink, WindowsContrastCheckerAppLink } from 'common/components/contrast-checker-app-links';
+import { StateChangesPropertyBag } from 'common/types/property-bag/state-changes';
+import { VisualizationType } from 'common/types/visualization-type';
 import { link } from 'content/link';
 import * as content from 'content/test/contrast/state-changes';
+import { AssessmentVisualizationEnabledToggle } from 'DetailsView/components/assessment-visualization-enabled-toggle';
+import { ScannerUtils } from 'injected/scanner-utils';
 import * as React from 'react';
 
-import { StateChangesPropertyBag } from '../../../common/types/property-bag/state-changes';
-import { VisualizationType } from '../../../common/types/visualization-type';
-import { AssessmentVisualizationEnabledToggle } from '../../../DetailsView/components/assessment-visualization-enabled-toggle';
-import { ScannerUtils } from '../../../injected/scanner-utils';
 import { AnalyzerConfigurationFactory } from '../../common/analyzer-configuration-factory';
 import { AssistedTestRecordYourResults } from '../../common/assisted-test-record-your-results';
 import { NoValue, PropertyBagColumnRendererConfig } from '../../common/property-bag-column-renderer';
 import { PropertyBagColumnRendererFactory } from '../../common/property-bag-column-renderer-factory';
+import * as Markup from '../../markup';
 import { ReportInstanceField } from '../../types/report-instance-field';
 import { Requirement } from '../../types/requirement';
 import { ContrastTestStep } from './test-steps';
@@ -39,8 +40,8 @@ const howToTest: JSX.Element = (
                     <li>Any visual boundary that indicates the component's clickable area.</li>
                     <li>Any visual effect that indicates the component's current state.</li>
                 </ol>
-                Note: If an element has redundant state indicators (such as a unique background color and a unique text style), only one
-                indicator is required to have sufficient contrast.
+                Note: If an element has redundant state indicators (such as a unique background color <Markup.Emphasis>and</Markup.Emphasis>{' '}
+                a unique text style), only one indicator is required to have sufficient contrast.
                 <br />
                 Exception: A lower contrast ratio is allowed if either of the following is true:
                 <ol>
