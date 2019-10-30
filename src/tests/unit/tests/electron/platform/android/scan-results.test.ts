@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { ScreenshotData } from 'common/types/store-data/unified-data-interface';
 
 import { buildRuleResultObject, buildScanResultsObject, buildViewElement } from './scan-results-helpers';
 
@@ -52,6 +53,17 @@ describe('ScanResults', () => {
     test('viewElementTree is null if missing from input', () => {
         const scanResults = buildScanResultsObject();
         expect(scanResults.viewElementTree).toBeNull();
+    });
+
+    test('screenshotData is null if missing from input', () => {
+        const scanResults = buildScanResultsObject();
+        expect(scanResults.screenshot).toBeNull();
+    });
+
+    test('screenshotData is correct if specified in input', () => {
+        const expectedScreenshotData = { base64PngData: 'expectedScreenshotDataFromJSON' } as ScreenshotData;
+        const scanResults = buildScanResultsObject(null, null, null, null, null, expectedScreenshotData);
+        expect(scanResults.screenshot).toEqual(expectedScreenshotData);
     });
 
     test('viewElementTree is correct if specifiecd in input', () => {

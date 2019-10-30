@@ -4,13 +4,7 @@ import { UnifiedScanCompletedPayload } from '../../../../../background/actions/a
 import { UnifiedScanResultActions } from '../../../../../background/actions/unified-scan-result-actions';
 import { UnifiedScanResultStore } from '../../../../../background/stores/unified-scan-result-store';
 import { StoreNames } from '../../../../../common/stores/store-names';
-import {
-    ScanEngineProperties,
-    ToolData,
-    UnifiedResult,
-    UnifiedRule,
-    UnifiedScanResultStoreData,
-} from '../../../../../common/types/store-data/unified-data-interface';
+import { UnifiedScanResultStoreData } from '../../../../../common/types/store-data/unified-data-interface';
 import { createStoreWithNullParams, StoreTester } from '../../../common/store-tester';
 import { TargetAppData } from './../../../../../common/types/store-data/unified-data-interface';
 
@@ -32,6 +26,7 @@ describe('UnifiedScanResultStore Test', () => {
         expect(defaultState.results).toEqual(null);
         expect(defaultState.rules).toEqual(null);
         expect(defaultState.toolInfo).toEqual(null);
+        expect(defaultState.screenshotData).toEqual(null);
     });
 
     test('onGetCurrentState', () => {
@@ -48,26 +43,30 @@ describe('UnifiedScanResultStore Test', () => {
             scanResult: [
                 {
                     uid: 'test-uid',
-                } as UnifiedResult,
+                },
             ],
             rules: [
                 {
                     id: 'test-rule-id',
-                } as UnifiedRule,
+                },
             ],
             toolInfo: {
                 scanEngineProperties: {
                     name: 'test-scan-engine-name',
-                } as ScanEngineProperties,
-            } as ToolData,
+                },
+            },
+            screenshotData: {
+                base64PngData: 'testScreenshotText',
+            },
             targetAppInfo,
-        };
+        } as UnifiedScanCompletedPayload;
 
         const expectedState: UnifiedScanResultStoreData = {
             rules: payload.rules,
             results: payload.scanResult,
             toolInfo: payload.toolInfo,
             targetAppInfo,
+            screenshotData: payload.screenshotData,
         };
 
         createStoreForUnifiedScanResultActions('scanCompleted')
