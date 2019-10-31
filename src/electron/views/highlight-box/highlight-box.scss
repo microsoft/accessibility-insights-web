@@ -3,7 +3,7 @@
 @import '../../../common/styles/colors.scss';
 
 .highlight-box {
-    position: relative;
+    position: absolute;
     outline: 3px solid $negative-outcome;
 
     .highlight-box-label {
