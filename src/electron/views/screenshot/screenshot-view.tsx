@@ -7,7 +7,7 @@ export type ScreenshotViewProps = {};
 export const ScreenshotView = NamedFC<ScreenshotViewProps>('ScreenshotView', props => {
     return (
         <div>
-            <h1>This is the screenshot view</h1>
+            <h1 tabIndex={0}>This is the screenshot view</h1>
         </div>
     );
 });
