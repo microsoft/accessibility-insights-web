@@ -2,13 +2,16 @@
 // Licensed under the MIT License.
 import * as Electron from 'electron';
 import { Application } from 'spectron';
+import { AppController } from './view-controllers/app-controller';
 
-export function createApplication(): Promise<Application> {
+export async function createApplication(): Promise<AppController> {
     const electronPath = `${(global as any).rootDir}/drop/electron/extension/bundle/main.bundle.js`;
     const app = new Application({
         path: Electron as any,
         args: [electronPath],
     });
 
-    return app.start();
+    await app.start();
+
+    return new AppController(app);
 }
