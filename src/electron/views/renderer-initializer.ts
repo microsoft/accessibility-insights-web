@@ -62,6 +62,7 @@ import { DeviceStore } from '../flux/store/device-store';
 import { ElectronLink } from './device-connect-view/components/electron-link';
 import { sendAppInitializedTelemetryEvent } from './device-connect-view/send-app-initialized-telemetry';
 import { RootContainerRenderer } from './root-container/root-container-renderer';
+import { screenshotViewModelProvider } from './screenshot/screenshot-view-model-provider';
 
 initializeFabricIcons();
 
@@ -202,6 +203,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then((persistedDat
             platformInfo: new PlatformInfo(process),
             getUnifiedRuleResultsDelegate: getUnifiedRuleResults,
             getCardSelectionViewData: getCardSelectionViewData,
+            screenshotViewModelProvider,
             ...cardsViewDeps,
         },
     };
