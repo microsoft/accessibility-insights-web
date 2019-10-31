@@ -6,29 +6,28 @@ import { BoxConfig } from 'injected/visualization/formatter';
 import * as React from 'react';
 import { CSSProperties } from 'react';
 
-export interface HighlightBoxDeps {
+export interface HighlightBoxDeps {}
+export interface HighlightBoxProps {
+    deps: HighlightBoxDeps;
+    boxConfig: BoxConfig;
     width: string;
     height: string;
     top: string;
     left: string;
 }
-export interface HighlightBoxProps {
-    deps: HighlightBoxDeps;
-    boxConfig: BoxConfig;
-}
 
 export const HighlightBox = NamedFC<HighlightBoxProps>('HighlightBox', props => {
-    const { deps, boxConfig } = props;
+    const { width, height, top, left, boxConfig } = props;
     if (boxConfig == null) {
         return null;
     }
     const boxStyles: CSSProperties = {
         background: boxConfig.background,
         outline: boxConfig.outline,
-        width: deps.width,
-        height: deps.height,
-        top: deps.top,
-        left: deps.left,
+        width: width,
+        height: height,
+        top: top,
+        left: left,
     };
 
     const labelStyles: CSSProperties = {
