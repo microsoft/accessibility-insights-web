@@ -119,9 +119,6 @@ describe('AssessmentBuilderTest', () => {
         ).toEqual(requirement2.renderReportDescription());
         expect(config.getInstanceIdentiferGenerator(requirement2.key)).toEqual(InstanceIdentifierGenerator.defaultHtmlSelectorIdentifier);
         expect(config.getInstanceIdentiferGenerator('non existent key')).toEqual(InstanceIdentifierGenerator.defaultHtmlSelectorIdentifier);
-        expect(config.getUpdateVisibility(selectedRequirementKey)).toBe(false);
-        expect(config.getUpdateVisibility(requirement2.key)).toBe(true);
-        expect(config.getUpdateVisibility('non existent key')).toBe(true);
         expect(config.getTestView(testViewPropsStub)).toEqual(expectedTestView);
 
         validateInstanceTableSettings(requirement);
@@ -285,9 +282,6 @@ describe('AssessmentBuilderTest', () => {
         );
         expect(config.getInstanceIdentiferGenerator(requirement5.key)).toEqual(InstanceIdentifierGenerator.defaultHtmlSelectorIdentifier);
         expect(config.getInstanceIdentiferGenerator('non existent key')).toEqual(InstanceIdentifierGenerator.defaultHtmlSelectorIdentifier);
-        expect(config.getUpdateVisibility(selectedRequirementKey)).toBe(false);
-        expect(config.getUpdateVisibility(requirement5.key)).toBe(true);
-        expect(config.getUpdateVisibility('non existent key')).toBe(true);
         expect(config.getTestView(testViewPropsStub)).toEqual(expectedTestView);
 
         validateInstanceTableSettings(requirement1);
