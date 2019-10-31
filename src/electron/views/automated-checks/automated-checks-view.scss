@@ -11,10 +11,14 @@
             margin-left: 24px;
             margin-right: 24px;
         }
+        .main-content-wrapper {
+            width: 70%;
+        }
         .screenshot-view {
             justify-content: flex-end;
             width: 30%;
             height: 100%;
+            overflow: auto;
         }
     }
 }
