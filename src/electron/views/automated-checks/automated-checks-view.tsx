@@ -17,6 +17,7 @@ import { TitleBar, TitleBarDeps } from 'electron/views/automated-checks/componen
 import { mainContentWrapper } from 'electron/views/device-connect-view/device-connect-view.scss';
 import { DeviceDisconnectedPopup } from 'electron/views/device-disconnected-popup/device-disconnected-popup';
 import { ScreenshotView } from 'electron/views/screenshot/screenshot-view';
+import { ScreenshotViewModelProvider } from 'electron/views/screenshot/screenshot-view-model-provider';
 import * as React from 'react';
 
 import { automatedChecksPanelLayout, automatedChecksView, screenshotView } from './automated-checks-view.scss';
@@ -30,6 +31,7 @@ export type AutomatedChecksViewDeps = CommandBarDeps &
         windowStateActionCreator: WindowStateActionCreator;
         getUnifiedRuleResultsDelegate: GetUnifiedRuleResultsDelegate;
         getCardSelectionViewData: GetCardSelectionViewData;
+        screenshotViewModelProvider: ScreenshotViewModelProvider;
     };
 
 export type AutomatedChecksViewProps = {

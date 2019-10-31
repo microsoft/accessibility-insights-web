@@ -17,7 +17,7 @@ exports[`AutomatedChecksView renders when status scan <Completed> 1`] = `
     }
   />
   <div
-    className="resultsAndScreenshot"
+    className="automatedChecksPanelLayout"
   >
     <div
       className="mainContentWrapper"
@@ -101,7 +101,7 @@ exports[`AutomatedChecksView renders when status scan <Failed> 1`] = `
     windowStateStoreData="window state store data"
   />
   <div
-    className="resultsAndScreenshot"
+    className="automatedChecksPanelLayout"
   >
     <div
       className="mainContentWrapper"
@@ -175,7 +175,7 @@ exports[`AutomatedChecksView renders when status scan <Scanning> 1`] = `
     windowStateStoreData="window state store data"
   />
   <div
-    className="resultsAndScreenshot"
+    className="automatedChecksPanelLayout"
   >
     <div
       className="mainContentWrapper"
@@ -244,7 +244,7 @@ exports[`AutomatedChecksView renders when status scan <undefined> 1`] = `
     windowStateStoreData="window state store data"
   />
   <div
-    className="resultsAndScreenshot"
+    className="automatedChecksPanelLayout"
   >
     <div
       className="mainContentWrapper"

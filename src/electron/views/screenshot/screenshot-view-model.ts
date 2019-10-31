@@ -4,7 +4,9 @@ import { ScreenshotData } from 'common/types/store-data/unified-data-interface';
 import { BoundingRectangle } from 'electron/platform/android/scan-results';
 
 export type ScreenshotViewModel = {
-    screenshotData: ScreenshotData;
+    // "screenshotData == null" means that the view should show a "screenshot unavailable" message
+    screenshotData?: ScreenshotData;
     highlightBoxRectangles: BoundingRectangle[];
-    deviceName: string;
+    // "deviceName == null" means that the view should omit the "device name" subtitle
+    deviceName?: string;
 };
