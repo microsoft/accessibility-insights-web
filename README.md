@@ -79,13 +79,26 @@ Please ensure that you have at least the **minimum** recommended versions
 
 #### 5. Commands to run before check in
 
--   Run the below command to build, test, check if files have copyright header, check file format styling & tslint issues
+-   You should run a FastPass (formatting and lint checks) before creating a Pull Request to master:
+
     ```bash
-    yarn precheckin
+    yarn fastpass
     ```
--   If the above command failed for formatting issues, run the below command to format all files
+
+-   If this catches formatting or linting issues, you can fix them with a combination of:
+
     ```bash
-    yarn format
+    yarn fastpass:fix
+
+    # or, or individual steps:
+    yarn lint:fix
+    yarn format:fix
+    yarn copyright:fix
+    ```
+
+-   We normally don't run the full end to end test suite before sending a Pull Request (we let the build agents do that), but if you are working on a change where you are particularly concerned about breaking end to end tests, you can run _all_ of our Pull Request checks with:
+    ```bash
+    yarn assessment
     ```
 
 ### More Information
@@ -124,12 +137,12 @@ You can start an interactive watch session that automatically runs tests affecte
 
 Extra command line arguments and flags are passed along to Jest. For example:
 
--   To run a single or small number of unit test files, run `yarn test {FILE_NAME_REGEX}`
--   `yarn test --watch` will start an interactive watch session.
+-   To run a single or small number of unit test files, run `yarn test -- -- {FILE_NAME_REGEX}`
+-   `yarn watch:test` will start an interactive watch session.
 
 See more about Jest options [here](https://jestjs.io/docs/en/cli.html).
 
-To debug using an external tool, run `node --inspect-brk ./node_modules/jest/bin/jest.js --runInBand {RELATIVE_FILE_PATH}`. In Chrome, for example, navigate to `chrome://inspect` and click `Open dedicated DevTools for Node`.
+To debug using an external tool, run `node --inspect-brk ./node_modules/jest/bin/jest.js --projects src/tests/unit --runInBand -- {RELATIVE_FILE_PATH}`. In Chrome, for example, navigate to `chrome://inspect` and click `Open dedicated DevTools for Node`.
 
 ## Data/Telemetry
 

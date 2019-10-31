@@ -16,10 +16,11 @@ import { WindowStateStoreData } from 'electron/flux/types/window-state-store-dat
 import { TitleBar, TitleBarDeps } from 'electron/views/automated-checks/components/title-bar';
 import { mainContentWrapper } from 'electron/views/device-connect-view/device-connect-view.scss';
 import { DeviceDisconnectedPopup } from 'electron/views/device-disconnected-popup/device-disconnected-popup';
+import { ScreenshotView } from 'electron/views/screenshot/screenshot-view';
 import { ScreenshotViewModelProvider } from 'electron/views/screenshot/screenshot-view-model-provider';
 import * as React from 'react';
 
-import { automatedChecksView } from './automated-checks-view.scss';
+import { automatedChecksPanelLayout, automatedChecksView, screenshotView } from './automated-checks-view.scss';
 import { CommandBar, CommandBarDeps } from './components/command-bar';
 import { HeaderSection } from './components/header-section';
 
@@ -52,18 +53,23 @@ export class AutomatedChecksView extends React.Component<AutomatedChecksViewProp
         return (
             <div className={automatedChecksView}>
                 <TitleBar deps={this.props.deps} windowStateStoreData={this.props.windowStateStoreData}></TitleBar>
-                <div className={mainContentWrapper}>
-                    <CommandBar
-                        deps={this.props.deps}
-                        deviceStoreData={this.props.deviceStoreData}
-                        scanStoreData={this.props.scanStoreData}
-                    />
-                    <main>
-                        <HeaderSection />
-                        {this.renderScanning()}
-                        {this.renderDeviceDisconnected()}
-                        {this.renderResults()}
-                    </main>
+                <div className={automatedChecksPanelLayout}>
+                    <div className={mainContentWrapper}>
+                        <CommandBar
+                            deps={this.props.deps}
+                            deviceStoreData={this.props.deviceStoreData}
+                            scanStoreData={this.props.scanStoreData}
+                        />
+                        <main>
+                            <HeaderSection />
+                            {this.renderScanning()}
+                            {this.renderDeviceDisconnected()}
+                            {this.renderResults()}
+                        </main>
+                    </div>
+                    <div className={screenshotView}>
+                        <ScreenshotView />
+                    </div>
                 </div>
             </div>
         );
