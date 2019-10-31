@@ -19,7 +19,7 @@ import { DeviceDisconnectedPopup } from 'electron/views/device-disconnected-popu
 import { ScreenshotView } from 'electron/views/screenshot/screenshot-view';
 import * as React from 'react';
 
-import { automatedChecksView, resultsAndScreenshot, screenshotView } from './automated-checks-view.scss';
+import { automatedChecksPanelLayout, automatedChecksView, screenshotView } from './automated-checks-view.scss';
 import { CommandBar, CommandBarDeps } from './components/command-bar';
 import { HeaderSection } from './components/header-section';
 
@@ -51,7 +51,7 @@ export class AutomatedChecksView extends React.Component<AutomatedChecksViewProp
         return (
             <div className={automatedChecksView}>
                 <TitleBar deps={this.props.deps} windowStateStoreData={this.props.windowStateStoreData}></TitleBar>
-                <div className={resultsAndScreenshot}>
+                <div className={automatedChecksPanelLayout}>
                     <div className={mainContentWrapper}>
                         <CommandBar
                             deps={this.props.deps}
