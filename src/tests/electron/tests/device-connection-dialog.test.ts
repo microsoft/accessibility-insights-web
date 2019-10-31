@@ -16,7 +16,9 @@ describe('device connection dialog', () => {
 
     afterEach(async () => {
         dialog = null;
-        await app.reset();
+        if (app != null) {
+            await app.stop();
+        }
     });
 
     it('should use the expected window title', async () => {

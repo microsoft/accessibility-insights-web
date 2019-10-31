@@ -14,7 +14,7 @@ export class AppController {
         this.client = app.client;
     }
 
-    public async reset(): Promise<void> {
+    public async stop(): Promise<void> {
         if (this.app && this.app.isRunning()) {
             await this.app.stop();
         }

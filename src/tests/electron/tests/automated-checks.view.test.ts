@@ -16,7 +16,9 @@ describe('AutomatedChecksView', () => {
 
     afterEach(async () => {
         automatedChecksView = null;
-        await app.reset();
+        if (app != null) {
+            await app.stop();
+        }
     });
 
     it('displays automated checks results', async () => {
