@@ -61,6 +61,7 @@ describe('CardSelectionStore Test', () => {
                     },
                 },
             },
+            visualHelperEnabled: false,
         };
 
         createStoreForUnifiedScanResultActions('scanCompleted')
@@ -103,6 +104,7 @@ describe('CardSelectionStore Test', () => {
                     },
                 },
             },
+            visualHelperEnabled: false,
         };
 
         initialState = cloneDeep(defaultState);
