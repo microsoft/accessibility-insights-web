@@ -2,11 +2,19 @@
 // Licensed under the MIT License.
 .automated-checks-view {
     -webkit-app-region: no-drag;
-
-    main {
-        margin-top: 16px;
-        margin-bottom: 16px;
-        margin-left: 24px;
-        margin-right: 24px;
+    .automated-checks-panel-layout {
+        display: flex;
+        height: 100%;
+        main {
+            margin-top: 16px;
+            margin-bottom: 16px;
+            margin-left: 24px;
+            margin-right: 24px;
+        }
+        .screenshot-view {
+            justify-content: flex-end;
+            width: 30%;
+            height: 100%;
+        }
     }
 }
