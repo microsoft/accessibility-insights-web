@@ -1,18 +1,19 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { MacContrastCheckerAppLink, WindowsContrastCheckerAppLink } from 'common/components/contrast-checker-app-links';
+import { StateChangesPropertyBag } from 'common/types/property-bag/state-changes';
+import { VisualizationType } from 'common/types/visualization-type';
 import { link } from 'content/link';
 import * as content from 'content/test/contrast/state-changes';
+import { AssessmentVisualizationEnabledToggle } from 'DetailsView/components/assessment-visualization-enabled-toggle';
+import { ScannerUtils } from 'injected/scanner-utils';
 import * as React from 'react';
 
-import { StateChangesPropertyBag } from '../../../common/types/property-bag/state-changes';
-import { VisualizationType } from '../../../common/types/visualization-type';
-import { AssessmentVisualizationEnabledToggle } from '../../../DetailsView/components/assessment-visualization-enabled-toggle';
-import { ScannerUtils } from '../../../injected/scanner-utils';
 import { AnalyzerConfigurationFactory } from '../../common/analyzer-configuration-factory';
 import { AssistedTestRecordYourResults } from '../../common/assisted-test-record-your-results';
 import { NoValue, PropertyBagColumnRendererConfig } from '../../common/property-bag-column-renderer';
 import { PropertyBagColumnRendererFactory } from '../../common/property-bag-column-renderer-factory';
+import * as Markup from '../../markup';
 import { ReportInstanceField } from '../../types/report-instance-field';
 import { Requirement } from '../../types/requirement';
 import { ContrastTestStep } from './test-steps';
@@ -24,7 +25,7 @@ const howToTest: JSX.Element = (
         <p>The visual helper for this requirement highlights links, native widgets, and custom widgets in the target page.</p>
         <ol>
             <li>
-                In the target page, examine each highlighted element to determine whether it can adopt any of the following states:
+                In the target page, examine each highlighted element to determine whether it supports any of the following states:
                 <ol>
                     <li>Focused</li>
                     <li>Mouseover</li>
@@ -32,24 +33,21 @@ const howToTest: JSX.Element = (
                 </ol>
             </li>
             <li>
-                Identify any visual (non-text) indicators that communicate:
+                In each supported state, use <WindowsContrastCheckerAppLink /> (or the <MacContrastCheckerAppLink /> if you are testing on a
+                Mac) to verify that the following visual presentations (if implemented) have a contrast ratio of at least 3:1 against the
+                adjacent background:
                 <ol>
-                    <li>The boundary of the component's clickable area (such as a border or background color)</li>
-                    <li>The component's current state (such as a different background color or a checkmark)</li>
+                    <li>Any visual boundary that indicates the component's clickable area.</li>
+                    <li>Any visual effect that indicates the component's current state.</li>
                 </ol>
-            </li>
-            <li>
-                <p>
-                    Use <WindowsContrastCheckerAppLink /> (or if you are testing on a Mac, the <MacContrastCheckerAppLink />) to verify that
-                    the visual indicator has a contrast ratio of at least 3:1 against the adjacent background.
-                </p>
-                <p>
-                    Exception: A lower contrast ratio is allowed if either of the following is true:
-                    <ol>
-                        <li>The component is inactive/disabled.</li>
-                        <li>The component's appearance is determined solely by the browser.</li>
-                    </ol>
-                </p>
+                Note: If an element has redundant state indicators (such as a unique background color <Markup.Emphasis>and</Markup.Emphasis>{' '}
+                a unique text style), only one indicator is required to have sufficient contrast.
+                <br />
+                Exception: A lower contrast ratio is allowed if either of the following is true:
+                <ol>
+                    <li>The component is inactive/disabled.</li>
+                    <li>The component's appearance is determined solely by the browser.</li>
+                </ol>
             </li>
             <AssistedTestRecordYourResults />
         </ol>
