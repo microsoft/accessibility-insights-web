@@ -13,3 +13,25 @@ exports[`ScreenshotView renders 1`] = `
   />
 </div>
 `;
+
+exports[`ScreenshotView renders when passed a value for screenshotData 1`] = `
+<div>
+  <h1
+    tabIndex={0}
+  >
+    Page state screenshot
+  </h1>
+  <Screenshot
+    altText="axe android results screenshot"
+    encodedImage="string"
+  />
+</div>
+`;
+
+exports[`ScreenshotView renders when passed an empty value for screenshotData 1`] = `
+<div>
+  <p>
+    Screenshot for scan is unavailable
+  </p>
+</div>
+`;

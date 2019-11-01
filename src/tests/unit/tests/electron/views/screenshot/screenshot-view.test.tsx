@@ -5,12 +5,22 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 
 describe('ScreenshotView', () => {
-    it('renders', () => {
-        const props: ScreenshotViewProps = {
-            screenshotData: { base64PngData: 'string' },
-        };
-        const wrapper = shallow(<ScreenshotView {...props} />);
+    describe('renders', () => {
+        it('when passed a value for screenshotData', () => {
+            const props: ScreenshotViewProps = {
+                screenshotData: { base64PngData: 'string' },
+            };
+            const wrapper = shallow(<ScreenshotView {...props} />);
 
-        expect(wrapper.getElement()).toMatchSnapshot();
+            expect(wrapper.getElement()).toMatchSnapshot();
+        });
+
+        it('when passed an empty value for screenshotData', () => {
+            const props = {} as ScreenshotViewProps;
+
+            const wrapper = shallow(<ScreenshotView {...props} />);
+
+            expect(wrapper.getElement()).toMatchSnapshot();
+        });
     });
 });
