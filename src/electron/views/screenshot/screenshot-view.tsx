@@ -11,7 +11,7 @@ export type ScreenshotViewProps = {
     screenshotData: ScreenshotData;
 };
 
-const screenshotAltText: string = 'axe android results screenshot';
+const screenshotAltText: string = 'axe-android results screenshot with highlighted components';
 
 export const ScreenshotView = NamedFC<ScreenshotViewProps>('ScreenshotView', (props: ScreenshotViewProps) => {
     if (isUndefined(props.screenshotData) || isEmpty(props.screenshotData)) {
