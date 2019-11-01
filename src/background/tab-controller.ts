@@ -36,7 +36,7 @@ export class TabController {
         this.browserAdapter.tabsQuery({}, (tabs: chrome.tabs.Tab[]) => {
             if (tabs) {
                 tabs.forEach(tab => {
-                    this.handleTabUpdate(tab.id);
+                    this.postTabUpdate(tab.id);
                 });
             }
         });
@@ -49,14 +49,14 @@ export class TabController {
         this.browserAdapter.addListenerToTabsOnRemoved(this.onTargetTabRemoved);
         this.browserAdapter.addListenerOnWindowsFocusChanged(this.onWindowFocusChanged);
         this.browserAdapter.addListenerToTabsOnActivated(this.onTabActivated);
-        this.browserAdapter.addListenerToTabsOnUpdated(this.handleTabUpdateOnUrlHasChanged);
+        this.browserAdapter.addListenerToTabsOnUpdated(this.handleTabUpdate);
 
         this.detailsViewController.setupDetailsViewTabRemovedHandler(this.onDetailsViewTabRemoved);
     }
 
     private onTabNavigated = (details: chrome.webNavigation.WebNavigationFramedCallbackDetails): void => {
         if (details.frameId === 0) {
-            this.handleTabUpdate(details.tabId);
+            this.postTabUpdate(details.tabId);
         }
     };
 
@@ -98,7 +98,7 @@ export class TabController {
         );
     };
 
-    private handleTabUpdate = (tabId: number): void => {
+    private postTabUpdate = (tabId: number): void => {
         if (this.hasTabContext(tabId)) {
             this.sendTabChangedAction(tabId);
         } else {
@@ -107,9 +107,9 @@ export class TabController {
         }
     };
 
-    private handleTabUpdateOnUrlHasChanged = (tabId: number, changeInfo: chrome.tabs.TabChangeInfo): void => {
+    private handleTabUpdate = (tabId: number, changeInfo: chrome.tabs.TabChangeInfo): void => {
         if (changeInfo.url) {
-            this.handleTabUpdate(tabId);
+            this.postTabUpdate(tabId);
         }
     };
 

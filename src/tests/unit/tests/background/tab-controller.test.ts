@@ -349,7 +349,7 @@ describe('TabControllerTest', () => {
         });
     });
 
-    test('tab change test', () => {
+    test('web navigation updated test', () => {
         let tabUpdatedCallback: (details: chrome.webNavigation.WebNavigationFramedCallbackDetails) => void = null;
         let getTabCallback: (tab: chrome.tabs.Tab) => void;
         let onReject;
@@ -656,7 +656,6 @@ describe('TabControllerTest', () => {
     test('tab change test: url was changed', () => {
         let tabUpdatedCallback: (tabId: number, changeInfo: chrome.tabs.TabChangeInfo) => void = null;
         let getTabCallback: (tab: chrome.tabs.Tab) => void;
-        let onReject;
         const tabId = 1;
         const getTabCallbackInput = {
             title: 'new title',
@@ -687,21 +686,46 @@ describe('TabControllerTest', () => {
 
         mockChromeAdapter
             .setup(mca => mca.getTab(It.isValue(tabId), It.isAny(), It.isAny()))
-            .returns((id, cb, reject) => {
+            .returns((id, cb) => {
                 getTabCallback = cb;
-                onReject = reject;
             })
             .verifiable(Times.once());
-        logMock.setup(log => log(`changed tab with Id ${tabId} not found`)).verifiable(Times.once());
 
         testSubject = createTabControllerWithoutFeatureFlag(tabInterpreterMap);
         testSubject.initialize();
         tabUpdatedCallback(tabId, { url: 'some url' });
         getTabCallback(getTabCallbackInput as any);
+
+        interpreterMock.verifyAll();
+        mockChromeAdapter.verifyAll();
+    });
+
+    test('tab change test: url was changed but tab was not found', () => {
+        let tabUpdatedCallback: (tabId: number, changeInfo: chrome.tabs.TabChangeInfo) => void = null;
+        let onReject;
+        const tabId = 1;
+
+        mockChromeAdapter
+            .setup(ca => ca.addListenerToTabsOnUpdated(It.isAny()))
+            .callback(cb => {
+                tabUpdatedCallback = cb;
+            })
+            .verifiable(Times.once());
+
+        mockChromeAdapter
+            .setup(mca => mca.getTab(It.isValue(tabId), It.isAny(), It.isAny()))
+            .returns((id, cb, reject) => {
+                onReject = reject;
+            })
+            .verifiable(Times.once());
+        logMock.setup(log => log(`changed tab with Id ${tabId} not found`)).verifiable(Times.once());
+
+        testSubject = createTabControllerWithoutFeatureFlag({ [tabId]: null });
+        testSubject.initialize();
+        tabUpdatedCallback(tabId, { url: 'some url' });
         onReject();
 
         logMock.verifyAll();
-        interpreterMock.verifyAll();
         mockChromeAdapter.verifyAll();
     });
 
