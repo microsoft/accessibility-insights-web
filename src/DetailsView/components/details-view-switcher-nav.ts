@@ -3,7 +3,7 @@
 import { ReactFCWithDisplayName } from '../../common/react/named-fc';
 import { DetailsViewPivotType } from '../../common/types/details-view-pivot-type';
 import { VisualizationType } from '../../common/types/visualization-type';
-import { BasicCommandBar, CommandBarProps, CommandBarWithExportAndStartOver } from './command-bars';
+import { CommandBarProps, CommandBarWithExportAndStartOver, CommandBarWithOptionalExportAndStartOver } from './command-bars';
 import { AssessmentLeftNav, AssessmentLeftNavDeps, AssessmentLeftNavProps } from './left-nav/assessment-left-nav';
 import { FastPassLeftNav, FastPassLeftNavDeps, FastPassLeftNavProps } from './left-nav/fast-pass-left-nav';
 import {
@@ -46,7 +46,7 @@ const detailsViewSwitcherNavs: { [key in DetailsViewPivotType]: InternalDetailsV
         getSelectedDetailsView: getAssessmentSelectedDetailsView,
     },
     [DetailsViewPivotType.fastPass]: {
-        CommandBar: BasicCommandBar,
+        CommandBar: CommandBarWithOptionalExportAndStartOver,
         LeftNav: FastPassLeftNav,
         getSelectedDetailsView: getFastPassSelectedDetailsView,
     },
@@ -58,6 +58,7 @@ const detailsViewSwitcherNavs: { [key in DetailsViewPivotType]: InternalDetailsV
 };
 
 export type GetDetailsSwitcherNavConfiguration = (props: GetDetailsSwitcherNavConfigurationProps) => DetailsViewSwitcherNavConfiguration;
+
 export const GetDetailsSwitcherNavConfiguration: GetDetailsSwitcherNavConfiguration = (props: GetDetailsSwitcherNavConfigurationProps) => {
     return detailsViewSwitcherNavs[props.selectedDetailsViewPivot] as DetailsViewSwitcherNavConfiguration;
 };

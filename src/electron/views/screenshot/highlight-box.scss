@@ -1,0 +1,20 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+@import '../../../common/styles/colors.scss';
+
+.highlight-box {
+    position: absolute;
+    outline: 2.4px solid $negative-outcome;
+
+    .highlight-box-label {
+        position: absolute;
+        bottom: 0px;
+        right: 0px;
+        width: 1.5em;
+        height: 1.5em;
+        text-align: center;
+        color: $primary-text-invert;
+        background: $negative-outcome;
+        outline: 2.4px solid $negative-outcome;
+    }
+}
