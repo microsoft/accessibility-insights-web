@@ -44,7 +44,6 @@ export const NoRepeatingContent: Requirement = {
                 testType: VisualizationType.LandmarksAssessment,
             }),
         ),
-
     getDrawer: provider => provider.createLandmarksDrawer(),
     getVisualHelperToggle: props => <AssessmentVisualizationEnabledToggle {...props} />,
     ...content,

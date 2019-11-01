@@ -87,7 +87,6 @@ export const CssContent: Requirement = {
     isManual: true,
     guidanceLinks: [link.WCAG_1_3_1],
     ...content,
-
     getAnalyzer: provider =>
         provider.createRuleAnalyzer(
             AnalyzerConfigurationFactory.forScanner({

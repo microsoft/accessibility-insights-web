@@ -68,7 +68,6 @@ export const FocusOrder: Requirement = {
     getVisualHelperToggle: props => <RestartScanVisualHelperToggle {...props} />,
     getDrawer: provider => provider.createSVGDrawer(),
     visualizationInstanceProcessor: VisualizationInstanceProcessor.addOrder,
-
     getNotificationMessage: selectorMap => 'Start pressing Tab to start visualizing tab stops.',
     doNotScanByDefault: true,
     switchToTargetTabOnScan: true,

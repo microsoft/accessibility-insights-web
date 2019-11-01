@@ -42,7 +42,6 @@ export const PrimaryContent: Requirement = {
                 testType: VisualizationType.LandmarksAssessment,
             }),
         ),
-
     getDrawer: provider => provider.createLandmarksDrawer(),
     getVisualHelperToggle: props => <AssessmentVisualizationEnabledToggle {...props} />,
     ...content,
