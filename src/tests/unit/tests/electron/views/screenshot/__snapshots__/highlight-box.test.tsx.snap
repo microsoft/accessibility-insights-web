@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`HighlightBox renders with appropriate position and dimensions 1`] = `
+<div
+  ariaHidden="true"
+  className="highlightBox"
+  style={
+    Object {
+      "height": "150px",
+      "left": "20px",
+      "top": "100px",
+      "width": "380px",
+    }
+  }
+>
+  <div
+    className="highlightBoxLabel"
+  >
+    !
+  </div>
+</div>
+`;
