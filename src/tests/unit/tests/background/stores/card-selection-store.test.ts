@@ -231,6 +231,23 @@ describe('CardSelectionStore Test', () => {
         createStoreForCardSelectionActions('collapseAllRules').testListenerToBeCalledOnce(initialState, expectedState);
     });
 
+    test('expandAllRules', () => {
+        initialState.rules['sampleRuleId1'].isExpanded = true;
+        initialState.rules['sampleRuleId1'].cards['sampleUid1'] = true;
+
+        expectedState.rules['sampleRuleId1'].isExpanded = true;
+        expectedState.rules['sampleRuleId1'].cards['sampleUid1'] = true;
+        expectedState.rules['sampleRuleId2'].isExpanded = true;
+
+        createStoreForCardSelectionActions('expandAllRules').testListenerToBeCalledOnce(initialState, expectedState);
+    });
+
+    test('toggleVisualHelper on - no card selection or rule expansion changes', () => {});
+
+    test('toggleVisualHelper off - cards deselected, no rule expansion changes', () => {});
+
+    test('select card, turn on visual helper', () => {});
+
     function expandRuleSelectCards(rule: RuleExpandCollapseData): void {
         rule.isExpanded = true;
 

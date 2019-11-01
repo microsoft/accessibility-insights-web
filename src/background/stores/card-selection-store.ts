@@ -20,6 +20,8 @@ export class CardSelectionStore extends BaseStoreImpl<CardSelectionStoreData> {
         this.cardSelectionActions.toggleRuleExpandCollapse.addListener(this.toggleRuleExpandCollapse);
         this.cardSelectionActions.toggleCardSelection.addListener(this.toggleCardSelection);
         this.cardSelectionActions.collapseAllRules.addListener(this.collapseAllRules);
+        this.cardSelectionActions.expandAllRules.addListener(this.expandAllRules);
+        this.cardSelectionActions.toggleVisualHelper.addListener(this.toggleVisualHelper);
         this.cardSelectionActions.getCurrentState.addListener(this.onGetCurrentState);
         this.unifiedScanResultActions.scanCompleted.addListener(this.onScanCompleted);
     }
@@ -83,6 +85,16 @@ export class CardSelectionStore extends BaseStoreImpl<CardSelectionStoreData> {
 
         this.emitChanged();
     };
+
+    private expandAllRules = (): void => {
+        forOwn(this.state.rules, rule => {
+            rule.isExpanded = true;
+        });
+
+        this.emitChanged();
+    };
+
+    private toggleVisualHelper = (): void => {};
 
     private onScanCompleted = (payload: UnifiedScanCompletedPayload): void => {
         this.state = this.getDefaultState();
