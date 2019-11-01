@@ -70,6 +70,7 @@ jobs:
       pool:
           vmImage: 'windows-latest'
       steps:
+          - template: pipeline/install-node-prerequisites.yaml
           - template: pipeline/electron/distribute-electron.yaml
             parameters:
                 platforms: -w # linux disabled until https://github.com/electron-userland/electron-builder/issues/4318 resolved
@@ -80,6 +81,7 @@ jobs:
       pool:
           vmImage: 'macOS-10.14'
       steps:
+          - template: pipeline/install-node-prerequisites.yaml
           - template: pipeline/electron/distribute-electron.yaml
             parameters:
                 platforms: -m
