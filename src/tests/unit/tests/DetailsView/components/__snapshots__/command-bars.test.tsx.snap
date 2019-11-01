@@ -1,12 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`getBasicCommandBar should return command bar with renderExportAndStartOver as false 1`] = `
-<DetailsViewCommandBar
-  assessmentsProvider={null}
-  renderExportAndStartOver={false}
-/>
-`;
-
 exports[`getCommandBarWithExportAndStartOver should return command bar with renderExportAndStartOver as true 1`] = `
 <DetailsViewCommandBar
   assessmentsProvider={null}

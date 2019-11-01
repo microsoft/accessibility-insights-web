@@ -12,10 +12,6 @@ export const CommandBarWithExportAndStartOver = NamedFC<CommandBarProps>('Comman
     return <DetailsViewCommandBar renderExportAndStartOver={true} {...props} />;
 });
 
-export const BasicCommandBar = NamedFC<CommandBarProps>('BasicCommandBar', props => {
-    return <DetailsViewCommandBar renderExportAndStartOver={false} {...props} />;
-});
-
 export const CommandBarWithOptionalExportAndStartOver = NamedFC<CommandBarProps>('CommandBarWithOptionalExportAndStartOver', props => {
     return <DetailsViewCommandBar renderExportAndStartOver={props.featureFlagStoreData[FeatureFlags.universalCardsUI]} {...props} />;
 });

@@ -5,7 +5,6 @@ import * as React from 'react';
 
 import { DictionaryStringTo } from 'types/common-types';
 import {
-    BasicCommandBar,
     CommandBarProps,
     CommandBarWithExportAndStartOver,
     CommandBarWithOptionalExportAndStartOver,
@@ -17,17 +16,6 @@ describe('getCommandBarWithExportAndStartOver', () => {
             assessmentsProvider: null,
         } as CommandBarProps;
         const actual = shallow(<CommandBarWithExportAndStartOver {...props} />);
-
-        expect(actual.getElement()).toMatchSnapshot();
-    });
-});
-
-describe('getBasicCommandBar', () => {
-    it('should return command bar with renderExportAndStartOver as false', () => {
-        const props = {
-            assessmentsProvider: null,
-        } as CommandBarProps;
-        const actual = shallow(<BasicCommandBar {...props} />);
 
         expect(actual.getElement()).toMatchSnapshot();
     });
