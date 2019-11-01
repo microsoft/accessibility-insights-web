@@ -8,7 +8,7 @@ describe('ScreenshotView', () => {
     describe('renders', () => {
         it('when passed a value for screenshotData', () => {
             const props: ScreenshotViewProps = {
-                screenshotData: { base64PngData: 'string' },
+                screenshotData: { base64PngData: 'test-base-64-png-data' },
             };
             const wrapper = shallow(<ScreenshotView {...props} />);
 
@@ -16,7 +16,19 @@ describe('ScreenshotView', () => {
         });
 
         it('when passed an empty value for screenshotData', () => {
-            const props = {} as ScreenshotViewProps;
+            const props = {
+                screenshotData: {},
+            } as ScreenshotViewProps;
+
+            const wrapper = shallow(<ScreenshotView {...props} />);
+
+            expect(wrapper.getElement()).toMatchSnapshot();
+        });
+
+        it('when passed an null value for screenshotData', () => {
+            const props = {
+                screenshotData: null,
+            } as ScreenshotViewProps;
 
             const wrapper = shallow(<ScreenshotView {...props} />);
 
