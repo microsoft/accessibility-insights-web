@@ -1,7 +1,7 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
 jobs:
-    - job: 'build-product-windows'
+    - job: 'build_product_windows'
 
       pool:
           vmImage: 'windows-latest'
