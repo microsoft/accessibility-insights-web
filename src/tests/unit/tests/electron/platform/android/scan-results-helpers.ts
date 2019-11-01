@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-
-import { ScreenshotData, UnifiedResolution } from 'common/types/store-data/unified-data-interface';
+import { UnifiedResolution } from 'common/types/store-data/unified-data-interface';
 import { RuleInformation } from 'electron/platform/android/rule-information';
 import { RuleResultsData, ScanResults, ViewElementData } from 'electron/platform/android/scan-results';
 
