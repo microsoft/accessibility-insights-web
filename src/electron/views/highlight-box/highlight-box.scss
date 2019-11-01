@@ -4,7 +4,7 @@
 
 .highlight-box {
     position: absolute;
-    outline: 3px solid $negative-outcome;
+    outline: 2.4px solid $negative-outcome;
 
     .highlight-box-label {
         position: absolute;
@@ -15,6 +15,6 @@
         text-align: center;
         color: $primary-text-invert;
         background: $negative-outcome;
-        outline: 3px solid $negative-outcome;
+        outline: 2.4px solid $negative-outcome;
     }
 }
