@@ -12,3 +12,25 @@ jobs:
           - template: electron-e2e-publish-results.yaml
 
           - template: distribute-electron.yaml
+
+    - job: 'build_product_linux'
+
+      pool:
+          vmImage: 'ubuntu-16.04'
+
+      steps:
+          - template: ../install-node-prerequisites.yaml
+          - template: electron-e2e-test-linux.yaml
+          - template: electron-e2e-publish-results.yaml
+
+          - template: distribute-electron.yaml
+
+    - job: 'build_product_mac'
+      pool:
+          vmImage: macOS-10.14
+      steps:
+          - template: ../install-node-prerequisites.yaml
+          - template: electron-e2e-test-interactive.yaml
+          - template: electron-e2e-publish-results.yaml
+
+          - template: distribute-electron.yaml
