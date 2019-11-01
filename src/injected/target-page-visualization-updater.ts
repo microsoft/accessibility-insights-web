@@ -34,9 +34,9 @@ export class TargetPageVisualizationUpdater {
     ) => {
         const selectorMap = this.selectorMapHelper.getSelectorMap(visualizationType, stepKey, storeData);
         const configuration = this.visualizationConfigurationFactory.getConfiguration(visualizationType);
-        const testId = configuration.getIdentifier(stepKey);
-        this.executeUpdate(visualizationType, stepKey, storeData, selectorMap, configuration, testId);
-        this.previousVisualizationSelectorMapStates[testId] = selectorMap;
+        const configId = configuration.getIdentifier(stepKey);
+        this.executeUpdate(visualizationType, stepKey, storeData, selectorMap, configuration, configId);
+        this.previousVisualizationSelectorMapStates[configId] = selectorMap;
     };
 
     private executeUpdate = (
@@ -45,7 +45,7 @@ export class TargetPageVisualizationUpdater {
         storeData: TargetPageStoreData,
         selectorMap: DictionaryStringTo<AssessmentVisualizationInstance>,
         configuration: VisualizationConfiguration,
-        testId: string,
+        configId: string,
     ) => {
         const newVisualizationEnabledState = this.isVisualizationEnabled(
             configuration,
@@ -58,7 +58,7 @@ export class TargetPageVisualizationUpdater {
         if (
             this.visualizationNeedsUpdate(
                 visualizationType,
-                testId,
+                configId,
                 newVisualizationEnabledState,
                 selectorMap,
                 this.previousVisualizationStates,
@@ -68,18 +68,18 @@ export class TargetPageVisualizationUpdater {
             return;
         }
 
-        this.previousVisualizationStates[testId] = newVisualizationEnabledState;
+        this.previousVisualizationStates[configId] = newVisualizationEnabledState;
 
         if (newVisualizationEnabledState) {
             this.drawingInitiator.enableVisualization(
                 visualizationType,
                 storeData.featureFlagStoreData,
                 cloneDeep(selectorMap),
-                testId,
+                configId,
                 configuration.visualizationInstanceProcessor(stepKey),
             );
         } else {
-            this.drawingInitiator.disableVisualization(visualizationType, storeData.featureFlagStoreData, testId);
+            this.drawingInitiator.disableVisualization(visualizationType, storeData.featureFlagStoreData, configId);
         }
     };
 }
