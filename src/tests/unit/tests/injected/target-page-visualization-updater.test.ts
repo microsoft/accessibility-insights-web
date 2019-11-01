@@ -51,7 +51,9 @@ describe('TargetPageVisualizationUpdater', () => {
 
         newVisualizationEnabledStateStub = true;
 
-        selectorMapHelperMock.setup(smhm => smhm.getSelectorMap(visualizationTypeStub, storeDataStub)).returns(() => selectorMapStub);
+        selectorMapHelperMock
+            .setup(smhm => smhm.getSelectorMap(visualizationTypeStub, stepKeyStub, storeDataStub))
+            .returns(() => selectorMapStub);
         visualizationConfigurationFactoryMock.setup(vcfm => vcfm.getConfiguration(visualizationTypeStub)).returns(() => configMock.object);
         configMock.setup(cm => cm.getIdentifier(stepKeyStub)).returns(() => configIdStub);
         isVisualizationEnabledMock
@@ -85,7 +87,7 @@ describe('TargetPageVisualizationUpdater', () => {
         testSubject.updateVisualization(visualizationTypeStub, stepKeyStub, storeDataStub);
 
         drawingInitiatorMock.verifyAll();
-        verifyPreviousStates({}, { [visualizationTypeStub]: selectorMapStub });
+        verifyPreviousStates({}, { [configIdStub]: selectorMapStub });
     });
 
     test('visualization needs to be enabled', () => {
@@ -107,7 +109,7 @@ describe('TargetPageVisualizationUpdater', () => {
         testSubject.updateVisualization(visualizationTypeStub, stepKeyStub, storeDataStub);
 
         drawingInitiatorMock.verifyAll();
-        verifyPreviousStates({ [configIdStub]: newVisualizationEnabledStateStub }, { [visualizationTypeStub]: selectorMapStub });
+        verifyPreviousStates({ [configIdStub]: newVisualizationEnabledStateStub }, { [configIdStub]: selectorMapStub });
     });
 
     test('visualization needs to be disabled', () => {
@@ -120,7 +122,7 @@ describe('TargetPageVisualizationUpdater', () => {
         testSubject.updateVisualization(visualizationTypeStub, stepKeyStub, storeDataStub);
 
         drawingInitiatorMock.verifyAll();
-        verifyPreviousStates({ [configIdStub]: newVisualizationEnabledStateStub }, { [visualizationTypeStub]: selectorMapStub });
+        verifyPreviousStates({ [configIdStub]: newVisualizationEnabledStateStub }, { [configIdStub]: selectorMapStub });
     });
 
     function setupVisualizationNeedsUpdateMock(needsUpdate: boolean): void {
