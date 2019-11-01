@@ -3,25 +3,11 @@
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
+import { AutomatedChecksCommandBar } from 'DetailsView/components/automated-checks-command-bar';
 import { DictionaryStringTo } from 'types/common-types';
-import {
-    CommandBarProps,
-    CommandBarWithExportAndStartOver,
-    CommandBarWithOptionalExportAndStartOver,
-} from '../../../../../DetailsView/components/command-bars';
+import { CommandBarProps } from '../../../../../DetailsView/components/details-view-command-bar';
 
-describe('getCommandBarWithExportAndStartOver', () => {
-    it('should return command bar with renderExportAndStartOver as true', () => {
-        const props = {
-            assessmentsProvider: null,
-        } as CommandBarProps;
-        const actual = shallow(<CommandBarWithExportAndStartOver {...props} />);
-
-        expect(actual.getElement()).toMatchSnapshot();
-    });
-});
-
-describe('getCommandBarWithOptionalExportAndStartOver universalCardsUI disabled', () => {
+describe('getAutomatedChecksCommandBar universalCardsUI disabled', () => {
     it('should return command bar with renderExportAndStartOver as false', () => {
         const featureFlags: DictionaryStringTo<boolean> = {
             universalCardsUI: false,
@@ -30,13 +16,13 @@ describe('getCommandBarWithOptionalExportAndStartOver universalCardsUI disabled'
             assessmentsProvider: null,
             featureFlagStoreData: featureFlags,
         } as CommandBarProps;
-        const actual = shallow(<CommandBarWithOptionalExportAndStartOver {...props} />);
+        const actual = shallow(<AutomatedChecksCommandBar {...props} />);
 
         expect(actual.getElement()).toMatchSnapshot();
     });
 });
 
-describe('getCommandBarWithOptionalExportAndStartOver universalCardsUI enabled', () => {
+describe('getAutomatedChecksCommandBar universalCardsUI enabled', () => {
     it('should return command bar with renderExportAndStartOver as true', () => {
         const featureFlags: DictionaryStringTo<boolean> = {
             universalCardsUI: true,
@@ -45,7 +31,7 @@ describe('getCommandBarWithOptionalExportAndStartOver universalCardsUI enabled',
             assessmentsProvider: null,
             featureFlagStoreData: featureFlags,
         } as CommandBarProps;
-        const actual = shallow(<CommandBarWithOptionalExportAndStartOver {...props} />);
+        const actual = shallow(<AutomatedChecksCommandBar {...props} />);
 
         expect(actual.getElement()).toMatchSnapshot();
     });

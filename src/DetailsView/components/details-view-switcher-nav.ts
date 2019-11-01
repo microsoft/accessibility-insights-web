@@ -1,9 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { AssessmentCommandBar } from 'DetailsView/components/assessment-command-bar';
+import { AutomatedChecksCommandBar } from 'DetailsView/components/automated-checks-command-bar';
+import { CommandBarProps } from 'DetailsView/components/details-view-command-bar';
 import { ReactFCWithDisplayName } from '../../common/react/named-fc';
 import { DetailsViewPivotType } from '../../common/types/details-view-pivot-type';
 import { VisualizationType } from '../../common/types/visualization-type';
-import { CommandBarProps, CommandBarWithExportAndStartOver, CommandBarWithOptionalExportAndStartOver } from './command-bars';
 import { AssessmentLeftNav, AssessmentLeftNavDeps, AssessmentLeftNavProps } from './left-nav/assessment-left-nav';
 import { FastPassLeftNav, FastPassLeftNavDeps, FastPassLeftNavProps } from './left-nav/fast-pass-left-nav';
 import {
@@ -41,12 +43,12 @@ export type GetDetailsSwitcherNavConfigurationProps = {
 
 const detailsViewSwitcherNavs: { [key in DetailsViewPivotType]: InternalDetailsViewSwitcherNavConfiguration } = {
     [DetailsViewPivotType.assessment]: {
-        CommandBar: CommandBarWithExportAndStartOver,
+        CommandBar: AssessmentCommandBar,
         LeftNav: AssessmentLeftNav,
         getSelectedDetailsView: getAssessmentSelectedDetailsView,
     },
     [DetailsViewPivotType.fastPass]: {
-        CommandBar: CommandBarWithOptionalExportAndStartOver,
+        CommandBar: AutomatedChecksCommandBar,
         LeftNav: FastPassLeftNav,
         getSelectedDetailsView: getFastPassSelectedDetailsView,
     },

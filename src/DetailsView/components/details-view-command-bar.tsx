@@ -18,6 +18,8 @@ export type DetailsViewCommandBarDeps = ReportExportComponentDeps & {
     reportGenerator: ReportGenerator;
 };
 
+export type CommandBarProps = Pick<DetailsViewCommandBarProps, Exclude<keyof DetailsViewCommandBarProps, 'renderExportAndStartOver'>>;
+
 export interface DetailsViewCommandBarProps {
     deps: DetailsViewCommandBarDeps;
     featureFlagStoreData: FeatureFlagStoreData;

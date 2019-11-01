@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`getAutomatedChecksCommandBar universalCardsUI disabled should return command bar with renderExportAndStartOver as false 1`] = `
+<DetailsViewCommandBar
+  assessmentsProvider={null}
+  featureFlagStoreData={
+    Object {
+      "universalCardsUI": false,
+    }
+  }
+  renderExportAndStartOver={false}
+/>
+`;
+
+exports[`getAutomatedChecksCommandBar universalCardsUI enabled should return command bar with renderExportAndStartOver as true 1`] = `
+<DetailsViewCommandBar
+  assessmentsProvider={null}
+  featureFlagStoreData={
+    Object {
+      "universalCardsUI": true,
+    }
+  }
+  renderExportAndStartOver={true}
+/>
+`;
