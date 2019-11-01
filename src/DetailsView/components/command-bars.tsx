@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import * as React from 'react';
 
+import { FeatureFlags } from 'common/feature-flags';
 import { NamedFC } from '../../common/react/named-fc';
 import { DetailsViewCommandBar, DetailsViewCommandBarProps } from './details-view-command-bar';
 
@@ -13,4 +14,8 @@ export const CommandBarWithExportAndStartOver = NamedFC<CommandBarProps>('Comman
 
 export const BasicCommandBar = NamedFC<CommandBarProps>('BasicCommandBar', props => {
     return <DetailsViewCommandBar renderExportAndStartOver={false} {...props} />;
+});
+
+export const CommandBarWithOptionalExportAndStartOver = NamedFC<CommandBarProps>('CommandBarWithOptionalExportAndStartOver', props => {
+    return <DetailsViewCommandBar renderExportAndStartOver={props.featureFlagStoreData[FeatureFlags.universalCardsUI]} {...props} />;
 });
