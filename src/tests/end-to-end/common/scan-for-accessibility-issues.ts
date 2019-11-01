@@ -4,21 +4,12 @@ import { AxeResults, ElementContext } from 'axe-core';
 
 import * as path from 'path';
 import { Page } from './page-controllers/page';
+import { prettyPrintAxeViolations, PrintableAxeResult } from './pretty-print-axe-violations';
 
 // we are using axe object in target page scope. so we shouldn't be importing axe object via axe-core
 declare var axe;
 
-export interface PrintableNode {
-    selector: string[];
-    failureSummary: string;
-}
-
-export interface PrintableResult {
-    id: string;
-    nodes: PrintableNode[];
-}
-
-export async function scanForAccessibilityIssues(page: Page, selector: string): Promise<PrintableResult[]> {
+export async function scanForAccessibilityIssues(page: Page, selector: string): Promise<PrintableAxeResult[]> {
     await injectAxeIfUndefined(page);
 
     const axeResults = (await page.evaluate(selectorInEvaluate => {
@@ -28,20 +19,7 @@ export async function scanForAccessibilityIssues(page: Page, selector: string): 
         );
     }, selector)) as AxeResults;
 
-    const violations = axeResults.violations;
-    const printableViolations: PrintableResult[] = violations.map(result => {
-        const nodeResults: PrintableNode[] = result.nodes.map(node => {
-            return {
-                selector: node.target,
-                failureSummary: node.failureSummary,
-            } as PrintableNode;
-        });
-        return {
-            id: result.id,
-            nodes: nodeResults,
-        };
-    });
-    return printableViolations;
+    return prettyPrintAxeViolations(axeResults);
 }
 
 async function injectAxeIfUndefined(page: Page): Promise<void> {
