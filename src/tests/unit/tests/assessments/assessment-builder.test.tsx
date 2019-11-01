@@ -47,13 +47,11 @@ describe('AssessmentBuilderTest', () => {
             guidanceLinks: [],
             name: 'requirement name',
             generateInstanceIdentifier: getInstanceIdentifierMock.object,
-            updateVisibility: false,
         };
 
         const requirement2: Requirement = _.cloneDeep(requirement);
         requirement2.key = 'requirement2';
         requirement2.generateInstanceIdentifier = null;
-        requirement2.updateVisibility = null;
 
         const baseAssessment: ManualAssessment = {
             key: 'manualAssessmentKey',
@@ -169,7 +167,6 @@ describe('AssessmentBuilderTest', () => {
             generateInstanceIdentifier: getInstanceIdentifierMock.object,
             getDrawer: getDrawerMock.object,
             switchToTargetTabOnScan: true,
-            updateVisibility: false,
         };
         const scannerStub = {
             getAllCompletedInstances: {},
@@ -192,7 +189,6 @@ describe('AssessmentBuilderTest', () => {
         requirement5.getDrawer = null;
         requirement5.switchToTargetTabOnScan = null;
         requirement5.generateInstanceIdentifier = null;
-        requirement5.updateVisibility = null;
         requirement5.isManual = false;
         const requirement6: Requirement = _.cloneDeep(requirement1);
         requirement6.key = 'requirement6';

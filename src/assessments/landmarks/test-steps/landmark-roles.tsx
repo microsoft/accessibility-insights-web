@@ -98,7 +98,6 @@ export const LandmarkRoles: Requirement = {
             }),
         ),
     getDrawer: provider => provider.createLandmarksDrawer(),
-    updateVisibility: false,
     getVisualHelperToggle: props => <AssessmentVisualizationEnabledToggle {...props} />,
     ...content,
 };

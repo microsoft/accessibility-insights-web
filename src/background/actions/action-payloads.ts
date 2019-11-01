@@ -21,15 +21,6 @@ export interface SelectRequirementPayload extends BaseActionPayload {
     selectedTest: VisualizationType;
 }
 
-export interface UpdateInstanceVisibilityPayload extends ToggleActionPayload {
-    selector: string;
-    isVisible: boolean;
-}
-
-export interface UpdateVisibilityPayload {
-    payloadBatch: UpdateInstanceVisibilityPayload[];
-}
-
 export interface AssessmentToggleActionPayload extends ToggleActionPayload {
     requirement: string;
 }
