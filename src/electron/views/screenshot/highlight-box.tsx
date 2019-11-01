@@ -26,7 +26,7 @@ export const HighlightBox = NamedFC<HighlightBoxProps>('HighlightBox', props => 
     };
 
     return (
-        <div className={highlightBox} style={boxStyles}>
+        <div className={highlightBox} style={boxStyles} ariaHidden="true">
             <div className={highlightBoxLabel}>!</div>
         </div>
     );
