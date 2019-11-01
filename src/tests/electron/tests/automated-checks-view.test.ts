@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { createApplication } from 'tests/electron/common/create-application';
 import { AutomatedChecksViewSelectors } from 'tests/electron/common/element-identifiers/automated-checks-view-selectors';
+import { scanForAccessibilityIssues } from 'tests/electron/common/scan-for-accessibility-issues';
 import { AppController } from 'tests/electron/common/view-controllers/app-controller';
 import { AutomatedChecksViewController } from 'tests/electron/common/view-controllers/automated-checks-view-controller';
 
@@ -45,6 +46,11 @@ describe('AutomatedChecksView', () => {
         const collapsibleContentElements = await automatedChecksView.client.$$(AutomatedChecksViewSelectors.collapsibleContainerContent);
 
         expect(collapsibleContentElements).toHaveLength(0);
+    });
+
+    it('should not contain any accessibility issues', async () => {
+        const violations = await scanForAccessibilityIssues(automatedChecksView);
+        expect(violations).toStrictEqual([]);
     });
 
     async function assertExpandedRuleGroup(position: number, expectedTitle: string, expectedFailures: number): Promise<void> {
