@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { NamedFC } from 'common/react/named-fc';
 import { ScreenshotData } from 'common/types/store-data/unified-data-interface';
-import { isEmpty } from 'lodash';
+import { isEmpty, isUndefined } from 'lodash';
 import * as React from 'react';
 
 import { Screenshot } from './screenshot';
@@ -14,7 +14,7 @@ export type ScreenshotViewProps = {
 const screenshotAltText: string = 'axe android results screenshot';
 
 export const ScreenshotView = NamedFC<ScreenshotViewProps>('ScreenshotView', (props: ScreenshotViewProps) => {
-    if (isEmpty(props.screenshotData)) {
+    if (isUndefined(props.screenshotData) || isEmpty(props.screenshotData)) {
         return (
             <div>
                 <p>Screenshot for scan is unavailable</p>

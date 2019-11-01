@@ -18,6 +18,7 @@ import { mainContentWrapper } from 'electron/views/device-connect-view/device-co
 import { DeviceDisconnectedPopup } from 'electron/views/device-disconnected-popup/device-disconnected-popup';
 import { ScreenshotView } from 'electron/views/screenshot/screenshot-view';
 import { ScreenshotViewModelProvider } from 'electron/views/screenshot/screenshot-view-model-provider';
+import { isUndefined } from 'lodash';
 import * as React from 'react';
 
 import { automatedChecksPanelLayout, automatedChecksView, screenshotView } from './automated-checks-view.scss';
@@ -68,7 +69,8 @@ export class AutomatedChecksView extends React.Component<AutomatedChecksViewProp
                         </main>
                     </div>
                     <div className={screenshotView}>
-                        <ScreenshotView screenshotData={this.props.unifiedScanResultStoreData.screenshotData} />
+                        {this.renderScreenshotView()}
+                        {/* <ScreenshotView screenshotData={this.props.unifiedScanResultStoreData.screenshotData} /> */}
                     </div>
                 </div>
             </div>
@@ -119,5 +121,12 @@ export class AutomatedChecksView extends React.Component<AutomatedChecksViewProp
                 userConfigurationStoreData={this.props.userConfigurationStoreData}
             />
         );
+    }
+
+    private renderScreenshotView(): JSX.Element {
+        if (isUndefined(this.props.unifiedScanResultStoreData)) {
+            return null;
+        }
+        return <ScreenshotView screenshotData={this.props.unifiedScanResultStoreData.screenshotData} />;
     }
 }

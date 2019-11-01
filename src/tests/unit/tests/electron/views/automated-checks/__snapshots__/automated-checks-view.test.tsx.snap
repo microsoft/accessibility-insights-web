@@ -147,9 +147,7 @@ exports[`AutomatedChecksView renders when status scan <Failed> 1`] = `
     </div>
     <div
       className="screenshotView"
-    >
-      <ScreenshotView />
-    </div>
+    />
   </div>
 </div>
 `;
@@ -216,9 +214,7 @@ exports[`AutomatedChecksView renders when status scan <Scanning> 1`] = `
     </div>
     <div
       className="screenshotView"
-    >
-      <ScreenshotView />
-    </div>
+    />
   </div>
 </div>
 `;
@@ -285,9 +281,7 @@ exports[`AutomatedChecksView renders when status scan <undefined> 1`] = `
     </div>
     <div
       className="screenshotView"
-    >
-      <ScreenshotView />
-    </div>
+    />
   </div>
 </div>
 `;
