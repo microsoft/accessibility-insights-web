@@ -11,7 +11,7 @@ export function buildScanResultsObject(
     resultsArray: RuleResultsData[] = null,
     axeView: ViewElementData = null,
     axeVersion: string = null,
-    screenshotData: ScreenshotData = null,
+    screenshotData: string = null,
 ): ScanResults {
     const scanResults = {};
     const axeContext = {};

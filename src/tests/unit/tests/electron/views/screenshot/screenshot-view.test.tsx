@@ -6,7 +6,9 @@ import * as React from 'react';
 
 describe('ScreenshotView', () => {
     it('renders', () => {
-        const props: ScreenshotViewProps = {};
+        const props: ScreenshotViewProps = {
+            screenshotData: { base64PngData: 'string' },
+        };
         const wrapper = shallow(<ScreenshotView {...props} />);
 
         expect(wrapper.getElement()).toMatchSnapshot();

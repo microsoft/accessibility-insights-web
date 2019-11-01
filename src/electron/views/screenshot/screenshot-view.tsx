@@ -1,13 +1,31 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { NamedFC } from 'common/react/named-fc';
+import { ScreenshotData } from 'common/types/store-data/unified-data-interface';
+import { isEmpty } from 'lodash';
 import * as React from 'react';
 
-export type ScreenshotViewProps = {};
-export const ScreenshotView = NamedFC<ScreenshotViewProps>('ScreenshotView', props => {
-    return (
-        <div>
-            <h1 tabIndex={0}>This is the screenshot view</h1>
-        </div>
-    );
+import { Screenshot } from './screenshot';
+
+export type ScreenshotViewProps = {
+    screenshotData: ScreenshotData;
+};
+
+const screenshotAltText: string = 'axe android results screenshot';
+
+export const ScreenshotView = NamedFC<ScreenshotViewProps>('ScreenshotView', (props: ScreenshotViewProps) => {
+    if (isEmpty(props.screenshotData)) {
+        return (
+            <div>
+                <p>Screenshot for scan is unavailable</p>
+            </div>
+        );
+    } else {
+        return (
+            <div>
+                <h1 tabIndex={0}>Page state screenshot</h1>
+                <Screenshot encodedImage={props.screenshotData.base64PngData} altText={screenshotAltText} />
+            </div>
+        );
+    }
 });

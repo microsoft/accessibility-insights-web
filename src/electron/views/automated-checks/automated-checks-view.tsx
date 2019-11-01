@@ -68,7 +68,7 @@ export class AutomatedChecksView extends React.Component<AutomatedChecksViewProp
                         </main>
                     </div>
                     <div className={screenshotView}>
-                        <ScreenshotView />
+                        <ScreenshotView screenshotData={this.props.unifiedScanResultStoreData.screenshotData} />
                     </div>
                 </div>
             </div>

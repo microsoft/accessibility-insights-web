@@ -7,5 +7,9 @@ exports[`ScreenshotView renders 1`] = `
   >
     This is the screenshot view
   </h1>
+  <Screenshot
+    altText="axe android results screenshot"
+    encodedImage="string"
+  />
 </div>
 `;
