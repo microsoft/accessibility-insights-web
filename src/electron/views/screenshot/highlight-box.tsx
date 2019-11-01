@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { NamedFC } from 'common/react/named-fc';
 import { BoundingRectangle } from 'electron/platform/android/scan-results';
-import { highlightBox, highlightBoxLabel } from 'electron/views/highlight-box/highlight-box.scss';
+import { highlightBox, highlightBoxLabel } from 'electron/views/screenshot/highlight-box.scss';
 import * as React from 'react';
 import { CSSProperties } from 'react';
 
