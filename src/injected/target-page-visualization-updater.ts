@@ -5,6 +5,7 @@ import { VisualizationType } from 'common/types/visualization-type';
 import { cloneDeep } from 'lodash';
 import { DictionaryNumberTo, DictionaryStringTo } from 'types/common-types';
 
+import { VisualizationConfiguration } from 'common/configs/visualization-configuration';
 import { TargetPageStoreData } from './client-store-listener';
 import { DrawingInitiator } from './drawing-initiator';
 import { AssessmentVisualizationInstance } from './frameCommunicators/html-element-axe-results-helper';
@@ -31,9 +32,11 @@ export class TargetPageVisualizationUpdater {
         stepKey: string,
         storeData: TargetPageStoreData,
     ) => {
-        const selectorMap = this.selectorMapHelper.getSelectorMap(visualizationType, storeData);
-        this.executeUpdate(visualizationType, stepKey, storeData, selectorMap);
-        this.previousVisualizationSelectorMapStates[visualizationType] = selectorMap;
+        const selectorMap = this.selectorMapHelper.getSelectorMap(visualizationType, stepKey, storeData);
+        const configuration = this.visualizationConfigurationFactory.getConfiguration(visualizationType);
+        const testId = configuration.getIdentifier(stepKey);
+        this.executeUpdate(visualizationType, stepKey, storeData, selectorMap, configuration, testId);
+        this.previousVisualizationSelectorMapStates[testId] = selectorMap;
     };
 
     private executeUpdate = (
@@ -41,9 +44,9 @@ export class TargetPageVisualizationUpdater {
         stepKey: string,
         storeData: TargetPageStoreData,
         selectorMap: DictionaryStringTo<AssessmentVisualizationInstance>,
+        configuration: VisualizationConfiguration,
+        testId: string,
     ) => {
-        const configuration = this.visualizationConfigurationFactory.getConfiguration(visualizationType);
-        const id = configuration.getIdentifier(stepKey);
         const newVisualizationEnabledState = this.isVisualizationEnabled(
             configuration,
             stepKey,
@@ -55,7 +58,7 @@ export class TargetPageVisualizationUpdater {
         if (
             this.visualizationNeedsUpdate(
                 visualizationType,
-                id,
+                testId,
                 newVisualizationEnabledState,
                 selectorMap,
                 this.previousVisualizationStates,
@@ -65,18 +68,18 @@ export class TargetPageVisualizationUpdater {
             return;
         }
 
-        this.previousVisualizationStates[id] = newVisualizationEnabledState;
+        this.previousVisualizationStates[testId] = newVisualizationEnabledState;
 
         if (newVisualizationEnabledState) {
             this.drawingInitiator.enableVisualization(
                 visualizationType,
                 storeData.featureFlagStoreData,
                 cloneDeep(selectorMap),
-                id,
+                testId,
                 configuration.visualizationInstanceProcessor(stepKey),
             );
         } else {
-            this.drawingInitiator.disableVisualization(visualizationType, storeData.featureFlagStoreData, id);
+            this.drawingInitiator.disableVisualization(visualizationType, storeData.featureFlagStoreData, testId);
         }
     };
 }
