@@ -12,7 +12,6 @@ import {
     RemoveFailureInstancePayload,
     SelectRequirementPayload,
     ToggleActionPayload,
-    UpdateVisibilityPayload,
 } from 'background/actions/action-payloads';
 import { AssessmentActionCreator } from 'background/actions/assessment-action-creator';
 import { AssessmentActions } from 'background/actions/assessment-actions';
@@ -319,20 +318,6 @@ describe('AssessmentActionCreatorTest', () => {
         testSubject.registerCallbacks();
 
         resetDataMock.verifyAll();
-    });
-
-    it('handles UpdateInstanceVisibility message', () => {
-        const payload: UpdateVisibilityPayload = { payloadBatch: [] };
-
-        const updateInstanceVisibilityMock = createActionMock(payload);
-        const actionsMock = createActionsMock('updateInstanceVisibility', updateInstanceVisibilityMock.object);
-        const interpreterMock = createInterpreterMock(AssessmentMessages.UpdateInstanceVisibility, payload, testTabId);
-
-        const testSubject = new AssessmentActionCreator(interpreterMock.object, actionsMock.object, telemetryEventHandlerMock.object);
-
-        testSubject.registerCallbacks();
-
-        updateInstanceVisibilityMock.verifyAll();
     });
 
     it('handles StartOverAllAssessments message', () => {

@@ -87,6 +87,5 @@ export const KeyboardNavigation: Requirement = {
         }),
     getNotificationMessage: selectorMap => 'Start pressing Tab to start visualizing tab stops.',
     switchToTargetTabOnScan: true,
-    updateVisibility: false,
     generateInstanceIdentifier: generateUID,
 };

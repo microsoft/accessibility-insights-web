@@ -48,6 +48,5 @@ export const ColorAdHocVisualization: VisualizationConfiguration = {
     getDrawer: provider => provider.createSingleTargetDrawer('insights-grey-scale-container'),
     getSwitchToTargetTabOnScan: () => false,
     getInstanceIdentiferGenerator: () => generateUID,
-    getUpdateVisibility: () => false,
     guidance,
 };

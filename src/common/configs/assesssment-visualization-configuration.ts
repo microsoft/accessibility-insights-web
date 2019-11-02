@@ -35,5 +35,4 @@ export interface AssesssmentVisualizationConfiguration {
     getDrawer: (provider: DrawerProvider, testStep?: string) => Drawer;
     getSwitchToTargetTabOnScan: (testStep?: string) => boolean;
     getInstanceIdentiferGenerator: (testStep?: string) => (instance: UniquelyIdentifiableInstances) => string;
-    getUpdateVisibility: (testStep?: string) => boolean;
 }

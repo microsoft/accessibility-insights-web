@@ -130,7 +130,6 @@ export class Messages {
         EditFailureInstance: `${messagePrefix}/assessment/editFailureInstance`,
         PassUnmarkedInstances: `${messagePrefix}/assessment/passUnmarkedInstances`,
         ChangeVisualizationStateForAll: `${messagePrefix}/assessment/changeVisualizationStateForAll`,
-        UpdateInstanceVisibility: `${messagePrefix}/assessment/updateInstanceVisibility`,
         ScanUpdate: `${messagePrefix}/assessment/scanUpdate`,
         ContinuePreviousAssessment: `${messagePrefix}/assessment/continuePreviousAssessment`,
     };

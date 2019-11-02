@@ -36,7 +36,6 @@ export interface Requirement {
     getVisualHelperToggle?: (props: VisualHelperToggleConfig) => JSX.Element;
     visualizationInstanceProcessor?: VisualizationInstanceProcessorCallback<PropertyBags, PropertyBags>;
     getDrawer?: (provider: DrawerProvider, featureFlagStoreData?: FeatureFlagStoreData) => Drawer;
-    updateVisibility?: boolean;
     getNotificationMessage?: (selectorMap: DictionaryStringTo<any>) => string;
     doNotScanByDefault?: boolean;
     switchToTargetTabOnScan?: boolean;

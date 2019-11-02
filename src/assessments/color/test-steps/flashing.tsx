@@ -53,5 +53,4 @@ export const Flashing: Requirement = {
     isManual: true,
     ...content,
     guidanceLinks: [link.WCAG_2_3_1],
-    updateVisibility: false,
 };

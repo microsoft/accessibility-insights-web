@@ -49,6 +49,5 @@ export const HeadingsAdHocVisualization: VisualizationConfiguration = {
     getDrawer: provider => provider.createHeadingsDrawer(),
     getSwitchToTargetTabOnScan: () => false,
     getInstanceIdentiferGenerator: () => generateUID,
-    getUpdateVisibility: () => false,
     guidance,
 };
