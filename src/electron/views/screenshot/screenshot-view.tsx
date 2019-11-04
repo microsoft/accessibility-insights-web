@@ -19,7 +19,7 @@ export const ScreenshotView = NamedFC<ScreenshotViewProps>('ScreenshotView', (pr
     }
     return (
         <div>
-            <h1 tabIndex={0}>Page state screenshot</h1>
+            <h1 tabIndex={0}>Target Page Screenshot</h1>
             <Screenshot encodedImage={props.screenshotData.base64PngData} altText={screenshotAltText} />
         </div>
     );

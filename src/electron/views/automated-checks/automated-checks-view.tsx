@@ -122,7 +122,7 @@ export class AutomatedChecksView extends React.Component<AutomatedChecksViewProp
 
     private renderScreenshotView(): JSX.Element {
         if (isEmpty(this.props.unifiedScanResultStoreData)) {
-            return null;
+            return;
         }
         return <ScreenshotView screenshotData={this.props.unifiedScanResultStoreData.screenshotData} />;
     }

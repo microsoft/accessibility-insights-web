@@ -34,5 +34,15 @@ describe('ScreenshotView', () => {
 
             expect(wrapper.getElement()).toMatchSnapshot();
         });
+
+        it('when passed an undefined value for screenshotData', () => {
+            const props = {
+                screenshotData: undefined,
+            } as ScreenshotViewProps;
+
+            const wrapper = shallow(<ScreenshotView {...props} />);
+
+            expect(wrapper.getElement()).toMatchSnapshot();
+        });
     });
 });
