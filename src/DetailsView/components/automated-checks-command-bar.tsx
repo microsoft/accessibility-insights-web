@@ -8,5 +8,11 @@ import { CommandBarProps } from './details-view-command-bar';
 import { DetailsViewCommandBar } from './details-view-command-bar';
 
 export const AutomatedChecksCommandBar = NamedFC<CommandBarProps>('AutomatedChecksCommandBar', props => {
-    return <DetailsViewCommandBar renderExportAndStartOver={props.featureFlagStoreData[FeatureFlags.universalCardsUI]} {...props} />;
+    return (
+        <DetailsViewCommandBar
+            renderExport={props.featureFlagStoreData[FeatureFlags.universalCardsUI]}
+            renderStartOver={props.featureFlagStoreData[FeatureFlags.universalCardsUI]}
+            {...props}
+        />
+    );
 });

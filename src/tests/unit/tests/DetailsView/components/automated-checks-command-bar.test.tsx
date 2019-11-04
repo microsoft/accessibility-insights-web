@@ -8,7 +8,7 @@ import { DictionaryStringTo } from 'types/common-types';
 import { CommandBarProps } from '../../../../../DetailsView/components/details-view-command-bar';
 
 describe('getAutomatedChecksCommandBar universalCardsUI disabled', () => {
-    it('should return command bar with renderExportAndStartOver as false', () => {
+    it('should return command bar with renderExport as false and renderStartOver as false', () => {
         const featureFlags: DictionaryStringTo<boolean> = {
             universalCardsUI: false,
         };
@@ -23,7 +23,7 @@ describe('getAutomatedChecksCommandBar universalCardsUI disabled', () => {
 });
 
 describe('getAutomatedChecksCommandBar universalCardsUI enabled', () => {
-    it('should return command bar with renderExportAndStartOver as true', () => {
+    it('should return command bar with renderExport as true and renderAndStartOver as true', () => {
         const featureFlags: DictionaryStringTo<boolean> = {
             universalCardsUI: true,
         };

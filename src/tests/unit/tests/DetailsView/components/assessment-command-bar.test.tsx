@@ -7,7 +7,7 @@ import { AssessmentCommandBar } from 'DetailsView/components/assessment-command-
 import { CommandBarProps } from '../../../../../DetailsView/components/details-view-command-bar';
 
 describe('getAssessmentCommandBar', () => {
-    it('should return command bar with renderExportAndStartOver as true', () => {
+    it('should return command bar with renderExport as true and renderStartOver as true', () => {
         const props = {
             assessmentsProvider: null,
         } as CommandBarProps;

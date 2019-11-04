@@ -32,7 +32,8 @@ describe('DetailsViewCommandBar', () => {
     let rightPanelConfig: DetailsRightPanelConfiguration;
     let reportGeneratorMock: IMock<ReportGenerator>;
     let descriptionPlaceholder: string;
-    let renderExportAndStartOver: boolean;
+    let renderExport: boolean;
+    let renderStartOver: boolean;
 
     beforeEach(() => {
         featureFlagStoreData = {};
@@ -41,7 +42,8 @@ describe('DetailsViewCommandBar', () => {
             title: thePageTitle,
             isClosed: false,
         } as TabStoreData;
-        renderExportAndStartOver = true;
+        renderExport = true;
+        renderStartOver = true;
         assessmentsProviderMock = Mock.ofType<AssessmentsProvider>(AssessmentsProviderImpl);
         assessmentStoreData = {
             assessmentNavState: {
@@ -76,7 +78,8 @@ describe('DetailsViewCommandBar', () => {
             featureFlagStoreData,
             actionMessageCreator: actionMessageCreatorMock.object,
             tabStoreData,
-            renderExportAndStartOver,
+            renderExport,
+            renderStartOver,
             assessmentsProvider: assessmentsProviderMock.object,
             assessmentStoreData,
             rightPanelConfiguration: rightPanelConfig,
@@ -98,13 +101,15 @@ describe('DetailsViewCommandBar', () => {
     });
 
     function testOnPivot(givenRenderExportAndStartOver: boolean): void {
-        renderExportAndStartOver = givenRenderExportAndStartOver;
+        renderExport = givenRenderExportAndStartOver;
+        renderStartOver = givenRenderExportAndStartOver;
         const props = getProps();
         const rendered = shallow(<DetailsViewCommandBar {...props} />);
 
         expect(rendered.debug()).toMatchSnapshot();
 
-        if (renderExportAndStartOver) {
+        // TODO : Split these up
+        if (renderExport || renderStartOver) {
             reportGeneratorMock
                 .setup(rgm =>
                     rgm.generateAssessmentReport(

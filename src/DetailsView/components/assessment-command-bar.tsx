@@ -7,5 +7,5 @@ import { CommandBarProps } from './details-view-command-bar';
 import { DetailsViewCommandBar } from './details-view-command-bar';
 
 export const AssessmentCommandBar = NamedFC<CommandBarProps>('AssessmentCommandBar', props => {
-    return <DetailsViewCommandBar renderExportAndStartOver={true} {...props} />;
+    return <DetailsViewCommandBar renderExport={true} renderStartOver={true} {...props} />;
 });

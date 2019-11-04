@@ -18,7 +18,7 @@ export type DetailsViewCommandBarDeps = ReportExportComponentDeps & {
     reportGenerator: ReportGenerator;
 };
 
-export type CommandBarProps = Pick<DetailsViewCommandBarProps, Exclude<keyof DetailsViewCommandBarProps, 'renderExportAndStartOver'>>;
+export type CommandBarProps = Omit<DetailsViewCommandBarProps, 'renderExport' | 'renderStartOver'>;
 
 export interface DetailsViewCommandBarProps {
     deps: DetailsViewCommandBarDeps;
@@ -27,7 +27,8 @@ export interface DetailsViewCommandBarProps {
     actionMessageCreator: DetailsViewActionMessageCreator;
     assessmentStoreData: AssessmentStoreData;
     assessmentsProvider: AssessmentsProvider;
-    renderExportAndStartOver: boolean;
+    renderExport: boolean;
+    renderStartOver: boolean;
     rightPanelConfiguration: DetailsRightPanelConfiguration;
 }
 
@@ -71,7 +72,7 @@ export class DetailsViewCommandBar extends React.Component<DetailsViewCommandBar
     };
 
     private renderCommandButtons(): JSX.Element {
-        if (!this.props.renderExportAndStartOver) {
+        if (!this.props.renderExport && !this.props.renderStartOver) {
             return null;
         }
         const { deps, assessmentStoreData, assessmentsProvider, featureFlagStoreData, tabStoreData } = this.props;
@@ -86,6 +87,7 @@ export class DetailsViewCommandBar extends React.Component<DetailsViewCommandBar
             tabStoreData,
         );
 
+        // TODO : break these into 2 pieces
         return (
             <div className="details-view-command-buttons">
                 <ReportExportComponent
