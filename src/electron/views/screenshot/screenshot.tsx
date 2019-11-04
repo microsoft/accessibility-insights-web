@@ -5,9 +5,11 @@ import * as React from 'react';
 
 export type ScreenshotProps = {
     encodedImage: string;
-    altText: string;
+    altText?: string;
 };
 
 export const Screenshot = NamedFC<ScreenshotProps>('Screenshot', props => {
-    return <img src={'data:image/png;base64,' + props.encodedImage} alt={props.altText} />;
+    const altText = props.altText ? props.altText : 'axe-android results screenshot with highlighted components';
+
+    return <img src={'data:image/png;base64,' + props.encodedImage} alt={altText} />;
 });
