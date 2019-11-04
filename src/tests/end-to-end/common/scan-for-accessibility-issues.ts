@@ -15,7 +15,7 @@ export async function scanForAccessibilityIssues(page: Page, selector: string): 
     const axeResults = (await page.evaluate(selectorInEvaluate => {
         return axe.run(
             { include: [selectorInEvaluate] } as ElementContext,
-            { runOnly: { type: 'tag', values: ['wcag2a', 'wcag2aa'] } } as ElementContext,
+            { runOnly: { type: 'tag', values: ['wcag2a', 'wcag21a', 'wcag2aa', 'wcag21aa'] } } as ElementContext,
         );
     }, selector)) as AxeResults;
 
