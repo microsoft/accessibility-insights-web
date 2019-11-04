@@ -1,14 +1,17 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { CardSelectionViewData, getCardSelectionViewData } from 'common/get-card-selection-view-data';
-import { getUnifiedRuleResults } from 'common/rule-based-view-model-provider';
+import { CardSelectionViewData, getCardSelectionViewData, GetCardSelectionViewData } from 'common/get-card-selection-view-data';
+import { getUnifiedRuleResults, GetUnifiedRuleResultsDelegate } from 'common/rule-based-view-model-provider';
+import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
 import { CardRuleResult, CardRuleResultsByStatus } from 'common/types/store-data/card-view-model';
-import { UnifiedResult, UnifiedRule } from 'common/types/store-data/unified-data-interface';
+import { UnifiedResult, UnifiedRule, UnifiedScanResultStoreData } from 'common/types/store-data/unified-data-interface';
 import { ScanActionCreator } from 'electron/flux/action-creator/scan-action-creator';
 import { WindowStateActionCreator } from 'electron/flux/action-creator/window-state-action-creator';
 import { ScanStatus } from 'electron/flux/types/scan-status';
 import { AutomatedChecksView, AutomatedChecksViewProps } from 'electron/views/automated-checks/automated-checks-view';
 import { DeviceDisconnectedPopup } from 'electron/views/device-disconnected-popup/device-disconnected-popup';
+import { ScreenshotViewModel } from 'electron/views/screenshot/screenshot-view-model';
+import { ScreenshotViewModelProvider, screenshotViewModelProvider } from 'electron/views/screenshot/screenshot-view-model-provider';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import { It, Mock, Times } from 'typemoq';
@@ -42,27 +45,50 @@ describe('AutomatedChecksView', () => {
         });
 
         it('when status scan <Completed>', () => {
-            const rulesStub = [{ description: 'test-rule-description' } as UnifiedRule];
-            const resultsStub = [{ uid: 'test-uid' } as UnifiedResult];
-
-            const getUnifiedRuleResultsMock = Mock.ofInstance(getUnifiedRuleResults);
+            const cardSelectionStoreData = {} as CardSelectionStoreData;
+            const cardSelectionViewDataStub = {
+                highlightedResultUids: ['highlighted-uid-1'],
+            } as CardSelectionViewData;
             const getCardSelectionViewDataMock = Mock.ofInstance(getCardSelectionViewData);
+            getCardSelectionViewDataMock
+                .setup(getData => getData(cardSelectionStoreData))
+                .returns(() => cardSelectionViewDataStub)
+                .verifiable(Times.once());
+
+            const rulesStub = [{ description: 'test-rule-description' } as UnifiedRule];
+            const resultsStub = [{ uid: 'highlighted-uid-1' } as UnifiedResult];
+            const unifiedScanResultStoreData: UnifiedScanResultStoreData = {
+                targetAppInfo: {
+                    name: 'test-target-app-name',
+                },
+                rules: rulesStub,
+                results: resultsStub,
+            };
+
             const ruleResultsByStatusStub = {
                 fail: [{ id: 'test-fail-id' } as CardRuleResult],
             } as CardRuleResultsByStatus;
-
-            const cardSelectionViewDataStub = {} as CardSelectionViewData;
-
+            const getUnifiedRuleResultsMock = Mock.ofInstance(getUnifiedRuleResults);
             getUnifiedRuleResultsMock
                 .setup(getter => getter(rulesStub, resultsStub, cardSelectionViewDataStub))
-                .returns(() => ruleResultsByStatusStub);
+                .returns(() => ruleResultsByStatusStub)
+                .verifiable(Times.once());
+
+            const screenshotViewModelStub = { deviceName: 'this should appear in snapshotted ScreenshotView props' } as ScreenshotViewModel;
+            const screenshotViewModelProviderMock = Mock.ofInstance(screenshotViewModelProvider);
+            screenshotViewModelProviderMock
+                .setup(provider => provider(unifiedScanResultStoreData, cardSelectionViewDataStub.highlightedResultUids))
+                .returns(() => screenshotViewModelStub)
+                .verifiable(Times.once());
 
             const props: AutomatedChecksViewProps = {
                 deps: {
                     scanActionCreator: Mock.ofType(ScanActionCreator).object,
                     getUnifiedRuleResultsDelegate: getUnifiedRuleResultsMock.object,
                     getCardSelectionViewData: getCardSelectionViewDataMock.object,
+                    screenshotViewModelProvider: screenshotViewModelProviderMock.object,
                 },
+                cardSelectionStoreData,
                 deviceStoreData: {},
                 scanStoreData: {
                     status: ScanStatus.Completed,
@@ -70,18 +96,16 @@ describe('AutomatedChecksView', () => {
                 userConfigurationStoreData: {
                     isFirstTime: false,
                 },
-                unifiedScanResultStoreData: {
-                    targetAppInfo: {
-                        name: 'test-target-app-name',
-                    },
-                    rules: rulesStub,
-                    results: resultsStub,
-                },
+                unifiedScanResultStoreData,
             } as AutomatedChecksViewProps;
 
             const wrapped = shallow(<AutomatedChecksView {...props} />);
 
             expect(wrapped.getElement()).toMatchSnapshot();
+
+            getCardSelectionViewDataMock.verifyAll();
+            getUnifiedRuleResultsMock.verifyAll();
+            screenshotViewModelProviderMock.verifyAll();
         });
     });
 
