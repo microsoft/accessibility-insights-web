@@ -1,0 +1,79 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ScreenshotContainer renders highlight boxes when passed values for boundingRectangles array 1`] = `
+<div
+  className="screenshotContainer"
+>
+  <Screenshot
+    encodedImage="test-base-64-png-data"
+  />
+  <HighlightBox
+    boundingRectangle={
+      Object {
+        "bottom": 100,
+        "left": 0,
+        "right": 100,
+        "top": 0,
+      }
+    }
+  />
+  <HighlightBox
+    boundingRectangle={
+      Object {
+        "bottom": 200,
+        "left": 150,
+        "right": 300,
+        "top": 150,
+      }
+    }
+  />
+</div>
+`;
+
+exports[`ScreenshotContainer renders when passed a value for screenshotData 1`] = `
+<div
+  className="screenshotContainer"
+>
+  <Screenshot
+    encodedImage="test-base-64-png-data"
+  />
+  <HighlightBox
+    boundingRectangle={
+      Object {
+        "bottom": 100,
+        "left": 0,
+        "right": 100,
+        "top": 0,
+      }
+    }
+  />
+  <HighlightBox
+    boundingRectangle={
+      Object {
+        "bottom": 200,
+        "left": 150,
+        "right": 300,
+        "top": 150,
+      }
+    }
+  />
+</div>
+`;
+
+exports[`ScreenshotContainer renders when passed an empty value for screenshotData 1`] = `
+<div>
+  Screenshot for scan is unavailable
+</div>
+`;
+
+exports[`ScreenshotContainer renders when passed an null value for screenshotData 1`] = `
+<div>
+  Screenshot for scan is unavailable
+</div>
+`;
+
+exports[`ScreenshotContainer renders when passed an undefined value for screenshotData 1`] = `
+<div>
+  Screenshot for scan is unavailable
+</div>
+`;

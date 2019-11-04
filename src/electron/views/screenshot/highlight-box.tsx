@@ -8,7 +8,7 @@ import { CSSProperties } from 'react';
 
 export interface HighlightBoxDeps {}
 export interface HighlightBoxProps {
-    deps: HighlightBoxDeps;
+    deps?: HighlightBoxDeps;
     boundingRectangle: BoundingRectangle;
 }
 

@@ -7,5 +7,49 @@ exports[`ScreenshotView renders 1`] = `
   >
     This is the screenshot view
   </h1>
+  <ScreenshotContainer
+    screenshotData={
+      Object {
+        "base64PngData": "test-base-64-png-data",
+      }
+    }
+  />
+</div>
+`;
+
+exports[`ScreenshotView renders when passed an empty value for screenshotData 1`] = `
+<div>
+  <h1
+    tabIndex={0}
+  >
+    Target Page Screenshot
+  </h1>
+  <ScreenshotContainer
+    screenshotData={Object {}}
+  />
+</div>
+`;
+
+exports[`ScreenshotView renders when passed an null value for screenshotData 1`] = `
+<div>
+  <h1
+    tabIndex={0}
+  >
+    Target Page Screenshot
+  </h1>
+  <ScreenshotContainer
+    screenshotData={null}
+  />
+</div>
+`;
+
+exports[`ScreenshotView renders when passed an undefined value for screenshotData 1`] = `
+<div>
+  <h1
+    tabIndex={0}
+  >
+    Target Page Screenshot
+  </h1>
+  <ScreenshotContainer />
 </div>
 `;

@@ -2,16 +2,12 @@
 // Licensed under the MIT License.
 import { NamedFC } from 'common/react/named-fc';
 import { ScreenshotContainer } from 'electron/views/screenshot/screenshot-container';
-import { isEmpty } from 'lodash';
 import * as React from 'react';
 import { ScreenshotViewModel } from './screenshot-view-model';
 
 export type ScreenshotViewProps = { viewModel: ScreenshotViewModel };
 
 export const ScreenshotView = NamedFC<ScreenshotViewProps>('ScreenshotView', (props: ScreenshotViewProps) => {
-    if (isEmpty(props.viewModel.screenshotData)) {
-        return <div>Screenshot for scan is unavailable</div>;
-    }
     return (
         <div>
             <h1 tabIndex={0}>Target Page Screenshot</h1>
