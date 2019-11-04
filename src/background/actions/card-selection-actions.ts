@@ -8,4 +8,6 @@ export class CardSelectionActions {
     public readonly toggleRuleExpandCollapse = new Action<RuleExpandCollapsePayload>();
     public readonly toggleCardSelection = new Action<CardSelectionPayload>();
     public readonly collapseAllRules = new Action();
+    public readonly expandAllRules = new Action();
+    public readonly toggleVisualHelper = new Action();
 }

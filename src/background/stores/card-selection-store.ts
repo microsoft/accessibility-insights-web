@@ -27,6 +27,7 @@ export class CardSelectionStore extends BaseStoreImpl<CardSelectionStoreData> {
     public getDefaultState(): CardSelectionStoreData {
         const defaultValue: CardSelectionStoreData = {
             rules: {},
+            visualHelperEnabled: false,
         };
 
         return defaultValue;

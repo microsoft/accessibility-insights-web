@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { createApplication } from 'tests/electron/common/create-application';
 import { DeviceConnectionDialogSelectors } from 'tests/electron/common/element-identifiers/device-connection-dialog-selectors';
+import { scanForAccessibilityIssues } from 'tests/electron/common/scan-for-accessibility-issues';
 import { AppController } from 'tests/electron/common/view-controllers/app-controller';
 import { DeviceConnectionDialogController } from 'tests/electron/common/view-controllers/device-connection-dialog-controller';
 
@@ -32,17 +33,22 @@ describe('device connection dialog', () => {
         expect(await dialog.isEnabled(DeviceConnectionDialogSelectors.validateButton)).toBe(false);
     });
 
-    test('test that validate port remains disabled when we provide an invalid port number', async () => {
+    it('should leave the validate and start buttons disabled when provided an invalid port number', async () => {
         await dialog.click(DeviceConnectionDialogSelectors.portNumber);
         await dialog.element(DeviceConnectionDialogSelectors.portNumber).keys('abc');
         expect(await dialog.isEnabled(DeviceConnectionDialogSelectors.validateButton)).toBe(false);
         expect(await dialog.isEnabled(DeviceConnectionDialogSelectors.startButton)).toBe(false);
     });
 
-    test('test that validate port enables when we provide a valid port number', async () => {
+    it('should enable the validate and start buttons when provided a valid port number', async () => {
         await dialog.click(DeviceConnectionDialogSelectors.portNumber);
         await dialog.element(DeviceConnectionDialogSelectors.portNumber).keys('999');
         expect(await dialog.isEnabled(DeviceConnectionDialogSelectors.validateButton)).toBe(true);
         expect(await dialog.isEnabled(DeviceConnectionDialogSelectors.startButton)).toBe(false);
+    });
+
+    it('should not contain any accessibility issues', async () => {
+        const violations = await scanForAccessibilityIssues(dialog);
+        expect(violations).toStrictEqual([]);
     });
 });
