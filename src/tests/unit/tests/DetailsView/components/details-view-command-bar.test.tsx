@@ -18,7 +18,7 @@ import {
     DetailsViewCommandBarProps,
 } from '../../../../../DetailsView/components/details-view-command-bar';
 import { DetailsRightPanelConfiguration } from '../../../../../DetailsView/components/details-view-right-panel';
-import { ReportExportComponent } from '../../../../../DetailsView/components/report-export-component';
+import { ReportExportComponent, ReportExportComponentProps } from '../../../../../DetailsView/components/report-export-component';
 
 describe('DetailsViewCommandBar', () => {
     const theDate = new Date(2019, 2, 12, 9, 0);
@@ -32,7 +32,7 @@ describe('DetailsViewCommandBar', () => {
     let rightPanelConfig: DetailsRightPanelConfiguration;
     let reportGeneratorMock: IMock<ReportGenerator>;
     let descriptionPlaceholder: string;
-    let renderExport: boolean;
+    let reportExportComponentProps: ReportExportComponentProps;
     let renderStartOver: boolean;
 
     beforeEach(() => {
@@ -42,7 +42,7 @@ describe('DetailsViewCommandBar', () => {
             title: thePageTitle,
             isClosed: false,
         } as TabStoreData;
-        renderExport = true;
+        reportExportComponentProps = null;
         renderStartOver = true;
         assessmentsProviderMock = Mock.ofType<AssessmentsProvider>(AssessmentsProviderImpl);
         assessmentStoreData = {
@@ -71,6 +71,7 @@ describe('DetailsViewCommandBar', () => {
             outcomeTypeSemanticsFromTestStatus: { stub: 'outcomeTypeSemanticsFromTestStatus' } as any,
             getCurrentDate: () => theDate,
             reportGenerator: reportGeneratorMock.object,
+            getDateFromTimestamp: () => theDate,
         };
 
         return {
@@ -78,11 +79,13 @@ describe('DetailsViewCommandBar', () => {
             featureFlagStoreData,
             actionMessageCreator: actionMessageCreatorMock.object,
             tabStoreData,
-            renderExport,
+            reportExportComponentProps,
             renderStartOver,
             assessmentsProvider: assessmentsProviderMock.object,
             assessmentStoreData,
             rightPanelConfiguration: rightPanelConfig,
+            visualizationScanResultData: null,
+            ruleResultsByStatus: null,
         };
     }
 
@@ -101,7 +104,8 @@ describe('DetailsViewCommandBar', () => {
     });
 
     function testOnPivot(givenRenderExportAndStartOver: boolean): void {
-        renderExport = givenRenderExportAndStartOver;
+        // TODO : Build these props!
+        reportExportComponentProps = null;
         renderStartOver = givenRenderExportAndStartOver;
         const props = getProps();
         const rendered = shallow(<DetailsViewCommandBar {...props} />);
@@ -109,7 +113,7 @@ describe('DetailsViewCommandBar', () => {
         expect(rendered.debug()).toMatchSnapshot();
 
         // TODO : Split these up
-        if (renderExport || renderStartOver) {
+        if (reportExportComponentProps || renderStartOver) {
             reportGeneratorMock
                 .setup(rgm =>
                     rgm.generateAssessmentReport(
