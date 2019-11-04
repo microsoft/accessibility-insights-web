@@ -45,6 +45,12 @@ export class CardSelectionStore extends BaseStoreImpl<CardSelectionStoreData> {
         });
     };
 
+    private deselectAllCards = (): void => {
+        forOwn(this.state.rules, rule => {
+            this.deselectAllCardsInRule(rule);
+        });
+    };
+
     private toggleRuleExpandCollapse = (payload: RuleExpandCollapsePayload): void => {
         if (!payload || !this.state.rules[payload.ruleId]) {
             return;
@@ -74,11 +80,16 @@ export class CardSelectionStore extends BaseStoreImpl<CardSelectionStoreData> {
 
         rule.cards[payload.resultInstanceUid] = !rule.cards[payload.resultInstanceUid];
 
+        // whenever a card is selected, the visual helper is enabled
+        if (rule.cards[payload.resultInstanceUid]) {
+            this.state.visualHelperEnabled = true;
+        }
+
         this.emitChanged();
     };
 
     private collapseAllRules = (): void => {
-        forOwn(this.state.rules, (rule, ruleId) => {
+        forOwn(this.state.rules, rule => {
             rule.isExpanded = false;
             this.deselectAllCardsInRule(rule);
         });
@@ -94,7 +105,15 @@ export class CardSelectionStore extends BaseStoreImpl<CardSelectionStoreData> {
         this.emitChanged();
     };
 
-    private toggleVisualHelper = (): void => {};
+    private toggleVisualHelper = (): void => {
+        this.state.visualHelperEnabled = !this.state.visualHelperEnabled;
+
+        if (!this.state.visualHelperEnabled) {
+            this.deselectAllCards();
+        }
+
+        this.emitChanged();
+    };
 
     private onScanCompleted = (payload: UnifiedScanCompletedPayload): void => {
         this.state = this.getDefaultState();
