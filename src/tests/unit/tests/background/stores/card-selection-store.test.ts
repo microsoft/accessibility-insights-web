@@ -231,6 +231,17 @@ describe('CardSelectionStore Test', () => {
         createStoreForCardSelectionActions('collapseAllRules').testListenerToBeCalledOnce(initialState, expectedState);
     });
 
+    test('expandAllRules', () => {
+        initialState.rules['sampleRuleId1'].isExpanded = true;
+        initialState.rules['sampleRuleId1'].cards['sampleUid1'] = true;
+
+        expectedState.rules['sampleRuleId1'].isExpanded = true;
+        expectedState.rules['sampleRuleId1'].cards['sampleUid1'] = true;
+        expectedState.rules['sampleRuleId2'].isExpanded = true;
+
+        createStoreForCardSelectionActions('expandAllRules').testListenerToBeCalledOnce(initialState, expectedState);
+    });
+
     function expandRuleSelectCards(rule: RuleExpandCollapseData): void {
         rule.isExpanded = true;
 
