@@ -71,7 +71,7 @@ Please ensure that you have at least the **minimum** recommended versions
     -   Click on the **Load unpacked** button
     -   Choose the following directory
 
-        `./drop/dev/extension/` - bundled like a production release
+        `./drop/extension/dev/product/` - bundled like a production release
 
     > IMPORTANT: Ensure that you are testing locally before pushing a change.
 
