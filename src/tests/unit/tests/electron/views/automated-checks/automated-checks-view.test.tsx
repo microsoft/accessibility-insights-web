@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { CardSelectionViewData, getCardSelectionViewData, GetCardSelectionViewData } from 'common/get-card-selection-view-data';
-import { getUnifiedRuleResults, GetUnifiedRuleResultsDelegate } from 'common/rule-based-view-model-provider';
+import { CardSelectionViewData, getCardSelectionViewData } from 'common/get-card-selection-view-data';
+import { getUnifiedRuleResults } from 'common/rule-based-view-model-provider';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
 import { CardRuleResult, CardRuleResultsByStatus } from 'common/types/store-data/card-view-model';
 import { UnifiedResult, UnifiedRule, UnifiedScanResultStoreData } from 'common/types/store-data/unified-data-interface';
@@ -11,7 +11,7 @@ import { ScanStatus } from 'electron/flux/types/scan-status';
 import { AutomatedChecksView, AutomatedChecksViewProps } from 'electron/views/automated-checks/automated-checks-view';
 import { DeviceDisconnectedPopup } from 'electron/views/device-disconnected-popup/device-disconnected-popup';
 import { ScreenshotViewModel } from 'electron/views/screenshot/screenshot-view-model';
-import { ScreenshotViewModelProvider, screenshotViewModelProvider } from 'electron/views/screenshot/screenshot-view-model-provider';
+import { screenshotViewModelProvider } from 'electron/views/screenshot/screenshot-view-model-provider';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import { It, Mock, Times } from 'typemoq';
