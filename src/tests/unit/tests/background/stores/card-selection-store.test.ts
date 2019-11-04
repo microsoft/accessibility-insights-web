@@ -242,12 +242,6 @@ describe('CardSelectionStore Test', () => {
         createStoreForCardSelectionActions('expandAllRules').testListenerToBeCalledOnce(initialState, expectedState);
     });
 
-    test('toggleVisualHelper on - no card selection or rule expansion changes', () => {});
-
-    test('toggleVisualHelper off - cards deselected, no rule expansion changes', () => {});
-
-    test('select card, turn on visual helper', () => {});
-
     function expandRuleSelectCards(rule: RuleExpandCollapseData): void {
         rule.isExpanded = true;
 
