@@ -349,7 +349,7 @@ describe('TabControllerTest', () => {
         });
     });
 
-    test('tab change test', () => {
+    test('web navigation updated test', () => {
         let tabUpdatedCallback: (details: chrome.webNavigation.WebNavigationFramedCallbackDetails) => void = null;
         let getTabCallback: (tab: chrome.tabs.Tab) => void;
         let onReject;
@@ -653,11 +653,104 @@ describe('TabControllerTest', () => {
         mockChromeAdapter.verifyAll();
     });
 
-    test('onUpdateTab', () => {
-        mockChromeAdapter.setup(ca => ca.addListenerToTabsOnUpdated(It.isAny())).verifiable(Times.once());
+    test('tab change test: url was changed', () => {
+        let tabUpdatedCallback: (tabId: number, changeInfo: chrome.tabs.TabChangeInfo) => void = null;
+        let getTabCallback: (tab: chrome.tabs.Tab) => void;
+        const tabId = 1;
+        const getTabCallbackInput = {
+            title: 'new title',
+            url: 'new url',
+            id: tabId,
+        };
 
+        const interpretInput: Message = {
+            messageType: Messages.Tab.Change,
+            payload: getTabCallbackInput,
+            tabId: tabId,
+        };
+        const interpreterMock = Mock.ofType(Interpreter);
+        interpreterMock.setup(im => im.interpret(It.isValue(interpretInput))).verifiable(Times.once());
+        tabInterpreterMap = {
+            1: {
+                interpreter: interpreterMock.object,
+                stores: null,
+            },
+        };
+
+        mockChromeAdapter
+            .setup(ca => ca.addListenerToTabsOnUpdated(It.isAny()))
+            .callback(cb => {
+                tabUpdatedCallback = cb;
+            })
+            .verifiable(Times.once());
+
+        mockChromeAdapter
+            .setup(mca => mca.getTab(It.isValue(tabId), It.isAny(), It.isAny()))
+            .returns((id, cb) => {
+                getTabCallback = cb;
+            })
+            .verifiable(Times.once());
+
+        testSubject = createTabControllerWithoutFeatureFlag(tabInterpreterMap);
         testSubject.initialize();
+        tabUpdatedCallback(tabId, { url: 'some url' });
+        getTabCallback(getTabCallbackInput as any);
 
+        interpreterMock.verifyAll();
+        mockChromeAdapter.verifyAll();
+    });
+
+    test('tab change test: url was changed but tab was not found', () => {
+        let tabUpdatedCallback: (tabId: number, changeInfo: chrome.tabs.TabChangeInfo) => void = null;
+        let onReject;
+        const tabId = 1;
+
+        mockChromeAdapter
+            .setup(ca => ca.addListenerToTabsOnUpdated(It.isAny()))
+            .callback(cb => {
+                tabUpdatedCallback = cb;
+            })
+            .verifiable(Times.once());
+
+        mockChromeAdapter
+            .setup(mca => mca.getTab(It.isValue(tabId), It.isAny(), It.isAny()))
+            .returns((id, cb, reject) => {
+                onReject = reject;
+            })
+            .verifiable(Times.once());
+        logMock.setup(log => log(`changed tab with Id ${tabId} not found`)).verifiable(Times.once());
+
+        testSubject = createTabControllerWithoutFeatureFlag({ [tabId]: null });
+        testSubject.initialize();
+        tabUpdatedCallback(tabId, { url: 'some url' });
+        onReject();
+
+        logMock.verifyAll();
+        mockChromeAdapter.verifyAll();
+    });
+
+    test('tab change test: url was not changed', () => {
+        let tabUpdatedCallback: (tabId: number, changeInfo: chrome.tabs.TabChangeInfo) => void = null;
+        const tabId = 1;
+        const interpreterMock = Mock.ofType(Interpreter);
+
+        interpreterMock.setup(im => im.interpret(It.isAny())).verifiable(Times.never());
+
+        mockChromeAdapter
+            .setup(ca => ca.addListenerToTabsOnUpdated(It.isAny()))
+            .callback(cb => {
+                tabUpdatedCallback = cb;
+            })
+            .verifiable(Times.once());
+
+        mockChromeAdapter.setup(mca => mca.getTab(It.isAny(), It.isAny(), It.isAny())).verifiable(Times.never());
+
+        testSubject = createTabControllerWithoutFeatureFlag(tabInterpreterMap);
+        testSubject.initialize();
+        tabUpdatedCallback(tabId, {});
+
+        logMock.verifyAll();
+        interpreterMock.verifyAll();
         mockChromeAdapter.verifyAll();
     });
 });
