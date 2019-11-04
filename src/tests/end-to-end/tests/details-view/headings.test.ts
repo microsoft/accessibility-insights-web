@@ -15,7 +15,7 @@ describe('Headings Page', () => {
         let headingsPage: DetailsViewPage;
 
         beforeAll(async () => {
-            browser = await launchBrowser({ suppressFirstTimeDialog: true });
+            browser = await launchBrowser({ suppressFirstTimeDialog: true, addLocalhostToPermissions: true });
             targetPage = await browser.newTargetPage();
             headingsPage = await openHeadingsPage(browser, targetPage);
         });
@@ -39,7 +39,7 @@ describe('Headings Page', () => {
         let headingsPage: DetailsViewPage;
 
         beforeAll(async () => {
-            browser = await launchBrowser({ suppressFirstTimeDialog: true });
+            browser = await launchBrowser({ suppressFirstTimeDialog: true, addLocalhostToPermissions: true });
             targetPage = await browser.newTargetPage();
             headingsPage = await openHeadingsPage(browser, targetPage);
             await headingsPage.enableHighContrast();
