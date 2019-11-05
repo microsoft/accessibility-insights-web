@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { WindowUtils } from '../../common/window-utils';
-import { ClientUtils } from '../client-utils';
+import { ClientUtils, ClientRectOffset } from '../client-utils';
 import { DialogRenderer } from '../dialog-renderer';
 import { AxeResultsWithFrameLevel } from '../frameCommunicators/html-element-axe-results-helper';
 import { HtmlElementAxeResults } from '../scanner-utils';
@@ -72,7 +72,7 @@ export class HighlightBoxDrawer extends BaseDrawer {
             drawerConfig = this.formatter.getDrawerConfiguration(element, data) as DrawerConfiguration;
         }
 
-        let elementBoundingClientRect = element.getBoundingClientRect();
+        let elementBoundingClientRect: ClientRect = element.getBoundingClientRect();
         if (drawerConfig.getBoundingRect) {
             elementBoundingClientRect = drawerConfig.getBoundingRect(element);
         }
