@@ -49,6 +49,5 @@ export const LandmarksAdHocVisualization: VisualizationConfiguration = {
     getDrawer: provider => provider.createLandmarksDrawer(),
     getSwitchToTargetTabOnScan: () => false,
     getInstanceIdentiferGenerator: () => generateUID,
-    getUpdateVisibility: () => false,
     guidance,
 };

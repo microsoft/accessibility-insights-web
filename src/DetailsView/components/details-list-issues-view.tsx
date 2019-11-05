@@ -6,7 +6,7 @@ import * as React from 'react';
 import { VisualizationConfiguration } from '../../common/configs/visualization-configuration';
 import { VisualizationConfigurationFactory } from '../../common/configs/visualization-configuration-factory';
 import { NamedFC } from '../../common/react/named-fc';
-import { CardRuleResultsByStatus } from '../../common/types/store-data/card-view-model';
+import { CardsViewModel } from '../../common/types/store-data/card-view-model';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { TabStoreData } from '../../common/types/store-data/tab-store-data';
 import { TargetAppData } from '../../common/types/store-data/unified-data-interface';
@@ -33,8 +33,8 @@ export interface DetailsListIssuesViewProps {
     issuesTableHandler: IssuesTableHandler;
     configuration: VisualizationConfiguration;
     userConfigurationStoreData: UserConfigurationStoreData;
-    ruleResultsByStatus: CardRuleResultsByStatus;
     targetAppInfo: TargetAppData;
+    cardsViewData: CardsViewModel;
 }
 
 export const DetailsListIssuesView = NamedFC<DetailsListIssuesViewProps>('DetailsListIssuesView', ({ children, ...props }) => {
@@ -65,8 +65,8 @@ export const DetailsListIssuesView = NamedFC<DetailsListIssuesViewProps>('Detail
             featureFlags={props.featureFlagStoreData}
             scanResult={scanResult}
             userConfigurationStoreData={props.userConfigurationStoreData}
-            ruleResultsByStatus={props.ruleResultsByStatus}
             targetAppInfo={props.targetAppInfo}
+            cardsViewData={props.cardsViewData}
         />
     );
 });

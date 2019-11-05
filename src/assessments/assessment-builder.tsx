@@ -151,7 +151,6 @@ export class AssessmentBuilder {
             getNotificationMessage: getNotificationMessage,
             getSwitchToTargetTabOnScan: this.getSwitchToTargetTabOnScan(requirements),
             getInstanceIdentiferGenerator: this.getInstanceIdentifier(requirements),
-            getUpdateVisibility: this.getUpdateVisibility(requirements),
         };
 
         this.buildRequirementReportDescription(requirements);
@@ -230,7 +229,6 @@ export class AssessmentBuilder {
             getNotificationMessage: getNotificationMessage,
             getSwitchToTargetTabOnScan: AssessmentBuilder.getSwitchToTargetTabOnScan(requirements),
             getInstanceIdentiferGenerator: AssessmentBuilder.getInstanceIdentifier(requirements),
-            getUpdateVisibility: AssessmentBuilder.getUpdateVisibility(requirements),
         } as AssesssmentVisualizationConfiguration;
 
         AssessmentBuilder.buildRequirementReportDescription(requirements);
@@ -301,16 +299,6 @@ export class AssessmentBuilder {
         }
 
         return children;
-    }
-
-    private static getUpdateVisibility(requirements: Requirement[]): (requirement: string) => boolean {
-        return (requirementKey: string): boolean => {
-            const requirementConfig = AssessmentBuilder.getRequirementConfig(requirements, requirementKey);
-            if (requirementConfig == null || requirementConfig.updateVisibility == null) {
-                return true;
-            }
-            return requirementConfig.updateVisibility;
-        };
     }
 
     private static nullScanPolicy(scan, data): void {}

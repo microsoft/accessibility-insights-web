@@ -1,11 +1,33 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ScreenshotView renders 1`] = `
+exports[`ScreenshotView renders when passed a value for screenshotData 1`] = `
 <div>
   <h1
     tabIndex={0}
   >
-    This is the screenshot view
+    Target Page Screenshot
   </h1>
+  <Screenshot
+    altText="axe-android results screenshot with highlighted components"
+    encodedImage="testScreenshotData"
+  />
+</div>
+`;
+
+exports[`ScreenshotView renders when passed empty screenshotData {} 1`] = `
+<div>
+  Screenshot for scan is unavailable
+</div>
+`;
+
+exports[`ScreenshotView renders when passed empty screenshotData null 1`] = `
+<div>
+  Screenshot for scan is unavailable
+</div>
+`;
+
+exports[`ScreenshotView renders when passed empty screenshotData undefined 1`] = `
+<div>
+  Screenshot for scan is unavailable
 </div>
 `;

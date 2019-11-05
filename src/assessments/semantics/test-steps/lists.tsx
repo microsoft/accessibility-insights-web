@@ -54,5 +54,4 @@ export const SemanticsLists: Requirement = {
     isManual: true,
     ...content,
     guidanceLinks: [link.WCAG_1_3_1],
-    updateVisibility: false,
 };

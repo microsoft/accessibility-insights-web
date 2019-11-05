@@ -5,8 +5,6 @@ parameters:
     platforms: '' # electron-builder platforms, e.g. -wl for win/linux, -m for mac, etc
 
 steps:
-    - template: ../install-node-prerequisites.yaml
-
     - script: yarn dist:electron ${{ parameters.platforms }}
       displayName: create electron distributables
 

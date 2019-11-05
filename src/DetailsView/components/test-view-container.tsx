@@ -5,7 +5,7 @@ import { ISelection } from 'office-ui-fabric-react/lib/DetailsList';
 import { VisualizationConfigurationFactory } from '../../common/configs/visualization-configuration-factory';
 import { NamedFC } from '../../common/react/named-fc';
 import { AssessmentStoreData } from '../../common/types/store-data/assessment-result-data';
-import { CardRuleResultsByStatus } from '../../common/types/store-data/card-view-model';
+import { CardsViewModel } from '../../common/types/store-data/card-view-model';
 import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag-store-data';
 import { PathSnippetStoreData } from '../../common/types/store-data/path-snippet-store-data';
 import { TabStoreData } from '../../common/types/store-data/tab-store-data';
@@ -41,8 +41,8 @@ export interface TestViewContainerProps {
     issuesSelection: ISelection;
     issuesTableHandler: IssuesTableHandler;
     userConfigurationStoreData: UserConfigurationStoreData;
-    ruleResultsByStatus: CardRuleResultsByStatus;
     targetAppInfo: TargetAppData;
+    cardsViewData: CardsViewModel;
 }
 
 export const TestViewContainer = NamedFC<TestViewContainerProps>('TestViewContainer', props => {

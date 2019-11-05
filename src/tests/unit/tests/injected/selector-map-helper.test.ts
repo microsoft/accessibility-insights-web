@@ -44,7 +44,7 @@ describe('SelectorMapHelperTest', () => {
             const storeData: VisualizationRelatedStoreData = {
                 visualizationScanResultStoreData: state,
             } as VisualizationRelatedStoreData;
-            expect(testSubject.getSelectorMap(visualizationType, storeData)).toEqual(selectorMap);
+            expect(testSubject.getSelectorMap(visualizationType, null, storeData)).toEqual(selectorMap);
         });
     });
 
@@ -59,7 +59,7 @@ describe('SelectorMapHelperTest', () => {
             featureFlagStoreData: featureFlagData,
         } as VisualizationRelatedStoreData;
 
-        expect(testSubject.getSelectorMap(VisualizationType.Issues, storeData)).toEqual(selectorMap);
+        expect(testSubject.getSelectorMap(VisualizationType.Issues, null, storeData)).toEqual(selectorMap);
     });
 
     test('getState: issues with universalCardsUI feature flag enabled', () => {
@@ -83,7 +83,7 @@ describe('SelectorMapHelperTest', () => {
             .setup(gebvm => gebvm(rulesStub, resultsStub, storeData.cardSelectionStoreData))
             .returns(() => selectorMap);
 
-        expect(testSubject.getSelectorMap(VisualizationType.Issues, storeData)).toEqual(selectorMap);
+        expect(testSubject.getSelectorMap(VisualizationType.Issues, null, storeData)).toEqual(selectorMap);
     });
 
     test('getState: tabStops', () => {
@@ -94,7 +94,7 @@ describe('SelectorMapHelperTest', () => {
         const storeData: VisualizationRelatedStoreData = {
             visualizationScanResultStoreData: state,
         } as VisualizationRelatedStoreData;
-        expect(testSubject.getSelectorMap(visualizationType, storeData)).toEqual([]);
+        expect(testSubject.getSelectorMap(visualizationType, null, storeData)).toEqual([]);
     });
 
     test('getState for assessment, selector map is not null', () => {
@@ -133,15 +133,12 @@ describe('SelectorMapHelperTest', () => {
                     generatedAssessmentInstancesMap: selectorMap,
                 },
             },
-            assessmentNavState: {
-                selectedTestStep: firstStep.key,
-            },
         } as AssessmentStoreData;
         const storeData: VisualizationRelatedStoreData = {
             assessmentStoreData: state,
         } as VisualizationRelatedStoreData;
 
-        const result = testSubject.getSelectorMap(visualizationType, storeData);
+        const result = testSubject.getSelectorMap(visualizationType, firstStep.key, storeData);
 
         const expectedSelectedMap = {
             [assessment.key]: {
@@ -168,16 +165,13 @@ describe('SelectorMapHelperTest', () => {
                     generatedAssessmentInstancesMap: selectorMap,
                 },
             },
-            assessmentNavState: {
-                selectedTestStep: firstStep.key,
-            },
         } as AssessmentStoreData;
 
         const storeData: VisualizationRelatedStoreData = {
             assessmentStoreData: state,
         } as VisualizationRelatedStoreData;
 
-        const result = testSubject.getSelectorMap(visualizationType, storeData);
+        const result = testSubject.getSelectorMap(visualizationType, firstStep.key, storeData);
 
         expect(result).toBeNull();
     });

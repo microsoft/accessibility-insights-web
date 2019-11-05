@@ -89,6 +89,5 @@ export const UIComponents: Requirement = {
             }),
         ),
     getDrawer: provider => provider.createNonTextComponentDrawer(),
-    updateVisibility: false,
     getVisualHelperToggle: props => <AssessmentVisualizationEnabledToggle {...props} />,
 };

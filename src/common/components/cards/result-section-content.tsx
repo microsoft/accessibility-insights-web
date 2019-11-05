@@ -20,6 +20,8 @@ export type ResultSectionContentProps = {
     fixInstructionProcessor?: FixInstructionProcessor;
     userConfigurationStoreData: UserConfigurationStoreData;
     targetAppInfo: TargetAppData;
+    visualHelperEnabled: boolean;
+    allCardsCollapsed: boolean;
 };
 
 export const ResultSectionContent = NamedFC<ResultSectionContentProps>(

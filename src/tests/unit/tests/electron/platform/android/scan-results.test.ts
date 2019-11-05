@@ -61,8 +61,9 @@ describe('ScanResults', () => {
     });
 
     test('screenshotData is correct if specified in input', () => {
-        const expectedScreenshotData = { base64PngData: 'expectedScreenshotDataFromJSON' } as ScreenshotData;
-        const scanResults = buildScanResultsObject(null, null, null, null, null, expectedScreenshotData);
+        const screenshotBase64 = 'expected-string';
+        const expectedScreenshotData: ScreenshotData = { base64PngData: screenshotBase64 };
+        const scanResults = buildScanResultsObject(null, null, null, null, null, screenshotBase64);
         expect(scanResults.screenshot).toEqual(expectedScreenshotData);
     });
 

@@ -2,8 +2,9 @@
 // Licensed under the MIT License.
 import { ScanningSpinner } from 'common/components/scanning-spinner/scanning-spinner';
 import { GetCardSelectionViewData } from 'common/get-card-selection-view-data';
-import { GetUnifiedRuleResultsDelegate } from 'common/rule-based-view-model-provider';
+import { GetCardViewData } from 'common/rule-based-view-model-provider';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
+import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { UnifiedScanResultStoreData } from 'common/types/store-data/unified-data-interface';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import { CardsView, CardsViewDeps } from 'DetailsView/components/cards-view';
@@ -17,6 +18,7 @@ import { TitleBar, TitleBarDeps } from 'electron/views/automated-checks/componen
 import { mainContentWrapper } from 'electron/views/device-connect-view/device-connect-view.scss';
 import { DeviceDisconnectedPopup } from 'electron/views/device-disconnected-popup/device-disconnected-popup';
 import { ScreenshotView } from 'electron/views/screenshot/screenshot-view';
+import { ScreenshotViewModel } from 'electron/views/screenshot/screenshot-view-model';
 import { ScreenshotViewModelProvider } from 'electron/views/screenshot/screenshot-view-model-provider';
 import * as React from 'react';
 
@@ -29,7 +31,7 @@ export type AutomatedChecksViewDeps = CommandBarDeps &
     CardsViewDeps & {
         scanActionCreator: ScanActionCreator;
         windowStateActionCreator: WindowStateActionCreator;
-        getUnifiedRuleResultsDelegate: GetUnifiedRuleResultsDelegate;
+        getCardsViewData: GetCardViewData;
         getCardSelectionViewData: GetCardSelectionViewData;
         screenshotViewModelProvider: ScreenshotViewModelProvider;
     };
@@ -50,6 +52,34 @@ export class AutomatedChecksView extends React.Component<AutomatedChecksViewProp
     }
 
     public render(): JSX.Element {
+        const { status } = this.props.scanStoreData;
+        if (status === ScanStatus.Failed) {
+            return this.renderLayout(this.renderDeviceDisconnected());
+        } else if (status === ScanStatus.Completed) {
+            const { unifiedScanResultStoreData, cardSelectionStoreData, deps } = this.props;
+            const { rules, results } = unifiedScanResultStoreData;
+            const cardSelectionViewData = deps.getCardSelectionViewData(cardSelectionStoreData);
+            const cardsViewData = deps.getCardsViewData(rules, results, cardSelectionViewData);
+            const screenshotViewModel = deps.screenshotViewModelProvider(
+                unifiedScanResultStoreData,
+                cardSelectionViewData.highlightedResultUids,
+            );
+
+            return this.renderLayout(this.renderResults(cardsViewData), this.renderScreenshotSidePanel(screenshotViewModel));
+        } else {
+            return this.renderLayout(this.renderScanningSpinner());
+        }
+    }
+
+    private renderScreenshotSidePanel(screenshotViewModel: ScreenshotViewModel): JSX.Element {
+        return (
+            <div className={screenshotView}>
+                <ScreenshotView viewModel={screenshotViewModel} />
+            </div>
+        );
+    }
+
+    private renderLayout(primaryContent: JSX.Element, optionalSidePanel?: JSX.Element): JSX.Element {
         return (
             <div className={automatedChecksView}>
                 <TitleBar deps={this.props.deps} windowStateStoreData={this.props.windowStateStoreData}></TitleBar>
@@ -62,24 +92,16 @@ export class AutomatedChecksView extends React.Component<AutomatedChecksViewProp
                         />
                         <main>
                             <HeaderSection />
-                            {this.renderScanning()}
-                            {this.renderDeviceDisconnected()}
-                            {this.renderResults()}
+                            {primaryContent}
                         </main>
                     </div>
-                    <div className={screenshotView}>
-                        <ScreenshotView />
-                    </div>
+                    {optionalSidePanel}
                 </div>
             </div>
         );
     }
 
     private renderDeviceDisconnected(): JSX.Element {
-        if (this.props.scanStoreData.status !== ScanStatus.Failed) {
-            return null;
-        }
-
         return (
             <DeviceDisconnectedPopup
                 deviceName={this.props.deviceStoreData.connectedDevice}
@@ -89,7 +111,7 @@ export class AutomatedChecksView extends React.Component<AutomatedChecksViewProp
         );
     }
 
-    private renderScanning(): JSX.Element {
+    private renderScanningSpinner(): JSX.Element {
         return (
             <ScanningSpinner
                 isSpinning={this.props.scanStoreData.status === ScanStatus.Scanning}
@@ -99,24 +121,13 @@ export class AutomatedChecksView extends React.Component<AutomatedChecksViewProp
         );
     }
 
-    private renderResults(): JSX.Element {
-        if (this.props.scanStoreData.status !== ScanStatus.Completed) {
-            return null;
-        }
-
-        const { rules, results } = this.props.unifiedScanResultStoreData;
-        const ruleResultsByStatus = this.props.deps.getUnifiedRuleResultsDelegate(
-            rules,
-            results,
-            this.props.deps.getCardSelectionViewData(this.props.cardSelectionStoreData),
-        );
-
+    private renderResults(cardsViewData: CardsViewModel): JSX.Element {
         return (
             <CardsView
                 deps={this.props.deps}
                 targetAppInfo={this.props.unifiedScanResultStoreData.targetAppInfo}
-                ruleResultsByStatus={ruleResultsByStatus}
                 userConfigurationStoreData={this.props.userConfigurationStoreData}
+                cardsViewData={cardsViewData}
             />
         );
     }
