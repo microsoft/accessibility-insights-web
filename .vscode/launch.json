@@ -53,7 +53,7 @@
             "windows": {
                 "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/electron.cmd"
             },
-            "args": ["drop/electron/electron-app/bundle/main.bundle.js"],
+            "args": ["drop/electron/electron/product/bundle/main.bundle.js"],
             "outputCapture": "std"
         }
     ],
