@@ -7,8 +7,19 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 
 describe('ScreenshotView', () => {
-    describe('renders', () => {
-        it('when passed a value for screenshotData', () => {
+    describe('render', () => {
+        it('matches snapshot when passed a screenshot with no highlights', () => {
+            const viewModel: ScreenshotViewModel = {
+                screenshotData: { base64PngData: 'testScreenshotData' },
+                highlightBoxRectangles: [],
+                deviceName: 'My Cool Android Device',
+            };
+            const wrapper = shallow(<ScreenshotView viewModel={viewModel} />);
+
+            expect(wrapper.getElement()).toMatchSnapshot();
+        });
+
+        it('matches snapshot when deviceName is unavailable', () => {
             const viewModel: ScreenshotViewModel = {
                 screenshotData: { base64PngData: 'testScreenshotData' },
                 highlightBoxRectangles: [],
@@ -20,7 +31,7 @@ describe('ScreenshotView', () => {
         });
 
         const emptyScreenshotDataCases: ScreenshotData[] = [null, undefined, {} as ScreenshotData];
-        it.each(emptyScreenshotDataCases)('when passed empty screenshotData %p', (screenshotDataCase: ScreenshotData) => {
+        it.each(emptyScreenshotDataCases)('matches snapshot when passed empty screenshotData %p', (screenshotDataCase: ScreenshotData) => {
             const viewModel: ScreenshotViewModel = {
                 screenshotData: screenshotDataCase,
                 highlightBoxRectangles: [],
