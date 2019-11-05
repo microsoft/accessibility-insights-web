@@ -1,5 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`FailedInstancesSection renders null cards property 1`] = `null`;
+
 exports[`FailedInstancesSection renders null results 1`] = `null`;
 
 exports[`FailedInstancesSection renders with alerting off 1`] = `

@@ -25,6 +25,7 @@ describe('FailedInstancesSection', () => {
             results                           | shouldAlertFailuresCount | description
             ${{ cards: resultsWithFailures }} | ${undefined}             | ${'with failures'}
             ${null}                           | ${undefined}             | ${'null results'}
+            ${{ cards: null }}                | ${undefined}             | ${'null cards property'}
             ${{ cards: nonEmptyResults }}     | ${true}                  | ${'with alerting on'}
             ${{ cards: nonEmptyResults }}     | ${false}                 | ${'with alerting off'}
         `('$description', ({ results, shouldAlertFailuresCount }) => {

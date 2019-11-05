@@ -20,7 +20,7 @@ export type FailedInstancesSectionProps = {
 export const FailedInstancesSection = NamedFC<FailedInstancesSectionProps>(
     'FailedInstancesSection',
     ({ cardsViewData, deps, userConfigurationStoreData, targetAppInfo, shouldAlertFailuresCount }) => {
-        if (cardsViewData == null) {
+        if (cardsViewData == null || cardsViewData.cards == null) {
             return null;
         }
 
