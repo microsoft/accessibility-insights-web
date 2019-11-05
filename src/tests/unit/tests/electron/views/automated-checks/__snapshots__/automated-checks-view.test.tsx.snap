@@ -8,11 +8,12 @@ exports[`AutomatedChecksView renders when status scan <Completed> 1`] = `
     deps={
       Object {
         "getCardSelectionViewData": [Function],
-        "getUnifiedRuleResultsDelegate": [Function],
+        "getCardsViewData": [Function],
         "scanActionCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "scanActions": undefined,
         },
+        "screenshotViewModelProvider": [Function],
       }
     }
   />
@@ -26,11 +27,12 @@ exports[`AutomatedChecksView renders when status scan <Completed> 1`] = `
         deps={
           Object {
             "getCardSelectionViewData": [Function],
-            "getUnifiedRuleResultsDelegate": [Function],
+            "getCardsViewData": [Function],
             "scanActionCreator": proxy {
               "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
               "scanActions": undefined,
             },
+            "screenshotViewModelProvider": [Function],
           }
         }
         deviceStoreData={Object {}}
@@ -42,20 +44,27 @@ exports[`AutomatedChecksView renders when status scan <Completed> 1`] = `
       />
       <main>
         <HeaderSection />
-        <ScanningSpinner
-          aria-live="assertive"
-          isSpinning={false}
-          label="Scanning..."
-        />
         <CardsView
+          cardsViewData={
+            Object {
+              "cards": Object {
+                "fail": Array [
+                  Object {
+                    "id": "test-fail-id",
+                  },
+                ],
+              },
+            }
+          }
           deps={
             Object {
               "getCardSelectionViewData": [Function],
-              "getUnifiedRuleResultsDelegate": [Function],
+              "getCardsViewData": [Function],
               "scanActionCreator": proxy {
                 "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
                 "scanActions": undefined,
               },
+              "screenshotViewModelProvider": [Function],
             }
           }
           targetAppInfo={
@@ -74,7 +83,13 @@ exports[`AutomatedChecksView renders when status scan <Completed> 1`] = `
     <div
       className="screenshotView"
     >
-      <ScreenshotView />
+      <ScreenshotView
+        viewModel={
+          Object {
+            "deviceName": "this should appear in snapshotted ScreenshotView props",
+          }
+        }
+      />
     </div>
   </div>
 </div>
@@ -133,22 +148,12 @@ exports[`AutomatedChecksView renders when status scan <Failed> 1`] = `
       />
       <main>
         <HeaderSection />
-        <ScanningSpinner
-          aria-live="assertive"
-          isSpinning={false}
-          label="Scanning..."
-        />
         <DeviceDisconnectedPopup
           deviceName="TEST DEVICE"
           onConnectNewDevice={[Function]}
           onRescanDevice={[Function]}
         />
       </main>
-    </div>
-    <div
-      className="screenshotView"
-    >
-      <ScreenshotView />
     </div>
   </div>
 </div>
@@ -214,11 +219,6 @@ exports[`AutomatedChecksView renders when status scan <Scanning> 1`] = `
         />
       </main>
     </div>
-    <div
-      className="screenshotView"
-    >
-      <ScreenshotView />
-    </div>
   </div>
 </div>
 `;
@@ -282,11 +282,6 @@ exports[`AutomatedChecksView renders when status scan <undefined> 1`] = `
           label="Scanning..."
         />
       </main>
-    </div>
-    <div
-      className="screenshotView"
-    >
-      <ScreenshotView />
     </div>
   </div>
 </div>

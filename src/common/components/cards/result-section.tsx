@@ -4,8 +4,6 @@ import { css } from '@uifabric/utilities';
 import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
 
-import { TargetAppData } from '../../../common/types/store-data/unified-data-interface';
-import { UserConfigurationStoreData } from '../../types/store-data/user-configuration-store';
 import { ResultSectionContent, ResultSectionContentDeps, ResultSectionContentProps } from './result-section-content';
 import { ResultSectionTitle, ResultSectionTitleProps } from './result-section-title';
 import { resultSection } from './result-section.scss';
@@ -14,11 +12,8 @@ export type ResultSectionDeps = ResultSectionContentDeps;
 
 export type ResultSectionProps = ResultSectionContentProps &
     ResultSectionTitleProps & {
-        userConfigurationStoreData: UserConfigurationStoreData;
         containerClassName: string;
         deps: ResultSectionDeps;
-        targetAppInfo: TargetAppData;
-        shouldAlertFailuresCount?: boolean;
     };
 
 export const ResultSection = NamedFC<ResultSectionProps>('ResultSection', props => {

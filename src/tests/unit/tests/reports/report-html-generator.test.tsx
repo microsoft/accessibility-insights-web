@@ -61,7 +61,7 @@ describe('ReportHtmlGenerator', () => {
             toUtcString: getUTCStringFromDateStub,
             getCollapsibleScript: getScriptMock.object,
             getGuidanceTagsFromGuidanceLinks: getGuidanceTagsStub,
-            ruleResultsByStatus: exampleUnifiedStatusResults,
+            cardsViewData: { cards: exampleUnifiedStatusResults, visualHelperEnabled: true, allCardsCollapsed: true },
         } as ReportBodyProps;
 
         const headElement: JSX.Element = <ReportHead />;
@@ -88,7 +88,11 @@ describe('ReportHtmlGenerator', () => {
             getPropertyConfigurationStub,
         );
 
-        const actual = testObject.generateHtml(scanResult, scanDate, pageTitle, pageUrl, description, exampleUnifiedStatusResults);
+        const actual = testObject.generateHtml(scanResult, scanDate, pageTitle, pageUrl, description, {
+            cards: exampleUnifiedStatusResults,
+            visualHelperEnabled: true,
+            allCardsCollapsed: true,
+        });
 
         expect(actual).toMatchSnapshot();
     });

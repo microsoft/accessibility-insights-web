@@ -30,7 +30,7 @@ describe('FailedInstancesSection', () => {
         `('$description', ({ results, shouldAlertFailuresCount }) => {
             const props = {
                 deps: {} as FailedInstancesSectionDeps,
-                ruleResultsByStatus: results,
+                cardsViewData: { cards: results },
                 shouldAlertFailuresCount,
             } as FailedInstancesSectionProps;
 

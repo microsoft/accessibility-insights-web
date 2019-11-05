@@ -43,7 +43,7 @@ describe('ReportBody', () => {
             toUtcString: () => '',
             getCollapsibleScript: getScriptStub,
             getGuidanceTagsFromGuidanceLinks: getGuidanceTagsStub,
-            ruleResultsByStatus: exampleUnifiedStatusResults,
+            cardsViewData: { cards: exampleUnifiedStatusResults, visualHelperEnabled: true, allCardsCollapsed: true },
             userConfigurationStoreData: null,
             targetAppInfo: { name: 'app' },
             shouldAlertFailuresCount: false,

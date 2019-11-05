@@ -4,7 +4,7 @@ import { FailedInstancesSection, FailedInstancesSectionDeps } from 'common/compo
 import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
 
-import { CardRuleResultsByStatus } from '../../common/types/store-data/card-view-model';
+import { CardsViewModel } from '../../common/types/store-data/card-view-model';
 import { TargetAppData } from '../../common/types/store-data/unified-data-interface';
 import { UserConfigurationStoreData } from '../../common/types/store-data/user-configuration-store';
 
@@ -12,9 +12,9 @@ export type CardsViewDeps = FailedInstancesSectionDeps;
 
 export interface CardsViewProps {
     deps: CardsViewDeps;
-    ruleResultsByStatus: CardRuleResultsByStatus;
     userConfigurationStoreData: UserConfigurationStoreData;
     targetAppInfo: TargetAppData;
+    cardsViewData: CardsViewModel;
 }
 
 export const CardsView = NamedFC<CardsViewProps>('CardsView', props => {
@@ -22,10 +22,10 @@ export const CardsView = NamedFC<CardsViewProps>('CardsView', props => {
         <>
             <FailedInstancesSection
                 deps={props.deps}
-                ruleResultsByStatus={props.ruleResultsByStatus}
                 userConfigurationStoreData={props.userConfigurationStoreData}
                 targetAppInfo={props.targetAppInfo}
                 shouldAlertFailuresCount={true}
+                cardsViewData={props.cardsViewData}
             />
         </>
     );
