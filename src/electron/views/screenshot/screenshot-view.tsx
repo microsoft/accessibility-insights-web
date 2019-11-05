@@ -3,8 +3,6 @@
 import { NamedFC } from 'common/react/named-fc';
 import { ScreenshotContainer } from 'electron/views/screenshot/screenshot-container';
 import * as React from 'react';
-
-import { Screenshot } from './screenshot';
 import { ScreenshotViewModel } from './screenshot-view-model';
 
 export type ScreenshotViewProps = { viewModel: ScreenshotViewModel };
