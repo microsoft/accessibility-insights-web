@@ -45,9 +45,6 @@ describe('ReportExportComponentPropsFactory', () => {
         } as TabStoreData;
         renderStartOver = true;
         assessmentStoreData = {
-            assessmentNavState: {
-                selectedTestType: -1,
-            },
             resultDescription: theDescription,
         } as AssessmentStoreData;
         assessmentsProviderMock = Mock.ofType<AssessmentsProvider>(undefined, MockBehavior.Loose);
