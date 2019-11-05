@@ -33,6 +33,5 @@ update_configs:
           dependency_name: "axe-core"
       - match:
           # All electron builds are going to be manually updated
-          # since we use internal microsoft electron distributable
-          # doesn't make any sense to update this from dependabot
+          # since our release builds use a non-standard Electron build with distribution-restricted media codecs stripped out
           dependency_name: "electron"
