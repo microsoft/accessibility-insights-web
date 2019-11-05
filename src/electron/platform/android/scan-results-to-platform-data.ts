@@ -7,11 +7,8 @@ import { ScanResults } from './scan-results';
 export type ConvertScanResultsToPlatformDataDelegate = (scanResults: ScanResults) => PlatformData;
 
 export function convertScanResultsToPlatformData(scanResults: ScanResults): PlatformData | null {
-    if (!scanResults) {
-        return null;
-    }
-    const axeDevice = scanResults.axeDevice;
-    if (!axeDevice) {
+    const axeDevice = scanResults?.axeDevice;
+    if (axeDevice == null) {
         return null;
     }
 
@@ -26,15 +23,5 @@ export function convertScanResultsToPlatformData(scanResults: ScanResults): Plat
             height: axeDevice.screenHeight,
             dpi: axeDevice.dpi,
         },
-    };
-}
-
-function createUnifiedRuleFromRuleResult(ruleInformation: RuleInformation, uuidGenerator: UUIDGeneratorType): UnifiedRule {
-    return {
-        uid: uuidGenerator(),
-        id: ruleInformation.ruleId,
-        description: ruleInformation.ruleDescription,
-        url: null,
-        guidance: [],
     };
 }

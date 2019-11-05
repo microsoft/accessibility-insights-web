@@ -16,7 +16,7 @@ export interface ApplicationProperties {
 
 export interface OSProperties {
     name: string;
-    version: string;
+    version?: string;
     userAgent?: string;
 }
 

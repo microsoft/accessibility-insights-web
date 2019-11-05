@@ -7,6 +7,10 @@ import { RuleInformationProvider } from 'electron/platform/android/rule-informat
 import { RuleInformationProviderType } from 'electron/platform/android/rule-information-provider-type';
 import { ScanResults } from 'electron/platform/android/scan-results';
 import {
+    convertScanResultsToPlatformData,
+    ConvertScanResultsToPlatformDataDelegate,
+} from 'electron/platform/android/scan-results-to-platform-data';
+import {
     convertScanResultsToUnifiedResults,
     ConvertScanResultsToUnifiedResultsDelegate,
 } from 'electron/platform/android/scan-results-to-unified-results';
@@ -14,10 +18,6 @@ import {
     convertScanResultsToUnifiedRules,
     ConvertScanResultsToUnifiedRulesDelegate,
 } from 'electron/platform/android/scan-results-to-unified-rules';
-import {
-    convertScanResultsToPlatformData,
-    ConvertScanResultsToPlatformDataDelegate,
-} from 'electron/platform/android/scan-results-to-platform-data';
 
 export type UnifiedScanCompletedPayloadBuilder = (scanResults: ScanResults) => UnifiedScanCompletedPayload;
 
