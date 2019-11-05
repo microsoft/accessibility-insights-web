@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { AssessmentStoreData } from 'common/types/store-data/assessment-result-data';
-import { CardRuleResultsByStatus } from 'common/types/store-data/card-view-model';
+import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { TabStoreData } from 'common/types/store-data/tab-store-data';
 import { ScanResults } from 'scanner/iruleresults';
@@ -27,10 +27,10 @@ export class ReportGenerator {
         scanDate: Date,
         pageTitle: string,
         pageUrl: string,
-        ruleResultsByStatus: CardRuleResultsByStatus,
+        cardsViewData: CardsViewModel,
         description: string,
     ): string {
-        return this.reportHtmlGenerator.generateHtml(scanResult, scanDate, pageTitle, pageUrl, description, ruleResultsByStatus);
+        return this.reportHtmlGenerator.generateHtml(scanResult, scanDate, pageTitle, pageUrl, description, cardsViewData);
     }
 
     public generateAssessmentReport(

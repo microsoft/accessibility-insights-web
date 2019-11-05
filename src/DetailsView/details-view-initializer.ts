@@ -328,7 +328,7 @@ if (isNaN(tabId) === false) {
                 issueFilingServiceProvider: IssueFilingServiceProviderImpl,
                 getGuidanceTagsFromGuidanceLinks: GetGuidanceTagsFromGuidanceLinks,
                 reportGenerator,
-                getUnifiedRuleResults,
+                getCardViewData: getUnifiedRuleResults,
                 getPropertyConfigById: getPropertyConfiguration,
                 collapsibleControl: CardsCollapsibleControl,
                 cardInteractionSupport: allCardInteractionsSupported,

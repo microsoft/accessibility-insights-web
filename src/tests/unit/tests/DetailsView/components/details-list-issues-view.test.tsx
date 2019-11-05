@@ -72,7 +72,7 @@ describe('DetailsListIssuesView', () => {
             issuesSelection: issuesSelectionStub,
             issuesTableHandler: issuesTableHandlerStub,
             visualizationScanResultData: visualizationScanResultStoreDataStub,
-            ruleResultsByStatus: exampleUnifiedStatusResults,
+            cardsViewData: { cards: exampleUnifiedStatusResults, visualHelperEnabled: true, allCardsCollapsed: true },
         } as DetailsListIssuesViewProps;
 
         getStoreDataMock

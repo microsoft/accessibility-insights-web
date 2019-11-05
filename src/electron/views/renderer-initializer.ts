@@ -201,7 +201,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then((persistedDat
             scanActionCreator,
             windowFrameActionCreator,
             platformInfo: new PlatformInfo(process),
-            getUnifiedRuleResultsDelegate: getUnifiedRuleResults,
+            getCardsViewData: getUnifiedRuleResults,
             getCardSelectionViewData: getCardSelectionViewData,
             screenshotViewModelProvider,
             ...cardsViewDeps,

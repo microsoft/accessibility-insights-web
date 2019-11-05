@@ -10,7 +10,7 @@ describe('CardsView', () => {
     it('should return cards view', () => {
         const props = {
             deps: {} as CardsViewDeps,
-            ruleResultsByStatus: exampleUnifiedStatusResults,
+            cardsViewData: { cards: exampleUnifiedStatusResults, visualHelperEnabled: true, allCardsCollapsed: true },
         } as CardsViewProps;
         const actual = shallow(<CardsView {...props} />);
         expect(actual.getElement()).toMatchSnapshot();

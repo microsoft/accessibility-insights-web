@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { ScanningSpinner } from 'common/components/scanning-spinner/scanning-spinner';
 import { GetCardSelectionViewData } from 'common/get-card-selection-view-data';
-import { GetUnifiedRuleResultsDelegate } from 'common/rule-based-view-model-provider';
+import { GetCardViewData } from 'common/rule-based-view-model-provider';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
 import { UnifiedScanResultStoreData } from 'common/types/store-data/unified-data-interface';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
@@ -29,7 +29,7 @@ export type AutomatedChecksViewDeps = CommandBarDeps &
     CardsViewDeps & {
         scanActionCreator: ScanActionCreator;
         windowStateActionCreator: WindowStateActionCreator;
-        getUnifiedRuleResultsDelegate: GetUnifiedRuleResultsDelegate;
+        getCardsViewData: GetCardViewData;
         getCardSelectionViewData: GetCardSelectionViewData;
         screenshotViewModelProvider: ScreenshotViewModelProvider;
     };
@@ -105,7 +105,7 @@ export class AutomatedChecksView extends React.Component<AutomatedChecksViewProp
         }
 
         const { rules, results } = this.props.unifiedScanResultStoreData;
-        const ruleResultsByStatus = this.props.deps.getUnifiedRuleResultsDelegate(
+        const cardsViewData = this.props.deps.getCardsViewData(
             rules,
             results,
             this.props.deps.getCardSelectionViewData(this.props.cardSelectionStoreData),
@@ -115,8 +115,9 @@ export class AutomatedChecksView extends React.Component<AutomatedChecksViewProp
             <CardsView
                 deps={this.props.deps}
                 targetAppInfo={this.props.unifiedScanResultStoreData.targetAppInfo}
-                ruleResultsByStatus={ruleResultsByStatus}
+                ruleResultsByStatus={cardsViewData}
                 userConfigurationStoreData={this.props.userConfigurationStoreData}
+                cardsViewData={cardsViewData}
             />
         );
     }

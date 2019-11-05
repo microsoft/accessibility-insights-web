@@ -2,32 +2,32 @@
 // Licensed under the MIT License.
 import { CardSelectionViewData } from 'common/get-card-selection-view-data';
 import { getUnifiedRuleResults } from 'common/rule-based-view-model-provider';
-import { CardRuleResultsByStatus } from 'common/types/store-data/card-view-model';
+import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { InstanceResultStatus, UnifiedResult, UnifiedRule } from 'common/types/store-data/unified-data-interface';
 
 describe('RuleBasedViewModelProvider', () => {
     const emptyCardSelectionViewData = {} as CardSelectionViewData;
 
     test('getUnifiedRuleResults with null rules and results', () => {
-        const actualResults: CardRuleResultsByStatus = getUnifiedRuleResults(null, null, null);
+        const actualResults: CardsViewModel = getUnifiedRuleResults(null, null, null);
 
         expect(actualResults).toEqual(null);
     });
 
     test('getUnifiedRuleResults with null rules', () => {
-        const actualResults: CardRuleResultsByStatus = getUnifiedRuleResults(null, [], emptyCardSelectionViewData);
+        const actualResults: CardsViewModel = getUnifiedRuleResults(null, [], emptyCardSelectionViewData);
 
         expect(actualResults).toEqual(null);
     });
 
     test('getUnifiedRuleResults with null results', () => {
-        const actualResults: CardRuleResultsByStatus = getUnifiedRuleResults([], null, emptyCardSelectionViewData);
+        const actualResults: CardsViewModel = getUnifiedRuleResults([], null, emptyCardSelectionViewData);
 
         expect(actualResults).toEqual(null);
     });
 
     test('getUnifiedRuleResults with null card selection view data', () => {
-        const actualResults: CardRuleResultsByStatus = getUnifiedRuleResults([], [], null);
+        const actualResults: CardsViewModel = getUnifiedRuleResults([], [], null);
 
         expect(actualResults).toEqual(null);
     });
@@ -54,7 +54,7 @@ describe('RuleBasedViewModelProvider', () => {
             selectedResultUids: testScenario.isExpanded && testScenario.isSelected ? ['stub_uid'] : [],
         };
 
-        const actualResults: CardRuleResultsByStatus = getUnifiedRuleResults(rules, results, cardSelectionViewData);
+        const actualResults: CardsViewModel = getUnifiedRuleResults(rules, results, cardSelectionViewData);
 
         expect(actualResults).toMatchSnapshot();
     });

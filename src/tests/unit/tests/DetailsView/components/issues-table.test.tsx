@@ -232,7 +232,7 @@ class TestPropsBuilder {
                 targetPageTitle: '',
             },
             targetAppInfo: { name: 'app' },
-            ruleResultsByStatus: exampleUnifiedStatusResults,
+            cardsViewData: { cards: exampleUnifiedStatusResults, visualHelperEnabled: true, allCardsCollapsed: true },
             userConfigurationStoreData: {
                 bugService: 'gitHub',
             } as UserConfigurationStoreData,

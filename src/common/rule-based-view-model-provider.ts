@@ -9,20 +9,21 @@ import {
     CardRuleResult,
     CardRuleResultsByStatus,
     CardRuleResultStatus,
+    CardsViewModel,
 } from './types/store-data/card-view-model';
 import { UnifiedResult, UnifiedRule } from './types/store-data/unified-data-interface';
 
-export type GetUnifiedRuleResultsDelegate = (
+export type GetCardViewData = (
     rules: UnifiedRule[],
     results: UnifiedResult[],
     cardSelectionViewData: CardSelectionViewData,
-) => CardRuleResultsByStatus;
+) => CardsViewModel;
 
-export const getUnifiedRuleResults: GetUnifiedRuleResultsDelegate = (
+export const getUnifiedRuleResults: GetCardViewData = (
     rules: UnifiedRule[],
     results: UnifiedResult[],
     cardSelectionViewData: CardSelectionViewData,
-): CardRuleResultsByStatus => {
+): CardsViewModel => {
     if (results == null || rules == null || cardSelectionViewData == null) {
         return null;
     }
@@ -61,7 +62,11 @@ export const getUnifiedRuleResults: GetUnifiedRuleResultsDelegate = (
         }
     }
 
-    return statusResults;
+    return {
+        cards: statusResults,
+        visualHelperEnabled: true,
+        allCardsCollapsed: true,
+    };
 };
 
 const getExistingRuleFromResults = (ruleId: string, ruleResults: CardRuleResult[]): CardRuleResult => {

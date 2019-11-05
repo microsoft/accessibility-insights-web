@@ -7,7 +7,7 @@ import { ReactFCWithDisplayName } from 'common/react/named-fc';
 import { FixInstructionProcessor } from 'injected/fix-instruction-processor';
 import { ScanResults } from 'scanner/iruleresults';
 
-import { CardRuleResultsByStatus } from '../../../common/types/store-data/card-view-model';
+import { CardsViewModel } from '../../../common/types/store-data/card-view-model';
 import { TargetAppData } from '../../../common/types/store-data/unified-data-interface';
 import { UserConfigurationStoreData } from '../../../common/types/store-data/user-configuration-store';
 import { NotApplicableChecksSectionDeps } from './not-applicable-checks-section';
@@ -27,7 +27,7 @@ export type SectionProps = {
     toUtcString: (date: Date) => string;
     getCollapsibleScript: () => string;
     getGuidanceTagsFromGuidanceLinks: GetGuidanceTagsFromGuidanceLinks;
-    ruleResultsByStatus: CardRuleResultsByStatus;
+    cardsViewData: CardsViewModel;
     userConfigurationStoreData: UserConfigurationStoreData;
     targetAppInfo: TargetAppData;
     shouldAlertFailuresCount?: boolean;
