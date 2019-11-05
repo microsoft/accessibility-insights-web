@@ -31,3 +31,7 @@ update_configs:
           # on false positives and breaking ai-web, so avoiding
           # dependabot auto-update for them like other deps.
           dependency_name: "axe-core"
+      - match:
+          # All electron builds are going to be manually updated
+          # since our release builds use a non-standard Electron build with distribution-restricted media codecs stripped out
+          dependency_name: "electron"
