@@ -17,7 +17,8 @@ export const ScreenshotView = NamedFC<ScreenshotViewProps>('ScreenshotView', (pr
     if (isEmpty(props.viewModel.screenshotData)) {
         return <div>Screenshot for scan is unavailable</div>;
     }
-    // note the h1 below has a tab index because the screenshot image is scrollable and keyboard users need to be able to navigate via tab per axe core rule 3.3
+    /* note the h1 below has a tab index because the screenshot image is scrollable and keyboard users need to be able to
+    navigate via tab per https://dequeuniversity.com/rules/axe/3.3/scrollable-region-focusable */
     return (
         <div>
             <h1 tabIndex={0}>Target Page Screenshot</h1>
