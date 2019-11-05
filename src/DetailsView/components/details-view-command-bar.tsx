@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { css } from '@uifabric/utilities';
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
-import { CardRuleResultsByStatus } from 'common/types/store-data/card-view-model';
+import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { VisualizationScanResultData } from 'common/types/store-data/visualization-scan-result-data';
 import { Link } from 'office-ui-fabric-react/lib/Link';
 import * as React from 'react';
@@ -34,7 +34,7 @@ export interface DetailsViewCommandBarProps {
     renderStartOver: boolean;
     rightPanelConfiguration: DetailsRightPanelConfiguration;
     visualizationScanResultData: VisualizationScanResultData;
-    ruleResultsByStatus: CardRuleResultsByStatus;
+    cardsViewData: CardsViewModel;
 }
 
 export class DetailsViewCommandBar extends React.Component<DetailsViewCommandBarProps> {

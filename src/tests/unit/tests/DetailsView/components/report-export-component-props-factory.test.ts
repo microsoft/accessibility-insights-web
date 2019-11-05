@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { AssessmentStoreData } from 'common/types/store-data/assessment-result-data';
-import { CardRuleResultsByStatus } from 'common/types/store-data/card-view-model';
+import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { TabStoreData } from 'common/types/store-data/tab-store-data';
 import { VisualizationScanResultData } from 'common/types/store-data/visualization-scan-result-data';
@@ -33,7 +33,7 @@ describe('ReportExportComponentPropsFactory', () => {
     let reportGeneratorMock: IMock<ReportGenerator>;
     let renderStartOver: boolean;
     let visualizationScanResultData: VisualizationScanResultData;
-    let cardRuleResultsByStatus: CardRuleResultsByStatus;
+    let cardsViewData: CardsViewModel;
     let scanResult: ScanResults;
 
     beforeEach(() => {
@@ -52,7 +52,7 @@ describe('ReportExportComponentPropsFactory', () => {
         } as AssessmentStoreData;
         assessmentsProviderMock = Mock.ofType<AssessmentsProvider>(undefined, MockBehavior.Loose);
         reportGeneratorMock = Mock.ofType<ReportGenerator>(undefined, MockBehavior.Strict);
-        cardRuleResultsByStatus = null;
+        cardsViewData = null;
         scanResult = null;
     });
 
@@ -79,7 +79,7 @@ describe('ReportExportComponentPropsFactory', () => {
             renderStartOver,
             assessmentStoreData,
             visualizationScanResultData,
-            ruleResultsByStatus: cardRuleResultsByStatus,
+            cardsViewData,
         } as DetailsViewCommandBarProps;
     }
 
@@ -105,7 +105,7 @@ describe('ReportExportComponentPropsFactory', () => {
                     theDate,
                     tabStoreData.title,
                     tabStoreData.url,
-                    cardRuleResultsByStatus,
+                    cardsViewData,
                     theDescription,
                 ),
             )
@@ -151,7 +151,7 @@ describe('ReportExportComponentPropsFactory', () => {
         scanResult = {
             timestamp: theTimestamp,
         } as ScanResults;
-        cardRuleResultsByStatus = {} as CardRuleResultsByStatus;
+        cardsViewData = {} as CardsViewModel;
 
         setCardsUiFlag(true);
         setAutomatedChecksReportGenerator();

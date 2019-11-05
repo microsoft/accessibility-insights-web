@@ -51,7 +51,7 @@ export function getReportExportComponentPropsForAutomatedChecks(props: CommandBa
                     scanDate,
                     tabStoreData.title,
                     tabStoreData.url,
-                    props.ruleResultsByStatus,
+                    props.cardsViewData,
                 ),
                 updatePersistedDescription: () => null,
                 getExportDescription: () => '',

@@ -85,7 +85,7 @@ describe('DetailsViewCommandBar', () => {
             assessmentStoreData,
             rightPanelConfiguration: rightPanelConfig,
             visualizationScanResultData: null,
-            ruleResultsByStatus: null,
+            cardsViewData: null,
         };
     }
 
