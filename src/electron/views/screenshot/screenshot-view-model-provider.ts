@@ -15,10 +15,12 @@ export function screenshotViewModelProvider(
     const highlightBoxRectangles =
         screenshotData == null ? [] : getHighlightBoxRectangles(unifiedScanResultStoreData.results, highlightedResultUids);
 
+    const deviceName = (unifiedScanResultStoreData.platformInfo && unifiedScanResultStoreData.platformInfo.deviceName) || null;
+
     return {
         screenshotData,
         highlightBoxRectangles,
-        deviceName: null, // Future work will want to pipe this in via unifiedScanResultStore.platformInfo
+        deviceName,
     };
 }
 

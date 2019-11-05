@@ -28,6 +28,7 @@ export interface ViewPortProperties {
 export interface PlatformData {
     osInfo: OSProperties;
     viewPortInfo: ViewPortProperties;
+    deviceName?: string;
 }
 
 export interface TargetAppData {
