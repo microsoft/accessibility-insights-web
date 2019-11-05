@@ -8,9 +8,9 @@ import * as React from 'react';
 
 describe('ScreenshotView', () => {
     describe('renders', () => {
-        it('when passed a null value for screenshotData', () => {
+        it('when passed a value for screenshotData', () => {
             const viewModel: ScreenshotViewModel = {
-                screenshotData: null,
+                screenshotData: { base64PngData: 'testScreenshotPath' },
                 highlightBoxRectangles: [],
                 deviceName: null,
             };
@@ -19,19 +19,10 @@ describe('ScreenshotView', () => {
             expect(wrapper.getElement()).toMatchSnapshot();
         });
 
-        it('when passed an empty value for screenshotData', () => {
+        const emptyScreenshotDataCases: ScreenshotData[] = [null, undefined, {} as ScreenshotData];
+        it.each(emptyScreenshotDataCases)('when passed empty screenshotData %p', (screenshotDataCase: ScreenshotData) => {
             const viewModel: ScreenshotViewModel = {
-                screenshotData: {} as ScreenshotData,
-                highlightBoxRectangles: [],
-                deviceName: null,
-            };
-            const wrapper = shallow(<ScreenshotView viewModel={viewModel} />);
-
-            expect(wrapper.getElement()).toMatchSnapshot();
-        });
-        it('when passed an undefined value for screenshotData', () => {
-            const viewModel: ScreenshotViewModel = {
-                screenshotData: undefined,
+                screenshotData: screenshotDataCase,
                 highlightBoxRectangles: [],
                 deviceName: null,
             };
