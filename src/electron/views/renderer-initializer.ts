@@ -15,7 +15,7 @@ import { DateProvider } from 'common/date-provider';
 import { getCardSelectionViewData } from 'common/get-card-selection-view-data';
 import { GetGuidanceTagsFromGuidanceLinks } from 'common/get-guidance-tags-from-guidance-links';
 import { UserConfigMessageCreator } from 'common/message-creators/user-config-message-creator';
-import { getUnifiedRuleResults } from 'common/rule-based-view-model-provider';
+import { getCardViewData } from 'common/rule-based-view-model-provider';
 import { CardsViewDeps } from 'DetailsView/components/cards-view';
 import { remote } from 'electron';
 import { DirectActionMessageDispatcher } from 'electron/adapters/direct-action-message-dispatcher';
@@ -201,7 +201,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then((persistedDat
             scanActionCreator,
             windowFrameActionCreator,
             platformInfo: new PlatformInfo(process),
-            getCardsViewData: getUnifiedRuleResults,
+            getCardsViewData: getCardViewData,
             getCardSelectionViewData: getCardSelectionViewData,
             screenshotViewModelProvider,
             ...cardsViewDeps,

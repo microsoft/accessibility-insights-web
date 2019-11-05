@@ -19,7 +19,7 @@ export type GetCardViewData = (
     cardSelectionViewData: CardSelectionViewData,
 ) => CardsViewModel;
 
-export const getUnifiedRuleResults: GetCardViewData = (
+export const getCardViewData: GetCardViewData = (
     rules: UnifiedRule[],
     results: UnifiedResult[],
     cardSelectionViewData: CardSelectionViewData,

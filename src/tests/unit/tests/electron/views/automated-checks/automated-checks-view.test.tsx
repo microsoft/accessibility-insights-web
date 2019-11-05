@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { CardSelectionViewData, getCardSelectionViewData } from 'common/get-card-selection-view-data';
-import { getUnifiedRuleResults } from 'common/rule-based-view-model-provider';
+import { getCardViewData } from 'common/rule-based-view-model-provider';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
 import { CardRuleResult, CardRuleResultsByStatus, CardsViewModel } from 'common/types/store-data/card-view-model';
 import { UnifiedResult, UnifiedRule, UnifiedScanResultStoreData } from 'common/types/store-data/unified-data-interface';
@@ -71,7 +71,7 @@ describe('AutomatedChecksView', () => {
             const cardsViewData = {
                 cards: ruleResultsByStatusStub,
             } as CardsViewModel;
-            const getUnifiedRuleResultsMock = Mock.ofInstance(getUnifiedRuleResults);
+            const getUnifiedRuleResultsMock = Mock.ofInstance(getCardViewData);
             getUnifiedRuleResultsMock
                 .setup(getter => getter(rulesStub, resultsStub, cardSelectionViewDataStub))
                 .returns(() => cardsViewData)
