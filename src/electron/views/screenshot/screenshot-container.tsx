@@ -29,6 +29,10 @@ export const ScreenshotContainer = NamedFC<ScreenshotContainerProps>('Screenshot
 });
 
 function renderHighlightBoxes(highlightBoxes: BoundingRectangle[]): JSX.Element[] {
+    if (isEmpty(highlightBoxes)) {
+        return;
+    }
+
     const renderedBoxes: JSX.Element[] = [];
     let keyId = 1;
     highlightBoxes.forEach(instance => {
