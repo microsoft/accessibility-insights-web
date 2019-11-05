@@ -1,5 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { FeatureFlags } from 'common/feature-flags';
+import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { Toggle } from 'office-ui-fabric-react/lib/Toggle';
 import * as React from 'react';
 
@@ -11,10 +13,15 @@ export interface TargetPageChangedViewProps {
     visualizationType: VisualizationType;
     displayableData: DisplayableVisualizationTypeData;
     toggleClickHandler: (event) => void;
+    featureFlagStoreData: FeatureFlagStoreData;
 }
 
 export const TargetPageChangedView = NamedFC<TargetPageChangedViewProps>('TargetPageChangedView', props => {
     const { title = '', toggleLabel = '', subtitle } = props.displayableData;
+
+    const oldText = 'The target page was changed. Use the toggle to enable the visualization in the current target page.';
+    const cardsUIText = 'The target page has changed. Use the start over button to scan this new target page.';
+    const displayedText = props.featureFlagStoreData[FeatureFlags.universalCardsUI] ? cardsUIText : oldText;
 
     return (
         <div className="target-page-changed">
@@ -28,7 +35,7 @@ export const TargetPageChangedView = NamedFC<TargetPageChangedViewProps>('Target
                 label={toggleLabel}
                 className="details-view-toggle"
             />
-            <p>The target page was changed. Use the toggle to enable the visualization in the current target page.</p>
+            <p>{displayedText}</p>
         </div>
     );
 });

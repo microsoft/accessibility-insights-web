@@ -1,5 +1,29 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`TargetPageChangedView renders with feature flag enabled 1`] = `
+<div
+  className="target-page-changed"
+>
+  <h1>
+    test title
+  </h1>
+  <div
+    className="target-page-changed-subtitle"
+  />
+  <StyledToggleBase
+    checked={false}
+    className="details-view-toggle"
+    label="test toggle label"
+    offText="Off"
+    onClick={[Function]}
+    onText="On"
+  />
+  <p>
+    The target page has changed. Use the start over button to scan this new target page.
+  </p>
+</div>
+`;
+
 exports[`TargetPageChangedView renders with optional subtitle 1`] = `
 <div
   className="target-page-changed"
