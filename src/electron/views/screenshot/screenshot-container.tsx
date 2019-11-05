@@ -20,6 +20,7 @@ export const ScreenshotContainer = NamedFC<ScreenshotContainerProps>('Screenshot
     if (isEmpty(props.screenshotData)) {
         return <div>Screenshot for scan is unavailable</div>;
     }
+
     return (
         <div className={screenshotContainer}>
             <Screenshot encodedImage={props.screenshotData.base64PngData} />
@@ -35,9 +36,11 @@ function renderHighlightBoxes(highlightBoxes: BoundingRectangle[]): JSX.Element[
 
     const renderedBoxes: JSX.Element[] = [];
     let keyId = 1;
+
     highlightBoxes.forEach(instance => {
         renderedBoxes.push(<HighlightBox key={keyId} boundingRectangle={instance} />);
         keyId++;
     });
+
     return renderedBoxes;
 }
