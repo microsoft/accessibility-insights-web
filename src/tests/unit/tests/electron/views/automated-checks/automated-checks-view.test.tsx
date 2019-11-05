@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { CardSelectionViewData, getCardSelectionViewData } from 'common/get-card-selection-view-data';
-import { getUnifiedRuleResults } from 'common/rule-based-view-model-provider';
+import { getCardViewData } from 'common/rule-based-view-model-provider';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
-import { CardRuleResult, CardRuleResultsByStatus } from 'common/types/store-data/card-view-model';
+import { CardRuleResult, CardRuleResultsByStatus, CardsViewModel } from 'common/types/store-data/card-view-model';
 import { UnifiedResult, UnifiedRule, UnifiedScanResultStoreData } from 'common/types/store-data/unified-data-interface';
 import { ScanActionCreator } from 'electron/flux/action-creator/scan-action-creator';
 import { WindowStateActionCreator } from 'electron/flux/action-creator/window-state-action-creator';
@@ -68,10 +68,13 @@ describe('AutomatedChecksView', () => {
             const ruleResultsByStatusStub = {
                 fail: [{ id: 'test-fail-id' } as CardRuleResult],
             } as CardRuleResultsByStatus;
-            const getUnifiedRuleResultsMock = Mock.ofInstance(getUnifiedRuleResults);
+            const cardsViewData = {
+                cards: ruleResultsByStatusStub,
+            } as CardsViewModel;
+            const getUnifiedRuleResultsMock = Mock.ofInstance(getCardViewData);
             getUnifiedRuleResultsMock
                 .setup(getter => getter(rulesStub, resultsStub, cardSelectionViewDataStub))
-                .returns(() => ruleResultsByStatusStub)
+                .returns(() => cardsViewData)
                 .verifiable(Times.once());
 
             const screenshotViewModelStub = { deviceName: 'this should appear in snapshotted ScreenshotView props' } as ScreenshotViewModel;
@@ -84,7 +87,7 @@ describe('AutomatedChecksView', () => {
             const props: AutomatedChecksViewProps = {
                 deps: {
                     scanActionCreator: Mock.ofType(ScanActionCreator).object,
-                    getUnifiedRuleResultsDelegate: getUnifiedRuleResultsMock.object,
+                    getCardsViewData: getUnifiedRuleResultsMock.object,
                     getCardSelectionViewData: getCardSelectionViewDataMock.object,
                     screenshotViewModelProvider: screenshotViewModelProviderMock.object,
                 },

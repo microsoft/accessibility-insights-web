@@ -72,7 +72,7 @@ export class HighlightBoxDrawer extends BaseDrawer {
             drawerConfig = this.formatter.getDrawerConfiguration(element, data) as DrawerConfiguration;
         }
 
-        let elementBoundingClientRect = element.getBoundingClientRect();
+        let elementBoundingClientRect: ClientRect = element.getBoundingClientRect();
         if (drawerConfig.getBoundingRect) {
             elementBoundingClientRect = drawerConfig.getBoundingRect(element);
         }

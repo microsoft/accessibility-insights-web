@@ -8,7 +8,7 @@ exports[`AutomatedChecksView renders when status scan <Completed> 1`] = `
     deps={
       Object {
         "getCardSelectionViewData": [Function],
-        "getUnifiedRuleResultsDelegate": [Function],
+        "getCardsViewData": [Function],
         "scanActionCreator": proxy {
           "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
           "scanActions": undefined,
@@ -27,7 +27,7 @@ exports[`AutomatedChecksView renders when status scan <Completed> 1`] = `
         deps={
           Object {
             "getCardSelectionViewData": [Function],
-            "getUnifiedRuleResultsDelegate": [Function],
+            "getCardsViewData": [Function],
             "scanActionCreator": proxy {
               "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
               "scanActions": undefined,
@@ -45,24 +45,26 @@ exports[`AutomatedChecksView renders when status scan <Completed> 1`] = `
       <main>
         <HeaderSection />
         <CardsView
+          cardsViewData={
+            Object {
+              "cards": Object {
+                "fail": Array [
+                  Object {
+                    "id": "test-fail-id",
+                  },
+                ],
+              },
+            }
+          }
           deps={
             Object {
               "getCardSelectionViewData": [Function],
-              "getUnifiedRuleResultsDelegate": [Function],
+              "getCardsViewData": [Function],
               "scanActionCreator": proxy {
                 "___id": "BCDF5CE5-F0DF-40B7-8BA0-69DF395033C8",
                 "scanActions": undefined,
               },
               "screenshotViewModelProvider": [Function],
-            }
-          }
-          ruleResultsByStatus={
-            Object {
-              "fail": Array [
-                Object {
-                  "id": "test-fail-id",
-                },
-              ],
             }
           }
           targetAppInfo={

@@ -87,7 +87,9 @@ export class ScanResults {
 
     public get screenshot(): ScreenshotData {
         try {
-            return this.rawData.axeContext.screenshot;
+            return {
+                base64PngData: this.rawData.axeContext.screenshot,
+            };
         } catch {
             return null;
         }

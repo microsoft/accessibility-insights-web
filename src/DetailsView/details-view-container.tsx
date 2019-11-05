@@ -13,7 +13,7 @@ import { VisualizationConfigurationFactory } from '../common/configs/visualizati
 import { DropdownClickHandler } from '../common/dropdown-click-handler';
 import { InspectActionMessageCreator } from '../common/message-creators/inspect-action-message-creator';
 import { ScopingActionMessageCreator } from '../common/message-creators/scoping-action-message-creator';
-import { GetUnifiedRuleResultsDelegate } from '../common/rule-based-view-model-provider';
+import { GetCardViewData } from '../common/rule-based-view-model-provider';
 import { AssessmentStoreData } from '../common/types/store-data/assessment-result-data';
 import { DetailsViewData } from '../common/types/store-data/details-view-data';
 import { FeatureFlagStoreData } from '../common/types/store-data/feature-flag-store-data';
@@ -41,7 +41,7 @@ import { PreviewFeatureFlagsHandler } from './handlers/preview-feature-flags-han
 export type DetailsViewContainerDeps = {
     getDetailsRightPanelConfiguration: GetDetailsRightPanelConfiguration;
     getDetailsSwitcherNavConfiguration: GetDetailsSwitcherNavConfiguration;
-    getUnifiedRuleResults: GetUnifiedRuleResultsDelegate;
+    getCardViewData: GetCardViewData;
     getCardSelectionViewData: GetCardSelectionViewData;
 } & DetailsViewBodyDeps &
     DetailsViewOverlayDeps &
@@ -170,7 +170,7 @@ export class DetailsViewContainer extends React.Component<DetailsViewContainerPr
         });
         const selectedTest = selectedDetailsViewSwitcherNavConfiguration.getSelectedDetailsView(storeState);
 
-        const ruleResults = this.props.deps.getUnifiedRuleResults(
+        const cardsViewData = this.props.deps.getCardViewData(
             this.props.storeState.unifiedScanResultStoreData.rules,
             this.props.storeState.unifiedScanResultStoreData.results,
             this.props.deps.getCardSelectionViewData(this.props.storeState.cardSelectionStoreData),
@@ -197,7 +197,7 @@ export class DetailsViewContainer extends React.Component<DetailsViewContainerPr
                 rightPanelConfiguration={selectedDetailsRightPanelConfiguration}
                 switcherNavConfiguration={selectedDetailsViewSwitcherNavConfiguration}
                 userConfigurationStoreData={storeState.userConfigurationStoreData}
-                ruleResultsByStatus={ruleResults}
+                cardsViewData={cardsViewData}
                 targetAppInfo={storeState.unifiedScanResultStoreData.targetAppInfo}
                 cardSelectionStoreData={storeState.cardSelectionStoreData}
             />
