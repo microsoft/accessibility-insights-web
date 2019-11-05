@@ -5,7 +5,7 @@ import { FeatureFlags } from 'common/feature-flags';
 import { CommandBarProps } from 'DetailsView/components/details-view-command-bar';
 import { ReportExportComponentProps } from 'DetailsView/components/report-export-component';
 
-export function getAssessmentCommandBarProps(props: CommandBarProps): ReportExportComponentProps {
+export function getReportExportComponentPropsForAssessment(props: CommandBarProps): ReportExportComponentProps {
     const { deps, assessmentStoreData, assessmentsProvider, featureFlagStoreData, tabStoreData } = props;
     const reportGenerator = deps.reportGenerator;
     const htmlGenerator = reportGenerator.generateAssessmentReport.bind(
@@ -28,7 +28,7 @@ export function getAssessmentCommandBarProps(props: CommandBarProps): ReportExpo
     };
 }
 
-export function getAutomatedChecksCommandBarProps(props: CommandBarProps): ReportExportComponentProps {
+export function getReportExportComponentPropsForAutomatedChecks(props: CommandBarProps): ReportExportComponentProps {
     let reportExportComponentProps: ReportExportComponentProps = null;
 
     if (props.featureFlagStoreData[FeatureFlags.universalCardsUI]) {

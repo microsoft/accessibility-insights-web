@@ -5,12 +5,12 @@ import * as React from 'react';
 import { FeatureFlags } from 'common/feature-flags';
 import { NamedFC } from 'common/react/named-fc';
 import { ReportExportComponentProps } from 'DetailsView/components/report-export-component';
-import { getAssessmentCommandBarProps } from 'DetailsView/components/report-export-component-props-factory';
+import { getReportExportComponentPropsForAutomatedChecks } from 'DetailsView/components/report-export-component-props-factory';
 import { CommandBarProps } from './details-view-command-bar';
 import { DetailsViewCommandBar } from './details-view-command-bar';
 
 export const AutomatedChecksCommandBar = NamedFC<CommandBarProps>('AutomatedChecksCommandBar', props => {
-    const reportExportComponentProps: ReportExportComponentProps = getAssessmentCommandBarProps(props);
+    const reportExportComponentProps: ReportExportComponentProps = getReportExportComponentPropsForAutomatedChecks(props);
 
     return (
         <DetailsViewCommandBar
