@@ -10,7 +10,7 @@ describe('ScreenshotView', () => {
     describe('renders', () => {
         it('when passed a value for screenshotData', () => {
             const viewModel: ScreenshotViewModel = {
-                screenshotData: { base64PngData: 'testScreenshotPath' },
+                screenshotData: { base64PngData: 'testScreenshotData' },
                 highlightBoxRectangles: [],
                 deviceName: null,
             };

@@ -9,7 +9,7 @@ exports[`ScreenshotView renders when passed a value for screenshotData 1`] = `
   </h1>
   <Screenshot
     altText="axe-android results screenshot with highlighted components"
-    encodedImage="testScreenshotPath"
+    encodedImage="testScreenshotData"
   />
 </div>
 `;
