@@ -47,6 +47,5 @@ export const TabStopsAdHocVisualization: VisualizationConfiguration = {
     getNotificationMessage: selectorMap => 'Start pressing Tab to start visualizing tab stops.',
     getSwitchToTargetTabOnScan: () => true,
     getInstanceIdentiferGenerator: () => generateUID,
-    getUpdateVisibility: () => false,
     guidance,
 };

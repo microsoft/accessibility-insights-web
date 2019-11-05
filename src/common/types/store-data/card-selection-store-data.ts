@@ -14,4 +14,5 @@ export interface RuleExpandCollapseDataDictionary {
 
 export interface CardSelectionStoreData {
     rules: RuleExpandCollapseDataDictionary;
+    visualHelperEnabled: boolean;
 }

@@ -55,5 +55,4 @@ export const IssuesAdHocVisualization: VisualizationConfiguration = {
     getDrawer: provider => provider.createIssuesDrawer(),
     getSwitchToTargetTabOnScan: () => false,
     getInstanceIdentiferGenerator: () => generateUID,
-    getUpdateVisibility: () => false,
 };

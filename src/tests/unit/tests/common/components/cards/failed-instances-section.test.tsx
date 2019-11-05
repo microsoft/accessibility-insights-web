@@ -22,15 +22,16 @@ describe('FailedInstancesSection', () => {
 
     describe('renders', () => {
         it.each`
-            results                | shouldAlertFailuresCount | description
-            ${resultsWithFailures} | ${undefined}             | ${'with failures'}
-            ${null}                | ${undefined}             | ${'null results'}
-            ${nonEmptyResults}     | ${true}                  | ${'with alerting on'}
-            ${nonEmptyResults}     | ${false}                 | ${'with alerting off'}
+            results                           | shouldAlertFailuresCount | description
+            ${{ cards: resultsWithFailures }} | ${undefined}             | ${'with failures'}
+            ${null}                           | ${undefined}             | ${'null results'}
+            ${{ cards: null }}                | ${undefined}             | ${'null cards property'}
+            ${{ cards: nonEmptyResults }}     | ${true}                  | ${'with alerting on'}
+            ${{ cards: nonEmptyResults }}     | ${false}                 | ${'with alerting off'}
         `('$description', ({ results, shouldAlertFailuresCount }) => {
             const props = {
                 deps: {} as FailedInstancesSectionDeps,
-                ruleResultsByStatus: results,
+                cardsViewData: results,
                 shouldAlertFailuresCount,
             } as FailedInstancesSectionProps;
 

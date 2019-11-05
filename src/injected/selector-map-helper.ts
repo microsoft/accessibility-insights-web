@@ -30,6 +30,7 @@ export class SelectorMapHelper {
 
     public getSelectorMap(
         visualizationType: VisualizationType,
+        stepKey: string,
         visualizationRelatedStoreData: VisualizationRelatedStoreData,
     ): DictionaryStringTo<AssessmentVisualizationInstance> {
         let selectorMap = {};
@@ -53,10 +54,7 @@ export class SelectorMapHelper {
 
         if (this.assessmentsProvider.isValidType(visualizationType)) {
             const key = this.assessmentsProvider.forType(visualizationType).key;
-            selectorMap = this.getFilteredSelectorMap(
-                assessmentStoreData.assessments[key].generatedAssessmentInstancesMap,
-                assessmentStoreData.assessmentNavState.selectedTestStep,
-            );
+            selectorMap = this.getFilteredSelectorMap(assessmentStoreData.assessments[key].generatedAssessmentInstancesMap, stepKey);
         }
 
         return selectorMap;
@@ -108,8 +106,8 @@ export class SelectorMapHelper {
         return selectorMap;
     }
 
-    private getFilteredSelectorMap<T, K>(
-        generatedAssessmentInstancesMap: DictionaryStringTo<GeneratedAssessmentInstance<T, K>>,
+    private getFilteredSelectorMap(
+        generatedAssessmentInstancesMap: DictionaryStringTo<GeneratedAssessmentInstance>,
         testStep: string,
     ): DictionaryStringTo<AssessmentVisualizationInstance> {
         if (generatedAssessmentInstancesMap == null) {
@@ -119,7 +117,7 @@ export class SelectorMapHelper {
         const selectorMap: DictionaryStringTo<AssessmentVisualizationInstance> = {};
         Object.keys(generatedAssessmentInstancesMap).forEach(identifier => {
             const instance = generatedAssessmentInstancesMap[identifier];
-            const stepResult = instance.testStepResults[testStep as keyof K];
+            const stepResult = instance.testStepResults[testStep];
             if (stepResult != null) {
                 selectorMap[identifier] = {
                     target: instance.target,

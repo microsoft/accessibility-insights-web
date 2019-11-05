@@ -32,6 +32,8 @@ describe('ResultSectionContent', () => {
             showCongratsIfNotInstances: true,
             userConfigurationStoreData: null,
             targetAppInfo: { name: 'app' },
+            visualHelperEnabled: true,
+            allCardsCollapsed: true,
         };
 
         const wrapper = shallow(<ResultSectionContent {...props} />);

@@ -21,7 +21,6 @@ import {
     RemoveFailureInstancePayload,
     SelectRequirementPayload,
     ToggleActionPayload,
-    UpdateVisibilityPayload,
 } from './action-payloads';
 import { AssessmentActions } from './assessment-actions';
 
@@ -59,7 +58,6 @@ export class AssessmentActionCreator {
         this.interpreter.registerTypeToPayloadCallback(AssessmentMessages.AddResultDescription, this.onAddResultDescription);
         this.interpreter.registerTypeToPayloadCallback(AssessmentMessages.RemoveFailureInstance, this.onRemoveFailureInstance);
         this.interpreter.registerTypeToPayloadCallback(AssessmentMessages.EditFailureInstance, this.onEditFailureInstance);
-        this.interpreter.registerTypeToPayloadCallback(AssessmentMessages.UpdateInstanceVisibility, this.onUpdateInstanceVisibility);
         this.interpreter.registerTypeToPayloadCallback(AssessmentMessages.PassUnmarkedInstances, this.onPassUnmarkedInstances);
         this.interpreter.registerTypeToPayloadCallback(AssessmentMessages.ScanUpdate, this.onScanUpdate);
         this.interpreter.registerTypeToPayloadCallback(AssessmentMessages.TrackingCompleted, this.onTrackingCompleted);
@@ -146,10 +144,6 @@ export class AssessmentActionCreator {
 
     private onStartOverAllAssessments = (payload: ToggleActionPayload, tabId: number): void => {
         this.assessmentActions.resetAllAssessmentsData.invoke(tabId);
-    };
-
-    private onUpdateInstanceVisibility = (payload: UpdateVisibilityPayload): void => {
-        this.assessmentActions.updateInstanceVisibility.invoke(payload);
     };
 
     private onAssessmentScanCompleted = (payload: ScanCompletedPayload<any>, tabId: number): void => {
