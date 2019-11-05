@@ -1,5 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`ScreenshotView renders when passed a null value for screenshotData 1`] = `
+<div>
+  Screenshot for scan is unavailable
+</div>
+`;
+
 exports[`ScreenshotView renders when passed a value for screenshotData 1`] = `
 <div>
   <h1
