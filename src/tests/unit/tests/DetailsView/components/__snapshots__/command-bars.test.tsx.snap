@@ -1,15 +1,32 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`getBasicCommandBar should return command bar with renderExportAndStartOver as false 1`] = `
+exports[`getCommandBarWithExportAndStartOver should return command bar with renderExportAndStartOver as true 1`] = `
 <DetailsViewCommandBar
   assessmentsProvider={null}
+  renderExportAndStartOver={true}
+/>
+`;
+
+exports[`getCommandBarWithOptionalExportAndStartOver universalCardsUI disabled should return command bar with renderExportAndStartOver as false 1`] = `
+<DetailsViewCommandBar
+  assessmentsProvider={null}
+  featureFlagStoreData={
+    Object {
+      "universalCardsUI": false,
+    }
+  }
   renderExportAndStartOver={false}
 />
 `;
 
-exports[`getCommandBarWithExportAndStartOver should return command bar with renderExportAndStartOver as true 1`] = `
+exports[`getCommandBarWithOptionalExportAndStartOver universalCardsUI enabled should return command bar with renderExportAndStartOver as true 1`] = `
 <DetailsViewCommandBar
   assessmentsProvider={null}
+  featureFlagStoreData={
+    Object {
+      "universalCardsUI": true,
+    }
+  }
   renderExportAndStartOver={true}
 />
 `;

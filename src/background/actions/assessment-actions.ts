@@ -14,7 +14,6 @@ import {
     SelectRequirementPayload,
     ToggleActionPayload,
     UpdateSelectedDetailsViewPayload,
-    UpdateVisibilityPayload,
 } from './action-payloads';
 
 export class AssessmentActions {
@@ -28,7 +27,6 @@ export class AssessmentActions {
     public readonly passUnmarkedInstance = new Action<ToggleActionPayload>();
     public readonly changeAssessmentVisualizationState = new Action<ChangeInstanceSelectionPayload>();
     public readonly changeAssessmentVisualizationStateForAll = new Action<ChangeInstanceSelectionPayload>();
-    public readonly updateInstanceVisibility = new Action<UpdateVisibilityPayload>();
     public readonly undoInstanceStatusChange = new Action<AssessmentActionInstancePayload>();
     public readonly undoRequirementStatusChange = new Action<ChangeRequirementStatusPayload>();
     public readonly getCurrentState = new Action<void>();

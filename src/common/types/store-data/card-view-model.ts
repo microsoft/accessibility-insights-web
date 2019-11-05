@@ -17,6 +17,13 @@ export interface CardRuleResult {
 export type CardRuleResultsByStatus = {
     [key in CardRuleResultStatus]: CardRuleResult[];
 };
+
+export type CardsViewModel = {
+    cards: CardRuleResultsByStatus;
+    visualHelperEnabled: boolean;
+    allCardsCollapsed: boolean;
+};
+
 export interface CardResult extends UnifiedResult {
     isSelected: boolean;
     highlightStatus: HighlightState;

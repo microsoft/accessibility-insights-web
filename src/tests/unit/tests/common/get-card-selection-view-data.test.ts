@@ -25,6 +25,7 @@ describe('getCardSelectionStoreviewData', () => {
                     },
                 },
             },
+            visualHelperEnabled: false,
         };
 
         initialState = cloneDeep(defaultState);

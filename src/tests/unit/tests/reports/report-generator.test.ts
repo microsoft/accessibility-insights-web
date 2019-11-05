@@ -18,7 +18,7 @@ describe('ReportGenerator', () => {
     const title = 'title';
     const url = 'http://url/';
     const description = 'description';
-    const ruleResultsByStatusStub = exampleUnifiedStatusResults;
+    const cardsViewDataStub = { cards: exampleUnifiedStatusResults, visualHelperEnabled: true, allCardsCollapsed: true };
 
     let dataBuilderMock: IMock<ReportHtmlGenerator>;
     let nameBuilderMock: IMock<ReportNameGenerator>;
@@ -39,13 +39,13 @@ describe('ReportGenerator', () => {
                     It.isValue(title),
                     It.isValue(url),
                     It.isValue(description),
-                    It.isValue(ruleResultsByStatusStub),
+                    It.isValue(cardsViewDataStub),
                 ),
             )
             .returns(() => 'returned-data');
 
         const testObject = new ReportGenerator(nameBuilderMock.object, dataBuilderMock.object, assessmentReportHtmlGeneratorMock.object);
-        const actual = testObject.generateFastPassAutomateChecksReport(scanResult, date, title, url, ruleResultsByStatusStub, description);
+        const actual = testObject.generateFastPassAutomateChecksReport(scanResult, date, title, url, cardsViewDataStub, description);
 
         expect(actual).toMatchSnapshot();
     });

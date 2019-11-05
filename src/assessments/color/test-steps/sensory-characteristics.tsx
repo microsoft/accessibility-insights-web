@@ -43,5 +43,4 @@ export const SensoryCharacteristics: Requirement = {
     isManual: true,
     ...content,
     guidanceLinks: [link.WCAG_1_3_3],
-    updateVisibility: false,
 };
