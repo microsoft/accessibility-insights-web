@@ -31,7 +31,6 @@ describe('ReportExportComponentPropsFactory', () => {
     let tabStoreData: TabStoreData;
     let assessmentStoreData: AssessmentStoreData;
     let reportGeneratorMock: IMock<ReportGenerator>;
-    let renderStartOver: boolean;
     let visualizationScanResultData: VisualizationScanResultData;
     let cardsViewData: CardsViewModel;
     let scanResult: ScanResults;
@@ -43,7 +42,6 @@ describe('ReportExportComponentPropsFactory', () => {
             title: thePageTitle,
             url: thePageUrl,
         } as TabStoreData;
-        renderStartOver = true;
         assessmentStoreData = {
             resultDescription: theDescription,
         } as AssessmentStoreData;
@@ -73,7 +71,6 @@ describe('ReportExportComponentPropsFactory', () => {
             actionMessageCreator: actionMessageCreatorMock.object,
             assessmentsProvider: assessmentsProviderMock.object,
             tabStoreData,
-            renderStartOver,
             assessmentStoreData,
             visualizationScanResultData,
             cardsViewData,
