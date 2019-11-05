@@ -7,21 +7,20 @@ import { ScanResults } from './scan-results';
 export type ConvertScanResultsToPlatformDataDelegate = (scanResults: ScanResults) => PlatformData;
 
 export function convertScanResultsToPlatformData(scanResults: ScanResults): PlatformData | null {
-    const axeDevice = scanResults?.axeDevice;
-    if (axeDevice == null) {
+    if (scanResults == null || scanResults.axeDevice == null) {
         return null;
     }
 
     return {
-        deviceName: axeDevice.name,
+        deviceName: scanResults.axeDevice.name,
         osInfo: {
             name: 'Android',
-            version: axeDevice.osVersion,
+            version: scanResults.axeDevice.osVersion,
         },
         viewPortInfo: {
-            width: axeDevice.screenWidth,
-            height: axeDevice.screenHeight,
-            dpi: axeDevice.dpi,
+            width: scanResults.axeDevice.screenWidth,
+            height: scanResults.axeDevice.screenHeight,
+            dpi: scanResults.axeDevice.dpi,
         },
     };
 }
