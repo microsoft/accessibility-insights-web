@@ -7,7 +7,7 @@ import { VisualizationToggle } from 'common/components/visualization-toggle';
 import { VisualizationConfiguration } from 'common/configs/visualization-configuration';
 import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
 import { FeatureFlags } from 'common/feature-flags';
-import { CardRuleResultsByStatus } from 'common/types/store-data/card-view-model';
+import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { TargetAppData } from 'common/types/store-data/unified-data-interface';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
@@ -50,8 +50,8 @@ export interface IssuesTableProps {
     featureFlags: FeatureFlagStoreData;
     scanResult: ScanResults;
     userConfigurationStoreData: UserConfigurationStoreData;
-    ruleResultsByStatus: CardRuleResultsByStatus;
     targetAppInfo: TargetAppData;
+    cardsViewData: CardsViewModel;
 }
 
 export class IssuesTable extends React.Component<IssuesTableProps> {
@@ -127,7 +127,7 @@ export class IssuesTable extends React.Component<IssuesTableProps> {
                         scanDate,
                         pageTitle,
                         pageUrl,
-                        this.props.ruleResultsByStatus,
+                        this.props.cardsViewData,
                     )}
                     updatePersistedDescription={this.nullUpdatePersistedDescription}
                     getExportDescription={this.getEmptyExportDescription}
@@ -157,7 +157,7 @@ export class IssuesTable extends React.Component<IssuesTableProps> {
                 enableJSXElement={
                     <CardsView
                         deps={this.props.deps}
-                        ruleResultsByStatus={this.props.ruleResultsByStatus}
+                        cardsViewData={this.props.cardsViewData}
                         userConfigurationStoreData={this.props.userConfigurationStoreData}
                         targetAppInfo={this.props.targetAppInfo}
                     />

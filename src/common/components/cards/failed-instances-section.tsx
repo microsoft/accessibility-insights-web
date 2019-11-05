@@ -4,14 +4,14 @@ import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
 
 import { TargetAppData } from '../../../common/types/store-data/unified-data-interface';
-import { CardRuleResultsByStatus } from '../../types/store-data/card-view-model';
+import { CardsViewModel } from '../../types/store-data/card-view-model';
 import { UserConfigurationStoreData } from '../../types/store-data/user-configuration-store';
 import { ResultSection, ResultSectionDeps } from './result-section';
 
 export type FailedInstancesSectionDeps = ResultSectionDeps;
 export type FailedInstancesSectionProps = {
     deps: FailedInstancesSectionDeps;
-    ruleResultsByStatus: CardRuleResultsByStatus;
+    cardsViewData: CardsViewModel;
     userConfigurationStoreData: UserConfigurationStoreData;
     targetAppInfo: TargetAppData;
     shouldAlertFailuresCount?: boolean;
@@ -19,12 +19,12 @@ export type FailedInstancesSectionProps = {
 
 export const FailedInstancesSection = NamedFC<FailedInstancesSectionProps>(
     'FailedInstancesSection',
-    ({ ruleResultsByStatus, deps, userConfigurationStoreData, targetAppInfo, shouldAlertFailuresCount }) => {
-        if (ruleResultsByStatus == null) {
+    ({ cardsViewData, deps, userConfigurationStoreData, targetAppInfo, shouldAlertFailuresCount }) => {
+        if (cardsViewData.cards == null) {
             return null;
         }
 
-        const count = ruleResultsByStatus.fail.reduce((total, rule) => {
+        const count = cardsViewData.cards.fail.reduce((total, rule) => {
             return total + rule.nodes.length;
         }, 0);
 
@@ -32,13 +32,15 @@ export const FailedInstancesSection = NamedFC<FailedInstancesSectionProps>(
             <ResultSection
                 deps={deps}
                 title="Failed instances"
-                results={ruleResultsByStatus.fail}
+                results={cardsViewData.cards.fail}
                 containerClassName={null}
                 outcomeType="fail"
                 badgeCount={count}
                 userConfigurationStoreData={userConfigurationStoreData}
                 targetAppInfo={targetAppInfo}
                 shouldAlertFailuresCount={shouldAlertFailuresCount}
+                visualHelperEnabled={cardsViewData.visualHelperEnabled}
+                allCardsCollapsed={cardsViewData.allCardsCollapsed}
             />
         );
     },

@@ -2,9 +2,9 @@
 // Licensed under the MIT License.
 import { ScanningSpinner } from 'common/components/scanning-spinner/scanning-spinner';
 import { GetCardSelectionViewData } from 'common/get-card-selection-view-data';
-import { GetUnifiedRuleResultsDelegate } from 'common/rule-based-view-model-provider';
+import { GetCardViewData } from 'common/rule-based-view-model-provider';
 import { CardSelectionStoreData } from 'common/types/store-data/card-selection-store-data';
-import { CardRuleResultsByStatus } from 'common/types/store-data/card-view-model';
+import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { UnifiedScanResultStoreData } from 'common/types/store-data/unified-data-interface';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import { CardsView, CardsViewDeps } from 'DetailsView/components/cards-view';
@@ -31,7 +31,7 @@ export type AutomatedChecksViewDeps = CommandBarDeps &
     CardsViewDeps & {
         scanActionCreator: ScanActionCreator;
         windowStateActionCreator: WindowStateActionCreator;
-        getUnifiedRuleResultsDelegate: GetUnifiedRuleResultsDelegate;
+        getCardsViewData: GetCardViewData;
         getCardSelectionViewData: GetCardSelectionViewData;
         screenshotViewModelProvider: ScreenshotViewModelProvider;
     };
@@ -59,13 +59,13 @@ export class AutomatedChecksView extends React.Component<AutomatedChecksViewProp
             const { unifiedScanResultStoreData, cardSelectionStoreData, deps } = this.props;
             const { rules, results } = unifiedScanResultStoreData;
             const cardSelectionViewData = deps.getCardSelectionViewData(cardSelectionStoreData);
-            const ruleResultsByStatus = deps.getUnifiedRuleResultsDelegate(rules, results, cardSelectionViewData);
+            const cardsViewData = deps.getCardsViewData(rules, results, cardSelectionViewData);
             const screenshotViewModel = deps.screenshotViewModelProvider(
                 unifiedScanResultStoreData,
                 cardSelectionViewData.highlightedResultUids,
             );
 
-            return this.renderLayout(this.renderResults(ruleResultsByStatus), this.renderScreenshotSidePanel(screenshotViewModel));
+            return this.renderLayout(this.renderResults(cardsViewData), this.renderScreenshotSidePanel(screenshotViewModel));
         } else {
             return this.renderLayout(this.renderScanningSpinner());
         }
@@ -121,13 +121,13 @@ export class AutomatedChecksView extends React.Component<AutomatedChecksViewProp
         );
     }
 
-    private renderResults(ruleResultsByStatus: CardRuleResultsByStatus): JSX.Element {
+    private renderResults(cardsViewData: CardsViewModel): JSX.Element {
         return (
             <CardsView
                 deps={this.props.deps}
                 targetAppInfo={this.props.unifiedScanResultStoreData.targetAppInfo}
-                ruleResultsByStatus={ruleResultsByStatus}
                 userConfigurationStoreData={this.props.userConfigurationStoreData}
+                cardsViewData={cardsViewData}
             />
         );
     }

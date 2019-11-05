@@ -58,7 +58,7 @@ import { StoreActionMessageCreatorFactory } from '../common/message-creators/sto
 import { UserConfigMessageCreator } from '../common/message-creators/user-config-message-creator';
 import { VisualizationActionMessageCreator } from '../common/message-creators/visualization-action-message-creator';
 import { NavigatorUtils } from '../common/navigator-utils';
-import { getUnifiedRuleResults } from '../common/rule-based-view-model-provider';
+import { getCardViewData } from '../common/rule-based-view-model-provider';
 import { AutoChecker } from '../common/self-validator';
 import { StoreProxy } from '../common/store-proxy';
 import { BaseClientStoresHub } from '../common/stores/base-client-stores-hub';
@@ -328,7 +328,7 @@ if (isNaN(tabId) === false) {
                 issueFilingServiceProvider: IssueFilingServiceProviderImpl,
                 getGuidanceTagsFromGuidanceLinks: GetGuidanceTagsFromGuidanceLinks,
                 reportGenerator,
-                getUnifiedRuleResults,
+                getCardViewData: getCardViewData,
                 getPropertyConfigById: getPropertyConfiguration,
                 collapsibleControl: CardsCollapsibleControl,
                 cardInteractionSupport: allCardInteractionsSupported,
