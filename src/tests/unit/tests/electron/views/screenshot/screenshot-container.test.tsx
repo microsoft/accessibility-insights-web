@@ -52,8 +52,30 @@ describe('ScreenshotContainer', () => {
             expect(wrapper.getElement()).toMatchSnapshot();
         });
     });
-    describe('renders highlight boxes', () => {
-        it('when passed values for boundingRectangles array', () => {
+
+    describe('highlight boxes', () => {
+        it('do not render when boundingRectangles array is empty', () => {
+            const props: ScreenshotContainerProps = {
+                screenshotData: basicScreenshotData,
+                highlightBoxes: [],
+            };
+
+            const wrapper = shallow(<ScreenshotContainer {...props} />);
+
+            expect(wrapper.getElement()).toMatchSnapshot();
+        });
+
+        it('do not render when boundingRectangles array is not in props', () => {
+            const props: ScreenshotContainerProps = {
+                screenshotData: basicScreenshotData,
+            };
+
+            const wrapper = shallow(<ScreenshotContainer {...props} />);
+
+            expect(wrapper.getElement()).toMatchSnapshot();
+        });
+
+        it('render when passed values for boundingRectangles array', () => {
             const props: ScreenshotContainerProps = {
                 screenshotData: basicScreenshotData,
                 highlightBoxes: boundingRectangles,

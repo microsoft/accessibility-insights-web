@@ -17,7 +17,7 @@ exports[`ScreenshotView renders when passed a value for screenshotData 1`] = `
 </div>
 `;
 
-exports[`ScreenshotView renders when passed an empty value for screenshotData 1`] = `
+exports[`ScreenshotView renders when passed empty screenshotData {} 1`] = `
 <div>
   <h1
     tabIndex={0}
@@ -30,7 +30,7 @@ exports[`ScreenshotView renders when passed an empty value for screenshotData 1`
 </div>
 `;
 
-exports[`ScreenshotView renders when passed an null value for screenshotData 1`] = `
+exports[`ScreenshotView renders when passed empty screenshotData null 1`] = `
 <div>
   <h1
     tabIndex={0}
@@ -43,7 +43,7 @@ exports[`ScreenshotView renders when passed an null value for screenshotData 1`]
 </div>
 `;
 
-exports[`ScreenshotView renders when passed an undefined value for screenshotData 1`] = `
+exports[`ScreenshotView renders when passed empty screenshotData undefined 1`] = `
 <div>
   <h1
     tabIndex={0}
