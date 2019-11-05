@@ -127,7 +127,7 @@ export class IssuesTable extends React.Component<IssuesTableProps> {
                         scanDate,
                         pageTitle,
                         pageUrl,
-                        this.props.cardsViewData.cards,
+                        this.props.cardsViewData,
                     )}
                     updatePersistedDescription={this.nullUpdatePersistedDescription}
                     getExportDescription={this.getEmptyExportDescription}

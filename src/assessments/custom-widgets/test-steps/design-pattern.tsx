@@ -91,6 +91,5 @@ export const DesignPattern: Requirement = {
             }),
         ),
     getDrawer: provider => provider.createCustomWidgetsDrawer(),
-    updateVisibility: false,
     getVisualHelperToggle: props => <AssessmentVisualizationEnabledToggle {...props} />,
 };

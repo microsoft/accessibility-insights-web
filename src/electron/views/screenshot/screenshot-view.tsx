@@ -2,8 +2,9 @@
 // Licensed under the MIT License.
 import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
+import { ScreenshotViewModel } from './screenshot-view-model';
 
-export type ScreenshotViewProps = {};
+export type ScreenshotViewProps = { viewModel: ScreenshotViewModel };
 export const ScreenshotView = NamedFC<ScreenshotViewProps>('ScreenshotView', props => {
     return (
         <div>

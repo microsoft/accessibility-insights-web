@@ -83,6 +83,5 @@ export const Autocomplete: Requirement = {
             }),
         ),
     getDrawer: provider => provider.createHighlightBoxDrawer(),
-    updateVisibility: true,
     getVisualHelperToggle: props => <AssessmentVisualizationEnabledToggle {...props} />,
 };

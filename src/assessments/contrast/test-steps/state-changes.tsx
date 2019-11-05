@@ -96,6 +96,5 @@ export const StateChanges: Requirement = {
             }),
         ),
     getDrawer: provider => provider.createNonTextComponentDrawer(),
-    updateVisibility: false,
     getVisualHelperToggle: props => <AssessmentVisualizationEnabledToggle {...props} />,
 };

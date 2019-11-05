@@ -54,7 +54,6 @@ export const UseOfColor: Requirement = {
                 testType: VisualizationType.ColorSensoryAssessment,
             }),
         ),
-    updateVisibility: false,
     getVisualHelperToggle: props => <AssessmentVisualizationEnabledToggle {...props} />,
     getDrawer: provider => provider.createSingleTargetDrawer('insights-grey-scale-container'),
 };

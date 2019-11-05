@@ -47,13 +47,11 @@ describe('AssessmentBuilderTest', () => {
             guidanceLinks: [],
             name: 'requirement name',
             generateInstanceIdentifier: getInstanceIdentifierMock.object,
-            updateVisibility: false,
         };
 
         const requirement2: Requirement = _.cloneDeep(requirement);
         requirement2.key = 'requirement2';
         requirement2.generateInstanceIdentifier = null;
-        requirement2.updateVisibility = null;
 
         const baseAssessment: ManualAssessment = {
             key: 'manualAssessmentKey',
@@ -119,9 +117,6 @@ describe('AssessmentBuilderTest', () => {
         ).toEqual(requirement2.renderReportDescription());
         expect(config.getInstanceIdentiferGenerator(requirement2.key)).toEqual(InstanceIdentifierGenerator.defaultHtmlSelectorIdentifier);
         expect(config.getInstanceIdentiferGenerator('non existent key')).toEqual(InstanceIdentifierGenerator.defaultHtmlSelectorIdentifier);
-        expect(config.getUpdateVisibility(selectedRequirementKey)).toBe(false);
-        expect(config.getUpdateVisibility(requirement2.key)).toBe(true);
-        expect(config.getUpdateVisibility('non existent key')).toBe(true);
         expect(config.getTestView(testViewPropsStub)).toEqual(expectedTestView);
 
         validateInstanceTableSettings(requirement);
@@ -172,7 +167,6 @@ describe('AssessmentBuilderTest', () => {
             generateInstanceIdentifier: getInstanceIdentifierMock.object,
             getDrawer: getDrawerMock.object,
             switchToTargetTabOnScan: true,
-            updateVisibility: false,
         };
         const scannerStub = {
             getAllCompletedInstances: {},
@@ -195,7 +189,6 @@ describe('AssessmentBuilderTest', () => {
         requirement5.getDrawer = null;
         requirement5.switchToTargetTabOnScan = null;
         requirement5.generateInstanceIdentifier = null;
-        requirement5.updateVisibility = null;
         requirement5.isManual = false;
         const requirement6: Requirement = _.cloneDeep(requirement1);
         requirement6.key = 'requirement6';
@@ -285,9 +278,6 @@ describe('AssessmentBuilderTest', () => {
         );
         expect(config.getInstanceIdentiferGenerator(requirement5.key)).toEqual(InstanceIdentifierGenerator.defaultHtmlSelectorIdentifier);
         expect(config.getInstanceIdentiferGenerator('non existent key')).toEqual(InstanceIdentifierGenerator.defaultHtmlSelectorIdentifier);
-        expect(config.getUpdateVisibility(selectedRequirementKey)).toBe(false);
-        expect(config.getUpdateVisibility(requirement5.key)).toBe(true);
-        expect(config.getUpdateVisibility('non existent key')).toBe(true);
         expect(config.getTestView(testViewPropsStub)).toEqual(expectedTestView);
 
         validateInstanceTableSettings(requirement1);
