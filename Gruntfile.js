@@ -157,11 +157,9 @@ module.exports = function(grunt) {
     targetNames.forEach(targetName => {
         const { config, bundleFolder } = targets[targetName];
 
-        const { options } = config;
-        const { productCategory } = options;
+        const { productCategory } = config.options;
 
         const dropPath = path.join(`drop/${productCategory}`, targetName);
-
         const dropExtensionPath = path.join(dropPath, 'product');
 
         grunt.config.merge({
