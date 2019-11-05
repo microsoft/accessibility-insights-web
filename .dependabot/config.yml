@@ -31,3 +31,8 @@ update_configs:
           # on false positives and breaking ai-web, so avoiding
           # dependabot auto-update for them like other deps.
           dependency_name: "axe-core"
+      - match:
+          # All electron builds are going to be manually updated
+          # since we use internal microsoft electron distributable
+          # doesn't make any sense to update this from dependabot
+          dependency_name: "electron"
