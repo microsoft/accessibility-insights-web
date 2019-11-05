@@ -25,8 +25,24 @@ export interface BoundingRectangle {
     top: number;
 }
 
+export interface AxeDeviceInfo {
+    dpi: number;
+    name: string;
+    osVersion: string;
+    screenHeight: number;
+    screenWidth: number;
+}
+
 export class ScanResults {
     constructor(readonly rawData: any) {}
+
+    public get axeDevice(): AxeDeviceInfo {
+        try {
+            return this.rawData.axeContext.axeDevice;
+        } catch {
+            return null;
+        }
+    }
 
     public get deviceName(): string {
         try {
@@ -75,5 +91,5 @@ export class ScanResults {
         } catch {
             return null;
         }
-    }
+    },
 }

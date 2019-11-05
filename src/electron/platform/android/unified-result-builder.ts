@@ -14,12 +14,17 @@ import {
     convertScanResultsToUnifiedRules,
     ConvertScanResultsToUnifiedRulesDelegate,
 } from 'electron/platform/android/scan-results-to-unified-rules';
+import {
+    convertScanResultsToPlatformData,
+    ConvertScanResultsToPlatformDataDelegate,
+} from 'electron/platform/android/scan-results-to-platform-data';
 
 export type UnifiedScanCompletedPayloadBuilder = (scanResults: ScanResults) => UnifiedScanCompletedPayload;
 
 export const createBuilder = (
     getUnifiedResults: ConvertScanResultsToUnifiedResultsDelegate,
     getUnifiedRules: ConvertScanResultsToUnifiedRulesDelegate,
+    getPlatformData: ConvertScanResultsToPlatformDataDelegate,
     ruleInformationProvider: RuleInformationProviderType,
     uuidGenerator: UUIDGeneratorType,
     getToolData: ToolDataDelegate,
@@ -27,6 +32,7 @@ export const createBuilder = (
     const payload: UnifiedScanCompletedPayload = {
         scanResult: getUnifiedResults(scanResults, ruleInformationProvider, uuidGenerator),
         rules: getUnifiedRules(scanResults, ruleInformationProvider, uuidGenerator),
+        platformInfo: getPlatformData(scanResults),
         toolInfo: getToolData(scanResults),
         targetAppInfo: {
             name: scanResults.appIdentifier,
@@ -40,6 +46,7 @@ export const createDefaultBuilder = (getToolData: ToolDataDelegate) => {
     return createBuilder(
         convertScanResultsToUnifiedResults,
         convertScanResultsToUnifiedRules,
+        convertScanResultsToPlatformData,
         new RuleInformationProvider(),
         generateUID,
         getToolData,

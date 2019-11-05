@@ -23,6 +23,7 @@ export interface OSProperties {
 export interface ViewPortProperties {
     height?: number;
     width?: number;
+    dpi?: number;
 }
 
 export interface PlatformData {
