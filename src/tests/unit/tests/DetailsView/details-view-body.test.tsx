@@ -106,7 +106,7 @@ describe('DetailsViewBody', () => {
                 },
                 rightPanelConfiguration: rightPanelConfig,
                 switcherNavConfiguration: switcherNavConfig,
-                ruleResultsByStatus: exampleUnifiedStatusResults,
+                cardsViewData: { cards: exampleUnifiedStatusResults, visualHelperEnabled: true, allCardsCollapsed: true },
             } as DetailsViewBodyProps;
         });
 

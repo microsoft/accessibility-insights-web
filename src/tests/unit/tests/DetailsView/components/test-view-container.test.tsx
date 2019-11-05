@@ -25,7 +25,7 @@ describe('TestViewContainerTest', () => {
             },
             selectedTest: -1,
             visualizationConfigurationFactory: configFactoryMock.object,
-            ruleResultsByStatus: exampleUnifiedStatusResults,
+            cardsViewData: { cards: exampleUnifiedStatusResults, visualHelperEnabled: true, allCardsCollapsed: true },
         } as TestViewContainerProps;
 
         const expectedProps = {

@@ -57,7 +57,6 @@ const commonEntryFiles = {
 const electronEntryFiles = {
     renderer: [path.resolve(__dirname, 'src/electron/views/renderer-initializer.ts')],
     main: [path.resolve(__dirname, 'src/electron/main/main.ts')],
-    injected: [path.resolve(__dirname, 'src/injected/stylesheet-init.ts'), path.resolve(__dirname, 'src/injected/client-init.ts')],
 };
 
 const commonConfig = {

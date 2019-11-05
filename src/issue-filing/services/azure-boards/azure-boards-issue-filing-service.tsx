@@ -5,7 +5,7 @@ import { IDropdownOption } from 'office-ui-fabric-react/lib/Dropdown';
 
 import { createFileIssueHandler } from '../../common/create-file-issue-handler';
 import { createSettingsGetter } from '../../common/create-settings-getter';
-import { IssueFilingService } from '../../types/issue-filing-service';
+import { IssueFilingServiceWithSettings } from '../../types/issue-filing-service';
 import { AzureBoardsIssueDetailField, AzureBoardsIssueFilingSettings } from './azure-boards-issue-filing-settings';
 import { AzureBoardsSettingsForm } from './azure-boards-settings-form';
 import { azureBoardsIssueFilingUrlProvider } from './create-azure-boards-issue-filing-url';
@@ -33,7 +33,7 @@ function isStringValid(stringToCheck: string): boolean {
 
 const settingsGetter = createSettingsGetter<AzureBoardsIssueFilingSettings>(AzureBoardsIssueFilingServiceKey);
 
-export const AzureBoardsIssueFilingService: IssueFilingService<AzureBoardsIssueFilingSettings> = {
+export const AzureBoardsIssueFilingService: IssueFilingServiceWithSettings<AzureBoardsIssueFilingSettings> = {
     key: AzureBoardsIssueFilingServiceKey,
     displayName: 'Azure Boards',
     settingsForm: AzureBoardsSettingsForm,
