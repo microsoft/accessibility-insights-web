@@ -23,6 +23,11 @@ export const ScreenshotView = NamedFC<ScreenshotViewProps>('ScreenshotView', (pr
         <div>
             <h1 tabIndex={0}>Target Page Screenshot</h1>
             <Screenshot encodedImage={props.viewModel.screenshotData.base64PngData} altText={screenshotAltText} />
+            {renderDeviceNameCaption(props.viewModel.deviceName)}
         </div>
     );
 });
+
+function renderDeviceNameCaption(deviceName?: string): JSX.Element {
+    return deviceName == null ? null : <caption>{deviceName}</caption>;
+}
