@@ -8,13 +8,6 @@ import { ReportExportComponentProps } from 'DetailsView/components/report-export
 export function getReportExportComponentPropsForAssessment(props: CommandBarProps): ReportExportComponentProps {
     const { deps, assessmentStoreData, assessmentsProvider, featureFlagStoreData, tabStoreData } = props;
     const reportGenerator = deps.reportGenerator;
-    const htmlGenerator = reportGenerator.generateAssessmentReport.bind(
-        reportGenerator,
-        assessmentStoreData,
-        assessmentsProvider,
-        featureFlagStoreData,
-        tabStoreData,
-    );
 
     return {
         deps: deps,
@@ -22,7 +15,14 @@ export function getReportExportComponentPropsForAssessment(props: CommandBarProp
         reportGenerator: reportGenerator,
         pageTitle: tabStoreData.title,
         scanDate: deps.getCurrentDate(),
-        htmlGenerator: htmlGenerator,
+        htmlGenerator: description =>
+            reportGenerator.generateAssessmentReport(
+                assessmentStoreData,
+                assessmentsProvider,
+                featureFlagStoreData,
+                tabStoreData,
+                description,
+            ),
         updatePersistedDescription: value => props.actionMessageCreator.addResultDescription(value),
         getExportDescription: () => props.assessmentStoreData.resultDescription,
     };
@@ -45,14 +45,15 @@ export function getReportExportComponentPropsForAutomatedChecks(props: CommandBa
                 reportGenerator: reportGenerator,
                 pageTitle: tabStoreData.title,
                 exportResultsType: 'AutomatedChecks',
-                htmlGenerator: reportGenerator.generateFastPassAutomateChecksReport.bind(
-                    reportGenerator,
-                    scanResult,
-                    scanDate,
-                    tabStoreData.title,
-                    tabStoreData.url,
-                    props.cardsViewData,
-                ),
+                htmlGenerator: description =>
+                    reportGenerator.generateFastPassAutomateChecksReport(
+                        scanResult,
+                        scanDate,
+                        tabStoreData.title,
+                        tabStoreData.url,
+                        props.cardsViewData,
+                        description,
+                    ),
                 updatePersistedDescription: () => null,
                 getExportDescription: () => '',
             };
