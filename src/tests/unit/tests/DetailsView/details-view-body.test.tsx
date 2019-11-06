@@ -40,6 +40,7 @@ describe('DetailsViewBody', () => {
     let props: DetailsViewBodyProps;
     let rightPanelConfig: DetailsRightPanelConfiguration;
     let switcherNavConfig: DetailsViewSwitcherNavConfiguration;
+    let reportExportComponentProps: ReportExportComponentProps;
 
     describe('render', () => {
         beforeEach(() => {
@@ -47,11 +48,13 @@ describe('DetailsViewBody', () => {
             const RightPanelStub: Readonly<ReactFCWithDisplayName<DetailsViewBodyProps>> = NamedFC<DetailsViewBodyProps>('test', _ => null);
             const CommandBarStub: Readonly<ReactFCWithDisplayName<DetailsViewBodyProps>> = NamedFC<DetailsViewBodyProps>('test', _ => null);
             const LeftNavStub: Readonly<ReactFCWithDisplayName<DetailsViewBodyProps>> = NamedFC<DetailsViewBodyProps>('test', _ => null);
+            reportExportComponentProps = {} as ReportExportComponentProps;
             rightPanelConfig = {
                 RightPanel: RightPanelStub,
             } as DetailsRightPanelConfiguration;
             switcherNavConfig = {
                 CommandBar: CommandBarStub,
+                ReportExportComponentPropertyFactory: props => reportExportComponentProps,
                 LeftNav: LeftNavStub,
             } as DetailsViewSwitcherNavConfiguration;
             configFactoryMock = Mock.ofType(VisualizationConfigurationFactory, MockBehavior.Strict);
@@ -131,7 +134,8 @@ describe('DetailsViewBody', () => {
             );
 
             const testSubject = new DetailsViewBody(props);
-            expect(testSubject.render()).toEqual(expected);
+            const actual = testSubject.render();
+            expect(actual).toEqual(expected);
         });
     });
 
@@ -173,7 +177,6 @@ describe('DetailsViewBody', () => {
     }
 
     function buildCommandBar(givenProps: DetailsViewBodyProps): JSX.Element {
-        const reportExportComponentProps = {} as ReportExportComponentProps;
         return (
             <switcherNavConfig.CommandBar
                 actionMessageCreator={props.deps.detailsViewActionMessageCreator}
