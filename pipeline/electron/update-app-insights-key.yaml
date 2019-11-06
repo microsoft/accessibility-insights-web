@@ -3,7 +3,7 @@
 steps:
     - task: Grunt@0
       inputs:
-          gruntFile: '$(System.DefaultWorkingDirectory)/$(Release.PrimaryArtifactSourceAlias)/drop/electron/$(target)/Gruntfile.js'
+          gruntFile: '$(System.DefaultWorkingDirectory)/drop/electron/$(target)/Gruntfile.js'
           targets: 'update-config'
           arguments: '--product-version=$(product-version) --app-insights-instrumentation-key=$(app-insights-instrumentation-key)'
           gruntCli: 'node_modules/grunt-cli/bin/grunt'
