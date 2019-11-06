@@ -7,7 +7,7 @@ jobs:
           vmImage: 'windows-latest'
 
       steps:
-          - script: 'rmdir /s /q %LOCALAPPDATA%\electron\Cache'
+          - script: 'rmdir /s /q ~/AppData/Local/electron/Cache/'
             displayName: 'delete electron binary from cache'
             continueOnError: true
 
