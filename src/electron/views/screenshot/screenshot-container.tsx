@@ -33,11 +33,11 @@ function renderHighlightBoxes(highlightBoxRectangles: BoundingRectangle[]): JSX.
     }
 
     const renderedBoxes: JSX.Element[] = [];
-    let keyId = 1;
 
-    highlightBoxRectangles.forEach(instance => {
-        renderedBoxes.push(<HighlightBox key={keyId} boundingRectangle={instance} />);
-        keyId++;
+    // When making the highlight boxes interactive, it would be better to use the result uid as the key, so
+    // the mapping between results and highlight boxes is maintained if boxes are added/removed from the list.
+    highlightBoxRectangles.forEach((rectangle, index) => {
+        renderedBoxes.push(<HighlightBox key={index} boundingRectangle={rectangle} />);
     });
 
     return renderedBoxes;
