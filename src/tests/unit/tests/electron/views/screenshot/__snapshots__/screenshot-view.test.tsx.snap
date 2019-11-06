@@ -8,48 +8,12 @@ exports[`ScreenshotView renders when passed a value for screenshotData 1`] = `
     Target Page Screenshot
   </h1>
   <ScreenshotContainer
+    highlightBoxRectangles={Array []}
     screenshotData={
       Object {
         "base64PngData": "test-base-64-png-data",
       }
     }
   />
-</div>
-`;
-
-exports[`ScreenshotView renders when passed empty screenshotData {} 1`] = `
-<div>
-  <h1
-    tabIndex={0}
-  >
-    Target Page Screenshot
-  </h1>
-  <ScreenshotContainer
-    screenshotData={Object {}}
-  />
-</div>
-`;
-
-exports[`ScreenshotView renders when passed empty screenshotData null 1`] = `
-<div>
-  <h1
-    tabIndex={0}
-  >
-    Target Page Screenshot
-  </h1>
-  <ScreenshotContainer
-    screenshotData={null}
-  />
-</div>
-`;
-
-exports[`ScreenshotView renders when passed empty screenshotData undefined 1`] = `
-<div>
-  <h1
-    tabIndex={0}
-  >
-    Target Page Screenshot
-  </h1>
-  <ScreenshotContainer />
 </div>
 `;
