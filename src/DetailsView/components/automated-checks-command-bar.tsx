@@ -10,11 +10,13 @@ import { CommandBarProps, ReportExportComponentPropertyConverter } from './detai
 import { DetailsViewCommandBar } from './details-view-command-bar';
 
 export const AutomatedChecksCommandBar = NamedFC<CommandBarProps>('AutomatedChecksCommandBar', props => {
-    let converter: ReportExportComponentPropertyConverter = props.reportExportComponentPropertyFactory;
-    if (converter === null) {
-        converter = getReportExportComponentPropsForAutomatedChecks;
+    const converter: ReportExportComponentPropertyConverter = props.reportExportComponentPropertyFactory;
+    let reportExportComponentProps: ReportExportComponentProps;
+    if (converter) {
+        reportExportComponentProps = converter(props);
+    } else {
+        reportExportComponentProps = getReportExportComponentPropsForAutomatedChecks(props);
     }
-    const reportExportComponentProps: ReportExportComponentProps = converter(props);
 
     return (
         <DetailsViewCommandBar

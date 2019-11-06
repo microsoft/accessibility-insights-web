@@ -9,11 +9,13 @@ import { CommandBarProps, ReportExportComponentPropertyConverter } from './detai
 import { DetailsViewCommandBar } from './details-view-command-bar';
 
 export const AssessmentCommandBar = NamedFC<CommandBarProps>('AssessmentCommandBar', props => {
-    let converter: ReportExportComponentPropertyConverter = props.reportExportComponentPropertyFactory;
-    if (converter === null) {
-        converter = getReportExportComponentPropsForAssessment;
+    const converter: ReportExportComponentPropertyConverter = props.reportExportComponentPropertyFactory;
+    let reportExportComponentProps: ReportExportComponentProps;
+    if (converter) {
+        reportExportComponentProps = converter(props);
+    } else {
+        reportExportComponentProps = getReportExportComponentPropsForAssessment(props);
     }
-    const reportExportComponentProps: ReportExportComponentProps = converter(props);
 
     return <DetailsViewCommandBar reportExportComponentProps={reportExportComponentProps} renderStartOver={true} {...props} />;
 });
