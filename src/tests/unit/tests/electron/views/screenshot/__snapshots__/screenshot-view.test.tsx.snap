@@ -1,11 +1,19 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ScreenshotView renders 1`] = `
+exports[`ScreenshotView renders when passed a value for screenshotData 1`] = `
 <div>
   <h1
     tabIndex={0}
   >
-    This is the screenshot view
+    Target Page Screenshot
   </h1>
+  <ScreenshotContainer
+    highlightBoxRectangles={Array []}
+    screenshotData={
+      Object {
+        "base64PngData": "test-base-64-png-data",
+      }
+    }
+  />
 </div>
 `;

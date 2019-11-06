@@ -27,7 +27,7 @@
             "port": 9230,
             "preLaunchTask": "",
             "urlFilter": "chrome-extension://*/DetailsView/*",
-            "webRoot": "${workspaceFolder}/drop/dev/extension",
+            "webRoot": "${workspaceFolder}/drop/extension/dev/product",
             "sourceMapPathOverrides": {
                 "webpack:///./*": "${workspaceFolder}/*"
             }
@@ -39,7 +39,7 @@
             "port": 9230,
             "preLaunchTask": "",
             "urlFilter": "*${input:partialUrlPrompt}*",
-            "webRoot": "${workspaceFolder}/drop/dev/extension",
+            "webRoot": "${workspaceFolder}/drop/extension/dev/product",
             "sourceMapPathOverrides": {
                 "webpack:///./*": "${workspaceFolder}/*"
             }
@@ -53,7 +53,7 @@
             "windows": {
                 "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/electron.cmd"
             },
-            "args": ["drop/electron/extension/bundle/main.bundle.js"],
+            "args": ["drop/electron/electron/product/bundle/main.bundle.js"],
             "outputCapture": "std"
         }
     ],

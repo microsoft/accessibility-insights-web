@@ -6,14 +6,16 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 
 describe('ScreenshotView', () => {
-    it('renders', () => {
-        const viewModel: ScreenshotViewModel = {
-            screenshotData: null,
-            highlightBoxRectangles: [],
-            deviceName: null,
-        };
-        const wrapper = shallow(<ScreenshotView viewModel={viewModel} />);
+    describe('renders', () => {
+        it('when passed a value for screenshotData', () => {
+            const viewModel: ScreenshotViewModel = {
+                screenshotData: { base64PngData: 'test-base-64-png-data' },
+                highlightBoxRectangles: [],
+                deviceName: null,
+            };
+            const wrapper = shallow(<ScreenshotView viewModel={viewModel} />);
 
-        expect(wrapper.getElement()).toMatchSnapshot();
+            expect(wrapper.getElement()).toMatchSnapshot();
+        });
     });
 });

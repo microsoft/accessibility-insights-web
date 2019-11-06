@@ -13,18 +13,25 @@ export type IssueFilingUrlProvider<Settings> = (
     environmentInfo: EnvironmentInfo,
 ) => string;
 
-export interface IssueFilingService<Settings = {}> {
+export interface IssueFilingService {
     key: string;
     isHidden?: boolean;
     displayName: string;
-    settingsForm: ReactFCWithDisplayName<SettingsFormProps<Settings>>;
-    buildStoreData: (...params: any[]) => Settings;
-    isSettingsValid: (data: Settings) => boolean;
-    getSettingsFromStoreData: (data: IssueFilingServicePropertiesMap) => Settings;
+    settingsForm: ReactFCWithDisplayName<SettingsFormProps<Object>>;
+    buildStoreData: (...params: any[]) => Object;
+    isSettingsValid: (data: Object) => boolean;
+    getSettingsFromStoreData: (data: IssueFilingServicePropertiesMap) => Object;
     fileIssue: (
         browserAdapter: BrowserAdapter,
         servicePropertiesMap: IssueFilingServicePropertiesMap,
         issueData: CreateIssueDetailsTextData,
         environmentInfo: EnvironmentInfo,
     ) => void;
+}
+
+export interface IssueFilingServiceWithSettings<Settings> extends IssueFilingService {
+    settingsForm: ReactFCWithDisplayName<SettingsFormProps<Settings>>;
+    buildStoreData: (...params: any[]) => Settings;
+    isSettingsValid: (data: Settings) => boolean;
+    getSettingsFromStoreData: (data: IssueFilingServicePropertiesMap) => Settings;
 }
