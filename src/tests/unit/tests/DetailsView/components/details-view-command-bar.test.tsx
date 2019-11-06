@@ -3,6 +3,7 @@
 import { AssessmentsProviderImpl } from 'assessments/assessments-provider';
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { Assessment } from 'assessments/types/iassessment';
+import { ExportDialogDeps } from 'DetailsView/components/export-dialog';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import { ReportGenerator } from 'reports/report-generator';
@@ -104,15 +105,24 @@ describe('DetailsViewCommandBar', () => {
     });
 
     function testOnPivot(givenRenderExportAndStartOver: boolean): void {
-        // TODO : Build these props!
-        reportExportComponentProps = null;
         renderStartOver = givenRenderExportAndStartOver;
+        reportExportComponentProps = givenRenderExportAndStartOver
+            ? {
+                  deps: {} as ExportDialogDeps,
+                  reportGenerator: reportGeneratorMock.object,
+                  pageTitle: thePageTitle,
+                  exportResultsType: 'Assessment',
+                  scanDate: theDate,
+                  htmlGenerator: () => 'something',
+                  updatePersistedDescription: () => null,
+                  getExportDescription: () => descriptionPlaceholder,
+              }
+            : null;
         const props = getProps();
         const rendered = shallow(<DetailsViewCommandBar {...props} />);
 
         expect(rendered.debug()).toMatchSnapshot();
 
-        // TODO : Split these up
         if (reportExportComponentProps || renderStartOver) {
             reportGeneratorMock
                 .setup(rgm =>

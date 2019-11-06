@@ -72,7 +72,7 @@ export class DetailsViewCommandBar extends React.Component<DetailsViewCommandBar
     }
 
     private renderCommandButtons(): JSX.Element {
-        if (!this.props.reportExportComponentProps && !this.props.renderStartOver) {
+        if (!this.props.reportExportComponentProps || !this.props.renderStartOver) {
             return null;
         }
         const selectedTest = this.props.assessmentStoreData.assessmentNavState.selectedTestType;

@@ -4,6 +4,7 @@ import * as React from 'react';
 import { IMock, Mock, MockBehavior } from 'typemoq';
 
 import { FeatureFlagStore } from 'background/stores/global/feature-flag-store';
+import { ReportExportComponentProps } from 'DetailsView/components/report-export-component';
 import { VisualizationConfiguration } from '../../../../common/configs/visualization-configuration';
 import { VisualizationConfigurationFactory } from '../../../../common/configs/visualization-configuration-factory';
 import { NamedFC, ReactFCWithDisplayName } from '../../../../common/react/named-fc';
@@ -172,6 +173,13 @@ describe('DetailsViewBody', () => {
     }
 
     function buildCommandBar(givenProps: DetailsViewBodyProps): JSX.Element {
-        return <switcherNavConfig.CommandBar actionMessageCreator={props.deps.detailsViewActionMessageCreator} {...props} />;
+        const reportExportComponentProps = {} as ReportExportComponentProps;
+        return (
+            <switcherNavConfig.CommandBar
+                actionMessageCreator={props.deps.detailsViewActionMessageCreator}
+                reportExportComponentProps={reportExportComponentProps}
+                {...props}
+            />
+        );
     }
 });
