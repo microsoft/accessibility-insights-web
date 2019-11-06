@@ -2,6 +2,7 @@
 # Licensed under the MIT License.
 steps:
     - task: Grunt@0
+      displayName: grunt update-config
       inputs:
           gruntFile: '$(System.DefaultWorkingDirectory)/drop/electron/electron/Gruntfile.js'
           targets: 'update-config'
