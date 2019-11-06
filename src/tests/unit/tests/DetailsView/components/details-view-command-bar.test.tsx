@@ -105,6 +105,8 @@ describe('DetailsViewCommandBar', () => {
     });
 
     function testOnPivot(givenRenderExportAndStartOver: boolean): void {
+        const theHtml = 'this is the HTML';
+        let theDescription = null;
         renderStartOver = givenRenderExportAndStartOver;
         reportExportComponentProps = givenRenderExportAndStartOver
             ? {
@@ -113,7 +115,10 @@ describe('DetailsViewCommandBar', () => {
                   pageTitle: thePageTitle,
                   exportResultsType: 'Assessment',
                   scanDate: theDate,
-                  htmlGenerator: () => 'something',
+                  htmlGenerator: description => {
+                      theDescription = description;
+                      return theHtml;
+                  },
                   updatePersistedDescription: () => null,
                   getExportDescription: () => descriptionPlaceholder,
               }
@@ -123,25 +128,14 @@ describe('DetailsViewCommandBar', () => {
 
         expect(rendered.debug()).toMatchSnapshot();
 
-        if (reportExportComponentProps || renderStartOver) {
-            reportGeneratorMock
-                .setup(rgm =>
-                    rgm.generateAssessmentReport(
-                        props.assessmentStoreData,
-                        props.assessmentsProvider,
-                        props.featureFlagStoreData,
-                        props.tabStoreData,
-                        descriptionPlaceholder,
-                    ),
-                )
-                .verifiable(Times.once());
-
-            rendered
-                .find(ReportExportComponent)
-                .props()
-                .htmlGenerator(descriptionPlaceholder);
-
-            reportGeneratorMock.verifyAll();
+        if (givenRenderExportAndStartOver) {
+            expect(
+                rendered
+                    .find(ReportExportComponent)
+                    .props()
+                    .htmlGenerator(descriptionPlaceholder),
+            ).toBe(theHtml);
+            expect(theDescription).toBe(descriptionPlaceholder);
         }
     }
 
