@@ -4,7 +4,7 @@ jobs:
     - job: 'build_product_windows'
 
       pool:
-          name: 'Hosted VS2017'
+          vmImage: 'windows-latest'
 
       steps:
           - script: 'rmdir /s /q %LOCALAPPDATA%\electron\Cache'
