@@ -10,16 +10,6 @@ exports[`ScreenshotContainer highlight boxes do not render when highlightBoxRect
 </div>
 `;
 
-exports[`ScreenshotContainer highlight boxes do not render when highlightBoxRectangles array is not in props 1`] = `
-<div
-  className="screenshotContainer"
->
-  <Screenshot
-    encodedImage="test-base-64-png-data"
-  />
-</div>
-`;
-
 exports[`ScreenshotContainer highlight boxes render when passed values for highlightBoxRectangles array 1`] = `
 <div
   className="screenshotContainer"

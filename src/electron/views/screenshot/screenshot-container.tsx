@@ -11,7 +11,7 @@ import * as React from 'react';
 
 export interface ScreenshotContainerProps {
     screenshotData?: ScreenshotData;
-    highlightBoxRectangles?: BoundingRectangle[];
+    highlightBoxRectangles: BoundingRectangle[];
 }
 
 export const ScreenshotContainer = NamedFC<ScreenshotContainerProps>('ScreenshotContainer', props => {
