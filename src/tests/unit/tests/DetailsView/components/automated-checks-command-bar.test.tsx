@@ -12,11 +12,11 @@ function getProps(enableCardsUI: boolean, returnCommandBarProps: boolean): Comma
         universalCardsUI: enableCardsUI,
     };
 
-    const reporExportComponentProps = returnCommandBarProps ? {} : null;
+    const reportExportComponentProps = returnCommandBarProps ? {} : null;
 
     const props = {
         featureFlagStoreData: featureFlags,
-        reportExportComponentPropertyFactory: commandBarProps => reporExportComponentProps,
+        reportExportComponentPropertyFactory: commandBarProps => reportExportComponentProps,
     } as CommandBarProps;
 
     return props;
