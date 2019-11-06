@@ -13,5 +13,6 @@ mac:
 win:
     icon: extension/icons/brand/blue/brand-blue-512px.png
     target: nsis
+
 nsis:
     oneClick: false
