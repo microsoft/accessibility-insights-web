@@ -13,7 +13,10 @@ export const ScreenshotView = NamedFC<ScreenshotViewProps>('ScreenshotView', (pr
     return (
         <div>
             <h1 tabIndex={0}>Target Page Screenshot</h1>
-            <ScreenshotContainer screenshotData={props.viewModel.screenshotData} />
+            <ScreenshotContainer
+                screenshotData={props.viewModel.screenshotData}
+                highlightBoxRectangles={props.viewModel.highlightBoxRectangles}
+            />
         </div>
     );
 });
