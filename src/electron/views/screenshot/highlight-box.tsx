@@ -6,9 +6,7 @@ import { highlightBox, highlightBoxLabel } from 'electron/views/screenshot/highl
 import * as React from 'react';
 import { CSSProperties } from 'react';
 
-export interface HighlightBoxDeps {}
 export interface HighlightBoxProps {
-    deps: HighlightBoxDeps;
     boundingRectangle: BoundingRectangle;
 }
 
