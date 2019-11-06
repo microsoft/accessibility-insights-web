@@ -19,7 +19,7 @@ exports[`TargetPageChangedView renders with feature flag enabled 1`] = `
     onText="On"
   />
   <p>
-    The target page has changed. Use the start over button to scan this new target page.
+    The target page has changed. Use the start over button to scan the new target page.
   </p>
 </div>
 `;
