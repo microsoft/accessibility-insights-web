@@ -17,6 +17,7 @@ describe('ScreenshotContainer', () => {
         });
 
         const emptyScreenshotDataCases: ScreenshotData[] = [null, undefined, {} as ScreenshotData];
+
         it.each(emptyScreenshotDataCases)(
             'renders screenshot unavailable string when passed empty screenshotData %p',
             (screenshotDataCase: ScreenshotData) => {
@@ -44,11 +45,14 @@ describe('ScreenshotContainer', () => {
                 { top: 0, bottom: 100, left: 0, right: 100 },
                 { top: 150, bottom: 200, left: 150, right: 300 },
             ];
+
             const props: ScreenshotContainerProps = {
                 screenshotData: basicScreenshotData,
                 highlightBoxRectangles: highlightBoxRectangles,
             };
+
             const wrapper = shallow(<ScreenshotContainer {...props} />);
+
             expect(wrapper.getElement()).toMatchSnapshot();
         });
     });
