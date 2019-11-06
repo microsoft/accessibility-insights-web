@@ -4,10 +4,10 @@ jobs:
     - job: 'build_product_windows'
 
       pool:
-          vmImage: 'windows-latest'
+          name: 'Hosted VS2017'
 
       steps:
-          - script: 'rmdir /s /q ~\AppData\Local\electron\Cache\'
+          - script: 'rmdir /s /q %LOCALAPPDATA%\electron\Cache'
             displayName: 'delete electron binary from cache'
             continueOnError: true
 
