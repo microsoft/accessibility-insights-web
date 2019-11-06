@@ -4,7 +4,7 @@ export type InsightsConfiguration = {
     options: InsightsConfigurationOptions;
 };
 export type InsightsConfigurationOptions = {
-    extensionFullName?: string;
+    fullName?: string;
     icon16?: string;
     icon48?: string;
     icon128?: string;

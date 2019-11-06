@@ -1,0 +1,69 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ScreenshotContainer highlight boxes do not render when highlightBoxRectangles array is empty 1`] = `
+<div
+  className="screenshotContainer"
+>
+  <Screenshot
+    encodedImage="test-base-64-png-data"
+  />
+</div>
+`;
+
+exports[`ScreenshotContainer highlight boxes render when passed values for highlightBoxRectangles array 1`] = `
+<div
+  className="screenshotContainer"
+>
+  <Screenshot
+    encodedImage="test-base-64-png-data"
+  />
+  <HighlightBox
+    boundingRectangle={
+      Object {
+        "bottom": 100,
+        "left": 0,
+        "right": 100,
+        "top": 0,
+      }
+    }
+  />
+  <HighlightBox
+    boundingRectangle={
+      Object {
+        "bottom": 200,
+        "left": 150,
+        "right": 300,
+        "top": 150,
+      }
+    }
+  />
+</div>
+`;
+
+exports[`ScreenshotContainer screenshot renders screenshot unavailable string when passed empty screenshotData {} 1`] = `
+<div>
+  Screenshot for scan is unavailable
+</div>
+`;
+
+exports[`ScreenshotContainer screenshot renders screenshot unavailable string when passed empty screenshotData null 1`] = `
+<div>
+  Screenshot for scan is unavailable
+</div>
+`;
+
+exports[`ScreenshotContainer screenshot renders screenshot unavailable string when passed empty screenshotData undefined 1`] = `
+<div>
+  Screenshot for scan is unavailable
+</div>
+`;
+
+exports[`ScreenshotContainer screenshot renders when passed a value for screenshotData 1`] = `
+<div
+  className="screenshotContainer"
+>
+  <Screenshot
+    encodedImage="test-base-64-png-data"
+  />
+</div>
+`;

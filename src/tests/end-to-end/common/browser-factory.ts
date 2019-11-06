@@ -57,7 +57,7 @@ async function verifyExtensionIsBuilt(extensionPath: string): Promise<void> {
 
 async function launchNewBrowser(browserInstanceId: string): Promise<Puppeteer.Browser> {
     // only unpacked extension paths are supported
-    const extensionPath = `${(global as any).rootDir}/drop/dev/extension/`;
+    const extensionPath = `${(global as any).rootDir}/drop/extension/dev/product`;
 
     // It's important that we verify this before calling Puppeteer.launch because its behavior if the
     // extension can't be loaded is "the Chromium instance hangs with an alert and everything on Puppeteer's

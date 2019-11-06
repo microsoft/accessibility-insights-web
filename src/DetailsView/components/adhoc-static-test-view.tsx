@@ -1,8 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import * as React from 'react';
-
 import { ContentReference } from 'views/content/content-page';
+
 import { VisualizationConfiguration } from '../../common/configs/visualization-configuration';
 import { NamedFC } from '../../common/react/named-fc';
 import { TabStoreData } from '../../common/types/store-data/tab-store-data';
@@ -23,6 +24,7 @@ export interface AdhocStaticTestViewProps {
     configuration: VisualizationConfiguration;
     content?: ContentReference;
     guidance?: ContentReference;
+    featureFlagStoreData: FeatureFlagStoreData;
 }
 
 export const AdhocStaticTestView = NamedFC<AdhocStaticTestViewProps>('AdhocStaticTestView', ({ children, ...props }) => {
@@ -33,7 +35,12 @@ export const AdhocStaticTestView = NamedFC<AdhocStaticTestViewProps>('AdhocStati
 
     if (props.tabStoreData.isChanged) {
         return (
-            <TargetPageChangedView displayableData={displayableData} visualizationType={selectedTest} toggleClickHandler={clickHandler} />
+            <TargetPageChangedView
+                displayableData={displayableData}
+                visualizationType={selectedTest}
+                toggleClickHandler={clickHandler}
+                featureFlagStoreData={props.featureFlagStoreData}
+            />
         );
     }
 

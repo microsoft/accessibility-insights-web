@@ -2,12 +2,16 @@
 # Licensed under the MIT License.
 appId: com.aimobile.app
 directories:
-    app: drop/electron
+    app: drop/electron/electron
 extraMetadata:
-    main: extension/bundle/main.bundle.js
+    main: product/bundle/main.bundle.js
     name: ai-mobile
 mac:
+    icon: extension/icons/brand/blue/brand-blue-512px.png
     target: dmg # can be changed to a zip, app or something else. ref: https://www.electron.build/configuration/mac
     identity: null
+win:
+    icon: extension/icons/brand/blue/brand-blue-512px.png
+    target: nsis
 nsis:
     oneClick: false
