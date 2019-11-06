@@ -1,0 +1,13 @@
+# Copyright (c) Microsoft Corporation. All rights reserved.
+# Licensed under the MIT License.
+steps:
+    - task: Grunt@0
+      inputs:
+          gruntFile: '$(System.DefaultWorkingDirectory)/$(Release.PrimaryArtifactSourceAlias)/drop/electron/$(target)/Gruntfile.js'
+          targets: 'update-config'
+          arguments: '--product-version=$(product-version) --app-insights-instrumentation-key=$(app-insights-instrumentation-key)'
+          gruntCli: 'node_modules/grunt-cli/bin/grunt'
+          publishJUnitResults: false # Optional
+          enableCodeCoverage: false # Optional
+          #workingDirectory: # Optional
+          #testFiles: 'test/*.js' # Required when enableCodeCoverage == True
