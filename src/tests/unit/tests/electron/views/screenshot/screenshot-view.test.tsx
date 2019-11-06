@@ -10,7 +10,7 @@ describe('ScreenshotView', () => {
     describe('render', () => {
         it('matches snapshot when passed a screenshot with no highlights', () => {
             const viewModel: ScreenshotViewModel = {
-                screenshotData: { base64PngData: 'testScreenshotData' },
+                screenshotData: { base64PngData: 'test-base-64-png-data' },
                 highlightBoxRectangles: [],
                 deviceName: 'My Cool Android Device',
             };
@@ -21,7 +21,7 @@ describe('ScreenshotView', () => {
 
         it('matches snapshot when deviceName is unavailable', () => {
             const viewModel: ScreenshotViewModel = {
-                screenshotData: { base64PngData: 'testScreenshotData' },
+                screenshotData: { base64PngData: 'test-base-64-png-data' },
                 highlightBoxRectangles: [],
                 deviceName: null,
             };

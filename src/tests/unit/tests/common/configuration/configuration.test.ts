@@ -9,9 +9,9 @@ describe('configuration', () => {
     const defaultName = 'Accessibility Insights for Web';
     const newName = 'New Extension Name';
 
-    test('extensionFullName default', () => {
-        expect(config.getOption('extensionFullName')).toBe(defaultName);
-        expect(config.config.options.extensionFullName).toBe(defaultName);
+    test('fullName default', () => {
+        expect(config.getOption('fullName')).toBe(defaultName);
+        expect(config.config.options.fullName).toBe(defaultName);
     });
 
     test('telemetryBuildName default', () => {
@@ -21,9 +21,9 @@ describe('configuration', () => {
         expect(config.config.options.telemetryBuildName).toBe(defaultTelemetryBuildName);
     });
 
-    test('extensionFullName set', () => {
-        configMutator.reset().setOption('extensionFullName', newName);
-        expect(config.getOption('extensionFullName')).toBe(newName);
-        expect(config.config.options.extensionFullName).toBe(newName);
+    test('fullName set', () => {
+        configMutator.reset().setOption('fullName', newName);
+        expect(config.getOption('fullName')).toBe(newName);
+        expect(config.config.options.fullName).toBe(newName);
     });
 });

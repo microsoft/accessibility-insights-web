@@ -8,7 +8,6 @@ describe('Screenshot', () => {
     it('renders', () => {
         const props: ScreenshotProps = {
             encodedImage: 'test-image-string',
-            altText: 'test-alt-caption',
         };
         const wrapper = shallow(<Screenshot {...props} />);
 
