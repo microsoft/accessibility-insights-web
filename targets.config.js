@@ -103,20 +103,6 @@ module.exports = {
         bundleFolder: 'prodBundle',
         mustExistFile: 'background.bundle.js',
     },
-    preview: {
-        release: true,
-        config: {
-            options: {
-                ...publicOptions,
-                ...icons.production,
-                fullName: 'Accessibility Insights for Web - Preview',
-                telemetryBuildName: 'Preview',
-                productCategory: 'extension',
-            },
-        },
-        bundleFolder: 'prodBundle',
-        mustExistFile: 'background.bundle.js',
-    },
     electron: {
         config: {
             options: {
