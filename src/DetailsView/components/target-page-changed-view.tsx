@@ -20,7 +20,7 @@ export const TargetPageChangedView = NamedFC<TargetPageChangedViewProps>('Target
     const { title = '', toggleLabel = '', subtitle } = props.displayableData;
 
     const oldText = 'The target page was changed. Use the toggle to enable the visualization in the current target page.';
-    const cardsUIText = 'The target page has changed. Use the start over button to scan this new target page.';
+    const cardsUIText = 'The target page has changed. Use the start over button to scan the new target page.';
     const displayedText = props.featureFlagStoreData[FeatureFlags.universalCardsUI] ? cardsUIText : oldText;
 
     return (
