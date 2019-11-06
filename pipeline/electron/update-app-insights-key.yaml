@@ -5,7 +5,7 @@ steps:
       inputs:
           gruntFile: '$(System.DefaultWorkingDirectory)/drop/electron/electron/Gruntfile.js'
           targets: 'update-config'
-          arguments: '--product-version=$(product-version) --app-insights-instrumentation-key=$(app-insights-instrumentation-key)'
+          arguments: '--extension-version=$(extension-version) --app-insights-instrumentation-key=$(app-insights-instrumentation-key)'
           gruntCli: 'node_modules/grunt-cli/bin/grunt'
           publishJUnitResults: false # Optional
           enableCodeCoverage: false # Optional
