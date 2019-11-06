@@ -29,4 +29,22 @@ export class CardSelectionMessageCreator {
             payload,
         });
     }
+
+    public collapseAllRules(): void {
+        this.dispatcher.dispatchMessage({
+            messageType: Messages.CardSelection.CollapseAllRules,
+        });
+    }
+
+    public expandAllRules(): void {
+        this.dispatcher.dispatchMessage({
+            messageType: Messages.CardSelection.ExpandAllRules,
+        });
+    }
+
+    public toggleVisualHelper(): void {
+        this.dispatcher.dispatchMessage({
+            messageType: Messages.CardSelection.ToggleVisualHelper,
+        });
+    }
 }
