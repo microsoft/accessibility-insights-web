@@ -7,57 +7,34 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 
 describe('ScreenshotContainer', () => {
-    const boundingRectangles: BoundingRectangle[] = [
+    const basicScreenshotData: ScreenshotData = { base64PngData: 'test-base-64-png-data' };
+    const highlightBoxRectangles: BoundingRectangle[] = [
         { top: 0, bottom: 100, left: 0, right: 100 },
         { top: 150, bottom: 200, left: 150, right: 300 },
     ];
-    const basicScreenshotData: ScreenshotData = { base64PngData: 'test-base-64-png-data' };
-    describe('renders', () => {
-        it('when passed a value for screenshotData', () => {
-            const props: ScreenshotContainerProps = {
-                screenshotData: basicScreenshotData,
-            };
-            const wrapper = shallow(<ScreenshotContainer {...props} />);
+    describe('screenshot', () => {
+        it('renders when passed a value for screenshotData', () => {
+            const wrapper = shallow(<ScreenshotContainer screenshotData={basicScreenshotData} />);
 
             expect(wrapper.getElement()).toMatchSnapshot();
         });
 
-        it('when passed an empty value for screenshotData', () => {
-            const props = {
-                screenshotData: {},
-            } as ScreenshotContainerProps;
+        const emptyScreenshotDataCases: ScreenshotData[] = [null, undefined, {} as ScreenshotData];
+        it.each(emptyScreenshotDataCases)(
+            'renders screenshot unavailable string when passed empty screenshotData %p',
+            (screenshotDataCase: ScreenshotData) => {
+                const wrapper = shallow(<ScreenshotContainer screenshotData={screenshotDataCase} />);
 
-            const wrapper = shallow(<ScreenshotContainer {...props} />);
-
-            expect(wrapper.getElement()).toMatchSnapshot();
-        });
-
-        it('when passed an null value for screenshotData', () => {
-            const props = {
-                screenshotData: null,
-            } as ScreenshotContainerProps;
-
-            const wrapper = shallow(<ScreenshotContainer {...props} />);
-
-            expect(wrapper.getElement()).toMatchSnapshot();
-        });
-
-        it('when passed an undefined value for screenshotData', () => {
-            const props = {
-                screenshotData: undefined,
-            } as ScreenshotContainerProps;
-
-            const wrapper = shallow(<ScreenshotContainer {...props} />);
-
-            expect(wrapper.getElement()).toMatchSnapshot();
-        });
+                expect(wrapper.getElement()).toMatchSnapshot();
+            },
+        );
     });
 
     describe('highlight boxes', () => {
-        it('do not render when boundingRectangles array is empty', () => {
+        it('do not render when highlightBoxRectangles array is empty', () => {
             const props: ScreenshotContainerProps = {
                 screenshotData: basicScreenshotData,
-                highlightBoxes: [],
+                highlightBoxRectangles: [],
             };
 
             const wrapper = shallow(<ScreenshotContainer {...props} />);
@@ -65,7 +42,7 @@ describe('ScreenshotContainer', () => {
             expect(wrapper.getElement()).toMatchSnapshot();
         });
 
-        it('do not render when boundingRectangles array is not in props', () => {
+        it('do not render when highlightBoxRectangles array is not in props', () => {
             const props: ScreenshotContainerProps = {
                 screenshotData: basicScreenshotData,
             };
@@ -75,10 +52,10 @@ describe('ScreenshotContainer', () => {
             expect(wrapper.getElement()).toMatchSnapshot();
         });
 
-        it('render when passed values for boundingRectangles array', () => {
+        it('render when passed values for highlightBoxRectangles array', () => {
             const props: ScreenshotContainerProps = {
                 screenshotData: basicScreenshotData,
-                highlightBoxes: boundingRectangles,
+                highlightBoxRectangles: highlightBoxRectangles,
             };
             const wrapper = shallow(<ScreenshotContainer {...props} />);
             expect(wrapper.getElement()).toMatchSnapshot();

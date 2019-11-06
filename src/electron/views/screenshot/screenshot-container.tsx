@@ -9,11 +9,9 @@ import { screenshotContainer } from 'electron/views/screenshot/screenshot-contai
 import { isEmpty } from 'lodash';
 import * as React from 'react';
 
-export interface ScreenshotContainerDeps {}
 export interface ScreenshotContainerProps {
-    deps?: ScreenshotContainerDeps;
-    screenshotData: ScreenshotData;
-    highlightBoxes?: BoundingRectangle[];
+    screenshotData?: ScreenshotData;
+    highlightBoxRectangles?: BoundingRectangle[];
 }
 
 export const ScreenshotContainer = NamedFC<ScreenshotContainerProps>('ScreenshotContainer', props => {
@@ -24,20 +22,20 @@ export const ScreenshotContainer = NamedFC<ScreenshotContainerProps>('Screenshot
     return (
         <div className={screenshotContainer}>
             <Screenshot encodedImage={props.screenshotData.base64PngData} />
-            {renderHighlightBoxes(props.highlightBoxes)}
+            {renderHighlightBoxes(props.highlightBoxRectangles)}
         </div>
     );
 });
 
-function renderHighlightBoxes(highlightBoxes: BoundingRectangle[]): JSX.Element[] {
-    if (isEmpty(highlightBoxes)) {
+function renderHighlightBoxes(highlightBoxRectangles: BoundingRectangle[]): JSX.Element[] {
+    if (isEmpty(highlightBoxRectangles)) {
         return;
     }
 
     const renderedBoxes: JSX.Element[] = [];
     let keyId = 1;
 
-    highlightBoxes.forEach(instance => {
+    highlightBoxRectangles.forEach(instance => {
         renderedBoxes.push(<HighlightBox key={keyId} boundingRectangle={instance} />);
         keyId++;
     });
