@@ -7,7 +7,7 @@ import { ExportDialogDeps } from 'DetailsView/components/export-dialog';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import { ReportGenerator } from 'reports/report-generator';
-import { IMock, Mock, MockBehavior, Times } from 'typemoq';
+import { IMock, Mock, MockBehavior } from 'typemoq';
 import { FileURLProvider } from '../../../../../common/file-url-provider';
 import { AssessmentStoreData } from '../../../../../common/types/store-data/assessment-result-data';
 import { FeatureFlagStoreData } from '../../../../../common/types/store-data/feature-flag-store-data';

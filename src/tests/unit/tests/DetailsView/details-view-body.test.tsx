@@ -54,7 +54,7 @@ describe('DetailsViewBody', () => {
             } as DetailsRightPanelConfiguration;
             switcherNavConfig = {
                 CommandBar: CommandBarStub,
-                ReportExportComponentPropertyFactory: props => reportExportComponentProps,
+                ReportExportComponentPropertyFactory: p => reportExportComponentProps,
                 LeftNav: LeftNavStub,
             } as DetailsViewSwitcherNavConfiguration;
             configFactoryMock = Mock.ofType(VisualizationConfigurationFactory, MockBehavior.Strict);
