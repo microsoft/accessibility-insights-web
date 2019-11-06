@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { UnifiedResult, UnifiedScanResultStoreData } from 'common/types/store-data/unified-data-interface';
+import { UnifiedResult, UnifiedScanResultStoreData, ViewPortProperties } from 'common/types/store-data/unified-data-interface';
 import { BoundingRectangle } from 'electron/platform/android/scan-results';
 import { ScreenshotViewModel } from './screenshot-view-model';
 
@@ -13,7 +13,13 @@ export function screenshotViewModelProvider(
     const screenshotData = unifiedScanResultStoreData.screenshotData;
 
     const highlightBoxRectangles =
-        screenshotData == null ? [] : getHighlightBoxRectangles(unifiedScanResultStoreData.results, highlightedResultUids);
+        screenshotData == null
+            ? []
+            : getHighlightBoxRectangles(
+                  unifiedScanResultStoreData.results,
+                  highlightedResultUids,
+                  unifiedScanResultStoreData.platformInfo.viewPortInfo,
+              );
 
     return {
         screenshotData,
@@ -22,8 +28,25 @@ export function screenshotViewModelProvider(
     };
 }
 
-function getHighlightBoxRectangles(results: UnifiedResult[], highlightedUids: string[]): BoundingRectangle[] {
-    const highlightedResults = results.filter(result => highlightedUids.includes(result.uid));
-
-    return highlightedResults.map(result => result.descriptors.boundingRectangle).filter(maybeRect => maybeRect != null);
+export type HighlightBoxViewModel = {
+    left: string;
+    top: string;
+    width: string;
+    height: string;
+};
+function getHighlightBoxRectangles(
+    results: UnifiedResult[],
+    highlightedUids: string[],
+    viewPort: ViewPortProperties,
+): HighlightBoxViewModel[] {
+    return results
+        .filter(result => highlightedUids.includes(result.uid))
+        .map(highlightedResult => highlightedResult.descriptors.boundingRectangle)
+        .filter(maybeRect => maybeRect != null)
+        .map(rectInPx => ({
+            left: `${rectInPx.left / viewPort.height}%`,
+            top: `${rectInPx.top / viewPort.height}%`,
+            width: `${rectInPx.right - rectInPx.left}px`,
+            height: `${rectInPx.bottom - rectInPx.top}px`,
+        }));
 }
