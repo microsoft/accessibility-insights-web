@@ -14,11 +14,19 @@ export class Browser {
     private memoizedBackgroundPage: BackgroundPage;
     private pages: Array<Page> = [];
 
-    constructor(private readonly browserInstanceId: string, private readonly underlyingBrowser: Puppeteer.Browser) {
+    constructor(
+        private readonly browserInstanceId: string,
+        private readonly underlyingBrowser: Puppeteer.Browser,
+        private readonly onClose?: () => Promise<void>,
+    ) {
         underlyingBrowser.on('disconnected', onBrowserDisconnected);
     }
 
     public async close(): Promise<void> {
+        if (this.onClose) {
+            await this.onClose();
+        }
+
         this.underlyingBrowser.removeListener('disconnected', onBrowserDisconnected);
         await this.underlyingBrowser.close();
     }
