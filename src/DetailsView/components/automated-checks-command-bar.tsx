@@ -6,11 +6,15 @@ import { FeatureFlags } from 'common/feature-flags';
 import { NamedFC } from 'common/react/named-fc';
 import { ReportExportComponentProps } from 'DetailsView/components/report-export-component';
 import { getReportExportComponentPropsForAutomatedChecks } from 'DetailsView/components/report-export-component-props-factory';
-import { CommandBarProps } from './details-view-command-bar';
+import { CommandBarProps, ReportExportComponentPropertyConverter } from './details-view-command-bar';
 import { DetailsViewCommandBar } from './details-view-command-bar';
 
 export const AutomatedChecksCommandBar = NamedFC<CommandBarProps>('AutomatedChecksCommandBar', props => {
-    const reportExportComponentProps: ReportExportComponentProps = getReportExportComponentPropsForAutomatedChecks(props);
+    let converter: ReportExportComponentPropertyConverter = props.reportExportComponentPropertyFactory;
+    if (converter === null) {
+        converter = getReportExportComponentPropsForAutomatedChecks;
+    }
+    const reportExportComponentProps: ReportExportComponentProps = converter(props);
 
     return (
         <DetailsViewCommandBar

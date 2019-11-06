@@ -21,7 +21,9 @@ export type DetailsViewCommandBarDeps = ReportExportComponentDeps & {
     getDateFromTimestamp: (timestamp: string) => Date;
 };
 
-export type CommandBarProps = Omit<DetailsViewCommandBarProps, 'reportExportComponentProps' | 'renderStartOver'>;
+export type CommandBarProps = Omit<DetailsViewCommandBarProps, 'renderStartOver'>;
+
+export type ReportExportComponentPropertyConverter = (props: CommandBarProps) => ReportExportComponentProps;
 
 export interface DetailsViewCommandBarProps {
     deps: DetailsViewCommandBarDeps;
@@ -35,6 +37,7 @@ export interface DetailsViewCommandBarProps {
     rightPanelConfiguration: DetailsRightPanelConfiguration;
     visualizationScanResultData: VisualizationScanResultData;
     cardsViewData: CardsViewModel;
+    reportExportComponentPropertyFactory?: ReportExportComponentPropertyConverter;
 }
 
 export class DetailsViewCommandBar extends React.Component<DetailsViewCommandBarProps> {

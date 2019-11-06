@@ -1,27 +1,40 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`getAutomatedChecksCommandBar universalCardsUI disabled should return command bar with renderExport as false and renderStartOver as false 1`] = `
+exports[`getAutomatedChecksCommandBar reportExportComponentPropertyFactory returns non-null and universalCardsUi is false should return command bar with reportExportComponentProps as null and renderStartOver as false 1`] = `
 <DetailsViewCommandBar
-  assessmentsProvider={null}
   featureFlagStoreData={
     Object {
       "universalCardsUI": false,
     }
   }
-  renderExport={false}
   renderStartOver={false}
+  reportExportComponentPropertyFactory={[Function]}
+  reportExportComponentProps={Object {}}
 />
 `;
 
-exports[`getAutomatedChecksCommandBar universalCardsUI enabled should return command bar with renderExport as true and renderAndStartOver as true 1`] = `
+exports[`getAutomatedChecksCommandBar reportExportComponentPropertyFactory returns null and universalCardsUi is false should return command bar with reportExportComponentProps as null and renderStartOver as false 1`] = `
 <DetailsViewCommandBar
-  assessmentsProvider={null}
+  featureFlagStoreData={
+    Object {
+      "universalCardsUI": false,
+    }
+  }
+  renderStartOver={false}
+  reportExportComponentPropertyFactory={[Function]}
+  reportExportComponentProps={null}
+/>
+`;
+
+exports[`getAutomatedChecksCommandBar reportExportComponentPropertyFactory returns null and universalCardsUi is true should return command bar with reportExportComponentProps as null and renderAndStartOver as true 1`] = `
+<DetailsViewCommandBar
   featureFlagStoreData={
     Object {
       "universalCardsUI": true,
     }
   }
-  renderExport={true}
   renderStartOver={true}
+  reportExportComponentPropertyFactory={[Function]}
+  reportExportComponentProps={null}
 />
 `;
