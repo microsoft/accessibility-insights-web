@@ -155,10 +155,12 @@ module.exports = function(grunt) {
     const targetNames = Object.keys(targets);
     const releaseTargets = Object.keys(targets).filter(t => targets[t].release);
     targetNames.forEach(targetName => {
-        const dropPath = path.join('drop', targetName);
-        const dropExtensionPath = path.join(dropPath, 'extension');
-
         const { config, bundleFolder } = targets[targetName];
+
+        const { productCategory } = config.options;
+
+        const dropPath = path.join(`drop/${productCategory}`, targetName);
+        const dropExtensionPath = path.join(dropPath, 'product');
 
         grunt.config.merge({
             drop: {
@@ -270,7 +272,7 @@ module.exports = function(grunt) {
         const { config, manifestSrc, manifestDest } = this.data;
         const manifestJSON = grunt.file.readJSON(manifestSrc);
         merge(manifestJSON, {
-            name: config.options.extensionFullName,
+            name: config.options.fullName,
             description: config.options.extensionDescription,
             icons: {
                 '16': config.options.icon16,

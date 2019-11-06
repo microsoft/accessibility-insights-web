@@ -17,7 +17,7 @@ Licensed under the MIT License.
   <Properties>
     <DisplayName>Accessibility Insights for Web</DisplayName>
     <PublisherDisplayName>Microsoft Corporation</PublisherDisplayName>
-    <Logo>extension\icons\brand\blue-on-white\brand-blue-on-white-150px.png</Logo>
+    <Logo>product\icons\brand\blue-on-white\brand-blue-on-white-150px.png</Logo>
   </Properties>
 
   <Dependencies>
@@ -35,8 +35,8 @@ Licensed under the MIT License.
       <uap:VisualElements
         AppListEntry="none"
         DisplayName="Accessibility Insights for Web"
-        Square150x150Logo="extension\icons\brand\blue-on-white\brand-blue-on-white-150px.png"
-        Square44x44Logo="extension\icons\brand\blue-on-white\brand-blue-on-white-44px.png"
+        Square150x150Logo="product\icons\brand\blue-on-white\brand-blue-on-white-150px.png"
+        Square44x44Logo="product\icons\brand\blue-on-white\brand-blue-on-white-44px.png"
         Description="Accessibility Insights for Web helps developers quickly find and fix accessibility issues."
         BackgroundColor="white">
       </uap:VisualElements>
