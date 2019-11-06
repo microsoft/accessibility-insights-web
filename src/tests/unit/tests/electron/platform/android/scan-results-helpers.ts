@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { UnifiedResolution } from 'common/types/store-data/unified-data-interface';
 import { RuleInformation } from 'electron/platform/android/rule-information';
-import { AxeDeviceInfo, RuleResultsData, ScanResults, ViewElementData } from 'electron/platform/android/scan-results';
+import { DeviceInfo, RuleResultsData, ScanResults, ViewElementData } from 'electron/platform/android/scan-results';
 
 export function buildScanResultsObject(
     deviceName: string = null,
@@ -11,20 +11,20 @@ export function buildScanResultsObject(
     axeView: ViewElementData = null,
     axeVersion: string = null,
     screenshotData: string = null,
-    axeDevice: AxeDeviceInfo = null,
+    deviceInfo: DeviceInfo = null,
 ): ScanResults {
     const scanResults = {};
     const axeContext = {};
     let addContext = false;
 
-    if (axeDevice) {
-        axeContext['axeDevice'] = axeDevice;
+    if (deviceInfo) {
+        axeContext['axeDevice'] = deviceInfo;
         addContext = true;
     }
 
     if (deviceName) {
-        axeDevice = { ...axeDevice, name: deviceName };
-        axeContext['axeDevice'] = axeDevice;
+        deviceInfo = { ...deviceInfo, name: deviceName };
+        axeContext['axeDevice'] = deviceInfo;
         addContext = true;
     }
 

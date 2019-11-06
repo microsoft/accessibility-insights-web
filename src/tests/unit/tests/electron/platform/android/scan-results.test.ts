@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { ScreenshotData } from 'common/types/store-data/unified-data-interface';
-import { AxeDeviceInfo } from 'electron/platform/android/scan-results';
+import { DeviceInfo } from 'electron/platform/android/scan-results';
 
 import { buildRuleResultObject, buildScanResultsObject, buildViewElement } from './scan-results-helpers';
 
@@ -17,21 +17,21 @@ describe('ScanResults', () => {
         expect(scanResults.axeVersion).toEqual(axeVersion);
     });
 
-    test('axeDevice is null if missing from input', () => {
+    test('deviceInfo is null if missing from input', () => {
         const scanResults = buildScanResultsObject();
-        expect(scanResults.axeDevice).toBeNull();
+        expect(scanResults.deviceInfo).toBeNull();
     });
 
-    test('axeDevice is correct if specified in input', () => {
-        const expectedAxeDevice: AxeDeviceInfo = {
+    test('deviceInfo is correct if specified in input', () => {
+        const expectedDeviceInfo: DeviceInfo = {
             dpi: 0.5,
             name: 'test-name',
             osVersion: 'test-os-version',
             screenHeight: 1,
             screenWidth: 2,
         };
-        const scanResults = buildScanResultsObject(null, null, null, null, null, null, expectedAxeDevice);
-        expect(scanResults.axeDevice).toEqual(expectedAxeDevice);
+        const scanResults = buildScanResultsObject(null, null, null, null, null, null, expectedDeviceInfo);
+        expect(scanResults.deviceInfo).toEqual(expectedDeviceInfo);
     });
 
     test('deviceName is null if missing from input', () => {
