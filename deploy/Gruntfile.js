@@ -26,7 +26,7 @@ module.exports = function(grunt) {
     grunt.initConfig({
         compress: {
             extension: {
-                cwd: 'extension',
+                cwd: 'product',
                 src: '**/*',
                 expand: true,
                 options: { archive: 'extension.zip' },
@@ -51,12 +51,12 @@ module.exports = function(grunt) {
     };
 
     grunt.registerTask('update-config', function() {
-        const configJSONPath = 'extension/insights.config.json';
+        const configJSONPath = 'product/insights.config.json';
         const config = grunt.file.readJSON(configJSONPath);
 
         config.options.appInsightsInstrumentationKey = options.appInsightsInstrumentationKey;
 
-        const configJSPath = 'extension/insights.config.js';
+        const configJSPath = 'product/insights.config.js';
         const configJSON = JSON.stringify(config, undefined, 4);
         grunt.file.write(configJSONPath, configJSON);
 
@@ -66,7 +66,7 @@ module.exports = function(grunt) {
     });
 
     grunt.registerTask('update-manifest', function() {
-        const manifestPath = 'extension/manifest.json';
+        const manifestPath = 'product/manifest.json';
         const manifest = grunt.file.readJSON(manifestPath);
         let version = options.extensionVersion;
         if (version == 'auto') {
