@@ -4,10 +4,10 @@ steps:
     - task: Grunt@0
       displayName: grunt update-config
       inputs:
-          gruntFile: '$(System.DefaultWorkingDirectory)/drop/electron/electron/Gruntfile.js'
-          targets: 'update-config'
-          arguments: '--extension-version=$(extension-version) --app-insights-instrumentation-key=$(app-insights-instrumentation-key)'
-          gruntCli: 'node_modules/grunt-cli/bin/grunt'
+          gruntFile: $(System.DefaultWorkingDirectory)/drop/electron/electron/Gruntfile.js
+          targets: update-config
+          arguments: --extension-version=$(extension-version) --app-insights-instrumentation-key=$(app-insights-instrumentation-key)
+          gruntCli: node_modules/grunt-cli/bin/grunt
           publishJUnitResults: false # Optional
           enableCodeCoverage: false # Optional
           #workingDirectory: # Optional

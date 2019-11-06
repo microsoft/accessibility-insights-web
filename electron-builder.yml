@@ -6,6 +6,7 @@ directories:
 extraMetadata:
     main: product/bundle/main.bundle.js
     name: ai-mobile
+extraFiles: ['product/insights.config.js', 'product/insights.config.json', 'product/insights.html']
 mac:
     target: dmg # can be changed to a zip, app or something else. ref: https://www.electron.build/configuration/mac
     identity: null
