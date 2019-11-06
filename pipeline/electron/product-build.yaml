@@ -7,6 +7,10 @@ jobs:
           vmImage: 'windows-latest'
 
       steps:
+          - script: 'rmdir /s /q %LOCALAPPDATA%\electron\Cache'
+            displayName: 'delete electron binary from cache'
+            continueOnError: true
+
           - template: ../install-node-prerequisites.yaml
           - template: electron-e2e-test-interactive.yaml
           - template: electron-e2e-publish-results.yaml
@@ -19,6 +23,10 @@ jobs:
           vmImage: 'ubuntu-16.04'
 
       steps:
+          - script: 'sudo rm -rf ~/.cache/electron/'
+            displayName: 'delete electron binary from cache'
+            continueOnError: true
+
           - template: ../install-node-prerequisites.yaml
           - template: electron-e2e-test-linux.yaml
           - template: electron-e2e-publish-results.yaml
@@ -29,6 +37,10 @@ jobs:
       pool:
           vmImage: macOS-10.14
       steps:
+          - script: 'rm -rf ~/Library/Caches/electron/'
+            displayName: 'delete electron binary from cache'
+            continueOnError: true
+
           - template: ../install-node-prerequisites.yaml
           - template: electron-e2e-test-interactive.yaml
           - template: electron-e2e-publish-results.yaml
