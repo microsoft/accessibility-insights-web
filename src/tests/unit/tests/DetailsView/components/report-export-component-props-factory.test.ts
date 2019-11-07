@@ -79,8 +79,8 @@ describe('ReportExportComponentPropsFactory', () => {
 
     function setAssessmentReportGenerator(): void {
         reportGeneratorMock
-            .setup(x =>
-                x.generateAssessmentReport(
+            .setup(reportGenerator =>
+                reportGenerator.generateAssessmentReport(
                     assessmentStoreData,
                     assessmentsProviderMock.object,
                     featureFlagStoreData,
@@ -93,8 +93,8 @@ describe('ReportExportComponentPropsFactory', () => {
 
     function setAutomatedChecksReportGenerator(): void {
         reportGeneratorMock
-            .setup(x =>
-                x.generateFastPassAutomateChecksReport(
+            .setup(reportGenerator =>
+                reportGenerator.generateFastPassAutomateChecksReport(
                     scanResult,
                     theDate,
                     tabStoreData.title,

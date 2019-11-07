@@ -123,21 +123,23 @@ describe('DetailsViewCommandBar', () => {
     function testOnPivot(givenRenderExportAndStartOver: boolean): void {
         const theHtml = 'this is the HTML';
         let theDescription = null;
-        reportExportComponentProps = givenRenderExportAndStartOver
-            ? {
-                  deps: {} as ExportDialogDeps,
-                  reportGenerator: reportGeneratorMock.object,
-                  pageTitle: thePageTitle,
-                  exportResultsType: 'Assessment',
-                  scanDate: theDate,
-                  htmlGenerator: description => {
-                      theDescription = description;
-                      return theHtml;
-                  },
-                  updatePersistedDescription: () => null,
-                  getExportDescription: () => descriptionPlaceholder,
-              }
-            : null;
+        let reportProps: ReportExportComponentProps = null;
+        if (givenRenderExportAndStartOver) {
+            reportProps = {
+                deps: {} as ExportDialogDeps,
+                reportGenerator: reportGeneratorMock.object,
+                pageTitle: thePageTitle,
+                exportResultsType: 'Assessment',
+                scanDate: theDate,
+                htmlGenerator: description => {
+                    theDescription = description;
+                    return theHtml;
+                },
+                updatePersistedDescription: () => null,
+                getExportDescription: () => descriptionPlaceholder,
+            };
+        }
+        reportExportComponentProps = reportProps;
         const props = getProps(givenRenderExportAndStartOver);
         const rendered = shallow(<DetailsViewCommandBar {...props} />);
 
