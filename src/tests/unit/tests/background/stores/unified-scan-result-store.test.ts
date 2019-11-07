@@ -23,10 +23,11 @@ describe('UnifiedScanResultStore Test', () => {
     test('check defaultState is empty', () => {
         const defaultState = getDefaultState();
 
-        expect(defaultState.results).toEqual(null);
-        expect(defaultState.rules).toEqual(null);
-        expect(defaultState.toolInfo).toEqual(null);
-        expect(defaultState.screenshotData).toEqual(null);
+        expect(defaultState.results).toBeNull();
+        expect(defaultState.rules).toBeNull();
+        expect(defaultState.toolInfo).toBeNull();
+        expect(defaultState.screenshotData).toBeNull();
+        expect(defaultState.platformInfo).toBeNull();
     });
 
     test('onGetCurrentState', () => {
@@ -59,6 +60,9 @@ describe('UnifiedScanResultStore Test', () => {
                 base64PngData: 'testScreenshotText',
             },
             targetAppInfo,
+            platformInfo: {
+                deviceName: 'test-device-name',
+            },
         } as UnifiedScanCompletedPayload;
 
         const expectedState: UnifiedScanResultStoreData = {
@@ -67,6 +71,7 @@ describe('UnifiedScanResultStore Test', () => {
             toolInfo: payload.toolInfo,
             targetAppInfo,
             screenshotData: payload.screenshotData,
+            platformInfo: payload.platformInfo,
         };
 
         createStoreForUnifiedScanResultActions('scanCompleted')

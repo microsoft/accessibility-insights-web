@@ -18,6 +18,7 @@ export class UnifiedScanResultStore extends BaseStoreImpl<UnifiedScanResultStore
             toolInfo: null,
             targetAppInfo: null,
             screenshotData: null,
+            platformInfo: null,
         };
 
         return defaultValue;
@@ -34,6 +35,7 @@ export class UnifiedScanResultStore extends BaseStoreImpl<UnifiedScanResultStore
         this.state.toolInfo = payload.toolInfo;
         this.state.targetAppInfo = payload.targetAppInfo;
         this.state.screenshotData = payload.screenshotData;
+        this.state.platformInfo = payload.platformInfo;
         this.emitChanged();
     };
 }
