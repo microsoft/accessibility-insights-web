@@ -41,7 +41,7 @@ describe('screenshotViewModelProvider', () => {
         expect(output.screenshotData).toBe(storeScreenshotData);
     });
 
-    const platformInfosWithoutDeviceName: PlatformData[] = [null, {} as PlatformData];
+    const platformInfosWithoutDeviceName: PlatformData[] = [null, {} as PlatformData, { deviceName: '' } as PlatformData];
     it.each(platformInfosWithoutDeviceName)(
         'provides a null deviceName when the UnifiedScanResultStore has platformInfo %p',
         (platformInfo?: PlatformData) => {
@@ -56,6 +56,21 @@ describe('screenshotViewModelProvider', () => {
             expect(output.deviceName).toBeNull();
         },
     );
+
+    it('provides the deviceName from UnifiedScanResultStore when present', () => {
+        const deviceNameFromStore = 'device name from store';
+        const unifiedScanResultStoreData = {
+            screenshotData: null,
+            results: [],
+            platformInfo: {
+                deviceName: deviceNameFromStore,
+            },
+        } as UnifiedScanResultStoreData;
+
+        const output = screenshotViewModelProvider(unifiedScanResultStoreData, []);
+
+        expect(output.deviceName).toBe(deviceNameFromStore);
+    });
 
     it('provides highlight boxes only for those results which are both highlighted and have a boundingRectangle', () => {
         const stubBoundingRectangle: BoundingRectangle = { top: 1, left: 2, bottom: 3, right: 4 };

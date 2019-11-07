@@ -16,18 +16,20 @@ export interface ApplicationProperties {
 
 export interface OSProperties {
     name: string;
-    version: string;
+    version?: string;
     userAgent?: string;
 }
 
 export interface ViewPortProperties {
     height?: number;
     width?: number;
+    dpi?: number;
 }
 
 export interface PlatformData {
     osInfo: OSProperties;
     viewPortInfo: ViewPortProperties;
+    deviceName?: string;
 }
 
 export interface TargetAppData {

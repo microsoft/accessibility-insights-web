@@ -20,10 +20,12 @@ export function screenshotViewModelProvider(
                   unifiedScanResultStoreData.platformInfo.viewPortInfo,
               );
 
+    const deviceName = (unifiedScanResultStoreData.platformInfo && unifiedScanResultStoreData.platformInfo.deviceName) || null;
+
     return {
         screenshotData,
         highlightBoxViewModels,
-        deviceName: null, // Future work will want to pipe this in via unifiedScanResultStore.platformInfo
+        deviceName,
     };
 }
 
