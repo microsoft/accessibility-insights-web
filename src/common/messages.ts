@@ -191,5 +191,8 @@ export class Messages {
     public static readonly CardSelection = {
         CardSelectionToggled: `${messagePrefix}/cardSelection/cardSelectionToggled`,
         RuleExpansionToggled: `${messagePrefix}/cardSelection/ruleExpansionToggled`,
+        CollapseAllRules: `${messagePrefix}/cardSelection/collapseAllRules`,
+        ExpandAllRules: `${messagePrefix}/cardSelection/expandAllRules`,
+        ToggleVisualHelper: `${messagePrefix}/cardSelection/toggleVisualHelper`,
     };
 }
