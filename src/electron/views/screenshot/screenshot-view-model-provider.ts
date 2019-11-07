@@ -11,14 +11,18 @@ export function screenshotViewModelProvider(
 ): ScreenshotViewModel {
     const screenshotData = unifiedScanResultStoreData.screenshotData;
 
-    const highlightBoxViewModels =
-        screenshotData == null
-            ? []
-            : getHighlightBoxRectangles(
-                  unifiedScanResultStoreData.results,
-                  highlightedResultUids,
-                  unifiedScanResultStoreData.platformInfo.viewPortInfo,
-              );
+    let highlightBoxViewModels = [];
+    if (
+        screenshotData != null &&
+        unifiedScanResultStoreData.platformInfo != null &&
+        unifiedScanResultStoreData.platformInfo.viewPortInfo != null
+    ) {
+        highlightBoxViewModels = getHighlightBoxViewModels(
+            unifiedScanResultStoreData.results,
+            highlightedResultUids,
+            unifiedScanResultStoreData.platformInfo.viewPortInfo,
+        );
+    }
 
     const deviceName = (unifiedScanResultStoreData.platformInfo && unifiedScanResultStoreData.platformInfo.deviceName) || null;
 
@@ -29,7 +33,7 @@ export function screenshotViewModelProvider(
     };
 }
 
-function getHighlightBoxRectangles(
+function getHighlightBoxViewModels(
     results: UnifiedResult[],
     highlightedUids: string[],
     viewPort: ViewPortProperties,
@@ -44,8 +48,8 @@ function getHighlightBoxViewModelFromResult(result: UnifiedResult, viewPort: Vie
     const rectInPx = result.descriptors.boundingRectangle;
     return {
         resultUid: result.uid,
-        left: `${rectInPx.left / viewPort.width}%`,
-        top: `${rectInPx.top / viewPort.height}%`,
+        left: `${100.0 * (rectInPx.left / viewPort.width)}%`,
+        top: `${100.0 * (rectInPx.top / viewPort.height)}%`,
         width: `${rectInPx.right - rectInPx.left}px`,
         height: `${rectInPx.bottom - rectInPx.top}px`,
     };

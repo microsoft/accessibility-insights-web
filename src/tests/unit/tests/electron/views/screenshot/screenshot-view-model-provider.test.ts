@@ -22,6 +22,19 @@ describe('screenshotViewModelProvider', () => {
         const unifiedScanResultStoreData = {
             screenshotData: null,
             results: [exampleUnifiedResult],
+            platformInfo: { viewPortInfo: { width: 1, height: 1 } },
+        } as UnifiedScanResultStoreData;
+
+        const output = screenshotViewModelProvider(unifiedScanResultStoreData, [exampleUnifiedResult.uid]);
+
+        expect(output.highlightBoxViewModels).toStrictEqual([]);
+    });
+
+    it('provides no highlight boxes when the UnifiedScanResultStore has no viewPortInfo', () => {
+        const storeScreenshotData: ScreenshotData = { base64PngData: 'test-data' };
+        const unifiedScanResultStoreData = {
+            screenshotData: storeScreenshotData,
+            results: [exampleUnifiedResult],
         } as UnifiedScanResultStoreData;
 
         const output = screenshotViewModelProvider(unifiedScanResultStoreData, [exampleUnifiedResult.uid]);
@@ -119,7 +132,7 @@ describe('screenshotViewModelProvider', () => {
         };
         const highlightBoxViewModel = provideHighlightBoxViewModelForBoundingRectangle(inputRectangle);
 
-        expect(highlightBoxViewModel.width).toBe('122px'); // right - left px
+        expect(highlightBoxViewModel.width).toBe('111px'); // right - left px
         expect(highlightBoxViewModel.height).toBe('1233px'); // bottom - top px
     });
 
