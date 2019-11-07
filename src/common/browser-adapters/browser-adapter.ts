@@ -1,7 +1,6 @@
-import { ExtensionTypes } from 'webextension-polyfill-ts';
-
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { ExtensionTypes } from 'webextension-polyfill-ts';
 
 export interface BrowserAdapter {
     getAllWindows(getInfo: chrome.windows.GetInfo, callback: (chromeWindows: chrome.windows.Window[]) => void): void;
