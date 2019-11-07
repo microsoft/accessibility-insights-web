@@ -4,6 +4,7 @@ import { css } from '@uifabric/utilities';
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { VisualizationScanResultData } from 'common/types/store-data/visualization-scan-result-data';
+import { StartOverComponentProps } from 'DetailsView/components/start-over-component';
 import { Link } from 'office-ui-fabric-react/lib/Link';
 import * as React from 'react';
 import { ReportGenerator } from 'reports/report-generator';
@@ -23,7 +24,9 @@ export type DetailsViewCommandBarDeps = ReportExportComponentDeps & {
 
 export type CommandBarProps = Omit<DetailsViewCommandBarProps, 'renderStartOver'>;
 
-export type ReportExportComponentPropertyConverter = (props: CommandBarProps) => ReportExportComponentProps;
+export type ReportExportComponentPropertyFactory = (props: CommandBarProps) => ReportExportComponentProps;
+
+export type StartOverComponentPropertyFactory = (props: CommandBarProps) => StartOverComponentProps;
 
 export interface DetailsViewCommandBarProps {
     deps: DetailsViewCommandBarDeps;
@@ -32,12 +35,11 @@ export interface DetailsViewCommandBarProps {
     actionMessageCreator: DetailsViewActionMessageCreator;
     assessmentStoreData: AssessmentStoreData;
     assessmentsProvider: AssessmentsProvider;
-    reportExportComponentProps: ReportExportComponentProps;
-    renderStartOver: boolean;
     rightPanelConfiguration: DetailsRightPanelConfiguration;
     visualizationScanResultData: VisualizationScanResultData;
     cardsViewData: CardsViewModel;
-    reportExportComponentPropertyFactory?: ReportExportComponentPropertyConverter;
+    reportExportComponentPropertyFactory: ReportExportComponentPropertyFactory;
+    startOverComponentPropertyFactory: StartOverComponentPropertyFactory;
 }
 
 export class DetailsViewCommandBar extends React.Component<DetailsViewCommandBarProps> {
@@ -72,24 +74,23 @@ export class DetailsViewCommandBar extends React.Component<DetailsViewCommandBar
     }
 
     private renderCommandButtons(): JSX.Element {
-        if (!this.props.reportExportComponentProps || !this.props.renderStartOver) {
+        if (!this.props.reportExportComponentPropertyFactory || !this.props.startOverComponentPropertyFactory) {
             return null;
         }
+
+        const reportExportComponentProps = this.props.reportExportComponentPropertyFactory(this.props);
+        const startOverComponentProps = this.props.startOverComponentPropertyFactory(this.props);
+
+        if (!reportExportComponentProps || !startOverComponentProps || !startOverComponentProps.render) {
+            return null;
+        }
+
         const selectedTest = this.props.assessmentStoreData.assessmentNavState.selectedTestType;
         const test = this.props.assessmentsProvider.forType(selectedTest);
 
         return (
             <div className="details-view-command-buttons">
-                <ReportExportComponent
-                    deps={this.props.reportExportComponentProps.deps}
-                    reportGenerator={this.props.reportExportComponentProps.reportGenerator}
-                    pageTitle={this.props.reportExportComponentProps.pageTitle}
-                    exportResultsType={this.props.reportExportComponentProps.exportResultsType}
-                    scanDate={this.props.reportExportComponentProps.scanDate}
-                    htmlGenerator={this.props.reportExportComponentProps.htmlGenerator}
-                    updatePersistedDescription={this.props.reportExportComponentProps.updatePersistedDescription}
-                    getExportDescription={this.props.reportExportComponentProps.getExportDescription}
-                />
+                <ReportExportComponent {...reportExportComponentProps} />
                 <StartOverDropdown
                     testName={test.title}
                     test={selectedTest}

@@ -6,7 +6,7 @@ import { TargetAppData } from 'common/types/store-data/unified-data-interface';
 import { ISelection } from 'office-ui-fabric-react/lib/DetailsList';
 import * as React from 'react';
 
-import { CommandBarProps } from 'DetailsView/components/details-view-command-bar';
+import { CommandBarProps, DetailsViewCommandBarProps } from 'DetailsView/components/details-view-command-bar';
 import { ReportExportComponentProps } from 'DetailsView/components/report-export-component';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
 import { DropdownClickHandler } from '../common/dropdown-click-handler';
@@ -74,22 +74,14 @@ export class DetailsViewBody extends React.Component<DetailsViewBodyProps> {
 
     private renderCommandBar(): JSX.Element {
         const { deps, switcherNavConfiguration } = this.props;
-        const reportExponentBuilderProps: CommandBarProps = {
+        const detailsViewCommandBarProps: DetailsViewCommandBarProps = {
             actionMessageCreator: deps.detailsViewActionMessageCreator,
-            reportExportComponentProps: null,
+            reportExportComponentPropertyFactory: switcherNavConfiguration.ReportExportComponentPropertyFactory,
+            startOverComponentPropertyFactory: switcherNavConfiguration.StartOverComponentPropertyFactory,
             ...this.props,
         };
 
-        const reportExportComponentProps: ReportExportComponentProps = switcherNavConfiguration.ReportExportComponentPropertyFactory(
-            reportExponentBuilderProps,
-        );
-        return (
-            <switcherNavConfiguration.CommandBar
-                actionMessageCreator={deps.detailsViewActionMessageCreator}
-                reportExportComponentProps={reportExportComponentProps}
-                {...this.props}
-            />
-        );
+        return <switcherNavConfiguration.CommandBar {...detailsViewCommandBarProps} />;
     }
 
     private renderNavBar(): JSX.Element {

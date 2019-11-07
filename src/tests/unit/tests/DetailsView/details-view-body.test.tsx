@@ -28,6 +28,9 @@ import { TabStoreDataBuilder } from '../../common/tab-store-data-builder';
 import { VisualizationScanResultStoreDataBuilder } from '../../common/visualization-scan-result-store-data-builder';
 import { VisualizationStoreDataBuilder } from '../../common/visualization-store-data-builder';
 import { exampleUnifiedStatusResults } from '../common/components/cards/sample-view-model-data';
+import { ReportExportComponentPropertyFactory, StartOverComponentPropertyFactory } from 'DetailsView/components/details-view-command-bar';
+import { getStartOverComponentPropsForAssessment } from 'DetailsView/components/start-over-component-props-factory';
+import { StartOverComponentProps } from 'DetailsView/components/start-over-component';
 
 describe('DetailsViewBody', () => {
     let selectedTest: VisualizationType;
@@ -41,6 +44,7 @@ describe('DetailsViewBody', () => {
     let rightPanelConfig: DetailsRightPanelConfiguration;
     let switcherNavConfig: DetailsViewSwitcherNavConfiguration;
     let reportExportComponentProps: ReportExportComponentProps;
+    let startOverComponenetProps: StartOverComponentProps;
 
     describe('render', () => {
         beforeEach(() => {
@@ -49,6 +53,7 @@ describe('DetailsViewBody', () => {
             const CommandBarStub: Readonly<ReactFCWithDisplayName<DetailsViewBodyProps>> = NamedFC<DetailsViewBodyProps>('test', _ => null);
             const LeftNavStub: Readonly<ReactFCWithDisplayName<DetailsViewBodyProps>> = NamedFC<DetailsViewBodyProps>('test', _ => null);
             reportExportComponentProps = {} as ReportExportComponentProps;
+            startOverComponenetProps = {} as StartOverComponentProps;
             rightPanelConfig = {
                 RightPanel: RightPanelStub,
             } as DetailsRightPanelConfiguration;
@@ -180,7 +185,8 @@ describe('DetailsViewBody', () => {
         return (
             <switcherNavConfig.CommandBar
                 actionMessageCreator={props.deps.detailsViewActionMessageCreator}
-                reportExportComponentProps={reportExportComponentProps}
+                reportExportComponentPropertyFactory={p => reportExportComponentProps}
+                startOverComponentPropertyFactory={p => null}
                 {...props}
             />
         );

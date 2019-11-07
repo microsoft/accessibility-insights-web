@@ -4,6 +4,7 @@ import { AssessmentsProviderImpl } from 'assessments/assessments-provider';
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { Assessment } from 'assessments/types/iassessment';
 import { ExportDialogDeps } from 'DetailsView/components/export-dialog';
+import { StartOverComponentProps } from 'DetailsView/components/start-over-component';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import { ReportGenerator } from 'reports/report-generator';
@@ -34,7 +35,7 @@ describe('DetailsViewCommandBar', () => {
     let reportGeneratorMock: IMock<ReportGenerator>;
     let descriptionPlaceholder: string;
     let reportExportComponentProps: ReportExportComponentProps;
-    let renderStartOver: boolean;
+    let startOverComponentProps: StartOverComponentProps;
 
     beforeEach(() => {
         featureFlagStoreData = {};
@@ -44,7 +45,7 @@ describe('DetailsViewCommandBar', () => {
             isClosed: false,
         } as TabStoreData;
         reportExportComponentProps = null;
-        renderStartOver = true;
+        startOverComponentProps = null;
         assessmentsProviderMock = Mock.ofType<AssessmentsProvider>(AssessmentsProviderImpl);
         assessmentStoreData = {
             assessmentNavState: {
@@ -65,7 +66,7 @@ describe('DetailsViewCommandBar', () => {
         descriptionPlaceholder = '7efdac3c-8c94-4e00-a765-6fc8c59a232b';
     });
 
-    function getProps(): DetailsViewCommandBarProps {
+    function getProps(renderStartOver: boolean): DetailsViewCommandBarProps {
         const deps: DetailsViewCommandBarDeps = {
             detailsViewActionMessageCreator: actionMessageCreatorMock.object,
             fileURLProvider: Mock.ofType<FileURLProvider>().object,
@@ -75,18 +76,23 @@ describe('DetailsViewCommandBar', () => {
             getDateFromTimestamp: () => theDate,
         };
 
+        const startOverComponentProps: StartOverComponentProps = {
+            render: renderStartOver,
+        } as StartOverComponentProps;
+
         return {
             deps,
             featureFlagStoreData,
             actionMessageCreator: actionMessageCreatorMock.object,
             tabStoreData,
             reportExportComponentProps,
-            renderStartOver,
             assessmentsProvider: assessmentsProviderMock.object,
             assessmentStoreData,
             rightPanelConfiguration: rightPanelConfig,
             visualizationScanResultData: null,
             cardsViewData: null,
+            reportExportComponentPropertyFactory: p => reportExportComponentProps,
+            startOverComponentPropertyFactory: p => startOverComponentProps,
         };
     }
 
@@ -107,7 +113,6 @@ describe('DetailsViewCommandBar', () => {
     function testOnPivot(givenRenderExportAndStartOver: boolean): void {
         const theHtml = 'this is the HTML';
         let theDescription = null;
-        renderStartOver = givenRenderExportAndStartOver;
         reportExportComponentProps = givenRenderExportAndStartOver
             ? {
                   deps: {} as ExportDialogDeps,
@@ -123,7 +128,7 @@ describe('DetailsViewCommandBar', () => {
                   getExportDescription: () => descriptionPlaceholder,
               }
             : null;
-        const props = getProps();
+        const props = getProps(givenRenderExportAndStartOver);
         const rendered = shallow(<DetailsViewCommandBar {...props} />);
 
         expect(rendered.debug()).toMatchSnapshot();
@@ -146,6 +151,6 @@ describe('DetailsViewCommandBar', () => {
     }
 
     function getTestSubject(): DetailsViewCommandBar {
-        return new DetailsViewCommandBar(getProps());
+        return new DetailsViewCommandBar(getProps(true));
     }
 });
