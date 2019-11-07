@@ -8,12 +8,6 @@ steps:
     - script: yarn dist:electron ${{ parameters.platforms }}
       displayName: create electron distributables
 
-    - task: PublishBuildArtifacts@1
-      inputs:
-          pathtoPublish: '$(System.DefaultWorkingDirectory)/dist'
-          artifactName: $(Agent.JobName)
-      displayName: publish dist
-
     - task: SFP.build-tasks.custom-build-task-1.EsrpCodeSigning@1
       displayName: 'ESRP CodeSigning'
       inputs:
@@ -51,3 +45,9 @@ steps:
                   "toolVersion": "6.2.9304.0"
                 }
               ]
+
+    - task: PublishBuildArtifacts@1
+      inputs:
+          pathtoPublish: '$(System.DefaultWorkingDirectory)/dist'
+          artifactName: $(Agent.JobName)
+      displayName: publish dist
