@@ -39,39 +39,39 @@ describe('CardSelectionActionCreator', () => {
     });
 
     test('onToggleVisualHelper', () => {
-        const actionMock = createActionMock(null);
-        const actionsMock = createActionsMock('toggleVisualHelper', actionMock.object);
+        const toggleVisualHelperMock = createActionMock(null);
+        const actionsMock = createActionsMock('toggleVisualHelper', toggleVisualHelperMock.object);
         const interpreterMock = createInterpreterMock(Messages.CardSelection.ToggleVisualHelper, tabId);
 
         const testSubject = new CardSelectionActionCreator(interpreterMock.object, actionsMock.object, telemetryEventHandlerMock.object);
 
         testSubject.registerCallbacks();
 
-        actionMock.verifyAll();
+        toggleVisualHelperMock.verifyAll();
     });
 
     test('onCollapseAllRules', () => {
-        const actionMock = createActionMock(null);
-        const actionsMock = createActionsMock('collapseAllRules', actionMock.object);
+        const collapseAllRulesActionMock = createActionMock(null);
+        const actionsMock = createActionsMock('collapseAllRules', collapseAllRulesActionMock.object);
         const interpreterMock = createInterpreterMock(Messages.CardSelection.CollapseAllRules, tabId);
 
         const testSubject = new CardSelectionActionCreator(interpreterMock.object, actionsMock.object, telemetryEventHandlerMock.object);
 
         testSubject.registerCallbacks();
 
-        actionMock.verifyAll();
+        collapseAllRulesActionMock.verifyAll();
     });
 
     test('onExpandAllRules', () => {
-        const actionMock = createActionMock(null);
-        const actionsMock = createActionsMock('expandAllRules', actionMock.object);
+        const expandAllRulesActionMock = createActionMock(null);
+        const actionsMock = createActionsMock('expandAllRules', expandAllRulesActionMock.object);
         const interpreterMock = createInterpreterMock(Messages.CardSelection.ExpandAllRules, tabId);
 
         const testSubject = new CardSelectionActionCreator(interpreterMock.object, actionsMock.object, telemetryEventHandlerMock.object);
 
         testSubject.registerCallbacks();
 
-        actionMock.verifyAll();
+        expandAllRulesActionMock.verifyAll();
     });
 
     function createActionsMock<ActionName extends keyof CardSelectionActions>(
