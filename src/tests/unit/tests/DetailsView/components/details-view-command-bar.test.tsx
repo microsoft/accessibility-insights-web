@@ -97,7 +97,6 @@ describe('DetailsViewCommandBar', () => {
             featureFlagStoreData,
             actionMessageCreator: actionMessageCreatorMock.object,
             tabStoreData,
-            reportExportComponentProps,
             assessmentsProvider: assessmentsProviderMock.object,
             assessmentStoreData,
             rightPanelConfiguration: rightPanelConfig,
