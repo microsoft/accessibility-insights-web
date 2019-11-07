@@ -60,7 +60,7 @@ export const KeyboardInteraction: Requirement = {
                     defaultValue: NoValue,
                 },
                 {
-                    propertyName: 'text',
+                    propertyName: 'accessibleName',
                     displayName: 'Accessible name',
                     defaultValue: NoValue,
                 },

@@ -63,7 +63,7 @@ export const Instructions: Requirement = {
                     defaultValue: NoValue,
                 },
                 {
-                    propertyName: 'text',
+                    propertyName: 'accessibleName',
                     displayName: 'Accessible name',
                     defaultValue: NoValue,
                 },
