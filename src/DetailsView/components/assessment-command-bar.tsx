@@ -3,19 +3,9 @@
 import * as React from 'react';
 
 import { NamedFC } from 'common/react/named-fc';
-import { ReportExportComponentProps } from 'DetailsView/components/report-export-component';
-import { getReportExportComponentPropsForAssessment } from 'DetailsView/components/report-export-component-props-factory';
-import { CommandBarProps, ReportExportComponentPropertyFactory } from './details-view-command-bar';
+import { CommandBarProps } from './details-view-command-bar';
 import { DetailsViewCommandBar } from './details-view-command-bar';
 
 export const AssessmentCommandBar = NamedFC<CommandBarProps>('AssessmentCommandBar', props => {
-    const converter: ReportExportComponentPropertyFactory = props.reportExportComponentPropertyFactory;
-    let reportExportComponentProps: ReportExportComponentProps;
-    if (converter) {
-        reportExportComponentProps = converter(props);
-    } else {
-        reportExportComponentProps = getReportExportComponentPropsForAssessment(props);
-    }
-
-    return <DetailsViewCommandBar reportExportComponentProps={reportExportComponentProps} renderStartOver={true} {...props} />;
+    return <DetailsViewCommandBar {...props} />;
 });

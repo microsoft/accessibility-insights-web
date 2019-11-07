@@ -4,45 +4,24 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 
 import { AutomatedChecksCommandBar } from 'DetailsView/components/automated-checks-command-bar';
-import { CommandBarProps } from 'DetailsView/components/details-view-command-bar';
-import { DictionaryStringTo } from 'types/common-types';
+import { CommandBarProps, DetailsViewCommandBarDeps } from 'DetailsView/components/details-view-command-bar';
 
-function getProps(enableCardsUI: boolean, returnCommandBarProps: boolean): CommandBarProps {
-    const featureFlags: DictionaryStringTo<boolean> = {
-        universalCardsUI: enableCardsUI,
-    };
-
-    const reportExportComponentProps = returnCommandBarProps ? {} : null;
+function getProps(): CommandBarProps {
+    const deps: DetailsViewCommandBarDeps = {
+        reportExportComponentPropertyFactory: p => null,
+        startOverComponentPropertyFactory: p => null,
+    } as DetailsViewCommandBarDeps;
 
     const props = {
-        featureFlagStoreData: featureFlags,
-        reportExportComponentPropertyFactory: commandBarProps => reportExportComponentProps,
+        deps: deps,
     } as CommandBarProps;
 
     return props;
 }
 
-describe('getAutomatedChecksCommandBar reportExportComponentPropertyFactory returns null and universalCardsUi is false', () => {
-    it('should return command bar with reportExportComponentProps as null and renderStartOver as false', () => {
-        const props = getProps(false, false);
-        const actual = shallow(<AutomatedChecksCommandBar {...props} />);
-
-        expect(actual.getElement()).toMatchSnapshot();
-    });
-});
-
-describe('getAutomatedChecksCommandBar reportExportComponentPropertyFactory returns non-null and universalCardsUi is false', () => {
-    it('should return command bar with reportExportComponentProps as null and renderStartOver as false', () => {
-        const props = getProps(false, true);
-        const actual = shallow(<AutomatedChecksCommandBar {...props} />);
-
-        expect(actual.getElement()).toMatchSnapshot();
-    });
-});
-
-describe('getAutomatedChecksCommandBar reportExportComponentPropertyFactory returns null and universalCardsUi is true', () => {
-    it('should return command bar with reportExportComponentProps as null and renderAndStartOver as true', () => {
-        const props = getProps(true, false);
+describe('getAutomatedChecksCommandBar ', () => {
+    it('should return DetailsViewCommandBar with deps of reportExportComponentPropertyFactory and startOverComponentPropertyFactory', () => {
+        const props = getProps();
         const actual = shallow(<AutomatedChecksCommandBar {...props} />);
 
         expect(actual.getElement()).toMatchSnapshot();

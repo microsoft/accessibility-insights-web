@@ -1,17 +1,12 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`getAutomatedChecksCommandBar reportExportComponentPropertyFactory returns non-null should return command bar with renderExportComponentProps as non-null and renderStartOver as true 1`] = `
+exports[`getAssessementCommandBar  should return DetailsViewCommandBar with deps of reportExportComponentPropertyFactory and startOverComponentPropertyFactory 1`] = `
 <DetailsViewCommandBar
-  renderStartOver={true}
-  reportExportComponentPropertyFactory={[Function]}
-  reportExportComponentProps={Object {}}
-/>
-`;
-
-exports[`getAutomatedChecksCommandBar reportExportComponentPropertyFactory returns null should return command bar with renderExportComponentProps as null and renderStartOver as true 1`] = `
-<DetailsViewCommandBar
-  renderStartOver={true}
-  reportExportComponentPropertyFactory={[Function]}
-  reportExportComponentProps={null}
+  deps={
+    Object {
+      "reportExportComponentPropertyFactory": [Function],
+      "startOverComponentPropertyFactory": [Function],
+    }
+  }
 />
 `;

@@ -4,30 +4,24 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 
 import { AssessmentCommandBar } from 'DetailsView/components/assessment-command-bar';
-import { CommandBarProps } from 'DetailsView/components/details-view-command-bar';
+import { CommandBarProps, DetailsViewCommandBarDeps } from 'DetailsView/components/details-view-command-bar';
 
-function getProps(returnCommandBarProps: boolean): CommandBarProps {
-    const reportExportComponentProps = returnCommandBarProps ? {} : null;
+function getProps(): CommandBarProps {
+    const deps: DetailsViewCommandBarDeps = {
+        reportExportComponentPropertyFactory: p => null,
+        startOverComponentPropertyFactory: p => null,
+    } as DetailsViewCommandBarDeps;
 
     const props = {
-        reportExportComponentPropertyFactory: commandBarProps => reportExportComponentProps,
+        deps: deps,
     } as CommandBarProps;
 
     return props;
 }
 
-describe('getAutomatedChecksCommandBar reportExportComponentPropertyFactory returns null', () => {
-    it('should return command bar with renderExportComponentProps as null and renderStartOver as true', () => {
-        const props = getProps(false);
-        const actual = shallow(<AssessmentCommandBar {...props} />);
-
-        expect(actual.getElement()).toMatchSnapshot();
-    });
-});
-
-describe('getAutomatedChecksCommandBar reportExportComponentPropertyFactory returns non-null', () => {
-    it('should return command bar with renderExportComponentProps as non-null and renderStartOver as true', () => {
-        const props = getProps(true);
+describe('getAssessementCommandBar ', () => {
+    it('should return DetailsViewCommandBar with deps of reportExportComponentPropertyFactory and startOverComponentPropertyFactory', () => {
+        const props = getProps();
         const actual = shallow(<AssessmentCommandBar {...props} />);
 
         expect(actual.getElement()).toMatchSnapshot();

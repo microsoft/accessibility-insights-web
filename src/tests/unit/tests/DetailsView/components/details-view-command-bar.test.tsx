@@ -67,6 +67,10 @@ describe('DetailsViewCommandBar', () => {
     });
 
     function getProps(renderStartOver: boolean): DetailsViewCommandBarProps {
+        startOverComponentProps = {
+            render: renderStartOver,
+        } as StartOverComponentProps;
+
         const deps: DetailsViewCommandBarDeps = {
             detailsViewActionMessageCreator: actionMessageCreatorMock.object,
             fileURLProvider: Mock.ofType<FileURLProvider>().object,
@@ -74,11 +78,9 @@ describe('DetailsViewCommandBar', () => {
             getCurrentDate: () => theDate,
             reportGenerator: reportGeneratorMock.object,
             getDateFromTimestamp: () => theDate,
+            reportExportComponentPropertyFactory: p => reportExportComponentProps,
+            startOverComponentPropertyFactory: p => startOverComponentProps,
         };
-
-        const startOverComponentProps: StartOverComponentProps = {
-            render: renderStartOver,
-        } as StartOverComponentProps;
 
         return {
             deps,
@@ -91,8 +93,6 @@ describe('DetailsViewCommandBar', () => {
             rightPanelConfiguration: rightPanelConfig,
             visualizationScanResultData: null,
             cardsViewData: null,
-            reportExportComponentPropertyFactory: p => reportExportComponentProps,
-            startOverComponentPropertyFactory: p => startOverComponentProps,
         };
     }
 

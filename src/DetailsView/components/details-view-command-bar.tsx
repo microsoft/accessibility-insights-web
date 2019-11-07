@@ -20,6 +20,8 @@ export type DetailsViewCommandBarDeps = ReportExportComponentDeps & {
     getCurrentDate: () => Date;
     reportGenerator: ReportGenerator;
     getDateFromTimestamp: (timestamp: string) => Date;
+    reportExportComponentPropertyFactory: ReportExportComponentPropertyFactory;
+    startOverComponentPropertyFactory: StartOverComponentPropertyFactory;
 };
 
 export type CommandBarProps = Omit<DetailsViewCommandBarProps, 'renderStartOver'>;
@@ -38,8 +40,6 @@ export interface DetailsViewCommandBarProps {
     rightPanelConfiguration: DetailsRightPanelConfiguration;
     visualizationScanResultData: VisualizationScanResultData;
     cardsViewData: CardsViewModel;
-    reportExportComponentPropertyFactory: ReportExportComponentPropertyFactory;
-    startOverComponentPropertyFactory: StartOverComponentPropertyFactory;
 }
 
 export class DetailsViewCommandBar extends React.Component<DetailsViewCommandBarProps> {
@@ -74,12 +74,8 @@ export class DetailsViewCommandBar extends React.Component<DetailsViewCommandBar
     }
 
     private renderCommandButtons(): JSX.Element {
-        if (!this.props.reportExportComponentPropertyFactory || !this.props.startOverComponentPropertyFactory) {
-            return null;
-        }
-
-        const reportExportComponentProps = this.props.reportExportComponentPropertyFactory(this.props);
-        const startOverComponentProps = this.props.startOverComponentPropertyFactory(this.props);
+        const reportExportComponentProps = this.props.deps.reportExportComponentPropertyFactory(this.props);
+        const startOverComponentProps = this.props.deps.startOverComponentPropertyFactory(this.props);
 
         if (!reportExportComponentProps || !startOverComponentProps || !startOverComponentProps.render) {
             return null;
