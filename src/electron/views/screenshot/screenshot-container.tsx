@@ -10,15 +10,11 @@ import { isEmpty } from 'lodash';
 import * as React from 'react';
 
 export interface ScreenshotContainerProps {
-    screenshotData?: ScreenshotData;
+    screenshotData: ScreenshotData;
     highlightBoxViewModels: HighlightBoxViewModel[];
 }
 
 export const ScreenshotContainer = NamedFC<ScreenshotContainerProps>('ScreenshotContainer', props => {
-    if (isEmpty(props.screenshotData)) {
-        return <div>Screenshot for scan is unavailable</div>;
-    }
-
     return (
         <div className={screenshotContainer}>
             <Screenshot encodedImage={props.screenshotData.base64PngData} />

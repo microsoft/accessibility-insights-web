@@ -8,22 +8,11 @@ import * as React from 'react';
 
 describe('ScreenshotView', () => {
     describe('render', () => {
-        it('matches snapshot when passed a screenshot with no highlights', () => {
+        it('matches snapshot when screenshot data is available', () => {
             const viewModel: ScreenshotViewModel = {
                 screenshotData: { base64PngData: 'test-base-64-png-data' },
                 highlightBoxViewModels: [],
                 deviceName: 'My Cool Android Device',
-            };
-            const wrapper = shallow(<ScreenshotView viewModel={viewModel} />);
-
-            expect(wrapper.getElement()).toMatchSnapshot();
-        });
-
-        it('matches snapshot when deviceName is unavailable', () => {
-            const viewModel: ScreenshotViewModel = {
-                screenshotData: { base64PngData: 'test-base-64-png-data' },
-                highlightBoxViewModels: [],
-                deviceName: null,
             };
             const wrapper = shallow(<ScreenshotView viewModel={viewModel} />);
 
