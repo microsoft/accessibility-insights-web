@@ -10,7 +10,7 @@ describe('ScreenshotView', () => {
         it('when passed a value for screenshotData', () => {
             const viewModel: ScreenshotViewModel = {
                 screenshotData: { base64PngData: 'test-base-64-png-data' },
-                highlightBoxRectangles: [],
+                highlightBoxViewModels: [],
                 deviceName: null,
             };
             const wrapper = shallow(<ScreenshotView viewModel={viewModel} />);

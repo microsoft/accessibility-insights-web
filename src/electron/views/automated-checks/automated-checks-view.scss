@@ -12,11 +12,12 @@
             margin-right: 24px;
         }
         .main-content-wrapper {
-            width: 70%;
+            flex-grow: 1;
         }
         .screenshot-view {
             justify-content: flex-end;
-            width: 30%;
+            flex-grow: 0;
+            width: 280px;
             height: 100%;
             overflow: auto;
         }

@@ -1,0 +1,20 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+@import '../../../common/styles/colors.scss';
+@import '../../../common/styles/fonts.scss';
+
+.screenshot-view {
+    width: 100%;
+    height: 100%;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    padding-left: 24px;
+    padding-right: 24px;
+
+    .header {
+        margin-top: 0;
+        margin-bottom: 16px;
+        font-size: $fontSizeL;
+        color: $primary-text;
+    }
+}

@@ -1,8 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { UnifiedResult, UnifiedScanResultStoreData, ViewPortProperties } from 'common/types/store-data/unified-data-interface';
-import { BoundingRectangle } from 'electron/platform/android/scan-results';
-import { ScreenshotViewModel } from './screenshot-view-model';
+import { HighlightBoxViewModel, ScreenshotViewModel } from './screenshot-view-model';
 
 export type ScreenshotViewModelProvider = typeof screenshotViewModelProvider;
 
@@ -12,7 +11,7 @@ export function screenshotViewModelProvider(
 ): ScreenshotViewModel {
     const screenshotData = unifiedScanResultStoreData.screenshotData;
 
-    const highlightBoxRectangles =
+    const highlightBoxViewModels =
         screenshotData == null
             ? []
             : getHighlightBoxRectangles(
@@ -23,17 +22,11 @@ export function screenshotViewModelProvider(
 
     return {
         screenshotData,
-        highlightBoxRectangles,
+        highlightBoxViewModels,
         deviceName: null, // Future work will want to pipe this in via unifiedScanResultStore.platformInfo
     };
 }
 
-export type HighlightBoxViewModel = {
-    left: string;
-    top: string;
-    width: string;
-    height: string;
-};
 function getHighlightBoxRectangles(
     results: UnifiedResult[],
     highlightedUids: string[],
@@ -41,12 +34,17 @@ function getHighlightBoxRectangles(
 ): HighlightBoxViewModel[] {
     return results
         .filter(result => highlightedUids.includes(result.uid))
-        .map(highlightedResult => highlightedResult.descriptors.boundingRectangle)
-        .filter(maybeRect => maybeRect != null)
-        .map(rectInPx => ({
-            left: `${rectInPx.left / viewPort.height}%`,
-            top: `${rectInPx.top / viewPort.height}%`,
-            width: `${rectInPx.right - rectInPx.left}px`,
-            height: `${rectInPx.bottom - rectInPx.top}px`,
-        }));
+        .filter(result => result.descriptors.boundingRectangle != null)
+        .map(result => getHighlightBoxViewModelFromResult(result, viewPort));
+}
+
+function getHighlightBoxViewModelFromResult(result: UnifiedResult, viewPort: ViewPortProperties): HighlightBoxViewModel {
+    const rectInPx = result.descriptors.boundingRectangle;
+    return {
+        resultUid: result.uid,
+        left: `${rectInPx.left / viewPort.width}%`,
+        top: `${rectInPx.top / viewPort.height}%`,
+        width: `${rectInPx.right - rectInPx.left}px`,
+        height: `${rectInPx.bottom - rectInPx.top}px`,
+    };
 }
