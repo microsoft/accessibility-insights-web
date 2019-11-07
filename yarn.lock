@@ -540,10 +540,10 @@
     "@types/tough-cookie" "*"
     parse5 "^4.0.0"
 
-"@types/lodash@^4.14.144":
-  version "4.14.144"
-  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.144.tgz#12e57fc99064bce45e5ab3c8bc4783feb75eab8e"
-  integrity sha512-ogI4g9W5qIQQUhXAclq6zhqgqNUr7UlFaqDHbch7WLSLeeM/7d3CRaw7GLajxvyFvhJqw4Rpcz5bhoaYtIx6Tg==
+"@types/lodash@^4.14.145":
+  version "4.14.145"
+  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.145.tgz#abcafe85788f1392c5d5a144142aaf8529ad6bb9"
+  integrity sha512-7lX5bZFO3YG3AG0XVIm5L1SB6wDLtuaJksTkTWrux3/XwCZgw3MPWZBt3Jgj0w98uqUXWVypT2msxo0A1t22lw==
 
 "@types/make-dir@^2.1.0":
   version "2.1.0"
@@ -603,10 +603,10 @@
   dependencies:
     "@types/react" "*"
 
-"@types/react-dom@^16.9.3":
-  version "16.9.3"
-  resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-16.9.3.tgz#4006ff0e13958af91313869077c04cb20d9b9d04"
-  integrity sha512-FUuZKXPr9qlzUT9lhuzrZgLjH63TvNn28Ch3MvKG4B+F52zQtO8DtE0Opbncy3xaucNZM2WIPfuNTgkbKx5Brg==
+"@types/react-dom@^16.9.4":
+  version "16.9.4"
+  resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-16.9.4.tgz#0b58df09a60961dcb77f62d4f1832427513420df"
+  integrity sha512-fya9xteU/n90tda0s+FtN5Ym4tbgxpq/hb/Af24dvs6uYnYn+fspaxw5USlw0R8apDNwxsqumdRoCoKitckQqw==
   dependencies:
     "@types/react" "*"
 
@@ -2268,10 +2268,10 @@ copy-to-clipboard@^3:
   dependencies:
     toggle-selection "^1.0.6"
 
-core-js-bundle@^3.3.6:
-  version "3.3.6"
-  resolved "https://registry.yarnpkg.com/core-js-bundle/-/core-js-bundle-3.3.6.tgz#06b5c0cea3cbe726127e795abdb456c6900c5e16"
-  integrity sha512-y13dbh/9qo3U7IIAqz62C3EUyeVrX0HA9YhcfS96jfi4ebNn45zB8LrANgEe2VEJtOnd9rYy+mYCtrixePgwIQ==
+core-js-bundle@^3.4.0:
+  version "3.4.0"
+  resolved "https://registry.yarnpkg.com/core-js-bundle/-/core-js-bundle-3.4.0.tgz#0e05620797674aa9bce8d24d99e40363e5f70f92"
+  integrity sha512-8OUXNI3HJPIdzDm1KCvo2YzHoLcPrY3eYYB6GqIjIs2C10vF+Z9gldFhL6Ku/4r0u/bCOlJET9Ug7lC+I7mGKg==
 
 core-js@^2.4.0, core-js@^2.4.1, core-js@^2.5.3:
   version "2.6.9"

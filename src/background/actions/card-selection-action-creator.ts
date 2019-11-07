@@ -20,6 +20,9 @@ export class CardSelectionActionCreator {
         this.interpreter.registerTypeToPayloadCallback(Messages.CardSelection.CardSelectionToggled, this.onCardSelectionToggle);
         this.interpreter.registerTypeToPayloadCallback(Messages.CardSelection.RuleExpansionToggled, this.onRuleExpansionToggle);
         this.interpreter.registerTypeToPayloadCallback(getStoreStateMessage(StoreNames.CardSelectionStore), this.onGetCurrentState);
+        this.interpreter.registerTypeToPayloadCallback(Messages.CardSelection.ToggleVisualHelper, this.onToggleVisualHelper);
+        this.interpreter.registerTypeToPayloadCallback(Messages.CardSelection.ExpandAllRules, this.onExpandAllRules);
+        this.interpreter.registerTypeToPayloadCallback(Messages.CardSelection.CollapseAllRules, this.onCollapseAllRules);
     }
 
     private onGetCurrentState = (): void => {
@@ -34,5 +37,17 @@ export class CardSelectionActionCreator {
     private onRuleExpansionToggle = (payload: RuleExpandCollapsePayload): void => {
         this.cardSelectionActions.toggleRuleExpandCollapse.invoke(payload);
         this.telemetryEventHandler.publishTelemetry(TelemetryEvents.RULE_EXPANSION_TOGGLED, payload);
+    };
+
+    private onToggleVisualHelper = (): void => {
+        this.cardSelectionActions.toggleVisualHelper.invoke(null);
+    };
+
+    private onCollapseAllRules = (): void => {
+        this.cardSelectionActions.collapseAllRules.invoke(null);
+    };
+
+    private onExpandAllRules = (): void => {
+        this.cardSelectionActions.expandAllRules.invoke(null);
     };
 }
