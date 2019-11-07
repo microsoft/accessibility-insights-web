@@ -3,6 +3,8 @@
 import { NamedFC } from 'common/react/named-fc';
 import * as React from 'react';
 
+export const screenshotImageAutomationId = 'screenshot-image';
+
 export type ScreenshotProps = {
     encodedImage: string;
 };
@@ -10,5 +12,5 @@ export type ScreenshotProps = {
 export const Screenshot = NamedFC<ScreenshotProps>('Screenshot', props => {
     const altText = 'axe-android results screenshot with highlighted components';
 
-    return <img src={'data:image/png;base64,' + props.encodedImage} alt={altText} />;
+    return <img src={'data:image/png;base64,' + props.encodedImage} alt={altText} data-automation-id={screenshotImageAutomationId} />;
 });

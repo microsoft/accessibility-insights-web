@@ -6,6 +6,8 @@ import { highlightBox, highlightBoxLabel } from 'electron/views/screenshot/highl
 import * as React from 'react';
 import { CSSProperties } from 'react';
 
+export const highlightBoxAutomationId = 'screenshot-highlight-box';
+
 export interface HighlightBoxProps {
     boundingRectangle: BoundingRectangle;
 }
@@ -24,7 +26,7 @@ export const HighlightBox = NamedFC<HighlightBoxProps>('HighlightBox', props => 
     };
 
     return (
-        <div className={highlightBox} style={boxStyles} ariaHidden="true">
+        <div className={highlightBox} style={boxStyles} ariaHidden="true" data-automation-id={highlightBoxAutomationId}>
             <div className={highlightBoxLabel}>!</div>
         </div>
     );
