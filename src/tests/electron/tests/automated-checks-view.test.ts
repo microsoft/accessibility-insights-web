@@ -1,10 +1,14 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { createApplication } from 'tests/electron/common/create-application';
-import { AutomatedChecksViewSelectors } from 'tests/electron/common/element-identifiers/automated-checks-view-selectors';
+import {
+    AutomatedChecksViewSelectors,
+    ScreenshotViewSelectors,
+} from 'tests/electron/common/element-identifiers/automated-checks-view-selectors';
 import { scanForAccessibilityIssues } from 'tests/electron/common/scan-for-accessibility-issues';
 import { AppController } from 'tests/electron/common/view-controllers/app-controller';
 import { AutomatedChecksViewController } from 'tests/electron/common/view-controllers/automated-checks-view-controller';
+import { axeRuleResultExample } from 'tests/unit/tests/electron/flux/action-creator/scan-result-example';
 
 describe('AutomatedChecksView', () => {
     let app: AppController;
@@ -60,4 +64,18 @@ describe('AutomatedChecksView', () => {
         const failures = await automatedChecksView.client.$$(AutomatedChecksViewSelectors.getLiFailuresSelector(position));
         expect(failures).toHaveLength(expectedFailures);
     }
+
+    describe('ScreenshotView', async () => {
+        await automatedChecksView.waitForScreenshotViewVisible();
+
+        it('renders screenshot image with expected source', async () => {
+            const expectedScreenshotImage = 'data:image/png;base64' + axeRuleResultExample.screenshot;
+
+            const actualScreenshotImage = automatedChecksView.client.$(ScreenshotViewSelectors.screenshotImage);
+
+            expect(actualScreenshotImage.source).toEqual(expectedScreenshotImage);
+        });
+
+        // it('renders expected number of highlight boxes in expected positions', () => {});
+    });
 });
