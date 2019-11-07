@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { highlightBoxAutomationId } from 'electron/views/screenshot/highlight-box';
 import { screenshotImageAutomationId } from 'electron/views/screenshot/screenshot';
+import { screenshotViewAutomationId } from 'electron/views/screenshot/screenshot-view';
 
 export const AutomatedChecksViewSelectors = {
     mainContainer: '.automated-checks-view',
@@ -16,6 +17,7 @@ export const AutomatedChecksViewSelectors = {
 };
 
 export const ScreenshotViewSelectors = {
+    screenshotView: `[data-automation-id=${screenshotViewAutomationId}]`,
     screenshotImage: `[data-automation-id=${screenshotImageAutomationId}]`,
     highlightBox: `[data-automation-id=${highlightBoxAutomationId}]`,
 };
