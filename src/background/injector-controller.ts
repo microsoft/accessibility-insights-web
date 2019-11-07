@@ -59,7 +59,7 @@ export class InjectorController {
             }, InjectorController.injectionStartedWaitTime);
 
             // tslint:disable-next-line:no-floating-promises - grandfathered
-            this.injector.injectScripts(tabId).then(() => {
+            this.injector.injectScriptsP(tabId).then(() => {
                 this.interpreter.interpret({
                     messageType: Messages.Visualizations.State.InjectionCompleted,
                     tabId: tabId,
