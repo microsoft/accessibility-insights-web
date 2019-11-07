@@ -38,6 +38,42 @@ describe('CardSelectionActionCreator', () => {
         );
     });
 
+    test('onToggleVisualHelper', () => {
+        const actionMock = createActionMock(null);
+        const actionsMock = createActionsMock('toggleVisualHelper', actionMock.object);
+        const interpreterMock = createInterpreterMock(Messages.CardSelection.ToggleVisualHelper, tabId);
+
+        const testSubject = new CardSelectionActionCreator(interpreterMock.object, actionsMock.object, telemetryEventHandlerMock.object);
+
+        testSubject.registerCallbacks();
+
+        actionMock.verifyAll();
+    });
+
+    test('onCollapseAllRules', () => {
+        const actionMock = createActionMock(null);
+        const actionsMock = createActionsMock('collapseAllRules', actionMock.object);
+        const interpreterMock = createInterpreterMock(Messages.CardSelection.CollapseAllRules, tabId);
+
+        const testSubject = new CardSelectionActionCreator(interpreterMock.object, actionsMock.object, telemetryEventHandlerMock.object);
+
+        testSubject.registerCallbacks();
+
+        actionMock.verifyAll();
+    });
+
+    test('onExpandAllRules', () => {
+        const actionMock = createActionMock(null);
+        const actionsMock = createActionsMock('expandAllRules', actionMock.object);
+        const interpreterMock = createInterpreterMock(Messages.CardSelection.ExpandAllRules, tabId);
+
+        const testSubject = new CardSelectionActionCreator(interpreterMock.object, actionsMock.object, telemetryEventHandlerMock.object);
+
+        testSubject.registerCallbacks();
+
+        actionMock.verifyAll();
+    });
+
     function createActionsMock<ActionName extends keyof CardSelectionActions>(
         actionName: ActionName,
         action: CardSelectionActions[ActionName],
