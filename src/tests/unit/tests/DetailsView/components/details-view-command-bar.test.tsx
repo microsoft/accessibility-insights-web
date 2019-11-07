@@ -3,8 +3,11 @@
 import { AssessmentsProviderImpl } from 'assessments/assessments-provider';
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { Assessment } from 'assessments/types/iassessment';
+import { NamedFC, ReactFCWithDisplayName } from 'common/react/named-fc';
+import { DetailsViewSwitcherNavConfiguration } from 'DetailsView/components/details-view-switcher-nav';
 import { ExportDialogDeps } from 'DetailsView/components/export-dialog';
 import { StartOverComponentProps } from 'DetailsView/components/start-over-component';
+import { DetailsViewBodyProps } from 'DetailsView/details-view-body';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 import { ReportGenerator } from 'reports/report-generator';
@@ -71,6 +74,15 @@ describe('DetailsViewCommandBar', () => {
             render: renderStartOver,
         } as StartOverComponentProps;
 
+        const CommandBarStub: Readonly<ReactFCWithDisplayName<DetailsViewBodyProps>> = NamedFC<DetailsViewBodyProps>('test', _ => null);
+        const LeftNavStub: Readonly<ReactFCWithDisplayName<DetailsViewBodyProps>> = NamedFC<DetailsViewBodyProps>('test', _ => null);
+        const switcherNavConfiguration: DetailsViewSwitcherNavConfiguration = {
+            CommandBar: CommandBarStub,
+            ReportExportComponentPropertyFactory: p => reportExportComponentProps,
+            StartOverComponentPropertyFactory: p => startOverComponentProps,
+            LeftNav: LeftNavStub,
+        } as DetailsViewSwitcherNavConfiguration;
+
         const deps: DetailsViewCommandBarDeps = {
             detailsViewActionMessageCreator: actionMessageCreatorMock.object,
             fileURLProvider: Mock.ofType<FileURLProvider>().object,
@@ -78,8 +90,6 @@ describe('DetailsViewCommandBar', () => {
             getCurrentDate: () => theDate,
             reportGenerator: reportGeneratorMock.object,
             getDateFromTimestamp: () => theDate,
-            reportExportComponentPropertyFactory: p => reportExportComponentProps,
-            startOverComponentPropertyFactory: p => startOverComponentProps,
         };
 
         return {
@@ -93,6 +103,7 @@ describe('DetailsViewCommandBar', () => {
             rightPanelConfiguration: rightPanelConfig,
             visualizationScanResultData: null,
             cardsViewData: null,
+            switcherNavConfiguration: switcherNavConfiguration,
         };
     }
 

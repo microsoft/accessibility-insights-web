@@ -58,8 +58,8 @@ describe('DetailsViewBody', () => {
             } as DetailsRightPanelConfiguration;
             switcherNavConfig = {
                 CommandBar: CommandBarStub,
-                ReportExportComponentPropertyFactory: p => null,
-                StartOverComponentPropertyFactory: p => null,
+                ReportExportComponentPropertyFactory: p => reportExportComponentProps,
+                StartOverComponentPropertyFactory: p => startOverComponentProps,
                 LeftNav: LeftNavStub,
             } as DetailsViewSwitcherNavConfiguration;
             configFactoryMock = Mock.ofType(VisualizationConfigurationFactory, MockBehavior.Strict);
@@ -101,8 +101,6 @@ describe('DetailsViewBody', () => {
             props = {
                 deps: {
                     detailsViewActionMessageCreator: Mock.ofType(DetailsViewActionMessageCreator).object,
-                    reportExportComponentPropertyFactory: p => reportExportComponentProps,
-                    startOverComponentPropertyFactory: p => startOverComponentProps,
                 } as DetailsViewCommandBarDeps,
                 tabStoreData: new TabStoreDataBuilder().build(),
                 visualizationStoreData: new VisualizationStoreDataBuilder().build(),

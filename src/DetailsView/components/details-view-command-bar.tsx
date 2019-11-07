@@ -4,6 +4,7 @@ import { css } from '@uifabric/utilities';
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { VisualizationScanResultData } from 'common/types/store-data/visualization-scan-result-data';
+import { DetailsViewSwitcherNavConfiguration } from 'DetailsView/components/details-view-switcher-nav';
 import { StartOverComponentProps } from 'DetailsView/components/start-over-component';
 import { Link } from 'office-ui-fabric-react/lib/Link';
 import * as React from 'react';
@@ -20,11 +21,9 @@ export type DetailsViewCommandBarDeps = ReportExportComponentDeps & {
     getCurrentDate: () => Date;
     reportGenerator: ReportGenerator;
     getDateFromTimestamp: (timestamp: string) => Date;
-    reportExportComponentPropertyFactory: ReportExportComponentPropertyFactory;
-    startOverComponentPropertyFactory: StartOverComponentPropertyFactory;
 };
 
-export type CommandBarProps = Omit<DetailsViewCommandBarProps, 'renderStartOver'>;
+export type CommandBarProps = DetailsViewCommandBarProps;
 
 export type ReportExportComponentPropertyFactory = (props: CommandBarProps) => ReportExportComponentProps;
 
@@ -40,6 +39,7 @@ export interface DetailsViewCommandBarProps {
     rightPanelConfiguration: DetailsRightPanelConfiguration;
     visualizationScanResultData: VisualizationScanResultData;
     cardsViewData: CardsViewModel;
+    switcherNavConfiguration: DetailsViewSwitcherNavConfiguration;
 }
 
 export class DetailsViewCommandBar extends React.Component<DetailsViewCommandBarProps> {
@@ -74,8 +74,8 @@ export class DetailsViewCommandBar extends React.Component<DetailsViewCommandBar
     }
 
     private renderCommandButtons(): JSX.Element {
-        const reportExportComponentProps = this.props.deps.reportExportComponentPropertyFactory(this.props);
-        const startOverComponentProps = this.props.deps.startOverComponentPropertyFactory(this.props);
+        const reportExportComponentProps = this.props.switcherNavConfiguration.ReportExportComponentPropertyFactory(this.props);
+        const startOverComponentProps = this.props.switcherNavConfiguration.StartOverComponentPropertyFactory(this.props);
 
         if (!reportExportComponentProps || !startOverComponentProps || !startOverComponentProps.render) {
             return null;

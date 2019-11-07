@@ -4,16 +4,17 @@ import { shallow } from 'enzyme';
 import * as React from 'react';
 
 import { AssessmentCommandBar } from 'DetailsView/components/assessment-command-bar';
-import { CommandBarProps, DetailsViewCommandBarDeps } from 'DetailsView/components/details-view-command-bar';
+import { CommandBarProps, DetailsViewCommandBarProps } from 'DetailsView/components/details-view-command-bar';
+import { DetailsViewSwitcherNavConfiguration } from 'DetailsView/components/details-view-switcher-nav';
 
 function getProps(): CommandBarProps {
-    const deps: DetailsViewCommandBarDeps = {
-        reportExportComponentPropertyFactory: p => null,
-        startOverComponentPropertyFactory: p => null,
-    } as DetailsViewCommandBarDeps;
+    const switcherNavConfiguration: DetailsViewSwitcherNavConfiguration = ({
+        ReportExportComponentPropertyFactory: (p: DetailsViewCommandBarProps) => null,
+        StartOverComponentPropertyFactory: (p: DetailsViewCommandBarProps) => null,
+    } as unknown) as DetailsViewSwitcherNavConfiguration;
 
     const props = {
-        deps: deps,
+        switcherNavConfiguration: switcherNavConfiguration,
     } as CommandBarProps;
 
     return props;

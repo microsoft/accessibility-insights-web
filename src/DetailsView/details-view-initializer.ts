@@ -335,8 +335,6 @@ if (isNaN(tabId) === false) {
                 navigatorUtils: navigatorUtils,
                 cardSelectionMessageCreator,
                 getCardSelectionViewData: getCardSelectionViewData,
-                reportExportComponentPropertyFactory: p => null,
-                startOverComponentPropertyFactory: p => null,
             };
 
             const renderer = new DetailsViewRenderer(

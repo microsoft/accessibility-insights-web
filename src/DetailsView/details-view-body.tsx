@@ -74,13 +74,7 @@ export class DetailsViewBody extends React.Component<DetailsViewBodyProps> {
     private renderCommandBar(): JSX.Element {
         const { deps, switcherNavConfiguration } = this.props;
 
-        const newDeps: DetailsViewCommandBarDeps = {
-            reportExportComponentPropertyFactory: switcherNavConfiguration.ReportExportComponentPropertyFactory,
-            startOverComponentPropertyFactory: switcherNavConfiguration.StartOverComponentPropertyFactory,
-            ...deps,
-        };
         const detailsViewCommandBarProps: DetailsViewCommandBarProps = {
-            deps: newDeps,
             actionMessageCreator: deps.detailsViewActionMessageCreator,
             ...this.props,
         };
