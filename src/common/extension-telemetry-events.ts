@@ -56,7 +56,6 @@ export const CONTENT_PAGE_OPENED: string = 'contentPageOpened';
 export const CONTENT_HYPERLINK_OPENED: string = 'contentHyperLinkOpened';
 export const CARD_SELECTION_TOGGLED: string = 'cardSelectionToggled';
 export const RULE_EXPANSION_TOGGLED: string = 'ruleExpansionToggled';
-export const CARDS_VISUAL_HELPER_TOGGLED: string = 'cardsVisualHelperToggled';
 
 export const TriggeredByNotApplicable: TriggeredBy = 'N/A';
 export type TriggeredBy = 'mouseclick' | 'keypress' | 'shortcut' | 'N/A';
