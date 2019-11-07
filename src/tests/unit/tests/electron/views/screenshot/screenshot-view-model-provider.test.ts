@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { PlatformData, ScreenshotData, UnifiedScanResultStoreData } from 'common/types/store-data/unified-data-interface';
+import { ScreenshotData, UnifiedScanResultStoreData } from 'common/types/store-data/unified-data-interface';
 import { BoundingRectangle } from 'electron/platform/android/scan-results';
 import { HighlightBoxViewModel } from 'electron/views/screenshot/screenshot-view-model';
 import { screenshotViewModelProvider } from 'electron/views/screenshot/screenshot-view-model-provider';

@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { HighlightBox, HighlightBoxProps } from 'electron/views/screenshot/highlight-box';
+import { HighlightBox } from 'electron/views/screenshot/highlight-box';
 import { HighlightBoxViewModel } from 'electron/views/screenshot/screenshot-view-model';
 import { shallow } from 'enzyme';
 import * as React from 'react';
