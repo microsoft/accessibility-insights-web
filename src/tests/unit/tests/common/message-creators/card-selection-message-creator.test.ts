@@ -1,19 +1,30 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { CardSelectionPayload, RuleExpandCollapsePayload } from 'background/actions/action-payloads';
+import { BaseTelemetryData, TelemetryEventSource } from 'common/extension-telemetry-events';
 import { Message } from 'common/message';
 import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
 import { ActionMessageDispatcher } from 'common/message-creators/types/dispatcher';
 import { Messages } from 'common/messages';
+import { TelemetryDataFactory } from 'common/telemetry-data-factory';
+import { EventStub, EventStubFactory } from 'tests/unit/common/event-stub-factory';
 import { IMock, Mock, Times } from 'typemoq';
 
 describe('Card Selection Message Creator', () => {
     let dispatcherMock: IMock<ActionMessageDispatcher>;
     let testSubject: CardSelectionMessageCreator;
+    let telemetryDataFactoryMock: IMock<TelemetryDataFactory>;
+    let sourceStub: TelemetryEventSource;
+    let eventStub: React.SyntheticEvent;
+    let telemetryStub: BaseTelemetryData;
 
     beforeEach(() => {
         dispatcherMock = Mock.ofType<ActionMessageDispatcher>();
-        testSubject = new CardSelectionMessageCreator(dispatcherMock.object);
+        telemetryDataFactoryMock = Mock.ofType<TelemetryDataFactory>();
+        sourceStub = -1;
+        eventStub = {} as React.SyntheticEvent;
+        telemetryStub = {} as BaseTelemetryData;
+        testSubject = new CardSelectionMessageCreator(dispatcherMock.object, telemetryDataFactoryMock.object, sourceStub);
     });
 
     it('dispatches message for toggleCardSelection', () => {
@@ -22,6 +33,7 @@ describe('Card Selection Message Creator', () => {
         const payload: CardSelectionPayload = {
             resultInstanceUid,
             ruleId,
+            telemetry: telemetryStub,
         };
 
         const expectedMessage: Message = {
@@ -29,7 +41,9 @@ describe('Card Selection Message Creator', () => {
             payload,
         };
 
-        testSubject.toggleCardSelection(ruleId, resultInstanceUid);
+        telemetryDataFactoryMock.setup(tdfm => tdfm.withTriggeredByAndSource(eventStub, sourceStub)).returns(() => telemetryStub);
+
+        testSubject.toggleCardSelection(ruleId, resultInstanceUid, eventStub);
 
         dispatcherMock.verify(handler => handler.dispatchMessage(expectedMessage), Times.once());
     });
