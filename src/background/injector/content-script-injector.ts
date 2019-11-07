@@ -1,7 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { BrowserAdapter } from '../../common/browser-adapters/browser-adapter';
-import { PromiseFactory } from '../../common/promises/promise-factory';
+import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
+import { PromiseFactory } from 'common/promises/promise-factory';
+import { flatten } from 'lodash';
 
 export class ContentScriptInjector {
     public static readonly jsFiles: string[] = ['bundle/injected.bundle.js'];
@@ -24,10 +25,22 @@ export class ContentScriptInjector {
         return this.promiseFactory.timeout(inject, ContentScriptInjector.timeoutInMilliSec);
     }
 
+    public injectScriptsP(tabId: number): Promise<void> {
+        this.injectCssFilesConcurrentlyP(tabId);
+        const inject = Promise.all([this.injectJsFilesInOrderP(tabId)]).then(() => Promise.resolve());
+
+        return this.promiseFactory.timeout(inject, ContentScriptInjector.timeoutInMilliSec);
+    }
+
     private injectCssFilesConcurrently(tabId: number, files: string[]): void {
         ContentScriptInjector.cssFiles.forEach(file => {
             this.injectCssFile(tabId, file);
         });
+    }
+
+    private injectCssFilesConcurrentlyP(tabId: number): void {
+        ContentScriptInjector.cssFiles.forEach(file => this.injectCssFileP(tabId, file));
+        // return Promise.all(ContentScriptInjector.cssFiles.map(file => this.injectCssFileP(tabId, file))).then(() => Promise.resolve());
     }
 
     private injectJsFilesInOrder(tabId: number, files: string[], callback: Function): void {
@@ -38,6 +51,11 @@ export class ContentScriptInjector {
         } else {
             callback();
         }
+    }
+
+    private injectJsFilesInOrderP(tabId: number): Promise<any[]> {
+        const files = ContentScriptInjector.jsFiles;
+        return Promise.all(files.map(file => this.injectJsFileP(tabId, file))).then(results => flatten(results));
     }
 
     private injectJsFile(tabId: number, file: string, callback?: (result: any[]) => void): void {
@@ -52,10 +70,25 @@ export class ContentScriptInjector {
         );
     }
 
+    private injectJsFileP(tabId: number, file: string): Promise<any[]> {
+        return this.browserAdapter.executeScriptInTabP(tabId, {
+            allFrames: true,
+            file,
+            runAt: 'document_start',
+        });
+    }
+
     private injectCssFile(tabId: number, file: string): void {
         this.browserAdapter.insertCSSInTab(tabId, {
             allFrames: true,
             file: file,
+        });
+    }
+
+    private injectCssFileP(tabId: number, file: string): Promise<void> {
+        return this.browserAdapter.insertCSSInTabP(tabId, {
+            allFrames: true,
+            file,
         });
     }
 }
