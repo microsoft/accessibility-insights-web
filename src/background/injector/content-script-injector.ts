@@ -13,23 +13,23 @@ export class ContentScriptInjector {
 
     constructor(private readonly browserAdapter: BrowserAdapter, private readonly promiseFactory: PromiseFactory) {}
 
-    public injectScriptsP(tabId: number): Promise<void> {
-        this.injectCssFilesConcurrentlyP(tabId);
-        const inject = Promise.all([this.injectJsFilesInOrderP(tabId)]).then(() => Promise.resolve());
+    public injectScripts(tabId: number): Promise<void> {
+        this.injectCssFilesConcurrently(tabId);
+        const inject = Promise.all([this.injectJsFilesInOrder(tabId)]).then(() => Promise.resolve());
 
         return this.promiseFactory.timeout(inject, ContentScriptInjector.timeoutInMilliSec);
     }
 
-    private injectCssFilesConcurrentlyP(tabId: number): void {
-        ContentScriptInjector.cssFiles.forEach(file => this.injectCssFileP(tabId, file));
+    private injectCssFilesConcurrently(tabId: number): void {
+        ContentScriptInjector.cssFiles.forEach(file => this.injectCssFile(tabId, file));
     }
 
-    private injectJsFilesInOrderP(tabId: number): Promise<any[]> {
+    private injectJsFilesInOrder(tabId: number): Promise<any[]> {
         const files = ContentScriptInjector.jsFiles;
-        return Promise.all(files.map(file => this.injectJsFileP(tabId, file))).then(results => flatten(results));
+        return Promise.all(files.map(file => this.injectJsFile(tabId, file))).then(results => flatten(results));
     }
 
-    private injectJsFileP(tabId: number, file: string): Promise<any[]> {
+    private injectJsFile(tabId: number, file: string): Promise<any[]> {
         return this.browserAdapter.executeScriptInTab(tabId, {
             allFrames: true,
             file,
@@ -37,7 +37,7 @@ export class ContentScriptInjector {
         });
     }
 
-    private injectCssFileP(tabId: number, file: string): Promise<void> {
+    private injectCssFile(tabId: number, file: string): Promise<void> {
         return this.browserAdapter.insertCSSInTab(tabId, {
             allFrames: true,
             file,

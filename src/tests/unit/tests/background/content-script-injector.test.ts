@@ -26,7 +26,7 @@ describe('ContentScriptInjector', () => {
             .returns(() => Promise.resolve({}))
             .verifiable(Times.once());
 
-        await testSubject.injectScriptsP(testTabId);
+        await testSubject.injectScripts(testTabId);
 
         promiseFactoryMock.verifyAll();
     });
@@ -34,7 +34,7 @@ describe('ContentScriptInjector', () => {
     it('rejects if a timeout occurs', async () => {
         promiseFactoryMock.setup(factory => factory.timeout(It.isAny(), It.isAny())).returns(() => Promise.reject('artificial timeout'));
 
-        await expect(testSubject.injectScriptsP(testTabId)).rejects.toBe('artificial timeout');
+        await expect(testSubject.injectScripts(testTabId)).rejects.toBe('artificial timeout');
     });
 
     describe('when no timeout occurs', () => {
@@ -50,7 +50,7 @@ describe('ContentScriptInjector', () => {
                 browserAdapterMock.setup(adapter => adapter.insertCSSInTab(testTabId, expectedDetails)).returns(() => Promise.resolve());
             });
 
-            await testSubject.injectScriptsP(testTabId);
+            await testSubject.injectScripts(testTabId);
 
             browserAdapterMock.verifyAll();
         });
@@ -65,7 +65,7 @@ describe('ContentScriptInjector', () => {
                     .returns(() => Promise.resolve([]));
             });
 
-            await testSubject.injectScriptsP(testTabId);
+            await testSubject.injectScripts(testTabId);
 
             browserAdapterMock.verifyAll();
         });
@@ -87,7 +87,7 @@ describe('ContentScriptInjector', () => {
                 );
 
             let returnedPromiseCompleted = false;
-            const returnedPromise = testSubject.injectScriptsP(testTabId).then(() => {
+            const returnedPromise = testSubject.injectScripts(testTabId).then(() => {
                 returnedPromiseCompleted = true;
             });
 
@@ -104,7 +104,7 @@ describe('ContentScriptInjector', () => {
 
             // Intentionally don't set up insertCSS callbacks to be called
 
-            await testSubject.injectScriptsP(testTabId);
+            await testSubject.injectScripts(testTabId);
 
             // expect to not timeout
         });
