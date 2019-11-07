@@ -20,9 +20,7 @@ export interface BrowserAdapter {
     sendMessageToTab(tabId: number, message: any): void;
     sendMessageToFrames(message: any): void;
     sendMessageToAllFramesAndTabs(message: any): void;
-    executeScriptInTab(tabId: number, details: chrome.tabs.InjectDetails, callback?: (result: any[]) => void): void;
     executeScriptInTabP(tabId: number, details: ExtensionTypes.InjectDetails): Promise<any[]>;
-    insertCSSInTab(tabId: number, details: chrome.tabs.InjectDetails, callback?: Function): void;
     insertCSSInTabP(tabId: number, details: ExtensionTypes.InjectDetails): Promise<void>;
     getRunTimeId(): string;
     createNotification(options: chrome.notifications.NotificationOptions): void;
