@@ -18,22 +18,24 @@ exports[`ScreenshotContainer highlight boxes render when passed values for highl
     encodedImage="test-base-64-png-data"
   />
   <HighlightBox
-    boundingRectangle={
+    viewModel={
       Object {
-        "bottom": 100,
-        "left": 0,
-        "right": 100,
-        "top": 0,
+        "height": "height-1",
+        "left": "left-1",
+        "resultUid": "result-1",
+        "top": "top-1",
+        "width": "width-1",
       }
     }
   />
   <HighlightBox
-    boundingRectangle={
+    viewModel={
       Object {
-        "bottom": 200,
-        "left": 150,
-        "right": 300,
-        "top": 150,
+        "height": "height-2",
+        "left": "left-2",
+        "resultUid": "result-2",
+        "top": "top-2",
+        "width": "width-2",
       }
     }
   />

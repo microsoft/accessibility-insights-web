@@ -1,14 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`ScreenshotView render matches snapshot when deviceName is unavailable 1`] = `
-<div>
-  <h1
+<div
+  className="screenshotView"
+>
+  <h2
+    className="header"
     tabIndex={0}
   >
     Target Page Screenshot
-  </h1>
+  </h2>
   <ScreenshotContainer
-    highlightBoxRectangles={Array []}
+    highlightBoxViewModels={Array []}
     screenshotData={
       Object {
         "base64PngData": "test-base-64-png-data",
@@ -19,14 +22,17 @@ exports[`ScreenshotView render matches snapshot when deviceName is unavailable 1
 `;
 
 exports[`ScreenshotView render matches snapshot when passed a screenshot with no highlights 1`] = `
-<div>
-  <h1
+<div
+  className="screenshotView"
+>
+  <h2
+    className="header"
     tabIndex={0}
   >
     Target Page Screenshot
-  </h1>
+  </h2>
   <ScreenshotContainer
-    highlightBoxRectangles={Array []}
+    highlightBoxViewModels={Array []}
     screenshotData={
       Object {
         "base64PngData": "test-base-64-png-data",
@@ -40,42 +46,51 @@ exports[`ScreenshotView render matches snapshot when passed a screenshot with no
 `;
 
 exports[`ScreenshotView render matches snapshot when passed empty screenshotData {} 1`] = `
-<div>
-  <h1
+<div
+  className="screenshotView"
+>
+  <h2
+    className="header"
     tabIndex={0}
   >
     Target Page Screenshot
-  </h1>
+  </h2>
   <ScreenshotContainer
-    highlightBoxRectangles={Array []}
+    highlightBoxViewModels={Array []}
     screenshotData={Object {}}
   />
 </div>
 `;
 
 exports[`ScreenshotView render matches snapshot when passed empty screenshotData null 1`] = `
-<div>
-  <h1
+<div
+  className="screenshotView"
+>
+  <h2
+    className="header"
     tabIndex={0}
   >
     Target Page Screenshot
-  </h1>
+  </h2>
   <ScreenshotContainer
-    highlightBoxRectangles={Array []}
+    highlightBoxViewModels={Array []}
     screenshotData={null}
   />
 </div>
 `;
 
 exports[`ScreenshotView render matches snapshot when passed empty screenshotData undefined 1`] = `
-<div>
-  <h1
+<div
+  className="screenshotView"
+>
+  <h2
+    className="header"
     tabIndex={0}
   >
     Target Page Screenshot
-  </h1>
+  </h2>
   <ScreenshotContainer
-    highlightBoxRectangles={Array []}
+    highlightBoxViewModels={Array []}
   />
 </div>
 `;

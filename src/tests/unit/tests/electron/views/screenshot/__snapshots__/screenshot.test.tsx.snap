@@ -3,6 +3,7 @@
 exports[`Screenshot renders 1`] = `
 <img
   alt="axe-android results screenshot with highlighted components"
+  className="screenshotImage"
   src="data:image/png;base64,test-image-string"
 />
 `;
