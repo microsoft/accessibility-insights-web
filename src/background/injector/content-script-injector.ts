@@ -14,6 +14,9 @@ export class ContentScriptInjector {
     constructor(private readonly browserAdapter: BrowserAdapter, private readonly promiseFactory: PromiseFactory) {}
 
     public injectScripts(tabId: number): Promise<void> {
+        // We need the JS to be injected before we can continue (ie, before we resolve the promise),
+        // because the tab can't receive other messages until that's done, but it's okay for the CSS
+        // to keep loading in the background after-the-fact, so it's fire-and-forget.
         this.injectCssFilesConcurrently(tabId);
         const inject = Promise.all([this.injectJsFilesInOrder(tabId)]).then(() => Promise.resolve());
 
