@@ -72,11 +72,7 @@ export class AutomatedChecksView extends React.Component<AutomatedChecksViewProp
     }
 
     private renderScreenshotSidePanel(screenshotViewModel: ScreenshotViewModel): JSX.Element {
-        return (
-            <div className={screenshotView}>
-                <ScreenshotView viewModel={screenshotViewModel} />
-            </div>
-        );
+        return <ScreenshotView viewModel={screenshotViewModel} />;
     }
 
     private renderLayout(primaryContent: JSX.Element, optionalSidePanel?: JSX.Element): JSX.Element {
