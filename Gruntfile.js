@@ -302,7 +302,7 @@ module.exports = function(grunt) {
         grunt.task.run('copy:' + targetName);
         grunt.task.run('configure:' + targetName);
         grunt.task.run('manifest:' + targetName);
-        console.log(`${targetName} extension is in ${path.join('drop', targetName, 'extension')}`);
+        console.log(`${targetName} extension is in ${path.join(dropExtensionPath, targetName)}`);
     });
 
     grunt.registerTask('release-drops', function() {
