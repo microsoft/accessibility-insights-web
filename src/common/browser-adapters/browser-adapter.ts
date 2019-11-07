@@ -1,3 +1,5 @@
+import { ExtensionTypes } from 'webextension-polyfill-ts';
+
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
@@ -19,7 +21,9 @@ export interface BrowserAdapter {
     sendMessageToFrames(message: any): void;
     sendMessageToAllFramesAndTabs(message: any): void;
     executeScriptInTab(tabId: number, details: chrome.tabs.InjectDetails, callback?: (result: any[]) => void): void;
+    executeScriptInTabP(tabId: number, details: ExtensionTypes.InjectDetails): Promise<any[]>;
     insertCSSInTab(tabId: number, details: chrome.tabs.InjectDetails, callback?: Function): void;
+    insertCSSInTabP(tabId: number, details: ExtensionTypes.InjectDetails): Promise<void>;
     getRunTimeId(): string;
     createNotification(options: chrome.notifications.NotificationOptions): void;
     getRuntimeLastError(): chrome.runtime.LastError;

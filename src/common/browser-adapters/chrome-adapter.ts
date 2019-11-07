@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { browser } from 'webextension-polyfill-ts';
+import { browser, ExtensionTypes } from 'webextension-polyfill-ts';
 import { BrowserAdapter } from './browser-adapter';
 import { CommandsAdapter } from './commands-adapter';
 import { StorageAdapter } from './storage-adapter';
@@ -53,12 +53,20 @@ export class ChromeAdapter implements BrowserAdapter, StorageAdapter, CommandsAd
         });
     }
 
+    public executeScriptInTabP(tabId: number, details: ExtensionTypes.InjectDetails): Promise<any[]> {
+        return browser.tabs.executeScript(tabId, details);
+    }
+
     public executeScriptInTab(tabId: number, details: chrome.tabs.InjectDetails, callback?: (result: any[]) => void): void {
         chrome.tabs.executeScript(tabId, details, callback);
     }
 
     public insertCSSInTab(tabId: number, details: chrome.tabs.InjectDetails, callback?: Function): void {
         chrome.tabs.insertCSS(tabId, details, callback);
+    }
+
+    public insertCSSInTabP(tabId: number, details: ExtensionTypes.InjectDetails): Promise<void> {
+        return browser.tabs.insertCSS(tabId, details);
     }
 
     public createTab(url: string, callback?: (tab: chrome.tabs.Tab) => void): void {
