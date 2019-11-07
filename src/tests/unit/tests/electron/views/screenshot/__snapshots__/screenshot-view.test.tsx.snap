@@ -4,12 +4,11 @@ exports[`ScreenshotView render matches snapshot when deviceName is unavailable 1
 <div
   className="screenshotView"
 >
-  <h2
-    className="header"
+  <h1
     tabIndex={0}
   >
     Target Page Screenshot
-  </h2>
+  </h1>
   <ScreenshotContainer
     highlightBoxViewModels={Array []}
     screenshotData={
@@ -25,12 +24,11 @@ exports[`ScreenshotView render matches snapshot when passed a screenshot with no
 <div
   className="screenshotView"
 >
-  <h2
-    className="header"
+  <h1
     tabIndex={0}
   >
     Target Page Screenshot
-  </h2>
+  </h1>
   <ScreenshotContainer
     highlightBoxViewModels={Array []}
     screenshotData={
@@ -46,12 +44,11 @@ exports[`ScreenshotView render matches snapshot when passed empty screenshotData
 <div
   className="screenshotView"
 >
-  <h2
-    className="header"
+  <h1
     tabIndex={0}
   >
     Target Page Screenshot
-  </h2>
+  </h1>
   <ScreenshotContainer
     highlightBoxViewModels={Array []}
     screenshotData={Object {}}
@@ -63,12 +60,11 @@ exports[`ScreenshotView render matches snapshot when passed empty screenshotData
 <div
   className="screenshotView"
 >
-  <h2
-    className="header"
+  <h1
     tabIndex={0}
   >
     Target Page Screenshot
-  </h2>
+  </h1>
   <ScreenshotContainer
     highlightBoxViewModels={Array []}
     screenshotData={null}
@@ -80,12 +76,11 @@ exports[`ScreenshotView render matches snapshot when passed empty screenshotData
 <div
   className="screenshotView"
 >
-  <h2
-    className="header"
+  <h1
     tabIndex={0}
   >
     Target Page Screenshot
-  </h2>
+  </h1>
   <ScreenshotContainer
     highlightBoxViewModels={Array []}
   />
