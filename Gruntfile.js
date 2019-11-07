@@ -301,7 +301,6 @@ module.exports = function(grunt) {
         const mustExistPath = path.join(extensionPath, bundleFolder, mustExistFile);
 
         mustExist(mustExistPath, 'Have you run webpack?');
-        mustExist(dropPath, 'Have you run webpack?');
 
         grunt.task.run('embed-styles:' + targetName);
         grunt.task.run('clean:' + targetName);
