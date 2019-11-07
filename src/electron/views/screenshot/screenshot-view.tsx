@@ -13,9 +13,7 @@ export const ScreenshotView = NamedFC<ScreenshotViewProps>('ScreenshotView', (pr
     navigate via tab per https://dequeuniversity.com/rules/axe/3.3/scrollable-region-focusable */
     return (
         <div className={styles.screenshotView}>
-            <h2 className={styles.header} tabIndex={0}>
-                Target Page Screenshot
-            </h2>
+            <h1 tabIndex={0}>Target Page Screenshot</h1>
             <ScreenshotContainer
                 screenshotData={props.viewModel.screenshotData}
                 highlightBoxViewModels={props.viewModel.highlightBoxViewModels}
