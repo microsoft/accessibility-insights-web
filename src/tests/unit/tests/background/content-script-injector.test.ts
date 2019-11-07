@@ -47,7 +47,7 @@ describe('ContentScriptInjector', () => {
 
             ContentScriptInjector.cssFiles.forEach(cssFile => {
                 const expectedDetails = { allFrames: true, file: cssFile };
-                browserAdapterMock.setup(adapter => adapter.insertCSSInTabP(testTabId, expectedDetails)).returns(() => Promise.resolve());
+                browserAdapterMock.setup(adapter => adapter.insertCSSInTab(testTabId, expectedDetails)).returns(() => Promise.resolve());
             });
 
             await testSubject.injectScriptsP(testTabId);
@@ -61,7 +61,7 @@ describe('ContentScriptInjector', () => {
             ContentScriptInjector.jsFiles.forEach(jsFile => {
                 const expectedDetails: ExtensionTypes.InjectDetails = { allFrames: true, file: jsFile, runAt: 'document_start' };
                 browserAdapterMock
-                    .setup(adapter => adapter.executeScriptInTabP(testTabId, expectedDetails))
+                    .setup(adapter => adapter.executeScriptInTab(testTabId, expectedDetails))
                     .returns(() => Promise.resolve([]));
             });
 
@@ -78,7 +78,7 @@ describe('ContentScriptInjector', () => {
             // simulate JS injection taking a while,
             // only completing asynchronously when we explicitly invoke the resolve function from the returned promise
             browserAdapterMock
-                .setup(adapter => adapter.executeScriptInTabP(It.isAny(), It.isObjectWith({ file: ContentScriptInjector.jsFiles[0] })))
+                .setup(adapter => adapter.executeScriptInTab(It.isAny(), It.isObjectWith({ file: ContentScriptInjector.jsFiles[0] })))
                 .returns(
                     () =>
                         new Promise(resolve => {
@@ -110,11 +110,11 @@ describe('ContentScriptInjector', () => {
         });
 
         function setupInsertCSSToSucceedImmediately(): void {
-            browserAdapterMock.setup(adapter => adapter.insertCSSInTabP(It.isAny(), It.isAny())).returns(() => Promise.resolve());
+            browserAdapterMock.setup(adapter => adapter.insertCSSInTab(It.isAny(), It.isAny())).returns(() => Promise.resolve());
         }
 
         function setupExecuteScriptToSucceedImmediately(): void {
-            browserAdapterMock.setup(adapter => adapter.executeScriptInTabP(It.isAny(), It.isAny())).returns(() => Promise.resolve([]));
+            browserAdapterMock.setup(adapter => adapter.executeScriptInTab(It.isAny(), It.isAny())).returns(() => Promise.resolve([]));
         }
     });
 });

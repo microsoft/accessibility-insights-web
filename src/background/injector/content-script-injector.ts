@@ -30,7 +30,7 @@ export class ContentScriptInjector {
     }
 
     private injectJsFileP(tabId: number, file: string): Promise<any[]> {
-        return this.browserAdapter.executeScriptInTabP(tabId, {
+        return this.browserAdapter.executeScriptInTab(tabId, {
             allFrames: true,
             file,
             runAt: 'document_start',
@@ -38,7 +38,7 @@ export class ContentScriptInjector {
     }
 
     private injectCssFileP(tabId: number, file: string): Promise<void> {
-        return this.browserAdapter.insertCSSInTabP(tabId, {
+        return this.browserAdapter.insertCSSInTab(tabId, {
             allFrames: true,
             file,
         });

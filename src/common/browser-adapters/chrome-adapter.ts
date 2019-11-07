@@ -53,11 +53,11 @@ export class ChromeAdapter implements BrowserAdapter, StorageAdapter, CommandsAd
         });
     }
 
-    public executeScriptInTabP(tabId: number, details: ExtensionTypes.InjectDetails): Promise<any[]> {
+    public executeScriptInTab(tabId: number, details: ExtensionTypes.InjectDetails): Promise<any[]> {
         return browser.tabs.executeScript(tabId, details);
     }
 
-    public insertCSSInTabP(tabId: number, details: ExtensionTypes.InjectDetails): Promise<void> {
+    public insertCSSInTab(tabId: number, details: ExtensionTypes.InjectDetails): Promise<void> {
         return browser.tabs.insertCSS(tabId, details);
     }
 
