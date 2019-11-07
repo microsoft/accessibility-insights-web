@@ -8,9 +8,9 @@ jobs:
 
       steps:
           - template: ../install-node-prerequisites.yaml
-          - template: electron-update-config.yaml
           - template: electron-e2e-test-interactive.yaml
           - template: electron-e2e-publish-results.yaml
+          - template: electron-update-config.yaml
 
           - template: distribute-electron.yaml
 
@@ -21,9 +21,9 @@ jobs:
 
       steps:
           - template: ../install-node-prerequisites.yaml
-          - template: electron-update-config.yaml
           - template: electron-e2e-test-linux.yaml
           - template: electron-e2e-publish-results.yaml
+          - template: electron-update-config.yaml
 
           - template: distribute-electron.yaml
 
@@ -32,8 +32,8 @@ jobs:
           vmImage: macOS-10.14
       steps:
           - template: ../install-node-prerequisites.yaml
-          - template: electron-update-config.yaml
           - template: electron-e2e-test-interactive.yaml
           - template: electron-e2e-publish-results.yaml
+          - template: electron-update-config.yaml
 
           - template: distribute-electron.yaml
