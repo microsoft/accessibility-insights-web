@@ -44,13 +44,19 @@ function getHighlightBoxViewModels(
         .map(result => getHighlightBoxViewModelFromResult(result, viewPort));
 }
 
+function pxAsPercentRelativeTo(px: number, containerSizePx: number): string {
+    return `${100.0 * (px / containerSizePx)}%`;
+}
+
 function getHighlightBoxViewModelFromResult(result: UnifiedResult, viewPort: ViewPortProperties): HighlightBoxViewModel {
     const rectInPx = result.descriptors.boundingRectangle;
+    const widthInPx = rectInPx.right - rectInPx.left;
+    const heightInPx = rectInPx.bottom - rectInPx.top;
     return {
         resultUid: result.uid,
-        left: `${100.0 * (rectInPx.left / viewPort.width)}%`,
-        top: `${100.0 * (rectInPx.top / viewPort.height)}%`,
-        width: `${rectInPx.right - rectInPx.left}px`,
-        height: `${rectInPx.bottom - rectInPx.top}px`,
+        left: pxAsPercentRelativeTo(rectInPx.left, viewPort.width),
+        top: pxAsPercentRelativeTo(rectInPx.top, viewPort.height),
+        width: pxAsPercentRelativeTo(widthInPx, viewPort.width),
+        height: pxAsPercentRelativeTo(heightInPx, viewPort.height),
     };
 }

@@ -123,32 +123,21 @@ describe('screenshotViewModelProvider', () => {
         expect(output.highlightBoxViewModels[0].resultUid).toBe(resultCases.highlightedResultWithBoundingRectangle.uid);
     });
 
-    it('calculates highlight box width/height as px values based on bounding box width/height', () => {
-        const inputRectangle = {
-            top: 1,
-            left: 12,
-            right: 123,
-            bottom: 1234,
-        };
-        const highlightBoxViewModel = provideHighlightBoxViewModelForBoundingRectangle(inputRectangle);
-
-        expect(highlightBoxViewModel.width).toBe('111px'); // right - left px
-        expect(highlightBoxViewModel.height).toBe('1233px'); // bottom - top px
-    });
-
-    it('calculates highlight box top/left as percentages relative to the viewport size', () => {
+    it('calculates highlight box positional values as percentages relative to the viewport size', () => {
         const viewPortWidth = 100;
         const viewPortHeight = 200;
         const inputRectangle = {
             left: 20,
             top: 50,
-            right: 12345, // irrelevant
-            bottom: 12345, // irrelevant
+            right: 80,
+            bottom: 150,
         };
         const highlightBoxViewModel = provideHighlightBoxViewModelForBoundingRectangle(inputRectangle, viewPortWidth, viewPortHeight);
 
         expect(highlightBoxViewModel.top).toBe('25%');
         expect(highlightBoxViewModel.left).toBe('20%');
+        expect(highlightBoxViewModel.width).toBe('60%');
+        expect(highlightBoxViewModel.height).toBe('50%');
     });
 
     function provideHighlightBoxViewModelForBoundingRectangle(
