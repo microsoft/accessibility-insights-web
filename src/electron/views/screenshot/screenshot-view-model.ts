@@ -14,6 +14,4 @@ export type ScreenshotViewModel = {
     // "screenshotData == null" means that the view should show a "screenshot unavailable" message
     screenshotData?: ScreenshotData;
     highlightBoxViewModels: HighlightBoxViewModel[];
-    // "deviceName == null" means that the view should omit the "device name" subtitle
-    deviceName?: string;
 };

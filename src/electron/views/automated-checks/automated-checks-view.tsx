@@ -18,11 +18,10 @@ import { TitleBar, TitleBarDeps } from 'electron/views/automated-checks/componen
 import { mainContentWrapper } from 'electron/views/device-connect-view/device-connect-view.scss';
 import { DeviceDisconnectedPopup } from 'electron/views/device-disconnected-popup/device-disconnected-popup';
 import { ScreenshotView } from 'electron/views/screenshot/screenshot-view';
-import { ScreenshotViewModel } from 'electron/views/screenshot/screenshot-view-model';
 import { ScreenshotViewModelProvider } from 'electron/views/screenshot/screenshot-view-model-provider';
 import * as React from 'react';
 
-import { automatedChecksPanelLayout, automatedChecksView, screenshotView } from './automated-checks-view.scss';
+import { automatedChecksPanelLayout, automatedChecksView } from './automated-checks-view.scss';
 import { CommandBar, CommandBarDeps } from './components/command-bar';
 import { HeaderSection } from './components/header-section';
 
@@ -65,18 +64,10 @@ export class AutomatedChecksView extends React.Component<AutomatedChecksViewProp
                 cardSelectionViewData.highlightedResultUids,
             );
 
-            return this.renderLayout(this.renderResults(cardsViewData), this.renderScreenshotSidePanel(screenshotViewModel));
+            return this.renderLayout(this.renderResults(cardsViewData), <ScreenshotView viewModel={screenshotViewModel} />);
         } else {
             return this.renderLayout(this.renderScanningSpinner());
         }
-    }
-
-    private renderScreenshotSidePanel(screenshotViewModel: ScreenshotViewModel): JSX.Element {
-        return (
-            <div className={screenshotView}>
-                <ScreenshotView viewModel={screenshotViewModel} />
-            </div>
-        );
     }
 
     private renderLayout(primaryContent: JSX.Element, optionalSidePanel?: JSX.Element): JSX.Element {

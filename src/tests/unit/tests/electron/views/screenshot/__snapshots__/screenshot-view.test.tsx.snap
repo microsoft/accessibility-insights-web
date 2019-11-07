@@ -39,9 +39,6 @@ exports[`ScreenshotView render matches snapshot when passed a screenshot with no
       }
     }
   />
-  <caption>
-    My Cool Android Device
-  </caption>
 </div>
 `;
 

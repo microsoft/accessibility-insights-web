@@ -24,12 +24,9 @@ export function screenshotViewModelProvider(
         );
     }
 
-    const deviceName = (unifiedScanResultStoreData.platformInfo && unifiedScanResultStoreData.platformInfo.deviceName) || null;
-
     return {
         screenshotData,
         highlightBoxViewModels,
-        deviceName,
     };
 }
 

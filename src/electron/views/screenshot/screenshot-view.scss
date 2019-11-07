@@ -4,7 +4,8 @@
 @import '../../../common/styles/fonts.scss';
 
 .screenshot-view {
-    width: 100%;
+    overflow: auto;
+    width: 30%;
     height: 100%;
     padding-top: 16px;
     padding-bottom: 16px;
