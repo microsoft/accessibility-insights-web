@@ -26,9 +26,10 @@ export class CardSelectionMessageCreator {
         });
     }
 
-    public toggleRuleExpandCollapse(ruleId: string): void {
+    public toggleRuleExpandCollapse(ruleId: string, event: React.SyntheticEvent): void {
         const payload: RuleExpandCollapsePayload = {
             ruleId,
+            telemetry: this.telemetryFactory.withTriggeredByAndSource(event, this.source),
         };
 
         this.dispatcher.dispatchMessage({

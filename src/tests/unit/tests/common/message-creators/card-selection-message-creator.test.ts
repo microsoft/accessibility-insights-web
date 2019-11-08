@@ -52,6 +52,7 @@ describe('Card Selection Message Creator', () => {
         const ruleId = 'test-rule-id';
         const payload: RuleExpandCollapsePayload = {
             ruleId,
+            telemetry: telemetryStub,
         };
 
         const expectedMessage: Message = {
@@ -59,7 +60,9 @@ describe('Card Selection Message Creator', () => {
             payload,
         };
 
-        testSubject.toggleRuleExpandCollapse(ruleId);
+        telemetryDataFactoryMock.setup(tdfm => tdfm.withTriggeredByAndSource(eventStub, sourceStub)).returns(() => telemetryStub);
+
+        testSubject.toggleRuleExpandCollapse(ruleId, eventStub);
 
         dispatcherMock.verify(handler => handler.dispatchMessage(expectedMessage), Times.once());
     });
