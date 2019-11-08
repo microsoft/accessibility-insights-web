@@ -77,7 +77,9 @@ describe('AutomatedChecksView', () => {
                 .returns(() => cardsViewData)
                 .verifiable(Times.once());
 
-            const screenshotViewModelStub = { deviceName: 'this should appear in snapshotted ScreenshotView props' } as ScreenshotViewModel;
+            const screenshotViewModelStub = {
+                screenshotData: { base64PngData: 'this should appear in snapshotted ScreenshotView props' },
+            } as ScreenshotViewModel;
             const screenshotViewModelProviderMock = Mock.ofInstance(screenshotViewModelProvider);
             screenshotViewModelProviderMock
                 .setup(provider => provider(unifiedScanResultStoreData, cardSelectionViewDataStub.highlightedResultUids))
