@@ -15,7 +15,7 @@ jobs:
           - template: electron-e2e-test-interactive.yaml
           - template: electron-e2e-publish-results.yaml
 
-          - template: distribute-electron.yaml
+          - template: distribute-sign-publish-electron-windows.yaml
 
     - job: 'build_product_linux'
 
@@ -31,7 +31,7 @@ jobs:
           - template: electron-e2e-test-linux.yaml
           - template: electron-e2e-publish-results.yaml
 
-          - template: distribute-electron.yaml
+          - template: distribute-electron-linux.yaml
 
     - job: 'build_product_mac'
       pool:
@@ -45,4 +45,4 @@ jobs:
           - template: electron-e2e-test-interactive.yaml
           - template: electron-e2e-publish-results.yaml
 
-          - template: distribute-electron.yaml
+          - template: distribute-sign-publish-electron-mac.yaml
