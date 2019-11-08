@@ -7,7 +7,7 @@ import { getStoreStateMessage, Messages } from '../../common/messages';
 import { CardSelectionActions } from '../actions/card-selection-actions';
 import { Interpreter } from '../interpreter';
 import { TelemetryEventHandler } from '../telemetry/telemetry-event-handler';
-import { CardSelectionPayload, RuleExpandCollapsePayload } from './action-payloads';
+import { BaseActionPayload, CardSelectionPayload, RuleExpandCollapsePayload } from './action-payloads';
 
 export class CardSelectionActionCreator {
     constructor(
@@ -39,15 +39,18 @@ export class CardSelectionActionCreator {
         this.telemetryEventHandler.publishTelemetry(TelemetryEvents.RULE_EXPANSION_TOGGLED, payload);
     };
 
-    private onToggleVisualHelper = (): void => {
+    private onToggleVisualHelper = (payload: BaseActionPayload): void => {
         this.cardSelectionActions.toggleVisualHelper.invoke(null);
+        this.telemetryEventHandler.publishTelemetry(TelemetryEvents.VISUAL_HELPER_TOGGLED, payload);
     };
 
-    private onCollapseAllRules = (): void => {
+    private onCollapseAllRules = (payload: BaseActionPayload): void => {
         this.cardSelectionActions.collapseAllRules.invoke(null);
+        this.telemetryEventHandler.publishTelemetry(TelemetryEvents.ALL_RULES_COLLAPSED, payload);
     };
 
-    private onExpandAllRules = (): void => {
+    private onExpandAllRules = (payload: BaseActionPayload): void => {
         this.cardSelectionActions.expandAllRules.invoke(null);
+        this.telemetryEventHandler.publishTelemetry(TelemetryEvents.ALL_RULES_EXPANDED, payload);
     };
 }

@@ -13,7 +13,11 @@ export class AutomatedChecksViewController extends ViewController {
         return this.client.$$(AutomatedChecksViewSelectors.collapsibleRuleDetailsGroup);
     }
 
-    public async collapseRuleGroupAtPosition(position: number): Promise<void> {
+    public async queryRuleGroupContents(): Promise<any[]> {
+        return this.client.$$(AutomatedChecksViewSelectors.collapsibleContainerContent);
+    }
+
+    public async toggleRuleGroupAtPosition(position: number): Promise<void> {
         await this.client.click(AutomatedChecksViewSelectors.getCollapseExpandButtonByGroupPosition(position));
     }
 

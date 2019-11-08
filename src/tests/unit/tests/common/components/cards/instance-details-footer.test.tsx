@@ -3,6 +3,7 @@
 import {
     allCardInteractionsSupported,
     noCardInteractionsSupported,
+    onlyHighlightingSupported,
     onlyUserConfigAgnosticCardInteractionsSupported,
 } from 'common/components/cards/card-interaction-support';
 import {
@@ -87,6 +88,15 @@ describe('InstanceDetailsFooter', () => {
     it('renders per snapshot when only UserConfig-agnostic card interactions are supported (ie, electron)', () => {
         setupConverterToBeCalledOnce();
         deps.cardInteractionSupport = onlyUserConfigAgnosticCardInteractionsSupported;
+        const testSubject = shallow(<InstanceDetailsFooter {...props} />);
+
+        expect(testSubject.getElement()).toMatchSnapshot();
+        converterMock.verifyAll();
+    });
+
+    it('renders per snapshot when only highlighting card interactions are supported (ie, electron)', () => {
+        setupConverterToNeverBeCalled();
+        deps.cardInteractionSupport = onlyHighlightingSupported;
         const testSubject = shallow(<InstanceDetailsFooter {...props} />);
 
         expect(testSubject.getElement()).toMatchSnapshot();

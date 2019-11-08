@@ -22,7 +22,9 @@ describe('CollapsibleComponentCardsTest', () => {
     forOwn(optionalPropertiesObject, (propertyValues, propertyName) => {
         propertyValues.forEach(value => {
             test(`render with ${propertyName} set to: ${value}`, () => {
-                cardSelectionMessageCreatorMock.setup(mock => mock.toggleRuleExpandCollapse(It.isAnyString())).verifiable(Times.never());
+                cardSelectionMessageCreatorMock
+                    .setup(mock => mock.toggleRuleExpandCollapse(It.isAnyString(), It.isAny()))
+                    .verifiable(Times.never());
 
                 const props: CollapsibleComponentCardsProps = {
                     header: <div>Some header</div>,
@@ -41,7 +43,8 @@ describe('CollapsibleComponentCardsTest', () => {
     });
 
     test('toggle from expanded to collapsed', () => {
-        cardSelectionMessageCreatorMock.setup(mock => mock.toggleRuleExpandCollapse(It.isAnyString())).verifiable(Times.once());
+        const eventStub = {} as React.SyntheticEvent;
+        cardSelectionMessageCreatorMock.setup(mock => mock.toggleRuleExpandCollapse(It.isAnyString(), eventStub)).verifiable(Times.once());
 
         const props: CollapsibleComponentCardsProps = {
             header: <div>Some header</div>,
@@ -58,7 +61,7 @@ describe('CollapsibleComponentCardsTest', () => {
         expect(result.getElement()).toMatchSnapshot('expanded');
 
         const button = result.find('CustomizedActionButton');
-        button.simulate('click');
+        button.simulate('click', eventStub);
         expect(result.getElement()).toMatchSnapshot('collapsed');
 
         cardSelectionMessageCreatorMock.verifyAll();
