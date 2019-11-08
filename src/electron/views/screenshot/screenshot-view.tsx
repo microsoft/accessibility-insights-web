@@ -12,17 +12,25 @@ export type ScreenshotViewProps = { viewModel: ScreenshotViewModel };
 export const ScreenshotView = NamedFC<ScreenshotViewProps>('ScreenshotView', (props: ScreenshotViewProps) => {
     const isUnavailable = isEmpty(props.viewModel.screenshotData);
 
-    /* note the h1 below has a tab index because the screenshot image is scrollable and keyboard users need to be able to
-    navigate via tab per https://dequeuniversity.com/rules/axe/3.3/scrollable-region-focusable */
     return (
         <div role="complementary" className={styles.screenshotView}>
-            <h2 className={styles.header} tabIndex={0}>
-                Target app screenshot
-            </h2>
+            {renderHeader()}
             {isUnavailable ? renderUnavailableMessage() : renderScreenshotContainer(props.viewModel)}
         </div>
     );
 });
+
+function renderHeader(): JSX.Element {
+    // The tabIndex=0 is because the view is independently scrollable, which means there must always be at least one focusable element
+    // inside it to enable keyboard users to scroll it. See https://dequeuniversity.com/rules/axe/3.3/scrollable-region-focusable
+    //
+    // Once we add the "enable visualizations" toggle, we should remove it.
+    return (
+        <h2 className={styles.header} tabIndex={0}>
+            Target app screenshot
+        </h2>
+    );
+}
 
 function renderUnavailableMessage(): JSX.Element {
     return <p>Screenshot for scan is unavailable</p>;
