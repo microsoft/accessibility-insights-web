@@ -150,6 +150,7 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then((persistedDat
 
     const cardSelectionActionCreator = new CardSelectionActionCreator(interpreter, cardSelectionActions, telemetryEventHandler);
     cardSelectionActionCreator.registerCallbacks();
+    const cardSelectionMessageCreator = new CardSelectionMessageCreator(dispatcher);
 
     const windowFrameListener = new WindowFrameListener(windowStateActionCreator, currentWindow);
     windowFrameListener.initialize();
@@ -168,8 +169,6 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then((persistedDat
     scanController.initialize();
 
     const fixInstructionProcessor = new FixInstructionProcessor();
-
-    const cardSelectionMessageCreator = new CardSelectionMessageCreator(dispatcher);
 
     const cardsViewDeps: CardsViewDeps = {
         LinkComponent: ElectronLink,
