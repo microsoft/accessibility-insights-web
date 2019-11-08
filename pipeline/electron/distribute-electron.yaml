@@ -7,6 +7,9 @@ parameters:
 steps:
     - script: yarn pack:electron ${{ parameters.platforms }}
       displayName: pack electron distributables
+      env:
+          ELECTRON_MIRROR: $(ELECTRON_MIRROR)
+          ELECTRON_CUSTOM_DIR: $(ELECTRON_CUSTOM_DIR)
 
     - task: PublishBuildArtifacts@1
       inputs:
