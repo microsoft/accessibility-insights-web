@@ -2,7 +2,7 @@
 
 exports[`HighlightBox renders with appropriate position and dimensions 1`] = `
 <div
-  ariaHidden="true"
+  aria-hidden="true"
   className="highlightBox"
   style={
     Object {

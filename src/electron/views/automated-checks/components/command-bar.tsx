@@ -24,21 +24,21 @@ export const CommandBar = NamedFC<CommandBarProps>('CommandBar', (props: Command
     const { deps, deviceStoreData } = props;
 
     const onRescanClick = () => deps.scanActionCreator.scan(deviceStoreData.port);
-
-    const farItems: ICommandBarItemProps[] = [
-        {
-            key: 'rescan',
-            name: 'Rescan',
-            iconProps: {
-                className: buttonIcon,
-                iconName: 'Refresh',
-            },
-            className: menuItemButton,
-            onClick: onRescanClick,
-            disabled: props.scanStoreData.status === ScanStatus.Scanning,
+    const rescanCommandBarItem: ICommandBarItemProps = {
+        key: 'rescan',
+        name: 'Rescan',
+        iconProps: {
+            className: buttonIcon,
+            iconName: 'Refresh',
         },
-    ];
+        className: menuItemButton,
+        onClick: onRescanClick,
+        disabled: props.scanStoreData.status === ScanStatus.Scanning,
+    };
 
-    const items: ICommandBarItemProps[] = []; // UICommandBar expects items to not be null (it does not check)
+    // UICommandBar doesn't do null checks for these. Use empty lists for "no items", not null/undefined.
+    const items: ICommandBarItemProps[] = [rescanCommandBarItem];
+    const farItems: ICommandBarItemProps[] = [];
+
     return <UICommandBar items={items} farItems={farItems} className={commandBar} />;
 });
