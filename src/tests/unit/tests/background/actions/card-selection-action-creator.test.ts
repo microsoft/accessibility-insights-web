@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { BaseActionPayload, CardSelectionPayload } from 'background/actions/action-payloads';
+import { BaseActionPayload, CardSelectionPayload, RuleExpandCollapsePayload } from 'background/actions/action-payloads';
 import { CardSelectionActionCreator } from 'background/actions/card-selection-action-creator';
 import { CardSelectionActions } from 'background/actions/card-selection-actions';
 import { TelemetryEventHandler } from 'background/telemetry/telemetry-event-handler';
@@ -34,6 +34,25 @@ describe('CardSelectionActionCreator', () => {
         toggleCardSelectionMock.verifyAll();
         telemetryEventHandlerMock.verify(
             handler => handler.publishTelemetry(TelemetryEvents.CARD_SELECTION_TOGGLED, payload),
+            Times.once(),
+        );
+    });
+
+    test('onRuleExpansionToggle', () => {
+        const payload: RuleExpandCollapsePayload = {
+            ruleId: 'test-rule-id',
+        };
+        const ruleExpansionToggleMock = createActionMock(payload);
+        const actionsMock = createActionsMock('toggleRuleExpandCollapse', ruleExpansionToggleMock.object);
+        const interpreterMock = createInterpreterMock(Messages.CardSelection.RuleExpansionToggled, payload, tabId);
+
+        const testSubject = new CardSelectionActionCreator(interpreterMock.object, actionsMock.object, telemetryEventHandlerMock.object);
+
+        testSubject.registerCallbacks();
+
+        ruleExpansionToggleMock.verifyAll();
+        telemetryEventHandlerMock.verify(
+            handler => handler.publishTelemetry(TelemetryEvents.RULE_EXPANSION_TOGGLED, payload),
             Times.once(),
         );
     });
