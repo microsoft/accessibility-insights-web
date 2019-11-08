@@ -45,7 +45,7 @@ const CollapsibleComponentCards = NamedFC<CollapsibleComponentCardsProps>(
             collapsedCSSClassName = null;
         }
 
-        const onClick = () => deps.cardSelectionMessageCreator.toggleRuleExpandCollapse(id);
+        const onClick = (event: React.MouseEvent<HTMLDivElement>) => deps.cardSelectionMessageCreator.toggleRuleExpandCollapse(id, event);
 
         return (
             <div className={css(containerClassName, collapsibleContainer, collapsedCSSClassName)}>

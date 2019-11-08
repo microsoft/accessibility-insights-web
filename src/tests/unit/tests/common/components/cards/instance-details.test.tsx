@@ -43,7 +43,7 @@ describe('InstanceDetails', () => {
     it('renders', () => {
         setupGetPropertyConfigByIdMock();
         cardSelectionMessageCreatorMock
-            .setup(mock => mock.toggleCardSelection(It.isAnyString(), It.isAnyString()))
+            .setup(mock => mock.toggleCardSelection(It.isAnyString(), It.isAnyString(), It.isAny()))
             .verifiable(Times.never());
 
         const testSubject = shallow(<InstanceDetails {...props} />);
@@ -54,16 +54,17 @@ describe('InstanceDetails', () => {
 
     it('dispatches the card selection message when card is clicked', () => {
         setupGetPropertyConfigByIdMock();
+        const eventStub = {} as React.SyntheticEvent;
 
         cardSelectionMessageCreatorMock
-            .setup(mock => mock.toggleCardSelection(It.isAnyString(), It.isAnyString()))
+            .setup(mock => mock.toggleCardSelection(It.isAnyString(), It.isAnyString(), eventStub))
             .verifiable(Times.once());
 
         const wrapper = shallow(<InstanceDetails {...props} />);
         const divElem = wrapper.find(`.${instanceDetailsCard}`);
         expect(divElem.length).toBe(1);
 
-        divElem.simulate('click');
+        divElem.simulate('click', eventStub);
 
         cardSelectionMessageCreatorMock.verifyAll();
     });
@@ -81,7 +82,7 @@ describe('InstanceDetails', () => {
         setupGetPropertyConfigByIdMock();
 
         cardSelectionMessageCreatorMock
-            .setup(mock => mock.toggleCardSelection(It.isAnyString(), It.isAnyString()))
+            .setup(mock => mock.toggleCardSelection(It.isAnyString(), It.isAnyString(), It.isAny()))
             .verifiable(Times.never());
 
         const wrapper = shallow(<InstanceDetails {...props} />);
@@ -96,17 +97,18 @@ describe('InstanceDetails', () => {
     const supportedKeyCodes = [KeyCodeConstants.ENTER, KeyCodeConstants.SPACEBAR];
     it.each(supportedKeyCodes)('dispatches the card selection message when key with keycode %s is pressed', keyCode => {
         const preventDefaultMock = jest.fn();
+        const eventStub = { keyCode: keyCode, preventDefault: preventDefaultMock } as any;
         setupGetPropertyConfigByIdMock();
 
         cardSelectionMessageCreatorMock
-            .setup(mock => mock.toggleCardSelection(It.isAnyString(), It.isAnyString()))
+            .setup(mock => mock.toggleCardSelection(It.isAnyString(), It.isAnyString(), eventStub))
             .verifiable(Times.once());
 
         const wrapper = shallow(<InstanceDetails {...props} />);
         const divElem = wrapper.find(`.${instanceDetailsCard}`);
         expect(divElem.length).toBe(1);
 
-        divElem.simulate('keydown', { keyCode: keyCode, preventDefault: preventDefaultMock });
+        divElem.simulate('keydown', eventStub);
 
         cardSelectionMessageCreatorMock.verifyAll();
         expect(preventDefaultMock).toHaveBeenCalled();

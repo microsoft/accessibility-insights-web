@@ -48,16 +48,16 @@ export const InstanceDetails = NamedFC<InstanceDetailsProps>('InstanceDetails', 
         return <>{cardRows}</>;
     };
 
-    const cardClickHandler = (): void => {
+    const cardClickHandler = (event: React.SyntheticEvent): void => {
         if (isHighlightSupported) {
-            deps.cardSelectionMessageCreator.toggleCardSelection(result.ruleId, result.uid);
+            deps.cardSelectionMessageCreator.toggleCardSelection(result.ruleId, result.uid, event);
         }
     };
 
     const cardKeyPressHandler = (event: React.KeyboardEvent<any>): void => {
         if (event.keyCode === KeyCodeConstants.ENTER || event.keyCode === KeyCodeConstants.SPACEBAR) {
             event.preventDefault();
-            cardClickHandler();
+            cardClickHandler(event);
         }
     };
 

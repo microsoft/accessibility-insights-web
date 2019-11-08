@@ -274,7 +274,11 @@ if (isNaN(tabId) === false) {
                 createIssueDetailsBuilder(PlainTextFormatter),
             );
 
-            const cardSelectionMessageCreator = new CardSelectionMessageCreator(actionMessageDispatcher);
+            const cardSelectionMessageCreator = new CardSelectionMessageCreator(
+                actionMessageDispatcher,
+                telemetryFactory,
+                TelemetryEventSource.DetailsView,
+            );
             const windowUtils = new WindowUtils();
 
             const fileURLProvider = new FileURLProvider(windowUtils, provideBlob);
