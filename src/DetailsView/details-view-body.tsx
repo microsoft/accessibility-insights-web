@@ -6,6 +6,7 @@ import { TargetAppData } from 'common/types/store-data/unified-data-interface';
 import { ISelection } from 'office-ui-fabric-react/lib/DetailsList';
 import * as React from 'react';
 
+import { DetailsViewCommandBarProps } from 'DetailsView/components/details-view-command-bar';
 import { VisualizationConfigurationFactory } from '../common/configs/visualization-configuration-factory';
 import { DropdownClickHandler } from '../common/dropdown-click-handler';
 import { AssessmentStoreData } from '../common/types/store-data/assessment-result-data';
@@ -72,7 +73,13 @@ export class DetailsViewBody extends React.Component<DetailsViewBodyProps> {
 
     private renderCommandBar(): JSX.Element {
         const { deps, switcherNavConfiguration } = this.props;
-        return <switcherNavConfiguration.CommandBar actionMessageCreator={deps.detailsViewActionMessageCreator} {...this.props} />;
+
+        const detailsViewCommandBarProps: DetailsViewCommandBarProps = {
+            actionMessageCreator: deps.detailsViewActionMessageCreator,
+            ...this.props,
+        };
+
+        return <switcherNavConfiguration.CommandBar {...detailsViewCommandBarProps} />;
     }
 
     private renderNavBar(): JSX.Element {

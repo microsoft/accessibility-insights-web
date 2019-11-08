@@ -19,7 +19,7 @@ exports[`DetailsViewCommandBar renders with export button and dialog 1`] = `
                         var methodInvocation = new MethodInvocation(target, method, args, ProxyType.DYNAMIC);
                         _this._interceptor.intercept(methodInvocation);
                         return methodInvocation.returnValue;
-                    }]} pageTitle=\\"command-bar-test-tab-title\\" exportResultsType=\\"Assessment\\" scanDate={{...}} htmlGenerator={[Function: bound ]} updatePersistedDescription={[Function]} getExportDescription={[Function]} />
+                    }]} pageTitle=\\"command-bar-test-tab-title\\" exportResultsType=\\"Assessment\\" scanDate={{...}} htmlGenerator={[Function: htmlGenerator]} updatePersistedDescription={[Function: updatePersistedDescription]} getExportDescription={[Function: getExportDescription]} />
     <StartOverDropdown testName=\\"test title\\" test={-1} requirementKey={[undefined]} actionMessageCreator={{...}} rightPanelConfiguration={{...}} />
   </div>
 </div>"
