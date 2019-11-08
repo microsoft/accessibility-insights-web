@@ -4,12 +4,14 @@ exports[`ScreenshotView render matches snapshot when passed empty screenshotData
 <div
   className="screenshotView"
   data-automation-id="screenshot-view"
+  role="complementary"
 >
-  <h1
+  <h2
+    className="header"
     tabIndex={0}
   >
-    Target Page Screenshot
-  </h1>
+    Target app screenshot
+  </h2>
   <p>
     Screenshot for scan is unavailable
   </p>
@@ -20,12 +22,14 @@ exports[`ScreenshotView render matches snapshot when passed empty screenshotData
 <div
   className="screenshotView"
   data-automation-id="screenshot-view"
+  role="complementary"
 >
-  <h1
+  <h2
+    className="header"
     tabIndex={0}
   >
-    Target Page Screenshot
-  </h1>
+    Target app screenshot
+  </h2>
   <p>
     Screenshot for scan is unavailable
   </p>
@@ -36,12 +40,14 @@ exports[`ScreenshotView render matches snapshot when passed empty screenshotData
 <div
   className="screenshotView"
   data-automation-id="screenshot-view"
+  role="complementary"
 >
-  <h1
+  <h2
+    className="header"
     tabIndex={0}
   >
-    Target Page Screenshot
-  </h1>
+    Target app screenshot
+  </h2>
   <p>
     Screenshot for scan is unavailable
   </p>
@@ -52,12 +58,14 @@ exports[`ScreenshotView render matches snapshot when screenshot data is availabl
 <div
   className="screenshotView"
   data-automation-id="screenshot-view"
+  role="complementary"
 >
-  <h1
+  <h2
+    className="header"
     tabIndex={0}
   >
-    Target Page Screenshot
-  </h1>
+    Target app screenshot
+  </h2>
   <ScreenshotContainer
     highlightBoxViewModels={Array []}
     screenshotData={
