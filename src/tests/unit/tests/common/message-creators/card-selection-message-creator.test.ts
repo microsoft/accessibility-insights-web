@@ -7,7 +7,6 @@ import { CardSelectionMessageCreator } from 'common/message-creators/card-select
 import { ActionMessageDispatcher } from 'common/message-creators/types/dispatcher';
 import { Messages } from 'common/messages';
 import { TelemetryDataFactory } from 'common/telemetry-data-factory';
-import { EventStub, EventStubFactory } from 'tests/unit/common/event-stub-factory';
 import { IMock, Mock, Times } from 'typemoq';
 
 describe('Card Selection Message Creator', () => {
