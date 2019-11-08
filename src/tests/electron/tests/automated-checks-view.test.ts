@@ -66,7 +66,7 @@ describe('AutomatedChecksView', () => {
         expect(failures).toHaveLength(expectedFailures);
     }
 
-    it.only('ScreenshotView renders screenshot image from specified source', async () => {
+    it('ScreenshotView renders screenshot image from specified source', async () => {
         await automatedChecksView.waitForScreenshotViewVisible();
 
         const resultExamplePath = path.join(__dirname, '../../miscellaneous/mock-axe-android/axe/result.json');
@@ -79,5 +79,11 @@ describe('AutomatedChecksView', () => {
         expect(actualScreenshotImage).toEqual(expectedScreenshotImage);
     });
 
-    // it('renders expected number of highlight boxes in expected positions', () => {});
+    it('ScreenshotView renders expected number of highlight boxes', async () => {
+        await automatedChecksView.waitForScreenshotViewVisible();
+
+        const highlightBoxes = await automatedChecksView.client.$$(ScreenshotViewSelectors.highlightBox);
+
+        expect(highlightBoxes).toHaveLength(5);
+    });
 });
