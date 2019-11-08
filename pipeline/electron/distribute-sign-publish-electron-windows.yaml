@@ -9,7 +9,7 @@ steps:
       displayName: create electron distributables
 
     - task: SFP.build-tasks.custom-build-task-1.EsrpCodeSigning@1
-      displayName: 'ESRP CodeSigning'
+      displayName: 'sign dist'
       inputs:
           ConnectedServiceName: 'ESRP Code Signing'
           FolderPath: '$(System.DefaultWorkingDirectory)/dist'
