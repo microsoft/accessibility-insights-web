@@ -77,7 +77,7 @@ export const RoleStateProperty: Requirement = {
                     defaultValue: NoValue,
                 },
                 {
-                    propertyName: 'text',
+                    propertyName: 'accessibleName',
                     displayName: 'Accessible name',
                     defaultValue: NoValue,
                 },

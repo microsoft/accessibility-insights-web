@@ -4,6 +4,9 @@ import * as React from 'react';
 import { IMock, Mock, MockBehavior } from 'typemoq';
 
 import { FeatureFlagStore } from 'background/stores/global/feature-flag-store';
+import { DetailsViewCommandBarDeps } from 'DetailsView/components/details-view-command-bar';
+import { ReportExportComponentProps } from 'DetailsView/components/report-export-component';
+import { StartOverComponentProps } from 'DetailsView/components/start-over-component';
 import { VisualizationConfiguration } from '../../../../common/configs/visualization-configuration';
 import { VisualizationConfigurationFactory } from '../../../../common/configs/visualization-configuration-factory';
 import { NamedFC, ReactFCWithDisplayName } from '../../../../common/react/named-fc';
@@ -39,6 +42,8 @@ describe('DetailsViewBody', () => {
     let props: DetailsViewBodyProps;
     let rightPanelConfig: DetailsRightPanelConfiguration;
     let switcherNavConfig: DetailsViewSwitcherNavConfiguration;
+    let reportExportComponentProps: ReportExportComponentProps;
+    let startOverComponentProps: StartOverComponentProps;
 
     describe('render', () => {
         beforeEach(() => {
@@ -46,11 +51,15 @@ describe('DetailsViewBody', () => {
             const RightPanelStub: Readonly<ReactFCWithDisplayName<DetailsViewBodyProps>> = NamedFC<DetailsViewBodyProps>('test', _ => null);
             const CommandBarStub: Readonly<ReactFCWithDisplayName<DetailsViewBodyProps>> = NamedFC<DetailsViewBodyProps>('test', _ => null);
             const LeftNavStub: Readonly<ReactFCWithDisplayName<DetailsViewBodyProps>> = NamedFC<DetailsViewBodyProps>('test', _ => null);
+            reportExportComponentProps = null;
+            startOverComponentProps = null;
             rightPanelConfig = {
                 RightPanel: RightPanelStub,
             } as DetailsRightPanelConfiguration;
             switcherNavConfig = {
                 CommandBar: CommandBarStub,
+                ReportExportComponentPropertyFactory: p => reportExportComponentProps,
+                StartOverComponentPropertyFactory: p => startOverComponentProps,
                 LeftNav: LeftNavStub,
             } as DetailsViewSwitcherNavConfiguration;
             configFactoryMock = Mock.ofType(VisualizationConfigurationFactory, MockBehavior.Strict);
@@ -92,7 +101,7 @@ describe('DetailsViewBody', () => {
             props = {
                 deps: {
                     detailsViewActionMessageCreator: Mock.ofType(DetailsViewActionMessageCreator).object,
-                },
+                } as DetailsViewCommandBarDeps,
                 tabStoreData: new TabStoreDataBuilder().build(),
                 visualizationStoreData: new VisualizationStoreDataBuilder().build(),
                 visualizationScanResultData: new VisualizationScanResultStoreDataBuilder().build(),
@@ -130,7 +139,8 @@ describe('DetailsViewBody', () => {
             );
 
             const testSubject = new DetailsViewBody(props);
-            expect(testSubject.render()).toEqual(expected);
+            const actual = testSubject.render();
+            expect(actual).toEqual(expected);
         });
     });
 

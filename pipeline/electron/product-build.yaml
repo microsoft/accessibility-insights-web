@@ -8,6 +8,7 @@ jobs:
           - template: ../install-node-prerequisites.yaml
           - template: electron-e2e-test-interactive.yaml
           - template: electron-e2e-publish-results.yaml
+          - template: electron-update-config.yaml
           - template: distribute-sign-publish-electron-windows.yaml
 
     - job: 'build_product_linux'
@@ -17,6 +18,7 @@ jobs:
           - template: ../install-node-prerequisites.yaml
           - template: electron-e2e-test-linux.yaml
           - template: electron-e2e-publish-results.yaml
+          - template: electron-update-config.yaml
           - template: distribute-publish-electron-linux.yaml
 
     - job: 'build_product_mac'
@@ -26,4 +28,5 @@ jobs:
           - template: ../install-node-prerequisites.yaml
           - template: electron-e2e-test-interactive.yaml
           - template: electron-e2e-publish-results.yaml
+          - template: electron-update-config.yaml
           - template: distribute-sign-publish-electron-mac.yaml

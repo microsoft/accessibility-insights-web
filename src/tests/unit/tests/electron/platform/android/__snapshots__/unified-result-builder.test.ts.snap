@@ -2,6 +2,18 @@
 
 exports[`buildUnifiedScanCompletedPayload builds the payload 1`] = `
 Object {
+  "platformInfo": Object {
+    "deviceName": "test-device-name",
+    "osInfo": Object {
+      "name": "test-os-name",
+      "version": "test-os-version",
+    },
+    "viewPortInfo": Object {
+      "dpi": 3,
+      "height": 2,
+      "width": 1,
+    },
+  },
   "rules": Array [
     Object {
       "description": "test-rule-description",

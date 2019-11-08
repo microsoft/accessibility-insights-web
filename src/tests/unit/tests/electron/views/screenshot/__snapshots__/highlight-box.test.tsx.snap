@@ -6,10 +6,10 @@ exports[`HighlightBox renders with appropriate position and dimensions 1`] = `
   className="highlightBox"
   style={
     Object {
-      "height": "150px",
-      "left": "20px",
-      "top": "100px",
-      "width": "380px",
+      "height": "50px",
+      "left": "50%",
+      "top": "50%",
+      "width": "100px",
     }
   }
 >
