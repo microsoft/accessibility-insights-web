@@ -1,5 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import * as fs from 'fs';
+import * as path from 'path';
 import { createApplication } from 'tests/electron/common/create-application';
 import {
     AutomatedChecksViewSelectors,
@@ -8,7 +10,6 @@ import {
 import { scanForAccessibilityIssues } from 'tests/electron/common/scan-for-accessibility-issues';
 import { AppController } from 'tests/electron/common/view-controllers/app-controller';
 import { AutomatedChecksViewController } from 'tests/electron/common/view-controllers/automated-checks-view-controller';
-import { axeRuleResultExample } from 'tests/unit/tests/electron/flux/action-creator/scan-result-example';
 
 describe('AutomatedChecksView', () => {
     let app: AppController;
@@ -65,17 +66,18 @@ describe('AutomatedChecksView', () => {
         expect(failures).toHaveLength(expectedFailures);
     }
 
-    describe('ScreenshotView', async () => {
+    it.only('ScreenshotView renders screenshot image from specified source', async () => {
         await automatedChecksView.waitForScreenshotViewVisible();
 
-        it('renders screenshot image with expected source', async () => {
-            const expectedScreenshotImage = 'data:image/png;base64' + axeRuleResultExample.screenshot;
+        const resultExamplePath = path.join(__dirname, '../../miscellaneous/mock-axe-android/axe/result.json');
+        const axeRuleResultExample = JSON.parse(fs.readFileSync(resultExamplePath, { encoding: 'utf-8' }));
 
-            const actualScreenshotImage = automatedChecksView.client.$(ScreenshotViewSelectors.screenshotImage);
+        const expectedScreenshotImage = 'data:image/png;base64,' + axeRuleResultExample.axeContext.screenshot;
 
-            expect(actualScreenshotImage.source).toEqual(expectedScreenshotImage);
-        });
+        const actualScreenshotImage = await automatedChecksView.element(ScreenshotViewSelectors.screenshotImage).getAttribute('src');
 
-        // it('renders expected number of highlight boxes in expected positions', () => {});
+        expect(actualScreenshotImage).toEqual(expectedScreenshotImage);
     });
+
+    // it('renders expected number of highlight boxes in expected positions', () => {});
 });

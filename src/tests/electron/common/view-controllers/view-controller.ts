@@ -5,6 +5,7 @@ import * as WebDriverIO from 'webdriverio';
 
 export interface ElementController {
     keys(keys: string): Promise<void>;
+    getAttribute(attributeName: string): Promise<string>;
 }
 
 export abstract class ViewController {
