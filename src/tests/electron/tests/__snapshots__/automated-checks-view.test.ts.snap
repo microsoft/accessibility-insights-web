@@ -2,10 +2,10 @@
 
 exports[`AutomatedChecksView ScreenshotView renders expected number/size of highlight boxes in expected positions 1`] = `
 Array [
-  "width: 116px; height: 116px; top: 63px; left: 964px;",
-  "width: 116px; height: 116px; top: 63px; left: 964px;",
-  "width: 116px; height: 116px; top: 200px; left: 145px;",
-  "width: 525px; height: 95px; top: 452px; left: 277px;",
-  "width: 538px; height: 315px; top: 578px; left: 0px;",
+  "width: 10.7407%; height: 6.04167%; top: 3.28125%; left: 89.2593%;",
+  "width: 10.7407%; height: 6.04167%; top: 3.28125%; left: 89.2593%;",
+  "width: 10.7407%; height: 6.04167%; top: 10.4167%; left: 13.4259%;",
+  "width: 48.6111%; height: 4.94792%; top: 23.5417%; left: 25.6481%;",
+  "width: 49.8148%; height: 16.4063%; top: 30.1042%; left: 0%;",
 ]
 `;
