@@ -16,7 +16,8 @@
     .header {
         margin-top: 0;
         margin-bottom: 16px;
-        font-family: $fontFamily;
+        font-family: $semiBoldFontFamily;
+        font-weight: $fontWeightSemiBold;
         font-size: $fontSizeL;
         color: $primary-text;
     }
