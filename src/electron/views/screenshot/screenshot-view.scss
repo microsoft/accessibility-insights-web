@@ -19,6 +19,8 @@
         font-family: $semiBoldFontFamily;
         font-weight: $fontWeightSemiBold;
         font-size: $fontSizeL;
+        line-height: 21px;
         color: $primary-text;
+        word-wrap: break-word;
     }
 }

@@ -1,16 +1,25 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 @import '../../../../common/styles/colors.scss';
+@import '../../../../common/styles/fonts.scss';
 
 .command-bar {
     border-bottom: 1px solid $neutral-alpha-8;
 
     div[role='menubar'] {
         background-color: $neutral-2;
+        height: 44px;
     }
 
     .menu-item-button {
         background-color: $neutral-2;
+    }
+
+    // specificity required to override fabric style
+    button.menu-item-button {
+        color: $primary-text;
+        font-size: $fontSizeM;
+        font-family: $fontFamily;
     }
 
     .button-icon {
