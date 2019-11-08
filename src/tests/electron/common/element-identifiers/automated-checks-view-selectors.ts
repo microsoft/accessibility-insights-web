@@ -20,4 +20,5 @@ export const ScreenshotViewSelectors = {
     screenshotView: `[data-automation-id=${screenshotViewAutomationId}]`,
     screenshotImage: `[data-automation-id=${screenshotImageAutomationId}]`,
     highlightBox: `[data-automation-id=${highlightBoxAutomationId}]`,
+    getHighlightBoxByIndex: (index: number) => `${ScreenshotViewSelectors.highlightBox}:nth-of-type(${index})`,
 };

@@ -79,11 +79,19 @@ describe('AutomatedChecksView', () => {
         expect(actualScreenshotImage).toEqual(expectedScreenshotImage);
     });
 
-    it('ScreenshotView renders expected number of highlight boxes', async () => {
+    it('ScreenshotView renders expected number/size of highlight boxes in expected positions', async () => {
         await automatedChecksView.waitForScreenshotViewVisible();
 
         const highlightBoxes = await automatedChecksView.client.$$(ScreenshotViewSelectors.highlightBox);
 
+        const highlightBoxStyles: string[] = [];
+        for (let i = 1; i <= highlightBoxes.length; i++) {
+            highlightBoxStyles.push(
+                await automatedChecksView.element(ScreenshotViewSelectors.getHighlightBoxByIndex(i)).getAttribute('style'),
+            );
+        }
+
         expect(highlightBoxes).toHaveLength(5);
+        expect(highlightBoxStyles).toMatchSnapshot();
     });
 });

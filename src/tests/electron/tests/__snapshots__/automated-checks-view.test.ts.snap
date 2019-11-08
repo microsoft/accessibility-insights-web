@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AutomatedChecksView ScreenshotView renders expected number/size of highlight boxes in expected positions 1`] = `
+Array [
+  "width: 116px; height: 116px; top: 63px; left: 964px;",
+  "width: 116px; height: 116px; top: 63px; left: 964px;",
+  "width: 116px; height: 116px; top: 200px; left: 145px;",
+  "width: 525px; height: 95px; top: 452px; left: 277px;",
+  "width: 538px; height: 315px; top: 578px; left: 0px;",
+]
+`;
