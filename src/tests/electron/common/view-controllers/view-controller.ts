@@ -26,7 +26,7 @@ export abstract class ViewController {
         return await this.client.isEnabled(selector);
     }
 
-    public element(selector: string): ElementController {
+    public findElement(selector: string): ElementController {
         return this.client.element(selector);
     }
 }

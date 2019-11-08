@@ -37,19 +37,19 @@ describe('AutomatedChecksView', () => {
     });
 
     async function countHighlightBoxes(): Promise<number> {
-        const boxes = await automatedChecksView.client.findElements(ScreenshotViewSelectors.highlightBox);
+        const boxes = await automatedChecksView.client.$$(ScreenshotViewSelectors.highlightBox);
         return boxes.length;
     }
 
     it('supports expanding and collapsing rule groups', async () => {
-        expect(await countHighlightBoxes()).toBe(0);
+        expect(await countHighlightBoxes()).toBe(5);
         expect(await automatedChecksView.queryRuleGroupContents()).toHaveLength(0);
 
         await automatedChecksView.toggleRuleGroupAtPosition(1);
         await automatedChecksView.toggleRuleGroupAtPosition(2);
         await automatedChecksView.toggleRuleGroupAtPosition(3);
 
-        expect(await countHighlightBoxes()).toBe(3);
+        expect(await countHighlightBoxes()).toBe(4);
         expect(await automatedChecksView.queryRuleGroupContents()).toHaveLength(3);
         await assertExpandedRuleGroup(1, 'ImageViewName', 1);
         await assertExpandedRuleGroup(2, 'ActiveViewName', 2);
@@ -84,7 +84,7 @@ describe('AutomatedChecksView', () => {
 
         const expectedScreenshotImage = 'data:image/png;base64,' + axeRuleResultExample.axeContext.screenshot;
 
-        const actualScreenshotImage = await automatedChecksView.element(ScreenshotViewSelectors.screenshotImage).getAttribute('src');
+        const actualScreenshotImage = await automatedChecksView.findElement(ScreenshotViewSelectors.screenshotImage).getAttribute('src');
 
         expect(actualScreenshotImage).toEqual(expectedScreenshotImage);
     });
@@ -92,12 +92,12 @@ describe('AutomatedChecksView', () => {
     it('ScreenshotView renders expected number/size of highlight boxes in expected positions', async () => {
         await automatedChecksView.waitForScreenshotViewVisible();
 
-        const highlightBoxes = await automatedChecksView.client.findElements(ScreenshotViewSelectors.highlightBox);
+        const highlightBoxes = await automatedChecksView.client.$$(ScreenshotViewSelectors.highlightBox);
 
         const highlightBoxStyles: string[] = [];
         for (let i = 1; i <= highlightBoxes.length; i++) {
             highlightBoxStyles.push(
-                await automatedChecksView.element(ScreenshotViewSelectors.getHighlightBoxByIndex(i)).getAttribute('style'),
+                await automatedChecksView.findElement(ScreenshotViewSelectors.getHighlightBoxByIndex(i)).getAttribute('style'),
             );
         }
 
