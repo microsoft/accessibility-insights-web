@@ -2,30 +2,24 @@
 # Licensed under the MIT License.
 jobs:
     - job: 'build_product_windows'
-
       pool:
           vmImage: 'windows-latest'
-
       steps:
           - template: ../install-node-prerequisites.yaml
           - template: electron-e2e-test-interactive.yaml
           - template: electron-e2e-publish-results.yaml
           - template: electron-update-config.yaml
-
-          - template: distribute-electron.yaml
+          - template: distribute-sign-publish-electron-windows.yaml
 
     - job: 'build_product_linux'
-
       pool:
           vmImage: 'ubuntu-16.04'
-
       steps:
           - template: ../install-node-prerequisites.yaml
           - template: electron-e2e-test-linux.yaml
           - template: electron-e2e-publish-results.yaml
           - template: electron-update-config.yaml
-
-          - template: distribute-electron.yaml
+          - template: distribute-publish-electron-linux.yaml
 
     - job: 'build_product_mac'
       pool:
@@ -35,5 +29,4 @@ jobs:
           - template: electron-e2e-test-interactive.yaml
           - template: electron-e2e-publish-results.yaml
           - template: electron-update-config.yaml
-
-          - template: distribute-electron.yaml
+          - template: distribute-sign-publish-electron-mac.yaml
