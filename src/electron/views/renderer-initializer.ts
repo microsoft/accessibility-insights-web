@@ -14,11 +14,13 @@ import { onlyHighlightingSupported } from 'common/components/cards/card-interact
 import { CardsCollapsibleControl } from 'common/components/cards/collapsible-component-cards';
 import { getPropertyConfiguration } from 'common/configs/unified-result-property-configurations';
 import { DateProvider } from 'common/date-provider';
+import { TelemetryEventSource } from 'common/extension-telemetry-events';
 import { getCardSelectionViewData } from 'common/get-card-selection-view-data';
 import { GetGuidanceTagsFromGuidanceLinks } from 'common/get-guidance-tags-from-guidance-links';
 import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
 import { UserConfigMessageCreator } from 'common/message-creators/user-config-message-creator';
 import { getCardViewData } from 'common/rule-based-view-model-provider';
+import { TelemetryDataFactory } from 'common/telemetry-data-factory';
 import { CardsViewDeps } from 'DetailsView/components/cards-view';
 import { remote } from 'electron';
 import { DirectActionMessageDispatcher } from 'electron/adapters/direct-action-message-dispatcher';
@@ -87,6 +89,7 @@ const indexedDBDataKeysToFetch = [IndexedDBDataKeys.userConfiguration, IndexedDB
 getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then((persistedData: Partial<PersistedData>) => {
     const installationData: InstallationData = persistedData.installationData;
 
+    const telemetryDataFactory = new TelemetryDataFactory();
     const telemetryLogger = new TelemetryLogger();
     telemetryLogger.initialize(new RiggedFeatureFlagChecker());
 
@@ -150,7 +153,11 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then((persistedDat
 
     const cardSelectionActionCreator = new CardSelectionActionCreator(interpreter, cardSelectionActions, telemetryEventHandler);
     cardSelectionActionCreator.registerCallbacks();
-    const cardSelectionMessageCreator = new CardSelectionMessageCreator(dispatcher);
+    const cardSelectionMessageCreator = new CardSelectionMessageCreator(
+        dispatcher,
+        telemetryDataFactory,
+        TelemetryEventSource.ElectronAutomatedChecksView,
+    );
 
     const windowFrameListener = new WindowFrameListener(windowStateActionCreator, currentWindow);
     windowFrameListener.initialize();
