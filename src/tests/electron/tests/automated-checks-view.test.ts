@@ -22,30 +22,31 @@ describe('AutomatedChecksView', () => {
         }
     });
 
-    it('displays automated checks results', async () => {
+    it('displays automated checks results collapsed by default', async () => {
         const ruleGroups = await automatedChecksView.queryRuleGroups();
-
         expect(ruleGroups).toHaveLength(4);
 
+        const collapsibleContentElements = await automatedChecksView.queryRuleGroupContents();
+        expect(collapsibleContentElements).toHaveLength(0);
+    });
+
+    it('supports expanding and collapsing rule groups', async () => {
+        expect(await automatedChecksView.queryRuleGroupContents()).toHaveLength(0);
+
+        await automatedChecksView.toggleRuleGroupAtPosition(1);
+        await automatedChecksView.toggleRuleGroupAtPosition(2);
+        await automatedChecksView.toggleRuleGroupAtPosition(3);
+
+        expect(await automatedChecksView.queryRuleGroupContents()).toHaveLength(3);
         await assertExpandedRuleGroup(1, 'ImageViewName', 1);
         await assertExpandedRuleGroup(2, 'ActiveViewName', 2);
         await assertExpandedRuleGroup(3, 'TouchSizeWcag', 1);
-        await assertExpandedRuleGroup(4, 'ColorContrast', 1);
-    });
 
-    it('supports collapsing rule groups to hide their associated failure details', async () => {
-        const ruleGroups = await automatedChecksView.queryRuleGroups();
+        await automatedChecksView.toggleRuleGroupAtPosition(1);
+        await automatedChecksView.toggleRuleGroupAtPosition(2);
 
-        expect(ruleGroups).toHaveLength(4);
-
-        await automatedChecksView.collapseRuleGroupAtPosition(1);
-        await automatedChecksView.collapseRuleGroupAtPosition(2);
-        await automatedChecksView.collapseRuleGroupAtPosition(3);
-        await automatedChecksView.collapseRuleGroupAtPosition(4);
-
-        const collapsibleContentElements = await automatedChecksView.client.$$(AutomatedChecksViewSelectors.collapsibleContainerContent);
-
-        expect(collapsibleContentElements).toHaveLength(0);
+        expect(await automatedChecksView.queryRuleGroupContents()).toHaveLength(1);
+        await assertExpandedRuleGroup(3, 'TouchSizeWcag', 1);
     });
 
     it('should not contain any accessibility issues', async () => {
