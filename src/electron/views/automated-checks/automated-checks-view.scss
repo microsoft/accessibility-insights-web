@@ -1,7 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+@import '../../../common/styles/colors.scss';
+
 .automated-checks-view {
     -webkit-app-region: no-drag;
+    background-color: $neutral-2;
+
     .automated-checks-panel-layout {
         display: flex;
         height: 100%;
