@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+@import '../../../common/styles/colors.scss';
 @import './components/telemetry-permission-dialog.scss';
 @import '../../../reports/components/outcome.scss';
 @import '../../../common/components/cards/fix-instruction-color-box.scss';
@@ -9,6 +10,7 @@ body {
     height: 100%;
     width: 100%;
     overflow: hidden;
+    background-color: $neutral-0;
 }
 
 .device-connect-view {

@@ -8,22 +8,11 @@ import * as React from 'react';
 
 describe('ScreenshotView', () => {
     describe('render', () => {
-        it('matches snapshot when passed a screenshot with no highlights', () => {
+        it('matches snapshot when screenshot data is available', () => {
             const viewModel: ScreenshotViewModel = {
                 screenshotData: { base64PngData: 'test-base-64-png-data' },
-                highlightBoxRectangles: [],
+                highlightBoxViewModels: [],
                 deviceName: 'My Cool Android Device',
-            };
-            const wrapper = shallow(<ScreenshotView viewModel={viewModel} />);
-
-            expect(wrapper.getElement()).toMatchSnapshot();
-        });
-
-        it('matches snapshot when deviceName is unavailable', () => {
-            const viewModel: ScreenshotViewModel = {
-                screenshotData: { base64PngData: 'test-base-64-png-data' },
-                highlightBoxRectangles: [],
-                deviceName: null,
             };
             const wrapper = shallow(<ScreenshotView viewModel={viewModel} />);
 
@@ -34,7 +23,7 @@ describe('ScreenshotView', () => {
         it.each(emptyScreenshotDataCases)('matches snapshot when passed empty screenshotData %p', (screenshotDataCase: ScreenshotData) => {
             const viewModel: ScreenshotViewModel = {
                 screenshotData: screenshotDataCase,
-                highlightBoxRectangles: [],
+                highlightBoxViewModels: [],
                 deviceName: null,
             };
             const wrapper = shallow(<ScreenshotView viewModel={viewModel} />);

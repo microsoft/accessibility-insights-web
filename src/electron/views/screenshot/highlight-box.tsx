@@ -1,28 +1,25 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { NamedFC } from 'common/react/named-fc';
-import { BoundingRectangle } from 'electron/platform/android/scan-results';
 import { highlightBox, highlightBoxLabel } from 'electron/views/screenshot/highlight-box.scss';
+import { HighlightBoxViewModel } from 'electron/views/screenshot/screenshot-view-model';
 import * as React from 'react';
 import { CSSProperties } from 'react';
 
 export const highlightBoxAutomationId = 'screenshot-highlight-box';
 
 export interface HighlightBoxProps {
-    boundingRectangle: BoundingRectangle;
+    viewModel: HighlightBoxViewModel;
 }
 
 export const HighlightBox = NamedFC<HighlightBoxProps>('HighlightBox', props => {
-    const { boundingRectangle } = props;
-
-    const width = boundingRectangle.right - boundingRectangle.left;
-    const height = boundingRectangle.bottom - boundingRectangle.top;
+    const { viewModel } = props;
 
     const boxStyles: CSSProperties = {
-        width: `${width}px`,
-        height: `${height}px`,
-        top: `${boundingRectangle.top}px`,
-        left: `${boundingRectangle.left}px`,
+        width: viewModel.width,
+        height: viewModel.height,
+        top: viewModel.top,
+        left: viewModel.left,
     };
 
     return (

@@ -2,6 +2,10 @@
 // Licensed under the MIT License.
 import { css } from '@uifabric/utilities';
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
+import { CardsViewModel } from 'common/types/store-data/card-view-model';
+import { VisualizationScanResultData } from 'common/types/store-data/visualization-scan-result-data';
+import { DetailsViewSwitcherNavConfiguration } from 'DetailsView/components/details-view-switcher-nav';
+import { StartOverComponentProps } from 'DetailsView/components/start-over-component';
 import { Link } from 'office-ui-fabric-react/lib/Link';
 import * as React from 'react';
 import { ReportGenerator } from 'reports/report-generator';
@@ -10,13 +14,20 @@ import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag
 import { TabStoreData } from '../../common/types/store-data/tab-store-data';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 import { DetailsRightPanelConfiguration } from './details-view-right-panel';
-import { ReportExportComponent, ReportExportComponentDeps } from './report-export-component';
+import { ReportExportComponent, ReportExportComponentDeps, ReportExportComponentProps } from './report-export-component';
 import { StartOverDropdown } from './start-over-dropdown';
 
 export type DetailsViewCommandBarDeps = ReportExportComponentDeps & {
     getCurrentDate: () => Date;
     reportGenerator: ReportGenerator;
+    getDateFromTimestamp: (timestamp: string) => Date;
 };
+
+export type CommandBarProps = DetailsViewCommandBarProps;
+
+export type ReportExportComponentPropertyFactory = (props: CommandBarProps) => ReportExportComponentProps;
+
+export type StartOverComponentPropertyFactory = (props: CommandBarProps) => StartOverComponentProps;
 
 export interface DetailsViewCommandBarProps {
     deps: DetailsViewCommandBarDeps;
@@ -25,8 +36,10 @@ export interface DetailsViewCommandBarProps {
     actionMessageCreator: DetailsViewActionMessageCreator;
     assessmentStoreData: AssessmentStoreData;
     assessmentsProvider: AssessmentsProvider;
-    renderExportAndStartOver: boolean;
     rightPanelConfiguration: DetailsRightPanelConfiguration;
+    visualizationScanResultData: VisualizationScanResultData;
+    cardsViewData: CardsViewModel;
+    switcherNavConfiguration: DetailsViewSwitcherNavConfiguration;
 }
 
 export class DetailsViewCommandBar extends React.Component<DetailsViewCommandBarProps> {
@@ -60,42 +73,20 @@ export class DetailsViewCommandBar extends React.Component<DetailsViewCommandBar
         );
     }
 
-    private updatePersistedDescription = (value: string) => {
-        this.props.actionMessageCreator.addResultDescription(value);
-    };
-
-    private getExportDescription = () => {
-        return this.props.assessmentStoreData.resultDescription;
-    };
-
     private renderCommandButtons(): JSX.Element {
-        if (!this.props.renderExportAndStartOver) {
+        const reportExportComponentProps = this.props.switcherNavConfiguration.ReportExportComponentPropertyFactory(this.props);
+        const startOverComponentProps = this.props.switcherNavConfiguration.StartOverComponentPropertyFactory(this.props);
+
+        if (!reportExportComponentProps || !startOverComponentProps || !startOverComponentProps.render) {
             return null;
         }
-        const { deps, assessmentStoreData, assessmentsProvider, featureFlagStoreData, tabStoreData } = this.props;
-        const reportGenerator = deps.reportGenerator;
+
         const selectedTest = this.props.assessmentStoreData.assessmentNavState.selectedTestType;
         const test = this.props.assessmentsProvider.forType(selectedTest);
-        const htmlGenerator = reportGenerator.generateAssessmentReport.bind(
-            reportGenerator,
-            assessmentStoreData,
-            assessmentsProvider,
-            featureFlagStoreData,
-            tabStoreData,
-        );
 
         return (
             <div className="details-view-command-buttons">
-                <ReportExportComponent
-                    deps={deps}
-                    reportGenerator={reportGenerator}
-                    pageTitle={tabStoreData.title}
-                    exportResultsType={'Assessment'}
-                    scanDate={deps.getCurrentDate()}
-                    htmlGenerator={htmlGenerator}
-                    updatePersistedDescription={this.updatePersistedDescription}
-                    getExportDescription={this.getExportDescription}
-                />
+                <ReportExportComponent {...reportExportComponentProps} />
                 <StartOverDropdown
                     testName={test.title}
                     test={selectedTest}
