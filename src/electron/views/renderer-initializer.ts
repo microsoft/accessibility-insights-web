@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 import { AppInsights } from 'applicationinsights-js';
 import axios from 'axios';
+import { CardSelectionActionCreator } from 'background/actions/card-selection-action-creator';
 import { CardSelectionActions } from 'background/actions/card-selection-actions';
 import { UnifiedScanResultActions } from 'background/actions/unified-scan-result-actions';
 import { registerUserConfigurationMessageCallback } from 'background/global-action-creators/registrar/register-user-configuration-message-callbacks';
@@ -9,13 +10,17 @@ import { UserConfigurationActionCreator } from 'background/global-action-creator
 import { Interpreter } from 'background/interpreter';
 import { CardSelectionStore } from 'background/stores/card-selection-store';
 import { UnifiedScanResultStore } from 'background/stores/unified-scan-result-store';
-import { noCardInteractionsSupported } from 'common/components/cards/card-interaction-support';
+import { onlyHighlightingSupported } from 'common/components/cards/card-interaction-support';
+import { CardsCollapsibleControl } from 'common/components/cards/collapsible-component-cards';
 import { getPropertyConfiguration } from 'common/configs/unified-result-property-configurations';
 import { DateProvider } from 'common/date-provider';
+import { TelemetryEventSource } from 'common/extension-telemetry-events';
 import { getCardSelectionViewData } from 'common/get-card-selection-view-data';
 import { GetGuidanceTagsFromGuidanceLinks } from 'common/get-guidance-tags-from-guidance-links';
+import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
 import { UserConfigMessageCreator } from 'common/message-creators/user-config-message-creator';
 import { getCardViewData } from 'common/rule-based-view-model-provider';
+import { TelemetryDataFactory } from 'common/telemetry-data-factory';
 import { CardsViewDeps } from 'DetailsView/components/cards-view';
 import { remote } from 'electron';
 import { DirectActionMessageDispatcher } from 'electron/adapters/direct-action-message-dispatcher';
@@ -31,7 +36,6 @@ import { WindowStateStore } from 'electron/flux/store/window-state-store';
 import { createFetchScanResults } from 'electron/platform/android/fetch-scan-results';
 import { ScanController } from 'electron/platform/android/scan-controller';
 import { createDefaultBuilder } from 'electron/platform/android/unified-result-builder';
-import { CollapsibleComponentCard } from 'electron/views/automated-checks/components/collapsible-component-cards';
 import { RootContainerProps, RootContainerState } from 'electron/views/root-container/components/root-container';
 import { PlatformInfo } from 'electron/window-management/platform-info';
 import { WindowFrameListener } from 'electron/window-management/window-frame-listener';
@@ -85,6 +89,7 @@ const indexedDBDataKeysToFetch = [IndexedDBDataKeys.userConfiguration, IndexedDB
 getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then((persistedData: Partial<PersistedData>) => {
     const installationData: InstallationData = persistedData.installationData;
 
+    const telemetryDataFactory = new TelemetryDataFactory();
     const telemetryLogger = new TelemetryLogger();
     telemetryLogger.initialize(new RiggedFeatureFlagChecker());
 
@@ -146,6 +151,14 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then((persistedDat
     const windowStateActionCreator = new WindowStateActionCreator(windowStateActions, windowFrameActionCreator);
     const scanActionCreator = new ScanActionCreator(scanActions);
 
+    const cardSelectionActionCreator = new CardSelectionActionCreator(interpreter, cardSelectionActions, telemetryEventHandler);
+    cardSelectionActionCreator.registerCallbacks();
+    const cardSelectionMessageCreator = new CardSelectionMessageCreator(
+        dispatcher,
+        telemetryDataFactory,
+        TelemetryEventSource.ElectronAutomatedChecksView,
+    );
+
     const windowFrameListener = new WindowFrameListener(windowStateActionCreator, currentWindow);
     windowFrameListener.initialize();
 
@@ -167,13 +180,14 @@ getPersistedData(indexedDBInstance, indexedDBDataKeysToFetch).then((persistedDat
     const cardsViewDeps: CardsViewDeps = {
         LinkComponent: ElectronLink,
 
-        cardInteractionSupport: noCardInteractionsSupported, // we are supposed to have 'copy issue details' support
-        collapsibleControl: CollapsibleComponentCard,
+        cardInteractionSupport: onlyHighlightingSupported, // once we have a working settings experience, switch to allCardInteractionsSupported
+        getCardSelectionViewData: getCardSelectionViewData,
+        collapsibleControl: CardsCollapsibleControl,
         fixInstructionProcessor,
         getGuidanceTagsFromGuidanceLinks: GetGuidanceTagsFromGuidanceLinks, // I don't think we have guidance links for axe-android
 
         userConfigMessageCreator: userConfigMessageCreator,
-        cardSelectionMessageCreator: null,
+        cardSelectionMessageCreator,
         detailsViewActionMessageCreator: null,
         issueFilingActionMessageCreator: null, // we don't support issue filing right now
 

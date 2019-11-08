@@ -1,5 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+@import '../../../common/styles/fonts.scss';
+
 .result-section-title {
     display: flex;
     flex-wrap: nowrap;
@@ -25,12 +27,12 @@
     }
 
     .title {
-        font-size: 17px;
-        line-height: 24px;
-        font-weight: 700;
+        @include text-style-title-s;
+        margin-right: 6px;
     }
 
     .outcome-chip-container {
         display: flex;
+        margin-top: 2px;
     }
 }

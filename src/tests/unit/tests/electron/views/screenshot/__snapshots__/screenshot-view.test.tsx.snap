@@ -3,12 +3,14 @@
 exports[`ScreenshotView render matches snapshot when passed empty screenshotData {} 1`] = `
 <div
   className="screenshotView"
+  role="complementary"
 >
-  <h1
+  <h2
+    className="header"
     tabIndex={0}
   >
-    Target Page Screenshot
-  </h1>
+    Target app screenshot
+  </h2>
   <p>
     Screenshot for scan is unavailable
   </p>
@@ -18,12 +20,14 @@ exports[`ScreenshotView render matches snapshot when passed empty screenshotData
 exports[`ScreenshotView render matches snapshot when passed empty screenshotData null 1`] = `
 <div
   className="screenshotView"
+  role="complementary"
 >
-  <h1
+  <h2
+    className="header"
     tabIndex={0}
   >
-    Target Page Screenshot
-  </h1>
+    Target app screenshot
+  </h2>
   <p>
     Screenshot for scan is unavailable
   </p>
@@ -33,12 +37,14 @@ exports[`ScreenshotView render matches snapshot when passed empty screenshotData
 exports[`ScreenshotView render matches snapshot when passed empty screenshotData undefined 1`] = `
 <div
   className="screenshotView"
+  role="complementary"
 >
-  <h1
+  <h2
+    className="header"
     tabIndex={0}
   >
-    Target Page Screenshot
-  </h1>
+    Target app screenshot
+  </h2>
   <p>
     Screenshot for scan is unavailable
   </p>
@@ -48,12 +54,14 @@ exports[`ScreenshotView render matches snapshot when passed empty screenshotData
 exports[`ScreenshotView render matches snapshot when screenshot data is available 1`] = `
 <div
   className="screenshotView"
+  role="complementary"
 >
-  <h1
+  <h2
+    className="header"
     tabIndex={0}
   >
-    Target Page Screenshot
-  </h1>
+    Target app screenshot
+  </h2>
   <ScreenshotContainer
     highlightBoxViewModels={Array []}
     screenshotData={
