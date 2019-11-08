@@ -1,5 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+import { PermissionsEnsurer } from 'background/permissions/permissions-ensurer';
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
 import { PromiseFactory } from 'common/promises/promise-factory';
 import { flatten } from 'lodash';
@@ -11,9 +12,14 @@ export class ContentScriptInjector {
 
     public static timeoutInMilliSec = 5e4;
 
-    constructor(private readonly browserAdapter: BrowserAdapter, private readonly promiseFactory: PromiseFactory) {}
+    constructor(
+        private readonly browserAdapter: BrowserAdapter,
+        private readonly promiseFactory: PromiseFactory,
+        private readonly permissionsEnsurer: PermissionsEnsurer,
+    ) {}
 
-    public injectScripts(tabId: number): Promise<void> {
+    public async injectScripts(tabId: number): Promise<void> {
+        await this.permissionsEnsurer.ensureInjectPermissions(tabId);
         // We need the JS to be injected before we can continue (ie, before we resolve the promise),
         // because the tab can't receive other messages until that's done, but it's okay for the CSS
         // to keep loading in the background after-the-fact, so it's fire-and-forget.

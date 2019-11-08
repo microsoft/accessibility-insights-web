@@ -5,6 +5,7 @@ import { IMock, It, Mock, MockBehavior, Times } from 'typemoq';
 import { AssessmentsProviderImpl } from 'assessments/assessments-provider';
 import { DetailsViewController } from 'background/details-view-controller';
 import { Interpreter } from 'background/interpreter';
+import { PermissionsEnsurer } from 'background/permissions/permissions-ensurer';
 import { AssessmentStore } from 'background/stores/assessment-store';
 import { CardSelectionStore } from 'background/stores/card-selection-store';
 import { DetailsViewStore } from 'background/stores/details-view-store';
@@ -51,6 +52,7 @@ describe('TabContextFactoryTest', () => {
         const targetTabControllerMock = Mock.ofType(TargetTabController);
         const assessmentStore = Mock.ofType(AssessmentStore);
         const assessmentProvider = Mock.ofType(AssessmentsProviderImpl);
+        const permissionsEnsurerMock = Mock.ofType<PermissionsEnsurer>();
 
         const storeNames: StoreNames[] = [
             StoreNames.VisualizationScanResultStore,
@@ -85,6 +87,7 @@ describe('TabContextFactoryTest', () => {
             assessmentStore.object,
             assessmentProvider.object,
             promiseFactoryMock.object,
+            permissionsEnsurerMock.object,
         );
 
         const tabContext = testObject.createTabContext(

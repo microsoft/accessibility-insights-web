@@ -1,8 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { ContentScriptInjector } from 'background/injector/content-script-injector';
+import { PermissionsEnsurer } from 'background/permissions/permissions-ensurer';
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
 import { PromiseFactory } from 'common/promises/promise-factory';
+import { tick } from 'tests/unit/common/tick';
 import { IMock, It, Mock, Times } from 'typemoq';
 import { ExtensionTypes } from 'webextension-polyfill-ts';
 
@@ -10,14 +12,16 @@ describe('ContentScriptInjector', () => {
     const testTabId = 1;
     let browserAdapterMock: IMock<BrowserAdapter>;
     let promiseFactoryMock: IMock<PromiseFactory>;
+    let permissionsEnsurerMock: IMock<PermissionsEnsurer>;
 
     let testSubject: ContentScriptInjector;
 
     beforeEach(() => {
         browserAdapterMock = Mock.ofType<BrowserAdapter>();
         promiseFactoryMock = Mock.ofType<PromiseFactory>();
+        permissionsEnsurerMock = Mock.ofType<PermissionsEnsurer>();
 
-        testSubject = new ContentScriptInjector(browserAdapterMock.object, promiseFactoryMock.object);
+        testSubject = new ContentScriptInjector(browserAdapterMock.object, promiseFactoryMock.object, permissionsEnsurerMock.object);
     });
 
     it('uses a timeout promise with the expected timeout constant', async () => {
@@ -93,6 +97,7 @@ describe('ContentScriptInjector', () => {
 
             expect(returnedPromiseCompleted).toBe(false);
 
+            await tick();
             resolvable(); // simulate JS injection finishing
             await returnedPromise;
 

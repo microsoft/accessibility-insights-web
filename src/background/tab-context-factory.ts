@@ -9,6 +9,7 @@ import { StateDispatcher } from 'common/state-dispatcher';
 import { WindowUtils } from 'common/window-utils';
 
 import { InjectionActionCreator } from 'background/actions/injection-action-creator';
+import { PermissionsEnsurer } from 'background/permissions/permissions-ensurer';
 import { ActionCreator } from './actions/action-creator';
 import { ActionHub } from './actions/action-hub';
 import { CardSelectionActionCreator } from './actions/card-selection-action-creator';
@@ -44,6 +45,7 @@ export class TabContextFactory {
         private assessmentStore: AssessmentStore,
         private assessmentsProvider: AssessmentsProvider,
         private readonly promiseFactory: PromiseFactory,
+        private readonly permissionsEnsurer: PermissionsEnsurer,
     ) {}
 
     public createTabContext(
@@ -115,7 +117,7 @@ export class TabContextFactory {
         const injectionActionCreator = new InjectionActionCreator(interpreter, actionsHub.injectionActions);
 
         const injectorController = new InjectorController(
-            new ContentScriptInjector(browserAdapter, this.promiseFactory),
+            new ContentScriptInjector(browserAdapter, this.promiseFactory, this.permissionsEnsurer),
             storeHub.visualizationStore,
             interpreter,
             storeHub.tabStore,
