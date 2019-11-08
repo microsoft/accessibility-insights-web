@@ -4,6 +4,7 @@ exports[`HighlightBox renders with appropriate position and dimensions 1`] = `
 <div
   ariaHidden="true"
   className="highlightBox"
+  data-automation-id="screenshot-highlight-box"
   style={
     Object {
       "height": "50px",
