@@ -42,7 +42,7 @@
         "watch": "npm-run-all --parallel --race --print-label watch:scss watch:grunt watch:test watch:webpack-dev-browser watch:webpack-electron",
         "watch:build:all": "npm-run-all --parallel --race --print-label watch:scss watch:grunt watch:webpack-dev-browser watch:webpack-electron",
         "watch:build:web": "npm-run-all --parallel --race --print-label watch:scss watch:grunt watch:webpack-dev-browser",
-        "watch:build:android": "npm-run-all --parallel --race --print-label watch:scss watch:grunt watch:webpack-electron",
+        "watch:build:electron": "npm-run-all --parallel --race --print-label watch:scss watch:grunt watch:webpack-electron",
         "watch:scss": "tsm src/**/*.scss --watch",
         "watch:grunt": "grunt watch",
         "watch:test": "jest --watch --projects src/tests/unit --coverage false --colors",
