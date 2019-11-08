@@ -137,6 +137,8 @@ export class CardSelectionStore extends BaseStoreImpl<CardSelectionStoreData> {
             this.state.rules[result.ruleId].cards[result.uid] = false;
         });
 
+        this.state.visualHelperEnabled = true;
+
         this.emitChanged();
     };
 }
