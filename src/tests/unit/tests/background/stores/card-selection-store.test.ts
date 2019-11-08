@@ -61,7 +61,7 @@ describe('CardSelectionStore Test', () => {
                     },
                 },
             },
-            visualHelperEnabled: false,
+            visualHelperEnabled: true,
         };
 
         createStoreForUnifiedScanResultActions('scanCompleted')
