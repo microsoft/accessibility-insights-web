@@ -13,6 +13,7 @@ steps:
       inputs:
           ConnectedServiceName: 'ESRP Code Signing'
           FolderPath: '$(System.DefaultWorkingDirectory)/dist'
+          Pattern: '*.dmg, *.zip'
           signConfigType: inlineSignParams
           inlineOperation: |
               [
