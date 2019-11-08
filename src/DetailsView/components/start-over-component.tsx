@@ -1,9 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-export type ReportExportComponentDeps = {};
+import { StartOverProps } from 'DetailsView/components/start-over-dropdown';
+
+export type StartOverComponentDeps = {};
 
 export interface StartOverComponentProps {
-    deps: ReportExportComponentDeps;
+    deps: StartOverComponentDeps;
     render: boolean;
+    startOverProps: StartOverProps;
 }

@@ -81,19 +81,10 @@ export class DetailsViewCommandBar extends React.Component<DetailsViewCommandBar
             return null;
         }
 
-        const selectedTest = this.props.assessmentStoreData.assessmentNavState.selectedTestType;
-        const test = this.props.assessmentsProvider.forType(selectedTest);
-
         return (
             <div className="details-view-command-buttons">
                 <ReportExportComponent {...reportExportComponentProps} />
-                <StartOverDropdown
-                    testName={test.title}
-                    test={selectedTest}
-                    requirementKey={this.props.assessmentStoreData.assessmentNavState.selectedTestStep}
-                    actionMessageCreator={this.props.actionMessageCreator}
-                    rightPanelConfiguration={this.props.rightPanelConfiguration}
-                />
+                <StartOverDropdown {...startOverComponentProps.startOverProps} />
             </div>
         );
     }

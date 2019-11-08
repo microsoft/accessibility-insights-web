@@ -5,6 +5,7 @@ import { ActionButton } from 'office-ui-fabric-react/lib/Button';
 import { ContextualMenu, IContextualMenuItem } from 'office-ui-fabric-react/lib/ContextualMenu';
 import * as React from 'react';
 
+import { IIconProps } from 'office-ui-fabric-react';
 import { VisualizationType } from '../../common/types/visualization-type';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 import { DetailsRightPanelConfiguration } from './details-view-right-panel';
@@ -19,6 +20,8 @@ export interface StartOverState {
 }
 
 export interface StartOverProps {
+    buttonCaption: string;
+    hasDropdown: boolean;
     testName: string;
     actionMessageCreator: DetailsViewActionMessageCreator;
     test: VisualizationType;
@@ -37,18 +40,28 @@ export class StartOverDropdown extends React.Component<StartOverProps, StartOver
     }
 
     public render(): JSX.Element {
+        let menuIconProps: IIconProps = null;
+        let onClick;
+
+        if (this.props.hasDropdown) {
+            menuIconProps = {
+                iconName: 'ChevronDown',
+            };
+            onClick = this.openDropdown;
+        } else {
+            onClick = this.onStartOverTestMenu;
+        }
+
         return (
             <div>
                 <ActionButton
                     iconProps={{
                         iconName: 'Refresh',
                     }}
-                    text="Start over"
+                    text={this.props.buttonCaption}
                     ariaLabel="start over menu"
-                    onClick={this.openDropdown}
-                    menuIconProps={{
-                        iconName: 'ChevronDown',
-                    }}
+                    onClick={onClick}
+                    menuIconProps={menuIconProps}
                 />
                 {this.renderContextMenu()}
                 {this.renderStartOverDialog()}
@@ -57,7 +70,7 @@ export class StartOverDropdown extends React.Component<StartOverProps, StartOver
     }
 
     private renderContextMenu(): JSX.Element {
-        if (!this.state.isContextMenuVisible) {
+        if (!this.state.isContextMenuVisible || !this.props.hasDropdown) {
             return null;
         }
 

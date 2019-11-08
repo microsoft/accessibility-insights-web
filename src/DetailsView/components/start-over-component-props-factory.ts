@@ -4,17 +4,42 @@
 import { FeatureFlags } from 'common/feature-flags';
 import { CommandBarProps } from 'DetailsView/components/details-view-command-bar';
 import { StartOverComponentProps } from 'DetailsView/components/start-over-component';
+import { StartOverProps } from 'DetailsView/components/start-over-dropdown';
 
 export function getStartOverComponentPropsForAssessment(props: CommandBarProps): StartOverComponentProps {
+    const selectedTest = props.assessmentStoreData.assessmentNavState.selectedTestType;
+    const test = props.assessmentsProvider.forType(selectedTest);
+    const startOverProps: StartOverProps = {
+        buttonCaption: 'Start over',
+        hasDropdown: true,
+        testName: test.title,
+        test: selectedTest,
+        requirementKey: props.assessmentStoreData.assessmentNavState.selectedTestStep,
+        actionMessageCreator: props.actionMessageCreator,
+        rightPanelConfiguration: props.rightPanelConfiguration,
+    };
     return {
         render: true,
+        startOverProps,
         ...props,
     };
 }
 
 export function getStartOverComponentPropsForAutomatedChecks(props: CommandBarProps): StartOverComponentProps {
+    const selectedTest = props.assessmentStoreData.assessmentNavState.selectedTestType;
+    const test = props.assessmentsProvider.forType(selectedTest);
+    const startOverProps: StartOverProps = {
+        buttonCaption: 'Rescan',
+        hasDropdown: false,
+        testName: test.title,
+        test: selectedTest,
+        requirementKey: props.assessmentStoreData.assessmentNavState.selectedTestStep,
+        actionMessageCreator: props.actionMessageCreator,
+        rightPanelConfiguration: props.rightPanelConfiguration,
+    };
     return {
         render: props.featureFlagStoreData[FeatureFlags.universalCardsUI] === true,
+        startOverProps,
         ...props,
     };
 }

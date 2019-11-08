@@ -20,12 +20,12 @@ exports[`DetailsViewCommandBar renders with export button and dialog 1`] = `
                         _this._interceptor.intercept(methodInvocation);
                         return methodInvocation.returnValue;
                     }]} pageTitle=\\"command-bar-test-tab-title\\" exportResultsType=\\"Assessment\\" scanDate={{...}} htmlGenerator={[Function: htmlGenerator]} updatePersistedDescription={[Function: updatePersistedDescription]} getExportDescription={[Function: getExportDescription]} />
-    <StartOverDropdown testName=\\"test title\\" test={-1} requirementKey={[undefined]} actionMessageCreator={{...}} rightPanelConfiguration={{...}} />
+    <StartOverDropdown buttonCaption=\\"a caption\\" />
   </div>
 </div>"
 `;
 
-exports[`DetailsViewCommandBar renders without export button and dialog 1`] = `
+exports[`DetailsViewCommandBar renders without export button or dialog 1`] = `
 "<div className=\\"details-view-command-bar\\">
   <div className=\\"details-view-target-page\\">
     Target page: 

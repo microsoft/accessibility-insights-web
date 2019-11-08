@@ -6,7 +6,8 @@ import { Assessment } from 'assessments/types/iassessment';
 import { NamedFC, ReactFCWithDisplayName } from 'common/react/named-fc';
 import { DetailsViewSwitcherNavConfiguration } from 'DetailsView/components/details-view-switcher-nav';
 import { ExportDialogDeps } from 'DetailsView/components/export-dialog';
-import { StartOverComponentProps } from 'DetailsView/components/start-over-component';
+import { StartOverComponentDeps, StartOverComponentProps } from 'DetailsView/components/start-over-component';
+import { StartOverProps } from 'DetailsView/components/start-over-dropdown';
 import { DetailsViewBodyProps } from 'DetailsView/details-view-body';
 import { shallow } from 'enzyme';
 import * as React from 'react';
@@ -69,11 +70,7 @@ describe('DetailsViewCommandBar', () => {
         descriptionPlaceholder = '7efdac3c-8c94-4e00-a765-6fc8c59a232b';
     });
 
-    function getProps(renderStartOver: boolean): DetailsViewCommandBarProps {
-        startOverComponentProps = {
-            render: renderStartOver,
-        } as StartOverComponentProps;
-
+    function getProps(): DetailsViewCommandBarProps {
         const CommandBarStub: Readonly<ReactFCWithDisplayName<DetailsViewBodyProps>> = NamedFC<DetailsViewBodyProps>('test', _ => null);
         const LeftNavStub: Readonly<ReactFCWithDisplayName<DetailsViewBodyProps>> = NamedFC<DetailsViewBodyProps>('test', _ => null);
         const switcherNavConfiguration: DetailsViewSwitcherNavConfiguration = {
@@ -110,7 +107,7 @@ describe('DetailsViewCommandBar', () => {
         testOnPivot(true);
     });
 
-    test('renders without export button and dialog', () => {
+    test('renders without export button or dialog', () => {
         testOnPivot(false);
     });
 
@@ -124,6 +121,7 @@ describe('DetailsViewCommandBar', () => {
         const theHtml = 'this is the HTML';
         let theDescription = null;
         let reportProps: ReportExportComponentProps = null;
+        let startOverProps: StartOverComponentProps = null;
         if (givenRenderExportAndStartOver) {
             reportProps = {
                 deps: {} as ExportDialogDeps,
@@ -138,9 +136,18 @@ describe('DetailsViewCommandBar', () => {
                 updatePersistedDescription: () => null,
                 getExportDescription: () => descriptionPlaceholder,
             };
+
+            startOverProps = {
+                deps: {} as StartOverComponentDeps,
+                render: true,
+                startOverProps: {
+                    buttonCaption: 'a caption',
+                } as StartOverProps,
+            };
         }
         reportExportComponentProps = reportProps;
-        const props = getProps(givenRenderExportAndStartOver);
+        startOverComponentProps = startOverProps;
+        const props = getProps();
         const rendered = shallow(<DetailsViewCommandBar {...props} />);
 
         expect(rendered.debug()).toMatchSnapshot();
@@ -163,6 +170,6 @@ describe('DetailsViewCommandBar', () => {
     }
 
     function getTestSubject(): DetailsViewCommandBar {
-        return new DetailsViewCommandBar(getProps(true));
+        return new DetailsViewCommandBar(getProps());
     }
 });

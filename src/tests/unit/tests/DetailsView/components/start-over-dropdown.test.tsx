@@ -23,6 +23,8 @@ describe('StartOverDropdownTest', () => {
     beforeEach(() => {
         actionCreatorMock = Mock.ofType<DetailsViewActionMessageCreator>();
         defaultProps = {
+            buttonCaption: 'test caption',
+            hasDropdown: true,
             testName: 'test name',
             actionMessageCreator: actionCreatorMock.object,
             test: -1 as VisualizationType,
