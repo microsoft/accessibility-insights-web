@@ -7,7 +7,6 @@ import { CardResult } from 'common/types/store-data/card-view-model';
 import { TargetAppData, UnifiedRule } from 'common/types/store-data/unified-data-interface';
 import { UserConfigurationStoreData } from 'common/types/store-data/user-configuration-store';
 import { UnifiedResultToIssueFilingDataConverter } from 'issue-filing/unified-result-to-issue-filing-data';
-import { some, values } from 'lodash';
 import { Label } from 'office-ui-fabric-react';
 import * as React from 'react';
 
