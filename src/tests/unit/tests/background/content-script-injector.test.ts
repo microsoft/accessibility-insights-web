@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { IMock, It, Mock, Times } from 'typemoq';
-
 import { ContentScriptInjector } from 'background/injector/content-script-injector';
-import { BrowserAdapter } from '../../../../common/browser-adapters/browser-adapter';
-import { PromiseFactory } from '../../../../common/promises/promise-factory';
+import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
+import { PromiseFactory } from 'common/promises/promise-factory';
+import { IMock, It, Mock, Times } from 'typemoq';
+import { ExtensionTypes } from 'webextension-polyfill-ts';
 
 describe('ContentScriptInjector', () => {
     const testTabId = 1;
@@ -47,10 +47,7 @@ describe('ContentScriptInjector', () => {
 
             ContentScriptInjector.cssFiles.forEach(cssFile => {
                 const expectedDetails = { allFrames: true, file: cssFile };
-                browserAdapterMock
-                    .setup(adapter => adapter.insertCSSInTab(testTabId, expectedDetails, It.isAny()))
-                    .callback(resolveCallbackImmediately)
-                    .verifiable(Times.once());
+                browserAdapterMock.setup(adapter => adapter.insertCSSInTab(testTabId, expectedDetails)).returns(() => Promise.resolve());
             });
 
             await testSubject.injectScripts(testTabId);
@@ -62,11 +59,10 @@ describe('ContentScriptInjector', () => {
             setupInsertCSSToSucceedImmediately();
 
             ContentScriptInjector.jsFiles.forEach(jsFile => {
-                const expectedDetails = { allFrames: true, file: jsFile, runAt: 'document_start' };
+                const expectedDetails: ExtensionTypes.InjectDetails = { allFrames: true, file: jsFile, runAt: 'document_start' };
                 browserAdapterMock
-                    .setup(adapter => adapter.executeScriptInTab(testTabId, expectedDetails, It.isAny()))
-                    .callback(resolveCallbackImmediately)
-                    .verifiable(Times.once());
+                    .setup(adapter => adapter.executeScriptInTab(testTabId, expectedDetails))
+                    .returns(() => Promise.resolve([]));
             });
 
             await testSubject.injectScripts(testTabId);
@@ -77,26 +73,27 @@ describe('ContentScriptInjector', () => {
         it('resolves only after JS files have finished injecting', async () => {
             setupInsertCSSToSucceedImmediately();
 
-            let callbackPassedToExecuteScript: Function;
+            let resolvable: Function;
 
-            // simulate JS injection taking a while, only completing asynchronously when we explicitly invoke the callback
+            // simulate JS injection taking a while,
+            // only completing asynchronously when we explicitly invoke the resolve function from the returned promise
             browserAdapterMock
-                .setup(adapter =>
-                    adapter.executeScriptInTab(It.isAny(), It.isObjectWith({ file: ContentScriptInjector.jsFiles[0] }), It.isAny()),
-                )
-                .callback((tabId, details, passedCallback) => {
-                    callbackPassedToExecuteScript = passedCallback;
-                });
+                .setup(adapter => adapter.executeScriptInTab(It.isAny(), It.isObjectWith({ file: ContentScriptInjector.jsFiles[0] })))
+                .returns(
+                    () =>
+                        new Promise(resolve => {
+                            resolvable = resolve;
+                        }),
+                );
 
             let returnedPromiseCompleted = false;
             const returnedPromise = testSubject.injectScripts(testTabId).then(() => {
                 returnedPromiseCompleted = true;
             });
 
-            expect(callbackPassedToExecuteScript).toBeDefined();
             expect(returnedPromiseCompleted).toBe(false);
 
-            callbackPassedToExecuteScript(); // simulate JS injection finishing
+            resolvable(); // simulate JS injection finishing
             await returnedPromise;
 
             expect(returnedPromiseCompleted).toBe(true);
@@ -112,22 +109,12 @@ describe('ContentScriptInjector', () => {
             // expect to not timeout
         });
 
-        function resolveCallbackImmediately(tabId: any, details: any, callback?: Function): void {
-            if (callback) {
-                callback();
-            }
-        }
-
         function setupInsertCSSToSucceedImmediately(): void {
-            browserAdapterMock
-                .setup(adapter => adapter.insertCSSInTab(It.isAny(), It.isAny(), It.isAny()))
-                .callback(resolveCallbackImmediately);
+            browserAdapterMock.setup(adapter => adapter.insertCSSInTab(It.isAny(), It.isAny())).returns(() => Promise.resolve());
         }
 
         function setupExecuteScriptToSucceedImmediately(): void {
-            browserAdapterMock
-                .setup(adapter => adapter.executeScriptInTab(It.isAny(), It.isAny(), It.isAny()))
-                .callback(resolveCallbackImmediately);
+            browserAdapterMock.setup(adapter => adapter.executeScriptInTab(It.isAny(), It.isAny())).returns(() => Promise.resolve([]));
         }
     });
 });

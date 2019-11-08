@@ -242,9 +242,7 @@ class InjectorControllerValidator {
     public setupInjectScriptsCall(calledWithTabId: number, numTimes: number): InjectorControllerValidator {
         this.mockInjector
             .setup(injector => injector.injectScripts(calledWithTabId))
-            .returns(tabId => {
-                return this.injectedScriptsDeferred.promise as any;
-            })
+            .returns(() => this.injectedScriptsDeferred.promise as any)
             .verifiable(Times.exactly(numTimes));
 
         return this;

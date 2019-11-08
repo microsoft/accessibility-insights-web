@@ -13,12 +13,7 @@
         }
         .main-content-wrapper {
             width: 70%;
-        }
-        .screenshot-view {
-            justify-content: flex-end;
-            width: 30%;
-            height: 100%;
-            overflow: auto;
+            flex-grow: 1;
         }
     }
 }

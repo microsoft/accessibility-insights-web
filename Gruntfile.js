@@ -291,7 +291,12 @@ module.exports = function(grunt) {
 
     grunt.registerMultiTask('drop', function() {
         const targetName = this.target;
-        const { bundleFolder, mustExistFile } = targets[targetName];
+        const { bundleFolder, mustExistFile, config } = targets[targetName];
+
+        const { productCategory } = config.options;
+
+        const dropPath = path.join(`drop/${productCategory}`, targetName);
+        const dropExtensionPath = path.join(dropPath, 'product');
 
         const mustExistPath = path.join(extensionPath, bundleFolder, mustExistFile);
 
@@ -302,7 +307,7 @@ module.exports = function(grunt) {
         grunt.task.run('copy:' + targetName);
         grunt.task.run('configure:' + targetName);
         grunt.task.run('manifest:' + targetName);
-        console.log(`${targetName} extension is in ${path.join('drop', targetName, 'extension')}`);
+        console.log(`${targetName} extension is in ${dropExtensionPath}`);
     });
 
     grunt.registerTask('release-drops', function() {
