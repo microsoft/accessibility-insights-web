@@ -4,7 +4,7 @@ import { BaseActionPayload, CardSelectionPayload, RuleExpandCollapsePayload } fr
 import { TelemetryEventSource } from 'common/extension-telemetry-events';
 import { ActionMessageDispatcher } from 'common/message-creators/types/dispatcher';
 import { Messages } from 'common/messages';
-import { TelemetryDataFactory } from 'common/telemetry-data-factory';
+import { SupportedMouseEvent, TelemetryDataFactory } from 'common/telemetry-data-factory';
 
 export class CardSelectionMessageCreator {
     constructor(
@@ -49,7 +49,7 @@ export class CardSelectionMessageCreator {
         });
     }
 
-    public expandAllRules(event: React.SyntheticEvent): void {
+    public expandAllRules(event: SupportedMouseEvent): void {
         const payload: BaseActionPayload = {
             telemetry: this.telemetryFactory.withTriggeredByAndSource(event, this.source),
         };
@@ -60,7 +60,7 @@ export class CardSelectionMessageCreator {
         });
     }
 
-    public toggleVisualHelper(event: React.SyntheticEvent): void {
+    public toggleVisualHelper(event: SupportedMouseEvent): void {
         const payload: BaseActionPayload = {
             telemetry: this.telemetryFactory.withTriggeredByAndSource(event, this.source),
         };
