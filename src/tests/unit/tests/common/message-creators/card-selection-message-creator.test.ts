@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { CardSelectionPayload, RuleExpandCollapsePayload } from 'background/actions/action-payloads';
+import { BaseActionPayload, CardSelectionPayload, RuleExpandCollapsePayload } from 'background/actions/action-payloads';
 import { BaseTelemetryData, TelemetryEventSource } from 'common/extension-telemetry-events';
 import { Message } from 'common/message';
 import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
@@ -68,31 +68,52 @@ describe('Card Selection Message Creator', () => {
     });
 
     test('collapseAllRules', () => {
-        const expectedMessage: Message = {
-            messageType: Messages.CardSelection.CollapseAllRules,
+        const payload: BaseActionPayload = {
+            telemetry: telemetryStub,
         };
 
-        testSubject.collapseAllRules();
+        const expectedMessage: Message = {
+            messageType: Messages.CardSelection.CollapseAllRules,
+            payload,
+        };
+
+        telemetryDataFactoryMock.setup(tdfm => tdfm.withTriggeredByAndSource(eventStub, sourceStub)).returns(() => telemetryStub);
+
+        testSubject.collapseAllRules(eventStub);
 
         dispatcherMock.verify(dm => dm.dispatchMessage(expectedMessage), Times.once());
     });
 
     test('expandAllRules', () => {
-        const expectedMessage: Message = {
-            messageType: Messages.CardSelection.ExpandAllRules,
+        const payload: BaseActionPayload = {
+            telemetry: telemetryStub,
         };
 
-        testSubject.expandAllRules();
+        const expectedMessage: Message = {
+            messageType: Messages.CardSelection.ExpandAllRules,
+            payload,
+        };
+
+        telemetryDataFactoryMock.setup(tdfm => tdfm.withTriggeredByAndSource(eventStub, sourceStub)).returns(() => telemetryStub);
+
+        testSubject.expandAllRules(eventStub);
 
         dispatcherMock.verify(dm => dm.dispatchMessage(expectedMessage), Times.once());
     });
 
     test('toggleVisualHelper', () => {
-        const expectedMessage: Message = {
-            messageType: Messages.CardSelection.ToggleVisualHelper,
+        const payload: BaseActionPayload = {
+            telemetry: telemetryStub,
         };
 
-        testSubject.toggleVisualHelper();
+        const expectedMessage: Message = {
+            messageType: Messages.CardSelection.ToggleVisualHelper,
+            payload,
+        };
+
+        telemetryDataFactoryMock.setup(tdfm => tdfm.withTriggeredByAndSource(eventStub, sourceStub)).returns(() => telemetryStub);
+
+        testSubject.toggleVisualHelper(eventStub);
 
         dispatcherMock.verify(dm => dm.dispatchMessage(expectedMessage), Times.once());
     });
