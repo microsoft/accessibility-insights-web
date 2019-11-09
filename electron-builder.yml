@@ -1,17 +1,24 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
-appId: com.aimobile.app
+appId: com.aiandroid.app
 directories:
     app: drop/electron/electron
+    buildResources: src/electron/resources
 extraMetadata:
     main: product/bundle/main.bundle.js
-    name: ai-mobile
+    name: ai-android
+
+linux:
+    target: AppImage
+
 mac:
     icon: extension/icons/brand/blue/brand-blue-512px.png
     target: dmg # can be changed to a zip, app or something else. ref: https://www.electron.build/configuration/mac
     identity: null
+
 win:
     icon: extension/icons/brand/blue/brand-blue-512px.png
     target: nsis
+
 nsis:
     oneClick: false
