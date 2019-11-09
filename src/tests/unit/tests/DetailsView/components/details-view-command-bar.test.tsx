@@ -25,6 +25,7 @@ import {
 } from '../../../../../DetailsView/components/details-view-command-bar';
 import { DetailsRightPanelConfiguration } from '../../../../../DetailsView/components/details-view-right-panel';
 import { ReportExportComponent, ReportExportComponentProps } from '../../../../../DetailsView/components/report-export-component';
+import { VisualizationActionMessageCreator } from 'common/message-creators/visualization-action-message-creator';
 
 describe('DetailsViewCommandBar', () => {
     const theDate = new Date(2019, 2, 12, 9, 0);
@@ -87,6 +88,7 @@ describe('DetailsViewCommandBar', () => {
             getCurrentDate: () => theDate,
             reportGenerator: reportGeneratorMock.object,
             getDateFromTimestamp: () => theDate,
+            visualizationActionMessageCreator: {} as VisualizationActionMessageCreator,
         };
 
         return {

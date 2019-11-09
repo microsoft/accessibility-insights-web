@@ -3,13 +3,15 @@
 
 import { FeatureFlags } from 'common/feature-flags';
 import { CommandBarProps } from 'DetailsView/components/details-view-command-bar';
-import { StartOverComponentProps } from 'DetailsView/components/start-over-component';
+import { StartOverComponentDeps, StartOverComponentProps } from 'DetailsView/components/start-over-component';
 import { StartOverProps } from 'DetailsView/components/start-over-dropdown';
 
 export function getStartOverComponentPropsForAssessment(props: CommandBarProps): StartOverComponentProps {
     const selectedTest = props.assessmentStoreData.assessmentNavState.selectedTestType;
     const test = props.assessmentsProvider.forType(selectedTest);
+    const deps: StartOverComponentDeps = props.deps;
     const startOverProps: StartOverProps = {
+        deps: deps,
         buttonCaption: 'Start over',
         hasDropdown: true,
         testName: test.title,
@@ -28,7 +30,9 @@ export function getStartOverComponentPropsForAssessment(props: CommandBarProps):
 export function getStartOverComponentPropsForAutomatedChecks(props: CommandBarProps): StartOverComponentProps {
     const selectedTest = props.assessmentStoreData.assessmentNavState.selectedTestType;
     const test = props.assessmentsProvider.forType(selectedTest);
+    const deps: StartOverComponentDeps = props.deps;
     const startOverProps: StartOverProps = {
+        deps: deps,
         buttonCaption: 'Rescan',
         hasDropdown: false,
         testName: test.title,

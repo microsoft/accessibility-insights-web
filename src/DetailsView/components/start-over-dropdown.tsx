@@ -5,6 +5,7 @@ import { ActionButton } from 'office-ui-fabric-react/lib/Button';
 import { ContextualMenu, IContextualMenuItem } from 'office-ui-fabric-react/lib/ContextualMenu';
 import * as React from 'react';
 
+import { VisualizationActionMessageCreator } from 'common/message-creators/visualization-action-message-creator';
 import { IIconProps } from 'office-ui-fabric-react';
 import { VisualizationType } from '../../common/types/visualization-type';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
@@ -13,6 +14,10 @@ import { GenericDialog } from './generic-dialog';
 
 type DialogState = 'none' | 'assessment' | 'test';
 
+export type StartOverDeps = {
+    visualizationActionMessageCreator: VisualizationActionMessageCreator;
+};
+
 export interface StartOverState {
     isContextMenuVisible: boolean;
     target?: HTMLElement | string | MouseEvent | IPoint | null;
@@ -20,6 +25,7 @@ export interface StartOverState {
 }
 
 export interface StartOverProps {
+    deps: StartOverDeps;
     buttonCaption: string;
     hasDropdown: boolean;
     testName: string;

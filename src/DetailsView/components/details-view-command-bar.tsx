@@ -5,7 +5,7 @@ import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { VisualizationScanResultData } from 'common/types/store-data/visualization-scan-result-data';
 import { DetailsViewSwitcherNavConfiguration } from 'DetailsView/components/details-view-switcher-nav';
-import { StartOverComponentProps } from 'DetailsView/components/start-over-component';
+import { StartOverComponentDeps, StartOverComponentProps } from 'DetailsView/components/start-over-component';
 import { Link } from 'office-ui-fabric-react/lib/Link';
 import * as React from 'react';
 import { ReportGenerator } from 'reports/report-generator';
@@ -17,11 +17,12 @@ import { DetailsRightPanelConfiguration } from './details-view-right-panel';
 import { ReportExportComponent, ReportExportComponentDeps, ReportExportComponentProps } from './report-export-component';
 import { StartOverDropdown } from './start-over-dropdown';
 
-export type DetailsViewCommandBarDeps = ReportExportComponentDeps & {
-    getCurrentDate: () => Date;
-    reportGenerator: ReportGenerator;
-    getDateFromTimestamp: (timestamp: string) => Date;
-};
+export type DetailsViewCommandBarDeps = ReportExportComponentDeps &
+    StartOverComponentDeps & {
+        getCurrentDate: () => Date;
+        reportGenerator: ReportGenerator;
+        getDateFromTimestamp: (timestamp: string) => Date;
+    };
 
 export type CommandBarProps = DetailsViewCommandBarProps;
 

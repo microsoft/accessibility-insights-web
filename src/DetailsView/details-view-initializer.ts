@@ -335,6 +335,7 @@ if (isNaN(tabId) === false) {
                 navigatorUtils: navigatorUtils,
                 cardSelectionMessageCreator,
                 getCardSelectionViewData: getCardSelectionViewData,
+                visualizationActionMessageCreator: visualizationActionCreator,
             };
 
             const renderer = new DetailsViewRenderer(
