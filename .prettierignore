@@ -18,6 +18,7 @@ AppXManifest.xml
 copyright-header.txt
 dist/
 docs/LICENSE.txt
+src/electron/resources/license.txt
 docs/NOTICE.html
 drop/
 extension/
@@ -25,3 +26,4 @@ LICENSE
 new-appx.ps1
 test-results/
 yarn.lock
+LICENSE.txt
