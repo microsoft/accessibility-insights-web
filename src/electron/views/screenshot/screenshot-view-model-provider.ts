@@ -42,7 +42,7 @@ function getHighlightBoxViewModels(
 }
 
 function pxAsPercentRelativeTo(px: number, containerSizePx: number): string {
-    return `${100.0 * (px / containerSizePx)}%`;
+    return `${(100.0 * (px / containerSizePx)).toFixed(3)}%`;
 }
 
 function getHighlightBoxViewModelFromResult(result: UnifiedResult, viewPort: ViewPortProperties): HighlightBoxViewModel {
