@@ -4,6 +4,7 @@ import { css } from '@uifabric/utilities';
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { VisualizationScanResultData } from 'common/types/store-data/visualization-scan-result-data';
+import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
 import { DetailsViewSwitcherNavConfiguration } from 'DetailsView/components/details-view-switcher-nav';
 import { StartOverComponentDeps, StartOverComponentProps } from 'DetailsView/components/start-over-component';
 import { Link } from 'office-ui-fabric-react/lib/Link';
@@ -38,6 +39,7 @@ export interface DetailsViewCommandBarProps {
     assessmentStoreData: AssessmentStoreData;
     assessmentsProvider: AssessmentsProvider;
     rightPanelConfiguration: DetailsRightPanelConfiguration;
+    visualizationStoreData: VisualizationStoreData;
     visualizationScanResultData: VisualizationScanResultData;
     cardsViewData: CardsViewModel;
     switcherNavConfiguration: DetailsViewSwitcherNavConfiguration;

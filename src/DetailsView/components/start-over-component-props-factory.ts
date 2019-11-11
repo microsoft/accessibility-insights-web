@@ -28,14 +28,13 @@ export function getStartOverComponentPropsForAssessment(props: CommandBarProps):
 }
 
 export function getStartOverComponentPropsForAutomatedChecks(props: CommandBarProps): StartOverComponentProps {
-    const selectedTest = props.assessmentStoreData.assessmentNavState.selectedTestType;
-    const test = props.assessmentsProvider.forType(selectedTest);
+    const selectedTest = props.visualizationStoreData.selectedAdhocDetailsView;
     const deps: StartOverComponentDeps = props.deps;
     const startOverProps: StartOverProps = {
         deps: deps,
         buttonCaption: 'Rescan',
         hasDropdown: false,
-        testName: test.title,
+        testName: '',
         test: selectedTest,
         requirementKey: props.assessmentStoreData.assessmentNavState.selectedTestStep,
         actionMessageCreator: props.actionMessageCreator,

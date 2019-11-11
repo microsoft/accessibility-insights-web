@@ -3,7 +3,7 @@
 import { VisualizationTogglePayload } from 'background/actions/action-payloads';
 import { ActionMessageDispatcher } from 'common/message-creators/types/dispatcher';
 
-import { ToggleTelemetryData } from '../extension-telemetry-events';
+import { TelemetryEventSource, ToggleTelemetryData, TriggeredBy } from '../extension-telemetry-events';
 import { Message } from '../message';
 import { Messages } from '../messages';
 import { VisualizationType } from '../types/visualization-type';
@@ -24,5 +24,20 @@ export class VisualizationActionMessageCreator {
         };
 
         this.dispatcher.dispatchMessage(message);
+    }
+
+    private wrapper(test: VisualizationType, enabled: boolean, source: TelemetryEventSource, triggeredBy: TriggeredBy): void {
+        const telemetry: ToggleTelemetryData = {
+            source: source,
+            triggeredBy: triggeredBy,
+            enabled,
+        };
+
+        this.setVisualizationState(test, enabled, telemetry);
+    }
+
+    public rescanVisualization(test: VisualizationType, source: TelemetryEventSource, triggeredBy: TriggeredBy): void {
+        this.wrapper(test, false, source, triggeredBy);
+        this.wrapper(test, true, source, triggeredBy);
     }
 }

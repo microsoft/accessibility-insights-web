@@ -5,6 +5,7 @@ import { ActionButton } from 'office-ui-fabric-react/lib/Button';
 import { ContextualMenu, IContextualMenuItem } from 'office-ui-fabric-react/lib/ContextualMenu';
 import * as React from 'react';
 
+import { TelemetryEventSource, TriggeredByNotApplicable } from 'common/extension-telemetry-events';
 import { VisualizationActionMessageCreator } from 'common/message-creators/visualization-action-message-creator';
 import { IIconProps } from 'office-ui-fabric-react';
 import { VisualizationType } from '../../common/types/visualization-type';
@@ -101,10 +102,12 @@ export class StartOverDropdown extends React.Component<StartOverProps, StartOver
         return rightPanelConfiguration.GetStartOverContextualMenuItemKeys().map(key => items.find(item => item.key === key));
     }
 
-    private onRescan = (): void => {
-        const testType: VisualizationType = this.props.test;
-        const testStep: string = this.props.requirementKey;
-        this.props.actionMessageCreator.enableVisualHelper(testType, testStep);
+    private onRescan = (event: React.MouseEvent<any>): void => {
+        this.props.deps.visualizationActionMessageCreator.rescanVisualization(
+            this.props.test,
+            TelemetryEventSource.DetailsView,
+            TriggeredByNotApplicable,
+        );
     };
 
     private onStartOverTestMenu = (): void => {

@@ -100,6 +100,7 @@ describe('DetailsViewCommandBar', () => {
             assessmentStoreData,
             rightPanelConfiguration: rightPanelConfig,
             visualizationScanResultData: null,
+            visualizationStoreData: null,
             cardsViewData: null,
             switcherNavConfiguration: switcherNavConfiguration,
         };
