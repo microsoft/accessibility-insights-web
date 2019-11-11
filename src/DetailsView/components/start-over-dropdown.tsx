@@ -55,7 +55,7 @@ export class StartOverDropdown extends React.Component<StartOverProps, StartOver
             };
             onClick = this.openDropdown;
         } else {
-            onClick = this.onStartOverTestMenu;
+            onClick = this.onRescan;
         }
 
         return (
@@ -100,6 +100,12 @@ export class StartOverDropdown extends React.Component<StartOverProps, StartOver
 
         return rightPanelConfiguration.GetStartOverContextualMenuItemKeys().map(key => items.find(item => item.key === key));
     }
+
+    private onRescan = (): void => {
+        const testType: VisualizationType = this.props.test;
+        const testStep: string = this.props.requirementKey;
+        this.props.actionMessageCreator.enableVisualHelper(testType, testStep);
+    };
 
     private onStartOverTestMenu = (): void => {
         this.setState({ dialogState: 'test' });
