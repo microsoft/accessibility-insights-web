@@ -42,7 +42,11 @@ function getHighlightBoxViewModels(
 }
 
 function pxAsPercentRelativeTo(px: number, containerSizePx: number): string {
-    return `${(100.0 * (px / containerSizePx)).toFixed(3)}%`;
+    return `${truncateToDecimals(100.0 * (px / containerSizePx), 3)}%`;
+}
+
+function truncateToDecimals(numberToTruncate: number, decimals: number): number {
+    return Math.trunc(numberToTruncate * Math.pow(10, decimals)) / Math.pow(10, decimals);
 }
 
 function getHighlightBoxViewModelFromResult(result: UnifiedResult, viewPort: ViewPortProperties): HighlightBoxViewModel {
