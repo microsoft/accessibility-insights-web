@@ -42,7 +42,7 @@ function getHighlightBoxViewModels(
 }
 
 function pxAsPercentRelativeTo(px: number, containerSizePx: number): string {
-    return `${truncateToDecimals(100.0 * (px / containerSizePx), 3)}%`;
+    return `${truncateToDecimals(100.0 * (px / containerSizePx), 2)}%`;
 }
 
 function truncateToDecimals(numberToTruncate: number, decimals: number): number {
