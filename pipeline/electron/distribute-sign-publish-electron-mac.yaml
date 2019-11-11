@@ -5,7 +5,7 @@ parameters:
     platforms: '' # electron-builder platforms, e.g. -wl for win/linux, -m for mac, etc
 
 steps:
-    - script: yarn dist:electron ${{ parameters.platforms }}
+    - script: yarn pack:electron ${{ parameters.platforms }}
       displayName: create electron distributables
       env:
           ELECTRON_MIRROR: $(ELECTRON_MIRROR)
