@@ -973,6 +973,7 @@ class ActionCreatorValidator {
         pathSnippetActions: null,
         scanResultActions: null,
         cardSelectionActions: null,
+        injectionActions: null,
     };
 
     private telemetryEventHandlerStrictMock = Mock.ofType<TelemetryEventHandler>(null, MockBehavior.Strict);

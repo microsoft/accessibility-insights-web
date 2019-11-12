@@ -4,6 +4,7 @@ import { ActionHub } from 'background/actions/action-hub';
 import { AssessmentActions } from 'background/actions/assessment-actions';
 import { ContentActions } from 'background/actions/content-actions';
 import { DevToolActions } from 'background/actions/dev-tools-actions';
+import { InjectionActions } from 'background/actions/injection-actions';
 import { InspectActions } from 'background/actions/inspect-actions';
 import { PreviewFeaturesActions } from 'background/actions/preview-features-actions';
 import { ScopingActions } from 'background/actions/scoping-actions';
@@ -35,4 +36,5 @@ function runTypeAsserts(hub: ActionHub): void {
     expect(hub.visualizationScanResultActions).toBeInstanceOf(VisualizationScanResultActions);
     expect(hub.inspectActions).toBeInstanceOf(InspectActions);
     expect(hub.contentActions).toBeInstanceOf(ContentActions);
+    expect(hub.injectionActions).toBeInstanceOf(InjectionActions);
 }
