@@ -109,7 +109,7 @@ module.exports = {
                 ...internalOptions,
                 ...icons.dev,
                 fullName: 'Accessibility Insights for Android - Dev',
-                telemetryBuildName: 'Android',
+                telemetryBuildName: 'AI Android - Dev',
                 productCategory: 'electron',
             },
         },
