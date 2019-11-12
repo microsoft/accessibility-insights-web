@@ -28,7 +28,7 @@ export function getReportExportComponentPropsForAssessment(props: CommandBarProp
     };
 }
 
-export function getReportExportComponentPropsForAutomatedChecks(props: CommandBarProps): ReportExportComponentProps {
+export function getReportExportComponentPropsForFastPass(props: CommandBarProps): ReportExportComponentProps {
     let reportExportComponentProps: ReportExportComponentProps = null;
 
     if (props.featureFlagStoreData[FeatureFlags.universalCardsUI]) {

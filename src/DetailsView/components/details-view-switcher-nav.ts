@@ -9,11 +9,11 @@ import {
 } from 'DetailsView/components/details-view-command-bar';
 import {
     getReportExportComponentPropsForAssessment,
-    getReportExportComponentPropsForAutomatedChecks,
+    getReportExportComponentPropsForFastPass,
 } from 'DetailsView/components/report-export-component-props-factory';
 import {
     getStartOverComponentPropsForAssessment,
-    getStartOverComponentPropsForAutomatedChecks,
+    getStartOverComponentPropsForFastPass,
 } from 'DetailsView/components/start-over-component-props-factory';
 import { ReactFCWithDisplayName } from '../../common/react/named-fc';
 import { DetailsViewPivotType } from '../../common/types/details-view-pivot-type';
@@ -67,8 +67,8 @@ const detailsViewSwitcherNavs: { [key in DetailsViewPivotType]: InternalDetailsV
     },
     [DetailsViewPivotType.fastPass]: {
         CommandBar: AutomatedChecksCommandBar,
-        ReportExportComponentPropertyFactory: getReportExportComponentPropsForAutomatedChecks,
-        StartOverComponentPropertyFactory: getStartOverComponentPropsForAutomatedChecks,
+        ReportExportComponentPropertyFactory: getReportExportComponentPropsForFastPass,
+        StartOverComponentPropertyFactory: getStartOverComponentPropsForFastPass,
         LeftNav: FastPassLeftNav,
         getSelectedDetailsView: getFastPassSelectedDetailsView,
     },

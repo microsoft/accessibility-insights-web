@@ -27,8 +27,8 @@ export function getStartOverComponentPropsForAssessment(props: CommandBarProps):
     };
 }
 
-export function getStartOverComponentPropsForAutomatedChecks(props: CommandBarProps): StartOverComponentProps {
-    const selectedTest = props.visualizationStoreData.selectedAdhocDetailsView;
+export function getStartOverComponentPropsForFastPass(props: CommandBarProps): StartOverComponentProps {
+    const selectedTest = props.visualizationStoreData.selectedFastPassDetailsView;
     const deps: StartOverComponentDeps = props.deps;
     const startOverProps: StartOverProps = {
         deps: deps,

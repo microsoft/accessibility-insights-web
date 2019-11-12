@@ -11,7 +11,7 @@ import { DetailsViewCommandBarDeps, DetailsViewCommandBarProps } from 'DetailsVi
 import { ReportExportComponentProps } from 'DetailsView/components/report-export-component';
 import {
     getReportExportComponentPropsForAssessment,
-    getReportExportComponentPropsForAutomatedChecks,
+    getReportExportComponentPropsForFastPass,
 } from 'DetailsView/components/report-export-component-props-factory';
 import { ReportGenerator } from 'reports/report-generator';
 import { ScanResults } from 'scanner/iruleresults';
@@ -126,22 +126,22 @@ describe('ReportExportComponentPropsFactory', () => {
         actionMessageCreatorMock.verifyAll();
     });
 
-    test('getReportExportComponentPropsForAutomatedChecks, CardsUI is false, props is null', () => {
+    test('getReportExportComponentPropsForFastPass, CardsUI is false, props is null', () => {
         const props = getProps();
-        const rendered: ReportExportComponentProps = getReportExportComponentPropsForAutomatedChecks(props);
+        const rendered: ReportExportComponentProps = getReportExportComponentPropsForFastPass(props);
 
         expect(rendered).toBeNull();
     });
 
-    test('getReportExportComponentPropsForAutomatedChecks, CardsUI is true, scanResults is null, props is null', () => {
+    test('getReportExportComponentPropsForFastPass, CardsUI is true, scanResults is null, props is null', () => {
         setCardsUiFlag(true);
         const props = getProps();
-        const rendered: ReportExportComponentProps = getReportExportComponentPropsForAutomatedChecks(props);
+        const rendered: ReportExportComponentProps = getReportExportComponentPropsForFastPass(props);
 
         expect(rendered).toBeNull();
     });
 
-    test('getReportExportComponentPropsForAutomatedChecks, CardsUI is true, scanResults is not null, expected properties are set', () => {
+    test('getReportExportComponentPropsForFastPass, CardsUI is true, scanResults is not null, expected properties are set', () => {
         scanResult = {
             timestamp: theTimestamp,
         } as ScanResults;
@@ -150,7 +150,7 @@ describe('ReportExportComponentPropsFactory', () => {
         setCardsUiFlag(true);
         setAutomatedChecksReportGenerator();
         const props = getProps();
-        const rendered: ReportExportComponentProps = getReportExportComponentPropsForAutomatedChecks(props);
+        const rendered: ReportExportComponentProps = getReportExportComponentPropsForFastPass(props);
 
         expect(rendered.exportResultsType).toBe('AutomatedChecks');
         expect(rendered.getExportDescription()).toBe('');
