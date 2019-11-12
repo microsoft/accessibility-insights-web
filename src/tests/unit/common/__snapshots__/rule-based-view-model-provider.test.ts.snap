@@ -112,7 +112,7 @@ Object {
       },
     ],
   },
-  "visualHelperEnabled": true,
+  "visualHelperEnabled": false,
 }
 `;
 
@@ -344,7 +344,7 @@ Object {
       },
     ],
   },
-  "visualHelperEnabled": true,
+  "visualHelperEnabled": false,
 }
 `;
 
@@ -576,7 +576,7 @@ Object {
       },
     ],
   },
-  "visualHelperEnabled": true,
+  "visualHelperEnabled": false,
 }
 `;
 
@@ -808,7 +808,7 @@ Object {
       },
     ],
   },
-  "visualHelperEnabled": true,
+  "visualHelperEnabled": false,
 }
 `;
 
@@ -930,7 +930,7 @@ Object {
 
 exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isExpanded": true, "isHighlighted": false, "isSelected": false, "visualHelperEnabled": false} 1`] = `
 Object {
-  "allCardsCollapsed": true,
+  "allCardsCollapsed": false,
   "cards": Object {
     "fail": Array [
       Object {
@@ -1040,13 +1040,13 @@ Object {
       },
     ],
   },
-  "visualHelperEnabled": true,
+  "visualHelperEnabled": false,
 }
 `;
 
 exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isExpanded": true, "isHighlighted": false, "isSelected": false, "visualHelperEnabled": true} 1`] = `
 Object {
-  "allCardsCollapsed": true,
+  "allCardsCollapsed": false,
   "cards": Object {
     "fail": Array [
       Object {
@@ -1162,7 +1162,7 @@ Object {
 
 exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isExpanded": true, "isHighlighted": false, "isSelected": true, "visualHelperEnabled": false} 1`] = `
 Object {
-  "allCardsCollapsed": true,
+  "allCardsCollapsed": false,
   "cards": Object {
     "fail": Array [
       Object {
@@ -1272,13 +1272,13 @@ Object {
       },
     ],
   },
-  "visualHelperEnabled": true,
+  "visualHelperEnabled": false,
 }
 `;
 
 exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isExpanded": true, "isHighlighted": false, "isSelected": true, "visualHelperEnabled": true} 1`] = `
 Object {
-  "allCardsCollapsed": true,
+  "allCardsCollapsed": false,
   "cards": Object {
     "fail": Array [
       Object {
@@ -1394,7 +1394,7 @@ Object {
 
 exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isExpanded": true, "isHighlighted": true, "isSelected": false, "visualHelperEnabled": false} 1`] = `
 Object {
-  "allCardsCollapsed": true,
+  "allCardsCollapsed": false,
   "cards": Object {
     "fail": Array [
       Object {
@@ -1504,13 +1504,13 @@ Object {
       },
     ],
   },
-  "visualHelperEnabled": true,
+  "visualHelperEnabled": false,
 }
 `;
 
 exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isExpanded": true, "isHighlighted": true, "isSelected": false, "visualHelperEnabled": true} 1`] = `
 Object {
-  "allCardsCollapsed": true,
+  "allCardsCollapsed": false,
   "cards": Object {
     "fail": Array [
       Object {
@@ -1626,7 +1626,7 @@ Object {
 
 exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isExpanded": true, "isHighlighted": true, "isSelected": true, "visualHelperEnabled": false} 1`] = `
 Object {
-  "allCardsCollapsed": true,
+  "allCardsCollapsed": false,
   "cards": Object {
     "fail": Array [
       Object {
@@ -1736,13 +1736,13 @@ Object {
       },
     ],
   },
-  "visualHelperEnabled": true,
+  "visualHelperEnabled": false,
 }
 `;
 
 exports[`RuleBasedViewModelProvider getUnifiedRuleResults for combination {"isExpanded": true, "isHighlighted": true, "isSelected": true, "visualHelperEnabled": true} 1`] = `
 Object {
-  "allCardsCollapsed": true,
+  "allCardsCollapsed": false,
   "cards": Object {
     "fail": Array [
       Object {
