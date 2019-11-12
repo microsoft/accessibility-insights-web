@@ -30,6 +30,7 @@ export interface VisualizationCommonMessages {
     Toggle: string;
     ScanCompleted: string;
     ScrollRequested: string;
+    RescanVisualization: string;
 }
 
 export interface DevToolsMessages {
@@ -57,6 +58,7 @@ export class Messages {
             Toggle: `${messagePrefix}/visualization/toggle`,
             ScanCompleted: `${messagePrefix}/visualization/scanCompleted`,
             ScrollRequested: `${messagePrefix}/visualization/scrollRequested`,
+            RescanVisualization: `${messagePrefix}/visualization/reScanVisualization`,
         },
         TabStops: {
             TabbedElementAdded: `${messagePrefix}/visualization/tab-stops/element-added`,
