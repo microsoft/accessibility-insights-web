@@ -58,7 +58,7 @@ export class Messages {
             Toggle: `${messagePrefix}/visualization/toggle`,
             ScanCompleted: `${messagePrefix}/visualization/scanCompleted`,
             ScrollRequested: `${messagePrefix}/visualization/scrollRequested`,
-            RescanVisualization: `${messagePrefix}/visualization/reScanVisualization`,
+            RescanVisualization: `${messagePrefix}/visualization/rescanVisualization`,
         },
         TabStops: {
             TabbedElementAdded: `${messagePrefix}/visualization/tab-stops/element-added`,

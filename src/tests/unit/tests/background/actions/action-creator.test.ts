@@ -8,9 +8,9 @@ import {
     ChangeInstanceStatusPayload,
     OnDetailsViewOpenPayload,
     OnDetailsViewPivotSelected,
+    RescanVisualizationPayload,
     ToggleActionPayload,
     VisualizationTogglePayload,
-    RescanVisualizationPayload,
 } from 'background/actions/action-payloads';
 import { AssessmentActions } from 'background/actions/assessment-actions';
 import { DetailsViewActions } from 'background/actions/details-view-actions';
