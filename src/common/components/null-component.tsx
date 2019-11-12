@@ -2,6 +2,6 @@
 // Licensed under the MIT License.
 import { NamedFC } from 'common/react/named-fc';
 
-export const NullComponent = NamedFC<{}>('NullComponent', () => {
+export const NullComponent = NamedFC('NullComponent', () => {
     return null;
 });

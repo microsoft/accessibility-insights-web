@@ -38,7 +38,7 @@ export class CardSelectionMessageCreator {
         });
     };
 
-    public collapseAllRules = (event: React.SyntheticEvent) => {
+    public collapseAllRules = (event: SupportedMouseEvent) => {
         const payload: BaseActionPayload = {
             telemetry: this.telemetryFactory.withTriggeredByAndSource(event, this.source),
         };

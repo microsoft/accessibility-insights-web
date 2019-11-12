@@ -7,7 +7,6 @@ import {
 } from 'common/components/cards/cards-visualization-modifiers-buttons.scss';
 import { CardSelectionMessageCreator } from 'common/message-creators/card-selection-message-creator';
 import { NamedFC } from 'common/react/named-fc';
-import { SupportedMouseEvent } from 'common/telemetry-data-factory';
 import { ActionButton, Toggle } from 'office-ui-fabric-react';
 import * as React from 'react';
 
@@ -26,19 +25,19 @@ export const CardsVisualizationModifierButtons = NamedFC<CardsVisualizationModif
     props => {
         const { deps, visualHelperEnabled, allCardsCollapsed } = props;
 
-        let onClick: (_: SupportedMouseEvent) => void = deps.cardSelectionMessageCreator.collapseAllRules;
+        let expandCollapseAllButtonHandler = deps.cardSelectionMessageCreator.collapseAllRules;
         let buttonText = 'Collapse all';
         let iconName = 'ChevronDown';
 
         if (allCardsCollapsed) {
-            onClick = deps.cardSelectionMessageCreator.expandAllRules;
+            expandCollapseAllButtonHandler = deps.cardSelectionMessageCreator.expandAllRules;
             buttonText = 'Expand all';
             iconName = 'ChevronRight';
         }
 
         return (
             <div className={cardsVisualizationModifiersContainer}>
-                <ActionButton iconProps={{ iconName }} onClick={onClick} className={expandCollapseAllButton}>
+                <ActionButton iconProps={{ iconName }} onClick={expandCollapseAllButtonHandler} className={expandCollapseAllButton}>
                     {buttonText}
                 </ActionButton>
                 <Toggle
