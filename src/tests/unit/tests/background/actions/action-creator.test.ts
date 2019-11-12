@@ -8,6 +8,7 @@ import {
     ChangeInstanceStatusPayload,
     OnDetailsViewOpenPayload,
     OnDetailsViewPivotSelected,
+    RescanVisualizationPayload,
     ToggleActionPayload,
     VisualizationTogglePayload,
 } from 'background/actions/action-payloads';
@@ -731,6 +732,28 @@ describe('ActionCreatorTest', () => {
             .setupRegistrationCallback(Messages.Assessment.CancelStartOverAllAssessments, [payload, tabId])
             .setupTelemetrySend(TelemetryEvents.CANCEL_START_OVER_ASSESSMENT, payload, tabId);
 
+        const actionCreator = validator.buildActionCreator();
+
+        actionCreator.registerCallbacks();
+
+        validator.verifyAll();
+    });
+
+    test('registerCallback for onRescanVisualization', () => {
+        const tabId = 1;
+        const payload: RescanVisualizationPayload = {
+            test: VisualizationType.HeadingsAssessment,
+        };
+        const disableActionName = 'disableVisualization';
+        const enableActionName = 'enableVisualization';
+
+        const validator = new ActionCreatorValidator()
+            .setupRegistrationCallback(Messages.Visualizations.Common.RescanVisualization, [payload, tabId])
+            .setupActionOnVisualizationActions(disableActionName)
+            .setupActionOnVisualizationActions(enableActionName)
+            .setupVisualizationActionWithInvokeParameter(disableActionName, payload.test)
+            .setupVisualizationActionWithInvokeParameter(enableActionName, payload)
+            .setupTelemetrySend(TelemetryEvents.RESCAN_VISUALIZATION, payload, tabId);
         const actionCreator = validator.buildActionCreator();
 
         actionCreator.registerCallbacks();

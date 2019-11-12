@@ -22,6 +22,7 @@ import {
     BaseActionPayload,
     OnDetailsViewOpenPayload,
     OnDetailsViewPivotSelected,
+    RescanVisualizationPayload,
     ToggleActionPayload,
     VisualizationTogglePayload,
 } from './action-payloads';
@@ -62,6 +63,7 @@ export class ActionCreator {
         this.interpreter.registerTypeToPayloadCallback(visualizationMessages.Common.Toggle, this.onVisualizationToggle);
         this.interpreter.registerTypeToPayloadCallback(visualizationMessages.Common.ScanCompleted, this.onScanCompleted);
         this.interpreter.registerTypeToPayloadCallback(visualizationMessages.Common.ScrollRequested, this.onScrollRequested);
+        this.interpreter.registerTypeToPayloadCallback(visualizationMessages.Common.RescanVisualization, this.onRescanVisualization);
 
         this.interpreter.registerTypeToPayloadCallback(
             visualizationMessages.Issues.UpdateSelectedTargets,
@@ -259,6 +261,12 @@ export class ActionCreator {
         } else {
             this.visualizationActions.disableVisualization.invoke(payload.test);
         }
+    };
+
+    private onRescanVisualization = (payload: RescanVisualizationPayload) => {
+        this.visualizationActions.disableVisualization.invoke(payload.test);
+        this.visualizationActions.enableVisualization.invoke(payload);
+        this.telemetryEventHandler.publishTelemetry(TelemetryEvents.RESCAN_VISUALIZATION, payload);
     };
 
     private getVisualizationToggleCurrentState = (): void => {
