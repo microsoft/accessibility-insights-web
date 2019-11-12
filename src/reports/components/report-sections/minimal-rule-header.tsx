@@ -36,8 +36,9 @@ export const MinimalRuleHeader = NamedFC<MinimalRuleHeaderProps>('MinimalRuleHea
 
     return (
         <span className="rule-detail">
+            <span>{renderCountBadge()}</span>
             <span>
-                {renderCountBadge()} {renderRuleName()}: {renderDescription()}
+                {renderRuleName()}: {renderDescription()}
             </span>
         </span>
     );

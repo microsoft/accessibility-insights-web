@@ -19,7 +19,6 @@ describe('MinimalRuleHeader', () => {
         };
 
         const wrapped = shallow(<MinimalRuleHeader {...props} />);
-
         expect(wrapped.getElement()).toMatchSnapshot();
     });
 });
