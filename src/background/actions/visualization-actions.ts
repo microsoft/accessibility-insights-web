@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { Action } from '../../common/flux/action';
-import { VisualizationType } from '../../common/types/visualization-type';
+import { Action } from 'common/flux/action';
+import { VisualizationType } from 'common/types/visualization-type';
 import { ToggleActionPayload, UpdateSelectedDetailsViewPayload, UpdateSelectedPivot } from './action-payloads';
 
 export class VisualizationActions {
