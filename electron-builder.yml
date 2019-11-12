@@ -1,12 +1,12 @@
 # Copyright (c) Microsoft Corporation. All rights reserved.
 # Licensed under the MIT License.
-appId: com.aiandroid5.app
+appId: com.aiandroid.app
 directories:
     app: drop/electron/electron
     buildResources: src/electron/resources
 extraMetadata:
     main: product/bundle/main.bundle.js
-    name: ai-android-5
+    name: ai-android
 
 linux:
     target: AppImage
