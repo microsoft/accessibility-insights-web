@@ -8,6 +8,7 @@ import { PromiseFactory } from 'common/promises/promise-factory';
 import { StateDispatcher } from 'common/state-dispatcher';
 import { WindowUtils } from 'common/window-utils';
 
+import { InjectionActionCreator } from 'background/actions/injection-action-creator';
 import { ActionCreator } from './actions/action-creator';
 import { ActionHub } from './actions/action-hub';
 import { CardSelectionActionCreator } from './actions/card-selection-action-creator';
@@ -111,6 +112,8 @@ export class TabContextFactory {
             this.telemetryEventHandler,
         );
 
+        const injectionActionCreator = new InjectionActionCreator(interpreter, actionsHub.injectionActions);
+
         const injectorController = new InjectorController(
             new ContentScriptInjector(browserAdapter, this.promiseFactory),
             storeHub.visualizationStore,
@@ -141,6 +144,7 @@ export class TabContextFactory {
         contentActionCreator.registerCallbacks();
         scanResultActionCreator.registerCallbacks();
         cardSelectionActionCreator.registerCallbacks();
+        injectionActionCreator.registerCallbacks();
 
         injectorController.initialize();
         const dispatcher = new StateDispatcher(broadcastMessage, storeHub);
