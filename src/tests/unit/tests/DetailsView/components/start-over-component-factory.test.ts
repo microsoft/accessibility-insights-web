@@ -11,10 +11,8 @@ import { DetailsViewCommandBarDeps, DetailsViewCommandBarProps } from 'DetailsVi
 import { getStartOverComponentForAssessment, getStartOverComponentForFastPass } from 'DetailsView/components/start-over-component-factory';
 import { ScanResults } from 'scanner/iruleresults';
 import { IMock, Mock, MockBehavior } from 'typemoq';
-import { ToggleBase } from 'office-ui-fabric-react';
 
 describe('StartOverComponentPropsFactory', () => {
-    const theButtonCaption = 'Start over';
     const theTitle = 'the title';
     const theTestStep = 'test step';
     const theTestType = VisualizationType.ColorSensoryAssessment;
@@ -80,25 +78,21 @@ describe('StartOverComponentPropsFactory', () => {
         featureFlagStoreData['universalCardsUI'] = true;
     }
 
-    test('getStartOverComponentPropsForAssessment expected properties are set', () => {
+    test('getStartOverComponentPropsForAssessment, component matches snapshot', () => {
         const props = getProps(true);
         const rendered = getStartOverComponentForAssessment(props);
 
-        expect(1).toBe(2);
-        // expect(rendered.render).toBe(true);
-        // expect(rendered.startOverProps.buttonCaption).toBe(theButtonCaption);
-        // expect(rendered.startOverProps.hasDropdown).toBe(true);
-        // expect(rendered.startOverProps.test).toBe(theTestType);
+        expect(rendered).toMatchSnapshot();
     });
 
-    test('getStartOverComponentPropsForFastPass, CardsUI is false, props is null', () => {
+    test('getStartOverComponentPropsForFastPass, CardsUI is false, component  is null', () => {
         const props = getProps(false);
         const rendered = getStartOverComponentForFastPass(props);
 
         expect(rendered).toBeNull();
     });
 
-    test('getStartOverComponentPropsForFastPass, CardsUI is true, scanResults is null, props is null', () => {
+    test('getStartOverComponentPropsForFastPass, CardsUI is true, scanResults is null, component is null', () => {
         setCardsUiFlag(true);
         const props = getProps(false);
         const rendered = getStartOverComponentForFastPass(props);
@@ -106,15 +100,12 @@ describe('StartOverComponentPropsFactory', () => {
         expect(rendered).toBeNull();
     });
 
-    test('getStartOverComponentPropsForFastPass, CardsUI is true, scanResults is not null, expected properties are set', () => {
+    test('getStartOverComponentPropsForFastPass, CardsUI is true, scanResults is not null, component matches snapshot', () => {
         setScanResult();
         setCardsUiFlag(true);
         const props = getProps(false);
         const rendered = getStartOverComponentForFastPass(props);
 
-        expect(3).toBe(4);
-        // expect(rendered.startOverProps.buttonCaption).toBe(theButtonCaption);
-        // expect(rendered.startOverProps.hasDropdown).toBe(false);
-        // expect(rendered.startOverProps.test).toBe(theTestType);
+        expect(rendered).toMatchSnapshot();
     });
 });

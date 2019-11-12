@@ -3,13 +3,12 @@
 import { AssessmentsProviderImpl } from 'assessments/assessments-provider';
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { Assessment } from 'assessments/types/iassessment';
-import { VisualizationActionMessageCreator } from 'common/message-creators/visualization-action-message-creator';
 import { NamedFC, ReactFCWithDisplayName } from 'common/react/named-fc';
 import { DetailsViewSwitcherNavConfiguration } from 'DetailsView/components/details-view-switcher-nav';
 import { ExportDialogDeps } from 'DetailsView/components/export-dialog';
-import { StartOverProps } from 'DetailsView/components/start-over-dropdown';
 import { DetailsViewBodyProps } from 'DetailsView/details-view-body';
 import { shallow } from 'enzyme';
+import { ActionButton } from 'office-ui-fabric-react';
 import * as React from 'react';
 import { ReportGenerator } from 'reports/report-generator';
 import { IMock, Mock, MockBehavior } from 'typemoq';
@@ -39,6 +38,7 @@ describe('DetailsViewCommandBar', () => {
     let reportGeneratorMock: IMock<ReportGenerator>;
     let descriptionPlaceholder: string;
     let reportExportComponentProps: ReportExportComponentProps;
+    let startOverComponent: JSX.Element;
 
     beforeEach(() => {
         featureFlagStoreData = {};
@@ -48,6 +48,7 @@ describe('DetailsViewCommandBar', () => {
             isClosed: false,
         } as TabStoreData;
         reportExportComponentProps = null;
+        startOverComponent = null;
         assessmentsProviderMock = Mock.ofType<AssessmentsProvider>(AssessmentsProviderImpl);
         assessmentStoreData = {
             assessmentNavState: {
@@ -74,7 +75,7 @@ describe('DetailsViewCommandBar', () => {
         const switcherNavConfiguration: DetailsViewSwitcherNavConfiguration = {
             CommandBar: CommandBarStub,
             ReportExportComponentPropertyFactory: p => reportExportComponentProps,
-            StartOverComponentFactory: p => null,
+            StartOverComponentFactory: p => startOverComponent,
             LeftNav: LeftNavStub,
         } as DetailsViewSwitcherNavConfiguration;
 
@@ -85,7 +86,6 @@ describe('DetailsViewCommandBar', () => {
             getCurrentDate: () => theDate,
             reportGenerator: reportGeneratorMock.object,
             getDateFromTimestamp: () => theDate,
-            visualizationActionMessageCreator: {} as VisualizationActionMessageCreator,
         };
 
         return {
@@ -129,7 +129,6 @@ describe('DetailsViewCommandBar', () => {
         const theHtml = 'this is the HTML';
         let theDescription = null;
         let reportProps: ReportExportComponentProps = null;
-        let startOverProps: () => null;
         if (renderExportResults) {
             reportProps = {
                 deps: {} as ExportDialogDeps,
@@ -147,7 +146,9 @@ describe('DetailsViewCommandBar', () => {
         }
 
         if (renderStartOver) {
+            startOverComponent = <ActionButton>Test Button</ActionButton>;
         }
+
         reportExportComponentProps = reportProps;
         const props = getProps();
         const rendered = shallow(<DetailsViewCommandBar {...props} />);

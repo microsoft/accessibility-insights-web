@@ -341,7 +341,6 @@ if (isNaN(tabId) === false) {
                 cardSelectionMessageCreator,
                 getCardSelectionViewData: getCardSelectionViewData,
                 cardsVisualizationModifierButtons: CardsVisualizationModifierButtons,
-                visualizationActionMessageCreator: visualizationActionCreator,
             };
 
             const renderer = new DetailsViewRenderer(
