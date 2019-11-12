@@ -5,7 +5,7 @@ exports[`getAutomatedChecksCommandBar  should return DetailsViewCommandBar with 
   switcherNavConfiguration={
     Object {
       "ReportExportComponentPropertyFactory": [Function],
-      "StartOverComponentPropertyFactory": [Function],
+      "StartOverComponentFactory": [Function],
     }
   }
 />

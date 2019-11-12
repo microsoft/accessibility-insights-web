@@ -7,7 +7,6 @@ import { VisualizationActionMessageCreator } from 'common/message-creators/visua
 import { NamedFC, ReactFCWithDisplayName } from 'common/react/named-fc';
 import { DetailsViewSwitcherNavConfiguration } from 'DetailsView/components/details-view-switcher-nav';
 import { ExportDialogDeps } from 'DetailsView/components/export-dialog';
-import { StartOverComponentDeps, StartOverComponentProps } from 'DetailsView/components/start-over-component';
 import { StartOverProps } from 'DetailsView/components/start-over-dropdown';
 import { DetailsViewBodyProps } from 'DetailsView/details-view-body';
 import { shallow } from 'enzyme';
@@ -40,7 +39,6 @@ describe('DetailsViewCommandBar', () => {
     let reportGeneratorMock: IMock<ReportGenerator>;
     let descriptionPlaceholder: string;
     let reportExportComponentProps: ReportExportComponentProps;
-    let startOverComponentProps: StartOverComponentProps;
 
     beforeEach(() => {
         featureFlagStoreData = {};
@@ -50,7 +48,6 @@ describe('DetailsViewCommandBar', () => {
             isClosed: false,
         } as TabStoreData;
         reportExportComponentProps = null;
-        startOverComponentProps = null;
         assessmentsProviderMock = Mock.ofType<AssessmentsProvider>(AssessmentsProviderImpl);
         assessmentStoreData = {
             assessmentNavState: {
@@ -77,7 +74,7 @@ describe('DetailsViewCommandBar', () => {
         const switcherNavConfiguration: DetailsViewSwitcherNavConfiguration = {
             CommandBar: CommandBarStub,
             ReportExportComponentPropertyFactory: p => reportExportComponentProps,
-            StartOverComponentPropertyFactory: p => startOverComponentProps,
+            StartOverComponentFactory: p => null,
             LeftNav: LeftNavStub,
         } as DetailsViewSwitcherNavConfiguration;
 
@@ -132,7 +129,7 @@ describe('DetailsViewCommandBar', () => {
         const theHtml = 'this is the HTML';
         let theDescription = null;
         let reportProps: ReportExportComponentProps = null;
-        let startOverProps: StartOverComponentProps = null;
+        let startOverProps: () => null;
         if (renderExportResults) {
             reportProps = {
                 deps: {} as ExportDialogDeps,
@@ -150,16 +147,8 @@ describe('DetailsViewCommandBar', () => {
         }
 
         if (renderStartOver) {
-            startOverProps = {
-                deps: {} as StartOverComponentDeps,
-                render: true,
-                startOverProps: {
-                    buttonCaption: 'a caption',
-                } as StartOverProps,
-            };
         }
         reportExportComponentProps = reportProps;
-        startOverComponentProps = startOverProps;
         const props = getProps();
         const rendered = shallow(<DetailsViewCommandBar {...props} />);
 

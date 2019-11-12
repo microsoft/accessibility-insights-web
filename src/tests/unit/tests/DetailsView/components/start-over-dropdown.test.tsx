@@ -10,7 +10,7 @@ import { VisualizationType } from '../../../../../common/types/visualization-typ
 import { DetailsViewActionMessageCreator } from '../../../../../DetailsView/actions/details-view-action-message-creator';
 import { DetailsRightPanelConfiguration } from '../../../../../DetailsView/components/details-view-right-panel';
 import { GenericDialog } from '../../../../../DetailsView/components/generic-dialog';
-import { StartOverDeps, StartOverDropdown, StartOverProps } from '../../../../../DetailsView/components/start-over-dropdown';
+import { StartOverDropdown, StartOverProps } from '../../../../../DetailsView/components/start-over-dropdown';
 
 describe('StartOverDropdownTest', () => {
     let defaultProps: StartOverProps;
@@ -20,16 +20,10 @@ describe('StartOverDropdownTest', () => {
         currentTarget: 'test target',
     } as React.MouseEvent<any>;
 
-    const deps: StartOverDeps = {
-        visualizationActionMessageCreator: null,
-    };
-
     beforeEach(() => {
         actionCreatorMock = Mock.ofType<DetailsViewActionMessageCreator>();
         defaultProps = {
-            deps: deps,
-            buttonCaption: 'test caption',
-            hasDropdown: true,
+            deps: {},
             testName: 'test name',
             actionMessageCreator: actionCreatorMock.object,
             test: -1 as VisualizationType,

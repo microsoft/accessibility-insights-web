@@ -5,19 +5,12 @@ import { ActionButton } from 'office-ui-fabric-react/lib/Button';
 import { ContextualMenu, IContextualMenuItem } from 'office-ui-fabric-react/lib/ContextualMenu';
 import * as React from 'react';
 
-import { TelemetryEventSource, TriggeredByNotApplicable } from 'common/extension-telemetry-events';
-import { VisualizationActionMessageCreator } from 'common/message-creators/visualization-action-message-creator';
-import { IIconProps } from 'office-ui-fabric-react';
 import { VisualizationType } from '../../common/types/visualization-type';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 import { DetailsRightPanelConfiguration } from './details-view-right-panel';
 import { GenericDialog } from './generic-dialog';
 
 type DialogState = 'none' | 'assessment' | 'test';
-
-export type StartOverDeps = {
-    visualizationActionMessageCreator: VisualizationActionMessageCreator;
-};
 
 export interface StartOverState {
     isContextMenuVisible: boolean;
@@ -26,9 +19,6 @@ export interface StartOverState {
 }
 
 export interface StartOverProps {
-    deps: StartOverDeps;
-    buttonCaption: string;
-    hasDropdown: boolean;
     testName: string;
     actionMessageCreator: DetailsViewActionMessageCreator;
     test: VisualizationType;
@@ -47,28 +37,18 @@ export class StartOverDropdown extends React.Component<StartOverProps, StartOver
     }
 
     public render(): JSX.Element {
-        let menuIconProps: IIconProps = null;
-        let onClick;
-
-        if (this.props.hasDropdown) {
-            menuIconProps = {
-                iconName: 'ChevronDown',
-            };
-            onClick = this.openDropdown;
-        } else {
-            onClick = this.onRescan;
-        }
-
         return (
             <div>
                 <ActionButton
                     iconProps={{
                         iconName: 'Refresh',
                     }}
-                    text={this.props.buttonCaption}
+                    text="Start over"
                     ariaLabel="start over menu"
-                    onClick={onClick}
-                    menuIconProps={menuIconProps}
+                    onClick={this.openDropdown}
+                    menuIconProps={{
+                        iconName: 'ChevronDown',
+                    }}
                 />
                 {this.renderContextMenu()}
                 {this.renderStartOverDialog()}
@@ -77,7 +57,7 @@ export class StartOverDropdown extends React.Component<StartOverProps, StartOver
     }
 
     private renderContextMenu(): JSX.Element {
-        if (!this.state.isContextMenuVisible || !this.props.hasDropdown) {
+        if (!this.state.isContextMenuVisible) {
             return null;
         }
 
@@ -101,14 +81,6 @@ export class StartOverDropdown extends React.Component<StartOverProps, StartOver
 
         return rightPanelConfiguration.GetStartOverContextualMenuItemKeys().map(key => items.find(item => item.key === key));
     }
-
-    private onRescan = (event: React.MouseEvent<any>): void => {
-        this.props.deps.visualizationActionMessageCreator.rescanVisualization(
-            this.props.test,
-            TelemetryEventSource.DetailsView,
-            TriggeredByNotApplicable,
-        );
-    };
 
     private onStartOverTestMenu = (): void => {
         this.setState({ dialogState: 'test' });

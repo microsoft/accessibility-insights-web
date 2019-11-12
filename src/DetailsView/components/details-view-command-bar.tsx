@@ -6,7 +6,6 @@ import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { VisualizationScanResultData } from 'common/types/store-data/visualization-scan-result-data';
 import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
 import { DetailsViewSwitcherNavConfiguration } from 'DetailsView/components/details-view-switcher-nav';
-import { StartOverComponentDeps, StartOverComponentProps } from 'DetailsView/components/start-over-component';
 import { Link } from 'office-ui-fabric-react/lib/Link';
 import * as React from 'react';
 import { ReportGenerator } from 'reports/report-generator';
@@ -16,20 +15,18 @@ import { TabStoreData } from '../../common/types/store-data/tab-store-data';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 import { DetailsRightPanelConfiguration } from './details-view-right-panel';
 import { ReportExportComponent, ReportExportComponentDeps, ReportExportComponentProps } from './report-export-component';
-import { StartOverDropdown } from './start-over-dropdown';
 
-export type DetailsViewCommandBarDeps = ReportExportComponentDeps &
-    StartOverComponentDeps & {
-        getCurrentDate: () => Date;
-        reportGenerator: ReportGenerator;
-        getDateFromTimestamp: (timestamp: string) => Date;
-    };
+export type DetailsViewCommandBarDeps = ReportExportComponentDeps & {
+    getCurrentDate: () => Date;
+    reportGenerator: ReportGenerator;
+    getDateFromTimestamp: (timestamp: string) => Date;
+};
 
 export type CommandBarProps = DetailsViewCommandBarProps;
 
 export type ReportExportComponentPropertyFactory = (props: CommandBarProps) => ReportExportComponentProps;
 
-export type StartOverComponentPropertyFactory = (props: CommandBarProps) => StartOverComponentProps;
+export type StartOverComponentFactory = (props: CommandBarProps) => JSX.Element;
 
 export interface DetailsViewCommandBarProps {
     deps: DetailsViewCommandBarDeps;
@@ -103,12 +100,6 @@ export class DetailsViewCommandBar extends React.Component<DetailsViewCommandBar
     }
 
     private renderStartOverComponent(): JSX.Element {
-        const startOverComponentProps = this.props.switcherNavConfiguration.StartOverComponentPropertyFactory(this.props);
-
-        if (startOverComponentProps && startOverComponentProps.render) {
-            return <StartOverDropdown {...startOverComponentProps.startOverProps} />;
-        }
-
-        return null;
+        return this.props.switcherNavConfiguration.StartOverComponentFactory(this.props);
     }
 }

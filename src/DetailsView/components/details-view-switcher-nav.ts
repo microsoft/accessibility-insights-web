@@ -5,16 +5,13 @@ import { AutomatedChecksCommandBar } from 'DetailsView/components/automated-chec
 import {
     CommandBarProps,
     ReportExportComponentPropertyFactory,
-    StartOverComponentPropertyFactory,
+    StartOverComponentFactory,
 } from 'DetailsView/components/details-view-command-bar';
 import {
     getReportExportComponentPropsForAssessment,
     getReportExportComponentPropsForFastPass,
 } from 'DetailsView/components/report-export-component-props-factory';
-import {
-    getStartOverComponentPropsForAssessment,
-    getStartOverComponentPropsForFastPass,
-} from 'DetailsView/components/start-over-component-props-factory';
+import { getStartOverComponentForAssessment, getStartOverComponentForFastPass } from 'DetailsView/components/start-over-component-factory';
 import { ReactFCWithDisplayName } from '../../common/react/named-fc';
 import { DetailsViewPivotType } from '../../common/types/details-view-pivot-type';
 import { VisualizationType } from '../../common/types/visualization-type';
@@ -40,7 +37,7 @@ type InternalLeftNavProps = AssessmentLeftNavProps | FastPassLeftNavProps;
 export type DetailsViewSwitcherNavConfiguration = Readonly<{
     CommandBar: ReactFCWithDisplayName<CommandBarProps>;
     ReportExportComponentPropertyFactory: ReportExportComponentPropertyFactory;
-    StartOverComponentPropertyFactory: StartOverComponentPropertyFactory;
+    StartOverComponentFactory: StartOverComponentFactory;
     LeftNav: ReactFCWithDisplayName<LeftNavProps>;
     getSelectedDetailsView: (props: GetSelectedDetailsViewProps) => VisualizationType;
 }>;
@@ -48,7 +45,7 @@ export type DetailsViewSwitcherNavConfiguration = Readonly<{
 type InternalDetailsViewSwitcherNavConfiguration = Readonly<{
     CommandBar: ReactFCWithDisplayName<CommandBarProps>;
     ReportExportComponentPropertyFactory: ReportExportComponentPropertyFactory;
-    StartOverComponentPropertyFactory: StartOverComponentPropertyFactory;
+    StartOverComponentFactory: StartOverComponentFactory;
     LeftNav: ReactFCWithDisplayName<InternalLeftNavProps>;
     getSelectedDetailsView: (props: GetSelectedDetailsViewProps) => VisualizationType;
 }>;
@@ -61,21 +58,21 @@ const detailsViewSwitcherNavs: { [key in DetailsViewPivotType]: InternalDetailsV
     [DetailsViewPivotType.assessment]: {
         CommandBar: AssessmentCommandBar,
         ReportExportComponentPropertyFactory: getReportExportComponentPropsForAssessment,
-        StartOverComponentPropertyFactory: getStartOverComponentPropsForAssessment,
+        StartOverComponentFactory: getStartOverComponentForAssessment,
         LeftNav: AssessmentLeftNav,
         getSelectedDetailsView: getAssessmentSelectedDetailsView,
     },
     [DetailsViewPivotType.fastPass]: {
         CommandBar: AutomatedChecksCommandBar,
         ReportExportComponentPropertyFactory: getReportExportComponentPropsForFastPass,
-        StartOverComponentPropertyFactory: getStartOverComponentPropsForFastPass,
+        StartOverComponentFactory: getStartOverComponentForFastPass,
         LeftNav: FastPassLeftNav,
         getSelectedDetailsView: getFastPassSelectedDetailsView,
     },
     [DetailsViewPivotType.allTest]: {
         CommandBar: null,
         ReportExportComponentPropertyFactory: null,
-        StartOverComponentPropertyFactory: null,
+        StartOverComponentFactory: null,
         LeftNav: null,
         getSelectedDetailsView: null,
     },
