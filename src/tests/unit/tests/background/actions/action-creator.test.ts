@@ -494,34 +494,6 @@ describe('ActionCreatorTest', () => {
         testScanCompleteWithExpectedParams(key, message, actionName, telemetryEventName);
     });
 
-    test('registerCallback for injectionCompleted', () => {
-        const actionName = 'injectionCompleted';
-        const builder = new ActionCreatorValidator()
-            .setupRegistrationCallback(VisualizationMessage.State.InjectionCompleted)
-            .setupActionOnVisualizationActions(actionName)
-            .setupVisualizationActionWithInvokeParameter(actionName, null);
-
-        const actionCreator = builder.buildActionCreator();
-
-        actionCreator.registerCallbacks();
-
-        builder.verifyAll();
-    });
-
-    test('registerCallback for injectionStarted', () => {
-        const actionName = 'injectionStarted';
-        const builder = new ActionCreatorValidator()
-            .setupRegistrationCallback(VisualizationMessage.State.InjectionStarted)
-            .setupActionOnVisualizationActions(actionName)
-            .setupVisualizationActionWithInvokeParameter(actionName, null);
-
-        const actionCreator = builder.buildActionCreator();
-
-        actionCreator.registerCallbacks();
-
-        builder.verifyAll();
-    });
-
     test('registerCallback for tabbed element added', () => {
         const tabbedElement: AddTabbedElementPayload = {
             tabbedElements: [

@@ -1,14 +1,15 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { TestMode } from '../../common/configs/test-mode';
-import { VisualizationConfigurationFactory } from '../../common/configs/visualization-configuration-factory';
-import * as TelemetryEvents from '../../common/extension-telemetry-events';
-import { getStoreStateMessage, Messages } from '../../common/messages';
-import { NotificationCreator } from '../../common/notification-creator';
-import { StoreNames } from '../../common/stores/store-names';
-import { VisualizationType } from '../../common/types/visualization-type';
-import { ScanCompletedPayload } from '../../injected/analyzers/analyzer';
-import { DictionaryNumberTo } from '../../types/common-types';
+import { TestMode } from 'common/configs/test-mode';
+import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
+import * as TelemetryEvents from 'common/extension-telemetry-events';
+import { getStoreStateMessage, Messages } from 'common/messages';
+import { NotificationCreator } from 'common/notification-creator';
+import { StoreNames } from 'common/stores/store-names';
+import { VisualizationType } from 'common/types/visualization-type';
+import { ScanCompletedPayload } from 'injected/analyzers/analyzer';
+import { DictionaryNumberTo } from 'types/common-types';
+
 import { VisualizationActions } from '../actions/visualization-actions';
 import { VisualizationScanResultActions } from '../actions/visualization-scan-result-actions';
 import { DetailsViewController } from '../details-view-controller';
@@ -68,8 +69,6 @@ export class ActionCreator {
         );
         this.interpreter.registerTypeToPayloadCallback(visualizationMessages.Issues.UpdateFocusedInstance, this.onUpdateFocusedInstance);
 
-        this.interpreter.registerTypeToPayloadCallback(visualizationMessages.State.InjectionCompleted, this.injectionCompleted);
-        this.interpreter.registerTypeToPayloadCallback(visualizationMessages.State.InjectionStarted, this.injectionStarted);
         this.interpreter.registerTypeToPayloadCallback(
             getStoreStateMessage(StoreNames.VisualizationStore),
             this.getVisualizationToggleCurrentState,
@@ -260,14 +259,6 @@ export class ActionCreator {
         } else {
             this.visualizationActions.disableVisualization.invoke(payload.test);
         }
-    };
-
-    private injectionCompleted = (): void => {
-        this.visualizationActions.injectionCompleted.invoke(null);
-    };
-
-    private injectionStarted = (): void => {
-        this.visualizationActions.injectionStarted.invoke(null);
     };
 
     private getVisualizationToggleCurrentState = (): void => {
