@@ -195,7 +195,7 @@ class AssessmentViewPropsBuilder {
     public actionMessageCreatorMock: IMock<DetailsViewActionMessageCreator>;
     public assessmentInstanceTableHandlerMock: IMock<AssessmentInstanceTableHandler>;
     private assessmentGeneratorInstance: AssessmentDefaultMessageGenerator;
-    private content: JSX.Element = <div>AssessmentViewTest content</div>;
+    private content: JSX.Element = (<div>AssessmentViewTest content</div>);
     private isEnabled: boolean = false;
     private provider: AssessmentsProvider;
 

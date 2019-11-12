@@ -39,7 +39,11 @@ describe('AssessmentReportStepHeader', () => {
         expect(actual.getElement()).toMatchSnapshot();
     });
 
-    const outcomePairs: [ManualTestStatus, RequirementOutcomeType][] = [[PASS, 'pass'], [UNKNOWN, 'incomplete'], [FAIL, 'fail']];
+    const outcomePairs: [ManualTestStatus, RequirementOutcomeType][] = [
+        [PASS, 'pass'],
+        [UNKNOWN, 'incomplete'],
+        [FAIL, 'fail'],
+    ];
 
     outcomePairs.forEach(([status, outcomeType]) =>
         describe(`in ${outcomeType} section`, () => {

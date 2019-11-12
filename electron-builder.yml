@@ -6,7 +6,7 @@ directories:
     buildResources: src/electron/resources
 extraMetadata:
     main: product/bundle/main.bundle.js
-    name: ai-android
+    name: Accessibility Insights for Android
 
 linux:
     target: AppImage

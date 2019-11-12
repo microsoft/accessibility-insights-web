@@ -61,7 +61,7 @@ export interface ContentProvider {
     contentFromReference(content: ContentReference): ContentPageComponent;
     pathFromReference(content: ContentReference): string;
 }
-type ContentTree = { [K in string]: (ContentTree | ContentPageComponent) };
+type ContentTree = { [K in string]: ContentTree | ContentPageComponent };
 export function ContentProvider(root: ContentTree): ContentProvider {
     const create = ContentCreator();
 
