@@ -59,20 +59,10 @@ describe('FrameCommunicatorTests', () => {
 
     test('initializeShouldNotRegisterHandlerMoreThanOnce', () => {
         mockWindowMessageHandler
-            .setup(x =>
-                x.addSubscriber(
-                    FrameCommunicator.PingCommand,
-                    It.is((cb: FrameMessageResponseCallback) => cb != null),
-                ),
-            )
+            .setup(x => x.addSubscriber(FrameCommunicator.PingCommand, It.is((cb: FrameMessageResponseCallback) => cb != null)))
             .verifiable(Times.once());
         mockWindowMessageHandler
-            .setup(x =>
-                x.addSubscriber(
-                    FrameCommunicator.DisposeCommand,
-                    It.is((cb: FrameMessageResponseCallback) => cb != null),
-                ),
-            )
+            .setup(x => x.addSubscriber(FrameCommunicator.DisposeCommand, It.is((cb: FrameMessageResponseCallback) => cb != null)))
             .verifiable(Times.once());
 
         testSubject.initialize();

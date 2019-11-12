@@ -18,6 +18,7 @@
         .main-content-wrapper {
             width: 70%;
             flex-grow: 1;
+            min-width: 320px;
         }
     }
 }
