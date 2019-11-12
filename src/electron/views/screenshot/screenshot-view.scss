@@ -1,0 +1,26 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
+@import '../../../common/styles/colors.scss';
+@import '../../../common/styles/fonts.scss';
+
+.screenshot-view {
+    overflow: auto;
+    width: 23%;
+    height: 100%;
+    padding-top: 16px;
+    padding-bottom: 16px;
+    padding-left: 24px;
+    padding-right: 24px;
+    background-color: $neutral-6-5;
+
+    .header {
+        margin-top: 0;
+        margin-bottom: 16px;
+        font-family: $semiBoldFontFamily;
+        font-weight: $fontWeightSemiBold;
+        font-size: $fontSizeL;
+        line-height: 21px;
+        color: $primary-text;
+        word-wrap: break-word;
+    }
+}

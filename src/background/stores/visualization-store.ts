@@ -1,14 +1,16 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { TestMode } from '../../common/configs/test-mode';
-import { VisualizationConfiguration } from '../../common/configs/visualization-configuration';
-import { VisualizationConfigurationFactory } from '../../common/configs/visualization-configuration-factory';
-import { EnumHelper } from '../../common/enum-helper';
-import { Tab } from '../../common/itab';
-import { StoreNames } from '../../common/stores/store-names';
-import { DetailsViewPivotType } from '../../common/types/details-view-pivot-type';
-import { AssessmentScanData, TestsEnabledState, VisualizationStoreData } from '../../common/types/store-data/visualization-store-data';
-import { VisualizationType } from '../../common/types/visualization-type';
+import { InjectionActions } from 'background/actions/injection-actions';
+import { TestMode } from 'common/configs/test-mode';
+import { VisualizationConfiguration } from 'common/configs/visualization-configuration';
+import { VisualizationConfigurationFactory } from 'common/configs/visualization-configuration-factory';
+import { EnumHelper } from 'common/enum-helper';
+import { Tab } from 'common/itab';
+import { StoreNames } from 'common/stores/store-names';
+import { DetailsViewPivotType } from 'common/types/details-view-pivot-type';
+import { AssessmentScanData, TestsEnabledState, VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
+import { VisualizationType } from 'common/types/visualization-type';
+
 import {
     AssessmentToggleActionPayload,
     ToggleActionPayload,
@@ -22,17 +24,20 @@ import { BaseStoreImpl } from './base-store-impl';
 export class VisualizationStore extends BaseStoreImpl<VisualizationStoreData> {
     private visualizationActions: VisualizationActions;
     private tabActions: TabActions;
+    private injectionActions: InjectionActions;
     private visualizationConfigurationFactory: VisualizationConfigurationFactory;
 
     constructor(
         visualizationActions: VisualizationActions,
         tabActions: TabActions,
+        injectionActions: InjectionActions,
         visualizationConfigurationFactory: VisualizationConfigurationFactory,
     ) {
         super(StoreNames.VisualizationStore);
 
         this.visualizationActions = visualizationActions;
         this.tabActions = tabActions;
+        this.injectionActions = injectionActions;
         this.visualizationConfigurationFactory = visualizationConfigurationFactory;
     }
 
@@ -52,8 +57,8 @@ export class VisualizationStore extends BaseStoreImpl<VisualizationStoreData> {
         this.visualizationActions.updateSelectedPivotChild.addListener(this.onUpdateSelectedPivotChild);
         this.visualizationActions.updateSelectedPivot.addListener(this.onUpdateSelectedPivot);
 
-        this.visualizationActions.injectionCompleted.addListener(this.injectionCompleted);
-        this.visualizationActions.injectionStarted.addListener(this.injectionStarted);
+        this.injectionActions.injectionCompleted.addListener(this.onInjectionCompleted);
+        this.injectionActions.injectionStarted.addListener(this.onInjectionStarted);
     }
 
     public getDefaultState(): VisualizationStoreData {
@@ -224,13 +229,13 @@ export class VisualizationStore extends BaseStoreImpl<VisualizationStoreData> {
         this.emitChanged();
     };
 
-    private injectionCompleted = (): void => {
+    private onInjectionCompleted = (): void => {
         this.state.injectingInProgress = false;
         this.state.injectingStarted = false;
         this.emitChanged();
     };
 
-    private injectionStarted = (): void => {
+    private onInjectionStarted = (): void => {
         if (this.state.injectingStarted) {
             return;
         }

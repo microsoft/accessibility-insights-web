@@ -12,7 +12,7 @@ import { BaseDataBuilder } from './base-data-builder';
 export class VisualizationStoreDataBuilder extends BaseDataBuilder<VisualizationStoreData> {
     constructor() {
         super();
-        this.data = new VisualizationStore(null, null, new VisualizationConfigurationFactory()).getDefaultState();
+        this.data = new VisualizationStore(null, null, null, new VisualizationConfigurationFactory()).getDefaultState();
     }
 
     public withFocusedTarget(target: string[]): VisualizationStoreDataBuilder {

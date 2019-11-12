@@ -1,15 +1,27 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 @import '../../../../common/styles/colors.scss';
+@import '../../../../common/styles/fonts.scss';
 
-.h1 {
-    font-size: 21px;
-    line-height: 25px;
-    letter-spacing: -0.02em;
-}
+.header-section {
+    margin-top: 16px;
+    margin-bottom: 24px;
 
-.text {
-    font-size: 14px;
-    line-height: 16px;
-    color: $secondary-text;
+    .title {
+        font-family: $semiBoldFontFamily;
+        font-weight: $fontWeightSemiBold;
+        font-size: $fontSizeLML;
+        line-height: 25px;
+        letter-spacing: -0.02em;
+        color: $primary-text;
+        margin-top: 0;
+        margin-bottom: 8px;
+    }
+
+    .subtitle {
+        font-size: $fontSizeM;
+        line-height: 16px;
+        color: $secondary-text;
+        margin-bottom: 0;
+    }
 }

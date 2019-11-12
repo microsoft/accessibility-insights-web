@@ -5,6 +5,7 @@ import * as WebDriverIO from 'webdriverio';
 
 export interface ElementController {
     keys(keys: string): Promise<void>;
+    getAttribute(attributeName: string): Promise<string>;
 }
 
 export abstract class ViewController {
@@ -25,7 +26,7 @@ export abstract class ViewController {
         return await this.client.isEnabled(selector);
     }
 
-    public element(selector: string): ElementController {
+    public findElement(selector: string): ElementController {
         return this.client.element(selector);
     }
 }

@@ -1,6 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { noCardInteractionsSupported } from 'common/components/cards/card-interaction-support';
+import { NullComponent } from 'common/components/null-component';
 import { PropertyConfiguration } from 'common/configs/unified-result-property-configurations';
 import { EnvironmentInfo } from 'common/environment-info-provider';
 import { GetGuidanceTagsFromGuidanceLinks } from 'common/get-guidance-tags-from-guidance-links';
@@ -50,6 +51,7 @@ export class ReportHtmlGenerator {
                 getGuidanceTagsFromGuidanceLinks: this.getGuidanceTagsFromGuidanceLinks,
                 getPropertyConfigById: this.getPropertyConfiguration,
                 cardInteractionSupport: noCardInteractionsSupported,
+                cardsVisualizationModifierButtons: NullComponent,
             } as SectionDeps,
             cardsViewData: cardsViewData,
             environmentInfo: this.environmentInfo,

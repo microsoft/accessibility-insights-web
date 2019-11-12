@@ -146,10 +146,9 @@ export class Page {
 
     public async getShadowRootOfSelector(selector: string): Promise<Puppeteer.ElementHandle<Element>> {
         return await this.screenshotOnError(async () =>
-            (await this.underlyingPage.evaluateHandle(
-                selectorInEval => document.querySelector(selectorInEval).shadowRoot,
-                selector,
-            )).asElement(),
+            (
+                await this.underlyingPage.evaluateHandle(selectorInEval => document.querySelector(selectorInEval).shadowRoot, selector)
+            ).asElement(),
         );
     }
 

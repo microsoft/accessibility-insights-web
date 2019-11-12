@@ -80,17 +80,15 @@ exports[`AutomatedChecksView renders when status scan <Completed> 1`] = `
         />
       </main>
     </div>
-    <div
-      className="screenshotView"
-    >
-      <ScreenshotView
-        viewModel={
-          Object {
-            "deviceName": "this should appear in snapshotted ScreenshotView props",
-          }
+    <ScreenshotView
+      viewModel={
+        Object {
+          "screenshotData": Object {
+            "base64PngData": "this should appear in snapshotted ScreenshotView props",
+          },
         }
-      />
-    </div>
+      }
+    />
   </div>
 </div>
 `;

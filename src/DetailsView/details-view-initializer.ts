@@ -27,6 +27,7 @@ import { ReportGenerator } from 'reports/report-generator';
 import { ReportHtmlGenerator } from 'reports/report-html-generator';
 import { ReportNameGenerator } from 'reports/report-name-generator';
 
+import { CardsVisualizationModifierButtons } from 'common/components/cards/cards-visualization-modifier-buttons';
 import { A11YSelfValidator } from '../common/a11y-self-validator';
 import { AxeInfo } from '../common/axe-info';
 import { provideBlob } from '../common/blob-provider';
@@ -274,7 +275,11 @@ if (isNaN(tabId) === false) {
                 createIssueDetailsBuilder(PlainTextFormatter),
             );
 
-            const cardSelectionMessageCreator = new CardSelectionMessageCreator(actionMessageDispatcher);
+            const cardSelectionMessageCreator = new CardSelectionMessageCreator(
+                actionMessageDispatcher,
+                telemetryFactory,
+                TelemetryEventSource.DetailsView,
+            );
             const windowUtils = new WindowUtils();
 
             const fileURLProvider = new FileURLProvider(windowUtils, provideBlob);
@@ -335,6 +340,7 @@ if (isNaN(tabId) === false) {
                 navigatorUtils: navigatorUtils,
                 cardSelectionMessageCreator,
                 getCardSelectionViewData: getCardSelectionViewData,
+                cardsVisualizationModifierButtons: CardsVisualizationModifierButtons,
                 visualizationActionMessageCreator: visualizationActionCreator,
             };
 

@@ -64,8 +64,8 @@ export const getCardViewData: GetCardViewData = (
 
     return {
         cards: statusResults,
-        visualHelperEnabled: true,
-        allCardsCollapsed: true,
+        visualHelperEnabled: cardSelectionViewData.visualHelperEnabled,
+        allCardsCollapsed: cardSelectionViewData.expandedRuleIds.length === 0,
     };
 };
 

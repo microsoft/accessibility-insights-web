@@ -1,59 +1,38 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 import { ScreenshotData } from 'common/types/store-data/unified-data-interface';
-import { BoundingRectangle } from 'electron/platform/android/scan-results';
 import { ScreenshotContainer, ScreenshotContainerProps } from 'electron/views/screenshot/screenshot-container';
+import { HighlightBoxViewModel } from 'electron/views/screenshot/screenshot-view-model';
 import { shallow } from 'enzyme';
 import * as React from 'react';
 
 describe('ScreenshotContainer', () => {
     const basicScreenshotData: ScreenshotData = { base64PngData: 'test-base-64-png-data' };
 
-    describe('screenshot', () => {
-        it('renders when passed a value for screenshotData', () => {
-            const wrapper = shallow(<ScreenshotContainer screenshotData={basicScreenshotData} highlightBoxRectangles={[]} />);
+    it('renders per snapshot with no highlight boxes', () => {
+        const props: ScreenshotContainerProps = {
+            screenshotData: basicScreenshotData,
+            highlightBoxViewModels: [],
+        };
 
-            expect(wrapper.getElement()).toMatchSnapshot();
-        });
+        const wrapper = shallow(<ScreenshotContainer {...props} />);
 
-        const emptyScreenshotDataCases: ScreenshotData[] = [null, undefined, {} as ScreenshotData];
-
-        it.each(emptyScreenshotDataCases)(
-            'renders screenshot unavailable string when passed empty screenshotData %p',
-            (screenshotDataCase: ScreenshotData) => {
-                const wrapper = shallow(<ScreenshotContainer screenshotData={screenshotDataCase} highlightBoxRectangles={[]} />);
-
-                expect(wrapper.getElement()).toMatchSnapshot();
-            },
-        );
+        expect(wrapper.getElement()).toMatchSnapshot();
     });
 
-    describe('highlight boxes', () => {
-        it('do not render when highlightBoxRectangles array is empty', () => {
-            const props: ScreenshotContainerProps = {
-                screenshotData: basicScreenshotData,
-                highlightBoxRectangles: [],
-            };
+    it('renders per snapshot with highlight boxes', () => {
+        const highlightBoxViewModels: HighlightBoxViewModel[] = [
+            { resultUid: 'result-1', top: 'top-1', left: 'left-1', width: 'width-1', height: 'height-1' },
+            { resultUid: 'result-2', top: 'top-2', left: 'left-2', width: 'width-2', height: 'height-2' },
+        ];
 
-            const wrapper = shallow(<ScreenshotContainer {...props} />);
+        const props: ScreenshotContainerProps = {
+            screenshotData: basicScreenshotData,
+            highlightBoxViewModels,
+        };
 
-            expect(wrapper.getElement()).toMatchSnapshot();
-        });
+        const wrapper = shallow(<ScreenshotContainer {...props} />);
 
-        it('render when passed values for highlightBoxRectangles array', () => {
-            const highlightBoxRectangles: BoundingRectangle[] = [
-                { top: 0, bottom: 100, left: 0, right: 100 },
-                { top: 150, bottom: 200, left: 150, right: 300 },
-            ];
-
-            const props: ScreenshotContainerProps = {
-                screenshotData: basicScreenshotData,
-                highlightBoxRectangles: highlightBoxRectangles,
-            };
-
-            const wrapper = shallow(<ScreenshotContainer {...props} />);
-
-            expect(wrapper.getElement()).toMatchSnapshot();
-        });
+        expect(wrapper.getElement()).toMatchSnapshot();
     });
 });
