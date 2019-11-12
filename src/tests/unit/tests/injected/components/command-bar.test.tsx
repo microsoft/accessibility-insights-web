@@ -19,7 +19,10 @@ describe('CommandBar', () => {
         guidanceLinks: [
             {
                 text: 'WCAG-1.4.1',
-                tags: [{ id: 'some-id', displayText: 'some displayText' }, { id: 'some-other-id', displayText: 'some other displayText' }],
+                tags: [
+                    { id: 'some-id', displayText: 'some displayText' },
+                    { id: 'some-other-id', displayText: 'some other displayText' },
+                ],
             },
             { text: 'wcag-2.8.2' },
         ],

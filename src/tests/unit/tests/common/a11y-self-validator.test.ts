@@ -33,7 +33,12 @@ describe('A11YAutoCheckTest', () => {
         const scannerResultStub = getAxeScanResult();
 
         scannerUtilsMock
-            .setup(ksu => ksu.scan(null, It.is(param => typeof param === 'function')))
+            .setup(ksu =>
+                ksu.scan(
+                    null,
+                    It.is(param => typeof param === 'function'),
+                ),
+            )
             .callback((rules, handleAxeResult) => {
                 handleAxeResult(scannerResultStub);
             })

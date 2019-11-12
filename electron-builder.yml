@@ -5,7 +5,7 @@ directories:
     app: drop/electron/electron
 extraMetadata:
     main: product/bundle/main.bundle.js
-    name: ai-mobile
+    name: Accessibility Insights for Android
 mac:
     icon: extension/icons/brand/blue/brand-blue-512px.png
     target: dmg # can be changed to a zip, app or something else. ref: https://www.electron.build/configuration/mac

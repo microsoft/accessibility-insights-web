@@ -540,10 +540,10 @@
     "@types/tough-cookie" "*"
     parse5 "^4.0.0"
 
-"@types/lodash@^4.14.145":
-  version "4.14.145"
-  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.145.tgz#abcafe85788f1392c5d5a144142aaf8529ad6bb9"
-  integrity sha512-7lX5bZFO3YG3AG0XVIm5L1SB6wDLtuaJksTkTWrux3/XwCZgw3MPWZBt3Jgj0w98uqUXWVypT2msxo0A1t22lw==
+"@types/lodash@^4.14.146":
+  version "4.14.146"
+  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.146.tgz#de0d2c8610012f12a6a796455054cbc654f8fecf"
+  integrity sha512-JzJcmQ/ikHSv7pbvrVNKJU5j9jL9VLf3/gqs048CEnBVVVEv4kve3vLxoPHGvclutS+Il4SBIuQQ087m1eHffw==
 
 "@types/make-dir@^2.1.0":
   version "2.1.0"
@@ -2268,10 +2268,10 @@ copy-to-clipboard@^3:
   dependencies:
     toggle-selection "^1.0.6"
 
-core-js-bundle@^3.4.0:
-  version "3.4.0"
-  resolved "https://registry.yarnpkg.com/core-js-bundle/-/core-js-bundle-3.4.0.tgz#0e05620797674aa9bce8d24d99e40363e5f70f92"
-  integrity sha512-8OUXNI3HJPIdzDm1KCvo2YzHoLcPrY3eYYB6GqIjIs2C10vF+Z9gldFhL6Ku/4r0u/bCOlJET9Ug7lC+I7mGKg==
+core-js-bundle@^3.4.1:
+  version "3.4.1"
+  resolved "https://registry.yarnpkg.com/core-js-bundle/-/core-js-bundle-3.4.1.tgz#3f60fcc73af72d2d2dd0d271e465659811ee7ecf"
+  integrity sha512-PwRUfaT1LdYbqzZ9kJRhl1FY+bBUJC/OeZLMZ/XLykxKJg9jKJp9drRG+HsWv23D2S3yOLMaUGTjUr9oy15yxw==
 
 core-js@^2.4.0, core-js@^2.4.1, core-js@^2.5.3:
   version "2.6.9"
@@ -7169,10 +7169,10 @@ preprocess@^3.1.0:
   dependencies:
     xregexp "3.1.0"
 
-prettier@^1.18.0:
-  version "1.18.2"
-  resolved "https://registry.yarnpkg.com/prettier/-/prettier-1.18.2.tgz#6823e7c5900017b4bd3acf46fe9ac4b4d7bda9ea"
-  integrity sha512-OeHeMc0JhFE9idD4ZdtNibzY0+TPHSpSSb9h8FqtP+YnoZZ1sl8Vc9b1sasjfymH3SonAF4QcA2+mzHPhMvIiw==
+prettier@^1.19.1:
+  version "1.19.1"
+  resolved "https://registry.yarnpkg.com/prettier/-/prettier-1.19.1.tgz#f7d7f5ff8a9cd872a7be4ca142095956a60797cb"
+  integrity sha512-s7PoyDv/II1ObgQunCbB9PdLmUcBZcnWOcxDh7O0N/UwDEsHyqkW+Qh28jW+mVuCdx7gLB0BotYI1Y6uI9iyew==
 
 pretty-bytes@^1.0.2:
   version "1.0.4"
