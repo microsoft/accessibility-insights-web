@@ -3,6 +3,7 @@
 import { AssessmentsProviderImpl } from 'assessments/assessments-provider';
 import { AssessmentsProvider } from 'assessments/types/assessments-provider';
 import { Assessment } from 'assessments/types/iassessment';
+import { VisualizationActionMessageCreator } from 'common/message-creators/visualization-action-message-creator';
 import { NamedFC, ReactFCWithDisplayName } from 'common/react/named-fc';
 import { DetailsViewSwitcherNavConfiguration } from 'DetailsView/components/details-view-switcher-nav';
 import { ExportDialogDeps } from 'DetailsView/components/export-dialog';
@@ -25,7 +26,6 @@ import {
 } from '../../../../../DetailsView/components/details-view-command-bar';
 import { DetailsRightPanelConfiguration } from '../../../../../DetailsView/components/details-view-right-panel';
 import { ReportExportComponent, ReportExportComponentProps } from '../../../../../DetailsView/components/report-export-component';
-import { VisualizationActionMessageCreator } from 'common/message-creators/visualization-action-message-creator';
 
 describe('DetailsViewCommandBar', () => {
     const theDate = new Date(2019, 2, 12, 9, 0);
