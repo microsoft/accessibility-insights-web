@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`DetailsViewCommandBar renders with export button and dialog 1`] = `
+exports[`DetailsViewCommandBar renders with export button, with start over 1`] = `
 "<div className=\\"details-view-command-bar\\">
   <div className=\\"details-view-target-page\\">
     Target page: 
@@ -25,7 +25,45 @@ exports[`DetailsViewCommandBar renders with export button and dialog 1`] = `
 </div>"
 `;
 
-exports[`DetailsViewCommandBar renders without export button or dialog 1`] = `
+exports[`DetailsViewCommandBar renders with export button, without start over 1`] = `
+"<div className=\\"details-view-command-bar\\">
+  <div className=\\"details-view-target-page\\">
+    Target page: 
+    <StyledLinkBase role=\\"link\\" title=\\"Switch to target page\\" className=\\"insights-link target-page-link\\" onClick={[Function: proxy]}>
+      command-bar-test-tab-title
+    </StyledLinkBase>
+  </div>
+  <div className=\\"details-view-command-buttons\\">
+    <ReportExportComponent deps={{...}} reportGenerator={[Function: function () {
+                        var args = [];
+                        for (var _i = 0; _i < arguments.length; _i++) {
+                            args[_i] = arguments[_i];
+                        }
+                        _this._interceptor.removeInvocation(invocation_1);
+                        var method = new MethodInfo(target, p);
+                        var methodInvocation = new MethodInvocation(target, method, args, ProxyType.DYNAMIC);
+                        _this._interceptor.intercept(methodInvocation);
+                        return methodInvocation.returnValue;
+                    }]} pageTitle=\\"command-bar-test-tab-title\\" exportResultsType=\\"Assessment\\" scanDate={{...}} htmlGenerator={[Function: htmlGenerator]} updatePersistedDescription={[Function: updatePersistedDescription]} getExportDescription={[Function: getExportDescription]} />
+  </div>
+</div>"
+`;
+
+exports[`DetailsViewCommandBar renders without export button, with start over 1`] = `
+"<div className=\\"details-view-command-bar\\">
+  <div className=\\"details-view-target-page\\">
+    Target page: 
+    <StyledLinkBase role=\\"link\\" title=\\"Switch to target page\\" className=\\"insights-link target-page-link\\" onClick={[Function: proxy]}>
+      command-bar-test-tab-title
+    </StyledLinkBase>
+  </div>
+  <div className=\\"details-view-command-buttons\\">
+    <StartOverDropdown buttonCaption=\\"a caption\\" />
+  </div>
+</div>"
+`;
+
+exports[`DetailsViewCommandBar renders without export button, without start over 1`] = `
 "<div className=\\"details-view-command-bar\\">
   <div className=\\"details-view-target-page\\">
     Target page: 

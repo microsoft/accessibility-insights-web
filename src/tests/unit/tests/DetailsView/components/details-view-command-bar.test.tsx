@@ -106,12 +106,20 @@ describe('DetailsViewCommandBar', () => {
         };
     }
 
-    test('renders with export button and dialog', () => {
-        testOnPivot(true);
+    test('renders with export button, with start over', () => {
+        testOnPivot(true, true);
     });
 
-    test('renders without export button or dialog', () => {
-        testOnPivot(false);
+    test('renders without export button, without start over', () => {
+        testOnPivot(false, false);
+    });
+
+    test('renders with export button, without start over', () => {
+        testOnPivot(true, false);
+    });
+
+    test('renders without export button, with start over', () => {
+        testOnPivot(false, true);
     });
 
     test('renders null when tab closed', () => {
@@ -120,12 +128,12 @@ describe('DetailsViewCommandBar', () => {
         expect(render()).toBeNull();
     });
 
-    function testOnPivot(givenRenderExportAndStartOver: boolean): void {
+    function testOnPivot(renderExportResults: boolean, renderStartOver: boolean): void {
         const theHtml = 'this is the HTML';
         let theDescription = null;
         let reportProps: ReportExportComponentProps = null;
         let startOverProps: StartOverComponentProps = null;
-        if (givenRenderExportAndStartOver) {
+        if (renderExportResults) {
             reportProps = {
                 deps: {} as ExportDialogDeps,
                 reportGenerator: reportGeneratorMock.object,
@@ -139,7 +147,9 @@ describe('DetailsViewCommandBar', () => {
                 updatePersistedDescription: () => null,
                 getExportDescription: () => descriptionPlaceholder,
             };
+        }
 
+        if (renderStartOver) {
             startOverProps = {
                 deps: {} as StartOverComponentDeps,
                 render: true,
@@ -155,7 +165,7 @@ describe('DetailsViewCommandBar', () => {
 
         expect(rendered.debug()).toMatchSnapshot();
 
-        if (givenRenderExportAndStartOver) {
+        if (renderExportResults) {
             expect(
                 rendered
                     .find(ReportExportComponent)

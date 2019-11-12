@@ -77,18 +77,38 @@ export class DetailsViewCommandBar extends React.Component<DetailsViewCommandBar
     }
 
     private renderCommandButtons(): JSX.Element {
-        const reportExportComponentProps = this.props.switcherNavConfiguration.ReportExportComponentPropertyFactory(this.props);
-        const startOverComponentProps = this.props.switcherNavConfiguration.StartOverComponentPropertyFactory(this.props);
+        const reportExportElement: JSX.Element = this.renderExportComponent();
+        const startOverElement: JSX.Element = this.renderStartOverComponent();
 
-        if (!reportExportComponentProps || !startOverComponentProps || !startOverComponentProps.render) {
-            return null;
+        if (reportExportElement || startOverElement) {
+            return (
+                <div className="details-view-command-buttons">
+                    {reportExportElement}
+                    {startOverElement}
+                </div>
+            );
         }
 
-        return (
-            <div className="details-view-command-buttons">
-                <ReportExportComponent {...reportExportComponentProps} />
-                <StartOverDropdown {...startOverComponentProps.startOverProps} />
-            </div>
-        );
+        return null;
+    }
+
+    private renderExportComponent(): JSX.Element {
+        const reportExportComponentProps = this.props.switcherNavConfiguration.ReportExportComponentPropertyFactory(this.props);
+
+        if (reportExportComponentProps) {
+            return <ReportExportComponent {...reportExportComponentProps} />;
+        }
+
+        return null;
+    }
+
+    private renderStartOverComponent(): JSX.Element {
+        const startOverComponentProps = this.props.switcherNavConfiguration.StartOverComponentPropertyFactory(this.props);
+
+        if (startOverComponentProps && startOverComponentProps.render) {
+            return <StartOverDropdown {...startOverComponentProps.startOverProps} />;
+        }
+
+        return null;
     }
 }
