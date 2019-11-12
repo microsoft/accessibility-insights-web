@@ -7,13 +7,15 @@ import * as React from 'react';
 import { ScreenshotViewModel } from './screenshot-view-model';
 import * as styles from './screenshot-view.scss';
 
+export const screenshotViewAutomationId = 'screenshot-view';
+
 export type ScreenshotViewProps = { viewModel: ScreenshotViewModel };
 
 export const ScreenshotView = NamedFC<ScreenshotViewProps>('ScreenshotView', (props: ScreenshotViewProps) => {
     const isUnavailable = isEmpty(props.viewModel.screenshotData);
 
     return (
-        <div role="complementary" className={styles.screenshotView}>
+        <div role="complementary" className={styles.screenshotView} data-automation-id={screenshotViewAutomationId}>
             {renderHeader()}
             {isUnavailable ? renderUnavailableMessage() : renderScreenshotContainer(props.viewModel)}
         </div>
