@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 
 import { FeatureFlags } from 'common/feature-flags';
+import { SupportedMouseEvent } from 'common/telemetry-data-factory';
 import { VisualizationType } from 'common/types/visualization-type';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import { CommandBarProps } from 'DetailsView/components/details-view-command-bar';
@@ -38,14 +39,20 @@ export function getStartOverComponentForFastPass(props: CommandBarProps): JSX.El
     const actionMessageCreator = props.actionMessageCreator;
 
     const element: JSX.Element = (
-        <ActionButton onClick={() => onClickFastPass(actionMessageCreator, selectedTest)}>Start over</ActionButton>
+        <ActionButton
+            iconProps={{ iconName: 'Refresh' }}
+            onClick={(event: SupportedMouseEvent) => onClickFastPass(event, actionMessageCreator, selectedTest)}
+        >
+            Start over
+        </ActionButton>
     );
     return element;
 }
 
-function onClickFastPass(actionMessageCreator: DetailsViewActionMessageCreator, selectedTest: VisualizationType): void {
-    let x: number = 4;
-    if (x > 3) {
-        x = 0;
-    }
+function onClickFastPass(
+    event: SupportedMouseEvent,
+    actionMessageCreator: DetailsViewActionMessageCreator,
+    selectedTest: VisualizationType,
+): void {
+    actionMessageCreator.rescanVisualization(selectedTest, event);
 }
