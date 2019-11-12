@@ -32,10 +32,10 @@ export function getReportExportComponentPropsForFastPass(props: CommandBarProps)
     let reportExportComponentProps: ReportExportComponentProps = null;
 
     if (props.featureFlagStoreData[FeatureFlags.universalCardsUI]) {
-        const { deps, visualizationScanResultData, tabStoreData } = props;
-        const scanResult = visualizationScanResultData.issues.scanResult;
+        const scanResult = props.visualizationScanResultData.issues.scanResult;
 
-        if (scanResult != null) {
+        if (scanResult) {
+            const { deps, tabStoreData } = props;
             const scanDate = deps.getDateFromTimestamp(scanResult.timestamp);
             const reportGenerator = deps.reportGenerator;
 

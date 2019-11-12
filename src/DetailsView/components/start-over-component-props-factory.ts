@@ -6,13 +6,15 @@ import { CommandBarProps } from 'DetailsView/components/details-view-command-bar
 import { StartOverComponentDeps, StartOverComponentProps } from 'DetailsView/components/start-over-component';
 import { StartOverProps } from 'DetailsView/components/start-over-dropdown';
 
+const StartOver: string = 'Start over';
+
 export function getStartOverComponentPropsForAssessment(props: CommandBarProps): StartOverComponentProps {
     const selectedTest = props.assessmentStoreData.assessmentNavState.selectedTestType;
     const test = props.assessmentsProvider.forType(selectedTest);
     const deps: StartOverComponentDeps = props.deps;
     const startOverProps: StartOverProps = {
         deps: deps,
-        buttonCaption: 'Start over',
+        buttonCaption: StartOver,
         hasDropdown: true,
         testName: test.title,
         test: selectedTest,
@@ -28,11 +30,15 @@ export function getStartOverComponentPropsForAssessment(props: CommandBarProps):
 }
 
 export function getStartOverComponentPropsForFastPass(props: CommandBarProps): StartOverComponentProps {
+    if (!props.visualizationScanResultData.issues.scanResult) {
+        return null;
+    }
+
     const selectedTest = props.visualizationStoreData.selectedFastPassDetailsView;
     const deps: StartOverComponentDeps = props.deps;
     const startOverProps: StartOverProps = {
         deps: deps,
-        buttonCaption: 'Rescan',
+        buttonCaption: StartOver,
         hasDropdown: false,
         testName: '',
         test: selectedTest,
