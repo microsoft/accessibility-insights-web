@@ -3,8 +3,6 @@
 
 import { FeatureFlags } from 'common/feature-flags';
 import { SupportedMouseEvent } from 'common/telemetry-data-factory';
-import { VisualizationType } from 'common/types/visualization-type';
-import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import { CommandBarProps } from 'DetailsView/components/details-view-command-bar';
 import { StartOverDropdown, StartOverProps } from 'DetailsView/components/start-over-dropdown';
 import { ActionButton } from 'office-ui-fabric-react/lib/Button';
@@ -41,17 +39,9 @@ export function getStartOverComponentForFastPass(props: CommandBarProps): JSX.El
     return (
         <ActionButton
             iconProps={{ iconName: 'Refresh' }}
-            onClick={(event: SupportedMouseEvent) => onClickFastPass(event, actionMessageCreator, selectedTest)}
+            onClick={(event: SupportedMouseEvent) => actionMessageCreator.rescanVisualization(selectedTest, event)}
         >
             Start over
         </ActionButton>
     );
-}
-
-function onClickFastPass(
-    event: SupportedMouseEvent,
-    actionMessageCreator: DetailsViewActionMessageCreator,
-    selectedTest: VisualizationType,
-): void {
-    actionMessageCreator.rescanVisualization(selectedTest, event);
 }
