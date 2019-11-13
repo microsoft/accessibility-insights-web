@@ -111,10 +111,6 @@ describe('ReportExportComponentPropsFactory', () => {
             .returns(() => theGeneratorOutput);
     }
 
-    function setCardsUiFlag(flag: boolean): void {
-        featureFlagStoreData['universalCardsUI'] = true;
-    }
-
     function setSelectedFastPassDetailsView(test: VisualizationType): void {
         visualizationStoreData = {
             selectedFastPassDetailsView: test,
@@ -138,23 +134,14 @@ describe('ReportExportComponentPropsFactory', () => {
         actionMessageCreatorMock.verifyAll();
     });
 
-    test('getReportExportComponentForFastPass, CardsUI is false, props is null', () => {
+    test('getReportExportComponentForFastPass, scanResults is null, props is null', () => {
         const props = getProps();
         const component: JSX.Element = getReportExportComponentForFastPass(props);
 
         expect(component).toBeNull();
     });
 
-    test('getReportExportComponentForFastPass, CardsUI is true, scanResults is null, props is null', () => {
-        setCardsUiFlag(true);
-        const props = getProps();
-        const component: JSX.Element = getReportExportComponentForFastPass(props);
-
-        expect(component).toBeNull();
-    });
-
-    test('getReportExportComponentForFastPass, CardsUI is true, scanResults is not null, test is Tabstop, props is null', () => {
-        setCardsUiFlag(true);
+    test('getReportExportComponentForFastPass, scanResults is not null, test is Tabstop, props is null', () => {
         setScanResults();
         setSelectedFastPassDetailsView(VisualizationType.TabStops);
         const props = getProps();
@@ -163,9 +150,8 @@ describe('ReportExportComponentPropsFactory', () => {
         expect(component).toBeNull();
     });
 
-    test('getReportExportComponentForFastPass, CardsUI is true, scanResults is not null, test is Issues, properties are set', () => {
+    test('getReportExportComponentForFastPass, scanResults is not null, test is Issues, properties are set', () => {
         cardsViewData = {} as CardsViewModel;
-        setCardsUiFlag(true);
         setScanResults();
         setSelectedFastPassDetailsView(VisualizationType.Issues);
         setAutomatedChecksReportGenerator();

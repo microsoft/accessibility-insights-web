@@ -1,7 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-import { FeatureFlags } from 'common/feature-flags';
 import { SupportedMouseEvent } from 'common/telemetry-data-factory';
 import { CommandBarProps } from 'DetailsView/components/details-view-command-bar';
 import { StartOverDropdown, StartOverProps } from 'DetailsView/components/start-over-dropdown';
@@ -25,10 +24,6 @@ export function getStartOverComponentForAssessment(props: CommandBarProps): JSX.
 }
 
 export function getStartOverComponentForFastPass(props: CommandBarProps): JSX.Element {
-    if (!props.featureFlagStoreData[FeatureFlags.universalCardsUI]) {
-        return null;
-    }
-
     if (!props.visualizationScanResultData.issues.scanResult) {
         return null;
     }

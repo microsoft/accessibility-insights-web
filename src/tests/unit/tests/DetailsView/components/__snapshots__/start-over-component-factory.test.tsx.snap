@@ -9,7 +9,7 @@ exports[`StartOverComponentPropsFactory getStartOverComponentPropsForAssessment,
 />
 `;
 
-exports[`StartOverComponentPropsFactory getStartOverComponentPropsForFastPass, CardsUI is true, scanResults is not null, scanning is false, component matches snapshot 1`] = `
+exports[`StartOverComponentPropsFactory getStartOverComponentPropsForFastPass, scanResults is not null, scanning is false, component matches snapshot 1`] = `
 <CustomizedActionButton
   disabled={false}
   iconProps={
@@ -23,7 +23,7 @@ exports[`StartOverComponentPropsFactory getStartOverComponentPropsForFastPass, C
 </CustomizedActionButton>
 `;
 
-exports[`StartOverComponentPropsFactory getStartOverComponentPropsForFastPass, CardsUI is true, scanResults is not null, scanning is true, component matches snapshot 1`] = `
+exports[`StartOverComponentPropsFactory getStartOverComponentPropsForFastPass, scanResults is not null, scanning is true, component matches snapshot 1`] = `
 <CustomizedActionButton
   disabled={true}
   iconProps={
