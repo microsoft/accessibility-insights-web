@@ -38,7 +38,7 @@ export function getStartOverComponentForFastPass(props: CommandBarProps): JSX.El
     const selectedTest = props.visualizationStoreData.selectedFastPassDetailsView;
     const actionMessageCreator = props.actionMessageCreator;
 
-    const element: JSX.Element = (
+    return (
         <ActionButton
             iconProps={{ iconName: 'Refresh' }}
             onClick={(event: SupportedMouseEvent) => onClickFastPass(event, actionMessageCreator, selectedTest)}
@@ -46,7 +46,6 @@ export function getStartOverComponentForFastPass(props: CommandBarProps): JSX.El
             Start over
         </ActionButton>
     );
-    return element;
 }
 
 function onClickFastPass(

@@ -25,24 +25,4 @@ export class VisualizationActionMessageCreator {
 
         this.dispatcher.dispatchMessage(message);
     }
-
-    private setVisualizationStateForRescan(
-        test: VisualizationType,
-        enabled: boolean,
-        source: TelemetryEventSource,
-        triggeredBy: TriggeredBy,
-    ): void {
-        const telemetry: ToggleTelemetryData = {
-            source: source,
-            triggeredBy: triggeredBy,
-            enabled,
-        };
-
-        this.setVisualizationState(test, enabled, telemetry);
-    }
-
-    public rescanVisualization(test: VisualizationType, source: TelemetryEventSource, triggeredBy: TriggeredBy): void {
-        this.setVisualizationStateForRescan(test, false, source, triggeredBy);
-        this.setVisualizationStateForRescan(test, true, source, triggeredBy);
-    }
 }
