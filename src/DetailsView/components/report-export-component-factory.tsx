@@ -27,8 +27,7 @@ export function getReportExportComponentForAssessment(props: CommandBarProps): J
         getExportDescription: () => props.assessmentStoreData.resultDescription,
     };
 
-    const x: JSX.Element = <ReportExportComponent {...reportExportComponentProps} />;
-    return x;
+    return <ReportExportComponent {...reportExportComponentProps} />;
 }
 
 export function getReportExportComponentForFastPass(props: CommandBarProps): JSX.Element {
@@ -65,6 +64,5 @@ export function getReportExportComponentForFastPass(props: CommandBarProps): JSX
         getExportDescription: () => '',
     };
 
-    const x: JSX.Element = <ReportExportComponent {...reportExportComponentProps} />;
-    return x;
+    return <ReportExportComponent {...reportExportComponentProps} />;
 }
