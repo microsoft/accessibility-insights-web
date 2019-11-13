@@ -12,6 +12,7 @@ import {
     getReportExportComponentForAssessment,
     getReportExportComponentForFastPass,
 } from 'DetailsView/components/report-export-component-factory';
+import { shallow } from 'enzyme';
 import { ReportGenerator } from 'reports/report-generator';
 import { ScanResults } from 'scanner/iruleresults';
 import { IMock, Mock, MockBehavior } from 'typemoq';
@@ -67,10 +68,10 @@ describe('ReportExportComponentPropsFactory', () => {
         return {
             deps,
             featureFlagStoreData,
-            actionMessageCreator: actionMessageCreatorMock.object,
-            assessmentsProvider: assessmentsProviderMock.object,
             tabStoreData,
+            actionMessageCreator: actionMessageCreatorMock.object,
             assessmentStoreData,
+            assessmentsProvider: assessmentsProviderMock.object,
             visualizationScanResultData,
             cardsViewData,
         } as DetailsViewCommandBarProps;
@@ -112,9 +113,9 @@ describe('ReportExportComponentPropsFactory', () => {
     test('getReportExportComponentForAssessment expected properties are set', () => {
         setAssessmentReportGenerator();
         const props = getProps();
-        const rendered: JSX.Element = getReportExportComponentForAssessment(props);
+        const wrapper = shallow(getReportExportComponentForAssessment(props));
 
-        expect(rendered).toMatchSnapshot();
+        expect(wrapper.getElement()).toMatchSnapshot();
 
         reportGeneratorMock.verifyAll();
         actionMessageCreatorMock.verifyAll();
@@ -122,17 +123,17 @@ describe('ReportExportComponentPropsFactory', () => {
 
     test('getReportExportComponentForFastPass, CardsUI is false, props is null', () => {
         const props = getProps();
-        const rendered: JSX.Element = getReportExportComponentForFastPass(props);
+        const component: JSX.Element = getReportExportComponentForFastPass(props);
 
-        expect(rendered).toBeNull();
+        expect(component).toBeNull();
     });
 
     test('getReportExportComponentForFastPass, CardsUI is true, scanResults is null, props is null', () => {
         setCardsUiFlag(true);
         const props = getProps();
-        const rendered: JSX.Element = getReportExportComponentForFastPass(props);
+        const component: JSX.Element = getReportExportComponentForFastPass(props);
 
-        expect(rendered).toBeNull();
+        expect(component).toBeNull();
     });
 
     test('getReportExportComponentForFastPass, CardsUI is true, scanResults is not null, expected properties are set', () => {
@@ -144,9 +145,10 @@ describe('ReportExportComponentPropsFactory', () => {
         setCardsUiFlag(true);
         setAutomatedChecksReportGenerator();
         const props = getProps();
-        const rendered: JSX.Element = getReportExportComponentForFastPass(props);
+        const wrapper = shallow(getReportExportComponentForFastPass(props));
 
-        expect(rendered).toMatchSnapshot();
+        const x = wrapper.getElement();
+        expect(x).toMatchSnapshot();
 
         reportGeneratorMock.verifyAll();
         actionMessageCreatorMock.verifyAll();
