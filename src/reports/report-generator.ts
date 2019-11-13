@@ -22,7 +22,7 @@ export class ReportGenerator {
         return this.reportNameGenerator.generateName(baseName, scanDate, pageTitle);
     }
 
-    public generateFastPassAutomateChecksReport(
+    public generateFastPassAutomatedChecksReport(
         scanResult: ScanResults,
         scanDate: Date,
         pageTitle: string,

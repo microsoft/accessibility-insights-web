@@ -54,7 +54,7 @@ export function getReportExportComponentForFastPass(props: CommandBarProps): JSX
         pageTitle: tabStoreData.title,
         exportResultsType: 'AutomatedChecks',
         htmlGenerator: description =>
-            reportGenerator.generateFastPassAutomateChecksReport(
+            reportGenerator.generateFastPassAutomatedChecksReport(
                 scanResult,
                 scanDate,
                 tabStoreData.title,
