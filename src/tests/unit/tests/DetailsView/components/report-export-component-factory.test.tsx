@@ -37,7 +37,7 @@ describe('ReportExportComponentPropsFactory', () => {
 
     beforeEach(() => {
         featureFlagStoreData = {};
-        actionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator, MockBehavior.Loose);
+        actionMessageCreatorMock = Mock.ofType(DetailsViewActionMessageCreator, MockBehavior.Strict);
         tabStoreData = {
             title: thePageTitle,
             url: thePageUrl,
