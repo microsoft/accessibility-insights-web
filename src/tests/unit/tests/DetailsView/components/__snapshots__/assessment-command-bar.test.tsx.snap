@@ -4,7 +4,7 @@ exports[`getAssessementCommandBar  should return DetailsViewCommandBar with deps
 <DetailsViewCommandBar
   switcherNavConfiguration={
     Object {
-      "ReportExportComponentPropertyFactory": [Function],
+      "ReportExportComponentFactory": [Function],
       "StartOverComponentFactory": [Function],
     }
   }

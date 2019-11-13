@@ -29,6 +29,7 @@ import { TabStoreDataBuilder } from '../../common/tab-store-data-builder';
 import { VisualizationScanResultStoreDataBuilder } from '../../common/visualization-scan-result-store-data-builder';
 import { VisualizationStoreDataBuilder } from '../../common/visualization-store-data-builder';
 import { exampleUnifiedStatusResults } from '../common/components/cards/sample-view-model-data';
+import { HeapCodeStatistics } from 'v8';
 
 describe('DetailsViewBody', () => {
     let selectedTest: VisualizationType;
@@ -41,7 +42,6 @@ describe('DetailsViewBody', () => {
     let props: DetailsViewBodyProps;
     let rightPanelConfig: DetailsRightPanelConfiguration;
     let switcherNavConfig: DetailsViewSwitcherNavConfiguration;
-    let reportExportComponentProps: ReportExportComponentProps;
 
     describe('render', () => {
         beforeEach(() => {
@@ -49,13 +49,12 @@ describe('DetailsViewBody', () => {
             const RightPanelStub: Readonly<ReactFCWithDisplayName<DetailsViewBodyProps>> = NamedFC<DetailsViewBodyProps>('test', _ => null);
             const CommandBarStub: Readonly<ReactFCWithDisplayName<DetailsViewBodyProps>> = NamedFC<DetailsViewBodyProps>('test', _ => null);
             const LeftNavStub: Readonly<ReactFCWithDisplayName<DetailsViewBodyProps>> = NamedFC<DetailsViewBodyProps>('test', _ => null);
-            reportExportComponentProps = null;
             rightPanelConfig = {
                 RightPanel: RightPanelStub,
             } as DetailsRightPanelConfiguration;
             switcherNavConfig = {
                 CommandBar: CommandBarStub,
-                ReportExportComponentPropertyFactory: p => reportExportComponentProps,
+                ReportExportComponentFactory: p => null,
                 StartOverComponentFactory: p => null,
                 LeftNav: LeftNavStub,
             } as DetailsViewSwitcherNavConfiguration;

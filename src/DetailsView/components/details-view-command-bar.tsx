@@ -14,7 +14,7 @@ import { FeatureFlagStoreData } from '../../common/types/store-data/feature-flag
 import { TabStoreData } from '../../common/types/store-data/tab-store-data';
 import { DetailsViewActionMessageCreator } from '../actions/details-view-action-message-creator';
 import { DetailsRightPanelConfiguration } from './details-view-right-panel';
-import { ReportExportComponent, ReportExportComponentDeps, ReportExportComponentProps } from './report-export-component';
+import { ReportExportComponentDeps } from './report-export-component';
 
 export type DetailsViewCommandBarDeps = ReportExportComponentDeps & {
     getCurrentDate: () => Date;
@@ -24,7 +24,7 @@ export type DetailsViewCommandBarDeps = ReportExportComponentDeps & {
 
 export type CommandBarProps = DetailsViewCommandBarProps;
 
-export type ReportExportComponentPropertyFactory = (props: CommandBarProps) => ReportExportComponentProps;
+export type ReportExportComponentFactory = (props: CommandBarProps) => JSX.Element;
 
 export type StartOverComponentFactory = (props: CommandBarProps) => JSX.Element;
 
@@ -90,13 +90,7 @@ export class DetailsViewCommandBar extends React.Component<DetailsViewCommandBar
     }
 
     private renderExportComponent(): JSX.Element {
-        const reportExportComponentProps = this.props.switcherNavConfiguration.ReportExportComponentPropertyFactory(this.props);
-
-        if (reportExportComponentProps) {
-            return <ReportExportComponent {...reportExportComponentProps} />;
-        }
-
-        return null;
+        return this.props.switcherNavConfiguration.ReportExportComponentFactory(this.props);
     }
 
     private renderStartOverComponent(): JSX.Element {
