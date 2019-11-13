@@ -3,7 +3,7 @@
 import { VisualizationTogglePayload } from 'background/actions/action-payloads';
 import { ActionMessageDispatcher } from 'common/message-creators/types/dispatcher';
 
-import { TelemetryEventSource, ToggleTelemetryData, TriggeredBy } from '../extension-telemetry-events';
+import { ToggleTelemetryData } from '../extension-telemetry-events';
 import { Message } from '../message';
 import { Messages } from '../messages';
 import { VisualizationType } from '../types/visualization-type';
