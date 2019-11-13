@@ -115,7 +115,7 @@ describe('ReportExportComponentPropsFactory', () => {
         const props = getProps();
         const wrapper = shallow(getReportExportComponentForAssessment(props));
 
-        expect(wrapper.getElement()).toMatchSnapshot();
+        expect(wrapper.debug()).toMatchSnapshot();
 
         reportGeneratorMock.verifyAll();
         actionMessageCreatorMock.verifyAll();
@@ -147,8 +147,7 @@ describe('ReportExportComponentPropsFactory', () => {
         const props = getProps();
         const wrapper = shallow(getReportExportComponentForFastPass(props));
 
-        const x = wrapper.getElement();
-        expect(x).toMatchSnapshot();
+        expect(wrapper.debug()).toMatchSnapshot();
 
         reportGeneratorMock.verifyAll();
         actionMessageCreatorMock.verifyAll();
