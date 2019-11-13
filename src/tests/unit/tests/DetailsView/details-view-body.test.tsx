@@ -5,7 +5,6 @@ import { IMock, Mock, MockBehavior } from 'typemoq';
 
 import { FeatureFlagStore } from 'background/stores/global/feature-flag-store';
 import { DetailsViewCommandBarDeps } from 'DetailsView/components/details-view-command-bar';
-import { ReportExportComponentProps } from 'DetailsView/components/report-export-component';
 import { VisualizationConfiguration } from '../../../../common/configs/visualization-configuration';
 import { VisualizationConfigurationFactory } from '../../../../common/configs/visualization-configuration-factory';
 import { NamedFC, ReactFCWithDisplayName } from '../../../../common/react/named-fc';
@@ -29,7 +28,6 @@ import { TabStoreDataBuilder } from '../../common/tab-store-data-builder';
 import { VisualizationScanResultStoreDataBuilder } from '../../common/visualization-scan-result-store-data-builder';
 import { VisualizationStoreDataBuilder } from '../../common/visualization-store-data-builder';
 import { exampleUnifiedStatusResults } from '../common/components/cards/sample-view-model-data';
-import { HeapCodeStatistics } from 'v8';
 
 describe('DetailsViewBody', () => {
     let selectedTest: VisualizationType;
