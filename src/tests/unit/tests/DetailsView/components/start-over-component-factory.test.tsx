@@ -115,7 +115,7 @@ describe('StartOverComponentPropsFactory', () => {
     test('getStartOverComponentPropsForFastPass, CardsUI is true, scanResults is not null, scanning is true, component matches snapshot', () => {
         setScanResult();
         setCardsUiFlag(true);
-        scanning = 'true';
+        scanning = 'some string';
         const props = getProps(false);
         const rendered = getStartOverComponentForFastPass(props);
 
