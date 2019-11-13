@@ -3,6 +3,9 @@
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
 
 export class PermissionsEnsurer {
+    public static noPermissionsMessageEnding = 'Extension manifest must request permission to access this host.';
+    public static noUserGestureMessage = 'This function must be called during a user gesture';
+
     constructor(private readonly browserAdapter: BrowserAdapter) {}
 
     public async ensureInjectPermissions(tabId: number): Promise<boolean> {
@@ -31,7 +34,7 @@ export class PermissionsEnsurer {
 
             return true;
         } catch (error) {
-            if (error.message.endsWith('Extension manifest must request permission to access this host.')) {
+            if (error.message.endsWith(PermissionsEnsurer.noPermissionsMessageEnding)) {
                 return false;
             }
 
@@ -40,14 +43,24 @@ export class PermissionsEnsurer {
     }
 
     private requestPermissions(tabId: number): Promise<boolean> {
-        return new Promise(resolve => {
-            this.browserAdapter.getTab(tabId, tab => {
+        return new Promise((resolve, reject) => {
+            this.browserAdapter.getTab(tabId, async tab => {
                 const tabUrl = new URL(tab.url);
                 const permissionsToRequest = {
                     origins: [`${tabUrl.origin}/`],
                 };
 
-                return this.browserAdapter.requestPermissions(permissionsToRequest).then(resolve);
+                try {
+                    await this.browserAdapter.requestPermissions(permissionsToRequest).then(resolve);
+                } catch (error) {
+                    // we treat the no user gesture error as if the user denied permissions
+                    if (error.message.endsWith(PermissionsEnsurer.noUserGestureMessage)) {
+                        resolve(false);
+                        return;
+                    }
+
+                    reject(error.message);
+                }
             });
         });
     }
