@@ -7,6 +7,7 @@ import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store
 import { TabStoreData } from 'common/types/store-data/tab-store-data';
 import { VisualizationScanResultData } from 'common/types/store-data/visualization-scan-result-data';
 import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
+import { VisualizationType } from 'common/types/visualization-type';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import { DetailsViewCommandBarDeps, DetailsViewCommandBarProps } from 'DetailsView/components/details-view-command-bar';
 import {
@@ -17,7 +18,6 @@ import { shallow } from 'enzyme';
 import { ReportGenerator } from 'reports/report-generator';
 import { ScanResults } from 'scanner/iruleresults';
 import { IMock, Mock, MockBehavior } from 'typemoq';
-import { VisualizationType } from 'common/types/visualization-type';
 
 describe('ReportExportComponentPropsFactory', () => {
     const theDate = new Date(2019, 2, 12, 9, 0);
