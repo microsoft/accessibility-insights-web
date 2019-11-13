@@ -6,6 +6,7 @@ import { CardsViewModel } from 'common/types/store-data/card-view-model';
 import { FeatureFlagStoreData } from 'common/types/store-data/feature-flag-store-data';
 import { TabStoreData } from 'common/types/store-data/tab-store-data';
 import { VisualizationScanResultData } from 'common/types/store-data/visualization-scan-result-data';
+import { VisualizationStoreData } from 'common/types/store-data/visualization-store-data';
 import { DetailsViewActionMessageCreator } from 'DetailsView/actions/details-view-action-message-creator';
 import { DetailsViewCommandBarDeps, DetailsViewCommandBarProps } from 'DetailsView/components/details-view-command-bar';
 import {
@@ -16,6 +17,7 @@ import { shallow } from 'enzyme';
 import { ReportGenerator } from 'reports/report-generator';
 import { ScanResults } from 'scanner/iruleresults';
 import { IMock, Mock, MockBehavior } from 'typemoq';
+import { VisualizationType } from 'common/types/visualization-type';
 
 describe('ReportExportComponentPropsFactory', () => {
     const theDate = new Date(2019, 2, 12, 9, 0);
@@ -32,6 +34,7 @@ describe('ReportExportComponentPropsFactory', () => {
     let assessmentStoreData: AssessmentStoreData;
     let reportGeneratorMock: IMock<ReportGenerator>;
     let visualizationScanResultData: VisualizationScanResultData;
+    let visualizationStoreData: VisualizationStoreData;
     let cardsViewData: CardsViewModel;
     let scanResult: ScanResults;
 
@@ -49,6 +52,7 @@ describe('ReportExportComponentPropsFactory', () => {
         reportGeneratorMock = Mock.ofType<ReportGenerator>(undefined, MockBehavior.Loose);
         cardsViewData = null;
         scanResult = null;
+        visualizationStoreData = null;
     });
 
     function getProps(): DetailsViewCommandBarProps {
@@ -73,6 +77,7 @@ describe('ReportExportComponentPropsFactory', () => {
             assessmentStoreData,
             assessmentsProvider: assessmentsProviderMock.object,
             visualizationScanResultData,
+            visualizationStoreData,
             cardsViewData,
         } as DetailsViewCommandBarProps;
     }
@@ -110,6 +115,18 @@ describe('ReportExportComponentPropsFactory', () => {
         featureFlagStoreData['universalCardsUI'] = true;
     }
 
+    function setSelectedFastPassDetailsView(test: VisualizationType): void {
+        visualizationStoreData = {
+            selectedFastPassDetailsView: test,
+        } as VisualizationStoreData;
+    }
+
+    function setScanResults(): void {
+        scanResult = {
+            timestamp: theTimestamp,
+        } as ScanResults;
+    }
+
     test('getReportExportComponentForAssessment expected properties are set', () => {
         setAssessmentReportGenerator();
         const props = getProps();
@@ -136,13 +153,21 @@ describe('ReportExportComponentPropsFactory', () => {
         expect(component).toBeNull();
     });
 
-    test('getReportExportComponentForFastPass, CardsUI is true, scanResults is not null, expected properties are set', () => {
-        scanResult = {
-            timestamp: theTimestamp,
-        } as ScanResults;
-        cardsViewData = {} as CardsViewModel;
-
+    test('getReportExportComponentForFastPass, CardsUI is true, scanResults is not null, test is Tabstop, props is null', () => {
         setCardsUiFlag(true);
+        setScanResults();
+        setSelectedFastPassDetailsView(VisualizationType.TabStops);
+        const props = getProps();
+        const component: JSX.Element = getReportExportComponentForFastPass(props);
+
+        expect(component).toBeNull();
+    });
+
+    test('getReportExportComponentForFastPass, CardsUI is true, scanResults is not null, test is Issues, properties are set', () => {
+        cardsViewData = {} as CardsViewModel;
+        setCardsUiFlag(true);
+        setScanResults();
+        setSelectedFastPassDetailsView(VisualizationType.Issues);
         setAutomatedChecksReportGenerator();
         const props = getProps();
         const wrapper = shallow(getReportExportComponentForFastPass(props));

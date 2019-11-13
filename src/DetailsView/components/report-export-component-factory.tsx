@@ -2,6 +2,7 @@
 // Licensed under the MIT License.
 
 import { FeatureFlags } from 'common/feature-flags';
+import { VisualizationType } from 'common/types/visualization-type';
 import { CommandBarProps } from 'DetailsView/components/details-view-command-bar';
 import { ReportExportComponent, ReportExportComponentProps } from 'DetailsView/components/report-export-component';
 import * as React from 'react';
@@ -38,6 +39,12 @@ export function getReportExportComponentForFastPass(props: CommandBarProps): JSX
     const scanResult = props.visualizationScanResultData.issues.scanResult;
 
     if (!scanResult) {
+        return null;
+    }
+
+    const selectedTest = props.visualizationStoreData.selectedFastPassDetailsView;
+
+    if (selectedTest !== VisualizationType.Issues) {
         return null;
     }
 
