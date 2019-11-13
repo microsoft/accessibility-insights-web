@@ -2,7 +2,7 @@
 // Licensed under the MIT License.
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
 
-export class PermissionsEnsurer {
+export class BrowserPermissionsRequester {
     public static noPermissionsMessageEnding = 'Extension manifest must request permission to access this host.';
     public static noUserGestureMessage = 'This function must be called during a user gesture';
 
@@ -34,7 +34,7 @@ export class PermissionsEnsurer {
 
             return true;
         } catch (error) {
-            if (error.message.endsWith(PermissionsEnsurer.noPermissionsMessageEnding)) {
+            if (error.message.endsWith(BrowserPermissionsRequester.noPermissionsMessageEnding)) {
                 return false;
             }
 
@@ -54,7 +54,7 @@ export class PermissionsEnsurer {
                     await this.browserAdapter.requestPermissions(permissionsToRequest).then(resolve);
                 } catch (error) {
                     // we treat the no user gesture error as if the user denied permissions
-                    if (error.message.endsWith(PermissionsEnsurer.noUserGestureMessage)) {
+                    if (error.message.endsWith(BrowserPermissionsRequester.noUserGestureMessage)) {
                         resolve(false);
                         return;
                     }

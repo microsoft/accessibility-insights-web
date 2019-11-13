@@ -1,21 +1,21 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { PermissionsEnsurer } from 'background/permissions/permissions-ensurer';
+import { BrowserPermissionsRequester } from 'background/permissions/browser-permissions-requester';
 import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
 import { isFunction } from 'lodash';
 import { IMock, It, Mock } from 'typemoq';
 
-describe('PermissionsEnsurer', () => {
+describe('BrowserPermissionsRequester', () => {
     let browserAdapterMock: IMock<BrowserAdapter>;
 
     const testTabId = 1010101;
 
-    let testSubject: PermissionsEnsurer;
+    let testSubject: BrowserPermissionsRequester;
 
     beforeEach(() => {
         browserAdapterMock = Mock.ofType<BrowserAdapter>();
 
-        testSubject = new PermissionsEnsurer(browserAdapterMock.object);
+        testSubject = new BrowserPermissionsRequester(browserAdapterMock.object);
     });
 
     it('does not ask for permissions if already granted', async () => {
@@ -34,7 +34,7 @@ describe('PermissionsEnsurer', () => {
         beforeEach(() => {
             browserAdapterMock
                 .setup(adapter => adapter.executeScriptInTab(testTabId, It.isObjectWith({ code: '"injected"' })))
-                .returns(() => Promise.reject({ message: PermissionsEnsurer.noPermissionsMessageEnding }));
+                .returns(() => Promise.reject({ message: BrowserPermissionsRequester.noPermissionsMessageEnding }));
 
             browserAdapterMock
                 .setup(adapter => adapter.getTab(testTabId, It.is(isFunction)))
@@ -66,7 +66,7 @@ describe('PermissionsEnsurer', () => {
         it('error with no user gesture message', async () => {
             browserAdapterMock
                 .setup(adapter => adapter.requestPermissions(It.isValue({ origins: [testOrigin + '/'] })))
-                .returns(() => Promise.reject({ message: PermissionsEnsurer.noUserGestureMessage }));
+                .returns(() => Promise.reject({ message: BrowserPermissionsRequester.noUserGestureMessage }));
 
             const result = await testSubject.ensureInjectPermissions(testTabId);
 
