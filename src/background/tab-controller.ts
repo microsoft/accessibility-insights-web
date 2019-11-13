@@ -1,9 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-import { BrowserAdapter } from '../common/browser-adapters/browser-adapter';
-import { Message } from '../common/message';
-import { Messages } from '../common/messages';
-import { Logger } from './../common/logging/logger';
+import { BrowserAdapter } from 'common/browser-adapters/browser-adapter';
+import { Logger } from 'common/logging/logger';
+import { Message } from 'common/message';
+import { Messages } from 'common/messages';
+
 import { PageVisibilityChangeTabPayload } from './actions/action-payloads';
 import { DetailsViewController } from './details-view-controller';
 import { TabToContextMap } from './tab-context';
@@ -11,26 +12,14 @@ import { TabContextBroadcaster } from './tab-context-broadcaster';
 import { TabContextFactory } from './tab-context-factory';
 
 export class TabController {
-    private browserAdapter: BrowserAdapter;
-    private readonly tabIdToContextMap: TabToContextMap;
-    private readonly broadcaster: TabContextBroadcaster;
-    private readonly detailsViewController: DetailsViewController;
-    private tabContextFactory: TabContextFactory;
-
     constructor(
-        tabToInterpreterMap: TabToContextMap,
-        broadcaster: TabContextBroadcaster,
-        browserAdapter: BrowserAdapter,
-        detailsViewController: DetailsViewController,
-        tabContextFactory: TabContextFactory,
+        private readonly tabIdToContextMap: TabToContextMap,
+        private readonly broadcaster: TabContextBroadcaster,
+        private readonly browserAdapter: BrowserAdapter,
+        private readonly detailsViewController: DetailsViewController,
+        private readonly tabContextFactory: TabContextFactory,
         private readonly logger: Logger,
-    ) {
-        this.tabIdToContextMap = tabToInterpreterMap;
-        this.broadcaster = broadcaster;
-        this.browserAdapter = browserAdapter;
-        this.detailsViewController = detailsViewController;
-        this.tabContextFactory = tabContextFactory;
-    }
+    ) {}
 
     public initialize(): void {
         this.browserAdapter.tabsQuery({}, (tabs: chrome.tabs.Tab[]) => {
@@ -117,7 +106,7 @@ export class TabController {
         return tabId in this.tabIdToContextMap;
     }
 
-    private sendTabChangedAction(tabId: number): void {
+    private sendTabAction(tabId: number, messageType: string, errorMessagePrefix: string): void {
         this.browserAdapter.getTab(
             tabId,
             (tab: chrome.tabs.Tab) => {
@@ -125,36 +114,24 @@ export class TabController {
                 if (tabContext) {
                     const interpreter = tabContext.interpreter;
                     interpreter.interpret({
-                        messageType: Messages.Tab.Change,
+                        messageType,
                         payload: tab,
                         tabId: tabId,
                     });
                 }
             },
             () => {
-                this.logger.log(`changed tab with Id ${tabId} not found`);
+                this.logger.log(`${errorMessagePrefix} tab with Id ${tabId} not found`);
             },
         );
     }
 
+    private sendTabChangedAction(tabId: number): void {
+        this.sendTabAction(tabId, Messages.Tab.Change, 'changed');
+    }
+
     private sendTabUpdateAction(tabId: number): void {
-        this.browserAdapter.getTab(
-            tabId,
-            (tab: chrome.tabs.Tab) => {
-                const tabContext = this.tabIdToContextMap[tabId];
-                if (tabContext) {
-                    const interpreter = tabContext.interpreter;
-                    interpreter.interpret({
-                        messageType: Messages.Tab.Update,
-                        payload: tab,
-                        tabId: tabId,
-                    });
-                }
-            },
-            () => {
-                this.logger.log(`updated tab with Id ${tabId} not found`);
-            },
-        );
+        this.sendTabAction(tabId, Messages.Tab.Update, 'updated');
     }
 
     private sendTabVisibilityChangeAction(tabId: number, isHidden: boolean): void {
