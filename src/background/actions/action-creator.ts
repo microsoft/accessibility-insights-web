@@ -252,19 +252,9 @@ export class ActionCreator {
         this.detailsViewController.showDetailsView(tabId);
     };
 
-    private shouldSendTogglePayload(payload: VisualizationTogglePayload): boolean {
-        if (payload.enabled || !payload.isRescan) {
-            return true;
-        }
-
-        return false;
-    }
-
     private onVisualizationToggle = (payload: VisualizationTogglePayload): void => {
-        if (this.shouldSendTogglePayload(payload)) {
-            const telemetryEvent = this.adHocTestTypeToTelemetryEvent[payload.test];
-            this.telemetryEventHandler.publishTelemetry(telemetryEvent, payload);
-        }
+        const telemetryEvent = this.adHocTestTypeToTelemetryEvent[payload.test];
+        this.telemetryEventHandler.publishTelemetry(telemetryEvent, payload);
 
         if (payload.enabled) {
             this.visualizationActions.enableVisualization.invoke(payload);

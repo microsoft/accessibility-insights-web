@@ -33,7 +33,6 @@ export class VisualizationActionMessageCreator {
         triggeredBy: TriggeredBy,
     ): void {
         const telemetry: ToggleTelemetryData = {
-            isRescan: true,
             source: source,
             triggeredBy: triggeredBy,
             enabled,

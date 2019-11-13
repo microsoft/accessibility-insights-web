@@ -94,7 +94,6 @@ export type RescanVisualizationPayload = ToggleActionPayload;
 export interface VisualizationTogglePayload extends ToggleActionPayload {
     enabled: boolean;
     telemetry: ToggleTelemetryData;
-    isRescan?: boolean;
 }
 
 export interface SwitchToTargetTabPayload extends BaseActionPayload {

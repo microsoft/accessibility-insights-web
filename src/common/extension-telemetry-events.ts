@@ -92,7 +92,6 @@ export type BaseTelemetryData = {
 
 export type ToggleTelemetryData = {
     enabled: boolean;
-    isRescan?: boolean;
 } & BaseTelemetryData;
 
 export type FeatureFlagToggleTelemetryData = {
