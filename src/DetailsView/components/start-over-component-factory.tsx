@@ -40,6 +40,7 @@ export function getStartOverComponentForFastPass(props: CommandBarProps): JSX.El
         <ActionButton
             iconProps={{ iconName: 'Refresh' }}
             onClick={(event: SupportedMouseEvent) => actionMessageCreator.rescanVisualization(selectedTest, event)}
+            disabled={props.visualizationStoreData.scanning !== null}
         >
             Start over
         </ActionButton>

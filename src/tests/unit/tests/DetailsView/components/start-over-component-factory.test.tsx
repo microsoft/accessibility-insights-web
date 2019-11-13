@@ -23,11 +23,13 @@ describe('StartOverComponentPropsFactory', () => {
     let assessmentStoreData: AssessmentStoreData;
     let visualizationScanResultData: VisualizationScanResultData;
     let scanResult: ScanResults;
+    let scanning: string;
 
     beforeEach(() => {
         assessmentsProviderMock = Mock.ofType<AssessmentsProvider>(undefined, MockBehavior.Loose);
         featureFlagStoreData = {};
         scanResult = null;
+        scanning = null;
     });
 
     function getProps(isForAssessment: boolean): DetailsViewCommandBarProps {
@@ -45,6 +47,7 @@ describe('StartOverComponentPropsFactory', () => {
         } else {
             visualizationStoreData = {
                 selectedFastPassDetailsView: theTestType,
+                scanning,
             } as VisualizationStoreData;
         }
         visualizationScanResultData = {
@@ -100,9 +103,19 @@ describe('StartOverComponentPropsFactory', () => {
         expect(rendered).toBeNull();
     });
 
-    test('getStartOverComponentPropsForFastPass, CardsUI is true, scanResults is not null, component matches snapshot', () => {
+    test('getStartOverComponentPropsForFastPass, CardsUI is true, scanResults is not null, scanning is false, component matches snapshot', () => {
         setScanResult();
         setCardsUiFlag(true);
+        const props = getProps(false);
+        const rendered = getStartOverComponentForFastPass(props);
+
+        expect(rendered).toMatchSnapshot();
+    });
+
+    test('getStartOverComponentPropsForFastPass, CardsUI is true, scanResults is not null, scanning is true, component matches snapshot', () => {
+        setScanResult();
+        setCardsUiFlag(true);
+        scanning = 'true';
         const props = getProps(false);
         const rendered = getStartOverComponentForFastPass(props);
 
