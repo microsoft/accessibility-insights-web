@@ -65,7 +65,7 @@ describe('AssessmentTestView', () => {
 
         props = {
             deps: {
-                detailsViewActionMessageCreator: detailsViewActionMessageCreator,
+                detailsViewActionMessageCreator,
             } as AssessmentTestViewDeps,
             configuration,
             visualizationStoreData: visualizationStoreDataStub,
