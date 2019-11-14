@@ -112,8 +112,8 @@ describe('ReportExportComponentPropsFactory', () => {
             .returns(() => theGeneratorOutput);
     }
 
-    function setCardsUiFlag(flag: boolean): void {
-        featureFlagStoreData[FeatureFlags.universalCardsUI] = true;
+    function setCardsUiFlag(flagValue: boolean): void {
+        featureFlagStoreData[FeatureFlags.universalCardsUI] = flagValue;
     }
 
     function setSelectedFastPassDetailsView(test: VisualizationType): void {
@@ -139,7 +139,15 @@ describe('ReportExportComponentPropsFactory', () => {
         actionMessageCreatorMock.verifyAll();
     });
 
+    test('getReportExportComponentForFastPass, CardsUI is undefined, props is null', () => {
+        const props = getProps();
+        const component: JSX.Element = getReportExportComponentForFastPass(props);
+
+        expect(component).toBeNull();
+    });
+
     test('getReportExportComponentForFastPass, CardsUI is false, props is null', () => {
+        setCardsUiFlag(false);
         const props = getProps();
         const component: JSX.Element = getReportExportComponentForFastPass(props);
 

@@ -78,8 +78,8 @@ describe('StartOverComponentPropsFactory', () => {
         scanResult = {} as ScanResults;
     }
 
-    function setCardsUiFlag(flag: boolean): void {
-        featureFlagStoreData[FeatureFlags.universalCardsUI] = true;
+    function setCardsUiFlag(flagValue: boolean): void {
+        featureFlagStoreData[FeatureFlags.universalCardsUI] = flagValue;
     }
 
     test('getStartOverComponentPropsForAssessment, component matches snapshot', () => {
@@ -89,7 +89,15 @@ describe('StartOverComponentPropsFactory', () => {
         expect(rendered).toMatchSnapshot();
     });
 
+    test('getStartOverComponentPropsForFastPass, CardsUI is undefined, component  is null', () => {
+        const props = getProps(false);
+        const rendered = getStartOverComponentForFastPass(props);
+
+        expect(rendered).toBeNull();
+    });
+
     test('getStartOverComponentPropsForFastPass, CardsUI is false, component  is null', () => {
+        setCardsUiFlag(false);
         const props = getProps(false);
         const rendered = getStartOverComponentForFastPass(props);
 
